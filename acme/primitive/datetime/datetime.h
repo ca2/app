@@ -191,3 +191,4 @@ namespace datetime
 
 
 
+CLASS_DECL_ACME ::earth::time earth_time_from_international_string(const ::scoped_string& scopedstrTime);

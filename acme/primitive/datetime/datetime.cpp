@@ -1976,3 +1976,38 @@ namespace datetime
 
 
 
+
+
+CLASS_DECL_ACME::earth::time earth_time_from_international_string(const ::scoped_string& scopedstrTime)
+{
+
+   auto range = scopedstrTime();
+
+   range.trim();
+
+   if (::character_isalnum(range[4])
+      || ::character_isalnum(range[7])
+      || ::character_isalnum(range[10])
+      || ::character_isalnum(range[13])
+      || ::character_isalnum(range[16]))
+   {
+
+      throw ::exception(error_bad_argument);
+
+   }
+
+   //       2007-12-03 17-23-24
+   int iYear = atoi(range(0, 4));
+   int iMonth = atoi(range(5, 2));
+   int iDay = atoi(range(8, 2));
+
+   int iHour = atoi(range(11, 2));
+   int iMinute = atoi(range(14, 2));
+   int iSecond = atoi(range(17, 2));
+
+   return { iYear, iMonth, iDay, iHour, iMinute, iSecond, ::earth::time({posix_time_t{}, 0}) };
+
+}
+
+
+

@@ -1822,17 +1822,25 @@ namespace user
    void shell::set_image(int iImage, int iSize, image_drawing imagedrawing)
    {
 
-      synchronous_lock synchronouslock(m_pimagelist[iSize]->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
-      synchronous_lock slHover(m_pimagelistHover[iSize]->synchronization());
+      auto pimagelist = m_pimagelist[iSize];
 
-      m_pimagelist[iSize]->set(iImage, imagedrawing);
+      auto pimagelistHover = m_pimagelistHover[iSize];
 
-      auto pimageHover = m_pimagelist[iSize]->get_image(iImage);
+      synchronouslock.unlock();
+
+      _synchronous_lock sl(pimagelist->synchronization());
+
+      _synchronous_lock slHover(pimagelistHover->synchronization());
+
+      pimagelist->set(iImage, imagedrawing);
+
+      auto pimageHover = pimagelist->get_image(iImage);
 
       pimageHover->g()->fill_rectangle(pimageHover->rectangle(), ::rgba(255, 255, 240, 64));
 
-      m_pimagelistHover[iSize]->set(iImage, imagedrawing);
+      pimagelistHover->set(iImage, imagedrawing);
 
    }
 

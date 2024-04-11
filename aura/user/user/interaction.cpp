@@ -25328,6 +25328,8 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
                if (rectangleBounding.ok())
                {
 
+                  rectangleBounding.inflate(1);
+
                   rectanglea.add(rectangleBounding);
 
                }
@@ -25352,6 +25354,8 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
                {
 
                   //::rectangle_i32 rectangleBounding = ::bounding_box(user_item(pitemHitTest));
+
+                  rectangleBounding.inflate(1);
 
                   rectanglea.add(rectangleBounding);
 

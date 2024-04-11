@@ -1518,7 +1518,7 @@ namespace geo
 
       strLng.formatf("%0.2f", dLng);
 
-      string strUrl = "https://camilothomas.com/account/time_zone";
+      string strUrl = "https://ca2.network/account/time_zone";
 
       try
       {

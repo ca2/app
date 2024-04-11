@@ -5,7 +5,7 @@ const char * pszClientId = "1021815182417-r9b8p4cm75c1i6jndkbkjl2fd4vbhs60.apps.
 const char * pszAuthUri = "https://accounts.ca2.com/o/oauth2/auth";
 //const char * pszTokenUri = "https://accounts.ca2.com/o/oauth2/token";
 //const char * pszAuthProviderX509CertUrl = "https://www.ca2apis.com/oauth2/v1/certs";
-const char * pszRedirectUris = "https://ca2software.com/youtube_resident_callback";
-//const char * pszJavascriptOrigins = "https://ca2software.com";
+const char * pszRedirectUris = "https://ca2.software/youtube_resident_callback";
+//const char * pszJavascriptOrigins = "https://ca2.software";
 
 

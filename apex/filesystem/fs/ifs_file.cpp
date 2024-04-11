@@ -85,7 +85,7 @@ void ifs_file::get_file_data()
 
    auto purl = psystem->url();
 
-   strUrl = "http://file.ca2software.com/ifs/get?path=" + ::url::encode(m_strPath);
+   strUrl = "http://file.ca2.software/ifs/get?path=" + ::url::encode(m_strPath);
 
    ::file::e_open eopenAdd;
 
@@ -113,7 +113,7 @@ void ifs_file::set_file_data()
    if(m_payloadFile["xmledit"].cast < ::memory_file > () != nullptr)
    {
 
-      strUrl = "http://file.ca2software.com/ifs/xmledit?path=" + ::url::encode(m_payloadFile["url"]);
+      strUrl = "http://file.ca2.software/ifs/xmledit?path=" + ::url::encode(m_payloadFile["url"]);
 
       property_set setRequest;
 
@@ -142,7 +142,7 @@ void ifs_file::set_file_data()
 
       }
 
-      strUrl = "http://file.ca2software.com/ifs/set?path=" + ::url::encode(m_payloadFile["url"]);
+      strUrl = "http://file.ca2.software/ifs/set?path=" + ::url::encode(m_payloadFile["url"]);
 
       property_set setPut;
 
@@ -152,7 +152,7 @@ void ifs_file::set_file_data()
 
    }
 
-   strUrl = "http://file.ca2software.com/ifs/set?path=" + ::url::encode(m_strPath);
+   strUrl = "http://file.ca2.software/ifs/set?path=" + ::url::encode(m_strPath);
 
    property_set setPut;
 

@@ -6,7 +6,7 @@
 #include "acme/primitive/collection/string_map.h"
 
 
-// ifs - implementation of file system interface - file.ca2software.com
+// ifs - implementation of file system interface - file.ca2.software
 
 class CLASS_DECL_APEX ifs :
    virtual public ::fs::data

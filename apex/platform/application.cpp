@@ -6542,11 +6542,11 @@ namespace apex
 
       if (node()->is_debug_build())
       {
-         strUrl = "http://basis-server.ca2software.com/api/spaignition/download?authnone&configuration=basis&stage=";
+         strUrl = "http://basis-server.ca2.software/api/spaignition/download?authnone&configuration=basis&stage=";
       }
       else
       {
-         strUrl = "http://stage-server.ca2software.com/api/spaignition/download?authnone&configuration=stage&stage=";
+         strUrl = "http://stage-server.ca2.software/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
       auto psystem = system();

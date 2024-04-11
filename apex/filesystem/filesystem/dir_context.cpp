@@ -1915,7 +1915,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          auto purl = psystem->url();
 
-         string strUrl = "https://api.ca2software.com/api/matter/list_dir?dir=" + ::url::encode(strMatter);
+         string strUrl = "https://api.ca2.software/api/matter/list_dir?dir=" + ::url::encode(strMatter);
 
          strLs = m_pcontext->m_papexcontext->http().get(strUrl, set);
 
@@ -2247,13 +2247,13 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
       //if (bDir)
       //{
 
-      strUrl = "https://ca2software.com/api/matter/query?candidate=" + strParam;
+      strUrl = "https://ca2.software/api/matter/query?candidate=" + strParam;
 
       //}
       //else
       //{
 
-        // strUrl = "https://ca2software.com/api/matter/query_file?candidate=" + strParam;
+        // strUrl = "https://ca2.software/api/matter/query_file?candidate=" + strParam;
 
       //}
 
@@ -2263,8 +2263,8 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       bool bDir = strMatter.ends("/");
 
-      //strMatter.replace("https://server.ca2software.com/", string(get_server_ca2_cc()));
-      strMatter.replace_with("https://ca2software.com/", "https://server.ca2software.com/");
+      //strMatter.replace("https://server.ca2.software/", string(get_server_ca2_cc()));
+      strMatter.replace_with("https://ca2.software/", "https://server.ca2.software/");
 
 
       //informationf("");

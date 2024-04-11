@@ -6,7 +6,7 @@
 #include "apex/filesystem/fs/data.h"
 
 
-// ifs - implementation of file system interface - file.ca2software.com
+// ifs - implementation of file system interface - file.ca2.software
 
 class ftpnet;
 

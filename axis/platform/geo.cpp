@@ -214,7 +214,7 @@ namespace geo
          ::payload payload;
 
          payload["nocache"] = true;
-         payload["url"] = "https://ca2software.com/city-list.json";
+         payload["url"] = "https://ca2.software/city-list.json";
 
          str = pfile->as_string(payload);
 
@@ -586,7 +586,7 @@ namespace geo
 
       auto psystem = system()->m_paxissystem;
 
-      string strGetUrl = "https://ca2software.com/api/account/openweather?request=" + ::url::encode(strUrl);
+      string strGetUrl = "https://ca2.software/api/account/openweather?request=" + ::url::encode(strUrl);
 
       auto pcontext = get_context();
 
@@ -1645,7 +1645,7 @@ namespace geo
 
       string strId = ::as_string(pcity->m_iId);
 
-      string strUrl = "http://ca2software.com/account/weather";
+      string strUrl = "http://ca2.software/account/weather";
 
       try
       {

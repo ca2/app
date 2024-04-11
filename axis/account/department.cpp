@@ -133,7 +133,7 @@ namespace account
 
       auto purl = psystem->url();
 
-      if (purl->get_server(pathUrl).lowered() == "server.ca2.software")
+      if (purl->get_server(pathUrl).lowered() == "ca2.network")
       {
 
          return false;

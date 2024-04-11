@@ -1651,7 +1651,7 @@ namespace acme
    void system::get_public_internet_domain_extension_list(string_array & stra)
    {
 
-      //::file::path pathPublicDomainExtensionList = "https://server.ca2.software/public_internet_domain_extension_list.txt";
+      //::file::path pathPublicDomainExtensionList = "https://ca2.network/public_internet_domain_extension_list.txt";
 
       //file()->load_lines(stra, pathPublicDomainExtensionList);
 

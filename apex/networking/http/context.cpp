@@ -76,7 +76,7 @@ namespace http
 
       string strServer = purl->get_root(scopedstrUrl);
 
-      if (strServer == "server.ca2.software")
+      if (strServer == "ca2.network")
       {
 
          set["raw_http"] = true;

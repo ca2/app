@@ -889,12 +889,12 @@ end_processing_adding:
 
             n = ::select((int)m_maxsock, psetR, psetW, psetE, tsel);
 
-            if (m_iMaxKeepAliveCount > 0)
-            {
+            //if (m_iMaxKeepAliveCount > 0)
+            //{
 
-               output_debug_string("m_iMaxKeepAliveCount > 0");
+            //   output_debug_string("m_iMaxKeepAliveCount > 0");
 
-            }
+            //}
 
             m_iSelectErrno = networking_last_error();
 
@@ -916,12 +916,12 @@ end_processing_adding:
             ENOMEM select was unable to allocate memory for internal tables.
          */
 
-         if (m_iMaxKeepAliveCount > 0)
-         {
+         //if (m_iMaxKeepAliveCount > 0)
+         //{
 
-            output_debug_string("m_iMaxKeepAliveCount > 0");
+         //   output_debug_string("m_iMaxKeepAliveCount > 0");
 
-         }
+         //}
 
          if (m_maxsock > 0 && (m_iSelectErrno != m_iPreviousError || tickNow - m_timeLastError > 5_s))
          {
@@ -1157,29 +1157,29 @@ end_processing_adding:
                
                auto ppairSocket = m_socketmap.plookup(socket);
 
-               if (m_iMaxKeepAliveCount > 0)
-               {
+               //if (m_iMaxKeepAliveCount > 0)
+               //{
 
-                  output_debug_string("m_iMaxKeepAliveCount > 0");
+               //   output_debug_string("m_iMaxKeepAliveCount > 0");
 
-               }
+               //}
 
                if (::is_set(ppairSocket) && ::is_set(ppairSocket->m_psocket)) // found
                {
 
-                  if (ppairSocket->m_psocket->m_iKeepAliveCount > 0)
-                  {
+                  //if (ppairSocket->m_psocket->m_iKeepAliveCount > 0)
+                  //{
 
-                     output_debug_string("ppairSocket->m_psocket->m_iKeepAliveCount > 0");
+                  //   output_debug_string("ppairSocket->m_psocket->m_iKeepAliveCount > 0");
 
-                  }
+                  //}
 
-                  if (ppairSocket->m_psocket->base_socket_composite() && ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0)
-                  {
+                  //if (ppairSocket->m_psocket->base_socket_composite() && ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0)
+                  //{
 
-                     output_debug_string("ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0");
+                  //   output_debug_string("ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0");
 
-                  }
+                  //}
 
                   // new SSL negotiate method
                   if (ppairSocket->m_psocket->IsSSLNegotiate())
@@ -1202,7 +1202,7 @@ end_processing_adding:
                   if (ppairSocket->m_psocket->m_iKeepAliveCount > 0)
                   {
 
-                     output_debug_string("ppairSocket->m_psocket->m_iKeepAliveCount > 0");
+                     //output_debug_string("ppairSocket->m_psocket->m_iKeepAliveCount > 0");
 
                      m_iMaxKeepAliveCount = maximum(m_iMaxKeepAliveCount, ppairSocket->m_psocket->m_iKeepAliveCount);
 
@@ -1211,7 +1211,7 @@ end_processing_adding:
                   if (ppairSocket->m_psocket->base_socket_composite() && ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0)
                   {
 
-                     output_debug_string("ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0");
+                     //output_debug_string("ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0");
 
                      m_iMaxKeepAliveCount = maximum(m_iMaxKeepAliveCount, ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount);
 

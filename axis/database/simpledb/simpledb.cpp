@@ -239,7 +239,7 @@ namespace simpledb
 
             string strApi = "/api/account/str_set_load";
 
-            strUrl = "https://ca2software.com" + strApi + "?key=";
+            strUrl = "https://ca2.software" + strApi + "?key=";
 
             auto psystem = system();
 

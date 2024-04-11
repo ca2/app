@@ -939,7 +939,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				MARKETING_VERSION = 0.1;
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = ca2software.com.app.app;
+				PRODUCT_BUNDLE_IDENTIFIER = ca2.software.app.app;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -956,7 +956,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				MARKETING_VERSION = 0.1;
 				PLATFORM_MODIFIER = ios;
-				PRODUCT_BUNDLE_IDENTIFIER = ca2software.com.app.app;
+				PRODUCT_BUNDLE_IDENTIFIER = ca2.software.app.app;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

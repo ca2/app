@@ -117,7 +117,7 @@ namespace simpledb
 
                string strUrl;
 
-               strUrl = "https://ca2software.com/api/account/str_set_save?key=";
+               strUrl = "https://ca2.software/api/account/str_set_save?key=";
 
                auto psystem = system()->m_papexsystem;
 

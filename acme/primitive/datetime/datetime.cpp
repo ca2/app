@@ -505,7 +505,7 @@ namespace datetime
    }
 
 
-   string datetime::format(const ::earth::time & time, const ::scoped_string & scopedstrFormat, const class ::time& timeshift)
+   string datetime::format(const ::scoped_string& scopedstrFormat, const ::earth::time & time, const class ::time& timeshift)
    {
       
       string str;

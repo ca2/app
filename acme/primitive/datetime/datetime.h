@@ -205,21 +205,21 @@ namespace datetime
       //string local_get_date_time_for_file_with_no_spaces();
 
 
-      virtual string format(const ::earth::time& time, const ::scoped_string& strFormat, const class ::time& timeshift = {});
-      inline string format(const ::scoped_string& strFormat, const class ::time& timeshift = {}) { return format(::time::now(), strFormat, timeshift); }
+      virtual string format(const ::scoped_string& strFormat, const ::earth::time& time = ::time::now(), const class ::time& timeshift = {});
+      //inline string format(const ::scoped_string& strFormat, const class ::time& timeshift = {}) { return format(::time::now(), strFormat, timeshift); }
 
 
-      inline string date_time_text(const ::earth::time& time, const class ::time& timeshift = {}) { return format(time, INTERNATIONAL_DATE_TIME_FORMAT, timeshift); }
+      inline string date_time_text(const ::earth::time& time, const class ::time& timeshift = {}) { return format(INTERNATIONAL_DATE_TIME_FORMAT, time, timeshift); }
       inline string date_time_text(const class ::time & timeshift = {}) { return date_time_text(::time::now(), timeshift); }
-      inline string date_time_text_for_file(const ::earth::time& time, const class ::time& timeshift = {}) { return format(time, INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeshift); }
+      inline string date_time_text_for_file(const ::earth::time& time, const class ::time& timeshift = {}) { return format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, time, timeshift); }
       inline string date_time_text_for_file(const class ::time& timeshift = {}) { return date_time_text_for_file(::time::now(), timeshift); }
-      inline string date_time_text_for_file_with_no_spaces(const ::earth::time& time, const class ::time& timeshift = {}) { return format(time, INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE_WITH_NO_SPACES, timeshift); }
+      inline string date_time_text_for_file_with_no_spaces(const ::earth::time& time, const class ::time& timeshift = {}) { return format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE_WITH_NO_SPACES, time, timeshift); }
       inline string date_time_text_for_file_with_no_spaces(const class ::time& timeshift = {}) { return date_time_text_for_file_with_no_spaces(::time::now(), timeshift); }
 
 
-      inline ::string date_text(const ::earth::time& time, string strFormat = INTERNATIONAL_DATE_FORMAT, const class ::time& timeshift = {}) { return format(time, strFormat, timeshift); }
-      inline ::string date_text(string strFormat = INTERNATIONAL_DATE_FORMAT, const class ::time& timeshift = {}) { return format(::time::now(), strFormat, timeshift); }
-      inline ::string date_text_for_file(const class ::time& timeshift = {}, const ::earth::time& time = ::earth::time::now()) { return format(time, INTERNATIONAL_DATE_FORMAT_FOR_FILE, timeshift); }
+      inline ::string date_text(const ::earth::time& time, string strFormat = INTERNATIONAL_DATE_FORMAT, const class ::time& timeshift = {}) { return format(strFormat, time, timeshift); }
+      inline ::string date_text(string strFormat = INTERNATIONAL_DATE_FORMAT, const class ::time& timeshift = {}) { return format(strFormat, ::time::now(), timeshift); }
+      inline ::string date_text_for_file(const class ::time& timeshift = {}, const ::earth::time& time = ::earth::time::now()) { return format(INTERNATIONAL_DATE_FORMAT_FOR_FILE, time, timeshift); }
 
 
       //inline string local_get(string strFormat = INTERNATIONAL_DATE_TIME_FORMAT) { return local_get_date_time(strFormat); }

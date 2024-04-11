@@ -572,7 +572,13 @@ namespace user
 
             set_text_color(pgraphics);
 
-            m_pitem->m_pdrawlistitem->m_pgraphics->draw_text(m_strText, m_rectangleText, ealign, edrawtext);
+            ::rectangle_i32 rectangleMargin(2, 0, 2, 0);
+
+            auto rectangleText = m_rectangleText;
+
+            rectangleText.deflate(rectangleMargin);
+
+            m_pitem->m_pdrawlistitem->m_pgraphics->draw_text(m_strText, rectangleText, ealign, edrawtext);
 
             //m_pgraphics->fill_rectangle(m_rectangleText.left(), m_rectangleText.top(), 100, 100, argb(128, 100, 125, 255));
 

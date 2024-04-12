@@ -731,7 +731,6 @@ pstate->m_ppen->m_color = color;
       
       ::pointer < draw2d_state > pstate = m_pstate;
 
-
       m_pgraphics->set(pstate->m_pbrush);
 
       double offsetx = 0.0;
@@ -897,7 +896,7 @@ pstate->m_ppen->m_color = color;
       {
 
          bounds->left() = (float) (x + offsetx);
-         bounds->top() = (float)(y + offsety);
+         bounds->top() = (float) (y + offsety);
          bounds->set_size(size);
          
       }

@@ -310,7 +310,7 @@ namespace sockets
          m_ptcpsocket -> SetReconnect(true);
 #endif
          
-         auto paddress = system()->m_papexsystem->networking()->create_address("127.0.0.1", m_port);
+         auto paddress = system()->m_papexsystem->networking()->create_ip4_address("127.0.0.1", m_port);
 //         m_ptcpsocket -> open(::networking::address("127.0.0.1", m_port));
          
          m_ptcpsocket -> open(paddress);

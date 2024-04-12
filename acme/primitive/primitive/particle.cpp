@@ -727,6 +727,129 @@ void particle::to_sz(char * sz, strsize len) const
 }
 
 
+void particle::print_line(const ::scoped_string & scopedstr) const
+{
+   
+   ::string strLine(scopedstr);
+   
+   strLine += "\n";
+
+   printf("%s", strLine.c_str());
+   
+   fflush(stdout);
+
+}
+
+
+void particle::print_out(const ::scoped_string & scopedstr) const
+{
+   
+   ::string strLine(scopedstr);
+   
+   printf("%s", strLine.c_str());
+   
+   fflush(stdout);
+
+}
+
+
+void particle::printf_line(const ::ansi_character * pszFormat, ...) const
+{
+
+   va_list arguments;
+
+   va_start(arguments, pszFormat);
+   
+   ::string strLine(pszFormat);
+   
+   strLine += "\n";
+
+   vprintf(strLine.c_str(), arguments);
+
+   va_end(arguments);
+   
+   fflush(stdout);
+
+}
+
+
+void particle::printf_out(const ::ansi_character * pszFormat, ...) const
+{
+
+   va_list arguments;
+
+   va_start(arguments, pszFormat);
+
+   vprintf(pszFormat, arguments);
+
+   va_end(arguments);
+   
+   fflush(stdout);
+
+}
+
+
+void particle::err_line(const ::scoped_string & scopedstr) const
+{
+   
+   ::string strLine(scopedstr);
+   
+   strLine += "\n";
+
+   printf("%s", strLine.c_str());
+   
+   fflush(stdout);
+
+}
+
+
+void particle::err_out(const ::scoped_string & scopedstr) const
+{
+   
+   ::string strLine(scopedstr);
+   
+   printf("%s", strLine.c_str());
+   
+   fflush(stdout);
+
+}
+
+
+void particle::errf_line(const ::ansi_character * pszFormat, ...) const
+{
+
+   va_list arguments;
+
+   va_start(arguments, pszFormat);
+   
+   ::string strLine(pszFormat);
+   
+   strLine += "\n";
+
+   vfprintf(stderr, strLine.c_str(), arguments);
+
+   va_end(arguments);
+   
+   fflush(stderr);
+
+}
+
+
+void particle::errf_out(const ::ansi_character * pszFormat, ...) const
+{
+
+   va_list arguments;
+
+   va_start(arguments, pszFormat);
+
+   vfprintf(stderr, pszFormat, arguments);
+
+   va_end(arguments);
+   
+   fflush(stderr);
+
+}
+
 
 enum_trace_category particle::trace_category() const
 {
@@ -1102,6 +1225,8 @@ void particle::fatalf(const ::ansi_character * pszFormat, ...) const
    va_end(arguments);
 
 }
+
+
 
 
 //trace_statement particle::trace(enum_trace_level etracelevel)

@@ -59,7 +59,7 @@ string_buffer * string_stream::string_buffer()
 }
 
 
-::string & string_stream::as_string() 
+::string & string_stream::string_reference() 
 {
 
    return string_buffer()->m_strOwnStorage; 

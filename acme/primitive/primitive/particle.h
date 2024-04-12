@@ -356,10 +356,19 @@ public:
    virtual ::trace_statement error() const;
    virtual ::trace_statement fatal() const;
 
-
+   
    virtual void tracef(enum_trace_level etracelevel, const ::ansi_character * pszFormat, ...) const;
 
    virtual void formatf_trace(enum_trace_level etracelevel, const ::ansi_character * pszFormat, va_list & arguments) const;
+
+   virtual void print_line(const ::scoped_string & scopedstr) const;
+   virtual void print_out(const ::scoped_string & scopedstr) const;
+   virtual void printf_line(const ::ansi_character * pszFormat, ...) const;
+   virtual void printf_out(const ::ansi_character * pszFormat, ...) const;
+   virtual void err_line(const ::scoped_string & scopedstr) const;
+   virtual void err_out(const ::scoped_string & scopedstr) const;
+   virtual void errf_line(const ::ansi_character * pszFormat, ...) const;
+   virtual void errf_out(const ::ansi_character * pszFormat, ...) const;
 
    virtual void debugf(const ::ansi_character * pszFormat, ...) const;
    virtual void informationf(const ::ansi_character * pszFormat, ...) const;

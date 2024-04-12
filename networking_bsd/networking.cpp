@@ -3,6 +3,7 @@
 #include "networking.h"
 #include "sockets/ssl/initializer.h"
 #include "acme/exception/interface_only.h"
+#include "acme/filesystem/file/string_stream.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/mathematics/mathematics.h"
 #include "acme/primitive/time/_binary_stream.h"
@@ -3376,12 +3377,14 @@ namespace networking_bsd
          paddress->u.s.set_family(AF_INET);
 
          ::string strDisplay = paddress->get_display_number();
+         
+         ::string str;
 
-         information() << "networking::create_address display_number : " << strDisplay;
-
-         printf("converted to IPV4 address : " + strDisplay + "\n");
-
-         fflush(stdout);
+         str = "converted to IPV4 address : " + strDisplay;
+         
+         information() << str;
+         
+         print_out(str);
 
          return true;
 
@@ -3402,11 +3405,13 @@ namespace networking_bsd
 
          ::string strDisplay = paddress->get_display_number();
 
-         information() << "networking::create_address display_number : " << strDisplay;
+         ::string str;
 
-         printf("converted to IPV6 address : " + strDisplay + "\n");
-
-         fflush(stdout);
+         str = "converted to IPV6 address : " + strDisplay;
+         
+         information() << str;
+         
+         print_out(str);
 
          return true;
 
@@ -3431,11 +3436,13 @@ namespace networking_bsd
 
          ::string strDisplay = paddress->get_display_number();
 
-         information() << "networking::create_address display_number : " << strDisplay;
+         ::string_stream stream;
 
-         printf("::networking_bsd::networking::create_address IPV6 numeric address : " + strDisplay + "\n");
+         stream << "::networking_bsd::networking::create_address IPV6 numeric address : " << strDisplay;
 
-         fflush(stdout);
+         information(stream);
+         
+         print_out(stream);
 
          return paddress;
 
@@ -3449,11 +3456,13 @@ namespace networking_bsd
 
          ::string strDisplay = paddress->get_display_number();
 
-         information() << "networking::create_address display_number : " << strDisplay;
-
-         printf("::networking_bsd::networking::create_address IPV4 numeric address : " + strDisplay + "\n");
-
-         fflush(stdout);
+         string_stream stream;
+         
+         stream << "::networking_bsd::networking::create_address IPV4 numeric address : " << strDisplay;
+         
+         information(stream);
+         
+         print_out(stream);
 
          return paddress;
 

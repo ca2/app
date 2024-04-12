@@ -3624,22 +3624,22 @@ namespace networking_bsd
    //   return {};
 
    //}
-
-
-bool networking::has_ipv4_connectivity()
-{
-
-   return ::operating_system_has_ipv4_internet();
-
-}
-
-
-bool networking::has_ipv6_connectivity()
-{
-
-   return ::operating_system_has_ipv6_internet();
-
-}
+//
+//
+//bool networking::has_ip4_internet()
+//{
+//
+//   return ::operating_system_has_ip4_internet();
+//
+//}
+//
+//
+//bool networking::has_ip6_internet()
+//{
+//
+//   return ::operating_system_has_ipv6_internet();
+//
+//}
 
 } // namespace networking_bsd
 

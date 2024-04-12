@@ -91,6 +91,10 @@ namespace apex
       //virtual void parallelization_initialize();
       //virtual void parallelization_finalize();
 
+      virtual bool has_ip4_internet();
+
+      virtual bool has_ip6_internet();
+
       virtual void thread_initialize(::thread* pthread);
       //virtual void thread_finalize(::thread* pthread);
 

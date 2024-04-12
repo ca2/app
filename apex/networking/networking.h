@@ -100,8 +100,8 @@ namespace networking
 
 
 
-      virtual bool has_ipv4_connectivity();
-      virtual bool has_ipv6_connectivity();
+      virtual bool has_ip4_internet();
+      virtual bool has_ip6_internet();
 
 
       virtual ::sockets::sockets * sockets() { return m_psockets; }

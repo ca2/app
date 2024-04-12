@@ -181,13 +181,13 @@ namespace sockets
       if (preferred_address_type() == ::networking::e_address_type_ipv6)
       {
 
-         if (networking()->has_ipv4_connectivity())
+         if (networking()->has_ip4_internet())
          {
 
             m_eaddresstypePreferred = ::networking::e_address_type_ipv4;
 
          }
-         else if (networking()->has_ipv6_connectivity())
+         else if (networking()->has_ip6_internet())
          {
 
             m_eaddresstypePreferred = ::networking::e_address_type_ipv6;
@@ -198,13 +198,13 @@ namespace sockets
       else
       {
 
-         if (networking()->has_ipv6_connectivity())
+         if (networking()->has_ip6_internet())
          {
 
             m_eaddresstypePreferred = ::networking::e_address_type_ipv6;
 
          }
-         else if (networking()->has_ipv4_connectivity())
+         else if (networking()->has_ip4_internet())
          {
 
             m_eaddresstypePreferred = ::networking::e_address_type_ipv4;

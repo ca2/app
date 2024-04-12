@@ -384,6 +384,22 @@ namespace apex
    // }
 
 
+   bool node::has_ip4_internet()
+   {
+
+      return true;
+
+   }
+
+   
+   bool node::has_ip6_internet()
+   {
+
+      return true;
+
+   }
+
+
    void node::thread_initialize(::thread * pthread)
    {
 

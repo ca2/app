@@ -142,8 +142,6 @@ namespace networking_bsd
       virtual bool defer_finalize_operating_system_networking();
 
 
-      virtual bool has_ipv4_connectivity();
-      virtual bool has_ipv6_connectivity();
 
 
       /*

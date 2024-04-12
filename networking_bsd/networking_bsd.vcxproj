@@ -745,7 +745,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="address.cpp" />
-    <ClCompile Include="connectivity.cpp" />
     <ClCompile Include="networking.cpp" />
     <ClCompile Include="ip_enum.cpp" />
     <ClCompile Include="networking_bsd.cpp" />

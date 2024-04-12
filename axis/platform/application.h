@@ -6,6 +6,14 @@
 #include "axis/user/user/form_handler.h"
 
 
+namespace geo
+{
+
+   class geo;
+
+} // namespace geo
+
+
 namespace axis
 {
 
@@ -40,7 +48,6 @@ namespace axis
       void initialize(::particle * pparticle) override;
 
       virtual ::pointer < ::geo::geo > create_geo();
-
 
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;

@@ -6,6 +6,7 @@
 #include "acme/primitive/string/str.h"
 #include "apex/networking/sockets/basic/listen_socket.h"
 #include "apex/networking/sockets/base/socket_thread.h"
+#include "apex/platform/node.h"
 
 
 //#define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
@@ -104,13 +105,13 @@ namespace networking
 
       }
 
-      if (has_ipv6_connectivity())
+      if (has_ip6_internet())
       {
 
          m_eaddresstypePreferred = e_address_type_ipv6;
 
       }
-      else if (has_ipv4_connectivity())
+      else if (has_ip4_internet())
       {
 
          m_eaddresstypePreferred = e_address_type_ipv4;
@@ -128,20 +129,20 @@ namespace networking
    }
 
 
-   bool networking::has_ipv4_connectivity()
-   {
+   //bool networking::has_ip4_internet()
+   //{
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
-   bool networking::has_ipv6_connectivity()
-   {
+   //bool networking::has_ip6_internet()
+   //{
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    bool networking::gudo_set()
@@ -184,6 +185,22 @@ namespace networking
       //}
 
       //return ::success;
+
+   }
+
+
+   bool networking::has_ip4_internet()
+   {
+
+      return node()->m_papexnode->has_ip4_internet();
+
+   }
+
+
+   bool networking::has_ip6_internet()
+   {
+
+      return node()->m_papexnode->has_ip6_internet();
 
    }
 

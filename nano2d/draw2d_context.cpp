@@ -304,8 +304,11 @@ namespace nano2d
             
             ::pointer < draw2d_state > pstate = m_pstate;
 
-
             m_pgraphics->intersect_clip(pstate->m_ppath);
+            
+            ::rectangle_f64 rect;
+            
+            m_pgraphics->get_clip_box(rect);
 
             image_source imagesource(paintimage.m_pimage);
 

@@ -1443,15 +1443,26 @@ namespace windowing
          return true;
 
       }
+      
+      auto puserinteractionimpl = m_puserinteractionimpl;
 
-      if (m_puserinteractionimpl == nullptr)
+      if (!puserinteractionimpl)
       {
 
          return true;
 
       }
 
-      if (!m_puserinteractionimpl->m_puserinteraction->m_bUserElementOk)
+      auto puserinteraction = puserinteractionimpl->m_puserinteraction;
+      
+      if (!puserinteraction)
+      {
+
+         return true;
+
+      }
+      
+      if (!puserinteraction->m_bUserElementOk)
       {
 
          return true;

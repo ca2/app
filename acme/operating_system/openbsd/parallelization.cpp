@@ -9,8 +9,8 @@
 #define __XSI_VISIBLE 1
 #endif
 #define bitset openbsd_bitset
-#include <sys/_cpuset.h>
-#include <sys/cpuset.h>
+//#include <sys/_cpuset.h>
+//#include <sys/cpuset.h>
 #undef bitset
 #include <pthread_np.h>
 #include <signal.h>

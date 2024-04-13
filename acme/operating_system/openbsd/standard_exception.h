@@ -209,13 +209,13 @@ class standard_sigfpe : public standard_exception
 class standard_sigfpe : public standard_exception
    {
    public:
-      standard_sigfpe (i32 iSignal, siginfo_t * psiginfo, void * pc) :
+      standard_sigfpe (i32 iSignal, siginfo_t * psiginfo, void * pc); //:
          //standard_exception(iSignal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip),
-         standard_exception(iSignal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext.mc_rip)
+//         standard_exception(iSignal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext.mc_rip)
          //::callstack(3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.eip),
-      {
+  //    {
 
-      }
+    //  }
 
 
    public:

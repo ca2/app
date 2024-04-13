@@ -2534,6 +2534,81 @@ if (${FREEBSD})
 
 endif ()
 
+if (${OPENBSD})
+   list(APPEND library_source
+
+      #operating_system/openbsd/application_system_run.cpp
+      #operating_system/openbsd/console.cpp
+      #operating_system/openbsd/console.h
+      #operating_system/openbsd/file.cpp
+      #operating_system/openbsd/file.h
+      #operating_system/openbsd/gdk.cpp
+      #operating_system/openbsd/gdk.h
+      #operating_system/openbsd/list_serial_ports.cpp
+      #operating_system/openbsd/operating_system.cpp
+      #operating_system/openbsd/operating_system.h
+      #operating_system/openbsd/shell.cpp
+      #operating_system/openbsd/shell_openbsd.cpp
+      #operating_system/openbsd/stdio_file.cpp
+      #operating_system/openbsd/stdio_file.h
+      #operating_system/openbsd/user.cpp
+      operating_system/openbsd/
+      operating_system/openbsd/_.cpp
+      operating_system/openbsd/_.cpp
+      operating_system/openbsd/_.h
+      operating_system/openbsd/_.h
+      operating_system/openbsd/_c.h
+      operating_system/openbsd/_factory.cpp
+      operating_system/openbsd/_openbsd.h
+      operating_system/openbsd/_openbsd2.h
+      operating_system/openbsd/_user.h
+      operating_system/openbsd/application.h
+      operating_system/openbsd/call_stack.cpp
+      operating_system/openbsd/cross_win_file.cpp
+      operating_system/openbsd/cross_win_file.h
+      operating_system/openbsd/cross_win_gdi.cpp
+      operating_system/openbsd/cross_win_gdi.h
+      operating_system/openbsd/cross_win_gdi_internal.h
+      operating_system/openbsd/debug.cpp
+      operating_system/openbsd/debug.h
+      operating_system/openbsd/dumpinit.cpp
+      operating_system/openbsd/error.cpp
+      operating_system/openbsd/exception.cpp
+      operating_system/openbsd/exception_engine.cpp
+      operating_system/openbsd/exception_engine.h
+      operating_system/openbsd/file.cpp
+      operating_system/openbsd/file.h
+      operating_system/openbsd/file_lock.cpp
+      operating_system/openbsd/openbsd.cpp
+      operating_system/openbsd/openbsd.inl
+      operating_system/openbsd/openbsd2.cpp
+      operating_system/openbsd/openbsd_openbsd.h
+      operating_system/openbsd/graphics.cpp
+      operating_system/openbsd/internal.h
+      operating_system/openbsd/library.cpp
+      operating_system/openbsd/os.cpp
+      operating_system/openbsd/parallelization.cpp
+      operating_system/openbsd/process.cpp
+      operating_system/openbsd/process.h
+      operating_system/openbsd/process_pid.cpp
+      operating_system/openbsd/root_tools.cpp
+      operating_system/openbsd/root_tools.h
+      operating_system/openbsd/simple_app.cpp
+      operating_system/openbsd/standard_exception.cpp
+      operating_system/openbsd/standard_exception.h
+      operating_system/openbsd/system.cpp
+      operating_system/openbsd/thread.cpp
+      operating_system/openbsd/thread.h
+      operating_system/openbsd/time.cpp
+      operating_system/openbsd/trace.cpp
+      operating_system/openbsd/user.h
+      operating_system/openbsd/user_private.h
+      operating_system/openbsd/util.cpp
+      operating_system/openbsd/win_base.cpp
+   )
+
+endif ()
+
 if (${LINUX} OR ${FREEBSD} OR ${NETBSD} OR ${OPENBSD})
 
    list(APPEND library_source
@@ -2656,7 +2731,9 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS} ${GLOBAL_EXTRA_COMPILER_FLAGS})
    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
 
-   if (${FREEBSD})
+   if (${OPENBSD})
+      list(APPEND system_libraries z pthread iconv execinfo)
+   elseif (${FREEBSD})
       list(APPEND system_libraries z dl pthread iconv execinfo)
    else ()
       list(APPEND system_libraries z dl pthread idn)

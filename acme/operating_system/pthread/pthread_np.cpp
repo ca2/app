@@ -21,10 +21,17 @@
 #endif
 
 
-#ifdef FREEBSD
+
+#if defined(FREEBSD) || defined(OPENBSD)
 
 int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
 {
+
+#if defined(OPENBSD)
+
+    return 1;
+
+#else
 
     cpuset_t c;
 
@@ -45,6 +52,8 @@ int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
     pthread_setaffinity_np((pthread_t) h, sizeof(c), &c);
 
     return 1;
+
+#endif
 
 }
 

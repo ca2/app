@@ -1,7 +1,10 @@
 #include "framework.h"
 #include "acme/memory/allocator/malloc.h"
 #include "acme/platform/system.h"
-#if defined(LINUX) || defined(FREEBSD)
+#if defined(OPENBSD)
+#include <sys/types.h>
+#include <sys/malloc.h>
+#elif defined(LINUX) || defined(FREEBSD)
 #include <malloc.h>
 #elif defined(__APPLE__)
 #include <malloc/malloc.h>
@@ -83,7 +86,11 @@ namespace heap
 
       //{
 
-#ifdef __APPLE__
+#if defined(OPENBSD)
+
+      return 0;
+
+#elif defined(__APPLE__)
 
       return malloc_size(p);
 

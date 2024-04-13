@@ -1,6 +1,6 @@
 #include "framework.h"
 //#include "acme/node/ansios/ansios.h"
-#include "_freebsd.h"
+#include "_openbsd.h"
 
 //
 //namespace linux
@@ -33,7 +33,7 @@
 
 void motif_factory(::factory::factory * pfactory);
 
-void freebsd_factory(::factory::factory * pfactory)
+void openbsd_factory(::factory::factory * pfactory)
 {
 
    motif_factory(pfactory);

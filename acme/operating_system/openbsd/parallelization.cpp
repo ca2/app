@@ -8,7 +8,7 @@
 #if defined(FREEBSD)
 #define __XSI_VISIBLE 1
 #endif
-#define bitset freebsd_bitset
+#define bitset openbsd_bitset
 #include <sys/_cpuset.h>
 #include <sys/cpuset.h>
 #undef bitset
@@ -64,7 +64,7 @@
 
 
 
-//https://lists.freebsd.org/pipermail/freebsd-hackers/2008-July/025483.htmlhttps://lists.freebsd.org/pipermail/freebsd-hackers/2008-July/025483.html
+//https://lists.openbsd.org/pipermail/openbsd-hackers/2008-July/025483.htmlhttps://lists.openbsd.org/pipermail/openbsd-hackers/2008-July/025483.html
 void
 _timeval_diff(struct timeval *tv1, struct timeval *tv2, struct timeval *tvd)
 {
@@ -75,14 +75,14 @@ _timeval_diff(struct timeval *tv1, struct timeval *tv2, struct timeval *tvd)
       tvd->tv_sec--;
    }
 }
-//https://lists.freebsd.org/pipermail/freebsd-hackers/2008-July/025483.html
+//https://lists.openbsd.org/pipermail/openbsd-hackers/2008-July/025483.html
 void
 signal_ignore(int s, siginfo_t *si, void *ctx)
 {
 }
 
 
-//https://lists.freebsd.org/pipermail/freebsd-hackers/2008-July/025483.html
+//https://lists.openbsd.org/pipermail/openbsd-hackers/2008-July/025483.html
 int
 _semtimedop(int semid, struct sembuf *array, size_t nops, struct
    timespec *_timeout)

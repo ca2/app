@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "_freebsd.h"
+#include "_openbsd.h"
 
 
 #define DEFINE_MESSAGE(wm)  { wm, #wm }

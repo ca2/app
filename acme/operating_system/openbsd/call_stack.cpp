@@ -4,7 +4,7 @@
 #include "acme/platform/acme.h"
 #include "acme/platform/platform.h"
 #include "acme/platform/system.h"
-//#include "_freebsd.h"
+//#include "_openbsd.h"
 #include <execinfo.h>
 #include <cxxabi.h>
 #undef USE_MISC
@@ -67,7 +67,7 @@ string get_callstack(::particle * pparticle,  const ::scoped_string & scopedstrF
 
 
 
-void freebsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolName, string & strModule, string & strAddress, char * pmessage, void * address)
+void openbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolName, string & strModule, string & strAddress, char * pmessage, void * address)
 {
 
    if(ansi_str(pmessage, "EPT_"))

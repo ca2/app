@@ -136,6 +136,13 @@ typedef i64 filesize;
 #define del_throw_spec noexcept
 #define MEMORY_DECL
 
+#elif defined(OPENBSD)
+
+#define inplace_new_throw_spec throw()
+#define new_throw_spec
+#define del_throw_spec noexcept
+#define MEMORY_DECL
+
 #elif defined(WINDOWS)
 
 //#define inplace_new_throw_spec

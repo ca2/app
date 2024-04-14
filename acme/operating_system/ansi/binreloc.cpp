@@ -15,11 +15,11 @@
 #ifndef __BINRELOC_C__
 #define __BINRELOC_C__
 
-#if defined(RASPBERRYPIOS) || defined(FREEBSD) || defined(LINUX)
+#if defined(RASPBERRYPIOS) || defined(FREEBSD) || defined(LINUX) || defined(OPENBSD)
 #include <sys/types.h>
 #include <unistd.h>
 #endif
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(OPENBSD)
 #include <string.h>
 #endif
 

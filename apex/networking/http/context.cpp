@@ -223,19 +223,19 @@ namespace http
             if (strCache == "file")
             {
 
-               return ::file::e_type_file;
+               return ::file::e_type_existent_file;
 
             }
             else if (strCache == "folder")
             {
 
-               return ::file::e_type_folder;
+               return ::file::e_type_existent_folder;
 
             }
             else if (strCache == "matter")
             {
 
-               return ::file::e_type_element;
+               return ::file::e_type_existent_element;
 
             }
             else if (strCache == "itdoesntexist")
@@ -262,19 +262,19 @@ namespace http
 
       auto etype = get_type(strUrl, process_set(set, scopedstrUrl));
 
-      if (etype == ::file::e_type_folder)
+      if (etype & ::file::e_type_folder2)
       {
 
          strCache = "folder";
 
       }
-      else if (etype == ::file::e_type_file)
+      else if (etype & ::file::e_type_file2)
       {
 
          strCache = "file";
 
       }
-      else if (etype == ::file::e_type_element)
+      else if (etype & ::file::e_type_element2)
       {
 
          strCache = "matter";
@@ -2923,7 +2923,7 @@ namespace http
 
       bool bExists = iStatusCode == 200;
 
-      return ::file::e_type_element;
+      return ::file::e_type_existent_element;
 
    }
 

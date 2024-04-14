@@ -2738,7 +2738,7 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
 
    if (${OPENBSD})
-      list(APPEND system_libraries z pthread iconv execinfo)
+      list(APPEND system_libraries z pthread iconv execinfo kvm)
    elseif (${FREEBSD})
       list(APPEND system_libraries z dl pthread iconv execinfo)
    else ()

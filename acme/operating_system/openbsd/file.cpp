@@ -207,8 +207,8 @@ char * get_current_dir_name()
 //}
 
 
-::file::path get_module_path()
-{
+//::file::path get_module_path()
+//{
 /*
    int mib[4];
    mib[0] = CTL_KERN;
@@ -221,7 +221,7 @@ char * get_current_dir_name()
    */
    
       
-
+/*
     ::string narrow;
     static kvm_t *kd = nullptr;
 	narrow=  ::platform()->get()->m_argv[0]
@@ -256,3 +256,7 @@ char * get_current_dir_name()
     return ((ok) ? std::string(buff)  : "fish");
 
 }
+
+*/
+
+

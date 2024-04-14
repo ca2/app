@@ -126,7 +126,14 @@ bool file_context::exists(const ::file::path &pathParam)
 
    auto etype = safe_get_type(path);
 
-   return etype == ::file::e_type_file2 || etype == ::file::e_type_element2;
+   if (!(etype & ::file::e_type_exists))
+   {
+
+      return false;
+
+   }
+
+   return etype & ::file::e_type_file2 || etype & ::file::e_type_element2;
 
 }
 

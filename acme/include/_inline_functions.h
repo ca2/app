@@ -466,10 +466,18 @@ inline bool is_impact_group(::u64 u, ::u64 uGroup) { return u >= uGroup && u < u
 inline bool is_impact_subgroup(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 100; }
 
 
-inline bool is_file_or_folder(const ::file::enum_type& etype)
+inline bool is_file_or_folder2(const ::file::enum_type& etype)
 {
 
-   return (etype & ::file::e_type_file_or_folder) > ::file::e_type_exists;
+   return (etype & ::file::e_type_file_or_folder2);
+
+}
+
+
+inline bool is_existing_file_or_folder(const ::file::enum_type& etype)
+{
+
+   return (etype & ::file::e_type_file_or_folder2) > ::file::e_type_exists;
 
 }
 

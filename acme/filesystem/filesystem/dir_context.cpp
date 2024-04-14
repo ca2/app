@@ -1983,7 +1983,18 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          ::file::path path = strDir / straLocaleSchema[i];
 
-         path.m_iDir = straLocaleSchema[i].ends("/") ? 1 : 0;
+         if(straLocaleSchema[i].ends("/"))
+         {
+
+            path.set_folder_path();
+
+         }
+         else
+         {
+
+            path.set_file_path();
+
+         }
 
          listing.defer_add(path);
 
@@ -2189,7 +2200,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
             auto etype = acmepath()->get_type(strFinal);
 
-            if (etype == ::file::e_type_file || etype == ::file::e_type_folder)
+            if (etype == ::file::e_type_file2 || etype == ::file::e_type_folder2)
             {
 
                information() << "!!Cache Hit: " << strFinal;
@@ -2329,7 +2340,18 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          path = "appmatter://" + strMatter(iFind);
 
-         path.m_iDir = bDir ? 1 : 0;
+         if(bDir)
+         {
+
+            path.set_folder_path();
+
+         }
+         else
+         {
+
+            path.set_file_path();
+
+         }
 
          if (bDir)
          {
@@ -2360,12 +2382,12 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
             auto etype = file()->resource_get_type(strMatter);
 
-            if (::is_file_or_folder(etype))
+            if (::is_existing_file_or_folder(etype))
             {
 
                path = "zipresource://" + strMatter;
 
-               path.m_iDir = etype == ::file::e_type_folder ? 1 : 0;
+               path.m_etype = etype;
 
                goto ret;
 
@@ -2393,10 +2415,10 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
             auto etype = acmepath()->get_type(path);
 
-            if (::is_file_or_folder(etype))
+            if (::is_existing_file_or_folder(etype))
             {
 
-               path.m_iDir = etype == ::file::e_type_folder ? 1 : 0;
+               path.m_etype = etype;
 
                goto ret;
 
@@ -2421,7 +2443,7 @@ ret:
 
       strPath = path;
 
-      if (path.m_iDir > 0)
+      if (path.m_etype & ::file::e_type_folder2)
       {
 
          strPath += "/";

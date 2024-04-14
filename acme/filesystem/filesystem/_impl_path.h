@@ -95,12 +95,12 @@ namespace file
 {
 
 
-   inline path_meta::path_meta(enum_path epath, i64 iSize, i32 iDir, i64 iName, strsize iBasePathLength, enumeration < ::file::enum_flag > eflag)
+   inline path_meta::path_meta(enum_path epath, i64 iSize, e_type etype, i64 iName, strsize iBasePathLength, enumeration < ::file::enum_flag > eflag)
    {
 
       m_epath = epath;
       m_iSize = iSize;
-      m_iDir = iDir;
+      m_etype = etype;
       m_iName = (strsize)iName;
       m_iBasePathLength = iBasePathLength;
       m_flags = eflag;
@@ -108,7 +108,7 @@ namespace file
    }
 
 
-   inline path::path(const ::ansi_string & str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+   inline path::path(const ::ansi_string & str, enum_path epath, e_type etype, bool bNormalizePath, i64 iSize) :
       string(str)
    {
 
@@ -135,13 +135,13 @@ namespace file
          if (bCertainlySyntathicallyDir)
          {
 
-            m_iDir = 1;
+            m_etype = (enum_type) ((etype | e_type_folder2) & ~e_type_file2);
 
          }
          else
          {
 
-            m_iDir = iDir;
+            m_etype = etype;
 
          }
 
@@ -149,47 +149,47 @@ namespace file
       else
       {
 
-         m_iDir = iDir;
+         m_etype = etype;
 
       }
 
    }
 
 
-   inline path::path(const ::wd16_string & wd16str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
-      path(::string(wd16str), epath, iDir, bNormalizePath, iSize)
+   inline path::path(const ::wd16_string & wd16str, enum_path epath, e_type etype, bool bNormalizePath, i64 iSize) :
+      path(::string(wd16str), epath, etype, bNormalizePath, iSize)
    {
 
 
    }
 
 
-   inline path::path(const ::wd32_string & wd32str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
-      path(::string(wd32str), epath, iDir, bNormalizePath, iSize)
+   inline path::path(const ::wd32_string & wd32str, enum_path epath, e_type etype, bool bNormalizePath, i64 iSize) :
+      path(::string(wd32str), epath, etype, bNormalizePath, iSize)
    {
 
 
    }
 
 
-   inline path::path(const ::ansi_character * pansisz, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
-      path(::ansi_string(pansisz), epath, iDir, bNormalizePath, iSize)
+   inline path::path(const ::ansi_character * pansisz, enum_path epath, e_type etype, bool bNormalizePath, i64 iSize) :
+      path(::ansi_string(pansisz), epath, etype, bNormalizePath, iSize)
    {
 
 
    }
 
 
-   inline path::path(const ::wd16_character * pwd16sz, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
-      path(::wd16_string(pwd16sz), epath, iDir, bNormalizePath, iSize)
+   inline path::path(const ::wd16_character * pwd16sz, enum_path epath, e_type etype, bool bNormalizePath, i64 iSize) :
+      path(::wd16_string(pwd16sz), epath, etype, bNormalizePath, iSize)
    {
 
 
    }
 
 
-   inline path::path(const ::wd32_character * pwd32sz, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
-      path(::wd32_string(pwd32sz), epath, iDir, bNormalizePath, iSize)
+   inline path::path(const ::wd32_character * pwd32sz, enum_path epath, e_type etype, bool bNormalizePath, i64 iSize) :
+      path(::wd32_string(pwd32sz), epath, etype, bNormalizePath, iSize)
    {
 
 
@@ -263,7 +263,7 @@ namespace file
    //
 
 
-   //   path::path(const unichar * pwsz, strsize iCount, e_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+   //   path::path(const unichar * pwsz, strsize iCount, e_path epath, e_type etype, bool bNormalizePath, i64 iSize) :
    //      string(pwsz, iCount),
    //      path_meta(epath, iSize, iDir)
    //   {
@@ -299,14 +299,14 @@ namespace file
 
 
 
-   //   path::path(const atom & atom,e_path epath, int iDir) :
+   //   path::path(const atom & atom,e_path epath, e_type etype) :
    //      path(string(atom), epath, iDir)
    //   {
    //
    //   }
 
 
-   //   path::path(const ::payload & payload, e_path epath, int iDir) :
+   //   path::path(const ::payload & payload, e_path epath, e_type etype) :
    //      path(payload.get_string(), epath, iDir)
    //   {
    //
@@ -332,20 +332,20 @@ namespace file
    //   }
 
 
-   //   path::path(const ::scoped_string & scopedstr, e_path epath, int iDir):
+   //   path::path(const ::scoped_string & scopedstr, e_path epath, e_type etype):
    //      path(string(psz), epath, iDir)
    //   {
    //
    //   }
 
-   //   path::path(const unichar * psz, e_path epath, int iDir) :
+   //   path::path(const unichar * psz, e_path epath, e_type etype) :
    //      path(string(psz), epath, iDir)
    //   {
    //
    //   }
 
 
-   //   path::path(const wstring & wstr, e_path epath, int iDir):
+   //   path::path(const wstring & wstr, e_path epath, e_type etype):
    //      path(string(wstr), epath, iDir)
    //   {
    //
@@ -904,7 +904,7 @@ namespace file
    inline path & path::set_file_path()
    {
 
-      m_iDir = 0;
+      m_etype = (enum_type) ((m_etype | e_type_file2) & ~e_type_folder2);
 
       return *this;
 
@@ -914,7 +914,7 @@ namespace file
    inline path & path::set_folder_path()
    {
 
-      m_iDir = 1;
+      m_etype = (enum_type) ((m_etype | e_type_folder2) & ~e_type_file2);
 
       return *this;
 
@@ -1324,7 +1324,7 @@ namespace file
 //{
 //
 //    //   inline path::path(const ::payload & payload,e_path epath): path(payload.get_file_path(),epath){}
-//    //   inline path::path(const property & property,e_path epath, int iDir): path(property.get_file_path(),epath, iDir) {}
+//    //   inline path::path(const property & property,e_path epath, e_type etype): path(property.get_file_path(),epath, iDir) {}
 //    //inline path & path::operator = (const ::payload & payload) { return operator = (payload.get_string()); }
 //    //inline path & path::operator += (const ::payload & payload) { return operator += (payload.get_string()); }
 //    //inline path & path::operator = (const property & property) { return operator = ((const ::payload &)property); }

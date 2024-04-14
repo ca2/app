@@ -341,8 +341,8 @@ namespace file
 {
 
 
-    inline path::path(const ::scoped_string & scopedstr, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
-            path(::ansi_string(scopedstr), epath, iDir, bNormalizePath, iSize)
+    inline path::path(const ::scoped_string & scopedstr, enum_path epath, e_type etype, bool bNormalizePath, i64 iSize) :
+            path(::ansi_string(scopedstr), epath, etype, bNormalizePath, iSize)
     {
 
 

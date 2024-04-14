@@ -260,6 +260,7 @@ public:
    virtual ::file::path windows();
    virtual ::file::path system_drive();
 
+   virtual bool is_accessible(const ::file::path & path);
 
 };
 

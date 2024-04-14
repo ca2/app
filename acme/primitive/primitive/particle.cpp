@@ -21,6 +21,11 @@
 CLASS_DECL_ACME void do_tasks();
 
 
+#if defined(FREEBSD)
+#include <stdio.h>
+#endif
+
+
 #if REFERENCING_DEBUGGING
 
 

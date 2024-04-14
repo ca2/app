@@ -107,8 +107,8 @@ namespace file
       void set_final_path(const ::file::path & pathFinal) { ASSERT(pathFinal.flags() & e_flag_final_path); m_pathFinal = pathFinal; m_flags += e_flag_final_path; }
 
 
-      int get_final_path_dir() const { return m_pathFinal.m_iDir; }
-      void set_final_path_dir(int iDir) { m_pathFinal.m_iDir = iDir; }
+      enum_type get_final_path_type() const { return m_pathFinal.m_etype; }
+      void set_final_path_type(enum_type etype) { m_pathFinal.m_etype = etype; }
 
 
       inline bool has_final_path() const { return m_flags.has(e_flag_final_path); }

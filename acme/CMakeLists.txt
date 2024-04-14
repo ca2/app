@@ -2508,6 +2508,7 @@ if (${FREEBSD})
       operating_system/freebsd/freebsd.inl
       operating_system/freebsd/freebsd2.cpp
       operating_system/freebsd/freebsd_freebsd.h
+      #operating_system/freebsd/get_module_path_openbsd.cpp
       operating_system/freebsd/graphics.cpp
       operating_system/freebsd/internal.h
       operating_system/freebsd/library.cpp
@@ -2576,6 +2577,7 @@ if (${OPENBSD})
       operating_system/openbsd/exception.cpp
       operating_system/openbsd/exception_engine.cpp
       operating_system/openbsd/exception_engine.h
+      operating_system/openbsd/get_module_path.cpp
       operating_system/openbsd/file.cpp
       operating_system/openbsd/file.h
       operating_system/openbsd/file_lock.cpp
@@ -2669,7 +2671,11 @@ if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   operating_system/environment.cpp
+   operating_system/environment.h
+   operating_system/openbsd/get_module_path.cpp
+)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

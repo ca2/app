@@ -9,6 +9,8 @@
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
+#include "acme/primitive/collection/map_interface.h"
+
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
@@ -428,6 +430,49 @@ bool acme_path::defer_process_protocol_path(::file::path & path)
 }
 
 
+bool acme_path::is_absolute_path(const ::scoped_string & scopedstr)
+{
+
+   ::string str(scopedstr);
+
+   str.trim();
+
+   if(str.is_empty())
+   {
+
+      return false;
+
+   }
+
+   if(str[0] == '/')
+   {
+
+      return true;
+
+   }
+   else if(str[0] == '\\')
+   {
+
+      return true;
+
+   }
+   else if(str.length() >= 3)
+   {
+
+      if(::character_isalpha(str[0]) && str[1] == ':' && (str[2] == '/' || str[2] == '\\'))
+      {
+
+         return true;
+
+      }
+
+   }
+
+   return false;
+
+}
+
+
 ::pointer < ::file::link > acme_path::resolve_link(const ::file::path &path, ::file::e_link elink)
 {
    
@@ -714,5 +759,231 @@ void acme_path::defer_free_name_by_renaming_to_last_in_sequence(const ::file::pa
    }
 
    throw ::exception(error_overflow);
+
+}
+
+
+::file::e_type acme_path::executable_type(const ::file::path & path)
+{
+
+   return ::file::e_type_unknown;
+
+}
+
+
+void acme_path::determine_executable(::file::path & path)
+{
+
+   path.m_etype = path.m_etype & (::file::e_type_executable | ::file::e_type_non_executable);
+
+   path.m_etype |= executable_type(path);
+
+}
+
+// If the given path looks like it's relative to the working directory, then prepend that working
+// directory. This operates on unescaped paths only (so a ~ means a literal ~).
+::file::path acme_path::defer_apply_working_directory(const ::file::path &path, const ::file::path &working_directory)
+{
+
+   if (path.is_empty() || working_directory.is_empty())
+   {
+
+      return path;
+
+   }
+
+   // We're going to make sure that if we want to prepend the wd, that the string has no leading
+   // "/".
+   //bool prepend_wd =
+   if (is_absolute_path(path)) {
+      // No need to prepend the wd, so just return the path we were given.
+      return path;
+   }
+
+   // Remove up to one "./".
+   auto path_component = path;
+
+   path_component.case_insensitive_begins_eat("./");
+   //{
+      //path_component.erase(0, 2);
+   //}
+
+//   // Removing leading /s.
+//   while (string_prefixes_string(L"/", path_component)) {
+//      path_component.erase(0, 1);
+//   }
+
+//   // Construct and return a new path.
+//   wcstring new_path = working_directory;
+//   append_path_component(new_path, path_component);
+   auto pathResult = working_directory / path_component;
+
+   return pathResult;
+
+}
+
+
+::file::path acme_path::_path_get_path(const scoped_string & scopedstrCommand, const ::scoped_string & scopedstrPath, string_to_string_lookup * plookupEnvironment)
+{
+
+//   ::file::path pathResult;
+
+//   // Commands cannot contain NUL byte.
+//   if (scopedstrCommand.find(L'\0') != wcstring::npos)
+//   {
+//      pathResult.m_etype = ::file::e_type_doesnt_exist
+//      return ;
+//   }
+
+   // If the command has a slash, it must be an absolute or relative path and thus we don't bother
+   // looking for a matching command.
+   if (scopedstrCommand.contains('/'))
+   {
+
+      auto PWD = plookupEnvironment->lookup("slashed_pwd");
+
+      auto path = defer_apply_working_directory(scopedstrCommand, PWD);
+
+      determine_executable(path);
+
+      return path;
+
+   }
+
+   auto pathRange = scopedstrPath();
+
+   ::file::path pathResult("", {}, ::file::e_type_doesnt_exist);
+
+   ::file::path pathBest("", {}, ::file::e_type_doesnt_exist);
+
+   ::file::path pathProposed;
+
+   ::scoped_string next_path;
+
+   while(get_next_path(next_path, pathRange))
+   {
+
+      if(next_path.is_empty())
+      {
+
+         continue;
+
+      }
+
+      pathProposed = next_path;
+
+      pathProposed /= scopedstrCommand;
+
+      determine_executable(pathProposed);
+
+      if (pathProposed.m_etype & ::file::e_type_non_executable)
+      {
+
+         // We found one.
+         pathBest = pathProposed;
+
+         break;
+
+      }
+      else if (pathProposed.m_etype & ::file::e_type_doesnt_exist)
+      {
+
+         // Keep the first *interesting* error and path around.
+         // ENOENT isn't interesting because not having a file is the normal case.
+         // Ignore if the parent directory is already inaccessible.
+         if (acmedirectory()->is_accessible(pathProposed.folder()))
+         {
+
+            pathBest = pathProposed;
+
+         }
+
+      }
+
+   }
+
+   return pathBest;
+
+}
+
+
+::string acme_path::get_default_path()
+{
+
+   return {};
+
+}
+
+
+bool acme_path::get_next_path(::scoped_string & scopedstr, ::string::RANGE & rangePath)
+{
+
+   if(rangePath.is_empty())
+   {
+
+      return false;
+
+   }
+
+   auto p = rangePath.find(':');
+
+   if(::is_null(p))
+   {
+
+      scopedstr.begin() = p;
+      scopedstr.end() = rangePath.end();
+
+      rangePath.begin() = rangePath.end();
+
+   }
+   else
+   {
+
+      scopedstr.begin() = rangePath.begin();
+      scopedstr.end() = p;
+
+      rangePath.begin() = p + 1;
+
+   }
+
+   scopedstr.m_erange = e_range_none;
+
+   return true;
+
+}
+
+
+::file::path acme_path::path_get_path(const scoped_string & scopedstrCommand, string_to_string_lookup * plookupEnvironment)
+{
+
+   auto path = path_try_get_path(scopedstrCommand, plookupEnvironment);
+
+   if (path.m_etype == ::file::e_type_unknown)
+   {
+
+      return {};
+
+   }
+
+   return ::transfer(path);
+
+}
+
+
+::file::path acme_path::path_try_get_path(const scoped_string & scopedstrCommand, string_to_string_lookup * plookupEnvironment)
+{
+
+   ::scoped_string scopedstrPath;
+
+   auto PATH = plookupEnvironment->lookup("PATH");
+
+   if(PATH.nok())
+   {
+
+      return _path_get_path(scopedstrCommand, get_default_path(), plookupEnvironment);
+
+   }
+
+   return _path_get_path(scopedstrCommand, PATH, plookupEnvironment);
 
 }

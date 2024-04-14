@@ -126,7 +126,7 @@ bool file_context::exists(const ::file::path &pathParam)
 
    auto etype = safe_get_type(path);
 
-   return etype == ::file::e_type_file || etype == ::file::e_type_element;
+   return etype == ::file::e_type_file2 || etype == ::file::e_type_element2;
 
 }
 
@@ -1677,14 +1677,14 @@ void file_context::calculate_main_resource_memory()
    if (pfolder->locate_file(strPath))
    {
 
-      return ::file::e_type_file;
+      return ::file::e_type_existent_file;
 
    }
 
    if (pfolder->locate_folder(strPath))
    {
 
-      return ::file::e_type_folder;
+      return ::file::e_type_existent_folder;
 
    }
 

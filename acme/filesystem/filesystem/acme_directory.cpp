@@ -932,7 +932,7 @@ bool acme_directory::defer_enumerate_media_library(::file::listing& listing)
 
                path = plibraryitem->get_path();
 
-               path.m_iDir = 0;
+               path.set_file_path();
 
                listing.defer_add(path);
 
@@ -1304,6 +1304,14 @@ void acme_directory::add_media_library_item(::media_library::item* pmedialibrary
 {
 
    return {};
+
+}
+
+
+bool acme_directory::is_accessible(const ::file::path & path)
+{
+
+   return true;
 
 }
 

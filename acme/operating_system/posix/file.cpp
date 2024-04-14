@@ -776,11 +776,11 @@
    if (stat.st_mode & S_IFDIR)
    {
 
-      return ::file::e_type_folder;
+      return ::file::e_type_existent_folder;
 
    }
 
-   return ::file::e_type_file;
+   return ::file::e_type_existent_file;
 
 }
 
@@ -823,11 +823,11 @@
    if (!(stat.st_mode & S_IFDIR))
    {
 
-      return ::file::e_type_folder;
+      return ::file::e_type_existent_folder;
 
    }
 
-   return ::file::e_type_file;
+   return ::file::e_type_existent_file;
 
 }
 
@@ -1242,3 +1242,8 @@ void std_out_buffer::write(const void * pdata, memsize nCount)
    return getenv("HOME");
    
 }
+
+
+
+
+

@@ -64,13 +64,13 @@ namespace file
          if(str.ends_eat("/"))
          {
 
-            path.m_iDir = 1;
+            path.set_folder_path();
 
          }
          else
          {
 
-            path.m_iDir = 0;
+            path.set_file_path();
 
          }
 
@@ -104,7 +104,7 @@ namespace file
 
          string strName = path.c_str() + path.m_iBasePathLength;
 
-         if(path.m_iDir >= 1)
+         if(path.m_etype & ::file::e_type_folder2)
          {
 
             strName += "/";

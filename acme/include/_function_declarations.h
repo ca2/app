@@ -259,7 +259,8 @@ inline bool is_impact_group(::u64 u, ::u64 uGroup);
 inline bool is_impact_subgroup(::u64 u, ::u64 uGroup);
 
 
-inline bool is_file_or_folder(const ::file::enum_type& etype);
+inline bool is_file_or_folder2(const ::file::enum_type& etype);
+inline bool is_existing_file_or_folder(const ::file::enum_type& etype);
 inline bool exists(const ::file::enum_type& etype);
 
 

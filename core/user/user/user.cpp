@@ -64,7 +64,7 @@
 //#endif
 
 
-#ifdef FREEBSD
+#if defined(FREEBSD) || defined(OPENBSD)
 #include <stdio.h>
 #endif
 

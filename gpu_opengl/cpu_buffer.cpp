@@ -62,7 +62,7 @@ namespace opengl
 
       //m_pixmap.mult_alpha();
 
-#elif defined(LINUX) || defined(FREEBSD)
+#elif defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
       glReadBuffer(GL_FRONT);
       
 

@@ -326,7 +326,7 @@ namespace user
 struct __SIZEPARENTPARAMS;
 
 
-#if defined(LINUX) || defined(FREEBSD)
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 typedef struct _AppIndicator AppIndicator;
 #endif
 

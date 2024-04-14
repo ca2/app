@@ -49,7 +49,7 @@ struct image32_t
 };
 
 //
-//#if defined(WINDOWS) || defined(LINUX) || defined(__i386__) || defined(FREEBSD)
+//#if defined(WINDOWS) || defined(LINUX) || defined(__i386__) || defined(FREEBSD) || defined(OPENBSD)
 //
 //
 //constexpr ::u32 argb_image32_u32(::u8 u8Opacity, ::u8 u8Red, ::u8 u8Green, ::u8 u8Blue)

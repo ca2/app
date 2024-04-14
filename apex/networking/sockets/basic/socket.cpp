@@ -9,12 +9,12 @@
 //////#include <ctype.h>
 
 
-//#if defined(LINUX) || defined(FREEBSD)
+//#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 //#undef USE_MISC
 //#include <unistd.h>
 //#endif
 //
-//#if defined(__APPLE__) || defined(FREEBSD)
+//#if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
 //#include <netdb.h>
 //#endif
 

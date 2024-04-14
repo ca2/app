@@ -205,7 +205,7 @@ class standard_sigfpe : public standard_exception
       // uptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
    };
 
-//#elif defined(FREEBSD)
+//#elif defined(FREEBSD) || defined(OPENBSD)
 //
 //class standard_sigfpe : public standard_exception
 //   {

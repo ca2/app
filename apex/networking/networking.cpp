@@ -19,10 +19,10 @@
 //#endif
 //
 //
-//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 //#undef USE_MISC
 //
-//#if defined(__APPLE__) || defined(FREEBSD)
+//#if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
 //#define  NI_MAXHOST  1025
 //#define  NI_MAXSERV  32
 //#include <sys/types.h>
@@ -33,7 +33,7 @@
 ////#include <ctype.h>
 //#endif
 //
-//#if defined(FREEBSD)
+//#if defined(FREEBSD) || defined(OPENBSD)
 //#include <unistd.h>
 //#endif
 

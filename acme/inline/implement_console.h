@@ -15,7 +15,7 @@ DO_FACTORY(REFERENCE_FACTORY)
 #include APPLICATION_INCLUDE
 #include <type_traits>
 
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(OPENBSD)
 #include <stdio.h>
 #endif
 

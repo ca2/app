@@ -336,7 +336,7 @@ string acme_directory::system_short_name()
 
    return "";
 
-#elif defined(FREEBSD)
+#elif defined(FREEBSD) || defined(OPENBSD)
 
    return acmefile()->module() - 2;
 

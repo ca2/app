@@ -5,9 +5,9 @@
 #include "acme/platform/acme.h"
 #include "acme/platform/node.h"
 
-#if defined(FREEBSD)
-#define __XSI_VISIBLE 1
-#endif
+// #if defined(OPENBSD)
+// #define __XSI_VISIBLE 1
+// #endif
 #define bitset openbsd_bitset
 //#include <sys/_cpuset.h>
 //#include <sys/cpuset.h>

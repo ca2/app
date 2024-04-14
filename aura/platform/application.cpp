@@ -116,7 +116,7 @@ namespace aura
    {
 
       m_pauraapplication = this;
-#if defined(LINUX) || defined(FREEBSD)
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
       m_bSnLauncheeSetup = false;
       m_bGtkApp = false;
 #endif

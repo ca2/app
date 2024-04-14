@@ -29,7 +29,7 @@
 #include "aura/platform/application.h"
 #include "aura/platform/node.h"
 
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(OPENBSD)
 #include <stdio.h>
 #endif
 

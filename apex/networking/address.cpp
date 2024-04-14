@@ -4,7 +4,7 @@
 #include "apex/networking/sockets/sockets.h"
 
 
-//#if defined(FREEBSD)
+//#if defined(FREEBSD) || defined(OPENBSD)
 //
 //#include <sys/socket.h>
 //#include <netinet/in.h>

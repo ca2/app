@@ -132,7 +132,7 @@
     #endif
 
 
-#elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+#elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 
 inline i32 MulDiv32(i32 a, i32 b, i32 ca)
 {

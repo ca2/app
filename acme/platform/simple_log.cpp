@@ -11,7 +11,7 @@
 #elif defined(LINUX)
 #include <sys/types.h>
 #include <unistd.h>
-#elif defined(FREEBSD)
+#elif defined(FREEBSD) || defined(OPENBSD)
 #include <stdio.h>
 #endif
 

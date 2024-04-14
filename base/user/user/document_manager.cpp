@@ -9,7 +9,7 @@
 #include "aura/user/user/frame.h"
 
 
-#ifdef FREEBSD
+#if defined(FREEBSD) || defined(OPENBSD)
 #include <stdio.h>
 #endif
 

@@ -129,7 +129,7 @@ namespace platform
       }
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 
       ::critical_section m_criticalsectionTz;
 
@@ -341,7 +341,7 @@ namespace platform
 
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 
       ::critical_section * tz_critical_section() { return &m_criticalsectionTz; }
 
@@ -418,7 +418,7 @@ namespace platform
        //
        virtual void* operating_system_library_open(const ::file::path & path, string& strMessage);
 
- #ifdef FREEBSD
+ #if defined FREEBSD || defined(OPENBSD)
        virtual string operating_system_library_is_loaded(const ::file::path &path);
  #endif // FREEBSD
     virtual void* operating_system_library_touch(const ::file::path & path, string& strMessage);

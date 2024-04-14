@@ -74,7 +74,7 @@ i32 gdb_check()
 static void*
 test_trace(void* ignored)
 {
-#ifdef FREEBSD
+#ifdef OPENBSD
    // This is a guess
    return (void *)(iptr)(int)ptrace(PT_TRACE_ME, 0, nullptr, 0);
 #else

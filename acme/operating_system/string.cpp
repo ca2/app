@@ -3,10 +3,10 @@
 //
 #include "framework.h"
 #include <string.h>
-#if defined(__APPLE__) || defined(FREEBSD)
+#if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
 #include <errno.h>
 #endif
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(OPENBSD)
 #include <strings.h>
 #endif
 

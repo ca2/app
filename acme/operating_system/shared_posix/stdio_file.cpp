@@ -834,7 +834,7 @@ void acme_file::append_wait(const ::file::path & pathFile, const block & block, 
    while (true)
    {
 
-#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 
       pfile = fopen(pathFile, "ab");
 
@@ -984,7 +984,7 @@ void acme_file::append_wait(const ::string & strFile, const block & block, const
    while (true)
    {
 
-#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 
       pfile = fopen(strFile.c_str(), "ab");
 

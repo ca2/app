@@ -3,7 +3,7 @@
 
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 #include <arpa/inet.h>
 #endif
 
@@ -11,7 +11,7 @@
 //#include <arpa/inet.h>
 //#endif
 
-#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 #include <netdb.h>
 #endif
 
@@ -65,7 +65,7 @@ static const uchar index_hex[256] =
 
 #endif
 
-#if defined(__APPLE__) || defined(FREEBSD)
+#if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
 #define pr_s6_addr16 __u6_addr.__u6_addr16
 #define pr_s6_addr __u6_addr.__u6_addr8
 #elif defined(LINUX)

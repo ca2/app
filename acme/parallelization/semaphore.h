@@ -22,7 +22,7 @@ public:
    ::i32              m_lMaxCount;
    sem_t *           m_psem;
 
-#elif defined(LINUX) || defined(__APPLE__) || defined(FREEBSD)
+#elif defined(LINUX) || defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
 
    ::i32         m_lMaxCount;
    i32           m_hsync;
@@ -33,7 +33,7 @@ public:
    ~semaphore() override;
 
 
-//#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(SOLARIS) || defined(FREEBSD)
+//#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(SOLARIS) || defined(FREEBSD) || defined(OPENBSD)
 //   using matter::lock;
    bool _wait(const class time & timeWait) override;
 //#endif

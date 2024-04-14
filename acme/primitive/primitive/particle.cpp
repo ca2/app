@@ -21,7 +21,7 @@
 CLASS_DECL_ACME void do_tasks();
 
 
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(OPENBSD)
 #include <stdio.h>
 #endif
 

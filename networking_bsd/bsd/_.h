@@ -2,7 +2,7 @@
 #pragma once
 
 
-#ifdef FREEBSD
+#if defined( FREEBSD)
 #define __BSD_VISIBLE 1
 #endif
 
@@ -11,7 +11,7 @@
 #include <netinet/in.h>
 
 
-#if defined(LINUX) || defined(FREEBSD) || defined(ANDROID)
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) || defined(ANDROID)
 
 
 #include <netdb.h>
@@ -28,7 +28,7 @@
 //using SOCKET = int;
 
 
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(OPENBSD)
 
 
 #include <netinet/in.h>

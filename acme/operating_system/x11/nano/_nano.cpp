@@ -26,7 +26,7 @@ void operating_system_initialize_x11_nano(::factory::factory * pfactory)
 
 void operating_system_initialize_xcb_nano(::factory::factory * pfactory);
 
-#if !defined(FREEBSD)
+#if !defined(FREEBSD) && !defined(OPENBSD)
 
 
 void operating_system_initialize_wayland_nano(::factory::factory * pfactory);
@@ -40,7 +40,7 @@ void operating_system_initialize_nano(::factory::factory * pfactory)
 
    auto psystem = pfactory->system();
 
-#if !defined(FREEBSD)
+#if !defined(FREEBSD) && !defined(OPENBSD)
 
    if(psystem->node()->is_wayland())
    {

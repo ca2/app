@@ -4,7 +4,7 @@
 #if defined(OPENBSD)
 #include <sys/types.h>
 #include <sys/malloc.h>
-#elif defined(LINUX) || defined(FREEBSD)
+#elif defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 #include <malloc.h>
 #elif defined(__APPLE__)
 #include <malloc/malloc.h>

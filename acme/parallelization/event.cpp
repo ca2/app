@@ -11,7 +11,7 @@
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 #include <sys/ipc.h>
 #include <sys/time.h>
 #include <time.h>

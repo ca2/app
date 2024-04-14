@@ -31,7 +31,7 @@ inline void wide_from_u64_base(::wide_character * sz, u64 i, i32 iBase, enum_dig
 inline string ansi_string_from_i64(i64 i, int iBase, enum_digit_case edigitcase)
 {
    char sz[32];
-//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
    ansi_from_i64(sz, i, iBase, edigitcase);
 //#else
 //   _i64toa(i, sz, 10);
@@ -41,7 +41,7 @@ inline string ansi_string_from_i64(i64 i, int iBase, enum_digit_case edigitcase)
 
 inline char * ansi_concatenate_i64(char * psz, i64 i, int iBase, enum_digit_case edigitcase)
 {
-//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
    ansi_from_i64(psz + strlen(psz), i, iBase, edigitcase);
 //#else
 //   _i64toa(i, psz + strlen(psz), 10);
@@ -53,7 +53,7 @@ inline char * ansi_concatenate_i64(char * psz, i64 i, int iBase, enum_digit_case
 inline string ansi_string_from_i32(i32 i, int iBase, enum_digit_case edigitcase)
 {
    char sz[16];
-//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
    ansi_from_i64(sz, i, iBase, edigitcase);
 //#else
   // _itoa(i, sz, 10);
@@ -63,7 +63,7 @@ inline string ansi_string_from_i32(i32 i, int iBase, enum_digit_case edigitcase)
 
 //inline ::wide_character * wide_concatenate_i64(::wide_character * pwsz, i64 i)
 //{
-//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 //   wide_from_i64_base(wide_last_char(pwsz), i, 10);
 //#else
 //   _i64tow(i, wide_last_char(pwsz), 10);
@@ -73,7 +73,7 @@ inline string ansi_string_from_i32(i32 i, int iBase, enum_digit_case edigitcase)
 //
 //inline ::wide_character * wide_concatenate_u64(::wide_character * pwsz, u64 u)
 //{
-//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)  || defined(FREEBSD)
+//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)  || defined(FREEBSD) || defined(OPENBSD)
 //   wide_from_u64_base(wide_last_char(pwsz), u, 10);
 //#else
 //   _ui64tow(u, wide_last_char(pwsz), 10);

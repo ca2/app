@@ -222,7 +222,7 @@ CLASS_DECL_ACME::u32 __u32_hash(const ::scoped_string & scopedstr)
 #ifdef WINDOWS
 //#include "_memory.h"
 #else
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(OPENBSD)
 #define _POSIX_C_SOURCE 200809L
 #define _ANSI_SOURCE
 #endif
@@ -509,7 +509,7 @@ CLASS_DECL_ACME void * reverse_memory_copy(void * dst, const void * src, memsize
 
 
 
-#if defined(_WIN32) || defined(FREEBSD) || defined(__APPLE__)
+#if defined(_WIN32) || defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
 
 
 const void * _memory_find(const void * l, memsize l_len, const void * s, memsize s_len)

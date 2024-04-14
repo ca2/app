@@ -257,7 +257,7 @@ APPLICATION_FLAGS::APPLICATION_FLAGS()
 //
 //      m_pfnImplement = pmain->m_pfnImplement;
 //
-////#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+////#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 ////
 ////      if (!m_pchar_binary__matter_zip_start && !m_pchar_binary__matter_zip_end
 ////         && pmain->m_pchar_binary__matter_zip_start && pmain->m_pchar_binary__matter_zip_end)

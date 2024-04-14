@@ -2,7 +2,7 @@
 #pragma once
 
 
-#if defined(__APPLE__) || defined(FREEBSD)
+#if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
 
 #include <sys/types.h>
 #include <sys/socket.h>

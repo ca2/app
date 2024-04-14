@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #if defined(__APPLE__)
 #define BSD_UNIX 1
-#elif defined(FREEBSD)
+#elif defined(FREEBSD) || defined(OPENBSD)
 #define BSD_UNIX 1
 #endif
 

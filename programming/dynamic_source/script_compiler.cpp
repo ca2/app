@@ -744,7 +744,7 @@ namespace dynamic_source
 
       string strBuildCmd;
 
-#if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
+#if defined(LINUX) || defined(MACOS) || defined(FREEBSD) || defined(OPENBSD)
       strBuildCmd.formatf(m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
       strBuildCmd.formatf(m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" / m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_c_" + m_pintegrationcontext->m_strPlatform + ".bat");
@@ -910,7 +910,7 @@ namespace dynamic_source
 
          //strBuildCmd;
 
-#if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
+#if defined(LINUX) || defined(MACOS) || defined(FREEBSD) || defined(OPENBSD)
          strBuildCmd.formatf(m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME"\\_stage\\dynamic_source" / m_strDynamicSourceConfiguration + "_cl_" + m_pintegrationcontext->m_strPlatform + ".bash");
 #else
          strBuildCmd.formatf(m_pintegrationcontext->m_pathBuildFolder  / "operating_system" / "operating_system-" OPERATING_SYSTEM_NAME "\\_stage\\dynamic_source" /m_pintegrationcontext->payload("vstools").as_string() / m_strDynamicSourceConfiguration + "_l_" + m_pintegrationcontext->m_strPlatform + ".bat");

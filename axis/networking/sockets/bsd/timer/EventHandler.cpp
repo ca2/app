@@ -39,7 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "apex/platform/system.h"
 
 
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(OPENBSD)
 #define __XSI_VISIBLE 1
 #include <sys/time.h>
 #endif

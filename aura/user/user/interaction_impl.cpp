@@ -377,7 +377,7 @@ namespace user
 //
 //#endif
 
-#if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(FREEBSD)
+#if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(FREEBSD) && !defined(OPENBSD)
 
 
    ::user::interaction_impl * interaction_impl::GetAncestor(::u32 gaFlags) const

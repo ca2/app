@@ -27,7 +27,7 @@ standard_access_violation::standard_access_violation (i32 signal, void * psiginf
    }
 
 
-#elif defined(FREEBSD)
+#elif defined(OPENBSD)
 
 
 standard_access_violation::standard_access_violation (i32 signal, void * psiginfo, void * pc) :

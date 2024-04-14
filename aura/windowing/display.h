@@ -20,7 +20,7 @@ namespace windowing
 
       void * m_pDisplay;
       void * m_pDisplay2;
-#if defined(LINUX) || defined(FREEBSD || defined(OPENBSD)
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
       void * _m_pX11Display;
 #endif
 

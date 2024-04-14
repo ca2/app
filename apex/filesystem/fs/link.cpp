@@ -116,7 +116,7 @@ namespace fs
 
       auto & path = listing.add_get(m_plisting->m_pathUser);
 
-      path.m_iDir = 1;
+      path.set_existent_folder();
 
       listing.m_straTitle.add(m_strTitle);
 

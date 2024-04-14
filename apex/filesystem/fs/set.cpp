@@ -257,10 +257,10 @@ namespace fs
    int set::is_dir(const ::file::path & path)
    {
 
-      if (path.m_iDir >= 0)
+      if (path.m_etype & ::file::e_type_exists)
       {
 
-         return path.m_iDir;
+         return path.m_etype & ::file::e_type_folder2;
 
       }
 

@@ -83,7 +83,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    path = "uifs://";
 
-   path.m_iDir = 1;
+   path.set_existent_folder();
 
    listing.defer_add(path);
 
@@ -332,7 +332,7 @@ int ifs::is_dir(const ::file::path & path)
 
    }
 
-   return dir[iFind].m_iDir;
+   return dir[iFind].m_etype & ::file::e_type_folder2;
 
 }
 

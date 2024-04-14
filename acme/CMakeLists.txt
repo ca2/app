@@ -2160,7 +2160,7 @@ if (${LINUX})
 endif ()
 
 
-if(${LINUX} OR ${FREEBSD})
+if(${LINUX} OR ${FREEBSD} OR ${OPENBSD})
 
 
    list(APPEND library_source

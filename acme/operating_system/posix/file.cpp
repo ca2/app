@@ -1010,7 +1010,14 @@ bool file_exists(const ::file::path & path)
 
    }
 
-   return true;
+   if ((stat.st_mode & S_IFMT))
+   {
+
+      return true;
+
+   }
+
+   return false;
 
 }
 
@@ -1179,7 +1186,7 @@ void copy(::file::file_status * pstatus, const struct stat * pst)
     pstatus->m_attribute = 0;
 
 
-#if defined(ANDROID) || defined(LINUX) || defined(FREEBSD)
+#if defined(ANDROID) || defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 
     ::copy(&pstatus->m_timeModification, &pst->st_mtim);
     ::copy(&pstatus->m_timeAccess, &pst->st_atim);

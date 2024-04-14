@@ -12,7 +12,7 @@
 #define __BSD_VISIBLE 1
 #endif
 #include <pthread.h>
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(OPENBSD)
 #include <pthread_np.h>
 #include <sched.h>
 #include <errno.h>
@@ -92,7 +92,7 @@ string task_get_name(htask_t htask)
 
    char szThreadName[32];
 
-#ifdef FREEBSD
+#if defined(FREEBSD) || defined(OPENBSD)
 
    pthread_get_name_np((pthread_t) htask, szThreadName, sizeof(szThreadName));
 
@@ -126,7 +126,7 @@ void task_set_name(htask_t htask, const char * psz)
 
    //auto estatus = task_set_name(pthread, pszThreadName);
 
-#ifdef __APPLE__
+#if defined(__APPLE__)
 
    int error = pthread_setname_np(pszTaskName);
 
@@ -138,7 +138,9 @@ void task_set_name(htask_t htask, const char * psz)
 
    thread_name_abbreviate(strName, 15);
 
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(OPENBSD)
+
+   errno = 0;
 
    pthread_set_name_np(pthread, strName);
 
@@ -154,6 +156,25 @@ void task_set_name(htask_t htask, const char * psz)
 
    if (error)
    {
+   
+      printf("task_set_name pthread_t 0x%016llX\n", (::uptr) pthread);
+      
+      printf("task_set_name name %s\n", strName.c_str());
+      
+      if(error == ESRCH)
+      {
+      
+         printf("task_set_name error ESRCH\n");
+	      
+      }
+      else
+      {
+      
+         printf("task_set_name error %d\n", error);
+      
+      }
+      
+      fflush(stdout);
 
       throw ::exception(error_failed);
 

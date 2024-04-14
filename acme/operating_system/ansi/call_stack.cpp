@@ -28,9 +28,13 @@
 
 void apple_backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * pmessage, void * address);
 
-#elif defined(FREEBSD) || defined(OPENBSD)
+#elif defined(FREEBSD)
 
 void freebsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolName, string & strModule, string & strAddress, char * pmessage, void * address);
+
+#elif defined(OPENBSD)
+
+void openbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolName, string & strModule, string & strAddress, char * pmessage, void * address);
 
 #else
 
@@ -104,11 +108,19 @@ string _ansi_stack_trace(::particle * pparticle, void *const *ppui, int frames, 
 
       strLine.formatf("%02d : %s : %s\n", frames - i - 1, strAddress.c_str(), strSymbolName.c_str());
 
-#elif defined(FREEBSD) || defined(OPENBSD)
+#elif defined(FREEBSD)
 
       string strModule;
 
       freebsd_backtrace_symbol_parse(pparticle, strSymbolName, strModule, strAddress, pmessage, ppui[i]);
+
+      strLine.formatf("%02d : %s : %s (%s)\n", frames - i - 1, strAddress.c_str(), strSymbolName.c_str(), strModule.c_str());
+
+#elif defined(OPENBSD)
+
+      string strModule;
+
+      openbsd_backtrace_symbol_parse(pparticle, strSymbolName, strModule, strAddress, pmessage, ppui[i]);
 
       strLine.formatf("%02d : %s : %s (%s)\n", frames - i - 1, strAddress.c_str(), strSymbolName.c_str(), strModule.c_str());
 

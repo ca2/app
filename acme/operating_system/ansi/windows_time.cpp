@@ -12,7 +12,10 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
 ////#include "acme/exception/exception.h"
-#ifdef FREEBSD
+#if defined(OPENBSD)
+#include "clear_cstddef"
+#define _BSD_SOURCE 1
+#elif defined(FREEBSD)
 #define __XSI_VISIBLE 700
 #define __BSD_VISIBLE 1
 #endif

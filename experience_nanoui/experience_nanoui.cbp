@@ -1,145 +1,516 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CodeBlocks_project_file>
-	<FileVersion major="1" minor="6" />
+	<FileVersion major="1" minor="6"/>
 	<Project>
-		<Option title="experience_lite" />
-		<Option pch_mode="2" />
-		<Option compiler="gcc" />
+		<Option title="experience_nanoui"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="clang"/>
+		<Option virtualFolders="CMake Files\;CMake Files\source\;CMake Files\source\app\;CMake Files\source\app\acme\;CMake Files\source\app\apex\;CMake Files\source\app\aqua\;CMake Files\source\app\aura\;CMake Files\source\app\axis\;CMake Files\source\app\base\;CMake Files\source\app\bred\;CMake Files\source\app\core\;CMake Files\source\app\experience_anthill\;CMake Files\source\app\experience_core\;CMake Files\source\app\experience_nanoui\;CMake Files\source\app\experience_tranquillum\;CMake Files\source\app\networking_bsd\;CMake Files\source\app\crypto_openssl\;CMake Files\source\app\compress_bzip2\;CMake Files\source\app\compress_zlib\;CMake Files\source\app\folder_zip\;CMake Files\source\app\database_sqlite3\;CMake Files\source\app\regular_expression_pcre2\;CMake Files\source\app\draw2d_cairo\;CMake Files\source\app\imaging_freeimage\;CMake Files\source\integration\;CMake Files\source\integration\application_build_helper\;CMake Files\source\integration\code\;CMake Files\source\integration\code\__implement\;CMake Files\source\integration\integration\;CMake Files\source\integration\integration\__implement\;CMake Files\source\integration\launch_store\;CMake Files\source\audio\;CMake Files\source\audio\audio\;CMake Files\source\audio\audio_decode_wave\;CMake Files\source\audio\audio_decode_youtube_player_api_for_iframe\;CMake Files\source\audio\audio_resample_swresample\;CMake Files\source\audio-generation1\;CMake Files\source\audio-generation1\audio_decode_libmpg123\;CMake Files\operating_system\;CMake Files\operating_system\operating_system-openbsd\;CMake Files\operating_system\operating_system-openbsd\acme_openbsd\;CMake Files\operating_system\operating_system-openbsd\apex_openbsd\;CMake Files\operating_system\operating_system-openbsd\aura_openbsd\;CMake Files\operating_system\operating_system-openbsd\desktop_environment_gnome\;CMake Files\operating_system\operating_system-openbsd\node_openbsd\;CMake Files\operating_system\operating_system-posix\;CMake Files\operating_system\operating_system-posix\acme_posix\;CMake Files\operating_system\operating_system-posix\apex_posix\;CMake Files\operating_system\operating_system-posix\audio_sndio\;CMake Files\operating_system\operating_system-posix\aura_posix\;CMake Files\operating_system\operating_system-posix\node_gnome\;CMake Files\operating_system\operating_system-posix\node_gtk3\;CMake Files\operating_system\operating_system-posix\windowing_x11\;CMake Files\operating_system\operating_system-posix\write_text_pango\;CMake Files\port\;CMake Files\port\base\;CMake Files\port\base\id3lib\;CMake Files\port\base\unac\;"/>
 		<Build>
-			<Target title="basis">
-				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
-				<Option type="3" />
-				<Option compiler="gcc" />
-				<Option parameters=": app=app-core/uinteraction type=uinteraction locale=_std schema=_std install build_number=basis" />
-				<Option host_application="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/$(PROJECT_NAME)" />
-				<Option run_host_application_in_terminal="0" />
-				<Option createDefFile="1" />
-				<Option createStaticLib="1" />
-				<Compiler>
-					<Add option="-fPIC" />
-					<Add option="-m64" />
-					<Add option="-g" />
-					<Add option="-D_DEBUG" />
-				</Compiler>
-				<Linker>
-					<Add option="-m64" />
-				</Linker>
+			<Target title="all">
+				<Option working_dir="/home/camilo/cmake/integration/source/app/experience_nanoui"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
 			</Target>
-			<Target title="stage">
-				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
-				<Option type="3" />
-				<Option compiler="gcc" />
-				<Option parameters=": app=app-core/uinteraction type=uinteraction locale=_std schema=_std install build_number=basis" />
-				<Option host_application="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/$(PROJECT_NAME)" />
-				<Option run_host_application_in_terminal="0" />
-				<Option createDefFile="1" />
-				<Option createStaticLib="1" />
+			<Target title="experience_nanoui">
+				<Option output="/home/camilo/cmake/integration/output/libexperience_nanoui.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/camilo/cmake/integration/source/app/experience_nanoui"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="clang"/>
 				<Compiler>
-					<Add option="-pg" />
-					<Add option="-fPIC" />
-					<Add option="-m64" />
-					<Add option="-g" />
-					<Add option="-O0" />
+					<Add option="-D_APP_EXPERIENCE_NANOUI_LIBRARY"/>
+					<Add option="-DHAS_GTK3"/>
+					<Add option="-DDEBUG"/>
+					<Add option="-DOPENBSD"/>
+					<Add option="-D__BSD__"/>
+					<Add option="-DWITH_X11"/>
+					<Add option="-DWITH_SN"/>
+					<Add option="-DWITH_XI"/>
+					<Add option="-DDESKTOP_ENVIRONMENT_GNOME"/>
+					<Add option="-DUNICODE"/>
+					<Add option="-D_UNICODE"/>
+					<Add option="-DBSD_UNIX"/>
+					<Add directory="/home/camilo/cmake/integration"/>
+					<Add directory="/home/camilo/__config"/>
+					<Add directory="/home/camilo/cmake/integration/source"/>
+					<Add directory="/home/camilo/cmake/integration/source/app"/>
+					<Add directory="/home/camilo/cmake/integration/source/app/include"/>
+					<Add directory="/home/camilo/cmake/integration/source/include"/>
+					<Add directory="/home/camilo/cmake/integration/port/_"/>
+					<Add directory="/home/camilo/cmake/integration/port/include"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-posix"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-posix/include"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/include"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/configuration"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/include/configuration_selection/Debug"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/operating_system/openbsd/gnome/7.3"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/operating_system"/>
+					<Add directory="/home/camilo/cmake/integration/source/app/experience_nanoui"/>
+					<Add directory="/home/camilo/cmake/integration/source/app/experience_nanoui/.."/>
+					<Add directory="/home/camilo/cmake/integration/source/app/experience_nanoui/../.."/>
+					<Add directory="/usr/include/c++/v1"/>
+					<Add directory="/usr/lib/clang/16/include"/>
+					<Add directory="/usr/include"/>
 				</Compiler>
-				<Linker>
-					<Add option="-pg" />
-					<Add option="-m64" />
-				</Linker>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 experience_nanoui"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
 			</Target>
-			<Target title="memdleak">
-				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
-				<Option type="3" />
-				<Option compiler="gcc" />
-				<Option createDefFile="1" />
-				<Option createStaticLib="1" />
+			<Target title="experience_nanoui/fast">
+				<Option output="/home/camilo/cmake/integration/output/libexperience_nanoui.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/camilo/cmake/integration/source/app/experience_nanoui"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="clang"/>
 				<Compiler>
-					<Add option="-g" />
-					<Add option="-D_DEBUG" />
-					<Add option="-DMEMDLEAK" />
+					<Add option="-D_APP_EXPERIENCE_NANOUI_LIBRARY"/>
+					<Add option="-DHAS_GTK3"/>
+					<Add option="-DDEBUG"/>
+					<Add option="-DOPENBSD"/>
+					<Add option="-D__BSD__"/>
+					<Add option="-DWITH_X11"/>
+					<Add option="-DWITH_SN"/>
+					<Add option="-DWITH_XI"/>
+					<Add option="-DDESKTOP_ENVIRONMENT_GNOME"/>
+					<Add option="-DUNICODE"/>
+					<Add option="-D_UNICODE"/>
+					<Add option="-DBSD_UNIX"/>
+					<Add directory="/home/camilo/cmake/integration"/>
+					<Add directory="/home/camilo/__config"/>
+					<Add directory="/home/camilo/cmake/integration/source"/>
+					<Add directory="/home/camilo/cmake/integration/source/app"/>
+					<Add directory="/home/camilo/cmake/integration/source/app/include"/>
+					<Add directory="/home/camilo/cmake/integration/source/include"/>
+					<Add directory="/home/camilo/cmake/integration/port/_"/>
+					<Add directory="/home/camilo/cmake/integration/port/include"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-posix"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-posix/include"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/include"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/configuration"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/include/configuration_selection/Debug"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/operating_system/openbsd/gnome/7.3"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/operating_system"/>
+					<Add directory="/home/camilo/cmake/integration/source/app/experience_nanoui"/>
+					<Add directory="/home/camilo/cmake/integration/source/app/experience_nanoui/.."/>
+					<Add directory="/home/camilo/cmake/integration/source/app/experience_nanoui/../.."/>
+					<Add directory="/usr/include/c++/v1"/>
+					<Add directory="/usr/lib/clang/16/include"/>
+					<Add directory="/usr/include"/>
 				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 experience_nanoui/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="static_experience_nanoui">
+				<Option output="/home/camilo/cmake/integration/library/libstatic_experience_nanoui.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/camilo/cmake/integration/source/app/experience_nanoui"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DHAS_GTK3"/>
+					<Add option="-DDEBUG"/>
+					<Add option="-DOPENBSD"/>
+					<Add option="-D__BSD__"/>
+					<Add option="-DWITH_X11"/>
+					<Add option="-DWITH_SN"/>
+					<Add option="-DWITH_XI"/>
+					<Add option="-DDESKTOP_ENVIRONMENT_GNOME"/>
+					<Add option="-DUNICODE"/>
+					<Add option="-D_UNICODE"/>
+					<Add option="-DBSD_UNIX"/>
+					<Add directory="/home/camilo/cmake/integration"/>
+					<Add directory="/home/camilo/__config"/>
+					<Add directory="/home/camilo/cmake/integration/source"/>
+					<Add directory="/home/camilo/cmake/integration/source/app"/>
+					<Add directory="/home/camilo/cmake/integration/source/app/include"/>
+					<Add directory="/home/camilo/cmake/integration/source/include"/>
+					<Add directory="/home/camilo/cmake/integration/port/_"/>
+					<Add directory="/home/camilo/cmake/integration/port/include"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-posix"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-posix/include"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/include"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/configuration"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/include/configuration_selection/Debug"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/operating_system/openbsd/gnome/7.3"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/operating_system"/>
+					<Add directory="/home/camilo/cmake/integration/source/app/experience_nanoui"/>
+					<Add directory="/home/camilo/cmake/integration/source/app/experience_nanoui/.."/>
+					<Add directory="/home/camilo/cmake/integration/source/app/experience_nanoui/../.."/>
+					<Add directory="/usr/include/c++/v1"/>
+					<Add directory="/usr/lib/clang/16/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 static_experience_nanoui"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="static_experience_nanoui/fast">
+				<Option output="/home/camilo/cmake/integration/library/libstatic_experience_nanoui.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/camilo/cmake/integration/source/app/experience_nanoui"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DHAS_GTK3"/>
+					<Add option="-DDEBUG"/>
+					<Add option="-DOPENBSD"/>
+					<Add option="-D__BSD__"/>
+					<Add option="-DWITH_X11"/>
+					<Add option="-DWITH_SN"/>
+					<Add option="-DWITH_XI"/>
+					<Add option="-DDESKTOP_ENVIRONMENT_GNOME"/>
+					<Add option="-DUNICODE"/>
+					<Add option="-D_UNICODE"/>
+					<Add option="-DBSD_UNIX"/>
+					<Add directory="/home/camilo/cmake/integration"/>
+					<Add directory="/home/camilo/__config"/>
+					<Add directory="/home/camilo/cmake/integration/source"/>
+					<Add directory="/home/camilo/cmake/integration/source/app"/>
+					<Add directory="/home/camilo/cmake/integration/source/app/include"/>
+					<Add directory="/home/camilo/cmake/integration/source/include"/>
+					<Add directory="/home/camilo/cmake/integration/port/_"/>
+					<Add directory="/home/camilo/cmake/integration/port/include"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-posix"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-posix/include"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/include"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/configuration"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/include/configuration_selection/Debug"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/operating_system/openbsd/gnome/7.3"/>
+					<Add directory="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/operating_system"/>
+					<Add directory="/home/camilo/cmake/integration/source/app/experience_nanoui"/>
+					<Add directory="/home/camilo/cmake/integration/source/app/experience_nanoui/.."/>
+					<Add directory="/home/camilo/cmake/integration/source/app/experience_nanoui/../.."/>
+					<Add directory="/usr/include/c++/v1"/>
+					<Add directory="/usr/lib/clang/16/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 static_experience_nanoui/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/camilo/cmake/integration/source/app/experience_nanoui/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
 			</Target>
 		</Build>
-		<VirtualTargets>
-			<Add alias="all_sanitizers" targets="basis;" />
-		</VirtualTargets>
-		<Compiler>
-			<Add option="-std=c++14" />
-			<Add option="-fPIC" />
-			<Add option="-fexceptions" />
-			<Add option="-fnon-call-exceptions" />
-			<Add option="-fno-pie" />
-			<Add option="-fno-stack-protector" />
-			<Add option="-Wno-pointer-arith" />
-			<Add option="-Wno-attributes" />
-			<Add option="-Winvalid-pch" />
-			<Add option="-Wno-conversion-null" />
-			<Add directory="." />
-			<Add directory="$(PROJECT_DIR)" />
-			<Add directory="$(#archive)" />
-			<Add directory="$(#config)" />
-			<Add directory="$(WORKSPACE_DIR)/../../../source" />
-			<Add directory="$(WORKSPACE_DIR)/../../../source/inc" />
-			<Add directory="$(WORKSPACE_DIR)/../../../source/include" />
-			<Add directory="$(WORKSPACE_DIR)/../../../source/app/_include" />
-			<Add directory="$(WORKSPACE_DIR)/../../../source/app/" />
-			<Add directory="$(WORKSPACE_DIR)/../../../operating_system/operating_system-$(#platform_modifier)" />
-			<Add directory="$(WORKSPACE_DIR)/../../../operating_system/operating_system-$(#platform_modifier)/_include" />
-			<Add directory="$(#archive)/third-$(#platform_modifier)/third/include" />
-			<Add directory="$(WORKSPACE_DIR)/../../../source/app" />
-			<Add directory="$(#sensitive)/sensitive/include" />
-		</Compiler>
-		<Linker>
-			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
-			<Add option="-lacme" />
-			<Add option="-lapex" />
-			<Add option="-laura" />
-			<Add option="-laxis" />
-			<Add option="-lbase" />
-			<Add option="-Wl,-z,defs" />
-			<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
-		</Linker>
-		<Unit filename="_.cpp" />
-		<Unit filename="_.h" />
-		<Unit filename="button.cpp" />
-		<Unit filename="button.h" />
-		<Unit filename="control_box.cpp" />
-		<Unit filename="control_box.h" />
-		<Unit filename="experience.cpp" />
-		<Unit filename="experience.h" />
-		<Unit filename="frame.cpp" />
-		<Unit filename="frame.h" />
-		<Unit filename="frame_001.cpp" />
-		<Unit filename="frame_001.h" />
-		<Unit filename="frame_002.cpp" />
-		<Unit filename="frame_002.h" />
-		<Unit filename="frame_005.cpp" />
-		<Unit filename="frame_005.h" />
-		<Unit filename="frame_008.cpp" />
-		<Unit filename="frame_008.h" />
-		<Unit filename="frame_011.cpp" />
-		<Unit filename="frame_011.h" />
-		<Unit filename="frame_013.cpp" />
-		<Unit filename="frame_013.h" />
-		<Unit filename="frame_Minimal001.cpp" />
-		<Unit filename="frame_Minimal001.h" />
-		<Unit filename="framework.cpp" />
-		<Unit filename="framework.h">
-			<Option compile="1" />
-			<Option weight="0" />
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/_.cpp">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
 		</Unit>
-		<Unit filename="library.cpp" />
-		<Unit filename="library.h" />
-		<Unit filename="style.cpp" />
-		<Unit filename="style.h" />
-		<Unit filename="theme.h" />
-		<Unit filename="user_button.h" />
-		<Unit filename="user_control_box.h" />
-		<Extensions />
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/_.h">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/_factory.cpp">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/control_box.cpp">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/control_box.h">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/control_box_button.cpp">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/control_box_button.h">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/experience.cpp">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/experience.h">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/frame.cpp">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/frame.h">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/frame_001.cpp">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/frame_001.h">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/frame_002.cpp">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/frame_002.h">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/frame_005.cpp">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/frame_005.h">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/frame_008.cpp">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/frame_008.h">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/frame_011.cpp">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/frame_011.h">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/frame_013.cpp">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/frame_013.h">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/frame_Minimal001.cpp">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/experience/frame_Minimal001.h">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/framework.cpp">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/framework.h">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/user/style.cpp">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/user/style.h">
+			<Option target="experience_nanoui"/>
+			<Option target="static_experience_nanoui"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/_.cmake">
+			<Option virtualFolder="CMake Files\source\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/_.cmake">
+			<Option virtualFolder="CMake Files\source\app\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\acme\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/apex/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\apex\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/aqua/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\aqua\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/aura/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\aura\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/axis/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\axis\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/base/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\base\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/bred/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\bred\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/core/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\core\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_anthill/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\experience_anthill\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_core/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\experience_core\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_nanoui/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\experience_nanoui\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/experience_tranquillum/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\experience_tranquillum\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/networking_bsd/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\networking_bsd\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/crypto_openssl/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\crypto_openssl\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/compress_bzip2/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\compress_bzip2\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/compress_zlib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\compress_zlib\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/folder_zip/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\folder_zip\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/database_sqlite3/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\database_sqlite3\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/regular_expression_pcre2/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\regular_expression_pcre2\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/draw2d_cairo/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\draw2d_cairo\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/app/imaging_freeimage/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\imaging_freeimage\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/integration/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\integration\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/integration/application_build_helper/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\integration\application_build_helper\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/integration/code/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\integration\code\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/integration/code/__implement/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\integration\code\__implement\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/integration/integration/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\integration\integration\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/integration/integration/__implement/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\integration\integration\__implement\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/integration/launch_store/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\integration\launch_store\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/audio/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\audio\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/audio/audio/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\audio\audio\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/audio/audio_decode_wave/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\audio\audio_decode_wave\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/audio/audio_decode_youtube_player_api_for_iframe/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\audio\audio_decode_youtube_player_api_for_iframe\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/audio/audio_resample_swresample/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\audio\audio_resample_swresample\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/audio-generation1/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\audio-generation1\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/source/audio-generation1/audio_decode_libmpg123/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\audio-generation1\audio_decode_libmpg123\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/operating_system/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating_system\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/operating_system/_.cmake">
+			<Option virtualFolder="CMake Files\operating_system\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/_.cmake">
+			<Option virtualFolder="CMake Files\operating_system\operating_system-openbsd\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/acme_openbsd/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating_system\operating_system-openbsd\acme_openbsd\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/apex_openbsd/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating_system\operating_system-openbsd\apex_openbsd\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/aura_openbsd/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating_system\operating_system-openbsd\aura_openbsd\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/desktop_environment_gnome/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating_system\operating_system-openbsd\desktop_environment_gnome\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/operating_system/operating_system-openbsd/node_openbsd/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating_system\operating_system-openbsd\node_openbsd\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/operating_system/operating_system-posix/_desktop.cmake">
+			<Option virtualFolder="CMake Files\operating_system\operating_system-posix\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/operating_system/operating_system-posix/acme_posix/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating_system\operating_system-posix\acme_posix\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/operating_system/operating_system-posix/apex_posix/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating_system\operating_system-posix\apex_posix\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/operating_system/operating_system-posix/audio_sndio/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating_system\operating_system-posix\audio_sndio\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/operating_system/operating_system-posix/aura_posix/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating_system\operating_system-posix\aura_posix\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/operating_system/operating_system-posix/node_gnome/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating_system\operating_system-posix\node_gnome\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/operating_system/operating_system-posix/node_gtk3/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating_system\operating_system-posix\node_gtk3\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/operating_system/operating_system-posix/windowing_x11/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating_system\operating_system-posix\windowing_x11\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/operating_system/operating_system-posix/write_text_pango/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating_system\operating_system-posix\write_text_pango\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/port/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\port\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/port/base/id3lib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\port\base\id3lib\"/>
+		</Unit>
+		<Unit filename="/home/camilo/cmake/integration/port/base/unac/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\port\base\unac\"/>
+		</Unit>
 	</Project>
 </CodeBlocks_project_file>

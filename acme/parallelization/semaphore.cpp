@@ -149,7 +149,7 @@ semaphore::~semaphore()
 }
 
 
-#ifdef FREEBSD
+#if defined(FREEBSD) || defined(OPENBSD)
 
 int
 _semtimedop(int semid, struct sembuf *array, size_t nops, struct
@@ -222,7 +222,7 @@ bool semaphore::_wait(const class time & timeWait)
 
       timespec += timeWait;
 
-#ifdef FREEBSD
+#if defined(FREEBSD) || defined(OPENBSD)
       iRet = _semtimedop(static_cast < i32 > (m_hsync), &sb, 1, &timespec);
 #else
       iRet = semtimedop(static_cast < i32 > (m_hsync), &sb, 1, &timespec);

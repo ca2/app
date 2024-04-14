@@ -921,6 +921,40 @@ namespace file
    }
 
 
+   inline path& path::set_existent_file()
+   {
+
+      set_file_path();
+
+      set_existent();
+
+      return *this;
+
+   }
+
+
+   inline path& path::set_existent()
+   {
+
+      m_etype = (enum_type)((m_etype | e_type_exists) & ~e_type_doesnt_exist);
+
+      return *this;
+
+   }
+
+
+   inline path& path::set_existent_folder()
+   {
+
+      set_folder_path();
+
+      set_existent();
+
+      return *this;
+
+   }
+
+
    inline path & path::operator = (const ::file::path & path)
    {
 

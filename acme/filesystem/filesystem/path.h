@@ -212,6 +212,11 @@ namespace file
       path & set_file_path();
       path & set_folder_path();
 
+      path& set_existent();
+
+      path& set_existent_file();
+      path& set_existent_folder();
+
       //::file::path replace_extension(const ::scoped_string & scopedstrNewExtension, const ::scoped_string & scopedstrOldExtension);
       void set_all_extensions(const ::scoped_string& scopestrExtension);
       void set_final_extension(const ::scoped_string& scopestrExtension);

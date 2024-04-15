@@ -223,7 +223,10 @@ class standard_sigfpe : public standard_exception
 
 #endif
 #endif
+   {
 
+      }
+   };
 
 //} // namespace exception
 
@@ -269,8 +272,9 @@ public:
 //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
   // uptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
 };
+*/
 
-#endif*/
+#endif
 
 
 

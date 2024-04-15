@@ -322,16 +322,16 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
                goto end;
 
             }
-            else if(strChar == "\"")
+
+            psz += strChar.length();
+
+            if(strChar == "\"")
             {
 
                break;
 
             }
-
-            psz += strChar.length();
-
-            if(strChar == "\\")
+            else if(strChar == "\\")
             {
 
                strChar = get_utf8_char(psz);

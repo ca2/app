@@ -277,10 +277,6 @@ string_array no_escape_get_c_args_from_string(const ::scoped_string & scopedstr)
 }
 
 
-
-
-
-
 // it was extracted from macOS code base
 // it is prepared for a command line supplied by macOS*1?
 // (*1.macOS:
@@ -371,7 +367,7 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
             }
 
          }
-
+         
          stra.add(strArg);
 
          strArg.empty();
@@ -379,10 +375,17 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
       }
       else if(strChar == " ")
       {
+      
+      	 strArg.trim();
+      	 
+      	 if(strArg.has_char())
+      	 {
 
-         stra.add(strArg);
+	    stra.add(strArg);
 
-         strArg.empty();
+	    strArg.empty();
+	         
+	 }
 
       }
       else if(strChar == "\\")
@@ -425,9 +428,11 @@ string_array command_arguments_from_command_line(const ::string & strCommandLine
 
 end:
 
+   strArg.trim();
+
    if(strArg.has_char())
    {
-
+   
       stra.add(strArg);
 
    }

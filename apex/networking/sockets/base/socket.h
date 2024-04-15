@@ -556,7 +556,7 @@ namespace sockets
       virtual bool SetSoPasscred(bool x = true);
 //#endif
 //#ifdef SO_PEERCRED
-      //virtual bool SoPeercred(ucred & );
+      //virtual bool SoPeercred(struct ::ucred & );
 //#endif
 //#ifdef SO_PRIORITY
       virtual bool SetSoPriority(int);

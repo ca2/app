@@ -1,9 +1,5 @@
 #pragma once
 
-//
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "acme/user/user/_user.h"
-//#endif
 
 
 //string get_error_message(::u32 dwError);

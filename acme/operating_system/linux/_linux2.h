@@ -23,8 +23,6 @@ platform_char *** process_get_pargv();
 platform_char ** process_get_argv();
 
 
-//#include "_user.h"
-
 //#include "desktop_file.h"
 //#include "x11.h"
 #include "acme/exception/engine.h"

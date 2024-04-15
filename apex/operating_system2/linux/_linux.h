@@ -85,6 +85,5 @@ CLASS_DECL_APEX const char * __get_app_name();
 #include "factory_exchange.h"
 
 
-#include "_user.h"
 
 

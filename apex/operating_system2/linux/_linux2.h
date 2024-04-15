@@ -20,12 +20,6 @@
 //void get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority epriority);
 
 
-#include "_user.h"
-
-
-//#include "desktop_file.h"
-//#include "x11.h"
-//#include "exception_engine.h"
 
 
 

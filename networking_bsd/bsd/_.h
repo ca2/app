@@ -1,8 +1,10 @@
 // Created by camilo on 2022-09-10 16:52 <3ThomasBorregaardSorensen!!
 #pragma once
 
-
-#if defined( FREEBSD)
+#if defined(OPENBSD)
+#include "operating_system/clear_cstddef"
+#define _BSD_SOURCE
+#elif defined( FREEBSD)
 #define __BSD_VISIBLE 1
 #endif
 

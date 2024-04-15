@@ -53,9 +53,6 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 
-
-
-
     if (${USE_PKGCONFIG})
         pkg_check_modules(PKGCONFIG libpcre2-8)
     endif ()
@@ -72,7 +69,7 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
     target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
 
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES} ${global_library_references})
     target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_LIBRARIES})
 
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)

@@ -3,6 +3,8 @@
 #include "acme/platform/platform.h"
 #include "acme/platform/system.h"
 #include "acme/operating_system/environment.h"
+#include "acme/operating_system/posix/file.h"
+#include "acme/operating_system/path.h"
 
 #include <sys/types.h>
 #include <sys/sysctl.h>
@@ -117,23 +119,40 @@ bool process_contains_module(pid_t pid, const ::file::path & path)
 }
 
 
+::pointer < ::operating_system::environment > operating_system_get_environment();
+
+
 ::file::path get_module_path()
 {
 
    auto strArg0 = ::platform::get()->_get_argv(0);
    
-   auto penvironment = ::platform::get()->system()->__create<::operating_system::environment>();
+   auto penvironment = ::operating_system_get_environment();
    
-   auto path = ::platform::get()->system()->acmepath()->path_get_path(strArg0, penvironment);
+//   printf("\n\nopenbsd arg0 : %s\n", strArg0.c_str());
+   
+   auto path = path_get_path(strArg0, penvironment);
+   
+//   printf("\n\nopenbsd path : %s\n", path.c_str());
    
    if ((path.m_etype & ::file::e_type_existent_file) != ::file::e_type_existent_file)
    {
+   
+//      printf("\n\nopenbsd file exists\n");
       
       if (process_contains_module(getpid(), path)) 
       {
+      
+//         printf("\n\nopenbsd process_contains_module\n");
          
          return path;
       	
+      }
+      else
+      {
+      
+//         printf("\n\nopenbsd process doesn't contain module\n");
+      
       }
       
    }

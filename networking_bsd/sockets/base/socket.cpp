@@ -50,6 +50,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ////#include <ctype.h>
 #include <time.h>
 
+#if defined(OPENBSD)
+#include <sys/ucred.h>
+#endif
 
 #ifdef PARALLELIZATION_PTHREAD
 

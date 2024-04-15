@@ -60,7 +60,7 @@ if (MSVC)
     target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura freeimage)
 
 
-elseif (${FREEBSD})
+elseif (${FREEBSD} OR ${OPENBSD})
 
 
     #pkg_check_modules(PKGCONFIG librsvg-2.0 freeimage)

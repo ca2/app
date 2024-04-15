@@ -1459,13 +1459,15 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
    #target_link_options(apex PRIVATE -Wl,-rpath=$ORIGIN)
-   if (${FREEBSD})
+   if(${OPENBSD})
+      list(APPEND system_libraries pthread z)
+   elseif (${FREEBSD})
       list(APPEND system_libraries dl pthread z)
    else ()
       list(APPEND system_libraries dl pthread idn z)
    endif ()
 
-   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES} ${system_libraries})
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES} ${system_libraries} ${global_library_references})
    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_LIBRARIES} ${system_libraries})
 
 

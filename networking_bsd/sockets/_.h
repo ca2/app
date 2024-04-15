@@ -6,6 +6,12 @@
 //#include "acme/primitive/collection/string_map.h"
 
 
+#if defined(OPENBSD)
+
+struct ucred;
+
+#endif
+
 #define INVALID_SOCKET_ID (-1)
 
 

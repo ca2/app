@@ -6,6 +6,9 @@
 #endif
 
 
+#include "acme/constant/status.h"
+
+
 template < typename TYPE >
 class status :
    public TYPE

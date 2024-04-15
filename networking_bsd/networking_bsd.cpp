@@ -1,7 +1,10 @@
 #include "framework.h"
 #include "acme/exception/interface_only.h"
 
-
+//#if defined(OPENBSD)
+//#include "clear_cstddefs"
+//#define _BSD_SOURCE
+//#endif
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 #include <arpa/inet.h>

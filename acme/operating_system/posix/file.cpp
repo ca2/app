@@ -4,6 +4,7 @@
 #include "acme/filesystem/file/status.h"
 #include "acme/_operating_system.h"
 #include "acme/operating_system/console.h"
+//#include "acme/primitive/collection/map_interface.h"
 #if defined( FREEBSD)
 #define __XSI_VISIBLE 1
 #endif
@@ -12,6 +13,45 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
+
+char * malloc_get_current_dir_name()
+{
+   
+   auto size = pathconf(".", _PC_PATH_MAX);
+   
+   if(size <= 0)
+   {
+      
+      size = PATH_MAX;
+      
+   }
+   
+   char * buf = (char *) malloc(size + 1);
+   
+   if(buf == nullptr)
+   {
+    
+      return nullptr;
+      
+   }
+   
+   auto ptr = getcwd(buf, (size_t)(size + 1));
+   
+   return ptr;
+
+}
+
+
+::string current_working_directory()
+{
+	auto p = malloc_get_current_dir_name();
+	::string str(p);
+	::free(p);
+	
+	return str;
+
+
+}
 
 //#ifdef WINDOWS
 //#include <io.h>
@@ -1250,6 +1290,50 @@ void std_out_buffer::write(const void * pdata, memsize nCount)
    
 }
 
+
+
+   bool is_directory_accessible(const ::file::path & path)
+   {
+
+      return ::access(path, X_OK) == 0;
+
+   }
+
+
+
+::file::e_type operating_system_executable_type(const ::file::path & path)
+{
+
+      struct stat buff;
+
+      if (stat(path.c_str(), &buff))
+      {
+
+         return ::file::e_type_doesnt_exist;
+
+      }
+
+      if(access(path.c_str(), X_OK))
+      {
+
+         return ::file::e_type_non_executable;
+
+      }
+
+      return S_ISREG(buff.st_mode) ? ::file::e_type_executable : ::file::e_type_folder2;
+
+
+}
+
+
+void operating_system_determine_executable(::file::path & path)
+{
+
+   path.m_etype = path.m_etype & (::file::e_type_executable | ::file::e_type_non_executable);
+
+   path.m_etype |= operating_system_executable_type(path);
+
+}
 
 
 

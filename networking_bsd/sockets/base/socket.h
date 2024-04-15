@@ -540,7 +540,7 @@ namespace sockets_bsd
       bool SetSoPasscred(bool x = true) override;
 #endif
 #ifdef SO_PEERCRED
-      virtual      bool SoPeercred(ucred &);
+      virtual bool SoPeercred(struct ::ucred &);
 #endif
 #ifdef SO_PRIORITY
       bool SetSoPriority(int) override;

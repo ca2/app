@@ -10,7 +10,9 @@
 #include "networking_bsd/sockets/ssl/context.h"
 #include "networking_bsd/sockets/ssl/client_context.h"
 #include "networking_bsd/sockets/ssl/client_context_map.h"
+#if OPENSSL_VERSION_NUMBER >= 0x30000000
 #include <openssl/core_names.h>
+#endif
 //#define OPENSSL_VERSION_NUMBER 123
 
 //::std::strong_ordering memory_order(const void * m1, const void * m2, memsize s);
@@ -2693,7 +2695,7 @@ m_ibuf(isize)
 
             }
 
-#if OPENSSL_VERSION_NUMBER >= 0x10101000L 
+#if OPENSSL_VERSION_NUMBER >= 0x10101000L  && !defined(LIBRESSL_VERSION_NUMBER)
 
             if (!SSL_CTX_use_cert_and_key(m_psslcontext->m_pclientcontext->m_psslcontext, certificate, key, pchain, 1))
             {

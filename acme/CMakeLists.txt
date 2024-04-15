@@ -341,6 +341,8 @@ list(APPEND library_source
    operating_system/message_box.cpp
    operating_system/message_box.h
    operating_system/parallelization.cpp
+   operating_system/path.cpp
+   operating_system/path.h
    operating_system/process.h
    operating_system/summary.cpp
    operating_system/summary.h
@@ -2629,6 +2631,8 @@ if (${LINUX} OR ${FREEBSD} OR ${NETBSD} OR ${OPENBSD} OR ${APPLE} OR ${SOLARIS})
       operating_system/posix/_posix.h
       operating_system/posix/file.cpp
       operating_system/posix/chldstatus.cpp
+      operating_system/posix/environment.cpp
+      operating_system/posix/environment.h
       operating_system/posix/file_lock.cpp
       operating_system/posix/file_lock.h
       operating_system/posix/idn.cpp
@@ -2738,14 +2742,14 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
 
    if (${OPENBSD})
-      list(APPEND system_libraries z pthread iconv execinfo kvm)
+      list(APPEND system_libraries z pthread iconv execinfo kvm c)
    elseif (${FREEBSD})
       list(APPEND system_libraries z dl pthread iconv execinfo)
    else ()
       list(APPEND system_libraries z dl pthread idn)
    endif ()
 
-   target_link_libraries(${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES})
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES} ${global_library_references})
    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES})
 
    target_link_directories(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARY_DIRS})

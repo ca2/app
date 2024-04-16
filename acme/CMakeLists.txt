@@ -1486,8 +1486,8 @@ list(APPEND library_source
    operating_system/parallelization.h
    operating_system/pipe.cpp
    operating_system/pipe.h
+   operating_system/posix/_stdio_file.h
    operating_system/posix/call_stack.cpp
-   operating_system/posix/file.h
    operating_system/posix/mq_base.h
    operating_system/pthread/pthread_np.cpp
    operating_system/process.cpp
@@ -2112,7 +2112,7 @@ if (${LINUX})
       operating_system/linux/_factory.cpp
       #operating_system/linux/_linux.h
       #operating_system/linux/_linux.h
-      operating_system/linux/_user.h
+      #operating_system/linux/_user.h
       operating_system/linux/application.h
       operating_system/linux/callstack.cpp
       operating_system/linux/cross_win_file.cpp
@@ -2488,7 +2488,7 @@ if (${FREEBSD})
       operating_system/freebsd/_factory.cpp
       operating_system/freebsd/_freebsd.h
       operating_system/freebsd/_freebsd2.h
-      operating_system/freebsd/_user.h
+      #operating_system/freebsd/_user.h
       operating_system/freebsd/application.h
       operating_system/freebsd/call_stack.cpp
       operating_system/freebsd/cross_win_file.cpp
@@ -2564,7 +2564,7 @@ if (${OPENBSD})
       operating_system/openbsd/_factory.cpp
       operating_system/openbsd/_openbsd.h
       operating_system/openbsd/_openbsd2.h
-      operating_system/openbsd/_user.h
+      #operating_system/openbsd/_user.h
       operating_system/openbsd/application.h
       operating_system/openbsd/call_stack.cpp
       operating_system/openbsd/cross_win_file.cpp

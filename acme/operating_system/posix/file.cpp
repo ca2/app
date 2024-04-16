@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "file.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/status.h"
 #include "acme/_operating_system.h"
@@ -8,6 +7,7 @@
 #if defined( FREEBSD)
 #define __XSI_VISIBLE 1
 #endif
+#include <stdio.h>
 #include <errno.h>
 #include <unistd.h>
 #include <sys/stat.h>

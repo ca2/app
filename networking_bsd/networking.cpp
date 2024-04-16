@@ -38,11 +38,11 @@ bool defer_finalize_operating_system_networking();
 #undef USE_MISC
 
 #if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
-#define  NI_MAXHOST  1025
-#define  NI_MAXSERV  32
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
+//#define  NI_MAXHOST  1025
+//#define  NI_MAXSERV  32
 #endif
 //#define __USE_MISC
 //#include <ctype.h>

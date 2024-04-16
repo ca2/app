@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 #define MAKE_SINGLE(SINGLE, T, MEMBER) \
 class SINGLE                                    \
 {                                               \
@@ -59,23 +58,5 @@ public:
 };
 
 
-#if defined(ANDROID)
-
-#define ALIENATED_ANDROID_ANARCHY class
-
-#else
-
-#define ALIENATED_ANDROID_ANARCHY struct
-
-#endif
 
 
-namespace std
-{
-
-
-   template < typename T >
-   ALIENATED_ANDROID_ANARCHY tuple_size< ::single <T > > : integral_constant<size_t, 1> {};
-
-
-} // namespace std

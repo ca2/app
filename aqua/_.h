@@ -5,6 +5,9 @@
 
 
 #include "apex/_.h"
+#ifdef	_STDIO_H_
+#error "already included?!?! WHAT??!?! (At aqua:a)"
+#endif
 
 
 #if defined(_aqua_project)

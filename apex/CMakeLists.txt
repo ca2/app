@@ -1006,7 +1006,7 @@ if (MACOS)
 endif ()
 
 
-if (LINUX OR FREEBSD OR MACOS)
+if (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD} OR ${MACOS})
 
    list(APPEND apex_source
       operating_system/freedesktop/desktop_file.cpp

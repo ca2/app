@@ -30,7 +30,8 @@ namespace apex
       ::pointer<::trace>               m_ptrace;
       ::pointer < ::mutex >                             m_pmutexTrace;
       string_array                        m_straSeparator;
-      FILE *                              m_pfile;
+//      FILE *                              m_pfile;
+//      ::file_pointer                      m_pfile;
       bool                                m_bInitialized;
       string                              m_strLogPath;
       atom                                  m_atom;

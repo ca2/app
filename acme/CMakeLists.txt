@@ -2491,11 +2491,11 @@ if (${FREEBSD})
       #operating_system/freebsd/_user.h
       operating_system/freebsd/application.h
       operating_system/freebsd/call_stack.cpp
-      operating_system/freebsd/cross_win_file.cpp
-      operating_system/freebsd/cross_win_file.h
-      operating_system/freebsd/cross_win_gdi.cpp
-      operating_system/freebsd/cross_win_gdi.h
-      operating_system/freebsd/cross_win_gdi_internal.h
+#      operating_system/freebsd/cross_win_file.cpp
+#      operating_system/freebsd/cross_win_file.h
+#      operating_system/freebsd/cross_win_gdi.cpp
+#      operating_system/freebsd/cross_win_gdi.h
+#      operating_system/freebsd/cross_win_gdi_internal.h
       operating_system/freebsd/debug.cpp
       operating_system/freebsd/debug.h
       operating_system/freebsd/dumpinit.cpp
@@ -2567,11 +2567,11 @@ if (${OPENBSD})
       #operating_system/openbsd/_user.h
       operating_system/openbsd/application.h
       operating_system/openbsd/call_stack.cpp
-      operating_system/openbsd/cross_win_file.cpp
-      operating_system/openbsd/cross_win_file.h
-      operating_system/openbsd/cross_win_gdi.cpp
-      operating_system/openbsd/cross_win_gdi.h
-      operating_system/openbsd/cross_win_gdi_internal.h
+#      operating_system/openbsd/cross_win_file.cpp
+#      operating_system/openbsd/cross_win_file.h
+#      operating_system/openbsd/cross_win_gdi.cpp
+#      operating_system/openbsd/cross_win_gdi.h
+#      operating_system/openbsd/cross_win_gdi_internal.h
       operating_system/openbsd/debug.cpp
       operating_system/openbsd/debug.h
       operating_system/openbsd/dumpinit.cpp

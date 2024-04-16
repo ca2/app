@@ -58,7 +58,7 @@ namespace aura
       ::user::primitive *                             m_puiCurrent;
       //bool                                            m_bContextTheme;
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
       bool                                            m_bSnLauncheeSetup;
 #endif
       //semaphore                                       m_semCompiler;

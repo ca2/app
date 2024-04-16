@@ -66,6 +66,8 @@
 #include "aura/platform/application.h"
 #include "acme/primitive/geometry2d/item.h"
 #include "acme/primitive/geometry2d/_defer_item.h"
+#include "acme/primitive/collection/_tuple.h"
+
 
 #ifdef WINDOWS_DESKTOP
 //#include "acme/_operating_system.h"

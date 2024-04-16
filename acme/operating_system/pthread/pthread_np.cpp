@@ -13,6 +13,7 @@
 #endif
 #include <pthread.h>
 #if defined(FREEBSD) || defined(OPENBSD)
+#include <stdio.h>
 #include <pthread_np.h>
 #include <sched.h>
 #include <errno.h>

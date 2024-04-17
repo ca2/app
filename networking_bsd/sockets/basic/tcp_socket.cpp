@@ -3,6 +3,7 @@
 #include "networking_bsd/address.h"
 #include "networking_bsd/networking.h"
 #include "socket_handler.h"
+#include "acme/operating_system/shared_posix/c_error_number.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/crypto/crypto.h"
 #include "apex/platform/system.h"
@@ -180,7 +181,7 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
       return 1;
    }
 
-   size_t i;
+   ::index i;
    for (i = 0; i < c->m_ticketkeya.get_size(); ++i) {
       auto& key = c->m_ticketkeya[i];
       if (strncmp((const char*) key.key_name, (const char *) key_name, 16)) 

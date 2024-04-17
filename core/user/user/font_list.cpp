@@ -755,7 +755,7 @@ namespace user
             if (y > get_total_size().cy() - rectangle.height())
             {
 
-               y = get_total_size().cy() - rectangle.height();
+               y = (decltype(y)) (get_total_size().cy() - rectangle.height());
 
             }
             else if (y < 0)

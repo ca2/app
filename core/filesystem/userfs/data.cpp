@@ -414,7 +414,7 @@ namespace userfs
 
                }
 
-               pathUser.m_iDir = item.m_iDir;
+               pathUser.set_type(item.type());
 
                listingUserFormatted.defer_add(pathUser);
 
@@ -456,7 +456,7 @@ namespace userfs
 
          ::file::path pathFinal  = pcontext->m_papexcontext->defer_process_path(pathToProcess );
 
-         pathFinal.m_iDir = pathItem.m_iDir;
+         pathFinal.set_type(pathItem.type());
 
          listingFinal.defer_add(pathFinal);
 
@@ -481,29 +481,29 @@ namespace userfs
 
          ::file::path & pathUser = listingUser[i];
 
-         if (pathFinal.m_iDir == 0)
+         if (pathFinal.is_file())
          {
 
-            pathUser.m_iDir = 0;
+            pathUser.set_existent_file();
 
             continue;
 
          }
 
-         if (pathFinal.m_iDir < 0)
+         if (pathFinal.not_file_or_folder())
          {
 
             auto pathFolderCandidate = pathFinal;
 
             pathFolderCandidate.flags() += ::file::e_flag_resolve_alias;
 
-            pathFinal.m_iDir = dir()->is(pathFolderCandidate) ? 1 : 0;
+            pathFinal.set_type(dir()->file_type(pathFolderCandidate));
 
          }
 
-         pathUser.m_iDir = pathFinal.m_iDir;
+         pathUser.set_type(pathFinal.type());
 
-         if (pathFinal.m_iDir == 0)
+         if (pathFinal.is_file())
          {
 
             continue;

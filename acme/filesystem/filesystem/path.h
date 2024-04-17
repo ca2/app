@@ -217,6 +217,22 @@ namespace file
       path& set_existent_file();
       path& set_existent_folder();
 
+
+      constexpr e_type type() const { return m_etype; }
+      e_type & type() { return m_etype; }
+      void set_type(e_type etype) { m_etype = etype; }
+
+
+      constexpr bool does_exist() const { return (m_etype & e_type_exists) && !(m_etype & e_type_doesnt_exist); }
+      constexpr bool is_file() const { return (m_etype & e_type_file2); }
+      constexpr bool is_folder() const { return (m_etype & e_type_folder2); }
+      constexpr bool is_file_or_folder() const { return is_file() || is_folder(); }
+      constexpr bool not_file_or_folder() const { return !is_file_or_folder(); }
+      constexpr bool is_existent_file() const { return is_file() && does_exist(); }
+      constexpr bool is_existent_folder() const { return is_folder() && does_exist(); }
+      constexpr bool is_existent_file_or_folder() const { return is_file_or_folder() && does_exist(); }
+
+
       //::file::path replace_extension(const ::scoped_string & scopedstrNewExtension, const ::scoped_string & scopedstrOldExtension);
       void set_all_extensions(const ::scoped_string& scopestrExtension);
       void set_final_extension(const ::scoped_string& scopestrExtension);
@@ -573,6 +589,8 @@ CLASS_DECL_ACME bool safe_file_exists(const ::file::path & path);
 CLASS_DECL_ACME bool file_exists(const ::file::path & path);
 CLASS_DECL_ACME bool safe_is_directory(const ::file::path & path);
 CLASS_DECL_ACME bool is_directory(const ::file::path & path);
+CLASS_DECL_ACME ::file::e_type safe_file_type(const ::file::path& path);
+CLASS_DECL_ACME ::file::e_type file_type(const ::file::path& path);
 CLASS_DECL_ACME void create_directory(const ::file::path & path);
 CLASS_DECL_ACME void delete_file(const ::file::path & path);
 CLASS_DECL_ACME void erase_directory(const ::file::path & path);

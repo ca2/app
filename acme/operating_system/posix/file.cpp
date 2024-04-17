@@ -963,6 +963,92 @@ bool is_directory(const ::file::path & path)
 }
 
 
+::file::e_type safe_file_type(const ::file::path & path)
+{
+
+   struct stat stat = {};
+
+   if (::stat(path.c_str(), &stat))
+   {
+
+      auto cerrornumber = c_error_number();
+
+      if(cerrornumber.m_iErrorNumber == ENOTDIR)
+      {
+
+         return ::file::e_type_doesnt_exist;
+
+      }
+
+      auto estatus = cerrornumber.estatus();
+
+      if(estatus == error_file_not_found)
+      {
+
+         return ::file::e_type_doesnt_exist;
+
+      }
+
+      return ::file::e_type_doesnt_exist;
+
+   }
+
+   if (stat.st_mode & S_IFDIR)
+   {
+
+      return ::file::e_type_existent_folder;
+
+   }
+
+   return ::file::e_type_existent_file;
+
+}
+
+
+::file::e_type file_type(const ::file::path & path)
+{
+
+   struct stat stat = {};
+
+   if (::stat(path.c_str(), &stat))
+   {
+
+      auto cerrornumber = c_error_number();
+
+      if(cerrornumber.m_iErrorNumber == ENOTDIR)
+      {
+
+         return ::file::e_type_doesnt_exist;
+
+      }
+
+      auto estatus = cerrornumber.estatus();
+
+      if(estatus == error_file_not_found)
+      {
+
+         return ::file::e_type_doesnt_exist;
+
+      }
+
+      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), cerrornumber.m_iErrorNumber);
+
+      throw ::file::exception(estatus, cerrornumber, path, ::file::e_open_none, "file_type");
+
+   }
+
+   if (stat.st_mode & S_IFDIR)
+   {
+
+      return ::file::e_type_existent_folder;
+
+   }
+
+   return ::file::e_type_existent_file;
+
+}
+
+
 bool safe_file_exists(const ::file::path & path)
 {
 

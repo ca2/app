@@ -6,9 +6,9 @@
 #include "acme/operating_system/ansi/_pthread.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task.h"
-#ifdef LINUX
-#include "acme/operating_system/linux/_user.h"
-#endif
+//#ifdef LINUX
+//#include "acme/operating_system/linux/_user.h"
+//#endif
 
 
 #if defined(PARALLELIZATION_PTHREAD)

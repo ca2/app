@@ -286,6 +286,8 @@ list(APPEND library_source
    memory/memory_management.cpp
    memory/memory_management.h
    #memory/new.cpp
+   memory/operation.cpp
+   memory/operation.h
    memory/os_alloc.cpp
    #memory/os_alloc.h
    #memory/os_impl/malloc.cpp
@@ -1339,6 +1341,8 @@ list(APPEND library_source
    exception/exception2.h
    exception/exit.cpp
    exception/exit.h
+   exception/runtime_check.cpp
+   exception/runtime_check.h
    #exception/standard.cpp
    #exception/standard.h
    exception/translator.h
@@ -1477,6 +1481,8 @@ list(APPEND library_source
    operating_system/ansi/semun.h
    operating_system/bidirectional_pipe.cpp
    operating_system/bidirectional_pipe.h
+   operating_system/environment.cpp
+   operating_system/environment.h
    operating_system/error_code.cpp
    operating_system/error_code.h
    operating_system/exit_status.cpp
@@ -2042,7 +2048,7 @@ endif ()
 
 if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
-   if(${WAYLAND})
+   if(${HAS_WAYLAND})
 list(APPEND library_source
       operating_system/wayland/nano/_nano.cpp
       operating_system/wayland/nano/_.h
@@ -2117,17 +2123,17 @@ if (${LINUX})
       #operating_system/linux/_user.h
       operating_system/linux/application.h
       operating_system/linux/callstack.cpp
-      operating_system/linux/cross_win_file.cpp
-      operating_system/linux/cross_win_file.h
-      operating_system/linux/cross_win_gdi.cpp
-      operating_system/linux/cross_win_gdi.h
-      operating_system/linux/cross_win_gdi_internal.h
+      #operating_system/linux/cross_win_file.cpp
+      #operating_system/linux/cross_win_file.h
+      #operating_system/linux/cross_win_gdi.cpp
+      #operating_system/linux/cross_win_gdi.h
+      #operating_system/linux/cross_win_gdi_internal.h
       operating_system/linux/debug.cpp
       operating_system/linux/debug.h
       operating_system/linux/dumpinit.cpp
       operating_system/linux/error.cpp
       operating_system/linux/file.cpp
-      operating_system/linux/file.h
+      #operating_system/linux/file.h
       operating_system/linux/file_lock.cpp
       operating_system/linux/graphics.cpp
       #operating_system/linux/internal.h
@@ -2677,11 +2683,7 @@ if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   operating_system/environment.cpp
-   operating_system/environment.h
-   operating_system/openbsd/get_module_path.cpp
-)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
@@ -2723,7 +2725,7 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
    #//target_compile_options\([A-Za-z0-9_)]+\s+PRIVATE\s+\$\{PKGCONFIG_CFLAGS\}\)
 
    #if(USE_PKGCONFIG)
-   if(${WAYLAND})
+   if(${HAS_WAYLAND})
       list(APPEND extra_pkg_modules wayland-client wayland-server wayland-cursor)
    endif()
 

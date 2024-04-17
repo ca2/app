@@ -610,24 +610,26 @@ CLASS_DECL_ACME trace_function std_inline_log(enum_trace_level etracelevelInform
 void __cdecl __clearerr_s(FILE * stream)
 {
 
+   c_error_number cerrornumber;
+
 #ifdef WINDOWS
 
-   errno_t iErrNo = ::clearerr_s(stream);
-
-   if (iErrNo)
-   {
-
-      throw ::runtime_check_exception(error_runtime_check, { c_error_number(iErrNo) }, "__clearerr_s");
-
-   }
+   cerrornumber.m_iErrorNumber = ::clearerr_s(stream);
 
 #else
 
    clearerr(stream);
 
-   C_RUNTIME_ERROR_CHECK(c_error_number(c_error_number_t(), errno));
+   cerrornumber.m_iErrorNumber = errno;
 
 #endif
+
+   if (cerrornumber.m_iErrorNumber)
+   {
+
+      throw ::runtime_check_exception(error_runtime_check, { cerrornumber }, "__clearerr_s");
+
+   }
 
 }
 

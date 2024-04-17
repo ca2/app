@@ -1447,6 +1447,8 @@ list(APPEND library_source
    memory/memory.h
    #memory/memory_allocator.h
    #memory/os_alloc.h
+   memory/operation.cpp
+   memory/operation.h
    memory/plex.cpp
    memory/plex.h
    memory/plex_heap.cpp
@@ -1570,7 +1572,7 @@ list(APPEND library_source
    platform/class.h
    platform/cmp.h
    platform/cmp2.h
-   platform/common.h
+   #platform/common.h
    platform/const.h
    platform/constraint.h
    platform/conversation_message.cpp

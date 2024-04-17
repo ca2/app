@@ -848,6 +848,9 @@
     </Bscmake>
     <Lib />
     <Lib />
+    <PreBuildEvent>
+      <Command />
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PreBuildEvent />

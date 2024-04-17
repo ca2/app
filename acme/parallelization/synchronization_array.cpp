@@ -45,7 +45,7 @@ synchronization_array::synchronization_array(const ::synchronization_array & arr
 {
 
 #ifdef WINDOWS
-   memcpy(m_byteaSyncIndex, array.m_byteaSyncIndex, sizeof(m_byteaSyncIndex));
+   ::memory_copy(m_byteaSyncIndex, array.m_byteaSyncIndex, sizeof(m_byteaSyncIndex));
 #endif
 
 }
@@ -65,7 +65,7 @@ synchronization_array & synchronization_array::operator = (const synchronization
 
 #ifdef WINDOWS
       m_hsyncaCache = synca.m_hsyncaCache;
-      memcpy(&m_byteaSyncIndex, synca.m_byteaSyncIndex, sizeof(m_byteaSyncIndex));
+      ::memory_copy(&m_byteaSyncIndex, synca.m_byteaSyncIndex, sizeof(m_byteaSyncIndex));
 #endif
       m_synchronizationa = synca.m_synchronizationa;
 

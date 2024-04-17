@@ -157,7 +157,7 @@ struct CLASS_DECL_ACME block :
 
       }
    
-      memcpy(this->m_begin, &aggregate, sizeof(aggregate));
+      ::memory_copy(this->m_begin, &aggregate, sizeof(aggregate));
 
       return *this;
 
@@ -174,7 +174,7 @@ struct CLASS_DECL_ACME block :
 
       }
 
-      memcpy(this->m_begin, ba, c);
+      ::memory_copy(this->m_begin, ba, c);
 
       return *this;
 
@@ -191,7 +191,7 @@ struct CLASS_DECL_ACME block :
 
       }
 
-      memcpy(&t, this->begin(), sizeof(t));
+      ::memory_copy(&t, this->begin(), sizeof(t));
 
       return *this;
 

@@ -258,7 +258,7 @@ CLASS_DECL_ACME const ::ansi_character * _string_rear_find_character(const ::ans
 CLASS_DECL_ACME void flood_characters(::ansi_character * psz, ::ansi_character ch, strsize len) noexcept
 {
 
-   memset(psz, ch, len);
+   ::memory_set(psz, ch, len);
 
 }
 

@@ -952,7 +952,7 @@ CLASS_DECL_ACME FILETIME & copy(FILETIME & filetime, const ::earth::time & time)
 
       //TRACELASTERROR();
 
-      memset(&filetime, 0, sizeof(filetime));
+      ::memory_set(&filetime, 0, sizeof(filetime));
 
    }
 

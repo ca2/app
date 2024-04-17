@@ -57,7 +57,7 @@ namespace datetime
       //convert variant time back to system time and compare to original system time.
       int_bool ok = ::SystemTimeToFloatTime(const_cast<SYSTEMTIME*>(&systimeSrc), pVarDtTm);
       SYSTEMTIME sysTime;
-      memset(&sysTime, 0, sizeof(SYSTEMTIME));
+      ::memory_set(&sysTime, 0, sizeof(SYSTEMTIME));
 
       ok = ok && ::FloatTimeToSystemTime(*pVarDtTm, &sysTime);
       ok = ok && (systimeSrc.wYear == sysTime.wYear &&
@@ -967,7 +967,7 @@ inline float_time::float_time(const FILETIME& file_timeSrc) RELEASENOTHROW :
    int32_t nSec) RELEASENOTHROW
    {
       SYSTEMTIME st;
-      ::memset(&st, 0, sizeof(SYSTEMTIME));
+      ::::memory_set(&st, 0, sizeof(SYSTEMTIME));
 
       st.wYear = ::u16(nYear);
       st.wMonth = ::u16(nMonth);

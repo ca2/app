@@ -2019,7 +2019,7 @@ filesize hfile_get_size(HANDLE h)
 //
 //   }
 //
-//   memcpy(p, &a->Data[pos], size);
+//   ::memory_copy(p, &a->Data[pos], size);
 //
 //   return size;
 //

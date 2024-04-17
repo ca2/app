@@ -455,7 +455,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //{
 //   if(nSrcLength == -1) { nSrcLength=1 + get_char_length(pszSrc); }
 //   // nLen is in XCHARs
-//   ::acme::memcpy_s(pszDest,(size_t) (nDestLength*sizeof(char)), pszSrc,(size_t) (nSrcLength*sizeof(char)));
+//   ::safe_memory_copy(pszDest,(size_t) (nDestLength*sizeof(char)), pszSrc,(size_t) (nSrcLength*sizeof(char)));
 //}
 //
 //void __cdecl char_traits::ConvertTochar(char * pszDest, strsize nDestLength, const unichar * pszSrc, strsize nSrcLength) noexcept
@@ -1518,7 +1518,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //      char * pszBuffer = GetBuffer();
 //
-//      ::acme::memmove_s(pszBuffer + iIndex, (size_t) nCopy, pszBuffer + iIndex + nCount, (size_t) nCopy);
+//      ::safe_memory_transfer(pszBuffer + iIndex, (size_t) nCopy, pszBuffer + iIndex + nCount, (size_t) nCopy);
 //
 //      release_buffer(nNewLength);
 //
@@ -1551,7 +1551,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   char * pszBuffer = GetBuffer(nNewLength);
 //
 //   // transfer existing bytes down
-//   ::acme::memmove_s(pszBuffer + iIndex + 1, nNewLength - iIndex, pszBuffer + iIndex, nNewLength - iIndex);
+//   ::safe_memory_transfer(pszBuffer + iIndex + 1, nNewLength - iIndex, pszBuffer + iIndex, nNewLength - iIndex);
 //
 //   pszBuffer[iIndex] = ch;
 //
@@ -1592,9 +1592,9 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //      char * pszBuffer = GetBuffer(nNewLength);
 //      // transfer existing bytes down
-//      ::acme::memmove_s(pszBuffer + iIndex + nInsertLength,(nNewLength - iIndex - nInsertLength + 1)*sizeof(char),
+//      ::safe_memory_transfer(pszBuffer + iIndex + nInsertLength,(nNewLength - iIndex - nInsertLength + 1)*sizeof(char),
 //                        pszBuffer + iIndex,(nNewLength - iIndex - nInsertLength + 1)*sizeof(char));
-//      ::acme::memcpy_s(pszBuffer + iIndex,nInsertLength*sizeof(char),
+//      ::safe_memory_copy(pszBuffer + iIndex,nInsertLength*sizeof(char),
 //                       psz,nInsertLength*sizeof(char));
 //      release_buffer(nNewLength);
 //   }
@@ -1684,9 +1684,9 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //         while((pszTarget = ::str::string_find_string(pszStart,pszOld)) != nullptr)
 //         {
 //            strsize nBalance = nOldLength - strsize(pszTarget - pszBuffer + nSourceLen);
-//            ::acme::memmove_s(pszTarget + nReplacementLen,nBalance*sizeof(char),
+//            ::safe_memory_transfer(pszTarget + nReplacementLen,nBalance*sizeof(char),
 //                              pszTarget + nSourceLen,nBalance*sizeof(char));
-//            ::acme::memcpy_s(pszTarget,nReplacementLen*sizeof(char),
+//            ::safe_memory_copy(pszTarget,nReplacementLen*sizeof(char),
 //                             pszNew,nReplacementLen*sizeof(char));
 //            pszStart = pszTarget + nReplacementLen;
 //            pszTarget[nReplacementLen + nBalance] = 0;
@@ -1750,9 +1750,9 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //         while ((pszTarget = ::str::string_find_string(pszStart, pszOld)) != nullptr)
 //         {
 //            strsize nBalance = nOldLength - strsize(pszTarget - pszBuffer + nSourceLen);
-//            ::acme::memmove_s(pszTarget + nReplacementLen, nBalance * sizeof(char),
+//            ::safe_memory_transfer(pszTarget + nReplacementLen, nBalance * sizeof(char),
 //                              pszTarget + nSourceLen, nBalance * sizeof(char));
-//            ::acme::memcpy_s(pszTarget, nReplacementLen * sizeof(char),
+//            ::safe_memory_copy(pszTarget, nReplacementLen * sizeof(char),
 //                             pszNew, nReplacementLen * sizeof(char));
 //            pszStart = pszTarget + nReplacementLen;
 //            pszTarget[nReplacementLen + nBalance] = 0;
@@ -2555,7 +2555,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      char * pszBuffer = GetBuffer(get_length());
 //      psz = pszBuffer + iFirst;
 //      strsize nDataLength = get_length() - iFirst;
-//      ::acme::memmove_s(pszBuffer,(nDataLength + 1)*sizeof(char),
+//      ::safe_memory_transfer(pszBuffer,(nDataLength + 1)*sizeof(char),
 //                        psz,(nDataLength + 1)*sizeof(char));
 //      release_buffer(nDataLength);
 //   }
@@ -2678,7 +2678,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      char * pszBuffer = GetBuffer(get_length());
 //      psz = pszBuffer + iFirst;
 //      strsize nDataLength = get_length() - iFirst;
-//      ::acme::memmove_s(pszBuffer,(nDataLength + 1)*sizeof(char),
+//      ::safe_memory_transfer(pszBuffer,(nDataLength + 1)*sizeof(char),
 //                        psz,(nDataLength + 1)*sizeof(char));
 //      release_buffer(nDataLength);
 //   }
@@ -2708,7 +2708,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      char * pszBuffer = GetBuffer(get_length());
 //      psz = pszBuffer + iFirst;
 //      strsize nDataLength = get_length() - iFirst;
-//      ::acme::memmove_s(pszBuffer,(nDataLength + 1)*sizeof(char),
+//      ::safe_memory_transfer(pszBuffer,(nDataLength + 1)*sizeof(char),
 //                        psz,(nDataLength + 1)*sizeof(char));
 //      release_buffer(nDataLength);
 //   }

@@ -76,7 +76,7 @@ void SHA256::processBlock(const void* data)
    // data represented as 16x 32-bit words
    // convert to big endian
    uint32_t words[64];
-   memcpy(words, data, sizeof(uint32_t) * 16);
+   ::memory_copy(words, data, sizeof(uint32_t) * 16);
 
    int i = 16;
    if (h2n2h_helper::Endian::little)

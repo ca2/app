@@ -421,7 +421,7 @@ bool payload::convert(const ::payload & payload)
       else
       {
 
-         memcpy(&m_all, &payload.m_all, sizeof(m_all));
+         ::memory_copy(&m_all, &payload.m_all, sizeof(m_all));
 
       }
 
@@ -1326,7 +1326,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
             m_atom = payload.m_atom;
             break;
          default:
-            memcpy(m_all, payload.m_all, sizeof(m_all));
+            ::memory_copy(m_all, payload.m_all, sizeof(m_all));
             //m_str = payload.m_str;
             break;
          }

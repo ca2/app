@@ -984,7 +984,7 @@ static unsigned char * stbi__load_flip(stbi__context * s, int * x, int * y, int 
       int row, col, z;
       stbi_uc temp;
 
-      // @OPTIMIZE: use a bigger temp buffer and memcpy multiple pixels at once
+      // @OPTIMIZE: use a bigger temp buffer and ::memory_copy multiple pixels at once
       for (row = 0; row < (h >> 1); row++) {
          for (col = 0; col < w; col++) {
             for (z = 0; z < depth; z++) {
@@ -1008,7 +1008,7 @@ static void stbi__float_postprocess(float * result, int * x, int * y, int * comp
       int row, col, z;
       float temp;
 
-      // @OPTIMIZE: use a bigger temp buffer and memcpy multiple pixels at once
+      // @OPTIMIZE: use a bigger temp buffer and ::memory_copy multiple pixels at once
       for (row = 0; row < (h >> 1); row++) {
          for (col = 0; col < w; col++) {
             for (z = 0; z < depth; z++) {
@@ -1272,7 +1272,7 @@ static int stbi__getn(stbi__context * s, stbi_uc * buffer, int n)
       if (blen < n) {
          int res, count;
 
-         memcpy(buffer, s->img_buffer, blen);
+         ::memory_copy(buffer, s->img_buffer, blen);
 
          count = (s->io.read)(s->io_user_data, (char *)buffer + blen, n - blen);
          res = (count == (n - blen));
@@ -1282,7 +1282,7 @@ static int stbi__getn(stbi__context * s, stbi_uc * buffer, int n)
    }
 
    if (s->img_buffer + n <= s->img_buffer_end) {
-      memcpy(buffer, s->img_buffer, n);
+      ::memory_copy(buffer, s->img_buffer, n);
       s->img_buffer += n;
       return 1;
    }
@@ -1545,7 +1545,7 @@ static int stbi__build_huffman(stbi__huffman * h, int * count)
    h->maxcode[j] = 0xffffffff;
 
    // build non-spec acceleration table; 255 is flag for not-accelerated
-   memset(h->fast, 255, 1 << FAST_BITS);
+   ::memory_set(h->fast, 255, 1 << FAST_BITS);
    for (i = 0; i < k; ++i) {
       int s = h->size[i];
       if (s <= FAST_BITS) {
@@ -1726,7 +1726,7 @@ static int stbi__jpeg_decode_block(stbi__jpeg * j, short data[64], stbi__huffman
    if (t < 0) return stbi__err("bad huffman code", "Corrupt JPEG");
 
    // 0 all the ac values now so we can do it 32-bits at a time
-   memset(data, 0, 64 * sizeof(data[0]));
+   ::memory_set(data, 0, 64 * sizeof(data[0]));
 
    diff = t ? stbi__extend_receive(j, t) : 0;
    dc = j->img_comp[b].dc_pred + diff;
@@ -1780,7 +1780,7 @@ static int stbi__jpeg_decode_block_prog_dc(stbi__jpeg * j, short data[64], stbi_
 
    if (j->succ_high == 0) {
       // first scan for DC coefficient, must be first
-      memset(data, 0, 64 * sizeof(data[0])); // 0 all the ac values now
+      ::memory_set(data, 0, 64 * sizeof(data[0])); // 0 all the ac values now
       t = stbi__jpeg_huff_decode(j, hdc);
       diff = t ? stbi__extend_receive(j, t) : 0;
 
@@ -3517,8 +3517,8 @@ static int stbi__zbuild_huffman(stbi__zhuffman * z, stbi_uc * sizelist, int num)
    int code, next_code[16], sizes[17];
 
    // DEFLATE spec for generating codes
-   memset(sizes, 0, sizeof(sizes));
-   memset(z->fast, 0, sizeof(z->fast));
+   ::memory_set(sizes, 0, sizeof(sizes));
+   ::memory_set(z->fast, 0, sizeof(z->fast));
    for (i = 0; i < num; ++i)
       ++sizes[sizelist[i]];
    sizes[0] = 0;
@@ -3724,7 +3724,7 @@ static int stbi__compute_huffman_codes(stbi__zbuf * a)
    int hdist = stbi__zreceive(a, 5) + 1;
    int hclen = stbi__zreceive(a, 4) + 4;
 
-   memset(codelength_sizes, 0, sizeof(codelength_sizes));
+   ::memory_set(codelength_sizes, 0, sizeof(codelength_sizes));
    for (i = 0; i < hclen; ++i) {
       int s = stbi__zreceive(a, 3);
       codelength_sizes[length_dezigzag[i]] = (stbi_uc)s;
@@ -3739,18 +3739,18 @@ static int stbi__compute_huffman_codes(stbi__zbuf * a)
          lencodes[n++] = (stbi_uc)c;
       else if (c == 16) {
          c = stbi__zreceive(a, 2) + 3;
-         memset(lencodes + n, lencodes[n - 1], c);
+         ::memory_set(lencodes + n, lencodes[n - 1], c);
          n += c;
       }
       else if (c == 17) {
          c = stbi__zreceive(a, 3) + 3;
-         memset(lencodes + n, 0, c);
+         ::memory_set(lencodes + n, 0, c);
          n += c;
       }
       else {
          STBI_ASSERT(c == 18);
          c = stbi__zreceive(a, 7) + 11;
-         memset(lencodes + n, 0, c);
+         ::memory_set(lencodes + n, 0, c);
          n += c;
       }
    }
@@ -3783,7 +3783,7 @@ static int stbi__parse_uncomperssed_block(stbi__zbuf * a)
    if (a->zbuffer + len > a->zbuffer_end) return stbi__err("read past buffer", "Corrupt PNG");
    if (a->zout + len > a->zout_end)
       if (!stbi__zexpand(a, a->zout, len)) return 0;
-   memcpy(a->zout, a->zbuffer, len);
+   ::memory_copy(a->zout, a->zbuffer, len);
    a->zbuffer += len;
    a->zout += len;
    return 1;
@@ -4084,8 +4084,8 @@ static int stbi__create_png_image_raw(stbi__png * a, stbi_uc * raw, stbi__uint32
              case f:     \
                 for (k=0; k < nk; ++k)
          switch (filter) {
-            // "none" filter turns into a memcpy here; make that explicit.
-         case STBI__F_none:         memcpy(cur, raw, nk); break;
+            // "none" filter turns into a ::memory_copy here; make that explicit.
+         case STBI__F_none:         ::memory_copy(cur, raw, nk); break;
             CASE(STBI__F_sub)          cur[k] = STBI__BYTECAST(raw[k] + cur[k - filter_bytes]); break;
             CASE(STBI__F_up)           cur[k] = STBI__BYTECAST(raw[k] + prior[k]); break;
             CASE(STBI__F_avg)          cur[k] = STBI__BYTECAST(raw[k] + ((prior[k] + cur[k - filter_bytes]) >> 1)); break;
@@ -4223,7 +4223,7 @@ static int stbi__create_png_image(stbi__png * a, stbi_uc * image_data, stbi__uin
             for (i = 0; i < x; ++i) {
                int out_y = j * yspc[p] + yorig[p];
                int out_x = i * xspc[p] + xorig[p];
-               memcpy(final + out_y * a->s->img_x * out_n + out_x * out_n,
+               ::memory_copy(final + out_y * a->s->img_x * out_n + out_x * out_n,
                   a->out + (j * x + i) * out_n, out_n);
             }
          }
@@ -5316,7 +5316,7 @@ static stbi_uc * stbi__psd_load(stbi__context * s, int * x, int * y, int * comp,
    pixelCount = w * h;
 
    // Initialize the data to zero.
-   //memset( out, 0, pixelCount * 4 );
+   //::memory_set( out, 0, pixelCount * 4 );
 
    // Finally, the image data.
    if (compression) {
@@ -5613,7 +5613,7 @@ static stbi_uc * stbi__pic_load(stbi__context * s, int * px, int * py, int * com
 
    // intermediate buffer is RGBA
    result = (stbi_uc *)stbi__malloc(x * y * 4);
-   memset(result, 0xff, x * y * 4);
+   ::memory_set(result, 0xff, x * y * 4);
 
    if (!stbi__pic_load_core(s, x, y, comp, result)) {
       STBI_FREE(result);
@@ -5883,17 +5883,17 @@ static stbi_uc * stbi__gif_load_next(stbi__context * s, stbi__gif * g, int * com
       stbi__fill_gif_background(g, 0, 0, 4 * g->w, 4 * g->w * g->h);
       break;
    case 1: // do not dispose
-      if (prev_out) memcpy(g->out, prev_out, 4 * g->w * g->h);
+      if (prev_out) ::memory_copy(g->out, prev_out, 4 * g->w * g->h);
       g->old_out = prev_out;
       break;
    case 2: // dispose to background
-      if (prev_out) memcpy(g->out, prev_out, 4 * g->w * g->h);
+      if (prev_out) ::memory_copy(g->out, prev_out, 4 * g->w * g->h);
       stbi__fill_gif_background(g, g->start_x, g->start_y, g->max_x, g->max_y);
       break;
    case 3: // dispose to previous
       if (g->old_out) {
          for (i = g->start_y; i < g->max_y; i += 4 * g->w)
-            memcpy(&g->out[i + g->start_x], &g->old_out[i + g->start_x], g->max_x - g->start_x);
+            ::memory_copy(&g->out[i + g->start_x], &g->old_out[i + g->start_x], g->max_x - g->start_x);
       }
       break;
    }
@@ -5990,7 +5990,7 @@ static stbi_uc * stbi__gif_load(stbi__context * s, int * x, int * y, int * comp,
 {
    stbi_uc * u = 0;
    stbi__gif g;
-   memset(&g, 0, sizeof(g));
+   ::memory_set(&g, 0, sizeof(g));
 
    u = stbi__gif_load_next(s, &g, comp, req_comp);
    if (u == (stbi_uc *)s) u = 0;  // end of animated gif marker

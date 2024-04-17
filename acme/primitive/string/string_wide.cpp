@@ -81,7 +81,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //
 //      POINTER::operator=(pNew);
 //
-//      memcpy(pNew->m_pdata, pwsz, pNew->memsize());
+//      ::memory_copy(pNew->m_pdata, pwsz, pNew->memsize());
 //
 //      set_length(strsize);
 //

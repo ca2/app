@@ -57,7 +57,7 @@ namespace windows
 
          plf = &lF;
 
-         memset(plf, 0, sizeof(*plf));
+         ::memory_set(plf, 0, sizeof(*plf));
 
          plf->lfCharSet = DEFAULT_CHARSET;
 

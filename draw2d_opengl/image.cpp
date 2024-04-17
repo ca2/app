@@ -142,7 +142,7 @@ namespace draw2d_opengl
 
       }
 
-      memcpy((::pixmap *) this, ppixmap, sizeof(::pixmap));
+      ::memory_copy((::pixmap *) this, ppixmap, sizeof(::pixmap));
 
       //__construct(m_pbitmap);
       __defer_construct(m_pgraphics);

@@ -200,7 +200,7 @@ static int_bool
    {
       do
       {
-         memset(&text_metadata, 0, sizeof(png_text));
+         ::memory_set(&text_metadata, 0, sizeof(png_text));
          text_metadata.compression = 1;							// iTXt, none
          text_metadata.key = (char*)FreeImage_GetTagKey(tag);	// keyword, 1-79 character description of "text"
          text_metadata.text = (char*)FreeImage_GetTagValue(tag);	// comment, may be an empty string (ie "")
@@ -226,7 +226,7 @@ static int_bool
 /*   FreeImage_GetMetadata(FIMD_XMP, pimage, g_TagLib_XMPFieldName, &tag);
    if(tag && FreeImage_GetTagLength(tag))
    {
-      memset(&text_metadata, 0, sizeof(png_text));
+      ::memory_set(&text_metadata, 0, sizeof(png_text));
       text_metadata.compression = 1;							// iTXt, none
       text_metadata.key = (char*)g_png_xmp_keyword;					// keyword, 1-79 character description of "text"
       text_metadata.text = (char*)FreeImage_GetTagValue(tag);	// comment, may be an empty string (ie "")
@@ -606,7 +606,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
                if (trans_color->gray < palette_entries)
                {
                   ::u8 table[256];
-                  memset(table, 0xFF, palette_entries);
+                  ::memory_set(table, 0xFF, palette_entries);
                   table[trans_color->gray] = 0;
 /*                  FreeImage_SetTransparencyTable(pimage, table, palette_entries);
                }
@@ -1034,7 +1034,7 @@ static int_bool DLL_CALLCONV
             RGBQUAD rgbBkColor;
 
 /*            FreeImage_GetBackgroundColor(pimage, &rgbBkColor);
-            memset(&image_background, 0, sizeof(png_color_16));
+            ::memory_set(&image_background, 0, sizeof(png_color_16));
             image_background.blue  = rgbBkColor.rgbBlue;
             image_background.green = rgbBkColor.rgbGreen;
             image_background.red   = rgbBkColor.rgbRed;

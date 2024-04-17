@@ -18,7 +18,7 @@ namespace hwid
         ::string toString() const
         {
             char str[12];
-            memcpy(str, &regs, sizeof(str)); //this way avoid all kinds of UB
+            ::memory_copy(str, &regs, sizeof(str)); //this way avoid all kinds of UB
             return ::string(str, 12);
         }
     };

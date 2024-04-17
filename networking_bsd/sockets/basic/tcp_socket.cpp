@@ -250,7 +250,7 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
 //   head = ref->tls_ticket_enc_index;
 //
 //   if (enc) {
-//      memcpy(key_name, keys[head].name, 16);
+//      ::memory_copy(key_name, keys[head].name, 16);
 //
 //      if (!RAND_pseudo_bytes(iv, EVP_MAX_IV_LENGTH))
 //         goto end;

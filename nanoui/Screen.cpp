@@ -126,7 +126,7 @@ namespace nanoui
    //
    //   common_construct();
    //
-   //  /* memset(m_cursors, 0, sizeof(GLFWcursor *) * (size_t)Cursor::CursorCount);
+   //  /* ::memory_set(m_cursors, 0, sizeof(GLFWcursor *) * (size_t)Cursor::CursorCount);
    //#if defined(NANOUI_USE_OPENGL)
    //   GLint n_stencil_bits = 0, n_depth_bits = 0;
    //   GLboolean float_mode;
@@ -161,7 +161,7 @@ namespace nanoui
       m_modifiers = ::user::e_key_none;
 
 
-      // memset(m_cursors, 0, sizeof(GLFWcursor *) * (int)Cursor::CursorCount);
+      // ::memory_set(m_cursors, 0, sizeof(GLFWcursor *) * (int)Cursor::CursorCount);
    //
    //#if defined(NANOUI_USE_OPENGL)
    //   glfwWindowHint(GLFW_CLIENT_API, GLFW_OPENGL_API);

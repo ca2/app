@@ -85,7 +85,7 @@
 //
 //      char ** argv = __new_array< char * >(we.we_wordc+1);
 //
-//      memcpy(argv, we.we_wordv, we.we_wordc * sizeof(char*));
+//      ::memory_copy(argv, we.we_wordv, we.we_wordc * sizeof(char*));
 //
 //      int iErrNo = 0;
 //

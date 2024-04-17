@@ -1168,16 +1168,16 @@ namespace filemanager
 
             pathFinal = pcontext->m_papexcontext->defer_process_path(pathFinal);
 
-            pathFinal.m_iDir = listingFinal[i].m_iDir;
+            pathFinal.set_type(listingFinal[i].type());
 
-            if (pathFinal.m_iDir < 0)
+            if (pathFinal.not_file_or_folder())
             {
 
-               pathFinal.m_iDir = fs_data()->is_dir(pathFinal) ? 1 : 0;
+               pathFinal.set_type(fs_data()->file_type(pathFinal));
 
             }
 
-            if (pathFinal.m_iDir == 1)
+            if (pathFinal.set_existent_folder())
             {
 
                spitem->m_flags.add(::file::e_flag_folder);

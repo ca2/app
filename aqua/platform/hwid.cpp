@@ -56,7 +56,7 @@ static memory getUUID()
     auto s = get("/var/lib/dbus/machine-id");
     if (s.empty())
         s = get("/etc/machine-id");
-    memcpy(res.data(), s.c_str(), std::min(s.length(), res.size()));
+    ::memory_copy(res.data(), s.c_str(), std::min(s.length(), res.size()));
 #endif
 
 #ifdef _WIN32

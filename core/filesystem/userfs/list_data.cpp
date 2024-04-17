@@ -216,14 +216,14 @@ namespace userfs
 
             auto & path = (*m_pitema)[psubitem->m_pitem->m_iItem]->final_path_reference();
 
-            if (path.m_iDir < 0)
+            if (path.not_file_or_folder())
             {
 
-               (*m_pitema)[psubitem->m_pitem->m_iItem]->set_final_path_dir(dir()->is(path) ? 1 : 0);
+               (*m_pitema)[psubitem->m_pitem->m_iItem]->set_final_path_type(dir()->file_type(path));
 
             }
 
-            if (path.m_iDir > 0)
+            if (path.is_folder())
             {
 
                psubitem->m_strText.empty();
@@ -434,7 +434,7 @@ namespace userfs
 
                psubitem->m_iImage = puser->shell()->get_file_image(
                   pathFinal,
-                  pathFinal.m_iDir == 1 ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
+                  pathFinal.is_folder() ? ::user::shell::e_file_attribute_directory : ::user::shell::e_file_attribute_normal,
                   ::user::shell::e_icon_normal);
 
                if (psubitem->m_iImage < 0)

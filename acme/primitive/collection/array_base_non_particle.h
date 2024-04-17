@@ -4,9 +4,7 @@
 #include "_iterator.h"
 #include "acme/memory/typed.h"
 #include "acme/memory/typed_memory.h"
-#include "acme/platform/common.h"
-
-//using tiny_index_array = tiny_array <::index>;
+#include "acme/memory/operation.h"
 
 
 CLASS_DECL_ACME ::string get_task_object_name();
@@ -1481,7 +1479,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
    if(nMoveCount)
    {
 
-      ::acme::memmove_s(this->m_begin + first, (size_t) nMoveCount * sizeof(TYPE), this->m_begin + in_count_out_last + 1, (size_t) nMoveCount * sizeof(TYPE));
+      ::safe_memory_transfer(this->m_begin + first, (size_t) nMoveCount * sizeof(TYPE), this->m_begin + in_count_out_last + 1, (size_t) nMoveCount * sizeof(TYPE));
 
    }
 
@@ -1578,7 +1576,7 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 #endif
 
          // copy new data from old
-         ::acme::memcpy_s(pNewData, (size_t)size * sizeof(TYPE),this->m_begin, (size_t)size * sizeof(TYPE));
+         ::safe_memory_copy(pNewData, (size_t)size * sizeof(TYPE),this->m_begin, (size_t)size * sizeof(TYPE));
 
       }
 
@@ -1629,7 +1627,7 @@ TYPE * array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer
    
    this->allocate(newSize, false, true);
    
-   ::acme::memmove_s(this->m_begin + i + c, (size_t) (nMove * sizeof(TYPE)), this->m_begin + i, (size_t) (nMove * sizeof(TYPE)));
+   ::safe_memory_transfer(this->m_begin + i + c, (size_t) (nMove * sizeof(TYPE)), this->m_begin + i, (size_t) (nMove * sizeof(TYPE)));
 
    return this->m_begin + i;
    
@@ -1706,7 +1704,7 @@ TYPE * array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer
 //      set_size((::count) this->size() + nCount, -1);
 //      
 //      // shift old data up to fill gap
-//      ::acme::memmove_s(this->m_begin + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), this->m_begin + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
+//      ::safe_memory_transfer(this->m_begin + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), this->m_begin + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
 //
 //      ::zero(this->m_begin + nIndex, nCount * sizeof(TYPE));
 //
@@ -1920,7 +1918,7 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 //      set_size((::count) (this->size() + nCount), -1);  // grow it to new size_i32
 //      // destroy intial data before copying over it
 //      // shift old data up to fill gap
-//      ::acme::memmove_s(this->m_begin + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), this->m_begin + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
+//      ::safe_memory_transfer(this->m_begin + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), this->m_begin + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
 //
 //      ::zero(this->m_begin + nIndex, nCount* sizeof(TYPE));
 //
@@ -1974,7 +1972,7 @@ TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
    if (nMoveCount)
    {
 
-      ::acme::memmove_s(this->m_begin + nIndex, (size_t)nMoveCount * sizeof(TYPE), this->m_begin + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
+      ::safe_memory_transfer(this->m_begin + nIndex, (size_t)nMoveCount * sizeof(TYPE), this->m_begin + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
 
    }
 
@@ -2009,7 +2007,7 @@ array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > arra
    if (nMoveCount)
    {
 
-      ::acme::memmove_s(this->m_begin + nIndex, (size_t)nMoveCount * sizeof(TYPE), this->m_begin + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
+      ::safe_memory_transfer(this->m_begin + nIndex, (size_t)nMoveCount * sizeof(TYPE), this->m_begin + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
 
    }
 
@@ -2192,7 +2190,7 @@ array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > arra
 //
 //#endif      // copy new data from old
 //
-//      ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->size() * sizeof(TYPE));
+//      ::safe_memory_copy(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->size() * sizeof(TYPE));
 //
 //      ///for(i32 i = 0; i < nNewSize - this->size(); i++)
 //      // get rid of old stuff (note: no destructors called)
@@ -2374,7 +2372,7 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 #endif
 
       // copy new data from old
-      ::acme::memcpy_s(pNewData, (size_t)newAllocationSize * sizeof(TYPE), this->m_begin, (size_t) this->size() * sizeof(TYPE));
+      ::safe_memory_copy(pNewData, (size_t)newAllocationSize * sizeof(TYPE), this->m_begin, (size_t) this->size() * sizeof(TYPE));
 
       // get rid of old stuff (note: no destructors called)
       MEMORY::free(this->m_begin);
@@ -2648,7 +2646,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 #endif
 
       // copy new data from old
-      ::acme::memcpy_s(pNewData, (size_t)countNewAllocation * sizeof(TYPE), this->m_begin, (size_t) countOld * sizeof(TYPE));
+      ::safe_memory_copy(pNewData, (size_t)countNewAllocation * sizeof(TYPE), this->m_begin, (size_t) countOld * sizeof(TYPE));
 
       if(!bRaw)
       {
@@ -2940,7 +2938,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 //#endif
 //
 //      // copy new data from old
-//      ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->size() * sizeof(TYPE));
+//      ::safe_memory_copy(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->size() * sizeof(TYPE));
 //
 //      // construct remaining elements
 //      ASSERT(nNewSize > this->size());

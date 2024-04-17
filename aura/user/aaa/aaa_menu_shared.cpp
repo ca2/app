@@ -55,8 +55,8 @@ char * const * alloc_c_string_array(const string_array & stra);
    pmenushared->m_ositema = aaa_primitive_new void *[iCount];
    pmenushared->m_statusa = aaa_primitive_new int[iCount];
 
-   memset(pmenushared->m_ositema, 0, sizeof(void *) * iCount);
-   memset(pmenushared->m_statusa, 0, sizeof(menu_shared::enum_status) * iCount);
+   ::memory_set(pmenushared->m_ositema, 0, sizeof(void *) * iCount);
+   ::memory_set(pmenushared->m_statusa, 0, sizeof(menu_shared::enum_status) * iCount);
 
    return pmenushared;
 

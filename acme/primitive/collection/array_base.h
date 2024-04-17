@@ -1473,7 +1473,7 @@ public:
 //   if(nMoveCount)
 //   {
 //
-//      ::acme::memmove_s(this->m_begin + first, (size_t) nMoveCount * sizeof(TYPE), this->m_begin + in_count_out_last + 1, (size_t) nMoveCount * sizeof(TYPE));
+//      ::safe_memory_transfer(this->m_begin + first, (size_t) nMoveCount * sizeof(TYPE), this->m_begin + in_count_out_last + 1, (size_t) nMoveCount * sizeof(TYPE));
 //
 //   }
 //
@@ -1570,7 +1570,7 @@ public:
 //#endif
 //
 //         // copy new data from old
-//         ::acme::memcpy_s(pNewData, (size_t)size * sizeof(TYPE),this->m_begin, (size_t)size * sizeof(TYPE));
+//         ::safe_memory_copy(pNewData, (size_t)size * sizeof(TYPE),this->m_begin, (size_t)size * sizeof(TYPE));
 //
 //      }
 //
@@ -1621,7 +1621,7 @@ public:
 //   
 //   this->allocate(newSize, false, true);
 //   
-//   ::acme::memmove_s(this->m_begin + i + c, (size_t) (nMove * sizeof(TYPE)), this->m_begin + i, (size_t) (nMove * sizeof(TYPE)));
+//   ::safe_memory_transfer(this->m_begin + i + c, (size_t) (nMove * sizeof(TYPE)), this->m_begin + i, (size_t) (nMove * sizeof(TYPE)));
 //
 //   return this->m_begin + i;
 //   
@@ -1698,7 +1698,7 @@ public:
 ////      set_size((::count) this->size() + nCount, -1);
 ////      
 ////      // shift old data up to fill gap
-////      ::acme::memmove_s(this->m_begin + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), this->m_begin + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
+////      ::safe_memory_transfer(this->m_begin + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), this->m_begin + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
 ////
 ////      ::zero(this->m_begin + nIndex, nCount * sizeof(TYPE));
 ////
@@ -1836,7 +1836,7 @@ public:
 ////      set_size((::count) (this->size() + nCount), -1);  // grow it to new size_i32
 ////      // destroy intial data before copying over it
 ////      // shift old data up to fill gap
-////      ::acme::memmove_s(this->m_begin + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), this->m_begin + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
+////      ::safe_memory_transfer(this->m_begin + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), this->m_begin + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
 ////
 ////      ::zero(this->m_begin + nIndex, nCount* sizeof(TYPE));
 ////
@@ -1890,7 +1890,7 @@ public:
 //   if (nMoveCount)
 //   {
 //
-//      ::acme::memmove_s(this->m_begin + nIndex, (size_t)nMoveCount * sizeof(TYPE), this->m_begin + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
+//      ::safe_memory_transfer(this->m_begin + nIndex, (size_t)nMoveCount * sizeof(TYPE), this->m_begin + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
 //
 //   }
 //
@@ -1925,7 +1925,7 @@ public:
 //   if (nMoveCount)
 //   {
 //
-//      ::acme::memmove_s(this->m_begin + nIndex, (size_t)nMoveCount * sizeof(TYPE), this->m_begin + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
+//      ::safe_memory_transfer(this->m_begin + nIndex, (size_t)nMoveCount * sizeof(TYPE), this->m_begin + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
 //
 //   }
 //
@@ -2108,7 +2108,7 @@ public:
 ////
 ////#endif      // copy new data from old
 ////
-////      ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->size() * sizeof(TYPE));
+////      ::safe_memory_copy(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->size() * sizeof(TYPE));
 ////
 ////      ///for(i32 i = 0; i < nNewSize - this->size(); i++)
 ////      // get rid of old stuff (note: no destructors called)
@@ -2290,7 +2290,7 @@ public:
 //#endif
 //
 //      // copy new data from old
-//      ::acme::memcpy_s(pNewData, (size_t)newAllocationSize * sizeof(TYPE), this->m_begin, (size_t) this->size() * sizeof(TYPE));
+//      ::safe_memory_copy(pNewData, (size_t)newAllocationSize * sizeof(TYPE), this->m_begin, (size_t) this->size() * sizeof(TYPE));
 //
 //      // get rid of old stuff (note: no destructors called)
 //      MEMORY::free(this->m_begin);
@@ -2564,7 +2564,7 @@ public:
 //#endif
 //
 //      // copy new data from old
-//      ::acme::memcpy_s(pNewData, (size_t)countNewAllocation * sizeof(TYPE), this->m_begin, (size_t) countOld * sizeof(TYPE));
+//      ::safe_memory_copy(pNewData, (size_t)countNewAllocation * sizeof(TYPE), this->m_begin, (size_t) countOld * sizeof(TYPE));
 //
 //      if(!bRaw)
 //      {
@@ -2856,7 +2856,7 @@ public:
 ////#endif
 ////
 ////      // copy new data from old
-////      ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->size() * sizeof(TYPE));
+////      ::safe_memory_copy(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->size() * sizeof(TYPE));
 ////
 ////      // construct remaining elements
 ////      ASSERT(nNewSize > this->size());

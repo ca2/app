@@ -1,10 +1,12 @@
 #include "framework.h"
 #include "stdio_file.h"
+#include "acme/exception/runtime_check.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/status.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/operating_system/shared_posix/c_error_number.h"
 #include "acme/platform/system.h"
 #include "acme/platform/trace.h"
 #include "acme/primitive/primitive/memory.h"
@@ -605,17 +607,19 @@ CLASS_DECL_ACME trace_function std_inline_log(enum_trace_level etracelevelInform
 }
 
 
-
-
-
-
-
 void __cdecl __clearerr_s(FILE * stream)
 {
 
 #ifdef WINDOWS
 
-   C_RUNTIME_ERROR_CHECK(::clearerr_s(stream));
+   errno_t iErrNo = ::clearerr_s(stream);
+
+   if (iErrNo)
+   {
+
+      throw ::runtime_check_exception(error_runtime_check, { c_error_number(iErrNo) }, "__clearerr_s");
+
+   }
 
 #else
 

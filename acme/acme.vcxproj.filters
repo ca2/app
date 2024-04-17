@@ -1544,7 +1544,7 @@
     <ClInclude Include="platform\cmp2.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\common.h">
+    <ClInclude Include="platform\aaa_common.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\const.h">
@@ -3572,6 +3572,18 @@
     <ClInclude Include="platform\shell.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="memory\operation.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_errno.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\runtime_check.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\errno.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -5019,6 +5031,12 @@
     </ClCompile>
     <ClCompile Include="platform\shell.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\operation.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\runtime_check.cpp">
+      <Filter>Source Files\exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

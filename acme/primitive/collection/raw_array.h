@@ -584,7 +584,7 @@ raw_array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::~raw_
 //
 //
 //      // copy new data from old
-//      ::acme::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
+//      ::safe_memory_copy(pNewData, (size_t)nNewMax * sizeof(TYPE),
 //         m_begin, (size_t)m_nSize * sizeof(TYPE));
 //
 //      // construct remaining elements
@@ -621,7 +621,7 @@ raw_array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::~raw_
 //      {
 //         pNewData = (TYPE*) __new< ::u8[m_nSize * sizeof >(TYPE)];
 //         // copy new data from old
-//         ::acme::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
+//         ::safe_memory_copy(pNewData, m_nSize * sizeof(TYPE),
 //            m_begin, m_nSize * sizeof(TYPE));
 //      }
 //
@@ -1305,7 +1305,7 @@ inline raw_array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >
 ////
 ////
 ////      // copy new data from old
-////      ::acme::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
+////      ::safe_memory_copy(pNewData, (size_t)nNewMax * sizeof(TYPE),
 ////         m_begin, (size_t)m_nSize * sizeof(TYPE));
 ////
 ////      // construct remaining elements
@@ -1342,7 +1342,7 @@ inline raw_array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >
 ////      {
 ////         pNewData = (TYPE*) __new< ::u8[m_nSize * sizeof >(TYPE)];
 ////         // copy new data from old
-////         ::acme::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
+////         ::safe_memory_copy(pNewData, m_nSize * sizeof(TYPE),
 ////            m_begin, m_nSize * sizeof(TYPE));
 ////      }
 ////

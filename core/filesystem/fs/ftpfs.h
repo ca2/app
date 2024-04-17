@@ -61,7 +61,7 @@ public:
 
 
    ftpfs();
-   virtual ~ftpfs();
+   ~ftpfs() override;
 
 
    virtual void initialize_ftpfs(::particle * pparticle, const ::string & pszRoot);
@@ -70,7 +70,7 @@ public:
    virtual bool has_subdir(const ::file::path & pszPath) override;
    virtual bool fast_has_subdir(const ::file::path  & pszPath) override;
    virtual bool enumerate(::file::listing & listing) override;
-   virtual int is_dir(const ::file::path & path) override;
+   ::file::e_type file_type(const ::file::path & path) override;
    virtual ::file::listing & root_ones(::file::listing & listing) override;
 
    virtual void defer_initialize(::ftp::client_socket ** client, string strPath);

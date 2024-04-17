@@ -199,7 +199,7 @@ inline float __normalize(float * x, float * y)
 //{
 //   NVGpathCache * c = (NVGpathCache *)malloc(sizeof(NVGpathCache));
 //   if (c == NULL) goto error;
-//   memset(c, 0, sizeof(NVGpathCache));
+//   ::memory_set(c, 0, sizeof(NVGpathCache));
 //
 //   c->points = (NVGpoint *)malloc(sizeof(NVGpoint) * NVG_INIT_POINTS_SIZE);
 //   if (!c->points) goto error;

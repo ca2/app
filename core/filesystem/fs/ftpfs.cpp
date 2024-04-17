@@ -125,7 +125,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    path = "ftp://";
 
-   path.m_iDir = 1;
+   path.set_existent_folder();
 
    listing.defer_add(path);
 
@@ -155,7 +155,7 @@ bool ftpfs::enumerate(::file::listing & listing)
 
          auto & path = listing.add_get(pathUrl);
 
-         path.m_iDir = 1;
+         path.set_existent_folder();
 
          listing.m_straTitle.add(strUrl);
 
@@ -280,7 +280,7 @@ retry:
 
       auto & path = listing.add_get(::file::path(listing.m_pathUser / pchild->m_strName, ::e_path_url));
 
-      path.m_iDir = 1;
+      path.set_existent_folder();
 
    }
 
@@ -294,7 +294,7 @@ retry:
 
       path.m_iSize = pchild->m_filesize;
 
-      path.m_iDir = 0;
+      path.set_existent_file();
 
    }
 
@@ -315,34 +315,34 @@ retry:
 }
 
 
-int ftpfs::is_dir(const ::file::path & path)
+::file::e_type ftpfs::file_type(const ::file::path & path)
 {
 
    if (path.is_empty())
    {
 
-      return 1;
+      return ::file::e_type_existent_folder;
 
    }
 
    if (ansi_compare_ci(path, "ftp://") == 0)
    {
 
-      return 1;
+      return ::file::e_type_existent_folder;
 
    }
 
    if (ansi_compare_ci(path, "ftp:/") == 0)
    {
 
-      return 1;
+      return ::file::e_type_existent_folder;
 
    }
 
    if (ansi_compare_ci(path, "ftp:") == 0)
    {
 
-      return 1;
+      return ::file::e_type_existent_folder;
 
    }
 
@@ -356,7 +356,7 @@ int ftpfs::is_dir(const ::file::path & path)
       if(m_straFtpServer.case_insensitive_contains(strPath))
       {
 
-         return 1;
+         return ::file::e_type_existent_folder;
 
       }
 
@@ -390,11 +390,11 @@ int ftpfs::is_dir(const ::file::path & path)
    if (::not_found(iFind))
    {
 
-      return 0;
+      return ::file::e_type_doesnt_exist;
 
    }
 
-   return dir[iFind].m_iDir;
+   return dir[iFind].type();
 
 
 }

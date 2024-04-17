@@ -480,8 +480,8 @@ typedef char stbtt__check_size16[sizeof(stbtt_int16) == 2 ? 1 : -1];
 
 #ifndef STBTT_memcpy
 #include <string.h>
-#define STBTT_memcpy       memcpy
-#define STBTT_memset       memset
+#define STBTT_memcpy       ::memory_copy
+#define STBTT_memset       ::memory_set
 #endif
 #endif
 

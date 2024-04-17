@@ -987,7 +987,7 @@ namespace user
 
          //auto pointOffset = pgraphics->get_origin();
 
-         //memset(pgraphics->m_pimage->m_pimage32, 80, pgraphics->m_pimage->scan_area_in_bytes());
+         //::memory_set(pgraphics->m_pimage->m_pimage32, 80, pgraphics->m_pimage->scan_area_in_bytes());
 
          pgraphics->fill_rectangle(rectangleX, argb(255, 255, 255, 255));
 

@@ -92,9 +92,9 @@ namespace tinyexpr
       const int psize = sizeof(void*) * arity;
       const int size = (sizeof(te_expr) - sizeof(void*)) + psize + (IS_CLOSURE(type) ? sizeof(void*) : 0);
       te_expr *ret = (te_expr *) malloc(size);
-      memset(ret, 0, size);
+      ::memory_set(ret, 0, size);
       if (arity && parameters) {
-         memcpy(ret->parameters, parameters.data(), psize);
+         ::memory_copy(ret->parameters, parameters.data(), psize);
       }
       ret->type = type;
       ret->bound = nullptr;

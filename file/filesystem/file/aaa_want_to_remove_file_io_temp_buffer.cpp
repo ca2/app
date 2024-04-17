@@ -61,7 +61,7 @@ namespace file
       if (_bufPos < kTempBufSize)
       {
          memory_position_t cur = minimum(kTempBufSize - _bufPos, size);
-         memcpy(m_memory.get_data() + _bufPos, data, cur);
+         ::memory_copy(m_memory.get_data() + _bufPos, data, cur);
          _crc = crc_update(_crc, data, cur);
          _bufPos += cur;
          size -= cur;

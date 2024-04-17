@@ -177,7 +177,7 @@
 //      break;
 //#endif
 //   default:
-//      memset(mode, 0, sizeof(struct php_openssl_cipher_mode));
+//      ::memory_set(mode, 0, sizeof(struct php_openssl_cipher_mode));
 //   }
 //}
 ///* }}} */
@@ -215,7 +215,7 @@
 //   //   php_error_docref(NULL, E_WARNING,
 //   //      "IV passed is only %zd bytes long, cipher expects an IV of precisely %zd bytes, padding with \\0",
 //   //      *piv_len, iv_required_len);
-//   //   memcpy(iv_new, *piv, *piv_len);
+//   //   ::memory_copy(iv_new, *piv, *piv_len);
 //   //   *piv_len = iv_required_len;
 //   //   *piv = iv_new;
 //   //   *free_iv = 1;
@@ -225,7 +225,7 @@
 //   //php_error_docref(NULL, E_WARNING,
 //   //   "IV passed is %zd bytes long which is longer than the %zd expected by selected cipher, truncating",
 //   //   *piv_len, iv_required_len);
-//   //memcpy(iv_new, *piv, iv_required_len);
+//   //::memory_copy(iv_new, *piv, iv_required_len);
 //   //*piv_len = iv_required_len;
 //   //*piv = iv_new;
 //   //*free_iv = 1;
@@ -281,8 +281,8 @@
 ////         return FAILURE;
 ////      }
 ////      key = emalloc(key_len);
-////      memset(key, 0, key_len);
-////      memcpy(key, *ppassword, password_len);
+////      ::memory_set(key, 0, key_len);
+////      ::memory_copy(key, *ppassword, password_len);
 ////      *ppassword = (char*)key;
 ////      *ppassword_len = key_len;
 ////      *free_password = 1;

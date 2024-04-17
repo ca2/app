@@ -272,7 +272,7 @@ namespace filemanager
 
          auto & path = listing.add_get(pathUser);
 
-         path.m_iDir = 1;
+         path.set_existent_folder();
          
       }
       else if (pathUser.is_empty())
@@ -310,7 +310,7 @@ namespace filemanager
 
          ::file::path pathFinal = pcontext->m_papexcontext->defer_process_path(item);
 
-         if(pathFinal.m_iDir > 0)
+         if(pathFinal.is_folder())
          {
 
             auto pathUser = pitemParent->m_pdataitem.cast <::file::item>()->user_path() /

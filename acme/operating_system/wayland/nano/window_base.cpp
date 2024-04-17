@@ -1466,7 +1466,7 @@ namespace wayland
 
          << "_update_screen_unlocked data : "
          << (::iptr) m_waylandbuffer.m_pdata;
-      //memset(pwindow->m_waylandbuffer.m_pdata, 127,pitem->m_size.cx() * 4 * pitem->m_size.cy());
+      //::memory_set(pwindow->m_waylandbuffer.m_pdata, 127,pitem->m_size.cx() * 4 * pitem->m_size.cy());
 //      m_pwlcallbackFrame = wl_surface_frame(pwindow->m_pwlsurface);
       wl_surface_attach(m_pwlsurface,
                         m_waylandbuffer.m_pwlbuffer, 0, 0);

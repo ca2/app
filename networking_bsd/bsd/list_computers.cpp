@@ -87,7 +87,7 @@ int kernel_arp(PREDICATE pred) {
 
       /* this is very first rtnetlink attribute */
       struct rtattr *rta = (struct rtattr *) p;
-      memset(tb, 0, sizeof(tb)); /* clear attribute buffer */
+      ::memory_set(tb, 0, sizeof(tb)); /* clear attribute buffer */
       parse_rtattr(tb, NDA_MAX, rta, len); /* fill tb attribute buffer */
       if (tb[NDA_DST]) { /* this is destination address */
          char ip[INET6_ADDRSTRLEN] = {0};

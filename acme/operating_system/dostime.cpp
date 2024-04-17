@@ -132,7 +132,7 @@ posix_time dos_time_unix_time(dos_time_t dostime)
 {
     struct tm t;         /* argument for mktime() */
 
-    memset(&t, 0, sizeof(t));
+    ::memory_set(&t, 0, sizeof(t));
 
     t.tm_isdst = -1;     /* let mktime() determine if DST is in effect */
     /* Convert DOS time to UNIX posix_time format */

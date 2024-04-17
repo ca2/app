@@ -209,7 +209,7 @@ namespace nano2d
 	//{
 	//	NVGpathCache * c = (NVGpathCache *)malloc(sizeof(NVGpathCache));
 	//	if (c == NULL) goto error;
-	//	memset(c, 0, sizeof(NVGpathCache));
+	//	::memory_set(c, 0, sizeof(NVGpathCache));
 	//
 	//	c->points = (NVGpoint *)malloc(sizeof(NVGpoint) * NVG_INIT_POINTS_SIZE);
 	//	if (!c->points) goto error;
@@ -331,7 +331,7 @@ namespace nano2d
 	//	NANO2D_CONTEXT * ctx = (NANO2D_CONTEXT *)malloc(sizeof(NANO2D_CONTEXT));
 	//	int i;
 	//	if (ctx == NULL) goto error;
-	//	memset(ctx, 0, sizeof(NANO2D_CONTEXT));
+	//	::memory_set(ctx, 0, sizeof(NANO2D_CONTEXT));
 	//
 	//	params = *params;
 	//	for (i = 0; i < NVG_MAX_FONTIMAGES; i++)
@@ -353,7 +353,7 @@ namespace nano2d
 	//	if (params.renderCreate(params.userPtr) == 0) goto error;
 	//
 	//	// Init font rendering
-	//	memset(&fontParams, 0, sizeof(fontParams));
+	//	::memory_set(&fontParams, 0, sizeof(fontParams));
 	//	fontParams.width = NVG_INIT_FONTIMAGE_SIZE;
 	//	fontParams.height = NVG_INIT_FONTIMAGE_SIZE;
 	//	fontParams.flags = FONS_ZERO_TOPLEFT;
@@ -640,9 +640,9 @@ void TransformSkewX(float* t, float a)
 	void TransformPremultiply(float* t, const float* s)
 	{
 		float s2[6];
-		memcpy(s2, s, sizeof(float) * 6);
+		::memory_copy(s2, s, sizeof(float) * 6);
 		TransformMultiply(s2, t);
-		memcpy(t, s2, sizeof(float) * 6);
+		::memory_copy(t, s2, sizeof(float) * 6);
 	}
 
 	//int CONTEXT::TransformInverse)(float * inv, const float * t)
@@ -685,7 +685,7 @@ void TransformSkewX(float* t, float a)
 	//static void CONTEXT::__setPaintColor)(::nano2d::paint * p, ::nano2d::color color)
 	void __setPaintColor(::nano2d::paint* p, ::nano2d::color color)
 	{
-		memset(p, 0, sizeof(*p));
+		::memory_set(p, 0, sizeof(*p));
 		TransformIdentity(p->xform);
 		p->radius = 0.0f;
 		p->feather = 1.0f;
@@ -700,7 +700,7 @@ void TransformSkewX(float* t, float a)
 		//if (nstates >= NVG_MAX_STATES)
 		//	return;
 		//if (nstates > 0)
-		//	memcpy(&states[nstates], &states[nstates - 1], sizeof(::nano2d::state));
+		//	::memory_copy(&states[nstates], &states[nstates - 1], sizeof(::nano2d::state));
 		//nstates++;
 
 		//save();
@@ -724,7 +724,7 @@ void TransformSkewX(float* t, float a)
 
 		::nano2d::state * state = __getState();
 
-		memset(state, 0, sizeof(*state));
+		::memory_set(state, 0, sizeof(*state));
 
 		__setPaintColor(&state->fill, RGBA(255, 255, 255, 255));
 		__setPaintColor(&state->stroke, RGBA(0, 0, 0, 255));
@@ -878,7 +878,7 @@ void TransformSkewX(float* t, float a)
 	{
 		::nano2d::state * state = __getState();
 		if (xform == NULL) return;
-		memcpy(xform, state->xform, sizeof(float) * 6);
+		::memory_copy(xform, state->xform, sizeof(float) * 6);
 	}
 
 	void CONTEXT::stroke_color(::nano2d::color color)
@@ -1004,7 +1004,7 @@ void TransformSkewX(float* t, float a)
 		//float Δx, Δy, d;
 		//const float large = 1e5;
 		//NVG_NOTUSED(ctx);
-		//memset(&p, 0, sizeof(p));
+		//::memory_set(&p, 0, sizeof(p));
 
 		//// Calculate transform aligned to the line
 		//Δx = ex - sx;
@@ -1050,7 +1050,7 @@ void TransformSkewX(float* t, float a)
 		//float r = (inr + outr) * 0.5f;
 		//float f = (outr - inr);
 		//NVG_NOTUSED(ctx);
-		//memset(&p, 0, sizeof(p));
+		//::memory_set(&p, 0, sizeof(p));
 
 		//CONTEXT::TransformIdentity)(p.xform);
 		//p.xform[4] = cx;
@@ -1079,7 +1079,7 @@ void TransformSkewX(float* t, float a)
 		//return box_gradient(x, y, w, h, r, f, icol, ocol);
 		//::nano2d::paint p;
 		//NVG_NOTUSED(ctx);
-		//memset(&p, 0, sizeof(p));
+		//::memory_set(&p, 0, sizeof(p));
 
 		//CONTEXT::TransformIdentity)(p.xform);
 		//p.xform[4] = x + w * 0.5f;
@@ -1108,7 +1108,7 @@ void TransformSkewX(float* t, float a)
 		//return image_pattern(cx, cy, w, h, angle, image, alpha);
 		//::nano2d::paint p;
 		//NVG_NOTUSED(ctx);
-		//memset(&p, 0, sizeof(p));
+		//::memory_set(&p, 0, sizeof(p));
 
 		//CONTEXT::TransformRotate)(p.xform, angle);
 		//p.xform[4] = cx;
@@ -1172,7 +1172,7 @@ void TransformSkewX(float* t, float a)
 
 		//// Transform the current scissor rect into current transform space.
 		//// If there is difference in rotation, this will be approximation.
-		//memcpy(pxform, state->scissor.xform, sizeof(float) * 6);
+		//::memory_copy(pxform, state->scissor.xform, sizeof(float) * 6);
 		//ex = state->scissor.extent[0];
 		//ey = state->scissor.extent[1];
 		//CONTEXT::TransformInverse)(invxorm, state->xform);
@@ -1189,7 +1189,7 @@ void TransformSkewX(float* t, float a)
 	void CONTEXT::reset_scissor()
 	{
 		//::nano2d::state * state = __getState();
-		//memset(state->scissor.xform, 0, sizeof(state->scissor.xform));
+		//::memory_set(state->scissor.xform, 0, sizeof(state->scissor.xform));
 		//state->scissor.extent[0] = -1.0f;
 		//state->scissor.extent[1] = -1.0f;
 		//reset_scissor();
@@ -1305,7 +1305,7 @@ void TransformSkewX(float* t, float a)
 			}
 		}
 
-		memcpy(&commands[ncommands], vals, nvals * sizeof(float));
+		::memory_copy(&commands[ncommands], vals, nvals * sizeof(float));
 
 		ncommands += nvals;
 	}
@@ -1336,7 +1336,7 @@ void TransformSkewX(float* t, float a)
 	//		cache->cpaths = cpaths;
 	//	}
 	//	path = &cache->paths[cache->npaths];
-	//	memset(path, 0, sizeof(*path));
+	//	::memory_set(path, 0, sizeof(*path));
 	//	path->first = cache->npoints;
 	//	path->winding = ::nano2d::e_winding_ccw;
 	//
@@ -1374,7 +1374,7 @@ void TransformSkewX(float* t, float a)
 	//	}
 	//
 	//	pt = &cache->points[cache->npoints];
-	//	memset(pt, 0, sizeof(*pt));
+	//	::memory_set(pt, 0, sizeof(*pt));
 	//	pt->x = x;
 	//	pt->y = y;
 	//	pt->flags = (unsigned char)flags;

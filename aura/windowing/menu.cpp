@@ -73,8 +73,8 @@ namespace windowing
    //    //pmenushared->m_ositema = __new_array< void *  >(iCount);
    //    //pmenushared->m_statusa = __new_array< int >(iCount);
 
-   //    //memset(pmenushared->m_ositema, 0, sizeof(void *) * iCount);
-   //    //memset(pmenushared->m_statusa, 0, sizeof(menu::enum_status) * iCount);
+   //    //::memory_set(pmenushared->m_ositema, 0, sizeof(void *) * iCount);
+   //    //::memory_set(pmenushared->m_statusa, 0, sizeof(menu::enum_status) * iCount);
 
    //    return ::transfer(pmenu);
 

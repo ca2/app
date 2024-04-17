@@ -72,22 +72,31 @@
       //inline bool list_recursively_directory(::file::listing& listing, const ::file::path& path) { listing(path); return list_recursively_dir(listing); }
 
 
-      virtual bool  is(const ::file::path & path);
+      inline bool is(const ::file::path& path) { return file_type(path) & ::file::e_type_folder2; }
 
-      virtual bool  _is(const ::file::path& pcsz);
+      //virtual bool  _is(const ::file::path& pcsz);
 
-      virtual bool  __is(const ::file::path & path, bool & bIsDir);
+      //virtual bool  __is(const ::file::path & path, bool & bIsDir);
+
+      virtual ::file::e_type file_type(const ::file::path& path);
+
+      virtual ::file::e_type _file_type(const ::file::path& path);
+      
+      virtual ::file::e_type __file_type(const ::file::path& path);
 
 
-      virtual bool  is_cached(bool & bIs, const ::file::path & path);
+      //virtual bool  is_cached(bool & bIs, const ::file::path & path);
 
 
-      virtual bool  name_is(const ::file::path & path);
+      virtual ::file::e_type cached_file_type(const ::file::path& path);
 
 
-      virtual bool  is_inside(const ::file::path & pathDir, const ::file::path & lpcszPath);
+      virtual bool name_is(const ::file::path & path);
 
-      virtual bool  is_inside_time(const ::file::path & path);
+
+      virtual bool is_inside(const ::file::path & pathDir, const ::file::path & lpcszPath);
+
+      virtual bool is_inside_time(const ::file::path & path);
 
       virtual ::file::listing & root_ones(::file::listing & listing);
       virtual void  create(const ::file::path & path);

@@ -3016,7 +3016,7 @@ namespace sandbox_windowing
 
    //   atoma.set_size(num_items);
 
-   //   memcpy(atoma.get_data(), patoms, atoma.get_size_in_bytes());
+   //   ::memory_copy(atoma.get_data(), patoms, atoma.get_size_in_bytes());
    //   XFree(patoms);
 
    //   return atoma;

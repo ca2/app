@@ -62,7 +62,7 @@ CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h);
 
 #ifdef WINDOWS_DESKTOP
 
-index engine_fileline(DWORD_PTR dwAddress, char * psz, int nCount, u32 * pline, u32 * pdisplacement = 0);
+index engine_fileline(DWORD_PTR dwAddress, char* psz, int nCount, u32* pline, u32* pdisplacement = 0);
 
 #endif
 
@@ -92,14 +92,14 @@ struct send_thread_message :
 
    manual_reset_event      m_ev;
 
-   send_thread_message(::particle * pparticle);
+   send_thread_message(::particle* pparticle);
 
    virtual ~send_thread_message();
 
 };
 
 
-send_thread_message::send_thread_message(::particle * pparticle)
+send_thread_message::send_thread_message(::particle* pparticle)
 {
 
    memory_set(&m_message, 0, sizeof(m_message));
@@ -141,15 +141,15 @@ thread::thread()
 
    m_bMessageThread = true;
 
-//#ifdef WINDOWS_DESKTOP
-//
-//   m_bCertainlyTheresWindowsMessageQueue = false;
-//
-//#endif
-       
-   //set_layer(LAYERED_THREAD, this);
+   //#ifdef WINDOWS_DESKTOP
+   //
+   //   m_bCertainlyTheresWindowsMessageQueue = false;
+   //
+   //#endif
 
-   //m_pthread = this;
+      //set_layer(LAYERED_THREAD, this);
+
+      //m_pthread = this;
 
    m_bThreadClosed = false;
 
@@ -169,11 +169,11 @@ thread::thread()
 
    m_estatus = ::success_none;
 
-//#ifdef MACOS
-//
-//   m_runloop = nullptr;
-//
-//#endif
+   //#ifdef MACOS
+   //
+   //   m_runloop = nullptr;
+   //
+   //#endif
 
    m_epriority = e_priority_normal;
 
@@ -210,9 +210,9 @@ thread::thread()
 #endif
 
    thread_common_construct();
-   
+
    //memory_counter_increment(this);
-   
+
 }
 
 
@@ -245,7 +245,7 @@ void thread::thread_common_construct()
       }
 
    }
-   
+
    auto ptask = ::_get_task();
 
    if (::is_set(ptask))
@@ -294,7 +294,7 @@ bool thread::is_thread() const
 }
 
 
-::thread * thread::get_thread()
+::thread* thread::get_thread()
 {
 
    return this;
@@ -342,7 +342,7 @@ void thread::term_task()
       //}
 
    }
-      break;
+   break;
 
    case id_session:
    {
@@ -385,13 +385,13 @@ void thread::term_task()
       //}
 
    }
-      break;
+   break;
    default:
       break;
 
    }
 
-//   channel::on_finish();
+   //   channel::on_finish();
 
    task::term_task();
 
@@ -432,7 +432,7 @@ void thread::term_task()
       if (m_peventaWait)
       {
 
-         for (auto & pmanualresetevent : *m_peventaWait)
+         for (auto& pmanualresetevent : *m_peventaWait)
          {
 
             try
@@ -632,19 +632,19 @@ void thread::thread_loop()
 
          string strType = ::type(this).name();
 
-//         if (strType.case_insensitive_contains("session"))
-//         {
-//
-//            auto bShouldRun = task_get_run();
-//
-//            if (!bShouldRun)
-//            {
-//
-//               informationf("session_shouldn't_run?");
-//
-//            }
-//
-//         }
+         //         if (strType.case_insensitive_contains("session"))
+         //         {
+         //
+         //            auto bShouldRun = task_get_run();
+         //
+         //            if (!bShouldRun)
+         //            {
+         //
+         //               informationf("session_shouldn't_run?");
+         //
+         //            }
+         //
+         //         }
 
          break;
 
@@ -653,54 +653,54 @@ void thread::thread_loop()
       try
       {
 
-         if(!thread_step())
+         if (!thread_step())
          {
 
-//            string strType = ::type(this).name();
-//
-//            if (strType.case_insensitive_contains("session"))
-//            {
-//
-//               auto bShouldRun = task_get_run();
-//
-//               if (!bShouldRun)
-//               {
-//
-//                  informationf("session_shouldn't_run?");
-//
-//               }
-//
-//            }
+            //            string strType = ::type(this).name();
+            //
+            //            if (strType.case_insensitive_contains("session"))
+            //            {
+            //
+            //               auto bShouldRun = task_get_run();
+            //
+            //               if (!bShouldRun)
+            //               {
+            //
+            //                  informationf("session_shouldn't_run?");
+            //
+            //               }
+            //
+            //            }
 
             break;
 
 
 
-//            if(strType.contains("wave_player"))
-//            {
-//
-//               informationf("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from wave_player");
-//
-//            }
-//            else if(strType.case_insensitive_ends("out"))
-//            {
-//
-//               informationf("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from out");
-//
-//            }
-//            else if(strType.contains("output_thread"))
-//            {
-//
-//               informationf("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from output_thread");
-//
-//            }
+            //            if(strType.contains("wave_player"))
+            //            {
+            //
+            //               informationf("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from wave_player");
+            //
+            //            }
+            //            else if(strType.case_insensitive_ends("out"))
+            //            {
+            //
+            //               informationf("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from out");
+            //
+            //            }
+            //            else if(strType.contains("output_thread"))
+            //            {
+            //
+            //               informationf("!xxm_bSimpleMessageLoop !xxpump_message xxthread::run from output_thread");
+            //
+            //            }
 
             break;
 
          }
 
       }
-      catch (const ::exception & e)
+      catch (const ::exception& e)
       {
 
          handle_exception(e);
@@ -739,7 +739,7 @@ void thread::run()
 {
 
    ASSERT_VALID(this);
-   
+
    m_eflagElement += e_flag_running;
 
    if (m_procedure && m_procedure != this)
@@ -836,7 +836,7 @@ void thread::on_message_branch(::message::message* pmessage)
 //}
 
 
-int thread::_GetMessage(MESSAGE * pmessage, ::windowing::window * pwindow, ::u32 wMsgFilterMin,::u32 wMsgFilterMax)
+int thread::_GetMessage(MESSAGE* pmessage, ::windowing::window* pwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
    throw ::exception();
@@ -857,17 +857,19 @@ bool thread::pump_message()
    if (m_messageaInitialQueue.has_element())
    {
 
-      
-      for (auto & m : m_messageaInitialQueue)
+      for (auto& m : m_messageaInitialQueue)
       {
-         PostThreadMessage(m_itask, m.m_atom.as_emessage(), m.wParam, m.lParam);
+      
+         ::PostThreadMessage((DWORD)m_itask, m.m_atom.as_emessage(), m.wParam, m.lParam);
 
       }
 
-         m_messageaInitialQueue.clear();
+      m_messageaInitialQueue.clear();
+
    }
 
 #endif
+
    try
    {
 
@@ -879,7 +881,7 @@ bool thread::pump_message()
       }
 
    }
-   catch(...)
+   catch (...)
    {
 
       if (m_strDebugType.contains("filemanager"))
@@ -910,7 +912,7 @@ bool thread::pump_message()
 
       }
 
-      if(m_message.m_atom == e_message_quit)
+      if (m_message.m_atom == e_message_quit)
       {
 
          string strType = ::type(this).name();
@@ -963,7 +965,7 @@ bool thread::pump_message()
       return true;
 
    }
-   catch (const ::exception & e)
+   catch (const ::exception& e)
    {
 
       if (m_strDebugType.contains("filemanager"))
@@ -984,7 +986,7 @@ bool thread::pump_message()
       //}
 
    }
-   catch(...)
+   catch (...)
    {
 
       information() << "... exception";
@@ -1005,7 +1007,7 @@ bool thread::get_message()
 
    get_message(&message, NULL, 0, 0);
 
-   if(m_message.m_atom == e_message_quit)
+   if (m_message.m_atom == e_message_quit)
    {
 
       return false;
@@ -1027,7 +1029,7 @@ bool thread::raw_pump_message()
    try
    {
 
-      if(strType.contains("output_thread"))
+      if (strType.contains("output_thread"))
       {
 
          //informationf("\nOUTPUT_THREAD thread::raw_pump_message");
@@ -1037,22 +1039,22 @@ bool thread::raw_pump_message()
       if (!get_message())
       {
 
-         if(strType.begins("multimedia::"))
+         if (strType.begins("multimedia::"))
          {
 
-            if(strType.contains("wave_player"))
+            if (strType.contains("wave_player"))
             {
 
                informationf("!xxGetMessage !xxpump_message xxthread::run from wave_player");
 
             }
-            else if(strType.case_insensitive_ends("out"))
+            else if (strType.case_insensitive_ends("out"))
             {
 
                informationf("!xxGetMessage !xxpump_message xxthread::run from out");
 
             }
-            else if(strType.contains("output_thread"))
+            else if (strType.contains("output_thread"))
             {
 
                informationf("!xxGetMessage !xxpump_message xxthread::run from output_thread");
@@ -1083,7 +1085,7 @@ bool thread::raw_pump_message()
       return true;
 
    }
-   catch (const ::exception & e)
+   catch (const ::exception& e)
    {
       handle_exception(e);
       ////if (handle_exception(e))
@@ -1114,7 +1116,7 @@ bool thread::raw_pump_message()
 }
 
 
-bool thread::process_message(::message::message * pmessage)
+bool thread::process_message(::message::message* pmessage)
 {
 
    return process_thread_message(pmessage);
@@ -1122,7 +1124,7 @@ bool thread::process_message(::message::message * pmessage)
 }
 
 
-bool thread::process_thread_message(::message::message * pmessage)
+bool thread::process_thread_message(::message::message* pmessage)
 {
 
    try
@@ -1133,7 +1135,7 @@ bool thread::process_thread_message(::message::message * pmessage)
       return true;
 
    }
-   catch (const ::exception & e)
+   catch (const ::exception& e)
    {
 
       handle_exception(e);
@@ -1216,10 +1218,10 @@ bool thread::process_thread_message(::message::message * pmessage)
 bool thread::defer_pump_message()
 {
 
-   if(peek_message(&m_message, nullptr, 0, 0, true))
+   if (peek_message(&m_message, nullptr, 0, 0, true))
    {
 
-      if(m_message.m_atom == e_message_quit)
+      if (m_message.m_atom == e_message_quit)
       {
 
          ::acme::get()->platform()->informationf("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" + ::as_string((u64)::current_itask()) + ")\n\n\n");
@@ -1239,7 +1241,7 @@ bool thread::defer_pump_message()
 }
 
 
-void thread::on_thread_on_idle(thread *pimpl, ::i32 lCount)
+void thread::on_thread_on_idle(thread* pimpl, ::i32 lCount)
 {
 
    //return ::success;
@@ -1247,7 +1249,7 @@ void thread::on_thread_on_idle(thread *pimpl, ::i32 lCount)
 }
 
 
-::user::primitive * thread::get_active_user_primitive()
+::user::primitive* thread::get_active_user_primitive()
 {
 
    return m_puserprimitiveActive;
@@ -1255,7 +1257,7 @@ void thread::on_thread_on_idle(thread *pimpl, ::i32 lCount)
 }
 
 
-void thread::set_active_user_primitive(::user::primitive * puserprimitive)
+void thread::set_active_user_primitive(::user::primitive* puserprimitive)
 {
 
    m_puserprimitiveActive = puserprimitive;
@@ -1275,7 +1277,7 @@ void thread::Delete()
 void thread::kick_idle()
 {
 
-   if(m_bThreadClosed)
+   if (m_bThreadClosed)
    {
 
       return;
@@ -1310,7 +1312,7 @@ void thread::kick_idle()
          //   m_bCertainlyTheresWindowsMessageQueue = true;
          //}
 
-         ::PostThreadMessage((DWORD) m_itask, e_message_kick_idle, 0, 0);
+         ::PostThreadMessage((DWORD)m_itask, e_message_kick_idle, 0, 0);
 
       }
 #endif
@@ -1346,7 +1348,7 @@ void thread::post_quit()
 
    }
 
-   if(m_bThreadClosed)
+   if (m_bThreadClosed)
    {
 
       return;
@@ -1453,13 +1455,13 @@ bool thread::post_quit_message(int nExitCode)
 {
 
 #ifdef WINDOWS_DESKTOP
-   
+
    ::PostQuitMessage(nExitCode);
-   
+
 #else
-   
+
    destroy();
-   
+
 #endif
 
    return true;
@@ -1531,7 +1533,7 @@ bool thread::post_quit_message(int nExitCode)
 //}
 
 
-void thread::task_erase(::task * ptask)
+void thread::task_erase(::task* ptask)
 {
 
    try
@@ -1740,7 +1742,7 @@ void thread::destroy()
 bool thread::task_get_run() const
 {
 
-   if (((::thread *) this)->check_tasks_finished())
+   if (((::thread*)this)->check_tasks_finished())
    {
 
       return true;
@@ -1779,7 +1781,7 @@ bool thread::task_get_run() const
 }
 
 
-void thread::message_queue_message_handler(::message::message * pmessage)
+void thread::message_queue_message_handler(::message::message* pmessage)
 {
 
    UNREFERENCED_PARAMETER(pmessage);
@@ -1803,10 +1805,10 @@ bool thread::on_before_shutdown()
 void thread::shutdown(bool bPrompt)
 {
 
-   if(bPrompt)
+   if (bPrompt)
    {
 
-      if(!on_before_shutdown())
+      if (!on_before_shutdown())
       {
 
          return;
@@ -1842,10 +1844,10 @@ bool thread::is_system() const
 }
 
 
-u32 __thread_entry(void * p);
+u32 __thread_entry(void* p);
 
 
-void thread::initialize(::particle * pparticle)
+void thread::initialize(::particle* pparticle)
 {
 
    //auto estatus = ::channel::initialize(pparticle);
@@ -1977,7 +1979,7 @@ void thread::main()
          }
 
       }
-      catch (const ::exception & exception)
+      catch (const ::exception& exception)
       {
 
          //if(is_verbose_log())
@@ -2006,27 +2008,27 @@ void thread::main()
    }
 
 
-//#if REFERENCING_DEBUGGING
-//
-//   //release(REFERENCING_DEBUGGING_P_NOTE(this, nullptr));
-//
-//   //try
-//   //{
-//
-//   //   if (m_countReference > 1)
-//   //   {
-//
-//   //      __check_pending_releases(this);
-//
-//   //   }
-//
-//   //}
-//   //catch (...)
-//   //{
-//
-//   //}
-//
-//#endif
+   //#if REFERENCING_DEBUGGING
+   //
+   //   //release(REFERENCING_DEBUGGING_P_NOTE(this, nullptr));
+   //
+   //   //try
+   //   //{
+   //
+   //   //   if (m_countReference > 1)
+   //   //   {
+   //
+   //   //      __check_pending_releases(this);
+   //
+   //   //   }
+   //
+   //   //}
+   //   //catch (...)
+   //   //{
+   //
+   //   //}
+   //
+   //#endif
 
    m_htask = nullptr;
 
@@ -2139,7 +2141,7 @@ void thread::init_task()
 //}
 
 
-void thread::dispatch_thread_message(::message::message * pusermessage)
+void thread::dispatch_thread_message(::message::message* pusermessage)
 {
 
    route_message(pusermessage);
@@ -2225,25 +2227,25 @@ void thread::dispatch_thread_message(::message::message * pusermessage)
 //}
 
 
-void thread::pre_translate_message(::message::message * pmessage)
+void thread::pre_translate_message(::message::message* pmessage)
 {
 
 
 }
 
 
-void thread::app_pre_translate_message(::message::message * pmessage)
+void thread::app_pre_translate_message(::message::message* pmessage)
 {
 
    try
    {
 
-      if(get_app() != nullptr && get_app()->m_papexapplication)
+      if (get_app() != nullptr && get_app()->m_papexapplication)
       {
 
          get_app()->m_papexapplication->pre_translate_message(pmessage);
 
-         if(pmessage->m_bRet)
+         if (pmessage->m_bRet)
          {
 
             return;
@@ -2253,7 +2255,7 @@ void thread::app_pre_translate_message(::message::message * pmessage)
       }
 
    }
-   catch(...)
+   catch (...)
    {
 
    }
@@ -2261,21 +2263,21 @@ void thread::app_pre_translate_message(::message::message * pmessage)
 }
 
 
-void thread::session_pre_translate_message(::message::message * pmessage)
+void thread::session_pre_translate_message(::message::message* pmessage)
 {
 
    try
    {
 
-      if(get_app() != nullptr)
+      if (get_app() != nullptr)
       {
 
-         if(get_app()->session() != nullptr)
+         if (get_app()->session() != nullptr)
          {
 
             get_app()->session()->m_papexsession->pre_translate_message(pmessage);
 
-            if(pmessage->m_bRet)
+            if (pmessage->m_bRet)
             {
 
                return;
@@ -2287,7 +2289,7 @@ void thread::session_pre_translate_message(::message::message * pmessage)
       }
 
    }
-   catch(...)
+   catch (...)
    {
 
    }
@@ -2295,7 +2297,7 @@ void thread::session_pre_translate_message(::message::message * pmessage)
 }
 
 
-void thread::system_pre_translate_message(::message::message * pmessage)
+void thread::system_pre_translate_message(::message::message* pmessage)
 {
 
    try
@@ -2303,12 +2305,12 @@ void thread::system_pre_translate_message(::message::message * pmessage)
 
       auto psystem = system()->m_papexsystem;
 
-      if(psystem != nullptr)
+      if (psystem != nullptr)
       {
 
          psystem->pre_translate_message(pmessage);
 
-         if(pmessage->m_bRet)
+         if (pmessage->m_bRet)
          {
 
             return;
@@ -2318,7 +2320,7 @@ void thread::system_pre_translate_message(::message::message * pmessage)
       }
 
    }
-   catch(...)
+   catch (...)
    {
 
    }
@@ -2326,22 +2328,22 @@ void thread::system_pre_translate_message(::message::message * pmessage)
 }
 
 
-void thread::process_window_procedure_exception(const ::exception & e,::message::message * pmessage)
+void thread::process_window_procedure_exception(const ::exception& e, ::message::message* pmessage)
 {
 
-   if(pmessage->m_atom == e_message_create)
+   if (pmessage->m_atom == e_message_create)
    {
 
       pmessage->m_lresult = -1;
 
    }
-   else if(pmessage->m_atom == e_message_paint)
+   else if (pmessage->m_atom == e_message_paint)
    {
 
       // force validation of interaction_impl to prevent getting e_message_paint again
 
 #ifdef WIDOWSEX
-      ValidateRect(pusermessage->m_puserinteraction->get_safe_handle(),nullptr);
+      ValidateRect(pusermessage->m_puserinteraction->get_safe_handle(), nullptr);
 #endif
 
       pmessage->m_lresult = 0;
@@ -2351,10 +2353,10 @@ void thread::process_window_procedure_exception(const ::exception & e,::message:
 }
 
 
-void thread::process_message_filter(i32 code,::message::message * pmessage)
+void thread::process_message_filter(i32 code, ::message::message* pmessage)
 {
 
-   get_app()->m_papexapplication->process_message_filter(code,pmessage);
+   get_app()->m_papexapplication->process_message_filter(code, pmessage);
 
 }
 
@@ -2377,7 +2379,7 @@ void thread::process_message_filter(i32 code,::message::message * pmessage)
 
 #ifdef WINDOWS_DESKTOP
 
-size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAddress);
+size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddress);
 
 #endif
 
@@ -2403,7 +2405,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //}
 
 
-::pointer<::task>thread::branch(enum_parallelization eparallelization, const ::create_task_attributes & createtaskattributes)
+::pointer<::task>thread::branch(enum_parallelization eparallelization, const ::create_task_attributes& createtaskattributes)
 {
 
    clear_finishing_flag();
@@ -2482,52 +2484,52 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 
    auto ptask = ::task::branch(eparallelization, createtaskattributes);
 
-//   if(m_htask == 0)
-//   {
-//
-//      if (::is_set(this))
-//      {
-//
-//         this->release_reference(this);
-//
-//      }
-//
-//      decrement_reference_count();
-//
-//      throw ::exception(error_resource);
-//
-//   }
+   //   if(m_htask == 0)
+   //   {
+   //
+   //      if (::is_set(this))
+   //      {
+   //
+   //         this->release_reference(this);
+   //
+   //      }
+   //
+   //      decrement_reference_count();
+   //
+   //      throw ::exception(error_resource);
+   //
+   //   }
 
-//#ifndef WINDOWS
-//
-//   if(pthread_equal((pthread_t) m_htask, (pthread_t) m_itask))
-//   {
-//
-//      information() << "create_thread success";
-//
-//   }
-//
-//#endif
+   //#ifndef WINDOWS
+   //
+   //   if(pthread_equal((pthread_t) m_htask, (pthread_t) m_itask))
+   //   {
+   //
+   //      information() << "create_thread success";
+   //
+   //   }
+   //
+   //#endif
 
-//   if (m_peventInitialization)
-//   {
-//
-//      m_peventInitialization->wait();
-//
-//      ::e_status estatus = get_result_status();
-//
-//      if (failed(estatus))
-//      {
-//
-//         ::e_status estatusExit = m_estatus;
-//
-//         throw ::exception(estatusExit);
-//
-//      }
-//
-//   }
+   //   if (m_peventInitialization)
+   //   {
+   //
+   //      m_peventInitialization->wait();
+   //
+   //      ::e_status estatus = get_result_status();
+   //
+   //      if (failed(estatus))
+   //      {
+   //
+   //         ::e_status estatusExit = m_estatus;
+   //
+   //         throw ::exception(estatusExit);
+   //
+   //      }
+   //
+   //   }
 
-   //return ::success;
+      //return ::success;
 
    return ptask;
 
@@ -2554,7 +2556,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //}
 
 
-::pointer<::task>thread::branch_synchronously(const create_task_attributes & createtaskattributes)
+::pointer<::task>thread::branch_synchronously(const create_task_attributes& createtaskattributes)
 {
 
    auto ptask = ::task::branch_synchronously(createtaskattributes);
@@ -2686,7 +2688,7 @@ void thread::__priority_and_affinity()
 
 #if defined(WINDOWS_DESKTOP) || defined(LINUX)
 
-      int_bool bOk = ::SetThreadAffinityMask(m_htask, (unsigned int) m_uThreadAffinityMask) != 0;
+      int_bool bOk = ::SetThreadAffinityMask(m_htask, (unsigned int)m_uThreadAffinityMask) != 0;
 
       if (bOk)
       {
@@ -2718,17 +2720,17 @@ void thread::__priority_and_affinity()
 void thread::__os_initialize()
 {
 
-//#ifdef WINDOWS_DESKTOP
-//
-//   DuplicateHandle(GetCurrentProcess(), ::GetCurrentThread(), GetCurrentProcess(), &m_htask, 0, false, DUPLICATE_SAME_ACCESS);
-//
-//#else
-//
-//   m_htask = ::current_htask();
-//
-//#endif
-//
-//   m_uThread = ::current_itask();
+   //#ifdef WINDOWS_DESKTOP
+   //
+   //   DuplicateHandle(GetCurrentProcess(), ::GetCurrentThread(), GetCurrentProcess(), &m_htask, 0, false, DUPLICATE_SAME_ACCESS);
+   //
+   //#else
+   //
+   //   m_htask = ::current_htask();
+   //
+   //#endif
+   //
+   //   m_uThread = ::current_itask();
 
    try
    {
@@ -2743,13 +2745,13 @@ void thread::__os_initialize()
 
    }
 
-//#ifndef WINDOWS
-//
-//   information() << "init_thread : " << ::type(this).name();
-//
-//#endif
+   //#ifndef WINDOWS
+   //
+   //   information() << "init_thread : " << ::type(this).name();
+   //
+   //#endif
 
-   //system()->m_papexsystem->m_papexnode->node_thread_initialize(this);
+      //system()->m_papexsystem->m_papexnode->node_thread_initialize(this);
 
 }
 
@@ -2867,7 +2869,7 @@ void thread::task_osinit()
    //try
    //{
 
-      __os_initialize();
+   __os_initialize();
 
    //}
    //catch (const ::exception & e)
@@ -2958,7 +2960,7 @@ void thread::__set_thread_off()
 
    }
 
-   ::thread * pthread = this;
+   ::thread* pthread = this;
 
    //::parallelization::task_unregister(m_itask, pthread);
 
@@ -2984,7 +2986,7 @@ void thread::__set_thread_off()
 //}
 
 
-bool thread::is_idle_message(::message::message * pmessage)
+bool thread::is_idle_message(::message::message* pmessage)
 {
 
    return ::message::is_idle_message(pmessage);
@@ -3016,31 +3018,31 @@ namespace apex
    void system::post_to_all_threads(const ::atom& atom, wparam wparam, lparam lparam)
    {
 
-//#ifdef _DEBUG
-//
-//      if (atom == e_message_quit)
-//      {
-//
-//         //!!for e_message_quit please use post_quit_to_all_threads;
-//         throw ::exception(error_bad_argument);
-//
-//      }
-//
-//#endif
+      //#ifdef _DEBUG
+      //
+      //      if (atom == e_message_quit)
+      //      {
+      //
+      //         //!!for e_message_quit please use post_quit_to_all_threads;
+      //         throw ::exception(error_bad_argument);
+      //
+      //      }
+      //
+      //#endif
 
-      //for e_message_quit please use post_quit_to_all_threads;
-      //if(atom == e_message_quit)
-      //{
+            //for e_message_quit please use post_quit_to_all_threads;
+            //if(atom == e_message_quit)
+            //{
 
-      //   ::parallelization::post_quit_to_all_threads();
+            //   ::parallelization::post_quit_to_all_threads();
 
-      //   return;
+            //   return;
 
-      //}
+            //}
 
-//      auto psystem = system()->m_papexsystem;
-//
-//      psystem->m_papexsystem->post_to_all_threads(atom, wparam, lparam);
+      //      auto psystem = system()->m_papexsystem;
+      //
+      //      psystem->m_papexsystem->post_to_all_threads(atom, wparam, lparam);
 
    }
 
@@ -3079,7 +3081,7 @@ namespace apex
 //}
 
 
-void thread::post_element(const ::atom & atom, wparam wparam, ::particle * pparticle)
+void thread::post_element(const ::atom& atom, wparam wparam, ::particle* pparticle)
 {
 
    post_message(atom, wparam, pparticle);
@@ -3087,7 +3089,7 @@ void thread::post_element(const ::atom & atom, wparam wparam, ::particle * ppart
 }
 
 
-void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
+void thread::post_message(const ::atom& atom, wparam wparam, lparam lparam)
 {
 
    if (atom == MESSAGE_CLOSE)
@@ -3167,7 +3169,7 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 
       UINT message = atom.as_emessage();
 
-      int_bool bOk = ::PostThreadMessageW((DWORD) m_itask, message, wparam, lparam) != false;
+      int_bool bOk = ::PostThreadMessageW((DWORD)m_itask, message, wparam, lparam) != false;
 
       if (!bOk)
       {
@@ -3192,7 +3194,7 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 
    auto pmessagequeue = get_message_queue();
 
-   if(!pmessagequeue)
+   if (!pmessagequeue)
    {
 
       return;
@@ -3204,7 +3206,7 @@ void thread::post_message(const ::atom & atom, wparam wparam, lparam lparam)
 }
 
 
-void thread::send_element(const ::atom & atom, wparam wparam, ::particle * pparticle, const class time & time)
+void thread::send_element(const ::atom& atom, wparam wparam, ::particle* pparticle, const class time& time)
 {
 
    if (!atom.is_message())
@@ -3214,7 +3216,7 @@ void thread::send_element(const ::atom & atom, wparam wparam, ::particle * ppart
 
    }
 
-   if(m_bThreadClosed)
+   if (m_bThreadClosed)
    {
 
       throw ::exception(error_wrong_state);
@@ -3243,7 +3245,7 @@ void thread::send_element(const ::atom & atom, wparam wparam, ::particle * ppart
 }
 
 
-void thread::send_message(const ::atom & atom, wparam wparam, lparam lparam, const class time & time)
+void thread::send_message(const ::atom& atom, wparam wparam, lparam lparam, const class time& time)
 {
 
    if (!atom.is_message())
@@ -3253,7 +3255,7 @@ void thread::send_message(const ::atom & atom, wparam wparam, lparam lparam, con
 
    }
 
-   if(m_bThreadClosed)
+   if (m_bThreadClosed)
    {
 
       throw ::exception(error_wrong_state);
@@ -3352,20 +3354,20 @@ void thread::__task_init()
 {
 
    task::__task_init();
-//   //m_estatus =
-//
-//   on_thread_init();
-//
-//   if (m_peventInitialization)
-//   {
-//
-//      m_peventInitialization->set_event();
-//
-//   }
-   
-   //m_result = m_estatus;
+   //   //m_estatus =
+   //
+   //   on_thread_init();
+   //
+   //   if (m_peventInitialization)
+   //   {
+   //
+   //      m_peventInitialization->set_event();
+   //
+   //   }
 
-   //return m_estatus;
+      //m_result = m_estatus;
+
+      //return m_estatus;
 
 }
 
@@ -3378,7 +3380,7 @@ void thread::on_task_init()
    install_message_routing(this);
 
    //init_task();
-      
+
    on_pre_run_task();
 
    m_estatus = ::success;
@@ -3484,7 +3486,7 @@ message_queue* thread::_get_message_queue()
 
    _synchronous_lock synchronouslock(this->synchronization());
 
-   if(has_finishing_flag() || m_bThreadClosed)
+   if (has_finishing_flag() || m_bThreadClosed)
    {
 
       if (m_pmessagequeue)
@@ -3504,17 +3506,17 @@ message_queue* thread::_get_message_queue()
       return m_pmessagequeue;
 
    }
-   
-   if(m_itask == 0)
+
+   if (m_itask == 0)
    {
-      
+
       return nullptr;
-      
+
    }
 
    auto pmq = ::acme::get()->m_ptaskmessagequeue->get_message_queue(m_itask, true);
 
-   if(pmq->m_bQuit)
+   if (pmq->m_bQuit)
    {
 
       informationf("WHAT?!?!WHAT?!?!WHAT?!?!BornQuitting?!?!");
@@ -3536,19 +3538,19 @@ message_queue* thread::_get_message_queue()
 }
 
 
-bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, bool bRemoveMessage)
+bool thread::peek_message(MESSAGE* pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, bool bRemoveMessage)
 {
 
    if (m_pmessagequeue)
    {
-      
+
       _synchronous_lock synchronouslock(m_pmessagequeue->synchronization());
-      
-      if(m_pmessagequeue->m_eflagElement & (::enum_flag) (1ll <<37))
+
+      if (m_pmessagequeue->m_eflagElement & (::enum_flag)(1ll << 37))
       {
-         
+
          return false;
-         
+
       }
 
       if (m_pmessagequeue->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, bRemoveMessage))
@@ -3564,7 +3566,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 
    if (m_htask && !m_bAuraMessageQueue)
    {
-      
+
       MSG msg;
 
       if (::PeekMessageW(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax, bRemoveMessage ? PM_REMOVE : PM_NOREMOVE))
@@ -3879,7 +3881,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
 
 
 
-void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
+void thread::get_message(MESSAGE* pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -3889,7 +3891,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
       get_message_queue()->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
 
-      if(pMsg->m_atom==e_message_quit)
+      if (pMsg->m_atom == e_message_quit)
       {
 
          return;
@@ -3927,7 +3929,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
       MSG msg{};
 
       int iRet = -1;
-      
+
       if (has_finishing_flag())
       {
 
@@ -3969,7 +3971,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
          msg.message = WM_QUIT;
 
       }
-      else if(msg.message == e_message_quit)
+      else if (msg.message == e_message_quit)
       {
 
          ::acme::get()->platform()->informationf("e_message_quit");
@@ -3989,8 +3991,8 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 #else
 
    auto pmessagequeue = get_message_queue();
-   
-   
+
+
 
    pmessagequeue->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
 
@@ -3999,7 +4001,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 }
 
 
-void thread::post_message(oswindow oswindow, const ::atom & atom, wparam wparam, lparam lparam)
+void thread::post_message(oswindow oswindow, const ::atom& atom, wparam wparam, lparam lparam)
 {
 
    if (!atom.is_message())
@@ -4009,7 +4011,7 @@ void thread::post_message(oswindow oswindow, const ::atom & atom, wparam wparam,
 
    }
 
-   if(m_bThreadClosed)
+   if (m_bThreadClosed)
    {
 
       throw ::exception(error_wrong_state);
@@ -4128,7 +4130,7 @@ thread::operator htask_t() const
 }
 
 
-void thread::post(::message::message * pmessage)
+void thread::post(::message::message* pmessage)
 {
 
    if (!pmessage)
@@ -4160,7 +4162,7 @@ void thread::handle_posted_messages()
 
       ::index iEraseAt = 0;
 
-      if(m_emessageaGetLast.has_element())
+      if (m_emessageaGetLast.has_element())
       {
 
          if (m_emessageaGetLast.contains(pmessage->m_atom.as_emessage()))
@@ -4190,24 +4192,24 @@ void thread::handle_posted_messages()
 
             }
 
-//            if(cIgnoredMessages > 0)
-//            {
-//
-//               if(pmessage->m_atom == e_message_mouse_move)
-//               {
-//
-//                  information() << cIgnoredMessages << " ignored mouse move message" << (cIgnoredMessages > 1 ? "s" : 0);
-//
-//               }
-//               else
-//               {
-//
-//                  information() << cIgnoredMessages << " ignored message" << (cIgnoredMessages > 1 ? "s" : 0);
-//
-//               }
-//
-//
-//            }
+            //            if(cIgnoredMessages > 0)
+            //            {
+            //
+            //               if(pmessage->m_atom == e_message_mouse_move)
+            //               {
+            //
+            //                  information() << cIgnoredMessages << " ignored mouse move message" << (cIgnoredMessages > 1 ? "s" : 0);
+            //
+            //               }
+            //               else
+            //               {
+            //
+            //                  information() << cIgnoredMessages << " ignored message" << (cIgnoredMessages > 1 ? "s" : 0);
+            //
+            //               }
+            //
+            //
+            //            }
 
          }
 
@@ -4234,7 +4236,7 @@ void thread::handle_posted_messages()
 
       synchronouslock._lock();
 
-      if(pmessage->has_property("flush_similar_messages"))
+      if (pmessage->has_property("flush_similar_messages"))
       {
 
 
@@ -4319,7 +4321,7 @@ bool thread::initialize_message_queue()
 }
 
 
-void thread::message_handler(::message::message * pmessage)
+void thread::message_handler(::message::message* pmessage)
 {
 
    pre_translate_message(pmessage);
@@ -4337,7 +4339,7 @@ bool thread::process_message()
    try
    {
 
-      MESSAGE & message = m_message;
+      MESSAGE& message = m_message;
 
 #ifdef WINDOWS_DESKTOP
 
@@ -4434,14 +4436,14 @@ bool thread::process_message()
 
       }
 
-      if(m_nDisablePumpCount != 0)
+      if (m_nDisablePumpCount != 0)
       {
 
          information()(e_trace_category_appmsg) << "Error: thread::pump_message called when not permitted.";
 
       }
 
-      if(message.m_atom == e_message_kick_idle)
+      if (message.m_atom == e_message_kick_idle)
       {
 
          return true;
@@ -4456,14 +4458,14 @@ bool thread::process_message()
          pmessage = get_app()->m_papexapplication->get_message(&message);
 
       }
-      else if(session())
+      else if (session())
       {
 
          pmessage = node()->m_papexnode->get_message(&message);
 
       }
 
-      if(pmessage)
+      if (pmessage)
       {
 
          process_message(pmessage);
@@ -4473,7 +4475,7 @@ bool thread::process_message()
       return true;
 
    }
-   catch (const ::exception & e)
+   catch (const ::exception& e)
    {
 
       //if (handle_exception(e))
@@ -4485,7 +4487,7 @@ bool thread::process_message()
       //}
 
    }
-   catch(...)
+   catch (...)
    {
 
    }
@@ -4525,7 +4527,7 @@ bool thread::raw_process_message()
       return true;
 
    }
-   catch (const ::exception & e)
+   catch (const ::exception& e)
    {
 
       //if (handle_exception(e))
@@ -4653,13 +4655,13 @@ bool thread::do_tasks()
 
    bool bProcessed1 = false;
 
-   while(defer_pump_message())
+   while (defer_pump_message())
    {
 
       bProcessed1 = true;
 
    }
-   
+
    auto bProcessed2 = ::task::do_tasks();
 
    return bProcessed1 || bProcessed2;
@@ -4721,7 +4723,7 @@ void thread::on_request_message(::request* prequest)
 }
 
 
-void thread::request(::request * prequest)
+void thread::request(::request* prequest)
 {
 
    m_prequest = prequest;
@@ -4738,7 +4740,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
 }
 
 
-::user::primitive_array & thread::userprimitivea()
+::user::primitive_array& thread::userprimitivea()
 {
 
    {
@@ -4797,7 +4799,7 @@ thread_ptra::~thread_ptra()
 }
 
 
-bool thread::pump_sleep(const class time & timeWait, ::particle * pparticleSynchronization)
+bool thread::pump_sleep(const class time& timeWait, ::particle* pparticleSynchronization)
 {
 
    auto timeStart = ::time::now();
@@ -4905,10 +4907,10 @@ bool thread::pump_sleep(const class time & timeWait, ::particle * pparticleSynch
 //}
 
 
-void thread::add_waiting_event(event * pevent)
+void thread::add_waiting_event(event* pevent)
 {
 
-   if(::is_null(pevent))
+   if (::is_null(pevent))
    {
 
       return;
@@ -4924,7 +4926,7 @@ void thread::add_waiting_event(event * pevent)
 }
 
 
-void thread::erase_waiting_event(event * pevent)
+void thread::erase_waiting_event(event* pevent)
 {
 
    _synchronous_lock synchronouslock(this->synchronization());
@@ -4964,7 +4966,7 @@ class ::time thread::get_file_sharing_violation_timeout()
 }
 
 
-class ::time thread::set_file_sharing_violation_timeout(const class time & time)
+class ::time thread::set_file_sharing_violation_timeout(const class time& time)
 {
 
    return get_file_info()->m_timeFileSharingViolationTimeout = time;

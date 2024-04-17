@@ -160,8 +160,10 @@ public:
    virtual ::file::path user_appdata_local();
    //virtual ::file::path tool();
 
-   virtual bool is(const ::file::path & path1);
-   virtual bool _is(bool & bDir, const ::file::path & path1);
+   inline bool is(const ::file::path& path) { return file_type(path) & ::file::e_type_folder2; }
+
+   virtual ::file::e_type file_type(const ::file::path& path);
+   virtual ::file::e_type _file_type(const ::file::path& path);
    // From acme/filesystem/file/dir.cpp by camilo 
    // From acme_posix/acme_directory.h
 // on 2021-08-09 03:20 BRT

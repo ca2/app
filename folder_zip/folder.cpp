@@ -767,7 +767,7 @@ namespace folder_zip
    }
 
 
-} // namespace zip
+} // namespace folder_zip
 
 
 

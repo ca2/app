@@ -15,7 +15,7 @@
 //#include <cassert>
 #include <cmath>
 //#include <iosfwd>
-//#include <string.h> // memset
+//#include <string.h> // ::memory_set
 
 
 
@@ -981,7 +981,7 @@ template <typename Value_, ::count Size_> struct Matrix {
    Matrix() { }
 
    explicit Matrix(COORDINATE s) {
-      memset(m, 0, sizeof(COORDINATE) * SIZE * SIZE);
+      ::memory_set(m, 0, sizeof(COORDINATE) * SIZE * SIZE);
       for (::count i = 0; i < SIZE; ++i)
          m[i][i] = s;
    }
@@ -1001,7 +1001,7 @@ template <typename Value_, ::count Size_> struct Matrix {
 
    static Matrix scale(const sequence_type<COORDINATE, SIZE - 1>& m_coordinatea) {
       Matrix result;
-      memset(result.m, 0, sizeof(COORDINATE) * SIZE * SIZE);
+      ::memory_set(result.m, 0, sizeof(COORDINATE) * SIZE * SIZE);
       for (::count i = 0; i < SIZE; ++i)
          result.m[i][i] = i < SIZE - 1 ? m_coordinatea[i] : 1;
       return result;
@@ -1009,7 +1009,7 @@ template <typename Value_, ::count Size_> struct Matrix {
 
    static Matrix scale(const sequence_type<COORDINATE, SIZE>& m_coordinatea) {
       Matrix result;
-      memset(result.m, 0, sizeof(COORDINATE) * SIZE * SIZE);
+      ::memory_set(result.m, 0, sizeof(COORDINATE) * SIZE * SIZE);
       for (::count i = 0; i < SIZE; ++i)
          result.m[i][i] = m_coordinatea[i];
       return result;
@@ -1017,7 +1017,7 @@ template <typename Value_, ::count Size_> struct Matrix {
 
    static Matrix translate(const sequence_type<COORDINATE, SIZE - 1>& m_coordinatea) {
       Matrix result;
-      memset(result.m, 0, sizeof(COORDINATE) * SIZE * SIZE);
+      ::memory_set(result.m, 0, sizeof(COORDINATE) * SIZE * SIZE);
       for (::count i = 0; i < SIZE; ++i) {
          result.m[i][i] = 1.f;
          if (i < SIZE - 1)

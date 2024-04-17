@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/exception/interface_only.h"
+#include "acme/operating_system/shared_posix/c_error_number.h"
 
 //#if defined(OPENBSD)
 //#include "clear_cstddefs"

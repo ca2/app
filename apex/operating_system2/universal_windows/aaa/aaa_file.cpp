@@ -32,7 +32,7 @@ CLASS_DECL_APEX memsize read_buffer(void* p, ::winrt::Windows::Storage::Streams:
 
    }
 
-   memcpy(p, &a->Data[pos], size);
+   ::memory_copy(p, &a->Data[pos], size);
 
    return size;
 

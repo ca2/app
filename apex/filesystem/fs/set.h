@@ -36,6 +36,7 @@ namespace fs
       virtual bool enumerate(::file::listing & listing)override;
       //virtual ::file::listing & ls_relative_name(::file::listing & listing)override;
       virtual int is_dir(const ::file::path & psz)override;
+      virtual ::file::e_type file_type(const ::file::path& path)override;
       virtual bool file_move(const ::file::path & pszDst,const ::file::path & pszSrc)override;
       virtual bool has_subdir(const ::file::path & psz)override;
       virtual bool tree_show_subdir(const ::file::path & psz)override;

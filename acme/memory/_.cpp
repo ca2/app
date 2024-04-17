@@ -283,8 +283,14 @@ CLASS_DECL_ACME void * memory_set(void * p, i32 i, memsize iSize)
 
    }
 
-   if (::is_null(p)) return nullptr;
-   return ::memory_set(p, i, (size_t)iSize);
+   if (::is_null(p))
+   {
+
+      return nullptr;
+
+   }
+
+   return ::memset(p, i, (size_t)iSize);
    //   uchar * puch = (uchar * ) p;
    //   while(iSize > 0)
    //   {

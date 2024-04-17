@@ -923,7 +923,7 @@ namespace acme
 //      //virtual bool process_contains_module(string & strImage, ::process_identifier processidentifier, const ::string & pszLibrary);
 //      //virtual void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::string & pszLibrary);
 //#endif
-#if defined(BSD_UNIX)
+#if defined(__BSD__)
 
       virtual void arp_a(void *p, void(*callback)(void * p, ::u32 uIp, const char * status));
 

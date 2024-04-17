@@ -3138,7 +3138,7 @@ return false;
    }
 
 
-#if defined(BSD_UNIX)
+#if defined(__BSD__)
 
    void node::arp_a(void *p, void(*callback)(void * addr, ::u32 uIp, const char * status))
    {

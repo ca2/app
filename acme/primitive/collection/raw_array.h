@@ -434,7 +434,7 @@ raw_array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY,t_etypeContainer >::raw_a
 
    this->set_size(n);
 
-   memcpy(this->m_begin, ptypea, this->length_in_bytes());
+   ::memory_copy(this->m_begin, ptypea, this->length_in_bytes());
 
 }
 

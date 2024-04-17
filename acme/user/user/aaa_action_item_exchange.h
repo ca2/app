@@ -27,8 +27,8 @@ struct CLASS_DECL_ACME action_item_exchange
    action_item_exchange(action_item_exchange && e)
    {
 
-      memcpy(this, &e, sizeof(action_item_exchange));
-      memset(&e, 0, sizeof(action_item_exchange));
+      ::memory_copy(this, &e, sizeof(action_item_exchange));
+      ::memory_set(&e, 0, sizeof(action_item_exchange));
 
    }
 

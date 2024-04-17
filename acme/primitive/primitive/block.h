@@ -157,7 +157,7 @@ struct CLASS_DECL_ACME block :
 
       }
    
-      memcpy(this->m_begin, &aggregate, sizeof(aggregate));
+      ::memory_copy(this->m_begin, &aggregate, sizeof(aggregate));
 
       return *this;
 

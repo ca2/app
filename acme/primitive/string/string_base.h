@@ -1598,9 +1598,9 @@ public:
 //
 //   auto p = str.get_buffer(len);
 //
-//   memcpy(p, scopedstrA, scopedstrA.size());
+//   ::memory_copy(p, scopedstrA, scopedstrA.size());
 //
-//   memcpy(p + scopedstrA.size(), scopedstrB, scopedstrB.size());
+//   ::memory_copy(p + scopedstrA.size(), scopedstrB, scopedstrB.size());
 //
 //   str.release_buffer(len);
 //

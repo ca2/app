@@ -154,7 +154,7 @@ void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::free_extra(
 #endif      // copy aaa_primitive_new data from old
 
          // copy aaa_primitive_new data from old
-         ::acme::memcpy_s(pNewData, (size_t)m_nSize * sizeof(TYPE),m_pData, (size_t)m_nSize * sizeof(TYPE));
+         ::memory_copy(pNewData, (size_t)m_nSize * sizeof(TYPE),m_pData, (size_t)m_nSize * sizeof(TYPE));
 
       }
 
@@ -675,7 +675,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 
 #endif      // copy aaa_primitive_new data from old
 
-      ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
+      ::memory_copy(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
 
       ///for(i32 i = 0; i < nNewSize - m_nSize; i++)
       // get rid of old stuff (note: no destructors called)
@@ -955,7 +955,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 #endif
 
       // copy aaa_primitive_new data from old
-      ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
+      ::memory_copy(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
 
       // construct remaining elements
       ASSERT(nNewSize > m_nSize);

@@ -3897,7 +3897,7 @@ template < typename ITERATOR_TYPE >
 
             memory_transfer((void *)(pszTarget + nReplacementLen), pszTarget + nSourceLen, nBalance * sizeof(CHARACTER));
 
-            memcpy((void *)pszTarget, scopedstrNew, nReplacementLen * sizeof(CHARACTER));
+            ::memory_copy((void *)pszTarget, scopedstrNew, nReplacementLen * sizeof(CHARACTER));
 
             pszStart = pszTarget + nReplacementLen;
 
@@ -3978,7 +3978,7 @@ template < typename ITERATOR_TYPE >
 
             memory_transfer(pszTarget + nReplacementLen, pszTarget + nSourceLen, nBalance * sizeof(CHARACTER));
 
-            memcpy(pszTarget, scopedstrNew, nReplacementLen * sizeof(CHARACTER));
+            ::memory_copy(pszTarget, scopedstrNew, nReplacementLen * sizeof(CHARACTER));
 
             pszStart = pszTarget + nReplacementLen;
 

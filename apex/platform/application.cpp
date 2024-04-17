@@ -10030,7 +10030,7 @@ namespace apex
    }
 
 
-#if defined(LINUX) || defined(FREEBSD)
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 
 
    string application::get_wm_class() const

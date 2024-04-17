@@ -59,7 +59,7 @@ namespace apex
       ::pointer<::user::primitive>                 m_puiCurrent;
       bool                                         m_bContextTheme;
 
-#if defined(LINUX) || defined(FREEBSD)
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
       bool                                         m_bSnLauncheeSetup;
 #endif
       //semaphore                                    m_semCompiler;
@@ -1069,7 +1069,7 @@ namespace apex
 
       virtual string as_string(const ::payload & payload);
 
-#if defined(LINUX) || defined(FREEBSD)
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 
       virtual string get_wm_class() const;
 

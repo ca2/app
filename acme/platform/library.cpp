@@ -237,8 +237,21 @@ namespace acme
       
       if(platform()->is_verbose_log())
       {
+
+         if(::is_set(m_plibrary))
+         {
       
-         information() << "acme::library::open success : \"" << m_strName << "\"";
+            information() << "acme::library::open success : \"" << m_strName << "\"";
+
+         }
+         else
+         {
+
+            information() << "acme::library::open failure : \"" << m_strName << "\"";
+
+            information() << "acme::library::open failure message : \"" << m_strMessage << "\"";
+
+         }
          
       }
 

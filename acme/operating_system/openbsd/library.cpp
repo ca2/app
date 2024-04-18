@@ -5,14 +5,19 @@
 #include <string.h>
 #include <errno.h>
 
+
 struct query_loaded_library
 {
+
 
    string m_strPathIn;
    string m_strPathOut;
 
 
 };
+
+
+::file::path get_module_path();
 
 
 //CLASS_DECL_ACME void *__node_library_open(const ::file::path &path, string &strMessage);
@@ -113,9 +118,15 @@ namespace platform
       if (strstr((const char *) strPath, "/") == nullptr && !ansi_begins(strPath, "lib"))
       {
 
-         strPath = "lib" + strPath;
+         ::file::path path;
+
+         path = ::get_module_path().folder();
+
+         strPath = path / ("lib" + strPath);
 
       }
+
+      debugf("dlopen(%s)", strPath.c_str());
 
       void *plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_LAZY | RTLD_NODELETE);
       //void *plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_NODELETE);

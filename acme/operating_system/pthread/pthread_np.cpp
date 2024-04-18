@@ -158,10 +158,7 @@ void task_set_name(htask_t htask, const char * psz)
    if (error)
    {
    
-      printf("task_set_name pthread_t 0x%016llX\n", (::uptr) pthread);
-      
-      printf("task_set_name name %s\n", strName.c_str());
-      
+      printf("task_set_name pthread_t 0x%016lX\n", (long unsigned int)pthread);
       if(error == ESRCH)
       {
       

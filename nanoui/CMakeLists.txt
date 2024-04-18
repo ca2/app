@@ -131,7 +131,7 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 
-    target_link_options(${PROJECT_NAME} PRIVATE "-Wl,-rpath=\$ORIGIN")
+    #target_link_options(${PROJECT_NAME} PRIVATE "-Wl,-rpath=\$ORIGIN")
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)

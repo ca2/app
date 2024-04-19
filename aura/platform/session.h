@@ -403,7 +403,7 @@ namespace aura
       //virtual string_array get_user_wallpaper() override;
 
 
-      ::user::user* user() override { return m_puser; }
+      ::user::user* user() override;
 
 
       //virtual ::color::color get_color(const ::user::interaction* pinteraction, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override;

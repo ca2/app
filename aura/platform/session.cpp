@@ -2300,6 +2300,14 @@ namespace aura
    }
 
 
+   ::user::user* session::user()
+   {
+
+      return m_puser;
+
+   }
+
+
    bool session::is_mouse_button_pressed(::user::enum_mouse emouse)
    {
 

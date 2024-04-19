@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "window.h"
 #include "display.h"
+#include "nano.h"
 #include "acme/operating_system/cairo/nano/device.h"
 #include "acme/platform/system.h"
 #include "acme/platform/node.h"
@@ -18,6 +19,8 @@ void operating_system_initialize_x11_nano(::factory::factory * pfactory)
    operating_system_initialize_cairo_nano(pfactory);
 
    pfactory->add_factory_item<::x11::nano_window, ::nano_window_implementation>();
+
+   pfactory->add_factory_item<::x11::nano, ::nano::nano>();
 
    ::x11::display::get(pfactory);
 

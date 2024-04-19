@@ -343,7 +343,7 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const ::s
 
    }
 
-   initialize_nano_window(pparticle->factory());
+   //initialize_nano_window(pparticle->factory());
 
    if (::is_null(pparticle))
    {
@@ -368,7 +368,9 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const ::s
    }
    
 #endif
-   
+
+   pparticle->system()->nano();
+
    auto psequencer = pparticle->node()->create_message_box_sequencer(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
    
    auto atomResult = psequencer->do_synchronously();
@@ -454,7 +456,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
    //pparticle->fork([pmessagebox]()
    //{
 
-   initialize_nano_window(pparticle->factory());
+   //initialize_nano_window(pparticle->factory());
 
    if (::is_null(pparticle))
    {
@@ -481,6 +483,8 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
    }
    
 #endif
+
+   pparticle->system()->nano();
    
    //main_asynchronous([ pmessagebox, pparticle ]()
    //{

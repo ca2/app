@@ -145,6 +145,27 @@ namespace nano
    }
 
 
+#if defined(WITH_X11)
+
+
+   void nano::x11_sync(const ::procedure & procedure)
+   {
+
+
+   }
+
+
+   void nano::x11_async(const ::procedure & procedure)
+   {
+
+
+   }
+
+
+#endif
+
+
+
 } // namespace nano
 
 

@@ -2084,6 +2084,8 @@ list(APPEND library_source
       operating_system/x11/nano/display.cpp
       operating_system/x11/nano/display.h
       operating_system/x11/nano/event_listener.h
+      operating_system/x11/nano/nano.cpp
+      operating_system/x11/nano/nano.h
       operating_system/x11/nano/window.h
       operating_system/x11/nano/window.cpp
       operating_system/x11/_.cpp
@@ -2093,6 +2095,7 @@ list(APPEND library_source
       operating_system/x11/display_lock.h
       operating_system/x11/keyboard.cpp
       operating_system/x11/keyboard.h
+      operating_system/x11/system.cpp
       operating_system/xcb/nano/_nano.cpp
       operating_system/xcb/nano/_.h
       operating_system/xcb/nano/display.cpp

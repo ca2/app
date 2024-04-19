@@ -25,6 +25,7 @@
 //#include "acme/primitive/collection/string_array.h"
 #include "acme/user/nano/button.h"
 #include "acme/user/nano/message_box.h"
+#include "acme/user/nano/nano.h"
 #include "acme/user/user/os_theme_colors.h"
 
 
@@ -2341,8 +2342,6 @@ return false;
    ::pointer<::conversation>node::create_new_message_box_conversation()
    {
 
-      initialize_nano_window(factory());
-
       return __create_new < ::nano_message_box >();
 
    }
@@ -4256,6 +4255,29 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
       return "\n";
 
    }
+
+
+#if defined(WITH_X11)
+
+
+   void node::x11_sync(const ::procedure & procedure)
+   {
+
+      nano()->x11_sync(procedure);
+
+   }
+
+
+   void node::x11_async(const ::procedure & procedure)
+   {
+
+      nano()->x11_async(procedure);
+
+   }
+
+
+#endif
+
 
 
 } // namespace acme

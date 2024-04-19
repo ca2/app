@@ -1,18 +1,33 @@
 //
-// Created by camilo on 4/19/24.
+// Created by camilo on 2024-04-19 <3ThomasBorregaardSorensen!!
 //
+#pragma once
 
-#ifndef _LINUX_OPERATING_SYSTEM_NANO_H
-#define _LINUX_OPERATING_SYSTEM_NANO_H
+
+#include "acme/user/nano/nano.h"
+
 
 namespace x11
 {
 
-   class nano
+
+   class CLASS_DECL_ACME nano :
+      virtual public ::nano::nano
    {
+   public:
+
+
+      nano();
+      ~nano();
+
+
+      void x11_sync(const ::procedure & procedure) override;
+      void x11_async(const ::procedure & procedure) override;
+
 
    };
 
-} // x11
+} // namespace x11
 
-#endif //_LINUX_OPERATING_SYSTEM_NANO_H
+
+

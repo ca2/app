@@ -171,7 +171,5 @@ public:
 };
 
 
-CLASS_DECL_ACME void initialize_nano_window(::factory::factory * pfactory);
-
 
 

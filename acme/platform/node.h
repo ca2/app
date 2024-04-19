@@ -931,6 +931,12 @@ namespace acme
 
       virtual ::string eol();
 
+#if defined(WITH_X11)
+      void x11_sync(const ::procedure & procedure);
+      void x11_async(const ::procedure & procedure);
+#endif
+
+
    };
 
 

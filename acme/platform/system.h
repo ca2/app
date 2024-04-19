@@ -233,7 +233,7 @@ namespace acme
 
       ::particle * ui_destroyed_synchronization() { return m_pmutexUiDestroyed; }
 
-      inline ::nano::nano * nano() { return m_pnano; }
+      virtual ::nano::nano * nano();
       
       virtual ::nano::http * nano_http();
 
@@ -677,6 +677,13 @@ namespace acme
 //      virtual void set_simple_ui_darkness(int iWeatherDarkness);
 
       virtual void set_dark_mode(bool bDark);
+
+#if defined(WITH_X11)
+      virtual void x11_sync(const ::procedure & procedure);
+      virtual void x11_async(const ::procedure & procedure);
+#endif
+
+
    };
 
 

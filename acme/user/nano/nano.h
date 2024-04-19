@@ -40,12 +40,25 @@ namespace nano
 
       
       void handle(::topic* ptopic, ::context* pcontext) override;
-      
+
+
+#if defined(WITH_X11)
+
+
+      virtual void x11_sync(const ::procedure & procedure);
+      virtual void x11_async(const ::procedure & procedure);
+
+
+#endif
+
 
    };
 
 
 } // namespace nano
+
+
+CLASS_DECL_ACME void initialize_nano_window(::factory::factory * pfactory);
 
 
 

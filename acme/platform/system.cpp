@@ -357,7 +357,7 @@ namespace acme
 
       //information() << "initialize_system create nano";
 
-      __construct_new(m_pnano);
+      //__construct(m_pnano);
 
       //m_psystemimpl = __new< system_impl >();
 
@@ -1226,6 +1226,23 @@ namespace acme
       //}
 
       //return success;
+
+   }
+
+
+   ::nano::nano * system::nano()
+   {
+
+      if(!m_pnano)
+      {
+
+         initialize_nano_window(factory());
+
+         __construct(m_pnano);
+
+      }
+
+      return m_pnano;
 
    }
 

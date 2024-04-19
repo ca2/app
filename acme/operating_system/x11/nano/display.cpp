@@ -16,11 +16,21 @@
 #include "acme/operating_system/x11/_.h"
 
 
+#ifdef OPENBSD
+
+#include <stdio.h>
+
+#endif
+
+
 #define MAXSTR 1000
 
 
+::e_status defer_initialize_x11();
+
+
 void x11_init_threads();
-void * x11_get_display();
+Display * x11_get_display();
 
 
 void set_main_user_thread();
@@ -524,12 +534,16 @@ namespace x11
 
       }
 
-      XInitThreads();
+      printf("\n\nx11::display::init_task Going to call defer_initialize_x11\n\n");
+
+      fflush(stdout);
+
+      defer_initialize_x11();
 
       if(!m_pdisplay)
       {
 
-         set_X11_Display(XOpenDisplay(nullptr));
+         set_X11_Display(x11_get_display());
 
       }
 
@@ -715,5 +729,70 @@ void x11_process_messages()
 
 }
 
+
+
+::e_status initialize_x11()
+{
+
+   printf("\n\ninitialize_x11 Going to call XInitThreads\n\n");
+
+   fflush(stdout);
+
+   if (!XInitThreads())
+   {
+
+      return ::error_failed;
+
+   }
+
+   XSetErrorHandler(_c_XErrorHandler);
+
+   //g_pmutexX11 = __new< ::pointer < ::mutex > >();
+
+   return ::success;
+
+}
+
+
+::e_status g_estatusInitializeX11 = error_not_initialized;
+
+
+::e_status defer_initialize_x11()
+{
+
+   if (g_estatusInitializeX11 == error_not_initialized)
+   {
+
+      g_estatusInitializeX11 = initialize_x11();
+
+   }
+
+   return g_estatusInitializeX11;
+
+}
+
+
+
+Display * g_pdisplayX11= nullptr;
+
+
+int g_fdX11[2] = {};
+
+
+Display * x11_get_display()
+{
+
+   defer_initialize_x11();
+
+   if(g_pdisplayX11 == NULL)
+   {
+
+      g_pdisplayX11 =  XOpenDisplay(NULL);
+
+   }
+
+   return g_pdisplayX11;
+
+}
 
 

@@ -131,7 +131,7 @@ bool xdisplay::open(char * display_name, bool bInitialLock)
 {
    unlock();
    close();
-   m_pdisplay      = XOpenDisplay(display_name);
+   m_pdisplay      = XOpenxDisplay(display_name);
    if(m_pdisplay == nullptr)
       return false;
    m_bOwn          = true;

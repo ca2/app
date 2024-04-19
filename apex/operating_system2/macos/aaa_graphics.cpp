@@ -700,7 +700,7 @@ int_bool this->rectangle(oswindow hwnd, RECT32 * prect)
 {
    /*   XWindowAttributes attrs;
      Fill attribute structure with information about root window */
-   /* if(XGetWindowAttributes(XOpenDisplay(nullptr), hwnd, &attrs) == 0)
+   /* if(XGetWindowAttributes(XOpenxDisplay(nullptr), hwnd, &attrs) == 0)
     {
     return false;
     }
@@ -736,7 +736,7 @@ int_bool this->rectangle(oswindow hwnd, RECT32 * prect)
 //{
 //   /* XWindowAttributes attrs;
 //     Fill attribute structure with information about root window */
-//   /*   if(XGetWindowAttributes(XOpenDisplay(nullptr), hwnd, &attrs) == 0)
+//   /*   if(XGetWindowAttributes(XOpenxDisplay(nullptr), hwnd, &attrs) == 0)
 //    {
 //    return false;
 //    }
@@ -1206,7 +1206,7 @@ int_bool window_rectangle(oswindow hwnd, RECT32 * prect)
 {
    /* XWindowAttributes attrs;
     Fill attribute structure with information about root window */
-   /*   if(XGetWindowAttributes(XOpenDisplay(nullptr), hwnd, &attrs) == 0)
+   /*   if(XGetWindowAttributes(XOpenxDisplay(nullptr), hwnd, &attrs) == 0)
     {
     return false;
     }

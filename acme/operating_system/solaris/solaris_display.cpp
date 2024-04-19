@@ -6,6 +6,8 @@
 #define CA2_X11_WINDOW_LONG_STYLE "ca2_ccwarehouse_window_long_style"
 #define CA2_X11_WINDOW_LONG_STYLE_EX "ca2_ccwarehouse_window_long_style_ex"
 
+
+Display * x11_get_display();
 osdisplay_dataptra * osdisplay_data::s_pdataptra = __new< osdisplay_dataptra >();
 ::pointer< ::mutex > osdisplay_data::s_pmutex = __new< ::pointer < ::mutex > >(nullptr);
 
@@ -131,7 +133,7 @@ bool xdisplay::open(char * display_name, bool bInitialLock)
 {
    unlock();
    close();
-   m_pdisplay      = XOpenDisplay(display_name);
+   m_pdisplay      = x11_get_display();
    if(m_pdisplay == nullptr)
       return false;
    m_bOwn          = true;

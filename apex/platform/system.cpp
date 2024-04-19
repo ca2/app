@@ -4427,10 +4427,10 @@ namespace apex
 #ifdef LINUX
 
 
-   //   void system::defer_initialize_x11()
+   //   void system::deferx_initialize_x11()
    //   {
    //
-   //      return ::acme::system::defer_initialize_x11();
+   //      return ::acme::system::deferx_initialize_x11();
    //
    //   }
 

@@ -54,7 +54,7 @@ namespace os
 
       XEvent e;
 
-      if(!(display = XOpenDisplay(nullptr)))
+      if(!(display = XOpenxDisplay(nullptr)))
       {
 
          fprintf(stderr, "ERROR: Could not open display\n");

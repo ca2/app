@@ -432,7 +432,7 @@ namespace acme
 
 #ifdef LINUX
 
-      //!!!      virtual void defer_initialize_x11();
+      //!!!      virtual void deferx_initialize_x11();
 
 #endif
 

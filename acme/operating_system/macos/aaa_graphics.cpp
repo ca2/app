@@ -700,7 +700,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 //{
 //   /*   XWindowAttributes attrs;
 //     Fill attribute structure with information about root window */
-//   /* if(XGetWindowAttributes(XOpenDisplay(nullptr), hwnd, &attrs) == 0)
+//   /* if(XGetWindowAttributes(XOpenxDisplay(nullptr), hwnd, &attrs) == 0)
 //    {
 //    return false;
 //    }
@@ -736,7 +736,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 //{
 //   /* XWindowAttributes attrs;
 //     Fill attribute structure with information about root window */
-//   /*   if(XGetWindowAttributes(XOpenDisplay(nullptr), hwnd, &attrs) == 0)
+//   /*   if(XGetWindowAttributes(XOpenxDisplay(nullptr), hwnd, &attrs) == 0)
 //    {
 //    return false;
 //    }
@@ -1206,7 +1206,7 @@ void os_term_imaging()
 //{
 //   /* XWindowAttributes attrs;
 //    Fill attribute structure with information about root window */
-//   /*   if(XGetWindowAttributes(XOpenDisplay(nullptr), hwnd, &attrs) == 0)
+//   /*   if(XGetWindowAttributes(XOpenxDisplay(nullptr), hwnd, &attrs) == 0)
 //    {
 //    return false;
 //    }

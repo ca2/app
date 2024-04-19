@@ -6,7 +6,7 @@
 
 void resizeBilinear(memory & m, int w2, int h2, int * pixels, int w, int h);
 
-
+Display * x11_get_display();
 #ifdef LINUX
 #define WIDTH 3200
 #define HEIGHT 1800
@@ -634,7 +634,7 @@ namespace draw2d_opengl
 
 
 
-      if (!(dpy = XOpenDisplay(nullptr)))
+      if (!(dpy = x11_get_display()))
       {
          fprintf(stderr, "could not open display");
          return false;

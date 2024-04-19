@@ -55,7 +55,7 @@ void copy(xdg_toplevel_resize_edge * presizeedge, ::experience::enum_frame * pef
 //#include "x11_message_box.h"
 
 
-//::e_status defer_initialize_x11();
+//::e_status deferx_initialize_x11();
 //void x11_handle_just_hooks();
 //void x11_defer_handle_just_hooks();
 //int x11_message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox);

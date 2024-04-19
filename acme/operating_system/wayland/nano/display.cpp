@@ -577,12 +577,12 @@ namespace wayland
 //
 //      }
 ////
-////      XInitThreads();
+////      XInitxThreads();
 ////
 ////      if(!m_pdisplay)
 ////      {
 ////
-////         set_X11_Display(XOpenDisplay(nullptr));
+////         set_X11_Display(XOpenxDisplay(nullptr));
 ////
 ////      }
 

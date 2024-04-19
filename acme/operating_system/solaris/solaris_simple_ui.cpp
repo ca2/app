@@ -12,6 +12,8 @@
 #define MWM_DECOR_MINIMIZE      (1L << 5)
 #define MWM_DECOR_MAXIMIZE      (1L << 6)
 
+Display * x11_get_display();
+
 namespace os
 {
 
@@ -54,7 +56,7 @@ namespace os
 
       XEvent e;
 
-      if(!(display = XOpenDisplay(nullptr)))
+      if(!(display = x11_get_display()))
       {
 
          fprintf(stderr, "ERROR: Could not open display\n");

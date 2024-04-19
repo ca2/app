@@ -8,7 +8,7 @@
 //void x11_init_threads()
 //{
 //
-//   XInitThreads();
+//   XInitxThreads();
 //
 //}
 

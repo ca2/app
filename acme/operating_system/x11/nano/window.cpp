@@ -10,6 +10,7 @@
 #include "acme/user/nano/window.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
+#include "acme/operating_system/x11/display_lock.h"
 #include <X11/Xatom.h>
 #include <xkbcommon/xkbcommon.h>
 #include <X11/XKBlib.h>
@@ -177,6 +178,8 @@ namespace x11
 
       m_pdisplay->display_send([this]()
       {
+
+         display_lock displaylock(m_pdisplay->m_pdisplay);
 
          auto display = m_pdisplay->m_pdisplay;
 
@@ -367,6 +370,9 @@ namespace x11
    void nano_window::display()
    {
 
+               display_lock displaylock(m_pdisplay->m_pdisplay);
+
+
       _wm_nodecorations(false);
 
       XMapWindow(m_pdisplay->m_pdisplay, m_window);
@@ -384,6 +390,9 @@ namespace x11
       XEvent xev;
 
       zero(xev);
+
+               display_lock displaylock(m_pdisplay->m_pdisplay);
+
 
       Window windowRoot = DefaultRootWindow(m_pdisplay->m_pdisplay);
 
@@ -408,6 +417,9 @@ namespace x11
 
    bool nano_window::_on_event(XEvent *pevent)
    {
+
+               display_lock displaylock(m_pdisplay->m_pdisplay);
+
 
       if(m_window == None)
       {
@@ -639,6 +651,9 @@ namespace x11
    void nano_window::destroy()
    {
 
+               display_lock displaylock(m_pdisplay->m_pdisplay);
+
+
       if(m_window)
       {
 
@@ -718,6 +733,7 @@ namespace x11
 
    void nano_window::move_to(const ::point_i32 & point)
    {
+         display_lock displaylock(m_pdisplay->m_pdisplay);
 
       ::XMoveWindow(m_pdisplay->m_pdisplay, m_window, point.x(), point.y());
 
@@ -726,6 +742,9 @@ namespace x11
 
    void nano_window::set_capture()
    {
+
+               display_lock displaylock(m_pdisplay->m_pdisplay);
+
 
       if (XGrabPointer(m_pdisplay->m_pdisplay, m_window, False, ButtonPressMask | ButtonReleaseMask | PointerMotionMask,
                        GrabModeAsync, GrabModeAsync, None, None, CurrentTime) != GrabSuccess)
@@ -740,6 +759,8 @@ namespace x11
 
    void nano_window::release_capture()
    {
+               display_lock displaylock(m_pdisplay->m_pdisplay);
+
 
       int bRet = XUngrabPointer(m_pdisplay->m_pdisplay, CurrentTime);
 
@@ -780,6 +801,9 @@ namespace x11
    void nano_window::get_window_rectangle(::rectangle_i32 & rectangle)
    {
 
+               display_lock displaylock(m_pdisplay->m_pdisplay);
+
+
       Window windowRoot = 0;
       int x = 0;
       int y = 0;
@@ -809,6 +833,9 @@ namespace x11
 
    void nano_window::_wm_nodecorations(int iMap)
    {
+
+               display_lock displaylock(m_pdisplay->m_pdisplay);
+
 
       auto windowRoot = DefaultRootWindow(m_pdisplay->m_pdisplay);
 

@@ -127,7 +127,6 @@ namespace acme
 
       ::pointer <::crypto::crypto >                            m_pcrypto;
 
-
       string                                                            m_strOsUserTheme;
 
       class ::time                                                        m_timeFileListingCache;
@@ -168,6 +167,10 @@ namespace acme
       ::pointer < ::mutex >                  m_pmutexHttpDownload;
       string_array                           m_straHttpDownloading;
       string_array                           m_straHttpExists;
+#if defined(WITH_X11) || defined(WITH_XCB)
+      ::pointer < ::particle >                                 m_pmutexXlib;
+#endif
+
 
 
       system();
@@ -201,6 +204,10 @@ namespace acme
       virtual ::mathematics::mathematics * mathematics();
 
       virtual class ::imaging * imaging();
+
+#if defined(WITH_X11) || defined(WITH_XCB)
+      virtual ::particle * x11_synchronization();
+#endif
 
       inline ::pointer<::acme::node> & node() { return m_pnode; }
 
@@ -432,7 +439,7 @@ namespace acme
 
 #ifdef LINUX
 
-      //!!!      virtual void deferx_initialize_x11();
+      //!!!      virtual void deferx_initializex_x11();
 
 #endif
 

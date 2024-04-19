@@ -228,7 +228,7 @@ namespace sandbox_windowing
    //      if (psystem->m_bUser)
    //      {
    //
-   //         deferx_initialize_x11();
+   //         deferx_initializex_x11();
    //
    //      }
    //

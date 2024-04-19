@@ -256,7 +256,7 @@
 
 
 
-i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
+i32 _cx_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 {
    return 0;
 }

@@ -2089,6 +2089,8 @@ list(APPEND library_source
       operating_system/x11/_.cpp
       operating_system/x11/_atom.cpp
       operating_system/x11/_atom.h
+      operating_system/x11/display_lock.cpp
+      operating_system/x11/display_lock.h
       operating_system/x11/keyboard.cpp
       operating_system/x11/keyboard.h
       operating_system/xcb/nano/_nano.cpp

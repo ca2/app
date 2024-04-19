@@ -821,7 +821,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 
 
 
-/*int _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
+/*int _cx_XErrorHandler(Display * display, XErrorEvent * perrorevent)
  {
  return 0;
  }*/

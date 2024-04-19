@@ -821,7 +821,7 @@ int_bool this->rectangle(oswindow hwnd, RECT32 * prect)
 
 
 
-/*int _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
+/*int _cx_XErrorHandler(Display * display, XErrorEvent * perrorevent)
  {
  return 0;
  }*/

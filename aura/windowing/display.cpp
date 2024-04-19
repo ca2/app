@@ -1408,6 +1408,8 @@ namespace windowing
          if (iMonitor >= 0)
          {
 
+            information() << "get_preferred_restore : " << *prectangle;
+
             return iMonitor;
 
          }

@@ -342,6 +342,18 @@
     <Filter Include="Header Files\memory\allocator\NewFilter1">
       <UniqueIdentifier>{6aad0217-e0da-45e4-9e94-331b5151e407}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\operating_system\x11">
+      <UniqueIdentifier>{9a3de6e0-27a8-4577-b843-bf385028e85d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\x11\nano">
+      <UniqueIdentifier>{5c17217e-6b25-47ba-85cf-d24ff5630bd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\x11">
+      <UniqueIdentifier>{3f7cb403-78b9-4139-bd25-c23eca586ff1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\x11\nano">
+      <UniqueIdentifier>{97440174-dc4e-4712-87ef-25ed72deac6d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -3584,6 +3596,39 @@
     <ClInclude Include="operating_system\errno.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\x11\nano\window.h">
+      <Filter>Header Files\operating_system\x11\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\nano\nano.h">
+      <Filter>Header Files\operating_system\x11\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\nano\event_listener.h">
+      <Filter>Header Files\operating_system\x11\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\nano\display.h">
+      <Filter>Header Files\operating_system\x11\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\nano\aaa_nano.h">
+      <Filter>Header Files\operating_system\x11\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\nano\aaa_font.h">
+      <Filter>Header Files\operating_system\x11\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\nano\_.h">
+      <Filter>Header Files\operating_system\x11\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\keyboard.h">
+      <Filter>Header Files\operating_system\x11</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\display_lock.h">
+      <Filter>Header Files\operating_system\x11</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\_atom.h">
+      <Filter>Header Files\operating_system\x11</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\_.h">
+      <Filter>Header Files\operating_system\x11</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -5037,6 +5082,36 @@
     </ClCompile>
     <ClCompile Include="exception\runtime_check.cpp">
       <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\x11\_.cpp">
+      <Filter>Source Files\operating_system\x11</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\x11\_atom.cpp">
+      <Filter>Source Files\operating_system\x11</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\x11\display_lock.cpp">
+      <Filter>Source Files\operating_system\x11</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\x11\keyboard.cpp">
+      <Filter>Source Files\operating_system\x11</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\x11\system.cpp">
+      <Filter>Source Files\operating_system\x11</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\x11\nano\_nano.cpp">
+      <Filter>Source Files\operating_system\x11\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\x11\nano\aaa_font.cpp">
+      <Filter>Source Files\operating_system\x11\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\x11\nano\display.cpp">
+      <Filter>Source Files\operating_system\x11\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\x11\nano\nano.cpp">
+      <Filter>Source Files\operating_system\x11\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\x11\nano\window.cpp">
+      <Filter>Source Files\operating_system\x11\nano</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

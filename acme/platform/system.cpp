@@ -469,25 +469,7 @@ namespace acme
    }
 
 
-   ::particle * system::x11_synchronization()
-   {
 
-      _synchronous_lock sl(this->synchronization());
-
-      auto psynchronization = m_pmutexXlib;
-
-      if(!psynchronization)
-      {
-
-         psynchronization = node()->create_mutex();
-
-         m_pmutexXlib = psynchronization;
-
-      }
-
-      return psynchronization;
-
-   }
 
 
    ::xml::xml * system::_xml()

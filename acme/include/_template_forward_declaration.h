@@ -951,6 +951,9 @@ using inline_number_string = inline_string<char, 64>;
 template < typename T, typename ...Args >
 inline T * __call__new(Args &&... args);
 
+template < typename T >
+inline void __call__delete(T * p);
+
 
 template < typename T >
 inline T * __new_array(::count c);

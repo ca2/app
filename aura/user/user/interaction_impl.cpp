@@ -51,6 +51,10 @@ bool is_ubunt() { return false; }
 
 #endif
 
+
+#define MORE_LOG
+
+
 point_i32 g_pointLastBottomRight;
 
 #undef ALOG_CONTEXT
@@ -5901,6 +5905,12 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
       //m_puserinteraction->layout_to_design(m_bUpdateBuffer, m_bUpdateWindow);
 
+
+#ifdef MORE_LOG
+information() << "do_graphics(B)";
+#endif
+
+
       ::draw2d::graphics_pointer pgraphics;
 
       m_puserinteraction->defer_do_graphics(pgraphics);
@@ -5994,6 +6004,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    void interaction_impl::defer_do_graphics(::draw2d::graphics_pointer & pgraphics)
    {
 
+      information() << "user::interaction_impl::defer_do_graphics";
 
       //{
 
@@ -6013,7 +6024,11 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
          //m_pgraphics->update_buffer(rectangleWindow.size());
 
+#ifdef MORE_LOG
 
+            information() << "intrimpl::defer_do_graphics on_begin_draw";
+
+#endif
 
          auto pbufferitem = m_pgraphicsgraphics->on_begin_draw(e_graphics_layout);
          //auto pparticleSynchronization = m_pgraphics->get_buffer_item()->m_pmutex;
@@ -6021,9 +6036,22 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          if (!pbufferitem)
          {
 
+#ifdef MORE_LOG
+
+            information() << "intrimpl::defer_do_graphics !pbufferitem";
+
+#endif
+
             return;
 
          }
+
+#ifdef MORE_LOG
+
+            information() << "intrimpl::defer_do_graphics on_begin_draw END";
+
+#endif
+
 
          _synchronous_lock synchronouslock(pbufferitem->m_pmutex);
 
@@ -6037,6 +6065,12 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          if (has_destroying_flag())
          {
 
+#ifdef MORE_LOG
+
+            information() << "intrimpl::defer_do_graphics has_destroying_flag";
+
+#endif
+
             return;
 
          }
@@ -6045,7 +6079,11 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
          pgraphics = pbufferitem->g();
 
+#ifdef MORE_LOG
 
+            information() << "intrimpl::defer_do_graphics got graphics g";
+
+#endif
 
          //#ifdef UNIVERSAL_WINDOWS
          if (::is_null(pgraphics) || pgraphics->nok())
@@ -6077,6 +6115,13 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
             pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
 
             pgraphics->m_pgraphicsbufferitem = pbufferitem;
+
+#ifdef MORE_LOG
+
+            information() << "intrimpl::defer_do_graphics Going to call pgraphics->on_begin_draw";
+
+#endif
+
 
             pgraphics->on_begin_draw();
 
@@ -6149,6 +6194,12 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
 
                   if (m_redrawitema.has_element())
                   {
+
+#ifdef MORE_LOG
+
+                     information() << "intrimpl::defer_do_graphics what?!?!";
+
+#endif
 
                      throw "what?!?!";
 
@@ -6305,7 +6356,7 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
          if (!pbufferitem)
          {
 
-            information() << "defer_do_graphics !pbufferitem";
+            information() << "defer_do_graphics !pbufferitem (2)";
 
             return;
 
@@ -7286,8 +7337,6 @@ if (m_puserinteraction->has_flag(e_flag_destroying)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
-
-      information() << "on_final_set_keyboard_focus";
 
       if (m_puserinteractionKeyboardFocusRequest)
       {

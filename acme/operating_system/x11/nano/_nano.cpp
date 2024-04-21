@@ -22,7 +22,7 @@ void operating_system_initialize_x11_nano(::factory::factory * pfactory)
 
    pfactory->add_factory_item<::x11::nano, ::nano::nano>();
 
-   ::x11::display::get(pfactory);
+   //::x11::display::_nano_0get(pfactory);
 
 }
 

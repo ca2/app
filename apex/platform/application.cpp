@@ -178,9 +178,9 @@ namespace apex
       //set_layer(LAYERED_APEX, this);
 
 
-#ifdef LINUX
-      m_bSnLauncheeSetup = false;
-#endif
+// #ifdef LINUX
+//       m_bSnLauncheeSetup = false;
+// #endif
 
       //m_pappParent = nullptr;
       m_bMessageThread = true;

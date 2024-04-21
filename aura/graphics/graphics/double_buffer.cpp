@@ -2,6 +2,7 @@
 #include "double_buffer.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/graphics/image/image.h"
 #include "aura/windowing/window.h"
 
@@ -136,14 +137,20 @@ namespace graphics
 
          }
 
+         information() << "double_buffer::_on_begin_draw Going to create image : " << sizeImage;
+
          pimage->create(sizeImage);
 
          if (pimage.nok())
          {
 
+            information() << "double_buffer::_on_begin_draw Image Nok : " << sizeImage;
+
             return false;
 
          }
+
+         information() << "double_buffer::_on_begin_draw Created image : " << sizeImage;
 
          auto pgraphics = pimage->g();
 

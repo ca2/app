@@ -86,7 +86,7 @@ namespace x11
       if (!m_pdisplay)
       {
 
-         m_pdisplay = ::x11::display::get(this);
+         m_pdisplay = ::x11::display::_nano_get_x11_display(this);
 
          if (!m_pdisplay)
          {

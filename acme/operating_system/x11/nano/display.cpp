@@ -8,6 +8,7 @@
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
+#include "acme/platform/node.h"
 #include "acme/platform/system.h"
 //#include "acme/primitive/geometry2d/rectangle.h"
 #include "acme/user/nano/window.h"
@@ -26,11 +27,11 @@
 #define MAXSTR 1000
 
 
-::e_status defer_initialize_x11();
+//::e_status defer_initializex_x11();
 
 
-void x11_init_threads();
-Display * x11_get_display();
+int x11_init_threads();
+//Display * x11_get_display();
 
 
 void set_main_user_thread();
@@ -307,7 +308,7 @@ namespace x11
    }
 
 
-   display * display::get(::particle * pparticle, bool bBranch, Display * pdisplay)
+   display * display::_nano_get_x11_display(::particle * pparticle, bool bBranch, Display * pdisplay)
    {
 
       critical_section_lock lock(pparticle->platform()->globals_critical_section());
@@ -525,6 +526,8 @@ namespace x11
    void display::init_task()
    {
 
+      informationf("x11 nano display init_task");
+
       if(system()->m_ewindowing == e_windowing_none)
       {
 
@@ -534,16 +537,16 @@ namespace x11
 
       }
 
-      printf("\n\nx11::display::init_task Going to call defer_initialize_x11\n\n");
-
-      fflush(stdout);
-
-      defer_initialize_x11();
+      // printf("\n\nx11::display::init_task Going to call x11_defer_initialize\n\n");
+      //
+      // fflush(stdout);
+      //
+      // node()->x11_defer_initialize();
 
       if(!m_pdisplay)
       {
 
-         set_X11_Display(x11_get_display());
+         set_X11_Display((Display *) node()->x11_get_display());
 
       }
 
@@ -689,32 +692,32 @@ namespace x11
 } // namespace x11
 
 
-void * x11_get_display(::particle * pparticle)
-{
-
-   auto pdisplay = ::x11::display::get(pparticle, false);
-
-   return pdisplay->m_pdisplay;
-
-}
-
-
-void initialize_x11_display(::particle * pparticle, void * pX11Display)
-{
-
-   ::x11::display::get(pparticle, false, (Display *) pX11Display);
-
-}
+// void * x11_get_display(::particle * pparticle)
+// {
+//
+//    auto pdisplay = ::x11::display::get(pparticle, false);
+//
+//    return pdisplay->m_pdisplay;
+//
+// }
 
 
-void * initialize_x11_display(::particle * pparticle)
-{
+// void initialize_x11_display(::particle * pparticle, void * pX11Display)
+// {
+//
+//    ::x11::display::get(pparticle, false, (Display *) pX11Display);
+//
+// }
 
-   auto pdisplay = ::x11::display::get(pparticle, false);
 
-   return pdisplay->m_pdisplay;
-
-}
+// void * initialize_x11_display(::particle * pparticle)
+// {
+//
+//    auto pdisplay = ::x11::display::get(pparticle, false);
+//
+//    return pdisplay->m_pdisplay;
+//
+// }
 
 
 void x11_process_messages()
@@ -731,16 +734,17 @@ void x11_process_messages()
 
 
 i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
-
-
-::e_status initialize_x11()
+namespace acme
 {
 
-   printf("\n\ninitialize_x11 Going to call XInitThreads\n\n");
+::e_status node::x11_initialize()
+{
+
+   informationf("acme::node::x11_initialize going to call x11_init_threads");
 
    fflush(stdout);
 
-   if (!XInitThreads())
+   if (!x11_init_threads())
    {
 
       return ::error_failed;
@@ -756,46 +760,48 @@ i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
 }
 
 
-::e_status g_estatusInitializeX11 = error_not_initialized;
+//::e_status g_estatusInitializeX11 = error_not_initialized;
 
 
-::e_status defer_initialize_x11()
+::e_status node::x11_defer_initialize()
 {
 
-   if (g_estatusInitializeX11 == error_not_initialized)
+   if (m_estatusInitializeX11 == error_not_initialized)
    {
 
-      g_estatusInitializeX11 = initialize_x11();
+      m_estatusInitializeX11 = x11_initialize();
 
    }
 
-   return g_estatusInitializeX11;
+   return m_estatusInitializeX11;
 
 }
 
 
-
-Display * g_pdisplayX11= nullptr;
-
-
-int g_fdX11[2] = {};
+//Display * g_pdisplayX11= nullptr;
 
 
-Display * x11_get_display()
+//int g_fdX11[2] = {};
+
+
+void * node::x11_get_display()
 {
 
-   defer_initialize_x11();
+   x11_defer_initialize();
 
-   if(g_pdisplayX11 == NULL)
+   if(m_pvoidX11Display == NULL)
    {
 
-      g_pdisplayX11 =  XOpenDisplay(NULL);
+      m_pvoidX11Display =  XOpenDisplay(NULL);
 
    }
 
-   return g_pdisplayX11;
+   return m_pvoidX11Display;
 
 }
+
+
+} // namespace acme
 
 
 
@@ -1124,3 +1130,9 @@ const char * pszRequest;
 }
 
 
+int x11_init_threads()
+{
+
+   return XInitThreads();
+
+}

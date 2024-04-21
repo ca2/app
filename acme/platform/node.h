@@ -115,7 +115,10 @@ namespace acme
 
       enum_application_capability_array                     m_eapplicationcapabilitya;
       string_map < ::pointer<::acme::exclusive > >          m_mapExclusive;
-
+#if defined(WITH_X11)
+      void *                                                m_pvoidX11Display;
+      ::e_status                                            m_estatusInitializeX11;
+#endif
 
       node();
       ~node() override;
@@ -932,8 +935,13 @@ namespace acme
       virtual ::string eol();
 
 #if defined(WITH_X11)
-      void x11_sync(const ::procedure & procedure);
-      void x11_async(const ::procedure & procedure);
+      virtual ::e_status x11_defer_initialize();
+      virtual ::e_status x11_initialize();
+      virtual void * x11_get_display();
+      virtual void x11_sync(const ::procedure & procedure);
+      virtual void x11_async(const ::procedure & procedure);
+      virtual void x11_display_error_trap_push(int i);
+      virtual void x11_display_error_trap_pop_ignored(int i);
 #endif
 
 

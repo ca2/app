@@ -272,11 +272,11 @@ namespace apex
    }
 
 
-   void node::defer_notify_startup_complete()
-   {
-
-
-   }
+   // void node::defer_notify_startup_complete()
+   // {
+   //
+   //
+   // }
 
 
    void node::start_node()

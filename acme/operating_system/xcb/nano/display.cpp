@@ -39,7 +39,7 @@ struct MWMHints
 #define MWM_DECOR_MAXIMIZE      (1L << 6)
 
 
-void * x11_get_display(::particle * pparticle);
+//void * x11_get_display(::particle * pparticle);
 
 void set_main_user_thread();
 
@@ -611,7 +611,7 @@ namespace xcb
       if(!m_pX11Display)
       {
 
-         m_pX11Display = x11_get_display(this);
+         m_pX11Display = node()->x11_get_display();
 
          information() << "xcb nano display::init_task got new x11_display : " << (::iptr) m_pX11Display ;
 

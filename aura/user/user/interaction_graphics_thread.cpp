@@ -20,6 +20,7 @@ CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
 #include "aura/windowing/window.h"
 
 
+#define MORE_LOG
 
 
 #if !defined(WINDOWS)
@@ -956,6 +957,14 @@ namespace user
          information() << "user::list_box graphics_thread_iteration user::list_box";
 
       }
+#ifdef MORE_LOG
+      else
+      {
+
+         information() << "graphics_thread_iteration";
+
+      }
+#endif
 
       i64 i1 = ::i64_nanosecond();
 
@@ -982,6 +991,8 @@ namespace user
 
       if (!puserinteractionimpl)
       {
+
+         information() << "graphics_thread_iteration !puserinteractionimpl";
 
          return false;
 
@@ -1019,7 +1030,9 @@ namespace user
          }
 
 #ifdef MORE_LOG
+
          information() << "graphics_thread_iteration has_graphical_output_purpose";
+
 #endif
 
          //information() << "graphics_thread_iteration has_graphical_output_purpose";
@@ -1037,6 +1050,16 @@ namespace user
          //graphics_thread_update_buffer();
 
          //m_puserinteraction->m_bLockSketchToDesign = true;df
+
+      }
+      else
+      {
+
+#ifdef MORE_LOG
+
+         information() << "graphics_thread_iteration !(Not)has_graphical_output_purpose";
+
+#endif
 
       }
 
@@ -1067,7 +1090,7 @@ namespace user
 
 #ifdef MORE_LOG
                   
-                  information() << "graphics_thread_iteration has_screen_output_purpose";
+                  information() << "graphics_thread_iteration has_screen_output_purpose before window_update_screen";
 
 #endif
 
@@ -1172,6 +1195,8 @@ namespace user
 
    bool graphics_thread::graphics_thread_update_screen()
    {
+
+      information() << "graphics_thread_update_screen";
 
 //      if (m_bExclusiveMode)
 //      {

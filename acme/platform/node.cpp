@@ -88,6 +88,12 @@ namespace acme
 
       m_pthemecolors = nullptr;
 
+#if defined(WITH_X11)
+      m_pvoidX11Display = nullptr;
+      m_estatusInitializeX11 = error_not_initialized;
+#endif
+
+
    }
 
 
@@ -4272,6 +4278,20 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    {
 
       nano()->x11_async(procedure);
+
+   }
+
+
+   void node::x11_display_error_trap_push(int i)
+   {
+
+
+   }
+
+
+   void node::x11_display_error_trap_pop_ignored(int i)
+   {
+
 
    }
 

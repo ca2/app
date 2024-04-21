@@ -21,7 +21,7 @@
 
 
 void x11_init_threads();
-void * x11_get_display();
+//void * x11_get_display();
 
 
 void set_main_user_thread();

@@ -2,8 +2,9 @@
 #include "bitmap.h"
 #include "draw2d.h"
 #include "acme/exception/interface_only.h"
-#include "acme/parallelization/synchronous_lock.h"
 #include "acme/graphics/image/pixmap.h"
+#include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 
 
 namespace draw2d_cairo
@@ -31,7 +32,9 @@ namespace draw2d_cairo
    bool bitmap::CreateBitmap(::draw2d::graphics * pgraphics, i32 cx, i32 cy, ::u32 nPlanes, ::u32 nBitcount, const void * pdata, i32 iStrideParam)
    {
 
-      synchronous_lock ml(::draw2d_cairo::mutex());
+      informationf("draw2d_cairo::bitmap::CreateBitmap : (%d, %d)", cx, cy);
+
+      _synchronous_lock ml(::draw2d_cairo::mutex());
 
       cy = abs(cy);
 
@@ -39,6 +42,8 @@ namespace draw2d_cairo
 
       if(nPlanes != 1 || nBitcount != 32)
       {
+
+         informationf("draw2d_cairo::bitmap::CreateBitmap bad argument nPlanes=%d nBitcount=%d", nPlanes, nBitcount);
 
          throw ::interface_only();
 
@@ -53,11 +58,15 @@ namespace draw2d_cairo
       if(pdata == nullptr || iStrideParam <= 0)
       {
 
+         informationf("draw2d_cairo::bitmap::CreateBitmap setting image transparent");
+
          memory_set(m_mem.data(), 0, m_mem.size());
 
       }
       else
       {
+
+         informationf("draw2d_cairo::bitmap::CreateBitmap copying image data");
 
          if(iStrideParam != iStride)
          {
@@ -79,12 +88,18 @@ namespace draw2d_cairo
 
          }
 
+         informationf("draw2d_cairo::bitmap::CreateBitmap image data copied");
+
       }
+
+      informationf("draw2d_cairo::bitmap::CreateBitmap cairo_image_surface_create_for_data");
 
       m_psurface = cairo_image_surface_create_for_data(m_mem.data(), CAIRO_FORMAT_ARGB32, cx, cy, iStride);
 
       if(m_psurface == nullptr)
       {
+
+         informationf("draw2d_cairo::bitmap::CreateBitmap Cairo Surface NOT Created");
 
          return false;
 
@@ -95,6 +110,8 @@ namespace draw2d_cairo
       m_size.cx() = cx;
 
       m_size.cy() = cy;
+
+      informationf("draw2d_cairo::bitmap::CreateBitmap cairo surface created : cx=%d cy=%d", cx, cy);
 
       return true;
 
@@ -123,16 +140,32 @@ namespace draw2d_cairo
       //try
       //{
 
-         synchronous_lock ml(::draw2d_cairo::mutex());
+      informationf("bitmap::create_bitmap");
+
+         _synchronous_lock ml(::draw2d_cairo::mutex());
+         informationf("bitmap::create_bitmap (1)");
 
          destroy();
 
+         informationf("bitmap::create_bitmap (2)");
+
          ::i32 iScanWidth = -1;
+
+         int iSourceStride = -1;
 
          if(pstride)
          {
 
+            iSourceStride = *pstride;
+
             iScanWidth = *pstride / sizeof(color32_t);
+
+         }
+
+         if(iSourceStride < 0)
+         {
+
+            iSourceStride = size.cx() * sizeof(color32_t);
 
          }
 
@@ -144,6 +177,8 @@ namespace draw2d_cairo
          }
 
          ::i32 iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, iScanWidth);
+
+         informationf("draw2d_cairo::bitmap::create_bitmap cairo stride (andWidth): %d(%d)", iStride, iScanWidth);
 
 #if MEMDLEAK
 
@@ -158,15 +193,15 @@ namespace draw2d_cairo
          if(*ppdata != nullptr)
          {
 
-            if(size.cx() * 4 != iStride)
+            if(iSourceStride != iStride)
             {
 
-               i32 iW = size.cx() * 4;
+               i32 iW = minimum(iStride, iSourceStride);
 
                for(i32 i = 0; i < size.cy(); i++)
                {
 
-                  ::memory_copy(&m_mem.data()[iStride * i], &((::u8 *) *ppdata)[iW * i], iW);
+                  ::memory_copy(&m_mem.data()[iStride * i], &((::u8 *) *ppdata)[iSourceStride * i], iW);
 
                }
 
@@ -186,6 +221,8 @@ namespace draw2d_cairo
 
          if(iSurfaceStatus != CAIRO_STATUS_SUCCESS)
          {
+
+            informationf("draw2d_cairo::bitmap::create_bitmap cairo create image Failed %d", iSurfaceStatus);
 
             cairo_surface_destroy(m_psurface);
 
@@ -239,6 +276,8 @@ namespace draw2d_cairo
 
          m_size = size;
 
+
+         informationf("draw2d_cairo::bitmap::create_bitmap OK");
          //return true;
 
       //}

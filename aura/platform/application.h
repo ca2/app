@@ -58,9 +58,9 @@ namespace aura
       ::user::primitive *                             m_puiCurrent;
       //bool                                            m_bContextTheme;
 
-#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
-      bool                                            m_bSnLauncheeSetup;
-#endif
+// #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+//       bool                                            m_bSnLauncheeSetup;
+// #endif
       //semaphore                                       m_semCompiler;
       // former ::aura::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
 

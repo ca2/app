@@ -4,6 +4,7 @@
 #include "display.h"
 #include "monitor.h"
 #include "acme/platform/system.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/graphics/image/image.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/user.h"
@@ -79,6 +80,8 @@ namespace windowing
       && m_rectangleFixedWorkspace.bottom() != I32_MINIMUM)
       {
 
+         information() << "monitor returning fixed workspace rectangle : " << m_rectangleFixedWorkspace;
+
          return m_rectangleFixedWorkspace;
 
       }
@@ -105,7 +108,11 @@ namespace windowing
    ::rectangle_i32 monitor::_workspace_rectangle()
    {
 
+      information() << "monitor::_workspace_rectangle";
+
       auto rectangleMonitor = monitor_rectangle();
+
+      information() << "monitor::_workspace_rectangle monitor_rectangle : " << rectangleMonitor;
 
       for(auto & r : m_pdisplay->m_rectangleaWorkAreas)
       {

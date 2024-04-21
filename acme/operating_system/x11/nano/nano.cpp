@@ -27,7 +27,7 @@ namespace x11
    void nano::x11_sync(const ::procedure & procedure)
    {
 
-      ::x11::display::get(this)->display_send(procedure);
+      ::x11::display::_nano_get_x11_display(this)->display_send(procedure);
 
    }
 
@@ -35,7 +35,7 @@ namespace x11
    void nano::x11_async(const ::procedure & procedure)
    {
 
-      ::x11::display::get(this)->display_post(procedure);
+      ::x11::display::_nano_get_x11_display(this)->display_post(procedure);
 
    }
 

@@ -6204,6 +6204,13 @@ namespace user
             information() << "_000TopCallOnLayout user::list_box";
 
          }
+         else
+         {
+
+            information() << "_000TopCallOnLayout : " << strType;
+
+         }
+
 
          perform_layout(pgraphics);
 
@@ -7658,7 +7665,7 @@ namespace user
    void interaction::user_send(const ::procedure & procedure)
    {
 
-//#ifdef WINDOWS_DESKTOP
+#ifdef WINDOWS_DESKTOP
 
       auto pthread = m_pthreadUserInteraction;
 
@@ -7682,11 +7689,11 @@ namespace user
 
       pthread->send_procedure(procedure);
 
-//#else
-//
-//      node()->user_send(procedure);
-//
-//#endif
+#else
+
+      node()->user_send(procedure);
+
+#endif
 
    }
 
@@ -19784,18 +19791,26 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       if (rectangleHint.is_empty())
       {
 
+         information() << "calculate_broad_and_compact_restore rHint is empty";
+
          rectangleHint = this->screen_rectangle(::user::e_layout_lading);
 
       }
+
+      information() << "calculate_broad_and_compact_restore rHint : " << rectangleHint;
 
       ::size_i32 sizeMin(sizeMinParam);
 
       if (sizeMin.is_empty())
       {
 
+         information() << "calculate_broad_and_compact_restore sizeMin is empty";
+
          sizeMin = this->get_window_minimum_size();
 
       }
+
+      information() << "calculate_broad_and_compact_restore sizeMin : " << sizeMin;
 
       ::rectangle_i32 rectangleWorkspace;
 
@@ -19811,6 +19826,8 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       if (iMatchingWorkspace >= 0)
       {
+
+         information() << "calculate_broad_and_compact_restore found best workspace : " << iMatchingWorkspace;
 
          ::size_i32 sizeNormal = sizeMin.maximum(rectangleWorkspace.size() * 3 / 5);
 
@@ -19834,6 +19851,8 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          }
 
+         information() << "calculate_broad_and_compact_restore restore broad : " << m_rectangleRestoreBroad;
+
          ::size_i32 sizeMaximumCompact = sizeMin.maximum(rectangleWorkspace.size() * 5 / 10);
 
          auto rectangleStoreCompact = get_window_compact_stored_rectangle();
@@ -19854,12 +19873,22 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          }
 
+         information() << "calculate_broad_and_compact_restore restore compact : " << m_rectangleRestoreCompact;
+
          if (::is_set(prectWorkspace))
          {
 
             *prectWorkspace = rectangleWorkspace;
 
+            information() << "calculate_broad_and_compact_restore worspace : " << rectangleWorkspace;
+
          }
+
+      }
+      else
+      {
+
+         information() << "calculate_broad_and_compact_restore no matching workspace";
 
       }
 

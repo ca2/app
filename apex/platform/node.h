@@ -64,7 +64,7 @@ namespace apex
       virtual ::file::path get_desktop_file_path(::apex::application * papp);
 
 
-      virtual void defer_notify_startup_complete();
+      //virtual void defer_notify_startup_complete();
 
 
       void start_node() override;

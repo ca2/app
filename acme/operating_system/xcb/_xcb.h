@@ -5,7 +5,7 @@
 //!!!#include <xcb/xcb.h>
 
 
-Display * x11_get_display();
+//Display * x11_get_display();
 
 
 Visual * get_32bit_visual(Display * pdisplay);

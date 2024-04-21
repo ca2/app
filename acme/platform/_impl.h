@@ -511,6 +511,15 @@ inline T * __call__new(Args &&... args)
 
 
 template < typename T >
+inline void __call__delete(T * p)
+{
+
+   ::platform::allocator::__call__delete < T >(p);
+
+}
+
+
+template < typename T >
 inline T * __new_array(::count c)
 {
 

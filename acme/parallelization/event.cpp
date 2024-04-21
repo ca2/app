@@ -23,6 +23,13 @@
 #endif
 #include "acme/operating_system/ansi/_ansi.h"
 
+#if defined(OPENBSD)
+
+#include <stdio.h>
+
+#endif
+
+
 #ifdef __MACH__
 
 #include <mach/clock.h>
@@ -141,6 +148,8 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
 
 #elif defined(ANDROID)
 
+   m_sem = -1;
+
    m_pcond = __new< pthread_cond_t >();
 
    pthread_cond_init((pthread_cond_t *) m_pcond, nullptr);
@@ -161,7 +170,6 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
          throw ::exception(error_failed, "RC_OBJECT_NOT_CREATED");
       }
 
-
    }
    else
    {
@@ -175,19 +183,52 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
    if(bManualReset)
    {
 
-      m_pmutex = __new< pthread_mutex_t >();
+      //pthread_mutex m;
 
-      m_pcond = __new< pthread_cond_t >();
+      //auto s1  = sizeof(pthread_mutex);
+      //printf("MUTEX1 SIZE!!!! %llu\n", s1);
+      pthread_mutex_t mt;
 
-      pthread_mutex_init((pthread_mutex_t *) m_pmutex, 0);
+      auto smt  = sizeof(mt);
+      printf("MUTEXMT SIZE!!!! %llu\n", smt);
+      //m_pmutex = __new< pthread_mutex_t >();
+      m_pmutex = ::malloc(sizeof(pthread_mutex_t));
 
-      pthread_cond_init((pthread_cond_t *) m_pcond, 0);
+      auto s  = sizeof(pthread_mutex_t);
+
+      printf("MUTEX SIZE!!!! %llu\n", s);
+
+      ::memory_set(m_pmutex, 0, sizeof(pthread_mutex_t));
+
+      m_pcond = ::malloc(sizeof(pthread_cond_t));
+
+      ::memory_set(m_pcond, 0, sizeof(pthread_cond_t));
+
+      //pthread_mutexattr_t attr;
+
+      //pthread_mutexattr_init(&attr);
+
+      //pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+
+      //auto rcMutex = pthread_mutex_init((pthread_mutex_t *) m_pmutex, &attr);
+
+      auto rcMutex = pthread_mutex_init((pthread_mutex_t *) m_pmutex, nullptr);
+
+      printf("event::event pthread_mutex_init %d %llX\n", rcMutex, (::uptr) m_pmutex);
+
+      auto rcCond = pthread_cond_init((pthread_cond_t *) m_pcond, nullptr);
+
+      printf("event::event pthread_cond_init %d %llX\n", rcCond, (::uptr) m_pcond);
 
       m_bSignaled = bInitiallyOwn;
+
+      m_sem = -1;
 
    }
    else
    {
+
+      printf("AUTOMATIC EVENT\n");
 
       m_pmutex = nullptr;
 
@@ -237,25 +278,78 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
 event::~event()
 {
 
-#if defined(LINUX)
-
-   semun ignored_argument;
-
-   semctl(m_sem, 0, IPC_RMID, ignored_argument);
-
-   ::acme::del((pthread_mutex_t * &)m_pmutex);
-
-   ::acme::del((pthread_cond_t * &)m_pcond);
-
-#elif defined(ANDROID)
+// #if defined(LINUX)
+//
+//    semun ignored_argument{};
+//
+//    semctl(m_sem, 0, IPC_RMID, ignored_argument);
+//
+//    if(m_pcond != nullptr)
+//    {
+//       pthread_cond_destroy(m_pcond);
+//       __call__delete((pthread_cond_t *)m_pcond);
+//       m_pcond = nullptr;
+//    }
+//    if(m_pmutex != nullptr)
+//    {
+//       pthread_mutex_destroy((pthread_mutex_t *)m_pmutex);
+//       __call__delete ((pthread_mutex_t *)m_pmutex);
+//       m_pmutex = nullptr;
+//    }
+#if defined(ANDROID)
 
    if(m_pcond != nullptr)
    {
-      delete (pthread_cond_t *)m_pcond;
+      pthread_cond_destroy(m_pcond);
+      __call__delete((pthread_cond_t *)m_pcond);
+      m_pcond = nullptr;
    }
    if(m_pmutex != nullptr)
    {
-      delete (pthread_mutex_t *)m_pmutex;
+      pthread_mutex_destroy((pthread_mutex_t *)m_pmutex);
+      __call__delete ((pthread_mutex_t *)m_pmutex);
+      m_pmutex = nullptr;
+   }
+
+#elif !defined(WINDOWS)
+
+   if(m_sem != -1)
+   {
+
+      semun ignored_argument{};
+
+      auto rc = semctl(m_sem, 0, IPC_RMID, ignored_argument);
+
+      m_sem = -1;
+
+      printf("semctl IPC_RMID %d\n", rc);
+
+   }
+
+   if(m_pcond != nullptr)
+   {
+
+      int rc = pthread_cond_destroy((pthread_cond_t *)m_pcond);
+
+      ::free((pthread_cond_t *)m_pcond);
+
+      m_pcond = nullptr;
+
+      printf("pthread_cond_destroy %d\n", rc);
+
+   }
+
+   if(m_pmutex != nullptr)
+   {
+
+      int rc = pthread_mutex_destroy((pthread_mutex_t *)m_pmutex);
+
+      ::free((pthread_mutex_t *)m_pmutex);
+
+      m_pmutex = nullptr;
+
+      printf("pthread_mutex_destroy %d\n", rc);
+
    }
 
 #endif
@@ -748,7 +842,7 @@ bool event::_wait (const class time & timeWait)
                
             }
 
-            if(error == EBUSY || error == ETIMEDOUT)
+            if(error == EBUSY || error == ETIMEDOUT || error == EINVAL)
             {
                
                pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);

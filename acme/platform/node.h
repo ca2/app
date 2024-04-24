@@ -810,7 +810,7 @@ namespace acme
 
    virtual void set_file_extension_mime_type(string_array & straExtension, string_array & straMimeType);
 
-   virtual void register_user_auto_start(const string & strAppId, const ::file::path & pathExecutable, const string & strArguments, bool bRegister);
+   virtual void register_user_auto_start(::acme::application * papplication, const string & strArguments, bool bRegister);
 
    virtual bool is_user_auto_start(const string & strAppId);
 

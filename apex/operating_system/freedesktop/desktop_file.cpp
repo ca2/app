@@ -320,30 +320,34 @@ namespace freedesktop
 
       //::file::path pathIcon = dir()->matter("main/icon-256.png");
 
-      ::file::path pathModule = acmedirectory()->module();
+      ::file::path pathAppConfig = pacmedirectory->home() / ".config" / papp->m_strAppId;
 
-      ::file::path pathModuleIcon256 = pathModule / (strName + "-256.png");
+      ::file::path pathModuleIcon256 = pathAppConfig / "icon-256.png";
 
       ::acme::get()->platform()->informationf("\npathModuleIcon256=" + pathModuleIcon256);
 
       //::fflush(stdout);
 
-      if (!acmefile()->exists(pathModuleIcon256)) {
+      if (!acmefile()->exists(pathModuleIcon256))
+      {
 
-         auto pfilecontext = pcontext->m_papexcontext->file();
-
-         auto pfileMainIcon256 = pfilecontext->get_file("matter://main/icon-256.png",
+         auto pfileMainIcon256 = papp->get_file("matter://main/icon-256.png",
                                                                             ::file::e_open_read);
 
          bool bNok = pfileMainIcon256.nok();
 
-         if (bNok) {
+         if (bNok)
+         {
 
             file_not_ok();
 
          }
+         else
+         {
 
-         papp->file()->copy(pathModuleIcon256, pfileMainIcon256);
+            papp->file()->copy(pathModuleIcon256, pfileMainIcon256);
+
+         }
 
       }
 

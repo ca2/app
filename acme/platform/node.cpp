@@ -4002,7 +4002,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
-   void node::register_user_auto_start(const string & strAppId, const ::file::path & pathExecutable, const string & strArguments, bool bRegister)
+   void node::register_user_auto_start(::acme::application * papplication, const string & strArguments, bool bRegister)
    {
 
       throw interface_only();

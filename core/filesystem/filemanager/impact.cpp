@@ -251,7 +251,7 @@ namespace filemanager
 
                auto pdatetime = psystem->datetime();
 
-               strName = strPrefix + pdatetime->international().get_date_time() + strSuffix;
+               strName = strPrefix + pdatetime->date_time_text() + strSuffix;
 
                strName.find_replace(":", "-");
 

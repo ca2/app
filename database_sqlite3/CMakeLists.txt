@@ -51,7 +51,7 @@ if (MSVC)
    target_link_options(database_sqlite3 PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
    target_link_options(database_sqlite3 PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/database_sqlite3.lib")
    target_link_options(database_sqlite3 PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/database_sqlite3.def")
-   target_link_libraries(database_sqlite3 PRIVATE ${library_references} sqlite)
+   target_link_libraries(database_sqlite3 PRIVATE ${library_references} sqlite ${global_library_references})
 
 
 elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
@@ -72,11 +72,11 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
 
-   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES} ${global_library_references})
    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_LIBRARIES})
 
    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-   target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+   # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
    message(STATUS "(B) PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 

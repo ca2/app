@@ -113,7 +113,7 @@ namespace draw2d
 
    //   pitem->m_polygon.set_size(nCount);
 
-   //   memcpy(pitem->m_polygon.data(), ppoints, pitem->m_polygon.get_size_in_bytes());
+   //   ::memory_copy(pitem->m_polygon.data(), ppoints, pitem->m_polygon.get_size_in_bytes());
 
    //   pitem->m_efillmode = efillmode;
 

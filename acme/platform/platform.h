@@ -129,7 +129,7 @@ namespace platform
       }
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 
       ::critical_section m_criticalsectionTz;
 
@@ -251,11 +251,15 @@ namespace platform
 
       string get_argument1(::index iArgument) const;
 
-      bool has_argument1(const ::scoped_string & scopedArgument) const;
+      bool has_argument(const ::scoped_string & scopedArgument) const;
 
       inline ::count get_argument_count1() const { return _get_argc() - 1; }
 
       string_array get_arguments();
+
+      ::string get_argument_begins_eat(const ::scoped_string & scopedstrPrefix);
+
+      ::string_array get_argument_options(const ::scoped_string & scopedstrArgument);
 
       string get_arg(::index i) const;
       string get_env(const ::scoped_string & scopedstrVariableName) const;
@@ -337,7 +341,7 @@ namespace platform
 
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 
       ::critical_section * tz_critical_section() { return &m_criticalsectionTz; }
 
@@ -414,7 +418,7 @@ namespace platform
        //
        virtual void* operating_system_library_open(const ::file::path & path, string& strMessage);
 
- #ifdef FREEBSD
+ #if defined FREEBSD || defined(OPENBSD)
        virtual string operating_system_library_is_loaded(const ::file::path &path);
  #endif // FREEBSD
     virtual void* operating_system_library_touch(const ::file::path & path, string& strMessage);

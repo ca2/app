@@ -235,19 +235,9 @@ namespace app_shader
 
                     psaveimage->m_eformat = ::draw2d::e_format_png;
 
-                    auto psystem = system()->m_paurasystem;
+                    string strDate = datetime()->date_time_text_for_file();
 
-                    auto pdatetime = psystem->m_pdatetime;
-
-                    string strDate = pdatetime->international().get_date_time(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE);
-
-                    //auto papp = get_app();
-
-                    auto pcontext = m_pcontext;
-
-                    auto pcontextimage = pcontext->context_image();
-
-                    pcontextimage->save_image("image://app_simple_shader-" + strDate + ".png", pimage, psaveimage);
+                    context_image()->save_image("image://app_simple_shader-" + strDate + ".png", pimage, psaveimage);
 
                  });
 

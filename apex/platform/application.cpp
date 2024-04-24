@@ -178,9 +178,9 @@ namespace apex
       //set_layer(LAYERED_APEX, this);
 
 
-#ifdef LINUX
-      m_bSnLauncheeSetup = false;
-#endif
+// #ifdef LINUX
+//       m_bSnLauncheeSetup = false;
+// #endif
 
       //m_pappParent = nullptr;
       m_bMessageThread = true;
@@ -4557,7 +4557,7 @@ namespace apex
 
       auto pdatetime = psystem->m_pdatetime;
 
-      strMessage = pdatetime->international().get_date_time();
+      strMessage = pdatetime->date_time_text();
       strMessage += " ";
       strMessage += pszMessage;
       strMessage += "\n";
@@ -6542,11 +6542,11 @@ namespace apex
 
       if (node()->is_debug_build())
       {
-         strUrl = "http://basis-server.ca2.software/api/spaignition/download?authnone&configuration=basis&stage=";
+         strUrl = "http://basis-ca2.network/api/spaignition/download?authnone&configuration=basis&stage=";
       }
       else
       {
-         strUrl = "http://stage-server.ca2.software/api/spaignition/download?authnone&configuration=stage&stage=";
+         strUrl = "http://stage-ca2.network/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
       auto psystem = system();
@@ -10030,7 +10030,7 @@ namespace apex
    }
 
 
-#if defined(LINUX) || defined(FREEBSD)
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 
 
    string application::get_wm_class() const
@@ -10107,7 +10107,7 @@ namespace apex
    }
 
 
-   ::e_status application::on_html_response(string & strHtml, const ::string & strUrl, const ::property_set & setPost)
+   ::e_status application::on_html_response(::networking::application_socket * psocket, string & strHtml, const ::string & strUrl, const ::property_set & setPost)
    {
 
       ::e_status estatus = ::success_none;
@@ -10115,7 +10115,7 @@ namespace apex
       if (m_pnetworkingapplication)
       {
 
-         estatus = networking_application()->on_html_response(strHtml, strUrl, setPost);
+         estatus = networking_application()->on_html_response(psocket, strHtml, strUrl, setPost);
 
       }
 
@@ -10131,7 +10131,7 @@ namespace apex
       
       property_set setPost;
 
-      auto estatus = on_html_response(strHtml, strUri, setPost);
+      auto estatus = on_html_response(nullptr, strHtml, strUri, setPost);
 
       if(estatus != success_none && estatus.succeeded())
       {

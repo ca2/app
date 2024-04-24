@@ -50,6 +50,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 ////#include <ctype.h>
 #include <time.h>
 
+#if defined(OPENBSD)
+#include <sys/ucred.h>
+#endif
 
 #ifdef PARALLELIZATION_PTHREAD
 
@@ -2663,19 +2666,19 @@ bool base_socket::SetSoNosigpipe(bool x)
 
       }
 
-      if (m_iKeepAliveCount > 0)
-      {
+      //if (m_iKeepAliveCount > 0)
+      //{
 
-         output_debug_string("m_iKeepAliveCount > 0");
+      //   output_debug_string("m_iKeepAliveCount > 0");
 
-      }
+      //}
 
-      if (base_socket_composite() && base_socket_composite()->m_iKeepAliveCount > 0)
-      {
+      //if (base_socket_composite() && base_socket_composite()->m_iKeepAliveCount > 0)
+      //{
 
-         output_debug_string("base_socket_composite()->m_iKeepAliveCount > 0");
+      //   output_debug_string("base_socket_composite()->m_iKeepAliveCount > 0");
 
-      }
+      //}
 
       if (LineProtocol())
       {

@@ -968,7 +968,7 @@ pacmedirectory->create("/ca2core");
 
       auto pdatetime = datetime();
 
-      string strLogTime = pdatetime->international().get_date_time_for_file_with_no_spaces();
+      string strLogTime = pdatetime->date_time_text_for_file_with_no_spaces();
 
       strLogTime.replace_with("/", "-");
 
@@ -4427,10 +4427,10 @@ namespace apex
 #ifdef LINUX
 
 
-   //   void system::defer_initialize_x11()
+   //   void system::deferx_initializex_x11()
    //   {
    //
-   //      return ::acme::system::defer_initialize_x11();
+   //      return ::acme::system::deferx_initializex_x11();
    //
    //   }
 

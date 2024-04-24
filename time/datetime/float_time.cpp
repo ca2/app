@@ -374,7 +374,7 @@ CLASS_DECL_CA2_TIME HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, u32 
 
 //  informationf("(%s,0x%08x,0x%08x,%p)\n", debugstr_w(strIn), lcid, dwFlags, pdateOut);
 
-  memset(&dp, 0, sizeof(dp));
+  ::memory_set(&dp, 0, sizeof(dp));
 
 #ifdef METROWIN
 

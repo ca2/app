@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include "acme/operating_system/shared_posix/c_error_number.h"
+
+
 class time;
 
 

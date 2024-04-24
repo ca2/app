@@ -38,6 +38,9 @@
 #include "acme/constant/memory_heap.h"
 #include "operating_system/types.h"
 #include "operating_system/system.h"
+#ifdef	_STDIO_H_
+#error "already included?!?! _____ (After including operating_system/system.h)"
+#endif
 
 
 #ifdef WINDOWS
@@ -81,9 +84,22 @@
 
 //#include <atomic>
 #include <initializer_list>
+#ifdef	_STDIO_H_
+#error "already included?!?! _____ (After including initializer_list)"
+#endif
 #include <typeinfo>
-#include <tuple>
+#ifdef	_STDIO_H_
+#error "already included?!?! _____ (After including typeinfo)"
+#endif
+//#include <tuple>
+//#ifdef	_STDIO_H_
+//#error "already included?!?! _____ (After including tuple)"
+//#endif
 #include <type_traits>
+#ifdef	_STDIO_H_
+#error "already included?!?! _____ (After including type_traits)"
+#endif
+
 
 #endif
 
@@ -130,6 +146,13 @@ typedef i64 filesize;
 
 
 #if defined(FREEBSD)
+
+#define inplace_new_throw_spec throw()
+#define new_throw_spec
+#define del_throw_spec noexcept
+#define MEMORY_DECL
+
+#elif defined(OPENBSD)
 
 #define inplace_new_throw_spec throw()
 #define new_throw_spec
@@ -189,6 +212,10 @@ typedef i64 filesize;
 
 
 #include "acme/memory/_new.h"
+#ifdef	_STDIO_H_
+#error "already included?!?! _____ (After including acme/memory/_new.h)"
+#endif
+
 
 //#include "acme/include/_new.h"
 

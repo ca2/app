@@ -25,7 +25,7 @@ namespace networking
    }
 
 
-   ::e_status application_handler::on_html_response(string & strHtml, const ::string& strUrl, const ::property_set& setPost)
+   ::e_status application_handler::on_html_response(::networking::application_socket * psocket, string & strHtml, const ::string& strUrl, const ::property_set& setPost)
    {
 
       auto psystem = system();
@@ -44,7 +44,7 @@ namespace networking
       strHtml += "🌌 🌍[ ca2/C++/Windows ] Creating Simple Local Webserver";
       strHtml += "</h1>";
       strHtml += "<h4><a href=\"https://ca2.software/camilo\">cs</a><a href=\"https://ca2.io\">&lt;3</a><a href=\"https://thomasbs.com/\">tbs</a>!!</h4>";
-      strHtml += "&lt;3TBS - InfinityUnicodeCharacter - " + pdatetime->international().get_date_time() + "- +InfinityUnicodeCharacter - CA2(THWOASONE)";
+      strHtml += "&lt;3TBS - InfinityUnicodeCharacter - " + pdatetime->date_time_text() + "- +InfinityUnicodeCharacter - CA2(THWOASONE)";
       strHtml += "</body>";
       strHtml += "</html>";
 

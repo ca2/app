@@ -126,7 +126,14 @@ bool file_context::exists(const ::file::path &pathParam)
 
    auto etype = safe_get_type(path);
 
-   return etype == ::file::e_type_file || etype == ::file::e_type_element;
+   if (!(etype & ::file::e_type_exists))
+   {
+
+      return false;
+
+   }
+
+   return etype & ::file::e_type_file2 || etype & ::file::e_type_element2;
 
 }
 
@@ -1677,14 +1684,14 @@ void file_context::calculate_main_resource_memory()
    if (pfolder->locate_file(strPath))
    {
 
-      return ::file::e_type_file;
+      return ::file::e_type_existent_file;
 
    }
 
    if (pfolder->locate_folder(strPath))
    {
 
-      return ::file::e_type_folder;
+      return ::file::e_type_existent_folder;
 
    }
 
@@ -1696,7 +1703,11 @@ void file_context::calculate_main_resource_memory()
 void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, enum_extract eextract)
 {
 
-   if (dir()->is(varSource.as_file_path()) &&
+   auto pdir = dir();
+
+   auto bSourceIsDir = pdir->is(varSource);
+
+   if (bSourceIsDir &&
        (eextract == e_extract_first || eextract == e_extract_all || !(string_ends_ci(varSource.as_file_path(), ".zip"))))
    {
 
@@ -2591,7 +2602,7 @@ file_pointer file_context::get(const ::file::path &name)
 
       auto pdatetime = psystem->datetime();
 
-      strMessage = pdatetime->international().get_date_time() + " " + strTempFile;
+      strMessage = pdatetime->date_time_text() + " " + strTempFile;
 
       acmefile()->append_wait("C:\\ca2\\toomuchuploads.txt", strMessage);
 

@@ -123,7 +123,7 @@ namespace sockets_bsd
    i32 listen_socket_impl::Bind(const string & intf,::networking::port_t port,i32 depth)
    {
       
-      auto paddress = __SystemNetworking(system())->create_address(intf, port);
+      auto paddress = __SystemNetworking(system())->create_address(intf, preferred_address_type(), port);
 
       if (paddress->is_valid())
       {
@@ -147,7 +147,7 @@ namespace sockets_bsd
    i32 listen_socket_impl::Bind(const string & intf,::networking::port_t port,const string & protocol,i32 depth)
    {
 
-      auto paddress = __SystemNetworking(system())->create_address(intf, port);
+      auto paddress = __SystemNetworking(system())->create_address(intf, preferred_address_type(), port);
 
       if (paddress->is_valid())
       {

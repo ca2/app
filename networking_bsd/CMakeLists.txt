@@ -158,8 +158,6 @@ list(APPEND library_references
 
 if (MSVC)
    set(LIBCXX_TARGETING_MSVC ON)
-else ()
-   set(LIBCXX_TARGETING_MSVC OFF)
 endif ()
 
 
@@ -186,6 +184,7 @@ if (MSVC)
 elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
+   #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 
 
@@ -206,11 +205,11 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
    if (NOT ${FREEBSD})
       target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
    endif ()
-   #target_link_options(${PROJECT_NAME} PRIVATE -Wl,-rpath=$ORIGIN)
-   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
+   #target_link_options(${PROJECT_NAME} PRIVATE "-Wl,-rpath=\$ORIGIN")
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES} ${global_library_references})
    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_LIBRARIES})
    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-   target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+   # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
    message(STATUS "(G) PKGCONFIG_CFLAGS ${PKGCONFIG_CFLAGS}")
    message(STATUS "(G) PKGCONFIG_LIBRARIES is ${PKGCONFIG_LIBRARIES}")

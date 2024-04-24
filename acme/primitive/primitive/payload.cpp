@@ -596,7 +596,7 @@ bool payload::convert(const ::payload & payload)
       else
       {
 
-         memcpy(&m_all, &payload.m_all, sizeof(m_all));
+         ::memory_copy(&m_all, &payload.m_all, sizeof(m_all));
 
       }
 
@@ -1283,7 +1283,7 @@ class ::payload & payload::operator = (const ::color::hls & hls)
 //}
 
 
-#if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID) && !defined(APPLE_IOS) && !defined(FREEBSD)
+#if !defined(LINUX) && !defined(MACOS) && !defined(ANDROID) && !defined(APPLE_IOS) && !defined(FREEBSD) && !defined(OPENBSD)
 
 class ::payload & payload::operator = (long l)
 {
@@ -1745,7 +1745,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
             m_atom = payload.m_atom;
             break;
          default:
-            memcpy(m_all, payload.m_all, sizeof(m_all));
+            ::memory_copy(m_all, payload.m_all, sizeof(m_all));
             //m_str = payload.m_str;
             break;
          }
@@ -3873,7 +3873,7 @@ bool payload::as_bool() const
    case e_type_f64:
       return (::i8)m_f64;
    case e_type_string:
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
       return (::i8)atof(m_str);
 #else
       return (::i8)_atof_l(m_str, ::get_task()->locale()->m_locale);
@@ -3915,7 +3915,7 @@ bool payload::as_bool() const
    case e_type_f64:
       return (::u8)m_f64;
    case e_type_string:
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
       return (::u8)atof(m_str);
 #else
       return (::u8)_atof_l(m_str, ::get_task()->locale()->m_locale);
@@ -3984,7 +3984,7 @@ bool payload::as_bool() const
    case e_type_f64:
       return (::i16)m_f64;
    case e_type_string:
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
       return (::i16)atof(m_str);
 #else
       return (::i16)_atof_l(m_str, ::get_task()->locale()->m_locale);
@@ -4054,7 +4054,7 @@ bool payload::as_bool() const
    case e_type_f64:
       return (::u16)m_f64;
    case e_type_string:
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
       return (::u16)atof(m_str);
 #else
       return (::u16)_atof_l(m_str, ::get_task()->locale()->m_locale);
@@ -4124,7 +4124,7 @@ bool payload::as_bool() const
    case e_type_f64:
       return (::f32) m_f64;
    case e_type_string:
-   #if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+   #if defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
       return (::f32) atof(m_str);
    #else
       return (::f32) _atof_l(m_str, ::get_task()->locale()->m_locale);
@@ -4235,7 +4235,7 @@ bool payload::as_bool() const
    else if(m_etype == ::e_type_string)
    {
 
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 
       f64 = atof(m_str);
 
@@ -6452,7 +6452,7 @@ bool payload::is_floating() const
 
       ::string str(::transfer(string()));
 
-//#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+//#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 //      if(is_scalar()
 //            && (fmod(atof(str), 1.0) == 0.0
 //                && fabs(atof(str)) <= pow(2.0, 31.0)))
@@ -7306,7 +7306,7 @@ end:
    if(bFloat)
    {
 
-//#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+//#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 
       ::f64 f64 = atof(strNumber);
 
@@ -9842,6 +9842,8 @@ f = payload.as_f64();
          return ::is_null(m_ppayloada) ? 0 : m_ppayloada->get_count();
       case e_type_property_set:
          return ::is_null(m_ppropertyset) ? 0 : m_ppropertyset->property_count();
+      case e_type_property:
+         return ::is_null(m_pproperty) ? 0 : m_pproperty->get_count();
       case e_type_empty:
       case e_type_null:
       case e_type_new:

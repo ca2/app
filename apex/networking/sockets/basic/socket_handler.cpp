@@ -11,7 +11,7 @@
 //
 //#endif
 //
-//#if defined(__APPLE__) || defined(FREEBSD)
+//#if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
 //
 //#define bcopy(src, dest, len) ::memory_copy(dest, src, len)
 //

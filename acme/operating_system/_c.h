@@ -31,6 +31,12 @@
 //#include "acme/operating_system/ansi/_c.h"
 //#include "acme/operating_system/linux/_c.h"
 
+#elif defined(OPENBSD)
+
+//#include "acme/operating_system/cairo/_c.h"
+//#include "acme/operating_system/ansi/_c.h"
+//#include "acme/operating_system/linux/_c.h"
+
 #elif defined(UNIVERSAL_WINDOWS)
 
 #include "acme/operating_system/ansi/_c.h"

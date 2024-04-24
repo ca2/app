@@ -30,7 +30,7 @@
 //
 //   _gcvt_s(szBuffer, 32, d, DBL_DIG);
 //
-//#elif defined(ANDROID) || defined(FREEBSD)
+//#elif defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 //
 //   sprintf(szBuffer, "%.6f", d);
 //

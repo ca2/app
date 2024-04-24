@@ -286,6 +286,8 @@ list(APPEND library_source
    memory/memory_management.cpp
    memory/memory_management.h
    #memory/new.cpp
+   memory/operation.cpp
+   memory/operation.h
    memory/os_alloc.cpp
    #memory/os_alloc.h
    #memory/os_impl/malloc.cpp
@@ -341,6 +343,8 @@ list(APPEND library_source
    operating_system/message_box.cpp
    operating_system/message_box.h
    operating_system/parallelization.cpp
+   operating_system/path.cpp
+   operating_system/path.h
    operating_system/process.h
    operating_system/summary.cpp
    operating_system/summary.h
@@ -483,6 +487,7 @@ list(APPEND library_source
    primitive/collection/__payload_array.cpp
    primitive/collection/__property_set.h
    primitive/collection/_generic_array.h
+
    #primitive/collection/2d_array.cpp
    primitive/collection/array.cpp
    primitive/collection/atom_array.h
@@ -507,6 +512,7 @@ list(APPEND library_source
    #primitive/collection/string_to_string_map.cpp
    primitive/collection/string_list.cpp
    primitive/collection/string_list.h
+   primitive/comparison/array.h
    primitive/comparison/var_strict.cpp
    primitive/data/_.h
    #primitive/data/_data.h
@@ -1335,6 +1341,8 @@ list(APPEND library_source
    exception/exception2.h
    exception/exit.cpp
    exception/exit.h
+   exception/runtime_check.cpp
+   exception/runtime_check.h
    #exception/standard.cpp
    #exception/standard.h
    exception/translator.h
@@ -1443,6 +1451,8 @@ list(APPEND library_source
    memory/memory.h
    #memory/memory_allocator.h
    #memory/os_alloc.h
+   memory/operation.cpp
+   memory/operation.h
    memory/plex.cpp
    memory/plex.h
    memory/plex_heap.cpp
@@ -1471,6 +1481,8 @@ list(APPEND library_source
    operating_system/ansi/semun.h
    operating_system/bidirectional_pipe.cpp
    operating_system/bidirectional_pipe.h
+   operating_system/environment.cpp
+   operating_system/environment.h
    operating_system/error_code.cpp
    operating_system/error_code.h
    operating_system/exit_status.cpp
@@ -1482,8 +1494,8 @@ list(APPEND library_source
    operating_system/parallelization.h
    operating_system/pipe.cpp
    operating_system/pipe.h
+   operating_system/posix/_stdio_file.h
    operating_system/posix/call_stack.cpp
-   operating_system/posix/file.h
    operating_system/posix/mq_base.h
    operating_system/pthread/pthread_np.cpp
    operating_system/process.cpp
@@ -1566,7 +1578,7 @@ list(APPEND library_source
    platform/class.h
    platform/cmp.h
    platform/cmp2.h
-   platform/common.h
+   #platform/common.h
    platform/const.h
    platform/constraint.h
    platform/conversation_message.cpp
@@ -2036,7 +2048,7 @@ endif ()
 
 if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
-   if(${WAYLAND})
+   if(${HAS_WAYLAND})
 list(APPEND library_source
       operating_system/wayland/nano/_nano.cpp
       operating_system/wayland/nano/_.h
@@ -2072,13 +2084,18 @@ list(APPEND library_source
       operating_system/x11/nano/display.cpp
       operating_system/x11/nano/display.h
       operating_system/x11/nano/event_listener.h
+      operating_system/x11/nano/nano.cpp
+      operating_system/x11/nano/nano.h
       operating_system/x11/nano/window.h
       operating_system/x11/nano/window.cpp
       operating_system/x11/_.cpp
       operating_system/x11/_atom.cpp
       operating_system/x11/_atom.h
+      operating_system/x11/display_lock.cpp
+      operating_system/x11/display_lock.h
       operating_system/x11/keyboard.cpp
       operating_system/x11/keyboard.h
+      operating_system/x11/system.cpp
       operating_system/xcb/nano/_nano.cpp
       operating_system/xcb/nano/_.h
       operating_system/xcb/nano/display.cpp
@@ -2108,20 +2125,20 @@ if (${LINUX})
       operating_system/linux/_factory.cpp
       #operating_system/linux/_linux.h
       #operating_system/linux/_linux.h
-      operating_system/linux/_user.h
+      #operating_system/linux/_user.h
       operating_system/linux/application.h
       operating_system/linux/callstack.cpp
-      operating_system/linux/cross_win_file.cpp
-      operating_system/linux/cross_win_file.h
-      operating_system/linux/cross_win_gdi.cpp
-      operating_system/linux/cross_win_gdi.h
-      operating_system/linux/cross_win_gdi_internal.h
+      #operating_system/linux/cross_win_file.cpp
+      #operating_system/linux/cross_win_file.h
+      #operating_system/linux/cross_win_gdi.cpp
+      #operating_system/linux/cross_win_gdi.h
+      #operating_system/linux/cross_win_gdi_internal.h
       operating_system/linux/debug.cpp
       operating_system/linux/debug.h
       operating_system/linux/dumpinit.cpp
       operating_system/linux/error.cpp
       operating_system/linux/file.cpp
-      operating_system/linux/file.h
+      #operating_system/linux/file.h
       operating_system/linux/file_lock.cpp
       operating_system/linux/graphics.cpp
       #operating_system/linux/internal.h
@@ -2158,7 +2175,7 @@ if (${LINUX})
 endif ()
 
 
-if(${LINUX} OR ${FREEBSD})
+if(${LINUX} OR ${FREEBSD} OR ${OPENBSD})
 
 
    list(APPEND library_source
@@ -2484,14 +2501,14 @@ if (${FREEBSD})
       operating_system/freebsd/_factory.cpp
       operating_system/freebsd/_freebsd.h
       operating_system/freebsd/_freebsd2.h
-      operating_system/freebsd/_user.h
+      #operating_system/freebsd/_user.h
       operating_system/freebsd/application.h
       operating_system/freebsd/call_stack.cpp
-      operating_system/freebsd/cross_win_file.cpp
-      operating_system/freebsd/cross_win_file.h
-      operating_system/freebsd/cross_win_gdi.cpp
-      operating_system/freebsd/cross_win_gdi.h
-      operating_system/freebsd/cross_win_gdi_internal.h
+#      operating_system/freebsd/cross_win_file.cpp
+#      operating_system/freebsd/cross_win_file.h
+#      operating_system/freebsd/cross_win_gdi.cpp
+#      operating_system/freebsd/cross_win_gdi.h
+#      operating_system/freebsd/cross_win_gdi_internal.h
       operating_system/freebsd/debug.cpp
       operating_system/freebsd/debug.h
       operating_system/freebsd/dumpinit.cpp
@@ -2506,6 +2523,7 @@ if (${FREEBSD})
       operating_system/freebsd/freebsd.inl
       operating_system/freebsd/freebsd2.cpp
       operating_system/freebsd/freebsd_freebsd.h
+      #operating_system/freebsd/get_module_path_openbsd.cpp
       operating_system/freebsd/graphics.cpp
       operating_system/freebsd/internal.h
       operating_system/freebsd/library.cpp
@@ -2532,6 +2550,82 @@ if (${FREEBSD})
 
 endif ()
 
+if (${OPENBSD})
+   list(APPEND library_source
+
+      #operating_system/openbsd/application_system_run.cpp
+      #operating_system/openbsd/console.cpp
+      #operating_system/openbsd/console.h
+      #operating_system/openbsd/file.cpp
+      #operating_system/openbsd/file.h
+      #operating_system/openbsd/gdk.cpp
+      #operating_system/openbsd/gdk.h
+      #operating_system/openbsd/list_serial_ports.cpp
+      #operating_system/openbsd/operating_system.cpp
+      #operating_system/openbsd/operating_system.h
+      #operating_system/openbsd/shell.cpp
+      #operating_system/openbsd/shell_openbsd.cpp
+      #operating_system/openbsd/stdio_file.cpp
+      #operating_system/openbsd/stdio_file.h
+      #operating_system/openbsd/user.cpp
+      operating_system/openbsd/
+      operating_system/openbsd/_.cpp
+      operating_system/openbsd/_.cpp
+      operating_system/openbsd/_.h
+      operating_system/openbsd/_.h
+      operating_system/openbsd/_c.h
+      operating_system/openbsd/_factory.cpp
+      operating_system/openbsd/_openbsd.h
+      operating_system/openbsd/_openbsd2.h
+      #operating_system/openbsd/_user.h
+      operating_system/openbsd/application.h
+      operating_system/openbsd/call_stack.cpp
+#      operating_system/openbsd/cross_win_file.cpp
+#      operating_system/openbsd/cross_win_file.h
+#      operating_system/openbsd/cross_win_gdi.cpp
+#      operating_system/openbsd/cross_win_gdi.h
+#      operating_system/openbsd/cross_win_gdi_internal.h
+      operating_system/openbsd/debug.cpp
+      operating_system/openbsd/debug.h
+      operating_system/openbsd/dumpinit.cpp
+      operating_system/openbsd/error.cpp
+      operating_system/openbsd/exception.cpp
+      operating_system/openbsd/exception_engine.cpp
+      operating_system/openbsd/exception_engine.h
+      operating_system/openbsd/get_module_path.cpp
+      operating_system/openbsd/file.cpp
+      operating_system/openbsd/file.h
+      operating_system/openbsd/file_lock.cpp
+      operating_system/openbsd/openbsd.cpp
+      operating_system/openbsd/openbsd.inl
+      operating_system/openbsd/openbsd2.cpp
+      operating_system/openbsd/openbsd_openbsd.h
+      operating_system/openbsd/graphics.cpp
+      operating_system/openbsd/internal.h
+      operating_system/openbsd/library.cpp
+      operating_system/openbsd/os.cpp
+      operating_system/openbsd/parallelization.cpp
+      operating_system/openbsd/process.cpp
+      operating_system/openbsd/process.h
+      operating_system/openbsd/process_pid.cpp
+      operating_system/openbsd/root_tools.cpp
+      operating_system/openbsd/root_tools.h
+      operating_system/openbsd/simple_app.cpp
+      operating_system/openbsd/standard_exception.cpp
+      operating_system/openbsd/standard_exception.h
+      operating_system/openbsd/system.cpp
+      operating_system/openbsd/thread.cpp
+      operating_system/openbsd/thread.h
+      operating_system/openbsd/time.cpp
+      operating_system/openbsd/trace.cpp
+      operating_system/openbsd/user.h
+      operating_system/openbsd/user_private.h
+      operating_system/openbsd/util.cpp
+      operating_system/openbsd/win_base.cpp
+   )
+
+endif ()
+
 if (${LINUX} OR ${FREEBSD} OR ${NETBSD} OR ${OPENBSD})
 
    list(APPEND library_source
@@ -2550,6 +2644,8 @@ if (${LINUX} OR ${FREEBSD} OR ${NETBSD} OR ${OPENBSD} OR ${APPLE} OR ${SOLARIS})
       operating_system/posix/_posix.h
       operating_system/posix/file.cpp
       operating_system/posix/chldstatus.cpp
+      operating_system/posix/environment.cpp
+      operating_system/posix/environment.h
       operating_system/posix/file_lock.cpp
       operating_system/posix/file_lock.h
       operating_system/posix/idn.cpp
@@ -2592,10 +2688,7 @@ if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-        primitive/comparison/array.h)
-#   platform/get_file_extension_mime_type.cpp
-#   platform/get_file_extension_mime_type.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
@@ -2607,7 +2700,8 @@ if (NOT ${NO_PRECOMPILED_HEADER})
 endif ()
 
 
-set_target_properties(acme PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(static_${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
@@ -2624,10 +2718,11 @@ if (MSVC)
 
 elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
-    if(NOT ${SUSE})
+   if(NOT ${SUSE})
 
-   target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
-
+      target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
+   #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+      target_compile_features(static_${PROJECT_NAME} PRIVATE cxx_std_20)
 
    endif()
 
@@ -2635,9 +2730,9 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
    #//target_compile_options\([A-Za-z0-9_)]+\s+PRIVATE\s+\$\{PKGCONFIG_CFLAGS\}\)
 
    #if(USE_PKGCONFIG)
-if(${WAYLAND})
-   list(APPEND extra_pkg_modules wayland-client wayland-server wayland-cursor)
-endif()
+   if(${HAS_WAYLAND})
+      list(APPEND extra_pkg_modules wayland-client wayland-server wayland-cursor)
+   endif()
 
    list(APPEND extra_pkg_modules
       xkbcommon x11 xrender xi xext libstartup-notification-1.0)
@@ -2652,21 +2747,23 @@ endif()
 
 
    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS} ${GLOBAL_EXTRA_COMPILER_FLAGS})
-   target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+   target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS} ${GLOBAL_EXTRA_COMPILER_FLAGS})
    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
 
-   if (${FREEBSD})
+   if (${OPENBSD})
+      list(APPEND system_libraries z pthread iconv execinfo kvm c)
+   elseif (${FREEBSD})
       list(APPEND system_libraries z dl pthread iconv execinfo)
    else ()
       list(APPEND system_libraries z dl pthread idn)
    endif ()
 
-   target_link_libraries(${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES})
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES} ${global_library_references})
    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES})
 
    target_link_directories(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARY_DIRS})
    target_link_options(${PROJECT_NAME} PRIVATE ${GLOBAL_EXTRA_LINKER_FLAGS} -Wl${GLOBAL_EXTRA_LINK_FLAGS},-z,defs)
-   target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+   # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 
    message(STATUS "(3) pkg_config_modules_here is " ${pkg_config_modules_here})
@@ -2685,9 +2782,9 @@ elseif (MACOS)
 endif ()
 
 
-target_link_directories(${PROJECT_NAME}  PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(${PROJECT_NAME}  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/library/x64/basis)
-target_link_directories(${PROJECT_NAME}  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/third/library/x64/basis)
+target_link_directories(${PROJECT_NAME} PRIVATE ${LIBRARY_OUTPUT_PATH})
+target_link_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/library/x64/basis)
+target_link_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/third/library/x64/basis)
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

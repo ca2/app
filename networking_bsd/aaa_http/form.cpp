@@ -281,7 +281,7 @@ namespace http
 
                         auto pdatetime = psystem->datetime();
 
-                        strMessage = pdatetime->international().get_date_time() + " " + strTempFile;
+                        strMessage = pdatetime->date_time_text() + " " + strTempFile;
 
                         acmefile()->append_wait("C:\\ca2\\toomuchuploads.txt", strMessage);
 

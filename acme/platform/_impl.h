@@ -2,7 +2,12 @@
 #pragma once
 
 
-#if !defined(WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(FREEBSD)
+#if !defined(WINDOWS) \
+ && !defined(LINUX) \
+ && !defined(__APPLE__) \
+ && !defined(ANDROID) \
+ && !defined(FREEBSD) \
+ && !defined(OPENBSD)
 
 namespace std { enum class align_val_t : std::size_t {}; }
 
@@ -501,6 +506,15 @@ inline T * __call__new(Args &&... args)
    auto p = ::platform::allocator::__call__new < T >(::std::forward < Args >(args)...);
 
    return p;
+
+}
+
+
+template < typename T >
+inline void __call__delete(T * p)
+{
+
+   ::platform::allocator::__call__delete < T >(p);
 
 }
 

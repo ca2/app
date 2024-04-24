@@ -1,17 +1,57 @@
 #include "framework.h"
-#include "file.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/status.h"
 #include "acme/_operating_system.h"
 #include "acme/operating_system/console.h"
+//#include "acme/primitive/collection/map_interface.h"
 #if defined( FREEBSD)
 #define __XSI_VISIBLE 1
 #endif
+#include <stdio.h>
 #include <errno.h>
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 
+
+char * malloc_get_current_dir_name()
+{
+   
+   auto size = pathconf(".", _PC_PATH_MAX);
+   
+   if(size <= 0)
+   {
+      
+      size = PATH_MAX;
+      
+   }
+   
+   char * buf = (char *) malloc(size + 1);
+   
+   if(buf == nullptr)
+   {
+    
+      return nullptr;
+      
+   }
+   
+   auto ptr = getcwd(buf, (size_t)(size + 1));
+   
+   return ptr;
+
+}
+
+
+::string current_working_directory()
+{
+	auto p = malloc_get_current_dir_name();
+	::string str(p);
+	::free(p);
+	
+	return str;
+
+
+}
 
 //#ifdef WINDOWS
 //#include <io.h>
@@ -776,11 +816,11 @@
    if (stat.st_mode & S_IFDIR)
    {
 
-      return ::file::e_type_folder;
+      return ::file::e_type_existent_folder;
 
    }
 
-   return ::file::e_type_file;
+   return ::file::e_type_existent_file;
 
 }
 
@@ -823,11 +863,11 @@
    if (!(stat.st_mode & S_IFDIR))
    {
 
-      return ::file::e_type_folder;
+      return ::file::e_type_existent_folder;
 
    }
 
-   return ::file::e_type_file;
+   return ::file::e_type_existent_file;
 
 }
 
@@ -923,6 +963,92 @@ bool is_directory(const ::file::path & path)
 }
 
 
+::file::e_type safe_file_type(const ::file::path & path)
+{
+
+   struct stat stat = {};
+
+   if (::stat(path.c_str(), &stat))
+   {
+
+      auto cerrornumber = c_error_number();
+
+      if(cerrornumber.m_iErrorNumber == ENOTDIR)
+      {
+
+         return ::file::e_type_doesnt_exist;
+
+      }
+
+      auto estatus = cerrornumber.estatus();
+
+      if(estatus == error_file_not_found)
+      {
+
+         return ::file::e_type_doesnt_exist;
+
+      }
+
+      return ::file::e_type_doesnt_exist;
+
+   }
+
+   if (stat.st_mode & S_IFDIR)
+   {
+
+      return ::file::e_type_existent_folder;
+
+   }
+
+   return ::file::e_type_existent_file;
+
+}
+
+
+::file::e_type file_type(const ::file::path & path)
+{
+
+   struct stat stat = {};
+
+   if (::stat(path.c_str(), &stat))
+   {
+
+      auto cerrornumber = c_error_number();
+
+      if(cerrornumber.m_iErrorNumber == ENOTDIR)
+      {
+
+         return ::file::e_type_doesnt_exist;
+
+      }
+
+      auto estatus = cerrornumber.estatus();
+
+      if(estatus == error_file_not_found)
+      {
+
+         return ::file::e_type_doesnt_exist;
+
+      }
+
+      fprintf(stderr, "::is_directory(\"%s\") errno=%d\n", path.c_str(), cerrornumber.m_iErrorNumber);
+
+      throw ::file::exception(estatus, cerrornumber, path, ::file::e_open_none, "file_type");
+
+   }
+
+   if (stat.st_mode & S_IFDIR)
+   {
+
+      return ::file::e_type_existent_folder;
+
+   }
+
+   return ::file::e_type_existent_file;
+
+}
+
+
 bool safe_file_exists(const ::file::path & path)
 {
 
@@ -1010,7 +1136,14 @@ bool file_exists(const ::file::path & path)
 
    }
 
-   return true;
+   if ((stat.st_mode & S_IFMT))
+   {
+
+      return true;
+
+   }
+
+   return false;
 
 }
 
@@ -1179,7 +1312,7 @@ void copy(::file::file_status * pstatus, const struct stat * pst)
     pstatus->m_attribute = 0;
 
 
-#if defined(ANDROID) || defined(LINUX) || defined(FREEBSD)
+#if defined(ANDROID) || defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 
     ::copy(&pstatus->m_timeModification, &pst->st_mtim);
     ::copy(&pstatus->m_timeAccess, &pst->st_atim);
@@ -1242,3 +1375,52 @@ void std_out_buffer::write(const void * pdata, memsize nCount)
    return getenv("HOME");
    
 }
+
+
+
+   bool is_directory_accessible(const ::file::path & path)
+   {
+
+      return ::access(path, X_OK) == 0;
+
+   }
+
+
+
+::file::e_type operating_system_executable_type(const ::file::path & path)
+{
+
+      struct stat buff;
+
+      if (stat(path.c_str(), &buff))
+      {
+
+         return ::file::e_type_doesnt_exist;
+
+      }
+
+      if(access(path.c_str(), X_OK))
+      {
+
+         return ::file::e_type_non_executable;
+
+      }
+
+      return S_ISREG(buff.st_mode) ? ::file::e_type_executable : ::file::e_type_folder2;
+
+
+}
+
+
+void operating_system_determine_executable(::file::path & path)
+{
+
+   path.m_etype = path.m_etype & (::file::e_type_executable | ::file::e_type_non_executable);
+
+   path.m_etype |= operating_system_executable_type(path);
+
+}
+
+
+
+

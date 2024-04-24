@@ -2026,7 +2026,7 @@ namespace acme
 //
 //   papp->set_args(argc, argv, envp);
 //
-//#if defined(LINUX) || defined(FREEBSD)
+//#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 //
 //   papp->m_pchar_binary__matter_zip_start = embed_resource::get_start();
 //

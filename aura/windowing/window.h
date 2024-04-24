@@ -98,6 +98,8 @@ namespace windowing
       
       virtual void create_window();
 
+      virtual void on_finished_window_creation();
+
 
       //virtual void set_cursor_position(const ::point_i32 & pointCursor);
 

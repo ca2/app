@@ -237,8 +237,21 @@ namespace acme
       
       if(platform()->is_verbose_log())
       {
+
+         if(::is_set(m_plibrary))
+         {
       
-         information() << "acme::library::open success : \"" << m_strName << "\"";
+            information() << "acme::library::open success : \"" << m_strName << "\"";
+
+         }
+         else
+         {
+
+            information() << "acme::library::open failure : \"" << m_strName << "\"";
+
+            information() << "acme::library::open failure message : \"" << m_strMessage << "\"";
+
+         }
          
       }
 
@@ -922,7 +935,7 @@ namespace acme
 
       string strName = m_strName;
 
-      information() << "library::create_factory \"" + strName + "\": starting...";
+      debug() << "library::create_factory \"" + strName + "\": starting...";
 
       //auto pfactory = factory(strName);
 
@@ -944,9 +957,9 @@ namespace acme
 
          strFactoryFunction = strName + "_factory";
 
-         information() << "library::create_factory factory function not initialized!!";
+         warning() << "library::create_factory factory function not initialized!!";
 
-         information() << "library::create_factory factory function name: \"" << strFactoryFunction << "\"";
+         warning() << "library::create_factory factory function name: \"" << strFactoryFunction << "\"";
 
          auto pfnFactory = get < PFN_factory >(strFactoryFunction);
 

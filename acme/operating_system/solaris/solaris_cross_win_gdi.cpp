@@ -23,7 +23,7 @@
 
 //    HDC hdc = __new< device_context >();
 
-//    hdc->m_display    = XOpenDisplay(nullptr);
+//    hdc->m_display    = XOpenxDisplay(nullptr);
 //    hdc->m_hwnd       = hwnd;
 //    hdc->m_d          = (Drawable) (hwnd == nullptr || hwnd->window() == nullptr ? DefaultRootWindow(hdc->m_display) : hwnd->window());
 //    hdc->m_gc         = XCreateGC(hdc->m_display, hdc->m_d, 0, 0);
@@ -256,7 +256,7 @@
 
 
 
-i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
+i32 _cx_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 {
    return 0;
 }

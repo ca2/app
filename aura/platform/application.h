@@ -58,9 +58,9 @@ namespace aura
       ::user::primitive *                             m_puiCurrent;
       //bool                                            m_bContextTheme;
 
-#ifdef LINUX
-      bool                                            m_bSnLauncheeSetup;
-#endif
+// #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+//       bool                                            m_bSnLauncheeSetup;
+// #endif
       //semaphore                                       m_semCompiler;
       // former ::aura::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
 
@@ -1037,7 +1037,7 @@ namespace aura
       string get_default_playlist_path() override;
 
       
-//#if defined(FREEBSD)
+//#if defined(FREEBSD) || defined(OPENBSD)
 //
 //      bool os_on_start_application() override;
 //

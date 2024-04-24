@@ -138,9 +138,12 @@ namespace user
 
          auto puseritem = user_item(pitem);
 
-         drag_on_button_down(pitem, puseritem->m_pmouse);
+         if(drag_on_button_down(pitem, puseritem->m_pmouse))
+         {
 
-         return true;
+            return true;
+
+         }
 
       }
 
@@ -151,15 +154,13 @@ namespace user
    }
 
 
-   void drag_client::drag_on_button_down(::item * pitem, ::user::mouse * pmouse)
+   bool drag_client::drag_on_button_down(::item * pitem, ::user::mouse * pmouse)
    {
 
       auto pdrag = drag(pitem);
 
       if (pdrag)
       {
-
-         drag_set_capture();
 
          pdrag->m_pmouse = pmouse;
 
@@ -168,13 +169,19 @@ namespace user
          if (on_drag_start(pointDrag, pitem))
          {
 
+            drag_set_capture();
+
             pdrag->drag_start(pmouse, this, pitem, pointDrag);
 
             m_pdragCurrent = pdrag;
 
+            return true;
+
          }
 
       }
+
+      return false;
 
    }
 

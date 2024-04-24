@@ -4920,13 +4920,17 @@ void image::horizontal_line(i32 y, ::color::color color, i32 x1, i32 x2)
    map();
    if (x1 < 0)
       x1 = 0;
-   if (x2 >= width() - 1)
+   if (x2 >= width())
       x2 = width() - 1;
    image32_t u32ImageColor(color, color_indexes());
-
+   
+   auto h = height();
+   
 #ifdef __APPLE__
+   
+   auto yflipped = (h - y - 1);
 
-   image32_t* pdata = (image32_t*)((::u8 *) data() + x1 * sizeof(image32_t) + (height() - y - 1) * (m_iScan));
+   image32_t* pdata = (image32_t*)((::u8 *) data() + x1 * sizeof(image32_t) +  yflipped * (m_iScan));
 
 #else
 
@@ -4955,7 +4959,7 @@ void image::vertical_line(i32 x, ::color::color color, i32 y1, i32 y2)
    map();
    if (y1 < 0)
       y1 = 0;
-   if (y2 >= height() - 1)
+   if (y2 >= height())
       y2 = height() - 1;
    //y1 %= height();
    //y2 %= height();
@@ -4992,13 +4996,13 @@ void image::vertical_line(i32 x, ::color::color color, i32 y1, i32 y2)
 void image::frame_pixel_perfect_rectangle(int x, int y, int w, int h, const ::color::color& color)
 {
 
-   horizontal_line(y, color, x, x + w);
+   horizontal_line(y, color, x, x + w - 1);
 
-   vertical_line(x, color, y + 1, y + h - 1);
+   vertical_line(x, color, y + 1, y + h - 2);
 
-   horizontal_line(y + h, color, x, x + w);
+   horizontal_line(y + h - 1, color, x, x + w - 1);
 
-   vertical_line(x + w, color, y + 1, y + h - 1);
+   vertical_line(x + w - 1, color, y + 1, y + h - 2);
 
 }
 

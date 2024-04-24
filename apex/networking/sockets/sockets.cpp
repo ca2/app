@@ -332,7 +332,7 @@ namespace sockets
 //string ip_reverse(string str)
 //{
 //
-//#if defined(UNIVERSAL_WINDOWS) || defined(LINUX) || defined(ANDROID) || defined(__APPLE__) || defined(FREEBSD)
+//#if defined(UNIVERSAL_WINDOWS) || defined(LINUX) || defined(ANDROID) || defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
 //
 //   return c_gethostbyname(str);
 //

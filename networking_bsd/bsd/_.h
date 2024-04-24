@@ -1,8 +1,10 @@
 // Created by camilo on 2022-09-10 16:52 <3ThomasBorregaardSorensen!!
 #pragma once
 
-
-#ifdef FREEBSD
+#if defined(OPENBSD)
+#include "operating_system/clear_cstddef"
+#define _BSD_SOURCE
+#elif defined( FREEBSD)
 #define __BSD_VISIBLE 1
 #endif
 
@@ -11,7 +13,7 @@
 #include <netinet/in.h>
 
 
-#if defined(LINUX) || defined(FREEBSD) || defined(ANDROID)
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) || defined(ANDROID)
 
 
 #include <netdb.h>
@@ -28,7 +30,7 @@
 //using SOCKET = int;
 
 
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(OPENBSD)
 
 
 #include <netinet/in.h>

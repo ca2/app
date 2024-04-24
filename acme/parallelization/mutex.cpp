@@ -25,7 +25,7 @@
 //#endif
 //
 //
-//#if defined(LINUX) || defined(SOLARIS) || defined(__APPLE__) || defined(FREEBSD)
+//#if defined(LINUX) || defined(SOLARIS) || defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
 //#include <sys/ipc.h>
 //#include <sys/sem.h>
 //#include <fcntl.h>
@@ -40,7 +40,7 @@
 //#include "acme/operating_system/ansi/_pthread.h"
 //#endif
 //
-//#if defined(FREEBSD)
+//#if defined(FREEBSD) || defined(OPENBSD)
 //
 //#include	<sys/types.h>
 //#include	<sys/stat.h>

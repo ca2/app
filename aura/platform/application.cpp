@@ -116,8 +116,8 @@ namespace aura
    {
 
       m_pauraapplication = this;
-#if defined(LINUX) || defined(FREEBSD)
-      m_bSnLauncheeSetup = false;
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+      //m_bSnLauncheeSetup = false;
       m_bGtkApp = false;
 #endif
 
@@ -4803,11 +4803,11 @@ retry_license:
 
       if (node()->is_debug_build())
       {
-         strUrl = "http://basis-server.ca2.software/api/spaignition/download?authnone&configuration=basis&stage=";
+         strUrl = "http://basis-ca2.network/api/spaignition/download?authnone&configuration=basis&stage=";
       }
       else
       {
-         strUrl = "http://stage-server.ca2.software/api/spaignition/download?authnone&configuration=stage&stage=";
+         strUrl = "http://stage-ca2.network/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
       auto psystem = system();
@@ -8400,8 +8400,7 @@ namespace aura
                   {
 
                      node()->register_user_auto_start(
-                        get_executable_appid(),
-                        get_executable_path(),
+                        this,
                         "--auto_start=1",
                         pcheck->echeck() == ::e_check_checked);
 

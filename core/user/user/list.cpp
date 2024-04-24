@@ -137,6 +137,7 @@ namespace user
 
    }
 
+
    void list::install_message_routing(::channel * pchannel)
    {
 

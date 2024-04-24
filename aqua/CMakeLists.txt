@@ -64,8 +64,8 @@ list(APPEND library_source
    multimedia/media_player_command.h
    multimedia/multimedia.cpp
    multimedia/multimedia.h
-   operating_system/windows/audio.cpp
-   operating_system/_.h
+   #operating_system/windows/audio.cpp
+   #operating_system/_.h
    platform/_platform.h
    platform/application.cpp
    platform/application.h
@@ -184,12 +184,12 @@ elseif (${LINUX})
    target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
-   #target_link_options(aqua PRIVATE -Wl,-rpath=$ORIGIN)
+   #target_link_options(${PROJECT_NAME} PRIVATE "-Wl,-rpath=\$ORIGIN")
    target_link_libraries(${PROJECT_NAME} PRIVATE)
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_LIBRARIES})
    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-   target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+   # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
    message(STATUS "(6) PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif ()

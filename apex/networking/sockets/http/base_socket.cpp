@@ -452,6 +452,8 @@ namespace sockets
 
       straAllowedOrigin.add("ca2.software");
       straAllowedOrigin.add("camilothomas.com");
+      straAllowedOrigin.add("ca2.network");
+      straAllowedOrigin.add("ca2.store");
 
       bool bAllowedOrigin = false;
 

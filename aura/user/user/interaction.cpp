@@ -66,6 +66,8 @@
 #include "aura/platform/application.h"
 #include "acme/primitive/geometry2d/item.h"
 #include "acme/primitive/geometry2d/_defer_item.h"
+#include "acme/primitive/collection/_tuple.h"
+
 
 #ifdef WINDOWS_DESKTOP
 //#include "acme/_operating_system.h"
@@ -744,6 +746,15 @@ namespace user
 
          m_layout.m_statea[elayout].m_size = size;
 
+         if (::is_set(pgraphics) && elayout == e_layout_layout)
+         {
+
+            m_layout.m_statea[e_layout_sketch].m_size = size;
+
+            m_layout.m_statea[e_layout_lading].m_size = size;
+
+         }
+
          m_bNeedPerformLayout = true;
 
          set_need_layout();
@@ -765,6 +776,15 @@ namespace user
 
          m_layout.m_statea[elayout].m_size = size;
 
+         if (::is_set(pgraphics) && elayout == e_layout_layout)
+         {
+
+            m_layout.m_statea[e_layout_sketch].m_size = size;
+
+            m_layout.m_statea[e_layout_lading].m_size = size;
+
+         }
+
          m_bNeedPerformLayout = true;
 
          set_need_layout();
@@ -774,7 +794,7 @@ namespace user
    }
 
 
-   void interaction::shift_left(::i32 left, enum_layout elayout)
+   void interaction::shift_left(::i32 left, enum_layout elayout, ::draw2d::graphics* pgraphics)
    {
 
       auto point = this->position(elayout);
@@ -796,6 +816,19 @@ namespace user
 
          m_layout.m_statea[elayout].m_size = size;
 
+         if (::is_set(pgraphics) && elayout == e_layout_layout)
+         {
+
+            m_layout.m_statea[e_layout_sketch].set_visual_state_origin(point);
+
+            m_layout.m_statea[e_layout_sketch].m_size = size;
+
+            m_layout.m_statea[e_layout_lading].set_visual_state_origin(point);
+
+            m_layout.m_statea[e_layout_lading].m_size = size;
+
+         }
+
          m_bNeedPerformLayout = true;
 
          set_need_layout();
@@ -805,7 +838,7 @@ namespace user
    }
 
 
-   void interaction::set_right(::i32 right, enum_layout elayout)
+   void interaction::set_right(::i32 right, enum_layout elayout, ::draw2d::graphics* pgraphics)
    {
 
       auto point = this->position(elayout);
@@ -826,12 +859,21 @@ namespace user
 
          m_layout.m_statea[elayout].set_visual_state_origin(point);
 
+         if (::is_set(pgraphics) && elayout == e_layout_layout)
+         {
+
+            m_layout.m_statea[e_layout_sketch].set_visual_state_origin(point);
+
+            m_layout.m_statea[e_layout_lading].set_visual_state_origin(point);
+
+         }
+
       }
 
    }
 
 
-   void interaction::set_top(const ::i32 top, enum_layout elayout)
+   void interaction::set_top(const ::i32 top, enum_layout elayout, ::draw2d::graphics* pgraphics)
    {
 
       auto point = position(elayout);
@@ -842,6 +884,15 @@ namespace user
       {
 
          m_layout.m_statea[elayout].m_point2 = point;
+
+         if (::is_set(pgraphics) && elayout == e_layout_layout)
+         {
+
+            m_layout.m_statea[e_layout_sketch].m_point2 = point;
+
+            m_layout.m_statea[e_layout_lading].m_point2 = point;
+
+         }
 
       }
 
@@ -6153,6 +6204,13 @@ namespace user
             information() << "_000TopCallOnLayout user::list_box";
 
          }
+         else
+         {
+
+            information() << "_000TopCallOnLayout : " << strType;
+
+         }
+
 
          perform_layout(pgraphics);
 
@@ -7607,7 +7665,7 @@ namespace user
    void interaction::user_send(const ::procedure & procedure)
    {
 
-//#ifdef WINDOWS_DESKTOP
+#ifdef WINDOWS_DESKTOP
 
       auto pthread = m_pthreadUserInteraction;
 
@@ -7631,11 +7689,11 @@ namespace user
 
       pthread->send_procedure(procedure);
 
-//#else
-//
-//      node()->user_send(procedure);
-//
-//#endif
+#else
+
+      node()->user_send(procedure);
+
+#endif
 
    }
 
@@ -19733,18 +19791,26 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       if (rectangleHint.is_empty())
       {
 
+         information() << "calculate_broad_and_compact_restore rHint is empty";
+
          rectangleHint = this->screen_rectangle(::user::e_layout_lading);
 
       }
+
+      information() << "calculate_broad_and_compact_restore rHint : " << rectangleHint;
 
       ::size_i32 sizeMin(sizeMinParam);
 
       if (sizeMin.is_empty())
       {
 
+         information() << "calculate_broad_and_compact_restore sizeMin is empty";
+
          sizeMin = this->get_window_minimum_size();
 
       }
+
+      information() << "calculate_broad_and_compact_restore sizeMin : " << sizeMin;
 
       ::rectangle_i32 rectangleWorkspace;
 
@@ -19760,6 +19826,8 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       if (iMatchingWorkspace >= 0)
       {
+
+         information() << "calculate_broad_and_compact_restore found best workspace : " << iMatchingWorkspace;
 
          ::size_i32 sizeNormal = sizeMin.maximum(rectangleWorkspace.size() * 3 / 5);
 
@@ -19783,6 +19851,8 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          }
 
+         information() << "calculate_broad_and_compact_restore restore broad : " << m_rectangleRestoreBroad;
+
          ::size_i32 sizeMaximumCompact = sizeMin.maximum(rectangleWorkspace.size() * 5 / 10);
 
          auto rectangleStoreCompact = get_window_compact_stored_rectangle();
@@ -19803,12 +19873,22 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          }
 
+         information() << "calculate_broad_and_compact_restore restore compact : " << m_rectangleRestoreCompact;
+
          if (::is_set(prectWorkspace))
          {
 
             *prectWorkspace = rectangleWorkspace;
 
+            information() << "calculate_broad_and_compact_restore worspace : " << rectangleWorkspace;
+
          }
+
+      }
+      else
+      {
+
+         information() << "calculate_broad_and_compact_restore no matching workspace";
 
       }
 
@@ -25279,6 +25359,8 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
                if (rectangleBounding.ok())
                {
 
+                  rectangleBounding.inflate(1);
+
                   rectanglea.add(rectangleBounding);
 
                }
@@ -25303,6 +25385,8 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
                {
 
                   //::rectangle_i32 rectangleBounding = ::bounding_box(user_item(pitemHitTest));
+
+                  rectangleBounding.inflate(1);
 
                   rectanglea.add(rectangleBounding);
 

@@ -802,14 +802,24 @@ namespace node_gnome
 } // namespace node_gnome
 
 
-namespace node_kde
+namespace node_kde5
 {
 
 
    class node;
 
 
-} // namespace node_kde
+} // namespace node_kde5
+
+
+namespace node_kde6
+{
+
+
+   class node;
+
+
+} // namespace node_kde6
 
 
 namespace node_xfce
@@ -1337,15 +1347,21 @@ namespace file
    class file;
 
 
-   enum enum_type
+   enum enum_type : ::i32
    {
 
       e_type_unknown = 0,
       e_type_exists = 1 << 0,
-      e_type_folder = e_type_exists | (1 << 1),
-      e_type_file = e_type_exists | (1 << 2),
-      e_type_file_or_folder = e_type_folder | e_type_file,
-      e_type_element = e_type_exists | (1 << 3),
+      e_type_folder2 =  1 << 1,
+      e_type_file2 = 1 << 2,
+      e_type_element2 = 1 << 3,
+      e_type_executable = 1 << 4,
+      e_type_non_executable = 1 << 5,
+      e_type_existent_folder =  e_type_exists | e_type_folder2,
+      e_type_existent_file = e_type_exists | e_type_file2,
+      e_type_existent_element = e_type_exists | e_type_element2,
+      e_type_file_or_folder2 = e_type_folder2 | e_type_file2,
+      e_type_existent_file_or_folder = e_type_exists | e_type_folder2 | e_type_file2,
       e_type_doesnt_exist = I32_MINIMUM,
 
    };

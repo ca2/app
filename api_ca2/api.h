@@ -18,12 +18,13 @@ namespace api_ca2
 
 
       string                           m_strApiProfile;
-      class ::time                       m_timeApiSleep;
-      ::earth::time                 m_timeYoutubeTinyQuotaOkAgain;
+      class ::time                     m_timeApiSleep;
+      ::earth::time                    m_timeYoutubeTinyQuotaOkAgain;
       bool                             m_bYoutubeTinyQuotaExceeded;
       string                           m_strRedirectUri;
-      
-      string m_strAppState;
+      string                           m_strScriptNotifyOnPreLoginScreen;
+      class ::time                     m_timeLastNotifyOnPreLoginScreen;
+      string                           m_strAppLogin;
 
 
       api();
@@ -38,15 +39,17 @@ namespace api_ca2
       void api_login() override;
 
 
+      virtual bool user_seems_to_be_on_pre_login_screen() const;
+
       void _api_get(string & strNetworkPayload, const ::scoped_string & scopedstrUrl, ::property_set & set) override;
 
 
       ::memory api_memory(const ::scoped_string & scopedstrUrl, ::property_set& set) override;
 
 
-      ::e_status on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;
+      ::e_status on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;
 
-      virtual bool defer_account_token(const ::string & strAppState);
+      virtual bool defer_account_token(const ::string & strAppState, const ::string & strAppCode);
       
       virtual string get_app_login();
 

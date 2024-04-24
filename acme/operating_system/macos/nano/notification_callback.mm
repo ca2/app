@@ -17,6 +17,8 @@ void * application_system(void * pApplication);
 
 //#import <Foundation/Foundation.h>
 void ns_main_async(dispatch_block_t block);
+void ns_main_sync(dispatch_block_t block);
+
 @implementation nano_notification_callback
 
 
@@ -69,10 +71,17 @@ void ns_main_async(dispatch_block_t block);
 
 bool ns_get_dark_mode()
 {
-  
-   NSAppearance* appearance = NSApp.effectiveAppearance;
-   NSString* name = appearance.name;
-   BOOL dark = [appearance bestMatchFromAppearancesWithNames:@[NSAppearanceNameAqua, NSAppearanceNameDarkAqua]] == NSAppearanceNameDarkAqua;
+   
+   __block BOOL dark = FALSE;
+   
+   ns_main_sync(^()
+                {
+      
+      NSAppearance* appearance = NSApp.effectiveAppearance;
+      NSString* name = appearance.name;
+      dark = [appearance bestMatchFromAppearancesWithNames:@[NSAppearanceNameAqua, NSAppearanceNameDarkAqua]] == NSAppearanceNameDarkAqua;
+      
+   });
    
    return !!dark;
    

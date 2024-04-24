@@ -27,7 +27,7 @@ public:
    virtual class string_buffer * string_buffer();
 
    virtual ::string as_string() const;
-   virtual ::string & as_string();
+   virtual ::string & string_reference();
 
 
 };

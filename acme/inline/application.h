@@ -45,7 +45,7 @@ DO_FACTORY(REFERENCE_FACTORY)
 #include "acme/platform/acme.h"
 
 
-#if defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS)
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) || defined(RASPBERRYPIOS)
 extern char _binary__matter_zip_start[];
 extern char _binary__matter_zip_end[];
 #endif
@@ -56,7 +56,7 @@ extern char _binary__matter_zip_end[];
 
 #else
 
-//   #if defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS) || defined(ANDROID)
+//   #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) || defined(RASPBERRYPIOS) || defined(ANDROID)
 //
 //   void set_res(const char * p1, const char * p2);
 //
@@ -97,7 +97,7 @@ int main(int argc, char * argv[], char * envp[])
 
 #endif
 
-#if defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS)
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) || defined(RASPBERRYPIOS)
 
    pacme->platform()->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
 
@@ -216,7 +216,7 @@ int main(int argc, char * argv[], char * envp[])
 ////
 ////#endif
 ////
-////#if defined(LINUX) || defined(FREEBSD) || defined(RASPBERRYPIOS)
+////#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) || defined(RASPBERRYPIOS)
 ////
 ////   papp->m_pchar_binary__matter_zip_start = _binary__matter_zip_start;
 ////

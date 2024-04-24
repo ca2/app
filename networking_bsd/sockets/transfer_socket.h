@@ -31,7 +31,7 @@
 ////#endif
 //
 //
-//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 //
 //#define SOCKADDR sockaddr
 //

@@ -2,11 +2,18 @@
 #include "file_lock.h"
 
 
-#include "acme/_operating_system.h"
-
-#if defined(FREEBSD)
+#if defined(OPENBSD)
+#include "clear_cstddef"
+#define _BSD_SOURCE 1
+#define __BSD_VISIBLE 1
+#elif defined(FREEBSD)
+#define _BSD_SOURCE 1
 #define __BSD_VISIBLE 1
 #endif
+
+
+#include "acme/_operating_system.h"
+
 
 #include <fcntl.h>
 #include <sys/file.h>

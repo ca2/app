@@ -191,14 +191,14 @@ void folder::add_file(const ::file::path& pszRelative, ::file::file* pfile)
    if (locate_file(pathItem))
    {
 
-      return ::file::e_type_file;
+      return ::file::e_type_existent_file;
 
    }
 
    if (locate_folder(pathItem))
    {
 
-      return ::file::e_type_folder;
+      return ::file::e_type_existent_folder;
 
    }
 

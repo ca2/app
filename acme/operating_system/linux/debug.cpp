@@ -23,8 +23,6 @@ class ::time g_timeLastDebuggerAttachedCheck;
 i32 __node_is_debugger_attached()
 {
 
-   critical_section_lock lock(::platform::get()->globals_critical_section());
-
    if(g_timeLastDebuggerAttachedCheck.elapsed() > 300_ms)
    {
 
@@ -32,16 +30,19 @@ i32 __node_is_debugger_attached()
 
       g_timeLastDebuggerAttachedCheck.elapsed();
 
+      printf("\nOptimized times %d", g_iLastIsDebuggerAttachedOptimizedCount);
+
+      g_iLastIsDebuggerAttachedOptimizedCount = 0;
+
    }
    else
    {
 
-      printf("\nOptimized times %d", g_iLastIsDebuggerAttachedOptimizedCount++);
+      g_iLastIsDebuggerAttachedOptimizedCount++;
 
    }
 
    return g_iLastIsDebuggerAttached;
-
 
 }
 
@@ -59,37 +60,66 @@ i32 __node_is_debugger_attached()
 
 int gdb_check()
 {
+
+   critical_section_lock lock(::platform::get()->globals_critical_section());
+
    char buf[4096];
 
    const int status_fd = ::open("/proc/self/status", O_RDONLY | O_CLOEXEC);
+
    if (status_fd == -1)
+   {
+
       return false;
 
+   }
+
    const ssize_t num_read = ::read(status_fd, buf, sizeof(buf) - 1);
+
    ::close(status_fd);
 
    if (num_read <= 0)
+   {
+
       return false;
 
+   }
+
    buf[num_read] = '\0';
+
    constexpr char tracerPidString[] = "TracerPid:";
+
    const auto tracer_pid_ptr = ::strstr(buf, tracerPidString);
+
    if (!tracer_pid_ptr)
+   {
+
       return false;
+
+   }
 
    for (const char* characterPtr = tracer_pid_ptr + sizeof(tracerPidString) - 1; characterPtr <= buf + num_read; ++characterPtr)
    {
+
       if (::character_isspace(*characterPtr))
+      {
+
          continue;
+
+      }
       else
       {
+
          int iDebuggerAttached = ::isdigit(*characterPtr) != 0 && *characterPtr != '0';
 
          return iDebuggerAttached;
+
       }
+
    }
 
    return false;
+
 }
 
 

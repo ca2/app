@@ -4,6 +4,7 @@
 #include "draw2d.h"
 #include "graphics.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/graphics/image/drawing.h"
 #include <math.h>
 
@@ -98,12 +99,16 @@ namespace draw2d_cairo
    void image::create(const ::size_i32 & size, ::enum_flag eflagCreate, int iGoodStride, bool bPreserve)
    {
 
+      information() << "draw2d_cairo::image::create : " << size;
+
       if (m_pbitmap.is_set()
             && m_pbitmap->get_os_data() != nullptr
             && m_pgraphics.is_set()
             && m_pgraphics->get_os_data() != nullptr
             && size == m_sizeRaw)
       {
+
+         information() << "draw2d_cairo::image::create seems already ok ";
 
          //return true;
 
@@ -113,6 +118,8 @@ namespace draw2d_cairo
 
       if (size.is_empty())
       {
+
+         information() << "draw2d_cairo::image::create size is empty!!";
 
          throw ::exception(error_invalid_empty_argument);
 
@@ -139,6 +146,8 @@ namespace draw2d_cairo
       image32_t * pimage32Raw = nullptr;
 
       i32 iScan = iGoodStride;
+
+      information() << "draw2d_cairo::image::create going to create_bitmap size,iScan : " << size << ", " << iScan;
 
       pbitmap->create_bitmap(nullptr, size, (void**)&pimage32Raw, &iScan);
       //pbitmap->create_bitmap(nullptr, size, nullptr, &iScan);

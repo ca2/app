@@ -7,7 +7,7 @@
 #include "acme/primitive/collection/comparable_eq_list.h"
 #include "acme/primitive/collection/comparable_list.h"
 
-//#ifdef FREEBSD
+//#if defined(FREEBSD) || defined(OPENBSD)
 //#include <sys/select.h>
 //#endif
 

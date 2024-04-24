@@ -38,7 +38,7 @@ int g_iIgnoreXDisplayError = 0;
 //
 //
 //
-//i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
+//i32 _cx_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 //{
 //
 //   const ::scoped_string & scopedstrError;
@@ -355,7 +355,7 @@ int g_iIgnoreXDisplayError = 0;
 //
 //   }
 //
-//   fprintf(stderr, "_c_XErrorHandler error=%d (%s) request =%d (%s)\n", perrorevent->error_code, pszError, perrorevent->request_code, pszRequest);
+//   fprintf(stderr, "_cx_XErrorHandler error=%d (%s) request =%d (%s)\n", perrorevent->error_code, pszError, perrorevent->request_code, pszRequest);
 //
 //   return 0;
 //

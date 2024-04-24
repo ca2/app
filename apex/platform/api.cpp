@@ -299,6 +299,8 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
 
       _api_get(str, scopedstrUrl, set);
 
+      informationf("_api_get response:\n%s", str.c_str());
+
       ::payload payload;
       
       bool bOk = false;

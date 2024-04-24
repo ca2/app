@@ -41,6 +41,13 @@
 #include "freebsd/_.h"
 
 
+#elif defined(OPENBSD)
+
+
+#include "posix/_.h"
+#include "openbsd/_.h"
+
+
 #elif defined(ANDROID)
 
 

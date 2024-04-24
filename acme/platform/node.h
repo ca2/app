@@ -98,7 +98,8 @@ namespace acme
       ::node_gtk3::node *                                   m_pNodeGtk3;
       ::node_gtk4::node *                                   m_pNodeGtk4;
       ::node_gnome::node *                                  m_pNodeGnome;
-      ::node_kde::node *                                    m_pNodeKDE;
+      ::node_kde5::node *                                   m_pNodeKDE5;
+      ::node_kde6::node *                                   m_pNodeKDE6;
       ::node_xfce::node *                                   m_pNodeXfce;
       ::desktop_environment_gnome::node *                   m_pNodeDesktopEnvironmentGnome;
       ::desktop_environment_kde::node *                     m_pNodeDesktopEnvironmentKDE;
@@ -114,7 +115,10 @@ namespace acme
 
       enum_application_capability_array                     m_eapplicationcapabilitya;
       string_map < ::pointer<::acme::exclusive > >          m_mapExclusive;
-
+#if defined(WITH_X11)
+      void *                                                m_pvoidX11Display;
+      ::e_status                                            m_estatusInitializeX11;
+#endif
 
       node();
       ~node() override;
@@ -806,7 +810,7 @@ namespace acme
 
    virtual void set_file_extension_mime_type(string_array & straExtension, string_array & straMimeType);
 
-   virtual void register_user_auto_start(const string & strAppId, const ::file::path & pathExecutable, const string & strArguments, bool bRegister);
+   virtual void register_user_auto_start(::acme::application * papplication, const string & strArguments, bool bRegister);
 
    virtual bool is_user_auto_start(const string & strAppId);
 
@@ -922,10 +926,22 @@ namespace acme
 //      //virtual bool process_contains_module(string & strImage, ::process_identifier processidentifier, const ::string & pszLibrary);
 //      //virtual void shared_library_process(dword_array & dwa, string_array & straProcesses, const ::string & pszLibrary);
 //#endif
-#if defined(BSD_UNIX)
+#if defined(__BSD__)
 
       virtual void arp_a(void *p, void(*callback)(void * p, ::u32 uIp, const char * status));
 
+#endif
+
+      virtual ::string eol();
+
+#if defined(WITH_X11)
+      virtual ::e_status x11_defer_initialize();
+      virtual ::e_status x11_initialize();
+      virtual void * x11_get_display();
+      virtual void x11_sync(const ::procedure & procedure);
+      virtual void x11_async(const ::procedure & procedure);
+      virtual void x11_display_error_trap_push(int i);
+      virtual void x11_display_error_trap_pop_ignored(int i);
 #endif
 
 

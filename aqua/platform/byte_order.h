@@ -15,9 +15,9 @@ namespace h2n2h_helper
    T byteswap(T val, ::true_type)
    {
       uint8_t c[sizeof(T)];
-      memcpy(c, &val, sizeof(T));
+      ::memory_copy(c, &val, sizeof(T));
       ::reverse(c, c+ sizeof(c));
-      memcpy(&val, c, sizeof(T));
+      ::memory_copy(&val, c, sizeof(T));
       return val;
    }
 

@@ -3,7 +3,7 @@
 #include "acme/operating_system/shared_posix/c_error_number.h"
 
 
-#ifdef FREEBSD
+#if defined(FREEBSD) || defined(OPENBSD)
 #include <string.h>
 #endif
 

@@ -40,7 +40,7 @@
 #include "base/user/form/impact.h"
 
 
-#ifdef FREEBSD
+#if defined(FREEBSD) || defined(OPENBSD)
 #include <stdio.h>
 #endif
 

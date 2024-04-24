@@ -661,7 +661,7 @@ namespace acme
 
          if (path.flags().has(::file::e_flag_get_local_path)
             || (path.flags().is_clear(::file::e_flag_bypass_cache)
-               && ::is_file_or_folder(acmepath()->get_type(pathCache))))
+               && ::is_existing_file_or_folder(acmepath()->get_type(pathCache))))
          {
 
             return pathCache;
@@ -706,16 +706,16 @@ namespace acme
 
          auto etype = acmepath()->get_type(pathSide);
 
-         if (::is_file_or_folder(etype))
+         if (::is_existing_file_or_folder(etype))
          {
 
-            if (etype == ::file::e_type_file)
+            if (etype & ::file::e_type_file2)
             {
 
                file()->copy(pathCache, pathSide, true);
 
             }
-            else if (etype == ::file::e_type_folder)
+            else if (etype & ::file::e_type_folder2)
             {
 
                dir()->create(pathCache);

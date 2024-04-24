@@ -6,6 +6,7 @@
 #include "acme/primitive/string/str.h"
 #include "apex/networking/sockets/basic/listen_socket.h"
 #include "apex/networking/sockets/base/socket_thread.h"
+#include "apex/platform/node.h"
 
 
 //#define log_error(...) TRACE_LOG_ERROR(__VA_ARGS__)
@@ -18,10 +19,10 @@
 //#endif
 //
 //
-//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
+//#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 //#undef USE_MISC
 //
-//#if defined(__APPLE__) || defined(FREEBSD)
+//#if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
 //#define  NI_MAXHOST  1025
 //#define  NI_MAXSERV  32
 //#include <sys/types.h>
@@ -32,7 +33,7 @@
 ////#include <ctype.h>
 //#endif
 //
-//#if defined(FREEBSD)
+//#if defined(FREEBSD) || defined(OPENBSD)
 //#include <unistd.h>
 //#endif
 
@@ -104,10 +105,44 @@ namespace networking
 
       }
 
+      if (has_ip6_internet())
+      {
+
+         m_eaddresstypePreferred = e_address_type_ipv6;
+
+      }
+      else if (has_ip4_internet())
+      {
+
+         m_eaddresstypePreferred = e_address_type_ipv4;
+
+      }
+      else
+      {
+
+         m_eaddresstypePreferred = e_address_type_ipv4;
+
+      }
 
       //return estatus;
 
    }
+
+
+   //bool networking::has_ip4_internet()
+   //{
+
+   //   return true;
+
+   //}
+
+
+   //bool networking::has_ip6_internet()
+   //{
+
+   //   return true;
+
+   //}
 
 
    bool networking::gudo_set()
@@ -150,6 +185,22 @@ namespace networking
       //}
 
       //return ::success;
+
+   }
+
+
+   bool networking::has_ip4_internet()
+   {
+
+      return node()->m_papexnode->has_ip4_internet();
+
+   }
+
+
+   bool networking::has_ip6_internet()
+   {
+
+      return node()->m_papexnode->has_ip6_internet();
 
    }
 
@@ -277,7 +328,7 @@ namespace networking
    }
 
 
-   address_pointer networking::create_address(const ::string & strAddress, port_t port)
+   address_pointer networking::create_address(const ::string & strAddress, enum_address_type eaddresstypePreferred, port_t port)
    {
 
       if (is_ip6(strAddress))

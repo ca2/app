@@ -1323,7 +1323,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(CHA
 //      for (index i = 0; i < len; i += lenUnit)
 //      {
 //
-//         memcpy(psz, sz, lenUnit * sizeof(CHARACTER));
+//         ::memory_copy(psz, sz, lenUnit * sizeof(CHARACTER));
 //
 //         psz += lenUnit;
 //
@@ -1364,7 +1364,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(CHA
 //      for (index i = 0; i < len; i += lenUnit)
 //      {
 //
-//         memcpy(psz, sz, lenUnit * sizeof(CHARACTER));
+//         ::memory_copy(psz, sz, lenUnit * sizeof(CHARACTER));
 //
 //         psz += lenUnit;
 //
@@ -3808,7 +3808,7 @@ inline ::count string_base < ITERATOR_TYPE >::replace_with(CHARACTER charNew, CH
 //
 //            memory_transfer(pszTarget + nReplacementLen, pszTarget + nSourceLen, nBalance * sizeof(CHARACTER));
 //
-//            memcpy(pszTarget, scopedstrOld.begin(), nReplacementLen * sizeof(CHARACTER));
+//            ::memory_copy(pszTarget, scopedstrOld.begin(), nReplacementLen * sizeof(CHARACTER));
 //
 //            i += nReplacementLen;
 //
@@ -3897,7 +3897,7 @@ template < typename ITERATOR_TYPE >
 
             memory_transfer((void *)(pszTarget + nReplacementLen), pszTarget + nSourceLen, nBalance * sizeof(CHARACTER));
 
-            memcpy((void *)pszTarget, scopedstrNew, nReplacementLen * sizeof(CHARACTER));
+            ::memory_copy((void *)pszTarget, scopedstrNew, nReplacementLen * sizeof(CHARACTER));
 
             pszStart = pszTarget + nReplacementLen;
 
@@ -3978,7 +3978,7 @@ template < typename ITERATOR_TYPE >
 
             memory_transfer(pszTarget + nReplacementLen, pszTarget + nSourceLen, nBalance * sizeof(CHARACTER));
 
-            memcpy(pszTarget, scopedstrNew, nReplacementLen * sizeof(CHARACTER));
+            ::memory_copy(pszTarget, scopedstrNew, nReplacementLen * sizeof(CHARACTER));
 
             pszStart = pszTarget + nReplacementLen;
 

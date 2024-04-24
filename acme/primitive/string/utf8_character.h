@@ -15,7 +15,7 @@ using utf8_character = inline_string < ::ansi_character, 8 >;
 //   //utf8_character()
 //   //{
 //
-//   //   memset(this, 0, sizeof(utf8_character));
+//   //   ::memory_set(this, 0, sizeof(utf8_character));
 //   //   m_iLength = 0;
 //
 //   //}

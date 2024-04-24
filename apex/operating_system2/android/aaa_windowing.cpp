@@ -894,7 +894,7 @@ bool c_xstart()
 {
 
    /*
-   Display * dpy = XOpenDisplay(nullptr);
+   Display * dpy = XOpenxDisplay(nullptr);
 
    g_oswindowDesktop = oswindow_get(dpy, DefaultRootWindow(dpy));
 

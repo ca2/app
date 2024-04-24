@@ -59,9 +59,9 @@ namespace apex
       ::pointer<::user::primitive>                 m_puiCurrent;
       bool                                         m_bContextTheme;
 
-#if defined(LINUX) || defined(FREEBSD)
-      bool                                         m_bSnLauncheeSetup;
-#endif
+// #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+//       bool                                         m_bSnLauncheeSetup;
+// #endif
       //semaphore                                    m_semCompiler;
       // former ::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
       string_array                                 m_straActivationMessage;
@@ -1069,7 +1069,7 @@ namespace apex
 
       virtual string as_string(const ::payload & payload);
 
-#if defined(LINUX) || defined(FREEBSD)
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 
       virtual string get_wm_class() const;
 
@@ -1086,7 +1086,7 @@ namespace apex
       virtual void create_networking_application(const ::scoped_string & scopedstrHostName, ::networking::application_handler * papplicationhandlerCreateNetworkApplication = nullptr);
 
 
-      ::e_status on_html_response(::string & strHtml, const ::string & strUrl, const ::property_set & setPost) override;
+      ::e_status on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::string & strUrl, const ::property_set & setPost) override;
 
 
       bool _handle_uri(const ::string & strUri) override;

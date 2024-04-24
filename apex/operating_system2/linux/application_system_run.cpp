@@ -122,7 +122,7 @@ CLASS_DECL_APEX i32 ca2_main();
 //
 //}
 //#ifdef LINUX
-//i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
+//i32 _cx_XErrorHandler(Display * display, XErrorEvent * perrorevent);
 //#endif
 
 

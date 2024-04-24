@@ -10,7 +10,7 @@
 
 #endif
 
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(OPENBSD)
 #include <unistd.h>
 #endif
 

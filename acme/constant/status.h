@@ -99,6 +99,7 @@ enum enum_status : ::int64_t
    error_already_working_on_it,
    error_all_failed,
    error_resource,
+   error_runtime_check,
    error_win32,
    error_not_supported,
    error_null_pointer,

@@ -11,7 +11,7 @@
 #include "acme/primitive/string/str.h"
 
 
-#if defined(LINUX) || defined(FREEBSD)
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 #include <locale.h>
 #elif defined(__APPLE__)
 #include <xlocale.h>

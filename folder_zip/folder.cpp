@@ -286,7 +286,18 @@ namespace folder_zip
 
                   path.m_iBasePathLength = pathBaseFolder.length() + 1;
 
-                  path.m_iDir = strTitle.ends("/") || strTitle.ends("\\") || strTitle.ends(".zip");
+                  if(strTitle.ends("/") || strTitle.ends("\\") || strTitle.ends(".zip"))
+                  {
+
+                     path.set_folder_path();
+
+                  }
+                  else
+                  {
+
+                     path.set_file_path();
+
+                  }
 
                   path.m_iSize = unzfileinfo.uncompressed_size;
 
@@ -756,7 +767,7 @@ namespace folder_zip
    }
 
 
-} // namespace zip
+} // namespace folder_zip
 
 
 

@@ -285,7 +285,7 @@ namespace datetime
 //               && str.substr(13,1) == ":")
 //         {
 //            bBaseTime = true;
-//            Sys(pparticle).datetime().international().parse_str(str,set);
+//            Sys(pparticle).datetime().parse_text(str,set);
 //            string strWord = str.substr(19);
 //            strWord.trim_left();
 //            strWord = ::str::get_word(strWord," ");
@@ -330,7 +330,7 @@ namespace datetime
 //               && str.substr(7,1) == "-")
 //         {
 //            bBaseTime = true;
-//            Sys(pparticle).datetime().international().parse_str(str,set);
+//            Sys(pparticle).datetime().parse_text(str,set);
 //            time = ::earth::time(
 //                   set["year"],
 //                   set["month"],

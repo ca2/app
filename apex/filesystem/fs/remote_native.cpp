@@ -82,7 +82,7 @@ namespace fs
 
       ::file::path path;
 
-      path.m_iDir = 1;
+      path.set_existent_folder();
 
       path = "fs://";
 

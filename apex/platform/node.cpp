@@ -229,7 +229,7 @@ namespace apex
 
       ::file::path pathFolder;
 
-      pathFolder = "https://server.ca2.software/image/cc/ca2core/bkimageoftheday/common/";
+      pathFolder = "https://ca2.network/image/cc/ca2core/bkimageoftheday/common/";
 
       pfileset->m_listingAddUp.m_eflag = ::file::e_flag_file;
 
@@ -238,7 +238,7 @@ namespace apex
 
          ::file::path path = pathFolder / (str + string("?sessid=noauth"));
 
-         path.m_iDir = 0;
+         path.set_existent_file();
 
          pfileset->m_listingAddUp.defer_add(path);
 
@@ -272,11 +272,11 @@ namespace apex
    }
 
 
-   void node::defer_notify_startup_complete()
-   {
-
-
-   }
+   // void node::defer_notify_startup_complete()
+   // {
+   //
+   //
+   // }
 
 
    void node::start_node()
@@ -382,6 +382,22 @@ namespace apex
    //    throw ::interface_only();
 
    // }
+
+
+   bool node::has_ip4_internet()
+   {
+
+      return true;
+
+   }
+
+   
+   bool node::has_ip6_internet()
+   {
+
+      return true;
+
+   }
 
 
    void node::thread_initialize(::thread * pthread)
@@ -652,7 +668,7 @@ namespace apex
             
             ::file::path & path = listing.insert_at(0, "dropbox://");
             
-            path.m_iDir = 1;
+            path.set_existent_folder();
             
             listing.m_straTitle.insert_at(0, unitext("Dropbox"));
             
@@ -665,7 +681,7 @@ namespace apex
             
             ::file::path & path = listing.insert_at(0, "dropbox-app://");
             
-            path.m_iDir = 1;
+            path.set_existent_folder();
             
             listing.m_straTitle.insert_at(0, unitext("Dropbox-App"));
             
@@ -683,7 +699,7 @@ namespace apex
             
             ::file::path & path = listing.insert_at(0, "onedrive://");
             
-            path.m_iDir = 1;
+            path.set_existent_folder();
             
             listing.m_straTitle.insert_at(0, unitext("OneDrive"));
             
@@ -709,7 +725,7 @@ namespace apex
             
             ::file::path & path = listing.insert_at(iInsert, pathContainer);
             
-            path.m_iDir = 1;
+            path.set_existent_folder();
             
             listing.m_straTitle.insert_at(iInsert, strContainerName);
             
@@ -722,7 +738,7 @@ namespace apex
 
          ::file::path & path = listing.insert_at(0, "video://");
 
-         path.m_iDir = 1;
+         path.set_existent_folder();
 
          listing.m_straTitle.insert_at(0, unitext("Video"));
 
@@ -733,7 +749,7 @@ namespace apex
 
          ::file::path & path = listing.insert_at(0, "image://");
 
-         path.m_iDir = 1;
+         path.set_existent_folder();
 
          listing.m_straTitle.insert_at(0, unitext("Image"));
 
@@ -744,7 +760,7 @@ namespace apex
 
          ::file::path & path = listing.insert_at(0, "music://");
 
-         path.m_iDir = 1;
+         path.set_existent_folder();
 
          listing.m_straTitle.insert_at(0, unitext("Music"));
 
@@ -755,7 +771,7 @@ namespace apex
 
          ::file::path & path = listing.insert_at(0, "download://");
 
-         path.m_iDir = 1;
+         path.set_existent_folder();
 
          listing.m_straTitle.insert_at(0, unitext("Download"));
 
@@ -766,7 +782,7 @@ namespace apex
 
          ::file::path & path = listing.insert_at(0, "document://");
 
-         path.m_iDir = 1;
+         path.set_existent_folder();
 
          listing.m_straTitle.insert_at(0, unitext("Document"));
 
@@ -777,7 +793,7 @@ namespace apex
 
          ::file::path & path = listing.insert_at(0, "desktop://");
 
-         path.m_iDir = 1;
+         path.set_existent_folder();
 
          listing.m_straTitle.insert_at(0, unitext("Desktop"));
 

@@ -29,7 +29,7 @@
 #include "aura/platform/application.h"
 #include "aura/platform/node.h"
 
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(OPENBSD)
 #include <stdio.h>
 #endif
 
@@ -1524,39 +1524,44 @@ namespace user
 
       //estatus =
 
-      printf("aura::user::create_windowing (1)\n");
+      node()->user_send([this]()
+      {
 
-      __construct(m_pdesktopenvironment);
+         printf("aura::user::create_windowing (1)\n");
 
-      auto psystem = system();
+         __construct(m_pdesktopenvironment);
 
-      auto pacmenode = psystem->m_pacmenode;
+         auto psystem = system();
 
-      auto pauranode = pacmenode->m_pauranode;
+         auto pacmenode = psystem->m_pacmenode;
 
-      m_pdesktopenvironment->m_bUnhook = pauranode->m_bUnhookX;
+         auto pauranode = pacmenode->m_pauranode;
 
-      printf("aura::user::create_windowing (2)\n");
+         m_pdesktopenvironment->m_bUnhook = pauranode->m_bUnhookX;
 
-      __construct(m_pwindowing);
+         printf("aura::user::create_windowing (2)\n");
 
-      m_pdesktopenvironment->m_pwindowing = m_pwindowing;
+         __construct(m_pwindowing);
 
-      printf("aura::user::create_windowing (2.1)\n");
+         m_pdesktopenvironment->m_pwindowing = m_pwindowing;
 
-      //m_pwindowing->_initialize_windowing();
+         printf("aura::user::create_windowing (2.1)\n");
 
-      //printf("aura::user::create_windowing (2.2)\n");
+         //m_pwindowing->_initialize_windowing();
 
-      m_pwindowing->initialize_windowing(this);
+         //printf("aura::user::create_windowing (2.2)\n");
 
-      printf("aura::user::create_windowing (2.2)\n");
+         m_pwindowing->initialize_windowing(this);
 
-      auto paurasystem = psystem->m_paurasystem;
+         printf("aura::user::create_windowing (2.2)\n");
 
-      pauranode->m_pwindowingAuraNode = m_pwindowing;
+         auto paurasystem = psystem->m_paurasystem;
 
-      printf("aura::user::create_windowing end\n");
+         pauranode->m_pwindowingAuraNode = m_pwindowing;
+
+         printf("aura::user::create_windowing end\n");
+
+      });
 
    }
 

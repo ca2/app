@@ -668,7 +668,7 @@ namespace aura
 
 //#ifdef LINUX
 //
-//      virtual void defer_initialize_x11() ;
+//      virtual void deferx_initializex_x11() ;
 //      virtual bool sn_start_context();
 //
 //#endif

@@ -11,7 +11,7 @@
 #include <cxxabi.h>
 
 
-//#ifdef FREEBSD
+//#if defined(FREEBSD) || defined(OPENBSD)
 //
 //
 //void backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * pmessage, void * address)

@@ -62,7 +62,7 @@ namespace opengl
 
       //m_pixmap.mult_alpha();
 
-#elif defined(LINUX) || defined(FREEBSD)
+#elif defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
       glReadBuffer(GL_FRONT);
       
 
@@ -96,7 +96,7 @@ namespace opengl
 
       }
 
-      //memset(m_pixmap.m_pimage32Raw, 127, cx * cy * 4);
+      //::memory_set(m_pixmap.m_pimage32Raw, 127, cx * cy * 4);
 
 #endif
 

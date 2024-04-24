@@ -2,6 +2,9 @@
 #pragma once
 
 
+class string_to_string_lookup;
+
+
 class CLASS_DECL_ACME acme_path :
    virtual public particle
 {
@@ -62,6 +65,7 @@ public:
    virtual bool defer_process_protocol_path(::file::path & path);
    
    virtual ::file::path get_absolute_path(const ::scoped_string & scopedstr);
+   virtual bool is_absolute_path(const ::scoped_string & scopedstr);
 
    
    //::pointer < ::file::link > resolve_link(const ::file::path &path);
@@ -72,6 +76,27 @@ public:
    virtual void rename(const ::file::path& pathNewName, const ::file::path& pathOldName);
    virtual ::file::path get_sequence_path(const ::file::path& path, ::index iSequence, int iZeroPaddingWidth = 1);
    virtual void defer_free_name_by_renaming_to_last_in_sequence(const ::file::path& path, int iZeroPaddingWidth = 1);
+
+
+   virtual ::file::e_type executable_type(const ::file::path & path);
+
+   virtual void determine_executable(::file::path & path);
+
+   virtual ::file::path defer_apply_working_directory(const ::file::path &path, const ::file::path &working_directory);
+   /// A Default search path for PATH environment variable;
+   virtual ::string get_default_path();
+
+   /// get next entry in a PATH-environment-variable-like value
+   bool get_next_path(::scoped_string & scopedstr, ::string::RANGE & rangePath);
+
+
+   virtual ::file::path _path_get_path(const scoped_string & scopedstrCommand, const ::scoped_string & scopedstrPath, string_to_string_lookup * plookupEnvironment);
+
+
+   virtual ::file::path path_get_path(const scoped_string & scopedstrCommand, string_to_string_lookup * plookupEnvironment);
+
+
+   virtual ::file::path path_try_get_path(const scoped_string & scopedstrCommand, string_to_string_lookup * plookupEnvironment);
 
 
 };

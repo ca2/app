@@ -31,7 +31,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "socket.h"
 #include "socket_handler.h"
 #include "acme/exception/interface_only.h"
+#include "apex/networking/networking.h"
 #include "apex/networking/sockets/base/socket_thread.h"
+#include "apex/platform/system.h"
 //#ifdef _WIN32
 //#elif defined(LINUX)
 //#include <netdb.h>
@@ -158,6 +160,62 @@ namespace sockets
    }
 
 
+   ::networking::enum_address_type base_socket::preferred_address_type()
+   {
+
+      if (m_eaddresstypePreferred != ::networking::e_address_type_none)
+      {
+
+         return m_eaddresstypePreferred;
+
+      }
+
+      return networking()->m_eaddresstypePreferred;
+
+   }
+
+
+   void base_socket::defer_toggle_preferred_address_type()
+   {
+
+      if (preferred_address_type() == ::networking::e_address_type_ipv6)
+      {
+
+         if (networking()->has_ip4_internet())
+         {
+
+            m_eaddresstypePreferred = ::networking::e_address_type_ipv4;
+
+         }
+         else if (networking()->has_ip6_internet())
+         {
+
+            m_eaddresstypePreferred = ::networking::e_address_type_ipv6;
+
+         }
+
+      }
+      else
+      {
+
+         if (networking()->has_ip6_internet())
+         {
+
+            m_eaddresstypePreferred = ::networking::e_address_type_ipv6;
+
+         }
+         else if (networking()->has_ip4_internet())
+         {
+
+            m_eaddresstypePreferred = ::networking::e_address_type_ipv4;
+
+         }
+
+      }
+
+   }
+
+
    base_socket * base_socket::base_socket_composite()
    {
 
@@ -185,7 +243,7 @@ namespace sockets
    ::networking::networking * base_socket::networking()
    {
 
-      return base_socket_composite()->networking();
+      return system()->m_papexsystem->networking();
 
    }
 

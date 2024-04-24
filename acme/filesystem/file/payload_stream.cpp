@@ -289,7 +289,7 @@
 //
 //   }
 //
-//   ::memcpy(block.get_data(), m_ppayload->m_pmemory->get_data(), block.get_size());
+//   ::memory_copy(block.get_data(), m_ppayload->m_pmemory->get_data(), block.get_size());
 //
 //}
 //

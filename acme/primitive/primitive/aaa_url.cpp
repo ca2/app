@@ -395,7 +395,7 @@ namespace url
 
       auto pszInput = (const char*)block.get_data();
 
-      memset(pszEncoded, 0, block.get_size() * 5);
+      ::memory_set(pszEncoded, 0, block.get_size() * 5);
 
       while (*pszInput != '\0')
       {

@@ -127,7 +127,6 @@ namespace acme
 
       ::pointer <::crypto::crypto >                            m_pcrypto;
 
-
       string                                                            m_strOsUserTheme;
 
       class ::time                                                        m_timeFileListingCache;
@@ -168,6 +167,10 @@ namespace acme
       ::pointer < ::mutex >                  m_pmutexHttpDownload;
       string_array                           m_straHttpDownloading;
       string_array                           m_straHttpExists;
+#if defined(WITH_X11) || defined(WITH_XCB)
+      ::pointer < ::particle >                                 m_pmutexXlib;
+#endif
+
 
 
       system();
@@ -202,6 +205,10 @@ namespace acme
 
       virtual class ::imaging * imaging();
 
+#if defined(WITH_X11) || defined(WITH_XCB)
+      virtual ::particle * x11_synchronization();
+#endif
+
       inline ::pointer<::acme::node> & node() { return m_pnode; }
 
       inline class ::base64 * base64() { return m_pbase64; };
@@ -226,7 +233,7 @@ namespace acme
 
       ::particle * ui_destroyed_synchronization() { return m_pmutexUiDestroyed; }
 
-      inline ::nano::nano * nano() { return m_pnano; }
+      virtual ::nano::nano * nano();
       
       virtual ::nano::http * nano_http();
 
@@ -432,7 +439,7 @@ namespace acme
 
 #ifdef LINUX
 
-      //!!!      virtual void defer_initialize_x11();
+      //!!!      virtual void deferx_initializex_x11();
 
 #endif
 
@@ -670,6 +677,13 @@ namespace acme
 //      virtual void set_simple_ui_darkness(int iWeatherDarkness);
 
       virtual void set_dark_mode(bool bDark);
+
+#if defined(WITH_X11)
+      virtual void x11_sync(const ::procedure & procedure);
+      virtual void x11_async(const ::procedure & procedure);
+#endif
+
+
    };
 
 

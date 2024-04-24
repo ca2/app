@@ -16,7 +16,7 @@ struct MICROSECOND_SLEEP
 #endif
 
 
-#if defined(FREEBSD) || defined(__APPLE__) || defined(RASPBERRYPIOS)
+#if defined(FREEBSD) || defined(__APPLE__) || defined(OPENBSD) || defined(RASPBERRYPIOS)
 
 #include <unistd.h>
 
@@ -28,7 +28,7 @@ microsecond_sleep::microsecond_sleep()
 
 #ifdef WINDOWS
 
-   memset(this, 0, sizeof(microsecond_sleep));
+   ::memory_set(this, 0, sizeof(microsecond_sleep));
 
    MICROSECOND_SLEEP * pthis = (MICROSECOND_SLEEP *)this;
 

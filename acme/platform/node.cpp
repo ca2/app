@@ -25,6 +25,7 @@
 //#include "acme/primitive/collection/string_array.h"
 #include "acme/user/nano/button.h"
 #include "acme/user/nano/message_box.h"
+#include "acme/user/nano/nano.h"
 #include "acme/user/user/os_theme_colors.h"
 
 
@@ -68,9 +69,12 @@ namespace acme
 
       //m_pNodeX11 = nullptr;
       //m_pNodeXcb = nullptr;
+      m_pNodeGtk3 = nullptr;
+      m_pNodeGtk4 = nullptr;
 
       m_pNodeGnome = nullptr;
-      m_pNodeKDE = nullptr;
+      m_pNodeKDE5 = nullptr;
+      m_pNodeKDE6 = nullptr;
       m_pNodeXfce = nullptr;
 
       m_pNodeDesktopEnvironmentGnome = nullptr;
@@ -83,6 +87,12 @@ namespace acme
       m_bOperatingSystemDarkMode = false;
 
       m_pthemecolors = nullptr;
+
+#if defined(WITH_X11)
+      m_pvoidX11Display = nullptr;
+      m_estatusInitializeX11 = error_not_initialized;
+#endif
+
 
    }
 
@@ -349,7 +359,7 @@ namespace acme
    ::file::path node::get_default_base_integration_folder()
    {
 
-      return {};
+      return acmedirectory()->home() / "integration/_____";
 
    }
 
@@ -2338,8 +2348,6 @@ return false;
    ::pointer<::conversation>node::create_new_message_box_conversation()
    {
 
-      initialize_nano_window(factory());
-
       return __create_new < ::nano_message_box >();
 
    }
@@ -3135,7 +3143,7 @@ return false;
    }
 
 
-#if defined(BSD_UNIX)
+#if defined(__BSD__)
 
    void node::arp_a(void *p, void(*callback)(void * addr, ::u32 uIp, const char * status))
    {
@@ -3994,7 +4002,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
-   void node::register_user_auto_start(const string & strAppId, const ::file::path & pathExecutable, const string & strArguments, bool bRegister)
+   void node::register_user_auto_start(::acme::application * papplication, const string & strArguments, bool bRegister)
    {
 
       throw interface_only();
@@ -4235,12 +4243,62 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
       {
          return "application/rdf+xml";
       }
+      else if (strExtension == "raw")
+      {
+         return "application/x-cd-image;application/x-raw-disk-image;";
+      }
       else
       {
          return "";
       }
 
    }
+
+   
+   ::string node::eol()
+   {
+
+      return "\n";
+
+   }
+
+
+#if defined(WITH_X11)
+
+
+   void node::x11_sync(const ::procedure & procedure)
+   {
+
+      nano()->x11_sync(procedure);
+
+   }
+
+
+   void node::x11_async(const ::procedure & procedure)
+   {
+
+      nano()->x11_async(procedure);
+
+   }
+
+
+   void node::x11_display_error_trap_push(int i)
+   {
+
+
+   }
+
+
+   void node::x11_display_error_trap_pop_ignored(int i)
+   {
+
+
+   }
+
+
+#endif
+
+
 
 } // namespace acme
 

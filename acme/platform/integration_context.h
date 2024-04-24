@@ -114,6 +114,16 @@ namespace integration
 
 #endif
 
+      virtual ::string current_integration();
+
+      virtual ::string integration_main_status(const ::scoped_string& scopedstrSlashed);
+      virtual ::string integration_main_status();
+      virtual bool integration_is_any_running();
+      virtual ::string integration_can_start(const ::scoped_string& scopedstrIntegration);
+      virtual ::string integration_one_that_is_building();
+
+
+
 
    };
 

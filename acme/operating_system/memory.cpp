@@ -3,7 +3,7 @@
 // <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
-#if defined(LINUX) || defined(FREEBSD) || defined(__APPLE__)
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
 #include <string.h>
 #endif
 

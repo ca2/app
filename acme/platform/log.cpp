@@ -51,7 +51,7 @@ void log::initialize(::particle * pparticle)
       m_bLog = true;
 
    }
-   else if(platform()->has_argument1("--log"))
+   else if(platform()->has_argument("--log"))
    {
 
       ::output_debug_string("--log argument present\n");

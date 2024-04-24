@@ -18,7 +18,7 @@
 #endif
 //
 //
-//#if defined(LINUX) || defined(FREEBSD)
+//#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 //
 //#undef _WINDOWS_
 //// apt install libfreeimage-dev

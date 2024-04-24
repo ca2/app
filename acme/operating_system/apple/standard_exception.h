@@ -224,47 +224,12 @@ class standard_sigfpe : public standard_exception
       // uptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
    };
 
-#elif defined(FREEBSD)
+#elif defined(__APPLE__)
 
 class standard_sigfpe : public standard_exception
    {
    public:
       standard_sigfpe (i32 iSignal, siginfo_t * psiginfo, void * pc) :
-         //standard_exception(iSignal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip),
-         standard_exception(iSignal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext.mc_rip)
-         //::callstack(3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.eip),
-      {
-
-      }
-
-
-   public:
-      //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
-      // uptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }
-   };
-
-
-#elif defined(LINUX) || defined(__APPLE__)
-
-class standard_sigfpe : public standard_exception
-   {
-   public:
-      standard_sigfpe (i32 iSignal, siginfo_t * psiginfo, void * pc) :
-#ifdef LINUX
-#ifdef _LP64
-         standard_exception(iSignal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip)
-         //::callstack(3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip),
-#else
-#ifdef __arm__
-		 standard_exception(iSignal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.arm_ip)
-         //::callstack(3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.eip),
-#else
-		 standard_exception(iSignal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip)
-         //::callstack(3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.eip),
-
-#endif
-#endif
-#else
 #ifdef _LP64
 
 #ifdef __ARM_ARCH_ISA_A64
@@ -279,7 +244,6 @@ class standard_sigfpe : public standard_exception
          ::callstack(3, nullptr),
 #else
          //::callstack(3, (void *) ((ucontext_t *) pc)->uc_mcontext.eip),
-#endif
 #endif
 #endif
 //         ::exception(),

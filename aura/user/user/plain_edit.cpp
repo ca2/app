@@ -7036,7 +7036,7 @@ namespace user
             else if (is_window_enabled())
             {
 
-               //#if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(MACOS) || defined(FREEBSD)
+               //#if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(MACOS) || defined(FREEBSD) || defined(OPENBSD)
                //
                //               return;
                //

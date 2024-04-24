@@ -75,7 +75,7 @@ elseif (${FREEBSD})
 
 
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+    # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 
     message(STATUS "(E) PKGCONFIG_CFLAGS is ${PKGCONFIG_CFLAGS}")
@@ -83,7 +83,7 @@ elseif (${FREEBSD})
     message(STATUS "(E) PKGCONFIG_LIBRARIES is ${PKGCONFIG_LIBRARIES}")
 
 
-elseif (${LINUX})
+elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
 
     #if(USE_PKGCONFIG)
@@ -99,9 +99,10 @@ elseif (${LINUX})
 
     target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES} freeimage acme apex aqua aura)
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES} freeimage acme apex aqua aura
+    ${global_library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+    # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 
 

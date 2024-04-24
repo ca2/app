@@ -74,7 +74,8 @@ namespace dynamic_source
 
       virtual void set_session_payload(const ::atom & atom, const ::payload & payload);
       virtual ::payload get_session_payload(const ::atom & atom);
-      virtual ::atom session_id(const ::atom & atom = nullptr);
+      virtual ::string session_id(bool bForceCreateNew = false);
+      virtual void set_session_id(const ::scoped_string & scopedstrSessionId);
 
       virtual string get_auth_email();
       virtual void set_auth_email(const string & strEmail);

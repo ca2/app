@@ -336,7 +336,7 @@ string acme_directory::system_short_name()
 
    return "";
 
-#elif defined(FREEBSD)
+#elif defined(FREEBSD) || defined(OPENBSD)
 
    return acmefile()->module() - 2;
 
@@ -830,26 +830,19 @@ void acme_directory::_create2(const ::file::path & pathParam)
 //}
 
    
-bool acme_directory::is(const ::file::path & path)
+::file::e_type acme_directory::file_type(const ::file::path & path)
 {
 
    if(path.is_empty())
    {
 
-      throw ::exception(error_null_pointer);
+      return ::file::e_type_existent_folder;
 
    }
 
-   bool bDir;
+   auto etype = _file_type(path);
 
-   if (_is(bDir, path))
-   {
-
-      return bDir;
-
-   }
-
-   return false;
+   return etype;
 
 }
 
@@ -932,7 +925,7 @@ bool acme_directory::defer_enumerate_media_library(::file::listing& listing)
 
                path = plibraryitem->get_path();
 
-               path.m_iDir = 0;
+               path.set_file_path();
 
                listing.defer_add(path);
 
@@ -1144,14 +1137,14 @@ int acme_directory::make_path(const ::scoped_string & scopedstr)
 //} // namespace dir
 
 
-bool acme_directory::_is(bool & bDir, const ::file::path & path)
+::file::e_type acme_directory::_file_type(const ::file::path & path)
 {
 
    auto pathFinal = acmepath()->safe_get_real_path(path);
 
-   bDir = ::safe_is_directory(pathFinal);
+   auto etype = ::safe_file_type(pathFinal);
 
-   return true;
+   return etype;
 
 }
 
@@ -1304,6 +1297,14 @@ void acme_directory::add_media_library_item(::media_library::item* pmedialibrary
 {
 
    return {};
+
+}
+
+
+bool acme_directory::is_accessible(const ::file::path & path)
+{
+
+   return true;
 
 }
 

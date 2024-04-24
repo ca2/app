@@ -148,13 +148,15 @@ namespace acme
 
       ::acme::context::on_initialize_particle();
 
-      ::output_debug_string("Going to create simple log\n");
+      //::output_debug_string("Going to create simple log\n");
 
-      m_plogger = __create_new < ::simple_log >();
+      //m_plogger = __create_new < ::simple_log >();
 
-      ::output_debug_string("output_debug_string : simple log created\n");
+      __construct(m_plogger);
 
-      information() << "information() << output_debug_string : simple log created";
+      //::output_debug_string("output_debug_string : simple log created\n");
+
+      //information() << "information() << output_debug_string : simple log created";
 
 #ifdef PARALLELIZATION_PTHREAD
 
@@ -202,9 +204,98 @@ namespace acme
       //
       m_ewindowing = e_windowing_none;
 
-      m_plogger->m_etracelevelMinimum = e_trace_level_information;
+      //m_plogger->m_etracelevelMinimum = e_trace_level_warning;
 
-      information() << "initialize_system trace_category_static_init";
+      //m_strAppId = papplication->m_strAppId;
+
+      enum_trace_level etracelevel;
+
+      // if(is_debugger_attached())
+      // {
+
+      //    etracelevel = e_trace_level_information;
+
+      // }
+      // else
+      // {
+
+      //    etracelevel = e_trace_level_warning;
+
+      // }
+
+#ifdef _DEBUG
+
+      etracelevel = e_trace_level_warning;
+
+#else
+
+      auto pathCa2ConfigSystemFolder = _ca2_config_system_folder_path();
+
+      auto pathTraceLevelInformation = pathCa2ConfigSystemFolder / "trace_level_information.txt";
+
+      if(platform()->has_argument("--log"))
+      {
+
+         informationf("selecting informational trace\n");
+
+         etracelevel = e_trace_level_information;
+
+      }
+      else if(file_exists(pathTraceLevelInformation))
+      {
+
+         etracelevel = e_trace_level_information;
+
+      }
+      else
+      {
+
+         etracelevel = e_trace_level_warning;
+
+      }
+
+#endif
+
+      //if (etracelevel > e_trace_level_debug)
+      //{
+
+         auto strTraceLevel = m_pplatform->get_argument_begins_eat("--trace-level=");
+
+      if(strTraceLevel == "debug")
+      {
+
+         etracelevel = e_trace_level_debug;
+
+      }
+      else if(strTraceLevel == "information")
+      {
+
+         etracelevel = e_trace_level_information;
+
+      }
+
+//         for (int i = 0; i < m_pplatform->get_argument_count1(); i++)
+//         {
+//
+//            string strArg = m_pplatform->get_argument1(i);
+//
+//            if (strArg == "verbose")
+//            {
+//
+//               etracelevel = e_trace_level_information;
+//
+//               break;
+//
+//            }
+//
+//         }
+
+//      }
+
+      m_plogger->m_etracelevelMinimum = etracelevel;
+
+
+      //information() << "initialize_system trace_category_static_init";
 
       trace_category_static_init(this);
 
@@ -238,7 +329,7 @@ namespace acme
    void system::initialize_system()
    {
 
-      information() << "initialize_system factory()->initialize";
+      //information() << "initialize_system factory()->initialize";
 
       factory()->initialize(this);
 
@@ -264,15 +355,15 @@ namespace acme
       //      //      }
 
 
-      information() << "initialize_system create nano";
+      //information() << "initialize_system create nano";
 
-      __construct_new(m_pnano);
+      //__construct(m_pnano);
 
       //m_psystemimpl = __new< system_impl >();
 
       //set_os_data(LAYERED_ACME, this);
 
-      information() << "acme initialize_system end";
+      //information() << "acme initialize_system end";
 
    }
 
@@ -378,6 +469,9 @@ namespace acme
    }
 
 
+
+
+
    ::xml::xml * system::_xml()
    {
 
@@ -396,7 +490,7 @@ namespace acme
 
       }
 
-      information() <<"::acme::system create_os_node";
+      //information() <<"::acme::system create_os_node";
 
       auto & pfactory = node_factory();
 
@@ -417,7 +511,7 @@ namespace acme
 
 #endif
 
-      information() << "create_os_node going to create node";
+      //information() << "create_os_node going to create node";
 
       __construct(m_pnode);
 
@@ -496,8 +590,7 @@ namespace acme
 
       //::acme::idpool::init(this);
 
-      /// Create/Replace logger
-      __construct(m_plogger);
+//      /// Create/Replace logger
 
       __construct_new(m_pdatetime);
 
@@ -1119,6 +1212,23 @@ namespace acme
    }
 
 
+   ::nano::nano * system::nano()
+   {
+
+      if(!m_pnano)
+      {
+
+         initialize_nano_window(factory());
+
+         __construct(m_pnano);
+
+      }
+
+      return m_pnano;
+
+   }
+
+
    void system::defer_audio()
    {
 
@@ -1561,7 +1671,7 @@ namespace acme
    void system::get_public_internet_domain_extension_list(string_array & stra)
    {
 
-      //::file::path pathPublicDomainExtensionList = "https://server.ca2.software/public_internet_domain_extension_list.txt";
+      //::file::path pathPublicDomainExtensionList = "https://ca2.network/public_internet_domain_extension_list.txt";
 
       //file()->load_lines(stra, pathPublicDomainExtensionList);
 
@@ -2123,7 +2233,7 @@ namespace acme
 
          string strDate;
 
-         strDate = datetime()->international().get_date_time_for_file_with_no_spaces();
+         strDate = datetime()->date_time_text_for_file_with_no_spaces();
 
          string strPid;
 
@@ -2202,78 +2312,6 @@ namespace acme
 
       m_pacmeapplication = papplication;
 
-      //m_strAppId = papplication->m_strAppId;
-
-      enum_trace_level etracelevel;
-
-      // if(is_debugger_attached())
-      // {
-
-      //    etracelevel = e_trace_level_information;
-
-      // }
-      // else
-      // {
-
-      //    etracelevel = e_trace_level_warning;
-
-      // }
-
-#ifdef _DEBUG
-
-      etracelevel = e_trace_level_information;
-
-#else
-
-      auto pathCa2ConfigSystemFolder = _ca2_config_system_folder_path();
-
-      auto pathTraceLevelInformation = pathCa2ConfigSystemFolder / "trace_level_information.txt";
-
-      if(platform()->has_argument1("--log"))
-      {
-
-         informationf("selecting informational trace\n");
-
-         etracelevel = e_trace_level_information;
-
-      }
-      else if(file_exists(pathTraceLevelInformation))
-      {
-
-         etracelevel = e_trace_level_information;
-
-      }
-      else
-      {
-
-         etracelevel = e_trace_level_warning;
-
-      }
-
-#endif
-
-      if (etracelevel > e_trace_level_information)
-      {
-
-         for (int i = 0; i < m_pplatform->get_argument_count1(); i++)
-         {
-
-            string strArg = m_pplatform->get_argument1(i);
-
-            if (strArg == "verbose")
-            {
-
-               etracelevel = e_trace_level_information;
-
-               break;
-
-            }
-
-         }
-
-      }
-
-      m_plogger->m_etracelevelMinimum = etracelevel;
 
       ///*auto estatus = */ ::main::system_construct(papplication);
 

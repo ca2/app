@@ -12,7 +12,8 @@
 #define __BSD_VISIBLE 1
 #endif
 #include <pthread.h>
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(OPENBSD)
+#include <stdio.h>
 #include <pthread_np.h>
 #include <sched.h>
 #include <errno.h>
@@ -21,10 +22,17 @@
 #endif
 
 
-#ifdef FREEBSD
+
+#if defined(FREEBSD) || defined(OPENBSD)
 
 int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
 {
+
+#if defined(OPENBSD)
+
+    return 1;
+
+#else
 
     cpuset_t c;
 
@@ -45,6 +53,8 @@ int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
     pthread_setaffinity_np((pthread_t) h, sizeof(c), &c);
 
     return 1;
+
+#endif
 
 }
 
@@ -83,7 +93,7 @@ string task_get_name(htask_t htask)
 
    char szThreadName[32];
 
-#ifdef FREEBSD
+#if defined(FREEBSD) || defined(OPENBSD)
 
    pthread_get_name_np((pthread_t) htask, szThreadName, sizeof(szThreadName));
 
@@ -117,7 +127,7 @@ void task_set_name(htask_t htask, const char * psz)
 
    //auto estatus = task_set_name(pthread, pszThreadName);
 
-#ifdef __APPLE__
+#if defined(__APPLE__)
 
    int error = pthread_setname_np(pszTaskName);
 
@@ -129,7 +139,9 @@ void task_set_name(htask_t htask, const char * psz)
 
    thread_name_abbreviate(strName, 15);
 
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(OPENBSD)
+
+   errno = 0;
 
    pthread_set_name_np(pthread, strName);
 
@@ -145,6 +157,22 @@ void task_set_name(htask_t htask, const char * psz)
 
    if (error)
    {
+   
+      printf("task_set_name pthread_t 0x%016lX\n", (long unsigned int)pthread);
+      if(error == ESRCH)
+      {
+      
+         printf("task_set_name error ESRCH\n");
+	      
+      }
+      else
+      {
+      
+         printf("task_set_name error %d\n", error);
+      
+      }
+      
+      fflush(stdout);
 
       throw ::exception(error_failed);
 

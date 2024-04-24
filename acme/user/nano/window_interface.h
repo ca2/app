@@ -47,8 +47,8 @@ public:
 
    virtual bool defer_perform_entire_reposition_process();
 
-   virtual ::shift_i32 screen_to_client();
-   virtual ::shift_i32 client_to_screen();
+   virtual ::shift_i32 host_to_client();
+   virtual ::shift_i32 client_to_host();
 
    virtual ::shift_i32 absolute_to_client();
    virtual ::shift_i32 client_to_absolute();

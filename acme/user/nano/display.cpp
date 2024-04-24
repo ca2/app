@@ -106,5 +106,24 @@ namespace nano
 
 
 
+enum_display_type g_edisplaytype = e_display_type_none;
+
+
+enum_display_type get_display_type()
+{
+
+   return g_edisplaytype;
+
+}
+
+
+void initialize_display_type(enum_display_type edisplaytype)
+{
+
+   g_edisplaytype = edisplaytype;
+
+}
+
+
 
 

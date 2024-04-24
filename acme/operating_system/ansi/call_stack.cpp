@@ -32,6 +32,10 @@ void apple_backtrace_symbol_parse(string & strSymbolName, string & strAddress, c
 
 void freebsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolName, string & strModule, string & strAddress, char * pmessage, void * address);
 
+#elif defined(OPENBSD)
+
+void openbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolName, string & strModule, string & strAddress, char * pmessage, void * address);
+
 #else
 
 void backtrace_symbol_parse(string &strSymbolName, string &strAddress, char *pmessage, void *address);
@@ -112,6 +116,14 @@ string _ansi_stack_trace(::particle * pparticle, void *const *ppui, int frames, 
 
       strLine.formatf("%02d : %s : %s (%s)\n", frames - i - 1, strAddress.c_str(), strSymbolName.c_str(), strModule.c_str());
 
+#elif defined(OPENBSD)
+
+      string strModule;
+
+      openbsd_backtrace_symbol_parse(pparticle, strSymbolName, strModule, strAddress, pmessage, ppui[i]);
+
+      strLine.formatf("%02d : %s : %s (%s)\n", frames - i - 1, strAddress.c_str(), strSymbolName.c_str(), strModule.c_str());
+
 #else
       
       backtrace_symbol_parse(strSymbolName, strAddress, pmessage, ppui[i]);
@@ -143,7 +155,7 @@ namespace acme
    void node::get_call_stack_frames(void ** stack, int & frame_count)
    {
 
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(OPENBSD)
       const int iMaximumFramesToCapture = 32;
 #else
       const int iMaximumFramesToCapture = 96;
@@ -161,7 +173,7 @@ namespace acme
    int node::get_call_stack_default_frame_count()
    {
       
-   #if defined(FREEBSD)
+   #if defined(FREEBSD) || defined(OPENBSD)
          const int iMaximumFramesToCapture = 32;
    #else
          const int iMaximumFramesToCapture = 96;
@@ -187,7 +199,7 @@ namespace acme
 
       _synchronous_lock sl(psynchronization);
 
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(OPENBSD)
       const int iMaximumFramesToCapture = 32;
 #else
       const int iMaximumFramesToCapture = 96;

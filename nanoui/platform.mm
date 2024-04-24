@@ -12,8 +12,9 @@
 
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
-#include <string>
-#include <vector>
+#include "acme/primitive/collection/string_array.h"
+#include "acme/primitive/collection/string_map.h"
+//#include <vector>
 
 #endif
 
@@ -43,7 +44,7 @@ void ns_main_async(dispatch_block_t block);
     [[self savePanel] setNameFieldStringValue:nameFieldStringWithExt];
     [[self savePanel] setAllowedFileTypes:@[extension]];
 }
-- (std::string) launchDefaultSavePanelWithTypes: (NSArray*)types buttonItems:(NSArray*)buttonItems {
+- (::string) launchDefaultSavePanelWithTypes: (NSArray*)types buttonItems:(NSArray*)buttonItems {
         //copypaste
         
         [self setFormats: types];
@@ -84,8 +85,8 @@ void ns_main_async(dispatch_block_t block);
 
  void file_dialog_from_platform(
      void * poswindow, 
-     const std::vector<std::pair<std::string, std::string>> &filetypes,
-     std::function < void(const std::vector<std::string> &) > function, 
+     const string_map &filetypes,
+     ::function < void(const string_array &) > function,
      bool save,
      bool multiple)
 {

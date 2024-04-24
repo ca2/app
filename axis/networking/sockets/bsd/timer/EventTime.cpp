@@ -41,7 +41,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <sys/select.h>
 #endif
 
-#if defined(LINUX) || defined(__APPLE__) || defined(FREEBSD)
+#if defined(LINUX) || defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
 #if defined(FREEBSD)
 #define __XSI_VISIBLE 1
 #endif

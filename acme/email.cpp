@@ -569,7 +569,7 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //			*EnsureNotBeyond(szDest++, szDestEnd) = '\n';
 //			nWritten += 3;
 //
-//			Checked::memcpy_s(szDest, *pnDestLen - nWritten, ATL_UUENCODE_END, sizeof(ATL_UUENCODE_END) - 1);
+//			Checked::safe_memory_copy(szDest, *pnDestLen - nWritten, ATL_UUENCODE_END, sizeof(ATL_UUENCODE_END) - 1);
 //			nWritten += sizeof("end\r\n") - 1;
 //		}
 //		*pnDestLen = nWritten;
@@ -1123,7 +1123,7 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //	{
 //		wchar_t szHex[9];
 //		int nRet = swprintf_s(szHex, _countof(szHex), L"&#x%04X;", wch);
-//		Checked::memcpy_s(wszEsc, 9 * sizeof(wchar_t), szHex, 8 * sizeof(wchar_t));
+//		Checked::safe_memory_copy(wszEsc, 9 * sizeof(wchar_t), szHex, 8 * sizeof(wchar_t));
 //		return nRet;
 //	}
 //	ATLPREFAST_UNSUPPRESS()
@@ -1135,7 +1135,7 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //	{
 //		wchar_t szHex[11];
 //		int nRet = swprintf_s(szHex, _countof(szHex), L"&#x%06X;", dw);
-//		Checked::memcpy_s(wszEsc, 11 * sizeof(wchar_t), szHex, 10 * sizeof(wchar_t));
+//		Checked::safe_memory_copy(wszEsc, 11 * sizeof(wchar_t), szHex, 10 * sizeof(wchar_t));
 //		return nRet;
 //	}
 //	ATLPREFAST_UNSUPPRESS()
@@ -1177,7 +1177,7 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //			case L'&':
 //				if ((szEsc != NULL) && (4 < nCurrLen))
 //				{
-//					Checked::memcpy_s(szEsc, nCurrLen * sizeof(wchar_t), L"&amp;", 5 * sizeof(wchar_t));
+//					Checked::safe_memory_copy(szEsc, nCurrLen * sizeof(wchar_t), L"&amp;", 5 * sizeof(wchar_t));
 //					szEsc += 5;
 //				}
 //				nInc = 5;
@@ -1188,7 +1188,7 @@ inline int __QPEncodeGetRequiredLength(int nSrcLen)
 //				{
 //					if ((szEsc != NULL) && (5 < nCurrLen))
 //					{
-//						Checked::memcpy_s(szEsc, nCurrLen * sizeof(wchar_t), (*szIn == L'\'' ? L"&apos;" : L"&quot;"), 6 * sizeof(wchar_t));
+//						Checked::safe_memory_copy(szEsc, nCurrLen * sizeof(wchar_t), (*szIn == L'\'' ? L"&apos;" : L"&quot;"), 6 * sizeof(wchar_t));
 //						szEsc += 6;
 //					}
 //					nInc = 6;

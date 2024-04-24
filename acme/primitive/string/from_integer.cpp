@@ -1,7 +1,7 @@
 #include "framework.h"
-//#include "string.h"
+#include "from_integer.h"
 
- string i64toa_dup(i64 i, i32 iBase)
+string i64toa_dup(i64 i, i32 iBase)
 {
 
    char sz[128 + 64];

@@ -167,7 +167,7 @@ namespace windowing
 
 
    void window::call_create_window(::user::interaction_impl *puserinteractionimpl)
-{
+   {
       
       
       //if (::is_window(get_handle()))
@@ -263,11 +263,13 @@ namespace windowing
       
       puserinteractionimpl->m_pwindowing = pwindowing;
       
-      
-      
       create_window();
 
-      puserinteraction->on_finished_window_creation();
+      puserinteraction->m_ewindowflag |= e_window_flag_window_created;
+
+      puserinteraction->set_flag(e_flag_task_started);
+
+      on_finished_window_creation();
 
    }
 
@@ -279,6 +281,19 @@ namespace windowing
       //UNREFERENCED_PARAMETER(puserinteractionimpl);
 
       throw ::interface_only();
+
+   }
+
+
+   void window::on_finished_window_creation()
+   {
+
+      auto pimpl = m_puserinteractionimpl;
+
+      auto puserinteraction = pimpl->m_puserinteraction;
+
+      puserinteraction->send_message(e_message_pos_create, 0, 0);
+
 
    }
 
@@ -1443,15 +1458,26 @@ namespace windowing
          return true;
 
       }
+      
+      auto puserinteractionimpl = m_puserinteractionimpl;
 
-      if (m_puserinteractionimpl == nullptr)
+      if (!puserinteractionimpl)
       {
 
          return true;
 
       }
 
-      if (!m_puserinteractionimpl->m_puserinteraction->m_bUserElementOk)
+      auto puserinteraction = puserinteractionimpl->m_puserinteraction;
+      
+      if (!puserinteraction)
+      {
+
+         return true;
+
+      }
+      
+      if (!puserinteraction->m_bUserElementOk)
       {
 
          return true;

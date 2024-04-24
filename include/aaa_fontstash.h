@@ -545,7 +545,7 @@ static FONSatlas * fons__allocAtlas(int w, int h, int nnodes)
 	// Allocate memory for the font stash.
 	atlas = (FONSatlas *)malloc(sizeof(FONSatlas));
 	if (atlas == NULL) goto error;
-	memset(atlas, 0, sizeof(FONSatlas));
+	::memory_set(atlas, 0, sizeof(FONSatlas));
 
 	atlas->width = w;
 	atlas->height = h;
@@ -553,7 +553,7 @@ static FONSatlas * fons__allocAtlas(int w, int h, int nnodes)
 	// Allocate space for skyline nodes
 	atlas->nodes = (FONSatlasNode *)malloc(sizeof(FONSatlasNode) * nnodes);
 	if (atlas->nodes == NULL) goto error;
-	memset(atlas->nodes, 0, sizeof(FONSatlasNode) * nnodes);
+	::memory_set(atlas->nodes, 0, sizeof(FONSatlasNode) * nnodes);
 	atlas->nnodes = 0;
 	atlas->cnodes = nnodes;
 
@@ -741,7 +741,7 @@ FONScontext * fonsCreateInternal(FONSparams * params)
 	// Allocate memory for the font stash.
 	stash = (FONScontext *)malloc(sizeof(FONScontext));
 	if (stash == NULL) goto error;
-	memset(stash, 0, sizeof(FONScontext));
+	::memory_set(stash, 0, sizeof(FONScontext));
 
 	stash->params = *params;
 
@@ -763,7 +763,7 @@ FONScontext * fonsCreateInternal(FONSparams * params)
 	// Allocate space for fonts.
 	stash->fonts = (FONSfont **)malloc(sizeof(FONSfont *) * FONS_INIT_FONTS);
 	if (stash->fonts == NULL) goto error;
-	memset(stash->fonts, 0, sizeof(FONSfont *) * FONS_INIT_FONTS);
+	::memory_set(stash->fonts, 0, sizeof(FONSfont *) * FONS_INIT_FONTS);
 	stash->cfonts = FONS_INIT_FONTS;
 	stash->nfonts = 0;
 
@@ -772,7 +772,7 @@ FONScontext * fonsCreateInternal(FONSparams * params)
 	stash->ith = 1.0f / stash->params.height;
 	stash->texData = (unsigned char *)malloc(stash->params.width * stash->params.height);
 	if (stash->texData == NULL) goto error;
-	memset(stash->texData, 0, stash->params.width * stash->params.height);
+	::memory_set(stash->texData, 0, stash->params.width * stash->params.height);
 
 	stash->dirtyRect[0] = stash->params.width;
 	stash->dirtyRect[1] = stash->params.height;
@@ -856,7 +856,7 @@ void fonsPushState(FONScontext * stash)
 		return;
 	}
 	if (stash->nstates > 0)
-		memcpy(&stash->states[stash->nstates], &stash->states[stash->nstates - 1], sizeof(FONSstate));
+		::memory_copy(&stash->states[stash->nstates], &stash->states[stash->nstates - 1], sizeof(FONSstate));
 	stash->nstates++;
 }
 
@@ -900,7 +900,7 @@ static int fons__allocFont(FONScontext * stash)
 	}
 	font = (FONSfont *)malloc(sizeof(FONSfont));
 	if (font == NULL) goto error;
-	memset(font, 0, sizeof(FONSfont));
+	::memory_set(font, 0, sizeof(FONSfont));
 
 	font->glyphs = (FONSglyph *)malloc(sizeof(FONSglyph) * FONS_INIT_GLYPHS);
 	if (font->glyphs == NULL) goto error;
@@ -1403,7 +1403,7 @@ int fonsTextIterInit(FONScontext * stash, FONStextIter * iter,
 	FONSstate * state = fons__getState(stash);
 	float width;
 
-	memset(iter, 0, sizeof(*iter));
+	::memory_set(iter, 0, sizeof(*iter));
 
 	if (stash == NULL) return 0;
 	if (state->font < 0 || state->font >= stash->nfonts) return 0;
@@ -1732,12 +1732,12 @@ int fonsExpandAtlas(FONScontext * stash, int width, int height)
 	for (i = 0; i < stash->params.height; i++) {
 		unsigned char * dst = &data[i * width];
 		unsigned char * src = &stash->texData[i * stash->params.width];
-		memcpy(dst, src, stash->params.width);
+		::memory_copy(dst, src, stash->params.width);
 		if (width > stash->params.width)
-			memset(dst + stash->params.width, 0, width - stash->params.width);
+			::memory_set(dst + stash->params.width, 0, width - stash->params.width);
 	}
 	if (height > stash->params.height)
-		memset(&data[stash->params.height * width], 0, (height - stash->params.height) * width);
+		::memory_set(&data[stash->params.height * width], 0, (height - stash->params.height) * width);
 
 	free(stash->texData);
 	stash->texData = data;
@@ -1781,7 +1781,7 @@ int fonsResetAtlas(FONScontext * stash, int width, int height)
 	// Clear texture data.
 	stash->texData = (unsigned char *)realloc(stash->texData, width * height);
 	if (stash->texData == NULL) return 0;
-	memset(stash->texData, 0, width * height);
+	::memory_set(stash->texData, 0, width * height);
 
 	// Reset dirty rect
 	stash->dirtyRect[0] = width;

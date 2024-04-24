@@ -66,7 +66,20 @@ namespace url
       auto pEnd = str(pStart).find("/");
       auto pArgumentsStart = str(pStart).find("?");
 
-      if (::is_null(pEnd) || (::is_set(pArgumentsStart) && pEnd > pArgumentsStart))
+      if (::is_null(pEnd))
+      {
+
+         if (::is_set(pArgumentsStart))
+         {
+
+            return {};
+
+         }
+
+         pEnd = str.end();
+
+      }
+      else if (::is_set(pArgumentsStart) && pEnd > pArgumentsStart)
       {
 
          return {};

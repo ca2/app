@@ -336,6 +336,8 @@ enum enum_id : ::uptr
    id_edit_cut,
    id_edit_paste,
    id_edit_select_all,
+   
+   id_network_reachability_status_change
 
 };
 

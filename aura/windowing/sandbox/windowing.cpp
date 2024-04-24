@@ -168,7 +168,7 @@ namespace sandbox_windowing
       //m_pdisplay->open();
 
 
-      //_libsn_start_context();
+      //_libsnx_start_context();
 
 
       //      if(!estatus)
@@ -228,7 +228,7 @@ namespace sandbox_windowing
    //      if (psystem->m_bUser)
    //      {
    //
-   //         defer_initialize_x11();
+   //         deferx_initializex_x11();
    //
    //      }
    //
@@ -237,7 +237,7 @@ namespace sandbox_windowing
    //      if(pnode)
    //      {
    //
-   //         _libsn_start_context();
+   //         _libsnx_start_context();
    //
    //         branch_element(pnode);
    //

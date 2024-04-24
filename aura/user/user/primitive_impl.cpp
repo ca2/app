@@ -950,7 +950,7 @@ namespace user
          pmessage->m_oswindowNew = (::oswindow)wparam.m_number;
       }
       break;
-#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(FREEBSD)
+#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(FREEBSD) && !defined(OPENBSD)
       case ::message::e_prototype_window_pos:
 
       {
@@ -1008,13 +1008,13 @@ namespace user
 
          pmessage->m_ebuttonstate = (::user::enum_button_state) lower_u16(wparam);
 
-         pmessage->m_pointHost = lparam.point();
+         pmessage->m_pointAbsolute = lparam.point();
 
          pmessage->m_Δ = upper_i16(wparam);
 
-         pmessage->m_pointAbsolute = lparam.point();
+         pmessage->m_pointHost = pmessage->m_pointAbsolute;
 
-         _raw_client_to_screen(pmessage->m_pointAbsolute);
+         _raw_screen_to_client(pmessage->m_pointHost);
 
       }
       break;
@@ -3064,6 +3064,12 @@ namespace user
 
    }
 
+   void primitive_impl::_raw_screen_to_client(::point_i32& point)
+   {
+
+      m_puserinteraction->screen_to_client(e_layout_design)(point);
+
+   }
 
    ::trace_statement & primitive_impl::trace_statement_prefix(::trace_statement & statement) const
    {

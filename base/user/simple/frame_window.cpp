@@ -876,7 +876,7 @@ void simple_frame_window::initialize_frame_window_experience()
 bool simple_frame_window::would_display_notify_icon()
 {
 
-#if defined(UNIVERSAL_WINDOWS) || defined(ANDROID) || defined(APPLE_IOS)
+#if defined(UNIVERSAL_WINDOWS) || defined(ANDROID) || defined(APPLE_IOS) || defined(OPENBSD)
 
    return false;
 
@@ -1114,7 +1114,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
    //if (!(m_ewindowflag & e_window_flag_window_created))
    //{
 
-      if (m_bDefaultNotifyIcon)
+      if (would_display_notify_icon())
       {
 
          information() << "simple_frame_window::on_message_create m_bDefaultNotifyIcon";
@@ -1129,9 +1129,37 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
                           information() << "simple_frame_window::on_message_create default notify icon starting user thread";
 
-                          __defer_construct(m_pnotifyicon);
+                          try
+                           {
+
+
+                              __defer_construct(m_pnotifyicon);
+
+                           }
+                           catch(::exception & e)
+                           {
+                              information() << "simple_frame_window::on_message_create Failed to create notify icon (1)!";
+
+                              m_bDefaultNotifyIcon = false;
+
+                              m_pnotifyicon.release();
+
+
+
+                           }
+                           catch(...)
+                           {
+
+                              information() << "simple_frame_window::on_message_create Failed to create notify icon!";
+
+                              m_bDefaultNotifyIcon = false;
+
+                              m_pnotifyicon.release();
+
+                           }
 
                           //if (estatus.succeeded())
+                          if(m_pnotifyicon)
                           {
 
                              //m_pnotifyicon->m_puserinteraction = this;
@@ -1146,7 +1174,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
                         });
 
-      }
+   }
 
    //}
 
@@ -3090,21 +3118,71 @@ void simple_frame_window::defer_create_notification_icon()
 
             __construct(m_piconNotify);
 
-            //if(estatus.succeeded())
+            if(m_piconNotify)
             {
 
                //const ::scoped_string & scopedstrAppName = papp->m_strAppName;
 
+               try
+               {
+
+
+
                m_piconNotify->load_app_tray_icon(get_app()->m_strAppId);
+
+               }
+               catch(...)
+               {
+
+                  informationf("Exception at load_app_tray_icon");
+
+                  m_piconNotify.release();
+
+               }
 
             }
 
          }
 
+         if (!m_piconNotify)
+         {
+
+            if(m_bDefaultNotifyIcon)
+            {
+
+               m_bDefaultNotifyIcon = false;
+
+            }
+
+            informationf("Could not alocate m_piconNotify");
+
+            return;
+
+         }
+
+
          __defer_construct(m_pnotifyicon);
 
          //m_pnotifyicon->m_puserinteraction = this;
+         try
+         {
          m_pnotifyicon->create_notify_icon("(application_default_notify_icon)", this, m_piconNotify);
+         }
+         catch(...)
+         {
+
+            if(m_bDefaultNotifyIcon)
+            {
+
+               m_bDefaultNotifyIcon = false;
+
+            }
+
+            m_pnotifyicon.release();
+
+            m_piconNotify.release();
+
+         }
          //if (!)
          //{
 
@@ -3114,7 +3192,12 @@ void simple_frame_window::defer_create_notification_icon()
 
          //}
 
-         m_bitMinimizeToTray.defer(true);
+         if(m_pnotifyicon)
+         {
+
+            m_bitMinimizeToTray.defer(true);
+
+         }
 
       });
 

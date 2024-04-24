@@ -394,21 +394,21 @@ void matter::on_sequence(const ::payload & payload)
 
 
 
-void matter::delete_this()
-{
-
-   try
-   {
-
-      delete this;
-
-   }
-   catch (...)
-   {
-
-   }
-
-}
+//void matter::delete_this()
+//{
+//
+//   try
+//   {
+//
+//      delete this;
+//
+//   }
+//   catch (...)
+//   {
+//
+//   }
+//
+//}
 
 
 //void matter::__tracea(enum_trace_level elevel, const ::scoped_string & scopedstrFunction, const ::scoped_string & scopedstrFile, int iLine, const ::scoped_string & scopedstr) const

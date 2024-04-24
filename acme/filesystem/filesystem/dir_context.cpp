@@ -872,10 +872,10 @@ bool dir_context::fast_has_subdir(const ::file::path & path)
 
 
 
-bool dir_context::is_cached(bool& bIs, const ::file::path& path)
+::file::e_type dir_context::cached_file_type(const ::file::path& path)
 {
 
-   bIs = false;
+   ::file::e_type etype = ::file::e_type_unknown;
 
 #ifdef WINDOWS_DESKTOP
 #ifdef WINDOWS_DESKTOP
@@ -887,9 +887,14 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
 
       auto plink = acmepath()->resolve_link(pathTarget);
 
-      bIs = plink && plink->m_pathTarget.has_char();
+      if (!plink)
+      {
 
-      return true;
+         return etype;
+
+      }
+      
+      return cached_file_type(plink->m_pathTarget);
 
       //}
 
@@ -916,83 +921,14 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
    if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(path, ".zip")))
    {
 
-      bIs = true;
+      return ::file::e_type_existent_folder;
 
-      return true;
    }
 
    if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
    {
 
-      bool bHasSubFolder;
-
-      //            u32 dwLastError;
-
-                  //if (m_isdirmap.lookup(pcszPath, bHasSubFolder, dwLastError))
-
-                  //{
-
-                  //   bIs = bHasSubFolder;
-
-                  //   return true;
-
-                  //}
-
-//      zip_context zip(this);
-
-  //    bHasSubFolder = zip.has_sub_folder(path);
-
-
-      auto& pfactory = system()->folder_factory();
-
-      if (!pfactory)
-      {
-
-         return false;
-
-      }
-      else
-      {
-
-         auto pfolder = __create<::folder >(pfactory);
-
-         if (!pfolder)
-         {
-
-            return false;
-
-         }
-         else
-         {
-
-            file_pointer pfile;
-
-            {
-
-               compress_not_dir notdir;
-
-               bHasSubFolder = pfolder->has_sub_folder(path);
-
-               //   pfile = 
-
-               //pfilecontainer->open_for_reading()
-
-               //zip_context zip(this);
-
-               //zip.ls(listing);
-
-            }
-
-         }
-
-      }
-
-      //m_isdirmap.set(pcszPath, bHasSubFolder, ::get_last_error());
-
-
-      bIs = bHasSubFolder;
-
-      return true;
+      return __file_type(path);
 
    }
 
@@ -1034,18 +970,211 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
             //   return false;
             //}
    //         bIs = bHasSubFolder;
-   return false;
+   return etype;
 
 }
 
 
-bool dir_context::is(const ::file::path& pathParam)
+//bool dir_context::is(const ::file::path& pathParam)
+//{
+//
+//   if (::is_empty(pathParam))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   ::file::path path;
+//
+//   auto psystem = system();
+//
+//   if (pathParam.case_insensitive_begins("appmatter://"))
+//   {
+//
+//      path = psystem->m_pdirsystem->m_pathLocalAppMatterFolder / path.substr(12);
+//
+//   }
+//   else
+//   {
+//
+//      path = m_pcontext->defer_process_path(pathParam);
+//
+//   }
+//
+//   bool bIs = false;
+//
+//   if (!(pathParam.flags() & ::file::e_flag_bypass_cache) && is_cached(bIs, path))
+//   {
+//
+//      return bIs;
+//
+//   }
+//
+//   return _is(path);
+//
+//}
+//
+//
+//bool dir_context::_is(const ::file::path& path)
+//{
+//
+//   bool bDir = false;
+//
+//   if (__is(path, bDir))
+//   {
+//
+//      return bDir;
+//
+//   }
+//
+//   return acmedirectory()->is(path);
+//
+//}
+//
+//
+//bool dir_context::__is(const ::file::path& path, bool& bDir)
+//{
+//
+//   auto etype = __file_type(path);
+//
+//   if (etype == ::file::e_type_unknown)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   bDir = etype & ::file::e_type_folder2;
+//
+//   return true;
+//
+//
+//   //if (path.case_insensitive_ends("://") || path.case_insensitive_ends(":/") || path.case_insensitive_ends(":"))
+//   //{
+//
+//   //   bDir = true;
+//
+//   //   return true;
+//
+//   //}
+//
+//   //if (string_begins_ci(path, "http://") || string_begins_ci(path, "https://"))
+//   //{
+//
+//   //   property_set set;
+//
+//   //   if (path.flags() & ::file::e_flag_bypass_cache)
+//   //   {
+//
+//   //      set["nocache"] = true;
+//
+//   //   }
+//
+//   //   bDir = system()->http_exists(path, set);
+//
+//   //   return true;
+//
+//   //}
+//
+//   //if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(path, ".zip")))
+//   //{
+//
+//   //   bDir = true;
+//
+//   //   return true;
+//
+//   //}
+//
+//   //if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
+//   //{
+//
+//   //   bool bHasSubFolder;
+//
+//   //   auto& pfactory = system()->folder_factory();
+//
+//   //   if (!pfactory)
+//   //   {
+//
+//   //      bHasSubFolder = false;
+//
+//   //   }
+//   //   else
+//   //   {
+//
+//   //      auto pfolder = __create< ::folder >(pfactory);
+//
+//   //      if (!pfolder)
+//   //      {
+//
+//   //         bHasSubFolder = false;
+//
+//   //      }
+//   //      else
+//   //      {
+//
+//   //         file_pointer pfile;
+//
+//   //         {
+//
+//   //            compress_not_dir notdir;
+//
+//   //            bHasSubFolder = pfolder->has_sub_folder(path);
+//
+//   //            //   pfile = 
+//
+//   //            //pfilecontainer->open_for_reading()
+//
+//   //            //zip_context zip(this);
+//
+//   //            //zip.ls(listing);
+//
+//   //         }
+//
+//   //      }
+//
+//   //   }
+//
+//   //   //zip_context zip(this);
+//
+//   //   //bHasSubFolder = zip.has_sub_folder(path);
+//
+//   //   //            m_isdirmap.set(path, bHasSubFolder, get_last_error());
+//
+//   //   bDir = bHasSubFolder;
+//
+//   //   return true;
+//
+//   //}
+//
+//   //return false;
+//
+//}
+
+
+::file::e_type dir_context::file_type(const ::payload & payload)
 {
 
-   if (::is_empty(pathParam))
+   if(payload.is_element())
    {
 
-      return false;
+      auto pfile = payload.cast < ::file::file >();
+
+      if(pfile)
+      {
+
+         return ::file::e_type_existent_file;
+
+      }
+
+   }
+
+   auto pathParam = payload.as_file_path();
+
+   if (pathParam.trimmed().is_empty())
+   {
+
+      return ::file::e_type_existent_folder;
 
    }
 
@@ -1066,48 +1195,53 @@ bool dir_context::is(const ::file::path& pathParam)
 
    }
 
-   bool bIs = false;
-
-   if (!(pathParam.flags() & ::file::e_flag_bypass_cache) && is_cached(bIs, path))
+   if (!(pathParam.flags() & ::file::e_flag_bypass_cache))
    {
 
-      return bIs;
+      auto etype = cached_file_type(path);
+
+      if (etype != ::file::e_type_unknown)
+      {
+
+         return etype;
+
+      }
 
    }
 
-   return _is(path);
+   return _file_type(path);
 
 }
 
 
-bool dir_context::_is(const ::file::path& path)
+::file::e_type dir_context::_file_type(const ::file::path& path)
 {
 
-   bool bDir = false;
+   auto etype = __file_type(path);
 
-   if (__is(path, bDir))
+   if(etype != ::file::e_type_unknown)
    {
 
-      return bDir;
+      return etype;
 
    }
 
-   return acmedirectory()->is(path);
+   return acmedirectory()->file_type(path);
 
 }
 
 
-bool dir_context::__is(const ::file::path& path, bool& bDir)
+::file::e_type dir_context::__file_type(const ::file::path& path)
 {
 
    if (path.case_insensitive_ends("://") || path.case_insensitive_ends(":/") || path.case_insensitive_ends(":"))
    {
 
-      bDir = true;
-
-      return true;
+      return ::file::e_type_existent_folder;
 
    }
+
+   ::file::e_type etype = ::file::e_type_unknown;
 
    if (string_begins_ci(path, "http://") || string_begins_ci(path, "https://"))
    {
@@ -1121,25 +1255,41 @@ bool dir_context::__is(const ::file::path& path, bool& bDir)
 
       }
 
-      bDir = system()->http_exists(path, set);
+      auto bDir = system()->http_exists(path, set);
 
-      return true;
+      if (bDir)
+      {
+
+         etype = ::file::e_type_existent_element;
+
+      }
+
+      return etype;
 
    }
 
    if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(path, ".zip")))
    {
 
-      bDir = true;
+      auto bFile = file()->exists(path);
 
-      return true;
+      if (bFile)
+      {
+
+         etype = ::file::e_type_existent_folder;
+
+      }
+
+      return etype;
 
    }
 
    if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str::find_file_extension("zip:", path) >= 0))
    {
 
-      bool bHasSubFolder;
+      bool bHasSubFolder = false;
+
+      bool bIsFile = true;
 
       auto& pfactory = system()->folder_factory();
 
@@ -1171,7 +1321,12 @@ bool dir_context::__is(const ::file::path& path, bool& bDir)
 
                bHasSubFolder = pfolder->has_sub_folder(path);
 
-               //   pfile = 
+               if (!bHasSubFolder && pfolder->locate_file(path))
+               {
+
+                  bIsFile = true;
+
+               }
 
                //pfilecontainer->open_for_reading()
 
@@ -1191,13 +1346,24 @@ bool dir_context::__is(const ::file::path& path, bool& bDir)
 
       //            m_isdirmap.set(path, bHasSubFolder, get_last_error());
 
-      bDir = bHasSubFolder;
+      if (bIsFile)
+      {
 
-      return true;
+         etype = ::file::e_type_existent_file;
+
+      }
+      else if(bHasSubFolder)
+      {
+
+         etype = ::file::e_type_existent_folder;
+
+      }
+
+      return etype;
 
    }
 
-   return false;
+   return ::file::e_type_unknown;
 
 }
 
@@ -1983,7 +2149,18 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          ::file::path path = strDir / straLocaleSchema[i];
 
-         path.m_iDir = straLocaleSchema[i].ends("/") ? 1 : 0;
+         if(straLocaleSchema[i].ends("/"))
+         {
+
+            path.set_folder_path();
+
+         }
+         else
+         {
+
+            path.set_file_path();
+
+         }
 
          listing.defer_add(path);
 
@@ -2189,7 +2366,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
             auto etype = acmepath()->get_type(strFinal);
 
-            if (etype == ::file::e_type_file || etype == ::file::e_type_folder)
+            if (etype == ::file::e_type_file2 || etype == ::file::e_type_folder2)
             {
 
                information() << "!!Cache Hit: " << strFinal;
@@ -2306,8 +2483,8 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       bool bDir = strMatter.ends("/");
 
-      //strMatter.replace("https://server.ca2.software/", string(get_server_ca2_cc()));
-      strMatter.replace_with("https://ca2.software/", "https://server.ca2.software/");
+      //strMatter.replace("https://ca2.network/", string(get_server_ca2_cc()));
+      strMatter.replace_with("https://ca2.software/", "https://ca2.network/");
 
 
       //informationf("");
@@ -2329,7 +2506,18 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          path = "appmatter://" + strMatter(iFind);
 
-         path.m_iDir = bDir ? 1 : 0;
+         if(bDir)
+         {
+
+            path.set_folder_path();
+
+         }
+         else
+         {
+
+            path.set_file_path();
+
+         }
 
          if (bDir)
          {
@@ -2360,12 +2548,12 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
             auto etype = file()->resource_get_type(strMatter);
 
-            if (::is_file_or_folder(etype))
+            if (::is_existing_file_or_folder(etype))
             {
 
                path = "zipresource://" + strMatter;
 
-               path.m_iDir = etype == ::file::e_type_folder ? 1 : 0;
+               path.m_etype = etype;
 
                goto ret;
 
@@ -2393,10 +2581,10 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
             auto etype = acmepath()->get_type(path);
 
-            if (::is_file_or_folder(etype))
+            if (::is_existing_file_or_folder(etype))
             {
 
-               path.m_iDir = etype == ::file::e_type_folder ? 1 : 0;
+               path.m_etype = etype;
 
                goto ret;
 
@@ -2421,7 +2609,7 @@ ret:
 
       strPath = path;
 
-      if (path.m_iDir > 0)
+      if (path.m_etype & ::file::e_type_folder2)
       {
 
          strPath += "/";

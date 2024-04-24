@@ -72,7 +72,7 @@ namespace datetime
 
       //}
          
-      /*estatus = */ __construct_new(m_pinternational);
+      ///*estatus = */ __construct_new(m_pinternational);
 
       //if (!estatus)
       //{
@@ -97,21 +97,21 @@ namespace datetime
    }
 
 
-   void datetime::international::initialize(::particle * pparticle)
-   {
+   //void datetime::international::initialize(::particle * pparticle)
+   //{
 
-      /*auto estatus = */ ::object::initialize(pparticle);
+   //   /*auto estatus = */ ::object::initialize(pparticle);
 
-      //if (!estatus)
-      //{
+   //   //if (!estatus)
+   //   //{
 
-      //   return estatus;
+   //   //   return estatus;
 
-      //}
+   //   //}
 
-      //return estatus;
+   //   //return estatus;
 
-   }
+   //}
 
 
 //   void datetime::str::initialize(::particle * pparticle)
@@ -134,7 +134,7 @@ namespace datetime
    void datetime::destroy()
    {
 
-      m_pinternational.release();
+      //m_pinternational.release();
 
       //m_pstr.release();
 
@@ -302,14 +302,14 @@ namespace datetime
    //}
 
 
-   datetime::international::international()
-   {
+   //datetime::international::international()
+   //{
 
 
-   }
+   //}
 
 
-   void datetime::international::parse_str(const string & strSrc, property_set & set)
+   void datetime::parse_text(const string & strSrc, property_set & set)
    {
       
       string src(strSrc);
@@ -423,12 +423,12 @@ namespace datetime
    }
 
 
-   ::earth::time datetime::international::parse_str(const string& str)
+   ::earth::time datetime::parse_text(const string& str)
    {
 
       ::property_set set;
 
-      parse_str(str, set);
+      parse_text(str, set);
 
       auto year = set["year"].as_i32();
       auto month = set["month"].as_i32();
@@ -458,7 +458,7 @@ namespace datetime
    }
 
 
-   ::posix_time datetime::international::parse(const string & strParam)
+   ::posix_time datetime::parse(const string & strParam)
    {
 
       ::string str(strParam);
@@ -505,65 +505,68 @@ namespace datetime
    }
 
 
-   string datetime::international::get_date_time(const ::earth::time & time, string strFormat, const class ::time& timeshift)
+   string datetime::format(const ::scoped_string& scopedstrFormat, const ::earth::time & time, const class ::time& timeshift)
    {
       
       string str;
       
-      str = ::earth::format(strFormat, time, timeshift);
+      str = ::earth::format(scopedstrFormat, time, timeshift);
       
       return str;
 
    }
 
-   string datetime::international::get_date_time(string strFormat, const class ::time & timeshift)
-   {
 
-      ::earth::time time;
+   //string datetime::international::date_time_text(string strFormat, const class ::time & timeshift)
+   //{
 
-      time = ::earth::time::now();
+   //   ::earth::time time;
 
-      return get_date_time(time, strFormat, timeshift);
+   //   time = ::earth::time::now();
 
-   }
+   //   return date_time_text(time, strFormat, timeshift);
 
-   string datetime::international::get_date_time_for_file(const class ::time & timeshift, const ::earth::time & time)
-   {
-
-      return get_date_time(time, INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeshift);
-
-   }
+   //}
 
 
+   //string datetime::international::date_time_text_for_file(const class ::time & timeshift, const ::earth::time & time)
+   //{
 
-   string datetime::international::get_date(const ::earth::time & time, string strFormat, const class ::time & timeshift)
-   {
+   //   return date_time_text(time, INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeshift);
 
-      string str;
+   //}
 
-      str = ::earth::format(strFormat, time, timeshift);
 
-      return str;
+   //string datetime::international::date_text(const ::earth::time & time, string strFormat, const class ::time & timeshift)
+   //{
 
-   }
+   //   string str;
 
-   string datetime::international::get_date(string strFormat, const class ::time & timeshift)
-   {
+   //   str = ::earth::format(strFormat, time, timeshift);
 
-      ::earth::time time;
+   //   return str;
 
-      time = ::earth::time::now();
+   //}
 
-      return get_date(time, strFormat, timeshift);
 
-   }
+   //string datetime::international::date_text(string strFormat, const class ::time & timeshift)
+   //{
 
-   string datetime::international::get_date_for_file(const class ::time & timeshift, const ::earth::time & time)
-   {
+   //   ::earth::time time;
 
-      return get_date(time, INTERNATIONAL_DATE_FORMAT_FOR_FILE, timeshift);
+   //   time = ::earth::time::now();
 
-   }
+   //   return date_text(time, strFormat, timeshift);
+
+   //}
+
+
+   //string datetime::international::date_text_for_file(const class ::time & timeshift, const ::earth::time & time)
+   //{
+
+   //   return date_text(time, INTERNATIONAL_DATE_FORMAT_FOR_FILE, timeshift);
+
+   //}
 
 
 
@@ -604,16 +607,16 @@ namespace datetime
    //}
 
 
-   string datetime::international::get_date_time_for_file_with_no_spaces(const class ::time& timeshift, const ::earth::time & time)
-   {
+   //string datetime::international::get_date_time_for_file_with_no_spaces(const class ::time& timeshift, const ::earth::time & time)
+   //{
 
-      string str = get_date_time_for_file(timeshift, time);
+   //   string str = date_time_text_for_file(timeshift, time);
 
-      str.replace_with("_", " ");
+   //   str.replace_with("_", " ");
 
-      return str;
+   //   return str;
 
-   }
+   //}
 
 
    //string datetime::international::get_date_time_for_file_with_no_spaces(const class ::time& timeshift)
@@ -639,7 +642,7 @@ namespace datetime
 //   string datetime::str::get_date_time(const class ::time& timeshift)
 //   {
 //
-//      return m_pdatetime->international().get_date_time(::earth::time::now(), timeshift);
+//      return m_pdatetime->date_time_text(::earth::time::now(), timeshift);
 //
 //   }
 //
@@ -923,39 +926,39 @@ namespace datetime
    }
 
 
-   string datetime::format(const string & strFormatParam, const ::earth::time & time, const class ::time & timeshift)
-   {
+   //string datetime::format(const string & strFormatParam, const ::earth::time & time, const class ::time & timeshift)
+   //{
 
-      string strFormat(strFormatParam);
+   //   string strFormat(strFormatParam);
 
-      string str;
+   //   string str;
 
-      auto pFind = strFormat.find("%V");
+   //   auto pFind = strFormat.find("%V");
 
-      if (::is_set(pFind))
-      {
+   //   if (::is_set(pFind))
+   //   {
 
-         string strV;
+   //      string strV;
 
-         strV.formatf("%02d", ISO_WN(time.year(timeshift), time.month(timeshift), time.day(timeshift)));
+   //      strV.formatf("%02d", ISO_WN(time.year(timeshift), time.month(timeshift), time.day(timeshift)));
 
-         strFormat.replace_with(strV, "%V");
+   //      strFormat.replace_with(strV, "%V");
 
-      }
+   //   }
 
-      str = ::earth::format(strFormat, time, timeshift);
+   //   str = ::earth::format(strFormat, time, timeshift);
 
-      return str;
+   //   return str;
 
-   }
+   //}
 
 
-   string datetime::format(const string & str, const class ::time& timeshift)
-   {
+   //string datetime::format(const string & str, const class ::time& timeshift)
+   //{
 
-      return format(str, ::earth::time::now(), timeshift);
+   //   return format(str, ::earth::time::now(), timeshift);
 
-   }
+   //}
 
 
    //string datetime::strftime(const ::scoped_string & scopedstr, const ::earth::time & time, const class ::time& timeshift)
@@ -1570,7 +1573,7 @@ namespace datetime
             
             //auto pdatetime = datetime();
 
-            international().parse_str(str, set);
+            parse_text(str, set);
 
             string strWord = str.substr(19);
             strWord.trim_left();
@@ -1626,7 +1629,7 @@ namespace datetime
          {
             bBaseTime = true;
 
-            international().parse_str(str, set);
+            parse_text(str, set);
 
             time = ::earth::time(
                set["year"].as_i32(),
@@ -1973,6 +1976,38 @@ namespace datetime
 
 
 } // namespace datetime
+
+
+CLASS_DECL_ACME::earth::time earth_time_from_international_string(const ::scoped_string& scopedstrTime)
+{
+
+   auto range = scopedstrTime();
+
+   range.trim();
+
+   if (::character_isalnum(range[4])
+      || ::character_isalnum(range[7])
+      || ::character_isalnum(range[10])
+      || ::character_isalnum(range[13])
+      || ::character_isalnum(range[16]))
+   {
+
+      throw ::exception(error_bad_argument);
+
+   }
+
+   //       2007-12-03 17-23-24
+   int iYear = atoi(range(0, 4));
+   int iMonth = atoi(range(5, 2));
+   int iDay = atoi(range(8, 2));
+
+   int iHour = atoi(range(11, 2));
+   int iMinute = atoi(range(14, 2));
+   int iSecond = atoi(range(17, 2));
+
+   return { iYear, iMonth, iDay, iHour, iMinute, iSecond, ::earth::time({posix_time_t{}, 0}) };
+
+}
 
 
 

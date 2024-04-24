@@ -11,7 +11,7 @@
 #elif defined(LINUX)
 #include <sys/types.h>
 #include <unistd.h>
-#elif defined(FREEBSD)
+#elif defined(FREEBSD) || defined(OPENBSD)
 #include <stdio.h>
 #endif
 
@@ -349,7 +349,7 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
       if ((papplication && papplication->is_console()) || (!::is_debugger_attached() && g_bPrintfIfDebuggerIsNotAttached))
       {
 
-         if (tracestatement.m_etracelevel == e_trace_level_information)
+         if (tracestatement.m_etracelevel <= e_trace_level_information)
          {
 
             printf("%s", str.c_str());

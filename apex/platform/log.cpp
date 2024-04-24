@@ -68,7 +68,7 @@ namespace apex
 
       m_bLog               = true;
 
-      m_pfile              = nullptr;
+//      m_pfile              = nullptr;
 
       m_bInitialized       = false;
 
@@ -185,7 +185,7 @@ namespace apex
          m_bLog = true;
 
       }
-      else if(platform()->has_argument1("--log"))
+      else if(platform()->has_argument("--log"))
       {
 
          printf("--log argument present (2)\n");
@@ -738,6 +738,9 @@ namespace apex
 
          ::log::destroy();
 
+//         m_pfile.release();
+
+/*
          if (m_pfile)
          {
 
@@ -746,6 +749,7 @@ namespace apex
             m_pfile = nullptr;
 
          }
+*/
 
          m_bInitialized = false;
 

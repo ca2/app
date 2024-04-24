@@ -681,7 +681,7 @@
 //
 //      ::file::path pathFolder;
 //
-//      pathFolder = "https://server.ca2.software/image/cc/ca2core/bkimageoftheday/common/";
+//      pathFolder = "https://ca2.network/image/cc/ca2core/bkimageoftheday/common/";
 //
 //      pfileset->m_listingAddUp.m_eflag = ::file::e_flag_file;
 //

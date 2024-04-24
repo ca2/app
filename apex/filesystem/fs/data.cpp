@@ -134,15 +134,31 @@ namespace fs
    //}
 
 
-   int data::is_dir(const ::file::path & pszPath)
+   int data::is_dir(const ::file::path & path)
    {
 
-      UNREFERENCED_PARAMETER(pszPath);
+      auto etype = file_type(path);
+
+      if ((etype & ::file::e_type_file2) || (etype & ::file::e_type_folder2))
+      {
+
+
+      }
+
 
       return -1;
 
    }
 
+   
+   ::file::e_type data::file_type(const ::file::path& path)
+   {
+
+      UNREFERENCED_PARAMETER(path);
+
+      return ::file::e_type_unknown;
+
+   }
 
    ::file::listing & data::root_ones(::file::listing & listing)
    {

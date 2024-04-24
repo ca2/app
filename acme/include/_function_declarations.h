@@ -57,7 +57,11 @@ CLASS_DECL_ACME void ansi_unlink(const ::scoped_string & scopedstr);
 //CLASS_DECL_ACME::e_status get_last_status();
 
 
-#if !defined(__APPLE__) && !defined(LINUX) && !defined(ANDROID) && !defined(FREEBSD)
+#if !defined(__APPLE__) \
+&& !defined(LINUX) \
+&& !defined(ANDROID) \
+&& !defined(FREEBSD) \
+&& !defined(OPENBSD)
 
 int ftruncate(int file, filesize len);
 
@@ -259,7 +263,8 @@ inline bool is_impact_group(::u64 u, ::u64 uGroup);
 inline bool is_impact_subgroup(::u64 u, ::u64 uGroup);
 
 
-inline bool is_file_or_folder(const ::file::enum_type& etype);
+inline bool is_file_or_folder2(const ::file::enum_type& etype);
+inline bool is_existing_file_or_folder(const ::file::enum_type& etype);
 inline bool exists(const ::file::enum_type& etype);
 
 

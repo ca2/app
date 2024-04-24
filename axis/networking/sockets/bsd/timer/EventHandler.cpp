@@ -39,7 +39,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "apex/platform/system.h"
 
 
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(OPENBSD)
 #define __XSI_VISIBLE 1
 #include <sys/time.h>
 #endif
@@ -310,7 +310,7 @@ namespace sockets
          m_ptcpsocket -> SetReconnect(true);
 #endif
          
-         auto paddress = system()->m_papexsystem->networking()->create_address("127.0.0.1", m_port);
+         auto paddress = system()->m_papexsystem->networking()->create_ip4_address("127.0.0.1", m_port);
 //         m_ptcpsocket -> open(::networking::address("127.0.0.1", m_port));
          
          m_ptcpsocket -> open(paddress);

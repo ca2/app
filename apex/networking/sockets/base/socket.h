@@ -4,6 +4,7 @@
 
 ////#include "acme/primitive/primitive/object.h"
 #include "acme/filesystem/file/streamable.h"
+#include "apex/networking/_constant.h"
 
 
 namespace sockets
@@ -21,6 +22,10 @@ namespace sockets
 
       void * m_p2;
       i32      m_iKeepAliveCount = 0;
+
+      
+      ::networking::enum_address_type       m_eaddresstypePreferred;
+
 
 //      class CLASS_DECL_APEX callback
 //      {
@@ -191,6 +196,10 @@ namespace sockets
 
       virtual ::pointer < ::sockets::socket_thread > create_socket_thread();
       virtual void DetachSocket();
+
+
+      virtual ::networking::enum_address_type preferred_address_type();
+      virtual void defer_toggle_preferred_address_type();
 
 
       virtual base_socket * base_socket_composite();
@@ -547,7 +556,7 @@ namespace sockets
       virtual bool SetSoPasscred(bool x = true);
 //#endif
 //#ifdef SO_PEERCRED
-      //virtual bool SoPeercred(ucred & );
+      //virtual bool SoPeercred(struct ::ucred & );
 //#endif
 //#ifdef SO_PRIORITY
       virtual bool SetSoPriority(int);

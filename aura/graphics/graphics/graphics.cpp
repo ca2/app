@@ -171,12 +171,16 @@ namespace graphics
    void graphics::buffer_size_and_position(buffer_item * pbufferitem)
    {
 
+      information() << "::graphics::graphics::buffer_size_and_position (1)";
+
       if (::is_null(m_pimpl) || ::is_null(m_pimpl->m_puserinteraction))
       {
 
          return;
 
       }
+
+      information() << "::graphics::graphics::buffer_size_and_position (2)";
 
       pbufferitem->m_point = m_pimpl->m_puserinteraction->const_layout().design().origin();
 
@@ -210,9 +214,15 @@ namespace graphics
    ::graphics::buffer_item * graphics::on_begin_draw(::e_graphics egraphics)
    {
 
+      information() << "::graphics::graphics::on_begin_draw";
+
       auto pbufferitem = get_buffer_item();
 
+      information() << "::graphics::graphics::on_begin_draw : " << (::uptr) pbufferitem;
+
       pbufferitem->m_egraphics = egraphics;
+
+      information() << "::graphics::graphics::going to call buffer_size_and_position";
 
       buffer_size_and_position(pbufferitem);
 
@@ -285,6 +295,8 @@ namespace graphics
 
    bool graphics::update_buffer(buffer_item * pitem)
    {
+
+      information() << "GRAPHICS::GRAPHICS::UPDATE_BUFFER returning true...";
 
       return true;
 

@@ -1,6 +1,6 @@
 // Created from _unicode by camilo on 2022-11-07 09:23 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#if defined(FREEBSD)
+#if defined(FREEBSD) || defined(OPENBSD)
 #define _POSIX_C_SOURCE 200809L
 #define _ANSI_SOURCE
 #endif

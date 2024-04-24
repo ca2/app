@@ -50,7 +50,7 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 
 #endif
 
-#if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(MACOS) || defined(FREEBSD)
+#if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(MACOS) || defined(FREEBSD) || defined(OPENBSD)
 #define DESKTOP_PLATFORM
 #endif
 

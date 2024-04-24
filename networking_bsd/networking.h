@@ -141,6 +141,9 @@ namespace networking_bsd
       virtual bool defer_initialize_operating_system_networking();
       virtual bool defer_finalize_operating_system_networking();
 
+
+
+
       /*
       * Encode string per RFC1738 URL encoding rules
       * tnx rstaveley
@@ -202,11 +205,17 @@ namespace networking_bsd
       
       //i32 _select(::sockets::socket_handler * psockethandler, const class time & timeWait) override;
 
-      ::pointer<::networking::address> create_address(const ::string& strAddress, ::networking::port_t port = 0) override;
+      ::pointer<::networking::address> create_address(const ::string& strAddress, ::networking::enum_address_type eaddresstypePreferred = ::networking::e_address_type_none, ::networking::port_t port = 0) override;
 
-      ::pointer<::networking::address>create_ip4_address(const ::string & strIp4, ::networking::port_t port = 0) override;
+      bool lookup(::networking_bsd::address * paddress, ::networking::enum_address_type eaddresstypePreferred, const ::string & strAddress);
 
-      ::pointer<::networking::address>create_ip6_address(const ::string & strIp6, ::networking::port_t port = 0) override;
+      bool lookup_ipv4(::networking_bsd::address * paddress, const ::string & strAddress);
+
+      bool lookup_ipv6(::networking_bsd::address * paddress, const ::string & strAddress);
+
+      ::pointer<::networking::address> create_ip4_address(const ::string & strIp4, ::networking::port_t port = 0) override;
+
+      ::pointer<::networking::address> create_ip6_address(const ::string & strIp6, ::networking::port_t port = 0) override;
 
       ::pointer<address>create_ip4_address(u32 u, ::networking::port_t port = 0);
 

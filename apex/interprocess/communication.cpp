@@ -490,7 +490,7 @@ namespace interprocess
 
 #else
 
-#if defined(LINUX) || defined(FREEBSD)
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 
       strKey = acmedirectory()->system() / "communication" / strApp / idPid;
 
@@ -849,7 +849,7 @@ namespace interprocess
 
       auto pnode = psystem->node();
 
-#if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
+#if defined(LINUX) || defined(MACOS) || defined(FREEBSD) || defined(OPENBSD)
 
       ::file::path path = pnode->get_application_path(strApp, nullptr, nullptr);
 

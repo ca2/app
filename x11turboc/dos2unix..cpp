@@ -104,7 +104,7 @@ dostounix (struct date *d, struct time *t)
 
   ptm = localtime (&the_time);
   memory_set (&utm, N_C, sizeof (struct tm));
-  memcpy ((void *) &utm, (void *) ptm, sizeof (struct tm));
+  ::memory_copy ((void *) &utm, (void *) ptm, sizeof (struct tm));
 
   utm.tm_sec = t->ti_sec;
   utm.tm_min = t->ti_min;
@@ -123,7 +123,7 @@ unixtodos (posix_time the_time, struct date *d, struct time *t)
 
   memory_set (&utm, N_C, sizeof (struct tm));
   ptm = localtime (&the_time);
-  memcpy ((void *) &utm, (void *) ptm, sizeof (struct tm));
+  ::memory_copy ((void *) &utm, (void *) ptm, sizeof (struct tm));
 
   t->ti_sec = utm.tm_sec;
   t->ti_hund = 0;

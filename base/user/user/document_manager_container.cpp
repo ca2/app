@@ -4,7 +4,7 @@
 #include "impact_system.h"
 ////#include "acme/exception/exception.h"
 
-#ifdef FREEBSD
+#if defined(FREEBSD) || defined(OPENBSD)
 #include <stdio.h>
 #endif
 

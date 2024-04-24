@@ -26,7 +26,7 @@ if you want to make a argb window using xlib/Qt here is the code i use
 #include <X11/Xlib.h>
 
 /**getting display*/
-/*Display *dpy = XOpenDisplay ( 0 ); // open default display
+/*Display *dpy = XOpenxDisplay ( 0 ); // open default display
     if ( !dpy ) {
         qWarning ( "Cannot connect to the X server" );
         //exit ( 1 );
@@ -85,7 +85,7 @@ if you want to make a argb window using xlib/Qt here is the code i use
 #include <X11/Xlib.h>
 
 /**getting display*/
-/*Display *dpy = XOpenDisplay ( 0 ); // open default display
+/*Display *dpy = XOpenxDisplay ( 0 ); // open default display
     if ( !dpy ) {
         qWarning ( "Cannot connect to the X server" );
         //exit ( 1 );

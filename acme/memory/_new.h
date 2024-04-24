@@ -3,7 +3,7 @@
 #if !defined(NO_ACME_MEMORY_MANAGEMENT)
 
 
-#if defined(LINUX)
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 #include <new>
 #endif
 

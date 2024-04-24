@@ -468,7 +468,7 @@ jpeg_freeimage_dst (j_compress_ptr cinfo, fi_handle outfile, FreeImageIO *io)
    // read the comment
    char *value = (char*)malloc((length + 1) * sizeof(char));
    if(value == nullptr) return false;
-   ::memcpy(value, profile, length);
+   ::memory_copy(value, profile, length);
    value[length] = '\0';
 
    // create a tag
@@ -564,7 +564,7 @@ jpeg_read_icc_profile(j_decompress_ptr cinfo, JOCTET **icc_data_ptr, unsigned *i
    any ICC markers and verifies the consistency of the marker numbering.
    */
 
-   memset(marker_present, 0, (MAX_SEQ_NO + 1));
+   ::memory_set(marker_present, 0, (MAX_SEQ_NO + 1));
 
    for(marker = cinfo->marker_list; marker != nullptr; marker = marker->next)
    {
@@ -870,7 +870,7 @@ static int_bool
 
       ::u8 *profile = (::u8*)malloc((iccProfile->size + ICC_HEADER_SIZE) * sizeof(::u8));
       if(profile == nullptr) return false;
-      memcpy(profile, icc_signature, 12);
+      ::memory_copy(profile, icc_signature, 12);
 
       for(long i = 0; i < (long)iccProfile->size_i32; i += MAX_DATA_BYTES_IN_MARKER)
       {
@@ -880,7 +880,7 @@ static int_bool
          // number of markers
          profile[13] = (::u8) (iccProfile->size / MAX_DATA_BYTES_IN_MARKER + 1);
 
-         memcpy(profile + ICC_HEADER_SIZE, (::u8*)iccProfile->data + i, length);
+         ::memory_copy(profile + ICC_HEADER_SIZE, (::u8*)iccProfile->data + i, length);
          jpeg_write_marker(cinfo, ICC_MARKER, profile, (length + ICC_HEADER_SIZE));
       }
 
@@ -919,14 +919,14 @@ static int_bool
             ::u8 *iptc_profile = (::u8*)malloc(length + roundup + tag_length);
             if(iptc_profile == nullptr) break;
             // Photoshop identification string
-            memcpy(&iptc_profile[0], "Photoshop 3.0\x0", 14);
+            ::memory_copy(&iptc_profile[0], "Photoshop 3.0\x0", 14);
             // 8BIM segment type
-            memcpy(&iptc_profile[14], "8BIM\x04\x04\x0\x0\x0\x0", 10);
+            ::memory_copy(&iptc_profile[14], "8BIM\x04\x04\x0\x0\x0\x0", 10);
             // segment size_i32
             iptc_profile[24] = (::u8)(length >> 8);
             iptc_profile[25] = (::u8)(length & 0xFF);
             // segment data
-            memcpy(&iptc_profile[tag_length], &profile[i], length);
+            ::memory_copy(&iptc_profile[tag_length], &profile[i], length);
             if(roundup)
                iptc_profile[length + tag_length] = 0;
             jpeg_write_marker(cinfo, IPTC_MARKER, iptc_profile, length + roundup + tag_length);
@@ -969,13 +969,13 @@ static int_bool
 
          ::u8 *profile = (::u8*)malloc((tag_length + xmp_header_size) * sizeof(::u8));
          if(profile == nullptr) return false;
-         memcpy(profile, xmp_signature, xmp_header_size);
+         ::memory_copy(profile, xmp_signature, xmp_header_size);
 
          for(::u32 i = 0; i < tag_length; i += 65504L)
          {
             unsigned length = (unsigned) minimum((long)(tag_length - i), 65504L);
 
-            memcpy(profile + xmp_header_size, tag_value + i, length);
+            ::memory_copy(profile + xmp_header_size, tag_value + i, length);
             jpeg_write_marker(cinfo, EXIF_MARKER, profile, (length + xmp_header_size));
          }
 
@@ -1023,7 +1023,7 @@ static int_bool
          {
             unsigned length = (unsigned) minimum((long)(tag_length - i), 65504L);
 
-            memcpy(profile, tag_value + i, length);
+            ::memory_copy(profile, tag_value + i, length);
             jpeg_write_marker(cinfo, EXIF_MARKER, profile, length);
          }
 
@@ -1774,7 +1774,7 @@ static int_bool DLL_CALLCONV
             while (cinfo.next_scanline < cinfo.image_height)
             {
                // get a copy of the scanline
-/*               memcpy(target, FreeImage_GetScanLine(pimage, FreeImage_GetHeight(pimage) - cinfo.next_scanline - 1), pitch);
+/*               ::memory_copy(target, FreeImage_GetScanLine(pimage, FreeImage_GetHeight(pimage) - cinfo.next_scanline - 1), pitch);
 #if FREEIMAGE_COLORORDER == FREEIMAGE_COLORORDER_BGR
                // __swap R and B channels
                ::u8 *target_p = target;

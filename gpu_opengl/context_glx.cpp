@@ -4,7 +4,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura_posix/_.h"
 //#include "aura_posix/_library.h"
-#include "aura_posix/x11/display_lock.h"
+#include "acme/operating_system/x11/display_lock.h"
 #include "aura/platform/system.h"
 #include "aura/platform/session.h"
 #include "aura/user/user/user.h"
@@ -90,7 +90,7 @@ namespace opengl
 
       auto pdisplay = (Display *) pnode->_get_Display();
 
-      ::windowing_x11::display_lock display(pdisplay);
+      ::x11::display_lock display(pdisplay);
 
       int screen = DefaultScreen(pdisplay);
 
@@ -201,7 +201,7 @@ namespace opengl
 
       auto pdisplay = (Display *) pnode->_get_Display();
 
-      ::windowing_x11::display_lock display(pdisplay);
+      ::x11::display_lock display(pdisplay);
 
       // Activate graphics context
       if (!glXMakeContextCurrent(pdisplay, m_pbuffer, m_pbuffer, m_context))
@@ -258,7 +258,7 @@ namespace opengl
 
       auto pdisplay = (Display *) pnode->_get_Display();
 
-      ::windowing_x11::display_lock display(pdisplay);
+      ::x11::display_lock display(pdisplay);
 
       int screen = DefaultScreen(pdisplay);
 

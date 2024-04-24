@@ -472,7 +472,7 @@ raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::~raw_array()
 //
 //
 //      // copy aaa_primitive_new data from old
-//      ::acme::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
+//      ::safe_memory_copy(pNewData, (size_t)nNewMax * sizeof(TYPE),
 //         m_pData, (size_t)m_nSize * sizeof(TYPE));
 //
 //      // construct remaining elements
@@ -509,7 +509,7 @@ raw_array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::~raw_array()
 //      {
 //         pNewData = (TYPE*) aaa_primitive_new ::u8[m_nSize * sizeof(TYPE)];
 //         // copy aaa_primitive_new data from old
-//         ::acme::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
+//         ::safe_memory_copy(pNewData, m_nSize * sizeof(TYPE),
 //            m_pData, m_nSize * sizeof(TYPE));
 //      }
 //

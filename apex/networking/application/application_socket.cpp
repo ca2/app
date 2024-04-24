@@ -37,7 +37,7 @@ namespace networking
 
       string strHtml;
 
-      auto estatus = papp->on_html_response(strHtml, strUrl, setPost);
+      auto estatus = papp->on_html_response(this, strHtml, strUrl, setPost);
 
       response().file()->write(strHtml);
 

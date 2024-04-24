@@ -64,7 +64,7 @@ namespace apex
       virtual ::file::path get_desktop_file_path(::apex::application * papp);
 
 
-      virtual void defer_notify_startup_complete();
+      //virtual void defer_notify_startup_complete();
 
 
       void start_node() override;
@@ -90,6 +90,10 @@ namespace apex
 
       //virtual void parallelization_initialize();
       //virtual void parallelization_finalize();
+
+      virtual bool has_ip4_internet();
+
+      virtual bool has_ip6_internet();
 
       virtual void thread_initialize(::thread* pthread);
       //virtual void thread_finalize(::thread* pthread);

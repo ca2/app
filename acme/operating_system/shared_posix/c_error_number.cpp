@@ -3,7 +3,7 @@
 //
 #include "framework.h"
 #include "c_error_number.h"
-#if defined(FREEBSD) || defined(__APPLE__)
+#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
 #include <errno.h>
 #include <string.h>
 #endif

@@ -314,7 +314,7 @@ namespace message
       
       m_union.m_pmouse = this;
 
-//#if defined(LINUX) || defined(FREEBSD)
+//#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 //
 //      m_bTranslated = true;  // in root coordinates
 //

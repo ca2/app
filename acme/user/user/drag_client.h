@@ -34,7 +34,7 @@ namespace user
 
 
       virtual bool drag_on_button_down(::item * pitem);
-      virtual void drag_on_button_down(::item * pitem, ::user::mouse * pmouse);
+      virtual bool drag_on_button_down(::item * pitem, ::user::mouse * pmouse);
       virtual bool drag_on_mouse_move(::user::mouse * pmouse);
       virtual bool drag_on_mouse_hover(::item * pitem);
       virtual bool drag_on_button_up(::user::mouse * pmouse);

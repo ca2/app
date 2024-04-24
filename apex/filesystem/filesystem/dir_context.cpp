@@ -2263,8 +2263,8 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       bool bDir = strMatter.ends("/");
 
-      //strMatter.replace("https://server.ca2.software/", string(get_server_ca2_cc()));
-      strMatter.replace_with("https://ca2.software/", "https://server.ca2.software/");
+      //strMatter.replace("https://ca2.network/", string(get_server_ca2_cc()));
+      strMatter.replace_with("https://ca2.software/", "https://ca2.network/");
 
 
       //informationf("");

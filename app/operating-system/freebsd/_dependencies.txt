@@ -1,3 +1,0 @@
-app/draw2d_cairo
-operating_system-freebsd/node_freebsd
-app/crypto_openssl

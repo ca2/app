@@ -257,10 +257,10 @@ namespace fs
    int set::is_dir(const ::file::path & path)
    {
 
-      if (path.m_iDir >= 0)
+      if (path.m_etype & ::file::e_type_exists)
       {
 
-         return path.m_iDir;
+         return path.m_etype & ::file::e_type_folder2;
 
       }
 
@@ -274,6 +274,30 @@ namespace fs
       }
 
       return -1;
+
+   }
+
+
+   ::file::e_type set::file_type(const ::file::path& path)
+   {
+
+      if (path.is_file_or_folder())
+      {
+
+         return path.type();
+
+      }
+
+      ::fs::data* pdata = path_data(path);
+
+      if (pdata != nullptr)
+      {
+
+         return pdata->file_type(path);
+
+      }
+
+      return ::file::e_type_unknown;
 
    }
 

@@ -131,7 +131,7 @@ namespace networking
    }
 
 
-   ::e_status application::on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost)
+   ::e_status application::on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::string& strUrl, const ::property_set& setPost)
    {
 
       string strRequestScript = system()->url()->get_script(strUrl);
@@ -169,7 +169,7 @@ namespace networking
                || strRequestScript.case_insensitive_begins(strScript + "?"))
             {
 
-               auto estatus = phandler->on_html_response(strHtml, strUrl, setPost);
+               auto estatus = phandler->on_html_response(psocket, strHtml, strUrl, setPost);
 
                if (estatus.succeeded())
                {
@@ -200,7 +200,7 @@ namespace networking
       strHtml += "🌌 🌍 [ ca2/C++/Windows ] Creating Simple Local Webserver";
       strHtml += "</h1>";
       strHtml += "<h4><a href=\"https://ca2.software/camilo\">cs</a><a href=\"https://ca2.io\">&lt;3</a><a href=\"https://thomasbs.com/\">tbs</a>!!</h4>";
-      strHtml += "&lt;3TBS - InfinityUnicodeCharacter - " + pdatetime->international().get_date_time() + "- +InfinityUnicodeCharacter - CA2(THWOASONE)";
+      strHtml += "&lt;3TBS - InfinityUnicodeCharacter - " + pdatetime->date_time_text() + "- +InfinityUnicodeCharacter - CA2(THWOASONE)";
       strHtml += "</body>";
       strHtml += "</html>";
 

@@ -21,7 +21,7 @@
 
 
 void x11_init_threads();
-void * x11_get_display();
+//void * x11_get_display();
 
 
 void set_main_user_thread();
@@ -577,12 +577,12 @@ namespace wayland
 //
 //      }
 ////
-////      XInitThreads();
+////      XInitxThreads();
 ////
 ////      if(!m_pdisplay)
 ////      {
 ////
-////         set_X11_Display(XOpenDisplay(nullptr));
+////         set_X11_Display(XOpenxDisplay(nullptr));
 ////
 ////      }
 

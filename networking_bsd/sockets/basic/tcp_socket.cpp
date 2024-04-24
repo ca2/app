@@ -3,6 +3,7 @@
 #include "networking_bsd/address.h"
 #include "networking_bsd/networking.h"
 #include "socket_handler.h"
+#include "acme/operating_system/shared_posix/c_error_number.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/crypto/crypto.h"
 #include "apex/platform/system.h"
@@ -10,13 +11,15 @@
 #include "networking_bsd/sockets/ssl/context.h"
 #include "networking_bsd/sockets/ssl/client_context.h"
 #include "networking_bsd/sockets/ssl/client_context_map.h"
+#if OPENSSL_VERSION_NUMBER >= 0x30000000
 #include <openssl/core_names.h>
+#endif
 //#define OPENSSL_VERSION_NUMBER 123
 
 //::std::strong_ordering memory_order(const void * m1, const void * m2, memsize s);
 
 
-#if defined(LINUX) || defined(FREEBSD)
+#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 #undef USE_MISC
 #include <unistd.h>
 #endif
@@ -178,7 +181,7 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
       return 1;
    }
 
-   size_t i;
+   ::index i;
    for (i = 0; i < c->m_ticketkeya.get_size(); ++i) {
       auto& key = c->m_ticketkeya[i];
       if (strncmp((const char*) key.key_name, (const char *) key_name, 16)) 
@@ -248,7 +251,7 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
 //   head = ref->tls_ticket_enc_index;
 //
 //   if (enc) {
-//      memcpy(key_name, keys[head].name, 16);
+//      ::memory_copy(key_name, keys[head].name, 16);
 //
 //      if (!RAND_pseudo_bytes(iv, EVP_MAX_IV_LENGTH))
 //         goto end;
@@ -759,6 +762,10 @@ m_ibuf(isize)
       if (IsIpv6())
       {
 
+         printf("::networking_bsd::tcp_socket::open IsIpv6() true");
+
+         fflush(stdout);
+
          //if(!__Handler(socket_handler())->ResolverEnabled() || paddressdepartment->isipv6(host))
          //if (!pnetworking2->is_ip6(host))
          //{
@@ -785,6 +792,9 @@ m_ibuf(isize)
       else
       {
 
+         printf("::networking_bsd::tcp_socket::open IsIpv6() false");
+
+         fflush(stdout);
 
          ////if(!__Handler(socket_handler())->ResolverEnabled() || paddressdepartment->isipv4(host))
          //if (!pnetworking2->is_ip4(host))
@@ -796,7 +806,7 @@ m_ibuf(isize)
 
          //}
 
-         paddress = pnetworking->create_address(host, port);
+         paddress = pnetworking->create_address(host, preferred_address_type(), port);
 
          //paddress = pnetworking->create_address(host, port);
 
@@ -2686,7 +2696,7 @@ m_ibuf(isize)
 
             }
 
-#if OPENSSL_VERSION_NUMBER >= 0x10101000L 
+#if OPENSSL_VERSION_NUMBER >= 0x10101000L  && !defined(LIBRESSL_VERSION_NUMBER)
 
             if (!SSL_CTX_use_cert_and_key(m_psslcontext->m_pclientcontext->m_psslcontext, certificate, key, pchain, 1))
             {

@@ -5846,7 +5846,7 @@ namespace draw2d_opengl
       //glClear(GL_COLOR_BUFFER_BIT);
       //glEnable(GL_BLEND);
       //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-      //memcpy(&m_pgpucontext->m_pbuffer->m_pixmap, (::pixmap *)m_pimage, sizeof(::pixmap));
+      //::memory_copy(&m_pgpucontext->m_pbuffer->m_pixmap, (::pixmap *)m_pimage, sizeof(::pixmap));
 
       //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 

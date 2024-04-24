@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "window.h"
 #include "display.h"
+#include "nano.h"
 #include "acme/operating_system/cairo/nano/device.h"
 #include "acme/platform/system.h"
 #include "acme/platform/node.h"
@@ -19,14 +20,16 @@ void operating_system_initialize_x11_nano(::factory::factory * pfactory)
 
    pfactory->add_factory_item<::x11::nano_window, ::nano_window_implementation>();
 
-   ::x11::display::get(pfactory);
+   pfactory->add_factory_item<::x11::nano, ::nano::nano>();
+
+   //::x11::display::_nano_0get(pfactory);
 
 }
 
 
 void operating_system_initialize_xcb_nano(::factory::factory * pfactory);
 
-#if !defined(FREEBSD)
+#if !defined(FREEBSD) && !defined(OPENBSD)
 
 
 void operating_system_initialize_wayland_nano(::factory::factory * pfactory);
@@ -40,7 +43,7 @@ void operating_system_initialize_nano(::factory::factory * pfactory)
 
    auto psystem = pfactory->system();
 
-#if !defined(FREEBSD)
+#if !defined(FREEBSD) && !defined(OPENBSD)
 
    if(psystem->node()->is_wayland())
    {
@@ -66,9 +69,12 @@ void operating_system_initialize_nano(::factory::factory * pfactory)
 
    }
 
-#if !defined(FREEBSD)
+   auto edisplaytype = ::get_display_type();
 
-   if(psystem->node()->is_wayland())
+#ifdef HAS_WAYLAND
+
+   //if(psystem->node()->is_wayland())
+   if(edisplaytype == e_display_type_wayland)
    {
 
       operating_system_initialize_wayland_nano(pfactory);

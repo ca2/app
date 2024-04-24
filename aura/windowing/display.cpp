@@ -422,6 +422,8 @@ namespace windowing
       if(!pmonitor)
       {
 
+         information() << "create_monitor";
+
          __construct(pmonitor);
 
          if (!pmonitor)
@@ -1093,6 +1095,8 @@ namespace windowing
    index display::get_best_workspace(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleParam, ::e_activation eactivation, ::user::interaction * puserinteractionCursorPosition)
    {
 
+      information() << "display::get_best_workspace";
+
       index iMatchingWorkspace = -1;
 
       i64 iBestArea = -1;
@@ -1104,6 +1108,8 @@ namespace windowing
       //if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
       if (eactivation & e_activation_under_mouse_cursor)
       {
+
+         information() << "get_best_workspace e_activation_under_mouse_cursor";
 
          //::point_i32 pointCursor = pwindowCursorPosition->get_cursor_position();
 
@@ -1401,12 +1407,14 @@ namespace windowing
       if (pinteraction != nullptr)
       {
 
-         information() << "windowing::display get_good_restore interaction is set";
+         information() << "windowing::display::get_good_restore interaction is set";
 
          auto iMonitor = pinteraction->get_preferred_restore(*prectangle);
 
          if (iMonitor >= 0)
          {
+
+            information() << "get_preferred_restore : " << *prectangle;
 
             return iMonitor;
 
@@ -1414,10 +1422,14 @@ namespace windowing
 
          sizeMin = pinteraction->get_window_minimum_size();
 
+         information() << "windowing::display::get_good_restore sizeMin : " << sizeMin;
+
          iMatchingWorkspace = pinteraction->calculate_broad_and_compact_restore(&rectangleWorkspace, sizeMin, rectangleHint);
 
          if (iMatchingWorkspace < 0)
          {
+
+            information() << "iMatchingWorkspace (1): " << iMatchingWorkspace;
 
             get_main_monitor(rectangleHint);
 
@@ -1426,9 +1438,19 @@ namespace windowing
             if (iMatchingWorkspace < 0)
             {
 
+               information() << "iMatchingWorkspace (2): " << iMatchingWorkspace;
+
                return -1;
 
             }
+
+            information() << "iMatchingWorkspace (3): " << rectangleWorkspace;
+
+         }
+         else
+         {
+
+            information() << "iMatchingWorkspace (4): " << rectangleWorkspace;
 
          }
          

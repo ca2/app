@@ -3006,6 +3006,23 @@ return false;
    }
 
 
+   ::e_status node::_defer_enable_coder_mode()
+   {
+
+      if (_is_coder_mode_enabled())
+      {
+
+         return ::success_already_enabled;
+
+      }
+
+      _enable_coder_mode();
+
+      return ::success;
+
+   }
+
+
    bool node::_has_beta_use_unicode_utf8()
    {
 
@@ -3022,12 +3039,38 @@ return false;
    }
 
 
+   bool node::_is_tortoise_git_installed()
+   {
+
+      return false;
+
+   }
+
+
    bool node::_is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath)
    {
 
       throw interface_only();
 
       return false;
+
+   }
+
+
+   bool node::_is_coder_mode_enabled()
+   {
+
+      throw interface_only();
+
+      return false;
+
+   }
+
+
+   void node::_enable_coder_mode(bool bEnable)
+   {
+
+      throw interface_only();
 
    }
 

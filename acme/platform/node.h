@@ -897,11 +897,19 @@ namespace acme
 
       virtual ::e_status _defer_beta_use_unicode_utf8();
 
+      virtual ::e_status _defer_enable_coder_mode();
+
       virtual bool _has_beta_use_unicode_utf8();
 
       virtual bool _is_visual_studio_installed();
 
+      virtual bool _is_tortoise_git_installed();
+
       virtual bool _is_code_exe_user_path_environment_variable_ok(::string *pstrCorrectPath=nullptr);
+
+      virtual bool _is_coder_mode_enabled();
+
+      virtual void _enable_coder_mode(bool bEnable = true);
 
 #endif
 

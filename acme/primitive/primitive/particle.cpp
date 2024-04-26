@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "type.h"
 #include "factory.h"
+#include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"
 #include "acme/handler/extended_topic.h"
 #include "acme/handler/topic.h"
@@ -670,6 +671,12 @@ void subparticle::call_run()
    {
 
       run();
+
+   }
+   catch (const ::exit_exception& exception)
+   {
+
+      throw exception;
 
    }
    catch (...)

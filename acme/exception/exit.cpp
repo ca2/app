@@ -59,18 +59,21 @@ exit_exception::~exit_exception()
    try
    {
 
-      if(m_ptaskExit.is_null())
+      auto ptaskExit = m_ptaskExit;
+
+      if(!ptaskExit)
       {
 
          return ::success;
 
       }
 
-      //m_ptaskExit->finish(pcontextobjectFinish);
+      ptaskExit->post_procedure([ptaskExit]()
+         {
 
-      m_ptaskExit->destroy();
+            ptaskExit->destroy();
 
-      m_ptaskExit.release();
+         });
 
    }
    catch(...)

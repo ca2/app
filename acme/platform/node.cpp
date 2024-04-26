@@ -2996,10 +2996,38 @@ return false;
 #ifdef WINDOWS_DESKTOP
 
 
-   void node::_beta_use_unicode_utf8()
+   ::e_status node::_defer_beta_use_unicode_utf8()
    {
 
       throw ::interface_only();
+
+      return ::success;
+
+   }
+
+
+   bool node::_has_beta_use_unicode_utf8()
+   {
+
+      return true;
+
+   }
+
+
+   bool node::_is_visual_studio_installed()
+   {
+
+      return false;
+
+   }
+
+
+   bool node::_is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath)
+   {
+
+      throw interface_only();
+
+      return false;
 
    }
 

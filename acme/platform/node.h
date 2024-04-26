@@ -895,10 +895,16 @@ namespace acme
 
       virtual void register_dll(const ::file::path& pathDll);
 
-      virtual void _beta_use_unicode_utf8();
+      virtual ::e_status _defer_beta_use_unicode_utf8();
 
+      virtual bool _has_beta_use_unicode_utf8();
+
+      virtual bool _is_visual_studio_installed();
+
+      virtual bool _is_code_exe_user_path_environment_variable_ok(::string *pstrCorrectPath=nullptr);
 
 #endif
+
 
 #ifndef UNIVERSAL_WINDOWS
 

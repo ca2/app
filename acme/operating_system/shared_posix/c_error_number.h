@@ -31,7 +31,9 @@ public:
    ::i32 i32() const {return m_iErrorNumber;}
 
 
-   ::string get_error_description();
+   ::string get_error_description() const;
+
+   ::string name() const;
 
 
    class ::error_code error_code() const;

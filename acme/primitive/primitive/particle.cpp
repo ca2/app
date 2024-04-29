@@ -758,6 +758,26 @@ void particle::print_out(const ::scoped_string & scopedstr) const
 }
 
 
+void printf_line(const ::ansi_character * pszFormat, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, pszFormat);
+
+   ::string strLine(pszFormat);
+
+   strLine += "\n";
+
+   vprintf(strLine.c_str(), arguments);
+
+   va_end(arguments);
+
+   fflush(stdout);
+
+}
+
+
 void particle::printf_line(const ::ansi_character * pszFormat, ...) const
 {
 
@@ -1510,16 +1530,24 @@ void particle::_wait()
    if (::is_null(ptask))
    {
 
+      //try { throw "errorABC1"; } catch(...){}
+
+      printf_line("particle::wait ptask is NULL, going to do NOT transacted wait");
+
       _wait();
 
       return ::success;
 
    }
 
+   printf_line("particle::wait ptask is SET, going to DO transacted wait");
+
    while (true)
    {
 
       do_tasks();
+
+      //try { throw "errorABC2"; } catch(...){}
 
       auto bOk =  _wait(100_ms);
 
@@ -2666,3 +2694,8 @@ CLASS_DECL_ACME ::allocator::accessor * __call__add_referer(const ::reference_re
 
 
 
+#if defined(__GNUC__)
+#pragma message("defined(__GNUC__)")
+#else
+#pragma message("!defined(__GNUC__)")
+#endif

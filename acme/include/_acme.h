@@ -103,4 +103,19 @@
 #define USUAL_OPERATING_SYSTEM_SUPPRESSIONS
 
 
+#if defined(__GNUC__) && !defined(__clang__) && !defined(__INTEL_COMPILER)
+#define GNU_COMPILER
+#endif
+
+
+#if defined(_MSC_VER) && !defined(__clang__)
+#define MICROSOFT_COMPILER
+#endif
+
+
+#if defined(__clang__) && !defined(_MSC_VER) && !defined(__GNUC__)
+#define CLANG_COMPILER
+#endif
+
+
 

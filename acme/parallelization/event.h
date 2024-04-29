@@ -16,6 +16,8 @@ class CLASS_DECL_ACME event :
 public:
 
 
+   ::i32 m_iEventSerialId;
+
 #ifdef WINDOWS
 
    hsynchronization     m_handle;

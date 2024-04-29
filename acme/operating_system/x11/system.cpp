@@ -2,9 +2,11 @@
 // Created by camilo on 2024-04-19
 //
 #include "framework.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/user/nano/nano.h"
+
 
 #if defined(WITH_X11)
 

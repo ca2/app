@@ -196,7 +196,7 @@ namespace api_ca2
             for (auto& strAllowedOrigin : straAllowedOrigin)
             {
 
-               if (strServer.case_insensitive_ends("." + strAllowedOrigin) || strOrigin.case_insensitive_order(strAllowedOrigin) == 0)
+               if (strOriginHost.case_insensitive_ends("." + strAllowedOrigin) || strOrigin.case_insensitive_order(strAllowedOrigin) == 0)
                {
 
                   bAllowedOrigin = true;

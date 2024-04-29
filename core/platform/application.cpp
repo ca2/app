@@ -332,8 +332,7 @@ namespace core
             auto papplication = m_papexapplication;
 
             node()->register_user_auto_start(
-               papplication->get_executable_appid(),
-               papplication->get_executable_path(),
+               papplication,
                "--auto_start=1",
                bCheck);
 

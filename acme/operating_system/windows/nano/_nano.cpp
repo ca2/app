@@ -6,6 +6,7 @@
 #include "font.h"
 #include "pen.h"
 #include "device.h"
+#include "acme/user/nano/nano.h"
 //#include "acme/primitive/primitive/_factory.h"
 
 
@@ -18,6 +19,8 @@ void operating_system_initialize_nano(::factory::factory * pfactory)
    pfactory->add_factory_item < ::windows::nano_font, ::nano_font >();
    pfactory->add_factory_item < ::windows::nano_pen, ::nano_pen >();
    pfactory->add_factory_item < ::windows::nano_device, ::nano_device >();
+
+   pfactory->add_factory_item < ::nano::nano >();
 
    //::rectangle_i32 rectangleMainScreen;
 

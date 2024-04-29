@@ -1703,7 +1703,11 @@ void file_context::calculate_main_resource_memory()
 void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, enum_extract eextract)
 {
 
-   if (dir()->is(varSource.as_file_path()) &&
+   auto pdir = dir();
+
+   auto bSourceIsDir = pdir->is(varSource);
+
+   if (bSourceIsDir &&
        (eextract == e_extract_first || eextract == e_extract_all || !(string_ends_ci(varSource.as_file_path(), ".zip"))))
    {
 

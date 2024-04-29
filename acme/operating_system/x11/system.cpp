@@ -6,6 +6,8 @@
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include "acme/user/nano/nano.h"
+#include "acme/parallelization/synchronous_lock.h"
+
 
 
 #if defined(WITH_X11)

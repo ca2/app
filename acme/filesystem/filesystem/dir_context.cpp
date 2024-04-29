@@ -1152,10 +1152,26 @@ bool dir_context::fast_has_subdir(const ::file::path & path)
 //}
 
 
-::file::e_type dir_context::file_type(const ::file::path& pathParam)
+::file::e_type dir_context::file_type(const ::payload & payload)
 {
 
-   if (::is_empty(pathParam))
+   if(payload.is_element())
+   {
+
+      auto pfile = payload.cast < ::file::file >();
+
+      if(pfile)
+      {
+
+         return ::file::e_type_existent_file;
+
+      }
+
+   }
+
+   auto pathParam = payload.as_file_path();
+
+   if (pathParam.trimmed().is_empty())
    {
 
       return ::file::e_type_existent_folder;

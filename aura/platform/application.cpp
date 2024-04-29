@@ -8400,8 +8400,7 @@ namespace aura
                   {
 
                      node()->register_user_auto_start(
-                        get_executable_appid(),
-                        get_executable_path(),
+                        this,
                         "--auto_start=1",
                         pcheck->echeck() == ::e_check_checked);
 

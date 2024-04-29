@@ -72,13 +72,13 @@
       //inline bool list_recursively_directory(::file::listing& listing, const ::file::path& path) { listing(path); return list_recursively_dir(listing); }
 
 
-      inline bool is(const ::file::path& path) { return file_type(path) & ::file::e_type_folder2; }
+      inline bool is(const ::payload & payload) { return file_type(payload) & ::file::e_type_folder2; }
 
       //virtual bool  _is(const ::file::path& pcsz);
 
       //virtual bool  __is(const ::file::path & path, bool & bIsDir);
 
-      virtual ::file::e_type file_type(const ::file::path& path);
+      virtual ::file::e_type file_type(const ::payload & payload);
 
       virtual ::file::e_type _file_type(const ::file::path& path);
       

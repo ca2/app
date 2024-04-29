@@ -249,6 +249,11 @@ namespace platform
       m_strCommandLine = ::GetCommandLineW();
       m_nCmdShow = nCmdShow;
 
+      m_argc = __argc;
+      m_wargv = __wargv;
+      m_wenvp = (wchar_t **)*__p__wenviron();
+
+
    }
 
 

@@ -2996,10 +2996,81 @@ return false;
 #ifdef WINDOWS_DESKTOP
 
 
-   void node::_beta_use_unicode_utf8()
+   ::e_status node::_defer_beta_use_unicode_utf8()
    {
 
       throw ::interface_only();
+
+      return ::success;
+
+   }
+
+
+   ::e_status node::_defer_enable_coder_mode()
+   {
+
+      if (_is_coder_mode_enabled())
+      {
+
+         return ::success_already_enabled;
+
+      }
+
+      _enable_coder_mode();
+
+      return ::success;
+
+   }
+
+
+   bool node::_has_beta_use_unicode_utf8()
+   {
+
+      return true;
+
+   }
+
+
+   bool node::_is_visual_studio_installed()
+   {
+
+      return false;
+
+   }
+
+
+   bool node::_is_tortoise_git_installed()
+   {
+
+      return false;
+
+   }
+
+
+   bool node::_is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath)
+   {
+
+      throw interface_only();
+
+      return false;
+
+   }
+
+
+   bool node::_is_coder_mode_enabled()
+   {
+
+      throw interface_only();
+
+      return false;
+
+   }
+
+
+   void node::_enable_coder_mode(bool bEnable)
+   {
+
+      throw interface_only();
 
    }
 
@@ -4002,7 +4073,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
-   void node::register_user_auto_start(const string & strAppId, const ::file::path & pathExecutable, const string & strArguments, bool bRegister)
+   void node::register_user_auto_start(::acme::application * papplication, const string & strArguments, bool bRegister)
    {
 
       throw interface_only();

@@ -11,31 +11,31 @@ struct CLASS_DECL_ACME APPLICATION_FLAGS // : public ::acme::reference
    bool                             m_bFork;
 
 
-   ::boolean                       m_bResource;
-   ::boolean                       m_bCrypto;
-   ::boolean                       m_bLocalization;
-   ::boolean                       m_bNetworking;
-   //::boolean                       m_bConsole;
-   ::boolean                       m_bSession;
-   ::boolean                       m_bCreateAppShorcut;
-   ::boolean                       m_bDraw2d;
-   ::boolean                       m_bWriteText;
-   ::boolean                       m_bUser;
-   ::boolean                       m_bUserEx;
-   ::boolean                       m_bImaging;
-   ::boolean                       m_bAudio;
-   ::boolean                       m_bMidi;
-   ::boolean                       m_bInitializeDataCentral;
+   ::logic::boolean                       m_bResource;
+   ::logic::boolean                       m_bCrypto;
+   ::logic::boolean                       m_bLocalization;
+   ::logic::boolean                       m_bNetworking;
+   //::logic::boolean                       m_bConsole;
+   ::logic::boolean                       m_bSession;
+   ::logic::boolean                       m_bCreateAppShorcut;
+   ::logic::boolean                       m_bDraw2d;
+   ::logic::boolean                       m_bWriteText;
+   ::logic::boolean                       m_bUser;
+   ::logic::boolean                       m_bUserEx;
+   ::logic::boolean                       m_bImaging;
+   ::logic::boolean                       m_bAudio;
+   ::logic::boolean                       m_bMidi;
+   ::logic::boolean                       m_bInitializeDataCentral;
 #ifdef WINDOWS_DESKTOP
-   ::boolean                       m_bGdiplus;
+   ::logic::boolean                       m_bGdiplus;
 #elif defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
-   ::boolean                       m_bGtkApp;
+   ::logic::boolean                       m_bGtkApp;
 #endif
-   ::boolean                       m_bShowApplicationInformation;
-   ::boolean                       m_bDataCentralRequired;
+   ::logic::boolean                       m_bShowApplicationInformation;
+   ::logic::boolean                       m_bDataCentralRequired;
 
-   ::boolean                       m_bExperienceMainFrame;
-   ::boolean                       m_bVerbose;
+   ::logic::boolean                       m_bExperienceMainFrame;
+   ::logic::boolean                       m_bVerbose;
 //   //PFN_NEW_MATTER                   m_pfnnewmatterApplication;
 //   //PFN_NEW_LIBRARY                  m_pfnnewlibrary;
 //   PFN_DEFER_TERM                      m_pfnDeferTerm;

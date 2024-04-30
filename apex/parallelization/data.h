@@ -108,7 +108,7 @@
 //extern thread_local boolean t_booleana[e_thread_boolean_count];
 //
 //
-//inline ::boolean& task_boolean(enum_thread_boolean ethreadboolean)
+//inline ::logic::boolean& task_boolean(enum_thread_boolean ethreadboolean)
 //{
 //
 //   //return ::get_task()->payload(atom);

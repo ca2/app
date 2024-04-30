@@ -44,7 +44,7 @@ namespace user
 
 
 
-   ::boolean      g_bLastDarkModeApp;
+   ::logic::boolean      g_bLastDarkModeApp;
 
 
 } // namespace user

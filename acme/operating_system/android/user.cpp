@@ -45,9 +45,9 @@
 //
 //
 //
-//   ::boolean      g_bLastDarkModeApp;
+//   ::logic::boolean      g_bLastDarkModeApp;
 //
-//   ::boolean      g_bLastDarkModeSystem;
+//   ::logic::boolean      g_bLastDarkModeSystem;
 //
 //
 //   void os_calc_dark_mode()

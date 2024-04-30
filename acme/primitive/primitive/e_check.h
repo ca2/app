@@ -30,7 +30,7 @@ public:
    constexpr e_check(::enum_check echeck) : m_echeck(echeck) {}
    constexpr e_check(const ::e_check & echeck) : m_echeck(echeck.m_echeck) {}
    constexpr e_check(bool b) : m_echeck(b ? ::e_check_checked : e_check_unchecked) {}
-  //e_check(const ::boolean & triestate);
+  //e_check(const ::logic::boolean & triestate);
 
 
    operator ::enum_check & () { return m_echeck; }

@@ -16,8 +16,8 @@ namespace integration
    public:
 
 
-      boolean           m_bOnlyInstall;
-      boolean           m_bBuildDependencies;
+      ::logic::boolean  m_bOnlyInstall;
+      ::logic::boolean  m_bBuildDependencies;
 
 
       ::file::path      m_pathBaseIntegrationFolder;

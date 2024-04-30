@@ -63,7 +63,7 @@ namespace user
       ::write_text::font_pointer                   m_pfontTab;
       ::count                                      m_iRestoredTabCount;
       bool                                         m_bDrawTabAtBackground;
-      ::boolean                                    m_bitLastShowTabs;
+      ::logic::boolean                                    m_bitLastShowTabs;
       int                                          m_iTabSize;
       bool                                         m_bCreatedTabs;
       bool                                         m_bAutoCreateTabsOnCreate;

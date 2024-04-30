@@ -143,7 +143,7 @@ inline bool __is_false(const enum_boolean & ebit) { return ebit < 0; }
 inline bool __is_optional(bool b) { return false; }
 
 
-inline bool __is_optional(const ::boolean & boolean) { return boolean.isOptional(); }
+inline bool __is_optional(const ::logic::boolean & boolean) { return boolean.isOptional(); }
 
 
 #define __optional_is_true(flag, option) ((bool)(flag) || (__is_optional(flag) && (option)))

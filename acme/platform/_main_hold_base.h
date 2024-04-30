@@ -14,7 +14,7 @@ public:
    ::pointer<::acme::application>        m_pacmeapplication;
 
 
-   static boolean is_audio_enabled();
+   static ::logic::boolean is_audio_enabled();
 
    static void enable_audio(bool bEnable = true);
 

@@ -1730,7 +1730,7 @@ void reference_count_debug_release(TYPE * & p)
 
 
 
-//inline e_check::e_check(const ::boolean & triestate)
+//inline e_check::e_check(const ::logic::boolean & triestate)
 //{
 //
 //   if (triestate == e_boolean_undefined)

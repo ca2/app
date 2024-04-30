@@ -285,7 +285,11 @@ void _do_tasks()
    else
    {
 
+#if !defined(OPENBSD)
+
       x11_process_messages();
+
+#endif
 
    }
 

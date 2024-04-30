@@ -25,25 +25,32 @@
 
 
 #if defined(__APPLE__)
+#define DISABLE_BACKTRACE 0
 
 void apple_backtrace_symbol_parse(string & strSymbolName, string & strAddress, char * pmessage, void * address);
 
 #elif defined(FREEBSD)
-
+#define DISABLE_BACKTRACE 0
 void freebsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolName, string & strModule, string & strAddress, char * pmessage, void * address);
 
 #elif defined(OPENBSD)
-
+#define DISABLE_BACKTRACE 1
 void openbsd_backtrace_symbol_parse(::particle * pparticle, string & strSymbolName, string & strModule, string & strAddress, char * pmessage, void * address);
 
 #else
-
+#define DISABLE_BACKTRACE 0
 void backtrace_symbol_parse(string &strSymbolName, string &strAddress, char *pmessage, void *address);
 
 #endif
 
 string _ansi_stack_trace(::particle * pparticle, void *const *ppui, int frames, const char *pszFormat, int iSkip)
 {
+
+#if DISABLE_BACKTRACE
+
+   return "";
+
+#else
 
    ::string strCallstack;
 
@@ -138,6 +145,8 @@ string _ansi_stack_trace(::particle * pparticle, void *const *ppui, int frames, 
 
    return strCallstack;
 
+#endif
+
 }
 
 
@@ -155,6 +164,10 @@ namespace acme
    void node::get_call_stack_frames(void ** stack, int & frame_count)
    {
 
+#if DISABLE_BACKTRACE
+      frame_count = 0;
+#else
+
 #if defined(FREEBSD) || defined(OPENBSD)
       const int iMaximumFramesToCapture = 32;
 #else
@@ -166,6 +179,7 @@ namespace acme
       auto frames = ::backtrace(stack, iFrameCount);
       
       frame_count = frames;
+#endif
 
    }
 

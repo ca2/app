@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "c_error_number.h"
+#include "acme/primitive/string/from_integer.h"
 #if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
 #include <errno.h>
 #include <string.h>
@@ -45,10 +46,48 @@ c_error_number::c_error_number(const c_error_number & errornumber) :
 }
 
 
-::string c_error_number::get_error_description()
+::string c_error_number::get_error_description() const
 {
 
    return s_get_error_description(*this);
+
+}
+
+
+::string c_error_number::name() const
+{
+
+ switch (m_iErrorNumber)
+   {
+      case 0:
+         return "NOERROR";
+      case EEXIST:
+         return "EXIST";
+      case EPERM:
+         return "EPERM";
+      case EACCES:
+         return "EACCES";
+      case EBADF:
+         return "EBADF";
+         //      case EDEADLOCK:
+         //       return ::file::exception::sharingViolation;
+      case EMFILE:
+         return "EMFILE";
+      case ENOENT:
+         return "ENOENT";
+      case ENFILE:
+         return "ENFILE";
+      case ENOTDIR:
+         return "ENOTDIR";
+      case ENOSPC:
+         return "ENOSPC";
+      case EINVAL:
+         return "EINVAL";
+      case EIO:
+         return "EIO";
+      default:
+         return "E*UNKNOWN(" + ::string_from(m_iErrorNumber) + ")";
+   }
 
 }
 

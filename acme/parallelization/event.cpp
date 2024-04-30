@@ -10,6 +10,7 @@
 #include "acme/operating_system/ansi/_pthread.h"
 #endif
 
+void printf_line(const ::ansi_character * pszFormat, ...);
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 #include <sys/ipc.h>
@@ -17,6 +18,7 @@
 #include <time.h>
 #include <sys/time.h>
 #include <sys/errno.h>
+#include <string.h>
 
 #if defined(LINUX) || defined(__APPLE__)
 #include <sys/sem.h>
@@ -98,8 +100,20 @@ void clock_getrealtime(struct timespec * pts)
 //CLASS_DECL_ACME::layered* get_layered_thread();
 
 
+::i32 g_iEventSerialId = 1;
+
 event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bManualReset, security_attributes * psecurityattributes)
 {
+
+   {
+
+      critical_section_lock lock(::platform::get()->globals_critical_section());
+
+      m_iEventSerialId = g_iEventSerialId++;
+
+   }
+
+   printf_line("event(%d)::event", m_iEventSerialId);
 
 #ifdef WINDOWS_DESKTOP
 
@@ -186,17 +200,17 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
       //pthread_mutex m;
 
       //auto s1  = sizeof(pthread_mutex);
-      //printf("MUTEX1 SIZE!!!! %llu\n", s1);
+      //printf_line("MUTEX1 SIZE!!!! %llu", s1);
       pthread_mutex_t mt;
 
-      auto smt  = sizeof(mt);
-      printf("MUTEXMT SIZE!!!! %llu\n", smt);
+      //auto smt  = sizeof(mt);
+      //printf_line("MUTEXMT SIZE!!!! %llu", smt);
       //m_pmutex = __new< pthread_mutex_t >();
       m_pmutex = ::malloc(sizeof(pthread_mutex_t));
 
-      auto s  = sizeof(pthread_mutex_t);
+      //auto s  = sizeof(pthread_mutex_t);
 
-      printf("MUTEX SIZE!!!! %llu\n", s);
+      //printf_line("MUTEX SIZE!!!! %llu", s);
 
       ::memory_set(m_pmutex, 0, sizeof(pthread_mutex_t));
 
@@ -214,11 +228,11 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
 
       auto rcMutex = pthread_mutex_init((pthread_mutex_t *) m_pmutex, nullptr);
 
-      printf("event::event pthread_mutex_init %d %llX\n", rcMutex, (::uptr) m_pmutex);
+      printf_line("event(%d)::event pthread_mutex_init %d %llX", m_iEventSerialId, rcMutex, (::uptr) m_pmutex);
 
       auto rcCond = pthread_cond_init((pthread_cond_t *) m_pcond, nullptr);
 
-      printf("event::event pthread_cond_init %d %llX\n", rcCond, (::uptr) m_pcond);
+      printf_line("event(%d)::event pthread_cond_init %d %llX", m_iEventSerialId, rcCond, (::uptr) m_pcond);
 
       m_bSignaled = bInitiallyOwn;
 
@@ -228,7 +242,7 @@ event::event(const ::scoped_string & scopedstrName, bool bInitiallyOwn, bool bMa
    else
    {
 
-      printf("AUTOMATIC EVENT\n");
+      printf_line("AUTOMATIC EVENT");
 
       m_pmutex = nullptr;
 
@@ -322,33 +336,75 @@ event::~event()
 
       m_sem = -1;
 
-      printf("semctl IPC_RMID %d\n", rc);
+      printf_line("semctl IPC_RMID %d", rc);
 
    }
 
-   if(m_pcond != nullptr)
+   if(m_bManualEvent)
    {
 
-      int rc = pthread_cond_destroy((pthread_cond_t *)m_pcond);
+      //try { throw "event being destroyed"; } catch(...){}
 
-      ::free((pthread_cond_t *)m_pcond);
+      printf_line("event(%d)::~event Going to destroy a manual reset event", m_iEventSerialId);
 
-      m_pcond = nullptr;
+      if(m_pmutex != nullptr && m_pcond != nullptr)
+      {
 
-      printf("pthread_cond_destroy %d\n", rc);
+         int rc1 = pthread_mutex_lock((pthread_mutex_t *)m_pmutex);
 
-   }
+         set_finishing_flag();
 
-   if(m_pmutex != nullptr)
-   {
+         int rc2 = pthread_cond_broadcast((pthread_cond_t *)m_pcond);
 
-      int rc = pthread_mutex_destroy((pthread_mutex_t *)m_pmutex);
+         int rc3 = pthread_mutex_unlock((pthread_mutex_t *)m_pmutex);
 
-      ::free((pthread_mutex_t *)m_pmutex);
+         _wait();
 
-      m_pmutex = nullptr;
+         int rc4 = pthread_mutex_lock((pthread_mutex_t *)m_pmutex);
 
-      printf("pthread_mutex_destroy %d\n", rc);
+         int rc5 = pthread_cond_destroy((pthread_cond_t *)m_pcond);
+
+         ::free((pthread_cond_t *)m_pcond);
+
+         m_pcond = nullptr;
+
+         printf_line("event(%d)::~event pthread_cond_destroy %d", m_iEventSerialId, rc5);
+
+         int rc6 = pthread_mutex_unlock((pthread_mutex_t *)m_pmutex);
+
+         int rc7 = pthread_mutex_destroy((pthread_mutex_t *)m_pmutex);
+
+         ::free((pthread_mutex_t *)m_pmutex);
+
+         m_pmutex = nullptr;
+
+         printf_line("event(%d)::~event pthread_mutex_destroy %d", m_iEventSerialId, rc7);
+
+      }
+      else if(m_pcond != nullptr)
+      {
+
+         int rc5 = pthread_cond_destroy((pthread_cond_t *)m_pcond);
+
+         ::free((pthread_cond_t *)m_pcond);
+
+         m_pcond = nullptr;
+
+         printf_line("event(%d)::~event pthread_cond_destroy (2) %d", m_iEventSerialId, rc5);
+
+      }
+      else if(m_pmutex != nullptr)
+      {
+
+         int rc7 = pthread_mutex_destroy((pthread_mutex_t *)m_pmutex);
+
+         ::free((pthread_mutex_t *)m_pmutex);
+
+         m_pmutex = nullptr;
+
+         printf_line("event(%d)::~event pthread_mutex_destroy (2) %d", m_iEventSerialId, rc7);
+
+      }
 
    }
 
@@ -601,7 +657,7 @@ void event::_wait ()
 
       i32 iSignal = m_iSignalId;
 
-      while(!m_bSignaled && iSignal == m_iSignalId)
+      while(!has_finishing_flag() && !m_bSignaled && iSignal == m_iSignalId)
       {
 
          pthread_cond_wait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex);
@@ -618,6 +674,19 @@ void event::_wait ()
 
    pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
 
+   if(has_finishing_flag())
+   {
+
+      throw ::exception(error_cancelled);
+
+   }
+   else if(!m_bSignaled)
+   {
+
+      throw ::exception(error_failed);
+
+   }
+
 #else
 
    if(m_bManualEvent)
@@ -627,7 +696,7 @@ void event::_wait ()
 
       int iSignal = m_iSignalId;
 
-      while(!m_bSignaled && iSignal == m_iSignalId)
+      while(!has_finishing_flag() && !m_bSignaled && iSignal == m_iSignalId)
       {
 
          pthread_cond_wait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex);
@@ -735,7 +804,7 @@ bool event::_wait (const class time & timeWait)
 
       i32 iSignal = m_iSignalId;
 
-      while(!m_bSignaled && iSignal == m_iSignalId)
+      while(!has_finishing_flag() && !m_bSignaled && iSignal == m_iSignalId)
       {
 
          if(pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &end))
@@ -764,16 +833,24 @@ bool event::_wait (const class time & timeWait)
    if(m_bManualEvent)
    {
 
+      printf_line("event(%d)::_wait(timeWait(m_iSecond=%lld,m_iNanosecond=%lld,c=%llX,m=%llX))", m_iEventSerialId, timeWait.m_iSecond, timeWait.m_iNanosecond, m_pcond, m_pmutex);
+
       if(timeWait.is_infinite())
       {
 
+         printf_line("event(%d)::_wait(infinite)", m_iEventSerialId);
+
          pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
+
+         printf_line("event(%d)::_wait(infinite) mutex locked", m_iEventSerialId);
 
          int iSignal = m_iSignalId;
 
          //clock_gettime(CLOCK_REALTIME, &abstime);
 
-         while(!m_bSignaled && iSignal == m_iSignalId)
+         //try { throw "event::_wait(FINite) mutex locked 2"; } catch(...){}
+
+         while(!has_finishing_flag() && !m_bSignaled && iSignal == m_iSignalId)
          {
 
             i32 error = pthread_cond_wait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex);
@@ -781,11 +858,15 @@ bool event::_wait (const class time & timeWait)
             if(error != 0)
             {
 
+               printf_line("event(%d)::_wait(infinite) pthread_cond_wait returned error", m_iEventSerialId);
+
                break;
 
             }
 
          }
+
+         printf_line("event(%d)::_wait(infinite) about to unlock mutex", m_iEventSerialId);
 
          pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
 
@@ -806,7 +887,11 @@ bool event::_wait (const class time & timeWait)
       else
       {
 
-         pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
+         printf_line("event(%d)::_wait(FINite)", m_iEventSerialId);
+
+         auto iLock = pthread_mutex_lock((pthread_mutex_t *) m_pmutex);
+
+         printf_line("event(%d)::_wait(FINite) pthread_mutex_lock returned %d", m_iEventSerialId, iLock);
 
          int iSignal = m_iSignalId;
 
@@ -822,43 +907,84 @@ bool event::_wait (const class time & timeWait)
 
          timespecFinal = timespecNow + timespecWait;
 
-         while(!m_bSignaled && iSignal == m_iSignalId)
+         ::i32 error = 0;
+
+         //try { throw "event::_wait(FINite) mutex locked 2"; } catch(...){}
+
+         while(true)
          {
+
+            if(has_finishing_flag())
+            {
+
+               printf_line("event(%d)::_wait(FINite) has finishing flag", m_iEventSerialId);
+
+               break;
+
+            }
+
+            if(m_bSignaled)
+            {
+
+               printf_line("event(%d)::_wait(FINite) m_bSignaled", m_iEventSerialId);
+
+               break;
+
+            }
+
+            if(iSignal != m_iSignalId)
+            {
+
+               printf_line("event(%d)::_wait(FINite) iSignal != m_iSignalId", m_iEventSerialId);
+
+               break;
+
+            }
             
             clock_getrealtime(&timespecNow);
-
-            ::i32 error;
 
             if(timespecNow > timespecFinal)
             {
                
                error = ETIMEDOUT;
+
+               printf_line("event(%d)::_wait(FINite) timespecNow > timespecFinal", m_iEventSerialId);
+
+               break;
                
             }
-            else
+
+            error = pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &timespecFinal);
+               
+            if(error != 0)
             {
 
-               error = pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &timespecFinal);
-               
-            }
+               printf_line("event(%d)::_wait(FINite) pthread_cond_timedwait returned(%d, %s)", m_iEventSerialId, error, strerror(error));
 
-            if(error == EBUSY || error == ETIMEDOUT || error == EINVAL)
-            {
-               
-               pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
-
-               return false;
+               break;
 
             }
+
+            printf_line("event(%d)::_wait(FINite) pthread_cond_timedwait returned 0");
 
          }
 
-         pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
+         printf_line("event(%d)::_wait(FINite) going to unlock mutex", m_iEventSerialId);
+
+         auto iUnlock = pthread_mutex_unlock((pthread_mutex_t *) m_pmutex);
+
+         printf_line("event(%d)::_wait(FINite) pthread_mutex_unlock returned(%d)", m_iEventSerialId, iUnlock);
 
          if(m_bSignaled)
          {
 
             return true;
+
+         }
+         else if(error == ETIMEDOUT)
+         {
+
+            return false;
 
          }
          else

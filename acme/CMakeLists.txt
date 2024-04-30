@@ -2751,12 +2751,18 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
 
    if (${OPENBSD})
-      list(APPEND system_libraries z pthread iconv execinfo kvm c)
+      #list(APPEND system_libraries z pthread iconv execinfo kvm c)
+      list(APPEND system_libraries z pthread iconv kvm c)
+      message(STATUS "OPENBSD acme system_libraries ${system_libraries}")
    elseif (${FREEBSD})
       list(APPEND system_libraries z dl pthread iconv execinfo)
+      message(STATUS "FREEBSD acme system_libraries ${system_libraries}")
    else ()
       list(APPEND system_libraries z dl pthread idn)
+      message(STATUS "ELSE acme system_libraries ${system_libraries}")
    endif ()
+
+
 
    target_link_libraries(${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES} ${global_library_references})
    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES})
@@ -2767,6 +2773,8 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
 
    message(STATUS "(3) pkg_config_modules_here is " ${pkg_config_modules_here})
+
+   message(STATUS "(3) global_library_references is " ${global_library_references})
 
    message(STATUS "(3) PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 

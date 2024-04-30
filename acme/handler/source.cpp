@@ -52,6 +52,13 @@ source::~source()
 void source::add_handler(::particle * pparticle, bool bPriority)
 {
 
+   if (::is_null(pparticle))
+   {
+
+      throw ::exception(error_bad_argument);
+
+   }
+
    if(m_particlea.contains(pparticle))
    {
       

@@ -9,9 +9,18 @@
 #include <cxxabi.h>
 #undef USE_MISC
 
+
+#define DISABLE_BACKTRACE 1
+
+
 string get_callstack(::particle * pparticle,  const ::scoped_string & scopedstrFormat, i32 iSkip, void * caller_address, int iCount)
 {
 
+#if DISABLE_BACKTRACE
+
+   return "";
+
+#else
 
     const size_t iMaximumFramesToCapture = 64;
 
@@ -20,6 +29,8 @@ string get_callstack(::particle * pparticle,  const ::scoped_string & scopedstrF
     auto frames = ::backtrace(stack, iMaximumFramesToCapture);
 
     return _ansi_stack_trace(pparticle, stack, frames, scopedstrFormat);
+
+#endif
 
 //namespace linux
 //{

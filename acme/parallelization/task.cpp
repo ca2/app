@@ -551,6 +551,8 @@ void* task::s_os_task(void* p)
 
       ::set_task(ptask);
 
+      ptask->information() << "s_os_task current_itask : " << current_itask();
+
       //ptask->release(REFERENCING_DEBUGGING_P_FUNCTION_LINE(ptask));
 
 #if defined(WINDOWS)
@@ -1418,7 +1420,13 @@ bool task::has_message() const
    if (m_peventInitialization)
    {
 
-      m_peventInitialization->wait();
+      {
+
+         auto peventProtectionWhileWaiting = m_peventInitialization;
+
+         peventProtectionWhileWaiting->wait();
+
+      }
 
       ::e_status estatus = m_estatus;
 

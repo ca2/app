@@ -92,7 +92,7 @@ void Label::draw(::nano2d::context * pcontext)
       if (!m_ptextbox)
       {
 
-         m_ptextbox = pcontext->text_box_layout(m_strCaption, m_fixed_size.cx());
+         m_ptextbox = pcontext->text_box_layout(m_strCaption, (::f32) m_fixed_size.cx());
 
       }
 

@@ -1136,7 +1136,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
                               __defer_construct(m_pnotifyicon);
 
                            }
-                           catch(::exception & e)
+                           catch(::exception &)
                            {
                               information() << "simple_frame_window::on_message_create Failed to create notify icon (1)!";
 

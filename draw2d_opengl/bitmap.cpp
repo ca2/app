@@ -5,8 +5,9 @@
 
 
 void resizeBilinear(memory & m, int w2, int h2, int * pixels, int w, int h);
-
+#ifdef WITH_X11
 Display * x11_get_display();
+#endif
 #ifdef LINUX
 #define WIDTH 3200
 #define HEIGHT 1800

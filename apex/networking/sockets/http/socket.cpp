@@ -368,6 +368,32 @@ namespace sockets
 
       OnHeader(key, value);
 
+      if(key.case_insensitive_order("x-forwarded-proto") == 0)
+      {
+
+         ::string strProtocol = value;
+
+         if (strProtocol.has_char())
+         {
+
+            if (strProtocol.case_insensitive_equals("https"))
+            {
+
+               m_request.attr("http_protocol") = "https";
+               m_request.attr("https") = true;
+
+            }
+            else
+            {
+
+               m_request.attr("http_protocol") = "http";
+               m_request.attr("https") = false;
+
+            }
+
+         }
+
+      }
       if (key == "host")
       {
 

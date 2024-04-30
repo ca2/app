@@ -385,8 +385,16 @@ namespace integration
       //preempt(15_s);
       
       information() << "Current Directory: " << acmedirectory()->get_current();
-
+      
       bash("git clone " + m_pathDownloadURL + " .", 2_hour);
+
+   }
+
+
+   ::i32 context::git_bash(const ::scoped_string& scopedstr, const class ::time& timeTimeout)
+   {
+
+      return bash(scopedstr, timeTimeout);
 
    }
 

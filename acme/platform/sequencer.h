@@ -89,7 +89,7 @@ public:
 //
 //}
 
-CLASS_DECL_ACME critical_section* get_sequence_critical_section();
+//CLASS_DECL_ACME critical_section* ::platform::get()->sequence_critical_section();
 
 //CLASS_DECL_ACME void initialize_sequence_critical_section();
 //
@@ -129,7 +129,7 @@ sequencer < SEQUENCE > ::sequencer()
 //void future < RESULT > ::set_object(const RESULT& result, const ::e_status & estatus)
 //{
 //
-//   critical_section_lock lock(get_sequence_critical_section());
+//   critical_section_lock lock(::platform::get()->sequence_critical_section());
 //
 //   if (m_p.m_estatus == error_not_initialized)
 //   {
@@ -175,7 +175,7 @@ template < typename SEQUENCE >
 void sequencer < SEQUENCE > ::on_sequence()
 {
 
-   critical_section_lock lock(get_sequence_critical_section());
+   critical_section_lock lock(::platform::get()->sequence_critical_section());
 
    if (m_pevent)
    {
@@ -218,7 +218,7 @@ void sequencer < SEQUENCE > ::on_sequence()
 //void sequencer < SEQUENCE > ::set_status(const ::e_status & estatus)
 //{
 //
-//   critical_section_lock lock(get_sequence_critical_section());
+//   critical_section_lock lock(::platform::get()->sequence_critical_section());
 //
 //   m_p.m_estatus = estatus;
 //
@@ -236,7 +236,7 @@ void sequencer < SEQUENCE > ::on_sequence()
 //
 //         auto pHold = ::pointer_transfer(this);
 //
-//         critical_section_lock lock(get_sequence_critical_section());
+//         critical_section_lock lock(::platform::get()->sequence_critical_section());
 //
 //         while (m_stepa.has_element())
 //         {
@@ -261,7 +261,7 @@ template < typename SEQUENCE >
 sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const sequence_step < SEQUENCE > & step)
 {
 
-   critical_section_lock lock(get_sequence_critical_section());
+   critical_section_lock lock(::platform::get()->sequence_critical_section());
 
    if (m_psequence.is_set())
    {
@@ -287,7 +287,7 @@ template < typename SEQUENCE >
 sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const class time & timeWait, const sequence_step < SEQUENCE > & step)
 {
 
-   critical_section_lock lock(get_sequence_critical_section());
+   critical_section_lock lock(::platform::get()->sequence_critical_section());
 
    if (m_psequence.m_estatus == error_not_initialized)
    {
@@ -340,7 +340,7 @@ template < typename SEQUENCE >
 sequence < SEQUENCE > * sequencer < SEQUENCE > ::topic(const class time & timeWait)
 {
 
-   critical_section_lock lock(get_sequence_critical_section());
+   critical_section_lock lock(::platform::get()->sequence_critical_section());
 
    if (m_psequence.m_estatus == error_not_initialized)
    {
@@ -374,7 +374,7 @@ template < typename SEQUENCE >
 ::e_status sequencer < SEQUENCE > ::wait(const class time & timeWait)
 {
 
-   critical_section_lock lock(get_sequence_critical_section());
+   critical_section_lock lock(::platform::get()->sequence_critical_section());
 
    if (m_psequence.m_estatus == error_not_initialized)
    {

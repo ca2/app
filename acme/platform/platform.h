@@ -106,8 +106,10 @@ namespace platform
 
 
       ::critical_section m_criticalsectionChannel;
+      ::critical_section m_criticalsectionSequence;
 
       bool m_bConsole;
+
 
 
       ::critical_section * channel_critical_section()
@@ -128,6 +130,13 @@ namespace platform
 
       }
 
+
+      ::critical_section* sequence_critical_section()
+      {
+
+         return &m_criticalsectionSequence;
+
+      }
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
 
@@ -372,7 +381,7 @@ namespace platform
 
 
 
-      ::critical_section * sym_dbm_help_critical_section() { return &m_criticalsectionSymDbgHelp; }
+      ::critical_section * sym_dbg_help_critical_section() { return &m_criticalsectionSymDbgHelp; }
 
 
 #endif

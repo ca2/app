@@ -9,6 +9,42 @@ namespace heap
 {
 
 
+   template < class TYPE >
+   class operating_system_typed_memory
+   {
+   public:
+
+      inline ::heap::allocator* allocator() { return ::acme::get()->m_pheapmanagement->m_pallocator; }
+
+
+      inline TYPE* allocate(::raw::count c, const char* pszFile, int iLine)
+      {
+
+         return (TYPE*)allocator()->allocate(sizeof(TYPE) * c);
+
+      }
+
+
+      inline TYPE* allocate(::raw::count c)
+      {
+
+         return (TYPE*)allocator()->allocate(sizeof(TYPE) * c);
+
+      }
+
+
+      inline void free(TYPE* p)
+      {
+
+         allocator()->free((void*)p);
+
+      }
+
+
+   };
+
+
+
    template < class TYPE, enum_memory t_ememory >
    class typed_memory
    {

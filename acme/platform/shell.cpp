@@ -382,7 +382,7 @@ namespace acme
          //else
          {
 
-            strCommand = "\"C:\\Program Files\\Git\\bin\\bash.exe\" -c \'" + strEscaped + "; exit\'";
+            strCommand = "\"C:\\Program Files\\Git\\bin\\bash.exe\" /c \'" + strEscaped + "; exit\'";
 
          }
 

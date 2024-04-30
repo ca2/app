@@ -5,7 +5,7 @@ class plex_heap_alloc;
 
 
 class CLASS_DECL_ACME plex_heap_alloc_array :
-   public array_non_particle < plex_heap_alloc *, plex_heap_alloc * >
+   public array_non_particle < plex_heap_alloc *, plex_heap_alloc *, ::typed::def < plex_heap_alloc*  >, ::heap::operating_system_typed_memory < plex_heap_alloc * > >
 {
 protected:
 

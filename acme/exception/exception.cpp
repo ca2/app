@@ -70,7 +70,7 @@ m_errorcodea(errorcodea)
 
             m_strCallStackTrace = pnode->get_call_stack_trace(call_stack_default_format(), iSkip, caller_address);
 
-            printf("%s", m_strCallStackTrace.c_str());
+            //printf("%s", m_strCallStackTrace.c_str());
 
          }
 

@@ -70,13 +70,13 @@
 ////
 ////}
 //
-
-
-::critical_section g_criticalsectionSymDbgHelp;
-
-
-::critical_section * sym_dbg_help_critical_section() { return &g_criticalsectionSymDbgHelp; }
-
+//
+//
+//::critical_section g_criticalsectionSymDbgHelp;
+//
+//
+//::critical_section * ::platform::get()->sym_dbg_help_critical_section() { return &g_criticalsectionSymDbgHelp; }
+//
 
 namespace acme
 {
@@ -93,7 +93,7 @@ namespace acme
    void node::defer_update_call_stack()
    {
 
-      critical_section_lock synchronouslock(sym_dbg_help_critical_section());
+      critical_section_lock synchronouslock(::platform::get()->sym_dbg_help_critical_section());
 
       auto process = GetCurrentProcess();
 
@@ -122,7 +122,7 @@ namespace acme
    void node::get_call_stack_frames(void** stack, int& frame_count)
    {
 
-      critical_section_lock synchronouslock(sym_dbg_help_critical_section());
+      critical_section_lock synchronouslock(::platform::get()->sym_dbg_help_critical_section());
 
       string strCallstack;
 
@@ -141,7 +141,7 @@ namespace acme
    string node::get_call_stack_trace(const ::scoped_string& scopedstrFormat, i32 iSkip, void* caller_address, int iCount)
    {
 
-      critical_section_lock synchronouslock(sym_dbg_help_critical_section());
+      critical_section_lock synchronouslock(::platform::get()->sym_dbg_help_critical_section());
 
       const int iMaximumFrameCount = 62; // does not support more then 62 frames of stackbacktrace
 
@@ -159,7 +159,7 @@ namespace acme
    string node::get_call_stack_trace(void ** stack, int frame_count, const ::scoped_string & scopedstrFormat, i32 iSkip, void* caller_address, int iCount)
    {
 
-      critical_section_lock synchronouslock(sym_dbg_help_critical_section());
+      critical_section_lock synchronouslock(::platform::get()->sym_dbg_help_critical_section());
 
       string strCallstack;
 

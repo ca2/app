@@ -131,6 +131,18 @@ void folder::e_extract_all(const ::file::path & pathTargetDir, ::file::path_arra
 
 }
 
+
+::file::path folder::e_extract_first_ends(const ::file::path& pathTargetDir, const ::scoped_string& scopedstr)
+{
+
+   throw ::interface_only();
+
+   //throw ::interface_only();
+
+   return "";
+
+}
+
 //
 //bool folder::enumerates(::file::listing & listing)
 //{

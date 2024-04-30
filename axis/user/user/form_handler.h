@@ -22,6 +22,36 @@ namespace axis
       ::pointer < ::user::line_layout > create_line_layout(::user::interaction * puserinteractionParent, enum_orientation eorientation);
 
 
+      template < typename CHECK_BOX = ::user::check_box>
+      ::pointer < CHECK_BOX >create_check_box_with_label(::user::interaction* puserinteractionParent, const ::scoped_string& scopedstr, ::pointer < ::user::still > * pstill = nullptr)
+      {
+
+         auto pline = create_line_layout(puserinteractionParent, e_orientation_horizontal);
+
+         auto pcheckbox = __create_new<CHECK_BOX>();
+
+         pcheckbox->m_bAutoResize = true;
+
+         pcheckbox->create_child(pline);
+
+         auto plabel = create_label < ::user::still >(pline, scopedstr);
+
+         if (pstill)
+         {
+
+            *pstill = plabel;
+
+         }
+
+         //pcheckbox->set_window_text(scopedstrLabel);
+
+         pcheckbox->display();
+
+         pcheckbox->set_need_layout();
+
+         return pcheckbox;
+
+      }
 
 
    };

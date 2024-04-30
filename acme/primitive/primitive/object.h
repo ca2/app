@@ -57,6 +57,7 @@ protected:
    bool                                            m_bCheckingChildrenTask;
    ::pointer < ::object >                          m_pobjectParentTask;
    ::pointer < ::pointer_array < ::particle > >    m_pparticleaChildrenTask;
+   ::pointer < atom_map < ::pointer < ::parallelization::queue > > > m_pqueuemap;
    //::pointer < ::procedure_map >                   m_pmapPropertyProcedure;
 
 
@@ -571,6 +572,7 @@ public:
       const create_task_attributes & createtaskattributes = nullptr);
 
 
+   virtual ::pointer < ::parallelization::queue> queue(const ::atom & atomQueue);
    //inline ::task_pointer launch(const ::procedure & procedure);
 
 

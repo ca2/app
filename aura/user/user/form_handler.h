@@ -2,6 +2,11 @@
 #pragma once
 
 
+#include "aura/user/user/button.h"
+#include "aura/user/user/check_box.h"
+#include "aura/user/user/still.h"
+
+
 namespace user
 {
 
@@ -11,12 +16,14 @@ namespace user
    {
    public:
 
+      ::write_text::font_pointer m_pfontTitle1;
+      ::write_text::font_pointer m_pfontTitle2;
 
       form_handler();
       ~form_handler() override;
 
 
-      template < typename LABEL >
+      template < typename LABEL =::user::still>
       ::pointer < LABEL >create_label(::user::interaction * puserinteractionParent, const ::scoped_string & scopedstrLabel)
       {
 
@@ -36,8 +43,36 @@ namespace user
 
       }
 
+      ::write_text::font_pointer get_title1_font();
 
-      template < typename CHECK_BOX >
+      template < typename LABEL = ::user::still >
+      ::pointer < LABEL >create_title1(::user::interaction* puserinteractionParent, const ::scoped_string& scopedstrTitle1)
+      {
+
+         auto plabel = create_label<LABEL>(puserinteractionParent, scopedstrTitle1);
+
+         plabel->m_pfont = get_title1_font();
+
+         return plabel;
+
+      }
+
+      ::write_text::font_pointer get_title2_font();
+
+      template < typename LABEL = ::user::still >
+      ::pointer < LABEL >create_title2(::user::interaction* puserinteractionParent, const ::scoped_string& scopedstrTitle1)
+      {
+
+         auto plabel = create_label<LABEL>(puserinteractionParent, scopedstrTitle1);
+
+         plabel->m_pfont = get_title2_font();
+
+         return plabel;
+
+      }
+
+
+      template < typename CHECK_BOX = ::user::check_box>
       ::pointer < CHECK_BOX >create_check_box(::user::interaction * puserinteractionParent, const ::atom & atom)
       {
 
@@ -58,7 +93,9 @@ namespace user
       }
 
 
-      template < typename BUTTON >
+
+
+      template < typename BUTTON =::user::button>
       ::pointer < BUTTON >create_button(::user::interaction* puserinteractionParent, const ::scoped_string& scopedstrName)
       {
 

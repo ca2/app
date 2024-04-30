@@ -237,37 +237,56 @@ namespace user
 
          bool bHover = pgraphics->m_pdrawcontext != nullptr && pgraphics->m_pdrawcontext->is_control_hover();
 
-         if (is_dark_mode())
-         {
-            if (bHover)
-            {
+         ::color::color color;
 
-               ppen->create_solid(1 * (w + h) / 30, echeck == ::e_check_checked ? argb(255, 150, 180, 240) : argb(255, 180, 220, 240));
+         auto estate = pinteraction->get_user_state();
+            
+         color = pinteraction->get_color(this, e_element_text, estate);
 
-            }
-            else
-            {
+         //if (estate && ::user::e_state_disabled)
+         //{
 
-               ppen->create_solid(1 * (w + h) / 30, echeck == ::e_check_checked ? argb(255, 255, 255, 255) : argb(255, 196, 196, 196));
+         //}
+         //else
+         //{
 
-            }
-         }
-         else
-         {
-            if (bHover)
-            {
+         //   if (is_dark_mode())
+         //   {
 
-               ppen->create_solid(1 * (w + h) / 30, echeck == ::e_check_checked ? argb(255, 50, 80, 160) : argb(255, 80, 120, 200));
+         //      if (bHover)
+         //      {
 
-            }
-            else
-            {
+         //         color = echeck == ::e_check_checked ? argb(255, 150, 180, 240) : argb(255, 180, 220, 240);
 
-               ppen->create_solid(1 * (w + h) / 30, echeck == ::e_check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
+         //      }
+         //      else
+         //      {
 
-            }
+         //         color = echeck == ::e_check_checked ? argb(255, 255, 255, 255) : argb(255, 196, 196, 196);
 
-         }
+         //      }
+         //   }
+         //   else
+         //   {
+         //      if (bHover)
+         //      {
+
+         //         color = echeck == ::e_check_checked ? argb(255, 50, 80, 160) : argb(255, 80, 120, 200);
+
+         //      }
+         //      else
+         //      {
+
+         //         color = echeck == ::e_check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96);
+
+         //      }
+
+         //   }
+
+         //}
+
+         ppen->create_solid(1 * (w + h) / 30, color);
+
 
          pgraphics->set(ppen);
 

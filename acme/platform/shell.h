@@ -37,11 +37,12 @@ namespace acme
 
       //virtual void command_system(string_array & straOutput, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const class ::time & waitTimeout = ::time::infinity(), ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLog = nullptr);
 //      virtual int command_system(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrPipe, const trace_function & tracefunction = nullptr);
-      virtual int command_system(const ::scoped_string& scopedstr, const trace_function& tracefunction = nullptr);
+      virtual int command_system(const ::scoped_string& scopedstr, const trace_function& tracefunction = nullptr, const ::file::path& pathWorkingDirectory = {});
       //      virtual int command_system(const ::scoped_string & scopedstr, const trace_function & tracefunction = nullptr);
             /// This version of command_system is originally meant for implementators
             /// to not use standard I/O redirection.
-      virtual int command_system(const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min);
+            /// virtual int command_system(const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min);
+      virtual int command_system(const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min, const ::file::path& pathWorkingDirectory = {});
       virtual ::string get_output(const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min);
 
       virtual ::string get_command_output(const ::scoped_string& scopedstr, const class ::time& timeOut = 15_min);
@@ -57,6 +58,14 @@ namespace acme
       virtual bool is_executable_in_path(const ::scoped_string& scopedstr);
 
       virtual void open_terminal_and_run(const ::scoped_string& scopedstr);
+
+#ifdef WINDOWS_DESKTOP
+
+      virtual ::file::path _get_power_shell_path();
+
+      virtual ::file::path _get_cmd_path();
+
+#endif;
 
    };
 

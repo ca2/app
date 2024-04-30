@@ -53,6 +53,8 @@ namespace folder_zip
       ::file_pointer get_file() override;
 
       void e_extract_all(const ::file::path & pathTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat) override;
+      ::file::path e_extract_first_ends(const ::file::path& pathTargetDir, const ::scoped_string& scopedstr) override;
+
 
       void open_for_writing(file_pointer pfile) override;
 

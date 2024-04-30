@@ -11162,10 +11162,16 @@ namespace user
    }
 
 
-   void interaction::set_window_text(const ::string & pszString)
+   void interaction::set_window_text(const ::string& pszString)
    {
 
-      m_strWindowText2 = pszString;
+      {
+
+         _synchronous_lock synchronouslock(this->synchronization());
+
+         m_strWindowText2 = pszString;
+
+      }
 
       on_set_window_text();
 

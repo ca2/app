@@ -495,6 +495,59 @@ namespace folder_zip
 
    }
 
+   
+   ::file::path folder::e_extract_first_ends(const ::file::path& pathTargetDir, const ::scoped_string & scopedstrSuffix)
+   {
+
+      ::file::listing listing;
+
+      listing.m_bRecursive = true;
+
+      enumerate(listing);
+
+      ::file::path pathTargetFolder;
+
+      pathTargetFolder = pathTargetDir;
+
+      for (auto& path : listing)
+      {
+
+         ::memory memory;
+
+         if (path.case_insensitive_ends(scopedstrSuffix))
+         {
+
+            extract(memory, path);
+
+            if (!memory.is_set())
+            {
+
+               throw ::exception(error_failed);
+
+            }
+
+            {
+
+               auto pathTarget = pathTargetFolder / path;
+
+               acmefile()->put_block(pathTarget, memory);
+
+               auto time = get_modification_time();
+
+               acmefile()->set_modification_time(pathTarget, time);
+
+               return pathTarget;
+
+            }
+
+         }
+
+      }
+
+      return {};
+
+   }
+
 
    bool folder::locate_file(const ::file::path& pathFileName)
    {

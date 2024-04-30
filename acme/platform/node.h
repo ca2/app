@@ -436,11 +436,11 @@ namespace acme
       //virtual void open_url(const ::string & strUrl);
 
 
-      virtual void shell_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams);
-      virtual void shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class time & timeTimeout = 1_minute);
+      virtual void shell_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const ::file::path& pathWorkingDirectory = {});
+      virtual int shell_execute_sync(const ::scoped_string& scopedstrFile, const ::scoped_string& scopedstrParams, const class time& timeTimeout = 1_minute, const ::file::path& pathWorkingDirectory = {});
 
-      virtual void root_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams);
-      virtual void root_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class time & timeTimeout = 1_minute);
+      virtual void root_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const ::file::path& pathWorkingDirectory = {});
+      virtual int root_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class time & timeTimeout = 1_minute, const ::file::path& pathWorkingDirectory = {});
 
 
       //::file::path command_find_path(const ::string & pszCommand);
@@ -904,6 +904,8 @@ namespace acme
       virtual bool _is_visual_studio_installed();
 
       virtual bool _is_tortoise_git_installed();
+
+      virtual bool _is_smart_git_installed();
 
       virtual bool _is_code_exe_user_path_environment_variable_ok(::string *pstrCorrectPath=nullptr);
 

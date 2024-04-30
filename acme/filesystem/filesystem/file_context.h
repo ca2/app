@@ -446,6 +446,7 @@ public:
 
 
    virtual void unzip_to_folder(const ::file::path & pathFolder, const ::file::path & pathZip);
+   virtual ::file::path unzip_exe(const ::file::path& pathZip);
 
 
 };

@@ -210,7 +210,9 @@ namespace user
 
          rectangleText.left() = rectangleCheckBox.right() + 4;
 
-         auto colorBackground = get_color(pstyle, e_element_background);
+         auto estate = get_user_state();
+
+         auto colorBackground = get_color(pstyle, e_element_background, estate);
 
          pgraphics->fill_rectangle(rectangleCheckBox, colorBackground);
 
@@ -225,18 +227,24 @@ namespace user
 
          rectangleBorder.inflate(1);
 
-         if (drawcontext.m_bListItemHover)
-         {
+         auto colorText = get_color(pstyle, e_element_text, estate);
 
-            pgraphics->draw_inset_rectangle(rectangleBorder, argb(255, 60, 120, 200), 1.0);
+         pgraphics->set_text_color(colorText);
 
-         }
-         else
-         {
+         pgraphics->draw_inset_rectangle(rectangleBorder, colorText, 1.0);
 
-            pgraphics->draw_inset_rectangle(rectangleBorder, argb(255, 128, 128, 128), 1.0);
+         //if (drawcontext.m_bListItemHover)
+         //{
 
-         }
+         //   pgraphics->draw_inset_rectangle(rectangleBorder, argb(255, 60, 120, 200), 1.0);
+
+         //}
+         //else
+         //{
+
+         //   pgraphics->draw_inset_rectangle(rectangleBorder, argb(255, 128, 128, 128), 1.0);
+
+         //}
 
          if (echeck == ::e_check_tristate || echeck == ::e_check_checked)
          {
@@ -267,7 +275,7 @@ namespace user
 
             pgraphics->set_font(this, ::e_element_none);
 
-            ::color::color crText;
+   /*         ::color::color crText;
 
             if (drawcontext.m_bListItemHover)
             {
@@ -280,9 +288,16 @@ namespace user
 
                crText = argb(255, 0, 0, 0);
 
-            }
+            }*/
 
-            pgraphics->set_text_color(crText);
+
+            ::color::color color;
+
+            auto estate = get_user_state();
+
+            color = get_color(pstyle, e_element_text, estate);
+
+            pgraphics->set_text_color(color);
 
             pgraphics->draw_text(strWindowText, rectangleText, ealign, edrawtext);
 

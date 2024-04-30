@@ -3629,6 +3629,9 @@
     <ClInclude Include="operating_system\x11\_.h">
       <Filter>Header Files\operating_system\x11</Filter>
     </ClInclude>
+    <ClInclude Include="parallelization\queue.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -5112,6 +5115,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\x11\nano\window.cpp">
       <Filter>Source Files\operating_system\x11\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\queue.cpp">
+      <Filter>Source Files\parallelization</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

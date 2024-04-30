@@ -770,8 +770,8 @@ pstate->m_ppen->m_color = color;
 
       ::rectangle_f32 r;
 
-      r.left() = (double)x + offsetx;
-      r.top() = (double)y + offsety;
+      r.left() = (::f32) ((double)x + offsetx);
+      r.top() = (::f32) ((double)y + offsety);
       r.set_size(size);
 
       auto ealignForDrawText = m_pstate->m_ealignText;

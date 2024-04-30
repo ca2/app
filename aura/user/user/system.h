@@ -43,7 +43,7 @@ namespace user
       ::pointer<::request>                      m_prequest;
       ::pointer<::windowing::window>            m_pwindow;
 
-      boolean                                  m_bWindowFrame;
+      ::logic::boolean                          m_bWindowFrame;
       ::type_atom                               m_typeatomNewImpact;
       ::pointer<::object>                       m_pdocumentCurrent;
       ::pointer<::user::primitive>              m_puserprimitiveNew;

@@ -20,7 +20,7 @@ namespace user
       ::size_i32                             m_size;
       ::e_display                            m_edisplay;
       ::e_appearance                         m_eappearance;
-      boolean                                m_bImpactUpdateGoingOn;
+      ::logic::boolean                       m_bImpactUpdateGoingOn;
       //bool                                   m_bAutoRefresh = false;
 
 

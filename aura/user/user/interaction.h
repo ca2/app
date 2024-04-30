@@ -149,12 +149,12 @@ namespace user
 
 
       
-      boolean                                   m_bExtendOnParent;
-      boolean                                   m_bExtendOnParentIfOnlyClient;
-      boolean                                   m_bExtendOnParentHostingArea;
+      ::logic::boolean                          m_bExtendOnParent;
+      ::logic::boolean                          m_bExtendOnParentIfOnlyClient;
+      ::logic::boolean                          m_bExtendOnParentHostingArea;
       bool                                      m_bToolWindow;
       bool                                      m_bMessageWindow;
-      boolean                                   m_bLockGraphicalUpdate;
+      ::logic::boolean                          m_bLockGraphicalUpdate;
       
       bool                                      m_bCompositedFrameWindow;
       bool                                      m_bEdgeGestureDisableTouchWhenFullscreen;
@@ -202,7 +202,7 @@ namespace user
       bool                                      m_bModal;
 
       bool                                      m_bNeedRedraw;
-      boolean                                   m_bNeedPerformLayout;
+      ::logic::boolean                          m_bNeedPerformLayout;
       bool                                      m_bNeedLayout;
       //bool                                      m_bNeedCheckChildrenLayout;
       bool                                      m_bReposition;
@@ -423,8 +423,8 @@ namespace user
       ::enum_display                               m_edisplayOwnedBeforeHidden;
       //::item_pointer                               m_pitemClient;
       ::array < struct set_need_redraw >           m_setneedredrawa;
-      boolean                                      m_bNeedFullRedrawOnResize;
-      boolean                                      m_bLockSketchToDesign;
+      ::logic::boolean                             m_bNeedFullRedrawOnResize;
+      ::logic::boolean                             m_bLockSketchToDesign;
 
 
       interaction();

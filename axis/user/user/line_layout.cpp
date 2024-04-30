@@ -201,7 +201,7 @@ namespace user
                if (m_ealignrelativeOrthogonal == e_align_relative_base_bottom_line)
                {
 
-                  int iAscent = puserinteraction->get_font(pstyle)->get_ascent(pgraphics);
+                  int iAscent = (int)  puserinteraction->get_font(pstyle)->get_ascent(pgraphics);
 
 
                   point.set_orthogonal_dimension(m_eorientation,

@@ -141,11 +141,6 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 
 
 
-#ifndef __UNREFERENCED_PARAMETER
-#define __UNREFERENCED_PARAMETER(u)	(void)(u)
-#endif
-
-
 
 // #define make_i32(a, b)           ((::i32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
 

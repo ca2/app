@@ -15,7 +15,7 @@ namespace user
    public:
 
 
-      boolean           m_bOpened;
+      ::logic::boolean           m_bOpened;
 
 
       controller();

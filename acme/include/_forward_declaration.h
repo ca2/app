@@ -1119,7 +1119,7 @@ class conversation;
 
 class image;
 //class e_check;
-class boolean;
+//class boolean;
 
 
 

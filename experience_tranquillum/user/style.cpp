@@ -511,13 +511,28 @@ namespace experience_tranquillum
 
          if (is_dark_mode())
          {
-            return argb(255, 215, 215, 215);
+            if (estate & ::user::e_state_disabled)
+            {
+               return argb(255, 120, 120, 120);
+            }
+            else
+            {
+               return argb(255, 215, 215, 215);
+            }
 
          }
          else
          {
+            if (estate & ::user::e_state_disabled)
+            {
+               return argb(255, 210, 210, 210);
+            }
+            else
+            {
 
-            return argb(255, 40, 40, 40);
+               return argb(255, 40, 40, 40);
+
+            }
 
          }
 
@@ -577,7 +592,12 @@ namespace experience_tranquillum
          if (is_dark_mode())
          {
 
-            if (estate & ::user::e_state_new_input)
+            if (estate & ::user::e_state_disabled)
+            {
+               return argb(255, 120, 120, 120);
+
+            }
+            else if (estate & ::user::e_state_new_input)
             {
                return argb(255, 128, 128, 128);
 
@@ -599,7 +619,12 @@ namespace experience_tranquillum
          }
          else
          {
-            if (estate & ::user::e_state_new_input)
+            if (estate & ::user::e_state_disabled)
+            {
+               return argb(255, 210, 210, 210);
+
+            }
+            else if (estate & ::user::e_state_new_input)
             {
                return argb(255, 192, 192, 192);
 

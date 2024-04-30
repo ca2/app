@@ -235,7 +235,7 @@ namespace integration
    }
 
 
-   int context::command_system(const ::scoped_string & scopedstrCommand, const class ::time& timeOut)
+   int context::command_system(const ::scoped_string & scopedstrCommand, const class ::time& timeOut, const ::file::path& pathWorkingDirectory)
    {
 
 //      auto functionTrace = [&](auto etracelevel, auto & str)
@@ -246,7 +246,7 @@ namespace integration
 //      };
 //
       //auto iExitCode = node()->command_system(scopedstrCommand, ::std_inline_log());
-      auto iExitCode = node()->command_system(scopedstrCommand, 12_h);
+      auto iExitCode = node()->command_system(scopedstrCommand, 12_h, pathWorkingDirectory);
       
       if (iExitCode != 0)
       {

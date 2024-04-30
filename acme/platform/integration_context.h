@@ -76,7 +76,7 @@ namespace integration
       virtual void prepare_linking_script(::string & str);
 
       using ::acme::shell::command_system;
-      int command_system(const ::scoped_string& scopedstr, const class ::time& timeOut = 12_h) override;
+      int command_system(const ::scoped_string& scopedstr, const class ::time& timeOut = 12_h, const ::file::path& pathWorkingDirectory = {}) override;
 
       virtual void clean();
 

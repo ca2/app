@@ -2,6 +2,7 @@
 #include "line_layout.h"
 #include "acme/constant/message.h"
 #include "acme/platform/node.h"
+#include "aura/graphics/write_text/font.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/message/user.h"
 
@@ -172,11 +173,48 @@ namespace user
 
             bool bChanged = false;
 
+            int iMaximumAscent = 0;
+
+            auto pstyle = get_style(pgraphics);
+
+            for (auto& puserinteraction : children)
+            {
+
+               auto sizeItem = puserinteraction->size(e_layout_sketch);
+
+               iMaximumNormal = ::maximum(iMaximumNormal, sizeItem.get_normal_dimension(m_eorientation));
+
+               int iAscent = puserinteraction->get_font(pstyle)->get_ascent(pgraphics);
+
+               iMaximumAscent = ::maximum(iMaximumAscent, iAscent);
+
+            }
+
             for (auto & puserinteraction : children)
             {
 
                auto strType = ::type(puserinteraction).as_string();
                auto pszWndTxt = puserinteraction->get_window_text().c_str();
+
+               auto sizeItem = puserinteraction->size(e_layout_sketch);
+
+               if (m_ealignrelativeOrthogonal == e_align_relative_base_bottom_line)
+               {
+
+                  int iAscent = puserinteraction->get_font(pstyle)->get_ascent(pgraphics);
+
+
+                  point.set_orthogonal_dimension(m_eorientation,
+                     iMaximumAscent - iAscent);
+
+               }
+               else if (m_ealignrelativeOrthogonal == e_align_relative_far)
+               {
+                
+                  point.set_orthogonal_dimension(m_eorientation,
+                     iMaximumNormal - sizeItem.get_normal_dimension(m_eorientation));
+
+               }
 
                if (puserinteraction->set_position(point, e_layout_layout, pgraphics))
                {
@@ -185,10 +223,6 @@ namespace user
 
                }
                
-               auto sizeItem = puserinteraction->size(e_layout_sketch);
-
-               iMaximumNormal = ::maximum(iMaximumNormal, sizeItem.get_normal_dimension(m_eorientation));
-
                point.set_dimension(m_eorientation,
                   point.get_dimension(m_eorientation) +
                   sizeItem.get_dimension(m_eorientation)

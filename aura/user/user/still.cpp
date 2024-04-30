@@ -178,6 +178,7 @@ namespace user
 
             //pgraphics->set(pbrushText);
 
+
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
             defer_update_text_out_array(pgraphics);

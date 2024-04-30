@@ -12,6 +12,7 @@
 #include "acme/primitive/text/text.h"
 #include "acme/primitive/collection/atom_map.h"
 #include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/queue.h"
 #include "acme/parallelization/synchronously_keep_bit.h"
 #include "acme/parallelization/task.h"
 #include "acme/platform/application.h"
@@ -1686,6 +1687,36 @@ void object::branch_each(const ::procedure_array& routinea)
    ptask->branch();
 
    return ptask;
+
+}
+
+
+::pointer < ::parallelization::queue>object::queue(const ::atom& atomQueue)
+{
+
+   defer_create_synchronization();
+
+   _synchronous_lock synchronouslock(this->synchronization());
+
+   if (!m_pqueuemap)
+   {
+
+      __construct_new(m_pqueuemap);
+
+   }
+
+   auto& pqueue = (*m_pqueuemap)[atomQueue];
+
+   if (!pqueue)
+   {
+
+      __construct_new(pqueue);
+
+      pqueue->m_pobjectFork = this;
+
+   }
+
+   return pqueue;
 
 }
 

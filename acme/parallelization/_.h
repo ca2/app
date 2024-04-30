@@ -78,6 +78,9 @@ namespace parallelization
 {
 
 
+   class queue;
+
+
    CLASS_DECL_ACME bool set_priority(enum_priority epriority);
 
    CLASS_DECL_ACME bool set_priority(htask_t htask, enum_priority epriority);

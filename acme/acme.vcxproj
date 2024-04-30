@@ -1317,6 +1317,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="parallelization\queue.h" />
     <ClInclude Include="parallelization\task_message_queue.h" />
     <ClInclude Include="platform\allocator.h" />
     <ClInclude Include="platform\c.h" />
@@ -1817,6 +1818,7 @@
     <ClCompile Include="parallelization\multiple_lock.cpp" />
     <ClCompile Include="parallelization\mutex.cpp" />
     <ClCompile Include="parallelization\pool.cpp" />
+    <ClCompile Include="parallelization\queue.cpp" />
     <ClCompile Include="parallelization\semaphore.cpp" />
     <ClCompile Include="parallelization\signalization.cpp" />
     <ClCompile Include="parallelization\single_lock.cpp" />

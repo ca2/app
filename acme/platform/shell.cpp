@@ -1,6 +1,7 @@
 // Created by camilo 2024-03-07 18:41 <3ThomasBorregaardSoresen!!
 #include "framework.h"
 #include "shell.h"
+#include "acme/exception/interface_only.h"
 #include "acme/exception/status.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 
@@ -156,15 +157,15 @@ namespace acme
 
    }
 
-   
-   int shell::command_system(const ::scoped_string& scopedstr, const class ::time& timeOut)
+
+   int shell::command_system(const ::scoped_string& scopedstr, const class ::time& timeOut, const ::file::path& pathWorkingDirectory)
    {
 
       trace_function tracefunction = std_inline_log();
 
       tracefunction.m_timeTimeout = timeOut;
 
-      return command_system(scopedstr, tracefunction);
+      return command_system(scopedstr, tracefunction, pathWorkingDirectory);
 
    }
 
@@ -304,10 +305,10 @@ namespace acme
    }
 
 
-   int shell::command_system(const ::scoped_string& scopedstr, const trace_function& tracefunction)
+   int shell::command_system(const ::scoped_string& scopedstr, const trace_function& tracefunction, const ::file::path& pathWorkingDirectory)
    {
 
-      return m_pshellComposite->command_system(scopedstr, tracefunction);
+      return m_pshellComposite->command_system(scopedstr, tracefunction, pathWorkingDirectory);
 
    }
 
@@ -421,6 +422,29 @@ namespace acme
    }
 
 
+#ifdef WINDOWS_DESKTOP
+
+
+   ::file::path shell::_get_power_shell_path()
+   {
+
+      throw interface_only();
+
+      return {};
+
+   }
+
+
+   ::file::path shell::_get_cmd_path()
+   {
+
+      throw interface_only();
+
+      return {};
+
+   }
+
+#endif
 
    
 } // namespace acme

@@ -106,21 +106,21 @@ namespace axis
          //}
 
 
-         ::user::e_state estate;
+         ::user::e_state estate = pinteraction->get_user_state();
 
-         if (bHover)
-         {
+         //if (bHover)
+         //{
 
-            estate |= ::user::e_state_hover;
+         //   estate |= ::user::e_state_hover;
 
-         }
+         //}
 
-         if (echeck == ::e_check_checked)
-         {
+         //if (echeck == ::e_check_checked)
+         //{
 
-            estate |= ::user::e_state_checked;
+         //   estate |= ::user::e_state_checked;
 
-         }
+         //}
 
          //if (bHover)
          //{

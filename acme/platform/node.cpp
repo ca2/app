@@ -2280,7 +2280,7 @@ return false;
    }
 
 
-   void node::shell_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams)
+   void node::shell_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const ::file::path& pathWorkingDirectory)
    {
 
       //throw ::interface_only();
@@ -2292,7 +2292,21 @@ return false;
    }
 
 
-   void node::shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class time & timeTimeout)
+   int node::shell_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class time & timeTimeout, const ::file::path& pathWorkingDirectory)
+   {
+
+      //throw ::interface_only();
+
+      //throw ::interface_only();
+
+      throw ::interface_only();
+
+      return -1;
+
+   }
+
+
+   void node::root_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const ::file::path& pathWorkingDirectory)
    {
 
       //throw ::interface_only();
@@ -2304,7 +2318,7 @@ return false;
    }
 
 
-   void node::root_execute_async(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams)
+   int node::root_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class ::time& timeTimeout, const ::file::path& pathWorkingDirectory)
    {
 
       //throw ::interface_only();
@@ -2313,17 +2327,7 @@ return false;
 
       throw ::interface_only();
 
-   }
-
-
-   void node::root_execute_sync(const ::scoped_string & scopedstrFile, const ::scoped_string & scopedstrParams, const class ::time& timeTimeout)
-   {
-
-      //throw ::interface_only();
-
-      //throw ::interface_only();
-
-      throw ::interface_only();
+      return -1;
 
    }
 
@@ -3040,6 +3044,14 @@ return false;
 
 
    bool node::_is_tortoise_git_installed()
+   {
+
+      return false;
+
+   }
+
+
+   bool node::_is_smart_git_installed()
    {
 
       return false;

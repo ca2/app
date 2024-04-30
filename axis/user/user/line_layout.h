@@ -13,7 +13,17 @@ namespace user
    {
    public:
 
-      enum_orientation m_eorientation = e_orientation_none;
+      enum enum_align_relative
+      {
+         e_align_relative_none = 0,
+         e_align_relative_near = 1,
+         e_align_relative_middle = 2,
+         e_align_relative_far = 4,
+         e_align_relative_base_bottom_line = 8,
+      };
+
+      enum_orientation        m_eorientation = e_orientation_none;
+      enum_align_relative     m_ealignrelativeOrthogonal;
 
       int m_iPadding = 2;
 

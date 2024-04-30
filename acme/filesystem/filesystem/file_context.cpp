@@ -4551,4 +4551,22 @@ void file_context::unzip_to_folder(const ::file::path & pathFolder, const ::file
 }
 
 
+::file::path file_context::unzip_exe(const ::file::path& pathZip)
+{
+
+   auto pfileZip = get_reader(pathZip);
+
+   auto pfolder = system()->create < ::folder >("folder", "zip");
+
+   pfolder->initialize(m_pcontext);
+
+   pfolder->open_for_reading(pfileZip);
+
+   auto uncompressFolder = pathZip.folder() / pathZip.title();
+
+   return pfolder->e_extract_first_ends(uncompressFolder, ".exe");
+
+}
+
+
 

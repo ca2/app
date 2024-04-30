@@ -297,9 +297,9 @@ namespace acme
 
       virtual void os_process_user_icon_theme(string strIconTheme);
 
-      virtual bool set_wallpaper(index iScreen, string strLocalImagePath, ::windowing::display * pwindowingdisplay);
+      virtual bool set_wallpaper(::raw::index iScreen, string strLocalImagePath, ::windowing::display * pwindowingdisplay);
 
-      virtual string get_wallpaper(index iScreen);
+      virtual string get_wallpaper(::raw::index iScreen);
 
       virtual string get_file_icon_path(const ::string & pszPath, int iSize);
 

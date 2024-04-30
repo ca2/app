@@ -1272,7 +1272,7 @@ namespace user
    ::item_pointer still::on_hit_test(const ::point_i32 & point, e_zorder ezorder)
    {
 
-      ::index iItem = -1;
+      ::raw::index iItem = -1;
 
       if(!m_ptextouta || ::not_found(iItem = m_ptextouta->hit_test(point, ezorder)))
       {

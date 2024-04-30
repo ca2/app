@@ -113,7 +113,7 @@ namespace networking_bsd
       ::sockets_bsd::ssl_client_context_map              m_clientcontextmap;
 #endif
 
-      ::count                                            m_countHttpPostBoundary;
+      ::raw::count                                            m_countHttpPostBoundary;
       ::pointer < ::mutex >                              m_pmutexHttpPostBoundary;
 
       ::sockets_bsd::resolv_cache_t                      m_resolvcache;

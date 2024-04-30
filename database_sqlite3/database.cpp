@@ -186,8 +186,8 @@ namespace sqlite
    }
 
 
-   ::pointer<::database::result_set>database::query_result(const ::string & pszQuery, ::count iRowCount,
-                                                            ::count iColumnCount)
+   ::pointer<::database::result_set>database::query_result(const ::string & pszQuery, ::raw::count iRowCount,
+                                                            ::raw::count iColumnCount)
    {
 
       if (::is_null(m_psqlite))
@@ -241,7 +241,7 @@ namespace sqlite
    }
 
 
-   ::pointer<::database::result_set>database::query(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
+   ::pointer<::database::result_set>database::query(const ::string & pszQuery, ::raw::count iRowCount, ::raw::count iColumnCount)
    {
 
       return query_result(pszQuery, iRowCount, iColumnCount);
@@ -352,7 +352,7 @@ namespace sqlite
    }
 
 
-   ::count database::get_affected_rows_count()
+   ::raw::count database::get_affected_rows_count()
    {
 
       return -1;
@@ -935,7 +935,7 @@ i32 database_sqlite3_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char*
 
       pfielda->set_size(ncol);
 
-      for (index i = 0; i < ncol; i++)
+      for (::raw::index i = 0; i < ncol; i++)
       {
 
          presultset->__defer_construct_new(pfielda->element_at(i));
@@ -966,9 +966,9 @@ i32 database_sqlite3_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char*
    if (reslt != nullptr)
    {
 
-      index iCurrentLine = prowa->get_size();
+      ::raw::index iCurrentLine = prowa->get_size();
 
-      ::count iMaxRow = presultset->m_iMaxRowCount;
+      ::raw::count iMaxRow = presultset->m_iMaxRowCount;
 
       if (iMaxRow > 0 && iCurrentLine >= iMaxRow)
       {
@@ -983,7 +983,7 @@ i32 database_sqlite3_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char*
 
       ::payload payload;
 
-      ::count iMaxColumn = minimum_non_negative((::count) ncol, presultset->m_iMaxColumnCount);
+      ::raw::count iMaxColumn = minimum_non_negative((::raw::count) ncol, presultset->m_iMaxColumnCount);
 
       for (i32 i = 0; i < iMaxColumn; i++)
       {

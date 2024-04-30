@@ -143,15 +143,15 @@ namespace sort
    }
 
    template < class ARRAY >
-   inline bool sort_find(ARRAY & a, typename ARRAY::BASE_ARG_TYPE arg,index & iIndex,index iStart,index iEnd)
+   inline bool sort_find(ARRAY & a, typename ARRAY::BASE_ARG_TYPE arg,::raw::index & iIndex, ::raw::index iStart, ::raw::index iEnd)
    {
       if(a.get_size() == 0)
       {
          return false;
       }
-      index iLowerBound = iStart;
-      index iMaxBound = iEnd;
-      index iUpperBound = iMaxBound;
+      ::raw::index iLowerBound = iStart;
+      ::raw::index iMaxBound = iEnd;
+      ::raw::index iUpperBound = iMaxBound;
       memsize iCompare;
       // do binary search
       iIndex = (iUpperBound + iLowerBound) / 2;

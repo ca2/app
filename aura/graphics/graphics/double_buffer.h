@@ -49,8 +49,8 @@ namespace graphics
       //virtual ::image_pointer & get_screen_image() override;
 
 
-      ::index get_buffer_index() const;
-      ::index get_screen_index() const;
+      ::raw::index get_buffer_index() const;
+      ::raw::index get_screen_index() const;
 
       using graphics::update_screen;
       bool update_screen() override;

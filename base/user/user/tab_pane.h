@@ -27,7 +27,7 @@ namespace user
 
       tab *                               m_ptab;
 
-      ::index                             m_iIndex;
+      ::raw::index                             m_iIndex;
       ::draw2d::brush_pointer             m_pbrushFill;
       ::draw2d::brush_pointer             m_pbrushFillSel;
       ::draw2d::brush_pointer             m_pbrushFillHover;

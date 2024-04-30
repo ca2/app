@@ -1636,7 +1636,7 @@ namespace wayland
 
             information() << "xkb_keysym_to_utf8 size : " << size << " and text : \"" << strText << "\"";
 
-            for(::index i = 0; i < size; i++)
+            for(::raw::index i = 0; i < size; i++)
             {
 
                information() << "xkb_keysym_to_utf8 size ("  << i <<  ") : 0x" << ::hex::lower_case_from(text[i]);

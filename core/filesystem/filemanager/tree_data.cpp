@@ -294,7 +294,7 @@ namespace filemanager
 
       }
 
-      for (::index i = 0; i < listing.size(); i++)
+      for (::raw::index i = 0; i < listing.size(); i++)
       {
 
          ::string strTitle;
@@ -381,7 +381,7 @@ namespace filemanager
 
          ::file::listing & listing = filemanager_data()->m_listingRoot2;
 
-         for (::index i = 0; i < listing.size(); i++)
+         for (::raw::index i = 0; i < listing.size(); i++)
          {
 
             ::string strTitle = listing.m_straTitle[i];
@@ -533,7 +533,7 @@ namespace filemanager
 
       //   auto cListingUser = listingUser.get_count();
 
-      //   for(index i = 0; i < cListingUser; i++)
+      //   for(::raw::index i = 0; i < cListingUser; i++)
       //   {
 
       //      ::file::path pathUser = listingUser[i];
@@ -616,7 +616,7 @@ namespace filemanager
 
       //   auto cListingUser = listingUser.get_count();
 
-      //   for (index i = 0; i < cListingUser; i++)
+      //   for (::raw::index i = 0; i < cListingUser; i++)
       //   {
 
       //      ::file::path pathUser = listingUser[i];
@@ -697,7 +697,7 @@ namespace filemanager
 //
 //               ascendants_path(pathUser, filepatha);
 //
-//               for (index i = 0; i < filepatha.get_size(); i++)
+//               for (::raw::index i = 0; i < filepatha.get_size(); i++)
 //               {
 //
 //                  ::file::path pathUser = filepatha[i];
@@ -847,7 +847,7 @@ _001SelectItem(pchild);
 
       auto pparent = get_base_item();
 
-      for (::index i = 0; i < patha.get_size(); i++)
+      for (::raw::index i = 0; i < patha.get_size(); i++)
       {
 
          auto & path = patha[i];
@@ -916,7 +916,7 @@ _001SelectItem(pchild);
       }
 
 
-      for (::index i = patha.get_upper_bound(); i >= 0; i--)
+      for (::raw::index i = patha.get_upper_bound(); i >= 0; i--)
       {
 
          auto & path = patha[i];
@@ -1067,7 +1067,7 @@ _001SelectItem(pchild);
 
    //   auto cListingUser = listingUser.get_count();
 
-   //   for(index i = 0; i < cListingUser; i++)
+   //   for(::raw::index i = 0; i < cListingUser; i++)
    //   {
 
    //      ::file::path pathUser = listingUser[i];

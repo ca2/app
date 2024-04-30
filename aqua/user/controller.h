@@ -30,8 +30,8 @@ namespace user
       // void assert_ok() const override;
 
 
-      virtual ::user::interaction* impact_at(::index iImpact);
-      virtual ::count impact_count();
+      virtual ::user::interaction* impact_at(::raw::index iImpact);
+      virtual ::raw::count impact_count();
 
 
    };

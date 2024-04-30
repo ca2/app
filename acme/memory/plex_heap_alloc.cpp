@@ -173,7 +173,7 @@ void Free_check_pointer_in_cpp(void * p)
    }
 
 
-   if ((dword_ptr)p & 0x8000000000000000LLU)
+   if ((::uptr)p & 0x8000000000000000LLU)
    {
 
       output_debug_string("hit hiptr");
@@ -182,7 +182,7 @@ void Free_check_pointer_in_cpp(void * p)
 
 #if OSBIT >= 64
 
-   if ((dword_ptr)p == 0x0000000200000020LLU)
+   if ((::uptr)p == 0x0000000200000020LLU)
    {
 
       output_debug_string("hit 0x0000000200000020LLU");
@@ -191,7 +191,7 @@ void Free_check_pointer_in_cpp(void * p)
 
 #endif
 
-   if ((uptr)p < QUOTED_KERNEL_SPACE)
+   if ((::uptr)p < QUOTED_KERNEL_SPACE)
    {
 
       if (p == nullptr)

@@ -129,7 +129,7 @@ namespace heap
       //m_pallocatorSystemMemory = __allocate< system_memory_allocator >();
       //m_pallocatorDefaultMemory = __allocate< default_memory_allocator >();
 
-      for (::index i = 0; i < ::heap::e_memory_count; i++)
+      for (::raw::index i = 0; i < ::heap::e_memory_count; i++)
       {
 
          m_memorya[i] = new_memory((::heap::enum_memory)i);
@@ -154,7 +154,7 @@ namespace heap
    void management::start_management()
    {
 
-      for (::index i = 0; i < ::heap::e_memory_count; i++)
+      for (::raw::index i = 0; i < ::heap::e_memory_count; i++)
       {
 
          m_memorya[i]->start_memory();

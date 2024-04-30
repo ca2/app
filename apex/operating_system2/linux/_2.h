@@ -48,7 +48,7 @@ off_t tell64(int fd);
 //{
 //
 //  //string os_get_user_theme();
-//  string get_wallpaper(::index iIndex);
+//  string get_wallpaper(::raw::index iIndex);
 //
 //} // namespace os
 

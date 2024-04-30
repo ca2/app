@@ -100,7 +100,7 @@ namespace acme
 
       virtual ::file::path defer_process_path(::file::path path);
 
-      virtual void fork_count(::count iCount, const ::function < void(index, index, index, index) > & function, const ::procedure & procedureCompletion, index iStart = 0);
+      virtual void fork_count(::raw::count iCount, const ::function < void(::raw::index, ::raw::index, ::raw::index, ::raw::index) > & function, const ::procedure & procedureCompletion, ::raw::index iStart = 0);
 
 
 

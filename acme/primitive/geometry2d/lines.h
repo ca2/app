@@ -52,7 +52,7 @@ public:
 
       auto upper_bound = this->get_upper_bound();
 
-      for (::index i = 0; i < upper_bound; i++)
+      for (::raw::index i = 0; i < upper_bound; i++)
       {
 
          if (segment_contains(this->element_at(i), this->element_at(i+1), point, epsilon))

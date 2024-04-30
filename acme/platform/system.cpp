@@ -1730,7 +1730,7 @@ namespace acme
    }
 
 
-   void system::create_session(index iEdge)
+   void system::create_session(::raw::index iEdge)
    {
 
       if (session(iEdge))
@@ -1758,7 +1758,7 @@ namespace acme
 
 
 
-   ::pointer<::acme::session>system::on_create_session(index iEdge)
+   ::pointer<::acme::session>system::on_create_session(::raw::index iEdge)
    {
 
       ::pointer<::acme::session>psession;
@@ -1795,7 +1795,7 @@ namespace acme
    }
 
 
-   ::acme::session * system::session(index iEdge)
+   ::acme::session * system::session(::raw::index iEdge)
    {
 
       auto iterator = m_sessionmap.plookup(iEdge);
@@ -1812,7 +1812,7 @@ namespace acme
    }
 
 
-   void system::add_session(index iEdge, ::acme::session * psession)
+   void system::add_session(::raw::index iEdge, ::acme::session * psession)
    {
 
       if (!::is_set(psession))
@@ -1856,7 +1856,7 @@ namespace acme
    }
 
 
-   void system::erase_session(index iEdge)
+   void system::erase_session(::raw::index iEdge)
    {
 
       auto psession = m_sessionmap[iEdge];

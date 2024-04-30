@@ -22,14 +22,14 @@ namespace html
          {
          public:
 
-            index        m_iCol;
+            ::raw::index        m_iCol;
             float        m_cxMax;
             float        m_cxMin;
             float        m_x;
             float        m_cx;
 
             column();
-            column(index iCol);
+            column(::raw::index iCol);
 
          };
 
@@ -49,7 +49,7 @@ namespace html
 
 
 
-         void set_cell(index iCol, index iRow, cell * pcell);
+         void set_cell(::raw::index iCol, ::raw::index iRow, cell * pcell);
 
 
          void implement_phase1(html_data * pdata, ::html::element * pelement);

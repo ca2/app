@@ -103,16 +103,16 @@
 
          const ::scoped_string & scopedstrMessage = (const char *)pdata;
 
-         ::count c = len;
+         ::raw::count c = len;
 
-         ::count cSend;
+         ::raw::count cSend;
 
          data_struct data;
          data.mtype        = 20170101;
          data.request      = I32_MINIMUM;
          data.size_i32         = (i32)ansi_length(pszMessage);
 
-         ::count cPos = 0;
+         ::raw::count cPos = 0;
 
          while(c > 0)
          {

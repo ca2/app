@@ -21,7 +21,7 @@ void action_context::add(const ::particle * pparticle)
 }
 
 
-index action_context::find(const ::particle * pparticle) const
+::raw::index action_context::find(const ::particle * pparticle) const
 {
 
    return !m_pparticlea ? -1 : m_pparticlea->find_first(pparticle);

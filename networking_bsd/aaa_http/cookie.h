@@ -83,8 +83,8 @@ namespace http
       virtual ~cookies();
 
 
-      index find_cookie(const char * name);
-      index lowfind_cookie(const char * name);
+      ::raw::index find_cookie(const char * name);
+      ::raw::index lowfind_cookie(const char * name);
       ::http::cookie & cookie(const char * name);
       ::http::cookie & lowcookie(const char * name);
       using  pointer_array < http::cookie >::add;

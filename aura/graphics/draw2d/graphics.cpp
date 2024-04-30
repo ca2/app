@@ -702,7 +702,7 @@ namespace draw2d
    }
 
 
-   void graphics::DPtoLP(point_f64 * ppoints, count nCount)
+   void graphics::DPtoLP(point_f64 * ppoints, ::raw::count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
@@ -719,7 +719,7 @@ namespace draw2d
    }
 
 
-   void graphics::LPtoDP(::point_f64 * ppoints, count nCount)
+   void graphics::LPtoDP(::point_f64 * ppoints, ::raw::count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
@@ -939,7 +939,7 @@ namespace draw2d
    }
 
 
-   void graphics::polyline(const ::point_f64 * ppoints, count nCount)
+   void graphics::polyline(const ::point_f64 * ppoints, ::raw::count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
@@ -1106,7 +1106,7 @@ namespace draw2d
    }
 
 
-   void graphics::fill_polygon(const ::point_f64 * ppoints, count nCount)
+   void graphics::fill_polygon(const ::point_f64 * ppoints, ::raw::count nCount)
    {
 
       throw ::interface_only();
@@ -1116,7 +1116,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_polygon(const ::point_f64 * ppoints, count nCount)
+   void graphics::draw_polygon(const ::point_f64 * ppoints, ::raw::count nCount)
    {
 
       throw ::interface_only();
@@ -1126,7 +1126,7 @@ namespace draw2d
    }
 
 
-   void graphics::polygon(const ::point_f64 * ppoints, count nCount)
+   void graphics::polygon(const ::point_f64 * ppoints, ::raw::count nCount)
    {
 
       fill_polygon(ppoints, nCount);
@@ -1138,7 +1138,7 @@ namespace draw2d
    }
 
 
-   void graphics::poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount)
+   void graphics::poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, ::raw::count nCount)
    {
 
       fill_poly_polygon(ppoints, pPolyCounts, nCount);
@@ -1150,7 +1150,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount)
+   void graphics::draw_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, ::raw::count nCount)
    {
 
       //bool bOk = true;
@@ -1177,7 +1177,7 @@ namespace draw2d
    }
 
 
-   void graphics::fill_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, count nCount)
+   void graphics::fill_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, ::raw::count nCount)
    {
 
       //bool bOk = true;
@@ -1836,7 +1836,7 @@ namespace draw2d
    //}
 
 
-   //size_f64 graphics::TabbedTextOut(double x, double y, const ::string & pszString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions, int nTabOrigin)
+   //size_f64 graphics::TabbedTextOut(double x, double y, const ::string & pszString, strsize nCount, ::raw::count nTabPositions, i32 * pnTabStopPositions, int nTabOrigin)
    //{
 
    //   __UNREFERENCED_PARAMETER(x);
@@ -1852,7 +1852,7 @@ namespace draw2d
    //}
 
 
-   //size_f64 graphics::TabbedTextOut(double x, double y, const ::string & str, count nTabPositions, i32 * pnTabStopPositions, int nTabOrigin)
+   //size_f64 graphics::TabbedTextOut(double x, double y, const ::string & str, ::raw::count nTabPositions, i32 * pnTabStopPositions, int nTabOrigin)
    //{
 
    //   __UNREFERENCED_PARAMETER(x);
@@ -1867,7 +1867,7 @@ namespace draw2d
    //}
 
 
-   //size_f64 graphics::GetTabbedTextExtent(const ::ansi_character * pszString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions)
+   //size_f64 graphics::GetTabbedTextExtent(const ::ansi_character * pszString, strsize nCount, ::raw::count nTabPositions, i32 * pnTabStopPositions)
    //{
 
    //   __UNREFERENCED_PARAMETER(pszString);
@@ -1880,7 +1880,7 @@ namespace draw2d
    //}
 
 
-   //size_f64 graphics::GetTabbedTextExtent(const ::string & str, count nTabPositions, i32 * pnTabStopPositions)
+   //size_f64 graphics::GetTabbedTextExtent(const ::string & str, ::raw::count nTabPositions, i32 * pnTabStopPositions)
    //{
 
    //   __UNREFERENCED_PARAMETER(str);
@@ -1892,7 +1892,7 @@ namespace draw2d
    //}
 
 
-   //size_f64 graphics::GetOutputTabbedTextExtent(const ::string & pszString, strsize nCount, count nTabPositions, i32 * pnTabStopPositions)
+   //size_f64 graphics::GetOutputTabbedTextExtent(const ::string & pszString, strsize nCount, ::raw::count nTabPositions, i32 * pnTabStopPositions)
    //{
 
    //   __UNREFERENCED_PARAMETER(pszString);
@@ -1905,7 +1905,7 @@ namespace draw2d
    //}
 
 
-   //size_f64 graphics::GetOutputTabbedTextExtent(const ::string & str, count nTabPositions, i32 * pnTabStopPositions)
+   //size_f64 graphics::GetOutputTabbedTextExtent(const ::string & str, ::raw::count nTabPositions, i32 * pnTabStopPositions)
    //{
 
    //   __UNREFERENCED_PARAMETER(str);
@@ -2125,7 +2125,7 @@ namespace draw2d
    //}
 
 
-   void graphics::poly_polyline(const ::point_f64 * ppoints, const ::i32 * pPolyPoints, count nCount)
+   void graphics::poly_polyline(const ::point_f64 * ppoints, const ::i32 * pPolyPoints, ::raw::count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
@@ -2188,7 +2188,7 @@ namespace draw2d
 
 
 
-   void graphics::poly_bezier(const ::point_f64 * ppoints, count nCount)
+   void graphics::poly_bezier(const ::point_f64 * ppoints, ::raw::count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
@@ -2255,7 +2255,7 @@ namespace draw2d
    }
 
 
-   //   i32 graphics::GetPath(::point_f64 * ppoints, ::u8 * pTypes, count nCount)
+   //   i32 graphics::GetPath(::point_f64 * ppoints, ::u8 * pTypes, ::raw::count nCount)
    //   {
    //
    //      __UNREFERENCED_PARAMETER(ppoints);
@@ -3196,7 +3196,7 @@ namespace draw2d
    //}
 
 
-   void graphics::polydraw(const ::point_f64 * ppoints, const ::u8 * pTypes, count nCount)
+   void graphics::polydraw(const ::point_f64 * ppoints, const ::u8 * pTypes, ::raw::count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
@@ -3208,7 +3208,7 @@ namespace draw2d
    }
 
 
-   void graphics::polyline_to(const ::point_f64 * ppoints, count nCount)
+   void graphics::polyline_to(const ::point_f64 * ppoints, ::raw::count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
@@ -3219,7 +3219,7 @@ namespace draw2d
    }
 
 
-   void graphics::poly_bezier_to(const ::point_f64 * ppoints, count nCount)
+   void graphics::poly_bezier_to(const ::point_f64 * ppoints, ::raw::count nCount)
    {
 
       __UNREFERENCED_PARAMETER(ppoints);
@@ -3728,7 +3728,7 @@ namespace draw2d
    }
 
 
-   ::count graphics::get_character_extent(f64_array & daLeft, f64_array & daRight, const ::string & str, strsize iStart, strsize iCount)
+   ::raw::count graphics::get_character_extent(f64_array & daLeft, f64_array & daRight, const ::string & str, strsize iStart, strsize iCount)
    {
 
       daLeft.erase_all();
@@ -3896,7 +3896,7 @@ namespace draw2d
    }
 
 
-   size_f64 graphics::get_text_extent(const scoped_string & scopedstr, ::index iIndex)
+   size_f64 graphics::get_text_extent(const scoped_string & scopedstr, ::raw::index iIndex)
    {
 
       throw interface_only();

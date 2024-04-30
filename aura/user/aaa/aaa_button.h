@@ -58,7 +58,7 @@ namespace user
       e_style                             m_estyle;
       //::enum_check                    m_echeck;
       ::rectangle_f64                              m_rectangleText;
-      index                               m_iClick;
+      ::raw::index                               m_iClick;
       e_stock_icon                        m_estockicon;
       ::rectangle_f64                              m_rectangleCheckBox;
       bitmap *                            m_pbitmap;

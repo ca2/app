@@ -27,7 +27,7 @@ CLASS_DECL_ACME string_array stringa_from_strdup(::ansi_character ** ppParam)
 }
 
 
-CLASS_DECL_ACME ::count explode_command_line(string_array & stra, const ::string & str, address_array < char * > * argv)
+CLASS_DECL_ACME ::raw::count explode_command_line(string_array & stra, const ::string & str, address_array < char * > * argv)
 {
 
    auto range = str();
@@ -42,7 +42,7 @@ CLASS_DECL_ACME ::count explode_command_line(string_array & stra, const ::string
    if (argv != nullptr)
    {
 
-      for (::index i = 0; i < stra.get_count(); i++)
+      for (::raw::index i = 0; i < stra.get_count(); i++)
       {
 
          char * pch = (char *)stra.element_at(i).c_str();
@@ -66,7 +66,7 @@ CLASS_DECL_ACME string_array & csstidy_explode_ws(string_array & stra, char sep,
    ::string istring(psz);
 
    // 1 = st // 2 = str
-   ::index status = 1;
+   ::raw::index status = 1;
    char to = '\0';
 
    stra.add("");

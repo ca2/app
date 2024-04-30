@@ -228,15 +228,15 @@ public:
 
    //inline operator CHARACTER *() { return this->data(); }
 
-   //inline const CHARACTER *ptr_at(::index i) { return this->data() + i; }
+   //inline const CHARACTER *ptr_at(::raw::index i) { return this->data() + i; }
 
-   inline const CHARACTER* address_at(::index i) const { return this->data() + i; }
+   inline const CHARACTER* address_at(::raw::index i) const { return this->data() + i; }
 
-   //inline const CHARACTER *reverse_ptr(::index i) { return this->data() + this->size() + i; }
+   //inline const CHARACTER *reverse_ptr(::raw::index i) { return this->data() + this->size() + i; }
 
-   inline const CHARACTER* rear_address(::index i) const { return this->end() + i; }
+   inline const CHARACTER* rear_address(::raw::index i) const { return this->end() + i; }
 
-   inline const CHARACTER& operator[](index i) const { return this->data()[i]; }
+   inline const CHARACTER& operator[](::raw::index i) const { return this->data()[i]; }
 
    strsize index_of(const CHARACTER* p) const { return ::index_of(p, data()); }
 
@@ -1053,10 +1053,10 @@ public:
    }
 
 
-   ::count begins_count(bool(*character_is_function)(CHARACTER character)) const
+   ::raw::count begins_count(bool(*character_is_function)(CHARACTER character)) const
    {
 
-      ::count c = 0;
+      ::raw::count c = 0;
 
       while (character_is_function(this->begin()[c])) c++;
 
@@ -1065,10 +1065,10 @@ public:
    }
 
 
-   //    ::count consume(bool(*character_is_function)(CHARACTER character), strsize minimum_count);
+   //    ::raw::count consume(bool(*character_is_function)(CHARACTER character), strsize minimum_count);
 
 
-   //    ::count consume_spaces(strsize minimum_count = 0)
+   //    ::raw::count consume_spaces(strsize minimum_count = 0)
    //    {
    //
    //       return consume(&character_isspace, minimum_count);
@@ -1201,7 +1201,7 @@ public:
    template<typename PRED>
    bool is_every_char(PRED pred) const {
 
-      for (index i = 0; i < this->length(); i++) {
+      for (::raw::index i = 0; i < this->length(); i++) {
 
          if (!pred(this->operator[](i))) {
 
@@ -1290,7 +1290,7 @@ public:
 
 
    template<::comparison::equality<CHARACTER> EQUALITY>
-   ::count _occurrence_count_of(const SCOPED_STRING& scopedstr, EQUALITY equality) const {
+   ::raw::count _occurrence_count_of(const SCOPED_STRING& scopedstr, EQUALITY equality) const {
 
       strsize nLen = scopedstr.size();
 
@@ -1311,14 +1311,14 @@ public:
    }
 
 
-   ::count occurrence_count_of(const SCOPED_STRING& scopedstr = 0) const {
+   ::raw::count occurrence_count_of(const SCOPED_STRING& scopedstr = 0) const {
 
       return _occurrence_count_of(scopedstr, ::comparison::comparison<CHARACTER>());
 
    }
 
 
-   ::count case_insensitive_occurrence_count_of(const SCOPED_STRING& scopedstr = 0) const {
+   ::raw::count case_insensitive_occurrence_count_of(const SCOPED_STRING& scopedstr = 0) const {
 
       return _occurrence_count_of(scopedstr, ::comparison::case_insensitive<CHARACTER>());
 
@@ -1539,7 +1539,7 @@ public:
    const_iterator unicode_find(const SCOPED_STRING& scopedstr) const RELEASENOTHROW;
 
    const_iterator unicode_case_insensitive_find(const SCOPED_STRING& scopedstr) const RELEASENOTHROW;
-   ::index unicode_case_insensitive_find_index(const SCOPED_STRING& scopedstr, strsize start = 0) const RELEASENOTHROW
+   ::raw::index unicode_case_insensitive_find_index(const SCOPED_STRING& scopedstr, strsize start = 0) const RELEASENOTHROW
    {
 
       return this->index_of(this->operator()(start).unicode_case_insensitive_find(scopedstr));

@@ -396,7 +396,7 @@ namespace text
 
       ::atom id2;
 
-      index i = 0;
+      ::raw::index i = 0;
 
       string_array stra2;
 
@@ -584,7 +584,7 @@ namespace text
 
    //         strsize pos = 0;
    //         strsize len;
-   //         for(index i = 0; i < m_pos; i++)
+   //         for(::raw::index i = 0; i < m_pos; i++)
    //         {
    //            len = stack[i].e - stack[i].s;
    //            ::memory_copy(&m_szMerge[oldlen + pos],&pszTopic[stack[i].s],len);
@@ -608,7 +608,7 @@ namespace text
    //      if(m_pos == 1)
    //         return stack[0].e - stack[0].s;
    //      strsize len = 0;
-   //      for(index i = 0; i < m_pos; i++)
+   //      for(::raw::index i = 0; i < m_pos; i++)
    //      {
    //         len += stack[i].e - stack[i].s;
    //      }

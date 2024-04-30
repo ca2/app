@@ -20,7 +20,7 @@ namespace data
       return "";
    }
 
-   index item::data_item_get_image(::particle * pparticle) const
+   ::raw::index item::data_item_get_image(::particle * pparticle) const
    {
       __UNREFERENCED_PARAMETER(pparticle);
       return -1;

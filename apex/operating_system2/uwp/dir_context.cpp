@@ -148,7 +148,7 @@ pacmedirectory->ca2roaming() / "home";
       {
 
 
-         index iStart = listing.get_size();
+         ::raw::index iStart = listing.get_size();
 
 
          {
@@ -222,7 +222,7 @@ pacmedirectory->ca2roaming() / "home";
 
          }
 
-         for(index i = iStart; i < listing.get_size(); i++)
+         for(::raw::index i = iStart; i < listing.get_size(); i++)
          {
 
             listing[i].m_iRelative = listing.m_pathUser.get_length() + 1;

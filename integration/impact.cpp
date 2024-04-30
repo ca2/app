@@ -222,7 +222,7 @@ namespace app_integration
    void impact::start()
    {
 
-      for (index i = 0; i < m_straName.size(); i++)
+      for (::raw::index i = 0; i < m_straName.size(); i++)
       {
 
          auto strName = m_straName[i];
@@ -317,7 +317,7 @@ namespace app_integration
 
          ::rectangle_i32 rectangle = this->rectangle();
 
-         for (index i = 0; i < 11; i++)
+         for (::raw::index i = 0; i < 11; i++)
          {
 
             pgraphics->draw_inset_rectangle(rectangle, argb(180, 80, 80, 80));

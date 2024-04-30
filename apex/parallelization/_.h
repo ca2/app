@@ -85,7 +85,7 @@
 //      ::pointer<::object>is_running(ARRAY & array, const ::scoped_string & scopedstrTag)
 //      {
 //
-//         for (::index i = 0; i < array.get_size(); i++)
+//         for (::raw::index i = 0; i < array.get_size(); i++)
 //         {
 //
 //            ::pointer<::object>pparticle;

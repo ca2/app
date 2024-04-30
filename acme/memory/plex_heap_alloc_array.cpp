@@ -55,7 +55,7 @@ plex_heap_alloc_array::~plex_heap_alloc_array()
 
    pre_finalize();
 
-   for (index i = this->get_upper_bound(); i >= 0; i--)
+   for (::raw::index i = this->get_upper_bound(); i >= 0; i--)
    {
 
       //::platform::allocator::__allocator_base_delete(m_pallocator, this->element_at(i));
@@ -78,7 +78,7 @@ plex_heap_alloc_array::~plex_heap_alloc_array()
 void plex_heap_alloc_array::pre_finalize()
 {
 
-   for (index i = this->get_upper_bound(); i >= 0; i--)
+   for (::raw::index i = this->get_upper_bound(); i >= 0; i--)
    {
 
       this->element_at(i)->pre_finalize();

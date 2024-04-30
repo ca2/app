@@ -3,7 +3,7 @@
 
 
 template < typename TYPE >
-::index index_as_of_iterator(const TYPE * p)
+::raw::index index_as_of_iterator(const TYPE * p)
 {
 
    return (::iptr)p;
@@ -21,7 +21,7 @@ TYPE * next_as_of_iterator(const TYPE * p)
 
 
 template < typename TYPE >
-::count count_as_of_iterator(const TYPE * p, const TYPE * pBegin)
+::raw::count count_as_of_iterator(const TYPE * p, const TYPE * pBegin)
 {
 
    return ::index_as_of_iterator(p) - ::index_as_of_iterator(pBegin);
@@ -189,7 +189,7 @@ constexpr bool is_end(TYPE* p, TYPE* end) { return !is_ok(p, end); }
 
 
 //template < typename ITERATOR_TYPE >
-//::index iterator_offset_of(::make_iterator < ITERATOR_TYPE > a, ::make_iterator < ITERATOR_TYPE > b)
+//::raw::index iterator_offset_of(::make_iterator < ITERATOR_TYPE > a, ::make_iterator < ITERATOR_TYPE > b)
 //{
 //
 //   return a - b;

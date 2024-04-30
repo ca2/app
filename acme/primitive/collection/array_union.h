@@ -18,10 +18,10 @@ public:
 
    }
 
-   const BASE_TYPE & operator[](::index iIndex)
+   const BASE_TYPE & operator[](::raw::index iIndex)
    {
       
-      ::index iArray = 0;
+      ::raw::index iArray = 0;
 
       for (; iArray < m_2a.size(); iArray++)
       {
@@ -44,12 +44,12 @@ public:
    }
 
 
-   ::count size() const
+   ::raw::count size() const
    {
 
-      ::count c = 0;
+      ::raw::count c = 0;
 
-      for (::index iArray = 0; iArray < m_2a.size(); iArray++)
+      for (::raw::index iArray = 0; iArray < m_2a.size(); iArray++)
       {
 
          c += m_2a[iArray]->size();
@@ -70,8 +70,8 @@ class array_traits :
 public:
 
 
-   ::count get_upper_bound(::index i = -1) const { return this->size() + i; }
-   bool has_elements(::count cMinimum = 1) const { return this->size() > cMinimum; }
+   ::raw::count get_upper_bound(::raw::index i = -1) const { return this->size() + i; }
+   bool has_elements(::raw::count cMinimum = 1) const { return this->size() > cMinimum; }
    bool has_element() const { return this->has_elements(); }
 
 };

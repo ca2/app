@@ -15,7 +15,7 @@ atom_array __atom_array(const string_array_base < Type, RawType, t_etypeContaine
 
    atom_array atoma;
 
-   for (::index i = 0; i < a.get_count(); i++)
+   for (::raw::index i = 0; i < a.get_count(); i++)
    {
 
       atoma.add(a.element_at(i));

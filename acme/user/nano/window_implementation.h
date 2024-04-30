@@ -16,7 +16,7 @@ public:
    struct console
    {
 
-      map < char, ::index >         m_mapCharIndex;
+      map < char, ::raw::index >         m_mapCharIndex;
       ::array < char >              m_cha1;
       ::string_array                m_stra;
 

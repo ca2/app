@@ -62,7 +62,7 @@ namespace sockets_bsd
 {
 
 
-   ::index g_iSocketThread = 0;
+   ::raw::index g_iSocketThread = 0;
 
 
    socket_thread::socket_thread()

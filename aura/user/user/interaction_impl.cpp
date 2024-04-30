@@ -1742,7 +1742,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      for (::index i = 0; i < m_userinteractionaMouseHover.get_count(); )
+      for (::raw::index i = 0; i < m_userinteractionaMouseHover.get_count(); )
       {
 
          auto pinteraction = m_userinteractionaMouseHover[i];
@@ -1799,7 +1799,7 @@ namespace user
    //         else
    //         {
    //
-   //            for (::index i = 0; i < m_uiptraMouseHover.get_count();)
+   //            for (::raw::index i = 0; i < m_uiptraMouseHover.get_count();)
    //            {
    //
    //               auto pinteraction = m_uiptraMouseHover[i];
@@ -4490,7 +4490,7 @@ namespace user
          else
          {
 
-            for (index i = m_redrawitema.get_upper_bound(); i >= 1; i--)
+            for (::raw::index i = m_redrawitema.get_upper_bound(); i >= 1; i--)
             {
 
                m_redrawitema.first()->m_functiona.append(m_redrawitema[i]->m_functiona);
@@ -5920,12 +5920,12 @@ information() << "do_graphics(B)";
       //if (pgraphics)
       //{
 
-      //   for (::index i = 0; i < pgraphics->m_rectangleaNeedRedraw.size();)
+      //   for (::raw::index i = 0; i < pgraphics->m_rectangleaNeedRedraw.size();)
       //   {
 
       //      bool bErasedAny = false;
 
-      //      for (::index j = 0; j < m_rectangleaNeedRedraw.size();)
+      //      for (::raw::index j = 0; j < m_rectangleaNeedRedraw.size();)
       //      {
 
       //         if (pgraphics->m_rectangleaNeedRedraw[i] == m_rectangleaNeedRedraw[j])
@@ -6093,7 +6093,7 @@ information() << "do_graphics(B)";
 
                         //int iSeverity = SEVERITY_HIGH;
 
-                        //for(index i = 0; i < iSeverity * 20; i++)
+                        //for(::raw::index i = 0; i < iSeverity * 20; i++)
                         //{
 
             informationf("m_pgraphics->on_begin_draw FAILED (1)\n");
@@ -6394,7 +6394,7 @@ information() << "do_graphics(B)";
 
                         //int iSeverity = SEVERITY_HIGH;
 
-                        //for(index i = 0; i < iSeverity * 20; i++)
+                        //for(::raw::index i = 0; i < iSeverity * 20; i++)
                         //{
 
             information() << "m_pgraphics->on_begin_draw FAILED (1)";
@@ -9247,10 +9247,10 @@ information() << "do_graphics(B)";
 
    restartFullIntersectionExclusion:
 
-      for (index i = 0; i < raTest.get_count(); i++)
+      for (::raw::index i = 0; i < raTest.get_count(); i++)
       {
 
-         for (index j = i + 1; j < raTest.get_count(); j++)
+         for (::raw::index j = i + 1; j < raTest.get_count(); j++)
          {
 
             int iArea = raTest[i].area();
@@ -9288,10 +9288,10 @@ information() << "do_graphics(B)";
 
    restartPartialIntersectionExclusionEx:
 
-      for (index i = 0; i < raTest.get_count(); i++)
+      for (::raw::index i = 0; i < raTest.get_count(); i++)
       {
 
-         for (index j = i + 1; j < raTest.get_count(); j++)
+         for (::raw::index j = i + 1; j < raTest.get_count(); j++)
          {
 
             int iArea = raTest[i].area();

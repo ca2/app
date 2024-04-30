@@ -94,9 +94,9 @@ void copy(xdg_toplevel_resize_edge * presizeedge, ::experience::enum_frame * pef
 inline bool xdg_toplevel_state_array_contains(::wl_array * pwlarray, xdg_toplevel_state state)
 {
 
-   ::count c = pwlarray->size / sizeof(state);
+   ::raw::count c = pwlarray->size / sizeof(state);
 
-   for(::index i = 0; i < c; i++)
+   for(::raw::index i = 0; i < c; i++)
    {
 
       if(((xdg_toplevel_state *)pwlarray->data)[i] == state)

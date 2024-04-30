@@ -192,14 +192,14 @@ namespace geometry2d
 
       pitem->m_polypolygon.set_size(nCount);
 
-      for (::index i = 0; i < nCount; i++)
+      for (::raw::index i = 0; i < nCount; i++)
       {
 
          pitem->m_polypolygon[i] = __allocate< polygon_f64 >();
 
          pitem->m_polypolygon[i]->set_size(ppolycounts[i]);
 
-         for (::index j = 0; j < ppolycounts[i]; j++)
+         for (::raw::index j = 0; j < ppolycounts[i]; j++)
          {
 
             pitem->m_polypolygon[i]->element_at(j).x() = ppoints->x();
@@ -238,14 +238,14 @@ namespace geometry2d
 
       pitem->m_polypolygon.set_size(nCount);
 
-      for (::index i = 0; i < nCount; i++)
+      for (::raw::index i = 0; i < nCount; i++)
       {
 
          pitem->m_polypolygon[i] = __allocate< polygon_f64 >();
 
          pitem->m_polypolygon[i]->set_size(ppolycounts[i]);
 
-         for (::index j = 0; j < ppolycounts[i]; j++)
+         for (::raw::index j = 0; j < ppolycounts[i]; j++)
          {
 
             pitem->m_polypolygon[i]->element_at(j).x() = ppoints->x();

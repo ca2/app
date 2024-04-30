@@ -2912,7 +2912,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 
 //void file_context::write_gen_string(::file::file * pfile, void * pctx, string & str)
 //{
-//   ::count iLen = str.length();
+//   ::raw::count iLen = str.length();
 //   write_n_number(pfile, pctx, iLen);
 //   pfile->write((const char *)str);
 //   if (pctx != nullptr)
@@ -4209,7 +4209,7 @@ bool file_context::is_link(const ::file::path & path)
 //   return psystem->m_spfile->put_lines(payloadFile, stra, get_app());
 //}
 //
-//bool file_context::put_contents(const ::payload & payloadFile, const void * pvoidContents, ::count count)
+//bool file_context::put_contents(const ::payload & payloadFile, const void * pvoidContents, ::raw::count count)
 //{
 //   return psystem->m_spfile->put_contents(payloadFile, pvoidContents, count, get_app());
 //}

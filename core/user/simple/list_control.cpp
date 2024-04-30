@@ -93,7 +93,7 @@ bool simple_list_control::erase_item(::user::item_range & range)
    
    //bool bOk = true;
    
-   for(::index iItem = range.get_upper_bound(); iItem >= range.get_lower_bound(); iItem++)
+   for(::raw::index iItem = range.get_upper_bound(); iItem >= range.get_lower_bound(); iItem++)
    {
 
       if(!m_psimplelistdata->erase_item(iItem))
@@ -116,16 +116,16 @@ bool simple_list_control::erase_item(::user::range & range)
 {
    bool bOk = true;
    index_array iaRemove;
-   for(::index iRange = 0; iRange < range.get_item_count(); iRange++)
+   for(::raw::index iRange = 0; iRange < range.get_item_count(); iRange++)
    {
       auto & itemrange = range.ItemAt(iRange);
-      for(::index iItem = itemrange.get_lower_bound(); iItem <= itemrange.get_upper_bound(); iItem++)
+      for(::raw::index iItem = itemrange.get_lower_bound(); iItem <= itemrange.get_upper_bound(); iItem++)
       {
          iaRemove.add_unique(iItem);
       }
    }
    ::sort::QuickSortDesc(iaRemove);
-   for(index i = 0; i < iaRemove.get_size(); i++)
+   for(::raw::index i = 0; i < iaRemove.get_size(); i++)
    {
       if(!m_psimplelistdata->erase_item(iaRemove[i]))
          bOk = false;

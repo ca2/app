@@ -629,7 +629,7 @@ namespace data
    }
 
 
-   ::count tree_item::get_children_count()
+   ::raw::count tree_item::get_children_count()
    {
 
       return m_treeitema.get_count();
@@ -645,10 +645,10 @@ namespace data
    }
 
 
-   ::count tree_item::get_expandable_children_count()
+   ::raw::count tree_item::get_expandable_children_count()
    {
 
-      ::count c = 0;
+      ::raw::count c = 0;
       
       for(auto & p : m_treeitema)
       {
@@ -667,10 +667,10 @@ namespace data
    }
 
 
-   tree_item * tree_item::get_expandable_child(index iIndex)
+   tree_item * tree_item::get_expandable_child(::raw::index iIndex)
    {
       
-      ::count c = 0;
+      ::raw::count c = 0;
 
       auto iFind = m_treeitema.predicate_find_first([&c, iIndex](auto& p)
          {
@@ -703,12 +703,12 @@ namespace data
    }
 
 
-   ::count tree_item::get_proper_descendant_count()
+   ::raw::count tree_item::get_proper_descendant_count()
    {
 
-      ::count iCount = 0;
+      ::raw::count iCount = 0;
 
-      index iLevel = 0;
+      ::raw::index iLevel = 0;
 
       tree_item * pitem = this;
 
@@ -733,7 +733,7 @@ namespace data
    }
 
 
-   tree_item * tree_item::get_previous_or_parent(index * piLevel)
+   tree_item * tree_item::get_previous_or_parent(::raw::index * piLevel)
    {
 
       if (____previous())
@@ -780,7 +780,7 @@ namespace data
    }
 
 
-   index tree_item::calc_level()
+   ::raw::index tree_item::calc_level()
    {
 
       if (m_iLevel < 0)
@@ -884,7 +884,7 @@ namespace data
    }
 
 
-   index tree_item::_get_index()
+   ::raw::index tree_item::_get_index()
    {
 
       if (m_pparent == nullptr)
@@ -899,7 +899,7 @@ namespace data
    }
 
 
-   tree_item * tree_item::get_next_or_parent_next(index * piLevel)
+   tree_item * tree_item::get_next_or_parent_next(::raw::index * piLevel)
    {
 
       if (____next())
@@ -928,7 +928,7 @@ namespace data
    }
 
 
-   tree_item * tree_item::get_child_or_next(index * piLevel)
+   tree_item * tree_item::get_child_or_next(::raw::index * piLevel)
    {
 
       if (____head())
@@ -950,7 +950,7 @@ namespace data
    }
 
 
-   tree_item * tree_item::get_child_next_or_parent(index * piLevel)
+   tree_item * tree_item::get_child_next_or_parent(::raw::index * piLevel)
    {
 
       if (____head())
@@ -972,7 +972,7 @@ namespace data
    }
 
 
-   tree_item * tree_item::get_item(enum_tree_navigation enavigation, index * pindexLevel)
+   tree_item * tree_item::get_item(enum_tree_navigation enavigation, ::raw::index * pindexLevel)
    {
 
       switch(enavigation)
@@ -1065,7 +1065,7 @@ namespace data
    }
 
 
-   index tree_item::get_image() const
+   ::raw::index tree_item::get_image() const
    {
 
       if (!m_pdataitem)
@@ -1095,7 +1095,7 @@ namespace data
    }
 
 
-   tree_item * tree_item::get_proper_item(index iIndex, index * piLevel)
+   tree_item * tree_item::get_proper_item(::raw::index iIndex, ::raw::index * piLevel)
    {
 
       if (*piLevel)
@@ -1128,7 +1128,7 @@ namespace data
    }
 
 
-   index tree_item::get_proper_item_index(tree_item * pitemParam, index * piLevel)
+   ::raw::index tree_item::get_proper_item_index(tree_item * pitemParam, ::raw::index * piLevel)
    {
       
       i32 iIndex = 0;
@@ -1163,14 +1163,14 @@ namespace data
    }
 
    
-   ::count tree_item::get_proper_item_count()
+   ::raw::count tree_item::get_proper_item_count()
    {
 
       tree_item * pitem = this;
 
-      index iLevel = 0;
+      ::raw::index iLevel = 0;
 
-      ::count iCount = -1;
+      ::raw::count iCount = -1;
 
       while(pitem)
       {

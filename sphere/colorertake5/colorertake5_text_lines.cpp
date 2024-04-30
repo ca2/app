@@ -42,7 +42,7 @@ namespace colorertake5
 
    }
 
-   ::count text_lines::getLineCount()
+   ::raw::count text_lines::getLineCount()
    {
       return lines.get_size();
    }

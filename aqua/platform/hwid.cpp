@@ -70,7 +70,7 @@ static memory getUUID()
 
 #endif
     //std::transform(res.begin(), res.end(), res.begin(), ::toupper);
-    for (::index i = 0; i < res.size(); i++)
+    for (::raw::index i = 0; i < res.size(); i++)
     {
 
        ((char &) res[i]) = ::character_toupper((char)res[i]);

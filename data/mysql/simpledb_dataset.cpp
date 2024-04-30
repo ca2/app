@@ -701,7 +701,7 @@ namespace simpledb
    }
 
 
-   ::count set::num_rows()
+   ::raw::count set::num_rows()
    {
       return m_resultset.records.get_size();
    }
@@ -809,7 +809,7 @@ namespace simpledb
       //  return false;
    }
 
-   bool set::SetFieldValue(index iFieldIndex, const ::payload &value)
+   bool set::SetFieldValue(::raw::index iFieldIndex, const ::payload &value)
    {
       if(ds_state == database::dataset_select)
       {
@@ -832,7 +832,7 @@ namespace simpledb
       //  return false;
    }
 
-   ::payload & set::FieldValueAt(index iFieldIndex)
+   ::payload & set::FieldValueAt(::raw::index iFieldIndex)
    {
       //if(ds_state == dataset_select)
       {
@@ -870,10 +870,10 @@ namespace simpledb
 
    bool set::find_first(char * fieldname, ::payload & value)
    {
-      index iFound = -1;
+      ::raw::index iFound = -1;
       if(ds_state == database::dataset_select)
       {
-         index i;
+         ::raw::index i;
          for(i=0; i < fields_object.get_size(); i++)
             if(m_resultset.record_header[i].name == fieldname)
             {
@@ -881,7 +881,7 @@ namespace simpledb
                break;
             }
          if (iFound < 0) throw ::exception(::database::exception("Field not found: %s",fieldname));
-         ::count iNumRows = num_rows();
+         ::raw::count iNumRows = num_rows();
          for(i=0; i < iNumRows; i++)
             if(m_resultset.records[i][iFound] == value)
             {
@@ -941,13 +941,13 @@ namespace simpledb
    {
 
       database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
-      ::count sz = r->records.get_size();
+      ::raw::count sz = r->records.get_size();
 
       //if (reslt == nullptr ) cout << "EMPTY!!!\n";
       if (r->record_header.get_size() <= 0)
       {
          r->record_header.set_size(ncol, 32);
-         for (index i=0; i < ncol; i++)
+         for (::raw::index i=0; i < ncol; i++)
          {
             r->record_header[i].name = cols[i];
             if(cols[i + ncol] != nullptr)

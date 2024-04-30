@@ -268,7 +268,7 @@ bool semaphore::_wait(const class time & timeWait)
 //   if(g_pthreadaSemaphore != nullptr)
 //   {
 //
-//      for(index i = 0; i < g_pthreadaSemaphore->get_count() ; i++)
+//      for(::raw::index i = 0; i < g_pthreadaSemaphore->get_count() ; i++)
 //      {
 //
 //         signal(SIGALRM, SIG_DFL);

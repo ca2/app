@@ -23,17 +23,17 @@ public:
 
    iterator find_first_item(const TYPE &t, iterator start = nullptr, iterator end = nullptr) const;
    iterator find_last_item(const TYPE &t, iterator start = nullptr, iterator end = nullptr) const;
-   ::count get_count() const;
-   ::count get_count(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::count countMax = -1) const;
-   bool contains(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::count countMin = 1, ::count countMax = -1) const;
-   bool rear_contains(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::count countMin = 1, ::count countMax = -1) const;
+   ::raw::count get_count() const;
+   ::raw::count get_count(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::raw::count countMax = -1) const;
+   bool contains(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::raw::count countMin = 1, ::raw::count countMax = -1) const;
+   bool rear_contains(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::raw::count countMin = 1, ::raw::count countMax = -1) const;
    bool erase_first_item(const TYPE & t);
    bool erase_last_item(const TYPE & t);
    bool erase_first_item(const TYPE & t, iterator & p, iterator end = nullptr);
    bool erase_last_item(const TYPE & t, iterator & p, iterator end = nullptr);
-   ::count erase_item(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::count countMin = 0, ::count countMax = -1);
-   ::count rear_erase_item(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::count countMin = 0, ::count countMax = -1);
-   ::count erase_list(const comparable_eq_list & l);
+   ::raw::count erase_item(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::raw::count countMin = 0, ::raw::count countMax = -1);
+   ::raw::count rear_erase_item(const TYPE & t, iterator start = nullptr, iterator end = nullptr, ::raw::count countMin = 0, ::raw::count countMax = -1);
+   ::raw::count erase_list(const comparable_eq_list & l);
 
 
    bool add_tail_unique(ARG_TYPE t);
@@ -136,7 +136,7 @@ find_last_item(const TYPE & t, iterator start, iterator p) const
 
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-inline ::count comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
+inline ::raw::count comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
 get_count() const
 {
 
@@ -146,11 +146,11 @@ get_count() const
 
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-::count comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
-get_count(const TYPE & t, iterator start, iterator end, ::count countMax) const
+::raw::count comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
+get_count(const TYPE & t, iterator start, iterator end, ::raw::count countMax) const
 {
 
-   ::count count = 0;
+   ::raw::count count = 0;
 
    while((countMax >= 0 && count <= countMax) && (start = find_first_item(t, start, end)))
    {
@@ -166,10 +166,10 @@ get_count(const TYPE & t, iterator start, iterator end, ::count countMax) const
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 bool comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
-contains(const TYPE & t, iterator p, iterator end, ::count countMin, ::count countMax) const
+contains(const TYPE & t, iterator p, iterator end, ::raw::count countMin, ::raw::count countMax) const
 {
 
-   ::count count = 0;
+   ::raw::count count = 0;
 
    while((count < countMin || (countMax >= 0 && count <= countMax)) && (p = find_first_item(t, p, end)))
    {
@@ -185,10 +185,10 @@ contains(const TYPE & t, iterator p, iterator end, ::count countMin, ::count cou
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
 bool comparable_eq_list < TYPE, ARG_TYPE, LIST_TYPE >::
-rear_contains(const TYPE & t, iterator p, iterator end, ::count countMin, ::count countMax) const
+rear_contains(const TYPE & t, iterator p, iterator end, ::raw::count countMin, ::raw::count countMax) const
 {
 
-   ::count count = 0;
+   ::raw::count count = 0;
 
    while((count < countMin || (countMax >= 0 && count <= countMax))  && (p = find_last_item(t, p, end)))
    {
@@ -416,11 +416,11 @@ bool comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::erase_first_item(const T
 
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-::count comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
-erase_item(const TYPE & t, iterator p, iterator end, ::count countMin, ::count countMax)
+::raw::count comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
+erase_item(const TYPE & t, iterator p, iterator end, ::raw::count countMin, ::raw::count countMax)
 {
 
-   ::count count = 0;
+   ::raw::count count = 0;
 
    if(contains(t, p, end, countMin, countMax))
    {
@@ -484,11 +484,11 @@ erase_last_item(const TYPE & t, iterator & p, iterator end)
 
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-::count comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
-rear_erase_item(const TYPE & t, iterator p, iterator end, ::count countMin, ::count countMax)
+::raw::count comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::
+rear_erase_item(const TYPE & t, iterator p, iterator end, ::raw::count countMin, ::raw::count countMax)
 {
 
-   ::count count = 0;
+   ::raw::count count = 0;
 
    if(contains(t, p, end, countMin, countMax))
    {
@@ -508,10 +508,10 @@ rear_erase_item(const TYPE & t, iterator p, iterator end, ::count countMin, ::co
 
 
 template <class TYPE, class ARG_TYPE, class LIST_TYPE>
-::count comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::erase_list(const comparable_eq_list & l)
+::raw::count comparable_eq_list < TYPE, ARG_TYPE , LIST_TYPE >::erase_list(const comparable_eq_list & l)
 {
 
-   ::count count = 0;
+   ::raw::count count = 0;
 
    auto p = l.begin();
 

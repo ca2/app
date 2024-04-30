@@ -53,14 +53,14 @@ namespace data
       virtual bool erase_data(::data::data * pdata);
       virtual data * get_data(const ::atom & atom);
       virtual ::pointer < data > create_data(const ::atom & atom);
-      virtual ::count get_count() const;
+      virtual ::raw::count get_count() const;
 
 
       virtual bool is_empty() const;
 
 
       template < typename TYPE >
-      TYPE * get_typed_data(index i = 0)
+      TYPE * get_typed_data(::raw::index i = 0)
       {
 
         return m_datamap.get_typed_ptr < TYPE >();

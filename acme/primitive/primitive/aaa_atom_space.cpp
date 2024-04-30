@@ -68,7 +68,7 @@
 //
 //   try
 //   {
-//      for (index i = 0; i < m_psza.get_count(); i++)
+//      for (::raw::index i = 0; i < m_psza.get_count(); i++)
 //      {
 //         try
 //         {
@@ -208,7 +208,7 @@
 ////}
 //
 //
-//bool atom_space::find(const ::scoped_string & scopedstrFind,index & iIndex)
+//bool atom_space::find(const ::scoped_string & scopedstrFind,::raw::index & iIndex)
 //{
 //
 //   if(m_psza.m_nSize <= 0)
@@ -317,7 +317,7 @@
 //
 //   try
 //   {
-//   for(index i = 0; i < this->get_count(); i++)
+//   for(::raw::index i = 0; i < this->get_count(); i++)
 //   {
 //   try
 //   {
@@ -420,7 +420,7 @@
 //}
 //
 //
-//bool strid_array::find(const ::scoped_string & scopedstr,index & iIndex) const
+//bool strid_array::find(const ::scoped_string & scopedstr,::raw::index & iIndex) const
 //{
 // 
 //   single_lock synchronouslock(mutex(),true);
@@ -511,7 +511,7 @@
 //
 //}
 //
-//bool strid_array::find(const atom & atom,index & iIndex) const
+//bool strid_array::find(const atom & atom,::raw::index & iIndex) const
 //{
 //
 //

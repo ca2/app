@@ -56,7 +56,7 @@
 //
 //      typename type_map::pair * ppair;
 //
-//      for(index i = 0; i < attribmap.m_ptra.get_count(); i++)
+//      for(::raw::index i = 0; i < attribmap.m_ptra.get_count(); i++)
 //      {
 //
 //         ppair      = aaa_primitive_new typename type_map::pair(this, attribmap.m_ptra[i]->element1());

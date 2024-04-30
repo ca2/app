@@ -34,7 +34,7 @@ namespace userex
 
       void update_data(bool bSaveAndValidate) override;
 
-      bool _001GetItemText(string & str, index iItem) override;
+      bool _001GetItemText(string & str, ::raw::index iItem) override;
 #ifdef _DEBUG
       i64 increment_reference_count() override
       {

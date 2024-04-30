@@ -500,7 +500,7 @@ namespace nano2d
       virtual void text_box_bounds(float x, float y, ::nano2d::text_box * ptextbox, ::rectangle_f32* prectangle);
 
 
-		virtual ::count character_metric(::f64_array& daLeft, ::f64_array& daRight, const ::string& str, strsize iStart = 0, strsize iEnd = -1);
+		virtual ::raw::count character_metric(::f64_array& daLeft, ::f64_array& daRight, const ::string& str, strsize iStart = 0, strsize iEnd = -1);
 
 
 		// Calculates the glyph x positions of the specified text. If end is specified only the sub-string will be used.

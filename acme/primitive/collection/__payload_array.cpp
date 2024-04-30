@@ -47,7 +47,7 @@ payload_array::~payload_array()
 }
 
 
-index payload_array::add(const ::payload & payload)
+::raw::index payload_array::add(const ::payload & payload)
 {
 
    //if(payload.is_empty())
@@ -62,7 +62,7 @@ index payload_array::add(const ::payload & payload)
 }
 
 
-::count payload_array::append(const payload_array & payloada)
+::raw::count payload_array::append(const payload_array & payloada)
 {
 
    for(i32 i = 0; i < payloada.get_size(); i++)
@@ -77,10 +77,10 @@ index payload_array::add(const ::payload & payload)
 }
 
 
-index payload_array::append(const std::initializer_list < ::payload > & list)
+::raw::index payload_array::append(const std::initializer_list < ::payload > & list)
 {
 
-   ::index i = -1;
+   ::raw::index i = -1;
 
    for(auto & payload : list)
    {
@@ -97,10 +97,10 @@ index payload_array::append(const std::initializer_list < ::payload > & list)
 
 
 
-::count payload_array::append_unique(const payload_array & payloada)
+::raw::count payload_array::append_unique(const payload_array & payloada)
 {
 
-   ::count c = 0;
+   ::raw::count c = 0;
 
    for(i32 i = 0; i < payloada.get_size(); i++)
    {
@@ -145,7 +145,7 @@ string payload_array::implode(const ::scoped_string & scopedstrGlue) const
 }
 
 
-index payload_array::find_first(const ::scoped_string & scopedstr, index find, index last) const
+::raw::index payload_array::find_first(const ::scoped_string & scopedstr, ::raw::index find, ::raw::index last) const
 {
 
    if (find < 0)
@@ -179,7 +179,7 @@ index payload_array::find_first(const ::scoped_string & scopedstr, index find, i
 }
 
 
-index payload_array::find_first_ci(const ::scoped_string & scopedstr, index find, index last) const
+::raw::index payload_array::find_first_ci(const ::scoped_string & scopedstr, ::raw::index find,::raw::index last) const
 {
    
    if (find < 0)
@@ -213,7 +213,7 @@ index payload_array::find_first_ci(const ::scoped_string & scopedstr, index find
 }
 
 
-index payload_array::find_first(const ::payload & payload, index find, index last) const
+::raw::index payload_array::find_first(const ::payload & payload, ::raw::index find, ::raw::index last) const
 {
 
    if (find < 0)
@@ -246,10 +246,10 @@ index payload_array::find_first(const ::payload & payload, index find, index las
 }
 
 
-bool payload_array::case_insensitive_contains(const ::scoped_string & scopedstr, index find, index last, ::count countMin, ::count countMax) const
+bool payload_array::case_insensitive_contains(const ::scoped_string & scopedstr, ::raw::index find, ::raw::index last, ::raw::count countMin, ::raw::count countMax) const
 {
 
-   ::count count = 0;
+   ::raw::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax))
          && (find = find_first_ci(scopedstr, find, last)) >= 0)
 
@@ -259,10 +259,10 @@ bool payload_array::case_insensitive_contains(const ::scoped_string & scopedstr,
 }
 
 
-bool payload_array::contains(const ::scoped_string & scopedstr, index find, index last, ::count countMin, ::count countMax) const
+bool payload_array::contains(const ::scoped_string & scopedstr, ::raw::index find, ::raw::index last, ::raw::count countMin, ::raw::count countMax) const
 {
 
-   ::count count = 0;
+   ::raw::count count = 0;
 
    while((count < countMin || (countMax >= 0 && count <= countMax))
          && (find = find_first(scopedstr, find, last)) >= 0)
@@ -273,10 +273,10 @@ bool payload_array::contains(const ::scoped_string & scopedstr, index find, inde
 }
 
 
-bool payload_array::contains(const ::payload & payload, index find, index last, ::count countMin, ::count countMax) const
+bool payload_array::contains(const ::payload & payload, ::raw::index find, ::raw::index last, ::raw::count countMin, ::raw::count countMax) const
 {
 
-   ::count count = 0;
+   ::raw::count count = 0;
 
    while((count < countMin || (countMax >= 0 && count <= countMax))
          && (find = find_first(payload, find, last)) >= 0)
@@ -287,7 +287,7 @@ bool payload_array::contains(const ::payload & payload, index find, index last, 
 }
 
 
-::count payload_array::erase_first_ci(const ::scoped_string & scopedstr, index find, index last)
+::raw::count payload_array::erase_first_ci(const ::scoped_string & scopedstr, ::raw::index find, ::raw::index last)
 {
 
    if ((find = find_first_ci(scopedstr, find, last)) >= 0)
@@ -302,7 +302,7 @@ bool payload_array::contains(const ::payload & payload, index find, index last, 
 }
 
 
-::count payload_array::erase_first(const ::scoped_string & scopedstr, index find, index last)
+::raw::count payload_array::erase_first(const ::scoped_string & scopedstr, ::raw::index find, ::raw::index last)
 {
 
    if ((find = find_first(scopedstr, find, last)) >= 0)
@@ -317,7 +317,7 @@ bool payload_array::contains(const ::payload & payload, index find, index last, 
 }
 
 
-::count payload_array::erase_first(const ::payload & payload, index find, index last)
+::raw::count payload_array::erase_first(const ::payload & payload, ::raw::index find, ::raw::index last)
 {
 
    if ((find = find_first(payload, find, last)) >= 0)
@@ -332,10 +332,10 @@ bool payload_array::contains(const ::payload & payload, index find, index last, 
 }
 
 
-::count payload_array::erase_ci(const ::scoped_string & scopedstr, index find, index last, ::count countMin, ::count countMax)
+::raw::count payload_array::erase_ci(const ::scoped_string & scopedstr, ::raw::index find, ::raw::index last, ::raw::count countMin, ::raw::count countMax)
 {
 
-   ::count count = 0;
+   ::raw::count count = 0;
 
    if (case_insensitive_contains(scopedstr, find, last, countMin, countMax))
    {
@@ -355,10 +355,10 @@ bool payload_array::contains(const ::payload & payload, index find, index last, 
 }
 
 
-::count payload_array::erase(const ::scoped_string & scopedstr, index find, index last, ::count countMin, ::count countMax)
+::raw::count payload_array::erase(const ::scoped_string & scopedstr, ::raw::index find, ::raw::index last, ::raw::count countMin, ::raw::count countMax)
 {
 
-   ::count count = 0;
+   ::raw::count count = 0;
 
    if (contains(scopedstr, find, last, countMin, countMax))
    {
@@ -378,10 +378,10 @@ bool payload_array::contains(const ::payload & payload, index find, index last, 
 }
 
 
-::count payload_array::erase(const ::payload & payload, index find, index last, ::count countMin, ::count countMax)
+::raw::count payload_array::erase(const ::payload & payload, ::raw::index find, ::raw::index last, ::raw::count countMin, ::raw::count countMax)
 {
    
-   ::count count = 0;
+   ::raw::count count = 0;
 
    if (contains(payload, find, last, countMin, countMax))
    {
@@ -401,7 +401,7 @@ bool payload_array::contains(const ::payload & payload, index find, index last, 
 }
 
 
-::count payload_array::erase(const payload_array & payloada)
+::raw::count payload_array::erase(const payload_array & payloada)
 {
 
    if(&payloada == this)
@@ -411,9 +411,9 @@ bool payload_array::contains(const ::payload & payload, index find, index last, 
 
    }
 
-   ::count count = 0;
+   ::raw::count count = 0;
 
-   for(index i = 0; i < payloada.get_count(); i++)
+   for(::raw::index i = 0; i < payloada.get_count(); i++)
    {
 
       count += erase(payloada[i]);
@@ -525,7 +525,7 @@ payload_array & payload_array::operator = (const property_set & propset)
 
    erase_all();
 
-   index i = 0;
+   ::raw::index i = 0;
 
    for(auto & pproperty : propset.propertyptra())
    {
@@ -719,7 +719,7 @@ string & payload_array::get_network_payload(string & str, bool bNewLine) const
 
    }
 
-   for (index i = 1; i < get_count(); i++)
+   for (::raw::index i = 1; i < get_count(); i++)
    {
 
       if (bNewLine)
@@ -759,7 +759,7 @@ std::strong_ordering payload_array::order(const ::payload_array & payloada) cons
 
    auto iMinimumSize = minimum(this->size(), payloada.size());
 
-   for (index i = 0; i < iMinimumSize; i++)
+   for (::raw::index i = 0; i < iMinimumSize; i++)
    {
 
       auto ordering = element_at(i).order_payload(payloada.element_at(i));

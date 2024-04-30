@@ -612,7 +612,7 @@ constexpr auto argb(OPACITY opacity, RED red, GREEN green, BLUE blue)
 //constexpr auto opaque(const ::color::color& color) { return opacity(255, color); }
 
 
-CLASS_DECL_ACME::color::color _020GetColor(::index i);
+CLASS_DECL_ACME::color::color _020GetColor(::raw::index i);
 
 
 //constexpr ::color::color argb(::i32 a, ::i32 r, ::i32 g, ::i32 b)

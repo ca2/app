@@ -57,7 +57,7 @@ namespace user
 
       //bool bIsWindowVisible = pshowwindow->m_bShow;
 
-      //::count iSplitBarCount = get_split_count();
+      //::raw::count iSplitBarCount = get_split_count();
 
       //split_layout::Pane * pcomponent;
 
@@ -132,7 +132,7 @@ namespace user
    }
 
 
-   bool split_layout::SetPaneCount(::count iPaneCount)
+   bool split_layout::SetPaneCount(::raw::count iPaneCount)
    {
 
       m_iPaneCount = iPaneCount;
@@ -141,7 +141,7 @@ namespace user
 
       m_splitbara.set_size(iPaneCount - 1);
 
-      for(::index i = 0; i < m_splitbara.get_count(); i++)
+      for(::raw::index i = 0; i < m_splitbara.get_count(); i++)
       {
 
          if(!m_splitbara[i])
@@ -171,7 +171,7 @@ namespace user
 
       }
 
-      for(::index i = 0; i < m_panea.get_count(); i++)
+      for(::raw::index i = 0; i < m_panea.get_count(); i++)
       {
 
          if(m_panea[i].is_null())
@@ -195,7 +195,7 @@ namespace user
 
 #ifdef _DEBUG
 
-      ::count iPaneCount = m_iPaneCount;
+      ::raw::count iPaneCount = m_iPaneCount;
 
 #endif
 
@@ -203,7 +203,7 @@ namespace user
 
       ASSERT(iPaneCount > 0);
 
-      for(::index i = 0; i < m_panea.get_count(); i++)
+      for(::raw::index i = 0; i < m_panea.get_count(); i++)
       {
 
          if(m_panea[i]->m_pholder.is_null())
@@ -230,7 +230,7 @@ namespace user
    }
 
 
-   void split_layout::RelayChildEvent(index iIndex, const MESSAGE * pMsg)
+   void split_layout::RelayChildEvent(::raw::index iIndex, const MESSAGE * pMsg)
 
    {
 
@@ -483,7 +483,7 @@ namespace user
 
       i32 i;
 
-      ::count iSplitBarCount = get_split_count();
+      ::raw::count iSplitBarCount = get_split_count();
 
       split_layout::Pane * pcomponent;
 
@@ -571,7 +571,7 @@ namespace user
    }
 
 
-   void split_layout::set_position(index iIndex, i32 nPos)
+   void split_layout::set_position(::raw::index iIndex, i32 nPos)
    {
 
       ASSERT(iIndex >= 0);
@@ -592,7 +592,7 @@ namespace user
    }
 
 
-   void split_layout::set_position_rate(index iIndex, double dRate, double dMinimumRate, double dMaximumRate)
+   void split_layout::set_position_rate(::raw::index iIndex, double dRate, double dMinimumRate, double dMaximumRate)
    {
 
       ASSERT(iIndex >= 0);
@@ -614,7 +614,7 @@ namespace user
    }
 
 
-   i32 split_layout::get_position(index iIndex)
+   i32 split_layout::get_position(::raw::index iIndex)
    {
 
       ASSERT(iIndex >= 0);
@@ -626,7 +626,7 @@ namespace user
    }
 
 
-   ::count split_layout::get_split_count()
+   ::raw::count split_layout::get_split_count()
    {
 
       return get_pane_count() - 1;
@@ -634,14 +634,14 @@ namespace user
    }
 
 
-   ::count split_layout::get_pane_count()
+   ::raw::count split_layout::get_pane_count()
    {
 
       return (i32) m_panea.get_count();
 
    }
 
-   ::count split_layout::get_visible_pane_count()
+   ::raw::count split_layout::get_visible_pane_count()
    {
 
       if (!m_bInitialized)
@@ -651,9 +651,9 @@ namespace user
 
       }
 
-      ::count c = 0;
+      ::raw::count c = 0;
 
-      for (index i = 0; i < get_pane_count(); i++)
+      for (::raw::index i = 0; i < get_pane_count(); i++)
       {
 
          if (is_pane_visible((int) (i)))
@@ -724,7 +724,7 @@ namespace user
    }
 
 
-   void split_layout::CalcPaneRect(index iPane, RECT32 * prect)
+   void split_layout::CalcPaneRect(::raw::index iPane, RECT32 * prect)
 
    {
 
@@ -814,7 +814,7 @@ namespace user
    }
 
 
-   void split_layout::CalcSplitBarRect(index iIndex, RECT32 * prect)
+   void split_layout::CalcSplitBarRect(::raw::index iIndex, RECT32 * prect)
 
    {
 
@@ -831,7 +831,7 @@ namespace user
 
       i32 nPos = 0;
 
-      index i = 0;
+      ::raw::index i = 0;
 
       while (i <= iIndex)
       {
@@ -887,14 +887,14 @@ namespace user
    }
 
 
-   bool split_layout::InsertPaneAt(index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, ::atom atom)
+   bool split_layout::InsertPaneAt(::raw::index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, ::atom atom)
    {
 
-      ::count iSplitBarCount = get_pane_count();
+      ::raw::count iSplitBarCount = get_pane_count();
 
       m_splitbara.erase_all();
 
-      index i;
+      ::raw::index i;
 
       for(i = 0; i < iSplitBarCount; i++)
       {
@@ -958,7 +958,7 @@ namespace user
    }
 
 
-   bool split_layout::RemovePaneAt(index iIndex)
+   bool split_layout::RemovePaneAt(::raw::index iIndex)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -969,11 +969,11 @@ namespace user
 
       m_panea.erase_at(iIndex);
 
-      ::count iSplitBarCount = get_pane_count();
+      ::raw::count iSplitBarCount = get_pane_count();
 
       m_splitbara.erase_all();
 
-      index i;
+      ::raw::index i;
 
       for(i = 0; i < iSplitBarCount; i++)
       {
@@ -998,7 +998,7 @@ namespace user
    }
 
 
-   bool split_layout::SetPane(index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, atom atom)
+   bool split_layout::SetPane(::raw::index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, atom atom)
    {
 
       ASSERT(iIndex >= 0);
@@ -1045,7 +1045,7 @@ namespace user
    }
 
 
-   void split_layout::SetPaneFixedSize(index iIndex, SIZE32 * pSize)
+   void split_layout::SetPaneFixedSize(::raw::index iIndex, SIZE32 * pSize)
    {
 
       __UNREFERENCED_PARAMETER(iIndex);
@@ -1060,7 +1060,7 @@ namespace user
    }
 
 
-   i32 split_layout::GetMinPos(index iPane)
+   i32 split_layout::GetMinPos(::raw::index iPane)
    {
 
       if (get_split_count() <= 0 || iPane <= 0)
@@ -1093,7 +1093,7 @@ namespace user
 
    }
 
-   i32 split_layout::GetMaxPos(index iPane)
+   i32 split_layout::GetMaxPos(::raw::index iPane)
    {
 
       if (get_split_count() <= 0 || iPane >= get_split_count())
@@ -1134,7 +1134,7 @@ namespace user
    }
 
 
-   void split_layout::RelayEventSplitBar(index iSplitBar, const ::atom & atom, WPARAM wParam, LPARAM lParam)
+   void split_layout::RelayEventSplitBar(::raw::index iSplitBar, const ::atom & atom, WPARAM wParam, LPARAM lParam)
    {
 
       ASSERT(false);
@@ -1238,7 +1238,7 @@ namespace user
    }
 
 
-   rectangle & split_layout::get_pane_rect(index iPane)
+   rectangle & split_layout::get_pane_rect(::raw::index iPane)
    {
 
       ASSERT(iPane >= 0);
@@ -1257,7 +1257,7 @@ namespace user
    }
 
 
-   ::pointer<::user::place_holder>split_layout::get_pane_holder(index iPane)
+   ::pointer<::user::place_holder>split_layout::get_pane_holder(::raw::index iPane)
    {
 
       ASSERT(iPane >= 0);
@@ -1276,7 +1276,7 @@ namespace user
    }
 
 
-   ::pointer<::user::interaction>split_layout::get_pane_window(index iPane)
+   ::pointer<::user::interaction>split_layout::get_pane_window(::raw::index iPane)
    {
 
       ::pointer<::user::place_holder>pholder = get_pane_holder(iPane);
@@ -1293,7 +1293,7 @@ namespace user
    }
 
 
-   atom split_layout::get_pane_id(index iPane)
+   atom split_layout::get_pane_id(::raw::index iPane)
    {
 
       ASSERT(iPane >= 0);
@@ -1314,10 +1314,10 @@ namespace user
    }
 
 
-   index split_layout::get_pane_by_id(::atom atom)
+   ::raw::index split_layout::get_pane_by_id(::atom atom)
    {
 
-      for(index iPane = 0; iPane < m_panea.get_count(); iPane++)
+      for(::raw::index iPane = 0; iPane < m_panea.get_count(); iPane++)
       {
 
          if (m_panea[iPane]->m_atom == atom)

@@ -195,9 +195,9 @@ namespace draw2d
 
       }
 
-      ::index iFound = -1;
+      ::raw::index iFound = -1;
 
-      for (::index i = 0; i < m_sizea.get_size(); i++)
+      for (::raw::index i = 0; i < m_sizea.get_size(); i++)
       {
 
          if (size.cx() < m_sizea[i].cx())
@@ -247,7 +247,7 @@ namespace draw2d
 
       }
 
-      for (::index i = 0; i < m_sizea.get_size(); i++)
+      for (::raw::index i = 0; i < m_sizea.get_size(); i++)
       {
 
          if (sizeDst.cy() == m_sizea[i].cy())
@@ -259,7 +259,7 @@ namespace draw2d
 
       }
 
-      ::index iFound = -1;
+      ::raw::index iFound = -1;
 
       if (eimageselection == e_image_selection_prefer_largest)
       {
@@ -274,7 +274,7 @@ namespace draw2d
 
          double dRateSmaller = 1.0 / pow(2.0, (double)(int)(eimageselection - e_image_selection_prefer_smaller));
 
-         for (::index i = m_sizea.get_upper_bound(); i >= 0; i--)
+         for (::raw::index i = m_sizea.get_upper_bound(); i >= 0; i--)
          {
 
             if (m_sizea[i].cy() < dRateSmaller * sizeDst.cy())
@@ -294,7 +294,7 @@ namespace draw2d
 
          iFound = m_sizea.first_index();
 
-         for (::index i = 0; i < m_sizea.get_size(); i++)
+         for (::raw::index i = 0; i < m_sizea.get_size(); i++)
          {
 
             if (m_sizea[i].cy() > sizeDst.cy())

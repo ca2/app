@@ -75,8 +75,8 @@ using image_list_pointer = ::pointer<::image_list>;
 //   virtual ::draw2d::bitmap_pointer get_bitmap() const= 0; // is semantically const (besides may not be implementationly constant)
 //   virtual ::draw2d::bitmap_pointer detach_bitmap()= 0;
 //
-//   virtual ::count get_image_count() const= 0;
-//   virtual ::image_pointer get_image(index i)= 0;
+//   virtual ::raw::count get_image_count() const= 0;
+//   virtual ::image_pointer get_image(::raw::index i)= 0;
 //
 //   virtual ::color::color * get_data() const= 0;
 //

@@ -15,11 +15,11 @@ namespace colorertake5
    {
    public:
       /** Line number */
-      index lno;
+      ::raw::index lno;
       /** position in line */
-      index pos;
+      ::raw::index pos;
       /** Level of enclosure */
-      index level;
+      ::raw::index level;
       /** Item text */
       string token;
       /** This item's region */

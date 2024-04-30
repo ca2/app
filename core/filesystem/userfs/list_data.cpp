@@ -127,7 +127,7 @@ namespace userfs
    }
 
 
-   ::userfs::list_item * list_data::item(index i)
+   ::userfs::list_item * list_data::item(::raw::index i)
    { 
       
       return m_pitema->get_item(i); 
@@ -162,7 +162,7 @@ namespace userfs
          try
          {
 
-            psubitem->m_strText = m_pitema->get_item((::index)psubitem->m_pitem->m_iItem)->m_strName;
+            psubitem->m_strText = m_pitema->get_item((::raw::index)psubitem->m_pitem->m_iItem)->m_strName;
 
          }
          catch (...)
@@ -281,7 +281,7 @@ namespace userfs
    }
 
 
-   ::count list_data::_001GetItemCount()
+   ::raw::count list_data::_001GetItemCount()
    {
 
       return m_pitema->get_count();
@@ -294,7 +294,7 @@ namespace userfs
 
       //ASSERT(listingUser.get_count() == listingFinal.get_count());
 
-      //for (index i = 0; i < listingUser.get_count(); i++)
+      //for (::raw::index i = 0; i < listingUser.get_count(); i++)
       //{
 
       //   ::file::path & pathFinal = listingFinal[i];
@@ -356,7 +356,7 @@ namespace userfs
 
       auto & listingFinal = puserfsdata->m_listingFinal2;
 
-      for (index i = 0; i < listingUser.get_count(); i++)
+      for (::raw::index i = 0; i < listingUser.get_count(); i++)
       {
 
          ::file::path & pathFinal = listingFinal[i];
@@ -426,7 +426,7 @@ namespace userfs
             if (psubitem->m_iImage < 0)
             {
 
-               auto & pathFinal = m_pitema->get_item((::index)psubitem->m_pitem->m_iItem)->final_path();
+               auto & pathFinal = m_pitema->get_item((::raw::index)psubitem->m_pitem->m_iItem)->final_path();
 
                auto psession = session()->m_pcoresession;
 

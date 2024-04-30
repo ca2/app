@@ -19,7 +19,7 @@ namespace user
 
 
          //::pointer < ::user::rich_text::format_host >    m_pcontainer;
-         index                                           m_iIndex;
+         ::raw::index                                           m_iIndex;
 
          bool                                            m_bBold;
          bool                                            m_bItalic;

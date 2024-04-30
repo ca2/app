@@ -399,7 +399,7 @@ namespace nanoui
 
       auto iChildrenCount = pwidget->children().size();
 
-      ::count iVisibleChildrenCount = 0;
+      ::raw::count iVisibleChildrenCount = 0;
 
       for (auto pwidgetChild : pwidget->children())
       {
@@ -418,7 +418,7 @@ namespace nanoui
 
       grid[iAxisIndex2].clear(); grid[iAxisIndex2].resize(dim[iAxisIndex2], 0);
 
-      ::index iChildIndex = 0;
+      ::raw::index iChildIndex = 0;
 
       for (int i2 = 0; i2 < dim[iAxisIndex2]; i2++)
       {
@@ -532,7 +532,7 @@ namespace nanoui
 
       auto iChildrenCount = pwidget->children().size();
 
-      ::index iChildIndex = 0;
+      ::raw::index iChildIndex = 0;
 
       sequence2_i32 pos = start;
 
@@ -649,7 +649,7 @@ namespace nanoui
       for (int iAxisIndex = 0; iAxisIndex < 2; ++iAxisIndex)
       {
 
-         for (::index i = 1; i < grid[iAxisIndex].size(); ++i)
+         for (::raw::index i = 1; i < grid[iAxisIndex].size(); ++i)
          {
 
             grid[iAxisIndex][i] += grid[iAxisIndex][i - 1];
@@ -812,7 +812,7 @@ namespace nanoui
 
          float amt = (container_size[iAxisIndex] - current_size) / total_stretch;
 
-         for (::index i = 0; i < grid.size(); ++i)
+         for (::raw::index i = 0; i < grid.size(); ++i)
          {
 
             grid[i] += (int)::round(amt * stretch[i]);

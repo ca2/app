@@ -225,7 +225,7 @@ public:
    {
    }
 
-   template<::count count>
+   template<::raw::count count>
    constexpr range(const ITEM(&array)[count]) : range(array, count)
    {
    }
@@ -383,7 +383,7 @@ public:
       return sizeof(ITEM);
    }
 
-   constexpr ::count size() const
+   constexpr ::raw::count size() const
    {
       return this->m_end - this->m_begin;
    }

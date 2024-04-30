@@ -196,7 +196,7 @@ namespace aura
 
 
 
-      //virtual ::aura::session * query_session(index iEdge) override;
+      //virtual ::aura::session * query_session(::raw::index iEdge) override;
 
 
 
@@ -378,8 +378,8 @@ namespace aura
       //virtual ::u32 os_post_to_all_threads(const ::atom & atom,wparam wparam = 0,lparam lparam = 0) override;
 
 
-      //virtual void session_add(index iEdge, ::apex::session * psession) overr;
-      //virtual void session_erase(index iEdge);
+      //virtual void session_add(::raw::index iEdge, ::apex::session * psession) overr;
+      //virtual void session_erase(::raw::index iEdge);
 
 
 
@@ -460,7 +460,7 @@ namespace aura
 
       //::pointer<application>assert_running(const ::string & pszAppId);
 
-  /*    virtual ::count get_application_count() override;
+  /*    virtual ::raw::count get_application_count() override;
 */
 
       //virtual string crypto_md5_text(const ::string & str);
@@ -487,11 +487,11 @@ namespace aura
 
       //virtual void install_progress_add_up(int iAddUp = 1) override;
 
-      //virtual void create_session(index iEdge = 0) override;
+      //virtual void create_session(::raw::index iEdge = 0) override;
 
-      /*virtual ::pointer<::apex::session>on_create_session(index iEdge) override;
+      /*virtual ::pointer<::apex::session>on_create_session(::raw::index iEdge) override;
 
-      virtual ::apex::session * session(index iEdge = 0) override;*/
+      virtual ::apex::session * session(::raw::index iEdge = 0) override;*/
 
       //virtual void on_request(::request * prequest) override;
 
@@ -530,8 +530,8 @@ namespace aura
       //virtual void defer_check_openweather_city_list();
 
       //virtual openweather_city * openweather_find_city(string strQuery);
-      //virtual index openweather_find_city2(string strQuery, string & strCit, i64 & iId, double & dLat, double & dLon);
-      //virtual index openweather_find_city2(string strQ1, string strQ2, string & strCit, i64 & iId, double & dLat, double & dLon, bool bPrefix);
+      //virtual ::raw::index openweather_find_city2(string strQuery, string & strCit, i64 & iId, double & dLat, double & dLon);
+      //virtual ::raw::index openweather_find_city2(string strQ1, string strQ2, string & strCit, i64 & iId, double & dLat, double & dLon, bool bPrefix);
 
 //#ifdef ANDROID
 ////#pragma message("at macos??")
@@ -620,7 +620,7 @@ namespace aura
       //virtual void initialize_rich_text();
 
 
-      //virtual index get_new_bergedge(application_bias * pbiasCreation = nullptr);
+      //virtual ::raw::index get_new_bergedge(application_bias * pbiasCreation = nullptr);
 
       //pointer_array < ::aura::session > &    planesessionptra();
 
@@ -637,7 +637,7 @@ namespace aura
       //::pointer<::acme::library>on_get_library(const ::string & pszLibrary) override;
 
 
-      //virtual ::aura::session *  get_platform(index iEdge,application_bias * pbiasCreation = nullptr);
+      //virtual ::aura::session *  get_platform(::raw::index iEdge,application_bias * pbiasCreation = nullptr);
 
 
       //virtual void on_request(::create* pcreate) override;
@@ -768,13 +768,13 @@ namespace aura
 
 
 
-      //virtual ::u32 get_monitor_color_temperature(index iMonitor);
-      //virtual bool adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
-      //virtual bool get_monitor_rectangle(index iMonitor, ::rectangle_i32* prectangle) override;
+      //virtual ::u32 get_monitor_color_temperature(::raw::index iMonitor);
+      //virtual bool adjust_monitor(::raw::index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
+      //virtual bool get_monitor_rectangle(::raw::index iMonitor, ::rectangle_i32* prectangle) override;
 
-      //virtual ::count get_monitor_count() override;
+      //virtual ::raw::count get_monitor_count() override;
 
-      //bool get_workspace_rectangle(index iWorkspace, ::rectangle_i32* prectangle) override;
+      //bool get_workspace_rectangle(::raw::index iWorkspace, ::rectangle_i32* prectangle) override;
 
 
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;

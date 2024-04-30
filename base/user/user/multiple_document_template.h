@@ -29,8 +29,8 @@ namespace user
       void load_impact_system() override;
       void add_document(::user::document * pDoc) override;
       void erase_document(::user::document * pDoc) override;
-      ::count get_document_count() const override;
-      ::user::document * get_document(index index) const override;
+      ::raw::count get_document_count() const override;
+      ::user::document * get_document(::raw::index index) const override;
       void on_request(::request * prequest) override;
       void set_default_title(::user::document * pdocument) override;
 

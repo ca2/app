@@ -186,7 +186,7 @@ namespace helloaxis
 //
 //            iFrameId = (index)(dNow / dPeriod);
 //
-//            ::count cLost = iFrameId - iLastFrameId - 1;
+//            ::raw::count cLost = iFrameId - iLastFrameId - 1;
 //
 //            if (cLost < 0)
 //            {
@@ -202,7 +202,7 @@ namespace helloaxis
 //            if (m_bHelloRender)
 //            {
 //
-//               for (index i = 0; i < daFrame.get_size(); i++)
+//               for (::raw::index i = 0; i < daFrame.get_size(); i++)
 //               {
 //
 //                  if (dNow - daFrame[i] >= 1000.0)

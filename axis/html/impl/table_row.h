@@ -17,7 +17,7 @@ namespace html
       public:
 
 
-         index                               m_iRow;
+         ::raw::index                               m_iRow;
          i32                             m_cyMin;
          i32                             m_cyMax;
          array < cell::holder >        m_cellholdera;
@@ -31,7 +31,7 @@ namespace html
 
          table * get_table();
 
-         void set_cell(index iCol, index iRow, cell * pcell);
+         void set_cell(::raw::index iCol, ::raw::index iRow, cell * pcell);
 
 
          virtual void implement_phase1(html_data * pdocument, ::html::element* pelemental);

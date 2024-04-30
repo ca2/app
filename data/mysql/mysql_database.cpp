@@ -485,7 +485,7 @@ namespace mysql
    }
 
 
-   ::pointer<::database::result_set>database::query_result(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
+   ::pointer<::database::result_set>database::query_result(const ::string & pszQuery, ::raw::count iRowCount, ::raw::count iColumnCount)
    {
 
       MYSQL_RES* pres = _mysql_query_result(pszQuery);
@@ -837,7 +837,7 @@ namespace mysql
    }
 
 
-   ::count database::get_affected_rows_count()
+   ::raw::count database::get_affected_rows_count()
    {
 
       return m_cAffectedRows;

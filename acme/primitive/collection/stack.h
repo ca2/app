@@ -36,7 +36,7 @@ public:
    inline TYPE pop(index n = -1)
    {
 
-      index i = this->get_upper_bound(n);
+      ::raw::index i = this->get_upper_bound(n);
 
       TYPE t = this->element_at(i);
 

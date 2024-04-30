@@ -317,7 +317,7 @@ void memory_base::erase_offset()
 
 }
 
-//void memory_base::random_bytes(::count c)
+//void memory_base::random_bytes(::raw::count c)
 //{
 //
 //   if (c >= 0)
@@ -744,7 +744,7 @@ string memory_base::as_utf8() const
    {
 
 #ifdef ANDROID
-      //for (index i = 2; i < storage.size(); i += 2)
+      //for (::raw::index i = 2; i < storage.size(); i += 2)
       //{
       //   ::u8 b = storage.data()[i];
       //   storage.data()[i] = storage.data()[i + 1];
@@ -1959,7 +1959,7 @@ memsize memory_base::length() const
 }
 
 
-::u8* memory_base::find_line_prefix(const ::block& blockPrefix, ::index iStart)
+::u8* memory_base::find_line_prefix(const ::block& blockPrefix, ::raw::index iStart)
 {
 
    auto iFind = find_line_prefix_index(blockPrefix, iStart);
@@ -1976,7 +1976,7 @@ memsize memory_base::length() const
 }
 
 
-::index memory_base::find_line_prefix_index(const ::block& blockPrefix, ::index iStart)
+::raw::index memory_base::find_line_prefix_index(const ::block& blockPrefix, ::raw::index iStart)
 {
 
    if (is_empty())
@@ -1986,9 +1986,9 @@ memsize memory_base::length() const
 
    }
 
-   ::index iFind;
+   ::raw::index iFind;
 
-   ::count cFindLength;
+   ::raw::count cFindLength;
 
    if (memory_order(data() + iStart, blockPrefix.data(), blockPrefix.size()) == 0)
    {
@@ -2027,7 +2027,7 @@ memsize memory_base::length() const
 }
 
 
-void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& blockSuffix, ::index iStart )
+void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& blockSuffix, ::raw::index iStart )
 {
 
    iStart = find_line_prefix_index(blockPrefix, iStart);
@@ -2128,7 +2128,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 
 
 
-::u8 * memory_base::find(const ::block & block, ::index iStart) const
+::u8 * memory_base::find(const ::block & block, ::raw::index iStart) const
 {
 
    return (::u8 *)memory_find(data() + iStart, size() - iStart, (::u8 *)block.data(), block.size());
@@ -2136,7 +2136,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 }
 
 
-::index memory_base::find_index(char ch, ::index iStart) const
+::raw::index memory_base::find_index(char ch, ::raw::index iStart) const
 {
 
    auto p = memory_find(data() + iStart, size() - iStart, (::u8 *)&ch, 1);
@@ -2153,7 +2153,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 }
 
 
-::index memory_base::find_index(const ::block & block, ::index iStart) const
+::raw::index memory_base::find_index(const ::block & block, ::raw::index iStart) const
 {
 
    auto p = find(block, iStart);
@@ -2170,7 +2170,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 }
 
 
-::u8 * memory_base::rear_find(const ::block & block, ::index iStart) const
+::u8 * memory_base::rear_find(const ::block & block, ::raw::index iStart) const
 {
 
    return (::u8 *)reverse_memmem(data() + iStart, size() - iStart, (::u8 *)block.data(), block.size());
@@ -2178,7 +2178,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 }
 
 
-::index memory_base::reverse_find_index(const ::block & block, ::index iStart) const
+::raw::index memory_base::reverse_find_index(const ::block & block, ::raw::index iStart) const
 {
 
    auto p = rear_find(block, iStart);
@@ -2195,7 +2195,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 }
 
 
-::u8 * memory_base::reverse_find_byte_not_in_block(const ::block & block, ::index iStart) const
+::u8 * memory_base::reverse_find_byte_not_in_block(const ::block & block, ::raw::index iStart) const
 {
 
    return (::u8 *)reverse_byte_not_in_block(data() + iStart, size() - iStart, (::u8 *)block.data(), block.size());
@@ -2203,7 +2203,7 @@ void memory_base::patch_line_suffix(const ::block& blockPrefix, const ::block& b
 }
 
 
-::index memory_base::reverse_find_index_of_byte_not_in_block(const ::block & block, ::index iStart) const
+::raw::index memory_base::reverse_find_index_of_byte_not_in_block(const ::block & block, ::raw::index iStart) const
 {
 
    auto p = reverse_find_byte_not_in_block(block, iStart);

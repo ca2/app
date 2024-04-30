@@ -33,7 +33,7 @@ namespace regular_expression_pcre2
    }
 
 
-   ::count result::get_count() const
+   ::raw::count result::get_count() const
    {
 
       return m_cMatchCount;
@@ -41,7 +41,7 @@ namespace regular_expression_pcre2
    }
 
 
-   string result::get_match(::index i) const
+   string result::get_match(::raw::index i) const
    {
 
       PCRE2_SIZE* ovector = pcre2_get_ovector_pointer(m_pmatchdata);
@@ -105,7 +105,7 @@ namespace regular_expression_pcre2
 //   }
 
 
-//   ::count result::match_count(const string& str)
+//   ::raw::count result::match_count(const string& str)
 //   {
 //
 //      return match_count(str.c_str(), str.length());
@@ -113,7 +113,7 @@ namespace regular_expression_pcre2
 //   }
 //
 //
-//   ::count result::match_count(const ::string & psz, strsize len)
+//   ::raw::count result::match_count(const ::string & psz, strsize len)
 //   {
 //
 //      int c = pcre2_match(m_pc, (PCRE2_SPTR)psz, len, 0, 0, m_pcreContext->m_pimpl->m_pmd, nullptr);

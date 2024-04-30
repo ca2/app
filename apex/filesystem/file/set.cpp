@@ -63,7 +63,7 @@ namespace file
 
       // derived classes may perform specific actions this add_search...
 
-      for (index i = 0; i < pathaSearchFolder.get_count(); i++)
+      for (::raw::index i = 0; i < pathaSearchFolder.get_count(); i++)
       {
 
          // ... or at the add_search overload below.
@@ -83,7 +83,7 @@ namespace file
    }
 
 
-   ::count set::get_file_count()
+   ::raw::count set::get_file_count()
    {
 
       return m_listing.get_size();
@@ -91,7 +91,7 @@ namespace file
    }
 
 
-   void set::file_at(::index i, string & str)
+   void set::file_at(::raw::index i, string & str)
    {
 
       str = m_listing[i];
@@ -99,7 +99,7 @@ namespace file
    }
 
 
-   ::index set::find_first_file(const ::scoped_string & scopedstr, ::index iStart)
+   ::raw::index set::find_first_file(const ::scoped_string & scopedstr, ::raw::index iStart)
 
    {
 
@@ -201,7 +201,7 @@ namespace file
 
       }
 
-      index iNext = iFind + 1;
+      ::raw::index iNext = iFind + 1;
 
       if(iNext >= m_listing.get_count())
       {

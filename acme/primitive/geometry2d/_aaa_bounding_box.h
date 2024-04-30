@@ -14,10 +14,10 @@
 //}
 
 template < primitive_rectangle RECTANGLE >
-inline void expand_bounding_box(RECTANGLE & rectangle, ::point_f64 * p, ::count c)
+inline void expand_bounding_box(RECTANGLE & rectangle, ::point_f64 * p, ::raw::count c)
 {
 
-   for (::index i = 0; i < c; i++)
+   for (::raw::index i = 0; i < c; i++)
    {
 
       expand_bounding_box(rectangle, *p);

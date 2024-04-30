@@ -129,7 +129,7 @@ namespace html
    style * style_sheet::rear_find(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstrName)
    {
 
-      for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
+      for(::raw::index i = m_stylea.get_upper_bound(); i >= 0; i--)
       {
 
          class style & style = *m_stylea.element_at(i);
@@ -159,7 +159,7 @@ namespace html
    style * style_sheet::rfind_border_width(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstrName, float & f)
    {
 
-      for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
+      for(::raw::index i = m_stylea.get_upper_bound(); i >= 0; i--)
       {
 
          class style & style = *m_stylea.element_at(i);
@@ -188,7 +188,7 @@ namespace html
    style * style_sheet::rfind_border_color(e_tag etag, const ::string & strClass, const ::string & strSubClass, const ::scoped_string & scopedstrName, ::color::color & color32)
    {
 
-      for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
+      for(::raw::index i = m_stylea.get_upper_bound(); i >= 0; i--)
       {
 
          class style & style = *m_stylea.element_at(i);
@@ -241,7 +241,7 @@ namespace html
 
       }
 
-      for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
+      for(::raw::index i = m_stylea.get_upper_bound(); i >= 0; i--)
       {
 
          const class style & style = *m_stylea.element_at(i);
@@ -266,7 +266,7 @@ namespace html
    }
 
 
-   bool style_sheet::greater(style * & pstyleRet, index & iRet, ::payload & varRet, style * pstyle1, index i1, const ::payload & var1, style * pstyle2, index i2, const ::payload & var2) const
+   bool style_sheet::greater(style * & pstyleRet, ::raw::index & iRet, ::payload & varRet, style * pstyle1, ::raw::index i1, const ::payload & var1, style * pstyle2, ::raw::index i2, const ::payload & var2) const
    {
 
       if(pstyle1 == nullptr)
@@ -324,7 +324,7 @@ namespace html
 
       }
 
-      for(index i = m_stylea.get_upper_bound(); i >= 0; i--)
+      for(::raw::index i = m_stylea.get_upper_bound(); i >= 0; i--)
       {
 
          const class style & style = *m_stylea.element_at(i);
@@ -353,7 +353,7 @@ namespace html
    }
 
 
-   bool style_sheet::greater(const style * & pstyleRet, index & iRet, ::payload & varRet, const style * pstyle1, index i1, const ::payload & var1, const style * pstyle2, index i2, const ::payload & var2) const
+   bool style_sheet::greater(const style * & pstyleRet, ::raw::index & iRet, ::payload & varRet, const style * pstyle1, ::raw::index i1, const ::payload & var1, const style * pstyle2, ::raw::index i2, const ::payload & var2) const
    {
 
       return greater((style * &) pstyleRet, iRet, varRet, (style *) pstyle1, i1, var1, (style *) pstyle2, i2, var2);

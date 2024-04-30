@@ -173,7 +173,7 @@ namespace experience
       bool window_is_notify_icon_enabled() override;
 
 
-      virtual index get_best_zoneing(::e_display & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest = ::rectangle_i32(), bool bPreserveSize = false) override;
+      virtual ::raw::index get_best_zoneing(::e_display & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest = ::rectangle_i32(), bool bPreserveSize = false) override;
 
       
       ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;

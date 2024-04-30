@@ -23,7 +23,7 @@ namespace user
       }
 
       
-      double box::get_dev_pos_left(index iPos) const 
+      double box::get_dev_pos_left(::raw::index iPos) const 
       { 
          
          if (m_iPosBeg > m_pspan->m_iPosBeg)
@@ -56,7 +56,7 @@ namespace user
       }
 
 
-      double box::get_dev_pos_right(index iPos) const
+      double box::get_dev_pos_right(::raw::index iPos) const
       {
          
          if (m_iPosBeg > m_pspan->m_iPosBeg)
@@ -89,7 +89,7 @@ namespace user
       }
 
 
-      double box::get_dev_pos(index iPos) const
+      double box::get_dev_pos(::raw::index iPos) const
       {
 
          if (iPos <= m_iPosBeg)
@@ -122,7 +122,7 @@ namespace user
       }
 
 
-      double box::get_pos_left(index iPos) const
+      double box::get_pos_left(::raw::index iPos) const
       {
 
          if (m_iPosBeg > m_pspan->m_iPosBeg)
@@ -141,7 +141,7 @@ namespace user
       }
 
 
-      double box::get_pos_right(index iPos) const
+      double box::get_pos_right(::raw::index iPos) const
       {
 
          if (m_iPosBeg > m_pspan->m_iPosBeg)
@@ -160,7 +160,7 @@ namespace user
       }
 
 
-      double box::get_pos(index iPos) const
+      double box::get_pos(::raw::index iPos) const
       {
 
          if (iPos <= m_iPosBeg)

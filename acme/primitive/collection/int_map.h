@@ -14,7 +14,7 @@ template < class PAYLOAD >
 using iptr_map = map < iptr, PAYLOAD >;
 
 template < class PAYLOAD >
-using index_map = map < index, PAYLOAD >;
+using index_map = map < ::raw::index, PAYLOAD >;
 
 using int_to_int = i32_map < int >;
 
@@ -28,7 +28,7 @@ using iptr_to_iptr = iptr_map < iptr >;
 
 using iptr_to_string =  iptr_map < string > ;
 
-using index_to_index = index_map < index >;
+using index_to_index = index_map < ::raw::index >;
 
 using index_to_string = index_map < string >;
 

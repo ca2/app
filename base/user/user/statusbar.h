@@ -108,7 +108,7 @@ namespace user
       void on_command_probe(::user::interaction * puserinteraction, bool bDisableIfNoHndler) override;
 
 
-      __STATUSPANE * _GetPanePtr(index nIndex);
+      __STATUSPANE * _GetPanePtr(::raw::index nIndex);
       void UpdateAllPanes(bool bUpdateRects, bool bUpdateText);
       virtual bool OnChildNotify(::message::message * pmessage) override;
 

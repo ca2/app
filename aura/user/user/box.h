@@ -90,7 +90,7 @@ namespace user
 
 
       void display_normal(::e_display edisplay, ::e_activation eactivation) override;
-      void display_full_screen(::index iMonitor, ::e_activation eactivation) override;
+      void display_full_screen(::raw::index iMonitor, ::e_activation eactivation) override;
 
       void on_simple_command(::message::simple_command * psimplecommand) override;
       void on_command(::message::command * pcommand) override;

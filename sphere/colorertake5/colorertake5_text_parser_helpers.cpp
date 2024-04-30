@@ -137,7 +137,7 @@ namespace colorertake5
 
       for(VTList *vl = last; vl && vl->prev; vl = vl->prev)
       {
-         for(index idx = 0; idx < vl->vlist->get_size(); idx++)
+         for(::raw::index idx = 0; idx < vl->vlist->get_size(); idx++)
          {
             VirtualEntry *ve = vl->vlist->element_at(idx);
             if (ret == ve->virtScheme && ve->substScheme)
@@ -187,7 +187,7 @@ namespace colorertake5
 
       VirtualEntryVector **store;
 
-      index i = 0;
+      ::raw::index i = 0;
 
       if (!nodesnum || last == this)
          return 0;
@@ -219,7 +219,7 @@ namespace colorertake5
       //  nodesnum = store[0].shadowlast;
       prevpos = last = 0;
 
-      for(index i = 0; store[i] != nullptr; i++)
+      for(::raw::index i = 0; store[i] != nullptr; i++)
       {
 
          pos->next = __new< VTList >();

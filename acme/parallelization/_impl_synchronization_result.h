@@ -19,7 +19,7 @@
 //}
 
 
-//inline ::index synchronization_result::abandoned_index() const
+//inline ::raw::index synchronization_result::abandoned_index() const
 //{
 //   
 //   if (!abandoned())
@@ -76,7 +76,7 @@
 //}
 
 
-//inline ::index synchronization_result::signaled_index() const
+//inline ::raw::index synchronization_result::signaled_index() const
 //{
 //
 //   if (!signaled())

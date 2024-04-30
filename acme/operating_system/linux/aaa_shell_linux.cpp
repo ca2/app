@@ -50,7 +50,7 @@ namespace linux
          //SHGetImageList(SHIL_JUMBO, IID_IImageList, m_pimagelistJumbo);
          /// SHGetMalloc(&m_pmalloc);
 
-//         for (index i = 0; i < get_processor_count() * 2; i++)
+//         for (::raw::index i = 0; i < get_processor_count() * 2; i++)
 //         {
 //
 //            m_threadaGetImage.add(fork([&]()

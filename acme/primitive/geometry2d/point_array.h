@@ -57,11 +57,11 @@ public:
    bool polygon_contains_winding(const ::point_type < UNIT_TYPE > & point) const;
    bool polygon_contains_alternate(const ::point_type < UNIT_TYPE > & point) const;
 
-   inline index add(UNIT_TYPE x, UNIT_TYPE y) { return ::array < ::point_type < NUMBER > >::add({x, y}); }
-   inline index add(const ::point_type < NUMBER > & point) { return ::array < ::point_type < NUMBER > >::add(point); }
+   inline ::raw::index add(UNIT_TYPE x, UNIT_TYPE y) { return ::array < ::point_type < NUMBER > >::add({x, y}); }
+   inline ::raw::index add(const ::point_type < NUMBER > & point) { return ::array < ::point_type < NUMBER > >::add(point); }
    inline point_array_base & operator =(const point_array_base & pointset) { this->copy(pointset); return *this; }
 
-   inline index tolerance_add_unique(UNIT_TYPE tolerance, const ::point_type < NUMBER > & pointAdd)
+   inline ::raw::index tolerance_add_unique(UNIT_TYPE tolerance, const ::point_type < NUMBER > & pointAdd)
    {
 
       for (auto & point : *this)
@@ -87,7 +87,7 @@ public:
    //virtual void xml_export(::xml::output_tree & xmlof);
 
 
-   ::count add_unique_range(const ::point_type < NUMBER > & pBeg, const ::point_type < NUMBER > & pointEnd, const ::size_type < NUMBER > & s = e_unit_size);
+   ::raw::count add_unique_range(const ::point_type < NUMBER > & pBeg, const ::point_type < NUMBER > & pointEnd, const ::size_type < NUMBER > & s = e_unit_size);
    //https://www.geeksforgeeks.org/area-of-a-polygon_i32-with-given-n-ordered-vertices/
       // (X[i], Y[i]) are coordinates of i'th point.
 
@@ -205,7 +205,7 @@ int pnpoly(int nvert, float * vertx, float * verty, float testx, float testy)
 }
 */
 //template < typename POINT_TYPE >
-//bool polygon_contains_point(const POINT_TYPE * ppointa, ::count c, const POINT_TYPE & point)
+//bool polygon_contains_point(const POINT_TYPE * ppointa, ::raw::count c, const POINT_TYPE & point)
 //{
 //   int i, j, c = 0;
 //   for (i = 0, j = nvert - 1; i < nvert; j = i++)
@@ -236,7 +236,7 @@ bool point_array_base < NUMBER >::polygon_contains_alternate(const ::point_type 
 
 
 template < primitive_number NUMBER >
-::count point_array_base < NUMBER >::add_unique_range(const ::point_type < NUMBER > & pointBeg, const ::point_type < NUMBER > & pointEnd, const ::size_type < NUMBER > & size)
+::raw::count point_array_base < NUMBER >::add_unique_range(const ::point_type < NUMBER > & pointBeg, const ::point_type < NUMBER > & pointEnd, const ::size_type < NUMBER > & size)
 {
 
    auto x1 = pointBeg.x();
@@ -251,7 +251,7 @@ template < primitive_number NUMBER >
 
    __sort(y1, y2);
 
-   ::count c = 0;
+   ::raw::count c = 0;
 
    for (auto x = x1; x <= x2; x += size.cx())
    {

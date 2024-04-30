@@ -139,7 +139,7 @@ namespace user
    }
 
 
-   ::user::interaction* document::impact_at(::index iImpact)
+   ::user::interaction* document::impact_at(::raw::index iImpact)
    {
 
       return m_impacta[iImpact];
@@ -147,7 +147,7 @@ namespace user
    }
 
 
-   ::count document::impact_count()
+   ::raw::count document::impact_count()
    {
 
       return m_impacta.get_count();
@@ -260,8 +260,8 @@ namespace user
 //
 //      //if (dumpcontext.GetDepth() > 0)
 //      //{
-//      //   ::count count = get_impact_count();
-//      //   for (index index = 0; index < count; index++)
+//      //   ::raw::count count = get_impact_count();
+//      //   for (::raw::index index = 0; index < count; index++)
 //      //   {
 //      //      ::pointer<::user::impact>pimpact = get_impact(index);
 //      //      dumpcontext << "\nwith ::user::impact " << (void *)pimpact;
@@ -528,7 +528,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      for (index index = 0; index < m_impacta.get_count(); index++)
+      for (::raw::index index = 0; index < m_impacta.get_count(); index++)
       {
 
          ::pointer<::user::impact>pimpact = m_impacta[index];
@@ -571,7 +571,7 @@ namespace user
    }
 
 
-   ::pointer<::user::impact>document::get_impact(index index) const
+   ::pointer<::user::impact>document::get_impact(::raw::index index) const
    {
 
       _synchronous_lock synchronouslock(((document *) this)->synchronization());
@@ -600,8 +600,8 @@ namespace user
    //   // must have views if sent by one of them
 
    //   update * ptask;
-   //   ::count count = get_impact_count();
-   //   for (index index = 0; index < count; index++)
+   //   ::raw::count count = get_impact_count();
+   //   for (::raw::index index = 0; index < count; index++)
    //   {
    //      ::pointer<::user::impact>pimpact = get_impact(index);
 
@@ -623,18 +623,18 @@ namespace user
    }
 
 
-   ::pointer<::user::impact>document::get_typed_impact(const ::type_atom & typeatom, index indexFind)
+   ::pointer<::user::impact>document::get_typed_impact(const ::type_atom & typeatom, ::raw::index indexFind)
    {
 
       single_lock synchronouslock(synchronization(), true);
 
-      ::count countImpact = get_impact_count();
+      ::raw::count countImpact = get_impact_count();
 
-      ::count countFind = 0;
+      ::raw::count countFind = 0;
 
       ::pointer<::user::impact>pimpact;
 
-      for (index index = 0; index < countImpact; index++)
+      for (::raw::index index = 0; index < countImpact; index++)
       {
 
          pimpact = get_impact(index);
@@ -669,13 +669,13 @@ namespace user
 
       single_lock synchronouslock(synchronization(), true);
 
-      ::count countImpact = get_impact_count();
+      ::raw::count countImpact = get_impact_count();
       
-      ::count countFind = 0;
+      ::raw::count countFind = 0;
 
       ::pointer<::user::impact>pimpact;
 
-      for (index index = 0; index < countImpact; index++)
+      for (::raw::index index = 0; index < countImpact; index++)
       {
 
          pimpact = get_impact(index);
@@ -708,9 +708,9 @@ namespace user
    void document::show_all_frames(const ::e_display & edisplay)
    {
 
-      ::count count = get_impact_count();
+      ::raw::count count = get_impact_count();
 
-      for (index index = 0; index < count; index++)
+      for (::raw::index index = 0; index < count; index++)
       {
 
          ::pointer<::user::impact>pimpact = get_impact(index);
@@ -876,7 +876,7 @@ namespace user
       m_bNew = false;*/
    }
 
-   ::count document::get_impact_count() const
+   ::raw::count document::get_impact_count() const
    {
       return m_impacta.get_count();
    }
@@ -1619,9 +1619,9 @@ namespace user
 
       //UNUSED(pframeParam);   // unused in release builds
 
-      ::count count = get_impact_count();
+      ::raw::count count = get_impact_count();
 
-      for (index index = 0; index < count; index++)
+      for (::raw::index index = 0; index < count; index++)
       {
 
          ::pointer<::user::impact>pimpact = get_impact(index);
@@ -1919,9 +1919,9 @@ namespace user
    {
 
       // walk all frames of views (mark and sweep approach)
-      ::count count = get_impact_count();
+      ::raw::count count = get_impact_count();
 
-      index index;
+      ::raw::index index;
 
       for (index = 0; index < count; index++)
       {
@@ -1990,7 +1990,7 @@ namespace user
 
          ASSERT_VALID(pimpact);
 
-         if (pimpact->is_window_visible())   // Do not ::count invisible windows.
+         if (pimpact->is_window_visible())   // Do not ::raw::count invisible windows.
          {
 
             auto pframe = pimpact->parent_frame();

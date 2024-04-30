@@ -30,7 +30,7 @@ string & get_network_payload(::string & str, const ARRAY & a, bool bNewLine = tr
 
    }
 
-   for (::index i = 1; i < a.get_count(); i++)
+   for (::raw::index i = 1; i < a.get_count(); i++)
    {
 
       if (bNewLine)

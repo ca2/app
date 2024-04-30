@@ -209,7 +209,7 @@ namespace user
    //}
 
 
-   //bool notify_icon_listener::notify_icon_insert_item(bool bStockItem, index & iIndex, string strName, string strId, string strLabel, string strAccelerator, string strDescription)
+   //bool notify_icon_listener::notify_icon_insert_item(bool bStockItem, ::raw::index & iIndex, string strName, string strId, string strLabel, string strAccelerator, string strDescription)
    //{
 
    //   if (iIndex < 0 || iIndex > m_notifyiconitema.get_count())

@@ -77,7 +77,7 @@ namespace database
    }
 
 
-   //::payload database_impl::query(const ::string & pszQuery, ::count iMaxRowCount, ::count iMaxColumnCount)
+   //::payload database_impl::query(const ::string & pszQuery, ::raw::count iMaxRowCount, ::raw::count iMaxColumnCount)
    //{
 
    //   return query_rows(pszQuery);
@@ -93,7 +93,7 @@ namespace database
    }
 
 
-   ::count database_impl::get_affected_rows_count()
+   ::raw::count database_impl::get_affected_rows_count()
    {
 
       return -1;
@@ -199,7 +199,7 @@ namespace database
 
       auto pvara = __allocate< payload_array >();
 
-      for (index i = 0; i < pset->m_prowa->get_count(); i++)
+      for (::raw::index i = 0; i < pset->m_prowa->get_count(); i++)
       {
 
          pvara->add((const ::payload&)pset->m_prowa->element_at(i)->element_at(0));
@@ -285,7 +285,7 @@ namespace database
    }
 
 
-   ::pointer<::database::result_set>database_impl::query_result(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
+   ::pointer<::database::result_set>database_impl::query_result(const ::string & pszQuery, ::raw::count iRowCount, ::raw::count iColumnCount)
    {
 
       return nullptr;
@@ -309,7 +309,7 @@ namespace database
 
    //   pitems->set_size(pset->m_prowa->get_size());
 
-   //   for (index iRow = 0; iRow < pitems->get_size(); iRow++)
+   //   for (::raw::index iRow = 0; iRow < pitems->get_size(); iRow++)
    //   {
 
    //      pitems->element_at(iRow) = pset->m_prowa->element_at(iRow)->element_at(0);

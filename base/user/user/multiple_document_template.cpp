@@ -80,7 +80,7 @@ namespace user
 
    
 
-   ::count multiple_document_template::get_document_count() const
+   ::raw::count multiple_document_template::get_document_count() const
    {
 
       return m_docptra.get_count();
@@ -88,7 +88,7 @@ namespace user
    }
 
 
-   ::user::document * multiple_document_template::get_document(index index) const
+   ::user::document * multiple_document_template::get_document(::raw::index index) const
    {
       if(index < 0 || index >= m_docptra.get_count())
          return nullptr;
@@ -349,8 +349,8 @@ namespace user
 //
 //      //dumpcontext << "\nm_nUntitledCount = " << m_nUntitledCount;
 //      //dumpcontext << "\nwith " << m_docptra.get_count() << " open documents";
-//      //::count count = get_document_count();
-//      //for(index index = 0; index < count; index++)
+//      //::raw::count count = get_document_count();
+//      //for(::raw::index index = 0; index < count; index++)
 //      //{
 //      //   ::pointer<::user::document>pdocument = get_document(index);
 //      //   dumpcontext << "\nwith ::user::document " << (void *)pdocument;
@@ -363,8 +363,8 @@ namespace user
 //   {
 //      impact_system::assert_ok();
 //
-//      ::count count = get_document_count();
-//      for(index index = 0; index < count; index++)
+//      ::raw::count count = get_document_count();
+//      for(::raw::index index = 0; index < count; index++)
 //      {
 //         ::pointer<::user::document>pdocument = get_document(index);
 //         pdocument->assert_ok();

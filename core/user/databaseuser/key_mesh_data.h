@@ -27,7 +27,7 @@ namespace databaseuser
       void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
 
 
-      count _001GetItemCount() override;
+      ::raw::count _001GetItemCount() override;
 
       bool add_unique(const string_array & stra);
       bool erase(const string_array & stra);

@@ -9,8 +9,8 @@ public:
 
    ::pointer<xfplayer_impact_line_selection>   m_pselection;
    ::user::interaction *                        m_puserinteraction;
-   index                                        m_iFirstVisible;
-   index                                        m_iLastVisible;
+   ::raw::index                                        m_iFirstVisible;
+   ::raw::index                                        m_iLastVisible;
 
 
    HAVE_ARRAY_OF(line, m_linea, xfplayer_impact_line);
@@ -20,7 +20,7 @@ public:
 
 
    void set_blend(double dBlend);
-   index FindLine(xfplayer_impact_line * pline);
+   ::raw::index FindLine(xfplayer_impact_line * pline);
    //void SetRenderWindow(::user::interaction_impl * pwindow);
    void SetEffect(i32 iEffect);
    //void set_user_interaction(::pointer<::user::interaction>pinteraction);
@@ -28,8 +28,8 @@ public:
 
    void Prepare();
 
-   index GetFirstVisibleLineIndex();
-   index GetLastVisibleLineIndex();
+   ::raw::index GetFirstVisibleLineIndex();
+   ::raw::index GetLastVisibleLineIndex();
    void OnChildSetVisible(xfplayer_impact_line * pImpactLine, bool bVisible);
 
 

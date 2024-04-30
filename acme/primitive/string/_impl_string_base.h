@@ -1277,7 +1277,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(CHA
 
          auto pSource = sz;
 
-         for (index j = 0; j < lenUnit; j++)
+         for (::raw::index j = 0; j < lenUnit; j++)
          {
 
             *pTarget++ = *pSource;
@@ -1320,7 +1320,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(CHA
 //
 //      utf_to_utf(sz, &wd16ch, 1);
 //
-//      for (index i = 0; i < len; i += lenUnit)
+//      for (::raw::index i = 0; i < len; i += lenUnit)
 //      {
 //
 //         ::memory_copy(psz, sz, lenUnit * sizeof(CHARACTER));
@@ -1361,7 +1361,7 @@ inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::assign(CHA
 //
 //      utf_to_utf(sz, &wd32ch, 1);
 //
-//      for (index i = 0; i < len; i += lenUnit)
+//      for (::raw::index i = 0; i < len; i += lenUnit)
 //      {
 //
 //         ::memory_copy(psz, sz, lenUnit * sizeof(CHARACTER));
@@ -3624,7 +3624,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::erase(strsize iIn
 
 
 template < typename ITERATOR_TYPE >
-inline ::count string_base < ITERATOR_TYPE >::insert(strsize i, CHARACTER ch)
+inline ::raw::count string_base < ITERATOR_TYPE >::insert(strsize i, CHARACTER ch)
 {
 
    if (i < 0)
@@ -3657,7 +3657,7 @@ inline ::count string_base < ITERATOR_TYPE >::insert(strsize i, CHARACTER ch)
 
 
 template < typename ITERATOR_TYPE >
-inline ::count string_base < ITERATOR_TYPE >::insert(strsize i, const string_base & str)
+inline ::raw::count string_base < ITERATOR_TYPE >::insert(strsize i, const string_base & str)
 {
 
    if (i < 0)
@@ -3699,7 +3699,7 @@ inline ::count string_base < ITERATOR_TYPE >::insert(strsize i, const string_bas
 
 
 template < typename ITERATOR_TYPE >
-inline ::count string_base < ITERATOR_TYPE >::replace_with(CHARACTER charNew, CHARACTER charOld, strsize start)
+inline ::raw::count string_base < ITERATOR_TYPE >::replace_with(CHARACTER charNew, CHARACTER charOld, strsize start)
 {
 
    strsize count = 0;
@@ -3835,12 +3835,12 @@ inline ::count string_base < ITERATOR_TYPE >::replace_with(CHARACTER charNew, CH
 
 template < typename ITERATOR_TYPE >
 //template < raw_pointer_castable < CHARACTER > PCHARNEW, raw_pointer_castable < CHARACTER > PCHAROLD >
-::count string_base < ITERATOR_TYPE >::replace_with_count(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start)
+::raw::count string_base < ITERATOR_TYPE >::replace_with_count(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start)
 {
    // can't have is_empty or nullptr pszOld
 
 
-   ::count c = 0;
+   ::raw::count c = 0;
 
    // nSourceLen is in XCHARs
    strsize nSourceLen = scopedstrOld.size();
@@ -3924,12 +3924,12 @@ template < typename ITERATOR_TYPE >
 
 template < typename ITERATOR_TYPE >
 //template < raw_pointer_castable < CHARACTER > PCHARNEW, raw_pointer_castable < CHARACTER > PCHAROLD >
-::count string_base < ITERATOR_TYPE >::replace_with_ci_count(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start)
+::raw::count string_base < ITERATOR_TYPE >::replace_with_ci_count(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start)
 {
    // can't have is_empty or nullptr pszOld
 
 
-   ::count c = 0;
+   ::raw::count c = 0;
 
    // nSourceLen is in XCHARs
    strsize nSourceLen = scopedstrOld.size();
@@ -4073,7 +4073,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::replace(const_ite
 
 
 template < typename ITERATOR_TYPE >
-inline ::count string_base < ITERATOR_TYPE >::erase_character(CHARACTER chRemove)
+inline ::raw::count string_base < ITERATOR_TYPE >::erase_character(CHARACTER chRemove)
 {
 
    strsize nLength = size();
@@ -5981,7 +5981,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::unichar_substr(strs
    if (pchStart == nullptr)
       return "";
 
-   ::count iUtf8Len = this->unichar_count();
+   ::raw::count iUtf8Len = this->unichar_count();
 
    if (iFirst < 0)
       iFirst = iUtf8Len + iFirst;
@@ -5995,7 +5995,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::unichar_substr(strs
    if (count <= 0)
       return "";
 
-   ::count ca = 0;
+   ::raw::count ca = 0;
 
    while (ca < iFirst && *pchStart != '\0')
    {
@@ -6028,7 +6028,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::unichar_substr(strs
 }
 
 //template < typename ITERATOR_TYPE >
-//::count string_base < ITERATOR_TYPE >::unichar_count() const
+//::raw::count string_base < ITERATOR_TYPE >::unichar_count() const
 //{
 //
 //   const CHARACTER* pch = *this;
@@ -6036,7 +6036,7 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::unichar_substr(strs
 //   if (pch == nullptr)
 //      return 0;
 //
-//   ::count cCharCount = 0;
+//   ::raw::count cCharCount = 0;
 //
 //   while (pch != nullptr && *pch != '\0')
 //   {
@@ -6878,7 +6878,7 @@ inline string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE > ::case_insens
 template < typename ITERATOR_TYPE >
 // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
 template < typename EQUALITY >
-inline ::count string_base < ITERATOR_TYPE > ::_replace_with(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start, EQUALITY equality)
+inline ::raw::count string_base < ITERATOR_TYPE > ::_replace_with(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start, EQUALITY equality)
 {
 
    // nSourceLen is in XCHARs
@@ -7215,7 +7215,7 @@ inline string_base < ITERATOR_TYPE > operator +(const scoped_string_base < ITERA
 //}
 //
 //
-//template < ::count c >
+//template < ::raw::count c >
 //inline ::string operator +(const ::string & str, const char(&sz)[c])
 //{
 //
@@ -7235,7 +7235,7 @@ inline ::string operator +(char ch, const ::string & str)
 }
 
 
-//template < ::count c, strsize m_sizeMaximumLength >
+//template < ::raw::count c, strsize m_sizeMaximumLength >
 //inline ::string operator +(const char(&sz)[c], const ::inline_string < char, m_sizeMaximumLength > & inlinestring)
 //{
 //
@@ -7245,7 +7245,7 @@ inline ::string operator +(char ch, const ::string & str)
 //
 //
 //
-//template < ::count c, strsize m_sizeMaximumLength >
+//template < ::raw::count c, strsize m_sizeMaximumLength >
 //inline ::string operator +(const ::inline_string < char, m_sizeMaximumLength > & inlinestring, const char(&sz)[c])
 //{
 //

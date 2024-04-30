@@ -5,10 +5,10 @@
 
 
 template < typename BASE_ITERATOR_TYPE >
-constexpr ::count make_list_iterator < BASE_ITERATOR_TYPE >::operator - (const_iterator iterator) const
+constexpr ::raw::count make_list_iterator < BASE_ITERATOR_TYPE >::operator - (const_iterator iterator) const
 {
 
-   ::count c;
+   ::raw::count c;
 
    if (difference(c, *this, iterator))
    {

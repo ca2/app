@@ -39,18 +39,18 @@ namespace user
       virtual bool set_language(::apex::application * papp, string strLang);
       virtual bool set_default_language(::apex::application * papp);
 
-      //virtual bool set_language_sel(index iSel);
+      //virtual bool set_language_sel(::raw::index iSel);
 
 
       ///// get_current_language() -> data_get_current_language() -> datastream()->get("language")
       //virtual string get_current_language();
       ///// set_current_language() -> data_set_current_language() -> datastream()->set("language")
       //virtual bool set_current_language(string strLang);
-      //virtual bool set_current_language(index iSel);
+      //virtual bool set_current_language(::raw::index iSel);
 
 
-      virtual index get_language_list(string_array & stra);
-      virtual index get_text_list(string_array & stra, string strText, bool bFull = false);
+      virtual ::raw::index get_language_list(string_array & stra);
+      virtual ::raw::index get_text_list(string_array & stra, string strText, bool bFull = false);
       virtual string_array get_text_list(string strText, bool bFull = false);
 
 

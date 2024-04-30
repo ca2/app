@@ -23,7 +23,7 @@ public:
    void destroy() override;
 
 
-   virtual ::pointer < ::item_container > item_container(::index iId);
+   virtual ::pointer < ::item_container > item_container(::raw::index iId);
 
 
    //virtual bool is_item_pressed(const ::item_t & item) const;

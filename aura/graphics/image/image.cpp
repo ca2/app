@@ -428,12 +428,12 @@ void image::create(::draw2d::graphics* pgraphics)
 
 }
 
-::count image::get_image_count() const
+::raw::count image::get_image_count() const
 {
 
-   ::count c1 = is_set() ? 1 : 0;
+   ::raw::count c1 = is_set() ? 1 : 0;
 
-   ::count c2 = 0;
+   ::raw::count c2 = 0;
 
    if (m_pextension && m_pextension->m_pframea)
    {
@@ -447,7 +447,7 @@ void image::create(::draw2d::graphics* pgraphics)
 }
 
 
-::image_pointer image::get_image(index i)
+::image_pointer image::get_image(::raw::index i)
 {
 
    if (m_pextension && m_pextension->m_pframea && m_pextension->m_pframea->has_element())
@@ -540,7 +540,7 @@ void image::create_isotropic(f64_array& daRate, ::enum_priority epriority)
    //}
 
    //fork_count_end(get_app(), imagea.get_count(),
-   //               [&](index i)
+   //               [&](::raw::index i)
    //{
 
    //   create_isotropic(imagea[i]);
@@ -2419,7 +2419,7 @@ void image::blend(const ::point_i32 & pointDst,::image * pimageSrc, const ::poin
 //
 //   int ssw = pimage->m_iScan / 4;
 //
-//   for (index y = 0; y < h; y++)
+//   for (::raw::index y = 0; y < h; y++)
 //   {
 //
 //      ::memory_copy(&image32()[y * dsw], &pimage->image32()[(h - y - 1) * ssw], sw);
@@ -2464,10 +2464,10 @@ void image::blend(const ::point_i32 & pointDst,::image * pimageSrc, const ::poin
 //
 //   auto pimage32Source = pimageSource->image32();
 //
-//   for (index y = 0; y < h; y++)
+//   for (::raw::index y = 0; y < h; y++)
 //   {
 //
-//      for (index x = 0; x < w; x++)
+//      for (::raw::index x = 0; x < w; x++)
 //      {
 //
 //         pimage32[y * dsw + x] = pimage32Source[y * ssw + w - x - 1];
@@ -2498,10 +2498,10 @@ void image::flip_horizontally()
 
    auto pimage32 = image32();
 
-   for (index y = 0; y < h; y++)
+   for (::raw::index y = 0; y < h; y++)
    {
 
-      for (index x = 0; x < halfw; x++)
+      for (::raw::index x = 0; x < halfw; x++)
       {
 
          __swap(pimage32[y * sw + x], pimage32[y * sw + w - x - 1]);
@@ -2536,7 +2536,7 @@ void image::flip_vertically()
 
    line.set_size(m_iScan);
 
-   for (index y = 0; y < halfh; y++)
+   for (::raw::index y = 0; y < halfh; y++)
    {
 
       auto plineFirstHalf = pimage32 + (y * sw);
@@ -4020,9 +4020,9 @@ void image::op(string str)
       // aligned scan
       int as = m_iScan / sizeof(image32_t);
 
-      for (index i = 0; i < height(); i++)
+      for (::raw::index i = 0; i < height(); i++)
       {
-         for (index j = 0; j < hx; j++)
+         for (::raw::index j = 0; j < hx; j++)
          {
             __swap(image32()[i * as + j], image32()[i * as + width() - j]);
          }
@@ -7525,14 +7525,14 @@ void image::_create_helper_map()
 {
 
 
-   index a;
+   ::raw::index a;
 
-   a = (index)(area());
+   a = (::raw::index)(area());
 
    //return true;
 
-   index jNextBoundary;
-   index jStart;
+   ::raw::index jNextBoundary;
+   ::raw::index jStart;
    u8* pdata = (u8*)image32();
 
    if (pdata == nullptr || a <= 0)
@@ -7544,10 +7544,10 @@ void image::_create_helper_map()
 
    }
 
-   index w = width();
-   index h = height();
-   index sw = w * sizeof(image32_t);
-   index aa = w * h;
+   ::raw::index w = width();
+   ::raw::index h = height();
+   ::raw::index sw = w * sizeof(image32_t);
+   ::raw::index aa = w * h;
    {
 
       m_memoryMap.set_size(a * 2);
@@ -7555,10 +7555,10 @@ void image::_create_helper_map()
       m_memoryMap.set(0);
       u8* opacity = m_memoryMap.data();
 
-      for (index i = 0; i < height(); i++)
+      for (::raw::index i = 0; i < height(); i++)
       {
 
-         for (index j = 0; j < sw; j += 4)
+         for (::raw::index j = 0; j < sw; j += 4)
          {
 
             if (pdata[i * m_iScan + j + 3] == 255)
@@ -7575,9 +7575,9 @@ void image::_create_helper_map()
 
                j -= 4;
 
-               index c = (j - jStart) >> 2;
+               ::raw::index c = (j - jStart) >> 2;
 
-               index m = j >> 2;
+               ::raw::index m = j >> 2;
 
                ::u8 n = 1;
 
@@ -7608,10 +7608,10 @@ void image::_create_helper_map()
 
       u8* transparency = m_memoryMap.data() + a;
 
-      for (index i = 0; i < height(); i++)
+      for (::raw::index i = 0; i < height(); i++)
       {
 
-         for (index j = 0; j < sw; j += 4)
+         for (::raw::index j = 0; j < sw; j += 4)
          {
 
             if (pdata[i * m_iScan + j + 3] == 0)
@@ -7635,9 +7635,9 @@ void image::_create_helper_map()
 
                j -= 4;
 
-               index c = (j - jStart) >> 2;
+               ::raw::index c = (j - jStart) >> 2;
 
-               index m = j >> 2;
+               ::raw::index m = j >> 2;
 
                ::u8 n = 1;
 
@@ -8200,7 +8200,7 @@ void image::tint(::image* pimage, ::color::color color)
    //::u8 tableR[256];
    //::u8 tableG[256];
    //::u8 tableB[256];
-   //for (index i = 0; i < 255; i++)
+   //for (::raw::index i = 0; i < 255; i++)
    //{
    //   tableR[i] = (uchR * i) >> 8;
    //   tableG[i] = (uchG * i) >> 8;
@@ -8512,7 +8512,7 @@ void image::set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A)
 
    }
 
-   ::count areaRgba = 0;
+   ::raw::count areaRgba = 0;
 
    image32_t u32ColorImage(color, color_indexes());
 

@@ -10,7 +10,7 @@ DO_FACTORY(REFERENCE_FACTORY)
 ::i32 application_main(::platform::platform * pplatform);
 
 #include "_main_hold.h"
-////#include "acme/exception/exception.h"
+#include "acme/_operating_system.h"
 #include "acme/operating_system/process.h"
 #include APPLICATION_INCLUDE
 #include <type_traits>

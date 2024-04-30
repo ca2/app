@@ -491,7 +491,7 @@ bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::han
 
          string strOriginObject = propertyset["protocol"]["origin_object"].get_string();
 
-         ::index iCallId = propertyset["protocol"]["call_id"].i64();
+         ::raw::index iCallId = propertyset["protocol"]["call_id"].i64();
 
          auto pcall = create_call(strOrigin, strOriginObject, "reply." + strMember);
 
@@ -764,7 +764,7 @@ void interprocess_intercommunication::defer_add_module(const ::string & strModul
 
    ::i32_array iaPid2;
 
-   for (index i = 0; i < m_straModule.get_count();)
+   for (::raw::index i = 0; i < m_straModule.get_count();)
    {
 
       string str = m_straModule[i];

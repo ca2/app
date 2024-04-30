@@ -142,10 +142,10 @@ CLASS_DECL_ACME void debug_print(const char * pszFormat, ...)
 
 
 
-::e_status _003CountStatus(::count countSuccess, ::count countFailed)
+::e_status _003CountStatus(::raw::count countSuccess, ::raw::count countFailed)
 {
 
-   ::count countTotal = countFailed + countSuccess;
+   ::raw::count countTotal = countFailed + countSuccess;
 
    if (countTotal <= 0)
    {

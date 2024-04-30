@@ -139,7 +139,7 @@ namespace experience
       ::pointer<button>get_button(enum_button ebutton);
       virtual ::pointer<button>get_box_button(enum_button ebutton);
 
-      virtual ::count get_visible_control_box_button() const;
+      virtual ::raw::count get_visible_control_box_button() const;
 
       virtual bool get_font(::write_text::font_pointer & font);
 

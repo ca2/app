@@ -285,7 +285,7 @@ namespace sockets
    }
 
 
-   //::index base_socket::http_request_index()
+   //::raw::index base_socket::http_request_index()
    //{
 
    //   return base_socket_composite()->http_request_index();

@@ -17,9 +17,9 @@ using int_ptr_to_string = map < iptr, string >;
 
 using int_ptr_to_int_ptr_to_string = map < iptr, int_ptr_to_string >;
 
-using index_string = map < index, string >;
+using index_string = map < ::raw::index, string >;
 
-using index_to_index_to_string = map < index, index_string >;
+using index_to_index_to_string = map < ::raw::index, index_string >;
 
 using base_string_to_string = string_map < string > ;
 

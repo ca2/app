@@ -197,7 +197,7 @@ inline bool is_memory_segment_ok(void * pMemory, memsize s)
 
 
 template < typename TYPE >
-inline bool is_array_ok(TYPE * p, ::count c)
+inline bool is_array_ok(TYPE * p, ::raw::count c)
 {
 
    return is_memory_segment_ok(p, c * sizeof(TYPE));
@@ -206,7 +206,7 @@ inline bool is_array_ok(TYPE * p, ::count c)
 
 
 template < typename TYPE >
-inline bool is_array_ok(const TYPE * p, ::count c)
+inline bool is_array_ok(const TYPE * p, ::raw::count c)
 {
 
    return is_memory_segment_ok(p, c * sizeof(TYPE));

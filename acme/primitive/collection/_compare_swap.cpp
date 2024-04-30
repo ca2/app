@@ -253,7 +253,7 @@ namespace test_compilation_some_strong_ordering_swap_functions
 {
 
 
-   void filelistingSwap(void * lpVoidSwapArg, const index i1, const index i2)
+   void filelistingSwap(void * lpVoidSwapArg, ::raw::index i1, ::raw::index i2)
    {
       ::file::listing * plisting = (::file::listing *)lpVoidSwapArg;
       ::file::path path = plisting->element_at(i1);
@@ -262,7 +262,7 @@ namespace test_compilation_some_strong_ordering_swap_functions
    }
 
 
-   void stringaSwap(void * lpVoidSwapArg, const index i1, const index i2)
+   void stringaSwap(void * lpVoidSwapArg, ::raw::index i1, ::raw::index i2)
    {
       string_array * pstra = (string_array *)lpVoidSwapArg;
       string str = pstra->element_at(i1);

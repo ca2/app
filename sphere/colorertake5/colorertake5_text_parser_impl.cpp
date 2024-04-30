@@ -50,7 +50,7 @@ namespace colorertake5
 
    }
 
-   index text_parser_impl::parse(index from, ::count num, TextParseMode mode)
+   ::raw::index text_parser_impl::parse(index from, ::raw::count num, TextParseMode mode)
    {
 
       gx = 0;
@@ -213,7 +213,7 @@ namespace colorertake5
    void text_parser_impl::enterScheme(index lno, SMatches *match, SchemeNode *schemeNode)
    {
 
-      index i;
+      ::raw::index i;
 
       if (schemeNode->innerRegion == false)
          enterScheme(lno, match->s[0], match->e[0], schemeNode->region);
@@ -234,7 +234,7 @@ namespace colorertake5
 
       __UNREFERENCED_PARAMETER(lno);
 
-      index i;
+      ::raw::index i;
 
       if (schemeNode->innerRegion == true)
          leaveScheme(gy, match->s[0], match->s[0], schemeNode->region);
@@ -264,7 +264,7 @@ namespace colorertake5
 
    }
 
-   index text_parser_impl::searchKW(const SchemeNode *node, index no, index lowlen, index hilen)
+   ::raw::index text_parser_impl::searchKW(const SchemeNode *node, ::raw::index no, index lowlen, index hilen)
    {
 
       __UNREFERENCED_PARAMETER(no);
@@ -279,16 +279,16 @@ namespace colorertake5
       if (gx < lowlen && !node->kwList->firstChar->in_class(&((const ::string &)str)[gx]))
          return MATCH_NOTHING;
 
-      index left = 0;
+      ::raw::index left = 0;
 
-      index right = node->kwList->num;
+      ::raw::index right = node->kwList->num;
 
       while(true)
       {
 
-         index pos = left + (right-left)/2;
+         ::raw::index pos = left + (right-left)/2;
 
-         index kwlen = node->kwList->kwList[pos].keyword.get_length();
+         ::raw::index kwlen = node->kwList->kwList[pos].keyword.get_length();
 
          if (lowlen < gx+kwlen)
             kwlen = lowlen-gx;
@@ -349,10 +349,10 @@ namespace colorertake5
    }
 
 
-   index text_parser_impl::searchRE(scheme_impl *cscheme, index no, index lowLen, index hiLen)
+   ::raw::index text_parser_impl::searchRE(scheme_impl *cscheme, ::raw::index no, index lowLen, index hiLen)
    {
 
-      index i, re_result;
+      ::raw::index i, re_result;
       scheme_impl *ssubst = nullptr;
       SMatches match;
       parse_cache *OldCacheF = nullptr;
@@ -365,7 +365,7 @@ namespace colorertake5
       if (!cscheme)
          return MATCH_NOTHING;
 
-      for(index idx = 0; idx < cscheme->nodes.get_size(); idx++)
+      for(::raw::index idx = 0; idx < cscheme->nodes.get_size(); idx++)
       {
          SchemeNode *schemeNode = cscheme->nodes.element_at(idx);
          CLR_FORMATTED_TRACE("text_parser_impl", "searchRE: processing node:%d/%d, type:%s", idx+1, cscheme->nodes.get_size(), schemeNodeTypeNames[schemeNode->type]);
@@ -448,7 +448,7 @@ namespace colorertake5
                OldCacheF->backLine = backLine;
             };
 
-            index ogy = gy;
+            ::raw::index ogy = gy;
             bool zeroLength;
 
             scheme_impl *o_scheme = baseScheme;
@@ -562,7 +562,7 @@ namespace colorertake5
          if (root_end_re) res = root_end_re->parse(str, gx, len, &matchend, &schemeStart);
          if (!res) matchend.s[0] = matchend.e[0] = len;
 
-         index parent_len = len;
+         ::raw::index parent_len = len;
          /*
          BUG: <regexp match="/.{3}\M$/" region="def:Error" priority="low"/>
          $ at the end of current schema
@@ -593,8 +593,8 @@ namespace colorertake5
                };
             };
 //            i32 ox = gx;
-            index oy = gy;
-            index re_result = searchRE(baseScheme, gy, matchend.s[0], len);
+            ::raw::index oy = gy;
+            ::raw::index re_result = searchRE(baseScheme, gy, matchend.s[0], len);
             if ((re_result == MATCH_SCHEME && (oy != gy || matchend.s[0] < gx)) ||
                   (re_result == MATCH_RE && matchend.s[0] < gx))
             {

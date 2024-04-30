@@ -24,9 +24,9 @@ namespace userfs
 
       void add_fs_item(list_item & item);
 
-      //::pointer<list_item>get_item(index i, const ::atom & atom);
+      //::pointer<list_item>get_item(::raw::index i, const ::atom & atom);
 
-      inline list_item * get_item(index iItem)  
+      inline list_item * get_item(::raw::index iItem)  
       {
 
          return this->element_at(iItem);
@@ -34,7 +34,7 @@ namespace userfs
       }
 
 
-      index find_item_by_path(const ::file::path & pszPath);
+      ::raw::index find_item_by_path(const ::file::path & pszPath);
 
       void arrange(::fs::e_arrange earrange);
 

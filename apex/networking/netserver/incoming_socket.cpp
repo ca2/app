@@ -11,7 +11,7 @@ namespace netserver
 {
 
 
-   static ::count s_countNetnodeSocket = 0;
+   static ::raw::count s_countNetnodeSocket = 0;
 
 
    incoming_socket::incoming_socket()

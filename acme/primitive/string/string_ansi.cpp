@@ -1702,12 +1702,12 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
-//::count string::replace_count(const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstrNew, strsize iStart)
+//::raw::count string::replace_count(const ::scoped_string & scopedstrOld, const ::scoped_string & scopedstrNew, strsize iStart)
 //{
 //   // can't have is_empty or nullptr pszOld
 //
 //
-//   ::count c = 0;
+//   ::raw::count c = 0;
 //
 //   // nSourceLen is in XCHARs
 //   strsize nSourceLen = ::str::SafeStringLen(pszOld);
@@ -3272,7 +3272,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   if(pchStart == nullptr)
 //      return "";
 //
-//   ::count iUnicharLength = unichar_length();
+//   ::raw::count iUnicharLength = unichar_length();
 //
 //   if(iFirst < 0)
 //      iFirst = iUnicharLength + iFirst;
@@ -3286,7 +3286,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   if(nCount <= 0)
 //      return "";
 //
-//   ::count cCount = 0;
+//   ::raw::count cCount = 0;
 //
 //   while(cCount < iFirst && *pchStart != '\0')
 //   {
@@ -3318,7 +3318,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //}
 //
-//::count string::utf8_get_length() const
+//::raw::count string::utf8_get_length() const
 //{
 //
 //   const char * pch = *this;
@@ -3326,7 +3326,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   if(pch == nullptr)
 //      return 0;
 //
-//   ::count cCharCount = 0;
+//   ::raw::count cCharCount = 0;
 //
 //   while(pch != nullptr && *pch != '\0')
 //   {

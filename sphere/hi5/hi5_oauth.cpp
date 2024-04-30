@@ -37,7 +37,7 @@ namespace hi5
    {
 
       string escaped;
-      ::count maximum = ca.get_length();
+      ::raw::count maximum = ca.get_length();
       for(i32 i=0; i<maximum; i++)
       {
          if ( (48 <= ca[i] && ca[i] <= 57) ||//0-9
@@ -66,7 +66,7 @@ namespace hi5
    * @output: none
    *
    *--*/
-   oauth::oauth(::particle * pparticle, simple_log * psimplelog, index iLogTarget) :
+   oauth::oauth(::particle * pparticle, simple_log * psimplelog, ::raw::index iLogTarget) :
       object(pparticle),
       simple_log(psimplelog, iLogTarget),
       OAUTHLIB_CONSUMERKEY_KEY("oauth_consumer_key"),
@@ -526,7 +526,7 @@ namespace hi5
 
       /* If URL itself contains ?key=value, then extract and put them in map */
 
-      index nPos = rawUrl.find( "?" );
+      ::raw::index nPos = rawUrl.find( "?" );
       if(nPos >= 0)
       {
          /* Get only URL */
@@ -666,7 +666,7 @@ namespace hi5
       if( requestTokenResponse.get_length() > 0 )
       {
 
-         index nPos = -1;
+         ::raw::index nPos = -1;
 
          string strDummy( "" );
 

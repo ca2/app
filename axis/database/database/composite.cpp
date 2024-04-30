@@ -111,7 +111,7 @@ namespace database
    }
 
 
-   //::payload composite::query(const ::string & pszQuery, ::count iMaxRowCount, ::count iMaxColumnCount)
+   //::payload composite::query(const ::string & pszQuery, ::raw::count iMaxRowCount, ::raw::count iMaxColumnCount)
    //{
 
    //   return query_rows(pszQuery);
@@ -127,7 +127,7 @@ namespace database
    }
 
 
-   ::count composite::get_affected_rows_count()
+   ::raw::count composite::get_affected_rows_count()
    {
 
       return -1;
@@ -243,7 +243,7 @@ namespace database
    }
 
 
-   ::pointer<::database::result_set>composite::query_result(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
+   ::pointer<::database::result_set>composite::query_result(const ::string & pszQuery, ::raw::count iRowCount, ::raw::count iColumnCount)
    {
 
       return m_pdatabase->query_result(pszQuery, iRowCount, iColumnCount);
@@ -251,7 +251,7 @@ namespace database
    }
 
 
-   ::pointer<result_set>composite::query(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
+   ::pointer<result_set>composite::query(const ::string & pszQuery, ::raw::count iRowCount, ::raw::count iColumnCount)
    {
       
       return query_result(pszQuery, iRowCount, iColumnCount);

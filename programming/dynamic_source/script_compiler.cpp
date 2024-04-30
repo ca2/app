@@ -887,7 +887,7 @@ namespace dynamic_source
             //for(auto & strLine : straLog)
             //{
             //   int iColCount = 80;
-            //   for (index i = 0; i < strLine.length(); i += iColCount)
+            //   for (::raw::index i = 0; i < strLine.length(); i += iColCount)
             //   {
             //      if (strLine.length() < i + iColCount + 10)
             //      {

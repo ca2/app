@@ -28,8 +28,8 @@ CLASS_DECL_ACME wstring gen_utf8_to_16(const ::scoped_string & scopedstr);
 //public:
 //
 //
-//   ::count m_iAllocation; // in chars "with nullptr characters"
-//   ::count m_iLength; // in chars without nullptr character
+//   ::raw::count m_iAllocation; // in chars "with nullptr characters"
+//   ::raw::count m_iLength; // in chars without nullptr character
 //   unichar        m_wchFirst;
 //
 //
@@ -49,7 +49,7 @@ CLASS_DECL_ACME wstring gen_utf8_to_16(const ::scoped_string & scopedstr);
 //   }
 //
 //
-//   inline static unichar * alloc(::count iCount)
+//   inline static unichar * alloc(::raw::count iCount)
 //   {
 //
 //      wstring_data * pdata = (wstring_data *) aligned_memory_allocate(((iCount + 1) * sizeof(unichar)) + sizeof(count) + sizeof(count) + sizeof(unichar));
@@ -181,49 +181,49 @@ public:
 
 
 
-   inline unichar operator [] (index iIndex) const
+   inline unichar operator [] (::raw::index iIndex) const
    {
       return m_pwsz[iIndex];
    }
 
-   inline unichar & operator [] (index iIndex)
+   inline unichar & operator [] (::raw::index iIndex)
    {
       return m_pwsz[iIndex];
    }
 
-   unichar * alloc(::count iCount);
+   unichar * alloc(::raw::count iCount);
 
-   inline ::count get_length() const
+   inline ::raw::count get_length() const
    {
       return get_data()->m_iLength;
    }
 
-   inline ::count length() const
+   inline ::raw::count length() const
    {
       return get_data()->m_iLength;
    }
 
-   inline ::count size() const
+   inline ::raw::count size() const
    {
       return get_data()->m_iLength;
    }
 
-   inline ::count storage_size() const
+   inline ::raw::count storage_size() const
    {
       return get_data()->m_iAllocation;
    }
 
-   inline ::count allocation_size() const
+   inline ::raw::count allocation_size() const
    {
       return get_data()->m_iAllocation;
    }
 
-   inline ::count get_storage_size() const
+   inline ::raw::count get_storage_size() const
    {
       return get_data()->m_iAllocation;
    }
 
-   inline ::count get_allocation_size() const
+   inline ::raw::count get_allocation_size() const
    {
       return get_data()->m_iAllocation;
    }
@@ -262,7 +262,7 @@ public:
    }
 
 
-   inline void set_length(::count iLength)
+   inline void set_length(::raw::count iLength)
    {
 
       if(iLength <= get_data()->m_iAllocation)
@@ -303,7 +303,7 @@ public:
 
    }
 
-   inline wstring & append(unichar wch, ::count c)
+   inline wstring & append(unichar wch, ::raw::count c)
    {
 
       while(c > 0)
@@ -321,8 +321,8 @@ public:
 
    inline wstring & append(const unichar * pwsz) { assign(*this + pwsz); return *this; }
 
-   wstring substr(::index iStart, ::count c = -1);
-   wstring & replace(::index iStart,::count c, const unichar * psz);
+   wstring substr(::raw::index iStart, ::raw::count c = -1);
+   wstring & replace(::raw::index iStart,::raw::count c, const unichar * psz);
 
 
    wstring & operator = (const ::string & str);

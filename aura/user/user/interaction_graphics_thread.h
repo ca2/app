@@ -44,7 +44,7 @@ namespace user
       //i64                                       m_iLastFrameId;
       class ::time                                m_timeNextFrame;
       class ::time                                m_timeNextScreenUpdate;
-      //::count                                   m_cLost;
+      //::raw::count                                   m_cLost;
       ::array < class ::time >                    m_timeaFrame;
 
       class ::time                                m_timeBeforeUpdateScreen;

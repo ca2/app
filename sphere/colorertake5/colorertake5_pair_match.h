@@ -24,11 +24,11 @@ namespace colorertake5
       /**
       * Starting Line of pair
       */
-      index sline;
+      ::raw::index sline;
       /**
       * Ending Line of pair
       */
-      index eline;
+      ::raw::index eline;
       /**
       * Identifies initial position of cursor in pair
       */

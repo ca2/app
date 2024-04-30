@@ -30,7 +30,7 @@ array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::~array_base ()
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-::count array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::resize(::count nNewSize, ARG_TYPE t, ::count nGrowBy)
+::raw::count array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::resize(::raw::count nNewSize, ARG_TYPE t, ::raw::count nGrowBy)
 {
 
    return allocate(nNewSize, nGrowBy, &t);
@@ -39,7 +39,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-::count array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::allocate_in_bytes(::count nNewSize,::count nGrowBy)
+::raw::count array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::allocate_in_bytes(::raw::count nNewSize,::raw::count nGrowBy)
 {
 
    if(nGrowBy < 0)
@@ -59,12 +59,12 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-::index array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_at(::index nIndex,::count nCount)
+::raw::index array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_at(::raw::index nIndex,::raw::count nCount)
 {
 
    //ASSERT_VALID(this);
 
-   ::index nUpperBound = nIndex + nCount;
+   ::raw::index nUpperBound = nIndex + nCount;
 
    if (nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
    {
@@ -73,7 +73,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 
    }
 
-   ::count nMoveCount = m_nSize - (nUpperBound);
+   ::raw::count nMoveCount = m_nSize - (nUpperBound);
 
    ALLOCATOR::destruct_count(m_pData + nIndex, nCount REFERENCING_DEBUGGING_COMMA_THIS);
 
@@ -90,7 +90,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-::index array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_item(TYPE * p)
+::raw::index array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_item(TYPE * p)
 {
 
    return erase_at(p - m_pData);
@@ -192,10 +192,10 @@ void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::destroy()
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-::index array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(::index nIndex,const TYPE & newElement,::count nCount /*=1*/)
+::raw::index array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(::raw::index nIndex,const TYPE & newElement,::raw::count nCount /*=1*/)
 {
 
-   ::index nIndexParam = make_room_at(nIndex, nCount);
+   ::raw::index nIndexParam = make_room_at(nIndex, nCount);
 
    while(nCount--)
    {
@@ -211,7 +211,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 }
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-::index array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::make_room_at(::index nIndex, ::count nCount /*=1*/)
+::raw::index array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::make_room_at(::raw::index nIndex, ::raw::count nCount /*=1*/)
 {
 
    ASSERT(nIndex >= 0);    // will expand to meet need
@@ -233,9 +233,9 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
    {
 
       // inserting in the middle of the array
-      ::count nOldSize = (::count) m_nSize;
+      ::raw::count nOldSize = (::raw::count) m_nSize;
 
-      set_size((::count) m_nSize + nCount,-1);  // grow it to aaa_primitive_new size_i32
+      set_size((::raw::count) m_nSize + nCount,-1);  // grow it to aaa_primitive_new size_i32
       // destroy intial data before copying over it
       // shift old data up to fill gap
       ::safe_memory_transfer(m_pData + nIndex + nCount,(size_t) ((nOldSize - nIndex) * sizeof(TYPE)),m_pData + nIndex,(size_t)((nOldSize - nIndex) * sizeof(TYPE)));
@@ -256,12 +256,12 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-::count array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append(const array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & src)
+::raw::count array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append(const array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & src)
 {
 
-   ::count nOldSize = m_nSize;
+   ::raw::count nOldSize = m_nSize;
 
-   ::count nSrcSize = src.m_nSize;   // to enable to append to itself
+   ::raw::count nSrcSize = src.m_nSize;   // to enable to append to itself
 
    allocate(nOldSize + nSrcSize);
 
@@ -283,7 +283,7 @@ void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy(const 
 
    }
 
-   ::count nSrcSize = src.m_nSize;
+   ::raw::count nSrcSize = src.m_nSize;
 
    allocate(nSrcSize);
 
@@ -294,7 +294,7 @@ void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy(const 
 
 
 // take in accptr that _001RemoveIndexes machine
-// the ::index raw_array by sorting it and returning
+// the ::raw::index raw_array by sorting it and returning
 // only the indexes that could be erased
 // without indexes duplicates
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
@@ -304,7 +304,7 @@ void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::_001RemoveI
    // sort
    ::sort::quick_sort(ia,true);
 
-   ::index i = ia.get_upper_bound();
+   ::raw::index i = ia.get_upper_bound();
 
    // filter out of upper bound indexes
    while(i >= 0 && ia[i] >= get_size())
@@ -348,7 +348,7 @@ void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_index
 
 
    // erase indexes
-   for(::index i = ia.get_upper_bound(); i >= 0; i--)
+   for(::raw::index i = ia.get_upper_bound(); i >= 0; i--)
    {
 
       erase_at(ia[i]);
@@ -362,7 +362,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_descending_indexes(const index_array & ia)
 {
 
-   for(::index i = 0; i < ia.get_count(); i++)
+   for(::raw::index i = 0; i < ia.get_count(); i++)
    {
 
       erase_at(ia[i]);
@@ -374,13 +374,13 @@ void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_desce
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-::index array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(::index nIndex,array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > * pNewArray)
+::raw::index array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(::raw::index nIndex,array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > * pNewArray)
 {
 
    ASSERT(pNewArray != nullptr);
    ASSERT(nIndex >= 0);    // will expand to meet need
 
-   ::count nCount = pNewArray->get_size();
+   ::raw::count nCount = pNewArray->get_size();
 
    if (nCount <= 0)
       return -1;
@@ -399,9 +399,9 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
    {
 
       // inserting in the middle of the array
-      ::count nOldSize = (::count) m_nSize;
+      ::raw::count nOldSize = (::raw::count) m_nSize;
 
-      set_size((::count) (m_nSize + nCount), -1);  // grow it to aaa_primitive_new size_i32
+      set_size((::raw::count) (m_nSize + nCount), -1);  // grow it to aaa_primitive_new size_i32
       // destroy intial data before copying over it
       // shift old data up to fill gap
       ::safe_memory_transfer(m_pData + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), m_pData + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
@@ -415,9 +415,9 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
    // insert aaa_primitive_new value in the gap
    ASSERT(nIndex + nCount <= m_nSize);
 
-   ::index nIndexParam = nIndex;
+   ::raw::index nIndexParam = nIndex;
 
-   ::index i = 0;
+   ::raw::index i = 0;
 
    while (nCount--)
    {
@@ -435,12 +435,12 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-TYPE array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pick_at(::index nIndex)
+TYPE array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pick_at(::raw::index nIndex)
 {
 
-   ::count nCount = 1;
+   ::raw::count nCount = 1;
 
-   ::index nUpperBound = nIndex + nCount;
+   ::raw::index nUpperBound = nIndex + nCount;
 
    if (nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
    {
@@ -449,7 +449,7 @@ TYPE array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pick_at(::i
 
    }
 
-   ::count nMoveCount = m_nSize - (nUpperBound);
+   ::raw::count nMoveCount = m_nSize - (nUpperBound);
 
    auto t = m_pData[nIndex];
 
@@ -470,12 +470,12 @@ TYPE array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pick_at(::i
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pick_at(::index nIndex, ::count nCount)
+array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pick_at(::raw::index nIndex, ::raw::count nCount)
 {
 
    //ASSERT_VALID(this);
 
-   ::index nUpperBound = nIndex + nCount;
+   ::raw::index nUpperBound = nIndex + nCount;
 
    if (nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
    {
@@ -484,7 +484,7 @@ array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > array_base < TYPE
 
    }
 
-   ::count nMoveCount = m_nSize - (nUpperBound);
+   ::raw::count nMoveCount = m_nSize - (nUpperBound);
 
    array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > a(m_pData + nIndex, (size_t)nMoveCount);
 
@@ -505,10 +505,10 @@ array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > array_base < TYPE
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-::count array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::set_raw_size(::count nNewSize,::count nGrowBy)
+::raw::count array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::set_raw_size(::raw::count nNewSize,::raw::count nGrowBy)
 {
 
-   ::count countOld = get_count();
+   ::raw::count countOld = get_count();
 
    ASSERT(nNewSize >= 0);
 
@@ -542,7 +542,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
          throw ::exception(error_no_memory);
       ASSERT(nNewSize <= SIZE_T_MAX / sizeof(TYPE));    // no overflow
 #endif
-      ::count nAllocSize = (::count) maximum(nNewSize, m_nGrowBy);
+      ::raw::count nAllocSize = (::raw::count) maximum(nNewSize, m_nGrowBy);
 #if defined(__MCRTDBG) || MEMDLEAK
       if (::get_task() != nullptr)
       {
@@ -602,17 +602,17 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
    else
    {
       // otherwise, grow aaa_base_array
-      nGrowBy = (::count) m_nGrowBy;
+      nGrowBy = (::raw::count) m_nGrowBy;
       if(nGrowBy == 0)
       {
          // heuristically determine growth when nGrowBy == 0
          //  (this avoids heap fragmentation in many situations)
-         nGrowBy = (::count) m_nSize;
+         nGrowBy = (::raw::count) m_nSize;
          nGrowBy = (nGrowBy < 4) ? 4 : ((nGrowBy > 1024) ? 1024 : nGrowBy);
       }
-      ::count nNewMax;
+      ::raw::count nNewMax;
       if(nNewSize < m_nMaxSize + nGrowBy)
-         nNewMax = (::count) (m_nMaxSize + nGrowBy);  // granularity
+         nNewMax = (::raw::count) (m_nMaxSize + nGrowBy);  // granularity
       else
          nNewMax = nNewSize;  // no slush
 
@@ -695,10 +695,10 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-::count array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::allocate(::count nNewSize,::count nGrowBy, const TYPE * ptype)
+::raw::count array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::allocate(::raw::count nNewSize,::raw::count nGrowBy, const TYPE * ptype)
 {
 
-   ::count countOld = get_count();
+   ::raw::count countOld = get_count();
 
    ASSERT(nNewSize >= 0);
 
@@ -870,7 +870,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_e
 
       }
 
-      ::count nNewMax;
+      ::raw::count nNewMax;
 
       if(nNewSize < m_nMaxSize+ nGrowBy)
       {
@@ -1007,7 +1007,7 @@ void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::on_after_re
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-inline void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set_at_grow(::index nIndex, ARG_TYPE newElement, ::count nGrowBy)
+inline void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set_at_grow(::raw::index nIndex, ARG_TYPE newElement, ::raw::count nGrowBy)
 {
 
    ASSERT(nIndex >= 0);
@@ -1025,7 +1025,7 @@ inline void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-inline TYPE & array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::element_at_grow(::index nIndex, ::count nGrowBy)
+inline TYPE & array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::element_at_grow(::raw::index nIndex, ::raw::count nGrowBy)
 {
 
    ASSERT(nIndex >= 0);
@@ -1043,12 +1043,12 @@ inline TYPE & array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::e
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, ::enum_type t_etypeContainer >
-inline void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set_each(ARG_TYPE element, ::index first, ::count in_count_out_last)
+inline void array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set_each(ARG_TYPE element, ::raw::index first, ::raw::count in_count_out_last)
 {
 
    prepare_first_in_count_last_out(first, in_count_out_last);
 
-   for(::index i = first; i <= in_count_out_last; i++)
+   for(::raw::index i = first; i <= in_count_out_last; i++)
    {
 
       m_pData[i] = element;

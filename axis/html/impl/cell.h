@@ -27,8 +27,8 @@ namespace html
          public:
 
 
-            index m_iCol;
-            index m_iRow;
+            ::raw::index m_iCol;
+            ::raw::index m_iRow;
 
 
             holder();
@@ -62,21 +62,21 @@ namespace html
          // |        |                  |
          // -----------------------------
          // population: (1, 1), (1, 2), (2, 1), (2, 2)
-         index m_iColBeg;
-         index m_iRowBeg;
-         index m_iColEnd;
-         index m_iRowEnd;
+         ::raw::index m_iColBeg;
+         ::raw::index m_iRowBeg;
+         ::raw::index m_iColEnd;
+         ::raw::index m_iRowEnd;
 
 
          float m_fWidth;
 
-         ::count m_iRowSpan;
-         ::count m_iColSpan;
+         ::raw::count m_iRowSpan;
+         ::raw::count m_iColSpan;
 
 
          table * get_table();
          table_row * get_row();
-         index get_min_col();
+         ::raw::index get_min_col();
 
          using text::move_to;
          void move_to(html_data * pdocument);
@@ -110,9 +110,9 @@ namespace html
          virtual float calc_width();
 
 
-         virtual bool contains_column(index iCol);
-         virtual bool contains_row(index iRow);
-         virtual bool contains_cell(index iCol, index iRow);
+         virtual bool contains_column(::raw::index iCol);
+         virtual bool contains_row(::raw::index iRow);
+         virtual bool contains_cell(::raw::index iCol, ::raw::index iRow);
 
          virtual float get_table_border();
          virtual float get_cell_spacing();

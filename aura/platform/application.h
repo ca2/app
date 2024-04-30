@@ -722,8 +722,8 @@ namespace aura
       //virtual void fill_locale_schema(::text::international::locale_schema & localeschema) override;
       //virtual void fill_locale_schema(::text::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema) override;
 
-      //virtual bool platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::request * prequest = nullptr) override;
-      //virtual bool platform_open_by_file_extension(index iEdge,::create * pcc) override;
+      //virtual bool platform_open_by_file_extension(::raw::index iEdge, const ::string & pszPathName, ::request * prequest = nullptr) override;
+      //virtual bool platform_open_by_file_extension(::raw::index iEdge,::create * pcc) override;
 
 
       //virtual bool on_start_application() override;
@@ -957,7 +957,7 @@ namespace aura
 
       // Finds number of opened document items owned by templates
       // registered with the doc manager.
-      //virtual ::count get_open_document_count();
+      //virtual ::raw::count get_open_document_count();
 
       //static const char gen_FileSection[];
       //static const char gen_FileEntry[];

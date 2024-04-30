@@ -29,7 +29,7 @@ namespace networking_bsd
       ~ip_enum() override;
 
 
-      ::count enumerate(pointer_array < ::networking::address > & ipa) override;
+      ::raw::count enumerate(pointer_array < ::networking::address > & ipa) override;
 
 
    };

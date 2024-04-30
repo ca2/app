@@ -2655,15 +2655,15 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   ::count system::get_application_count()
+   ::raw::count system::get_application_count()
    {
 
-      ::count c = 0;
+      ::raw::count c = 0;
 
       //try
       //{
 
-      //   for(index iBaseSession = 0; iBaseSession < m_basesessionptra.get_count(); iBaseSession++)
+      //   for(::raw::index iBaseSession = 0; iBaseSession < m_basesessionptra.get_count(); iBaseSession++)
       //   {
 
       //      try
@@ -3022,7 +3022,7 @@ pacmedirectory->create("/ca2core");
 
       m_iCommandLineDelay = 1000;
 
-      index iIndex = stra.find_first(":");
+      ::raw::index iIndex = stra.find_first(":");
 
       if (iIndex >= 0)
       {
@@ -3480,7 +3480,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   void system::set_user_language(::apex::application * papp, index iSel)
+   void system::set_user_language(::apex::application * papp, ::raw::index iSel)
    {
 
       auto psession = session();

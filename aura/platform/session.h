@@ -255,9 +255,9 @@ namespace aura
 
       //virtual void set_cursor_pos(const ::point_i32 & point) override;
 
-//      virtual index get_main_monitor(::rectangle_i32 * prectangle = nullptr) override;
+//      virtual ::raw::index get_main_monitor(::rectangle_i32 * prectangle = nullptr) override;
 
-      //virtual index get_ui_workspace(::user::interaction * pinteraction);
+      //virtual ::raw::index get_ui_workspace(::user::interaction * pinteraction);
 
 
       //virtual void defer_instantiate_user_theme(const ::string & pszUiInteractionLibrary = nullptr);

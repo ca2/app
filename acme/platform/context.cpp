@@ -452,7 +452,7 @@ namespace acme
    }
 
 
-   void context::fork_count(::count iCount, const ::function < void(index, index, index, index) > & function, const ::procedure & procedureCompletion, index iStart)
+   void context::fork_count(::raw::count iCount, const ::function < void(::raw::index, ::raw::index, ::raw::index, ::raw::index) > & function, const ::procedure & procedureCompletion, ::raw::index iStart)
    {
 
       int iAffinityOrder = node()->get_current_process_affinity_order();
@@ -464,13 +464,13 @@ namespace acme
 
       }
 
-      ::count cScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
+      ::raw::count cScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 
       auto pcounter = __allocate< ::parallelization::counter >(cScan, procedureCompletion);
 
       auto ptask = ::get_task();
 
-      for (index iOrder = 0; iOrder < cScan; iOrder++)
+      for (::raw::index iOrder = 0; iOrder < cScan; iOrder++)
       {
 
          auto ppredtask = __allocate< forking_count_task >(this, iOrder, iOrder + iStart, cScan, iCount, function);

@@ -159,16 +159,16 @@ public:
    inline operator CHARACTER * () { return this->data(); }
 
    //using ::const_string_range<ITERATOR_TYPE>::ptr_at;
-   //inline const CHARACTER * ptr_at(::index i) { return this->data() + i; }
+   //inline const CHARACTER * ptr_at(::raw::index i) { return this->data() + i; }
 
-   //    inline const CHARACTER *ptr_at(::index i) const { return this->data() + i; }
+   //    inline const CHARACTER *ptr_at(::raw::index i) const { return this->data() + i; }
 
    //using ::const_string_range<ITERATOR_TYPE>::rear_ptr;
-   //inline const CHARACTER * rear_ptr(::index i) { return this->data() + this->size() + i; }
+   //inline const CHARACTER * rear_ptr(::raw::index i) { return this->data() + this->size() + i; }
 
-   //    inline const CHARACTER *reverse_ptr(::index i) const { return this->data() + this->size() + i; }
+   //    inline const CHARACTER *reverse_ptr(::raw::index i) const { return this->data() + this->size() + i; }
    //
-   //    inline const CHARACTER &operator[](index i) const { return this->data()[i]; }
+   //    inline const CHARACTER &operator[](::raw::index i) const { return this->data()[i]; }
    //
    //    strsize offset_of(const CHARACTER *p) const { return ::offset_of(p, data()); }
 
@@ -984,10 +984,10 @@ public:
    //    }
    //
    //
-   //    ::count begins_count(bool(*character_is_function)(CHARACTER character))
+   //    ::raw::count begins_count(bool(*character_is_function)(CHARACTER character))
    //    {
    //
-   //       ::count c = 0;
+   //       ::raw::count c = 0;
    //
    //       while (character_is_function(this->begin()[c])) c++;
    //
@@ -1102,7 +1102,7 @@ public:
    //    template<typename PRED>
    //    bool is_every_char(PRED pred) {
    //
-   //       for (index i = 0; i < this->length(); i++) {
+   //       for (::raw::index i = 0; i < this->length(); i++) {
    //
    //          if (!pred(this->operator[](i))) {
    //
@@ -1190,7 +1190,7 @@ public:
    //
    //
    //    template<::comparison::equality<CHARACTER> EQUALITY>
-   //    ::count _occurrence_count_of(const SCOPED_STRING &scopedstr, EQUALITY equality) {
+   //    ::raw::count _occurrence_count_of(const SCOPED_STRING &scopedstr, EQUALITY equality) {
    //
    //       strsize nLen = scopedstr.size();
    //
@@ -1211,14 +1211,14 @@ public:
    //    }
    //
    //
-   //    ::count occurrence_count_of(const SCOPED_STRING &scopedstr = 0) {
+   //    ::raw::count occurrence_count_of(const SCOPED_STRING &scopedstr = 0) {
    //
    //       return _occurrence_count_of(scopedstr, ::comparison::comparison<CHARACTER>());
    //
    //    }
    //
    //
-   //    ::count case_insensitive_occurrence_count_of(const SCOPED_STRING &scopedstr = 0) {
+   //    ::raw::count case_insensitive_occurrence_count_of(const SCOPED_STRING &scopedstr = 0) {
    //
    //       return _occurrence_count_of(scopedstr, ::comparison::case_insensitive<CHARACTER>());
    //
@@ -1290,7 +1290,7 @@ public:
    //    const_iterator unicode_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
    //
    //    const_iterator unicode_case_insensitive_find(const SCOPED_STRING &scopedstr) const RELEASENOTHROW;
-   //    ::index unicode_case_insensitive_find_index(const SCOPED_STRING & scopedstr, strsize start = 0) const RELEASENOTHROW
+   //    ::raw::index unicode_case_insensitive_find_index(const SCOPED_STRING & scopedstr, strsize start = 0) const RELEASENOTHROW
    //    {
    //
    //       return this->offset_of(this->operator()(start).unicode_case_insensitive_find(scopedstr));
@@ -1611,10 +1611,10 @@ public:
    }
 
 
-   ::count consume(bool(*character_is_function)(CHARACTER character), strsize minimum_count);
+   ::raw::count consume(bool(*character_is_function)(CHARACTER character), strsize minimum_count);
 
 
-   ::count consume_spaces(strsize minimum_count = 0)
+   ::raw::count consume_spaces(strsize minimum_count = 0)
    {
 
       return consume(&character_isspace, minimum_count);
@@ -1666,11 +1666,11 @@ public:
    void consume(const ::ansi_character * pszToConsume);
    //static void consume(::const_ansi_range & range, const ::ansi_character * psz);
    void consume(const ::scoped_string & scopedstr);
-   //void consume_spaces(::count iMinimumCount = 1);
+   //void consume_spaces(::raw::count iMinimumCount = 1);
    u64 consume_natural(u64 uiMax = ((u64)-1), u64 uiMin = 0);
    //u64 consume_natural(string & str, u64 uiMax = ((u64)-1), u64 uiMin = 0);
    ::string_base < ITERATOR_TYPE > consume_hex();
-   //void consume_spaces(::const_ansi_range & range, ::count iMinimumCount);
+   //void consume_spaces(::const_ansi_range & range, ::raw::count iMinimumCount);
    ::string_base < ITERATOR_TYPE > consume_non_spaces();
    //::string_base < ITERATOR_TYPE > consume_non_spaces(::const_ansi_range & range);
    ::string_base < ITERATOR_TYPE > consume_nc_name();

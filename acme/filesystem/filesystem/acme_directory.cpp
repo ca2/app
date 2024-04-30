@@ -759,7 +759,7 @@ void acme_directory::create(const ::file::path & pathParam)
 
    ascendants_path(path, patha);
 
-   index i = patha.get_upper_bound();
+   ::raw::index i = patha.get_upper_bound();
 
    for (; i >= 0; i--)
    {

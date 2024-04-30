@@ -31,8 +31,8 @@ public:
    virtual ~property_set();
 
 
-   ::count erase_by_name(const atom & idName);
-   ::count erase_by_name(string_array & straName);
+   ::raw::count erase_by_name(const atom & idName);
+   ::raw::count erase_by_name(string_array & straName);
 
    virtual ::particle * source_channel();
 
@@ -45,35 +45,35 @@ public:
 
    string as_string(const ::scoped_string& scopedstrSeparator1, const ::scoped_string& scopedstrSeparator2);
 
-   ::index index_of(const ::atom & atom, ::index iStart = 0) const;
+   ::raw::index index_of(const ::atom & atom, ::raw::index iStart = 0) const;
 
 
-   property * find(const ::atom & atom, ::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
-   property & get(const ::atom & atom, ::index iStart = 0); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
+   property * find(const ::atom & atom, ::raw::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
+   property & get(const ::atom & atom, ::raw::index iStart = 0); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
 
    
    //property * find_index(::iptr i) const;
    //property & get_index(::iptr i);
 
 
-   //property * find_text_key(const scoped_string & scopedstr, ::index iStart = 0) const;
-   //property & get_text_key(const scoped_string & scopedstr, ::index iStart = 0);
+   //property * find_text_key(const scoped_string & scopedstr, ::raw::index iStart = 0) const;
+   //property & get_text_key(const scoped_string & scopedstr, ::raw::index iStart = 0);
 
 
-   //inline property * find_property_index(::index iIndex, ::index iStart = 0) const { return find_index(iIndex); }
-   //inline property & get_property_index(::index iIndex, ::index iStart = 0) { return get_index(iIndex); }
+   //inline property * find_property_index(::raw::index iIndex, ::raw::index iStart = 0) const { return find_index(iIndex); }
+   //inline property & get_property_index(::raw::index iIndex, ::raw::index iStart = 0) { return get_index(iIndex); }
 
 
-   //inline property * find_property_text_key(const scoped_string & scopedstr, ::index iStart = 0) const { return find_text_key(scopedstr, iStart); }
-   //inline property & get_property_text_key(const scoped_string & scopedstr, ::index iStart = 0) { return get_text_key(scopedstr, iStart); }
+   //inline property * find_property_text_key(const scoped_string & scopedstr, ::raw::index iStart = 0) const { return find_text_key(scopedstr, iStart); }
+   //inline property & get_property_text_key(const scoped_string & scopedstr, ::raw::index iStart = 0) { return get_text_key(scopedstr, iStart); }
 
 
-   //inline property * payload_index(::iptr iIndex, ::index iStart = 0) const { return find_property_index(iIndex); }
-   //inline property & payload_index(::iptr iIndex, ::index iStart = 0) { return get_property_index(iIndex); }
+   //inline property * payload_index(::iptr iIndex, ::raw::index iStart = 0) const { return find_property_index(iIndex); }
+   //inline property & payload_index(::iptr iIndex, ::raw::index iStart = 0) { return get_property_index(iIndex); }
 
 
-   //inline property * payload_text_key(const scoped_string & scopedstr, ::index iStart = 0) const { return find_property_text_key(scopedstr, iStart); }
-   //inline property & payload_text_key(const scoped_string & scopedstr, ::index iStart = 0) { return get_property_text_key(scopedstr, iStart); }
+   //inline property * payload_text_key(const scoped_string & scopedstr, ::raw::index iStart = 0) const { return find_property_text_key(scopedstr, iStart); }
+   //inline property & payload_text_key(const scoped_string & scopedstr, ::raw::index iStart = 0) { return get_property_text_key(scopedstr, iStart); }
 
 
 
@@ -110,8 +110,8 @@ public:
    //inline property & operator[](const ::string & strName) { return payload(strName); }
    //inline const property & operator[](const ::string & strName) const { return payload(strName); }
 
-   //inline property & operator[](::index iIndex) { return payload(iIndex); }
-   //inline const property & operator[](::index iIndex) const { return payload(iIndex); }
+   //inline property & operator[](::raw::index iIndex) { return payload(iIndex); }
+   //inline const property & operator[](::raw::index iIndex) const { return payload(iIndex); }
 
    //inline property & operator[](const ::payload & payloadKey) { return payload(payloadKey); }
    //inline const property & operator[](const ::payload & payloadKey) const { return payload(payloadKey); }
@@ -129,8 +129,8 @@ public:
 
    ::payload & set(const atom & atom);
 
-   property & at(index iId);
-   ::payload at(index iId) const;
+   property & at(::raw::index iId);
+   ::payload at(::raw::index iId) const;
 
    property * find_value_ci(const ::payload & payload) const;
    property * find_value_ci(const ::scoped_string & scopedstr) const;
@@ -146,11 +146,11 @@ public:
    bool contains_payload(const ::payload & payload) const;
    bool contains_payload(const ::scoped_string & scopedstr) const;
 
-   bool contains_value_ci(const ::payload & payload, ::count countMin = 1, ::count countMax = -1) const;
-   bool contains_value_ci(const ::scoped_string & scopedstr, ::count countMin = 1, ::count countMax = -1) const;
+   bool contains_value_ci(const ::payload & payload, ::raw::count countMin = 1, ::raw::count countMax = -1) const;
+   bool contains_value_ci(const ::scoped_string & scopedstr, ::raw::count countMin = 1, ::raw::count countMax = -1) const;
 
-   bool contains_payload(const ::payload & payload, ::count countMin = 1, ::count countMax = -1) const;
-   bool contains_payload(const ::scoped_string & scopedstr, ::count countMin = 1, ::count countMax = -1) const;
+   bool contains_payload(const ::payload & payload, ::raw::count countMin = 1, ::raw::count countMax = -1) const;
+   bool contains_payload(const ::scoped_string & scopedstr, ::raw::count countMin = 1, ::raw::count countMax = -1) const;
 
    bool str_contains(const property_set & set) const;
    bool contains(const property_set & set) const;
@@ -161,11 +161,11 @@ public:
    bool erase_first_value(const ::payload & payload);
    bool erase_first_value(const ::scoped_string & scopedstr);
 
-   ::count erase_value_ci(const  ::payload & payload, ::count countMin = 0, ::count countMax = -1);
-   ::count erase_value_ci(const ::scoped_string & scopedstr, ::count countMin = 0, ::count countMax = -1);
+   ::raw::count erase_value_ci(const  ::payload & payload, ::raw::count countMin = 0, ::raw::count countMax = -1);
+   ::raw::count erase_value_ci(const ::scoped_string & scopedstr, ::raw::count countMin = 0, ::raw::count countMax = -1);
 
-   ::count erase_value(const ::payload & payload, ::count countMin = 0, ::count countMax = -1);
-   ::count erase_value(const ::scoped_string & scopedstr, ::count countMin = 0, ::count countMax = -1);
+   ::raw::count erase_value(const ::payload & payload, ::raw::count countMin = 0, ::raw::count countMax = -1);
+   ::raw::count erase_value(const ::scoped_string & scopedstr, ::raw::count countMin = 0, ::raw::count countMax = -1);
 
    bool has_property(atom idName) const;
 
@@ -175,11 +175,11 @@ public:
 
    bool is_set_false(atom idName) const { auto p = find(idName); return !p || p->is_set_false(); }
 
-   bool is_set_empty(::count countMinimum = 1) const;
-   bool has_properties(::count countMinimum = 1) const;
+   bool is_set_empty(::raw::count countMinimum = 1) const;
+   bool has_properties(::raw::count countMinimum = 1) const;
 
 
-   //inline auto names(index iStart = 0, index iEnd = -1) const { return name_iterator(iStart, iEnd, this); }
+   //inline auto names(::raw::index iStart = 0, ::raw::index iEnd = -1) const { return name_iterator(iStart, iEnd, this); }
 
 
    inline property & set_at(const ::atom & atom, const ::payload & payload)
@@ -272,7 +272,7 @@ public:
 
    //}
 
-   ::count unset(const atom & idName);
+   ::raw::count unset(const atom & idName);
 
    bool is_new(const atom & idName) const;
 
@@ -286,18 +286,18 @@ public:
    bool is_empty(const atom & idName) const;
    bool is_empty() const { return m_propertyptra.is_empty(); }
    bool has_property() const { return m_propertyptra.has_element(); }
-   ::count property_count() const { return m_propertyptra.get_count(); }
+   ::raw::count property_count() const { return m_propertyptra.get_count(); }
    
    
-   ::index add_property(property * pproperty) { return m_propertyptra.add_item(pproperty); }
+   ::raw::index add_property(property * pproperty) { return m_propertyptra.add_item(pproperty); }
 
 
-   inline const property * property_at(::index nIndex) const { return m_propertyptra.element_at(nIndex); }
-   inline property * property_at(::index nIndex) { return m_propertyptra.element_at(nIndex); }
+   inline const property * property_at(::raw::index nIndex) const { return m_propertyptra.element_at(nIndex); }
+   inline property * property_at(::raw::index nIndex) { return m_propertyptra.element_at(nIndex); }
 
-   inline ::index erase_property_at(::index iIndex) { return m_propertyptra.erase_at(iIndex); }
+   inline ::raw::index erase_property_at(::raw::index iIndex) { return m_propertyptra.erase_at(iIndex); }
 
-   inline ::count erase_all_properties() { return m_propertyptra.erase_all(); }
+   inline ::raw::count erase_all_properties() { return m_propertyptra.erase_all(); }
 
    
    property_ptra & propertyptra() { return m_propertyptra; }
@@ -383,7 +383,7 @@ public:
 
 
    virtual string implode(const ::scoped_string & scopedstrGlue) const;
-   //::count get_count() const;
+   //::raw::count get_count() const;
 
 
    property_set & operator = (const ::payload & payload);

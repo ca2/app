@@ -31,7 +31,7 @@ namespace user
          pointer< pointer_array < line > >            m_plinea;
          strsize                                      m_iSelBeg;
          strsize                                      m_iSelEnd;
-         index                                        m_iSelLine;
+         ::raw::index                                        m_iSelLine;
          class ::time                                 m_timeCaretPeriod;
          //index                                      m_iFormatDefault;
          bool                                         m_bCaretRight;
@@ -52,9 +52,9 @@ namespace user
 
          ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
-         virtual bool get_item_rect(::rectangle_i32 * prectangle, index i);
+         virtual bool get_item_rect(::rectangle_i32 * prectangle, ::raw::index i);
 
-         virtual bool get_element_rectangle(::rectangle_i32 * prectangle, index i, enum_element eelement);
+         virtual bool get_element_rectangle(::rectangle_i32 * prectangle, ::raw::index i, enum_element eelement);
 
 
          ::user::drawable * get_drawable() override;
@@ -71,14 +71,14 @@ namespace user
          // void assert_ok() const override;
          // void dump(dump_context & dumpcontext) const override;
 
-         virtual bool _001GetItemText(string & str, index iItem);
+         virtual bool _001GetItemText(string & str, ::raw::index iItem);
          virtual bool _001IsPointInside(const ::point_i32 & point) override;
          virtual void update_data(bool bSaveAndValidate) override;
          virtual void update_placement() override;
 
 
          virtual void on_selection_change(format * pformat);
-         virtual void get_selection_intersection_format(format * pformat, index iSelBeg, index iSelEnd);
+         virtual void get_selection_intersection_format(format * pformat, ::raw::index iSelBeg, ::raw::index iSelEnd);
 
          virtual void _001SetSelFontFormat(const format * pformat, const e_attribute & eattribute);
          virtual void _001InsertText(const ::string & psz, format * pformatParam = nullptr);
@@ -186,14 +186,14 @@ namespace user
          virtual strsize get_sel_beg();
          virtual strsize get_sel_end();
 
-         virtual index SelToLine(strsize i);
-         virtual strsize LineColumnToSel(index iLine, strsize iColumn);
+         virtual ::raw::index SelToLine(strsize i);
+         virtual strsize LineColumnToSel(::raw::index iLine, strsize iColumn);
 
 
          bool has_text_input() override;
 
          virtual strsize _hit_test(point_f64 point);
-         virtual strsize _hit_test_line_x(index iLine, double x);
+         virtual strsize _hit_test_line_x(::raw::index iLine, double x);
 
 
       };

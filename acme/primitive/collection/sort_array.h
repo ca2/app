@@ -109,7 +109,7 @@
 //
 //
 //   template < typename ARRAY >
-//   ::count add_array(const ARRAY & a)
+//   ::raw::count add_array(const ARRAY & a)
 //   {
 //
 //      auto c = m_parray->add(a);
@@ -149,7 +149,7 @@
 //   }
 //
 //
-//   bool find(ARG_TYPE t, index & iIndex, const ::atom & atom) const;
+//   bool find(ARG_TYPE t, ::raw::index & iIndex, const ::atom & atom) const;
 //
 //   bool contains(ARG_TYPE t, const ::atom & atom) const;
 //
@@ -157,21 +157,21 @@
 //
 //   void sort(const ::atom & atom);
 //
-//   void set_size(::count ca);
+//   void set_size(::raw::count ca);
 //
-//   ::count get_count() const { return m_parray->get_count(); }
+//   ::raw::count get_count() const { return m_parray->get_count(); }
 //
-//   ::index get_upper_bound() const { return m_parray->get_upper_bound(); }
+//   ::raw::index get_upper_bound() const { return m_parray->get_upper_bound(); }
 //
-//   ::index get_size() const { return m_parray->get_size(); }
+//   ::raw::index get_size() const { return m_parray->get_size(); }
 //
-//   const TYPE & element_at (::index i, const ::atom & atom) const;
+//   const TYPE & element_at (::raw::index i, const ::atom & atom) const;
 //
-//   TYPE & element_at (::index i, const ::atom & atom);
+//   TYPE & element_at (::raw::index i, const ::atom & atom);
 //
-//   const TYPE & operator [] (::index i) const;
+//   const TYPE & operator [] (::raw::index i) const;
 //
-//   TYPE & operator [] (::index i);
+//   TYPE & operator [] (::raw::index i);
 //
 //   //bool operator == (const sort_array & a) const;
 //
@@ -211,7 +211,7 @@
 //
 //template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
 //bool sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-//find(ARG_TYPE t, index & iIndex, const ::atom & atom) const
+//find(ARG_TYPE t, ::raw::index & iIndex, const ::atom & atom) const
 //{
 //
 //   if(m_parray->is_empty())
@@ -276,7 +276,7 @@
 //
 //template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
 //void sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-//set_size(::count n)
+//set_size(::raw::count n)
 //{
 //
 //   m_parray->set_size(n);
@@ -288,7 +288,7 @@
 //
 //template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
 //TYPE & sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-//element_at(::index i, const ::atom & atom)
+//element_at(::raw::index i, const ::atom & atom)
 //{
 //
 //   return m_parray->element_at(get_sort(atom)->m_pindexa->element_at(i));
@@ -298,7 +298,7 @@
 //
 //template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
 //const TYPE & sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-//element_at(::index i, const ::atom & atom) const
+//element_at(::raw::index i, const ::atom & atom) const
 //{
 //
 //   return ((sort_array *) this)->element_at(i, atom);
@@ -308,7 +308,7 @@
 //
 //template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
 //TYPE & sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-//operator [](::index i)
+//operator [](::raw::index i)
 //{
 //
 //   i = ::is_set(m_psortdata) && m_psortdata->m_bSorted ? m_psortdata->m_pindexa->element_at(i) : i;
@@ -320,7 +320,7 @@
 //
 //template < class TYPE, class ARG_TYPE, class BASE_ARRAY >
 //const TYPE & sort_array < TYPE, ARG_TYPE, BASE_ARRAY >::
-//operator [](::index i) const
+//operator [](::raw::index i) const
 //{
 //
 //   return ((sort_array *) this)->operator [](i);
@@ -342,7 +342,7 @@
 ////
 ////   index_array & ia2 = ((sort_array *) &a)->defer_update();
 ////
-////   for(index i = 0; i < get_size(); i++)
+////   for(::raw::index i = 0; i < get_size(); i++)
 ////   {
 ////      if(DEFAULT_COMPARE(((sort_array *) this)->BASE_ARRAY::element_at(ia1[i]), ((sort_array *) &a)->BASE_ARRAY::element_at(ia2[i])) != 0)
 ////         return false;
@@ -374,7 +374,7 @@
 //#define spsa(T) sort_array < pointer < T >, const pointer < T > &, pointer_array < T > >
 //
 //
-//using sort_int_ptr_array = sort_array < ::index  > ;
+//using sort_int_ptr_array = sort_array < ::raw::index  > ;
 //
 //
 //

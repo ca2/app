@@ -73,7 +73,7 @@
 //      ::pointer<::matter>is_running(ARRAY & array, const ::scoped_string & scopedstrTag)
 //      {
 //
-//         for (::index i = 0; i < array.get_size(); i++)
+//         for (::raw::index i = 0; i < array.get_size(); i++)
 //         {
 //
 //            ::pointer<::matter>pparticle;
@@ -147,7 +147,7 @@ class synchronous_lock;
 //   thread_ptra(thread_ptra && ptra) :pointer_array < thread >(::transfer(ptra)) {}
 //   virtual ~thread_ptra();
 //
-//   virtual ::count get_count_except_current_thread();
+//   virtual ::raw::count get_count_except_current_thread();
 //   virtual void finish();
 //   virtual void wait(const duration & duration, ::synchronous_lock & synchronouslock);
 //

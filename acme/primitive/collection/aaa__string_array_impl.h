@@ -6,7 +6,7 @@
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//Type string_array_base < Type, RawType, t_etypeContainer >::safe_at(::index nIndex, Type tDefault) const
+//Type string_array_base < Type, RawType, t_etypeContainer >::safe_at(::raw::index nIndex, Type tDefault) const
 //{
 //
 //   if (nIndex < 0 || nIndex >= this->get_size())
@@ -21,7 +21,7 @@
 //}
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//Type string_array_base < Type, RawType, t_etypeContainer >::safe_at(::index nIndex, Type tDefault)
+//Type string_array_base < Type, RawType, t_etypeContainer >::safe_at(::raw::index nIndex, Type tDefault)
 //{
 //   if (nIndex < 0 || nIndex >= this->get_size())
 //      return tDefault;
@@ -32,7 +32,7 @@
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//Type string_array_base < Type, RawType, t_etypeContainer >::get_at(::index nIndex) const
+//Type string_array_base < Type, RawType, t_etypeContainer >::get_at(::raw::index nIndex) const
 //{
 //   if (nIndex < 0 || nIndex >= this->m_nSize)
 //      throw ::exception(error_index_out_of_bounds);
@@ -40,7 +40,7 @@
 //}
 //
 ////template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-////void string_array_base < Type, RawType, t_etypeContainer >::set_at(::index nIndex, const char * newElement)
+////void string_array_base < Type, RawType, t_etypeContainer >::set_at(::raw::index nIndex, const char * newElement)
 ////{
 ////   if (nIndex < 0 || nIndex >= this->m_nSize)
 ////      throw ::exception(error_index_out_of_bounds);
@@ -49,7 +49,7 @@
 ////
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//void string_array_base < Type, RawType, t_etypeContainer >::set_at(::index nIndex, const Type & newElement)
+//void string_array_base < Type, RawType, t_etypeContainer >::set_at(::raw::index nIndex, const Type & newElement)
 //{
 //   if (nIndex < 0 || nIndex >= this->m_nSize)
 //      throw ::exception(error_index_out_of_bounds);
@@ -58,7 +58,7 @@
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//Type & string_array_base < Type, RawType, t_etypeContainer >::element_at(::index nIndex)
+//Type & string_array_base < Type, RawType, t_etypeContainer >::element_at(::raw::index nIndex)
 //{
 //   if (nIndex < 0 || nIndex >= this->m_nSize)
 //      throw ::exception(error_index_out_of_bounds);
@@ -67,7 +67,7 @@
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//const Type & string_array_base < Type, RawType, t_etypeContainer >::element_at(::index nIndex) const
+//const Type & string_array_base < Type, RawType, t_etypeContainer >::element_at(::raw::index nIndex) const
 //{
 //   if (nIndex < 0 || nIndex >= this->m_nSize)
 //      throw ::exception(error_index_out_of_bounds);
@@ -78,7 +78,7 @@
 //
 ////
 ////template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-////::index string_array_base < Type, RawType, t_etypeContainer >::add(const property & prop)
+////::raw::index string_array_base < Type, RawType, t_etypeContainer >::add(const property & prop)
 ////{
 ////
 ////   return add(prop.get_value());
@@ -127,7 +127,7 @@
 ////
 ////   strsize iTotalLength = 0;
 ////
-////   ::index i;
+////   ::raw::index i;
 ////
 ////   for (i = 0; i < this->m_nSize; i++)
 ////   {
@@ -197,7 +197,7 @@
 //
 ////template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 ////template < typename TYPE >
-////inline ::index string_array_base < Type, RawType, t_etypeContainer > ::add(const TYPE & type)
+////inline ::raw::index string_array_base < Type, RawType, t_etypeContainer > ::add(const TYPE & type)
 ////{
 ////
 ////    return ::papaya::array::add(*this, type);
@@ -210,12 +210,12 @@
 //{
 //   index_array stackLowerBound;
 //   index_array stackUpperBound;
-//   ::index iLowerBound;
-//   ::index iUpperBound;
-//   ::index iLPos,iUPos,iMPos;
+//   ::raw::index iLowerBound;
+//   ::raw::index iUpperBound;
+//   ::raw::index iLPos,iUPos,iMPos;
 //   Type t;
 //   ia.erase_all();
-//   ::papaya::array::append_sequence(ia,(::index)0,(::index)get_upper_bound());
+//   ::papaya::array::append_sequence(ia,(::raw::index)0,(::raw::index)get_upper_bound());
 //   if(this->get_size() >= 2)
 //   {
 //      stackLowerBound.push(0);
@@ -237,7 +237,7 @@
 //                  iUPos--;
 //               else
 //               {
-//                  ::index i = ia[iMPos];
+//                  ::raw::index i = ia[iMPos];
 //                  ia[iMPos] = ia[iUPos];
 //                  ia[iUPos] = i;
 //                  break;
@@ -255,7 +255,7 @@
 //                  iLPos++;
 //               else
 //               {
-//                  ::index i = ia[iLPos];
+//                  ::raw::index i = ia[iLPos];
 //                  ia[iLPos] = ia[iMPos];
 //                  ia[iMPos] = i;
 //                  break;
@@ -287,7 +287,7 @@
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//inline void string_array_base < Type, RawType, t_etypeContainer > ::debug_output(::index iStart, ::count inCountLastOut)
+//inline void string_array_base < Type, RawType, t_etypeContainer > ::debug_output(::raw::index iStart, ::raw::count inCountLastOut)
 //{
 //
 //   ::information(implode(STR_NEWLINE, iStart, inCountLastOut));
@@ -299,7 +299,7 @@
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::index string_array_base < Type, RawType, t_etypeContainer > ::suffix_find_first_ci(const Type& pcszTopic, ::index iFind, ::index iLast) const
+//::raw::index string_array_base < Type, RawType, t_etypeContainer > ::suffix_find_first_ci(const Type& pcszTopic, ::raw::index iFind, ::raw::index iLast) const
 //{
 //
 //   if (this->prepare_first_last(iFind, iLast))
@@ -328,7 +328,7 @@
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::index string_array_base < Type, RawType, t_etypeContainer > ::suffix_find_first(const Type& pcszTopic, ::index iFind, ::index iLast) const
+//::raw::index string_array_base < Type, RawType, t_etypeContainer > ::suffix_find_first(const Type& pcszTopic, ::raw::index iFind, ::raw::index iLast) const
 //{
 //
 //   if (this->prepare_first_last(iFind, iLast))
@@ -356,7 +356,7 @@
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_suffixed(const Type & strSuffix, ::index iFind, ::index iLast) const
+//::raw::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_suffixed(const Type & strSuffix, ::raw::index iFind, ::raw::index iLast) const
 //{
 //
 //   for (; iFind < iLast; iFind++)
@@ -377,7 +377,7 @@
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_suffixed_ci(const Type & strSuffix, ::index iFind, ::index iLast) const
+//::raw::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_suffixed_ci(const Type & strSuffix, ::raw::index iFind, ::raw::index iLast) const
 //{
 //
 //   for (; iFind < iLast; iFind++)

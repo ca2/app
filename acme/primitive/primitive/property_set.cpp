@@ -29,7 +29,7 @@ property_set::property_set(::std::initializer_list < ::payload > list)
 
    ::atom atom;
 
-   index i = 0;
+   ::raw::index i = 0;
 
    for (auto & item : list)
    {
@@ -106,12 +106,12 @@ property_set::~property_set()
 //}
 
 
-bool property_set::is_set_empty(::count countMinimum) const
+bool property_set::is_set_empty(::raw::count countMinimum) const
 {
    return property_count() < countMinimum;
 }
 
-bool property_set::has_properties(::count countMinimum) const
+bool property_set::has_properties(::raw::count countMinimum) const
 {
    return property_count() >= countMinimum;
 }
@@ -199,9 +199,9 @@ property * property_set::find_payload(const ::scoped_string & scopedstr) const
 }
 
 
-bool property_set::contains_value_ci(const ::payload & payload, ::count countMin, ::count countMax) const
+bool property_set::contains_value_ci(const ::payload & payload, ::raw::count countMin, ::raw::count countMax) const
 {
-   ::count count = 0;
+   ::raw::count count = 0;
    while ((count < countMin || (countMax >= 0 && count <= countMax)) && find_value_ci(payload) != nullptr)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
@@ -210,27 +210,27 @@ bool property_set::contains_value_ci(const ::payload & payload, ::count countMin
 
 
 
-bool property_set::contains_value_ci(const ::scoped_string & scopedstr, ::count countMin, ::count countMax) const
+bool property_set::contains_value_ci(const ::scoped_string & scopedstr, ::raw::count countMin, ::raw::count countMax) const
 {
-   ::count count = 0;
+   ::raw::count count = 0;
    while ((count < countMin || (countMax >= 0 && count <= countMax)) && find_value_ci(scopedstr) != nullptr)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
 
 
-bool property_set::contains_payload(const ::payload & payload, ::count countMin, ::count countMax) const
+bool property_set::contains_payload(const ::payload & payload, ::raw::count countMin, ::raw::count countMax) const
 {
-   ::count count = 0;
+   ::raw::count count = 0;
    while ((count < countMin || (countMax >= 0 && count <= countMax)) && (find_payload(payload)) != nullptr)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
 
 
-bool property_set::contains_payload(const ::scoped_string & scopedstr, ::count countMin, ::count countMax) const
+bool property_set::contains_payload(const ::scoped_string & scopedstr, ::raw::count countMin, ::raw::count countMax) const
 {
-   ::count count = 0;
+   ::raw::count count = 0;
    while ((count < countMin || (countMax >= 0 && count <= countMax)) && find_payload(scopedstr) != nullptr)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
@@ -305,10 +305,10 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 }
 
 
-::count property_set::erase_value_ci(const ::payload & payload, ::count countMin, ::count countMax)
+::raw::count property_set::erase_value_ci(const ::payload & payload, ::raw::count countMin, ::raw::count countMax)
 {
 
-   ::count count = 0;
+   ::raw::count count = 0;
 
    if (contains_value_ci(payload, countMin, countMax))
    {
@@ -327,10 +327,10 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 }
 
 
-::count property_set::erase_value_ci(const ::scoped_string & scopedstr, ::count countMin, ::count countMax)
+::raw::count property_set::erase_value_ci(const ::scoped_string & scopedstr, ::raw::count countMin, ::raw::count countMax)
 {
 
-   ::count count = 0;
+   ::raw::count count = 0;
 
    if (contains_value_ci(scopedstr, countMin, countMax))
    {
@@ -349,10 +349,10 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 }
 
 
-::count property_set::erase_value(const ::payload & payload, ::count countMin, ::count countMax)
+::raw::count property_set::erase_value(const ::payload & payload, ::raw::count countMin, ::raw::count countMax)
 {
 
-   ::count count = 0;
+   ::raw::count count = 0;
 
    if (contains_payload(payload, countMin, countMax))
    {
@@ -371,10 +371,10 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 }
 
 
-::count property_set::erase_value(const ::scoped_string & scopedstr, ::count countMin, ::count countMax)
+::raw::count property_set::erase_value(const ::scoped_string & scopedstr, ::raw::count countMin, ::raw::count countMax)
 {
 
-   ::count count = 0;
+   ::raw::count count = 0;
 
    if (contains_payload(scopedstr, countMin, countMax))
    {
@@ -393,12 +393,12 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 }
 
 
-::count property_set::unset(const atom & idName)
+::raw::count property_set::unset(const atom & idName)
 {
 
-   ::count c = 0;
+   ::raw::count c = 0;
 
-   ::index iFind = 0;
+   ::raw::index iFind = 0;
 
    while (true)
    {
@@ -518,7 +518,7 @@ void property_set::_008ParseCommandArguments(string_array & straArguments, ::pay
 void property_set::_008AddArgumentPairs(::string_array & straArguments)
 {
 
-   for (::index i = 0; i < straArguments.get_size() - 1; i++)
+   for (::raw::index i = 0; i < straArguments.get_size() - 1; i++)
    {
 
       string strThisArgument = straArguments[i];
@@ -1290,7 +1290,7 @@ string property_set::_001Replace(const ::string & str) const
 }
 
 
-::count property_set::erase_by_name(const atom & idName)
+::raw::count property_set::erase_by_name(const atom & idName)
 {
 
    return unset(idName);
@@ -1298,10 +1298,10 @@ string property_set::_001Replace(const ::string & str) const
 }
 
 
-::count property_set::erase_by_name(string_array & stra)
+::raw::count property_set::erase_by_name(string_array & stra)
 {
 
-   ::count count = 0;
+   ::raw::count count = 0;
 
    for (i32 i = 0; i < stra.get_count(); i++)
    {
@@ -1461,7 +1461,7 @@ property_set::property_set(property_set && set) :
 //}
 
 
-property & property_set::at(index iIndex)
+property & property_set::at(::raw::index iIndex)
 {
 
    return operator[](iIndex);
@@ -1469,7 +1469,7 @@ property & property_set::at(index iIndex)
 }
 
 
-::payload property_set::at(index iIndex) const
+::payload property_set::at(::raw::index iIndex) const
 {
 
    return operator[](iIndex);
@@ -1601,7 +1601,7 @@ property_set & property_set::merge(const property_set & set)
                   else
                   {
 
-                     index i = 0;
+                     ::raw::index i = 0;
 
                      while (true)
                      {
@@ -1918,7 +1918,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 //index stable_property_set::find(atom atom)
 //{
 //
-//   for (index i = 0; i < m_propertyptra.get_size(); i++)
+//   for (::raw::index i = 0; i < m_propertyptra.get_size(); i++)
 //   {
 //
 //      if (m_propertyptra[i]->m_atom == atom)
@@ -2300,7 +2300,7 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 }
 
 
-::index property_set::index_of(const ::atom & atom, ::index i) const
+::raw::index property_set::index_of(const ::atom & atom, ::raw::index i) const
 {
 
    for (; i < m_propertyptra.get_count(); i++)
@@ -2320,7 +2320,7 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 }
 
 
-::property * property_set::find(const ::atom & atom, ::index iStart) const
+::property * property_set::find(const ::atom & atom, ::raw::index iStart) const
 {
 
    auto p = m_propertyptra.begin() + iStart;
@@ -2342,7 +2342,7 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 }
 
 
-property & property_set::get(const ::atom & atom, ::index iStart)
+property & property_set::get(const ::atom & atom, ::raw::index iStart)
 {
 
    auto pproperty = find(atom, iStart);

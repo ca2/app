@@ -1208,7 +1208,7 @@ pacmedirectory->system() / "user" / "databin.bin";
    //
    //      out.set(0);
    //
-   //      ::count i = RSA_private_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
+   //      ::raw::count i = RSA_private_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
    //
    //      if (i < 0 || i >(1024 * 1024))
    //      {
@@ -1366,7 +1366,7 @@ pacmedirectory->system() / "user" / "databin.bin";
    //
    //      out.set(0);
    //
-   //      ::count i = RSA_public_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
+   //      ::raw::count i = RSA_public_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
    //
    //      if (i < 0 || i >(1024 * 1024))
    //      {
@@ -1566,7 +1566,7 @@ pacmedirectory->system() / "user" / "databin.bin";
          string strEnd = "-----END CERTIFICATE-----";
          string strCertificate;
          strsize iEndLen = strEnd.length();
-         ::count iCount = 0;
+         ::raw::count iCount = 0;
          while ((iFind = strOthers.find("-----BEGIN CERTIFICATE-----", iStart)) >= 0)
          {
             strsize iEnd = strOthers(pFind).find(strEnd);

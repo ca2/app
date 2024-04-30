@@ -67,7 +67,7 @@ namespace colorertake5
 
       /** Total number of declared regions
       */
-      virtual ::count getRegionCount() = 0;
+      virtual ::raw::count getRegionCount() = 0;
       /** Returns region by internal atom
       */
       virtual class region *getRegion(i32 atom) = 0;

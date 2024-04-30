@@ -20,7 +20,7 @@ namespace filemanager
       string_array                        m_straOpenWith;
       bool                                m_bFileSize;
       bool                                m_bShow;
-      index                               m_iSizeSubItem;
+      ::raw::index                               m_iSizeSubItem;
       class ::time                          m_timeLastFileSizeGet;
 
 
@@ -116,7 +116,7 @@ namespace filemanager
       bool add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName);
       virtual void browse_sync(const ::action_context & action_context) override;
 
-      ::image_list * GetActionButtonImageList(index i);
+      ::image_list * GetActionButtonImageList(::raw::index i);
 
       //void GetSelected(::file::item_array & itema);
 
@@ -138,7 +138,7 @@ namespace filemanager
       //bool _001CreateImageListStep();
       void _001GetSubItemImage(::user::mesh_subitem * psubitem) override;
       void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
-      virtual count _001GetItemCount() override;
+      virtual ::raw::count _001GetItemCount() override;
       void _017Browse(const ::string & pcsz, const ::action_context & action_context);
 
       void _017UpdateList(const ::string & pcsz, const ::action_context & action_context);
@@ -154,8 +154,8 @@ namespace filemanager
 
 
 
-      virtual bool query_drop(index iDisplayDrop, index iDisplayDrag) override;
-      virtual bool do_drop(index iDisplayDrop, index iDisplayDrag) override;
+      virtual bool query_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag) override;
+      virtual bool do_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag) override;
 
 
    };

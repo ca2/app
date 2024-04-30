@@ -957,7 +957,7 @@ return g_pdraw2dcairo;
 //      if (pdoc->load(strSystemFonts))
 //      {
 //
-//         ::index iFamilyPos = 0;
+//         ::raw::index iFamilyPos = 0;
 //
 //         while (auto pfamily = pdoc->root()->get_child("family", iFamilyPos))
 //         {
@@ -974,11 +974,11 @@ return g_pdraw2dcairo;
 //            if (pfamily->get_name() == "family")
 //            {
 //
-//               ::index iNamesetPos = 0;
+//               ::raw::index iNamesetPos = 0;
 //
 //               auto pnameset = pfamily->get_child("nameset", iNamesetPos);
 //
-//               ::index iFilesetPos = 0;
+//               ::raw::index iFilesetPos = 0;
 //
 //               auto pfileset = pfamily->get_child("fileset", iFilesetPos);
 //
@@ -988,11 +988,11 @@ return g_pdraw2dcairo;
 //                  if (pnameset->get_children_count() >= 1 && pfileset->get_children_count() >= 1)
 //                  {
 //
-//                     ::index iNamePos = 0;
+//                     ::raw::index iNamePos = 0;
 //
 //                     auto pfirstname = pnameset->get_child("name", iNamePos);
 //
-//                     ::index iFilePos = 0;
+//                     ::raw::index iFilePos = 0;
 //
 //                     auto pfirstfile = pfileset->get_child("file", iFilePos);
 //

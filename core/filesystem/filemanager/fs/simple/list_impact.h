@@ -90,9 +90,9 @@ namespace filemanager
             public:
 
 
-               ::index      m_iTopIndex;
-               ::count      m_iDisplayItemCount;
-               ::index      m_iStep;
+               ::raw::index      m_iTopIndex;
+               ::raw::count      m_iDisplayItemCount;
+               ::raw::index      m_iStep;
                bool                 m_bActive;
 
 
@@ -106,7 +106,7 @@ namespace filemanager
             bool                                            m_bKickActive;
 
             ::pointer<::image_list>                          m_pimagelist;
-            index                                   m_iParentFolder;
+            ::raw::index                                   m_iParentFolder;
             ::pointer<::filemanager::fs::simple::impact>     m_pserver;
 
 
@@ -141,12 +141,12 @@ namespace filemanager
             void PostFillTask(string & strFile, uptr uiTimer);
 
             void _001OnSort() override;
-            bool GetSongPath(string & str, index iItem);
+            bool GetSongPath(string & str, ::raw::index iItem);
 
             void _001GetSubItemImage(::user::mesh_subitem * psubitem) override;
             void on_insert_columns() override;
             void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
-            count _001GetItemCount() override;
+            ::raw::count _001GetItemCount() override;
             void _001SearchGetSubItemText(::user::mesh_subitem * psubitem) override;
 
             void handle(::topic * ptopic, ::context * pcontext) override;

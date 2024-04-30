@@ -35,7 +35,7 @@ namespace android
 
       int iThreadCount = 1; // for android
 
-      for (index i = 0; i < iThreadCount; i++)
+      for (::raw::index i = 0; i < iThreadCount; i++)
       {
 
          m_threadaGetImage.add(::fork(get_app(),
@@ -213,7 +213,7 @@ namespace android
 //                        if (m_straThemeableIconName.get_count() > 0)
 //                        {
 //
-//                           index i = m_straThemeableIconName.predicate_find_first(
+//                           ::raw::index i = m_straThemeableIconName.predicate_find_first(
 //                              [=](auto & str)
 //                           {
 //                              return string_ends_ci(imagekey.m_strPath, str);

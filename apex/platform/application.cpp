@@ -1265,7 +1265,7 @@ namespace apex
 
       ::pointer<string_to_string>pmap;
 
-      ::index iFind = 0;
+      ::raw::index iFind = 0;
 
       if ((iFind = strId.find_index(':')) <= 0)
       {
@@ -2776,7 +2776,7 @@ namespace apex
       straSchema.insert_at(0, "_std");
 
 
-      for (index i = 0; i < straLocale.get_count() && i < straSchema.get_count(); i++)
+      for (::raw::index i = 0; i < straLocale.get_count() && i < straSchema.get_count(); i++)
       {
 
          string strLocale = straLocale[i];
@@ -2792,24 +2792,24 @@ namespace apex
       //psystem->install().add_app_install(strId, strBuild, strSystemLocale, strSystemSchema);
       //psystem->install().add_app_install(strId, strBuild, m_strLocale, m_strSchema);
 
-      //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+      //for (::raw::index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
       //{
 
       //   psystem->install().add_app_install(strId, strBuild, straLocale[iLocale], m_strSchema);
 
       //}
 
-      //for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+      //for (::raw::index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       //{
 
       //   psystem->install().add_app_install(strId, strBuild, m_strLocale, straSchema[iSchema]);
 
       //}
 
-      //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+      //for (::raw::index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
       //{
 
-      //   for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+      //   for (::raw::index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       //   {
 
       //      psystem->install().add_app_install(strId, strBuild, straLocale[iLocale], straSchema[iSchema]);
@@ -2821,7 +2821,7 @@ namespace apex
       //psystem->install().add_app_install(strId, strBuild, strSystemLocale, "");
       //psystem->install().add_app_install(strId, strBuild, m_strLocale, "");
 
-      //for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+      //for (::raw::index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
       //{
 
       //   psystem->install().add_app_install(strId, strBuild, straLocale[iLocale], "");
@@ -2831,7 +2831,7 @@ namespace apex
       //psystem->install().add_app_install(strId, strBuild, "", m_strSchema);
       //psystem->install().add_app_install(strId, strBuild, "", strSystemSchema);
 
-      //for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+      //for (::raw::index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       //{
 
       //   psystem->install().add_app_install(strId, strBuild, "", straSchema[iSchema]);
@@ -3779,7 +3779,7 @@ namespace apex
             {
 
                // Should in some way activate the other instance
-               information() << "A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same atom.<br><br>Exiting this new instance.";
+               information() << "A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::raw::count with the same atom.<br><br>Exiting this new instance.";
 
                on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_local_id, get_local_mutex_id());
                //if(!)
@@ -3970,7 +3970,7 @@ namespace apex
 
 #ifdef __DEBUG
 
-         for (index i = 0; i < TEST_DATA_REMOTE; i++)
+         for (::raw::index i = 0; i < TEST_DATA_REMOTE; i++)
          {
 
             string str1 = "please_help_me";
@@ -4467,7 +4467,7 @@ namespace apex
 
 
 
-   bool application::platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::request * prequest)
+   bool application::platform_open_by_file_extension(::raw::index iEdge, const ::string & pszPathName, ::request * prequest)
    {
 
       return false;
@@ -4475,7 +4475,7 @@ namespace apex
    }
 
 
-   bool application::platform_open_by_file_extension(index iEdge, ::request * prequest)
+   bool application::platform_open_by_file_extension(::raw::index iEdge, ::request * prequest)
    {
 
       return false;
@@ -6502,9 +6502,9 @@ namespace apex
 
       //update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_atomLocale, plocaleschema->m_atomSchema);
 
-      ::count iCount = plocaleschema->m_idaLocale.get_count();
+      ::raw::count iCount = plocaleschema->m_idaLocale.get_count();
 
-      for (index i = 0; i < iCount; i++)
+      for (::raw::index i = 0; i < iCount; i++)
       {
 
          if (plocaleschema->m_idaLocale[i] == "std" && plocaleschema->m_idaSchema[i] == "std" && bIgnoreStdStd)
@@ -6836,7 +6836,7 @@ namespace apex
    //}
 
 
-   ::pointer<::progress::real>application::show_progress(::user::interaction * puiParent, const ::string & strTitle, ::count iProgressCount)
+   ::pointer<::progress::real>application::show_progress(::user::interaction * puiParent, const ::string & strTitle, ::raw::count iProgressCount)
    {
 
       throw ::exception(todo);
@@ -7540,10 +7540,10 @@ namespace apex
    /*
    bool application::hex_to_memory(memory & memory, const ::string & pszHex)
    {
-   ::count len = strlen(pszHex);
-   ::count count = (len + 1) / 2;
+   ::raw::count len = strlen(pszHex);
+   ::raw::count count = (len + 1) / 2;
    memory.set_size(count);
-   index i = 0;
+   ::raw::index i = 0;
    ::u8 b;
    while(*pszHex != '\0')
    {
@@ -7590,10 +7590,10 @@ namespace apex
 
    void application::memory_to_hex(string & strHex, memory & memory)
    {
-   ::count count = memory.size();
+   ::raw::count count = memory.size();
    char * psz = strHex.get_buffer(count * 2);
 
-   for(index i = 0; i < count; i++)
+   for(::raw::index i = 0; i < count; i++)
    {
    *psz++ = ::hex::lower_from((::u8) ((memory.get_data()[i] >> 4) & 0xf));
 

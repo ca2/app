@@ -131,7 +131,7 @@ namespace nano2d
 
       ::rectangle_f32 text(float x, float y, const ::scoped_string & scopedstr) override;
       int text_glyph_positions(float x, float y, const ::scoped_string & scopedstr, ::nano2d::glyphPosition * positions, int maxPositions) override;
-      ::count character_metric(::f64_array& daLeft, ::f64_array& daRight, const ::string& scopedstr, strsize iStart = 0, strsize iEnd = -1) override;
+      ::raw::count character_metric(::f64_array& daLeft, ::f64_array& daRight, const ::string& scopedstr, strsize iStart = 0, strsize iEnd = -1) override;
       float text_bounds(float x, float y, const ::scoped_string & scopedstr, ::rectangle_f32 * prectangle) override;
       void text_metrics(float * ascender, float * descender, float * lineh) override;
 

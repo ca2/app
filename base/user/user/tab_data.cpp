@@ -77,7 +77,7 @@ namespace user
    }
 
 
-   ::count tab_data::get_visible_tab_count()
+   ::raw::count tab_data::get_visible_tab_count()
    {
 
       return m_tabpanea.get_visible_count();

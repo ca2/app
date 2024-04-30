@@ -1132,7 +1132,7 @@ namespace user
 
    //   object_spa synchronization;
 
-   //   for (index i = 0; i < spadata.get_count(); i++)
+   //   for (::raw::index i = 0; i < spadata.get_count(); i++)
    //   {
 
    //      synchronization.add(spadata[i].data_mutex());

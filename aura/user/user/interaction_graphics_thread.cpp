@@ -812,7 +812,7 @@ namespace user
 
          m_timeNextFrame = m_timeThisFrame + timeFrame;
 
-         //m_cLost = (::count) (m_iFrameId - m_iLastFrameId - 1);
+         //m_cLost = (::raw::count) (m_iFrameId - m_iLastFrameId - 1);
 
          //m_iLastFrameId = m_iFrameId;
 
@@ -1120,7 +1120,7 @@ namespace user
 
          auto timeNow = ::time::now();
 
-         for (index i = 0; i < m_timeaFrame.get_size();)
+         for (::raw::index i = 0; i < m_timeaFrame.get_size();)
          {
 
             auto timeFrame = m_timeaFrame[i];

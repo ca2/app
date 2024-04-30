@@ -25,7 +25,7 @@ namespace bred
 
 
       virtual void initialize(::particle * pparticle) override;
-      //virtual ::pointer<progress_control>show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::count iProgressCount);
+      //virtual ::pointer<progress_control>show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::raw::count iProgressCount);
 
       virtual ::file::path get_main_weather_file_path(const ::scoped_string & scopedstringAspect);
 

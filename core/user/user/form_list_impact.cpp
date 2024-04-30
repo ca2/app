@@ -332,7 +332,7 @@ namespace user
    }
 
 
-   index form_list_impact::_001GetCurItem()
+   ::raw::index form_list_impact::_001GetCurItem()
    {
 
       if (m_pcontrolEdit.is_set())

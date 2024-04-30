@@ -8,7 +8,7 @@ public:
 
    bool                 m_bStart;
    class ::time           m_timeStart;
-   index                m_iFrame;
+   ::raw::index                m_iFrame;
 
 
    image_dynamic();

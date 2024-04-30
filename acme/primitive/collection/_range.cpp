@@ -20,7 +20,7 @@ namespace test_compilation_some_range_functions
 
       ::index_array m_ia;
 
-      ::std::strong_ordering _001Compare(index iItem1, index iItem2)
+      ::std::strong_ordering _001Compare(::raw::index iItem1, ::raw::index iItem2)
       {
 
          return iItem1 <=> iItem2;

@@ -42,7 +42,7 @@ namespace user
 
       ::pointer<::user::interaction>     m_pcontrolEdit;
 
-      ::count                             m_iClickCount;
+      ::raw::count                             m_iClickCount;
       ::item_pointer                      m_pitemClick;
 
       ::item_pointer                      m_pitemControl;
@@ -59,7 +59,7 @@ namespace user
       //void _000OnMouse(::message::mouse * pmouse) override;
 
 
-      virtual bool _001HitTest_(const ::point_i32 & point, index&iItem, index&iSubItem) override;
+      virtual bool _001HitTest_(const ::point_i32 & point, ::raw::index&iItem, ::raw::index&iSubItem) override;
 
       void control_get_client_rect(::user::interaction * pinteraction, ::rectangle_i32 & rectangle) override;
 
@@ -79,8 +79,8 @@ namespace user
       // void _001UpdateColumns();
       ::user::interaction * _001GetEditControl();
       void _001SetEditControl(::user::interaction * pinteraction);
-      virtual void _001PlaceControl(::user::interaction * pinteraction, index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false);
-      virtual ::user::interaction * _001GetControl(index iItem, index iSubItem);
+      virtual void _001PlaceControl(::user::interaction * pinteraction, ::raw::index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false);
+      virtual ::user::interaction * _001GetControl(::raw::index iItem, ::raw::index iSubItem);
       bool on_click(::item * pitem) override;
       void _001OnTimer(::timer * ptimer) override;
 
@@ -106,7 +106,7 @@ namespace user
 
       virtual bool _001OnControlKillFocus(::user::interaction * pinteraction) override;
 
-      virtual bool _001OnSetItemText(::user::interaction * pinteraction,index iItem,index iSubItem);
+      virtual bool _001OnSetItemText(::user::interaction * pinteraction, ::raw::index iItem, ::raw::index iSubItem);
 
 
    };

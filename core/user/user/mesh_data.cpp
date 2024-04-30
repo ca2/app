@@ -19,7 +19,7 @@ namespace user
    }
 
 
-   count mesh_data::_001GetItemCount()
+   ::raw::count mesh_data::_001GetItemCount()
    {
       
       return 0;
@@ -27,7 +27,7 @@ namespace user
    }
    
    
-   count mesh_data::_001GetColumnCount(mesh * pmesh)
+   ::raw::count mesh_data::_001GetColumnCount(mesh * pmesh)
    {
       
       return 0;
@@ -75,12 +75,12 @@ namespace user
    }
 
 
-   ::count mesh_data::_001GetGroupCount()
+   ::raw::count mesh_data::_001GetGroupCount()
    {
       return -1;
    }
 
-   ::count mesh_data::_001GetGroupMetaItemCount(index iGroup)
+   ::raw::count mesh_data::_001GetGroupMetaItemCount(::raw::index iGroup)
    {
       __UNREFERENCED_PARAMETER(iGroup);
       return 0;

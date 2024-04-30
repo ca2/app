@@ -583,7 +583,7 @@ namespace user
          /*         check_box * pcheck = dynamic_cast < check_box * > (pinteraction);
                   if(pcheck != nullptr)
                   {
-                     index i = 0;
+                     ::raw::index i = 0;
                      if(ia.BaseSortFind(pinteraction->m_ddx.m_pdbflags->m_value, i))
                      {
                         pcheck->_001SetCheck(e_check_checked, false);

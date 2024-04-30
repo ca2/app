@@ -16,7 +16,7 @@ namespace database
    public:
 
 
-      index             m_iIndex;
+      ::raw::index             m_iIndex;
       enum_data_type    m_edatatype;
       string            m_strName;
       string            m_strDisplayMame;

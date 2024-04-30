@@ -83,9 +83,9 @@ namespace user
       virtual void _001SetText(const ::string & str, const ::action_context & action_context) override;
 
 
-      virtual bool _001GetListText(index iSel, string & str) const;
-      virtual index _001FindListText(const ::string & str) const;
-      virtual count _001GetListCount() const;
+      virtual bool _001GetListText(::raw::index iSel, string & str) const;
+      virtual ::raw::index _001FindListText(const ::string & str) const;
+      virtual ::raw::count _001GetListCount() const;
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
 
@@ -138,22 +138,22 @@ namespace user
 
       //virtual bool create_interaction(::user::interaction * puiParent, const ::atom & atom) override;
 
-      //::count get_count();
-      //virtual ::index current_index();
+      //::raw::count get_count();
+      //virtual ::raw::index current_index();
       void set_current_item(::item * pitem, const ::action_context & actioncontext) override;
 
 
       virtual string get_current_item_string_value();
       virtual void set_current_item_by_data(uptr u, const ::action_context & action_context);
       virtual void set_current_item_by_string_value(const ::string & strValue, const ::action_context & action_context);
-      virtual void set_current_item_by_index(::index iIndex, const ::action_context & action_context);
+      virtual void set_current_item_by_index(::raw::index iIndex, const ::action_context & action_context);
 
 
 //      LCID GetLocale();
   //    LCID SetLocale(LCID nNewLocale);
-      index GetTopIndex();
-      index SetTopIndex(index nIndex);
-      index InitStorage(::count nItems, ::u32 nBytes);
+      ::raw::index GetTopIndex();
+      ::raw::index SetTopIndex(::raw::index nIndex);
+      ::raw::index InitStorage(::raw::count nItems, ::u32 nBytes);
       void SetHorizontalExtent(::u32 nExtent);
       ::u32 GetHorizontalExtent();
       i32 SetDroppedWidth(::u32 nWidth);
@@ -169,18 +169,18 @@ namespace user
       bool SetEditSel(strsize nStartChar, strsize nEndChar);
 
       // for combobox item
-      uptr GetItemData(index nIndex);
-      index SetItemData(index nIndex, uptr dwItemData);
-      void * GetItemDataPtr(index nIndex);
-      index SetItemDataPtr(index nIndex, void * pData);
-      index GetLBText(index nIndex, char * pszText);
+      uptr GetItemData(::raw::index nIndex);
+      ::raw::index SetItemData(::raw::index nIndex, uptr dwItemData);
+      void * GetItemDataPtr(::raw::index nIndex);
+      ::raw::index SetItemDataPtr(::raw::index nIndex, void * pData);
+      ::raw::index GetLBText(::raw::index nIndex, char * pszText);
 
-      void GetLBText(index nIndex, string & rString);
-      strsize GetLBTextLen(index nIndex);
+      void GetLBText(::raw::index nIndex, string & rString);
+      strsize GetLBTextLen(::raw::index nIndex);
 
-      i32 SetItemHeight(index nIndex, ::u32 cyItemHeight);
-      i32 GetItemHeight(index nIndex);
-      index FindStringExact(index nIndexStart, const ::string & pszFind);
+      i32 SetItemHeight(::raw::index nIndex, ::u32 cyItemHeight);
+      i32 GetItemHeight(::raw::index nIndex);
+      ::raw::index FindStringExact(::raw::index nIndexStart, const ::string & pszFind);
 
       i32 SetExtendedUI(bool bExtended = true);
       bool GetExtendedUI();
@@ -193,16 +193,16 @@ namespace user
       void ShowDropDown(bool bShowIt = true);
 
       // manipulating listbox items
-      virtual index add_string(const ::string & pszString, uptr dwItemData = 0);
-      virtual index add_string(const ::string & pszString, const string& strValue);
+      virtual ::raw::index add_string(const ::string & pszString, uptr dwItemData = 0);
+      virtual ::raw::index add_string(const ::string & pszString, const string& strValue);
 
 
 
-      virtual index delete_string(index nIndex);
-      virtual index insert_string(index nIndex, const ::string & pszString);
+      virtual ::raw::index delete_string(::raw::index nIndex);
+      virtual ::raw::index insert_string(::raw::index nIndex, const ::string & pszString);
 
       virtual void reset_content();
-      index Dir(index attr, const ::string & pszWildCard);
+      ::raw::index Dir(::raw::index attr, const ::string & pszWildCard);
 
 
 

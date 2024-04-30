@@ -904,7 +904,7 @@ void context_image::_load_image(::image* pimage, ::pointer<image_frame_array> & 
 //
 //   pimage->pixmap::init(pframea->m_size, nullptr, 0);
 //
-//   //for (index iFrame = 0; iFrame < pframea->get_count(); iFrame++)
+//   //for (::raw::index iFrame = 0; iFrame < pframea->get_count(); iFrame++)
 //   //{
 //
 //   //   auto pframe = pframea->element_at(iFrame);
@@ -987,7 +987,7 @@ void context_image::_load_multi_frame_image(image * pimage, memory & memory)
 
    class ::time timeTotal;
 
-   for (index iFrame = 0; iFrame < pframea->get_count(); iFrame++)
+   for (::raw::index iFrame = 0; iFrame < pframea->get_count(); iFrame++)
    {
 
       auto pframe = pframea->element_at(iFrame);

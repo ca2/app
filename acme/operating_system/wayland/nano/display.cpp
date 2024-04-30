@@ -466,7 +466,7 @@ namespace wayland
 //
 //      bool bHandled = false;
 //
-//      ::index i = 0;
+//      ::raw::index i = 0;
 //
 //      synchronous_lock synchronouslock(this->synchronization());
 //

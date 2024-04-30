@@ -14,7 +14,7 @@ namespace user
    public:
 
 
-      ::index                                    m_iUpdate;
+      ::raw::index                                    m_iUpdate;
       ::pointer<::factory::factory>             m_pfactory;
       map < ::user::enum_control_type, ::pointer<control_style >>m_controlstyle;
       //::pointer<::user::plain_edit_style>   m_pplaineditstyel;
@@ -114,7 +114,7 @@ namespace user
 
       //virtual bool _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, ::user::check_box * pcheckbox) override;
 
-      virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem, ::user::toolbar * ptoolbar) override;
+      virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem, ::user::toolbar * ptoolbar) override;
 
       virtual bool _001DrawSimpleScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pbar) override;
 

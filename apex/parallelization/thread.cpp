@@ -62,7 +62,7 @@ CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h);
 
 #ifdef WINDOWS_DESKTOP
 
-index engine_fileline(DWORD_PTR dwAddress, char* psz, int nCount, u32* pline, u32* pdisplacement = 0);
+::raw::index engine_fileline(DWORD_PTR dwAddress, char* psz, int nCount, u32* pline, u32* pdisplacement = 0);
 
 #endif
 
@@ -1469,7 +1469,7 @@ bool thread::post_quit_message(int nExitCode)
 }
 
 
-//::index thread::task_add(::task * ptask)
+//::raw::index thread::task_add(::task * ptask)
 //{
 //
 //   try
@@ -3676,9 +3676,9 @@ bool thread::peek_message(MESSAGE* pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 ////
 ////      //task_set_finish:
 ////
-////      //   ::count countTask = m_ptaska->get_count();
+////      //   ::raw::count countTask = m_ptaska->get_count();
 ////
-////      //   for (::index iTask = 0; m_ptaska && iTask < countTask; iTask++)
+////      //   for (::raw::index iTask = 0; m_ptaska && iTask < countTask; iTask++)
 ////      //   {
 ////
 ////      //      auto & ptask = m_ptaska->element_at(iTask);
@@ -4160,7 +4160,7 @@ void thread::handle_posted_messages()
 
       auto pmessage = m_messagea.first_pointer();
 
-      ::index iEraseAt = 0;
+      ::raw::index iEraseAt = 0;
 
       if (m_emessageaGetLast.has_element())
       {
@@ -4168,9 +4168,9 @@ void thread::handle_posted_messages()
          if (m_emessageaGetLast.contains(pmessage->m_atom.as_emessage()))
          {
 
-            ::index cIgnoredMessages = 0;
+            ::raw::index cIgnoredMessages = 0;
 
-            for (::index i = 1; i < m_messagea.size();)
+            for (::raw::index i = 1; i < m_messagea.size();)
             {
 
                if (m_messagea[i]->m_atom == pmessage->m_atom)
@@ -4807,7 +4807,7 @@ bool thread::pump_sleep(const class time& timeWait, ::particle* pparticleSynchro
    while (true)
    {
 
-      ::count cMessage = 0;
+      ::raw::count cMessage = 0;
 
       try
       {

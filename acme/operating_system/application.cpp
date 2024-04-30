@@ -97,7 +97,7 @@ void application::open_by_module_path(const ::scoped_string & scopedstr)
    }
 
    
-   ::count application::window_count() const
+   ::raw::count application::window_count() const
    {
 
       throw interface_only();

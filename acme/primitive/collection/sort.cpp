@@ -14,7 +14,7 @@ namespace  sort
    //   void quick_sort(
    //                  ::array<u32, u32> & array,
    //                  i32 fCompare(const index, const index),
-   //                  void __swap(void * pVoidSwapArg, index iA, index iB),
+   //                  void __swap(void * pVoidSwapArg, ::raw::index iA, ::raw::index iB),
    //                  void * pVoidSwapArg);
    //
    //
@@ -24,7 +24,7 @@ namespace  sort
    //   void quick_sort(
    //      ::array<u32, u32> & array,
    //      i32 fCompare(const index, const index),
-   //      void __swap(void * pVoidSwapArg, index iA, index iB),
+   //      void __swap(void * pVoidSwapArg, ::raw::index iA, ::raw::index iB),
    //      void * pVoidSwapArg)
    //   {
    //
@@ -164,7 +164,7 @@ namespace  sort
 //
 //   puiC->set_window_text("03");
 //
-//   ::index iC = -1;
+//   ::raw::index iC = -1;
 //
 //   bool bFind = sorteduia.find(puiC, iC, "name");
 //

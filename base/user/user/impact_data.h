@@ -18,7 +18,7 @@ namespace user
 
 
       ::i64                            m_iId;
-      ::index                          m_iIndex;
+      ::raw::index                          m_iIndex;
       ::pointer<interaction>          m_puserinteraction;
       ::pointer<place_holder>         m_pplaceholder;
       ::pointer<document>             m_pdocument;

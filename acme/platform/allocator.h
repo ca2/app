@@ -249,7 +249,7 @@ namespace allocator
 
 
       template < typename T >
-      inline static T * __allocator_base_new_array(::heap::allocator_base * pallocatorbase, ::count c)
+      inline static T * __allocator_base_new_array(::heap::allocator_base * pallocatorbase, ::raw::count c)
       {
 
          constexpr auto sElement = sizeof(T);
@@ -268,7 +268,7 @@ namespace allocator
 
          auto p = (::u8*)data;
 
-         for (::index i = 0; i < c; i++)
+         for (::raw::index i = 0; i < c; i++)
          {
 
             __on_construct < T >(data, sElement);
@@ -339,7 +339,7 @@ namespace allocator
 
 
       template < typename T >
-      inline static T * __memory_new_array(::heap::enum_memory ememory, ::count c)
+      inline static T * __memory_new_array(::heap::enum_memory ememory, ::raw::count c)
       {
 
          auto pheapmanagement = ::acme::get()->m_pheapmanagement;
@@ -431,7 +431,7 @@ namespace allocator
 
 
       template < typename T >
-      inline static T * __new_array(::count c)
+      inline static T * __new_array(::raw::count c)
       {
 
          auto p = __memory_new_array < T >(

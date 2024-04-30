@@ -12,9 +12,9 @@ public:
 
    virtual bool matches(const ::string & psz, strsize len) = 0;
 
-   virtual ::count match_count(const string& str) = 0;
+   virtual ::raw::count match_count(const string& str) = 0;
 
-   virtual ::count match_count(const ::string & psz, strsize len) = 0;
+   virtual ::raw::count match_count(const ::string & psz, strsize len) = 0;
 
    virtual ::pointer<::strsize_range_array>matches_ranges(const string& str) = 0;
 
@@ -22,9 +22,9 @@ public:
 
    virtual bool replace(string& str, const string& strPrefix, string& strRet) = 0;
 
-   virtual ::count matches(string_array & stra, const ::string & str);
+   virtual ::raw::count matches(string_array & stra, const ::string & str);
 
-   //virtual ::count match(string_array & stra, const string & pcsz, strsize iSize);
+   //virtual ::raw::count match(string_array & stra, const string & pcsz, strsize iSize);
 
    //virtual int matches(const string& str, regex_context* pcreContext = nullptr) = 0;
 

@@ -402,14 +402,14 @@ namespace file
 
 
 template < typename TYPE, enum_type t_etypeContainer >
-inline void implode(const numeric_array < TYPE, t_etypeContainer > & a, string & str, const ::scoped_string & scopedstrSeparator, ::index start, ::count count)
+inline void implode(const numeric_array < TYPE, t_etypeContainer > & a, string & str, const ::scoped_string & scopedstrSeparator, ::raw::index start, ::raw::count count)
 {
    
    if(start < 0)
    {
       start += a.get_size();
    }
-   ::index last;
+   ::raw::index last;
    if(count < 0)
    {
       last = a.get_size() + count;
@@ -421,7 +421,7 @@ inline void implode(const numeric_array < TYPE, t_etypeContainer > & a, string &
    if(start <= last)
    {
 
-      ::index i = start;
+      ::raw::index i = start;
       
       ::copy(str, a.element_at(i));
 
@@ -443,7 +443,7 @@ inline void implode(const numeric_array < TYPE, t_etypeContainer > & a, string &
 
 
 template < typename TYPE, enum_type t_etypeContainer >
-inline string implode(const numeric_array < TYPE, t_etypeContainer > & a,const ::scoped_string & scopedstrSeparator, ::index start, ::count count)
+inline string implode(const numeric_array < TYPE, t_etypeContainer > & a,const ::scoped_string & scopedstrSeparator, ::raw::index start, ::raw::count count)
 {
    
    string str;
@@ -456,13 +456,13 @@ inline string implode(const numeric_array < TYPE, t_etypeContainer > & a,const :
 
 
 template < typename TYPE, ::enum_type t_etypeContainer >
-string surround_and_implode(const numeric_array < TYPE, t_etypeContainer > & a, const ::scoped_string & scopedstrSeparator, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix, ::index iStart, ::count iCount)
+string surround_and_implode(const numeric_array < TYPE, t_etypeContainer > & a, const ::scoped_string & scopedstrSeparator, const ::scoped_string & scopedstrPrefix, const ::scoped_string & scopedstrSuffix, ::raw::index iStart, ::raw::count iCount)
 {
    string str;
    string strSeparator(scopedstrSeparator);
    string strPrefix(scopedstrPrefix);
    string strSuffix(scopedstrSuffix);
-   ::index iEnd;
+   ::raw::index iEnd;
    if(iStart < 0)
       iStart = a.get_size() + iStart;
    if(iCount < 0)
@@ -471,7 +471,7 @@ string surround_and_implode(const numeric_array < TYPE, t_etypeContainer > & a, 
       iEnd = iStart + iCount - 1;
    if(iStart <= iEnd)
    {
-      ::index i = iStart;
+      ::raw::index i = iStart;
       str = strPrefix + as_string(a.element_at(i)) + strSuffix;
       i++;
       for(; i <= iEnd; i++)
@@ -500,7 +500,7 @@ inline bool const_string_range < ITERATOR_TYPE > ::operator==(const ::wd32_strin
 
 
 template<typename ITERATOR_TYPE>
-::count string_range < ITERATOR_TYPE>::consume(bool(*character_is_function)(CHARACTER character), strsize minimum_count)
+::raw::count string_range < ITERATOR_TYPE>::consume(bool(*character_is_function)(CHARACTER character), strsize minimum_count)
 {
 
    auto c = this->begins_count(character_is_function);
@@ -937,7 +937,7 @@ void string_range < ITERATOR_TYPE >::consume(const ::scoped_string & scopedstr)
 
 
 //template < typename ITERATOR_TYPE >
-//void string_range < ITERATOR_TYPE >::consume_spaces(::count iMinimumCount)
+//void string_range < ITERATOR_TYPE >::consume_spaces(::raw::count iMinimumCount)
 //{
 //
 //   i32 i = 0;
@@ -1025,7 +1025,7 @@ u64 string_range < ITERATOR_TYPE >::consume_natural(u64 uMax, u64 uMin)
 
 //
 //template < typename ITERATOR_TYPE >
-//void string_base < ITERATOR_TYPE >::consume_spaces(::count iMinimumCount)
+//void string_base < ITERATOR_TYPE >::consume_spaces(::raw::count iMinimumCount)
 //{
 //
 //   i32 i = 0;

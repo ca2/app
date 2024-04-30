@@ -108,7 +108,7 @@
 //   auto data() { return this->begin(); }
 //   auto data() const { return this->begin(); }
 //
-//   constexpr ::count _size() const { return this->end() - this->begin(); }
+//   constexpr ::raw::count _size() const { return this->end() - this->begin(); }
 //
 //
 //   bool contains_data(const ITEM * p) const

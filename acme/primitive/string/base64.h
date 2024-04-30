@@ -42,7 +42,7 @@
       void encode(::file::file * pfileOutput, ::file::file * pfileInput, e_mode emode = mode_normal);
       //string encode(memory_base & memory, e_mode emode = mode_normal);
       string encode(const ::block & block, e_mode emode = mode_normal);
-      //string encode(void  * point, ::count ca, e_mode emode = mode_normal);
+      //string encode(void  * point, ::raw::count ca, e_mode emode = mode_normal);
       //string encode(const ::scoped_string & scopedstr, e_mode emode = mode_normal);
       //string encode_element(::matter & matter, e_mode emode = mode_normal);
 

@@ -46,10 +46,10 @@ namespace data
    }
 
 
-   tree_item * tree::find(const item * pitemdata, index * piIndex)
+   tree_item * tree::find(const item * pitemdata, ::raw::index * piIndex)
    {
 
-      index iIndex;
+      ::raw::index iIndex;
 
       if (pitemdata == nullptr)
       {
@@ -151,7 +151,7 @@ namespace data
    }
 
 
-   void tree::erase(item * pitemdata, index i)
+   void tree::erase(item * pitemdata, ::raw::index i)
    {
       
       tree_item * pitem = find(pitemdata, &i);
@@ -202,10 +202,10 @@ namespace data
    }
 
 
-   ::data::tree_item * tree::_get_proper_item(index iIndex, index * piLevel, index * piCount)
+   ::data::tree_item * tree::_get_proper_item(::raw::index iIndex, ::raw::index * piLevel, ::raw::index * piCount)
    {
 
-      index iCount = 0;
+      ::raw::index iCount = 0;
 
       if (piLevel)
       {
@@ -244,7 +244,7 @@ namespace data
    }
 
 
-   ::data::tree_item* tree::get_proper_item(index iIndex, index* piLevel)
+   ::data::tree_item* tree::get_proper_item(::raw::index iIndex, ::raw::index * piLevel)
    {
 
       if (piLevel)
@@ -277,12 +277,12 @@ namespace data
    }
 
 
-   index tree::get_proper_item_index(::data::tree_item *pitemParam, index * piLevel, index * piCount)
+   ::raw::index tree::get_proper_item_index(::data::tree_item *pitemParam, ::raw::index * piLevel, ::raw::index * piCount)
    {
 
       i32 iIndex = 0;
 
-      count iCount = 0;
+      ::raw::count iCount = 0;
 
       if (piLevel != nullptr)
       {
@@ -330,7 +330,7 @@ namespace data
    }
 
 
-   //::count tree::get_proper_item_count()
+   //::raw::count tree::get_proper_item_count()
    //{
 
    //   _synchronous_lock synchronouslock(this->synchronization());
@@ -604,7 +604,7 @@ namespace data
    void tree::update_levels()
    {
 
-      index iLevel = -1;
+      ::raw::index iLevel = -1;
 
       ::pointer<tree_item>pitem = get_base_item();
 
@@ -678,7 +678,7 @@ namespace data
          pitem->m_dwState |= ::data::e_tree_item_state_expandable;
       }
 
-      /*      for (index i = 0; i < m_treeptra.get_count(); i++)
+      /*      for (::raw::index i = 0; i < m_treeptra.get_count(); i++)
             {
 
                m_treeptra[i]._001OnItemExpand(pitem, context);
@@ -701,7 +701,7 @@ namespace data
          pitem->m_dwState |= ::data::e_tree_item_state_expandable;
       }
       pitem->m_dwState &= ~::data::e_tree_item_state_expanded;
-      /*for (index i = 0; i < m_treeptra.get_count(); i++)
+      /*for (::raw::index i = 0; i < m_treeptra.get_count(); i++)
       {
 
          m_treeptra[i]._001OnItemCollapse(pitem);
@@ -725,7 +725,7 @@ namespace data
    }
 
 
-   ::count   tree::selection_set(::data::tree_item_ptr_array & itemptra)
+   ::raw::count   tree::selection_set(::data::tree_item_ptr_array & itemptra)
    {
 
       return 0;
@@ -749,7 +749,7 @@ namespace data
    }
 
 
-   bool      tree::selection_set(index iIndex, ::data::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
+   bool      tree::selection_set(::raw::index iIndex, ::data::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
       return false;

@@ -16,7 +16,7 @@ namespace filehandler
    }
 
 
-   index item::data_item_get_image(object * pparticle) const
+   ::raw::index item::data_item_get_image(object * pparticle) const
    {
 
       return -1;

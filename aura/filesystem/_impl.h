@@ -586,11 +586,11 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 
 //      stream stream(pfile, FIRST_VERSION);
 
-//      ::count count = a.get_count();
+//      ::raw::count count = a.get_count();
 
 //      stream.write(count);
 
-//      for (index index = 0; index < count; index++)
+//      for (::raw::index index = 0; index < count; index++)
 //      {
 
 //         stream << a.element_at(index);
@@ -642,7 +642,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 
 //      stream istream(pfile, FIRST_VERSION);
 
-//      ::count count;
+//      ::raw::count count;
 
 //      istream.read(count);
 
@@ -655,7 +655,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 
 //      a.allocate(count);
 
-//      for (index index = 0; index < count; index++)
+//      for (::raw::index index = 0; index < count; index++)
 //      {
 
 //         istream >> a.element_at(index);

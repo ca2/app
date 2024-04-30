@@ -23,7 +23,7 @@ namespace user
    }
 
 
-   count list_data::_001GetColumnCount(mesh * pmesh)
+   ::raw::count list_data::_001GetColumnCount(mesh * pmesh)
    {
 
       return pmesh->m_plist->m_pcolumna->get_visible_count();

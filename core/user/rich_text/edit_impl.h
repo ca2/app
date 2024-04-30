@@ -56,16 +56,16 @@ namespace user
 
          virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
-         virtual bool get_item_rect(::rectangle_i32 * prectangle, index i) override;
+         virtual bool get_item_rect(::rectangle_i32 * prectangle, ::raw::index i) override;
 
-         virtual bool get_element_rectangle(::rectangle_i32 * prectangle, index i, enum_element eelement) override;
+         virtual bool get_element_rectangle(::rectangle_i32 * prectangle, ::raw::index i, enum_element eelement) override;
 
          virtual ::size_f64 get_size() override;
 
          // void assert_ok() const override;
          // void dump(dump_context & dumpcontext) const override;
 
-         bool _001GetItemText(string & str, index iItem) override;
+         bool _001GetItemText(string & str, ::raw::index iItem) override;
          bool _001IsPointInside(const ::point_i32 & point) override;
          void update_data(bool bSaveAndValidate) override;
          virtual void update_placement() override;

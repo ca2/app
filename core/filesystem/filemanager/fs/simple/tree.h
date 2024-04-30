@@ -81,7 +81,7 @@ namespace filemanager
 
 
             ::pointer<::data::tree_item>FindTreeItem(i64 iFolder);
-            index _001GetItemImage(::pointer<::data::tree_item>pitem, bool bSelected);
+            ::raw::index _001GetItemImage(::pointer<::data::tree_item>pitem, bool bSelected);
 
 
             // void assert_ok() const override;

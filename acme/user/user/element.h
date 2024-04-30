@@ -413,9 +413,9 @@ namespace user
 
       virtual void OnLinkClick(const ::string & psz,const ::string & pszTarget = nullptr);
 
-      virtual ::user::interaction * get_child_by_name(const ::string & strName, ::index iItem = -1, i32 iLevel = -1);
-      virtual ::user::interaction * get_child_by_id(const ::atom & atom, ::index iItem = -1, i32 iLevel = -1);
-      virtual ::user::element * get_primitive_by_id(const ::atom & atom, ::index iItem = -1, i32 iLevel = -1);
+      virtual ::user::interaction * get_child_by_name(const ::string & strName, ::raw::index iItem = -1, i32 iLevel = -1);
+      virtual ::user::interaction * get_child_by_id(const ::atom & atom, ::raw::index iItem = -1, i32 iLevel = -1);
+      virtual ::user::element * get_primitive_by_id(const ::atom & atom, ::raw::index iItem = -1, i32 iLevel = -1);
 
 
       virtual ::user::interaction * get_wnd();
@@ -796,13 +796,13 @@ namespace user
       // Text Edit
       virtual void _001GetSel(strsize & iBeg, strsize & iEnd) override;
       virtual void _001GetSel(strsize& iBeg, strsize& iEnd, strsize & iComposingStart, strsize & iComposingEnd);
-      virtual index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel);
-      virtual index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x);
-      virtual index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel);
-      virtual index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x);
-      virtual strsize plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, index iLine, index iColumn);
-      virtual strsize plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, index iLine, i32 x);
-      virtual index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel);
+      virtual ::raw::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel);
+      virtual ::raw::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x);
+      virtual ::raw::index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel);
+      virtual ::raw::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x);
+      virtual strsize plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::raw::index iLine, ::raw::index iColumn);
+      virtual strsize plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::raw::index iLine, i32 x);
+      virtual ::raw::index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel);
 
 
       //virtual void set_window_text(const ::string & pszString);

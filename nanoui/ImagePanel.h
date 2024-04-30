@@ -34,11 +34,11 @@ namespace nanoui
       bool m_bPendingLoad = false;
 
       Images m_images;
-      ::function<void(::index)> m_callback;
+      ::function<void(::raw::index)> m_callback;
       int m_iThumbSize;
       int m_iSpacing;
       int m_iMargin;
-      ::index m_iMouseIndex;
+      ::raw::index m_iMouseIndex;
 
 
       ImagePanel(Widget* parent);
@@ -48,10 +48,10 @@ namespace nanoui
 
       void set_images(const Images& data) { m_images = data; }
       const Images& images() const { return m_images; }
-      ::image* _get_image(::index iImage);
+      ::image* _get_image(::raw::index iImage);
 
-      ::function<void(::index)> callback() const { return m_callback; }
-      void set_callback(const ::function<void(::index)>& callback) { m_callback = callback; }
+      ::function<void(::raw::index)> callback() const { return m_callback; }
+      void set_callback(const ::function<void(::raw::index)>& callback) { m_callback = callback; }
 
       bool mouse_motion_event(const point_i32& p, const size_i32& rel, bool bDown, const ::user::e_key& ekeyModifiers) override;
       bool mouse_button_event(const point_i32& p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key& ekeyModifiers) override;

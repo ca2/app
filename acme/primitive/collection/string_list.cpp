@@ -12,7 +12,7 @@ string_list::~string_list()
 }
 
 
-void string_list::implode(string & str, const ::scoped_string & scopedstrSeparator, index start, ::count count) const
+void string_list::implode(string & str, const ::scoped_string & scopedstrSeparator, ::raw::index start, ::raw::count count) const
 {
 
    str.empty();
@@ -24,7 +24,7 @@ void string_list::implode(string & str, const ::scoped_string & scopedstrSeparat
 
    }
 
-   index last;
+   ::raw::index last;
 
    if(count < 0)
    {
@@ -39,7 +39,7 @@ void string_list::implode(string & str, const ::scoped_string & scopedstrSeparat
 
    }
 
-   index i = start;
+   ::raw::index i = start;
 
    auto p = this->begin() + start;
 
@@ -62,7 +62,7 @@ void string_list::implode(string & str, const ::scoped_string & scopedstrSeparat
 }
 
 
-string string_list::implode(const ::scoped_string & scopedstrSeparator, index iStart, index iEnd) const
+string string_list::implode(const ::scoped_string & scopedstrSeparator, ::raw::index iStart, ::raw::index iEnd) const
 {
 
    string str;
@@ -74,7 +74,7 @@ string string_list::implode(const ::scoped_string & scopedstrSeparator, index iS
 }
 
 
-void string_list::reverse_implode(string & str, const ::scoped_string & scopedstrSeparator, index start, ::count count) const
+void string_list::reverse_implode(string & str, const ::scoped_string & scopedstrSeparator, ::raw::index start, ::raw::count count) const
 
 {
 
@@ -87,7 +87,7 @@ void string_list::reverse_implode(string & str, const ::scoped_string & scopedst
 
    }
 
-   index last;
+   ::raw::index last;
 
    if(count < 0)
    {
@@ -102,11 +102,11 @@ void string_list::reverse_implode(string & str, const ::scoped_string & scopedst
 
    }
 
-   index i = last;
+   ::raw::index i = last;
 
    auto p = this->end() - i;
 
-   for(index i = last; i >= start; i--)
+   for(::raw::index i = last; i >= start; i--)
    {
 
       if(i < last)
@@ -125,7 +125,7 @@ void string_list::reverse_implode(string & str, const ::scoped_string & scopedst
 }
 
 
-string string_list::reverse_implode(const ::scoped_string & scopedstrSeparator, index iStart, index iEnd) const
+string string_list::reverse_implode(const ::scoped_string & scopedstrSeparator, ::raw::index iStart, ::raw::index iEnd) const
 {
 
    string str;

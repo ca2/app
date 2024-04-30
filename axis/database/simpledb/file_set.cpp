@@ -61,7 +61,7 @@ namespace simpledb
 
       datastream()->get("recursive", *pbaRecursive);
 
-      for (index i = pbaRecursive->get_size(); i < ppatha->get_size(); i++)
+      for (::raw::index i = pbaRecursive->get_size(); i < ppatha->get_size(); i++)
       {
 
          pbaRecursive->add(false);
@@ -83,7 +83,7 @@ namespace simpledb
 
       datastream()->get("recursive", *m_pbaRecursive);
 
-      index i = -1;
+      ::raw::index i = -1;
 
       if(!m_ppathaSearch || (i = m_ppathaSearch->find_first_ci(pathSearchFolder)) < 0)
       {

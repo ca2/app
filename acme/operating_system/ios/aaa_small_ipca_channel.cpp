@@ -87,9 +87,9 @@ namespace acme
             
          }
 
-         ::count c = ansi_length(pszMessage);
+         ::raw::count c = ansi_length(pszMessage);
 
-         ::count cSend;
+         ::raw::count cSend;
 
          memory m;
 
@@ -143,9 +143,9 @@ namespace acme
 
          memory m(pdata, len);
 
-         ::count c = len;
+         ::raw::count c = len;
 
-         ::count cSend;
+         ::raw::count cSend;
 
          SInt32 status = CFMessagePortSendRequest(m_port,
                                   message,

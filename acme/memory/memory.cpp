@@ -61,7 +61,7 @@ namespace heap
    }
 
 
-   void * memory::count_allocate(::count count, memsize size, const char * pszAnnotation)
+   void * memory::count_allocate(::raw::count count, memsize size, const char * pszAnnotation)
    {
 
       return m_pheap->count_allocate(count, size, pszAnnotation);

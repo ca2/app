@@ -367,7 +367,7 @@ namespace user
    //      //else
    //      //{
 
-   //      //   m_pserver->open_file(m_iParentFolder, m_useritema[iItem]->m_strFileName, m_useritema[(::index)iItem]->m_strExtension);
+   //      //   m_pserver->open_file(m_iParentFolder, m_useritema[iItem]->m_strFileName, m_useritema[(::raw::index)iItem]->m_strExtension);
 
    //      //}
 
@@ -397,7 +397,7 @@ namespace user
    //}
 
 
-   //bool list2::GetSongPath(string& str, index iItem)
+   //bool list2::GetSongPath(string& str, ::raw::index iItem)
    //{
 
    //   auto& pdrawlistsubitem = get_subitem(iItem, SubItemFilePath);
@@ -946,7 +946,7 @@ namespace user
 
       iLineHeight *= 1.25;
 
-      for (::index i = 0; i < main_content().m_pitema->size(); i++)
+      for (::raw::index i = 0; i < main_content().m_pitema->size(); i++)
       {
 
          auto pitem = main_content().m_pitema->element_at(i);

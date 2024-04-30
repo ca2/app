@@ -30,7 +30,7 @@ class queue :
 public:
 
    inline bool is_empty() const;
-   inline ::count size() const;
+   inline ::raw::count size() const;
 
    inline TYPE & front();
    inline const TYPE & front() const;
@@ -54,7 +54,7 @@ inline bool queue < TYPE, CONTAINER > ::is_empty() const
 }
 
 template < class TYPE, class CONTAINER >
-inline ::count queue < TYPE, CONTAINER > ::size() const
+inline ::raw::count queue < TYPE, CONTAINER > ::size() const
 {
 
    return this->CONTAINER::size();

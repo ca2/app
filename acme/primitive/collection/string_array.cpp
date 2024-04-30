@@ -15,7 +15,7 @@ void string_array_array::add_csv(string str)
 
    set_size(stra.get_size());
 
-   index i = 0;
+   ::raw::index i = 0;
 
    for (auto & strLine : stra)
    {

@@ -6,10 +6,10 @@
 namespace str
 {
 
-   ::index case_insensitive_begins_eat(string & str,string_array & stra)
+   ::raw::index case_insensitive_begins_eat(string & str,string_array & stra)
    {
 
-      for(index i = 0; i < stra.get_count(); i++)
+      for(::raw::index i = 0; i < stra.get_count(); i++)
       {
 
          if(str.case_insensitive_begins_eat(stra[i]))
@@ -22,10 +22,10 @@ namespace str
    }
 
 
-   ::index begins_eat(string & str,string_array & stra)
+   ::raw::index begins_eat(string & str,string_array & stra)
    {
 
-      for(index i = 0; i < stra.get_count(); i++)
+      for(::raw::index i = 0; i < stra.get_count(); i++)
       {
 
          if(str.begins_eat(stra[i]))

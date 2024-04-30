@@ -17,9 +17,9 @@ namespace collection
 
       index_array stackLowerBound;
       index_array stackUpperBound;
-      ::index iLowerBound;
-      ::index iUpperBound;
-      ::index iLPos, iUPos, iMPos;
+      ::raw::index iLowerBound;
+      ::raw::index iUpperBound;
+      ::raw::index iLPos, iUPos, iMPos;
 
       if (this->get_size() >= 2)
       {
@@ -92,9 +92,9 @@ namespace collection
 
       index_array stackLowerBound;
       index_array stackUpperBound;
-      ::index iLowerBound;
-      ::index iUpperBound;
-      ::index iLPos, iUPos, iMPos;
+      ::raw::index iLowerBound;
+      ::raw::index iUpperBound;
+      ::raw::index iLPos, iUPos, iMPos;
 
       if (this->get_size() >= 2)
       {
@@ -167,11 +167,11 @@ namespace collection
 
       INDEX_ARRAY stackLowerBound;
       INDEX_ARRAY stackUpperBound;
-      ::index iLowerBound;
-      ::index iUpperBound;
-      ::index iLPos,iUPos,iMPos;
+      ::raw::index iLowerBound;
+      ::raw::index iUpperBound;
+      ::raw::index iLPos,iUPos,iMPos;
       ia.erase_all();
-      ::acme::array::append_sequence(ia,(::index)0,(::index)get_upper_bound());
+      ::acme::array::append_sequence(ia,(::raw::index)0,(::raw::index)get_upper_bound());
       if(this->get_size() >= 2)
       {
          stackLowerBound.push(0);

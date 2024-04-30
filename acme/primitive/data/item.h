@@ -25,7 +25,7 @@ namespace data
       ~item() override;
 
       virtual string data_item_get_text(::particle * pparticle) const;
-      virtual index data_item_get_image(::particle * pparticle) const;
+      virtual ::raw::index data_item_get_image(::particle * pparticle) const;
       virtual ::image_list * data_item_get_image_list(::particle * pparticle) const;
 
 

@@ -331,7 +331,7 @@ public:
    
    
    template < primitive_point POINT >
-   static void expand_bounding_box(POINT & top_left, POINT & bottom_right, const point_type * ppoint, ::count count)
+   static void expand_bounding_box(POINT & top_left, POINT & bottom_right, const point_type * ppoint, ::raw::count count)
    {
 
       while(count > 0)

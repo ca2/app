@@ -64,7 +64,7 @@ namespace user
       ::e_draw_text                       m_edrawtext;
       enum_style                          m_estyle;
       //::rectangle_i32                     m_rectangleText;
-      index                               m_iClick;
+      ::raw::index                               m_iClick;
       enum_stock_icon                     m_estockicon;
       ::rectangle_i32                     m_rectangleCheckBox;
       ::pointer < bitmap >                m_pbitmap;

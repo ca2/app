@@ -212,7 +212,7 @@ public:
 
 
    HASH_TABLE           m_hashtable;
-   ::count              m_nCount;
+   ::raw::count              m_nCount;
    //iterator              m_begin;
 
 
@@ -224,10 +224,10 @@ public:
 
    void construct();
 
-   ::count get_count() const;
-   ::count get_size() const;
-   ::count size() const;
-   ::count count() const;
+   ::raw::count get_count() const;
+   ::raw::count get_size() const;
+   ::raw::count size() const;
+   ::raw::count count() const;
    bool is_empty() const;
    bool empty() const;
 
@@ -357,7 +357,7 @@ public:
 
 
 
-   ::count count(const ITEM & t) const;
+   ::raw::count count(const ITEM & t) const;
    bool has(const ITEM & t) const;
    bool contains(const ITEM & t) const;
 
@@ -453,7 +453,7 @@ public:
 
    //   bool bRemoved = false;
 
-   //   for(index i = 0; i < a.get_count(); i++)
+   //   for(::raw::index i = 0; i < a.get_count(); i++)
    //   {
 
    //      bRemoved |= erase_item(a[i]);
@@ -465,10 +465,10 @@ public:
    //}
 
    template < primitive_container CONTAINER >
-   ::count erase_nodes(CONTAINER container)
+   ::raw::count erase_nodes(CONTAINER container)
    {
 
-      ::count countRemoved = 0;
+      ::raw::count countRemoved = 0;
 
       for(auto & item : container)
       {
@@ -498,7 +498,7 @@ public:
    //   return range < const_iterator >(begin(),end());
    //}
 
-   //NODE & element_at(::index iIndex)
+   //NODE & element_at(::raw::index iIndex)
    //{
    //   return elements().element_at(iIndex);
    //}
@@ -531,7 +531,7 @@ public:
 
 
    template < typename TYPE >
-   ::pointer<TYPE>get_typed_ptr(index i = 0)
+   ::pointer<TYPE>get_typed_ptr(::raw::index i = 0)
    {
 
       ::pointer<TYPE>p;
@@ -593,25 +593,25 @@ public:
 
 
 template < typename NODE >
-inline ::count node_set < NODE >::get_count() const
+inline ::raw::count node_set < NODE >::get_count() const
 {
    return m_nCount;
 }
 
 template < typename NODE >
-inline ::count node_set < NODE >::get_size() const
+inline ::raw::count node_set < NODE >::get_size() const
 {
    return m_nCount;
 }
 
 template < typename NODE >
-inline ::count node_set < NODE >::count() const
+inline ::raw::count node_set < NODE >::count() const
 {
    return m_nCount;
 }
 
 template < typename NODE >
-inline ::count node_set < NODE >::size() const
+inline ::raw::count node_set < NODE >::size() const
 {
    return m_nCount;
 }
@@ -820,7 +820,7 @@ node_set < NODE >::new_node(ARG_ITEM item)
    //   //// chain them into free list
    //   //set::iterator iterator = (set::iterator) newBlock->data();
    //   //// free in reverse order to make it easier to debug
-   //   //index i = m_nBlockSize - 1;
+   //   //::raw::index i = m_nBlockSize - 1;
    //   //for (iterator = &iterator[i]; i >= 0; i--, iterator--)
    //   //{
    //   //   iterator->m_next = this->m_pnodeFree;
@@ -1142,7 +1142,7 @@ inline bool node_set < NODE >::erase(iterator iterator)
 
 
 template < typename NODE >
-inline ::count node_set < NODE >::count(const ITEM & item) const
+inline ::raw::count node_set < NODE >::count(const ITEM & item) const
 {
 
    return this->plookup(item) ? 1 : 0;
@@ -1297,9 +1297,9 @@ __declare_set(xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue);
 #endif
 
 
-using int_ptr_set = set < iptr >;
+using iptr_set = set < iptr >;
 
-using index_set = set < index >;
+using index_set = set < ::raw::index >;
 
 using string_set = set < string >;
 

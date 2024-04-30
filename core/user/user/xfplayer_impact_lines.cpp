@@ -32,9 +32,9 @@ void xfplayer_impact_linea::OnChildSetVisible(xfplayer_impact_line * pline, bool
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   index iLineIndex = FindLine(pline);
+   ::raw::index iLineIndex = FindLine(pline);
 
-   index iIndex;
+   ::raw::index iIndex;
 
    if (bVisible)
    {
@@ -71,12 +71,12 @@ void xfplayer_impact_linea::OnChildSetVisible(xfplayer_impact_line * pline, bool
 
 }
 
-index xfplayer_impact_linea::GetFirstVisibleLineIndex()
+::raw::index xfplayer_impact_linea::GetFirstVisibleLineIndex()
 {
    return m_iFirstVisible;
 }
 
-index xfplayer_impact_linea::GetLastVisibleLineIndex()
+::raw::index xfplayer_impact_linea::GetLastVisibleLineIndex()
 {
    return m_iLastVisible;
 }
@@ -121,7 +121,7 @@ void xfplayer_impact_linea::SetEffect(i32 iEffect)
 //   __UNREFERENCED_PARAMETER(pwindow);
 //}
 
-index xfplayer_impact_linea::FindLine(xfplayer_impact_line * pline)
+::raw::index xfplayer_impact_linea::FindLine(xfplayer_impact_line * pline)
 {
    synchronous_lock synchronouslock(this->synchronization());
    for (i32 iLine = 0; iLine < this->line_count(); iLine++)
@@ -132,10 +132,10 @@ index xfplayer_impact_linea::FindLine(xfplayer_impact_line * pline)
    return -1;
 }
 
-::user::enum_line_hit xfplayer_impact_linea::hit_test(const point_i32 &pointCursor, index &iLine, strsize &iChar)
+::user::enum_line_hit xfplayer_impact_linea::hit_test(const point_i32 &pointCursor, ::raw::index &iLine, strsize &iChar)
 {
    synchronous_lock synchronouslock(this->synchronization());
-   for (index i = 0; i < this->line_count(); i++)
+   for (::raw::index i = 0; i < this->line_count(); i++)
    {
       ::user::enum_line_hit etest = this->line_at(i)->hit_test(pointCursor, iChar);
       if (etest != ::user::e_line_hit_none)
@@ -235,10 +235,10 @@ xfplayer_impact_line_selection & xfplayer_impact_linea::GetSelection()
 void xfplayer_impact_linea::get_sel_text(string & strSelText, const ::string & pszLineSeparator)
 {
    synchronous_lock synchronouslock(this->synchronization());
-   index iLineStart;
-   index iCharStart;
-   index iLineEnd;
-   index iCharEnd;
+   ::raw::index iLineStart;
+   ::raw::index iCharStart;
+   ::raw::index iLineEnd;
+   ::raw::index iCharEnd;
 
    m_pselection->GetNormalSelection(iLineStart, iCharStart, iLineEnd, iCharEnd);
 
@@ -262,7 +262,7 @@ void xfplayer_impact_linea::get_sel_text(string & strSelText, const ::string & p
 
          strSelText = line_at(iLineStart)->m_str.substr(iCharStart);
 
-         for (index iLine = iLineStart + 1; iLine < iLineEnd; iLine++)
+         for (::raw::index iLine = iLineStart + 1; iLine < iLineEnd; iLine++)
          {
 
             strSelText += pszLineSeparator;

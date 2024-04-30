@@ -113,7 +113,7 @@ string acme_path::from(string str)
 
    string strFsSafe;
 
-   for (index i = 0; i < str.length(); i++)
+   for (::raw::index i = 0; i < str.length(); i++)
    {
 
       if (character_isalnum(str[i]))
@@ -666,7 +666,7 @@ void acme_path::rename(const ::file::path& pathNewName, const ::file::path& path
 }
 
 
-::file::path acme_path::get_sequence_path(const ::file::path& path, ::index iSequence, int iZeroPaddingWidth)
+::file::path acme_path::get_sequence_path(const ::file::path& path, ::raw::index iSequence, int iZeroPaddingWidth)
 {
 
    if (iSequence <= 0)
@@ -740,7 +740,7 @@ void acme_path::defer_free_name_by_renaming_to_last_in_sequence(const ::file::pa
 
    }
 
-   for(::index iSequence = 2; iSequence < ::numeric_info < decltype(iSequence) >::maximum(); iSequence++)
+   for(::raw::index iSequence = 2; iSequence < ::numeric_info < decltype(iSequence) >::maximum(); iSequence++)
    {
 
       auto pathNew = get_sequence_path(path, iSequence, iZeroPaddingWidth);

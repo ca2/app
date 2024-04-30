@@ -1212,7 +1212,7 @@ namespace aura
    //   return nullptr;
    //}
 
-   //bool session::get_monitor_rectangle(index iMonitor, ::rectangle_i32 * prectangle)
+   //bool session::get_monitor_rectangle(::raw::index iMonitor, ::rectangle_i32 * prectangle)
 
    //{
 
@@ -1269,7 +1269,7 @@ namespace aura
 
    //}
 
-   //::count session::get_monitor_count()
+   //::raw::count session::get_monitor_count()
    //{
 
    //   if (get_document() != nullptr && get_impact() != nullptr)

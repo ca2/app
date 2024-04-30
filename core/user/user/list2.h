@@ -47,7 +47,7 @@ namespace user
       //void PostFillTask(string& strFile, uptr uiTimer);
 
       //void _001OnSort() override;
-      /// bool GetSongPath(string& str, index iItem);
+      /// bool GetSongPath(string& str, ::raw::index iItem);
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 

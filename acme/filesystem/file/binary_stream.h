@@ -408,7 +408,7 @@ public:
 
    // ::file::path get_link_path(string strLink);
 
-   //bool is_version(index i);
+   //bool is_version(::raw::index i);
 
    template < typename BLOCK_TYPE >
    inline void raw_write(const BLOCK_TYPE & t) // must be POD type // block transfer // classes/structures with no  members

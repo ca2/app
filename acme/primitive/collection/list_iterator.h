@@ -261,10 +261,10 @@ public:
    make_list_iterator(const const_iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
 
 
-   constexpr ::index index() const
+   constexpr ::raw::index index() const
    {
 
-      ::index i = -1;
+      ::raw::index i = -1;
 
       auto iterator = *this;
 
@@ -282,7 +282,7 @@ public:
    }
 
 
-   static constexpr bool difference(::count & c, const_iterator a, const_iterator b)
+   static constexpr bool difference(::raw::count & c, const_iterator a, const_iterator b)
    {
 
       c = 0;
@@ -360,14 +360,14 @@ public:
    }
 
 
-   constexpr ::count operator - (THIS_ITERATOR iterator) const
+   constexpr ::raw::count operator - (THIS_ITERATOR iterator) const
    {
 
       {
 
          auto i = *this;
 
-         ::count c = 0;
+         ::raw::count c = 0;
 
          while (i.is_set())
          {
@@ -391,7 +391,7 @@ public:
 
          auto i = iterator;
 
-         ::count c = 0;
+         ::raw::count c = 0;
 
          while (i.is_set())
          {
@@ -512,7 +512,7 @@ public:
 
 
 template < typename ITERATOR_TYPE >
-::index index_as_of_iterator(::make_list_iterator < ITERATOR_TYPE > iterator)
+::raw::index index_as_of_iterator(::make_list_iterator < ITERATOR_TYPE > iterator)
 {
    
    return iterator.index();

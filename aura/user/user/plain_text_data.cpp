@@ -74,7 +74,7 @@ namespace user
    void plain_text_group_command::Undo(plain_text_tree * pplaintexttree)
    {
 
-      for(index i = m_commanda.get_upper_bound(); i >= 0; i--)
+      for(::raw::index i = m_commanda.get_upper_bound(); i >= 0; i--)
       {
 
          m_commanda.element_at(i)->Undo(pplaintexttree);
@@ -87,7 +87,7 @@ namespace user
    void plain_text_group_command::Redo(plain_text_tree * pplaintexttree)
    {
 
-      for(index i = 0; i < m_commanda.get_size(); i++)
+      for(::raw::index i = 0; i < m_commanda.get_size(); i++)
       {
 
          m_commanda.element_at(i)->Redo(pplaintexttree);

@@ -147,7 +147,7 @@ namespace html
       void table::layout_phase0(html_data * pdata)
       {
 
-         for (index j = 0; j < m_rowptra.get_size(); j++)
+         for (::raw::index j = 0; j < m_rowptra.get_size(); j++)
          {
 
             m_rowptra[j]->m_pelemental->layout_phase0(pdata);
@@ -158,7 +158,7 @@ namespace html
 
          float cxMin = 0;
 
-         for(index i = 0; i < m_cellholdera.get_size(); i++)
+         for(::raw::index i = 0; i < m_cellholdera.get_size(); i++)
          {
 
             cxMax += maximum(0, m_columna[i].m_cxMax);
@@ -179,21 +179,21 @@ namespace html
 
          //element::layout_phase1_end(pdata);
 
-         for (index i = 0; i < m_columna.get_count(); i++)
+         for (::raw::index i = 0; i < m_columna.get_count(); i++)
          {
 
             m_columna[i].m_cx = 0;
 
          }
 
-         index iCol;
+         ::raw::index iCol;
 
          cell * pcell;
 
-         for (index i = 0; i < m_cellholdera.get_count(); i++)
+         for (::raw::index i = 0; i < m_cellholdera.get_count(); i++)
          {
 
-            for (index j = 0; j < m_cellholdera[i].get_count(); j++)
+            for (::raw::index j = 0; j < m_cellholdera[i].get_count(); j++)
             {
 
                cell::holder & holder = m_cellholdera[i][j];
@@ -329,7 +329,7 @@ namespace html
       }
 
 
-      table::column::column(index iCol)
+      table::column::column(::raw::index iCol)
       {
 
          m_iCol   = iCol;
@@ -339,7 +339,7 @@ namespace html
       }
 
 
-      void table::set_cell(index iCol, index iRow, cell * pcell)
+      void table::set_cell(::raw::index iCol, ::raw::index iRow, cell * pcell)
       {
 
          m_cellholdera.element_at_grow(iCol).element_at_grow(iRow).m_iCol     = iCol;

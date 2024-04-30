@@ -253,7 +253,7 @@ namespace browser
 
       u64 uWait;
 
-      ::count cLost;
+      ::raw::count cLost;
 
       while (task_get_run())
       {

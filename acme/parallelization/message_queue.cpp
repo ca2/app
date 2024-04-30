@@ -162,7 +162,7 @@ void message_queue::kick_idle()
    while (true)
    {
 
-      for (::index i = 0; i < m_messagea.get_count();)
+      for (::raw::index i = 0; i < m_messagea.get_count();)
       {
 
          auto & message = m_messagea[i];
@@ -271,7 +271,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFil
       
    };
 
-   ::count count = m_messagea.get_count();
+   ::raw::count count = m_messagea.get_count();
 
    for(i32 i = 0; i < count; i++)
    {

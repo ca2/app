@@ -165,13 +165,13 @@ namespace user
    //   bool _is_set() const override;
 
 
-   //   inline ::index menu_impact_index() const { return (::index)m_iItem; }
-   //   inline ::index menu_impact_group() const { return (::index)m_iSubItem; }
-   //   inline ::index menu_impact_command() const { return (::index)m_iListItem; }
+   //   inline ::raw::index menu_impact_index() const { return (::raw::index)m_iItem; }
+   //   inline ::raw::index menu_impact_group() const { return (::raw::index)m_iSubItem; }
+   //   inline ::raw::index menu_impact_command() const { return (::raw::index)m_iListItem; }
 
-   //   inline ::index item_index() const { return (::index)m_iItem; }
-   //   inline ::index subitem_index() const { return (::index)m_iSubItem; }
-   //   inline ::index list_item_index() const { return (::index)m_iListItem; }
+   //   inline ::raw::index item_index() const { return (::raw::index)m_iItem; }
+   //   inline ::raw::index subitem_index() const { return (::raw::index)m_iSubItem; }
+   //   inline ::raw::index list_item_index() const { return (::raw::index)m_iListItem; }
 
 
    //   item_base & operator = (const ::matter & particle) { m_atom = particle.m_atom; return *this; }
@@ -294,10 +294,10 @@ namespace user
    public:
 
 
-      //item(enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
+      //item(enum_element eelement, ::raw::index iItem = -1, ::raw::index iSubItem = -1, ::raw::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
       //   item(eelement, iItem, iSubItem, iListItem, uFlags) {}
 
-      //item(const ::user::e_flag & eflag, enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::atom & atom = ::atom::e_type_null) :
+      //item(const ::user::e_flag & eflag, enum_element eelement, ::raw::index iItem = -1, ::raw::index iSubItem = -1, ::raw::index iListItem = -1, const ::atom & atom = ::atom::e_type_null) :
       //   item(eelement, iItem, iSubItem, iListItem, atom, eflag) {}
 
       //item(enum_element eelement, const ::atom & atom)
@@ -397,7 +397,7 @@ namespace user
 
       //}
 
-     /* item(enum_element eelement = ::e_element_none, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::atom & atom = ::atom::e_type_null, const ::user::e_flag uFlags = ::user::e_flag_none)
+     /* item(enum_element eelement = ::e_element_none, ::raw::index iItem = -1, ::raw::index iSubItem = -1, ::raw::index iListItem = -1, const ::atom & atom = ::atom::e_type_null, const ::user::e_flag uFlags = ::user::e_flag_none)
       {
 
          m_atom = atom;
@@ -416,7 +416,7 @@ namespace user
 
       }*/
 
-      /*item(::index iItem)
+      /*item(::raw::index iItem)
       {
 
          m_eelement = ::e_element_none;
@@ -474,7 +474,7 @@ namespace user
 
       enum_element eelement() const { return is_item_set() ? m_pitem->m_item.m_eelement : e_element_none; }
 
-      ::index item_index() const { return is_item_set() ? m_pitem->m_item.m_iItem : -1; }
+      ::raw::index item_index() const { return is_item_set() ? m_pitem->m_item.m_iItem : -1; }
 
       template < typename ITEM >
       ::pointer < ITEM > as_item() const { return ((::user::item *)this)->as_item< ITEM >(); }
@@ -490,7 +490,7 @@ namespace user
 
       //bool is_hidden() const;
 
-      //::string get_text(::index iSubItem);
+      //::string get_text(::raw::index iSubItem);
 
 
       //item & operator = (const ::particle & particle) { m_atom = if ((PARTICLE *) this != (PARTICLE *)&particle) ::memory_copy((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); return *this; }
@@ -571,27 +571,27 @@ namespace user
       bool operator == (const e_element & eelement)  const { return m_eelement == eelement; }
       bool operator != (const e_element & eelement)  const { return !operator==(eelement); }*/
 
-      //item & operator = (::index iItem);
+      //item & operator = (::raw::index iItem);
 
-      //bool operator == (::index iItem)  const { return m_iItem == iItem; }
-      //bool operator != (::index iItem)  const { return m_iItem != iItem; }
+      //bool operator == (::raw::index iItem)  const { return m_iItem == iItem; }
+      //bool operator != (::raw::index iItem)  const { return m_iItem != iItem; }
 
-      //bool operator <= (::index iItem)  const { return m_iItem <= iItem; }
-      //bool operator >= (::index iItem)  const { return m_iItem >= iItem; }
+      //bool operator <= (::raw::index iItem)  const { return m_iItem <= iItem; }
+      //bool operator >= (::raw::index iItem)  const { return m_iItem >= iItem; }
 
-      //bool operator < (::index iItem)  const { return m_iItem < iItem; }
-      //bool operator > (::index iItem)  const { return m_iItem > iItem; }
+      //bool operator < (::raw::index iItem)  const { return m_iItem < iItem; }
+      //bool operator > (::raw::index iItem)  const { return m_iItem > iItem; }
 
-      //::index operator + (::i32 iItemAdd) { return (::index)(m_iItem + iItemAdd); }
-      //::index operator - (::i32 iItemSub) { return (::index)(m_iItem - iItemSub); }
+      //::raw::index operator + (::i32 iItemAdd) { return (::raw::index)(m_iItem + iItemAdd); }
+      //::raw::index operator - (::i32 iItemSub) { return (::raw::index)(m_iItem - iItemSub); }
 
-      //::index operator + (::i64 iItemAdd) { return (::index)(m_iItem + iItemAdd); }
-      //::index operator - (::i64 iItemSub) { return (::index)(m_iItem - iItemSub); }
+      //::raw::index operator + (::i64 iItemAdd) { return (::raw::index)(m_iItem + iItemAdd); }
+      //::raw::index operator - (::i64 iItemSub) { return (::raw::index)(m_iItem - iItemSub); }
 
 
       /*bool in_element_range(enum_element eelement, int iCount) const { return m_eelement >= eelement && m_eelement < eelement + iCount; }
 
-      bool is_valid_item(::count c) const { return m_iItem >= 0 && m_iItem < c; }*/
+      bool is_valid_item(::raw::count c) const { return m_iItem >= 0 && m_iItem < c; }*/
 
 
 
@@ -627,7 +627,7 @@ inline bool is_element(const ::user::item * puseritem, ::enum_element eelement)
 }
 
 
-inline bool is_item(const ::user::item * puseritem, ::index iItem)
+inline bool is_item(const ::user::item * puseritem, ::raw::index iItem)
 {
 
    return ::is_item_set(puseritem) &&  puseritem->item_index() == iItem;
@@ -636,7 +636,7 @@ inline bool is_item(const ::user::item * puseritem, ::index iItem)
 
 
 
-inline bool is_item_index(const ::user::item * pitem, ::index iItem)
+inline bool is_item_index(const ::user::item * pitem, ::raw::index iItem)
 {
 
    return ::is_element(pitem, ::e_element_item) && ::is_item(pitem, iItem);
@@ -683,7 +683,7 @@ inline bool is_same_item(const ::user::item * pitem1, const ::user::item * pitem
 CLASS_DECL_ACME bool is_item_equivalent(const ::user::item * pitem1, const ::user::item * pitem2);
 
 
-inline ::index item_index(const ::user::item * puseritem)
+inline ::raw::index item_index(const ::user::item * puseritem)
 {
 
    return ::is_item_set(puseritem) ? puseritem->item_index() : -1;

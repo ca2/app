@@ -150,7 +150,7 @@ namespace user
          if (main_content().m_pitemCurrent.is_set())
          {
 
-            for (index i = main_content().m_pitemCurrent->m_item.m_iItem; i <= pitem->m_item.m_iItem; i++)
+            for (::raw::index i = main_content().m_pitemCurrent->m_item.m_iItem; i <= pitem->m_item.m_iItem; i++)
             {
 
                iaSel.add_unique(i);
@@ -356,9 +356,9 @@ namespace user
    {
 
       return ::user::scroll_base::on_hit_test(point, ezorder);
-      //::count c = m_imagea.get_count();
+      //::raw::count c = m_imagea.get_count();
 
-      //for (index i = 0; i < c; i++)
+      //for (::raw::index i = 0; i < c; i++)
       //{
 
       //   //if(item = i;
@@ -432,9 +432,9 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      ::count cCount = m_pimagea->image_count();
+      ::raw::count cCount = m_pimagea->image_count();
 
-      for (::index iImage = 0; iImage < cCount; iImage++)
+      for (::raw::index iImage = 0; iImage < cCount; iImage++)
       {
 
          //::item itemText;
@@ -700,7 +700,7 @@ namespace user
    }
 
 
-   bool image_list::_001GetItemText(string & str, index iItem)
+   bool image_list::_001GetItemText(string & str, ::raw::index iItem)
    {
 
       return false;
@@ -734,7 +734,7 @@ namespace user
 
       __defer_construct_new(main_content().m_pitema);
 
-      for (index iImage = 0; iImage < m_pimagea->image_count(); iImage++)
+      for (::raw::index iImage = 0; iImage < m_pimagea->image_count(); iImage++)
       {
 
          auto & pitem = main_content().m_pitema->element_at_grow(iImage);
@@ -943,7 +943,7 @@ namespace user
    }
 
 
-   void image_list::set_current_item(index iFind, const ::action_context & context)
+   void image_list::set_current_item(::raw::index iFind, const ::action_context & context)
    {
 
       synchronous_lock synchronouslock(this->synchronization());

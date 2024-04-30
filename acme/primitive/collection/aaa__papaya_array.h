@@ -2,11 +2,11 @@
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, ::enum_type t_etypeContainer = e_type_element >
-inline auto & __array_object(::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a, ::index i);
+inline auto & __array_object(::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a, ::raw::index i);
 
 
 template < typename ARRAY_TYPE, typename T >
-inline auto & __array_object(::pointer_array_process < ARRAY_TYPE, T > & a, ::index i);
+inline auto & __array_object(::pointer_array_process < ARRAY_TYPE, T > & a, ::raw::index i);
 
 
 namespace acme
@@ -14,7 +14,7 @@ namespace acme
 
 
    template < class TDST, class TSRC >
-   ::count copy(pointer_array < TDST > & dsta, const pointer_array < TSRC > & srca);
+   ::raw::count copy(pointer_array < TDST > & dsta, const pointer_array < TSRC > & srca);
 
 
    template < class A, class T >
@@ -33,10 +33,10 @@ namespace acme
 
 
       template < class TDST,class TSRC >
-      ::count copy(address_array < TDST > & dsta, const address_array < TSRC > & srca);
+      ::raw::count copy(address_array < TDST > & dsta, const address_array < TSRC > & srca);
 
       template < class TDST, class TSRC >
-      ::count ptrcopy(TDST & dsta, const TSRC & srca);
+      ::raw::count ptrcopy(TDST & dsta, const TSRC & srca);
 
 
    }
@@ -47,7 +47,7 @@ namespace acme
 
 
       template < class TDST,class TSRC >
-      ::count copy(TDST & dsta,const TSRC & srca);
+      ::raw::count copy(TDST & dsta,const TSRC & srca);
 
       template < typename CONTAINER, class TYPE >
       bool contains_item(const CONTAINER & container, const TYPE & t);
@@ -56,7 +56,7 @@ namespace acme
 //#ifdef UNIVERSAL_WINDOWS
 //
 //      template < typename T, typename ITEM >
-//      inline ::index find_first_item(::winrt::Windows::Foundation::Collections::IVectorImpact < T > ^ ivectorview, const ITEM & item)
+//      inline ::raw::index find_first_item(::winrt::Windows::Foundation::Collections::IVectorImpact < T > ^ ivectorview, const ITEM & item)
 //      {
 //
 //         for (::u32 u = 0; u < ivectorview->Size; u++)
@@ -102,7 +102,7 @@ namespace acme
          while(a.get_count() > 0)
          {
 
-            index i = (index) (rand() % a.get_size());
+            ::raw::index i = (index) (rand() % a.get_size());
             b.add(a.element_at(i));
             a.erase_at(i);
 
@@ -117,7 +117,7 @@ namespace acme
       typename A::BASE_TYPE pick_random(A & a)
       {
 
-         index i = (index)(rand() % a.get_size());
+         ::raw::index i = (index)(rand() % a.get_size());
 
          return a.element_at(i);
 
@@ -128,7 +128,7 @@ namespace acme
       typename A::BASE_TYPE pop_random(A & a)
       {
 
-         index i = (index)(rand() % a.get_size());
+         ::raw::index i = (index)(rand() % a.get_size());
 
          auto matter = a.element_at(i);
 
@@ -140,10 +140,10 @@ namespace acme
 
 
       template < class A, class TYPE >
-      ::count populate(A & a, TYPE start, TYPE end, TYPE step, bool bIncludeStart = true, bool bIncludeEnd = true, bool bIncludeEndOnStep = true)
+      ::raw::count populate(A & a, TYPE start, TYPE end, TYPE step, bool bIncludeStart = true, bool bIncludeEnd = true, bool bIncludeEndOnStep = true)
       {
 
-         ::count count = 0;
+         ::raw::count count = 0;
 
          TYPE cur = start;
 
@@ -296,7 +296,7 @@ namespace acme
 
 
       template < typename ARRAY >
-      index find_first(const ARRAY & a, typename ARRAY::BASE_ARG_TYPE t,index(* pfnCompare)(typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index find = 0,index last = -1)
+      ::raw::index find_first(const ARRAY & a, typename ARRAY::BASE_ARG_TYPE t,index(* pfnCompare)(typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index find = 0,index last = -1)
       {
 
          if (find < 0)
@@ -417,10 +417,10 @@ namespace acme
    }
 
    template < class A >
-   void array_makecombination(pointer_array < A > & comb, const A & a, A blindprefixa = A(), index idx = 0)
+   void array_makecombination(pointer_array < A > & comb, const A & a, A blindprefixa = A(), ::raw::index idx = 0)
    {
       comb.add(__allocate< A >(blindprefixa));
-      for(::index i = idx; i < a.get_count(); i++)
+      for(::raw::index i = idx; i < a.get_count(); i++)
       {
          array_makecombination(comb, a, blindprefixa + make_array < A > (a[i]), i + 1);
       }
@@ -454,8 +454,8 @@ namespace acme
    template < class A >
    void x1_on_erase(const A & a, typename A::BASE_TYPE & n)
    {
-      ::count c = 0;
-      for (index i = 0; i < a.get_size(); i++)
+      ::raw::count c = 0;
+      for (::raw::index i = 0; i < a.get_size(); i++)
       {
          if (a[i] < n)
          {
@@ -480,7 +480,7 @@ namespace acme
       //::stream & exchange_container(::stream & stream, INITIALIZER * pinitializer, const pointer_array < TYPE > & a);
 
       template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-      ::index add(string_array_base < Type, RawType, t_etypeContainer > & array, const Type & psz)
+      ::raw::index add(string_array_base < Type, RawType, t_etypeContainer > & array, const Type & psz)
       {
 
          auto iIndex = __index(array.m_nSize);
@@ -493,46 +493,46 @@ namespace acme
 
 
       template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-      ::index add(string_array_base < Type, RawType, t_etypeContainer > & array, const ::payload & payload);
+      ::raw::index add(string_array_base < Type, RawType, t_etypeContainer > & array, const ::payload & payload);
 
 
       template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-      ::index unfold_add(string_array_base < Type, RawType, t_etypeContainer > & array, const ::payload & payload);
+      ::raw::index unfold_add(string_array_base < Type, RawType, t_etypeContainer > & array, const ::payload & payload);
 
       template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-      ::count ensure_sequence(::numeric_array < TYPE, t_etypeContainer > & a, TYPE start, TYPE end, TYPE increment = 1);
+      ::raw::count ensure_sequence(::numeric_array < TYPE, t_etypeContainer > & a, TYPE start, TYPE end, TYPE increment = 1);
 
       template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-      ::count append_sequence(::numeric_array < TYPE, t_etypeContainer > & a, TYPE iterator, TYPE end, TYPE increment = 1);
+      ::raw::count append_sequence(::numeric_array < TYPE, t_etypeContainer > & a, TYPE iterator, TYPE end, TYPE increment = 1);
 
       template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-      ::count set_sequence(::numeric_array < TYPE, t_etypeContainer > & a, TYPE start, TYPE end, TYPE increment = 1);
+      ::raw::count set_sequence(::numeric_array < TYPE, t_etypeContainer > & a, TYPE start, TYPE end, TYPE increment = 1);
 
       template<class ARRAY>
-      bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index & iIndex,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE));
+      bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,::raw::index & iIndex,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE));
 
       template<class ARRAY>
-      bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, less_predicate_base < typename ARRAY::BASE_ARG_TYPE > * pcompare, index_array & ia);
+      bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, ::raw::index & iIndex, less_predicate_base < typename ARRAY::BASE_ARG_TYPE > * pcompare, index_array & ia);
 
       template<class ARRAY>
-      index sort_add(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index(*fCompare) (typename ARRAY::BASE_ARG_TYPE, typename ARRAY::BASE_ARG_TYPE), index_array & ia);
+      ::raw::index sort_add(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index(*fCompare) (typename ARRAY::BASE_ARG_TYPE, typename ARRAY::BASE_ARG_TYPE), index_array & ia);
 
       template<class ARRAY, class ARRAY2>
-      ::count sort_add_array(ARRAY & a, ARRAY2 & a2, index(*fCompare) (typename ARRAY::BASE_ARG_TYPE, typename ARRAY::BASE_ARG_TYPE), index_array & ia);
+      ::raw::count sort_add_array(ARRAY & a, ARRAY2 & a2, index(*fCompare) (typename ARRAY::BASE_ARG_TYPE, typename ARRAY::BASE_ARG_TYPE), index_array & ia);
 
       template<class ARRAY>
-      inline typename ARRAY::BASE_TYPE pop(ARRAY & a, index n = -1);
+      inline typename ARRAY::BASE_TYPE pop(ARRAY & a, ::raw::index n = -1);
 
       template<class ARRAY>
-      inline void pop_back(ARRAY & a, index n = -1);
+      inline void pop_back(ARRAY & a, ::raw::index n = -1);
 
       template<class ARRAY>
-      inline index push(ARRAY & a, typename ARRAY::BASE_ARG_TYPE newElement, index n = 0);
+      inline ::raw::index push(ARRAY & a, typename ARRAY::BASE_ARG_TYPE newElement, ::raw::index n = 0);
 
       template<class ARRAY>
-      inline void push_back(ARRAY & a, typename ARRAY::BASE_ARG_TYPE newElement, index n = 0);
+      inline void push_back(ARRAY & a, typename ARRAY::BASE_ARG_TYPE newElement, ::raw::index n = 0);
 
-      template<class TARGET, class SOURCE> inline ::index add(TARGET & target, const SOURCE & source)
+      template<class TARGET, class SOURCE> inline ::raw::index add(TARGET & target, const SOURCE & source)
       {
 
          return target.add(source);
@@ -541,15 +541,15 @@ namespace acme
 
 
       template < typename ARRAY1, typename ARRAY2>
-      inline ::index add_array(ARRAY1 & array1, const ARRAY2 & array2)
+      inline ::raw::index add_array(ARRAY1 & array1, const ARRAY2 & array2)
       {
 
-         index i = -1;
+         ::raw::index i = -1;
 
          for (auto & item : array2)
          {
 
-            index iItem = array1.add_item(item);
+            ::raw::index iItem = array1.add_item(item);
 
             if (i < 0)
             {
@@ -566,15 +566,15 @@ namespace acme
 
 
       template < typename ARRAY1, typename ARRAY2>
-      inline ::index unfold_array(ARRAY1 & array1, const ARRAY2 & array2)
+      inline ::raw::index unfold_array(ARRAY1 & array1, const ARRAY2 & array2)
       {
 
-         index i = -1;
+         ::raw::index i = -1;
 
          for (auto & item : array2)
          {
 
-            index iItem = add(array1, item);
+            ::raw::index iItem = add(array1, item);
 
             if (i < 0)
             {
@@ -590,22 +590,22 @@ namespace acme
       }
 
 
-      inline ::index add(string_array & stra, const ::scoped_string & scopedstr);
-      inline ::index add(string_array & stra, const char & ch);
-      inline ::index add(string_array & stra, const ansi_string & str);
-      inline ::index add(string_array & stra, const wide_string & str);
-      inline ::index add(string_array & stra, const ::file::path & path);
-      inline ::index add(string_array & stra, const ::payload & payload);
-      inline ::index add(string_array & stra, const ::property & property);
-      inline ::index add(string_array & stra, const ::property_set & propertyset);
+      inline ::raw::index add(string_array & stra, const ::scoped_string & scopedstr);
+      inline ::raw::index add(string_array & stra, const char & ch);
+      inline ::raw::index add(string_array & stra, const ansi_string & str);
+      inline ::raw::index add(string_array & stra, const wide_string & str);
+      inline ::raw::index add(string_array & stra, const ::file::path & path);
+      inline ::raw::index add(string_array & stra, const ::payload & payload);
+      inline ::raw::index add(string_array & stra, const ::property & property);
+      inline ::raw::index add(string_array & stra, const ::property_set & propertyset);
 
-      inline ::index add(::file::path_array & patha, const ::string & str);
+      inline ::raw::index add(::file::path_array & patha, const ::string & str);
 
-      inline ::index add(string_array & stra, const string_array & straSource);
+      inline ::raw::index add(string_array & stra, const string_array & straSource);
 
-      inline ::index add(::file::path_array & patha, const string_array & stra);
-      inline ::index add(::file::path_array & patha, const ::file::path_array & pathaSrc);
-      inline ::index add(::file::path_array & patha, const ::file::listing & listing);
+      inline ::raw::index add(::file::path_array & patha, const string_array & stra);
+      inline ::raw::index add(::file::path_array & patha, const ::file::path_array & pathaSrc);
+      inline ::raw::index add(::file::path_array & patha, const ::file::listing & listing);
 
       template < typename T >
       inline bool are_all_elements_equal(const pointer_array < T > & a1, const pointer_array < T > & a2);
@@ -616,7 +616,7 @@ namespace acme
 
 
       template < typename T1, typename  T2>
-      inline ::count erase_array(T1 & t1, T2 && t2);
+      inline ::raw::count erase_array(T1 & t1, T2 && t2);
 
 
       template < typename T1, typename  T2>
@@ -657,7 +657,7 @@ namespace acme
 
 
       template < typename A, typename PA >
-      void copy_points(A & a, const PA * pa, ::count c);
+      void copy_points(A & a, const PA * pa, ::raw::count c);
 
 
    } // namespace array
@@ -666,41 +666,41 @@ namespace acme
    {
 
       template < typename A >
-      ::count predominant_column_count(A & a);
+      ::raw::count predominant_column_count(A & a);
 
    } // namespace array2d
 
    
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::count erase_greater_than(::numeric_array < TYPE, t_etypeContainer > & a, TYPE hi);
+   ::raw::count erase_greater_than(::numeric_array < TYPE, t_etypeContainer > & a, TYPE hi);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::count erase_greater_than_or_equal(::numeric_array < TYPE, t_etypeContainer > & a, TYPE hi);
+   ::raw::count erase_greater_than_or_equal(::numeric_array < TYPE, t_etypeContainer > & a, TYPE hi);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::count erase_lesser_than(::numeric_array < TYPE, t_etypeContainer > & a, TYPE lo);
+   ::raw::count erase_lesser_than(::numeric_array < TYPE, t_etypeContainer > & a, TYPE lo);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::count erase_lesser_than_or_equal(::numeric_array < TYPE, t_etypeContainer > & a, TYPE lo);
+   ::raw::count erase_lesser_than_or_equal(::numeric_array < TYPE, t_etypeContainer > & a, TYPE lo);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::count erase_lesser_than_or_greater_than(::numeric_array < TYPE, t_etypeContainer > & a, TYPE lo, TYPE hi);
+   ::raw::count erase_lesser_than_or_greater_than(::numeric_array < TYPE, t_etypeContainer > & a, TYPE lo, TYPE hi);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::count erase_lesser_than_or_greater_than_or_equal(::numeric_array < TYPE, t_etypeContainer > & a, TYPE lo, TYPE hi);
+   ::raw::count erase_lesser_than_or_greater_than_or_equal(::numeric_array < TYPE, t_etypeContainer > & a, TYPE lo, TYPE hi);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::count erase_lesser_than_or_equal_or_greater_than(::numeric_array < TYPE, t_etypeContainer > & a, TYPE lo, TYPE hi);
+   ::raw::count erase_lesser_than_or_equal_or_greater_than(::numeric_array < TYPE, t_etypeContainer > & a, TYPE lo, TYPE hi);
 
 
    template < typename TYPE, ::enum_type t_etypeContainer = e_type_element >
-   ::count erase_lesser_than_or_equal_or_greater_than_or_equal(::numeric_array < TYPE, t_etypeContainer > & a, TYPE lo, TYPE hi);
+   ::raw::count erase_lesser_than_or_equal_or_greater_than_or_equal(::numeric_array < TYPE, t_etypeContainer > & a, TYPE lo, TYPE hi);
 
 
 }   // namespace acme

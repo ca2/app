@@ -727,7 +727,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::DPtoLP(::point_f64 * lpPoints, count nCount)
+   void graphics::DPtoLP(::point_f64 * lpPoints, ::raw::count nCount)
    {
 
    }
@@ -739,7 +739,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::LPtoDP(::point_f64 * lpPoints, count nCount)
+   void graphics::LPtoDP(::point_f64 * lpPoints, ::raw::count nCount)
    {
 
    }
@@ -919,7 +919,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::polyline(const ::point_f64 * lpPoints, count nCount)
+   void graphics::polyline(const ::point_f64 * lpPoints, ::raw::count nCount)
    {
 
       return draw_polygon(lpPoints, nCount);
@@ -1358,7 +1358,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::fill_polygon(const ::point_f64 * pa, count nCount)
+   void graphics::fill_polygon(const ::point_f64 * pa, ::raw::count nCount)
    {
 
       _synchronous_lock ml(::draw2d_cairo::mutex());
@@ -1388,7 +1388,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::draw_polygon(const ::point_f64 * pa, count nCount)
+   void graphics::draw_polygon(const ::point_f64 * pa, ::raw::count nCount)
    {
 
       _synchronous_lock ml(::draw2d_cairo::mutex());
@@ -1418,7 +1418,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::polygon(const ::point_f64 * pa, count nCount)
+   void graphics::polygon(const ::point_f64 * pa, ::raw::count nCount)
    {
 
       _synchronous_lock ml(::draw2d_cairo::mutex());
@@ -1878,7 +1878,7 @@ namespace draw2d_cairo
 //}
 
 
-//size_f64 graphics::TabbedTextOut(double x, double y, const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
+//size_f64 graphics::TabbedTextOut(double x, double y, const ::string & lpszString, strsize nCount, ::raw::count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
 //{
 //
 //    throw ::interface_only();
@@ -1888,7 +1888,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//size_f64 graphics::TabbedTextOut(double x, double y, const ::string & str, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
+//size_f64 graphics::TabbedTextOut(double x, double y, const ::string & str, ::raw::count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
 //{
 //
 //    throw ::interface_only();
@@ -1898,7 +1898,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//size_f64 graphics::GetTabbedTextExtent(const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions)
+//size_f64 graphics::GetTabbedTextExtent(const ::string & lpszString, strsize nCount, ::raw::count nTabPositions, int * lpnTabStopPositions)
 //{
 //
 //    throw ::interface_only();
@@ -1908,7 +1908,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//size_f64 graphics::GetTabbedTextExtent(const ::string & str, count nTabPositions, int * lpnTabStopPositions)
+//size_f64 graphics::GetTabbedTextExtent(const ::string & str, ::raw::count nTabPositions, int * lpnTabStopPositions)
 //{
 //
 //    throw ::interface_only();
@@ -1918,7 +1918,7 @@ namespace draw2d_cairo
 //}
 
 
-//size_f64 graphics::GetOutputTabbedTextExtent(const ::string & lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions)
+//size_f64 graphics::GetOutputTabbedTextExtent(const ::string & lpszString, strsize nCount, ::raw::count nTabPositions, int * lpnTabStopPositions)
 //{
 //
 //    throw ::interface_only();
@@ -1928,7 +1928,7 @@ namespace draw2d_cairo
 //}
 //
 //
-//size_f64 graphics::GetOutputTabbedTextExtent(const ::string & str, count nTabPositions, int * lpnTabStopPositions)
+//size_f64 graphics::GetOutputTabbedTextExtent(const ::string & str, ::raw::count nTabPositions, int * lpnTabStopPositions)
 //{
 //
 //    throw ::interface_only();
@@ -2595,7 +2595,7 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::poly_polyline(const ::point_f64 * lpPoints, const ::i32 * lpPolyPoints, count nCount)
+   void graphics::poly_polyline(const ::point_f64 * lpPoints, const ::i32 * lpPolyPoints, ::raw::count nCount)
    {
 
       throw ::interface_only();
@@ -2645,7 +2645,7 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::poly_bezier(const ::point_f64 * lpPoints, count nCount)
+   void graphics::poly_bezier(const ::point_f64 * lpPoints, ::raw::count nCount)
    {
 
       throw ::interface_only();
@@ -2755,7 +2755,7 @@ namespace draw2d_cairo
    }
 
 //
-//i32 graphics::GetPath(::point_f64 * lpPoints, ::u8 * lpTypes, count nCount)
+//i32 graphics::GetPath(::point_f64 * lpPoints, ::u8 * lpTypes, ::raw::count nCount)
 //{
 //
 //    throw ::interface_only();
@@ -3694,7 +3694,7 @@ namespace draw2d_cairo
 //}
 
 
-   void graphics::polydraw(const ::point_f64 * lpPoints, const ::u8 * lpTypes, count nCount)
+   void graphics::polydraw(const ::point_f64 * lpPoints, const ::u8 * lpTypes, ::raw::count nCount)
    {
 
       throw ::interface_only();
@@ -3704,7 +3704,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::polyline_to(const ::point_f64 * lpPoints, count nCount)
+   void graphics::polyline_to(const ::point_f64 * lpPoints, ::raw::count nCount)
    {
 
       throw ::interface_only();
@@ -3714,7 +3714,7 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::poly_bezier_to(const ::point_f64 * lpPoints, count nCount)
+   void graphics::poly_bezier_to(const ::point_f64 * lpPoints, ::raw::count nCount)
    {
 
       throw ::interface_only();
@@ -6205,7 +6205,7 @@ namespace draw2d_cairo
 
       }
 
-      for (index i = 1; i < pointa.get_count(); i++)
+      for (::raw::index i = 1; i < pointa.get_count(); i++)
       {
 
          cairo_line_to(m_pdc, pointa[i].x(), pointa[i].y());
@@ -6259,7 +6259,7 @@ namespace draw2d_cairo
 
       }
 
-      for (index i = 1; i < pointa.get_count(); i++)
+      for (::raw::index i = 1; i < pointa.get_count(); i++)
       {
 
          cairo_line_to(m_pdc, pointa[i].x(), pointa[i].y());

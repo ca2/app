@@ -179,7 +179,7 @@ namespace acme
       ////while (i > 0 && applicationa.get_size() > 0)
       ////{
 
-      ////   for (index j = 0; j < applicationa.get_size(); )
+      ////   for (::raw::index j = 0; j < applicationa.get_size(); )
       ////   {
 
       ////      auto pappItem = applicationa[j];

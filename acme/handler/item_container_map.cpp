@@ -27,7 +27,7 @@ void item_container_map::destroy()
 }
 
 
-::pointer < ::item_container > item_container_map::item_container(::index iId)
+::pointer < ::item_container > item_container_map::item_container(::raw::index iId)
 {
 
    return m_itemcontainermap[iId];

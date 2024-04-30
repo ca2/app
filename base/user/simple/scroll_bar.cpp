@@ -1538,7 +1538,7 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 
    //      ::rectangle_i32 rectangleFocus;
 
-   //      index i = 0;
+   //      ::raw::index i = 0;
 
    //      while (pinteraction != nullptr)
    //      {

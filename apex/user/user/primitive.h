@@ -355,9 +355,9 @@ namespace user
 
       void OnLinkClick(const ::string & psz,const ::string & pszTarget = nullptr) override;
 
-      ::user::interaction * get_child_by_name(const ::string & strName, ::index iItem = -1, i32 iLevel = -1) override;
-      ::user::interaction * get_child_by_id(const ::atom & atom, ::index iItem = -1, i32 iLevel = -1) override;
-      ::user::element * get_primitive_by_id(const ::atom & atom, ::index iItem = -1, i32 iLevel = -1) override;
+      ::user::interaction * get_child_by_name(const ::string & strName, ::raw::index iItem = -1, i32 iLevel = -1) override;
+      ::user::interaction * get_child_by_id(const ::atom & atom, ::raw::index iItem = -1, i32 iLevel = -1) override;
+      ::user::element * get_primitive_by_id(const ::atom & atom, ::raw::index iItem = -1, i32 iLevel = -1) override;
 
 
       ::user::interaction * get_wnd() override;
@@ -696,13 +696,13 @@ namespace user
 
       // Text Edit
       void _001GetSel(strsize & iBeg, strsize & iEnd) override;
-      index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
-      index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x) override;
-      index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
-      index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x) override;
-      strsize plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, index iLine, index iColumn) override;
-      strsize plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, index iLine, i32 x) override;
-      index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
+      ::raw::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
+      ::raw::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x) override;
+      ::raw::index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
+      ::raw::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x) override;
+      strsize plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::raw::index iLine, ::raw::index iColumn) override;
+      strsize plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::raw::index iLine, i32 x) override;
+      ::raw::index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
 
 
       void on_check_change() override;

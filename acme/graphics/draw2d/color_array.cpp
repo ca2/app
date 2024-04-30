@@ -55,7 +55,7 @@ namespace draw2d
 
       colora.set_size(iCount);
 
-      for (index i = 0; i < iCount; i++)
+      for (::raw::index i = 0; i < iCount; i++)
       {
 
 //#if defined(ANDROID) && defined(__arm__)

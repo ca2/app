@@ -86,7 +86,7 @@ namespace userex
 
       virtual ::filemanager::document * filemanager_document(const ::atom & atom);
 
-      void _001OnTabClose(index iTab) override;
+      void _001OnTabClose(::raw::index iTab) override;
 
       virtual void interactive_credentials(::account::credentials * pcredentials);
 

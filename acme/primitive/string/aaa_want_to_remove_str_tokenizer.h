@@ -47,7 +47,7 @@ namespace str
 
       bool get_next_word(string * pstrToken = nullptr);
 
-      ::count skip_word(::count c);
+      ::raw::count skip_word(::raw::count c);
       
       string get_word();
 

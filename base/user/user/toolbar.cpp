@@ -302,12 +302,12 @@ namespace user
    }
 
 
-   void toolbar::SetHeight(index cyHeight)
+   void toolbar::SetHeight(::raw::index cyHeight)
    {
 
       ASSERT_VALID(this);
 
-      index nHeight = cyHeight;
+      ::raw::index nHeight = cyHeight;
       if (m_dwStyle & CBRS_BORDER_TOP)
          //         cyHeight -= ::windows_definition::Data.cyBorder2;
          cyHeight -= 2;
@@ -389,7 +389,7 @@ namespace user
    //
    //#endif
 
-   bool toolbar::SetButtons(const ::u32 * pIDArray, index nIDCount)
+   bool toolbar::SetButtons(const ::u32 * pIDArray, ::raw::index nIDCount)
    {
 
       //#ifdef WINDOWS_DESKTOP
@@ -412,7 +412,7 @@ namespace user
       //      {
       //         // add new buttons to the common control
       //         index iImage = 0;
-      //         for (index i = 0; i < nIDCount; i++)
+      //         for (::raw::index i = 0; i < nIDCount; i++)
       //         {
       //            button.fsState = TBSTATE_ENABLED;
       //            if ((button.idCommand = *pIDArray++) == 0)
@@ -440,7 +440,7 @@ namespace user
       //      {
       //         // add 'blank' buttons
       //         button.fsState = TBSTATE_ENABLED;
-      //         for (index i = 0; i < nIDCount; i++)
+      //         for (::raw::index i = 0; i < nIDCount; i++)
       //         {
       //            ASSERT(button.fsStyle == TBSTYLE_BUTTON);
       //            if (!default_window_procedure(TB_ADDBUTTONS, 1, (LPARAM)&button))
@@ -459,7 +459,7 @@ namespace user
    #ifdef WINDOWS_DESKTOP
    */
 
-   //   void toolbar::_GetButton(::index nIndex, TBBUTTON* pButton) const
+   //   void toolbar::_GetButton(::raw::index nIndex, TBBUTTON* pButton) const
    //   {
    //
    //      //toolbar* pBar = (toolbar*)this;
@@ -473,7 +473,7 @@ namespace user
    //   }
    //
    //
-   //   void toolbar::_SetButton(::index nIndex, TBBUTTON* pButton)
+   //   void toolbar::_SetButton(::raw::index nIndex, TBBUTTON* pButton)
    //   {
    //
    //      // get original button state
@@ -620,7 +620,7 @@ namespace user
 #define CX_OVERLAP 0
 
 
-   //   ::index toolbar::tool_item_index(const ::atom & atom) const
+   //   ::raw::index toolbar::tool_item_index(const ::atom & atom) const
    //   {
    //   
    //      auto iIndex = atom.m_i;
@@ -735,7 +735,7 @@ namespace user
    //#ifdef WINDOWS_DESKTOP
    //
    //
-   //   ::size_i32 toolbar::CalcSize(TBBUTTON * pData, index nCount)
+   //   ::size_i32 toolbar::CalcSize(TBBUTTON * pData, ::raw::index nCount)
    //   {
    //
    //      //ASSERT(pData != nullptr && nCount > 0);
@@ -746,7 +746,7 @@ namespace user
    //
    //      //u32 dwExtendedStyle = (u32) default_window_procedure(TB_GETEXTENDEDSTYLE, 0, 0);
    //
-   //      //for (index i = 0; i < nCount; i++)
+   //      //for (::raw::index i = 0; i < nCount; i++)
    //      //{
    //      //   //WINBUG: The IE4 version of COMCTL32.DLL calculates the separation
    //      //   //  on a TBSTYLE_WRAP button as 100% of the value in iBitmap compared
@@ -799,7 +799,7 @@ namespace user
    //      return { 0,0 };
    //   }
    //
-   //   index toolbar::WrapToolBar(TBBUTTON* pData, index nCount, index nWidth)
+   //   index toolbar::WrapToolBar(TBBUTTON* pData, ::raw::index nCount, ::raw::index nWidth)
    //   {
    //
    //   //   ASSERT(pData != nullptr && nCount > 0);
@@ -809,7 +809,7 @@ namespace user
    //   //   index nResult = 0;
    //   //   index x = 0;
    //   //   string str;
-   //   //   for (index i = 0; i < nCount; i++)
+   //   //   for (::raw::index i = 0; i < nCount; i++)
    //   //   {
    //   //      pData[i].fsState &= ~TBSTATE_WRAP;
    //
@@ -846,7 +846,7 @@ namespace user
    //   //      if (x + Δx > nWidth)
    //   //      {
    //   //         bool bFound = false;
-   //   //         for (index j = i; j >= 0  &&  !(pData[j].fsState & TBSTATE_WRAP); j--)
+   //   //         for (::raw::index j = i; j >= 0  &&  !(pData[j].fsState & TBSTATE_WRAP); j--)
    //   //         {
    //   //            // find last separator that isn't hidden
    //   //            // a separator that has a command ID is not
@@ -863,7 +863,7 @@ namespace user
    //   //         }
    //   //         if (!bFound)
    //   //         {
-   //   //            for (index j = i - 1; j >= 0 && !(pData[j].fsState & TBSTATE_WRAP); j--)
+   //   //            for (::raw::index j = i - 1; j >= 0 && !(pData[j].fsState & TBSTATE_WRAP); j--)
    //   //            {
    //   //               // Never wrap anything that is hidden,
    //   //               // or any custom controls
@@ -889,7 +889,7 @@ namespace user
    //      return -1;
    //   }
    //
-   //   void  toolbar::SizeToolBar(TBBUTTON* pData, index nCount, index nLength, bool bVert)
+   //   void  toolbar::SizeToolBar(TBBUTTON* pData, ::raw::index nCount, ::raw::index nLength, bool bVert)
    //   {
    //   //   ASSERT(pData != nullptr && nCount > 0);
    //
@@ -970,12 +970,12 @@ namespace user
    //#endif
    struct ___CONTROLPOS
    {
-      index nIndex, nID;
+      ::raw::index nIndex, nID;
       ::rectangle_i32 rectangleOldPos;
    };
 
 
-   size_i32 toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 dwMode, index nLength)
+   size_i32 toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 dwMode, ::raw::index nLength)
    {
       //#ifdef WINDOWS_DESKTOP
       //      ASSERT_VALID(this);
@@ -1088,7 +1088,7 @@ namespace user
       //
       //               nControlCount = 0;
       //
-      //               for(index i = 0; i < nCount; i++)
+      //               for(::raw::index i = 0; i < nCount; i++)
       //               {
       //
       //                  if ((pData[i].fsStyle & TBSTYLE_SEP) && (pData[i].idCommand != 0))
@@ -1156,7 +1156,7 @@ namespace user
       //            if (nControlCount > 0)
       //            {
       //
-      //               for (index i = 0; i < nControlCount; i++)
+      //               for (::raw::index i = 0; i < nControlCount; i++)
       //               {
       //
       //                  ::pointer<::user::interaction>pwindow = get_child_by_id(pControl[i].nID);
@@ -1236,7 +1236,7 @@ namespace user
    }
 
 
-   void toolbar::set_tool_item_image(const ::atom & atom, index iImage)
+   void toolbar::set_tool_item_image(const ::atom & atom, ::raw::index iImage)
    {
 
       tool_item_by_atom(atom)->m_iImage = iImage;
@@ -1252,7 +1252,7 @@ namespace user
    }
 
 
-   ::index toolbar::tool_item_image(const ::atom & atom)
+   ::raw::index toolbar::tool_item_image(const ::atom & atom)
    {
       //#ifdef WINDOWS_DESKTOP
       //      ASSERT_VALID(this);
@@ -1271,7 +1271,7 @@ namespace user
    }
 
 
-   //   void toolbar::SetButtonInfo(const ::atom & atom, ::u32 nID, ::u32 nStyle, index iImage)
+   //   void toolbar::SetButtonInfo(const ::atom & atom, ::u32 nID, ::u32 nStyle, ::raw::index iImage)
    //   {
    //      ASSERT_VALID(this);
    ////#ifdef WINDOWS_DESKTOP
@@ -1745,7 +1745,7 @@ namespace user
 //      ////#ifdef WINDOWS_DESKTOP
 //      ////         toolbar* pBar = (toolbar*)this;
 //      ////         LRESULT nCount = pBar->default_window_procedure(TB_BUTTONCOUNT, 0, 0);
-//      ////         for (index i = 0; i < nCount; i++)
+//      ////         for (::raw::index i = 0; i < nCount; i++)
 //      ////         {
 //      ////            TBBUTTON button;
 //      ////            _GetButton(i, &button);
@@ -1869,7 +1869,7 @@ namespace user
       { return LoadBitmap(MAKEINTRESOURCE(nIDResource)); }*/
 
 
-   ::count toolbar::tool_item_count()
+   ::raw::count toolbar::tool_item_count()
    {
 
       if (!main_content().m_pitema)
@@ -1884,7 +1884,7 @@ namespace user
    }
 
 
-   ::status < ::rectangle_i32 > toolbar::index_item_rectangle(index iItem)
+   ::status < ::rectangle_i32 > toolbar::index_item_rectangle(::raw::index iItem)
    {
 
       if (!main_content().m_pitema->is_index_ok(iItem))
@@ -1905,7 +1905,7 @@ namespace user
    }
 
 
-   ::status < ::rectangle_i32 >  toolbar::index_element_rectangle(index iItem, enum_element eelement, ::user::enum_state estate)
+   ::status < ::rectangle_i32 >  toolbar::index_element_rectangle(::raw::index iItem, enum_element eelement, ::user::enum_state estate)
    {
 
       return error_failed;
@@ -1913,7 +1913,7 @@ namespace user
    }
 
 
-   ::user::tool_item * toolbar::tool_item_at(index iItem)
+   ::user::tool_item * toolbar::tool_item_at(::raw::index iItem)
    {
 
       if (!main_content().m_pitema->is_index_ok(iItem))
@@ -1928,7 +1928,7 @@ namespace user
    }
 
 
-   //void toolbar::set_tool_item_at(index iItem, ::user::tool_item * pitem)
+   //void toolbar::set_tool_item_at(::raw::index iItem, ::user::tool_item * pitem)
    //{
 
    //   if (iItem < 0 || iItem >= m_pitema->get_size())
@@ -2001,7 +2001,7 @@ namespace user
 
       //auto papp = get_app();
 
-      for (index iItem = 0; iItem < children.get_size(); iItem++)
+      for (::raw::index iItem = 0; iItem < children.get_size(); iItem++)
       {
 
          auto pchild = children.element_at(iItem)->get_xml_node();
@@ -2173,9 +2173,9 @@ void user_toolbar_command::enable(bool bEnable, const ::action_context & context
 
    }
 
-   pToolBar->set_tool_item_state((index)m_iIndex, estateNew);
+   pToolBar->set_tool_item_state((::raw::index)m_iIndex, estateNew);
 
-   pToolBar->set_tool_item_style((index)m_iIndex, estyleNew);
+   pToolBar->set_tool_item_style((::raw::index)m_iIndex, estyleNew);
 
 }
 
@@ -2221,9 +2221,9 @@ void user_toolbar_command::_001SetCheck(const e_check & echeck, const ::action_c
 
    }
 
-   pToolBar->set_tool_item_state((index)m_iIndex, estateNew);
+   pToolBar->set_tool_item_state((::raw::index)m_iIndex, estateNew);
 
-   pToolBar->set_tool_item_style((index)m_iIndex, estyle | e_tool_item_style_checkbox);
+   pToolBar->set_tool_item_style((::raw::index)m_iIndex, estyle | e_tool_item_style_checkbox);
 
 }
 

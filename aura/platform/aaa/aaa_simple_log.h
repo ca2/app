@@ -8,15 +8,15 @@ class CLASS_DECL_AURA simple_log :
 
 
       simple_log *         m_psimplelog;
-      index                m_iLogTarget;
+      ::raw::index                m_iLogTarget;
 
 
       simple_log();
-      simple_log(simple_log * psimplelog, index iLogTarget);
+      simple_log(simple_log * psimplelog, ::raw::index iLogTarget);
       virtual ~simple_log();
 
 
-      virtual void log_line(string str, index iLogTarget);
+      virtual void log_line(string str, ::raw::index iLogTarget);
       virtual void log_line(string str);
 
 

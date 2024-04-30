@@ -847,7 +847,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //#endif
 //
-//   for(index i = c - 1; i >= 0; i--)
+//   for(::raw::index i = c - 1; i >= 0; i--)
 //   {
 //
 //#ifdef FUNCTION_TRACE
@@ -1338,7 +1338,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   ::rectangle_i32 rectangleTest;
 //
-//   for(index i = 0; i < recta.get_size(); i++)
+//   for(::raw::index i = 0; i < recta.get_size(); i++)
 //   {
 //
 //      int wid = windowida[i];

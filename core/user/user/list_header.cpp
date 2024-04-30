@@ -118,7 +118,7 @@ namespace user
 
 
 
-   index list_header::MapItemToOrder(index iItem)
+   ::raw::index list_header::MapItemToOrder(::raw::index iItem)
    {
 //#ifdef WINDOWS_DESKTOP
       //    HDITEM hditem;
@@ -147,7 +147,7 @@ namespace user
    }
 
 
-   bool list_header::GetItemRect(::rectangle_i32 * prectangle, enum_element eelement, index iItem)
+   bool list_header::GetItemRect(::rectangle_i32 * prectangle, enum_element eelement, ::raw::index iItem)
    {
 
       if (iItem < 0)
@@ -238,7 +238,7 @@ namespace user
    }
 
 
-   bool list_header::GetItemRect(::rectangle_i32 * prectangle, enum_element eelementLButtonDown, index iItemLButtonDown, enum_element eelement, index iItem)
+   bool list_header::GetItemRect(::rectangle_i32 * prectangle, enum_element eelementLButtonDown, ::raw::index iItemLButtonDown, enum_element eelement, ::raw::index iItem)
    {
 
       if (iItem < 0)
@@ -357,7 +357,7 @@ namespace user
 
    }
 
-   bool list_header::hit_test(const ::point_i32 & point, enum_element & eelement, index & iItemParam)
+   bool list_header::hit_test(const ::point_i32 & point, enum_element & eelement, ::raw::index & iItemParam)
    {
       list * plist = m_plist;
       ::rectangle_i32 rectangle;
@@ -385,7 +385,7 @@ namespace user
       return false;
    }
 
-   bool list_header::hit_test(const ::point_i32 & point, enum_element eelementLButtonDown, index iItemLButtonDown, enum_element & eelement, index & iItemParam)
+   bool list_header::hit_test(const ::point_i32 & point, enum_element eelementLButtonDown, ::raw::index iItemLButtonDown, enum_element & eelement, ::raw::index & iItemParam)
    {
       list * plist = m_plist;
       ::rectangle_i32 rectangle;
@@ -414,7 +414,7 @@ namespace user
    }
 
 
-   index list_header::ItemToColumnKey(index iItem)
+   ::raw::index list_header::ItemToColumnKey(::raw::index iItem)
    {
 
       list * plist = m_plist;
@@ -447,7 +447,7 @@ namespace user
       if (bSave)
       {
 
-         for (index iColumn = 0; iColumn < m_plist->_001GetColumnCount(); iColumn++)
+         for (::raw::index iColumn = 0; iColumn < m_plist->_001GetColumnCount(); iColumn++)
          {
 
             auto pcolumn = m_plist->m_pcolumna->get_visible(iColumn);
@@ -476,9 +476,9 @@ namespace user
          if (papp->datastream()->get(strDataKey, iaWidth))
          {
 
-            ::count c = minimum(iaWidth.get_count(), m_plist->_001GetColumnCount());
+            ::raw::count c = minimum(iaWidth.get_count(), m_plist->_001GetColumnCount());
 
-            for (index iColumn = 0; iColumn < c; iColumn++)
+            for (::raw::index iColumn = 0; iColumn < c; iColumn++)
             {
 
                auto pcolumn = m_plist->m_pcolumna->get_visible(iColumn);
@@ -544,7 +544,7 @@ namespace user
 
          enum_element eelement;
 
-         index iItem;
+         ::raw::index iItem;
 
          if(hit_test(pointCursor, eelement, iItem))
          {
@@ -564,10 +564,10 @@ namespace user
 
                   // The header item has been dragged
 
-                  index iKeyA = plist->m_pcolumna->order_index(iItem);
-                  index iKeyB = plist->m_pcolumna->order_index(iItem);
-                  index iOrderA = plist->m_pcolumna->get_by_index(iKeyA)->m_iOrder;
-                  index iOrderB = plist->m_pcolumna->get_by_index(iKeyB)->m_iOrder;
+                  ::raw::index iKeyA = plist->m_pcolumna->order_index(iItem);
+                  ::raw::index iKeyB = plist->m_pcolumna->order_index(iItem);
+                  ::raw::index iOrderA = plist->m_pcolumna->get_by_index(iKeyA)->m_iOrder;
+                  ::raw::index iOrderB = plist->m_pcolumna->get_by_index(iKeyB)->m_iOrder;
                   plist->m_pcolumna->get_by_index(iKeyA)->m_iOrder = iOrderB;
                   plist->m_pcolumna->get_by_index(iKeyB)->m_iOrder = iOrderA;
                   plist->set_pending_column_update();
@@ -618,7 +618,7 @@ namespace user
 
       enum_element eelement;
 
-      index iItem;
+      ::raw::index iItem;
 
       if(hit_test(pointCursor, eelement, iItem))
       {
@@ -712,7 +712,7 @@ namespace user
 
       enum_element eelement;
 
-      index iItem;
+      ::raw::index iItem;
 
       if(hit_test(
             pointCursor,
@@ -845,7 +845,7 @@ namespace user
 
       ////      ::rectangle_i32 rectangleIntersect;
 
-      ////      index i = 0;
+      ////      ::raw::index i = 0;
 
       ////      while (pinteraction != nullptr)
       ////      {

@@ -66,17 +66,17 @@ namespace databaseuser
 
       plist->get_selection(range);
 
-      for(index i = 0; i < range.get_item_count() ; i++)
+      for(::raw::index i = 0; i < range.get_item_count() ; i++)
       {
          auto & itemrange = range.ItemAt(i);
-         for(index iItem = itemrange.get_lower_bound(); iItem <= itemrange.get_upper_bound(); iItem++)
+         for(::raw::index iItem = itemrange.get_lower_bound(); iItem <= itemrange.get_upper_bound(); iItem++)
          {
             stra.add(wstraTotal[iItem]);
          }
       }
    }
 
-   ::count data_key_mesh_data::_001GetItemCount()
+   ::raw::count data_key_mesh_data::_001GetItemCount()
    {
       string_array straTotal;
       if(!datastream()->get(::atom(), straTotal))

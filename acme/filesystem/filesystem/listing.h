@@ -103,7 +103,7 @@ namespace file
 
       //listing& operator = (const ::e_status & estatus) { return *this; }
       template < container_type CONTAINER >
-      inline ::index add_container(const CONTAINER & container)
+      inline ::raw::index add_container(const CONTAINER & container)
       {
 
          auto iIndex = ::file::path_array::append_container(container);
@@ -114,7 +114,7 @@ namespace file
 
 
       template < typename CONTAINER >
-      inline ::index add_listing(const CONTAINER & container)
+      inline ::raw::index add_listing(const CONTAINER & container)
       {
 
          auto iIndex = ::file::path_array::append_container(container);
@@ -134,7 +134,7 @@ namespace file
       }
 
 
-      index add_child(const ::file::path & path)
+      ::raw::index add_child(const ::file::path & path)
       {
 
          return add(m_pathUser / path);
@@ -163,10 +163,10 @@ namespace file
       void clear_results() { m_straTitle.erase_all(); erase_all(); }
 
 
-      string title(index i);
+      string title(::raw::index i);
 
 
-      string name(index i);
+      string name(::raw::index i);
 
 
       void to_name();
@@ -175,14 +175,14 @@ namespace file
       listing & operator = (const listing & listing);
 
 
-      index name_find_first_ci(const path & pcsz,index find = 0,index last = -1) const;
+      ::raw::index name_find_first_ci(const path & pcsz,::raw::index find = 0,::raw::index last = -1) const;
 
-      bool name_move_ci(const path & pcsz,index iIndex);
+      bool name_move_ci(const path & pcsz, ::raw::index iIndex);
 
       bool preferred_name(const path & pcsz);
 
 
-      ::count preferred_name(path_array & stra);
+      ::raw::count preferred_name(path_array & stra);
 
 
       void defer_add(::file::path & path);

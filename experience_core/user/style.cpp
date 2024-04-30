@@ -111,7 +111,7 @@ namespace experience_core
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      index iTab = -1;
+      ::raw::index iTab = -1;
 
       ::rectangle_i32 rcClient;
 
@@ -890,7 +890,7 @@ namespace experience_core
 
          ::rectangle_i32 rectangleEmp;
 
-         for (index i = 0; i < straTitle.get_size(); i++)
+         for (::raw::index i = 0; i < straTitle.get_size(); i++)
          {
 
             string str = straTitle[i];
@@ -918,7 +918,7 @@ namespace experience_core
 
                status < ::color::color > colorText;
 
-               if (::is_item(ptab->m_pitemHover, (::index) ::e_element_split + i))
+               if (::is_item(ptab->m_pitemHover, (::raw::index) ::e_element_split + i))
                {
 
                   pgraphics->fill_rectangle(rectangleEmp, argb(128, 150, 190, 255));

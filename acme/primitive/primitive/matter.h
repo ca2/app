@@ -100,7 +100,7 @@ public:
    //inline bool is_set() const { return ::is_set(this); }
 
 
-   inline ::count reference_count() const { return m_countReference; }
+   inline ::raw::count reference_count() const { return m_countReference; }
    
    
 
@@ -126,7 +126,7 @@ public:
 
    virtual ::task * get_task();
    virtual const char * get_task_tag();
-   //virtual ::index task_add(::task* pthread);
+   //virtual ::raw::index task_add(::task* pthread);
    virtual void task_erase(::task* pthread);
 
    virtual void notify_on_destroy(::property_object * pparticle);

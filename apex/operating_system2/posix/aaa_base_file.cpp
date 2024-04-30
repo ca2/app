@@ -137,7 +137,7 @@ int_bool acmepath()->is_file_or_dir(const ::file::path & path1, ::file::enum_typ
 }
 
 
-int_bool acmefile()->put_contents(const ::file::path & path, const char * contents, ::count len)
+int_bool acmefile()->put_contents(const ::file::path & path, const char * contents, ::raw::count len)
 {
 
    bool bOk = false;
@@ -208,14 +208,14 @@ string acmefile()->as_string(const ::file::path & path, strsize iReadAtMostByteC
    if (f == nullptr)
       return "";
 
-   ::count iSize = FILE_get_size(f);
+   ::raw::count iSize = FILE_get_size(f);
 
    iReadAtMostByteCount = minimum_non_negative(iSize, iReadAtMostByteCount);
 
    char * psz = str.get_buffer(iReadAtMostByteCount);
 
 
-   ::count iRead = fread(psz, 1, iReadAtMostByteCount, f);
+   ::raw::count iRead = fread(psz, 1, iReadAtMostByteCount, f);
 
    psz[iRead] = '\0';
 

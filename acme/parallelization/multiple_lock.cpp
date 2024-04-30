@@ -38,7 +38,7 @@ multiple_lock::multiple_lock(const synchronization_array & synchronizationa,bool
 
    }
 
-   for (index i = 0; i < synchronizationa.synchronization_count(); i++)
+   for (::raw::index i = 0; i < synchronizationa.synchronization_count(); i++)
    {
 
       m_synchronizationa.add_item(synchronizationa.m_synchronizationa[i]);
@@ -57,7 +57,7 @@ multiple_lock::multiple_lock(const synchronization_array & synchronizationa,bool
 }
 
 
-multiple_lock::multiple_lock(::count c, const synchronization_array & synchronizationa, bool bInitialLock)
+multiple_lock::multiple_lock(::raw::count c, const synchronization_array & synchronizationa, bool bInitialLock)
 {
 
    ASSERT(synchronizationa.has_synchronization() && c > 0 && c <= synchronizationa.synchronization_count() && c <= MAXIMUM_WAIT_OBJECTS);
@@ -91,7 +91,7 @@ multiple_lock::~multiple_lock()
 }
 
 
-::index multiple_lock::lock(const class time & time, bool bWaitForAll, u32 dwWakeMask)
+::raw::index multiple_lock::lock(const class time & time, bool bWaitForAll, u32 dwWakeMask)
 {
 
    if (m_synchronizationa.has_no_synchronization())
@@ -164,7 +164,7 @@ multiple_lock::~multiple_lock()
 void multiple_lock::unlock()
 {
 
-   for (index i=0; i < m_synchronizationa.synchronization_count(); i++)
+   for (::raw::index i=0; i < m_synchronizationa.synchronization_count(); i++)
    {
 
       if (m_bitsLocked.is_set(i) && m_synchronizationa.m_synchronizationa[i])
@@ -188,7 +188,7 @@ void multiple_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
 
    //bool bGotOne = false;
 
-   for (index i=0; i < m_synchronizationa.synchronization_count(); i++)
+   for (::raw::index i=0; i < m_synchronizationa.synchronization_count(); i++)
    {
 
       if (m_bitsLocked.is_set(i) && m_synchronizationa.m_synchronizationa[i])
@@ -220,12 +220,12 @@ void multiple_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
 }
 
 
-bool multiple_lock::is_locked(index dwObject)
+bool multiple_lock::is_locked(::raw::index iObject)
 {
 
    //ASSERT(dwObject < m_synchronizationa.size());
 
-   return m_bitsLocked[dwObject];
+   return m_bitsLocked[iObject];
 
 }
 

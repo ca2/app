@@ -138,18 +138,18 @@ namespace graphics
    }
 
 
-   index multiple_buffer::find_best_buffer(const ::size_i32 & size)
+   ::raw::index multiple_buffer::find_best_buffer(const ::size_i32 & size)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
 
       bool bFoundExact = false;
 
-      index iGot = -1;
+      ::raw::index iGot = -1;
 
-      index iFound = -1;
+      ::raw::index iFound = -1;
 
-      index iFound2 = -1;
+      ::raw::index iFound2 = -1;
 
       bool bBigger = false;
 
@@ -171,7 +171,7 @@ namespace graphics
 
       }
 
-      for (index i = m_iDone; i >= 0; i--)
+      for (::raw::index i = m_iDone; i >= 0; i--)
       {
 
          if(i == m_iBuffer)
@@ -219,7 +219,7 @@ namespace graphics
       if (!bFoundExact)
       {
 
-         for (index i = m_bufferitema.get_upper_bound(); i > m_iDone; i--)
+         for (::raw::index i = m_bufferitema.get_upper_bound(); i > m_iDone; i--)
          {
 
             if(i == m_iBuffer)

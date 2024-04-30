@@ -663,7 +663,7 @@ namespace draw2d
 
 
  
-   bool path::add_polygon(const ::point_f64 * ppoint, ::count nCount)
+   bool path::add_polygon(const ::point_f64 * ppoint, ::raw::count nCount)
    {
 
       auto pitem = __create_new < ::geometry2d::polygon_item >();
@@ -690,7 +690,7 @@ namespace draw2d
    }
 
 
-   bool path::add_lines(const ::point_f64 * ppoint, ::count nCount)
+   bool path::add_lines(const ::point_f64 * ppoint, ::raw::count nCount)
    {
 
       //auto plines = __allocate< lines_f64_shape < path > >();

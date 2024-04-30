@@ -140,7 +140,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //   if (bReadWrite)
 //   {
 //
-//      for (::index i = 0; i < size; i++)
+//      for (::raw::index i = 0; i < size; i++)
 //      {
 //
 //         ::u8& b = *pbyte;
@@ -157,7 +157,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //
 //      ::i32 sum = 0;
 //
-//      for (::index i = 0; i < size; i++)
+//      for (::raw::index i = 0; i < size; i++)
 //      {
 //
 //         ::u8& b = *pbyte;
@@ -540,10 +540,10 @@ constexpr const TYPE * find_first_null_character(const TYPE * p, EQUALITY equali
 
 
 template < primitive_fundamental INTEGRAL >
-constexpr ::count count_until_zero_item_type(const INTEGRAL * p)
+constexpr ::raw::count count_until_zero_item_type(const INTEGRAL * p)
 {
 
-   ::count c = 0;
+   ::raw::count c = 0;
 
    while (*p)
    {
@@ -718,7 +718,7 @@ constexpr bool null_terminated_begins_null_terminated(const ITEM * pz, const ITE
 
 
 template < typename TYPE >
-TYPE * clipped_add(TYPE * p, ::count c, const non_const<TYPE> * begin, const non_const<TYPE> * end)
+TYPE * clipped_add(TYPE * p, ::raw::count c, const non_const<TYPE> * begin, const non_const<TYPE> * end)
 {
 
    if (c > 0)
@@ -743,7 +743,7 @@ TYPE * clipped_add(TYPE * p, ::count c, const non_const<TYPE> * begin, const non
 
 
 template < primitive_iterator ITERATOR, typename T1, typename T2 >
-ITERATOR clipped_add(ITERATOR p, ::count c, T1, T2)
+ITERATOR clipped_add(ITERATOR p, ::raw::count c, T1, T2)
 {
 
    if (c > 0)

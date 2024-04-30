@@ -59,7 +59,7 @@ namespace file
    }
 
 
-   index listing::name_find_first_ci(const path & pcsz,index find,index last ) const
+   ::raw::index listing::name_find_first_ci(const path & pcsz, ::raw::index find, ::raw::index last ) const
    {
 
       if(find < 0)
@@ -78,10 +78,10 @@ namespace file
    }
 
 
-   bool listing::name_move_ci(const path & pcsz,index iIndex)
-
+   bool listing::name_move_ci(const path & pcsz, ::raw::index iIndex)
    {
-      index i = name_find_first_ci(pcsz);
+
+      ::raw::index i = name_find_first_ci(pcsz);
 
       if(i < 0)
          return false;
@@ -111,10 +111,10 @@ namespace file
    }
 
 
-   ::count listing::preferred_name(path_array & stra)
+   ::raw::count listing::preferred_name(path_array & stra)
    {
-      ::count count = 0;
-      for(index i = stra.get_upper_bound(); i >= 0; i--)
+      ::raw::count count = 0;
+      for(::raw::index i = stra.get_upper_bound(); i >= 0; i--)
       {
          if(preferred_name(stra[ i]))
             count++;
@@ -313,7 +313,7 @@ namespace file
 {
 
 
-   string listing::title(index i)
+   string listing::title(::raw::index i)
    {
 
       if (i >= 0 && i < m_straTitle.get_count())
@@ -328,7 +328,7 @@ namespace file
    }
 
 
-   string listing::name(index i)
+   string listing::name(::raw::index i)
    {
 
       if (i >= 0 && i < m_straTitle.get_count())
@@ -346,7 +346,7 @@ namespace file
    void listing::to_name()
    {
 
-      for (index i = 0; i < get_size(); i++)
+      for (::raw::index i = 0; i < get_size(); i++)
       {
 
          element_at(i) = element_at(i).name();

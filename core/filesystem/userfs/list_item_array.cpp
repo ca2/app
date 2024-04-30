@@ -6,7 +6,7 @@
 namespace userfs
 {
 
-   //void list_item_array::SoftSwap(index i1, index i2)
+   //void list_item_array::SoftSwap(::raw::index i1, ::raw::index i2)
    //{
    //   index iArrange = this->element_at(i1)->m_iArrange;
    //   this->element_at(i1)->m_iArrange = this->element_at(i2)->m_iArrange;
@@ -14,7 +14,7 @@ namespace userfs
    //}
 
 
-   //::pointer<list_item>list_item_array::get_item(index i, const ::atom & atom)
+   //::pointer<list_item>list_item_array::get_item(::raw::index i, const ::atom & atom)
    //{
 
    //   return this->element_at(i, atom);
@@ -53,7 +53,7 @@ namespace userfs
    }
 
 
-   index list_item_array::find_item_by_path(const ::file::path & path)
+   ::raw::index list_item_array::find_item_by_path(const ::file::path & path)
    {
 
       for(i32 i = 0; i < this->get_count(); i++)

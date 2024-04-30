@@ -56,7 +56,7 @@
 
    set["text"] = span.m_str;
 
-   index iFormatIndex = span.m_pdata->find_first(span.m_pformat);
+   ::raw::index iFormatIndex = span.m_pdata->find_first(span.m_pformat);
 
    set["format_index"] = iFormatIndex;
 
@@ -79,7 +79,7 @@
 
    span.m_str = set["text"];
 
-   ::index iFormatIndex;
+   ::raw::index iFormatIndex;
 
    iFormatIndex = set["format_index"];
 

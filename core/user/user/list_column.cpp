@@ -38,7 +38,7 @@ namespace user
 
 
 
-   ::index list_column::get_index() const
+   ::raw::index list_column::get_index() const
    {
 
       return m_pcontainer->get_index(this);
@@ -46,7 +46,7 @@ namespace user
    }
 
 
-   ::index list_column::item_index() const
+   ::raw::index list_column::item_index() const
    {
 
       return get_index();
@@ -71,7 +71,7 @@ namespace user
    }
 
 
-   ::index list_column::get_visible_index() const
+   ::raw::index list_column::get_visible_index() const
    {
 
       return m_pcontainer->get_visible_index(this);

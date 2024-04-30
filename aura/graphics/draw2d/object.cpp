@@ -95,7 +95,7 @@ namespace draw2d
 //   }
 
 
- /*  void* object::get_os_data(::draw2d::graphcis* pgraphics, ::index i)
+ /*  void* object::get_os_data(::draw2d::graphcis* pgraphics, ::raw::index i)
    {
 
       if (!m_bUpdated2 || !m_osdata[0])

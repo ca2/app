@@ -15,8 +15,8 @@ namespace data
 
 
       ::data::tree *             m_pdatatree;
-      index                      m_iImage;
-      index                      m_iImageSelected;
+      ::raw::index                      m_iImage;
+      ::raw::index                      m_iImageSelected;
       string                     m_str;
 
 
@@ -24,7 +24,7 @@ namespace data
       virtual ~simple_item();
 
       virtual string data_item_get_text(::particle * pparticle) const;
-      virtual index data_item_get_image(::particle * pparticle) const;
+      virtual ::raw::index data_item_get_image(::particle * pparticle) const;
       virtual ::image_list * data_item_get_image_list(::particle * pparticle) const;
 
 

@@ -288,7 +288,7 @@ namespace user
    }
 
 
-   ::user::item * menu_impact::layout_user_item_by_index(index iMenuItemIndex)
+   ::user::item * menu_impact::layout_user_item_by_index(::raw::index iMenuItemIndex)
    {
 
       //::status < ::rectangle_i32 > rectangleMenuItem;

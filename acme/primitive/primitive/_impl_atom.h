@@ -1711,7 +1711,7 @@ string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
 //}
 
 
-//template < ::count c >
+//template < ::raw::count c >
 //inline ::string operator +(const char(&sz)[c], const ::atom & atom)
 //{
 //

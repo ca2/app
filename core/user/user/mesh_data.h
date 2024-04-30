@@ -36,13 +36,13 @@ namespace user
 
       virtual void _001GetGroupImage(mesh_group * pgroup);
 
-      virtual count _001GetItemCount();
+      virtual ::raw::count _001GetItemCount();
 
-      virtual count _001GetColumnCount(mesh * pmesh);
+      virtual ::raw::count _001GetColumnCount(mesh * pmesh);
 
-      virtual count _001GetGroupCount();
+      virtual ::raw::count _001GetGroupCount();
 
-      virtual ::count _001GetGroupMetaItemCount(index iGroup);
+      virtual ::raw::count _001GetGroupMetaItemCount(::raw::index iGroup);
 
       virtual void _001OnDeleteRange(::user::range & range);
 

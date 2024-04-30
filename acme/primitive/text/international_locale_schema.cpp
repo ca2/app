@@ -663,7 +663,7 @@ namespace text
 
       restart0:
 
-         for (index i = 0; i < m_idaLocale.get_count(); i++)
+         for (::raw::index i = 0; i < m_idaLocale.get_count(); i++)
          {
 
             ::atom idLocale = m_idaLocale[i];
@@ -674,7 +674,7 @@ namespace text
          }
 
       restart:
-         for (index i = 0; i < m_idaLocale.get_count(); i++)
+         for (::raw::index i = 0; i < m_idaLocale.get_count(); i++)
          {
             string strLocale = m_idaLocale[i];
             if (i >= m_idaSchema.get_count())
@@ -717,7 +717,7 @@ namespace text
                //informationf("What!!!!!!");
             }
 
-            for (index i = 0; i < m_idaLocale.get_count(); i++)
+            for (::raw::index i = 0; i < m_idaLocale.get_count(); i++)
             {
                ::atom idLocale2 = m_idaLocale[i];
                while (i >= m_idaSchema.get_count())
@@ -732,7 +732,7 @@ namespace text
          }
          if (bRTLLayout)
          {
-            for (index i = 0; i < m_idaLocale.get_count(); i++)
+            for (::raw::index i = 0; i < m_idaLocale.get_count(); i++)
             {
                ::atom idLocale2 = m_idaLocale[i];
                if (i >= m_idaSchema.get_count())
@@ -747,7 +747,7 @@ namespace text
          }
          //if(!m_bSchemaOnly)
          //{
-         //   for(index i = 0; i < m_idaLocale.get_count(); i++)
+         //   for(::raw::index i = 0; i < m_idaLocale.get_count(); i++)
          //   {
          //      defer_add_locale(m_idaLocale[i], "std");
          //   }

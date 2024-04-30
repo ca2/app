@@ -621,10 +621,10 @@ inline i64 pointer <T>::release()
 
    //return ::release(m_pparticle);
 
-   ::count c = -1;
+   ::raw::count c = -1;
 
 #if REFERENCING_DEBUGGING
-   ::index iSerial = -1;
+   ::raw::index iSerial = -1;
 #endif
    
    {

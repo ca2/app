@@ -50,7 +50,7 @@ namespace xml
 
       ::pointer<::xml::node>pnode;
 
-      for (index iEdit = pedit->m_iEdit; iEdit < pedit->m_edititema.get_count(); iEdit++)
+      for (::raw::index iEdit = pedit->m_iEdit; iEdit < pedit->m_edititema.get_count(); iEdit++)
       {
 
          ::xml::edit_item * pitem = pedit->m_edititema.element_at(iEdit);

@@ -41,7 +41,7 @@ namespace operating_system
       
       virtual ::file::path module_path();
       
-      virtual ::count window_count() const;
+      virtual ::raw::count window_count() const;
       
       inline bool has_window() const { return this->window_count(); }
       

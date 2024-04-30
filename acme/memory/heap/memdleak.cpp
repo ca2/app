@@ -5,7 +5,7 @@
 
 //
 //
-//::count get_mem_info(i32** ppiUse, const char*** ppszFile, const char*** ppszCallStack, u32** ppuiLine, memsize** ppsize);
+//::raw::count get_mem_info(i32** ppiUse, const char*** ppszFile, const char*** ppszCallStack, u32** ppuiLine, memsize** ppsize);
 //
 //#if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG) && MEMDLEAK
 //
@@ -756,7 +756,7 @@
 //   try
 //   {
 //
-//      ::count c = get_mem_info(&piUse, &pszFile, &pszCallStack, &puiLine, &psize);
+//      ::raw::count c = get_mem_info(&piUse, &pszFile, &pszCallStack, &puiLine, &psize);
 //
 //      memblocka bla;
 //
@@ -958,7 +958,7 @@
 //#if MEMDLEAK
 //
 //
-//::count get_mem_info(i32** ppiUse, const char*** ppszFile, const char*** ppszCallStack, u32** ppuiLine, memsize** ppsize)
+//::raw::count get_mem_info(i32** ppiUse, const char*** ppszFile, const char*** ppszCallStack, u32** ppuiLine, memsize** ppsize)
 //{
 //
 //   //throw ::exception(error_failed, "plex_heap_alloc_array::get_mem_info member function is available only with \"memdleak\" builds - MEMDLEAK defined");
@@ -968,7 +968,7 @@
 //
 //   memdleak_block* pblock = s_pmemdleakList;
 //
-//   ::count ca = 0;
+//   ::raw::count ca = 0;
 //
 //   while (pblock != nullptr)
 //   {
@@ -986,7 +986,7 @@
 //   u32* puiLine = (u32*)malloc(sizeof(u32) * ca);
 //   memsize* psize = (memsize*)malloc(sizeof(memsize) * ca);
 //
-//   index i = 0;
+//   ::raw::index i = 0;
 //
 //   pblock = s_pmemdleakList;
 //

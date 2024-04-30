@@ -100,7 +100,7 @@ void trace_category_static_init(::acme::system * psystem)
 //
 //
 //
-//   //index i = 0;
+//   //::raw::index i = 0;
 //
 //   //while (pszaCategory[i] != NULL && i < g_ptracecategorya->get_size())
 //   //{

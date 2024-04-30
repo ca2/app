@@ -101,7 +101,7 @@ public:
       ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->free(p->m_p);
    }
 
-   void * alloc(::count c)
+   void * alloc(::raw::count c)
    {
       ::u8 * pb;
 

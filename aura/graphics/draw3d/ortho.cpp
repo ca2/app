@@ -31,7 +31,7 @@ namespace draw3d
       double zmin = locationa[0].z();
       double zmax = locationa[0].z();
 
-      index i;
+      ::raw::index i;
 
       for(i = 1; i < locationa.get_count(); i++)
       {
@@ -121,7 +121,7 @@ namespace draw3d
       point1.add(3);
       point2.add(7);
 
-      index iMax;
+      ::raw::index iMax;
 
       i = 0;
 
@@ -132,7 +132,7 @@ namespace draw3d
 
          iMax = 0;
 
-         for(index j = 0; j < point1.get_count(); j++)
+         for(::raw::index j = 0; j < point1.get_count(); j++)
          {
 
             if((locationa[point1[j]].z() + locationa[point2[j]].z()) >(locationa[point1[iMax]].z() + locationa[point2[iMax]].z()))
@@ -246,8 +246,8 @@ namespace draw3d
       double zmin = 1000000.0;
       double zmax = -1000000.0;
 
-      index i;
-      index j;
+      ::raw::index i;
+      ::raw::index j;
 
       for(i = 0; i < f.get_count(); i++)
       {
@@ -281,7 +281,7 @@ namespace draw3d
          d = 1.0 / (zmax * 3.0);
 
 
-      index iMax;
+      ::raw::index iMax;
 
       i = 0;
 

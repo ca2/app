@@ -815,7 +815,7 @@ namespace user
       if (m_cModalStack == 0 || --m_cModalStack > 0)
          return;
 
-      for (index nIndex = 0; nIndex < m_puiptraDisable->get_count(); nIndex++)
+      for (::raw::index nIndex = 0; nIndex < m_puiptraDisable->get_count(); nIndex++)
       {
 
          ASSERT(m_puiptraDisable->element_at(nIndex) != nullptr);

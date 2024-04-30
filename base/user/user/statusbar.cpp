@@ -13,7 +13,7 @@
 namespace user
 {
 
-   __STATUSPANE* status_bar::_GetPanePtr(index nIndex)
+   __STATUSPANE* status_bar::_GetPanePtr(::raw::index nIndex)
    {
 
       return m_panecompositea[nIndex];
@@ -701,7 +701,7 @@ namespace user
 
       ASSERT(is_window());
 
-      index nMaxLen = (index) pmessage->m_wparam;
+      ::raw::index nMaxLen = (::raw::index) pmessage->m_wparam;
 
       if (nMaxLen == 0)
       {
@@ -718,7 +718,7 @@ namespace user
 
       char * pszDest = (char *) pmessage->m_lparam.m_lparam;
 
-      index nLen = 0;
+      ::raw::index nLen = 0;
 
       i32 nIndex = CommandToIndex(nullptr); // use pane with ID zero
 
@@ -756,9 +756,9 @@ namespace user
 
       ASSERT(is_window());
 
-      index nLen = 0;
+      ::raw::index nLen = 0;
 
-      index nIndex = CommandToIndex(0); // use pane with ID zero
+      ::raw::index nIndex = CommandToIndex(0); // use pane with ID zero
 
       if (nIndex >= 0)
       {

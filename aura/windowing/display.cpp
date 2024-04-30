@@ -133,7 +133,7 @@ namespace windowing
    }
 
 
-   bool display::set_main_workspace(index iWorkspace)
+   bool display::set_main_workspace(::raw::index iWorkspace)
    {
 
       if (iWorkspace == -1)
@@ -182,7 +182,7 @@ namespace windowing
    }
 
 
-   ::index display::get_main_monitor_index()
+   ::raw::index display::get_main_monitor_index()
    {
 
       return 0;
@@ -190,10 +190,10 @@ namespace windowing
    }
 
 
-   ::index display::get_main_monitor(::rectangle_i32 & rectangle)
+   ::raw::index display::get_main_monitor(::rectangle_i32 & rectangle)
    {
 
-      index iMainMonitor = get_main_monitor_index();
+      ::raw::index iMainMonitor = get_main_monitor_index();
 
       if (!get_monitor_rectangle(iMainMonitor, rectangle))
       {
@@ -270,7 +270,7 @@ namespace windowing
    }
 
 
-   ::count display::get_monitor_count()
+   ::raw::count display::get_monitor_count()
    {
 
 //#ifdef WINDOWS_DESKTOP
@@ -298,7 +298,7 @@ namespace windowing
    }
 
 
-   bool display::get_monitor_rectangle(index iMonitor, ::rectangle_i32 & rectangle)
+   bool display::get_monitor_rectangle(::raw::index iMonitor, ::rectangle_i32 & rectangle)
    {
 
       if(iMonitor < 0 || iMonitor >= get_monitor_count())
@@ -328,16 +328,16 @@ namespace windowing
    }
 
 
-   ::index  display::get_main_monitor_of_rectangle(const ::rectangle_i32 &rectangle)
+   ::raw::index  display::get_main_monitor_of_rectangle(const ::rectangle_i32 &rectangle)
    {
 
       ::rectangle_i32 rectangleMonitor;
 
       ::i32 iMaximumArea = -1;
 
-      ::index iMainMonitor = -1;
+      ::raw::index iMainMonitor = -1;
 
-      for (::index i = 0; i < get_monitor_count(); i++)
+      for (::raw::index i = 0; i < get_monitor_count(); i++)
       {
 
          get_monitor_rectangle(i, rectangleMonitor);
@@ -365,7 +365,7 @@ namespace windowing
    }
 
 
-   ::count display::get_desk_monitor_count()
+   ::raw::count display::get_desk_monitor_count()
    {
 
       return get_monitor_count();
@@ -373,7 +373,7 @@ namespace windowing
    }
 
 
-   bool display::get_desk_monitor_rect(index iMonitor, ::rectangle_i32 & rectangle)
+   bool display::get_desk_monitor_rect(::raw::index iMonitor, ::rectangle_i32 & rectangle)
    {
 
       return get_monitor_rectangle(iMonitor, rectangle);
@@ -382,10 +382,10 @@ namespace windowing
 
 
 
-   index display::get_main_workspace(::rectangle_i32 & rectangle)
+   ::raw::index display::get_main_workspace(::rectangle_i32 & rectangle)
    {
 
-      index iMainWorkspace = get_main_monitor_index();
+      ::raw::index iMainWorkspace = get_main_monitor_index();
 
       if(!get_workspace_rectangle(iMainWorkspace, rectangle))
       {
@@ -399,7 +399,7 @@ namespace windowing
    }
 
 
-   ::count display::get_workspace_count()
+   ::raw::count display::get_workspace_count()
    {
 
       return get_monitor_count();
@@ -407,7 +407,7 @@ namespace windowing
    }
 
 
-   bool display::get_workspace_rectangle(index iWorkspace, ::rectangle_i32 & rectangle)
+   bool display::get_workspace_rectangle(::raw::index iWorkspace, ::rectangle_i32 & rectangle)
    {
 
       if(iWorkspace < 0 || iWorkspace >= get_workspace_count())
@@ -446,7 +446,7 @@ namespace windowing
    }
 
 
-   ::count display::get_desk_workspace_count()
+   ::raw::count display::get_desk_workspace_count()
    {
 
       return get_workspace_count();
@@ -454,7 +454,7 @@ namespace windowing
    }
 
 
-   bool display::get_desk_workspace_rect(index iWorkspace, ::rectangle_i32 & rectangle)
+   bool display::get_desk_workspace_rect(::raw::index iWorkspace, ::rectangle_i32 & rectangle)
 
    {
 
@@ -464,7 +464,7 @@ namespace windowing
    }
 
 
-   bool display::set_main_monitor(index iMonitor)
+   bool display::set_main_monitor(::raw::index iMonitor)
    {
 
       if (iMonitor == -1)
@@ -493,7 +493,7 @@ namespace windowing
    }
 
 
-   bool display::workspace_to_monitor(::rectangle_i32 & rectangleToMonitor, index iMonitor, index iWorkspace)
+   bool display::workspace_to_monitor(::rectangle_i32 & rectangleToMonitor, ::raw::index iMonitor, ::raw::index iWorkspace)
    {
 
       ::rectangle_i32 rectangle(rectangleToMonitor);
@@ -530,7 +530,7 @@ namespace windowing
    bool display::workspace_to_monitor(::rectangle_i32 & rectangle)
    {
 
-      index iWorkspace = get_best_workspace(nullptr, rectangle);
+      ::raw::index iWorkspace = get_best_workspace(nullptr, rectangle);
 
       return workspace_to_monitor(rectangle, iWorkspace, iWorkspace);
 
@@ -540,14 +540,14 @@ namespace windowing
    bool display::monitor_to_workspace(::rectangle_i32 & rectangle)
    {
 
-      index iMonitor = get_best_monitor(nullptr, rectangle);
+      ::raw::index iMonitor = get_best_monitor(nullptr, rectangle);
 
       return monitor_to_workspace(rectangle, iMonitor, iMonitor);
 
    }
 
 
-   bool display::monitor_to_workspace(::rectangle_i32 & rectangleToWorkspace, index iWorkspace, index iMonitor)
+   bool display::monitor_to_workspace(::rectangle_i32 & rectangleToWorkspace, ::raw::index iWorkspace, ::raw::index iMonitor)
    {
 
       ::rectangle_i32 rectangle(rectangleToWorkspace);
@@ -581,7 +581,7 @@ namespace windowing
    }
 
 
-   monitor * display::get_monitor(index iMonitor)
+   monitor * display::get_monitor(::raw::index iMonitor)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -658,7 +658,7 @@ namespace windowing
    void display::get_monitor(rectangle_i32_array & rectaMonitor, rectangle_i32_array & rectaIntersect, const rectangle_i32 & rectangleParam)
    {
 
-      for (index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
+      for (::raw::index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
       {
 
          ::rectangle_i32 rectangleIntersect;
@@ -693,14 +693,14 @@ namespace windowing
 
    i64 g_i_get_best_zoneing = 0;
 
-   index display::_get_best_zoneing(::e_display * pedisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest, bool bPreserveSize)
+   ::raw::index display::_get_best_zoneing(::e_display * pedisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest, bool bPreserveSize)
    {
 
       ::rectangle_i32 rectangle(rectangleRequest);
 
       ::rectangle_i32 rectangleWorkspace;
 
-      index iBestWorkspace = get_best_workspace(&rectangleWorkspace, rectangle);
+      ::raw::index iBestWorkspace = get_best_workspace(&rectangleWorkspace, rectangle);
 
       information() << "display::_get_best_zoneing rectangleWorkspace : " << rectangleWorkspace;
 
@@ -973,10 +973,10 @@ namespace windowing
    }
 
 
-   index display::get_best_monitor(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleParam, ::e_activation eactivation, ::user::interaction * puserinteractionCursorPosition)
+   ::raw::index display::get_best_monitor(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleParam, ::e_activation eactivation, ::user::interaction * puserinteractionCursorPosition)
    {
 
-      index iMatchingMonitor = -1;
+      ::raw::index iMatchingMonitor = -1;
 
       i64 iBestArea = -1;
 
@@ -1033,7 +1033,7 @@ namespace windowing
 
       }
 
-      for (index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
+      for (::raw::index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
       {
 
          ::rectangle_i32 rectangleIntersect;
@@ -1092,12 +1092,12 @@ namespace windowing
    }
 
 
-   index display::get_best_workspace(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleParam, ::e_activation eactivation, ::user::interaction * puserinteractionCursorPosition)
+   ::raw::index display::get_best_workspace(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleParam, ::e_activation eactivation, ::user::interaction * puserinteractionCursorPosition)
    {
 
       information() << "display::get_best_workspace";
 
-      index iMatchingWorkspace = -1;
+      ::raw::index iMatchingWorkspace = -1;
 
       i64 iBestArea = -1;
 
@@ -1145,7 +1145,7 @@ namespace windowing
 
       }
 
-      for (index iWorkspace = 0; iWorkspace < get_workspace_count(); iWorkspace++)
+      for (::raw::index iWorkspace = 0; iWorkspace < get_workspace_count(); iWorkspace++)
       {
 
          ::rectangle_i32 rectangleIntersect;
@@ -1208,11 +1208,11 @@ namespace windowing
    monitor * display::get_best_monitor(const ::rectangle_i32 & rectangle)
    {
 
-      index iMatchingMonitor = -1;
+      ::raw::index iMatchingMonitor = -1;
 
       i64 iBestArea = -1;
 
-      for (index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
+      for (::raw::index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
       {
 
          ::rectangle_i32 rectangleIntersect;
@@ -1260,12 +1260,12 @@ namespace windowing
    }
 
 
-   index display::get_good_iconify(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleParam)
+   ::raw::index display::get_good_iconify(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleParam)
    {
 
       ::rectangle_i32 rectangleMonitor;
 
-      index iMatchingMonitor = get_best_monitor(&rectangleMonitor, rectangleParam);
+      ::raw::index iMatchingMonitor = get_best_monitor(&rectangleMonitor, rectangleParam);
 
       prectangle->left() = rectangleMonitor.left();
 
@@ -1280,14 +1280,14 @@ namespace windowing
    }
 
 
-   index display::initial_frame_position(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleParam, bool bMove, ::user::interaction * pinteraction)
+   ::raw::index display::initial_frame_position(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleParam, bool bMove, ::user::interaction * pinteraction)
    {
 
       ::rectangle_i32 rectangleRestore(rectangleParam);
 
       ::rectangle_i32 rectangleMonitor;
 
-      index iMatchingMonitor = get_best_monitor(&rectangleMonitor, rectangleParam);
+      ::raw::index iMatchingMonitor = get_best_monitor(&rectangleMonitor, rectangleParam);
 
       ::size_i32 sizeMin;
 
@@ -1387,7 +1387,7 @@ namespace windowing
    }
 
 
-   index display::get_good_restore(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleHintParam, ::user::interaction * pinteraction, ::e_display edisplay)
+   ::raw::index display::get_good_restore(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleHintParam, ::user::interaction * pinteraction, ::e_display edisplay)
    {
 
       ::rectangle_i32 rectangleHint(rectangleHintParam);
@@ -1402,7 +1402,7 @@ namespace windowing
 
       ::rectangle_i32 rectangleNormal;
 
-      index iMatchingWorkspace;
+      ::raw::index iMatchingWorkspace;
       
       if (pinteraction != nullptr)
       {
@@ -1623,7 +1623,7 @@ namespace windowing
    }
 
 
-   index display::get_good_move(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleParam, ::user::interaction * pinteraction)
+   ::raw::index display::get_good_move(::rectangle_i32 * prectangle, const rectangle_i32 & rectangleParam, ::user::interaction * pinteraction)
    //index display::get_good_move(::rectangle_i32 * prectangle)
    {
 
@@ -1683,7 +1683,7 @@ namespace windowing
    }
 
 
-   index display::get_ui_workspace(::user::interaction * pinteraction)
+   ::raw::index display::get_ui_workspace(::user::interaction * pinteraction)
    {
 
       if (m_bSystemSynchronizedScreen)
@@ -1712,11 +1712,11 @@ namespace windowing
 
       auto psession = session();
 
-      ::count iMonitorCount = get_monitor_count();
+      ::raw::count iMonitorCount = get_monitor_count();
 
       string_array stra;
 
-      for (index iScreen = 0; iScreen < iMonitorCount; iScreen++)
+      for (::raw::index iScreen = 0; iScreen < iMonitorCount; iScreen++)
       {
 
          stra.add(get_wallpaper(iScreen));
@@ -1725,7 +1725,7 @@ namespace windowing
 
       bool bAllEqual = true;
 
-      for (index iScreen = 1; iScreen < iMonitorCount; iScreen++)
+      for (::raw::index iScreen = 1; iScreen < iMonitorCount; iScreen++)
       {
 
          if (stra[iScreen] != stra[iScreen - 1])
@@ -1763,7 +1763,7 @@ namespace windowing
 
       auto psession = session();
 
-      ::count iMonitorCount = get_monitor_count();
+      ::raw::count iMonitorCount = get_monitor_count();
 
 #ifdef LINUX
 
@@ -1776,7 +1776,7 @@ namespace windowing
 
 #else
 
-      for (index iScreen = 0; iScreen < iMonitorCount; iScreen++)
+      for (::raw::index iScreen = 0; iScreen < iMonitorCount; iScreen++)
       {
 
          string strWallpaper = iScreen % straWallpaper;
@@ -1791,7 +1791,7 @@ namespace windowing
 
 
    
-   string display::get_wallpaper(::index iScreen)
+   string display::get_wallpaper(::raw::index iScreen)
    {
 
       return impl_get_wallpaper(iScreen);
@@ -1799,7 +1799,7 @@ namespace windowing
    }
 
 
-   string display::impl_get_wallpaper(::index)
+   string display::impl_get_wallpaper(::raw::index)
    {
 
       return "";
@@ -1838,7 +1838,7 @@ namespace windowing
 
 
    // todo color:// gradient:// if the operating system doesn't have this, create the file, please.
-   bool display::impl_set_wallpaper(::index iMonitorIndex, string strWallpaper)
+   bool display::impl_set_wallpaper(::raw::index iMonitorIndex, string strWallpaper)
    {
 
       if(node()->set_wallpaper(iMonitorIndex, strWallpaper, this))
@@ -1854,7 +1854,7 @@ namespace windowing
    }
 
 
-   bool display::set_wallpaper(::index iScreen, string strWallpaper)
+   bool display::set_wallpaper(::raw::index iScreen, string strWallpaper)
    {
 
       //return "";
@@ -1880,13 +1880,13 @@ namespace windowing
 
       }
 
-      ::count iMonitorCount = get_monitor_count();
+      ::raw::count iMonitorCount = get_monitor_count();
 
       ::rectangle_i32 rectangleMonitor;
 
       ::rectangle_i32 rectangleWorkspace;
 
-      for (index iScreen = 0; iScreen < iMonitorCount; iScreen++)
+      for (::raw::index iScreen = 0; iScreen < iMonitorCount; iScreen++)
       {
 
          if (get_monitor_rectangle(iScreen, rectangleMonitor) && get_workspace_rectangle(iScreen, rectangleWorkspace))
@@ -2054,13 +2054,13 @@ namespace windowing
 
       }
 
-      ::count iMonitorCount = get_monitor_count();
+      ::raw::count iMonitorCount = get_monitor_count();
 
       ::rectangle_i32 rectangleMonitor;
 
       ::rectangle_i32 rectangleWorkspace;
 
-      for (index iScreen = 0; iScreen < iMonitorCount; iScreen++)
+      for (::raw::index iScreen = 0; iScreen < iMonitorCount; iScreen++)
       {
 
          if (get_monitor_rectangle(iScreen, rectangleMonitor) && get_workspace_rectangle(iScreen, rectangleWorkspace))

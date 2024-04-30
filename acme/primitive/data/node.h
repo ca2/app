@@ -68,8 +68,8 @@ namespace data
 
 
 
-      node* node_at(::index i) { return m_nodea[i]; }
-      ::count get_node_count() const { return m_nodea.get_count(); }
+      node* node_at(::raw::index i) { return m_nodea[i]; }
+      ::raw::count get_node_count() const { return m_nodea.get_count(); }
 
 
    };

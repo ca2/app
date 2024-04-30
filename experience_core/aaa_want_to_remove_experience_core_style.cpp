@@ -343,7 +343,7 @@ namespace experience_lite
          font = pgraphics->get_current_font();
          size sSep = ptab->get_data()->m_sizeSep;
          ::rectangle_f64 rectangleEmp;
-         for(index i = 0; i < straTitle.get_size(); i++)
+         for(::raw::index i = 0; i < straTitle.get_size(); i++)
          {
             string str = straTitle[i];
             size s = pane.m_sizeaText[i];

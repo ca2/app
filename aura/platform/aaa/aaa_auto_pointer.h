@@ -22,7 +22,7 @@ public:
 
    }
 
-   auto_pointer(e_new_array, ::count c)
+   auto_pointer(e_new_array, ::raw::count c)
    {
       m_bArray = true;
       m_p = aaa_primitive_new T[(size_t) c];
@@ -37,12 +37,12 @@ public:
    }
 
    template < typename TYPE >
-   auto_pointer(TYPE * p, ::count c)
+   auto_pointer(TYPE * p, ::raw::count c)
    {
       m_bArray = true;
       m_p = aaa_primitive_new T[(size_t)c];
 
-      for (index i = 0; i < c; i++)
+      for (::raw::index i = 0; i < c; i++)
       {
          ::copy(&m_p[(size_t)i], &p[(size_t) i]);
       }

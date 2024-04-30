@@ -12,21 +12,21 @@ namespace acme
    {
 
       template < typename A >
-      ::count predominant_column_count(A & a)
+      ::raw::count predominant_column_count(A & a)
       {
 
          index_to_index column_count;
 
-         for (index i = 0; i < a.get_size(); i++)
+         for (::raw::index i = 0; i < a.get_size(); i++)
          {
 
             column_count[a[i].get_count()]++;
 
          }
 
-         ::count c = -1;
+         ::raw::count c = -1;
 
-         ::count cMax = -1;
+         ::raw::count cMax = -1;
 
          for (auto & assoc : column_count)
          {

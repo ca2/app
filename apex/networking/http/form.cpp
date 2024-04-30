@@ -73,7 +73,7 @@ namespace http
          ::parse pa(strContentType,";=");
 
          memory tempcmp;
-         index tc = 0;
+         ::raw::index tc = 0;
          strsize iBoundaryLength = 0;
          string str = pa.getword();
          m_strBoundary = "";

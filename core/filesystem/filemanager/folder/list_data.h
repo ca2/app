@@ -34,7 +34,7 @@ namespace filemanager
 
          void _001GetSubItemText(::user::mesh_subitem * pitem) override;
 
-         virtual count _001GetItemCount() override;
+         virtual ::raw::count _001GetItemCount() override;
 
          virtual bool add_unique(const string_array & stra);
          virtual bool add_unique(const string_array & stra, i32_array & iaRecursive);
@@ -42,9 +42,9 @@ namespace filemanager
 
          virtual void GetSel(::user::list * plist, string_array & stra);
 
-         virtual bool set_recursive(::index iItem, bool bRecursive);
+         virtual bool set_recursive(::raw::index iItem, bool bRecursive);
 
-         virtual bool get_recursive(::index iItem);
+         virtual bool get_recursive(::raw::index iItem);
 
 
       };

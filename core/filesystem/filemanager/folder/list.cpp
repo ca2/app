@@ -69,7 +69,7 @@ namespace filemanager
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      index iItem;
+      ::raw::index iItem;
 
       auto point = pmouse->m_pointHost;
 
@@ -78,7 +78,7 @@ namespace filemanager
       if(_001HitTest_(point, iItem))
       {
 
-         ::file::path filepathFinal = m_foldera.GetFolder((::index)iItem).m_strFolderPath;
+         ::file::path filepathFinal = m_foldera.GetFolder((::raw::index)iItem).m_strFolderPath;
 
          auto pcontext = get_context();
 
@@ -132,7 +132,7 @@ namespace filemanager
    void folder_list::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
 
-      psubitem->m_strText = m_foldera.GetFolder((::index)psubitem->m_pitem->m_iItem).m_strName;
+      psubitem->m_strText = m_foldera.GetFolder((::raw::index)psubitem->m_pitem->m_iItem).m_strName;
 
       psubitem->m_bOk = true;
 
@@ -321,12 +321,12 @@ namespace filemanager
    }
 
    folder_list::Folder &
-   folder_list::FolderArray::GetFolder(index i)
+   folder_list::FolderArray::GetFolder(::raw::index i)
    {
       return this->element_at(i);
    }
 
-   ::count folder_list::FolderArray::GetFolderCount()
+   ::raw::count folder_list::FolderArray::GetFolderCount()
    {
       return this->get_size();
    }
@@ -346,7 +346,7 @@ namespace filemanager
       if (psubitem->m_iSubItem == 1)
       {
 
-         psubitem->m_iImage = m_foldera.GetFolder((::index)psubitem->m_pitem->m_iItem).m_iImage;
+         psubitem->m_iImage = m_foldera.GetFolder((::raw::index)psubitem->m_pitem->m_iItem).m_iImage;
 
          psubitem->m_bOk = true;
 
@@ -369,7 +369,7 @@ namespace filemanager
    }
 
 
-   ::count folder_list::_001GetItemCount()
+   ::raw::count folder_list::_001GetItemCount()
    {
 
       return m_foldera.GetFolderCount();

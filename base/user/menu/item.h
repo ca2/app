@@ -16,8 +16,8 @@ namespace user
 
 
       ::item_pointer                   m_pitemParent;
-      //::index                          m_iCommand;
-      //::index                          m_iGroup;
+      //::raw::index                          m_iCommand;
+      //::raw::index                          m_iGroup;
       atom                             m_atom;
       ::pointer<menu_item_ptra>        m_pmenuitema;
       ::pointer<menu_item>             m_pmenuitemParent;

@@ -21,8 +21,8 @@ public:
    ptr_array(ptr_array && array) : pointer_array_process < comparable_array < TYPE * >, TYPE >(::transfer(array)) { }
 
 
-   TYPE & object_at(::index i) { return *this->element_at(i); }
-   const TYPE & object_at(::index i) const { return *this->element_at(i); }
+   TYPE & object_at(::raw::index i) { return *this->element_at(i); }
+   const TYPE & object_at(::raw::index i) const { return *this->element_at(i); }
 
 
 };

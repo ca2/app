@@ -267,7 +267,7 @@ namespace user
 
       //      ::rectangle_i32 rectangleX;
 
-      //      ::index i = 0;
+      //      ::raw::index i = 0;
 
       //      while (pinteraction != nullptr)
       //      {

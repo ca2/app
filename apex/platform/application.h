@@ -682,8 +682,8 @@ namespace apex
 
       //virtual void on_update_matter_locator() override;
 
-      virtual bool platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::request * prequest = nullptr);
-      virtual bool platform_open_by_file_extension(index iEdge, ::request * prequest);
+      virtual bool platform_open_by_file_extension(::raw::index iEdge, const ::string & pszPathName, ::request * prequest = nullptr);
+      virtual bool platform_open_by_file_extension(::raw::index iEdge, ::request * prequest);
 
 
       virtual bool on_start_application();
@@ -1043,7 +1043,7 @@ namespace apex
 
 
 
-      virtual ::pointer<::progress::real>show_progress(::user::interaction * puiParent, const ::string & strTitle, ::count iProgressCount);
+      virtual ::pointer<::progress::real>show_progress(::user::interaction * puiParent, const ::string & strTitle, ::raw::count iProgressCount);
 
       virtual void userfs_init1();
       virtual void userfs_process_init();

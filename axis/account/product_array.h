@@ -39,7 +39,7 @@ namespace account
       bool _is_licensed(string strAppId, bool bInteractive = true);
       
 
-      ::count clear_all_cache();
+      ::raw::count clear_all_cache();
       bool clear_cache(string strAppId);
 
 

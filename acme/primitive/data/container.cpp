@@ -149,7 +149,7 @@ namespace data
    }
 
 
-   ::count data_container_base::get_count() const
+   ::raw::count data_container_base::get_count() const
    {
 
       return m_datamap.get_count();

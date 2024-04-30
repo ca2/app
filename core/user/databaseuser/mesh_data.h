@@ -16,7 +16,7 @@ namespace databaseuser
    public:
 
 
-      ::count m_iItemCount;
+      ::raw::count m_iItemCount;
 
 
       mesh_data();
@@ -29,9 +29,9 @@ namespace databaseuser
 
       void _001GetSubItemText(::user::mesh_subitem * pitem) override;
 
-      virtual count _001GetItemCount() override;
+      virtual ::raw::count _001GetItemCount() override;
 
-      virtual bool Map(::user::mesh * pmesh, string & strDataKey1, string & strDataKey2, index iItem, index iSubItem, index iListItem);
+      virtual bool Map(::user::mesh * pmesh, string & strDataKey1, string & strDataKey2, ::raw::index iItem, ::raw::index iSubItem, ::raw::index iListItem);
 
 
    };

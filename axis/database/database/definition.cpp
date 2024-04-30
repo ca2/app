@@ -111,7 +111,7 @@ namespace database
    }
 
 
-   ::count parameter_list::get_size()
+   ::raw::count parameter_list::get_size()
    {
 
       return m_stra.get_size();
@@ -119,7 +119,7 @@ namespace database
    }
 
 
-   const char * parameter_list::get_key(index i)
+   const char * parameter_list::get_key(::raw::index i)
    {
 
       return m_stra[i];
@@ -127,7 +127,7 @@ namespace database
    }
 
 
-   ::payload & parameter_list::get_value(index i)
+   ::payload & parameter_list::get_value(::raw::index i)
    {
 
       return m_row[i];

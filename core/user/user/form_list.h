@@ -31,10 +31,10 @@ namespace user
       void _001DrawSubItem(::draw2d::graphics_pointer & pgraphics, draw_list_subitem * psubitem) override;
 
       using ::user::list::_001HitTest_;
-      bool _001HitTest_(const ::point_i32 & point, index&iItem, index&iSubItem) override;
+      bool _001HitTest_(const ::point_i32 & point, ::raw::index&iItem, ::raw::index&iSubItem) override;
 
 
-      virtual ::user::interaction* get_control(::user::list_column * pcolumn, ::index iItem);
+      virtual ::user::interaction* get_control(::user::list_column * pcolumn, ::raw::index iItem);
 
       virtual void on_check_save(::user::interaction* puserinteraction);
       virtual void on_check_load(::user::interaction* puserinteraction);
@@ -60,9 +60,9 @@ namespace user
       void _001SetEditControl(::user::interaction * pinteraction);
       ::pointer<list_column>new_list_column_with_control(::user::interaction * puserinteraction) override;
       bool _001AddControl(::user::interaction * pinteraction) override;
-      void _001PlaceControl(::user::interaction * pinteraction, index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false) override;
+      void _001PlaceControl(::user::interaction * pinteraction, ::raw::index iEditItem, bool bClick = false, bool bOnlySizeAndPosition = false) override;
       virtual void _001OnShowControl(::user::interaction * pinteraction);
-      ::user::interaction * _001GetControl(index iItem, index iSubItem) override;
+      ::user::interaction * _001GetControl(::raw::index iItem, ::raw::index iSubItem) override;
       virtual ::user::interaction * _001GetControl(draw_list_subitem * psubitem);
       bool on_click(::item * pitem) override;
       bool on_right_click(::item * pitem) override;
@@ -96,16 +96,16 @@ namespace user
       void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual bool _001UpperEditableControl(index & iItem, index & iSubItem);
-      virtual bool _001PreviousEditableControl(index & iItem, index & iSubItem);
-      virtual bool _001NextEditableControl(index & iItem, index & iSubItem);
-      virtual bool _001LowerEditableControl(index & iItem, index & iSubItem);
+      virtual bool _001UpperEditableControl(::raw::index & iItem, ::raw::index & iSubItem);
+      virtual bool _001PreviousEditableControl(::raw::index & iItem, ::raw::index & iSubItem);
+      virtual bool _001NextEditableControl(::raw::index & iItem, ::raw::index & iSubItem);
+      virtual bool _001LowerEditableControl(::raw::index & iItem, ::raw::index & iSubItem);
 
       //virtual void _001DrawSubItem(draw_list_item * pdrawitem);
 
-      virtual ::enum_check _001GetSubItemCheck(index iItem, index iSubItem);
-      virtual bool _001SetSubItemCheck(index iItem, index iSubItem, ::enum_check echeck);
-      virtual bool _001IsSubItemEnabled(index iItem, index iSubItem);
+      virtual ::enum_check _001GetSubItemCheck(::raw::index iItem, ::raw::index iSubItem);
+      virtual bool _001SetSubItemCheck(::raw::index iItem, ::raw::index iSubItem, ::enum_check echeck);
+      virtual bool _001IsSubItemEnabled(::raw::index iItem, ::raw::index iSubItem);
 
    };
 

@@ -1088,7 +1088,7 @@ CLASS_DECL_AURA void cra_from_quada(colorref_array & colorrefa, RGBQUAD * prgbqu
 
    colorrefa.set_size(iCount);
 
-   for (index i = 0; i < iCount; i++)
+   for (::raw::index i = 0; i < iCount; i++)
    {
 
 #if defined(ANDROID) && defined(__arm__)

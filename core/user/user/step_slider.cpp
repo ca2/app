@@ -230,7 +230,7 @@ namespace user
 
       iMax = m_scalar.maximum().get_i64();
 
-      return __allocate< ::item >(e_element_item, (index) (iMin + (((point.x() - rectangleX.left()) * (iMax - iMin)) / rectangleX.width())));
+      return __allocate< ::item >(e_element_item, (::raw::index) (iMin + (((point.x() - rectangleX.left()) * (iMax - iMin)) / rectangleX.width())));
 
    }
 

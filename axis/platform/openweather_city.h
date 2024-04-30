@@ -9,7 +9,7 @@ class CLASS_DECL_AXIS openweather_city :
 {
 public:
 
-   index    m_iIndex;
+   ::raw::index    m_iIndex;
    string   m_strCnt;
    string   m_strCit;
    i64  m_iId;

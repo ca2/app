@@ -50,8 +50,8 @@ public:
 
 
    string                  m_strStatus;
-   ::index                 m_iStep;
-   ::count                 m_iStepCount;
+   ::raw::index                 m_iStep;
+   ::raw::count                 m_iStepCount;
    string                  m_strTitle;
 
 

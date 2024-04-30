@@ -332,7 +332,7 @@ namespace experience_anthill
          auto rectangle = get_margin_rectangle();
 
 
-         for (index i = 0; i < 11; i++)
+         for (::raw::index i = 0; i < 11; i++)
          {
 
             auto ppen = __create < ::draw2d::pen >();
@@ -360,7 +360,7 @@ namespace experience_anthill
 
          //   pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-         //   for (index i = 0; i < 9; i++)
+         //   for (::raw::index i = 0; i < 9; i++)
          //   {
 
          //      pgraphics->draw_round_rect(rectangleA, pen, (int) (10 - i));
@@ -527,7 +527,7 @@ namespace experience_anthill
 
       //   pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-      //   for (index i = 0; i < 9; i++)
+      //   for (::raw::index i = 0; i < 9; i++)
       //   {
 
       //      pgraphics->draw_inset_3d_rectangle(rectangleA, argb(0, 0, 0, 0), argb(0, 0, 0, 0));
@@ -545,7 +545,7 @@ namespace experience_anthill
 
       //      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-      //      for (index i = 0; i < 9; i++)
+      //      for (::raw::index i = 0; i < 9; i++)
       //      {
 
       //         auto ppen = __create < ::draw2d::pen > ();

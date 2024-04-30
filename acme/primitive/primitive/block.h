@@ -20,7 +20,7 @@ using BLOCK = ::range < ::u8 * >;
 //{
 //
 //   ::u8 *                     m_pbegin;
-//   ::count                    m_iSize;
+//   ::raw::count                    m_iSize;
 //
 //
 //   memsize length_in_bytes() const { return sizeof(::u8) * m_iSize; }
@@ -63,7 +63,7 @@ struct CLASS_DECL_ACME block :
    block(const memory_base & memory);
    block(const memory_base * pmemory);
    block(const atom & atom);
-   template < ::count c >
+   template < ::raw::count c >
    block(const char(&sz)[c])
    {
 
@@ -71,7 +71,7 @@ struct CLASS_DECL_ACME block :
       this->m_end = (::u8 *)(this->m_begin + c);
 
    }
-   template < ::count c >
+   template < ::raw::count c >
    block(const ::u8(&ba)[c])
    {
 
@@ -125,7 +125,7 @@ struct CLASS_DECL_ACME block :
    //memsize get_size() const { return m_iSize; }
    //const ::u8 * data () const { return (const  ::u8 *) m_pbegin;  }
    //::u8 * data() { return (::u8 *)m_pbegin; }
-   //::count size() const { return (::count)m_iSize; }
+   //::raw::count size() const { return (::raw::count)m_iSize; }
 
 
    constexpr bool has_data() const { return !this->is_empty(); }
@@ -352,10 +352,10 @@ struct CLASS_DECL_ACME block :
    }
 
 
-   ::u8 & first_byte(::index i = 0){return this->m_begin[i];}
-   ::u8 first_byte(::index i = 0)const{return this->m_begin[i];}
-   ::u8 & last_byte(::index i = -1){return this->m_end[i];}
-   ::u8 last_byte(::index i = -1)const{return this->m_end[i];}
+   ::u8 & first_byte(::raw::index i = 0){return this->m_begin[i];}
+   ::u8 first_byte(::raw::index i = 0)const{return this->m_begin[i];}
+   ::u8 & last_byte(::raw::index i = -1){return this->m_end[i];}
+   ::u8 last_byte(::raw::index i = -1)const{return this->m_end[i];}
 
 };
 

@@ -657,7 +657,7 @@ namespace draw2d_opengl
       return set_window_ext(size.cx(), size.cy());
    }
 
-   void graphics::DPtoLP(::point_f64 * lpPoints, ::count nCount)
+   void graphics::DPtoLP(::point_f64 * lpPoints, ::raw::count nCount)
    {
       //::DPtoLP(m_hdc, lpPoints, (int) nCount);
    }
@@ -667,7 +667,7 @@ namespace draw2d_opengl
       //::DPtoLP(m_hdc, (::point_f64 *)rectangle, 2);
    }
 
-   void graphics::LPtoDP(::point_f64 * lpPoints,::count nCount)
+   void graphics::LPtoDP(::point_f64 * lpPoints,::raw::count nCount)
    {
       //::LPtoDP(m_hdc, lpPoints, (int)  nCount);
    }
@@ -758,7 +758,7 @@ namespace draw2d_opengl
    //   return ::draw2d::graphics::G;
    //}
 
-   void graphics::polyline(const ::point_f64* lpPoints,::count nCount)
+   void graphics::polyline(const ::point_f64* lpPoints,::raw::count nCount)
    {
 
       if (nCount <= 0)
@@ -1321,7 +1321,7 @@ namespace draw2d_opengl
    //}
 
 
-   void graphics::fill_polygon(const ::point_f64 * lpPoints,::count nCount)
+   void graphics::fill_polygon(const ::point_f64 * lpPoints,::raw::count nCount)
    {
 
       //   if(nCount <= 0)
@@ -1368,7 +1368,7 @@ namespace draw2d_opengl
    }
 
 
-   //void graphics::fill_polygon(const ::point_f64* lpPoints,::count nCount)
+   //void graphics::fill_polygon(const ::point_f64* lpPoints,::raw::count nCount)
    //{
 
    //   //   if(nCount <= 0)
@@ -1412,7 +1412,7 @@ namespace draw2d_opengl
    //}
 
 
-   void graphics::draw_polygon(const ::point_f64* lpPoints,::count nCount)
+   void graphics::draw_polygon(const ::point_f64* lpPoints,::raw::count nCount)
    {
 
       //if (nCount <= 0)
@@ -1457,7 +1457,7 @@ namespace draw2d_opengl
    }
 
 
-   //void graphics::draw_polygon(const ::point_f64* lpPoints,::count nCount)
+   //void graphics::draw_polygon(const ::point_f64* lpPoints,::raw::count nCount)
    //{
 
    //   //if(nCount <= 0)
@@ -1501,7 +1501,7 @@ namespace draw2d_opengl
    //}
 
 
-   void graphics::polygon(const ::point_f64* lpPoints,::count nCount)
+   void graphics::polygon(const ::point_f64* lpPoints,::raw::count nCount)
    {
 
       //if(nCount <= 0)
@@ -1553,7 +1553,7 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::poly_polygon(const ::point_f64* lpPoints, const ::i32 * lpPolyCounts,::count nCount)
+   void graphics::poly_polygon(const ::point_f64* lpPoints, const ::i32 * lpPolyCounts,::raw::count nCount)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -1581,7 +1581,7 @@ namespace draw2d_opengl
    //}
 
 
-   //void graphics::polygon(const ::point_f64* lpPoints,::count nCount)
+   //void graphics::polygon(const ::point_f64* lpPoints,::raw::count nCount)
    //{
 
    //   //if(nCount <= 0)
@@ -1900,7 +1900,7 @@ namespace draw2d_opengl
 //   }
 
 
-   //size_i32 graphics::GetTabbedTextExtent(const ::string & lpszString, strsize nCount, ::count nTabPositions, LPINT lpnTabStopPositions)
+   //size_i32 graphics::GetTabbedTextExtent(const ::string & lpszString, strsize nCount, ::raw::count nTabPositions, LPINT lpnTabStopPositions)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -1910,7 +1910,7 @@ namespace draw2d_opengl
    //}
 
 
-   //size_i32 graphics::GetTabbedTextExtent(const ::string & str, ::count nTabPositions, LPINT lpnTabStopPositions)
+   //size_i32 graphics::GetTabbedTextExtent(const ::string & str, ::raw::count nTabPositions, LPINT lpnTabStopPositions)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -1920,7 +1920,7 @@ namespace draw2d_opengl
    //}
 
 
-   //size_i32 graphics::GetOutputTabbedTextExtent(const ::string & lpszString, strsize nCount, ::count nTabPositions, LPINT lpnTabStopPositions)
+   //size_i32 graphics::GetOutputTabbedTextExtent(const ::string & lpszString, strsize nCount, ::raw::count nTabPositions, LPINT lpnTabStopPositions)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -1931,7 +1931,7 @@ namespace draw2d_opengl
    //}
 
 
-   //size_i32 graphics::GetOutputTabbedTextExtent(const ::string & str, ::count nTabPositions, LPINT lpnTabStopPositions)
+   //size_i32 graphics::GetOutputTabbedTextExtent(const ::string & str, ::raw::count nTabPositions, LPINT lpnTabStopPositions)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -1964,7 +1964,7 @@ namespace draw2d_opengl
    }
 
 
-   //double graphics::GetTextFace(::count nCount, char * lpszFacename)
+   //double graphics::GetTextFace(::raw::count nCount, char * lpszFacename)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -2430,7 +2430,7 @@ namespace draw2d_opengl
    //}
 
 
-   void graphics::poly_polyline(const ::point_f64* lpPoints, const ::i32 * lpPolyPoints, ::count nCount)
+   void graphics::poly_polyline(const ::point_f64* lpPoints, const ::i32 * lpPolyPoints, ::raw::count nCount)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -2486,7 +2486,7 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::poly_bezier(const ::point_f64* lpPoints, ::count nCount)
+   void graphics::poly_bezier(const ::point_f64* lpPoints, ::raw::count nCount)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -2635,7 +2635,7 @@ namespace draw2d_opengl
    }
 
 
-   //void graphics::GetPath(::point_f64 * lpPoints, ::u8 * lpTypes, ::count nCount)
+   //void graphics::GetPath(::point_f64 * lpPoints, ::u8 * lpTypes, ::raw::count nCount)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -4395,7 +4395,7 @@ namespace draw2d_opengl
    //   return nResult;
    //}
 
-   //bool graphics::PolyDraw(const ::point_f64* lpPoints, const ::u8* lpTypes, ::count nCount)
+   //bool graphics::PolyDraw(const ::point_f64* lpPoints, const ::u8* lpTypes, ::raw::count nCount)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -4412,7 +4412,7 @@ namespace draw2d_opengl
    //   return bResult;
    //}
 
-   void graphics::polyline_to(const ::point_f64* lpPoints, ::count nCount)
+   void graphics::polyline_to(const ::point_f64* lpPoints, ::raw::count nCount)
    {
       // ASSERT(m_hdc != nullptr);
       //bool bResult = false;
@@ -4439,7 +4439,7 @@ namespace draw2d_opengl
    }
 
    
-   void graphics::poly_bezier_to(const ::point_f64* lpPoints, ::count nCount)
+   void graphics::poly_bezier_to(const ::point_f64* lpPoints, ::raw::count nCount)
    {
       // ASSERT(m_hdc != nullptr);
       //bool bResult = false;      //bool bResult = ::poly_bezier_to(m_hdc, lpPoints, (::u32) nCount) != false;

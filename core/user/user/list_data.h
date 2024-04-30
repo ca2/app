@@ -19,7 +19,7 @@ namespace user
       ~list_data() override;
 
    
-      count _001GetColumnCount(mesh * pmesh) override;
+      ::raw::count _001GetColumnCount(mesh * pmesh) override;
 
 
    };

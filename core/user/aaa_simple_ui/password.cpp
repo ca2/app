@@ -193,10 +193,10 @@ namespace simple_ui
       string strExtent1;
       string strExtent2;
       string strExtent3;
-      index iLineStart = should_load_full_file() ? m_iLineOffset : 0;
-      index iLineEnd = should_load_full_file() ? m_iLineCount - 1 : straLines.get_size() - 1;
+      ::raw::index iLineStart = should_load_full_file() ? m_iLineOffset : 0;
+      ::raw::index iLineEnd = should_load_full_file() ? m_iLineCount - 1 : straLines.get_size() - 1;
       iLineEnd = minimum(iLineEnd,straLines.get_upper_bound());
-      for(index i = iLineStart; i <= iLineEnd; i++)
+      for(::raw::index i = iLineStart; i <= iLineEnd; i++)
       {
          straLineFeed.erase_all();
          straLineFeed.add_lines(straLines[i], false);

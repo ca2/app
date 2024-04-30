@@ -221,7 +221,7 @@ namespace file
       void Insert(class insert_item * pitem);
       bool CanUndo();
       bool CanRedo();
-      ::count GetRedoBranchCount();
+      ::raw::count GetRedoBranchCount();
       bool Undo();
       bool Redo();
       void MacroBegin();

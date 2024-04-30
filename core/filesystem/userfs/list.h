@@ -22,10 +22,10 @@ namespace userfs
 
       string_array               m_straFileSize;
       ::file::path_array         m_pathaStrictOrder;
-      index                      m_iSelectionSubItem;
-      index                      m_iNameSubItem;
-      index                      m_iNameSubItemText;
-      index                      m_iIconSubItem;
+      ::raw::index                      m_iSelectionSubItem;
+      ::raw::index                      m_iNameSubItem;
+      ::raw::index                      m_iNameSubItemText;
+      ::raw::index                      m_iIconSubItem;
       document *                 m_pdocument;
       //::fs::data *               m_pfsdata;
 
@@ -52,7 +52,7 @@ namespace userfs
 
       void install_message_routing(::channel * pchannel) override;
 
-      ::image_list * GetActionButtonImageList(index i);
+      ::image_list * GetActionButtonImageList(::raw::index i);
 
 
       virtual void get_selected_user_path(::file::path_array & stra);
@@ -83,13 +83,13 @@ namespace userfs
       //void GetSelectedFilePath(string_array & array);
       void _001GetSubItemImage(::user::mesh_subitem * psubitem) override;
       void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
-      count _001GetItemCount() override;
+      ::raw::count _001GetItemCount() override;
 
 
       void _001InitializeFormPreData() override;
 
-      /*bool query_drop(index iDisplayDrop, index iDisplayDrag) override;
-      bool do_drop(index iDisplayDrop, index iDisplayDrag) override;*/
+      /*bool query_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag) override;
+      bool do_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag) override;*/
 
 
       bool on_click(::item * pitem) override;
@@ -117,7 +117,7 @@ namespace userfs
       ::pointer<::user::mesh_data>create_mesh_data() override;
 
       //virtual ::fs::data * fs_data();
-      ::file::item * fs_list_item(index iIndex);
+      ::file::item * fs_list_item(::raw::index iIndex);
 
 
    };

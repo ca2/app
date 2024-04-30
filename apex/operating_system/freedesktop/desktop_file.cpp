@@ -471,7 +471,7 @@ namespace freedesktop
 
       // straLine._007SetLine("[Desktop Entry]", "Actions", "transparent-frame;");
 
-      // for(index i = 0; i < papp->applicationmenu().get_count(); i++)
+      // for(::raw::index i = 0; i < papp->applicationmenu().get_count(); i++)
       // {
 
       //    auto & item = papp->applicationmenu()[i];

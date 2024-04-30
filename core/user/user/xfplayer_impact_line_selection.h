@@ -12,8 +12,8 @@ class CLASS_DECL_CORE xfplayer_impact_line_selection_item
 protected:
 
    
-   index                m_iLineStart;
-   index                m_iLineEnd;
+   ::raw::index                m_iLineStart;
+   ::raw::index                m_iLineEnd;
    strsize              m_iCharStart;
    strsize              m_iCharEnd;
 
@@ -23,8 +23,8 @@ public:
 
    xfplayer_impact_line_selection_item();
    xfplayer_impact_line_selection_item(
-      index      iLineStart,
-      index      iLineEnd,
+      ::raw::index      iLineStart,
+      ::raw::index      iLineEnd,
       strsize      iCharStart,
       strsize      iCharEnd
       );
@@ -34,16 +34,16 @@ public:
 
    void NormalizeSel();
    bool Intersect(xfplayer_impact_line & viewline);
-   bool Intersect(index iLineStart, index iLineEnd);
+   bool Intersect(::raw::index iLineStart, ::raw::index iLineEnd);
 
-   index GetLineStart();
-   index GetLineEnd();
-   index GetCharStart();
-   index GetCharEnd();
-   void SetLineStart(index iLine);
-   void SetLineEnd(index iLine);
+   ::raw::index GetLineStart();
+   ::raw::index GetLineEnd();
+   ::raw::index GetCharStart();
+   ::raw::index GetCharEnd();
+   void SetLineStart(::raw::index iLine);
+   void SetLineEnd(::raw::index iLine);
    void SetCharStart(strsize iChar);
-   void SetCharEnd(index iChar);
+   void SetCharEnd(::raw::index iChar);
 
 
 };
@@ -80,8 +80,8 @@ public:
    xfplayer_impact_line_selection_item                                                    m_item;
       
 
-   index                   m_iLineStartSource;
-   index                   m_iLineEndSource;
+   ::raw::index                   m_iLineStartSource;
+   ::raw::index                   m_iLineEndSource;
    strsize                 m_iCharStartSource;
    strsize                 m_iCharEndSource;
 
@@ -101,11 +101,11 @@ public:
    bool SetSelBefore(xfplayer_impact_line & viewline);
    bool SetSelAfter(xfplayer_impact_line & viewline);
    void NormalizeSel(xfplayer_impact_line & viewline);
-   void GetNormalSelection(index & iLineStart, strsize & iCharStart, index & iLineEnd, strsize & iCharEnd);
+   void GetNormalSelection(::raw::index & iLineStart, strsize & iCharStart, ::raw::index & iLineEnd, strsize & iCharEnd);
 
    void Select(
-      index      iLineStart,
-      index      iLineEnd,
+      ::raw::index      iLineStart,
+      ::raw::index      iLineEnd,
       strsize      iCharStart,
       strsize      iCharEnd,
       bool   bMerge);

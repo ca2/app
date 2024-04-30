@@ -181,9 +181,9 @@ namespace graphics
 
       pimage->map();
 
-      ::count w = pimage->width();
+      ::raw::count w = pimage->width();
 
-      ::count h = pimage->height();
+      ::raw::count h = pimage->height();
 
       ::u32 uScan = pimage->scan_size();
 
@@ -194,12 +194,12 @@ namespace graphics
       auto g = pimage->m_colorindexes.m_u8IndexGreen;
       auto b = pimage->m_colorindexes.m_u8IndexBlue;
 
-      for (index i = 0; i < w; i++)
+      for (::raw::index i = 0; i < w; i++)
       {
 
          pline = (::u8 *)(pimage->get_data() + i);
 
-         for (index j = 0; j < h; j++)
+         for (::raw::index j = 0; j < h; j++)
          {
 
             image_color_with_shade_of_grey(
@@ -224,9 +224,9 @@ namespace graphics
 
       pimage->map();
 
-      ::count w = pimage->width();
+      ::raw::count w = pimage->width();
 
-      ::count h = pimage->height();
+      ::raw::count h = pimage->height();
 
       ::color::color color;
 
@@ -307,7 +307,7 @@ namespace graphics
          }
       }
 
-      for (index j = 0; j < h; j++)
+      for (::raw::index j = 0; j < h; j++)
       {
          double dL = 1.0 - ((double)j / dh);
 
@@ -342,7 +342,7 @@ namespace graphics
 
          pline = pimage->get_data() + uScan * j;
          image32_t color32(argb(255, _dR, _dG, _dB), pimage->color_indexes());
-         for (index i = 0; i < w; i++)
+         for (::raw::index i = 0; i < w; i++)
          {
 
             *pline = color32;

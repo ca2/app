@@ -126,7 +126,7 @@ namespace user
       void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-      virtual ::count get_impact_count();
+      virtual ::raw::count get_impact_count();
 
       virtual atom get_impact_id();
       virtual ::pointer<::user::impact>get_impact();

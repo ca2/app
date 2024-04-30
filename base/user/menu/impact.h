@@ -68,7 +68,7 @@ namespace user
       //DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
       //DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
 
-      virtual ::user::item * layout_user_item_by_index(index iMenuItemIndex);
+      virtual ::user::item * layout_user_item_by_index(::raw::index iMenuItemIndex);
 
 
       ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;

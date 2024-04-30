@@ -9,7 +9,7 @@ template < class ITEM >
 inline binary_stream & operator <<(binary_stream & stream, const ::pointer_array < ITEM > & itema)
 {
 
-   ::count c = itema.get_count();
+   ::raw::count c = itema.get_count();
 
    stream << c;
 
@@ -36,7 +36,7 @@ template < class ITEM >
 inline binary_stream & operator >>(binary_stream & stream, ::pointer_array < ITEM > & itema)
 {
 
-   ::count c;
+   ::raw::count c;
 
    stream >> c;
 
@@ -49,7 +49,7 @@ inline binary_stream & operator >>(binary_stream & stream, ::pointer_array < ITE
 
    itema.set_size(c);
 
-   ::index i = 0;
+   ::raw::index i = 0;
 
    try
    {
@@ -85,7 +85,7 @@ template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nod
 inline binary_stream & operator <<(binary_stream & stream, const ::array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 {
 
-   ::count c = a.get_count();
+   ::raw::count c = a.get_count();
    
    stream << c;
 
@@ -111,7 +111,7 @@ template < primitive_array ARRAY >
 inline binary_stream & operator >>(binary_stream & stream, ARRAY & a)
 {
 
-   ::count c;
+   ::raw::count c;
    
    stream >> c;
 
@@ -124,7 +124,7 @@ inline binary_stream & operator >>(binary_stream & stream, ARRAY & a)
 
    a.set_size(c);
 
-   ::index i = 0;
+   ::raw::index i = 0;
 
    try
    {
@@ -160,7 +160,7 @@ template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nod
 inline binary_stream & operator <<(binary_stream & stream, const ::raw_array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 {
 
-   ::count c = a.get_count();
+   ::raw::count c = a.get_count();
 
    stream << c;
 
@@ -175,7 +175,7 @@ template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nod
 inline binary_stream & operator >>(binary_stream & stream, ::raw_array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 {
 
-   ::count c;
+   ::raw::count c;
 
    stream >> c;
 

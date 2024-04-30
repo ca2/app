@@ -29,16 +29,16 @@ namespace colorertake5
 
    void LineRegionsSupport::resize(index lineCount)
    {
-      ::count iOldLineCount = lineRegions.get_size();
+      ::raw::count iOldLineCount = lineRegions.get_size();
       lineRegions.allocate(lineCount);
-      for(index i = iOldLineCount; i < lineCount; i++)
+      for(::raw::index i = iOldLineCount; i < lineCount; i++)
       {
          lineRegions[i] = nullptr;
       }
       this->lineCount = lineCount;
    }
 
-   ::count LineRegionsSupport::get_size()
+   ::raw::count LineRegionsSupport::get_size()
    {
       return lineCount;
    }
@@ -46,7 +46,7 @@ namespace colorertake5
    void LineRegionsSupport::clear()
    {
 
-      for(index idx = 0; idx < lineRegions.get_size(); idx++)
+      for(::raw::index idx = 0; idx < lineRegions.get_size(); idx++)
       {
 
          LineRegion *ln = lineRegions.element_at(idx);
@@ -64,7 +64,7 @@ namespace colorertake5
 
    }
 
-   index LineRegionsSupport::getLineIndex(index lno) const
+   ::raw::index LineRegionsSupport::getLineIndex(index lno) const
    {
 
       return ((firstLineNo % lineCount) + lno - firstLineNo) % lineCount;
@@ -86,7 +86,7 @@ namespace colorertake5
       firstLineNo = first;
    }
 
-   index LineRegionsSupport::getFirstLine()
+   ::raw::index LineRegionsSupport::getFirstLine()
    {
       return firstLineNo;
    }

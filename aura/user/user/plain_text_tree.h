@@ -17,7 +17,7 @@ namespace user
 
 
       ::pointer<plain_text_group_command>      m_pgroupcommand;
-      index                                     m_iBranch;
+      ::raw::index                                     m_iBranch;
       file_pointer                              m_pfile;
       ::pointer<::file::edit_file>             m_peditfile;
 

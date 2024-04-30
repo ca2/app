@@ -11,7 +11,7 @@ namespace user
 public:
 
 
-   index               m_iFirstGlobalOrderKey;
+   ::raw::index               m_iFirstGlobalOrderKey;
    list * m_plist;
    index_to_index       m_mapSubItemIndex;
 
@@ -30,27 +30,27 @@ public:
 
    void OnChange();
 
-   void erase(index iColumn);
+   void erase(::raw::index iColumn);
 
 
-   //::count NonVisibleGetCount();
-   //index NonVisibleMapSubItemToColumn(index iSubItem);
-   void ShowSubItem(index iSubItem, bool bShow);
+   //::raw::count NonVisibleGetCount();
+   //index NonVisibleMapSubItemToColumn(::raw::index iSubItem);
+   void ShowSubItem(::raw::index iSubItem, bool bShow);
 
-   index subitem_index(index iSubItem);
-   index subitem_visible_index(index iSubItem);
+   ::raw::index subitem_index(::raw::index iSubItem);
+   ::raw::index subitem_visible_index(::raw::index iSubItem);
 
 
-   index control_id_index(const ::atom & atom);
+   ::raw::index control_id_index(const ::atom & atom);
 
-   index add(list_column * pcolumn);
-   //list_column * GlobalOrderGetPrevious(index iKey);
-   //list_column * GlobalOrderGetNext(index iKey);
+   ::raw::index add(list_column * pcolumn);
+   //list_column * GlobalOrderGetPrevious(::raw::index iKey);
+   //list_column * GlobalOrderGetNext(::raw::index iKey);
 
-   //index VisibleMapSubItemToColumn(index iSubItem);
-   ::count get_visible_count();
+   //index VisibleMapSubItemToColumn(::raw::index iSubItem);
+   ::raw::count get_visible_count();
 
-   ::count get_count();
+   ::raw::count get_count();
 
 
    void erase_all();
@@ -59,22 +59,22 @@ public:
 
    void DILoadOrder();
 
-   index visible_index_order(index iIndex);
+   ::raw::index visible_index_order(::raw::index iIndex);
 
-   index order_index(index iOrder);
+   ::raw::index order_index(::raw::index iOrder);
 
-   //      index subitem_index(index iSubItem);
-   index config_id_index(const ::scoped_string & strDataKey);
+   //      index subitem_index(::raw::index iSubItem);
+   ::raw::index config_id_index(const ::scoped_string & strDataKey);
 
-   //      index subitem_visible_index(index iSubItem);
-   index config_id_visible_index(const ::scoped_string & strDataKey);
-   index visible_index(index iKeyVisible);
+   //      index subitem_visible_index(::raw::index iSubItem);
+   ::raw::index config_id_visible_index(const ::scoped_string & strDataKey);
+   ::raw::index visible_index(::raw::index iKeyVisible);
 
-   ::index get_index(const list_column * pcolumn) const;
-   ::index get_visible_index(const list_column * pcolumn) const;
-   list_column * get_visible(index iIndex);
-   list_column * get_by_index(index iIndex);
-   list_column * get_by_subitem(index iSubItem);
+   ::raw::index get_index(const list_column * pcolumn) const;
+   ::raw::index get_visible_index(const list_column * pcolumn) const;
+   list_column * get_visible(::raw::index iIndex);
+   list_column * get_by_index(::raw::index iIndex);
+   list_column * get_by_subitem(::raw::index iSubItem);
    list_column * get_by_control_id(const ::atom & atom);
    list_column * get_by_control(::user::interaction * pinteraction);
    list_column * get_by_config_id(const ::scoped_string & strDataKey);

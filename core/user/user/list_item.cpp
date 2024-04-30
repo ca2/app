@@ -251,7 +251,7 @@ namespace user
                if (m_pitem->m_pmesh->m_plist->m_iIconBlur > 0 && m_pitem->m_pmesh->m_plist->m_iIconBlurRadius > 0)
                {
 
-                  for (index i = 0; i < m_pitem->m_pmesh->m_plist->m_iIconBlur; i++)
+                  for (::raw::index i = 0; i < m_pitem->m_pmesh->m_plist->m_iIconBlur; i++)
                   {
 
                      m_pitem->m_pmesh->m_plist->__defer_construct_new(m_pitem->m_pmesh->m_plist->m_pfastblurIcon);

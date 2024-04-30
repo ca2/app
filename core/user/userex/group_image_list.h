@@ -19,7 +19,7 @@ namespace userex
       {
       public:
 
-         ::index                 m_iIndex;
+         ::raw::index                 m_iIndex;
          ::atom                    m_atomGroup;
          string                  m_strIcon;
          string                  m_strTitle;

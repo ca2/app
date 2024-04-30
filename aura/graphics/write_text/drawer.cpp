@@ -148,10 +148,10 @@ namespace write_text
 
       }
 
-      for (::index i = 0; i < stra.get_size(); i++)
+      for (::raw::index i = 0; i < stra.get_size(); i++)
       {
 
-         ::count c = _split_text(stra, i, w, etextwrap);
+         ::raw::count c = _split_text(stra, i, w, etextwrap);
 
          i += c;
 
@@ -162,7 +162,7 @@ namespace write_text
    }
 
 
-   ::count drawer::_split_text(string_array & stra, ::index i, double w, enum_text_wrap etextwrap)
+   ::raw::count drawer::_split_text(string_array & stra, ::raw::index i, double w, enum_text_wrap etextwrap)
    {
 
       switch (etextwrap)
@@ -180,7 +180,7 @@ namespace write_text
    }
 
 
-   ::count drawer::_split_text_word(string_array & stra, ::index i, double w)
+   ::raw::count drawer::_split_text_word(string_array & stra, ::raw::index i, double w)
    {
 
       return _split_text_character(stra, i, w);
@@ -188,10 +188,10 @@ namespace write_text
    }
 
 
-   ::count drawer::_split_text_word_then_character(string_array & stra, ::index i, double w)
+   ::raw::count drawer::_split_text_word_then_character(string_array & stra, ::raw::index i, double w)
    {
 
-      ::count c = 0;
+      ::raw::count c = 0;
 
       string str = stra[i];
 
@@ -316,10 +316,10 @@ namespace write_text
    }
 
 
-   ::count drawer::_split_text_character(string_array & stra, ::index i, double w)
+   ::raw::count drawer::_split_text_character(string_array & stra, ::raw::index i, double w)
    {
 
-      ::count c = 0;
+      ::raw::count c = 0;
 
       string str = stra[i];
 

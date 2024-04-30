@@ -276,7 +276,7 @@
 //
 //
 ////typedef DWORD64[64]
-////::count get_mem_info2(i32 ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, i32 ** ppiLine, i64 ** ppiSize)
+////::raw::count get_mem_info2(i32 ** ppiUse, const char *** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, i32 ** ppiLine, i64 ** ppiSize)
 ////{
 ////
 ////#ifndef MEMDLEAK
@@ -289,7 +289,7 @@
 ////
 ////   memdleak_block * pblock = s_pmemdleakList;
 ////
-////   ::count ca = 0;
+////   ::raw::count ca = 0;
 ////
 ////   while (pblock != nullptr)
 ////   {
@@ -308,7 +308,7 @@
 ////   i32 * piLine = (i32 *)malloc(sizeof(i32) * ca);
 ////   i64 * piSize = (i64 *)malloc(sizeof(i64) * ca);
 ////
-////   index i = 0;
+////   ::raw::index i = 0;
 ////
 ////   pblock = s_pmemdleakList;
 ////

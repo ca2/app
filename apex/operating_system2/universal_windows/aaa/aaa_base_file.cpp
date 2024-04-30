@@ -1721,7 +1721,7 @@ bool get_file_time(::winrt::Windows::Storage::StorageFile ^ file,LPFILETIME lpCr
 //
 
 
-//int_bool acmefile()->put_contents(const ::file::path & path,const char * contents,::count len)
+//int_bool acmefile()->put_contents(const ::file::path & path,const char * contents,::raw::count len)
 //{
 //
 //            auto psystem = system();
@@ -1812,7 +1812,7 @@ bool file_as_memory(memory_base & memory,const ::file::path & path, iptr iReadAt
 
    ::u32 dwSizeHigh;
 
-   ::count  count = ::GetFileSize(hfile,&dwSizeHigh);
+   ::raw::count  count = ::GetFileSize(hfile,&dwSizeHigh);
 
    iReadAtMostByteCount = minimum_non_negative(count, iReadAtMostByteCount);
 

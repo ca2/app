@@ -16,7 +16,7 @@ namespace html
    public:
       
       
-      index                         m_iIndex;
+      ::raw::index                         m_iIndex;
       string                        m_strFamily;
       string                        m_strWeight;
       string                        m_strSize;

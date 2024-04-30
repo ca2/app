@@ -16,7 +16,7 @@ namespace user
    public:
 
 
-      index                               m_iEdge;
+      ::raw::index                               m_iEdge;
       string                              m_strApp;
       string                              m_strQuery;
       ::pointer<::aura::session>         m_pbergedgeParent;

@@ -73,7 +73,7 @@ image_frame_array::~image_frame_array()
    if (uiLoop > m_iLoop)
    {
 
-      m_iLoop = (::index) uiLoop;
+      m_iLoop = (::raw::index) uiLoop;
 
       dynamic.m_iFrame = -1;
 
@@ -86,7 +86,7 @@ image_frame_array::~image_frame_array()
 
       class ::time timeUpperBound;
 
-      index iFrame = 0;
+      ::raw::index iFrame = 0;
 
       for (; iFrame < get_count(); iFrame++)
       {
@@ -153,7 +153,7 @@ void image_frame_array::update(::image * pimageHost, const ::image_drawing & ima
 
    class ::time timeTotal;
 
-   for (index iFrame = 0; iFrame < pframes->get_count(); iFrame++)
+   for (::raw::index iFrame = 0; iFrame < pframes->get_count(); iFrame++)
    {
 
       auto pframeSource = pframes->element_at(iFrame);

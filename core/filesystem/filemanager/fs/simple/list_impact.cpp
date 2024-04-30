@@ -292,7 +292,7 @@ namespace filemanager
 
             auto pmouse = pmessage->m_union.m_pmouse;
 
-            index iItem;
+            ::raw::index iItem;
 
             auto point = pmouse->m_pointHost;
 
@@ -310,7 +310,7 @@ namespace filemanager
                else
                {
 
-                  m_pserver->open_file(m_iParentFolder, m_itema[iItem]->m_strFileName, m_itema[(::index) iItem]->m_strExtension);
+                  m_pserver->open_file(m_iParentFolder, m_itema[iItem]->m_strFileName, m_itema[(::raw::index) iItem]->m_strExtension);
 
                }
 
@@ -340,7 +340,7 @@ namespace filemanager
          }
 
 
-         bool list_impact::GetSongPath(string &str, index iItem)
+         bool list_impact::GetSongPath(string &str, ::raw::index iItem)
          {
 
             auto & pdrawlistsubitem = get_subitem(iItem, SubItemFilePath);
@@ -771,7 +771,7 @@ namespace filemanager
             Item item;
             // method 3: Selected Childs with GetChilds()
             // Result: Person, Person, Person
-            index iNode = 0;
+            ::raw::index iNode = 0;
             for(i32 i = 0 ; i < pnodeFolder->get_children_count(); i++)
             {
 
@@ -875,7 +875,7 @@ namespace filemanager
          //    perasebkgnd->set_result(true);
          // }
 
-         ::count list_impact::_001GetItemCount()
+         ::raw::count list_impact::_001GetItemCount()
          {
             /*if(get_document() != nullptr)
             {

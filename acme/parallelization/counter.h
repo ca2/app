@@ -23,7 +23,7 @@ namespace parallelization
       interlocked_count       m_interlocked;
 
 
-      counter(::count c, const ::procedure & procedureCompleted) :
+      counter(::raw::count c, const ::procedure & procedureCompleted) :
          m_interlocked(c),
          m_procedureCompleted(procedureCompleted)
       {
@@ -32,10 +32,10 @@ namespace parallelization
       }
 
 
-      ::count operator ++()
+      ::raw::count operator ++()
       {
 
-         ::count c = --m_interlocked;
+         ::raw::count c = --m_interlocked;
 
          if (has_completed())
          {
@@ -49,10 +49,10 @@ namespace parallelization
       }
 
 
-      ::count operator ++(int)
+      ::raw::count operator ++(int)
       {
 
-         ::count c = m_interlocked;
+         ::raw::count c = m_interlocked;
 
          ++(*this);
 

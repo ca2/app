@@ -44,7 +44,7 @@ task_group::task_group(::matter * pmatter, ::enum_priority epriority)
 
    m_taska.set_size(cOrder);
 
-   for(index iThread = iPreviousSize; iThread < cOrder ; iThread++)
+   for(::raw::index iThread = iPreviousSize; iThread < cOrder ; iThread++)
    {
 
       auto & ptooltask = m_taska[iThread];
@@ -84,7 +84,7 @@ task_group::~task_group()
 }
 
 
-void task_group::prepare(::enum_task_op etaskop, ::count cIteration)
+void task_group::prepare(::enum_task_op etaskop, ::raw::count cIteration)
 {
 
    synchronous_lock synchronouslock(this->synchronization());
@@ -176,11 +176,11 @@ void task_group::set_ready_to_start()
 
    m_cSpan = m_cIteration / m_cCount;
 
-   ::count cSuccess = 0;
+   ::raw::count cSuccess = 0;
 
-   ::count cFailed = 0;
+   ::raw::count cFailed = 0;
 
-   for (index i = 0; i < m_cCount; i++)
+   for (::raw::index i = 0; i < m_cCount; i++)
    {
 
       /*auto estatusTask = */ m_taska[i]->set_ready_to_start();
@@ -436,7 +436,7 @@ void task_group::select_tool(task_tool* ptool)
 
    ptool->m_itema.set_size(m_taska.get_size());
 
-   for (index i = 0; i < task_count(); i++)
+   for (::raw::index i = 0; i < task_count(); i++)
    {
 
       auto & ptask = task_at(i);
@@ -462,7 +462,7 @@ void task_group::select_tool(task_tool* ptool)
 }
 
 
-//bool task_groupet::prepare(::count cIteration)
+//bool task_groupet::prepare(::raw::count cIteration)
 //{
 //
 //   if (!m_ptasktools->prepare(::task::op_tool, cIteration))

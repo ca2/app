@@ -193,7 +193,7 @@ public:
    //UNIT_TYPE minimum_signed_absolute_dimension(bool bNegativePreference = true) const ;
    //UNIT_TYPE maximum_signed_absolute_dimension(bool bPositivePreference = true) const ;
 
-   UNIT_TYPE get_dimension(enum_orientation eorientation, ::index i)
+   UNIT_TYPE get_dimension(enum_orientation eorientation, ::raw::index i)
    {
 
       return eorientation == e_orientation_horizontal ?
@@ -202,7 +202,7 @@ public:
 
    }
 
-   UNIT_TYPE get_normal_dimension(enum_orientation eorientation, ::index i)
+   UNIT_TYPE get_normal_dimension(enum_orientation eorientation, ::raw::index i)
    {
 
       return eorientation == e_orientation_vertical ?
@@ -678,7 +678,7 @@ public:
    }
 
 
-   //void get_bounding_box(const POINT_BASE_TYPE * ppoint, ::count count);
+   //void get_bounding_box(const POINT_BASE_TYPE * ppoint, ::raw::count count);
    //void get_bounding_box(const POINT_ARRAY_TYPE & pointa) { pointa.get_bounding_box(*this); }
 
 
@@ -1545,7 +1545,7 @@ inline void rectangle_type < NUMBER >::normalize()
 
 
 //template < primitive_number NUMBER >
-//void rectangle_type < NUMBER > ::get_bounding_box(const POINT_BASE_TYPE * ppoint, ::count count)
+//void rectangle_type < NUMBER > ::get_bounding_box(const POINT_BASE_TYPE * ppoint, ::raw::count count)
 //{
 //
 //   ::get_bounding_box(*this, ppoint, count);

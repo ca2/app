@@ -16,11 +16,11 @@ namespace user
    public:
 
 
-      index      m_iLowerBound;
-      index      m_iUpperBound;
+      ::raw::index      m_iLowerBound;
+      ::raw::index      m_iUpperBound;
 
 
-      void set(index iLowerBoundListItem, index iUpperBoundListItem);
+      void set(::raw::index iLowerBoundListItem, ::raw::index iUpperBoundListItem);
 
 
 
@@ -31,17 +31,17 @@ namespace user
    {
    public:
 
-      index                m_iLowerBound;
-      index                m_iUpperBound;
+      ::raw::index                m_iLowerBound;
+      ::raw::index                m_iUpperBound;
       list_item_range      m_listitemrange;
 
 
       sub_item_range();
       sub_item_range(const sub_item_range& subitemrange);
 
-      void set(index iLowerBoundSubItem, index iUpperBoundSubItem, index iLowerBoundListItem, index iUpperBoundListItem);
+      void set(::raw::index iLowerBoundSubItem, ::raw::index iUpperBoundSubItem, ::raw::index iLowerBoundListItem, ::raw::index iUpperBoundListItem);
 
-      bool has_sub_item(index iSubItem) const;
+      bool has_sub_item(::raw::index iSubItem) const;
 
       sub_item_range& operator =(const sub_item_range& subitemrange);
 
@@ -53,8 +53,8 @@ namespace user
    public:
 
 
-      index             m_iLowerBound;
-      index             m_iUpperBound;
+      ::raw::index             m_iLowerBound;
+      ::raw::index             m_iUpperBound;
       sub_item_range    m_subitemrange;
 
 
@@ -62,15 +62,15 @@ namespace user
       item_range(const item_range& itemrange);
 
 
-      void offset(index iOffset);
-      void set(index iLowerBoundItem, index iUpperBoundItem, index iLowerBoundSubItem, index iUpperBoundSubItem, index iLowerBoundListItem, index iUpperBoundListItem);
-      void set_lower_bound(index iLowerBoundItem);
-      void set_upper_bound(index iUpperBoundItem);
-      bool has_sub_item(index iSubItem) const;
-      index get_lower_bound() const;
-      index get_upper_bound() const;
+      void offset(::raw::index iOffset);
+      void set(::raw::index iLowerBoundItem, ::raw::index iUpperBoundItem, ::raw::index iLowerBoundSubItem, ::raw::index iUpperBoundSubItem, ::raw::index iLowerBoundListItem, ::raw::index iUpperBoundListItem);
+      void set_lower_bound(::raw::index iLowerBoundItem);
+      void set_upper_bound(::raw::index iUpperBoundItem);
+      bool has_sub_item(::raw::index iSubItem) const;
+      ::raw::index get_lower_bound() const;
+      ::raw::index get_upper_bound() const;
       item_range& operator =(const item_range& itemrange);
-      bool has_item(index iItem) const;
+      bool has_item(::raw::index iItem) const;
       void get_item_indexes(index_array& ia) const;
 
    };
@@ -91,17 +91,17 @@ namespace user
       range& operator = (const range& range);
 
 
-      bool has_item(index iItem) const;
-      bool has_sub_item(index iItem, index iSubItem) const;
-      bool erase_item(index iItem);
-      bool OnRemoveItem(index iItem);
+      bool has_item(::raw::index iItem) const;
+      bool has_sub_item(::raw::index iItem, ::raw::index iSubItem) const;
+      bool erase_item(::raw::index iItem);
+      bool OnRemoveItem(::raw::index iItem);
       void clear();
       void add_item(const item_range& itemrange);
-      item_range& ItemAt(index iIndex);
-      ::index get_current_item();
-      ::count get_item_count() const;
-      ::count get_items(index_array& ia) const;
-      ::count get_item_indexes(index_array& ia) const;
+      item_range& ItemAt(::raw::index iIndex);
+      ::raw::index get_current_item();
+      ::raw::count get_item_count() const;
+      ::raw::count get_items(index_array& ia) const;
+      ::raw::count get_item_indexes(index_array& ia) const;
 
    };
 

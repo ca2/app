@@ -213,7 +213,7 @@ void timer_task::run()
    while (true)
    {
 
-      for (::index i = 0; i < countDecisecondSleep; i++)
+      for (::raw::index i = 0; i < countDecisecondSleep; i++)
       {
 
          ::preempt(100_ms);

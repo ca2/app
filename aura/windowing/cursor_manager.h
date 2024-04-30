@@ -89,9 +89,9 @@ namespace windowing
 //
 //      ::pointer<cursor>get_cursor(enum_cursor ecursor);
 //      ::pointer<cursor>set_cursor_file(enum_cursor ecursor, const ::file::path & path, bool bFromCache);
-//      ::count set_cursor_set_from_matter(const ::file::path & pszMatter);
-//      ::count set_cursor_set_from_dir(const ::file::path & pszDir, bool bFromCache = true);
-//      ::count set_cursor_set_system_default();
+//      ::raw::count set_cursor_set_from_matter(const ::file::path & pszMatter);
+//      ::raw::count set_cursor_set_from_dir(const ::file::path & pszDir, bool bFromCache = true);
+//      ::raw::count set_cursor_set_system_default();
 //
 //
 //      virtual void destroy() override;

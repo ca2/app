@@ -57,7 +57,7 @@ namespace heap
       virtual void * unaligned_allocate(memsize size, const char * pszAnnotation = nullptr);
       virtual void * unaligned_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation = nullptr);
 
-      virtual void * count_allocate(::count count, memsize size, const char * pszAnnotation = nullptr);
+      virtual void * count_allocate(::raw::count count, memsize size, const char * pszAnnotation = nullptr);
       //Created by camilo on 2021-07-24 01:05 BRT <3ThomasBorregaardSorensen!!
       //#include "__memory_allocate.h"
 

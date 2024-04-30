@@ -28,9 +28,9 @@ public:
    ::pointer<::image_list>             m_pimagelistDisabled;
    i32_spreadset *                     m_prel;
    bool                                m_bTracking;
-   index                               m_iTracking;
+   ::raw::index                               m_iTracking;
    ::u32                               m_uResourceId;
-   index                               m_iTopMenuCount;
+   ::raw::index                               m_iTopMenuCount;
    ::pointer<::user::menu>             m_pmenu;
 
 
@@ -64,17 +64,17 @@ public:
 protected:
    virtual bool pre_create_window(::user::system * pusersystem) override;
 
-   //virtual index _001GetHoverItem() override;
+   //virtual ::raw::index _001GetHoverItem() override;
    //virtual void OnUpdateHover() override;
    bool on_click(::item * pitem) override;
-   void _001OnDropDown(index iItem);
+   void _001OnDropDown(::raw::index iItem);
    //index _001GetHoverItem();
    //void _001Hover(const ::point_i32 & point);
    //void _001Hover();
-   //void _001DrawItem(::draw2d::graphics_pointer & pgraphics, index iItem);
+   //void _001DrawItem(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem);
    //index _001HitTest(const ::point_i32 * point_i32);
-   //bool _001CheckItem(index iItem, bool bCheck);
-   //bool index_item_rectangle(index iItem, ::rectangle_i32 * prectangle, enum_element eelement);
+   //bool _001CheckItem(::raw::index iItem, bool bCheck);
+   //bool index_item_rectangle(::raw::index iItem, ::rectangle_i32 * prectangle, enum_element eelement);
 
    //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
    bool ReloadMenuBar();
@@ -87,7 +87,7 @@ protected:
    ::i32_spreadset * prel,
    ::write_text::font * pfont);
 
-   //size_i32 CalcLayout(u32 dwMode, index nLength);
+   //size_i32 CalcLayout(u32 dwMode, ::raw::index nLength);
 
    //size_i32 CalcFixedLayout(bool bStretch, bool bHorz);
 
@@ -95,7 +95,7 @@ protected:
    //static void  CalcSize(::user::toolbar_control & tbc, size_i32 & size);
    //static void  CalcSize(CToolBarCtrl & tbc, size_i32 & size);
    bool _track_popup_menu(const ::point_i32 & point);
-   bool _track_popup_menu(index iItem);
+   bool _track_popup_menu(::raw::index iItem);
    bool LoadMenuBar(::u32 nIDResource);
    void SetMenuID(::u32 nIDResource);
 
@@ -109,7 +109,7 @@ protected:
    //DECLARE_MESSAGE_HANDLER(_001OnAppLanguage);
    void _001OnTimer(::timer * ptimer) override;
 
-   //virtual index OnMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam);
+   //virtual ::raw::index OnMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam);
 
    //DECLARE_MESSAGE_HANDLER(_001OnAppLanguage);
 

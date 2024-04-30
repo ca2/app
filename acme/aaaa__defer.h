@@ -37,7 +37,7 @@ namespace acme
 
 
       template < class TDST,class TSRC >
-      ::count copy(TDST & dsta,const TSRC & srca)
+      ::raw::count copy(TDST & dsta,const TSRC & srca)
       {
 
          dsta.set_size(srca.get_size());

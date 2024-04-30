@@ -1175,7 +1175,7 @@ namespace crypto_openssl
          string strEnd = "-----END CERTIFICATE-----";
          string strCertificate;
          strsize iEndLen = strEnd.length();
-         ::count iCount = 0;
+         ::raw::count iCount = 0;
          while ((iFind = strOthers.find_index("-----BEGIN CERTIFICATE-----", iStart)) >= 0)
          {
             strsize iEnd = strOthers.find_index(strEnd, iFind);

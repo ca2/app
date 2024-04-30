@@ -37,7 +37,7 @@ namespace userex
 
       void redraw() override;
 
-      virtual void defer_show(::user::interaction * puiParent, const ::string & pszTitle, ::count iStepCount = 0);
+      virtual void defer_show(::user::interaction * puiParent, const ::string & pszTitle, ::raw::count iStepCount = 0);
 
 
    };

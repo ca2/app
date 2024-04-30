@@ -22,23 +22,23 @@ public:
    inline address_array & operator = (address_array && a) { this->ARRAY_TYPE::operator = (::transfer(a)); return *this; }
 
 
-   ::index add(POINTER newElement) { return ARRAY_TYPE::add(newElement); }
-   ::index append(const address_array & src) { return ARRAY_TYPE::append(src); }
+   ::raw::index add(POINTER newElement) { return ARRAY_TYPE::add(newElement); }
+   ::raw::index append(const address_array & src) { return ARRAY_TYPE::append(src); }
 
 
-   inline POINTER & element_at(::index i) { return (POINTER &)ARRAY_TYPE::element_at(i); }
-   inline POINTER element_at(::index i) const { return (POINTER)ARRAY_TYPE::element_at(i); }
-
-   
-   inline POINTER & element_at_grow(::index i) { return (POINTER &)ARRAY_TYPE::element_at_grow(i); }
-
-
-   inline POINTER & first(::index i = 0) { return (POINTER &)ARRAY_TYPE::first(i); }
-   inline POINTER first(::index i = 0) const { return (POINTER)ARRAY_TYPE::first(i); }
+   inline POINTER & element_at(::raw::index i) { return (POINTER &)ARRAY_TYPE::element_at(i); }
+   inline POINTER element_at(::raw::index i) const { return (POINTER)ARRAY_TYPE::element_at(i); }
 
    
-   inline POINTER & last(::index i = -1) { return (POINTER &)ARRAY_TYPE::last(i); }
-   inline POINTER last(::index i = 0) const { return (POINTER)ARRAY_TYPE::last(i); }
+   inline POINTER & element_at_grow(::raw::index i) { return (POINTER &)ARRAY_TYPE::element_at_grow(i); }
+
+
+   inline POINTER & first(::raw::index i = 0) { return (POINTER &)ARRAY_TYPE::first(i); }
+   inline POINTER first(::raw::index i = 0) const { return (POINTER)ARRAY_TYPE::first(i); }
+
+   
+   inline POINTER & last(::raw::index i = -1) { return (POINTER &)ARRAY_TYPE::last(i); }
+   inline POINTER last(::raw::index i = 0) const { return (POINTER)ARRAY_TYPE::last(i); }
 
    
    inline POINTER* get_data() { return (POINTER*)ARRAY_TYPE::get_data(); }

@@ -206,7 +206,7 @@ public:
    virtual void _005PutSignedText(const ::payload & payloadFile, const ::scoped_string & scopedstr);
 
 
-   //virtual void add_contents(const ::payload & payloadFile, const void * pvoidContents, ::count count);
+   //virtual void add_contents(const ::payload & payloadFile, const void * pvoidContents, ::raw::count count);
    virtual void add_contents(const ::payload & payloadFile, const ::scoped_string & scopedstrContents);
 
 
@@ -363,7 +363,7 @@ public:
    //virtual void lines(string_array & stra, const ::payload & payloadFile);
    //virtual void put_lines(const ::payload & payloadFile, const string_array & stra);
 
-   //virtual bool put_contents(const ::payload & payloadFile, const void * pvoidContents, ::count count);
+   //virtual bool put_contents(const ::payload & payloadFile, const void * pvoidContents, ::raw::count count);
    //virtual bool put_contents(const ::payload & payloadFile, const ::scoped_string & scopedstrContents);
 
    //virtual bool copy?(const ::payload & payloadFile, const ::stream & stream);

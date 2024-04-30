@@ -84,12 +84,12 @@ void nano_message_box::defer_create_details_still()
 }
 
 
-::count get_line_count(const ::string & str)
+::raw::count get_line_count(const ::string & str)
 {
 
-   ::index iFind = 0;
+   ::raw::index iFind = 0;
 
-   ::count cLine = 1;
+   ::raw::count cLine = 1;
 
    while ((iFind = str(iFind).find_index('\n')) >= 0)
    {
@@ -212,7 +212,7 @@ void nano_message_box::initialize_conversation(const ::string & strMessage, cons
 
    auto wSpacing = (::i32) (m_rectangle.width() * 0.025);
 
-   for (index iButton = m_nanobuttona.get_upper_bound(); iButton >= 0; iButton--)
+   for (::raw::index iButton = m_nanobuttona.get_upper_bound(); iButton >= 0; iButton--)
    {
 
       auto pnanobutton = m_nanobuttona[iButton];

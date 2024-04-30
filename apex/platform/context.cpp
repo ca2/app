@@ -673,7 +673,7 @@ namespace apex
 
          ascendants_path(path, patha, &pathaRelative);
 
-         for (index i = 0; i < patha.get_count(); i++)
+         for (::raw::index i = 0; i < patha.get_count(); i++)
          {
 
             ::file::path pathAlias = patha[i];

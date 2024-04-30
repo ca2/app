@@ -2767,10 +2767,10 @@ retry_license:
    //  localeschema.m_atomLocale = straLocale[0];
    //  localeschema.m_atomSchema = straSchema[0];
 
-   //  for (index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+   //  for (::raw::index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
    //  {
 
-   //     for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   //     for (::raw::index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
    //     {
 
    //        localeschema.add_locale_variant(straLocale[iLocale], straSchema[iSchema]);
@@ -2779,14 +2779,14 @@ retry_license:
 
    //  }
 
-   //  for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   //  for (::raw::index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
    //  {
 
    //     localeschema.add_locale_variant(get_locale(), straSchema[iSchema]);
 
    //  }
 
-   //  for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   //  for (::raw::index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
    //  {
 
    //     localeschema.add_locale_variant("std", straSchema[iSchema]);
@@ -2794,7 +2794,7 @@ retry_license:
    //  }
 
 
-   //  for (index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   //  for (::raw::index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
    //  {
 
    //     localeschema.add_locale_variant("en", straSchema[iSchema]);
@@ -2815,7 +2815,7 @@ retry_license:
 //  }
 
 
-   //bool application::platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::request * prequest)
+   //bool application::platform_open_by_file_extension(::raw::index iEdge, const ::string & pszPathName, ::request * prequest)
    //{
 
    //   return false;
@@ -2823,7 +2823,7 @@ retry_license:
    //}
 
 
-   //bool application::platform_open_by_file_extension(index iEdge, ::create * pcc)
+   //bool application::platform_open_by_file_extension(::raw::index iEdge, ::create * pcc)
    //{
 
    //   return false;
@@ -4754,9 +4754,9 @@ retry_license:
 
       //update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_atomLocale, plocaleschema->m_atomSchema);
 
-      ::count iCount = plocaleschema->m_idaLocale.get_count();
+      ::raw::count iCount = plocaleschema->m_idaLocale.get_count();
 
-      for (index i = 0; i < iCount; i++)
+      for (::raw::index i = 0; i < iCount; i++)
       {
 
          if (plocaleschema->m_idaLocale[i] == "std" && plocaleschema->m_idaSchema[i] == "std" && bIgnoreStdStd)
@@ -5807,10 +5807,10 @@ namespace aura
    /*
    bool application::hex_to_memory(memory & memory, const ::string & pszHex)
    {
-   ::count len = strlen(pszHex);
-   ::count count = (len + 1) / 2;
+   ::raw::count len = strlen(pszHex);
+   ::raw::count count = (len + 1) / 2;
    memory.set_size(count);
-   index i = 0;
+   ::raw::index i = 0;
    ::u8 b;
    while(*pszHex != '\0')
    {
@@ -5857,10 +5857,10 @@ namespace aura
 
    void application::memory_to_hex(string & strHex, memory & memory)
    {
-   ::count count = memory.get_size();
+   ::raw::count count = memory.get_size();
    char * psz = strHex.get_buffer(count * 2);
 
-   for(index i = 0; i < count; i++)
+   for(::raw::index i = 0; i < count; i++)
    {
    *psz++ = ::hex::lower_from((::u8) ((memory.get_data()[i] >> 4) & 0xf));
 

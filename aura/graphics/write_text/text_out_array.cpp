@@ -23,12 +23,12 @@ namespace write_text
    }
 
 
-   ::index text_out_array::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   ::raw::index text_out_array::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
-      ::index iFound = -1;
+      ::raw::index iFound = -1;
 
-      for (::index iItem = 0; iItem < this->text_out_count(); iItem++)
+      for (::raw::index iItem = 0; iItem < this->text_out_count(); iItem++)
       {
 
          auto& ptextout = text_out_at(iItem);

@@ -34,7 +34,7 @@ namespace colorertake5
        * Note, that the returned pointer is vaild only between
        * subsequent parser invocations.
        */
-      OutlineItem *getItem(index idx);
+      OutlineItem *getItem(::raw::index idx);
 
       /**
        * Static service method to make easy tree reconstruction
@@ -49,12 +49,12 @@ namespace colorertake5
        * @return Packed index of item, which could be used to
        *         reconstruct tree of outlined items.
        */
-      static index manageTree(index_array & treeStack, index newLevel);
+      static index manageTree(index_array & treeStack, ::raw::index newLevel);
 
       /**
        * Total number of currently available outline items
        */
-      ::count itemCount();
+      ::raw::count itemCount();
 
       void startParsing(index lno);
       void endParsing(index lno);
@@ -71,8 +71,8 @@ namespace colorertake5
       class region *searchRegion;
       address_array < OutlineItem * > outline;
       bool lineIsEmpty;
-      index curLevel;
-      index modifiedLine;
+      ::raw::index curLevel;
+      ::raw::index modifiedLine;
 
    };
 

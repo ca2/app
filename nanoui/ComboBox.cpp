@@ -45,7 +45,7 @@ namespace nanoui
    }
 
 
-   void ComboBox::set_selected_index(::index iIndex, const ::action_context& actioncontext)
+   void ComboBox::set_selected_index(::raw::index iIndex, const ::action_context& actioncontext)
    {
 
       if (m_straItemsShort.empty())
@@ -93,7 +93,7 @@ namespace nanoui
 
       m_container->set_layout(__allocate< GroupLayout >(10));
 
-      ::index iIndex = 0;
+      ::raw::index iIndex = 0;
       for (const auto& str : items) 
       {
 

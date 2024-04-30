@@ -1005,9 +1005,9 @@ end_processing_adding:
             //FD_ZERO(&wfds);
             //FD_ZERO(&efds);
 
-            //::count countR = 0;
-            //::count countW = 0;
-            //::count countE = 0;
+            //::raw::count countR = 0;
+            //::raw::count countW = 0;
+            //::raw::count countE = 0;
 
             auto p = m_socketmap.begin();
 
@@ -1874,7 +1874,7 @@ end_processing_adding:
    }
 
 
-   ::count socket_handler::get_count()
+   ::raw::count socket_handler::get_count()
    {
       /*
       debug_print(" m_socketmap : %d\n", m_socketmap.size());
@@ -1882,11 +1882,11 @@ end_processing_adding:
       debug_print(" m_delete  : %d\n", m_delete.size());
       */
 
-      ::count iSockets = m_socketmap.get_size();
+      ::raw::count iSockets = m_socketmap.get_size();
 
-      ::count iAdd = m_socketmapAdd.get_size();
+      ::raw::count iAdd = m_socketmapAdd.get_size();
 
-      ::count iDelete = m_delete.get_size();
+      ::raw::count iDelete = m_delete.get_size();
 
       return iSockets + iAdd + iDelete;
 

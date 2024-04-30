@@ -72,7 +72,7 @@ public:
    string                           m_strExe;
    string                           m_strApp;
    string                           m_strAppType;
-   index                            m_iEdge;
+   ::raw::index                            m_iEdge;
    manual_reset_event               m_eventReady;
    ::request *                      m_prequest;
    string                           m_strCommandLine;
@@ -131,7 +131,7 @@ public:
    virtual string get_description();
    virtual void set_description(string strDescription);
 
-   virtual index get_edge();
+   virtual ::raw::index get_edge();
    //virtual ::application_bias * get_application_bias();
 
    virtual bool has_file() const;

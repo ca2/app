@@ -718,7 +718,7 @@ namespace filemanager
    bool has_digit(string strName)
    {
 
-      for(index i= 0; i < strName.length(); i++)
+      for(::raw::index i= 0; i < strName.length(); i++)
       {
 
          if(::ansi_char_isdigit(strName[i]))
@@ -742,7 +742,7 @@ namespace filemanager
 
       bool bFirst = true;
 
-      for(index i= 0; i < strName.length(); i++)
+      for(::raw::index i= 0; i < strName.length(); i++)
       {
 
          if(::ansi_char_isdigit(strName[i]))
@@ -785,7 +785,7 @@ namespace filemanager
 
       string strMask = get_number_mask(strName);
 
-      index i;
+      ::raw::index i;
 
       for(i= strMask.length() - 1; i >= 0 ; i--)
       {
@@ -829,7 +829,7 @@ namespace filemanager
 
       }
 
-      index i;
+      ::raw::index i;
 
       for(i= strMask.length()-1; i >= 0 ; i--)
       {

@@ -81,7 +81,7 @@ namespace html
 
 
 
-         index                   m_iIndex;
+         ::raw::index                   m_iIndex;
          string                  m_strPath;
          ::image_pointer                 m_pimage;
 

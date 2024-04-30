@@ -81,7 +81,7 @@ public:
 template < typename ITERABLE >
 typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::add(const ::scoped_string & scopedstr)
 {
-   index nIndex = this->m_nSize;
+   ::raw::index nIndex = this->m_nSize;
    set_at_grow(nIndex, psz);
    return m_pData + nIndex;
 }
@@ -90,7 +90,7 @@ typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::ad
 template < typename ITERABLE >
 typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::add(const unichar * pwsz)
 {
-   index nIndex = this->m_nSize;
+   ::raw::index nIndex = this->m_nSize;
    set_at_grow(nIndex, (Type) unicode_to_utf8(pwsz));
    return m_pData + nIndex;
 }
@@ -131,7 +131,7 @@ template < typename ITERABLE >
 typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::add(const Type & newElement)
 {
 
-   index nIndex = this->m_nSize;
+   ::raw::index nIndex = this->m_nSize;
 
    set_at_grow(nIndex, newElement);
 

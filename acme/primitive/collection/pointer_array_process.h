@@ -20,13 +20,13 @@ public:
    pointer_array_process(const pointer_array_process & array) : BASE_ARRAY(array) { }
    pointer_array_process(pointer_array_process && array) noexcept : BASE_ARRAY(::transfer(array)) { }
 
-   //inline auto ptra(index iStart = 0, index iEnd = -1) { return ARRAY_BASE::values(iStart, iEnd); }
+   //inline auto ptra(::raw::index iStart = 0, ::raw::index iEnd = -1) { return ARRAY_BASE::values(iStart, iEnd); }
 
-   //inline auto ptra(index iStart = 0, index iEnd = -1) const { return ARRAY_BASE::values(iStart, iEnd); }
+   //inline auto ptra(::raw::index iStart = 0, ::raw::index iEnd = -1) const { return ARRAY_BASE::values(iStart, iEnd); }
 
-   //inline auto values(index iStart = 0, index iEnd = -1) { return ref_iterator(iStart, iEnd, this); }
+   //inline auto values(::raw::index iStart = 0, ::raw::index iEnd = -1) { return ref_iterator(iStart, iEnd, this); }
 
-   //inline auto values(index iStart = 0, index iEnd = -1) const { return const_ref_iterator(iStart, iEnd, this); }
+   //inline auto values(::raw::index iStart = 0, ::raw::index iEnd = -1) const { return const_ref_iterator(iStart, iEnd, this); }
 
    //inline auto begin() { return ref_iterator(0, m_nSize, this); }
 
@@ -36,10 +36,10 @@ public:
 
    //inline auto end() const { return const_ref_iterator(m_nSize, m_nSize, this); }
 
-   //ref_iterator ref_it(::index iStart) { return ref_iterator(iStart, this); }
-   //ref_iterator ref_it(::index iStart, ::count cCount) { return ref_iterator(iStart + (cCount < 0 ? this->get_count() + cCount + 1 : cCount), this); }
+   //ref_iterator ref_it(::raw::index iStart) { return ref_iterator(iStart, this); }
+   //ref_iterator ref_it(::raw::index iStart, ::raw::count cCount) { return ref_iterator(iStart + (cCount < 0 ? this->get_count() + cCount + 1 : cCount), this); }
 
-   //ref_iterator_range refa(::index iStart = 0, ::count cCount = -1) { return ref_iterator(ref_it(iStart), ref_it(iStart, cCount)); }
+   //ref_iterator_range refa(::raw::index iStart = 0, ::raw::count cCount = -1) { return ref_iterator(ref_it(iStart), ref_it(iStart, cCount)); }
 
    template < typename REF >
    inline bool contains_ref(const REF & ref)
@@ -76,7 +76,7 @@ public:
 
    }
 
-   TYPE& first_ref(::index n = 0) const
+   TYPE& first_ref(::raw::index n = 0) const
    {
 
       return *this->first(n);
@@ -84,7 +84,7 @@ public:
    }
 
 
-   TYPE& first_ref(::index n = 0)
+   TYPE& first_ref(::raw::index n = 0)
    {
 
       return *this->first(n);
@@ -93,7 +93,7 @@ public:
 
 
 
-   TYPE& last_ref(::index n = -1) const
+   TYPE& last_ref(::raw::index n = -1) const
    {
 
       return *this->last(n);
@@ -101,7 +101,7 @@ public:
    }
 
 
-   TYPE& last_ref(::index n = -1)
+   TYPE& last_ref(::raw::index n = -1)
    {
 
       return *this->last(n);

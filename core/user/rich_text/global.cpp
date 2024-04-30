@@ -81,7 +81,7 @@ namespace user
       }
 
 
-      index sel_line(const pointer_array < line > & linea, index iSel)
+      ::raw::index sel_line(const pointer_array < line > & linea, ::raw::index iSel)
       {
 
          if (iSel < 0)
@@ -93,7 +93,7 @@ namespace user
 
          //box * pboxLast = nullptr;
 
-         index iLine = 0;
+         ::raw::index iLine = 0;
 
          for (; iLine < linea.get_count(); iLine++)
          {
@@ -121,7 +121,7 @@ namespace user
       }
 
 
-      index sel_line_x666(pointer_array < line > & linea, index iSel, double & x)
+      ::raw::index sel_line_x666(pointer_array < line > & linea, ::raw::index iSel, double & x)
       {
 
          if (iSel < 0)
@@ -133,7 +133,7 @@ namespace user
 
          //box * pboxLast = nullptr;
 
-         index iLine = 0;
+         ::raw::index iLine = 0;
 
          for (; iLine < linea.get_count(); iLine++)
          {
@@ -206,7 +206,7 @@ namespace user
       }
 
 
-      index line_caret_x(pointer_array < line >& linea, index iSel, double& x)
+      ::raw::index line_caret_x(pointer_array < line >& linea, ::raw::index iSel, double& x)
       {
 
          if (iSel < 0)
@@ -218,7 +218,7 @@ namespace user
 
          //box* pboxLast = nullptr;
 
-         index iLine = 0;
+         ::raw::index iLine = 0;
 
          for (; iLine < linea.get_count(); iLine++)
          {
@@ -274,7 +274,7 @@ namespace user
       }
 
 
-//      index sel_char(pointer_array < line > & linea, index iSel)
+//      index sel_char(pointer_array < line > & linea, ::raw::index iSel)
 //      {
 //
 //         if (iSel < 0 || linea.is_empty() || linea.first()->is_empty())
@@ -356,7 +356,7 @@ namespace user
 
          ::pointer<span>pspanNext;
 
-         for (index i = 0; i < spana.get_count(); i++)
+         for (::raw::index i = 0; i < spana.get_count(); i++)
          {
 
             ::pointer<span>& pspan = spana[i];
@@ -387,7 +387,7 @@ namespace user
       }
 
 
-      ::e_align box_align(pointer_array < span > & spana, index iBox)
+      ::e_align box_align(pointer_array < span > & spana, ::raw::index iBox)
       {
 
          ::e_align ealign = e_align_left;
@@ -420,7 +420,7 @@ namespace user
       }
 
 
-      bool box_align(pointer_array < span > & spana, index iBox, ::e_align ealign)
+      bool box_align(pointer_array < span > & spana, ::raw::index iBox, ::e_align ealign)
       {
 
          if (iBox >= spana.get_count())
@@ -451,12 +451,12 @@ namespace user
       }
 
 
-      index find_span(pointer_array < span > & spana, index iSel)
+      ::raw::index find_span(pointer_array < span > & spana, ::raw::index iSel)
       {
 
          string str;
 
-         for (index i = 0; i < spana.get_count(); i++)
+         for (::raw::index i = 0; i < spana.get_count(); i++)
          {
 
             ::pointer<span>& pspan = spana[i];
@@ -475,7 +475,7 @@ namespace user
       }
 
 
-      index find_char_span(pointer_array < span > & spana, strsize iChar)
+      ::raw::index find_char_span(pointer_array < span > & spana, strsize iChar)
       {
 
          if (iChar < 0)
@@ -487,7 +487,7 @@ namespace user
 
          string str;
 
-         for (index i = 0; i < spana.get_count(); i++)
+         for (::raw::index i = 0; i < spana.get_count(); i++)
          {
 
             ::pointer<span>& pspan = spana[i];
@@ -567,7 +567,7 @@ namespace user
       }
 
 
-      box * find_box(pointer_array < line > & linea, index iSel)
+      box * find_box(pointer_array < line > & linea, ::raw::index iSel)
       {
 
          if (iSel < 0 || linea.is_empty())
@@ -609,7 +609,7 @@ namespace user
 
          string str;
 
-         index iLine = 0;
+         ::raw::index iLine = 0;
 
          ::pointer<line>plineLast = nullptr;
 

@@ -251,13 +251,13 @@ namespace user
          pgraphics->set(pbrushText);
          ::size_f64_array sizea;
          m_pgraphicsextension->get_text_extent(pgraphics,m_strTopText,sizea);
-         index x = 0;
-         index right = (index)rectangleX.right();
+         ::raw::index x = 0;
+         ::raw::index right = (::raw::index)rectangleX.right();
          double y = m_dItemHeight;
-         index iStart = 0;
-         index iNewStart = 0;
+         ::raw::index iStart = 0;
+         ::raw::index iNewStart = 0;
          //index w;
-         for(index i = 0; i < sizea.get_size(); i++)
+         for(::raw::index i = 0; i < sizea.get_size(); i++)
          {
 
             if((sizea[i].cx() - x > right)
@@ -267,16 +267,16 @@ namespace user
                rectangle.top() = ::i32(y - pointScroll.y());
                if(i == 0)
                {
-                  //w = (::index) (sizea[0].cx() - x);
-                  x = (::index) (sizea[0].cx());
+                  //w = (::raw::index) (sizea[0].cx() - x);
+                  x = (::raw::index) (sizea[0].cx());
                   y += sizea[0].cy();
                   iNewStart = 0;
 
                }
                else
                {
-                  //w = (::index) (sizea[i - 1].cx() - x);
-                  x = (::index) (sizea[i - 1].cx());
+                  //w = (::raw::index) (sizea[i - 1].cx() - x);
+                  x = (::raw::index) (sizea[i - 1].cx());
                   y += sizea[i - 1].cy();
                   iNewStart = i - 1;
                }
@@ -333,42 +333,42 @@ namespace user
 
       }
 
-      _001DrawItems(pgraphics, (::index) iItemFirst, (::index) iItemLast);
+      _001DrawItems(pgraphics, (::raw::index) iItemFirst, (::raw::index) iItemLast);
 
       if(m_bGroup && m_bLateralGroup)
       {
 
-         index iGroupFirst = 0;
-         index iGroupFirstTopIndex = 0;
+         ::raw::index iGroupFirst = 0;
+         ::raw::index iGroupFirstTopIndex = 0;
          for(; iGroupFirst < m_nGroupCount; iGroupFirst++)
          {
-            if(iItemFirst >= iGroupFirstTopIndex && iItemFirst < (iGroupFirstTopIndex + _001GetGroupItemCount((::index) iGroupFirst)))
+            if(iItemFirst >= iGroupFirstTopIndex && iItemFirst < (iGroupFirstTopIndex + _001GetGroupItemCount((::raw::index) iGroupFirst)))
                break;
          }
-         index iGroupLast = iGroupFirst;
-         index iGroupLastTopIndex = iGroupFirstTopIndex;
+         ::raw::index iGroupLast = iGroupFirst;
+         ::raw::index iGroupLastTopIndex = iGroupFirstTopIndex;
          for(; iGroupLast < m_nGroupCount; iGroupLast++)
          {
-            if(iItemLast >= iGroupLastTopIndex && iItemLast < (iGroupLastTopIndex + _001GetGroupItemCount((::index) iGroupLast)))
+            if(iItemLast >= iGroupLastTopIndex && iItemLast < (iGroupLastTopIndex + _001GetGroupItemCount((::raw::index) iGroupLast)))
                break;
          }
 
-         //_001DrawGroups(pgraphics, (::index) iGroupFirst, (::index) iGroupLast, (::index) iItemFirst, (::index) iItemLast);
-         _001DrawGroups(pgraphics, (::index)iGroupFirst, (::index)iGroupLast);
+         //_001DrawGroups(pgraphics, (::raw::index) iGroupFirst, (::raw::index) iGroupLast, (::raw::index) iItemFirst, (::raw::index) iItemLast);
+         _001DrawGroups(pgraphics, (::raw::index)iGroupFirst, (::raw::index)iGroupLast);
 
       }
 
    }
 
 
-   //void mesh::_001DrawGroups(::draw2d::graphics_pointer & pgraphics, index iGroupFirst,index iGroupLast,index iItemFirst,index iItemLast)
-   void mesh::_001DrawGroups(::draw2d::graphics_pointer & pgraphics, index iGroupFirst, index iGroupLast)
+   //void mesh::_001DrawGroups(::draw2d::graphics_pointer & pgraphics, ::raw::index iGroupFirst, ::raw::index iGroupLast, ::raw::index iItemFirst, ::raw::index iItemLast)
+   void mesh::_001DrawGroups(::draw2d::graphics_pointer & pgraphics, ::raw::index iGroupFirst, ::raw::index iGroupLast)
    {
 
       //__UNREFERENCED_PARAMETER(iItemFirst);
       //__UNREFERENCED_PARAMETER(iItemLast);
 
-      index iGroup;
+      ::raw::index iGroup;
 
       ::rectangle_i32 rectangleX;
 
@@ -462,7 +462,7 @@ namespace user
 
       }
 
-      ::count nItem = _001GetGroupMetaItemCount((::index)pdrawgroup->m_iGroup);
+      ::raw::count nItem = _001GetGroupMetaItemCount((::raw::index)pdrawgroup->m_iGroup);
 
       for(pdrawgroup->m_iItem = 0; pdrawgroup->m_iItem < nItem; pdrawgroup->m_iItem++)
       {
@@ -483,7 +483,7 @@ namespace user
    }
 
 
-   void mesh::_001DrawItems(::draw2d::graphics_pointer & pgraphics, index iItemFirst,index iItemLast)
+   void mesh::_001DrawItems(::draw2d::graphics_pointer & pgraphics, ::raw::index iItemFirst, ::raw::index iItemLast)
    {
 
       auto rectangleX = this->rectangle();
@@ -496,7 +496,7 @@ namespace user
 
       bool bHoverFont = false;
 
-      index iDisplayItem;
+      ::raw::index iDisplayItem;
 
       for(iDisplayItem = iItemFirst; iDisplayItem <= iItemLast; iDisplayItem++)
       {
@@ -538,7 +538,7 @@ namespace user
          //   for(m_pdrawmeshitem->m_iGroup = 0; m_pdrawmeshitem->m_iGroup < m_nGroupCount; m_pdrawmeshitem->m_iGroup++)
          //   {
 
-         //      m_pdrawmeshitem->m_iGroupCount = _001GetGroupItemCount((::index) m_pdrawmeshitem->m_iGroup);
+         //      m_pdrawmeshitem->m_iGroupCount = _001GetGroupItemCount((::raw::index) m_pdrawmeshitem->m_iGroup);
 
          //      if(iDisplayItem >= m_pdrawmeshitem->m_iGroupTopDisplayIndex && iDisplayItem < (m_pdrawmeshitem->m_iGroupTopDisplayIndex + m_pdrawmeshitem->m_iGroupCount))
          //      {
@@ -622,7 +622,7 @@ namespace user
       pdrawitem->m_bListItemHover = m_pitemHover &&
          pdrawitem->m_iDisplayItem == m_pitemHover->m_item.m_iItem &&
                                     (m_eview != impact_icon ||
-                                     ((m_piconlayout->m_iaDisplayToStrict.get_a((::index)m_pitemHover->m_item.m_iItem) >= 0 && m_piconlayout->m_iaDisplayToStrict.get_a((::index)m_pitemHover->m_item.m_iItem) < m_nItemCount)));
+                                     ((m_piconlayout->m_iaDisplayToStrict.get_a((::raw::index)m_pitemHover->m_item.m_iItem) >= 0 && m_piconlayout->m_iaDisplayToStrict.get_a((::raw::index)m_pitemHover->m_item.m_iItem) < m_nItemCount)));
 
       if(pdrawitem->m_bListItemHover)
       {
@@ -635,7 +635,7 @@ namespace user
       }
 //      pdrawitem->m_pgraphics->set_font(pfont);
 
-      pdrawitem->m_bListItemSelected = (m_eview != impact_icon || is_valid_display_item((::index) pdrawitem->m_iItem)) && rangeSelection.has_item((::index) pdrawitem->m_iDisplayItem);
+      pdrawitem->m_bListItemSelected = (m_eview != impact_icon || is_valid_display_item((::raw::index) pdrawitem->m_iItem)) && rangeSelection.has_item((::raw::index) pdrawitem->m_iDisplayItem);
 
       if(pdrawitem->m_bListItemHover)
          pdrawitem->m_iState |= ItemStateHover;
@@ -670,7 +670,7 @@ namespace user
 
       string str;
 
-      index iColumnCount;
+      ::raw::index iColumnCount;
 
       if(m_eview == impact_icon)
       {
@@ -700,14 +700,14 @@ namespace user
 
       //}
 
-      ::index iOrder = 0;
+      ::raw::index iOrder = 0;
 
       for(; iOrder < iColumnCount; iOrder++)
       {
 
          auto psubitem = get_subitem(pdrawitem, iOrder);
 
-         //pdrawitem->m_iColumn    = _001MapOrderToColumn((::index) iOrder);
+         //pdrawitem->m_iColumn    = _001MapOrderToColumn((::raw::index) iOrder);
 
          //if(pdrawitem->m_iColumn < 0)
          //   continue;
@@ -726,7 +726,7 @@ namespace user
 
       }
 
-      if(rangeHighlight.has_item((::index) pdrawitem->m_iDisplayItem))
+      if(rangeHighlight.has_item((::raw::index) pdrawitem->m_iDisplayItem))
       {
 
          auto ppenHighlight = _001GetPenHighlight();
@@ -802,7 +802,7 @@ namespace user
    }
 
 
-   ::pointer<mesh_item>& mesh::get_item(::index iItem)
+   ::pointer<mesh_item>& mesh::get_item(::raw::index iItem)
    {
 
       auto & pitem = m_mapItem[iItem];
@@ -835,7 +835,7 @@ namespace user
    }
 
 
-   ::pointer<mesh_subitem>& mesh::get_subitem(mesh_item * pitem, ::index iSubItem)
+   ::pointer<mesh_subitem>& mesh::get_subitem(mesh_item * pitem, ::raw::index iSubItem)
    {
 
       auto & psubitem = pitem->m_mapSubItem[iSubItem];
@@ -858,7 +858,7 @@ namespace user
    }
 
 
-   ::pointer<mesh_subitem>& mesh::get_subitem(::index iItem, ::index iSubItem)
+   ::pointer<mesh_subitem>& mesh::get_subitem(::raw::index iItem, ::raw::index iSubItem)
    {
 
       auto & pitem = get_item(iItem);
@@ -997,12 +997,12 @@ namespace user
 
       }
 
-      index iLow = 0;
+      ::raw::index iLow = 0;
 
       for(m_iTopGroup = 0; m_iTopGroup < m_nGroupCount; m_iTopGroup++)
       {
 
-         if(m_iTopDisplayIndex >= iLow && m_iTopDisplayIndex < (iLow + _001GetGroupItemCount((::index) m_iTopGroup)))
+         if(m_iTopDisplayIndex >= iLow && m_iTopDisplayIndex < (iLow + _001GetGroupItemCount((::raw::index) m_iTopGroup)))
             break;
 
       }
@@ -1181,7 +1181,7 @@ namespace user
 
       if(m_eview == impact_icon)
       {
-         for(index iStrict = 0; iStrict < m_nItemCount; iStrict++)
+         for(::raw::index iStrict = 0; iStrict < m_nItemCount; iStrict++)
          {
             if(m_piconlayout->m_iaDisplayToStrict.get_a(iStrict) == -1)
             {
@@ -1191,12 +1191,12 @@ namespace user
       }
       else
       {
-         index iStart = m_pmeshlayout->m_iaDisplayToStrict.get_count();
-         index iEnd = m_nItemCount - 1;
-         m_pmeshlayout->m_iaDisplayToStrict.set_size((::count) m_nItemCount);
-         for(index iStrict = iStart; iStrict <= iEnd; iStrict++)
+         ::raw::index iStart = m_pmeshlayout->m_iaDisplayToStrict.get_count();
+         ::raw::index iEnd = m_nItemCount - 1;
+         m_pmeshlayout->m_iaDisplayToStrict.set_size((::raw::count) m_nItemCount);
+         for(::raw::index iStrict = iStart; iStrict <= iEnd; iStrict++)
          {
-            m_pmeshlayout->m_iaDisplayToStrict.set_at((::index) iStrict, (::index) iStrict);
+            m_pmeshlayout->m_iaDisplayToStrict.set_at((::raw::index) iStrict, (::raw::index) iStrict);
          }
       }
 
@@ -1348,7 +1348,7 @@ namespace user
             //   //               i32 igroup;
             //   for(itemLast.m_iGroup = 0; itemLast.m_iGroup < m_nGroupCount; itemLast.m_iGroup++)
             //   {
-            //      itemLast.m_iGroupCount = _001GetGroupItemCount((::index) itemLast.m_iGroup);
+            //      itemLast.m_iGroupCount = _001GetGroupItemCount((::raw::index) itemLast.m_iGroup);
             //      if(itemLast.m_iItem >= itemLast.m_iGroupTopDisplayIndex && itemLast.m_iItem < (itemLast.m_iGroupTopDisplayIndex + itemLast.m_iGroupCount))
             //         break;
             //   }
@@ -1453,7 +1453,7 @@ namespace user
 
    //   int iWidth;
 
-   //   if(!m_mapColumnWidth.lookup((::index) pitem->m_iColumn,iWidth))
+   //   if(!m_mapColumnWidth.lookup((::raw::index) pitem->m_iColumn,iWidth))
    //   {
 
    //      iWidth = m_iDefaultColumnWidth;
@@ -1467,18 +1467,18 @@ namespace user
    //}
 
 
-   index mesh::sub_item_to_order(index iSubItem)
+   ::raw::index mesh::sub_item_to_order(::raw::index iSubItem)
    {
       return _001MapColumnToOrder(_001MapSubItemToColumn(iSubItem));
    }
 
-   index mesh::_001MapOrderToSubItem(index iOrder)
+   ::raw::index mesh::_001MapOrderToSubItem(::raw::index iOrder)
    {
       return _001MapColumnToSubItem(_001MapOrderToColumn(iOrder));
    }
 
 
-   index mesh::_001MapOrderToColumn(index iOrder)
+   ::raw::index mesh::_001MapOrderToColumn(::raw::index iOrder)
    {
 
       if(iOrder >= _001GetColumnCount())
@@ -1500,7 +1500,7 @@ namespace user
    }
 
 
-   index mesh::_001MapColumnToOrder(index iColumn)
+   ::raw::index mesh::_001MapColumnToOrder(::raw::index iColumn)
    {
 
       if(iColumn >= _001GetColumnCount())
@@ -1521,7 +1521,7 @@ namespace user
 
    }
 
-   index mesh::_001MapSubItemToColumn(index iSubItem)
+   ::raw::index mesh::_001MapSubItemToColumn(::raw::index iSubItem)
    {
 
       if(iSubItem >= _001GetColumnCount())
@@ -1542,7 +1542,7 @@ namespace user
 
    }
 
-   index mesh::_001MapColumnToSubItem(index iColumn)
+   ::raw::index mesh::_001MapColumnToSubItem(::raw::index iColumn)
    {
 
       if(iColumn >= _001GetColumnCount())
@@ -1563,7 +1563,7 @@ namespace user
    }
 
 
-   ::count mesh::_001GetItemCount()
+   ::raw::count mesh::_001GetItemCount()
    {
 
       if(m_pmeshdata.is_null())
@@ -1574,7 +1574,7 @@ namespace user
    }
 
 
-   ::count mesh::_001GetGroupCount()
+   ::raw::count mesh::_001GetGroupCount()
    {
 
       if(m_pmeshdata.is_null())
@@ -1597,14 +1597,14 @@ namespace user
    //
    //
    /////////////////////////////////////////////////////////////////
-   index mesh::_001CalcDisplayTopIndex()
+   ::raw::index mesh::_001CalcDisplayTopIndex()
    {
 
 
       if(m_eview == impact_grid)
       {
 
-         return (::index) minimum(maximum(0,get_context_offset().y()),m_nGridItemCount);
+         return (::raw::index) minimum(maximum(0,get_context_offset().y()),m_nGridItemCount);
 
       }
       else
@@ -1612,12 +1612,12 @@ namespace user
 
          auto pointScroll = get_context_offset();
 
-         index iItem;
+         ::raw::index iItem;
 
          if(_001DisplayHitTest(::point_i32((::i32)(pointScroll.x() < 0 ? -pointScroll.x() : 0), (::i32)(m_dItemHeight + (pointScroll.y() < -0 ? -pointScroll.y() : 0))),iItem))
          {
 
-            return (::index) iItem;
+            return (::raw::index) iItem;
 
          }
          else
@@ -1643,7 +1643,7 @@ namespace user
 
    }
 
-   ::count mesh::_001CalcDisplayItemCount()
+   ::raw::count mesh::_001CalcDisplayItemCount()
    {
 
       if(m_eview == impact_grid)
@@ -1664,7 +1664,7 @@ namespace user
 
             if(m_bTopText)
             {
-               return (::count) (rectangleScroll.height() - m_rectangleTopText.height() / m_dItemHeight);
+               return (::raw::count) (rectangleScroll.height() - m_rectangleTopText.height() / m_dItemHeight);
             }
             else
             {
@@ -1720,7 +1720,7 @@ namespace user
 
       }
 
-      index iItemCount;
+      ::raw::index iItemCount;
       if(m_bFilter1 && (m_eview == impact_list || m_eview == impact_report || m_eview == impact_grid))
       {
          iItemCount = m_piaFilterMesh->get_count();
@@ -1729,8 +1729,8 @@ namespace user
       {
          iItemCount = m_nItemCount;
       }
-      index iItemFirst = m_iTopDisplayIndex;
-      index iItemLast = iItemFirst;
+      ::raw::index iItemFirst = m_iTopDisplayIndex;
+      ::raw::index iItemLast = iItemFirst;
       ::rectangle_i32 rectangleItem;
       ::rectangle_i32 rectangleIntersect;
       ::rectangle_i32 rectangleUpdate;
@@ -1739,7 +1739,7 @@ namespace user
       if(iItemFirst >= 0)
       {
          iItemLast = -1;
-         for(index i = iItemFirst + 1; i < iItemCount; i++)
+         for(::raw::index i = iItemFirst + 1; i < iItemCount; i++)
          {
             pitem->m_iDisplayItem  = i;
             //if(m_bGroup)
@@ -1747,7 +1747,7 @@ namespace user
             //   item.m_iGroupTopDisplayIndex = 0;
             //   for(item.m_iGroup = 0; item.m_iGroup < m_nGroupCount; item.m_iGroup++)
             //   {
-            //      item.m_iGroupCount = _001GetGroupItemCount((::index) item.m_iGroup);
+            //      item.m_iGroupCount = _001GetGroupItemCount((::raw::index) item.m_iGroup);
             //      if(i >= item.m_iGroupTopDisplayIndex && i < (item.m_iGroupTopDisplayIndex + item.m_iGroupCount))
             //         break;
             //   }
@@ -1780,7 +1780,7 @@ namespace user
    }
 
 
-   bool mesh::_001HitTest_(const ::point_i32 & point,index &iItem, index&iSubItem, index&iListItem,::user::mesh::enum_element &eelement)
+   bool mesh::_001HitTest_(const ::point_i32 & point, ::raw::index &iItem, ::raw::index&iSubItem, ::raw::index&iListItem,::user::mesh::enum_element &eelement)
    {
       __UNREFERENCED_PARAMETER(point);
       __UNREFERENCED_PARAMETER(iItem);
@@ -1791,7 +1791,7 @@ namespace user
    }
 
 
-   bool mesh::_001HitTest_(const ::point_i32 & point,index &iItem, index&iSubItem)
+   bool mesh::_001HitTest_(const ::point_i32 & point, ::raw::index &iItem, ::raw::index&iSubItem)
    {
 
       if (!_001DisplayHitTest(point, iItem, iSubItem))
@@ -1801,14 +1801,14 @@ namespace user
 
       }
 
-      iItem = display_to_strict((::index) iItem);
+      iItem = display_to_strict((::raw::index) iItem);
 
       return true;
 
    }
 
 
-   bool mesh::_001HitTest_(const ::point_i32 & point, index& iItem)
+   bool mesh::_001HitTest_(const ::point_i32 & point, ::raw::index & iItem)
    {
 
       if (!_001DisplayHitTest(point, iItem))
@@ -1818,14 +1818,14 @@ namespace user
 
       }
 
-      iItem = (::index) display_to_strict((::index) iItem);
+      iItem = (::raw::index) display_to_strict((::raw::index) iItem);
 
       return true;
 
    }
 
 
-   bool mesh::_001DisplayHitTest(const ::point_i32 & point, index& iItem, index& iSubItem, index& iListItem,::user::mesh::enum_element &eelement)
+   bool mesh::_001DisplayHitTest(const ::point_i32 & point, ::raw::index & iItem, ::raw::index & iSubItem, ::raw::index & iListItem,::user::mesh::enum_element &eelement)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -1839,10 +1839,10 @@ namespace user
    }
 
 
-   bool mesh::_001DisplayHitTest(const ::point_i32 & point, index&iItemParam, index&iSubItemParam)
+   bool mesh::_001DisplayHitTest(const ::point_i32 & point, ::raw::index & iItemParam, ::raw::index & iSubItemParam)
    {
 
-      index iItem;
+      ::raw::index iItem;
 
       if(!_001DisplayHitTest(point,iItem))
       {
@@ -1867,7 +1867,7 @@ namespace user
          }
          return true;
       }
-      index iColumnCount = m_nColumnCount;
+      ::raw::index iColumnCount = m_nColumnCount;
       i32 iLeft =(i32)pointScroll.x();
       if(m_bGroup && m_bLateralGroup)
          iLeft += m_iLateralGroupWidth;
@@ -1875,7 +1875,7 @@ namespace user
       // draw_mesh_item item(this);
       if(point.x() < iLeft)
          return false;
-      //for(::index iColumn = 0; iColumn < iColumnCount; iColumn++)
+      //for(::raw::index iColumn = 0; iColumn < iColumnCount; iColumn++)
       //{
       //   //m_collumna->get_visible(iColumn)->m_iWid;
       //   if(!item.m_bOk)
@@ -1892,7 +1892,7 @@ namespace user
       return false;
    }
 
-   bool mesh::_001DisplayHitTest(const ::point_i32 & point, index&iItemParam)
+   bool mesh::_001DisplayHitTest(const ::point_i32 & point, ::raw::index & iItemParam)
    {
 
       {
@@ -1942,14 +1942,14 @@ namespace user
 
          if(m_bFilter1)
          {
-            if((::index) dItem >= m_piaFilterMesh->get_count())
+            if((::raw::index) dItem >= m_piaFilterMesh->get_count())
                return false;
          }
 
-         if((::index) dItem >= m_nItemCount)
+         if((::raw::index) dItem >= m_nItemCount)
             return false;
 
-         iItemParam = (index)dItem;
+         iItemParam = (::raw::index)dItem;
 
          return true;
       }
@@ -1967,14 +1967,14 @@ namespace user
          //{
          //   rectangleX.top() += m_dItemHeight;
          //}
-         index iRoundHeight = (index)((rectangleX.height() / m_dItemHeight) * m_dItemHeight);
+         ::raw::index iRoundHeight = (::raw::index)((rectangleX.height() / m_dItemHeight) * m_dItemHeight);
 
-         index iy = (index)((point.y() + pointScroll.y()) + (((point.x() + pointScroll.x()) / m_iItemWidth)) * iRoundHeight);
+         ::raw::index iy = (::raw::index)((point.y() + pointScroll.y()) + (((point.x() + pointScroll.x()) / m_iItemWidth)) * iRoundHeight);
 
-         index iItem = -1;
+         ::raw::index iItem = -1;
 
          if(m_dItemHeight != 0)
-            iItem = (::index) (iy / m_dItemHeight);
+            iItem = (::raw::index) (iy / m_dItemHeight);
 
          if(iItem < 0)
             return false;
@@ -2027,7 +2027,7 @@ namespace user
 
          //if(m_flags.has(flag_auto_arrange))
          {
-            iItemParam = (::index) ( dy * (maximum(1,rectangleX.width() / dItemSize)) + dx);
+            iItemParam = (::raw::index) ( dy * (maximum(1,rectangleX.width() / dItemSize)) + dx);
          }
          //else
          {
@@ -2048,8 +2048,8 @@ namespace user
          return_(pdrawmeshgroup->m_bOk,false);
       if(pdrawmeshgroup->m_iGroup >= m_nGroupCount)
          return_(pdrawmeshgroup->m_bOk,false);
-      index iItemFirst = 0;
-      index iItemLast = _001GetGroupItemCount(0) - 1;
+      ::raw::index iItemFirst = 0;
+      ::raw::index iItemLast = _001GetGroupItemCount(0) - 1;
       pdrawmeshgroup->m_iGroupRectGroup = 0;
       while(pdrawmeshgroup->m_iGroupRectGroup < pdrawmeshgroup->m_iGroup)
       {
@@ -2371,8 +2371,8 @@ namespace user
                rectangleX.top() += m_rectangleTopText.height();
             }
             //index iIconSize = maximum(32,m_columna[0]->m_sizeIcon.cy());
-            index iIconSize = 32;
-            index iItemSize = iIconSize * 2;
+            ::raw::index iIconSize = 32;
+            ::raw::index iItemSize = iIconSize * 2;
             pdrawitem->m_rectangleItem.left() = (::i32)(iItemSize * (pdrawitem->m_iItem % (maximum(1,rectangleX.width() / iItemSize))));
             pdrawitem->m_rectangleItem.top() = (::i32)(iItemSize * (pdrawitem->m_iItem / (maximum(1,rectangleX.width() / iItemSize))));
             pdrawitem->m_rectangleItem.bottom() = (::i32)(pdrawitem->m_rectangleItem.top() + iItemSize);
@@ -2825,7 +2825,7 @@ namespace user
 
             m_rangeSelection.clear();
 
-            index iItem = m_iDisplayItemFocus;
+            ::raw::index iItem = m_iDisplayItemFocus;
 
             if(iItem < 0)
             {
@@ -2986,9 +2986,9 @@ namespace user
 
          pmessage->m_bRet = true;
 
-         index iItemEnter;
+         ::raw::index iItemEnter;
 
-         index iSubItemEnter;
+         ::raw::index iSubItemEnter;
 
          if (_001DisplayHitTest(point, iItemEnter, iSubItemEnter))
          {
@@ -2996,7 +2996,7 @@ namespace user
             if (m_bSelect && m_bHoverSelect2 &&
                   (m_iSubItemEnter != iSubItemEnter ||
                    m_iItemEnter != iItemEnter)
-                  && !m_rangeSelection.has_item((::index) iItemEnter))
+                  && !m_rangeSelection.has_item((::raw::index) iItemEnter))
             {
 
                m_iMouseFlagEnter = pmouse->m_ebuttonstate;
@@ -3027,7 +3027,7 @@ namespace user
 
       set_mouse_capture();
 
-      index iItem;
+      ::raw::index iItem;
 
       ::point_i32 point = pmouse->m_pointHost;
 
@@ -3154,9 +3154,9 @@ namespace user
 
                   item_range itemrange;
 
-                  index iLItem = minimum(m_iShiftFirstSelection,iItem);
+                  ::raw::index iLItem = minimum(m_iShiftFirstSelection,iItem);
 
-                  index iUItem = maximum(m_iShiftFirstSelection,iItem);
+                  ::raw::index iUItem = maximum(m_iShiftFirstSelection,iItem);
 
                   itemrange.set(iLItem,iUItem,0,m_nColumnCount - 1,- 1,-1);
 
@@ -3177,9 +3177,9 @@ namespace user
 
                   item_range itemrange;
 
-                  index iLItem = minimum(m_iShiftFirstSelection,iItem);
+                  ::raw::index iLItem = minimum(m_iShiftFirstSelection,iItem);
 
-                  index iUItem = maximum(m_iShiftFirstSelection,iItem);
+                  ::raw::index iUItem = maximum(m_iShiftFirstSelection,iItem);
 
                   itemrange.set(iLItem,iUItem,0,m_nColumnCount - 1,- 1,-1);
 
@@ -3197,7 +3197,7 @@ namespace user
 
                m_rangeSelection.clear();
 
-               index iItem;
+               ::raw::index iItem;
 
                if(_001DisplayHitTest(point,iItem))
                {
@@ -3258,7 +3258,7 @@ namespace user
          if (m_eview != impact_icon)
          {
 
-            index iDisplayItemDrop;
+            ::raw::index iDisplayItemDrop;
 
             if (_001DisplayHitTest(point, iDisplayItemDrop))
             {
@@ -3283,7 +3283,7 @@ namespace user
          if (m_bLButtonDown)
          {
 
-            index iDisplayItemLButtonUp = -1;
+            ::raw::index iDisplayItemLButtonUp = -1;
 
             if (_001DisplayHitTest(point, iDisplayItemLButtonUp) && iDisplayItemLButtonUp >= 0)
             {
@@ -3377,7 +3377,7 @@ namespace user
       else
       {
 
-         index iItem;
+         ::raw::index iItem;
          if(_001DisplayHitTest(point,iItem))
          {
             if(!m_rangeSelection.has_item(iItem))
@@ -3480,11 +3480,11 @@ namespace user
 
       }
 
-      index iFilterSubItem = data_key_to_column_key(scopedstrDataKey);
+      ::raw::index iFilterSubItem = data_key_to_column_key(scopedstrDataKey);
 
       range & range = m_rangeSelection;
 
-      for(index i = 0; i < range.get_item_count(); i++)
+      for(::raw::index i = 0; i < range.get_item_count(); i++)
       {
          
          auto & itemrange = range.ItemAt(i);
@@ -3492,7 +3492,7 @@ namespace user
          if(itemrange.has_sub_item(iFilterSubItem))
          {
            
-            for(index iLine = itemrange.get_lower_bound(); iLine <= itemrange.get_upper_bound(); iLine++)
+            for(::raw::index iLine = itemrange.get_lower_bound(); iLine <= itemrange.get_upper_bound(); iLine++)
             {
 
                straSelection.add_item(scopedstrDataKey + "/" + ::as_string(iLine));
@@ -3506,11 +3506,11 @@ namespace user
    }
 
 
-   /*index range::get_item(index iItemIndex)
+   /*index range::get_item(::raw::index iItemIndex)
    {
-   index iFirst = 0;
-   index i = 0;
-   index iItem;
+   ::raw::index iFirst = 0;
+   ::raw::index i = 0;
+   ::raw::index iItem;
 
    while(true)
    {
@@ -3535,19 +3535,19 @@ namespace user
    return m_iItemEnd - m_iItemStart + 1;
    }*/
 
-   /*index item_range::get_item(index iItemIndex)
+   /*index item_range::get_item(::raw::index iItemIndex)
    {
    return m_iItemStart + iItemIndex;
    }*/
 
 
-   ::count mesh::_001GetSelectedItemCount()
+   ::raw::count mesh::_001GetSelectedItemCount()
    {
       return m_rangeSelection.get_item_count();
    }
 
 
-   string mesh::_001GetColumnText(index iColumn)
+   string mesh::_001GetColumnText(::raw::index iColumn)
    {
 
       __UNREFERENCED_PARAMETER(iColumn);
@@ -3613,7 +3613,7 @@ namespace user
    }
 
 
-   void mesh::_001ShowSubItem(index iSubItem, bool bShow)
+   void mesh::_001ShowSubItem(::raw::index iSubItem, bool bShow)
    {
 
    }
@@ -3790,9 +3790,9 @@ namespace user
    void mesh::on_hover_select_timer()
    {
 
-      index iItemSel;
+      ::raw::index iItemSel;
 
-      index iSubItemSel;
+      ::raw::index iSubItemSel;
 
       auto pointCursor = host_mouse_cursor_position();
 
@@ -4181,7 +4181,7 @@ namespace user
 
 
 
-   bool mesh::_001IsItemVisible(index iItem)
+   bool mesh::_001IsItemVisible(::raw::index iItem)
    {
       
       draw_mesh_item item;
@@ -4280,23 +4280,23 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      index x = 0;
-      index right = rectangleX.right();
-      index y = 0;
-      for(index i = 0; i < sizea.get_size(); i++)
+      ::raw::index x = 0;
+      ::raw::index right = rectangleX.right();
+      ::raw::index y = 0;
+      for(::raw::index i = 0; i < sizea.get_size(); i++)
       {
          if((sizea[i].cx() - x > right)
                || i == sizea.get_upper_bound())
          {
             if(i == 0)
             {
-               x = (::index) (sizea[0].cx());
-               y += (::index) (sizea[0].cy());
+               x = (::raw::index) (sizea[0].cx());
+               y += (::raw::index) (sizea[0].cy());
             }
             else
             {
-               x = (::index) (sizea[i - 1].cx());
-               y += (::index) (sizea[i - 1].cy());
+               x = (::raw::index) (sizea[i - 1].cx());
+               y += (::raw::index) (sizea[i - 1].cy());
             }
          }
       }
@@ -4329,9 +4329,9 @@ namespace user
       if(m_pmeshcache != nullptr)
       {
 
-         index iItemCount = m_nDisplayCount;
+         ::raw::index iItemCount = m_nDisplayCount;
 
-         index iItemFirst = m_iTopDisplayIndex;
+         ::raw::index iItemFirst = m_iTopDisplayIndex;
 
          m_pmeshcache->_001CacheHint(this, iItemFirst, iItemCount);
 
@@ -4381,7 +4381,7 @@ namespace user
    //}
 
 
-   //i32 mesh::_001CalcItemWidth(::draw2d::graphics_pointer& pgraphics, index iItem,index iSubItem)
+   //i32 mesh::_001CalcItemWidth(::draw2d::graphics_pointer& pgraphics, ::raw::index iItem, ::raw::index iSubItem)
    //{
 
    //   pgraphics->set_font(this, ::e_element_none);
@@ -4393,7 +4393,7 @@ namespace user
    //}
 
 
-   //i32 mesh::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,::write_text::font * pfont,index iItem,index iSubItem)
+   //i32 mesh::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,::write_text::font * pfont, ::raw::index iItem, ::raw::index iSubItem)
    //{
    //   pgraphics->set(pfont);
    //   return _001CalcItemWidth(pgraphics,iItem,iSubItem);
@@ -4431,7 +4431,7 @@ namespace user
    }
 
 
-   i32 mesh::_001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics,index iItem,index iSubItem)
+   i32 mesh::_001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem, ::raw::index iSubItem)
    {
 
       pgraphics->set_font(this, ::e_element_none);
@@ -4483,7 +4483,7 @@ namespace user
    }
 
 
-   index mesh::data_key_to_sub_item(const ::scoped_string & scopedstrDataKey)
+   ::raw::index mesh::data_key_to_sub_item(const ::scoped_string & scopedstrDataKey)
    {
       //mesh_column * column = m_columna._001GetByConfigId(key);
       //if(column == nullptr)
@@ -4493,7 +4493,7 @@ namespace user
    }
 
 
-   index mesh::data_key_to_column_key(const ::scoped_string & scopedstrDataKey)
+   ::raw::index mesh::data_key_to_column_key(const ::scoped_string & scopedstrDataKey)
    {
       //mesh_column * column = m_columna._001GetByConfigId(key);
       //if(column == nullptr)
@@ -4516,7 +4516,7 @@ namespace user
 
    //index mesh_column_array::MapConfigIdToKey(const ::scoped_string & strDataKey)
    //{
-   //   for(index iKey = 0; iKey < this->get_size(); iKey++)
+   //   for(::raw::index iKey = 0; iKey < this->get_size(); iKey++)
    //   {
    //      if(this->element_at(iKey)->m_strDataKey == key)
    //         return iKey;
@@ -4525,7 +4525,7 @@ namespace user
    //}
 
 
-   void mesh::ensure_item_visible(index iItem,bool bRedraw)
+   void mesh::ensure_item_visible(::raw::index iItem,bool bRedraw)
    {
 
       auto pointScroll = get_context_offset();
@@ -4555,7 +4555,7 @@ namespace user
    }
 
 
-   void mesh::scroll_to_item(index iItem,bool bRedraw)
+   void mesh::scroll_to_item(::raw::index iItem,bool bRedraw)
    {
 
       //auto pointScroll = get_context_offset();
@@ -4585,7 +4585,7 @@ namespace user
    }
 
 
-   void mesh::ensure_item_visible(index iItem,range & range)
+   void mesh::ensure_item_visible(::raw::index iItem,range & range)
    {
 
       auto pointScroll = get_context_offset();
@@ -4615,14 +4615,14 @@ namespace user
 
             //});
 
-         item.set_lower_bound((index)iyScroll);
-         item.set_upper_bound(minimum((index)(iyScroll + m_nDisplayCount - 1), (index)(m_nItemCount - 1)));
+         item.set_lower_bound((::raw::index)iyScroll);
+         item.set_upper_bound(minimum((::raw::index)(iyScroll + m_nDisplayCount - 1), (::raw::index)(m_nItemCount - 1)));
          range.add_item(item);
       }
    }
 
 
-   void mesh::highlight_item(index iItem,bool bRedraw)
+   void mesh::highlight_item(::raw::index iItem,bool bRedraw)
    {
 
       m_rangeHighlight.clear();
@@ -4645,7 +4645,7 @@ namespace user
    }
 
 
-   bool mesh::on_erase_item(index iItem)
+   bool mesh::on_erase_item(::raw::index iItem)
    {
 
       __UNREFERENCED_PARAMETER(iItem);
@@ -4655,7 +4655,7 @@ namespace user
    }
 
 
-   bool mesh::erase_item(index iItem,bool bRedraw)
+   bool mesh::erase_item(::raw::index iItem,bool bRedraw)
    {
 
       if (!on_erase_item(iItem))
@@ -4688,7 +4688,7 @@ namespace user
 
       while(range.get_item_count() > 0)
       {
-         index iItem = range.ItemAt(0).get_lower_bound();
+         ::raw::index iItem = range.ItemAt(0).get_lower_bound();
          if(!erase_item(iItem,false))
             break;
          get_selection(range);
@@ -4698,7 +4698,7 @@ namespace user
    }
 
 
-   void mesh::select_item(index iItem,index iSubItem)
+   void mesh::select_item(::raw::index iItem, ::raw::index iSubItem)
    {
 
       m_rangeSelection.clear();
@@ -4712,7 +4712,7 @@ namespace user
    }
 
 
-   index mesh::strict_to_display(index iStrict)
+   ::raw::index mesh::strict_to_display(::raw::index iStrict)
    {
 
       __UNREFERENCED_PARAMETER(iStrict);
@@ -4722,7 +4722,7 @@ namespace user
    }
 
 
-   index mesh::display_to_strict(index iDisplay)
+   ::raw::index mesh::display_to_strict(::raw::index iDisplay)
    {
 
       if(iDisplay < 0)
@@ -4779,14 +4779,14 @@ namespace user
 
       m_efilterstate = FilterStateSetup;
 
-      index iItemCount = m_nItemCount;
+      ::raw::index iItemCount = m_nItemCount;
 
       if(m_eview == impact_icon)
       {
 
          m_piaFilterIcon->erase_all();
 
-         for(index i = 0; i < iItemCount; i++)
+         for(::raw::index i = 0; i < iItemCount; i++)
          {
 
             m_piaFilterIcon->add(i);
@@ -4799,7 +4799,7 @@ namespace user
 
          m_piaFilterMesh->erase_all();
 
-         for(index i = 0; i < iItemCount; i++)
+         for(::raw::index i = 0; i < iItemCount; i++)
          {
 
             m_piaFilterMesh->add(i);
@@ -4853,14 +4853,14 @@ namespace user
 
       ASSERT(m_efilterstate == FilterStateSetup || m_efilterstate == FilterStateFilter);
 
-      index iItemCount = m_nItemCount;
+      ::raw::index iItemCount = m_nItemCount;
 
       if(m_eview == impact_icon)
       {
 
          m_piconlayout->m_iaDisplayToStrict.erase_all();
 
-         for(index i = 0; i < iItemCount; i++)
+         for(::raw::index i = 0; i < iItemCount; i++)
          {
 
             m_piconlayout->m_iaDisplayToStrict.add(i);
@@ -4873,7 +4873,7 @@ namespace user
 
          m_pmeshlayout->m_iaDisplayToStrict.erase_all();
 
-         for(index i = 0; i < iItemCount; i++)
+         for(::raw::index i = 0; i < iItemCount; i++)
          {
 
             m_pmeshlayout->m_iaDisplayToStrict.add(i);
@@ -4918,7 +4918,7 @@ namespace user
    }
 
 
-   void mesh::FilterInclude(index iItem)
+   void mesh::FilterInclude(::raw::index iItem)
    {
 
       ASSERT(m_efilterstate == FilterStateSetup);
@@ -4944,7 +4944,7 @@ namespace user
 
       ASSERT(m_efilterstate == FilterStateSetup);
 
-      for(index i = 0; i < array.get_size() ; i++)
+      for(::raw::index i = 0; i < array.get_size() ; i++)
       {
 
          FilterInclude(array[i]);
@@ -4972,15 +4972,15 @@ namespace user
 
       string wstrItem;
 
-      index iItemCount = minimum(m_nItemCount,m_iFilter1Step + 1000);
+      ::raw::index iItemCount = minimum(m_nItemCount,m_iFilter1Step + 1000);
 
-      index iFilter1Step;
+      ::raw::index iFilter1Step;
 
       draw_mesh_item item;
 
       for(iFilter1Step =  m_iFilter1Step; iFilter1Step < iItemCount; iFilter1Step++)
       {
-         //for(index j = 0; j < m_nColumnCount; j++)
+         //for(::raw::index j = 0; j < m_nColumnCount; j++)
          /*{
             mesh_column * pcolumn = m_columna._001GetByKey(j);
             item.m_strText.empty();
@@ -5098,7 +5098,7 @@ namespace user
 
    }
 
-   void mesh::_001OnMeshHeaderItemClick(index iHeaderItem)
+   void mesh::_001OnMeshHeaderItemClick(::raw::index iHeaderItem)
    {
       if(!m_bSortEnable)
          return;
@@ -5106,7 +5106,7 @@ namespace user
    }
 
 
-   void mesh::_001OnMeshHeaderItemDblClk(index iHeaderItem)
+   void mesh::_001OnMeshHeaderItemDblClk(::raw::index iHeaderItem)
    {
       
       auto psystem = system()->m_paurasystem;
@@ -5152,11 +5152,11 @@ namespace user
    }
 
 
-   void mesh::_001OnSort(index iSubItem)
+   void mesh::_001OnSort(::raw::index iSubItem)
    {
 
-      index iFound = -1;
-      for(index i = 0; i < m_sortinfo.m_itema.get_size(); i++)
+      ::raw::index iFound = -1;
+      for(::raw::index i = 0; i < m_sortinfo.m_itema.get_size(); i++)
       {
          CSortInfoItem & item = m_sortinfo.m_itema[i];
          if(item.m_iSubItem == iSubItem)
@@ -5185,7 +5185,7 @@ namespace user
    }
 
 
-   ::std::strong_ordering mesh::_002Compare(index iItem1,index iItem2,index iSubItem)
+   ::std::strong_ordering mesh::_002Compare(::raw::index iItem1, ::raw::index iItem2, ::raw::index iSubItem)
    {
 
       //draw_mesh_item item1;
@@ -5219,11 +5219,11 @@ namespace user
    }
 
 
-   ::std::strong_ordering mesh::_001Compare(index iItem1,index iItem2)
+   ::std::strong_ordering mesh::_001Compare(::raw::index iItem1, ::raw::index iItem2)
    {
       //CSortInfoItem * pitem = nullptr;
       //index iCompare = 0;
-      //for(index i = 0; i < m_sortinfo.m_itema.get_size(); i++)
+      //for(::raw::index i = 0; i < m_sortinfo.m_itema.get_size(); i++)
       //{
       //   pitem = &m_sortinfo.m_itema[i];
       //   iCompare = _002Compare(iItem1,iItem2,pitem->m_item.m_iSubItem);
@@ -5245,7 +5245,7 @@ namespace user
    }
 
 
-   ::std::strong_ordering mesh::_001DisplayCompare(index iDisplayItem1,index iDisplayItem2)
+   ::std::strong_ordering mesh::_001DisplayCompare(::raw::index iDisplayItem1, ::raw::index iDisplayItem2)
    {
 
       return _001Compare(display_to_strict(iDisplayItem1),display_to_strict(iDisplayItem2));
@@ -5263,7 +5263,7 @@ namespace user
    }
 
 
-   i32 mesh::_001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, index iColumn)
+   i32 mesh::_001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::raw::index iColumn)
    {
 
       __UNREFERENCED_PARAMETER(iColumn);
@@ -5272,11 +5272,11 @@ namespace user
 
       i32 iMaxWidth = 0;
 
-      ::count iCount = m_nItemCount;
+      ::raw::count iCount = m_nItemCount;
 
       i32 iWidth;
 
-      for(index i = 0; i < iCount; i++)
+      for(::raw::index i = 0; i < iCount; i++)
       {
 
          iWidth = _001CalcSubItemWidth(pgraphics,i,0);
@@ -5295,7 +5295,7 @@ namespace user
    }
 
 
-   bool mesh::_001SetColumnWidth(index iColumn,i32 iWidth)
+   bool mesh::_001SetColumnWidth(::raw::index iColumn,i32 iWidth)
    {
 
       m_mapColumnWidth[iColumn] = iWidth;
@@ -5306,7 +5306,7 @@ namespace user
 
 
 
-   void mesh::_001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, index iColumn)
+   void mesh::_001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, ::raw::index iColumn)
    {
       
       _001SetColumnWidth(iColumn,_001CalcColumnWidth(pgraphics, iColumn));
@@ -5366,7 +5366,7 @@ namespace user
 //      ::user::interaction::on_change_context_offset();
 
       m_iTopDisplayIndex = _001CalcDisplayTopIndex();
-      index iLow = 0;
+      ::raw::index iLow = 0;
       for(m_iTopGroup = 0; m_iTopGroup < m_nGroupCount; m_iTopGroup++)
       {
          if(m_iTopDisplayIndex >= iLow && m_iTopDisplayIndex < (iLow + _001GetGroupItemCount(m_iTopGroup)))
@@ -5693,7 +5693,7 @@ namespace user
             if((sizeTotal.cy() - pointScroll.y() - sizePage.cy()) <= 1)
             {
 
-               m_nItemCount = minimum(m_nGridItemCount,m_nItemCount + (::count)(sizePage.cy() / m_dItemHeight));
+               m_nItemCount = minimum(m_nGridItemCount,m_nItemCount + (::raw::count)(sizePage.cy() / m_dItemHeight));
 
                //auto psystem = system()->m_paurasystem;
 
@@ -5753,7 +5753,7 @@ namespace user
 
       m_iTopDisplayIndex = _001CalcDisplayTopIndex();
       
-      index iLow = 0;
+      ::raw::index iLow = 0;
 
       for(m_iTopGroup = 0; m_iTopGroup < m_nGroupCount; m_iTopGroup++)
       {
@@ -5782,7 +5782,7 @@ namespace user
    }
 
 
-   bool mesh::query_drop(index iDisplayDrop,index iDisplayDrag)
+   bool mesh::query_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag)
    {
 
       if(iDisplayDrag < 0)
@@ -5818,7 +5818,7 @@ namespace user
    }
 
 
-   bool mesh::do_drop(index iDisplayDrop,index iDisplayDrag)
+   bool mesh::do_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag)
    {
 
       __UNREFERENCED_PARAMETER(iDisplayDrop);
@@ -5845,7 +5845,7 @@ namespace user
    }
 
 
-   bool mesh::defer_drop(index iDisplayDrop,index iDisplayDrag)
+   bool mesh::defer_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag)
    {
       if(query_drop(iDisplayDrop,iDisplayDrag))
       {
@@ -5924,9 +5924,9 @@ namespace user
 
 //         index iIconSize = maximum(32,m_columna[0]->m_sizeIcon.cy());
 
-         index iIconSize = 32;
+         ::raw::index iIconSize = 32;
 
-         index iItemSize = iIconSize * 2;
+         ::raw::index iItemSize = iIconSize * 2;
 
          return ::size_i32((::i32) iItemSize, (::i32) iItemSize);
 
@@ -5957,8 +5957,8 @@ namespace user
       }
       if(bAutoArrange)
       {
-         index iMaxStrict = m_piconlayout->m_iaDisplayToStrict.get_max_b();
-         for(index iStrict = 0; iStrict <= iMaxStrict; iStrict++)
+         ::raw::index iMaxStrict = m_piconlayout->m_iaDisplayToStrict.get_max_b();
+         for(::raw::index iStrict = 0; iStrict <= iMaxStrict; iStrict++)
          {
             m_piconlayout->m_iaDisplayToStrict.set(iStrict,iStrict);
          }
@@ -5984,7 +5984,7 @@ namespace user
       pcommand->enable();
    }
 
-   bool mesh::is_valid_display_item(index iDisplayItem)
+   bool mesh::is_valid_display_item(::raw::index iDisplayItem)
    {
       if(iDisplayItem < 0)
          return false;
@@ -5993,7 +5993,7 @@ namespace user
       return true;
    }
 
-   bool mesh::is_valid_strict_item(index iStrictItem)
+   bool mesh::is_valid_strict_item(::raw::index iStrictItem)
    {
       if(iStrictItem < 0)
          return false;
@@ -6056,7 +6056,7 @@ namespace user
    void mesh::set_current_item(const index_array & iaSel, const ::action_context & context)
    {
       m_rangeSelection.clear();
-      for(index i = 0; i < iaSel.get_count(); i++)
+      for(::raw::index i = 0; i < iaSel.get_count(); i++)
       {
          item_range itemrange;
          itemrange.set_lower_bound(iaSel[i]);
@@ -6092,10 +6092,10 @@ namespace user
    void mesh::get_cur_sel(index_array & iaSel)
    {
 
-      for(index i = 0; i < m_rangeSelection.get_item_count(); i++)
+      for(::raw::index i = 0; i < m_rangeSelection.get_item_count(); i++)
       {
 
-         for(index iItem = m_rangeSelection.ItemAt(i).get_lower_bound(); iItem <= m_rangeSelection.ItemAt(i).get_upper_bound(); iItem++)
+         for(::raw::index iItem = m_rangeSelection.ItemAt(i).get_lower_bound(); iItem <= m_rangeSelection.ItemAt(i).get_upper_bound(); iItem++)
          {
 
             iaSel.add_unique(iItem);
@@ -6107,7 +6107,7 @@ namespace user
    }
 
 
-   ::count mesh::_001GetGroupItemCount(index iGroup)
+   ::raw::count mesh::_001GetGroupItemCount(::raw::index iGroup)
    {
 
       __UNREFERENCED_PARAMETER(iGroup);
@@ -6117,7 +6117,7 @@ namespace user
    }
 
 
-   i32 mesh::_001GetGroupHeight(index iGroup)
+   i32 mesh::_001GetGroupHeight(::raw::index iGroup)
    {
 
       i32 iMeshHeight = (i32)(_001GetGroupItemCount(iGroup) * m_dItemHeight);
@@ -6311,7 +6311,7 @@ namespace user
    }
 
 
-   ::count mesh::_001GetGroupMetaItemCount(index iGroup)
+   ::raw::count mesh::_001GetGroupMetaItemCount(::raw::index iGroup)
    {
       if(m_pmeshdata != nullptr)
       {
@@ -6413,7 +6413,7 @@ namespace user
    }
 
 
-   ::count mesh::_001GetColumnCount()
+   ::raw::count mesh::_001GetColumnCount()
    {
 
       if(m_pmeshdata.is_null())
@@ -6542,21 +6542,21 @@ namespace user
    //}
 
 
-   string mesh::_001GetItemId(index iStrictItem)
+   string mesh::_001GetItemId(::raw::index iStrictItem)
    {
 
       return ::as_string(iStrictItem);
 
    }
 
-   index mesh::_001GetItemById(const ::string & pszChar)
+   ::raw::index mesh::_001GetItemById(const ::string & pszChar)
    {
 
-      ::count c = _001GetItemCount();
+      ::raw::count c = _001GetItemCount();
 
       string strId(pszChar);
 
-      for (index iItem = 0; iItem < c; iItem++)
+      for (::raw::index iItem = 0; iItem < c; iItem++)
       {
 
          if (strId == _001GetItemId(iItem))

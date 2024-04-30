@@ -58,8 +58,8 @@ namespace write_text
       ::i32_array                                 m_iaSize;
 
       int                                       m_iSelUpdateId;
-      //::index                                   m_iSel;
-      //::index                                   m_iHover;
+      //::raw::index                                   m_iSel;
+      //::raw::index                                   m_iHover;
       bool                                      m_bDarkMode;
 
 
@@ -78,7 +78,7 @@ namespace write_text
       //virtual void sync_enumerate_fonts(::topic * ptopic);
 
       virtual void update_extents();
-      virtual void update_extents(font_list_data * plistdata, font_list_item * pitem, ::draw2d::graphics_pointer & pgraphics, index iBox);
+      virtual void update_extents(font_list_data * plistdata, font_list_item * pitem, ::draw2d::graphics_pointer & pgraphics, ::raw::index iBox);
       
       virtual void layout();
       virtual ::size_i32 layout_wide();
@@ -90,7 +90,7 @@ namespace write_text
       virtual void _001OnDrawWide(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawSingleColumn(::draw2d::graphics_pointer & pgraphics, ::user::interaction * puserinteraction);
 
-      virtual index find_name(string str);
+      virtual ::raw::index find_name(string str);
 
       virtual bool set_sel_by_name(string str);
 
@@ -105,9 +105,9 @@ namespace write_text
       virtual ::status < rectangle_i32 > item_rectangle(::item * pitem);
 
 
-      virtual bool get_box_rect(::rectangle_i32 * lprect, ::index i);
-      virtual bool get_box_rect_wide(::rectangle_i32 * lprect, ::index i);
-      virtual bool get_box_rect_single_column(::rectangle_i32 * lprect, ::index i);
+      virtual bool get_box_rect(::rectangle_i32 * lprect, ::raw::index i);
+      virtual bool get_box_rect_wide(::rectangle_i32 * lprect, ::raw::index i);
+      virtual bool get_box_rect_single_column(::rectangle_i32 * lprect, ::raw::index i);
 
 
       virtual void set_client_rectangle(const ::rectangle_i32 &rectangle);

@@ -41,15 +41,15 @@ namespace user
       //::atom                                m_atom;
       bool                                   m_bNew;
       bool                                   m_bVisible;
-      index                                  m_iNextGlobalOrderKey;
+      ::raw::index                                  m_iNextGlobalOrderKey;
       ::user::list_column_array *            m_pcontainer;
-      index                                  m_iOrder;
+      ::raw::index                                  m_iOrder;
       ::text::text                           m_text;
       ::u32                                  m_uiSmallBitmap;
       ::color::color                         m_colorSmallMask;
       i32                                    m_iSmallImageWidth;
-      index                                  m_iSubItem;
-      index                                  m_iColumn;
+      ::raw::index                                  m_iSubItem;
+      ::raw::index                                  m_iColumn;
       ::pointer<::image_list>               m_pimagelist;
       ::pointer<::image_list>               m_pimagelistHover;
       ::pointer<draw_list_column>           m_pdrawlistcolumn;
@@ -100,13 +100,13 @@ namespace user
       //list_column & operator = (const list_column & column);
 
 
-      ::index        get_index() const;
-      ::index        get_visible_index() const;
+      ::raw::index        get_index() const;
+      ::raw::index        get_visible_index() const;
 
-      ::index        item_index() const;
-      ::index        subitem_index() const { return (::index) m_iSubItem; }
-      ::index        column_index() const { return (::index) m_iColumn; }
-      ::index        order() const { return (::index) m_iOrder; }
+      ::raw::index        item_index() const;
+      ::raw::index        subitem_index() const { return (::raw::index) m_iSubItem; }
+      ::raw::index        column_index() const { return (::raw::index) m_iColumn; }
+      ::raw::index        order() const { return (::raw::index) m_iOrder; }
 
    };
 

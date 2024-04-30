@@ -1515,7 +1515,7 @@ string merge_colon_args(const array < string_array > & straa)
    for (auto & stra : straa)
    {
 
-      index iFindColon = stra.find_first(":");
+      ::raw::index iFindColon = stra.find_first(":");
 
       if (stra.get_size() > 0 && iFindColon != 0)
       {
@@ -1536,7 +1536,7 @@ string merge_colon_args(const array < string_array > & straa)
 
       }
 
-      for (index i = 1; i < stra.get_count(); i++)
+      for (::raw::index i = 1; i < stra.get_count(); i++)
       {
 
          string str = stra[i];

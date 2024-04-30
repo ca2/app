@@ -719,7 +719,7 @@ namespace simpledb
    }
 
 
-   ::count dataset::num_rows()
+   ::raw::count dataset::num_rows()
    {
       return m_resultset.m_records.get_size();
    }
@@ -830,7 +830,7 @@ namespace simpledb
    }
 
 
-   bool dataset::SetFieldValue(index iFieldIndex, const ::payload &value)
+   bool dataset::SetFieldValue(::raw::index iFieldIndex, const ::payload &value)
    {
       if(m_edataset == ::database::dataset_select)
       {
@@ -853,7 +853,7 @@ namespace simpledb
       //  return false;
    }
 
-   ::payload & dataset::FieldValueAt(index iFieldIndex)
+   ::payload & dataset::FieldValueAt(::raw::index iFieldIndex)
    {
       //if(m_edataset == dataset_select)
       {
@@ -891,10 +891,10 @@ namespace simpledb
 
    bool dataset::find_first(char * fieldname, ::payload & value)
    {
-      index iFound = -1;
+      ::raw::index iFound = -1;
       if(m_edataset == ::database::dataset_select)
       {
-         index i;
+         ::raw::index i;
          for(i=0; i < fields_object.get_size(); i++)
             if(m_resultset.m_record_header[i].name == fieldname)
             {
@@ -902,7 +902,7 @@ namespace simpledb
                break;
             }
          if (iFound < 0) throw ::exception(::database::exception("Field not found: %s",fieldname));
-         ::count iNumRows = num_rows();
+         ::raw::count iNumRows = num_rows();
          for(i=0; i < iNumRows; i++)
             if(m_resultset.m_records[i][iFound] == value)
             {
@@ -962,13 +962,13 @@ namespace simpledb
    {
 
       ::database::result_set* r = (::database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
-      ::count sz = r->m_records.get_size();
+      ::raw::count sz = r->m_records.get_size();
 
       //if (reslt == nullptr ) cout << "EMPTY!!!\n";
       if (r->m_record_header.get_size() <= 0)
       {
          r->m_record_header.set_size(ncol, 32);
-         for (index i=0; i < ncol; i++)
+         for (::raw::index i=0; i < ncol; i++)
          {
             r->m_record_header[i].name = cols[i];
             if(cols[i + ncol] != nullptr)

@@ -68,7 +68,7 @@ namespace account
 
       /// input
       /// m_strToken
-      virtual ::e_status load_from_storage(::count cTry = 8);
+      virtual ::e_status load_from_storage(::raw::count cTry = 8);
 
       /// input
       /// m_strToken

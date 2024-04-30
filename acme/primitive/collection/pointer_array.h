@@ -106,7 +106,7 @@ public:
    }
 
 
-   ::count set_size(::count nNewSize, ::count nGrowBy = -1)
+   ::raw::count set_size(::raw::count nNewSize, ::raw::count nGrowBy = -1)
    {
 
       return comparable_array < ::pointer<T >, const T * > :: set_size(nNewSize);
@@ -114,16 +114,16 @@ public:
    }
 
    template < typename OBJECT >
-   ::count set_size_create(OBJECT * pparticle, ::count nNewSize, ::count nGrowBy = -1);
+   ::raw::count set_size_create(OBJECT * pparticle, ::raw::count nNewSize, ::raw::count nGrowBy = -1);
 
 
    template < class DERIVED >
-   ::pointer<DERIVED>get(::index iStart = 0)
+   ::pointer<DERIVED>get(::raw::index iStart = 0)
    {
 
       ::pointer<DERIVED>pderived;
 
-      for(::index i = iStart; i < this->get_count(); i++)
+      for(::raw::index i = iStart; i < this->get_count(); i++)
       {
 
          try
@@ -152,7 +152,7 @@ public:
 
 
    template < class DERIVED >
-   ::pointer<DERIVED>typed_ptr_at(::index iIndex)
+   ::pointer<DERIVED>typed_ptr_at(::raw::index iIndex)
    {
 
       return this->element_at(iIndex);
@@ -161,10 +161,10 @@ public:
 
 
    /// consumes a referer
-   inline ::index add_item(const pointer < T > & p)
+   inline ::raw::index add_item(const pointer < T > & p)
    {
 
-      ::index nIndex = this->size();
+      ::raw::index nIndex = this->size();
 
       this->allocate(nIndex + 1, false, false, p);
 
@@ -174,10 +174,10 @@ public:
 
 
    /// referer is transfered?
-   inline ::index add_item(pointer < T > && p)
+   inline ::raw::index add_item(pointer < T > && p)
    {
 
-      ::index nIndex = this->size();
+      ::raw::index nIndex = this->size();
 
       this->allocate(nIndex + 1, false, true);
 
@@ -189,7 +189,7 @@ public:
    
 
    template < container_type CONTAINER >
-   ::index append(const CONTAINER & a)
+   ::raw::index append(const CONTAINER & a)
    {
 
       return BASE_ARRAY::append(a);
@@ -197,7 +197,7 @@ public:
    }
 
 
-   //::index add(T * p)
+   //::raw::index add(T * p)
    //{
 
    //   return this->add_item(p);
@@ -206,7 +206,7 @@ public:
 
 
    /// consumes a referer
-   ::index add(const pointer < T > & p)
+   ::raw::index add(const pointer < T > & p)
    {
 
       return this->add_item(p);
@@ -215,7 +215,7 @@ public:
 
 
    /// referer is transferred?
-   ::index add(pointer < T > && p)
+   ::raw::index add(pointer < T > && p)
    {
 
       return this->add_item(::transfer(p));
@@ -224,7 +224,7 @@ public:
 
 
    /// consumes a referer
-   ::index add_non_null(T* p)
+   ::raw::index add_non_null(T* p)
    {
 
       if (::is_null(p))
@@ -240,10 +240,10 @@ public:
 
 
    /// consumes a referer
-   void insert_at(::index i, T* p)
+   void insert_at(::raw::index i, T* p)
    {
 
-      //::index nIndex = this->size();
+      //::raw::index nIndex = this->size();
 
       comparable_array < ::pointer<T >, const T * >::insert_at(i, p);
 
@@ -252,7 +252,7 @@ public:
    }
 
 
-   bool insert_unique_at(::index i, T * p);
+   bool insert_unique_at(::raw::index i, T * p);
 
 
    /// consumes a referer
@@ -312,12 +312,12 @@ public:
 
    }
 
-   ::count add_unique(const pointer_array & a)
+   ::raw::count add_unique(const pointer_array & a)
    {
 
-      ::count c = 0;
+      ::raw::count c = 0;
 
-      for (::index i = 0; i < a.get_count(); i++)
+      for (::raw::index i = 0; i < a.get_count(); i++)
       {
 
          if (add_unique((T *) a[i]))
@@ -329,7 +329,7 @@ public:
 
    }
 
-   bool contains(const T * p, ::index iStart = 0, ::count nCount = -1) const
+   bool contains(const T * p, ::raw::index iStart = 0, ::raw::count nCount = -1) const
    {
 
       return find_first(p, iStart, nCount) >= 0;
@@ -337,12 +337,12 @@ public:
    }
 
 
-   ::index find_first(const T * p, ::index iStart = 0, ::count inCountLastOut = -1) const
+   ::raw::index find_first(const T * p, ::raw::index iStart = 0, ::raw::count inCountLastOut = -1) const
    {
 
       this->prepare_first_in_count_last_out(iStart, inCountLastOut);
 
-      for(::index i = iStart; i <= inCountLastOut; i++)
+      for(::raw::index i = iStart; i <= inCountLastOut; i++)
       {
 
          auto& pointer = this->element_at(i);
@@ -361,16 +361,16 @@ public:
    }
 
 
-   void call_member(enum_id eid, ::index iStart = 0, ::count inCountLastOut = -1)
+   void call_member(enum_id eid, ::raw::index iStart = 0, ::raw::count inCountLastOut = -1)
    {
 
       this->prepare_first_in_count_last_out(iStart, inCountLastOut);
 
-      //::count cFailed = 0;
+      //::raw::count cFailed = 0;
 
-      //::count cSucceeded = 0;
+      //::raw::count cSucceeded = 0;
 
-      for (index i = iStart; i <= inCountLastOut; i++)
+      for (::raw::index i = iStart; i <= inCountLastOut; i++)
       {
 
          auto p = this->element_at(i);
@@ -386,7 +386,7 @@ public:
    }
 
 
-   ::index comp_find_first(const T & t, ::index (* pfnCompare)(const T *, const T *), ::index iStart = 0, ::count nCount = -1) const
+   ::raw::index comp_find_first(const T & t, ::raw::index (* pfnCompare)(const T *, const T *), ::raw::index iStart = 0, ::raw::count nCount = -1) const
    {
 
       return this->comp_find_first(&t, pfnCompare, iStart, nCount);
@@ -394,12 +394,12 @@ public:
    }
 
 
-   ::index comp_find_first(const T * p, ::index (* pfnCompare)(const T *, const T *), ::index iStart = 0, ::count inCountLastOut = -1) const
+   ::raw::index comp_find_first(const T * p, ::raw::index (* pfnCompare)(const T *, const T *), ::raw::index iStart = 0, ::raw::count inCountLastOut = -1) const
    {
 
       this->prepare_first_in_count_last_out(iStart, inCountLastOut);
 
-      for(::index i = iStart; i <= inCountLastOut; i++)
+      for(::raw::index i = iStart; i <= inCountLastOut; i++)
       {
 
          if (pfnCompare(this->element_at(i).m_p, p) == 0)
@@ -428,7 +428,7 @@ public:
 
    
    /// consumes a releaser
-   ::count erase(T* p)
+   ::raw::count erase(T* p)
    {
 
       return this->erase_item(p);
@@ -436,12 +436,12 @@ public:
    }
 
 
-   ::count erase_item(T * p)
+   ::raw::count erase_item(T * p)
    {
 
-      ::count ca = 0;
+      ::raw::count ca = 0;
 
-      ::index iFind = 0;
+      ::raw::index iFind = 0;
 
       while((iFind = this->find_first(p, iFind)) >= 0)
       {
@@ -457,17 +457,17 @@ public:
    }
 
 
-   //inline const pointer < T > & element_at(::index i) const { return ARRAY_BASE::element_at(i); }
-   //inline pointer < T > & element_at(::index i) { return ARRAY_BASE::element_at(i); }
+   //inline const pointer < T > & element_at(::raw::index i) const { return ARRAY_BASE::element_at(i); }
+   //inline pointer < T > & element_at(::raw::index i) { return ARRAY_BASE::element_at(i); }
 
 
    template < typename TYPE >
-   ::count erase_type(TYPE *)
+   ::raw::count erase_type(TYPE *)
    {
 
-      ::count c = 0;
+      ::raw::count c = 0;
 
-      for (::index i = this->get_upper_bound(); i >= 0; i--)
+      for (::raw::index i = this->get_upper_bound(); i >= 0; i--)
       {
 
          if (typeid(*this->element_at(i).m_p) == typeid(TYPE))
@@ -488,10 +488,10 @@ public:
 
 
    template < typename PRED >
-   ::index predicate_erase_first(PRED pred, ::index iStart = 0)
+   ::raw::index predicate_erase_first(PRED pred, ::raw::index iStart = 0)
    {
 
-      for (::index i = iStart; i < this->get_count(); i++)
+      for (::raw::index i = iStart; i < this->get_count(); i++)
       {
 
          if (pred(this->m_begin[i]))
@@ -511,10 +511,10 @@ public:
 
 
    template < typename PRED >
-   ::index predicate_erase_last(PRED pred, ::index iStart = 0)
+   ::raw::index predicate_erase_last(PRED pred, ::raw::index iStart = 0)
    {
 
-      for (::index i = this->get_upper_bound(); i >= 0; i--)
+      for (::raw::index i = this->get_upper_bound(); i >= 0; i--)
       {
 
          if (pred(this->m_begin[i]))
@@ -533,7 +533,7 @@ public:
    }
 
    template < typename PRED >
-   pointer < T > predicate_erase_all_get_first(PRED pred, ::index iStart = 0, ::index iEnd = -1)
+   pointer < T > predicate_erase_all_get_first(PRED pred, ::raw::index iStart = 0, ::raw::index iEnd = -1)
    {
 
       pointer < T > sp;
@@ -553,7 +553,7 @@ public:
       }
 
 
-      for (::index i = iStart; i <= iEnd;)
+      for (::raw::index i = iStart; i <= iEnd;)
       {
 
          if (pred(this->m_pData[i]))
@@ -584,7 +584,7 @@ public:
 
 
 
-   const pointer < T > & sp_at(::index nIndex) const
+   const pointer < T > & sp_at(::raw::index nIndex) const
    {
 
       return this->comparable_array < ::pointer<T >, const T * > ::element_at(nIndex);
@@ -592,7 +592,7 @@ public:
    }
 
 
-   pointer < T > & sp_at(::index nIndex)
+   pointer < T > & sp_at(::raw::index nIndex)
    {
 
       return this->comparable_array < ::pointer<T >, const T * > ::element_at(nIndex);
@@ -600,7 +600,7 @@ public:
    }
 
 
-   T * ptr_at(::index nIndex) const
+   T * ptr_at(::raw::index nIndex) const
    {
 
       return this->sp_at(nIndex);
@@ -608,7 +608,7 @@ public:
    }
 
 
-   T * ptr_at(::index nIndex)
+   T * ptr_at(::raw::index nIndex)
    {
 
       return this->sp_at(nIndex);
@@ -616,7 +616,7 @@ public:
    }
 
 
-   T & at(::index nIndex) const
+   T & at(::raw::index nIndex) const
    {
 
       return *this->ptr_at(nIndex);
@@ -624,14 +624,14 @@ public:
    }
 
 
-   T & at(::index nIndex)
+   T & at(::raw::index nIndex)
    {
 
       return *this->ptr_at(nIndex);
 
    }
 
-   T * get_first_pointer(::index n = 0) const
+   T * get_first_pointer(::raw::index n = 0) const
    {
 
       return this->is_empty() ? nullptr : this->comparable_array < ::pointer<T >, const T *> ::first(n);
@@ -639,7 +639,7 @@ public:
    }
 
    
-   pointer < T > pop_first(::index n = 0)
+   pointer < T > pop_first(::raw::index n = 0)
    {
 
       auto p = ::transfer(this->comparable_array < ::pointer<T >, const T * > ::first(n));
@@ -651,7 +651,7 @@ public:
    }
 
 
-   pointer < T > & first_pointer(::index n = 0)
+   pointer < T > & first_pointer(::raw::index n = 0)
    {
 
       return this->comparable_array < ::pointer<T >, const T * > ::first(n);
@@ -659,7 +659,7 @@ public:
    }
 
 
-   T * first_ptr(::index n = 0) const
+   T * first_ptr(::raw::index n = 0) const
    {
 
       if (this->is_empty())
@@ -674,7 +674,7 @@ public:
    }
 
 
-   T * first_ptr(::index n = 0)
+   T * first_ptr(::raw::index n = 0)
    {
 
       return this->first_pointer(n);
@@ -682,7 +682,7 @@ public:
    }
 
 
-   T * get_last_pointer(::index n = -1) const
+   T * get_last_pointer(::raw::index n = -1) const
    {
 
       return this->is_empty() ? nullptr : this->comparable_array < ::pointer<T >, const T * > ::last(n);
@@ -690,7 +690,7 @@ public:
    }
 
 
-   pointer < T > & last_pointer(::index n = -1)
+   pointer < T > & last_pointer(::raw::index n = -1)
    {
 
       return this->comparable_array < ::pointer<T >, const T * > ::last(n);
@@ -698,7 +698,7 @@ public:
    }
 
 
-   T * last_ptr(::index n = -1) const
+   T * last_ptr(::raw::index n = -1) const
    {
 
       return this->get_last_pointer(n);
@@ -706,7 +706,7 @@ public:
    }
 
 
-   T * last_ptr(::index n = -1)
+   T * last_ptr(::raw::index n = -1)
    {
 
       return this->last_pointer(n);
@@ -714,7 +714,7 @@ public:
    }
 
 
-   const T & operator() (::index nIndex) const
+   const T & operator() (::raw::index nIndex) const
    {
 
       return *this->sp_at(nIndex);
@@ -722,7 +722,7 @@ public:
    }
 
 
-   T & operator() (::index nIndex)
+   T & operator() (::raw::index nIndex)
    {
 
       return *this->sp_at(nIndex);
@@ -735,7 +735,7 @@ public:
    T * predicate_ptr_first(PRED pred)
    {
 
-      ::index i = this->predicate_find_first(pred);
+      ::raw::index i = this->predicate_find_first(pred);
 
       if(i < 0)
          return nullptr;
@@ -747,12 +747,12 @@ public:
 
 
    //template < primitive_container ARRAY >
-   //::count add(const ARRAY * pa)
+   //::raw::count add(const ARRAY * pa)
    //{
 
-   //   ::count c = pa->get_count(); // allow to append to itself one time
+   //   ::raw::count c = pa->get_count(); // allow to append to itself one time
 
-   //   for(::index i = 0; i < c; i++)
+   //   for(::raw::index i = 0; i < c; i++)
    //   {
    //      this->add(pa->element_at(i));
    //   }
@@ -762,12 +762,12 @@ public:
    //}
 
    template < primitive_container ARRAY >
-   ::count add(const ::pointer<ARRAY>& pa)
+   ::raw::count add(const ::pointer<ARRAY>& pa)
    {
 
-      ::count c = pa->get_count(); // allow to append to itself one time
+      ::raw::count c = pa->get_count(); // allow to append to itself one time
 
-      for(::index i = 0; i < c; i++)
+      for(::raw::index i = 0; i < c; i++)
       {
          this->add(pa->element_at(i));
       }
@@ -777,12 +777,12 @@ public:
    }
 
    template < primitive_container ARRAY >
-   ::count add(const ARRAY & a)
+   ::raw::count add(const ARRAY & a)
    {
 
-      ::count c = a.get_count(); // allow to append to itself one time
+      ::raw::count c = a.get_count(); // allow to append to itself one time
 
-      for(::index i = 0; i < c; i++)
+      for(::raw::index i = 0; i < c; i++)
       {
          this->add(a.element_at(i));
       }
@@ -792,12 +792,12 @@ public:
    }
 
 
-   ::count append(const pointer_array & a)
+   ::raw::count append(const pointer_array & a)
    {
 
-      ::count c = a.get_count(); // allow to append to itself one time
+      ::raw::count c = a.get_count(); // allow to append to itself one time
 
-      for(::index i = 0; i < c; i++)
+      for(::raw::index i = 0; i < c; i++)
       {
 
          this->add(a.sp_at(i));
@@ -810,12 +810,12 @@ public:
 
 
    template < primitive_container ARRAY >
-   ::count append_ptra(const ARRAY* pptra)
+   ::raw::count append_ptra(const ARRAY* pptra)
    {
 
-      ::count c = pptra->get_count(); // allow to append to itself one time
+      ::raw::count c = pptra->get_count(); // allow to append to itself one time
 
-      for(::index i = 0; i < c; i++)
+      for(::raw::index i = 0; i < c; i++)
       {
          this->add(*pptra->element_at(i));
       }
@@ -855,12 +855,12 @@ public:
    }
 
 
-   ::count erase_all()
+   ::raw::count erase_all()
    {
 
       //auto size = this->size();
 
-      for (::index i = 0; i < this->get_size(); i++)
+      for (::raw::index i = 0; i < this->get_size(); i++)
       {
 
          try
@@ -1016,7 +1016,7 @@ public:
 //      typedef const T & BASE_ARG_TYPE;
 //      typedef smart_pointer_array2 BASE_ARRAY;
 //
-//      ::index            m_i;
+//      ::raw::index            m_i;
 //      BASE_ARRAY *     m_parray;
 //
 //      ref_iterator()
@@ -1025,7 +1025,7 @@ public:
 //         m_parray = nullptr;
 //      }
 //
-//      ref_iterator(::index i,BASE_ARRAY * parray)
+//      ref_iterator(::raw::index i,BASE_ARRAY * parray)
 //      {
 //         m_i = i;
 //         m_parray = parray;
@@ -1087,7 +1087,7 @@ public:
 //         return *this;
 //      }
 //
-//      ref_iterator & operator +(::index i)
+//      ref_iterator & operator +(::raw::index i)
 //      {
 //         m_i += i;
 //         if(m_i >= m_parray->get_size())
@@ -1108,7 +1108,7 @@ public:
 //         return ref_iterator((m_i + i.m_i + 1) / 2,m_parray);
 //      }
 //
-//      ref_iterator & operator -(::count c)
+//      ref_iterator & operator -(::raw::count c)
 //      {
 //         m_i-=c;
 //         if(m_i < 0)
@@ -1123,7 +1123,7 @@ public:
 //
 //      }
 //
-//      ::count get_count() const
+//      ::raw::count get_count() const
 //      {
 //         return m_parray->get_count();
 //      }
@@ -1213,18 +1213,18 @@ public:
 //   }
 //
 //
-//   ::count set_size(::count nNewSize,::count nGrowBy = -1)
+//   ::raw::count set_size(::raw::count nNewSize,::raw::count nGrowBy = -1)
 //   {
 //
 //      return comparable_array < ::pointer<T > > ::: set_size(nNewSize);
 //
 //   }
 //
-//   ::count set_size_create(::count nNewSize,::count nGrowBy = -1)
+//   ::raw::count set_size_create(::raw::count nNewSize,::raw::count nGrowBy = -1)
 //   {
-//      ::index i = this->get_size();
+//      ::raw::index i = this->get_size();
 //      comparable_array < ::pointer<T > > ::: set_size(nNewSize);
-//      ::count ca = this->get_size();
+//      ::raw::count ca = this->get_size();
 //      for(; i < ca; i++)
 //      {
 //         this->element_at(i).alloc(this->create_new, this);
@@ -1234,12 +1234,12 @@ public:
 //
 //
 //   template < class DERIVED >
-//   DERIVED * get(::index iStart = 0)
+//   DERIVED * get(::raw::index iStart = 0)
 //   {
 //
 //      DERIVED * pderived = nullptr;
 //
-//      for(::index i = iStart; i < this->get_count(); i++)
+//      for(::raw::index i = iStart; i < this->get_count(); i++)
 //      {
 //
 //         try
@@ -1263,7 +1263,7 @@ public:
 //   }
 //
 //   template < class DERIVED >
-//   DERIVED * typed_ptr_at(::index iIndex)
+//   DERIVED * typed_ptr_at(::raw::index iIndex)
 //   {
 //
 //      return dynamic_cast < DERIVED * > (this->element_at(iIndex).m_p);
@@ -1290,12 +1290,12 @@ public:
 //
 //   }
 //
-//   ::count add_unique(const smart_pointer_array2 & a)
+//   ::raw::count add_unique(const smart_pointer_array2 & a)
 //   {
 //
-//      ::count c = 0;
+//      ::raw::count c = 0;
 //
-//      for(::index i = 0; i < a.get_count(); i++)
+//      for(::raw::index i = 0; i < a.get_count(); i++)
 //      {
 //
 //         if(add_unique((T *)a[i]))
@@ -1307,24 +1307,24 @@ public:
 //
 //   }
 //
-//   bool contains(const T * p,::index iStart = 0,::count nCount = -1) const
+//   bool contains(const T * p,::raw::index iStart = 0,::raw::count nCount = -1) const
 //   {
 //
 //      return find_first(p,iStart,nCount) >= 0;
 //
 //   }
 //
-//   ::index find_first(const T * p,::index iStart = 0,::count nCount = -1) const
+//   ::raw::index find_first(const T * p,::raw::index iStart = 0,::raw::count nCount = -1) const
 //   {
 //
-//      ::index iEnd;
+//      ::raw::index iEnd;
 //
 //      if(nCount < 0)
 //         iEnd = this->get_upper_bound(nCount);
 //      else
 //         iEnd = iStart + nCount - 1;
 //
-//      for(::index i = iStart; i <= iEnd; i++)
+//      for(::raw::index i = iStart; i <= iEnd; i++)
 //      {
 //
 //         if(this->element_at(i).m_p == p)
@@ -1337,7 +1337,7 @@ public:
 //   }
 //
 //
-//   ::index find_first(const T & t,::index(* pfnCompare)(const T *,const T *),::index iStart = 0,::count nCount = -1) const
+//   ::raw::index find_first(const T & t,::raw::index(* pfnCompare)(const T *,const T *),::raw::index iStart = 0,::raw::count nCount = -1) const
 //
 //   {
 //
@@ -1347,18 +1347,18 @@ public:
 //   }
 //
 //
-//   ::index find_first(const T * p,::index(* pfnCompare)(const T *,const T *),::index iStart = 0,::count nCount = -1) const
+//   ::raw::index find_first(const T * p,::raw::index(* pfnCompare)(const T *,const T *),::raw::index iStart = 0,::raw::count nCount = -1) const
 //
 //   {
 //
-//      ::index iEnd;
+//      ::raw::index iEnd;
 //
 //      if(nCount < 0)
 //         iEnd = this->get_upper_bound(nCount);
 //      else
 //         iEnd = iStart + nCount - 1;
 //
-//      for(::index i = iStart; i <= iEnd; i++)
+//      for(::raw::index i = iStart; i <= iEnd; i++)
 //      {
 //
 //         if(pfnCompare(this->element_at(i).m_p,p) == 0)
@@ -1381,12 +1381,12 @@ public:
 //
 //   }
 //
-//   ::count erase(T * p)
+//   ::raw::count erase(T * p)
 //   {
 //
-//      ::count ca = 0;
+//      ::raw::count ca = 0;
 //
-//      ::index iFind = 0;
+//      ::raw::index iFind = 0;
 //
 //      while((iFind = this->find_first(p,iFind)) >= 0)
 //      {
@@ -1403,12 +1403,12 @@ public:
 //
 //
 //   template < typename TYPE >
-//   ::count erase_type(TYPE *)
+//   ::raw::count erase_type(TYPE *)
 //   {
 //
-//      ::count c = 0;
+//      ::raw::count c = 0;
 //
-//      for(::index i = this->get_upper_bound(); i >= 0; i--)
+//      for(::raw::index i = this->get_upper_bound(); i >= 0; i--)
 //      {
 //
 //         if(typeid(*this->element_at(i).m_p) == typeid(TYPE))
@@ -1427,21 +1427,21 @@ public:
 //   }
 //
 //   // overloaded operator helpers
-//   T  & element_at(::index nIndex) const
+//   T  & element_at(::raw::index nIndex) const
 //   {
 //
 //      return *this->comparable_array < ::pointer<T > > ::element_at(nIndex).m_p;
 //
 //   }
 //
-//   T  & element_at(::index nIndex)
+//   T  & element_at(::raw::index nIndex)
 //   {
 //
 //      return *this->comparable_array < ::pointer<T > > ::element_at(nIndex).m_p;
 //
 //   }
 //
-//   const pointer < T > & sp_at(::index nIndex) const
+//   const pointer < T > & sp_at(::raw::index nIndex) const
 //   {
 //
 //      return this->comparable_array < ::pointer<T > > ::element_at(nIndex);
@@ -1449,7 +1449,7 @@ public:
 //   }
 //
 //
-//   pointer < T > & sp_at(::index nIndex)
+//   pointer < T > & sp_at(::raw::index nIndex)
 //   {
 //
 //      return this->comparable_array < ::pointer<T > > ::element_at(nIndex);
@@ -1457,7 +1457,7 @@ public:
 //   }
 //
 //
-//   T * ptr_at(::index nIndex) const
+//   T * ptr_at(::raw::index nIndex) const
 //   {
 //
 //      return this->sp_at(nIndex);
@@ -1465,7 +1465,7 @@ public:
 //   }
 //
 //
-//   T * ptr_at(::index nIndex)
+//   T * ptr_at(::raw::index nIndex)
 //   {
 //
 //      return this->sp_at(nIndex);
@@ -1473,7 +1473,7 @@ public:
 //   }
 //
 //
-//   T & at(::index nIndex) const
+//   T & at(::raw::index nIndex) const
 //   {
 //
 //      return *this->ptr_at(nIndex);
@@ -1481,14 +1481,14 @@ public:
 //   }
 //
 //
-//   T & at(::index nIndex)
+//   T & at(::raw::index nIndex)
 //   {
 //
 //      return *this->ptr_at(nIndex);
 //
 //   }
 //
-//   const pointer < T > & first_pointer(::index n = 0) const
+//   const pointer < T > & first_pointer(::raw::index n = 0) const
 //   {
 //
 //      return this->comparable_array < ::pointer<T > > ::first(n);
@@ -1496,7 +1496,7 @@ public:
 //   }
 //
 //
-//   pointer < T > & first_pointer(::index n = 0)
+//   pointer < T > & first_pointer(::raw::index n = 0)
 //   {
 //
 //      return this->comparable_array < ::pointer<T > > ::first(n);
@@ -1504,7 +1504,7 @@ public:
 //   }
 //
 //
-//   T * first_ptr(::index n = 0) const
+//   T * first_ptr(::raw::index n = 0) const
 //   {
 //
 //      return this->first_pointer(n);
@@ -1512,7 +1512,7 @@ public:
 //   }
 //
 //
-//   T * first_ptr(::index n = 0)
+//   T * first_ptr(::raw::index n = 0)
 //   {
 //
 //      return this->first_pointer(n);
@@ -1520,7 +1520,7 @@ public:
 //   }
 //
 //
-//   T & first(::index n = 0) const
+//   T & first(::raw::index n = 0) const
 //   {
 //
 //      return *this->first_ptr(n);
@@ -1528,7 +1528,7 @@ public:
 //   }
 //
 //
-//   T & first(::index n = 0)
+//   T & first(::raw::index n = 0)
 //   {
 //
 //      return *this->first_ptr(n);
@@ -1536,7 +1536,7 @@ public:
 //   }
 //
 //
-//   T * last_pointer(::index n = -1) const
+//   T * last_pointer(::raw::index n = -1) const
 //   {
 //
 //      return this->comparable_array < ::pointer<T > > ::last(n);
@@ -1544,7 +1544,7 @@ public:
 //   }
 //
 //
-//   pointer < T > & last_pointer(::index n = -1)
+//   pointer < T > & last_pointer(::raw::index n = -1)
 //   {
 //
 //      return this->comparable_array < ::pointer<T > > ::last(n);
@@ -1552,7 +1552,7 @@ public:
 //   }
 //
 //
-//   T * last_ptr(::index n = -1) const
+//   T * last_ptr(::raw::index n = -1) const
 //   {
 //
 //      return this->last_pointer(n);
@@ -1560,7 +1560,7 @@ public:
 //   }
 //
 //
-//   T * last_ptr(::index n = -1)
+//   T * last_ptr(::raw::index n = -1)
 //   {
 //
 //      return this->last_pointer(n);
@@ -1568,7 +1568,7 @@ public:
 //   }
 //
 //
-//   T & last(::index n = -1) const
+//   T & last(::raw::index n = -1) const
 //   {
 //
 //      return *last_ptr(n);
@@ -1576,7 +1576,7 @@ public:
 //   }
 //
 //
-//   T & last(::index n = -1)
+//   T & last(::raw::index n = -1)
 //   {
 //
 //      return *this->last_ptr(n);
@@ -1584,7 +1584,7 @@ public:
 //   }
 //
 //
-//   const T & operator() (::index nIndex) const
+//   const T & operator() (::raw::index nIndex) const
 //   {
 //
 //      return *this->sp_at(nIndex);
@@ -1592,7 +1592,7 @@ public:
 //   }
 //
 //
-//   T & operator() (::index nIndex)
+//   T & operator() (::raw::index nIndex)
 //   {
 //
 //      return *this->sp_at(nIndex);
@@ -1604,9 +1604,9 @@ public:
 //   smart_pointer_array2 & append(const ARRAY * pa)
 //   {
 //
-//      ::count c = pa->get_count(); // allow to append to itself one time
+//      ::raw::count c = pa->get_count(); // allow to append to itself one time
 //
-//      for(::index i = 0; i < c; i++)
+//      for(::raw::index i = 0; i < c; i++)
 //      {
 //         this->add(pa->element_at(i));
 //      }
@@ -1619,9 +1619,9 @@ public:
 //   smart_pointer_array2 & append(const ::pointer<ARRAY>& pa)
 //   {
 //
-//      ::count c = pa->get_count(); // allow to append to itself one time
+//      ::raw::count c = pa->get_count(); // allow to append to itself one time
 //
-//      for(::index i = 0; i < c; i++)
+//      for(::raw::index i = 0; i < c; i++)
 //      {
 //         this->add(pa->element_at(i));
 //      }
@@ -1634,9 +1634,9 @@ public:
 //   smart_pointer_array2 & append(const ARRAY & a)
 //   {
 //
-//      ::count c = a.get_count(); // allow to append to itself one time
+//      ::raw::count c = a.get_count(); // allow to append to itself one time
 //
-//      for(::index i = 0; i < c; i++)
+//      for(::raw::index i = 0; i < c; i++)
 //      {
 //         this->add(a.element_at(i));
 //      }
@@ -1649,9 +1649,9 @@ public:
 //   smart_pointer_array2 & append(const smart_pointer_array2 & a)
 //   {
 //
-//      ::count c = a.get_count(); // allow to append to itself one time
+//      ::raw::count c = a.get_count(); // allow to append to itself one time
 //
-//      for(::index i = 0; i < c; i++)
+//      for(::raw::index i = 0; i < c; i++)
 //      {
 //
 //         this->add(a.sp_at(i));
@@ -1667,9 +1667,9 @@ public:
 //   smart_pointer_array2 & append_ptra(const ARRAY * pptra)
 //   {
 //
-//      ::count c = pptra->get_count(); // allow to append to itself one time
+//      ::raw::count c = pptra->get_count(); // allow to append to itself one time
 //
-//      for(::index i = 0; i < c; i++)
+//      for(::raw::index i = 0; i < c; i++)
 //      {
 //         this->add(*pptra->element_at(i));
 //      }
@@ -1752,10 +1752,10 @@ public:
 //
 //   }
 //
-//   ref_iterator ref_it(::index iStart) { return ref_iterator(iStart,this); }
-//   ref_iterator ref_it(::index iStart,::count cCount) { return ref_iterator(iStart + (cCount < 0 ? this->get_count() + cCount + 1 : cCount),this); }
+//   ref_iterator ref_it(::raw::index iStart) { return ref_iterator(iStart,this); }
+//   ref_iterator ref_it(::raw::index iStart,::raw::count cCount) { return ref_iterator(iStart + (cCount < 0 ? this->get_count() + cCount + 1 : cCount),this); }
 //
-//   ref_range refa(::index iStart = 0,::count cCount = -1) { return smart_pointer_range2 < ref_iterator >(ref_it(iStart),ref_it(iStart,cCount)); }
+//   ref_range refa(::raw::index iStart = 0,::raw::count cCount = -1) { return smart_pointer_range2 < ref_iterator >(ref_it(iStart),ref_it(iStart,cCount)); }
 //
 //};
 
@@ -1769,7 +1769,7 @@ typedef pointer_array < matter > simple_object_pointera;
 
 
 template < typename T >
-bool pointer_array < T > ::insert_unique_at(::index i, T * p)
+bool pointer_array < T > ::insert_unique_at(::raw::index i, T * p)
 {
 
    if (i < 0 || i > this->get_size())
@@ -1816,14 +1816,14 @@ bool pointer_array < T > ::insert_unique_at(::index i, T * p)
 
 template < class T >
 template < typename OBJECT >
-::count pointer_array < T > ::set_size_create(OBJECT * pparticle, ::count nNewSize, ::count nGrowBy)
+::raw::count pointer_array < T > ::set_size_create(OBJECT * pparticle, ::raw::count nNewSize, ::raw::count nGrowBy)
 {
 
-   ::index i = this->get_size();
+   ::raw::index i = this->get_size();
 
    BASE_ARRAY::set_size(nNewSize);
 
-   ::count c = this->get_size();
+   ::raw::count c = this->get_size();
 
    for (; i < c; i++)
    {

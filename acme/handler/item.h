@@ -34,14 +34,14 @@ struct item_t
 
 
    enum_element                  m_eelement;
-   ::index                       m_iItem;
-   ::index                       m_iSubItem;
-   ::index                       m_iListItem;
+   ::raw::index                       m_iItem;
+   ::raw::index                       m_iSubItem;
+   ::raw::index                       m_iListItem;
 
 
    
-   constexpr item_t(enum_element eelement = e_element_none, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1) :
-      // constexpr item_t(enum_element eelement = e_element_none, ::index iItem = -1) :
+   constexpr item_t(enum_element eelement = e_element_none, ::raw::index iItem = -1, ::raw::index iSubItem = -1, ::raw::index iListItem = -1) :
+      // constexpr item_t(enum_element eelement = e_element_none, ::raw::index iItem = -1) :
       m_eelement(eelement),
       m_iItem(iItem)
       //,m_iSubItem(iSubItem)
@@ -78,13 +78,13 @@ struct item_t
 
    operator u32hash() const { return { (const void *)this, sizeof(item_t) }; }
 
-   //constexpr ::index menu_impact_index() const { return (::index) m_iItem; }
-   //constexpr ::index menu_impact_group() const { return (::index) m_iSubItem; }
-   //constexpr ::index menu_impact_command() const { return (::index) m_iListItem; }
+   //constexpr ::raw::index menu_impact_index() const { return (::raw::index) m_iItem; }
+   //constexpr ::raw::index menu_impact_group() const { return (::raw::index) m_iSubItem; }
+   //constexpr ::raw::index menu_impact_command() const { return (::raw::index) m_iListItem; }
 
-   //constexpr ::index item_index() const { return (::index) m_iItem; }
-   //constexpr ::index subitem_index() const { return (::index) m_iSubItem; }
-   //constexpr ::index list_item_index() const { return (::index) m_iListItem; }
+   //constexpr ::raw::index item_index() const { return (::raw::index) m_iItem; }
+   //constexpr ::raw::index subitem_index() const { return (::raw::index) m_iSubItem; }
+   //constexpr ::raw::index list_item_index() const { return (::raw::index) m_iListItem; }
 
 };
 
@@ -105,17 +105,17 @@ public:
    //::pointer<::geometry2d::region>     m_pregion;
    //bool                             m_bAnyHoverChange;
 
-   //item(enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
+   //item(enum_element eelement, ::raw::index iItem = -1, ::raw::index iSubItem = -1, ::raw::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
      // item(eelement, iItem, iSubItem, iListItem, uFlags) {}
 
    
-   item(::enum_item_flag eitemflag, enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::atom & atom = ::atom::e_type_null) :
+   item(::enum_item_flag eitemflag, enum_element eelement, ::raw::index iItem = -1, ::raw::index iSubItem = -1, ::raw::index iListItem = -1, const ::atom & atom = ::atom::e_type_null) :
       item(eelement, iItem, iSubItem, iListItem, atom, eitemflag) 
    {
 
    }
 
-   //item(const ::e_item_flag & eitemflag, enum_element eelement, ::index iItem = -1, const ::atom & atom = ::atom::e_type_null) :
+   //item(const ::e_item_flag & eitemflag, enum_element eelement, ::raw::index iItem = -1, const ::atom & atom = ::atom::e_type_null) :
      // item(eelement, iItem, atom, eitemflag) {}
 
    item(enum_element eelement, const ::atom & atom)
@@ -132,7 +132,7 @@ public:
    }
 
 
-   item(enum_element eelement = ::e_element_none, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::atom & atom = ::atom::e_type_null, ::enum_item_flag eitemflag = ::e_item_flag_none) :
+   item(enum_element eelement = ::e_element_none, ::raw::index iItem = -1, ::raw::index iSubItem = -1, ::raw::index iListItem = -1, const ::atom & atom = ::atom::e_type_null, ::enum_item_flag eitemflag = ::e_item_flag_none) :
       m_item(eelement, iItem, iSubItem, iListItem),
       m_eitem(e_item_none),
       m_eitemflag(eitemflag)
@@ -150,7 +150,7 @@ public:
    }
 
 
-   // item(::index iItem) :
+   // item(::raw::index iItem) :
    // m_item(e_element_none, iItem)
    // {
 
@@ -206,7 +206,7 @@ public:
 
    virtual bool is_hidden() const;
 
-   virtual ::string get_text(::index iSubItem);
+   virtual ::string get_text(::raw::index iSubItem);
    
    
 //   operator const ::item_t &() const {return m_item;}
@@ -296,27 +296,27 @@ public:
    bool operator == (const e_element & eelement)  const { return m_item.m_eelement == eelement; }
 //   bool operator != (const e_element & eelement)  const { return !operator==(eelement); }
 
-   item & operator = (::index iItem);
+   item & operator = (::raw::index iItem);
 
-   bool operator == (::index iItem)  const { return m_item.m_iItem == iItem; }
-//   bool operator != (::index iItem)  const { return m_iItem != iItem; }
+   bool operator == (::raw::index iItem)  const { return m_item.m_iItem == iItem; }
+//   bool operator != (::raw::index iItem)  const { return m_iItem != iItem; }
 
-   std::strong_ordering operator <= (::index iItem)  const { return m_item.m_iItem <=> iItem; }
-//   bool operator >= (::index iItem)  const { return m_iItem >= iItem; }
+   std::strong_ordering operator <= (::raw::index iItem)  const { return m_item.m_iItem <=> iItem; }
+//   bool operator >= (::raw::index iItem)  const { return m_iItem >= iItem; }
 //
-//   bool operator < (::index iItem)  const { return m_iItem < iItem; }
-//   bool operator > (::index iItem)  const { return m_iItem > iItem; }
+//   bool operator < (::raw::index iItem)  const { return m_iItem < iItem; }
+//   bool operator > (::raw::index iItem)  const { return m_iItem > iItem; }
 
-   ::index operator + (::i32 iItemAdd) { return (::index) (m_item.m_iItem + iItemAdd); }
-   ::index operator - (::i32 iItemSub) { return (::index) (m_item.m_iItem - iItemSub); }
+   ::raw::index operator + (::i32 iItemAdd) { return (::raw::index) (m_item.m_iItem + iItemAdd); }
+   ::raw::index operator - (::i32 iItemSub) { return (::raw::index) (m_item.m_iItem - iItemSub); }
 
-   ::index operator + (::i64 iItemAdd) { return (::index) (m_item.m_iItem + iItemAdd); }
-   ::index operator - (::i64 iItemSub) { return (::index) (m_item.m_iItem - iItemSub); }
+   ::raw::index operator + (::i64 iItemAdd) { return (::raw::index) (m_item.m_iItem + iItemAdd); }
+   ::raw::index operator - (::i64 iItemSub) { return (::raw::index) (m_item.m_iItem - iItemSub); }
 
 
    bool in_element_range(enum_element eelement, int iCount) const { return m_item.m_eelement >= eelement && m_item.m_eelement < eelement + iCount; }
 
-   //bool is_valid_item(::count c) const { return m_item.m_iItem >= 0 && m_item.m_iItem < c; }
+   //bool is_valid_item(::raw::count c) const { return m_item.m_iItem >= 0 && m_item.m_iItem < c; }
    
    
    
@@ -362,7 +362,7 @@ inline bool is_element(const ::item * pitem, ::enum_element eelement)
 }
 
 
-inline bool is_item(const ::item * pitem, ::index iItem)
+inline bool is_item(const ::item * pitem, ::raw::index iItem)
 {
 
    return ::is_set((const void *)pitem) && pitem->is_item_set()
@@ -372,7 +372,7 @@ inline bool is_item(const ::item * pitem, ::index iItem)
 
 
 
-inline bool is_subitem(const ::item * pitem, ::index iSubItem)
+inline bool is_subitem(const ::item * pitem, ::raw::index iSubItem)
 {
 
    return ::is_set((const void *)pitem) && pitem->is_item_set()
@@ -381,7 +381,7 @@ inline bool is_subitem(const ::item * pitem, ::index iSubItem)
 }
 
 
-//inline bool subitem_less_than(const ::item * pitem, ::index iSubItem)
+//inline bool subitem_less_than(const ::item * pitem, ::raw::index iSubItem)
 //{
 //
 //   return ::is_set((const void *)pitem) && pitem->is_item_set()
@@ -399,7 +399,7 @@ inline bool in_element_range(const ::item * pitem, enum_element eelement, int iC
 }
 
 
-inline ::pointer<::item>new_item_with_index(::index iIndex)
+inline ::pointer<::item>new_item_with_index(::raw::index iIndex)
 {
 
    return __allocate< ::item >(::e_element_item, iIndex);
@@ -451,7 +451,7 @@ inline enum_element item_element(const ::item * pitem)
 }
 
 
-inline ::index item_index(const ::item * pitem)
+inline ::raw::index item_index(const ::item * pitem)
 {
 
    return ::is_set(pitem) ? pitem->m_item.m_iItem : -1;
@@ -459,7 +459,7 @@ inline ::index item_index(const ::item * pitem)
 }
 
 
-inline bool is_item_index(const ::item * pitem, ::index iItem)
+inline bool is_item_index(const ::item * pitem, ::raw::index iItem)
 {
    
    return ::is_element(pitem, ::e_element_item) && ::is_item(pitem, iItem);

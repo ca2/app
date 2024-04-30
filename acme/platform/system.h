@@ -307,16 +307,16 @@ namespace acme
       virtual ::u32 crc32(::u32 uCrc, const ::block & block);
 
 
-      virtual void create_session(index iEdge = 0);
+      virtual void create_session(::raw::index iEdge = 0);
 
-      virtual ::pointer<::acme::session>on_create_session(index iEdge);
+      virtual ::pointer<::acme::session>on_create_session(::raw::index iEdge);
 
-      virtual ::acme::session* session(index iEdge = 0);
+      virtual ::acme::session* session(::raw::index iEdge = 0);
 
 
-      virtual void add_session(index iEdge, ::acme::session* psession);
+      virtual void add_session(::raw::index iEdge, ::acme::session* psession);
       virtual void on_add_session(::acme::session* psession);
-      virtual void erase_session(index iEdge);
+      virtual void erase_session(::raw::index iEdge);
 
 
       void on_request(::request* prequest) override;

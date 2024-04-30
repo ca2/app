@@ -167,7 +167,7 @@
 //
 //   wstring wstr = "/::payload/apex/time/";
 //
-//   ::count iLen = minimum(nBufferLength, wstr.get_length());
+//   ::raw::count iLen = minimum(nBufferLength, wstr.get_length());
 //
 //   unincpy(lpBuffer, wstr, iLen);
 //

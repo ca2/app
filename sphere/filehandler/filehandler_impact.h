@@ -23,7 +23,7 @@ namespace filehandler
 
 
          string         m_strApp;
-         ::index        m_iIndex;
+         ::raw::index        m_iIndex;
 
          ::rectangle_i32         m_rectangleItem;
          ::rectangle_i32         m_rectangleStatusImage;

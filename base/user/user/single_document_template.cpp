@@ -48,12 +48,12 @@ namespace user
 
 
 
-   ::count single_document_template::get_document_count() const
+   ::raw::count single_document_template::get_document_count() const
    {
       return (m_pdocument == nullptr) ? 0 : 1;
    }
 
-   ::user::document * single_document_template::get_document(index index) const
+   ::user::document * single_document_template::get_document(::raw::index index) const
    {
       if(index == 0)
          return m_pdocument;

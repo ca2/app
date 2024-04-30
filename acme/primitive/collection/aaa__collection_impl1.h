@@ -3,7 +3,7 @@
 
 
 template < typename ITERABLE >
-inline ::count __iterable_count(const ITERABLE & iterable)
+inline ::raw::count __iterable_count(const ITERABLE & iterable)
 {
 
    return iterable.get_count();

@@ -47,7 +47,7 @@ namespace user
 
    }
 
-   bool form_mesh::_001HitTest_(const ::point_i32 & point,index &iItem,index &iSubItem)
+   bool form_mesh::_001HitTest_(const ::point_i32 & point, ::raw::index &iItem, ::raw::index &iSubItem)
    {
 
       return false;
@@ -102,7 +102,7 @@ namespace user
    }
 
 
-   ::user::interaction * form_mesh::_001GetControl(index iItem, index iSubItem)
+   ::user::interaction * form_mesh::_001GetControl(::raw::index iItem, ::raw::index iSubItem)
    {
 
       return nullptr;
@@ -114,7 +114,7 @@ namespace user
 
 
 
-   void form_mesh::_001PlaceControl(::user::interaction * pinteraction, index iEditItem, bool bClick, bool bOnlySizeAndPosition)
+   void form_mesh::_001PlaceControl(::user::interaction * pinteraction, ::raw::index iEditItem, bool bClick, bool bOnlySizeAndPosition)
    {
 
       ::rectangle_i32 rectangle;
@@ -663,7 +663,7 @@ namespace user
    }
 
 
-   bool form_mesh::_001OnSetItemText(::user::interaction * pinteraction, index iItem, index iSubItem)
+   bool form_mesh::_001OnSetItemText(::user::interaction * pinteraction, ::raw::index iItem, ::raw::index iSubItem)
    {
 
       return true;

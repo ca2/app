@@ -11,7 +11,7 @@
 class reference_item_array;
 
 
-CLASS_DECL_ACME ::index new_reference_item_serial();
+CLASS_DECL_ACME ::raw::index new_reference_item_serial();
 
 
 class CLASS_DECL_ACME reference_item
@@ -21,7 +21,7 @@ public:
 
    ::reference_item_array *      m_pitema;
    int                           m_iStep;
-   ::index                       m_iSerial = ::new_reference_item_serial();
+   ::raw::index                       m_iSerial = ::new_reference_item_serial();
    reference_referer *           m_preferer = ::allocator::pop_referer();
    ::string                      m_strDebug;
    ::string                      m_strDebugDecrement;

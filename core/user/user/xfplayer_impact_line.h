@@ -31,8 +31,8 @@ public:
    ::u8 *                                          m_lpBitmapData;
    ::pointer<::draw2d::graphics_extension>         m_pgraphicsextension;
 
-   index                                           m_iLinkHoverIndex;
-   index                                           m_iIndex;
+   ::raw::index                                           m_iLinkHoverIndex;
+   ::raw::index                                           m_iIndex;
 
    string                                          m_str;
    string                                          m_strPrefix;
@@ -100,11 +100,11 @@ public:
    void set_blend(double d);
    ::write_text::font * GetFont();
    bool CalcChar(const ::point_i32 & point, strsize &iChar);
-   index GetCharLink(strsize iChar);
+   ::raw::index GetCharLink(strsize iChar);
    bool GetCharLink(string & str, strsize iChar);
    bool CharHasLink(strsize iChar);
    user::enum_line_hit get_link(string & strUrl, const ::point_i32 & point);
-   index GetLinkIndex(index iLine, strsize iChar);
+   ::raw::index GetLinkIndex(::raw::index iLine, strsize iChar);
    bool has_link();
    bool is_hover();
    void update_hover(point_i32 & pointCursor);

@@ -16,17 +16,17 @@ public:
 
    multiple_lock();
    multiple_lock(const synchronization_array & synca,bool bInitialLock = false);
-   multiple_lock(::count c, const synchronization_array & synca, bool bInitialLock = false);
+   multiple_lock(::raw::count c, const synchronization_array & synca, bool bInitialLock = false);
    ~multiple_lock();
 
 
    void construct(const synchronization_array & synca,bool bInitialLock = false);
 
 
-   ::index lock(const class time & tickTimeout = ::time::infinity(), bool bWaitForAll = true, u32 dwWakeMask = 0);
+   ::raw::index lock(const class time & tickTimeout = ::time::infinity(), bool bWaitForAll = true, u32 dwWakeMask = 0);
    void unlock();
    void unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
-   bool is_locked(index dwItem);
+   bool is_locked(::raw::index iItem);
 
 
 };

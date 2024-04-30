@@ -99,7 +99,7 @@ namespace user
    void list_box::_001OnDrawComboList(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::count iListItemCount = m_pcombo->_001GetListCount();
+      ::raw::count iListItemCount = m_pcombo->_001GetListCount();
 
       string strItem;
 
@@ -138,11 +138,11 @@ namespace user
 
       auto itemHover = hover_item();
 
-      index iCurSel = current_item();
+      ::raw::index iCurSel = current_item();
 
       auto pbrush = __create < ::draw2d::brush > ();
 
-      for (index iItem = 0; iItem < iListItemCount; iItem++)
+      for (::raw::index iItem = 0; iItem < iListItemCount; iItem++)
       {
 
          rectangleItem.top() = rectangleItem.bottom();
@@ -305,9 +305,9 @@ namespace user
 
       m_iItemHeight = 0;
 
-      ::count cListCount = m_pcombo->_001GetListCount();
+      ::raw::count cListCount = m_pcombo->_001GetListCount();
 
-      for (index i = 0; i < cListCount; i++)
+      for (::raw::index i = 0; i < cListCount; i++)
       {
 
          m_pcombo->_001GetListText(i, strItem);
@@ -375,7 +375,7 @@ namespace user
    }
 
 
-   void list_box::on_change_combo_sel(index iSel)
+   void list_box::on_change_combo_sel(::raw::index iSel)
    {
 
    }
@@ -389,7 +389,7 @@ namespace user
    }
 
 
-   void list_box::_001EnsureVisible(index iItem)
+   void list_box::_001EnsureVisible(::raw::index iItem)
    {
 
       if (m_pscrollbarY != nullptr
@@ -918,7 +918,7 @@ namespace user
 
       }
 
-      ::count iItemCount = m_pcombo->_001GetListCount();
+      ::raw::count iItemCount = m_pcombo->_001GetListCount();
 
       auto rectangleX = this->rectangle();
 
@@ -933,7 +933,7 @@ namespace user
 
       }
 
-      for (::index iItem = 0; iItem < iItemCount; iItem++)
+      for (::raw::index iItem = 0; iItem < iItemCount; iItem++)
       {
 
          rectangleItem.top() = rectangleX.top() + (_001GetItemHeight() * (int) (iAddUp + iItem));

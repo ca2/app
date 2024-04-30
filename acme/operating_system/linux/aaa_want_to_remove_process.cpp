@@ -227,7 +227,7 @@ namespace ansios
       if(string_begins_ci(strFallback, "/Users/"))
       {
 
-         index i = 0;
+         ::raw::index i = 0;
 
          int iPrevious = -1;
 

@@ -50,7 +50,7 @@ public:
 
    }
 
-   void erase_at(::index i)
+   void erase_at(::raw::index i)
    {
 
       memory_transfer(m_p + i, m_p + i + 1, (m_c - i - 1) * sizeof(T));
@@ -66,7 +66,7 @@ template < typename T >
 bool erase_first(simple_array < T >& a, const T& t)
 {
 
-   for (::index i = 0; i < a.m_c; i++)
+   for (::raw::index i = 0; i < a.m_c; i++)
    {
 
       if (a.m_p[i] == t)

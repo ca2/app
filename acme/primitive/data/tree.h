@@ -45,7 +45,7 @@ namespace data
 
       virtual void update_tree();
 
-      virtual tree_item * find(const item * pitem, index * piIndex = nullptr);
+      virtual tree_item * find(const item * pitem, ::raw::index * piIndex = nullptr);
       virtual bool contains(const item * pitem);
 
       bool contains(const tree_item * pitem) override;
@@ -59,7 +59,7 @@ namespace data
 
       virtual void erase(tree_item_ptr_array & itemptra);
       virtual void erase(tree_item * pitem);
-      virtual void erase(item * pitem, index i = 0);
+      virtual void erase(item * pitem, ::raw::index i = 0);
 
 
       ::data::tree_item * ____previous() override;
@@ -73,10 +73,10 @@ namespace data
       //}
       void sort_children(const ::function < bool(const ::data::tree_item * p1, const ::data::tree_item * p2) > & functionLess) override;
 
-      virtual tree_item * _get_proper_item(index iIndex, index * piLevel, index * piCount = nullptr);
-      virtual tree_item* get_proper_item(index iIndex, index* piLevel) override;
-      virtual index get_proper_item_index(tree_item * pitemParam, index * piLevel, index * piCount = nullptr);
-//      virtual ::count get_proper_item_count() override;
+      virtual tree_item * _get_proper_item(::raw::index iIndex, ::raw::index * piLevel, ::raw::index * piCount = nullptr);
+      virtual tree_item* get_proper_item(::raw::index iIndex, ::raw::index * piLevel) override;
+      virtual ::raw::index get_proper_item_index(tree_item * pitemParam, ::raw::index * piLevel, ::raw::index * piCount = nullptr);
+//      virtual ::raw::count get_proper_item_count() override;
 
       virtual void update_levels();
 
@@ -97,10 +97,10 @@ namespace data
       virtual bool is_selected(const ::data::tree_item * pitem) const;
       virtual bool is_selected(const ::data::item * pitem) const;
 
-      virtual ::count   selection_set(::data::tree_item_ptr_array & itemptra);
+      virtual ::raw::count   selection_set(::data::tree_item_ptr_array & itemptra);
       virtual bool      selection_set(::data::tree_item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
       virtual bool      selection_set(::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
-      virtual bool      selection_set(index iIndex, ::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
+      virtual bool      selection_set(::raw::index iIndex, ::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
 
 
       //void signal(::signal * psignal) override;

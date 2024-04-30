@@ -69,7 +69,7 @@ namespace user
 
       void SetSizes(const ::size_i32 & sizeButton, const ::size_i32 & sizeImage);
       // button size_i32 should be bigger than image
-      void SetHeight(index cyHeight);
+      void SetHeight(::raw::index cyHeight);
       // call after SetSizes, height overrides bitmap size_i32
       //bool LoadToolBar(const ::string & pszResourceName);
 
@@ -80,20 +80,20 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      bool from(HBITMAP hbmImageWell);
 //#endif
-      bool SetButtons(const ::u32* pIDArray, index nIDCount);
+      bool SetButtons(const ::u32* pIDArray, ::raw::index nIDCount);
 
       // pIDArray can be nullptr to allocate is_empty buttons
 
       //virtual ::user::enum_state get_button_state(int iItem);
 
       // standard control bar things
-      //virtual ::index atom_index(const ::atom & atom) const;
+      //virtual ::raw::index atom_index(const ::atom & atom) const;
       
       //::u32 GetItemID(index nIndex);
       
 //      virtual void index_item_rectangle(index nIndex, ::rectangle_i32 * prectangle);
       
-      //::index tool_item_index(const ::atom & atom) const;
+      //::raw::index tool_item_index(const ::atom & atom) const;
       
       ::user::tool_item * tool_item_by_atom(const ::atom & atom);
       
@@ -114,8 +114,8 @@ namespace user
       ::user::tool_item & tool_item(const ::item * pitem);
 
 
-      ::index tool_item_image(const ::atom & atom);
-      void set_tool_item_image(const ::atom & atom, index iImage);
+      ::raw::index tool_item_image(const ::atom & atom);
+      void set_tool_item_image(const ::atom & atom, ::raw::index iImage);
       void set_tool_item_text(const ::atom & atom, const ::string & pszText);
 
       string tool_item_text(const ::atom & atom);
@@ -140,12 +140,12 @@ namespace user
 
       virtual void load_xml_toolbar(const ::payload & payloadFile);
 
-      virtual ::status < ::rectangle_i32 > index_item_rectangle(index iItem);
+      virtual ::status < ::rectangle_i32 > index_item_rectangle(::raw::index iItem);
 
-      virtual ::status < ::rectangle_i32 > index_element_rectangle(index iItem, enum_element eelement, ::user::enum_state estate);
+      virtual ::status < ::rectangle_i32 > index_element_rectangle(::raw::index iItem, enum_element eelement, ::user::enum_state estate);
 
-      virtual ::user::tool_item * tool_item_at(index iItem);
-      virtual ::count tool_item_count();
+      virtual ::user::tool_item * tool_item_at(::raw::index iItem);
+      virtual ::raw::count tool_item_count();
 
 
       virtual ::size_i32 SimpleLayout(::draw2d::graphics_pointer& pgraphics);
@@ -153,14 +153,14 @@ namespace user
 
       // implementation helpers
 //#ifdef WINDOWS_DESKTOP
-//      virtual void _GetButton(::index nIndex, TBBUTTON* pButton) const;
-//      virtual void _SetButton(::index nIndex, TBBUTTON* pButton);
+//      virtual void _GetButton(::raw::index nIndex, TBBUTTON* pButton) const;
+//      virtual void _SetButton(::raw::index nIndex, TBBUTTON* pButton);
 //#endif
-      virtual ::size_i32 CalcLayout(::draw2d::graphics_pointer& pgraphics, u32 nMode, index nLength = -1);
+      virtual ::size_i32 CalcLayout(::draw2d::graphics_pointer& pgraphics, u32 nMode, ::raw::index nLength = -1);
 //#ifdef WINDOWS_DESKTOP
-//      virtual ::size_i32 CalcSize(TBBUTTON* pData, index nCount);
-//      virtual index WrapToolBar(TBBUTTON* pData, index nCount, index nWidth);
-//      virtual void SizeToolBar(TBBUTTON* pData, index nCount, index nLength, bool bVert = false);
+//      virtual ::size_i32 CalcSize(TBBUTTON* pData, ::raw::index nCount);
+//      virtual ::raw::index WrapToolBar(TBBUTTON* pData, ::raw::index nCount, ::raw::index nWidth);
+//      virtual void SizeToolBar(TBBUTTON* pData, ::raw::index nCount, ::raw::index nLength, bool bVert = false);
 //#endif
       void on_layout(::draw2d::graphics_pointer & pgraphics) override; // called for for delayed button on_layout
 

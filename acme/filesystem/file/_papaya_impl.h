@@ -43,9 +43,9 @@
 //inline stream & operator >>(stream & stream, ::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array)
 //{
 //
-//   ::count cSerialized = 0;
+//   ::raw::count cSerialized = 0;
 //
-//   ::count c = 0;
+//   ::raw::count c = 0;
 //
 //   stream >> c;
 //
@@ -55,7 +55,7 @@
 //      //try
 //      //{
 //
-//         for (::index i = 0; i < c; i++)
+//         for (::raw::index i = 0; i < c; i++)
 //         {
 //
 //            array.set_size(i + 1, minimum((size_t)(c - i), 96_mb / sizeof(array[0])));
@@ -86,7 +86,7 @@
 //      //if (stream.fail())
 //      //{
 //
-//      //   array.set_size((::count) cSerialized);
+//      //   array.set_size((::raw::count) cSerialized);
 //
 //      //}
 //
@@ -102,7 +102,7 @@
 //inline stream & operator <<(stream & stream, const ::array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array)
 //{
 //
-//   ::count c = array.get_count();
+//   ::raw::count c = array.get_count();
 //
 //   stream << c;
 //

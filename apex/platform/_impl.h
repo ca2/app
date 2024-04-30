@@ -312,7 +312,7 @@
 //::stream & read_container_as_parent(::stream & stream, pointer_array < TYPE > & a)
 //{
 //
-//   ::count c = 0;
+//   ::raw::count c = 0;
 //
 //   stream >> c;
 //
@@ -352,7 +352,7 @@
 //::stream & write_container_as_parent(::stream & stream, const pointer_array < TYPE > & a)
 //{
 //
-//   ::count c = a.get_count();
+//   ::raw::count c = a.get_count();
 //
 //   stream << c;
 //

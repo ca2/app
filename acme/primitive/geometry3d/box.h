@@ -161,11 +161,11 @@ public:
       array < array < location_type < NUMBER > > > fv;
       array < location_type < NUMBER > > vertices;
 
-      for (index i = 0; i < f.get_count(); i++)
+      for (::raw::index i = 0; i < f.get_count(); i++)
       {
          ::i32_array& ia = f[i];
          vertices.erase_all();
-         for (index j = 0; j < ia.get_count(); j++)
+         for (::raw::index j = 0; j < ia.get_count(); j++)
          {
             vertices.add(v[ia[j]]);
          }
@@ -209,9 +209,9 @@ public:
 
       double d;
 
-      index iFound = 0;
+      ::raw::index iFound = 0;
 
-      for (index i = 1; i < verts.get_count(); i++)
+      for (::raw::index i = 1; i < verts.get_count(); i++)
       {
          d = sqrt(::sqr(point.x() - verts[i].x()) + sqr(point.y() - verts[i].y()) + sqr(point.z - verts[i].z));
 
@@ -227,7 +227,7 @@ public:
 
    }
 
-   index find_nearest_vertice(location_type < NUMBER > point)
+   ::raw::index find_nearest_vertice(location_type < NUMBER > point)
    {
 
       array < location_type < NUMBER > >  verts = vertices();
@@ -236,9 +236,9 @@ public:
 
       double d;
 
-      index iFound = 0;
+      ::raw::index iFound = 0;
 
-      for (index i = 1; i < verts.get_count(); i++)
+      for (::raw::index i = 1; i < verts.get_count(); i++)
       {
          d = sqrt(::sqr(point.x() - verts[i].x()) + sqr(point.y() - verts[i].y()) + sqr(point.z - verts[i].z));
 
@@ -255,7 +255,7 @@ public:
    }
 
 
-   index find_nearest_vertice(::i32 x, ::i32 y)
+   ::raw::index find_nearest_vertice(::i32 x, ::i32 y)
    {
 
       array < location_type < NUMBER > >  verts = vertices();
@@ -264,9 +264,9 @@ public:
 
       double d;
 
-      index iFound = 0;
+      ::raw::index iFound = 0;
 
-      for (index i = 1; i < verts.get_count(); i++)
+      for (::raw::index i = 1; i < verts.get_count(); i++)
       {
          d = sqrt(::sqr(x - verts[i].x()) + sqr(y - verts[i].y()));
 

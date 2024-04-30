@@ -116,7 +116,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      ::index iIndex = 0;
+      ::raw::index iIndex = 0;
 
       auto pbrushText = __create < ::draw2d::brush >();
 
@@ -465,7 +465,7 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-      ::index iVisiblePane = 0;
+      ::raw::index iVisiblePane = 0;
 
       auto pbrushText = __create < ::draw2d::brush >();
 

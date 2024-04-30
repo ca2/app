@@ -230,8 +230,8 @@ namespace platform
 
       void set_args(int argc, char ** argv, wchar_t ** wargv);
 
-      string _get_argv(::index iArg) const;
-      ::count get_argc();
+      string _get_argv(::raw::index iArg) const;
+      ::raw::count get_argc();
       int * get_pargc();
       char *** get_pargv();
       char ** get_argv();
@@ -245,15 +245,15 @@ namespace platform
 
       bool is_verbose_log() const;
 
-      inline ::count _get_argc() const { return m_argc; }
+      inline ::raw::count _get_argc() const { return m_argc; }
 
       string get_executable() const;
 
-      string get_argument1(::index iArgument) const;
+      string get_argument1(::raw::index iArgument) const;
 
       bool has_argument(const ::scoped_string & scopedArgument) const;
 
-      inline ::count get_argument_count1() const { return _get_argc() - 1; }
+      inline ::raw::count get_argument_count1() const { return _get_argc() - 1; }
 
       string_array get_arguments();
 
@@ -261,7 +261,7 @@ namespace platform
 
       ::string_array get_argument_options(const ::scoped_string & scopedstrArgument);
 
-      string get_arg(::index i) const;
+      string get_arg(::raw::index i) const;
       string get_env(const ::scoped_string & scopedstrVariableName) const;
 
 
@@ -398,7 +398,7 @@ namespace platform
       //pass_through_function m_passthroughfunction;
 
 
-      ::index task_index(itask_t itask, bool bAddIfNotInList = false);
+      ::raw::index task_index(itask_t itask, bool bAddIfNotInList = false);
 
 
       //pass_through_function &  __call__new_pass_through_function() { return m_passthroughfunction; }

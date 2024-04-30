@@ -352,7 +352,7 @@ namespace crypto_openssl
 
       out.set(0);
 
-      ::count i = RSA_private_decrypt((int)in.size(), in.data(), out.data(), m_prsa, RSA_PKCS1_PADDING);
+      ::raw::count i = RSA_private_decrypt((int)in.size(), in.data(), out.data(), m_prsa, RSA_PKCS1_PADDING);
 
       if (i < 0 || i >(1024 * 1024))
       {
@@ -565,7 +565,7 @@ namespace crypto_openssl
 
       size_t out_len = 0;
 
-      ::count i = EVP_PKEY_decrypt(pctx, nullptr, &out_len, in.data(), (int)in.size());
+      ::raw::count i = EVP_PKEY_decrypt(pctx, nullptr, &out_len, in.data(), (int)in.size());
 
       if (i < 0)
       {
@@ -602,7 +602,7 @@ namespace crypto_openssl
 
       out.set(0);
 
-      ::count i = RSA_public_decrypt((int)in.size(), in.data(), out.data(), m_prsa, RSA_PKCS1_PADDING);
+      ::raw::count i = RSA_public_decrypt((int)in.size(), in.data(), out.data(), m_prsa, RSA_PKCS1_PADDING);
 
       if (i < 0 || i >(1024 * 1024))
       {

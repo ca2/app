@@ -108,7 +108,7 @@ namespace hex
       
       const char * pszNext = range.m_begin;
 
-      for (index i = 0; i < 4; i++)
+      for (::raw::index i = 0; i < 4; i++)
       {
          
          range.m_begin = pszNext;

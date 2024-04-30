@@ -711,7 +711,7 @@
 //   }
 //
 //
-//  TEMPLATE void rectangle_f64::get_bounding_box(const ::point_f64 * ppoint, ::count count)
+//  TEMPLATE void rectangle_f64::get_bounding_box(const ::point_f64 * ppoint, ::raw::count count)
 //
 //   {
 //
@@ -1020,7 +1020,7 @@
 
 
 template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
-void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > ::get_bounding_box(const POINT_BASE_TYPE * ppoint, ::count count)
+void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > ::get_bounding_box(const POINT_BASE_TYPE * ppoint, ::raw::count count)
 {
 
    ::get_bounding_box(this, ppoint, count);

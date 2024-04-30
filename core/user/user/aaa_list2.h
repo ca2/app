@@ -81,8 +81,8 @@ namespace user
 
 
 
-      virtual i32 _001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, index iItem, index iSubItem);
-      virtual i32 _001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::write_text::font* pfont, index iItem, index iSubItem);
+      virtual i32 _001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::raw::index iItem, ::raw::index iSubItem);
+      virtual i32 _001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::write_text::font* pfont, ::raw::index iItem, ::raw::index iSubItem);
       virtual i32 _001CalcItemHeight(::user::style* pstyle, int iBaseHeight);
       virtual ::e_align get_draw_text_align(enum_list eview);
       virtual ::e_draw_text get_draw_text_flags(enum_list eview);
@@ -90,13 +90,13 @@ namespace user
 
 
 
-      //virtual ::index item_index(::user::interaction * pinteractionControl);
-      virtual ::index subitem_index(::user::interaction* pinteractionControl);
-      //virtual ::index list_item_index(::user::interaction * pinteractionControl);
-      virtual ::index column_index(::user::interaction* pinteractionControl);
+      //virtual ::raw::index item_index(::user::interaction * pinteractionControl);
+      virtual ::raw::index subitem_index(::user::interaction* pinteractionControl);
+      //virtual ::raw::index list_item_index(::user::interaction * pinteractionControl);
+      virtual ::raw::index column_index(::user::interaction* pinteractionControl);
 
-      //::pointer<mesh_item>& get_item(::index iItem) override;
-      //::pointer<mesh_subitem>& get_subitem(mesh_item* pitem, ::index iSubItem) override;
+      //::pointer<mesh_item>& get_item(::raw::index iItem) override;
+      //::pointer<mesh_subitem>& get_subitem(mesh_item* pitem, ::raw::index iSubItem) override;
 
       //using mesh::get_subitem;
 
@@ -117,9 +117,9 @@ namespace user
       //::draw2d::pen * _001GetPenHighlight();
       void PreSubClassWindow() override;
       virtual void _OnDraw(::draw2d::graphics_pointer& pgraphics);
-      virtual void _001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, index iColumn);
-      //virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer& pgraphics, index iItem, index iSubItem) override;
-      virtual i32 _001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, index iColumn);
+      virtual void _001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, ::raw::index iColumn);
+      //virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer& pgraphics, ::raw::index iItem, ::raw::index iSubItem) override;
+      virtual i32 _001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::raw::index iColumn);
       virtual i32 _001CalcListWidth(::draw2d::graphics_pointer& pgraphics);
       virtual void _001OnSort();
 
@@ -131,47 +131,47 @@ namespace user
       //void _001DeleteRange(range& range) override;
 
       // Sort
-      //::std::strong_ordering _001Compare(index iItem1, index iItem2) override;
-      //::std::strong_ordering _002Compare(index iItem1, index iItem2, index iSubItem) override;
-      //::std::strong_ordering _001DisplayCompare(index iDisplayItem1, index iDisplayItem2) override;
+      //::std::strong_ordering _001Compare(::raw::index iItem1, ::raw::index iItem2) override;
+      //::std::strong_ordering _002Compare(::raw::index iItem1, ::raw::index iItem2, ::raw::index iSubItem) override;
+      //::std::strong_ordering _001DisplayCompare(::raw::index iDisplayItem1, ::raw::index iDisplayItem2) override;
 
 
-      virtual bool is_valid_display_item(index iDisplayItem);
-      virtual bool is_valid_strict_item(index iStrictItem);
+      virtual bool is_valid_display_item(::raw::index iDisplayItem);
+      virtual bool is_valid_strict_item(::raw::index iStrictItem);
 
 
       virtual ::size_i32 get_item_size();
 
-      //virtual void _001OnSort(index iSubItem);
-      virtual void _001OnListHeaderItemClick(index iHeaderItem);
-      virtual void _001OnListHeaderItemDblClk(index iHeaderItem);
+      //virtual void _001OnSort(::raw::index iSubItem);
+      virtual void _001OnListHeaderItemClick(::raw::index iHeaderItem);
+      virtual void _001OnListHeaderItemDblClk(::raw::index iHeaderItem);
       //virtual void Filter1(const string& str);
       //bool Filter1Step() override;
 
 
-      virtual index _001CalcDisplayTopIndex();
+      virtual ::raw::index _001CalcDisplayTopIndex();
       virtual count _001CalcDisplayItemCount();
-      virtual i32 _001GetGroupHeight(index iGroup);
+      virtual i32 _001GetGroupHeight(::raw::index iGroup);
 
 
       //void FilterInclude(::i32_array& array) override;
-      //void FilterInclude(index iItem) override;
+      //void FilterInclude(::raw::index iItem) override;
       //void FilterExcludeAll() override;
       //void FilterClose() override;
       //void FilterApply() override;
       //void FilterBegin() override;
-      index strict_to_display(index iStrict) override;
-      index display_to_strict(index iDisplay) override;
-      void _001Select(index iItem, index iSubItem) override;
-      void _001Highlight(index iItem, bool bRedraw) override;
+      ::raw::index strict_to_display(::raw::index iStrict) override;
+      ::raw::index display_to_strict(::raw::index iDisplay) override;
+      void _001Select(::raw::index iItem, ::raw::index iSubItem) override;
+      void _001Highlight(::raw::index iItem, bool bRedraw) override;
       void _001RemoveSelection() override;
-      bool _001OnRemoveItem(index iItem) override;
-      bool _001RemoveItem(index iItem, bool bRedraw = true) override;
-      void _001EnsureVisible(index iItem, ::e_align ealign = e_align_vertical_center, bool bRedraw = true);
-      //void _001EnsureVisible(index iItem, range& rangeRedraw) override;
-      void scroll_to_item(index iItem, bool bRedraw = true) override;
-      virtual index config_id_index(const ::scoped_string& strDataKey);
-      index data_key_to_sub_item(const ::scoped_string& strDataKey) override;
+      bool _001OnRemoveItem(::raw::index iItem) override;
+      bool _001RemoveItem(::raw::index iItem, bool bRedraw = true) override;
+      void _001EnsureVisible(::raw::index iItem, ::e_align ealign = e_align_vertical_center, bool bRedraw = true);
+      //void _001EnsureVisible(::raw::index iItem, range& rangeRedraw) override;
+      void scroll_to_item(::raw::index iItem, bool bRedraw = true) override;
+      virtual ::raw::index config_id_index(const ::scoped_string& strDataKey);
+      ::raw::index data_key_to_sub_item(const ::scoped_string& strDataKey) override;
       bool has_data_key(const ::scoped_string& strDataKey) override;
       void get_selection(const ::scoped_string& scopedstrDataKey, ::string_array& straSelection) override;
 
@@ -195,9 +195,9 @@ namespace user
       atom data_get_sort_id(enum_list eview) override;
       virtual atom data_get_current_list_layout_id();
 
-      bool query_drop(index iDisplayDrop, index iDisplayDrag) override;
-      bool do_drop(index iDisplayDrop, index iDisplayDrag) override;
-      bool defer_drop(index iDisplayDrop, index iDisplayDrag) override;
+      bool query_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag) override;
+      bool do_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag) override;
+      bool defer_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag) override;
 
 
 
@@ -207,13 +207,13 @@ namespace user
 
       void _001OnDraw(::draw2d::graphics_pointer& pgraphics) override;
 
-      //virtual void _001DrawGroups(::draw2d::graphics_pointer & pgraphics, index iGroupFirst, index iGroupLast, index iItemFirst, index iItemLast);
+      //virtual void _001DrawGroups(::draw2d::graphics_pointer & pgraphics, ::raw::index iGroupFirst, ::raw::index iGroupLast, ::raw::index iItemFirst, ::raw::index iItemLast);
 
-      void _001DrawGroups(::draw2d::graphics_pointer& pgraphics, index iGroupFirst, index iGroupLast) override;
+      void _001DrawGroups(::draw2d::graphics_pointer& pgraphics, ::raw::index iGroupFirst, ::raw::index iGroupLast) override;
 
       virtual void _001DrawGroup(::draw2d::graphics_pointer& pgraphics, draw_list_group* pdrawgroup);
 
-      void _001DrawItems(::draw2d::graphics_pointer& pgraphics, index iItemFirst, index iItemLast) override;
+      void _001DrawItems(::draw2d::graphics_pointer& pgraphics, ::raw::index iItemFirst, ::raw::index iItemLast) override;
 
       virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, draw_list_item* pdrawitem);
 
@@ -227,9 +227,9 @@ namespace user
 
       //virtual void _001SearchGetItemText(list_item * pitem);
 
-      ::count _001GetGroupItemCount(index iGroup) override;
+      ::raw::count _001GetGroupItemCount(::raw::index iGroup) override;
 
-      ::count _001GetGroupMetaItemCount(index iGroup) override;
+      ::raw::count _001GetGroupMetaItemCount(::raw::index iGroup) override;
 
       //virtual void _001GetGroupText(list_item * pitem);
 
@@ -237,7 +237,7 @@ namespace user
 
       virtual void on_insert_columns();
 
-      ::count _001GetColumnCount() override;
+      ::raw::count _001GetColumnCount() override;
 
 
       virtual ::pointer<::user::list_header>create_list_header();
@@ -262,41 +262,41 @@ namespace user
       virtual void index_element_rectangle(draw_list_subitem* pdrawlistsubitem, ::user::enum_list_element eelement);
       //virtual void _001GetGroupElementRect(draw_list_group* pdrawlistgroup, ::user::mesh::enum_group_element egroupelement);
 
-      virtual ::user::interaction* get_subitem_control(::index iSubItem);
+      virtual ::user::interaction* get_subitem_control(::raw::index iSubItem);
 
       virtual void _001OnColumnChange();
 
-      bool _001SetColumnWidth(index iColumn, i32 iWidth) override;
+      bool _001SetColumnWidth(::raw::index iColumn, i32 iWidth) override;
 
-      //virtual int _001GetColumnWidth(::index iColumn);
+      //virtual int _001GetColumnWidth(::raw::index iColumn);
 
-      index sub_item_to_order(index iSubItem) override;
+      ::raw::index sub_item_to_order(::raw::index iSubItem) override;
 
-      index _001MapOrderToSubItem(index iOrder) override;
+      ::raw::index _001MapOrderToSubItem(::raw::index iOrder) override;
 
-      index _001MapOrderToColumn(index iOrder) override;
+      ::raw::index _001MapOrderToColumn(::raw::index iOrder) override;
 
-      index _001MapColumnToOrder(index iColumn) override;
+      ::raw::index _001MapColumnToOrder(::raw::index iColumn) override;
 
-      index _001MapSubItemToColumn(index iSubItem) override;
+      ::raw::index _001MapSubItemToColumn(::raw::index iSubItem) override;
 
-      index _001MapColumnToSubItem(index iColumn) override;
+      ::raw::index _001MapColumnToSubItem(::raw::index iColumn) override;
 
-      void _001DeleteColumn(index iColumn);
-
-
-      ::count _001GetItemCount() override;
-      ::count _001GetGroupCount() override;
+      void _001DeleteColumn(::raw::index iColumn);
 
 
-      bool _001HitTest_(const ::point_i32& point, index& iItem, index& iSubItem, index& iListItem, ::user::enum_list_element& eelement) override;
-      bool _001HitTest_(const ::point_i32& point, index& iItem, index& iSubItem) override;
-      bool _001HitTest_(const ::point_i32& point, index& iItemParam) override;
+      ::raw::count _001GetItemCount() override;
+      ::raw::count _001GetGroupCount() override;
 
 
-      bool _001DisplayHitTest(const ::point_i32& point, index& iItem, index& iSubItem, index& iListItem, ::user::enum_list_element& eelement) override;
-      bool _001DisplayHitTest(const ::point_i32& point, index& iItem, index& iSubItem) override;
-      bool _001DisplayHitTest(const ::point_i32& point, index& iItemParam) override;
+      bool _001HitTest_(const ::point_i32& point, ::raw::index & iItem, ::raw::index & iSubItem, ::raw::index & iListItem, ::user::enum_list_element& eelement) override;
+      bool _001HitTest_(const ::point_i32& point, ::raw::index & iItem, ::raw::index & iSubItem) override;
+      bool _001HitTest_(const ::point_i32& point, ::raw::index & iItemParam) override;
+
+
+      bool _001DisplayHitTest(const ::point_i32& point, ::raw::index & iItem, ::raw::index & iSubItem, ::raw::index & iListItem, ::user::enum_list_element& eelement) override;
+      bool _001DisplayHitTest(const ::point_i32& point, ::raw::index & iItem, ::raw::index & iSubItem) override;
+      bool _001DisplayHitTest(const ::point_i32& point, ::raw::index & iItemParam) override;
 
 
       void _001OnAfterSort() override;
@@ -330,22 +330,22 @@ namespace user
       bool on_right_click(::item* pitem) override;
 
       //void get_selection(range& selection) override;
-      virtual index _001GetCurItem();
+      virtual ::raw::index _001GetCurItem();
 
-      virtual void _001SelectItem(index iItem);
+      virtual void _001SelectItem(::raw::index iItem);
 
       bool _001IsEditing() override;
 
 
-      ::count _001GetSelectedItemCount() override;
-      virtual ::count _001GetSelectedItems(index_array& ia);
+      ::raw::count _001GetSelectedItemCount() override;
+      virtual ::raw::count _001GetSelectedItems(index_array& ia);
 
 
-      string _001GetColumnText(index iColumn) override;
+      string _001GetColumnText(::raw::index iColumn) override;
 
       virtual void HeaderCtrlLayout();
 
-      virtual index HeaderCtrlMapColumnToOrder(index iColumn);
+      virtual ::raw::index HeaderCtrlMapColumnToOrder(::raw::index iColumn);
 
       virtual bool _001OnHeaderCtrlEndDrag(wparam wparam, lparam lparam);
 
@@ -357,7 +357,7 @@ namespace user
       bool _001OnHeaderCtrlTrack(wparam wparam, lparam lparam) override;
 
 
-      void _001ShowSubItem(index iSubItem, bool bShow = true) override;
+      void _001ShowSubItem(::raw::index iSubItem, bool bShow = true) override;
       void DISaveOrder() override;
 
       void DILoadOrder() override;
@@ -374,7 +374,7 @@ namespace user
 
       virtual void _001CreateImageList(list_column* pcolumn);
 
-      bool _001IsItemVisible(index iItem) override;
+      bool _001IsItemVisible(::raw::index iItem) override;
 
       //virtual void clear_selection() override;
 

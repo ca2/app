@@ -280,7 +280,7 @@ public:
       }
       else
       {
-         const ::count nElemCount = rSource.getCount();
+         const ::raw::count nElemCount = rSource.getCount();
          if (nElemCount)
          {
 
@@ -325,12 +325,12 @@ public:
 
 public:
    /**
-    * Returns the ::count of LiteHTMLElemAttr items in this collection
+    * Returns the ::raw::count of LiteHTMLElemAttr items in this collection
     * @return number of items
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   ::count getCount() const
+   ::raw::count getCount() const
    {
       if (m_parrAttrib != nullptr)
          return (m_parrAttrib->get_upper_bound() + 1);

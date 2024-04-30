@@ -20,7 +20,7 @@ namespace user
 
 
       virtual tab_pane * get_by_id(atom atom);
-      ::count get_visible_count();
+      ::raw::count get_visible_count();
 
    };
 

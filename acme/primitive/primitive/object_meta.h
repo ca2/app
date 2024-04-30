@@ -25,7 +25,7 @@ public:
    //void destroy(::object* pReferer);
 
 
-   //::index task_add(::object * pReferer, ::task* ptask);
+   //::raw::index task_add(::object * pReferer, ::task* ptask);
    //void task_erase(::object* pReferer, ::task* ptask);
    //void task_erase_all(::object* pReferer);
 

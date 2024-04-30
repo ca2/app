@@ -41,60 +41,63 @@ using uptr = u64;
 #else
 
 
-#error "OSBIT should be defined with system default pointer size_i32 in bit count."
+#error "OSBIT should be defined with system default pointer size in bit count."
 
 
 #endif
 
 
+//
+//
+//#if OSBIT == 64
+//
+//typedef u64              rtptr;
+//typedef u64              ulong_ptr;
+//typedef u64              dword_ptr;
+//
+//#else
+//
+//typedef u32              rtptr;
+//typedef u32              ulong_ptr;
+//typedef u32              dword_ptr;
+//
+//#endif
+
+//
+//
+//#if !defined(__APPLE__) && !defined(OPENBSD)
+//
+//
+//#define ssize_t         iptr
+//
+//
+//#endif
 
 
-#if OSBIT == 64
-
-typedef u64              rtptr;
-typedef u64              ulong_ptr;
-typedef u64              dword_ptr;
-
-#else
-
-typedef u32              rtptr;
-typedef u32              ulong_ptr;
-typedef u32              dword_ptr;
-
-#endif
+namespace raw
+{
 
 
-
-#if !defined(__APPLE__) && !defined(OPENBSD)
-
-
-#define ssize_t         iptr
+   using index = iptr;
 
 
-#endif
-
-
-
-
-
-#ifdef index
-#undef index
-#endif // index
-
-
-using index = iptr;
+}
 
 
 #define __priindex PRIiPTR
 
 
+namespace raw
+{
+
+   
+   using count = ::iptr;
 
 
-using count = iptr;
+}
 
 
 #define __pricount PRIiPTR
-
 
 
 

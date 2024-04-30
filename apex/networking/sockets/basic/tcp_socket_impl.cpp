@@ -1123,7 +1123,7 @@
 //   //      }
 //   //   }
 //   //   strcpy(request + 8,GetSocks4Userid());
-//   //   ::count length = GetSocks4Userid().get_length() + 8 + 1;
+//   //   ::raw::count length = GetSocks4Userid().get_length() + 8 + 1;
 //   //   write(request,length);
 //   //   m_socks4_state = 0;
 //   //}

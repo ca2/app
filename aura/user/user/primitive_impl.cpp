@@ -1398,7 +1398,7 @@ namespace user
    }
 
 
-   ::user::interaction* primitive_impl::get_child_by_id(const ::atom& atom, ::index iItem, i32 iLevel)
+   ::user::interaction* primitive_impl::get_child_by_id(const ::atom& atom, ::raw::index iItem, i32 iLevel)
    {
 
       return nullptr;

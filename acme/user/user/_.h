@@ -25,7 +25,7 @@ namespace user
 
 
    DECLARE_ENUMERATION(e_state, enum_state);
-   CLASS_DECL_ACME string get_wallpaper(::index iIndex);
+   CLASS_DECL_ACME string get_wallpaper(::raw::index iIndex);
 
 
    class controller;

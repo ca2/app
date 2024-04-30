@@ -73,7 +73,7 @@ inline void __exchange_save_array(::payload_stream& stream, ARRAY& array)
 
    //}
 
-   for (index i = 0; i < c; i++)
+   for (::raw::index i = 0; i < c; i++)
    {
 
       stream.stream_exchange(i, __typed(array.element_at(i)));
@@ -107,7 +107,7 @@ inline void __exchange_load_array(::payload_stream& stream, ARRAY& array)
 
    array.set_size(c);
 
-   for (index i = 0; i < c; i++)
+   for (::raw::index i = 0; i < c; i++)
    {
 
       auto& t = __typed_defer_new(array.element_at(i));

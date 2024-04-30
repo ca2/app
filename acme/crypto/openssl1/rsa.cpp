@@ -405,7 +405,7 @@ namespace openssl
 
       out.set(0);
 
-      ::count i = RSA_public_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
+      ::raw::count i = RSA_public_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
 
       if (i < 0 || i >(1024 * 1024))
       {

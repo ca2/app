@@ -126,8 +126,8 @@ namespace userfs
       {
          list_data * pdata = fs_list();
          auto & itemrange = range.ItemAt(0);
-         index iLItem = itemrange.get_lower_bound();
-         index iUItem = itemrange.get_upper_bound();
+         ::raw::index iLItem = itemrange.get_lower_bound();
+         ::raw::index iUItem = itemrange.get_upper_bound();
          if (iUItem < iLItem)
          {
             iUItem = pdata->m_pitema->get_upper_bound();
@@ -151,7 +151,7 @@ namespace userfs
 
             string_array stra;
 
-            for (index iItem = iLItem; iItem < iLItem; iItem++)
+            for (::raw::index iItem = iLItem; iItem < iLItem; iItem++)
             {
 
                stra.add(pdata->item(iItem)->user_path());
@@ -339,15 +339,15 @@ namespace userfs
 
       string str;
 
-      for (index i = 0; i < range.get_item_count(); i++)
+      for (::raw::index i = 0; i < range.get_item_count(); i++)
       {
 
          auto & itemrange = range.ItemAt(i);
 
-         for (index iItem = itemrange.get_lower_bound(); iItem <= itemrange.get_upper_bound(); iItem++)
+         for (::raw::index iItem = itemrange.get_lower_bound(); iItem <= itemrange.get_upper_bound(); iItem++)
          {
 
-            index iStrict = display_to_strict(iItem);
+            ::raw::index iStrict = display_to_strict(iItem);
 
             ::pointer<::userfs::list_item>pitem = fs_list_item(iStrict);
 
@@ -488,7 +488,7 @@ namespace userfs
       list_data * pdata = fs_list();
 
       ::file::item_array itema;
-      index iItemRange, iItem;
+      ::raw::index iItemRange, iItem;
       ::user::range range;
       get_selection(range);
       for (iItemRange = 0;
@@ -505,7 +505,7 @@ namespace userfs
             if (iItem >= pdata->m_pitema->get_count())
                continue;
 
-            index iStrict = display_to_strict(iItem);
+            ::raw::index iStrict = display_to_strict(iItem);
 
             ::pointer<::userfs::list_item>pitem = pdata->item(iStrict);
 
@@ -691,7 +691,7 @@ namespace userfs
    }
 
 
-   ::count list::_001GetItemCount()
+   ::raw::count list::_001GetItemCount()
    {
 
       return fs_list()->m_pitema->get_count();
@@ -724,7 +724,7 @@ namespace userfs
    //}
 
 
-   ::image_list * list::GetActionButtonImageList(index i)
+   ::image_list * list::GetActionButtonImageList(::raw::index i)
    {
 
       if (i == 0)
@@ -815,7 +815,7 @@ namespace userfs
    }
 
 
-   //bool list::query_drop(index iDisplayDrop, index iDisplayDrag)
+   //bool list::query_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag)
    //{
 
    //   list_data * pdata = fs_list();
@@ -866,7 +866,7 @@ namespace userfs
    //}
 
 
-   //bool list::do_drop(index iDisplayDrop, index iDisplayDrag)
+   //bool list::do_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag)
    //{
 
    //   list_data * pdata = fs_list();
@@ -929,7 +929,7 @@ namespace userfs
    //}
 
 
-   //::file::item * list::fs_list_item(index iIndex)
+   //::file::item * list::fs_list_item(::raw::index iIndex)
    //{
 
    //   return fs_list()->m_itema[iIndex];
@@ -994,7 +994,7 @@ namespace userfs
 
             }
 
-            auto pfsitem = pdata->item((::index)psubitem->m_pitem->m_iItem);
+            auto pfsitem = pdata->item((::raw::index)psubitem->m_pitem->m_iItem);
 
             if (pfsitem->m_iImage >= 0)
             {
@@ -1085,7 +1085,7 @@ namespace userfs
    }
 
 
-   ::file::item * list::fs_list_item(index iIndex)
+   ::file::item * list::fs_list_item(::raw::index iIndex)
    {
 
       return (*fs_list()->m_pitema)[iIndex];

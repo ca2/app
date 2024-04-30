@@ -20,39 +20,39 @@ CLASS_DECL_ACME ::string get_task_object_debug();
 
 
 #define DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE) \
-::pointer<TYPE>& ITEM ## _at(::index i) { return CONTAINER[i]; } \
-const TYPE * ITEM ## _at(::index i) const { return CONTAINER[i]; } \
+::pointer<TYPE>& ITEM ## _at(::raw::index i) { return CONTAINER[i]; } \
+const TYPE * ITEM ## _at(::raw::index i) const { return CONTAINER[i]; } \
 ::pointer<TYPE>* ITEM ## _data() { return CONTAINER.data(); } \
 ::pointer<TYPE>const * ITEM ## _data() const { return CONTAINER.data(); } \
-TYPE * get_ ## ITEM(::index i) const { return CONTAINER.bounds(i) ? CONTAINER[i] : nullptr; } \
-::count ITEM ## _count() const { return CONTAINER.get_count(); } \
+TYPE * get_ ## ITEM(::raw::index i) const { return CONTAINER.bounds(i) ? CONTAINER[i] : nullptr; } \
+::raw::count ITEM ## _count() const { return CONTAINER.get_count(); } \
 bool has_ ## ITEM() const { return CONTAINER.has_element(); } \
 const CONTAINER_TYPE & ITEM ## a() const { return CONTAINER; } \
 CONTAINER_TYPE & ITEM ## a() { return CONTAINER; } \
 bool contains_ ## ITEM(const TYPE * p) const { return CONTAINER.contains(p); } \
 bool is_there_no_ ## ITEM() const { return CONTAINER.is_empty(); } \
 bool has_no_ ## ITEM() const { return is_there_no_ ## ITEM(); } \
-::index find_first_ ## ITEM(const TYPE * p, ::index iStart = 0, ::count nCount = -1) const { return CONTAINER.find_first(p, iStart, nCount); } \
+::raw::index find_first_ ## ITEM(const TYPE * p, ::raw::index iStart = 0, ::raw::count nCount = -1) const { return CONTAINER.find_first(p, iStart, nCount); } \
 ::pointer<TYPE>& first_ ## ITEM() { return CONTAINER.first_pointer(); } \
 ::pointer<TYPE>& last_ ## ITEM() { return CONTAINER.last_pointer(); } \
 TYPE * get_first_ ## ITEM() const { return CONTAINER.get_first_pointer(); } \
 TYPE * get_last_ ## ITEM() const { return CONTAINER.get_last_pointer(); } \
-::index ITEM ## _first_index(::index i = 0) const { return CONTAINER.first_index(i); } \
-::index ITEM ## _last_index(::index i = -1) const { return CONTAINER.last_index(i); } \
+::raw::index ITEM ## _first_index(::raw::index i = 0) const { return CONTAINER.first_index(i); } \
+::raw::index ITEM ## _last_index(::raw::index i = -1) const { return CONTAINER.last_index(i); } \
 CONTAINER_TYPE CONTAINER
 
 #define DECLARE_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE) \
 DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, pointer_array < TYPE >)
 
 #define DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE) \
-::index add_ ## ITEM(TYPE * p) { return CONTAINER.add_item(p); }      \
-::index add_ ## ITEM ## _array(const CONTAINER_TYPE & a) { return CONTAINER.append(a); } \
-::index add_unique_ ## ITEM(TYPE * p) { return CONTAINER.add_unique(p); } \
-::index add_unique_ ## ITEM ## _array(const CONTAINER_TYPE & a) { return CONTAINER.add_unique(a); } \
-::index erase_ ## ITEM(TYPE * p) { return CONTAINER.erase(p); } \
-CONTAINER_TYPE ITEM ## a_section(::index iStart = 0, ::count nCount = -1){return CONTAINER.slice < CONTAINER_TYPE >(iStart, nCount);} \
+::raw::index add_ ## ITEM(TYPE * p) { return CONTAINER.add_item(p); }      \
+::raw::index add_ ## ITEM ## _array(const CONTAINER_TYPE & a) { return CONTAINER.append(a); } \
+::raw::index add_unique_ ## ITEM(TYPE * p) { return CONTAINER.add_unique(p); } \
+::raw::index add_unique_ ## ITEM ## _array(const CONTAINER_TYPE & a) { return CONTAINER.add_unique(a); } \
+::raw::index erase_ ## ITEM(TYPE * p) { return CONTAINER.erase(p); } \
+CONTAINER_TYPE ITEM ## a_section(::raw::index iStart = 0, ::raw::count nCount = -1){return CONTAINER.slice < CONTAINER_TYPE >(iStart, nCount);} \
 template < typename ARRAY > \
-void ITEM ## a_slice(ARRAY & a, ::index iStart = 0, ::count nCount = -1){ CONTAINER.slice(a, iStart, nCount);} \
+void ITEM ## a_slice(ARRAY & a, ::raw::index iStart = 0, ::raw::count nCount = -1){ CONTAINER.slice(a, iStart, nCount);} \
 DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE)
 
 #define HAVE_ARRAY_OF(ITEM, CONTAINER, TYPE) \
@@ -156,7 +156,7 @@ public:
    bool operator ==(const TYPE * p) const { return m_p == p; }
    ::std::strong_ordering operator <=>(const pointer_rear_iterator& p) const { return this->m_p <=> p.m_p; }
 
-   ::count operator - (const pointer_rear_iterator& p) const { return this->m_p - p.m_p; }
+   ::raw::count operator - (const pointer_rear_iterator& p) const { return this->m_p - p.m_p; }
 
 };
 
@@ -198,15 +198,15 @@ public:
    using const_iterator = typename ARRAY_RANGE::const_iterator;
 
 
-   ::count   m_countAllocation;
-   ::count   m_countAddUp;
+   ::raw::count   m_countAllocation;
+   ::raw::count   m_countAddUp;
 
 
    array_base_non_particle();
    array_base_non_particle(std::initializer_list < TYPE > initializer_list);
    array_base_non_particle(const array_base_non_particle & a);
    array_base_non_particle(array_base_non_particle && a) noexcept;
-   array_base_non_particle(const TYPE * p, ::count c);
+   array_base_non_particle(const TYPE * p, ::raw::count c);
    array_base_non_particle(::range < const_iterator > constrange) : array_base_non_particle(constrange.begin(), constrange.end()) {}
    template < primitive_integral INTEGRAL >
    array_base_non_particle(const_iterator begin, INTEGRAL count) : array_base_non_particle(begin, begin + count) {}
@@ -345,7 +345,7 @@ public:
    //      this->m_pelement = this->m_pelementBeg;
    //   }
 
-   //   make_iterator(::index iStart, ::index iEnd, const CONTAINER * parray = nullptr)
+   //   make_iterator(::raw::index iStart, ::raw::index iEnd, const CONTAINER * parray = nullptr)
    //   {
    //      this->m_pelementBeg = (TYPE *)(parray->m_begin + iStart);
    //      this->m_pelementEnd = (TYPE *)(parray->m_begin + (iEnd < 0 ? parray->size() + iEnd + 1 : iEnd));
@@ -407,7 +407,7 @@ public:
    //   }
 
 
-   //   make_iterator operator + (::count c) const
+   //   make_iterator operator + (::raw::count c) const
    //   {
 
    //      return { this->m_pcontainer, this->m_pelement + c };
@@ -622,7 +622,7 @@ public:
 
    //   }
 
-   //   ::index index() const { return this->m_pelement - this->m_pcontainer->m_begin; }
+   //   ::raw::index index() const { return this->m_pelement - this->m_pcontainer->m_begin; }
 
    //};
 
@@ -636,13 +636,13 @@ public:
 
    inline memsize length_in_bytes() const { return this->size() * sizeof(TYPE); }
 
-   //inline auto values(index iStart = 0, index iEnd = -1) const { return iterator(iStart, iEnd, this); }
+   //inline auto values(::raw::index iStart = 0, ::raw::index iEnd = -1) const { return iterator(iStart, iEnd, this); }
 
 
    //inline iterator begin()
    //{
 
-   //   return iterator(0, (::index)this->size(), this);
+   //   return iterator(0, (::raw::index)this->size(), this);
 
    //}
 
@@ -650,7 +650,7 @@ public:
    //inline iterator end()
    //{
 
-   //   return iterator((::index)this->size(), (::index)this->size(), this);
+   //   return iterator((::raw::index)this->size(), (::raw::index)this->size(), this);
 
    //}
 
@@ -667,104 +667,104 @@ public:
    inline bool contains_address(const TYPE * pmatter) const { return pmatter >= this->m_begin && pmatter < this->end(); }
 
 
-   inline ::count get_size() const;
-   inline ::count get_size_in_bytes() const;
-   inline ::count get_count() const;
-   inline ::count get_byte_count() const;
-   inline ::count get_length() const;
-   //inline ::count size() const;
-   inline ::count count() const;
-   inline ::count length() const;
-   inline ::count byte_count() const { return get_byte_count(); }
+   inline ::raw::count get_size() const;
+   inline ::raw::count get_size_in_bytes() const;
+   inline ::raw::count get_count() const;
+   inline ::raw::count get_byte_count() const;
+   inline ::raw::count get_length() const;
+   //inline ::raw::count size() const;
+   inline ::raw::count count() const;
+   inline ::raw::count length() const;
+   inline ::raw::count byte_count() const { return get_byte_count(); }
 
 
    inline bool has_element() const noexcept { return this->size() > 0; }
-   inline bool is_empty(::count countMinimum = 0) const noexcept { return this->size() <= countMinimum; }
-   inline bool empty(::count countMinimum = 0) const noexcept { return this->size() <= countMinimum; }
-   inline bool has_elements(::count countMinimum = 1) const noexcept { return this->size() >= countMinimum; }
-   inline ::index get_lower_bound(::index i = 0) const;
-   inline ::index get_middle_index(::index i = 0) const;
-   inline ::index get_upper_bound(::index i = -1) const;
-   inline ::index lower_bound(::index i = 0) const { return this->get_lower_bound(i); }
-   inline ::index upper_bound(::index i = -1) const { return this->get_upper_bound(i); }
-   inline ::index first_index(::index i = 0) const { return this->lower_bound(i); }
-   inline ::index middle_index(::index i = 0) const { return this->get_middle_index(i); }
-   inline ::index last_index(::index i = -1) const { return this->get_upper_bound(i); }
-   inline bool bounds(::index i) const;
-   inline bool contains_index(::index i) const { return  bounds(i); }
+   inline bool is_empty(::raw::count countMinimum = 0) const noexcept { return this->size() <= countMinimum; }
+   inline bool empty(::raw::count countMinimum = 0) const noexcept { return this->size() <= countMinimum; }
+   inline bool has_elements(::raw::count countMinimum = 1) const noexcept { return this->size() >= countMinimum; }
+   inline ::raw::index get_lower_bound(::raw::index i = 0) const;
+   inline ::raw::index get_middle_index(::raw::index i = 0) const;
+   inline ::raw::index get_upper_bound(::raw::index i = -1) const;
+   inline ::raw::index lower_bound(::raw::index i = 0) const { return this->get_lower_bound(i); }
+   inline ::raw::index upper_bound(::raw::index i = -1) const { return this->get_upper_bound(i); }
+   inline ::raw::index first_index(::raw::index i = 0) const { return this->lower_bound(i); }
+   inline ::raw::index middle_index(::raw::index i = 0) const { return this->get_middle_index(i); }
+   inline ::raw::index last_index(::raw::index i = -1) const { return this->get_upper_bound(i); }
+   inline bool bounds(::raw::index i) const;
+   inline bool contains_index(::raw::index i) const { return  bounds(i); }
 
 
-   inline this_iterator back(::index i = -1) { return (this_iterator)(this->begin() + this->get_upper_bound(i)); }
-   inline const_iterator back(::index i = -1) const { return (const_iterator)(this->begin() + this->get_upper_bound(i)); }
+   inline this_iterator back(::raw::index i = -1) { return (this_iterator)(this->begin() + this->get_upper_bound(i)); }
+   inline const_iterator back(::raw::index i = -1) const { return (const_iterator)(this->begin() + this->get_upper_bound(i)); }
 
-   void ensure_index_ok(::index nIndex) const { if (nIndex < 0 || nIndex >= this->size()) throw_exception(error_index_out_of_bounds); }
+   void ensure_index_ok(::raw::index nIndex) const { if (nIndex < 0 || nIndex >= this->size()) throw_exception(error_index_out_of_bounds); }
 
-   inline const TYPE * ptr_at(::index nIndex) const { return this->m_begin + nIndex; }
-   inline TYPE * ptr_at(::index nIndex) { return this->m_begin + nIndex; }
+   inline const TYPE * ptr_at(::raw::index nIndex) const { return this->m_begin + nIndex; }
+   inline TYPE * ptr_at(::raw::index nIndex) { return this->m_begin + nIndex; }
 
-   inline const TYPE & element_at(::index nIndex) const;
-   inline TYPE & element_at(::index nIndex);
+   inline const TYPE & element_at(::raw::index nIndex) const;
+   inline TYPE & element_at(::raw::index nIndex);
 
-   inline const TYPE& at(::index nIndex) const { ensure_index_ok(nIndex); return element_at(nIndex); }
-   inline TYPE& at(::index nIndex) { ensure_index_ok(nIndex); return element_at(nIndex); }
+   inline const TYPE& at(::raw::index nIndex) const { ensure_index_ok(nIndex); return element_at(nIndex); }
+   inline TYPE& at(::raw::index nIndex) { ensure_index_ok(nIndex); return element_at(nIndex); }
 
-   inline TYPE & first(::index n = 0);
-   inline const TYPE & first(::index n = 0) const;
+   inline TYPE & first(::raw::index n = 0);
+   inline const TYPE & first(::raw::index n = 0) const;
 
-   inline TYPE & last(::index n = -1);
-   inline const TYPE & last(::index n = -1) const;
+   inline TYPE & last(::raw::index n = -1);
+   inline const TYPE & last(::raw::index n = -1) const;
 
-   inline TYPE & middle(::index n = 0);
-   inline const TYPE & middle(::index n = 0) const;
+   inline TYPE & middle(::raw::index n = 0);
+   inline const TYPE & middle(::raw::index n = 0) const;
 
-   inline void set_at_grow(::index nIndex, ARG_TYPE newElement);
-   inline TYPE & element_at_grow(::index nIndex);
+   inline void set_at_grow(::raw::index nIndex, ARG_TYPE newElement);
+   inline TYPE & element_at_grow(::raw::index nIndex);
 
-   inline void set_each(ARG_TYPE element, ::index iStart = 0, ::count c = -1);
+   inline void set_each(ARG_TYPE element, ::raw::index iStart = 0, ::raw::count c = -1);
 
    template < ::std::size_t N >
    TYPE & get() { return element_at(N); }
 
 
-   void reserve(::count newAllocationSize);
+   void reserve(::raw::count newAllocationSize);
 
    
-   ::count set_size(::count nNewSize);
+   ::raw::count set_size(::raw::count nNewSize);
    
 
-   //::count set_size(::count nNewSize, ::count nGrowBy = -1); // does not call default constructors on new items/elements
+   //::raw::count set_size(::raw::count nNewSize, ::raw::count nGrowBy = -1); // does not call default constructors on new items/elements
    
    /// if bRaw is true does not call default constructors on new elements
    template < pointer_not_castable_to < TYPE * > P >
-   ::count allocate(::count nNewSize, bool bShrink, bool bRaw, P & p)
+   ::raw::count allocate(::raw::count nNewSize, bool bShrink, bool bRaw, P & p)
    {
       TYPE t(p);
       return _allocate(nNewSize, bShrink, bRaw, &t);
    }
    template < pointer_castable_to < TYPE * > T >
-   ::count allocate(::count nNewSize, bool bShrink, bool bRaw, T & t)
+   ::raw::count allocate(::raw::count nNewSize, bool bShrink, bool bRaw, T & t)
    {
       return _allocate(nNewSize, bShrink, bRaw, &t);
    }
-   ::count allocate(::count nNewSize, bool bShrink, bool bRaw)
+   ::raw::count allocate(::raw::count nNewSize, bool bShrink, bool bRaw)
    {
       return _allocate(nNewSize, bShrink, bRaw, nullptr);
    }
-   ::count _allocate(::count nNewSize, bool bShrink, bool bRaw, const TYPE * type);
+   ::raw::count _allocate(::raw::count nNewSize, bool bShrink, bool bRaw, const TYPE * type);
    
-   //::count allocate(::count nNewSize, bool bShrink, const TYPE * ptype = nullptr);
+   //::raw::count allocate(::raw::count nNewSize, bool bShrink, const TYPE * ptype = nullptr);
    
-   ::count allocate_in_bytes(::count nNewSize, bool bShrink, bool bRaw);
+   ::raw::count allocate_in_bytes(::raw::count nNewSize, bool bShrink, bool bRaw);
    
-//   ::count set_raw_size(::count nNewSize, ::count nGrowBy = -1); // does not call constructors and destructors on items/elements
+//   ::raw::count set_raw_size(::raw::count nNewSize, ::raw::count nGrowBy = -1); // does not call constructors and destructors on items/elements
    
-   ::count resize(::count nNewSize) { return set_size(nNewSize); }
-   ::count resize(::count nNewSize, ARG_TYPE t);
+   ::raw::count resize(::raw::count nNewSize) { return set_size(nNewSize); }
+   ::raw::count resize(::raw::count nNewSize, ARG_TYPE t);
 
    void free_extra();
    virtual void destroy();
 
-   inline void __swap(::index index1, ::index index2);
+   inline void __swap(::raw::index index1, ::raw::index index2);
    inline void __swap(iterator index1, iterator index2);
    inline void __swap(const_iterator index1, const_iterator index2);
 
@@ -793,7 +793,7 @@ public:
    }
 
 
-   void zero(::index iStart = 0, ::count c = -1);
+   void zero(::raw::index iStart = 0, ::raw::count c = -1);
 
    //template < primitive_array ARRAY >
    //void _001RemoveIndexes(ARRAY & ia);
@@ -805,19 +805,19 @@ public:
    void erase_descending_indexes(const ARRAY & ia);
 
 
-   inline bool prepare_first_last(::index & first, ::index & last) const;
-   inline bool prepare_first_in_count_last_out(::index & first, ::count & inCountLastOut) const;
+   inline bool prepare_first_last(::raw::index & first, ::raw::index & last) const;
+   inline bool prepare_first_in_count_last_out(::raw::index & first, ::raw::count & inCountLastOut) const;
 
 
    inline void erase_last();
-   inline ::count erase_all();
+   inline ::raw::count erase_all();
    inline void clear();
 
 
    void on_construct_element(TYPE * p) { TYPED::construct(p); }
-   void on_construct_element(TYPE * p, ::count c) { TYPED::construct_count(p, c); }
+   void on_construct_element(TYPE * p, ::raw::count c) { TYPED::construct_count(p, c); }
    void on_destruct_element(TYPE * p) { TYPED::destruct(p); }
-   void on_copy_element(::index i, const TYPE * p) { TYPED::copy(&this->m_begin[i], p); }
+   void on_copy_element(::raw::index i, const TYPE * p) { TYPED::copy(&this->m_begin[i], p); }
 
 
    // FISC - Flaw in some compiler
@@ -825,37 +825,37 @@ public:
    //inline operator const TYPE *() const { return this->m_begin; }
 
 
-   inline const TYPE & operator[](::index i) const { return this->m_begin[i]; }
-   inline TYPE & operator[](::index i) { return this->m_begin[i]; }
+   inline const TYPE & operator[](::raw::index i) const { return this->m_begin[i]; }
+   inline TYPE & operator[](::raw::index i) { return this->m_begin[i]; }
 
    
-   TYPE * raw_allocate_at(::index i, ::count c);
+   TYPE * raw_allocate_at(::raw::index i, ::raw::count c);
    
 
-   TYPE & insert_at(::index nIndex, const TYPE & newElement, ::count nCount = 1);
-   TYPE * insert_at(::index nStartIndex, const TYPE * p, ::count nCount = 1);
+   TYPE & insert_at(::raw::index nIndex, const TYPE & newElement, ::raw::count nCount = 1);
+   TYPE * insert_at(::raw::index nStartIndex, const TYPE * p, ::raw::count nCount = 1);
 
-   TYPE * insert_array_at(::index nStartIndex, const array_base_non_particle * pNewArray);
-
-
-   ::index erase_at(::index nIndex, ::count nCount = 1);
-
-   //::index allocate_at(::index nIndex, ::count nCount = 1);
+   TYPE * insert_array_at(::raw::index nStartIndex, const array_base_non_particle * pNewArray);
 
 
-   TYPE pick_at(::index nIndex);
-   TYPE pick_first(::index nIndex = 0) { return ::transfer(pick_at(nIndex)); }
-   TYPE pick_last(::index nIndex = -1) { return ::transfer(pick_at(this->size() + nIndex)); }
-   array_base_non_particle pick_at(::index nIndex, ::count nCount);
+   ::raw::index erase_at(::raw::index nIndex, ::raw::count nCount = 1);
+
+   //::raw::index allocate_at(::raw::index nIndex, ::raw::count nCount = 1);
 
 
-   ::index erase_item(TYPE * p);
+   TYPE pick_at(::raw::index nIndex);
+   TYPE pick_first(::raw::index nIndex = 0) { return ::transfer(pick_at(nIndex)); }
+   TYPE pick_last(::raw::index nIndex = -1) { return ::transfer(pick_at(this->size() + nIndex)); }
+   array_base_non_particle pick_at(::raw::index nIndex, ::raw::count nCount);
 
-   ::index index_of(const TYPE * p) const { auto i = p - this->m_begin; return i >= 0 && i < this->size() ? i : -1; }
+
+   ::raw::index erase_item(TYPE * p);
+
+   ::raw::index index_of(const TYPE * p) const { auto i = p - this->m_begin; return i >= 0 && i < this->size() ? i : -1; }
 
 
    bool erase(const TYPE * p) { auto i = index_of(p); if (not_found(i)) return false; return found(erase_at(i)); }
-   ::count erase(const TYPE * begin, const TYPE * end);
+   ::raw::count erase(const TYPE * begin, const TYPE * end);
 
    iterator erase(iterator p) 
    { 
@@ -870,30 +870,30 @@ public:
    inline void erase(const ITERATOR2 & begin, const ITERATOR2 & last);
 
 
-   inline TYPE pop(::index i = -1);
-   inline ::index push(ARG_TYPE newElement);
-   inline void pop_back(::index i = -1);
+   inline TYPE pop(::raw::index i = -1);
+   inline ::raw::index push(ARG_TYPE newElement);
+   inline void pop_back(::raw::index i = -1);
    inline TYPE & add_item(ARG_TYPE newElement);
    inline TYPE & add(ARG_TYPE newElement) { return this->add_item(newElement); }
    inline TYPE& add_new();
 
 
-   inline TYPE pop_first(::index i = 0);
+   inline TYPE pop_first(::raw::index i = 0);
 
-   inline TYPE takeAt(::index i);
-   inline TYPE takeFirst(::index i = 0);
-   inline TYPE takeLast(::index i = -1);
+   inline TYPE takeAt(::raw::index i);
+   inline TYPE takeFirst(::raw::index i = 0);
+   inline TYPE takeLast(::raw::index i = -1);
 
 
    template < typename CONTAINER >
-   ::count append_container(const CONTAINER & container);
-   ::count append_initializer_list(const ::std::initializer_list < TYPE > & list);
-   virtual ::count append(const TYPE * p, ::count c);
-   virtual ::count append(const array_base_non_particle & src); // return old size_i32
+   ::raw::count append_container(const CONTAINER & container);
+   ::raw::count append_initializer_list(const ::std::initializer_list < TYPE > & list);
+   virtual ::raw::count append(const TYPE * p, ::raw::count c);
+   virtual ::raw::count append(const array_base_non_particle & src); // return old size_i32
    template < typename CONTAINER >
    void copy_container(const CONTAINER & container);
    void copy_initializer_list(const ::std::initializer_list < TYPE > & list);
-   virtual void copy(const TYPE* p, ::count c);
+   virtual void copy(const TYPE* p, ::raw::count c);
    virtual void copy(const array_base_non_particle & src);
 
 
@@ -901,10 +901,10 @@ public:
 
 
    //template < primitive_container CONTAINER >
-   //::count append(const CONTAINER & container)
+   //::raw::count append(const CONTAINER & container)
    //{
 
-   //   ::count c = 0;
+   //   ::raw::count c = 0;
 
    //   for (auto& item : container)
    //   {
@@ -924,14 +924,14 @@ public:
    virtual void on_after_read();
 
    template < typename PRED >
-   ::count predicate_each(PRED pred, ::index iStart = 0, ::count c = -1)
+   ::raw::count predicate_each(PRED pred, ::raw::index iStart = 0, ::raw::count c = -1)
    {
 
-      ::index iEnd = c < 0 ? get_count() + c : iStart + c - 1;
+      ::raw::index iEnd = c < 0 ? get_count() + c : iStart + c - 1;
 
       int cProcessed = 0;
 
-      for (::index i = iStart; i <= iEnd; i++)
+      for (::raw::index i = iStart; i <= iEnd; i++)
       {
 
          pred(this->m_begin[i]);
@@ -945,7 +945,7 @@ public:
    }
 
    template < typename PRED >
-   ::count predicate_each(PRED pred, ::index iStart = 0, ::count c = -1) const
+   ::raw::count predicate_each(PRED pred, ::raw::index iStart = 0, ::raw::count c = -1) const
    {
 
       return ((array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >*)this)->predicate_each(pred, iStart, c);
@@ -953,14 +953,14 @@ public:
    }
 
 
-   inline bool is_index_ok(::index iIndex) const { return iIndex >= 0 && iIndex < get_count(); }
+   inline bool is_index_ok(::raw::index iIndex) const { return iIndex >= 0 && iIndex < get_count(); }
 
    
-   inline bool is_last_index(::index iIndex) const { return iIndex >= get_upper_bound(); }
+   inline bool is_last_index(::raw::index iIndex) const { return iIndex >= get_upper_bound(); }
 
 
    template < typename PRED >
-   bool predicate_contains(PRED pred, ::index iStart = 0, ::index iEnd = -1) const
+   bool predicate_contains(PRED pred, ::raw::index iStart = 0, ::raw::index iEnd = -1) const
    {
 
       return this->predicate_find_first(pred, iStart, iEnd) >= 0;
@@ -971,7 +971,7 @@ public:
    TYPE_IS_PTR get_existing_defer_add(const OTHER_IS_PTR & p)
    {
 
-      for (::index i = 0; i < this->get_count(); i++)
+      for (::raw::index i = 0; i < this->get_count(); i++)
       {
 
          auto & pelementHere = this->element_at(i);
@@ -1002,7 +1002,7 @@ public:
    void defer_use_existing(OTHER_IS_PTR & p)
    {
 
-      for (::index i = 0; i < this->get_count(); i++)
+      for (::raw::index i = 0; i < this->get_count(); i++)
       {
 
          auto & pelementHere = this->element_at(i);
@@ -1033,7 +1033,7 @@ public:
    TYPE_IS_PTR get_existing(const OTHER_IS_PTR & p) const
    {
 
-      for (::index i = 0; i < this->get_count(); i++)
+      for (::raw::index i = 0; i < this->get_count(); i++)
       {
 
          auto & pelementHere = this->element_at(i);
@@ -1072,7 +1072,7 @@ public:
 
 
    template < typename PRED >
-   ::index predicate_find_first(PRED pred, ::index iStart = 0, ::index iEnd = -1) const
+   ::raw::index predicate_find_first(PRED pred, ::raw::index iStart = 0, ::raw::index iEnd = -1) const
    {
 
       if (iEnd < 0)
@@ -1089,7 +1089,7 @@ public:
 
       }
 
-      for (::index i = iStart; i <= iEnd; i++)
+      for (::raw::index i = iStart; i <= iEnd; i++)
       {
 
          if (pred(this->m_begin[i]))
@@ -1107,7 +1107,7 @@ public:
 
 
    template < typename PRED >
-   ::index predicate_find_last(PRED pred, ::index iLast = -1)
+   ::raw::index predicate_find_last(PRED pred, ::raw::index iLast = -1)
    {
 
       if (iLast < 0)
@@ -1117,7 +1117,7 @@ public:
 
       }
 
-      for (::index i = iLast; i >= 0; i--)
+      for (::raw::index i = iLast; i >= 0; i--)
       {
 
          if (pred(this->m_begin[i]))
@@ -1156,10 +1156,10 @@ public:
 
 
    template < typename PRED >
-   ::count predicate_get_count(PRED pred)
+   ::raw::count predicate_get_count(PRED pred)
    {
 
-      ::count c = 0;
+      ::raw::count c = 0;
 
       for (int i = 0; i < get_count(); i++)
       {
@@ -1179,10 +1179,10 @@ public:
 
 
    template < typename PRED >
-   ::count predicate_erase(PRED pred)
+   ::raw::count predicate_erase(PRED pred)
    {
 
-      ::count cTotal = 0;
+      ::raw::count cTotal = 0;
 
       for (int i = 0; i < get_count();)
       {
@@ -1237,7 +1237,7 @@ public:
    void each(F f)
    {
 
-      for (::index i = 0; i < get_count(); i++)
+      for (::raw::index i = 0; i < get_count(); i++)
       {
 
          f(this->m_begin[i]);
@@ -1252,7 +1252,7 @@ public:
 
 
    template < typename T, typename PRED >
-   ::index predicate_binary_search(const T & t, PRED pred) const;
+   ::raw::index predicate_binary_search(const T & t, PRED pred) const;
 
 
    inline bool valid_iter(iterator first, iterator last)
@@ -1271,7 +1271,7 @@ public:
    }
 
 
-   inline TYPE& operator%(::index nIndex)
+   inline TYPE& operator%(::raw::index nIndex)
    {
 
       return this->element_at(nIndex% this->get_size());
@@ -1279,7 +1279,7 @@ public:
    }
 
 
-   inline const TYPE& operator%(::index nIndex) const
+   inline const TYPE& operator%(::raw::index nIndex) const
    {
 
       return this->element_at(nIndex% this->get_size());
@@ -1287,7 +1287,7 @@ public:
    }
 
 
-   bool is_version(index i)
+   bool is_version(::raw::index i)
    {
 
       return true;
@@ -1329,7 +1329,7 @@ public:
 //   array_base(std::initializer_list < TYPE > initializer_list) :BASE_ARRAY(initializer_list) {}
 //   array_base(const BASE_ARRAY & a) :BASE_ARRAY(a) {}
 //   array_base(BASE_ARRAY && a) noexcept :BASE_ARRAY(a) {}
-//   array_base(const TYPE * p, ::count c) :BASE_ARRAY(p, c) {}
+//   array_base(const TYPE * p, ::raw::count c) :BASE_ARRAY(p, c) {}
 //   array_base(::range < typename BASE_ARRAY::const_iterator > constrange) :
 //      BASE_ARRAY(constrange.begin(), constrange.end()) {}
 //   template < primitive_integral INTEGRAL >
@@ -1419,7 +1419,7 @@ array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::arr
 
    set_size(array.get_size());
 
-   for (::index i = 0; i < array.get_size(); i++)
+   for (::raw::index i = 0; i < array.get_size(); i++)
    {
 
       element_at(i) = array[i];
@@ -1440,7 +1440,7 @@ array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::~ar
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::resize(::count nNewSize, ARG_TYPE t)
+::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::resize(::raw::count nNewSize, ARG_TYPE t)
 {
 
    return allocate(nNewSize, false, false, t);
@@ -1449,7 +1449,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::allocate_in_bytes(::count nNewSize, bool bShrink, bool bRaw)
+::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::allocate_in_bytes(::raw::count nNewSize, bool bShrink, bool bRaw)
 {
 
    return allocate((nNewSize + sizeof(TYPE)) / sizeof(TYPE), bShrink, bRaw);
@@ -1458,7 +1458,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-::index array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_at(::index first, ::count in_count_out_last)
+::raw::index array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_at(::raw::index first, ::raw::count in_count_out_last)
 {
 
    if (!prepare_first_in_count_last_out(first, in_count_out_last))
@@ -1472,7 +1472,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
    
    auto nCount = in_count_out_last - first + 1;
 
-   ::count nMoveCount = this->size() - in_count_out_last;
+   ::raw::count nMoveCount = this->size() - in_count_out_last;
 
    TYPED::destruct_count(this->m_begin + first, nCount);
 
@@ -1491,7 +1491,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-::index array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_item(TYPE * p)
+::raw::index array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_item(TYPE * p)
 {
 
    return erase_at(p - this->m_begin);
@@ -1618,7 +1618,7 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-TYPE * array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::raw_allocate_at(::index i, ::count c)
+TYPE * array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::raw_allocate_at(::raw::index i, ::raw::count c)
 {
    
    auto newSize = this->size() + c;
@@ -1635,7 +1635,7 @@ TYPE * array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(::index i, const TYPE & element, ::count c)
+TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(::raw::index i, const TYPE & element, ::raw::count c)
 {
 
    auto p = this->raw_allocate_at(i, c);
@@ -1648,7 +1648,7 @@ TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-TYPE * array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(::index i, const TYPE * pelements, ::count c)
+TYPE * array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(::raw::index i, const TYPE * pelements, ::raw::count c)
 {
 
    auto p = this->raw_allocate_at(i, c);
@@ -1661,7 +1661,7 @@ TYPE * array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-TYPE * array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_array_at(::index i, const array_base_non_particle * p)
+TYPE * array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_array_at(::raw::index i, const array_base_non_particle * p)
 {
 
    return this->insert_at(i, p->m_begin, p->size());
@@ -1670,7 +1670,7 @@ TYPE * array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer
 
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//::index array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::allocate_at(::index nIndex, ::count nCount)
+//::raw::index array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::allocate_at(::raw::index nIndex, ::raw::count nCount)
 //{
 //
 //   if(nCount <= 0)
@@ -1698,10 +1698,10 @@ TYPE * array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer
 //   {
 //
 //      // inserting in the middle of the array
-//      ::count nOldSize = (::count) this->size();
+//      ::raw::count nOldSize = (::raw::count) this->size();
 //
 //      // grow it to new size
-//      set_size((::count) this->size() + nCount, -1);
+//      set_size((::raw::count) this->size() + nCount, -1);
 //      
 //      // shift old data up to fill gap
 //      ::safe_memory_transfer(this->m_begin + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), this->m_begin + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
@@ -1721,10 +1721,10 @@ TYPE * array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 template < typename CONTAINER >
-::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append_container(const CONTAINER & container)
+::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append_container(const CONTAINER & container)
 {
 
-   ::count nOldSize = this->size();
+   ::raw::count nOldSize = this->size();
 
    for (auto& item : container)
    {
@@ -1739,7 +1739,7 @@ template < typename CONTAINER >
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
-::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append_initializer_list(const ::std::initializer_list < TYPE >& list)
+::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append_initializer_list(const ::std::initializer_list < TYPE >& list)
 {
 
    return append_container(list);
@@ -1748,12 +1748,12 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
-::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append(const TYPE * p, ::count c)
+::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append(const TYPE * p, ::raw::count c)
 {
 
-   ::count nOldSize = this->size();
+   ::raw::count nOldSize = this->size();
 
-   ::count nSrcSize = c;
+   ::raw::count nSrcSize = c;
 
    allocate(nOldSize + nSrcSize, false, true);
 
@@ -1765,7 +1765,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append(const array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & src)
+::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::append(const array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & src)
 {
 
    return append(src.data(), src.size());
@@ -1797,7 +1797,7 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy(const TYPE * p, ::count c)
+void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::copy(const TYPE * p, ::raw::count c)
 {
 
    if(this->data() == p)
@@ -1861,7 +1861,7 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 
 
    // erase indexes
-   for(::index i = ia.get_upper_bound(); i >= 0; i--)
+   for(::raw::index i = ia.get_upper_bound(); i >= 0; i--)
    {
 
       erase_at(ia[i]);
@@ -1876,7 +1876,7 @@ template < primitive_array ARRAY >
 void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::erase_descending_indexes(const ARRAY & ia)
 {
 
-   for(::index i = 0; i < ia.get_count(); i++)
+   for(::raw::index i = 0; i < ia.get_count(); i++)
    {
 
       erase_at(ia[i]);
@@ -1888,13 +1888,13 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//TYPE * array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(::index nIndex,array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > * pNewArray)
+//TYPE * array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::insert_at(::raw::index nIndex,array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > * pNewArray)
 //{
 //
 //   ASSERT(pNewArray != nullptr);
 //   ASSERT(nIndex >= 0);    // will expand to meet need
 //
-//   ::count nCount = pNewArray->get_size();
+//   ::raw::count nCount = pNewArray->get_size();
 //
 //   if (nCount <= 0)
 //      return this->end();
@@ -1913,9 +1913,9 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 //   {
 //
 //      // inserting in the middle of the array
-//      ::count nOldSize = (::count) this->size();
+//      ::raw::count nOldSize = (::raw::count) this->size();
 //
-//      set_size((::count) (this->size() + nCount), -1);  // grow it to new size_i32
+//      set_size((::raw::count) (this->size() + nCount), -1);  // grow it to new size_i32
 //      // destroy intial data before copying over it
 //      // shift old data up to fill gap
 //      ::safe_memory_transfer(this->m_begin + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), this->m_begin + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
@@ -1929,9 +1929,9 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 //   // insert new value in the gap
 //   ASSERT(nIndex + nCount <= this->size());
 //
-//   ::index nIndexParam = nIndex;
+//   ::raw::index nIndexParam = nIndex;
 //
-//   ::index i = 0;
+//   ::raw::index i = 0;
 //
 //   while (nCount--)
 //   {
@@ -1949,12 +1949,12 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pick_at(::index nIndex)
+TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pick_at(::raw::index nIndex)
 {
 
-   ::count nCount = 1;
+   ::raw::count nCount = 1;
 
-   ::index nUpperBound = nIndex + nCount;
+   ::raw::index nUpperBound = nIndex + nCount;
 
    if (nIndex < 0 || nCount < 0 || (nUpperBound > this->size()) || (nUpperBound < nIndex) || (nUpperBound < nCount))
    {
@@ -1963,7 +1963,7 @@ TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 
    }
 
-   ::count nMoveCount = this->size() - (nUpperBound);
+   ::raw::count nMoveCount = this->size() - (nUpperBound);
 
    auto t = ::transfer(this->m_begin[nIndex]);
 
@@ -1984,12 +1984,12 @@ TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pick_at(::index nIndex, ::count nCount)
+array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pick_at(::raw::index nIndex, ::raw::count nCount)
 {
 
    //ASSERT_VALID(this);
 
-   ::index nUpperBound = nIndex + nCount;
+   ::raw::index nUpperBound = nIndex + nCount;
 
    if (nIndex < 0 || nCount < 0 || (nUpperBound > this->size()) || (nUpperBound < nIndex) || (nUpperBound < nCount))
    {
@@ -1998,7 +1998,7 @@ array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > arra
 
    }
 
-   ::count nMoveCount = this->size() - (nUpperBound);
+   ::raw::count nMoveCount = this->size() - (nUpperBound);
 
    array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > a(this->m_begin + nIndex, (size_t)nMoveCount);
 
@@ -2019,10 +2019,10 @@ array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > arra
 
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::set_raw_size(::count nNewSize,::count nGrowBy)
+//::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::set_raw_size(::raw::count nNewSize,::raw::count nGrowBy)
 //{
 //
-//   ::count countOld = get_count();
+//   ::raw::count countOld = get_count();
 //
 //   ASSERT(nNewSize >= 0);
 //
@@ -2057,7 +2057,7 @@ array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > arra
 //         throw_exception(error_no_memory);
 //      ASSERT(nNewSize <= SIZE_T_MAX / sizeof(TYPE));    // no overflow
 //#endif
-//      ::count nAllocSize = (::count) maximum(nNewSize, m_countAddUp);
+//      ::raw::count nAllocSize = (::raw::count) maximum(nNewSize, m_countAddUp);
 //#if defined(__MCRTDBG) || MEMDLEAK
 //      if (::get_task() != nullptr)
 //      {
@@ -2117,17 +2117,17 @@ array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > arra
 //   else
 //   {
 //      // otherwise, grow aaa_base_array
-//      nGrowBy = (::count) m_countAddUp;
+//      nGrowBy = (::raw::count) m_countAddUp;
 //      if(nGrowBy == 0)
 //      {
 //         // heuristically determine growth when nGrowBy == 0
 //         //  (this avoids heap fragmentation in many situations)
-//         nGrowBy = (::count) this->size();
+//         nGrowBy = (::raw::count) this->size();
 //         nGrowBy = (nGrowBy < 4) ? 4 : ((nGrowBy > 1024) ? 1024 : nGrowBy);
 //      }
-//      ::count nNewMax;
+//      ::raw::count nNewMax;
 //      if(nNewSize < m_countAllocation + nGrowBy)
-//         nNewMax = (::count) (m_countAllocation + nGrowBy);  // granularity
+//         nNewMax = (::raw::count) (m_countAllocation + nGrowBy);  // granularity
 //      else
 //         nNewMax = nNewSize;  // no slush
 //
@@ -2210,7 +2210,7 @@ array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > arra
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::reserve(::count newAllocationSize)
+void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::reserve(::raw::count newAllocationSize)
 {
 
    if(newAllocationSize <= m_countAllocation)
@@ -2389,7 +2389,7 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::_allocate(::count nNewSize, bool bShrink, bool bRaw, const TYPE * ptype)
+::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::_allocate(::raw::count nNewSize, bool bShrink, bool bRaw, const TYPE * ptype)
 {
 
    ASSERT(nNewSize >= 0);
@@ -2401,7 +2401,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
    }
 
-   ::count countOld = get_count();
+   ::raw::count countOld = get_count();
 
    if(nNewSize == countOld)
    {
@@ -2569,7 +2569,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
       }
 
-      ::count countNewAllocation;
+      ::raw::count countNewAllocation;
 
       if(nNewSize < m_countAllocation + countAddUp)
       {
@@ -2691,10 +2691,10 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::allocate(::count nNewSize, bShrink, const TYPE * ptype)
+//::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::allocate(::raw::count nNewSize, bShrink, const TYPE * ptype)
 //{
 //
-//   ::count countOld = get_count();
+//   ::raw::count countOld = get_count();
 //   
 //   auto countOldRawAllocate = raw_allocate_at(nNewSize, bShrink);
 //
@@ -2853,7 +2853,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 //
 //      }
 //
-//      ::count nNewMax;
+//      ::raw::count nNewMax;
 //
 //      if(nNewSize < m_countAllocation+ nGrowBy)
 //      {
@@ -2990,7 +2990,7 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set_at_grow(::index nIndex, ARG_TYPE newElement)
+inline void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set_at_grow(::raw::index nIndex, ARG_TYPE newElement)
 {
 
    ASSERT(nIndex >= 0);
@@ -3008,7 +3008,7 @@ inline void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCont
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::element_at_grow(::index nIndex)
+inline TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::element_at_grow(::raw::index nIndex)
 {
 
    ASSERT(nIndex >= 0);
@@ -3026,12 +3026,12 @@ inline TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCo
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set_each(ARG_TYPE element, ::index first, ::count in_count_out_last)
+inline void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set_each(ARG_TYPE element, ::raw::index first, ::raw::count in_count_out_last)
 {
 
    prepare_first_in_count_last_out(first, in_count_out_last);
 
-   for(::index i = first; i <= in_count_out_last; i++)
+   for(::raw::index i = first; i <= in_count_out_last; i++)
    {
 
       this->m_begin[i] = element;
@@ -3066,7 +3066,7 @@ inline void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCont
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-bool array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::prepare_first_last(::index & first, ::index & last) const
+bool array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::prepare_first_last(::raw::index & first, ::raw::index & last) const
 {
 
    if (first < 0)
@@ -3089,7 +3089,7 @@ bool array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-bool array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::prepare_first_in_count_last_out(::index & first, ::count & in_count_out_last) const
+bool array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::prepare_first_in_count_last_out(::raw::index & first, ::raw::count & in_count_out_last) const
 {
 
    if (first < 0)
@@ -3132,111 +3132,111 @@ bool array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 // array is an array that call default constructors, copy constructs and destructors in elements
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline ::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_size() const
+inline ::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_size() const
 {
-   return (::count) this->size();
+   return (::raw::count) this->size();
 }
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline ::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_count() const
+inline ::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_count() const
 {
-   return (::count) this->size();
+   return (::raw::count) this->size();
 }
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline ::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_length() const
+inline ::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_length() const
 {
-   return (::count) this->size();
+   return (::raw::count) this->size();
 }
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline ::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_size_in_bytes() const
+inline ::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_size_in_bytes() const
 {
-   return (::count)this->size() * sizeof(TYPE);
+   return (::raw::count)this->size() * sizeof(TYPE);
 }
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline ::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_byte_count() const
+inline ::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_byte_count() const
 {
-   return (::count) (this->size() * sizeof(TYPE));
+   return (::raw::count) (this->size() * sizeof(TYPE));
 }
 
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline ::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::size() const
+//inline ::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::size() const
 //{
 //   return this->get_size();
 //}
 //
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline ::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::count() const
+inline ::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::count() const
 {
    return this->get_count();
 }
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline ::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::length() const
+inline ::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::length() const
 {
    return this->get_length();
 }
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline bool array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::is_empty(::count countMinimum) const
+//inline bool array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::is_empty(::raw::count countMinimum) const
 //{
 //   return this->size() < countMinimum;
 //}
 
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline bool array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::empty(::count countMinimum) const
+//inline bool array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::empty(::raw::count countMinimum) const
 //{
 //   return is_empty(countMinimum);
 //}
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline bool array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::isEmpty(::count countMinimum) const
+//inline bool array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::isEmpty(::raw::count countMinimum) const
 //{
 //   return empty(countMinimum);
 //}
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline bool array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::has_elements(::count countMinimum) const
+//inline bool array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::has_elements(::raw::count countMinimum) const
 //{
 //   return this->size() >= countMinimum;
 //}
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline ::index array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_lower_bound(::index i) const
+inline ::raw::index array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_lower_bound(::raw::index i) const
 {
    return i < this->size() ? i : -1;
 }
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline ::index array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_middle_index(::index iIndex) const
+inline ::raw::index array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_middle_index(::raw::index iIndex) const
 {
    return this->size() / 2 + iIndex;
 }
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline ::index array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_upper_bound(::index iIndex) const
+inline ::raw::index array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::get_upper_bound(::raw::index iIndex) const
 {
    return this->size() + iIndex;
 }
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline bool array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::bounds(::index i) const
+inline bool array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::bounds(::raw::index i) const
 {
    return i >= 0 && i < this->size();
 }
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline ::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::erase_all()
+inline ::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::erase_all()
 {
    
    return allocate(0, false, false);
@@ -3245,7 +3245,7 @@ inline ::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeC
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline ::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set_size(::index nNewSize)
+inline ::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::set_size(::raw::index nNewSize)
 {
    
    return allocate(nNewSize, false, false);
@@ -3271,7 +3271,7 @@ inline void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCont
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::zero(::index iStart,::count c)
+inline void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::zero(::raw::index iStart,::raw::count c)
 {
    if(c < 0)
    {
@@ -3282,7 +3282,7 @@ inline void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCont
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline const TYPE& array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::element_at(::index nIndex) const
+inline const TYPE& array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::element_at(::raw::index nIndex) const
 {
 
    ASSERT(nIndex >= 0 && nIndex < this->size());
@@ -3293,7 +3293,7 @@ inline const TYPE& array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_et
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline TYPE& array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::element_at(::index nIndex)
+inline TYPE& array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::element_at(::raw::index nIndex)
 {
 
    ASSERT(nIndex >= 0 && nIndex < this->size());
@@ -3303,24 +3303,24 @@ inline TYPE& array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCon
 }
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline const TYPE& array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::first(::index nIndex) const
+//inline const TYPE& array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::first(::raw::index nIndex) const
 //{
 //   return this->element_at(nIndex);
 //}
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline TYPE& array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::first(::index nIndex)
+//inline TYPE& array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::first(::raw::index nIndex)
 //{
 //   return this->element_at(nIndex);
 //}
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline const TYPE& array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::last(::index i) const
+//inline const TYPE& array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::last(::raw::index i) const
 //{
 //   return this->element_at(this->get_upper_bound(i);
 //}
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline TYPE& array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::last(::index i)
+//inline TYPE& array < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::last(::raw::index i)
 //{
 //   return this->element_at(this->get_upper_bound(i);
 //}
@@ -3341,7 +3341,7 @@ inline TYPE& array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCon
 //}
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline const TYPE& array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator[](::index i) const
+//inline const TYPE& array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator[](::raw::index i) const
 //{
 //
 //   return this->m_begin[i];
@@ -3350,7 +3350,7 @@ inline TYPE& array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCon
 
 
 //template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-//inline TYPE& array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator[](::index i)
+//inline TYPE& array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator[](::raw::index i)
 //{
 //
 //   return this->m_begin[i];
@@ -3359,7 +3359,7 @@ inline TYPE& array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCon
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::__swap(::index index1, ::index index2)
+inline void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::__swap(::raw::index index1, ::raw::index index2)
 {
 
    ::__swap(this->m_begin[index1], this->m_begin[index2]);
@@ -3395,7 +3395,7 @@ inline void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCont
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline const TYPE& array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::first(::index nIndex) const
+inline const TYPE& array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::first(::raw::index nIndex) const
 {
 
    return this->element_at(nIndex);
@@ -3404,7 +3404,7 @@ inline const TYPE& array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_et
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::first(::index nIndex)
+inline TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::first(::raw::index nIndex)
 {
 
    return this->element_at(nIndex);
@@ -3413,7 +3413,7 @@ inline TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCo
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline const TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::last(::index i) const
+inline const TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::last(::raw::index i) const
 {
 
    return element_at(this->get_upper_bound(i));
@@ -3422,7 +3422,7 @@ inline const TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_e
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::last(::index i)
+inline TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::last(::raw::index i)
 {
 
    return element_at(this->get_upper_bound(i));
@@ -3431,7 +3431,7 @@ inline TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCo
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline const TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::middle(::index i) const
+inline const TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::middle(::raw::index i) const
 {
 
    return element_at(this->get_middle_index(i));
@@ -3440,7 +3440,7 @@ inline const TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_e
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::middle(::index i)
+inline TYPE & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::middle(::raw::index i)
 {
 
    return element_at(this->get_middle_index(i));
@@ -3452,7 +3452,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 void  array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::set_all(const TYPE & t)
 {
 
-   for (::index i = 0; i < get_count(); i++)
+   for (::raw::index i = 0; i < get_count(); i++)
    {
 
       this->m_begin[i] = t;
@@ -3467,9 +3467,9 @@ void  array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer 
 //inline array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::operator = (const payload_type < VAR > & a)
 //{
 //
-//   ::count c = a.this_var()->array_get_count();
+//   ::raw::count c = a.this_var()->array_get_count();
 //
-//   for(::index i = 0; i < c; i++)
+//   for(::raw::index i = 0; i < c; i++)
 //   {
 //
 //      add((ARG_TYPE)(payload_cast)a.this_var()->at(i));
@@ -3489,10 +3489,10 @@ void  array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer 
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pop(::index n)
+inline TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pop(::raw::index n)
 {
 
-   ::index i = this->get_upper_bound(n);
+   ::raw::index i = this->get_upper_bound(n);
 
    TYPE t = element_at(i);
 
@@ -3503,7 +3503,7 @@ inline TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCont
 }
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pop_first(::index i)
+inline TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pop_first(::raw::index i)
 {
 
    auto t = ::transfer(this->first(i));
@@ -3516,7 +3516,7 @@ inline TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCont
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pop_back(::index n)
+inline void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pop_back(::raw::index n)
 {
 
    erase_at(this->get_upper_bound(n));
@@ -3525,7 +3525,7 @@ inline void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCont
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline ::index array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::push(ARG_TYPE newElement)
+inline ::raw::index array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::push(ARG_TYPE newElement)
 {
 
    return index_of(&insert_at(this->size(), newElement));
@@ -3569,7 +3569,7 @@ TYPE& array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer 
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::takeAt(::index i)
+inline TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::takeAt(::raw::index i)
 {
 
    TYPE t = element_at(i);
@@ -3582,7 +3582,7 @@ inline TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCont
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::takeFirst(::index i)
+inline TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::takeFirst(::raw::index i)
 {
 
    TYPE t = element_at(i);
@@ -3595,10 +3595,10 @@ inline TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCont
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::takeLast(::index n)
+inline TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::takeLast(::raw::index n)
 {
 
-   ::index i = this->get_upper_bound(n);
+   ::raw::index i = this->get_upper_bound(n);
 
    TYPE t = element_at(i);
 
@@ -3610,7 +3610,7 @@ inline TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeCont
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::array_base_non_particle(const TYPE * p, ::count c)
+array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::array_base_non_particle(const TYPE * p, ::raw::count c)
 {
 
    m_countAddUp = 0;
@@ -3620,7 +3620,7 @@ array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::arr
 
    set_size(c);
 
-   for (::index i = 0; i < c; i++)
+   for (::raw::index i = 0; i < c; i++)
    {
 
       element_at(i) = p[i];
@@ -3634,7 +3634,7 @@ array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::arr
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline ::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::erase(const TYPE * begin, const TYPE * last)
+inline ::raw::count array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::erase(const TYPE * begin, const TYPE * last)
 {
 
    auto iStart = index_of(begin);

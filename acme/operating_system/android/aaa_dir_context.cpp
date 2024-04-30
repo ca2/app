@@ -90,7 +90,7 @@ namespace android
       if (listing.m_bRecursive)
       {
 
-         index iStart = listing.get_count();
+         ::raw::index iStart = listing.get_count();
 
          {
 
@@ -143,7 +143,7 @@ namespace android
 
          }
 
-         for (index i = iStart; i < listing.get_size(); i++)
+         for (::raw::index i = iStart; i < listing.get_size(); i++)
          {
 
             listing[i].m_iRelative = listing.m_pathFinal.get_length() + 1;
@@ -255,7 +255,7 @@ namespace android
    //      if(pstraRelative != nullptr)
    //      {
 
-   //         for(index i = iStart; i < pstraRelative->get_size(); i++)
+   //         for(::raw::index i = iStart; i < pstraRelative->get_size(); i++)
    //         {
 
    //            pstraRelative->element_at(i) = get_context()->dir_context().path(pcontext->m_papexcontext->file()->name_(strDir), pstraRelative->element_at(i));
@@ -426,7 +426,7 @@ namespace android
    //      if(pstraRelative != nullptr)
    //      {
 
-   //         for(index i = iStart; i < pstraRelative->get_size(); i++)
+   //         for(::raw::index i = iStart; i < pstraRelative->get_size(); i++)
    //         {
 
    //            pstraRelative->element_at(i) = get_context()->dir_context().path(strPath, pstraRelative->element_at(i));

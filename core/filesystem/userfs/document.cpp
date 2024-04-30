@@ -273,7 +273,7 @@ namespace userfs
 
       //ASSERT(listingUser.get_count() == listingFinal.get_count());
 
-      //for (index i = 0; i < listingUser.get_count(); i++)
+      //for (::raw::index i = 0; i < listingUser.get_count(); i++)
       //{
 
       //   ::file::path & pathFinal = listingFinal[i];

@@ -118,7 +118,7 @@ namespace sockets
       /** Check that a socket really is handled by this socket handler. */
       virtual bool Valid(base_socket *) = 0;
       /** Return number of sockets handled by this handler.  */
-      virtual ::count get_count() = 0;
+      virtual ::raw::count get_count() = 0;
 
       virtual bool socket_get_run() const;
 

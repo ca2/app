@@ -24,7 +24,7 @@ namespace colorertake5
       file_type *enumerateFileTypes(i32 index);
       file_type *chooseFileType(const ::string &fileName, const ::string &firstLine, i32 typeNo = 0);
 
-      ::count getRegionCount();
+      ::raw::count getRegionCount();
       class region *getRegion(i32 atom);
       class region* getRegion(const ::string &name);
 

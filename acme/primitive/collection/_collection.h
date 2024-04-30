@@ -3,14 +3,14 @@
 
 
 template < typename ITERABLE >
-inline ::count __iterable_count(const ITERABLE & iterable);
+inline ::raw::count __iterable_count(const ITERABLE & iterable);
 
 
 //#ifdef UNIVERSAL_WINDOWS
 //
 //
 //template < typename T >
-//inline ::count __iterable_count(::winrt::Windows::Foundation::Collections::IVectorImpact < T > ^ a)
+//inline ::raw::count __iterable_count(::winrt::Windows::Foundation::Collections::IVectorImpact < T > ^ a)
 //{
 //
 //   return a.Size;
@@ -37,11 +37,11 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype);
 
 
 template<class TYPE>
-inline void CopyElements(TYPE * pDest, const TYPE * pSrc, ::count nCount);
+inline void CopyElements(TYPE * pDest, const TYPE * pSrc, ::raw::count nCount);
 
 
 template<class TYPE>
-inline void dump_elements(dump_context & dumpcontext, const TYPE * pElements, ::count nCount);
+inline void dump_elements(dump_context & dumpcontext, const TYPE * pElements, ::raw::count nCount);
 
 
 
@@ -79,7 +79,7 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE * pElements, ::
 //   CONST_ITERATOR end() const { return m_end; }
 //
 //
-//   auto & element_at(::index iIndex)
+//   auto & element_at(::raw::index iIndex)
 //   {
 //
 //      CONST_ITERATOR it = begin();
@@ -120,7 +120,7 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE * pElements, ::
 //   auto begin() const { return m_begin; }
 //   auto end() const { return m_end; }
 //
-//   auto & element_at(::index iIndex)
+//   auto & element_at(::raw::index iIndex)
 //   {
 //
 //      ITERATOR it = begin();

@@ -456,7 +456,7 @@ namespace user
 
          }
 
-         index i = 0;
+         ::raw::index i = 0;
 
          for (; i < m_iaSize.get_size(); i++)
          {
@@ -501,7 +501,7 @@ namespace user
 
          }
 
-         index i = 0;
+         ::raw::index i = 0;
 
          for (; i < m_iaSize.get_size(); i++)
          {

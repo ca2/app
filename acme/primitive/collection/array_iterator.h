@@ -23,7 +23,7 @@ public:
    using ITERATOR_TYPE::ITERATOR_TYPE;
 
 
-   constexpr ::count operator - (const CONST_ITERATOR & iterator) const
+   constexpr ::raw::count operator - (const CONST_ITERATOR & iterator) const
    {
 
       return ::count_as_of_iterator(iterator.get(), ITERATOR_TYPE::get());

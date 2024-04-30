@@ -24,7 +24,7 @@ namespace user
 
       void _001Invalidate(mesh * pmesh) override;
 
-      void _001CacheHint(mesh * pmesh, index iItemStart, index iItemCount) override;
+      void _001CacheHint(mesh * pmesh, ::raw::index iItemStart, ::raw::index iItemCount) override;
 
       void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
 

@@ -22,7 +22,7 @@ namespace user
    }
 
 
-   void tab_drop_target_window::initialize_tab_drop_target_window(::user::tab * ptab, index iTab)
+   void tab_drop_target_window::initialize_tab_drop_target_window(::user::tab * ptab, ::raw::index iTab)
    {
 
       //auto estatus = 

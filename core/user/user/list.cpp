@@ -279,19 +279,19 @@ namespace user
 
          m_pgraphicsextension->get_text_extent(pgraphics, m_strTopText, sizea);
 
-         index x = 0;
+         ::raw::index x = 0;
 
-         index right = (index)rectangleX.right();
+         ::raw::index right = (::raw::index)rectangleX.right();
 
          double y = m_dItemHeight;
 
-         index iStart = 0;
+         ::raw::index iStart = 0;
 
-         index iNewStart = 0;
+         ::raw::index iNewStart = 0;
 
          //index w;
 
-         for (index i = 0; i < sizea.get_size(); i++)
+         for (::raw::index i = 0; i < sizea.get_size(); i++)
          {
 
             if ((sizea[i].cx() - x > right)
@@ -304,16 +304,16 @@ namespace user
 
                if (i == 0)
                {
-                  //w = (::index) (sizea[0].cx() - x);
-                  x = (::index) (sizea[0].cx());
+                  //w = (::raw::index) (sizea[0].cx() - x);
+                  x = (::raw::index) (sizea[0].cx());
                   y += sizea[0].cy();
                   iNewStart = 0;
 
                }
                else
                {
-                  //w = (::index) (sizea[i - 1].cx() - x);
-                  x = (::index) (sizea[i - 1].cx());
+                  //w = (::raw::index) (sizea[i - 1].cx() - x);
+                  x = (::raw::index) (sizea[i - 1].cx());
                   y += sizea[i - 1].cy();
                   iNewStart = i - 1;
                }
@@ -398,31 +398,31 @@ namespace user
 
          }
 
-         _001DrawItems(pgraphics, (::index)iItemFirst, (::index)iItemLast);
+         _001DrawItems(pgraphics, (::raw::index)iItemFirst, (::raw::index)iItemLast);
 
       }
 
       if (m_bGroup && m_bLateralGroup)
       {
 
-         index iGroupFirst = 0;
-         index iGroupFirstTopIndex = 0;
+         ::raw::index iGroupFirst = 0;
+         ::raw::index iGroupFirstTopIndex = 0;
          for (; iGroupFirst < m_nGroupCount; iGroupFirst++)
          {
-            if (iItemFirst >= iGroupFirstTopIndex && iItemFirst < (iGroupFirstTopIndex + _001GetGroupItemCount((::index) iGroupFirst)))
+            if (iItemFirst >= iGroupFirstTopIndex && iItemFirst < (iGroupFirstTopIndex + _001GetGroupItemCount((::raw::index) iGroupFirst)))
                break;
          }
-         index iGroupLast = iGroupFirst;
-         index iGroupLastTopIndex = iGroupFirstTopIndex;
+         ::raw::index iGroupLast = iGroupFirst;
+         ::raw::index iGroupLastTopIndex = iGroupFirstTopIndex;
          for (; iGroupLast < m_nGroupCount; iGroupLast++)
          {
-            if (iItemLast >= iGroupLastTopIndex && iItemLast < (iGroupLastTopIndex + _001GetGroupItemCount((::index) iGroupLast)))
+            if (iItemLast >= iGroupLastTopIndex && iItemLast < (iGroupLastTopIndex + _001GetGroupItemCount((::raw::index) iGroupLast)))
                break;
          }
 
-         //_001DrawGroups(m_pdrawlistitem, (::index) iGroupFirst, (::index) iGroupLast, (::index) iItemFirst, (::index) iItemLast);
-         //_001DrawGroups(pgraphics, (::index)iGroupFirst, (::index)iGroupLast, (::index)iItemFirst, (::index)iItemLast);
-         _001DrawGroups(pgraphics, (::index)iGroupFirst, (::index)iGroupLast);
+         //_001DrawGroups(m_pdrawlistitem, (::raw::index) iGroupFirst, (::raw::index) iGroupLast, (::raw::index) iItemFirst, (::raw::index) iItemLast);
+         //_001DrawGroups(pgraphics, (::raw::index)iGroupFirst, (::raw::index)iGroupLast, (::raw::index)iItemFirst, (::raw::index)iItemLast);
+         _001DrawGroups(pgraphics, (::raw::index)iGroupFirst, (::raw::index)iGroupLast);
 
       }
 
@@ -474,14 +474,14 @@ namespace user
 
 
 
-   //void list::_001DrawGroups(draw_list_item * pdrawitem, index iGroupFirst, index iGroupLast, index iItemFirst, index iItemLast)
-      void list::_001DrawGroups(::draw2d::graphics_pointer & pgraphics, index iGroupFirst, index iGroupLast)
+   //void list::_001DrawGroups(draw_list_item * pdrawitem, ::raw::index iGroupFirst, ::raw::index iGroupLast, ::raw::index iItemFirst, ::raw::index iItemLast)
+      void list::_001DrawGroups(::draw2d::graphics_pointer & pgraphics, ::raw::index iGroupFirst, ::raw::index iGroupLast)
    {
 
       //__UNREFERENCED_PARAMETER(iItemFirst);
       //__UNREFERENCED_PARAMETER(iItemLast);
 
-      index iGroup;
+      ::raw::index iGroup;
 
       ::rectangle_i32 rectangleX;
 
@@ -573,7 +573,7 @@ namespace user
 
       }
 
-      ::count nItem = _001GetGroupMetaItemCount(pdrawgroup->m_iGroup);
+      ::raw::count nItem = _001GetGroupMetaItemCount(pdrawgroup->m_iGroup);
 
       for (pdrawgroup->m_iItem = 0; pdrawgroup->m_iItem < nItem; pdrawgroup->m_iItem++)
       {
@@ -594,7 +594,7 @@ namespace user
    }
 
 
-   void list::_001DrawItems(::draw2d::graphics_pointer & pgraphics, index iItemFirst, index iItemLast)
+   void list::_001DrawItems(::draw2d::graphics_pointer & pgraphics, ::raw::index iItemFirst, ::raw::index iItemLast)
    {
 
       auto rectangleX = this->rectangle();
@@ -605,9 +605,9 @@ namespace user
 
       bool bHoverFont = false;
 
-      index iDisplayItem;
+      ::raw::index iDisplayItem;
 
-      ::index iDisplayIndex = 0;
+      ::raw::index iDisplayIndex = 0;
 
       for (iDisplayItem = iItemFirst; iDisplayItem <= iItemLast; iDisplayItem++, iDisplayIndex++)
       {
@@ -749,7 +749,7 @@ namespace user
       pdrawitem->m_bListItemHover = m_pitemHover &&
          pdrawitem->m_iDisplayItem == m_pitemHover->m_item.m_iItem &&
                                     (m_eview != impact_icon ||
-                                     ((m_piconlayout->m_iaDisplayToStrict.get_b((::index)m_pitemHover->m_item.m_iItem) >= 0 && m_piconlayout->m_iaDisplayToStrict.get_b((::index)m_pitemHover->m_item.m_iItem) < m_nItemCount)));
+                                     ((m_piconlayout->m_iaDisplayToStrict.get_b((::raw::index)m_pitemHover->m_item.m_iItem) >= 0 && m_piconlayout->m_iaDisplayToStrict.get_b((::raw::index)m_pitemHover->m_item.m_iItem) < m_nItemCount)));
 
       if (pdrawitem->m_bListItemHover)
       {
@@ -824,7 +824,7 @@ namespace user
       }
       string str;
 
-      index iColumnCount;
+      ::raw::index iColumnCount;
 
       if (m_eview == impact_icon)
       {
@@ -845,7 +845,7 @@ namespace user
 
       //pdrawitem->m_iSubItemRectColumn = -1;
 
-      for (index iVisible = 0; iVisible < iColumnCount; iVisible++)
+      for (::raw::index iVisible = 0; iVisible < iColumnCount; iVisible++)
       {
 
          auto iSubItem = _001MapOrderToSubItem(iVisible);
@@ -1011,7 +1011,7 @@ namespace user
    }
 
 
-   ::count list::_001GetColumnCount()
+   ::raw::count list::_001GetColumnCount()
    {
 
       return m_pcolumna->get_visible_count();
@@ -1088,7 +1088,7 @@ namespace user
 
       }
 
-      ::count iCount = m_nItemCount;
+      ::raw::count iCount = m_nItemCount;
 
       i32 iMaxWidth = 0;
 
@@ -1097,7 +1097,7 @@ namespace user
       if (m_bSingleColumnMode)
       {
 
-         for (index i = 0; i < iCount; i++)
+         for (::raw::index i = 0; i < iCount; i++)
          {
 
             iWidth = _001CalcSubItemWidth(pgraphics, i, 0);
@@ -1152,7 +1152,7 @@ namespace user
 
       //auto pointOffset = get_context_offset();
 
-      //::count nCount = _001GetItemCount();
+      //::raw::count nCount = _001GetItemCount();
 
       //if (nCount < 0)
       //{
@@ -1163,7 +1163,7 @@ namespace user
 
       //}
 
-      //::count nGroupCount = 1;
+      //::raw::count nGroupCount = 1;
 
       //if (m_bGroup)
       //{
@@ -1207,12 +1207,12 @@ namespace user
 
       //      index iEnd = m_nItemCount - 1;
 
-      //      m_pmeshlayout->m_iaDisplayToStrict.allocate((::count) m_nItemCount);
+      //      m_pmeshlayout->m_iaDisplayToStrict.allocate((::raw::count) m_nItemCount);
 
-      //      for (index iStrict = iStart; iStrict <= iEnd; iStrict++)
+      //      for (::raw::index iStrict = iStart; iStrict <= iEnd; iStrict++)
       //      {
 
-      //         m_pmeshlayout->m_iaDisplayToStrict.set_at((::index) iStrict, (::index) iStrict);
+      //         m_pmeshlayout->m_iaDisplayToStrict.set_at((::raw::index) iStrict, (::raw::index) iStrict);
 
       //      }
 
@@ -1279,12 +1279,12 @@ namespace user
 
       m_iTopDisplayIndex = _001CalcDisplayTopIndex();
 
-      index iLow = 0;
+      ::raw::index iLow = 0;
 
       for (m_iTopGroup = 0; m_iTopGroup < m_nGroupCount; m_iTopGroup++)
       {
 
-         if (m_iTopDisplayIndex >= iLow && m_iTopDisplayIndex < (iLow + _001GetGroupItemCount((::index)m_iTopGroup)))
+         if (m_iTopDisplayIndex >= iLow && m_iTopDisplayIndex < (iLow + _001GetGroupItemCount((::raw::index)m_iTopGroup)))
          {
 
             break;
@@ -1443,7 +1443,7 @@ namespace user
    }
 
 
-   ::pointer<mesh_item>& list::get_item(::index iItem)
+   ::pointer<mesh_item>& list::get_item(::raw::index iItem)
    {
 
       auto & pitem = m_mapItem[iItem];
@@ -1476,7 +1476,7 @@ namespace user
    }
 
 
-   ::pointer<mesh_subitem>& list::get_subitem(mesh_item * pitem, ::index iSubItem)
+   ::pointer<mesh_subitem>& list::get_subitem(mesh_item * pitem, ::raw::index iSubItem)
    {
       
       auto & psubitem = pitem->m_mapSubItem[iSubItem];
@@ -1600,15 +1600,15 @@ namespace user
 
       }
 
-      index iItemHeight = 0;
+      ::raw::index iItemHeight = 0;
 
-      index iItemWidth = 0;
+      ::raw::index iItemWidth = 0;
 
       ::rectangle_i32 rectangle;
 
       string str;
 
-      index iColumn;
+      ::raw::index iColumn;
 
       iptr iColumnWidth;
 
@@ -1624,7 +1624,7 @@ namespace user
 
       ::i32 iPosition = 0;
 
-      for (::index iColumn = 0; iColumn < iVisibleColumnCount; iColumn++)
+      for (::raw::index iColumn = 0; iColumn < iVisibleColumnCount; iColumn++)
       {
 
          auto pcolumn = m_pcolumna->get_visible(iColumn);
@@ -1664,7 +1664,7 @@ namespace user
             if (rectangle.height() + 2 > iItemHeight)
             {
 
-               iItemHeight = (index)rectangle.height() + 2;
+               iItemHeight = (::raw::index)rectangle.height() + 2;
 
             }
 
@@ -1722,7 +1722,7 @@ namespace user
 
          ::user::list_header::item hditem;
 
-         for (index iOrder = 0; iOrder < m_pcolumna->get_visible_count(); iOrder++)
+         for (::raw::index iOrder = 0; iOrder < m_pcolumna->get_visible_count(); iOrder++)
          {
             iColumn = _001MapOrderToColumn(iOrder);
 
@@ -1756,7 +1756,7 @@ namespace user
    }
 
 
-   bool list::_001SetColumnWidth(index iColumn, i32 iWidth)
+   bool list::_001SetColumnWidth(::raw::index iColumn, i32 iWidth)
    {
 
       if (iColumn < 0)
@@ -1788,7 +1788,7 @@ namespace user
    }
 
 
-   //int list::_001GetColumnWidth(::index iColumn)
+   //int list::_001GetColumnWidth(::raw::index iColumn)
    //{
 
    //   auto  * pcolumn = m_pcolumna->get_visible(pitem->m_iColumn);
@@ -1809,7 +1809,7 @@ namespace user
    //}
 
 
-   index list::sub_item_to_order(index iSubItem)
+   ::raw::index list::sub_item_to_order(::raw::index iSubItem)
    {
 
       return _001MapColumnToOrder(_001MapSubItemToColumn(iSubItem));
@@ -1817,7 +1817,7 @@ namespace user
    }
 
 
-   index list::_001MapOrderToSubItem(index iOrder)
+   ::raw::index list::_001MapOrderToSubItem(::raw::index iOrder)
    {
 
       return _001MapColumnToSubItem(_001MapOrderToColumn(iOrder));
@@ -1825,10 +1825,10 @@ namespace user
    }
 
 
-   index list::_001MapOrderToColumn(index iOrder)
+   ::raw::index list::_001MapOrderToColumn(::raw::index iOrder)
    {
 
-      for (index iColumn = 0; iColumn < m_pcolumna->get_size(); iColumn++)
+      for (::raw::index iColumn = 0; iColumn < m_pcolumna->get_size(); iColumn++)
       {
 
          list_column * pcolumn = m_pcolumna->element_at(iColumn);
@@ -1857,7 +1857,7 @@ namespace user
    }
 
 
-   index list::_001MapColumnToOrder(index iColumn)
+   ::raw::index list::_001MapColumnToOrder(::raw::index iColumn)
    {
 
       if (iColumn < 0)
@@ -1885,12 +1885,12 @@ namespace user
 
       }
 
-      return (::index)pcolumn->m_iOrder;
+      return (::raw::index)pcolumn->m_iOrder;
 
    }
 
 
-   index list::_001MapSubItemToColumn(index iSubItem)
+   ::raw::index list::_001MapSubItemToColumn(::raw::index iSubItem)
    {
 
       return m_pcolumna->subitem_visible_index(iSubItem);
@@ -1898,7 +1898,7 @@ namespace user
    }
 
 
-   index list::_001MapColumnToSubItem(index iColumn)
+   ::raw::index list::_001MapColumnToSubItem(::raw::index iColumn)
    {
 
       if (iColumn < 0 || iColumn >= m_pcolumna->get_visible_count())
@@ -1913,7 +1913,7 @@ namespace user
    }
 
 
-   void list::_001DeleteColumn(index iColumn)
+   void list::_001DeleteColumn(::raw::index iColumn)
    {
 
       ASSERT(iColumn >= 0);
@@ -1924,7 +1924,7 @@ namespace user
    }
 
 
-   ::count list::_001GetItemCount()
+   ::raw::count list::_001GetItemCount()
    {
 
       if (m_pmeshdata.is_null())
@@ -1939,7 +1939,7 @@ namespace user
    }
 
 
-   ::count list::_001GetGroupCount()
+   ::raw::count list::_001GetGroupCount()
    {
 
       if (m_pmeshdata.is_null())
@@ -1967,7 +1967,7 @@ namespace user
    //
    //
    /////////////////////////////////////////////////////////////////
-   index list::_001CalcDisplayTopIndex()
+   ::raw::index list::_001CalcDisplayTopIndex()
    {
 
       auto pointOffset = get_context_offset();
@@ -1976,7 +1976,7 @@ namespace user
       information() << "_001CalcDisplayTopIndex m_bHeaderCtrl : " << m_bHeaderCtrl;
       information() << "_001CalcDisplayTopIndex m_dItemHeight : " << m_dItemHeight;
 
-      index iItem;
+      ::raw::index iItem;
 
       if (_001DisplayHitTest(point_i32(0,
          pointOffset.y() + (::i32) (m_bHeaderCtrl ? m_dItemHeight : 0.)), iItem))
@@ -1984,7 +1984,7 @@ namespace user
 
          information() << "_001CalcDisplayTopIndex iItem : " << iItem;
 
-         return (::index) iItem;
+         return (::raw::index) iItem;
 
       }
       else
@@ -2009,7 +2009,7 @@ namespace user
    }
 
 
-   ::count list::_001CalcDisplayItemCount()
+   ::raw::count list::_001CalcDisplayItemCount()
    {
 
       if (m_eview == impact_list)
@@ -2019,9 +2019,9 @@ namespace user
 
          rectangleImpact = this->rectangle();
 
-         index dHeight = (::index) ((rectangleImpact.height() / m_dItemHeight) * m_dItemHeight);
+         ::raw::index dHeight = (::raw::index) ((rectangleImpact.height() / m_dItemHeight) * m_dItemHeight);
 
-         index iWidth = rectangleImpact.width();
+         ::raw::index iWidth = rectangleImpact.width();
 
          int iImpactRowCount = 1;
 
@@ -2082,7 +2082,7 @@ namespace user
 
             }
 
-            ::count iItemCount = (::count) ceil(dHeight / m_dItemHeight);
+            ::raw::count iItemCount = (::raw::count) ceil(dHeight / m_dItemHeight);
 
             return iItemCount;
 
@@ -2090,7 +2090,7 @@ namespace user
 
       }
 
-      index iItemCount;
+      ::raw::index iItemCount;
 
       if (m_bFilter1 && (m_eview == impact_list || m_eview == impact_report))
       {
@@ -2124,7 +2124,7 @@ namespace user
 
          iItemLast = -1;
 
-         for (index i = iItemFirst + 1; i < iItemCount; i++)
+         for (::raw::index i = iItemFirst + 1; i < iItemCount; i++)
          {
 
             pitem->m_iDisplayItem = i;
@@ -2196,7 +2196,7 @@ namespace user
    }
 
 
-   bool list::_001HitTest_(const ::point_i32 & point, index &iItem, index &iSubItem, index&iListItem, ::user::mesh::enum_element &eelement)
+   bool list::_001HitTest_(const ::point_i32 & point, ::raw::index & iItem, ::raw::index & iSubItem, ::raw::index & iListItem, ::user::mesh::enum_element &eelement)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -2210,7 +2210,7 @@ namespace user
    }
 
 
-   bool list::_001HitTest_(const ::point_i32 & point, index &iItem, index&iSubItem)
+   bool list::_001HitTest_(const ::point_i32 & point, ::raw::index & iItem, ::raw::index & iSubItem)
    {
 
       if (!_001DisplayHitTest(point, iItem, iSubItem))
@@ -2220,14 +2220,14 @@ namespace user
 
       }
 
-      iItem = display_to_strict((::index) iItem);
+      iItem = display_to_strict((::raw::index) iItem);
 
       return true;
 
    }
 
 
-   bool list::_001HitTest_(const ::point_i32 & point, index & iItem)
+   bool list::_001HitTest_(const ::point_i32 & point, ::raw::index & iItem)
    {
 
       if (!_001DisplayHitTest(point, iItem))
@@ -2237,14 +2237,14 @@ namespace user
 
       }
 
-      iItem = display_to_strict((::index)iItem);
+      iItem = display_to_strict((::raw::index)iItem);
 
       return true;
 
    }
 
 
-   bool list::_001DisplayHitTest(const ::point_i32 & point, index& iItem, index& iSubItem, index& iListItem, ::user::mesh::enum_element &eelement)
+   bool list::_001DisplayHitTest(const ::point_i32 & point, ::raw::index & iItem, ::raw::index & iSubItem, ::raw::index & iListItem, ::user::mesh::enum_element &eelement)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -2258,10 +2258,10 @@ namespace user
    }
 
 
-   bool list::_001DisplayHitTest(const ::point_i32 & point, index&iItemParam, index&iSubItemParam)
+   bool list::_001DisplayHitTest(const ::point_i32 & point, ::raw::index & iItemParam, ::raw::index & iSubItemParam)
    {
 
-      index iItem;
+      ::raw::index iItem;
 
       if (!_001DisplayHitTest(point, iItem))
       {
@@ -2300,7 +2300,7 @@ namespace user
 
       get_margin_rect(&rectangleMargin);
 
-      auto iLeft = (index)-pointOffset.x() - (rectangleMargin.left() * 2);
+      auto iLeft = (::raw::index)-pointOffset.x() - (rectangleMargin.left() * 2);
 
       if (m_bGroup && m_bLateralGroup)
       {
@@ -2309,7 +2309,7 @@ namespace user
 
       }
 
-      index iRight;
+      ::raw::index iRight;
 
       //draw_list_item item(this);
 
@@ -2320,7 +2320,7 @@ namespace user
 
       }
 
-      for (::index iColumn = 0; iColumn < iColumnCount; iColumn++)
+      for (::raw::index iColumn = 0; iColumn < iColumnCount; iColumn++)
       {
 
          //_001GetColumnWidth(&item);
@@ -2356,7 +2356,7 @@ namespace user
    }
 
 
-   bool list::_001DisplayHitTest(const ::point_i32 & point, index&iItemParam)
+   bool list::_001DisplayHitTest(const ::point_i32 & point, ::raw::index & iItemParam)
    {
 
 //      {
@@ -2384,12 +2384,12 @@ namespace user
 
          double iy = point.y() + (m_bHeaderCtrl ? -m_dItemHeight : 0);
 
-         index iItem = -1;
+         ::raw::index iItem = -1;
 
          if (m_dItemHeight != 0)
          {
 
-            iItem = (::index) (iy / m_dItemHeight);
+            iItem = (::raw::index) (iy / m_dItemHeight);
 
 #ifdef EXTRA_LOGGING
 
@@ -2431,7 +2431,7 @@ namespace user
 
          }
 
-         iItemParam = (index)iItem;
+         iItemParam = (::raw::index)iItem;
 
          return true;
 
@@ -2462,11 +2462,11 @@ namespace user
 
          }
 
-         index dHeight = (::index) ((rectangleX.height() / m_dItemHeight) * m_dItemHeight);
+         ::raw::index dHeight = (::raw::index) ((rectangleX.height() / m_dItemHeight) * m_dItemHeight);
 
          auto pointOffset = get_context_offset();
 
-         index iy;
+         ::raw::index iy;
 
          if (m_iItemWidth <= 0)
          {
@@ -2477,11 +2477,11 @@ namespace user
          else
          {
 
-            iy = (index)(point.y() + pointOffset.y());
+            iy = (::raw::index)(point.y() + pointOffset.y());
 
          }
 
-         index iItem = -1;
+         ::raw::index iItem = -1;
 
          int iImpactRowCount = 1;
 
@@ -2578,9 +2578,9 @@ namespace user
 
          }
 
-         index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
+         ::raw::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
-         index iItemSize = iIconSize * 2;
+         ::raw::index iItemSize = iIconSize * 2;
 
          auto pointOffset = get_context_offset();
 
@@ -2602,7 +2602,7 @@ namespace user
 
          dy /= iItemSize;
 
-         iItemParam =  (::index) (dy * (maximum(1, rectangleX.width() / iItemSize)) + dx);
+         iItemParam =  (::raw::index) (dy * (maximum(1, rectangleX.width() / iItemSize)) + dx);
 
          return true;
 
@@ -2630,9 +2630,9 @@ namespace user
 
       }
 
-      index iDisplayItemFirst = 0;
+      ::raw::index iDisplayItemFirst = 0;
 
-      index iDisplayItemLast = _001GetGroupItemCount(0) - 1;
+      ::raw::index iDisplayItemLast = _001GetGroupItemCount(0) - 1;
 
       pdrawlistgroup->m_iGroupRectGroup = 0;
 
@@ -2896,7 +2896,7 @@ namespace user
 
          }
 
-         index dHeight = (::index) ((rectangleX.height() / m_dItemHeight) * m_dItemHeight);
+         ::raw::index dHeight = (::raw::index) ((rectangleX.height() / m_dItemHeight) * m_dItemHeight);
 
          if (dHeight != 0 && m_dItemHeight != 0)
          {
@@ -2953,9 +2953,9 @@ namespace user
 
          }
 
-         index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
+         ::raw::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
-         index iItemSize = iIconSize * 2;
+         ::raw::index iItemSize = iIconSize * 2;
 
          pdrawitem->m_rectangleItem.left() = (::i32)(iItemSize * (pdrawitem->m_iDisplayItem % (maximum(1, rectangleX.width() / iItemSize))));
 
@@ -3083,7 +3083,7 @@ namespace user
    }
 
 
-   ::user::interaction * list::get_subitem_control(::index iSubItem)
+   ::user::interaction * list::get_subitem_control(::raw::index iSubItem)
    {
 
       auto pcolumn = m_pcolumna->get_by_subitem(iSubItem);
@@ -3634,17 +3634,17 @@ namespace user
 
                auto rectangleX = this->rectangle();
 
-               index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
+               ::raw::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
-               index iItemSize = iIconSize * 2;
+               ::raw::index iItemSize = iIconSize * 2;
 
-               ::count iItemColumnCount = maximum(1, rectangleX.width() / iItemSize);
+               ::raw::count iItemColumnCount = maximum(1, rectangleX.width() / iItemSize);
 
                m_pointLButtonUp = point;
 
-               index iDisplayBeg;
+               ::raw::index iDisplayBeg;
 
-               index iDisplayEnd;
+               ::raw::index iDisplayEnd;
 
                if (_001DisplayHitTest(m_pointLButtonDown1, iDisplayBeg))
                {
@@ -3652,29 +3652,29 @@ namespace user
                   if (_001DisplayHitTest(point, iDisplayEnd))
                   {
 
-                     index iCol1 = iDisplayBeg % iItemColumnCount;
+                     ::raw::index iCol1 = iDisplayBeg % iItemColumnCount;
 
-                     index iCol2 = iDisplayEnd % iItemColumnCount;
+                     ::raw::index iCol2 = iDisplayEnd % iItemColumnCount;
 
                      __sort(iCol1, iCol2);
 
-                     index iRow1 = iDisplayBeg / iItemColumnCount;
+                     ::raw::index iRow1 = iDisplayBeg / iItemColumnCount;
 
-                     index iRow2 = iDisplayEnd / iItemColumnCount;
+                     ::raw::index iRow2 = iDisplayEnd / iItemColumnCount;
 
                      __sort(iRow1, iRow2);
 
                      m_rangeSelection.clear();
 
-                     for (index i = iRow1; i <= iRow2; i++)
+                     for (::raw::index i = iRow1; i <= iRow2; i++)
                      {
 
-                        for (index j = iCol1; j <= iCol2; j++)
+                        for (::raw::index j = iCol1; j <= iCol2; j++)
                         {
 
-                           index iDisplayItem = i * iItemColumnCount + j;
+                           ::raw::index iDisplayItem = i * iItemColumnCount + j;
 
-                           index iStrict = display_to_strict(iDisplayItem);
+                           ::raw::index iStrict = display_to_strict(iDisplayItem);
 
                            if(iStrict >= 0)
                            {
@@ -3719,9 +3719,9 @@ namespace user
 
          pmessage->m_bRet = true;
 
-         index iItemEnter;
+         ::raw::index iItemEnter;
 
-         index iSubItemEnter;
+         ::raw::index iSubItemEnter;
 
          if (_001DisplayHitTest(point, iItemEnter, iSubItemEnter))
          {
@@ -3761,7 +3761,7 @@ namespace user
 
       set_mouse_capture();
 
-      index iDisplayItem;
+      ::raw::index iDisplayItem;
 
       auto point = pmouse->m_pointHost;
 
@@ -3825,7 +3825,7 @@ namespace user
 
       set_mouse_capture();
 
-      index iItem;
+      ::raw::index iItem;
 
       if (dynamic_cast <list *>(this) == nullptr)
       {
@@ -3985,7 +3985,7 @@ namespace user
 
                m_rangeSelection.clear();
 
-               index iDisplayItem;
+               ::raw::index iDisplayItem;
 
                if (_001DisplayHitTest(point, iDisplayItem))
                {
@@ -4168,9 +4168,9 @@ namespace user
             if (m_iItemLButtonDown >= 0)
             {
 
-               index iDisplayItemDrag = m_iDisplayItemLButtonDown1;
+               ::raw::index iDisplayItemDrag = m_iDisplayItemLButtonDown1;
 
-               index iDisplayItemDrop;
+               ::raw::index iDisplayItemDrop;
 
                if (_001DisplayHitTest(point, iDisplayItemDrop))
                {
@@ -4191,10 +4191,10 @@ namespace user
 
                         string_array stra;
 
-                        for (index a = 0; a <= m_plist->m_piconlayout->m_iaDisplayToStrict.m_iMaxA; a++)
+                        for (::raw::index a = 0; a <= m_plist->m_piconlayout->m_iaDisplayToStrict.m_iMaxA; a++)
                         {
 
-                           index b = m_plist->m_piconlayout->m_iaDisplayToStrict.get_b(a);
+                           ::raw::index b = m_plist->m_piconlayout->m_iaDisplayToStrict.get_b(a);
 
                            stra.add(_001GetItemId(b));
 
@@ -4225,7 +4225,7 @@ namespace user
          if (m_bLButtonDown)
          {
 
-            index iDisplayItemLButtonUp = -1;
+            ::raw::index iDisplayItemLButtonUp = -1;
 
             if (_001DisplayHitTest(point, iDisplayItemLButtonUp) && iDisplayItemLButtonUp >= 0)
             {
@@ -4352,7 +4352,7 @@ namespace user
       else
       {
          //      m_rangeSelection.clear();
-         index iItem;
+         ::raw::index iItem;
          if (_001DisplayHitTest(point, iItem))
          {
             if (!m_rangeSelection.has_item(iItem))
@@ -4434,7 +4434,7 @@ namespace user
    }
 
 
-   index list::_001GetCurItem()
+   ::raw::index list::_001GetCurItem()
    {
 
       if (m_rangeSelection.get_item_count() != 1)
@@ -4449,7 +4449,7 @@ namespace user
    }
 
 
-   void list::_001SelectItem(index iItem)
+   void list::_001SelectItem(::raw::index iItem)
    {
 
       m_rangeSelection.clear();
@@ -4485,7 +4485,7 @@ namespace user
 
       range & range = m_rangeSelection;
 
-      for (index i = 0; i < range.get_item_count(); i++)
+      for (::raw::index i = 0; i < range.get_item_count(); i++)
       {
 
          auto & itemrange = range.ItemAt(i);
@@ -4493,7 +4493,7 @@ namespace user
          if (itemrange.has_sub_item(iFilterSubItem))
          {
 
-            for (index iLine = itemrange.get_lower_bound(); iLine <= itemrange.get_upper_bound(); iLine++)
+            for (::raw::index iLine = itemrange.get_lower_bound(); iLine <= itemrange.get_upper_bound(); iLine++)
             {
 
                straSelection.add_item(scopedstrDataKey + "/" + ::as_string(iLine));
@@ -4507,11 +4507,11 @@ namespace user
    }
 
 
-   /*index user::range::get_item(index iItemIndex)
+   /*index user::range::get_item(::raw::index iItemIndex)
    {
-   index iFirst = 0;
-   index i = 0;
-   index iItem;
+   ::raw::index iFirst = 0;
+   ::raw::index i = 0;
+   ::raw::index iItem;
 
    while(true)
    {
@@ -4536,17 +4536,17 @@ namespace user
    return m_iItemEnd - m_iItemStart + 1;
    }*/
 
-   /*index user::range::get_item(index iItemIndex)
+   /*index user::range::get_item(::raw::index iItemIndex)
    {
    return m_iItemStart + iItemIndex;
    }*/
 
-   //::count user::range::get_item_count() const
+   //::raw::count user::range::get_item_count() const
    //{
    //   return m_itemrangea.get_size();
    //   /*   index iCount = 0;
 
-   //   for(index i = 0; i < m_itemrangea.get_size(); i++)
+   //   for(::raw::index i = 0; i < m_itemrangea.get_size(); i++)
    //   {
    //   auto & itemrange = m_itemrangea[i];
    //   iCount += itemrange.get_count();
@@ -4555,13 +4555,13 @@ namespace user
    //   return iCount;*/
    //}
 
-   //user::range & user::range::ItemAt(index iItem)
+   //user::range & user::range::ItemAt(::raw::index iItem)
    //{
    //   return m_itemrangea.element_at(iItem);
    //}
 
 
-   ::count list::_001GetSelectedItemCount()
+   ::raw::count list::_001GetSelectedItemCount()
    {
 
       return m_rangeSelection.get_item_count();
@@ -4569,7 +4569,7 @@ namespace user
    }
 
 
-   ::count list::_001GetSelectedItems(index_array & ia)
+   ::raw::count list::_001GetSelectedItems(index_array & ia)
    {
 
       return m_rangeSelection.get_items(ia);
@@ -4577,7 +4577,7 @@ namespace user
    }
 
 
-   string list::_001GetColumnText(index iColumn)
+   string list::_001GetColumnText(::raw::index iColumn)
    {
 
       list_column * pcolumn = m_pcolumna->get_visible(iColumn);
@@ -4605,7 +4605,7 @@ namespace user
 
       host_to_client()(point);
 
-      index iDisplayItem = -1;
+      ::raw::index iDisplayItem = -1;
 
       if(!m_bHoverSelect2)
       {
@@ -4616,7 +4616,7 @@ namespace user
             if (iDisplayItem >= 0 && m_iDisplayItemLButtonDown1 == iDisplayItem)
             {
 
-               index iItem = display_to_strict(iDisplayItem);
+               ::raw::index iItem = display_to_strict(iDisplayItem);
 
                if (iItem >= 0)
                {
@@ -4680,7 +4680,7 @@ namespace user
    }
 
 
-   index list::HeaderCtrlMapColumnToOrder(index iColumn)
+   ::raw::index list::HeaderCtrlMapColumnToOrder(::raw::index iColumn)
    {
 
       if (m_plistheader == nullptr)
@@ -4704,7 +4704,7 @@ namespace user
       __UNREFERENCED_PARAMETER(lparam);
 
 
-      for (index iColumn = 0; iColumn < m_pcolumna->get_visible_count(); iColumn++)
+      for (::raw::index iColumn = 0; iColumn < m_pcolumna->get_visible_count(); iColumn++)
       {
 
          list_column * pcolumn = m_pcolumna->get_visible(iColumn);
@@ -4788,7 +4788,7 @@ namespace user
       __UNREFERENCED_PARAMETER(lparam);
 
 
-      //    for(index iColumn = 0; iColumn < m_pcolumna->get_visible_count(); iColumn++)
+      //    for(::raw::index iColumn = 0; iColumn < m_pcolumna->get_visible_count(); iColumn++)
       //  {
       //         list_column & column = m_pcolumna->get_visible(iColumn);
       //pcolumn->m_iWidth = m_plistheader->GetItemWidth(iColumn);
@@ -4803,7 +4803,7 @@ namespace user
    }
 
 
-   void list::_001ShowSubItem(index iSubItem, bool bShow)
+   void list::_001ShowSubItem(::raw::index iSubItem, bool bShow)
    {
 
       string str;
@@ -4822,7 +4822,7 @@ namespace user
 
 
 
-   ::index list_column_array::get_index(const list_column * pcolumn) const
+   ::raw::index list_column_array::get_index(const list_column * pcolumn) const
    {
 
       return find_first(pcolumn);
@@ -4830,12 +4830,12 @@ namespace user
    }
 
 
-   ::index list_column_array::get_visible_index(const list_column * pcolumn) const
+   ::raw::index list_column_array::get_visible_index(const list_column * pcolumn) const
    {
 
-      ::count cVisible = 0;
+      ::raw::count cVisible = 0;
 
-      for (index i = 0; i < this->get_size(); i++)
+      for (::raw::index i = 0; i < this->get_size(); i++)
       {
 
          list_column * pcolumn = element_at(i);
@@ -4861,12 +4861,12 @@ namespace user
    }
 
 
-   list_column * list_column_array::get_visible(index iIndex)
+   list_column * list_column_array::get_visible(::raw::index iIndex)
    {
 
-      ::count cVisible = 0;
+      ::raw::count cVisible = 0;
 
-      for (index i = 0; i < this->get_size(); i++)
+      for (::raw::index i = 0; i < this->get_size(); i++)
       {
 
          list_column * pcolumn = element_at(i);
@@ -4899,7 +4899,7 @@ namespace user
    }
 
 
-   list_column * list_column_array::get_by_index(index iIndex)
+   list_column * list_column_array::get_by_index(::raw::index iIndex)
    {
 
       if (iIndex < 0)
@@ -4921,15 +4921,15 @@ namespace user
    }
 
 
-   index list_column_array::subitem_index(index iSubItem)
+   ::raw::index list_column_array::subitem_index(::raw::index iSubItem)
    {
 
-      ::index iIndex = -1;
+      ::raw::index iIndex = -1;
 
       if (!m_mapSubItemIndex.lookup(iSubItem, iIndex))
       {
 
-         for (index i = 0; i < this->get_size(); i++)
+         for (::raw::index i = 0; i < this->get_size(); i++)
          {
 
             list_column * pcolumn = element_at(i);
@@ -4954,12 +4954,12 @@ namespace user
    }
 
 
-   index list_column_array::subitem_visible_index(index iSubItem)
+   ::raw::index list_column_array::subitem_visible_index(::raw::index iSubItem)
    {
 
-      ::count cVisible = 0;
+      ::raw::count cVisible = 0;
 
-      for (index iIndex = 0; iIndex < this->get_size(); iIndex++)
+      for (::raw::index iIndex = 0; iIndex < this->get_size(); iIndex++)
       {
 
          list_column * pcolumn = element_at(iIndex);
@@ -4992,10 +4992,10 @@ namespace user
    }
 
 
-   index list_column_array::control_id_index(const ::atom & atom)
+   ::raw::index list_column_array::control_id_index(const ::atom & atom)
    {
 
-      for (index iIndex = 0; iIndex < this->get_size(); iIndex++)
+      for (::raw::index iIndex = 0; iIndex < this->get_size(); iIndex++)
       {
 
          list_column * pcolumn = element_at(iIndex);
@@ -5013,10 +5013,10 @@ namespace user
 
    }
 
-   list_column * list_column_array::get_by_subitem(index iSubItem)
+   list_column * list_column_array::get_by_subitem(::raw::index iSubItem)
    {
 
-      index iIndex = subitem_index(iSubItem);
+      ::raw::index iIndex = subitem_index(iSubItem);
 
       return get_by_index(iIndex);
 
@@ -5041,7 +5041,7 @@ namespace user
    }
 
 
-   index list_column_array::add(list_column * pcolumn)
+   ::raw::index list_column_array::add(list_column * pcolumn)
    {
 
       ::pointer_array < list_column >::add(pcolumn);
@@ -5066,7 +5066,7 @@ namespace user
 
    }
 
-   ::count list_column_array::get_count()
+   ::raw::count list_column_array::get_count()
    {
       return this->get_size();
    }
@@ -5102,7 +5102,7 @@ namespace user
       //index iKeyVisible = 0;
       //index iKeyNonVisible = 0;
 
-      //for (index i = 0; i < this->get_size(); i++)
+      //for (::raw::index i = 0; i < this->get_size(); i++)
       //{
       //   list_column * pcolumn = element_at(i);
       //   if (pcolumn->m_bVisible)
@@ -5121,7 +5121,7 @@ namespace user
 
       predicate_sort(list_column::less_SectEndNonVisible);
 
-      for (index iOrder = 0; iOrder < this->get_size(); iOrder++)
+      for (::raw::index iOrder = 0; iOrder < this->get_size(); iOrder++)
       {
 
          auto pcolumn = this->element_at(iOrder);
@@ -5133,7 +5133,7 @@ namespace user
    }
 
 
-   void list_column_array::erase(index iColumn)
+   void list_column_array::erase(::raw::index iColumn)
    {
       ASSERT(iColumn >= 0);
       ASSERT(iColumn < this->get_size());
@@ -5143,10 +5143,10 @@ namespace user
       OnChange();
    }
 
-   ::count list_column_array::get_visible_count()
+   ::raw::count list_column_array::get_visible_count()
    {
-      index iCount = 0;
-      for (index i = 0; i < this->get_size(); i++)
+      ::raw::index iCount = 0;
+      for (::raw::index i = 0; i < this->get_size(); i++)
       {
          list_column * pcolumn = element_at(i);
          if (pcolumn == nullptr)
@@ -5160,10 +5160,10 @@ namespace user
       return iCount;
    }
 
-   //::count list_column_array::NonVisibleGetCount()
+   //::raw::count list_column_array::NonVisibleGetCount()
    //{
    //   index iCount = 0;
-   //   for (index i = 0; i < this->get_size(); i++)
+   //   for (::raw::index i = 0; i < this->get_size(); i++)
    //   {
    //      list_column * pcolumn = element_at(i);
    //      if (!pcolumn->m_bVisible)
@@ -5172,10 +5172,10 @@ namespace user
    //   return iCount;
    //}
 
-   void list_column_array::ShowSubItem(index iSubItem, bool bShow)
+   void list_column_array::ShowSubItem(::raw::index iSubItem, bool bShow)
    {
 
-      index iColumn = subitem_index(iSubItem);
+      ::raw::index iColumn = subitem_index(iSubItem);
 
       if (iColumn >= 0)
       {
@@ -5191,10 +5191,10 @@ namespace user
    }
 
 
-   //index list_column_array::subitem_index(index iSubItem)
+   //index list_column_array::subitem_index(::raw::index iSubItem)
    //{
 
-   //   for (index iIndex = 0; iIndex < get_count(); iIndex++)
+   //   for (::raw::index iIndex = 0; iIndex < get_count(); iIndex++)
    //   {
 
    //      list_column * pcolumn = element_at(iIndex);
@@ -5212,7 +5212,7 @@ namespace user
    //}
 
 
-   //index list_column_array::subitem_visible_index(index iSubItem)
+   //index list_column_array::subitem_visible_index(::raw::index iSubItem)
    //{
    //   list_column * pcolumn = get_by_subitem(iSubItem);
    //   if (pcolumn == nullptr)
@@ -5221,10 +5221,10 @@ namespace user
    //}
 
 
-   //index list_column_array::subitem_visible_index(index iSubItem)
+   //index list_column_array::subitem_visible_index(::raw::index iSubItem)
    //{
    //   i32 iVisible = 0;
-   //   for (index iColumn = 0; iColumn < this->get_count(); iColumn++)
+   //   for (::raw::index iColumn = 0; iColumn < this->get_count(); iColumn++)
    //   {
    //      list_column * pcolumn = element_at(iColumn);
    //      if (pcolumn != nullptr && pcolumn->m_bVisible)
@@ -5242,10 +5242,10 @@ namespace user
    //   return -1;
    //}
 
-   //index list_column_array::NonVisibleMapSubItemToColumn(index iSubItem)
+   //index list_column_array::NonVisibleMapSubItemToColumn(::raw::index iSubItem)
    //{
    //   i32 iNonVisible = 0;
-   //   for (index iColumn = 0; iColumn < this->get_count(); iColumn++)
+   //   for (::raw::index iColumn = 0; iColumn < this->get_count(); iColumn++)
    //   {
    //      list_column * pcolumn = element_at(iColumn);
    //      if (!pcolumn->m_bVisible)
@@ -5269,7 +5269,7 @@ namespace user
    //void list_column_array::GlobalToVisibleOrder()
    //{
    //   iptr iVisibleCount = get_visible_count();
-   //   for (index iVisibleKey = 0; iVisibleKey < iVisibleCount; iVisibleKey++)
+   //   for (::raw::index iVisibleKey = 0; iVisibleKey < iVisibleCount; iVisibleKey++)
    //   {
    //      list_column * pcolumn = get_visible(iVisibleKey);
    //      pcolumn->m_iOrder = VisibleGetOrderFromKey(pcolumn->m_iKey);
@@ -5278,7 +5278,7 @@ namespace user
 
    //}
 
-   //void list_column_array::VisibleToGlobalOrder(index iKeyA, index iKeyB)
+   //void list_column_array::VisibleToGlobalOrder(::raw::index iKeyA, ::raw::index iKeyB)
    //{
    //   if (iKeyA == iKeyB)
    //      return;
@@ -5388,7 +5388,7 @@ namespace user
    //   {
    //      if (this->get_size() == get_visible_count())
    //      {
-   //         for (index iColumn = 0; iColumn < get_visible_count(); iColumn++)
+   //         for (::raw::index iColumn = 0; iColumn < get_visible_count(); iColumn++)
    //         {
    //            list_column * column = get_visible(iColumn);
    //            column->m_iOrder = plist->HeaderCtrlMapColumnToOrder(iColumn);
@@ -5425,7 +5425,7 @@ namespace user
 //
 //      string str;
 //
-//      for (index i = 0; i < iCount; i++)
+//      for (::raw::index i = 0; i < iCount; i++)
 //      {
 //
 //         list_column * pcolumn = element_at(i);
@@ -5446,7 +5446,7 @@ namespace user
 //
 //      string str;
 //
-//      for (index i = 0; i < iCount; i++)
+//      for (::raw::index i = 0; i < iCount; i++)
 //      {
 //
 //         list_column * pcolumn = element_at(i);
@@ -5462,7 +5462,7 @@ namespace user
    }
 
 
-   //index list_column_array::VisibleIndexOrder(index iIndex)
+   //index list_column_array::VisibleIndexOrder(::raw::index iIndex)
    //{
 
    //   list_column * pcolumn = get_visible(iIndex);
@@ -5479,10 +5479,10 @@ namespace user
    //}
 
 
-   index list_column_array::order_index(index iOrder)
+   ::raw::index list_column_array::order_index(::raw::index iOrder)
    {
 
-      for (index iIndex = 0; iIndex < this->get_count(); iIndex++)
+      for (::raw::index iIndex = 0; iIndex < this->get_count(); iIndex++)
       {
 
          list_column * column = element_at(iIndex);
@@ -5687,7 +5687,7 @@ namespace user
    }
 
 
-   bool list::_001IsItemVisible(index iItem)
+   bool list::_001IsItemVisible(::raw::index iItem)
    {
 
       draw_list_item item;
@@ -5760,23 +5760,23 @@ namespace user
 
       m_pgraphicsextension->get_text_extent(pgraphics, m_strTopText, sizea);
       auto rectangleX = this->rectangle();
-      index x = 0;
-      index right = rectangleX.right();
-      index y = 0;
-      for (index i = 0; i < sizea.get_size(); i++)
+      ::raw::index x = 0;
+      ::raw::index right = rectangleX.right();
+      ::raw::index y = 0;
+      for (::raw::index i = 0; i < sizea.get_size(); i++)
       {
          if ((sizea[i].cx() - x > right)
                || i == sizea.get_upper_bound())
          {
             if (i == 0)
             {
-               x = (::index) (sizea[0].cx());
-               y += (::index) (sizea[0].cy());
+               x = (::raw::index) (sizea[0].cx());
+               y += (::raw::index) (sizea[0].cy());
             }
             else
             {
-               x = (::index) (sizea[i - 1].cx());
-               y += (::index) (sizea[i - 1].cy());
+               x = (::raw::index) (sizea[i - 1].cx());
+               y += (::raw::index) (sizea[i - 1].cy());
             }
          }
       }
@@ -5863,7 +5863,7 @@ namespace user
    }
 
 
-   //i32 list::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, index iItem, index iSubItem)
+   //i32 list::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem, ::raw::index iSubItem)
    //{
 
    //   pgraphics->set_font(this, ::e_element_none);
@@ -5875,7 +5875,7 @@ namespace user
    //}
 
 
-   i32 list::_001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, index iItem, index iSubItem)
+   i32 list::_001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, ::raw::index iItem, ::raw::index iSubItem)
    {
 
       pgraphics->set(pfont);
@@ -5885,7 +5885,7 @@ namespace user
    }
 
 
-   i32 list::_001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, index iItem, index iSubItem)
+   i32 list::_001CalcSubItemWidth(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem, ::raw::index iSubItem)
    {
 
       ::image_list::info ii;
@@ -5894,7 +5894,7 @@ namespace user
 
       ::size_f64 size;
 
-      index cx = 0;
+      ::raw::index cx = 0;
 
       auto psubitem = get_subitem(iItem, iSubItem);
 
@@ -5933,7 +5933,7 @@ namespace user
 
          m_pgraphicsextension->get_text_extent(pgraphics, psubitem->m_strText, size);
 
-         cx += (::index) (size.cx());
+         cx += (::raw::index) (size.cx());
 
       }
 
@@ -5952,7 +5952,7 @@ namespace user
    }
 
 
-   index list::data_key_to_sub_item(const ::scoped_string & scopedstrDataKey)
+   ::raw::index list::data_key_to_sub_item(const ::scoped_string & scopedstrDataKey)
    {
       list_column * column = m_pcolumna->get_by_config_id(scopedstrDataKey);
       if (column == nullptr)
@@ -5961,7 +5961,7 @@ namespace user
    }
 
 
-   index list::config_id_index(const ::scoped_string & scopedstrDataKey)
+   ::raw::index list::config_id_index(const ::scoped_string & scopedstrDataKey)
    {
 
       return m_pcolumna->config_id_index(scopedstrDataKey);
@@ -5972,7 +5972,7 @@ namespace user
 
    list_column * list_column_array::get_by_config_id(const ::scoped_string & scopedstrDataKey)
    {
-      index iKey = config_id_index(scopedstrDataKey);
+      ::raw::index iKey = config_id_index(scopedstrDataKey);
       if (iKey >= 0)
          return element_at(iKey);
       else
@@ -5981,10 +5981,10 @@ namespace user
    }
 
 
-   index list_column_array::config_id_index(const ::scoped_string & scopedstrDataKey)
+   ::raw::index list_column_array::config_id_index(const ::scoped_string & scopedstrDataKey)
    {
 
-      for (index iIndex = 0; iIndex < this->get_size(); iIndex++)
+      for (::raw::index iIndex = 0; iIndex < this->get_size(); iIndex++)
       {
 
          if (this->element_at(iIndex)->m_strDataKey == scopedstrDataKey)
@@ -6001,12 +6001,12 @@ namespace user
    }
 
 
-   index list_column_array::config_id_visible_index(const ::scoped_string & scopedstrDataKey)
+   ::raw::index list_column_array::config_id_visible_index(const ::scoped_string & scopedstrDataKey)
    {
 
-      ::count cVisible = 0;
+      ::raw::count cVisible = 0;
 
-      for (index iIndex = 0; iIndex < this->get_size(); iIndex++)
+      for (::raw::index iIndex = 0; iIndex < this->get_size(); iIndex++)
       {
 
          if (this->element_at(iIndex)->m_bVisible)
@@ -6031,7 +6031,7 @@ namespace user
 
 
 
-   //void user::range::set(index iLowerBoundItem, index iUpperBoundItem, index iLowerBoundSubItem, index iUpperBoundSubItem, index iLowerBoundListItem, index iUpperBoundListItem)
+   //void user::range::set(::raw::index iLowerBoundItem, ::raw::index iUpperBoundItem, ::raw::index iLowerBoundSubItem, ::raw::index iUpperBoundSubItem, ::raw::index iLowerBoundListItem, ::raw::index iUpperBoundListItem)
    //{
 
    //   m_iLowerBound = iLowerBoundItem;
@@ -6043,17 +6043,17 @@ namespace user
    //      iUpperBoundListItem);
    //}
 
-   //void user::range::set_lower_bound(index iLowerBoundItem)
+   //void user::range::set_lower_bound(::raw::index iLowerBoundItem)
    //{
    //   m_iLowerBound = iLowerBoundItem;
    //}
 
-   //void user::range::set_upper_bound(index iUpperBoundItem)
+   //void user::range::set_upper_bound(::raw::index iUpperBoundItem)
    //{
    //   m_iUpperBound = iUpperBoundItem;
    //}
 
-   //void user::sub_item_range::set(index iLowerBoundSubItem, index iUpperBoundSubItem, index iLowerBoundListItem, index iUpperBoundListItem)
+   //void user::sub_item_range::set(::raw::index iLowerBoundSubItem, ::raw::index iUpperBoundSubItem, ::raw::index iLowerBoundListItem, ::raw::index iUpperBoundListItem)
    //{
    //   m_iLowerBound = iLowerBoundSubItem;
    //   m_iUpperBound = iUpperBoundSubItem;
@@ -6062,7 +6062,7 @@ namespace user
    //      iUpperBoundListItem);
    //}
 
-   //void user::list_item_range::set(index iLowerBoundListItem, index iUpperBoundListItem)
+   //void user::list_item_range::set(::raw::index iLowerBoundListItem, ::raw::index iUpperBoundListItem)
    //{
    //   m_iLowerBound = iLowerBoundListItem;
    //   m_iUpperBound = iUpperBoundListItem;
@@ -6070,7 +6070,7 @@ namespace user
    //}
 
 
-   void list::ensure_item_visible(index iItem, ::e_align ealign, bool bRedraw)
+   void list::ensure_item_visible(::raw::index iItem, ::e_align ealign, bool bRedraw)
    {
 
       auto pointOffset = get_context_offset();
@@ -6131,7 +6131,7 @@ namespace user
    }
 
 
-   void list::scroll_to_item(index iItem, bool bRedraw)
+   void list::scroll_to_item(::raw::index iItem, bool bRedraw)
    {
 
       if (iItem < m_nItemCount)
@@ -6163,12 +6163,12 @@ namespace user
    }
 
 
-   void list::ensure_item_visible(index iItem, range & range)
+   void list::ensure_item_visible(::raw::index iItem, range & range)
    {
 
       auto pointOffset = get_context_offset();
 
-      index iyScroll = (index) ( pointOffset.y() / maximum(1, m_dItemHeight));
+      ::raw::index iyScroll = (::raw::index) ( pointOffset.y() / maximum(1, m_dItemHeight));
 
       if (iItem < iyScroll)
       {
@@ -6208,7 +6208,7 @@ namespace user
    }
 
 
-   void list::highlight_item(index iItem, bool bRedraw)
+   void list::highlight_item(::raw::index iItem, bool bRedraw)
    {
 
       ::user::mesh::highlight_item(iItem, bRedraw);
@@ -6225,7 +6225,7 @@ namespace user
    }
 
 
-   bool list::on_erase_item(index iItem)
+   bool list::on_erase_item(::raw::index iItem)
    {
 
       __UNREFERENCED_PARAMETER(iItem);
@@ -6235,7 +6235,7 @@ namespace user
    }
 
 
-   bool list::erase_item(index iItem, bool bRedraw)
+   bool list::erase_item(::raw::index iItem, bool bRedraw)
    {
 
       if (!on_erase_item(iItem))
@@ -6259,7 +6259,7 @@ namespace user
    }
 
 
-   //void user::range::offset(index iOffset)
+   //void user::range::offset(::raw::index iOffset)
    //{
    //   m_iLowerBound += iOffset;
    //   m_iUpperBound += iOffset;
@@ -6274,7 +6274,7 @@ namespace user
 
       while (range.get_item_count() > 0)
       {
-         index iItem = range.ItemAt(0).get_lower_bound();
+         ::raw::index iItem = range.ItemAt(0).get_lower_bound();
          if (!erase_item(iItem, false))
             break;
          get_selection(range);
@@ -6284,7 +6284,7 @@ namespace user
    }
 
 
-   void list::select_item(index iItem, index iSubItem)
+   void list::select_item(::raw::index iItem, ::raw::index iSubItem)
    {
 
       ::user::mesh::select_item(iItem, iSubItem);
@@ -6302,7 +6302,7 @@ namespace user
    }
 
 
-   index list::strict_to_display(index iStrict)
+   ::raw::index list::strict_to_display(::raw::index iStrict)
    {
 
       __UNREFERENCED_PARAMETER(iStrict);
@@ -6312,7 +6312,7 @@ namespace user
    }
 
 
-   index list::display_to_strict(index iDisplay)
+   ::raw::index list::display_to_strict(::raw::index iDisplay)
    {
 
       if (iDisplay < 0)
@@ -6351,13 +6351,13 @@ namespace user
    {
       m_efilterstate = FilterStateSetup;
 
-      index iItemCount = m_nItemCount;
+      ::raw::index iItemCount = m_nItemCount;
 
       if (m_eview == impact_icon)
       {
          m_piaFilterIcon->erase_all();
 
-         for (index i = 0; i < iItemCount; i++)
+         for (::raw::index i = 0; i < iItemCount; i++)
          {
             m_piaFilterIcon->add(i);
          }
@@ -6366,7 +6366,7 @@ namespace user
       {
          m_piaFilterMesh->erase_all();
 
-         for (index i = 0; i < iItemCount; i++)
+         for (::raw::index i = 0; i < iItemCount; i++)
          {
             m_piaFilterMesh->add(i);
          }
@@ -6411,13 +6411,13 @@ namespace user
       ASSERT(m_efilterstate == FilterStateSetup
              || m_efilterstate == FilterStateFilter);
 
-      index iItemCount = m_nItemCount;
+      ::raw::index iItemCount = m_nItemCount;
 
       if (m_eview == impact_icon)
       {
          m_piconlayout->m_iaDisplayToStrict.erase_all();
 
-         for (index i = 0; i < iItemCount; i++)
+         for (::raw::index i = 0; i < iItemCount; i++)
          {
             m_piconlayout->m_iaDisplayToStrict.add(i);
          }
@@ -6426,7 +6426,7 @@ namespace user
       {
          m_pmeshlayout->m_iaDisplayToStrict.erase_all();
 
-         for (index i = 0; i < iItemCount; i++)
+         for (::raw::index i = 0; i < iItemCount; i++)
          {
             m_pmeshlayout->m_iaDisplayToStrict.add(i);
          }
@@ -6458,7 +6458,7 @@ namespace user
    }
 
 
-   void list::FilterInclude(index iItem)
+   void list::FilterInclude(::raw::index iItem)
    {
       ASSERT(m_efilterstate == FilterStateSetup);
       if (m_eview == impact_icon)
@@ -6474,7 +6474,7 @@ namespace user
    void list::FilterInclude(::i32_array & array)
    {
       ASSERT(m_efilterstate == FilterStateSetup);
-      for (index i = 0; i < array.get_size(); i++)
+      for (::raw::index i = 0; i < array.get_size(); i++)
       {
          FilterInclude(array[i]);
       }
@@ -6499,7 +6499,7 @@ namespace user
 
       string wstrItem;
 
-      index iItemCount = minimum(m_nItemCount, m_iFilter1Step + 1000);
+      ::raw::index iItemCount = minimum(m_nItemCount, m_iFilter1Step + 1000);
 
       //index iFilter1Step;
 
@@ -6510,7 +6510,7 @@ namespace user
       //iFilter1Step < iItemCount;
       //iFilter1Step++)
       //{
-      //   for (index j = 0; j < m_pcolumna->get_count(); j++)
+      //   for (::raw::index j = 0; j < m_pcolumna->get_count(); j++)
       //   {
       //      list_column * pcolumn = m_pcolumna->get_by_index(j);
       //      item.m_strText.empty();
@@ -6625,7 +6625,7 @@ namespace user
    }
 
 
-   void list::_001OnListHeaderItemClick(index iHeaderItem)
+   void list::_001OnListHeaderItemClick(::raw::index iHeaderItem)
    {
 
       if (!m_bSortEnable)
@@ -6640,7 +6640,7 @@ namespace user
    }
 
 
-   void list::_001OnListHeaderItemDblClk(index iHeaderItem)
+   void list::_001OnListHeaderItemDblClk(::raw::index iHeaderItem)
    {
 
       auto psystem = system()->m_paurasystem;
@@ -6674,11 +6674,11 @@ namespace user
    }
 
 
-   void list::_001OnSort(index iSubItem)
+   void list::_001OnSort(::raw::index iSubItem)
    {
 
-      index iFound = -1;
-      for (index i = 0; i < m_sortinfo.m_itema.get_size(); i++)
+      ::raw::index iFound = -1;
+      for (::raw::index i = 0; i < m_sortinfo.m_itema.get_size(); i++)
       {
          CSortInfoItem & item = m_sortinfo.m_itema[i];
          if (item.m_iSubItem == iSubItem)
@@ -6707,7 +6707,7 @@ namespace user
    }
 
 
-   ::std::strong_ordering list::_002Compare(index iItem1, index iItem2, index iSubItem)
+   ::std::strong_ordering list::_002Compare(::raw::index iItem1, ::raw::index iItem2, ::raw::index iSubItem)
    {
       //draw_list_item item1(this);
       //draw_list_item item2(this);
@@ -6739,14 +6739,14 @@ namespace user
    }
 
 
-   ::std::strong_ordering list::_001Compare(index iItem1, index iItem2)
+   ::std::strong_ordering list::_001Compare(::raw::index iItem1, ::raw::index iItem2)
    {
 
       CSortInfoItem * pitem = nullptr;
       
       ::std::strong_ordering ordering = ::std::strong_ordering::equal;
       
-      for (index i = 0; i < m_sortinfo.m_itema.get_size(); i++)
+      for (::raw::index i = 0; i < m_sortinfo.m_itema.get_size(); i++)
       {
          
          pitem = &m_sortinfo.m_itema[i];
@@ -6785,7 +6785,7 @@ namespace user
    }
 
 
-   ::std::strong_ordering list::_001DisplayCompare(index iDisplayItem1, index iDisplayItem2)
+   ::std::strong_ordering list::_001DisplayCompare(::raw::index iDisplayItem1, ::raw::index iDisplayItem2)
    {
 
       return _001Compare(display_to_strict(iDisplayItem1), display_to_strict(iDisplayItem2));
@@ -6803,7 +6803,7 @@ namespace user
    }
 
 
-   i32 list::_001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, index iColumn)
+   i32 list::_001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::raw::index iColumn)
    {
 
       __UNREFERENCED_PARAMETER(iColumn);
@@ -6812,11 +6812,11 @@ namespace user
 
       i32 iMaxWidth = 0;
 
-      ::count iCount = m_nItemCount;
+      ::raw::count iCount = m_nItemCount;
 
       i32 iWidth;
 
-      for (index i = 0; i < iCount; i++)
+      for (::raw::index i = 0; i < iCount; i++)
       {
 
          iWidth = _001CalcSubItemWidth(pgraphics, i, 0);
@@ -6835,7 +6835,7 @@ namespace user
    }
 
 
-   void list::_001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, index iColumn)
+   void list::_001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, ::raw::index iColumn)
    {
 
       _001SetColumnWidth(iColumn, _001CalcColumnWidth(pgraphics, iColumn));
@@ -6870,7 +6870,7 @@ namespace user
 
       m_iTopDisplayIndex = _001CalcDisplayTopIndex();
 
-      index iLow = 0;
+      ::raw::index iLow = 0;
 
       for (m_iTopGroup = 0; m_iTopGroup < m_nGroupCount; m_iTopGroup++)
       {
@@ -7131,7 +7131,7 @@ namespace user
 
       m_iTopDisplayIndex = _001CalcDisplayTopIndex();
 
-      index iLow = 0;
+      ::raw::index iLow = 0;
 
       for (m_iTopGroup = 0; m_iTopGroup < m_nGroupCount; m_iTopGroup++)
       {
@@ -7156,7 +7156,7 @@ namespace user
    }
 
 
-   bool list::query_drop(index iDisplayDrop, index iDisplayDrag)
+   bool list::query_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag)
    {
 
       if (iDisplayDrag < 0)
@@ -7201,7 +7201,7 @@ namespace user
    }
 
 
-   bool list::do_drop(index iDisplayDrop, index iDisplayDrag)
+   bool list::do_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag)
    {
 
       if (m_eview == impact_icon)
@@ -7212,23 +7212,23 @@ namespace user
 
             auto rectangleX = this->rectangle();
 
-            index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
+            ::raw::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
-            index iItemSize = iIconSize * 2;
+            ::raw::index iItemSize = iIconSize * 2;
 
             int iItemColumnCount = (int)maximum(1, rectangleX.width() / iItemSize);
 
-            index iCol1 = iDisplayDrag % iItemColumnCount;
+            ::raw::index iCol1 = iDisplayDrag % iItemColumnCount;
 
-            index iRow1 = iDisplayDrag / iItemColumnCount;
+            ::raw::index iRow1 = iDisplayDrag / iItemColumnCount;
 
-            index iCol2 = iDisplayDrop % iItemColumnCount;
+            ::raw::index iCol2 = iDisplayDrop % iItemColumnCount;
 
-            index iRow2 = iDisplayDrop / iItemColumnCount;
+            ::raw::index iRow2 = iDisplayDrop / iItemColumnCount;
 
-            index iColOffset = iCol2 - iCol1;
+            ::raw::index iColOffset = iCol2 - iCol1;
 
-            index iRowOffset = iRow2 - iRow1;
+            ::raw::index iRowOffset = iRow2 - iRow1;
 
             index_array iaDrop;
 
@@ -7236,24 +7236,24 @@ namespace user
 
             range rangeNew;
 
-            for (index i = 0; i < m_rangeSelection.get_item_count(); i++)
+            for (::raw::index i = 0; i < m_rangeSelection.get_item_count(); i++)
             {
 
                auto & itemrange = m_rangeSelection.ItemAt(i);
 
-               for (index iItem = itemrange.m_iLowerBound; iItem <= itemrange.m_iUpperBound; iItem++)
+               for (::raw::index iItem = itemrange.m_iLowerBound; iItem <= itemrange.m_iUpperBound; iItem++)
                {
 
-                  index iStrict = display_to_strict(iItem);
+                  ::raw::index iStrict = display_to_strict(iItem);
 
                   if(iStrict >= 0)
                   {
 
-                     index iCol = (iItem + iColOffset) % iItemColumnCount;
+                     ::raw::index iCol = (iItem + iColOffset) % iItemColumnCount;
 
-                     index iRow = (iItem + iColOffset) / iItemColumnCount + iRowOffset;
+                     ::raw::index iRow = (iItem + iColOffset) / iItemColumnCount + iRowOffset;
 
-                     index iDrop = iRow * iItemColumnCount + iCol;
+                     ::raw::index iDrop = iRow * iItemColumnCount + iCol;
 
                      iaDrop.add(iDrop);
 
@@ -7301,7 +7301,7 @@ namespace user
    }
 
 
-   bool list::defer_drop(index iDisplayDrop, index iDisplayDrag)
+   bool list::defer_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag)
    {
 
       if (!query_drop(iDisplayDrop, iDisplayDrag))
@@ -7370,9 +7370,9 @@ namespace user
 
          }
 
-         index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
+         ::raw::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
-         index iItemSize = iIconSize * 2;
+         ::raw::index iItemSize = iIconSize * 2;
 
          return ::size_i32((i32) iItemSize, (i32) iItemSize);
 
@@ -7403,8 +7403,8 @@ namespace user
       }
       if (bAutoArrange)
       {
-         index iMaxStrict = m_piconlayout->m_iaDisplayToStrict.get_max_b();
-         for (index iStrict = 0; iStrict <= iMaxStrict; iStrict++)
+         ::raw::index iMaxStrict = m_piconlayout->m_iaDisplayToStrict.get_max_b();
+         for (::raw::index iStrict = 0; iStrict <= iMaxStrict; iStrict++)
          {
             m_piconlayout->m_iaDisplayToStrict.set(iStrict, iStrict);
          }
@@ -7434,7 +7434,7 @@ namespace user
       pcommand->enable();
    }
 
-   bool list::is_valid_display_item(index iDisplayItem)
+   bool list::is_valid_display_item(::raw::index iDisplayItem)
    {
       if (iDisplayItem < 0)
          return false;
@@ -7443,7 +7443,7 @@ namespace user
       return true;
    }
 
-   bool list::is_valid_strict_item(index iStrictItem)
+   bool list::is_valid_strict_item(::raw::index iStrictItem)
    {
       if (iStrictItem < 0)
          return false;
@@ -7524,7 +7524,7 @@ namespace user
 
       m_rangeSelection.clear();
 
-      for (index i = 0; i < iaSel.get_count(); i++)
+      for (::raw::index i = 0; i < iaSel.get_count(); i++)
       {
 
          item_range itemrange;
@@ -7561,10 +7561,10 @@ namespace user
    void list::get_cur_sel(index_array & iaSel)
    {
 
-      for (index i = 0; i < m_rangeSelection.get_item_count(); i++)
+      for (::raw::index i = 0; i < m_rangeSelection.get_item_count(); i++)
       {
 
-         for (index iItem = m_rangeSelection.ItemAt(i).get_lower_bound(); iItem <= m_rangeSelection.ItemAt(i).get_upper_bound(); iItem++)
+         for (::raw::index iItem = m_rangeSelection.ItemAt(i).get_lower_bound(); iItem <= m_rangeSelection.ItemAt(i).get_upper_bound(); iItem++)
          {
 
             iaSel.add_unique(iItem);
@@ -7576,7 +7576,7 @@ namespace user
    }
 
 
-   ::count list::_001GetGroupItemCount(index iGroup)
+   ::raw::count list::_001GetGroupItemCount(::raw::index iGroup)
    {
       
       __UNREFERENCED_PARAMETER(iGroup);
@@ -7586,7 +7586,7 @@ namespace user
    }
 
 
-   i32 list::_001GetGroupHeight(index iGroup)
+   i32 list::_001GetGroupHeight(::raw::index iGroup)
    {
 
       i32 iListHeight = (i32)(_001GetGroupItemCount(iGroup) * m_dItemHeight);
@@ -7596,7 +7596,7 @@ namespace user
    }
 
    
-   ::count list::_001GetGroupMetaItemCount(index iGroup)
+   ::raw::count list::_001GetGroupMetaItemCount(::raw::index iGroup)
    {
       if (m_pmeshdata != nullptr)
       {
@@ -7744,7 +7744,7 @@ namespace user
    }
 
 
-   //::index list::item_index(::user::interaction * pinteractionControl)
+   //::raw::index list::item_index(::user::interaction * pinteractionControl)
    //{
 
    //   m_
@@ -7752,7 +7752,7 @@ namespace user
    //}
 
 
-   ::index list::subitem_index(::user::interaction * pinteractionControl)
+   ::raw::index list::subitem_index(::user::interaction * pinteractionControl)
    {
 
       auto pcolumn = m_pcolumna->get_by_control(pinteractionControl);
@@ -7769,14 +7769,14 @@ namespace user
    }
 
 
-   //::index list::list_item_index(::user::interaction * pinteractionControl)
+   //::raw::index list::list_item_index(::user::interaction * pinteractionControl)
    //{
 
 
    //}
 
 
-   ::index list::column_index(::user::interaction * pinteractionControl) 
+   ::raw::index list::column_index(::user::interaction * pinteractionControl) 
    {
 
       auto pcolumn = m_pcolumna->get_by_control(pinteractionControl);
@@ -7849,9 +7849,9 @@ namespace user
          string str = pcontext->m_papexcontext->file()->safe_get_string(strSort);
          string_array stra;
          stra.add_lines(str);
-         for (index a = 0; a < stra.get_size(); a++)
+         for (::raw::index a = 0; a < stra.get_size(); a++)
          {
-            index b = _001GetItemById(stra[a]);
+            ::raw::index b = _001GetItemById(stra[a]);
             if (b >= 0 && b < m_nItemCount)
             {
                m_piconlayout->m_iaDisplayToStrict.set(a, b);
@@ -7860,7 +7860,7 @@ namespace user
 
       }
 
-      for (index b = 0; b < m_nItemCount; b++)
+      for (::raw::index b = 0; b < m_nItemCount; b++)
       {
 
          if (m_piconlayout->m_iaDisplayToStrict.get_a(b) == -1)

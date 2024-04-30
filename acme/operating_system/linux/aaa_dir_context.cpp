@@ -231,7 +231,7 @@ namespace linux
       if(listing.m_bRecursive)
       {
 
-         index iStart = listing.get_count();
+         ::raw::index iStart = listing.get_count();
 
          {
 
@@ -290,7 +290,7 @@ namespace linux
 
          }
 
-         for(index i = iStart; i < listing.get_size(); i++)
+         for(::raw::index i = iStart; i < listing.get_size(); i++)
          {
 
             listing[i].m_iRelative = listing.m_pathFinal.get_length() + 1;
@@ -506,7 +506,7 @@ pacmedirectory->is(path))
 
       pcsz.ascendants_path(stra);
 
-      index i = stra.get_upper_bound();
+      ::raw::index i = stra.get_upper_bound();
 
       for(; i >= 0; i--)
       {

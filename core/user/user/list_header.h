@@ -96,10 +96,10 @@ namespace user
       bool                          m_bTrack;
       bool                          m_bHover;
       enum_element                      m_eelementHover;
-      index                         m_iItemHover;
+      ::raw::index                         m_iItemHover;
       bool                          m_bLButtonDown;
       enum_element                      m_eelementLButtonDown;
-      index                         m_iItemLButtonDown;
+      ::raw::index                         m_iItemLButtonDown;
 
       list *                        m_plist;
 
@@ -117,31 +117,31 @@ namespace user
 
       virtual bool DIDDXColumn(bool bSave);
       virtual bool DIDDXLayout(bool bSave);
-      virtual index MapItemToOrder(index iItem);
-      virtual index ItemToColumnKey(index iItem);
+      virtual ::raw::index MapItemToOrder(::raw::index iItem);
+      virtual ::raw::index ItemToColumnKey(::raw::index iItem);
 
       virtual i32 GetDividerWidth();
 
 
-      bool GetItemRect(::rectangle_i32 * prectangle, enum_element eelement, index iItem);
+      bool GetItemRect(::rectangle_i32 * prectangle, enum_element eelement, ::raw::index iItem);
 
 
-      bool GetItemRect(::rectangle_i32 * prectangle, enum_element eelementLButtonDown, index iItemLButtonDown,
+      bool GetItemRect(::rectangle_i32 * prectangle, enum_element eelementLButtonDown, ::raw::index iItemLButtonDown,
 
                        enum_element eelement,
-                       index iItem);
+                       ::raw::index iItem);
 
       bool hit_test(
       const ::point_i32 & point,
       enum_element & eelement,
-      index & iItem);
+      ::raw::index & iItem);
 
       bool hit_test(
       const ::point_i32 & point,
       enum_element eelementLButtonDown,
-      index iItemLButtonDown,
+      ::raw::index iItemLButtonDown,
       enum_element & eelement,
-      index & iItem);
+      ::raw::index & iItem);
 
 
       ::point_f64 get_parent_context_offset() override;

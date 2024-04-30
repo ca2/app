@@ -19,8 +19,8 @@ namespace database
       ::pointer<field_array>    m_pfielda;
       ::pointer<row_array>      m_prowa;
 
-      ::count                    m_iMaxRowCount;
-      ::count                    m_iMaxColumnCount;
+      ::raw::count                    m_iMaxRowCount;
+      ::raw::count                    m_iMaxColumnCount;
 
 
       result_set();

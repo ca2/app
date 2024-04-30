@@ -186,7 +186,7 @@ public:
    payload(class ::time * ptime);
    template < character_range CHARACTER_RANGE >
    payload(const CHARACTER_RANGE & range);
-   //template < ::count count >
+   //template < ::raw::count count >
    //payload(const ::ansi_character(&sz)[count]) : payload((const ::ansi_character *)sz, count) {}
    template < primitive_integral INTEGRAL >
    payload(const ::ansi_character * begin, INTEGRAL count) : payload(begin, begin + count) {}
@@ -1244,21 +1244,21 @@ public:
    payload last() const;
    payload first();
    payload last();
-   ::count get_count() const;
+   ::raw::count get_count() const;
 
 
-   ::payload at(index i);
-   inline ::payload at(index i) const { return ((::payload *)this)->at(i); }
+   ::payload at(::raw::index i);
+   inline ::payload at(::raw::index i) const { return ((::payload *)this)->at(i); }
 
 
-   ::count array_get_count() const;
-   ::index array_get_upper_bound() const;
-   bool array_contains(const ::scoped_string & scopedstr, ::index find = 0, ::count count = -1) const;
-   bool array_contains_ci(const ::scoped_string & scopedstr, ::index find = 0, ::count count = -1) const;
+   ::raw::count array_get_count() const;
+   ::raw::index array_get_upper_bound() const;
+   bool array_contains(const ::scoped_string & scopedstr, ::raw::index find = 0, ::raw::count count = -1) const;
+   bool array_contains_ci(const ::scoped_string & scopedstr, ::raw::index find = 0, ::raw::count count = -1) const;
    bool array_is_empty() const { return array_get_count() <= 0; }
 
 
-   ::index index_of(const ::atom & atom) const;
+   ::raw::index index_of(const ::atom & atom) const;
    //::property * find_property_index(::iptr i) const;
    //::property & get_property_index(::iptr i);
    //::property * find_property(const ::scoped_string & scopedstr) const;

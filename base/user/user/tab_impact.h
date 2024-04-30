@@ -78,9 +78,9 @@ namespace user
 
       void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      void _001OnDropTab(index iPane, enum_position eposition) override;
+      void _001OnDropTab(::raw::index iPane, enum_position eposition) override;
 
-      ::user::interaction * _001GetTabWnd(::index iTab) override;
+      ::user::interaction * _001GetTabWnd(::raw::index iTab) override;
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
@@ -112,7 +112,7 @@ namespace user
 
       void on_after_change_cur_sel() override;
 
-      void _001OnTabClick(::index iTab) override;
+      void _001OnTabClick(::raw::index iTab) override;
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 

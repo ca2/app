@@ -89,12 +89,12 @@ namespace draw2d
 //      virtual bool harc(const ::point_f64 & point, double w, const ::angle_f64 & angle);
 
 
-      //virtual bool add_lines(const ::point_i32 * ppoint, ::count nCount);
-      virtual bool add_lines(const ::point_f64 * ppoint, ::count nCount);
+      //virtual bool add_lines(const ::point_i32 * ppoint, ::raw::count nCount);
+      virtual bool add_lines(const ::point_f64 * ppoint, ::raw::count nCount);
 
 
-      //virtual bool add_polygon(const ::point_i32* ppoint, ::count nCount);
-      virtual bool add_polygon(const ::point_f64 * ppoint, ::count nCount);
+      //virtual bool add_polygon(const ::point_i32* ppoint, ::raw::count nCount);
+      virtual bool add_polygon(const ::point_f64 * ppoint, ::raw::count nCount);
 
 
       inline bool add_line(double x, double y) { return add_line({ x, y }); }

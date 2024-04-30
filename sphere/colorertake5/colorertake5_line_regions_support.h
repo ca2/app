@@ -21,8 +21,8 @@ namespace colorertake5
       class region *special;
 
       LineRegion background;
-      index firstLineNo;
-      ::count lineCount;
+      ::raw::index firstLineNo;
+      ::raw::count lineCount;
 
 
    public:
@@ -34,12 +34,12 @@ namespace colorertake5
       /**
       * Resizes structures to mantain regions for @ca lineCount lines.
       */
-      void resize(::count lineCount);
+      void resize(::raw::count lineCount);
 
       /**
       * Return current this->get_size of this line regions structure
       */
-      ::count get_size();
+      ::raw::count get_size();
 
       /**
       * Drops all internal structures
@@ -56,7 +56,7 @@ namespace colorertake5
       /**
       * Returns first line position, installed in this line structures.
       */
-      index getFirstLine();
+      ::raw::index getFirstLine();
 
       /**
       * Background region define, which is used to
@@ -97,8 +97,8 @@ namespace colorertake5
       * Behaviour is redefined in derived classes
       */
       virtual void addLineRegion(index lno, LineRegion *lr);
-      index getLineIndex(index lno) const;
-      bool checkLine(index index) const;
+      ::raw::index getLineIndex(index lno) const;
+      bool checkLine(::raw::index index) const;
 
    };
 

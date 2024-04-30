@@ -70,7 +70,7 @@ namespace database
       //inline ::pointer<class transaction> transaction();
 
 
-      ::count get_affected_rows_count() override;
+      ::raw::count get_affected_rows_count() override;
 
 
       bool in_transaction() override { return m_pdatabase->in_transaction(); };
@@ -79,8 +79,8 @@ namespace database
       bool exec(const ::string & pszQuery) override;
 
 
-      ::pointer<result_set>query_result(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
-      ::pointer<result_set>query(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
+      ::pointer<result_set>query_result(const ::string & pszQuery, ::raw::count iRowCount = -1, ::raw::count iColumnCount = -1) override;
+      ::pointer<result_set>query(const ::string & pszQuery, ::raw::count iRowCount = -1, ::raw::count iColumnCount = -1) override;
 
 
       virtual ::payload get_agent(const ::string & pszTable, const ::string & psz, const ::string & pszUser) override;
@@ -92,7 +92,7 @@ namespace database
       using database::query_row;
       using database::query_rows;
 
-      //virtual ::payload query(const ::string & pszQuery, ::count iMaxRowCount = -1, ::count iMaxColumnCount = -1);
+      //virtual ::payload query(const ::string & pszQuery, ::raw::count iMaxRowCount = -1, ::raw::count iMaxColumnCount = -1);
       bool query_table_item(::payload& payload, const ::string & table, const ::string & item, const ::string & where) override;
       bool query_rows(::pointer<row_array>& prowarray, const ::string & pszQuery) override;
       bool query_row(::pointer<row>& prow, const ::string & pszQuery) override;

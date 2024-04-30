@@ -301,7 +301,7 @@ namespace html
 
          float cxMinMax = 0.f;
 
-         for (index i = 0; i < m_pelemental->m_elementalptra.get_count(); i++)
+         for (::raw::index i = 0; i < m_pelemental->m_elementalptra.get_count(); i++)
          {
 
             element* pelemental = m_pelemental->m_elementalptra[i]->m_pimpl;
@@ -358,10 +358,10 @@ namespace html
       }
 
 
-      index element::find(element* pelemental)
+      ::raw::index element::find(element* pelemental)
       {
 
-         for (index i = 0; i < m_pelemental->m_pparent->m_elementalptra.get_count(); i++)
+         for (::raw::index i = 0; i < m_pelemental->m_pparent->m_elementalptra.get_count(); i++)
          {
 
             if (m_pelemental->m_pparent->m_elementalptra[i]->m_pimpl == pelemental)
@@ -377,7 +377,7 @@ namespace html
 
       }
 
-      element* element::get_sibling(index i)
+      element* element::get_sibling(::raw::index i)
       {
 
          if (i < 0)

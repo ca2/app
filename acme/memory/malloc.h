@@ -85,7 +85,7 @@ namespace acme
 
       }
 
-      POINTER calloc(::count c)
+      POINTER calloc(::raw::count c)
       {
 
          free();
@@ -212,7 +212,7 @@ namespace acme
 
       }
 
-      POINTER calloc(::count c)
+      POINTER calloc(::raw::count c)
       {
 
          free();
@@ -239,7 +239,7 @@ namespace acme
 
       }
 
-      ::count get_count() const
+      ::raw::count get_count() const
       {
 
          return get_size() / sizeof(*m_p);

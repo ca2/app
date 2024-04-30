@@ -97,7 +97,7 @@ namespace http
 
 
 
-   index cookies::find_cookie(const char * name)
+   ::raw::index cookies::find_cookie(const char * name)
    {
 
       string strNameLow(name);
@@ -120,7 +120,7 @@ namespace http
 
    }
 
-   index cookies::lowfind_cookie(const char * name)
+   ::raw::index cookies::lowfind_cookie(const char * name)
    {
       for(i32 i = 0; i < this->get_size(); i++)
       {
@@ -255,7 +255,7 @@ namespace http
    string cookies::get_cookie_header()
    {
       string strCookie;
-      for(index i = 0; i < this->get_size(); i++)
+      for(::raw::index i = 0; i < this->get_size(); i++)
       {
          strCookie += (const char *) (this->element_at(i)->m_strName + "=" + this->element_at(i)->m_varValue.string());
          strCookie += ";";

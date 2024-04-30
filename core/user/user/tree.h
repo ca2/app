@@ -27,12 +27,12 @@ namespace user
       ::data::tree_item *                       m_pitemHover;
 
       ::pointer<::draw2d::graphics_extension>   m_pgraphicsextension;
-      index                                     m_dwFirstVisibleItem;
-      index                                     m_iItemCount;
+      ::raw::index                                     m_dwFirstVisibleItem;
+      ::raw::index                                     m_iItemCount;
       ::u32                                     m_uiLButtonUpFlags;
       point_i32                                 m_pointLButtonUp;
       ::data::tree_item *                       m_pitemFirstVisible;
-      index                                     m_iFirstVisibleItemProperIndex;
+      ::raw::index                                     m_iFirstVisibleItemProperIndex;
       i32                                       m_iCurrentImpactWidth;
       ::size_i32                                m_sizeItemMaximum;
       //::color::color                               m_colorTextSelected;
@@ -40,10 +40,10 @@ namespace user
       //::color::color                               m_colorTextSelectedHighlight;
       u32_array                                 m_dwaItemState;
       ::pointer<::image_list>                   m_pimagelist;
-      index                                     m_iImageCollapse;
-      index                                     m_iImageExpand;
-      index                                     m_iImageCollapseDark;
-      index                                     m_iImageExpandDark;
+      ::raw::index                                     m_iImageCollapse;
+      ::raw::index                                     m_iImageExpand;
+      ::raw::index                                     m_iImageCollapseDark;
+      ::raw::index                                     m_iImageExpandDark;
       ::draw2d::brush_pointer                   m_pbrushTextSelected;
       ::draw2d::brush_pointer                   m_pbrushTextSelectedHighlight;
       ::draw2d::brush_pointer                   m_pbrushTextHighlight;
@@ -84,7 +84,7 @@ namespace user
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual ::pointer<::data::tree>find_data_tree(::data::tree_item * pitem) const;
-      virtual ::pointer<::data::tree_item>find_data_tree_item(::data::item * pitem, index * piIndex = nullptr);
+      virtual ::pointer<::data::tree_item>find_data_tree_item(::data::item * pitem, ::raw::index * piIndex = nullptr);
       virtual bool contains(::data::item * pitem);
       virtual bool contains(::data::tree_item * pitem);
 
@@ -95,14 +95,14 @@ namespace user
 
 
       void _001OnTreeDataChange();
-      ::pointer<::data::tree_item>CalcFirstVisibleItem(index & iProperIndex);
+      ::pointer<::data::tree_item>CalcFirstVisibleItem(::raw::index & iProperIndex);
       virtual void _001CalculateItemHeight(::draw2d::graphics_pointer & pgraphics);
       virtual i32 _001CalcCurrentImpactWidth();
       virtual i32 _001CalcTotalImpactWidth(::draw2d::graphics_pointer & pgraphics);
       virtual i32 _001CalcTotalImpactHeight();
       void _001SelectItem(::data::tree_item * pitem);
-      count _001GetProperItemCount();
-      count _001GetVisibleItemCount();
+      ::raw::count _001GetProperItemCount();
+      ::raw::count _001GetVisibleItemCount();
       void _001SetCollapseImage(const ::string & pszMatter);
       void _001SetExpandImage(const ::string & pszMatter);
       void _001SetCollapseImageDark(const ::string & pszMatter);
@@ -118,7 +118,7 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
       virtual double _001GetItemHeight();
-      virtual index _001GetIndentation();
+      virtual ::raw::index _001GetIndentation();
 
 
       ::pointer<::data::tree_item>_001HitTest(const ::point_i32 & point, ::user::enum_tree_element & eelement);
@@ -155,13 +155,13 @@ namespace user
 
 
       virtual bool      hover(::data::tree_item * pitem);
-      virtual bool      hover(::data::item * pitem, index i = 0);
+      virtual bool      hover(::data::item * pitem, ::raw::index i = 0);
 
       virtual bool      is_hover(const ::data::tree_item * pitem) const;
       virtual bool      is_hover(const ::data::item * pitem) const;
 
 
-      virtual ::count   clear_selection();
+      virtual ::raw::count   clear_selection();
 
 
 
@@ -169,27 +169,27 @@ namespace user
       virtual bool      is_selected(const ::data::tree_item * pitem) const;
       virtual bool      is_selected(const ::data::item * pitem) const;
 
-      virtual ::count   selection_add(::data::tree_item_ptr_array & itemptra);
+      virtual ::raw::count   selection_add(::data::tree_item_ptr_array & itemptra);
       virtual bool      selection_add(::data::tree_item * pitem);
-      virtual bool      selection_add(::data::item * pitem, index i = 0);
+      virtual bool      selection_add(::data::item * pitem, ::raw::index i = 0);
 
-      virtual ::count   selection_set(::data::tree_item_ptr_array & itemptra);
+      virtual ::raw::count   selection_set(::data::tree_item_ptr_array & itemptra);
       virtual bool      selection_set(::data::tree_item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
       virtual bool      selection_set(::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
-      virtual bool      selection_set(index iIndex, ::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
+      virtual bool      selection_set(::raw::index iIndex, ::data::item * pitem, bool bIfNotInSelection = false, bool bIfParentInSelection = false);
 
-      virtual ::count   selection_erase(::data::tree_item_ptr_array & itemptra);
+      virtual ::raw::count   selection_erase(::data::tree_item_ptr_array & itemptra);
       virtual bool      selection_erase(::data::tree_item * pitem);
-      virtual bool      selection_erase(::data::item * pitem, index i = 0);
+      virtual bool      selection_erase(::data::item * pitem, ::raw::index i = 0);
 
 
       virtual bool      can_merge(const ::data::tree * ptree) const;
       virtual bool      merge(::data::tree * ptree, bool bBind);
 
-      virtual ::pointer<::data::tree_item>get_proper_item(index iIndex, index* piLevel = nullptr);
-      virtual ::pointer<::data::tree_item>_get_proper_item(index iIndex, index * piLevel = nullptr, index * piCount = nullptr);
-      virtual index     get_proper_item_index(::data::tree_item *pitemParam, index * piLevel);
-      virtual index     get_proper_item_count();
+      virtual ::pointer<::data::tree_item>get_proper_item(::raw::index iIndex, ::raw::index * piLevel = nullptr);
+      virtual ::pointer<::data::tree_item>_get_proper_item(::raw::index iIndex, ::raw::index * piLevel = nullptr, ::raw::index * piCount = nullptr);
+      virtual ::raw::index     get_proper_item_index(::data::tree_item *pitemParam, ::raw::index * piLevel);
+      virtual ::raw::index     get_proper_item_count();
 
       virtual void      _001EnsureVisible(::data::tree_item * pitem);
 

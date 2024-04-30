@@ -582,7 +582,7 @@ namespace user
       }
 
 
-      bool edit_impl::get_element_rectangle(::rectangle_i32 * prectangle, index i, enum_element eelement)
+      bool edit_impl::get_element_rectangle(::rectangle_i32 * prectangle, ::raw::index i, enum_element eelement)
       {
 
          if (eelement == ::e_element_icon)
@@ -619,7 +619,7 @@ namespace user
 
       }
 
-      bool edit_impl::get_item_rect(::rectangle_i32 * prectangle, index i)
+      bool edit_impl::get_item_rect(::rectangle_i32 * prectangle, ::raw::index i)
 
       {
 
@@ -1048,7 +1048,7 @@ namespace user
       }
 
 
-      bool edit_impl::_001GetItemText(string & str, index iItem)
+      bool edit_impl::_001GetItemText(string & str, ::raw::index iItem)
       {
 
          return false;
@@ -1527,7 +1527,7 @@ namespace user
 
                m_iSelBeg = m_iSelEnd = i1;
 
-               //index i = find_span(prichtextdata->m_spana, i1);
+               //::raw::index i = find_span(prichtextdata->m_spana, i1);
 
                on_after_change(::id_after_change_text);
 
@@ -1547,7 +1547,7 @@ namespace user
 
                m_iSelBeg = m_iSelEnd = i1;
 
-               //index i = find_span(prichtextdata->m_spana, i1);
+               //::raw::index i = find_span(prichtextdata->m_spana, i1);
 
                on_after_change(::id_after_change_text);
 
@@ -1809,7 +1809,7 @@ namespace user
 
                auto plinea = m_plinea;
 
-               index iLine = line_caret_x(*plinea, m_iSelEnd, x);
+               ::raw::index iLine = line_caret_x(*plinea, m_iSelEnd, x);
 
                iLine--;
 
@@ -1847,7 +1847,7 @@ namespace user
 
                auto plinea = m_plinea;
 
-               index iLine = line_caret_x(*plinea, m_iSelEnd, x);
+               ::raw::index iLine = line_caret_x(*plinea, m_iSelEnd, x);
 
                iLine++;
 
@@ -2016,7 +2016,7 @@ namespace user
                else
                {
 
-                  index iLine = SelToLine(m_iSelEnd);
+                  ::raw::index iLine = SelToLine(m_iSelEnd);
 
                   m_iSelEnd = LineColumnToSel(iLine, 0);
 
@@ -2052,7 +2052,7 @@ namespace user
                else
                {
 
-                  index iLine = SelToLine(m_iSelEnd);
+                  ::raw::index iLine = SelToLine(m_iSelEnd);
 
                   m_iSelEnd = LineColumnToSel(iLine, -1);
 
@@ -2227,9 +2227,9 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         index iLine = SelToLine(m_iSelBeg);
+         ::raw::index iLine = SelToLine(m_iSelBeg);
 
-         index iLineEnd = SelToLine(m_iSelBeg);
+         ::raw::index iLineEnd = SelToLine(m_iSelBeg);
 
          if (iLine != iLineEnd)
          {
@@ -2238,9 +2238,9 @@ namespace user
 
          }
 
-         index iBeg = LineColumnToSel(iLine, 0);
+         ::raw::index iBeg = LineColumnToSel(iLine, 0);
 
-         index iEnd = LineColumnToSel(iLine, -1);
+         ::raw::index iEnd = LineColumnToSel(iLine, -1);
 
          _001GetText(strText, iBeg, iEnd);
 

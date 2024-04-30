@@ -31,7 +31,7 @@ namespace data
       return m_str;
    }
    
-   index simple_item::data_item_get_image(::particle * pparticle) const
+   ::raw::index simple_item::data_item_get_image(::particle * pparticle) const
    {
 
       if(m_pdatatree->is_selected(this))

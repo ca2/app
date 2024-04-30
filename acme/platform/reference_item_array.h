@@ -49,7 +49,7 @@ public:
    virtual void add_item();
    
    
-   virtual ::index find_item(reference_referer * preferer);
+   virtual ::raw::index find_item(reference_referer * preferer);
 
    
    virtual bool erase_item();

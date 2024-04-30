@@ -2366,25 +2366,25 @@ string & payload::string_reference(const ::scoped_string & scopedstrOnNull)
       if (m_etype == ::e_type_i8)
       {
 
-         atom = (::index) m_i8;
+         atom = (::raw::index) m_i8;
 
       }
       else if (m_etype == ::e_type_u8)
       {
 
-         atom = (::index)m_u8;
+         atom = (::raw::index)m_u8;
 
       }
       else if (m_etype == ::e_type_i16)
       {
 
-         atom = (::index)m_i8;
+         atom = (::raw::index)m_i8;
 
       }
       else if (m_etype == ::e_type_u16)
       {
 
-         atom = (::index)m_u8;
+         atom = (::raw::index)m_u8;
 
       }
       else if(m_etype == ::e_type_i32)
@@ -2396,19 +2396,19 @@ string & payload::string_reference(const ::scoped_string & scopedstrOnNull)
       else if (m_etype == ::e_type_u32)
       {
 
-         atom = (::index) m_u32;
+         atom = (::raw::index) m_u32;
 
       }
       else if(m_etype == ::e_type_i64)
       {
 
-         atom = (::index) m_i64;
+         atom = (::raw::index) m_i64;
 
       }
       else if(m_etype == ::e_type_u64)
       {
 
-         atom = (::index) m_u64;
+         atom = (::raw::index) m_u64;
 
       }
       else if (m_etype == ::e_type_f32)
@@ -3569,7 +3569,7 @@ string_array payload::stra() const
 
          auto c = array_get_count();
 
-         for (::index i = 0; i < c; i++)
+         for (::raw::index i = 0; i < c; i++)
          {
 
             stra.add(at(i).get_string());
@@ -3628,7 +3628,7 @@ string_array & payload::stra_reference()
 
          auto c = array_get_count();
 
-         for (::index i = 0; i < c; i++)
+         for (::raw::index i = 0; i < c; i++)
          {
 
             pstra->add(at(i).get_string());
@@ -3683,7 +3683,7 @@ string_array & payload::stra_reference()
 
          auto c = array_get_count();
 
-         for (::index i = 0; i < c; i++)
+         for (::raw::index i = 0; i < c; i++)
          {
 
             ia.add(at(i).i32());
@@ -3736,7 +3736,7 @@ string_array & payload::stra_reference()
 
          auto c = array_get_count();
 
-         for(::index i = 0; i < c; i++)
+         for(::raw::index i = 0; i < c; i++)
          {
 
             pia->add(at(i).i32());
@@ -3791,7 +3791,7 @@ i64_array payload::i64a() const
 
          auto c = array_get_count();
 
-         for (index i = 0; i < c; i++)
+         for (::raw::index i = 0; i < c; i++)
          {
 
             i64a.add(at(i).i64());
@@ -3849,7 +3849,7 @@ i64_array & payload::i64a_reference()
 
          auto c = array_get_count();
 
-         for (index i = 0; i < c; i++)
+         for (::raw::index i = 0; i < c; i++)
          {
 
             pia64->add(at(i).i64());
@@ -4388,7 +4388,7 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
 }
 
 
-//::payload payload::at(index i) const
+//::payload payload::at(::raw::index i) const
 //{
 //
 //   switch(m_etype)
@@ -4416,7 +4416,7 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
 //}
 
 
-::payload payload::at(index i)
+::payload payload::at(::raw::index i)
 {
    switch(m_etype)
    {
@@ -4451,7 +4451,7 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
 }
 
 
-bool payload::array_contains(const ::scoped_string & scopedstr, index find, ::count count) const
+bool payload::array_contains(const ::scoped_string & scopedstr, ::raw::index find, ::raw::count count) const
 {
 
    switch(m_etype)
@@ -4466,8 +4466,8 @@ bool payload::array_contains(const ::scoped_string & scopedstr, index find, ::co
       return propset().contains_payload(psz, find, count);
    default:
    {
-      index upperbound = minimum(array_get_upper_bound(), find + count - 1);
-      for(index i = find; i <= upperbound; i++)
+      ::raw::index upperbound = minimum(array_get_upper_bound(), find + count - 1);
+      for(::raw::index i = find; i <= upperbound; i++)
       {
          if(at(i) == psz)
          {
@@ -4479,7 +4479,7 @@ bool payload::array_contains(const ::scoped_string & scopedstr, index find, ::co
    return false;
 }
 
-bool payload::array_contains_ci(const ::scoped_string & scopedstr, index find, index last) const
+bool payload::array_contains_ci(const ::scoped_string & scopedstr, ::raw::index find, ::raw::index last) const
 {
    switch(m_etype)
    {
@@ -4495,8 +4495,8 @@ bool payload::array_contains_ci(const ::scoped_string & scopedstr, index find, i
       return propset().contains_value_ci(psz, find, last);
    default:
    {
-      index upperbound = minimum(array_get_upper_bound(), last);
-      for(index i = find; i <= upperbound; i++)
+      ::raw::index upperbound = minimum(array_get_upper_bound(), last);
+      for(::raw::index i = find; i <= upperbound; i++)
       {
          if(at(i).string().case_insensitive_order(psz) == 0)
          {
@@ -4633,7 +4633,7 @@ bool payload::array_contains_ci(const ::scoped_string & scopedstr, index find, i
 //   case ::e_type_empty:
 //      return 0.0 / ul; // throws division by zero exception if ul stream zero
 //   case ::e_type_i32:
-//      return m_i32 / (::index) ul;
+//      return m_i32 / (::raw::index) ul;
 //   case ::e_type_u32:
 //      return m_u32 / (::uptr) ul;
 //   case ::e_type_i64:
@@ -4750,7 +4750,7 @@ bool payload::array_contains_ci(const ::scoped_string & scopedstr, index find, i
 //   case ::e_type_empty:
 //      return 0.0;
 //   case ::e_type_i32:
-//      return m_i32 * (::index) ul;
+//      return m_i32 * (::raw::index) ul;
 //   case ::e_type_u32:
 //      return m_u32 * (::uptr) ul;
 //   case ::e_type_i64:
@@ -5417,7 +5417,7 @@ bool payload::is_integer() const
                  || str[0] == '-'
                  || ansi_char_isdigit(str[0]))
          {
-            for(index i = 1; i < str.length(); i++)
+            for(::raw::index i = 1; i < str.length(); i++)
             {
                if(!ansi_char_isdigit(str[i]))
                   return false;
@@ -5464,7 +5464,7 @@ bool payload::is_natural() const
          else if(str[0] == '+'
                  || ansi_char_isdigit(str[0]))
          {
-            for(index i = 1; i < str.length(); i++)
+            for(::raw::index i = 1; i < str.length(); i++)
             {
                if(!ansi_char_isdigit(str[i]))
                   return false;

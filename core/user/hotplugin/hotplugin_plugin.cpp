@@ -174,7 +174,7 @@ namespace hotplugin
 
    //}
 
-   void plugin::set_memory(void * puchMemory, ::count c)
+   void plugin::set_memory(void * puchMemory, ::raw::count c)
    {
       if(m_phost != nullptr)
       {
@@ -191,7 +191,7 @@ namespace hotplugin
    }
 
 
-   void plugin::append_memory(void * puchMemory, ::count c)
+   void plugin::append_memory(void * puchMemory, ::raw::count c)
    {
       if(m_phost != nullptr)
       {
@@ -199,7 +199,7 @@ namespace hotplugin
       }
    }
 
-   ::count plugin::get_memory_length()
+   ::raw::count plugin::get_memory_length()
    {
       if(m_phost != nullptr)
       {
@@ -208,7 +208,7 @@ namespace hotplugin
       return 0;
    }
 
-   ::count plugin::read_memory(void * puchMemory, ::count c)
+   ::raw::count plugin::read_memory(void * puchMemory, ::raw::count c)
    {
       if(m_phost != nullptr)
       {

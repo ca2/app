@@ -4,7 +4,7 @@
 void maximum_line_length(string_array & stra, int iLen)
 {
 
-   for(index i = 0; i < stra.get_size(); i++)
+   for(::raw::index i = 0; i < stra.get_size(); i++)
    {
 
       string & strLine = stra[i];
@@ -291,7 +291,7 @@ namespace simple_ui
 
       int y = rectangleX.bottom() - cy - margin;
 
-      for(index i = 0; i < m_tapaA.get_count(); i++)
+      for(::raw::index i = 0; i < m_tapaA.get_count(); i++)
       {
 
          ::pointer<tap>ptap = m_tapaA[i];
@@ -310,7 +310,7 @@ namespace simple_ui
 
       x = rectangleX.right() - margin - cx;
 
-      for(index i = m_tapaB.get_upper_bound(); i >= 0; i--)
+      for(::raw::index i = m_tapaB.get_upper_bound(); i >= 0; i--)
       {
 
          ::pointer<tap>ptap = m_tapaB[i];

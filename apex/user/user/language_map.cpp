@@ -113,7 +113,7 @@ namespace user
 
 
    /// return selected language in the list
-   index language_map::get_language_list(string_array & stra)
+   ::raw::index language_map::get_language_list(string_array & stra)
    {
 
       return get_text_list(stra, "IDS_LANGUAGE", false);
@@ -121,10 +121,10 @@ namespace user
    }
 
 /// return selected language in the list
-   index language_map::get_text_list(string_array & stra, string strId, bool bFull)
+   ::raw::index language_map::get_text_list(string_array & stra, string strId, bool bFull)
    {
 
-      index iSel = -1;
+      ::raw::index iSel = -1;
 
       for (int i = 0; i < m_straLang.get_size(); i++)
       {
@@ -174,7 +174,7 @@ namespace user
 
    }
 
-   /*bool language_map::set_language_sel(index iSel)
+   /*bool language_map::set_language_sel(::raw::index iSel)
    {
 
 
@@ -252,7 +252,7 @@ namespace user
       else
       {
 
-         for (index i = papp->m_straMatterLocator.get_upper_bound(); i >= 0; i--)
+         for (::raw::index i = papp->m_straMatterLocator.get_upper_bound(); i >= 0; i--)
          {
 
             string strLocator = papp->m_straMatterLocator[i];

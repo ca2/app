@@ -35,9 +35,9 @@ namespace file
       virtual void add_search(const ::file::path & pathSearchFolder, bool bRecursive);
       virtual void add_search(const ::file::path_array & pathaSearchFolder, const bool_array & baRecursive);
       virtual void add_filter(string_array & stra);
-      virtual ::count get_file_count();
-      virtual void file_at(::index i, string & str);
-      virtual ::index find_first_file(const ::scoped_string & scopedstrFilePath, ::index iStart = 0);
+      virtual ::raw::count get_file_count();
+      virtual void file_at(::raw::index i, string & str);
+      virtual ::raw::index find_first_file(const ::scoped_string & scopedstrFilePath, ::raw::index iStart = 0);
 
       virtual void clear_file();
       virtual void clear_search();

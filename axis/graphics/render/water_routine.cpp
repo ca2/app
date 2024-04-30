@@ -495,7 +495,7 @@ namespace draw2d
    void water_routine::DrawWaterNoLight(i32 page, ::image32_t * pSrcImage, ::image32_t * pTargetImage)
    {
       
-      UNREFERENCED_PARAMETER(page);
+      __UNREFERENCED_PARAMETER(page);
       //  i32 ox, oy;
       i32 Δx, Δy;
       i32 x, y;
@@ -536,8 +536,8 @@ namespace draw2d
    void water_routine::DrawWaterWithLight(i32 page, i32 LightModifier,::image32_t * pSrcImage, ::image32_t * pTargetImage)
    {
       
-      UNREFERENCED_PARAMETER(page);
-      UNREFERENCED_PARAMETER(LightModifier);
+      __UNREFERENCED_PARAMETER(page);
+      __UNREFERENCED_PARAMETER(LightModifier);
       //  i32 ox, oy;
       i32 Δx, Δy;
       i32 x, y;

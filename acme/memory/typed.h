@@ -126,12 +126,12 @@ namespace constructor
 
       inline  void construct(void * p)
       {
-         UNREFERENCED_PARAMETER(p);
+         __UNREFERENCED_PARAMETER(p);
       }
       inline  void construct_count(void * p, ::count c)
       {
-         UNREFERENCED_PARAMETER(p);
-         UNREFERENCED_PARAMETER(c);
+         __UNREFERENCED_PARAMETER(p);
+         __UNREFERENCED_PARAMETER(c);
       }
 
    };
@@ -185,12 +185,12 @@ namespace destructor
 
       inline  void destruct(TYPE * p)
       {
-         UNREFERENCED_PARAMETER(p);
+         __UNREFERENCED_PARAMETER(p);
       }
       inline  void destruct_count(TYPE * p, ::count c)
       {
-         UNREFERENCED_PARAMETER(p);
-         UNREFERENCED_PARAMETER(c);
+         __UNREFERENCED_PARAMETER(p);
+         __UNREFERENCED_PARAMETER(c);
       }
 
    };

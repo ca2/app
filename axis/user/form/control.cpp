@@ -153,7 +153,7 @@ namespace user
 
    {
 
-      UNREFERENCED_PARAMETER(lparam);
+      __UNREFERENCED_PARAMETER(lparam);
 
 
       ASSERT(pinteraction != nullptr);
@@ -190,7 +190,7 @@ namespace user
 
    {
 
-      UNREFERENCED_PARAMETER(lparam);
+      __UNREFERENCED_PARAMETER(lparam);
 
 
       ASSERT(pinteraction != nullptr);
@@ -226,7 +226,7 @@ namespace user
 
    {
 
-      UNREFERENCED_PARAMETER(lparam);
+      __UNREFERENCED_PARAMETER(lparam);
 
 
       ASSERT(pinteraction != nullptr);
@@ -270,7 +270,7 @@ namespace user
 
    {
 
-      UNREFERENCED_PARAMETER(lparam);
+      __UNREFERENCED_PARAMETER(lparam);
 
 
       ASSERT(pinteraction != nullptr);
@@ -779,7 +779,7 @@ namespace user
 
    void form_control::_000OnPosCreate(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //      ::pointer<::user::message>pusermessage(pmessage);
    }
 
@@ -939,8 +939,8 @@ namespace user
    bool form_control::_001Validate(::user::interaction * pinteraction,::payload & payload)
    {
 
-      UNREFERENCED_PARAMETER(pinteraction);
-      UNREFERENCED_PARAMETER(payload);
+      __UNREFERENCED_PARAMETER(pinteraction);
+      __UNREFERENCED_PARAMETER(payload);
 
       return true;
 
@@ -958,7 +958,7 @@ namespace user
    bool form_control::_001OnBeforeSave(::user::interaction * pinteraction)
    {
 
-      UNREFERENCED_PARAMETER(pinteraction);
+      __UNREFERENCED_PARAMETER(pinteraction);
 
       return true;
 
@@ -1090,7 +1090,7 @@ namespace user
    void form_control::_001OnButtonAction(::user::interaction * pinteraction)
    {
 
-      UNREFERENCED_PARAMETER(pinteraction);
+      __UNREFERENCED_PARAMETER(pinteraction);
 
    }
 
@@ -1627,14 +1627,14 @@ namespace user
 
    //{
 
-   //   UNREFERENCED_PARAMETER(payloadFile);
-   //   UNREFERENCED_PARAMETER(nFlags);
-   //   UNREFERENCED_PARAMETER(pszTargetFrameName);
+   //   __UNREFERENCED_PARAMETER(payloadFile);
+   //   __UNREFERENCED_PARAMETER(nFlags);
+   //   __UNREFERENCED_PARAMETER(pszTargetFrameName);
 
-   //   UNREFERENCED_PARAMETER(baPostedData);
-   //   UNREFERENCED_PARAMETER(pszHeaders);
+   //   __UNREFERENCED_PARAMETER(baPostedData);
+   //   __UNREFERENCED_PARAMETER(pszHeaders);
 
-   //   UNREFERENCED_PARAMETER(pbCancel);
+   //   __UNREFERENCED_PARAMETER(pbCancel);
 
    //}
 

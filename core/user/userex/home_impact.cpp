@@ -128,7 +128,7 @@ namespace userex
    void home_impact::on_message_show_window(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //::pointer<::message::show_window>pshowwindow(pmessage);
 
    }

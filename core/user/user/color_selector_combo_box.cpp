@@ -171,7 +171,7 @@ namespace user
 
       //auto pmouse = pmessage->m_union.m_pmouse;
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       if (!::is_set(m_pitemHover))
       {
@@ -192,7 +192,7 @@ namespace user
 
       //auto pmouse = pmessage->m_union.m_pmouse;
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       m_pitemHover = nullptr;
 

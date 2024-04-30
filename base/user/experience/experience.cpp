@@ -79,7 +79,7 @@ namespace experience
    void experience::get_frame_list(string_array & stra)
    {
 
-      UNREFERENCED_PARAMETER(stra);
+      __UNREFERENCED_PARAMETER(stra);
 
    }
 
@@ -87,7 +87,7 @@ namespace experience
    ::pointer < ::experience::frame > experience::frame_experience(const ::string & strFrameSchema)
    {
 
-      UNREFERENCED_PARAMETER(strFrameSchema);
+      __UNREFERENCED_PARAMETER(strFrameSchema);
 
       return nullptr;
 

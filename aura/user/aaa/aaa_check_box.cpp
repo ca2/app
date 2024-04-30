@@ -592,7 +592,7 @@ namespace user
    void check_box::on_message_key_down(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 

@@ -1104,7 +1104,7 @@ namespace crypto_openssl
 //      /*void crypto::free_rsa_key(::pointer<::crypto::rsa>prsa)
 //      {
 //
-//         UNREFERENCED_PARAMETER(prsa);
+//         __UNREFERENCED_PARAMETER(prsa);
 //
 //      }*/
 //

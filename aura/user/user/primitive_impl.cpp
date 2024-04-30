@@ -225,9 +225,9 @@ namespace user
 
    //   }
 
-   //   UNREFERENCED_PARAMETER(nIDFirst);
+   //   __UNREFERENCED_PARAMETER(nIDFirst);
 
-   //   UNREFERENCED_PARAMETER(nIDLast);
+   //   __UNREFERENCED_PARAMETER(nIDLast);
 
    //   ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery || (nFlags & ~reposNoPosLeftOver) == reposExtra);
 
@@ -2414,7 +2414,7 @@ namespace user
    void primitive_impl::set_keyboard_focus(::user::primitive_impl * pprimitiveimpl)
    {
 
-      UNREFERENCED_PARAMETER(pprimitiveimpl);
+      __UNREFERENCED_PARAMETER(pprimitiveimpl);
 
       //return ::error_failed;
 
@@ -2424,7 +2424,7 @@ namespace user
    void primitive_impl::erase_keyboard_focus(::user::primitive_impl * pprimitiveimpl)
    {
 
-      UNREFERENCED_PARAMETER(pprimitiveimpl);
+      __UNREFERENCED_PARAMETER(pprimitiveimpl);
 
    }
 
@@ -2718,7 +2718,7 @@ namespace user
    void primitive_impl::show_task(bool bShow)
    {
 
-      UNREFERENCED_PARAMETER(bShow);
+      __UNREFERENCED_PARAMETER(bShow);
 
    }
 

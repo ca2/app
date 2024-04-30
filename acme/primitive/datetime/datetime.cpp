@@ -257,7 +257,7 @@ namespace datetime
 
       }
 
-      UNREFERENCED_PARAMETER(iPath);
+      __UNREFERENCED_PARAMETER(iPath);
 
       ::earth::time time(timeParam);
 

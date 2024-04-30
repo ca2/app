@@ -41,7 +41,7 @@ namespace experience_anthill
    void frame::OnMove(::pointer<::user::interaction>pframewindow)
    {
 
-      UNREFERENCED_PARAMETER(pframewindow);
+      __UNREFERENCED_PARAMETER(pframewindow);
 
    }
 
@@ -708,7 +708,7 @@ namespace experience_anthill
    void frame::on_draw_frame(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
    }
 

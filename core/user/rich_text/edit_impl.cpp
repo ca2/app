@@ -234,7 +234,7 @@ namespace user
 
          information() << node()->get_call_stack_trace();
 
-         //UNREFERENCED_PARAMETER(pmessage);
+         //__UNREFERENCED_PARAMETER(pmessage);
 
          //::pointer<::message::set_focus>psetfocus(pmessage);
 

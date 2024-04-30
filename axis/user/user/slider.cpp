@@ -38,7 +38,7 @@ namespace user
 
       pmessage->previous();
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 

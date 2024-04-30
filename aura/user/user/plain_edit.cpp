@@ -372,7 +372,7 @@ namespace user
    void plain_edit::OnDraw(::image * pimage)
    {
 
-      UNREFERENCED_PARAMETER(pimage);
+      __UNREFERENCED_PARAMETER(pimage);
 
    }
 
@@ -7999,8 +7999,8 @@ namespace user
 
    void plain_edit::IndexRegisterDelete(strsize iSel, strsize iCount)
    {
-      UNREFERENCED_PARAMETER(iSel);
-      UNREFERENCED_PARAMETER(iCount);
+      __UNREFERENCED_PARAMETER(iSel);
+      __UNREFERENCED_PARAMETER(iCount);
       //CreateLineIndex();
       //m_peditor->modifyEvent(0);
       /*   char flag;
@@ -8065,8 +8065,8 @@ namespace user
    void plain_edit::IndexRegisterInsert(strsize iSel, const ::string & pcszWhat)
 
    {
-      UNREFERENCED_PARAMETER(iSel);
-      UNREFERENCED_PARAMETER(pcszWhat);
+      __UNREFERENCED_PARAMETER(iSel);
+      __UNREFERENCED_PARAMETER(pcszWhat);
 
       //CreateLineIndex();
       //m_peditor->modifyEvent(0);
@@ -8726,7 +8726,7 @@ namespace user
    void plain_edit::on_message_scroll_x(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -8751,7 +8751,7 @@ namespace user
    void plain_edit::_009OnChar(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -8963,7 +8963,7 @@ namespace user
    void plain_edit::_001OnEditCut(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       _001EditCut();
 
@@ -8989,7 +8989,7 @@ namespace user
    void plain_edit::_001OnEditCopy(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       clipboard_copy();
 
@@ -9015,7 +9015,7 @@ namespace user
    void plain_edit::_001OnEditPaste(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       if (is_window_enabled())
       {
@@ -9069,7 +9069,7 @@ namespace user
    void plain_edit::on_message_size(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 

@@ -538,7 +538,7 @@
 //int_bool destroy_window(oswindow window)
 //{
 //
-//   UNREFERENCED_PARAMETER(window);
+//   __UNREFERENCED_PARAMETER(window);
 //
 //   return true;
 //

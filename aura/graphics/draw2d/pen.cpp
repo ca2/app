@@ -30,7 +30,7 @@ namespace draw2d
 
 //   void pen::dump(dump_context & dumpcontext) const
 //   {
-//      UNREFERENCED_PARAMETER(dumpcontext);
+//      __UNREFERENCED_PARAMETER(dumpcontext);
 //      throw ::interface_only();
 //   }
 

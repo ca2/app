@@ -12,7 +12,7 @@ namespace sip
    m_memfileBody(papp )
    {
 
-      UNREFERENCED_PARAMETER(version);
+      __UNREFERENCED_PARAMETER(version);
 
    }
 

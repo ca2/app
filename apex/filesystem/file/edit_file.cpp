@@ -30,7 +30,7 @@ namespace file
    }
 
 
-   filesize edit_item_base::get_position(bool bForward) { UNREFERENCED_PARAMETER(bForward); return m_position; };
+   filesize edit_item_base::get_position(bool bForward) { __UNREFERENCED_PARAMETER(bForward); return m_position; };
 
    ::u8 * edit_item_base::data() { return nullptr; }
    enum_edit_item edit_item_base::get_type() { return e_edit_item_undefined; }

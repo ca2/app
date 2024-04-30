@@ -380,9 +380,9 @@ namespace zip
    void in_file::write(const void * pdata,memsize nCount)
 
    {
-      UNREFERENCED_PARAMETER(pdata);
+      __UNREFERENCED_PARAMETER(pdata);
 
-      UNREFERENCED_PARAMETER(nCount);
+      __UNREFERENCED_PARAMETER(nCount);
       //ASSERT_VALID(this);
       ASSERT(get_zip_file() != nullptr);
 

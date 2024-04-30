@@ -141,8 +141,8 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 
 
 
-#ifndef UNREFERENCED_PARAMETER
-#define UNREFERENCED_PARAMETER(u)	(void)(u)
+#ifndef __UNREFERENCED_PARAMETER
+#define __UNREFERENCED_PARAMETER(u)	(void)(u)
 #endif
 
 

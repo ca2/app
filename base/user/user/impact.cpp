@@ -199,7 +199,7 @@ namespace user
    void impact::on_message_destroy(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       auto pframe = parent_frame();
 
@@ -439,9 +439,9 @@ namespace user
 
    //void impact::OnImpactUpdateHint(::pointer<::user::impact>pSender, LPARAM lHint, ::update * pHint)
    //{
-   //   UNREFERENCED_PARAMETER(pimpact);
-   //   UNREFERENCED_PARAMETER(eupdate);
-   //   UNREFERENCED_PARAMETER(pHint);
+   //   __UNREFERENCED_PARAMETER(pimpact);
+   //   __UNREFERENCED_PARAMETER(eupdate);
+   //   __UNREFERENCED_PARAMETER(pHint);
    //}
 
 
@@ -719,7 +719,7 @@ namespace user
 
    void impact::OnUpdateSplitCmd(::message::command* pCmdUI)
    {
-      UNREFERENCED_PARAMETER(pCmdUI);
+      __UNREFERENCED_PARAMETER(pCmdUI);
       /*ENSURE_ARG(pCmdUI != nullptr);
       CSplitterWnd* pSplitter = GetParentSplitter(this, false);
       pCmdUI->enable(pSplitter != nullptr && !pSplitter->IsTracking());*/
@@ -738,7 +738,7 @@ namespace user
 
    void impact::OnUpdateNextPaneMenu(::message::command* pCmdUI)
    {
-      UNREFERENCED_PARAMETER(pCmdUI);
+      __UNREFERENCED_PARAMETER(pCmdUI);
       /*ASSERT(pCmdUI->m_nID == ID_NEXT_PANE ||
       pCmdUI->m_nID == ID_PREV_PANE);
       CSplitterWnd* pSplitter = GetParentSplitter(this, false);
@@ -748,7 +748,7 @@ namespace user
 
    bool impact::OnNextPaneCmd(::u32 nID)
    {
-      UNREFERENCED_PARAMETER(nID);
+      __UNREFERENCED_PARAMETER(nID);
       /*   CSplitterWnd* pSplitter = GetParentSplitter(this, false);
       if (pSplitter == nullptr)
       return false;
@@ -763,7 +763,7 @@ namespace user
 
    //void impact::OnPrepareDC(::draw2d::graphics_pointer & pgraphics, CPrintInfo* pInfo)
    //{
-   //   UNREFERENCED_PARAMETER(pInfo);
+   //   __UNREFERENCED_PARAMETER(pInfo);
    //   ASSERT_VALID(pgraphics);
    //   UNUSED(pgraphics); // unused in release builds
 
@@ -993,7 +993,7 @@ namespace user
    void impact::on_message_left_button_down(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       pmessage->previous();
 
@@ -1017,7 +1017,7 @@ namespace user
    void impact::on_message_left_button_up(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       //auto pmouse = pmessage->m_union.m_pmouse;
 
@@ -1027,7 +1027,7 @@ namespace user
    void impact::on_message_mouse_move(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //   auto pmouse = pmessage->m_union.m_pmouse;
 
    }
@@ -1108,15 +1108,15 @@ namespace user
    //void impact::on_draw_impact_nc(::image * pimage)
    //{
 
-   //   UNREFERENCED_PARAMETER(pgraphics);
+   //   __UNREFERENCED_PARAMETER(pgraphics);
 
    //}
 
    //void impact::on_draw_impact(::draw2d::graphics_pointer & pgraphics, pointer_array < ::data::data > spadata)
    //{
 
-   //   UNREFERENCED_PARAMETER(pgraphics);
-   //   UNREFERENCED_PARAMETER(spadata);
+   //   __UNREFERENCED_PARAMETER(pgraphics);
+   //   __UNREFERENCED_PARAMETER(spadata);
 
    //}
 
@@ -1392,22 +1392,22 @@ namespace user
 
    void impact::_001OnUpdateSplitCmd(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
    void impact::_001OnSplitCmd(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
    void impact::_001OnUpdateNextPaneMenu(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
    void impact::_001OnNextPaneCmd(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
 
@@ -1424,13 +1424,13 @@ namespace user
 
    void impact::_001OnFilePrintThumbnail(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
 
    void impact::_001OnFilePrint(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
 
@@ -1511,7 +1511,7 @@ namespace user
 
    void impact::on_message_right_button_down(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //auto pmouse = pmessage->m_union.m_pmouse;
 
       parent_frame()->set_active_impact(this);
@@ -1519,7 +1519,7 @@ namespace user
 
    void impact::on_message_middle_button_down(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //      auto pmouse = pmessage->m_union.m_pmouse;
 
       parent_frame()->set_active_impact(this);

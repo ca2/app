@@ -14,17 +14,17 @@ namespace colorertake5
 
    void DefaultErrorHandler::fatalError(const string &msg)
    {
-      UNREFERENCED_PARAMETER(msg);
+      __UNREFERENCED_PARAMETER(msg);
    }
 
    void DefaultErrorHandler::error(const string &msg)
    {
-      UNREFERENCED_PARAMETER(msg);
+      __UNREFERENCED_PARAMETER(msg);
    }
 
    void DefaultErrorHandler::warning(const string &msg)
    {
-      UNREFERENCED_PARAMETER(msg);
+      __UNREFERENCED_PARAMETER(msg);
    }
 
 

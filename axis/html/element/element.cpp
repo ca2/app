@@ -469,7 +469,7 @@ namespace html
    void element::implement_phase2(html_data * phtmldata)
    {
 
-      UNREFERENCED_PARAMETER(phtmldata);
+      __UNREFERENCED_PARAMETER(phtmldata);
 
    }
 
@@ -1252,7 +1252,7 @@ namespace html
    void element::parse_attributes(html_data * phtmldata, ::ansi_range & range)
    {
 
-      UNREFERENCED_PARAMETER(phtmldata);
+      __UNREFERENCED_PARAMETER(phtmldata);
 
       char chQuote;
 

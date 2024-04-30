@@ -415,8 +415,8 @@ namespace filemanager
          void list_impact::PostFillTask(string & wstrFile, uptr uiTimer)
          {
 
-            UNREFERENCED_PARAMETER(wstrFile);
-            UNREFERENCED_PARAMETER(uiTimer);
+            __UNREFERENCED_PARAMETER(wstrFile);
+            __UNREFERENCED_PARAMETER(uiTimer);
             ASSERT(false);
 
          }
@@ -425,7 +425,7 @@ namespace filemanager
          void list_impact::fill_task()
          {
 
-            //UNREFERENCED_PARAMETER(pParameter);
+            //__UNREFERENCED_PARAMETER(pParameter);
 
             ASSERT(false);
 
@@ -615,7 +615,7 @@ namespace filemanager
 
          void list_impact::on_message_size(::message::message * pmessage)
          {
-            UNREFERENCED_PARAMETER(pmessage);
+            __UNREFERENCED_PARAMETER(pmessage);
             //m_buildhelper.m_iDisplayItemCount = _001GetDisplayItemCount();
 
          }
@@ -693,7 +693,7 @@ namespace filemanager
 
          void list_impact::start_build(i32 iItem)
          {
-            UNREFERENCED_PARAMETER(iItem);
+            __UNREFERENCED_PARAMETER(iItem);
             auto iTopIndex = m_iTopDisplayIndex;
             auto iDisplayItemCount = m_nDisplayCount;
 

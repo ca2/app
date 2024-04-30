@@ -137,9 +137,9 @@ namespace file
    void file::translate(filesize offset, ::enum_seek eseek)
    {
 
-      UNREFERENCED_PARAMETER(offset);
+      __UNREFERENCED_PARAMETER(offset);
 
-      UNREFERENCED_PARAMETER(eseek);
+      __UNREFERENCED_PARAMETER(eseek);
 
       //return 0;
 
@@ -345,8 +345,8 @@ namespace file
    void file::lock(filesize dwPos, filesize dwCount)
    {
 
-      UNREFERENCED_PARAMETER(dwPos);
-      UNREFERENCED_PARAMETER(dwCount);
+      __UNREFERENCED_PARAMETER(dwPos);
+      __UNREFERENCED_PARAMETER(dwCount);
 
    }
 
@@ -354,8 +354,8 @@ namespace file
    void file::unlock(filesize dwPos, filesize dwCount)
    {
 
-      UNREFERENCED_PARAMETER(dwPos);
-      UNREFERENCED_PARAMETER(dwCount);
+      __UNREFERENCED_PARAMETER(dwPos);
+      __UNREFERENCED_PARAMETER(dwCount);
 
    }
 
@@ -363,7 +363,7 @@ namespace file
    void file::set_size(filesize dwNewLen)
    {
 
-      UNREFERENCED_PARAMETER(dwNewLen);
+      __UNREFERENCED_PARAMETER(dwNewLen);
 
    }
 
@@ -741,7 +741,7 @@ namespace file
    void file::set_file_path(const ::file::path & path)
    {
 
-      UNREFERENCED_PARAMETER(path);
+      __UNREFERENCED_PARAMETER(path);
 
    }
 
@@ -1261,122 +1261,122 @@ namespace file
    /*
    void file::write (char ch)
    {
-      UNREFERENCED_PARAMETER(ch);
+      __UNREFERENCED_PARAMETER(ch);
       throw ::interface_only();
    }
 
    void file::write (uchar uch)
    {
-      UNREFERENCED_PARAMETER(uch);
+      __UNREFERENCED_PARAMETER(uch);
       throw ::interface_only();
    }
 
    void file::write (i16 sh)
    {
-      UNREFERENCED_PARAMETER(sh);
+      __UNREFERENCED_PARAMETER(sh);
       throw ::interface_only();
    }
 
    void file::write (u16 u)
    {
-      UNREFERENCED_PARAMETER(u);
+      __UNREFERENCED_PARAMETER(u);
       throw ::interface_only();
    }
 
    void file::write (unichar wch)
    {
-      UNREFERENCED_PARAMETER(wch);
+      __UNREFERENCED_PARAMETER(wch);
       throw ::interface_only();
    }
 
    void file::write (bool b)
    {
-      UNREFERENCED_PARAMETER(b);
+      __UNREFERENCED_PARAMETER(b);
       throw ::interface_only();
    }
 
    void file::write (i32 i)
    {
-      UNREFERENCED_PARAMETER(i);
+      __UNREFERENCED_PARAMETER(i);
       throw ::interface_only();
    }
 
    void file::write (u32 u)
    {
-      UNREFERENCED_PARAMETER(u);
+      __UNREFERENCED_PARAMETER(u);
       throw ::interface_only();
    }
 
    void file::write (i64 i)
    {
-      UNREFERENCED_PARAMETER(i);
+      __UNREFERENCED_PARAMETER(i);
       throw ::interface_only();
    }
 
    void file::write (u64 u)
    {
-      UNREFERENCED_PARAMETER(u);
+      __UNREFERENCED_PARAMETER(u);
       throw ::interface_only();
    }
 
    void file::write (float f)
    {
-      UNREFERENCED_PARAMETER(f);
+      __UNREFERENCED_PARAMETER(f);
       throw ::interface_only();
    }
 
    void file::write (double d)
    {
-      UNREFERENCED_PARAMETER(d);
+      __UNREFERENCED_PARAMETER(d);
       throw ::interface_only();
    }
 
    void file::write (const ::rectangle_i32 & rectangle)
    {
-      UNREFERENCED_PARAMETER(pcrect);
+      __UNREFERENCED_PARAMETER(pcrect);
 
       throw ::interface_only();
    }
 
    void file::write (const size_i32 & & size)
    {
-      UNREFERENCED_PARAMETER(size);
+      __UNREFERENCED_PARAMETER(size);
       throw ::interface_only();
    }
 
    void file::write (::type info)
    {
-      UNREFERENCED_PARAMETER(info);
+      __UNREFERENCED_PARAMETER(info);
       throw ::interface_only();
    }
 
    void file::write (matter & matter)
    {
-      UNREFERENCED_PARAMETER(matter);
+      __UNREFERENCED_PARAMETER(matter);
       throw ::interface_only();
    }
 
    void file::write (const ::scoped_string & scopedstr)
    {
-      UNREFERENCED_PARAMETER(psz);
+      __UNREFERENCED_PARAMETER(psz);
       throw ::interface_only();
    }
 
    void file::write (const atom & atom)
    {
-      UNREFERENCED_PARAMETER(atom);
+      __UNREFERENCED_PARAMETER(atom);
       throw ::interface_only();
    }
 
    void file::write (const ::payload & payload)
    {
-      UNREFERENCED_PARAMETER(payload);
+      __UNREFERENCED_PARAMETER(payload);
       throw ::interface_only();
    }
 
    void file::write (const ::string & str)
    {
-      UNREFERENCED_PARAMETER(str);
+      __UNREFERENCED_PARAMETER(str);
       throw ::interface_only();
    }
    */

@@ -1040,8 +1040,8 @@ void application::set_schema(const string& pcsz, const ::action_context& context
 void application::on_set_locale(const string& pcsz, const ::action_context& context)
 
 {
-   UNREFERENCED_PARAMETER(context);
-   UNREFERENCED_PARAMETER(pcsz);
+   __UNREFERENCED_PARAMETER(context);
+   __UNREFERENCED_PARAMETER(pcsz);
    
    //psystem->appa_load_string_table();
 }
@@ -1050,8 +1050,8 @@ void application::on_set_locale(const string& pcsz, const ::action_context& cont
 void application::on_set_schema(const string& pcsz, const ::action_context& context)
 
 {
-   UNREFERENCED_PARAMETER(context);
-   UNREFERENCED_PARAMETER(pcsz);
+   __UNREFERENCED_PARAMETER(context);
+   __UNREFERENCED_PARAMETER(pcsz);
    
    //psystem->appa_load_string_table();
 }
@@ -2023,7 +2023,7 @@ void application::pick_browse()
 void application::pick_media(const char *pszMediaType)
 {
    
-   UNREFERENCED_PARAMETER(pszMediaType);
+   __UNREFERENCED_PARAMETER(pszMediaType);
    
 }
 

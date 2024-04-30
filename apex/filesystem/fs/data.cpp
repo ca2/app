@@ -31,7 +31,7 @@ namespace fs
    bool data::has_subdir(const ::file::path & pszPath)
    {
 
-      UNREFERENCED_PARAMETER(pszPath);
+      __UNREFERENCED_PARAMETER(pszPath);
 
       return false;
 
@@ -46,14 +46,14 @@ namespace fs
 
    //string data::file_name(const ::file::path & pszPath)
    //{
-   //   UNREFERENCED_PARAMETER(pszPath);
+   //   __UNREFERENCED_PARAMETER(pszPath);
    //   return "";
    //}
 
    bool data::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
    {
-      UNREFERENCED_PARAMETER(pszDst);
-      UNREFERENCED_PARAMETER(pszSrc);
+      __UNREFERENCED_PARAMETER(pszDst);
+      __UNREFERENCED_PARAMETER(pszSrc);
       return false;
    }
 
@@ -117,7 +117,7 @@ namespace fs
    bool data::enumerate(::file::listing & listing)
    {
 
-      UNREFERENCED_PARAMETER(listing);
+      __UNREFERENCED_PARAMETER(listing);
 
       return true;
 
@@ -127,7 +127,7 @@ namespace fs
    //::file::listing & data::ls_relative_name(::file::listing & listing)
    //{
 
-   //   UNREFERENCED_PARAMETER(listing);
+   //   __UNREFERENCED_PARAMETER(listing);
 
    //   return listing;
 
@@ -154,7 +154,7 @@ namespace fs
    ::file::e_type data::file_type(const ::file::path& path)
    {
 
-      UNREFERENCED_PARAMETER(path);
+      __UNREFERENCED_PARAMETER(path);
 
       return ::file::e_type_unknown;
 
@@ -215,9 +215,9 @@ namespace fs
    file_pointer data::get_file(const ::file::path & payloadFile, ::file::e_open eopen)
    {
 
-      UNREFERENCED_PARAMETER(payloadFile);
+      __UNREFERENCED_PARAMETER(payloadFile);
 
-      UNREFERENCED_PARAMETER(eopen);
+      __UNREFERENCED_PARAMETER(eopen);
 
       return nullptr;
 

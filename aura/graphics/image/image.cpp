@@ -198,7 +198,7 @@ bool image::_is_ok() const
 void image::realize(::draw2d::graphics* pgraphics) const
 {
 
-   UNREFERENCED_PARAMETER(pgraphics);
+   __UNREFERENCED_PARAMETER(pgraphics);
 
    //return true;
 
@@ -401,7 +401,7 @@ bool image::on_host_read_pixels(::pixmap* ppixmapHost) const
 void image::dc_select(bool bSelect)
 {
 
-   UNREFERENCED_PARAMETER(bSelect);
+   __UNREFERENCED_PARAMETER(bSelect);
 
    throw ::interface_only();
 
@@ -667,10 +667,10 @@ void image::destroy_os_data()
 //{
 //
 //
-//   UNREFERENCED_PARAMETER(pgraphics);
-//   UNREFERENCED_PARAMETER(point);
-//   UNREFERENCED_PARAMETER(size);
-//   UNREFERENCED_PARAMETER(pointSrc);
+//   __UNREFERENCED_PARAMETER(pgraphics);
+//   __UNREFERENCED_PARAMETER(point);
+//   __UNREFERENCED_PARAMETER(size);
+//   __UNREFERENCED_PARAMETER(pointSrc);
 //   throw ::interface_only();
 //
 //   return false;
@@ -2637,8 +2637,8 @@ void image::from_alpha()
 
 void image::mult_alpha(::image* pimage, bool bPreserveAlpha)
 {
-   UNREFERENCED_PARAMETER(pimage);
-   UNREFERENCED_PARAMETER(bPreserveAlpha);
+   __UNREFERENCED_PARAMETER(pimage);
+   __UNREFERENCED_PARAMETER(bPreserveAlpha);
 
    u8* dst = (u8*)data();
    i64 size = scan_area();
@@ -7706,8 +7706,8 @@ void image::set_font_factor(double dFactor)
 //i32 image::cos(i32 i, i32 iAngle)
 //{
 //
-//   UNREFERENCED_PARAMETER(i);
-//   UNREFERENCED_PARAMETER(iAngle);
+//   __UNREFERENCED_PARAMETER(i);
+//   __UNREFERENCED_PARAMETER(iAngle);
 //
 //   throw ::interface_only();
 //
@@ -7719,8 +7719,8 @@ void image::set_font_factor(double dFactor)
 //i32 image::sin(i32 i, i32 iAngle)
 //{
 //
-//   UNREFERENCED_PARAMETER(i);
-//   UNREFERENCED_PARAMETER(iAngle);
+//   __UNREFERENCED_PARAMETER(i);
+//   __UNREFERENCED_PARAMETER(iAngle);
 //
 //   throw ::interface_only();
 //
@@ -7732,8 +7732,8 @@ void image::set_font_factor(double dFactor)
 //i32 image::cos10(i32 i, i32 iAngle)
 //{
 //
-//   UNREFERENCED_PARAMETER(i);
-//   UNREFERENCED_PARAMETER(iAngle);
+//   __UNREFERENCED_PARAMETER(i);
+//   __UNREFERENCED_PARAMETER(iAngle);
 //
 //   throw ::interface_only();
 //
@@ -7745,8 +7745,8 @@ void image::set_font_factor(double dFactor)
 //i32 image::sin10(i32 i, i32 iAngle)
 //{
 //
-//   UNREFERENCED_PARAMETER(i);
-//   UNREFERENCED_PARAMETER(iAngle);
+//   __UNREFERENCED_PARAMETER(i);
+//   __UNREFERENCED_PARAMETER(iAngle);
 //
 //   throw ::interface_only();
 //
@@ -9126,8 +9126,8 @@ void image::set_mapped()
 //   void image::update_window(::aura::draw_interface * puserinteraction,::message::message * pmessage,bool bTransferBuffer)
 //   {
 //
-//      UNREFERENCED_PARAMETER(puserinteraction);
-//      UNREFERENCED_PARAMETER(pmessage);
+//      __UNREFERENCED_PARAMETER(puserinteraction);
+//      __UNREFERENCED_PARAMETER(pmessage);
 //
 //      // default implementation does nothing, image_impl should be now updated (before calling update interaction_impl)
 //      // and ready to be queried if post queried
@@ -9143,8 +9143,8 @@ void image::set_mapped()
 //void image::print_window(::aura::draw_interface * puserinteraction,::message::message * pmessage)
 //{
 
-//   UNREFERENCED_PARAMETER(puserinteraction);
-//   UNREFERENCED_PARAMETER(pmessage);
+//   __UNREFERENCED_PARAMETER(puserinteraction);
+//   __UNREFERENCED_PARAMETER(pmessage);
 
 //   throw ::interface_only();
 

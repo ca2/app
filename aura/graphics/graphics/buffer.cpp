@@ -48,7 +48,7 @@ namespace graphics
    //bool buffer::update_screen(buffer_item * pitem)
    //{
 
-   //   UNREFERENCED_PARAMETER(pitem);
+   //   __UNREFERENCED_PARAMETER(pitem);
 
    //   return false;
 

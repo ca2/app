@@ -8,7 +8,7 @@
 //inline i32 _stprintf_s(char * pszBuffer, i32 iBufferLen, const ::scoped_string & scopedstrFormat, ...)
 //{
 //
-//   UNREFERENCED_PARAMETER(iBufferLen);
+//   __UNREFERENCED_PARAMETER(iBufferLen);
 //
 //   va_list args;
 //

@@ -113,7 +113,7 @@ namespace sockets
    // --------------------------------------------------------------------------------------
    void Ajp13Socket::ReceiveForwardRequest( const char *buf, memsize sz )
    {
-      UNREFERENCED_PARAMETER(sz);
+      __UNREFERENCED_PARAMETER(sz);
       //
       i32 ptr = 0;
 
@@ -210,24 +210,24 @@ namespace sockets
    // --------------------------------------------------------------------------------------
    void Ajp13Socket::ReceiveShutdown( const char *buf, memsize sz )
    {
-      UNREFERENCED_PARAMETER(buf);
-      UNREFERENCED_PARAMETER(sz);
+      __UNREFERENCED_PARAMETER(buf);
+      __UNREFERENCED_PARAMETER(sz);
    }
 
 
    // --------------------------------------------------------------------------------------
    void Ajp13Socket::ReceivePing( const char *buf, memsize sz )
    {
-      UNREFERENCED_PARAMETER(buf);
-      UNREFERENCED_PARAMETER(sz);
+      __UNREFERENCED_PARAMETER(buf);
+      __UNREFERENCED_PARAMETER(sz);
    }
 
 
    // --------------------------------------------------------------------------------------
    void Ajp13Socket::ReceiveCPing( const char *buf, memsize sz )
    {
-      UNREFERENCED_PARAMETER(buf);
-      UNREFERENCED_PARAMETER(sz);
+      __UNREFERENCED_PARAMETER(buf);
+      __UNREFERENCED_PARAMETER(sz);
    }
 
 

@@ -2663,7 +2663,7 @@ namespace draw2d_opengl
 
    void image::map(bool bApplyTransform) const
    {
-      UNREFERENCED_PARAMETER(bApplyTransform);
+      __UNREFERENCED_PARAMETER(bApplyTransform);
 
       if (!m_bMapped)
       {

@@ -61,7 +61,7 @@
 //   bool application::_001OnDDECommand(const ::scoped_string & scopedstr)
 
 //   {
-//      UNREFERENCED_PARAMETER(pcsz);
+//      __UNREFERENCED_PARAMETER(pcsz);
 
 //      return false;
 //   }

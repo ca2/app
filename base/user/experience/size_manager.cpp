@@ -806,7 +806,7 @@ namespace experience
    void size_manager::NotifyFramework(enum_frame eframe)
    {
 
-      UNREFERENCED_PARAMETER(eframe);
+      __UNREFERENCED_PARAMETER(eframe);
 
    }
 

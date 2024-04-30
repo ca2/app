@@ -235,7 +235,7 @@ namespace wave
    void player::audio_initialize(::pointer<::file::file> payloadFile)
    {
 
-      //UNREFERENCED_PARAMETER(payloadFile);
+      //__UNREFERENCED_PARAMETER(payloadFile);
 
    }
 

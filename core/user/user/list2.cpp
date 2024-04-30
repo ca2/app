@@ -472,8 +472,8 @@ namespace user
    //void list2::PostFillTask(string& wstrFile, uptr uiTimer)
    //{
 
-   //   UNREFERENCED_PARAMETER(wstrFile);
-   //   UNREFERENCED_PARAMETER(uiTimer);
+   //   __UNREFERENCED_PARAMETER(wstrFile);
+   //   __UNREFERENCED_PARAMETER(uiTimer);
    //   ASSERT(false);
 
    //}
@@ -482,7 +482,7 @@ namespace user
    //void list2::fill_task()
    //{
 
-   //   //UNREFERENCED_PARAMETER(pParameter);
+   //   //__UNREFERENCED_PARAMETER(pParameter);
 
    //   ASSERT(false);
 
@@ -664,7 +664,7 @@ namespace user
 
    //void list2::on_message_size(::message::message* pmessage)
    //{
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
    //   //m_buildhelper.m_iDisplayItemCount = _001GetDisplayItemCount();
 
    //}
@@ -742,7 +742,7 @@ namespace user
 
    //void list2::start_build(i32 iItem)
    //{
-   //   UNREFERENCED_PARAMETER(iItem);
+   //   __UNREFERENCED_PARAMETER(iItem);
    //   auto iTopIndex = m_iTopDisplayIndex;
    //   auto iDisplayItemCount = m_nDisplayCount;
 

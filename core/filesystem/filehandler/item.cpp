@@ -9,7 +9,7 @@ namespace filehandler
    string item::data_item_get_text(object * pparticle) const
    {
 
-      UNREFERENCED_PARAMETER(pparticle);
+      __UNREFERENCED_PARAMETER(pparticle);
 
       return m_strTopic;
 

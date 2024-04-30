@@ -588,7 +588,7 @@ namespace integration
    void context::set_msys2(bool bSet)
    {
 
-      UNREFERENCED_PARAMETER(bSet);
+      __UNREFERENCED_PARAMETER(bSet);
 
       throw interface_only();
 

@@ -77,7 +77,7 @@ namespace html
       bool element::hit_test(html_data* pdata, const ::point_f32& point)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
          //          e_tag etype = m_pelemental->m_etag;_001
 
@@ -98,7 +98,7 @@ namespace html
       double element::bound_hit_test(html_data* pdata, const ::point_f32& point)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
          float Δx;
 
@@ -248,7 +248,7 @@ namespace html
       void element::implement_phase1(html_data* pdata, ::html::element* pelemental)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
          m_pelemental = pelemental;
 
@@ -260,7 +260,7 @@ namespace html
       void element::implement_phase2(html_data* pdata)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
       }
 
@@ -276,7 +276,7 @@ namespace html
          m_bound.top() = 0;
          m_bound.right() = 0;
          m_bound.bottom() = 0;
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
       }
 
@@ -677,7 +677,7 @@ namespace html
       void element::layout_phase2(html_data* pdata)
       {
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
       }
 
@@ -993,7 +993,7 @@ namespace html
 
       void element::on_change_layout(html_data* pdata)
       {
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
       }
 
 
@@ -1212,7 +1212,7 @@ namespace html
             }
          }
 
-         //UNREFERENCED_PARAMETER(pimplChild);
+         //__UNREFERENCED_PARAMETER(pimplChild);
 
          return true;
 

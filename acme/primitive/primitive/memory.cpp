@@ -16,7 +16,7 @@ memory::memory(memory && memory) :
 memory::memory(manager * pmanager)
 {
 
-   UNREFERENCED_PARAMETER(pmanager);
+   __UNREFERENCED_PARAMETER(pmanager);
    m_pprimitivememory      = this;
    m_bAligned              = false;
 
@@ -26,7 +26,7 @@ memory::memory(manager * pmanager)
 memory::memory(const memory & s, manager * pmanager)
 {
 
-   UNREFERENCED_PARAMETER(pmanager);
+   __UNREFERENCED_PARAMETER(pmanager);
    this->m_pprimitivememory      = this;
    m_bAligned              = false;
    operator = (s);
@@ -37,7 +37,7 @@ memory::memory(const memory & s, manager * pmanager)
 memory::memory(const memory * ps, manager * pmanager)
 {
 
-   UNREFERENCED_PARAMETER(pmanager);
+   __UNREFERENCED_PARAMETER(pmanager);
    this->m_pprimitivememory      = this;
    m_bAligned              = false;
    operator   = (*ps);
@@ -48,7 +48,7 @@ memory::memory(const memory * ps, manager * pmanager)
 memory::memory(const u8 * pchSrc, strsize nLength, manager * pmanager)
 {
 
-   UNREFERENCED_PARAMETER(pmanager);
+   __UNREFERENCED_PARAMETER(pmanager);
 
    this->m_pprimitivememory      = this;
 
@@ -213,7 +213,7 @@ memory::memory(const ::string & str):
 memory::memory(memory_container * pcontainer, memsize dwAllocationAddUp, ::u32 nAllocFlags)
 {
 
-   UNREFERENCED_PARAMETER(nAllocFlags);
+   __UNREFERENCED_PARAMETER(nAllocFlags);
    this->m_pprimitivememory   = this;
    this->m_pcontainer         = pcontainer;
    if(dwAllocationAddUp == 0)

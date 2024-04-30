@@ -193,7 +193,7 @@ namespace experience
    void frame::OnMove(::pointer<::user::interaction>pframewindow)
    {
 
-      UNREFERENCED_PARAMETER(pframewindow);
+      __UNREFERENCED_PARAMETER(pframewindow);
 
    }
 
@@ -201,7 +201,7 @@ namespace experience
    void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -883,7 +883,7 @@ namespace experience
    bool frame::_001OnNcHitTest(const ::point_i32 & point, enum_hit_test & ehittest)
    {
 
-      UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(point);
 
       ehittest = e_hit_test_client;
 
@@ -895,7 +895,7 @@ namespace experience
    bool frame::_001OnTimer(::u32 uEvent)
    {
 
-      UNREFERENCED_PARAMETER(uEvent);
+      __UNREFERENCED_PARAMETER(uEvent);
 
       return false;
 
@@ -905,8 +905,8 @@ namespace experience
    //bool frame::on_message_size(u32 nType,i32 cx,i32 cy)
    //{
 
-   //   UNREFERENCED_PARAMETER(cx);
-   //   UNREFERENCED_PARAMETER(cy);
+   //   __UNREFERENCED_PARAMETER(cx);
+   //   __UNREFERENCED_PARAMETER(cy);
 
    //   return false;
 
@@ -916,8 +916,8 @@ namespace experience
 /*       bool frame::on_message_move(i32 x, i32 y)
    {
 
-      UNREFERENCED_PARAMETER(x);
-      UNREFERENCED_PARAMETER(y);
+      __UNREFERENCED_PARAMETER(x);
+      __UNREFERENCED_PARAMETER(y);
 
       return false;
 
@@ -1836,7 +1836,7 @@ namespace experience
    //::item_pointer frame::experience_frame_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
 
-      UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(point);
 
       return e_frame_client;
 

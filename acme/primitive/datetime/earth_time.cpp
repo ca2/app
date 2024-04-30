@@ -741,7 +741,7 @@ namespace earth
    ::earth::time & time::operator+=(date_span span)
    {
 
-      UNREFERENCED_PARAMETER(span);
+      __UNREFERENCED_PARAMETER(span);
 
       //throw ::not_implemented();
 
@@ -753,7 +753,7 @@ namespace earth
    ::earth::time & time::operator-=(date_span span)
    {
 
-      UNREFERENCED_PARAMETER(span);
+      __UNREFERENCED_PARAMETER(span);
 
       //throw ::not_implemented();
 
@@ -765,7 +765,7 @@ namespace earth
    ::earth::time time::operator-(date_span span) const
    {
 
-      UNREFERENCED_PARAMETER(span);
+      __UNREFERENCED_PARAMETER(span);
 
       //throw ::not_implemented();
 
@@ -777,7 +777,7 @@ namespace earth
    ::earth::time time::operator+(date_span span) const
    {
 
-      UNREFERENCED_PARAMETER(span);
+      __UNREFERENCED_PARAMETER(span);
 
       //throw_();
 

@@ -22,7 +22,7 @@ namespace colorertake5
    */
    void RegionHandler::startParsing(index lno)
    {
-      UNREFERENCED_PARAMETER(lno);
+      __UNREFERENCED_PARAMETER(lno);
    }
 
    /** End of text parsing.
@@ -32,7 +32,7 @@ namespace colorertake5
    */
    void RegionHandler::endParsing(index lno)
    {
-      UNREFERENCED_PARAMETER(lno);
+      __UNREFERENCED_PARAMETER(lno);
    }
 
    /** clear line event.
@@ -44,8 +44,8 @@ namespace colorertake5
    */
    void RegionHandler::clearLine(index lno, const ::string &line)
    {
-      UNREFERENCED_PARAMETER(lno);
-      UNREFERENCED_PARAMETER(line);
+      __UNREFERENCED_PARAMETER(lno);
+      __UNREFERENCED_PARAMETER(line);
    }
 
    /** Informs handler about lexical region in line.

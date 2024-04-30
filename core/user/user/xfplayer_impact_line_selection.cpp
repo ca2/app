@@ -198,7 +198,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
 
 void xfplayer_impact_line_selection::OnSelEvent(xfplayer_impact_line & viewline, xfplayer_impact_line_selection::enum_event eevent)
 {
-   UNREFERENCED_PARAMETER(viewline);
+   __UNREFERENCED_PARAMETER(viewline);
    switch(eevent)
    {
    case e_event_start:
@@ -302,7 +302,7 @@ bool xfplayer_impact_line_selection::SetSelAfter(xfplayer_impact_line & viewline
 
 void xfplayer_impact_line_selection::NormalizeSel(xfplayer_impact_line & viewline)
 {
-   UNREFERENCED_PARAMETER(viewline);
+   __UNREFERENCED_PARAMETER(viewline);
    ASSERT(false);
    /*   string str;
    if(m_item.m_iLineStart < 0)
@@ -430,7 +430,7 @@ strsize      iCharStart,
 strsize      iCharEnd,
 bool    bMerge)
 {
-   UNREFERENCED_PARAMETER(bMerge);
+   __UNREFERENCED_PARAMETER(bMerge);
    for(index i = 0; i < m_itema.get_size(); i++)
    {
       if(m_itema.element_at(i).Intersect(iLineStart, iLineEnd))
@@ -455,7 +455,7 @@ bool    bMerge)
 bool xfplayer_impact_line_selection::OnLButtonDown(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::point_i32 & point)
 {
    
-   UNREFERENCED_PARAMETER(ebuttonstate);
+   __UNREFERENCED_PARAMETER(ebuttonstate);
 
    auto point1 = point;
    
@@ -594,7 +594,7 @@ bool xfplayer_impact_line_selection::OnMouseMove(xfplayer_impact_line & viewline
 
 bool xfplayer_impact_line_selection::OnLButtonUp(xfplayer_impact_line & viewline, ::user::e_button_state ebuttonstate, const ::point_i32 & point)
 {
-   UNREFERENCED_PARAMETER(ebuttonstate);
+   __UNREFERENCED_PARAMETER(ebuttonstate);
    if(!viewline.IsVisible())
       return false;
 

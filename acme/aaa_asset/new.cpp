@@ -79,7 +79,7 @@ void MEMORY_DECL operator delete[](void* p) del_throw_spec
 void* MEMORY_DECL operator new(size_t nSize, void* p) inplace_new_throw_spec
 {
 
-   UNREFERENCED_PARAMETER(nSize);
+   __UNREFERENCED_PARAMETER(nSize);
 
    return p;
 
@@ -89,8 +89,8 @@ void* MEMORY_DECL operator new(size_t nSize, void* p) inplace_new_throw_spec
 void MEMORY_DECL operator delete(void* p, void* palloc) del_throw_spec
 {
 
-   UNREFERENCED_PARAMETER(p);
-   UNREFERENCED_PARAMETER(palloc);
+   __UNREFERENCED_PARAMETER(p);
+   __UNREFERENCED_PARAMETER(palloc);
 
 }
 

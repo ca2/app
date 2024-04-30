@@ -153,7 +153,7 @@ namespace user
    void color_selector_control::on_message_show_window(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       //::pointer<::message::show_window>pshowwindow(pmessage);
 
    }

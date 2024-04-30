@@ -50,7 +50,7 @@ namespace http
 
       ::text_stream is(infil);
 
-      UNREFERENCED_PARAMETER(content-length);
+      __UNREFERENCED_PARAMETER(content-length);
 
       strsize extra = 2;
 

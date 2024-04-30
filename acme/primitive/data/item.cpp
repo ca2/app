@@ -16,19 +16,19 @@ namespace data
 
    string item::data_item_get_text(::particle * pparticle) const
    {
-      UNREFERENCED_PARAMETER(pparticle);
+      __UNREFERENCED_PARAMETER(pparticle);
       return "";
    }
 
    index item::data_item_get_image(::particle * pparticle) const
    {
-      UNREFERENCED_PARAMETER(pparticle);
+      __UNREFERENCED_PARAMETER(pparticle);
       return -1;
    }
 
    image_list * item::data_item_get_image_list(::particle * pparticle) const
    {
-      UNREFERENCED_PARAMETER(pparticle);
+      __UNREFERENCED_PARAMETER(pparticle);
       return nullptr;
    }
 

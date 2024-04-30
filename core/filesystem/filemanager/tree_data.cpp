@@ -1315,7 +1315,7 @@ _001SelectItem(pchild);
    void tree_data::_001OnItemCollapse(::data::tree_item * pitem, const ::action_context & context)
    {
 
-      UNREFERENCED_PARAMETER(pitem);
+      __UNREFERENCED_PARAMETER(pitem);
 
    }
 
@@ -1440,7 +1440,7 @@ _001SelectItem(pchild);
    void tree_data::on_bind_user_tree(::user::tree * pusertree)
    {
 
-      UNREFERENCED_PARAMETER(pusertree);
+      __UNREFERENCED_PARAMETER(pusertree);
 
    }
 

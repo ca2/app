@@ -23,7 +23,7 @@ namespace user
    void drawable::_000DrawImpl(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -31,7 +31,7 @@ namespace user
    void drawable::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -47,7 +47,7 @@ namespace user
    ::item_pointer drawable::parent_client_hit_test(const ::point_i32& point, e_zorder ezorder)
    {
 
-      UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(point);
 
       return nullptr;
 

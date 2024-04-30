@@ -1469,7 +1469,7 @@ namespace user
 
          pmessage->previous();
 
-         UNREFERENCED_PARAMETER(pmessage);
+         __UNREFERENCED_PARAMETER(pmessage);
 
          //create_color(color_background, argb(84 + 77, 185, 184, 177));
 
@@ -1483,7 +1483,7 @@ namespace user
 
       //    void menu::_001OnIdleUpdateCmdUI(::message::message * pmessage)
       //    {
-      //       UNREFERENCED_PARAMETER(pmessage);
+      //       __UNREFERENCED_PARAMETER(pmessage);
       //       //      ::pointer<::user::message>pusermessage(pmessage);
 
       //       ::pointer<::user::menu_item>pitemThis = get_item();
@@ -1522,7 +1522,7 @@ namespace user
 
       void menu::_001OnEnable(::message::message * pmessage)
       {
-         UNREFERENCED_PARAMETER(pmessage);
+         __UNREFERENCED_PARAMETER(pmessage);
       }
 
 

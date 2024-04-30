@@ -45,7 +45,7 @@ namespace user
 
    void step_slider::on_message_create(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 //      ::pointer<::message::create>pcreate(pmessage);
 
    }
@@ -98,7 +98,7 @@ namespace user
    void step_slider::on_message_mouse_move(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       SetTimer(1, 200_ms, nullptr);
 

@@ -3676,7 +3676,7 @@ namespace user
 
       }
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       user_interaction_on_destroy();
 
@@ -7818,7 +7818,7 @@ namespace user
 
       }
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       //m_pitemClient = __allocate< ::item >(e_element_client);
 
@@ -9493,28 +9493,28 @@ namespace user
 
    //void interaction::_002OnLButtonDown(::message::message * pmessage)
    //{
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
    //}
 
    //void interaction::_002OnLButtonUp(::message::message * pmessage)
    //{
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
    //}
 
    //void interaction::_002OnMouseMove(::message::message * pmessage)
    //{
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
    //}
 
    //void interaction::_002OnMouseEnter(::message::message * pmessage)
    //{
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
    //}
 
    //void interaction::_002OnMouseLeave(::message::message * pmessage)
    //{
 
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
 
    //}
 
@@ -9522,7 +9522,7 @@ namespace user
    //void interaction::_002OnKeyDown(::message::message * pmessage)
    //{
 
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
 
    //}
 
@@ -9530,7 +9530,7 @@ namespace user
    //void interaction::_002OnKeyUp(::message::message * pmessage)
    //{
 
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
 
    //}
 
@@ -9538,7 +9538,7 @@ namespace user
    //void interaction::_002OnTimer(::message::message * pmessage)
    //{
 
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
 
    //}
 
@@ -9881,7 +9881,7 @@ namespace user
    //void interaction::pre_translate_message(::message::message * pmessage)
    //{
 
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
 
    //   //::pointer<::message::message>pmessage(pmessage);
 
@@ -11769,9 +11769,9 @@ namespace user
 
       }
 
-      UNREFERENCED_PARAMETER(nIDFirst);
+      __UNREFERENCED_PARAMETER(nIDFirst);
 
-      UNREFERENCED_PARAMETER(nIDLast);
+      __UNREFERENCED_PARAMETER(nIDLast);
 
       ASSERT(nFlags == 0 || (nFlags & ~reposNoPosLeftOver) == reposQuery ||
              (nFlags & ~reposNoPosLeftOver) == reposExtra);
@@ -13856,7 +13856,7 @@ namespace user
    bool interaction::should_perform_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
       return m_bNeedPerformLayout;
 
@@ -13866,7 +13866,7 @@ namespace user
    bool interaction::need_on_perform_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
       bool bNeedOnPerformLayout = false;
 
@@ -16378,7 +16378,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    //void interaction::GuieProc(::message::message * pmessage)
    //{
    //
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
    //
    //}
 
@@ -17354,7 +17354,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    bool interaction::can_merge(::user::interaction * pinteraction)
    {
 
-      UNREFERENCED_PARAMETER(pinteraction);
+      __UNREFERENCED_PARAMETER(pinteraction);
 
       return false;
 
@@ -17364,7 +17364,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    bool interaction::merge(::user::interaction * pinteraction)
    {
 
-      UNREFERENCED_PARAMETER(pinteraction);
+      __UNREFERENCED_PARAMETER(pinteraction);
 
       return false;
 
@@ -18291,7 +18291,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    bool interaction::is_selected(::data::item * pitem)
    {
 
-      UNREFERENCED_PARAMETER(pitem);
+      __UNREFERENCED_PARAMETER(pitem);
 
       return false;
 

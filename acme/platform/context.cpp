@@ -998,7 +998,7 @@ namespace acme
    ::memory context::http_memory(const ::scoped_string & scopedstrUrl, ::property_set & set)
    {
 
-      //UNREFERENCED_PARAMETER(pcontext);
+      //__UNREFERENCED_PARAMETER(pcontext);
 
       try
       {

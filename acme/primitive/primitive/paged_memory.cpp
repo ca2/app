@@ -56,7 +56,7 @@ paged_memory::paged_memory(memory_container * pcontainer, const void * pdata, me
 paged_memory::paged_memory(memory_container * pcontainer, double dAllocationRateUp, ::u32 nAllocFlags)
 {
 
-   UNREFERENCED_PARAMETER(nAllocFlags);
+   __UNREFERENCED_PARAMETER(nAllocFlags);
 
    m_beginStorage = nullptr;
    m_begin = nullptr;

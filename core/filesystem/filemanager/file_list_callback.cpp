@@ -91,31 +91,31 @@ namespace filemanager
 
    void file_list_callback::OnButtonAction(atom i, ::pointer<::file::item> item)
    {
-      UNREFERENCED_PARAMETER(i);
-      UNREFERENCED_PARAMETER(item);
+      __UNREFERENCED_PARAMETER(i);
+      __UNREFERENCED_PARAMETER(item);
    }
 
 
 
    bool file_list_callback::GetMenuItemCallback(atom iId)
    {
-      UNREFERENCED_PARAMETER(iId);
+      __UNREFERENCED_PARAMETER(iId);
       return false;
    }
 
    void file_list_callback::OnMenuItemAction(atom iId, const ::file::item_array & itema)
    {
-      UNREFERENCED_PARAMETER(iId);
-      UNREFERENCED_PARAMETER(itema);
+      __UNREFERENCED_PARAMETER(iId);
+      __UNREFERENCED_PARAMETER(itema);
    }
 
 
    void file_list_callback::GetMenuItemUpdate(atom iId, const ::file::item_array & itema, ::message::command * pcommand)
    {
 
-      UNREFERENCED_PARAMETER(iId);
-      UNREFERENCED_PARAMETER(itema);
-      UNREFERENCED_PARAMETER(pcommand);
+      __UNREFERENCED_PARAMETER(iId);
+      __UNREFERENCED_PARAMETER(itema);
+      __UNREFERENCED_PARAMETER(pcommand);
 
    }
 
@@ -123,7 +123,7 @@ namespace filemanager
    ::pointer<::image_list>file_list_callback::GetActionButtonImageList(atom i)
    {
 
-      UNREFERENCED_PARAMETER(i);
+      __UNREFERENCED_PARAMETER(i);
 
       return nullptr;
 

@@ -285,7 +285,7 @@ namespace graphics
    bool graphics::on_update_screen(buffer_item * pitem)
    {
 
-      //UNREFERENCED_PARAMETER(pitem);
+      //__UNREFERENCED_PARAMETER(pitem);
 
 
       return true;

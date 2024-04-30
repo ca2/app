@@ -101,8 +101,8 @@ namespace user
    void text::_001GetSel(strsize & iBeg, strsize & iEnd)
    {
 
-      UNREFERENCED_PARAMETER(iBeg);
-      UNREFERENCED_PARAMETER(iEnd);
+      __UNREFERENCED_PARAMETER(iBeg);
+      __UNREFERENCED_PARAMETER(iEnd);
 
    }
 
@@ -110,9 +110,9 @@ namespace user
    void text::_001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context)
    {
 
-      UNREFERENCED_PARAMETER(iBeg);
-      UNREFERENCED_PARAMETER(iEnd);
-      UNREFERENCED_PARAMETER(action_context);
+      __UNREFERENCED_PARAMETER(iBeg);
+      __UNREFERENCED_PARAMETER(iEnd);
+      __UNREFERENCED_PARAMETER(action_context);
 
    }
 
@@ -120,8 +120,8 @@ namespace user
    void text::_001GetImpactSel(strsize & iBeg, strsize & iEnd)
    {
 
-      UNREFERENCED_PARAMETER(iBeg);
-      UNREFERENCED_PARAMETER(iEnd);
+      __UNREFERENCED_PARAMETER(iBeg);
+      __UNREFERENCED_PARAMETER(iEnd);
 
    }
 
@@ -129,8 +129,8 @@ namespace user
    void text::_001SetSelEnd(strsize iEnd, const ::action_context & actioncontext)
    {
 
-      UNREFERENCED_PARAMETER(iEnd);
-      UNREFERENCED_PARAMETER(actioncontext);
+      __UNREFERENCED_PARAMETER(iEnd);
+      __UNREFERENCED_PARAMETER(actioncontext);
 
    }
 

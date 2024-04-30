@@ -276,7 +276,7 @@ void db_server::close()
 bool db_server::data_server_load(::database::client * pclient, ::string strDataKey, memory & memory, ::update * pupdate)
 {
 
-   UNREFERENCED_PARAMETER(pparticle);
+   __UNREFERENCED_PARAMETER(pparticle);
 
    if (!load(calc_data_key(pclient, key), memory))
    {
@@ -295,7 +295,7 @@ bool db_server::data_server_save(::database::client * pclient, ::string strDataK
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   UNREFERENCED_PARAMETER(pparticle);
+   __UNREFERENCED_PARAMETER(pparticle);
 
    if (!save(calc_data_key(pclient, key), memory))
    {

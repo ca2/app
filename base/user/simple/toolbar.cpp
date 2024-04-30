@@ -1689,7 +1689,7 @@ void simple_toolbar::_001DiscardImageList()
 void simple_toolbar::_001SetImageList(::pointer<::image_list>imagelist)
 {
 
-   UNREFERENCED_PARAMETER(imagelist);
+   __UNREFERENCED_PARAMETER(imagelist);
 
    /*
 

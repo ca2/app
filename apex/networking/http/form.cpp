@@ -59,7 +59,7 @@ namespace http
 
       //::text_stream is(infil);
 
-      UNREFERENCED_PARAMETER(sizeContentLength);
+      __UNREFERENCED_PARAMETER(sizeContentLength);
 
       strsize extra = 2;
 

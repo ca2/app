@@ -54,7 +54,7 @@ namespace userstack
    void impact::OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -94,7 +94,7 @@ namespace userstack
    void impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      UNREFERENCED_PARAMETER(ptopic);
+      __UNREFERENCED_PARAMETER(ptopic);
 
    }
 
@@ -110,7 +110,7 @@ namespace userstack
    void impact::_001OnPaint(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
 
    }
@@ -349,15 +349,15 @@ namespace userstack
 
    ::u32 c_cdecl impact::ThreadProcShowWindow(LPVOID lpparam)
    {
-      UNREFERENCED_PARAMETER(lpparam);
+      __UNREFERENCED_PARAMETER(lpparam);
       return 0;
    }
 
 
    void impact::mt_show_window(oswindow oswindow, i32 iShow)
    {
-      UNREFERENCED_PARAMETER(oswindow);
-      UNREFERENCED_PARAMETER(iShow);
+      __UNREFERENCED_PARAMETER(oswindow);
+      __UNREFERENCED_PARAMETER(iShow);
    }
 
    /*void impact::on_layout(::draw2d::graphics_pointer & pgraphics)

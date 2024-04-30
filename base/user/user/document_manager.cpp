@@ -168,7 +168,7 @@ namespace user
 
    void document_manager::RegisterShellFileTypes(bool bCompat)
    {
-      UNREFERENCED_PARAMETER(bCompat);
+      __UNREFERENCED_PARAMETER(bCompat);
       throw ::interface_only();
 
       /*   ASSERT(!m_templateptra.is_empty());  // must have some doc templates
@@ -536,7 +536,7 @@ namespace user
    bool document_manager::OnDDECommand(char * pszCommand)
 
    {
-      UNREFERENCED_PARAMETER(pszCommand);
+      __UNREFERENCED_PARAMETER(pszCommand);
 
       /*string strCommand = pszCommand;
 

@@ -235,7 +235,7 @@ namespace html
          if (m_pelemental->m_phtmlbase->get_type() != ::html::base::type_tag)
             return;
 
-         UNREFERENCED_PARAMETER(pdata);
+         __UNREFERENCED_PARAMETER(pdata);
 
          m_pcombo->place(m_box);
 

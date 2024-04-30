@@ -111,7 +111,7 @@ namespace user
    void frame_window::GetBorderRectangle(::rectangle_i32 * prectangle)
    {
 
-      UNREFERENCED_PARAMETER(prectangle);
+      __UNREFERENCED_PARAMETER(prectangle);
 
    }
 
@@ -119,7 +119,7 @@ namespace user
    void frame_window::SetBorderRect(const ::rectangle_i32 & rectangle)
    {
 
-      UNREFERENCED_PARAMETER(rectangle);
+      __UNREFERENCED_PARAMETER(rectangle);
 
    }
 
@@ -127,7 +127,7 @@ namespace user
    //void frame_window::NotifyFloatingWindows(u32 dwFlags)
    //{
 
-   //   UNREFERENCED_PARAMETER(dwFlags);
+   //   __UNREFERENCED_PARAMETER(dwFlags);
 
    //}
 
@@ -650,7 +650,7 @@ namespace user
 
    void frame_window::OnPaletteChanged(::pointer<::user::interaction>pFocusWnd)
    {
-      UNREFERENCED_PARAMETER(pFocusWnd);
+      __UNREFERENCED_PARAMETER(pFocusWnd);
       // trans user::frame_window::OnPaletteChanged(pFocusWnd);
    }
 
@@ -699,9 +699,9 @@ namespace user
    bool frame_window::OnSetCursor(::pointer<::user::interaction>pwindow, ::u32 nHitTest, const ::atom & atom)
    {
       
-      UNREFERENCED_PARAMETER(pwindow);
-      UNREFERENCED_PARAMETER(nHitTest);
-      UNREFERENCED_PARAMETER(atom);
+      __UNREFERENCED_PARAMETER(pwindow);
+      __UNREFERENCED_PARAMETER(nHitTest);
+      __UNREFERENCED_PARAMETER(atom);
       
       ::pointer<::user::frame_window>pFrameWnd = top_level_frame();
 
@@ -832,7 +832,7 @@ namespace user
 
    void frame_window::ShowOwnedWindows(bool bShow)
    {
-      UNREFERENCED_PARAMETER(bShow);
+      __UNREFERENCED_PARAMETER(bShow);
       // walk through all top-level windows
       throw ::interface_only();
       /*   oswindow oswindow = ::GetWindow(::get_desktop_window(), GW_CHILD);
@@ -941,7 +941,7 @@ namespace user
    //bool frame_window::create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, const ::string & pszMenuName, u32 dwExStyle, ::request * prequest)
    //{
 
-   //   UNREFERENCED_PARAMETER(pszMenuName);
+   //   __UNREFERENCED_PARAMETER(pszMenuName);
 
    //   m_strFrameTitle = pszWindowName;    // save title for later
 
@@ -1099,7 +1099,7 @@ namespace user
    bool frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
    {
 
-      UNREFERENCED_PARAMETER(puiParent);
+      __UNREFERENCED_PARAMETER(puiParent);
 
       // only do this once
       //   ASSERT_VALID_IDR(nIDResource);
@@ -1552,7 +1552,7 @@ namespace user
    //bool frame_window::_001FancyInitialFramePlacement(bool bForceRestore)
    //{
 
-   //   UNREFERENCED_PARAMETER(bForceRestore);
+   //   __UNREFERENCED_PARAMETER(bForceRestore);
 
    //   if (m_bFrameMoveEnable)
    //   {
@@ -1716,8 +1716,8 @@ namespace user
 
    //LRESULT frame_window::OnActivateTopLevel(WPARAM wParam, LPARAM lParam)
    //{
-   //   UNREFERENCED_PARAMETER(wParam);
-   //   UNREFERENCED_PARAMETER(lParam);
+   //   __UNREFERENCED_PARAMETER(wParam);
+   //   __UNREFERENCED_PARAMETER(lParam);
    //   // trans   user::frame_window::OnActivateTopLevel(wParam, lParam);
 
    //   // exit Shift+F1 help mode on activation changes
@@ -1853,7 +1853,7 @@ namespace user
    //void frame_window::OnSysCommand(::u32 nID, LPARAM lParam)
    //{
    //   
-   //   UNREFERENCED_PARAMETER(lParam);
+   //   __UNREFERENCED_PARAMETER(lParam);
 
    //   ::pointer<::user::frame_window>pFrameWnd = top_level_frame();
 
@@ -1898,7 +1898,7 @@ namespace user
    //void frame_window::OnDropFiles(HDROP hDropInfo)
    //{
 
-   //   UNREFERENCED_PARAMETER(hDropInfo);
+   //   __UNREFERENCED_PARAMETER(hDropInfo);
 
    //}
 
@@ -1914,7 +1914,7 @@ namespace user
    // when Windows session ends, close all documents
    void frame_window::OnEndSession(bool bEnding)
    {
-      UNREFERENCED_PARAMETER(bEnding);
+      __UNREFERENCED_PARAMETER(bEnding);
    }
 
 
@@ -2173,7 +2173,7 @@ namespace user
 
    void frame_window::OnSetFocus(::pointer<::user::interaction>pOldWnd)
    {
-      UNREFERENCED_PARAMETER(pOldWnd);
+      __UNREFERENCED_PARAMETER(pOldWnd);
       if (m_pviewActive != nullptr)
          m_pviewActive->set_keyboard_focus();
       /*trans else
@@ -2207,8 +2207,8 @@ namespace user
 
    void frame_window::GetMessageString(::u32 nID, string & rMessage) const
    {
-      UNREFERENCED_PARAMETER(nID);
-      UNREFERENCED_PARAMETER(rMessage);
+      __UNREFERENCED_PARAMETER(nID);
+      __UNREFERENCED_PARAMETER(rMessage);
       // load appropriate string
       throw ::interface_only();
       /*   char * psz = rMessage.GetBuffer(255);
@@ -2327,7 +2327,7 @@ namespace user
 
 //   void frame_window::OnEnterIdle(::u32 nWhy, ::pointer<::user::interaction>pWho)
 //   {
-//      UNREFERENCED_PARAMETER(pWho);
+//      __UNREFERENCED_PARAMETER(pWho);
 //      // trans user::frame_window::OnEnterIdle(nWhy, pWho);
 //#ifdef WINDOWS
 //      if (nWhy != MSGF_MENU || m_nIDTracking == m_nIDLastMessage)
@@ -2629,7 +2629,7 @@ namespace user
    bool frame_window::OnEraseBkgnd(::image * pimage)
    {
 
-      UNREFERENCED_PARAMETER(pimage);
+      __UNREFERENCED_PARAMETER(pimage);
 
       if (m_pviewActive != nullptr)
       {
@@ -2864,7 +2864,7 @@ namespace user
    void frame_window::_001OnQueryEndSession(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -2872,7 +2872,7 @@ namespace user
    void frame_window::on_message_set_focus(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -2886,7 +2886,7 @@ namespace user
    bool frame_window::OnBarCheck(::u32 nID)
    {
 
-      UNREFERENCED_PARAMETER(nID);
+      __UNREFERENCED_PARAMETER(nID);
 
       return false;
 
@@ -2909,7 +2909,7 @@ namespace user
    void frame_window::on_message_size(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 

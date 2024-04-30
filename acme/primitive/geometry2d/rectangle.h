@@ -1337,9 +1337,9 @@ public:
    //void SubtractRectMinor(const rectangle_type & rectangleMajor, const rectangle_type & rectangleMinor)
    //{
 
-   //   //UNREFERENCED_PARAMETER(rectangleMajor);
+   //   //__UNREFERENCED_PARAMETER(rectangleMajor);
 
-   //   //UNREFERENCED_PARAMETER(rectangleMinor);
+   //   //__UNREFERENCED_PARAMETER(rectangleMinor);
 
    //}
 

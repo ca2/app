@@ -478,8 +478,8 @@ namespace user
       void list::_001DrawGroups(::draw2d::graphics_pointer & pgraphics, index iGroupFirst, index iGroupLast)
    {
 
-      //UNREFERENCED_PARAMETER(iItemFirst);
-      //UNREFERENCED_PARAMETER(iItemLast);
+      //__UNREFERENCED_PARAMETER(iItemFirst);
+      //__UNREFERENCED_PARAMETER(iItemLast);
 
       index iGroup;
 
@@ -1022,7 +1022,7 @@ namespace user
    void list::on_message_size(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -2199,11 +2199,11 @@ namespace user
    bool list::_001HitTest_(const ::point_i32 & point, index &iItem, index &iSubItem, index&iListItem, ::user::mesh::enum_element &eelement)
    {
 
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(iItem);
-      UNREFERENCED_PARAMETER(iSubItem);
-      UNREFERENCED_PARAMETER(iListItem);
-      UNREFERENCED_PARAMETER(eelement);
+      __UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(iItem);
+      __UNREFERENCED_PARAMETER(iSubItem);
+      __UNREFERENCED_PARAMETER(iListItem);
+      __UNREFERENCED_PARAMETER(eelement);
 
       return false;
 
@@ -2247,11 +2247,11 @@ namespace user
    bool list::_001DisplayHitTest(const ::point_i32 & point, index& iItem, index& iSubItem, index& iListItem, ::user::mesh::enum_element &eelement)
    {
 
-      UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(iItem);
-      UNREFERENCED_PARAMETER(iSubItem);
-      UNREFERENCED_PARAMETER(iListItem);
-      UNREFERENCED_PARAMETER(eelement);
+      __UNREFERENCED_PARAMETER(point);
+      __UNREFERENCED_PARAMETER(iItem);
+      __UNREFERENCED_PARAMETER(iSubItem);
+      __UNREFERENCED_PARAMETER(iListItem);
+      __UNREFERENCED_PARAMETER(eelement);
 
       return false;
 
@@ -4418,7 +4418,7 @@ namespace user
    bool list::on_right_click(::item * pitem)
    {
 
-      UNREFERENCED_PARAMETER(pitem);
+      __UNREFERENCED_PARAMETER(pitem);
 
       return false;
 
@@ -4699,9 +4699,9 @@ namespace user
 
    {
 
-      UNREFERENCED_PARAMETER(wparam);
+      __UNREFERENCED_PARAMETER(wparam);
 
-      UNREFERENCED_PARAMETER(lparam);
+      __UNREFERENCED_PARAMETER(lparam);
 
 
       for (index iColumn = 0; iColumn < m_pcolumna->get_visible_count(); iColumn++)
@@ -4750,9 +4750,9 @@ namespace user
 
    {
 
-      UNREFERENCED_PARAMETER(wparam);
+      __UNREFERENCED_PARAMETER(wparam);
 
-      UNREFERENCED_PARAMETER(lparam);
+      __UNREFERENCED_PARAMETER(lparam);
 
 
       _001OnHeaderCtrlTrack(0, 0);
@@ -4783,9 +4783,9 @@ namespace user
 
    {
 
-      UNREFERENCED_PARAMETER(wparam);
+      __UNREFERENCED_PARAMETER(wparam);
 
-      UNREFERENCED_PARAMETER(lparam);
+      __UNREFERENCED_PARAMETER(lparam);
 
 
       //    for(index iColumn = 0; iColumn < m_pcolumna->get_visible_count(); iColumn++)
@@ -6228,7 +6228,7 @@ namespace user
    bool list::on_erase_item(index iItem)
    {
 
-      UNREFERENCED_PARAMETER(iItem);
+      __UNREFERENCED_PARAMETER(iItem);
 
       return false;
 
@@ -6305,7 +6305,7 @@ namespace user
    index list::strict_to_display(index iStrict)
    {
 
-      UNREFERENCED_PARAMETER(iStrict);
+      __UNREFERENCED_PARAMETER(iStrict);
 
       return -1;
 
@@ -6806,7 +6806,7 @@ namespace user
    i32 list::_001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, index iColumn)
    {
 
-      UNREFERENCED_PARAMETER(iColumn);
+      __UNREFERENCED_PARAMETER(iColumn);
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -6846,7 +6846,7 @@ namespace user
    void list::_OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
@@ -7074,7 +7074,7 @@ namespace user
 
       return ::user::mesh::data_get_sort_id(eview);
 
-      //UNREFERENCED_PARAMETER(eview);
+      //__UNREFERENCED_PARAMETER(eview);
       //switch(m_eview)
       //{
       //case impact_grid:
@@ -7423,7 +7423,7 @@ namespace user
 
    void list::_001OnListImpactAutoArrange(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       auto_arrange(!get_auto_arrange());
    }
 
@@ -7579,7 +7579,7 @@ namespace user
    ::count list::_001GetGroupItemCount(index iGroup)
    {
       
-      UNREFERENCED_PARAMETER(iGroup);
+      __UNREFERENCED_PARAMETER(iGroup);
 
       return -1;
 

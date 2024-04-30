@@ -44,7 +44,7 @@ namespace write_text
 //   void font::dump(dump_context & dumpcontext) const
 //   {
 //
-//      UNREFERENCED_PARAMETER(dumpcontext);
+//      __UNREFERENCED_PARAMETER(dumpcontext);
 //
 //      throw ::interface_only();
 //
@@ -460,9 +460,9 @@ namespace write_text
 //   {
 //
 //
-//      UNREFERENCED_PARAMETER(piCharsPositions);
+//      __UNREFERENCED_PARAMETER(piCharsPositions);
 
-//      UNREFERENCED_PARAMETER(iCharsPositions);
+//      __UNREFERENCED_PARAMETER(iCharsPositions);
 //      SetDC(pgraphics);
 //      SelectFont();
 //

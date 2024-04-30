@@ -232,7 +232,7 @@ namespace colorertake5
    void text_parser_impl::leaveScheme(index lno, SMatches *match, SchemeNode *schemeNode)
    {
 
-      UNREFERENCED_PARAMETER(lno);
+      __UNREFERENCED_PARAMETER(lno);
 
       index i;
 
@@ -267,8 +267,8 @@ namespace colorertake5
    index text_parser_impl::searchKW(const SchemeNode *node, index no, index lowlen, index hilen)
    {
 
-      UNREFERENCED_PARAMETER(no);
-      UNREFERENCED_PARAMETER(hilen);
+      __UNREFERENCED_PARAMETER(no);
+      __UNREFERENCED_PARAMETER(hilen);
 
       if (!node->kwList->num)
          return MATCH_NOTHING;

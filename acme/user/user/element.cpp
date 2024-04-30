@@ -215,7 +215,7 @@ namespace user
    void element::enable_window(bool bEnable)
    {
 
-      UNREFERENCED_PARAMETER(bEnable);
+      __UNREFERENCED_PARAMETER(bEnable);
 
       //return false;
 
@@ -249,7 +249,7 @@ namespace user
    //void element::Invalidate(bool bErase)
    //{
 
-   //   UNREFERENCED_PARAMETER(bErase);
+   //   __UNREFERENCED_PARAMETER(bErase);
 
    //   //ASSERT(::IsWindow(GetHandle()));
    //   //::InvalidateRect(GetHandle(), nullptr, bErase);
@@ -300,7 +300,7 @@ namespace user
    //bool element::Redraw(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   UNREFERENCED_PARAMETER(pgraphics);
+   //   __UNREFERENCED_PARAMETER(pgraphics);
 
    //   if(get_wnd() == nullptr)
    //      return false;
@@ -1120,7 +1120,7 @@ namespace user
    void element::pre_translate_message(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -2813,7 +2813,7 @@ namespace user
    //::user::interaction * element::previous_sibling(::user::interaction * pinteraction)
    //{
 
-   //   UNREFERENCED_PARAMETER(pinteraction);
+   //   __UNREFERENCED_PARAMETER(pinteraction);
 
    //   return nullptr;
 
@@ -2829,7 +2829,7 @@ namespace user
    //::user::interaction * element::next_sibling(::user::interaction * pinteraction)
    //{
 
-   //   UNREFERENCED_PARAMETER(pinteraction);
+   //   __UNREFERENCED_PARAMETER(pinteraction);
 
    //   return nullptr;
 
@@ -2937,7 +2937,7 @@ namespace user
    void element::set_tool_window(bool bSet)
    {
 
-      UNREFERENCED_PARAMETER(bSet);
+      __UNREFERENCED_PARAMETER(bSet);
 
       throw ::interface_only();
 
@@ -3418,7 +3418,7 @@ namespace user
    //void element::show_keyboard(bool bShow)
    //{
 
-   //   UNREFERENCED_PARAMETER(bShow);
+   //   __UNREFERENCED_PARAMETER(bShow);
 
    //}
 
@@ -3885,7 +3885,7 @@ namespace user
 
 //{
 
-//   UNREFERENCED_PARAMETER(puserinteractionpl);
+//   __UNREFERENCED_PARAMETER(puserinteractionpl);
 
 
 //   return false;
@@ -3896,7 +3896,7 @@ namespace user
 
 //{
 
-//   UNREFERENCED_PARAMETER(pcwndpl);
+//   __UNREFERENCED_PARAMETER(pcwndpl);
 
 
 //   return false;
@@ -3927,8 +3927,8 @@ namespace user
 //   bool element::SetPlacement(const ::rectangle_i32 & rectangle, ::u32 nFlags)
 //   {
 //
-//      UNREFERENCED_PARAMETER(rectangle);
-//      UNREFERENCED_PARAMETER(nFlags);
+//      __UNREFERENCED_PARAMETER(rectangle);
+//      __UNREFERENCED_PARAMETER(nFlags);
 //
 //      return false;
 //
@@ -3947,7 +3947,7 @@ namespace user
    //void element::_001OnTimer(::timer * ptimer)
    //{
 
-   //   UNREFERENCED_PARAMETER(ptimer);
+   //   __UNREFERENCED_PARAMETER(ptimer);
 
    //}
 
@@ -4053,17 +4053,17 @@ namespace user
 
    void element::keyboard_focus_OnTimer(i32 iTimer)
    {
-      UNREFERENCED_PARAMETER(iTimer);
+      __UNREFERENCED_PARAMETER(iTimer);
    }
 
    void element::keyboard_focus_OnChar(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
    void element::keyboard_focus_OnSysChar(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
    }
 
    void element::keyboard_focus_OnKeyDown(::message::message * pmessage)
@@ -4075,7 +4075,7 @@ namespace user
    void element::keyboard_focus_OnKeyUp(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -4091,7 +4091,7 @@ namespace user
    //void element::handle_event(control_event * pevent)
    //{
 
-   //   UNREFERENCED_PARAMETER(pevent);
+   //   __UNREFERENCED_PARAMETER(pevent);
 
    //}
 
@@ -4421,7 +4421,7 @@ namespace user
    void element::_001OnTimer(::timer * ptimer)
    {
 
-      UNREFERENCED_PARAMETER(ptimer);
+      __UNREFERENCED_PARAMETER(ptimer);
 
    }
 
@@ -4464,10 +4464,10 @@ namespace user
       bool bAscendants)
    {
 
-      UNREFERENCED_PARAMETER(rectangleaNeedRedraw);
-      UNREFERENCED_PARAMETER(pgraphics);
-      UNREFERENCED_PARAMETER(function);
-      UNREFERENCED_PARAMETER(bAscendants);
+      __UNREFERENCED_PARAMETER(rectangleaNeedRedraw);
+      __UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(function);
+      __UNREFERENCED_PARAMETER(bAscendants);
 
    }
 
@@ -4489,7 +4489,7 @@ namespace user
    void element::post_redraw(bool bAscendants)
    {
 
-      UNREFERENCED_PARAMETER(bAscendants);
+      __UNREFERENCED_PARAMETER(bAscendants);
 
    }
 

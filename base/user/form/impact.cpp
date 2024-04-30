@@ -100,7 +100,7 @@ namespace user
    bool form_impact::Navigate(const ::string & pszUrl)
    {
 
-      UNREFERENCED_PARAMETER(pszUrl);
+      __UNREFERENCED_PARAMETER(pszUrl);
 
       return false;
 

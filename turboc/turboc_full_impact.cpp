@@ -72,7 +72,7 @@ namespace turboc
 
    void full_impact::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
-      UNREFERENCED_PARAMETER(ptopic);
+      __UNREFERENCED_PARAMETER(ptopic);
    }
 
 

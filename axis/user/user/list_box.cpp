@@ -985,7 +985,7 @@ namespace user
    void list_box::on_message_key_up(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -1047,7 +1047,7 @@ namespace user
    //void list_box::on_message_mouse_move(::message::message * pmessage)
    //{
 
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
    //   //auto pmouse = pmessage->m_union.m_pmouse;
 
    //   //pmessage->m_bRet = true;

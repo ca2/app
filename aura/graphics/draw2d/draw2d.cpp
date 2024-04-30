@@ -732,10 +732,10 @@ void draw2d::emboss_predicate(
       ::u8 * lpbSrc, i32 xSrc, i32 ySrc, i32 wSrc,
       ::u8 bMin, i32 iRadius)
    {
-      UNREFERENCED_PARAMETER(xDest);
-      UNREFERENCED_PARAMETER(yDest);
-      UNREFERENCED_PARAMETER(xSrc);
-      UNREFERENCED_PARAMETER(ySrc);
+      __UNREFERENCED_PARAMETER(xDest);
+      __UNREFERENCED_PARAMETER(yDest);
+      __UNREFERENCED_PARAMETER(xSrc);
+      __UNREFERENCED_PARAMETER(ySrc);
       i32 iFilterW = iRadius * 2 + 1;
       i32 iFilterH = iRadius * 2 + 1;
       i32 iFilterHalfW = iFilterW / 2;

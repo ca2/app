@@ -118,7 +118,7 @@ bool xfplayer_impact_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, s
 
    single_lock synchronouslock(m_pContainer->synchronization());
 
-   UNREFERENCED_PARAMETER(flags);
+   __UNREFERENCED_PARAMETER(flags);
 
    m_straLink.erase_all();
    m_iaLinkStart.erase_all();
@@ -177,7 +177,7 @@ void xfplayer_impact_line::add_char(::wide_character wch, strsize & index, ::wri
 
    single_lock synchronouslock(m_pContainer->synchronization());
 
-   UNREFERENCED_PARAMETER(pFont);
+   __UNREFERENCED_PARAMETER(pFont);
    index++;
    if (m_iaPosition.get_size() < index + 2)
    {
@@ -1271,7 +1271,7 @@ void xfplayer_impact_line::SetAnimateIncrement(double dIncrement)
 
 void xfplayer_impact_line::SetRenderCriticalSection(critical_section * pcs)
 {
-   UNREFERENCED_PARAMETER(pcs);
+   __UNREFERENCED_PARAMETER(pcs);
    //    m_pcsRender =   pcs;
 }
 
@@ -1417,7 +1417,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
    single_lock synchronouslock(m_pContainer->synchronization());
 
-   UNREFERENCED_PARAMETER(pimageCache);
+   __UNREFERENCED_PARAMETER(pimageCache);
 
    bool bSaveProcessing = !m_bEnhancedEmboss;
 
@@ -1984,7 +1984,7 @@ void xfplayer_impact_line::OnMouseMove(::message::message * pmessage)
 void xfplayer_impact_line::OnSetCursor(::message::message * pmessage)
 {
 
-   UNREFERENCED_PARAMETER(pmessage);
+   __UNREFERENCED_PARAMETER(pmessage);
 
    //if(is_hover())
    //{
@@ -2071,7 +2071,7 @@ void xfplayer_impact_line::OnLButtonUp(::message::message * pmessage)
 void xfplayer_impact_line::_001OnTimer(::timer * ptimer)
 {
 
-   UNREFERENCED_PARAMETER(ptimer);
+   __UNREFERENCED_PARAMETER(ptimer);
 
    //if(GetSelection().OnTimer(*this, user))
    //{

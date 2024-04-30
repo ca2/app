@@ -72,7 +72,7 @@ namespace colorertake5
    */
    void StyledHRDMapper::saveRegionMappings(stream & writer) const
    {
-      UNREFERENCED_PARAMETER(writer);
+      __UNREFERENCED_PARAMETER(writer);
 
 
       /*  writer->write(string("<?xml version=\"1.0\"?>\n\

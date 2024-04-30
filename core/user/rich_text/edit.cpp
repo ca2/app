@@ -171,7 +171,7 @@ namespace user
       void edit::on_message_show_window(::message::message * pmessage)
       {
 
-         UNREFERENCED_PARAMETER(pmessage);
+         __UNREFERENCED_PARAMETER(pmessage);
          //::pointer<::message::show_window>pshowwindow(pmessage);
 
       }
@@ -180,7 +180,7 @@ namespace user
       void edit::on_set_keyboard_focus()
       {
          
-         //UNREFERENCED_PARAMETER(pmessage);
+         //__UNREFERENCED_PARAMETER(pmessage);
 
          //::pointer<::message::set_focus>psetfocus(pmessage);
 
@@ -251,7 +251,7 @@ namespace user
       void edit::on_message_left_button_down(::message::message * pmessage)
       {
 
-         UNREFERENCED_PARAMETER(pmessage);
+         __UNREFERENCED_PARAMETER(pmessage);
          
          //auto pmouse = pmessage->m_union.m_pmouse;
 
@@ -261,7 +261,7 @@ namespace user
       void edit::on_message_left_button_up(::message::message * pmessage)
       {
 
-         UNREFERENCED_PARAMETER(pmessage);
+         __UNREFERENCED_PARAMETER(pmessage);
          
          //auto pmouse = pmessage->m_union.m_pmouse;
 
@@ -271,7 +271,7 @@ namespace user
       void edit::on_message_mouse_move(::message::message * pmessage)
       {
 
-         UNREFERENCED_PARAMETER(pmessage);
+         __UNREFERENCED_PARAMETER(pmessage);
          
          //auto pmouse = pmessage->m_union.m_pmouse;
 

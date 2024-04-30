@@ -274,7 +274,7 @@ namespace user
    bool frame::should_perform_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      UNREFERENCED_PARAMETER(pgraphics);
+      __UNREFERENCED_PARAMETER(pgraphics);
 
       if(m_bNeedPerformLayout)
       {

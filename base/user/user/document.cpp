@@ -794,7 +794,7 @@ namespace user
 
    void document::set_path_name(::payload payloadFile, bool bAddToMRU)
    {
-      UNREFERENCED_PARAMETER(bAddToMRU);
+      __UNREFERENCED_PARAMETER(bAddToMRU);
       string strPathName;
       if (payloadFile.get_type() == ::e_type_property_set && payloadFile.propset()["url"].has_char())
       {
@@ -1513,7 +1513,7 @@ namespace user
       try
       {
 
-         UNREFERENCED_PARAMETER(bSave);
+         __UNREFERENCED_PARAMETER(bSave);
 
          string strPrompt(pszDefault);
 
@@ -2137,7 +2137,7 @@ namespace user
    //void document::on_before_navigate(::form_data * pdata,::payload & payloadFile,u32 nFlags, const ::string & pszTargetFrameName,byte_array& baPostedData, const ::string & pszHeaders,bool* pbCancel)
    //{
 
-   //   UNREFERENCED_PARAMETER(pdata);
+   //   __UNREFERENCED_PARAMETER(pdata);
    //   string strUrl(payloadFile);
    //   if(strUrl.begins_eat("ext://"))
    //   {
@@ -2161,7 +2161,7 @@ namespace user
 
    void document::form_document_set_property_set(const property_set & set)
    {
-      UNREFERENCED_PARAMETER(set);
+      __UNREFERENCED_PARAMETER(set);
    }
 
 

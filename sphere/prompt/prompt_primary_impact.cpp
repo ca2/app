@@ -28,7 +28,7 @@ namespace prompt
    void primary_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      UNREFERENCED_PARAMETER(ptopic);
+      __UNREFERENCED_PARAMETER(ptopic);
 
    }
 
@@ -229,7 +229,7 @@ namespace prompt
 
    void primary_impact::_001OnEditCopy(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       clipboard_copy();
    }
 
@@ -242,7 +242,7 @@ namespace prompt
 
    void primary_impact::_001OnEditPaste(::message::message * pmessage)
    {
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
       clipboard_paste();
    }
 

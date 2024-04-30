@@ -538,7 +538,7 @@ namespace filemanager
    void file_list::_001OnFileRename(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       ::user::range range;
 
@@ -561,7 +561,7 @@ namespace filemanager
    void file_list::_001OnFileOpen(::message::message* pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       _017OpenSelected(true, ::e_source_user);
 
@@ -604,7 +604,7 @@ namespace filemanager
    void file_list::_001OnEditCopy(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       auto patha = get_selected_final_path();
 
@@ -636,7 +636,7 @@ namespace filemanager
    void file_list::_001OnTrashThatIsNotTrash(::message::message * pmessage)
    {
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
       auto patha = get_selected_final_path();
 
@@ -834,7 +834,7 @@ namespace filemanager
    //void file_list::_001OnSpafy(::message::message * pmessage)
    //{
 
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
 
    //   auto itema = get_selected_items();
 
@@ -909,7 +909,7 @@ namespace filemanager
 
    //   ::pointer<::userfs::list_data>pdata = fs_list();
    //
-   //   UNREFERENCED_PARAMETER(pmessage);
+   //   __UNREFERENCED_PARAMETER(pmessage);
    //
    //   string_array stra;
    //
@@ -1010,7 +1010,7 @@ namespace filemanager
    //void file_list::schedule_file_size(const ::string & psz)
    //{
 
-   //   UNREFERENCED_PARAMETER(psz);
+   //   __UNREFERENCED_PARAMETER(psz);
 
    //   if (!is_window_visible())
    //   {
@@ -1027,7 +1027,7 @@ namespace filemanager
 
       //::pointer<::message::show_window>pshowwindow(pmessage);
 
-      UNREFERENCED_PARAMETER(pmessage);
+      __UNREFERENCED_PARAMETER(pmessage);
 
    }
 
@@ -1863,7 +1863,7 @@ namespace filemanager
    //void file_list::file_size_add_request(bool bClear)
    //{
 
-   //   UNREFERENCED_PARAMETER(bClear);
+   //   __UNREFERENCED_PARAMETER(bClear);
 
    //   db_server * pcentral = dynamic_cast <db_server *> (psystem->m_psimpledb->db());
 

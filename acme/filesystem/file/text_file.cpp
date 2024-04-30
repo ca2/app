@@ -22,7 +22,7 @@ namespace file
 
    {
 
-      UNREFERENCED_PARAMETER(scopedstr);
+      __UNREFERENCED_PARAMETER(scopedstr);
 
 
    }
@@ -30,7 +30,7 @@ namespace file
 
    bool text_file::read_string(string & str)
    {
-      UNREFERENCED_PARAMETER(str);
+      __UNREFERENCED_PARAMETER(str);
       return false;
    }
 

@@ -340,9 +340,9 @@
 //
 //#else
 //
-//   UNREFERENCED_PARAMETER(nBlockUse);
-//   UNREFERENCED_PARAMETER(szFileName);
-//   UNREFERENCED_PARAMETER(nLine);
+//   __UNREFERENCED_PARAMETER(nBlockUse);
+//   __UNREFERENCED_PARAMETER(szFileName);
+//   __UNREFERENCED_PARAMETER(nLine);
 //
 //   //TODO: to do the dbg version
 //   //::u8 * p = (::u8 *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);
@@ -408,9 +408,9 @@
 //
 //#else
 //
-//   UNREFERENCED_PARAMETER(nBlockUse);
-//   UNREFERENCED_PARAMETER(szFileName);
-//   UNREFERENCED_PARAMETER(nLine);
+//   __UNREFERENCED_PARAMETER(nBlockUse);
+//   __UNREFERENCED_PARAMETER(szFileName);
+//   __UNREFERENCED_PARAMETER(nLine);
 //
 //   //TODO: to do the dbg version
 //   //::u8 * p = (::u8 *) _system_heap_alloc_debug(nSize + ALIGN_BYTE_COUNT + 32, nBlockUse, szFileName, nLine);

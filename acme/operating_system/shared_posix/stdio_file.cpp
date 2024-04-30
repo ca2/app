@@ -346,8 +346,8 @@ void stdio_file::write(const void * p, ::memsize s)
 void stdio_file::lock(filesize dwPos, filesize dwCount)
 {
 
-   UNREFERENCED_PARAMETER(dwPos);
-   UNREFERENCED_PARAMETER(dwCount);
+   __UNREFERENCED_PARAMETER(dwPos);
+   __UNREFERENCED_PARAMETER(dwCount);
 
 }
 
@@ -355,8 +355,8 @@ void stdio_file::lock(filesize dwPos, filesize dwCount)
 void stdio_file::unlock(filesize dwPos, filesize dwCount)
 {
 
-   UNREFERENCED_PARAMETER(dwPos);
-   UNREFERENCED_PARAMETER(dwCount);
+   __UNREFERENCED_PARAMETER(dwPos);
+   __UNREFERENCED_PARAMETER(dwCount);
 
 }
 
@@ -364,7 +364,7 @@ void stdio_file::unlock(filesize dwPos, filesize dwCount)
 void stdio_file::set_size(filesize dwNewLen)
 {
 
-   UNREFERENCED_PARAMETER(dwNewLen);
+   __UNREFERENCED_PARAMETER(dwNewLen);
 
 }
 

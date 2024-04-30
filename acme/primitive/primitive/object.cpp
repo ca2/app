@@ -749,7 +749,7 @@ void object::destruct()
 //void object::system(const ::string & strProjectName)
 //{
 //
-//   UNREFERENCED_PARAMETER(strProjectName);
+//   __UNREFERENCED_PARAMETER(strProjectName);
 //
 //}
 

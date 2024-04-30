@@ -15,8 +15,8 @@ DllMain(HINSTANCE hInstance,::u32 dwReason,LPVOID lpReserved)
 {
 
 
-   UNREFERENCED_PARAMETER(hInstance);
-   UNREFERENCED_PARAMETER(lpReserved);
+   __UNREFERENCED_PARAMETER(hInstance);
+   __UNREFERENCED_PARAMETER(lpReserved);
 
 
    if(dwReason == DLL_PROCESS_ATTACH)

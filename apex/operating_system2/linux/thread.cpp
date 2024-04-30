@@ -31,7 +31,7 @@ namespace linux
 void __node_init_app_thread(::thread * pthread)
 {
 
-   UNREFERENCED_PARAMETER(pthread);
+   __UNREFERENCED_PARAMETER(pthread);
 
 }
 

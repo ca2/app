@@ -111,7 +111,7 @@ html_document::~html_document()
 void html_document::data_on_after_change(::message::message * pmessage)
 {
 
-   UNREFERENCED_PARAMETER(pmessage);
+   __UNREFERENCED_PARAMETER(pmessage);
 
 }
 

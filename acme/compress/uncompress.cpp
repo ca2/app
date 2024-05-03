@@ -16,7 +16,7 @@ uncompress::~uncompress()
 }
 
 
-void uncompress::transfer(::file::file* pfileOut, ::file::file* pfileIn)
+void uncompress::transfer(::file::file* pfileOut, ::file::file* pfileIn, transfer_progress_function transferprogressfunction)
 {
 
    throw ::interface_only();

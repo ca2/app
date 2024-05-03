@@ -18,7 +18,7 @@ public:
    virtual void set_level(int iLevel);
 
 
-   void transfer(::file::file * pfileOut, ::file::file * pfileIn) override;
+   void transfer(::file::file* pfileOut, ::file::file* pfileIn, transfer_progress_function transferprogressfunction = {}) override;
 
 
    virtual ::u32 crc32(::u32 uCrc, const ::block& block);

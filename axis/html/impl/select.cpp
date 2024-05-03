@@ -104,7 +104,7 @@ namespace html
                      continue;
                   string strText = pelement->m_phtmlbase->get_tag()->baseptra()[i]->get_tag()->baseptra()[0]->get_value()->get_value();
                   string strValue = pelement->m_phtmlbase->get_tag()->baseptra()[i]->get_tag()->get_attr_value("value");
-                  m_pcombo->add_string(strText, strValue);
+                  m_pcombo->add_item(strText, strValue);
                }
                string strValue = pelement->m_phtmlbase->get_tag()->get_attr_value("value");
 

@@ -28,7 +28,7 @@ namespace user
       //::user::frame_window *            m_puiDeactivateTogether;
       ::user::interaction *               m_puiDeactivateTogether;
       string_array                    m_straList;
-      string_array                    m_straValue;
+      ::atom_array                    m_atoma;
 
 
       class ::time                                m_timeLastVisibilityChange;
@@ -107,10 +107,11 @@ namespace user
 
 
       void set_current_item(::item * pitem, const ::action_context & context) override;
-      virtual void set_current_item_by_data(uptr u, const ::action_context& action_context);
-      virtual void set_current_item_by_string_value(const string& strValue, const ::action_context& action_context);
+      virtual void set_current_item_by_atom(const ::atom & atom, const ::action_context& action_context);
+      virtual void set_current_item_by_text(const ::scoped_string & scopedstr, const ::action_context& action_context);
       virtual void set_current_item_by_index(::raw::index iIndex, const ::action_context& context);
-      virtual string get_current_item_string_value();
+      virtual string get_current_item_text();
+      virtual ::atom get_current_item_atom();
 
 
       virtual bool _001GetListText(::raw::index iSel, string& str);
@@ -119,12 +120,13 @@ namespace user
 
 
       
-      virtual ::raw::index add_string(const ::string & pszString, uptr dwItemData = 0);
-      virtual ::raw::index add_string(const ::string & pszString, const string& strValue);
+      //virtual ::raw::index add_string(const ::string & pszString, uptr dwItemData = 0);
+      //virtual ::raw::index add_string(const ::string & pszString, const string& strValue);
+      virtual ::raw::index add_item(const ::scoped_string & scopedstr, const ::atom & atom);
 
       
-      virtual ::raw::index delete_string(::raw::index nIndex);
-      virtual ::raw::index insert_string(::raw::index nIndex, const ::string & pszString);
+      virtual ::raw::index erase_item_at(::raw::index nIndex);
+      virtual ::raw::index insert_item_at(::raw::index nIndex, const ::string & pszString);
 
 
       virtual void reset_content();

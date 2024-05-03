@@ -1256,25 +1256,26 @@ namespace user
    }
 
 
-   ::raw::index combo_box::delete_string(::raw::index nIndex)
+   ::raw::index combo_box::erase_item_at(::raw::index nIndex)
    {
 
-      auto iIndex = m_plistbox->delete_string(nIndex);
+      auto iIndex = m_plistbox->erase_item_at(nIndex);
 
       return iIndex;
 
    }
 
 
-   ::raw::index combo_box::insert_string(::raw::index nIndex, const ::string & pszString)
+   ::raw::index combo_box::insert_item_at(::raw::index nIndex, const ::string & pszString)
    {
 
       //ASSERT(is_window());
 
       //return (i32)send_message( CB_INSERTSTRING, nIndex, (LPARAM)pszString);
 
-
-      return -1;
+      auto iIndex= m_plistbox->insert_item_at(nIndex, pszString);
+      return iIndex;
+      //return -1;
 
    }
 
@@ -1550,11 +1551,10 @@ namespace user
 
    }
 
-
-   ::raw::index combo_box::add_string(const ::string & pszString,uptr dwItemData)
+   ::raw::index combo_box::add_item(const ::scoped_string& scopedstr, const ::atom & atom)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       ASSERT(m_edatamode == data_mode_opaque);
 
@@ -1567,30 +1567,50 @@ namespace user
 
       defer_create_list_box();
 
-      return m_plistbox->add_string(pszString, dwItemData);
+      return m_plistbox->add_item(scopedstr, atom);
 
    }
 
+   //::raw::index combo_box::add_string(const ::string & pszString,uptr dwItemData)
+   //{
 
-   ::raw::index combo_box::add_string(const ::string & pszString, const ::string & strValue)
-   {
+   //   synchronous_lock synchronouslock(this->synchronization());
 
-      ASSERT(m_edatamode == data_mode_string);
+   //   ASSERT(m_edatamode == data_mode_opaque);
 
-      if (m_edatamode != data_mode_string)
-      {
+   //   if (m_edatamode != data_mode_opaque)
+   //   {
 
-         return -1;
+   //      return -1;
 
-      }
+   //   }
 
-      defer_create_list_box();
+   //   defer_create_list_box();
 
-      auto iIndex = m_plistbox->add_string(pszString, strValue);
+   //   return m_plistbox->add_item(pszString, dwItemData);
 
-      return iIndex;
+   //}
 
-   }
+
+   //::raw::index combo_box::add_string(const ::string & pszString, const ::string & strValue)
+   //{
+
+   //   ASSERT(m_edatamode == data_mode_string);
+
+   //   if (m_edatamode != data_mode_string)
+   //   {
+
+   //      return -1;
+
+   //   }
+
+   //   defer_create_list_box();
+
+   //   auto iIndex = m_plistbox->add_string(pszString, strValue);
+
+   //   return iIndex;
+
+   //}
 
 
    bool combo_box::has_action_hover()
@@ -1609,10 +1629,10 @@ namespace user
    }
 
 
-   void combo_box::set_current_item_by_string_value(const ::string & strValue, const ::action_context & actioncontext)
+   void combo_box::set_current_item_by_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext)
    {
 
-      m_plistbox->set_current_item_by_string_value(strValue, actioncontext);
+      m_plistbox->set_current_item_by_text(scopedstr, actioncontext);
 
    }
 
@@ -1625,15 +1645,15 @@ namespace user
    }
 
 
-   void combo_box::set_current_item_by_data(uptr u, const ::action_context & context)
+   void combo_box::set_current_item_by_atom(const ::atom & atom, const ::action_context & context)
    {
 
-      m_plistbox->set_current_item_by_data(u, context);
+      m_plistbox->set_current_item_by_atom(atom, context);
 
    }
 
 
-   string combo_box::get_current_item_string_value()
+   string combo_box::get_current_item_text()
    {
 
       if (::is_null(m_plistbox))
@@ -1643,7 +1663,22 @@ namespace user
 
       }
 
-      return m_plistbox->get_current_item_string_value();
+      return m_plistbox->get_current_item_text();
+
+   }
+
+
+   ::atom combo_box::get_current_item_atom()
+   {
+
+      if (::is_null(m_plistbox))
+      {
+
+         return {};
+
+      }
+
+      return m_plistbox->get_current_item_atom();
 
    }
 

@@ -4,6 +4,7 @@
 
 #include "acme/filesystem/filesystem/listing.h"
 #include "shell.h"
+#include "acme/constant/integration.h"
 
 
 namespace integration
@@ -24,6 +25,8 @@ namespace integration
       ::file::path      m_pathProjectFolder;
       ::file::path      m_pathBuildFolder;
 
+
+      ::string          m_strBuildIndexStagePrefix;
 
       ::string          m_strVs;
       ::file::path      m_pathOperatingSystemIncludeFolder;
@@ -76,7 +79,7 @@ namespace integration
       virtual void prepare_linking_script(::string & str);
 
       using ::acme::shell::command_system;
-      int command_system(const ::scoped_string& scopedstr, const class ::time& timeOut = 12_h, const ::file::path& pathWorkingDirectory = {}) override;
+      int command_system(const ::scoped_string& scopedstr, const class ::time& timeOut = 12_h, const ::file::path& pathWorkingDirectory = {}, ::e_display edisplay = e_display_none) override;
 
       virtual void clean();
 
@@ -86,7 +89,7 @@ namespace integration
       virtual ::i32 bash(const ::scoped_string & scopedstr, const class ::time & timeTimeout);
       virtual ::i32 zsh(const ::scoped_string & scopedstr, const class ::time & timeTimeout);
 
-      void untar(const ::file::path & pathFolder, const ::payload & payloadTar, int iStripComponent = 0);
+      void untar(const ::file::path& pathFolder, const ::payload& payloadTar, int iStripComponent = 0, ::function<void(const ::scoped_string& scopedstr)> = {});
 
 
       virtual ::string prepare_path(const ::file::path & path);
@@ -124,6 +127,8 @@ namespace integration
       virtual ::string integration_one_that_is_building();
 
 
+      virtual ::string build_index_stage_prefix();
+      virtual ::string build_index_radix(::integration::enum_index eindex);
 
 
    };

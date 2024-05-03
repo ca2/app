@@ -4,7 +4,7 @@
 #include "acme/exception/interface_only.h"
 
 
-void file_transfer::transfer(::file::file* pfileOut, ::file::file* pfileIn)
+void file_transfer::transfer(::file::file* pfileOut, ::file::file* pfileIn, transfer_progress_function transferprogressfunction)
 {
 
    throw ::interface_only();

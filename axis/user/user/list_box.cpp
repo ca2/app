@@ -80,7 +80,7 @@ namespace user
       m_bMovingComboBox = false;
 
       //auto & bX = m_pscrolllayoutX->m_scrollstatea[::user::e_layout_sketch].m_bScrollEnable;
-      auto & bY = m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_bScrollEnable;
+      auto& bY = m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_bScrollEnable;
 
       //bX = true;
       bY = true;
@@ -89,7 +89,7 @@ namespace user
    }
 
 
-   void list_box::install_message_routing(::channel * pchannel)
+   void list_box::install_message_routing(::channel* pchannel)
    {
 
       ::user::interaction::install_message_routing(pchannel);
@@ -105,7 +105,7 @@ namespace user
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &list_box::_001OnMouseActivate);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &list_box::on_message_key_down);
       MESSAGE_LINK(e_message_key_up, pchannel, this, &list_box::on_message_key_up);
-      MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, (::user::interaction *)this, &interaction::on_message_left_button_down);
+      MESSAGE_LINK(e_message_non_client_left_button_down, pchannel, (::user::interaction*)this, &interaction::on_message_left_button_down);
       MESSAGE_LINK(e_message_middle_button_down, pchannel, this, &list_box::on_message_middle_button_down);
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &list_box::on_message_right_button_down);
       //MESSAGE_LINK(e_message_mouse_move, pchannel, this, &list_box::on_message_mouse_move);
@@ -114,7 +114,7 @@ namespace user
    }
 
 
-   void list_box::on_message_create(::message::message * pmessage)
+   void list_box::on_message_create(::message::message* pmessage)
    {
 
       pmessage->previous();
@@ -124,12 +124,12 @@ namespace user
    }
 
 
-   bool list_box::on_set_owner(::user::primitive * pprimitive)
+   bool list_box::on_set_owner(::user::primitive* pprimitive)
    {
 
       auto puserinteractionOwner = pprimitive->get_owner();
 
-      if(puserinteractionOwner)
+      if (puserinteractionOwner)
       {
 
          auto puserinteractionHost = puserinteractionOwner->get_host_user_interaction();
@@ -240,31 +240,42 @@ namespace user
    }
 
 
-   ::raw::index list_box::add_string(const ::string & pszString, uptr dwItemData)
+   //::raw::index list_box::add_string(const ::string & pszString, uptr dwItemData)
+   //{
+
+   //   m_straList.add(pszString);
+
+   //   m_straValue.add(::as_string(dwItemData));
+
+   //   return m_straList.get_upper_bound();
+
+   //}
+
+
+   //::raw::index list_box::add_string(const ::string & pszString, const string& strValue)
+   //{
+
+   //   m_straList.add(pszString);
+
+   //   m_straValue.add(strValue);
+
+   //   return m_straList.get_upper_bound();
+
+   //}
+
+   ::raw::index list_box::add_item(const ::scoped_string& scopedstr, const ::atom& atom)
    {
 
-      m_straList.add(pszString);
+      m_straList.add(scopedstr);
 
-      m_straValue.add(::as_string(dwItemData));
+      m_atoma.add(atom);
 
       return m_straList.get_upper_bound();
 
    }
 
 
-   ::raw::index list_box::add_string(const ::string & pszString, const string& strValue)
-   {
-
-      m_straList.add(pszString);
-
-      m_straValue.add(strValue);
-
-      return m_straList.get_upper_bound();
-
-   }
-
-
-   ::raw::index list_box::delete_string(::raw::index iIndex)
+   ::raw::index list_box::erase_item_at(::raw::index iIndex)
    {
 
       if (iIndex < 0 || iIndex >= _001GetListCount())
@@ -276,14 +287,14 @@ namespace user
 
       m_straList.erase_at(iIndex);
 
-      m_straValue.erase_at(iIndex);
+      m_atoma.erase_at(iIndex);
 
       return iIndex;
 
    }
 
 
-   ::raw::index list_box::insert_string(::raw::index iIndex, const ::string & pszString)
+   ::raw::index list_box::insert_item_at(::raw::index iIndex, const ::string& pszString)
    {
 
       if (iIndex < 0)
@@ -295,7 +306,7 @@ namespace user
 
       m_straList.insert_at(iIndex, pszString);
 
-      m_straValue.insert_at(iIndex, "");
+      m_atoma.insert_at(iIndex, ::atom::e_type_null);
 
       return iIndex;
 
@@ -309,7 +320,7 @@ namespace user
 
       m_straList.erase_all();
 
-      m_straValue.erase_all();
+      m_atoma.erase_all();
 
       //m_pitemCurrent = nullptr;
 
@@ -318,22 +329,22 @@ namespace user
    }
 
 
-   void list_box::handle(::topic * ptopic, ::context * pcontext)
+   void list_box::handle(::topic* ptopic, ::context* pcontext)
    {
 
-      if(ptopic->m_atom == ::id_click)
+      if (ptopic->m_atom == ::id_click)
       {
 
-         if(ptopic->user_interaction() == this)
+         if (ptopic->user_interaction() == this)
          {
 
             if (m_pcombo)
             {
 
                m_pcombo->set_current_item(ptopic->m_pitem, ptopic->m_actioncontext);
-               
+
                auto p = get_host_user_interaction()->m_pinteractionimpl->m_pgraphicsthread->get_message_queue();
-               
+
                p->m_eflagElement |= (::enum_flag)(1ll << 36);
 
                m_pcombo->ShowDropDown(false);
@@ -355,17 +366,17 @@ namespace user
    }
 
 
-   void list_box::on_message_destroy(::message::message * pmessage)
+   void list_box::on_message_destroy(::message::message* pmessage)
    {
 
       auto puserinteractionOwner = get_owner();
 
-      if(puserinteractionOwner)
+      if (puserinteractionOwner)
       {
 
          auto puserinteractionHost = puserinteractionOwner->get_host_user_interaction();
 
-         if(puserinteractionHost)
+         if (puserinteractionHost)
          {
 
             auto pimpl = puserinteractionHost->m_pinteractionimpl;
@@ -388,7 +399,7 @@ namespace user
    }
 
 
-   void list_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void list_box::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
 
       //pgraphics->reset_clip();
@@ -406,7 +417,7 @@ namespace user
    }
 
 
-   void list_box::_001OnDrawComboList(::draw2d::graphics_pointer & pgraphics)
+   void list_box::_001OnDrawComboList(::draw2d::graphics_pointer& pgraphics)
    {
 
       ::raw::count iListItemCount = _001GetListCount();
@@ -423,7 +434,7 @@ namespace user
 
       colorBackground = get_color(pstyle, ::e_element_background);
 
-      auto pbrushBk = __create < ::draw2d::brush > ();
+      auto pbrushBk = __create < ::draw2d::brush >();
 
       pbrushBk->create_solid(colorBackground);
 
@@ -454,7 +465,7 @@ namespace user
 
       auto pitemCurrent = current_item();
 
-      auto pbrush = __create < ::draw2d::brush > ();
+      auto pbrush = __create < ::draw2d::brush >();
 
       for (::raw::index iItem = 0; iItem < iListItemCount; iItem++)
       {
@@ -532,7 +543,7 @@ namespace user
 
       ::color::color crBorder = argb(255, 0, 0, 0);
 
-      auto ppen = __create < ::draw2d::pen > ();
+      auto ppen = __create < ::draw2d::pen >();
 
       ppen->create_solid(1.0, crBorder);
 
@@ -545,7 +556,7 @@ namespace user
    }
 
 
-   ::write_text::font_pointer list_box::get_font(style *pstyle, enum_element eelement, ::user::enum_state estate)
+   ::write_text::font_pointer list_box::get_font(style* pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
       if (m_pcombo)
@@ -567,10 +578,10 @@ namespace user
    }
 
 
-   void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, ::size_i32 * psize)
+   void list_box::query_full_size(::draw2d::graphics_pointer& pgraphics, ::size_i32* psize)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -679,7 +690,7 @@ namespace user
          && iItem >= 0 && iItem < m_pcombo->_001GetListCount())
       {
 
-         set_context_offset_y((::f64) (iItem * _001GetItemHeight()));
+         set_context_offset_y((::f64)(iItem * _001GetItemHeight()));
 
       }
       else
@@ -694,7 +705,7 @@ namespace user
 
    void list_box::_001OnTimer(::timer* ptimer)
    {
-   
+
       //if (ptimer->m_etimer == e_timer_kill_focus)
       //{
 
@@ -716,7 +727,7 @@ namespace user
       //}
 
       ::user::scroll_base::_001OnTimer(ptimer);
-   
+
    }
 
 
@@ -767,7 +778,7 @@ namespace user
    }
 
 
-   bool list_box::pre_create_window(::user::system * pusersystem)
+   bool list_box::pre_create_window(::user::system* pusersystem)
    {
 
 
@@ -776,7 +787,7 @@ namespace user
    }
 
 
-   void list_box::on_message_show_window(::message::message * pmessage)
+   void list_box::on_message_show_window(::message::message* pmessage)
    {
 
       ::pointer<::message::show_window>pshowwindow(pmessage);
@@ -784,11 +795,16 @@ namespace user
       if (pshowwindow->m_bShow)
       {
 
+         if (m_pcombo)
+         {
+
 #ifdef WINDOWS
 
-         set_keyboard_focus();
+            set_keyboard_focus();
 
 #endif
+
+         }
 
       }
       else
@@ -816,7 +832,7 @@ namespace user
 
             hide();
 
-            
+
             //se
             //m_bPendingKillFocusHiding = true;
 
@@ -883,7 +899,7 @@ namespace user
 
 
 
-   void list_box::_001OnActivate(::message::message * pmessage)
+   void list_box::_001OnActivate(::message::message* pmessage)
    {
 
       ::pointer<::message::activate>pactivate(pmessage);
@@ -893,9 +909,9 @@ namespace user
       if (pactivate->m_eactivate == e_activate_inactive)
       {
 
-//         auto pointCursor = get_cursor_position();
-//
-//         m_pcombo->screen_to_client(::user::e_layout_sketch)(pointCursor);
+         //         auto pointCursor = get_cursor_position();
+         //
+         //         m_pcombo->screen_to_client(::user::e_layout_sketch)(pointCursor);
 
       }
       else
@@ -909,7 +925,7 @@ namespace user
    }
 
 
-   void list_box::_001OnMouseActivate(::message::message * pmessage)
+   void list_box::_001OnMouseActivate(::message::message* pmessage)
    {
 
       ::pointer<::message::mouse_activate>pactivate(pmessage);
@@ -922,7 +938,7 @@ namespace user
    }
 
 
-   void list_box::on_message_key_down(::message::message * pmessage)
+   void list_box::on_message_key_down(::message::message* pmessage)
    {
 
       auto pkey = pmessage->m_union.m_pkey;
@@ -982,7 +998,7 @@ namespace user
    }
 
 
-   void list_box::on_message_key_up(::message::message * pmessage)
+   void list_box::on_message_key_up(::message::message* pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -990,7 +1006,7 @@ namespace user
    }
 
 
-   void list_box::on_message_middle_button_down(::message::message * pmessage)
+   void list_box::on_message_middle_button_down(::message::message* pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -1017,7 +1033,7 @@ namespace user
    }
 
 
-   void list_box::on_message_right_button_down(::message::message * pmessage)
+   void list_box::on_message_right_button_down(::message::message* pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -1068,7 +1084,7 @@ namespace user
    //}
 
 
-   void list_box::on_message_close(::message::message * pmessage)
+   void list_box::on_message_close(::message::message* pmessage)
    {
 
       pmessage->m_bRet = true;
@@ -1096,7 +1112,7 @@ namespace user
    }
 
 
-   ::item_pointer list_box::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   ::item_pointer list_box::on_hit_test(const ::point_i32& point, ::user::e_zorder ezorder)
    {
 
       ::raw::count iItemCount = _001GetListCount();
@@ -1117,7 +1133,7 @@ namespace user
       for (::raw::index iItem = 0; iItem < iItemCount; iItem++)
       {
 
-         rectangleItem.top() = rectangleX.top() + (_001GetItemHeight() * (int) (iAddUp + iItem));
+         rectangleItem.top() = rectangleX.top() + (_001GetItemHeight() * (int)(iAddUp + iItem));
 
          rectangleItem.bottom() = rectangleItem.top() + _001GetItemHeight();
 
@@ -1126,7 +1142,7 @@ namespace user
 
             __defer_construct_new(main_content().m_pitema);
 
-            auto & pitemNew = this->main_content().m_pitema->element_at_grow(iItem);
+            auto& pitemNew = this->main_content().m_pitema->element_at_grow(iItem);
 
             if (__defer_construct_new(pitemNew))
             {
@@ -1157,7 +1173,7 @@ namespace user
          return __allocate< ::item >(e_element_search_edit);
 
       }
-      
+
       auto pitemNone = __allocate< ::item >(e_element_none);
 
       return pitemNone;
@@ -1165,15 +1181,15 @@ namespace user
    }
 
 
-//   bool list_box::has_pending_graphical_update()
-//   {
-//
-//      return m_bNeedRedraw;
-//
-//   }
+   //   bool list_box::has_pending_graphical_update()
+   //   {
+   //
+   //      return m_bNeedRedraw;
+   //
+   //   }
 
 
-   void list_box::on_drop_down(const ::rectangle_i32 & rectangleWindow, const ::size_i32 & sizeFull)
+   void list_box::on_drop_down(const ::rectangle_i32& rectangleWindow, const ::size_i32& sizeFull)
    {
 
       //lock_sketch_to_design lockSketchToDesign(this);
@@ -1344,16 +1360,16 @@ namespace user
       add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
 
       defer_create_interaction(i >= 0 ? nullptr : m_pcombo->get_parent());
-         //if (!)
-         //{
+      //if (!)
+      //{
 
-         //   m_pcombo->m_plistbox.release();
+      //   m_pcombo->m_plistbox.release();
 
-         //   throw ::exception(error_resource);
+      //   throw ::exception(error_resource);
 
-         //}
+      //}
 
-         //information() << "on_drop_down (11) : " << rectangleList;
+      //information() << "on_drop_down (11) : " << rectangleList;
 
 //      }
 //      else
@@ -1386,10 +1402,10 @@ namespace user
    }
 
 
-   void list_box::set_current_item(::item * pitem, const ::action_context & context)
+   void list_box::set_current_item(::item* pitem, const ::action_context& context)
    {
 
-      if(m_pcombo)
+      if (m_pcombo)
       {
 
          m_pcombo->set_current_item(pitem, context);
@@ -1405,10 +1421,10 @@ namespace user
    }
 
 
-   void list_box::set_current_item_by_data(uptr u, const ::action_context& context)
+   void list_box::set_current_item_by_atom(const ::atom& atom, const ::action_context& context)
    {
 
-      ::raw::index iSel = m_straValue.find_first(::as_string(u));
+      ::raw::index iSel = m_atoma.find_first(atom);
 
       if (iSel < 0)
       {
@@ -1422,10 +1438,10 @@ namespace user
    }
 
 
-   void list_box::set_current_item_by_string_value(const string& strValue, const ::action_context& context)
+   void list_box::set_current_item_by_text(const ::scoped_string& scopedstr, const ::action_context& context)
    {
 
-      ::raw::index iSel = m_straValue.find_first(strValue);
+      ::raw::index iSel = m_straList.find_first(scopedstr);
 
       if (iSel < 0)
       {
@@ -1438,32 +1454,32 @@ namespace user
 
    }
 
-    void list_box::set_current_item_by_index(::raw::index iIndex, const ::action_context& context)
-    {
-
-       if (iIndex < 0 || iIndex >= m_straValue.get_size())
-       {
-
-          return;
-
-       }
-
-       set_current_item(__allocate< ::item >(::e_element_item, iIndex), context);
-
-    }
-
-
-    string list_box::get_current_item_string_value()
+   void list_box::set_current_item_by_index(::raw::index iIndex, const ::action_context& context)
    {
 
-       auto pitem = current_item();
+      if (iIndex < 0 || iIndex >= m_atoma.get_size())
+      {
 
-       if (::is_null(pitem))
-       {
+         return;
 
-          return {};
+      }
 
-       }
+      set_current_item(__allocate< ::item >(::e_element_item, iIndex), context);
+
+   }
+
+
+   string list_box::get_current_item_text()
+   {
+
+      auto pitem = current_item();
+
+      if (::is_null(pitem))
+      {
+
+         return {};
+
+      }
 
       ::raw::index iSel = pitem->m_item.m_iItem;
 
@@ -1474,9 +1490,37 @@ namespace user
 
       }
 
-      string str = m_straValue[iSel];
+      string str = m_straList[iSel];
 
       return str;
+
+   }
+
+
+   ::atom list_box::get_current_item_atom()
+   {
+
+      auto pitem = current_item();
+
+      if (::is_null(pitem))
+      {
+
+         return {};
+
+      }
+
+      ::raw::index iSel = pitem->m_item.m_iItem;
+
+      if (iSel < 0)
+      {
+
+         return {};
+
+      }
+
+      auto atom = m_atoma[iSel];
+
+      return atom;
 
    }
 

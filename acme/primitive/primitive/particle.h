@@ -560,6 +560,27 @@ public:
    template < typename TYPE >
    inline ::pointer<TYPE> __call__create_new_clone(TYPE * p);
 
+   template < typename T, typename ...Args >
+   ::pointer < T > __call__allocate_and_initialize(Args &&... args)
+   {
+
+      auto p = ::transfer(
+         ::platform::allocator::__call__allocate< T >(
+            ::std::forward<Args>(args)...));
+
+      if (!p)
+      {
+
+         throw ::exception(error_no_memory);
+
+      }
+      p->initialize(this);
+
+      return ::transfer(p);
+
+   }
+
+
    template < typename TYPE >
    inline TYPE*__initialize(TYPE * p)
    {

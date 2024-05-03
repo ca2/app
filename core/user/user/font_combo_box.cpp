@@ -124,7 +124,7 @@ namespace user
          if (item.is_set())
          {
 
-            add_string(item->m_strName, item->m_strName);
+            add_item(item->m_strName, item->m_strName);
 
          }
 

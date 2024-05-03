@@ -4,6 +4,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/exception/status.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/platform/node.h"
 
 
 namespace acme
@@ -158,14 +159,14 @@ namespace acme
    }
 
 
-   int shell::command_system(const ::scoped_string& scopedstr, const class ::time& timeOut, const ::file::path& pathWorkingDirectory)
+   int shell::command_system(const ::scoped_string& scopedstr, const class ::time& timeOut, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
    {
 
       trace_function tracefunction = std_inline_log();
 
       tracefunction.m_timeTimeout = timeOut;
 
-      return command_system(scopedstr, tracefunction, pathWorkingDirectory);
+      return command_system(scopedstr, tracefunction, pathWorkingDirectory, edisplay);
 
    }
 
@@ -185,10 +186,10 @@ namespace acme
 
       __construct_new(pstring);
 
-      trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str)
+      trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
          {
 
-            pstring->m_payload += str + "\n";
+            pstring->m_payload += str + (bCarriage ? "\r" : "\n");
 
          };
 
@@ -235,10 +236,10 @@ namespace acme
 
       __construct_new(pstring);
 
-      trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str)
+      trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
          {
 
-            pstring->m_payload += str + "\n";
+            pstring->m_payload += str + (bCarriage ? "\r":"\n");
 
          };
 
@@ -279,10 +280,10 @@ namespace acme
 
       __construct_new(pstring);
 
-      trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str)
+      trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
          {
 
-            pstring->m_payload += str + "\n";
+            pstring->m_payload += str + (bCarriage ? "\r":"\n" );
 
          };
 
@@ -305,18 +306,26 @@ namespace acme
    }
 
 
-   int shell::command_system(const ::scoped_string& scopedstr, const trace_function& tracefunction, const ::file::path& pathWorkingDirectory)
+   int shell::command_system(const ::scoped_string& scopedstr, const trace_function& tracefunction, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
    {
 
-      return m_pshellComposite->command_system(scopedstr, tracefunction, pathWorkingDirectory);
+      return m_pshellComposite->command_system(scopedstr, tracefunction, pathWorkingDirectory, edisplay);
 
    }
 
 
-   void shell::open_terminal_and_run(const ::scoped_string& scopedstr)
+   //void shell::open_terminal_and_run(const ::scoped_string& scopedstr)
+   //{
+
+   //   this->command_system(scopedstr, ::std_inline_log());
+
+   //}
+
+
+   void shell::launch_command_system(const ::scoped_string& scopedstr, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
    {
 
-      this->command_system(scopedstr, ::std_inline_log());
+      throw ::interface_only();
 
    }
 
@@ -382,7 +391,7 @@ namespace acme
          //else
          {
 
-            strCommand = "\"C:\\Program Files\\Git\\bin\\bash.exe\" /c \'" + strEscaped + "; exit\'";
+            strCommand = "\"C:\\Program Files\\Git\\bin\\bash.exe\" -l -c \"" + strEscaped + "\"";
 
          }
 
@@ -410,10 +419,10 @@ namespace acme
 
       ::string strLog;
 
-      auto iExitCode = unix_shell_command(scopedstrCommand, [&strLog](auto etracelevel, auto str)
+      auto iExitCode = unix_shell_command(scopedstrCommand, [&strLog](auto etracelevel, auto str, bool bCarriage)
          {
 
-            strLog += ::string(str) + "\n";
+            strLog += ::string(str) + (bCarriage? "\r":"\n");
 
          });
 

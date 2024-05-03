@@ -100,7 +100,7 @@ CLASS_DECL_ACME const char * get_windows_message_name(::u32 nMsg);
 
 
 
-using trace_function = ::function < void(enum_trace_level, const ::scoped_string &) >;
+using trace_function = ::function < void(enum_trace_level, const ::scoped_string &, bool bCarriage) >;
 
 
 

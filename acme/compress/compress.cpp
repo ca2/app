@@ -25,7 +25,7 @@ void compress::set_level(int iLevel)
 }
 
 
-void compress::transfer(::file::file* pfileOut, ::file::file* pfileIn)
+void compress::transfer(::file::file* pfileOut, ::file::file* pfileIn, transfer_progress_function transferprogressfunction)
 {
 
    throw ::interface_only();

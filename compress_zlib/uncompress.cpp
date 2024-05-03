@@ -25,12 +25,31 @@ namespace compress_zlib
    }
 
 
-   void uncompress::transfer(::file::file* pfileUncompressed, ::file::file* pfileGzFileCompressed)
+   void uncompress::transfer(::file::file* pfileUncompressed, ::file::file* pfileGzFileCompressed, transfer_progress_function transferprogressfunction)
    {
 
       i32 status;
 
       class memory memIn;
+
+      ::u32 size = 0;
+
+      if (pfileGzFileCompressed->is_seekable())
+      {
+         auto pos = pfileGzFileCompressed->get_position();
+         pfileGzFileCompressed->seek_from_end(-4);
+
+         auto iRead = pfileGzFileCompressed->read(&size, 4);
+
+         if (iRead != 4)
+         {
+
+            size = 0;
+
+         }
+         pfileGzFileCompressed->set_position(pos);
+
+      }
 
       memIn.set_size((memsize)minimum(1024 * 4, pfileGzFileCompressed->right_size()));
 
@@ -74,6 +93,24 @@ namespace compress_zlib
             status = inflate(&zstream, Z_NO_FLUSH);
 
             pfileUncompressed->write(memory(0, memory.size() - zstream.avail_out));
+
+            if (transferprogressfunction)
+            {
+
+               if (pfileUncompressed->size() <=  size)
+               {
+                  transferprogressfunction((double)pfileUncompressed->size()
+                     / (double)size, pfileUncompressed->size(), size);
+
+               }
+               else
+               {
+
+                  transferprogressfunction(0, pfileUncompressed->size(), 0);
+
+               }
+
+            }
 
             if (status == Z_STREAM_END)
             {

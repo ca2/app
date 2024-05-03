@@ -271,11 +271,28 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
       if (m_bReallySimple)
       {
 
-         str += strTaskName + "> ";
+         auto s = tracestatement.as_string();
 
-         str += tracestatement.as_string();
+         if (s.begins_eat("\r"))
+         {
+            
+            str += "\r";
 
-         str += "\n";
+            str += strTaskName + "> ";
+
+            str += s;
+
+         }
+         else
+         {
+
+            str += strTaskName + "> ";
+
+            str += s;
+
+            str += "\n";
+
+         }
 
       }
       else
@@ -340,7 +357,18 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
 
          }
 
-         str = strTime + str;
+         if (str.begins_eat("\r"))
+         {
+
+
+            str = "\r"+strTime + str;
+
+         }
+         else
+         {
+
+            str = strTime + str;
+         }
 
       }
 

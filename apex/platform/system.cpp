@@ -1358,7 +1358,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   void system::uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
+   void system::uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation, transfer_progress_function transferprogressfunction)
    {
 
       //::pointer<::uncompress>puncompress;
@@ -1378,7 +1378,7 @@ pacmedirectory->create("/ca2core");
 
       auto pfileSource = file()->get_reader(payloadSource);
 
-      /*estatus = */ puncompress->transfer(pfileTarget, pfileSource);
+      /*estatus = */ puncompress->transfer(pfileTarget, pfileSource, transferprogressfunction);
 
       //if (!estatus)
       //{

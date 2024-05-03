@@ -594,11 +594,14 @@ CLASS_DECL_ACME FILE * trace_level_FILE(enum_trace_level etracelevel, enum_trace
 CLASS_DECL_ACME trace_function std_inline_log(enum_trace_level etracelevelInformation)
 {
 
-   auto predicate = [&](auto etracelevel, auto & str)
+   auto predicate = [etracelevelInformation](auto etracelevel, auto & str, bool bCarriage)
    {
 
-      ::fprintf(trace_level_FILE(etracelevel, etracelevelInformation), "%c: %s\n", trace_level_letter(etracelevel),
-                ::string(str).c_str());
+      //::fprintf(trace_level_FILE(etracelevel, etracelevelInformation), "%c: %s\n", trace_level_letter(etracelevel),
+      //          ::string(str).c_str());
+      ::fprintf(trace_level_FILE(etracelevel, etracelevelInformation), "%s%c", ::string(str).c_str(), bCarriage ? '\r': '\n');
+
+      ::fflush(trace_level_FILE(etracelevel, etracelevelInformation));
 
    };
 

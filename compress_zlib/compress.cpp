@@ -54,7 +54,7 @@ namespace compress_zlib
    }
 
 
-   void compress::transfer(::file::file* pfileOut, ::file::file* pfileIn)
+   void compress::transfer(::file::file* pfileOut, ::file::file* pfileIn, transfer_progress_function transferprogressfunction)
    {
 
       int iLevel = m_iLevel;
@@ -69,6 +69,15 @@ namespace compress_zlib
       {
 
          iLevel = 9;
+
+      }
+
+      ::u64 size = 0;
+
+      if (pfileIn->is_seekable())
+      {
+         size = pfileIn->size();
+
 
       }
 
@@ -122,6 +131,25 @@ namespace compress_zlib
             auto amountToWrite = (u32)memory.size() - zstream.avail_out;
 
             pfileOut->write(memory(0, amountToWrite));
+
+
+            if (transferprogressfunction)
+            {
+
+               if (pfileOut->size() < size)
+               {
+                  transferprogressfunction((double)pfileOut->size()
+                     / (double)size, pfileOut->size(), size);
+
+               }
+               else
+               {
+
+                  transferprogressfunction(0, pfileOut->size(), 0);
+
+               }
+
+            }
 
             if (status == Z_STREAM_END)
             {

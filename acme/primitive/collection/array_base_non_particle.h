@@ -200,6 +200,7 @@ public:
 
    ::raw::count   m_countAllocation;
    ::raw::count   m_countAddUp;
+   ::raw::count   m_countAllocationOffset;
 
 
    array_base_non_particle();
@@ -217,6 +218,8 @@ public:
    }
    virtual ~array_base_non_particle();
 
+
+   void defer_erase_allocation_offset();
 
    void defer_destroy()
    {
@@ -1375,6 +1378,7 @@ ARRAY_RANGE()
 
    m_countAddUp = 0;
    m_countAllocation = 0;
+   m_countAllocationOffset = 0;
 
 }
 
@@ -1385,6 +1389,7 @@ array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::arr
 
    this->m_countAddUp = array.m_countAddUp;
    this->m_countAllocation = array.m_countAllocation;
+   this->m_countAllocationOffset = array.m_countAllocationOffset;
 
    array.m_begin = nullptr;
    array.m_end = 0;
@@ -1416,7 +1421,7 @@ array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::arr
    this->m_begin = nullptr;
    this->m_end = nullptr;
    m_countAllocation = 0;
-
+   m_countAllocationOffset = 0;
    set_size(array.get_size());
 
    for (::raw::index i = 0; i < array.get_size(); i++)
@@ -1469,23 +1474,60 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
       return -1;
 
    }
-   
+
    auto nCount = in_count_out_last - first + 1;
 
    ::raw::count nMoveCount = this->size() - in_count_out_last;
 
    TYPED::destruct_count(this->m_begin + first, nCount);
 
-   if(nMoveCount)
+   if (first == 0)
    {
 
-      ::safe_memory_transfer(this->m_begin + first, (size_t) nMoveCount * sizeof(TYPE), this->m_begin + in_count_out_last + 1, (size_t) nMoveCount * sizeof(TYPE));
+      m_countAllocationOffset -= nCount;
+
+      this->m_begin += nCount;
+
+   }
+   else
+   {
+
+      if (nMoveCount)
+      {
+
+         ::safe_memory_transfer(this->m_begin + first, (size_t)nMoveCount * sizeof(TYPE), this->m_begin + in_count_out_last + 1, (size_t)nMoveCount * sizeof(TYPE));
+
+      }
+
+      this->m_end -= nCount;
 
    }
 
-   this->m_end -= nCount;
-
    return first;
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
+void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::defer_erase_allocation_offset()
+{
+
+   if (this->m_countAllocationOffset >= 0)
+   {
+
+      return;
+
+   }
+
+   auto size = this->size();
+   auto pNewBeg = this->m_begin + this->m_countAllocationOffset;
+   auto pNewEnd = this->m_end + this->m_countAllocationOffset;
+
+   ::safe_memory_transfer(pNewBeg, this->m_countAllocation * sizeof(TYPE), this->m_begin, size);
+
+   this->m_begin = pNewBeg;
+   this->m_end = pNewEnd;
+   this->m_countAllocationOffset = 0;
 
 }
 
@@ -2421,7 +2463,9 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
          if(bShrink)
          {
             
-            MEMORY::free(this->m_begin);
+            MEMORY::free(this->m_begin + this->m_countAllocationOffset);
+
+            this->m_countAllocationOffset = 0;
             
             this->m_begin = nullptr;
             
@@ -2522,6 +2566,8 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
    }
    else if(nNewSize <= m_countAllocation)
    {
+
+      defer_erase_allocation_offset();
 
       if (!bRaw)
       {
@@ -2675,11 +2721,13 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
       }
 
       // get rid of old stuff (note: no destructors called)
-      MEMORY::free(this->m_begin);
+      MEMORY::free(this->m_begin + this->m_countAllocationOffset);
 
       this->m_begin = pNewData;
 
       this->m_end = this->m_begin + nNewSize;
+
+      this->m_countAllocationOffset = 0;
 
       m_countAllocation = countNewAllocation;
 

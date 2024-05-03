@@ -4005,10 +4005,13 @@ string str::zero_padded(const ::string & strSrc, strsize lenPad)
 }
 
 
-void str::get_lines(::string & str, bool bFinal, const ::function < void(const ::scoped_string &) > & functionNewLine)
+void str::get_lines(::string & str, bool bFinal, const ::function < void(const ::scoped_string&, bool bCarriage) > & functionNewLine)
 {
 
-   auto iLimit = str.rear_find_index("\n");
+   auto iLimitN = str.rear_find_index("\n");
+   auto iLimitR = str.rear_find_index("\r");
+
+   auto iLimit = maximum(iLimitN, iLimitR);
 
    if (not_found(iLimit))
    {
@@ -4021,7 +4024,7 @@ void str::get_lines(::string & str, bool bFinal, const ::function < void(const :
          if(str.has_char())
          {
 
-            functionNewLine(str);
+            functionNewLine(str, false);
 
          }
 
@@ -4038,7 +4041,9 @@ void str::get_lines(::string & str, bool bFinal, const ::function < void(const :
    while(true)
    {
 
-      auto iFindNext = str.find_index('\n', iLast + 1);
+      auto iFindN = str.find_index('\n', iLast + 1);
+      auto iFindR = str.find_index('\r', iLast + 1);
+      auto iFindNext = minimum_non_negative(iFindN, iFindR);
 
       if(iFindNext < 0)
       {
@@ -4051,7 +4056,7 @@ void str::get_lines(::string & str, bool bFinal, const ::function < void(const :
             if(str.has_char())
             {
 
-               functionNewLine(str);
+               functionNewLine(str, false);
 
             }
 
@@ -4071,16 +4076,18 @@ void str::get_lines(::string & str, bool bFinal, const ::function < void(const :
 
       int iLess = 0;
 
-      if (iFindNext > 0 && str[iFindNext - 1] == '\r')
+      if (iFindN > 0 && iFindN == iFindR + 1)
       {
 
          iLess = 1;
+
+         iFindNext = iFindN;
 
       }
 
       auto range = str(iLast + 1, iFindNext - iLast - 1 - iLess);
 
-      functionNewLine(range);
+      functionNewLine(range, iFindNext == iFindR);
 
       if(iFindNext >= iLimit)
       {
@@ -4108,7 +4115,7 @@ void str::get_lines(::string & str, bool bFinal, const ::function < void(const :
 void str::get_lines(::string_array & stra, ::string & str, const ::string & strPrefix, bool bFinal, ::particle * pparticleSynchronization, ::file::file * pfileLog)
 {
 
-   auto functionNewLine = [&](auto & range)
+   auto functionNewLine = [&](auto & range, bool bCarriage)
    {
 
       string strPrefixedLine;
@@ -4137,7 +4144,7 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
          try
          {
 
-            pfileLog->write(strPrefixedLine + "\n");
+            pfileLog->write(strPrefixedLine + (bCarriage? "\r": "\n"));
 
          }
          catch (...)

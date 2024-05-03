@@ -959,6 +959,8 @@ namespace acme
       virtual void x11_display_error_trap_push(int i);
       virtual void x11_display_error_trap_pop_ignored(int i);
 #endif
+      
+      virtual int get_processor_count();
 
 
    };

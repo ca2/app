@@ -155,7 +155,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
       }
 
    }
-   if ((::u8 *)0x0000000200000020 == ((::u8 *)pParam))
+   if ((::u8 *)0x0000000020000218 == ((::u8 *)pParam))
    {
 
       debug_break();

@@ -51,6 +51,26 @@ namespace windows
          return false;
 
       }
+      ::u64 contentLength = 0;
+      DWORD dwContentLengthBufferSize = sizeof(contentLength);
+
+      auto bContentLength = WinHttpQueryHeaders(m_hinternet,
+         WINHTTP_QUERY_CONTENT_LENGTH | WINHTTP_QUERY_FLAG_NUMBER,
+         WINHTTP_HEADER_NAME_BY_INDEX,
+         &contentLength,
+         &dwContentLengthBufferSize,
+         WINHTTP_NO_HEADER_INDEX);
+
+      if (!bContentLength)
+      {
+
+         contentLength = 0;
+
+      }
+
+      transfer_progress_function transferprogressfunction;
+      
+      transferprogressfunction .m_pbase = httpresponse.m_set["transfer_progress_function"].cast < transfer_progress_function::base >();
 
       DWORD dwSize = 0;
       do
@@ -88,7 +108,33 @@ namespace windows
 
          memory.set_size(dwDownloaded);
 
-         httpresponse.m_memory.append(memory);
+         if (dwDownloaded > 0)
+         {
+
+            httpresponse.m_memory.append(memory);
+
+            if (transferprogressfunction)
+            {
+
+               if (contentLength > 0)
+               {
+
+                  transferprogressfunction((double)httpresponse.m_memory.size() /
+                     (double)contentLength, httpresponse.m_memory.size(),
+                     contentLength);
+               }
+               else
+               {
+
+                  transferprogressfunction(0., httpresponse.m_memory.size(),
+                     0);
+
+               }
+
+
+            }
+
+         }
 
          //dwSize -= dwDownloaded;
          //else

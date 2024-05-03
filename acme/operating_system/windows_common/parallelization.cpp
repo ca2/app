@@ -287,16 +287,7 @@ namespace parallelization
 } // namespace acme
 
 
-CLASS_DECL_ACME int get_processor_count()
-{
 
-   SYSTEM_INFO sysinfo;
-
-   GetSystemInfo(&sysinfo);
-
-   return sysinfo.dwNumberOfProcessors;
-
-}
 
 
 void task_set_name(const char * pszThreadName)

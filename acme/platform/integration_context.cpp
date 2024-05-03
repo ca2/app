@@ -1,6 +1,7 @@
 // Created by camilo on 2023-01-15 16:16 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "integration_context.h"
+#include "acme/constant/integration.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/file/memory_file.h"
@@ -35,6 +36,8 @@ namespace integration
    {
 
       m_bBuildDependencies = true;
+
+      m_strBuildIndexStagePrefix = "---- - -- -";
 
    }
 
@@ -235,7 +238,7 @@ namespace integration
    }
 
 
-   int context::command_system(const ::scoped_string & scopedstrCommand, const class ::time& timeOut, const ::file::path& pathWorkingDirectory)
+   int context::command_system(const ::scoped_string & scopedstrCommand, const class ::time& timeOut, const ::file::path& pathWorkingDirectory, ::e_display edisplay)
    {
 
 //      auto functionTrace = [&](auto etracelevel, auto & str)
@@ -246,7 +249,7 @@ namespace integration
 //      };
 //
       //auto iExitCode = node()->command_system(scopedstrCommand, ::std_inline_log());
-      auto iExitCode = node()->command_system(scopedstrCommand, 12_h, pathWorkingDirectory);
+      auto iExitCode = node()->command_system(scopedstrCommand, 12_h, pathWorkingDirectory, edisplay);
       
       if (iExitCode != 0)
       {
@@ -355,6 +358,41 @@ namespace integration
 
             ::particle * pparticle = this;
 
+            set["transfer_progress_function"] = ::transfer_progress_function(
+               [this](double dRate, filesize done, filesize total)
+               {
+
+                  if (total > 0)
+                  {
+
+                     ::string strTopic2;
+
+                     strTopic2.formatf("Downloading %0.2f%% %d of %d...", dRate * 100.0,
+                           done, total);
+
+                     if (done == total)
+                     {
+
+                        information() << "\r" << strTopic2 << "\n";
+
+                        information() << "Downloading complete";
+
+                     }
+                     else
+                     {
+
+                        information() << "\r" << strTopic2;
+
+                     }
+
+                     //m_pimpactinterface->on_state_change();
+
+                  }
+
+               });
+
+
+
             pparticle->context()->http_download(pmemoryFileTarGz, url, set);
 
             //auto pathTar = m_pathFolder / m_path / (m_strName + ".tar");
@@ -365,13 +403,91 @@ namespace integration
 
             information() << "Uncompressing...";
 
-            system()->uncompress(pmemoryFileTar, pmemoryFileTarGz, "zlib");
+            auto t2= ::transfer_progress_function(
+               [this](double dRate, filesize done, filesize total)
+               {
+
+                  if (total > 0)
+                  {
+
+                     ::string strTopic2;
+
+                     strTopic2.formatf("Uncompressing %0.2f%% %d of %d...", dRate * 100.0,
+                        done, total);
+
+                     if (done == total)
+                     {
+
+                        information() << "\r" << strTopic2 << "\n";
+
+                        information() << "Uncompressing complete";
+
+                     }
+                     else
+                     {
+
+                        information() << "\r" << strTopic2;
+
+
+
+                     }
+
+                     //m_pimpactinterface->on_state_change();
+
+                  }
+
+               });
+
+               
+            system()->uncompress(pmemoryFileTar, pmemoryFileTarGz, "zlib", t2);
 
             pmemoryFileTar->seek_to_begin();
 
             information() << "Untarring to \"" << acmedirectory()->get_current() << "\"...";
 
-            this->untar(acmedirectory()->get_current(), pmemoryFileTar, 1);
+            ::function<void(const::scoped_string& scopedstr) > callback;
+
+            int iLastLineLength=0;
+            int iFilesExtracted = 0;
+            callback = [this,&iLastLineLength, &iFilesExtracted](const ::scoped_string& scopedstr)
+               {
+                  
+                  auto s = scopedstr.size();
+                  
+                  auto extra = iLastLineLength - s;
+
+                  ::string str;
+
+                  ::string strExtra(' ', maximum(0, extra + 1));
+                  
+                  if (scopedstr.ends("\n"))
+                  {
+                   
+                     str << "\r" << scopedstr(0, scopedstr.size() - 1) << strExtra << "\n";
+
+                  }
+                  else
+                  {
+
+                     str << "\r" << scopedstr << strExtra;
+
+                  }
+
+                  information(str);
+
+                  iLastLineLength = s;
+
+                  iFilesExtracted++;
+
+               };
+
+            this->untar(acmedirectory()->get_current(), pmemoryFileTar, 1, callback);
+
+            ::string str;
+            str << iFilesExtracted << " files extracted\n";
+            callback(str);
+
+            information() << "Untarring complete";
 
          }
 
@@ -386,7 +502,7 @@ namespace integration
       
       information() << "Current Directory: " << acmedirectory()->get_current();
       
-      bash("git clone " + m_pathDownloadURL + " .", 2_hour);
+      git_bash("git clone " + m_pathDownloadURL + " .", 2_hour);
 
    }
 
@@ -419,7 +535,7 @@ namespace integration
    }
 
 
-   void context::untar(const ::file::path & pathFolder, const ::payload & payloadTar, int iStripComponent)
+   void context::untar(const ::file::path & pathFolder, const ::payload & payloadTar, int iStripComponent, ::function<void(const::scoped_string& scopedstr) > functionCallback)
    {
       struct archive * a;
       struct archive_entry * entry;
@@ -485,8 +601,11 @@ namespace integration
                pfile->write(memory2(0, size));
                //write(1, buff, size);
             }
-
-            ::acme::get()->platform()->informationf(strPathName + "\n");
+            if (functionCallback)
+            {
+               functionCallback(strPathName);
+            }
+            //::acme::get()->platform()->informationf(strPathName + "\n");
 
          }
          next:
@@ -799,8 +918,39 @@ namespace integration
    }
 
 
+   ::string context::build_index_stage_prefix()
+   {
+
+      return m_strBuildIndexStagePrefix;
+
+   }
+
+
+   ::string context::build_index_radix(::integration::enum_index eindex)
+   {
+
+      switch (eindex)
+      {
+      case ::integration::e_index_none:
+         return "(None)";
+      case ::integration::e_index_preparing:
+         return "Preparing";
+      case ::integration::e_index_downloading:
+         return "Downloading";
+      case ::integration::e_index_configuring:
+         return "Configuring";
+      case ::integration::e_index_building:
+         return "Building";
+      case ::integration::e_index_finishing:
+         return "Finishing";
+      default:
+         return "(UnknownStep)";
+      }
+
+   }
+
+
 
 } // namespace integration
-
 
 

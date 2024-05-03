@@ -2451,10 +2451,10 @@ namespace user
 
                      pcombobox->_001GetText(strText);
 
-                     if (pcombobox->get_current_item_string_value() != pdrawlistsubitem->m_strText)
+                     if (pcombobox->get_current_item_atom() != pdrawlistsubitem->m_strText)
                      {
 
-                        pcombobox->set_current_item_by_string_value(pdrawlistsubitem->m_strText, ::e_source_sync);
+                        pcombobox->set_current_item_by_atom(pdrawlistsubitem->m_strText, ::e_source_sync);
 
                      }
 

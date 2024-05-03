@@ -2603,7 +2603,7 @@ namespace acme
    }
 
 
-   void system::uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
+   void system::uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation, transfer_progress_function transferprogressfunction)
    {
 
       ::pointer<::uncompress>puncompress = new_uncompress(scopedstrImplementation);
@@ -2621,7 +2621,7 @@ namespace acme
 
       auto pfileSource = acmefile()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
 
-      /*estatus = */ puncompress->transfer(pfileTarget, pfileSource);
+      /*estatus = */ puncompress->transfer(pfileTarget, pfileSource, transferprogressfunction);
 
       //if (!estatus)
       //{

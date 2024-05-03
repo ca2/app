@@ -600,6 +600,34 @@ public:
    void c_add(wchar_t ** ppsz, ::raw::count iCount, bool bMemoryAlloc = false);
    void c_add(wchar_t ** ppsz, bool bMemoryAlloc = false);
 
+   void feed_line(const ::scoped_string& scopedstr, bool bCarriage)
+   {
+      if (this->has_flag(e_flag_carriage_return))
+      {
+         if (this->has_elements())
+         {
+            this->last() = scopedstr;
+         }
+         else
+         {
+            this->add(scopedstr);
+         }
+         if (!bCarriage)
+         {
+            this->clear_flag(e_flag_carriage_return);
+         }
+      }
+      else
+      {
+         this->add(scopedstr);
+         if (bCarriage)
+         {
+            this->set_flag(e_flag_carriage_return);
+         }
+
+      }
+   }
+
    string_array_base & intersect(const string_array_base & a)
    {
 

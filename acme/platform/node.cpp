@@ -4381,6 +4381,12 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 
 #endif
 
+   int node::get_processor_count()
+   {
+
+      return 1;
+
+   }
 
 
 } // namespace acme

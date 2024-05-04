@@ -263,8 +263,10 @@ public:
 
    virtual ::file_pointer http_get_file(const ::payload & payloadFile, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_pointer get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * ppfileexception = nullptr) override;
-   
+   virtual ::file_pointer get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception = nullptr) override;
+
+   virtual ::file_pointer _get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * ppfileexception = nullptr);
+
    virtual ::file_pointer defer_get_protocol_file(const ::scoped_string & scopedstrProtocol, const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr);
 
    virtual ::file_pointer create_native_file(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * ppfileexception = nullptr);

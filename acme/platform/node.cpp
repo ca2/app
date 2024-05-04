@@ -3059,6 +3059,22 @@ return false;
    }
 
 
+   bool node::_is_msys2_installed()
+   {
+
+      return false;
+
+   }
+
+   
+   bool node::_is_strawberry_perl_installed()
+   {
+
+      return false;
+
+   }
+
+
    bool node::_is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath)
    {
 

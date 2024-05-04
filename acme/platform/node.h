@@ -907,6 +907,10 @@ namespace acme
 
       virtual bool _is_smart_git_installed();
 
+      virtual bool _is_msys2_installed();
+
+      virtual bool _is_strawberry_perl_installed();
+
       virtual bool _is_code_exe_user_path_environment_variable_ok(::string *pstrCorrectPath=nullptr);
 
       virtual bool _is_coder_mode_enabled();

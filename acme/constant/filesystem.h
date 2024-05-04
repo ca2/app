@@ -40,6 +40,7 @@ namespace file
       e_open_no_callstack = (i32)0x080000,
       e_open_no_cache = (i32)0x100000,
       e_open_no_share_violation_wait = (i32)0x200000,
+      e_open_no_follow_uniform_resource_locator = (i32)0x400000,
       e_open_no_exception_on_open = (i32)0x10000000,
       e_open_file = (i32)0x20000000,
       e_open_no_exception_if_not_found = (i32)0x40000000,

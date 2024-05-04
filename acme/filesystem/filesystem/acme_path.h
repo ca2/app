@@ -31,6 +31,8 @@ public:
 
    virtual void safe_real_path(::file::path & path);
 
+   virtual ::file::path get_uniform_resource_locator(const ::file::path& path);
+
    virtual ::file::path safe_get_real_path(const ::file::path & path);
 
    virtual ::file::path _safe_real_path(const ::file::path & path);

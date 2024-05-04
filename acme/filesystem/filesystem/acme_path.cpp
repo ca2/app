@@ -165,6 +165,16 @@ void acme_path::safe_real_path(::file::path & path)
 }
 
 
+::file::path acme_path::get_uniform_resource_locator(const ::file::path& path)
+{
+
+   auto str = system()->http_text(path);
+
+   return str;
+
+}
+
+
 ::file::path acme_path::safe_get_real_path(const ::file::path & path)
 {
 

@@ -3624,7 +3624,47 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
 }
 
 
-file_pointer file_context::get_file(const ::payload &payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
+file_pointer file_context::get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* pfileexception)
+{
+
+   auto p = _get_file(payloadFile, eopen, pfileexception);
+
+   if (!(eopen & ::file::e_open_no_follow_uniform_resource_locator))
+   {
+
+      ::file::path path = payloadFile.as_file_path();
+
+      if (path.case_insensitive_ends(".uniform_resource_locator"))
+      {
+
+         ::string strUrl = p->full_string();
+
+         strUrl.trim();
+
+         if (!strUrl.case_insensitive_begins("http://")
+            && !strUrl.case_insensitive_begins("http://"))
+         {
+
+            throw ::exception(error_wrong_state, "Currently can only handle http and https in uniform_resource_locator files.");
+
+         }
+
+         ::file::path pathUniformResourceLocator = strUrl;
+
+         auto pfile = get_file(pathUniformResourceLocator, eopen, pfileexception);
+
+         return pfile;
+
+      }
+
+   }
+
+   return p;
+
+}
+
+
+file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception)
 {
 
    ::file_pointer pfile;

@@ -1495,7 +1495,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
       if (nMoveCount)
       {
 
-         ::safe_memory_transfer(this->m_begin + first, (size_t)nMoveCount * sizeof(TYPE), this->m_begin + in_count_out_last + 1, (size_t)nMoveCount * sizeof(TYPE));
+         ::safe_memory_transfer2(this->m_begin + first, nMoveCount, this->m_begin + in_count_out_last + 1, (size_t)nMoveCount);
 
       }
 
@@ -1523,7 +1523,7 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
    auto pNewBeg = this->m_begin + this->m_countAllocationOffset;
    auto pNewEnd = this->m_end + this->m_countAllocationOffset;
 
-   ::safe_memory_transfer(pNewBeg, this->m_countAllocation * sizeof(TYPE), this->m_begin, size);
+   ::safe_memory_transfer2(pNewBeg, this->m_countAllocation, this->m_begin, size);
 
    this->m_begin = pNewBeg;
    this->m_end = pNewEnd;
@@ -1618,7 +1618,7 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 #endif
 
          // copy new data from old
-         ::safe_memory_copy(pNewData, (size_t)size * sizeof(TYPE),this->m_begin, (size_t)size * sizeof(TYPE));
+         ::safe_memory_copy2(pNewData, (size_t)size,this->m_begin, (size_t)size);
 
       }
 
@@ -1669,7 +1669,7 @@ TYPE * array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer
    
    this->allocate(newSize, false, true);
    
-   ::safe_memory_transfer(this->m_begin + i + c, (size_t) (nMove * sizeof(TYPE)), this->m_begin + i, (size_t) (nMove * sizeof(TYPE)));
+   ::safe_memory_transfer2(this->m_begin + i + c, (size_t) (nMove), this->m_begin + i, (size_t) (nMove));
 
    return this->m_begin + i;
    
@@ -2014,7 +2014,7 @@ TYPE array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
    if (nMoveCount)
    {
 
-      ::safe_memory_transfer(this->m_begin + nIndex, (size_t)nMoveCount * sizeof(TYPE), this->m_begin + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
+      ::safe_memory_transfer2(this->m_begin + nIndex, (size_t)nMoveCount, this->m_begin + nUpperBound, (size_t)nMoveCount);
 
    }
 
@@ -2049,7 +2049,7 @@ array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > arra
    if (nMoveCount)
    {
 
-      ::safe_memory_transfer(this->m_begin + nIndex, (size_t)nMoveCount * sizeof(TYPE), this->m_begin + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
+      ::safe_memory_transfer2(this->m_begin + nIndex, (size_t)nMoveCount, this->m_begin + nUpperBound, (size_t)nMoveCount);
 
    }
 
@@ -2414,7 +2414,7 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 #endif
 
       // copy new data from old
-      ::safe_memory_copy(pNewData, (size_t)newAllocationSize * sizeof(TYPE), this->m_begin, (size_t) this->size() * sizeof(TYPE));
+      ::safe_memory_copy2(pNewData, (size_t)newAllocationSize, this->m_begin, (size_t) this->size());
 
       // get rid of old stuff (note: no destructors called)
       MEMORY::free(this->m_begin);
@@ -2692,7 +2692,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 #endif
 
       // copy new data from old
-      ::safe_memory_copy(pNewData, (size_t)countNewAllocation * sizeof(TYPE), this->m_begin, (size_t) countOld * sizeof(TYPE));
+      ::safe_memory_copy2(pNewData, (size_t)countNewAllocation, this->m_begin, (size_t) countOld);
 
       if(!bRaw)
       {

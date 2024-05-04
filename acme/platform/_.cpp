@@ -56,7 +56,7 @@ namespace acme
 
       ASSERT(nLen >= 0);
 
-      ::safe_memory_copy(rString.get_buffer(nLen), nLen * sizeof(char), pszFullString, nLen * sizeof(char));
+      ::safe_memory_copy2(rString.get_buffer(nLen), nLen, pszFullString, nLen);
 
       rString.release_buffer();   // Need to call ReleaseBuffer after method get_buffer
 

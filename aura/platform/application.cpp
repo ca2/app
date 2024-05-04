@@ -8811,11 +8811,12 @@ namespace aura
    string application::get_visual_studio_build()
    {
 
-      ::file::path path = acmedirectory()->config() / "programming/vs_build.txt";
+      //::file::path path = acmedirectory()->config() / "programming/vs_build.txt";
 
-      string strBuild = file()->as_string(path);
+      //string strBuild = file()->as_string(path);
+      string strBuild = "10.0.22000.0";
 
-      strBuild.trim();
+      //strBuild.trim();
 
       return strBuild;
 

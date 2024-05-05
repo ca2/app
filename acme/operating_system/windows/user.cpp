@@ -79,3 +79,22 @@ namespace windows
 
 
 
+
+
+
+static HWND s_hwndMain = nullptr;
+
+CLASS_DECL_ACME void acme_set_main_hwnd(HWND hwnd)
+{
+
+   s_hwndMain = hwnd;
+
+}
+
+
+CLASS_DECL_ACME HWND acme_get_main_hwnd()
+{
+
+   return s_hwndMain;
+
+}

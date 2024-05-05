@@ -8,6 +8,8 @@
 #pragma once
 
 
+#include <Cocoa/Cocoa.h>
+
 class nano_window_bridge;
 @class ns_nano_impact;
 

@@ -8,6 +8,9 @@
 #pragma once
 
 
+#include <Cocoa/Cocoa.h>
+
+
 @interface nano_notification_callback : NSObject
 {
 @public

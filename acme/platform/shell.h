@@ -65,7 +65,7 @@ namespace acme
 
       virtual ::file::path _get_cmd_path();
 
-#endif;
+#endif
 
    };
 

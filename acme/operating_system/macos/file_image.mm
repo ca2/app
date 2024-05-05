@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UniformTypeIdentifiers/UTType.h>
-
+#import <Cocoa/Cocoa.h>
 
 bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage);
 

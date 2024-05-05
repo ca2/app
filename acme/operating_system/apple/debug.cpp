@@ -19,7 +19,7 @@ void throw_ns_exception(enum_status estatus, const ::scoped_string & scopedstrNa
 #include <stdbool.h>
 #include <sys/types.h>
 #include <unistd.h>
-
+#include <stdio.h>
 #define user user_struct
 #include <sys/sysctl.h>
 

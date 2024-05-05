@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <Cocoa/Cocoa.h>
 
 void ns_main_sync(dispatch_block_t block);
 

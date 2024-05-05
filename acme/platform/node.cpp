@@ -3249,7 +3249,7 @@ return false;
    }
 
 
-#if defined(__BSD__)
+#if defined(__BSD__) || defined(__APPLE__)
 
    void node::arp_a(void *p, void(*callback)(void * addr, ::u32 uIp, const char * status))
    {

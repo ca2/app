@@ -31,6 +31,7 @@ CLASS_DECL_ACME void* reverse_memmem(const void* l, std::size_t l_len, const voi
 CLASS_DECL_ACME void* reverse_byte_not_in_block(const void* l, std::size_t l_len, const void* s, std::size_t s_len);
 
 #ifdef	_STDIO_H_
+#define _STDIO_H_
 #error "already included?!?! WHAT?!?! (Before including acme/exception/_c.h)"
 #endif
 

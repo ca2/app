@@ -1,7 +1,7 @@
 #include "framework.h"
 
 #include <string.h>
-
+#include <stdio.h> ::file::e_type_existent_folder
 
 ::u32
 //WINAPI
@@ -20,6 +20,7 @@ char * pBuffer
 
       return (::u32) strlen(ptmpdir);
    }
+   
 
    ptmpdir = P_tmpdir;
 

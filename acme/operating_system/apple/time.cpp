@@ -9,6 +9,7 @@
 //#include <mach/mach_init.h>
 #include <mach/mach.h>
 #include <mach/clock.h>
+#include <time.h>
 
 
 struct __mach_timespec

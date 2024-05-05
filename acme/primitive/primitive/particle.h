@@ -568,12 +568,6 @@ public:
          ::platform::allocator::__call__allocate< T >(
             ::std::forward<Args>(args)...));
 
-      if (!p)
-      {
-
-         throw ::exception(error_no_memory);
-
-      }
       p->initialize(this);
 
       return ::transfer(p);

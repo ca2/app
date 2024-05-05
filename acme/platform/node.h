@@ -667,6 +667,8 @@ namespace acme
       virtual ::string get_user_permanent_environment_variable(const ::scoped_string& scopedstr);
       virtual void set_user_permanent_environment_variable(const ::scoped_string& scopedstr, const ::scoped_string& strPayload, bool bNoSystemNotify = false);
 
+      virtual void system_notify_environment_variable_change();
+
 
       virtual void set_user_run_once(const ::scoped_string& scopedstrLabel, const ::scoped_string & scopedstrCommand);
 

@@ -2997,6 +2997,13 @@ return false;
    }
 
 
+   void node::system_notify_environment_variable_change()
+   {
+
+
+   }
+
+
 #ifdef WINDOWS_DESKTOP
 
 

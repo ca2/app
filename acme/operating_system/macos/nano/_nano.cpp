@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "acme/user/nano/brush.h"
 #include "acme/user/nano/font.h"
+#include "acme/user/nano/nano.h"
 #include "acme/user/nano/pen.h"
 #include "device.h"
 #include "window.h"
@@ -17,6 +18,8 @@ void operating_system_initialize_nano(::factory::factory * pfactory)
    pfactory->add_factory_item<::nano_brush>();
    pfactory->add_factory_item<::nano_font>();
    pfactory->add_factory_item<::nano_pen>();
+
+   pfactory->add_factory_item<::nano::nano>();
 
 }
 

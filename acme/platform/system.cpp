@@ -2399,8 +2399,13 @@ namespace acme
             background_color(::color::white);
 
          }
-
-         m_pnano->handle(ptopic, pcontext);
+         
+         if(m_pnano)
+         {
+            
+            m_pnano->handle(ptopic, pcontext);
+            
+         }
 
       }
       else if (ptopic->m_atom == id_operating_system_user_theme_change)

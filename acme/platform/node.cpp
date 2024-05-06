@@ -3058,14 +3058,6 @@ return false;
    }
 
 
-   bool node::_is_smart_git_installed()
-   {
-
-      return false;
-
-   }
-
-
    bool node::_is_msys2_installed()
    {
 
@@ -3113,6 +3105,17 @@ return false;
 #endif
 
 
+#if defined(WINDOWS_DESKTOP) || defined(MACOS)
+bool node::_is_smart_git_installed()
+{
+
+   return false;
+
+}
+
+
+
+#endif
    void node::set_user_run_once(const ::scoped_string& scopedstrLabel, const ::scoped_string& scopedstrCommand)
    {
 

@@ -989,3 +989,51 @@ CLASS_DECL_ACME FILETIME & copy(FILETIME & filetime, const ::earth::time & time)
 
 
 
+CLASS_DECL_ACME bool sort_of_ok_earth_time_from_international_string(const ::scoped_string& scopedstrTime)
+{
+   auto range = scopedstrTime();
+
+   range.trim();
+
+   if (::character_isalnum(range[4])
+      || ::character_isalnum(range[7])
+      || ::character_isalnum(range[10])
+      || ::character_isalnum(range[13])
+      || ::character_isalnum(range[16]))
+   {
+
+      return false;
+
+   }
+
+   if (!::character_isalnum(range[0])    //2
+      || !::character_isalnum(range[1])  //0
+      || !::character_isalnum(range[2])  //2
+      || !::character_isalnum(range[3])  //4
+
+      || !::character_isalnum(range[5])  //0
+      || !::character_isalnum(range[6])  //5
+
+      || !::character_isalnum(range[8])  //0
+      || !::character_isalnum(range[9])  //2
+
+      || !::character_isalnum(range[11]) //2
+      || !::character_isalnum(range[12]) //1
+
+      || !::character_isalnum(range[14]) //0
+      || !::character_isalnum(range[15]) //9
+
+      || !::character_isalnum(range[17]) //0
+      || !::character_isalnum(range[18]) //0
+      )
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+

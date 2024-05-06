@@ -3,7 +3,7 @@
 
 
 #include "acme/_.h"
-#ifdef	_STDIO_H_
+#if defined(_STDIO_H_)
 #error "already included?!?! WHAT?!?! (At apex:a)"
 #endif
 

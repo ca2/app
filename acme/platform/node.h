@@ -907,8 +907,6 @@ namespace acme
 
       virtual bool _is_tortoise_git_installed();
 
-      virtual bool _is_smart_git_installed();
-
       virtual bool _is_msys2_installed();
 
       virtual bool _is_strawberry_perl_installed();
@@ -921,6 +919,10 @@ namespace acme
 
 #endif
 
+#if defined(WINDOWS_DESKTOP) || defined(MACOS)
+      virtual bool _is_smart_git_installed();
+
+#endif
 
 #ifndef UNIVERSAL_WINDOWS
 

@@ -8,7 +8,7 @@
 #include "aura/user/user/still.h"
 
 
-#if defined(FREEBSD) || defined(OPENBSD)
+#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
 #include <stdio.h>
 #endif
 

@@ -1648,11 +1648,12 @@ void array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 
       TYPED::destruct_count(this->m_begin, size);
 
-      MEMORY::free(this->m_begin);
+      MEMORY::free(this->m_begin + this->m_countAllocationOffset);
 
-      this->m_begin     = nullptr;
-      this->m_end       = nullptr;
-      m_countAllocation        = 0;
+      this->m_begin                    = nullptr;
+      this->m_end                      = nullptr;
+      this->m_countAllocation          = 0;
+      this->m_countAllocationOffset    = 0;
 
    }
 

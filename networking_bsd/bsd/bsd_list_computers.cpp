@@ -5,7 +5,7 @@
 #include "acme/platform/node.h"
 
 
-#if defined(__BSD__)
+#if defined(__BSD__) || defined(MACOS)
 //
 //void arp_a(void *p, void(*callback)(void *p, void * addr, const char * ip_address, const char * host, const char * status));
 

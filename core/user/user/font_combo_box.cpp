@@ -26,7 +26,7 @@ namespace user
    void font_combo_box::font_combo_box_common_construct()
    {
 
-      m_edatamode = data_mode_string;
+      //m_edatamode = data_mode_string;
 
       m_typeatomListBox = ::type < ::user::font_list >();
 

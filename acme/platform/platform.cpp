@@ -1094,7 +1094,7 @@ namespace platform
 
          string strMessage = plibrary->m_strMessage;
 
-         information() << "Library wasn't opened (\"" << strLibrary << "\") : " << strMessage;
+         warning() << "Library wasn't opened (\"" << strLibrary << "\") : " << strMessage;
 
          throw ::exception(error_failed, "Library wasn't opened (\"" + strLibrary + "\")", strMessage);
 

@@ -25,14 +25,14 @@ namespace user
 
       };
 
-      enum e_data_mode
-      {
-
-         data_mode_opaque,
-         data_mode_string
-
-      };
-
+//enum e_data_mode
+//{
+//
+//   data_mode_opaque,
+//   data_mode_string
+//
+//};
+//
 
       ::size_i32                    m_sizeFull;
       //string                        m_strText;
@@ -44,7 +44,7 @@ namespace user
       e_style                       m_estyle;
 
       bool                          m_bEdit;
-      e_data_mode                   m_edatamode;
+      //e_data_mode                   m_edatamode;
 
 
       combo_box();

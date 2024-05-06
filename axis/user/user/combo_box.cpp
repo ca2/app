@@ -38,7 +38,7 @@ namespace user
       m_typeatomListBox                          = ::type < ::user::list_box >();
       m_estyle                               = style_simply;
       m_bEdit                                = true;
-      m_edatamode                            = data_mode_opaque;
+      //m_edatamode                            = data_mode_opaque;
       m_bMultiLine                           = false;
       m_bDefaultParentMouseMessageHandling   = false;
 
@@ -70,7 +70,7 @@ namespace user
 
       pcomboboxClone->m_estyle = m_estyle;
 
-      pcomboboxClone->m_edatamode = m_edatamode;
+      //pcomboboxClone->m_edatamode = m_edatamode;
 
       pcomboboxClone->m_bEdit = m_bEdit;
 
@@ -1556,14 +1556,14 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      ASSERT(m_edatamode == data_mode_opaque);
-
-      if (m_edatamode != data_mode_opaque)
-      {
-
-         return -1;
-
-      }
+//      ASSERT(m_edatamode == data_mode_opaque);
+//
+//      if (m_edatamode != data_mode_opaque)
+//      {
+//
+//         return -1;
+//
+//      }
 
       defer_create_list_box();
 

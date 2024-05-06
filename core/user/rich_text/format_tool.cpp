@@ -184,7 +184,7 @@ namespace user
          //m_pcomboSize->create_color(::user::color_background, argb(255, 255, 255, 255));
          //::rectangle_f64 r(2, 2, 2, 2);
          //create_rect(::user::rect_edit_padding, r, ::draw2d::e_unit_pixel);
-         m_pcomboSize->m_edatamode = ::user::combo_box::data_mode_string;
+         //bm_pcomboSize->m_edatamode = ::user::combo_box::data_mode_string;
          m_pcomboSize->m_bEdit = true;
          m_pcomboSize->add_item("6", "6");
          m_pcomboSize->add_item("6.5", "6.5");

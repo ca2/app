@@ -22,9 +22,26 @@
 
 
 #include "acme/include/_c.h"
+#if defined(_STDIO_H_)
+#error "already included?!?! WHAT?!?! (After including <acme/include/_c.h>)"
+#endif
+
 #include "acme/include/_c_bridge.h"
+#if defined(_STDIO_H_)
+#error "already included?!?! WHAT?!?! (After including <acme/include/_c_bridge.h>)"
+#endif
+
 #include "acme/include/objc.h"
+#if defined(_STDIO_H_)
+#error "already included?!?! WHAT?!?! (After including <acme/include/objc.h>)"
+#endif
+
+
 #include "acme/include/objcpp.h"
+#if defined(_STDIO_H_)
+#error "already included?!?! WHAT?!?! (After including <acme/include/objcpp.h>)"
+#endif
+
 
 
 #elif defined(__OBJECTIVE_C__)

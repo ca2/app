@@ -38,6 +38,8 @@
 		9A8E9C82282A2B90005FF778 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E9AA4282A2B89005FF778 /* Images.xcassets */; };
 		9A8E9D85282A2C09005FF778 /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E9D84282A2C09005FF778 /* _matter.zip */; };
 		9A8E9D9F282A2DAA005FF778 /* libios_apex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8E9D9E282A2DAA005FF778 /* libios_apex.a */; };
+		9A94B9E72BE8AD5000744150 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94B9E02BE8AD5000744150 /* SystemConfiguration.framework */; };
+		9A94B9E92BE8AD5B00744150 /* libios_archive.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94B9E82BE8AD5B00744150 /* libios_archive.a */; };
 		9A94DE59282C059200F5C1CA /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94DE54282C04D400F5C1CA /* libiconv.tbd */; };
 		9A94DE5C282C061900F5C1CA /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94DE5B282C05CA00F5C1CA /* libz.tbd */; };
 		9A94DE78282C0E9100F5C1CA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94DE77282C0E9100F5C1CA /* CoreText.framework */; };
@@ -217,6 +219,8 @@
 		9A8E9D84282A2C09005FF778 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = ../_matter.zip; sourceTree = "<group>"; };
 		9A8E9D9C282A2DAA005FF778 /* libios_acme.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8E9D9E282A2DAA005FF778 /* libios_apex.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_apex.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A94B9E02BE8AD5000744150 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		9A94B9E82BE8AD5B00744150 /* libios_archive.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_archive.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A94DE54282C04D400F5C1CA /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		9A94DE5B282C05CA00F5C1CA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		9A94DE77282C0E9100F5C1CA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -236,6 +240,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A94B9E92BE8AD5B00744150 /* libios_archive.a in Frameworks */,
+				9A94B9E72BE8AD5000744150 /* SystemConfiguration.framework in Frameworks */,
 				9A40BDF62B6B9C850077053E /* libios_darwin.a in Frameworks */,
 				9A40BDBE2B6B67770077053E /* UniformTypeIdentifiers.framework in Frameworks */,
 				9A40BDAF2B6B65510077053E /* libios_acme_darwin.a in Frameworks */,
@@ -362,6 +368,8 @@
 		9A8E9D9B282A2DAA005FF778 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A94B9E82BE8AD5B00744150 /* libios_archive.a */,
+				9A94B9E02BE8AD5000744150 /* SystemConfiguration.framework */,
 				9A60D0DD2B76B5AA0082B17B /* MediaPlayer.framework */,
 				9A40BDF52B6B9C850077053E /* libios_darwin.a */,
 				9A40BDBD2B6B67770077053E /* UniformTypeIdentifiers.framework */,

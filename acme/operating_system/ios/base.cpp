@@ -1,7 +1,7 @@
 #include "framework.h"
 
 #include <string.h>
-
+#include <stdio.h>
 
 ::u32
 //rWINAPI

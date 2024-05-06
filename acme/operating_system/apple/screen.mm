@@ -13,8 +13,13 @@
 
 
 #import <Foundation/Foundation.h>
+#if defined(MACOS)
 #import <Cocoa/Cocoa.h>
-
+#elif defined(APPLE_IOS)
+#import <UIKit/UIKit.h>
+#else
+#error "todo"
+#endif
 #include "acme/primitive/geometry2d/rectangle.h"
 
 

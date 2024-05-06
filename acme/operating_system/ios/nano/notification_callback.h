@@ -8,6 +8,10 @@
 #pragma once
 
 
+#include <UIKit/UIKit.h>
+
+
+
 @interface nano_notification_callback : NSObject
 {
 @public

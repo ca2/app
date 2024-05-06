@@ -64,7 +64,7 @@ void ns_main_async(dispatch_block_t block);
       
    }
     
-   system_id_update(application_system(m_pApplication), id_set_dark_mode, iDarkMode);
+   system_id_update(application_system(m_pApplication), id_get_operating_system_dark_mode_reply, iDarkMode);
 
 }
 

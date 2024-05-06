@@ -1,5 +1,6 @@
 #include "framework.h"
 
+#include <sys/time.h>
 
 ::u32 GetTickCount()
 {

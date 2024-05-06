@@ -12,6 +12,11 @@
 #undef DEBUG
 #if defined(MACOS)
 #include <Carbon/Carbon.h>
+#elif defined(APPLE_IOS)
+#import <CoreFoundation/CoreFoundation.h>
+//#include <UIKit/UIKit.h>
+#else
+#error "todo"
 #endif
 
 #if defined(__APPLE__)

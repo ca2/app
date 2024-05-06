@@ -9,7 +9,9 @@
 #pragma once
 
 
-char * __strdup(NSString * str);
+//#include <UIKit/UIKit.h>
+
+//char * __strdup(NSString * str);
 
 
 

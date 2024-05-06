@@ -24,6 +24,9 @@
 
 #include "notification_callback.h"
 
+#import <UIKit/UIKit.h>
+
+
 @interface ios_app : UIResponder <UIApplicationDelegate, UIDocumentInteractionControllerDelegate>
 {
 @public

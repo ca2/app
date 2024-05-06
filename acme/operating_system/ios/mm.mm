@@ -7,7 +7,8 @@
 //
 #import "_mm.h"
 
-
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 void ns_main_async(dispatch_block_t block);
 

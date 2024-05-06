@@ -367,10 +367,10 @@ namespace account
    }
 
 
-   bool login::on_action(const ::string & pszId)
+   bool login::on_action(const ::string & strId)
    {
 
-      if (!strcmp(pszId, "submit"))
+      if (strId == "submit")
       {
 
          if (m_bSubmitted)
@@ -418,7 +418,7 @@ namespace account
          return true;
 
       }
-      else if (!strcmp(pszId, "submit_timer"))
+      else if (strId == "submit_timer")
       {
 
          if (m_bSubmitted)
@@ -449,7 +449,7 @@ namespace account
          return true;
 
       }
-      else if (!strcmp(pszId, "escape"))
+      else if (strId == "escape")
       {
 
          m_bSubmitted = true;

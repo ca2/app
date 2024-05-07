@@ -8,7 +8,7 @@
 
 template < class TYPE, class ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 class array_non_particle :
-   public ::array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
+   public ::array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >
 {
 public:
 
@@ -20,7 +20,7 @@ public:
    using BASE_ARG_TYPE = ARG_TYPE;
 
 
-   using BASE_ARRAY = ::array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
+   using BASE_ARRAY = ::array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >;
 
 
    using iterator = typename BASE_ARRAY::iterator;
@@ -44,7 +44,7 @@ public:
    template < primitive_integral INTEGRAL >
    array_non_particle(const_iterator begin, INTEGRAL count) : BASE_ARRAY(begin, count) {}
    array_non_particle(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
-   array_non_particle(array_non_particle && a) noexcept : array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >(::transfer(a)) { }
+   array_non_particle(array_non_particle && a) noexcept : array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >(::transfer(a)) { }
    ~array_non_particle() override;
 
 
@@ -120,7 +120,7 @@ public:
   //void erase_descending_indexes(const index_array & ia); // erase indexes from ::raw::index array_non_particle lower bound to ::raw::index array_non_particle upper bound
   //::raw::index insert_at(::raw::index nStartIndex, array_non_particle* pNewArray);
 
-   using array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator=;
+   using array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator=;
    //inline array_non_particle & operator = (const array_non_particle & src);
    //inline array_non_particle & operator = (array_non_particle && a);
 
@@ -275,7 +275,7 @@ public:
 
 
    template < typename ITERABLE >
-   array_base_non_particle< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & copy_iter(const ITERABLE & iterable)
+   array_base_quantum< TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & copy_iter(const ITERABLE & iterable)
    {
 
       this->set_size(0, maximum(__iterable_count(iterable), 17));
@@ -455,7 +455,7 @@ inline ::raw::index array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeC
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle() :
-   BASE_ARRAY::array_base_non_particle()
+   BASE_ARRAY::array_base_quantum()
 {
 
 
@@ -464,7 +464,7 @@ array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_n
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
 array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::array_non_particle(const array_non_particle & a) :
-   BASE_ARRAY::array_base_non_particle(a)
+   BASE_ARRAY::array_base_quantum(a)
 {
 
 }
@@ -513,7 +513,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::
 array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::~array_non_particle()
 {
 
-   this->erase_all(); // on_destruct_element is virtual and won't be available for array_base_non_particle
+   this->erase_all(); // on_destruct_element is virtual and won't be available for array_base_quantum
 
 }
 

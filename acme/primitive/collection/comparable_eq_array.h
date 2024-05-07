@@ -68,7 +68,8 @@ public:
    ::raw::index erase_first(ARG_TYPE t, ::raw::index find, ::raw::index last = -1);
    ::raw::count erase(ARG_TYPE t);
    ::raw::count erase(ARG_TYPE t, ::raw::index find, ::raw::index last = -1, ::raw::count countMin = 0, ::raw::count countMax = -1);
-   ::raw::count erase_array(const comparable_eq_array & a);
+   template < primitive_container CONTAINER>
+   ::raw::count erase_container(const CONTAINER & container);
 
 
    bool add_unique(ARG_TYPE t);
@@ -86,12 +87,12 @@ public:
    void intersect(const comparable_eq_array & a);
 
    // set operators
-   comparable_eq_array & operator -= (const TYPE & t);
-   comparable_eq_array & operator &= (const comparable_eq_array & a);
-   comparable_eq_array & operator -= (const comparable_eq_array & a);
-   comparable_eq_array& operator |= (const comparable_eq_array & a);
+   //comparable_eq_array & operator -= (const TYPE & t);
+   //comparable_eq_array & operator &= (const comparable_eq_array & a);
+   //comparable_eq_array & operator -= (const comparable_eq_array & a);
+   //comparable_eq_array& operator |= (const comparable_eq_array & a);
 
-   comparable_eq_array operator -(const comparable_eq_array & a) const;
+   //comparable_eq_array operator -(const comparable_eq_array & a) const;
 
 
    using ARRAY_TYPE::operator =;
@@ -385,6 +386,7 @@ intersect(const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
    }
 }
 
+
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 void comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 merge(const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
@@ -405,39 +407,60 @@ merge(const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
 }
 
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > &  comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-operator &= (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
+template < primitive_container CONTAINER, primitive_container CONTAINER2 >
+inline CONTAINER& operator |= (CONTAINER& container, const CONTAINER& container2)
 {
-   intersect(a);
-   return *this;
-}
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > &  comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-operator -= (const TYPE & t)
-{
-   erase(t);
-   return *this;
+   container.merge(container);
+
+   return container;
+
 }
 
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > &  comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-operator -= (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
+template < primitive_container CONTAINER, primitive_container CONTAINER2 >
+inline CONTAINER& operator &= (CONTAINER& container, const CONTAINER& container2)
 {
-   erase_array(a);
-   return *this;
+   
+   container.intersect(container2);
+
+   return container;
+
 }
 
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-operator - (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a) const
+template < primitive_container CONTAINER >
+inline CONTAINER & operator -= (CONTAINER & container, const typename CONTAINER::CONTAINER_ITEM_TYPE& t)
 {
-   comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > aRet(*this);
-   aRet.erase_array(a);
-   return aRet;
+
+   container.erase(t);
+
+   return container;
+
+}
+
+
+template < primitive_container CONTAINER, primitive_container CONTAINER2 >
+inline CONTAINER& operator -= (CONTAINER& container, const CONTAINER2& container2)
+{
+
+   container.erase_container(container2);
+
+   return container;
+
+}
+
+
+template < primitive_container CONTAINER1, primitive_container CONTAINER2 >
+CONTAINER1 operator - (const CONTAINER1 & container1, const CONTAINER2 & container2)
+{
+   
+   auto container = container1;
+   
+   container.erase_container(container2);
+   
+   return container;
+
 }
 
 //template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
@@ -463,13 +486,6 @@ operator - (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a) const
 //
 //}
 
-template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > &  comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-operator |= (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
-{
-   merge(a);
-   return *this;
-}
 
 
 template <class TYPE,class ARG_TYPE,class ARRAY_TYPE >
@@ -581,13 +597,14 @@ erase(ARG_TYPE t)
 //}
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+template < primitive_container CONTAINER>
 ::raw::index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-erase_array(const comparable_eq_array & a)
+erase_container(const CONTAINER & container)
 {
 
    ::raw::count count = 0;
 
-   if(this == &a)
+   if((::quantum *) this == (::quantum *)&container)
    {
 
       count = this->get_size();
@@ -598,10 +615,10 @@ erase_array(const comparable_eq_array & a)
    else
    {
 
-      for(::raw::index i = 0; i < a.get_count(); i++)
+      for(auto & item : container)
       {
 
-         count += erase(a[i]);
+         count += erase(item);
 
       }
 

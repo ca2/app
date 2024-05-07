@@ -610,6 +610,25 @@ CLASS_DECL_ACME trace_function std_inline_log(enum_trace_level etracelevelInform
 }
 
 
+CLASS_DECL_ACME trace_function std_get_output(::string * pstrOutput)
+{
+
+   auto predicate = [pstrOutput](auto etracelevel, auto& str, bool bCarriage)
+      {
+
+         ::string strLine;
+         
+         strLine.formatf("%c: %s%c", trace_level_letter(etracelevel), ::string(str).c_str(), bCarriage ? '\r' : '\n');
+
+         (*pstrOutput) += strLine;
+
+      };
+
+   return predicate;
+
+}
+
+
 void __cdecl __clearerr_s(FILE * stream)
 {
 

@@ -266,7 +266,7 @@ template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nod
 class array_base;
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-class array_base_non_particle;
+class array_base_quantum;
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
 class row;
@@ -351,6 +351,14 @@ concept primitive_array = requires(ARRAY array, ::raw::index i)
 };
 
 
+template < typename CONTAINER >
+concept primitive_container = primitive_array < CONTAINER >;
+
+template < typename CONTAINER >
+concept non_container = !primitive_container < CONTAINER >;
+
+
+
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array < TYPE, ARG_TYPE > >
 class comparable_eq_array;
@@ -388,7 +396,7 @@ class raw_array;
 
 
 template < typename TYPE, typename ARG_TYPE = const TYPE &, class TYPED = ::typed::rawcopy < TYPE  >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-class raw_array_non_particle;
+class raw_array_quantum;
 
 
 template < typename POINTER, class ARRAY_TYPE = comparable_array < POINTER, POINTER, comparable_eq_array < POINTER, POINTER, raw_array < POINTER, POINTER, ::allocator::zero < POINTER > > > > >

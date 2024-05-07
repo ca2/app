@@ -3635,8 +3635,14 @@
     <ClInclude Include="constant\integration.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\array_base_non_particle.h">
+    <ClInclude Include="primitive\collection\array_base_quantum.h">
       <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\posix_shell.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\quantum.h">
+      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5124,6 +5130,9 @@
     </ClCompile>
     <ClCompile Include="parallelization\queue.cpp">
       <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\quantum.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

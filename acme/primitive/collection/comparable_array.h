@@ -19,10 +19,10 @@ public:
 
    using CONST_RAW_RANGE = typename BASE_ARRAY::CONST_RAW_RANGE;
 
-   using BASE_ARRAY::operator &=;
-   using BASE_ARRAY::operator -=;
-   using BASE_ARRAY::operator |=;
-   using BASE_ARRAY::operator -;
+   //using BASE_ARRAY::operator &=;
+   //using BASE_ARRAY::operator -=;
+   //using BASE_ARRAY::operator |=;
+   //using BASE_ARRAY::operator -;
    //using BASE_ARRAY::operator ==;
    //using BASE_ARRAY::operator !=;
 

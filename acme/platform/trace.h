@@ -106,3 +106,4 @@ using trace_function = ::function < void(enum_trace_level, const ::scoped_string
 
 
 CLASS_DECL_ACME trace_function std_inline_log(enum_trace_level etracelevelInformation = e_trace_level_information);
+CLASS_DECL_ACME trace_function std_get_output(::string* pstrOutput);

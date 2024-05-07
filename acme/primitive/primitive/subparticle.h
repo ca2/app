@@ -25,9 +25,10 @@
 //
 //};
 
-
+#include "quantum.h"
 
 class CLASS_DECL_ACME subparticle :
+   virtual public ::quantum,
    virtual public SUBPARTICLE_FLAGS
 {
 public:
@@ -42,7 +43,7 @@ public:
 #else
    subparticle() : m_countReference(1) {}
 #endif
-   virtual ~subparticle();
+   ~subparticle() override;
 
 
 

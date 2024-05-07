@@ -3065,7 +3065,7 @@ return false;
 
    }
 
-   
+
    bool node::_is_strawberry_perl_installed()
    {
 
@@ -4407,12 +4407,45 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 
 #endif
 
-   int node::get_processor_count()
+   
+   int node::building_core_count(bool bDedicatedBuilder)
+   {
+
+      if (bDedicatedBuilder)
+      {
+
+         return performance_core_count();
+
+      }
+      else
+      {
+
+         return minimum_maximum(
+            1, 
+            performance_core_count() - 1,
+            performance_core_count() * 3 / 4);
+
+      }
+
+   }
+
+
+   int node::performance_core_count()
    {
 
       return 1;
 
    }
+
+
+   int node::efficiency_core_count()
+   {
+
+      return 0;
+
+   }
+
+
 
 
 } // namespace acme

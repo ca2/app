@@ -82,7 +82,7 @@ inline binary_stream & operator >>(binary_stream & stream, ::pointer_array < ITE
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-inline binary_stream & operator <<(binary_stream & stream, const ::array_base_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
+inline binary_stream & operator <<(binary_stream & stream, const ::array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 {
 
    ::raw::count c = a.get_count();
@@ -157,7 +157,7 @@ inline binary_stream & operator >>(binary_stream & stream, ARRAY & a)
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-inline binary_stream & operator <<(binary_stream & stream, const ::raw_array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
+inline binary_stream & operator <<(binary_stream & stream, const ::raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 {
 
    ::raw::count c = a.get_count();
@@ -172,7 +172,7 @@ inline binary_stream & operator <<(binary_stream & stream, const ::raw_array_non
 
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-inline binary_stream & operator >>(binary_stream & stream, ::raw_array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
+inline binary_stream & operator >>(binary_stream & stream, ::raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 {
 
    ::raw::count c;

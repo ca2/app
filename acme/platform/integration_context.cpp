@@ -696,10 +696,10 @@ namespace integration
    }
 
 
-   void context::defer_has_unix_shell_command(const ::scoped_string& scopedstr)
+   void context::defer_has_posix_shell_command(const ::scoped_string& scopedstr, enum_posix_shell eposixshell)
    {
 
-      if (!has_unix_shell_command(scopedstr))
+      if (!has_posix_shell_command(scopedstr, eposixshell))
       {
 
          throw ::exception(error_file_not_found, ::string("\"") + scopedstr + "\" was not found.");

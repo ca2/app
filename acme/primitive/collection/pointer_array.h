@@ -19,10 +19,10 @@ public:
    //using ref_iterator = typename ARRAY_BASE::ref_iterator;
    ///using ref_iterator_range = typename ARRAY_BASE::ref_iterator_range;
 
-   using comparable_array < ::pointer < T >, const T * >::operator &=;
-   using comparable_array < ::pointer < T >, const T * >::operator -=;
-   using comparable_array < ::pointer < T >, const T * >::operator |=;
-   using comparable_array < ::pointer < T >, const T * >::operator -;
+   //using comparable_array < ::pointer < T >, const T * >::operator &=;
+   //using comparable_array < ::pointer < T >, const T * >::operator -=;
+   //using comparable_array < ::pointer < T >, const T * >::operator |=;
+   //using comparable_array < ::pointer < T >, const T * >::operator -;
 //   using comparable_array < ::pointer<T > > ::operator ==;
 //   using comparable_array < ::pointer<T > > ::operator !=;
 

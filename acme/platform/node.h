@@ -909,6 +909,12 @@ namespace acme
 
       virtual bool _is_msys2_installed();
 
+      //virtual void _defer_install_msys2_package(const ::scoped_string & scopedstr);
+
+      //virtual bool _has_msys2_command(const ::scoped_string & scopedstr);
+
+      //virtual void _install_msys2_package(const ::scoped_string & scopedstr);
+
       virtual bool _is_strawberry_perl_installed();
 
       virtual bool _is_code_exe_user_path_environment_variable_ok(::string *pstrCorrectPath=nullptr);
@@ -968,7 +974,9 @@ namespace acme
       virtual void x11_display_error_trap_pop_ignored(int i);
 #endif
       
-      virtual int get_processor_count();
+      virtual int building_core_count(bool bDedicatedBuilding);
+      virtual int performance_core_count();
+      virtual int efficiency_core_count();
 
 
    };

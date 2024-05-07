@@ -480,7 +480,7 @@ public:
    //string_array_base & operator +=(const string_array_base & stra);
 
    using BASE_ARRAY::operator +=;
-   using BASE_ARRAY::operator -=;
+   //using BASE_ARRAY::operator -=;
 
 
    //string_array_base operator -(const string_array_base & stra) const;

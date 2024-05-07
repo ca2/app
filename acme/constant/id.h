@@ -340,6 +340,7 @@ enum enum_id : ::uptr
    id_network_reachability_status_change,
    id_system_install,
    id_download,
+   id_speech,
 
 };
 

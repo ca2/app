@@ -254,12 +254,12 @@ namespace acme
    }
 
 
-   ::string shell::get_unix_shell_command_output(const ::scoped_string& scopedstr, const class ::time& timeOut)
+   ::string shell::get_posix_shell_command_output(const ::scoped_string& scopedstr, enum_posix_shell eposixshell, const class ::time& timeOut)
    {
 
       ::string strOutput;
 
-      auto iExitCode = get_unix_shell_command_output(strOutput, scopedstr, timeOut);
+      auto iExitCode = get_posix_shell_command_output(strOutput, scopedstr, eposixshell, timeOut);
 
       if (iExitCode != 0)
       {
@@ -273,7 +273,7 @@ namespace acme
    }
 
 
-   ::i32 shell::get_unix_shell_command_output(::string& strOutput, const ::scoped_string& scopedstr, const class ::time& timeOut)
+   ::i32 shell::get_posix_shell_command_output(::string& strOutput, const ::scoped_string& scopedstr, enum_posix_shell eposixshell, const class ::time& timeOut)
    {
 
       status_pointer <::string> pstring;
@@ -289,7 +289,7 @@ namespace acme
 
       tracefunction.m_timeTimeout = timeOut;
 
-      auto iExitCode = unix_shell_command(scopedstr, tracefunction);
+      auto iExitCode = posix_shell_command(scopedstr, eposixshell, tracefunction);
 
       strOutput = pstring->m_payload;
 
@@ -334,12 +334,16 @@ namespace acme
    bool shell::has_command(const ::scoped_string& scopedstrCommand)
    {
 
-      return has_unix_shell_command(scopedstrCommand);
+      throw ::interface_only();
+
+      //return has_posix_shell_command(scopedstrCommand, eposix);
+
+      return false;
 
    }
 
 
-   bool shell::has_unix_shell_command(const ::scoped_string& scopedstrCommand)
+   bool shell::has_posix_shell_command(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell)
    {
 
       try
@@ -351,7 +355,7 @@ namespace acme
 
          ::string strOutput;
 
-         auto iExitCode = get_unix_shell_command_output(strOutput, strCommand, 1_min);
+         auto iExitCode = get_posix_shell_command_output(strOutput, strCommand, eposixshell, 1_min);
 
          return iExitCode == 0 || strOutput.has_char();
 
@@ -366,10 +370,97 @@ namespace acme
    }
 
 
+   bool shell::posix_shell_protocol_begins_eat(enum_posix_shell& eposixshell, ::string& str)
+   {
+
+      if (str.case_insensitive_begins_eat("unix://"))
+      {
+
+         eposixshell = e_posix_shell_git_bash;
+
+         return true;
+
+      }
+      else if (str.case_insensitive_begins_eat("msys2://"))
+      {
+
+         eposixshell = e_posix_shell_msys2;
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   void shell::defer_install_posix_shell_command(const ::scoped_string& scopedstr, enum_posix_shell eposixshell, const trace_function& tracefunction)
+   {
+
+      int iTry = 0;
+
+      ::string strOutput;
+
+      for(; iTry < 3; iTry++)
+      {
+
+         if (has_posix_shell_command(scopedstr, eposixshell))
+         {
+
+            return;
+
+         }
+
+         if (iTry > 0)
+         {
+
+            ::string strLine;
+            
+            strLine.append_formatf("Retrying to install_posix_shell_command(\"%s\",...) Attempt no. %d...", scopedstr.c_str(), iTry + 2);
+
+            tracefunction(e_trace_level_warning, strOutput, false);
+
+         }
+
+         install_posix_shell_command(scopedstr, eposixshell, tracefunction);
+
+      }
+
+      ::string strMessage;
+
+      strMessage.formatf("Failed to install command \"%s\" after %d attempts with output: \"%s\"",
+         scopedstr.c_str(), iTry, strOutput.c_str());
+
+      tracefunction(e_trace_level_error, strMessage, false);
+
+      throw ::exception(error_failed, strMessage);
+
+   }
+
+   
+   //bool shell::has_posix_shell_command(const ::scoped_string& scopedstr, enum_posix_shell eposixshell)
+   //{
+
+   //   throw ::interface_only();
+
+   //   return false;
+
+   //}
+
+   
+   void shell::install_posix_shell_command(const ::scoped_string& scopedstr, enum_posix_shell eposixshell, const ::trace_function & tracefunction)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
    //#ifdef LINUX
 
 
-   int shell::unix_shell_command(const ::scoped_string& scopedstrCommand, const trace_function& tracefunction)
+   int shell::posix_shell_command(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell, const trace_function& tracefunction)
    {
 
       try
@@ -382,20 +473,26 @@ namespace acme
          informationf("Current Directory: %s\n", acmedirectory()->get_current().c_str());
          informationf("%s\n", strEscaped.c_str());
 
-         //if (m_bMsys)
-         //{
+#ifdef WINDOWS_DESKTOP
 
-         //   strCommand = "\"C:\\msys64\\usr\\bin\\bash.exe\" -c \'" + strEscaped + "\'";
+         if (eposixshell == e_posix_shell_msys2)
+         {
 
-         //}
-         //else
+            strCommand = "\"C:\\msys64\\usr\\bin\\bash.exe\" -l -c \'" + strEscaped + "\'";
+
+         }
+         else
          {
 
             strCommand = "\"C:\\Program Files\\Git\\bin\\bash.exe\" -l -c \"" + strEscaped + "\"";
 
          }
 
-         //
+#else
+
+         strCommand = strEscape;
+
+#endif 
 
          auto iExitCode = this->command_system(strCommand, tracefunction);
 
@@ -414,21 +511,21 @@ namespace acme
    }
 
 
-   ::string shell::unix_shell_command_string(const ::scoped_string& scopedstrCommand)
-   {
+   //::string shell::posix_shell_command_string(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell)
+   //{
 
-      ::string strLog;
+   //   ::string strLog;
 
-      auto iExitCode = unix_shell_command(scopedstrCommand, [&strLog](auto etracelevel, auto str, bool bCarriage)
-         {
+   //   auto iExitCode = posix_shell_command(scopedstrCommand, eposixshell, [&strLog](auto etracelevel, auto str, bool bCarriage)
+   //      {
 
-            strLog += ::string(str) + (bCarriage? "\r":"\n");
+   //         strLog += ::string(str) + (bCarriage? "\r":"\n");
 
-         });
+   //      });
 
-      return strLog;
+   //   return strLog;
 
-   }
+   //}
 
 
 #ifdef WINDOWS_DESKTOP
@@ -452,6 +549,32 @@ namespace acme
       return {};
 
    }
+
+
+   //::i32 shell::_msys2_shell_command_output(::string& strOutput, const ::scoped_string& scopedstr, const class ::time& timeOut)
+   //{
+
+   //   status_pointer <::string> pstring;
+
+   //   __construct_new(pstring);
+
+   //   trace_function tracefunction = [pstring](enum_trace_level eTraceLevel, const scoped_string& str, bool bCarriage)
+   //      {
+
+   //         pstring->m_payload += str + (bCarriage ? "\r" : "\n");
+
+   //      };
+
+   //   tracefunction.m_timeTimeout = timeOut;
+
+   //   auto iExitCode = posix_shell_command(scopedstr, eposixshell, tracefunction);
+
+   //   strOutput = pstring->m_payload;
+
+   //   return iExitCode;
+
+   //}
+
 
 #endif
 

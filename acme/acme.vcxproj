@@ -1027,6 +1027,7 @@
     <ClInclude Include="constant\os_text.h" />
     <ClInclude Include="constant\parallelization.h" />
     <ClInclude Include="constant\path.h" />
+    <ClInclude Include="constant\posix_shell.h" />
     <ClInclude Include="constant\routine.h" />
     <ClInclude Include="constant\scalar.h" />
     <ClInclude Include="constant\simple_command.h" />
@@ -1332,8 +1333,9 @@
     <ClInclude Include="platform\tracing.h" />
     <ClInclude Include="platform\_errno.h" />
     <ClInclude Include="platform\_referencing_debugging.h" />
-    <ClInclude Include="primitive\collection\array_base_non_particle.h" />
+    <ClInclude Include="primitive\collection\array_base_quantum.h" />
     <ClInclude Include="primitive\primitive\primitive.h" />
+    <ClInclude Include="primitive\primitive\quantum.h" />
     <ClInclude Include="primitive\primitive\referenceable.h" />
     <ClInclude Include="primitive\primitive\subparticle.h" />
     <ClInclude Include="primitive\primitive\subparticle_flags.h" />
@@ -1987,6 +1989,7 @@
     <ClCompile Include="primitive\primitive\matter.cpp" />
     <ClCompile Include="primitive\primitive\match.cpp" />
     <ClCompile Include="primitive\primitive\payload.cpp" />
+    <ClCompile Include="primitive\primitive\quantum.cpp" />
     <ClCompile Include="primitive\primitive\read_only_memory.cpp" />
     <ClCompile Include="primitive\primitive\subparticle.cpp" />
     <ClCompile Include="primitive\primitive\url.cpp" />

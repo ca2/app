@@ -1196,6 +1196,12 @@
 		9A752AA92BEB797900CFB049 /* posix_shell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A752AA82BEB797900CFB049 /* posix_shell.h */; };
 		9A752AAA2BEB797900CFB049 /* posix_shell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A752AA82BEB797900CFB049 /* posix_shell.h */; };
 		9A752AAB2BEB797900CFB049 /* posix_shell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A752AA82BEB797900CFB049 /* posix_shell.h */; };
+		9A752AAE2BEB7DAC00CFB049 /* quantum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A752AAC2BEB7DAC00CFB049 /* quantum.cpp */; };
+		9A752AAF2BEB7DAC00CFB049 /* quantum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A752AAC2BEB7DAC00CFB049 /* quantum.cpp */; };
+		9A752AB02BEB7DAC00CFB049 /* quantum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A752AAC2BEB7DAC00CFB049 /* quantum.cpp */; };
+		9A752AB12BEB7DAC00CFB049 /* quantum.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A752AAD2BEB7DAC00CFB049 /* quantum.h */; };
+		9A752AB22BEB7DAC00CFB049 /* quantum.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A752AAD2BEB7DAC00CFB049 /* quantum.h */; };
+		9A752AB32BEB7DAC00CFB049 /* quantum.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A752AAD2BEB7DAC00CFB049 /* quantum.h */; };
 		9A754F972B212C2700FFB669 /* memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A754F922B212C2700FFB669 /* memory.cpp */; };
 		9A754F982B212C2700FFB669 /* memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A754F922B212C2700FFB669 /* memory.cpp */; };
 		9A754F992B212C2700FFB669 /* c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A754F932B212C2700FFB669 /* c.cpp */; };
@@ -5299,6 +5305,8 @@
 		9A750D9B282B367400C4861B /* earth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = earth.h; sourceTree = "<group>"; };
 		9A750D9D282B367500C4861B /* aaa_topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_topic.h; sourceTree = "<group>"; };
 		9A752AA82BEB797900CFB049 /* posix_shell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = posix_shell.h; sourceTree = "<group>"; };
+		9A752AAC2BEB7DAC00CFB049 /* quantum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = quantum.cpp; sourceTree = "<group>"; };
+		9A752AAD2BEB7DAC00CFB049 /* quantum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = quantum.h; sourceTree = "<group>"; };
 		9A754F922B212C2700FFB669 /* memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memory.cpp; sourceTree = "<group>"; };
 		9A754F932B212C2700FFB669 /* c.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c.cpp; sourceTree = "<group>"; };
 		9A754F942B212C2700FFB669 /* malloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = malloc.h; sourceTree = "<group>"; };
@@ -7123,6 +7131,8 @@
 				9A68A6842511442F008DABD2 /* property_set.cpp */,
 				9A68A6542511442F008DABD2 /* property.cpp */,
 				9A64519D284660A600A94AAB /* ptr.h */,
+				9A752AAC2BEB7DAC00CFB049 /* quantum.cpp */,
+				9A752AAD2BEB7DAC00CFB049 /* quantum.h */,
 				9A0842D02935EB40009F7FF4 /* read_only_memory.cpp */,
 				9A0842C82935EB38009F7FF4 /* read_only_memory.h */,
 				9A68A6822511442F008DABD2 /* request_interface.h */,
@@ -9055,6 +9065,7 @@
 				9A754F9B2B212C2700FFB669 /* malloc.h in Headers */,
 				9A68AF2D25114435008DABD2 /* ch_class.h in Headers */,
 				9AD6B9EA2BE84BB3005C6189 /* runtime_check.h in Headers */,
+				9A752AB12BEB7DAC00CFB049 /* quantum.h in Headers */,
 				9A68AD9625114434008DABD2 /* profiler.h in Headers */,
 				9A68AFB125114436008DABD2 /* memory_map.h in Headers */,
 				9A08439F29366D39009F7FF4 /* debug.h in Headers */,
@@ -10065,6 +10076,7 @@
 				9AC103B62B6AC9BD0053DB45 /* malloc.h in Headers */,
 				9AC103B72B6AC9BD0053DB45 /* ch_class.h in Headers */,
 				9AD6B9EB2BE84BB3005C6189 /* runtime_check.h in Headers */,
+				9A752AB22BEB7DAC00CFB049 /* quantum.h in Headers */,
 				9AC103B82B6AC9BD0053DB45 /* profiler.h in Headers */,
 				9AC103B92B6AC9BD0053DB45 /* memory_map.h in Headers */,
 				9AC103BA2B6AC9BD0053DB45 /* debug.h in Headers */,
@@ -10765,6 +10777,7 @@
 				9AA8033627BA72A9008FF9AA /* _common.h in Headers */,
 				9A78624B264B90B5003DF8A0 /* scalar_enum.h in Headers */,
 				9A892DD726CD9061008D6412 /* filesystem.h in Headers */,
+				9A752AB32BEB7DAC00CFB049 /* quantum.h in Headers */,
 				9AD68FD0251A753A00C0EBD7 /* common.h in Headers */,
 				9A7551452B21715100FFB669 /* primitive.h in Headers */,
 				9AD68FD3251A753A00C0EBD7 /* parse.h in Headers */,
@@ -11373,6 +11386,7 @@
 				9A2AA67227F9530A00DB0519 /* drag.cpp in Sources */,
 				9A809D752A6004F100FCA9FD /* ansi_impl.cpp in Sources */,
 				9ABFEA702850FB9C008FF906 /* mm.mm in Sources */,
+				9A752AAE2BEB7DAC00CFB049 /* quantum.cpp in Sources */,
 				9A787BA8264BB13F003DF8A0 /* timer_array.cpp in Sources */,
 				9A7550EF2B214A8400FFB669 /* default_heap.cpp in Sources */,
 				9A68AF9125114436008DABD2 /* item_array.cpp in Sources */,
@@ -12002,6 +12016,7 @@
 				9AC105312B6AC9BD0053DB45 /* parallelization_pthread.cpp in Sources */,
 				9AC105322B6AC9BD0053DB45 /* string_base.cpp in Sources */,
 				9AC105332B6AC9BD0053DB45 /* window_base.cpp in Sources */,
+				9A752AAF2BEB7DAC00CFB049 /* quantum.cpp in Sources */,
 				9AC88AF02B6B3D4D008F1C20 /* MessageBoxA_W.mm in Sources */,
 				9AC105342B6AC9BD0053DB45 /* version.cpp in Sources */,
 				9AC105352B6AC9BD0053DB45 /* stream.cpp in Sources */,
@@ -12768,6 +12783,7 @@
 				9AA8FCA627BA7299008FF9AA /* mmcpp.cpp in Sources */,
 				9A0B8D1927AA1F3300760D34 /* serialization.cpp in Sources */,
 				9A94DE27282C034800F5C1CA /* memory_container.cpp in Sources */,
+				9A752AB02BEB7DAC00CFB049 /* quantum.cpp in Sources */,
 				9AC107682B6AE9A20053DB45 /* nsimpact.mm in Sources */,
 				9A53CD402BA2CD700018A746 /* shell.cpp in Sources */,
 				9A67FCF22B50C6460083ED38 /* message_box.cpp in Sources */,

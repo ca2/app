@@ -1193,6 +1193,9 @@
 		9A750FF9282B936500C4861B /* node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A15A727264B6F2C0080670E /* node.cpp */; };
 		9A750FFA282B936500C4861B /* listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A15A730264B6F2C0080670E /* listener.cpp */; };
 		9A750FFB282B936500C4861B /* tree_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A15A729264B6F2C0080670E /* tree_item.cpp */; };
+		9A752AA92BEB797900CFB049 /* posix_shell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A752AA82BEB797900CFB049 /* posix_shell.h */; };
+		9A752AAA2BEB797900CFB049 /* posix_shell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A752AA82BEB797900CFB049 /* posix_shell.h */; };
+		9A752AAB2BEB797900CFB049 /* posix_shell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A752AA82BEB797900CFB049 /* posix_shell.h */; };
 		9A754F972B212C2700FFB669 /* memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A754F922B212C2700FFB669 /* memory.cpp */; };
 		9A754F982B212C2700FFB669 /* memory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A754F922B212C2700FFB669 /* memory.cpp */; };
 		9A754F992B212C2700FFB669 /* c.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A754F932B212C2700FFB669 /* c.cpp */; };
@@ -5295,6 +5298,7 @@
 		9A750D9A282B367300C4861B /* flag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = flag.h; sourceTree = "<group>"; };
 		9A750D9B282B367400C4861B /* earth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = earth.h; sourceTree = "<group>"; };
 		9A750D9D282B367500C4861B /* aaa_topic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_topic.h; sourceTree = "<group>"; };
+		9A752AA82BEB797900CFB049 /* posix_shell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = posix_shell.h; sourceTree = "<group>"; };
 		9A754F922B212C2700FFB669 /* memory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = memory.cpp; sourceTree = "<group>"; };
 		9A754F932B212C2700FFB669 /* c.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c.cpp; sourceTree = "<group>"; };
 		9A754F942B212C2700FFB669 /* malloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = malloc.h; sourceTree = "<group>"; };
@@ -7721,6 +7725,7 @@
 				9A750D99282B367000C4861B /* memory_heap.h */,
 				9A892DCA26CD9061008D6412 /* message.h */,
 				9A892DD326CD9061008D6412 /* parallelization.h */,
+				9A752AA82BEB797900CFB049 /* posix_shell.h */,
 				9A892DC726CD9061008D6412 /* routine.h */,
 				9A892DCB26CD9061008D6412 /* simple_command.h */,
 				9A892DC526CD9061008D6412 /* source.h */,
@@ -8884,6 +8889,7 @@
 				9A68AD4225114434008DABD2 /* _include.h in Headers */,
 				9AA8F8DF27BA7268008FF9AA /* pen.h in Headers */,
 				9AA8FDA927BA729B008FF9AA /* file.h in Headers */,
+				9A752AA92BEB797900CFB049 /* posix_shell.h in Headers */,
 				9A786226264B90B5003DF8A0 /* scalar.h in Headers */,
 				9A786222264B90B4003DF8A0 /* number_limits.h in Headers */,
 				9A787BAC264BB13F003DF8A0 /* timer_event.h in Headers */,
@@ -9893,6 +9899,7 @@
 				9AC103122B6AC9BD0053DB45 /* _include.h in Headers */,
 				9AC103132B6AC9BD0053DB45 /* pen.h in Headers */,
 				9AC103142B6AC9BD0053DB45 /* file.h in Headers */,
+				9A752AAA2BEB797900CFB049 /* posix_shell.h in Headers */,
 				9AC103152B6AC9BD0053DB45 /* scalar.h in Headers */,
 				9AC103162B6AC9BD0053DB45 /* number_limits.h in Headers */,
 				9AC103172B6AC9BD0053DB45 /* timer_event.h in Headers */,
@@ -10903,6 +10910,7 @@
 				9A5FB44B299EBD0900094E43 /* datetime.h in Headers */,
 				9AD69052251A753A00C0EBD7 /* string_list.h in Headers */,
 				9A0842FD2936661E009F7FF4 /* nano.h in Headers */,
+				9A752AAB2BEB797900CFB049 /* posix_shell.h in Headers */,
 				9A1625F326EFCC34003D9CB9 /* set_bit.h in Headers */,
 				9A7AF0682B764C6B001F3D4D /* file_system_options.h in Headers */,
 				9AD69056251A753A00C0EBD7 /* console.h in Headers */,

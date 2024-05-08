@@ -2989,6 +2989,16 @@ return false;
    }
 
    
+   ::string node::get_system_permanent_environment_variable(const ::scoped_string& scopedstr)
+   {
+
+      throw ::interface_only();
+
+      return {};
+
+   }
+
+
    void node::set_user_permanent_environment_variable(const ::scoped_string& scopedstr, const ::scoped_string& strPayload, bool bNoSystemNotify)
    {
 
@@ -2998,6 +3008,13 @@ return false;
 
 
    void node::system_notify_environment_variable_change()
+   {
+
+
+   }
+
+
+   void node::update_process_environment_variables()
    {
 
 

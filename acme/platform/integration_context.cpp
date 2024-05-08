@@ -646,14 +646,6 @@ namespace integration
    }
 
 
-   //::file::path context::integration_folder()
-   //{
-
-   //   return host_integration_folder() / m_strIntegration;
-
-   //}
-
-
    void context::list_host_builds()
    {
 

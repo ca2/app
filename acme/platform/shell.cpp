@@ -425,6 +425,8 @@ namespace acme
 
          install_posix_shell_command(scopedstr, eposixshell, tracefunction);
 
+         preempt((iTry + 1) * 3_s);
+
       }
 
       ::string strMessage;

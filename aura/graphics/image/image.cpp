@@ -4925,6 +4925,9 @@ void image::horizontal_line(i32 y, ::color::color color, i32 x1, i32 x2)
    image32_t u32ImageColor(color, color_indexes());
    
    auto h = height();
+
+   if (y >= h)
+      return;
    
 #ifdef __APPLE__
    

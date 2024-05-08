@@ -238,9 +238,19 @@ namespace file
       void set_final_extension(const ::scoped_string& scopestrExtension);
       void set_extension_if_no_extension(const ::scoped_string & scopestrExtension);
 
+      /// <summary>
+      /// Set Extension if No Extension
+      /// or add extension if file name has dot and text
+      /// after dot is not the extension.
+      /// </summary>
+      /// <param name="scopestrExtension"></param>
+      void defer_set_extension(const ::scoped_string& scopestrExtension);
+
       ::file::path with_all_extensions(const ::scoped_string& scopestrExtension) const;
       ::file::path with_final_extension(const ::scoped_string& scopestrExtension) const;
       ::file::path with_extension_if_no_extension(const ::scoped_string& scopestrExtension) const;
+
+      ::file::path with_deferred_extension(const ::scoped_string& scopestrExtension) const;
 
       //inline char separator() const
       //{

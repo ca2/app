@@ -1,6 +1,7 @@
 // Created by camilo 2024-03-07 18:41 <3ThomasBorregaardSoresen!!
 #include "framework.h"
 #include "shell.h"
+#include "acme/constant/posix_shell.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/status.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -375,12 +376,21 @@ namespace acme
 
       if (str.case_insensitive_begins_eat("unix://"))
       {
+         
+#if defined(WINDOWS_DESKTOP)
 
          eposixshell = e_posix_shell_git_bash;
+         
+#else
+         
+         eposixshell = e_posix_shell_system_default;
+         
+#endif
 
          return true;
 
       }
+#if defined(WINDOWS_DESKTOP)
       else if (str.case_insensitive_begins_eat("msys2://"))
       {
 
@@ -389,7 +399,7 @@ namespace acme
          return true;
 
       }
-
+#endif
       return false;
 
    }
@@ -492,7 +502,7 @@ namespace acme
 
 #else
 
-         strCommand = strEscape;
+         strCommand = strEscaped;
 
 #endif 
 

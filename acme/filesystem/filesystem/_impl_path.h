@@ -814,6 +814,20 @@ namespace file
    }
 
 
+   inline void path::defer_set_extension(const ::scoped_string& scopedstrExtension)
+   {
+
+      ::string str(*this);
+
+      str.case_insensitive_ends_eat("." + scopedstrExtension);
+
+      str += "." + scopedstrExtension;
+
+      this->operator =(str);
+
+   }
+
+
    inline ::file::path path::with_all_extensions(const ::scoped_string & scopedstrExtension) const
    {
 
@@ -844,6 +858,18 @@ namespace file
       ::file::path path(*this);
 
       path.set_extension_if_no_extension(scopedstrExtension);
+
+      return ::transfer(path);
+
+   }
+
+
+   inline ::file::path path::with_deferred_extension(const ::scoped_string& scopedstrExtension) const
+   {
+
+      ::file::path path(*this);
+
+      path.defer_set_extension(scopedstrExtension);
 
       return ::transfer(path);
 

@@ -374,7 +374,7 @@ namespace acme
    bool shell::posix_shell_protocol_begins_eat(enum_posix_shell& eposixshell, ::string& str)
    {
 
-      if (str.case_insensitive_begins_eat("unix://"))
+      if (str.case_insensitive_begins_eat("posix://"))
       {
          
 #if defined(WINDOWS_DESKTOP)

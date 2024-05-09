@@ -3122,7 +3122,9 @@ return false;
 #endif
 
 
-#if defined(WINDOWS_DESKTOP) || defined(MACOS)
+#if defined(WINDOWS_DESKTOP) || defined(MACOS) || defined(LINUX)
+
+
 bool node::_is_smart_git_installed()
 {
 
@@ -3131,8 +3133,9 @@ bool node::_is_smart_git_installed()
 }
 
 
-
 #endif
+
+
    void node::set_user_run_once(const ::scoped_string& scopedstrLabel, const ::scoped_string& scopedstrCommand)
    {
 

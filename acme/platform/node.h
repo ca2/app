@@ -928,10 +928,13 @@ namespace acme
 
 #endif
 
-#if defined(WINDOWS_DESKTOP) || defined(MACOS)
+
+#if defined(WINDOWS_DESKTOP) || defined(MACOS) || defined(LINUX)
+
       virtual bool _is_smart_git_installed();
 
 #endif
+
 
 #ifndef UNIVERSAL_WINDOWS
 

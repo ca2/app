@@ -135,13 +135,16 @@ void _do_tasks()
 
    auto psystem = ::platform::get()->system();
 
+#ifdef HAS_WAYLAND
    if(psystem->m_ewindowing == e_windowing_wayland)
    {
 
       wayland_process_messages();
 
    }
-   else if(psystem->m_ewindowing == e_windowing_xcb)
+   else
+#endif
+   if(psystem->m_ewindowing == e_windowing_xcb)
    {
 
       xcb_process_messages();

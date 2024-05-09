@@ -74,27 +74,27 @@ using uptr = u64;
 //#endif
 
 
-namespace raw
+namespace collection
 {
 
 
    using index = iptr;
 
 
-}
+} // namespace collection
 
 
 #define __priindex PRIiPTR
 
 
-namespace raw
+namespace collection
 {
 
    
    using count = ::iptr;
 
 
-}
+} // namespace collection
 
 
 #define __pricount PRIiPTR

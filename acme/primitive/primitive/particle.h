@@ -421,34 +421,11 @@ public:
 #endif
    
 
-   void trace(enum_trace_level etracelevel, const ::scoped_string & scopedstr) const
-   {
-
-      auto statement = ::transfer(log_statement());
-
-      statement(etracelevel)(trace_category());
-
-      statement << scopedstr;
-
-   }
-
-
-   void information(const scoped_string & scopedstr) const
-   {
-      trace(e_trace_level_information, scopedstr);
-   }
-   void warning(const scoped_string & scopedstr) const
-   {
-      trace(e_trace_level_warning, scopedstr);
-   }
-   void error(const scoped_string & scopedstr) const
-   {
-      trace(e_trace_level_error, scopedstr);
-   }
-   void fatal(const scoped_string & scopedstr) const
-   {
-      trace(e_trace_level_fatal, scopedstr);
-   }
+   void trace(enum_trace_level etracelevel, const ::scoped_string & scopedstr) const;
+   void information(const scoped_string & scopedstr) const;
+   void warning(const scoped_string & scopedstr) const;
+   void error(const scoped_string & scopedstr) const;
+   void fatal(const scoped_string & scopedstr) const;
 
    //virtual trace_statement trace_log_warning() << ;
    //virtual trace_statement trace_log_error() << ;

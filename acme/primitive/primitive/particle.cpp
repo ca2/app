@@ -1053,6 +1053,37 @@ enum_trace_category particle::trace_category(const ::particle * pparticle) const
 //}
 
 
+void particle::trace(enum_trace_level etracelevel, const ::scoped_string & scopedstr) const
+{
+
+   auto statement = ::transfer(log_statement());
+
+   statement(etracelevel)(trace_category());
+
+   statement << scopedstr;
+
+}
+
+
+void particle::information(const scoped_string & scopedstr) const
+{
+   trace(e_trace_level_information, scopedstr);
+}
+void particle::warning(const scoped_string & scopedstr) const
+{
+   trace(e_trace_level_warning, scopedstr);
+}
+void particle::error(const scoped_string & scopedstr) const
+{
+   trace(e_trace_level_error, scopedstr);
+}
+void particle::fatal(const scoped_string & scopedstr) const
+{
+   trace(e_trace_level_fatal, scopedstr);
+}
+
+
+
 class tracer * particle::tracer() const
 {
 

@@ -772,6 +772,8 @@ list(APPEND library_source
    #primitive/primitive/property_set_composite.cpp
    #primitive/primitive/property_set_papaya.cpp
    primitive/primitive/property_set_papaya.h
+        primitive/primitive/quantum.cpp
+        primitive/primitive/quantum.h
    primitive/primitive/read_only_memory.cpp
    primitive/primitive/read_only_memory.h
    primitive/primitive/request_interface.h
@@ -1555,6 +1557,8 @@ list(APPEND library_source
    parallelization/message_queue_global.cpp
    parallelization/mutex.h
    parallelization/pool.h
+        parallelization/queue.cpp
+        parallelization/queue.h
    parallelization/semaphore.h
    parallelization/set_event_on_exit.h
    parallelization/single_lock.h

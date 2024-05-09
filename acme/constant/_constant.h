@@ -366,6 +366,13 @@ constexpr int trace_level_letter(enum_trace_level etracelevel)
 }
 
 
+constexpr char line_feed_letter(bool bCarriage)
+{
+
+   return bCarriage ? '\r' : '\n';
+
+}
+
 
 
 //enum  : i64

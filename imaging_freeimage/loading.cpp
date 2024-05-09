@@ -59,14 +59,14 @@ namespace imaging_freeimage
 
 #if defined(ANDROID) && defined(ARM)
 
-      for (::raw::index y = 0; y < pimage->height(); y++)
+      for (::collection::index y = 0; y < pimage->height(); y++)
       {
 
          u8 * pbDst = ((u8 *)pimage->get_data()) + ((pimage->height() - y - 1) * pimage->scan_size());
 
          u8 * pbSrc = (u8 *)pdata + (y * iSrcScan);
 
-         for (::raw::index x = 0; x < pimage->width(); x++)
+         for (::collection::index x = 0; x < pimage->width(); x++)
          {
 
             pbDst[0] = pbSrc[2];
@@ -91,7 +91,7 @@ namespace imaging_freeimage
 
       u8 * pbSrc = (u8 *)pdata;
 
-      ::raw::count c = (count)pimage->area();
+      ::collection::count c = (count)pimage->area();
 
       while (c-- > 0)
       {

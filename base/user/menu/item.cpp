@@ -56,7 +56,7 @@ namespace user
    bool menu_item::create_menu(const string_array & straCommand, const string_array & straCommandTitle)
    {
 
-      ::raw::count iItemCount = straCommand.get_count();
+      ::collection::count iItemCount = straCommand.get_count();
 
       if (straCommandTitle.get_size() < straCommand.get_size())
          return false;
@@ -138,7 +138,7 @@ namespace user
    bool menu_item::load_menu(::xml::node * pnode, i32 iLevel)
    {
 
-      ::raw::count iItemCount = pnode->get_children_count();
+      ::collection::count iItemCount = pnode->get_children_count();
 
       ::pointer<::base::application>papp = get_app();
 

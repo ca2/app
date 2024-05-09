@@ -297,7 +297,7 @@ namespace database
    }
 
 
-   ::payload dataset::field_value_at(::raw::index i)
+   ::payload dataset::field_value_at(::collection::index i)
    {
 
       auto prow = proper_row();
@@ -314,10 +314,10 @@ namespace database
    }
 
 
-   ::raw::index dataset::field_index(const ::string & name)
+   ::collection::index dataset::field_index(const ::string & name)
    {
 
-      for (::raw::index i = 0; i < m_result.m_pfielda->get_count(); i++)
+      for (::collection::index i = 0; i < m_result.m_pfielda->get_count(); i++)
       {
 
          auto & pfield = m_result.m_pfielda->element_at(i);
@@ -373,7 +373,7 @@ namespace database
    }
 
 
-   ::payload dataset::select_field_value(::raw::index iField)
+   ::payload dataset::select_field_value(::collection::index iField)
    {
 
       if (m_edataset == e_dataset_none)
@@ -492,7 +492,7 @@ namespace database
    //}
 
 
-   ::raw::count dataset::field_count()
+   ::collection::count dataset::field_count()
    {
 
       return m_result.m_pfielda->get_size();
@@ -500,7 +500,7 @@ namespace database
    }
 
 
-   ::pointer<field>dataset::field_at(::raw::index n)
+   ::pointer<field>dataset::field_at(::collection::index n)
    {
 
       if (n < 0 || n >= field_count())
@@ -515,7 +515,7 @@ namespace database
    }
 
 
-   //::raw::count dataset::fieldSize(index n)
+   //::collection::count dataset::fieldSize(index n)
    //{
    //   if ( n < field_count() && n >= 0)
    //      return m_fielda[n].m_properties.field_len;

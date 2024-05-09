@@ -33,10 +33,10 @@ namespace user
       return nullptr;
    }
 
-   ::raw::count tab_pane_array::get_visible_count()
+   ::collection::count tab_pane_array::get_visible_count()
    {
 
-      ::raw::count count = 0;
+      ::collection::count count = 0;
 
       for (i32 i = 0; i < this->get_count(); i++)
       {

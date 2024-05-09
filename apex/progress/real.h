@@ -18,8 +18,8 @@ namespace progress
 
 
       string                  m_strStatus;
-      ::raw::index                 m_iStep;
-      ::raw::count                 m_iStepCount;
+      ::collection::index                 m_iStep;
+      ::collection::count                 m_iStepCount;
       string                  m_strTitle;
 
 

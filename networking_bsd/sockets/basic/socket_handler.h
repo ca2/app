@@ -36,9 +36,9 @@ namespace sockets_bsd
       socket_pointer_list        m_delete; ///< Sockets to be deleted (failed when add)
       bool                       m_b_use_mutex; ///< ::pointer < ::mutex > correctly initialized
       SOCKET                     m_maxsock; ///< Highest file descriptor + 1 in active sockets list
-      //::raw::count                    m_countR;
-      //::raw::count                    m_countW;
-      //::raw::count                    m_countE;
+      //::collection::count                    m_countR;
+      //::collection::count                    m_countW;
+      //::collection::count                    m_countE;
       fd_set                     m_rfdsSelect; ///< file descriptor set monitored for read events
       fd_set                     m_wfdsSelect; ///< file descriptor set monitored for write events
       fd_set                     m_efdsSelect; ///< file descriptor set monitored for exceptions
@@ -128,7 +128,7 @@ namespace sockets_bsd
       bool Valid(::sockets::base_socket *) override;
 
       /** Return number of sockets handled by this handler.  */
-      ::raw::count get_count() override;
+      ::collection::count get_count() override;
 
       /** Override and return false to deny all incoming connections.
       \lparam point_i32 listen_socket class pointer (use GetPort to identify which one) */

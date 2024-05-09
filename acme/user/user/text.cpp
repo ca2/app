@@ -138,7 +138,7 @@ namespace user
    void text::_001GetSelText(string & str)
    {
 
-      ::raw::index iBeg, iEnd;
+      ::collection::index iBeg, iEnd;
 
       _001GetSel(iBeg, iEnd);
 

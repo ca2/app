@@ -23,7 +23,7 @@ namespace user
    }
 
 
-   ::raw::count tree_data::get_data_bound_impact_count() const
+   ::collection::count tree_data::get_data_bound_impact_count() const
    {
 
       return m_usertreeaBound.get_count();
@@ -31,7 +31,7 @@ namespace user
    }
 
 
-   ::user::primitive * tree_data::get_data_bound_impact(::raw::index iImpact)
+   ::user::primitive * tree_data::get_data_bound_impact(::collection::index iImpact)
    {
 
       return m_usertreeaBound[iImpact].cast < ::user::primitive >();
@@ -58,7 +58,7 @@ namespace user
    void tree_data::_001ExpandItem(::data::tree_item * pitem, const ::action_context & context,bool bExpand,bool bRedraw,bool bLayout)
    {
 
-      for(::raw::index i = 0; i < m_usertreea.get_count(); i++)
+      for(::collection::index i = 0; i < m_usertreea.get_count(); i++)
       {
 
          m_usertreea[i]->_001ExpandItem(pitem,context,bExpand,bRedraw,bLayout);
@@ -70,7 +70,7 @@ namespace user
    void tree_data::_001EnsureVisible(::data::tree_item * pitem)
    {
 
-      for(::raw::index i = 0; i < m_usertreea.get_count(); i++)
+      for(::collection::index i = 0; i < m_usertreea.get_count(); i++)
       {
 
          m_usertreea[i]->_001EnsureVisible(pitem);
@@ -83,7 +83,7 @@ namespace user
    void tree_data::_001SelectItem(::data::tree_item * pitem)
    {
 
-      for(::raw::index i = 0; i < m_usertreea.get_count(); i++)
+      for(::collection::index i = 0; i < m_usertreea.get_count(); i++)
       {
 
          m_usertreea[i]->_001SelectItem(pitem);
@@ -95,7 +95,7 @@ namespace user
    void tree_data::get_selection(::data::tree_item_ptr_array & itemptraSelected) const
    {
 
-      for(::raw::index i = 0; i < m_usertreea.get_count(); i++)
+      for(::collection::index i = 0; i < m_usertreea.get_count(); i++)
       {
 
          itemptraSelected.add_unique(*m_usertreea[i]->m_pitemptraSelected);
@@ -108,7 +108,7 @@ namespace user
    bool tree_data::is_selected(const ::data::tree_item * pitem) const
    {
 
-      for(::raw::index i = 0; i < m_usertreea.get_count(); i++)
+      for(::collection::index i = 0; i < m_usertreea.get_count(); i++)
       {
 
          if (m_usertreea[i]->is_selected(pitem))
@@ -128,7 +128,7 @@ namespace user
    bool tree_data::is_selected(const ::data::item * pitem) const
    {
 
-      for(::raw::index i = 0; i < m_usertreea.get_count(); i++)
+      for(::collection::index i = 0; i < m_usertreea.get_count(); i++)
       {
 
          if (m_usertreea[i]->is_selected(pitem))
@@ -166,7 +166,7 @@ namespace user
 
       }
 
-      /*      for (::raw::index i = 0; i < m_usertreea.get_count(); i++)
+      /*      for (::collection::index i = 0; i < m_usertreea.get_count(); i++)
       {
 
       m_usertreea[i]->_001OnItemExpand(pitem, context);
@@ -189,7 +189,7 @@ namespace user
          pitem->m_dwState |= ::data::e_tree_item_state_expandable;
       }
       pitem->m_dwState &= ~::data::e_tree_item_state_expanded;
-      /*for (::raw::index i = 0; i < m_usertreea.get_count(); i++)
+      /*for (::collection::index i = 0; i < m_usertreea.get_count(); i++)
       {
 
       m_usertreea[i]->_001OnItemCollapse(pitem);
@@ -202,7 +202,7 @@ namespace user
    void tree_data::_001OnOpenItem(::data::tree_item * pitem, const ::action_context & context)
    {
 
-      for(::raw::index i = 0; i < m_usertreea.get_count(); i++)
+      for(::collection::index i = 0; i < m_usertreea.get_count(); i++)
       {
 
          m_usertreea[i]->_001OnOpenItem(pitem,context);
@@ -215,7 +215,7 @@ namespace user
    void tree_data::_001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & context,::user::tree * ptree,const ::point_i32 & point)
    {
 
-      for(::raw::index i = 0; i < m_usertreea.get_count(); i++)
+      for(::collection::index i = 0; i < m_usertreea.get_count(); i++)
       {
 
          m_usertreea[i]->_001OnItemContextMenu(pitem, context, ptree, point);
@@ -225,12 +225,12 @@ namespace user
    }
 
 
-   ::raw::count   tree_data::selection_set(::data::tree_item_ptr_array & itemptra)
+   ::collection::count   tree_data::selection_set(::data::tree_item_ptr_array & itemptra)
    {
 
-      ::raw::count c = 0;
+      ::collection::count c = 0;
 
-      for(::raw::index iTree = 0; iTree < m_usertreea.get_count(); iTree++)
+      for(::collection::index iTree = 0; iTree < m_usertreea.get_count(); iTree++)
       {
 
          c += m_usertreea[iTree]->selection_set(itemptra);
@@ -247,7 +247,7 @@ namespace user
 
       bool bAllOk = true;
 
-      for(::raw::index iTree = 0; iTree < m_usertreea.get_count(); iTree++)
+      for(::collection::index iTree = 0; iTree < m_usertreea.get_count(); iTree++)
       {
 
          if(!m_usertreea[iTree]->selection_set(pitem))
@@ -266,7 +266,7 @@ namespace user
 
       bool bAllOk = true;
 
-      for(::raw::index iTree = 0; iTree < m_usertreea.get_count(); iTree++)
+      for(::collection::index iTree = 0; iTree < m_usertreea.get_count(); iTree++)
       {
 
          if(!m_usertreea[iTree]->selection_set(pitem,bIfNotInSelection,bIfParentInSelection))
@@ -279,12 +279,12 @@ namespace user
    }
 
 
-   bool      tree_data::selection_set(::raw::index iIndex,::data::item * pitem,bool bIfNotInSelection,bool bIfParentInSelection)
+   bool      tree_data::selection_set(::collection::index iIndex,::data::item * pitem,bool bIfNotInSelection,bool bIfParentInSelection)
    {
 
       bool bAllOk = true;
 
-      for(::raw::index iTree = 0; iTree < m_usertreea.get_count(); iTree++)
+      for(::collection::index iTree = 0; iTree < m_usertreea.get_count(); iTree++)
       {
 
          if(!m_usertreea[iTree]->selection_set(iIndex,pitem,bIfNotInSelection,bIfParentInSelection))
@@ -330,7 +330,7 @@ namespace user
       if(m_usertreea.has_element())
       {
 
-         for(::raw::index i = 0; i < m_usertreea.get_count(); i++)
+         for(::collection::index i = 0; i < m_usertreea.get_count(); i++)
          {
 
             auto pusertree = m_usertreea[i];

@@ -10,7 +10,7 @@ class priority_queue
 public:
 
    inline bool is_empty() const;
-   inline ::raw::count size() const;
+   inline ::collection::count size() const;
 
    inline TYPE & top();
    inline const TYPE & top() const;
@@ -31,7 +31,7 @@ inline bool priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::is_empty() con
 }
 
 template < class TYPE, class ARG_TYPE, class CONTAINER, class FIRST >
-inline ::raw::count priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::size() const
+inline ::collection::count priority_queue < TYPE, ARG_TYPE, CONTAINER, FIRST > ::size() const
 {
 
    return this->CONTAINER::size();

@@ -108,7 +108,7 @@ void nano_window_implementation::on_create()
 void nano_window_implementation::_console_create()
 {
 
-   ::raw::index i = 0;
+   ::collection::index i = 0;
 
    for (auto & pnanobutton : m_pinterface->m_nanobuttona)
    {
@@ -144,7 +144,7 @@ void nano_window_implementation::_console_create()
 void nano_window_implementation::_display_console()
 {
 
-   ::raw::index iButton;
+   ::collection::index iButton;
 
    while (true)
    {
@@ -161,7 +161,7 @@ void nano_window_implementation::_display_console()
 
       printf("%c", m_console.m_cha1[0]);
 
-      for (::raw::index i = 1; i < m_console.m_cha1.get_count(); i++)
+      for (::collection::index i = 1; i < m_console.m_cha1.get_count(); i++)
       {
 
          printf("/%c", m_console.m_cha1[i]);

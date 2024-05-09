@@ -86,8 +86,8 @@ namespace user
       virtual void _001SetText(const ::string & str, const ::action_context & action_context) override;
 
 
-      virtual bool _001GetListText(::raw::index iSel, string & str) const;
-      virtual ::raw::index _001FindListText(const ::string & str) const;
+      virtual bool _001GetListText(::collection::index iSel, string & str) const;
+      virtual ::collection::index _001FindListText(const ::string & str) const;
       virtual count _001GetListCount() const;
 
       virtual bool create_control(class control_descriptor * pdescriptor) override;
@@ -131,14 +131,14 @@ namespace user
 
       virtual bool create_window(::user::interaction * puiParent, const ::atom & atom) override;
 
-      //::raw::count get_count();
+      //::collection::count get_count();
       //index current_item();
       //index set_current_item(index nSelect);
       LCID GetLocale();
       LCID SetLocale(LCID nNewLocale);
-      ::raw::index GetTopIndex();
-      ::raw::index SetTopIndex(index nIndex);
-      ::raw::index InitStorage(::raw::count nItems, ::u32 nBytes);
+      ::collection::index GetTopIndex();
+      ::collection::index SetTopIndex(index nIndex);
+      ::collection::index InitStorage(::collection::count nItems, ::u32 nBytes);
       void SetHorizontalExtent(::u32 nExtent);
       ::u32 GetHorizontalExtent();
       i32 SetDroppedWidth(::u32 nWidth);
@@ -155,17 +155,17 @@ namespace user
 
       // for combobox item
       uptr GetItemData(index nIndex);
-      ::raw::index SetItemData(index nIndex, uptr dwItemData);
+      ::collection::index SetItemData(index nIndex, uptr dwItemData);
       void * GetItemDataPtr(index nIndex);
-      ::raw::index SetItemDataPtr(index nIndex, void * pData);
-      ::raw::index GetLBText(index nIndex, char * pszText);
+      ::collection::index SetItemDataPtr(index nIndex, void * pData);
+      ::collection::index GetLBText(index nIndex, char * pszText);
 
       void GetLBText(index nIndex, string & rString);
       strsize GetLBTextLen(index nIndex);
 
       i32 SetItemHeight(index nIndex, ::u32 cyItemHeight);
       i32 GetItemHeight(index nIndex);
-      ::raw::index FindStringExact(index nIndexStart, const ::string & pszFind);
+      ::collection::index FindStringExact(index nIndexStart, const ::string & pszFind);
 
       i32 SetExtendedUI(bool bExtended = true);
       bool GetExtendedUI();
@@ -178,16 +178,16 @@ namespace user
       void ShowDropDown(bool bShowIt = true);
 
       // manipulating listbox items
-      virtual ::raw::index AddString(const ::string & pszString, uptr dwItemData = 0);
-      virtual ::raw::index AddString(const ::string & pszString, const string& strValue);
+      virtual ::collection::index AddString(const ::string & pszString, uptr dwItemData = 0);
+      virtual ::collection::index AddString(const ::string & pszString, const string& strValue);
 
 
 
-      ::raw::index DeleteString(index nIndex);
-      ::raw::index InsertString(index nIndex, const ::string & pszString);
+      ::collection::index DeleteString(index nIndex);
+      ::collection::index InsertString(index nIndex, const ::string & pszString);
 
       void reset_content();
-      ::raw::index Dir(index attr, const ::string & pszWildCard);
+      ::collection::index Dir(index attr, const ::string & pszWildCard);
 
 
 

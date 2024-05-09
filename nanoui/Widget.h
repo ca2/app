@@ -65,8 +65,8 @@ namespace nanoui
       //size_i32                m_offsetSizeToApplyOnDraw;
       ::pointer<Widget>       m_pwidgetDragDropArena;
       ::pointer_array<Widget> m_children;
-      //::raw::index               m_iHoverCandidateChildStart;
-      //::raw::index               m_iHoverCandidateChildEnd;
+      //::collection::index               m_iHoverCandidateChildStart;
+      //::collection::index               m_iHoverCandidateChildEnd;
       ::function <void() >    m_functionOnMoved;
       /**
        * Whether or not this Widget is currently visible.  When a Widget is not
@@ -290,9 +290,9 @@ namespace nanoui
       //   /// Return the number of pwidgetChild widgets
       int child_count() const { return (int)m_children.size(); }
 
-      //::raw::count get_child_as_item_count() override;
+      //::collection::count get_child_as_item_count() override;
       
-      //item_pointer get_child_as_item(::raw::index iIndex) override;
+      //item_pointer get_child_as_item(::collection::index iIndex) override;
 
       item_pointer selected_item() override;
 
@@ -309,13 +309,13 @@ namespace nanoui
        * since the constructor of \::pointer Widget automatically
        * adds the current pwidget to its parent
        */
-      virtual void insert_child_at(::raw::index iIndex, Widget* pwidget);
+      virtual void insert_child_at(::collection::index iIndex, Widget* pwidget);
 
       /// Convenience function which appends a pwidget at the end
       void add_child(Widget* pwidget);
 
       /// Remove a pwidgetChild pwidget by iIndex
-      void erase_child_at(::raw::index iIndex);
+      void erase_child_at(::collection::index iIndex);
 
       /// Remove a pwidgetChild pwidget by value
       void erase_child(Widget* pwidget);
@@ -327,10 +327,10 @@ namespace nanoui
       virtual void on_destroy_window();
 
       /// Retrieves the pwidgetChild at the specific position
-      const Widget* child_at(::raw::index iIndex) const { return m_children[(size_t)iIndex]; }
+      const Widget* child_at(::collection::index iIndex) const { return m_children[(size_t)iIndex]; }
 
       /// Retrieves the pwidgetChild at the specific position
-      Widget* child_at(::raw::index iIndex) { return m_children[(size_t)iIndex]; }
+      Widget* child_at(::collection::index iIndex) { return m_children[(size_t)iIndex]; }
 
       /// Returns the iIndex of a specific pwidgetChild or -1 if not found
       int child_index(Widget* pwidget) const;

@@ -55,7 +55,7 @@ namespace file
 
          class ::payload payload;
 
-         for (::raw::index i = 0; i < this->get_count(); i++)
+         for (::collection::index i = 0; i < this->get_count(); i++)
          {
 
             payload.stra().add(this->element_at(i)->user_path());
@@ -89,7 +89,7 @@ namespace file
 
          class ::payload payload;
 
-         for (::raw::index i = 0; i < this->get_count(); i++)
+         for (::collection::index i = 0; i < this->get_count(); i++)
          {
 
             payload.stra().add(this->element_at(i)->final_path());
@@ -129,7 +129,7 @@ namespace file
 
          class ::payload payload;
 
-         for (::raw::index i = 0; i < this->get_count(); i++)
+         for (::collection::index i = 0; i < this->get_count(); i++)
          {
 
             class ::payload varPropSet;

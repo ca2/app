@@ -55,7 +55,7 @@ namespace xml
 
 
       ::pointer<document>             m_pdocument;
-      ::raw::index                            m_iEdit;
+      ::collection::index                            m_iEdit;
       pointer_array < edit_item >       m_edititema;
 
 

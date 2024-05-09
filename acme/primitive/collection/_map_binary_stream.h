@@ -7,7 +7,7 @@ inline binary_stream & operator <<(binary_stream & stream, const pair_map < PAIR
 {
 
 
-   ::raw::count c = m.get_count();
+   ::collection::count c = m.get_count();
 
    stream << c;
 
@@ -35,7 +35,7 @@ template < typename PAIR >
 inline binary_stream & operator >>(binary_stream & stream, pair_map < PAIR > & m)
 {
 
-   ::raw::count c = 0;
+   ::collection::count c = 0;
 
    stream >> c;
 

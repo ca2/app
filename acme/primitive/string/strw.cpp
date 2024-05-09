@@ -20,7 +20,7 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
    *numchars = 0;
    *numargs = 1;                   /* the program name at least */
 
-   /* first scan the program name, copy it, and ::raw::count the bytes */
+   /* first scan the program name, copy it, and ::collection::count the bytes */
    p = cmdstart;
    if (argv)
       *argv++ = args;
@@ -115,7 +115,7 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
          N backslashes ==> N backslashes */
       numslash = 0;
       while (*p == SLASHWCHAR) {
-            /* ::raw::count number of backslashes for use below */
+            /* ::collection::count number of backslashes for use below */
             ++p;
             ++numslash;
       }
@@ -268,13 +268,13 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
 //void wide_reverse(unichar * sz)
 //{
 //
-//   ::raw::count iLen = wide_length(sz);
+//   ::collection::count iLen = wide_length(sz);
 //
-//   ::raw::count iMid = iLen / 2;
+//   ::collection::count iMid = iLen / 2;
 //
-//   ::raw::count iL = 0;
+//   ::collection::count iL = 0;
 //
-//   ::raw::count iR = iLen - 1;
+//   ::collection::count iR = iLen - 1;
 //
 //   unichar ch;
 //
@@ -287,19 +287,19 @@ CLASS_DECL_ACME void wide_parse_command_line(::wide_character *cmdstart, ::wide_
 //
 //}
 
-//void w_zero_pad(unichar * sz, ::raw::count iPad)
+//void w_zero_pad(unichar * sz, ::collection::count iPad)
 //{
 //
-//   ::raw::count iLen = wide_length(sz);
+//   ::collection::count iLen = wide_length(sz);
 //
-//   ::raw::count iZeroCount = iPad - iLen;
+//   ::collection::count iZeroCount = iPad - iLen;
 //
 //   if(iZeroCount > 0)
 //   {
 //
-//      ::raw::count iEnd = iLen - 1;
+//      ::collection::count iEnd = iLen - 1;
 //
-//      ::raw::count iFinalEnd = iEnd + iZeroCount;
+//      ::collection::count iFinalEnd = iEnd + iZeroCount;
 //
 //      sz[iFinalEnd + 1] = L'\0';
 //

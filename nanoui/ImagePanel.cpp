@@ -106,7 +106,7 @@ namespace nanoui
    bool ImagePanel::mouse_button_event(const point_i32 & p, ::user::e_mouse emouse, bool down, bool bDoubleClick, const ::user::e_key & /* modifiers */)
    {
 
-      ::raw::index iIndex = index_for_position(p);
+      ::collection::index iIndex = index_for_position(p);
 
       if (iIndex >= 0 && iIndex < (int)m_images.size() && m_callback && down)
       {
@@ -171,7 +171,7 @@ namespace nanoui
 
       pgraphics->m_bUseImageMipMapsOrResizedImages = true;
 
-      for (::raw::index iImageIndex = 0; iImageIndex < m_images.size(); ++iImageIndex)
+      for (::collection::index iImageIndex = 0; iImageIndex < m_images.size(); ++iImageIndex)
       {
 
          point_i32 gridindex((int)iImageIndex % gridsize.cx(), (int)iImageIndex / gridsize.cx());
@@ -262,7 +262,7 @@ namespace nanoui
    }
 
 
-   ::image * ImagePanel::_get_image(::raw::index iImage)
+   ::image * ImagePanel::_get_image(::collection::index iImage)
    {
 
       auto pimage = screen()->m_puserinteraction->m_pcontext->context_image()->integer_image(m_images[iImage].m_element1);

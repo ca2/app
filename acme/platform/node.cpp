@@ -792,7 +792,7 @@ namespace acme
 
       string strName;
 
-      for (::raw::index i = 0; i < strAppId.length(); i++)
+      for (::collection::index i = 0; i < strAppId.length(); i++)
       {
 
          if (strAppId[i] == '-' || strAppId[i] == '/' || strAppId[i] == '\\')
@@ -1218,7 +1218,7 @@ namespace acme
    }
 
 
-   bool node::set_wallpaper(::raw::index iScreen, string strLocalImagePath, ::windowing::display * pwindowingdisplay)
+   bool node::set_wallpaper(::collection::index iScreen, string strLocalImagePath, ::windowing::display * pwindowingdisplay)
    {
 
       throw interface_only();
@@ -1230,7 +1230,7 @@ namespace acme
    }
 
 
-   string node::get_wallpaper(::raw::index iScreen)
+   string node::get_wallpaper(::collection::index iScreen)
    {
 
       return "";
@@ -4000,7 +4000,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 
       ascendants_path(pathSource, patha, nullptr);
 
-      for (::raw::index i = 0; i < patha.get_count(); i++)
+      for (::collection::index i = 0; i < patha.get_count(); i++)
       {
 
          ::file::path path = patha[i];
@@ -4211,7 +4211,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 
       patha.set_size(uaPid.get_count());
 
-      for (::raw::index i = 0; i < uaPid.get_count(); i++)
+      for (::collection::index i = 0; i < uaPid.get_count(); i++)
       {
 
          patha[i] = process_identifier_module_path(uaPid[i]);

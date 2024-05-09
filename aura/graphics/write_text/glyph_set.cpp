@@ -23,7 +23,7 @@ namespace write_text
    glyph * glyph_set::GetGlyph(::u32 user)
    {
 
-      ::raw::index i = find_first(user);
+      ::collection::index i = find_first(user);
 
       if (i >= 0)
       {
@@ -41,12 +41,12 @@ namespace write_text
    }
 
 
-   ::raw::index glyph_set::find_first(::u32 user)
+   ::collection::index glyph_set::find_first(::u32 user)
    {
 
-      ::raw::index iLoBound = 0;
-      ::raw::index iHiBound = this->get_size() - 1;
-      ::raw::index iIndex = 0;;
+      ::collection::index iLoBound = 0;
+      ::collection::index iHiBound = this->get_size() - 1;
+      ::collection::index iIndex = 0;;
       while(true)
       {
          if(iLoBound > iHiBound)
@@ -75,7 +75,7 @@ namespace write_text
          else
             ASSERT(0);
       }
-      ::raw::index iLastIndex = iIndex;
+      ::collection::index iLastIndex = iIndex;
       while(true)
       {
          iIndex--;
@@ -92,9 +92,9 @@ namespace write_text
    {
       index_array stackLowerBound;
       index_array stackUpperBound;
-      ::raw::index iLowerBound;
-      ::raw::index iUpperBound;
-      ::raw::index iLPos, iUPos, iMPos;
+      ::collection::index iLowerBound;
+      ::collection::index iUpperBound;
+      ::collection::index iLPos, iUPos, iMPos;
       glyph glyph;
 
       if(this->get_size() >= 2)
@@ -163,7 +163,7 @@ namespace write_text
    }
 
 
-   ::raw::index glyph_set::add(class glyph &glyph)
+   ::collection::index glyph_set::add(class glyph &glyph)
    {
       iptr i = (int)array < class glyph, class glyph & >::add(glyph);
       quick_sort();

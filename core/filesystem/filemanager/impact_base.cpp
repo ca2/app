@@ -349,7 +349,7 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
          {
 
 #define DBG_LOOP  1
-            for (::raw::index i = 0; i < DBG_LOOP; i++)
+            for (::collection::index i = 0; i < DBG_LOOP; i++)
             {
 
                browse_sync(ptopic->m_actioncontext + ::e_source_sync);

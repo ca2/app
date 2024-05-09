@@ -38,7 +38,7 @@ namespace sockets
 ////      ::pointer<ssl_client_context_map>          m_pclientcontextmap;
 ////#endif
 //
-//      ::raw::count                          m_countHttpPostBoundary;
+//      ::collection::count                          m_countHttpPostBoundary;
 //      ::pointer < ::mutex >                          m_pmutexHttpPostBoundary;
 //
 //      //resolv_cache_t                   m_resolvcache;

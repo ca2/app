@@ -87,7 +87,7 @@ void	synchronization_array::clear()
 }
 
 
-::raw::count synchronization_array::size() const
+::collection::count synchronization_array::size() const
 {
 
    return m_synchronizationa.get_size();
@@ -184,7 +184,7 @@ void synchronization_array::erase(::particle * pparticle)
 }
 
 
-void synchronization_array::erase(::raw::index index)
+void synchronization_array::erase(::collection::index index)
 {
 
    if (index >= m_synchronizationa.size())
@@ -209,7 +209,7 @@ void synchronization_array::erase(::raw::index index)
 }
 
 
-::raw::index synchronization_array::wait(const class time & timeWait, bool bWaitForAll, ::u32 uWakeMask)
+::collection::index synchronization_array::wait(const class time & timeWait, bool bWaitForAll, ::u32 uWakeMask)
 {
 
    if (is_empty())
@@ -338,7 +338,7 @@ void synchronization_array::erase(::raw::index index)
 
    }
 
-   return (::raw::index) (estatus.m_eenum - signaled_base);
+   return (::collection::index) (estatus.m_eenum - signaled_base);
 
 }
 

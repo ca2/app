@@ -81,7 +81,7 @@ namespace database
       //inline ::pointer<class transaction> transaction();
 
 
-      ::raw::count get_affected_rows_count() override;
+      ::collection::count get_affected_rows_count() override;
 
       bool in_transaction() override;
 
@@ -91,11 +91,11 @@ namespace database
 
       ::payload get_agent(const ::string & pszTable, const ::string & psz, const ::string & pszUser) override;
 
-      ::pointer<result_set>query_result(const ::string & pszQuery, ::raw::count iRowCount = -1, ::raw::count iColumnCount = -1) override;
-      //inline auto query(const ::string & pszQuery, ::raw::count iRowCount = -1, ::raw::count iColumnCount = -1) { return query_result(pszQuery, iRowCount, iColumnCount); }
+      ::pointer<result_set>query_result(const ::string & pszQuery, ::collection::count iRowCount = -1, ::collection::count iColumnCount = -1) override;
+      //inline auto query(const ::string & pszQuery, ::collection::count iRowCount = -1, ::collection::count iColumnCount = -1) { return query_result(pszQuery, iRowCount, iColumnCount); }
 
 
-      //virtual ::payload query(const ::string & pszQuery, ::raw::count iMaxRowCount = -1, ::raw::count iMaxColumnCount = -1);
+      //virtual ::payload query(const ::string & pszQuery, ::collection::count iMaxRowCount = -1, ::collection::count iMaxColumnCount = -1);
       ::pointer<row_array>query_rows(const ::string & pszQuery) override;
       ::pointer<row>query_row(const ::string & pszQuery) override;
       ::pointer<payload_array>query_items(const ::string & pszQuery) override;

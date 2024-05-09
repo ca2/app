@@ -52,7 +52,7 @@ namespace networking_bsd
          
       auto uResult2 = ::GetIpNetTable(ptable, &u, TRUE);
 
-      for (::raw::index i = 0; i < ptable->dwNumEntries; i++)
+      for (::collection::index i = 0; i < ptable->dwNumEntries; i++)
       {
 
          //auto & row = *(MIB_IPNETROW *)(memory.data() + SIZEOF_IPNETTABLE(i));
@@ -80,7 +80,7 @@ namespace networking_bsd
 
 #endif
 
-      for (::raw::index iItem = 0; iItem < pitema->size(); iItem++)
+      for (::collection::index iItem = 0; iItem < pitema->size(); iItem++)
       {
 
          auto pitem = pitema->element_at(iItem);

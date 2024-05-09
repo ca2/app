@@ -619,12 +619,12 @@ bool tokenizer::ReadLine(string &strToken, bool bWithSeparator)
 }
    
    
-::raw::count tokenizer::skip_word(::raw::count c)
+::collection::count tokenizer::skip_word(::collection::count c)
 {
       
    string strToken;
       
-   ::raw::count cSkip = 0;
+   ::collection::count cSkip = 0;
       
    while(c > 0)
    {

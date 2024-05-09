@@ -19,7 +19,7 @@ namespace user
       
 
 
-      ::raw::index                         m_iIndex;
+      ::collection::index                         m_iIndex;
       split_layout *                m_pparent;
       u32                           m_dwPosition;
       double                        m_dRate;

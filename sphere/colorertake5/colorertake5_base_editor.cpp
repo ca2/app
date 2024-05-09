@@ -266,8 +266,8 @@ namespace colorertake5
 
    PairMatch *base_editor::searchLocalPair(i32 lineNo, i32 pos)
    {
-      ::raw::index lno;
-      ::raw::index end_line = getLastVisibleLine();
+      ::collection::index lno;
+      ::collection::index end_line = getLastVisibleLine();
       PairMatch *pm = getPairMatch(lineNo, pos);
       if (pm == nullptr)
       {
@@ -326,8 +326,8 @@ namespace colorertake5
 
    PairMatch *base_editor::searchGlobalPair(i32 lineNo, i32 pos)
    {
-      ::raw::index lno;
-      ::raw::index end_line = lineCount;
+      ::collection::index lno;
+      ::collection::index end_line = lineCount;
       PairMatch *pm = getPairMatch(lineNo, pos);
       if (pm == nullptr)
       {
@@ -408,7 +408,7 @@ namespace colorertake5
       {
          invalidLine = topLine;
 
-         for(::raw::index idx = editorListeners.get_size()-1; idx >= 0; idx--)
+         for(::collection::index idx = editorListeners.get_size()-1; idx >= 0; idx--)
             editorListeners.element_at(idx)->modifyEvent(topLine);
 
       }
@@ -425,7 +425,7 @@ namespace colorertake5
 
    }
 
-   void base_editor::visibleTextEvent(index wStart, ::raw::count wSize)
+   void base_editor::visibleTextEvent(index wStart, ::collection::count wSize)
    {
 
       CLR_FORMATTED_TRACE("axis_editor", "visibleTextEvent:%d-%d", wStart, wSize);
@@ -435,7 +435,7 @@ namespace colorertake5
 
    }
 
-   void base_editor::lineCountEvent(::raw::count newLineCount)
+   void base_editor::lineCountEvent(::collection::count newLineCount)
    {
 
       CLR_FORMATTED_TRACE("axis_editor", "lineCountEvent:%d", newLineCount);
@@ -444,18 +444,18 @@ namespace colorertake5
    }
 
 
-   inline ::raw::index base_editor::getLastVisibleLine()
+   inline ::collection::index base_editor::getLastVisibleLine()
    {
 
-      ::raw::index r1 = (wStart+wSize);
-      ::raw::count r2 = lineCount;
+      ::collection::index r1 = (wStart+wSize);
+      ::collection::count r2 = lineCount;
       return ((r1 > r2)?r2:r1)-1;
    }
 
    void base_editor::validate(index lno, bool rebuildRegions)
    {
 
-      ::raw::index parseFrom, parseTo;
+      ::collection::index parseFrom, parseTo;
       bool layoutChanged = false;
       TextParseMode tpmode = TPM_CACHE_READ;
 
@@ -464,7 +464,7 @@ namespace colorertake5
          lno = lineCount-1;
       }
 
-      ::raw::index firstLine = lrSupport->getFirstLine();
+      ::collection::index firstLine = lrSupport->getFirstLine();
 
       parseFrom = parseTo = (wStart+wSize);
 
@@ -495,7 +495,7 @@ namespace colorertake5
          * visible area is shifted and line regions
          * should be rearranged according to
          */
-         ::raw::index newFirstLine = (wStart/wSize)*wSize;
+         ::collection::index newFirstLine = (wStart/wSize)*wSize;
          parseFrom = newFirstLine;
          parseTo   = newFirstLine+lrSize;
          /*
@@ -544,7 +544,7 @@ namespace colorertake5
 
          CLR_FORMATTED_TRACE("axis_editor", "validate:parse:%d-%d, %s", parseFrom, parseTo, tpmode == TPM_CACHE_READ?"READ":"UPDATE");
 
-         ::raw::index stopLine = textParser->parse(parseFrom, parseTo-parseFrom, tpmode);
+         ::collection::index stopLine = textParser->parse(parseFrom, parseTo-parseFrom, tpmode);
 
          if (tpmode == TPM_CACHE_UPDATE)
          {
@@ -574,7 +574,7 @@ namespace colorertake5
    void base_editor::startParsing(index lno)
    {
       lrSupport->startParsing(lno);
-      for(::raw::index idx = 0; idx < regionHandlers.get_size(); idx++)
+      for(::collection::index idx = 0; idx < regionHandlers.get_size(); idx++)
          regionHandlers.element_at(idx)->startParsing(lno);
    }
 
@@ -588,14 +588,14 @@ namespace colorertake5
    void base_editor::clearLine(index lno, const ::string &line)
    {
       lrSupport->clearLine(lno, line);
-      for(::raw::index idx = 0; idx < regionHandlers.get_size(); idx++)
+      for(::collection::index idx = 0; idx < regionHandlers.get_size(); idx++)
          regionHandlers.element_at(idx)->clearLine(lno, line);
    }
 
    void base_editor::addRegion(index lno, const ::string &line, strsize sx, strsize ex, class region *region)
    {
       lrSupport->addRegion(lno, line, sx, ex, region);
-      for(::raw::index idx = 0; idx < regionHandlers.get_size(); idx++)
+      for(::collection::index idx = 0; idx < regionHandlers.get_size(); idx++)
          regionHandlers.element_at(idx)->addRegion(lno, line, sx, ex, region);
    }
 

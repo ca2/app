@@ -41,15 +41,15 @@ namespace user
       //::atom                                m_atom;
       bool                                   m_bNew;
       bool                                   m_bVisible;
-      ::raw::index                                  m_iNextGlobalOrderKey;
+      ::collection::index                                  m_iNextGlobalOrderKey;
       ::user::list_column_array *            m_pcontainer;
-      ::raw::index                                  m_iOrder;
+      ::collection::index                                  m_iOrder;
       ::text::text                           m_text;
       ::u32                                  m_uiSmallBitmap;
       ::color::color                         m_colorSmallMask;
       i32                                    m_iSmallImageWidth;
-      ::raw::index                                  m_iSubItem;
-      ::raw::index                                  m_iColumn;
+      ::collection::index                                  m_iSubItem;
+      ::collection::index                                  m_iColumn;
       ::pointer<::image_list>               m_pimagelist;
       ::pointer<::image_list>               m_pimagelistHover;
       ::pointer<draw_list_column>           m_pdrawlistcolumn;
@@ -100,13 +100,13 @@ namespace user
       //list_column & operator = (const list_column & column);
 
 
-      ::raw::index        get_index() const;
-      ::raw::index        get_visible_index() const;
+      ::collection::index        get_index() const;
+      ::collection::index        get_visible_index() const;
 
-      ::raw::index        item_index() const;
-      ::raw::index        subitem_index() const { return (::raw::index) m_iSubItem; }
-      ::raw::index        column_index() const { return (::raw::index) m_iColumn; }
-      ::raw::index        order() const { return (::raw::index) m_iOrder; }
+      ::collection::index        item_index() const;
+      ::collection::index        subitem_index() const { return (::collection::index) m_iSubItem; }
+      ::collection::index        column_index() const { return (::collection::index) m_iColumn; }
+      ::collection::index        order() const { return (::collection::index) m_iOrder; }
 
    };
 

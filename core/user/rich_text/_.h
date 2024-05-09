@@ -33,13 +33,13 @@ namespace user
 
       void words_trailing_spaces(string_array & stra, string str);
 
-      ::raw::index sel_line(const pointer_array < line > & linea, ::raw::index iSel);
+      ::collection::index sel_line(const pointer_array < line > & linea, ::collection::index iSel);
 
-      ::raw::index sel_line_x666(pointer_array < line > & linea, ::raw::index iSel, double & x);
+      ::collection::index sel_line_x666(pointer_array < line > & linea, ::collection::index iSel, double & x);
 
-      ::raw::index line_caret_x(pointer_array < line > & linea, ::raw::index iSel, double & x);
+      ::collection::index line_caret_x(pointer_array < line > & linea, ::collection::index iSel, double & x);
 
-      ::raw::index sel_char(pointer_array < line > & linea, ::raw::index iSel);
+      ::collection::index sel_char(pointer_array < line > & linea, ::collection::index iSel);
 
       string line_text(line & line);
 
@@ -47,17 +47,17 @@ namespace user
 
       void update_span_cache(pointer_array < span > & spana);
 
-      ::e_align box_align(pointer_array < span > & spana, ::raw::index iBox);
+      ::e_align box_align(pointer_array < span > & spana, ::collection::index iBox);
 
-      bool box_align(pointer_array < span > & spana, ::raw::index iBox, ::e_align ealign);
+      bool box_align(pointer_array < span > & spana, ::collection::index iBox, ::e_align ealign);
 
-      ::raw::index find_span(pointer_array < span > & spana, ::raw::index iSel);
+      ::collection::index find_span(pointer_array < span > & spana, ::collection::index iSel);
 
-      ::raw::index find_char_span(pointer_array < span > & spana, strsize iChar);
+      ::collection::index find_char_span(pointer_array < span > & spana, strsize iChar);
 
 //      void align(line * pline, const ::rectangle_f64 & rectangle);
 //
-      box * find_box(pointer_array < line > & linea, ::raw::index iSel);
+      box * find_box(pointer_array < line > & linea, ::collection::index iSel);
 
       string layout_text(const pointer_array < line > & linea);
 

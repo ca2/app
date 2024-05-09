@@ -185,7 +185,7 @@ string exception::get_consolidated_details(::particle * pparticle) const
    // string get_all_messages(const array < exception > & a)
    // {
 
-   //    ::raw::count c = a.get_count();
+   //    ::collection::count c = a.get_count();
 
    //    if (c <= 0)
    //    {
@@ -204,7 +204,7 @@ string exception::get_consolidated_details(::particle * pparticle) const
 
    //       string str;
 
-   //       ::raw::index i = 0;
+   //       ::collection::index i = 0;
 
    //       a.predicate_each(
 

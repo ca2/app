@@ -280,10 +280,10 @@ namespace user
 
    public:
 
-      ::raw::index                                     m_iEditItem;
-      ::raw::index                                     m_iEditSubItem;
+      ::collection::index                                     m_iEditItem;
+      ::collection::index                                     m_iEditSubItem;
       // index                                     m_iListItem;
-      ::raw::index                                     m_iColumn;
+      ::collection::index                                     m_iColumn;
 
       atom                                      m_uiText;
       ::type_atom                               m_typeatom;
@@ -358,7 +358,7 @@ namespace user
 
       string                                    m_strInteractionTag;
 
-      ::raw::index                                   m_iIndex;
+      ::collection::index                                   m_iIndex;
       ::rectangle_i32                           m_rectangleRestoreBroad;
       ::rectangle_i32                           m_rectangleRestoreCompact;
       enumeration < enum_non_client >           m_flagNonClient;
@@ -832,7 +832,7 @@ namespace user
       virtual void display_docked(::e_display edisplay, ::e_activation eactivation);
       virtual void display_zoomed();
       virtual void display_iconic();
-      virtual void display_full_screen(::raw::index iMonitor, ::e_activation eactivation);
+      virtual void display_full_screen(::collection::index iMonitor, ::e_activation eactivation);
       virtual void display_stored_state();
       virtual void display_notify_icon();
 
@@ -910,7 +910,7 @@ namespace user
 
       virtual void sort_children_by_zorder(::user::interaction_array & interactiona);
 
-      virtual ::raw::index child_zorder(::user::interaction * puserinteraction);
+      virtual ::collection::index child_zorder(::user::interaction * puserinteraction);
 
       virtual bool check_children_zorder();
 
@@ -935,7 +935,7 @@ namespace user
       
       virtual ::user::notify_icon * notify_icon();
 
-      virtual void on_update_notify_icon_menu(::raw::index & iNotifyIconIndex);
+      virtual void on_update_notify_icon_menu(::collection::index & iNotifyIconIndex);
       
       virtual void on_app_activated();
 
@@ -1349,7 +1349,7 @@ namespace user
       ///    - during on_perform_layout the position and/or size of
       ///      the user::interaction has changed.
       virtual bool on_perform_layout(::draw2d::graphics_pointer & pgraphics);
-      virtual void on_items_layout(::draw2d::graphics_pointer & pgraphics, ::raw::index iIdContainer, ::item_array * pitema);
+      virtual void on_items_layout(::draw2d::graphics_pointer & pgraphics, ::collection::index iIdContainer, ::item_array * pitema);
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
       virtual void on_reposition() override;
       virtual void on_show_window() override;
@@ -1795,9 +1795,9 @@ namespace user
       void pre_translate_message(::message::message* pmessage) override;
 
 
-      ::user::interaction * get_child_by_name(const ::string & strName, ::raw::index iItem = -1, i32 iLevel = -1) override;
-      ::user::interaction * get_child_by_id(const atom & atom, ::raw::index iItem = -1, i32 iLevel = -1) override;
-      ::user::element * get_primitive_by_id(const atom & atom, ::raw::index iItem, i32 iLevel) override;
+      ::user::interaction * get_child_by_name(const ::string & strName, ::collection::index iItem = -1, i32 iLevel = -1) override;
+      ::user::interaction * get_child_by_id(const atom & atom, ::collection::index iItem = -1, i32 iLevel = -1) override;
+      ::user::element * get_primitive_by_id(const atom & atom, ::collection::index iItem, i32 iLevel) override;
 
       
       ::user::interaction* child_from_point(const ::point_i32& point, ::i32 iLevel = -1, const ::user::interaction_array * pinteractionaExclude = nullptr);
@@ -2057,35 +2057,35 @@ namespace user
 
       //virtual void window_rectangle(::rectangle_i32 * prectangle) override;
 
-      virtual ::raw::index get_zoneing(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::e_display edisplay);
+      virtual ::collection::index get_zoneing(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::e_display edisplay);
 
       virtual ::e_display initial_restore_display();
 
       // returns less than zero if no preferred restore
       // otherwise returns the preferred restore 
       // rectangle and its monitor index
-      virtual ::raw::index get_preferred_restore(::rectangle_i32 & rectanglePreferredRestore);
+      virtual ::collection::index get_preferred_restore(::rectangle_i32 & rectanglePreferredRestore);
 
       virtual bool calculate_window_rectangle_in_main_monitor(::rectangle_i32 & rectangle, const ::rectangle_f64 & rectangleOptionalRateOrSize);
 
-      virtual ::raw::index calculate_broad_and_compact_restore(::rectangle_i32 * prectWorkspace = nullptr, const ::size_i32 & sizeMin = {}, const ::rectangle_i32& rectangleHint = {
+      virtual ::collection::index calculate_broad_and_compact_restore(::rectangle_i32 * prectWorkspace = nullptr, const ::size_i32 & sizeMin = {}, const ::rectangle_i32& rectangleHint = {
          });
 
        //virtual void reset_window_state();
 
-      virtual ::raw::index make_zoneing(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = {}, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual ::raw::index best_zoneing(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = {}, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual ::raw::index best_monitor(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual ::raw::index best_workspace(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual ::raw::index good_restore(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top, ::e_display edisplay = e_display_normal);
-      virtual ::raw::index good_iconify(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual ::collection::index make_zoneing(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = {}, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual ::collection::index best_zoneing(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = {}, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual ::collection::index best_monitor(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual ::collection::index best_workspace(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual ::collection::index good_restore(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top, ::e_display edisplay = e_display_normal);
+      virtual ::collection::index good_iconify(::rectangle_i32* prectangle, const ::rectangle_i32& rectangleHint = {}, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
 
-      virtual ::raw::index good_move(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle = {}, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
-      virtual ::raw::index get_best_zoneing(::e_display& edisplay, ::rectangle_i32* prectangle, const ::rectangle_i32& rectangleRequest = ::rectangle_i32(), bool bPreserveSize = false);
-      virtual ::raw::index get_best_workspace(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
+      virtual ::collection::index good_move(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle = {}, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual ::collection::index get_best_zoneing(::e_display& edisplay, ::rectangle_i32* prectangle, const ::rectangle_i32& rectangleRequest = ::rectangle_i32(), bool bPreserveSize = false);
+      virtual ::collection::index get_best_workspace(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
 
 
-      virtual ::raw::index get_best_monitor(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
+      virtual ::collection::index get_best_monitor(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
 
 
       virtual void get_rect_normal(::rectangle_i32* prectangle);
@@ -2376,7 +2376,7 @@ namespace user
       virtual bool item_contains(::item * pitem, const ::point_i32 & point);
 
       virtual ::item_pointer on_items_hit_test(const ::point_i32& point, e_zorder ezorder);
-      virtual ::item_pointer on_items_hit_test(const ::point_i32 & point, e_zorder ezorder, ::raw::index iIdContainer, ::item_array * pitema);
+      virtual ::item_pointer on_items_hit_test(const ::point_i32 & point, e_zorder ezorder, ::collection::index iIdContainer, ::item_array * pitema);
 
       virtual void defer_setup_default_bottom_right_resize_user_item();
 
@@ -2404,7 +2404,7 @@ namespace user
 
       virtual void _001DrawItems(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void _001DrawItems(::draw2d::graphics_pointer & pgraphics, ::raw::index iIdContainer, ::item_array * pitema);
+      virtual void _001DrawItems(::draw2d::graphics_pointer & pgraphics, ::collection::index iIdContainer, ::item_array * pitema);
 
       virtual void _001DrawItem(::draw2d::graphics_pointer& pgraphics, ::user::item & item, const ::user::e_state & estate);
 
@@ -2437,8 +2437,8 @@ namespace user
       
       virtual ::data::data * _get_data(const ::atom & atom);
 
-      //void SetEditItem(::raw::index iItem);
-      //void SetEditSubItem(::raw::index iItem);
+      //void SetEditItem(::collection::index iItem);
+      //void SetEditSubItem(::collection::index iItem);
       //index GetEditSubItem();
       // index GetEditItem();
       //virtual ::user::interaction * ControlExGetWnd();
@@ -2559,10 +2559,10 @@ namespace user
       virtual point_i32 host_origin(enum_layout elayout = e_layout_design);
 
 
-      //::item_pointer get_child_as_item(::raw::index iIndex) override;
-      //::raw::count get_child_as_item_count() override;
+      //::item_pointer get_child_as_item(::collection::index iIndex) override;
+      //::collection::count get_child_as_item_count() override;
 
-      ::user::interaction * child_at(::raw::index iIndex);
+      ::user::interaction * child_at(::collection::index iIndex);
 
 
       virtual void on_item_selected(::item* pitem);

@@ -11,10 +11,10 @@ void list_predicateicate_add(CONTAINER& a, LIST_ITEM&& pitem)
 
 
 template < typename LIST_ITEM >
-::raw::count list_erase_all(LIST_ITEM&& pitem)
+::collection::count list_erase_all(LIST_ITEM&& pitem)
 {
 
-   ::raw::count c = 0;
+   ::collection::count c = 0;
 
    auto pprevious = pitem->m_phead;
 
@@ -42,10 +42,10 @@ template < typename LIST_ITEM >
 
 
 template < typename LIST_ITEM >
-::raw::count list_count(LIST_ITEM&& pitem)
+::collection::count list_count(LIST_ITEM&& pitem)
 {
 
-   ::raw::count c = 0;
+   ::collection::count c = 0;
 
    for (auto p = pitem->m_phead; ::is_set(p); p = p->m_pnext, c++);
 
@@ -76,10 +76,10 @@ LIST_ITEM list_predicateicate_find(LIST_ITEM&& plist, PRED pred)
 
 
 template < typename LIST_ITEM, typename LIST_ITEM2 >
-::raw::index list_find_first(LIST_ITEM&& pitem, LIST_ITEM2&& pitemItem)
+::collection::index list_find_first(LIST_ITEM&& pitem, LIST_ITEM2&& pitemItem)
 {
 
-   ::raw::index i = 0;
+   ::collection::index i = 0;
 
    for (auto p = pitem->m_phead; ::is_set(p); p = p->m_pnext, i++)
    {
@@ -302,7 +302,7 @@ template < typename LIST_ITEM, typename PRED  >
 void list_predicateicate_with_index(LIST_ITEM* pitem, PRED pred)
 {
 
-   ::raw::index i = 0;
+   ::collection::index i = 0;
 
    for (auto p = pitem->m_phead; ::is_set(p); p = p->m_pnext, i++)
    {

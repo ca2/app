@@ -37,7 +37,7 @@ public:
 
    void	clear();
 
-   ::raw::count size() const;
+   ::collection::count size() const;
 
    bool is_empty() const;
 
@@ -49,11 +49,11 @@ public:
 
    void erase(::particle * pparticle);
 
-   void erase(::raw::index index);
+   void erase(::collection::index index);
 
    ::e_status wait() override;
 
-   virtual ::raw::index wait(const class time & timeWait, bool waitForAll = true, ::u32 uWaitMask = 0);
+   virtual ::collection::index wait(const class time & timeWait, bool waitForAll = true, ::u32 uWaitMask = 0);
 
    virtual void contains(const ::e_status & result) const;
 

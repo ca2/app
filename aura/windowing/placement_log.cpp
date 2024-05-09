@@ -108,7 +108,7 @@ namespace windowing
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      for (::raw::index i = this->upper_bound(); i >= 0; i--)
+      for (::collection::index i = this->upper_bound(); i >= 0; i--)
       {
 
          if (element_at(i).m_time.elapsed() > timeRecent)

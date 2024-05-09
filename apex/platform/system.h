@@ -288,7 +288,7 @@ namespace apex
       virtual bool assert_running_local(const ::string & pszAppName,const ::string & pszId = nullptr);
 
 
-      virtual ::raw::count get_application_count();
+      virtual ::collection::count get_application_count();
 
 
 
@@ -343,7 +343,7 @@ namespace apex
       virtual void process_machine_event_data(machine_event_data * pdata);
 
       virtual string get_user_language();
-      virtual void set_user_language(::apex::application * papp, ::raw::index iSel);
+      virtual void set_user_language(::apex::application * papp, ::collection::index iSel);
       virtual void set_user_language(::apex::application * papp, string strLang);
 
       void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);

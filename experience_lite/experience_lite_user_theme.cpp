@@ -488,7 +488,7 @@ namespace lite
          font = pgraphics->get_current_font();
          size_i32 sSep = ptab->get_data()->m_sizeSep;
          ::rectangle_i32 rectangleEmp;
-         for(::raw::index i = 0; i < straTitle.get_size(); i++)
+         for(::collection::index i = 0; i < straTitle.get_size(); i++)
          {
             string str = straTitle[i];
             size_i32 s = pane.m_sizeaText[i];

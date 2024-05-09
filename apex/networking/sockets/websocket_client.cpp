@@ -852,7 +852,7 @@ namespace sockets
 
             string strChar;
 
-            for (::raw::index i = 0; i < m_memResponse.size(); i++)
+            for (::collection::index i = 0; i < m_memResponse.size(); i++)
             {
 
                strHexa += ::hex::lower_from(&data[i], 1) + " ";

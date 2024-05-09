@@ -592,7 +592,7 @@ void thread_name_abbreviate(string & strName, int len)
 
    }
 
-   for (::raw::index i = 0; i < stra.get_size(); i++)
+   for (::collection::index i = 0; i < stra.get_size(); i++)
    {
 
       stra[i] = _001OnlyAlnumString(stra[i]);
@@ -608,7 +608,7 @@ void thread_name_abbreviate(string & strName, int len)
 
    }
 
-   for (::raw::index i = 0; i < stra.get_size(); i++)
+   for (::collection::index i = 0; i < stra.get_size(); i++)
    {
 
       stra[i] = _001OnlyAlnumNonVowelString(stra[i]);
@@ -624,7 +624,7 @@ void thread_name_abbreviate(string & strName, int len)
 
    }
 
-   for (::raw::index i = 0; i < stra.get_size(); i++)
+   for (::collection::index i = 0; i < stra.get_size(); i++)
    {
 
       stra[i] = _001CompactString(stra[i], 1, 1);

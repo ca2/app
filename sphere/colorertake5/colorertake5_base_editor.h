@@ -213,13 +213,13 @@ namespace colorertake5
       * @param wSize  Number of currently visible text lines.
       *               This number must includes all partially visible lines.
       */
-      void visibleTextEvent(index wStart, ::raw::count wSize);
+      void visibleTextEvent(index wStart, ::collection::count wSize);
 
       /**
-      * Informs about total lines ::raw::count change.
+      * Informs about total lines ::collection::count change.
       * This must include initial lines number setting.
       */
-      void lineCountEvent(::raw::count newLineCount);
+      void lineCountEvent(::collection::count newLineCount);
 
       /** Basic HRC region - default text (background color) */
       class region *def_Text;
@@ -256,23 +256,23 @@ namespace colorertake5
 
       i32 backParse;
       // window area
-      ::raw::index wStart;
-      ::raw::count wSize;
+      ::collection::index wStart;
+      ::collection::count wSize;
       // line count
-      ::raw::count lineCount;
+      ::collection::count lineCount;
       // this->get_size of line regions
-      ::raw::count lrSize;
+      ::collection::count lrSize;
       // position of last validLine
-      ::raw::index invalidLine;
+      ::collection::index invalidLine;
       // no lines structure changes, just single line change
-      ::raw::index changedLine;
+      ::collection::index changedLine;
 
       bool internalRM;
       bool regionCompact;
       bool breakParse;
       bool validationProcess;
 
-      inline ::raw::index getLastVisibleLine();
+      inline ::collection::index getLastVisibleLine();
       void remapLRS(bool recreate);
       /**
       * Searches for the paired token and creates PairMatch

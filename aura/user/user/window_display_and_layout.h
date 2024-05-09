@@ -28,7 +28,7 @@ namespace user
       rectangle_i32              m_rectangleCompact;
       rectangle_i32              m_rectangleWindow;
       int                        m_iControlBoxRightToLeft;
-      ::raw::index                      m_iWorkspace;
+      ::collection::index                      m_iWorkspace;
 
       //using memory_template < window_rectangle >::operator=;
       // bool operator == (const window_rectangle & rectangle) const {return memory_order(this, &rectangle, sizeof(window_rectangle)) == 0; }

@@ -299,7 +299,7 @@ namespace geo
    }
 
 
-   ::raw::index geo::openweather_find_city2(string strQuery, string& strCit, i64& iId, double& dLat, double& dLon)
+   ::collection::index geo::openweather_find_city2(string strQuery, string& strCit, i64& iId, double& dLat, double& dLon)
    {
 
       string_array stra;
@@ -325,10 +325,10 @@ namespace geo
       }
 
 
-      for (::raw::index iCount = stra.get_count() - 1; iCount >= 1; iCount--)
+      for (::collection::index iCount = stra.get_count() - 1; iCount >= 1; iCount--)
       {
 
-         ::raw::index iIndex = openweather_find_city2(stra.slice(0, iCount).implode(", "), stra.last(), strCit, iId, dLat, dLon, false);
+         ::collection::index iIndex = openweather_find_city2(stra.slice(0, iCount).implode(", "), stra.last(), strCit, iId, dLat, dLon, false);
 
          if (iIndex >= 0)
          {
@@ -339,10 +339,10 @@ namespace geo
 
       }
 
-      for (::raw::index iCount = stra.get_count() - 1; iCount >= 1; iCount--)
+      for (::collection::index iCount = stra.get_count() - 1; iCount >= 1; iCount--)
       {
 
-         ::raw::index iIndex = openweather_find_city2(stra.slice(0, iCount).implode(", "), stra.last(), strCit, iId, dLat, dLon, true);
+         ::collection::index iIndex = openweather_find_city2(stra.slice(0, iCount).implode(", "), stra.last(), strCit, iId, dLat, dLon, true);
 
          if (iIndex >= 0)
          {
@@ -359,7 +359,7 @@ namespace geo
 
 
 
-   ::raw::index geo::openweather_find_city2(string strQ1, string strQ2, string& strCit, i64& iId, double& dLat, double& dLon, bool bPrefix)
+   ::collection::index geo::openweather_find_city2(string strQ1, string strQ2, string& strCit, i64& iId, double& dLat, double& dLon, bool bPrefix)
    {
 
       string strQueryLo;
@@ -370,7 +370,7 @@ namespace geo
 
       string strTry2;
 
-      ::raw::index iFind;
+      ::collection::index iFind;
 
       defer_check_openweather_city_list();
 

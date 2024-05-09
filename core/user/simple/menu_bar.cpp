@@ -162,7 +162,7 @@ void simple_menu_bar::route_command(::message::command * pcommand, bool bRouteTo
 //}
 
 
-bool simple_menu_bar::_track_popup_menu(::raw::index iItem)
+bool simple_menu_bar::_track_popup_menu(::collection::index iItem)
 {
 
    information() << "simple_menu_bar::_track_popup_menu" << iItem;
@@ -212,7 +212,7 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
       if (pusermessage->m_wparam == 33)
       {
 
-         _track_popup_menu((::raw::index)pusermessage->m_lparam);
+         _track_popup_menu((::collection::index)pusermessage->m_lparam);
 
       }
 
@@ -340,7 +340,7 @@ void simple_menu_bar::on_message_key_down(::message::message * pmessage)
     ::rectangle_i32 rectangleItem;
     ::rectangle_i32 rectangleSize(0, 0, 0, 0);
 
-    for(::raw::index i = 0; i < tbc.GetButtonCount(); i++)
+    for(::collection::index i = 0; i < tbc.GetButtonCount(); i++)
     {
         tbc.GetItemRect(i, rectangleItem);
         rectangleSize.union(rectangleSize, rectangleItem);
@@ -354,7 +354,7 @@ bool simple_menu_bar::CalcSize(CToolBarCtrl & tbc, size_i32 & size)
     ::rectangle_i32 rectangleItem;
     ::rectangle_i32 rectangleSize(0, 0, 0, 0);
 
-    for(::raw::index i = 0; i < tbc.GetButtonCount(); i++)
+    for(::collection::index i = 0; i < tbc.GetButtonCount(); i++)
     {
         tbc.GetItemRect(i, rectangleItem);
         rectangleSize.union(rectangleSize, rectangleItem);
@@ -534,14 +534,14 @@ bool simple_menu_bar::ReloadMenuBar()
 
    pgraphics->set(pdraw2d->fonts().GetMenuFont());
    pgraphics->SetBkMode(TRANSPARENT);
-   for(::raw::index iItem = 0; iItem < m_buttona.get_size(); iItem++)
+   for(::collection::index iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
       _001DrawItem(pgraphics, iItem);
    }
 
 }
 */
-/*bool simple_menu_bar::index_item_rectangle(::raw::index iItem, ::rectangle_i32 * prectangle, enum_element eelement)
+/*bool simple_menu_bar::index_item_rectangle(::collection::index iItem, ::rectangle_i32 * prectangle, enum_element eelement)
 
 {
    if(iItem < 0 ||
@@ -596,7 +596,7 @@ bool simple_menu_bar::ReloadMenuBar()
    return true;
 }*/
 
-/*bool simple_menu_bar::_001CheckItem(::raw::index iItem, bool bCheck)
+/*bool simple_menu_bar::_001CheckItem(::collection::index iItem, bool bCheck)
 {
    if(iItem < 0 ||
       iItem >= m_buttona.get_size())
@@ -605,10 +605,10 @@ bool simple_menu_bar::ReloadMenuBar()
    return true;
 }
 
-::raw::index simple_menu_bar::_001HitTest(const ::point_i32 *ppoint)
+::collection::index simple_menu_bar::_001HitTest(const ::point_i32 *ppoint)
 
 {
-   for(::raw::index iItem = 0; iItem < m_buttona.get_size(); iItem++)
+   for(::collection::index iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
       if(m_buttona[iItem].m_rectangle.contains(*ppoint))
 
@@ -628,9 +628,9 @@ bool simple_menu_bar::ReloadMenuBar()
    pgraphics->set(pdraw2d->fonts().GetMenuFont());
 
    ::size_i32 size;
-   ::raw::index ix = ITEMCHECKEDPADLEFT;
-   ::raw::index iy = 0;
-   for(::raw::index iItem = 0; iItem < m_buttona.get_size(); iItem++)
+   ::collection::index ix = ITEMCHECKEDPADLEFT;
+   ::collection::index iy = 0;
+   for(::collection::index iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
       ::GetTextExtentPoint32W(
          (HDC)pgraphics->get_os_data(),
@@ -729,7 +729,7 @@ bool simple_menu_bar::ReloadMenuBar()
    return CalcLayout(dwMode, nLength);
 
 }
-size_i32 simple_menu_bar::CalcLayout(u32 dwMode, ::raw::index nLength)
+size_i32 simple_menu_bar::CalcLayout(u32 dwMode, ::collection::index nLength)
 {
    _001Layout();
    size_i32 sizeResult;
@@ -754,7 +754,7 @@ size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 }
 */
 
-/*void simple_menu_bar::_001DrawItem(::draw2d::graphics *graphics, ::raw::index iItem)
+/*void simple_menu_bar::_001DrawItem(::draw2d::graphics *graphics, ::collection::index iItem)
 {
    ::rectangle_i32 rectangleItem;
    ::rectangle_i32 rectangleText;
@@ -830,7 +830,7 @@ size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 /*void simple_menu_bar::_001Hover(const ::point_i32 & point)
 {
    _track_popup_menu(point);
-   ::raw::index iHover = -1;
+   ::collection::index iHover = -1;
    if(m_iTracking >= 0)
    {
       iHover   = m_iTracking;
@@ -887,7 +887,7 @@ bool simple_menu_bar::OnEraseBkgnd(::draw2d::graphics_pointer & pgraphics)
 }*/
 
 
-void simple_menu_bar::_001OnDropDown(::raw::index iItem)
+void simple_menu_bar::_001OnDropDown(::collection::index iItem)
 {
 
    _track_popup_menu(iItem);

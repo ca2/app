@@ -111,7 +111,7 @@ namespace html
 
          }
 
-         ::raw::index i;
+         ::collection::index i;
 
          float cxMax = 0.f;
 
@@ -160,7 +160,7 @@ namespace html
          if(get_table() != nullptr)
          {
 
-            for(::raw::index i = 0; i < get_table()->m_columna.get_size(); i++)
+            for(::collection::index i = 0; i < get_table()->m_columna.get_size(); i++)
             {
 
                cxMax += maximum(0.f, get_table()->m_columna[i].m_cxMax);
@@ -251,7 +251,7 @@ namespace html
       }
 
 
-      void table_row::set_cell(::raw::index iCol, ::raw::index iRow, cell * pcell)
+      void table_row::set_cell(::collection::index iCol, ::collection::index iRow, cell * pcell)
       {
 
          if(iRow != m_iRow)

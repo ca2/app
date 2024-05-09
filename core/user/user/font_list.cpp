@@ -180,7 +180,7 @@ namespace user
       if (!::is_same_item(pitem, main_content().m_pitemCurrent))
       {
 
-         //::raw::index iIndexSel = ::item_index(pitem);
+         //::collection::index iIndexSel = ::item_index(pitem);
 
          main_content().m_pitemCurrent = pitem;
 
@@ -247,7 +247,7 @@ namespace user
 
          auto pfontenumerationitema = m_pfontlist->m_pfontenumeration->m_pfontenumerationitema;
 
-         ::raw::index iItemHover = ::item_index(m_pitemHover);
+         ::collection::index iItemHover = ::item_index(m_pitemHover);
 
          if (pfontenumerationitema->contains_index(iItemHover))
          {
@@ -415,7 +415,7 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      ::raw::index iCurrent = ::item_index(pitemCurrent);
+      ::collection::index iCurrent = ::item_index(pitemCurrent);
 
       if (m_pfontlist->get_box_rect(&rectangle, iCurrent) && rectangle.area() > 0)
       {
@@ -661,7 +661,7 @@ namespace user
    }
 
 
-   void font_list::on_change_combo_sel(::raw::index iSel)
+   void font_list::on_change_combo_sel(::collection::index iSel)
    {
 
       if (m_pfontlist.is_set())
@@ -719,7 +719,7 @@ namespace user
             if (pfontenumerationitema->contains_index(iItem))
             {
 
-               auto pfontenumerationitem = pfontenumerationitema->element_at((::raw::index)iItem);
+               auto pfontenumerationitem = pfontenumerationitema->element_at((::collection::index)iItem);
 
                m_pfontlist->m_strFontFamily = pfontenumerationitem->m_strName;
 
@@ -732,7 +732,7 @@ namespace user
    }
 
 
-   void font_list::ensure_item_visible_by_index(::raw::index iItem)
+   void font_list::ensure_item_visible_by_index(::collection::index iItem)
    {
 
       if (m_pfontlist

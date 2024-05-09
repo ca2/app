@@ -32,7 +32,7 @@ namespace ios
       virtual ~ip_enum();
       
       
-      virtual ::raw::count enumerate(string_array & stra);
+      virtual ::collection::count enumerate(string_array & stra);
       
       
    };

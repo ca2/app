@@ -1047,10 +1047,10 @@ namespace experience
    }
 
 
-   ::raw::count control_box::get_visible_control_box_button() const
+   ::collection::count control_box::get_visible_control_box_button() const
    {
 
-      ::raw::count cVisible = 0;
+      ::collection::count cVisible = 0;
 
       for (auto & pair: m_itemmap)
       {

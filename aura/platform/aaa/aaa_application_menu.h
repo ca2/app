@@ -28,7 +28,7 @@ namespace aura
    {
    public:
       
-      void add_item(::raw::index iIndex, string strName, string strId);
+      void add_item(::collection::index iIndex, string strName, string strId);
       
    };
 

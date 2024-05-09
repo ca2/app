@@ -15,7 +15,7 @@ namespace html
    public:
 
 
-      ::raw::index             m_iIndex;
+      ::collection::index             m_iIndex;
       string            m_strValue;
 
 

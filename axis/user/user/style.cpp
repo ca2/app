@@ -570,7 +570,7 @@ namespace axis
    //}
 
 
-   bool style::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem, ::user::toolbar * ptoolbar)
+   bool style::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar)
    {
 
       return false;

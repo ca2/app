@@ -21,8 +21,8 @@ namespace message
 
       ::pointer<::channel>                         m_pcommandtargetSource;
       atom                                         m_atomControl;     // menu item or other index
-      ::raw::index                                        m_iIndex;
-      ::raw::count                                      m_iCount;
+      ::collection::index                                        m_iIndex;
+      ::collection::count                                      m_iCount;
       // last + 1 for iterating m_iIndex
       pointer_array < ::channel >                  m_commandtargetptraHandle;
 

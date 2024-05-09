@@ -27,19 +27,19 @@ namespace colorertake5
 
 
 
-   OutlineItem *Outliner::getItem(::raw::index idx)
+   OutlineItem *Outliner::getItem(::collection::index idx)
    {
       return outline.element_at(idx);
    }
 
 
-   ::raw::count Outliner::itemCount()
+   ::collection::count Outliner::itemCount()
    {
       return outline.get_size();
    }
 
 
-   ::raw::index Outliner::manageTree(index_array &treeStack, ::raw::index newLevel)
+   ::collection::index Outliner::manageTree(index_array &treeStack, ::collection::index newLevel)
    {
 
       while(treeStack.get_size() > 0 && newLevel < treeStack.last())
@@ -67,7 +67,7 @@ namespace colorertake5
    void Outliner::modifyEvent(index topLine)
    {
 
-      ::raw::index new_size;
+      ::collection::index new_size;
 
       for(new_size = outline.get_size()-1; new_size >= 0; new_size--)
       {

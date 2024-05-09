@@ -179,7 +179,7 @@ namespace account
    /// output
    /// m_strUsername
    /// m_strPassword
-   ::e_status credentials::load_from_storage(::raw::count cTry)
+   ::e_status credentials::load_from_storage(::collection::count cTry)
    {
 
       if (cTry <= 0)
@@ -193,7 +193,7 @@ namespace account
 
       string strOlen;
 
-      ::raw::index iTry = 0;
+      ::collection::index iTry = 0;
 
       while(true)
       {

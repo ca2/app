@@ -118,7 +118,7 @@ bool im_post::write(::payload rec)
 
    }
 
-   ::raw::count iNumRows = m_pdataset->num_rows();
+   ::collection::count iNumRows = m_pdataset->num_rows();
 
    if(iNumRows <= 0)
       return false;

@@ -244,7 +244,7 @@ void reference_item_array::add_item()
 }
 
 
-::raw::index reference_item_array::find_item(reference_referer * preferer)
+::collection::index reference_item_array::find_item(reference_referer * preferer)
 {
 
    critical_section_lock criticalsectionlock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
@@ -409,7 +409,7 @@ string object_name(matter* p)
 //
 //   auto c = m_countReference;
 //
-//   for (::raw::index i = pitema->m_itema.size(); i < c; i++)
+//   for (::collection::index i = pitema->m_itema.size(); i < c; i++)
 //   {
 //
 //      _add_reference_item();
@@ -447,7 +447,7 @@ void particle::add_reference_item()
 
 //   auto c = m_countReference;
 //
-//   for (::raw::index i = pitema->m_itema.size(); i < c; i++)
+//   for (::collection::index i = pitema->m_itema.size(); i < c; i++)
 //   {
 //
 //      _add_reference_item();
@@ -599,14 +599,14 @@ void reference_item_array::dump_pending_releases(::string & strDump)
 
    strDump += m_strFirstAllocation + "\n";
  
-   for (::raw::index iIndex = 0; iIndex < m_itema.get_count(); iIndex++)
+   for (::collection::index iIndex = 0; iIndex < m_itema.get_count(); iIndex++)
    {
 
       auto & pitem = m_itema[iIndex];
 
-      ::raw::index iStep = pitem->m_iStep;
+      ::collection::index iStep = pitem->m_iStep;
 
-      ::raw::index iSerial = pitem->m_iSerial;
+      ::collection::index iSerial = pitem->m_iSerial;
 
       auto preferer = pitem->m_preferer;
 
@@ -881,7 +881,7 @@ reference_item_array * particle::reference_itema()
 //
 //   }
 //
-//   for (::raw::index i = 0; i < c; i++)
+//   for (::collection::index i = 0; i < c; i++)
 //   {
 //
 //      auto p = g_pobjectreferencecountdebuga->element_at(i);

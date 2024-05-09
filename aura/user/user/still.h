@@ -22,7 +22,7 @@ namespace user
       ::e_align                           m_ealignText;
       enum_still                          m_estill;
       //::rectangle_i32                     m_rectangleText;
-      ::raw::index                               m_iClick;
+      ::collection::index                               m_iClick;
       enum_stock_icon                     m_estockicon;
       ::draw2d::icon_pointer              m_picon;
       ::pointer < ::write_text::text_out_array > m_ptextouta;

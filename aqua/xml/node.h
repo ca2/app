@@ -32,7 +32,7 @@ namespace xml
       //e_node                   m_etype;            // node type
       ::xml::document *          m_pdocument;             // document
       //property_set             m_set;
-      ::raw::index                    m_iFirstXmlNode;
+      ::collection::index                    m_iFirstXmlNode;
 
 
       node();
@@ -62,7 +62,7 @@ namespace xml
       ::xml::document* get_xml_document() const override;
 
 
-      ::raw::index get_index() const;
+      ::collection::index get_index() const;
 
 
       node * first_child();
@@ -71,10 +71,10 @@ namespace xml
       node * first_xml_node() { return m_iFirstXmlNode >= 0 ? m_nodea[m_iFirstXmlNode]->m_pxmlnode : nullptr; }
       const node * first_xml_node() const { return m_iFirstXmlNode >= 0 ? m_nodea[m_iFirstXmlNode]->m_pxmlnode : nullptr; }
 
-      virtual ::raw::index find(node * pnode);
-      virtual ::raw::index find(const ::scoped_string & scopedstrName, ::raw::index iStart = 0);
+      virtual ::collection::index find(node * pnode);
+      virtual ::collection::index find(const ::scoped_string & scopedstrName, ::collection::index iStart = 0);
 
-      virtual ::raw::index find(const ::scoped_string & scopedstrName, const property_set & set, ::raw::index iStart = 0);
+      virtual ::collection::index find(const ::scoped_string & scopedstrName, const property_set & set, ::collection::index iStart = 0);
 
       //virtual bool contains(const property_set & set) const;
       virtual node * get_next_sibling();
@@ -111,7 +111,7 @@ namespace xml
 
       
       node *                  get_child( const char * name);
-      node *                  get_child_with_attribute(const ::scoped_string & scopedstrName, const ::atom & idAttribute, const ::payload & varAttribute, ::raw::index iStart = 0);
+      node *                  get_child_with_attribute(const ::scoped_string & scopedstrName, const ::atom & idAttribute, const ::payload & varAttribute, ::collection::index iStart = 0);
 
       string                  get_simple_path() const;
       index_array             get_indexed_path() const;
@@ -123,7 +123,7 @@ namespace xml
       void                    get_child_indexed_path(index_array & iaPath, const node * pnode) const;
       string                  get_child_simple_path(const node * pnode) const;
       string                  get_child_simple_attr_path(node * pnode, const ::scoped_string & scopedstrAttr);
-      node *                  get_child(const char * name, ::raw::index & iStartPosition);
+      node *                  get_child(const char * name, ::collection::index & iStartPosition);
       string                  get_child_value(const char * name);
       string                  get_child_text(const char * name, disp_option * opt = nullptr);
 
@@ -136,26 +136,26 @@ namespace xml
       node *                  GetChildByAnyAttr(const ::scoped_string & scopedstrName, string_array & straName, string_array & straAttrValue);
       node *                  GetChildByAllAttr(const ::scoped_string & scopedstrName, string_array & straName, string_array & straAttrValue);
 
-      node * get_child_at(::raw::index iIndex);
-      node * get_child_at(const ::scoped_string & scopedstrName, ::raw::index iIndex, ::raw::index iDepth = 0);
-      node * get_child_at_grow(const ::scoped_string & scopedstrName, ::raw::index iIndex);
-      ::raw::count get_child_attr_value(string_array & stra, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, ::raw::index iDepth = 1);
-      ::raw::count erase_child_with_attr(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, ::raw::index iIndex, ::raw::count iCount = 1, ::raw::index iDepth = 1);
+      node * get_child_at(::collection::index iIndex);
+      node * get_child_at(const ::scoped_string & scopedstrName, ::collection::index iIndex, ::collection::index iDepth = 0);
+      node * get_child_at_grow(const ::scoped_string & scopedstrName, ::collection::index iIndex);
+      ::collection::count get_child_attr_value(string_array & stra, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, ::collection::index iDepth = 1);
+      ::collection::count erase_child_with_attr(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, ::collection::index iIndex, ::collection::count iCount = 1, ::collection::index iDepth = 1);
 
       // search node
       node *                  rear_find( const char * name, i32 iDepth = -1);
-      node *                  rear_find(const ::scoped_string & scopedstrName, const property_set & set, ::raw::index iDepth = -1);
+      node *                  rear_find(const ::scoped_string & scopedstrName, const property_set & set, ::collection::index iDepth = -1);
       
-      ::raw::index find_child_with_name_and_value(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrValue);
+      ::collection::index find_child_with_name_and_value(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrValue);
       node * child_with_name_and_value(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrValue);
 
       string plist_get(const ::scoped_string & scopedstrKey);
 
       // modify DOM
-      ::raw::count get_children_count();
-      ::raw::count get_children_count(const ::scoped_string & scopedstrName);
-      ::raw::count get_children_count(const ::scoped_string & scopedstrName, ::raw::index iDepth);
-      node *                  child_at(::raw::index i);
+      ::collection::count get_children_count();
+      ::collection::count get_children_count(const ::scoped_string & scopedstrName);
+      ::collection::count get_children_count(const ::scoped_string & scopedstrName, ::collection::index iDepth);
+      node *                  child_at(::collection::index i);
       //node *                create_node( const char * name = nullptr, const char * value = nullptr );
       node *                  add_child(const ::string & strName = nullptr, const ::scoped_string & scopedstrValue = nullptr);
       node *                  add_child(const ::string & strName, const property_set & set, const ::scoped_string & scopedstrValue = nullptr);
@@ -177,7 +177,7 @@ namespace xml
       //bool find_attribute(const ::atom & atom, TYPE & t) { return m_set.find(atom, t); }
 
       ::property              attribute(const ::atom & atom) { return m_set[atom]; }
-      ::property *            attribute_at(::raw::index i) { return m_set.property_at(i); }
+      ::property *            attribute_at(::collection::index i) { return m_set.property_at(i); }
       ::property *            set_attribute(const property & property) { return set_attribute(property.m_atom, property); }
       ::property *            set_attribute(const ::atom & atom, const ::payload & payload = ::e_type_new);
       bool                    erase_attribute(::property * pproperty) { return erase_attribute(pproperty->m_atom); }

@@ -50,7 +50,7 @@ namespace user
    }
 
 
-   ::raw::count impact_host::get_impact_count()
+   ::collection::count impact_host::get_impact_count()
    {
 
       return m_impactdatamap.get_count();

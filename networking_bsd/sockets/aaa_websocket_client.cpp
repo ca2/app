@@ -838,7 +838,7 @@ namespace networking_bsd
 
             string strChar;
 
-            for (::raw::index i = 0; i < m_memResponse.get_size(); i++)
+            for (::collection::index i = 0; i < m_memResponse.get_size(); i++)
             {
 
                strHexa += ::hex::lower_from(&data[i], 1) + " ";

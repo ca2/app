@@ -52,9 +52,9 @@ namespace experience_tranquillum
       bool _001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab) override;
 
       bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame * pframe) override;
-      //virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem, ::user::toolbar * ptoolbar) override;
-      //virtual void _001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem, ::user::toolbar * ptoolbar);
-      //virtual void _001DrawTranquillumToolbarItem(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem, ::user::toolbar * ptoolbar);
+      //virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar) override;
+      //virtual void _001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar);
+      //virtual void _001DrawTranquillumToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar);
       bool _001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout) override;
 
       //virtual bool get_font(::write_text::font_pointer & sp, ::user::e_font efont, ::user::style_context * pcontext) override;

@@ -44,9 +44,9 @@ void file_put_contents_raw(const ::file::path & path, const ::scoped_string & sc
    if (f == nullptr)
       return;
 
-   ::raw::count iSize = ansi_len(path.c_str());
+   ::collection::count iSize = ansi_len(path.c_str());
 
-   ::raw::count iRead = fwrite(path.c_str(), 1, (size_t)iSize, f);
+   ::collection::count iRead = fwrite(path.c_str(), 1, (size_t)iSize, f);
 
    fclose(f);
 
@@ -60,9 +60,9 @@ void file_add_contents_raw(const ::file::path & path, const ::scoped_string & sc
    if (f == nullptr)
       return;
 
-   ::raw::count iSize = scopedstr.size();
+   ::collection::count iSize = scopedstr.size();
 
-   ::raw::count iRead = fwrite(scopedstr.c_str(), 1, (size_t)iSize, f);
+   ::collection::count iRead = fwrite(scopedstr.c_str(), 1, (size_t)iSize, f);
 
    fclose(f);
 
@@ -165,7 +165,7 @@ u64 file_length_raw(const ::file::path & path)
 
 
 
-//string acmefile()->line(const ::file::path & path, ::raw::index iLine)
+//string acmefile()->line(const ::file::path & path, ::collection::index iLine)
 //{
 //
 //   string str;

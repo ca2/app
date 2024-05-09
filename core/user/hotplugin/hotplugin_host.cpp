@@ -97,7 +97,7 @@ namespace hotplugin
    }
 
 
-   void host::set_memory(void * puchMemory, ::raw::count c)
+   void host::set_memory(void * puchMemory, ::collection::count c)
    {
 
       m_memory.assign(puchMemory, c);
@@ -105,7 +105,7 @@ namespace hotplugin
    }
 
 
-   void host::append_memory(void * puchMemory, ::raw::count c)
+   void host::append_memory(void * puchMemory, ::collection::count c)
    {
 
       m_memory.append(puchMemory, c);
@@ -113,7 +113,7 @@ namespace hotplugin
    }
 
 
-   ::raw::count host::get_memory_length()
+   ::collection::count host::get_memory_length()
    {
 
       return m_memory.get_size();
@@ -121,7 +121,7 @@ namespace hotplugin
    }
 
 
-   ::raw::count host::read_memory(void * puchMemory, ::raw::count c)
+   ::collection::count host::read_memory(void * puchMemory, ::collection::count c)
    {
 
       if (c > m_memory.get_size())
@@ -708,7 +708,7 @@ namespace hotplugin
 
    //   bool bOk = ::hotplugin::plugin::set_window_position(zorder, x, y, cx, cy, nFlags);
 
-   //   for(::raw::index i = 0; i < m_uiptraChild.get_count(); i++)
+   //   for(::collection::index i = 0; i < m_uiptraChild.get_count(); i++)
    //   {
 
    //      m_uiptraChild[i]->on_layout(pgraphics);

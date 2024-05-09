@@ -146,7 +146,7 @@ namespace user
    }
 
 
-   bool tab::set_title(::raw::index iIndex, const ::string & pcsz)
+   bool tab::set_title(::collection::index iIndex, const ::string & pcsz)
 
    {
 
@@ -363,7 +363,7 @@ namespace user
    //}
 
 
-   void tab::erase_tab(::raw::index iIndex, bool bVisible)
+   void tab::erase_tab(::collection::index iIndex, bool bVisible)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -470,7 +470,7 @@ namespace user
    }
 
 
-   void tab::layout_pane(::raw::index iIndex, bool bDisplay)
+   void tab::layout_pane(::collection::index iIndex, bool bDisplay)
    {
 
       auto ppane = get_tab(iIndex);
@@ -615,7 +615,7 @@ namespace user
       if (::is_set(m_pitemClick) && m_pitemClick->m_item.m_iItem >= 0)
       {
 
-         ::raw::index iIndex = get_current_tab_index();
+         ::collection::index iIndex = get_current_tab_index();
 
          if (::is_element(m_pitemClick, e_element_close_tab_button))
          {
@@ -793,7 +793,7 @@ namespace user
    //}
 
 
-   bool tab::get_element_rectangle(::raw::index iIndex, ::rectangle_i32 & rectangle, enum_element eelement)
+   bool tab::get_element_rectangle(::collection::index iIndex, ::rectangle_i32 & rectangle, enum_element eelement)
    {
 
       point_i32 ptOffset(0, 0);
@@ -1084,7 +1084,7 @@ namespace user
    }
 
 
-   ::raw::count tab::get_tab_count()
+   ::collection::count tab::get_tab_count()
    {
 
       return get_data()->m_tabpanea.get_size();
@@ -1092,7 +1092,7 @@ namespace user
    }
 
 
-   ::raw::count tab::get_visible_tab_count()
+   ::collection::count tab::get_visible_tab_count()
    {
 
       return get_data()->m_tabpanea.predicate_get_count([](auto & pane) {return pane->m_bTabPaneVisible; });
@@ -1100,10 +1100,10 @@ namespace user
    }
 
 
-   ::raw::index tab::find_child_pane(::user::interaction * pinteraction)
+   ::collection::index tab::find_child_pane(::user::interaction * pinteraction)
    {
 
-      ::raw::index iIndex = get_data()->m_tabpanea.predicate_find_first([=](auto & pane)
+      ::collection::index iIndex = get_data()->m_tabpanea.predicate_find_first([=](auto & pane)
       {
 
          return pane->m_pplaceholder && pane->m_pplaceholder->is_ascendant_of(pinteraction, true);
@@ -1120,7 +1120,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      ::raw::index iIndex = find_child_pane(pinteraction);
+      ::collection::index iIndex = find_child_pane(pinteraction);
 
       if (iIndex >= 0)
       {
@@ -1551,10 +1551,10 @@ namespace user
    }
 
 
-   ::raw::count tab::restore_tabs()
+   ::collection::count tab::restore_tabs()
    {
 
-      ::raw::count c = 0;
+      ::collection::count c = 0;
 
       KEEP(m_bDisableSavingRestorableTabs);
 
@@ -1599,7 +1599,7 @@ namespace user
    }
 
 
-   void tab::set_current_tab_by_index(::raw::index iIndex)
+   void tab::set_current_tab_by_index(::collection::index iIndex)
 {
        
        information() << "tab::set_current_tab_by_index start : " << iIndex;
@@ -1641,7 +1641,7 @@ namespace user
    }
 
 
-   ::raw::index tab::tab_index(::user::tab_pane * ptabpaneFind)
+   ::collection::index tab::tab_index(::user::tab_pane * ptabpaneFind)
    {
 
       if (::is_null(ptabpaneFind))
@@ -1665,7 +1665,7 @@ namespace user
    }
 
 
-   ::raw::index tab::visible_index_index(::raw::index iVisibleIndex)
+   ::collection::index tab::visible_index_index(::collection::index iVisibleIndex)
    {
 
       if (iVisibleIndex < 0)
@@ -1689,7 +1689,7 @@ namespace user
    }
 
 
-   ::raw::index tab::index_visible_index(::raw::index iIndex)
+   ::collection::index tab::index_visible_index(::collection::index iIndex)
    {
 
       if (iIndex < 0)
@@ -1730,7 +1730,7 @@ namespace user
    }
 
 
-   ::raw::index tab::id_index(const ::atom & atom)
+   ::collection::index tab::id_index(const ::atom & atom)
    {
 
       auto pdata = get_data();
@@ -1748,7 +1748,7 @@ namespace user
    }
 
 
-   ::atom tab::index_id(::raw::index iIndex)
+   ::atom tab::index_id(::collection::index iIndex)
    {
 
       auto pdata = get_data();
@@ -1776,7 +1776,7 @@ namespace user
    }
 
 
-   ::raw::index tab::id_visible_index(const ::atom & atom)
+   ::collection::index tab::id_visible_index(const ::atom & atom)
    {
 
       auto iIndex = id_index(atom);
@@ -1788,7 +1788,7 @@ namespace user
    }
 
 
-   ::atom tab::visible_index_id(::raw::index iVisibleIndex)
+   ::atom tab::visible_index_id(::collection::index iVisibleIndex)
    {
 
       auto iIndex = visible_index_index(iVisibleIndex);
@@ -1825,7 +1825,7 @@ namespace user
    }
 
 
-   ::raw::index tab::get_current_tab_index()
+   ::collection::index tab::get_current_tab_index()
    {
 
       if (get_data()->m_idaSel.get_size() == 1)
@@ -1844,7 +1844,7 @@ namespace user
    }
 
 
-   ::raw::index tab::get_current_visible_tab_index()
+   ::collection::index tab::get_current_visible_tab_index()
    {
 
       auto iIndex = get_current_tab_index();
@@ -1863,7 +1863,7 @@ namespace user
    }
 
 
-   bool tab::_001IsAddTab(::raw::index iIndex)
+   bool tab::_001IsAddTab(::collection::index iIndex)
    {
 
       if (get_data()->m_pcallback != nullptr)
@@ -2004,7 +2004,7 @@ namespace user
    }
 
 
-   void tab::_001OnTabClick(::raw::index iIndex)
+   void tab::_001OnTabClick(::collection::index iIndex)
    {
 
       if (get_data()->m_pcallback != nullptr)
@@ -2023,7 +2023,7 @@ namespace user
    }
 
 
-   void tab::_001OnTabClose(::raw::index iIndex)
+   void tab::_001OnTabClose(::collection::index iIndex)
    {
 
       if (get_data()->m_pcallback != nullptr)
@@ -2063,7 +2063,7 @@ namespace user
    }
 
 
-   bool tab::show_pane(::raw::index iIndex, bool bShow)
+   bool tab::show_pane(::collection::index iIndex, bool bShow)
    {
 
       auto ppane = get_tab(iIndex);
@@ -2084,7 +2084,7 @@ namespace user
    }
 
 
-   bool tab::hide_tab(::raw::index iIndex)
+   bool tab::hide_tab(::collection::index iIndex)
    {
 
       if (iIndex < 0)
@@ -2138,7 +2138,7 @@ namespace user
    }
 
 
-   ::user::interaction * tab::tab_window(::raw::index iIndex)
+   ::user::interaction * tab::tab_window(::collection::index iIndex)
    {
 
       ::pointer<place_holder>pholder = tab_holder(iIndex);
@@ -2155,7 +2155,7 @@ namespace user
    }
 
 
-   ::user::place_holder * tab::tab_holder(::raw::index iIndex)
+   ::user::place_holder * tab::tab_holder(::collection::index iIndex)
    {
 
       auto ppane = get_tab(iIndex);
@@ -2172,7 +2172,7 @@ namespace user
    }
 
 
-   ::user::interaction * tab::pane_window(::raw::index iIndex)
+   ::user::interaction * tab::pane_window(::collection::index iIndex)
    {
 
       ::pointer<place_holder>pholder = pane_holder(iIndex);
@@ -2189,7 +2189,7 @@ namespace user
    }
 
 
-   ::user::place_holder * tab::pane_holder(::raw::index iIndex)
+   ::user::place_holder * tab::pane_holder(::collection::index iIndex)
    {
 
       auto ppane = get_tab(iIndex);
@@ -2206,7 +2206,7 @@ namespace user
    }
 
 
-   ::user::tab_pane * tab::get_tab(::raw::index iIndex)
+   ::user::tab_pane * tab::get_tab(::collection::index iIndex)
    {
 
       if (iIndex < 0)
@@ -2228,7 +2228,7 @@ namespace user
    }
 
 
-   ::user::tab_pane * tab::get_visible_tab(::raw::index iVisibleIndex)
+   ::user::tab_pane * tab::get_visible_tab(::collection::index iVisibleIndex)
    {
 
       auto iIndex = visible_index_index(iVisibleIndex);
@@ -2247,7 +2247,7 @@ namespace user
    }
 
 
-   //::user::tab_pane * tab::get_tab(::raw::index iIndex)
+   //::user::tab_pane * tab::get_tab(::collection::index iIndex)
    //{
 
    //   index iIndex = get_pane(iIndex);
@@ -2264,7 +2264,7 @@ namespace user
    //}
 
 
-//   void tab::set_current_tab_by_index(::raw::index iIndex)
+//   void tab::set_current_tab_by_index(::collection::index iIndex)
 //   {
 ////      if(get_tab_holder(get_current_tab_index()) != nullptr)
 //      //    {
@@ -2365,12 +2365,12 @@ namespace user
    }
 
 
-   //::raw::index tab::id_index(atom atom)
+   //::collection::index tab::id_index(atom atom)
    //{
 
    //   index iIndex = -1;
 
-   //   for(::raw::index iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
+   //   for(::collection::index iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
    //   {
 
    //      if (get_data()->m_tabpanea[iIndex]->m_bTabPaneVisible)
@@ -2395,7 +2395,7 @@ namespace user
 
 
 
-   //atom tab::index_id(::raw::index iIndex)
+   //atom tab::index_id(::collection::index iIndex)
    //{
 
    //   for(i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_count(); iIndex++)
@@ -2439,7 +2439,7 @@ namespace user
 
          }
 
-         ::raw::index iIndex = id_index(atom);
+         ::collection::index iIndex = id_index(atom);
 
          if (iIndex < 0)
          {
@@ -2618,7 +2618,7 @@ namespace user
 
 
 
-   void tab::_001OnDropTab(::raw::index iIndex, enum_position eposition)
+   void tab::_001OnDropTab(::collection::index iIndex, enum_position eposition)
    {
 
       if (get_data()->m_pcallback != nullptr)
@@ -2729,7 +2729,7 @@ namespace user
 
          auto pitem = hit_test(pointCursor, ::user::e_zorder_any);
 
-         ::raw::index iClickTab = get_data()->m_iClickTab;
+         ::collection::index iClickTab = get_data()->m_iClickTab;
 
          if (::is_item(pitem, iClickTab))
          {
@@ -2908,7 +2908,7 @@ namespace user
 
       }
 
-      ::raw::index iIndex = id_index(atom);
+      ::collection::index iIndex = id_index(atom);
 
       if (iIndex < 0)
       {
@@ -2981,7 +2981,7 @@ namespace user
          //if (payloada.get_size() > 0)
          //{
          //   informationf(".");
-         //   for (::raw::index i = 0; i < 200; i++)
+         //   for (::collection::index i = 0; i < 200; i++)
          //   {
 
 
@@ -2991,7 +2991,7 @@ namespace user
          //else
          //{
          //   informationf("o");
-         //   for (::raw::index i = 0; i < 200; i++)
+         //   for (::collection::index i = 0; i < 200; i++)
          //   {
 
 
@@ -3205,10 +3205,10 @@ namespace user
    }
 
 
-   ::raw::count tab::open_tabs(const payload_array & payloada)
+   ::collection::count tab::open_tabs(const payload_array & payloada)
    {
 
-      ::raw::count c = 0;
+      ::collection::count c = 0;
 
       string_array stra;
 
@@ -3240,7 +3240,7 @@ namespace user
    }
 
 
-   void tab::_001CloseTab(::raw::index iIndex)
+   void tab::_001CloseTab(::collection::index iIndex)
    {
 
       erase_tab_by_id(index_id(iIndex));

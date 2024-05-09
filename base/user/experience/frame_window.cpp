@@ -2307,7 +2307,7 @@ namespace experience
 #define ZONEING_COMPARE ::comparison
 
 
-   ::raw::index frame_window::get_best_zoneing(::e_display & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest, bool bPreserveSize)
+   ::collection::index frame_window::get_best_zoneing(::e_display & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleRequest, bool bPreserveSize)
    {
 
       //i64 g_i_get_best_zoneing = 0;
@@ -2329,7 +2329,7 @@ namespace experience
 
       ::rectangle_i32 rectangleWorkspace;
 
-      ::raw::index iBestWorkspace = get_best_workspace(&rectangleWorkspace, rectangle);
+      ::collection::index iBestWorkspace = get_best_workspace(&rectangleWorkspace, rectangle);
 
       if (rectangle.is_empty())
       {

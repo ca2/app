@@ -3,7 +3,7 @@
 //
 //
 //
-//inline ::raw::index BaseSortCompare(const atom & id1, const atom & id2)
+//inline ::collection::index BaseSortCompare(const atom & id1, const atom & id2)
 //{
 //
 //
@@ -25,7 +25,7 @@
 //   critical_section           m_criticalsection;
 //
 //
-//   bool find(const ::scoped_string & scopedstrFind,::raw::index & iIndex);
+//   bool find(const ::scoped_string & scopedstrFind,::collection::index & iIndex);
 //
 //   void free_all();
 //
@@ -65,7 +65,7 @@
 //
 //
 //   void sort();
-//   bool find(const ::scoped_string & scopedstr, ::raw::index & iIndex) const;
+//   bool find(const ::scoped_string & scopedstr, ::collection::index & iIndex) const;
 //
 //
 //public:
@@ -77,7 +77,7 @@
 //   void add(const atom & atom);
 //
 //
-//   bool find(const atom & atom, ::raw::index & iIndex) const;
+//   bool find(const atom & atom, ::collection::index & iIndex) const;
 //
 //   bool contains(const atom & atom) const { index iIndex; return find(atom, iIndex); }
 //

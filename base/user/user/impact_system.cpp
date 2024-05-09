@@ -91,8 +91,8 @@ namespace user
       rpDocMatch = nullptr;
 
       // go through all documents
-      ::raw::count count = get_document_count();
-      for (::raw::index index = 0; index < count; index++)
+      ::collection::count count = get_document_count();
+      for (::collection::index index = 0; index < count; index++)
       {
          ::pointer<::user::document>pdocument = get_document(index);
          if (pdocument->get_file_path() == pszPathName)
@@ -332,8 +332,8 @@ namespace user
 
    bool impact_system::save_all_modified()
    {
-      ::raw::count count = get_document_count();
-      for (::raw::index index = 0; index < count; index++)
+      ::collection::count count = get_document_count();
+      for (::collection::index index = 0; index < count; index++)
       {
          ::pointer<::user::document>pdocument = get_document(index);
          if (!pdocument->save_modified())
@@ -345,7 +345,7 @@ namespace user
    void impact_system::pre_close_all_documents()
    {
 
-      for (::raw::index index = 0; index < get_document_count(); index++)
+      for (::collection::index index = 0; index < get_document_count(); index++)
       {
 
          try
@@ -368,7 +368,7 @@ namespace user
    void impact_system::close_all_documents(bool)
    {
 
-      for (::raw::index index = 0; index < get_document_count(); index++)
+      for (::collection::index index = 0; index < get_document_count(); index++)
       {
 
          try
@@ -398,8 +398,8 @@ namespace user
 
    void impact_system::on_idle()
    {
-      ::raw::count count = get_document_count();
-      for (::raw::index index = 0; index < count; index++)
+      ::collection::count count = get_document_count();
+      for (::collection::index index = 0; index < count; index++)
       {
          ::pointer<::user::document>pdocument = get_document(index);
          ASSERT_KINDOF(::user::document, pdocument);
@@ -431,8 +431,8 @@ namespace user
 //      //if (dumpcontext.GetDepth() > 0)
 //      //{
 //      //   dumpcontext << "\ndocument list = {";
-//      //   ::raw::count count = get_document_count();
-//      //   for (::raw::index index = 0; index < count; index++)
+//      //   ::collection::count count = get_document_count();
+//      //   for (::collection::index index = 0; index < count; index++)
 //      //   {
 //      //      ::pointer<::user::document>pdocument = get_document(index);
 //      //      dumpcontext << (void *)pdocument.m_p;
@@ -447,8 +447,8 @@ namespace user
 //   {
 //      channel::assert_ok();
 //
-//      ::raw::count count = get_document_count();
-//      for (::raw::index index = 0; index < count; index++)
+//      ::collection::count count = get_document_count();
+//      for (::collection::index index = 0; index < count; index++)
 //      {
 //         ::pointer<::user::document>pdocument = get_document(index);
 //         pdocument->assert_ok();
@@ -467,9 +467,9 @@ namespace user
    void impact_system::update_all_impacts(::topic * ptopic)
    {
 
-      ::raw::count count = get_document_count();
+      ::collection::count count = get_document_count();
 
-      for (::raw::index index = 0; index < count; index++)
+      for (::collection::index index = 0; index < count; index++)
       {
 
          ::user::document * pdocument = get_document(index);
@@ -514,9 +514,9 @@ namespace user
    void impact_system::update_all_impacts(::user::impact * pimpact, const ::atom & atom)
    {
 
-      ::raw::count count = get_document_count();
+      ::collection::count count = get_document_count();
 
-      for (::raw::index index = 0; index < count; index++)
+      for (::collection::index index = 0; index < count; index++)
       {
 
          ::user::document * pdocument = get_document(index);

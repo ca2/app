@@ -91,7 +91,7 @@ void popup_button::initialize_popup_button(const ::string & strText, int x, int 
 
    int wSpacing = 25;
 
-   for (::raw::index iButton = m_nanobuttona.get_upper_bound(); iButton >= 0; iButton--)
+   for (::collection::index iButton = m_nanobuttona.get_upper_bound(); iButton >= 0; iButton--)
    {
 
       auto pnanobutton = m_nanobuttona[iButton];

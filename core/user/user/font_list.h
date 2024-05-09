@@ -44,7 +44,7 @@ namespace user
       //virtual void on_font_change();
 
 
-      virtual void on_change_combo_sel(::raw::index iSel) override;
+      virtual void on_change_combo_sel(::collection::index iSel) override;
 
       //void attach_visual_font_list(::write_text::font_list * pdata);
       //virtual void on_update_data(::write_text::font_list * pdata, i32 iHint);
@@ -93,7 +93,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_close);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
-      virtual void ensure_item_visible_by_index(::raw::index iItem) override;
+      virtual void ensure_item_visible_by_index(::collection::index iItem) override;
 
 
       virtual void _001OnTimer(::timer * ptimer) override;

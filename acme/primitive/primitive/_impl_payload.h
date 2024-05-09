@@ -914,7 +914,7 @@ inline void copy(::payload & payload1, const ::payload & payload2)
 //}
 //
 //
-//template < ::raw::count c >
+//template < ::collection::count c >
 //inline ::string operator +(const char(&sz)[c], const ::payload & payload)
 //{
 //

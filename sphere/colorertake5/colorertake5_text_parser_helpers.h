@@ -50,7 +50,7 @@ namespace colorertake5
    {
    public:
       /** Start and end lines of this scheme match */
-      ::raw::index sline, eline;
+      ::collection::index sline, eline;
       /** scheme, matched for this cache entry */
       scheme_impl *scheme;
       /** Particular parent block object, caused this scheme to

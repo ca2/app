@@ -864,7 +864,7 @@ namespace base
    //   return nullptr;
    //}
 
-   //bool session::get_monitor_rectangle(::raw::index iMonitor, ::rectangle_i32 * prectangle)
+   //bool session::get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 * prectangle)
 
    //{
 
@@ -897,7 +897,7 @@ namespace base
 
 
 
-   //::raw::count session::get_monitor_count()
+   //::collection::count session::get_monitor_count()
    //{
 
    //   if (get_document() != nullptr && get_impact() != nullptr)

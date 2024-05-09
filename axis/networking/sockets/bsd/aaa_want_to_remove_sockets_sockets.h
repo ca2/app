@@ -23,7 +23,7 @@ namespace sockets
 #endif
       AjpBaseSocket::Initializer *                 m_pajpaxissocketinit;
 
-      ::raw::count m_countHttpPostBoundary;
+      ::collection::count m_countHttpPostBoundary;
       ::pointer < ::mutex >                                        m_pmutexHttpPostBoundary;
 
       resolv_socket::cache_t                       m_resolvcache;

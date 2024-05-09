@@ -10,7 +10,7 @@ namespace user
    interaction_ptra & interaction_ptra::operator=(const interaction_array & a)
    {
 
-      for (::raw::index i = 0; i < a.interaction_count(); i++)
+      for (::collection::index i = 0; i < a.interaction_count(); i++)
       {
 
          add(a.get_interaction(i));
@@ -90,7 +90,7 @@ namespace user
       else
       {
 
-         for (::raw::index i = get_upper_bound(); i >= 0; i--)
+         for (::collection::index i = get_upper_bound(); i >= 0; i--)
          {
 
             if (element_at(i) == pinteraction)
@@ -146,7 +146,7 @@ namespace user
       else
       {
 
-         for (::raw::index i = 0; i < get_size(); i++)
+         for (::collection::index i = 0; i < get_size(); i++)
          {
 
             if (element_at(i) == pinteraction)
@@ -252,7 +252,7 @@ namespace user
       else
       {
 
-         for (::raw::index i = primitive_last_index(); i >= 0; i--)
+         for (::collection::index i = primitive_last_index(); i >= 0; i--)
          {
 
             if (primitive_at(i) == pprimitive)
@@ -307,7 +307,7 @@ namespace user
       else
       {
 
-         for (::raw::index i = 0; i < primitive_count(); i++)
+         for (::collection::index i = 0; i < primitive_count(); i++)
          {
 
             if (primitive_at(i) == pprimitive)
@@ -350,7 +350,7 @@ namespace user
    interaction_array::interaction_array(const address_array < ::user::interaction * > & ptra)
    {
 
-      for (::raw::index i = 0; i < ptra.get_count(); i++)
+      for (::collection::index i = 0; i < ptra.get_count(); i++)
       {
 
          try
@@ -474,7 +474,7 @@ namespace user
       else
       {
 
-         for (::raw::index i = this->interaction_last_index(); i >= 0; i--)
+         for (::collection::index i = this->interaction_last_index(); i >= 0; i--)
          {
 
             if (interaction_at(i) == pinteraction)
@@ -529,7 +529,7 @@ namespace user
       else
       {
 
-         for (::raw::index i = 0; i < interaction_count(); i++)
+         for (::collection::index i = 0; i < interaction_count(); i++)
          {
 
             if (interaction_at(i) == pinteraction)

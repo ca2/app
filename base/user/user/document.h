@@ -61,8 +61,8 @@ namespace user
       ::base::user * baseuser() override;
 
 
-      ::user::interaction* impact_at(::raw::index iImpact) override;
-      ::raw::count impact_count() override;
+      ::user::interaction* impact_at(::collection::index iImpact) override;
+      ::collection::count impact_count() override;
 
       ::user::interaction_array get_top_level_windows();
 
@@ -98,17 +98,17 @@ namespace user
       
       void add_impact(::user::impact * pimpact);
       void erase_impact(::user::impact * pimpact);
-      virtual ::raw::count get_impact_count() const;
-      virtual ::pointer<::user::impact>get_impact(::raw::index index = 0) const;
+      virtual ::collection::count get_impact_count() const;
+      virtual ::pointer<::user::impact>get_impact(::collection::index index = 0) const;
 
 
 
       template < class T >
-      ::raw::count get_typed_impact_count() const
+      ::collection::count get_typed_impact_count() const
       {
          synchronous_lock synchronouslock(((document *) this)->synchronization());
-         ::raw::count count = 0;
-         for (::raw::index index = 0; index < m_impacta.get_count(); index++)
+         ::collection::count count = 0;
+         for (::collection::index index = 0; index < m_impacta.get_count(); index++)
          {
             if (m_impacta[index].is_null())
             {
@@ -122,7 +122,7 @@ namespace user
       }
 
       template < class T >
-      pointer < T > get_typed_impact(::raw::index indexFind = 0) const
+      pointer < T > get_typed_impact(::collection::index indexFind = 0) const
       {
 
          synchronous_lock synchronouslock(((document *) this)->synchronization());
@@ -134,9 +134,9 @@ namespace user
 
          }
 
-         ::raw::count count = 0;
+         ::collection::count count = 0;
 
-         for (::raw::index index = 0; index < m_impacta.get_count(); index++)
+         for (::collection::index index = 0; index < m_impacta.get_count(); index++)
          {
 
             if(m_impacta[index].is_null())
@@ -179,9 +179,9 @@ namespace user
 
          synchronous_lock synchronouslock(((document *) this)->synchronization());
 
-         ::raw::count count = 0;
+         ::collection::count count = 0;
 
-         for(::raw::index index = 0; index < m_impacta.get_count(); index++)
+         for(::collection::index index = 0; index < m_impacta.get_count(); index++)
          {
 
             if(m_impacta[index].is_null())
@@ -255,7 +255,7 @@ namespace user
 
 
 
-      virtual ::pointer<::user::impact>get_typed_impact(const ::type_atom & typeatom, ::raw::index indexFind = 0);
+      virtual ::pointer<::user::impact>get_typed_impact(const ::type_atom & typeatom, ::collection::index indexFind = 0);
 
       virtual ::pointer<::user::impact>get_typed_impact_with_id(const ::type_atom & typeatom,atom atom);
 

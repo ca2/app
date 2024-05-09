@@ -28,17 +28,17 @@ class CLASS_DECL_ACME tool_task :
 public:
 
 
-   ::raw::index                            m_iThread;
+   ::collection::index                            m_iThread;
    task_group *                     m_pgroup;
    task_tool *                      m_ptool;
    task_tool_item *                 m_pitem;
    ::pointer<manual_reset_event>    m_pevStart;
    ::pointer<manual_reset_event>    m_pevReady;
    void *                           m_pdata;
-   ::raw::index                            m_cCount;
-   ::raw::index                            m_iIndex;
-   ::raw::count                          m_iScan;
-   ::raw::count                          m_iCount;
+   ::collection::index                            m_cCount;
+   ::collection::index                            m_iIndex;
+   ::collection::count                          m_iScan;
+   ::collection::count                          m_iCount;
    ::procedure                      m_procedure;
    ::pointer<matter>                m_pholdref;
 
@@ -108,9 +108,9 @@ public:
    HAVE_ARRAY_OF(task, m_taska, tool_task);
 
    synchronization_array                             m_synchronizationa;
-   ::raw::count                                m_cCount;
-   ::raw::count                                m_cIteration;
-   ::raw::count                                m_cSpan;
+   ::collection::count                                m_cCount;
+   ::collection::count                                m_cIteration;
+   ::collection::count                                m_cSpan;
    ::enum_task_op                       m_etaskop;
    ::pointer<::task_tool>              m_ptool;
    ::enum_priority                           m_epriority;
@@ -122,14 +122,14 @@ public:
 
 
 
-   ::raw::count get_count() const { return m_taska.get_count(); }
+   ::collection::count get_count() const { return m_taska.get_count(); }
    bool is_empty() const { return get_count() <= 0; }
    bool is_full() const { return m_cCount >= m_taska.get_count(); }
    bool fillable() const { return !is_full(); }
-   ::raw::count get_span() const { return m_cSpan; }
+   ::collection::count get_span() const { return m_cSpan; }
    bool nok() const { return is_empty(); };
 
-   void prepare(::enum_task_op eop, ::raw::count cIteration = 0);
+   void prepare(::enum_task_op eop, ::collection::count cIteration = 0);
    virtual void set_ready_to_start();
    ::e_status wait() override;
    virtual void process();
@@ -140,7 +140,7 @@ public:
    void select_tool(task_tool* ptool);
 
    template < typename PRED >
-   inline ::raw::count fork_count_end(::property_object* pparticle, ::raw::count iCount, PRED pred, ::raw::index iStart)
+   inline ::collection::count fork_count_end(::property_object* pparticle, ::collection::count iCount, PRED pred, ::collection::index iStart)
    {
 
       if (iCount <= 0)
@@ -159,7 +159,7 @@ public:
       if (get_count() <= 1)
       {
 
-         for (::raw::index i = iStart; i < iCount; i++)
+         for (::collection::index i = iStart; i < iCount; i++)
          {
 
             pred(i);
@@ -179,9 +179,9 @@ public:
 
       synchronization_array ptra;
 
-      ::raw::count iScan = maximum(1, minimum(iCount - iStart, task_count()));
+      ::collection::count iScan = maximum(1, minimum(iCount - iStart, task_count()));
 
-      for (::raw::index iOrder = 0; iOrder < iScan; iOrder++)
+      for (::collection::index iOrder = 0; iOrder < iScan; iOrder++)
       {
 
          throw ::exception(todo);
@@ -216,12 +216,12 @@ public:
 
 
 template < typename PRED >
-inline ::raw::count fork_count_end(::particle * pparticle, ::raw::count iCount, PRED pred, ::raw::index iStart = 0, ::enum_priority epriority = ::e_priority_none);
+inline ::collection::count fork_count_end(::particle * pparticle, ::collection::count iCount, PRED pred, ::collection::index iStart = 0, ::enum_priority epriority = ::e_priority_none);
 
 
 
 
-//::raw::count task_toolset::get_span() const
+//::collection::count task_toolset::get_span() const
 //{
 //   return m_ptasktools->get_span();
 //}

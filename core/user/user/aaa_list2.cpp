@@ -265,19 +265,19 @@ namespace user
 
          m_pgraphicsextension->get_text_extent(pgraphics, m_strTopText, sizea);
 
-         ::raw::index x = 0;
+         ::collection::index x = 0;
 
-         ::raw::index right = (index)rectangleX.right();
+         ::collection::index right = (index)rectangleX.right();
 
          double y = m_dItemHeight;
 
-         ::raw::index iStart = 0;
+         ::collection::index iStart = 0;
 
-         ::raw::index iNewStart = 0;
+         ::collection::index iNewStart = 0;
 
          //index w;
 
-         for (::raw::index i = 0; i < sizea.get_size(); i++)
+         for (::collection::index i = 0; i < sizea.get_size(); i++)
          {
 
             if ((sizea[i].cx() - x > right)
@@ -290,16 +290,16 @@ namespace user
 
                if (i == 0)
                {
-                  //w = (::raw::index) (sizea[0].cx() - x);
-                  x = (::raw::index)(sizea[0].cx());
+                  //w = (::collection::index) (sizea[0].cx() - x);
+                  x = (::collection::index)(sizea[0].cx());
                   y += sizea[0].cy();
                   iNewStart = 0;
 
                }
                else
                {
-                  //w = (::raw::index) (sizea[i - 1].cx() - x);
-                  x = (::raw::index)(sizea[i - 1].cx());
+                  //w = (::collection::index) (sizea[i - 1].cx() - x);
+                  x = (::collection::index)(sizea[i - 1].cx());
                   y += sizea[i - 1].cy();
                   iNewStart = i - 1;
                }
@@ -380,31 +380,31 @@ namespace user
 
          }
 
-         _001DrawItems(pgraphics, (::raw::index)iItemFirst, (::raw::index)iItemLast);
+         _001DrawItems(pgraphics, (::collection::index)iItemFirst, (::collection::index)iItemLast);
 
       }
 
       if (m_bGroup && m_bLateralGroup)
       {
 
-         ::raw::index iGroupFirst = 0;
-         ::raw::index iGroupFirstTopIndex = 0;
+         ::collection::index iGroupFirst = 0;
+         ::collection::index iGroupFirstTopIndex = 0;
          for (; iGroupFirst < m_nGroupCount; iGroupFirst++)
          {
-            if (iItemFirst >= iGroupFirstTopIndex && iItemFirst < (iGroupFirstTopIndex + _001GetGroupItemCount((::raw::index)iGroupFirst)))
+            if (iItemFirst >= iGroupFirstTopIndex && iItemFirst < (iGroupFirstTopIndex + _001GetGroupItemCount((::collection::index)iGroupFirst)))
                break;
          }
-         ::raw::index iGroupLast = iGroupFirst;
-         ::raw::index iGroupLastTopIndex = iGroupFirstTopIndex;
+         ::collection::index iGroupLast = iGroupFirst;
+         ::collection::index iGroupLastTopIndex = iGroupFirstTopIndex;
          for (; iGroupLast < m_nGroupCount; iGroupLast++)
          {
-            if (iItemLast >= iGroupLastTopIndex && iItemLast < (iGroupLastTopIndex + _001GetGroupItemCount((::raw::index)iGroupLast)))
+            if (iItemLast >= iGroupLastTopIndex && iItemLast < (iGroupLastTopIndex + _001GetGroupItemCount((::collection::index)iGroupLast)))
                break;
          }
 
-         //_001DrawGroups(m_pdrawlistitem, (::raw::index) iGroupFirst, (::raw::index) iGroupLast, (::raw::index) iItemFirst, (::raw::index) iItemLast);
-         //_001DrawGroups(pgraphics, (::raw::index)iGroupFirst, (::raw::index)iGroupLast, (::raw::index)iItemFirst, (::raw::index)iItemLast);
-         _001DrawGroups(pgraphics, (::raw::index)iGroupFirst, (::raw::index)iGroupLast);
+         //_001DrawGroups(m_pdrawlistitem, (::collection::index) iGroupFirst, (::collection::index) iGroupLast, (::collection::index) iItemFirst, (::collection::index) iItemLast);
+         //_001DrawGroups(pgraphics, (::collection::index)iGroupFirst, (::collection::index)iGroupLast, (::collection::index)iItemFirst, (::collection::index)iItemLast);
+         _001DrawGroups(pgraphics, (::collection::index)iGroupFirst, (::collection::index)iGroupLast);
 
       }
 
@@ -456,14 +456,14 @@ namespace user
 
 
 
-   //void list2::_001DrawGroups(draw_list_item * pdrawitem, ::raw::index iGroupFirst, ::raw::index iGroupLast, ::raw::index iItemFirst, ::raw::index iItemLast)
-   void list2::_001DrawGroups(::draw2d::graphics_pointer& pgraphics, ::raw::index iGroupFirst, ::raw::index iGroupLast)
+   //void list2::_001DrawGroups(draw_list_item * pdrawitem, ::collection::index iGroupFirst, ::collection::index iGroupLast, ::collection::index iItemFirst, ::collection::index iItemLast)
+   void list2::_001DrawGroups(::draw2d::graphics_pointer& pgraphics, ::collection::index iGroupFirst, ::collection::index iGroupLast)
    {
 
       //__UNREFERENCED_PARAMETER(iItemFirst);
       //__UNREFERENCED_PARAMETER(iItemLast);
 
-      ::raw::index iGroup;
+      ::collection::index iGroup;
 
       ::rectangle_i32 rectangleX;
 
@@ -555,7 +555,7 @@ namespace user
 
       }
 
-      ::raw::count nItem = _001GetGroupMetaItemCount(pdrawgroup->m_iGroup);
+      ::collection::count nItem = _001GetGroupMetaItemCount(pdrawgroup->m_iGroup);
 
       for (pdrawgroup->m_iItem = 0; pdrawgroup->m_iItem < nItem; pdrawgroup->m_iItem++)
       {
@@ -576,7 +576,7 @@ namespace user
    }
 
 
-   void list2::_001DrawItems(::draw2d::graphics_pointer& pgraphics, ::raw::index iItemFirst, ::raw::index iItemLast)
+   void list2::_001DrawItems(::draw2d::graphics_pointer& pgraphics, ::collection::index iItemFirst, ::collection::index iItemLast)
    {
 
       auto rectangleX = this->rectangle();
@@ -587,9 +587,9 @@ namespace user
 
       bool bHoverFont = false;
 
-      ::raw::index iDisplayItem;
+      ::collection::index iDisplayItem;
 
-      ::raw::index iDisplayIndex = 0;
+      ::collection::index iDisplayIndex = 0;
 
       for (iDisplayItem = iItemFirst; iDisplayItem <= iItemLast; iDisplayItem++, iDisplayIndex++)
       {
@@ -727,7 +727,7 @@ namespace user
       pdrawitem->m_bListItemHover = m_pitemHover &&
          pdrawitem->m_iDisplayItem == m_pitemHover->m_item.m_iItem &&
          (m_eview != impact_icon ||
-            ((m_piconlayout->m_iaDisplayToStrict.get_b((::raw::index)m_pitemHover->m_item.m_iItem) >= 0 && m_piconlayout->m_iaDisplayToStrict.get_b((::raw::index)m_pitemHover->m_item.m_iItem) < m_nItemCount)));
+            ((m_piconlayout->m_iaDisplayToStrict.get_b((::collection::index)m_pitemHover->m_item.m_iItem) >= 0 && m_piconlayout->m_iaDisplayToStrict.get_b((::collection::index)m_pitemHover->m_item.m_iItem) < m_nItemCount)));
 
       if (pdrawitem->m_bListItemHover)
       {
@@ -802,7 +802,7 @@ namespace user
       }
       string str;
 
-      ::raw::index iColumnCount;
+      ::collection::index iColumnCount;
 
       if (m_eview == impact_icon)
       {
@@ -823,7 +823,7 @@ namespace user
 
       //pdrawitem->m_iSubItemRectColumn = -1;
 
-      for (::raw::index iVisible = 0; iVisible < iColumnCount; iVisible++)
+      for (::collection::index iVisible = 0; iVisible < iColumnCount; iVisible++)
       {
 
          auto iSubItem = _001MapOrderToSubItem(iVisible);
@@ -980,7 +980,7 @@ namespace user
    }
 
 
-   ::raw::count list2::_001GetColumnCount()
+   ::collection::count list2::_001GetColumnCount()
    {
 
       return m_pcolumna->get_visible_count();
@@ -1057,7 +1057,7 @@ namespace user
 
       }
 
-      ::raw::count iCount = m_nItemCount;
+      ::collection::count iCount = m_nItemCount;
 
       i32 iMaxWidth = 0;
 
@@ -1066,7 +1066,7 @@ namespace user
       if (m_bSingleColumnMode)
       {
 
-         for (::raw::index i = 0; i < iCount; i++)
+         for (::collection::index i = 0; i < iCount; i++)
          {
 
             iWidth = _001CalcSubItemWidth(pgraphics, i, 0);
@@ -1104,7 +1104,7 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      ::raw::count nCount = _001GetItemCount();
+      ::collection::count nCount = _001GetItemCount();
 
       if (nCount < 0)
       {
@@ -1115,7 +1115,7 @@ namespace user
 
       }
 
-      ::raw::count nGroupCount = 1;
+      ::collection::count nGroupCount = 1;
 
       if (m_bGroup)
       {
@@ -1153,16 +1153,16 @@ namespace user
          else
          {
 
-            ::raw::index iStart = m_pmeshlayout->m_iaDisplayToStrict.get_count();
+            ::collection::index iStart = m_pmeshlayout->m_iaDisplayToStrict.get_count();
 
-            ::raw::index iEnd = m_nItemCount - 1;
+            ::collection::index iEnd = m_nItemCount - 1;
 
-            m_pmeshlayout->m_iaDisplayToStrict.allocate((::raw::count)m_nItemCount);
+            m_pmeshlayout->m_iaDisplayToStrict.allocate((::collection::count)m_nItemCount);
 
-            for (::raw::index iStrict = iStart; iStrict <= iEnd; iStrict++)
+            for (::collection::index iStrict = iStart; iStrict <= iEnd; iStrict++)
             {
 
-               m_pmeshlayout->m_iaDisplayToStrict.set_at((::raw::index)iStrict, (::raw::index)iStrict);
+               m_pmeshlayout->m_iaDisplayToStrict.set_at((::collection::index)iStrict, (::collection::index)iStrict);
 
             }
 
@@ -1200,12 +1200,12 @@ namespace user
 
       m_iTopDisplayIndex = _001CalcDisplayTopIndex();
 
-      ::raw::index iLow = 0;
+      ::collection::index iLow = 0;
 
       for (m_iTopGroup = 0; m_iTopGroup < m_nGroupCount; m_iTopGroup++)
       {
 
-         if (m_iTopDisplayIndex >= iLow && m_iTopDisplayIndex < (iLow + _001GetGroupItemCount((::raw::index)m_iTopGroup)))
+         if (m_iTopDisplayIndex >= iLow && m_iTopDisplayIndex < (iLow + _001GetGroupItemCount((::collection::index)m_iTopGroup)))
          {
 
             break;
@@ -1364,7 +1364,7 @@ namespace user
    }
 
 
-   ::pointer<mesh_item>& list2::get_item(::raw::index iItem)
+   ::pointer<mesh_item>& list2::get_item(::collection::index iItem)
    {
 
       auto& pitem = m_mapItem[iItem];
@@ -1397,7 +1397,7 @@ namespace user
    }
 
 
-   ::pointer<mesh_subitem>& list2::get_subitem(mesh_item* pitem, ::raw::index iSubItem)
+   ::pointer<mesh_subitem>& list2::get_subitem(mesh_item* pitem, ::collection::index iSubItem)
    {
 
       auto& psubitem = pitem->m_mapSubItem[iSubItem];
@@ -1506,15 +1506,15 @@ namespace user
 
       }
 
-      ::raw::index iItemHeight = 0;
+      ::collection::index iItemHeight = 0;
 
-      ::raw::index iItemWidth = 0;
+      ::collection::index iItemWidth = 0;
 
       ::rectangle_i32 rectangle;
 
       string str;
 
-      ::raw::index iColumn;
+      ::collection::index iColumn;
 
       iptr iColumnWidth;
 
@@ -1530,7 +1530,7 @@ namespace user
 
       ::i32 iPosition = 0;
 
-      for (::raw::index iColumn = 0; iColumn < iVisibleColumnCount; iColumn++)
+      for (::collection::index iColumn = 0; iColumn < iVisibleColumnCount; iColumn++)
       {
 
          auto pcolumn = m_pcolumna->get_visible(iColumn);
@@ -1628,7 +1628,7 @@ namespace user
 
          ::user::list_header::item hditem;
 
-         for (::raw::index iOrder = 0; iOrder < m_pcolumna->get_visible_count(); iOrder++)
+         for (::collection::index iOrder = 0; iOrder < m_pcolumna->get_visible_count(); iOrder++)
          {
             iColumn = _001MapOrderToColumn(iOrder);
 
@@ -1662,7 +1662,7 @@ namespace user
    }
 
 
-   bool list2::_001SetColumnWidth(::raw::index iColumn, i32 iWidth)
+   bool list2::_001SetColumnWidth(::collection::index iColumn, i32 iWidth)
    {
 
       if (iColumn < 0)
@@ -1690,7 +1690,7 @@ namespace user
    }
 
 
-   //int list2::_001GetColumnWidth(::raw::index iColumn)
+   //int list2::_001GetColumnWidth(::collection::index iColumn)
    //{
 
    //   auto  * pcolumn = m_pcolumna->get_visible(pitem->m_iColumn);
@@ -1711,7 +1711,7 @@ namespace user
    //}
 
 
-   ::raw::index list2::sub_item_to_order(::raw::index iSubItem)
+   ::collection::index list2::sub_item_to_order(::collection::index iSubItem)
    {
 
       return _001MapColumnToOrder(_001MapSubItemToColumn(iSubItem));
@@ -1719,7 +1719,7 @@ namespace user
    }
 
 
-   ::raw::index list2::_001MapOrderToSubItem(::raw::index iOrder)
+   ::collection::index list2::_001MapOrderToSubItem(::collection::index iOrder)
    {
 
       return _001MapColumnToSubItem(_001MapOrderToColumn(iOrder));
@@ -1727,10 +1727,10 @@ namespace user
    }
 
 
-   ::raw::index list2::_001MapOrderToColumn(::raw::index iOrder)
+   ::collection::index list2::_001MapOrderToColumn(::collection::index iOrder)
    {
 
-      for (::raw::index iColumn = 0; iColumn < m_pcolumna->get_size(); iColumn++)
+      for (::collection::index iColumn = 0; iColumn < m_pcolumna->get_size(); iColumn++)
       {
 
          list_column* pcolumn = m_pcolumna->element_at(iColumn);
@@ -1754,7 +1754,7 @@ namespace user
    }
 
 
-   ::raw::index list2::_001MapColumnToOrder(::raw::index iColumn)
+   ::collection::index list2::_001MapColumnToOrder(::collection::index iColumn)
    {
 
       if (iColumn < 0)
@@ -1780,12 +1780,12 @@ namespace user
 
       }
 
-      return (::raw::index)pcolumn->m_iOrder;
+      return (::collection::index)pcolumn->m_iOrder;
 
    }
 
 
-   ::raw::index list2::_001MapSubItemToColumn(::raw::index iSubItem)
+   ::collection::index list2::_001MapSubItemToColumn(::collection::index iSubItem)
    {
 
       return m_pcolumna->subitem_visible_index(iSubItem);
@@ -1793,7 +1793,7 @@ namespace user
    }
 
 
-   ::raw::index list2::_001MapColumnToSubItem(::raw::index iColumn)
+   ::collection::index list2::_001MapColumnToSubItem(::collection::index iColumn)
    {
 
       ASSERT(iColumn >= 0);
@@ -1804,7 +1804,7 @@ namespace user
    }
 
 
-   void list2::_001DeleteColumn(::raw::index iColumn)
+   void list2::_001DeleteColumn(::collection::index iColumn)
    {
 
       ASSERT(iColumn >= 0);
@@ -1815,7 +1815,7 @@ namespace user
    }
 
 
-   ::raw::count list2::_001GetItemCount()
+   ::collection::count list2::_001GetItemCount()
    {
 
       if (m_pmeshdata.is_null())
@@ -1830,7 +1830,7 @@ namespace user
    }
 
 
-   ::raw::count list2::_001GetGroupCount()
+   ::collection::count list2::_001GetGroupCount()
    {
 
       if (m_pmeshdata.is_null())
@@ -1858,17 +1858,17 @@ namespace user
    //
    //
    /////////////////////////////////////////////////////////////////
-   ::raw::index list2::_001CalcDisplayTopIndex()
+   ::collection::index list2::_001CalcDisplayTopIndex()
    {
 
       auto pointOffset = get_context_offset();
 
-      ::raw::index iItem;
+      ::collection::index iItem;
 
       if (_001DisplayHitTest(point_i32(0, (::i32)(m_bHeaderCtrl ? m_dItemHeight : 0.)), iItem))
       {
 
-         return (::raw::index)iItem;
+         return (::collection::index)iItem;
 
       }
       else
@@ -1893,7 +1893,7 @@ namespace user
    }
 
 
-   ::raw::count list2::_001CalcDisplayItemCount()
+   ::collection::count list2::_001CalcDisplayItemCount()
    {
 
       if (m_eview == impact_list)
@@ -1903,9 +1903,9 @@ namespace user
 
          rectangleImpact = this->rectangle();
 
-         ::raw::index dHeight = (::raw::index)((rectangleImpact.height() / m_dItemHeight) * m_dItemHeight);
+         ::collection::index dHeight = (::collection::index)((rectangleImpact.height() / m_dItemHeight) * m_dItemHeight);
 
-         ::raw::index iWidth = rectangleImpact.width();
+         ::collection::index iWidth = rectangleImpact.width();
 
          int iImpactRowCount = 1;
 
@@ -1966,7 +1966,7 @@ namespace user
 
             }
 
-            ::raw::count iItemCount = (::raw::count)ceil(dHeight / m_dItemHeight);
+            ::collection::count iItemCount = (::collection::count)ceil(dHeight / m_dItemHeight);
 
             return iItemCount;
 
@@ -1974,7 +1974,7 @@ namespace user
 
       }
 
-      ::raw::index iItemCount;
+      ::collection::index iItemCount;
 
       if (m_bFilter1 && (m_eview == impact_list || m_eview == impact_report))
       {
@@ -2008,7 +2008,7 @@ namespace user
 
          iItemLast = -1;
 
-         for (::raw::index i = iItemFirst + 1; i < iItemCount; i++)
+         for (::collection::index i = iItemFirst + 1; i < iItemCount; i++)
          {
 
             pitem->m_iDisplayItem = i;
@@ -2080,7 +2080,7 @@ namespace user
    }
 
 
-   bool list2::_001HitTest_(const ::point_i32& point, ::raw::index & iItem, ::raw::index & iSubItem, ::raw::index & iListItem, ::user::mesh::enum_element& eelement)
+   bool list2::_001HitTest_(const ::point_i32& point, ::collection::index & iItem, ::collection::index & iSubItem, ::collection::index & iListItem, ::user::mesh::enum_element& eelement)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -2094,7 +2094,7 @@ namespace user
    }
 
 
-   bool list2::_001HitTest_(const ::point_i32& point, ::raw::index & iItem, ::raw::index & iSubItem)
+   bool list2::_001HitTest_(const ::point_i32& point, ::collection::index & iItem, ::collection::index & iSubItem)
    {
 
       if (!_001DisplayHitTest(point, iItem, iSubItem))
@@ -2104,14 +2104,14 @@ namespace user
 
       }
 
-      iItem = display_to_strict((::raw::index)iItem);
+      iItem = display_to_strict((::collection::index)iItem);
 
       return true;
 
    }
 
 
-   bool list2::_001HitTest_(const ::point_i32& point, ::raw::index & iItem)
+   bool list2::_001HitTest_(const ::point_i32& point, ::collection::index & iItem)
    {
 
       if (!_001DisplayHitTest(point, iItem))
@@ -2121,14 +2121,14 @@ namespace user
 
       }
 
-      iItem = display_to_strict((::raw::index)iItem);
+      iItem = display_to_strict((::collection::index)iItem);
 
       return true;
 
    }
 
 
-   bool list2::_001DisplayHitTest(const ::point_i32& point, ::raw::index & iItem, ::raw::index & iSubItem, ::raw::index & iListItem, ::user::mesh::enum_element& eelement)
+   bool list2::_001DisplayHitTest(const ::point_i32& point, ::collection::index & iItem, ::collection::index & iSubItem, ::collection::index & iListItem, ::user::mesh::enum_element& eelement)
    {
 
       __UNREFERENCED_PARAMETER(point);
@@ -2142,10 +2142,10 @@ namespace user
    }
 
 
-   bool list2::_001DisplayHitTest(const ::point_i32& point, ::raw::index & iItemParam, ::raw::index & iSubItemParam)
+   bool list2::_001DisplayHitTest(const ::point_i32& point, ::collection::index & iItemParam, ::collection::index & iSubItemParam)
    {
 
-      ::raw::index iItem;
+      ::collection::index iItem;
 
       if (!_001DisplayHitTest(point, iItem))
       {
@@ -2193,7 +2193,7 @@ namespace user
 
       }
 
-      ::raw::index iRight;
+      ::collection::index iRight;
 
       //draw_list_item item(this);
 
@@ -2204,7 +2204,7 @@ namespace user
 
       }
 
-      for (::raw::index iColumn = 0; iColumn < iColumnCount; iColumn++)
+      for (::collection::index iColumn = 0; iColumn < iColumnCount; iColumn++)
       {
 
          //_001GetColumnWidth(&item);
@@ -2240,7 +2240,7 @@ namespace user
    }
 
 
-   bool list2::_001DisplayHitTest(const ::point_i32& point, ::raw::index & iItemParam)
+   bool list2::_001DisplayHitTest(const ::point_i32& point, ::collection::index & iItemParam)
    {
 
       {
@@ -2266,12 +2266,12 @@ namespace user
 
          double iy = point.y() + pointOffset.y() + (m_bHeaderCtrl ? -m_dItemHeight : 0);
 
-         ::raw::index iItem = -1;
+         ::collection::index iItem = -1;
 
          if (m_dItemHeight != 0)
          {
 
-            iItem = (::raw::index)(iy / m_dItemHeight);
+            iItem = (::collection::index)(iy / m_dItemHeight);
 
          }
 
@@ -2332,11 +2332,11 @@ namespace user
 
          }
 
-         ::raw::index dHeight = (::raw::index)((rectangleX.height() / m_dItemHeight) * m_dItemHeight);
+         ::collection::index dHeight = (::collection::index)((rectangleX.height() / m_dItemHeight) * m_dItemHeight);
 
          auto pointOffset = get_context_offset();
 
-         ::raw::index iy;
+         ::collection::index iy;
 
          if (m_iItemWidth <= 0)
          {
@@ -2351,7 +2351,7 @@ namespace user
 
          }
 
-         ::raw::index iItem = -1;
+         ::collection::index iItem = -1;
 
          int iImpactRowCount = 1;
 
@@ -2446,13 +2446,13 @@ namespace user
 
          }
 
-         ::raw::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
+         ::collection::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
-         ::raw::index iItemSize = iIconSize * 2;
+         ::collection::index iItemSize = iIconSize * 2;
 
          auto pointOffset = get_context_offset();
 
-         ::raw::index ix = (index)(point.x() + pointOffset.x());
+         ::collection::index ix = (index)(point.x() + pointOffset.x());
 
          ix = (index)maximum(pointOffset.x(), ix);
 
@@ -2462,7 +2462,7 @@ namespace user
 
          ix /= iItemSize;
 
-         ::raw::index iy = point.y() + pointOffset.y();
+         ::collection::index iy = point.y() + pointOffset.y();
 
          iy = maximum(pointOffset.y(), iy);
 
@@ -2498,9 +2498,9 @@ namespace user
 
       }
 
-      ::raw::index iDisplayItemFirst = 0;
+      ::collection::index iDisplayItemFirst = 0;
 
-      ::raw::index iDisplayItemLast = _001GetGroupItemCount(0) - 1;
+      ::collection::index iDisplayItemLast = _001GetGroupItemCount(0) - 1;
 
       pdrawlistgroup->m_iGroupRectGroup = 0;
 
@@ -2764,7 +2764,7 @@ namespace user
 
          }
 
-         ::raw::index dHeight = (::raw::index)((rectangleX.height() / m_dItemHeight) * m_dItemHeight);
+         ::collection::index dHeight = (::collection::index)((rectangleX.height() / m_dItemHeight) * m_dItemHeight);
 
          if (dHeight != 0 && m_dItemHeight != 0)
          {
@@ -2821,9 +2821,9 @@ namespace user
 
          }
 
-         ::raw::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
+         ::collection::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
-         ::raw::index iItemSize = iIconSize * 2;
+         ::collection::index iItemSize = iIconSize * 2;
 
          pdrawitem->m_rectangleItem.left() = (::i32)(iItemSize * (pdrawitem->m_iDisplayItem % (maximum(1, rectangleX.width() / iItemSize))));
 
@@ -2951,7 +2951,7 @@ namespace user
    }
 
 
-   ::user::interaction* list2::get_subitem_control(::raw::index iSubItem)
+   ::user::interaction* list2::get_subitem_control(::collection::index iSubItem)
    {
 
       auto pcolumn = m_pcolumna->get_by_subitem(iSubItem);
@@ -3502,17 +3502,17 @@ namespace user
 
                auto rectangleX = this->rectangle();
 
-               ::raw::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
+               ::collection::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
-               ::raw::index iItemSize = iIconSize * 2;
+               ::collection::index iItemSize = iIconSize * 2;
 
-               ::raw::count iItemColumnCount = maximum(1, rectangleX.width() / iItemSize);
+               ::collection::count iItemColumnCount = maximum(1, rectangleX.width() / iItemSize);
 
                m_pointLButtonUp = point;
 
-               ::raw::index iDisplayBeg;
+               ::collection::index iDisplayBeg;
 
-               ::raw::index iDisplayEnd;
+               ::collection::index iDisplayEnd;
 
                if (_001DisplayHitTest(m_pointLButtonDown1, iDisplayBeg))
                {
@@ -3520,29 +3520,29 @@ namespace user
                   if (_001DisplayHitTest(point, iDisplayEnd))
                   {
 
-                     ::raw::index iCol1 = iDisplayBeg % iItemColumnCount;
+                     ::collection::index iCol1 = iDisplayBeg % iItemColumnCount;
 
-                     ::raw::index iCol2 = iDisplayEnd % iItemColumnCount;
+                     ::collection::index iCol2 = iDisplayEnd % iItemColumnCount;
 
                      __sort(iCol1, iCol2);
 
-                     ::raw::index iRow1 = iDisplayBeg / iItemColumnCount;
+                     ::collection::index iRow1 = iDisplayBeg / iItemColumnCount;
 
-                     ::raw::index iRow2 = iDisplayEnd / iItemColumnCount;
+                     ::collection::index iRow2 = iDisplayEnd / iItemColumnCount;
 
                      __sort(iRow1, iRow2);
 
                      m_rangeSelection.clear();
 
-                     for (::raw::index i = iRow1; i <= iRow2; i++)
+                     for (::collection::index i = iRow1; i <= iRow2; i++)
                      {
 
-                        for (::raw::index j = iCol1; j <= iCol2; j++)
+                        for (::collection::index j = iCol1; j <= iCol2; j++)
                         {
 
-                           ::raw::index iDisplayItem = i * iItemColumnCount + j;
+                           ::collection::index iDisplayItem = i * iItemColumnCount + j;
 
-                           ::raw::index iStrict = display_to_strict(iDisplayItem);
+                           ::collection::index iStrict = display_to_strict(iDisplayItem);
 
                            if (iStrict >= 0)
                            {
@@ -3587,9 +3587,9 @@ namespace user
 
          pmessage->m_bRet = true;
 
-         ::raw::index iItemEnter;
+         ::collection::index iItemEnter;
 
-         ::raw::index iSubItemEnter;
+         ::collection::index iSubItemEnter;
 
          if (_001DisplayHitTest(point, iItemEnter, iSubItemEnter))
          {
@@ -3629,7 +3629,7 @@ namespace user
 
       set_mouse_capture();
 
-      ::raw::index iDisplayItem;
+      ::collection::index iDisplayItem;
 
       auto point = pmouse->m_point;
 
@@ -3693,7 +3693,7 @@ namespace user
 
       set_mouse_capture();
 
-      ::raw::index iItem;
+      ::collection::index iItem;
 
       if (dynamic_cast <list2*>(this) == nullptr)
       {
@@ -3853,7 +3853,7 @@ namespace user
 
                m_rangeSelection.clear();
 
-               ::raw::index iDisplayItem;
+               ::collection::index iDisplayItem;
 
                if (_001DisplayHitTest(point, iDisplayItem))
                {
@@ -4037,9 +4037,9 @@ namespace user
             if (m_iItemLButtonDown >= 0)
             {
 
-               ::raw::index iDisplayItemDrag = m_iDisplayItemLButtonDown1;
+               ::collection::index iDisplayItemDrag = m_iDisplayItemLButtonDown1;
 
-               ::raw::index iDisplayItemDrop;
+               ::collection::index iDisplayItemDrop;
 
                if (_001DisplayHitTest(point, iDisplayItemDrop))
                {
@@ -4063,7 +4063,7 @@ namespace user
                         for (index a = 0; a <= m_plist->m_piconlayout->m_iaDisplayToStrict.m_iMaxA; a++)
                         {
 
-                           ::raw::index b = m_plist->m_piconlayout->m_iaDisplayToStrict.get_b(a);
+                           ::collection::index b = m_plist->m_piconlayout->m_iaDisplayToStrict.get_b(a);
 
                            stra.add(_001GetItemId(b));
 
@@ -4094,7 +4094,7 @@ namespace user
          if (m_bLButtonDown)
          {
 
-            ::raw::index iDisplayItemLButtonUp = -1;
+            ::collection::index iDisplayItemLButtonUp = -1;
 
             if (_001DisplayHitTest(point, iDisplayItemLButtonUp) && iDisplayItemLButtonUp >= 0)
             {
@@ -4221,7 +4221,7 @@ namespace user
       else
       {
          //      m_rangeSelection.clear();
-         ::raw::index iItem;
+         ::collection::index iItem;
          if (_001DisplayHitTest(point, iItem))
          {
             if (!m_rangeSelection.has_item(iItem))
@@ -4303,7 +4303,7 @@ namespace user
    }
 
 
-   ::raw::index list2::_001GetCurItem()
+   ::collection::index list2::_001GetCurItem()
    {
 
       if (m_rangeSelection.get_item_count() != 1)
@@ -4318,7 +4318,7 @@ namespace user
    }
 
 
-   void list2::_001SelectItem(::raw::index iItem)
+   void list2::_001SelectItem(::collection::index iItem)
    {
 
       m_rangeSelection.clear();
@@ -4354,7 +4354,7 @@ namespace user
 
       range& range = m_rangeSelection;
 
-      for (::raw::index i = 0; i < range.get_item_count(); i++)
+      for (::collection::index i = 0; i < range.get_item_count(); i++)
       {
 
          auto& itemrange = range.ItemAt(i);
@@ -4362,7 +4362,7 @@ namespace user
          if (itemrange.has_sub_item(iFilterSubItem))
          {
 
-            for (::raw::index iLine = itemrange.get_lower_bound(); iLine <= itemrange.get_upper_bound(); iLine++)
+            for (::collection::index iLine = itemrange.get_lower_bound(); iLine <= itemrange.get_upper_bound(); iLine++)
             {
 
                straSelection.add_item(scopedstrDataKey + "/" + ::as_string(iLine));
@@ -4376,11 +4376,11 @@ namespace user
    }
 
 
-   /*index user::range::get_item(::raw::index iItemIndex)
+   /*index user::range::get_item(::collection::index iItemIndex)
    {
-   ::raw::index iFirst = 0;
-   ::raw::index i = 0;
-   ::raw::index iItem;
+   ::collection::index iFirst = 0;
+   ::collection::index i = 0;
+   ::collection::index iItem;
 
    while(true)
    {
@@ -4405,17 +4405,17 @@ namespace user
    return m_iItemEnd - m_iItemStart + 1;
    }*/
 
-   /*index user::range::get_item(::raw::index iItemIndex)
+   /*index user::range::get_item(::collection::index iItemIndex)
    {
    return m_iItemStart + iItemIndex;
    }*/
 
-   //::raw::count user::range::get_item_count() const
+   //::collection::count user::range::get_item_count() const
    //{
    //   return m_itemrangea.get_size();
    //   /*   index iCount = 0;
 
-   //   for(::raw::index i = 0; i < m_itemrangea.get_size(); i++)
+   //   for(::collection::index i = 0; i < m_itemrangea.get_size(); i++)
    //   {
    //   auto & itemrange = m_itemrangea[i];
    //   iCount += itemrange.get_count();
@@ -4424,13 +4424,13 @@ namespace user
    //   return iCount;*/
    //}
 
-   //user::range & user::range::ItemAt(::raw::index iItem)
+   //user::range & user::range::ItemAt(::collection::index iItem)
    //{
    //   return m_itemrangea.element_at(iItem);
    //}
 
 
-   ::raw::count list2::_001GetSelectedItemCount()
+   ::collection::count list2::_001GetSelectedItemCount()
    {
 
       return m_rangeSelection.get_item_count();
@@ -4438,7 +4438,7 @@ namespace user
    }
 
 
-   ::raw::count list2::_001GetSelectedItems(index_array& ia)
+   ::collection::count list2::_001GetSelectedItems(index_array& ia)
    {
 
       return m_rangeSelection.get_items(ia);
@@ -4446,7 +4446,7 @@ namespace user
    }
 
 
-   string list2::_001GetColumnText(::raw::index iColumn)
+   string list2::_001GetColumnText(::collection::index iColumn)
    {
 
       list_column* pcolumn = m_pcolumna->get_visible(iColumn);
@@ -4474,7 +4474,7 @@ namespace user
 
       screen_to_client()(point);
 
-      ::raw::index iDisplayItem = -1;
+      ::collection::index iDisplayItem = -1;
 
       if (!m_bHoverSelect2)
       {
@@ -4485,7 +4485,7 @@ namespace user
             if (iDisplayItem >= 0 && m_iDisplayItemLButtonDown1 == iDisplayItem)
             {
 
-               ::raw::index iItem = display_to_strict(iDisplayItem);
+               ::collection::index iItem = display_to_strict(iDisplayItem);
 
                if (iItem >= 0)
                {
@@ -4549,7 +4549,7 @@ namespace user
    }
 
 
-   ::raw::index list2::HeaderCtrlMapColumnToOrder(::raw::index iColumn)
+   ::collection::index list2::HeaderCtrlMapColumnToOrder(::collection::index iColumn)
    {
 
       if (m_plistheader == nullptr)
@@ -4573,7 +4573,7 @@ namespace user
       __UNREFERENCED_PARAMETER(lparam);
 
 
-      for (::raw::index iColumn = 0; iColumn < m_pcolumna->get_visible_count(); iColumn++)
+      for (::collection::index iColumn = 0; iColumn < m_pcolumna->get_visible_count(); iColumn++)
       {
 
          list_column* pcolumn = m_pcolumna->get_visible(iColumn);
@@ -4657,7 +4657,7 @@ namespace user
       __UNREFERENCED_PARAMETER(lparam);
 
 
-      //    for(::raw::index iColumn = 0; iColumn < m_pcolumna->get_visible_count(); iColumn++)
+      //    for(::collection::index iColumn = 0; iColumn < m_pcolumna->get_visible_count(); iColumn++)
       //  {
       //         list_column & column = m_pcolumna->get_visible(iColumn);
       //pcolumn->m_iWidth = m_plistheader->GetItemWidth(iColumn);
@@ -4672,7 +4672,7 @@ namespace user
    }
 
 
-   void list2::_001ShowSubItem(::raw::index iSubItem, bool bShow)
+   void list2::_001ShowSubItem(::collection::index iSubItem, bool bShow)
    {
 
       string str;
@@ -4691,7 +4691,7 @@ namespace user
 
 
 
-   ::raw::index list_column_array::get_index(const list_column* pcolumn) const
+   ::collection::index list_column_array::get_index(const list_column* pcolumn) const
    {
 
       return find_first(pcolumn);
@@ -4699,12 +4699,12 @@ namespace user
    }
 
 
-   ::raw::index list_column_array::get_visible_index(const list_column* pcolumn) const
+   ::collection::index list_column_array::get_visible_index(const list_column* pcolumn) const
    {
 
-      ::raw::count cVisible = 0;
+      ::collection::count cVisible = 0;
 
-      for (::raw::index i = 0; i < this->get_size(); i++)
+      for (::collection::index i = 0; i < this->get_size(); i++)
       {
 
          list_column* pcolumn = element_at(i);
@@ -4730,12 +4730,12 @@ namespace user
    }
 
 
-   list_column* list_column_array::get_visible(::raw::index iIndex)
+   list_column* list_column_array::get_visible(::collection::index iIndex)
    {
 
-      ::raw::count cVisible = 0;
+      ::collection::count cVisible = 0;
 
-      for (::raw::index i = 0; i < this->get_size(); i++)
+      for (::collection::index i = 0; i < this->get_size(); i++)
       {
 
          list_column* pcolumn = element_at(i);
@@ -4768,7 +4768,7 @@ namespace user
    }
 
 
-   list_column* list_column_array::get_by_index(::raw::index iIndex)
+   list_column* list_column_array::get_by_index(::collection::index iIndex)
    {
 
       if (iIndex < 0)
@@ -4790,15 +4790,15 @@ namespace user
    }
 
 
-   ::raw::index list_column_array::subitem_index(::raw::index iSubItem)
+   ::collection::index list_column_array::subitem_index(::collection::index iSubItem)
    {
 
-      ::raw::index iIndex = -1;
+      ::collection::index iIndex = -1;
 
       if (!m_mapSubItemIndex.lookup(iSubItem, iIndex))
       {
 
-         for (::raw::index i = 0; i < this->get_size(); i++)
+         for (::collection::index i = 0; i < this->get_size(); i++)
          {
 
             list_column* pcolumn = element_at(i);
@@ -4823,12 +4823,12 @@ namespace user
    }
 
 
-   ::raw::index list_column_array::subitem_visible_index(::raw::index iSubItem)
+   ::collection::index list_column_array::subitem_visible_index(::collection::index iSubItem)
    {
 
-      ::raw::count cVisible = 0;
+      ::collection::count cVisible = 0;
 
-      for (::raw::index iIndex = 0; iIndex < this->get_size(); iIndex++)
+      for (::collection::index iIndex = 0; iIndex < this->get_size(); iIndex++)
       {
 
          list_column* pcolumn = element_at(iIndex);
@@ -4861,10 +4861,10 @@ namespace user
    }
 
 
-   ::raw::index list_column_array::control_id_index(const ::atom& atom)
+   ::collection::index list_column_array::control_id_index(const ::atom& atom)
    {
 
-      for (::raw::index iIndex = 0; iIndex < this->get_size(); iIndex++)
+      for (::collection::index iIndex = 0; iIndex < this->get_size(); iIndex++)
       {
 
          list_column* pcolumn = element_at(iIndex);
@@ -4882,10 +4882,10 @@ namespace user
 
    }
 
-   list_column* list_column_array::get_by_subitem(::raw::index iSubItem)
+   list_column* list_column_array::get_by_subitem(::collection::index iSubItem)
    {
 
-      ::raw::index iIndex = subitem_index(iSubItem);
+      ::collection::index iIndex = subitem_index(iSubItem);
 
       return get_by_index(iIndex);
 
@@ -4910,7 +4910,7 @@ namespace user
    }
 
 
-   ::raw::index list_column_array::add(list_column* pcolumn)
+   ::collection::index list_column_array::add(list_column* pcolumn)
    {
 
       ::pointer_array < list_column >::add(pcolumn);
@@ -4935,7 +4935,7 @@ namespace user
 
    }
 
-   ::raw::count list_column_array::get_count()
+   ::collection::count list_column_array::get_count()
    {
       return this->get_size();
    }
@@ -4970,7 +4970,7 @@ namespace user
             //index iKeyVisible = 0;
             //index iKeyNonVisible = 0;
 
-            //for (::raw::index i = 0; i < this->get_size(); i++)
+            //for (::collection::index i = 0; i < this->get_size(); i++)
             //{
             //   list_column * pcolumn = element_at(i);
             //   if (pcolumn->m_bVisible)
@@ -4989,7 +4989,7 @@ namespace user
 
       predicate_sort(list_column::less_SectEndNonVisible);
 
-      for (::raw::index iOrder = 0; iOrder < this->get_size(); iOrder++)
+      for (::collection::index iOrder = 0; iOrder < this->get_size(); iOrder++)
       {
 
          auto pcolumn = this->element_at(iOrder);
@@ -5001,7 +5001,7 @@ namespace user
    }
 
 
-   void list_column_array::erase(::raw::index iColumn)
+   void list_column_array::erase(::collection::index iColumn)
    {
       ASSERT(iColumn >= 0);
       ASSERT(iColumn < this->get_size());
@@ -5011,10 +5011,10 @@ namespace user
       OnChange();
    }
 
-   ::raw::count list_column_array::get_visible_count()
+   ::collection::count list_column_array::get_visible_count()
    {
-      ::raw::index iCount = 0;
-      for (::raw::index i = 0; i < this->get_size(); i++)
+      ::collection::index iCount = 0;
+      for (::collection::index i = 0; i < this->get_size(); i++)
       {
          list_column* pcolumn = element_at(i);
          if (pcolumn == nullptr)
@@ -5028,10 +5028,10 @@ namespace user
       return iCount;
    }
 
-   //::raw::count list_column_array::NonVisibleGetCount()
+   //::collection::count list_column_array::NonVisibleGetCount()
    //{
    //   index iCount = 0;
-   //   for (::raw::index i = 0; i < this->get_size(); i++)
+   //   for (::collection::index i = 0; i < this->get_size(); i++)
    //   {
    //      list_column * pcolumn = element_at(i);
    //      if (!pcolumn->m_bVisible)
@@ -5040,10 +5040,10 @@ namespace user
    //   return iCount;
    //}
 
-   void list_column_array::ShowSubItem(::raw::index iSubItem, bool bShow)
+   void list_column_array::ShowSubItem(::collection::index iSubItem, bool bShow)
    {
 
-      ::raw::index iColumn = subitem_index(iSubItem);
+      ::collection::index iColumn = subitem_index(iSubItem);
 
       if (iColumn >= 0)
       {
@@ -5059,10 +5059,10 @@ namespace user
    }
 
 
-   //index list_column_array::subitem_index(::raw::index iSubItem)
+   //index list_column_array::subitem_index(::collection::index iSubItem)
    //{
 
-   //   for (::raw::index iIndex = 0; iIndex < get_count(); iIndex++)
+   //   for (::collection::index iIndex = 0; iIndex < get_count(); iIndex++)
    //   {
 
    //      list_column * pcolumn = element_at(iIndex);
@@ -5080,7 +5080,7 @@ namespace user
    //}
 
 
-   //index list_column_array::subitem_visible_index(::raw::index iSubItem)
+   //index list_column_array::subitem_visible_index(::collection::index iSubItem)
    //{
    //   list_column * pcolumn = get_by_subitem(iSubItem);
    //   if (pcolumn == nullptr)
@@ -5089,10 +5089,10 @@ namespace user
    //}
 
 
-   //index list_column_array::subitem_visible_index(::raw::index iSubItem)
+   //index list_column_array::subitem_visible_index(::collection::index iSubItem)
    //{
    //   i32 iVisible = 0;
-   //   for (::raw::index iColumn = 0; iColumn < this->get_count(); iColumn++)
+   //   for (::collection::index iColumn = 0; iColumn < this->get_count(); iColumn++)
    //   {
    //      list_column * pcolumn = element_at(iColumn);
    //      if (pcolumn != nullptr && pcolumn->m_bVisible)
@@ -5110,10 +5110,10 @@ namespace user
    //   return -1;
    //}
 
-   //index list_column_array::NonVisibleMapSubItemToColumn(::raw::index iSubItem)
+   //index list_column_array::NonVisibleMapSubItemToColumn(::collection::index iSubItem)
    //{
    //   i32 iNonVisible = 0;
-   //   for (::raw::index iColumn = 0; iColumn < this->get_count(); iColumn++)
+   //   for (::collection::index iColumn = 0; iColumn < this->get_count(); iColumn++)
    //   {
    //      list_column * pcolumn = element_at(iColumn);
    //      if (!pcolumn->m_bVisible)
@@ -5137,7 +5137,7 @@ namespace user
    //void list_column_array::GlobalToVisibleOrder()
    //{
    //   iptr iVisibleCount = get_visible_count();
-   //   for (::raw::index iVisibleKey = 0; iVisibleKey < iVisibleCount; iVisibleKey++)
+   //   for (::collection::index iVisibleKey = 0; iVisibleKey < iVisibleCount; iVisibleKey++)
    //   {
    //      list_column * pcolumn = get_visible(iVisibleKey);
    //      pcolumn->m_iOrder = VisibleGetOrderFromKey(pcolumn->m_iKey);
@@ -5146,7 +5146,7 @@ namespace user
 
    //}
 
-   //void list_column_array::VisibleToGlobalOrder(::raw::index iKeyA, ::raw::index iKeyB)
+   //void list_column_array::VisibleToGlobalOrder(::collection::index iKeyA, ::collection::index iKeyB)
    //{
    //   if (iKeyA == iKeyB)
    //      return;
@@ -5256,7 +5256,7 @@ namespace user
    //   {
    //      if (this->get_size() == get_visible_count())
    //      {
-   //         for (::raw::index iColumn = 0; iColumn < get_visible_count(); iColumn++)
+   //         for (::collection::index iColumn = 0; iColumn < get_visible_count(); iColumn++)
    //         {
    //            list_column * column = get_visible(iColumn);
    //            column->m_iOrder = plist->HeaderCtrlMapColumnToOrder(iColumn);
@@ -5293,7 +5293,7 @@ namespace user
       //
       //      string str;
       //
-      //      for (::raw::index i = 0; i < iCount; i++)
+      //      for (::collection::index i = 0; i < iCount; i++)
       //      {
       //
       //         list_column * pcolumn = element_at(i);
@@ -5314,7 +5314,7 @@ namespace user
       //
       //      string str;
       //
-      //      for (::raw::index i = 0; i < iCount; i++)
+      //      for (::collection::index i = 0; i < iCount; i++)
       //      {
       //
       //         list_column * pcolumn = element_at(i);
@@ -5330,7 +5330,7 @@ namespace user
    }
 
 
-   //index list_column_array::VisibleIndexOrder(::raw::index iIndex)
+   //index list_column_array::VisibleIndexOrder(::collection::index iIndex)
    //{
 
    //   list_column * pcolumn = get_visible(iIndex);
@@ -5347,10 +5347,10 @@ namespace user
    //}
 
 
-   ::raw::index list_column_array::order_index(::raw::index iOrder)
+   ::collection::index list_column_array::order_index(::collection::index iOrder)
    {
 
-      for (::raw::index iIndex = 0; iIndex < this->get_count(); iIndex++)
+      for (::collection::index iIndex = 0; iIndex < this->get_count(); iIndex++)
       {
 
          list_column* column = element_at(iIndex);
@@ -5556,7 +5556,7 @@ namespace user
    }
 
 
-   bool list2::_001IsItemVisible(::raw::index iItem)
+   bool list2::_001IsItemVisible(::collection::index iItem)
    {
 
       draw_list_item item;
@@ -5629,23 +5629,23 @@ namespace user
 
       m_pgraphicsextension->get_text_extent(pgraphics, m_strTopText, sizea);
       auto rectangleX = this->rectangle();
-      ::raw::index x = 0;
-      ::raw::index right = rectangleX.right();
-      ::raw::index y = 0;
-      for (::raw::index i = 0; i < sizea.get_size(); i++)
+      ::collection::index x = 0;
+      ::collection::index right = rectangleX.right();
+      ::collection::index y = 0;
+      for (::collection::index i = 0; i < sizea.get_size(); i++)
       {
          if ((sizea[i].cx() - x > right)
             || i == sizea.get_upper_bound())
          {
             if (i == 0)
             {
-               x = (::raw::index)(sizea[0].cx());
-               y += (::raw::index)(sizea[0].cy());
+               x = (::collection::index)(sizea[0].cx());
+               y += (::collection::index)(sizea[0].cy());
             }
             else
             {
-               x = (::raw::index)(sizea[i - 1].cx());
-               y += (::raw::index)(sizea[i - 1].cy());
+               x = (::collection::index)(sizea[i - 1].cx());
+               y += (::collection::index)(sizea[i - 1].cy());
             }
          }
       }
@@ -5731,7 +5731,7 @@ namespace user
    }
 
 
-   //i32 list2::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem, ::raw::index iSubItem)
+   //i32 list2::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::collection::index iSubItem)
    //{
 
    //   pgraphics->set_font(this, ::e_element_none);
@@ -5743,7 +5743,7 @@ namespace user
    //}
 
 
-   i32 list2::_001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::write_text::font* pfont, ::raw::index iItem, ::raw::index iSubItem)
+   i32 list2::_001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::write_text::font* pfont, ::collection::index iItem, ::collection::index iSubItem)
    {
 
       pgraphics->set(pfont);
@@ -5753,7 +5753,7 @@ namespace user
    }
 
 
-   i32 list2::_001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::raw::index iItem, ::raw::index iSubItem)
+   i32 list2::_001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iItem, ::collection::index iSubItem)
    {
 
       ::image_list::info ii;
@@ -5762,7 +5762,7 @@ namespace user
 
       ::size_f64 size;
 
-      ::raw::index cx = 0;
+      ::collection::index cx = 0;
 
       auto psubitem = get_subitem(iItem, iSubItem);
 
@@ -5801,7 +5801,7 @@ namespace user
 
          m_pgraphicsextension->get_text_extent(pgraphics, psubitem->m_strText, size);
 
-         cx += (::raw::index)(size.cx());
+         cx += (::collection::index)(size.cx());
 
       }
 
@@ -5819,7 +5819,7 @@ namespace user
       return data_key_to_column_key(scopedstrDataKey) >= 0;
    }
 
-   ::raw::index list2::data_key_to_sub_item(const ::scoped_string& scopedstrDataKey)
+   ::collection::index list2::data_key_to_sub_item(const ::scoped_string& scopedstrDataKey)
    {
       list_column* column = m_pcolumna->get_by_config_id(scopedstrDataKey);
       if (column == nullptr)
@@ -5828,7 +5828,7 @@ namespace user
    }
 
 
-   ::raw::index list2::config_id_index(const ::scoped_string& scopedstrDataKey)
+   ::collection::index list2::config_id_index(const ::scoped_string& scopedstrDataKey)
    {
 
       return m_pcolumna->config_id_index(scopedstrDataKey);
@@ -5839,7 +5839,7 @@ namespace user
 
    list_column* list_column_array::get_by_config_id(const ::scoped_string& scopedstrDataKey)
    {
-      ::raw::index iKey = config_id_index(scopedstrDataKey);
+      ::collection::index iKey = config_id_index(scopedstrDataKey);
       if (iKey >= 0)
          return element_at(iKey);
       else
@@ -5848,10 +5848,10 @@ namespace user
    }
 
 
-   ::raw::index list_column_array::config_id_index(const ::scoped_string& scopedstrDataKey)
+   ::collection::index list_column_array::config_id_index(const ::scoped_string& scopedstrDataKey)
    {
 
-      for (::raw::index iIndex = 0; iIndex < this->get_size(); iIndex++)
+      for (::collection::index iIndex = 0; iIndex < this->get_size(); iIndex++)
       {
 
          if (this->element_at(iIndex)->m_strDataKey == scopedstrDataKey)
@@ -5868,12 +5868,12 @@ namespace user
    }
 
 
-   ::raw::index list_column_array::config_id_visible_index(const ::scoped_string& scopedstrDataKey)
+   ::collection::index list_column_array::config_id_visible_index(const ::scoped_string& scopedstrDataKey)
    {
 
-      ::raw::count cVisible = 0;
+      ::collection::count cVisible = 0;
 
-      for (::raw::index iIndex = 0; iIndex < this->get_size(); iIndex++)
+      for (::collection::index iIndex = 0; iIndex < this->get_size(); iIndex++)
       {
 
          if (this->element_at(iIndex)->m_bVisible)
@@ -5898,7 +5898,7 @@ namespace user
 
 
 
-   //void user::range::set(::raw::index iLowerBoundItem, ::raw::index iUpperBoundItem, ::raw::index iLowerBoundSubItem, ::raw::index iUpperBoundSubItem, ::raw::index iLowerBoundListItem, ::raw::index iUpperBoundListItem)
+   //void user::range::set(::collection::index iLowerBoundItem, ::collection::index iUpperBoundItem, ::collection::index iLowerBoundSubItem, ::collection::index iUpperBoundSubItem, ::collection::index iLowerBoundListItem, ::collection::index iUpperBoundListItem)
    //{
 
    //   m_iLowerBound = iLowerBoundItem;
@@ -5910,17 +5910,17 @@ namespace user
    //      iUpperBoundListItem);
    //}
 
-   //void user::range::set_lower_bound(::raw::index iLowerBoundItem)
+   //void user::range::set_lower_bound(::collection::index iLowerBoundItem)
    //{
    //   m_iLowerBound = iLowerBoundItem;
    //}
 
-   //void user::range::set_upper_bound(::raw::index iUpperBoundItem)
+   //void user::range::set_upper_bound(::collection::index iUpperBoundItem)
    //{
    //   m_iUpperBound = iUpperBoundItem;
    //}
 
-   //void user::sub_item_range::set(::raw::index iLowerBoundSubItem, ::raw::index iUpperBoundSubItem, ::raw::index iLowerBoundListItem, ::raw::index iUpperBoundListItem)
+   //void user::sub_item_range::set(::collection::index iLowerBoundSubItem, ::collection::index iUpperBoundSubItem, ::collection::index iLowerBoundListItem, ::collection::index iUpperBoundListItem)
    //{
    //   m_iLowerBound = iLowerBoundSubItem;
    //   m_iUpperBound = iUpperBoundSubItem;
@@ -5929,7 +5929,7 @@ namespace user
    //      iUpperBoundListItem);
    //}
 
-   //void user::list_item_range::set(::raw::index iLowerBoundListItem, ::raw::index iUpperBoundListItem)
+   //void user::list_item_range::set(::collection::index iLowerBoundListItem, ::collection::index iUpperBoundListItem)
    //{
    //   m_iLowerBound = iLowerBoundListItem;
    //   m_iUpperBound = iUpperBoundListItem;
@@ -5937,7 +5937,7 @@ namespace user
    //}
 
 
-   void list2::_001EnsureVisible(::raw::index iItem, ::e_align ealign, bool bRedraw)
+   void list2::_001EnsureVisible(::collection::index iItem, ::e_align ealign, bool bRedraw)
    {
 
       auto pointOffset = get_context_offset();
@@ -5998,7 +5998,7 @@ namespace user
    }
 
 
-   void list2::scroll_to_item(::raw::index iItem, bool bRedraw)
+   void list2::scroll_to_item(::collection::index iItem, bool bRedraw)
    {
 
       if (iItem < m_nItemCount)
@@ -6029,12 +6029,12 @@ namespace user
    }
 
 
-   void list2::_001EnsureVisible(::raw::index iItem, range& range)
+   void list2::_001EnsureVisible(::collection::index iItem, range& range)
    {
 
       auto pointOffset = get_context_offset();
 
-      ::raw::index iyScroll = (index)(pointOffset.y() / maximum(1, m_dItemHeight));
+      ::collection::index iyScroll = (index)(pointOffset.y() / maximum(1, m_dItemHeight));
 
       if (iItem < iyScroll)
       {
@@ -6073,7 +6073,7 @@ namespace user
 
    }
 
-   void list2::_001Highlight(::raw::index iItem, bool bRedraw)
+   void list2::_001Highlight(::collection::index iItem, bool bRedraw)
    {
       m_rangeHighlight.clear();
       item_range itemrange;
@@ -6087,13 +6087,13 @@ namespace user
    }
 
 
-   bool list2::_001OnRemoveItem(::raw::index iItem)
+   bool list2::_001OnRemoveItem(::collection::index iItem)
    {
       __UNREFERENCED_PARAMETER(iItem);
       return false;
    }
 
-   bool list2::_001RemoveItem(::raw::index iItem, bool bRedraw)
+   bool list2::_001RemoveItem(::collection::index iItem, bool bRedraw)
    {
       if (!_001OnRemoveItem(iItem))
          return false;
@@ -6105,7 +6105,7 @@ namespace user
       return true;
    }
 
-   //void user::range::offset(::raw::index iOffset)
+   //void user::range::offset(::collection::index iOffset)
    //{
    //   m_iLowerBound += iOffset;
    //   m_iUpperBound += iOffset;
@@ -6120,7 +6120,7 @@ namespace user
 
       while (range.get_item_count() > 0)
       {
-         ::raw::index iItem = range.ItemAt(0).get_lower_bound();
+         ::collection::index iItem = range.ItemAt(0).get_lower_bound();
          if (!_001RemoveItem(iItem, false))
             break;
          get_selection(range);
@@ -6130,7 +6130,7 @@ namespace user
    }
 
 
-   void list2::_001Select(::raw::index iItem, ::raw::index iSubItem)
+   void list2::_001Select(::collection::index iItem, ::collection::index iSubItem)
    {
       m_rangeSelection.clear();
       item_range itemrange;
@@ -6140,7 +6140,7 @@ namespace user
    }
 
 
-   ::raw::index list2::strict_to_display(::raw::index iStrict)
+   ::collection::index list2::strict_to_display(::collection::index iStrict)
    {
 
       __UNREFERENCED_PARAMETER(iStrict);
@@ -6150,7 +6150,7 @@ namespace user
    }
 
 
-   ::raw::index list2::display_to_strict(::raw::index iDisplay)
+   ::collection::index list2::display_to_strict(::collection::index iDisplay)
    {
 
       if (iDisplay < 0)
@@ -6189,13 +6189,13 @@ namespace user
    {
       m_efilterstate = FilterStateSetup;
 
-      ::raw::index iItemCount = m_nItemCount;
+      ::collection::index iItemCount = m_nItemCount;
 
       if (m_eview == impact_icon)
       {
          m_piaFilterIcon->erase_all();
 
-         for (::raw::index i = 0; i < iItemCount; i++)
+         for (::collection::index i = 0; i < iItemCount; i++)
          {
             m_piaFilterIcon->add(i);
          }
@@ -6204,7 +6204,7 @@ namespace user
       {
          m_piaFilterMesh->erase_all();
 
-         for (::raw::index i = 0; i < iItemCount; i++)
+         for (::collection::index i = 0; i < iItemCount; i++)
          {
             m_piaFilterMesh->add(i);
          }
@@ -6247,13 +6247,13 @@ namespace user
       ASSERT(m_efilterstate == FilterStateSetup
          || m_efilterstate == FilterStateFilter);
 
-      ::raw::index iItemCount = m_nItemCount;
+      ::collection::index iItemCount = m_nItemCount;
 
       if (m_eview == impact_icon)
       {
          m_piconlayout->m_iaDisplayToStrict.erase_all();
 
-         for (::raw::index i = 0; i < iItemCount; i++)
+         for (::collection::index i = 0; i < iItemCount; i++)
          {
             m_piconlayout->m_iaDisplayToStrict.add(i);
          }
@@ -6262,7 +6262,7 @@ namespace user
       {
          m_pmeshlayout->m_iaDisplayToStrict.erase_all();
 
-         for (::raw::index i = 0; i < iItemCount; i++)
+         for (::collection::index i = 0; i < iItemCount; i++)
          {
             m_pmeshlayout->m_iaDisplayToStrict.add(i);
          }
@@ -6294,7 +6294,7 @@ namespace user
    }
 
 
-   void list2::FilterInclude(::raw::index iItem)
+   void list2::FilterInclude(::collection::index iItem)
    {
       ASSERT(m_efilterstate == FilterStateSetup);
       if (m_eview == impact_icon)
@@ -6310,7 +6310,7 @@ namespace user
    void list2::FilterInclude(::i32_array& array)
    {
       ASSERT(m_efilterstate == FilterStateSetup);
-      for (::raw::index i = 0; i < array.get_size(); i++)
+      for (::collection::index i = 0; i < array.get_size(); i++)
       {
          FilterInclude(array[i]);
       }
@@ -6335,7 +6335,7 @@ namespace user
 
       string wstrItem;
 
-      ::raw::index iItemCount = minimum(m_nItemCount, m_iFilter1Step + 1000);
+      ::collection::index iItemCount = minimum(m_nItemCount, m_iFilter1Step + 1000);
 
       //index iFilter1Step;
 
@@ -6346,7 +6346,7 @@ namespace user
       //iFilter1Step < iItemCount;
       //iFilter1Step++)
       //{
-      //   for (::raw::index j = 0; j < m_pcolumna->get_count(); j++)
+      //   for (::collection::index j = 0; j < m_pcolumna->get_count(); j++)
       //   {
       //      list_column * pcolumn = m_pcolumna->get_by_index(j);
       //      item.m_strText.empty();
@@ -6461,7 +6461,7 @@ namespace user
    }
 
 
-   void list2::_001OnListHeaderItemClick(::raw::index iHeaderItem)
+   void list2::_001OnListHeaderItemClick(::collection::index iHeaderItem)
    {
 
       if (!m_bSortEnable)
@@ -6476,7 +6476,7 @@ namespace user
    }
 
 
-   void list2::_001OnListHeaderItemDblClk(::raw::index iHeaderItem)
+   void list2::_001OnListHeaderItemDblClk(::collection::index iHeaderItem)
    {
 
       auto psystem = system()->m_paurasystem;
@@ -6510,11 +6510,11 @@ namespace user
    }
 
 
-   void list2::_001OnSort(::raw::index iSubItem)
+   void list2::_001OnSort(::collection::index iSubItem)
    {
 
-      ::raw::index iFound = -1;
-      for (::raw::index i = 0; i < m_sortinfo.m_itema.get_size(); i++)
+      ::collection::index iFound = -1;
+      for (::collection::index i = 0; i < m_sortinfo.m_itema.get_size(); i++)
       {
          CSortInfoItem& item = m_sortinfo.m_itema[i];
          if (item.m_iSubItem == iSubItem)
@@ -6543,7 +6543,7 @@ namespace user
    }
 
 
-   ::std::strong_ordering list2::_002Compare(::raw::index iItem1, ::raw::index iItem2, ::raw::index iSubItem)
+   ::std::strong_ordering list2::_002Compare(::collection::index iItem1, ::collection::index iItem2, ::collection::index iSubItem)
    {
       //draw_list_item item1(this);
       //draw_list_item item2(this);
@@ -6575,14 +6575,14 @@ namespace user
    }
 
 
-   ::std::strong_ordering list2::_001Compare(::raw::index iItem1, ::raw::index iItem2)
+   ::std::strong_ordering list2::_001Compare(::collection::index iItem1, ::collection::index iItem2)
    {
 
       CSortInfoItem* pitem = nullptr;
 
       ::std::strong_ordering ordering = ::std::strong_ordering::equal;
 
-      for (::raw::index i = 0; i < m_sortinfo.m_itema.get_size(); i++)
+      for (::collection::index i = 0; i < m_sortinfo.m_itema.get_size(); i++)
       {
 
          pitem = &m_sortinfo.m_itema[i];
@@ -6621,7 +6621,7 @@ namespace user
    }
 
 
-   ::std::strong_ordering list2::_001DisplayCompare(::raw::index iDisplayItem1, ::raw::index iDisplayItem2)
+   ::std::strong_ordering list2::_001DisplayCompare(::collection::index iDisplayItem1, ::collection::index iDisplayItem2)
    {
 
       return _001Compare(display_to_strict(iDisplayItem1), display_to_strict(iDisplayItem2));
@@ -6639,7 +6639,7 @@ namespace user
    }
 
 
-   i32 list2::_001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::raw::index iColumn)
+   i32 list2::_001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn)
    {
 
       __UNREFERENCED_PARAMETER(iColumn);
@@ -6648,11 +6648,11 @@ namespace user
 
       i32 iMaxWidth = 0;
 
-      ::raw::count iCount = m_nItemCount;
+      ::collection::count iCount = m_nItemCount;
 
       i32 iWidth;
 
-      for (::raw::index i = 0; i < iCount; i++)
+      for (::collection::index i = 0; i < iCount; i++)
       {
 
          iWidth = _001CalcSubItemWidth(pgraphics, i, 0);
@@ -6671,7 +6671,7 @@ namespace user
    }
 
 
-   void list2::_001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, ::raw::index iColumn)
+   void list2::_001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn)
    {
 
       _001SetColumnWidth(iColumn, _001CalcColumnWidth(pgraphics, iColumn));
@@ -6704,7 +6704,7 @@ namespace user
 
       m_iTopDisplayIndex = _001CalcDisplayTopIndex();
 
-      ::raw::index iLow = 0;
+      ::collection::index iLow = 0;
 
       for (m_iTopGroup = 0; m_iTopGroup < m_nGroupCount; m_iTopGroup++)
       {
@@ -6964,7 +6964,7 @@ namespace user
 
       m_iTopDisplayIndex = _001CalcDisplayTopIndex();
 
-      ::raw::index iLow = 0;
+      ::collection::index iLow = 0;
 
       for (m_iTopGroup = 0; m_iTopGroup < m_nGroupCount; m_iTopGroup++)
       {
@@ -6989,7 +6989,7 @@ namespace user
    }
 
 
-   bool list2::query_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag)
+   bool list2::query_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag)
    {
 
       if (iDisplayDrag < 0)
@@ -7034,7 +7034,7 @@ namespace user
    }
 
 
-   bool list2::do_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag)
+   bool list2::do_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag)
    {
 
       if (m_eview == impact_icon)
@@ -7045,23 +7045,23 @@ namespace user
 
             auto rectangleX = this->rectangle();
 
-            ::raw::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
+            ::collection::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
-            ::raw::index iItemSize = iIconSize * 2;
+            ::collection::index iItemSize = iIconSize * 2;
 
             int iItemColumnCount = (int)maximum(1, rectangleX.width() / iItemSize);
 
-            ::raw::index iCol1 = iDisplayDrag % iItemColumnCount;
+            ::collection::index iCol1 = iDisplayDrag % iItemColumnCount;
 
-            ::raw::index iRow1 = iDisplayDrag / iItemColumnCount;
+            ::collection::index iRow1 = iDisplayDrag / iItemColumnCount;
 
-            ::raw::index iCol2 = iDisplayDrop % iItemColumnCount;
+            ::collection::index iCol2 = iDisplayDrop % iItemColumnCount;
 
-            ::raw::index iRow2 = iDisplayDrop / iItemColumnCount;
+            ::collection::index iRow2 = iDisplayDrop / iItemColumnCount;
 
-            ::raw::index iColOffset = iCol2 - iCol1;
+            ::collection::index iColOffset = iCol2 - iCol1;
 
-            ::raw::index iRowOffset = iRow2 - iRow1;
+            ::collection::index iRowOffset = iRow2 - iRow1;
 
             index_array iaDrop;
 
@@ -7069,24 +7069,24 @@ namespace user
 
             range rangeNew;
 
-            for (::raw::index i = 0; i < m_rangeSelection.get_item_count(); i++)
+            for (::collection::index i = 0; i < m_rangeSelection.get_item_count(); i++)
             {
 
                auto& itemrange = m_rangeSelection.ItemAt(i);
 
-               for (::raw::index iItem = itemrange.m_iLowerBound; iItem <= itemrange.m_iUpperBound; iItem++)
+               for (::collection::index iItem = itemrange.m_iLowerBound; iItem <= itemrange.m_iUpperBound; iItem++)
                {
 
-                  ::raw::index iStrict = display_to_strict(iItem);
+                  ::collection::index iStrict = display_to_strict(iItem);
 
                   if (iStrict >= 0)
                   {
 
-                     ::raw::index iCol = (iItem + iColOffset) % iItemColumnCount;
+                     ::collection::index iCol = (iItem + iColOffset) % iItemColumnCount;
 
-                     ::raw::index iRow = (iItem + iColOffset) / iItemColumnCount + iRowOffset;
+                     ::collection::index iRow = (iItem + iColOffset) / iItemColumnCount + iRowOffset;
 
-                     ::raw::index iDrop = iRow * iItemColumnCount + iCol;
+                     ::collection::index iDrop = iRow * iItemColumnCount + iCol;
 
                      iaDrop.add(iDrop);
 
@@ -7134,7 +7134,7 @@ namespace user
    }
 
 
-   bool list2::defer_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag)
+   bool list2::defer_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag)
    {
 
       if (!query_drop(iDisplayDrop, iDisplayDrag))
@@ -7203,9 +7203,9 @@ namespace user
 
          }
 
-         ::raw::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
+         ::collection::index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy());
 
-         ::raw::index iItemSize = iIconSize * 2;
+         ::collection::index iItemSize = iIconSize * 2;
 
          return ::size_i32((i32)iItemSize, (i32)iItemSize);
 
@@ -7236,8 +7236,8 @@ namespace user
       }
       if (bAutoArrange)
       {
-         ::raw::index iMaxStrict = m_piconlayout->m_iaDisplayToStrict.get_max_b();
-         for (::raw::index iStrict = 0; iStrict <= iMaxStrict; iStrict++)
+         ::collection::index iMaxStrict = m_piconlayout->m_iaDisplayToStrict.get_max_b();
+         for (::collection::index iStrict = 0; iStrict <= iMaxStrict; iStrict++)
          {
             m_piconlayout->m_iaDisplayToStrict.set(iStrict, iStrict);
          }
@@ -7267,7 +7267,7 @@ namespace user
       pcommand->enable();
    }
 
-   bool list2::is_valid_display_item(::raw::index iDisplayItem)
+   bool list2::is_valid_display_item(::collection::index iDisplayItem)
    {
       if (iDisplayItem < 0)
          return false;
@@ -7276,7 +7276,7 @@ namespace user
       return true;
    }
 
-   bool list2::is_valid_strict_item(::raw::index iStrictItem)
+   bool list2::is_valid_strict_item(::collection::index iStrictItem)
    {
       if (iStrictItem < 0)
          return false;
@@ -7357,7 +7357,7 @@ namespace user
 
       m_rangeSelection.clear();
 
-      for (::raw::index i = 0; i < iaSel.get_count(); i++)
+      for (::collection::index i = 0; i < iaSel.get_count(); i++)
       {
 
          item_range itemrange;
@@ -7394,10 +7394,10 @@ namespace user
    void list2::get_cur_sel(index_array& iaSel)
    {
 
-      for (::raw::index i = 0; i < m_rangeSelection.get_item_count(); i++)
+      for (::collection::index i = 0; i < m_rangeSelection.get_item_count(); i++)
       {
 
-         for (::raw::index iItem = m_rangeSelection.ItemAt(i).get_lower_bound(); iItem <= m_rangeSelection.ItemAt(i).get_upper_bound(); iItem++)
+         for (::collection::index iItem = m_rangeSelection.ItemAt(i).get_lower_bound(); iItem <= m_rangeSelection.ItemAt(i).get_upper_bound(); iItem++)
          {
 
             iaSel.add_unique(iItem);
@@ -7409,7 +7409,7 @@ namespace user
    }
 
 
-   ::raw::count list2::_001GetGroupItemCount(::raw::index iGroup)
+   ::collection::count list2::_001GetGroupItemCount(::collection::index iGroup)
    {
 
       __UNREFERENCED_PARAMETER(iGroup);
@@ -7419,7 +7419,7 @@ namespace user
    }
 
 
-   i32 list2::_001GetGroupHeight(::raw::index iGroup)
+   i32 list2::_001GetGroupHeight(::collection::index iGroup)
    {
 
       i32 iListHeight = (i32)(_001GetGroupItemCount(iGroup) * m_dItemHeight);
@@ -7429,7 +7429,7 @@ namespace user
    }
 
 
-   ::raw::count list2::_001GetGroupMetaItemCount(::raw::index iGroup)
+   ::collection::count list2::_001GetGroupMetaItemCount(::collection::index iGroup)
    {
       if (m_pmeshdata != nullptr)
       {
@@ -7575,7 +7575,7 @@ namespace user
    }
 
 
-   //::raw::index list2::item_index(::user::interaction * pinteractionControl)
+   //::collection::index list2::item_index(::user::interaction * pinteractionControl)
    //{
 
    //   m_
@@ -7583,7 +7583,7 @@ namespace user
    //}
 
 
-   ::raw::index list2::subitem_index(::user::interaction* pinteractionControl)
+   ::collection::index list2::subitem_index(::user::interaction* pinteractionControl)
    {
 
       auto pcolumn = m_pcolumna->get_by_control(pinteractionControl);
@@ -7600,14 +7600,14 @@ namespace user
    }
 
 
-   //::raw::index list2::list_item_index(::user::interaction * pinteractionControl)
+   //::collection::index list2::list_item_index(::user::interaction * pinteractionControl)
    //{
 
 
    //}
 
 
-   ::raw::index list2::column_index(::user::interaction* pinteractionControl)
+   ::collection::index list2::column_index(::user::interaction* pinteractionControl)
    {
 
       auto pcolumn = m_pcolumna->get_by_control(pinteractionControl);
@@ -7682,7 +7682,7 @@ namespace user
          stra.add_lines(str);
          for (index a = 0; a < stra.get_size(); a++)
          {
-            ::raw::index b = _001GetItemById(stra[a]);
+            ::collection::index b = _001GetItemById(stra[a]);
             if (b >= 0 && b < m_nItemCount)
             {
                m_piconlayout->m_iaDisplayToStrict.set(a, b);

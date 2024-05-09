@@ -551,11 +551,11 @@
 
 //      stream stream(pfile, FIRST_VERSION);
 
-//      ::raw::count count = a.get_count();
+//      ::collection::count count = a.get_count();
 
 //      stream.write(count);
 
-//      for (::raw::index index = 0; index < count; index++)
+//      for (::collection::index index = 0; index < count; index++)
 //      {
 
 //         stream << a.element_at(index);
@@ -607,7 +607,7 @@
 
 //      stream istream(pfile, FIRST_VERSION);
 
-//      ::raw::count count;
+//      ::collection::count count;
 
 //      istream.read(count);
 
@@ -620,7 +620,7 @@
 
 //      a.allocate(count);
 
-//      for (::raw::index index = 0; index < count; index++)
+//      for (::collection::index index = 0; index < count; index++)
 //      {
 
 //         istream >> a.element_at(index);

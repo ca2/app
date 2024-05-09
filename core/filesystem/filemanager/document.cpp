@@ -496,7 +496,7 @@ namespace filemanager
       if (ptabimpact.is_set())
       {
 
-         for (::raw::index i = 0; i < ptabimpact->get_tab_count(); i++)
+         for (::collection::index i = 0; i < ptabimpact->get_tab_count(); i++)
          {
 
             ::user::tab_pane * ptabpane = ptabimpact->get_tab(i);

@@ -90,7 +90,7 @@ namespace nanoui
 
    }
 
-   //::raw::count Widget::get_child_as_item_count()
+   //::collection::count Widget::get_child_as_item_count()
    //{
 
    //   return m_children.size();
@@ -98,7 +98,7 @@ namespace nanoui
    //}
 
 
-   //item_pointer Widget::get_child_as_item(::raw::index iIndex)
+   //item_pointer Widget::get_child_as_item(::collection::index iIndex)
    //{
 
    //   return m_children[iIndex];
@@ -450,11 +450,11 @@ namespace nanoui
 
       bool bHandled = false;
 
-      ::raw::count iCount = 0;
+      ::collection::count iCount = 0;
 
-      ::raw::index iStart = 0;
+      ::collection::index iStart = 0;
 
-      ::raw::index iEnd = (::raw::index)m_children.size() - 1;
+      ::collection::index iEnd = (::collection::index)m_children.size() - 1;
 
       //if (m_iHoverCandidateChildStart >= 0 && m_iHoverCandidateChildEnd >= m_iHoverCandidateChildStart)
       //{
@@ -613,7 +613,7 @@ namespace nanoui
    }
 
 
-   void Widget::insert_child_at(::raw::index iIndex, Widget* pwidget)
+   void Widget::insert_child_at(::collection::index iIndex, Widget* pwidget)
    {
 
       if (::is_null(pwidget))
@@ -711,7 +711,7 @@ namespace nanoui
    }
 
 
-   void Widget::erase_child_at(::raw::index iIndex)
+   void Widget::erase_child_at(::collection::index iIndex)
    {
 
       if (iIndex < 0 || iIndex >= (int)m_children.size())
@@ -1001,9 +1001,9 @@ namespace nanoui
 
             //}
 
-            //::raw::index iStart = 0;
+            //::collection::index iStart = 0;
 
-            //::raw::index iEnd = (::raw::index)m_children.size() - 1;
+            //::collection::index iEnd = (::collection::index)m_children.size() - 1;
 
             //if (m_iHoverCandidateChildStart >= 0 && m_iHoverCandidateChildEnd >= m_iHoverCandidateChildStart)
             //{
@@ -1038,7 +1038,7 @@ namespace nanoui
 
       pcontext->translate((float)m_pos.x(), (float)m_pos.y());
 
-      for (::raw::index i = 0; i < m_children.size(); i++)
+      for (::collection::index i = 0; i < m_children.size(); i++)
       {
 
          auto pchild = m_children[i];

@@ -280,7 +280,7 @@ namespace account
    void network_authenticator::get_account_server(credentials * pcredentials)
    {
 
-      for (::raw::index iTry = 0; iTry < 2; iTry++)
+      for (::collection::index iTry = 0; iTry < 2; iTry++)
       {
 
          _get_account_server(pcredentials);
@@ -561,7 +561,7 @@ namespace account
 //
 //      straSomeBrothersAndSisters.explode(";",strSomeBrothersAndSisters);
 //
-//      for (::raw::index i = 0; i < straSomeBrothersAndSisters.get_count(); i++)
+//      for (::collection::index i = 0; i < straSomeBrothersAndSisters.get_count(); i++)
 //      {
 //
 //         string strX = straSomeBrothersAndSisters[i];

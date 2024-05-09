@@ -103,16 +103,16 @@ namespace acme
 
          const ::scoped_string & scopedstrMessage = (const char *)pdata;
 
-         ::raw::count c = len;
+         ::collection::count c = len;
 
-         ::raw::count cSend;
+         ::collection::count cSend;
 
          data_struct data;
          data.mtype        = 20170101;
          data.request      = I32_MINIMUM;
          data.size         = (i32)ansi_length(pszMessage);
 
-         ::raw::count cPos = 0;
+         ::collection::count cPos = 0;
 
          while(c > 0)
          {

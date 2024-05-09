@@ -61,9 +61,9 @@ namespace html
          virtual bool has_link();
          virtual string link();
 
-         virtual ::raw::index find(element * pelemental);
+         virtual ::collection::index find(element * pelemental);
 
-         virtual element * get_sibling(::raw::index i);
+         virtual element * get_sibling(::collection::index i);
 
          virtual element * get_next_sibling();
          virtual element * get_first_sibling();

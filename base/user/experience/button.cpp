@@ -146,7 +146,7 @@ namespace experience
 //
 //            ::rectangle_i32 rectangleFocus;
 //
-//            ::raw::index i = 0;
+//            ::collection::index i = 0;
 //
 //            while (pinteraction != nullptr)
 //            {

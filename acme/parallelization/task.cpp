@@ -2229,7 +2229,7 @@ CLASS_DECL_ACME bool predicate_Sleep(int iTime, ::function < bool(void) > functi
 
       iTime /= 100;
 
-      for (::raw::index i = 0; i < iTime; i++)
+      for (::collection::index i = 0; i < iTime; i++)
       {
 
          preempt(100_ms);
@@ -2344,7 +2344,7 @@ namespace platform
 {
 
    
-   ::raw::index platform::task_index(itask_t itask, bool bAddIfNotInList)
+   ::collection::index platform::task_index(itask_t itask, bool bAddIfNotInList)
    {
 
       critical_section_lock sl(&m_criticalsectionTask);
@@ -2365,7 +2365,7 @@ namespace platform
 }
 
 
-::raw::index task_index(itask_t itask)
+::collection::index task_index(itask_t itask)
 {
 
    return ::acme::get()->m_pplatform->task_index(itask);
@@ -2373,7 +2373,7 @@ namespace platform
 }
 
 
-::raw::index task_index()
+::collection::index task_index()
 {
 
    return task_index(::current_itask());

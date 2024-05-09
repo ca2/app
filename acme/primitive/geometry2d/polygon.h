@@ -420,7 +420,7 @@ const ::rectangle_type < NUMBER > & polygon_type < NUMBER >::bounding_rect() con
 //      ((polygon_base *)this)->m_rectangleBounding.right() = this->element_at(0).x();
 //      ((polygon_base *)this)->m_rectangleBounding.bottom() = this->element_at(0).y();
 //
-//      for (::raw::index i = 1; i < this->get_count(); i++)
+//      for (::collection::index i = 1; i < this->get_count(); i++)
 //      {
 //
 //         ((polygon_base *)this)->m_rectangleBounding.left() = minimum(m_rectangleBounding.left(), this->element_at(i).x());
@@ -455,9 +455,9 @@ bool polygon_type < NUMBER >::overlaps(const polygon_type & polygon) const
 
       }
 
-      ::raw::count c1 = this->get_count();
+      ::collection::count c1 = this->get_count();
 
-      ::raw::count c2 = polygon.get_count();
+      ::collection::count c2 = polygon.get_count();
 
       for (int i = 0; i < c1; i++)
       {
@@ -513,9 +513,9 @@ template < primitive_number NUMBER >
 polygon_type < NUMBER > polygon_type < NUMBER >::convex_intersection(const polygon_type & polygon) const
 {
 
-   ::raw::count c1 = this->get_count();
+   ::collection::count c1 = this->get_count();
 
-   ::raw::count c2 = polygon.get_count();
+   ::collection::count c2 = polygon.get_count();
 
    polygon_type polygonResult;
 

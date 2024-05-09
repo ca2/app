@@ -432,12 +432,12 @@ namespace draw2d
       virtual ::size_f64 scale_window_ext(double xNum, double xDenom, double yNum, double yDenom);
 
       // Coordinate Functions
-      virtual void DPtoLP(::point_f64 * ppoint, ::raw::count nCount = 1);
+      virtual void DPtoLP(::point_f64 * ppoint, ::collection::count nCount = 1);
       virtual void DPtoLP(::rectangle_f64 * prectd);
 
       virtual void DPtoLP(::size_f64 * pSize);
 
-      virtual void LPtoDP(::point_f64 * ppoint, ::raw::count nCount = 1);
+      virtual void LPtoDP(::point_f64 * ppoint, ::collection::count nCount = 1);
       virtual void LPtoDP(::rectangle_f64 * prectd);
 
       virtual void LPtoDP(::size_f64 * pSize);
@@ -582,7 +582,7 @@ namespace draw2d
       
       
       virtual void polyline(const ::point_f64_array & pointa);
-      virtual void polyline(const ::point_f64 * ppoints, ::raw::count nCount);
+      virtual void polyline(const ::point_f64 * ppoints, ::collection::count nCount);
 
 
 //      virtual void arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
@@ -598,14 +598,14 @@ namespace draw2d
       //virtual i32 GetArcDirectdion();
       //virtual i32 SetArcDirectdion(i32 nArcDirectdion);
 
-      virtual void polydraw(const ::point_f64 * ppoints, const ::u8* pTypes, ::raw::count nCount);
+      virtual void polydraw(const ::point_f64 * ppoints, const ::u8* pTypes, ::collection::count nCount);
 
-      virtual void polyline_to(const ::point_f64 * ppoints, ::raw::count nCount);
-      virtual void poly_polyline(const ::point_f64 * ppoints, const int * pPolyPoints, ::raw::count nCount);
+      virtual void polyline_to(const ::point_f64 * ppoints, ::collection::count nCount);
+      virtual void poly_polyline(const ::point_f64 * ppoints, const int * pPolyPoints, ::collection::count nCount);
 
 
-      virtual void poly_bezier(const ::point_f64 * ppoints, ::raw::count nCount);
-      virtual void poly_bezier_to(const ::point_f64 * ppoints, ::raw::count nCount);
+      virtual void poly_bezier(const ::point_f64 * ppoints, ::collection::count nCount);
+      virtual void poly_bezier_to(const ::point_f64 * ppoints, ::collection::count nCount);
 
 
       virtual void frame_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush* pbrush);
@@ -665,19 +665,19 @@ namespace draw2d
       virtual void Pie(const ::rectangle_f64 & rectangle, const ::point_f64 & pointStart, const ::point_f64 & pointEnd);
 
 
-      //virtual void polygon_i32(const ::point_f64 * ppoints, ::raw::count nCount);
-      virtual void polygon(const ::point_f64 * ppoints, ::raw::count nCount);
-      //virtual void draw_polygon(const ::point_f64 * ppoints, ::raw::count nCount);
-      virtual void draw_polygon(const ::point_f64 * ppoints, ::raw::count nCount);
+      //virtual void polygon_i32(const ::point_f64 * ppoints, ::collection::count nCount);
+      virtual void polygon(const ::point_f64 * ppoints, ::collection::count nCount);
+      //virtual void draw_polygon(const ::point_f64 * ppoints, ::collection::count nCount);
+      virtual void draw_polygon(const ::point_f64 * ppoints, ::collection::count nCount);
       //virtual void fill_polygon(const ::point_f64 * ppoints,count nCount);
-      virtual void fill_polygon(const ::point_f64 * ppoints, ::raw::count nCount);
+      virtual void fill_polygon(const ::point_f64 * ppoints, ::collection::count nCount);
 
-      //virtual void poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, ::raw::count nCount);
-      virtual void poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, ::raw::count nCount);
-      //virtual void draw_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, ::raw::count nCount);
-      virtual void draw_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, ::raw::count nCount);
-      //virtual void fill_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, ::raw::count nCount);
-      virtual void fill_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, ::raw::count nCount);
+      //virtual void poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, ::collection::count nCount);
+      virtual void poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, ::collection::count nCount);
+      //virtual void draw_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, ::collection::count nCount);
+      virtual void draw_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, ::collection::count nCount);
+      //virtual void fill_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, ::collection::count nCount);
+      virtual void fill_poly_polygon(const ::point_f64 * ppoints, const i32 * pPolyCounts, ::collection::count nCount);
 
 
       virtual void rectangle(const ::rectangle_f64 & rectangle);
@@ -876,9 +876,9 @@ namespace draw2d
 
       //virtual void ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const ::string & str, i32 * lpDxWidths);
 
-      //virtual ::size_f64 TabbedTextOut(double x, double y, const ::string & pszString, strsize nCount, ::raw::count nTabPositions, i32 * lpnTabStopPositions, i32 nTabOrigin);
+      //virtual ::size_f64 TabbedTextOut(double x, double y, const ::string & pszString, strsize nCount, ::collection::count nTabPositions, i32 * lpnTabStopPositions, i32 nTabOrigin);
 
-      //virtual ::size_f64 TabbedTextOut(double x, double y, const ::string & str, ::raw::count nTabPositions, i32 * pnTabStopPositions, i32 nTabOrigin);
+      //virtual ::size_f64 TabbedTextOut(double x, double y, const ::string & str, ::collection::count nTabPositions, i32 * pnTabStopPositions, i32 nTabOrigin);
 
 
       void TextOutRaw(double x, double y, const ::scoped_string & scopedstr) override;
@@ -907,7 +907,7 @@ namespace draw2d
 #endif
 
 
-      virtual ::raw::count get_character_extent(f64_array & daLeft, f64_array & daRight, const ::string & str, strsize iStart = 0, strsize iCount = -1);
+      virtual ::collection::count get_character_extent(f64_array & daLeft, f64_array & daRight, const ::string & str, strsize iStart = 0, strsize iCount = -1);
 
       //virtual ::size_f64 get_text_extent(const ::scoped_string & scopedstrString);
 
@@ -927,13 +927,13 @@ namespace draw2d
       //virtual ::size_f64 GetOutputTextExtent(const ::scoped_string & scopedstrString, strsize nCount);
 
       //virtual ::size_f64 GetOutputTextExtent(const ::string & str);
-      //virtual ::size_f64 GetTabbedTextExtent(const ::scoped_string & scopedstrString, strsize nCount, ::raw::count nTabPositions, i32 * lpnTabStopPositions);
+      //virtual ::size_f64 GetTabbedTextExtent(const ::scoped_string & scopedstrString, strsize nCount, ::collection::count nTabPositions, i32 * lpnTabStopPositions);
 
-      //virtual ::size_f64 GetTabbedTextExtent(const ::string & str, ::raw::count nTabPositions, i32 * pnTabStopPositions);
+      //virtual ::size_f64 GetTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, i32 * pnTabStopPositions);
 
-      //virtual ::size_f64 GetOutputTabbedTextExtent(const ::string & pszString, strsize nCount, ::raw::count nTabPositions, i32 * lpnTabStopPositions);
+      //virtual ::size_f64 GetOutputTabbedTextExtent(const ::string & pszString, strsize nCount, ::collection::count nTabPositions, i32 * lpnTabStopPositions);
 
-      //virtual ::size_f64 GetOutputTabbedTextExtent(const ::string & str, ::raw::count nTabPositions, i32 * pnTabStopPositions);
+      //virtual ::size_f64 GetOutputTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, i32 * pnTabStopPositions);
 
       //virtual void GrayString(::draw2d::brush* pBrush, void (CALLBACK* pfnOutput)(HDC, lparam, i32), lparam lpData, i32 nCount, double x, double y, i32 nWidth, i32 nHeight);
 
@@ -1076,7 +1076,7 @@ namespace draw2d
       virtual void widen_path();
       virtual float GetMiterLimit();
       virtual void SetMiterLimit(float fMiterLimit);
-//      virtual i32 GetPath(::point_f64 * ppoint, ::u8 * pTypes, ::raw::count nCount);
+//      virtual i32 GetPath(::point_f64 * ppoint, ::u8 * pTypes, ::collection::count nCount);
 
       virtual void SelectClipPath(i32 nMode);
 

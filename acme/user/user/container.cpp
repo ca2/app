@@ -81,7 +81,7 @@ namespace user
    }
 
 
-   //::raw::count acme_container::item_count() const
+   //::collection::count acme_container::item_count() const
    //{
 
    //   if (!m_pitema)
@@ -111,7 +111,7 @@ namespace user
    //}
 
 
-   //::item * acme_container::item_at(::raw::index iIndex)
+   //::item * acme_container::item_at(::collection::index iIndex)
    //{
 
    //   if (iIndex < 0 || iIndex >= m_pitema->size())
@@ -126,7 +126,7 @@ namespace user
    //}
 
 
-   //void acme_container::default_set_item_at(::raw::index iIndex, ::item * pitem)
+   //void acme_container::default_set_item_at(::collection::index iIndex, ::item * pitem)
    //{
 
    //   if (iIndex < 0)
@@ -151,7 +151,7 @@ namespace user
    //}
 
 
-   //::raw::index acme_container::add_item(::item * pitem)
+   //::collection::index acme_container::add_item(::item * pitem)
    //{
 
    //   if (!m_pitema)
@@ -166,7 +166,7 @@ namespace user
    //}
 
 
-   //::user::item * acme_container::user_item_at(::raw::index iIndex)
+   //::user::item * acme_container::user_item_at(::collection::index iIndex)
    //{
 
    //   auto pitem = item_at(iIndex);
@@ -176,7 +176,7 @@ namespace user
    //}
 
 
-   //::raw::index acme_container::item_index(const ::item * pitem)
+   //::collection::index acme_container::item_index(const ::item * pitem)
    //{
 
    //   return m_pitemaContent->find_first(pitem);
@@ -293,7 +293,7 @@ namespace user
    //}
 
 
-   //::raw::index acme_container::item_index() const
+   //::collection::index acme_container::item_index() const
    //{
    //
    //   return m_item.item_index();
@@ -301,7 +301,7 @@ namespace user
    //}
 
 
-   //::raw::index acme_container::item_index(const ::atom & atom) const
+   //::collection::index acme_container::item_index(const ::atom & atom) const
    //{
 
    //   auto iIndex = atom.as_index();
@@ -311,7 +311,7 @@ namespace user
 
    //      iIndex = -1;
 
-   //      for (::raw::index iItem = 0; iItem < m_pitema->size(); iItem++)
+   //      for (::collection::index iItem = 0; iItem < m_pitema->size(); iItem++)
    //      {
 
    //         auto pitem = (*m_pitema)[iItem];
@@ -361,7 +361,7 @@ namespace user
    //}
 
 
-   //::raw::index acme_container::item_index(::item_array * pitema, const ::atom & atom)
+   //::collection::index acme_container::item_index(::item_array * pitema, const ::atom & atom)
    //{
 
    //   if (::is_null(pitema))
@@ -378,7 +378,7 @@ namespace user
 
    //      iIndex = -1;
 
-   //      for (::raw::index iItem = 0; iItem < pitema->size(); iItem++)
+   //      for (::collection::index iItem = 0; iItem < pitema->size(); iItem++)
    //      {
 
    //         auto pitem = (*pitema)[iItem];
@@ -428,7 +428,7 @@ namespace user
    //}
 
 
-   //::raw::index acme_container::item_index(const ::atom & atom) const
+   //::collection::index acme_container::item_index(const ::atom & atom) const
    //{
 
    //   auto iIndex = atom.as_index();
@@ -438,7 +438,7 @@ namespace user
 
    //      iIndex = -1;
 
-   //      for (::raw::index iItem = 0; iItem < m_pitema->size(); iItem++)
+   //      for (::collection::index iItem = 0; iItem < m_pitema->size(); iItem++)
    //      {
 
    //         auto pitem = (*m_pitema)[iItem];
@@ -488,7 +488,7 @@ namespace user
    //}
 
 
-   //bool acme_container::is_item_pressed_by_index(::raw::index iIndex) const
+   //bool acme_container::is_item_pressed_by_index(::collection::index iIndex) const
    //{
 
    //   return ::is_item_index(m_pitemPressed, iIndex);
@@ -496,7 +496,7 @@ namespace user
    //}
 
 
-   //bool acme_container::is_item_hover_by_index(::raw::index iIndex) const
+   //bool acme_container::is_item_hover_by_index(::collection::index iIndex) const
    //{
 
    //   return ::is_item_index(m_pitemHover, iIndex);
@@ -621,7 +621,7 @@ namespace user
    //}
 
 
-   //::item_pointer acme_container::get_child_as_item(::raw::index iIndex)
+   //::item_pointer acme_container::get_child_as_item(::collection::index iIndex)
    //{
 
    //   return nullptr;
@@ -629,7 +629,7 @@ namespace user
    //}
 
 
-   //::raw::count acme_container::get_child_as_item_count()
+   //::collection::count acme_container::get_child_as_item_count()
    //{
 
    //   return 0;

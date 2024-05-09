@@ -26,7 +26,7 @@ bool item_container::_is_set() const
 }
 
 
-::raw::count item_container::item_count() const
+::collection::count item_container::item_count() const
 {
 
    if (!m_pitema)
@@ -56,7 +56,7 @@ void item_container::clear_items()
 }
 
 
-//::item * item_container::item_at(::raw::index iIndex)
+//::item * item_container::item_at(::collection::index iIndex)
 //{
 //
 //   if (iIndex < 0 || iIndex >= m_pitema->size())
@@ -71,7 +71,7 @@ void item_container::clear_items()
 //}
 
 
-void item_container::indexed_set_item_at(::raw::index iIndex, ::item * pitem)
+void item_container::indexed_set_item_at(::collection::index iIndex, ::item * pitem)
 {
 
    if (iIndex < 0)
@@ -96,7 +96,7 @@ void item_container::indexed_add_item(::item * pitem)
 }
 
 
-::raw::index item_container::add_item(::item * pitem)
+::collection::index item_container::add_item(::item * pitem)
 {
 
    if (!m_pitema)
@@ -111,7 +111,7 @@ void item_container::indexed_add_item(::item * pitem)
 }
 
 
-//::user::item * item_container::user_item_at(::raw::index iIndex)
+//::user::item * item_container::user_item_at(::collection::index iIndex)
 //{
 //
 //   auto pitem = item_at(iIndex);
@@ -121,7 +121,7 @@ void item_container::indexed_add_item(::item * pitem)
 //}
 
 
-::raw::index item_container::item_index(const ::item * pitem)
+::collection::index item_container::item_index(const ::item * pitem)
 {
 
    return m_pitema->find_first(pitem);
@@ -205,7 +205,7 @@ bool item_container::contains_item(const ::atom & atom) const
 }
 
 
-::item_pointer item_container::find_item(enum_element eelement, ::raw::index iItem)
+::item_pointer item_container::find_item(enum_element eelement, ::collection::index iItem)
 {
 
    if (!m_pitema)
@@ -239,7 +239,7 @@ bool item_container::contains_item(const ::atom & atom) const
 }
 
 
-::item_pointer item_container::defer_item(enum_element eelement, ::raw::index iItem)
+::item_pointer item_container::defer_item(enum_element eelement, ::collection::index iItem)
 {
 
    auto pitem = this->find_item(eelement, iItem);
@@ -256,7 +256,7 @@ bool item_container::contains_item(const ::atom & atom) const
 }
 
 
-::item_pointer item_container::add_item(enum_element eelement, ::raw::index iItem)
+::item_pointer item_container::add_item(enum_element eelement, ::collection::index iItem)
 {
 
    auto pitem = __allocate< ::item >(eelement, iItem);
@@ -270,7 +270,7 @@ bool item_container::contains_item(const ::atom & atom) const
 }
 
 
-::raw::index item_container::item_index() const
+::collection::index item_container::item_index() const
 {
 
    return m_item.m_iItem;
@@ -278,7 +278,7 @@ bool item_container::contains_item(const ::atom & atom) const
 }
 
 
-::raw::index item_container::item_index(const ::atom & atom) const
+::collection::index item_container::item_index(const ::atom & atom) const
 {
 
    //information() << "item_container::item_index";
@@ -323,7 +323,7 @@ bool item_container::contains_item(const ::atom & atom) const
 
       //information() << "item_container::item_index atom.m_etype == ::atom::e_type_element";
 
-      for (::raw::index iItem = 0; iItem < m_pitema->size(); iItem++)
+      for (::collection::index iItem = 0; iItem < m_pitema->size(); iItem++)
       {
 
          auto pitem = (*m_pitema)[iItem];
@@ -345,7 +345,7 @@ bool item_container::contains_item(const ::atom & atom) const
 
       //information() << "item_container::item_index searching for atom";
 
-      for (::raw::index iItem = 0; iItem < m_pitema->size(); iItem++)
+      for (::collection::index iItem = 0; iItem < m_pitema->size(); iItem++)
       {
 
          auto pitem = (*m_pitema)[iItem];
@@ -371,7 +371,7 @@ bool item_container::contains_item(const ::atom & atom) const
 
 
 
-//bool item_container::is_item_pressed_by_index(::raw::index iIndex) const
+//bool item_container::is_item_pressed_by_index(::collection::index iIndex) const
 //{
 //
 //   return ::is_item_index(m_pitemPressed, iIndex);
@@ -379,7 +379,7 @@ bool item_container::contains_item(const ::atom & atom) const
 //}
 //
 //
-//bool item_container::is_item_hover_by_index(::raw::index iIndex) const
+//bool item_container::is_item_hover_by_index(::collection::index iIndex) const
 //{
 //
 //   return ::is_item_index(m_pitemHover, iIndex);
@@ -504,7 +504,7 @@ bool item_container::is_item_hover(::item * pitem)
 }
 
 
-::item_pointer item_container::get_child_as_item(::raw::index iIndex)
+::item_pointer item_container::get_child_as_item(::collection::index iIndex)
 {
 
    return nullptr;
@@ -512,7 +512,7 @@ bool item_container::is_item_hover(::item * pitem)
 }
 
 
-::raw::count item_container::get_child_as_item_count()
+::collection::count item_container::get_child_as_item_count()
 {
 
    return 0;

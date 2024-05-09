@@ -37,7 +37,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
       return;
    }
 
-   ::raw::index iLine;
+   ::collection::index iLine;
 
    strsize iChar;
 
@@ -399,8 +399,8 @@ xfplayer_impact_line_selection_item::xfplayer_impact_line_selection_item()
    m_iCharEnd = -1;
 }
 xfplayer_impact_line_selection_item::xfplayer_impact_line_selection_item(
-::raw::index      iLineStart,
-::raw::index      iLineEnd,
+::collection::index      iLineStart,
+::collection::index      iLineEnd,
 strsize      iCharStart,
 strsize      iCharEnd
 )
@@ -424,14 +424,14 @@ xfplayer_impact_line_selection_item & xfplayer_impact_line_selection_item::opera
 }
 
 void xfplayer_impact_line_selection::Select(
-::raw::index      iLineStart,
-::raw::index      iLineEnd,
+::collection::index      iLineStart,
+::collection::index      iLineEnd,
 strsize      iCharStart,
 strsize      iCharEnd,
 bool    bMerge)
 {
    __UNREFERENCED_PARAMETER(bMerge);
-   for(::raw::index i = 0; i < m_itema.get_size(); i++)
+   for(::collection::index i = 0; i < m_itema.get_size(); i++)
    {
       if(m_itema.element_at(i).Intersect(iLineStart, iLineEnd))
       {
@@ -463,7 +463,7 @@ bool xfplayer_impact_line_selection::OnLButtonDown(xfplayer_impact_line & viewli
 
    bool bInside;
 
-   ::raw::index iLine;
+   ::collection::index iLine;
    strsize iChar;
    ::rectangle_i32 rectanglePlacement;
    viewline.GetPlacement(&rectanglePlacement);
@@ -517,7 +517,7 @@ bool xfplayer_impact_line_selection::OnMouseMove(xfplayer_impact_line & viewline
    
    viewline.get_interaction()->screen_to_client()(point1);
 
-   ::raw::index iLine;
+   ::collection::index iLine;
 
    strsize iChar;
 
@@ -604,7 +604,7 @@ bool xfplayer_impact_line_selection::OnLButtonUp(xfplayer_impact_line & viewline
    
    viewline.get_interaction()->screen_to_client()(point1);
 
-   ::raw::index iLine;
+   ::collection::index iLine;
    strsize iChar;
 
    ::rectangle_i32 rectanglePlacement;
@@ -732,7 +732,7 @@ void xfplayer_impact_line_selection_item::NormalizeSel()
 }
 
 
-void xfplayer_impact_line_selection::GetNormalSelection(::raw::index & iLineStart, strsize & iCharStart, ::raw::index & iLineEnd, strsize & iCharEnd)
+void xfplayer_impact_line_selection::GetNormalSelection(::collection::index & iLineStart, strsize & iCharStart, ::collection::index & iLineEnd, strsize & iCharEnd)
 {
 
    if(m_item.GetLineStart() > m_item.GetLineEnd())
@@ -769,12 +769,12 @@ void xfplayer_impact_line_selection::GetNormalSelection(::raw::index & iLineStar
    }
 }
 
-::raw::index xfplayer_impact_line_selection_item::GetLineStart()
+::collection::index xfplayer_impact_line_selection_item::GetLineStart()
 {
    return m_iLineStart;
 }
 
-::raw::index xfplayer_impact_line_selection_item::GetLineEnd()
+::collection::index xfplayer_impact_line_selection_item::GetLineEnd()
 {
    return m_iLineEnd;
 }
@@ -789,12 +789,12 @@ strsize xfplayer_impact_line_selection_item::GetCharEnd()
    return m_iCharEnd;
 }
 
-void xfplayer_impact_line_selection_item::SetLineStart(::raw::index iLine)
+void xfplayer_impact_line_selection_item::SetLineStart(::collection::index iLine)
 {
    m_iLineStart = iLine;
 }
 
-void xfplayer_impact_line_selection_item::SetLineEnd(::raw::index iLine)
+void xfplayer_impact_line_selection_item::SetLineEnd(::collection::index iLine)
 {
    m_iLineEnd = iLine;
 }
@@ -822,7 +822,7 @@ xfplayer_impact_line_selection::enum_state xfplayer_impact_line_selection::GetSt
 }
 
 
-bool xfplayer_impact_line_selection_item::Intersect(::raw::index iFirstLine, ::raw::index iLastLine)
+bool xfplayer_impact_line_selection_item::Intersect(::collection::index iFirstLine, ::collection::index iLastLine)
 {
 
    return maximum(iFirstLine, m_iLineStart) <= minimum(iLastLine, m_iLineEnd);
@@ -837,7 +837,7 @@ bool xfplayer_impact_line_selection::get_item(xfplayer_impact_line_selection_ite
       item.NormalizeSel();
       return true;
    }
-   for(::raw::index iItem = 0; iItem < m_itema.get_size(); iItem++)
+   for(::collection::index iItem = 0; iItem < m_itema.get_size(); iItem++)
    {
       xfplayer_impact_line_selection_item & itemTest = m_itema.element_at(iItem);
       if(itemTest.Intersect(viewline))

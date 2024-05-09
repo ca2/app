@@ -278,7 +278,7 @@ namespace user
 
          m_bLoadingWindowRectangle = true;
 
-         ::raw::index iDisplay = good_restore(nullptr, {}, true, e_activation_default, e_zorder_top, initial_restore_display());
+         ::collection::index iDisplay = good_restore(nullptr, {}, true, e_activation_default, e_zorder_top, initial_restore_display());
 
          bool bRestore = iDisplay >= 0;
 
@@ -325,7 +325,7 @@ namespace user
 
          m_bLoadingWindowRectangle = true;
 
-         ::raw::index iDisplay = good_restore(nullptr, {}, true, e_activation_default, e_zorder_top, initial_restore_display());
+         ::collection::index iDisplay = good_restore(nullptr, {}, true, e_activation_default, e_zorder_top, initial_restore_display());
 
          bool bRestore = iDisplay >= 0;
 
@@ -818,7 +818,7 @@ namespace user
    }
 
 
-   void box::display_full_screen(::raw::index iMonitor, ::e_activation eactivation)
+   void box::display_full_screen(::collection::index iMonitor, ::e_activation eactivation)
    {
 
       best_monitor(nullptr, const_layout().sketch().parent_raw_rectangle(), true, e_activation_default, e_zorder_top);

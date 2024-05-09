@@ -57,26 +57,26 @@ public:
    //virtual bool create_toolbar(::user::interaction * puiParent, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, atom nID = "__IDW_TOOLBAR") override;
 
 
-   virtual ::raw::index WrapToolBar(::draw2d::graphics_pointer& pgraphics, ::raw::index nCount, ::raw::index nWidth);
-   virtual void SizeToolBar(::draw2d::graphics_pointer& pgraphics, ::raw::index nCount, ::raw::index nLength, bool bVert = false);
+   virtual ::collection::index WrapToolBar(::draw2d::graphics_pointer& pgraphics, ::collection::index nCount, ::collection::index nWidth);
+   virtual void SizeToolBar(::draw2d::graphics_pointer& pgraphics, ::collection::index nCount, ::collection::index nLength, bool bVert = false);
 
    virtual ::size_i32 CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, ::i32 nLength, u32 dwMode) override;
-   virtual ::size_i32 CalcLayout(::draw2d::graphics_pointer& pgraphics, u32 dwMode, ::raw::index nLength = -1) override;
+   virtual ::size_i32 CalcLayout(::draw2d::graphics_pointer& pgraphics, u32 dwMode, ::collection::index nLength = -1) override;
    //bool CalcSize(size & size, bool bHorz);
-   virtual ::size_i32 CalcSize(::draw2d::graphics_pointer & pgraphics, ::raw::index nCount);
+   virtual ::size_i32 CalcSize(::draw2d::graphics_pointer & pgraphics, ::collection::index nCount);
    virtual void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle) override;
    virtual ::size_i32 CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
 
 
    void RemoveAllTools();
-//   virtual ::raw::index _001GetHoverItem() override;
+//   virtual ::collection::index _001GetHoverItem() override;
    //virtual void OnUpdateHover();
-   //void SetItemImage(::raw::index iItem, ::raw::index iImage);
-   //void GetButtonText(::raw::index i, string & str);
+   //void SetItemImage(::collection::index iItem, ::collection::index iImage);
+   //void GetButtonText(::collection::index i, string & str);
    //void SetButtonStyle(index nIndex, const enumeration < ::enum_tool_item_style > & nStyle);
-   //enumeration < ::enum_tool_item_style > GetButtonStyle(::raw::index iButton);
-   //bool SetItemStyle(::raw::index iItem, const enumeration < ::enum_tool_item_style > & bStyle);
-   //enumeration < ::enum_tool_item_style > GetItemStyle(::raw::index iItem);
+   //enumeration < ::enum_tool_item_style > GetButtonStyle(::collection::index iButton);
+   //bool SetItemStyle(::collection::index iItem, const enumeration < ::enum_tool_item_style > & bStyle);
+   //enumeration < ::enum_tool_item_style > GetItemStyle(::collection::index iItem);
    void _001SetImageList(::pointer<::image_list>imagelist);
    void _001DiscardImageList();
    bool on_click(::item * pitem) override;
@@ -88,8 +88,8 @@ public:
    void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
-   void _001DrawItem(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem);
-   void _001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem);
+   void _001DrawItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem);
+   void _001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem);
 
    /*
       bool LoadToolBar(const ::string & pszResourceName);
@@ -100,15 +100,15 @@ public:
       bool LoadBitmap(::u32 nIDResource);
    */
 
-//  virtual bool index_item_rectangle(::raw::index iItem,::rectangle_i32 * prectangle)
+//  virtual bool index_item_rectangle(::collection::index iItem,::rectangle_i32 * prectangle)
 
-   ::status < ::rectangle_i32 > index_element_rectangle(::raw::index iItem, ::enum_element eelement,
+   ::status < ::rectangle_i32 > index_element_rectangle(::collection::index iItem, ::enum_element eelement,
                                    ::user::enum_state estate) override;
 
 
 
 
-//   bool SetButtons(const ::u32* pIDArray, ::raw::index nIDCount);
+//   bool SetButtons(const ::u32* pIDArray, ::collection::index nIDCount);
 
    void SetSizes(const ::size_i32 & sizeButton, const ::size_i32 & sizeImage);
 

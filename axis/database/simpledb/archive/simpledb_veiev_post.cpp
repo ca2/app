@@ -133,7 +133,7 @@ bool veiev_post::write(::payload rec)
 }
 
 
-::payload veiev_post::get_page(::raw::index iPage, ::raw::index iMessageCountPerPage)
+::payload veiev_post::get_page(::collection::index iPage, ::collection::index iMessageCountPerPage)
 {
 
    if(m_pdataserver == nullptr)
@@ -167,7 +167,7 @@ bool veiev_post::write(::payload rec)
 
    }
 
-   ::raw::count iNumRows = m_pdataset->num_rows();
+   ::collection::count iNumRows = m_pdataset->num_rows();
 
    if(iNumRows <= 0)
       return false;
@@ -200,7 +200,7 @@ i64 veiev_post::get_count()
 
    string strSql;
 
-   strSql = "select COUNT(*) as ::raw::count FROM veiev_post";
+   strSql = "select COUNT(*) as ::collection::count FROM veiev_post";
 
    slDatabase.lock();
 

@@ -201,8 +201,8 @@ namespace core
 
       void LoadStdProfileSettings(::u32 nMaxMRU = 10);
 
-      ::raw::count get_template_count() const;
-      ::pointer<::user::impact_system>get_template(::raw::index index) const;
+      ::collection::count get_template_count() const;
+      ::pointer<::user::impact_system>get_template(::collection::index index) const;
 
 
 
@@ -420,48 +420,48 @@ namespace core
 
       //virtual void set_cursor_pos(const ::point_i32 & point);
 
-      //virtual ::raw::index get_main_monitor(::rectangle_i32 * prectangle = nullptr);
+      //virtual ::collection::index get_main_monitor(::rectangle_i32 * prectangle = nullptr);
 
-      //virtual bool set_main_monitor(::raw::index iMonitor);
-      //virtual ::raw::count get_monitor_count();
-      //virtual bool  get_monitor_rectangle(::raw::index iMonitor, ::rectangle_i32 * prectangle);
+      //virtual bool set_main_monitor(::collection::index iMonitor);
+      //virtual ::collection::count get_monitor_count();
+      //virtual bool  get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 * prectangle);
 
-      //virtual ::raw::index get_main_workspace(::rectangle_i32 * prectangle = nullptr);
+      //virtual ::collection::index get_main_workspace(::rectangle_i32 * prectangle = nullptr);
 
-      //virtual bool set_main_workspace(::raw::index iWorkspace);
-      //virtual ::raw::count get_workspace_count();
-      //virtual bool  get_workspace_rectangle(::raw::index iWorkspace, ::rectangle_i32 * prectangle);
+      //virtual bool set_main_workspace(::collection::index iWorkspace);
+      //virtual ::collection::count get_workspace_count();
+      //virtual bool  get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 * prectangle);
 
-      //virtual bool workspace_to_monitor(::rectangle_i32 * prectangle, ::raw::index iMonitor, ::raw::index iWorkspace);
+      //virtual bool workspace_to_monitor(::rectangle_i32 * prectangle, ::collection::index iMonitor, ::collection::index iWorkspace);
 
-      //virtual bool monitor_to_workspace(::rectangle_i32 * prectangle, ::raw::index iWorkspace, ::raw::index iMonitor);
+      //virtual bool monitor_to_workspace(::rectangle_i32 * prectangle, ::collection::index iWorkspace, ::collection::index iMonitor);
 
       //virtual bool workspace_to_monitor(::rectangle_i32 * prectangle);
 
       //virtual bool monitor_to_workspace(::rectangle_i32 * prectangle);
 
-      //virtual ::raw::count get_desk_monitor_count();
-      //virtual bool  get_desk_monitor_rect(::raw::index iMonitor, ::rectangle_i32 * prectangle);
+      //virtual ::collection::count get_desk_monitor_count();
+      //virtual bool  get_desk_monitor_rect(::collection::index iMonitor, ::rectangle_i32 * prectangle);
 
       //virtual void  get_monitor(rectangle_i32_array & rectaMonitor, rectangle_i32_array & rectaIntersect, const ::rectangle_i32 & rectangle);
 
-      //virtual ::raw::index initial_frame_position(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bMove, ::user::interaction * pinteraction);
+      //virtual ::collection::index initial_frame_position(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bMove, ::user::interaction * pinteraction);
 
-      //virtual ::raw::index _get_best_zoneing(edisplay * pedisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bPreserveSize = false);
+      //virtual ::collection::index _get_best_zoneing(edisplay * pedisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bPreserveSize = false);
 
-      //virtual ::raw::index get_best_monitor(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, ::e_activation eactivation = e_activation_default);
+      //virtual ::collection::index get_best_monitor(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, ::e_activation eactivation = e_activation_default);
 
-      //virtual ::raw::index get_best_workspace(::rectangle_i32 * prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
+      //virtual ::collection::index get_best_workspace(::rectangle_i32 * prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
 
-      //virtual ::raw::index get_good_iconify(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle);
+      //virtual ::collection::index get_good_iconify(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle);
 
-      //virtual ::raw::index get_window_restore_1(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction, edisplay edisplayRestore);
+      //virtual ::collection::index get_window_restore_1(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction, edisplay edisplayRestore);
 
-      //virtual ::raw::index get_window_restore_2(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::user::interaction* pinteraction, edisplay edisplayRestore);
+      //virtual ::collection::index get_window_restore_2(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::user::interaction* pinteraction, edisplay edisplayRestore);
 
-      //virtual ::raw::index get_good_move(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction);
+      //virtual ::collection::index get_good_move(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction);
 
-      //virtual ::raw::index get_ui_workspace(::user::interaction * pinteraction);
+      //virtual ::collection::index get_ui_workspace(::user::interaction * pinteraction);
 
 
 
@@ -605,8 +605,8 @@ namespace core
       ////virtual ::draw2d::cursor * get_cursor() override;
       ////virtual ::draw2d::cursor* get_default_cursor() override;
 
-      ////virtual ::raw::count   get_monitor_count() override;
-      ////virtual bool      get_monitor_rectangle(::raw::index iMonitor, ::rectangle_i32* prectangle) override;
+      ////virtual ::collection::count   get_monitor_count() override;
+      ////virtual bool      get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32* prectangle) override;
 
 
       ////virtual void on_user_logon(::account::user* puser) override;

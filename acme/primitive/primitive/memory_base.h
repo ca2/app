@@ -185,7 +185,7 @@ public:
 
    virtual void erase_offset();
 
-   //virtual void random_bytes(::raw::count c = -1);
+   //virtual void random_bytes(::collection::count c = -1);
 
 
    //virtual ::stream & write(::stream & stream) const override;
@@ -240,8 +240,8 @@ public:
    inline bool is_empty() const { return MEMORY::is_empty(); }
    inline bool has_data() const { return this->size() > 0; }
 
-   inline ::u8 operator [] (::raw::index i) const { return data()[i]; }
-   inline ::u8 & operator [] (::raw::index i) { return data()[i]; }
+   inline ::u8 operator [] (::collection::index i) const { return data()[i]; }
+   inline ::u8 & operator [] (::collection::index i) { return data()[i]; }
 
    inline operator const ::u8 * () const { return data(); }
    inline operator ::u8 * () { return data(); }
@@ -350,17 +350,17 @@ public:
    inline void set_char_at_grow(strsize iChar, char ch);
 
 
-   ::u8 * find(const ::block& block, ::raw::index iStart = 0) const;
-   ::raw::index find_index(const ::block& block, ::raw::index iStart = 0) const;
-   ::raw::index find_index(char ch, ::raw::index iStart = 0) const;
-   ::u8* rear_find(const ::block& block, ::raw::index iStart = 0) const;
-   ::raw::index reverse_find_index(const ::block& block, ::raw::index iStart = 0) const;
-   ::u8* reverse_find_byte_not_in_block(const ::block& block, ::raw::index iStart = 0) const;
-   ::raw::index reverse_find_index_of_byte_not_in_block(const ::block& block, ::raw::index iStart = 0) const;
+   ::u8 * find(const ::block& block, ::collection::index iStart = 0) const;
+   ::collection::index find_index(const ::block& block, ::collection::index iStart = 0) const;
+   ::collection::index find_index(char ch, ::collection::index iStart = 0) const;
+   ::u8* rear_find(const ::block& block, ::collection::index iStart = 0) const;
+   ::collection::index reverse_find_index(const ::block& block, ::collection::index iStart = 0) const;
+   ::u8* reverse_find_byte_not_in_block(const ::block& block, ::collection::index iStart = 0) const;
+   ::collection::index reverse_find_index_of_byte_not_in_block(const ::block& block, ::collection::index iStart = 0) const;
 
-   ::u8 * find_line_prefix(const ::block& blockPrefix, ::raw::index iStart = 0);
-   ::raw::index find_line_prefix_index(const ::block& blockPrefix, ::raw::index iStart = 0);
-   void patch_line_suffix(const ::block & blockPrefix, const ::block& blockSuffix, ::raw::index iStart = 0);
+   ::u8 * find_line_prefix(const ::block& blockPrefix, ::collection::index iStart = 0);
+   ::collection::index find_line_prefix_index(const ::block& blockPrefix, ::collection::index iStart = 0);
+   void patch_line_suffix(const ::block & blockPrefix, const ::block& blockSuffix, ::collection::index iStart = 0);
 
 
 #if defined(UNIVERSAL_WINDOWS) && defined(__cplusplus_winrt)
@@ -425,11 +425,11 @@ public:
 //}
 
 
-//inline uchar memory_base::operator [] (::raw::index i) const
+//inline uchar memory_base::operator [] (::collection::index i) const
 //{
 //   return this->data()[i];
 //}
-//inline uchar & memory_base::operator [] (::raw::index i)
+//inline uchar & memory_base::operator [] (::collection::index i)
 //{
 //   return this->data()[i];
 //}

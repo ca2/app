@@ -889,17 +889,17 @@ public:
 
    }
 
-   ::raw::count insert(strsize iIndex, CHARACTER ch);
+   ::collection::count insert(strsize iIndex, CHARACTER ch);
 
-   ::raw::count insert(strsize iIndex, const string_base & str);
+   ::collection::count insert(strsize iIndex, const string_base & str);
 
-   ::raw::count replace_with(CHARACTER charNew, CHARACTER charOld, strsize start = 0);
+   ::collection::count replace_with(CHARACTER charNew, CHARACTER charOld, strsize start = 0);
 
    template < typename EQUALITY >
-   ::raw::count _replace_with(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start, EQUALITY equality);
+   ::collection::count _replace_with(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start, EQUALITY equality);
 
 
-   ::raw::count replace_with(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start = 0)
+   ::collection::count replace_with(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start = 0)
    {
 
       return _replace_with(scopedstrNew, scopedstrOld, start, ::comparison::comparison<CHARACTER>());
@@ -907,25 +907,25 @@ public:
    }
 
 
-   ::raw::count case_insensitive_replace_with(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start = 0)
+   ::collection::count case_insensitive_replace_with(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize start = 0)
    {
 
       return _replace_with(scopedstrNew, scopedstrOld, start, ::comparison::case_insensitive<CHARACTER>());
 
    }
 
-   ::raw::count replace_with_count(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize iStart = 0);
+   ::collection::count replace_with_count(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize iStart = 0);
 
-   ::raw::count replace_with_ci_count(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize iStart = 0);
+   ::collection::count replace_with_ci_count(const SCOPED_STRING & scopedstrNew, const SCOPED_STRING & scopedstrOld, strsize iStart = 0);
 
-   ::raw::count find_replace(CHARACTER charOld, CHARACTER charNew, strsize iStart = 0)
+   ::collection::count find_replace(CHARACTER charOld, CHARACTER charNew, strsize iStart = 0)
    {
 
       return replace_with(charNew, charOld, iStart);
 
    }
 
-   ::raw::count find_replace(const SCOPED_STRING & scopedstrOld, const SCOPED_STRING & scopedstrNew, strsize start = 0)
+   ::collection::count find_replace(const SCOPED_STRING & scopedstrOld, const SCOPED_STRING & scopedstrNew, strsize start = 0)
    {
 
       return _replace_with(scopedstrNew, scopedstrOld, start, comparison::comparison<CHARACTER>());
@@ -933,7 +933,7 @@ public:
    }
 
 
-   ::raw::count case_insensitive_find_replace(const SCOPED_STRING & scopedstrOld, const SCOPED_STRING & scopedstrNew, strsize start = 0)
+   ::collection::count case_insensitive_find_replace(const SCOPED_STRING & scopedstrOld, const SCOPED_STRING & scopedstrNew, strsize start = 0)
    {
 
       return _replace_with(scopedstrNew, scopedstrOld, start, comparison::case_insensitive<CHARACTER>());
@@ -943,7 +943,7 @@ public:
 
    // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
    //template < raw_pointer_castable < CHARACTER_TYPE > PCHAROLD, raw_pointer_castable < CHARACTER_TYPE > PCHARNEW >
-   ::raw::count find_replace_count(const SCOPED_STRING & scopedstrOld, const SCOPED_STRING & scopedstrNew, strsize iStart = 0)
+   ::collection::count find_replace_count(const SCOPED_STRING & scopedstrOld, const SCOPED_STRING & scopedstrNew, strsize iStart = 0)
    {
 
       return replace_with_count(scopedstrNew, scopedstrOld, iStart);
@@ -952,7 +952,7 @@ public:
 
 
    //template < raw_pointer_castable < CHARACTER_TYPE > PCHAROLD, raw_pointer_castable < CHARACTER_TYPE > PCHARNEW >
-   ::raw::count case_insensitive_find_replace_count(const SCOPED_STRING & scopedstrOld, const SCOPED_STRING & scopedstrNew, strsize iStart = 0)
+   ::collection::count case_insensitive_find_replace_count(const SCOPED_STRING & scopedstrOld, const SCOPED_STRING & scopedstrNew, strsize iStart = 0)
    {
 
       return replace_with_ci_count(scopedstrNew, scopedstrOld, iStart);
@@ -972,12 +972,12 @@ public:
 
    //// replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
    //template < raw_pointer_castable < CHARACTER_TYPE > PCHAROLD, raw_pointer_castable < CHARACTER_TYPE > PCHARNEW >
-   //::raw::count xxx_replace_count(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0);
+   //::collection::count xxx_replace_count(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0);
 
    //template < raw_pointer_castable < CHARACTER_TYPE > PCHAROLD, raw_pointer_castable < CHARACTER_TYPE > PCHARNEW >
-   //::raw::count xxx_replace_ci_count(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0);
+   //::collection::count xxx_replace_ci_count(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0);
 
-   //::raw::count utf8_replace(const string_base &scopedstrOld, const string_base &scopedstrNew, strsize iStart = 0);
+   //::collection::count utf8_replace(const string_base &scopedstrOld, const string_base &scopedstrNew, strsize iStart = 0);
 
    string_base & replace(const_iterator start, const_iterator end, const SCOPED_STRING & scopedstr);
    string_base & replace_index(strsize start, strsize end, const SCOPED_STRING & scopedstr)
@@ -989,7 +989,7 @@ public:
    //string_base & replace(strsize iStart, strsize nCount, const SCOPED_STRING & scopedstr, strsize nLen);
 
    // erase all occurrences of character 'chRemove'
-   ::raw::count erase_character(CHARACTER chRemove);
+   ::collection::count erase_character(CHARACTER chRemove);
 
    string_base Tokenize(const SCOPED_STRING & scopedstrTokens, strsize & iStart) const;
 
@@ -1454,7 +1454,7 @@ public:
 //}
 
 
-//template < ::raw::count c >
+//template < ::collection::count c >
 //inline ::string operator +(const ::string & str, const char(&sz)[c]);
 //
 //
@@ -1473,7 +1473,7 @@ public:
 
 
 // For MSVC, but not for GCC?
-//template < ::raw::count c >
+//template < ::collection::count c >
 //inline ::string operator +(const char(&sz)[c], const ::string & str)
 //{
 //
@@ -1482,7 +1482,7 @@ public:
 //}
 
 
-//template < ::raw::count c >
+//template < ::collection::count c >
 //inline ::string operator+(const ::const_ansi_range & str, const char(&sz)[c])
 //{
 //
@@ -1544,7 +1544,7 @@ public:
 //}
 //
 //
-//template < ::raw::count c >
+//template < ::collection::count c >
 //inline ::wstring operator +(const ::wide_character(&wsz)[c], ::wstring wstr)
 //{
 //
@@ -1562,11 +1562,11 @@ public:
 //}
 
 
-//template < ::raw::count c, strsize m_sizeMaximumLength >
+//template < ::collection::count c, strsize m_sizeMaximumLength >
 //inline ::string operator +(const char(&sz)[c], const ::inline_string < char, m_sizeMaximumLength > & inlinestring);
 
 
-//template < ::raw::count c, strsize m_sizeMaximumLength >
+//template < ::collection::count c, strsize m_sizeMaximumLength >
 //inline ::string operator +(const ::inline_string < char, m_sizeMaximumLength > & inlinestring, const char(&sz)[c]);
 
 

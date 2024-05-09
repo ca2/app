@@ -36,7 +36,7 @@ namespace nanoui
       Object(const Object &) {}
 
 //      /// Return the current reference count
-//      ::raw::count ref_count() const { return m_countReference; };
+//      ::collection::count ref_count() const { return m_countReference; };
 //      //int ref_count() const { return 1; };
 //
 //      /// Increase the object's reference count by one

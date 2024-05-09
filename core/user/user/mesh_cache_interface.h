@@ -18,7 +18,7 @@ namespace user
       ~mesh_cache_interface() override;
 
 
-      virtual void _001CacheHint(mesh * pmesh, ::raw::index iItemStart, ::raw::count nItemCount) = 0;
+      virtual void _001CacheHint(mesh * pmesh, ::collection::index iItemStart, ::collection::count nItemCount) = 0;
       virtual void _001GetSubItemText(::user::mesh_subitem * psubitem) = 0;
       virtual void _001GetGroupItemText(::user::mesh_group * pgroup);
 

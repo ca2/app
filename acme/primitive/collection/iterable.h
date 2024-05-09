@@ -11,13 +11,13 @@ namespace iter
 {
 
    template < typename ITERABLE, typename ITYPE >
-   bool icontains(const ITERABLE & iterable, const ITYPE & t, index first = 0, ::raw::count count = -1);
+   bool icontains(const ITERABLE & iterable, const ITYPE & t, index first = 0, ::collection::count count = -1);
 
    template < typename ITERABLE, typename ITYPE >
-   bool contains(const ITERABLE & iterable, const ITYPE & t, typename ITERABLE::const_iterator pos, typename ITERABLE::const_iterator posLast = nullptr, ::raw::count countMin = 0, ::raw::count countMax = -1);
+   bool contains(const ITERABLE & iterable, const ITYPE & t, typename ITERABLE::const_iterator pos, typename ITERABLE::const_iterator posLast = nullptr, ::collection::count countMin = 0, ::collection::count countMax = -1);
 
    template < typename ITERABLE, typename ITYPE >
-   bool contains(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator pos, typename ITERABLE::iterator posLast = nullptr, ::raw::count countMin = 0, ::raw::count countMax = -1);
+   bool contains(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator pos, typename ITERABLE::iterator posLast = nullptr, ::collection::count countMin = 0, ::collection::count countMax = -1);
 
    template < typename ITERABLE, typename ITERABLE2 >
    void copy(ITERABLE & iterable, const ITERABLE2 & iterable2);
@@ -33,10 +33,10 @@ namespace iter
    bool case_insensitive_add_unique(ITERABLE & iterable, const ITYPE & pcsz);
 
    template < typename ITERABLE, typename ITERABLE2, typename ITYPE >
-   typename ::raw::count add_unique_iter(ITERABLE & iterable, const ITERABLE & stra);
+   typename ::collection::count add_unique_iter(ITERABLE & iterable, const ITERABLE & stra);
 
    template < typename ITERABLE, typename ITERABLE2, typename ITYPE >
-   typename ::raw::count add_unique_iter_ci(ITERABLE & iterable, const ITERABLE & stra);
+   typename ::collection::count add_unique_iter_ci(ITERABLE & iterable, const ITERABLE & stra);
 
    template < typename ITERABLE, typename ITERABLE2 >
    ITERABLE & add(ITERABLE & iterable, const ITERABLE2 & iterable2);
@@ -48,7 +48,7 @@ namespace iter
    ITERABLE & insert_iter_at(ITERABLE & iterable, typename ITERABLE::iterator nStartIndex, const ITERABLE2 & iterable2);
 
    template < typename ITERABLE >
-   ::raw::count erase_empty(ITERABLE & iterable);
+   ::collection::count erase_empty(ITERABLE & iterable);
 
    template < typename ITERABLE, typename ITYPE, typename ITYPE2 >
    ITERABLE & replace(ITERABLE & iterable, const ITYPE & lpszSearch, const ITYPE2 & lpszReplace);
@@ -67,7 +67,7 @@ namespace iter
    ITERABLE2 & slice(ITERABLE & iterable, ITERABLE2 & iterable2, typename ITERABLE::iterator first, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITERABLE2 >
-   ITERABLE2 & islice(ITERABLE & iterable, ITERABLE2 & iterable2, index first, ::raw::count count = -1);
+   ITERABLE2 & islice(ITERABLE & iterable, ITERABLE2 & iterable2, index first, ::collection::count count = -1);
 
    template < typename ITERABLE, typename ITERABLE2 >
    ITERABLE & add_iter(ITERABLE & iterable, const ITERABLE2 & iterable2);
@@ -124,7 +124,7 @@ namespace iter
    //void get_comparable_ida(const ITERABLE & iterable, ITERABLE2 & iterable2);
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::count explode_command_line(const ITERABLE & iterable, const ITYPE & str, char ** argv = nullptr);
+   ::collection::count explode_command_line(const ITERABLE & iterable, const ITYPE & str, char ** argv = nullptr);
 
    template < typename ITERABLE, typename ITERABLE2 >
    bool operator == (const ITERABLE & iterable, const ITERABLE & iterable2);
@@ -133,10 +133,10 @@ namespace iter
    bool operator != (const ITERABLE & iterable, const ITERABLE & iterable2);
 
    template < typename ITERABLE, typename ITERABLE2 >
-   ::raw::count erase_iter_ci(ITERABLE & iterable, const ITERABLE & iterableRemove);
+   ::collection::count erase_iter_ci(ITERABLE & iterable, const ITERABLE & iterableRemove);
 
    template < typename ITERABLE, typename ITERABLE2 >
-   ::raw::count erase_iter(ITERABLE & iterable, const ITERABLE2 & iterableRemove);
+   ::collection::count erase_iter(ITERABLE & iterable, const ITERABLE2 & iterableRemove);
 
    template < typename ITERABLE, typename ITYPE >
    ITERABLE & trim_right(ITERABLE & iterable, const ITYPE & pszChars);
@@ -173,13 +173,13 @@ namespace iter
    typename ITERABLE::iterator predicate_find_first(ITERABLE & iterable, PRED pred, typename ITERABLE::iterator = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   typename index ifind_first_ci(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::raw::count count = -1);
+   typename index ifind_first_ci(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::collection::count count = -1);
 
    template < typename ITERABLE, typename ITYPE >
-   typename index ifind_first_begins(const ITERABLE & iterable, const ITYPE & pcsz, ::raw::index find, ::raw::count count = -1);
+   typename index ifind_first_begins(const ITERABLE & iterable, const ITYPE & pcsz, ::collection::index find, ::collection::count count = -1);
 
    template < typename ITERABLE, typename ITYPE >
-   typename index ifind_first_begins_ci(const ITERABLE & iterable, const ITYPE & pcsz, ::raw::index find = 0, ::raw::count count = -1);
+   typename index ifind_first_begins_ci(const ITERABLE & iterable, const ITYPE & pcsz, ::collection::index find = 0, ::collection::count count = -1);
 
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::const_iterator find_first_ci(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
@@ -290,25 +290,25 @@ namespace iter
    typename ITERABLE::iterator find_first_begins_eat_ci(ITERABLE & iterable, ITYPE & str, const ITYPE & pcsz, typename ITERABLE::iterator find = 0, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   bool case_insensitive_contains(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last = nullptr, ::raw::count countMin = 1, ::raw::count countMax = -1);
+   bool case_insensitive_contains(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last = nullptr, ::collection::count countMin = 1, ::collection::count countMax = -1);
 
    template < typename ITERABLE, typename ITYPE >
-   bool icontains_ci(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::raw::count count = -1, ::raw::count countMin = 1, ::raw::count countMax = -1);
+   bool icontains_ci(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::collection::count count = -1, ::collection::count countMin = 1, ::collection::count countMax = -1);
 
    template < typename ITERABLE, typename STRITERABLE, typename ITYPE >
-   ::raw::count get_begins_ci(ITERABLE & iterable, STRITERABLE & stra, const ITYPE & pcsz, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
+   ::collection::count get_begins_ci(ITERABLE & iterable, STRITERABLE & stra, const ITYPE & pcsz, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::count filter_begins_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr);
+   ::collection::count filter_begins_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename PRED >
-   ::raw::count filter(ITERABLE & iterable, PRED pred, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr);
+   ::collection::count filter(ITERABLE & iterable, PRED pred, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename PRED >
-   ::raw::count filter_out(ITERABLE & iterable, PRED pred, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr);
+   ::collection::count filter_out(ITERABLE & iterable, PRED pred, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename PRED, typename ArrayOut >
-   ::raw::count filter_out(ITERABLE & iterable, PRED pred, ArrayOut & a, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr);
+   ::collection::count filter_out(ITERABLE & iterable, PRED pred, ArrayOut & a, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    bool erase_first_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
@@ -329,28 +329,28 @@ namespace iter
    void erase_last(ITERABLE & iterable);
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::count erase_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last, ::raw::count countMin, ::raw::count countMax = -1);
+   ::collection::count erase_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last, ::collection::count countMin, ::collection::count countMax = -1);
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::count erase(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last, ::raw::count countMin, ::raw::count countMax = -1);
+   ::collection::count erase(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last, ::collection::count countMin, ::collection::count countMax = -1);
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::count erase_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last = nullptr);
+   ::collection::count erase_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::count erase(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last = nullptr);
+   ::collection::count erase(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::count erase_ci(ITERABLE & iterable, const ITYPE & pcsz);
+   ::collection::count erase_ci(ITERABLE & iterable, const ITYPE & pcsz);
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::count erase(ITERABLE & iterable, const ITYPE & pcsz);
+   ::collection::count erase(ITERABLE & iterable, const ITYPE & pcsz);
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::count ierase_ci(ITERABLE & iterable, const ITYPE & pcsz, index first = 0, ::raw::count count = -1);
+   ::collection::count ierase_ci(ITERABLE & iterable, const ITYPE & pcsz, index first = 0, ::collection::count count = -1);
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::count ierase(ITERABLE & iterable, const ITYPE & pcsz, index first = 0, ::raw::count count = -1);
+   ::collection::count ierase(ITERABLE & iterable, const ITYPE & pcsz, index first = 0, ::collection::count count = -1);
 
    template < typename ITERABLE, typename ITYPE, typename ITYPE2 >
    ITERABLE & explode(ITERABLE & iterable, const ITYPE & strSeparator, const ITYPE2 & str);
@@ -372,34 +372,34 @@ namespace iter
    void decode_v16(ITERABLE & iterable, const ITYPE & psz);
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::count get_count_except(const ITERABLE & iterable, const ITYPE & psz);
+   ::collection::count get_count_except(const ITERABLE & iterable, const ITYPE & psz);
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::count get_count_except(const ITERABLE & iterable, const ITYPE & str);
+   ::collection::count get_count_except(const ITERABLE & iterable, const ITYPE & str);
 
    template < typename ITERABLE, typename ITERABLE2 >
-   ::raw::count get_count_except_iter(const ITERABLE & iterable, const ITERABLE & iterable2);
+   ::collection::count get_count_except_iter(const ITERABLE & iterable, const ITERABLE & iterable2);
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::count get_count_except_ci(const ITERABLE & iterable, const ITYPE & psz);
+   ::collection::count get_count_except_ci(const ITERABLE & iterable, const ITYPE & psz);
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::count get_count_except_ci(const ITERABLE & iterable, const ITYPE & str);
+   ::collection::count get_count_except_ci(const ITERABLE & iterable, const ITYPE & str);
 
    template < typename ITERABLE, typename ITERABLE2 >
-   ::raw::count get_count_except_iter_ci(const ITERABLE & iterable, const ITERABLE & set);
+   ::collection::count get_count_except_iter_ci(const ITERABLE & iterable, const ITERABLE & set);
 
    template < typename ITERABLE, typename ITYPE >
    ITYPE & get_network_payload(const ITERABLE & iterable, ITYPE & str, bool bNewLine = true);
 
    template < typename ITERABLE, typename ITYPE >
-   void c_add(ITERABLE & iterable, char ** ppsz, ::raw::count iCount);
+   void c_add(ITERABLE & iterable, char ** ppsz, ::collection::count iCount);
 
    template < typename ITERABLE, typename ITYPE >
    void c_add(ITERABLE & iterable, char ** ppsz);
 
    template < typename ITERABLE, typename ITYPE >
-   void c_add(ITERABLE & iterable, wchar_t ** ppsz, ::raw::count iCount);
+   void c_add(ITERABLE & iterable, wchar_t ** ppsz, ::collection::count iCount);
 
    template < typename ITERABLE, typename ITYPE >
    void c_add(ITERABLE & iterable, wchar_t ** ppsz);
@@ -728,9 +728,9 @@ namespace iter
 
 
    template < typename ITERABLE, typename ITYPE >
-   bool icontains_ci(const ITERABLE & iterable, const ITYPE & t, index first, ::raw::count count, ::raw::count countMin, ::raw::count countMax)
+   bool icontains_ci(const ITERABLE & iterable, const ITYPE & t, index first, ::collection::count count, ::collection::count countMin, ::collection::count countMax)
    {
-      ::raw::count c = 0;
+      ::collection::count c = 0;
       while ((c < countMin || (countMax >= 0 && c <= countMax))
              && (first = ifind_first_ci(iterable, t, first, count)) >= 0)
       {
@@ -742,7 +742,7 @@ namespace iter
 
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::index ifind_first(const ITERABLE & iterable, const ITYPE & t, index first, ::raw::count count)
+   ::collection::index ifind_first(const ITERABLE & iterable, const ITYPE & t, index first, ::collection::count count)
    {
 
       iterable.iprepare_first_count(first, count);
@@ -765,7 +765,7 @@ namespace iter
 
 
    template < typename ITERABLE, typename ITYPE >
-   bool icontains(const ITERABLE & iterable, const ITYPE & t, index first, ::raw::count count)
+   bool icontains(const ITERABLE & iterable, const ITYPE & t, index first, ::collection::count count)
    {
 
       return ifind_first(iterable, t, first, count) >= 0;
@@ -774,9 +774,9 @@ namespace iter
 
 
    template < typename ITERABLE, typename ITYPE >
-   bool contains(const ITERABLE & iterable, const ITYPE & t, typename ITERABLE::const_iterator find, typename ITERABLE::const_iterator last, ::raw::count countMin, ::raw::count countMax)
+   bool contains(const ITERABLE & iterable, const ITYPE & t, typename ITERABLE::const_iterator find, typename ITERABLE::const_iterator last, ::collection::count countMin, ::collection::count countMax)
    {
-      ::raw::count count = 0;
+      ::collection::count count = 0;
       while ((count < countMin || (countMax >= 0 && count <= countMax))
              && (find = find_first(iterable, t, find, last)) != iterable.end())
          count++;
@@ -786,9 +786,9 @@ namespace iter
 
 
    template < typename ITERABLE, typename ITYPE >
-   bool contains(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator find, typename ITERABLE::iterator last, ::raw::count countMin, ::raw::count countMax)
+   bool contains(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator find, typename ITERABLE::iterator last, ::collection::count countMin, ::collection::count countMax)
    {
-      ::raw::count count = 0;
+      ::collection::count count = 0;
       while ((count < countMin || (countMax >= 0 && count <= countMax))
              && (find = find_first(iterable, t, find, last)) != iterable.end())
          count++;
@@ -843,9 +843,9 @@ namespace iter
 
 
    template < typename ITERABLE, class ITYPE >
-   ::raw::count erase(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator first, typename ITERABLE::iterator last, ::raw::count countMin, ::raw::count countMax)
+   ::collection::count erase(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator first, typename ITERABLE::iterator last, ::collection::count countMin, ::collection::count countMax)
    {
-      ::raw::count count = 0;
+      ::collection::count count = 0;
       if (contains(iterable, t, first, last, countMin, countMax))
          while (conditional(countMax >= 0, count < countMax) && erase_first(iterable, t, first, last))
             count++;
@@ -854,9 +854,9 @@ namespace iter
 
 
    template < typename ITERABLE, class ITYPE >
-   ::raw::count erase_ci(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator first, typename ITERABLE::iterator last, ::raw::count countMin, ::raw::count countMax)
+   ::collection::count erase_ci(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator first, typename ITERABLE::iterator last, ::collection::count countMin, ::collection::count countMax)
    {
-      ::raw::count count = 0;
+      ::collection::count count = 0;
       if (case_insensitive_contains(iterable, t, first, last, countMin, countMax))
          while (conditional(countMax >= 0, count < countMax) && erase_first_ci(iterable, t, first, last))
             count++;
@@ -865,10 +865,10 @@ namespace iter
 
 
    //template < typename ITERABLE, class ITYPE >
-   //::raw::count erase_ci(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
+   //::collection::count erase_ci(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
    //{
 
-   //   ::raw::count c = 0;
+   //   ::collection::count c = 0;
 
    //   prepare_first_count(first, last);
 
@@ -904,10 +904,10 @@ namespace iter
 
 
    template < typename ITERABLE, class ITYPE >
-   ::raw::count erase(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
+   ::collection::count erase(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
    {
 
-      ::raw::count c = 0;
+      ::collection::count c = 0;
 
       prepare_first_count(first, last);
 
@@ -943,10 +943,10 @@ namespace iter
 
 
    template < typename ITERABLE, class ITYPE >
-   ::raw::count erase_ci(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
+   ::collection::count erase_ci(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
    {
 
-      ::raw::count c = 0;
+      ::collection::count c = 0;
 
       prepare_first_count(first, last);
 
@@ -981,10 +981,10 @@ namespace iter
    }
 
    template < typename ITERABLE, class ITYPE >
-   ::raw::count erase(ITERABLE & iterable, const ITYPE & t)
+   ::collection::count erase(ITERABLE & iterable, const ITYPE & t)
    {
 
-      ::raw::count c = 0;
+      ::collection::count c = 0;
 
       auto first = iterable.begin();
 
@@ -1014,10 +1014,10 @@ namespace iter
 
 
    template < typename ITERABLE, class ITYPE >
-   ::raw::count erase_ci(ITERABLE & iterable, const ITYPE & t)
+   ::collection::count erase_ci(ITERABLE & iterable, const ITYPE & t)
    {
 
-      ::raw::count c = 0;
+      ::collection::count c = 0;
 
       auto first = iterable.begin();
 
@@ -1052,9 +1052,9 @@ namespace iter
 
 
    template < typename ITERABLE, class ITYPE >
-   ::raw::count rerase(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator first, typename ITERABLE::iterator last, ::raw::count countMin, ::raw::count countMax)
+   ::collection::count rerase(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator first, typename ITERABLE::iterator last, ::collection::count countMin, ::collection::count countMax)
    {
-      ::raw::count count = 0;
+      ::collection::count count = 0;
       if (contains(iterable, t, first, last, countMin, countMax))
          while (conditional(countMax >= 0, count < countMax) && erase_last(iterable, t, first, last))
             count++;
@@ -1131,7 +1131,7 @@ namespace iter
 
 
    template < typename ITERABLE, typename ITYPE, typename ITYPE2 >
-   void reverse_implode(const ITERABLE & iterable, ITYPE & str, const ITYPE2 & lpcszSeparator, typename ITERABLE::iterator first, ::raw::count last)
+   void reverse_implode(const ITERABLE & iterable, ITYPE & str, const ITYPE2 & lpcszSeparator, typename ITERABLE::iterator first, ::collection::count last)
    {
 
       str.empty();
@@ -1173,10 +1173,10 @@ namespace iter
 
 
    template < typename ITERABLE, typename ITERABLE2 >
-   ::raw::count erase_iter_ci(ITERABLE & iterable, const ITERABLE2 & iterable2)
+   ::collection::count erase_iter_ci(ITERABLE & iterable, const ITERABLE2 & iterable2)
    {
 
-      ::raw::count count = 0;
+      ::collection::count count = 0;
 
       for (auto & item : iterable2)
       {
@@ -1191,10 +1191,10 @@ namespace iter
 
 
    template < typename ITERABLE, typename ITERABLE2 >
-   ::raw::count erase_iter(ITERABLE & iterable, const ITERABLE2 & iterable2)
+   ::collection::count erase_iter(ITERABLE & iterable, const ITERABLE2 & iterable2)
    {
 
-      ::raw::count count = 0;
+      ::collection::count count = 0;
 
       for (auto & item : iterable)
       {
@@ -1242,7 +1242,7 @@ namespace iter
 
 
    //template < typename ITERABLE, typename ITYPE >
-   //void reverse_implode(ITYPE & str, const ITYPE & lpcszSeparator, typename ITERABLE::iterator start, ::raw::count count)
+   //void reverse_implode(ITYPE & str, const ITYPE & lpcszSeparator, typename ITERABLE::iterator start, ::collection::count count)
    //{
    //   str.empty();
    //   ITYPE strSeparator(lpcszSeparator);
@@ -1321,7 +1321,7 @@ namespace iter
 
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::count explode_command_line(ITERABLE & iterable, const ITYPE & str, char ** argv)
+   ::collection::count explode_command_line(ITERABLE & iterable, const ITYPE & str, char ** argv)
    {
 
       ITYPE strParse(str);
@@ -1630,10 +1630,10 @@ end:
 
 
    template < typename ITERABLE, typename ITERABLE2 >
-   ::raw::count add_unique_iter(ITERABLE & iterable, const typename ITERABLE2 & stra)
+   ::collection::count add_unique_iter(ITERABLE & iterable, const typename ITERABLE2 & stra)
    {
 
-      ::raw::count count = 0;
+      ::collection::count count = 0;
 
       for (auto & str : stra)
       {
@@ -1653,10 +1653,10 @@ end:
 
 
    template < typename ITERABLE, typename ITERABLE2 >
-   ::raw::count add_unique_iter_ci(ITERABLE & iterable, const typename ITERABLE2 & iterable2)
+   ::collection::count add_unique_iter_ci(ITERABLE & iterable, const typename ITERABLE2 & iterable2)
    {
 
-      ::raw::count count = 0;
+      ::collection::count count = 0;
 
       for (auto & str : iterable2)
       {
@@ -1749,7 +1749,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename index ifind_first_ci(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::raw::count count)
+   typename index ifind_first_ci(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::collection::count count)
    {
 
       iterable.iprepare_first_count(first, count);
@@ -1772,7 +1772,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename index ifind_first_begins(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::raw::count count)
+   typename index ifind_first_begins(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::collection::count count)
    {
 
       iterable.iprepare_first_count(first, count);
@@ -1794,7 +1794,7 @@ end:
    }
 
    template < typename ITERABLE, typename ITYPE >
-   typename index ifind_first_begins_ci(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::raw::count count)
+   typename index ifind_first_begins_ci(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::collection::count count)
    {
 
       iterable.iprepare_first_count(first, count);
@@ -1818,7 +1818,7 @@ end:
 
 
    //template < typename ITERABLE, typename ITYPE >
-   //index ifind_first_ci(const ITERABLE & iterable, const ITYPE & pcsz, ::raw::index find, ::raw::count count)
+   //index ifind_first_ci(const ITERABLE & iterable, const ITYPE & pcsz, ::collection::index find, ::collection::count count)
    //{
    //   if (find < 0)
    //      find += iterable.get_count();
@@ -2128,7 +2128,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename index find_first_begins(ITERABLE & iterable, const ITYPE & pcsz, ::raw::index find, ::raw::count count)
+   typename index find_first_begins(ITERABLE & iterable, const ITYPE & pcsz, ::collection::index find, ::collection::count count)
    {
 
       iterable.iprepare_first_count(find, count);
@@ -2150,7 +2150,7 @@ end:
    }
 
    template < typename ITERABLE, typename ITYPE >
-   typename index find_first_begins_ci(ITERABLE & iterable, const ITYPE & pcsz, ::raw::index find, ::raw::count count)
+   typename index find_first_begins_ci(ITERABLE & iterable, const ITYPE & pcsz, ::collection::index find, ::collection::count count)
    {
 
       iterable.iprepare_first_count(find, count);
@@ -2174,7 +2174,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::index find_first_ci(ITERABLE & iterable, const ITYPE & pcsz, ::raw::index find, ::raw::count count)
+   ::collection::index find_first_ci(ITERABLE & iterable, const ITYPE & pcsz, ::collection::index find, ::collection::count count)
    {
       if (find < 0)
          find += iterable.get_count();
@@ -2632,10 +2632,10 @@ end:
 
 
    template < typename ITERABLE >
-   ::raw::count erase_empty(ITERABLE & iterable)
+   ::collection::count erase_empty(ITERABLE & iterable)
    {
 
-      ::raw::count count = 0;
+      ::collection::count count = 0;
 
       for (auto it = iterable.begin(); iterable.valid_iter(it, iterable.end());)
       {
@@ -2957,7 +2957,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   void prefix(const ITERABLE & stra, const ITYPE & pszPrefix, typename ITERABLE::iterator iStart, ::raw::count iCount)
+   void prefix(const ITERABLE & stra, const ITYPE & pszPrefix, typename ITERABLE::iterator iStart, ::collection::count iCount)
    {
 
       ITYPE strPrefix(pszPrefix);
@@ -2983,7 +2983,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   void suffix(const ITERABLE & stra, const ITYPE & pszSuffix, typename ITERABLE::iterator iStart, ::raw::count iCount)
+   void suffix(const ITERABLE & stra, const ITYPE & pszSuffix, typename ITERABLE::iterator iStart, ::collection::count iCount)
    {
 
       ITYPE strSuffix(pszSuffix);
@@ -3009,7 +3009,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   void surround(const ITERABLE & stra, const ITYPE & pszPrefix, const ITYPE & pszSuffix, typename ITERABLE::iterator iStart, ::raw::count iCount)
+   void surround(const ITERABLE & stra, const ITYPE & pszPrefix, const ITYPE & pszSuffix, typename ITERABLE::iterator iStart, ::collection::count iCount)
    {
 
       ITYPE strPrefix(pszPrefix);
@@ -3037,7 +3037,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   void surround(ITERABLE & iterable, const ITYPE & pszPrefix, const ITYPE & pszSuffix, typename ITERABLE::iterator iStart, ::raw::count iCount)
+   void surround(ITERABLE & iterable, const ITYPE & pszPrefix, const ITYPE & pszSuffix, typename ITERABLE::iterator iStart, ::collection::count iCount)
    {
 
       ITYPE strPrefix(pszPrefix);
@@ -3065,7 +3065,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   void suffix(ITERABLE & iterable, const ITYPE & pszSuffix, typename ITERABLE::iterator iStart, ::raw::count iCount)
+   void suffix(ITERABLE & iterable, const ITYPE & pszSuffix, typename ITERABLE::iterator iStart, ::collection::count iCount)
    {
 
       ITYPE strSuffix(pszSuffix);
@@ -3094,7 +3094,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE, typename ITYPE2, typename ITYPE3 >
-   void surround_and_implode(const ITERABLE & iterable, ITYPE & str, const ITYPE2 & pszSeparator, const ITYPE3 & pszPrefix, const ITYPE & pszSuffix, typename ITERABLE::iterator iStart, ::raw::count iCount)
+   void surround_and_implode(const ITERABLE & iterable, ITYPE & str, const ITYPE2 & pszSeparator, const ITYPE3 & pszPrefix, const ITYPE & pszSuffix, typename ITERABLE::iterator iStart, ::collection::count iCount)
    {
       ITYPE str;
       ITYPE strSeparator(pszSeparator);
@@ -3195,10 +3195,10 @@ end:
 
 
    template < typename ITERABLE, typename ITERABLE2 >
-   ::raw::count preferred_iter(ITERABLE & iterable, const ITERABLE2 & iterable2)
+   ::collection::count preferred_iter(ITERABLE & iterable, const ITERABLE2 & iterable2)
    {
 
-      ::raw::count count = 0;
+      ::collection::count count = 0;
 
       for (auto i = upper_bound(); i >= begin(); i--)
       {
@@ -3217,7 +3217,7 @@ end:
 
    //template < typename ITERABLE, typename ITYPE >
    //template < typename ITERABLE >
-   //void slice(ITERABLE & stra, const_iterator iOffset, ::raw::count count)
+   //void slice(ITERABLE & stra, const_iterator iOffset, ::collection::count count)
    //{
    //
    //   typename ITERABLE::iterator iEnd;
@@ -3253,14 +3253,14 @@ end:
 
 
    //template < typename ITERABLE, typename ITYPE >
-   //bool is_empty(::raw::count countMinimum)
+   //bool is_empty(::collection::count countMinimum)
    //{
    //   return iterable.get_size() < countMinimum;
    //}
 
 
    //template < typename ITERABLE, typename ITYPE >
-   //bool has_elements(::raw::count countMinimum)
+   //bool has_elements(::collection::count countMinimum)
    //{
    //   return iterable.get_count() >= countMinimum;
    //}
@@ -3268,7 +3268,7 @@ end:
 
 
    template < typename ITERABLE, typename STRITERABLE, typename ITYPE >
-   ::raw::count get_begins_ci(const ITERABLE & iterable, STRITERABLE & stra, const ITYPE & pcsz, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
+   ::collection::count get_begins_ci(const ITERABLE & iterable, STRITERABLE & stra, const ITYPE & pcsz, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
    {
       if (last < 0)
          last = iterable.get_size() + last;
@@ -3278,7 +3278,7 @@ end:
          first = 0;
       typename ITERABLE::iterator i = first;
       typename ITERABLE::iterator iFind;
-      ::raw::count count = 0;
+      ::collection::count count = 0;
       while (true)
       {
          iFind = find_first_begins_ci(pcsz, i, last);
@@ -3292,7 +3292,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::count filter_begins_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
+   ::collection::count filter_begins_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
    {
 
       iterable.prepare_first_last(first, last);
@@ -3301,7 +3301,7 @@ end:
 
       typename ITERABLE::iterator itFind;
 
-      ::raw::count count = 0;
+      ::collection::count count = 0;
 
       while (true)
       {
@@ -3328,7 +3328,7 @@ end:
    }
 
    template < typename ITERABLE, typename ITYPE, typename PRED >
-   ::raw::count filter(ITERABLE & iterable, PRED pred, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
+   ::collection::count filter(ITERABLE & iterable, PRED pred, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
    {
       if (last < 0)
          last = iterable.get_size() + last;
@@ -3337,7 +3337,7 @@ end:
       if (first < 0)
          first = 0;
       //   typename ITERABLE::iterator i = first;
-      ::raw::count count = 0;
+      ::collection::count count = 0;
       for (typename ITERABLE::iterator i = first; i <= last;)
       {
          if (pred(element_at(i)))
@@ -3357,7 +3357,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE, typename PRED >
-   ::raw::count filter_out(ITERABLE & iterable, PRED pred, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
+   ::collection::count filter_out(ITERABLE & iterable, PRED pred, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
    {
       if (last < 0)
          last = iterable.get_size() + last;
@@ -3366,7 +3366,7 @@ end:
       if (first < 0)
          first = 0;
       //   typename ITERABLE::iterator i = first;
-      ::raw::count count = 0;
+      ::collection::count count = 0;
       for (typename ITERABLE::iterator i = first; i <= last;)
       {
          if (!pred(element_at(i)))
@@ -3385,7 +3385,7 @@ end:
    }
 
    template < typename ITERABLE, typename ITYPE, typename PRED, typename ArrayOut >
-   ::raw::count filter_out(ITERABLE & iterable, PRED pred, ArrayOut & a, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
+   ::collection::count filter_out(ITERABLE & iterable, PRED pred, ArrayOut & a, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
    {
       if (last < 0)
          last = iterable.get_size() + last;
@@ -3394,7 +3394,7 @@ end:
       if (first < 0)
          first = 0;
       //   typename ITERABLE::iterator i = first;
-      ::raw::count count = 0;
+      ::collection::count count = 0;
       for (typename ITERABLE::iterator i = first; i <= last;)
       {
          if (!pred(element_at(i)))
@@ -3543,10 +3543,10 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::count get_count_except(const ITERABLE & iterable, const ITYPE & str)
+   ::collection::count get_count_except(const ITERABLE & iterable, const ITYPE & str)
    {
 
-      ::raw::count c = get_count();
+      ::collection::count c = get_count();
 
       for (typename ITERABLE::iterator i = 0; i < get_count(); i++)
       {
@@ -3562,10 +3562,10 @@ end:
 
 
    template < typename ITERABLE, typename ITERABLE2 >
-   ::raw::count get_count_except_iter(const ITERABLE & iterable, const ITERABLE2 & iterable2)
+   ::collection::count get_count_except_iter(const ITERABLE & iterable, const ITERABLE2 & iterable2)
    {
 
-      ::raw::count c = get_count();
+      ::collection::count c = get_count();
 
       for (auto & item : iterable)
       {
@@ -3582,10 +3582,10 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   ::raw::count get_count_except_ci(const ITERABLE & iterable, const ITYPE & str)
+   ::collection::count get_count_except_ci(const ITERABLE & iterable, const ITYPE & str)
    {
 
-      ::raw::count c = get_count();
+      ::collection::count c = get_count();
 
       for (typename ITERABLE::iterator i = 0; i < get_count(); i++)
       {
@@ -3601,10 +3601,10 @@ end:
 
 
    template < typename ITERABLE, typename ITERABLE2 >
-   ::raw::count get_count_except_iter_ci(const ITERABLE & iterable, const ITERABLE2 & iterable2)
+   ::collection::count get_count_except_iter_ci(const ITERABLE & iterable, const ITERABLE2 & iterable2)
    {
 
-      ::raw::count c = get_count();
+      ::collection::count c = get_count();
 
       for (auto & item : iterable)
       {
@@ -3741,7 +3741,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   void if_prefix_implode_ex(const ITERABLE & iterable, ITYPE & str, const ITYPE & lpcszIfHasElementPrefix, const ITYPE & lpcszSeparator, const ITYPE & lpcszLastSeparator, bool bUseLast, typename ITERABLE::iterator start, ::raw::count count)
+   void if_prefix_implode_ex(const ITERABLE & iterable, ITYPE & str, const ITYPE & lpcszIfHasElementPrefix, const ITYPE & lpcszSeparator, const ITYPE & lpcszLastSeparator, bool bUseLast, typename ITERABLE::iterator start, ::collection::count count)
    {
 
       str.empty();
@@ -3794,7 +3794,7 @@ end:
 
    /// expect strings allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or strdup and array allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
    template < typename ITERABLE >
-   void c_add(ITERABLE & iterable, char ** ppsz, ::raw::count c)
+   void c_add(ITERABLE & iterable, char ** ppsz, ::collection::count c)
    {
 
       for (typename ITERABLE::iterator i = 0; i < c; i++)
@@ -3836,7 +3836,7 @@ end:
 
    /// expect strings allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate) or wcsdup and array allocated with malloc (sic, not ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate)
    template < typename ITERABLE >
-   void c_add(ITERABLE & iterable, wchar_t ** ppsz, ::raw::count c)
+   void c_add(ITERABLE & iterable, wchar_t ** ppsz, ::collection::count c)
    {
 
       for (typename ITERABLE::iterator i = 0; i < c; i++)
@@ -3978,7 +3978,7 @@ end:
 
 
    template < typename ITERABLE, typename ITERABLE2 >
-   ITERABLE2 & islice(ITERABLE & iterable, ITERABLE2 & iterable2, index first, ::raw::count count)
+   ITERABLE2 & islice(ITERABLE & iterable, ITERABLE2 & iterable2, index first, ::collection::count count)
    {
 
       iterable.iprepare_first_count(first, count);
@@ -3997,10 +3997,10 @@ end:
    }
 
    template < typename ITERABLE, typename ITYPE >
-   ITERABLE & add_data(ITERABLE & iterable, const ITYPE * pdata, ::raw::count count)
+   ITERABLE & add_data(ITERABLE & iterable, const ITYPE * pdata, ::collection::count count)
    {
 
-      for (::raw::index i = 0; i < count; i++)
+      for (::collection::index i = 0; i < count; i++)
       {
 
          iterable.add(pdata[i]);
@@ -4013,7 +4013,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   ITERABLE & add_item(ITERABLE & iterable, const ITYPE & t, ::raw::count n)
+   ITERABLE & add_item(ITERABLE & iterable, const ITYPE & t, ::collection::count n)
    {
 
       while (n > 0)
@@ -4066,7 +4066,7 @@ public:
 
 
    template < typename ITYPE >
-   bool contains_iter_ci(const ITYPE & str, typename ITERABLE::iterator find = 0, typename ITERABLE::iterator last = nullptr, ::raw::count countMin = 1, ::raw::count countMax = -1) const
+   bool contains_iter_ci(const ITYPE & str, typename ITERABLE::iterator find = 0, typename ITERABLE::iterator last = nullptr, ::collection::count countMin = 1, ::collection::count countMax = -1) const
    {
 
       return ::iter::case_insensitive_contains(*this, str, find, last, countMin, countMax);
@@ -4075,7 +4075,7 @@ public:
 
 
    template < typename ITYPE >
-   bool contains_iter(const ITYPE & str, typename ITERABLE::iterator find = 0, typename ITERABLE::iterator last = nullptr, ::raw::count countMin = 1, ::raw::count countMax = -1) const
+   bool contains_iter(const ITYPE & str, typename ITERABLE::iterator find = 0, typename ITERABLE::iterator last = nullptr, ::collection::count countMin = 1, ::collection::count countMax = -1) const
    {
 
       return ::iter::contains(*this, str, find, last, countMin, countMax);
@@ -4084,7 +4084,7 @@ public:
 
 
    template < typename ITYPE >
-   bool icontains_ci(const ITYPE & str, ::raw::index find, ::raw::count count, ::raw::count countMin /*= 1*/, ::raw::count countMax = -1) const
+   bool icontains_ci(const ITYPE & str, ::collection::index find, ::collection::count count, ::collection::count countMin /*= 1*/, ::collection::count countMax = -1) const
    {
 
       return ::iter::icontains_ci(*this, str, find, last, countMin, countMax);
@@ -4093,7 +4093,7 @@ public:
 
 
    template < typename ITYPE >
-   bool icontains(const ITYPE & str, ::raw::index find, ::raw::count count, ::raw::count countMin /*= 1*/, ::raw::count countMax = -1) const
+   bool icontains(const ITYPE & str, ::collection::index find, ::collection::count count, ::collection::count countMin /*= 1*/, ::collection::count countMax = -1) const
    {
 
       return ::iter::icontains(*this, str, find, last, countMin, countMax);
@@ -4256,7 +4256,7 @@ public:
    }
 
    template < typename ITERABLE2 >
-   ::raw::count erase_iter(const ITERABLE2 & iterable2)
+   ::collection::count erase_iter(const ITERABLE2 & iterable2)
    {
 
       return ::iter::erase_iter(*this, iterable2);
@@ -4291,7 +4291,7 @@ public:
    }
 
    template < typename ITYPE >
-   ::raw::count erase_element_iter_ci(const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr, ::raw::count countMin = 0, ::raw::count countMax = -1)
+   ::collection::count erase_element_iter_ci(const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr, ::collection::count countMin = 0, ::collection::count countMax = -1)
    {
 
       return ::iter::erase_ci(pcsz, find, last, countMin, countMax);
@@ -4299,7 +4299,7 @@ public:
    }
 
    template < typename ITYPE >
-   ::raw::count erase_element_iter(const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr, ::raw::count countMin = 0, ::raw::count countMax = -1)
+   ::collection::count erase_element_iter(const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr, ::collection::count countMin = 0, ::collection::count countMax = -1)
    {
 
       return ::iter::erase_ci(pcsz, find, last, countMin, countMax);
@@ -4420,7 +4420,7 @@ public:
    }
 
    template < typename STRITERABLE, typename ITYPE >
-   ::raw::count get_begins_ci(STRITERABLE & stra, const ITYPE & pcsz, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr)
+   ::collection::count get_begins_ci(STRITERABLE & stra, const ITYPE & pcsz, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr)
    {
 
       return ::iter::get_begins_ci(*this, stra, pcsz, first, last);
@@ -4429,7 +4429,7 @@ public:
 
 
    template < typename ITYPE >
-   ::raw::count filter_begins_ci(const ITYPE & pcsz, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr)
+   ::collection::count filter_begins_ci(const ITYPE & pcsz, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr)
    {
 
       return ::iter::filter_begins_ci(*this, pcsz, first, last);
@@ -4438,7 +4438,7 @@ public:
 
 
    template < typename PRED >
-   ::raw::count filter(PRED pred, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr)
+   ::collection::count filter(PRED pred, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr)
    {
 
       return ::iter::filter(*this, pred, first, last);
@@ -4446,7 +4446,7 @@ public:
    }
 
    template < typename PRED >
-   ::raw::count filter_out(PRED pred, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr)
+   ::collection::count filter_out(PRED pred, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr)
    {
 
       return ::iter::filter_out(*this, pred, first, last);
@@ -4454,7 +4454,7 @@ public:
    }
 
    template < typename PRED, typename ArrayOut >
-   ::raw::count filter_out(PRED pred, ArrayOut & a, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr)
+   ::collection::count filter_out(PRED pred, ArrayOut & a, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr)
    {
 
       return ::iter::filter_out(*this, pred, a, first, last);
@@ -4462,7 +4462,7 @@ public:
    }
 
    template < typename ITYPE >
-   ::raw::count erase_first_ci(const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr)
+   ::collection::count erase_first_ci(const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr)
    {
 
       return ::iter::erase_first_ci(*this, pcsz, first, last);
@@ -4471,7 +4471,7 @@ public:
 
    using ITERABLE::erase_first;
    template < typename ITYPE >
-   ::raw::count erase_first(const ITYPE & pcsz, typename ITERABLE::iterator first = nullptr, typename ITERABLE::iterator last = nullptr)
+   ::collection::count erase_first(const ITYPE & pcsz, typename ITERABLE::iterator first = nullptr, typename ITERABLE::iterator last = nullptr)
    {
 
       return ::iter::erase_first(*this, pcsz, first, last);
@@ -4479,7 +4479,7 @@ public:
    }
 
    template < typename ITYPE >
-   ::raw::count erase_last_ci(const ITYPE & pcsz, typename ITERABLE::iterator first = nullptr, typename ITERABLE::iterator last = nullptr)
+   ::collection::count erase_last_ci(const ITYPE & pcsz, typename ITERABLE::iterator first = nullptr, typename ITERABLE::iterator last = nullptr)
    {
 
       return ::iter::erase_last_ci(*this, pcsz, first, last);
@@ -4489,7 +4489,7 @@ public:
 
    using ITERABLE::erase_last;
    template < typename ITYPE >
-   ::raw::count erase_last(const ITYPE & pcsz, typename ITERABLE::iterator first = nullptr, typename ITERABLE::iterator last = nullptr)
+   ::collection::count erase_last(const ITYPE & pcsz, typename ITERABLE::iterator first = nullptr, typename ITERABLE::iterator last = nullptr)
    {
 
       return ::iter::erase_last(*this, pcsz, first, last);
@@ -4534,7 +4534,7 @@ public:
    }
 
    template < typename ITYPE >
-   void c_add(char ** ppsz, ::raw::count iCount)
+   void c_add(char ** ppsz, ::collection::count iCount)
    {
 
       return ::iter::c_add(*this, ppsz, iCount);
@@ -4550,7 +4550,7 @@ public:
    }
 
    template < typename ITYPE >
-   void c_add(wchar_t ** ppsz, ::raw::count iCount)
+   void c_add(wchar_t ** ppsz, ::collection::count iCount)
    {
 
       return ::iter::c_add(*this, ppsz, iCount);
@@ -4602,7 +4602,7 @@ public:
    }
 
    template < typename ITYPE >
-   bool icontains_ci(const ITYPE & value, index first = 0, ::raw::count count = -1) const
+   bool icontains_ci(const ITYPE & value, index first = 0, ::collection::count count = -1) const
    {
 
       return ::iter::icontains_ci(*this, value, first, count);
@@ -4611,7 +4611,7 @@ public:
 
 
    template < typename ITYPE >
-   bool icontains(const ITYPE & value, index first = 0, ::raw::count count = -1) const
+   bool icontains(const ITYPE & value, index first = 0, ::collection::count count = -1) const
    {
 
       return ::iter::icontains(*this, value, first, count);
@@ -4619,7 +4619,7 @@ public:
    }
 
    template < typename ITYPE >
-   ::raw::count erase(const ITYPE & value)
+   ::collection::count erase(const ITYPE & value)
    {
 
       return ::iter::erase(*this, value);
@@ -4636,7 +4636,7 @@ public:
    }
 
    template < typename ITERABLE2 >
-   typename ::raw::count add_unique_iter(const ITERABLE2 & stra)
+   typename ::collection::count add_unique_iter(const ITERABLE2 & stra)
    {
 
       return ::iter::add_unique_iter(*this, stra);
@@ -4644,7 +4644,7 @@ public:
    }
 
    template < typename ITERABLE2 >
-   typename ::raw::count add_unique_iter_ci(const ITERABLE2 & stra)
+   typename ::collection::count add_unique_iter_ci(const ITERABLE2 & stra)
    {
 
       return ::iter::add_unique_iter_ci(*this, stra);
@@ -4712,7 +4712,7 @@ public:
 
 
    template < typename ITYPE >
-   typename index ifind_first_begins(const ITYPE & lpcszPrefix, index first = 0, ::raw::count count = -1)
+   typename index ifind_first_begins(const ITYPE & lpcszPrefix, index first = 0, ::collection::count count = -1)
    {
 
       return ::iter::ifind_first_begins(*this, lpcszPrefix, first, count);
@@ -4721,7 +4721,7 @@ public:
 
 
    template < typename ITYPE >
-   typename index ifind_first(const ITYPE & lpcszPrefix, ::raw::index find = 0, ::raw::count count = -1) const
+   typename index ifind_first(const ITYPE & lpcszPrefix, ::collection::index find = 0, ::collection::count count = -1) const
    {
 
       return ::iter::ifind_first(*this, lpcszPrefix, find, count);
@@ -4730,7 +4730,7 @@ public:
 
 
    template < typename ITYPE >
-   typename index ifind_first(const ITYPE & lpcszPrefix, ::raw::index find = 0, ::raw::count count = -1)
+   typename index ifind_first(const ITYPE & lpcszPrefix, ::collection::index find = 0, ::collection::count count = -1)
    {
 
       return ::iter::ifind_first(*this, lpcszPrefix, find, count);
@@ -4739,7 +4739,7 @@ public:
 
 
    template < typename ITYPE >
-   typename index ifind_first_ci(const ITYPE & lpcszPrefix, ::raw::index find = 0, ::raw::count count = -1) const
+   typename index ifind_first_ci(const ITYPE & lpcszPrefix, ::collection::index find = 0, ::collection::count count = -1) const
    {
 
       return ::iter::ifind_first_ci(*this, lpcszPrefix, find, count);
@@ -4747,7 +4747,7 @@ public:
    }
 
    template < typename ITYPE >
-   typename index ifind_first_ci(const ITYPE & lpcszPrefix, ::raw::index find = 0, ::raw::count count = -1)
+   typename index ifind_first_ci(const ITYPE & lpcszPrefix, ::collection::index find = 0, ::collection::count count = -1)
    {
 
       return ::iter::ifind_first_ci(*this, lpcszPrefix, find, count);

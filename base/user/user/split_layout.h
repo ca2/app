@@ -31,7 +31,7 @@ namespace user
       pointer_array < split_bar >            m_splitbara;
       ::pointer_array < split_pane >         m_panea;
       enum_orientation                       m_eorientationSplit;
-      ::raw::index                                  m_iIndex;
+      ::collection::index                                  m_iIndex;
       i32                                    m_iState;
       bool                                   m_bInitialized;
       static const i32                       m_iMarging;
@@ -39,7 +39,7 @@ namespace user
       i32                                    m_cyBorder;
       //::rectangle_i32                        m_rectangleClient;
       
-      ::raw::count                                m_iPaneCount;
+      ::collection::count                                m_iPaneCount;
 
 
       split_layout();
@@ -51,36 +51,36 @@ namespace user
       virtual i32 get_normal_dimension(enum_layout elayout = e_layout_design);
       virtual i32 get_ortogonal_dimension(enum_layout elayout = e_layout_design);
 
-      //void RelayEventSplitBar(::raw::index iSplitBar, const ::atom & atom, WPARAM wParam, LPARAM lParam);
+      //void RelayEventSplitBar(::collection::index iSplitBar, const ::atom & atom, WPARAM wParam, LPARAM lParam);
       enum_orientation GetSplitOrientation();
-      i32 GetMaxPos(::raw::index iPane, enum_layout elayout = e_layout_design);
-      i32 GetMinPos(::raw::index iPane, enum_layout elayout = e_layout_design);
-      bool InsertPaneAt(::raw::index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, atom idPane = atom());
-      bool SetPane(::raw::index iIndex, ::user::interaction* puserinteraction, bool bFixedSize, atom idPane = atom());
-      bool RemovePaneAt(::raw::index iIndex);
-      void SetPaneFixedSize(::raw::index iIndex, const ::size_i32 & pSize);
-      void CalcSplitBarRect(::raw::index iIndex, ::rectangle_i32 & rectangle, enum_layout elayout = e_layout_design);
+      i32 GetMaxPos(::collection::index iPane, enum_layout elayout = e_layout_design);
+      i32 GetMinPos(::collection::index iPane, enum_layout elayout = e_layout_design);
+      bool InsertPaneAt(::collection::index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, atom idPane = atom());
+      bool SetPane(::collection::index iIndex, ::user::interaction* puserinteraction, bool bFixedSize, atom idPane = atom());
+      bool RemovePaneAt(::collection::index iIndex);
+      void SetPaneFixedSize(::collection::index iIndex, const ::size_i32 & pSize);
+      void CalcSplitBarRect(::collection::index iIndex, ::rectangle_i32 & rectangle, enum_layout elayout = e_layout_design);
 
       void CalcPaneRect(i32 nMinPos, i32 nMaxPos, ::rectangle_i32 & rectangle, enum_layout elayout = e_layout_design);
 
-      void CalcPaneRect(::raw::index iIndex, ::rectangle_i32 & rectangle, enum_layout elayout = e_layout_design);
+      void CalcPaneRect(::collection::index iIndex, ::rectangle_i32 & rectangle, enum_layout elayout = e_layout_design);
 
 
-      virtual ::user::interaction * get_pane_window(::raw::index iPane);
-      virtual ::user::place_holder * get_pane_holder(::raw::index iPane);
-      virtual ::rectangle_i32 & get_pane_rect(::raw::index iPane);
-      virtual atom get_pane_id(::raw::index iPane);
+      virtual ::user::interaction * get_pane_window(::collection::index iPane);
+      virtual ::user::place_holder * get_pane_holder(::collection::index iPane);
+      virtual ::rectangle_i32 & get_pane_rect(::collection::index iPane);
+      virtual atom get_pane_id(::collection::index iPane);
       virtual split_pane * get_pane_by_id(::atom atom);
 
 
-      virtual ::raw::count get_pane_count();
-      virtual ::raw::count get_visible_pane_count();
+      virtual ::collection::count get_pane_count();
+      virtual ::collection::count get_visible_pane_count();
       virtual bool is_pane_visible(int iPane);
 
-      ::raw::count get_split_count();
-      i32 get_position(::raw::index iIndex);
-      void set_position(::raw::index iIndex, i32 nPos);
-      void set_position_rate(::raw::index iIndex, double dRate, double dMinimumRate = 0.1, double dMaximumRate = 0.9);
+      ::collection::count get_split_count();
+      i32 get_position(::collection::index iIndex);
+      void set_position(::collection::index iIndex, i32 nPos);
+      void set_position_rate(::collection::index iIndex, double dRate, double dMinimumRate = 0.1, double dMaximumRate = 0.9);
       
       void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -88,12 +88,12 @@ namespace user
       i32 GetMaxPos(enum_layout elayout = e_layout_design);
       i32 GetMinPos(enum_layout elayout = e_layout_design);
       i32 GetPos(i32 xPos, i32 yPos);
-      void RelayChildEvent(::raw::index iIndex, const MESSAGE *  pMsg);
+      void RelayChildEvent(::collection::index iIndex, const MESSAGE *  pMsg);
 
 
       void SetSplitOrientation(enum_orientation eorientation);
 
-      bool SetPaneCount(::raw::count iPaneCount);
+      bool SetPaneCount(::collection::count iPaneCount);
 
       virtual bool initialize_split_layout();
 

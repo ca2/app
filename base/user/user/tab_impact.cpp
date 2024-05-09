@@ -222,7 +222,7 @@ namespace user
    void tab_impact::rotate()
    {
 
-      ::raw::index iIndex = get_current_tab_index();
+      ::collection::index iIndex = get_current_tab_index();
 
       if (iIndex < 0)
       {
@@ -285,7 +285,7 @@ namespace user
    }
 
 
-   void tab_impact::_001OnTabClick(::raw::index iTab)
+   void tab_impact::_001OnTabClick(::collection::index iTab)
    {
 
       ::user::tab::_001OnTabClick(iTab);
@@ -369,7 +369,7 @@ namespace user
    }
 
 
-   void tab_impact::_001OnDropTab(::raw::index iTab, enum_position eposition)
+   void tab_impact::_001OnDropTab(::collection::index iTab, enum_position eposition)
    {
 
       if (eposition != e_position_none)
@@ -460,7 +460,7 @@ namespace user
    }
 
 
-   ::user::interaction * tab_impact::_001GetTabWnd(::raw::index iTab)
+   ::user::interaction * tab_impact::_001GetTabWnd(::collection::index iTab)
    {
 
       if (m_pviewcreator == nullptr)
@@ -558,7 +558,7 @@ namespace user
    void tab_impact::_on_change_cur_sel()
    {
 
-      ::raw::index iTab = get_current_tab_index();
+      ::collection::index iTab = get_current_tab_index();
 
       atom atom = index_id(iTab);
 
@@ -637,7 +637,7 @@ namespace user
                if (pimpactdata->m_strTitle.has_char())
                {
 
-                  ::raw::index iTab = get_current_tab_index();
+                  ::collection::index iTab = get_current_tab_index();
 
                   if (iTab >= 0 && get_data()->m_tabpanea[iTab]->m_atom == pimpactdata->m_atom)
                   {
@@ -1009,7 +1009,7 @@ namespace user
 
       }
 
-      ::raw::index iTab = id_index(atom);
+      ::collection::index iTab = id_index(atom);
 
       if (iTab < 0)
       {
@@ -1069,7 +1069,7 @@ namespace user
 
          //}
 
-         //for(::raw::index i = 0; i < pframe->notify_icon()->m_notifyiconitema.get_count(); i++)
+         //for(::collection::index i = 0; i < pframe->notify_icon()->m_notifyiconitema.get_count(); i++)
          //{
 
          //   auto pnotifyiconitem = pframe->notify_icon()->m_notifyiconitema[i];

@@ -108,10 +108,10 @@ namespace hotplugin
       //virtual bool destroy_window();
       //
       // call host memory
-      virtual void   set_memory(void * puchMemory, ::raw::count c);
-      virtual void   append_memory(void * puchMemory, ::raw::count c);
-      virtual ::raw::count get_memory_length();
-      virtual ::raw::count read_memory(void * puchMemory, ::raw::count c);
+      virtual void   set_memory(void * puchMemory, ::collection::count c);
+      virtual void   append_memory(void * puchMemory, ::collection::count c);
+      virtual ::collection::count get_memory_length();
+      virtual ::collection::count read_memory(void * puchMemory, ::collection::count c);
       virtual void   free_memory();
       //static  void   free_memory(u8 ** ppuchMemory);
 

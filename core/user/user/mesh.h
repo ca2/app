@@ -123,7 +123,7 @@ namespace user
       class CSortInfoItem
       {
       public:
-         ::raw::index    m_iSubItem;
+         ::collection::index    m_iSubItem;
          bool     m_bAscendent;
       };
 
@@ -159,7 +159,7 @@ namespace user
       bool                                         m_bMultiSelect;
 
       bool                                         m_bDrag;
-      ::raw::index                                        m_iItemLButtonDown;
+      ::collection::index                                        m_iItemLButtonDown;
 
       // Sort
       bool                                         m_bSort;
@@ -172,16 +172,16 @@ namespace user
 
       ::pointer<draw2d::graphics_extension>        m_pgraphicsextension;
 
-      ::raw::index                                        m_iClick;
+      ::collection::index                                        m_iClick;
       bool                                         m_bLButtonDown;
       point_i32                                    m_pointLButtonDown1;
       point_i32                                    m_pointLButtonDown2;
       class ::time                                   m_timeLButtonDownStart1;
       class ::time                                   m_timeLButtonDownStart2;
-      ::raw::index                                        m_iDisplayItemLButtonDown1;
-      ::raw::index                                        m_iDisplayItemLButtonDown2;
+      ::collection::index                                        m_iDisplayItemLButtonDown1;
+      ::collection::index                                        m_iDisplayItemLButtonDown2;
 
-      ::raw::index                                        m_iDisplayItemFocus;
+      ::collection::index                                        m_iDisplayItemFocus;
 
       bool                                         m_bLockImpactUpdate;
       i32                                          m_iItemWidth;
@@ -189,18 +189,18 @@ namespace user
       //index                                        m_iDisplayItemHover;
       //index                                        m_iSubItemHover;
 
-      ::raw::index                                        m_iLastItemSel;
-      ::raw::index                                        m_iLastSubItemSel;
-      ::raw::index                                        m_iItemEnter;
-      ::raw::index                                        m_iSubItemEnter;
-      ::raw::index                                        m_iMouseFlagEnter;
-      ::raw::index                                        m_iItemSel;
-      ::raw::index                                        m_iSubItemSel;
+      ::collection::index                                        m_iLastItemSel;
+      ::collection::index                                        m_iLastSubItemSel;
+      ::collection::index                                        m_iItemEnter;
+      ::collection::index                                        m_iSubItemEnter;
+      ::collection::index                                        m_iMouseFlagEnter;
+      ::collection::index                                        m_iItemSel;
+      ::collection::index                                        m_iSubItemSel;
 
       range                                        m_rangeSelection;
       range                                        m_rangeHighlight;
 
-      ::raw::index                                        m_iShiftFirstSelection;
+      ::collection::index                                        m_iShiftFirstSelection;
       uptr                                         m_uiLButtonDownFlags;
       uptr                                         m_uiLButtonUpFlags;
       point_i32                                    m_pointLButtonUp;
@@ -225,16 +225,16 @@ namespace user
       //::pointer < ::mutex >                            m_pmutex;
 
 
-      ::raw::index                                        m_iTopDisplayIndex;
-      ::raw::index                                        m_iTopGroup;
-      ::raw::count                                      m_nDisplayCount;
-      ::raw::count                                      m_nItemCount;
-      ::raw::count                                      m_nGroupCount;
-      ::raw::count                                      m_nColumnCount;
+      ::collection::index                                        m_iTopDisplayIndex;
+      ::collection::index                                        m_iTopGroup;
+      ::collection::count                                      m_nDisplayCount;
+      ::collection::count                                      m_nItemCount;
+      ::collection::count                                      m_nGroupCount;
+      ::collection::count                                      m_nColumnCount;
 
 
-      ::raw::count                                      m_nGridItemCount;
-      ::raw::count                                      m_nGridColumnCount;
+      ::collection::count                                      m_nGridItemCount;
+      ::collection::count                                      m_nGridColumnCount;
 
       ::pointer<::image_list>                     m_pimagelistGroup;
       ::pointer<::image_list>                     m_pimagelistGroupHover;
@@ -242,7 +242,7 @@ namespace user
       bool                                         m_bLateralGroup;
       i32                                          m_iLateralGroupWidth;
       i32                                          m_iGroupMinHeight;
-      ::raw::index                                        m_iGroupHover;
+      ::collection::index                                        m_iGroupHover;
 
       //draw_mesh_item *                 m_pdrawmeshitem;
 
@@ -277,8 +277,8 @@ namespace user
 
 
 
-      //virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem, ::raw::index iSubItem);
-      //i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,::write_text::font * pfont, ::raw::index iItem, ::raw::index iSubItem);
+      //virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::collection::index iSubItem);
+      //i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,::write_text::font * pfont, ::collection::index iItem, ::collection::index iSubItem);
 
 
       ::core::application* get_app();
@@ -301,10 +301,10 @@ namespace user
       virtual ::draw2d::pen * _001GetPenHighlight();
       virtual void PreSubClassWindow() override;
       virtual void _OnDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, ::raw::index iColumn);
+      virtual void _001MaximizeColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn);
       virtual void _001CalculateItemHeight(::draw2d::graphics_pointer & pgraphics);
-      virtual i32 _001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::raw::index iItem, ::raw::index iSubItem);
-      virtual i32 _001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::raw::index iColumn);
+      virtual i32 _001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iItem, ::collection::index iSubItem);
+      virtual i32 _001CalcColumnWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iColumn);
       virtual i32 _001CalcMeshWidth(::draw2d::graphics_pointer& pgraphics);
       virtual void _001OnSort();
 
@@ -316,13 +316,13 @@ namespace user
       virtual void _001DeleteRange(range& range);
 
       // Sort
-      virtual ::std::strong_ordering _001Compare(::raw::index iItem1, ::raw::index iItem2);
-      virtual ::std::strong_ordering _002Compare(::raw::index iItem1, ::raw::index iItem2, ::raw::index iSubItem);
-      virtual ::std::strong_ordering _001DisplayCompare(::raw::index iDisplayItem1, ::raw::index iDisplayItem2);
+      virtual ::std::strong_ordering _001Compare(::collection::index iItem1, ::collection::index iItem2);
+      virtual ::std::strong_ordering _002Compare(::collection::index iItem1, ::collection::index iItem2, ::collection::index iSubItem);
+      virtual ::std::strong_ordering _001DisplayCompare(::collection::index iDisplayItem1, ::collection::index iDisplayItem2);
 
 
-      virtual bool is_valid_display_item(::raw::index iDisplayItem);
-      virtual bool is_valid_strict_item(::raw::index iStrictItem);
+      virtual bool is_valid_display_item(::collection::index iDisplayItem);
+      virtual bool is_valid_strict_item(::collection::index iStrictItem);
 
 
       virtual void on_hover_select_timer();
@@ -334,36 +334,36 @@ namespace user
 
       virtual ::size_i32 get_item_size();
 
-      virtual void _001OnSort(::raw::index iSubItem);
-      virtual void _001OnMeshHeaderItemClick(::raw::index iHeaderItem);
-      virtual void _001OnMeshHeaderItemDblClk(::raw::index iHeaderItem);
+      virtual void _001OnSort(::collection::index iSubItem);
+      virtual void _001OnMeshHeaderItemClick(::collection::index iHeaderItem);
+      virtual void _001OnMeshHeaderItemDblClk(::collection::index iHeaderItem);
       virtual void Filter1(const string & str);
       virtual bool Filter1Step();
 
 
-      virtual ::raw::index _001CalcDisplayTopIndex();
-      virtual ::raw::count _001CalcDisplayItemCount();
-      virtual i32 _001GetGroupHeight(::raw::index iGroup);
+      virtual ::collection::index _001CalcDisplayTopIndex();
+      virtual ::collection::count _001CalcDisplayItemCount();
+      virtual i32 _001GetGroupHeight(::collection::index iGroup);
 
 
       virtual void FilterInclude(::i32_array & array);
-      virtual void FilterInclude(::raw::index iItem);
+      virtual void FilterInclude(::collection::index iItem);
       virtual void FilterExcludeAll();
       virtual void FilterClose();
       virtual void FilterApply();
       virtual void FilterBegin();
-      virtual ::raw::index strict_to_display(::raw::index iStrict);
-      virtual ::raw::index display_to_strict(::raw::index iDisplay);
-      virtual void select_item(::raw::index iItem, ::raw::index iSubItem);
-      virtual void highlight_item(::raw::index iItem,bool bRedraw);
+      virtual ::collection::index strict_to_display(::collection::index iStrict);
+      virtual ::collection::index display_to_strict(::collection::index iDisplay);
+      virtual void select_item(::collection::index iItem, ::collection::index iSubItem);
+      virtual void highlight_item(::collection::index iItem,bool bRedraw);
       virtual void erase_selection();
-      virtual bool on_erase_item(::raw::index iItem);
-      virtual bool erase_item(::raw::index iItem,bool bRedraw = true);
-      virtual void ensure_item_visible(::raw::index iItem,bool bRedraw = true);
-      virtual void ensure_item_visible(::raw::index iItem, range& rangeRedraw);
-      virtual void scroll_to_item(::raw::index iItem,bool bRedraw = true);
-      virtual ::raw::index data_key_to_column_key(const ::scoped_string & strDataKey);
-      virtual ::raw::index data_key_to_sub_item(const ::scoped_string & strDataKey);
+      virtual bool on_erase_item(::collection::index iItem);
+      virtual bool erase_item(::collection::index iItem,bool bRedraw = true);
+      virtual void ensure_item_visible(::collection::index iItem,bool bRedraw = true);
+      virtual void ensure_item_visible(::collection::index iItem, range& rangeRedraw);
+      virtual void scroll_to_item(::collection::index iItem,bool bRedraw = true);
+      virtual ::collection::index data_key_to_column_key(const ::scoped_string & strDataKey);
+      virtual ::collection::index data_key_to_sub_item(const ::scoped_string & strDataKey);
       virtual bool has_data_key(const ::scoped_string & strDataKey);
       virtual void get_data_selection(const ::scoped_string & scopedstrDataKey,::string_array & straSelection);
 
@@ -383,20 +383,20 @@ namespace user
       virtual atom data_get_sort_id(EImpact eview);
       virtual atom data_get_current_mesh_layout_id();
 
-      virtual bool query_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag);
-      virtual bool do_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag);
-      virtual bool defer_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag);
+      virtual bool query_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag);
+      virtual bool do_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag);
+      virtual bool defer_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag);
 
 
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual void  _001DrawGroups(::draw2d::graphics_pointer & pgraphics, ::raw::index iGroupFirst, ::raw::index iGroupLast, ::raw::index iItemFirst, ::raw::index iItemLast);
-      virtual void  _001DrawGroups(::draw2d::graphics_pointer & pgraphics, ::raw::index iGroupFirst, ::raw::index iGroupLast);
+      //virtual void  _001DrawGroups(::draw2d::graphics_pointer & pgraphics, ::collection::index iGroupFirst, ::collection::index iGroupLast, ::collection::index iItemFirst, ::collection::index iItemLast);
+      virtual void  _001DrawGroups(::draw2d::graphics_pointer & pgraphics, ::collection::index iGroupFirst, ::collection::index iGroupLast);
 
       virtual void  _001DrawGroup(draw_mesh_group * pdrawgroup);
 
-      virtual void  _001DrawItems(::draw2d::graphics_pointer & pgraphics, ::raw::index iItemFirst, ::raw::index iItemLast);
+      virtual void  _001DrawItems(::draw2d::graphics_pointer & pgraphics, ::collection::index iItemFirst, ::collection::index iItemLast);
 
       virtual void  _001DrawItem(draw_mesh_item * pdrawitem);
 
@@ -404,9 +404,9 @@ namespace user
 
 
 
-      virtual ::pointer<mesh_item>& get_item(::raw::index iItem);
-      virtual ::pointer<mesh_subitem>& get_subitem(::raw::index iItem, ::raw::index iSubItem);
-      virtual ::pointer<mesh_subitem>& get_subitem(mesh_item * pitem, ::raw::index iSubItem);
+      virtual ::pointer<mesh_item>& get_item(::collection::index iItem);
+      virtual ::pointer<mesh_subitem>& get_subitem(::collection::index iItem, ::collection::index iSubItem);
+      virtual ::pointer<mesh_subitem>& get_subitem(mesh_item * pitem, ::collection::index iSubItem);
 
 
       virtual void  _001GetSubItemImage(mesh_subitem * psubitem);
@@ -419,15 +419,15 @@ namespace user
 
       virtual void  _001SearchGetSubItemText(mesh_subitem * psubitem);
 
-      virtual ::raw::count  _001GetGroupItemCount(::raw::index iGroup);
+      virtual ::collection::count  _001GetGroupItemCount(::collection::index iGroup);
 
-      virtual ::raw::count  _001GetGroupMetaItemCount(::raw::index iGroup);
+      virtual ::collection::count  _001GetGroupMetaItemCount(::collection::index iGroup);
 
       virtual void  _001GetGroupItemText(mesh_group * pgroup);
 
       virtual void  _001GetGroupImage(mesh_group * pgroup);
 
-      virtual ::raw::count  _001GetColumnCount();
+      virtual ::collection::count  _001GetColumnCount();
 
       virtual void  draw_framing(::draw2d::graphics_pointer & pgraphics);
 
@@ -462,35 +462,35 @@ namespace user
       virtual void  index_element_rectangle(draw_mesh_subitem * psubitem,::user::mesh::enum_element eelement);
       virtual void  _001GetGroupElementRect(draw_mesh_group * pgroup, ::user::mesh::enum_group_element egrouplement);
 
-      virtual bool  _001SetColumnWidth(::raw::index iColumn,i32 iWidth);
+      virtual bool  _001SetColumnWidth(::collection::index iColumn,i32 iWidth);
 
       //virtual void  _001GetColumnWidth(draw_mesh_item * pdrawitem);
 
-      virtual ::raw::index  sub_item_to_order(::raw::index iSubItem);
+      virtual ::collection::index  sub_item_to_order(::collection::index iSubItem);
 
-      virtual ::raw::index  _001MapOrderToSubItem(::raw::index iOrder);
+      virtual ::collection::index  _001MapOrderToSubItem(::collection::index iOrder);
 
-      virtual ::raw::index  _001MapOrderToColumn(::raw::index iOrder);
+      virtual ::collection::index  _001MapOrderToColumn(::collection::index iOrder);
 
-      virtual ::raw::index  _001MapColumnToOrder(::raw::index iColumn);
+      virtual ::collection::index  _001MapColumnToOrder(::collection::index iColumn);
 
-      virtual ::raw::index  _001MapSubItemToColumn(::raw::index iSubItem);
+      virtual ::collection::index  _001MapSubItemToColumn(::collection::index iSubItem);
 
-      virtual ::raw::index  _001MapColumnToSubItem(::raw::index iColumn);
-
-
-      virtual ::raw::count  _001GetItemCount();
-      virtual ::raw::count  _001GetGroupCount();
+      virtual ::collection::index  _001MapColumnToSubItem(::collection::index iColumn);
 
 
-      virtual bool  _001HitTest_(const ::point_i32 & point, ::raw::index &iItem, ::raw::index&iSubItem, ::raw::index&iListItem,::user::mesh::enum_element &eelement);
-      virtual bool  _001HitTest_(const ::point_i32 & point, ::raw::index&iItem, ::raw::index&iSubItem);
-      virtual bool  _001HitTest_(const ::point_i32 & point, ::raw::index&iItemParam);
+      virtual ::collection::count  _001GetItemCount();
+      virtual ::collection::count  _001GetGroupCount();
 
 
-      virtual bool  _001DisplayHitTest(const ::point_i32 & point, ::raw::index&iItem, ::raw::index&iSubItem, ::raw::index&iListItem,::user::mesh::enum_element &eelement);
-      virtual bool  _001DisplayHitTest(const ::point_i32 & point, ::raw::index&iItem, ::raw::index&iSubItem);
-      virtual bool  _001DisplayHitTest(const ::point_i32 & point, ::raw::index&iItemParam);
+      virtual bool  _001HitTest_(const ::point_i32 & point, ::collection::index &iItem, ::collection::index&iSubItem, ::collection::index&iListItem,::user::mesh::enum_element &eelement);
+      virtual bool  _001HitTest_(const ::point_i32 & point, ::collection::index&iItem, ::collection::index&iSubItem);
+      virtual bool  _001HitTest_(const ::point_i32 & point, ::collection::index&iItemParam);
+
+
+      virtual bool  _001DisplayHitTest(const ::point_i32 & point, ::collection::index&iItem, ::collection::index&iSubItem, ::collection::index&iListItem,::user::mesh::enum_element &eelement);
+      virtual bool  _001DisplayHitTest(const ::point_i32 & point, ::collection::index&iItem, ::collection::index&iSubItem);
+      virtual bool  _001DisplayHitTest(const ::point_i32 & point, ::collection::index&iItemParam);
 
 
       virtual void  _001OnAfterSort();
@@ -537,9 +537,9 @@ namespace user
       virtual bool  _001IsEditing();
 
 
-      virtual ::raw::count  _001GetSelectedItemCount();
+      virtual ::collection::count  _001GetSelectedItemCount();
 
-      virtual string  _001GetColumnText(::raw::index iColumn);
+      virtual string  _001GetColumnText(::collection::index iColumn);
 
       virtual bool  _001OnHeaderCtrlEndTrack(wparam wparam,lparam lparam);
 
@@ -547,7 +547,7 @@ namespace user
       virtual bool  _001OnHeaderCtrlTrack(wparam wparam,lparam lparam);
 
 
-      virtual void  _001ShowSubItem(::raw::index iSubItem,bool bShow = true);
+      virtual void  _001ShowSubItem(::collection::index iSubItem,bool bShow = true);
 
       virtual void  DISaveOrder();
 
@@ -557,7 +557,7 @@ namespace user
 
       virtual void  on_selection_change();
 
-      virtual bool  _001IsItemVisible(::raw::index iItem);
+      virtual bool  _001IsItemVisible(::collection::index iItem);
 
       virtual void  clear_selection();
 
@@ -596,8 +596,8 @@ namespace user
 
       ::size_f64 get_page_size(::user::enum_layout elayout = ::user::e_layout_sketch) override;
 
-      virtual string  _001GetItemId(::raw::index iStrictItem);
-      virtual ::raw::index  _001GetItemById(const ::string & pszChar);
+      virtual string  _001GetItemId(::collection::index iStrictItem);
+      virtual ::collection::index  _001GetItemById(const ::string & pszChar);
 
 
    };

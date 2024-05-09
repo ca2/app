@@ -56,10 +56,10 @@ public:
    //}
 
 
-   ::raw::index index() const
+   ::collection::index index() const
    {
 
-      ::raw::index i = 0;
+      ::collection::index i = 0;
 
       auto p = m_back;
 
@@ -102,7 +102,7 @@ inline ::pointer<TYPE>& payload_of(const ::pointer<TYPE> & p)
 
 
 template < typename TYPE >
-::raw::index an_index_of(const set_node < TYPE > * p)
+::collection::index an_index_of(const set_node < TYPE > * p)
 {
 
    return p->index();

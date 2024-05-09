@@ -12,7 +12,7 @@ namespace compare_swap
 
    template < typename F1, typename F2, typename A1, typename A2 >
    void quick_sort_compare_swap(
-      ::raw::index iSize,
+      ::collection::index iSize,
       //const ::array < ::function < ::std::strong_ordering(void *, iptr, iptr) > > & comparefunctiona,
       const F1 & comparefunctiona,
       //const ::array < ::function < void(void *, iptr, iptr) > > & swapfunctiona,
@@ -25,9 +25,9 @@ namespace compare_swap
 
       index_array stackLowerBound;
       index_array stackUpperBound;
-      ::raw::index iLowerBound;
-      ::raw::index iUpperBound;
-      ::raw::index iLPos, iUPos, iMPos;
+      ::collection::index iLowerBound;
+      ::collection::index iUpperBound;
+      ::collection::index iLPos, iUPos, iMPos;
 
       i32 iCmp;
       ::std::strong_ordering iCompare;

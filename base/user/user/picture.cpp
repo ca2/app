@@ -641,7 +641,7 @@ namespace user
 
          rectangle.top() = rectangle.bottom() = m_ppictureimpl->m_polygonDrawing[0].y();
 
-         for (::raw::index i = 1; i < m_ppictureimpl->m_polygonDrawing.get_size(); i++)
+         for (::collection::index i = 1; i < m_ppictureimpl->m_polygonDrawing.get_size(); i++)
          {
 
             if (m_ppictureimpl->m_polygonDrawing[i].x() < rectangle.left())

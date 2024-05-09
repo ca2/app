@@ -14,9 +14,9 @@ namespace graphics
    public:
 
 
-      ::raw::index                         m_iBuffer;
-      ::raw::index                         m_iDone;
-      ::raw::index                         m_iScreen;
+      ::collection::index                         m_iBuffer;
+      ::collection::index                         m_iDone;
+      ::collection::index                         m_iScreen;
 
       //
       // Waste of references
@@ -49,7 +49,7 @@ namespace graphics
 
       virtual bool buffer_lock_round_swap_key_buffers() override;
 
-      ::raw::index find_best_buffer(const ::size_i32 & size);
+      ::collection::index find_best_buffer(const ::size_i32 & size);
 
       using graphics::update_screen;
       virtual bool update_screen() override;

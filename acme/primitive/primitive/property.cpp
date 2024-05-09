@@ -96,7 +96,7 @@ void prop_id_debug(::particle * pparticle);
 //}
 //
 //
-////property::property(::raw::index iIndex)
+////property::property(::collection::index iIndex)
 ////{
 ////
 ////   m_iIndex = iIndex;
@@ -338,7 +338,7 @@ string & property::get_network_arguments(::string & str) const
 //   string(psz);
 //}
 //
-//::payload property::element_at(::raw::index iIndex) const
+//::payload property::element_at(::collection::index iIndex) const
 //{
 //   switch(m_etype)
 //   {
@@ -357,7 +357,7 @@ string & property::get_network_arguments(::string & str) const
 //   }
 //}
 //
-//::payload property::at(::raw::index iIndex) const
+//::payload property::at(::collection::index iIndex) const
 //{
 //   return this->element_at(iIndex);
 //}
@@ -372,22 +372,22 @@ string & property::get_network_arguments(::string & str) const
 ////}
 //
 //
-//::raw::count property::get_count() const
+//::collection::count property::get_count() const
 //{
 //   return get_count();
 //}
 //
-//::raw::count property::array_get_count() const
+//::collection::count property::array_get_count() const
 //{
 //   return array_get_count();
 //}
 //
-//bool property::array_contains(const ::scoped_string & scopedstr, index first, ::raw::index last) const
+//bool property::array_contains(const ::scoped_string & scopedstr, index first, ::collection::index last) const
 //{
 //   return array_contains(psz, first, last);
 //}
 //
-//bool property::array_contains_ci(const ::scoped_string & scopedstr, index first, ::raw::index last) const
+//bool property::array_contains_ci(const ::scoped_string & scopedstr, index first, ::collection::index last) const
 //{
 //   return array_contains_ci(psz, first, last);
 //}

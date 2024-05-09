@@ -4,7 +4,7 @@
 template < class t1, class t2, class t3, class t4 >
 void serialize_write(stream & ostream, map < t1, t2, t3, t4 > & m)
 {
-   ::raw::count count = m.get_count();
+   ::collection::count count = m.get_count();
    typename map < t1, t2, t3, t4 >::pair * ppair = m.get_start();
    ostream << count;
    while (ppair != nullptr)

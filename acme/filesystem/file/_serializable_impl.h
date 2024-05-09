@@ -10,9 +10,9 @@ namespace file
       //template < class ARRAY >
       //void write(stream & ostream, const ARRAY & a)
       //{
-      //   ::raw::count count = a.get_count();
+      //   ::collection::count count = a.get_count();
       //   ostream.write(count);
-      //   for (::raw::index index = 0; index < count; index++)
+      //   for (::collection::index index = 0; index < count; index++)
       //   {
       //      ostream << a.element_at(index);
       //   }
@@ -21,7 +21,7 @@ namespace file
       //template < class ARRAY >
       //void read(stream & istream, ARRAY & a)
       //{
-      //   ::raw::count count;
+      //   ::collection::count count;
       //   //istream >> count;
       //   istream.read(count);
 
@@ -31,7 +31,7 @@ namespace file
       //   }*/
 
       //   a.allocate(count);
-      //   for (::raw::index index = 0; index < count; index++)
+      //   for (::collection::index index = 0; index < count; index++)
       //   {
       //      istream >> a.element_at(index);
       //      //if (istream.fail())
@@ -51,9 +51,9 @@ namespace file
       //template < class ARRAY >
       //void write(stream & ostream, const ARRAY & a)
       //{
-      //   ::raw::count count = a.get_count();
+      //   ::collection::count count = a.get_count();
       //   ostream.write(count);
-      //   for (::raw::index index = 0; index < count; index++)
+      //   for (::collection::index index = 0; index < count; index++)
       //   {
       //      ostream << *a.element_at(index);
       //   }
@@ -62,7 +62,7 @@ namespace file
       //template < class ARRAY >
       //void read(stream & istream, ARRAY & a)
       //{
-      //   ::raw::count count;
+      //   ::collection::count count;
       //   //istream >> count;
       //   istream.read(count);
 
@@ -72,7 +72,7 @@ namespace file
       //   //}
 
       //   a.allocate(count);
-      //   for (::raw::index index = 0; index < count; index++)
+      //   for (::collection::index index = 0; index < count; index++)
       //   {
       //      istream >> *a.element_at(index);
       //      //if (istream.fail())
@@ -115,7 +115,7 @@ namespace file
       //void read(stream & istream, type_map & m)
       //{
 
-      //   ::raw::count count;
+      //   ::collection::count count;
 
       //   istream.read(count);
 
@@ -130,7 +130,7 @@ namespace file
 
       //   typename type_map::BASE_VALUE value;
 
-      //   for (::raw::index index = 0; index < count; index++)
+      //   for (::collection::index index = 0; index < count; index++)
       //   {
 
       //      istream >> key;

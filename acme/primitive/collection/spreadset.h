@@ -27,10 +27,10 @@ public:
    ARRAYA & a(ARG_TYPEB b);
 
 
-   ::raw::count get_a_item_count();
-   ::raw::count get_b_item_count();
-   ::raw::count get_a_pack_count();
-   ::raw::count get_b_pack_count();
+   ::collection::count get_a_item_count();
+   ::collection::count get_b_item_count();
+   ::collection::count get_a_pack_count();
+   ::collection::count get_b_pack_count();
 
 
    void erase_all();
@@ -63,28 +63,28 @@ a(ARG_TYPEB b)
 }
 
 template <class TYPEA, class TYPEB, class ARRAYA, class ARRAYB >
-::raw::count spreadset <TYPEA, TYPEB, ARRAYA, ARRAYB>::
+::collection::count spreadset <TYPEA, TYPEB, ARRAYA, ARRAYB>::
 get_a_item_count()
 {
    return m_packsetBA.get_item_count();
 }
 
 template <class TYPEA, class TYPEB, class ARRAYA, class ARRAYB >
-::raw::count spreadset <TYPEA, TYPEB, ARRAYA, ARRAYB>::
+::collection::count spreadset <TYPEA, TYPEB, ARRAYA, ARRAYB>::
 get_b_item_count()
 {
    return m_packsetAB.get_item_count();
 }
 
 template <class TYPEA, class TYPEB, class ARRAYA, class ARRAYB >
-::raw::count spreadset <TYPEA, TYPEB, ARRAYA, ARRAYB>::
+::collection::count spreadset <TYPEA, TYPEB, ARRAYA, ARRAYB>::
 get_a_pack_count()
 {
    return m_packsetAB.get_pack_count();
 }
 
 template <class TYPEA, class TYPEB, class ARRAYA, class ARRAYB >
-::raw::count spreadset <TYPEA, TYPEB, ARRAYA, ARRAYB>::
+::collection::count spreadset <TYPEA, TYPEB, ARRAYA, ARRAYB>::
 get_b_pack_count()
 {
    return m_packsetBA.get_pack_count();

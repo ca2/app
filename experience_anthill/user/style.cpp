@@ -1007,7 +1007,7 @@ namespace experience_anthill
 
       color2.hls_rate(0.0, 0.2, 0.0);
 
-      ::raw::index iTab = -1;
+      ::collection::index iTab = -1;
 
       auto pbrushText = __create < ::draw2d::brush >();
 
@@ -1438,7 +1438,7 @@ namespace experience_anthill
          pfont = pgraphics->get_current_font();
          size_i32 sSep = ptab->get_data()->m_sizeSep;
          ::rectangle_i32 rectangleEmp;
-         for (::raw::index i = 0; i < straTitle.get_size(); i++)
+         for (::collection::index i = 0; i < straTitle.get_size(); i++)
          {
             string str = straTitle[i];
             size_i32 s = pane.m_sizeaText[i];
@@ -1836,7 +1836,7 @@ namespace experience_anthill
    //   }
 
 
-   bool style::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem, ::user::toolbar * ptoolbar)
+   bool style::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar)
    {
 
       _001DrawAnthillToolbarItem(pgraphics, iItem, ptoolbar);
@@ -1846,7 +1846,7 @@ namespace experience_anthill
    }
 
 
-   void style::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem, ::user::toolbar * ptoolbar)
+   void style::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar)
    {
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -2162,7 +2162,7 @@ namespace experience_anthill
 
    }
 
-   void style::_001DrawAnthillToolbarItem(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem, ::user::toolbar * ptoolbar)
+   void style::_001DrawAnthillToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar)
    {
 
       auto pstyle = ptoolbar->get_style(pgraphics);

@@ -72,7 +72,7 @@ namespace userfs
    }
 
 
-   ::raw::index item::data_item_get_image(::particle * pparticle) const
+   ::collection::index item::data_item_get_image(::particle * pparticle) const
    {
 
       ::user::shell::enum_file_attribute efileattribute;

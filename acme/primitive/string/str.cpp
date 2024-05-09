@@ -764,20 +764,20 @@ string str::replace_with(const ::string & strOld, const ::string & strNew, const
 }
 
 
-::raw::index  str::find_first(const string_array & straSearch, ::raw::index & iFound, const ::string & str, ::raw::index iStart)
+::collection::index  str::find_first(const string_array & straSearch, ::collection::index & iFound, const ::string & str, ::collection::index iStart)
 {
 
-   ::raw::index iFind = -1;
+   ::collection::index iFind = -1;
 
    iFound = -1;
 
-   for (::raw::index i = 0; i < straSearch.get_count(); i++)
+   for (::collection::index i = 0; i < straSearch.get_count(); i++)
    {
 
       if (straSearch[i].has_char())
       {
 
-         ::raw::index iSearch = str.find_index(straSearch[i], iStart);
+         ::collection::index iSearch = str.find_index(straSearch[i], iStart);
 
          if (iSearch >= 0 && iSearch >= iStart && (iSearch < iFind || ::not_found(iFind)))
          {
@@ -801,11 +801,11 @@ string str::random_replace(::particle * pparticle, const string_array & straNew,
 
    string str(strParam);
 
-   ::raw::index iFind;
+   ::collection::index iFind;
 
-   ::raw::index iFound;
+   ::collection::index iFound;
 
-   ::raw::index iStart = 0;
+   ::collection::index iStart = 0;
 
    while ((iFind = find_first(straOld, iFound, str, iStart)) >= 0)
    {
@@ -819,7 +819,7 @@ string str::random_replace(::particle * pparticle, const string_array & straNew,
 
       }
 
-      ::raw::index i = (::raw::index)(rand() % straNew.get_size());
+      ::collection::index i = (::collection::index)(rand() % straNew.get_size());
 
       str = str(0, iFind) + straNew[i] + str.substr(iFind + straOld[iFound].length());
 
@@ -833,16 +833,16 @@ string str::random_replace(::particle * pparticle, const string_array & straNew,
 }
 
 
-::raw::count str::utf8_replace_with(string & str, const ::string & strNew, const ::string & strOld, strsize iStart)
+::collection::count str::utf8_replace_with(string & str, const ::string & strNew, const ::string & strOld, strsize iStart)
 {
 
-   ::raw::count c = 0;
+   ::collection::count c = 0;
 
-   ::raw::index iPos = iStart;
+   ::collection::index iPos = iStart;
 
-   ::raw::count iReplaceLen = -1;
+   ::collection::count iReplaceLen = -1;
 
-   ::raw::count iFindLen = -1;
+   ::collection::count iFindLen = -1;
 
    while (true)
    {
@@ -886,13 +886,13 @@ string str::random_replace(::particle * pparticle, const string_array & straNew,
 string str::utf8_replace_with(const ::string & strNew, const ::string & strOld, const ::string & strParam, strsize iStart)
 {
 
-   ::raw::index iPos = iStart;
+   ::collection::index iPos = iStart;
 
    string str(strParam);
 
-   ::raw::count iReplaceLen = -1;
+   ::collection::count iReplaceLen = -1;
 
-   ::raw::count iFindLen = -1;
+   ::collection::count iFindLen = -1;
 
    while (true)
    {
@@ -933,13 +933,13 @@ string str::utf8_replace_with(const ::string & strNew, const ::string & strOld, 
 string str::case_insensitive_replace_with(const ::string & strNew, const ::string & strOld, const ::string & strParam, strsize iStart)
 {
 
-   ::raw::index iPos = iStart;
+   ::collection::index iPos = iStart;
 
    string str(strParam);
 
-   ::raw::count iReplaceLen = -1;
+   ::collection::count iReplaceLen = -1;
 
-   ::raw::count iFindLen = -1;
+   ::collection::count iFindLen = -1;
 
    while (true)
    {
@@ -977,18 +977,18 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 }
 
 
-::raw::count str::replace_with_ci_count(const ::string & strNew, const ::string & strOld, const ::string & strParam, strsize iStart)
+::collection::count str::replace_with_ci_count(const ::string & strNew, const ::string & strOld, const ::string & strParam, strsize iStart)
 {
 
-   ::raw::index iPos = iStart;
+   ::collection::index iPos = iStart;
 
    string str(strParam);
 
-   ::raw::count iReplaceLen = -1;
+   ::collection::count iReplaceLen = -1;
 
-   ::raw::count iFindLen = -1;
+   ::collection::count iFindLen = -1;
 
-   ::raw::count c = 0;
+   ::collection::count c = 0;
 
    while (true)
    {
@@ -1029,7 +1029,7 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 }
 
 
-::raw::index str::case_insensitive_find(const ::string & strFind, const ::string & str, ::raw::index iStart)
+::collection::index str::case_insensitive_find(const ::string & strFind, const ::string & str, ::collection::index iStart)
 {
 
    if (strFind.length() > (str.length() - iStart))
@@ -1061,12 +1061,12 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 }
 
 
-//index str::case_insensitive_find(const ::string & strFind, const ::string & strParam, ::raw::index iStart)
+//index str::case_insensitive_find(const ::string & strFind, const ::string & strParam, ::collection::index iStart)
 //{
 
-//   ::raw::count iFindLen = strFind.length();
+//   ::collection::count iFindLen = strFind.length();
 
-//   ::raw::count iLen = strlen(&psz[iStart]);
+//   ::collection::count iLen = strlen(&psz[iStart]);
 
 //   if (iFindLen > iLen)
 //   {
@@ -1155,10 +1155,10 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 //}
 
 
-//index str::case_insensitive_find(const ::string & strOld, const ::string & str, ::raw::index iStart)
+//index str::case_insensitive_find(const ::string & strOld, const ::string & str, ::collection::index iStart)
 //{
 
-//   ::raw::count iFindLen = strOld.length();
+//   ::collection::count iFindLen = strOld.length();
 
 //   index iLen = str.length() - iStart;
 
@@ -1231,10 +1231,10 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 //}
 
 
-//index str::case_insensitive_find(const ::scoped_string & scopedstrOld,const ::string & str, ::raw::index iStart, ::raw::index iLast)
+//index str::case_insensitive_find(const ::scoped_string & scopedstrOld,const ::string & str, ::collection::index iStart, ::collection::index iLast)
 //{
 
-//   ::raw::count iFindLen = strlen(pszOld);
+//   ::collection::count iFindLen = strlen(pszOld);
 
 //   index iLen = str.length() - iStart;
 
@@ -1297,7 +1297,7 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 //}
 
 
-::raw::index str::find_file_extension(const ::string & strOld, const ::string & str, ::raw::index iStart, ::raw::index iLast)
+::collection::index str::find_file_extension(const ::string & strOld, const ::string & str, ::collection::index iStart, ::collection::index iLast)
 {
 
    if (strOld.is_empty()) // do not search for empty Extensions
@@ -1310,7 +1310,7 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
    // for dir::name_is (check if base name of a file is a directory, checking if there is a simple ansi '.', may be very good start point_i32 definitive false).
    // if there is a dot, it may still does not have a Latin dot, if the dot is inside a Multibyte UTF8 char, anyway, algo following should check it properly.
 
-   ::raw::index iLen = str.length() - iStart;
+   ::collection::index iLen = str.length() - iStart;
 
    if (iLast < 0)
    {
@@ -1332,7 +1332,7 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 
    }
 
-   ::raw::count iFindLen = strOld.length();
+   ::collection::count iFindLen = strOld.length();
 
    i32 len1;
 
@@ -1444,7 +1444,7 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 }
 
 
-::raw::index str::utf8_find(const ::string & strOld, const ::string & str, ::raw::index iStart)
+::collection::index str::utf8_find(const ::string & strOld, const ::string & str, ::collection::index iStart)
 {
 
  if (strOld.is_empty())
@@ -1518,7 +1518,7 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 }
 
 
-//index str::case_insensitive_find(const ::string & strOld, const ::string & str, ::raw::index iStart)
+//index str::case_insensitive_find(const ::string & strOld, const ::string & str, ::collection::index iStart)
 //{
 //
 //  index iFindLen = strOld.length();
@@ -1612,7 +1612,7 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 //}
 
 
-::raw::index str::find_wwci(const ::string & strOld, const ::string & strParam, ::raw::index iStart)
+::collection::index str::find_wwci(const ::string & strOld, const ::string & strParam, ::collection::index iStart)
 {
 
    string strFind(strOld);
@@ -1628,7 +1628,7 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 }
 
 
-::raw::index str::find_awwci(const ::string & strOld, const ::string & strParam, ::raw::index iStart)
+::collection::index str::find_awwci(const ::string & strOld, const ::string & strParam, ::collection::index iStart)
 {
 
    string strFind(strOld);
@@ -1644,7 +1644,7 @@ string str::case_insensitive_replace_with(const ::string & strNew, const ::strin
 }
 
 
-strsize str::find_ww(const ::string & strOld, const ::string & strParam, ::raw::index iStart)
+strsize str::find_ww(const ::string & strOld, const ::string & strParam, ::collection::index iStart)
 {
 
    if (strParam.is_empty())
@@ -1692,7 +1692,7 @@ strsize str::find_ww(const ::string & strOld, const ::string & strParam, ::raw::
 }
 
 
-strsize str::find_aww(const ::string & strOld, const ::string & strParam, ::raw::index iStart)
+strsize str::find_aww(const ::string & strOld, const ::string & strParam, ::collection::index iStart)
 {
 
    if (strParam.is_empty())
@@ -2467,7 +2467,7 @@ bool get_utf8_char(string & strChar, const char *& psz, const ::ansi_character *
 }
 
 
-string get_utf8_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, ::raw::index i)
+string get_utf8_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, ::collection::index i)
 {
 
    if (i > 0)
@@ -2524,7 +2524,7 @@ string get_utf8_char(const ::ansi_character * pszBeg, const ::ansi_character * p
 }
 
 
-string utf8_next_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, ::raw::index i)
+string utf8_next_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, ::collection::index i)
 {
 
    return get_utf8_char(pszBeg, psz, i + 1);
@@ -2532,7 +2532,7 @@ string utf8_next_char(const ::ansi_character * pszBeg, const ::ansi_character * 
 }
 
 
-string utf8_previous_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, ::raw::index i)
+string utf8_previous_char(const ::ansi_character * pszBeg, const ::ansi_character * psz, ::collection::index i)
 {
 
    return utf8_next_char(pszBeg, psz, -i);
@@ -2689,7 +2689,7 @@ bool str::is_natural(const ::string & strParam)
 
    str.trim();
 
-   for (::raw::index i = 0; i < str.length(); i++)
+   for (::collection::index i = 0; i < str.length(); i++)
    {
 
       if (!ansi_char_isdigit(str[i]))
@@ -2966,7 +2966,7 @@ string str::line(string & str, bool bNewLine)
 
 
 
-string str::pad(const ::string & strParam, ::raw::count iLen, const ::string & strPattern, enum_pad epad)
+string str::pad(const ::string & strParam, ::collection::count iLen, const ::string & strPattern, enum_pad epad)
 {
 
    string str(strParam);
@@ -3594,7 +3594,7 @@ bool str::trim(string & str)
 bool str::_008Trim(string & str)
 {
 
-   ::raw::count c = 1;
+   ::collection::count c = 1;
 
    bool bTrim = false;
 
@@ -3849,7 +3849,7 @@ bool str::is_true(string str)
 
    }
 
-   for (::raw::index i = 0; i < str.length(); i++)
+   for (::collection::index i = 0; i < str.length(); i++)
    {
 
       if (i == 0 && (str[i] == '+' || str[i] == '-'))

@@ -90,7 +90,7 @@ namespace axis
 
       //      virtual bool _001GetMainFrameTranslucency(::user::enum_translucency & etranslucency) override;
 
-      virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem, ::user::toolbar * ptoolbar) override;
+      virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar) override;
 
       virtual bool _001DrawSimpleScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pbar) override;
 

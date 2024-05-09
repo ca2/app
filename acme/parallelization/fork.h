@@ -371,7 +371,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //      index       m_iOrder;
 //      index       m_iIndex;
 //      index       m_iScan;
-//      ::raw::count     m_cCount;
+//      ::collection::count     m_cCount;
 //      index       m_i;
 //
 //      operator index()
@@ -385,7 +385,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //
 //   fork_index m_index;
 //
-//   forking_count_predicate(::raw::index iOrder, ::raw::index iIndex, ::raw::count iScan, ::raw::count cCount, const ::function < void(index) > & function) :
+//   forking_count_predicate(::collection::index iOrder, ::collection::index iIndex, ::collection::count iScan, ::collection::count cCount, const ::function < void(index) > & function) :
 //   m_predicate(function)
 //   {
 //
@@ -420,22 +420,22 @@ public:
 
 
 
-   ::function < void(::raw::index, ::raw::index, ::raw::index, ::raw::index) > m_function;
+   ::function < void(::collection::index, ::collection::index, ::collection::index, ::collection::index) > m_function;
 
 
-   ::raw::index       m_iOrder;
-   ::raw::index       m_iIndex;
-   ::raw::count     m_iScan;
-   ::raw::count     m_iCount;
+   ::collection::index       m_iOrder;
+   ::collection::index       m_iIndex;
+   ::collection::count     m_iScan;
+   ::collection::count     m_iCount;
 
    ::pointer<object> m_pobjectTaskEnd;
 
    ::pointer<object> m_pholdref;
 
 
-   forking_count_task(::particle * pparticle, ::pointer<object>pholdref, ::raw::index iOrder, ::raw::index iIndex, ::raw::count iScan, ::raw::count iCount, const ::function < void(::raw::index, ::raw::index, ::raw::index, ::raw::index) > & function, ::object * pobjectTaskEnd = nullptr);
+   forking_count_task(::particle * pparticle, ::pointer<object>pholdref, ::collection::index iOrder, ::collection::index iIndex, ::collection::count iScan, ::collection::count iCount, const ::function < void(::collection::index, ::collection::index, ::collection::index, ::collection::index) > & function, ::object * pobjectTaskEnd = nullptr);
 
-   forking_count_task(::particle * pparticle, ::raw::index iOrder, ::raw::index iIndex, ::raw::count iScan, ::raw::count iCount, const ::function < void(::raw::index, ::raw::index, ::raw::index, ::raw::index) > & function, ::object * pobjectTaskEnd = nullptr);
+   forking_count_task(::particle * pparticle, ::collection::index iOrder, ::collection::index iIndex, ::collection::count iScan, ::collection::count iCount, const ::function < void(::collection::index, ::collection::index, ::collection::index, ::collection::index) > & function, ::object * pobjectTaskEnd = nullptr);
 
    
    void construct();
@@ -448,11 +448,11 @@ public:
 };
 
 
-//CLASS_DECL_ACME void fork_count(::particle * pobjectParent, ::raw::count iCount, const ::function < void(::raw::index, ::raw::index, ::raw::index, ::raw::index) > & function, const ::procedure & procedureCompletion, ::raw::index iStart = 0);
+//CLASS_DECL_ACME void fork_count(::particle * pobjectParent, ::collection::count iCount, const ::function < void(::collection::index, ::collection::index, ::collection::index, ::collection::index) > & function, const ::procedure & procedureCompletion, ::collection::index iStart = 0);
 
 
 //template < typename PRED, typename PRED_END >
-//::raw::count fork_count_end_predicate(::raw::count iCount, PRED pred, PRED_END predEnd, class ::time time = ::time::infinite(), ::raw::index iStart = 0)
+//::collection::count fork_count_end_predicate(::collection::count iCount, PRED pred, PRED_END predEnd, class ::time time = ::time::infinite(), ::collection::index iStart = 0)
 //{
 //
 //   //ASSERT(pobjectParent != nullptr && pobjectParent->application() != nullptr);
@@ -466,11 +466,11 @@ public:
 //
 //   }
 //
-//   ::raw::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
+//   ::collection::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 //
 //   auto pobjectTaskEnd = create_task(predEnd);
 //
-//   for (::raw::index iOrder = 0; iOrder < iScan; iOrder++)
+//   for (::collection::index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
 //
 //      auto ppredtask = __allocate< forking_count_task < PRED > >(iOrder, iOrder + iStart, iScan, iCount, pred, pobjectTaskEnd);
@@ -496,12 +496,12 @@ public:
 //
 //   index    m_iOrder;
 //   index    m_iIndex;
-//   ::raw::count  m_iScan;
-//   ::raw::count  m_iCount;
+//   ::collection::count  m_iScan;
+//   ::collection::count  m_iCount;
 //
 //   ::pointer<::object> m_pobjectTaskEnd;
 //
-//   forking_for_task(::particle * pparticle, ::raw::index iOrder, ::raw::index iIndex, ::raw::count iScan, ::raw::count iCount, PRED pred) :
+//   forking_for_task(::particle * pparticle, ::collection::index iOrder, ::collection::index iIndex, ::collection::count iScan, ::collection::count iCount, PRED pred) :
 //   ::object(pparticle),
 //   m_predicate(pred),
 //   m_iOrder(iOrder),
@@ -556,7 +556,7 @@ public:
 
 
 //template < typename PRED >
-//auto fork_for(::object * pobjectParent, ::raw::count iCount, PRED pred, ::raw::index iStart = 0)
+//auto fork_for(::object * pobjectParent, ::collection::count iCount, PRED pred, ::collection::index iStart = 0)
 //{
 //
 //   int iAffinityOrder = get_current_process_affinity_order();
@@ -568,11 +568,11 @@ public:
 //
 //   }
 //
-//   ::raw::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
+//   ::collection::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 //
 //   auto pcounter = __allocate< ::counter < ::i32 > >(iScan);
 //
-//   for (::raw::index iOrder = 0; iOrder < iScan; iOrder++)
+//   for (::collection::index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
 //
 //      auto ppredtask = __allocate< forking_for_task < PRED > >(pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred);
@@ -588,7 +588,7 @@ public:
 //}
 
 //template < typename PRED, typename PRED_END >
-//auto fork_for_end(::object* pobjectParent, ::raw::count iCount, PRED pred, PRED_END predEnd, ::raw::index iStart = 0)
+//auto fork_for_end(::object* pobjectParent, ::collection::count iCount, PRED pred, PRED_END predEnd, ::collection::index iStart = 0)
 //{
 //
 //   int iAffinityOrder = get_current_process_affinity_order();
@@ -600,7 +600,7 @@ public:
 //
 //   }
 //
-//   ::raw::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
+//   ::collection::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 //
 //   auto pcounter = __allocate< ::counter < ::i32 >  >(iScan);
 //
@@ -608,7 +608,7 @@ public:
 //
 //   pobjectTaskEnd->m_cRun = -iScan;
 //
-//   for (::raw::index iOrder = 0; iOrder < iScan; iOrder++)
+//   for (::collection::index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
 //
 //      auto ppredtask = __allocate< forking_for_task < PRED > >(pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred);
@@ -631,7 +631,7 @@ CLASS_DECL_ACME u32 processor_index_generator();
 
 
 //template < typename PRED >
-//pointer_array < ::task > fork_proc(::object * pobjectParent, PRED pred, ::raw::index iCount = -1)
+//pointer_array < ::task > fork_proc(::object * pobjectParent, PRED pred, ::collection::index iCount = -1)
 //{
 //
 //   pointer_array < ::task > taskptra;
@@ -654,7 +654,7 @@ CLASS_DECL_ACME u32 processor_index_generator();
 //
 //   }
 //
-//   for (::raw::index iProcessor = 0; iProcessor < iCount; iProcessor++)
+//   for (::collection::index iProcessor = 0; iProcessor < iCount; iProcessor++)
 //   {
 //
 //      auto ppredtask = __allocate< predicate_task < PRED > >(pobjectParent, pred);

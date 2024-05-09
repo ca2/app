@@ -1184,7 +1184,7 @@ namespace experience_tranquillum
 
       //return true;
 
-      ::raw::index iTab = -1;
+      ::collection::index iTab = -1;
 
       auto pbrushText = __create < ::draw2d::brush >();
 
@@ -1607,7 +1607,7 @@ namespace experience_tranquillum
 
          ::rectangle_i32 rectangleEmp;
 
-         for (::raw::index i = 0; i < straTitle.get_size(); i++)
+         for (::collection::index i = 0; i < straTitle.get_size(); i++)
          {
             string str = straTitle[i];
             size_i32 s = pane.m_sizeaText[i];
@@ -1621,7 +1621,7 @@ namespace experience_tranquillum
                rectangleEmp.deflate(1, 1);
                ::draw2d::enum_alpha_mode emode = pgraphics->alpha_mode();
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-               if (::is_item(ptab->m_pitemHover, (::raw::index)::e_element_split + i))
+               if (::is_item(ptab->m_pitemHover, (::collection::index)::e_element_split + i))
                {
 
                   pgraphics->fill_rectangle(rectangleEmp, argb(128, 149, 184, 255));
@@ -1674,7 +1674,7 @@ namespace experience_tranquillum
    //   }
 
 
-   //   bool style::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem, ::user::toolbar * ptoolbar)
+   //   bool style::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar)
    //   {
    //
    ////      if (1)
@@ -1695,7 +1695,7 @@ namespace experience_tranquillum
    //   }
 
 
-      //void style::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem, ::user::toolbar * ptoolbar)
+      //void style::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar)
       //{
 
       //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -2001,7 +2001,7 @@ namespace experience_tranquillum
       //}
 
 
-      //void style::_001DrawTranquillumToolbarItem(::draw2d::graphics_pointer & pgraphics, ::raw::index iItem, ::user::toolbar * ptoolbar)
+      //void style::_001DrawTranquillumToolbarItem(::draw2d::graphics_pointer & pgraphics, ::collection::index iItem, ::user::toolbar * ptoolbar)
       //{
 
       //   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);

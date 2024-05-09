@@ -58,7 +58,7 @@ namespace hi5
       const string TWIT_FRIENDSIDS_URL;
       const string TWIT_FOLLOWERSIDS_URL;
 
-      /* Ac::raw::count URLs */
+      /* Ac::collection::count URLs */
       const string TWIT_ACCOUNTRATELIMIT_URL;
 
       /* Favorites URLs */
@@ -102,7 +102,7 @@ namespace hi5
       /* OAuth data */
       oauth m_oauth;
 
-      twit(::particle * pparticle, simple_log * psimplelog = nullptr, ::raw::index iLogTarget = -1);
+      twit(::particle * pparticle, simple_log * psimplelog = nullptr, ::collection::index iLogTarget = -1);
       virtual ~twit();
 
       /* Twitter OAuth authorization methods */
@@ -122,7 +122,7 @@ namespace hi5
 
       string mediaUpload(file_pointer pfile, string strMimeType, string strCategory);
       string mediaUploadInit(int iTotalSize, string strMimeType, string strCategory);
-      bool mediaUploadAppend(string strMediaId, ::raw::index iIndex, file_pointer pfile, int iSize, string strMimeType, string & boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends);
+      bool mediaUploadAppend(string strMediaId, ::collection::index iIndex, file_pointer pfile, int iSize, string strMimeType, string & boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends);
       ::payload mediaUploadFinalize(string strMediaId);
       ::payload mediaUploadStatus(string strMediaId);
 
@@ -158,7 +158,7 @@ namespace hi5
       bool friendsIdsGet(string & userInfo /* in */, bool isUserId = false /* in */);
       bool followersIdsGet(string & userInfo /* in */, bool isUserId = false /* in */);
 
-      /* Twitter ac::raw::count APIs */
+      /* Twitter ac::collection::count APIs */
       bool accountRateLimitGet();
 
 

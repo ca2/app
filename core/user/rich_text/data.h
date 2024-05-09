@@ -61,7 +61,7 @@ namespace user
 
          ::pointer<span>add_span(const span & span);
 
-         //index fork_format(::raw::index iFormat);
+         //index fork_format(::collection::index iFormat);
 
          //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 

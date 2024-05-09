@@ -121,7 +121,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //
 //}
 //
-////unichar* wstring::alloc(::raw::count iCount)
+////unichar* wstring::alloc(::collection::count iCount)
 ////{
 ////
 ////   if (m_psz != nullptr && iCount < me()->m_iAllocation)
@@ -196,9 +196,9 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //wstring operator + (const wstring& wstr1, const wstring& wstr2)
 //{
 //
-//   ::raw::count iLen1 = wstr1.length();
+//   ::collection::count iLen1 = wstr1.length();
 //
-//   ::raw::count iLen2 = wstr2.length();
+//   ::collection::count iLen2 = wstr2.length();
 //
 //   wstring wstrRet;
 //
@@ -231,7 +231,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //
 //   wstring wstr;
 //
-//   ::raw::count iLen = utf16_len(psz);
+//   ::collection::count iLen = utf16_len(psz);
 //
 //   if (iLen < 0)
 //      return wstr;
@@ -248,7 +248,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //
 //
 //
-//wstring wstring::substr(::raw::index iStart, ::raw::count count)
+//wstring wstring::substr(::collection::index iStart, ::collection::count count)
 //{
 //   if (m_psz == nullptr)
 //   {
@@ -284,7 +284,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ::wd32_character > > * __
 //
 //
 //
-//wstring& wstring::replace(::raw::index iStart, ::raw::count c, const unichar* psz)
+//wstring& wstring::replace(::collection::index iStart, ::collection::count c, const unichar* psz)
 //{
 //   if (c < 0)
 //   {

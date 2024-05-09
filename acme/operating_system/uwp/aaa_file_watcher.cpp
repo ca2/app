@@ -55,7 +55,7 @@ namespace file
 
          //   auto items = ::wait(results->GetItemsAsync());
 
-         //   for (::raw::index i = 0; i < items->Size; i++)
+         //   for (::collection::index i = 0; i < items->Size; i++)
          //   {
 
          //auto item = items->GetAt(i);

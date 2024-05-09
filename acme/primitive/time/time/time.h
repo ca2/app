@@ -408,12 +408,12 @@ public:
    //inline bool operator <= (const class time & time) const { return m_iSecond < time.m_iSecond || (m_iSecond == time.m_iSecond && m_iNanosecond <= time.m_iNanosecond); }
    //inline bool operator > (const class time & time) const { return !operator <=(time); }
    //inline bool operator >= (const class time & time) const { return !operator <=(time); }
-   ::pair < ::raw::count, time > count_and_remainder(const class time & time) const
+   ::pair < ::collection::count, time > count_and_remainder(const class time & time) const
    {
 
       auto d = *this / time;
 
-      auto count = (::raw::count)::floor(d);
+      auto count = (::collection::count)::floor(d);
 
       auto remainder = *this % time;
 

@@ -26,7 +26,7 @@ namespace aura
    }
    
    
-   void application_menu::add_item(::raw::index iIndex, string strName, string strId)
+   void application_menu::add_item(::collection::index iIndex, string strName, string strId)
    {
       
       this->set_at_grow(iIndex, application_menu_item(strName, strId));

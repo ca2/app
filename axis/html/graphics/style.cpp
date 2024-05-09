@@ -150,11 +150,11 @@ namespace html
       const style * pstyleTop = nullptr;
       const style * pstyleRight = nullptr;
       const style * pstyleBottom = nullptr;
-      ::raw::index i = 0;
-      ::raw::index iLeft = 0;
-      ::raw::index iTop = 0;
-      ::raw::index iRight = 0;
-      ::raw::index iBottom = 0;
+      ::collection::index i = 0;
+      ::collection::index iLeft = 0;
+      ::collection::index iTop = 0;
+      ::collection::index iRight = 0;
+      ::collection::index iBottom = 0;
 
       if(m_propertyset.has_property(rangeName))
          pstyle = this;
@@ -311,16 +311,16 @@ namespace html
       const style * pstyleTopW      = nullptr;
       const style * pstyleRightW    = nullptr;
       const style * pstyleBottomW   = nullptr;
-      ::raw::index i              = -1;
-      ::raw::index iLeft          = -1;
-      ::raw::index iTop           = -1;
-      ::raw::index iRight         = -1;
-      ::raw::index iBottom        = -1;
-      ::raw::index iW             = -1;
-      ::raw::index iLeftW         = -1;
-      ::raw::index iTopW          = -1;
-      ::raw::index iRightW        = -1;
-      ::raw::index iBottomW       = -1;
+      ::collection::index i              = -1;
+      ::collection::index iLeft          = -1;
+      ::collection::index iTop           = -1;
+      ::collection::index iRight         = -1;
+      ::collection::index iBottom        = -1;
+      ::collection::index iW             = -1;
+      ::collection::index iLeftW         = -1;
+      ::collection::index iTopW          = -1;
+      ::collection::index iRightW        = -1;
+      ::collection::index iBottomW       = -1;
       float f              = 0.f;
       float fLeft          = 0.f;
       float fTop           = 0.f;
@@ -424,13 +424,13 @@ namespace html
          iBottomW = pstyleBottomW->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_bottom_width"));
 
       const style *     pstyle1           = nullptr;
-      ::raw::index               i1                = -1;
+      ::collection::index               i1                = -1;
       ::payload               var1              = f;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyle1, i1, var1, pstyle, i, var1, pstyleW, iW, fW);
 
 
       const style *     pstyleCur;
-      ::raw::index               iCur;
+      ::collection::index               iCur;
       ::payload               varCur;
 
       pstyleCur         = pstyle1;
@@ -483,16 +483,16 @@ namespace html
       const style * pstyleTopW      = nullptr;
       const style * pstyleRightW    = nullptr;
       const style * pstyleBottomW   = nullptr;
-      ::raw::index i              = -1;
-      ::raw::index iLeft          = -1;
-      ::raw::index iTop           = -1;
-      ::raw::index iRight         = -1;
-      ::raw::index iBottom        = -1;
-      ::raw::index iW             = -1;
-      ::raw::index iLeftW         = -1;
-      ::raw::index iTopW          = -1;
-      ::raw::index iRightW        = -1;
-      ::raw::index iBottomW       = -1;
+      ::collection::index i              = -1;
+      ::collection::index iLeft          = -1;
+      ::collection::index iTop           = -1;
+      ::collection::index iRight         = -1;
+      ::collection::index iBottom        = -1;
+      ::collection::index iW             = -1;
+      ::collection::index iLeftW         = -1;
+      ::collection::index iTopW          = -1;
+      ::collection::index iRightW        = -1;
+      ::collection::index iBottomW       = -1;
       ::color::color color                = ::color::transparent;
       ::color::color colorLeft            = ::color::transparent;
       ::color::color colorTop             = ::color::transparent;
@@ -597,13 +597,13 @@ namespace html
          iBottomW = pstyleBottomW->m_propertyset.index_of(puser->m_phtml->concat(rangeName, "html_css_suffix_bottom_color"));
 
       const style *     pstyle1           = nullptr;
-      ::raw::index               i1                 = -1;
+      ::collection::index               i1                 = -1;
       ::payload var1 = color;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyle1, i1, var1, pstyle, i, var1, pstyleW, iW, (u32 &) crW);
 
 
       const style *     pstyleCur;
-      ::raw::index               iCur;
+      ::collection::index               iCur;
       ::payload               varCur;
 
       pstyleCur         = pstyle1;
@@ -949,7 +949,7 @@ namespace html
             return false;
       if(rangeName.is_empty())
          return false;
-      ::raw::index i = m_propertyset.index_of(rangeName);
+      ::collection::index i = m_propertyset.index_of(rangeName);
       if(i < 0)
          return false;
       if(!parse_border_width(m_propertyset[i].as_string(),f))

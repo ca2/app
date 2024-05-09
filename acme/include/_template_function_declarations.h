@@ -155,7 +155,7 @@ CLASS_DECL_ACME bool is_font_sel(const ::atom& atom);
 
 
 //template<class TYPE>
-//inline void dump_elements(dump_context& dumpcontext, const TYPE* pElements, ::raw::count nCount);
+//inline void dump_elements(dump_context& dumpcontext, const TYPE* pElements, ::collection::count nCount);
 
 
 i32 CLASS_DECL_ACME MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const ::ansi_character* pMultByteStr, i32 cbMultiByte,

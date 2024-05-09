@@ -12,7 +12,7 @@ simple_log::simple_log()
 }
 
 
-simple_log::simple_log(simple_log * psimplelog, ::raw::index iLogTarget)
+simple_log::simple_log(simple_log * psimplelog, ::collection::index iLogTarget)
 {
 
    m_psimplelog = psimplelog;
@@ -29,7 +29,7 @@ simple_log::~simple_log()
 }
 
 
-void simple_log::log_line(string str, ::raw::index iLogTarget)
+void simple_log::log_line(string str, ::collection::index iLogTarget)
 {
 
    if (m_psimplelog != nullptr)

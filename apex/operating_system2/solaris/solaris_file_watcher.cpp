@@ -101,7 +101,7 @@ namespace file_watcher
 
          dir::rls_dir(stra, directory);
 
-         for(::raw::index index = 0; index < stra.get_count(); index++)
+         for(::collection::index index = 0; index < stra.get_count(); index++)
          {
 
             i32 inaw = inotify_add_watch (mFD, stra[index], IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);

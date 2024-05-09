@@ -128,7 +128,7 @@ namespace filemanager
          if (!_017OpenSelected(true, ::e_source_user))
          {
 
-            ::raw::index iStrict = pitem->m_item.m_iItem;
+            ::collection::index iStrict = pitem->m_item.m_iItem;
 
             auto pitem = fs_list_item(iStrict);
 
@@ -189,7 +189,7 @@ namespace filemanager
 
       synchronous_lock synchronouslock(fs_list()->synchronization());
 
-      ::raw::index iItem;
+      ::collection::index iItem;
 
       auto point = pcontextmenu->m_pointHost;
 
@@ -198,10 +198,10 @@ namespace filemanager
       if (_001HitTest_(point, iItem))
       {
 
-         if (fs_list_item((::raw::index) iItem)->IsFolder())
+         if (fs_list_item((::collection::index) iItem)->IsFolder())
          {
 
-            _017OpenContextMenuFolder(fs_list_item((::raw::index) iItem), ::e_source_user);
+            _017OpenContextMenuFolder(fs_list_item((::collection::index) iItem), ::e_source_user);
 
          }
          else
@@ -415,7 +415,7 @@ namespace filemanager
 
       ::file::item_array itema;
 
-      ::raw::index iItemRange, iItem;
+      ::collection::index iItemRange, iItem;
 
       ::user::range range;
 
@@ -451,7 +451,7 @@ namespace filemanager
 
       ::file::item_array itema;
 
-      ::raw::index iItemRange, iItem;
+      ::collection::index iItemRange, iItem;
 
       ::user::range range;
 
@@ -547,7 +547,7 @@ namespace filemanager
       if (range.get_item_count() == 1 && range.ItemAt(0).get_lower_bound() == range.ItemAt(0).get_upper_bound())
       {
 
-         ::raw::index iEditItem = range.ItemAt(0).get_lower_bound();
+         ::collection::index iEditItem = range.ItemAt(0).get_lower_bound();
 
          ::user::interaction * pinteraction = _001GetControl(iEditItem, m_iNameSubItem);
 
@@ -667,9 +667,9 @@ namespace filemanager
 
          pitema->erase_at(pcommand->m_iIndex);
 
-         ::raw::index iStartIndex = pcommand->m_iIndex;
+         ::collection::index iStartIndex = pcommand->m_iIndex;
 
-         ::raw::index iIndex = iStartIndex;
+         ::collection::index iIndex = iStartIndex;
 
          auto patha = get_selected_final_path();
 
@@ -685,7 +685,7 @@ namespace filemanager
 
          m_straOpenWith = stra;
 
-         ::raw::count iCount = stra.get_size();
+         ::collection::count iCount = stra.get_size();
 
          string str;
 
@@ -717,7 +717,7 @@ namespace filemanager
 
          pcommand->m_iCount += iCount - 1;
 
-         ::raw::index iNewIndex = iStartIndex + iCount - 1;
+         ::collection::index iNewIndex = iStartIndex + iCount - 1;
 
          pmenucommandui->m_iIndex = iNewIndex;
 
@@ -1215,7 +1215,7 @@ namespace filemanager
             for(index strictOld = 0; strictOld < straStrictOrder.get_count(); strictOld++)
             {
             string str = straStrictOrder[strictOld];
-            ::raw::index find = m_pathaStrictOrder.find_first(str);
+            ::collection::index find = m_pathaStrictOrder.find_first(str);
             if(find < 0)
             {
             iaDisplayToStrictNew.erase_b(strictOld);
@@ -1224,22 +1224,22 @@ namespace filemanager
             // segundo, reordena conforme a
             // ordem que a listagem de arquivos fornecida pelo
             // sistema operacional pode ser fornecida.
-            for (::raw::index strictNew = 0; strictNew < m_pathaStrictOrder.get_count(); strictNew++)
+            for (::collection::index strictNew = 0; strictNew < m_pathaStrictOrder.get_count(); strictNew++)
             {
                string str = m_pathaStrictOrder[strictNew];
-               ::raw::index strictOld = straStrictOrder.find_first(str);
+               ::collection::index strictOld = straStrictOrder.find_first(str);
                if (strictOld >= 0)
                {
-                  ::raw::index iDisplay = iaDisplayToStrict.get_a(strictOld);
+                  ::collection::index iDisplay = iaDisplayToStrict.get_a(strictOld);
                   iaDisplayToStrictNew.set(iDisplay, strictNew);
                }
             }
             // terceiro, adiciona System novos arquivos nos primeiros espacos
             // vazios
-            for (::raw::index strictNew = 0; strictNew < m_pathaStrictOrder.get_count(); strictNew++)
+            for (::collection::index strictNew = 0; strictNew < m_pathaStrictOrder.get_count(); strictNew++)
             {
                string str = m_pathaStrictOrder[strictNew];
-               ::raw::index strictOld = straStrictOrder.find_first(str);
+               ::collection::index strictOld = straStrictOrder.find_first(str);
                if (strictOld < 0)
                {
                   iaDisplayToStrictNew.add_b_in_first_free_a(strictNew);
@@ -1318,7 +1318,7 @@ namespace filemanager
 
       }
 
-      ::raw::index i;
+      ::collection::index i;
 
       for (i = 0; i < iCount; i++)
       {
@@ -1402,7 +1402,7 @@ namespace filemanager
             pinteraction->m_typeatom = ::type < ::user::plain_edit >();
             //pinteraction->m_iSubItem = i;
             pinteraction->m_atom = 1000 + i;
-            ::raw::index iControl = _001AddControl(pinteraction);
+            ::collection::index iControl = _001AddControl(pinteraction);
             pcolumn->m_atom = pinteraction->m_atom;
 
          }
@@ -1631,7 +1631,7 @@ namespace filemanager
 
       ::file::item_array itema;
 
-      ::raw::index iItemRange, iItem;
+      ::collection::index iItemRange, iItem;
 
       ::user::range range;
 
@@ -1659,7 +1659,7 @@ namespace filemanager
 
             }
 
-            ::raw::index iStrict = display_to_strict(iItem);
+            ::collection::index iStrict = display_to_strict(iItem);
 
             if (fs_list_item(iStrict)->IsFolder())
             {
@@ -1730,9 +1730,9 @@ namespace filemanager
 
          ::file::item item;
 
-         ::raw::index iItem = pinteraction->m_item.m_iItem;
+         ::collection::index iItem = pinteraction->m_item.m_iItem;
 
-         ::raw::index iStrict = display_to_strict(iItem);
+         ::collection::index iStrict = display_to_strict(iItem);
 
          pcallback->OnButtonAction(pinteraction->m_atom, fs_list_item(iStrict));
 
@@ -1800,7 +1800,7 @@ namespace filemanager
    }
 
 
-   ::raw::count file_list::_001GetItemCount()
+   ::collection::count file_list::_001GetItemCount()
    {
 
       return fs_list()->m_pitema->get_count();
@@ -1839,7 +1839,7 @@ namespace filemanager
    }
 
 
-   ::image_list * file_list::GetActionButtonImageList(::raw::index i)
+   ::image_list * file_list::GetActionButtonImageList(::collection::index i)
    {
 
       if (i == 0)
@@ -1898,7 +1898,7 @@ namespace filemanager
    }
 
 
-   bool file_list::query_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag)
+   bool file_list::query_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag)
    {
 
       synchronous_lock synchronouslock(fs_list()->synchronization());
@@ -1910,7 +1910,7 @@ namespace filemanager
       if (iDisplayDrag != iDisplayDrop)
       {
 
-         ::raw::index iStrict = display_to_strict(iDisplayDrop);
+         ::collection::index iStrict = display_to_strict(iDisplayDrop);
 
          if (iStrict <= -1)
          {
@@ -1939,14 +1939,14 @@ namespace filemanager
    }
 
 
-   bool file_list::do_drop(::raw::index iDisplayDrop, ::raw::index iDisplayDrag)
+   bool file_list::do_drop(::collection::index iDisplayDrop, ::collection::index iDisplayDrag)
    {
 
       synchronous_lock synchronouslock(fs_list()->synchronization());
 
-      ::raw::index strict = display_to_strict(iDisplayDrop);
+      ::collection::index strict = display_to_strict(iDisplayDrop);
 
-      ::raw::index strictDrag = display_to_strict(iDisplayDrag);
+      ::collection::index strictDrag = display_to_strict(iDisplayDrag);
 
       auto pcontext = get_context();
 

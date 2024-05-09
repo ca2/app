@@ -77,13 +77,13 @@ inline int_bool critical_section::Unlock()
 
 //
 //inline bool synchronization_result::abandoned() const
-//{ return m_iEvent <= (::raw::index)result_abandon0; }
+//{ return m_iEvent <= (::collection::index)result_abandon0; }
 //
-//inline ::raw::index synchronization_result::abandoned_index() const
+//inline ::collection::index synchronization_result::abandoned_index() const
 //{
 //   if ( !abandoned() )
 //      throw ::exception(range_error("abandoned index out of range"));
-//   return -(m_iEvent + (::raw::index)result_abandon0);
+//   return -(m_iEvent + (::collection::index)result_abandon0);
 //}
 //
 //inline bool synchronization_result::error() const
@@ -96,14 +96,14 @@ inline int_bool critical_section::Unlock()
 //{ return m_eresult == result_timeout; }
 //
 //inline bool synchronization_result::signaled() const
-//{ return m_iEvent >= (::raw::index)result_event0; }
+//{ return m_iEvent >= (::collection::index)result_event0; }
 //
 //inline bool synchronization_result::succeeded() const
 //{
 //   return signaled();
 //}
 //
-//inline ::raw::index synchronization_result::signaled_index() const
+//inline ::collection::index synchronization_result::signaled_index() const
 //{
 //   if ( !signaled() )
 //      throw ::exception(range_error("signaled index out of range"));
@@ -309,7 +309,7 @@ inline int_bool critical_section::Unlock()
 //
 //      iTime /= 100;
 //
-//      for(::raw::index i = 0; i < iTime; i++)
+//      for(::collection::index i = 0; i < iTime; i++)
 //      {
 //
 //         sleep(100_ms);

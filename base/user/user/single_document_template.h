@@ -26,8 +26,8 @@ namespace user
 
       virtual void add_document(::user::document * pDoc) override;
       virtual void erase_document(::user::document * pDoc) override;
-      virtual ::raw::count get_document_count() const override;
-      virtual ::user::document * get_document(::raw::index index = 0) const override;
+      virtual ::collection::count get_document_count() const override;
+      virtual ::user::document * get_document(::collection::index index = 0) const override;
       virtual void on_request(::request * prequest) override;
       //void on_request_continuation(::user::document * pdocument, ::user::frame_window * pframewindow, ::request * prequest) override;
       virtual void set_default_title(::user::document * pdocument) override;

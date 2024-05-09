@@ -12,8 +12,8 @@ class CLASS_DECL_CORE xfplayer_impact_line_selection_item
 protected:
 
    
-   ::raw::index                m_iLineStart;
-   ::raw::index                m_iLineEnd;
+   ::collection::index                m_iLineStart;
+   ::collection::index                m_iLineEnd;
    strsize              m_iCharStart;
    strsize              m_iCharEnd;
 
@@ -23,8 +23,8 @@ public:
 
    xfplayer_impact_line_selection_item();
    xfplayer_impact_line_selection_item(
-      ::raw::index      iLineStart,
-      ::raw::index      iLineEnd,
+      ::collection::index      iLineStart,
+      ::collection::index      iLineEnd,
       strsize      iCharStart,
       strsize      iCharEnd
       );
@@ -34,16 +34,16 @@ public:
 
    void NormalizeSel();
    bool Intersect(xfplayer_impact_line & viewline);
-   bool Intersect(::raw::index iLineStart, ::raw::index iLineEnd);
+   bool Intersect(::collection::index iLineStart, ::collection::index iLineEnd);
 
-   ::raw::index GetLineStart();
-   ::raw::index GetLineEnd();
-   ::raw::index GetCharStart();
-   ::raw::index GetCharEnd();
-   void SetLineStart(::raw::index iLine);
-   void SetLineEnd(::raw::index iLine);
+   ::collection::index GetLineStart();
+   ::collection::index GetLineEnd();
+   ::collection::index GetCharStart();
+   ::collection::index GetCharEnd();
+   void SetLineStart(::collection::index iLine);
+   void SetLineEnd(::collection::index iLine);
    void SetCharStart(strsize iChar);
-   void SetCharEnd(::raw::index iChar);
+   void SetCharEnd(::collection::index iChar);
 
 
 };
@@ -80,8 +80,8 @@ public:
    xfplayer_impact_line_selection_item                                                    m_item;
       
 
-   ::raw::index                   m_iLineStartSource;
-   ::raw::index                   m_iLineEndSource;
+   ::collection::index                   m_iLineStartSource;
+   ::collection::index                   m_iLineEndSource;
    strsize                 m_iCharStartSource;
    strsize                 m_iCharEndSource;
 
@@ -101,11 +101,11 @@ public:
    bool SetSelBefore(xfplayer_impact_line & viewline);
    bool SetSelAfter(xfplayer_impact_line & viewline);
    void NormalizeSel(xfplayer_impact_line & viewline);
-   void GetNormalSelection(::raw::index & iLineStart, strsize & iCharStart, ::raw::index & iLineEnd, strsize & iCharEnd);
+   void GetNormalSelection(::collection::index & iLineStart, strsize & iCharStart, ::collection::index & iLineEnd, strsize & iCharEnd);
 
    void Select(
-      ::raw::index      iLineStart,
-      ::raw::index      iLineEnd,
+      ::collection::index      iLineStart,
+      ::collection::index      iLineEnd,
       strsize      iCharStart,
       strsize      iCharEnd,
       bool   bMerge);

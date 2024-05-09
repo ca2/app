@@ -813,7 +813,7 @@ namespace crypto
       //
       //      out.set(0);
       //
-      //      ::raw::count i = RSA_private_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
+      //      ::collection::count i = RSA_private_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
       //
       //      if (i < 0 || i >(1024 * 1024))
       //      {
@@ -971,7 +971,7 @@ namespace crypto
       //
       //      out.set(0);
       //
-      //      ::raw::count i = RSA_public_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
+      //      ::collection::count i = RSA_public_decrypt((int)in.get_size(), in.get_data(), out.get_data(), m_prsa, RSA_PKCS1_PADDING);
       //
       //      if (i < 0 || i >(1024 * 1024))
       //      {

@@ -53,11 +53,11 @@ namespace user
 
       virtual i32 _001GetItemHeight() const;
 
-      virtual void on_change_combo_sel(::raw::index iSel);
+      virtual void on_change_combo_sel(::collection::index iSel);
 
       bool pre_create_window(::user::system * pusersystem) override;
 
-      virtual void ensure_item_visible_by_index(::raw::index iItem);
+      virtual void ensure_item_visible_by_index(::collection::index iItem);
 
       void _001OnTimer(::timer* ptimer) override;
 
@@ -109,24 +109,24 @@ namespace user
       void set_current_item(::item * pitem, const ::action_context & context) override;
       virtual void set_current_item_by_atom(const ::atom & atom, const ::action_context& action_context);
       virtual void set_current_item_by_text(const ::scoped_string & scopedstr, const ::action_context& action_context);
-      virtual void set_current_item_by_index(::raw::index iIndex, const ::action_context& context);
+      virtual void set_current_item_by_index(::collection::index iIndex, const ::action_context& context);
       virtual string get_current_item_text();
       virtual ::atom get_current_item_atom();
 
 
-      virtual bool _001GetListText(::raw::index iSel, string& str);
-      virtual ::raw::index _001FindListText(const string& str);
-      virtual ::raw::count _001GetListCount();
+      virtual bool _001GetListText(::collection::index iSel, string& str);
+      virtual ::collection::index _001FindListText(const string& str);
+      virtual ::collection::count _001GetListCount();
 
 
       
-      //virtual ::raw::index add_string(const ::string & pszString, uptr dwItemData = 0);
-      //virtual ::raw::index add_string(const ::string & pszString, const string& strValue);
-      virtual ::raw::index add_item(const ::scoped_string & scopedstr, const ::atom & atom);
+      //virtual ::collection::index add_string(const ::string & pszString, uptr dwItemData = 0);
+      //virtual ::collection::index add_string(const ::string & pszString, const string& strValue);
+      virtual ::collection::index add_item(const ::scoped_string & scopedstr, const ::atom & atom);
 
       
-      virtual ::raw::index erase_item_at(::raw::index nIndex);
-      virtual ::raw::index insert_item_at(::raw::index nIndex, const ::string & pszString);
+      virtual ::collection::index erase_item_at(::collection::index nIndex);
+      virtual ::collection::index insert_item_at(::collection::index nIndex, const ::string & pszString);
 
 
       virtual void reset_content();

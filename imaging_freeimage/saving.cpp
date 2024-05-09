@@ -78,14 +78,14 @@ namespace imaging_freeimage
 
       int iStrideSrc = pimage->scan_size();
 
-      for (::raw::index y = 0; y < pimage->height(); y++)
+      for (::collection::index y = 0; y < pimage->height(); y++)
       {
 
          u8 * pbDst = ((u8 *)pdst) + ((pimage->height() - y - 1) * iStrideDst);
 
          u8 * pbSrc = (u8 *)psrc + (y * iStrideSrc);
 
-         for (::raw::index x = 0; x < pimage->width(); x++)
+         for (::collection::index x = 0; x < pimage->width(); x++)
          {
 
             pbDst[0] = pbSrc[2];
@@ -110,7 +110,7 @@ namespace imaging_freeimage
 
       u8 * pbSrc = (u8 *)psrc;
 
-      ::raw::count c = (count)pimage->area();
+      ::collection::count c = (count)pimage->area();
 
       while (c-- > 0)
       {

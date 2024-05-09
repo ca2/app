@@ -221,22 +221,22 @@ public:
 
 
    //HASH_TABLE           this->m_hashtable;
-   //::raw::count              this->m_nCount;
+   //::collection::count              this->m_nCount;
    //iterator              m_begin;
 
 
    pair_map();
-   pair_map(const PAIR * ppair, ::raw::count c);
+   pair_map(const PAIR * ppair, ::collection::count c);
    pair_map(const ::std::initializer_list < PAIR > & list);
    pair_map(const pair_map & m);
    ~pair_map();
 
    void construct();
 
-   ::raw::count get_count() const;
-   ::raw::count get_size() const;
-   ::raw::count size() const;
-   ::raw::count count() const;
+   ::collection::count get_count() const;
+   ::collection::count get_size() const;
+   ::collection::count size() const;
+   ::collection::count count() const;
    bool is_empty() const;
    bool empty() const;
 
@@ -343,7 +343,7 @@ public:
 
 
 
-   ::raw::count count(const ITEM & t) const;
+   ::collection::count count(const ITEM & t) const;
    bool has(const ITEM & t) const;
    bool contains(const ITEM & t) const;
 
@@ -441,7 +441,7 @@ public:
 
       bool bRemoved = false;
 
-      for(::raw::index i = 0; i < a.get_count(); i++)
+      for(::collection::index i = 0; i < a.get_count(); i++)
       {
 
          bRemoved |= erase_key(a[i]);
@@ -454,12 +454,12 @@ public:
 
 
    template < class ARRAY >
-   ::raw::count erase_node_array(ARRAY a)
+   ::collection::count erase_node_array(ARRAY a)
    {
 
-      ::raw::count countRemoved = 0;
+      ::collection::count countRemoved = 0;
 
-      for(::raw::index i = 0; i < a.get_count(); i++)
+      for(::collection::index i = 0; i < a.get_count(); i++)
       {
 
          if(erase_node(a[i]))
@@ -486,7 +486,7 @@ public:
    //   return ::range < const_iterator >(begin(),end());
    //}
 
-   //PAIR & element_at(::raw::index iIndex)
+   //PAIR & element_at(::collection::index iIndex)
    //{
    //   return this->elements().element_at(iIndex);
    //}
@@ -519,7 +519,7 @@ public:
 
 
    template < typename TYPE >
-   ::pointer<TYPE>get_typed_ptr(::raw::index i = 0)
+   ::pointer<TYPE>get_typed_ptr(::collection::index i = 0)
    {
 
       ::pointer<TYPE>p;
@@ -554,25 +554,25 @@ public:
 
 
 template < typename PAIR >
-inline ::raw::count pair_map < PAIR >::get_count() const
+inline ::collection::count pair_map < PAIR >::get_count() const
 {
    return this->m_nCount;
 }
 
 template < typename PAIR >
-inline ::raw::count pair_map < PAIR >::get_size() const
+inline ::collection::count pair_map < PAIR >::get_size() const
 {
    return this->m_nCount;
 }
 
 template < typename PAIR >
-inline ::raw::count pair_map < PAIR >::count() const
+inline ::collection::count pair_map < PAIR >::count() const
 {
    return this->m_nCount;
 }
 
 template < typename PAIR >
-inline ::raw::count pair_map < PAIR >::size() const
+inline ::collection::count pair_map < PAIR >::size() const
 {
    return this->m_nCount;
 }
@@ -682,10 +682,10 @@ pair_map < PAIR >::pair_map(const ::std::initializer_list < PAIR > & list)
 }
 
 template < typename PAIR >
-pair_map < PAIR >::pair_map(const PAIR * ppair, ::raw::count c)
+pair_map < PAIR >::pair_map(const PAIR * ppair, ::collection::count c)
 {
    construct();
-   for(::raw::index i = 0; i < c; i++)
+   for(::collection::index i = 0; i < c; i++)
    {
       set_at((ARG_ITEM) ppair[i].element1(), (ARG_PAYLOAD) ppair[i].element2());
    }
@@ -836,7 +836,7 @@ pair_map < PAIR >::new_node(ARG_ITEM item, ::u32 nHashBucket, ::u32 nHashValue)
    //   //// chain them into free list
    //   //pair_map::iterator iterator = (pair_map::iterator) newBlock->data();
    //   //// free in reverse order to make it easier to debug
-   //   //::raw::index i = m_nBlockSize - 1;
+   //   //::collection::index i = m_nBlockSize - 1;
    //   //for (iterator = &iterator[i]; i >= 0; i--, iterator--)
    //   //{
    //   //   iterator->m_next = this->m_pnodeFree;
@@ -1206,7 +1206,7 @@ inline const typename pair_map < PAIR >::PAYLOAD & pair_map < PAIR >::operator[]
 
 
 template < typename PAIR >
-inline ::raw::count pair_map < PAIR >::count(const ITEM & item) const
+inline ::collection::count pair_map < PAIR >::count(const ITEM & item) const
 {
 
    return this->plookup(item) ? 1 : 0;

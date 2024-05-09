@@ -21,7 +21,7 @@ namespace test_compilation_some_container_functions
 
    //   ::index_array m_ia;
 
-   //   ::std::strong_ordering _001Compare(::raw::index iItem1, ::raw::index iItem2)
+   //   ::std::strong_ordering _001Compare(::collection::index iItem1, ::collection::index iItem2)
    //   {
 
    //      return iItem1 <=> iItem2;

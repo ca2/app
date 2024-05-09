@@ -201,7 +201,7 @@
 //
 //   wstring wstr = "/::payload/acme/time/";
 //
-//   ::raw::count iLen = minimum(nBufferLength, wstr.get_length());
+//   ::collection::count iLen = minimum(nBufferLength, wstr.get_length());
 //
 //   unincpy(pBuffer, wstr, iLen);
 

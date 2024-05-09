@@ -17,7 +17,7 @@ namespace heap
       inline ::heap::allocator* allocator() { return ::acme::get()->m_pheapmanagement->m_pallocator; }
 
 
-      inline TYPE* allocate(::raw::count c, const char* pszFile, int iLine)
+      inline TYPE* allocate(::collection::count c, const char* pszFile, int iLine)
       {
 
          return (TYPE*)allocator()->allocate(sizeof(TYPE) * c);
@@ -25,7 +25,7 @@ namespace heap
       }
 
 
-      inline TYPE* allocate(::raw::count c)
+      inline TYPE* allocate(::collection::count c)
       {
 
          return (TYPE*)allocator()->allocate(sizeof(TYPE) * c);
@@ -54,7 +54,7 @@ namespace heap
       inline ::heap::memory * memory() { return ::acme::get()->m_pheapmanagement->memory(t_ememory); }
 
 
-      inline TYPE * allocate(::raw::count c, const char * pszFile, int iLine)
+      inline TYPE * allocate(::collection::count c, const char * pszFile, int iLine)
       {
 
          return (TYPE *)memory()->allocate_debug(sizeof(TYPE) * c, 0, pszFile, iLine);
@@ -62,7 +62,7 @@ namespace heap
       }
 
 
-      inline TYPE * allocate(::raw::count c)
+      inline TYPE * allocate(::collection::count c)
       {
 
          return (TYPE *)memory()->allocate(sizeof(TYPE) * c);
@@ -126,7 +126,7 @@ namespace allocator
          constructor::nodef< TYPE >::construct(p);
       }
 
-      inline  void construct_count(TYPE * p, ::raw::count c)
+      inline  void construct_count(TYPE * p, ::collection::count c)
       {
          constructor::nodef< TYPE >::construct_count(p, c);
 
@@ -141,7 +141,7 @@ namespace allocator
       }
 
 
-      inline  void destruct_count(TYPE * p, ::raw::count c)
+      inline  void destruct_count(TYPE * p, ::collection::count c)
       {
 
          destructor::nodef < TYPE >::destruct_count(p, c);
@@ -157,7 +157,7 @@ namespace allocator
       }
 
 
-      inline  void copy_count(TYPE * pdst, const TYPE * psrc, ::raw::count c)
+      inline  void copy_count(TYPE * pdst, const TYPE * psrc, ::collection::count c)
       {
 
          copier::def< TYPE >::copy_count(pdst, psrc, c);
@@ -165,7 +165,7 @@ namespace allocator
       }
 
 
-      inline void copy_construct_count(TYPE * pdst, ::raw::count c, const TYPE & src)
+      inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE & src)
       {
 
          while (c > 0)
@@ -182,7 +182,7 @@ namespace allocator
       }
 
       
-      inline void copy_construct_count(TYPE * pdst, ::raw::count c, const TYPE * psrc)
+      inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
       {
 
          while (c > 0)
@@ -201,7 +201,7 @@ namespace allocator
       }
 
 
-      //inline TYPE * alloc(::raw::count c)
+      //inline TYPE * alloc(::collection::count c)
       //{
 
       //   return m_ptypedallocator->allocate(c);
@@ -236,7 +236,7 @@ namespace allocator
       }
 
 
-      inline  void construct_count(TYPE * p, ::raw::count c)
+      inline  void construct_count(TYPE * p, ::collection::count c)
       {
 
          constructor::def< TYPE >::construct_count(p, c);
@@ -252,7 +252,7 @@ namespace allocator
       }
 
 
-      inline  void destruct_count(TYPE * pointer, ::raw::count c)
+      inline  void destruct_count(TYPE * pointer, ::collection::count c)
       {
 
          destructor::def< TYPE>::destruct_count(pointer, c);
@@ -268,7 +268,7 @@ namespace allocator
       }
 
 
-      inline void copy_count(TYPE * pdst, const TYPE * psrc, ::raw::count c)
+      inline void copy_count(TYPE * pdst, const TYPE * psrc, ::collection::count c)
       {
 
          copier::def< TYPE >::copy_count(pdst, psrc, c);
@@ -276,7 +276,7 @@ namespace allocator
       }
 
 
-      inline void copy_construct_count(TYPE * pdst, ::raw::count c, const TYPE & src)
+      inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE & src)
       {
 
          while (c > 0)
@@ -293,7 +293,7 @@ namespace allocator
       }
 
 
-      inline void copy_construct_count(TYPE * pdst, ::raw::count c, const TYPE * psrc)
+      inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
       {
 
          while (c > 0)
@@ -311,13 +311,13 @@ namespace allocator
       }
 
 
-      //inline  TYPE * alloc(::raw::count c, const char * pszFile, int iLine)
+      //inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
       //{
 
       //   return m_ptypedallocator->allocate(c, pszFile, iLine);
 
       //}
-      //inline  TYPE * alloc(::raw::count c)
+      //inline  TYPE * alloc(::collection::count c)
       //{
 
       //   return m_ptypedallocator->allocate(c);
@@ -351,7 +351,7 @@ namespace allocator
          constructor::def< TYPE >::construct(p);
       }
 
-      inline  void construct_count(TYPE * p, ::raw::count c)
+      inline  void construct_count(TYPE * p, ::collection::count c)
       {
          constructor::def< TYPE >::construct_count(p, c);
       }
@@ -365,7 +365,7 @@ namespace allocator
       }
 
 
-      inline void destruct_count(TYPE * pointer, ::raw::count c)
+      inline void destruct_count(TYPE * pointer, ::collection::count c)
       {
 
          destructor::def< TYPE>::destruct_count(pointer, c);
@@ -381,7 +381,7 @@ namespace allocator
       }
 
 
-      inline  void copy_count(TYPE * pdst, const TYPE * psrc, ::raw::count c)
+      inline  void copy_count(TYPE * pdst, const TYPE * psrc, ::collection::count c)
       {
 
          memory_transfer(pdst, psrc, sizeof(TYPE) * c);
@@ -389,7 +389,7 @@ namespace allocator
       }
 
 
-      inline void copy_construct_count(TYPE * pdst, ::raw::count c, const TYPE & src)
+      inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE & src)
       {
 
          /*   while (c > 0)
@@ -403,7 +403,7 @@ namespace allocator
       }
 
 
-      inline void copy_construct_count(TYPE * pdst, ::raw::count c, const TYPE * psrc)
+      inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
       {
 
          /*   while (c > 0)
@@ -418,13 +418,13 @@ namespace allocator
       }
 
 
-      //inline  TYPE * alloc(::raw::count c, const char * pszFile, int iLine)
+      //inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
       //{
 
       //   m_ptypedallocator->alloc(c, pszFile, iLine);
 
       //}
-      //inline  TYPE * alloc(::raw::count c)
+      //inline  TYPE * alloc(::collection::count c)
       //{
 
       //   m_ptypedallocator->alloc(c);
@@ -457,7 +457,7 @@ namespace allocator
       }
 
 
-      inline void construct_count(TYPE * p, ::raw::count c)
+      inline void construct_count(TYPE * p, ::collection::count c)
       {
 
          constructor::nodef< TYPE >::construct_count(p, c);
@@ -473,7 +473,7 @@ namespace allocator
       }
 
 
-      inline  void destruct_count(TYPE * pointer, ::raw::count c)
+      inline  void destruct_count(TYPE * pointer, ::collection::count c)
       {
 
          destructor::nodef< TYPE>::destruct_count(pointer, c);
@@ -489,7 +489,7 @@ namespace allocator
       }
 
 
-      inline void copy_count(TYPE * pdst, const TYPE * psrc, ::raw::count c)
+      inline void copy_count(TYPE * pdst, const TYPE * psrc, ::collection::count c)
       {
 
          copier::def< TYPE >::copy_count(pdst, psrc, c);
@@ -497,7 +497,7 @@ namespace allocator
       }
 
 
-      inline  void copy_construct_count(TYPE * pdst, ::raw::count c, const TYPE & src)
+      inline  void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE & src)
       {
 
          while (c > 0)
@@ -514,7 +514,7 @@ namespace allocator
       }
 
 
-      inline void copy_construct_count(TYPE * pdst, ::raw::count c, const TYPE * psrc)
+      inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
       {
 
          while (c > 0)
@@ -532,13 +532,13 @@ namespace allocator
 
       }
 
-  /*    inline  TYPE * alloc(::raw::count c, const char * pszFile, int iLine)
+  /*    inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
       {
 
          return m_ptypedallocator->alloc(c, pszFile, iLine);
 
       }
-      inline  TYPE * alloc(::raw::count c)
+      inline  TYPE * alloc(::collection::count c)
       {
 
          m_ptypedallocator->alloc(c);
@@ -571,7 +571,7 @@ namespace allocator
       }
 
 
-      inline void construct_count(TYPE * p, ::raw::count c)
+      inline void construct_count(TYPE * p, ::collection::count c)
       {
 
          constructor::nodef< TYPE >::construct_count(p, c);
@@ -587,7 +587,7 @@ namespace allocator
       }
 
 
-      inline void destruct_count(TYPE * pointer, ::raw::count c)
+      inline void destruct_count(TYPE * pointer, ::collection::count c)
       {
 
          destructor::nodef< TYPE>::destruct_count(pointer, c);
@@ -603,7 +603,7 @@ namespace allocator
       }
 
 
-      inline void copy_count(TYPE * pdst, const TYPE * psrc, ::raw::count c)
+      inline void copy_count(TYPE * pdst, const TYPE * psrc, ::collection::count c)
       {
 
          memory_transfer(pdst, psrc, sizeof(TYPE) * c);
@@ -611,7 +611,7 @@ namespace allocator
       }
 
 
-      inline void copy_construct_count(TYPE * pdst, ::raw::count c, const TYPE & src)
+      inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE & src)
       {
 
          while (c > 0)
@@ -628,7 +628,7 @@ namespace allocator
       }
 
 
-      inline void copy_construct_count(TYPE * pdst, ::raw::count c, const TYPE * psrc)
+      inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
       {
 
          while (c > 0)
@@ -647,13 +647,13 @@ namespace allocator
       }
 
 
-      //inline  TYPE * alloc(::raw::count c, const char * pszFile, int iLine)
+      //inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
       //{
 
       //   return m_ptypedallocator->alloc(c, pszFile, iLine);
 
       //}
-      //inline  TYPE * alloc(::raw::count c)
+      //inline  TYPE * alloc(::collection::count c)
       //{
 
       //   m_ptypedallocator->alloc(c);
@@ -689,7 +689,7 @@ namespace allocator
       }
 
 
-      inline void construct_count(TYPE * p, ::raw::count c)
+      inline void construct_count(TYPE * p, ::collection::count c)
       {
 
          constructor::zero< TYPE >::construct_count(p, c);
@@ -705,7 +705,7 @@ namespace allocator
       }
 
 
-      inline void destruct_count(TYPE * p, ::raw::count c)
+      inline void destruct_count(TYPE * p, ::collection::count c)
       {
 
          destructor::nodef< TYPE>::destruct_count(p, c);
@@ -721,7 +721,7 @@ namespace allocator
       }
 
 
-      inline void copy_count(TYPE * pdst, const TYPE * psrc, ::raw::count c)
+      inline void copy_count(TYPE * pdst, const TYPE * psrc, ::collection::count c)
       {
 
          copier::def< TYPE >::copy_count(pdst, psrc, c);
@@ -729,7 +729,7 @@ namespace allocator
       }
 
 
-      inline void copy_construct_count(TYPE * pdst, ::raw::count c, const TYPE & src)
+      inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE & src)
       {
 
          while (c > 0)
@@ -746,7 +746,7 @@ namespace allocator
       }
 
       
-      inline void copy_construct_count(TYPE * pdst, ::raw::count c, const TYPE * psrc)
+      inline void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
       {
 
          while (c > 0)
@@ -765,13 +765,13 @@ namespace allocator
       }
 
 
-      //inline  TYPE * alloc(::raw::count c, const char * pszFile, int iLine)
+      //inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
       //{
 
       //   return m_ptypedallocator->alloc(c, pszFile, iLine);
 
       //}
-      //inline  TYPE * alloc(::raw::count c)
+      //inline  TYPE * alloc(::collection::count c)
       //{
 
       //   return m_ptypedallocator->alloc(c);
@@ -800,7 +800,7 @@ namespace allocator
 //         constructor::def< TYPE >::construct(p);
 //      }
 //
-//      inline  void construct_count(TYPE * p, ::raw::count c)
+//      inline  void construct_count(TYPE * p, ::collection::count c)
 //      {
 //         constructor::def< TYPE >::construct_count(p, c);
 //
@@ -810,7 +810,7 @@ namespace allocator
 //      {
 //         destructor::def< TYPE>::destruct(p);
 //      }
-//      inline  void destruct_count(TYPE * p, ::raw::count c)
+//      inline  void destruct_count(TYPE * p, ::collection::count c)
 //      {
 //         destructor::def< TYPE>::destruct_count(p, c );
 //      }
@@ -824,14 +824,14 @@ namespace allocator
 //      }
 //
 //
-//      inline  void copy_count(TYPE * pdst, const TYPE * psrc, ::raw::count c)
+//      inline  void copy_count(TYPE * pdst, const TYPE * psrc, ::collection::count c)
 //      {
 //
 //         copier::def< TYPE >::copy_count(pdst, psrc, c);
 //
 //      }
 //
-//      inline  void copy_construct_count(TYPE * pdst, ::raw::count c, const TYPE & src)
+//      inline  void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE & src)
 //      {
 //
 //         while (c > 0)
@@ -844,7 +844,7 @@ namespace allocator
 //      }
 //
 //      
-//      inline  void copy_construct_count(TYPE * pdst, ::raw::count c, const TYPE * psrc)
+//      inline  void copy_construct_count(TYPE * pdst, ::collection::count c, const TYPE * psrc)
 //      {
 //
 //         while (c > 0)
@@ -859,14 +859,14 @@ namespace allocator
 //
 //
 //#if MEMDLEAK || defined(__MCRTDBG)
-//      inline  TYPE * alloc(::raw::count c, const char * pszFile, int iLine)
+//      inline  TYPE * alloc(::collection::count c, const char * pszFile, int iLine)
 //      {
 //
 //         return heap::sys < TYPE >::alloc(c, pszFile, iLine);
 //
 //      }
 //#else
-//      inline  TYPE * alloc(::raw::count c)
+//      inline  TYPE * alloc(::collection::count c)
 //      {
 //
 //         return heap::sys < TYPE >::alloc(c);

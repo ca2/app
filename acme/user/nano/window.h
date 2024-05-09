@@ -58,7 +58,7 @@ public:
 
 
    pointer_array < nano_button >             m_nanobuttona;
-   ::raw::index                                   m_iDefaultButton = -1;
+   ::collection::index                                   m_iDefaultButton = -1;
 
    //map < const ::item *, ::user::item >      m_useritemmap;
 

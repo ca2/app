@@ -18,8 +18,8 @@ namespace user
    public:
       ::pointer<::data::tree_item>    m_pitem;
       ::pointer < ::draw2d::graphics >             m_pdc;
-      ::raw::index                            m_iItem;
-      ::raw::index                            m_iIndentation;
+      ::collection::index                            m_iItem;
+      ::collection::index                            m_iIndentation;
       double                           m_dItemHeight;
       ::rectangle_f64                          m_rectangleX;
       ::rectangle_f64                          m_rectangle;
@@ -43,8 +43,8 @@ namespace user
 
 
 
-      virtual ::raw::count               get_data_bound_impact_count() const override;
-      virtual ::user::primitive *   get_data_bound_impact(::raw::index iImpact) override;
+      virtual ::collection::count               get_data_bound_impact_count() const override;
+      virtual ::user::primitive *   get_data_bound_impact(::collection::index iImpact) override;
 
 
 
@@ -65,10 +65,10 @@ namespace user
       virtual bool is_selected(const ::data::tree_item * pitem) const override;
       virtual bool is_selected(const ::data::item * pitem) const override;
 
-      virtual ::raw::count   selection_set(::data::tree_item_ptr_array & itemptra) override;
+      virtual ::collection::count   selection_set(::data::tree_item_ptr_array & itemptra) override;
       virtual bool      selection_set(::data::tree_item * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
       virtual bool      selection_set(::data::item * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
-      virtual bool      selection_set(::raw::index iIndex,::data::item * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
+      virtual bool      selection_set(::collection::index iIndex,::data::item * pitem,bool bIfNotInSelection = false,bool bIfParentInSelection = false) override;
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 

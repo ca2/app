@@ -311,8 +311,8 @@ public:
 
    // virtual void add(::user::primitive * pinteraction);
    //virtual void erase(::user::primitive * pinteraction);
-   //virtual ::raw::count get_ui_count();
-   //virtual ::user::primitive * get_ui(::raw::index iIndex);
+   //virtual ::collection::count get_ui_count();
+   //virtual ::user::primitive * get_ui(::collection::index iIndex);
    //virtual void set_timer(::user::primitive * pinteraction, uptr uEvent, ::u32 nEllapse);
    //virtual void unset_timer(::user::primitive * pinteraction, uptr uEvent);
    //virtual void set_auto_delete(bool bAutoDelete = true);
@@ -372,7 +372,7 @@ public:
    virtual bool post_quit_message(int nExitCode);
 
 
-   //virtual ::raw::index task_add(::task * ptask) override;
+   //virtual ::collection::index task_add(::task * ptask) override;
    virtual void task_erase(::task * ptask) override;
    //virtual void wait_quit(class ::time timeTimeout) override;
 
@@ -563,7 +563,7 @@ public:
    thread_ptra(thread_ptra && ptra) :pointer_array < thread >(::transfer(ptra)) {}
    virtual ~thread_ptra();
 
-   virtual ::raw::count get_count_except_current_thread();
+   virtual ::collection::count get_count_except_current_thread();
    //virtual void finish(::property_object * pcontextobjectFinish = nullptr) override;
    virtual void destroy() override;
    virtual void wait(const class time & timeWait, ::particle & particleSynchronousLock);

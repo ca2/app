@@ -1145,7 +1145,7 @@ string_array acme_file::lines(const ::file::path & pathParam)
 }
 
 
-void acme_file::set_line(const ::file::path & pathParam, ::raw::index iLine, const ::scoped_string & scopedstrLine)
+void acme_file::set_line(const ::file::path & pathParam, ::collection::index iLine, const ::scoped_string & scopedstrLine)
 {
 
    if (iLine < 0)

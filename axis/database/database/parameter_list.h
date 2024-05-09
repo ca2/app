@@ -18,9 +18,9 @@ namespace database
       row            m_row;
 
 
-      ::payload & get_value(::raw::index i);
-      const char * get_key(::raw::index i);
-      ::raw::count get_size();
+      ::payload & get_value(::collection::index i);
+      const char * get_key(::collection::index i);
+      ::collection::count get_size();
       bool is_empty();
 
       parameter_list & operator = (const parameter_list & paramlist);

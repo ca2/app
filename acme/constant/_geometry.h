@@ -14,10 +14,10 @@ enum enum_orientation
 };
 
 
-constexpr ::raw::index index_of(enum_orientation eorientation)
+constexpr ::collection::index index_of(enum_orientation eorientation)
 {
 
-   return (::raw::index) eorientation;
+   return (::collection::index) eorientation;
 
 }
 
@@ -29,7 +29,7 @@ constexpr enum_orientation orthogonal2_of(enum_orientation eorientation)
 
 }
 
-constexpr ::raw::index orthogonal2_index_of(enum_orientation eorientation)
+constexpr ::collection::index orthogonal2_index_of(enum_orientation eorientation)
 {
 
    return eorientation == e_orientation_horizontal ? 1 : 0;

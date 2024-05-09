@@ -40,22 +40,22 @@ namespace nanoui
       ::index_array                             m_iaTabIds;
       ::i32_array                               m_iaTabOffsets;
       int                                       m_iCloseButtonWidth = 0;
-      ::raw::index                                 m_iActiveTab = 0;
-      ::raw::index                                 m_iTabDragIndex = -1;
-      ::raw::index                                 m_iTabDragMinimum = -1;
-      ::raw::index                                 m_iTabDragMaximum = -1;
-      ::raw::index                                 m_iTabDragStart = -1;
-      ::raw::index                                 m_iTabDragEnd = -1;
-      ::raw::index                                 m_iCloseIndex = -1;
-      ::raw::index                                 m_iCloseIndexPushed = -1;
+      ::collection::index                                 m_iActiveTab = 0;
+      ::collection::index                                 m_iTabDragIndex = -1;
+      ::collection::index                                 m_iTabDragMinimum = -1;
+      ::collection::index                                 m_iTabDragMaximum = -1;
+      ::collection::index                                 m_iTabDragStart = -1;
+      ::collection::index                                 m_iTabDragEnd = -1;
+      ::collection::index                                 m_iCloseIndex = -1;
+      ::collection::index                                 m_iCloseIndexPushed = -1;
       bool                                      m_bTabsDraggable = false;
       bool                                      m_bTabsCloseable = false;
       Popup *                                   m_ppopup = nullptr;
       int                                       m_iTabCounter = 0;
       int                                       m_iPadding = 3;
-      ::function<void(::raw::index)>               m_callback;
-      ::function<void(::raw::index)>               m_closecallback;
-      ::function<Popup* (::raw::index, Screen*)>   m_popupcallback;
+      ::function<void(::collection::index)>               m_callback;
+      ::function<void(::collection::index)>               m_closecallback;
+      ::function<Popup* (::collection::index, Screen*)>   m_popupcallback;
       ::color::color                            m_colorBackground;
 
 
@@ -63,37 +63,37 @@ namespace nanoui
       TabWidgetBase(Widget* parent, const ::scoped_string& scopedstrFont = "sans-bold");
 
       /// Return the total number of tabs
-      ::raw::count tab_count() const { return (::raw::count)m_straTabCaptions.size(); };
+      ::collection::count tab_count() const { return (::collection::count)m_straTabCaptions.size(); };
 
       /// Return the ID of the tab at a given iIndex
-      ::raw::index tab_id(::raw::index iIndex) const { return m_iaTabIds[iIndex]; };
+      ::collection::index tab_id(::collection::index iIndex) const { return m_iaTabIds[iIndex]; };
 
       /// Return the iIndex of the tab with a given ID (or throw an exception)
-      ::raw::index tab_index(::raw::index iId) const;
+      ::collection::index tab_index(::collection::index iId) const;
 
       /// Inserts a new tab at the specified position and returns its ID.
-      ::raw::index insert_tab(::raw::index iIndex, const ::scoped_string& caption);
+      ::collection::index insert_tab(::collection::index iIndex, const ::scoped_string& caption);
 
       /// Appends a new tab and returns its ID.
-      ::raw::index append_tab(const ::scoped_string& caption);
+      ::collection::index append_tab(const ::scoped_string& caption);
 
       /// Removes a tab with the specified ID
-      virtual void erase_tab(::raw::index iId);
+      virtual void erase_tab(::collection::index iId);
 
       /// Return the ID of the currently active tab
-      ::raw::index selected_id() const { return m_iaTabIds.empty() ? -1 : tab_id(m_iActiveTab); }
+      ::collection::index selected_id() const { return m_iaTabIds.empty() ? -1 : tab_id(m_iActiveTab); }
       /// Set the ID of the currently active tab
-      void set_selected_id(::raw::index iId) { m_iActiveTab = tab_index(iId); update_visibility(); }
+      void set_selected_id(::collection::index iId) { m_iActiveTab = tab_index(iId); update_visibility(); }
 
       /// Return the iIndex of the currently active tab
-      ::raw::index selected_index() const { return m_iActiveTab; }
+      ::collection::index selected_index() const { return m_iActiveTab; }
       /// Set the iIndex of the currently active tab
-      void set_selected_index(::raw::index iIndex) { m_iActiveTab = iIndex; update_visibility(); }
+      void set_selected_index(::collection::index iIndex) { m_iActiveTab = iIndex; update_visibility(); }
 
       /// Return the caption of the tab with the given ID
-      ::string tab_caption(::raw::index iId) const { return m_straTabCaptions[tab_index(iId)]; };
+      ::string tab_caption(::collection::index iId) const { return m_straTabCaptions[tab_index(iId)]; };
       /// Change the caption of the tab with the given ID
-      void set_tab_caption(::raw::index iId, const ::scoped_string& caption) { m_straTabCaptions[tab_index(iId)] = caption; };
+      void set_tab_caption(::collection::index iId, const ::scoped_string& caption) { m_straTabCaptions[tab_index(iId)] = caption; };
 
       /// Return whether tabs provide a close button
       bool tabs_closeable() const { return m_bTabsCloseable; }
@@ -118,19 +118,19 @@ namespace nanoui
       }
 
       /// Callback that is used to notify a listener about tab changes (will be called with the tab ID)
-      ::function<void(::raw::index)> callback() const { return m_callback; }
+      ::function<void(::collection::index)> callback() const { return m_callback; }
       /// Set a callback that is used to notify a listener about tab changes (will be called with the tab ID)
-      void set_callback(const ::function<void(::raw::index)>& callback) { m_callback = callback; }
+      void set_callback(const ::function<void(::collection::index)>& callback) { m_callback = callback; }
 
       /// Callback that is used to notify a listener about tab close events (will be called with the tab ID)
-      ::function<void(::raw::index)> close_callback() const { return m_closecallback; }
+      ::function<void(::collection::index)> close_callback() const { return m_closecallback; }
       /// Set a callback that is used to notify a listener about tab close events (will be called with the tab ID)
-      void set_close_callback(const ::function<void(::raw::index)>& close_callback) { m_closecallback = close_callback; }
+      void set_close_callback(const ::function<void(::collection::index)>& close_callback) { m_closecallback = close_callback; }
 
       /// Callback that is used to notify a listener about popup events (will be called with the tab ID)
-      ::function<Popup* (::raw::index, Screen*)> popup_callback() const { return m_popupcallback; }
+      ::function<Popup* (::collection::index, Screen*)> popup_callback() const { return m_popupcallback; }
       /// Set a callback that is used to notify a listener about popup events (will be called with the tab ID)
-      void set_popup_callback(const ::function<Popup* (::raw::index, Screen*)>& popup_callback) { m_popupcallback = popup_callback; }
+      void set_popup_callback(const ::function<Popup* (::collection::index, Screen*)>& popup_callback) { m_popupcallback = popup_callback; }
 
       // Widget implementation
       void perform_layout(::nano2d::context* pcontext, bool bRecalcTextSize = true) override;
@@ -203,13 +203,13 @@ namespace nanoui
       TabWidget(Widget* parent, const ::scoped_string& font = "sans-bold");
 
       /// Inserts a new tab at the specified position and returns its ID.
-      ::raw::index insert_tab(::raw::index iIndex, const ::scoped_string& caption, Widget* pwidget);
+      ::collection::index insert_tab(::collection::index iIndex, const ::scoped_string& caption, Widget* pwidget);
 
       /// Appends a new tab and returns its ID.
-      ::raw::index append_tab(const ::scoped_string& caption, Widget* pwidget);
+      ::collection::index append_tab(const ::scoped_string& caption, Widget* pwidget);
 
       /// Removes a tab with the specified ID
-      void erase_tab(::raw::index iId) override;
+      void erase_tab(::collection::index iId) override;
 
       /// Remove pwidgetChild widgets when the associated tab is closed/erased?
       bool erase_children() const { return m_bEraseChildren; }

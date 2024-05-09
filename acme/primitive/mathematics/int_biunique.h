@@ -643,7 +643,7 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 //template < class t1, class t2, class t3, class t4 >
 //void serialize_write(stream & ostream, map < t1, t2, t3, t4 > & m)
 //{
-//   ::raw::count count = m.get_count();
+//   ::collection::count count = m.get_count();
 //   typename map < t1, t2, t3, t4 >::assoc * passoc = m.get_start();
 //   ostream << count;
 //   while(passoc != nullptr)
@@ -807,7 +807,7 @@ T biunique < T, T_to_T > ::calc_max_b()
 
 
 class CLASS_DECL_ACME index_biunique :
-   public biunique < ::raw::index >
+   public biunique < ::collection::index >
 {
 public:
 
@@ -832,7 +832,7 @@ public:
 };
 
 
-CLASS_DECL_ACME ::raw::index array_translate_a(index_biunique & ia, ::raw::index aNew, ::raw::index aOld);
+CLASS_DECL_ACME ::collection::index array_translate_a(index_biunique & ia, ::collection::index aNew, ::collection::index aOld);
 
 
 

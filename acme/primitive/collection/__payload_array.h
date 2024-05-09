@@ -26,36 +26,36 @@ public:
    ~payload_array() override;
 
 
-   ::raw::index add(const ::payload & payload);
-   ::raw::index append(const payload_array & payloada);
-   ::raw::index append(const std::initializer_list < ::payload > & list);
+   ::collection::index add(const ::payload & payload);
+   ::collection::index append(const payload_array & payloada);
+   ::collection::index append(const std::initializer_list < ::payload > & list);
 
-   inline ::raw::index add(const ::string & str) { return add((const ::payload &) str); }
-   inline ::raw::index add(const ::scoped_string & scopedstr) { return add((const string &) scopedstr); }
+   inline ::collection::index add(const ::string & str) { return add((const ::payload &) str); }
+   inline ::collection::index add(const ::scoped_string & scopedstr) { return add((const string &) scopedstr); }
 
-   inline ::raw::index add(i8 i) { return add((const ::payload &) i); }
-   inline ::raw::index add(u8 u) { return add((const ::payload &) u); }
-   inline ::raw::index add(i16 i) { return add((const ::payload &) i); }
-   inline ::raw::index add(u16 u) { return add((const ::payload &) u); }
-   inline ::raw::index add(i32 i) { return add((const ::payload &) i); }
-   inline ::raw::index add(u32 u) { return add((const ::payload &) u); }
-   inline ::raw::index add(i64 i) { return add((const ::payload &) i); }
-   inline ::raw::index add(u64 u) { return add((const ::payload &) u); }
+   inline ::collection::index add(i8 i) { return add((const ::payload &) i); }
+   inline ::collection::index add(u8 u) { return add((const ::payload &) u); }
+   inline ::collection::index add(i16 i) { return add((const ::payload &) i); }
+   inline ::collection::index add(u16 u) { return add((const ::payload &) u); }
+   inline ::collection::index add(i32 i) { return add((const ::payload &) i); }
+   inline ::collection::index add(u32 u) { return add((const ::payload &) u); }
+   inline ::collection::index add(i64 i) { return add((const ::payload &) i); }
+   inline ::collection::index add(u64 u) { return add((const ::payload &) u); }
 
-   ::raw::count append_unique(const payload_array & payloada);
+   ::collection::count append_unique(const payload_array & payloada);
 
    string implode(const ::scoped_string & scopedstrGlue) const;
 
 
-   ::raw::index find_first_ci(const ::scoped_string & scopedstr, ::raw::index find = 0, ::raw::index last = -1) const;
-   ::raw::index find_first(const ::scoped_string & scopedstr, ::raw::index find = 0, ::raw::index last = -1) const;
-   ::raw::index find_first(const ::payload & payload, ::raw::index find = 0, ::raw::index last = -1) const;
+   ::collection::index find_first_ci(const ::scoped_string & scopedstr, ::collection::index find = 0, ::collection::index last = -1) const;
+   ::collection::index find_first(const ::scoped_string & scopedstr, ::collection::index find = 0, ::collection::index last = -1) const;
+   ::collection::index find_first(const ::payload & payload, ::collection::index find = 0, ::collection::index last = -1) const;
 
-   bool case_insensitive_contains(const ::scoped_string & str, ::raw::index find = 0, ::raw::index last = -1, ::raw::count countMin = 1, ::raw::count countMax = -1) const;
+   bool case_insensitive_contains(const ::scoped_string & str, ::collection::index find = 0, ::collection::index last = -1, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
 
-   bool contains(const ::scoped_string & str, ::raw::index find = 0, ::raw::index last = -1, ::raw::count countMin = 1, ::raw::count countMax = -1) const;
+   bool contains(const ::scoped_string & str, ::collection::index find = 0, ::collection::index last = -1, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
 
-   bool contains(const ::payload & payload, ::raw::index find = 0, ::raw::index last = -1, ::raw::count countMin = 1, ::raw::count countMax = -1) const;
+   bool contains(const ::payload & payload, ::collection::index find = 0, ::collection::index last = -1, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
 
 
    std::strong_ordering operator<=>(const ::payload_array & payloada) const
@@ -68,19 +68,19 @@ public:
    std::strong_ordering order(const ::payload_array & payloada) const;
    std::strong_ordering case_insensitive_order(const ::payload_array & payloada) const;
 
-   ::raw::count erase_first_ci(const ::scoped_string & str, ::raw::index find = 0, ::raw::index last = -1);
+   ::collection::count erase_first_ci(const ::scoped_string & str, ::collection::index find = 0, ::collection::index last = -1);
 
-   ::raw::count erase_first(const ::scoped_string & str, ::raw::index find = 0, ::raw::index last = -1);
+   ::collection::count erase_first(const ::scoped_string & str, ::collection::index find = 0, ::collection::index last = -1);
 
-   ::raw::count erase_first(const ::payload & payload, ::raw::index find = 0, ::raw::index last = -1);
+   ::collection::count erase_first(const ::payload & payload, ::collection::index find = 0, ::collection::index last = -1);
 
-   ::raw::count erase_ci(const ::scoped_string & str, ::raw::index find = 0, ::raw::index last = -1, ::raw::count countMin = 0, ::raw::count countMax = -1);
+   ::collection::count erase_ci(const ::scoped_string & str, ::collection::index find = 0, ::collection::index last = -1, ::collection::count countMin = 0, ::collection::count countMax = -1);
 
-   ::raw::count erase(const ::scoped_string & str, ::raw::index find = 0, ::raw::index last = -1, ::raw::count countMin = 0, ::raw::count countMax = -1);
+   ::collection::count erase(const ::scoped_string & str, ::collection::index find = 0, ::collection::index last = -1, ::collection::count countMin = 0, ::collection::count countMax = -1);
 
-   ::raw::count erase(const ::payload & payload, ::raw::index find = 0, ::raw::index last = -1, ::raw::count countMin = 0, ::raw::count countMax = -1);
+   ::collection::count erase(const ::payload & payload, ::collection::index find = 0, ::collection::index last = -1, ::collection::count countMin = 0, ::collection::count countMax = -1);
 
-   ::raw::count erase(const payload_array & payloada);
+   ::collection::count erase(const payload_array & payloada);
 
    payload_array & operator -=(const ::payload & payload);
    payload_array & operator -=(const payload_array & payloada);
@@ -122,7 +122,7 @@ public:
    }
 
 
-   inline ::payload value_at(::raw::index i) const;
+   inline ::payload value_at(::collection::index i) const;
 
 
    string_array stra() const
@@ -151,7 +151,7 @@ public:
 CLASS_DECL_ACME void payload_array_skip_network_payload(::ansi_range & range);
 
 
-inline ::payload payload_array::value_at(::raw::index i) const
+inline ::payload payload_array::value_at(::collection::index i) const
 {
 
    if (i < 0 || i >= this->get_count())

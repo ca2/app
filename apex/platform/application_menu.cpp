@@ -42,7 +42,7 @@ application_menu::application_menu(bool bStockItem, const ::scoped_string & scop
    }
    
    
-//   void application_menu::add_item(::raw::index iIndex, const ::scoped_string & scopedstrName, const ::atom & atom, const ::scoped_string & scopedstrMacosAccelerator, const ::scoped_string & scopedstrDescription)
+//   void application_menu::add_item(::collection::index iIndex, const ::scoped_string & scopedstrName, const ::atom & atom, const ::scoped_string & scopedstrMacosAccelerator, const ::scoped_string & scopedstrDescription)
 //   {
 //      
 //      this->set_at_grow(iIndex, application_menu_item(strName, strId, strMacosAccelerator, strDescription));
@@ -51,7 +51,7 @@ application_menu::application_menu(bool bStockItem, const ::scoped_string & scop
 
 //   
 
-application_menu * application_menu::popup_at(::raw::index & iIndex, const ::scoped_string & scopedstrName)
+application_menu * application_menu::popup_at(::collection::index & iIndex, const ::scoped_string & scopedstrName)
 {
 
    auto ppopup = 
@@ -94,7 +94,7 @@ application_menu * application_menu::popup(const ::scoped_string & scopedstrName
 }
 
 
-application_menu * application_menu::_item_at(::raw::index & i, bool bStockItem, const ::scoped_string & scopedstrName, const ::atom & atom, const ::scoped_string & scopedstrAccelerator, const ::scoped_string & scopedstrDescription)
+application_menu * application_menu::_item_at(::collection::index & i, bool bStockItem, const ::scoped_string & scopedstrName, const ::atom & atom, const ::scoped_string & scopedstrAccelerator, const ::scoped_string & scopedstrDescription)
 {
 
    auto papplicationmenuItem =
@@ -124,7 +124,7 @@ application_menu * application_menu::_item(bool bStockItem, const ::scoped_strin
 }
 
 
-application_menu * application_menu::item_at(::raw::index & iIndex, const ::scoped_string & scopedstrName, const ::atom & atom, const ::scoped_string & scopedstrAccelerator, const ::scoped_string & scopedstrDescription)
+application_menu * application_menu::item_at(::collection::index & iIndex, const ::scoped_string & scopedstrName, const ::atom & atom, const ::scoped_string & scopedstrAccelerator, const ::scoped_string & scopedstrDescription)
 {
 
    auto pitem = _item_at(iIndex, false, scopedstrName, atom, scopedstrAccelerator, scopedstrDescription);
@@ -134,7 +134,7 @@ application_menu * application_menu::item_at(::raw::index & iIndex, const ::scop
 }
 
 
-application_menu * application_menu::stock_item_at(::raw::index & iIndex, const ::scoped_string & scopedstrName, const ::atom & atom, const ::scoped_string & scopedstrAccelerator, const ::scoped_string & scopedstrDescription)
+application_menu * application_menu::stock_item_at(::collection::index & iIndex, const ::scoped_string & scopedstrName, const ::atom & atom, const ::scoped_string & scopedstrAccelerator, const ::scoped_string & scopedstrDescription)
 {
 
    auto pitem = _item_at(iIndex, true, scopedstrName, atom, scopedstrAccelerator, scopedstrDescription);
@@ -192,7 +192,7 @@ application_menu * application_menu::stock_item(const ::scoped_string & scopedst
 }
 
 
-application_menu * application_menu::separator_at(::raw::index & i)
+application_menu * application_menu::separator_at(::collection::index & i)
 {
 
    auto pseparator = item_at(i, {}, id_separator);
@@ -213,7 +213,7 @@ application_menu * application_menu::separator()
 
 }
 
-   ::raw::index application_menu::find_child_with_name(const char * pszName) const
+   ::collection::index application_menu::find_child_with_name(const char * pszName) const
    {
       
       return predicate_find_first([pszName](auto & pitem)

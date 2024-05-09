@@ -29,17 +29,17 @@ namespace colorertake5
       void setLineSource(line_source *lh);
       void setRegionHandler(RegionHandler *rh);
 
-      ::raw::index  parse(index from, ::raw::count num, TextParseMode mode);
+      ::collection::index  parse(index from, ::collection::count num, TextParseMode mode);
       void breakParse();
       void clearCache();
 
    private:
 
       string str;
-      ::raw::index stackLevel;
-      ::raw::index gx, gy, gy2, len;
+      ::collection::index stackLevel;
+      ::collection::index gx, gy, gy2, len;
       SMatchHash schemeStart;
-      ::raw::index clearLine, endLine;
+      ::collection::index clearLine, endLine;
       scheme_impl *baseScheme;
 
       bool breakParsing;
@@ -50,7 +50,7 @@ namespace colorertake5
       parse_cache *cache;
       parse_cache *parent, *forward;
 
-      ::raw::index cachedLineNo;
+      ::collection::index cachedLineNo;
       parse_cache *cachedParent,*cachedForward;
 
       SMatches matchend;
@@ -66,8 +66,8 @@ namespace colorertake5
       void enterScheme(index lno, SMatches *match, SchemeNode *schemeNode);
       void leaveScheme(index lno, SMatches *match, SchemeNode *schemeNode);
 
-      ::raw::index searchKW(const SchemeNode *node, ::raw::index no, index lowLen, index hiLen);
-      ::raw::index searchRE(scheme_impl *cscheme, ::raw::index no, index lowLen, index hiLen);
+      ::collection::index searchKW(const SchemeNode *node, ::collection::index no, index lowLen, index hiLen);
+      ::collection::index searchRE(scheme_impl *cscheme, ::collection::index no, index lowLen, index hiLen);
       bool colorize(cregexp *root_end_re, bool lowContentPriority);
 
 

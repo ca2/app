@@ -116,12 +116,12 @@ namespace filemanager
 
          plist->get_selection(range);
 
-         for (::raw::index i = 0; i < range.get_item_count(); i++)
+         for (::collection::index i = 0; i < range.get_item_count(); i++)
          {
 
             auto & itemrange = range.ItemAt(i);
 
-            for (::raw::index iItem = itemrange.get_lower_bound(); iItem <= itemrange.get_upper_bound(); iItem++)
+            for (::collection::index iItem = itemrange.get_lower_bound(); iItem <= itemrange.get_upper_bound(); iItem++)
             {
 
                if (iItem >= 0 && iItem <= wstraTotal.get_upper_bound())
@@ -138,7 +138,7 @@ namespace filemanager
       }
 
 
-      ::raw::count list_data::_001GetItemCount()
+      ::collection::count list_data::_001GetItemCount()
       {
 
          synchronous_lock synchronouslock(this->synchronization());
@@ -273,7 +273,7 @@ namespace filemanager
 
          datastream()->get("recursive", iaRecursive);
 
-         ::raw::index iFind;
+         ::collection::index iFind;
 
          for (i32 i = 0; i < stra.get_count(); i++)
          {
@@ -333,7 +333,7 @@ namespace filemanager
       }
 
 
-      bool list_data::set_recursive(::raw::index iItem, bool bRecursive)
+      bool list_data::set_recursive(::collection::index iItem, bool bRecursive)
       {
 
          synchronous_lock synchronouslock(this->synchronization());
@@ -371,7 +371,7 @@ namespace filemanager
       }
 
 
-      bool list_data::get_recursive(::raw::index iItem)
+      bool list_data::get_recursive(::collection::index iItem)
       {
 
          synchronous_lock synchronouslock(this->synchronization());

@@ -346,7 +346,7 @@ const char * matter::get_task_tag()
 
 }
 
-//::raw::index matter::task_add(::task* ptask)
+//::collection::index matter::task_add(::task* ptask)
 //{
 //
 //   return -1;

@@ -36,7 +36,7 @@ public:
    //::draw2d::enum_alpha_mode        m_ealphamode;
    bool                             m_bOwn;
    ::draw2d::enum_mipmap               m_emipmap;
-   ::raw::index                            m_iFrame;
+   ::collection::index                            m_iFrame;
    int                              m_iExifOrientation;
    bool                             m_bCreateHelperMaps;
    ::pointer<::image_extension>    m_pextension;

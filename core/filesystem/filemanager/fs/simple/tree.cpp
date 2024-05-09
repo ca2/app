@@ -119,7 +119,7 @@ namespace filemanager
 
             // method 3: Selected Childs with GetChilds()
             // Result: Person, Person, Person
-            ::raw::index iNode = 0;
+            ::collection::index iNode = 0;
 
             auto pnodeFolder = pxmldocument->root()->get_child("folder");
 
@@ -137,7 +137,7 @@ namespace filemanager
 
                auto iFolder = pnodeItem->attribute("id").as_iptr();
 
-               ::raw::index iNewItem = m_foldera.find_absolute(iFolder);
+               ::collection::index iNewItem = m_foldera.find_absolute(iFolder);
 
                ::pointer<folder>pfolder;
 
@@ -270,7 +270,7 @@ namespace filemanager
          }
 
 
-         ::raw::index tree::_001GetItemImage(::pointer<::data::tree_item>pitem, bool bSelected)
+         ::collection::index tree::_001GetItemImage(::pointer<::data::tree_item>pitem, bool bSelected)
          {
 
             if(bSelected)

@@ -282,9 +282,9 @@ namespace windowing
    void cursor_manager::set_cursor_set_from_dir(::object * pobjectContext, const ::file::path & pathDir, bool bFromCache)
    {
 
-      ::raw::count countSuccess = 0;
+      ::collection::count countSuccess = 0;
 
-      ::raw::count countFailed = 0;
+      ::collection::count countFailed = 0;
 
       auto pcursorpair = g_pcursorpaira;
 
@@ -509,9 +509,9 @@ namespace windowing
    {
 
 
-      ::raw::count countSuccess = 0;
+      ::collection::count countSuccess = 0;
 
-      ::raw::count countFailed = 0;
+      ::collection::count countFailed = 0;
 
       auto pcursorpair = g_pcursorpaira;
 
@@ -534,7 +534,7 @@ namespace windowing
          pcursorpair++;
 
       }
-      //::raw::count count = 0;
+      //::collection::count count = 0;
 
       //if (set_system_default_cursor(e_cursor_arrow))
       //{

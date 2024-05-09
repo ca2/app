@@ -1135,7 +1135,7 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 
 //
 //template < typename PRED >
-//inline ::raw::count fork_count_end(::particle * pparticle, ::raw::count iCount, PRED pred, ::raw::index iStart, ::enum_priority epriority)
+//inline ::collection::count fork_count_end(::particle * pparticle, ::collection::count iCount, PRED pred, ::collection::index iStart, ::enum_priority epriority)
 //{
 //
 //   if (iCount <= 0)
@@ -1154,7 +1154,7 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 //   if (pgroup == nullptr || pgroup->get_count() <= 1)
 //   {
 //
-//      for (::raw::index i = iStart; i < iCount; i++)
+//      for (::collection::index i = iStart; i < iCount; i++)
 //      {
 //
 //         pred(i);
@@ -1174,9 +1174,9 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 //
 //   synchronization_array ptra;
 //
-//   ::raw::count iScan = maximum(1, minimum(iCount - iStart, pgroup->thread_count()));
+//   ::collection::count iScan = maximum(1, minimum(iCount - iStart, pgroup->thread_count()));
 //
-//   for (::raw::index iOrder = 0; iOrder < iScan; iOrder++)
+//   for (::collection::index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
 //
 //      ::pointer<predicate_holder_base>p = __allocate< forking_count_predicate < PRED >  >(iOrder, iOrder + iStart, iScan, iCount, pred);

@@ -42,13 +42,13 @@ namespace filemanager
 
 
          void AddFolder(Folder & folder);
-         ::raw::count GetFolderCount();
+         ::collection::count GetFolderCount();
 //#ifdef WINDOWS_DESKTOP
 //         void clear(LPITEMIDLIST piidlPreserve1, LPITEMIDLIST lpiidlPreserve2);
 //
 //#endif
          void clear();
-         Folder & GetFolder(::raw::index i);
+         Folder & GetFolder(::collection::index i);
 
 
       };
@@ -84,7 +84,7 @@ namespace filemanager
       void _001GetSubItemImage(::user::mesh_subitem * psubitem) override;
 
 
-      virtual ::raw::count _001GetItemCount() override;
+      virtual ::collection::count _001GetItemCount() override;
       virtual void on_insert_columns() override;
 
       virtual ::color::color get_background_color();

@@ -245,7 +245,7 @@ namespace draw2d
       
       int c = cx + div2;
       
-      for(::raw::index x = 0; x < c; x++)
+      for(::collection::index x = 0; x < c; x++)
       {
          
          vxmin[x] = (int) minimum(x + r1,wm);
@@ -259,7 +259,7 @@ namespace draw2d
       //{
       //   s = ((s / 16) * 16) + 16;
       //}
-      for(::raw::index y = 0; y < c; y++)
+      for(::collection::index y = 0; y < c; y++)
       {
          vymin[y] = (int)(minimum(y + r1,hm)*s);
       }
@@ -367,9 +367,9 @@ namespace draw2d
       {
 auto tickA0 = ::time::now();
 
-         for(::raw::index y = 0; y < h; y++)
+         for(::collection::index y = 0; y < h; y++)
          {
-            for(::raw::index x = 0; x < w; x++)
+            for(::collection::index x = 0; x < w; x++)
             {
                p = (u8 *)&pimage32[y * s + x];
                t[y * w + x] = vector4(point_i32[0],point_i32[1],point_i32[2],point_i32[3]);
@@ -430,9 +430,9 @@ auto tick2 = ::time::now();
       {
 auto tickC0 = ::time::now();
 
-         for(::raw::index y = 0; y < h; y++)
+         for(::collection::index y = 0; y < h; y++)
          {
-            for(::raw::index x = 0; x < w; x++)
+            for(::collection::index x = 0; x < w; x++)
             {
                p = (u8 *)&pimage32[y * s + x];
                t = &timage[y * w + x];
@@ -471,10 +471,10 @@ auto tickC1 = ::time::now();
          
          auto tickA0 = ::time::now();
 
-         for(::raw::index y = 0; y < hj; y++)
+         for(::collection::index y = 0; y < hj; y++)
          {
 
-            for(::raw::index x = 0; x < wj; x++)
+            for(::collection::index x = 0; x < wj; x++)
             {
 
                p = (u8 *)&pimage32[y * s + x];
@@ -551,10 +551,10 @@ auto tickC1 = ::time::now();
 
          auto tickC0 = ::time::now();
 
-         for(::raw::index y = 0; y < h; y++)
+         for(::collection::index y = 0; y < h; y++)
          {
 
-            for(::raw::index x = 0; x < w; x++)
+            for(::collection::index x = 0; x < w; x++)
             {
 
                p = (u8 *)&pimage32[y * s + x];
@@ -589,11 +589,11 @@ auto tickC1 = ::time::now();
 
 #else
 
-//      ::raw::count cCount = maximum(2,m_iRadius / 8);
+//      ::collection::count cCount = maximum(2,m_iRadius / 8);
 
-      ::raw::count cCount = 2;
+      ::collection::count cCount = 2;
 
-      for(::raw::index i = 0; i < cCount; i++)
+      for(::collection::index i = 0; i < cCount; i++)
 #endif
       {
          //try

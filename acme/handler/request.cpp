@@ -256,7 +256,7 @@ void request::set_description(string strDescription)
 }
 
 
-::raw::index request::get_edge()
+::collection::index request::get_edge()
 {
 
    //if(!m_pcommandline)

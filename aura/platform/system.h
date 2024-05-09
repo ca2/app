@@ -196,7 +196,7 @@ namespace aura
 
 
 
-      //virtual ::aura::session * query_session(::raw::index iEdge) override;
+      //virtual ::aura::session * query_session(::collection::index iEdge) override;
 
 
 
@@ -378,8 +378,8 @@ namespace aura
       //virtual ::u32 os_post_to_all_threads(const ::atom & atom,wparam wparam = 0,lparam lparam = 0) override;
 
 
-      //virtual void session_add(::raw::index iEdge, ::apex::session * psession) overr;
-      //virtual void session_erase(::raw::index iEdge);
+      //virtual void session_add(::collection::index iEdge, ::apex::session * psession) overr;
+      //virtual void session_erase(::collection::index iEdge);
 
 
 
@@ -460,7 +460,7 @@ namespace aura
 
       //::pointer<application>assert_running(const ::string & pszAppId);
 
-  /*    virtual ::raw::count get_application_count() override;
+  /*    virtual ::collection::count get_application_count() override;
 */
 
       //virtual string crypto_md5_text(const ::string & str);
@@ -487,11 +487,11 @@ namespace aura
 
       //virtual void install_progress_add_up(int iAddUp = 1) override;
 
-      //virtual void create_session(::raw::index iEdge = 0) override;
+      //virtual void create_session(::collection::index iEdge = 0) override;
 
-      /*virtual ::pointer<::apex::session>on_create_session(::raw::index iEdge) override;
+      /*virtual ::pointer<::apex::session>on_create_session(::collection::index iEdge) override;
 
-      virtual ::apex::session * session(::raw::index iEdge = 0) override;*/
+      virtual ::apex::session * session(::collection::index iEdge = 0) override;*/
 
       //virtual void on_request(::request * prequest) override;
 
@@ -530,8 +530,8 @@ namespace aura
       //virtual void defer_check_openweather_city_list();
 
       //virtual openweather_city * openweather_find_city(string strQuery);
-      //virtual ::raw::index openweather_find_city2(string strQuery, string & strCit, i64 & iId, double & dLat, double & dLon);
-      //virtual ::raw::index openweather_find_city2(string strQ1, string strQ2, string & strCit, i64 & iId, double & dLat, double & dLon, bool bPrefix);
+      //virtual ::collection::index openweather_find_city2(string strQuery, string & strCit, i64 & iId, double & dLat, double & dLon);
+      //virtual ::collection::index openweather_find_city2(string strQ1, string strQ2, string & strCit, i64 & iId, double & dLat, double & dLon, bool bPrefix);
 
 //#ifdef ANDROID
 ////#pragma message("at macos??")
@@ -620,7 +620,7 @@ namespace aura
       //virtual void initialize_rich_text();
 
 
-      //virtual ::raw::index get_new_bergedge(application_bias * pbiasCreation = nullptr);
+      //virtual ::collection::index get_new_bergedge(application_bias * pbiasCreation = nullptr);
 
       //pointer_array < ::aura::session > &    planesessionptra();
 
@@ -637,7 +637,7 @@ namespace aura
       //::pointer<::acme::library>on_get_library(const ::string & pszLibrary) override;
 
 
-      //virtual ::aura::session *  get_platform(::raw::index iEdge,application_bias * pbiasCreation = nullptr);
+      //virtual ::aura::session *  get_platform(::collection::index iEdge,application_bias * pbiasCreation = nullptr);
 
 
       //virtual void on_request(::create* pcreate) override;
@@ -768,13 +768,13 @@ namespace aura
 
 
 
-      //virtual ::u32 get_monitor_color_temperature(::raw::index iMonitor);
-      //virtual bool adjust_monitor(::raw::index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
-      //virtual bool get_monitor_rectangle(::raw::index iMonitor, ::rectangle_i32* prectangle) override;
+      //virtual ::u32 get_monitor_color_temperature(::collection::index iMonitor);
+      //virtual bool adjust_monitor(::collection::index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
+      //virtual bool get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32* prectangle) override;
 
-      //virtual ::raw::count get_monitor_count() override;
+      //virtual ::collection::count get_monitor_count() override;
 
-      //bool get_workspace_rectangle(::raw::index iWorkspace, ::rectangle_i32* prectangle) override;
+      //bool get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32* prectangle) override;
 
 
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;

@@ -30,7 +30,7 @@ namespace networking
       ~ip_enum() override;
 
 
-      virtual ::raw::count enumerate(pointer_array < ::networking::address > & ipa);
+      virtual ::collection::count enumerate(pointer_array < ::networking::address > & ipa);
 
 
    };

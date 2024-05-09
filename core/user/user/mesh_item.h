@@ -41,9 +41,9 @@ namespace user
       draw_list_subitem *           m_pdrawlistsubitem;
 
       ::pointer<mesh_item>         m_pmeshitem;
-      ::raw::index                       m_iSubItem;
-      ::raw::index                       m_iOrder;
-      ::raw::index                       m_iImage;
+      ::collection::index                       m_iSubItem;
+      ::collection::index                       m_iOrder;
+      ::collection::index                       m_iImage;
       ::pointer<list_column>       m_pcolumn;
 
 
@@ -86,7 +86,7 @@ namespace user
       //index                               m_iSubItemRectOrder;
       //index                               m_iSubItemRectColumn;
 
-      ::raw::index                                   m_iRectangleOrder;
+      ::collection::index                                   m_iRectangleOrder;
 
 
       draw_mesh_subitem();
@@ -120,24 +120,24 @@ namespace user
 
       mesh *                                    m_pmesh;
       //index                                     m_iGroup;
-      ::raw::index                                     m_iItem;
-      ::raw::index                                     m_iDisplayItem;
+      ::collection::index                                     m_iItem;
+      ::collection::index                                     m_iDisplayItem;
       //index                                     m_iSubItem;
       ::index_map < ::pointer<mesh_subitem >>  m_mapSubItem;
 //      index                                   m_iListItem;
       i32                                       m_iState;
       bool                                      m_bOk;
 
-      ::raw::index                                     m_iGroupTopDisplayIndex;
-      ::raw::count                                   m_iGroupCount;
+      ::collection::index                                     m_iGroupTopDisplayIndex;
+      ::collection::count                                   m_iGroupCount;
 
       mesh_item();
 
       void initialize_mesh_item(mesh * pmesh);
 
-      ::raw::index item_index() const { return (::raw::index) m_iItem; }
-      //::raw::index subitem_index() const { return (::raw::index) m_iSubItem; }
-      //::raw::index list_item_index() const { return (::raw::index) m_iListItem; }
+      ::collection::index item_index() const { return (::collection::index) m_iItem; }
+      //::collection::index subitem_index() const { return (::collection::index) m_iSubItem; }
+      //::collection::index list_item_index() const { return (::collection::index) m_iListItem; }
 
       operator mesh_item * () { return this; }
       operator draw_mesh_item * () { return  m_pdrawmeshitem; }
@@ -165,7 +165,7 @@ namespace user
 
       //index                               m_iItemRectItem;
 
-      ::raw::index                             m_iRectangleDisplayItem;
+      ::collection::index                             m_iRectangleDisplayItem;
 
       i32                                 m_iColumnWidth;
 
@@ -208,26 +208,26 @@ namespace user
 
 
       mesh * m_pmesh;
-      ::raw::index                                     m_iGroup;
-      ::raw::index                                     m_iItem;
+      ::collection::index                                     m_iGroup;
+      ::collection::index                                     m_iItem;
       //index                                     m_iDisplayItem;
       //index                                     m_iSubItem;
       //::index_map < ::pointer<mesh_subitem >>  m_mapSubitem;
       //      index                                   m_iListItem;
-      ::raw::index                                   m_iImage;
+      ::collection::index                                   m_iImage;
       i32                                       m_iState;
       bool                                      m_bOk;
 
-      ::raw::index                                     m_iGroupTopDisplayIndex;
-      ::raw::count                                   m_iGroupCount;
+      ::collection::index                                     m_iGroupTopDisplayIndex;
+      ::collection::count                                   m_iGroupCount;
 
       mesh_group();
 
       void initialize_mesh_group(mesh * pmesh);
 
-      ::raw::index group_index() const { return (::raw::index)m_iGroup; }
-      //::raw::index subitem_index() const { return (::raw::index) m_iSubItem; }
-      //::raw::index list_item_index() const { return (::raw::index) m_iListItem; }
+      ::collection::index group_index() const { return (::collection::index)m_iGroup; }
+      //::collection::index subitem_index() const { return (::collection::index) m_iSubItem; }
+      //::collection::index list_item_index() const { return (::collection::index) m_iListItem; }
 
       operator mesh_group * () { return this; }
       operator draw_mesh_group * () { return  m_pdrawmeshgroup; }
@@ -257,7 +257,7 @@ namespace user
       ::e_align                           m_ealign;
       ::e_draw_text                       m_edrawtext;
 
-      ::raw::index                               m_iGroupRectGroup;
+      ::collection::index                               m_iGroupRectGroup;
 
       //index                               m_iItemRectItem;
 

@@ -239,7 +239,7 @@ namespace app_integration
 
    //      ::rectangle_i32 rectangle = this->rectangle();
 
-   //      for (::raw::index i = 0; i < 11; i++)
+   //      for (::collection::index i = 0; i < 11; i++)
    //      {
 
    //         pgraphics->draw_inset_rectangle(rectangle, argb(180, 80, 80, 80));

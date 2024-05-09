@@ -1250,7 +1250,7 @@ namespace core
    //}
 
 
-   //string user::get_wallpaper(::raw::index iScreen)
+   //string user::get_wallpaper(::collection::index iScreen)
    //{
 
    //   return impl_get_wallpaper(iScreen);
@@ -1258,7 +1258,7 @@ namespace core
    //}
 
 
-   //bool user::set_wallpaper(::raw::index iScreen, string strWallpaper)
+   //bool user::set_wallpaper(::collection::index iScreen, string strWallpaper)
    //{
 
    //   return impl_set_wallpaper(iScreen, strWallpaper);
@@ -1276,7 +1276,7 @@ namespace core
    //}
 
 
-   //bool user::impl_set_wallpaper(::raw::index iScreen, string strLocalImagePath)
+   //bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
    //{
 
    //   return SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, wstring(strLocalImagePath), SPIF_UPDATEINIFILE | SPIF_SENDCHANGE) != false;
@@ -1284,7 +1284,7 @@ namespace core
    //}
 
 
-   //string user::impl_get_wallpaper(::raw::index iScreen)
+   //string user::impl_get_wallpaper(::collection::index iScreen)
    //{
 
    //   wstring  wstr;
@@ -1343,7 +1343,7 @@ namespace core
 //   }
 
 
-//   bool user::impl_set_wallpaper(::raw::index iScreen, string strLocalImagePath)
+//   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
 //   {
 //
 //      // wall-changer sourceforge.net contribution
@@ -1362,7 +1362,7 @@ namespace core
 //   }
 
 
-//   string user::impl_get_wallpaper(::raw::index iScreen)
+//   string user::impl_get_wallpaper(::collection::index iScreen)
 //   {
 //
 //      return ::os::get_wallpaper(iScreen);
@@ -1394,14 +1394,14 @@ namespace core
 //
 //   }
 //
-//   bool user::impl_set_wallpaper(::raw::index iScreen, string strLocalImagePath)
+//   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
 //   {
 //
 //      return false;
 //
 //   }
 //
-//   string user::impl_get_wallpaper(::raw::index iScreen)
+//   string user::impl_get_wallpaper(::collection::index iScreen)
 //   {
 //
 //      return string();
@@ -1423,14 +1423,14 @@ namespace core
 
 #elif defined(ANDROID)
 
-//   bool user::impl_set_wallpaper(::raw::index iScreen, string strLocalImagePath)
+//   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
 //   {
 //
 //      return psystem->android_set_user_wallpaper(strLocalImagePath);
 //
 //   }
 //
-//   string user::impl_get_wallpaper(::raw::index iScreen)
+//   string user::impl_get_wallpaper(::collection::index iScreen)
 //   {
 //
 //      string strLocalImagePath;
@@ -1475,7 +1475,7 @@ namespace core
 //   }
 
 
-//   bool user::impl_set_wallpaper(::raw::index iScreen, string strLocalImagePath)
+//   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
 //   {
 //
 //      // Someday we will be together...
@@ -1486,7 +1486,7 @@ namespace core
 //
 //   }
 //
-//   string user::impl_get_wallpaper(::raw::index iScreen)
+//   string user::impl_get_wallpaper(::collection::index iScreen)
 //   {
 //
 //      return string();
@@ -1518,14 +1518,14 @@ namespace core
 //
 //   }
 
-//   bool user::impl_set_wallpaper(::raw::index iScreen, string strLocalImagePath)
+//   bool user::impl_set_wallpaper(::collection::index iScreen, string strLocalImagePath)
 //   {
 //
 //      return macos_set_user_wallpaper((int)iScreen, strLocalImagePath);
 //
 //   }
 //
-//   string user::impl_get_wallpaper(::raw::index iScreen)
+//   string user::impl_get_wallpaper(::collection::index iScreen)
 //   {
 //
 //      return macos_get_user_wallpaper((int)iScreen);

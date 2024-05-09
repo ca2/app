@@ -24,7 +24,7 @@ namespace regular_expression
    }
 
 
-   ::raw::count result::get_count() const
+   ::collection::count result::get_count() const
    {
 
       throw ::interface_only();
@@ -43,7 +43,7 @@ namespace regular_expression
 
 
 
-   string result::get_match(::raw::index iMatch) const
+   string result::get_match(::collection::index iMatch) const
    {
 
       throw ::interface_only();

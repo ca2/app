@@ -67,7 +67,7 @@ namespace user
       bool on_application_menu_action(const ::atom & atom) override;
 
 
-      //virtual bool notify_icon_insert_item(bool bStockItem, ::raw::index & iIndex, string strName, string strId = "", string strLabel = "", string strAccelerator = "", string strDescription = "");
+      //virtual bool notify_icon_insert_item(bool bStockItem, ::collection::index & iIndex, string strName, string strId = "", string strLabel = "", string strAccelerator = "", string strDescription = "");
 
 
    };

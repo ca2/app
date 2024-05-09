@@ -108,7 +108,7 @@ void application_container::request_exit()
          while (i > 0 && applicationa.get_size() > 0)
          {
 
-            for (::raw::index j = 0; j < applicationa.get_size(); )
+            for (::collection::index j = 0; j < applicationa.get_size(); )
             {
 
                auto pappItem = applicationa[j];

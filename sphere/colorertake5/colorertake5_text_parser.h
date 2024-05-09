@@ -73,7 +73,7 @@ public:
    * @param num   Number of lines to parse
    * @param mode  Parsing mode.
    */
-  virtual ::raw::index parse(index from, ::raw::count num, TextParseMode mode) = 0;
+  virtual ::collection::index parse(index from, ::collection::count num, TextParseMode mode) = 0;
 
   /**
    * Performs break of parsing process from external thread.

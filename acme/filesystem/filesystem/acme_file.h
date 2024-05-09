@@ -107,7 +107,7 @@ public:
    virtual void defer_erase(const ::file::path& path);
    virtual bool safe_erase(const ::file::path& path);
 
-   //virtual bool set_line(const ::file::path & path, ::raw::index iLine, const ::file::path & pathLine);
+   //virtual bool set_line(const ::file::path & path, ::collection::index iLine, const ::file::path & pathLine);
 
    virtual void copy(const ::file::path & pathDup, const ::file::path & pathSrc, bool bOverwrite);
    virtual void _copy(const ::file::path & pathDup, const ::file::path & pathSrc, bool bOverwrite);
@@ -187,9 +187,9 @@ public:
 
    //virtual string_array file_as_lines(const ::file::path & path, strsize iReadAtMostByteCount = -1);
    virtual string first_line(const ::file::path & path);
-   virtual string line(const ::file::path & path, ::raw::index iLine);
+   virtual string line(const ::file::path & path, ::collection::index iLine);
    virtual string_array lines(const ::file::path & path);
-   virtual void set_line(const ::file::path & path, ::raw::index iLine, const ::scoped_string & scopedstrLine);
+   virtual void set_line(const ::file::path & path, ::collection::index iLine, const ::scoped_string & scopedstrLine);
    //virtual string file_extension_dup(const ::file::path & path);
    virtual string get_temporary_file_name(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrExtension);
 

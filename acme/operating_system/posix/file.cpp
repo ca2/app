@@ -189,7 +189,7 @@ char * malloc_get_current_dir_name()
 //}
 //
 //
-//int_bool acmefile()->put_contents(const ::file::path & path, const char * contents, ::raw::count len)
+//int_bool acmefile()->put_contents(const ::file::path & path, const char * contents, ::collection::count len)
 //{
 //
 //   bool bOk = false;
@@ -260,14 +260,14 @@ char * malloc_get_current_dir_name()
 //   if (f == nullptr)
 //      return "";
 //
-//   ::raw::count iSize = FILE_get_size(f);
+//   ::collection::count iSize = FILE_get_size(f);
 //
 //   iReadAtMostByteCount = minimum_non_negative(iSize, iReadAtMostByteCount);
 //
 //   char * psz = str.get_buffer(iReadAtMostByteCount);
 //
 //
-//   ::raw::count iRead = fread(psz, 1, iReadAtMostByteCount, f);
+//   ::collection::count iRead = fread(psz, 1, iReadAtMostByteCount, f);
 //
 //   psz[iRead] = '\0';
 //
@@ -1170,7 +1170,7 @@ bool file_exists(const ::file::path & path)
 //
 //   path.ascendants_path(stra);
 //
-//   ::raw::index i = stra.get_upper_bound();
+//   ::collection::index i = stra.get_upper_bound();
 //
 //   for (; i >= 0; i--)
 //   {

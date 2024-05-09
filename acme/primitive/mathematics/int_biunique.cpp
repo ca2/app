@@ -14,7 +14,7 @@ int_biunique::int_biunique()
 }
 
 
-CLASS_DECL_ACME ::raw::index array_translate_a(index_biunique & ia, ::raw::index aNew, ::raw::index aOld)
+CLASS_DECL_ACME ::collection::index array_translate_a(index_biunique & ia, ::collection::index aNew, ::collection::index aOld)
 {
 
    if (aOld < 0 || aNew < 0)
@@ -22,7 +22,7 @@ CLASS_DECL_ACME ::raw::index array_translate_a(index_biunique & ia, ::raw::index
       return ia.m_iEmptyB;
    }
 
-   ::raw::index bParam = ia.get_b(aOld);
+   ::collection::index bParam = ia.get_b(aOld);
    if (bParam == ia.m_iEmptyB)
    {
       return ia.m_iEmptyB;
@@ -60,8 +60,8 @@ CLASS_DECL_ACME ::raw::index array_translate_a(index_biunique & ia, ::raw::index
    // making room
    if (ia.has_a(aNew))
    {
-      ::raw::index a = aNew;
-      ::raw::index b;
+      ::collection::index a = aNew;
+      ::collection::index b;
       while (true)
       {
          a++;
@@ -118,7 +118,7 @@ CLASS_DECL_ACME index_array array_translate_a_array(index_biunique & ia, index_a
 
    index_array iaB;
 
-   for (::raw::index i = 0; i < iaNew.get_size();)
+   for (::collection::index i = 0; i < iaNew.get_size();)
    {
 
       if (iaNew[i] < 0 || iaOld[i] < 0 || iaNew[i] == iaOld[i])
@@ -133,7 +133,7 @@ CLASS_DECL_ACME index_array array_translate_a_array(index_biunique & ia, index_a
       else
       {
 
-         ::raw::index b = ia.get_b(iaOld[i]);
+         ::collection::index b = ia.get_b(iaOld[i]);
 
          if (b == ia.m_iEmptyB)
          {
@@ -162,9 +162,9 @@ CLASS_DECL_ACME index_array array_translate_a_array(index_biunique & ia, index_a
 
    }
 
-   ::raw::count c = iaOld.get_size();
+   ::collection::count c = iaOld.get_size();
 
-   for (::raw::index i = 0; i < c; i++)
+   for (::collection::index i = 0; i < c; i++)
    {
 
       ia.m_ba.erase_item(iaB[i]);
@@ -178,17 +178,17 @@ CLASS_DECL_ACME index_array array_translate_a_array(index_biunique & ia, index_a
    ia.m_iMaxB = ia.calc_max_b();
 
    // making room
-   for (::raw::index i = c - 1; i >= 0; i--)
+   for (::collection::index i = c - 1; i >= 0; i--)
    {
 
-      ::raw::index newb = ia.get_b(iaNew[i]);
+      ::collection::index newb = ia.get_b(iaNew[i]);
 
       if (newb >= 0)
       {
 
-         ::raw::index a = iaNew[i];
+         ::collection::index a = iaNew[i];
 
-         ::raw::index b;
+         ::collection::index b;
 
          while (true)
          {
@@ -215,7 +215,7 @@ CLASS_DECL_ACME index_array array_translate_a_array(index_biunique & ia, index_a
 
          a--;
 
-         ::raw::index iOffset = 1;
+         ::collection::index iOffset = 1;
 
          while (a >= iaNew[i])
          {

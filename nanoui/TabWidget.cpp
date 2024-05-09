@@ -35,7 +35,7 @@ namespace nanoui
    }
 
 
-   void TabWidgetBase::erase_tab(::raw::index iId) 
+   void TabWidgetBase::erase_tab(::collection::index iId) 
    {
 
       auto iIndex = tab_index(iId);
@@ -85,10 +85,10 @@ namespace nanoui
    }
 
 
-   ::raw::index TabWidgetBase::insert_tab(::raw::index iIndex, const ::scoped_string& scopedstrCaption) 
+   ::collection::index TabWidgetBase::insert_tab(::collection::index iIndex, const ::scoped_string& scopedstrCaption) 
    {
 
-      ::raw::index iId = m_iTabCounter++;
+      ::collection::index iId = m_iTabCounter++;
 
       m_straTabCaptions.insert_at(iIndex, scopedstrCaption);
 
@@ -132,7 +132,7 @@ namespace nanoui
    }
 
 
-   ::raw::index TabWidgetBase::append_tab(const ::scoped_string& caption) 
+   ::collection::index TabWidgetBase::append_tab(const ::scoped_string& caption) 
    {
 
       return insert_tab(m_straTabCaptions.size(), caption);
@@ -140,10 +140,10 @@ namespace nanoui
    }
 
 
-   ::raw::index TabWidgetBase::tab_index(::raw::index iId) const
+   ::collection::index TabWidgetBase::tab_index(::collection::index iId) const
    {
 
-      for (::raw::index i = 0; i < m_iaTabIds.size(); ++i) 
+      for (::collection::index i = 0; i < m_iaTabIds.size(); ++i) 
       {
 
          if (m_iaTabIds[i] == iId)
@@ -253,12 +253,12 @@ namespace nanoui
          pcontext->intersect_scissor((float)m_pos.x(), (float)m_pos.y(), (float)m_size.cx(), (float)tab_height);
          pcontext->font_size(font_size());
          pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
-         for (::raw::index i = 0; i < m_straTabCaptions.size(); ++i) {
+         for (::collection::index i = 0; i < m_straTabCaptions.size(); ++i) {
             int x_pos = m_pos.x() + m_iaTabOffsets[i],
                y_pos = m_pos.y(),
                width = m_iaTabOffsets[i + 1] - m_iaTabOffsets[i];
 
-            if (i == (::raw::index)m_iActiveTab) {
+            if (i == (::collection::index)m_iActiveTab) {
                pcontext->begin_path();
                pcontext->rounded_rectangle(x_pos + 0.5f, y_pos + 1.5f, (float)width,
                   tab_height + 4.f, (float)m_ptheme->m_iButtonCornerRadius);
@@ -381,7 +381,7 @@ namespace nanoui
 
       int x = p.x() - m_pos.x();
 
-      for (::raw::index i = 0; i < m_iaTabOffsets.size() - 1; ++i) 
+      for (::collection::index i = 0; i < m_iaTabOffsets.size() - 1; ++i) 
       {
 
          if (x >= m_iaTabOffsets[i] && x < m_iaTabOffsets[i + 1]) 
@@ -763,7 +763,7 @@ namespace nanoui
    }
 
 
-   ::raw::index TabWidget::insert_tab(::raw::index iIndex, const ::scoped_string& caption, Widget* pwidget) 
+   ::collection::index TabWidget::insert_tab(::collection::index iIndex, const ::scoped_string& caption, Widget* pwidget) 
    {
 
       auto iId = TabWidgetBase::insert_tab(iIndex, caption);
@@ -777,7 +777,7 @@ namespace nanoui
    }
 
 
-   ::raw::index TabWidget::append_tab(const ::scoped_string& caption, Widget* pwidget) 
+   ::collection::index TabWidget::append_tab(const ::scoped_string& caption, Widget* pwidget) 
    {
 
       pwidget->set_visible(false);
@@ -793,7 +793,7 @@ namespace nanoui
    }
 
 
-   void TabWidget::erase_tab(::raw::index iId) 
+   void TabWidget::erase_tab(::collection::index iId) 
    {
 
       TabWidgetBase::erase_tab(iId);

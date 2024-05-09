@@ -916,7 +916,7 @@ namespace interprocess
 
       ::i32_array iaPid2;
 
-      for (::raw::index i = 0; i < m_straModule.get_count();)
+      for (::collection::index i = 0; i < m_straModule.get_count();)
       {
 
          string str = m_straModule[i];

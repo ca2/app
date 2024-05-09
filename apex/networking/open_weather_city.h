@@ -6,7 +6,7 @@ class openweather_city
 {
 public:
 
-   ::raw::index    m_iIndex;
+   ::collection::index    m_iIndex;
    string   m_strCnt;
    string   m_strCit;
    i64  m_iId;

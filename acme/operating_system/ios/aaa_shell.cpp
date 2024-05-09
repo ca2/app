@@ -36,7 +36,7 @@ namespace ios
 
 //      int iThreadCount = 1; // for ios
 //
-//      for (::raw::index i = 0; i < iThreadCount; i++)
+//      for (::collection::index i = 0; i < iThreadCount; i++)
 //      {
 //
 //         m_threadaGetImage.add(::fork(get_app(),
@@ -460,7 +460,7 @@ namespace ios
 ////                        if (m_straThemeableIconName.get_count() > 0)
 ////                        {
 ////
-////                           ::raw::index i = m_straThemeableIconName.predicate_find_first(
+////                           ::collection::index i = m_straThemeableIconName.predicate_find_first(
 ////                              [=](auto & str)
 ////                           {
 ////                              return string_ends_ci(imagekey.m_strPath, str);

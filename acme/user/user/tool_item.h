@@ -22,7 +22,7 @@ namespace user
    public:
       
       
-      ::raw::index                         m_iImage;
+      ::collection::index                         m_iImage;
       ::image_pointer               m_pimage;
       e_tool_item_state             m_estate;
       e_tool_item_style             m_estyle;

@@ -187,7 +187,7 @@ namespace user
 //
 //         }
 //
-//         for (::raw::index i = 0; i < uiptra.get_count(); i++)
+//         for (::collection::index i = 0; i < uiptra.get_count(); i++)
 //         {
 //
 //            try
@@ -872,7 +872,7 @@ namespace user
 
    //   m_size.cy() = maximum(m_sizeMinimum.cy(), m_size.cy());
 
-   //   ::raw::count iItemCount = pmenuitema->get_size();
+   //   ::collection::count iItemCount = pmenuitema->get_size();
 
    //   ::pointer<::base::style>pbasestyle = pstyle;
 
@@ -2054,7 +2054,7 @@ namespace user
 
          m_iaColumnHeight[0] = yClose;
 
-         ::raw::index iColumn = 0;
+         ::collection::index iColumn = 0;
 
          ::i32 iMaximumButtonHeight = 0;
 
@@ -2252,7 +2252,7 @@ namespace user
 
          m_size.cy() = maximum(m_sizeMinimum.cy(), m_size.cy());
 
-         ::raw::count iItemCount = pmenuitema->get_size();
+         ::collection::count iItemCount = pmenuitema->get_size();
 
          ::pointer<::base::style>pbasestyle = pstyle;
 

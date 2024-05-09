@@ -14,7 +14,7 @@ namespace user
    public:
 
 
-      ::raw::index        m_iUpdate;
+      ::collection::index        m_iUpdate;
 
 
       control_style();

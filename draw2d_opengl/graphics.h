@@ -220,10 +220,10 @@ namespace draw2d_opengl
       virtual size_i32 scale_window_ext(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom);
 
       // Coordinate Functions
-      void DPtoLP(::point_f64 * ppoints,::raw::count nCount = 1) override;
+      void DPtoLP(::point_f64 * ppoints,::collection::count nCount = 1) override;
       void DPtoLP(::rectangle_f64 * prectangle) override;
       void DPtoLP(::size_f64 * psize) override;
-      void LPtoDP(::point_f64 * ppoints,::raw::count nCount = 1) override;
+      void LPtoDP(::point_f64 * ppoints,::collection::count nCount = 1) override;
       void LPtoDP(::rectangle_f64 * prectangle) override;
       void LPtoDP(::size_f64 * psize) override;
 
@@ -264,7 +264,7 @@ namespace draw2d_opengl
       void line_to(double x, double y) override;
       //bool LineTo(int x,int y);
       //  bool LineTo(const ::point_i32 & point);
-      void polyline(const ::point_f64* ppoints,::raw::count nCount) override;
+      void polyline(const ::point_f64* ppoints,::collection::count nCount) override;
 
       void _set(const ::geometry2d::matrix & matrix) override;
 
@@ -281,12 +281,12 @@ namespace draw2d_opengl
       //i32 GetArcDirection() const;
       //i32 SetArcDirection(i32 nArcDirection);
 
-      //void polydraw(const ::point_f64* lpPoints, const ::u8* lpTypes,::raw::count nCount);
-      void polyline_to(const ::point_f64 * lpPoints,::raw::count nCount);
-      void poly_polyline(const ::point_f64 * lpPoints, const ::i32 * lpPolyPoints,::raw::count nCount);
+      //void polydraw(const ::point_f64* lpPoints, const ::u8* lpTypes,::collection::count nCount);
+      void polyline_to(const ::point_f64 * lpPoints,::collection::count nCount);
+      void poly_polyline(const ::point_f64 * lpPoints, const ::i32 * lpPolyPoints,::collection::count nCount);
 
-      void poly_bezier(const ::point_f64 * lpPoints,::raw::count nCount);
-      void poly_bezier_to(const ::point_f64 * lpPoints,::raw::count nCount);
+      void poly_bezier(const ::point_f64 * lpPoints,::collection::count nCount);
+      void poly_bezier_to(const ::point_f64 * lpPoints,::collection::count nCount);
 
       // Simple Drawing Functions
       void fill_rectangle(const ::rectangle_f64 &  rectangle, ::draw2d::brush* pBrush) override;
@@ -331,13 +331,13 @@ namespace draw2d_opengl
 
       //virtual bool Pie(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4) override;
       //virtual bool Pie(const ::rectangle_i32 & rectangle, const ::point_i32 & pointStart, const ::point_i32 & pointEnd) override;
-      void fill_polygon(const ::point_f64 * lpPoints,::raw::count nCount) override;
-      //void fill_polygon(const ::point_i32 * lpPoints,::raw::count nCount) override;
-      //void draw_polygon(const ::point_i32 * lpPoints,::raw::count nCount) override;
-      void draw_polygon(const ::point_f64 * lpPoints,::raw::count nCount) override;
-      //void polygon_i32(const ::point_i32* lpPoints,::raw::count nCount) override;
-      void polygon(const ::point_f64* lpPoints,::raw::count nCount) override;
-      void poly_polygon(const point_f64 * lpPoints, const i32 * lpPolyCounts,::raw::count nCount) override;
+      void fill_polygon(const ::point_f64 * lpPoints,::collection::count nCount) override;
+      //void fill_polygon(const ::point_i32 * lpPoints,::collection::count nCount) override;
+      //void draw_polygon(const ::point_i32 * lpPoints,::collection::count nCount) override;
+      void draw_polygon(const ::point_f64 * lpPoints,::collection::count nCount) override;
+      //void polygon_i32(const ::point_i32* lpPoints,::collection::count nCount) override;
+      void polygon(const ::point_f64* lpPoints,::collection::count nCount) override;
+      void poly_polygon(const point_f64 * lpPoints, const i32 * lpPolyCounts,::collection::count nCount) override;
       //virtual bool rectangle_i32(i32 x1, i32 y1, i32 x2, i32 y2) override;
       void rectangle(const ::rectangle_f64 & rectangle) override;
       //virtual bool drw(i32 x1, i32 y1, i32 x2, i32 y2);
@@ -388,8 +388,8 @@ namespace draw2d_opengl
       //virtual bool TextOut(double x, double y, const ::scoped_string & str);
       //virtual bool ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rectangle_i32 & rectangle, const ::scoped_string & lpszString,strsize nCount, LPINT lpDxWidths);
       //virtual bool ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rectangle_i32 & rectangle, const ::scoped_string & str, LPINT lpDxWidths);
-      //virtual size_i32 TabbedTextOut(i32 x, i32 y, const ::scoped_string & lpszString, strsize nCount,::raw::count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin);
-      //virtual size_i32 TabbedTextOut(i32 x, i32 y, const ::scoped_string & str,::raw::count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin);
+      //virtual size_i32 TabbedTextOut(i32 x, i32 y, const ::scoped_string & lpszString, strsize nCount,::collection::count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin);
+      //virtual size_i32 TabbedTextOut(i32 x, i32 y, const ::scoped_string & str,::collection::count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin);
 
       //void text_out(double x, double y, const ::scoped_string & lpszString, strsize nCount) override;
 
@@ -409,14 +409,14 @@ namespace draw2d_opengl
       //virtual bool get_text_extent(size_f64 & size, const ::scoped_string & str);
       //virtual size_i32 GetOutputTextExtent(const ::scoped_string & lpszString, strsize nCount);
       //virtual size_i32 GetOutputTextExtent(const ::scoped_string & str);
-      //virtual size_i32 GetTabbedTextExtent(const ::scoped_string & lpszString, strsize nCount,::raw::count nTabPositions, LPINT lpnTabStopPositions);
-      //virtual size_i32 GetTabbedTextExtent(const ::scoped_string & str,::raw::count nTabPositions, LPINT lpnTabStopPositions);
-      //virtual size_i32 GetOutputTabbedTextExtent(const ::scoped_string & lpszString, strsize nCount,::raw::count nTabPositions, LPINT lpnTabStopPositions);
-      //virtual size_i32 GetOutputTabbedTextExtent(const ::scoped_string & str,::raw::count nTabPositions, LPINT lpnTabStopPositions);
+      //virtual size_i32 GetTabbedTextExtent(const ::scoped_string & lpszString, strsize nCount,::collection::count nTabPositions, LPINT lpnTabStopPositions);
+      //virtual size_i32 GetTabbedTextExtent(const ::scoped_string & str,::collection::count nTabPositions, LPINT lpnTabStopPositions);
+      //virtual size_i32 GetOutputTabbedTextExtent(const ::scoped_string & lpszString, strsize nCount,::collection::count nTabPositions, LPINT lpnTabStopPositions);
+      //virtual size_i32 GetOutputTabbedTextExtent(const ::scoped_string & str,::collection::count nTabPositions, LPINT lpnTabStopPositions);
       //virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, i32), LPARAM lpData, i32 nCount, i32 x, i32 y, i32 nWidth, i32 nHeight);
       virtual ::u32 GetTextAlign() override;
       virtual ::u32 SetTextAlign(::u32 nFlags) override;
-      //virtual i32 GetTextFace(::raw::count nCount, char * lpszFacename);
+      //virtual i32 GetTextFace(::collection::count nCount, char * lpszFacename);
       //virtual i32 GetTextFace(string & rString);
       //virtual bool get_text_metrics(::write_text::text_metric * lpMetrics);
       //virtual bool get_output_text_metrics(::write_text::text_metric * lpMetrics);
@@ -516,7 +516,7 @@ namespace draw2d_opengl
 
       //float GetMiterLimit() const;
       //bool SetMiterLimit(float fMiterLimit);
-      //i32 GetPath(::point_i32 * lpPoints, LPBYTE lpTypes,::raw::count nCount) const;
+      //i32 GetPath(::point_i32 * lpPoints, LPBYTE lpTypes,::collection::count nCount) const;
       void SelectClipPath(i32 nMode);
 
       // Misc Helper Functions

@@ -94,7 +94,7 @@
 ////binary_stream & binary_stream::operator << (const array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 ////{
 //
-////   ::raw::count c = a.get_count();
+////   ::collection::count c = a.get_count();
 //
 ////   operator()(c);
 //
@@ -109,7 +109,7 @@
 ////binary_stream & binary_stream::operator >> (array_base < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
 ////{
 //
-////   ::raw::count c = 0;
+////   ::collection::count c = 0;
 ////   operator()(c);
 ////   try
 ////   {
@@ -136,7 +136,7 @@
 ////template < typename SET >
 ////binary_stream & binary_stream::write_set(const SET & s)
 ////{
-////   ::raw::count c = s.get_count();
+////   ::collection::count c = s.get_count();
 ////   operator()(c);
 ////   for (auto & matter : s)
 ////   {
@@ -152,7 +152,7 @@
 ////binary_stream & binary_stream::wread_set(SET & s)
 ////{
 ////
-////   ::raw::count c = 0;
+////   ::collection::count c = 0;
 ////   operator()(c);
 ////   while (c > 0)
 ////   {
@@ -174,7 +174,7 @@
 //   if (s.is_storing())
 //   {
 //
-//      ::raw::count c = m.get_count();
+//      ::collection::count c = m.get_count();
 //
 //      s << c;
 //
@@ -197,7 +197,7 @@
 //   else
 //   {
 //
-//      ::raw::count c = 0;
+//      ::collection::count c = 0;
 //
 //      s >> c;
 //
@@ -228,7 +228,7 @@
 //inline binary_stream & operator <<(binary_stream & s, const pointer_array < TYPE > & a)
 //{
 //
-//   ::raw::count c = a.get_count();
+//   ::collection::count c = a.get_count();
 //
 //   s << c;
 //
@@ -264,7 +264,7 @@
 //inline binary_stream & operator >>(binary_stream & s, pointer_array < TYPE > & a)
 //{
 //
-//   ::raw::count c = 0;
+//   ::collection::count c = 0;
 //
 //   s >> c;
 //
@@ -275,7 +275,7 @@
 //
 //   }
 //
-//   ::raw::index i = 0;
+//   ::collection::index i = 0;
 //
 //   for (; i < c; i++)
 //   {
@@ -307,7 +307,7 @@
 ////   if (is_storing())
 ////   {
 ////
-////      ::raw::count c = a.get_count();
+////      ::collection::count c = a.get_count();
 ////
 ////      operator()(c);
 ////
@@ -337,7 +337,7 @@
 ////   }
 ////   else
 ////   {
-////      ::raw::count c = 0;
+////      ::collection::count c = 0;
 ////
 ////      operator()(c);
 ////
@@ -350,7 +350,7 @@
 ////
 ////      }
 ////
-////      ::raw::index i = 0;
+////      ::collection::index i = 0;
 ////
 ////      for (; i < c; i++)
 ////      {
@@ -641,7 +641,7 @@
 //
 //   //}
 //
-//   for (::raw::index i = 0; i < c; i++)
+//   for (::collection::index i = 0; i < c; i++)
 //   {
 //
 //      binary_stream.stream_exchange(i, __typed(array.element_at(i)));
@@ -675,7 +675,7 @@
 //
 //   array.set_size(c);
 //
-//   for (::raw::index i = 0; i < c; i++)
+//   for (::collection::index i = 0; i < c; i++)
 //   {
 //
 //      auto& t = __typed_defer_new(array.element_at(i));

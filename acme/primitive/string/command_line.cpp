@@ -26,7 +26,7 @@ void ansi_parse_command_line(char * cmdstart, char ** argv, char * args, i32 * n
    *numchars = 0;
    *numargs = 1;                   /* the program name at least */
 
-   /* first scan the program name, copy it, and ::raw::count the bytes */
+   /* first scan the program name, copy it, and ::collection::count the bytes */
    p = cmdstart;
    if (argv)
       *argv++ = args;
@@ -133,7 +133,7 @@ void ansi_parse_command_line(char * cmdstart, char ** argv, char * args, i32 * n
          numslash = 0;
          while (*p == SLASHCHAR)
          {
-            /* ::raw::count number of backslashes for use below */
+            /* ::collection::count number of backslashes for use below */
             ++p;
             ++numslash;
          }
@@ -996,7 +996,7 @@ string merge_colon_args(const array < string_array >& straa)
    for (auto& stra : straa)
    {
 
-      ::raw::index iFindColon = stra.find_first(":");
+      ::collection::index iFindColon = stra.find_first(":");
 
       if (stra.get_size() > 0 && iFindColon != 0)
       {
@@ -1019,7 +1019,7 @@ string merge_colon_args(const array < string_array >& straa)
 
       }
 
-      for (::raw::index i = 1; i < stra.get_count(); i++)
+      for (::collection::index i = 1; i < stra.get_count(); i++)
       {
 
          string str = stra[i];

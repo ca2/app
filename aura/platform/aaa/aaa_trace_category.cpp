@@ -90,7 +90,7 @@ void trace_category_static_init()
 //
 //
 //
-//   //::raw::index i = 0;
+//   //::collection::index i = 0;
 //
 //   //while (pszaCategory[i] != NULL && i < g_ptracecategorya->get_size())
 //   //{

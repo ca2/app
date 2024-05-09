@@ -95,7 +95,7 @@ namespace html
             {
                //m_pcombo->m_edatamode = ::user::combo_box::data_mode_string;
 
-               for (::raw::index i = 0; i < pelement->m_phtmlbase->get_tag()->baseptra().get_count(); i++)
+               for (::collection::index i = 0; i < pelement->m_phtmlbase->get_tag()->baseptra().get_count(); i++)
                {
                   if (i == 0)
                   {

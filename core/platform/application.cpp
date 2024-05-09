@@ -108,7 +108,7 @@ namespace core
    }
 
 
-   ::pointer<progress::real>application::show_progress(::user::interaction * puiParent, const ::string & pszTitle, ::raw::count iProgressCount)
+   ::pointer<progress::real>application::show_progress(::user::interaction * puiParent, const ::string & pszTitle, ::collection::count iProgressCount)
    {
 
       auto pprogresscontrol = __create_new <  ::userex::progress_control >();

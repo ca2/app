@@ -608,7 +608,7 @@ namespace dir
 
       path.ascendants_path(stra);
 
-      ::raw::index i = stra.get_upper_bound();
+      ::collection::index i = stra.get_upper_bound();
 
       for (; i >= 0; i--)
       {
@@ -907,10 +907,10 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
 
    void rls(::file::path_array & stra, const file::path & psz)
    {
-      ::raw::count start = stra.get_count();
+      ::collection::count start = stra.get_count();
       ls(stra, psz);
-      ::raw::count end = stra.get_count();
-      for(::raw::index i = start; i < end; i++)
+      ::collection::count end = stra.get_count();
+      for(::collection::index i = start; i < end; i++)
       {
          if(is(stra[i]))
          {
@@ -924,13 +924,13 @@ pacmedirectory->create CreateDirectoryW last error(%d)=%s", dwError, pszError);
    void rls_dir(::file::path_array & stra,const ::file::path & psz)
    {
 
-      ::raw::count start = stra.get_count();
+      ::collection::count start = stra.get_count();
 
       ls_dir(stra, psz);
 
-      ::raw::count end = stra.get_count();
+      ::collection::count end = stra.get_count();
 
-      for(::raw::index i = start; i < end; i++)
+      for(::collection::index i = start; i < end; i++)
       {
 
          ::file::path path = stra[i];

@@ -3406,7 +3406,7 @@ void TransformSkewX(float* t, float a)
 	}
 
 
-	::raw::count context::character_metric(::f64_array& daLeft, ::f64_array& daRight, const ::string& str, strsize iStart, strsize iEnd)
+	::collection::count context::character_metric(::f64_array& daLeft, ::f64_array& daRight, const ::string& str, strsize iStart, strsize iEnd)
 	{
 
 		throw ::interface_only();

@@ -2,7 +2,7 @@
 #pragma once
 
 
-template <::raw::index i, typename TYPE >
+template <::collection::index i, typename TYPE >
 class tuple_item
 {
 public:
@@ -30,7 +30,7 @@ public:
 /*
 General template class declaration.
 */
-template <::raw::index i, typename... types>
+template <::collection::index i, typename... types>
 class tuple_recursion
 {
 };
@@ -46,7 +46,7 @@ class tuple_recursion
 //   public _tuple_recurr_base<_index + 1, types...E
 //{
 //};
-template <::raw::index i, typename L, typename... types>
+template <::collection::index i, typename L, typename... types>
 class tuple_recursion < i, L, types... > :
    public tuple_item < i, typename ::erase_reference<L>::TYPE >,
    public tuple_recursion<i + 1, types... >
@@ -87,7 +87,7 @@ public:
 
 
 
-template <::raw::index i, typename L, typename... Args>
+template <::collection::index i, typename L, typename... Args>
 struct extract_type_at
 {
 
@@ -102,7 +102,7 @@ struct extract_type_at<0, L, Args... >
    using type = L;
 };
 
-template <::raw::index i, typename... Args >
+template <::collection::index i, typename... Args >
 auto& get(tuple<Args...>& t)
 {
    return (static_cast<tuple_item<i, typename extract_type_at< i, Args ...>::type> &>(t)).get();

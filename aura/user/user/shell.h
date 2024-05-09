@@ -160,9 +160,9 @@ namespace user
       string_array                                       m_straThemeableIconName;
       ::pointer<manual_reset_event>                     m_pevNewImageKey;
 
-      ::raw::index                                              m_iMaxThreadCount;
-      ::raw::index                                              m_iActiveThreadCount;
-      ::raw::index                                              m_iThread;
+      ::collection::index                                              m_iMaxThreadCount;
+      ::collection::index                                              m_iActiveThreadCount;
+      ::collection::index                                              m_iThread;
       ::pointer < ::mutex >                                            m_pmutexImage;
       //pointer_array < thread >                            m_threadptra;
       class ::time                                               m_timeLastMax;

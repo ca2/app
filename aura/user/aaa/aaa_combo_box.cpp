@@ -428,7 +428,7 @@ namespace user
    }
 
 
-   ::raw::index combo_box::_001GetListCount() const
+   ::collection::index combo_box::_001GetListCount() const
    {
 
       return m_straList.get_count();
@@ -1022,7 +1022,7 @@ namespace user
    }
 
 
-   //::raw::count combo_box::get_count()
+   //::collection::count combo_box::get_count()
    // { ASSERT(is_window()); return (count)send_message( CB_GETCOUNT, 0, 0); }
    //index combo_box::current_item()
    // { ASSERT(is_window()); return (index)send_message( CB_GETCURSEL, 0, 0); }
@@ -1060,7 +1060,7 @@ namespace user
 
    }
 
-   ::raw::index combo_box::SetItemData(index nIndex, uptr dwItemData)
+   ::collection::index combo_box::SetItemData(index nIndex, uptr dwItemData)
    {
 
       //ASSERT(is_window());
@@ -1080,7 +1080,7 @@ namespace user
 
    }
 
-   ::raw::index combo_box::SetItemDataPtr(index nIndex, void * pData)
+   ::collection::index combo_box::SetItemDataPtr(index nIndex, void * pData)
    {
 
       //ASSERT(is_window());
@@ -1091,7 +1091,7 @@ namespace user
 
    }
 
-   ::raw::index combo_box::GetLBText(index nIndex, char * pszText)
+   ::collection::index combo_box::GetLBText(index nIndex, char * pszText)
 
    {
 
@@ -1124,7 +1124,7 @@ namespace user
    }
 
 
-   ::raw::index combo_box::DeleteString(index nIndex)
+   ::collection::index combo_box::DeleteString(index nIndex)
    {
 
       //ASSERT(is_window());
@@ -1135,7 +1135,7 @@ namespace user
 
    }
 
-   ::raw::index combo_box::InsertString(index nIndex, const ::string & pszString)
+   ::collection::index combo_box::InsertString(index nIndex, const ::string & pszString)
 
    {
 
@@ -1164,7 +1164,7 @@ namespace user
    }
 
 
-   ::raw::index combo_box::Dir(index attr, const ::string & pszWildCard)
+   ::collection::index combo_box::Dir(index attr, const ::string & pszWildCard)
 
    {
 
@@ -1182,7 +1182,7 @@ namespace user
 
    //{
 
-   //   for (::raw::index i = nStartAfter++; i < m_straList.get_count(); i++)
+   //   for (::collection::index i = nStartAfter++; i < m_straList.get_count(); i++)
    //   {
 
    //      if (m_straList[i].compare(pszString) == 0)
@@ -1278,7 +1278,7 @@ namespace user
 
    }
 
-   ::raw::index combo_box::FindStringExact(index nIndexStart, const ::string & pszFind)
+   ::collection::index combo_box::FindStringExact(index nIndexStart, const ::string & pszFind)
 
    {
 
@@ -1357,7 +1357,7 @@ namespace user
 
    }
 
-   ::raw::index combo_box::GetTopIndex()
+   ::collection::index combo_box::GetTopIndex()
    {
 
       //ASSERT(is_window());
@@ -1368,7 +1368,7 @@ namespace user
 
    }
 
-   ::raw::index combo_box::SetTopIndex(index nIndex)
+   ::collection::index combo_box::SetTopIndex(index nIndex)
    {
 
       //ASSERT(is_window());
@@ -1379,7 +1379,7 @@ namespace user
 
    }
 
-   ::raw::count combo_box::InitStorage(::raw::count nItems, ::u32 nBytes)
+   ::collection::count combo_box::InitStorage(::collection::count nItems, ::u32 nBytes)
    {
 
       //ASSERT(is_window());
@@ -1436,7 +1436,7 @@ namespace user
 
 
 
-   bool combo_box::_001GetListText(::raw::index iSel,string & str) const
+   bool combo_box::_001GetListText(::collection::index iSel,string & str) const
    {
 
       str.empty();
@@ -1454,18 +1454,18 @@ namespace user
    }
 
 
-   ::raw::index combo_box::_001FindListText(const ::string & str) const
+   ::collection::index combo_box::_001FindListText(const ::string & str) const
    {
 
 
       //index combo_box::_001FindListText(const ::string & str) const
       //{
 
-      //   ::raw::count ca = _001GetListCount();
+      //   ::collection::count ca = _001GetListCount();
 
       //   string strItem;
 
-      //   for(::raw::index i = 0; i < ca; i++)
+      //   for(::collection::index i = 0; i < ca; i++)
       //   {
 
       //      _001GetListText(i,strItem);
@@ -1509,7 +1509,7 @@ namespace user
 
 
 
-   ::raw::index combo_box::AddString(const ::string & pszString,uptr dwItemData)
+   ::collection::index combo_box::AddString(const ::string & pszString,uptr dwItemData)
 
    {
 
@@ -1530,7 +1530,7 @@ namespace user
    }
 
 
-   ::raw::index combo_box::AddString(const ::string & pszString, const ::string & strValue)
+   ::collection::index combo_box::AddString(const ::string & pszString, const ::string & strValue)
 
    {
 
@@ -1567,7 +1567,7 @@ namespace user
    void combo_box::set_current_item_by_string_value(const ::string & strValue, const ::action_context & context)
    {
 
-      ::raw::index iSel = m_straValue.find_first(strValue);
+      ::collection::index iSel = m_straValue.find_first(strValue);
 
       if (iSel < 0)
       {
@@ -1584,7 +1584,7 @@ namespace user
    void combo_box::set_current_item_by_data(uptr u, const ::action_context & context)
    {
 
-      ::raw::index iSel = m_straValue.find_first(as_string(u));
+      ::collection::index iSel = m_straValue.find_first(as_string(u));
 
       if (iSel < 0)
       {
@@ -1601,7 +1601,7 @@ namespace user
    string combo_box::get_current_item_string_value()
    {
 
-      ::raw::index iSel = current_item();
+      ::collection::index iSel = current_item();
 
       if (iSel < 0)
       {
@@ -1680,7 +1680,7 @@ namespace user
             if (ptopic->m_item == e_element_item)
             {
 
-               set_current_item((::raw::index) ptopic->m_item.m_iItem, ::e_source_user);
+               set_current_item((::collection::index) ptopic->m_item.m_iItem, ::e_source_user);
 
             }
 

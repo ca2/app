@@ -14,8 +14,8 @@ public:
 
    ::image_pointer      m_pimage;
    class ::time         m_timeTotal;
-   ::raw::count              m_countLoop; // 0 - infinite loop
-   ::raw::index              m_iLoop;
+   ::collection::count              m_countLoop; // 0 - infinite loop
+   ::collection::index              m_iLoop;
    int                  m_iTransparentIndex;
    bool                 m_bTransparent;
    ::color::color       m_colorTransparent;

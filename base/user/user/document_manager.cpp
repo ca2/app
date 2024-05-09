@@ -432,13 +432,13 @@ namespace user
 
    }
 
-   ::raw::count document_manager::get_impact_system_count() const
+   ::collection::count document_manager::get_impact_system_count() const
    {
       return m_mapImpactSystem.get_count();
    }
 
 
-   //::user::impact_system * document_manager::get_template(::raw::index index) const
+   //::user::impact_system * document_manager::get_template(::collection::index index) const
    //{
 
    //   if(index < 0 || index >= m_templateptra.get_count())
@@ -487,7 +487,7 @@ namespace user
    void document_manager::close_all_documents(bool bEndApp)
    {
 
-      //::raw::count count = m_templateptra.get_count();
+      //::collection::count count = m_templateptra.get_count();
 
       for(auto & pimpactsystem : m_mapImpactSystem.payloads())
       {
@@ -522,9 +522,9 @@ namespace user
    }
 
 
-   ::raw::count document_manager::get_document_count()
+   ::collection::count document_manager::get_document_count()
    {
-      ::raw::count c = 0;
+      ::collection::count c = 0;
       for (auto & pimpactsystem : m_mapImpactSystem.payloads())
       {
          //::pointer<::user::impact_system>ptemplate = m_templateptra[index];
@@ -670,7 +670,7 @@ namespace user
       }
       }
 
-      // get document ::raw::count before opening it
+      // get document ::collection::count before opening it
       i32 nOldCount; nOldCount = get_document_count();
 
       // open the document, then print it.
@@ -742,9 +742,9 @@ namespace user
 //
 //      object::assert_ok();
 //
-//      ::raw::count count = m_templateptra.get_count();
+//      ::collection::count count = m_templateptra.get_count();
 //
-//      for(::raw::index index = 0; index < count; index++)
+//      for(::collection::index index = 0; index < count; index++)
 //      {
 //
 //         ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
@@ -763,8 +763,8 @@ namespace user
 //      //if (dumpcontext.GetDepth() != 0)
 //      //{
 //      //   dumpcontext << "\nm_templateList[] = {";
-//      //   ::raw::count count = m_templateptra.get_count();
-//      //   for(::raw::index index = 0; index < count; index++)
+//      //   ::collection::count count = m_templateptra.get_count();
+//      //   for(::collection::index index = 0; index < count; index++)
 //      //   {
 //      //      ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
 //      //      dumpcontext << "\ntemplate " << ::hex::lower_from((::iptr)ptemplate.m_p);
@@ -788,7 +788,7 @@ namespace user
       }
 
       // find the highest confidence
-      //::raw::count count = m_templateptra.get_count();
+      //::collection::count count = m_templateptra.get_count();
 
       ::user::impact_system::Confidence bestMatch = ::user::impact_system::noAttempt;
 
@@ -883,15 +883,15 @@ namespace user
    }
 
 
-   ::raw::count document_manager::get_open_document_count()
+   ::collection::count document_manager::get_open_document_count()
    {
 
-    //  ::raw::count nOpen = 0;
+    //  ::collection::count nOpen = 0;
 
-  //    ::raw::count count = m_templateptra.get_count();
+  //    ::collection::count count = m_templateptra.get_count();
 //
 
-      ::raw::count nOpen = 0;
+      ::collection::count nOpen = 0;
       for (auto & pimpactsystem : m_mapImpactSystem.payloads())
       {
 

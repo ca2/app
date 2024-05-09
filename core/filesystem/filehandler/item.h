@@ -32,7 +32,7 @@ namespace filehandler
 
 
       string data_item_get_text(object * pparticle) const;
-     ::raw::index data_item_get_image(object * pparticle) const;
+     ::collection::index data_item_get_image(object * pparticle) const;
 
 
    

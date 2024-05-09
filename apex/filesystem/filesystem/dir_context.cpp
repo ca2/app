@@ -1935,7 +1935,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       straLocaleSchema.add_smallest_tokens(strLs, straSep, false);
 
-      for (::raw::index i = 0; i < straLocaleSchema.get_count(); i++)
+      for (::collection::index i = 0; i < straLocaleSchema.get_count(); i++)
       {
 
          ::file::path path = strDir / straLocaleSchema[i];
@@ -2037,7 +2037,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 //
 //      straLocaleSchema.add_smallest_tokens(strLs, straSep, false);
 //
-//      for (::raw::index i = 0; i < straLocaleSchema.get_count(); i++)
+//      for (::collection::index i = 0; i < straLocaleSchema.get_count(); i++)
 //      {
 //
 //         if (!string_ends(straLocaleSchema[i], "/"))

@@ -30,10 +30,10 @@ namespace user
    namespace rich_text
    {
 
-      ::raw::count longest_pline(string & strSlice, double & d, string_array & straWords, double * pdaPosition, double dPositionLeft, int cx);
+      ::collection::count longest_pline(string & strSlice, double & d, string_array & straWords, double * pdaPosition, double dPositionLeft, int cx);
       int longest_word(string & strSlice, double & dPosition, string strWord, double * pdaPosition, double dPositionLeft, int cx);
       void align(line * pline, const ::rectangle_f64 & rectangle);
-      ::raw::count get_vars(strsize_array & ia1, strsize_array & ia2, string str);
+      ::collection::count get_vars(strsize_array & ia1, strsize_array & ia2, string str);
 
 
       edit::edit()
@@ -332,7 +332,7 @@ namespace user
       }
 
 
-      bool edit::get_element_rectangle(::rectangle_i32 * prectangle, ::raw::index i, enum_element eelement)
+      bool edit::get_element_rectangle(::rectangle_i32 * prectangle, ::collection::index i, enum_element eelement)
 
       {
 
@@ -370,7 +370,7 @@ namespace user
 
       }
 
-      bool edit::get_item_rect(::rectangle_i32 * prectangle, ::raw::index i)
+      bool edit::get_item_rect(::rectangle_i32 * prectangle, ::collection::index i)
 
       {
 
@@ -500,7 +500,7 @@ namespace user
 
          //index iSpan = 0;
 
-         ::raw::count cWords = 0;
+         ::collection::count cWords = 0;
 
          //index iSpanNextWord;
          string strSlice;
@@ -584,7 +584,7 @@ namespace user
          auto & spana = prichtextdata->m_spana;
 
 
-         for (::raw::index iSpan = 0; iSpan < prichtextdata->m_spana.get_count(); iSpan++)
+         for (::collection::index iSpan = 0; iSpan < prichtextdata->m_spana.get_count(); iSpan++)
          {
 
             ::pointer < span > pspan = prichtextdata->m_spana[iSpan];
@@ -1020,7 +1020,7 @@ namespace user
 
             //strsize iSelEnd = get_sel_end();
 
-            for (::raw::index iLine = 0; iLine < plinea->get_count(); iLine++)
+            for (::collection::index iLine = 0; iLine < plinea->get_count(); iLine++)
             {
 
                auto & pline = plinea->element_at(iLine);
@@ -1043,7 +1043,7 @@ namespace user
 
                      iBoxPosEnd = minimum(iBoxPosEnd, get_sel_end());
 
-                     ::raw::index iBeg = pline->predicate_find_first([&](auto & pbox)
+                     ::collection::index iBeg = pline->predicate_find_first([&](auto & pbox)
                      {
 
                         return pbox->m_iPosBeg <= iBoxPosBeg && iBoxPosBeg <= pbox->m_iPosEnd;
@@ -1055,7 +1055,7 @@ namespace user
 
                         pboxBeg = pline->element_at(iBeg);
 
-                        ::raw::index iEnd = pline->predicate_find_first([&](auto & pbox)
+                        ::collection::index iEnd = pline->predicate_find_first([&](auto & pbox)
                         {
 
                            return pbox->m_iPosBeg <= iBoxPosEnd && iBoxPosEnd <= pbox->m_iPosEnd + 1;
@@ -1367,7 +1367,7 @@ namespace user
       }
 
 
-      bool edit::_001GetItemText(string & str, ::raw::index iItem)
+      bool edit::_001GetItemText(string & str, ::collection::index iItem)
       {
 
          return false;
@@ -1866,16 +1866,16 @@ namespace user
 
          synchronous_lock synchronouslock(prichtextdata->synchronization());
 
-         ::raw::index iSelBeg = get_sel_beg();
+         ::collection::index iSelBeg = get_sel_beg();
 
-         ::raw::index iSelEnd = get_sel_end() - 1;
+         ::collection::index iSelEnd = get_sel_end() - 1;
 
          get_selection_intersection_format(pformat, iSelBeg, iSelEnd);
 
       }
 
 
-      void edit::get_selection_intersection_format(format * pformat, ::raw::index iSelBeg, ::raw::index iSelEnd)
+      void edit::get_selection_intersection_format(format * pformat, ::collection::index iSelBeg, ::collection::index iSelEnd)
       {
 
          auto prichtextdata = get_rich_text_data();
@@ -1884,9 +1884,9 @@ namespace user
 
          update_span_cache(prichtextdata->m_spana);
 
-         ::raw::index iSpanBeg = find_span(prichtextdata->m_spana, iSelBeg);
+         ::collection::index iSpanBeg = find_span(prichtextdata->m_spana, iSelBeg);
 
-         ::raw::index iSpanEnd = find_span(prichtextdata->m_spana, iSelEnd);
+         ::collection::index iSpanEnd = find_span(prichtextdata->m_spana, iSelEnd);
 
          if (iSpanBeg >= 0 && iSpanEnd >= iSpanBeg)
          {
@@ -1968,7 +1968,7 @@ namespace user
       }
 
 
-      ::raw::index edit::SelToLine(strsize iSel)
+      ::collection::index edit::SelToLine(strsize iSel)
       {
 
          return sel_line(*m_plinea, iSel);
@@ -1976,7 +1976,7 @@ namespace user
       }
 
 
-      ::raw::index edit::LineColumnToSel(::raw::index iLine, strsize iColumn)
+      ::collection::index edit::LineColumnToSel(::collection::index iLine, strsize iColumn)
       {
 
          auto prichtextdata = get_rich_text_data();
@@ -2145,7 +2145,7 @@ namespace user
       }
 
 
-      strsize edit::_hit_test_line_x(::raw::index iLine, double x)
+      strsize edit::_hit_test_line_x(::collection::index iLine, double x)
       {
 
          auto prichtextdata = get_rich_text_data();
@@ -2163,7 +2163,7 @@ namespace user
 
          auto & pline = plinea->element_at(iLine);
 
-         for (::raw::index iBox = 0; iBox < plinea->get_count(); iBox++)
+         for (::collection::index iBox = 0; iBox < plinea->get_count(); iBox++)
          {
 
             auto & pbox = pline->element_at(iBox);
@@ -2245,7 +2245,7 @@ namespace user
 
          get_vars(ia1, ia2, str);
 
-         for (::raw::index i = 0; i < ia1.get_count(); i++)
+         for (::collection::index i = 0; i < ia1.get_count(); i++)
          {
 
             if (iSelEnd == ia1[i])

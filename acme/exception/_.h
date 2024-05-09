@@ -18,7 +18,7 @@ CLASS_DECL_ACME void get_call_stack_frames(void ** stack, int & c);
 
 #if MEMDLEAK
 
-::raw::count get_mem_info(i32** ppiUse, const char*** ppszFile, const char*** ppszCallStack, u32** ppuiLine, memsize** ppsize);
+::collection::count get_mem_info(i32** ppiUse, const char*** ppszFile, const char*** ppszCallStack, u32** ppuiLine, memsize** ppsize);
 
 #endif
 

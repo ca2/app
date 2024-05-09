@@ -910,7 +910,7 @@ void acme_file::append_wait(const ::file::path & pathFile, const block & block, 
 
 
 
-string acme_file::line(const ::file::path & pathParam, ::raw::index iLine)
+string acme_file::line(const ::file::path & pathParam, ::collection::index iLine)
 {
 
    string str;

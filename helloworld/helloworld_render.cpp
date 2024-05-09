@@ -244,7 +244,7 @@ namespace helloworld
 
       //      iFrameId = (index)(dNow / dPeriod);
 
-      //      ::raw::count cLost = iFrameId - iLastFrameId - 1;
+      //      ::collection::count cLost = iFrameId - iLastFrameId - 1;
 
       //      if (cLost < 0)
       //      {
@@ -260,7 +260,7 @@ namespace helloworld
       //      if (m_bHelloRender)
       //      {
 
-      //         for (::raw::index i = 0; i < daFrame.get_size(); i++)
+      //         for (::collection::index i = 0; i < daFrame.get_size(); i++)
       //         {
 
       //            if (dNow - daFrame[i] >= 1000.0)

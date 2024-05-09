@@ -643,7 +643,7 @@ namespace html
 
                ::rectangle_i32 rectangleLine;
 
-               for (::raw::index i = 0; i < m_straLines.get_count(); i++)
+               for (::collection::index i = 0; i < m_straLines.get_count(); i++)
                {
 
                   string str = m_straLines[i];

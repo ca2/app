@@ -218,7 +218,7 @@ namespace graphics
    //}
 
 
-   ::raw::index double_buffer::get_buffer_index() const
+   ::collection::index double_buffer::get_buffer_index() const
    {
 
       if (is_single_buffer_mode())
@@ -243,7 +243,7 @@ namespace graphics
    }
 
 
-   ::raw::index double_buffer::get_screen_index() const
+   ::collection::index double_buffer::get_screen_index() const
    {
 
       if (is_single_buffer_mode())

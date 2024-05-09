@@ -88,7 +88,7 @@
 //         if (bWaitForAll)
 //         {
 //
-//            for (::raw::index i = 0; i < m_hsynca.get_count(); i++)
+//            for (::collection::index i = 0; i < m_hsynca.get_count(); i++)
 //            {
 //
 //               m_baLocked[i] = true;
@@ -130,7 +130,7 @@
 //bool retry_multi_lock::unlock()
 //{
 //
-//   for (::raw::index i=0; i < m_hsynca.get_count(); i++)
+//   for (::collection::index i=0; i < m_hsynca.get_count(); i++)
 //   {
 //
 //      if (m_baLocked[i])
@@ -152,7 +152,7 @@
 //
 //   bool bGotOne = false;
 //
-//   for (::raw::index i=0; i < m_hsynca.get_count(); i++)
+//   for (::collection::index i=0; i < m_hsynca.get_count(); i++)
 //   {
 //
 //      if (m_baLocked[i])
@@ -178,7 +178,7 @@
 //}
 //
 //
-//bool retry_multi_lock::IsLocked(::raw::index iObject)
+//bool retry_multi_lock::IsLocked(::collection::index iObject)
 //{
 //
 //   ASSERT(dwObject < m_hsynca.get_count());

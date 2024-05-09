@@ -1764,7 +1764,7 @@ HANDLE hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwSha
 ////
 //
 //
-////int_bool acmefile()->put_contents(const ::file::path & path,const char * contents,::raw::count len)
+////int_bool acmefile()->put_contents(const ::file::path & path,const char * contents,::collection::count len)
 ////{
 ////
 ////            auto psystem = system();

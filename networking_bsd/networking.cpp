@@ -432,8 +432,8 @@ namespace networking_bsd
    {
       if (str.is_empty())
          return false;
-      ::raw::index qc = 0;
-      ::raw::index qd = 0;
+      ::collection::index qc = 0;
+      ::collection::index qd = 0;
       for (i32 i = 0; i < str.length(); i++)
       {
          qc += (str[i] == ':') ? 1 : 0;
@@ -685,7 +685,7 @@ namespace networking_bsd
 
    i32 networking::in6_addr_compare(in6_addr a, in6_addr b)
    {
-      for (::raw::index i = 0; i < 16; i++)
+      for (::collection::index i = 0; i < 16; i++)
       {
          if (a.s6_addr[i] < b.s6_addr[i])
             return -1;
@@ -965,8 +965,8 @@ namespace networking_bsd
       if ((ai_flags & AI_NUMERICHOST) != 0 || isipv6(host))
       {
          //         list<string> vec;
-         ::raw::index x = 0;
-         for (::raw::index i = 0; i <= host.get_length(); i++)
+         ::collection::index x = 0;
+         for (::collection::index i = 0; i <= host.get_length(); i++)
          {
             if (i == host.get_length() || host[i] == ':')
             {
@@ -993,8 +993,8 @@ namespace networking_bsd
                x = i + 1;
             }
          }
-         ::raw::index sz = vec.get_length(); // number of ::u8 pairs
-         ::raw::index i = 0; // index in in6_addr.in6_u.u6_addr16[] ( 0 .. 7 )
+         ::collection::index sz = vec.get_length(); // number of ::u8 pairs
+         ::collection::index i = 0; // index in in6_addr.in6_u.u6_addr16[] ( 0 .. 7 )
          u16 addr16[8];
          for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)
          {
@@ -1233,7 +1233,7 @@ namespace networking_bsd
                u16 addr16[8];
                struct sockaddr_in6* sa_in6 = (struct sockaddr_in6*)sa;
                ::memory_copy(addr16, &sa_in6->sin6_addr, sizeof(addr16));
-               for (::raw::index i = 0; i < 8; i++)
+               for (::collection::index i = 0; i < 8; i++)
                {
                   u16 x = ntohs(addr16[i]);
                   if (*slask && (x || !ok_to_skip || prev))
@@ -2068,7 +2068,7 @@ namespace networking_bsd
    //      u16 x;
    //      u16 addr16[8];
    //      ::memory_copy(addr16, &ip, sizeof(addr16));
-   //      for (::raw::index i = 0; i < 6; i++)
+   //      for (::collection::index i = 0; i < 6; i++)
    //      {
    //         x = ntohs(addr16[i]);
    //         if (*slask && (x || !ok_to_skip || prev))
@@ -2124,7 +2124,7 @@ namespace networking_bsd
 
    //i32 networking::in6_addr_compare(in6_addr a, in6_addr b)
    //{
-   //   for (::raw::index i = 0; i < 16; i++)
+   //   for (::collection::index i = 0; i < 16; i++)
    //   {
    //      if (a.s6_addr[i] < b.s6_addr[i])
    //         return -1;
@@ -2318,7 +2318,7 @@ namespace networking_bsd
       //   {
       //      //         list<string> vec;
       //      index x = 0;
-      //      for (::raw::index i = 0; i <= host.get_length(); i++)
+      //      for (::collection::index i = 0; i <= host.get_length(); i++)
       //      {
       //         if (i == host.get_length() || host[i] == ':')
       //         {
@@ -2346,7 +2346,7 @@ namespace networking_bsd
       //         }
       //      }
       //      index sz = vec.get_length(); // number of ::u8 pairs
-      //      ::raw::index i = 0; // index in in6_addr.in6_u.u6_addr16[] ( 0 .. 7 )
+      //      ::collection::index i = 0; // index in in6_addr.in6_u.u6_addr16[] ( 0 .. 7 )
       //      u16 addr16[8];
       //      for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)
       //      {
@@ -2586,7 +2586,7 @@ namespace networking_bsd
       //            u16 addr16[8];
       //            struct sockaddr_in6* sa_in6 = (struct sockaddr_in6*)sa;
       //            ::memory_copy(addr16, &sa_in6->sin6_addr, sizeof(addr16));
-      //            for (::raw::index i = 0; i < 8; i++)
+      //            for (::collection::index i = 0; i < 8; i++)
       //            {
       //               u16 x = ntohs(addr16[i]);
       //               if (*slask && (x || !ok_to_skip || prev))

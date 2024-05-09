@@ -176,7 +176,7 @@ auto m_timeRoll = ::time::now();
 
          /*  m_dwaFrame.add(::get_tick());
 
-         for (::raw::index i = 0; i < m_dwaFrame.get_size();)
+         for (::collection::index i = 0; i < m_dwaFrame.get_size();)
          {
 
             if (m_tickaFrame[i].elapsed() > 1000)

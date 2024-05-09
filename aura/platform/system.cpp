@@ -2392,7 +2392,7 @@ namespace aura
    //}
 
 
-   //::apex::session * system::session(::raw::index iEdge)
+   //::apex::session * system::session(::collection::index iEdge)
    //{
 
    //   auto ppair = m_sessionmap.plookup(iEdge);
@@ -2685,15 +2685,15 @@ namespace aura
 
 
 
-   //::raw::count system::get_application_count()
+   //::collection::count system::get_application_count()
    //{
 
-   //   ::raw::count c = 0;
+   //   ::collection::count c = 0;
 
    //   //try
    //   //{
 
-   //   //   for(::raw::index iBaseSession = 0; iBaseSession < m_basesessionptra.get_count(); iBaseSession++)
+   //   //   for(::collection::index iBaseSession = 0; iBaseSession < m_basesessionptra.get_count(); iBaseSession++)
    //   //   {
 
    //   //      try
@@ -2738,7 +2738,7 @@ namespace aura
    //}
 
 
-   //void system::create_session(::raw::index iEdge)
+   //void system::create_session(::collection::index iEdge)
    //{
 
    //   if (session(iEdge))
@@ -2764,7 +2764,7 @@ namespace aura
    //}
 
 
-   //::pointer<::apex::session>system::on_create_session(::raw::index iEdge)
+   //::pointer<::apex::session>system::on_create_session(::collection::index iEdge)
    //{
 
    //   return ::aqua::system::on_create_session(iEdge);
@@ -3494,7 +3494,7 @@ namespace aura
 //
 //      HMONITOR hmonitorPrimary = GetPrimaryMonitorHandle();
 //
-//      for (::raw::index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
+//      for (::collection::index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
 //      {
 //
 //         if (m_hmonitora[iMonitor] == hmonitorPrimary)
@@ -3525,7 +3525,7 @@ namespace aura
 //   }
 
 
-   /*::raw::count system::get_monitor_count()
+   /*::collection::count system::get_monitor_count()
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -3551,7 +3551,7 @@ namespace aura
    }*/
 
 
-//   bool system::get_monitor_rectangle(::raw::index iMonitor, ::rectangle_i32 * prectangle)
+//   bool system::get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 * prectangle)
 //   {
 //
 //#if MOBILE_PLATFORM
@@ -3615,7 +3615,7 @@ namespace aura
 //   }
 //
 //
-//   ::raw::count system::get_desk_monitor_count()
+//   ::collection::count system::get_desk_monitor_count()
 //   {
 //
 //      return get_monitor_count();
@@ -3623,7 +3623,7 @@ namespace aura
 //   }
 //
 //
-//   bool system::get_desk_monitor_rect(::raw::index iMonitor, ::rectangle_i32 * prectangle)
+//   bool system::get_desk_monitor_rect(::collection::index iMonitor, ::rectangle_i32 * prectangle)
 //
 //   {
 //
@@ -3643,7 +3643,7 @@ namespace aura
 //
 //      HMONITOR hworkspacePrimary = GetPrimaryMonitorHandle();
 //
-//      for (::raw::index iWorkspace = 0; iWorkspace < get_workspace_count(); iWorkspace++)
+//      for (::collection::index iWorkspace = 0; iWorkspace < get_workspace_count(); iWorkspace++)
 //      {
 //
 //         if (m_hmonitora[iWorkspace] == hworkspacePrimary)
@@ -3674,7 +3674,7 @@ namespace aura
 //   }
 
 
-//   ::raw::count system::get_workspace_count()
+//   ::collection::count system::get_workspace_count()
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
@@ -3690,7 +3690,7 @@ namespace aura
 //   }
 //
 
-//   bool system::get_workspace_rectangle(::raw::index iWorkspace, ::rectangle_i32 * prectangle)
+//   bool system::get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 * prectangle)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
@@ -3759,7 +3759,7 @@ namespace aura
 //   }
 //
 //
-//   ::raw::count system::get_desk_workspace_count()
+//   ::collection::count system::get_desk_workspace_count()
 //   {
 //
 //      return get_workspace_count();
@@ -3767,7 +3767,7 @@ namespace aura
 //   }
 //
 //
-//   bool system::get_desk_workspace_rect(::raw::index iWorkspace, ::rectangle_i32 * prectangle)
+//   bool system::get_desk_workspace_rect(::collection::index iWorkspace, ::rectangle_i32 * prectangle)
 //
 //   {
 //
@@ -3785,7 +3785,7 @@ namespace aura
 //
 //      HMONITOR hworkspacePrimary = GetUiMonitorHandle(pinteraction->get_handle());
 //
-//      for (::raw::index iWorkspace = 0; iWorkspace < get_workspace_count(); iWorkspace++)
+//      for (::collection::index iWorkspace = 0; iWorkspace < get_workspace_count(); iWorkspace++)
 //      {
 //
 //         if (m_hmonitora[iWorkspace] == hworkspacePrimary)
@@ -4894,7 +4894,7 @@ namespace aura
    //}
 
 
-   //::aura::session * system::query_session(::raw::index iEdge)
+   //::aura::session * system::query_session(::collection::index iEdge)
    //{
 
    //   return nullptr;
@@ -5863,7 +5863,7 @@ namespace aura
    //}
 
 
-   //::aura::session * system::query_session(::raw::index iEdge)
+   //::aura::session * system::query_session(::collection::index iEdge)
    //{
 
    //   ::aura::session * pbergedge = nullptr;

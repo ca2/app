@@ -161,10 +161,10 @@ namespace account
 //   }
 //
 
-   ::raw::count product_array::clear_all_cache()
+   ::collection::count product_array::clear_all_cache()
    {
 
-      ::raw::count count = m_map.get_count();
+      ::collection::count count = m_map.get_count();
 
       m_map.erase_all();
 

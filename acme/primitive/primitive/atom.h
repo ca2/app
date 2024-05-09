@@ -667,7 +667,7 @@ public:
    inline ::iptr as_iptr() const;
    inline ::i32 as_i32() const { return (::i32) as_i64(); }
    inline ::u32 as_u32() const { return (::u32) as_i64(); }
-   inline ::raw::index as_index() const { return (::raw::index)as_i64(); }
+   inline ::collection::index as_index() const { return (::collection::index)as_i64(); }
    inline ::u32 as_umessage() const { return u32(); }
    inline ::enum_message as_emessage() const;
    //inline ::e_check as_echeck() const { return m_etype == e_type_check ? m_echeck : (::e_check) e_check_undefined; }

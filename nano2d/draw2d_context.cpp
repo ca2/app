@@ -1161,7 +1161,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    }
 
 
-   ::raw::count draw2d_context::character_metric(::f64_array& daLeft, ::f64_array& daRight, const ::string& scopedstr, strsize iStart, strsize iEnd)
+   ::collection::count draw2d_context::character_metric(::f64_array& daLeft, ::f64_array& daRight, const ::string& scopedstr, strsize iStart, strsize iEnd)
    {
 
       __set_current_font();

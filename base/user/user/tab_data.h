@@ -47,7 +47,7 @@ namespace user
       ::rectangle_i32                     m_rectangleTextMargin;
       ::pointer<::image_list>             m_pimagelist;
       tab_callback *                      m_pcallback;
-      ::raw::index                             m_iClickTab;
+      ::collection::index                             m_iClickTab;
       bool                                m_bDrag;
       bool                                m_bVertical;
       ::match::any                        m_matchanyRestore;
@@ -65,7 +65,7 @@ namespace user
 
       virtual tab_pane * get_tab_by_id(atom atom);
 
-      ::raw::count get_visible_tab_count();
+      ::collection::count get_visible_tab_count();
 
    };
 

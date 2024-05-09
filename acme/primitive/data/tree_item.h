@@ -381,9 +381,9 @@ namespace data
       //::pointer<tree_item>             m_pnext;
       ::pointer_array < tree_item >    m_treeitema;
       ::pointer<tree_item>             m_pparent;
-      ::raw::index                            m_iIndexHint;
+      ::collection::index                            m_iIndexHint;
       tree *                           m_ptree;
-      ::raw::index                            m_iLevel;
+      ::collection::index                            m_iLevel;
       ::pointer<::data::item>          m_pdataitem;
       uptr                             m_dwUser;
       u32                              m_dwState;
@@ -420,17 +420,17 @@ namespace data
       tree_item * get_child_by_user_data(uptr iUserData);
       tree_item * find_next_by_user_data(uptr iUserData);
       void get_children(::data::tree_item_ptr_array &ptra);
-      ::raw::count get_children_count();
+      ::collection::count get_children_count();
       tree_item * get_parent();
-      ::raw::count get_expandable_children_count();
-      ::raw::count get_proper_descendant_count();
-      tree_item * get_expandable_child(::raw::index iIndex);
+      ::collection::count get_expandable_children_count();
+      ::collection::count get_proper_descendant_count();
+      tree_item * get_expandable_child(::collection::index iIndex);
 
       bool insert(enum_relative erelative, ::data::tree_item * pitemNew);
 
-      ::raw::index calc_level();
-      ::raw::index get_level() { return m_iLevel >= 0 ? m_iLevel : calc_level(); }
-      ::raw::index _get_index();
+      ::collection::index calc_level();
+      ::collection::index get_level() { return m_iLevel >= 0 ? m_iLevel : calc_level(); }
+      ::collection::index _get_index();
 
 
       virtual ::data::tree_item * ____previous();
@@ -439,17 +439,17 @@ namespace data
       virtual ::data::tree_item * ____tail();
 
 
-      tree_item * get_previous_or_parent(::raw::index * iLevelOffset = nullptr);
+      tree_item * get_previous_or_parent(::collection::index * iLevelOffset = nullptr);
       tree_item * get_previous();
 
 
       tree_item * get_next();
-      tree_item * get_next_or_parent_next(::raw::index * iLevelOffset = nullptr);
-      tree_item * get_child_or_next(::raw::index * iLevelOffset = nullptr);
-      tree_item * get_child_next_or_parent(::raw::index * iLevelOffset = nullptr);
+      tree_item * get_next_or_parent_next(::collection::index * iLevelOffset = nullptr);
+      tree_item * get_child_or_next(::collection::index * iLevelOffset = nullptr);
+      tree_item * get_child_next_or_parent(::collection::index * iLevelOffset = nullptr);
 
 
-      inline const tree_item * get_child_next_or_parent(::raw::index * iLevelOffset = nullptr) const
+      inline const tree_item * get_child_next_or_parent(::collection::index * iLevelOffset = nullptr) const
       {
 
          return ((tree_item*)(this))->get_child_next_or_parent(iLevelOffset);
@@ -458,7 +458,7 @@ namespace data
 
       //tree_item * calc_previous(bool bParent = true);
 
-      //tree_item * calc_next(bool bChild, bool bParent = true, ::raw::index * pindexLevel = nullptr);
+      //tree_item * calc_next(bool bChild, bool bParent = true, ::collection::index * pindexLevel = nullptr);
 
       tree_item * first_child();
 
@@ -467,7 +467,7 @@ namespace data
 
 
 
-      inline tree_item * get_proper_next(::raw::index * pindexLevel = nullptr)
+      inline tree_item * get_proper_next(::collection::index * pindexLevel = nullptr)
       {
 
          if ((m_dwState & ::data::e_tree_item_state_expanded))
@@ -485,18 +485,18 @@ namespace data
 
       }
 
-      tree_item * get_item(enum_tree_navigation enavigation, ::raw::index * piLevelOffset = nullptr);
+      tree_item * get_item(enum_tree_navigation enavigation, ::collection::index * piLevelOffset = nullptr);
       tree_item * get_item(enum_relative erelative);
 
       virtual bool contains(const tree_item * ptreeitem);
-      virtual tree_item * get_proper_item(::raw::index iIndex, ::raw::index * piLevel);
-      virtual ::raw::index get_proper_item_index(tree_item * pitem, ::raw::index * piLevel);
-      virtual ::raw::count get_proper_item_count();
+      virtual tree_item * get_proper_item(::collection::index iIndex, ::collection::index * piLevel);
+      virtual ::collection::index get_proper_item_index(tree_item * pitem, ::collection::index * piLevel);
+      virtual ::collection::count get_proper_item_count();
 
       virtual tree * get_tree();
 
       virtual string get_text() const;
-      virtual ::raw::index get_image() const;
+      virtual ::collection::index get_image() const;
       virtual ::image_list * get_image_list() const;
 
 

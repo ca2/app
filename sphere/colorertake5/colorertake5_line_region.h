@@ -23,7 +23,7 @@ namespace colorertake5
       */
       RegionDefine *rdef;
       /** Start and End position of region in line */
-      ::raw::index start, end;
+      ::collection::index start, end;
       /** Reference to region's HRC scheme */
       const class scheme *scheme;
       /** Previous and next links to ranged region in this line.

@@ -503,7 +503,7 @@ namespace xcb
 
       bool bHandled = false;
 
-      ::raw::index i = 0;
+      ::collection::index i = 0;
 
       // if (pevent->response_type == XCB_CONFIGURE_NOTIFY)
       // {
@@ -1412,7 +1412,7 @@ namespace xcb
 
       }
 
-      ::raw::count cRemove = atoma.erase(atomFlag);
+      ::collection::count cRemove = atoma.erase(atomFlag);
 
       if (cRemove > 0)
       {

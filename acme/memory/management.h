@@ -314,7 +314,7 @@ namespace heap
 //
 //      memsize count() { return size() / sizeof(T); }
 //
-//      void stralloc(::raw::count cChar) { size_i32((cChar + 1) * sizeof(T)); }
+//      void stralloc(::collection::count cChar) { size_i32((cChar + 1) * sizeof(T)); }
 //
 //      string & to_string(string & str) const;
 //

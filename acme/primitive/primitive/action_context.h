@@ -25,7 +25,7 @@ public:
 
    inline void add(e_source esource) { m_esource.add(esource); }
    void add(const ::particle * pparticle);
-   ::raw::index find(const ::particle * pparticle) const;
+   ::collection::index find(const ::particle * pparticle) const;
    bool contains(const ::particle * pparticle) const;
 
    inline bool is(e_source esource) const { return m_esource.has(esource); }

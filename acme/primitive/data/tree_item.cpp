@@ -629,7 +629,7 @@ namespace data
    }
 
 
-   ::raw::count tree_item::get_children_count()
+   ::collection::count tree_item::get_children_count()
    {
 
       return m_treeitema.get_count();
@@ -645,10 +645,10 @@ namespace data
    }
 
 
-   ::raw::count tree_item::get_expandable_children_count()
+   ::collection::count tree_item::get_expandable_children_count()
    {
 
-      ::raw::count c = 0;
+      ::collection::count c = 0;
       
       for(auto & p : m_treeitema)
       {
@@ -667,10 +667,10 @@ namespace data
    }
 
 
-   tree_item * tree_item::get_expandable_child(::raw::index iIndex)
+   tree_item * tree_item::get_expandable_child(::collection::index iIndex)
    {
       
-      ::raw::count c = 0;
+      ::collection::count c = 0;
 
       auto iFind = m_treeitema.predicate_find_first([&c, iIndex](auto& p)
          {
@@ -703,12 +703,12 @@ namespace data
    }
 
 
-   ::raw::count tree_item::get_proper_descendant_count()
+   ::collection::count tree_item::get_proper_descendant_count()
    {
 
-      ::raw::count iCount = 0;
+      ::collection::count iCount = 0;
 
-      ::raw::index iLevel = 0;
+      ::collection::index iLevel = 0;
 
       tree_item * pitem = this;
 
@@ -733,7 +733,7 @@ namespace data
    }
 
 
-   tree_item * tree_item::get_previous_or_parent(::raw::index * piLevel)
+   tree_item * tree_item::get_previous_or_parent(::collection::index * piLevel)
    {
 
       if (____previous())
@@ -780,7 +780,7 @@ namespace data
    }
 
 
-   ::raw::index tree_item::calc_level()
+   ::collection::index tree_item::calc_level()
    {
 
       if (m_iLevel < 0)
@@ -884,7 +884,7 @@ namespace data
    }
 
 
-   ::raw::index tree_item::_get_index()
+   ::collection::index tree_item::_get_index()
    {
 
       if (m_pparent == nullptr)
@@ -899,7 +899,7 @@ namespace data
    }
 
 
-   tree_item * tree_item::get_next_or_parent_next(::raw::index * piLevel)
+   tree_item * tree_item::get_next_or_parent_next(::collection::index * piLevel)
    {
 
       if (____next())
@@ -928,7 +928,7 @@ namespace data
    }
 
 
-   tree_item * tree_item::get_child_or_next(::raw::index * piLevel)
+   tree_item * tree_item::get_child_or_next(::collection::index * piLevel)
    {
 
       if (____head())
@@ -950,7 +950,7 @@ namespace data
    }
 
 
-   tree_item * tree_item::get_child_next_or_parent(::raw::index * piLevel)
+   tree_item * tree_item::get_child_next_or_parent(::collection::index * piLevel)
    {
 
       if (____head())
@@ -972,7 +972,7 @@ namespace data
    }
 
 
-   tree_item * tree_item::get_item(enum_tree_navigation enavigation, ::raw::index * pindexLevel)
+   tree_item * tree_item::get_item(enum_tree_navigation enavigation, ::collection::index * pindexLevel)
    {
 
       switch(enavigation)
@@ -1065,7 +1065,7 @@ namespace data
    }
 
 
-   ::raw::index tree_item::get_image() const
+   ::collection::index tree_item::get_image() const
    {
 
       if (!m_pdataitem)
@@ -1095,7 +1095,7 @@ namespace data
    }
 
 
-   tree_item * tree_item::get_proper_item(::raw::index iIndex, ::raw::index * piLevel)
+   tree_item * tree_item::get_proper_item(::collection::index iIndex, ::collection::index * piLevel)
    {
 
       if (*piLevel)
@@ -1128,7 +1128,7 @@ namespace data
    }
 
 
-   ::raw::index tree_item::get_proper_item_index(tree_item * pitemParam, ::raw::index * piLevel)
+   ::collection::index tree_item::get_proper_item_index(tree_item * pitemParam, ::collection::index * piLevel)
    {
       
       i32 iIndex = 0;
@@ -1163,14 +1163,14 @@ namespace data
    }
 
    
-   ::raw::count tree_item::get_proper_item_count()
+   ::collection::count tree_item::get_proper_item_count()
    {
 
       tree_item * pitem = this;
 
-      ::raw::index iLevel = 0;
+      ::collection::index iLevel = 0;
 
-      ::raw::count iCount = -1;
+      ::collection::count iCount = -1;
 
       while(pitem)
       {

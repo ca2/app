@@ -125,10 +125,10 @@ namespace html
 
          m_iRowEnd = m_iRowBeg + m_iRowSpan - 1;
 
-         for (::raw::index iCol = m_iColBeg; iCol <= m_iColEnd; iCol++)
+         for (::collection::index iCol = m_iColBeg; iCol <= m_iColEnd; iCol++)
          {
 
-            for (::raw::index iRow = m_iRowBeg; iRow <= m_iRowEnd; iRow++)
+            for (::collection::index iRow = m_iRowBeg; iRow <= m_iRowEnd; iRow++)
             {
 
                ptable->set_cell(iCol, iRow, this);
@@ -542,10 +542,10 @@ namespace html
       }
 
 
-      ::raw::index cell::get_min_col()
+      ::collection::index cell::get_min_col()
       {
 
-         ::raw::index iMinCol = 0;
+         ::collection::index iMinCol = 0;
 
          table_row * prow = get_row();
 
@@ -668,7 +668,7 @@ namespace html
       }
 
 
-      bool cell::contains_column(::raw::index iCol)
+      bool cell::contains_column(::collection::index iCol)
       {
 
          return iCol >= m_iColBeg && iCol <= m_iColEnd;
@@ -676,7 +676,7 @@ namespace html
       }
 
 
-      bool cell::contains_row(::raw::index iRow)
+      bool cell::contains_row(::collection::index iRow)
       {
 
          return iRow >= m_iRowBeg && iRow <= m_iRowEnd;
@@ -684,7 +684,7 @@ namespace html
       }
 
 
-      bool cell::contains_cell(::raw::index iCol, ::raw::index iRow)
+      bool cell::contains_cell(::collection::index iCol, ::collection::index iRow)
       {
 
          return contains_column(iCol) && contains_row(iRow);
@@ -702,13 +702,13 @@ namespace html
          if(get_table() != nullptr)
          {
 
-            ::raw::count n = get_table()->m_columna.get_size();
+            ::collection::count n = get_table()->m_columna.get_size();
 
             float cellMax = 0;
 
             float sMax = 0;
 
-            for(::raw::index iColumn = 0; iColumn < n; iColumn++)
+            for(::collection::index iColumn = 0; iColumn < n; iColumn++)
             {
 
                cxMax = get_table()->m_columna[iColumn].m_cxMax;

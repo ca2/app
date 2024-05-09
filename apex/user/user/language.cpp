@@ -202,7 +202,7 @@ namespace user
 
       string strHeader;
 
-      for (::raw::index i = 0; i < stra.get_count(); i++)
+      for (::collection::index i = 0; i < stra.get_count(); i++)
       {
 
          strLine = stra[i];

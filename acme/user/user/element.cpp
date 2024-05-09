@@ -922,7 +922,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::get_child_by_name(const ::string & strName, ::raw::index iItem, i32 iLevel)
+   ::user::interaction * element::get_child_by_name(const ::string & strName, ::collection::index iItem, i32 iLevel)
    {
 
       throw ::interface_only();
@@ -932,7 +932,7 @@ namespace user
    }
 
 
-   ::user::interaction * element::get_child_by_id(const atom & atom, ::raw::index iItem, i32 iLevel)
+   ::user::interaction * element::get_child_by_id(const atom & atom, ::collection::index iItem, i32 iLevel)
    {
 
       throw ::interface_only();
@@ -942,7 +942,7 @@ namespace user
    }
 
 
-   ::user::element * element::get_primitive_by_id(const atom & atom, ::raw::index iItem, i32 iLevel)
+   ::user::element * element::get_primitive_by_id(const atom & atom, ::collection::index iItem, i32 iLevel)
    {
 
       throw ::interface_only();
@@ -3993,7 +3993,7 @@ namespace user
    }
 
 
-   ::raw::index element::plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, strsize iSel)
+   ::collection::index element::plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, strsize iSel)
    {
 
       return -1;
@@ -4001,7 +4001,7 @@ namespace user
    }
 
 
-   ::raw::index element::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
+   ::collection::index element::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
    {
 
       return -1;
@@ -4009,7 +4009,7 @@ namespace user
    }
 
 
-   ::raw::index element::plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, strsize iSel)
+   ::collection::index element::plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, strsize iSel)
    {
 
       return -1;
@@ -4017,7 +4017,7 @@ namespace user
    }
 
 
-   ::raw::index element::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
+   ::collection::index element::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
    {
 
       return -1;
@@ -4025,7 +4025,7 @@ namespace user
    }
 
 
-   strsize element::plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::raw::index iLine, ::raw::index iColumn)
+   strsize element::plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::collection::index iColumn)
    {
 
       return -1;
@@ -4033,7 +4033,7 @@ namespace user
    }
 
 
-   strsize element::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::raw::index iLine, i32 x)
+   strsize element::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, i32 x)
    {
 
       return -1;
@@ -4041,7 +4041,7 @@ namespace user
    }
 
 
-   ::raw::index element::plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, strsize iSel)
+   ::collection::index element::plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, strsize iSel)
    {
 
       return -1;

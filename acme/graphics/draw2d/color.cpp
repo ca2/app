@@ -1259,7 +1259,7 @@ namespace color
 };
 
 
-CLASS_DECL_ACME::color::color _020GetColor(::raw::index i)
+CLASS_DECL_ACME::color::color _020GetColor(::collection::index i)
 {
    
    return g_color20[i %20];

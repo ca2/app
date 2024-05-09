@@ -24,7 +24,7 @@ namespace user
       ::e_align                             m_ealignText;
       e_style                             m_estyle;
       ::rectangle_f64                              m_rectangleText;
-      ::raw::index                               m_iClick;
+      ::collection::index                               m_iClick;
       e_stock_icon                        m_estockicon;
 
       ::rectangle_f64                              m_rectangleCheckBox;

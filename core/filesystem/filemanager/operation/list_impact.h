@@ -33,7 +33,7 @@ namespace filemanager
       DECLARE_MESSAGE_HANDLER(on_message_create);
       void _001OnTimer(::timer * ptimer) override;
 
-      virtual ::raw::count _001GetItemCount() override;
+      virtual ::collection::count _001GetItemCount() override;
       virtual void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
 
       void OnFileOperationStep(i32 iOperation,bool bFinal);

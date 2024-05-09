@@ -14,7 +14,7 @@ int crypt_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory
 
    memory memKeyData(memKeyDataParam);
 
-   ::raw::count iSize = memKeyDataParam.get_size();
+   ::collection::count iSize = memKeyDataParam.get_size();
 
    memKeyData.set_size(32);
 
@@ -186,7 +186,7 @@ int crypt_decrypt(memory & storageDecrypt, const memory & storageEncrypt, memory
 
    memory memKeyData(memKeyDataParam);
 
-   ::raw::count iSize = memKeyDataParam.get_size();
+   ::collection::count iSize = memKeyDataParam.get_size();
 
    memKeyData.set_size(32);
 

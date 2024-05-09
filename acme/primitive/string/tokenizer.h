@@ -244,7 +244,7 @@ public:
 
    }
 
-   ::raw::count skip_word(::raw::count c);
+   ::collection::count skip_word(::collection::count c);
       
    ::string get_word();
 

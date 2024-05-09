@@ -48,10 +48,10 @@ namespace nanoui
       ::string_array m_straItemsShort;
 
       /// The callback for this ComboBox.
-      ::function<void(::raw::index)> m_callback;
+      ::function<void(::collection::index)> m_callback;
 
       /// The current iIndex this ComboBox has selected.
-      ::raw::index m_iSelectedIndex;
+      ::collection::index m_iSelectedIndex;
 
 
       /// Create an empty combo box
@@ -68,16 +68,16 @@ namespace nanoui
          const ::string_array& items_short);
 
       /// The current iIndex this ComboBox has selected.
-      ::raw::index selected_index() const { return m_iSelectedIndex; }
+      ::collection::index selected_index() const { return m_iSelectedIndex; }
 
       /// Sets the current iIndex this ComboBox has selected.
-      void set_selected_index(::raw::index iIndex, const ::action_context& actioncontext);
+      void set_selected_index(::collection::index iIndex, const ::action_context& actioncontext);
 
       /// The callback to execute for this ComboBox.
-      ::function<void(::raw::index)> callback() const { return m_callback; }
+      ::function<void(::collection::index)> callback() const { return m_callback; }
 
       /// Sets the callback to execute for this ComboBox.
-      void set_callback(const ::function<void(::raw::index)>& callback) { m_callback = callback; }
+      void set_callback(const ::function<void(::collection::index)>& callback) { m_callback = callback; }
 
       /// Sets the items for this ComboBox, providing both short and long descriptive lables for each item.
       void set_items(const ::string_array& items, const ::string_array& items_short);

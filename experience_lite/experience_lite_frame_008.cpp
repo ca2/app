@@ -406,7 +406,7 @@ SizingNone:
 
                   pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
 
-                  for (::raw::index i = 0; i < 9; i++)
+                  for (::collection::index i = 0; i < 9; i++)
                   {
 
                      pgraphics->draw_inset_3d_rectangle(rectangleA, argb(0, 0, 0, 0), argb(0, 0, 0, 0));
@@ -424,7 +424,7 @@ SizingNone:
 
                      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
-                     for (::raw::index i = 0; i < 9; i++)
+                     for (::collection::index i = 0; i < 9; i++)
                      {
 
                         auto ppen = __create < ::draw2d::pen > ();

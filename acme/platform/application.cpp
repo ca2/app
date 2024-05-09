@@ -1214,10 +1214,10 @@ void application::fill_locale_schema(::text::international::locale_schema& local
    localeschema.m_atomLocale = straLocale[0];
    localeschema.m_atomSchema = straSchema[0];
    
-   for (::raw::index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
+   for (::collection::index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
    {
       
-      for (::raw::index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+      for (::collection::index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
       {
          
          localeschema.add_locale_variant(straLocale[iLocale], straSchema[iSchema]);
@@ -1226,14 +1226,14 @@ void application::fill_locale_schema(::text::international::locale_schema& local
       
    }
    
-   for (::raw::index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   for (::collection::index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
    {
       
       localeschema.add_locale_variant(get_locale(), straSchema[iSchema]);
       
    }
    
-   for (::raw::index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   for (::collection::index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
    {
       
       localeschema.add_locale_variant("std", straSchema[iSchema]);
@@ -1241,7 +1241,7 @@ void application::fill_locale_schema(::text::international::locale_schema& local
    }
    
    
-   for (::raw::index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
+   for (::collection::index iSchema = 0; iSchema < straSchema.get_count(); iSchema++)
    {
       
       localeschema.add_locale_variant("en", straSchema[iSchema]);

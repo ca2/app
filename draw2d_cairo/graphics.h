@@ -176,10 +176,10 @@ namespace draw2d_cairo
       size_f64 scale_window_ext(double xNum, double xDenom, double yNum, double yDenom) override;
 
       // Coordinate Functions
-      void DPtoLP(::point_f64 * lpPoints, ::raw::count nCount = 1) override;
+      void DPtoLP(::point_f64 * lpPoints, ::collection::count nCount = 1) override;
       void DPtoLP(::rectangle_f64 * prectangle) override;
       void DPtoLP(::size_f64 * psize) override;
-      void LPtoDP(::point_f64 * lpPoints, ::raw::count nCount = 1) override;
+      void LPtoDP(::point_f64 * lpPoints, ::collection::count nCount = 1) override;
       void LPtoDP(::rectangle_f64 * prectangle) override;
       void LPtoDP(::size_f64 * psize) override;
 
@@ -261,7 +261,7 @@ namespace draw2d_cairo
       void arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
       void arc(double x, double y, double w, double h, ::angle_f64 start, ::angle_f64 extends) override;
       void arc(const ::rectangle_f64 & rectangle_f64, const ::point_f64 & pointStart, const ::point_f64 & pointEnd) override;
-      void polyline(const ::point_f64 * lpPoints, ::raw::count nCount) override;
+      void polyline(const ::point_f64 * lpPoints, ::collection::count nCount) override;
 
       void angle_arc(double x, double y, double nRadius, ::angle_f64 fStartAngle, ::angle_f64 fSweepAngle) override;
       //bool ArcTo(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
@@ -269,12 +269,12 @@ namespace draw2d_cairo
       //i32 GetArcDirection() override;
       //i32 SetArcDirection(i32 nArcDirection) override;
 
-      void polydraw(const ::point_f64* lpPoints, const ::u8* lpTypes, ::raw::count nCount) override;
-      void polyline_to(const ::point_f64* lpPoints, ::raw::count nCount) override;
-      void poly_polyline(const ::point_f64* lpPoints, const ::i32 * lpPolyPoints, ::raw::count nCount) override;
+      void polydraw(const ::point_f64* lpPoints, const ::u8* lpTypes, ::collection::count nCount) override;
+      void polyline_to(const ::point_f64* lpPoints, ::collection::count nCount) override;
+      void poly_polyline(const ::point_f64* lpPoints, const ::i32 * lpPolyPoints, ::collection::count nCount) override;
 
-      void poly_bezier(const ::point_f64* lpPoints, ::raw::count nCount) override;
-      void poly_bezier_to(const ::point_f64* lpPoints, ::raw::count nCount) override;
+      void poly_bezier(const ::point_f64* lpPoints, ::collection::count nCount) override;
+      void poly_bezier_to(const ::point_f64* lpPoints, ::collection::count nCount) override;
 
       // Simple Drawing Functions
       void fill_rectangle(const ::rectangle_f64 & rectangle_f64, ::draw2d::brush* pBrush) override;
@@ -317,12 +317,12 @@ namespace draw2d_cairo
       void Pie(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
       void Pie(const ::rectangle_f64 & rectangle_f64, const ::point_f64 & pointStart, const ::point_f64 & pointEnd) override;
 
-      void fill_polygon(const ::point_f64 * lpPoints, ::raw::count nCount) override;
+      void fill_polygon(const ::point_f64 * lpPoints, ::collection::count nCount) override;
 
-      void draw_polygon(const ::point_f64 * lpPoints, ::raw::count nCount) override;
+      void draw_polygon(const ::point_f64 * lpPoints, ::collection::count nCount) override;
 
 
-      void polygon(const ::point_f64 * lpPoints, ::raw::count nCount) override;
+      void polygon(const ::point_f64 * lpPoints, ::collection::count nCount) override;
       void rectangle(const ::rectangle_f64 & rectangle_f64) override;
       //virtual bool draw_rectangle(double x1, double y1, double x2, double y2) override;
       //virtual bool DrawRectangle(const ::rectangle_f64 & rectangle_f64) override;
@@ -374,8 +374,8 @@ namespace draw2d_cairo
       ///virtual bool text_out(double x, double y, const ::string & str) override;
       //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle_f64, const ::string & lpszString, strsize nCount, int * lpDxWidths) override;
       //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle_f64, const ::string & str, int * lpDxWidths) override;
-//      virtual size_f64 TabbedTextOut(double x, double y, const ::string & lpszString, strsize nCount, ::raw::count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
-//      virtual size_f64 TabbedTextOut(double x, double y, const ::string & str, ::raw::count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
+//      virtual size_f64 TabbedTextOut(double x, double y, const ::string & lpszString, strsize nCount, ::collection::count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
+//      virtual size_f64 TabbedTextOut(double x, double y, const ::string & str, ::collection::count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
 
       virtual void internal_draw_text_cairo(const block & block, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT pfnText = nullptr);
       virtual void internal_draw_text(const block & block, const ::rectangle_f64 & rectangle_f64, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
@@ -401,10 +401,10 @@ namespace draw2d_cairo
       ///size_f64 get_text_extent(const ::string & str) override;
       //size_f64 GetOutputTextExtent(const char * lpszString, strsize nCount) override;
       //size_f64 GetOutputTextExtent(const ::string & str) override;
-      //size_f64 GetTabbedTextExtent(const ::string & lpszString, strsize nCount, ::raw::count nTabPositions, int * lpnTabStopPositions) override;
-      //size_f64 GetTabbedTextExtent(const ::string & str, ::raw::count nTabPositions, int * lpnTabStopPositions) override;
-      //size_f64 GetOutputTabbedTextExtent(const ::string & lpszString, strsize nCount, ::raw::count nTabPositions, int * lpnTabStopPositions) override;
-      //size_f64 GetOutputTabbedTextExtent(const ::string & str, ::raw::count nTabPositions, int * lpnTabStopPositions) override;
+      //size_f64 GetTabbedTextExtent(const ::string & lpszString, strsize nCount, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
+      //size_f64 GetTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
+      //size_f64 GetOutputTabbedTextExtent(const ::string & lpszString, strsize nCount, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
+      //size_f64 GetOutputTabbedTextExtent(const ::string & str, ::collection::count nTabPositions, int * lpnTabStopPositions) override;
       //virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, i32), LPARAM lpData, i32 nCount, double x, double y, double nWidth, double nHeight) override;
       ::u32 GetTextAlign() override;
       ::u32 SetTextAlign(::u32 nFlags) override;
@@ -503,7 +503,7 @@ namespace draw2d_cairo
 
       float GetMiterLimit() override;
       void SetMiterLimit(float fMiterLimit) override;
-      //i32 GetPath(::point_f64 * lpPoints, LPBYTE lpTypes, ::raw::count nCount) override;
+      //i32 GetPath(::point_f64 * lpPoints, LPBYTE lpTypes, ::collection::count nCount) override;
       void SelectClipPath(i32 nMode) override;
 
       // Misc Helper Functions

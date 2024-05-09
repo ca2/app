@@ -270,17 +270,17 @@ public:
 
    //virtual string notification_area_get_xml_menu();
 
-   void on_update_notify_icon_menu(::raw::index & iNotifyIconIndex) override;
+   void on_update_notify_icon_menu(::collection::index & iNotifyIconIndex) override;
 
-   virtual void on_update_notify_icon_menu_header(::raw::index & iNotifyIconItem);
+   virtual void on_update_notify_icon_menu_header(::collection::index & iNotifyIconItem);
 
-   virtual void on_update_notify_icon_menu_top(::raw::index & iNotifyIconItem);
+   virtual void on_update_notify_icon_menu_top(::collection::index & iNotifyIconItem);
 
-   virtual void on_update_notify_icon_menu_main(::raw::index & iNotifyIconItem);
+   virtual void on_update_notify_icon_menu_main(::collection::index & iNotifyIconItem);
 
-   virtual void on_update_notify_icon_menu_bottom(::raw::index & iNotifyIconItem);
+   virtual void on_update_notify_icon_menu_bottom(::collection::index & iNotifyIconItem);
 
-   virtual void on_update_notify_icon_menu_footer(::raw::index & iNotifyIconItem);
+   virtual void on_update_notify_icon_menu_footer(::collection::index & iNotifyIconItem);
 
 };
 

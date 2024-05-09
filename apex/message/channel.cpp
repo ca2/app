@@ -125,7 +125,7 @@ void channel::transfer_handler(::message::dispatcher_map & dispatchermap, ::part
    auto & dispatchera = (*pdispatchermap)[atom];
    
    // Try to not add already added dispatcher
-   for (::raw::index i = 0; i < dispatchera.get_count(); i++)
+   for (::collection::index i = 0; i < dispatchera.get_count(); i++)
    {
 
       auto & dispatcherItem = dispatchera[i];
@@ -609,7 +609,7 @@ void channel::on_command(::message::command * pcommand)
 //    if(preceiver != nullptr || phandler != nullptr)
 //    {
 //
-//        for (::raw::index i = 0; i < handlera.get_count(); i++)
+//        for (::collection::index i = 0; i < handlera.get_count(); i++)
 //        {
 //
 //            if (handlera.element_at(i).m_preceiver == preceiver

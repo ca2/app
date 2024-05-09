@@ -168,10 +168,10 @@ namespace xml
    }
 
 
-   ::raw::index node::find(const ::scoped_string & scopedstrName, const property_set & set, ::raw::index iStart)
+   ::collection::index node::find(const ::scoped_string & scopedstrName, const property_set & set, ::collection::index iStart)
    {
 
-      for(::raw::index i = iStart; i < m_nodea.get_count(); i++)
+      for(::collection::index i = iStart; i < m_nodea.get_count(); i++)
       {
 
          if (m_nodea[i]->m_strName == scopedstrName && m_nodea[i]->m_set.contains(set))
@@ -188,10 +188,10 @@ namespace xml
    }
 
 
-   node * node::get_child_with_attribute(const ::scoped_string & scopedstrName, const ::atom & atom, const ::payload & payload, ::raw::index iStart)
+   node * node::get_child_with_attribute(const ::scoped_string & scopedstrName, const ::atom & atom, const ::payload & payload, ::collection::index iStart)
    {
 
-      for(::raw::index i = iStart; i < m_nodea.get_count(); i++)
+      for(::collection::index i = iStart; i < m_nodea.get_count(); i++)
       {
 
          if (m_nodea[i]->m_strName == scopedstrName && m_nodea[i]->attribute(atom) == payload)
@@ -208,10 +208,10 @@ namespace xml
    }
 
 
-   ::raw::index node::find(const ::scoped_string & scopedstrName, ::raw::index iStart)
+   ::collection::index node::find(const ::scoped_string & scopedstrName, ::collection::index iStart)
    {
 
-      for(::raw::index i = iStart; i < m_nodea.get_count(); i++)
+      for(::collection::index i = iStart; i < m_nodea.get_count(); i++)
       {
 
          if (m_nodea[i]->m_strName == scopedstrName)
@@ -242,7 +242,7 @@ namespace xml
 
    }
    */
-   ::raw::index node::find(node * pnode)
+   ::collection::index node::find(node * pnode)
    {
       return m_nodea.find_first(pnode);
    }
@@ -252,7 +252,7 @@ namespace xml
       if(m_pnodeParent == nullptr)
          return nullptr;
       auto pnodeParent = __xml(m_pnodeParent);
-      ::raw::index i = pnodeParent->find(this);
+      ::collection::index i = pnodeParent->find(this);
       if (i < 0)
       {
 
@@ -1832,7 +1832,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   node * node::child_at(::raw::index i )
+   node * node::child_at(::collection::index i )
    {
       if( i >= 0 && i < m_nodea.get_size() )
          return m_nodea[i]->get_xml_node();
@@ -1848,7 +1848,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-12-26
    //========================================================
-   ::raw::count node::get_children_count(const ::scoped_string & scopedstrName)
+   ::collection::count node::get_children_count(const ::scoped_string & scopedstrName)
    {
 
       if(scopedstrName.is_empty())
@@ -1858,7 +1858,7 @@ namespace xml
 
       }
 
-      ::raw::count count = 0;
+      ::collection::count count = 0;
 
       for(i32 i = 0; i < m_nodea.get_count(); i++)
       {
@@ -1877,7 +1877,7 @@ namespace xml
    }
 
 
-   ::raw::count node::get_children_count()
+   ::collection::count node::get_children_count()
    {
       
       return m_nodea.get_count();
@@ -1885,7 +1885,7 @@ namespace xml
    }
 
 
-   ::raw::count node::get_children_count(const ::scoped_string & scopedstrName, ::raw::index iDepth)
+   ::collection::count node::get_children_count(const ::scoped_string & scopedstrName, ::collection::index iDepth)
    {
 
       if (iDepth == 0)
@@ -1895,9 +1895,9 @@ namespace xml
 
       }
 
-      ::raw::count count = 0;
+      ::collection::count count = 0;
 
-      for(::raw::index i = 0; i < m_nodea.get_count(); i++)
+      for(::collection::index i = 0; i < m_nodea.get_count(); i++)
       {
 
          if(scopedstrName.is_empty())
@@ -1950,7 +1950,7 @@ namespace xml
    node * node::get_child(const char * lpszName)
    {
 
-      ::raw::index iStart = 0;
+      ::collection::index iStart = 0;
 
       return get_child(lpszName, iStart);
 
@@ -2035,10 +2035,10 @@ namespace xml
       if(pnode == nullptr)
          return nullptr;
 
-      for(::raw::index iLevel = 0; iLevel < iaPath.get_count(); iLevel++)
+      for(::collection::index iLevel = 0; iLevel < iaPath.get_count(); iLevel++)
       {
 
-         ::raw::index iIndex = iaPath[iLevel];
+         ::collection::index iIndex = iaPath[iLevel];
 
          if(iIndex < 0)
             return nullptr;
@@ -2092,9 +2092,9 @@ namespace xml
 
    }
 
-   node * node::get_child(const char * lpszName, ::raw::index & iStartPosition)
+   node * node::get_child(const char * lpszName, ::collection::index & iStartPosition)
    {
-      for(::raw::index i = iStartPosition; i < m_nodea.get_size(); i++ )
+      for(::collection::index i = iStartPosition; i < m_nodea.get_size(); i++ )
       {
          if(m_nodea[i]->m_strName.order(lpszName) == 0)
             return m_nodea[i]->get_xml_node();
@@ -2160,7 +2160,7 @@ namespace xml
    //========================================================
    node * node::rear_find( const char * lpszName, i32 iDepth)
    {
-      ::raw::index i = 0;
+      ::collection::index i = 0;
       for( ; i < m_nodea.get_size(); i++)
       {
          if(m_nodea[i]->m_strName == lpszName )
@@ -2188,7 +2188,7 @@ namespace xml
    }
 
 
-   node * node::rear_find(const ::scoped_string & scopedstrName, const property_set & set, ::raw::index iDepth)
+   node * node::rear_find(const ::scoped_string & scopedstrName, const property_set & set, ::collection::index iDepth)
    {
 
       for (auto & pnode : m_nodea)
@@ -2236,10 +2236,10 @@ namespace xml
    }
 
 
-   ::raw::index node::find_child_with_name_and_value(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrValue)
+   ::collection::index node::find_child_with_name_and_value(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrValue)
    {
       
-      for (::raw::index iNode = 0; iNode < m_nodea.count(); iNode++)
+      for (::collection::index iNode = 0; iNode < m_nodea.count(); iNode++)
       {
          
          auto pnode = m_nodea[iNode];
@@ -2494,7 +2494,7 @@ namespace xml
    //========================================================
    node * node::detach_child( node * node )
    {
-      ::raw::index find = m_nodea.find_first(node);
+      ::collection::index find = m_nodea.find_first(node);
       if(find >= 0)
       {
          m_nodea.erase_at(find);
@@ -2618,7 +2618,7 @@ namespace xml
       _CopyBranch( branch );
    }
 
-   node * node::get_child_at(::raw::index iIndex)
+   node * node::get_child_at(::collection::index iIndex)
    {
 
       if (iIndex < 0)
@@ -2630,7 +2630,7 @@ namespace xml
    }
 
 
-   node * node::get_child_at(const ::scoped_string & scopedstrName, ::raw::index iIndex, ::raw::index iDepth)
+   node * node::get_child_at(const ::scoped_string & scopedstrName, ::collection::index iIndex, ::collection::index iDepth)
    {
 
       if (iDepth == 0)
@@ -2666,7 +2666,7 @@ namespace xml
 
 
 
-   node* node::get_child_at_grow(const ::scoped_string & scopedstrName, ::raw::index iIndex)
+   node* node::get_child_at_grow(const ::scoped_string & scopedstrName, ::collection::index iIndex)
    {
 
       if (iIndex < 0)
@@ -2716,14 +2716,14 @@ namespace xml
    // 0 nothing
    // 1 children
    // 2 children and children of children
-   ::raw::count node::get_child_attr_value(string_array & stra, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, ::raw::index iDepth)
+   ::collection::count node::get_child_attr_value(string_array & stra, const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, ::collection::index iDepth)
    {
 
       if(iDepth == 0)
          return 0;
 
       string strValue;
-      ::raw::count count = 0;
+      ::collection::count count = 0;
       for(i32 i = 0; i < m_nodea.get_size(); i++)
       {
          if (!m_nodea[i])
@@ -2761,17 +2761,17 @@ namespace xml
    // 0 nothing
    // 1 children
    // 2 children and children of children
-   ::raw::count node::erase_child_with_attr(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, ::raw::index iIndex, ::raw::count iCount, ::raw::index iDepth)
+   ::collection::count node::erase_child_with_attr(const ::scoped_string & scopedstrName, const ::scoped_string & scopedstrAttrName, ::collection::index iIndex, ::collection::count iCount, ::collection::index iDepth)
    {
 
-      ::raw::count nRemoveCount = 0;
+      ::collection::count nRemoveCount = 0;
 
       if(iDepth == 0)
          return 0;
 
       string strValue;
-      ::raw::count count = 0;
-      for(::raw::index i = 0; i < m_nodea.get_size(); )
+      ::collection::count count = 0;
+      for(::collection::index i = 0; i < m_nodea.get_size(); )
       {
          if(m_nodea[i]->m_strName == scopedstrName)
          {
@@ -2951,13 +2951,13 @@ namespace xml
       else
       {
       
-         ::raw::count iColCount = straa.get_count();
+         ::collection::count iColCount = straa.get_count();
 
          set_attribute("column_count", iColCount);
 
-         ::raw::count iRowCount;
+         ::collection::count iRowCount;
 
-         for(::raw::index iCol = 0; iCol < iColCount; iCol++)
+         for(::collection::index iCol = 0; iCol < iColCount; iCol++)
          {
 
             ::pointer<::xml::node>pcol = add_child("ca");
@@ -2998,7 +2998,7 @@ namespace xml
 
       }
 
-      ::raw::count iColCount;
+      ::collection::count iColCount;
 
       iColCount = attribute("column_count").as_iptr();
 
@@ -3013,11 +3013,11 @@ namespace xml
 
       straa.set_size(iColCount);
 
-      ::raw::count iRowCount = 0;
+      ::collection::count iRowCount = 0;
 
       ::pointer<::xml::node>pheader = m_nodea.element_at(0);
 
-      for(::raw::index iCol = 0; iCol < iColCount; iCol++)
+      for(::collection::index iCol = 0; iCol < iColCount; iCol++)
       {
 
          auto pcol = pheader->m_nodea.element_at(iCol);
@@ -3026,7 +3026,7 @@ namespace xml
 
       }
 
-      for(::raw::index iRow = 0; iRow < iRowCount; iRow++)
+      for(::collection::index iRow = 0; iRow < iRowCount; iRow++)
       {
 
          for(i32 iCol = 0; iCol < straa[iCol].get_count(); iCol++)
@@ -3147,14 +3147,14 @@ namespace xml
    }*/
 
 
-   ::raw::index node::get_index() const
+   ::collection::index node::get_index() const
    {
 
       if(m_pnodeParent == nullptr)
          return -1;
 
 
-      for(::raw::index iIndex = 0; iIndex < m_pnodeParent->m_nodea.get_count(); iIndex++)
+      for(::collection::index iIndex = 0; iIndex < m_pnodeParent->m_nodea.get_count(); iIndex++)
       {
 
          if(m_pnodeParent->m_nodea.element_at(iIndex)->get_xml_node() == this)

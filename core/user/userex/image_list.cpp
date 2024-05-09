@@ -152,7 +152,7 @@ namespace userex
 
          bool bMissingRedraw = false;
 
-         for (::raw::index i = 0; iForkDib == m_iForkAddDib && i < m_plisting->get_count();)
+         for (::collection::index i = 0; iForkDib == m_iForkAddDib && i < m_plisting->get_count();)
          {
 
             synchronouslock.unlock();
@@ -425,7 +425,7 @@ namespace userex
    }
 
 
-   bool image_list_impact::_001GetItemText(string & str, ::raw::index iItem)
+   bool image_list_impact::_001GetItemText(string & str, ::collection::index iItem)
    {
 
       str = m_plisting->element_at(iItem).name();

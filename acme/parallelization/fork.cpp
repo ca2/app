@@ -41,7 +41,7 @@ CLASS_DECL_ACME::task * predicate_run(::particle * pparticle, bool bSync, const 
 }
 
 
-forking_count_task::forking_count_task(::particle * pparticle, ::pointer<object>pholdref, ::raw::index iOrder, ::raw::index iIndex, ::raw::count iScan, ::raw::count iCount, const ::function < void(::raw::index, ::raw::index, ::raw::index, ::raw::index) > & function, ::object * pobjectTaskEnd) :
+forking_count_task::forking_count_task(::particle * pparticle, ::pointer<object>pholdref, ::collection::index iOrder, ::collection::index iIndex, ::collection::count iScan, ::collection::count iCount, const ::function < void(::collection::index, ::collection::index, ::collection::index, ::collection::index) > & function, ::object * pobjectTaskEnd) :
    m_pholdref(pholdref),
    m_function(function),
    m_iOrder(iOrder),
@@ -58,7 +58,7 @@ forking_count_task::forking_count_task(::particle * pparticle, ::pointer<object>
 }
 
 
-forking_count_task::forking_count_task(::particle * pparticle, ::raw::index iOrder, ::raw::index iIndex, ::raw::count iScan, ::raw::count iCount, const ::function < void(::raw::index, ::raw::index, ::raw::index, ::raw::index) > & function, ::object * pobjectTaskEnd) :
+forking_count_task::forking_count_task(::particle * pparticle, ::collection::index iOrder, ::collection::index iIndex, ::collection::count iScan, ::collection::count iCount, const ::function < void(::collection::index, ::collection::index, ::collection::index, ::collection::index) > & function, ::object * pobjectTaskEnd) :
    m_function(function),
    m_iOrder(iOrder),
    m_iIndex(iIndex),

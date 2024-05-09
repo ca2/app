@@ -70,7 +70,7 @@ namespace simpledb
       /* sequence numbers */
       virtual long nextid(const ::string &seq_name);
       /* sequence numbers */
-      virtual ::raw::count num_rows();
+      virtual ::collection::count num_rows();
 
       virtual bool bof();
       virtual bool eof();
@@ -84,9 +84,9 @@ namespace simpledb
       virtual bool seek(index pos=0);
 
       virtual bool SetFieldValue(const ::string &f_name, const ::payload &value);
-      virtual bool SetFieldValue(::raw::index iFieldIndex, const ::payload &value);
+      virtual bool SetFieldValue(::collection::index iFieldIndex, const ::payload &value);
 
-      virtual ::payload & FieldValueAt(::raw::index iFieldIndex);
+      virtual ::payload & FieldValueAt(::collection::index iFieldIndex);
       virtual i32 GetFieldIndex(const ::string &f_name);
 
       database * get_database();

@@ -14,7 +14,7 @@ namespace account
    public:
 
 
-      ::raw::index                               m_iDelay;
+      ::collection::index                               m_iDelay;
       ::rectangle_i32                              m_rectangleFontopus;
 
       ::pointer<::account::credentials>m_pcredentials;

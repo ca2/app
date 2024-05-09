@@ -167,7 +167,7 @@ namespace draw2d
    //
    //            pgraphics->set_current_point(m_pointa.first());
    //
-   //            for(::raw::index i = 1; i < m_pointa.get_size(); i++)
+   //            for(::collection::index i = 1; i < m_pointa.get_size(); i++)
    //            {
    //
    //               pgraphics->line_to(m_pointa[i]);
@@ -258,7 +258,7 @@ namespace draw2d
    ////
    ////            pgraphics->set_current_point(m_pointa.first());
    ////
-   ////            for(::raw::index i = 1; i < pointa.get_size(); i++)
+   ////            for(::collection::index i = 1; i < pointa.get_size(); i++)
    ////            {
    ////
    ////               pgraphics->line_to(m_pointa[i]);

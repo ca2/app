@@ -435,7 +435,7 @@ namespace userex
       //m_pmenu->create_color(::user::color_button_background, argb(255, 255, 255, 255));
       //m_pmenu->create_color(::user::color_button_text, argb(255, 80, 80, 80));
 
-      ::raw::index i = 0;
+      ::collection::index i = 0;
 
       auto pitemCurrent = current_item();
 

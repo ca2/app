@@ -21,12 +21,12 @@ namespace colorertake5
    void ParsedLineWriter::tokenWrite(stream & markupWriter, stream & textWriter, string_to_string * docLinkHash, const char  *line, LineRegion *lineRegions)
    {
       __UNREFERENCED_PARAMETER(docLinkHash);
-      ::raw::index pos = 0;
+      ::collection::index pos = 0;
       for(LineRegion *l1 = lineRegions; l1; l1 = l1->next)
       {
          if (l1->special || l1->region == nullptr) continue;
          if (l1->start == l1->end) continue;
-         ::raw::index end = l1->end;
+         ::collection::index end = l1->end;
          if (end == -1) end = strlen(line);
          if (l1->start > pos)
          {
@@ -75,7 +75,7 @@ namespace colorertake5
    {
       __UNREFERENCED_PARAMETER(docLinkHash);
 
-      ::raw::index pos = 0;
+      ::collection::index pos = 0;
 
       for(LineRegion *l1 = lineRegions; l1; l1 = l1->next)
       {
@@ -86,7 +86,7 @@ namespace colorertake5
          if(l1->start == l1->end)
             continue;
 
-         ::raw::index end = l1->end;
+         ::collection::index end = l1->end;
 
          if (end == -1)
             end = strlen(line);
@@ -134,7 +134,7 @@ namespace colorertake5
    void ParsedLineWriter::htmlRGBWrite(stream & markupWriter, stream & textWriter, string_to_string *docLinkHash, const ::string &line, LineRegion *lineRegions)
    {
 
-      ::raw::index pos = 0;
+      ::collection::index pos = 0;
 
       for(LineRegion *l1 = lineRegions; l1; l1 = l1->next)
       {
@@ -145,7 +145,7 @@ namespace colorertake5
          if (l1->start == l1->end)
             continue;
 
-         ::raw::index end = l1->end;
+         ::collection::index end = l1->end;
 
          if (end == -1)
             end = i32(strlen(line));

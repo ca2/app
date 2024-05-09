@@ -27,7 +27,7 @@ namespace user
 
       void align(line * pline, const ::rectangle_f64 & rectangle);
 
-      ::raw::count get_vars(strsize_array & ia1, strsize_array & ia2, string str)
+      ::collection::count get_vars(strsize_array & ia1, strsize_array & ia2, string str)
       {
 
          strsize i1 = 0;
@@ -242,9 +242,9 @@ namespace user
 
          update_span_cache(m_spana);
 
-         ::raw::index iSpanBeg = find_span(m_spana, iSelBeg);
+         ::collection::index iSpanBeg = find_span(m_spana, iSelBeg);
 
-         ::raw::index iSpanEnd = find_span(m_spana, iSelEnd - 1);
+         ::collection::index iSpanEnd = find_span(m_spana, iSelEnd - 1);
 
          if (iSpanBeg >= 0 && iSpanEnd >= iSpanBeg)
          {
@@ -302,9 +302,9 @@ namespace user
 
             }
 
-            ::raw::index iEndBeg = pspanEnd->m_iPosBeg;
+            ::collection::index iEndBeg = pspanEnd->m_iPosBeg;
 
-            ::raw::index iEndEnd = pspanEnd->m_iPosEnd;
+            ::collection::index iEndEnd = pspanEnd->m_iPosEnd;
 
             if (iSelBeg > pspanBeg->m_iPosBeg)
             {
@@ -371,15 +371,15 @@ namespace user
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         ::raw::index iSelBeg = i1;
+         ::collection::index iSelBeg = i1;
 
-         ::raw::index iSelEnd = i2;
+         ::collection::index iSelEnd = i2;
 
          _001Delete(iSelBeg, iSelEnd);
 
-         ::raw::index iSelChar = iSelBeg;
+         ::collection::index iSelChar = iSelBeg;
 
-         ::raw::index iSpan = find_span(m_spana, iSelChar);
+         ::collection::index iSpan = find_span(m_spana, iSelChar);
 
          ::pointer<format>pformat;
 
@@ -412,7 +412,7 @@ namespace user
 
          string str;
 
-         for (::raw::index iLine = 0; iLine < straLines.get_count(); iLine++)
+         for (::collection::index iLine = 0; iLine < straLines.get_count(); iLine++)
          {
 
             string strLine = straLines[iLine];
@@ -545,13 +545,13 @@ namespace user
 
          string strText = get_full_text();
 
-         ::raw::index iSelBeg = i1;
+         ::collection::index iSelBeg = i1;
 
-         ::raw::index iSelEnd = i2 - 1;
+         ::collection::index iSelEnd = i2 - 1;
 
-         ::raw::index iBeg = find_span(m_spana, iSelBeg);
+         ::collection::index iBeg = find_span(m_spana, iSelBeg);
 
-         ::raw::index iEnd = find_span(m_spana, iSelEnd);
+         ::collection::index iEnd = find_span(m_spana, iSelEnd);
 
          if (iSelEnd - iSelBeg + 1 > 0)
          {
@@ -563,9 +563,9 @@ namespace user
 
                auto pspanEnd = m_spana[iEnd];
 
-               ::raw::index iEndBeg = pspanEnd->m_iPosBeg;
+               ::collection::index iEndBeg = pspanEnd->m_iPosBeg;
 
-               ::raw::index iEndEnd = pspanEnd->m_iPosEnd;
+               ::collection::index iEndEnd = pspanEnd->m_iPosEnd;
 
                string str;
 
@@ -637,9 +637,9 @@ namespace user
                else
                {
 
-                  ::raw::index iInnerBeg;
+                  ::collection::index iInnerBeg;
 
-                  ::raw::index iInnerEnd;
+                  ::collection::index iInnerEnd;
 
                   if (iSelBeg > pspanBeg->m_iPosBeg)
                   {
@@ -699,7 +699,7 @@ namespace user
 
                   }
 
-                  for (::raw::index i = iInnerBeg; i <= iInnerEnd; i++)
+                  for (::collection::index i = iInnerBeg; i <= iInnerEnd; i++)
                   {
 
                      if (m_spana[i].is_set())
@@ -734,10 +734,10 @@ namespace user
       // unicode_next(str.c_str()) - str.c_str(); // at least one char is the longest pline
 
       // find phrase with greatest word count that fits the x, right constraints
-      ::raw::count longest_pline(string & strSlice, double & d, string_array & straWords, double * pdaPosition, double dPositionLeft, int cx)
+      ::collection::count longest_pline(string & strSlice, double & d, string_array & straWords, double * pdaPosition, double dPositionLeft, int cx)
       {
 
-         ::raw::count c = straWords.get_count();
+         ::collection::count c = straWords.get_count();
 
          for (; c > 0; c--)
          {
@@ -906,14 +906,14 @@ namespace user
 
          }
 
-         //for (::raw::index i = 0; i < m_spana.get_count(); i++)
+         //for (::collection::index i = 0; i < m_spana.get_count(); i++)
          //{
 
          //   m_spana[i]->m_pformat = get_format(m_spana, m_spana[i]->m_pformat);
 
          //}
 
-         for (::raw::index i = 0; i < m_spana.get_count(); )
+         for (::collection::index i = 0; i < m_spana.get_count(); )
          {
 
             auto pformat = m_spana[i]->m_pformat;

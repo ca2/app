@@ -254,8 +254,8 @@
 //#ifdef MEMDLEAK
 //
 //CLASS_DECL_AURA string get_mem_info_report1();
-//CLASS_DECL_AURA ::raw::count get_mem_info(i32 ** ppiUse, const ::string &** ppszFile, const ::string &** pszCallStack, u32 ** ppuiLine, size_t ** ppsize);
-//CLASS_DECL_AURA ::raw::count get_mem_info2(i32 ** ppiUse, const ::string &** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, i32 ** ppiLine, i64 ** ppiSize);
+//CLASS_DECL_AURA ::collection::count get_mem_info(i32 ** ppiUse, const ::string &** ppszFile, const ::string &** pszCallStack, u32 ** ppuiLine, size_t ** ppsize);
+//CLASS_DECL_AURA ::collection::count get_mem_info2(i32 ** ppiUse, const ::string &** ppszFile, DWORD64 ** ppuiStack[64], i64 ** ppiStack, i32 ** ppiLine, i64 ** ppiSize);
 //
 //
 //

@@ -49,10 +49,10 @@ namespace write_text
 
       virtual void create_simple_multiline_layout(::write_text::text_out_array& textouta, const string& str, const ::rectangle_i32& rectangle, ::write_text::font* pfont, const ::e_align& ealign, enum_text_wrap etextwrap);
       virtual void split_text(string_array & stra, double w, enum_text_wrap etextwrap);
-      virtual ::raw::count _split_text(string_array & stra, ::raw::index i, double w, enum_text_wrap etextwrap);
-      virtual ::raw::count _split_text_word(string_array & stra, ::raw::index i, double w);
-      virtual ::raw::count _split_text_word_then_character(string_array & stra, ::raw::index i, double w);
-      virtual ::raw::count _split_text_character(string_array & stra, ::raw::index i, double w);
+      virtual ::collection::count _split_text(string_array & stra, ::collection::index i, double w, enum_text_wrap etextwrap);
+      virtual ::collection::count _split_text_word(string_array & stra, ::collection::index i, double w);
+      virtual ::collection::count _split_text_word_then_character(string_array & stra, ::collection::index i, double w);
+      virtual ::collection::count _split_text_character(string_array & stra, ::collection::index i, double w);
 
 
 

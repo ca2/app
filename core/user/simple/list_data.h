@@ -19,13 +19,13 @@ public:
    ~simple_list_data() override;
 
 
-   bool erase_item(::raw::index iItem);
+   bool erase_item(::collection::index iItem);
    void get_data(string_array & stra);
-   void get_column_data(string_array & stra, ::raw::index iColumn);
+   void get_column_data(string_array & stra, ::collection::index iColumn);
    void set_data(::user::mesh * pmesh,string_array & stra);
-   void set_column_data(::user::mesh * pmesh,string_array & stra, ::raw::index iColumn);
+   void set_column_data(::user::mesh * pmesh,string_array & stra, ::collection::index iColumn);
    void enable(bool bEnable);
-   void set_item_text(::user::mesh * pmesh, ::raw::index iItem, ::raw::index iSubItem, const ::string & pcsz);
+   void set_item_text(::user::mesh * pmesh, ::collection::index iItem, ::collection::index iSubItem, const ::string & pcsz);
 
 
 
@@ -34,9 +34,9 @@ public:
    void _001OnDeleteRange(::user::range & range) override;
 
 
-   virtual ::raw::count _001GetItemCount() override;
+   virtual ::collection::count _001GetItemCount() override;
 
-   void set_item_text(::raw::index iItem, ::raw::index iSubItem, const ::string & pcsz);
+   void set_item_text(::collection::index iItem, ::collection::index iSubItem, const ::string & pcsz);
 
 
 };

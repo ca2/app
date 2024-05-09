@@ -76,7 +76,7 @@ void referencing_debugging::dump_pending_releases()
 
    }
 
-   for (::raw::index i = 0; i < c; i++)
+   for (::collection::index i = 0; i < c; i++)
    {
 
       auto p = m_item2a.element_at(i);

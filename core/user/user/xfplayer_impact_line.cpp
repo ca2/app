@@ -277,9 +277,9 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
          }
          if (GetSelection().m_iCharStartSource >= 0)
          {
-            ::raw::index iStart;
-            ::raw::index iLineStart;
-            ::raw::index iLineEnd;
+            ::collection::index iStart;
+            ::collection::index iLineStart;
+            ::collection::index iLineEnd;
             strsize iCharStart;
             strsize iCharEnd;
             GetSelection().GetNormalSelection(iLineStart, iCharStart, iLineEnd, iCharEnd);
@@ -295,7 +295,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
             {
                iStart = iCharStart;
             }
-            ::raw::index iEnd;
+            ::collection::index iEnd;
             if (iLineEnd < m_iIndex)
             {
                iEnd = -1;
@@ -457,7 +457,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 }
 
 
-bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rectangle_i32_array & rectaModified, ::raw::count * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen)
+bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rectangle_i32_array & rectaModified, ::collection::count * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen)
 {
 
    single_lock synchronouslock(m_pContainer->synchronization());
@@ -1720,7 +1720,7 @@ bool xfplayer_impact_line::GetCharLink(string & str, strsize iChar)
 
    single_lock synchronouslock(m_pContainer->synchronization());
 
-   ::raw::index iLink = GetCharLink(iChar);
+   ::collection::index iLink = GetCharLink(iChar);
    if (iLink < 0)
       return false;
    str = m_straLink[iLink];
@@ -1741,12 +1741,12 @@ bool xfplayer_impact_line::GetCharLink(string & str, strsize iChar)
    return etest;
 }
 
-::raw::index xfplayer_impact_line::GetCharLink(strsize iChar)
+::collection::index xfplayer_impact_line::GetCharLink(strsize iChar)
 {
 
    single_lock synchronouslock(m_pContainer->synchronization());
 
-   for (::raw::index i = 0; i < m_iaLinkStart.get_size(); i++)
+   for (::collection::index i = 0; i < m_iaLinkStart.get_size(); i++)
    {
       if (iChar >= m_iaLinkStart[i] &&
             iChar <= m_iaLinkEnd[i])
@@ -2119,7 +2119,7 @@ void xfplayer_impact_line::update_hover(point_i32 &pointCursor)
 
    single_lock synchronouslock(m_pContainer->synchronization());
 
-   ::raw::index iLine = m_iIndex;
+   ::collection::index iLine = m_iIndex;
 
    strsize iChar;
 
@@ -2182,7 +2182,7 @@ bool xfplayer_impact_line::is_hover()
 }
 
 
-::raw::index xfplayer_impact_line::GetLinkIndex(::raw::index iLine, strsize iChar)
+::collection::index xfplayer_impact_line::GetLinkIndex(::collection::index iLine, strsize iChar)
 {
 
    single_lock synchronouslock(m_pContainer->synchronization());

@@ -40,8 +40,8 @@ namespace message
       channel *                     m_pchannel;
       oswindow                      m_oswindow;
       enumeration < enum_flag >     m_eflagMessage;
-      ::raw::index                         m_iRouteIndex;
-      ::raw::index                         m_iParam;
+      ::collection::index                         m_iRouteIndex;
+      ::collection::index                         m_iParam;
       bool                          m_bRet;
       unsigned int                  m_uiMessageFlags;
       ::e_status                     m_estatus;

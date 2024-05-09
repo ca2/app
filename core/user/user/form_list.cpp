@@ -385,7 +385,7 @@ namespace user
    }
 
 
-   interaction * form_list::_001GetControl(::raw::index iItem, ::raw::index iSubItem)
+   interaction * form_list::_001GetControl(::collection::index iItem, ::collection::index iSubItem)
    {
 
       //synchronous_lock synchronouslock(this->synchronization());
@@ -462,7 +462,7 @@ namespace user
    }
 
 
-   void form_list::_001PlaceControl(::user::interaction * pinteraction, ::raw::index iEditItem, bool bClick, bool bOnlySizeAndPosition)
+   void form_list::_001PlaceControl(::user::interaction * pinteraction, ::collection::index iEditItem, bool bClick, bool bOnlySizeAndPosition)
    {
 
       //bool bSameControl = false;
@@ -524,7 +524,7 @@ namespace user
 
       //pitem->m_item.m_iSubItem = ;
 
-      psubitem->m_pcolumn = m_pcolumna->get_visible((::raw::index)pinteraction->m_iColumn);
+      psubitem->m_pcolumn = m_pcolumna->get_visible((::collection::index)pinteraction->m_iColumn);
 
       if (!bOnlySizeAndPosition)
       {
@@ -659,9 +659,9 @@ namespace user
          if (pinteraction->has_function(::user::e_control_function_duplicate_on_check_box))
          {
 
-            ::raw::count iItemCount = _001GetItemCount();
+            ::collection::count iItemCount = _001GetItemCount();
 
-            for (::raw::index iItem = 0; iItem < iItemCount; iItem++)
+            for (::collection::index iItem = 0; iItem < iItemCount; iItem++)
             {
 
                if (_001GetSubItemCheck(iItem, pinteraction->m_iSubItemDuplicateCheckBox) == ::e_check_checked)
@@ -1351,7 +1351,7 @@ namespace user
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         for (::raw::index i = 0; i < m_pcolumna->get_size(); i++)
+         for (::collection::index i = 0; i < m_pcolumna->get_size(); i++)
          {
 
             auto pdescriptor = get_child_by_id((*m_pcolumna)[i]->m_atom);
@@ -1417,7 +1417,7 @@ namespace user
    //                  && pinteraction->m_econtroltype == e_control_type_combo_box)
    //            {
    //
-   //               _001PlaceControl(pinteraction, (::raw::index) iItem, true);
+   //               _001PlaceControl(pinteraction, (::collection::index) iItem, true);
    //
    //               //pinteraction->m_puserinteraction->message_handler(pmouse);
    //
@@ -1618,7 +1618,7 @@ namespace user
 
       //::rectangle_i32 rectangleControl;
 
-      //auto iItem = display_to_strict((::raw::index)m_iDisplayItemHover);
+      //auto iItem = display_to_strict((::collection::index)m_iDisplayItemHover);
 
       //auto psubitem = get_subitem(iItem, pinteraction->m_iSubItem);
 
@@ -1634,7 +1634,7 @@ namespace user
       ////   for(psubitem->m_pitem->m_iGroup = 0; psubitem->m_pitem->m_iGroup < m_nGroupCount; psubitem->m_pitem->m_iGroup++)
       ////   {
 
-      ////      psubitem->m_pitem->m_iGroupCount = _001GetGroupItemCount((::raw::index)psubitem->m_pitem->m_iGroup);
+      ////      psubitem->m_pitem->m_iGroupCount = _001GetGroupItemCount((::collection::index)psubitem->m_pitem->m_iGroup);
 
       ////      if(psubitem->m_pitem->item_index() >= psubitem->m_pitem->m_iGroupTopDisplayIndex && psubitem->m_pitem->item_index() < (psubitem->m_pitem->m_iGroupTopDisplayIndex + psubitem->m_pitem->m_iGroupCount))
       ////      {
@@ -1678,18 +1678,18 @@ namespace user
    }
 
 
-   bool form_list::_001PreviousEditableControl(::raw::index & iItem, ::raw::index & iSubItem)
+   bool form_list::_001PreviousEditableControl(::collection::index & iItem, ::collection::index & iSubItem)
    {
 
-      ::raw::index iPreviousItem = iItem;
+      ::collection::index iPreviousItem = iItem;
 
-      ::raw::count iColumnCount = _001GetColumnCount();
+      ::collection::count iColumnCount = _001GetColumnCount();
 
-      ::raw::index iSubItemColumn = _001MapSubItemToColumn(iSubItem);
+      ::collection::index iSubItemColumn = _001MapSubItemToColumn(iSubItem);
 
-      ::raw::index iColumnPrevious = -1;
+      ::collection::index iColumnPrevious = -1;
 
-      for (::raw::index iColumn = iSubItemColumn - 1; iColumn >= 0; iColumn--)
+      for (::collection::index iColumn = iSubItemColumn - 1; iColumn >= 0; iColumn--)
       {
 
          auto pcolumn = m_pcolumna->get_visible(iColumn);
@@ -1714,7 +1714,7 @@ namespace user
 
          iPreviousItem--;
 
-         for (::raw::index iColumn = iColumnCount - 1; iColumn >= iSubItemColumn; iColumn--)
+         for (::collection::index iColumn = iColumnCount - 1; iColumn >= iSubItemColumn; iColumn--)
          {
 
             auto pcolumn = m_pcolumna->get_visible(iColumn);
@@ -1764,18 +1764,18 @@ namespace user
    }
 
 
-   bool form_list::_001NextEditableControl(::raw::index & iItem, ::raw::index & iSubItem)
+   bool form_list::_001NextEditableControl(::collection::index & iItem, ::collection::index & iSubItem)
    {
 
-      ::raw::index iNextItem = iItem;
+      ::collection::index iNextItem = iItem;
 
-      ::raw::index iColumnCount = _001GetColumnCount();
+      ::collection::index iColumnCount = _001GetColumnCount();
 
-      ::raw::index iSubItemColumn = _001MapSubItemToColumn(iSubItem);
+      ::collection::index iSubItemColumn = _001MapSubItemToColumn(iSubItem);
 
-      ::raw::index iColumnNext = -1;
+      ::collection::index iColumnNext = -1;
 
-      for (::raw::index iColumn = iSubItemColumn + 1; iColumn < iColumnCount; iColumn++)
+      for (::collection::index iColumn = iSubItemColumn + 1; iColumn < iColumnCount; iColumn++)
       {
 
          auto pcolumn = m_pcolumna->get_visible(iColumn);
@@ -1798,7 +1798,7 @@ namespace user
 
          iNextItem++;
 
-         for (::raw::index iColumn = 0; iColumn <= iSubItemColumn; iColumn++)
+         for (::collection::index iColumn = 0; iColumn <= iSubItemColumn; iColumn++)
          {
 
             auto pcolumn = m_pcolumna->get_visible(iColumn);
@@ -1847,10 +1847,10 @@ namespace user
 
    }
 
-   bool form_list::_001UpperEditableControl(::raw::index & iItem, ::raw::index & iSubItem)
+   bool form_list::_001UpperEditableControl(::collection::index & iItem, ::collection::index & iSubItem)
    {
 
-      ::raw::index iUpperItem = iItem - 1;
+      ::collection::index iUpperItem = iItem - 1;
 
       for (; iUpperItem >= 0; iUpperItem--)
       {
@@ -1894,10 +1894,10 @@ namespace user
    }
 
 
-   bool form_list::_001LowerEditableControl(::raw::index & iItem, ::raw::index & iSubItem)
+   bool form_list::_001LowerEditableControl(::collection::index & iItem, ::collection::index & iSubItem)
    {
 
-      ::raw::index iLowerItem = iItem + 1;
+      ::collection::index iLowerItem = iItem + 1;
 
       for (; iLowerItem < _001GetItemCount() - 1; iLowerItem++)
       {
@@ -1998,9 +1998,9 @@ namespace user
       else if (ptopic->m_atom == ::id_tab_key)
       {
 
-         ::raw::index iItem = 0;
+         ::collection::index iItem = 0;
 
-         ::raw::index iSubItem = 0;
+         ::collection::index iSubItem = 0;
 
          if (m_pcontrolEdit != nullptr)
          {
@@ -2055,9 +2055,9 @@ namespace user
             || pkey->m_ekey == e_key_left || pkey->m_ekey == e_key_right)
          {
 
-            ::raw::index iItem = 0;
+            ::collection::index iItem = 0;
 
-            ::raw::index iSubItem = 0;
+            ::collection::index iSubItem = 0;
 
             if (m_pcontrolEdit != nullptr)
             {
@@ -2190,7 +2190,7 @@ namespace user
    }
 
 
-   bool form_list::_001HitTest_(const ::point_i32 & point, ::raw::index & iItem, ::raw::index & iSubItem)
+   bool form_list::_001HitTest_(const ::point_i32 & point, ::collection::index & iItem, ::collection::index & iSubItem)
    {
 
       return ::user::list::_001HitTest_(point, iItem, iSubItem);
@@ -2198,7 +2198,7 @@ namespace user
    }
 
 
-   ::user::interaction * form_list::get_control(::user::list_column * pcolumn, ::raw::index iItem)
+   ::user::interaction * form_list::get_control(::user::list_column * pcolumn, ::collection::index iItem)
    {
 
       if (!pcolumn->m_puserinteractionTemplate)
@@ -2212,7 +2212,7 @@ namespace user
 
       __defer_construct_new(puserinteractiona);
 
-      ::raw::index iIndex = iItem - m_iTopDisplayIndex;
+      ::collection::index iIndex = iItem - m_iTopDisplayIndex;
 
       auto & pinteraction = puserinteractiona->interactiona().element_at_grow(iIndex);
 
@@ -2514,7 +2514,7 @@ namespace user
    }
 
 
-   ::enum_check form_list::_001GetSubItemCheck(::raw::index iItem, ::raw::index iSubItem)
+   ::enum_check form_list::_001GetSubItemCheck(::collection::index iItem, ::collection::index iSubItem)
    {
 
       ::pointer<::user::list_column>pcolumn = m_pcolumna->get_by_subitem(iSubItem);
@@ -2564,7 +2564,7 @@ namespace user
    }
 
 
-   bool form_list::_001SetSubItemCheck(::raw::index iItem, ::raw::index iSubItem, ::enum_check echeck)
+   bool form_list::_001SetSubItemCheck(::collection::index iItem, ::collection::index iSubItem, ::enum_check echeck)
    {
 
       ::pointer<::user::list_column>pcolumn = m_pcolumna->get_by_subitem(iSubItem);
@@ -2608,7 +2608,7 @@ namespace user
    }
 
 
-   bool form_list::_001IsSubItemEnabled(::raw::index iItem, ::raw::index iSubItem)
+   bool form_list::_001IsSubItemEnabled(::collection::index iItem, ::collection::index iSubItem)
    {
 
       ::pointer<::user::list_column>pcolumn = m_pcolumna->get_by_subitem(iSubItem);

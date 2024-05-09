@@ -6,7 +6,7 @@
 
 
 // take in accptr that _001RemoveIndexes machine
-// the ::raw::index raw_array by sorting it and returning
+// the ::collection::index raw_array by sorting it and returning
 // only the indexes that could be erased
 // without indexes duplicates
 template < primitive_array ARRAY, primitive_array ARRAY_INDEXES >
@@ -18,7 +18,7 @@ void _001RemoveIndexes(ARRAY & a, ARRAY_INDEXES & ia)
 
    ::sort::QuickSortAsc(ia);
 
-   ::raw::index i = ia.get_upper_bound();
+   ::collection::index i = ia.get_upper_bound();
 
    // filter out of upper bound indexes
    while (i >= 0 && ia[i] >= a.get_size())

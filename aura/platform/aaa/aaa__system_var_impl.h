@@ -58,7 +58,7 @@ inline payload::payload(std::nullptr_t)
 }
 
 
-inline ::raw::count payload::get_count() const
+inline ::collection::count payload::get_count() const
 {
    switch(m_etype)
    {
@@ -83,7 +83,7 @@ inline ::raw::count payload::get_count() const
 }
 
 
-inline ::raw::count payload::array_get_count() const
+inline ::collection::count payload::array_get_count() const
 {
    if(m_etype == e_type_new
          || m_etype == e_type_null
@@ -100,7 +100,7 @@ inline ::raw::count payload::array_get_count() const
 
 
 
-inline ::raw::index payload::array_get_upper_bound() const
+inline ::collection::index payload::array_get_upper_bound() const
 {
    if(m_etype == e_type_new
          || m_etype == e_type_null

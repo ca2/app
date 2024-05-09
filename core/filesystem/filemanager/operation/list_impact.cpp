@@ -41,7 +41,7 @@ namespace filemanager
    }
 
 
-   ::raw::count operation_list_impact::_001GetItemCount()
+   ::collection::count operation_list_impact::_001GetItemCount()
    {
       if(get_document() == nullptr)
          return 0;
@@ -153,7 +153,7 @@ namespace filemanager
 
          m_puserlistcache->_001Invalidate(this);
 
-         ::raw::count iItem = 0;
+         ::collection::count iItem = 0;
 
          for(i32 i = 0; i < get_document()->m_poperationthread->m_iOperation; i++)
          {

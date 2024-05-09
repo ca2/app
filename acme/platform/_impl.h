@@ -41,7 +41,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 
 //template<class TYPE>
-//inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::raw::count nCount)
+//inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::collection::count nCount)
 //{
 //
 //   ENSURE((nCount == 0) || (pElements != nullptr));
@@ -417,7 +417,7 @@ const char * memory_counter_id(T * pthis)
 ////::stream & read_container_as_parent(::stream & stream, pointer_array < TYPE > & a)
 ////{
 ////
-////   ::raw::count c = 0;
+////   ::collection::count c = 0;
 ////
 ////   stream >> c;
 ////
@@ -457,7 +457,7 @@ const char * memory_counter_id(T * pthis)
 ////::stream & write_container_as_parent(::stream & stream, const pointer_array < TYPE > & a)
 ////{
 ////
-////   ::raw::count c = a.get_count();
+////   ::collection::count c = a.get_count();
 ////
 ////   stream << c;
 ////
@@ -520,7 +520,7 @@ inline void __call__delete(T * p)
 
 
 template < typename T >
-inline T * __new_array(::raw::count c)
+inline T * __new_array(::collection::count c)
 {
 
    auto p = ::platform::allocator::__new_array < T >(c);

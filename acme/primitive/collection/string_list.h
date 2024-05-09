@@ -20,13 +20,13 @@ public:
 
    void explode(const ::scoped_string & scopedstrSeparator, const ::scoped_string & scopedstr);
 
-   void implode(string & str, const ::scoped_string & scopedstrSeparator = nullptr, ::raw::index iStart = 0, ::raw::count iCount = -1) const;
+   void implode(string & str, const ::scoped_string & scopedstrSeparator = nullptr, ::collection::index iStart = 0, ::collection::count iCount = -1) const;
 
-   string implode(const ::scoped_string & scopedstrSeparator = nullptr, ::raw::index iStart = 0, ::raw::count iCount = -1) const;
+   string implode(const ::scoped_string & scopedstrSeparator = nullptr, ::collection::index iStart = 0, ::collection::count iCount = -1) const;
 
-   void reverse_implode(string & str, const ::scoped_string & scopedstrSeparator = nullptr, ::raw::index iStart = 0, ::raw::count iCount = -1) const;
+   void reverse_implode(string & str, const ::scoped_string & scopedstrSeparator = nullptr, ::collection::index iStart = 0, ::collection::count iCount = -1) const;
 
-   string reverse_implode(const ::scoped_string & scopedstrSeparator = nullptr, ::raw::index iStart = 0, ::raw::count iCount = -1) const;
+   string reverse_implode(const ::scoped_string & scopedstrSeparator = nullptr, ::collection::index iStart = 0, ::collection::count iCount = -1) const;
 
    void add_tail_tokens(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrSeparator, bool bAddEmpty);
 

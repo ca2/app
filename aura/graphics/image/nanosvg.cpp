@@ -50,12 +50,12 @@ bool imaging::nanosvg(::image * pimage, void * pNSVGimage, int iRedLower)
 
       u8 * pimage32 = (u8 *)pimage->image32();
 
-      for (::raw::index iLine = 0; iLine < h; iLine++)
+      for (::collection::index iLine = 0; iLine < h; iLine++)
       {
 
          u8 * pline = &pimage32[iLine * iScan];
 
-         for (::raw::index x = 0; x < w; x++)
+         for (::collection::index x = 0; x < w; x++)
          {
 
             ::u8 b = pline[0];

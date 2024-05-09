@@ -99,8 +99,8 @@ public:
 
    static string   replace_with(const ::string & pszNew, const ::string & pszOld, const ::string & psz, strsize iStart = 0);
    static string   case_insensitive_replace_with(const ::string & pszNew, const ::string & pszOld, const ::string & psz, strsize iStart = 0);
-   static ::raw::count   replace_with_ci_count(const ::string & pszNew, const ::string & pszOld, const ::string & psz, strsize iStart = 0);
-   static ::raw::count   utf8_replace_with(string & str, const ::string & pszNew, const ::string & pszOld, strsize iStart = 0);
+   static ::collection::count   replace_with_ci_count(const ::string & pszNew, const ::string & pszOld, const ::string & psz, strsize iStart = 0);
+   static ::collection::count   utf8_replace_with(string & str, const ::string & pszNew, const ::string & pszOld, strsize iStart = 0);
    static string   utf8_replace_with(const ::string & pszNew, const ::string & pszOld, const ::string & psz, strsize iStart = 0);
 
    static inline  string find_replace(const ::string & pszOld, const ::string & pszNew, const ::string & psz, strsize iStart = 0)
@@ -111,11 +111,11 @@ public:
    {
       return case_insensitive_replace_with(pszNew, pszOld, psz, iStart);
    }
-   static inline  ::raw::count case_insensitive_find_replace_count(const ::string & pszOld, const ::string & pszNew, const ::string & psz, strsize iStart = 0)
+   static inline  ::collection::count case_insensitive_find_replace_count(const ::string & pszOld, const ::string & pszNew, const ::string & psz, strsize iStart = 0)
    {
       return replace_with_ci_count(pszNew, pszOld, psz, iStart);
    }
-   static inline  ::raw::count utf8_find_replace(string & str, const ::string & pszOld, const ::string & pszNew, strsize iStart = 0)
+   static inline  ::collection::count utf8_find_replace(string & str, const ::string & pszOld, const ::string & pszNew, strsize iStart = 0)
    {
       return utf8_replace_with(str, pszNew, pszOld, iStart);
    }
@@ -126,7 +126,7 @@ public:
 
    static string   random_replace(::particle * pparticle, const string_array & straNew, const string_array & straOld, const ::string & psz);
 
-   static strsize   find_first(const string_array & straSearch, ::raw::index & iFound, const ::string & str, ::raw::index iStart = 0);
+   static strsize   find_first(const string_array & straSearch, ::collection::index & iFound, const ::string & str, ::collection::index iStart = 0);
 
    static strsize   case_insensitive_find(const ::string & strFind, const ::string & str, strsize iStart = 0);
 
@@ -210,7 +210,7 @@ public:
 
    static string line(string & str, bool bWithNewLine = false);
 
-   static string pad(const ::string & psz, ::raw::count iLen, const ::string & pszPattern, enum_pad epad);
+   static string pad(const ::string & psz, ::collection::count iLen, const ::string & pszPattern, enum_pad epad);
 
    static inline  strsize length(const ::ansi_character * pansichar) { return ansi_length(pansichar); }
    static inline  strsize length(const ::wd16_character * pwd16char) { return wd16_length(pwd16char); }

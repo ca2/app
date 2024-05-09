@@ -1304,7 +1304,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 //
 //
 ////template < typename RECTANGLE_BASE_TYPE, typename POINT_BASE_TYPE >
-////void get_bounding_box(RECTANGLE_BASE_TYPE & rect, const POINT_BASE_TYPE * lppoint, ::raw::count count)
+////void get_bounding_box(RECTANGLE_BASE_TYPE & rect, const POINT_BASE_TYPE * lppoint, ::collection::count count)
 ////{
 ////
 ////   if (count <= 0)
@@ -1381,7 +1381,7 @@ DECLARE_ENUMERATION(e_align, enum_align);
 ////
 ////
 ////template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
-////void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > ::get_bounding_box(const POINT_BASE_TYPE * ppoint, ::raw::count count)
+////void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > ::get_bounding_box(const POINT_BASE_TYPE * ppoint, ::collection::count count)
 ////{
 ////
 ////   ::get_bounding_box(*this, ppoint, count);

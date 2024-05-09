@@ -294,13 +294,13 @@ bool imaging::draw2d_gif_draw_frame(image * pimageCanvas, image_frame_array * pf
 
    int w = pframe->m_pimage->scan_size() / sizeof(::color32_t);
 
-   for (::raw::index y = 0; y < pframe->m_rectangle.height(); y++)
+   for (::collection::index y = 0; y < pframe->m_rectangle.height(); y++)
    {
 
-      for (::raw::index x = 0; x < pframe->m_rectangle.width(); x++)
+      for (::collection::index x = 0; x < pframe->m_rectangle.width(); x++)
       {
 
-         ::raw::index iIndex = pixel(x, y);
+         ::collection::index iIndex = pixel(x, y);
 
          if (iIndex >= colora.get_count())
          {

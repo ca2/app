@@ -101,8 +101,8 @@ namespace android
 
 
 
-      //         virtual ::raw::index GetCSIDLSort(::raw::index iCsidl);
-      //         virtual ::raw::index GetCSIDL(per_fork * pfork, LPITEMIDLIST lpiidl);
+      //         virtual ::collection::index GetCSIDLSort(::collection::index iCsidl);
+      //         virtual ::collection::index GetCSIDL(per_fork * pfork, LPITEMIDLIST lpiidl);
       //         virtual void GetAscendants(per_fork * pfork, LPITEMIDLIST lpiidl, array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla);
       //         virtual void Free(per_fork * pfork, array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla);
       //

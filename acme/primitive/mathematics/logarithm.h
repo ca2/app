@@ -4,10 +4,10 @@
 
 CLASS_DECL_ACME extern const char log2_LogTable256[256];
 
-//inline bool is_found(::raw::index i) { return i >= 0; }
-//inline bool not_found(::raw::index i) { return i < 0; }
-//inline bool is_found(::raw::index i) { return i >= 0; }
-//inline bool not_found(::raw::index i) { return i < 0; }
+//inline bool is_found(::collection::index i) { return i >= 0; }
+//inline bool not_found(::collection::index i) { return i < 0; }
+//inline bool is_found(::collection::index i) { return i >= 0; }
+//inline bool not_found(::collection::index i) { return i < 0; }
 
 inline u32 u32_log2(u32 v)
 {

@@ -350,16 +350,16 @@ public:
    void set_value(T value, const ::action_context & actioncontext)
    {
       
-      set_selected_index((::raw::index)value, actioncontext);
+      set_selected_index((::collection::index)value, actioncontext);
       
-      m_iSelectedIndex = (::raw::index)value;
+      m_iSelectedIndex = (::collection::index)value;
       
    }
 
    /// Pass-through function for \::pointer nanoui::ComboBox::set_callback.
    void set_callback(const ::function<void(const T &)> & cb)
    {
-      ComboBox::set_callback([cb](::raw::index v) { cb((T)v); });
+      ComboBox::set_callback([cb](::collection::index v) { cb((T)v); });
    }
 
    /// Pass-through function for \::pointer nanoui::Widget::set_enabled.

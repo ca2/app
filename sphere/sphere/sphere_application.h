@@ -19,7 +19,7 @@ namespace sphere
 
       colorertake5::ParserFactory *                m_pparserfactory;
 
-      ::raw::index                                        m_iEdge;
+      ::collection::index                                        m_iEdge;
 
       bool                                         m_bShowPlatform;
 

@@ -20,8 +20,8 @@ public:
 
    void _001GetSubItemText(::user::mesh_subitem * pitem) override;
 
-   ::raw::count _001GetItemCount() override;
-   ::raw::count _001GetColumnCount(::user::mesh * pmesh) override;
+   ::collection::count _001GetItemCount() override;
+   ::collection::count _001GetColumnCount(::user::mesh * pmesh) override;
 
    virtual void clear();
 

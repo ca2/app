@@ -351,7 +351,7 @@ public:
 
 
 	size_t count() const
-		{	// ::raw::count number of set bits
+		{	// ::collection::count number of set bits
 		static char _Bitsperhex[] = "\0\1\1\2\1\2\2\3\1\2\2\3\2\3\3\4";
 		size_t _Val = 0;
 		for (i32 _Wpos = _Words; 0 <= _Wpos; --_Wpos)

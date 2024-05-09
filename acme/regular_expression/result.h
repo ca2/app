@@ -20,7 +20,7 @@ namespace regular_expression
 
 
       void *                           m_pResult;
-      ::raw::count                          m_cMatchData;
+      ::collection::count                          m_cMatchData;
       string                           m_str;
       ::regular_expression_pointer     m_pregularexpression;
       ::strsize_range_array               m_rangea;
@@ -33,13 +33,13 @@ namespace regular_expression
       //virtual void compile(const ::string & strExpression);
 
 
-      virtual ::raw::count get_count() const;
+      virtual ::collection::count get_count() const;
 
       
       virtual bool has_match() const;
 
 
-      virtual string get_match(::raw::index iMatch) const;
+      virtual string get_match(::collection::index iMatch) const;
 
 
       virtual ::strsize_range_array & get_range_array();
@@ -50,9 +50,9 @@ namespace regular_expression
 
       //virtual bool matches(const ::scoped_string & scopedstr, strsize len) = 0;
 
-      //virtual ::raw::count match_count(const ::string & str) = 0;
+      //virtual ::collection::count match_count(const ::string & str) = 0;
 
-      //virtual ::raw::count match_count(const ::scoped_string & scopedstr, strsize len) = 0;
+      //virtual ::collection::count match_count(const ::scoped_string & scopedstr, strsize len) = 0;
 
       //virtual ::pointer<::strsize_range_array>
 
@@ -64,7 +64,7 @@ namespace regular_expression
 
       //virtual bool replace(string & strFind, const ::string & strReplace, string & strResult);
 
-      //virtual ::raw::count matches(string_array & stra, const ::string & str);
+      //virtual ::collection::count matches(string_array & stra, const ::string & str);
 
 
    };

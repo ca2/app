@@ -18,11 +18,11 @@ public:
    ~auto_ptr_array() override { this->erase_all(); }
 
 
-   POINTER_TYPE & object_at(::raw::index i) { return *this->element_at(i); }
-   const POINTER_TYPE & object_at(::raw::index i) const { return *this->element_at(i); }
+   POINTER_TYPE & object_at(::collection::index i) { return *this->element_at(i); }
+   const POINTER_TYPE & object_at(::collection::index i) const { return *this->element_at(i); }
 
    
-   void set_size(::raw::count c)
+   void set_size(::collection::count c)
    {
       
       auto i = this->size();
@@ -39,7 +39,7 @@ public:
    }
    
    
-   ::raw::index erase_at(::raw::index i)
+   ::collection::index erase_at(::collection::index i)
    {
 
       delete this->element_at(i);
@@ -49,7 +49,7 @@ public:
    }
    
 
-   ::raw::count erase_all()
+   ::collection::count erase_all()
    {
 
       for(auto & p : *this)
@@ -72,7 +72,7 @@ namespace acme
 
 
    template < class TDST, class TSRC >
-   ::raw::count copy(auto_ptr_array < TDST >& dsta, const auto_ptr_array < TSRC >& srca)
+   ::collection::count copy(auto_ptr_array < TDST >& dsta, const auto_ptr_array < TSRC >& srca)
    {
 
       dsta.erase_all();

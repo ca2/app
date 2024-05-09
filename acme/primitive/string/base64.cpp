@@ -545,7 +545,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, ::u
          o[2]= (b[2]<<6)|b[3];
          i= a[2]=='='?1:(a[3]=='='?2:3);
          i = minimum(i, (i32) rem);
-         for (::raw::index idx = 0; idx < i; idx++)
+         for (::collection::index idx = 0; idx < i; idx++)
          {
             *pdata = o[idx];
 

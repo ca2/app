@@ -655,7 +655,7 @@ void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & st
 
    ppen->create_solid(0);
 
-   for (::raw::index i = 0; i < stra.get_count(); i++)
+   for (::collection::index i = 0; i < stra.get_count(); i++)
    {
       pgraphics->text_out(10.0 + 50.0 + (baTab[i] ? 25.0 : 0), 10.0 + 50.0 + ya[i], stra[i]);
    }

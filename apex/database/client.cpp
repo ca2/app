@@ -423,7 +423,7 @@ namespace database
    }
 
 
-   ::raw::count client_array::get_client_count()
+   ::collection::count client_array::get_client_count()
    {
 
       return this->get_size();
@@ -431,7 +431,7 @@ namespace database
    }
 
 
-   client * client_array::client_at(::raw::index iClient)
+   client * client_array::client_at(::collection::index iClient)
    {
 
       return this->element_at(iClient);

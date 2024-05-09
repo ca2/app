@@ -21,7 +21,7 @@ namespace colorertake5
       /** Internal members */
       string name, description;
       class region *parent;
-      ::raw::index atom;
+      ::collection::index atom;
 
 
    public:
@@ -50,7 +50,7 @@ namespace colorertake5
       /** Direct region ancestor (parent) */
       virtual class region *getParent() { return parent; };
       /** Quick access region atom (incrementable) */
-      virtual ::raw::index getID() const{ return atom; };
+      virtual ::collection::index getID() const{ return atom; };
       /** Checks if region has the specified parent in all of it's ancestors.
       This method is useful to check if region has specified parent,
       and use this information, as region type specification.

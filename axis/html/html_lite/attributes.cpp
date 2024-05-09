@@ -201,7 +201,7 @@ strsize LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const ::str
          putValue(preader, string(pszBegin,i32(pszEnd - pszBegin)));
 
 
-      // calculate and return the ::raw::count of characters successfully parsed
+      // calculate and return the ::collection::count of characters successfully parsed
       return (pszEnd - pszString) + strChar.length();
 
    }

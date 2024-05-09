@@ -96,10 +96,10 @@ namespace user
       bool                          m_bTrack;
       bool                          m_bHover;
       enum_element                      m_eelementHover;
-      ::raw::index                         m_iItemHover;
+      ::collection::index                         m_iItemHover;
       bool                          m_bLButtonDown;
       enum_element                      m_eelementLButtonDown;
-      ::raw::index                         m_iItemLButtonDown;
+      ::collection::index                         m_iItemLButtonDown;
 
       list *                        m_plist;
 
@@ -117,31 +117,31 @@ namespace user
 
       virtual bool DIDDXColumn(bool bSave);
       virtual bool DIDDXLayout(bool bSave);
-      virtual ::raw::index MapItemToOrder(::raw::index iItem);
-      virtual ::raw::index ItemToColumnKey(::raw::index iItem);
+      virtual ::collection::index MapItemToOrder(::collection::index iItem);
+      virtual ::collection::index ItemToColumnKey(::collection::index iItem);
 
       virtual i32 GetDividerWidth();
 
 
-      bool GetItemRect(::rectangle_i32 * prectangle, enum_element eelement, ::raw::index iItem);
+      bool GetItemRect(::rectangle_i32 * prectangle, enum_element eelement, ::collection::index iItem);
 
 
-      bool GetItemRect(::rectangle_i32 * prectangle, enum_element eelementLButtonDown, ::raw::index iItemLButtonDown,
+      bool GetItemRect(::rectangle_i32 * prectangle, enum_element eelementLButtonDown, ::collection::index iItemLButtonDown,
 
                        enum_element eelement,
-                       ::raw::index iItem);
+                       ::collection::index iItem);
 
       bool hit_test(
       const ::point_i32 & point,
       enum_element & eelement,
-      ::raw::index & iItem);
+      ::collection::index & iItem);
 
       bool hit_test(
       const ::point_i32 & point,
       enum_element eelementLButtonDown,
-      ::raw::index iItemLButtonDown,
+      ::collection::index iItemLButtonDown,
       enum_element & eelement,
-      ::raw::index & iItem);
+      ::collection::index & iItem);
 
 
       ::point_f64 get_parent_context_offset() override;

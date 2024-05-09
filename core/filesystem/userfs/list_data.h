@@ -14,10 +14,10 @@ namespace userfs
    public:
 
 
-      ::raw::index                      m_iNameSubItem;
-      ::raw::index                      m_iNameSubItemText;
-      ::raw::index                      m_iSelectionSubItem;
-      ::raw::index                      m_iSizeSubItem;
+      ::collection::index                      m_iNameSubItem;
+      ::collection::index                      m_iNameSubItemText;
+      ::collection::index                      m_iSelectionSubItem;
+      ::collection::index                      m_iSizeSubItem;
       class ::time                 m_timeLastFileSizeGet;
 
       ::pointer<list_item_array>m_pitema;
@@ -31,13 +31,13 @@ namespace userfs
       void initialize(::particle * pparticle) override;
 
 
-      ::userfs::list_item * item(::raw::index i);
+      ::userfs::list_item * item(::collection::index i);
 
       virtual void update(::userfs::data * puserfsdata);
 
       void _001GetSubItemText(::user::mesh_subitem * psubitem) override;
 
-      ::raw::count _001GetItemCount() override;
+      ::collection::count _001GetItemCount() override;
 
       void _001GetSubItemImage(::user::mesh_subitem * psubitem) override;
 

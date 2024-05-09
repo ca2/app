@@ -25,9 +25,9 @@ inline const ::wd16_character * unicode_prior(const ::wd16_character * psz, cons
 inline const ::wd32_character * unicode_prior(const ::wd32_character * psz, const ::wd32_character * pszBeg);
 
 
-inline const ::raw::index unicode_prior_index(::raw::index i, const ::ansi_character * pszBeg) { auto p = unicode_prior(&pszBeg[i], pszBeg); return ::is_null(p) ? -1 : p - pszBeg; }
-inline const ::raw::index unicode_prior_index(::raw::index i, const ::wd16_character * pszBeg) { auto p = unicode_prior(&pszBeg[i], pszBeg); return ::is_null(p) ? -1 : p - pszBeg; }
-inline const ::raw::index unicode_prior_index(::raw::index i, const ::wd32_character * pszBeg) { auto p = unicode_prior(&pszBeg[i], pszBeg); return ::is_null(p) ? -1 : p - pszBeg; }
+inline const ::collection::index unicode_prior_index(::collection::index i, const ::ansi_character * pszBeg) { auto p = unicode_prior(&pszBeg[i], pszBeg); return ::is_null(p) ? -1 : p - pszBeg; }
+inline const ::collection::index unicode_prior_index(::collection::index i, const ::wd16_character * pszBeg) { auto p = unicode_prior(&pszBeg[i], pszBeg); return ::is_null(p) ? -1 : p - pszBeg; }
+inline const ::collection::index unicode_prior_index(::collection::index i, const ::wd32_character * pszBeg) { auto p = unicode_prior(&pszBeg[i], pszBeg); return ::is_null(p) ? -1 : p - pszBeg; }
 
 inline ::ansi_character * unicode_prior(::ansi_character * psz, const ::ansi_character * pszBeg) { return (::ansi_character *)unicode_prior((const ::ansi_character *&)psz, pszBeg); }
 inline ::wd16_character * unicode_prior(::wd16_character * psz, const ::wd16_character * pszBeg) { return (::wd16_character *)unicode_prior((const ::wd16_character *&)psz, pszBeg); }

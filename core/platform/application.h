@@ -34,7 +34,7 @@ namespace core
 
 
       virtual void initialize(::particle * pparticle) override;
-      ::pointer<::progress::real>show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::raw::count iProgressCount) override;
+      ::pointer<::progress::real>show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::collection::count iProgressCount) override;
 
 
       virtual void initialize_rich_text_kit();

@@ -49,7 +49,7 @@ public:
 
    void add_dim(UNIT_TYPE x, UNIT_TYPE y, UNIT_TYPE cx, UNIT_TYPE cy);
 
-   ::raw::index max_normal_intersect_area(const ::rectangle_type < NUMBER > & rectangle, const ::rectangle_type < NUMBER > & rectangleModel);
+   ::collection::index max_normal_intersect_area(const ::rectangle_type < NUMBER > & rectangle, const ::rectangle_type < NUMBER > & rectangleModel);
 
 
    void get_box(::rectangle_type < NUMBER > * prectangle);
@@ -60,7 +60,7 @@ public:
    void offset(UNIT_TYPE cx, UNIT_TYPE cy);
    void offset(::point_type < NUMBER > point);
 
-   UNIT_TYPE total_area(::raw::index iStart = 0, ::raw::count c = -1) const
+   UNIT_TYPE total_area(::collection::index iStart = 0, ::collection::count c = -1) const
    { 
       
       UNIT_TYPE i = 0; 
@@ -159,7 +159,7 @@ template < primitive_number NUMBER >
 void rectangle_array_base < NUMBER >::intersect(const ::rectangle_type < NUMBER > & rectangle)
 {
 
-   for (::raw::index i = 0; i < this->get_size();)
+   for (::collection::index i = 0; i < this->get_size();)
    {
       
       this->element_at(i).intersect(this->element_at(i), rectangle);
@@ -218,10 +218,10 @@ void rectangle_array_base < NUMBER >::add(const ::size_type < NUMBER > & size)
 
 
 template < primitive_number NUMBER >
-::raw::index rectangle_array_base < NUMBER >::max_normal_intersect_area(const ::rectangle_type < NUMBER > & rectangleParam, const ::rectangle_type < NUMBER > & rectangleModel)
+::collection::index rectangle_array_base < NUMBER >::max_normal_intersect_area(const ::rectangle_type < NUMBER > & rectangleParam, const ::rectangle_type < NUMBER > & rectangleModel)
 {
 
-   ::raw::index iFound = -1;
+   ::collection::index iFound = -1;
    ::rectangle_type < NUMBER > rectangle;
    auto iModelArea = rectangleModel.width() * rectangleModel.height();
    decltype(iModelArea) iArea;
@@ -230,7 +230,7 @@ template < primitive_number NUMBER >
    if (iModelArea == 0)
       return -1;
 
-   for (::raw::index i = 0; i < this->get_count(); i++)
+   for (::collection::index i = 0; i < this->get_count(); i++)
    {
 
       if (rectangle.intersect(&rectangleParam, this->element_at(i)))

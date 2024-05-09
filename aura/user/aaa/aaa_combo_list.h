@@ -51,11 +51,11 @@ namespace user
 
       virtual i32 _001GetItemHeight() const;
 
-      virtual void on_change_combo_sel(::raw::index iSel);
+      virtual void on_change_combo_sel(::collection::index iSel);
 
       bool pre_create_window(::user::system * pusersystem) override;
 
-      virtual void _001EnsureVisible(::raw::index iItem);
+      virtual void _001EnsureVisible(::collection::index iItem);
 
       //virtual void nextstyle(style_context* pcontext) override;
 

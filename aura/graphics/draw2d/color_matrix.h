@@ -79,10 +79,10 @@ template < typename A, typename B >
 inline void copy_color_matrix(A & a, const B & b)
 {
 
-   for (::raw::index i = 0; i < 5; i++)
+   for (::collection::index i = 0; i < 5; i++)
    {
 
-      for (::raw::index j = 0; j < 5; j++)
+      for (::collection::index j = 0; j < 5; j++)
       {
 
          a[i][j] = (non_reference<decltype(a[0][0])>) b[i][j];

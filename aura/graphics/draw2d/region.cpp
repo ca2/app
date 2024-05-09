@@ -182,14 +182,14 @@ namespace draw2d
 
    //   pitem->m_polygona.set_size(nCount);
 
-   //   for (::raw::index i = 0; i < nCount; i++)
+   //   for (::collection::index i = 0; i < nCount; i++)
    //   {
 
    //      pitem->m_polygona[i] = __allocate< polygon >();
 
    //      pitem->m_polygona[i]->set_size(ppolycounts[i]);
 
-   //      for (::raw::index j = 0; j < ppolycounts[i]; j++)
+   //      for (::collection::index j = 0; j < ppolycounts[i]; j++)
    //      {
 
    //         pitem->m_polygona[i]->element_at(j).x() = ppoints->x();
@@ -226,14 +226,14 @@ namespace draw2d
 
    //   pitem->m_polygona.set_size(nCount);
 
-   //   for (::raw::index i = 0; i < nCount; i++)
+   //   for (::collection::index i = 0; i < nCount; i++)
    //   {
 
    //      pitem->m_polygona[i] = __allocate< polygon >();
 
    //      pitem->m_polygona[i]->set_size(ppolycounts[i]);
 
-   //      for (::raw::index j = 0; j < ppolycounts[i]; j++)
+   //      for (::collection::index j = 0; j < ppolycounts[i]; j++)
    //      {
 
    //         pitem->m_polygona[i]->element_at(j).x() = ppoints->x();

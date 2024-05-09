@@ -206,7 +206,7 @@ namespace user
 //         if(wcslen(wsz) == 8)
 //         {
 //
-//            ::raw::index i = 0;
+//            ::collection::index i = 0;
 //
 //            for(; i < 8; i++)
 //            {

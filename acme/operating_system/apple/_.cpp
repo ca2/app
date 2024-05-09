@@ -178,7 +178,7 @@ string apple_get_executable_path()
 //
 //   stra.c_add((char **) psza, iCount, false);
 //
-//   for(::raw::index i = 0; i < stra.get_count(); i++)
+//   for(::collection::index i = 0; i < stra.get_count(); i++)
 //   {
 //
 //      if(::str::case_insensitive_begins_eat(stra[i], "file://"))

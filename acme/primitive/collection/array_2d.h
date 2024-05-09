@@ -18,8 +18,8 @@ public:
    //inline operator const TYPE * () const { return this->m_begin; }
 
    
-   inline TYPE & operator[](::raw::index i) { return this->m_begin[i]; }
-   inline const TYPE & operator [](::raw::index i) const { return this->m_begin[i]; }
+   inline TYPE & operator[](::collection::index i) { return this->m_begin[i]; }
+   inline const TYPE & operator [](::collection::index i) const { return this->m_begin[i]; }
 
 
    row(TYPE * pbegin, TYPE * pend):BASE_RANGE(pbegin, pend) {}
@@ -53,7 +53,7 @@ public:
    ::i64    m_iWidth;
 
 
-   ::raw::count set_size(::raw::count w, ::raw::count h)
+   ::collection::count set_size(::collection::count w, ::collection::count h)
    {
 
       m_iWidth = w;
@@ -62,7 +62,7 @@ public:
 
    }
 
-   ::raw::count set_size(::size_i32 size)
+   ::collection::count set_size(::size_i32 size)
    {
 
       return this->set_size(size.cx(), size.cy());
@@ -78,7 +78,7 @@ public:
    }
 
 
-   row operator [](::raw::index iRowIndex)
+   row operator [](::collection::index iRowIndex)
    {
 
       auto prowdata = this->begin() + m_iWidth * iRowIndex;
@@ -88,7 +88,7 @@ public:
    }
 
 
-   const row operator [](::raw::index iRowIndex) const
+   const row operator [](::collection::index iRowIndex) const
    {
 
       auto prowdata = this->begin() + m_iWidth * iRowIndex;
@@ -98,7 +98,7 @@ public:
    }
 
 
-   TYPE & element_at(::raw::index x, ::raw::index y)
+   TYPE & element_at(::collection::index x, ::collection::index y)
    {
 
       return this->m_begin + m_iWidth * y + x;
@@ -106,7 +106,7 @@ public:
    }
 
 
-   const TYPE & element_at(::raw::index x, ::raw::index y) const
+   const TYPE & element_at(::collection::index x, ::collection::index y) const
    {
 
       return this->m_begin + m_iWidth * y + x;
@@ -114,7 +114,7 @@ public:
    }
 
 
-   void set_at(::raw::index x, ::raw::index y, ARG_TYPE t)
+   void set_at(::collection::index x, ::collection::index y, ARG_TYPE t)
    {
 
       element_at(x, y) = t;

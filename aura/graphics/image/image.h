@@ -80,8 +80,8 @@ public:
 
 
    
-   virtual ::raw::count get_image_count() const;
-   virtual ::image_pointer get_image(::raw::index i);
+   virtual ::collection::count get_image_count() const;
+   virtual ::image_pointer get_image(::collection::index i);
 
    
    virtual void set_mipmap(::draw2d::enum_mipmap emipmap);

@@ -60,15 +60,15 @@ namespace user
       virtual ::pointer < ::user::impact_system > & __impact_system(const ::atom & atom);
       virtual void on_add_impact_system(const ::atom & atom);
       virtual void erase_impact_system(const ::atom & atom);
-      virtual ::raw::count get_impact_system_count() const;
-      //virtual ::user::impact_system * get_template(::raw::index index) const;
+      virtual ::collection::count get_impact_system_count() const;
+      //virtual ::user::impact_system * get_template(::collection::index index) const;
       virtual void RegisterShellFileTypes(bool bCompat);
       void UnregisterShellFileTypes();
       void request(::request * prequest) override; // open named file
       virtual bool save_all_modified(); // save before exit
       virtual void pre_close_all_documents(); // pre close documents before exiting
       virtual void close_all_documents(bool bEndApp); // close documents before exiting
-      virtual ::raw::count get_open_document_count();
+      virtual ::collection::count get_open_document_count();
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
@@ -79,7 +79,7 @@ namespace user
       virtual void _001OnFileNew();
       virtual void on_file_open();
 
-      ::raw::count get_document_count(); // helper to ::raw::count number of total documents
+      ::collection::count get_document_count(); // helper to ::collection::count number of total documents
 
 
 

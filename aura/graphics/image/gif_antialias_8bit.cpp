@@ -51,7 +51,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //   //      goto skip1;
 //
 //
-//   for (::raw::index iPass = 0; iPass < 1; iPass++)
+//   for (::collection::index iPass = 0; iPass < 1; iPass++)
 //   {
 //
 //      for (y = 0; y < pointer->m_pimage->height(); y++)

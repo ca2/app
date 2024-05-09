@@ -181,7 +181,7 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
       return 1;
    }
 
-   ::raw::index i;
+   ::collection::index i;
    for (i = 0; i < c->m_ticketkeya.get_size(); ++i) {
       auto& key = c->m_ticketkeya[i];
       if (strncmp((const char*) key.key_name, (const char *) key_name, 16)) 
@@ -1764,7 +1764,7 @@ m_ibuf(isize)
 
       ansi_cpy(request + 8, GetSocks4Userid());
 
-      ::raw::count length = GetSocks4Userid().length() + 8 + 1;
+      ::collection::count length = GetSocks4Userid().length() + 8 + 1;
 
       write({ request,length });
 
@@ -2434,7 +2434,7 @@ m_ibuf(isize)
       //   ia.add(2048);
       //   ia.add(4096);
 
-      //   for (::raw::index i = 0; i < ia.get_count(); i++)
+      //   for (::collection::index i = 0; i < ia.get_count(); i++)
       //   {
 
       //      int keylength = ia[i];

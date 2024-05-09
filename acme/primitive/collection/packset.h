@@ -18,8 +18,8 @@ public:
    void pack(ARG_ID_TYPE atom, ARG_ITEM_TYPE item);
 
 
-   ::raw::count get_pack_count();
-   ::raw::count get_item_count();
+   ::collection::count get_pack_count();
+   ::collection::count get_item_count();
 
 
 };
@@ -42,7 +42,7 @@ void packset < ID_TYPE, ITEM_TYPE, ARRAY > ::pack(ARG_ID_TYPE atom, ARG_ITEM_TYP
 
 
 template < typename ID_TYPE, typename ITEM_TYPE, typename ARRAY >
-::raw::count packset < ID_TYPE, ITEM_TYPE, ARRAY > ::get_pack_count()
+::collection::count packset < ID_TYPE, ITEM_TYPE, ARRAY > ::get_pack_count()
 {
    
    return this->get_size();
@@ -51,10 +51,10 @@ template < typename ID_TYPE, typename ITEM_TYPE, typename ARRAY >
 
 
 template < typename ID_TYPE, typename ITEM_TYPE, typename ARRAY >
-::raw::count packset < ID_TYPE, ITEM_TYPE, ARRAY > ::get_item_count()
+::collection::count packset < ID_TYPE, ITEM_TYPE, ARRAY > ::get_item_count()
 {
    
-   ::raw::count count = 0;
+   ::collection::count count = 0;
 
    auto ppair = this->get_start();
    

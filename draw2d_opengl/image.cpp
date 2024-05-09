@@ -2572,7 +2572,7 @@ namespace draw2d_opengl
 //////
 //////                     ::u8 *dst = dstR + omp_get_thread_num();
 //////      #pragma omp parallel for
-//////                     for(::raw::index i = 0; i < size; i+=4)
+//////                     for(::collection::index i = 0; i < size; i+=4)
 //////                     {
 //////                           dst[i] = lower_u8(((i32)dst[i] * (i32)dstA[i]) >> 8);
 //////                     }
@@ -2585,7 +2585,7 @@ namespace draw2d_opengl
 ////////            {
 ////////               color32_t *dst = get_data();
 ////////#pragma omp parallel for
-////////               for(::raw::index i = 0; i < size; i+=4)
+////////               for(::collection::index i = 0; i < size; i+=4)
 ////////               {
 ////////                  if(dstA[i] <= 3)
 ////////                  {
@@ -2597,7 +2597,7 @@ namespace draw2d_opengl
 ////////            {
 ////////               ::u8 *dst = dstR + omp_get_thread_num();
 ////////#pragma omp parallel for
-////////               for(::raw::index i = 0; i < size; i+=4)
+////////               for(::collection::index i = 0; i < size; i+=4)
 ////////               {
 ////////                  if(dstA[i] > 3)
 ////////                  {
@@ -2607,7 +2607,7 @@ namespace draw2d_opengl
 ////////            }
 ////////         }
 //////#else
-//////         for(::raw::index i = 0; i < size; i+=4)
+//////         for(::collection::index i = 0; i < size; i+=4)
 //////         {
 //////            dstR[i] = lower_u8(((i32)dstR[i] * (i32)dstA[i]) >> 8);
 //////            dstG[i] = lower_u8(((i32)dstG[i] * (i32)dstA[i]) >> 8);

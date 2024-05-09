@@ -8,15 +8,15 @@ class CLASS_DECL_APEX simple_log :
 
 
       simple_log *         m_psimplelog;
-      ::raw::index                m_iLogTarget;
+      ::collection::index                m_iLogTarget;
 
 
       simple_log();
-      simple_log(simple_log * psimplelog, ::raw::index iLogTarget);
+      simple_log(simple_log * psimplelog, ::collection::index iLogTarget);
       virtual ~simple_log();
 
 
-      virtual void log_line(string str, ::raw::index iLogTarget);
+      virtual void log_line(string str, ::collection::index iLogTarget);
       virtual void log_line(string str);
 
 

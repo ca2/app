@@ -45,7 +45,7 @@ bool pcre_util_impl::compile(const string& str)
 
 
 
-::raw::count pcre_util_impl::matches(const string& str, pcre_context*)
+::collection::count pcre_util_impl::matches(const string& str, pcre_context*)
 {
 
    return pcre_code_impl::matches(str, m_pcre);
@@ -53,7 +53,7 @@ bool pcre_util_impl::compile(const string& str)
 }
 
 
-::raw::count pcre_util_impl::matches(const ::string & psz, strsize len, pcre_context*)
+::collection::count pcre_util_impl::matches(const ::string & psz, strsize len, pcre_context*)
 {
 
    return pcre_code_impl::matches(psz, len);

@@ -48,11 +48,11 @@
 //
 //   virtual void system_construct(const main* pmain);
 //
-//   //inline ::raw::count _get_argc() const { return m_argc; }
+//   //inline ::collection::count _get_argc() const { return m_argc; }
 //
 //   //string _get_argv(int iArg) const;
 //
-//   //inline ::raw::count get_argument_count1() const { return _get_argc() - 1; }
+//   //inline ::collection::count get_argument_count1() const { return _get_argc() - 1; }
 //
 //   //string_array get_arguments();
 //

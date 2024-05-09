@@ -17,7 +17,7 @@ namespace imaging_freeimage
 {
 
 
-   bool freeimage_load_imagea_frame(::image * pimageCompose, image_frame_array * pimagea, ::raw::index iFrame, FIBITMAP * pfi);
+   bool freeimage_load_imagea_frame(::image * pimageCompose, image_frame_array * pimagea, ::collection::index iFrame, FIBITMAP * pfi);
 
 
    void context_image::_load_image(::image * pimageCompose, ::pointer<image_frame_array>& pframea, memory & memory)
@@ -47,9 +47,9 @@ namespace imaging_freeimage
             try
             {
 
-               ::raw::count cFrame = FreeImage_GetPageCount(multibitmap);
+               ::collection::count cFrame = FreeImage_GetPageCount(multibitmap);
 
-               for (::raw::index iFrame = 0; iFrame < cFrame; iFrame++)
+               for (::collection::index iFrame = 0; iFrame < cFrame; iFrame++)
                {
 
                   auto pframe = __allocate< image_frame >();
@@ -250,7 +250,7 @@ namespace imaging_freeimage
    }
 
 
-   bool freeimage_load_imagea_frame(image * pimageCompose, image_frame_array * pframea, ::raw::index iFrame, FIBITMAP * pfi)
+   bool freeimage_load_imagea_frame(image * pimageCompose, image_frame_array * pframea, ::collection::index iFrame, FIBITMAP * pfi)
    {
 
       if (pfi == nullptr)

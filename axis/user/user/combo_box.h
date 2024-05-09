@@ -83,9 +83,9 @@ namespace user
       virtual void _001SetText(const ::string & str, const ::action_context & action_context) override;
 
 
-      virtual bool _001GetListText(::raw::index iSel, string & str) const;
-      virtual ::raw::index _001FindListText(const ::string & str) const;
-      virtual ::raw::count _001GetListCount() const;
+      virtual bool _001GetListText(::collection::index iSel, string & str) const;
+      virtual ::collection::index _001FindListText(const ::string & str) const;
+      virtual ::collection::count _001GetListCount() const;
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
 
@@ -138,23 +138,23 @@ namespace user
 
       //virtual bool create_interaction(::user::interaction * puiParent, const ::atom & atom) override;
 
-      //::raw::count get_count();
-      //virtual ::raw::index current_index();
+      //::collection::count get_count();
+      //virtual ::collection::index current_index();
       void set_current_item(::item * pitem, const ::action_context & actioncontext) override;
 
 
       virtual void set_current_item_by_atom(const ::atom & atom, const ::action_context & action_context);
       virtual void set_current_item_by_text(const ::scoped_string & scopedstr, const ::action_context & action_context);
-      virtual void set_current_item_by_index(::raw::index iIndex, const ::action_context & action_context);
+      virtual void set_current_item_by_index(::collection::index iIndex, const ::action_context & action_context);
       virtual string get_current_item_text();
       virtual ::atom get_current_item_atom();
 
 
 //      LCID GetLocale();
   //    LCID SetLocale(LCID nNewLocale);
-      ::raw::index GetTopIndex();
-      ::raw::index SetTopIndex(::raw::index nIndex);
-      ::raw::index InitStorage(::raw::count nItems, ::u32 nBytes);
+      ::collection::index GetTopIndex();
+      ::collection::index SetTopIndex(::collection::index nIndex);
+      ::collection::index InitStorage(::collection::count nItems, ::u32 nBytes);
       void SetHorizontalExtent(::u32 nExtent);
       ::u32 GetHorizontalExtent();
       i32 SetDroppedWidth(::u32 nWidth);
@@ -170,18 +170,18 @@ namespace user
       bool SetEditSel(strsize nStartChar, strsize nEndChar);
 
       // for combobox item
-      uptr GetItemData(::raw::index nIndex);
-      ::raw::index SetItemData(::raw::index nIndex, uptr dwItemData);
-      void * GetItemDataPtr(::raw::index nIndex);
-      ::raw::index SetItemDataPtr(::raw::index nIndex, void * pData);
-      ::raw::index GetLBText(::raw::index nIndex, char * pszText);
+      uptr GetItemData(::collection::index nIndex);
+      ::collection::index SetItemData(::collection::index nIndex, uptr dwItemData);
+      void * GetItemDataPtr(::collection::index nIndex);
+      ::collection::index SetItemDataPtr(::collection::index nIndex, void * pData);
+      ::collection::index GetLBText(::collection::index nIndex, char * pszText);
 
-      void GetLBText(::raw::index nIndex, string & rString);
-      strsize GetLBTextLen(::raw::index nIndex);
+      void GetLBText(::collection::index nIndex, string & rString);
+      strsize GetLBTextLen(::collection::index nIndex);
 
-      i32 SetItemHeight(::raw::index nIndex, ::u32 cyItemHeight);
-      i32 GetItemHeight(::raw::index nIndex);
-      ::raw::index FindStringExact(::raw::index nIndexStart, const ::string & pszFind);
+      i32 SetItemHeight(::collection::index nIndex, ::u32 cyItemHeight);
+      i32 GetItemHeight(::collection::index nIndex);
+      ::collection::index FindStringExact(::collection::index nIndexStart, const ::string & pszFind);
 
       i32 SetExtendedUI(bool bExtended = true);
       bool GetExtendedUI();
@@ -194,17 +194,17 @@ namespace user
       void ShowDropDown(bool bShowIt = true);
 
       // manipulating listbox items
-      //virtual ::raw::index add_string(const ::string & pszString, uptr dwItemData = 0);
-      //virtual ::raw::index add_string(const ::string & pszString, const string& strValue);
+      //virtual ::collection::index add_string(const ::string & pszString, uptr dwItemData = 0);
+      //virtual ::collection::index add_string(const ::string & pszString, const string& strValue);
 
-      virtual ::raw::index add_item(const ::scoped_string & scopedstr, const ::atom & atom);
+      virtual ::collection::index add_item(const ::scoped_string & scopedstr, const ::atom & atom);
 
 
-      virtual ::raw::index erase_item_at(::raw::index nIndex);
-      virtual ::raw::index insert_item_at(::raw::index nIndex, const ::string & pszString);
+      virtual ::collection::index erase_item_at(::collection::index nIndex);
+      virtual ::collection::index insert_item_at(::collection::index nIndex, const ::string & pszString);
 
       virtual void reset_content();
-      ::raw::index Dir(::raw::index attr, const ::string & pszWildCard);
+      ::collection::index Dir(::collection::index attr, const ::string & pszWildCard);
 
 
 

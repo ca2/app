@@ -68,7 +68,7 @@ item & item::operator = (enum_element eelement)
 }
 
 
-item & item::operator = (::raw::index iItem)
+item & item::operator = (::collection::index iItem)
 {
 
    m_item.m_iItem = iItem;
@@ -104,7 +104,7 @@ bool item::is_hidden() const
 }
 
 
-::string item::get_text(::raw::index iSubItem)
+::string item::get_text(::collection::index iSubItem)
 {
 
    return "";

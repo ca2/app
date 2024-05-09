@@ -637,7 +637,7 @@
 //
 //      ascendants_path(pathSource, patha, nullptr);
 //
-//      for (::raw::index i = 0; i < patha.get_count(); i++)
+//      for (::collection::index i = 0; i < patha.get_count(); i++)
 //      {
 //
 //         ::file::path path = patha[i];
@@ -886,7 +886,7 @@
 //
 //      patha.set_size(uaPid.get_count());
 //
-//      for (::raw::index i = 0; i < uaPid.get_count(); i++)
+//      for (::collection::index i = 0; i < uaPid.get_count(); i++)
 //      {
 //
 //         patha[i] = process_identifier_module_path(uaPid[i]);

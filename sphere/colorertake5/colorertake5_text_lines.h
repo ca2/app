@@ -34,8 +34,8 @@ namespace colorertake5
          /** Returns loaded file name.
          */
          //string getFileName();
-         /** Returns total lines ::raw::count in text. */
-         ::raw::count getLineCount();
+         /** Returns total lines ::collection::count in text. */
+         ::collection::count getLineCount();
          string getLine(index lno);
 
          void replaceTabs(index lno);

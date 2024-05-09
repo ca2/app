@@ -23,7 +23,7 @@
    bool whole_word_contains(string str, string strFind)
    {
 
-      ::raw::index iFind = 0;
+      ::collection::index iFind = 0;
 
       while ((iFind = str(iFind).case_insensitive_find_index(strFind)) >= 0)
       {
@@ -74,7 +74,7 @@
    void whole_word_erase(string & str, string strFind)
    {
 
-      ::raw::index iFind = 0;
+      ::collection::index iFind = 0;
 
       while ((iFind = str(iFind).case_insensitive_find_index(strFind)) >= 0)
       {

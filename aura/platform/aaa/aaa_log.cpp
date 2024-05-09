@@ -117,7 +117,7 @@ pacmedirectory->system() / "trace.txt";
       m_straSeparator.add("\r");
       m_straSeparator.add("\n");
 
-      for (::raw::index i = trace_category_first; i < trace_category_count; i++)
+      for (::collection::index i = trace_category_first; i < trace_category_count; i++)
       {
 
          set_trace_category((e_trace_category)i, etracelevelMin);

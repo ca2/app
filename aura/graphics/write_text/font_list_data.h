@@ -18,8 +18,8 @@ namespace write_text
    public:
 
 
-      ::raw::index                   m_iSerial;
-      ::raw::index                   m_iUpdateId;
+      ::collection::index                   m_iSerial;
+      ::collection::index                   m_iUpdateId;
       int                     m_iBaseSize;
       ::i32_array             m_iaSize;
       ::rectangle_i32         m_rectangleX;

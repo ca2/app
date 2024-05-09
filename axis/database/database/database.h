@@ -65,7 +65,7 @@ namespace database
 
       virtual  ::pointer<class transaction> transaction();
 
-      virtual ::raw::count get_affected_rows_count() = 0;
+      virtual ::collection::count get_affected_rows_count() = 0;
 
       virtual bool in_transaction() = 0;
 
@@ -73,11 +73,11 @@ namespace database
       virtual bool exec(const ::string & strQuery) = 0;
 
 
-      virtual ::pointer<result_set>query_result(const ::string & strQuery, ::raw::count iRowCount = -1, ::raw::count iColumnCount = -1) = 0;
-      virtual ::pointer<result_set> query(const ::string & strQuery, ::raw::count iRowCount = -1, ::raw::count iColumnCount = -1);
+      virtual ::pointer<result_set>query_result(const ::string & strQuery, ::collection::count iRowCount = -1, ::collection::count iColumnCount = -1) = 0;
+      virtual ::pointer<result_set> query(const ::string & strQuery, ::collection::count iRowCount = -1, ::collection::count iColumnCount = -1);
 
 
-      //virtual ::payload query(const ::string & strQuery, ::raw::count iMaxRowCount = -1, ::raw::count iMaxColumnCount = -1);
+      //virtual ::payload query(const ::string & strQuery, ::collection::count iMaxRowCount = -1, ::collection::count iMaxColumnCount = -1);
       virtual ::payload query_table_item(const ::string & table, const ::string & item, const ::string & where, const ::payload & payload = ::payload());
       virtual ::pointer<row_array>query_rows(const ::string & strQuery);
       virtual ::pointer<row>query_row(const ::string & strQuery);

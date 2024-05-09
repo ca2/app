@@ -375,7 +375,7 @@ static BOOL freerdp_client_add_option(rdpFile* file, char* option)
 static int freerdp_client_parse_rdp_file_add_line(rdpFile* file, char* line, int index)
 {
 	if (index < 0)
-		::raw::index = file->lineCount;
+		::collection::index = file->lineCount;
 
 	while ((file->lineCount + 1) > file->lineSize)
 	{
@@ -501,7 +501,7 @@ static BOOL freerdp_client_parse_rdp_file_buffer_ascii(rdpFile* file, const ::u8
 	char *beg, *end;
 	char *name, *value;
 
-	::raw::index = 0;
+	::collection::index = 0;
 	line = strtok_s((char*) buffer, "\r\n", &context);
 
 	while (line)
@@ -581,7 +581,7 @@ static BOOL freerdp_client_parse_rdp_file_buffer_unicode(rdpFile* file, const ::
 	WCHAR *beg, *end;
 	WCHAR *name, *value;
 
-	::raw::index = 0;
+	::collection::index = 0;
 	line = wcstok_s((WCHAR*) buffer, CR_LF_STR_W, &context);
 
 	while (line != nullptr)
@@ -1253,7 +1253,7 @@ int freerdp_client_rdp_file_set_string_option(rdpFile* file, const ::string & na
 	}
 	else
 	{
-		::raw::index = freerdp_client_parse_rdp_file_add_line(file, text, -1);
+		::collection::index = freerdp_client_parse_rdp_file_add_line(file, text, -1);
 		if (index == -1)
 			goto out_fail;
 
@@ -1312,7 +1312,7 @@ int freerdp_client_rdp_file_set_integer_option(rdpFile* file, const ::string & n
 	}
 	else
 	{
-		::raw::index = freerdp_client_parse_rdp_file_add_line(file, text, -1);
+		::collection::index = freerdp_client_parse_rdp_file_add_line(file, text, -1);
 		if (index < 0)
 		{
 			free(text);

@@ -56,7 +56,7 @@ public:
    constexpr static bool is_allowed(ENUM eunit)
    {
 
-      //::raw::index i = 0;
+      //::collection::index i = 0;
 
       auto pallowed = allowed_units::allowed_units();
 

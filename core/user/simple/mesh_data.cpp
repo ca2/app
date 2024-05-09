@@ -51,7 +51,7 @@ void simple_mesh_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
 }
 
 
-::raw::index simple_mesh_data::_001GetItemCount()
+::collection::index simple_mesh_data::_001GetItemCount()
 {
 
    return 32768;
@@ -59,7 +59,7 @@ void simple_mesh_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
 }
 
 
-::raw::count simple_mesh_data::_001GetColumnCount(::user::mesh * pmesh)
+::collection::count simple_mesh_data::_001GetColumnCount(::user::mesh * pmesh)
 {
 
    return 32768;

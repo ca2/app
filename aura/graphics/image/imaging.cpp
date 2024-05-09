@@ -165,7 +165,7 @@ i32                 cy)
 //   GetTextMetricsW(hDC,&tm);
 //
 //   index nIndex;
-//   ::raw::count nSize;
+//   ::collection::count nSize;
 //
 //   nSize = pArray->get_size();
 //   pSize->cx() = 0;
@@ -209,7 +209,7 @@ i32                 cy)
 //   GetTextMetricsW(hDC,&tm);
 //
 //   index nIndex;
-//   ::raw::count nSize;
+//   ::collection::count nSize;
 //
 //   nSize = pArray->get_size();
 //

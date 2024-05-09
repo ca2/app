@@ -70,10 +70,10 @@ namespace hotplugin
       virtual void hotplugin_host_on_write();
 
 
-      virtual void   set_memory(void * puchMemory, ::raw::count c) override;
-      virtual void   append_memory(void * puchMemory, ::raw::count c) override;
-      virtual ::raw::count get_memory_length() override;
-      virtual ::raw::count read_memory(void * puchMemory, ::raw::count c) override;
+      virtual void   set_memory(void * puchMemory, ::collection::count c) override;
+      virtual void   append_memory(void * puchMemory, ::collection::count c) override;
+      virtual ::collection::count get_memory_length() override;
+      virtual ::collection::count read_memory(void * puchMemory, ::collection::count c) override;
       virtual void   free_memory() override;
 
 

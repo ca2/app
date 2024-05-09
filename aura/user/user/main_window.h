@@ -36,7 +36,7 @@ namespace user
       void initial_frame_placement() override;
 
 
-      ::raw::index get_preferred_restore(::rectangle_i32 & rectanglePreferredRestore) override;
+      ::collection::index get_preferred_restore(::rectangle_i32 & rectanglePreferredRestore) override;
 
 
       //virtual void create_main_window_asynchronously();

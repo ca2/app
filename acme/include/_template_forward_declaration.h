@@ -344,7 +344,7 @@ concept container_type = requires(CONTAINER container)
 
 
 template < typename ARRAY >
-concept primitive_array = requires(ARRAY array, ::raw::index i)
+concept primitive_array = requires(ARRAY array, ::collection::index i)
 {
    array.get_count();
    array.element_at(i);
@@ -526,8 +526,8 @@ using f32_array_array = ::array < f32_array >;
 using f64_array_array = ::array < f64_array >;
 
 
-using index_array = numeric_array < ::raw::index >;
-using count_array = numeric_array < ::raw::count >;
+using index_array = numeric_array < ::collection::index >;
+using count_array = numeric_array < ::collection::count >;
 
 
 using u32_array = numeric_array < ::u32 >;
@@ -907,7 +907,7 @@ consteval auto as_const(auto asconst)
 
 
 template < typename TYPE >
-using index_map = map < ::raw::index, TYPE >;
+using index_map = map < ::collection::index, TYPE >;
 
 
 namespace acme
@@ -968,7 +968,7 @@ inline void __call__delete(T * p);
 
 
 template < typename T >
-inline T * __new_array(::raw::count c);
+inline T * __new_array(::collection::count c);
 
 
 #if REFERENCING_DEBUGGING

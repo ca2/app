@@ -27,7 +27,7 @@ namespace user
    }
 
 
-   ::user::interaction* controller::impact_at(::raw::index iImpact)
+   ::user::interaction* controller::impact_at(::collection::index iImpact)
    {
 
       return nullptr;
@@ -35,7 +35,7 @@ namespace user
    }
 
 
-   ::raw::count controller::impact_count()
+   ::collection::count controller::impact_count()
    {
 
       return 0;

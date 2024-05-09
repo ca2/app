@@ -22,10 +22,10 @@
 
 
 //template < primitive_rectangle RECTANGLE >
-//inline void expand_bounding_box(RECTANGLE & rectangle, ::point_f64 * p, ::raw::count c)
+//inline void expand_bounding_box(RECTANGLE & rectangle, ::point_f64 * p, ::collection::count c)
 //{
 //
-//   for (::raw::index i = 0; i < c; i++)
+//   for (::collection::index i = 0; i < c; i++)
 //   {
 //
 //      expand_bounding_box(rectangle, *p);
@@ -292,7 +292,7 @@ inline bool get_bounding_box(RECTANGLE & rectangleBounding, const TYPE & t)
 
 
 template < primitive_rectangle RECTANGLE, primitive_point POINT >
-inline bool get_bounding_box(RECTANGLE & rectangleBounding, const POINT * ppoint, ::raw::count iPointCount)
+inline bool get_bounding_box(RECTANGLE & rectangleBounding, const POINT * ppoint, ::collection::count iPointCount)
 {
 
    rectangleBounding.maximum_minimum();

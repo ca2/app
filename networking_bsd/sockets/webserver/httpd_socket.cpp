@@ -283,7 +283,7 @@ namespace sockets
       //   ia.add(2048);
       //   ia.add(4096);
 
-      //   for (::raw::index i = 0; i < ia.get_count(); i++)
+      //   for (::collection::index i = 0; i < ia.get_count(); i++)
       //   {
 
       //      int keylength = ia[i];

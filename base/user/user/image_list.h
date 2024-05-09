@@ -46,7 +46,7 @@ namespace user
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
 
-      virtual bool _001GetItemText(string & str, ::raw::index iItem);
+      virtual bool _001GetItemText(string & str, ::collection::index iItem);
 
       virtual void update_data(bool bSaveAndValidate) override;
 
@@ -84,7 +84,7 @@ namespace user
 
       index_array get_selection();
 
-      void set_current_item(::raw::index iFind, const ::action_context & action_context);
+      void set_current_item(::collection::index iFind, const ::action_context & action_context);
 
       void set_selection(const index_array & ia, const ::action_context & action_context);
 

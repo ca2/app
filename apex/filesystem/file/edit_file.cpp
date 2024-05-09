@@ -424,7 +424,7 @@ namespace file
       if(pfile->m_bRootDirection)
       {
 
-         for(::raw::index i = m_itema.get_upper_bound(); i >= 0; i--)
+         for(::collection::index i = m_itema.get_upper_bound(); i >= 0; i--)
          {
 
             if (m_itema[i]->read_byte(pbyte, pfile))
@@ -439,7 +439,7 @@ namespace file
       }
       else
       {
-         for(::raw::index i = 0; i < m_itema.get_count(); i++)
+         for(::collection::index i = 0; i < m_itema.get_count(); i++)
          {
 
             if (m_itema[i]->read_byte(pbyte, pfile))
@@ -921,7 +921,7 @@ namespace file
 
       m_pfile->set_position(0);
 
-      for (::raw::index i = 0; i < dwNew; i++)
+      for (::collection::index i = 0; i < dwNew; i++)
       {
 
          ::u8 b;
@@ -1034,7 +1034,7 @@ namespace file
    }
 
 
-   ::raw::count edit_file::GetRedoBranchCount()
+   ::collection::count edit_file::GetRedoBranchCount()
    {
 
       if (m_ptreeitem == nullptr)

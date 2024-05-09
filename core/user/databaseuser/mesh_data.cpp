@@ -47,7 +47,7 @@ namespace databaseuser
    }
 
 
-   bool mesh_data::Map(::user::mesh * pmesh, ::string & strDataKey1, ::string & strDataKey2, ::raw::index iItem, ::raw::index iSubItem, ::raw::index iListItem)
+   bool mesh_data::Map(::user::mesh * pmesh, ::string & strDataKey1, ::string & strDataKey2, ::collection::index iItem, ::collection::index iSubItem, ::collection::index iListItem)
    {
 
       __UNREFERENCED_PARAMETER(pmesh);
@@ -63,7 +63,7 @@ namespace databaseuser
    }
 
 
-   ::raw::count mesh_data::_001GetItemCount()
+   ::collection::count mesh_data::_001GetItemCount()
    {
 
       return m_iItemCount;

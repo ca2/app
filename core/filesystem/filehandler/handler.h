@@ -41,7 +41,7 @@ namespace filehandler
 
 
       string get_text(::pointer<::data::tree>ptree);
-      ::raw::index get_image(::pointer<::data::tree>ptree);
+      ::collection::index get_image(::pointer<::data::tree>ptree);
 
 
       void defer_add_library(::acme::library * plibrary);

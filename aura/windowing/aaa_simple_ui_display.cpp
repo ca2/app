@@ -360,7 +360,7 @@ namespace windowing
 //            XftColor colorBack;
 //            XftColor colorBorder;
 //
-//            for (::raw::index iButton = m_buttona.get_upper_bound(); iButton >= 0; iButton--)
+//            for (::collection::index iButton = m_buttona.get_upper_bound(); iButton >= 0; iButton--)
 //            {
 //
 //               auto pbutton = m_buttona[iButton];
@@ -639,7 +639,7 @@ namespace windowing
 //
 //      int iMaxButtonTextWidth = 50;
 //
-//      for (::raw::index iButton = m_buttona.get_upper_bound(); iButton >= 0; iButton--)
+//      for (::collection::index iButton = m_buttona.get_upper_bound(); iButton >= 0; iButton--)
 //      {
 //
 //         auto pbutton = m_buttona[iButton];

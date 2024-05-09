@@ -438,7 +438,7 @@ namespace mathematics
       for (i = rev = 0; i < NumBits; i++)
       {
          rev = (rev << 1) | (index & 1);
-         ::raw::index >>= 1;
+         ::collection::index >>= 1;
       }
 
       return rev;

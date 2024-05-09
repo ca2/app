@@ -13,7 +13,7 @@
 using id_to_id = atom_map < atom >;
 
 
-using id_to_index = atom_map < ::raw::index >;
+using id_to_index = atom_map < ::collection::index >;
 
 
 

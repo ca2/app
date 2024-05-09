@@ -425,7 +425,7 @@ namespace x11
 
       bool bHandled = false;
 
-      ::raw::index i = 0;
+      ::collection::index i = 0;
 
       _synchronous_lock synchronouslock(this->synchronization());
 

@@ -78,7 +78,7 @@
 //
 //         if (!save && filetypes.size() > 1) {
 //            __wide_append(filter, "Supported file types (");
-//            for (::raw::index i = 0; i < filetypes.size(); ++i) {
+//            for (::collection::index i = 0; i < filetypes.size(); ++i) {
 //               __wide_append(filter, "*.");
 //               __wide_append(filter, filetypes[i].element1().c_str());
 //               if (i + 1 < filetypes.size())
@@ -86,7 +86,7 @@
 //            }
 //            __wide_append(filter, ")");
 //            __wide_append_null(filter);
-//            for (::raw::index i = 0; i < filetypes.size(); ++i) {
+//            for (::collection::index i = 0; i < filetypes.size(); ++i) {
 //               __wide_append(filter, "*.");
 //               __wide_append(filter, filetypes[i].element1().c_str());
 //               if (i + 1 < filetypes.size())

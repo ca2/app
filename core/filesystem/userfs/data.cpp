@@ -474,7 +474,7 @@ namespace userfs
 
       ASSERT(listingUser.get_count() == listingFinal.get_count());
 
-      for (::raw::index i = 0; i < listingUser.get_count(); i++)
+      for (::collection::index i = 0; i < listingUser.get_count(); i++)
       {
 
          ::file::path & pathFinal = listingFinal[i];
@@ -632,7 +632,7 @@ namespace userfs
 //
 //#define DBG_BROWSE_LOOP 1
 //
-//      for (::raw::index i = 0; i < DBG_BROWSE_LOOP; i++)
+//      for (::collection::index i = 0; i < DBG_BROWSE_LOOP; i++)
 //      {
 //
 //         ::userfs::document::browse(pitem, context);

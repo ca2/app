@@ -1912,7 +1912,7 @@ void object::process_exception(const ::exception& e)
 }
 
 
-//::raw::index object::task_add(::task * ptask)
+//::collection::index object::task_add(::task * ptask)
 //{
 //
 //   _synchronous_lock synchronouslock(this->synchronization());

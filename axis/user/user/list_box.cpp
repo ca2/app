@@ -157,7 +157,7 @@ namespace user
    }
 
 
-   bool list_box::_001GetListText(::raw::index iSel, string& str)
+   bool list_box::_001GetListText(::collection::index iSel, string& str)
    {
 
       str.empty();
@@ -179,18 +179,18 @@ namespace user
    }
 
 
-   ::raw::index list_box::_001FindListText(const string& str)
+   ::collection::index list_box::_001FindListText(const string& str)
    {
 
 
       //index combo_box::_001FindListText(const ::string & str) const
       //{
 
-      //   ::raw::count ca = _001GetListCount();
+      //   ::collection::count ca = _001GetListCount();
 
       //   string strItem;
 
-      //   for(::raw::index i = 0; i < ca; i++)
+      //   for(::collection::index i = 0; i < ca; i++)
       //   {
 
       //      _001GetListText(i,strItem);
@@ -232,7 +232,7 @@ namespace user
    }
 
 
-   ::raw::index list_box::_001GetListCount()
+   ::collection::index list_box::_001GetListCount()
    {
 
       return m_straList.get_count();
@@ -240,7 +240,7 @@ namespace user
    }
 
 
-   //::raw::index list_box::add_string(const ::string & pszString, uptr dwItemData)
+   //::collection::index list_box::add_string(const ::string & pszString, uptr dwItemData)
    //{
 
    //   m_straList.add(pszString);
@@ -252,7 +252,7 @@ namespace user
    //}
 
 
-   //::raw::index list_box::add_string(const ::string & pszString, const string& strValue)
+   //::collection::index list_box::add_string(const ::string & pszString, const string& strValue)
    //{
 
    //   m_straList.add(pszString);
@@ -263,7 +263,7 @@ namespace user
 
    //}
 
-   ::raw::index list_box::add_item(const ::scoped_string& scopedstr, const ::atom& atom)
+   ::collection::index list_box::add_item(const ::scoped_string& scopedstr, const ::atom& atom)
    {
 
       m_straList.add(scopedstr);
@@ -275,7 +275,7 @@ namespace user
    }
 
 
-   ::raw::index list_box::erase_item_at(::raw::index iIndex)
+   ::collection::index list_box::erase_item_at(::collection::index iIndex)
    {
 
       if (iIndex < 0 || iIndex >= _001GetListCount())
@@ -294,7 +294,7 @@ namespace user
    }
 
 
-   ::raw::index list_box::insert_item_at(::raw::index iIndex, const ::string& pszString)
+   ::collection::index list_box::insert_item_at(::collection::index iIndex, const ::string& pszString)
    {
 
       if (iIndex < 0)
@@ -420,7 +420,7 @@ namespace user
    void list_box::_001OnDrawComboList(::draw2d::graphics_pointer& pgraphics)
    {
 
-      ::raw::count iListItemCount = _001GetListCount();
+      ::collection::count iListItemCount = _001GetListCount();
 
       string strItem;
 
@@ -467,7 +467,7 @@ namespace user
 
       auto pbrush = __create < ::draw2d::brush >();
 
-      for (::raw::index iItem = 0; iItem < iListItemCount; iItem++)
+      for (::collection::index iItem = 0; iItem < iListItemCount; iItem++)
       {
 
          rectangleItem.top() = rectangleItem.bottom();
@@ -595,9 +595,9 @@ namespace user
 
       m_dItemHeight = 0.;
 
-      ::raw::count cListCount = _001GetListCount();
+      ::collection::count cListCount = _001GetListCount();
 
-      for (::raw::index i = 0; i < cListCount; i++)
+      for (::collection::index i = 0; i < cListCount; i++)
       {
 
          _001GetListText(i, strItem);
@@ -668,7 +668,7 @@ namespace user
    }
 
 
-   void list_box::on_change_combo_sel(::raw::index iSel)
+   void list_box::on_change_combo_sel(::collection::index iSel)
    {
 
    }
@@ -682,7 +682,7 @@ namespace user
    }
 
 
-   void list_box::ensure_item_visible_by_index(::raw::index iItem)
+   void list_box::ensure_item_visible_by_index(::collection::index iItem)
    {
 
       if (m_pscrollbarY != nullptr
@@ -1115,7 +1115,7 @@ namespace user
    ::item_pointer list_box::on_hit_test(const ::point_i32& point, ::user::e_zorder ezorder)
    {
 
-      ::raw::count iItemCount = _001GetListCount();
+      ::collection::count iItemCount = _001GetListCount();
 
       auto rectangleX = this->rectangle();
 
@@ -1130,7 +1130,7 @@ namespace user
 
       }
 
-      for (::raw::index iItem = 0; iItem < iItemCount; iItem++)
+      for (::collection::index iItem = 0; iItem < iItemCount; iItem++)
       {
 
          rectangleItem.top() = rectangleX.top() + (_001GetItemHeight() * (int)(iAddUp + iItem));
@@ -1196,7 +1196,7 @@ namespace user
 
       ::rectangle_i32 rectangleMonitor;
 
-      ::raw::index i = get_best_monitor(&rectangleMonitor, rectangleWindow);
+      ::collection::index i = get_best_monitor(&rectangleMonitor, rectangleWindow);
 
       ::rectangle_i32 rectangleList;
 
@@ -1424,7 +1424,7 @@ namespace user
    void list_box::set_current_item_by_atom(const ::atom& atom, const ::action_context& context)
    {
 
-      ::raw::index iSel = m_atoma.find_first(atom);
+      ::collection::index iSel = m_atoma.find_first(atom);
 
       if (iSel < 0)
       {
@@ -1441,7 +1441,7 @@ namespace user
    void list_box::set_current_item_by_text(const ::scoped_string& scopedstr, const ::action_context& context)
    {
 
-      ::raw::index iSel = m_straList.find_first(scopedstr);
+      ::collection::index iSel = m_straList.find_first(scopedstr);
 
       if (iSel < 0)
       {
@@ -1454,7 +1454,7 @@ namespace user
 
    }
 
-   void list_box::set_current_item_by_index(::raw::index iIndex, const ::action_context& context)
+   void list_box::set_current_item_by_index(::collection::index iIndex, const ::action_context& context)
    {
 
       if (iIndex < 0 || iIndex >= m_atoma.get_size())
@@ -1481,7 +1481,7 @@ namespace user
 
       }
 
-      ::raw::index iSel = pitem->m_item.m_iItem;
+      ::collection::index iSel = pitem->m_item.m_iItem;
 
       if (iSel < 0)
       {
@@ -1509,7 +1509,7 @@ namespace user
 
       }
 
-      ::raw::index iSel = pitem->m_item.m_iItem;
+      ::collection::index iSel = pitem->m_item.m_iItem;
 
       if (iSel < 0)
       {

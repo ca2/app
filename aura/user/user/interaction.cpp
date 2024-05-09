@@ -1602,7 +1602,7 @@ namespace user
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-      for (::raw::index iIdSuffix = 1; iIdSuffix <= 1000; iIdSuffix++)
+      for (::collection::index iIdSuffix = 1; iIdSuffix <= 1000; iIdSuffix++)
       {
 
          strCandidateId.formatf("%s_%d", strDefaultIdPrefix.c_str(), iIdSuffix);
@@ -3287,7 +3287,7 @@ namespace user
    }
 
 
-   void interaction::display_full_screen(::raw::index iMonitor, ::e_activation eactivation)
+   void interaction::display_full_screen(::collection::index iMonitor, ::e_activation eactivation)
    {
 
       best_monitor(nullptr, {}, true, e_activation_default, e_zorder_top);
@@ -3816,7 +3816,7 @@ namespace user
          try
          {
 
-            for (::raw::index i = 0; i < m_puserinteractionpointeraOwned->primitive_count(); i++)
+            for (::collection::index i = 0; i < m_puserinteractionpointeraOwned->primitive_count(); i++)
             {
 
                try
@@ -4958,7 +4958,7 @@ namespace user
 
             ::rectangle_i32 rectangleX;
 
-            ::raw::index i = 0;
+            ::collection::index i = 0;
 
             while (pinteraction != nullptr)
             {
@@ -9210,7 +9210,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_child_by_name(const ::string & strName, ::raw::index iItem, i32 iLevel)
+   ::user::interaction * interaction::get_child_by_name(const ::string & strName, ::collection::index iItem, i32 iLevel)
    {
 
       ::pointer<interaction> pinteraction = top_child();
@@ -9271,7 +9271,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_child_by_id(const atom & atom, ::raw::index iItem, i32 iLevel)
+   ::user::interaction * interaction::get_child_by_id(const atom & atom, ::collection::index iItem, i32 iLevel)
    {
 
       _synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
@@ -9285,7 +9285,7 @@ namespace user
 
       }
 
-      for (::raw::index i = puserinteractionpointeraChild->interaction_last_index(); i >= 0; i--)
+      for (::collection::index i = puserinteractionpointeraChild->interaction_last_index(); i >= 0; i--)
       {
 
          auto pinteraction = puserinteractionpointeraChild->get_interaction(i);
@@ -9317,7 +9317,7 @@ namespace user
 
       }
 
-      for (::raw::index i = puserinteractionpointeraChild->interaction_last_index(); i >= 0; i--)
+      for (::collection::index i = puserinteractionpointeraChild->interaction_last_index(); i >= 0; i--)
       {
 
          auto pinteraction = puserinteractionpointeraChild->get_interaction(i);
@@ -9338,7 +9338,7 @@ namespace user
    }
 
 
-   ::user::element * interaction::get_primitive_by_id(const atom & atom, ::raw::index iItem, i32 iLevel)
+   ::user::element * interaction::get_primitive_by_id(const atom & atom, ::collection::index iItem, i32 iLevel)
    {
 
       auto pchild = get_child_by_id(atom, iItem, iLevel);
@@ -9399,7 +9399,7 @@ namespace user
 
          puserinteractionSearchChildren = nullptr;
 
-         for (::raw::index iChild = puserinteractionpointeraChild->interaction_last_index();
+         for (::collection::index iChild = puserinteractionpointeraChild->interaction_last_index();
               iChild >= 0; iChild--)
          {
 
@@ -9458,7 +9458,7 @@ namespace user
 
       host_to_client()(pointClient);
 
-      for (::raw::index iChild = puserinteractionpointeraChild->interaction_last_index();
+      for (::collection::index iChild = puserinteractionpointeraChild->interaction_last_index();
            iChild >= 0; iChild--)
       {
 
@@ -12298,7 +12298,7 @@ namespace user
    }
 
 
-   ::raw::index interaction::child_zorder(::user::interaction * puserinteraction)
+   ::collection::index interaction::child_zorder(::user::interaction * puserinteraction)
    {
 
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
@@ -14053,7 +14053,7 @@ namespace user
    }
 
    void
-      interaction::on_items_layout(::draw2d::graphics_pointer & pgraphics, ::raw::index iIdContainer, ::item_array * pitema)
+      interaction::on_items_layout(::draw2d::graphics_pointer & pgraphics, ::collection::index iIdContainer, ::item_array * pitema)
    {
 
       if (::is_null(pitema))
@@ -17518,7 +17518,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          }
 
-         ::raw::index i = puserinteractionpointeraChild->interactiona().find_first(this);
+         ::collection::index i = puserinteractionpointeraChild->interactiona().find_first(this);
          if (i < 0)
             return nullptr;
          i++;
@@ -17545,7 +17545,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       try
       {
          auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-         ::raw::index i = puserinteractionpointeraChild->find_first_interaction(pinteraction);
+         ::collection::index i = puserinteractionpointeraChild->find_first_interaction(pinteraction);
          if (i < 0)
             return nullptr;
          i++;
@@ -17602,7 +17602,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          }
 
-         ::raw::index i = puserinteractionpointeraChild->find_first_interaction(this);
+         ::collection::index i = puserinteractionpointeraChild->find_first_interaction(this);
          if (i < 0)
             return nullptr;
          i--;
@@ -17733,7 +17733,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-      ::raw::index i = puserinteractionpointeraChild->find_first_interaction(pinteraction);
+      ::collection::index i = puserinteractionpointeraChild->find_first_interaction(pinteraction);
       if (i < 0)
          return nullptr;
    restart:
@@ -17831,7 +17831,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       }
 
-      for (::raw::index iImpact = 0; iImpact < pcontroller->impact_count(); iImpact++)
+      for (::collection::index iImpact = 0; iImpact < pcontroller->impact_count(); iImpact++)
       {
 
          auto pimpact = pcontroller->impact_at(iImpact);
@@ -19202,7 +19202,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   void interaction::on_update_notify_icon_menu(::raw::index & iNotifyIconIndex)
+   void interaction::on_update_notify_icon_menu(::collection::index & iNotifyIconIndex)
    {
 
    }
@@ -19406,7 +19406,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   ::raw::index interaction::best_monitor(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet,
+   ::collection::index interaction::best_monitor(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet,
                                    ::e_activation eactivation, ::zorder zorderParam)
    {
 
@@ -19456,7 +19456,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       ::rectangle_i32 rectangleNew;
 
-      ::raw::index iMatchingMonitor = -1;
+      ::collection::index iMatchingMonitor = -1;
 
       if (get_parent() != nullptr)
       {
@@ -19524,7 +19524,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   ::raw::index interaction::best_workspace(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet,
+   ::collection::index interaction::best_workspace(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet,
                                      ::e_activation eactivation, ::zorder zorderParam)
    {
 
@@ -19553,7 +19553,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       auto pdisplay = pwindowing->display();
 
-      ::raw::index iMatchingMonitor = pdisplay->get_best_monitor(&rectangleNew, rectangleWindow, eactivation, this);
+      ::collection::index iMatchingMonitor = pdisplay->get_best_monitor(&rectangleNew, rectangleWindow, eactivation, this);
 
       ::rectangle_i32 rectangleWorkspace;
 
@@ -19599,7 +19599,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   ::raw::index
+   ::collection::index
       interaction::get_zoneing(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleParam, ::e_display edisplay)
    {
 
@@ -19612,7 +19612,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       ::rectangle_i32 rectangleWorkspace;
 
-      ::raw::index iWorkspace = get_best_workspace(&rectangleWorkspace, rectangleParam);
+      ::collection::index iWorkspace = get_best_workspace(&rectangleWorkspace, rectangleParam);
 
       if (iWorkspace < 0 || rectangleWorkspace.is_empty())
       {
@@ -19709,7 +19709,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   ::raw::index interaction::get_preferred_restore(::rectangle_i32 & rectWorkspace)
+   ::collection::index interaction::get_preferred_restore(::rectangle_i32 & rectWorkspace)
    {
 
       return -1;
@@ -19740,7 +19740,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       auto pdisplay = pwindowing->display();
 
-      ::raw::index iMainMonitor = pdisplay->get_main_monitor(rectangleMainMonitor);
+      ::collection::index iMainMonitor = pdisplay->get_main_monitor(rectangleMainMonitor);
 
       if (iMainMonitor < 0)
       {
@@ -19787,7 +19787,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   ::raw::index
+   ::collection::index
       interaction::calculate_broad_and_compact_restore(::rectangle_i32 * prectWorkspace, const ::size_i32 & sizeMinParam,
                                                        const ::rectangle_i32 & rectangleHintParam)
    {
@@ -19828,7 +19828,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       auto pdisplay = pwindowing->display();
 
-      ::raw::index iMatchingWorkspace = pdisplay->get_best_workspace(&rectangleWorkspace, rectangleHint);
+      ::collection::index iMatchingWorkspace = pdisplay->get_best_workspace(&rectangleWorkspace, rectangleHint);
 
       if (iMatchingWorkspace >= 0)
       {
@@ -19917,7 +19917,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    //}
 
 
-   ::raw::index interaction::make_zoneing(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet,
+   ::collection::index interaction::make_zoneing(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet,
                                    ::e_display * pedisplay, ::e_activation eactivation, ::zorder zorderParam)
    {
 
@@ -19946,7 +19946,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       ::rectangle_i32 rectangleNew;
 
-      ::raw::index iMatchingMonitor = get_zoneing(&rectangleNew, rectangleWindow, *pedisplay);
+      ::collection::index iMatchingMonitor = get_zoneing(&rectangleNew, rectangleWindow, *pedisplay);
 
       if (bSet && !is_empty(rectangleNew) && iMatchingMonitor >= 0)
       {
@@ -19973,7 +19973,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   ::raw::index interaction::get_best_zoneing(::e_display & edisplay, ::rectangle_i32 * prectangle,
+   ::collection::index interaction::get_best_zoneing(::e_display & edisplay, ::rectangle_i32 * prectangle,
                                        const ::rectangle_i32 & rectangleRequest, bool bPreserveSize)
    {
 
@@ -19999,7 +19999,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   ::raw::index interaction::get_best_workspace(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle,
+   ::collection::index interaction::get_best_workspace(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle,
                                          ::e_activation eactivation)
    {
 
@@ -20012,7 +20012,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   ::raw::index
+   ::collection::index
       interaction::get_best_monitor(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle,
                                     ::e_activation eactivation)
    {
@@ -20026,7 +20026,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   ::raw::index interaction::best_zoneing(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet,
+   ::collection::index interaction::best_zoneing(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet,
                                    ::e_display * pedisplay, ::e_activation eactivation, ::zorder zorderParam)
    {
 
@@ -20043,7 +20043,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       ::rectangle_i32 rectangleNew;
 
-      ::raw::index iMatchingMonitor;
+      ::collection::index iMatchingMonitor;
 
       auto pwindowing = windowing();
 
@@ -20091,7 +20091,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    /// the rectangle parameter indicates to the function
    /// which monitor or monitors the window restore should
    /// be positioned at.
-   ::raw::index interaction::good_restore(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet,
+   ::collection::index interaction::good_restore(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet,
                                    ::e_activation eactivation, ::zorder zorderParam, ::e_display edisplay)
    {
 
@@ -20124,7 +20124,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       auto pdisplay = pwindowing->display();
 
-      ::raw::index iMatchingMonitor = pdisplay->get_good_restore(&rectangleNew, rectangleWindow, this, edisplay);
+      ::collection::index iMatchingMonitor = pdisplay->get_good_restore(&rectangleNew, rectangleWindow, this, edisplay);
 
       if (bSet)
       {
@@ -20183,7 +20183,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   ::raw::index interaction::good_iconify(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet,
+   ::collection::index interaction::good_iconify(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet,
                                    ::e_activation eactivation, ::zorder zorderParam)
    {
 
@@ -20208,7 +20208,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       auto pdisplay = pwindowing->display();
 
-      ::raw::index iMatchingMonitor = pdisplay->get_good_iconify(&rectangleNew, rectangleWindow);
+      ::collection::index iMatchingMonitor = pdisplay->get_good_iconify(&rectangleNew, rectangleWindow);
 
       if (bSet && (!::is_empty(rectangleNew) || iMatchingMonitor >= 0))
       {
@@ -20231,7 +20231,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   ::raw::index
+   ::collection::index
       interaction::good_move(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, ::e_activation eactivation,
                              ::zorder zorderParam)
    {
@@ -20257,7 +20257,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       auto pdisplay = pwindowing->display();
 
-      ::raw::index iMatchingMonitor = pdisplay->get_good_move(&rectangleNew, rectangleWindow, this);
+      ::collection::index iMatchingMonitor = pdisplay->get_good_move(&rectangleNew, rectangleWindow, this);
 
       if (!is_empty(rectangleNew) || iMatchingMonitor >= 0)
       {
@@ -20918,7 +20918,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       //   else
       //   {
 
-      //      for (::raw::index i = 0; i < uiptra.get_size(); i++)
+      //      for (::collection::index i = 0; i < uiptra.get_size(); i++)
       //      {
 
       //         try
@@ -21752,7 +21752,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 //      //
 //      //         _synchronous_lock synchronouslock(this->synchronization());
 //      //
-//      //         for (::raw::index i = 0; i < m_uiptraChild.get_size(); i++)
+//      //         for (::collection::index i = 0; i < m_uiptraChild.get_size(); i++)
 //      //         {
 //      //
 //      //            ::user::interaction * pinteraction = m_uiptraChild[i];
@@ -25840,7 +25840,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   ::item_pointer interaction::on_items_hit_test(const ::point_i32 & point, e_zorder ezorder, ::raw::index iIdContainer, ::item_array * pitema)
+   ::item_pointer interaction::on_items_hit_test(const ::point_i32 & point, e_zorder ezorder, ::collection::index iIdContainer, ::item_array * pitema)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -26305,7 +26305,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   void interaction::_001DrawItems(::draw2d::graphics_pointer & pgraphics, ::raw::index iIdContainer, ::item_array * pitema)
+   void interaction::_001DrawItems(::draw2d::graphics_pointer & pgraphics, ::collection::index iIdContainer, ::item_array * pitema)
    {
 
       if (::is_null(pitema))
@@ -26658,7 +26658,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   //::item_pointer interaction::get_child_as_item(::raw::index iIndex)
+   //::item_pointer interaction::get_child_as_item(::collection::index iIndex)
    //{
 
    //   if (!m_puserinteractionpointeraChild)
@@ -26687,7 +26687,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    //}
 
 
-   //::raw::count interaction::get_child_as_item_count()
+   //::collection::count interaction::get_child_as_item_count()
    //{
 
    //   if (!m_puserinteractionpointeraChild)
@@ -26702,7 +26702,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    //}
 
 
-   ::user::interaction * interaction::child_at(::raw::index iIndex)
+   ::user::interaction * interaction::child_at(::collection::index iIndex)
    {
 
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
@@ -27000,12 +27000,12 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    //index interaction::GetEditSubItem()
    //{
 
-   //   return (::raw::index) m_iSubItem;
+   //   return (::collection::index) m_iSubItem;
 
    //}
 
 
-   //void interaction::SetEditItem(::raw::index iItem)
+   //void interaction::SetEditItem(::collection::index iItem)
    //{
 
    //   m_iEditItem = iItem;
@@ -27013,7 +27013,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    //}
 
 
-   //void interaction::SetEditSubItem(::raw::index iSubItem)
+   //void interaction::SetEditSubItem(::collection::index iSubItem)
    //{
 
    //   m_iSubItem = iSubItem;

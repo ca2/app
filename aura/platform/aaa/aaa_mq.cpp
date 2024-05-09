@@ -177,7 +177,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 
    synchronous_lock synchronouslock(this->synchronization());
 
-   ::raw::count count = m_messagea.get_count();
+   ::collection::count count = m_messagea.get_count();
 
    for(i32 i = 0; i < count; i++)
    {

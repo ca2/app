@@ -91,7 +91,7 @@ namespace filemanager
 
       const ::ansi_character * psz = strParam;
 
-      ::raw::count c = 0;
+      ::collection::count c = 0;
 
       while (*psz != '\0')
       {
@@ -134,7 +134,7 @@ namespace filemanager
 
       const ::ansi_character * psz = strParam;
 
-      ::raw::count c = 0;
+      ::collection::count c = 0;
 
       while (*psz != '\0')
       {
@@ -591,7 +591,7 @@ namespace filemanager
 
          ::file::path path;
 
-         for (::raw::index i = 0; i < stra.get_size();)
+         for (::collection::index i = 0; i < stra.get_size();)
          {
 
             string str = stra[i];
@@ -603,7 +603,7 @@ namespace filemanager
 
                string strPath = str(iFind + 1);
 
-               for (::raw::index j = i + 1; j < stra.get_size();)
+               for (::collection::index j = i + 1; j < stra.get_size();)
                {
 
                   string strOther = stra[j];
@@ -689,7 +689,7 @@ namespace filemanager
 
       //document * pdocument;
 
-      //for (::raw::index i = 0; i < m_pimpactsystemProject->get_document_count(); i++)
+      //for (::collection::index i = 0; i < m_pimpactsystemProject->get_document_count(); i++)
       //{
 
       //   pdocument = m_pimpactsystemProject->get_document(i);
@@ -741,7 +741,7 @@ namespace filemanager
 
       ::pointer<document>pdocument;
 
-      //for (::raw::index i = 0; i < m_pimpactsystemProject->get_document_count(); i++)
+      //for (::collection::index i = 0; i < m_pimpactsystemProject->get_document_count(); i++)
       //{
 
       //   pdocument = m_pimpactsystemProject->get_document(i);

@@ -10,14 +10,14 @@
 //   {
 //   public:
 //
-//      ::raw::index                 m_iStep;
+//      ::collection::index                 m_iStep;
 //      matter* m_p;
 //      string                  m_strNote;
 //
 //   };
 //
 //
-//   ::raw::index                    m_iStep;
+//   ::collection::index                    m_iStep;
 //   array < item >             m_itema;
 //
 //

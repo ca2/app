@@ -20,11 +20,11 @@ namespace write_text
       virtual ~glyph_set();
 
 
-      virtual ::raw::index add(glyph & glyph);
+      virtual ::collection::index add(glyph & glyph);
 
       void quick_sort();
 
-      ::raw::index find_first(::u32 user);
+      ::collection::index find_first(::u32 user);
 
       glyph * GetGlyph(::u32 user);
 

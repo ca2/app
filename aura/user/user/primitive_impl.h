@@ -293,7 +293,7 @@ namespace user
       virtual void hide_software_keyboard(::user::element * pelement);
 
       
-      virtual ::user::interaction* get_child_by_id(const ::atom& atom, ::raw::index iItem = -1, i32 iLevel = -1);
+      virtual ::user::interaction* get_child_by_id(const ::atom& atom, ::collection::index iItem = -1, i32 iLevel = -1);
 
 
       virtual void set_need_redraw(const ::rectangle_i32_array & rectangleaNeedRedraw = {}, function<void()> function =     nullptr, bool bAscendants = true);

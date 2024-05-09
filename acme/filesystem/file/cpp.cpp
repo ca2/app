@@ -28,7 +28,7 @@ CLASS_DECL_ACME string file_friendly_transform(string str, bool bTransformSlashe
    str.replace_with("_", "?");
    str.replace_with("_", "*");
 
-   for (::raw::index i = 0; i < str.length(); i++)
+   for (::collection::index i = 0; i < str.length(); i++)
    {
 
       if (str[i] <= 31)

@@ -184,8 +184,8 @@ namespace database
 
       virtual void add_client(client * pclient);
       virtual void erase_client(client * pclient);
-      client * client_at(::raw::index iClient);
-      ::raw::count get_client_count();
+      client * client_at(::collection::index iClient);
+      ::collection::count get_client_count();
 
 
    };

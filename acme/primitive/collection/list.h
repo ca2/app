@@ -196,7 +196,7 @@ public:
 
    //iterator         this->begin();
    //iterator         this->m_end;
-   ::raw::count        m_count;
+   ::collection::count        m_count;
 
 
 
@@ -348,14 +348,14 @@ public:
 
       //void Serialize(CArchive&);
     //(head and tail)
-      // ::raw::count of elements
-   ::raw::count get_count() const;
-   ::raw::count get_size() const;
-   ::raw::count size() const;
-   bool is_empty(::raw::count countMinimum = 1) const;
-   bool has_elements(::raw::count countMinimum = 1) const;
+      // ::collection::count of elements
+   ::collection::count get_count() const;
+   ::collection::count get_size() const;
+   ::collection::count size() const;
+   bool is_empty(::collection::count countMinimum = 1) const;
+   bool has_elements(::collection::count countMinimum = 1) const;
    bool has_element() const;
-   bool empty(::raw::count countMinimum = 1) const;
+   bool empty(::collection::count countMinimum = 1) const;
 
    // peek at head or tail
    TYPE & head();
@@ -405,7 +405,7 @@ public:
    //const TYPE& get_previous(iterator& rPosition) const; // return *position--
 
 
-   void erase_at(::raw::index i);
+   void erase_at(::collection::index i);
 
 
 
@@ -414,7 +414,7 @@ public:
    //iterator detach(iterator position);
    //iterator detach(iterator it);
 
-   ::raw::count detach(iterator p, iterator end);
+   ::collection::count detach(iterator p, iterator end);
 
    iterator insert(iterator position, ARG_TYPE newElement);
    //iterator insert(iterator position, iterator it);
@@ -577,7 +577,7 @@ inline list < TYPE, ARG_TYPE > list < TYPE, ARG_TYPE >::from(iterator p)
 
 
 template<class TYPE, class ARG_TYPE>
-inline ::raw::count list<TYPE, ARG_TYPE>::get_count() const
+inline ::collection::count list<TYPE, ARG_TYPE>::get_count() const
 {
 
    return this->m_count;
@@ -594,7 +594,7 @@ inline bool list<TYPE, ARG_TYPE>::has_element() const
 
 
 template<class TYPE, class ARG_TYPE>
-inline ::raw::count list<TYPE, ARG_TYPE>::get_size() const
+inline ::collection::count list<TYPE, ARG_TYPE>::get_size() const
 {
 
    return this->m_count;
@@ -603,25 +603,25 @@ inline ::raw::count list<TYPE, ARG_TYPE>::get_size() const
 
 
 template<class TYPE, class ARG_TYPE>
-inline ::raw::count list<TYPE, ARG_TYPE>::size() const
+inline ::collection::count list<TYPE, ARG_TYPE>::size() const
 {
    return this->m_count;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline bool list<TYPE, ARG_TYPE>::is_empty(::raw::count countMinimum) const
+inline bool list<TYPE, ARG_TYPE>::is_empty(::collection::count countMinimum) const
 {
    return this->m_count < countMinimum;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline bool list<TYPE, ARG_TYPE>::empty(::raw::count countMinimum) const
+inline bool list<TYPE, ARG_TYPE>::empty(::collection::count countMinimum) const
 {
    return this->m_count < countMinimum;
 }
 
 template<class TYPE, class ARG_TYPE>
-inline bool list<TYPE, ARG_TYPE>::has_elements(::raw::count countMinimum) const
+inline bool list<TYPE, ARG_TYPE>::has_elements(::collection::count countMinimum) const
 {
    return this->m_count >= countMinimum;
 }
@@ -1059,7 +1059,7 @@ template<class TYPE, class ARG_TYPE>
 typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_before(iterator position, iterator p, iterator end)
 {
 
-   ::raw::count count = end - p;
+   ::collection::count count = end - p;
 
    if (count < 0)
    {
@@ -1204,7 +1204,7 @@ template<class TYPE, class ARG_TYPE>
 typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE > ::insert_after(iterator position, iterator p, iterator end)
 {
 
-   ::raw::count count = end - p;
+   ::collection::count count = end - p;
 
    if (count <= 0)
    {
@@ -1436,7 +1436,7 @@ void list<TYPE, ARG_TYPE>::__swap(iterator position1, iterator position2)
 
 
 template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::erase_at(::raw::index i)
+void list<TYPE, ARG_TYPE>::erase_at(::collection::index i)
 {
 
    this->erase(this->begin() + i);
@@ -1535,7 +1535,7 @@ typename list < TYPE, ARG_TYPE >::iterator list<TYPE, ARG_TYPE>::detach(iterator
 
 
 template < class TYPE, class ARG_TYPE >
-::raw::count list<TYPE, ARG_TYPE>::detach(iterator p, iterator end)
+::collection::count list<TYPE, ARG_TYPE>::detach(iterator p, iterator end)
 {
 
    ASSERT_VALID(this);
@@ -1577,7 +1577,7 @@ template < class TYPE, class ARG_TYPE >
 
    }
 
-   ::raw::count count = 0;
+   ::collection::count count = 0;
 
    while (p != end)
    {
@@ -1649,7 +1649,7 @@ void list<TYPE, ARG_TYPE>::splice(iterator i, list & l, iterator p, iterator end
 
 
 //template<class TYPE, class ARG_TYPE>
-//typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::index_iterator(::raw::index index)
+//typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::index_iterator(::collection::index index)
 //{
 //
 //   //ASSERT_VALID(this);
@@ -1685,7 +1685,7 @@ void list<TYPE, ARG_TYPE>::splice(iterator i, list & l, iterator p, iterator end
 //
 //   auto iterator = this->begin();
 //
-//   ::raw::index i = 0;
+//   ::collection::index i = 0;
 //
 //   while (iterator.is_set)
 //   {
@@ -1709,7 +1709,7 @@ void list<TYPE, ARG_TYPE>::splice(iterator i, list & l, iterator p, iterator end
 //
 //
 //template<class TYPE, class ARG_TYPE>
-//inline typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE >::reverse_index_iterator(::raw::index index)
+//inline typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE >::reverse_index_iterator(::collection::index index)
 //{
 //
 //   //ASSERT_VALID(this);

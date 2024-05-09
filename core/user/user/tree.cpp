@@ -347,11 +347,11 @@ namespace user
 
          synchronous_lock synchronouslock(!pitem ? nullptr : pitem->m_ptree->synchronization());
 
-         ::raw::index iItem = m_iFirstVisibleItemProperIndex;
+         ::collection::index iItem = m_iFirstVisibleItemProperIndex;
 
          auto iVisibleCount = _001GetVisibleItemCount();
 
-         ::raw::index iIndex = 0;
+         ::collection::index iIndex = 0;
 
          for (; pitem != nullptr; pitem = pitem->get_item(::data::e_tree_navigation_proper_forward))
          {
@@ -674,7 +674,7 @@ namespace user
    }
 
 
-   ::raw::index tree::_001GetIndentation()
+   ::collection::index tree::_001GetIndentation()
    {
       return 24;
    }
@@ -936,9 +936,9 @@ namespace user
    ::pointer<::data::tree_item>tree::_001HitTest(const ::point_i32 & point, ::user::enum_tree_element & eelement)
    {
 
-      ::raw::index iy = point.y();
+      ::collection::index iy = point.y();
 
-      ::raw::index iItem = -1;
+      ::collection::index iItem = -1;
 
       auto item_height = _001GetItemHeight();
 
@@ -970,10 +970,10 @@ namespace user
 
       }
 
-      ::raw::index iLevel = pitem->m_iLevel;
+      ::collection::index iLevel = pitem->m_iLevel;
 
       //index x = (i32)(point.x() - _001GetIndentation() * (iLevel)+pointOffset.x());
-      ::raw::index x = (i32)(point.x() - _001GetIndentation() * (iLevel));
+      ::collection::index x = (i32)(point.x() - _001GetIndentation() * (iLevel));
       if (x >= 0 && x < 16)
          eelement = e_tree_element_expand_box;
       if (x >= 18 && x < 34)
@@ -1176,12 +1176,12 @@ namespace user
             // scroll properly to show the highest possible number
             // of children while trying to preserve the old position and
             // never passing
-            ::raw::index iLevel = 0;
-            ::raw::index iParentIndex = get_proper_item_index(pitem, &iLevel);
+            ::collection::index iLevel = 0;
+            ::collection::index iParentIndex = get_proper_item_index(pitem, &iLevel);
 
-            ::raw::index iLastChildIndex = iParentIndex + pitem->get_proper_descendant_count();
+            ::collection::index iLastChildIndex = iParentIndex + pitem->get_proper_descendant_count();
 
-            ::raw::index iDivision;
+            ::collection::index iDivision;
 
             if (_001GetItemHeight() == 0)
             {
@@ -1193,15 +1193,15 @@ namespace user
             else
             {
 
-               iDivision = (::raw::index)(pointOffset.y() / _001GetItemHeight());
+               iDivision = (::collection::index)(pointOffset.y() / _001GetItemHeight());
 
             }
 
-            ::raw::index iLastVisibleIndex = (::raw::index)(iDivision + _001GetVisibleItemCount()) + 1;
+            ::collection::index iLastVisibleIndex = (::collection::index)(iDivision + _001GetVisibleItemCount()) + 1;
 
 
 
-            ::raw::index iObscured; // obscured proper descendants
+            ::collection::index iObscured; // obscured proper descendants
             iObscured = iLastChildIndex - iLastVisibleIndex;
 
             if (iObscured > 0)
@@ -1261,7 +1261,7 @@ namespace user
    }
 
 
-   ::pointer<::data::tree_item>tree::find_data_tree_item(::data::item * pitem, ::raw::index * piIndex)
+   ::pointer<::data::tree_item>tree::find_data_tree_item(::data::item * pitem, ::collection::index * piIndex)
    {
 
       return m_ptreedata->find(pitem, piIndex);
@@ -1550,7 +1550,7 @@ namespace user
    }
 
 
-   ::raw::count tree::_001GetVisibleItemCount()
+   ::collection::count tree::_001GetVisibleItemCount()
    {
 
       if (_001GetItemHeight() == 0)
@@ -1564,7 +1564,7 @@ namespace user
 
       rectangle = this->rectangle();
 
-      return (::raw::count)(rectangle.height() / _001GetItemHeight() + 1);
+      return (::collection::count)(rectangle.height() / _001GetItemHeight() + 1);
 
    }
 
@@ -1574,13 +1574,13 @@ namespace user
 
       auto rectangleX = this->rectangle();
 
-      ::raw::count iCount = _001GetVisibleItemCount();
+      ::collection::count iCount = _001GetVisibleItemCount();
 
       i32 iMaxWidth = rectangleX.width();
 
       i32 iWidth;
 
-      ::raw::index iIndent = _001GetIndentation();
+      ::collection::index iIndent = _001GetIndentation();
 
       ::pointer<::data::tree_item>pitem = m_pitemFirstVisible;
 
@@ -1619,7 +1619,7 @@ namespace user
    }
 
 
-   ::pointer<::data::tree_item>tree::CalcFirstVisibleItem(::raw::index & iProperIndex)
+   ::pointer<::data::tree_item>tree::CalcFirstVisibleItem(::collection::index & iProperIndex)
    {
 
       synchronous_lock synchronouslock(m_ptreedata ? m_ptreedata->synchronization() : nullptr);
@@ -1697,7 +1697,7 @@ namespace user
    i32 tree::_001CalcTotalImpactWidth(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::raw::index nOffset;
+      ::collection::index nOffset;
 
       if (_001GetItemHeight() == 0)
       {
@@ -1717,7 +1717,7 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      nOffset = (::raw::index)(pointOffset.y() / _001GetItemHeight());
+      nOffset = (::collection::index)(pointOffset.y() / _001GetItemHeight());
 
       nOffset = INT_MAX;
 
@@ -1727,7 +1727,7 @@ namespace user
 
       int iMaxWidth = 0;
 
-      ::raw::index iLevel = 0;
+      ::collection::index iLevel = 0;
 
       auto iIndent = _001GetIndentation();
 
@@ -1813,7 +1813,7 @@ namespace user
    }
 
 
-   ::raw::count tree::_001GetProperItemCount()
+   ::collection::count tree::_001GetProperItemCount()
    {
 
       if (!m_ptreedata)
@@ -1823,9 +1823,9 @@ namespace user
 
       }
 
-      ::raw::count iProperCount = 0;
+      ::collection::count iProperCount = 0;
 
-      ::raw::index iLevel;
+      ::collection::index iLevel;
 
       ::data::tree_item * ptreeitem = nullptr;
 
@@ -1896,7 +1896,7 @@ namespace user
    }
 
 
-   bool tree::selection_add(::data::item * pitemdata, ::raw::index i)
+   bool tree::selection_add(::data::item * pitemdata, ::collection::index i)
    {
 
       auto ptreedataitem = find_data_tree_item(pitemdata, &i);
@@ -1913,10 +1913,10 @@ namespace user
    }
 
 
-   ::raw::count tree::selection_add(::data::tree_item_ptr_array & itemptra)
+   ::collection::count tree::selection_add(::data::tree_item_ptr_array & itemptra)
    {
 
-      ::raw::count count = 0;
+      ::collection::count count = 0;
 
       for (i32 i = 0; i < itemptra.get_count(); i++)
       {
@@ -1957,7 +1957,7 @@ namespace user
    }
 
 
-   bool tree::selection_set(::raw::index i, ::data::item * pitemdata, bool bIfNotInSelection, bool bIfParentInSelection)
+   bool tree::selection_set(::collection::index i, ::data::item * pitemdata, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
       auto ptreedataitem = find_data_tree_item(pitemdata, &i);
@@ -1974,10 +1974,10 @@ namespace user
    }
 
 
-   ::raw::count tree::selection_set(::data::tree_item_ptr_array & itemptra)
+   ::collection::count tree::selection_set(::data::tree_item_ptr_array & itemptra)
    {
 
-      ::raw::count count = 0;
+      ::collection::count count = 0;
 
       for (i32 i = 0; i < itemptra.get_count(); i++)
       {
@@ -2033,7 +2033,7 @@ namespace user
    }
 
 
-   bool tree::selection_erase(::data::item * pitemdata, ::raw::index i)
+   bool tree::selection_erase(::data::item * pitemdata, ::collection::index i)
    {
 
       auto ptreedataitem = find_data_tree_item(pitemdata, &i);
@@ -2050,10 +2050,10 @@ namespace user
    }
 
 
-   ::raw::count tree::selection_erase(::data::tree_item_ptr_array & itemptra)
+   ::collection::count tree::selection_erase(::data::tree_item_ptr_array & itemptra)
    {
 
-      ::raw::count count = 0;
+      ::collection::count count = 0;
 
       for (i32 i = 0; i < itemptra.get_count(); i++)
       {
@@ -2080,7 +2080,7 @@ namespace user
    }
 
 
-   ::raw::count tree::clear_selection()
+   ::collection::count tree::clear_selection()
    {
 
       return m_pitemptraSelected->erase_all();
@@ -2088,7 +2088,7 @@ namespace user
    }
 
 
-   bool tree::hover(::data::item * pitemdata, ::raw::index i)
+   bool tree::hover(::data::item * pitemdata, ::collection::index i)
    {
 
       auto ptreedataitem = find_data_tree_item(pitemdata, &i);
@@ -2262,7 +2262,7 @@ namespace user
    }
 
 
-   ::pointer<::data::tree_item>tree::get_proper_item(::raw::index i, ::raw::index * piLevel)
+   ::pointer<::data::tree_item>tree::get_proper_item(::collection::index i, ::collection::index * piLevel)
    {
 
       if (!m_ptreedata)
@@ -2286,7 +2286,7 @@ namespace user
    }
 
 
-   ::pointer<::data::tree_item>tree::_get_proper_item(::raw::index i, ::raw::index * piLevel, ::raw::index * piCount)
+   ::pointer<::data::tree_item>tree::_get_proper_item(::collection::index i, ::collection::index * piLevel, ::collection::index * piCount)
    {
 
       if (!m_ptreedata)
@@ -2296,7 +2296,7 @@ namespace user
 
       }
 
-      ::raw::index iCount = 0;
+      ::collection::index iCount = 0;
 
       ::pointer<::data::tree_item>pitem;
 
@@ -2321,12 +2321,12 @@ namespace user
    }
 
 
-   ::raw::index tree::get_proper_item_index(::data::tree_item * pitemParam, ::raw::index * piLevel)
+   ::collection::index tree::get_proper_item_index(::data::tree_item * pitemParam, ::collection::index * piLevel)
    {
 
-      ::raw::index iCount = 0;
+      ::collection::index iCount = 0;
 
-      ::raw::index iFound;
+      ::collection::index iFound;
 
       iFound = m_ptreedata->get_proper_item_index(pitemParam, piLevel, &iCount);
 
@@ -2342,7 +2342,7 @@ namespace user
    }
 
 
-   ::raw::index tree::get_proper_item_count()
+   ::collection::index tree::get_proper_item_count()
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -2354,7 +2354,7 @@ namespace user
 
       }
 
-      ::raw::index iCount = 0;
+      ::collection::index iCount = 0;
 
       iCount += m_ptreedata->get_proper_item_count();
 
@@ -2384,9 +2384,9 @@ namespace user
 
       }
 
-      ::raw::index iLevel = 0;
+      ::collection::index iLevel = 0;
 
-      ::raw::index iIndex = get_proper_item_index(pitem, &iLevel);
+      ::collection::index iIndex = get_proper_item_index(pitem, &iLevel);
 
       auto pointOffset = get_context_offset();
 
@@ -2397,14 +2397,14 @@ namespace user
 
       }
 
-      ::raw::index iMinVisibleIndex = (::raw::index)(pointOffset.y() / m_dItemHeight);
+      ::collection::index iMinVisibleIndex = (::collection::index)(pointOffset.y() / m_dItemHeight);
 
-      ::raw::index iMaxVisibleIndex = (::raw::index)(iMinVisibleIndex + _001GetVisibleItemCount());
+      ::collection::index iMaxVisibleIndex = (::collection::index)(iMinVisibleIndex + _001GetVisibleItemCount());
 
       if (iIndex < iMinVisibleIndex || iIndex > iMaxVisibleIndex)
       {
 
-         ::raw::index iNewScrollIndex = iIndex;
+         ::collection::index iNewScrollIndex = iIndex;
 
          auto dy = maximum(iNewScrollIndex, 0) * m_dItemHeight;
 

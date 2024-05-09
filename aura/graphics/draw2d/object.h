@@ -41,10 +41,10 @@ namespace draw2d
       //inline ::aura::system* system();
 
 
-      inline bool is_set(::raw::index iIndex) const { return m_baCalculated[0]; }
-      inline bool nok(::raw::index iIndex) const { return !is_set(iIndex); }
-      inline bool is_up_to_date(::raw::index iIndex) const { return is_set(iIndex); }
-      inline bool is_modified(::raw::index iIndex) const { return !is_up_to_date(iIndex); }
+      inline bool is_set(::collection::index iIndex) const { return m_baCalculated[0]; }
+      inline bool nok(::collection::index iIndex) const { return !is_set(iIndex); }
+      inline bool is_up_to_date(::collection::index iIndex) const { return is_set(iIndex); }
+      inline bool is_modified(::collection::index iIndex) const { return !is_up_to_date(iIndex); }
 
 
       virtual void defer_update(::draw2d::graphics * pgraphics, ::i8 i) const;

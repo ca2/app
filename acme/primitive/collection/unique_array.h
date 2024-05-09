@@ -8,7 +8,7 @@ public:
    unique_sort_array(::particle * pparticle = nullptr);
    unique_sort_array(const unique_sort_array & array);
 
-   virtual ::raw::index add(ARG_TYPE newElement)
+   virtual ::collection::index add(ARG_TYPE newElement)
    {
       auto pFind = 0;
       if(find(newElement, iFind))
@@ -24,8 +24,8 @@ public:
 
    bool find(ARG_TYPE t, index & find) const
    {
-      ::raw::index iL = find;
-      ::raw::index iU = this->get_upper_bound();
+      ::collection::index iL = find;
+      ::collection::index iU = this->get_upper_bound();
       while(iU - iL > 5)
       {
          find = (iL + iU) / 2;
@@ -87,7 +87,7 @@ public:
    unique_array(::particle * pparticle = nullptr);
    unique_array(const unique_array & array);
 
-   virtual ::raw::index add(TYPE newElement)
+   virtual ::collection::index add(TYPE newElement)
    {
       auto pFind = 0;
       if(find(newElement, iFind))

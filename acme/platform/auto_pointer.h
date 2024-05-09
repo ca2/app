@@ -34,7 +34,7 @@ public:
 
    }
 
-   //auto_pointer(e_new_array, ::raw::count c)
+   //auto_pointer(e_new_array, ::collection::count c)
    //{
    //   m_bArray = true;
    //   m_p = __new< T[ >(size_t) c];
@@ -50,14 +50,14 @@ public:
 
 
    //template < typename TYPE >
-   //auto_pointer(TYPE * p, ::raw::count c)
+   //auto_pointer(TYPE * p, ::collection::count c)
    //{
    //   
    //   m_bArray = true;
 
    //   m_p = __new< T[ >(size_t)c];
 
-   //   for (::raw::index i = 0; i < c; i++)
+   //   for (::collection::index i = 0; i < c; i++)
    //   {
    //      
    //      ::copy(&m_p[(size_t)i], &p[(size_t) i]);
@@ -68,14 +68,14 @@ public:
 
 
    //template < typename TYPE, typename COPY >
-   //auto_pointer(TYPE * p, ::raw::count c, COPY copy)
+   //auto_pointer(TYPE * p, ::collection::count c, COPY copy)
    //{
 
    //   m_bArray = true;
 
    //   m_p = __new< T[ >(size_t)c];
 
-   //   for (::raw::index i = 0; i < c; i++)
+   //   for (::collection::index i = 0; i < c; i++)
    //   {
 
    //      copy(&m_p[(size_t)i], &p[(size_t)i]);
@@ -121,7 +121,7 @@ public:
 
    }
 
-   //void create_array(::raw::count c)
+   //void create_array(::collection::count c)
    //{
    //   
    //   destroy();

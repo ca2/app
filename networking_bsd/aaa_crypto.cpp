@@ -1159,7 +1159,7 @@ namespace crypto_openssl
          string strEnd = "-----END CERTIFICATE-----";
          string strCertificate;
          strsize iEndLen = strEnd.length();
-         ::raw::count iCount = 0;
+         ::collection::count iCount = 0;
          while ((iFind = strOthers.find("-----BEGIN CERTIFICATE-----", iStart)) >= 0)
          {
             strsize iEnd = strOthers(pFind).find(strEnd);

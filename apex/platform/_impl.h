@@ -312,7 +312,7 @@
 //::stream & read_container_as_parent(::stream & stream, pointer_array < TYPE > & a)
 //{
 //
-//   ::raw::count c = 0;
+//   ::collection::count c = 0;
 //
 //   stream >> c;
 //
@@ -352,7 +352,7 @@
 //::stream & write_container_as_parent(::stream & stream, const pointer_array < TYPE > & a)
 //{
 //
-//   ::raw::count c = a.get_count();
+//   ::collection::count c = a.get_count();
 //
 //   stream << c;
 //

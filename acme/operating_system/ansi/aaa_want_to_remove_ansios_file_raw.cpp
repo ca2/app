@@ -43,9 +43,9 @@ void file_put_contents_raw(const ::file::path & path, const ::scoped_string & sc
    if (f == nullptr)
       return;
 
-   ::raw::count iSize = strlen(psz);
+   ::collection::count iSize = strlen(psz);
 
-   ::raw::count iRead = fwrite(psz, 1, (size_t)iSize, f);
+   ::collection::count iRead = fwrite(psz, 1, (size_t)iSize, f);
 
    fclose(f);
 
@@ -59,9 +59,9 @@ void file_add_contents_raw(const ::file::path & path, const ::scoped_string & sc
    if (f == nullptr)
       return;
 
-   ::raw::count iSize = strlen(psz);
+   ::collection::count iSize = strlen(psz);
 
-   ::raw::count iRead = fwrite(psz, 1, (size_t)iSize, f);
+   ::collection::count iRead = fwrite(psz, 1, (size_t)iSize, f);
 
    fclose(f);
 
@@ -140,7 +140,7 @@ u64 file_length_raw(const ::file::path & path)
 
 
 
-string acmefile()->line(const ::file::path & path, ::raw::index iLine)
+string acmefile()->line(const ::file::path & path, ::collection::index iLine)
 {
 
    string str;
@@ -207,7 +207,7 @@ string acmefile()->line(const ::file::path & path, ::raw::index iLine)
 }
 
 
-bool file_set_line_dup(const ::file::path & path, ::raw::index iLine, const ::scoped_string & scopedstrLine)
+bool file_set_line_dup(const ::file::path & path, ::collection::index iLine, const ::scoped_string & scopedstrLine)
 {
 
    if (iLine < 0)
@@ -244,9 +244,9 @@ pacmedirectory->create(path.folder());
 
    int iLastChar = -1;
 
-   ::raw::index iPosStart = -1;
+   ::collection::index iPosStart = -1;
 
-   ::raw::index iPosEnd = -1;
+   ::collection::index iPosEnd = -1;
 
    while (iLine >= 0)
    {
@@ -331,7 +331,7 @@ pacmedirectory->create(path.folder());
 
       fwrite(pszLine, 1, strlen(pszLine), file2);
 
-      ::raw::index iEnd = fseek(file, 0, SEEK_END);
+      ::collection::index iEnd = fseek(file, 0, SEEK_END);
 
       if (iEnd - iPosEnd > 0)
       {

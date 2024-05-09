@@ -11,7 +11,7 @@
 
 
 template < typename ARG_TYPE >
-::raw::index numeric_compare(ARG_TYPE t1, ARG_TYPE t2)
+::collection::index numeric_compare(ARG_TYPE t1, ARG_TYPE t2)
 {
    typename ::erase_reference < ARG_TYPE >::TYPE t = t1 - t2;
    if(t > ::numeric_info< typename ::erase_reference < ARG_TYPE >::TYPE >::null())
@@ -45,7 +45,7 @@ public:
 
    }
 
-   numeric_array(const TYPE * pa, ::raw::count c) :
+   numeric_array(const TYPE * pa, ::collection::count c) :
       numeric_array()
    {
 
@@ -85,9 +85,9 @@ public:
    typedef comparable_raw_array < TYPE, TYPE, ::typed::nodef < TYPE >, ::heap::typed_memory < TYPE, ::heap::e_memory_array >, t_etypeContainer > BASE_ARRAY;
 
 
-   ::raw::index find_first_maximum_value();
+   ::collection::index find_first_maximum_value();
    TYPE & get_maximum_value();
-   ::raw::index find_first_minimum_value();
+   ::collection::index find_first_minimum_value();
    TYPE & get_minimum_value();
 
 
@@ -114,14 +114,14 @@ public:
    TYPE pop_max();
    TYPE pop_max_last_add_up(TYPE tLastAddUp);
 
-   TYPE get_sum(::raw::index first = 0, ::raw::count in_count_out_last = -1)
+   TYPE get_sum(::collection::index first = 0, ::collection::count in_count_out_last = -1)
    {
 
       this->prepare_first_in_count_last_out(first, in_count_out_last);
 
       TYPE t = ::numeric_info < TYPE >:: null();
 
-      for(::raw::index i = first; i <= in_count_out_last; i++)
+      for(::collection::index i = first; i <= in_count_out_last; i++)
       {
 
          // TODO: numeric calculus
@@ -152,9 +152,9 @@ public:
 
    TYPE simple_total_mean();
 
-   void set(const TYPE & t, ::raw::index iStart = 0, ::raw::index iEnd = -1);
+   void set(const TYPE & t, ::collection::index iStart = 0, ::collection::index iEnd = -1);
 
-   ::raw::index Cmp(const numeric_array & array1);
+   ::collection::index Cmp(const numeric_array & array1);
 
 
    numeric_array unique() const;
@@ -174,7 +174,7 @@ public:
    int compare(const numeric_array & a) const
    {
 
-      ::raw::count iCompare = this->get_size() - a.get_size();
+      ::collection::count iCompare = this->get_size() - a.get_size();
 
       if (iCompare != 0)
       {
@@ -184,7 +184,7 @@ public:
       }
 
       TYPE t;
-      for(::raw::index i = 0; i < this->get_size(); i++)
+      for(::collection::index i = 0; i < this->get_size(); i++)
       {
 
          t = this->element_at(i) - a[i];
@@ -250,9 +250,9 @@ public:
    unique_number_sort_array();
    unique_number_sort_array(const unique_number_sort_array & array);
 
-   ::raw::index add(const TYPE & newElement)
+   ::collection::index add(const TYPE & newElement)
    {
-      ::raw::index iFind = 0;
+      ::collection::index iFind = 0;
       if(find(newElement, iFind))
       {
          return -1;
@@ -264,10 +264,10 @@ public:
       }
    }
 
-   bool find(const TYPE &t, ::raw::index & find) const
+   bool find(const TYPE &t, ::collection::index & find) const
    {
-      ::raw::index iL = find;
-      ::raw::index iU = this->get_upper_bound();
+      ::collection::index iL = find;
+      ::collection::index iU = this->get_upper_bound();
       while(iU - iL > 5)
       {
          find = (iL + iU) / 2;
@@ -300,7 +300,7 @@ public:
       return false;
    }
 
-   /*::raw::index find_first_maximum_value();
+   /*::collection::index find_first_maximum_value();
    TYPE & get_maximum_value();
 
    void CopySorted(
@@ -360,7 +360,7 @@ public:
 //
 //   }
 //
-//   for (::raw::index i = 1; i < this->get_count(); i++)
+//   for (::collection::index i = 1; i < this->get_count(); i++)
 //   {
 //
 //      if (bNewLine)
@@ -395,14 +395,14 @@ public:
 
 
 //template < typename TYPE, ::enum_type t_etypeContainer >
-//void numeric_array < TYPE, t_etypeContainer >::implode(string & str, const ::scoped_string & scopedstrSeparator, ::raw::index start, ::raw::count count) const
+//void numeric_array < TYPE, t_etypeContainer >::implode(string & str, const ::scoped_string & scopedstrSeparator, ::collection::index start, ::collection::count count) const
 //
 //{
 //   if(start < 0)
 //   {
 //      start += this->get_size();
 //   }
-//   ::raw::index last;
+//   ::collection::index last;
 //   if(count < 0)
 //   {
 //      last = this->get_size() + count;
@@ -414,7 +414,7 @@ public:
 //   if(start <= last)
 //   {
 //
-//      ::raw::index i = start;
+//      ::collection::index i = start;
 //
 //      ::copy(str, this->element_at(i));
 //
@@ -435,7 +435,7 @@ public:
 
 
 //template < typename TYPE, ::enum_type t_etypeContainer >
-//string numeric_array < TYPE, t_etypeContainer >::implode(const ::scoped_string & scopedstrSeparator, ::raw::index iStart, ::raw::index iEnd) const
+//string numeric_array < TYPE, t_etypeContainer >::implode(const ::scoped_string & scopedstrSeparator, ::collection::index iStart, ::collection::index iEnd) const
 //{
 //
 //   string str;
@@ -449,7 +449,7 @@ public:
 
 
 //template < typename TYPE, ::enum_type t_etypeContainer >
-//void numeric_array < TYPE, t_etypeContainer >::each_add(const TYPE & t,::raw::index i, ::raw::count iEnd)
+//void numeric_array < TYPE, t_etypeContainer >::each_add(const TYPE & t,::collection::index i, ::collection::count iEnd)
 //{
 //
 //   if(iEnd == 0)
@@ -497,7 +497,7 @@ public:
 //}
 //
 //template < typename TYPE, ::enum_type t_etypeContainer >
-//void numeric_array < TYPE, t_etypeContainer >::each_subtract(const TYPE & t,::raw::index i,::raw::count iEnd)
+//void numeric_array < TYPE, t_etypeContainer >::each_subtract(const TYPE & t,::collection::index i,::collection::count iEnd)
 //{
 //
 //   if(iEnd == 0)
@@ -580,11 +580,11 @@ void numeric_array < TYPE, t_etypeContainer >::unique()
 
 
 template < typename TYPE, ::enum_type t_etypeContainer >
-::raw::index numeric_array < TYPE, t_etypeContainer >::
+::collection::index numeric_array < TYPE, t_etypeContainer >::
 Cmp(const numeric_array & array1)
 {
-   ::raw::count iMinSize = minimum(array1.get_size(), this->get_size());
-   ::raw::index i = 0;
+   ::collection::count iMinSize = minimum(array1.get_size(), this->get_size());
+   ::collection::index i = 0;
    while(true)
    {
       if(i >= iMinSize)
@@ -607,7 +607,7 @@ const TYPE & tMin)
 {
 
 
-   ::raw::index i;
+   ::collection::index i;
    TYPE tStart = tMin - tOffset;
    this->set_size(a.get_size());
    TYPE t;
@@ -630,7 +630,7 @@ const numeric_array < TYPE, t_etypeContainer > & array1,
 const numeric_array < TYPE, t_etypeContainer > & array2)
 {
    ASSERT(array1.get_size() == array2.get_size());
-   ::raw::index i;
+   ::collection::index i;
    this->set_size(array1.get_size());
    TYPE t;
    for(i = 0; i < array1.get_size(); i++)
@@ -645,7 +645,7 @@ void numeric_array < TYPE, t_etypeContainer >::ElementDiff(
 const numeric_array  & a,
 const TYPE & tMax)
 {
-   ::raw::index i;
+   ::collection::index i;
    TYPE t;
    TYPE it;
    this->set_size(a.get_size());
@@ -666,14 +666,14 @@ const TYPE & tMax)
 
 
 template < typename TYPE, ::enum_type t_etypeContainer >
-::raw::index numeric_array < TYPE, t_etypeContainer >::find_first_maximum_value()
+::collection::index numeric_array < TYPE, t_etypeContainer >::find_first_maximum_value()
 {
 
    TYPE tMax = this->element_at(0);
 
-   ::raw::index iFind = 0;
+   ::collection::index iFind = 0;
 
-   for(::raw::index i = 1; i < this->get_size(); i++)
+   for(::collection::index i = 1; i < this->get_size(); i++)
    {
 
       if (this->element_at(i) > tMax)
@@ -701,14 +701,14 @@ get_maximum_value()
 }
 
 template < typename TYPE, ::enum_type t_etypeContainer >
-::raw::index numeric_array < TYPE, t_etypeContainer >::find_first_minimum_value()
+::collection::index numeric_array < TYPE, t_etypeContainer >::find_first_minimum_value()
 {
 
    TYPE tMin = this->element_at(0);
 
-   ::raw::index iFind = 0;
+   ::collection::index iFind = 0;
 
-   for (::raw::index i = 1; i < this->get_size(); i++)
+   for (::collection::index i = 1; i < this->get_size(); i++)
    {
 
       if (this->element_at(i) < tMin)
@@ -736,11 +736,11 @@ get_minimum_value()
 }
 
 template < typename INTEGER >
-inline INTEGER get_integer_mean(const INTEGER * p, ::raw::count N)
+inline INTEGER get_integer_mean(const INTEGER * p, ::collection::count N)
 {
    i64 x = 0;
    i64 y = 0;
-   ::raw::count c = N;
+   ::collection::count c = N;
    while (c > 0)
    {
       i64 a = *p;
@@ -780,12 +780,12 @@ inline INTEGER get_integer_mean(const INTEGER * p, ::raw::count N)
 
 
 template < primitive_integral INTEGRAL >
-inline INTEGRAL simple_total_mean(const INTEGRAL * p, ::raw::count N)
+inline INTEGRAL simple_total_mean(const INTEGRAL * p, ::collection::count N)
 {
 
    ::i64 i = 0;
 
-   ::raw::count c = N;
+   ::collection::count c = N;
 
    while(c > 0)
    {
@@ -803,12 +803,12 @@ inline INTEGRAL simple_total_mean(const INTEGRAL * p, ::raw::count N)
 }
 
 template < primitive_floating FLOATING >
-inline FLOATING simple_total_mean(const FLOATING * p, ::raw::count N)
+inline FLOATING simple_total_mean(const FLOATING * p, ::collection::count N)
 {
 
    double d = 0.;
 
-   ::raw::count c = N;
+   ::collection::count c = N;
 
    while (c > 0)
    {
@@ -825,7 +825,7 @@ inline FLOATING simple_total_mean(const FLOATING * p, ::raw::count N)
 
 }
 
-inline int get_mean(const int * A, ::raw::count N)
+inline int get_mean(const int * A, ::collection::count N)
 {
    return get_integer_mean(A, N);
 }
@@ -841,11 +841,11 @@ TYPE numeric_array < TYPE, t_etypeContainer >::simple_total_mean()
 
 
 template < typename TYPE, ::enum_type t_etypeContainer >
-void numeric_array < TYPE, t_etypeContainer >::set(const TYPE & t, ::raw::index iStart, ::raw::index iEnd)
+void numeric_array < TYPE, t_etypeContainer >::set(const TYPE & t, ::collection::index iStart, ::collection::index iEnd)
 {
    if(iEnd == -1)
       iEnd = this->get_upper_bound();
-   for(::raw::index i = iStart; i <= iEnd; i++)
+   for(::collection::index i = iStart; i <= iEnd; i++)
    {
       this->set_at(i, t);
    }
@@ -855,7 +855,7 @@ void numeric_array < TYPE, t_etypeContainer >::set(const TYPE & t, ::raw::index 
 template < typename TYPE, ::enum_type t_etypeContainer >
 void numeric_array < TYPE, t_etypeContainer >::divide(TYPE div)
 {
-   ::raw::index i;
+   ::collection::index i;
    for(i = 0; i < this->get_size(); i++)
    {
       this->element_at(i) = this->element_at(i) / div;
@@ -1037,12 +1037,12 @@ namespace acme
       template < class ARRAY >
       typename ARRAY::BASE_TYPE big_average(const ARRAY & a)
       {
-         ::raw::count c = a.get_count();
+         ::collection::count c = a.get_count();
          if(c == 0)
             return 0.0;
          typename ARRAY::BASE_TYPE f = 0.0;
          typename ARRAY::BASE_TYPE fCount = (typename ARRAY::BASE_TYPE) c;
-         for(::raw::index i = 0; i < c; i++)
+         for(::collection::index i = 0; i < c; i++)
          {
             f += a.element_at(i) / fCount;
          }
@@ -1066,15 +1066,15 @@ namespace acme
 
 
       template<class ARRAY>
-      bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,::raw::index & iIndex,::raw::index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE));
+      bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,::collection::index & iIndex,::collection::index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE));
 
       template<class ARRAY, primitive_array INDEX_ARRAY >
-      bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,::raw::index & iIndex, less_predicate_base < typename ARRAY::BASE_ARG_TYPE > * pcompare, INDEX_ARRAY & ia);
+      bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,::collection::index & iIndex, less_predicate_base < typename ARRAY::BASE_ARG_TYPE > * pcompare, INDEX_ARRAY & ia);
 
       template<class ARRAY, primitive_array INDEX_ARRAY>
-      ::raw::index sort_add(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,::raw::index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),INDEX_ARRAY & ia)
+      ::collection::index sort_add(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,::collection::index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),INDEX_ARRAY & ia)
       {
-         ::raw::index iIndex = 0;
+         ::collection::index iIndex = 0;
          binary_search(a, t, iIndex, fCompare, ia);
          a.insert_at(iIndex, t);
          ia.add(iIndex);
@@ -1082,9 +1082,9 @@ namespace acme
       }
 
       template<class ARRAY, class ARRAY2, primitive_array INDEX_ARRAY >
-      ::raw::count sort_add_array(ARRAY & a,ARRAY2 & a2,::raw::index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),INDEX_ARRAY & ia)
+      ::collection::count sort_add_array(ARRAY & a,ARRAY2 & a2,::collection::index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),INDEX_ARRAY & ia)
       {
-         for(::raw::index i = 0; i < a2.get_count(); i++)
+         for(::collection::index i = 0; i < a2.get_count(); i++)
          {
             sort_add(a,a2[i],fCompare,ia);
          }
@@ -1093,16 +1093,16 @@ namespace acme
 
 
       template<class ARRAY, primitive_array INDEX_ARRAY >
-      ::raw::count sort_erase(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,::raw::index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE), INDEX_ARRAY & ia)
+      ::collection::count sort_erase(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,::collection::index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE), INDEX_ARRAY & ia)
       {
-         ::raw::count ca = 0;
-         ::raw::index iFind = 0;
+         ::collection::count ca = 0;
+         ::collection::index iFind = 0;
          while(binary_search(a,t, iFind, fCompare, ia))
          {
             a.erase_at(iFind);
-            ::raw::index iIndex = ia[iFind];
+            ::collection::index iIndex = ia[iFind];
             ia.erase_at(iFind);
-            for(::raw::index i = 0; i < ia.get_size(); i++)
+            for(::collection::index i = 0; i < ia.get_size(); i++)
             {
                if(ia[i] > iIndex)
                {
@@ -1130,22 +1130,22 @@ namespace acme
    numeric_array_each < ::numeric_array < TYPE, t_etypeContainer > > range(::numeric_array < TYPE, t_etypeContainer > & a) { return a; }
 
    template < typename TYPE, ::enum_type t_etypeContainer >
-   numeric_array_range < ::numeric_array < TYPE, t_etypeContainer > > each(::numeric_array < TYPE, t_etypeContainer > & a,::raw::index iBeg,::raw::count iCount) { return numeric_array_range < ::numeric_array < TYPE, t_etypeContainer > >(a,iBeg,iCount); }
+   numeric_array_range < ::numeric_array < TYPE, t_etypeContainer > > each(::numeric_array < TYPE, t_etypeContainer > & a,::collection::index iBeg,::collection::count iCount) { return numeric_array_range < ::numeric_array < TYPE, t_etypeContainer > >(a,iBeg,iCount); }
    template < typename TYPE, ::enum_type t_etypeContainer >
-   numeric_array_range < ::numeric_array < TYPE, t_etypeContainer > > all(::numeric_array < TYPE, t_etypeContainer > & a,::raw::index iBeg,::raw::count iCount) { return numeric_array_range < ::numeric_array < TYPE, t_etypeContainer > >(a,iBeg,iCount); }
+   numeric_array_range < ::numeric_array < TYPE, t_etypeContainer > > all(::numeric_array < TYPE, t_etypeContainer > & a,::collection::index iBeg,::collection::count iCount) { return numeric_array_range < ::numeric_array < TYPE, t_etypeContainer > >(a,iBeg,iCount); }
    template < typename TYPE, ::enum_type t_etypeContainer >
-   numeric_array_range < ::numeric_array < TYPE, t_etypeContainer > > range(::numeric_array < TYPE, t_etypeContainer > & a,::raw::index iBeg,::raw::count iCount) { return numeric_array_range <  ::numeric_array < TYPE, t_etypeContainer > >(a,iBeg,iCount); }
+   numeric_array_range < ::numeric_array < TYPE, t_etypeContainer > > range(::numeric_array < TYPE, t_etypeContainer > & a,::collection::index iBeg,::collection::count iCount) { return numeric_array_range <  ::numeric_array < TYPE, t_etypeContainer > >(a,iBeg,iCount); }
 
    template < typename TYPE, ::enum_type t_etypeContainer >
    void quick_sort(::numeric_array < TYPE, t_etypeContainer > & a, bool bAsc = true);
 
    template < typename TYPE, ::enum_type t_etypeContainer >
-   ::raw::count erase_greater_than(::numeric_array < TYPE, t_etypeContainer > & a,TYPE hi)
+   ::collection::count erase_greater_than(::numeric_array < TYPE, t_etypeContainer > & a,TYPE hi)
    {
 
-      ::raw::count ca = 0;
+      ::collection::count ca = 0;
 
-      for(::raw::index i = a.get_upper_bound(); i >= 0; i--)
+      for(::collection::index i = a.get_upper_bound(); i >= 0; i--)
       {
          if(a.element_at(i) > hi)
          {
@@ -1160,12 +1160,12 @@ namespace acme
 
 
    template < typename TYPE, ::enum_type t_etypeContainer >
-   ::raw::count erase_greater_than_or_equal(::numeric_array < TYPE, t_etypeContainer > & a,TYPE hi)
+   ::collection::count erase_greater_than_or_equal(::numeric_array < TYPE, t_etypeContainer > & a,TYPE hi)
    {
 
-      ::raw::count ca = 0;
+      ::collection::count ca = 0;
 
-      for(::raw::index i = a.get_upper_bound(); i >= 0; i--)
+      for(::collection::index i = a.get_upper_bound(); i >= 0; i--)
       {
          if(a.element_at(i) >= hi)
          {
@@ -1180,12 +1180,12 @@ namespace acme
 
 
    template < typename TYPE, ::enum_type t_etypeContainer >
-   ::raw::count erase_lesser_than(::numeric_array < TYPE, t_etypeContainer > & a,TYPE lo)
+   ::collection::count erase_lesser_than(::numeric_array < TYPE, t_etypeContainer > & a,TYPE lo)
    {
 
-      ::raw::count ca = 0;
+      ::collection::count ca = 0;
 
-      for(::raw::index i = a.get_upper_bound(); i >= 0; i--)
+      for(::collection::index i = a.get_upper_bound(); i >= 0; i--)
       {
          if(a.element_at(i) < lo)
          {
@@ -1200,12 +1200,12 @@ namespace acme
 
 
    template < typename TYPE, ::enum_type t_etypeContainer >
-   ::raw::count erase_lesser_than_or_equal(::numeric_array < TYPE, t_etypeContainer > & a,TYPE lo)
+   ::collection::count erase_lesser_than_or_equal(::numeric_array < TYPE, t_etypeContainer > & a,TYPE lo)
    {
 
-      ::raw::count ca = 0;
+      ::collection::count ca = 0;
 
-      for(::raw::index i = a.get_upper_bound(); i >= 0; i--)
+      for(::collection::index i = a.get_upper_bound(); i >= 0; i--)
       {
          if(a.element_at(i) <= lo)
          {
@@ -1220,12 +1220,12 @@ namespace acme
 
 
    template < typename TYPE, ::enum_type t_etypeContainer >
-   ::raw::count erase_lesser_than_or_greater_than(::numeric_array < TYPE, t_etypeContainer > & a,TYPE lo,TYPE hi)
+   ::collection::count erase_lesser_than_or_greater_than(::numeric_array < TYPE, t_etypeContainer > & a,TYPE lo,TYPE hi)
    {
 
-      ::raw::count ca = 0;
+      ::collection::count ca = 0;
 
-      for(::raw::index i = a.get_upper_bound(); i >= 0; i--)
+      for(::collection::index i = a.get_upper_bound(); i >= 0; i--)
       {
          if(a.element_at(i) < lo)
          {
@@ -1245,12 +1245,12 @@ namespace acme
 
 
    template < typename TYPE, ::enum_type t_etypeContainer >
-   ::raw::count erase_lesser_than_or_greater_than_or_equal(::numeric_array < TYPE, t_etypeContainer > & a,TYPE lo,TYPE hi)
+   ::collection::count erase_lesser_than_or_greater_than_or_equal(::numeric_array < TYPE, t_etypeContainer > & a,TYPE lo,TYPE hi)
    {
 
-      ::raw::count ca = 0;
+      ::collection::count ca = 0;
 
-      for(::raw::index i = a.get_upper_bound(); i >= 0; i--)
+      for(::collection::index i = a.get_upper_bound(); i >= 0; i--)
       {
          if(a.element_at(i) < lo)
          {
@@ -1270,12 +1270,12 @@ namespace acme
 
 
    template < typename TYPE, ::enum_type t_etypeContainer >
-   ::raw::count erase_lesser_than_or_equal_or_greater_than(::numeric_array < TYPE, t_etypeContainer > & a,TYPE lo,TYPE hi)
+   ::collection::count erase_lesser_than_or_equal_or_greater_than(::numeric_array < TYPE, t_etypeContainer > & a,TYPE lo,TYPE hi)
    {
 
-      ::raw::count ca = 0;
+      ::collection::count ca = 0;
 
-      for(::raw::index i = a.get_upper_bound(); i >= 0; i--)
+      for(::collection::index i = a.get_upper_bound(); i >= 0; i--)
       {
          if(a.element_at(i) <= lo)
          {
@@ -1295,12 +1295,12 @@ namespace acme
 
 
    template < typename TYPE, ::enum_type t_etypeContainer >
-   ::raw::count erase_lesser_than_or_equal_or_greater_than_or_equal(::numeric_array < TYPE, t_etypeContainer > & a, TYPE lo,TYPE hi)
+   ::collection::count erase_lesser_than_or_equal_or_greater_than_or_equal(::numeric_array < TYPE, t_etypeContainer > & a, TYPE lo,TYPE hi)
    {
 
-      ::raw::count ca = 0;
+      ::collection::count ca = 0;
 
-      for(::raw::index i = a.get_upper_bound(); i >= 0; i--)
+      for(::collection::index i = a.get_upper_bound(); i >= 0; i--)
       {
          if(a.element_at(i) <= lo)
          {
@@ -1599,7 +1599,7 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::pre
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,::enum_type t_etypeContainer >
 template < typename T, typename PRED >
-::raw::index array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::predicate_binary_search(const T & t, PRED pred) const
+::collection::index array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::predicate_binary_search(const T & t, PRED pred) const
 {
 
    return ::acme::array::predicate_binary_search(*this, t, pred);

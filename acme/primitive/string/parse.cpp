@@ -114,7 +114,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
    void parse::getsplitword()
    {
-      ::raw::index x;
+      ::collection::index x;
       i32 disabled = 0;
       i32 quote = 0;
       i32 rem = 0;
@@ -215,7 +215,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
    void parse::getsplit()
    {
-      ::raw::index x;
+      ::collection::index x;
 
       if (C == '=')
       {
@@ -248,7 +248,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
    string parse::getword()
    {
-      ::raw::index x;
+      ::collection::index x;
       i32 disabled = 0;
       i32 quote = 0;
       i32 rem = 0;
@@ -359,7 +359,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    {
       parse::getword();
       s = "";
-      while (s.length() + m_strWord.length() < (::raw::index)l)
+      while (s.length() + m_strWord.length() < (::collection::index)l)
          s += fill;
       s += m_strWord;
    }
@@ -403,7 +403,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
    i32 parse::getwordlen()
    {
-      ::raw::index x,y = m_iPos,len;
+      ::collection::index x,y = m_iPos,len;
 
       if (C == pa_breakchar && pa_breakchar)
       {
@@ -425,8 +425,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
    i32 parse::getrestlen()
    {
-      ::raw::index y = m_iPos;
-      ::raw::index len;
+      ::collection::index y = m_iPos;
+      ::collection::index len;
 
       while (C && (C == ' ' || C == 9 || issplit(C)))
          m_iPos++;
@@ -440,7 +440,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
    void parse::getline()
    {
-      ::raw::index x;
+      ::collection::index x;
 
       x = m_iPos;
       while (C && C != 13 && C != 10)
@@ -527,11 +527,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    CLASS_DECL_ACME string consume_token(::string & str, const ::string_array & straSeparator)
    {
 
-      ::raw::index iFind = -1;
+      ::collection::index iFind = -1;
 
-      ::raw::index iSeparator = -1;
+      ::collection::index iSeparator = -1;
 
-      for (::raw::index i = 0; i < straSeparator.get_size(); i++)
+      for (::collection::index i = 0; i < straSeparator.get_size(); i++)
       {
 
          if (straSeparator[i].is_empty())
@@ -541,7 +541,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          }
 
-         ::raw::index iFindSeparator = str.find_index(straSeparator[i]);
+         ::collection::index iFindSeparator = str.find_index(straSeparator[i]);
 
          if (::not_found(iFind) || (iFindSeparator > 0 && iFindSeparator < iFind))
          {

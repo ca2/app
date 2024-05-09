@@ -1431,13 +1431,13 @@ namespace nanoui
       bool changed = false;
       do
       {
-         ::raw::index base_index = 0;
-         for (::raw::index iIndex = 0; iIndex < m_children.size(); ++iIndex)
+         ::collection::index base_index = 0;
+         for (::collection::index iIndex = 0; iIndex < m_children.size(); ++iIndex)
             if (m_children[iIndex] == window)
                base_index = iIndex;
          changed = false;
 
-         for (::raw::index iIndex = 0; iIndex < m_children.size(); ++iIndex)
+         for (::collection::index iIndex = 0; iIndex < m_children.size(); ++iIndex)
          {
 
             ::pointer < Popup > pw = m_children[iIndex];

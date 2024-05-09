@@ -444,7 +444,7 @@ namespace userex
    bool pane_tab_impact::on_after_create_impact_data(::user::impact_data * pimpactdata)
    {
 
-      ::raw::index iVisibleIndex = id_visible_index(pimpactdata->m_atom);
+      ::collection::index iVisibleIndex = id_visible_index(pimpactdata->m_atom);
 
       if (iVisibleIndex < 0)
       {
@@ -564,7 +564,7 @@ namespace userex
 
       }
 
-      ::raw::index iIndex = id_index(pimpactdata->m_atom);
+      ::collection::index iIndex = id_index(pimpactdata->m_atom);
 
       if (iIndex < 0)
       {
@@ -915,7 +915,7 @@ namespace userex
 //   }
 
 
-   void pane_tab_impact::_001OnTabClose(::raw::index iTab)
+   void pane_tab_impact::_001OnTabClose(::collection::index iTab)
    {
 
       ::user::tab::_001OnTabClose(iTab);

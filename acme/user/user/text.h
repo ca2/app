@@ -30,7 +30,7 @@ namespace user
 
       virtual strsize _001GetTextLength();
       virtual void _001GetText(char * psz, strsize len);
-      virtual void _001GetText(string & str, ::raw::index iBeg, ::raw::index iEnd);
+      virtual void _001GetText(string & str, ::collection::index iBeg, ::collection::index iEnd);
 
 
       virtual void _001SetText(const ::string & str, const ::action_context & action_context);

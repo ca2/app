@@ -18,16 +18,16 @@ namespace regular_expression_pcre2
 
 
       pcre2_match_data *         m_pmatchdata;
-      ::raw::count                    m_cMatchCount;
+      ::collection::count                    m_cMatchCount;
 
 
       result();
       ~result() override;
 
 
-      ::raw::count get_count() const override;
+      ::collection::count get_count() const override;
 
-      string get_match(::raw::index i) const override;
+      string get_match(::collection::index i) const override;
 
       void _get_range_array() override;
 

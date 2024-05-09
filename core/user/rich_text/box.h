@@ -40,12 +40,12 @@ namespace user
          string get_text() const;
 
          // relative to box
-         double get_dev_pos_left(::raw::index iPos) const;
-         double get_dev_pos_right(::raw::index iPos) const;
-         double get_dev_pos(::raw::index iPos) const;
-         double get_pos_left(::raw::index iPos) const;
-         double get_pos_right(::raw::index iPos) const;
-         double get_pos(::raw::index iPos) const;
+         double get_dev_pos_left(::collection::index iPos) const;
+         double get_dev_pos_right(::collection::index iPos) const;
+         double get_dev_pos(::collection::index iPos) const;
+         double get_pos_left(::collection::index iPos) const;
+         double get_pos_right(::collection::index iPos) const;
+         double get_pos(::collection::index iPos) const;
          double get_pos_count() const { return (double) (m_iPosEnd - m_iPosBeg + 1); }
          double get_last_pos() const { return get_pos(m_iPosEnd); }
 

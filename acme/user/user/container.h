@@ -50,25 +50,25 @@ namespace user
       virtual ::item_pointer hover_item();
       virtual ::item_pointer selected_item();
 
-      //virtual ::raw::count item_count() const;
+      //virtual ::collection::count item_count() const;
 
       //virtual void clear_items();
 
-      //virtual ::item * item_at(::raw::index iIndex);
+      //virtual ::item * item_at(::collection::index iIndex);
 
-      //virtual void default_set_item_at(::raw::index iIndex, ::item * pitem);
+      //virtual void default_set_item_at(::collection::index iIndex, ::item * pitem);
 
       //virtual void default_add_item(::item * pitem);
 
-      //virtual ::raw::index add_item(::item * pitem);
+      //virtual ::collection::index add_item(::item * pitem);
 
       //virtual ::item_pointer add_item(const ::item_t & item);
 
-      //virtual ::user::item * user_item_at(::raw::index iIndex);
+      //virtual ::user::item * user_item_at(::collection::index iIndex);
 
-      //virtual ::raw::index item_index(const ::item * pitem);
+      //virtual ::collection::index item_index(const ::item * pitem);
 
-      //virtual ::raw::index content_item_index(const ::item * pitem);
+      //virtual ::collection::index content_item_index(const ::item * pitem);
 
       virtual ::user::item * user_item(const ::item * pitem);
 
@@ -80,19 +80,19 @@ namespace user
 
       //virtual ::item_pointer defer_item(const item_t & item);
 
-      //virtual ::raw::index item_index() const;
+      //virtual ::collection::index item_index() const;
 
-      //static ::raw::index item_index(::item_array * pitema, const ::atom & atom);
+      //static ::collection::index item_index(::item_array * pitema, const ::atom & atom);
 
-      //virtual ::raw::index item_index(const ::atom & atom) const;
+      //virtual ::collection::index item_index(const ::atom & atom) const;
 
       //virtual bool is_item_pressed(const ::atom & atom) const;
 
       //virtual bool is_item_hover(const ::atom & atom) const;
 
-      //virtual bool is_item_pressed_by_index(::raw::index iIndex) const;
+      //virtual bool is_item_pressed_by_index(::collection::index iIndex) const;
 
-      //virtual bool is_item_hover_by_index(::raw::index iIndex) const;
+      //virtual bool is_item_hover_by_index(::collection::index iIndex) const;
 
 
       virtual bool is_item_selected(::item * pitem);
@@ -105,8 +105,8 @@ namespace user
       //virtual void on_item_selected(::item * pitem);
       virtual void on_item_hover(::item * pitem);
 
-      //virtual ::item_pointer get_child_as_item(::raw::index iIndex);
-      //virtual ::raw::count get_child_as_item_count();
+      //virtual ::item_pointer get_child_as_item(::collection::index iIndex);
+      //virtual ::collection::count get_child_as_item_count();
 
 
    };

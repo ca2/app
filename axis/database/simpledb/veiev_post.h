@@ -31,7 +31,7 @@ public:
    ::payload current();
 
 
-   ::payload get_page(::raw::index iPage, ::raw::count iMessageCountPerPage);
+   ::payload get_page(::collection::index iPage, ::collection::count iMessageCountPerPage);
    i64 get_count();
 
 

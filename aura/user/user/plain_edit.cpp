@@ -95,7 +95,7 @@ namespace aura
 
             auto pbase64 = base64();
 
-            ::raw::index iBase64 = iEncoding + 1;
+            ::collection::index iBase64 = iEncoding + 1;
 
             for (; iBase64 < str.length(); iBase64++)
             {
@@ -670,7 +670,7 @@ namespace user
       string strExtent2;
       string strExtent3;
 
-      ::raw::index i = 0;
+      ::collection::index i = 0;
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -700,7 +700,7 @@ namespace user
       }
 
 
-      for (::raw::index iLine = m_iCurrentPageLineStart; iLine < m_iCurrentPageLineEnd; i++, iLine++)
+      for (::collection::index iLine = m_iCurrentPageLineStart; iLine < m_iCurrentPageLineEnd; i++, iLine++)
       {
 
          string strLine = straLines[i];
@@ -1588,7 +1588,7 @@ namespace user
    }
 
 
-   ::raw::count plain_edit::line_count() const
+   ::collection::count plain_edit::line_count() const
    {
 
       return m_iaLineLength.count();
@@ -1648,7 +1648,7 @@ namespace user
    }
 
 
-   void plain_edit::_001GetText(string & str, ::raw::index iBegParam, ::raw::index iEndParam)
+   void plain_edit::_001GetText(string & str, ::collection::index iBegParam, ::collection::index iEndParam)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1785,17 +1785,17 @@ namespace user
    void plain_edit::_ensure_selection_visible_x(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::raw::index iColumn = plain_edit_sel_to_column_x(pgraphics, m_ptree->m_iSelEnd, m_iColumnX);
+      ::collection::index iColumn = plain_edit_sel_to_column_x(pgraphics, m_ptree->m_iSelEnd, m_iColumnX);
 
       int x = 0;
 
-      ::raw::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
+      ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
-      ::raw::index xEnd = 0;
+      ::collection::index xEnd = 0;
 
       auto iLineLength = m_iaLineLength[iLine];
 
-      xEnd = (::raw::index)plain_edit_get_line_extent(pgraphics, iLine, iLineLength);
+      xEnd = (::collection::index)plain_edit_get_line_extent(pgraphics, iLine, iLineLength);
 
       auto rectangleX = this->rectangle();
 
@@ -1999,7 +1999,7 @@ namespace user
    }
 
 
-   void plain_edit::_001EnsureVisibleLine(::draw2d::graphics_pointer & pgraphics, ::raw::index iLine)
+   void plain_edit::_001EnsureVisibleLine(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine)
    {
 
       plain_edit_ensure_visible_line(pgraphics, iLine);
@@ -2007,7 +2007,7 @@ namespace user
    }
 
 
-   void plain_edit::plain_edit_ensure_visible_line(::draw2d::graphics_pointer & pgraphics, ::raw::index iLine)
+   void plain_edit::plain_edit_ensure_visible_line(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine)
    {
 
       if (!m_bMultiLine)
@@ -2313,7 +2313,7 @@ namespace user
    }
 
 
-   void plain_edit::plain_edit_on_context_offset_layout(::draw2d::graphics_pointer & pgraphics, ::raw::index iOnlyLineToUpdate)
+   void plain_edit::plain_edit_on_context_offset_layout(::draw2d::graphics_pointer & pgraphics, ::collection::index iOnlyLineToUpdate)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -2345,9 +2345,9 @@ namespace user
 
       //}
 
-      //::raw::index i;
+      //::collection::index i;
 
-      //::raw::index iLine;
+      //::collection::index iLine;
 
       //if (pgraphics.is_null())
       //{
@@ -2375,9 +2375,9 @@ namespace user
 
       //auto pointOffset = get_context_offset();
 
-      //m_iCurrentPagePotentialLineCount = (::raw::count) ceil((double)rectangleX.height() / m_dLineHeight);
+      //m_iCurrentPagePotentialLineCount = (::collection::count) ceil((double)rectangleX.height() / m_dLineHeight);
 
-      //m_iCurrentPageLineOffset = (::raw::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
+      //m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
 
       //bool bLoadFullFile = should_load_full_file();
 
@@ -2623,7 +2623,7 @@ namespace user
       //         for (int j = 0; j < iLen; j++)
       //         {
 
-      //           daExtent [(::raw::index)(psz - pszStart + j)] = size.cx();
+      //           daExtent [(::collection::index)(psz - pszStart + j)] = size.cx();
 
       //         }
 
@@ -2639,7 +2639,7 @@ namespace user
       //         for (int j = 0; j < iLen; j++)
       //         {
 
-      //            daExtent[(::raw::index)(psz - pszStart)] = size.cx();
+      //            daExtent[(::collection::index)(psz - pszStart)] = size.cx();
 
       //         }
 
@@ -2683,7 +2683,7 @@ namespace user
    }
 
 
-   void plain_edit::plain_edit_on_calc_layout(::draw2d::graphics_pointer & pgraphics, ::raw::index iOnlyLineToUpdate)
+   void plain_edit::plain_edit_on_calc_layout(::draw2d::graphics_pointer & pgraphics, ::collection::index iOnlyLineToUpdate)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -2794,9 +2794,9 @@ namespace user
       //
       //      }
       //
-      //      ::raw::index i;
+      //      ::collection::index i;
       //
-      //      ::raw::index iLine;
+      //      ::collection::index iLine;
       //
       //      pgraphics->set_font(this, ::e_element_none);
       //
@@ -2826,9 +2826,9 @@ namespace user
       //
       //      auto pointOffset = get_context_offset();
       //
-      //      m_iCurrentPagePotentialLineCount = (::raw::count) ceil((double) rectangleX.height() / m_dLineHeight);
+      //      m_iCurrentPagePotentialLineCount = (::collection::count) ceil((double) rectangleX.height() / m_dLineHeight);
       //
-      //      m_iCurrentPageLineOffset = (::raw::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
+      //      m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
       //
       //      bool bLoadFullFile = should_load_full_file();
       //
@@ -3100,7 +3100,7 @@ namespace user
       //                  while (*psz != '\0')
       //                  {
       //
-      //                     daExtent[(::raw::index)(psz - pszStart)] = -1;
+      //                     daExtent[(::collection::index)(psz - pszStart)] = -1;
       //                     psz++;
       //
       //                  }
@@ -3114,7 +3114,7 @@ namespace user
       //               for (int j = 0; j < iLen; j++)
       //               {
       //
-      //                  daExtent[(::raw::index)(psz - pszStart + j)] = size.cx();
+      //                  daExtent[(::collection::index)(psz - pszStart + j)] = size.cx();
       //
       //               }
       //
@@ -3127,7 +3127,7 @@ namespace user
       //
       //               size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length());
       //
-      //               daExtent[(::raw::index)(psz - pszStart)] = size.cx();
+      //               daExtent[(::collection::index)(psz - pszStart)] = size.cx();
       //
       //            }
       //
@@ -3170,7 +3170,7 @@ namespace user
    }
 
 
-   void plain_edit::_plain_edit_update_lines_and_extents(::draw2d::graphics_pointer & pgraphics, ::raw::index iOnlyLineToUpdate)
+   void plain_edit::_plain_edit_update_lines_and_extents(::draw2d::graphics_pointer & pgraphics, ::collection::index iOnlyLineToUpdate)
    {
 
       //_plain_edit_update_lines(pgraphics, iOnlyLineToUpdate);
@@ -3198,9 +3198,9 @@ namespace user
 
       }
 
-      ::raw::index i;
+      ::collection::index i;
 
-      ::raw::index iLine;
+      ::collection::index iLine;
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -3225,9 +3225,9 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      m_iCurrentPagePotentialLineCount = (::raw::count)ceil((double)rectangleX.height() / m_dLineHeight);
+      m_iCurrentPagePotentialLineCount = (::collection::count)ceil((double)rectangleX.height() / m_dLineHeight);
 
-      m_iCurrentPageLineOffset = (::raw::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
+      m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
 
       bool bLoadFullFile = should_load_full_file();
 
@@ -3261,9 +3261,9 @@ namespace user
 
       //auto pointOffset = get_context_offset();
 
-      //m_iCurrentPagePotentialLineCount = (::raw::count)ceil((double)rectangleX.height() / m_dLineHeight);
+      //m_iCurrentPagePotentialLineCount = (::collection::count)ceil((double)rectangleX.height() / m_dLineHeight);
 
-      //m_iCurrentPageLineOffset = (::raw::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
+      //m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
 
       //bool bLoadFullFile = should_load_full_file();
 
@@ -3286,13 +3286,13 @@ namespace user
 
       //m_iImpactSize = iProperBeg + iLen - m_iImpactOffset;
 
-      ::raw::index iLineStart;
+      ::collection::index iLineStart;
 
-      ::raw::index iLineEnd;
+      ::collection::index iLineEnd;
 
-      ::raw::index iImpactOffset;
+      ::collection::index iImpactOffset;
 
-      ::raw::index iImpactSize;
+      ::collection::index iImpactSize;
 
       if (iOnlyLineToUpdate < 0)
       {
@@ -3531,7 +3531,7 @@ namespace user
                   while (*psz != '\0')
                   {
 
-                     daExtent[(::raw::index)(psz - pszStart)] = -1;
+                     daExtent[(::collection::index)(psz - pszStart)] = -1;
                      psz++;
 
                   }
@@ -3545,7 +3545,7 @@ namespace user
                for (int j = 0; j < iLen; j++)
                {
 
-                  daExtent[(::raw::index)(psz - pszStart + j)] = size.cx();
+                  daExtent[(::collection::index)(psz - pszStart + j)] = size.cx();
 
                }
 
@@ -3558,7 +3558,7 @@ namespace user
 
                size = pgraphics->get_text_extent(strLineGraphics, strLineGraphics.length());
 
-               daExtent[(::raw::index)(psz - pszStart)] = size.cx();
+               daExtent[(::collection::index)(psz - pszStart)] = size.cx();
 
             }
 
@@ -3617,7 +3617,7 @@ namespace user
    }
 
 
-//   void plain_edit::_plain_edit_update_lines(::draw2d::graphics_pointer & pgraphics, ::raw::index iOnlyLineToUpdate)
+//   void plain_edit::_plain_edit_update_lines(::draw2d::graphics_pointer & pgraphics, ::collection::index iOnlyLineToUpdate)
 //   {
 //
 //      _synchronous_lock synchronouslock(this->synchronization());
@@ -3645,9 +3645,9 @@ namespace user
 //
 //      }
 //
-//      ::raw::index i;
+//      ::collection::index i;
 //
-//      ::raw::index iLine;
+//      ::collection::index iLine;
 //
 //      if (pgraphics.is_null())
 //      {
@@ -3881,7 +3881,7 @@ namespace user
 //      //         for (int j = 0; j < iLen; j++)
 //      //         {
 //
-//      //           daExtent [(::raw::index)(psz - pszStart + j)] = size.cx();
+//      //           daExtent [(::collection::index)(psz - pszStart + j)] = size.cx();
 //
 //      //         }
 //
@@ -3897,7 +3897,7 @@ namespace user
 //      //         for (int j = 0; j < iLen; j++)
 //      //         {
 //
-//      //            daExtent[(::raw::index)(psz - pszStart)] = size.cx();
+//      //            daExtent[(::collection::index)(psz - pszStart)] = size.cx();
 //
 //      //         }
 //
@@ -3941,7 +3941,7 @@ namespace user
 //   }
 //
 //
-//   void plain_edit::_plain_edit_update_extents(::draw2d::graphics_pointer & pgraphics, ::raw::index iOnlyLineToUpdate)
+//   void plain_edit::_plain_edit_update_extents(::draw2d::graphics_pointer & pgraphics, ::collection::index iOnlyLineToUpdate)
 //   {
 //
 //      //_synchronous_lock synchronouslock(this->synchronization());
@@ -3969,9 +3969,9 @@ namespace user
 //
 ////}
 //
-////::raw::index i;
+////::collection::index i;
 //
-////::raw::index iLine;
+////::collection::index iLine;
 //
 ////if (pgraphics.is_null())
 ////{
@@ -3999,9 +3999,9 @@ namespace user
 //
 ////auto pointOffset = get_context_offset();
 //
-////m_iCurrentPagePotentialLineCount = (::raw::count) ceil((double)rectangleX.height() / m_dLineHeight);
+////m_iCurrentPagePotentialLineCount = (::collection::count) ceil((double)rectangleX.height() / m_dLineHeight);
 //
-////m_iCurrentPageLineOffset = (::raw::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
+////m_iCurrentPageLineOffset = (::collection::index) minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
 //
 ////bool bLoadFullFile = should_load_full_file();
 //
@@ -4201,9 +4201,9 @@ namespace user
 //
 //      auto pointOffset = get_context_offset();
 //
-//      m_iCurrentPagePotentialLineCount = (::raw::count)ceil((double)rectangleX.height() / m_dLineHeight);
+//      m_iCurrentPagePotentialLineCount = (::collection::count)ceil((double)rectangleX.height() / m_dLineHeight);
 //
-//      m_iCurrentPageLineOffset = (::raw::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
+//      m_iCurrentPageLineOffset = (::collection::index)minimum(maximum(0, pointOffset.y() / m_dLineHeight), m_iaLineStart.get_upper_bound());
 //
 //      bool bLoadFullFile = should_load_full_file();
 //
@@ -4293,7 +4293,7 @@ namespace user
 //               for (int j = 0; j < iLen; j++)
 //               {
 //
-//                  daExtent[(::raw::index)(psz - pszStart + j)] = size.cx();
+//                  daExtent[(::collection::index)(psz - pszStart + j)] = size.cx();
 //
 //               }
 //
@@ -4309,7 +4309,7 @@ namespace user
 //               for (int j = 0; j < iLen; j++)
 //               {
 //
-//                  daExtent[(::raw::index)(psz - pszStart)] = size.cx();
+//                  daExtent[(::collection::index)(psz - pszStart)] = size.cx();
 //
 //               }
 //
@@ -4354,7 +4354,7 @@ namespace user
 //   }
 
 
-   ::raw::index plain_edit::plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, strsize iSel)
+   ::collection::index plain_edit::plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, strsize iSel)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -4363,7 +4363,7 @@ namespace user
 
       strsize i2 = 0;
 
-      ::raw::index iLine = 0;
+      ::collection::index iLine = 0;
 
       for (; iLine < m_iaLineLength.get_size(); iLine++)
       {
@@ -4386,12 +4386,12 @@ namespace user
    }
 
 
-   ::raw::index plain_edit::plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, strsize iChar)
+   ::collection::index plain_edit::plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, strsize iChar)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      for (::raw::index iLine = 0; iLine < m_iaLineStart.get_size(); iLine++)
+      for (::collection::index iLine = 0; iLine < m_iaLineStart.get_size(); iLine++)
       {
 
          if (iChar >= m_iaLineStart[iLine] && iChar < m_iaLineStart[iLine] + m_iaLineLength[iLine])
@@ -4413,7 +4413,7 @@ namespace user
 
       int x = 0;
 
-      ::raw::index iLine = plain_edit_sel_to_line_x(pgraphics, iSel, x);
+      ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, iSel, x);
 
       if (!plain_edit_line_range(pgraphics, lprect, iLine))
       {
@@ -4434,14 +4434,14 @@ namespace user
    bool plain_edit::plain_edit_index_range(::draw2d::graphics_pointer & pgraphics, ::rectangle_i32 * lprect, strsize iSel)
    {
 
-      ::raw::index iLine = plain_edit_char_to_line(pgraphics, iSel);
+      ::collection::index iLine = plain_edit_char_to_line(pgraphics, iSel);
 
       return plain_edit_line_range(pgraphics, lprect, iLine);
 
    }
 
 
-   bool plain_edit::plain_edit_line_range(::draw2d::graphics_pointer & pgraphics, ::rectangle_i32 * lprect, ::raw::index iLine)
+   bool plain_edit::plain_edit_line_range(::draw2d::graphics_pointer & pgraphics, ::rectangle_i32 * lprect, ::collection::index iLine)
    {
 
       if (iLine < 0)
@@ -4460,7 +4460,7 @@ namespace user
    }
 
 
-   double plain_edit::plain_edit_get_line_extent(::draw2d::graphics_pointer & pgraphics, ::raw::index iLine, strsize iChar)
+   double plain_edit::plain_edit_get_line_extent(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, strsize iChar)
    {
 
       if (iLine < 0 || iChar < 0)
@@ -4518,7 +4518,7 @@ namespace user
    }
 
 
-   ::raw::index plain_edit::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
+   ::collection::index plain_edit::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
    {
 
       //_synchronous_lock synchronouslock(this->synchronization());
@@ -4531,7 +4531,7 @@ namespace user
 
       strsize i2 = 0;
 
-      for (::raw::index iLine = 0; iLine < m_iaLineLength.get_size(); iLine++)
+      for (::collection::index iLine = 0; iLine < m_iaLineLength.get_size(); iLine++)
       {
 
          i1 = i2;
@@ -4558,7 +4558,7 @@ namespace user
    }
 
 
-   strsize plain_edit::plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::raw::index iLine, ::raw::index iColumn)
+   strsize plain_edit::plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::collection::index iColumn)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -4662,7 +4662,7 @@ namespace user
    }
 
 
-   strsize plain_edit::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::raw::index iLine, i32 x)
+   strsize plain_edit::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, i32 x)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -4680,7 +4680,7 @@ namespace user
    }
 
 
-   ::raw::index plain_edit::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
+   ::collection::index plain_edit::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -4693,7 +4693,7 @@ namespace user
 
       strsize i2 = 0;
 
-      for (::raw::index iLine = 0; iLine < m_iaLineLength.get_size(); iLine++)
+      for (::collection::index iLine = 0; iLine < m_iaLineLength.get_size(); iLine++)
       {
 
          i1 = i2;
@@ -4725,7 +4725,7 @@ namespace user
    }
 
 
-   ::raw::index plain_edit::plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, strsize iSel)
+   ::collection::index plain_edit::plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, strsize iSel)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -4736,7 +4736,7 @@ namespace user
 
       strsize i2 = 0;
 
-      for (::raw::index i = 0; i < m_iaLineLength.get_size(); i++)
+      for (::collection::index i = 0; i < m_iaLineLength.get_size(); i++)
       {
 
          i1 = i2;
@@ -4796,7 +4796,7 @@ namespace user
 
       string_array stra;
 
-      ::raw::index iLine;
+      ::collection::index iLine;
 
       if (point.y() < 0)
       {
@@ -4850,7 +4850,7 @@ namespace user
    }
 
 
-   strsize plain_edit::plain_edit_line_char_hit_test(::draw2d::graphics_pointer & pgraphics, i32 px, ::raw::index iLine)
+   strsize plain_edit::plain_edit_line_char_hit_test(::draw2d::graphics_pointer & pgraphics, i32 px, ::collection::index iLine)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -5242,13 +5242,13 @@ namespace user
 
       m_iaLineFlags.add(e_line_end_eof);
 
-      ::raw::count iAcc = 0;
+      ::collection::count iAcc = 0;
 
-      ::raw::count iLineCount = m_iaLineLength.get_size();
+      ::collection::count iLineCount = m_iaLineLength.get_size();
 
       m_iaLineStart.set_size(iLineCount);
 
-      for (::raw::index iLine = 0; iLine < iLineCount; iLine++)
+      for (::collection::index iLine = 0; iLine < iLineCount; iLine++)
       {
 
          m_iaLineStart[iLine] = iAcc;
@@ -5260,7 +5260,7 @@ namespace user
    }
 
 
-   void plain_edit::plain_edit_update_line_index(::draw2d::graphics_pointer & pgraphics, ::raw::index iLine)
+   void plain_edit::plain_edit_update_line_index(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -5269,7 +5269,7 @@ namespace user
 
       strsize iOffset = 0;
 
-      for (::raw::index i = 0; i < iLine; i++)
+      for (::collection::index i = 0; i < iLine; i++)
       {
 
          iOffset += m_iaLineLength[i];
@@ -5441,7 +5441,7 @@ namespace user
 
       }
 
-      ::raw::count iLineCount = m_iaLineLength.get_size();
+      ::collection::count iLineCount = m_iaLineLength.get_size();
 
       for (; iLine < iLineCount; iLine++)
       {
@@ -5497,7 +5497,7 @@ namespace user
 
       bool bFullUpdate = false;
 
-      ::raw::index iLineUpdate = -1;
+      ::collection::index iLineUpdate = -1;
 
       if (!m_bReadOnly)
       {
@@ -5654,7 +5654,7 @@ namespace user
 
       bool bFullUpdate = false;
 
-      ::raw::index iLineUpdate = -1;
+      ::collection::index iLineUpdate = -1;
 
       if (!m_bReadOnly)
       {
@@ -5797,7 +5797,7 @@ namespace user
 
             strsize iMultiByteUtf8DeleteCount = pszNext - pszBefore;
 
-            ::raw::index i1;
+            ::collection::index i1;
 
             if (bBackIfSelectionEmpty)
             {
@@ -5812,7 +5812,7 @@ namespace user
 
             }
 
-            ::raw::index i2 = i1 + iMultiByteUtf8DeleteCount;
+            ::collection::index i2 = i1 + iMultiByteUtf8DeleteCount;
 
             string strSel;
 
@@ -5921,7 +5921,7 @@ namespace user
    }
 
 
-   //bool plain_edit::plain_edit_delete_sel(::draw2d::graphics_pointer & pgraphics, bool & bFullUpdate, ::raw::index & iLineUpdate)
+   //bool plain_edit::plain_edit_delete_sel(::draw2d::graphics_pointer & pgraphics, bool & bFullUpdate, ::collection::index & iLineUpdate)
    //{
 
    //   _synchronous_lock synchronouslock(this->synchronization());
@@ -6008,7 +6008,7 @@ namespace user
 
       bool bFullUpdate = true;
 
-      ::raw::index iLineUpdate = -1;
+      ::collection::index iLineUpdate = -1;
 
       if (_001ReplaceSel(pszText, bFullUpdate, iLineUpdate))
       {
@@ -6026,7 +6026,7 @@ namespace user
    }
 
 
-   bool plain_edit::_001ReplaceSel(const ::string & pszText, bool & bFullUpdate, ::raw::index & iLineUpdate)
+   bool plain_edit::_001ReplaceSel(const ::string & pszText, bool & bFullUpdate, ::collection::index & iLineUpdate)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -6145,7 +6145,7 @@ namespace user
 
       bool bFullUpdate = false;
 
-      ::raw::index iLineUpdate = -1;
+      ::collection::index iLineUpdate = -1;
 
       {
 
@@ -6482,13 +6482,13 @@ namespace user
 
                      i32 x;
 
-                     ::raw::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
+                     ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
                      ::rectangle_i32 rectangleX;
 
                      GetFocusRect(rectangleX);
 
-                     iLine -= (::raw::index)(rectangleX.height() / m_dLineHeight);
+                     iLine -= (::collection::index)(rectangleX.height() / m_dLineHeight);
 
                      if (iLine < 0)
                      {
@@ -6528,13 +6528,13 @@ namespace user
 
                      i32 x;
 
-                     ::raw::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
+                     ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
                      ::rectangle_i32 rectangleX;
 
                      GetFocusRect(rectangleX);
 
-                     iLine += (::raw::index)(rectangleX.height() / m_dLineHeight);
+                     iLine += (::collection::index)(rectangleX.height() / m_dLineHeight);
 
                      if (iLine >= m_iaLineStart.get_size())
                      {
@@ -6737,7 +6737,7 @@ namespace user
 
                      i32 x;
 
-                     ::raw::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
+                     ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
                      iLine--;
 
@@ -6788,7 +6788,7 @@ namespace user
 
                      i32 x;
 
-                     ::raw::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
+                     ::collection::index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
                      iLine++;
 
@@ -6944,7 +6944,7 @@ namespace user
                      else
                      {
 
-                        ::raw::index iLine = plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
+                        ::collection::index iLine = plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
 
                         m_ptree->m_iSelEnd = plain_edit_line_column_to_sel(pgraphics, iLine, 0);
 
@@ -6981,12 +6981,12 @@ namespace user
 
                      on_reset_focus_start_tick();
 
-                     ::raw::index iSelEnd = -1;
+                     ::collection::index iSelEnd = -1;
 
                      if (bControl)
                      {
 
-                        ::raw::index iLine = m_iaLineStart.get_upper_bound();
+                        ::collection::index iLine = m_iaLineStart.get_upper_bound();
 
                         m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, i32(m_iaLineLength[iLine]));
 
@@ -6996,7 +6996,7 @@ namespace user
                      else
                      {
 
-                        ::raw::index iLine = plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
+                        ::collection::index iLine = plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
 
                         m_ptree->m_iSelEnd = plain_edit_line_column_to_sel(pgraphics, iLine, -1);
 
@@ -7303,7 +7303,7 @@ namespace user
 
          m_ptree->m_peditfile->change_insert_item_data(m_pitemComposing.get(), strText);
 
-         ::raw::index i1 = (::raw::index)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
+         ::collection::index i1 = (::collection::index)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
 
          queue_graphics_call([this, i1](::draw2d::graphics_pointer & pgraphics)
             {
@@ -7376,7 +7376,7 @@ namespace user
 
          m_ptree->m_peditfile->append_insert_item_data(m_pitemComposing.get(), strText);
 
-         ::raw::index i1 = (::raw::index)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
+         ::collection::index i1 = (::collection::index)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
 
          queue_graphics_call([this, i1](::draw2d::graphics_pointer & pgraphics)
             {
@@ -7566,7 +7566,7 @@ namespace user
 
             strsize i1 = iNewCursorPosition;
 
-            ::raw::index iAfterComposingCursorPosition = -1;
+            ::collection::index iAfterComposingCursorPosition = -1;
 
             //if (::is_set(m_pitemComposing))
             //{
@@ -7976,9 +7976,9 @@ namespace user
 
       m_iImpactOffset = 0;
 
-      ::raw::count iLineSize;
+      ::collection::count iLineSize;
 
-      ::raw::index i = 0;
+      ::collection::index i = 0;
 
       //copy(pointOffset, get_context_offset());
 
@@ -8217,7 +8217,7 @@ namespace user
    }
 
 
-   void plain_edit::plain_edit_on_line_update(::draw2d::graphics_pointer & pgraphics, ::raw::index iLine, const ::action_context & context)
+   void plain_edit::plain_edit_on_line_update(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, const ::action_context & context)
    {
 
       {
@@ -8468,7 +8468,7 @@ namespace user
          || m_ptreeitem->get_next() != nullptr;
    }
 
-   ::raw::count plain_edit::GetRedoBranchCount()
+   ::collection::count plain_edit::GetRedoBranchCount()
    {
       _synchronous_lock synchronouslock(this->synchronization());
 
@@ -9141,7 +9141,7 @@ namespace user
    }
 
 
-   string plain_edit::plain_edit_get_expanded_line(::draw2d::graphics_pointer & pgraphics, ::raw::index iLine, array < strsize * > intptra)
+   string plain_edit::plain_edit_get_expanded_line(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, array < strsize * > intptra)
    {
 
       string strLine = plain_edit_get_line(pgraphics, iLine);
@@ -9153,7 +9153,7 @@ namespace user
    }
 
 
-   string plain_edit::plain_edit_get_line(::draw2d::graphics_pointer & pgraphics, ::raw::index iLine)
+   string plain_edit::plain_edit_get_line(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -9280,7 +9280,7 @@ namespace user
 
       bool bFullUpdate = false;
 
-      ::raw::index iLineUpdate = -1;
+      ::collection::index iLineUpdate = -1;
 
       strsize i1 = m_ptree->m_iSelBeg;
 
@@ -9431,7 +9431,7 @@ namespace user
    }
 
 
-   void plain_edit::plain_edit_update(::draw2d::graphics_pointer & pgraphics, bool bFullUpdate, ::raw::index iLineUpdate)
+   void plain_edit::plain_edit_update(::draw2d::graphics_pointer & pgraphics, bool bFullUpdate, ::collection::index iLineUpdate)
    {
 
       if (!m_bMultiLine)

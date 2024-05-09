@@ -86,7 +86,7 @@ namespace database
 
       //virtual bool isActive() { return isActive(); }
 
-      virtual ::raw::count num_rows()= 0;
+      virtual ::collection::count num_rows()= 0;
 
       virtual void open(const ::string & sql) = 0;
       virtual void open() = 0;
@@ -111,8 +111,8 @@ namespace database
       //virtual bool locate(const parameter_list &params);
       //virtual bool findNext();
 
-      virtual ::raw::count field_count();
-      virtual ::pointer<class field> field_at(::raw::index n);
+      virtual ::collection::count field_count();
+      virtual ::pointer<class field> field_at(::collection::index n);
 
       virtual ::database::row * proper_row();
 
@@ -121,10 +121,10 @@ namespace database
 
       virtual class field * field(const ::string & name);
       virtual ::payload field_value(const ::string & name);
-      virtual ::payload select_field_value(::raw::index iField);
-      virtual ::payload field_value_at(::raw::index i);
+      virtual ::payload select_field_value(::collection::index iField);
+      virtual ::payload field_value_at(::collection::index i);
 
-      virtual ::raw::index field_index(const ::string & name);
+      virtual ::collection::index field_index(const ::string & name);
 
       virtual void set_autocommit(bool bAutoCommit) { m_bAutoCommit = bAutoCommit; }
       virtual bool get_autocommit() { return m_bAutoCommit; }

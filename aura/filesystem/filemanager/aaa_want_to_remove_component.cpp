@@ -42,7 +42,7 @@ namespace filemanager
    bool is_valid_manager_id(const ::string & psz)
    {
 
-      ::raw::count c = 0;
+      ::collection::count c = 0;
 
       while (*psz != '\0')
       {
@@ -83,7 +83,7 @@ namespace filemanager
    bool is_valid_filemanager_project_entry(const ::string & psz)
    {
 
-      ::raw::count c = 0;
+      ::collection::count c = 0;
 
       while (*psz != '\0')
       {
@@ -434,7 +434,7 @@ pacmedirectory->localconfig() / "user.component";
 
          ::file::path path;
 
-         for (::raw::index i = 0; i < stra.get_size();)
+         for (::collection::index i = 0; i < stra.get_size();)
          {
 
             string str = stra[i];
@@ -446,7 +446,7 @@ pacmedirectory->localconfig() / "user.component";
 
                string strPath = str(pFind + 1);
 
-               for (::raw::index j = i + 1; j < stra.get_size();)
+               for (::collection::index j = i + 1; j < stra.get_size();)
                {
 
                   string strOther = stra[j];
@@ -532,7 +532,7 @@ pacmedirectory->localconfig() / "user.component";
 
       //document * pdocument;
 
-      //for (::raw::index i = 0; i < m_pimpactsystemProject->get_document_count(); i++)
+      //for (::collection::index i = 0; i < m_pimpactsystemProject->get_document_count(); i++)
       //{
 
       //   pdocument = m_pimpactsystemProject->get_document(i);
@@ -585,7 +585,7 @@ pacmedirectory->localconfig() / "user.component";
       throw ::exception(todo("core"));
       //::pointer<document>pdocument;
 
-      //for (::raw::index i = 0; i < m_pimpactsystemProject->get_document_count(); i++)
+      //for (::collection::index i = 0; i < m_pimpactsystemProject->get_document_count(); i++)
       //{
 
       //   pdocument = m_pimpactsystemProject->get_document(i);

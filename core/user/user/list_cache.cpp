@@ -25,7 +25,7 @@ namespace user
    }
 
 
-   void list_cache::_001CacheHint(::user::mesh * pmesh, ::raw::index iItemStart, ::raw::index iItemCount)
+   void list_cache::_001CacheHint(::user::mesh * pmesh, ::collection::index iItemStart, ::collection::index iItemCount)
    {
 
       single_lock synchronouslock(synchronization(), false);
@@ -39,13 +39,13 @@ namespace user
 
       }
 
-      ::raw::index iItem;
+      ::collection::index iItem;
 
-      ::raw::index iColumn;
+      ::collection::index iColumn;
 
       string str;
 
-      ::raw::index iItemEnd = iItemStart + iItemCount - 1;
+      ::collection::index iItemEnd = iItemStart + iItemCount - 1;
 
       for(iItem = iItemStart; iItem <= iItemEnd; iItem++)
       {

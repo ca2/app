@@ -809,7 +809,7 @@ namespace user
 
             ::pointer<::user::font_list>pfontlist = pcombolistbox;
 
-            ::raw::index iIndex = pfontlist->m_pfontlist->find_name(m_pformat->m_strFontFamily);
+            ::collection::index iIndex = pfontlist->m_pfontlist->find_name(m_pformat->m_strFontFamily);
 
             m_pcomboFamily->set_current_item_by_index(iIndex, ::e_source_sync);
 

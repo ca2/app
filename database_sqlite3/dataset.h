@@ -44,7 +44,7 @@
 //      virtual bool query(const ::string &query) override;
 //      virtual void close() override;
 //      virtual void cancel() override;
-//      virtual ::raw::count num_rows() override;
+//      virtual ::collection::count num_rows() override;
 //
 //      //virtual bool bof() override;
 //      //virtual bool eof() override;
@@ -53,14 +53,14 @@
 //      //virtual void prev() override;
 //      //virtual void next() override;
 //
-//      //virtual ::raw::index find_first(const ::string & fieldname, ::payload & value);
+//      //virtual ::collection::index find_first(const ::string & fieldname, ::payload & value);
 //      //virtual bool seek(index pos=0) override;
 //
 //      //virtual bool SetFieldValue(const ::string &f_name, const ::payload &value) override;
-//      //virtual bool SetFieldValue(::raw::index iFieldIndex, const ::payload &value);
+//      //virtual bool SetFieldValue(::collection::index iFieldIndex, const ::payload &value);
 //
-//      //virtual ::payload field_value_at(::raw::index iFieldIndex) override;
-//      //virtual ::payload FieldValueAt(::raw::index iFieldIndex);
+//      //virtual ::payload field_value_at(::collection::index iFieldIndex) override;
+//      //virtual ::payload FieldValueAt(::collection::index iFieldIndex);
 //      //virtual i32 GetFieldIndex(const ::string &f_name);
 //
 //

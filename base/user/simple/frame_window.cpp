@@ -165,7 +165,7 @@ void simple_frame_window::initialize(::particle * pparticle)
 }
 
 
-void simple_frame_window::on_update_notify_icon_menu(::raw::index & iNotifyIconItem)
+void simple_frame_window::on_update_notify_icon_menu(::collection::index & iNotifyIconItem)
 {
 
    on_update_notify_icon_menu_header(iNotifyIconItem);
@@ -182,7 +182,7 @@ void simple_frame_window::on_update_notify_icon_menu(::raw::index & iNotifyIconI
 }
 
 
-void simple_frame_window::on_update_notify_icon_menu_header(::raw::index & iNotifyIconItem)
+void simple_frame_window::on_update_notify_icon_menu_header(::collection::index & iNotifyIconItem)
 {
 
    auto papp = application();
@@ -198,7 +198,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::raw::index & iNoti
    if (papp->application_menu()->has_element())
    {
 
-      ::raw::index iIndexSource;
+      ::collection::index iIndexSource;
 
       if (papp->application_menu()->first()->m_strName == strAppTitle)
       {
@@ -210,7 +210,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::raw::index & iNoti
 
             pmenu->separator_at(iNotifyIconItem);
             
-            for (::raw::index iIndexPopup = 0; iIndexPopup < ppopupApp->count(); iIndexPopup++)
+            for (::collection::index iIndexPopup = 0; iIndexPopup < ppopupApp->count(); iIndexPopup++)
             {
 
                if (iIndexPopup + 1 < ppopupApp->count())
@@ -283,7 +283,7 @@ void simple_frame_window::on_update_notify_icon_menu_header(::raw::index & iNoti
 }
 
 
-void simple_frame_window::on_update_notify_icon_menu_top(::raw::index & iNotifyIconItem)
+void simple_frame_window::on_update_notify_icon_menu_top(::collection::index & iNotifyIconItem)
 {
 
    //auto papp = auraapplication();
@@ -304,7 +304,7 @@ void simple_frame_window::on_update_notify_icon_menu_top(::raw::index & iNotifyI
 }
 
 
-void simple_frame_window::on_update_notify_icon_menu_main(::raw::index & iNotifyIconItem)
+void simple_frame_window::on_update_notify_icon_menu_main(::collection::index & iNotifyIconItem)
 {
 
 
@@ -312,7 +312,7 @@ void simple_frame_window::on_update_notify_icon_menu_main(::raw::index & iNotify
 }
 
 
-void simple_frame_window::on_update_notify_icon_menu_bottom(::raw::index & iNotifyIconItem)
+void simple_frame_window::on_update_notify_icon_menu_bottom(::collection::index & iNotifyIconItem)
 {
 
    if (m_pframe != nullptr
@@ -352,7 +352,7 @@ void simple_frame_window::on_update_notify_icon_menu_bottom(::raw::index & iNoti
 }
 
 
-void simple_frame_window::on_update_notify_icon_menu_footer(::raw::index & iNotifyIconItem)
+void simple_frame_window::on_update_notify_icon_menu_footer(::collection::index & iNotifyIconItem)
 {
 
    m_pnotifyicon->menu()->separator_at(iNotifyIconItem);
@@ -1164,7 +1164,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
                              //m_pnotifyicon->m_puserinteraction = this;
 
-                             ::raw::index iNotifyIconItem = 0;
+                             ::collection::index iNotifyIconItem = 0;
 
                              on_update_notify_icon_menu(iNotifyIconItem);
 

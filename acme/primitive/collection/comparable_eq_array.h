@@ -36,23 +36,23 @@ public:
    comparable_eq_array(const_iterator begin) : BASE_RANGE(begin, find_first_null_character(begin)) {}
 
    
-   ::raw::index find_first(ARG_TYPE t) const;
-   ::raw::index find_first(ARG_TYPE t, ::raw::index find, ::raw::index last = -1) const;
-   ::raw::index find_last(ARG_TYPE t) const;
-   ::raw::index find_last_not(ARG_TYPE t) const;
-   ::raw::count get_count() const;
-   ::raw::count get_count(ARG_TYPE t, ::raw::index start = 0, ::raw::index last = -1, ::raw::count countMax = -1) const;
+   ::collection::index find_first(ARG_TYPE t) const;
+   ::collection::index find_first(ARG_TYPE t, ::collection::index find, ::collection::index last = -1) const;
+   ::collection::index find_last(ARG_TYPE t) const;
+   ::collection::index find_last_not(ARG_TYPE t) const;
+   ::collection::count get_count() const;
+   ::collection::count get_count(ARG_TYPE t, ::collection::index start = 0, ::collection::index last = -1, ::collection::count countMax = -1) const;
    //bool has(ARG_TYPE t) const { return contains(t); }
    bool contains(ARG_TYPE t) const;
    bool has(ARG_TYPE t) const { return contains(t); }
-   bool contains(ARG_TYPE t, ::raw::index start, ::raw::index last = -1, ::raw::count countMin = 1, ::raw::count countMax = -1) const;
-   bool contains(comparable_eq_array & a, ::raw::count cMinCount = -1) const
+   bool contains(ARG_TYPE t, ::collection::index start, ::collection::index last = -1, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
+   bool contains(comparable_eq_array & a, ::collection::count cMinCount = -1) const
    {
       if(cMinCount < 0)
       {
          cMinCount += a.get_count() + 1;
       }
-      for(::raw::index i = 0; cMinCount > 0 && i < a.get_count(); i++)
+      for(::collection::index i = 0; cMinCount > 0 && i < a.get_count(); i++)
       {
          if(!this->contains(a[i]))
             return false;
@@ -63,23 +63,23 @@ public:
    
    
    using BASE_ARRAY::erase_last;
-   ::raw::index erase_last(ARG_TYPE t);
-   ::raw::index erase_first(ARG_TYPE t);
-   ::raw::index erase_first(ARG_TYPE t, ::raw::index find, ::raw::index last = -1);
-   ::raw::count erase(ARG_TYPE t);
-   ::raw::count erase(ARG_TYPE t, ::raw::index find, ::raw::index last = -1, ::raw::count countMin = 0, ::raw::count countMax = -1);
+   ::collection::index erase_last(ARG_TYPE t);
+   ::collection::index erase_first(ARG_TYPE t);
+   ::collection::index erase_first(ARG_TYPE t, ::collection::index find, ::collection::index last = -1);
+   ::collection::count erase(ARG_TYPE t);
+   ::collection::count erase(ARG_TYPE t, ::collection::index find, ::collection::index last = -1, ::collection::count countMin = 0, ::collection::count countMax = -1);
    template < primitive_container CONTAINER>
-   ::raw::count erase_container(const CONTAINER & container);
+   ::collection::count erase_container(const CONTAINER & container);
 
 
    bool add_unique(ARG_TYPE t);
-   ::raw::count append_unique(const ARRAY_TYPE & a);
+   ::collection::count append_unique(const ARRAY_TYPE & a);
    TYPE & insert_unique(ARG_TYPE t);
 
 
-   bool insert_unique_at(::raw::index i, ARG_TYPE t);
+   bool insert_unique_at(::collection::index i, ARG_TYPE t);
 
-   ::raw::count add_erase(bool bAdd, ARG_TYPE t);
+   ::collection::count add_erase(bool bAdd, ARG_TYPE t);
 
 
    // set
@@ -198,11 +198,11 @@ public:
 //}
 
 template <class TYPE,class ARG_TYPE,class ARRAY_TYPE >
-::raw::index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::
+::collection::index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::
 find_first(ARG_TYPE t) const
 {
-   ::raw::index find = 0;
-   ::raw::index c = this->get_size();
+   ::collection::index find = 0;
+   ::collection::index c = this->get_size();
    for(; find < c; find++)
    {
       if(EqualElements(this->element_at(find),t))
@@ -212,10 +212,10 @@ find_first(ARG_TYPE t) const
 }
 
 template <class TYPE,class ARG_TYPE,class ARRAY_TYPE >
-::raw::index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::
+::collection::index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::
 find_last(ARG_TYPE t) const
 {
-   ::raw::index find = this->get_upper_bound();
+   ::collection::index find = this->get_upper_bound();
    for(; find >= 0; find--)
    {
       if(EqualElements(this->element_at(find),t))
@@ -225,10 +225,10 @@ find_last(ARG_TYPE t) const
 }
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-::raw::index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+::collection::index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 find_last_not(ARG_TYPE t) const
 {
-   ::raw::index find = this->get_upper_bound();
+   ::collection::index find = this->get_upper_bound();
    for (; find >= 0; find--)
    {
       if (!EqualElements(this->element_at(find), t))
@@ -238,8 +238,8 @@ find_last_not(ARG_TYPE t) const
 }
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-::raw::index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-find_first(ARG_TYPE t, ::raw::index find, ::raw::index last) const
+::collection::index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+find_first(ARG_TYPE t, ::collection::index find, ::collection::index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -254,7 +254,7 @@ find_first(ARG_TYPE t, ::raw::index find, ::raw::index last) const
 }
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-inline ::raw::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+inline ::collection::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 get_count() const
 {
 
@@ -264,11 +264,11 @@ get_count() const
 
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-::raw::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-get_count(ARG_TYPE t, ::raw::index find, ::raw::index last, ::raw::count countMax) const
+::collection::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+get_count(ARG_TYPE t, ::collection::index find, ::collection::index last, ::collection::count countMax) const
 {
 
-   ::raw::count count = 0;
+   ::collection::count count = 0;
 
    while((countMax < 0 || count <= countMax) && (find = find_first(t, find, last)) >= 0)
    {
@@ -296,10 +296,10 @@ contains(ARG_TYPE t) const
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-contains(ARG_TYPE t, ::raw::index find, ::raw::index last, ::raw::count countMin, ::raw::count countMax) const
+contains(ARG_TYPE t, ::collection::index find, ::collection::index last, ::collection::count countMin, ::collection::count countMax) const
 {
 
-   ::raw::count count = 0;
+   ::collection::count count = 0;
 
    while((count < countMin || (countMax >= 0 && count <= countMax)) && (find = find_first(t, find, last)) >= 0)
    {
@@ -342,7 +342,7 @@ TYPE & comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::insert_unique(ARG_TYP
 
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-::raw::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::add_erase(bool bAdd, ARG_TYPE t)
+::collection::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::add_erase(bool bAdd, ARG_TYPE t)
 {
    if (bAdd)
       return this->add_unique(t) ? 1 : 0;
@@ -351,12 +351,12 @@ template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 }
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-::raw::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::append_unique(const ARRAY_TYPE & a)
+::collection::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::append_unique(const ARRAY_TYPE & a)
 {
 
-   ::raw::count ca = 0;
+   ::collection::count ca = 0;
 
-   ::raw::count cAdd = a.get_count();
+   ::collection::count cAdd = a.get_count();
 
    for(i32 i = 0; i < cAdd; i++)
    {
@@ -373,7 +373,7 @@ template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 void comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 intersect(const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
 {
-   for(::raw::index i = 0; i < this->get_size();)
+   for(::collection::index i = 0; i < this->get_size();)
    {
       if(a.contains(this->element_at(i)))
       {
@@ -392,7 +392,7 @@ void comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 merge(const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
 {
    
-   for(::raw::index i = 0; i < a.get_size(); i++)
+   for(::collection::index i = 0; i < a.get_size(); i++)
    {
       
       if(!contains(a.element_at(i)))
@@ -489,10 +489,10 @@ CONTAINER1 operator - (const CONTAINER1 & container1, const CONTAINER2 & contain
 
 
 template <class TYPE,class ARG_TYPE,class ARRAY_TYPE >
-::raw::index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::erase_last(ARG_TYPE t)
+::collection::index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::erase_last(ARG_TYPE t)
 {
 
-   ::raw::index find;
+   ::collection::index find;
 
    if((find = find_last(t)) >= 0)
    {
@@ -507,10 +507,10 @@ template <class TYPE,class ARG_TYPE,class ARRAY_TYPE >
 
 
 template <class TYPE,class ARG_TYPE,class ARRAY_TYPE >
-::raw::index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::
+::collection::index comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::
 erase_first(ARG_TYPE t)
 {
-   ::raw::index find;
+   ::collection::index find;
    if((find = find_first(t)) >= 0)
    {
       this->erase_at(find);
@@ -520,8 +520,8 @@ erase_first(ARG_TYPE t)
 
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-::raw::index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-erase_first(ARG_TYPE t, ::raw::index find, ::raw::index last)
+::collection::index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+erase_first(ARG_TYPE t, ::collection::index find, ::collection::index last)
 {
    if((find = find_first(t, find, last)) >= 0)
    {
@@ -532,11 +532,11 @@ erase_first(ARG_TYPE t, ::raw::index find, ::raw::index last)
 
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-::raw::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-erase(ARG_TYPE t, ::raw::index find, ::raw::index last, ::raw::count countMin, ::raw::count countMax)
+::collection::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+erase(ARG_TYPE t, ::collection::index find, ::collection::index last, ::collection::count countMin, ::collection::count countMax)
 {
 
-   ::raw::count count = 0;
+   ::collection::count count = 0;
 
    if(contains(t, find, last, countMin, countMax))
    {
@@ -556,11 +556,11 @@ erase(ARG_TYPE t, ::raw::index find, ::raw::index last, ::raw::count countMin, :
 
 
 template <class TYPE,class ARG_TYPE,class ARRAY_TYPE >
-::raw::count comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::
+::collection::count comparable_eq_array < TYPE,ARG_TYPE,ARRAY_TYPE >::
 erase(ARG_TYPE t)
 {
 
-   ::raw::count count = 0;
+   ::collection::count count = 0;
 
    while (erase_last(t) >= 0)
    {
@@ -575,8 +575,8 @@ erase(ARG_TYPE t)
 
 
 //template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-//::raw::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
-//erase(ARG_TYPE t, ::raw::index find, ::raw::index last, ::raw::count countMin, ::raw::count countMax)
+//::collection::count comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+//erase(ARG_TYPE t, ::collection::index find, ::collection::index last, ::collection::count countMin, ::collection::count countMax)
 //{
 //   return erase(t, find, last, countMin, countMax);
 //}
@@ -598,11 +598,11 @@ erase(ARG_TYPE t)
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 template < primitive_container CONTAINER>
-::raw::index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+::collection::index comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 erase_container(const CONTAINER & container)
 {
 
-   ::raw::count count = 0;
+   ::collection::count count = 0;
 
    if((::quantum *) this == (::quantum *)&container)
    {
@@ -630,7 +630,7 @@ erase_container(const CONTAINER & container)
 
 
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
-bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::insert_unique_at(::raw::index i, ARG_TYPE t)
+bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::insert_unique_at(::collection::index i, ARG_TYPE t)
 {
 
    if (i < 0 || i > this->get_size())

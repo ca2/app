@@ -206,7 +206,7 @@ namespace apple
       if(string_begins_ci(strFallback, "/Users/"))
       {
 
-         ::raw::index i = 0;
+         ::collection::index i = 0;
 
          int iPrevious = -1;
 
@@ -516,7 +516,7 @@ namespace apple
 //
 //      straParam.add(strC);
 //
-//      for(::raw::index i = 0; i < straParam.get_count(); i++)
+//      for(::collection::index i = 0; i < straParam.get_count(); i++)
 //      {
 //
 //         argv.add((char *)(const char *)straParam[i]);
@@ -533,7 +533,7 @@ namespace apple
 
       straParam = get_c_args_for_c(pszCmdLineParam);
       //straParam.add("uid=" + as_string(uid));
-      for(::raw::index i = 0; i < straParam.get_count(); i++)
+      for(::collection::index i = 0; i < straParam.get_count(); i++)
       {
          char * psz = (char *)(const char *)straParam[i];
          argv.add(psz);
@@ -656,7 +656,7 @@ auto tickStart = ::duration::now();
 
          //       fscanf(pipe, "%d", &pptp_pid);
 //         bool bNewLine = true;
-//         ::raw::index i = 0;
+//         ::collection::index i = 0;
 //         while(i < 1000)
 //         {
 //            char szBuffer[1000];

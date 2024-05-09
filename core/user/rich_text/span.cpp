@@ -105,7 +105,7 @@ namespace user
 
          ::e_align ealign = e_align_left;
 
-         ::raw::index i = m_pdata->m_spana.find_first(this);
+         ::collection::index i = m_pdata->m_spana.find_first(this);
 
          for (; i >= 0; i--)
          {

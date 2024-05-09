@@ -35,7 +35,7 @@ reference_item::~reference_item()
 
 interlocked_count g_interlockedcountNewReferenceItemSerial;
 
-CLASS_DECL_ACME::raw::index new_reference_item_serial()
+CLASS_DECL_ACME::collection::index new_reference_item_serial()
 {
 
    auto i = (::i64) g_interlockedcountNewReferenceItemSerial;
@@ -251,12 +251,12 @@ CLASS_DECL_ACME::raw::index new_reference_item_serial()
 //
 //   strDump += m_strDebug + "\n";
 //
-//   for (::raw::index iIndex = 0; iIndex < m_itema.get_count(); iIndex++)
+//   for (::collection::index iIndex = 0; iIndex < m_itema.get_count(); iIndex++)
 //   {
 //
 //      auto & item = m_itema[iIndex];
 //
-//      ::raw::index iStep = item.m_iStep;
+//      ::collection::index iStep = item.m_iStep;
 //
 //      ::particle * pobj = item.m_preferer;
 //
@@ -332,7 +332,7 @@ CLASS_DECL_ACME::raw::index new_reference_item_serial()
 //
 //   }
 //
-//   for (::raw::index i = 0; i < c; i++)
+//   for (::collection::index i = 0; i < c; i++)
 //   {
 //
 //      auto p = g_pobjectreferencecountdebuga->element_at(i);

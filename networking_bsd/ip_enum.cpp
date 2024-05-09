@@ -19,7 +19,7 @@ namespace networking_bsd
    }
 
 
-   ::raw::count ip_enum::enumerate(pointer_array < ::networking::address > & ipa)
+   ::collection::count ip_enum::enumerate(pointer_array < ::networking::address > & ipa)
    {
 
       __UNREFERENCED_PARAMETER(ipa);

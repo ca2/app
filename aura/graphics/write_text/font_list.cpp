@@ -100,7 +100,7 @@ namespace write_text
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      ::raw::index iSel = find_name(str);
+      ::collection::index iSel = find_name(str);
 
       if (iSel >= 0)
       {
@@ -195,7 +195,7 @@ namespace write_text
 
             ::point_f64 point{10.0,10.0};
 
-            for (::raw::index i = 0; i < m_pfontenumeration->m_pathaLoading.get_count(); i++)
+            for (::collection::index i = 0; i < m_pfontenumeration->m_pathaLoading.get_count(); i++)
             {
 
                pgraphics->text_out(point, "Loading " + m_pfontenumeration->m_pathaLoading[i].title());
@@ -528,7 +528,7 @@ namespace write_text
    }
 
 
-   void font_list::update_extents(font_list_data * pfontlistdata, font_list_item * pitem, ::draw2d::graphics_pointer & pgraphics, ::raw::index iBox)
+   void font_list::update_extents(font_list_data * pfontlistdata, font_list_item * pitem, ::draw2d::graphics_pointer & pgraphics, ::collection::index iBox)
    {
 
       text_box* pbox = &pitem->m_box[iBox];
@@ -1007,7 +1007,7 @@ namespace write_text
 
             _synchronous_lock synchronouslock(this->synchronization());
 
-            for (::raw::index iItem = 0; iItem < pfontlistdata->item_count(); )
+            for (::collection::index iItem = 0; iItem < pfontlistdata->item_count(); )
             {
 
                ::pointer < font_list_item > pitem = pfontlistdata->item_at(iItem);
@@ -1029,7 +1029,7 @@ namespace write_text
 
             // Make room for new fonts
 
-            for (::raw::index iItem = 0; iItem < m_pfontenumerationitema->get_count(); iItem++)
+            for (::collection::index iItem = 0; iItem < m_pfontenumerationitema->get_count(); iItem++)
             {
 
                ::pointer < font_list_item > pitem = pfontlistdata->item_at(iItem);
@@ -1071,7 +1071,7 @@ namespace write_text
 
       auto iFontCount = pfontlistdata->item_count();
 
-      auto procedure1 = [this, pfontlistdata, bSameSize](::raw::index iOrder, ::raw::index iStart, ::raw::index iCount, ::raw::index iScan)
+      auto procedure1 = [this, pfontlistdata, bSameSize](::collection::index iOrder, ::collection::index iStart, ::collection::index iCount, ::collection::index iScan)
       {
 
          auto psystem = system()->m_paurasystem;
@@ -1082,7 +1082,7 @@ namespace write_text
 
       restart:
 
-         ::raw::index iSerial = pfontlistdata->m_iSerial;
+         ::collection::index iSerial = pfontlistdata->m_iSerial;
 
          string strText = m_strTextLayout;
 
@@ -1096,7 +1096,7 @@ namespace write_text
 
          //single_lock lock(mutex());
 
-         for (::raw::index iItem = iStart; iItem < pfontlistdata->item_count(); iItem += iScan)
+         for (::collection::index iItem = iStart; iItem < pfontlistdata->item_count(); iItem += iScan)
          {
 
             {
@@ -1197,7 +1197,7 @@ namespace write_text
       auto procedure2 = [this, pfontlistdata]()
       {
 
-         auto procedure3 = [this, pfontlistdata](::raw::index iOrder, ::raw::index iStart, ::raw::index iCount, ::raw::index iScan)
+         auto procedure3 = [this, pfontlistdata](::collection::index iOrder, ::collection::index iStart, ::collection::index iCount, ::collection::index iScan)
          {
 
             auto iSerial = pfontlistdata->m_iSerial;
@@ -1210,12 +1210,12 @@ namespace write_text
 
             ::rectangle_i32 rectangle;
 
-            for (::raw::index i = iStart; i < iCount && ::task_get_run(); i += iScan)
+            for (::collection::index i = iStart; i < iCount && ::task_get_run(); i += iScan)
             {
 
                ::pointer < font_list_item > pitem = pfontlistdata->item_at(i);
 
-               for (::raw::index iBox = 1; iBox < pfontlistdata->m_iaSize.get_count(); iBox++)
+               for (::collection::index iBox = 1; iBox < pfontlistdata->m_iaSize.get_count(); iBox++)
                {
 
                   if (pfontlistdata->m_iSerial != iSerial)
@@ -1483,7 +1483,7 @@ namespace write_text
 
          auto & rectangle = pitem->m_box[0].m_rectangle;
 
-         for (::raw::index j = 1; j < 3; j++)
+         for (::collection::index j = 1; j < 3; j++)
          {
 
             auto & size2 = pitem->m_box[j].m_size;
@@ -1644,7 +1644,7 @@ namespace write_text
 
       }
 
-      for (::raw::index iItem = 0; iItem < pfontlistdata->item_count(); iItem++)
+      for (::collection::index iItem = 0; iItem < pfontlistdata->item_count(); iItem++)
       {
 
          if (pfontlistdata->item_at(iItem) == nullptr)
@@ -1691,7 +1691,7 @@ namespace write_text
 
       }
 
-      for (::raw::index iItem = 0; iItem < pfontlistdata->item_count(); iItem++)
+      for (::collection::index iItem = 0; iItem < pfontlistdata->item_count(); iItem++)
       {
 
          ::pointer < font_list_item > pfontlistitem = pfontlistdata->item_at(iItem);
@@ -1742,7 +1742,7 @@ namespace write_text
    }
 
 
-   bool font_list::get_box_rect(::rectangle_i32 * lprect, ::raw::index i)
+   bool font_list::get_box_rect(::rectangle_i32 * lprect, ::collection::index i)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1763,7 +1763,7 @@ namespace write_text
    }
 
 
-   bool font_list::get_box_rect_wide(::rectangle_i32 * lprect, ::raw::index i)
+   bool font_list::get_box_rect_wide(::rectangle_i32 * lprect, ::collection::index i)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1800,7 +1800,7 @@ namespace write_text
    }
 
 
-   bool font_list::get_box_rect_single_column(::rectangle_i32 * lprect, ::raw::index i)
+   bool font_list::get_box_rect_single_column(::rectangle_i32 * lprect, ::collection::index i)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1870,7 +1870,7 @@ namespace write_text
    }
 
 
-   ::raw::index font_list::find_name(string str)
+   ::collection::index font_list::find_name(string str)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1884,7 +1884,7 @@ namespace write_text
 
       }
 
-      for (::raw::index i = 0; i < pfontlistdata->item_count(); i++)
+      for (::collection::index i = 0; i < pfontlistdata->item_count(); i++)
       {
 
          ::pointer < font_list_item > pfontlistitem = pfontlistdata->item_at(i);

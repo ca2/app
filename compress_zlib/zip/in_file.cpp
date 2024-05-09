@@ -50,7 +50,7 @@ namespace zip
 
       auto pFind = -1;
 
-      ::raw::index iStart = 0;
+      ::collection::index iStart = 0;
 
       while((iFind = ::str::find_file_extension("zip:",pszFileName,iStart)) >= 0)
 

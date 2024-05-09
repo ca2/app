@@ -150,7 +150,7 @@ namespace colorertake5
       return nullptr;
    }
 
-   ::raw::count HRCParserImpl::getRegionCount()
+   ::collection::count HRCParserImpl::getRegionCount()
    {
       return regionNamesVector.get_size();
    }

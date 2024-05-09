@@ -39,7 +39,7 @@ namespace hi5
    * @output: none
    *
    *--*/
-   twit::twit(::particle * pparticle, simple_log * psimplelog, ::raw::index iLogTarget) :
+   twit::twit(::particle * pparticle, simple_log * psimplelog, ::collection::index iLogTarget) :
       object(pparticle),
       simple_log(psimplelog, iLogTarget),
       /* Constants */
@@ -89,7 +89,7 @@ namespace hi5
       TWIT_FRIENDSIDS_URL("http://twitter.com/friends/ids.xml"),
       TWIT_FOLLOWERSIDS_URL("http://twitter.com/followers/ids.xml"),
 
-      /* Ac::raw::count URLs */
+      /* Ac::collection::count URLs */
       TWIT_ACCOUNTRATELIMIT_URL("http://twitter.com/account/rate_limit_status.xml"),
 
       /* Favorites URLs */
@@ -325,7 +325,7 @@ namespace hi5
 
       pfile->seek_to_begin();
 
-      for (::raw::index i = 0; i < iChunkCount; i++)
+      for (::collection::index i = 0; i < iChunkCount; i++)
       {
 
          i64 iSize;
@@ -557,7 +557,7 @@ namespace hi5
    }
 
 
-   bool twit::mediaUploadAppend(string strMediaId, ::raw::index iIndex, file_pointer pfile, int iSize, string strMimeType, string & boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends)
+   bool twit::mediaUploadAppend(string strMediaId, ::collection::index iIndex, file_pointer pfile, int iSize, string strMimeType, string & boundary_is_the_bounday_the_issue_i_e_should_it_be_the_same_across_appends)
    {
 
       log_line("mediaUploadAppend(\"" + strMediaId + "\", " + as_string(iIndex) + ", memory(size=" + as_string(iSize) + "))");

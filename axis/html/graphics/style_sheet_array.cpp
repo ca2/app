@@ -19,7 +19,7 @@ namespace html
 
       style * pstyle = nullptr;
 
-      ::raw::index i;
+      ::collection::index i;
 
       for(i = get_upper_bound(); i >= 0; i--)
       {
@@ -43,7 +43,7 @@ namespace html
 
       style * pstyle = nullptr;
 
-      ::raw::index i;
+      ::collection::index i;
 
       for(i = get_upper_bound(); i >= 0; i--)
       {
@@ -67,7 +67,7 @@ namespace html
 
       style * pstyle = nullptr;
 
-      ::raw::index i;
+      ::collection::index i;
 
       for(i = get_upper_bound(); i >= 0; i--)
       {
@@ -122,7 +122,7 @@ namespace html
 
       style * pstyle;
 
-      ::raw::index i;
+      ::collection::index i;
 
       for(i = get_upper_bound(); i >= 0; i--)
       {
@@ -141,7 +141,7 @@ namespace html
    }
 
 
-   bool style_sheet_array::greater(style *& pstyleRet, ::raw::index & iRet, ::payload & varRet, style * pstyle1, ::raw::index i1, const ::payload & var1, style * pstyle2, ::raw::index i2, const ::payload & var2)
+   bool style_sheet_array::greater(style *& pstyleRet, ::collection::index & iRet, ::payload & varRet, style * pstyle1, ::collection::index i1, const ::payload & var1, style * pstyle2, ::collection::index i2, const ::payload & var2)
    {
 
       return ((const style_sheet_array *)this)->greater((const style * &) pstyleRet, iRet, varRet, pstyle1, i1, var1, pstyle2, i2, var2);
@@ -149,7 +149,7 @@ namespace html
    }
 
 
-   bool style_sheet_array::greater(const style *& pstyleRet, ::raw::index & iRet, ::payload & varRet, const style * pstyle1, ::raw::index i1, const ::payload & var1, const style * pstyle2, ::raw::index i2, const ::payload & var2) const
+   bool style_sheet_array::greater(const style *& pstyleRet, ::collection::index & iRet, ::payload & varRet, const style * pstyle1, ::collection::index i1, const ::payload & var1, const style * pstyle2, ::collection::index i2, const ::payload & var2) const
    {
 
       if(pstyle1 == nullptr)
@@ -215,7 +215,7 @@ namespace html
 
       }
 
-      ::raw::index i;
+      ::collection::index i;
 
       for(i = get_upper_bound(); i >= 0; i--)
       {

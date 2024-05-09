@@ -118,7 +118,7 @@ i32 uni_to_utf8_2_or_more(char * dest, i32 ch)
 }
 
 
-CLASS_DECL_ACME ::raw::count unichar_len(const ::wide_character * psz)
+CLASS_DECL_ACME ::collection::count unichar_len(const ::wide_character * psz)
 {
    if(psz == nullptr)
       return -1;
@@ -132,7 +132,7 @@ CLASS_DECL_ACME ::raw::count unichar_len(const ::wide_character * psz)
 }
 
 
-::raw::count utf16_len(const ::ansi_character * psz)
+::collection::count utf16_len(const ::ansi_character * psz)
 {
    if(psz == nullptr)
       return -1;
@@ -144,7 +144,7 @@ CLASS_DECL_ACME ::raw::count unichar_len(const ::wide_character * psz)
    return count;
 }
 
-::raw::count utf16_len_len(const ::ansi_character * psz, strsize srclen)
+::collection::count utf16_len_len(const ::ansi_character * psz, strsize srclen)
 {
    if(psz == nullptr)
       return -1;
@@ -251,7 +251,7 @@ void ansi_to_wd16_len(::wd16_character * pwsz, const ::ansi_character * psz, str
 WCHAR * ansi_to_wd16(const ::ansi_character * psz)
 {
 
-   ::raw::count iCount = utf16_len(psz);
+   ::collection::count iCount = utf16_len(psz);
 
    if(iCount < 0)
       return nullptr;

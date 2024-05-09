@@ -467,7 +467,7 @@ namespace file
 
       ::const_ansi_range name() const;
 
-      //string name(::raw::index i /* = -1 */) const;
+      //string name(::collection::index i /* = -1 */) const;
 
       /// return index pointing to beginning of name
       const_iterator find_name() const;

@@ -23,7 +23,7 @@ namespace user
 
       void _001Invalidate();
 
-      virtual void _001CacheHint(mesh * pmesh, ::raw::index iItemStart, ::raw::index iItemCount) override;
+      virtual void _001CacheHint(mesh * pmesh, ::collection::index iItemStart, ::collection::index iItemCount) override;
 
       virtual void _001GetItemText(::user::mesh_subitem * pitem);
 
@@ -43,12 +43,12 @@ namespace user
 
    }
    template < class CELL >
-   void mesh_cache<CELL>::_001CacheHint(::user::mesh * pmesh, ::raw::index iItemStart, ::raw::index iItemCount)
+   void mesh_cache<CELL>::_001CacheHint(::user::mesh * pmesh, ::collection::index iItemStart, ::collection::index iItemCount)
    {
 
       //draw_mesh_item item(pmesh);
 
-      //::raw::index i = 0;
+      //::collection::index i = 0;
 
       //for(item.m_iItem = iItemStart; i < iItemCount; i++,item.m_iItem++)
       //{

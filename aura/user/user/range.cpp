@@ -21,10 +21,10 @@ namespace user
    }
 
 
-   bool range::has_item(::raw::index iItem) const
+   bool range::has_item(::collection::index iItem) const
    {
 
-      for (::raw::index i = 0; i < m_itemrangea.get_size(); i++)
+      for (::collection::index i = 0; i < m_itemrangea.get_size(); i++)
       {
          const auto& itemrange = m_itemrangea[i];
          if (itemrange.has_item(iItem))
@@ -34,10 +34,10 @@ namespace user
    }
 
 
-   ::raw::count range::get_item_indexes(index_array& ia) const
+   ::collection::count range::get_item_indexes(index_array& ia) const
    {
 
-      for (::raw::index i = 0; i < m_itemrangea.get_size(); i++)
+      for (::collection::index i = 0; i < m_itemrangea.get_size(); i++)
       {
 
          const auto& itemrange = m_itemrangea[i];
@@ -51,10 +51,10 @@ namespace user
    }
 
 
-   bool range::has_sub_item(::raw::index iItem, ::raw::index iSubItem) const
+   bool range::has_sub_item(::collection::index iItem, ::collection::index iSubItem) const
    {
 
-      for (::raw::index i = 0; i < m_itemrangea.get_size(); i++)
+      for (::collection::index i = 0; i < m_itemrangea.get_size(); i++)
       {
 
          const auto& itemrange = m_itemrangea[i];
@@ -79,9 +79,9 @@ namespace user
 
 
    // erase the specified item
-   bool range::erase_item(::raw::index iItem)
+   bool range::erase_item(::collection::index iItem)
    {
-      for (::raw::index i = 0; i < m_itemrangea.get_size();)
+      for (::collection::index i = 0; i < m_itemrangea.get_size();)
       {
          auto& itemrange = m_itemrangea[i];
          if (itemrange.has_item(iItem))
@@ -120,14 +120,14 @@ namespace user
    }
 
    // erase the specified item and offset remaining items.
-   bool range::OnRemoveItem(::raw::index iItem)
+   bool range::OnRemoveItem(::collection::index iItem)
    {
       erase_item(iItem);
       // All ranges that has item "iItem + 1",
       // must have all items greater or equal "iItem + 1"
       // decremented by one
       iItem++;
-      for (::raw::index i = 0; i < m_itemrangea.get_size();)
+      for (::collection::index i = 0; i < m_itemrangea.get_size();)
       {
          auto& itemrange = m_itemrangea[i];
          if (itemrange.has_item(iItem))
@@ -152,7 +152,7 @@ namespace user
       if (m_iLowerBound == -1 || m_iUpperBound == -1)
          return;
 
-      for (::raw::index iItem = m_iLowerBound; iItem <= m_iUpperBound; iItem++)
+      for (::collection::index iItem = m_iLowerBound; iItem <= m_iUpperBound; iItem++)
       {
 
          ia.add_unique(iItem);
@@ -161,7 +161,7 @@ namespace user
 
    }
 
-   bool item_range::has_item(::raw::index iItem) const
+   bool item_range::has_item(::collection::index iItem) const
    {
       if (m_iLowerBound == -1 || m_iUpperBound == -1)
          return false;
@@ -172,7 +172,7 @@ namespace user
          return false;
    }
 
-   bool item_range::has_sub_item(::raw::index iSubItem) const
+   bool item_range::has_sub_item(::collection::index iSubItem) const
    {
       return m_subitemrange.has_sub_item(iSubItem);
    }
@@ -227,7 +227,7 @@ namespace user
    }
 
 
-   bool sub_item_range::has_sub_item(::raw::index iSubItem) const
+   bool sub_item_range::has_sub_item(::collection::index iSubItem) const
    {
       if (m_iLowerBound == -1 || m_iUpperBound == -1)
          return false;
@@ -241,7 +241,7 @@ namespace user
 
 
 
-   void item_range::set(::raw::index iLowerBoundItem, ::raw::index iUpperBoundItem, ::raw::index iLowerBoundSubItem, ::raw::index iUpperBoundSubItem, ::raw::index iLowerBoundListItem, ::raw::index iUpperBoundListItem)
+   void item_range::set(::collection::index iLowerBoundItem, ::collection::index iUpperBoundItem, ::collection::index iLowerBoundSubItem, ::collection::index iUpperBoundSubItem, ::collection::index iLowerBoundListItem, ::collection::index iUpperBoundListItem)
    {
 
       m_iLowerBound = iLowerBoundItem;
@@ -253,17 +253,17 @@ namespace user
          iUpperBoundListItem);
    }
 
-   void item_range::set_lower_bound(::raw::index iLowerBoundItem)
+   void item_range::set_lower_bound(::collection::index iLowerBoundItem)
    {
       m_iLowerBound = iLowerBoundItem;
    }
 
-   void item_range::set_upper_bound(::raw::index iUpperBoundItem)
+   void item_range::set_upper_bound(::collection::index iUpperBoundItem)
    {
       m_iUpperBound = iUpperBoundItem;
    }
 
-   void sub_item_range::set(::raw::index iLowerBoundSubItem, ::raw::index iUpperBoundSubItem, ::raw::index iLowerBoundListItem, ::raw::index iUpperBoundListItem)
+   void sub_item_range::set(::collection::index iLowerBoundSubItem, ::collection::index iUpperBoundSubItem, ::collection::index iLowerBoundListItem, ::collection::index iUpperBoundListItem)
    {
       m_iLowerBound = iLowerBoundSubItem;
       m_iUpperBound = iUpperBoundSubItem;
@@ -272,7 +272,7 @@ namespace user
          iUpperBoundListItem);
    }
 
-   void list_item_range::set(::raw::index iLowerBoundListItem, ::raw::index iUpperBoundListItem)
+   void list_item_range::set(::collection::index iLowerBoundListItem, ::collection::index iUpperBoundListItem)
    {
       m_iLowerBound = iLowerBoundListItem;
       m_iUpperBound = iUpperBoundListItem;
@@ -296,12 +296,12 @@ namespace user
       m_iUpperBound = -1;
    }
 
-   ::raw::index item_range::get_lower_bound() const
+   ::collection::index item_range::get_lower_bound() const
    {
       return m_iLowerBound;
    }
 
-   ::raw::index item_range::get_upper_bound() const
+   ::collection::index item_range::get_upper_bound() const
    {
       return m_iUpperBound;
    }
@@ -324,7 +324,7 @@ namespace user
 
 
 
-   void item_range::offset(::raw::index iOffset)
+   void item_range::offset(::collection::index iOffset)
    {
 
       m_iLowerBound += iOffset;
@@ -342,7 +342,7 @@ namespace user
       return *this;
    }
 
-   ::raw::index range::get_current_item()
+   ::collection::index range::get_current_item()
    {
 
       if(m_itemrangea.get_count() != 1)
@@ -373,12 +373,12 @@ namespace user
    }
 
 
-   ::raw::count range::get_item_count() const
+   ::collection::count range::get_item_count() const
    {
       return m_itemrangea.get_size();
       /*   index iCount = 0;
 
-      for(::raw::index i = 0; i < m_itemrangea.get_size(); i++)
+      for(::collection::index i = 0; i < m_itemrangea.get_size(); i++)
       {
       auto & itemrange = m_itemrangea[i];
       iCount += itemrange.get_count();
@@ -387,12 +387,12 @@ namespace user
       return iCount;*/
    }
 
-   ::raw::count range::get_items(index_array& ia) const
+   ::collection::count range::get_items(index_array& ia) const
    {
       return get_item_indexes(ia);
       /*   index iCount = 0;
 
-      for(::raw::index i = 0; i < m_itemrangea.get_size(); i++)
+      for(::collection::index i = 0; i < m_itemrangea.get_size(); i++)
       {
       auto & itemrange = m_itemrangea[i];
       iCount += itemrange.get_count();
@@ -401,7 +401,7 @@ namespace user
       return iCount;*/
    }
 
-   item_range& range::ItemAt(::raw::index iItem)
+   item_range& range::ItemAt(::collection::index iItem)
    {
       return m_itemrangea.element_at(iItem);
    }

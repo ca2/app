@@ -658,7 +658,7 @@ namespace android
       if (pdoc->load(strSystemFonts))
       {
 
-         ::raw::index iFamilyPos = 0;
+         ::collection::index iFamilyPos = 0;
 
          while (auto pfamily = pdoc->root()->get_child("family", iFamilyPos))
          {
@@ -675,11 +675,11 @@ namespace android
             if (pfamily->get_name() == "family")
             {
 
-               ::raw::index iNamesetPos = 0;
+               ::collection::index iNamesetPos = 0;
 
                auto pnameset = pfamily->get_child("nameset", iNamesetPos);
 
-               ::raw::index iFilesetPos = 0;
+               ::collection::index iFilesetPos = 0;
 
                auto pfileset = pfamily->get_child("fileset", iFilesetPos);
 
@@ -689,11 +689,11 @@ namespace android
                   if (pnameset->get_children_count() >= 1 && pfileset->get_children_count() >= 1)
                   {
 
-                     ::raw::index iNamePos = 0;
+                     ::collection::index iNamePos = 0;
 
                      auto pfirstname = pnameset->get_child("name", iNamePos);
 
-                     ::raw::index iFilePos = 0;
+                     ::collection::index iFilePos = 0;
 
                      auto pfirstfile = pfileset->get_child("file", iFilePos);
 

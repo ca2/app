@@ -511,7 +511,7 @@ namespace user
    }
 
 
-   ::raw::index combo_box::_001GetListCount() const
+   ::collection::index combo_box::_001GetListCount() const
    {
 
       return m_plistbox->_001GetListCount();
@@ -1142,7 +1142,7 @@ namespace user
 //   }
 //
 
-   void combo_box::GetLBText(::raw::index nIndex, string & rString)
+   void combo_box::GetLBText(::collection::index nIndex, string & rString)
    {
 
       ASSERT(is_window());
@@ -1154,7 +1154,7 @@ namespace user
    }
 
 
-   //::raw::count combo_box::get_count()
+   //::collection::count combo_box::get_count()
    // { ASSERT(is_window()); return (count)send_message( CB_GETCOUNT, 0, 0); }
    //index combo_box::current_index()
    // { ASSERT(is_window()); return (index)send_message( CB_GETCURSEL, 0, 0); }
@@ -1182,7 +1182,7 @@ namespace user
       return true;
    }
 
-   uptr combo_box::GetItemData(::raw::index nIndex)
+   uptr combo_box::GetItemData(::collection::index nIndex)
    {
 
       //ASSERT(is_window());
@@ -1192,7 +1192,7 @@ namespace user
 
    }
 
-   ::raw::index combo_box::SetItemData(::raw::index nIndex, uptr dwItemData)
+   ::collection::index combo_box::SetItemData(::collection::index nIndex, uptr dwItemData)
    {
 
       //ASSERT(is_window());
@@ -1203,7 +1203,7 @@ namespace user
 
    }
 
-   void * combo_box::GetItemDataPtr(::raw::index nIndex)
+   void * combo_box::GetItemDataPtr(::collection::index nIndex)
    {
 
       //ASSERT(is_window()); return (LPVOID)GetItemData(nIndex);
@@ -1212,7 +1212,7 @@ namespace user
 
    }
 
-   ::raw::index combo_box::SetItemDataPtr(::raw::index nIndex, void * pData)
+   ::collection::index combo_box::SetItemDataPtr(::collection::index nIndex, void * pData)
    {
 
       //ASSERT(is_window());
@@ -1223,7 +1223,7 @@ namespace user
 
    }
 
-   ::raw::index combo_box::GetLBText(::raw::index nIndex, char * pszText)
+   ::collection::index combo_box::GetLBText(::collection::index nIndex, char * pszText)
 
    {
 
@@ -1236,7 +1236,7 @@ namespace user
 
    }
 
-   strsize combo_box::GetLBTextLen(::raw::index nIndex)
+   strsize combo_box::GetLBTextLen(::collection::index nIndex)
    {
 
       //ASSERT(is_window());
@@ -1256,7 +1256,7 @@ namespace user
    }
 
 
-   ::raw::index combo_box::erase_item_at(::raw::index nIndex)
+   ::collection::index combo_box::erase_item_at(::collection::index nIndex)
    {
 
       auto iIndex = m_plistbox->erase_item_at(nIndex);
@@ -1266,7 +1266,7 @@ namespace user
    }
 
 
-   ::raw::index combo_box::insert_item_at(::raw::index nIndex, const ::string & pszString)
+   ::collection::index combo_box::insert_item_at(::collection::index nIndex, const ::string & pszString)
    {
 
       //ASSERT(is_window());
@@ -1295,7 +1295,7 @@ namespace user
    }
 
 
-   ::raw::index combo_box::Dir(::raw::index attr, const ::string & pszWildCard)
+   ::collection::index combo_box::Dir(::collection::index attr, const ::string & pszWildCard)
    {
 
 //      ASSERT(is_window());
@@ -1348,7 +1348,7 @@ namespace user
    }
 
 
-   i32 combo_box::SetItemHeight(::raw::index nIndex, ::u32 cyItemHeight)
+   i32 combo_box::SetItemHeight(::collection::index nIndex, ::u32 cyItemHeight)
    {
 
       //ASSERT(is_window());
@@ -1360,7 +1360,7 @@ namespace user
    }
 
 
-   i32 combo_box::GetItemHeight(::raw::index nIndex)
+   i32 combo_box::GetItemHeight(::collection::index nIndex)
    {
 
       //ASSERT(is_window());
@@ -1372,7 +1372,7 @@ namespace user
    }
 
 
-   ::raw::index combo_box::FindStringExact(::raw::index nIndexStart, const ::string & pszFind)
+   ::collection::index combo_box::FindStringExact(::collection::index nIndexStart, const ::string & pszFind)
    {
 
       //ASSERT(is_window());
@@ -1455,7 +1455,7 @@ namespace user
 //   }
 
 
-   ::raw::index combo_box::GetTopIndex()
+   ::collection::index combo_box::GetTopIndex()
    {
 
       //ASSERT(is_window());
@@ -1467,7 +1467,7 @@ namespace user
    }
 
 
-   ::raw::index combo_box::SetTopIndex(::raw::index nIndex)
+   ::collection::index combo_box::SetTopIndex(::collection::index nIndex)
    {
 
       //ASSERT(is_window());
@@ -1479,7 +1479,7 @@ namespace user
    }
 
 
-   ::raw::count combo_box::InitStorage(::raw::count nItems, ::u32 nBytes)
+   ::collection::count combo_box::InitStorage(::collection::count nItems, ::u32 nBytes)
    {
 
       //ASSERT(is_window());
@@ -1536,7 +1536,7 @@ namespace user
    }
 
 
-   bool combo_box::_001GetListText(::raw::index iSel,string & str) const
+   bool combo_box::_001GetListText(::collection::index iSel,string & str) const
    {
 
       return m_plistbox->_001GetListText(iSel, str);
@@ -1544,14 +1544,14 @@ namespace user
    }
 
 
-   ::raw::index combo_box::_001FindListText(const ::string & str) const
+   ::collection::index combo_box::_001FindListText(const ::string & str) const
    {
 
       return m_plistbox->_001FindListText(str);
 
    }
 
-   ::raw::index combo_box::add_item(const ::scoped_string& scopedstr, const ::atom & atom)
+   ::collection::index combo_box::add_item(const ::scoped_string& scopedstr, const ::atom & atom)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1571,7 +1571,7 @@ namespace user
 
    }
 
-   //::raw::index combo_box::add_string(const ::string & pszString,uptr dwItemData)
+   //::collection::index combo_box::add_string(const ::string & pszString,uptr dwItemData)
    //{
 
    //   synchronous_lock synchronouslock(this->synchronization());
@@ -1592,7 +1592,7 @@ namespace user
    //}
 
 
-   //::raw::index combo_box::add_string(const ::string & pszString, const ::string & strValue)
+   //::collection::index combo_box::add_string(const ::string & pszString, const ::string & strValue)
    //{
 
    //   ASSERT(m_edatamode == data_mode_string);
@@ -1637,7 +1637,7 @@ namespace user
    }
 
 
-   void combo_box::set_current_item_by_index(::raw::index iIndex, const ::action_context & action_context)
+   void combo_box::set_current_item_by_index(::collection::index iIndex, const ::action_context & action_context)
    {
 
       m_plistbox->set_current_item_by_index(iIndex, action_context);

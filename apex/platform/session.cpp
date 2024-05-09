@@ -252,7 +252,7 @@ namespace apex
    //}
 
 
-   //::raw::count session::get_monitor_count()
+   //::collection::count session::get_monitor_count()
    //{
 
    //   return -1;
@@ -260,7 +260,7 @@ namespace apex
    //}
 
    
-   //bool  session::get_monitor_rectangle(::raw::index iMonitor, ::rectangle_i32* prectangle)
+   //bool  session::get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32* prectangle)
    //{
 
    //   return false;
@@ -268,7 +268,7 @@ namespace apex
    //}
 
    
-   //::raw::count session::get_desk_monitor_count()
+   //::collection::count session::get_desk_monitor_count()
    //{
 
    //   return -1;
@@ -276,7 +276,7 @@ namespace apex
    //}
 
 
-   //bool  session::get_desk_monitor_rect(::raw::index iMonitor, ::rectangle_i32* prectangle)
+   //bool  session::get_desk_monitor_rect(::collection::index iMonitor, ::rectangle_i32* prectangle)
    //{
 
    //   return false;
@@ -292,7 +292,7 @@ namespace apex
    //}
 
 
-   //::raw::count session::get_workspace_count()
+   //::collection::count session::get_workspace_count()
    //{
 
    //   return -1;
@@ -300,7 +300,7 @@ namespace apex
    //}
 
 
-   //bool  session::get_workspace_rectangle(::raw::index iWorkspace, ::rectangle_i32* prectangle)
+   //bool  session::get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32* prectangle)
    //{
 
    //   return false;
@@ -308,7 +308,7 @@ namespace apex
    //}
 
    //
-   //::raw::count session::get_desk_workspace_count()
+   //::collection::count session::get_desk_workspace_count()
    //{
 
    //   return -1;
@@ -316,7 +316,7 @@ namespace apex
    //}
   
    //
-   //bool  session::get_desk_workspace_rect(::raw::index iWorkspace, ::rectangle_i32* prectangle)
+   //bool  session::get_desk_workspace_rect(::collection::index iWorkspace, ::rectangle_i32* prectangle)
    //{
 
    //   return false;
@@ -324,7 +324,7 @@ namespace apex
    //}
 
 
-   //bool session::set_main_monitor(::raw::index iMonitor)
+   //bool session::set_main_monitor(::collection::index iMonitor)
    //{
 
    //   return false;
@@ -332,7 +332,7 @@ namespace apex
    //}
    
 
-   //bool session::set_main_workspace(::raw::index iWorkspace)
+   //bool session::set_main_workspace(::collection::index iWorkspace)
    //{
 
    //   return false;
@@ -340,7 +340,7 @@ namespace apex
    //}
 
 
-   //bool session::workspace_to_monitor(::rectangle_i32* prectangle, ::raw::index iMonitor, ::raw::index iWorkspace)
+   //bool session::workspace_to_monitor(::rectangle_i32* prectangle, ::collection::index iMonitor, ::collection::index iWorkspace)
    //{
 
    //   return false;
@@ -348,7 +348,7 @@ namespace apex
    //}
 
 
-   //bool session::monitor_to_workspace(::rectangle_i32* prectangle, ::raw::index iWorkspace, ::raw::index iMonitor)
+   //bool session::monitor_to_workspace(::rectangle_i32* prectangle, ::collection::index iWorkspace, ::collection::index iMonitor)
    //{
 
    //   return false;
@@ -1971,7 +1971,7 @@ namespace apex
    //      font = pgraphics->get_current_font();
    //      size_i32 sSep = ptab->get_data()->m_sizeSep;
    //      ::rectangle_i32 rectangleEmp;
-   //      for (::raw::index i = 0; i < straTitle.get_size(); i++)
+   //      for (::collection::index i = 0; i < straTitle.get_size(); i++)
    //      {
    //         string str = straTitle[i];
    //         size_i32 s = pane.m_sizeaText[i];

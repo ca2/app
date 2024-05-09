@@ -687,9 +687,9 @@ namespace sockets
 //           FD_ZERO(&wfds);
 //           FD_ZERO(&efds);
 //
-//           ::raw::count countR = 0;
-//           ::raw::count countW = 0;
-//           ::raw::count countE = 0;
+//           ::collection::count countR = 0;
+//           ::collection::count countW = 0;
+//           ::collection::count countE = 0;
 //
 //           auto it = m_socketmap.begin();
 //
@@ -1510,7 +1510,7 @@ namespace sockets
    }
 
 
-   ::raw::count socket_handler::get_count()
+   ::collection::count socket_handler::get_count()
    {
       /*
       debug_print(" m_socketmap : %d\n", m_socketmap.size());
@@ -1518,11 +1518,11 @@ namespace sockets
       debug_print(" m_delete  : %d\n", m_delete.size());
       */
 
-      //::raw::count isocket_ids = m_socketmap.get_size();
+      //::collection::count isocket_ids = m_socketmap.get_size();
 
-      //::raw::count iAdd = m_socketmapAdd.get_size();
+      //::collection::count iAdd = m_socketmapAdd.get_size();
 
-      //::raw::count iDelete = m_delete.get_size();
+      //::collection::count iDelete = m_delete.get_size();
 
       //return isocket_ids + iAdd + iDelete;
 

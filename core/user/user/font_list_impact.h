@@ -52,7 +52,7 @@ namespace user
 
       //virtual void OnActivateImpact(bool bActivate, ::pointer<::user::impact>pActivateImpact, ::pointer<::user::impact>viewDeactivate) override;
 
-      //virtual ::raw::index _001GetCurItem() override;
+      //virtual ::collection::index _001GetCurItem() override;
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

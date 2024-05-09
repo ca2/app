@@ -130,7 +130,7 @@ namespace userex
    }
 
 
-   void progress_control::defer_show(::user::interaction * puiParent, const ::string & pszTitle, ::raw::count iStepCount)
+   void progress_control::defer_show(::user::interaction * puiParent, const ::string & pszTitle, ::collection::count iStepCount)
    {
 
       m_strTitle = pszTitle;

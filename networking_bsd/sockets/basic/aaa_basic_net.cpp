@@ -441,7 +441,7 @@
 ////      u16 x;
 ////      u16 addr16[8];
 ////      ::memory_copy(addr16, &ip, sizeof(addr16));
-////      for (::raw::index i = 0; i < 6; i++)
+////      for (::collection::index i = 0; i < 6; i++)
 ////      {
 ////         x = ntohs(addr16[i]);
 ////         if (*slask && (x || !ok_to_skip || prev))
@@ -497,7 +497,7 @@
 //
 //i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //{
-//   for (::raw::index i = 0; i < 16; i++)
+//   for (::collection::index i = 0; i < 16; i++)
 //   {
 //      if (a.s6_addr[i] < b.s6_addr[i])
 //         return -1;
@@ -691,7 +691,7 @@
 ////   {
 ////      //         list<string> vec;
 ////      index x = 0;
-////      for (::raw::index i = 0; i <= host.get_length(); i++)
+////      for (::collection::index i = 0; i <= host.get_length(); i++)
 ////      {
 ////         if (i == host.get_length() || host[i] == ':')
 ////         {
@@ -719,7 +719,7 @@
 ////         }
 ////      }
 ////      index sz = vec.get_length(); // number of byte pairs
-////      ::raw::index i = 0; // index in in6_addr.in6_u.u6_addr16[] ( 0 .. 7 )
+////      ::collection::index i = 0; // index in in6_addr.in6_u.u6_addr16[] ( 0 .. 7 )
 ////      u16 addr16[8];
 ////      for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)
 ////      {
@@ -959,7 +959,7 @@
 ////            u16 addr16[8];
 ////            struct sockaddr_in6* sa_in6 = (struct sockaddr_in6*)sa;
 ////            ::memory_copy(addr16, &sa_in6->sin6_addr, sizeof(addr16));
-////            for (::raw::index i = 0; i < 8; i++)
+////            for (::collection::index i = 0; i < 8; i++)
 ////            {
 ////               u16 x = ntohs(addr16[i]);
 ////               if (*slask && (x || !ok_to_skip || prev))

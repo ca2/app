@@ -76,18 +76,18 @@ namespace sqlite
 
       //virtual string escape(const ::string & psz);
 
-      ::raw::count get_affected_rows_count() override;
+      ::collection::count get_affected_rows_count() override;
 
       bool in_transaction() override;
 
       bool exec(const ::string & pszQuery) override;
 
-      ::pointer<::database::result_set>query_result(const ::string & pszQuery, ::raw::count iRowCount, ::raw::count iColumnCount) override;
+      ::pointer<::database::result_set>query_result(const ::string & pszQuery, ::collection::count iRowCount, ::collection::count iColumnCount) override;
 
-      ::pointer<::database::result_set>query(const ::string & pszQuery, ::raw::count iRowCount = -1, ::raw::count iColumnCount = -1) override;
+      ::pointer<::database::result_set>query(const ::string & pszQuery, ::collection::count iRowCount = -1, ::collection::count iColumnCount = -1) override;
 
 
-      //virtual ::payload query(const ::string & pszQuery, ::raw::count iMaxRowCount = -1, ::raw::count iMaxColumnCount = -1);
+      //virtual ::payload query(const ::string & pszQuery, ::collection::count iMaxRowCount = -1, ::collection::count iMaxColumnCount = -1);
       ::pointer<::database::row_array>query_rows(const ::string & pszQuery) override;
       
       ::pointer<::database::row>query_row(const ::string & pszQuery) override;

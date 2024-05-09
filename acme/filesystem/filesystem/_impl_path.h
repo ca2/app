@@ -389,7 +389,7 @@ namespace file
    //      if(patha1.get_size() == patha2.get_size())
    //      {
    //
-   //         for(::raw::index i = 0; i < patha1.get_size(); i++)
+   //         for(::collection::index i = 0; i < patha1.get_size(); i++)
    //         {
    //
    //            if(patha1[i].::ansi_string::operator!=(patha2[i]))
@@ -423,7 +423,7 @@ namespace file
 
 
 
-   //inline string path::name(::raw::index i) const
+   //inline string path::name(::collection::index i) const
    //{
 
 
@@ -1371,7 +1371,7 @@ namespace file
 //
 //
 //
-//template < ::raw::count c >
+//template < ::collection::count c >
 //inline ::file::path operator +(const char(&sz)[c], const ::file::path & path)
 //{
 //

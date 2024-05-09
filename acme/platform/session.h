@@ -24,7 +24,7 @@ namespace acme
    public:
 
 
-      ::raw::index             m_iEdge;
+      ::collection::index             m_iEdge;
 
 
 

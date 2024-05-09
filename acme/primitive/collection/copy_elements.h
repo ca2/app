@@ -3,7 +3,7 @@
 
 
 template<class TYPE>
-inline void CopyElements(TYPE * pDest, const TYPE * pSrc, ::raw::count nCount)
+inline void CopyElements(TYPE * pDest, const TYPE * pSrc, ::collection::count nCount)
 {
 
    ENSURE((nCount == 0) || ((pDest != 0) && (pSrc != 0)));

@@ -253,7 +253,7 @@ namespace user
    void scroll_base_x::set_scroll_tracking_x(::f64 x, ::user::enum_layout elayout)
    {
 
-      auto iLayout = (::raw::index)elayout;
+      auto iLayout = (::collection::index)elayout;
 
       while (iLayout >= 0)
       {
@@ -278,7 +278,7 @@ namespace user
    void scroll_base_x::set_context_offset_x(::f64 x, ::user::enum_layout elayout)
    {
 
-      auto iLayout = (::raw::index)elayout;
+      auto iLayout = (::collection::index)elayout;
 
       while (iLayout >= 0)
       {

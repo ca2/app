@@ -327,7 +327,7 @@ namespace platform
    }
 
 
-   ::raw::count platform::get_argc()
+   ::collection::count platform::get_argc()
    {
 
       return m_argc;
@@ -335,7 +335,7 @@ namespace platform
    }
 
 
-   string platform::_get_argv(::raw::index iArgument) const
+   string platform::_get_argv(::collection::index iArgument) const
    {
 
       if (iArgument < 0 || iArgument >= _get_argc())
@@ -390,7 +390,7 @@ namespace platform
 
       string_array stra;
 
-      for (::raw::index i = 0; i < m_argc; i++)
+      for (::collection::index i = 0; i < m_argc; i++)
       {
 
          string strArgument;
@@ -477,7 +477,7 @@ namespace platform
    }
 
 
-   string platform::get_argument1(::raw::index iArgument) const
+   string platform::get_argument1(::collection::index iArgument) const
    {
 
       return _get_argv(iArgument + 1);
@@ -490,7 +490,7 @@ namespace platform
 
       bool bHasArgument = false;
 
-      for (::raw::index iArg = 0; iArg < get_argument_count1(); iArg++)
+      for (::collection::index iArg = 0; iArg < get_argument_count1(); iArg++)
       {
 
          ::string strArg = get_argument1(iArg);
@@ -577,7 +577,7 @@ namespace platform
 
 
 
-   string platform::get_arg(::raw::index i) const
+   string platform::get_arg(::collection::index i) const
    {
 
 #ifdef WINDOWS

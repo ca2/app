@@ -27,7 +27,7 @@ namespace user
       double                        m_dPosition;// 0.0 = minimum 1.0 = maximum
       double                        m_dTensionPosition;// 0.0 = minimum 1.0 = maximum
       bool                          m_bSlide;
-      ::raw::index                         m_iScalar;
+      ::collection::index                         m_iScalar;
       f64_array                  m_daScalar;
 
 

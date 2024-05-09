@@ -79,7 +79,7 @@ int_bool acmefile()->exists(const ::file::path & path1)
 
 
 
-int_bool acmefile()->put_contents(const ::file::path & path, const char * contents, ::raw::count len)
+int_bool acmefile()->put_contents(const ::file::path & path, const char * contents, ::collection::count len)
 {
 
    bool bOk = false;
@@ -150,11 +150,11 @@ string acmefile()->as_string(const ::file::path & path)
    if(f == nullptr)
       return "";
 
-   ::raw::count iSize = FILE_get_size(f);
+   ::collection::count iSize = FILE_get_size(f);
 
    char * lpsz = str.GetBufferSetLength(iSize);
 
-   ::raw::count iRead = fread(lpsz, 1,iSize, f);
+   ::collection::count iRead = fread(lpsz, 1,iSize, f);
 
    lpsz[iRead] = '\0';
 

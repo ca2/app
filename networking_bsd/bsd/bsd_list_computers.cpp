@@ -78,7 +78,7 @@ namespace networking_bsd
       //arp_a(callback);
        
 
-      for (::raw::index iItem = 0; iItem < arpa.m_pitema->size(); iItem++)
+      for (::collection::index iItem = 0; iItem < arpa.m_pitema->size(); iItem++)
       {
 
          auto pitem = arpa.m_pitema->element_at(iItem);

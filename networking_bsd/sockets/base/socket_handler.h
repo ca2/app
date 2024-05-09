@@ -119,7 +119,7 @@ namespace sockets_bsd
       /** Check that a socket really is handled by this socket handler. */
       virtual bool Valid(::sockets::base_socket *)override = 0;
       /** Return number of sockets handled by this handler.  */
-      virtual ::raw::count get_count()override = 0;
+      virtual ::collection::count get_count()override = 0;
 
       virtual bool socket_get_run() const override;
 

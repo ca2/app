@@ -801,7 +801,7 @@ namespace apex
    //
    //   }
    //
-   //   for (::raw::index i = 0; i < stra.get_size(); i++)
+   //   for (::collection::index i = 0; i < stra.get_size(); i++)
    //   {
    //
    //      stra[i] = _001OnlyAlnumString(stra[i]);
@@ -817,7 +817,7 @@ namespace apex
    //
    //   }
    //
-   //   for (::raw::index i = 0; i < stra.get_size(); i++)
+   //   for (::collection::index i = 0; i < stra.get_size(); i++)
    //   {
    //
    //      stra[i] = _001OnlyAlnumNonVowelString(stra[i]);
@@ -833,7 +833,7 @@ namespace apex
    //
    //   }
    //
-   //   for (::raw::index i = 0; i < stra.get_size(); i++)
+   //   for (::collection::index i = 0; i < stra.get_size(); i++)
    //   {
    //
    //      stra[i] = _001CompactString(stra[i], 1, 1);
@@ -923,7 +923,7 @@ void thread_ptra::destroy()
 
       //synchronous_lock synchronouslock(this->synchronization());
 
-      for (::raw::index i = 0; i < get_count(); i++)
+      for (::collection::index i = 0; i < get_count(); i++)
       {
 
          ::thread* pthread = element_at(i);
@@ -960,14 +960,14 @@ void thread_ptra::destroy()
 }
 
 
-::raw::count thread_ptra::get_count_except_current_thread()
+::collection::count thread_ptra::get_count_except_current_thread()
 {
 
    auto ptask = ::get_task();
 
-   ::raw::count c = 0;
+   ::collection::count c = 0;
 
-   for (::raw::index i = 0; i < pointer_array < thread >::get_count(); i++)
+   for (::collection::index i = 0; i < pointer_array < thread >::get_count(); i++)
    {
 
       ::thread* pthreadItem = element_at(i);
@@ -998,7 +998,7 @@ void thread_ptra::wait(const class time & timeWait, ::particle & particleSynchro
 
       //      synchronous_lock synchronouslock(psyncParent);
       //
-      ::raw::count cCount = get_count_except_current_thread();
+      ::collection::count cCount = get_count_except_current_thread();
 
       while (cCount > 0 && timeStart.elapsed() < timeWait)
       {

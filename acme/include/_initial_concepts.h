@@ -90,8 +90,8 @@ template < typename T, typename ITERATOR_TYPE >
 concept typed_range = requires(T t, ITERATOR_TYPE iterator)
 {
 
-   {t.begin()}-> ::std::same_as<ITERATOR_TYPE &>;
-   {t.end()}->std::same_as<ITERATOR_TYPE &>;
+   {t.begin()}-> ::std::convertible_to<ITERATOR_TYPE &>;
+   {t.end()}->std::convertible_to<ITERATOR_TYPE &>;
 
 };
 

@@ -166,6 +166,7 @@ public:
 
    //inline bool is_infinity() const;
    constexpr bool is_infinite() const;
+   constexpr bool is_null() const;
    //constexpr bool is_zero() const;
    //constexpr bool is_set() const { return (m_iSecond >= 0 && m_iNanosecond > 0) || (m_iSecond > 0 && m_iNanosecond >= 0); }
    constexpr static class ::time infinity();
@@ -1020,6 +1021,12 @@ constexpr bool time::is_infinite() const
 
 }
 
+constexpr bool time::is_null() const
+{
+
+   return m_iSecond == 0 && m_iNanosecond == 0;
+
+}
 
 //constexpr bool time::is_zero() const
 //{

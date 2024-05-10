@@ -596,6 +596,7 @@
     <ClInclude Include="exception\extended_transport.h" />
     <ClInclude Include="exception\file.h" />
     <ClInclude Include="exception\parsing.h" />
+    <ClInclude Include="exception\runtime_check.h" />
     <ClInclude Include="exception\standard.h" />
     <ClInclude Include="exception\status.h" />
     <ClInclude Include="exception\throw.h" />
@@ -669,6 +670,7 @@
     <ClInclude Include="memory\memory_allocator.h" />
     <ClInclude Include="memory\memory_management.h" />
     <ClInclude Include="memory\new.h" />
+    <ClInclude Include="memory\operation.h" />
     <ClInclude Include="memory\os_alloc.h" />
     <ClInclude Include="memory\property_memory_allocate.h" />
     <ClInclude Include="memory\secondary_memory_allocate.h" />
@@ -750,6 +752,7 @@
     <ClInclude Include="operating_system\_user.h" />
     <ClInclude Include="parallelization\counter.h" />
     <ClInclude Include="parallelization\install_mutex.h" />
+    <ClInclude Include="parallelization\queue.h" />
     <ClInclude Include="parallelization\synchronously_keep_bit.h" />
     <ClInclude Include="parallelization\synchronously_set_bit.h" />
     <ClInclude Include="platform\acme.h" />
@@ -787,6 +790,7 @@
     <ClInclude Include="platform\sequence.h" />
     <ClInclude Include="platform\serial_shared.h" />
     <ClInclude Include="platform\set_app_id.h" />
+    <ClInclude Include="platform\shell.h" />
     <ClInclude Include="platform\simple_log.h" />
     <ClInclude Include="platform\string_exchange.h" />
     <ClInclude Include="platform\synchronized_predicate_routine.h" />
@@ -827,6 +831,7 @@
     <ClInclude Include="primitive\primitive\atom_space.h" />
     <ClInclude Include="primitive\primitive\payload.h" />
     <ClInclude Include="primitive\primitive\payload_type.h" />
+    <ClInclude Include="primitive\primitive\quantum.h" />
     <ClInclude Include="primitive\primitive\set_bit.h" />
     <ClInclude Include="primitive\primitive\_c_memory.h" />
     <ClInclude Include="primitive\string\utf8_char.h" />
@@ -1355,6 +1360,7 @@
     <ClCompile Include="exception\exit.cpp" />
     <ClCompile Include="exception\extended_status.cpp" />
     <ClCompile Include="exception\parsing.cpp" />
+    <ClCompile Include="exception\runtime_check.cpp" />
     <ClCompile Include="exception\serialization.cpp" />
     <ClCompile Include="exception\translator.cpp" />
     <ClCompile Include="filesystem\filesystem\acme_directory.cpp" />
@@ -1557,6 +1563,7 @@
     <ClCompile Include="memory\memory_allocate.cpp" />
     <ClCompile Include="memory\memory_management.cpp" />
     <ClCompile Include="memory\new.cpp" />
+    <ClCompile Include="memory\operation.cpp" />
     <ClCompile Include="memory\os_alloc.cpp" />
     <ClCompile Include="memory\os_alloc\bounds_check.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -1732,6 +1739,7 @@
     <ClCompile Include="parallelization\multiple_lock.cpp" />
     <ClCompile Include="parallelization\mutex.cpp" />
     <ClCompile Include="parallelization\pool.cpp" />
+    <ClCompile Include="parallelization\queue.cpp" />
     <ClCompile Include="parallelization\semaphore.cpp" />
     <ClCompile Include="parallelization\signalization.cpp" />
     <ClCompile Include="parallelization\single_lock.cpp" />
@@ -1782,6 +1790,7 @@
     <ClCompile Include="platform\sequence.cpp" />
     <ClCompile Include="platform\serial.cpp" />
     <ClCompile Include="platform\session.cpp" />
+    <ClCompile Include="platform\shell.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />
     <ClCompile Include="platform\string_exchange.cpp" />
     <ClCompile Include="platform\platform.cpp" />
@@ -1880,6 +1889,7 @@
     <ClCompile Include="primitive\primitive\property.cpp" />
     <ClCompile Include="primitive\primitive\property_object.cpp" />
     <ClCompile Include="primitive\primitive\property_set.cpp" />
+    <ClCompile Include="primitive\primitive\quantum.cpp" />
     <ClCompile Include="primitive\primitive\read_only_memory.cpp" />
     <ClCompile Include="primitive\primitive\subparticle.cpp" />
     <ClCompile Include="primitive\primitive\type.cpp" />

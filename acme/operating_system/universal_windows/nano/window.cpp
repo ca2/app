@@ -42,7 +42,7 @@ namespace universal_windows
       else
       {
 
-         m_messagedialog = ::winrt::Windows::UI::Popups::MessageDialog(__hstring(m_pinterface->m_strMessage), __hstring(m_pinterface->m_strTitle));
+         m_messagedialog = ::winrt::Windows::UI::Popups::MessageDialog(as_hstring(m_pinterface->m_strMessage), as_hstring(m_pinterface->m_strTitle));
 
          for (auto & pnanobutton : m_pinterface->m_nanobuttona)
          {
@@ -54,7 +54,7 @@ namespace universal_windows
 
                };
 
-            ::winrt::Windows::UI::Popups::UICommand command(__hstring(pnanobutton->m_strText), predicate);
+            ::winrt::Windows::UI::Popups::UICommand command(as_hstring(pnanobutton->m_strText), predicate);
 
             m_messagedialog.Commands().Append(command);
 

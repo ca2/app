@@ -5,7 +5,7 @@
 
 #include <winrt/Windows.Foundation.h>
 
-inline winrt::hstring __hstring(const ::scoped_string & scopedstr)
+inline winrt::hstring as_hstring(const ::scoped_string & scopedstr)
 {
 
    wstring wstr(scopedstr);

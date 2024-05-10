@@ -234,10 +234,12 @@ namespace networking_bsd
 
       virtual string get_http_post_boundary();
 
+#if !defined(APPLE_IOS)
 
       ::pointer < ::item_array > list_computers() override;
 
-
+#endif
+      
       ::pointer < ::item_array > list_network_interfaces() override;
 
 

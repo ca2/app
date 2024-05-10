@@ -1578,7 +1578,7 @@ void particle::_wait()
 
    }
 
-   printf_line("particle::wait ptask is SET, going to DO transacted wait");
+   //printf_line("particle::wait ptask is SET, going to DO transacted wait");
 
    while (true)
    {

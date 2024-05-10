@@ -149,6 +149,8 @@ namespace windowing
 
       __construct(pcursor);
 
+      pcursor->m_pcursormanager = this;
+
       pcursor->set_cursor(ecursor);
 
       //m_cursormap.set_at(ecursor, pcursor);

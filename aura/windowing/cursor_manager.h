@@ -17,11 +17,12 @@ namespace windowing
    public:
 
 
-      map < enum_cursor, ::pointer<cursor >>  m_cursormap;
+      ::pointer < ::windowing::windowing >      m_pwindowing;
+      map < enum_cursor, ::pointer<cursor >>    m_cursormap;
 
 
       cursor_manager();
-      virtual ~cursor_manager();
+      ~cursor_manager() override;
 
 
       inline ::aura::application* get_app();

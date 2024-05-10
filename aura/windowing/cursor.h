@@ -21,12 +21,13 @@ namespace windowing
    public:
 
 
-      enum_cursor                         m_ecursor;
-      ::size_i32                          m_szHotspotOffset;
-      ::pointer<::draw2d::cursor>         m_pcursor;
-      image_pointer                       m_pimage;
-      ::file::path                        m_path;
-      //bool                                m_bLoadSystemDefaultCursorHint;
+      enum_cursor                                  m_ecursor;
+      ::size_i32                                   m_szHotspotOffset;
+      ::pointer<::draw2d::cursor>                  m_pcursor;
+      image_pointer                                m_pimage;
+      ::file::path                                 m_path;
+      ::pointer < ::windowing::cursor_manager >    m_pcursormanager;
+      //bool                                       m_bLoadSystemDefaultCursorHint;
 
 
       cursor();

@@ -160,14 +160,18 @@ void output_debug_string(const scoped_string & scopedstrFormat)
    //if(::acme::g_bOutputDebugString)
    {
 
-      if(scopedstrFormat == "font_list")
-      {
+//      if(scopedstrFormat == "font_list")
+//      {
+//
+//         output_debug_string("a");
+//
+//      }
 
-         output_debug_string("a");
+      auto pszBegin = scopedstrFormat.m_begin;
 
-      }
+      auto pszEnd = scopedstrFormat.m_end;
 
-      printf("%s", ::string(scopedstrFormat).c_str());
+      fwrite(stdout, 1, scopedstrFormat.size(), pszBegin);
 
       //fflush(stdout);
 

@@ -30,7 +30,7 @@ i32 __node_is_debugger_attached()
 
       g_timeLastDebuggerAttachedCheck.elapsed();
 
-      printf("\nOptimized times %d", g_iLastIsDebuggerAttachedOptimizedCount);
+      //printf("\nOptimized times %d", g_iLastIsDebuggerAttachedOptimizedCount);
 
       g_iLastIsDebuggerAttachedOptimizedCount = 0;
 
@@ -260,14 +260,20 @@ void output_debug_string(const ::scoped_string & scopedstr)
 
       //printf("2.");
 
-      if(strstr(scopedstr, "font_list"))
-      {
+//      if(strstr(scopedstr, "font_list"))
+//      {
+//
+//         printf("a");
+//
+//      }
 
-         printf("a");
+      auto pszBeg = scopedstr.begin();
 
-      }
+      auto pszEnd = scopedstr.end();
 
-      fwrite(scopedstr.begin(), 1, scopedstr.size(), stdout);
+      auto iSize = scopedstr.size();
+
+      fwrite(pszBeg, 1, iSize, stdout);
 
       //fflush(stdout);
 

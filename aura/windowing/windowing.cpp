@@ -158,6 +158,8 @@ namespace windowing
 
       __defer_construct(m_pcursormanager);
 
+      m_pcursormanager->m_pwindowing = this;
+
       m_pcursormanager->set_cursor_set_from_matter(pobjectContext, pathDir);
 
    }

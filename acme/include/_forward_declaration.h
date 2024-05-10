@@ -1370,6 +1370,22 @@ namespace file
 } // namespace file
 
 
+constexpr bool is_existent_folder(::file::enum_type etype)
+{
+
+   return (etype & ::file::e_type_existent_folder) == ::file::e_type_existent_folder;
+
+}
+
+
+constexpr bool is_existent_file(::file::enum_type etype)
+{
+
+   return (etype & ::file::e_type_existent_file) == ::file::e_type_existent_file;
+
+}
+
+
 namespace install
 {
 

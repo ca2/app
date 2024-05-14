@@ -12,15 +12,15 @@
 
 
 template < typename RESPONSE >
-class asynchronous_response :
+class particle_payload :
       virtual public ::particle
 {
 public:
    
    //::function < void(::pointer < asynchronous_response < PAYLOAD > > ) >               m_function;
 
-   asynchronous_response(RESPONSE & response) :
-      m_response(response)
+   asynchronous_response(RESPONSE * presponse) :
+      m_presponse(presponse)
    {
 
    }
@@ -29,7 +29,7 @@ public:
    
    ::manual_reset_event    m_event;
    
-   RESPONSE &              m_response;
+   ::pointer < RESPONSE >  m_presponse;
    
    bool                    m_bTimeout;
 

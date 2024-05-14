@@ -305,6 +305,47 @@ list(APPEND library_source
 #   memory/string_memory_allocate.cpp
 #   memory/string_memory_allocate.h
 #   memory/string_memory_allocator.h
+   nano/http/http.cpp
+   nano/http/http.h
+   nano/http/get.cpp
+   nano/http/get.h
+   nano/speech/speech.cpp
+   nano/speech/speech.h
+   user/nano/_nano.cpp
+   nano/user/_.h
+   nano/user/brush.cpp
+   nano/user/brush.h
+   nano/user/button.cpp
+   nano/user/button.h
+   nano/user/child.cpp
+   nano/user/child.h
+   nano/user/details_window.cpp
+   nano/user/details_window.h
+   nano/user/device.cpp
+   nano/user/device.h
+   nano/user/device.h
+   nano/user/display.cpp
+   nano/user/display.h
+   nano/user/font.cpp
+   nano/user/font.h
+   nano/user/message_box.cpp
+   nano/user/message_box.h
+   nano/user/nano.cpp
+   nano/user/nano.h
+   nano/user/object.cpp
+   nano/user/object.h
+   nano/user/pen.cpp
+   nano/user/pen.h
+   nano/user/popup_button.cpp
+   nano/user/popup_button.h
+   nano/user/still.cpp
+   nano/user/still.h
+   nano/user/window.cpp
+   nano/user/window.h
+   nano/user/window_implementation.cpp
+   nano/user/window_implementation.h
+   nano/user/window_interface.cpp
+   nano/user/window_interface.h
    #networking/top_level_domain_list.cpp
    #networking/net.cpp
    #networking/net.h
@@ -447,10 +488,10 @@ list(APPEND library_source
    platform/message.h
    #platform/message_box.cpp
    #platform/muldiv64.cpp
-   platform/nano_http.cpp
-   platform/nano_http.h
-   platform/nano_http_response.cpp
-   platform/nano_http_response.h
+#   platform/nano_http.cpp
+#   platform/nano_http.h
+#   platform/nano_http_response.cpp
+#   platform/nano_http_response.h
    platform/nanosecond_timer.cpp
    platform/nanosecond_timer.h
    platform/node.cpp
@@ -1023,41 +1064,41 @@ list(APPEND library_source
    regular_expression/regular_expression.h
    regular_expression/result.cpp
    regular_expression/result.h
-   user/nano/_nano.cpp
-   user/nano/_.h
-   user/nano/brush.cpp
-   user/nano/brush.h
-   user/nano/button.cpp
-   user/nano/button.h
-   user/nano/child.cpp
-   user/nano/child.h
-   user/nano/details_window.cpp
-   user/nano/details_window.h
-   user/nano/device.cpp
-   user/nano/device.h
-   user/nano/device.h
-   user/nano/display.cpp
-   user/nano/display.h
-   user/nano/font.cpp
-   user/nano/font.h
-   user/nano/message_box.cpp
-   user/nano/message_box.h
-   user/nano/nano.cpp
-   user/nano/nano.h
-   user/nano/object.cpp
-   user/nano/object.h
-   user/nano/pen.cpp
-   user/nano/pen.h
-   user/nano/popup_button.cpp
-   user/nano/popup_button.h
-   user/nano/still.cpp
-   user/nano/still.h
-   user/nano/window.cpp
-   user/nano/window.h
-   user/nano/window_implementation.cpp
-   user/nano/window_implementation.h
-   user/nano/window_interface.cpp
-   user/nano/window_interface.h
+#   user/nano/_nano.cpp
+#   user/nano/_.h
+#   user/nano/brush.cpp
+#   user/nano/brush.h
+#   user/nano/button.cpp
+#   user/nano/button.h
+#   user/nano/child.cpp
+#   user/nano/child.h
+#   user/nano/details_window.cpp
+#   user/nano/details_window.h
+#   user/nano/device.cpp
+#   user/nano/device.h
+#   user/nano/device.h
+#   user/nano/display.cpp
+#   user/nano/display.h
+#   user/nano/font.cpp
+#   user/nano/font.h
+#   user/nano/message_box.cpp
+#   user/nano/message_box.h
+#   user/nano/nano.cpp
+#   user/nano/nano.h
+#   user/nano/object.cpp
+#   user/nano/object.h
+#   user/nano/pen.cpp
+#   user/nano/pen.h
+#   user/nano/popup_button.cpp
+#   user/nano/popup_button.h
+#   user/nano/still.cpp
+#   user/nano/still.h
+#   user/nano/window.cpp
+#   user/nano/window.h
+#   user/nano/window_implementation.cpp
+#   user/nano/window_implementation.h
+#   user/nano/window_interface.cpp
+#   user/nano/window_interface.h
    user/user/_string.cpp
    user/user/_string.h
    user/user/_text_stream.h

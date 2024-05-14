@@ -10,8 +10,8 @@
 		9A0F8AF828D117E7002601B1 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AE128D1166D002601B1 /* networking.cpp */; };
 		9A0F8AF928D117F0002601B1 /* ip_enum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AA128D1166C002601B1 /* ip_enum.cpp */; };
 		9A0F8AFB28D11805002601B1 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AF628D1170B002601B1 /* _.cpp */; };
-		9A2199942761000D001E14CC /* libcrypto.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2199932761000D001E14CC /* libcrypto.3.dylib */; };
-		9A226D4227CE99B40042BAC2 /* libssl.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A226D4127CE99B40042BAC2 /* libssl.3.dylib */; };
+		9A2199942761000D001E14CC /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2199932761000D001E14CC /* libcrypto.dylib */; };
+		9A226D4227CE99B40042BAC2 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A226D4127CE99B40042BAC2 /* libssl.dylib */; };
 		9A226D6427CEAE8E0042BAC2 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC019E22748A7D4006BEBCC /* libapex.dylib */; };
 		9A366DB628E598B40064C704 /* networking_bsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A366DB028E597CA0064C704 /* networking_bsd.cpp */; };
 		9A366DB728E598B60064C704 /* networking_bsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A366DB028E597CA0064C704 /* networking_bsd.cpp */; };
@@ -213,8 +213,8 @@
 		9A0F8AEB28D1166D002601B1 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A0F8AF628D1170B002601B1 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A0F8AF728D1170B002601B1 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9A2199932761000D001E14CC /* libcrypto.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.3.dylib; path = "../../../../operating_system/storage-macos/library/libcrypto.3.dylib"; sourceTree = "<group>"; };
-		9A226D4127CE99B40042BAC2 /* libssl.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.3.dylib; path = "../../../../operating_system/storage-macos/library/libssl.3.dylib"; sourceTree = "<group>"; };
+		9A2199932761000D001E14CC /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = "../../../../operating_system/storage-macos/library/libcrypto.dylib"; sourceTree = "<group>"; };
+		9A226D4127CE99B40042BAC2 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = "../../../../operating_system/storage-macos/library/libssl.dylib"; sourceTree = "<group>"; };
 		9A366DB028E597CA0064C704 /* networking_bsd.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = networking_bsd.cpp; sourceTree = "<group>"; };
 		9A818E562A71D978008F470C /* libstatic_networking_bsd.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libstatic_networking_bsd.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81FBDD27516603003F38EC /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -236,8 +236,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A226D6427CEAE8E0042BAC2 /* libapex.dylib in Frameworks */,
-				9A2199942761000D001E14CC /* libcrypto.3.dylib in Frameworks */,
-				9A226D4227CE99B40042BAC2 /* libssl.3.dylib in Frameworks */,
+				9A2199942761000D001E14CC /* libcrypto.dylib in Frameworks */,
+				9A226D4227CE99B40042BAC2 /* libssl.dylib in Frameworks */,
 				9A81FBE227518CAF003F38EC /* libacme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,8 +442,8 @@
 			isa = PBXGroup;
 			children = (
 				9A8E9ED6282A33D2005FF778 /* libios_acme.a */,
-				9A226D4127CE99B40042BAC2 /* libssl.3.dylib */,
-				9A2199932761000D001E14CC /* libcrypto.3.dylib */,
+				9A226D4127CE99B40042BAC2 /* libssl.dylib */,
+				9A2199932761000D001E14CC /* libcrypto.dylib */,
 				9A81FBE127518CAF003F38EC /* libacme.dylib */,
 				9A81FBDD27516603003F38EC /* libacme.dylib */,
 			);

@@ -13,11 +13,11 @@ namespace x11
 {
 
 
-   class nano_window;
+   class nano::user::window;
 
 
    class display :
-      virtual public ::nano::display,
+      virtual public ::nano::user::display,
       virtual public event_listener
    {
    public:
@@ -26,7 +26,7 @@ namespace x11
       bool                                   m_bUnhook;
       Display   *                            m_pdisplay;
       pointer_array < event_listener >        m_eventlistenera;
-      pointer_array < nano_window >           m_windowa;
+      pointer_array < nano::user::window >           m_windowa;
       Window                                 m_windowActive;
       map < enum_atom, Atom >                m_atommap;
 
@@ -73,10 +73,10 @@ namespace x11
 
 
       void add_listener(event_listener * plistener);
-      void add_window(nano_window * pwindow);
+      void add_window(nano::user::window * pwindow);
 
       void erase_listener(event_listener * plistener);
-      void erase_window(nano_window * pwindow);
+      void erase_window(nano::user::window * pwindow);
 
       bool _on_event(XEvent * pevent) override;
 

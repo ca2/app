@@ -3,17 +3,24 @@
 //
 #include "framework.h"
 #include "device.h"
-#include "acme/user/nano/font.h"
-#include "acme/user/nano/brush.h"
-#include "acme/user/nano/pen.h"
+#include "acme/nano/user/font.h"
+#include "acme/nano/user/brush.h"
+#include "acme/nano/user/pen.h"
 #include "acme/primitive/geometry2d/rectangle.h"
-
 
 namespace quartz2d
 {
 
+   namespace nano
+   {
 
-   nano_device::nano_device()
+  
+      namespace user
+      {
+
+
+
+   device::device()
    {
       
       m_bOwn = true;
@@ -39,7 +46,7 @@ namespace quartz2d
    }
 
 
-   nano_device::nano_device(CGContextRef pdc)
+   device::device(CGContextRef pdc)
    {
       
       m_bOwn = false;
@@ -49,7 +56,7 @@ namespace quartz2d
    }
 
 
-   nano_device::~nano_device()
+   device::~device()
    {
       
       if(m_bOwn)
@@ -67,7 +74,7 @@ namespace quartz2d
    }
 
 
-   void nano_device::_draw_text(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano_brush * pnanobrushBack, ::nano_brush * pnanobrushText, ::nano_font * pnanofont)
+   void device::_draw_text(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::user::brush * pnanobrushBack, ::nano::user::brush * pnanobrushText, ::nano::user::font * pnanofont)
    {
       
       _select_font(pnanofont);
@@ -128,7 +135,7 @@ namespace quartz2d
    }
 
 
-   ::size_i32 nano_device::get_text_extents(const ::string & str, ::nano_font * pnanofont)
+   ::size_i32 device::get_text_extents(const ::string & str, ::nano::user::font * pnanofont)
    {
       
       _select_font(pnanofont);
@@ -148,7 +155,7 @@ namespace quartz2d
    }
 
 
-   void nano_device::rectangle(const ::rectangle_i32 & rectangle, ::nano_brush * pnanobrush, ::nano_pen * pnanopen)
+   void device::rectangle(const ::rectangle_i32 & rectangle, ::nano::user::brush * pnanobrush, ::nano::user::pen * pnanopen)
    {
 
       int iWidth = pnanopen ? pnanopen->m_iWidth : 0;
@@ -187,14 +194,14 @@ namespace quartz2d
    }
 
 
-   void nano_device::_set_source(const ::color::color & color)
+   void device::_set_source(const ::color::color & color)
    {
 
 
    }
 
 
-   void nano_device::_set_fill_color(const ::color::color & color)
+   void device::_set_fill_color(const ::color::color & color)
    {
 
       CGContextSetRGBFillColor(m_pdc, __expand_f32_rgba(color));
@@ -202,7 +209,7 @@ namespace quartz2d
    }
 
    
-   void nano_device::_select_font(::nano_font * pnanofont)
+   void device::_select_font(::nano::user::font * pnanofont)
    {
       
       CGContextSelectFont (m_pdc,
@@ -211,6 +218,13 @@ namespace quartz2d
                    kCGEncodingMacRoman);
 
    }
+
+
+
+      } //namespace user
+
+
+   } //namespace nano
 
 
 } // namespace quartz2d

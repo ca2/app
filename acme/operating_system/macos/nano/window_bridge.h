@@ -17,14 +17,24 @@
 
 namespace macos
 {
-class nano_window;
 
+namespace nano
+{
+class window;
+}
 }
 
 
 #include <CoreFoundation/CoreFoundation.h>
 #include <CoreGraphics/CoreGraphics.h>
 
+namespace macos{
+namespace nano{
+namespace user{
+class window;
+}
+}
+}
 
 class nano_window_bridge :
    virtual public ::particle
@@ -32,7 +42,7 @@ class nano_window_bridge :
 public:
 
    bool m_bRunningAppMainLoop;
-   ::macos::nano_window *     m_pwindow;
+   ::macos::nano::user::window *     m_pwindow;
    CFTypeRef                  m_pnsnanowindow;
    
    

@@ -11,7 +11,7 @@ namespace windows
 {
 
 
-   nano_font::nano_font()
+   ::nano::user::font::nano::user::font()
    {
 
       m_pthis = this;
@@ -19,13 +19,13 @@ namespace windows
    }
 
 
-   nano_font::~nano_font()
+   ::nano::user::font::~::nano::user::font()
    {
 
    }
 
 
-   void nano_font::update(::nano_device * pnanodevice)
+   void ::nano::user::font::update(::nano::user::device * pnanodevice)
    {
 
       if (m_bModified)
@@ -35,7 +35,7 @@ namespace windows
 
          LOGFONTW logfontw = {};
 
-         auto pwindowsnanodevice = dynamic_cast <::windows::nano_device *>(pnanodevice);
+         auto pwindowsnanodevice = dynamic_cast <::windows::nano::user::device *>(pnanodevice);
 
          m_hgdiobj = _create_point_font(m_iFontSize * 10, m_strFontName, m_bBold, pwindowsnanodevice->m_hdc, &logfontw);
 
@@ -47,7 +47,7 @@ namespace windows
    }
 
 
-   HFONT nano_font::_create_point_font(int nPointSize, const ::scoped_string & scopedstrFaceName, bool bBold, HDC hdc, LOGFONTW* plf)
+   HFONT ::nano::user::font::_create_point_font(int nPointSize, const ::scoped_string & scopedstrFaceName, bool bBold, HDC hdc, LOGFONTW* plf)
    {
 
       LOGFONTW lF;
@@ -79,7 +79,7 @@ namespace windows
 
 
    // pLogFont->nHeight is interpreted as PointSize * 10
-   HFONT nano_font::_create_point_font_indirect(LOGFONTW* pLogFont, HDC hdc)
+   HFONT ::nano::user::font::_create_point_font_indirect(LOGFONTW* pLogFont, HDC hdc)
    {
 
       LOGFONTW& logFont = *pLogFont;

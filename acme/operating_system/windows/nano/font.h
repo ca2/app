@@ -12,20 +12,20 @@ namespace windows
 {
 
 
-   class CLASS_DECL_ACME nano_font :
-      virtual public ::nano_font,
+   class CLASS_DECL_ACME ::nano::user::font :
+      virtual public ::nano::user::font,
       virtual public nano_object
    {
    public:
 
-      //CreatableFromBase(nano_font, ::nano_font);
+      //CreatableFromBase(::nano::user::font, ::nano::user::font);
 
 
-      nano_font();
-      ~nano_font() override;
+      ::nano::user::font();
+      ~::nano::user::font() override;
 
 
-      void update(::nano_device * pnanodevice) override;
+      void update(::nano::user::device * pnanodevice) override;
 
 
       static HFONT _create_point_font(int nPointSize, const ::scoped_string & scopedstrFaceName, bool bBold, HDC hdc, LOGFONTW * plf);

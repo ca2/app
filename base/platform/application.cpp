@@ -239,7 +239,7 @@ namespace base
    void application::create_options_impact(::user::interaction * pparent)
    {
 
-      if(factory()->has_type(::type < ::user::options_impact_handler >()))
+      if(factory()->has(::type < ::user::options_impact_handler >()))
       {
 
          __construct(m_poptionsimpacthandler);

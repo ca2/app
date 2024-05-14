@@ -108,7 +108,7 @@ namespace integration
 
       virtual void defer_yasm();
 
-      virtual void defer_has_posix_shell_command(const ::scoped_string & scopedstr, enum_posix_shell eposixshell = e_posix_shell_system_default);
+      virtual void defer_has_posix_shell_command(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrInstallHintPackage = {}, enum_posix_shell eposixshell = e_posix_shell_system_default);
 
 #ifdef WINDOWS_DESKTOP
 

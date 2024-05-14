@@ -19,6 +19,10 @@
 
 //#include "acme/include/_acme.h"
 
+CLASS_DECL_ACME void initialize_nano_http(::factory::factory * pfactory);
+CLASS_DECL_ACME void initialize_nano_user(::factory::factory * pfactory);
+
+
 void IDENTIFIER_PREFIX_OPERATING_SYSTEM(_factory)(::factory::factory * pfactory);
 
 
@@ -887,6 +891,41 @@ namespace platform
 
          return pfactory;
 
+      }
+      
+      if(strImplementation == "(built-in)")
+      {
+         
+         if(strComponent == "nano_http")
+         {
+            
+            pfactory = system()->__create_new < ::factory::factory >();
+            
+            initialize_nano_http(pfactory);
+            
+            return pfactory;
+            
+         }
+         else if(strComponent == "nano_user")
+         {
+            
+            pfactory = system()->__create_new < ::factory::factory >();
+            
+            initialize_nano_user(pfactory);
+            
+            return pfactory;
+            
+         }
+         else
+         {
+            
+            informationf("Not known built-in component: \"%s\".\n", strComponent.c_str());
+
+            //pfactory = (const ::extended::status&)plibrary;
+            throw ::exception(error_resource, strComponent + " factory not found!!");
+
+         }
+         
       }
 
       string strLibrary;

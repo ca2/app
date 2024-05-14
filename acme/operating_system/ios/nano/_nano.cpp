@@ -8,7 +8,7 @@
 #include "framework.h"
 
 
-void operating_system_initialize_nano(::factory::factory * pfactory)
+void operating_system_initialize_nano_user(::factory::factory * pfactory)
 {
    
 

@@ -9,7 +9,7 @@
 //{
 //
 //
-//   nano_font::nano_font()
+//   ::nano::user::font::nano::user::font()
 //   {
 //
 //      m_pdisplay = nullptr;
@@ -18,7 +18,7 @@
 //   }
 //
 //
-//   nano_font::~nano_font()
+//   ::nano::user::font::~::nano::user::font()
 //   {
 //
 //      if(m_xfontset)
@@ -31,10 +31,10 @@
 //   }
 //
 //
-//   void nano_font::update(::nano_device * pnanodevice)
+//   void ::nano::user::font::update(::nano::user::device * pnanodevice)
 //   {
 //
-//      auto px11nanodevice = dynamic_cast < ::x11::nano_device * >(pnanodevice);
+//      auto px11nanodevice = dynamic_cast < ::x11::nano::user::device * >(pnanodevice);
 //
 //      if(m_pdisplay == nullptr)
 //      {

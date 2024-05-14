@@ -20,7 +20,7 @@ namespace windows
 {
 
 
-   nano_device::nano_device()
+   ::nano::user::device::nano::user::device()
    {
 
       m_hdc = ::CreateCompatibleDC(nullptr);
@@ -29,7 +29,7 @@ namespace windows
    }
 
 
-   nano_device::nano_device(HDC hdc)
+   ::nano::user::device::nano::user::device(HDC hdc)
    {
 
       m_hdc = hdc;
@@ -38,7 +38,7 @@ namespace windows
    }
 
 
-   nano_device::~nano_device()
+   ::nano::user::device::~::nano::user::device()
    {
 
       if (m_bDelete)
@@ -53,9 +53,9 @@ namespace windows
 
 
 
-   void nano_device::_draw_text(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext,
-                          ::nano_brush * pnanobrushBack, ::nano_brush * pnanobrushText,
-                          ::nano_font * pnanofont)
+   void ::nano::user::device::_draw_text(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext,
+                          ::nano::user::brush * pnanobrushBack, ::nano::user::brush * pnanobrushText,
+                          ::nano::user::font * pnanofont)
    {
 
       COLORREF colorrefBackgroundColor = win32_COLORREF(pnanobrushBack->m_color);
@@ -87,7 +87,7 @@ namespace windows
    }
 
 
-   ::size_i32 nano_device::get_text_extents(const ::string & str, ::nano_font * pnanofont)
+   ::size_i32 ::nano::user::device::get_text_extents(const ::string & str, ::nano::user::font * pnanofont)
    {
 
       pnanofont->update(this);
@@ -110,7 +110,7 @@ namespace windows
    }
 
 
-   void nano_device::rectangle(const ::rectangle_i32 & rectangle, ::nano_brush * pnanobrush, ::nano_pen * pnanopen)
+   void ::nano::user::device::rectangle(const ::rectangle_i32 & rectangle, ::nano::user::brush * pnanobrush, ::nano::user::pen * pnanopen)
    {
 
       pnanobrush->update(this);

@@ -12,21 +12,21 @@ namespace windows
 {
 
 
-   class CLASS_DECL_ACME nano_pen :
-      virtual public ::nano_pen,
+   class CLASS_DECL_ACME ::nano::user::pen :
+      virtual public ::nano::user::pen,
       virtual public nano_object
    {
    public:
 
 
-      //__CreatableFromBase(nano_pen, ::nano_pen);
+      //__CreatableFromBase(::nano::user::pen, ::nano::user::pen);
 
 
-      nano_pen();
-      ~nano_pen() override;
+      ::nano::user::pen();
+      ~::nano::user::pen() override;
 
       
-      void update(::nano_device * pnanodevice) override;
+      void update(::nano::user::device * pnanodevice) override;
 
 
    };

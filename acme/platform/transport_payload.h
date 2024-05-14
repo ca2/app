@@ -8,28 +8,36 @@
 #pragma once
 
 
-#include "acme/parallelization/manual_reset_event.h"
-
-
-template < typename RESPONSE >
-class particle_payload :
+template < typename TRANSPORT_PAYLOAD >
+class transport_payload :
       virtual public ::particle
 {
 public:
    
-   //::function < void(::pointer < asynchronous_response < PAYLOAD > > ) >               m_function;
 
-   asynchronous_response(RESPONSE * presponse) :
-      m_presponse(presponse)
+   transport_payload()
    {
-
+      
    }
    
-   class ::time            m_timeTimeout;
    
-   ::manual_reset_event    m_event;
+   ~transport_payload() override
+   {
+      
+   }
    
-   ::pointer < RESPONSE >  m_presponse;
+   
+   class ::time                                 m_timeSyncTimeout;
+   
+   ::function < void(TRANSPORT_PAYLOAD *) >     m_callbackAsync;
+//
+//
+//   
+//   class ::time            m_timeTimeout;
+   
+   //::manual_reset_event    m_event;
+   
+   //::pointer < RESPONSE >  m_presponse;
    
    bool                    m_bTimeout;
 

@@ -1,11 +1,11 @@
 // Created by camilo on 2021-01-21 14:57 <3ThomasBorregaardSorensen
 #include "framework.h"
 #include "acme/operating_system.h"
-#include "nano_window.h"
+#include "nano::user::window.h"
 
 
-class nano_message_box :
-   virtual public nano_window
+class ::nano::user::message_box :
+   virtual public nano::user::window
 {
 public:
 
@@ -15,8 +15,8 @@ public:
 
 
 
-   nano_message_box();
-   ~nano_message_box();
+   ::nano::user::message_box();
+   ~::nano::user::message_box();
 
    virtual void display_synchronously(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox);
    //pointer< ::sequence < ::conversation > > display(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox);

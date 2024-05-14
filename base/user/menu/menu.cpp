@@ -11,7 +11,7 @@
 #include "acme/platform/sequencer.h"
 #include "acme/platform/timer.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
-#include "acme/user/nano/nano.h"
+#include "acme/nano/nano.h"
 #include "aqua/xml/document.h"
 #include "aqua/xml/xml.h"
 #include "aura/graphics/draw2d/draw2d.h"

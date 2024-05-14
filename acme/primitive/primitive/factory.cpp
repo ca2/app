@@ -1015,7 +1015,7 @@ namespace factory
    }
 
 
-   bool factory::has_type(const ::string & strType) const
+   bool factory::has(const ::string & strType) const
    {
 
       //auto psystem = system();
@@ -1029,7 +1029,7 @@ namespace factory
 
       //}
 
-      return get_factory_item(strType) != nullptr;
+      return has_factory_item(strType);
 
    }
 
@@ -1051,6 +1051,25 @@ namespace factory
       }
 
       return p->payload();
+
+   }
+
+
+   bool factory::has_factory_item(const ::atom & atom) const
+   {
+
+      critical_section_lock cs(&((factory*)this)->m_criticalsection);
+
+      auto p = this->plookup(atom);
+
+      if (!p)
+      {
+
+         return false;
+
+      }
+
+      return p->payload() != nullptr;
 
    }
 

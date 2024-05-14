@@ -354,7 +354,7 @@ namespace x11
    }
 
 
-   void display::add_window(nano_window * pwindow)
+   void display::add_window(nano::user::window * pwindow)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -374,7 +374,7 @@ namespace x11
    }
 
 
-   void display::erase_window(nano_window * pwindow)
+   void display::erase_window(nano::user::window * pwindow)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -479,7 +479,7 @@ namespace x11
 
       bool bHandled2;
 
-      information() << "x11::nano::display::message_loop";
+      information() << "x11::nano::user::display::message_loop";
 
       while (::task_get_run())
       {

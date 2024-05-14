@@ -13,7 +13,7 @@ void operating_system_initialize_xcb_nano(::factory::factory * pfactory)
 
    operating_system_initialize_cairo_nano(pfactory);
 
-   pfactory->add_factory_item<::xcb::nano_window, ::nano_window_implementation>();
+   pfactory->add_factory_item<::xcb::nano::user::window, ::nano::user::window_implementation>();
 
    ::xcb::display::get(pfactory);
 

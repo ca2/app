@@ -60,7 +60,7 @@ namespace wayland
 {
 
 
-   nano_window::nano_window()
+   nano::user::window::nano::user::window()
    {
 
       m_pcairosurface = nullptr;
@@ -72,7 +72,7 @@ namespace wayland
    }
 
 
-   nano_window::~nano_window()
+   nano::user::window::~nano::user::window()
    {
 
       delete_drawing_objects();
@@ -91,7 +91,7 @@ namespace wayland
    }
 
 
-   ::particle * nano_window::get_interface_client_particle() // m_puserinteractionimpl->m_puserinteraction
+   ::particle * nano::user::window::get_interface_client_particle() // m_puserinteractionimpl->m_puserinteraction
    {
 
       return m_pinterface;
@@ -99,7 +99,7 @@ namespace wayland
    }
 
 
-   void nano_window::set_window_width(::i32 iWidth) // m_sizeWindow.cx()
+   void nano::user::window::set_window_width(::i32 iWidth) // m_sizeWindow.cx()
    {
 
       m_sizeWindow.cx() = iWidth;
@@ -107,7 +107,7 @@ namespace wayland
    }
 
 
-   void nano_window::set_window_height(::i32 iHeight) // m_sizeWindow.cy()
+   void nano::user::window::set_window_height(::i32 iHeight) // m_sizeWindow.cy()
    {
 
       m_sizeWindow.cy() = iHeight;
@@ -115,7 +115,7 @@ namespace wayland
    }
 
 
-   ::size_i32 nano_window::get_window_size() // m_sizeWindow
+   ::size_i32 nano::user::window::get_window_size() // m_sizeWindow
    {
 
       return m_sizeWindow;
@@ -123,7 +123,7 @@ namespace wayland
    }
 
 
-   void nano_window::set_interface_client_size(const ::size_i32 & sizeWindow) // set_size
+   void nano::user::window::set_interface_client_size(const ::size_i32 & sizeWindow) // set_size
    {
 
       m_sizeWindow = sizeWindow;
@@ -153,14 +153,14 @@ namespace wayland
 
       auto pcairo = cairo_create(m_pcairosurface);
 
-      m_pnanodevice = __allocate< ::cairo::nano_device >(pcairo);
+      m_pnanodevice = __allocate< ::cairo::nano::user::device >(pcairo);
 
 
    }
 
 
    bool
-   nano_window::is_window_stored_iconic() // m_puserinteractionimpl->m_puserinteraction->const_layout().window().display() == e_display_iconic
+   nano::user::window::is_window_stored_iconic() // m_puserinteractionimpl->m_puserinteraction->const_layout().window().display() == e_display_iconic
    {
 
       return false;
@@ -168,7 +168,7 @@ namespace wayland
    }
 
 
-   void nano_window::window_maximize() // m_puserinteractionimpl->m_puserinteraction->display(::e_display_zoomed);
+   void nano::user::window::window_maximize() // m_puserinteractionimpl->m_puserinteraction->display(::e_display_zoomed);
    {
 
 
@@ -176,21 +176,21 @@ namespace wayland
 
 
    void
-   nano_window::window_full_screen() // m_puserinteractionimpl->m_puserinteraction->display(::e_display_full_screen);
+   nano::user::window::window_full_screen() // m_puserinteractionimpl->m_puserinteraction->display(::e_display_full_screen);
    {
 
 
    }
 
 
-   void nano_window::window_restore() // m_puserinteractionimpl->m_puserinteraction->display(::e_display_normal);
+   void nano::user::window::window_restore() // m_puserinteractionimpl->m_puserinteraction->display(::e_display_normal);
    {
 
 
    }
 
 
-   ::nano::display * nano_window::get_display()
+   ::nano::user::display * nano::user::window::get_display()
    {
 
       if (!m_pdisplaybase)
@@ -214,7 +214,7 @@ namespace wayland
    }
 
 
-   void nano_window::on_initialize_particle()
+   void nano::user::window::on_initialize_particle()
    {
 
       ::object::on_initialize_particle();
@@ -222,7 +222,7 @@ namespace wayland
    }
 
 
-   void nano_window::on_char(int iChar)
+   void nano::user::window::on_char(int iChar)
    {
 
       fork([this, iChar]()
@@ -235,7 +235,7 @@ namespace wayland
    }
 
 
-   void nano_window::_draw(nano_device * pnanodevice)
+   void nano::user::window::_draw(::nano::user::device * pnanodevice)
    {
 
       m_pinterface->draw(pnanodevice);
@@ -243,7 +243,7 @@ namespace wayland
    }
 
 
-   bool nano_window::is_active()
+   bool nano::user::window::is_active()
    {
 
       return m_pinterface->is_active();
@@ -251,7 +251,7 @@ namespace wayland
    }
 
 
-   void nano_window::delete_drawing_objects()
+   void nano::user::window::delete_drawing_objects()
    {
 
       m_pinterface->delete_drawing_objects();
@@ -259,7 +259,7 @@ namespace wayland
    }
 
 
-   bool nano_window::get_dark_mode()
+   bool nano::user::window::get_dark_mode()
    {
 
       return node()->dark_mode();
@@ -267,7 +267,7 @@ namespace wayland
    }
 
 
-   void nano_window::create_drawing_objects()
+   void nano::user::window::create_drawing_objects()
    {
 
       m_pinterface->create_drawing_objects();
@@ -275,7 +275,7 @@ namespace wayland
    }
 
 
-   void nano_window::update_drawing_objects()
+   void nano::user::window::update_drawing_objects()
    {
 
       m_pinterface->update_drawing_objects();
@@ -283,7 +283,7 @@ namespace wayland
    }
 
 
-   void nano_window::create()
+   void nano::user::window::create()
    {
 
       get_display();
@@ -435,7 +435,7 @@ namespace wayland
    }
 
 
-   void nano_window::on_left_button_down(::user::mouse * pmouse)
+   void nano::user::window::on_left_button_down(::user::mouse * pmouse)
    {
 
       m_pinterface->on_left_button_down(pmouse);
@@ -443,7 +443,7 @@ namespace wayland
    }
 
 
-   void nano_window::on_left_button_up(::user::mouse * pmouse)
+   void nano::user::window::on_left_button_up(::user::mouse * pmouse)
    {
 
       m_pinterface->on_left_button_up(pmouse);
@@ -451,7 +451,7 @@ namespace wayland
    }
 
 
-   void nano_window::on_right_button_down(::user::mouse * pmouse)
+   void nano::user::window::on_right_button_down(::user::mouse * pmouse)
    {
 
       m_pinterface->on_right_button_down(pmouse);
@@ -459,7 +459,7 @@ namespace wayland
    }
 
 
-   void nano_window::on_right_button_up(::user::mouse * pmouse)
+   void nano::user::window::on_right_button_up(::user::mouse * pmouse)
    {
 
       m_pinterface->on_right_button_up(pmouse);
@@ -467,7 +467,7 @@ namespace wayland
    }
 
 
-   void nano_window::on_mouse_move(::user::mouse * pmouse)
+   void nano::user::window::on_mouse_move(::user::mouse * pmouse)
    {
 
       m_pinterface->on_mouse_move(pmouse);
@@ -475,7 +475,7 @@ namespace wayland
    }
 
 
-   ::atom nano_window::get_result()
+   ::atom nano::user::window::get_result()
    {
 
       return m_pinterface->get_result();
@@ -483,7 +483,7 @@ namespace wayland
    }
 
 
-   nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
+   ::nano::user::child * nano::user::window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
    {
 
       return m_pinterface->hit_test(pmouse, ezorder);
@@ -491,7 +491,7 @@ namespace wayland
    }
 
 
-   void nano_window::display()
+   void nano::user::window::display()
    {
 
       //_wm_nodecorations(false);
@@ -509,7 +509,7 @@ namespace wayland
    }
 
 
-   void nano_window::set_active()
+   void nano::user::window::set_active()
    {
 
 //      XEvent xev;
@@ -537,7 +537,7 @@ namespace wayland
    }
 
 
-//   bool nano_window::_on_event(XEvent *pevent)
+//   bool nano::user::window::_on_event(XEvent *pevent)
 //   {
 //
 //      if(m_window == None)
@@ -608,7 +608,7 @@ namespace wayland
 //
 //            auto pdc = cairo_create(m_psurface);
 //
-//            m_pnanodevice = __allocate< ::cairo::nano_device >(pdc);
+//            m_pnanodevice = __allocate< ::cairo::nano::user::device >(pdc);
 //
 //         }
 //
@@ -738,7 +738,7 @@ namespace wayland
 //   }
 
 
-   void nano_window::_update_window()
+   void nano::user::window::_update_window()
    {
 
       if (m_pnanodevice && m_pcairosurface)
@@ -759,7 +759,7 @@ namespace wayland
    }
 
 
-   void nano_window::redraw()
+   void nano::user::window::redraw()
    {
 
       //::RedrawWindow(m_hwnd, nullptr, nullptr, RDW_UPDATENOW | RDW_INVALIDATE);
@@ -769,7 +769,7 @@ namespace wayland
    }
 
 
-   void nano_window::destroy()
+   void nano::user::window::destroy()
    {
 
       nano_window_base::destroy();
@@ -799,7 +799,7 @@ namespace wayland
    }
 
 
-   void nano_window::on_click(const ::atom & atomParam, ::user::mouse * pmouse)
+   void nano::user::window::on_click(const ::atom & atomParam, ::user::mouse * pmouse)
    {
 
       atom atom(atomParam);
@@ -814,7 +814,7 @@ namespace wayland
    }
 
 
-   void nano_window::on_right_click(const ::atom & atomParam, ::user::mouse * pmouse)
+   void nano::user::window::on_right_click(const ::atom & atomParam, ::user::mouse * pmouse)
    {
 
       atom atom(atomParam);
@@ -829,7 +829,7 @@ namespace wayland
    }
 
 
-   void nano_window::move_to(const ::point_i32 & point)
+   void nano::user::window::move_to(const ::point_i32 & point)
    {
 
       //::XMoveWindow(m_pdisplay->m_pdisplay, m_window, point.x(), point.y());
@@ -837,7 +837,7 @@ namespace wayland
    }
 
 
-   void nano_window::set_capture()
+   void nano::user::window::set_capture()
    {
 
 //      if (XGrabPointer(m_pdisplay->m_pdisplay, m_window, False, ButtonPressMask | ButtonReleaseMask | PointerMotionMask,
@@ -851,7 +851,7 @@ namespace wayland
    }
 
 
-   void nano_window::release_capture()
+   void nano::user::window::release_capture()
    {
 
       //int bRet = XUngrabPointer(m_pdisplay->m_pdisplay, CurrentTime);
@@ -859,7 +859,7 @@ namespace wayland
    }
 
 
-   void nano_window::get_client_rectangle(::rectangle_i32 & rectangle)
+   void nano::user::window::get_client_rectangle(::rectangle_i32 & rectangle)
    {
 
 //      rectangle.left() = 0;
@@ -890,7 +890,7 @@ namespace wayland
    }
 
 
-   void nano_window::get_window_rectangle(::rectangle_i32 & rectangle)
+   void nano::user::window::get_window_rectangle(::rectangle_i32 & rectangle)
    {
 
 //      Window windowRoot = 0;
@@ -920,7 +920,7 @@ namespace wayland
    }
 
 
-   void nano_window::_wm_nodecorations(int iMap)
+   void nano::user::window::_wm_nodecorations(int iMap)
    {
 
 //      auto windowRoot = DefaultRootWindow(m_pdisplay->m_pdisplay);
@@ -958,13 +958,13 @@ namespace wayland
    }
 
 
-//   ::size_i32 nano_window::get_main_screen_size()
+//   ::size_i32 nano::user::window::get_main_screen_size()
 //   {
 //
 //      return m_pdisplay->get_main_screen_size();
 //
 //   }
-   bool nano_window::defer_perform_entire_reposition_process()
+   bool nano::user::window::defer_perform_entire_reposition_process()
    {
 
       if (!_perform_entire_reposition_process())
@@ -979,7 +979,7 @@ namespace wayland
    }
 
 
-   void nano_window::__handle_pointer_enter(::wl_pointer * pwlpointer)
+   void nano::user::window::__handle_pointer_enter(::wl_pointer * pwlpointer)
    {
 
       m_pwlpointer = pwlpointer;
@@ -989,7 +989,7 @@ namespace wayland
    }
 
 
-   void nano_window::__handle_pointer_motion(::wl_pointer * pwlpointer, ::u32 millis)
+   void nano::user::window::__handle_pointer_motion(::wl_pointer * pwlpointer, ::u32 millis)
    {
 
       nano_window_base::__handle_pointer_motion(pwlpointer, millis);
@@ -1024,7 +1024,7 @@ namespace wayland
 
 
    void
-   nano_window::__handle_pointer_leave(::wl_pointer * pwlpointer, ::wayland::nano_window_base * pwaylandwindowLeave)
+   nano::user::window::__handle_pointer_leave(::wl_pointer * pwlpointer, ::wayland::nano_window_base * pwaylandwindowLeave)
    {
 
       ::string strType = ::type(get_interface_client_particle()).name();
@@ -1112,7 +1112,7 @@ namespace wayland
    }
 
 
-   void nano_window::__handle_pointer_button(::wl_pointer * pwlpointer, ::u32 linux_button, ::u32 pressed, ::u32 millis)
+   void nano::user::window::__handle_pointer_button(::wl_pointer * pwlpointer, ::u32 linux_button, ::u32 pressed, ::u32 millis)
    {
 
       nano_window_base::__handle_pointer_button(pwlpointer, linux_button, pressed, millis);

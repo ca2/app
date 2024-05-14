@@ -194,11 +194,11 @@ public:
    }
 
 
-   //function(transfer_t, base * p) :
-   //   m_pbase(transfer_t{}, p)
-   //{
+   function(transfer_t, base * p) :
+      m_pbase(transfer_t{}, p)
+   {
 
-   //}
+   }
 
 
    //template < typename PREDICATE >
@@ -281,6 +281,19 @@ public:
 
    }
 
+   
+   template < primitive_payload PAYLOAD >
+   function & operator = (const PAYLOAD & payload)
+   {
+    
+      m_pbase = as_subparticle(payload);
+      
+      return *this;
+      
+   }
+//   auto ptransferprogressfunctionbase = set["transfer_progress_function"].cast < transfer_progress_function::base >();
+//
+//   psocket->m_transferprogressfunction = ptransferprogressfunctionbase.m_p;
 
    
    //
@@ -415,6 +428,12 @@ public:
 
    }
 
+   
+   function(transfer_t, base * pbase) :
+      m_pbase(transfer_t{}, pbase)
+   {
+
+   }
 
    ~function()
    {
@@ -485,6 +504,14 @@ public:
       return { (::u32)(::uptr)m_pbase.m_p };
 
    };
+   function & operator = (const payload & payload)
+   {
+    
+      m_pbase = as_subparticle(payload);
+      
+      return *this;
+      
+   }
 
 
 };
@@ -599,7 +626,15 @@ public:
 
    }
 
+   
+   
+   function(transfer_t, base * pbase) :
+      m_pbase(transfer_t{}, pbase)
+   {
 
+   }
+
+   
    ~function()
    {
 
@@ -671,8 +706,15 @@ public:
       return { (::u32)(::uptr)m_pbase.m_p };
 
    }
-
-
+   template < primitive_payload PAYLOAD >
+   function & operator = (const PAYLOAD & payload)
+   {
+    
+      m_pbase = as_subparticle(payload);
+      
+      return *this;
+      
+   }
 };
 
 //
@@ -751,11 +793,11 @@ public:
    }
 
 
-   //function(transfer_t, base * p) :
-   //   m_pbase(transfer_t{}, p)
-   //{
+   function(transfer_t, base * p) :
+      m_pbase(transfer_t{}, p)
+   {
 
-   //}
+   }
 
 
    //template < typename FUNCTION >
@@ -862,6 +904,16 @@ public:
    bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
 
    operator ::u32hash() const { return { (::u32)(::uptr)m_pbase.m_p }; }
+   
+   template < primitive_payload PAYLOAD >
+   function & operator = (const PAYLOAD & payload)
+   {
+    
+      m_pbase = as_subparticle(payload);
+      
+      return *this;
+      
+   }
 
 };
 

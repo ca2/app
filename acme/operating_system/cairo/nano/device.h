@@ -20,8 +20,8 @@ namespace cairo
 {
 
 
-   class CLASS_DECL_ACME nano_device :
-      virtual public ::nano_device
+   class CLASS_DECL_ACME ::nano::user::device :
+      virtual public ::nano::user::device
    {
    public:
 
@@ -30,18 +30,18 @@ namespace cairo
       cairo_t *            m_pdc;
 
 
-      nano_device();
-      nano_device(cairo_t * pdc);
-      ~nano_device() override;
+      ::nano::user::device();
+      ::nano::user::device(cairo_t * pdc);
+      ~::nano::user::device() override;
 
 
       void on_begin_draw() override;
       void on_end_draw() override;
 
 
-      void _draw_text(const ::string & strMessage, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano_brush * pnanobrushBack, ::nano_brush * pnanobrushText, ::nano_font * pnanofont) override;
-      ::size_i32 get_text_extents(const ::string & str, ::nano_font * pnanofont) override;
-      void rectangle(const ::rectangle_i32 & rectangle, ::nano_brush * pnanobrush, ::nano_pen * pnanopen) override;
+      void _draw_text(const ::string & strMessage, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::user::brush * pnanobrushBack, ::nano::user::brush * pnanobrushText, ::nano::user::font * pnanofont) override;
+      ::size_i32 get_text_extents(const ::string & str, ::nano::user::font * pnanofont) override;
+      void rectangle(const ::rectangle_i32 & rectangle, ::nano::user::brush * pnanobrush, ::nano::user::pen * pnanopen) override;
 
 
       //XColor _alloc_xcolor(const ::color::color & color);

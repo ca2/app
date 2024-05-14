@@ -117,10 +117,10 @@ void _do_tasks()
 
    }
 
-   if (nano_window_implementation::nanowindowimplementationa().has_element())
+   if (::nano::user::window_implementation::nanowindowimplementationa().has_element())
    {
 
-      for (auto & pimplementation : nano_window_implementation::nanowindowimplementationa())
+      for (auto & pimplementation : ::nano::user::window_implementation::nanowindowimplementationa())
       {
 
          if (pimplementation)

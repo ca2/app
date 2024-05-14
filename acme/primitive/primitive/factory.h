@@ -52,7 +52,7 @@ namespace factory
    public:
 
 
-      string base_type_name() const override { return ::demangle(typeid(ORIGIN_TYPE).name()); }
+      string base_type_name() const override { return ::demangle(::type < ORIGIN_TYPE>().name()); }
 
       virtual ::pointer<ORIGIN_TYPE> __call__create() = 0;
 
@@ -173,6 +173,7 @@ namespace factory
       //inline ::pointer<::factory::factory_item_interface>& get_factory_item_from(const ::atom& atom, const ::atom & atomSource);
 
       inline ::factory::factory_item_interface * get_factory_item(const ::atom& atom) const;
+      inline bool has_factory_item(const ::atom& atom) const;
 
       //inline ::factory::factory_item_interface * get_factory_item_from(const ::atom& atom, const ::atom & atomSource) const;
 
@@ -245,7 +246,15 @@ namespace factory
       virtual ::pointer < ::particle > __call__create(const ::string & strType, ::particle * pparticle);
 
 
-      virtual bool has_type(const ::string & strType) const;
+      virtual bool has(const ::string & strType) const;
+      
+      template < typename TYPE >
+      bool has() const
+      {
+       
+         return this->has(::demangle(typeid(TYPE).name()));
+         
+      }
 
 
    };

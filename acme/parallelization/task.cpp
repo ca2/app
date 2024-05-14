@@ -8,7 +8,7 @@
 #include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/translator.h"
-#include "acme/user/nano/window_implementation.h"
+#include "acme/nano/user/window_implementation.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task_message_queue.h"
 
@@ -354,10 +354,10 @@ void task::main()
 
       run_posted_procedures();
 
-      while (nano_window_implementation::nanowindowimplementationa().has_element())
+      while (::nano::user::window_implementation::nanowindowimplementationa().has_element())
       {
 
-         for (auto & pimplementation : nano_window_implementation::nanowindowimplementationa())
+         for (auto & pimplementation : ::nano::user::window_implementation::nanowindowimplementationa())
          {
 
             pimplementation->implementation_message_loop_step();

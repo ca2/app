@@ -79,7 +79,7 @@ namespace wayland
    void display::initialize(::particle * pparticle)
    {
 
-      ::nano::display::initialize(pparticle);
+      ::nano::user::display::initialize(pparticle);
 
       ::wayland::display_base::initialize(pparticle);
 
@@ -398,7 +398,7 @@ namespace wayland
 //   }
 //
 //
-//   void display::add_window(nano_window * pwindow)
+//   void display::add_window(nano::user::window * pwindow)
 //   {
 //
 //      synchronous_lock synchronouslock(this->synchronization());
@@ -418,7 +418,7 @@ namespace wayland
 //   }
 //
 //
-//   void display::erase_window(nano_window * pwindow)
+//   void display::erase_window(nano::user::window * pwindow)
 //   {
 //
 //      synchronous_lock synchronouslock(this->synchronization());

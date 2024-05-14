@@ -23,9 +23,9 @@
 #include "acme/exception/interface_only.h"
 //#include "acme/primitive/collection/array.h"
 //#include "acme/primitive/collection/string_array.h"
-#include "acme/user/nano/button.h"
-#include "acme/user/nano/message_box.h"
-#include "acme/user/nano/nano.h"
+#include "acme/nano/user/button.h"
+#include "acme/nano/user/message_box.h"
+#include "acme/nano/user/user.h"
 #include "acme/user/user/os_theme_colors.h"
 
 
@@ -2352,7 +2352,7 @@ return false;
    ::pointer<::conversation>node::create_new_message_box_conversation()
    {
 
-      return __create_new < ::nano_message_box >();
+      return __create_new < ::nano::user::message_box >();
 
    }
 
@@ -2393,7 +2393,7 @@ return false;
    }
 
 
-   //void node::nano_message_box(::sequence < ::conversation >* psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
+   //void node::nano::user::message_box(::sequence < ::conversation >* psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
    //{
 
 
@@ -2963,6 +2963,41 @@ return false;
    }
 
 
+   ::string node::default_component_implementation(const ::scoped_string & scopedstrComponentName)
+   {
+   
+      if(scopedstrComponentName == "nano_http")
+      {
+       
+         return "(built-in)";
+         
+      }
+      else if(scopedstrComponentName == "nano_user")
+      {
+       
+         return "(built-in)";
+         
+      }
+      
+      return {};
+
+   }
+
+
+void node::on_component_factory(const ::scoped_string & scopedstrComponent)
+{
+   
+   ::string strComponentDefaultImplementation = this->default_component_implementation(scopedstrComponent);
+   
+   auto pfactory = system()->factory(scopedstrComponent, strComponentDefaultImplementation);
+   
+   pfactory->merge_to_global_factory();
+
+}
+   
+
+
+
    void node::integration_factory()
    {
 
@@ -3249,12 +3284,12 @@ bool node::_is_smart_git_installed()
    }
 
 
-   void node::speak(const ::scoped_string& scopedstr)
-   {
-
-      throw interface_only();
-
-   }
+//   void node::speak(const ::scoped_string& scopedstr)
+//   {
+//
+//      throw interface_only();
+//
+//   }
 
 
    ::string node::operating_system_application_version()

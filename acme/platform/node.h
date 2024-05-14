@@ -468,7 +468,7 @@ namespace acme
       virtual pointer< ::sequencer < ::conversation > > create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails);
 
 
-      //virtual void nano_message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox);
+      //virtual void ::nano::user::message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox);
 
       virtual pointer< ::sequencer < ::conversation > > create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails);
 
@@ -657,6 +657,8 @@ namespace acme
 
       virtual ::file::path library_file_name(const ::scoped_string & scopedstr);
 
+      
+      virtual ::string default_component_implementation(const ::scoped_string & scopedstrComponentName);
 
       virtual void integration_factory();
 
@@ -697,7 +699,7 @@ namespace acme
 
       virtual void play_sound(const ::file::path& path);
 
-      virtual void speak(const ::scoped_string& scopedstr);
+      //virtual void speak(const ::scoped_string& scopedstr);
 
       virtual ::string operating_system_application_version();
       
@@ -984,6 +986,7 @@ namespace acme
       virtual int performance_core_count();
       virtual int efficiency_core_count();
 
+      virtual void on_component_factory(const ::scoped_string & scopedstrComponent);
 
    };
 

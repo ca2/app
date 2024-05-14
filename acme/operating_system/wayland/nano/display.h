@@ -17,7 +17,7 @@ namespace wayland
 {
 
 
-   class nano_window;
+   class nano::user::window;
 
 
    class CLASS_DECL_ACME display :

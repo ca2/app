@@ -919,6 +919,7 @@ namespace message { class message; }
 class value;
 struct block;
 class property_set;
+class subparticle;
 class particle;
 //class element;
 class matter;
@@ -1160,6 +1161,7 @@ class property;
 class payload;
 class atom;
 
+CLASS_DECL_ACME subparticle * as_subparticle(const payload & payload);
 
 struct MESSAGE;
 
@@ -2252,7 +2254,11 @@ namespace nano
 
    class nano;
 
-   class http;
+namespace http
+{
+class http;
+}//namespace http
+
 
 } // namespace nano
 

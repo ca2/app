@@ -14,11 +14,11 @@ void operating_system_initialize_nano(::factory::factory * pfactory)
 {
 
 
-   pfactory->add_factory_item < ::windows::nano_window, ::nano_window_implementation >();
-   pfactory->add_factory_item < ::windows::nano_brush, ::nano_brush >();
-   pfactory->add_factory_item < ::windows::nano_font, ::nano_font >();
-   pfactory->add_factory_item < ::windows::nano_pen, ::nano_pen >();
-   pfactory->add_factory_item < ::windows::nano_device, ::nano_device >();
+   pfactory->add_factory_item < ::windows::nano::user::window, ::nano::user::window_implementation >();
+   pfactory->add_factory_item < ::windows::nano::user::brush, ::nano::user::brush >();
+   pfactory->add_factory_item < ::windows::nano::user::font, ::nano::user::font >();
+   pfactory->add_factory_item < ::windows::nano::user::pen, ::nano::user::pen >();
+   pfactory->add_factory_item < ::windows::nano::user::device, ::nano::user::device >();
 
    pfactory->add_factory_item < ::nano::nano >();
 

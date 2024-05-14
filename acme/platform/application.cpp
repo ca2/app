@@ -19,7 +19,8 @@
 #include "acme/platform/session.h"
 #include "acme/primitive/string/_str.h"
 #include "acme/primitive/text/context.h"
-#include "acme/user/nano/nano.h"
+#include "acme/nano/nano.h"
+#include "acme/nano/user/user.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -1950,7 +1951,7 @@ void application::show_about_box()
    
    strMessage = lines.implode("\n");
    
-   auto psequencer = nano()->message_box("About\n\n" + strMessage, nullptr, e_message_box_ok);
+   auto psequencer = nano()->user()->message_box("About\n\n" + strMessage, nullptr, e_message_box_ok);
    
    //psequencer->then([this, strPath](auto pconversation)
    //      {

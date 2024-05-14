@@ -5,9 +5,15 @@
 namespace nano
 {
 
+   namespace http
+   {
    
-   class http;
-   class http_response;
+   
+      class http;
+      class get;
+
+   
+   } // namespace http
 
 
 } // namespace nano

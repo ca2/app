@@ -45,7 +45,7 @@ namespace windows
 {
 
 
-   nano_window::nano_window()
+   nano::user::window::nano::user::window()
    {
 
 //      m_bDestroy = false;
@@ -53,7 +53,7 @@ namespace windows
    }
 
 
-   nano_window::~nano_window()
+   nano::user::window::~nano::user::window()
    {
 
       delete_drawing_objects();
@@ -136,14 +136,14 @@ namespace windows
    LRESULT CALLBACK nano_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
    {
 
-      ::windows::nano_window * pwindow = nullptr;
+      ::windows::nano::user::window * pwindow = nullptr;
 
       if (msg == WM_NCCREATE)
       {
 
          CREATESTRUCT * pcreatestruct = (CREATESTRUCT *)lParam;
 
-         pwindow = (::windows::nano_window *)pcreatestruct->lpCreateParams;
+         pwindow = (::windows::nano::user::window *)pcreatestruct->lpCreateParams;
 
          SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pwindow);
 
@@ -153,7 +153,7 @@ namespace windows
       else
       {
 
-         pwindow = (::windows::nano_window *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+         pwindow = (::windows::nano::user::window *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 
       }
 
@@ -170,7 +170,7 @@ namespace windows
 
 
 
-   void nano_window::create()
+   void nano::user::window::create()
    {
 
 
@@ -209,7 +209,7 @@ namespace windows
    }
 
 
-   void nano_window::on_char(int iChar)
+   void nano::user::window::on_char(int iChar)
    {
 
       m_pinterface->on_char(iChar);
@@ -217,7 +217,7 @@ namespace windows
    }
 
 
-   void nano_window::_draw(HDC hdc)
+   void nano::user::window::_draw(HDC hdc)
    {
 
       GetWindowRect(m_hwnd, (LPRECT)&m_pinterface->m_rectangle);
@@ -228,7 +228,7 @@ namespace windows
 
       {
 
-         auto pnanodevice = __allocate< ::windows::nano_device >(hdc);
+         auto pnanodevice = __allocate< ::windows::nano::user::device >(hdc);
 
          m_pinterface->draw(pnanodevice);
 
@@ -241,7 +241,7 @@ namespace windows
    }
 
 
-   //bool nano_window::is_active()
+   //bool nano::user::window::is_active()
    //{
 
    //   return m_pm_bNcActive;
@@ -249,7 +249,7 @@ namespace windows
    //}
 
 
-   //void nano_window::draw_children(HDC hdc)
+   //void nano::user::window::draw_children(HDC hdc)
    //{
 
    //   for (auto & pchild: m_childa)
@@ -261,7 +261,7 @@ namespace windows
 
    //}
 
-   void nano_window::delete_drawing_objects()
+   void nano::user::window::delete_drawing_objects()
    {
 
       //if (m_hbrushWindow)
@@ -297,7 +297,7 @@ namespace windows
    }
 
 
-   bool nano_window::get_dark_mode()
+   bool nano::user::window::get_dark_mode()
    {
 
       return !_is_light_theme();
@@ -305,7 +305,7 @@ namespace windows
    }
 
 
-   void nano_window::create_drawing_objects()
+   void nano::user::window::create_drawing_objects()
    {
 
       //if (m_hfont == nullptr)
@@ -345,7 +345,7 @@ namespace windows
 
    }
 
-   void nano_window::update_drawing_objects()
+   void nano::user::window::update_drawing_objects()
    {
 
       delete_drawing_objects();
@@ -355,7 +355,7 @@ namespace windows
    }
 
 
-   //::atom nano_window::hit_test(int x, int y)
+   //::atom nano::user::window::hit_test(int x, int y)
    //{
    //
    //   for (int i = 0; i < m_iButtonCount; i++)
@@ -374,7 +374,7 @@ namespace windows
    //}
    //
 
-   void nano_window::on_left_button_down(::user::mouse * pmouse)
+   void nano::user::window::on_left_button_down(::user::mouse * pmouse)
    {
 
       //SetCapture(m_hwnd);
@@ -405,7 +405,7 @@ namespace windows
    }
 
 
-   void nano_window::on_left_button_up(::user::mouse * pmouse)
+   void nano::user::window::on_left_button_up(::user::mouse * pmouse)
    {
 
       //ReleaseCapture();
@@ -436,7 +436,7 @@ namespace windows
 
    }
 
-   void nano_window::on_mouse_move(::user::mouse * pmouse)
+   void nano::user::window::on_mouse_move(::user::mouse * pmouse)
    {
 
       //if (m_pdragmove && m_pdragmove->m_bLButtonDown)
@@ -470,7 +470,7 @@ namespace windows
    }
 
 
-   void nano_window::on_right_button_down(::user::mouse * pmouse)
+   void nano::user::window::on_right_button_down(::user::mouse * pmouse)
    {
 
       //SetCapture(m_hwnd);
@@ -501,7 +501,7 @@ namespace windows
    }
 
 
-   void nano_window::on_right_button_up(::user::mouse * pmouse)
+   void nano::user::window::on_right_button_up(::user::mouse * pmouse)
    {
 
       //ReleaseCapture();
@@ -534,7 +534,7 @@ namespace windows
 
 
 
-   ::atom nano_window::get_result()
+   ::atom nano::user::window::get_result()
    {
 
       return m_pinterface->get_result();
@@ -544,7 +544,7 @@ namespace windows
 
 
 
-   //nano_child * nano_window::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+   //::nano::user::child * nano::user::window::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    //{
 
    //   return m_pinterface->hit_test(point);
@@ -552,7 +552,7 @@ namespace windows
    //}
 
 
-//LRESULT CALLBACK nano_message_box::s_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+//LRESULT CALLBACK ::nano::user::message_box::s_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 //{
 //if (msg == WM_NCCREATE)
 //{
@@ -561,7 +561,7 @@ namespace windows
 //   SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pcreatestruct->lpCreateParams);
 //
 //}
-//nano_message_box * pwindow = (nano_message_box *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+//::nano::user::message_box * pwindow = (::nano::user::message_box *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 //
 //if (!pwindow)
 //{
@@ -573,7 +573,7 @@ namespace windows
 
 
 
-   bool nano_window::_is_light_theme()
+   bool nano::user::window::_is_light_theme()
    {
 
       DWORD dwBuffer;
@@ -601,7 +601,7 @@ namespace windows
    }
 
 
-   LRESULT nano_window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
+   LRESULT nano::user::window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
    {
       switch (message)
       {
@@ -877,7 +877,7 @@ namespace windows
    //}
    //
 
-   void nano_window::display()
+   void nano::user::window::display()
    {
 
       ::ShowWindow(m_hwnd, SW_SHOW);
@@ -890,7 +890,7 @@ namespace windows
 
 
 
-   void nano_window::add_child(nano_child * pchild)
+   void nano::user::window::add_child(::nano::user::child * pchild)
    {
 
       m_pinterface->add_child(pchild);
@@ -898,7 +898,7 @@ namespace windows
    }
 
 
-   void nano_window::redraw()
+   void nano::user::window::redraw()
    {
 
       ::RedrawWindow(m_hwnd, nullptr, nullptr, RDW_UPDATENOW | RDW_INVALIDATE);
@@ -906,13 +906,13 @@ namespace windows
    }
 
 
-   //void nano_window::_destroy_window()
+   //void nano::user::window::_destroy_window()
    //{
    //
    //}
 
 
-   void nano_window::destroy()
+   void nano::user::window::destroy()
    {
 
       user_post([this]()
@@ -930,7 +930,7 @@ namespace windows
 
 
    //
-   //LRESULT nano_window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
+   //LRESULT nano::user::window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
    //{
    //   switch (message)
    //   {
@@ -969,7 +969,7 @@ namespace windows
    //}
 
 
-   void nano_window::on_click(const ::atom& atomParam, ::user::mouse* pmouse)
+   void nano::user::window::on_click(const ::atom& atomParam, ::user::mouse* pmouse)
    {
 
       auto atom = atomParam;
@@ -984,7 +984,7 @@ namespace windows
    }
 
 
-   void nano_window::on_right_click(const ::atom& atomParam, ::user::mouse* pmouse)
+   void nano::user::window::on_right_click(const ::atom& atomParam, ::user::mouse* pmouse)
    {
 
       auto atom = atomParam;
@@ -1000,7 +1000,7 @@ namespace windows
    }
 
 
-   void nano_window::move_to(const ::point_i32& point)
+   void nano::user::window::move_to(const ::point_i32& point)
    {
 
       ::SetWindowPos(m_hwnd, nullptr, point.x(), point.y(), 0, 0, SWP_NOSIZE | SWP_NOZORDER);
@@ -1010,7 +1010,7 @@ namespace windows
    }
 
 
-   ::point_i32 nano_window::try_absolute_mouse_position(const ::point_i32 & point)
+   ::point_i32 nano::user::window::try_absolute_mouse_position(const ::point_i32 & point)
    {
 
       return point;
@@ -1018,7 +1018,7 @@ namespace windows
    }
 
 
-   void nano_window::get_client_rectangle(::rectangle_i32& rectangle)
+   void nano::user::window::get_client_rectangle(::rectangle_i32& rectangle)
    {
 
       ::GetClientRect(m_hwnd, (LPRECT)&rectangle);
@@ -1026,7 +1026,7 @@ namespace windows
    }
 
 
-   void nano_window::get_window_rectangle(::rectangle_i32& rectangle)
+   void nano::user::window::get_window_rectangle(::rectangle_i32& rectangle)
    {
 
       ::GetWindowRect(m_hwnd, (LPRECT)&rectangle);
@@ -1034,7 +1034,7 @@ namespace windows
    }
 
 
-   void nano_window::set_capture()
+   void nano::user::window::set_capture()
    {
 
       SetCapture(m_hwnd);
@@ -1042,7 +1042,7 @@ namespace windows
    }
 
 
-   bool nano_window::has_capture() const
+   bool nano::user::window::has_capture() const
    {
 
       return ::GetCapture() == m_hwnd;
@@ -1050,7 +1050,7 @@ namespace windows
    }
 
 
-   void nano_window::release_capture()
+   void nano::user::window::release_capture()
    {
 
       ReleaseCapture();
@@ -1058,7 +1058,7 @@ namespace windows
    }
 
 
-   void nano_window::set_cursor(enum_cursor ecursor)
+   void nano::user::window::set_cursor(enum_cursor ecursor)
    {
 
       if (ecursor == e_cursor_move)
@@ -1072,7 +1072,7 @@ namespace windows
 
 
 
-   ::size_i32 nano_window::get_main_screen_size()
+   ::size_i32 nano::user::window::get_main_screen_size()
    {
 
       HWND hwndDesktop = ::GetDesktopWindow();
@@ -1080,7 +1080,7 @@ namespace windows
       if (!hwndDesktop)
       {
 
-         return nano_window_implementation::get_main_screen_size();
+         return ::nano::user::window_implementation::get_main_screen_size();
 
       }
 
@@ -1093,7 +1093,7 @@ namespace windows
    }
 
 
-   void nano_window::user_post(const ::procedure & procedure)
+   void nano::user::window::user_post(const ::procedure & procedure)
    {
 
       if (m_ptask)
@@ -1105,7 +1105,7 @@ namespace windows
       else
       {
 
-         ::nano_window_implementation::user_post(procedure);
+         ::nano::user::window_implementation::user_post(procedure);
 
       }
 
@@ -1113,7 +1113,7 @@ namespace windows
    }
 
 
-   void nano_window::implementation_message_loop_step()
+   void nano::user::window::implementation_message_loop_step()
    {
 
       _c_simple_message_loop_step();
@@ -1131,9 +1131,9 @@ void win32_process_messages(bool bWait)
 
    auto strThreadName = ::task_get_name();
 
-   //auto pmessagebox = m_pinterface.cast < nano_message_box >();
+   //auto pmessagebox = m_pinterface.cast < ::nano::user::message_box >();
 
-   //::string strAbbreviation("nano_window");
+   //::string strAbbreviation("nano::user::window");
 
    //if (strType.contains("message_box"))
    //if (pmessagebox)

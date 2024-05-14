@@ -9,7 +9,7 @@
 #include "acme/handler/topic.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/node.h"
-#include "acme/user/nano/window.h"
+#include "acme/nano/user/window.h"
 #include "acme/user/user/mouse.h"
 #include <CoreGraphics/CoreGraphics.h>
 
@@ -32,12 +32,21 @@ void screen_coordinates_aware_copy(CGPoint & cgpoint, const ::point_i32 & point)
 void screen_coordinates_aware_copy(::point_i32 & point, const CGPoint & cgpoint);
 
 //void macos_defer_initialize_nano_callbacks();
-
 namespace macos
 {
 
 
-   nano_window::nano_window()
+   namespace nano
+   {
+
+
+      namespace user
+      {
+
+
+
+
+   window::window()
    {
       
       //macos_defer_initialize_nano_callbacks();
@@ -45,7 +54,7 @@ namespace macos
    }
 
 
-   nano_window::~nano_window()
+   window::~window()
    {
 
       delete_drawing_objects();
@@ -58,7 +67,7 @@ namespace macos
 #ifdef _DEBUG
 
 
-i64 nano_window::increment_reference_count()
+i64 window::increment_reference_count()
 {
 
 return ::property_object::increment_reference_count();
@@ -66,7 +75,7 @@ return ::property_object::increment_reference_count();
 }
 
 
-i64 nano_window::decrement_reference_count()
+i64 window::decrement_reference_count()
 {
 
 return ::property_object::decrement_reference_count();
@@ -74,7 +83,7 @@ return ::property_object::decrement_reference_count();
 }
 
 
-i64 nano_window::release()
+i64 window::release()
 {
 
 return ::property_object::release();
@@ -84,7 +93,7 @@ return ::property_object::release();
 
 #endif
 
-   void nano_window::on_initialize_particle()
+   void window::on_initialize_particle()
    {
 
       ::object::on_initialize_particle();
@@ -92,7 +101,7 @@ return ::property_object::release();
    }
 
 
-   void nano_window::on_char(int iChar)
+   void window::on_char(int iChar)
    {
 
       m_pinterface->on_char(iChar);
@@ -100,7 +109,7 @@ return ::property_object::release();
    }
 
 
-   void nano_window::_draw(nano_device * pnanodevice)
+   void window::_draw(::nano::user::device * pnanodevice)
    {
 
       m_pinterface->draw(pnanodevice);
@@ -108,7 +117,7 @@ return ::property_object::release();
    }
 
 
-   bool nano_window::is_active()
+   bool window::is_active()
    {
 
       return m_pinterface->is_active();
@@ -116,7 +125,7 @@ return ::property_object::release();
    }
 
 
-   void nano_window::delete_drawing_objects()
+   void window::delete_drawing_objects()
    {
 
       m_pinterface->delete_drawing_objects();
@@ -124,7 +133,7 @@ return ::property_object::release();
    }
 
 
-   bool nano_window::get_dark_mode()
+   bool window::get_dark_mode()
    {
 
       return node()->dark_mode();
@@ -132,7 +141,7 @@ return ::property_object::release();
    }
 
 
-   void nano_window::create_drawing_objects()
+   void window::create_drawing_objects()
    {
 
       m_pinterface->create_drawing_objects();
@@ -140,7 +149,7 @@ return ::property_object::release();
    }
 
 
-   void nano_window::update_drawing_objects()
+   void window::update_drawing_objects()
    {
 
       m_pinterface->update_drawing_objects();
@@ -148,7 +157,7 @@ return ::property_object::release();
    }
 
 
-   void nano_window::create()
+   void window::create()
    {
       
       apple_defer_nano_application_create(system());
@@ -171,7 +180,7 @@ return ::property_object::release();
 
    }
 
-void nano_window::handle(::topic* ptopic, ::context* pcontext)
+void window::handle(::topic* ptopic, ::context* pcontext)
 {
    
    if (ptopic->m_atom == id_set_application_dark_mode)
@@ -186,7 +195,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
 }
 
 
-   void nano_window::on_left_button_down(::user::mouse * pmouse)
+   void window::on_left_button_down(::user::mouse * pmouse)
    {
 
       m_pinterface->on_left_button_down(pmouse);
@@ -194,7 +203,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   void nano_window::on_left_button_up(::user::mouse * pmouse)
+   void window::on_left_button_up(::user::mouse * pmouse)
    {
 
       m_pinterface->on_left_button_up(pmouse);
@@ -202,7 +211,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   void nano_window::on_right_button_down(::user::mouse * pmouse)
+   void window::on_right_button_down(::user::mouse * pmouse)
    {
 
       m_pinterface->on_right_button_down(pmouse);
@@ -210,7 +219,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   void nano_window::on_right_button_up(::user::mouse * pmouse)
+   void window::on_right_button_up(::user::mouse * pmouse)
    {
 
       m_pinterface->on_right_button_up(pmouse);
@@ -218,7 +227,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   void nano_window::on_mouse_move(::user::mouse * pmouse)
+   void window::on_mouse_move(::user::mouse * pmouse)
    {
 
       m_pinterface->on_mouse_move(pmouse);
@@ -226,7 +235,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   ::atom nano_window::get_result()
+   ::atom window::get_result()
    {
 
       return m_pinterface->get_result();
@@ -234,7 +243,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   ::nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
+   ::nano::user::child * window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
    {
 
       return m_pinterface->hit_test(pmouse, ezorder);
@@ -242,7 +251,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   void nano_window::display()
+   void window::display()
    {
 
       set_active();
@@ -252,7 +261,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   void nano_window::hide()
+   void window::hide()
    {
 
       m_pwindowbridge->hide();
@@ -260,13 +269,13 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   void nano_window::set_active()
+   void window::set_active()
    {
 
    }
 
 
-   void nano_window::_update_window()
+   void window::_update_window()
    {
 
       if(!m_pwindowbridge)
@@ -281,7 +290,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   bool nano_window::message_loop_step()
+   bool window::message_loop_step()
    {
      
       return false;
@@ -289,7 +298,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   void nano_window::message_loop()
+   void window::message_loop()
    {
 
  ///     while(aaa_message_loop_step())
@@ -308,7 +317,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   void nano_window::redraw()
+   void window::redraw()
    {
 
       _update_window();
@@ -316,7 +325,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   void nano_window::destroy()
+   void window::destroy()
    {
 
       m_pwindowbridge->stop();
@@ -326,7 +335,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   void nano_window::on_click(const ::atom & atom, ::user::mouse * pmouse)
+   void window::on_click(const ::atom & atom, ::user::mouse * pmouse)
    {
 
       m_pinterface->on_click(atom, pmouse);
@@ -334,7 +343,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   void nano_window::on_right_click(const ::atom & atom, ::user::mouse * pmouse)
+   void window::on_right_click(const ::atom & atom, ::user::mouse * pmouse)
    {
 
       m_pinterface->on_right_click(atom, pmouse);
@@ -342,7 +351,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   void nano_window::move_to(const ::point_i32 & point)
+   void window::move_to(const ::point_i32 & point)
    {
 
       m_pwindowbridge->move_to(point.x(), point.y());
@@ -350,31 +359,31 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   void nano_window::set_capture()
+   void window::set_capture()
    {
 
    }
 
 
-   void nano_window::release_capture()
+   void window::release_capture()
    {
 
    }
 
 
-   void nano_window::get_client_rectangle(::rectangle_i32 & rectangle)
+   void window::get_client_rectangle(::rectangle_i32 & rectangle)
    {
 
    }
 
 
-   void nano_window::get_window_rectangle(::rectangle_i32 & rectangle)
+   void window::get_window_rectangle(::rectangle_i32 & rectangle)
    {
 
    }
 
 
-   void nano_window::_run_modal_loop()
+   void window::_run_modal_loop()
    {
       
       m_pwindowbridge->_run_modal_loop();
@@ -382,7 +391,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   ::size_i32 nano_window::get_main_screen_size()
+   ::size_i32 window::get_main_screen_size()
    {
       
       ::i32 cx = 800;
@@ -396,13 +405,13 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
-   ::payload nano_window::do_synchronously()
+   ::payload window::do_synchronously()
    {
       
       if(ns_app_is_running())
       {
          
-         return nano_window_implementation::do_synchronously();
+         return ::nano::user::window_implementation::do_synchronously();
          
       }
 
@@ -419,7 +428,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
 
       ns_app_run();
 
-      //   auto pmessagebox = pparticle->__create_new < nano_message_box >();
+      //   auto pmessagebox = pparticle->__create_new < ::nano::user::message_box >();
       //
       //   atom idResult;
       //
@@ -427,7 +436,7 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
       //
       //   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
       //
-      //   pmessagebox->m_functionClose = [&idResult, &event](nano_window * pwindow)
+      //   pmessagebox->m_functionClose = [&idResult, &event](window * pwindow)
       //   {
       //
       //      idResult = pwindow->m_atomResult;
@@ -457,7 +466,16 @@ void nano_window::handle(::topic* ptopic, ::context* pcontext)
    }
 
 
+      } //namespace user
+
+
+   } //namespace nano
+
+
 } // namespace macos
+
+
+
 
 
 void nano_window_bridge::on_left_button_up(int xHost, int yHost, int xAbsolute, int yAbsolute)
@@ -541,7 +559,7 @@ void nano_window_bridge::on_char(int iChar)
 void nano_window_bridge::_on_draw_frame(CGContextRef cg, CGSize sizeFrame)
 {
    
-   ::pointer<quartz2d::nano_device>pnanodevice = __allocate< quartz2d::nano_device >(cg);
+   ::pointer<quartz2d::nano::user::device>pnanodevice = __allocate< quartz2d::nano::user::device >(cg);
    
    m_pwindow->_draw(pnanodevice);
    

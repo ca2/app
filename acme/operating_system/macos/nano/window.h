@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "acme/user/nano/window_implementation.h"
+#include "acme/nano/user/window_implementation.h"
 
 
 class nano_window_bridge;
@@ -14,8 +14,16 @@ namespace macos
 {
 
 
-   class CLASS_DECL_ACME nano_window :
-      virtual public ::nano_window_implementation
+   namespace nano
+   {
+
+
+      namespace user
+      {
+
+
+   class CLASS_DECL_ACME window :
+      virtual public ::nano::user::window_implementation
    {
    public:
 
@@ -25,8 +33,8 @@ namespace macos
       //Window                           m_window;
       //cairo_surface_t *                m_psurface;
       ::pointer<nano_window_bridge>   m_pwindowbridge;
-      ::pointer<nano_device>          m_pnanodevice;
-      //::pointer<nano_font>         m_pfont;
+      ::pointer<::nano::user::device>          m_pnanodevice;
+      //::pointer<::nano::user::font>         m_pfont;
       //color32_t                     m_colorText;
       //color32_t                     m_colorFocus;
       //color32_t                     m_colorWindow;
@@ -36,15 +44,15 @@ namespace macos
       //rectangle_i32                 m_rectangle;
       //rectangle_i32                 m_rectangleX;
 
-      //pointer_array < nano_child >   m_childa;
+      //pointer_array < ::nano::user::child >   m_childa;
       //::atom                          m_atomLeftButtonDown;
       //::atom                          m_atomLeftButtonUp;
       //::atom                             m_atomResult;
-      //::pointer<nano_child>        m_pchildFocus;
+      //::pointer<::nano::user::child>        m_pchildFocus;
 
 
-      nano_window();
-      ~nano_window() override;
+      window();
+      ~window() override;
 
 
 #ifdef _DEBUG
@@ -73,9 +81,9 @@ namespace macos
 
       virtual bool message_loop_step();
 
-      virtual void _draw(nano_device * pnanodevice);
+      virtual void _draw(::nano::user::device * pnanodevice);
 
-      //virtual void on_draw(nano_device * pnanodevice);
+      //virtual void on_draw(::nano::user::device * pnanodevice);
 
       void on_char(int iChar) override;
 
@@ -83,7 +91,7 @@ namespace macos
 
       void set_active() override;
 
-      ///virtual void draw_children(nano_device * pnanodevice);
+      ///virtual void draw_children(::nano::user::device * pnanodevice);
 
       void delete_drawing_objects() override;
 
@@ -93,9 +101,9 @@ namespace macos
 
       void update_drawing_objects() override;
 
-      ::nano_child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
+      ::nano::user::child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
 
-      //virtual void add_child(nano_child * pchild);
+      //virtual void add_child(::nano::user::child * pchild);
 
       ::atom get_result() override;
 
@@ -142,6 +150,12 @@ namespace macos
       
       
    };
+
+
+      } //namespace user
+
+
+   } //namespace nano
 
 
 } // namespace macos

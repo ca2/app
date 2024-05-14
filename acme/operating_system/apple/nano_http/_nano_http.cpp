@@ -9,7 +9,7 @@
 void operating_system_initialize_nano_http(::factory::factory * pfactory)
 {
 
-   pfactory->add_factory_item<::apple::nano_http, ::nano::http>();
+   pfactory->add_factory_item<::apple::nano::http::http, ::nano::http::http>();
 
 }
 

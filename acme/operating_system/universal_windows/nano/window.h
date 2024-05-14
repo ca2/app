@@ -12,8 +12,8 @@ namespace universal_windows
 {
 
 
-   class CLASS_DECL_ACME nano_window :
-      virtual public ::nano_window_implementation
+   class CLASS_DECL_ACME nano::user::window :
+      virtual public ::nano::user::window_implementation
    {
    public:
 
@@ -23,8 +23,8 @@ namespace universal_windows
       ::winrt::Windows::UI::Popups::MessageDialog     m_messagedialog = nullptr;
    
 
-      nano_window();
-      ~nano_window() override;
+      nano::user::window();
+      ~nano::user::window() override;
 
 
       //void on_initialize_particle() override;
@@ -35,16 +35,16 @@ namespace universal_windows
 
       //void aaa_message_loop() override;
 
-      //void draw(nano_device * pnanodevice) override;
+      //void draw(::nano::user::device * pnanodevice) override;
 
-      //void on_draw(nano_device * pnanodevice) override;
+      //void on_draw(::nano::user::device * pnanodevice) override;
 
       //void on_char(int iChar) override;
 
       //bool is_active() override;
       //void set_active() override;
 
-      //void draw_children(nano_device * pnanodevice) override;
+      //void draw_children(::nano::user::device * pnanodevice) override;
 
       //void delete_drawing_objects() override;
       //bool get_dark_mode() override;
@@ -52,9 +52,9 @@ namespace universal_windows
       //void create_drawing_objects() override;
       //void update_drawing_objects() override;
 
-      //::nano_child * hit_test(int x, int y) override;
-      //void add_child(nano_child * pchild) override;
-      //nano_child * get_child_by_id(const ::atom & atom);
+      //::nano::user::child * hit_test(int x, int y) override;
+      //void add_child(::nano::user::child * pchild) override;
+      //::nano::user::child * get_child_by_id(const ::atom & atom);
 
       //::atom get_result() override;
 
@@ -93,7 +93,7 @@ namespace universal_windows
       //void display_temporary_file_with_text(const ::string & str);
 
 
-      //::pointer<nano_device>create_device();
+      //::pointer<::nano::user::device>create_device();
 
 
    };

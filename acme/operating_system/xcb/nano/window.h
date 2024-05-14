@@ -14,8 +14,8 @@ namespace xcb
 {
 
 
-   class CLASS_DECL_ACME nano_window :
-      virtual public ::nano_window_implementation,
+   class CLASS_DECL_ACME nano::user::window :
+      virtual public ::nano::user::window_implementation,
       virtual public event_listener
    {
    public:
@@ -24,8 +24,8 @@ namespace xcb
       ::pointer<class display>        m_pdisplay;
       xcb_window_t                    m_window;
       cairo_surface_t *               m_psurface;
-      ::pointer<nano_device>         m_pnanodevice;
-      //::pointer<nano_font>         m_pfont;
+      ::pointer<::nano::user::device>         m_pnanodevice;
+      //::pointer<::nano::user::font>         m_pfont;
       //color32_t                     m_colorText;
       //color32_t                     m_colorFocus;
       //color32_t                     m_colorWindow;
@@ -36,18 +36,18 @@ namespace xcb
       //rectangle_i32                 m_rectangle;
       //rectangle_i32                 m_rectangleX;
 
-      //pointer_array < nano_child >   m_childa;
+      //pointer_array < ::nano::user::child >   m_childa;
       //::atom                          m_atomLeftButtonDown;
       //::atom                          m_atomLeftButtonUp;
       //::atom                             m_atomResult;
-      //::pointer<nano_child>        m_pchildFocus;
+      //::pointer<::nano::user::child>        m_pchildFocus;
 
 
-      nano_window();
-      ~nano_window() override;
+      nano::user::window();
+      ~nano::user::window() override;
 
 
-      ::nano::display * get_display() override;
+      ::nano::user::display * get_display() override;
 
 
       void on_initialize_particle() override;
@@ -71,9 +71,9 @@ namespace xcb
 
       //virtual bool aaa_message_loop_step();
 
-      virtual void _draw(nano_device * pnanodevice);
+      virtual void _draw(::nano::user::device * pnanodevice);
 
-      //virtual void on_draw(nano_device * pnanodevice);
+      //virtual void on_draw(::nano::user::device * pnanodevice);
 
       void on_char(int iChar) override;
 
@@ -81,7 +81,7 @@ namespace xcb
 
       void set_active() override;
 
-      ///virtual void draw_children(nano_device * pnanodevice);
+      ///virtual void draw_children(::nano::user::device * pnanodevice);
 
       void delete_drawing_objects() override;
 
@@ -91,9 +91,9 @@ namespace xcb
 
       void update_drawing_objects() override;
 
-      nano_child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
+      ::nano::user::child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
 
-      //virtual void add_child(nano_child * pchild);
+      //virtual void add_child(::nano::user::child * pchild);
 
       ::atom get_result() override;
 

@@ -88,6 +88,7 @@
 #include "acme/filesystem/_.h"
 #include "acme/graphics/_.h"
 #include "acme/memory/_.h"
+#include "acme/nano/_.h"
 #include "acme/parallelization/_.h"
 #include "acme/platform/_.h"
 #include "acme/primitive/_.h"

@@ -10,7 +10,7 @@ namespace windows
 {
 
 
-   nano_brush::nano_brush()
+   ::nano::user::brush::nano::user::brush()
    {
 
       m_pthis = this; 
@@ -18,13 +18,13 @@ namespace windows
    }
 
 
-   nano_brush::~nano_brush()
+   ::nano::user::brush::~::nano::user::brush()
    {
 
    }
 
 
-   void nano_brush::update(::nano_device * pnanodevice)
+   void ::nano::user::brush::update(::nano::user::device * pnanodevice)
    {
 
       if (m_bModified)

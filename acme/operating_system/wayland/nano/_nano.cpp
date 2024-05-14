@@ -15,7 +15,7 @@ void operating_system_initialize_wayland_nano(::factory::factory * pfactory)
 
    operating_system_initialize_cairo_nano(pfactory);
 
-   pfactory->add_factory_item<::wayland::nano_window, ::nano_window_implementation>();
+   pfactory->add_factory_item<::wayland::nano::user::window, ::nano::user::window_implementation>();
 
    //::wayland::display::get(pfactory);
 

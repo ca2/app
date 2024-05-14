@@ -1847,7 +1847,7 @@ namespace wayland
    void display_base::init_task()
    {
 
-      ::nano::display::init_task();
+      ::nano::user::display::init_task();
 
       ::task_set_name("wayland:display:run");
 

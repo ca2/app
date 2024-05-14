@@ -13,8 +13,9 @@
 #include "acme/parallelization/retry.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/application.h"
-#include "acme/platform/nano_http.h"
-#include "acme/platform/nano_http_response.h"
+#include "acme/nano/nano.h"
+#include "acme/nano/http/http.h"
+#include "acme/nano/http/get.h"
 #include "acme/platform/node.h"
 #include "acme/platform/session.h"
 #include "acme/platform/system.h"
@@ -957,95 +958,144 @@ namespace acme
 
 
 
-   ::string context::http_text(const ::scoped_string & scopedstrUrl)
+   ::string context::http_text(const ::scoped_string & scopedstrUrl, const ::time & timeTimeout)
    {
+      
+      auto pget = __create_new < ::nano::http::get >();
+      
+      pget->m_strUrl = scopedstrUrl;
+      
+      pget->m_timeSyncTimeout = timeTimeout;
 
-      auto memory = http_memory(scopedstrUrl);
+      sync(pget);
 
-      ::string str = memory.as_utf8();
+      ::string str = pget->m_memory.as_utf8();
 
       return str;
 
    }
 
 
-   ::string context::http_text(const ::scoped_string & scopedstrUrl, ::property_set & set)
+   ::string context::http_text(const ::scoped_string & scopedstrUrl, ::property_set & set, const ::time & timeTimeout)
    {
 
-      auto memory = http_memory(scopedstrUrl, set);
+      auto pget = __create_new < ::nano::http::get >();
+      
+      pget->m_strUrl = scopedstrUrl;
+      
+      pget->m_setIn = set;
+      
+      pget->m_timeSyncTimeout =  timeTimeout;
+      
+      sync(pget);
 
-      ::string str = memory.as_utf8();
+      ::string str = pget->m_memory.as_utf8();
+      
+      set = pget->m_setOut;
 
       return str;
 
    }
 
 
-   ::memory context::http_memory(const ::scoped_string & scopedstrUrl)
+   void context::sync(::nano::http::get * pget)
+   {
+      
+      nano()->http()->sync(pget);
+      
+   }
+
+
+   void context::async(::nano::http::get * pget, const ::function < void(::nano::http::get *) > & callback)
+   {
+      
+      nano()->http()->async(pget);
+      
+   }
+
+
+
+//   ::pointer < ::nano::http::response > context::http_get(const ::scoped_string & scopedstrUrl)
+//   {
+//
+//      property_set set;
+//
+//      set["raw_http"] = true;
+//
+//      set["disable_common_name_cert_check"] = true;
+//
+//      return http_get(scopedstrUrl, set);
+//
+//   }
+//
+//
+//   ::pointer < ::nano::http::response > context::http_get(const ::scoped_string & scopedstrUrl, ::property_set & set)
+//   {
+//
+//      //__UNREFERENCED_PARAMETER(pcontext);
+//
+//      try
+//      {
+//
+//         auto phttpresponse = system()->nano()->http()->get(scopedstrUrl, phttpresponse);
+//
+//         return phttprespons;
+//
+//      }
+//      catch (...)
+//      {
+//
+//         set["timeout"] = true;
+//
+//         return {};
+//
+//      }
+//
+//      //return pasynchronousehttpresponse->m_data.m_memory;
+//
+//   }
+
+
+   void context::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, const ::time & timeTimeout)
    {
 
-      property_set set;
+      auto pfile = acmefile()->get_writer(payloadFile);
+     
+      auto pget = __create_new < ::nano::http::get >();
+      
+      pget->m_strUrl = scopedstrUrl;
+      
+      pget->m_timeSyncTimeout =  timeTimeout;
+      
+      sync(pget);
 
-      set["raw_http"] = true;
-
-      set["disable_common_name_cert_check"] = true;
-
-      return http_memory(scopedstrUrl, set);
+      pfile->write(pget->m_memory);
+      
+      pfile->seek_to_begin();
 
    }
 
 
-   ::memory context::http_memory(const ::scoped_string & scopedstrUrl, ::property_set & set)
-   {
-
-      //__UNREFERENCED_PARAMETER(pcontext);
-
-      try
-      {
-
-         ::memory memory;
-
-         ::nano::http_response httpresponse(set, memory);
-
-         system()->nano_http()->memory(scopedstrUrl, httpresponse);
-
-         return ::transfer(memory);
-
-      }
-      catch (...)
-      {
-
-         set["timeout"] = true;
-
-         return {};
-
-      }
-
-      //return pasynchronousehttpresponse->m_data.m_memory;
-
-   }
-
-
-   void context::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl)
+   void context::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set, const ::time & timeTimeout)
    {
 
       auto pfile = acmefile()->get_writer(payloadFile);
 
-      auto memory = http_memory(scopedstrUrl);
+      auto pget = __create_new < ::nano::http::get >();
+      
+      pget->m_strUrl = scopedstrUrl;
+      
+      pget->m_setIn = set;
+      
+      pget->m_timeSyncTimeout =  timeTimeout;
+      
+      sync(pget);
 
-      pfile->write(memory.data(), memory.size());
+      set = pget->m_setOut;
 
-   }
-
-
-   void context::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set)
-   {
-
-      auto pfile = acmefile()->get_writer(payloadFile);
-
-      auto memory = http_memory(scopedstrUrl, set);
-
-      pfile->write(memory.data(), memory.size());
+      pfile->write(pget->m_memory);
+      
+      pfile->seek_to_begin();
 
    }
 

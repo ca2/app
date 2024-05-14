@@ -13,7 +13,7 @@ namespace cairo
 {
 
 
-   nano_device::nano_device()
+   ::nano::user::device::nano::user::device()
    {
 
       m_psurfaceMemory = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, 1, 1);
@@ -23,7 +23,7 @@ namespace cairo
    }
 
 
-   nano_device::nano_device(cairo_t * pdc)
+   ::nano::user::device::nano::user::device(cairo_t * pdc)
    {
 
       m_psurfaceMemory = nullptr;
@@ -33,7 +33,7 @@ namespace cairo
    }
 
 
-   nano_device::~nano_device()
+   ::nano::user::device::~::nano::user::device()
    {
 
       if(m_pdc)
@@ -54,7 +54,7 @@ namespace cairo
    }
 
 
-   void nano_device::on_begin_draw()
+   void ::nano::user::device::on_begin_draw()
    {
 
       cairo_push_group(m_pdc);
@@ -64,7 +64,7 @@ namespace cairo
    }
 
 
-   void nano_device::on_end_draw()
+   void ::nano::user::device::on_end_draw()
    {
 
       cairo_pop_group_to_source(m_pdc);
@@ -74,7 +74,7 @@ namespace cairo
    }
 
 
-   void nano_device::_draw_text(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano_brush * pnanobrushBack, ::nano_brush * pnanobrushText, ::nano_font * pnanofont)
+   void ::nano::user::device::_draw_text(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::user::brush * pnanobrushBack, ::nano::user::brush * pnanobrushText, ::nano::user::font * pnanofont)
    {
 
       cairo_set_antialias(m_pdc, CAIRO_ANTIALIAS_SUBPIXEL);
@@ -126,7 +126,7 @@ namespace cairo
    }
 
 
-   ::size_i32 nano_device::get_text_extents(const ::string & str, ::nano_font * pnanofont)
+   ::size_i32 ::nano::user::device::get_text_extents(const ::string & str, ::nano::user::font * pnanofont)
    {
 
       cairo_set_antialias(m_pdc, CAIRO_ANTIALIAS_SUBPIXEL);
@@ -144,7 +144,7 @@ namespace cairo
    }
 
 
-   void nano_device::rectangle(const ::rectangle_i32 & rectangle, ::nano_brush * pnanobrush, ::nano_pen * pnanopen)
+   void ::nano::user::device::rectangle(const ::rectangle_i32 & rectangle, ::nano::user::brush * pnanobrush, ::nano::user::pen * pnanopen)
    {
 
       cairo_set_antialias(m_pdc, CAIRO_ANTIALIAS_NONE);
@@ -196,7 +196,7 @@ namespace cairo
    }
 
 
-//   void nano_device::set_antialias(bool bAntialiasOn)
+//   void ::nano::user::device::set_antialias(bool bAntialiasOn)
 //   {
 //
 //
@@ -204,7 +204,7 @@ namespace cairo
 //   }
 
 
-//   XColor nano_device::_alloc_xcolor(const ::color::color & color)
+//   XColor ::nano::user::device::_alloc_xcolor(const ::color::color & color)
 //   {
 //
 //      auto colormap = XDefaultColormap(m_pdisplay, DefaultScreen(m_pdisplay));
@@ -223,7 +223,7 @@ namespace cairo
 //
 //
 //
-//   void nano_device::_set_foreground(const ::color::color & color)
+//   void ::nano::user::device::_set_foreground(const ::color::color & color)
 //   {
 //
 //      auto xcolor = _alloc_xcolor(color);
@@ -233,7 +233,7 @@ namespace cairo
 //   }
 //
 //
-//   void nano_device::_set_background(const ::color::color & color)
+//   void ::nano::user::device::_set_background(const ::color::color & color)
 //   {
 //
 //      auto xcolor = _alloc_xcolor(color);
@@ -242,7 +242,7 @@ namespace cairo
 //
 //   }
 
-   void nano_device::_set_source(const ::color::color & color)
+   void ::nano::user::device::_set_source(const ::color::color & color)
    {
 
       cairo_set_source_rgba(m_pdc, __expand_f64_rgba(color));

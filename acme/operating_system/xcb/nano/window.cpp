@@ -58,7 +58,7 @@ namespace xcb
 {
 
 
-   nano_window::nano_window()
+   nano::user::window::nano::user::window()
    {
 
       m_psurface = nullptr;
@@ -66,7 +66,7 @@ namespace xcb
    }
 
 
-   nano_window::~nano_window()
+   nano::user::window::~nano::user::window()
    {
 
       delete_drawing_objects();
@@ -95,7 +95,7 @@ namespace xcb
    }
 
 
-   ::nano::display * nano_window::get_display()
+   ::nano::user::display * nano::user::window::get_display()
    {
 
       if (!m_pdisplay)
@@ -117,7 +117,7 @@ namespace xcb
    }
 
 
-   void nano_window::on_initialize_particle()
+   void nano::user::window::on_initialize_particle()
    {
 
       ::object::on_initialize_particle();
@@ -125,7 +125,7 @@ namespace xcb
    }
 
 
-   void nano_window::on_char(int iChar)
+   void nano::user::window::on_char(int iChar)
    {
 
       fork([this, iChar]()
@@ -138,7 +138,7 @@ namespace xcb
    }
 
 
-   void nano_window::_draw(nano_device * pnanodevice)
+   void nano::user::window::_draw(::nano::user::device * pnanodevice)
    {
 
       m_pinterface->draw(pnanodevice);
@@ -146,7 +146,7 @@ namespace xcb
    }
 
 
-   bool nano_window::is_active()
+   bool nano::user::window::is_active()
    {
 
       return m_pinterface->is_active();
@@ -154,7 +154,7 @@ namespace xcb
    }
 
 
-   void nano_window::delete_drawing_objects()
+   void nano::user::window::delete_drawing_objects()
    {
 
       m_pinterface->delete_drawing_objects();
@@ -162,7 +162,7 @@ namespace xcb
    }
 
 
-   bool nano_window::get_dark_mode()
+   bool nano::user::window::get_dark_mode()
    {
 
       return node()->dark_mode();
@@ -170,7 +170,7 @@ namespace xcb
    }
 
 
-   void nano_window::create_drawing_objects()
+   void nano::user::window::create_drawing_objects()
    {
 
       m_pinterface->create_drawing_objects();
@@ -178,7 +178,7 @@ namespace xcb
    }
 
 
-   void nano_window::update_drawing_objects()
+   void nano::user::window::update_drawing_objects()
    {
 
       m_pinterface->update_drawing_objects();
@@ -186,7 +186,7 @@ namespace xcb
    }
 
 
-   void nano_window::create()
+   void nano::user::window::create()
    {
 
       get_display();
@@ -311,7 +311,7 @@ namespace xcb
 
    }
 
-//::atom nano_window::hit_test(int x, int y)
+//::atom nano::user::window::hit_test(int x, int y)
 //{
 //
 //   for (int i = 0; i < m_iButtonCount; i++)
@@ -330,7 +330,7 @@ namespace xcb
 //}
 //
 
-void nano_window::on_left_button_down(::user::mouse * pmouse)
+void nano::user::window::on_left_button_down(::user::mouse * pmouse)
 {
 
    m_pinterface->on_left_button_down(pmouse);
@@ -338,7 +338,7 @@ void nano_window::on_left_button_down(::user::mouse * pmouse)
 }
 
 
-void nano_window::on_left_button_up(::user::mouse * pmouse)
+void nano::user::window::on_left_button_up(::user::mouse * pmouse)
 {
 
    m_pinterface->on_left_button_up(pmouse);
@@ -346,7 +346,7 @@ void nano_window::on_left_button_up(::user::mouse * pmouse)
 
 
 
-void nano_window::on_right_button_down(::user::mouse * pmouse)
+void nano::user::window::on_right_button_down(::user::mouse * pmouse)
 {
 
    m_pinterface->on_right_button_down(pmouse);
@@ -354,14 +354,14 @@ void nano_window::on_right_button_down(::user::mouse * pmouse)
 }
 
 
-void nano_window::on_right_button_up(::user::mouse * pmouse)
+void nano::user::window::on_right_button_up(::user::mouse * pmouse)
 {
 
    m_pinterface->on_right_button_up(pmouse);
 }
 
 
-void nano_window::on_mouse_move(::user::mouse * pmouse)
+void nano::user::window::on_mouse_move(::user::mouse * pmouse)
 {
 
    m_pinterface->on_mouse_move(pmouse);
@@ -369,7 +369,7 @@ void nano_window::on_mouse_move(::user::mouse * pmouse)
 }
 
 
-::atom nano_window::get_result()
+::atom nano::user::window::get_result()
 {
 
    return m_pinterface->get_result();
@@ -377,7 +377,7 @@ void nano_window::on_mouse_move(::user::mouse * pmouse)
 }
 
 
-nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
+::nano::user::child * nano::user::window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
 {
 
    return m_pinterface->hit_test(pmouse, ezorder);
@@ -385,7 +385,7 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
 }
 
 
-//LRESULT CALLBACK nano_message_box::s_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+//LRESULT CALLBACK ::nano::user::message_box::s_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 //{
 //if (msg == WM_NCCREATE)
 //{
@@ -394,7 +394,7 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
 //   SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pcreatestruct->lpCreateParams);
 //
 //}
-//nano_message_box * pwindow = (nano_message_box *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+//::nano::user::message_box * pwindow = (::nano::user::message_box *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 //
 //if (!pwindow)
 //{
@@ -413,7 +413,7 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
 //#define i32_y(lparam)                          ((i32)(i16)HIWORD(lparam))
 //#endif
 //
-////LRESULT nano_window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
+////LRESULT nano::user::window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
 //{
 //   switch (message)
 //   {
@@ -536,7 +536,7 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
 //}
 //
 
-   void nano_window::display()
+   void nano::user::window::display()
    {
 
    //   if(is_main_thread())
@@ -571,7 +571,7 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
    }
 
 
-   ::e_status nano_window::_map_window()
+   ::e_status nano::user::window::_map_window()
    {
 
       auto estatus = m_pdisplay->_map_window(m_window);
@@ -581,7 +581,7 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
    }
 
 
-   ::e_status nano_window::_unmap_window()
+   ::e_status nano::user::window::_unmap_window()
    {
 
       auto estatus = m_pdisplay->_unmap_window(m_window);
@@ -591,7 +591,7 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
    }
 
 
-   ::e_status nano_window::_raise_window()
+   ::e_status nano::user::window::_raise_window()
    {
 
       auto estatus = m_pdisplay->_raise_window(m_window);
@@ -601,7 +601,7 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
    }
 
 
-   void nano_window::set_active()
+   void nano::user::window::set_active()
    {
 
       auto estatus = m_pdisplay->_set_active_window(m_window);
@@ -609,7 +609,7 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
    }
 
 
-   bool nano_window::_on_event(xcb_generic_event_t *pevent)
+   bool nano::user::window::_on_event(xcb_generic_event_t *pevent)
    {
 
       if(m_window == None)
@@ -708,7 +708,7 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
 
             auto pdc = cairo_create(m_psurface);
 
-            m_pnanodevice = __allocate< ::cairo::nano_device >(pdc);
+            m_pnanodevice = __allocate< ::cairo::nano::user::device >(pdc);
 
          }
 
@@ -897,7 +897,7 @@ nano_child * nano_window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezor
    }
 
 
-void nano_window::_update_window()
+void nano::user::window::_update_window()
 {
 
    if(m_pnanodevice && m_psurface)
@@ -918,7 +918,7 @@ void nano_window::_update_window()
 
 
 
-//void nano_window::aaa_message_loop()
+//void nano::user::window::aaa_message_loop()
 //{
 //
 //   while(aaa_message_loop_step())
@@ -928,7 +928,7 @@ void nano_window::_update_window()
 //
 //   }
 //
-//   informationf("nano_window::aaa_message_loop exit");
+//   informationf("nano::user::window::aaa_message_loop exit");
 //
 //}
 
@@ -951,7 +951,7 @@ void nano_window::_update_window()
 //
 //}
 
-//void nano_window::add_child(nano_child * pchild)
+//void nano::user::window::add_child(::nano::user::child * pchild)
 //{
 //
 //   pchild->m_pwindow = m_pinterfacethis;
@@ -961,7 +961,7 @@ void nano_window::_update_window()
 //}
 
 
-void nano_window::redraw()
+void nano::user::window::redraw()
 {
 
    //::RedrawWindow(m_hwnd, nullptr, nullptr, RDW_UPDATENOW | RDW_INVALIDATE);
@@ -972,7 +972,7 @@ void nano_window::redraw()
 
 
 //
-//LRESULT nano_window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
+//LRESULT nano::user::window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
 //{
 //   switch (message)
 //   {
@@ -1010,7 +1010,7 @@ void nano_window::redraw()
 //   return 0;
 //}
 
-   void nano_window::destroy()
+   void nano::user::window::destroy()
    {
 
       _unmap_window();
@@ -1030,7 +1030,7 @@ void nano_window::redraw()
    }
 
 
-   void nano_window::on_click(const ::atom & atomParam, ::user::mouse * pmouse)
+   void nano::user::window::on_click(const ::atom & atomParam, ::user::mouse * pmouse)
    {
 
       atom atom(atomParam);
@@ -1045,7 +1045,7 @@ void nano_window::redraw()
    }
 
 
-   void nano_window::on_right_click(const ::atom & atomParam, ::user::mouse * pmouse)
+   void nano::user::window::on_right_click(const ::atom & atomParam, ::user::mouse * pmouse)
    {
 
       atom atom(atomParam);
@@ -1060,7 +1060,7 @@ void nano_window::redraw()
    }
 
 
-   void nano_window::move_to(const ::point_i32 & point)
+   void nano::user::window::move_to(const ::point_i32 & point)
    {
 
       m_pdisplay->_move_window(m_window, point.x(), point.y());
@@ -1070,7 +1070,7 @@ void nano_window::redraw()
    }
 
 
-   void nano_window::set_capture()
+   void nano::user::window::set_capture()
    {
 
 
@@ -1099,7 +1099,7 @@ void nano_window::redraw()
    }
 
 
-   void nano_window::release_capture()
+   void nano::user::window::release_capture()
    {
 
       //int bRet = XUngrabPointer(m_pdisplay->m_pdisplay, CurrentTime);
@@ -1109,7 +1109,7 @@ void nano_window::redraw()
    }
 
 
-   void nano_window::get_client_rectangle(::rectangle_i32 & rectangle)
+   void nano::user::window::get_client_rectangle(::rectangle_i32 & rectangle)
    {
 
       xcb_get_geometry_reply_t geometry;
@@ -1124,7 +1124,7 @@ void nano_window::redraw()
    }
 
 
-   void nano_window::get_window_rectangle(::rectangle_i32 & rectangle)
+   void nano::user::window::get_window_rectangle(::rectangle_i32 & rectangle)
    {
 
       xcb_get_geometry_reply_t geometry;
@@ -1139,7 +1139,7 @@ void nano_window::redraw()
    }
 
 
-   void nano_window::_wm_nodecorations(int iMap)
+   void nano::user::window::_wm_nodecorations(int iMap)
    {
 
       m_pdisplay->_set_nodecorations(m_window, iMap);
@@ -1147,7 +1147,7 @@ void nano_window::redraw()
    }
 
 
-   void nano_window::_get_geometry(xcb_get_geometry_reply_t * pgeometry)
+   void nano::user::window::_get_geometry(xcb_get_geometry_reply_t * pgeometry)
    {
 
       m_pdisplay->_get_window_geometry(pgeometry, m_window);
@@ -1156,7 +1156,7 @@ void nano_window::redraw()
    }
 
 
-//   ::size_i32 nano_window::get_main_screen_size()
+//   ::size_i32 nano::user::window::get_main_screen_size()
 //   {
 //
 //      return m_pdisplay->get_main_screen_size();

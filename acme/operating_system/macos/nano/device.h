@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "acme/user/nano/device.h"
+#include "acme/nano/user/device.h"
 
 
 #include <CoreGraphics/CoreGraphics.h>
@@ -13,8 +13,16 @@
 namespace quartz2d
 {
 
-   class CLASS_DECL_ACME nano_device :
-      virtual public ::nano_device
+   namespace nano
+   {
+
+  
+      namespace user
+      {
+
+
+   class CLASS_DECL_ACME device :
+      virtual public ::nano::user::device
    {
    public:
 
@@ -23,16 +31,16 @@ namespace quartz2d
       bool                          m_bOwn;
 
       
-      nano_device();
-      nano_device(CGContextRef pdc);
-      ~nano_device() override;
+      device();
+      device(CGContextRef pdc);
+      ~device() override;
 
 
-      void _draw_text(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano_brush * pnanobrushBack, ::nano_brush * pnanobrushText, ::nano_font * pnanofont) override;
+      void _draw_text(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::user::brush * pnanobrushBack, ::nano::user::brush * pnanobrushText, ::nano::user::font * pnanofont) override;
       
-      ::size_i32 get_text_extents(const ::string & str, ::nano_font * pnanofont) override;
+      ::size_i32 get_text_extents(const ::string & str, ::nano::user::font * pnanofont) override;
 
-      void rectangle(const ::rectangle_i32 & rectangle, ::nano_brush * pnanobrush, ::nano_pen * pnanopen) override;
+      void rectangle(const ::rectangle_i32 & rectangle, ::nano::user::brush * pnanobrush, ::nano::user::pen * pnanopen) override;
 
 
       void _set_source(const ::color::color & color);
@@ -41,13 +49,22 @@ namespace quartz2d
       void _set_fill_color(const ::color::color & color);
       
       
-      void _select_font(::nano_font * pnanofont);
+      void _select_font(::nano::user::font * pnanofont);
       
       
    };
 
 
+
+      } //namespace user
+
+
+   } //namespace nano
+
+
 } // namespace quartz2d
+
+
 
 
 

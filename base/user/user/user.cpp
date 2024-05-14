@@ -14,7 +14,8 @@
 #include "acme/platform/sequencer.h"
 #include "acme/platform/system_setup.h"
 #include "acme/handler/request.h"
-#include "acme/user/nano/nano.h"
+#include "acme/nano/nano.h"
+#include "acme/nano/user/user.h"
 #include "apex/platform/application_menu.h"
 #include "aura/graphics/image/image.h"
 #include "aura/message/user.h"
@@ -1860,7 +1861,7 @@ namespace base
 
 #ifdef DEBUG
 
-         auto psequencer = nano()->exception_message_box(exception, "Failed to create form \"" + pathFile + "\"");
+         auto psequencer = nano()->user()->exception_message_box(exception, "Failed to create form \"" + pathFile + "\"");
 
          psequencer->do_synchronously();
 

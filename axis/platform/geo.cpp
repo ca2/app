@@ -16,7 +16,8 @@
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/primitive/string/international.h"
 #include "acme/primitive/string/str.h"
-#include "acme/user/nano/nano.h"
+#include "acme/nano/nano.h"
+#include "acme/nano/user/user.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/networking/open_weather_city.h"
 #include "apex/networking/http/context.h"
@@ -175,7 +176,7 @@ namespace geo
          catch (const ::exception & exception)
          {
 
-            auto psequencer = this->nano()->exception_message_box(exception);
+            auto psequencer = this->nano()->user()->exception_message_box(exception);
 
             psequencer->do_asynchronously();
 

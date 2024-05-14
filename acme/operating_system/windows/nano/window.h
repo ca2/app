@@ -11,13 +11,13 @@ namespace windows
 {
 
 
-   class nano_window :
-      virtual public ::nano_window_implementation
+   class nano::user::window :
+      virtual public ::nano::user::window_implementation
    {
    public:
 
 
-      //CreatableFromBase(nano_window, ::nano_window_implementation);
+      //CreatableFromBase(nano::user::window, ::nano::user::window_implementation);
 
       HWND m_hwnd;
       //bool m_bDestroy;
@@ -31,16 +31,16 @@ namespace windows
 //      rectangle_i32 m_rectangle;
 //      rectangle_i32 m_rectangleX;
 //
-//      pointer_array < nano_child > m_childa;
+//      pointer_array < ::nano::user::child > m_childa;
 //      ::atom m_atomLeftButtonDown;
 //      ::atom m_atomLeftButtonUp;
 //      //::atom                             m_atomResult;
-//      ::pointer<nano_child>m_pchildFocus;
+//      ::pointer<::nano::user::child>m_pchildFocus;
       ::task_pointer       m_ptask;
 
-      nano_window();
+      nano::user::window();
 
-      ~nano_window() override;
+      ~nano::user::window() override;
 
       void create() override;
 
@@ -48,13 +48,13 @@ namespace windows
 
       virtual void _draw(HDC hdc);
 
-      //void on_draw(nano_device * pnanodevice) override;
+      //void on_draw(::nano::user::device * pnanodevice) override;
 
       void on_char(int iChar) override;
 
       //bool is_active() override;
 
-      //virtual void draw_children(nano_device * pnanodevice);
+      //virtual void draw_children(::nano::user::device * pnanodevice);
 
       void delete_drawing_objects() override;
 
@@ -64,9 +64,9 @@ namespace windows
 
       void update_drawing_objects() override;
 
-      //nano_child * on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
+      //::nano::user::child * on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
-      void add_child(nano_child * pchild) override;
+      void add_child(::nano::user::child * pchild) override;
 
       ::atom get_result() override;
 

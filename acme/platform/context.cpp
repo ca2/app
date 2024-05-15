@@ -958,7 +958,7 @@ namespace acme
 
 
 
-   ::string context::http_text(const ::scoped_string & scopedstrUrl, const ::time & timeTimeout)
+   ::string context::http_text(const ::scoped_string & scopedstrUrl, const class ::time & timeTimeout)
    {
       
       auto pget = __create_new < ::nano::http::get >();
@@ -976,7 +976,7 @@ namespace acme
    }
 
 
-   ::string context::http_text(const ::scoped_string & scopedstrUrl, ::property_set & set, const ::time & timeTimeout)
+   ::string context::http_text(const ::scoped_string & scopedstrUrl, ::property_set & set, const class ::time & timeTimeout)
    {
 
       auto pget = __create_new < ::nano::http::get >();
@@ -1056,7 +1056,7 @@ namespace acme
 //   }
 
 
-   void context::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, const ::time & timeTimeout)
+   void context::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, const class ::time & timeTimeout)
    {
 
       auto pfile = acmefile()->get_writer(payloadFile);
@@ -1076,7 +1076,7 @@ namespace acme
    }
 
 
-   void context::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set, const ::time & timeTimeout)
+   void context::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set, const class ::time & timeTimeout)
    {
 
       auto pfile = acmefile()->get_writer(payloadFile);

@@ -739,7 +739,7 @@ namespace platform
       factory()->add_factory_item<simple_log, ::logger>();
 
 
-      //operating_system_initialize_nano();
+      //operating_system_initialize_nano_user();
 
       IDENTIFIER_PREFIX_OPERATING_SYSTEM(_factory)(factory());
 

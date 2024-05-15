@@ -23,6 +23,7 @@
 #include "acme/exception/interface_only.h"
 //#include "acme/primitive/collection/array.h"
 //#include "acme/primitive/collection/string_array.h"
+#include "acme/nano/nano.h"
 #include "acme/nano/user/button.h"
 #include "acme/nano/user/message_box.h"
 #include "acme/nano/user/user.h"
@@ -4433,7 +4434,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    void node::x11_sync(const ::procedure & procedure)
    {
 
-      nano()->x11_sync(procedure);
+      nano()->user()->x11_sync(procedure);
 
    }
 
@@ -4441,7 +4442,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    void node::x11_async(const ::procedure & procedure)
    {
 
-      nano()->x11_async(procedure);
+      nano()->user()->x11_async(procedure);
 
    }
 

@@ -29,7 +29,26 @@ public:
    
    class ::time                                 m_timeSyncTimeout;
    
-   ::function < void(TRANSPORT_PAYLOAD *) >     m_callbackAsync;
+    ::function < void(TRANSPORT_PAYLOAD *) >    m_functionOnFinished;
+
+
+    virtual TRANSPORT_PAYLOAD * this_transport_payload() = 0;
+
+    virtual void set_finished()
+    {
+
+        on_finished();
+
+    }
+
+
+    virtual void on_finished()
+    {
+
+        m_functionOnFinished(this_transport_payload());
+
+    }
+
 //
 //
 //   
@@ -39,7 +58,8 @@ public:
    
    //::pointer < RESPONSE >  m_presponse;
    
-   bool                    m_bTimeout;
+   //bool                    m_bTimeout;
+
 
 };
 

@@ -38,7 +38,7 @@ http::~http()
    
       auto pevent = __create_new < ::manual_reset_event >();
       
-      pget->m_callbackAsync = [pevent](auto)
+      pget->m_functionOnFinished = [pevent](auto)
       {
       
          pevent->SetEvent();
@@ -81,7 +81,7 @@ http::~http()
          
                sync(pgetHold);
          
-               pgetHold->m_callbackAsync(pgetHold);
+               pgetHold->set_finished();
          
             });
    

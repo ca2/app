@@ -1271,4 +1271,10 @@ inline void defer_destroy_and_release(::pointer < TYPE >& p)
 }
 
 
+template < typename TYPE >
+::pointer < TYPE > as_pointer(TYPE * p)
+{
 
+return p;
+
+}

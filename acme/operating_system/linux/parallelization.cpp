@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/parallelization/task.h"
 #include "acme/operating_system/ansi/_pthread.h"
-#include "acme/user/nano/display.h"
+#include "acme/nano/user/display.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/node.h"
 #include "acme/platform/platform.h"

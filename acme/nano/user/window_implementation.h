@@ -5,7 +5,12 @@
 
 
 #include "window_interface.h"
-namespace nano{namespace user{
+namespace nano
+{
+
+   namespace user
+
+   {
 
 class CLASS_DECL_ACME window_implementation :
    virtual public ::nano::user::window_interface

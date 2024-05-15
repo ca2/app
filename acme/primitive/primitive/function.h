@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include <ios>
+#include <ratio>
+
 #include "acme/primitive/primitive/transfer.h"
 
 #include "acme/primitive/primitive/ptr.h"
@@ -9,6 +12,33 @@
 #include "acme/primitive/primitive/subparticle.h"
 
 #include "acme/primitive/time/_time.h"
+
+template < typename ENTITY, typename... TYPES >
+concept callable = ::std::is_invocable< ENTITY, TYPES... >::type;
+
+template < typename ENTITY, typename RESULT, typename... TYPES >
+concept callable_with_result = ::std::is_invocable_r< RESULT, ENTITY, TYPES... >::type;
+
+template <typename T>
+constexpr bool is_lvalue_helper = std::is_lvalue_reference<T>::value;
+
+template <typename T>
+constexpr bool is_xvalue_helper = std::is_rvalue_reference<T>::value;
+
+template <typename T>
+constexpr bool is_prvalue_helper = !(is_lvalue_helper<T> || is_xvalue_helper<T>);
+
+template <typename T>
+constexpr bool is_rvalue_helper = is_xvalue_helper<T> || is_prvalue_helper<T>;
+
+template <typename T>
+constexpr bool is_glvalue_helper = is_xvalue_helper<T> || is_lvalue_helper<T>;
+
+#define is_left_instance(type_instance) is_lvalue_helper<decltype((type_instance))>
+#define is_xvalue(type_instance) is_xvalue_helper<decltype((type_instance))>
+#define is_prvalue(type_instance)is_prvalue_helper<decltype((type_instance))>
+#define is_right_instance(type_instance) is_rvalue_helper<decltype((type_instance))>
+#define is_glvalue(type_instance)is_glvalue_helper<decltype((type_instance))>
 
 
 enum enum_use
@@ -78,16 +108,16 @@ template < typename PRIMITIVE_FUNCTION >
 concept primitive_function = ::std::is_base_of < ::function_common, PRIMITIVE_FUNCTION >::value;
 
 
-template < typename FUNCTION >
+template < typename PAYLOAD >
 class function :
    public function_common
 {
 
 };
 
-//template < typename FUNCTION >
+//template < typename PAYLOAD >
 //class function_receptor :
-//   public function < FUNCTION >
+//   public function < PAYLOAD >
 //{
 //
 //};
@@ -129,8 +159,8 @@ public:
       ELEMENT m_element;
 
 
-      implementation(ELEMENT && element) :
-         m_element(::transfer(element))
+      implementation(ELEMENT element) :
+         m_element(element)
       {
 
       }
@@ -159,7 +189,7 @@ public:
 
 
    
-   function(nullptr_t = nullptr)
+   function()
    {
 
    }
@@ -208,12 +238,39 @@ public:
 
    //}
 
+
    template < typename PREDICATE >
-   function(PREDICATE predicateParam) :
-      m_pbase(transfer_t{}, __new< class implementation <PREDICATE > >(::transfer(predicateParam)))
+   function(const PREDICATE & predicate) :
+      function()
    {
 
+      if constexpr(::std::is_same_v<PREDICATE, nullptr_t>)
+      {
+
+
+      }
+      else if constexpr(::std::is_same_v<::std::decay_t<PREDICATE>, payload >
+         || ::std::is_same_v<::std::decay_t <PREDICATE> , property>)
+      {
+
+         m_pbase = as_subparticle(predicate);
+
+      }
+      else if constexpr(::std::is_same_v<PREDICATE, const function & >)
+      {
+
+         m_pbase = predicate.m_pbase;
+
+      }
+      else
+      {
+
+         m_pbase.transfer(__new< class implementation < PREDICATE > >(predicate));
+
+      }
+
    }
+
 
 
    template < typename PREDICATE >
@@ -261,6 +318,13 @@ public:
 
    }
 
+   void clear()
+   {
+
+      m_pbase.release();
+
+   }
+
 
    function & operator = (const function & function)
    {
@@ -270,41 +334,6 @@ public:
       return *this;
 
    }
-
-
-   function & operator = (function && function)
-   {
-
-      m_pbase = ::transfer(function.m_pbase);
-
-      return *this;
-
-   }
-
-   
-   template < primitive_payload PAYLOAD >
-   function & operator = (const PAYLOAD & payload)
-   {
-    
-      m_pbase = as_subparticle(payload);
-      
-      return *this;
-      
-   }
-//   auto ptransferprogressfunctionbase = set["transfer_progress_function"].cast < transfer_progress_function::base >();
-//
-//   psocket->m_transferprogressfunction = ptransferprogressfunctionbase.m_p;
-
-   
-   //
-//   function & operator = (function && function)
-//   {
-//
-//      ptr < ::element >::operator=(::transfer(function));
-//
-//      return *this;
-//
-//   }
 
    explicit operator bool() const { return ::is_set(this) && __pointer_is_set(m_pbase); }
 
@@ -325,8 +354,8 @@ public:
 //{
 //public:
 //
-//   template < typename FUNCTION >
-//   function_receptor(FUNCTION function) :
+//   template < typename PAYLOAD >
+//   function_receptor(PAYLOAD function) :
 //      function < void() >(transfer_t{}, function)
 //   {
 //   }
@@ -409,24 +438,37 @@ public:
    //}
 
    template < typename PREDICATE >
-   function(PREDICATE predicateParam) :
-      m_pbase(transfer_t{}, __new< class implementation <PREDICATE > >(::transfer(predicateParam)))
+   function(const PREDICATE & predicate) :
+      function()
    {
+
+      if constexpr(::std::is_same_v<PREDICATE, nullptr_t>)
+      {
+
+
+      }
+      else if constexpr(::std::is_same_v<::std::decay_t<PREDICATE>, payload >
+         || ::std::is_same_v<::std::decay_t <PREDICATE> , property>)
+      {
+
+         m_pbase = as_subparticle(predicate);
+
+      }
+      else if constexpr(::std::is_same_v<PREDICATE, const function & >)
+      {
+
+         m_pbase = predicate.m_pbase;
+
+      }
+      else
+      {
+
+         m_pbase.transfer(__new< class implementation < PREDICATE > >(predicate));
+
+      }
 
    }
 
-   function(function && function) :
-      m_pbase(::transfer(function.m_pbase))
-   {
-
-   }
-
-
-   function(const function & function) :
-      m_pbase(function.m_pbase)
-   {
-
-   }
 
    
    function(transfer_t, base * pbase) :
@@ -453,17 +495,6 @@ public:
 
    void clear() { m_pbase.release(); }
 
-   template < typename PREDICATE >
-   function & operator = (PREDICATE predicateParam)
-   {
-
-      m_pbase = ::transfer(transfer_t{}, __new< class implementation <PREDICATE > >(::transfer(predicateParam)));
-
-      return *this;
-
-   }
-
-
    function & operator = (const function & function)
    {
 
@@ -473,25 +504,6 @@ public:
 
    }
 
-
-   function & operator = (function && function)
-   {
-
-      m_pbase = ::transfer(function.m_pbase);
-
-      return *this;
-
-   }
-
-
-   function & operator = (nullptr_t)
-   {
-
-      clear();
-
-      return *this;
-
-   }
 
    explicit operator bool() const { return __pointer_is_set(m_pbase); }
 
@@ -504,14 +516,7 @@ public:
       return { (::u32)(::uptr)m_pbase.m_p };
 
    };
-   function & operator = (const payload & payload)
-   {
-    
-      m_pbase = as_subparticle(payload);
-      
-      return *this;
-      
-   }
+
 
 
 };
@@ -523,14 +528,15 @@ public:
 //{
 //public:
 //
-//   template < typename FUNCTION >
-//   function_receptor(FUNCTION function) :
+//   template < typename PAYLOAD >
+//   function_receptor(PAYLOAD function) :
 //      function < RETURN_TYPE() >(transfer_t{}, function)
 //   {
 //   }
 //
 //
 //};
+
 
 
 
@@ -599,30 +605,35 @@ public:
    //}
 
 
-   template < typename FUNCTION >
-   function(FUNCTION functionParam) :
-      m_pbase(transfer_t{}, __new< class implementation < FUNCTION > >(::transfer(functionParam)))
+   template < typename PREDICATE >
+   function(const PREDICATE & predicate) :
+      function()
    {
 
-   }
-
-   //template < typename FUNCTION >
-   //function(function_t, FUNCTION functionParam) :
-   //   m_pbase(transfer_t{}, __new< class implementation < FUNCTION > >(functionParam))
-   //{
-
-   //}
-
-   function(const function & function) :
-      m_pbase(function.m_pbase)
-   {
-
-   }
+      if constexpr(::std::is_same_v<PREDICATE, nullptr_t>)
+      {
 
 
-   function(function && function) :
-      m_pbase(::transfer(function.m_pbase))
-   {
+      }
+      else if constexpr(::std::is_same_v<::std::decay_t<PREDICATE>, payload >
+         || ::std::is_same_v<::std::decay_t <PREDICATE> , property>)
+      {
+
+         m_pbase = as_subparticle(predicate);
+
+      }
+      else if constexpr(::std::is_same_v<PREDICATE, const function & >)
+      {
+
+         m_pbase = predicate.m_pbase;
+
+      }
+      else
+      {
+
+         m_pbase.transfer(__new< class implementation < PREDICATE > >(predicate));
+
+      }
 
    }
 
@@ -654,45 +665,15 @@ public:
    void clear() { m_pbase.release(); }
 
 
-   template < typename FUNCTION >
-   function & operator = (FUNCTION functionParam)
-   {
-
-      m_pbase.transfer(__new< class implementation <FUNCTION > >(::transfer(functionParam)));
-
-      return *this;
-
-   }
-
-
    function & operator = (const function & function)
-   { 
-      
-      m_pbase = function.m_pbase; 
-      
-      return *this; 
-   
-   }
-
-
-   function & operator = (function && function)
    {
 
-      m_pbase = ::transfer(function.m_pbase);
+      m_pbase = function.m_pbase;
 
       return *this;
 
    }
 
-
-   function & operator = (nullptr_t)
-   {
-
-      clear();
-
-      return *this;
-
-   }
 
    explicit operator bool() const { return __pointer_is_set(m_pbase); }
 
@@ -706,15 +687,8 @@ public:
       return { (::u32)(::uptr)m_pbase.m_p };
 
    }
-   template < primitive_payload PAYLOAD >
-   function & operator = (const PAYLOAD & payload)
-   {
-    
-      m_pbase = as_subparticle(payload);
-      
-      return *this;
-      
-   }
+
+
 };
 
 //
@@ -724,14 +698,15 @@ public:
 //{
 //public:
 //
-//   template < typename FUNCTION >
-//   function_receptor(FUNCTION function) :
+//   template < typename PAYLOAD >
+//   function_receptor(PAYLOAD function) :
 //      function <  RETURN_TYPE(TYPES...) >(transfer_t{}, function)
 //   {
 //   }
 //
 //
 //};
+
 
 
 
@@ -758,11 +733,14 @@ public:
    {
    public:
 
+
       PREDICATE m_predicate;
 
-      implementation(PREDICATE && implementation) :
-         m_predicate(::transfer(implementation))
+
+      implementation(PREDICATE implementation) :
+         m_predicate(implementation)
       {
+
 
       }
 
@@ -780,7 +758,7 @@ public:
    ptr < base >     m_pbase;
 
 
-   function(nullptr_t = nullptr)
+   function()
    {
 
    }
@@ -800,30 +778,35 @@ public:
    }
 
 
-   //template < typename FUNCTION >
-   //function(function_t, FUNCTION functionParam) :
-   //   m_pbase(transfer_t{}, __new< class implementation < FUNCTION > >(functionParam))
-   //{
-
-   //}
-
-   template < typename FUNCTION >
-   function(FUNCTION functionParam) :
-      m_pbase(transfer_t{}, __new< class implementation < FUNCTION > >(::transfer(functionParam)))
+   template < typename PREDICATE >
+   function(const PREDICATE & predicate) :
+      function()
    {
 
-   }
-
-   function(const function & function) :
-      m_pbase(function.m_pbase)
-   {
-
-   }
+      if constexpr(::std::is_same_v<PREDICATE, nullptr_t>)
+      {
 
 
-   function(function && function) :
-      m_pbase(::transfer(function.m_pbase))
-   {
+      }
+      else if constexpr(::std::is_same_v<::std::decay_t<PREDICATE>, payload >
+         || ::std::is_same_v<::std::decay_t <PREDICATE> , property>)
+      {
+
+         m_pbase = as_subparticle(predicate);
+
+      }
+      else if constexpr(::std::is_same_v<PREDICATE, const function & >)
+      {
+
+         m_pbase = predicate.m_pbase;
+
+      }
+      else
+      {
+
+         m_pbase.transfer(__new< class implementation < PREDICATE > >(predicate));
+
+      }
 
    }
 
@@ -847,55 +830,15 @@ public:
    void clear() { m_pbase.release(); }
 
 
-   template < typename FUNCTION >
-   function & operator = (FUNCTION functionParam)
-   {
-
-      m_pbase.transfer(__new< class implementation <FUNCTION > >(::transfer(functionParam)));
-
-      return *this;
-
-   }
-   
-
-   function& operator = (base * pbase)
-   {
-
-      m_pbase = pbase;
-
-      return *this;
-
-   }
-
-
    function & operator = (const function & function)
    {
-      
-      m_pbase = function.m_pbase; 
-      
-      return *this; 
-   
-   }
 
-
-   function & operator = (function && function)
-   {
-      
-      m_pbase = ::transfer(function.m_pbase); 
-      
-      return *this; 
-   
-   }
-
-
-   function & operator = (nullptr_t)
-   {
-
-      clear();
+      m_pbase = function.m_pbase;
 
       return *this;
 
    }
+
 
    explicit operator bool() const { return __pointer_is_set(m_pbase.m_p); }
 
@@ -905,33 +848,9 @@ public:
 
    operator ::u32hash() const { return { (::u32)(::uptr)m_pbase.m_p }; }
    
-   template < primitive_payload PAYLOAD >
-   function & operator = (const PAYLOAD & payload)
-   {
-    
-      m_pbase = as_subparticle(payload);
-      
-      return *this;
-      
-   }
 
 };
 
-//
-//template < typename... types >
-//class function_receptor < void(types...) > :
-//   public function <  void(types...) >
-//{
-//public:
-//
-//   template < typename function >
-//   function_receptor(function function) :
-//      function <  void(types...) >(transfer_t{}, function)
-//   {
-//   }
-//
-//
-//};
 
 
 

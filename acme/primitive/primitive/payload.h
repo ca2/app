@@ -320,8 +320,8 @@ public:
 
    }
 
-   template < typename T >
-   ::pointer < T > pointer() const;
+   template < typename TYPE >
+   ::pointer < TYPE > pointer() const;
 
    bool get_type(::type_atom & typeatom) const;
 
@@ -689,7 +689,114 @@ public:
    ::f32 & f32_reference();
    ::f64 & f64_reference();
 
+
+   template < primitive_signed SIGNED >
+   inline SIGNED & reference()
+   {
+
+      if constexpr(sizeof(SIGNED) == 8)
+      {
+
+         return (SIGNED&) this->i64_reference();
+
+      }
+      else if constexpr(sizeof(SIGNED) == 4)
+      {
+
+         return (SIGNED&) this->i32_reference();
+
+      }
+      else if constexpr(sizeof(SIGNED) == 2)
+      {
+
+         return (SIGNED&) this->i16_reference();
+
+      }
+      else if constexpr(sizeof(SIGNED) == 1)
+      {
+
+         return (SIGNED&) this->i8_reference();
+
+      }
+      else
+      {
+
+         throw "todo";
+
+      }
+
+
+   }
+
+
+   template < primitive_unsigned UNSIGNED >
+   inline UNSIGNED & reference()
+   {
+
+      if constexpr(sizeof(UNSIGNED) == 8)
+      {
+
+         return (UNSIGNED&) this->u64_reference();
+
+      }
+      else if constexpr(sizeof(UNSIGNED) == 4)
+      {
+
+         return (UNSIGNED&) this->u32_reference();
+
+      }
+      else if constexpr(sizeof(UNSIGNED) == 2)
+      {
+
+         return (UNSIGNED&) this->u16_reference();
+
+      }
+      else if constexpr(sizeof(UNSIGNED) == 1)
+      {
+
+         return (UNSIGNED&) this->u8_reference();
+
+      }
+      else
+      {
+
+         throw "todo";
+
+      }
+
+
+   }
+
+
+   template < primitive_const CONST_TYPE >
+   CONST_TYPE & reference() const
+   {
+
+      return (CONST_TYPE &) ((::payload*)this)->reference<non_const<CONST_TYPE>>();
+
+   }
+
+
+   template < primitive_non_const NON_CONST_TYPE >
+   NON_CONST_TYPE * raw_pointer()
+   {
+
+      return &reference<NON_CONST_TYPE>();
+
+   }
+
+
+   template < primitive_const CONST_TYPE >
+   CONST_TYPE * raw_pointer() const
+   {
+
+      return &reference<CONST_TYPE>();
+
+   }
+
+
    strsize length() const;
+
 
    template < typename TYPE >
    inline payload & operator = (const ::pointer<TYPE> & pointer)
@@ -1764,4 +1871,6 @@ inline bool operator == (const PAYLOAD1 & payload1, const PAYLOAD2 & payload2)
    return payload1.equals_payload(payload2);
 
 }
+
+
 

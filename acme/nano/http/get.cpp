@@ -28,6 +28,22 @@ namespace nano
       }
 
 
+      get * get::this_transport_payload()
+      {
+
+         return this;
+
+      }
+
+
+      // void get::on_http_get_finished()
+      // {
+      //
+      //    m_functionOnHttpGetFinished(this);
+      //
+      // }
+
+
    }//namespace http
 
 

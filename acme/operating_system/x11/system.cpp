@@ -5,7 +5,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
-#include "acme/user/nano/nano.h"
+#include "acme/nano/user/user.h"
 #include "acme/parallelization/synchronous_lock.h"
 
 
@@ -20,42 +20,47 @@ namespace acme
 {
 
 
-   ::particle* system::x11_synchronization()
+   namespace nano
    {
-
-      _synchronous_lock sl(this->synchronization());
-
-      auto psynchronization = m_pmutexXlib;
-
-      if (!psynchronization)
+      namespace user
       {
+         ::particle* system::x11_synchronization()
+         {
 
-         psynchronization = node()->create_mutex();
+            _synchronous_lock sl(this->synchronization());
 
-         m_pmutexXlib = psynchronization;
+            auto psynchronization = m_pmutexXlib;
 
-      }
+            if (!psynchronization)
+            {
 
-      return psynchronization;
+               psynchronization = node()->create_mutex();
 
-   }
+               m_pmutexXlib = psynchronization;
 
+            }
 
-   void system::x11_async(const ::procedure &procedure)
-   {
+            return psynchronization;
 
-      node()->x11_async(procedure);
-
-   }
+         }
 
 
-   void system::x11_sync(const ::procedure &procedure)
-   {
+         void system::x11_async(const ::procedure &procedure)
+         {
 
-      node()->x11_sync(procedure);
+            node()->x11_async(procedure);
 
-   }
+         }
 
+
+         void system::x11_sync(const ::procedure &procedure)
+         {
+
+            node()->x11_sync(procedure);
+
+         }
+      } // namespace user
+   } // namespace nano
 
 } // namespace acme
 

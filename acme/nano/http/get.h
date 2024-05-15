@@ -35,9 +35,9 @@ namespace nano
          
          transfer_progress_function    m_transferprogressfunction;
 
-         
-         
-         void set_response(long http_status, const void * data, long size);
+         virtual void set_response(long http_status, const void * data, long size);
+
+         virtual get * this_transport_payload() override;
 
          
       };

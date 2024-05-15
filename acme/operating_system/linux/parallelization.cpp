@@ -118,9 +118,12 @@ bool __os_term_thread()
 }
 
 
-void x11_process_messages();
-void xcb_process_messages();
-void wayland_process_messages();
+namespace x11{namespace nano { namespace user{void process_messages();}}}
+
+namespace xcb{namespace nano { namespace user{void process_messages();}}}
+
+namespace wayland{namespace nano { namespace user{void process_messages();}}}
+
 
 
 void _do_tasks()
@@ -139,7 +142,7 @@ void _do_tasks()
    if(psystem->m_ewindowing == e_windowing_wayland)
    {
 
-      wayland_process_messages();
+      ::wayland::nano::user::process_messages();
 
    }
    else
@@ -147,18 +150,19 @@ void _do_tasks()
    if(psystem->m_ewindowing == e_windowing_xcb)
    {
 
-      xcb_process_messages();
+      ::xcb::nano::user::process_messages();
 
    }
    else
    {
 
-      x11_process_messages();
+      ::x11::nano::user::process_messages();
 
    }
 
    psystem->node()->defer_do_main_tasks();
 
 }
+
 
 

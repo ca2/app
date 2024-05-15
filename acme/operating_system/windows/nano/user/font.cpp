@@ -11,106 +11,121 @@ namespace windows
 {
 
 
-   ::nano::user::font::nano::user::font()
+
+   namespace nano
    {
 
-      m_pthis = this;
 
-   }
-
-
-   ::nano::user::font::~::nano::user::font()
-   {
-
-   }
-
-
-   void ::nano::user::font::update(::nano::user::device * pnanodevice)
-   {
-
-      if (m_bModified)
+      namespace user
       {
 
-         destroy();
+         font::font()
+         {
 
-         LOGFONTW logfontw = {};
+            m_pthis = this;
 
-         auto pwindowsnanodevice = dynamic_cast <::windows::nano::user::device *>(pnanodevice);
-
-         m_hgdiobj = _create_point_font(m_iFontSize * 10, m_strFontName, m_bBold, pwindowsnanodevice->m_hdc, &logfontw);
-
-         m_bModified = false;
-
-      }
+         }
 
 
-   }
+         font::~font()
+         {
+
+         }
 
 
-   HFONT ::nano::user::font::_create_point_font(int nPointSize, const ::scoped_string & scopedstrFaceName, bool bBold, HDC hdc, LOGFONTW* plf)
-   {
+         void font::update(::nano::user::device* pnanodevice)
+         {
 
-      LOGFONTW lF;
+            if (m_bModified)
+            {
 
-      if (plf == nullptr)
-      {
+               destroy();
 
-         plf = &lF;
+               LOGFONTW logfontw = {};
 
-         ::memory_set(plf, 0, sizeof(*plf));
+               auto pwindowsnanodevice = dynamic_cast <::windows::nano::user::device*>(pnanodevice);
 
-         plf->lfCharSet = DEFAULT_CHARSET;
+               m_hgdiobj = _create_point_font(m_iFontSize * 10, m_strFontName, m_bBold, pwindowsnanodevice->m_hdc, &logfontw);
 
-      }
+               m_bModified = false;
 
-      plf->lfHeight = nPointSize;
-
-      plf->lfWeight = bBold ? FW_BOLD : FW_NORMAL;
-
-      wstring wstr(scopedstrFaceName);
-
-      wstr = wstr.substr(0, sizeof(plf->lfFaceName));
-
-      wcsncpy(plf->lfFaceName, wstr, sizeof(plf->lfFaceName) / sizeof(wchar_t));
-
-      return _create_point_font_indirect(plf, hdc);
-
-   }
+            }
 
 
-   // pLogFont->nHeight is interpreted as PointSize * 10
-   HFONT ::nano::user::font::_create_point_font_indirect(LOGFONTW* pLogFont, HDC hdc)
-   {
-
-      LOGFONTW& logFont = *pLogFont;
+         }
 
 
-      ::point_i32 point;
-      // 72 points/inch, 10 decipoints/point_i32
-      point.y() = ::MulDiv(::GetDeviceCaps(hdc, LOGPIXELSY), logFont.lfHeight, 720);
-      point.x() = 0;
-      ::DPtoLP(hdc, (POINT *) &point, 1);
-      ::point_i32 pointOrg = { 0, 0 };
-      ::DPtoLP(hdc, (POINT *) &pointOrg, 1);
-      logFont.lfHeight = -abs(point.y() - pointOrg.y());
+         HFONTfont::_create_point_font(int nPointSize, const ::scoped_string& scopedstrFaceName, bool bBold, HDC hdc, LOGFONTW* plf)
+         {
 
-      logFont.lfQuality = CLEARTYPE_NATURAL_QUALITY;
+            LOGFONTW lF;
 
-      HFONT hfont = ::CreateFontIndirectW(&logFont);
+            if (plf == nullptr)
+            {
 
-      if (::GetObjectW(hfont, sizeof(logFont), pLogFont))
-      {
+               plf = &lF;
 
-         ::acme::get()->platform()->informationf("got log font");
+               ::memory_set(plf, 0, sizeof(*plf));
 
-      }
+               plf->lfCharSet = DEFAULT_CHARSET;
 
-      return hfont;
+            }
 
-   }
+            plf->lfHeight = nPointSize;
+
+            plf->lfWeight = bBold ? FW_BOLD : FW_NORMAL;
+
+            wstring wstr(scopedstrFaceName);
+
+            wstr = wstr.substr(0, sizeof(plf->lfFaceName));
+
+            wcsncpy(plf->lfFaceName, wstr, sizeof(plf->lfFaceName) / sizeof(wchar_t));
+
+            return _create_point_font_indirect(plf, hdc);
+
+         }
 
 
-} // namespace windows
+         // pLogFont->nHeight is interpreted as PointSize * 10
+         HFONTfont::_create_point_font_indirect(LOGFONTW* pLogFont, HDC hdc)
+         {
+
+            LOGFONTW& logFont = *pLogFont;
+
+
+            ::point_i32 point;
+            // 72 points/inch, 10 decipoints/point_i32
+            point.y() = ::MulDiv(::GetDeviceCaps(hdc, LOGPIXELSY), logFont.lfHeight, 720);
+            point.x() = 0;
+            ::DPtoLP(hdc, (POINT*)&point, 1);
+            ::point_i32 pointOrg = { 0, 0 };
+            ::DPtoLP(hdc, (POINT*)&pointOrg, 1);
+            logFont.lfHeight = -abs(point.y() - pointOrg.y());
+
+            logFont.lfQuality = CLEARTYPE_NATURAL_QUALITY;
+
+            HFONT hfont = ::CreateFontIndirectW(&logFont);
+
+            if (::GetObjectW(hfont, sizeof(logFont), pLogFont))
+            {
+
+               ::acme::get()->platform()->informationf("got log font");
+
+            }
+
+            return hfont;
+
+         }
+
+
+
+      } // namespace user
+
+
+   } // namespace nano
+
+
+      } // namespace windows
 
 
 

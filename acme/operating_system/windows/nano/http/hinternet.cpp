@@ -11,24 +11,38 @@ namespace windows
 {
 
 
-   hinternet::hinternet(HINTERNET hinternet) :
-      m_hinternet(hinternet)
-   {
-   
-   }
-
-
-   hinternet::~hinternet()
+   namespace nano
    {
 
-      if (m_hinternet)
+
+      namespace http
       {
 
-         ::WinHttpCloseHandle(m_hinternet);
 
-      }
+         hinternet::hinternet(HINTERNET hinternet) :
+            m_hinternet(hinternet)
+         {
 
-   }
+         }
+
+
+         hinternet::~hinternet()
+         {
+
+            if (m_hinternet)
+            {
+
+               ::WinHttpCloseHandle(m_hinternet);
+
+            }
+
+         }
+
+
+      } // namespace http
+
+
+   }// namespace nano
 
 
 } // namespace windows

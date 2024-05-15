@@ -11,20 +11,32 @@ namespace windows
 {
 
 
-   class hinternet
+   namespace nano
    {
-   public:
 
 
-      HINTERNET  m_hinternet;
+      namespace http
+      {
 
-      
-      hinternet(HINTERNET hinternet = nullptr);
-      virtual ~hinternet();
+         class hinternet
+         {
+         public:
 
 
-   };
+            HINTERNET  m_hinternet;
 
+
+            hinternet(HINTERNET hinternet = nullptr);
+            virtual ~hinternet();
+
+
+         };
+
+
+      } // namespace http
+
+
+   }// namespace nano
 
 
 } // namespace windows

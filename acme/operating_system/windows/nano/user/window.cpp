@@ -45,27 +45,35 @@ namespace windows
 {
 
 
-   nano::user::window::nano::user::window()
+
+   namespace nano
    {
 
-//      m_bDestroy = false;
 
-   }
+      namespace user
+      {
 
+         window::window()
+         {
 
-   nano::user::window::~nano::user::window()
-   {
+            //      m_bDestroy = false;
 
-      delete_drawing_objects();
-
-   }
-
-
-   bool g_bNanoWindowClassRegistered = false;
+         }
 
 
+         window::~window()
+         {
 
-   LRESULT CALLBACK nano_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
+            delete_drawing_objects();
+
+         }
+
+
+         bool g_bNanoWindowClassRegistered = false;
+
+
+
+         LRESULT CALLBACK nano_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 
 #define NANO_WINDOW_CLASS "nano_window_class"
@@ -74,1092 +82,1098 @@ namespace windows
 
 
 
-   HINSTANCE nano_message_box_hinstance()
-   {
-
-      HINSTANCE hinstanceWndProc = (HINSTANCE) ::GetModuleHandleA("acme.dll");
-
-      if (hinstanceWndProc == nullptr)
-      {
-
-         hinstanceWndProc = (HINSTANCE)::GetModuleHandleA(NULL);
-
-      }
-
-      return hinstanceWndProc;
-
-   }
-
-
-   void register_nano_window_class()
-   {
-
-      if (g_bNanoWindowClassRegistered)
-      {
-
-         return;
-
-      }
-
-      auto hinstanceWndProc = nano_message_box_hinstance();
-
-      WNDCLASSEX wndclassex{};
-
-      //Step 1: Registering the Window Class
-      wndclassex.cbSize = sizeof(WNDCLASSEX);
-      wndclassex.style = CS_DBLCLKS;
-      wndclassex.lpfnWndProc = &nano_window_procedure;
-      wndclassex.cbClsExtra = 0;
-      wndclassex.cbWndExtra = 0;
-      wndclassex.hInstance = hinstanceWndProc;
-      wndclassex.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-      wndclassex.hCursor = LoadCursor(NULL, IDC_ARROW);
-      wndclassex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-      wndclassex.lpszMenuName = NULL;
-      wndclassex.lpszClassName = _T(NANO_WINDOW_CLASS);
-      wndclassex.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
-
-      if (!RegisterClassEx(&wndclassex))
-      {
-
-         throw ::exception(error_failed, "Failed to register nano message box window class.");
-
-      }
-
-      g_bNanoWindowClassRegistered = true;
-
-   }
-
-
-
-   // Step 4: the Window Procedure
-   LRESULT CALLBACK nano_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
-   {
-
-      ::windows::nano::user::window * pwindow = nullptr;
-
-      if (msg == WM_NCCREATE)
-      {
-
-         CREATESTRUCT * pcreatestruct = (CREATESTRUCT *)lParam;
-
-         pwindow = (::windows::nano::user::window *)pcreatestruct->lpCreateParams;
-
-         SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pwindow);
-
-         pwindow->m_hwnd = hwnd;
-
-      }
-      else
-      {
-
-         pwindow = (::windows::nano::user::window *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
-
-      }
-
-      if (!pwindow)
-      {
-
-         return DefWindowProc(hwnd, msg, wParam, lParam);
-
-      }
-
-      return pwindow->window_procedure(msg, wParam, lParam);
-
-   }
-
-
-
-   void nano::user::window::create()
-   {
-
-
-      if (!g_bNanoWindowClassRegistered)
-      {
-
-         register_nano_window_class();
-
-      }
-
-      wstring wstrTitle(m_pinterface->m_strTitle);
-
-      auto hinstanceWndProc = nano_message_box_hinstance();
-
-      m_ptask = ::get_task();
-
-      HWND hwnd = CreateWindowEx(
-         m_pinterface->m_bTopMost ? WS_EX_TOPMOST : 0,
-         _T(NANO_WINDOW_CLASS),
-         wstrTitle,
-         WS_POPUP,
-         m_pinterface->m_rectangle.left(),
-         m_pinterface->m_rectangle.top(),
-         m_pinterface->m_rectangle.width(),
-         m_pinterface->m_rectangle.height(),
-         NULL, NULL, hinstanceWndProc, this);
-
-      if (hwnd == NULL)
-      {
-         throw ::exception(error_failed, "Failed to create nano message box window.");
-         return;
-      }
-
-      nanowindowimplementationa().add(this);
-
-   }
-
-
-   void nano::user::window::on_char(int iChar)
-   {
-
-      m_pinterface->on_char(iChar);
-
-   }
-
-
-   void nano::user::window::_draw(HDC hdc)
-   {
-
-      GetWindowRect(m_hwnd, (LPRECT)&m_pinterface->m_rectangle);
-
-      HGDIOBJ hbrushOld = ::GetCurrentObject(hdc, OBJ_BRUSH);
-      HGDIOBJ hfontOld = ::GetCurrentObject(hdc, OBJ_FONT);
-      HGDIOBJ hpenOld = ::GetCurrentObject(hdc, OBJ_PEN);
-
-      {
-
-         auto pnanodevice = __allocate< ::windows::nano::user::device >(hdc);
-
-         m_pinterface->draw(pnanodevice);
-
-      }
-
-      ::SelectObject(hdc, hpenOld);
-      ::SelectObject(hdc, hfontOld);
-      ::SelectObject(hdc, hbrushOld);
-
-   }
-
-
-   //bool nano::user::window::is_active()
-   //{
-
-   //   return m_pm_bNcActive;
-
-   //}
-
-
-   //void nano::user::window::draw_children(HDC hdc)
-   //{
-
-   //   for (auto & pchild: m_childa)
-   //   {
-
-   //      pchild->on_draw(hdc);
-
-   //   }
-
-   //}
-
-   void nano::user::window::delete_drawing_objects()
-   {
-
-      //if (m_hbrushWindow)
-      //{
-
-      //   ::DeleteObject(m_hbrushWindow);
-
-      //   m_hbrushWindow = nullptr;
-
-      //}
-
-      //if (m_hpenBorder)
-      //{
-
-      //   ::DeleteObject(m_hpenBorder);
-
-      //   m_hpenBorder = nullptr;
-
-      //}
-
-
-      //if (m_hpenBorderFocus)
-      //{
-
-      //   ::DeleteObject(m_hpenBorderFocus);
-
-      //   m_hpenBorderFocus = nullptr;
-
-      //}
-
-      m_pinterface->delete_drawing_objects();
-
-   }
-
-
-   bool nano::user::window::get_dark_mode()
-   {
-
-      return !_is_light_theme();
-
-   }
-
-
-   void nano::user::window::create_drawing_objects()
-   {
-
-      //if (m_hfont == nullptr)
-      //{
-
-      //   HDC hdc = ::GetDC(m_hwnd);
-      //   int nHeight = -MulDiv(14, GetDeviceCaps(hdc, LOGPIXELSY), 72);
-      //   m_hfont = ::CreateFontW(nHeight, 0, 0, 0, FW_NORMAL, 0, 0, 0, DEFAULT_CHARSET, OUT_OUTLINE_PRECIS,
-      //                           CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, FF_SWISS, L"Segoe UI");
-      //   ::ReleaseDC(m_hwnd, hdc);
-
-      //}
-
-      //bool bDarkMode = get_dark_mode();
-
-      //if (bDarkMode)
-      //{
-
-      //   m_crWindow = RGB(0, 0, 0);
-      //   m_crText = RGB(255, 255, 255);
-      //   m_crFocus = RGB(2, 128, 255);
-
-      //} else
-      //{
-
-      //   m_crWindow = RGB(255, 255, 255);
-      //   m_crText = RGB(0, 0, 0);
-      //   m_crFocus = RGB(1, 64, 128);
-
-      //}
-
-      //m_hbrushWindow = CreateSolidBrush(m_crWindow);
-      //m_hpenBorder = CreatePen(PS_SOLID, 1, m_crText);
-      //m_hpenBorderFocus = CreatePen(PS_SOLID, 1, m_crFocus);
-
-      m_pinterface->create_drawing_objects();
-
-   }
-
-   void nano::user::window::update_drawing_objects()
-   {
-
-      delete_drawing_objects();
-      create_drawing_objects();
-
-
-   }
-
-
-   //::atom nano::user::window::hit_test(int x, int y)
-   //{
-   //
-   //   for (int i = 0; i < m_iButtonCount; i++)
-   //   {
-   //      if (m_buttona[i].m_rectangle.contains(point_i32(x, y)))
-   //      {
-   //
-   //         return m_buttona[i].m_edialogresult;
-   //
-   //      }
-   //
-   //   }
-   //
-   //   return e_dialog_result_none;
-   //
-   //}
-   //
-
-   void nano::user::window::on_left_button_down(::user::mouse * pmouse)
-   {
-
-      //SetCapture(m_hwnd);
-
-      //m_atomLeftButtonDown = hit_test(x, y);
-
-      //if (m_pdragmove && m_atomLeftButtonDown == e_dialog_result_none)
-      //{
-
-      //   m_pdragmove->m_bLButtonDown = true;
-
-      //   m_pdragmove->m_bDrag = false;
-
-      //   point_i32 pointCursor(x, y);
-
-      //   pointCursor += m_rectangle.origin();
-
-      //   m_pdragmove->m_pointLButtonDown = pointCursor;
-
-      //   m_pdragmove->m_sizeLButtonDownOffset = m_pdragmove->m_pointLButtonDown - m_rectangle.origin();
-
-      //   return;
-
-      //}
-
-      m_pinterface->on_left_button_down(pmouse);
-
-   }
-
-
-   void nano::user::window::on_left_button_up(::user::mouse * pmouse)
-   {
-
-      //ReleaseCapture();
-
-      //if (m_pdragmove && (m_pdragmove->m_bLButtonDown || m_pdragmove->m_bDrag))
-      //{
-
-      //   m_pdragmove->m_bLButtonDown = false;
-
-      //   m_pdragmove->m_bDrag = false;
-
-      //   return;
-
-      //}
-
-      //m_atomLeftButtonUp = hit_test(x, y);
-
-      //if (m_atomLeftButtonUp == m_atomLeftButtonDown && m_atomLeftButtonUp != e_dialog_result_none)
-      //{
-
-      //   m_atomResult = m_atomLeftButtonUp;
-
-      //   on_click(m_atomResult);
-
-      //}
-
-      m_pinterface->on_left_button_up(pmouse);
-
-   }
-
-   void nano::user::window::on_mouse_move(::user::mouse * pmouse)
-   {
-
-      //if (m_pdragmove && m_pdragmove->m_bLButtonDown)
-      //{
-
-      //   ::SetCursor(::LoadCursor(NULL, IDC_SIZEALL));
-
-      //   if (!m_pdragmove->m_bDrag)
-      //   {
-
-      //      m_pdragmove->m_bDrag = true;
-
-      //      point_i32 pointCursor(x, y);
-
-      //      pointCursor += m_rectangle.origin();
-
-      //      auto point = pointCursor - m_pdragmove->m_sizeLButtonDownOffset;
-
-      //      move_to(pmouse);
-
-      //      m_pdragmove->m_bDrag = false;
-
-      //   }
-
-      //   return;
-
-      //}
-
-      m_pinterface->on_mouse_move(pmouse);
-
-   }
-
-
-   void nano::user::window::on_right_button_down(::user::mouse * pmouse)
-   {
-
-      //SetCapture(m_hwnd);
-
-      //m_atomLeftButtonDown = hit_test(x, y);
-
-      //if (m_pdragmove && m_atomLeftButtonDown == e_dialog_result_none)
-      //{
-
-      //   m_pdragmove->m_bLButtonDown = true;
-
-      //   m_pdragmove->m_bDrag = false;
-
-      //   point_i32 pointCursor(x, y);
-
-      //   pointCursor += m_rectangle.origin();
-
-      //   m_pdragmove->m_pointLButtonDown = pointCursor;
-
-      //   m_pdragmove->m_sizeLButtonDownOffset = m_pdragmove->m_pointLButtonDown - m_rectangle.origin();
-
-      //   return;
-
-      //}
-
-      m_pinterface->on_right_button_down(pmouse);
-
-   }
-
-
-   void nano::user::window::on_right_button_up(::user::mouse * pmouse)
-   {
-
-      //ReleaseCapture();
-
-      //if (m_pdragmove && (m_pdragmove->m_bLButtonDown || m_pdragmove->m_bDrag))
-      //{
-
-      //   m_pdragmove->m_bLButtonDown = false;
-
-      //   m_pdragmove->m_bDrag = false;
-
-      //   return;
-
-      //}
-
-      //m_atomLeftButtonUp = hit_test(x, y);
-
-      //if (m_atomLeftButtonUp == m_atomLeftButtonDown && m_atomLeftButtonUp != e_dialog_result_none)
-      //{
-
-      //   m_atomResult = m_atomLeftButtonUp;
-
-      //   on_click(m_atomResult);
-
-      //}
-
-      m_pinterface->on_right_button_up(pmouse);
-
-   }
-
-
-
-   ::atom nano::user::window::get_result()
-   {
-
-      return m_pinterface->get_result();
-
-   }
-
-
-
-
-   //::nano::user::child * nano::user::window::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
-   //{
-
-   //   return m_pinterface->hit_test(point);
-
-   //}
-
-
-//LRESULT CALLBACK ::nano::user::message_box::s_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
-//{
-//if (msg == WM_NCCREATE)
-//{
-//
-//   CREATESTRUCT * pcreatestruct = (CREATESTRUCT *)lParam;
-//   SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pcreatestruct->lpCreateParams);
-//
-//}
-//::nano::user::message_box * pwindow = (::nano::user::message_box *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
-//
-//if (!pwindow)
-//{
-//   return DefWindowProc(hwnd, msg, wParam, lParam);
-//}
-//return pwindow->window_procedure(msg, wParam, lParam);
-//
-//}
-
-
-
-   bool nano::user::window::_is_light_theme()
-   {
-
-      DWORD dwBuffer;
-
-      DWORD dwSize = sizeof(dwBuffer);
-
-      auto res = RegGetValueW(
-         HKEY_CURRENT_USER,
-         L"Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
-         L"AppsUseLightTheme",
-         RRF_RT_REG_DWORD, // expected value type
-         nullptr,
-         &dwBuffer,
-         &dwSize);
-
-      if (res != ERROR_SUCCESS)
-      {
-
-         throw ::exception(error_failed);
-
-      }
-
-      return dwBuffer != FALSE;
-
-   }
-
-
-   LRESULT nano::user::window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
-   {
-      switch (message)
-      {
-      case WM_CLOSE:
-         DestroyWindow(m_hwnd);
-         break;
-      case WM_NCDESTROY:
-         break;
-      case WM_DESTROY:
-         //PostQuitMessage(0);
-         nanowindowimplementationa().erase(this);
-         break;
-      case WM_CREATE:
-      {
-         update_drawing_objects();
-
-         on_create();
-
-      }
-      break;
-      case WM_CHAR:
-      {
-         on_char((int)wparam);
-         return 0;
-      }
-      break;
-      case WM_LBUTTONDOWN:
-      {
-
-         POINT point{ i32_x(lparam), i32_y(lparam) };
-
-         auto pmouse = __create_new < ::user::mouse >();
-
-         pmouse->m_pointHost = { point.x, point.y };
-
-         ::ClientToScreen(m_hwnd, &point);
-
-         pmouse->m_pointAbsolute = { point.x, point.y };
-
-         on_left_button_down(pmouse);
-
-      }
-      break;
-      case WM_MOUSEMOVE:
-      {
-
-         POINT point{ i32_x(lparam), i32_y(lparam) };
-
-         auto pmouse = __create_new < ::user::mouse >();
-
-         pmouse->m_pointHost = { point.x, point.y };
-
-         ::ClientToScreen(m_hwnd, &point);
-
-         pmouse->m_pointAbsolute = { point.x, point.y };
-
-         on_mouse_move(pmouse);
-
-      }
-      break;
-      case WM_LBUTTONUP:
-      {
-
-         POINT point{ i32_x(lparam), i32_y(lparam) };
-
-         auto pmouse = __create_new < ::user::mouse >();
-
-         pmouse->m_pointHost = { point.x, point.y };
-
-         ::ClientToScreen(m_hwnd, &point);
-
-         pmouse->m_pointAbsolute = { point.x, point.y };
-
-         on_left_button_up(pmouse);
-
-      }
-      break;
-      case WM_RBUTTONDOWN:
-      {
-
-         POINT point{ i32_x(lparam), i32_y(lparam) };
-
-         auto pmouse = __create_new < ::user::mouse >();
-
-         pmouse->m_pointHost = { point.x, point.y };
-
-         ::ClientToScreen(m_hwnd, &point);
-
-         pmouse->m_pointAbsolute = { point.x, point.y };
-
-         on_right_button_down(pmouse);
-
-      }
-      break;
-      case WM_RBUTTONUP:
-      {
-
-         POINT point{ i32_x(lparam), i32_y(lparam) };
-
-         auto pmouse = __create_new < ::user::mouse >();
-
-         pmouse->m_pointHost = { point.x, point.y };
-
-         ::ClientToScreen(m_hwnd, &point);
-
-         pmouse->m_pointAbsolute = { point.x, point.y };
-
-         on_right_button_up(pmouse);
-
-      }
-      break;
-      case WM_ERASEBKGND:
-         return 1;
-      case WM_MOUSEACTIVATE:
-         return MA_ACTIVATE;
-      case WM_PAINT:
-      {
-
-         PAINTSTRUCT paintstruct{};
-
-         HDC hdcWindow = BeginPaint(m_hwnd, &paintstruct);
-
-         HDC hdc = ::CreateCompatibleDC(hdcWindow);
-
-         ::rectangle_i32 rectangleX;
-
-         ::GetClientRect(m_hwnd, (LPRECT)&rectangleX);
-
-         HBITMAP hbitmap = ::CreateCompatibleBitmap(hdcWindow, rectangleX.width(), rectangleX.height());
-
-         HGDIOBJ hbitmapOld = ::SelectObject(hdc, hbitmap);
-
-         _draw(hdc);
-
-
-         ::BitBlt(hdcWindow, 0, 0, rectangleX.width(), rectangleX.height(),
-            hdc, 0, 0, SRCCOPY);
-
-         hbitmapOld = ::SelectObject(hdc, hbitmapOld);
-
-         ::DeleteDC(hdc);
-         EndPaint(m_hwnd, &paintstruct);
-      }
-      break;
-      case WM_NCACTIVATE:
-      {
-         LRESULT lresult = DefWindowProc(m_hwnd, message, wparam, lparam);
-         m_pinterface->m_bNcActive = wparam != 0;
-         redraw();
-
-         return lresult;
-
-      }
-      case WM_ACTIVATE:
-      {
-
-         if (wparam > 0)
+         HINSTANCE nano_message_box_hinstance()
          {
 
-            ::SetFocus(m_hwnd);
+            HINSTANCE hinstanceWndProc = (HINSTANCE) ::GetModuleHandleA("acme.dll");
+
+            if (hinstanceWndProc == nullptr)
+            {
+
+               hinstanceWndProc = (HINSTANCE)::GetModuleHandleA(NULL);
+
+            }
+
+            return hinstanceWndProc;
 
          }
 
-         return 0;
 
-      }
-      case WM_FONTCHANGE:
-      {
-
-         redraw();
-
-      }
-      break;
-      case WM_SETTINGCHANGE:
-      {
-
-         string strLparamString;
-
-         if (wparam == 0)
+         void register_nano_window_class()
          {
 
-            strLparamString = (const WCHAR *)(LPARAM(lparam));
+            if (g_bNanoWindowClassRegistered)
+            {
+
+               return;
+
+            }
+
+            auto hinstanceWndProc = nano_message_box_hinstance();
+
+            WNDCLASSEX wndclassex{};
+
+            //Step 1: Registering the Window Class
+            wndclassex.cbSize = sizeof(WNDCLASSEX);
+            wndclassex.style = CS_DBLCLKS;
+            wndclassex.lpfnWndProc = &nano_window_procedure;
+            wndclassex.cbClsExtra = 0;
+            wndclassex.cbWndExtra = 0;
+            wndclassex.hInstance = hinstanceWndProc;
+            wndclassex.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+            wndclassex.hCursor = LoadCursor(NULL, IDC_ARROW);
+            wndclassex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+            wndclassex.lpszMenuName = NULL;
+            wndclassex.lpszClassName = _T(NANO_WINDOW_CLASS);
+            wndclassex.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
+
+            if (!RegisterClassEx(&wndclassex))
+            {
+
+               throw ::exception(error_failed, "Failed to register nano message box window class.");
+
+            }
+
+            g_bNanoWindowClassRegistered = true;
 
          }
 
-         if (strLparamString == "ImmersiveColorSet")
+
+
+         // Step 4: the Window Procedure
+         LRESULT CALLBACK nano_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
          {
 
-            update_drawing_objects();
+            ::windows::window* pwindow = nullptr;
 
-            redraw();
+            if (msg == WM_NCCREATE)
+            {
+
+               CREATESTRUCT* pcreatestruct = (CREATESTRUCT*)lParam;
+
+               pwindow = (::windows::window*)pcreatestruct->lpCreateParams;
+
+               SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pwindow);
+
+               pwindow->m_hwnd = hwnd;
+
+            }
+            else
+            {
+
+               pwindow = (::windows::window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+
+            }
+
+            if (!pwindow)
+            {
+
+               return DefWindowProc(hwnd, msg, wParam, lParam);
+
+            }
+
+            return pwindow->window_procedure(msg, wParam, lParam);
 
          }
-         else if (wparam == SPI_SETWORKAREA)
+
+
+
+         void window::create()
          {
 
-            redraw();
+
+            if (!g_bNanoWindowClassRegistered)
+            {
+
+               register_nano_window_class();
+
+            }
+
+            wstring wstrTitle(m_pinterface->m_strTitle);
+
+            auto hinstanceWndProc = nano_message_box_hinstance();
+
+            m_ptask = ::get_task();
+
+            HWND hwnd = CreateWindowEx(
+               m_pinterface->m_bTopMost ? WS_EX_TOPMOST : 0,
+               _T(NANO_WINDOW_CLASS),
+               wstrTitle,
+               WS_POPUP,
+               m_pinterface->m_rectangle.left(),
+               m_pinterface->m_rectangle.top(),
+               m_pinterface->m_rectangle.width(),
+               m_pinterface->m_rectangle.height(),
+               NULL, NULL, hinstanceWndProc, this);
+
+            if (hwnd == NULL)
+            {
+               throw ::exception(error_failed, "Failed to create nano message box window.");
+               return;
+            }
+
+            nanowindowimplementationa().add(this);
 
          }
 
-      }
-      break;
 
-      default:
-      {
+         void window::on_char(int iChar)
+         {
 
-         return DefWindowProc(m_hwnd, message, wparam, lparam);
+            m_pinterface->on_char(iChar);
 
-      }
-
-      }
-
-      return 0;
-
-   }
-
-   //
-   //
-   //HINSTANCE nano_message_box_hinstance()
-   //{
-   //
-   //   HINSTANCE hinstanceWndProc = (HINSTANCE) ::GetModuleHandleA("acme.dll");
-   //
-   //   if (hinstanceWndProc == nullptr)
-   //   {
-   //
-   //      hinstanceWndProc = (HINSTANCE)::GetModuleHandleA(NULL);
-   //
-   //   }
-   //
-   //   return hinstanceWndProc;
-   //
-   //}
-
-   //
-   //void register_nano_window_class()
-   //{
-   //
-   //   if (g_bNanoWindowClassRegistered)
-   //   {
-   //
-   //      return;
-   //
-   //   }
-   //
-   //   auto hinstanceWndProc = nano_message_box_hinstance();
-   //
-   //   WNDCLASSEX wndclassex;
-   //
-   //   //Step 1: Registering the Window Class
-   //   wndclassex.cbSize = sizeof(WNDCLASSEX);
-   //   wndclassex.style = 0;
-   //   wndclassex.lpfnWndProc = &message_box_window_procedure;
-   //   wndclassex.cbClsExtra = 0;
-   //   wndclassex.cbWndExtra = 0;
-   //   wndclassex.hInstance = hinstanceWndProc;
-   //   wndclassex.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-   //   wndclassex.hCursor = LoadCursor(NULL, IDC_ARROW);
-   //   wndclassex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-   //   wndclassex.lpszMenuName = NULL;
-   //   wndclassex.lpszClassName = _T(NANO_MESSAGE_BOX_WINDOW_CLASS);
-   //   wndclassex.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
-   //
-   //   if (!RegisterClassEx(&wndclassex))
-   //   {
-   //
-   //      throw ::exception(error_failed, "Failed to register nano message box window class.");
-   //
-   //   }
-   //
-   //   g_bNanoWindowClassRegistered = true;
-   //
-   //}
-   //
-
-   void nano::user::window::display()
-   {
-
-      ::ShowWindow(m_hwnd, SW_SHOW);
-
-      ::UpdateWindow(m_hwnd);
-
-      ::BringWindowToTop(m_hwnd);
-
-   }
+         }
 
 
+         void window::_draw(HDC hdc)
+         {
 
-   void nano::user::window::add_child(::nano::user::child * pchild)
-   {
+            GetWindowRect(m_hwnd, (LPRECT)&m_pinterface->m_rectangle);
 
-      m_pinterface->add_child(pchild);
+            HGDIOBJ hbrushOld = ::GetCurrentObject(hdc, OBJ_BRUSH);
+            HGDIOBJ hfontOld = ::GetCurrentObject(hdc, OBJ_FONT);
+            HGDIOBJ hpenOld = ::GetCurrentObject(hdc, OBJ_PEN);
 
-   }
+            {
 
+               auto pnanodevice = __allocate< ::windows::nano::user::device >(hdc);
 
-   void nano::user::window::redraw()
-   {
+               m_pinterface->draw(pnanodevice);
 
-      ::RedrawWindow(m_hwnd, nullptr, nullptr, RDW_UPDATENOW | RDW_INVALIDATE);
+            }
 
-   }
+            ::SelectObject(hdc, hpenOld);
+            ::SelectObject(hdc, hfontOld);
+            ::SelectObject(hdc, hbrushOld);
 
-
-   //void nano::user::window::_destroy_window()
-   //{
-   //
-   //}
-
-
-   void nano::user::window::destroy()
-   {
-
-      user_post([this]()
-      {
-
-         //::ShowWindow(m_hwnd, SW_HIDE);
-
-         ::DestroyWindow(m_hwnd);
-
-         win32_process_messages();
-
-      });
-
-   }
+         }
 
 
-   //
-   //LRESULT nano::user::window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
-   //{
-   //   switch (message)
-   //   {
-   //   case WM_CLOSE:
-   //      DestroyWindow(m_hwnd);
-   //      break;
-   //   case WM_DESTROY:
-   //      PostQuitMessage(0);
-   //      break;
-   //   case WM_CREATE:
-   //   {
-   //      update_drawing_objects();
-   //   }
-   //   break;
-   //   case WM_LBUTTONDOWN:
-   //      on_left_button_down(i32_x(lparam), i32_y(lparam));
-   //      break;
-   //   case WM_LBUTTONUP:
-   //   {
-   //      on_left_button_up(i32_x(lparam), i32_y(lparam));
-   //   }
-   //
-   //   break;
-   //   case WM_PAINT:
-   //   {
-   //      PAINTSTRUCT paintstruct{};
-   //      HDC hdc = BeginPaint(m_hwnd, &paintstruct);
-   //      draw(hdc);
-   //      EndPaint(m_hwnd, &paintstruct);
-   //   }
-   //   break;
-   //   default:
-   //      return DefWindowProc(m_hwnd, message, wparam, lparam);
-   //   }
-   //   return 0;
-   //}
-
-
-   void nano::user::window::on_click(const ::atom& atomParam, ::user::mouse* pmouse)
-   {
-
-      auto atom = atomParam;
-
-      //fork([this, atom, pmouse]()
+         //bool window::is_active()
          //{
 
-      m_pinterface->on_click(atom, pmouse);
+         //   return m_pm_bNcActive;
 
-      //}, { pmouse });
+         //}
 
-   }
 
+         //void window::draw_children(HDC hdc)
+         //{
 
-   void nano::user::window::on_right_click(const ::atom& atomParam, ::user::mouse* pmouse)
-   {
+         //   for (auto & pchild: m_childa)
+         //   {
 
-      auto atom = atomParam;
+         //      pchild->on_draw(hdc);
 
-      //fork([this, atom, pmouse]()
-        // {
+         //   }
 
-      m_pinterface->on_right_click(atom, pmouse);
+         //}
 
-      //}, {pmouse});
+         void window::delete_drawing_objects()
+         {
 
+            //if (m_hbrushWindow)
+            //{
 
-   }
+            //   ::DeleteObject(m_hbrushWindow);
 
+            //   m_hbrushWindow = nullptr;
 
-   void nano::user::window::move_to(const ::point_i32& point)
-   {
+            //}
 
-      ::SetWindowPos(m_hwnd, nullptr, point.x(), point.y(), 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+            //if (m_hpenBorder)
+            //{
 
-      ::GetWindowRect(m_hwnd, (RECT*)&m_pinterface->m_rectangle);
+            //   ::DeleteObject(m_hpenBorder);
 
-   }
+            //   m_hpenBorder = nullptr;
 
+            //}
 
-   ::point_i32 nano::user::window::try_absolute_mouse_position(const ::point_i32 & point)
-   {
 
-      return point;
+            //if (m_hpenBorderFocus)
+            //{
 
-   }
+            //   ::DeleteObject(m_hpenBorderFocus);
 
+            //   m_hpenBorderFocus = nullptr;
 
-   void nano::user::window::get_client_rectangle(::rectangle_i32& rectangle)
-   {
+            //}
 
-      ::GetClientRect(m_hwnd, (LPRECT)&rectangle);
+            m_pinterface->delete_drawing_objects();
 
-   }
+         }
 
 
-   void nano::user::window::get_window_rectangle(::rectangle_i32& rectangle)
-   {
+         bool window::get_dark_mode()
+         {
 
-      ::GetWindowRect(m_hwnd, (LPRECT)&rectangle);
+            return !_is_light_theme();
 
-   }
+         }
 
 
-   void nano::user::window::set_capture()
-   {
+         void window::create_drawing_objects()
+         {
 
-      SetCapture(m_hwnd);
+            //if (m_hfont == nullptr)
+            //{
 
-   }
+            //   HDC hdc = ::GetDC(m_hwnd);
+            //   int nHeight = -MulDiv(14, GetDeviceCaps(hdc, LOGPIXELSY), 72);
+            //   m_hfont = ::CreateFontW(nHeight, 0, 0, 0, FW_NORMAL, 0, 0, 0, DEFAULT_CHARSET, OUT_OUTLINE_PRECIS,
+            //                           CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, FF_SWISS, L"Segoe UI");
+            //   ::ReleaseDC(m_hwnd, hdc);
 
+            //}
 
-   bool nano::user::window::has_capture() const
-   {
+            //bool bDarkMode = get_dark_mode();
 
-      return ::GetCapture() == m_hwnd;
+            //if (bDarkMode)
+            //{
 
-   }
+            //   m_crWindow = RGB(0, 0, 0);
+            //   m_crText = RGB(255, 255, 255);
+            //   m_crFocus = RGB(2, 128, 255);
 
+            //} else
+            //{
 
-   void nano::user::window::release_capture()
-   {
+            //   m_crWindow = RGB(255, 255, 255);
+            //   m_crText = RGB(0, 0, 0);
+            //   m_crFocus = RGB(1, 64, 128);
 
-      ReleaseCapture();
+            //}
 
-   }
+            //m_hbrushWindow = CreateSolidBrush(m_crWindow);
+            //m_hpenBorder = CreatePen(PS_SOLID, 1, m_crText);
+            //m_hpenBorderFocus = CreatePen(PS_SOLID, 1, m_crFocus);
 
+            m_pinterface->create_drawing_objects();
 
-   void nano::user::window::set_cursor(enum_cursor ecursor)
-   {
+         }
 
-      if (ecursor == e_cursor_move)
-      {
+         void window::update_drawing_objects()
+         {
 
-         ::SetCursor(::LoadCursor(NULL, IDC_SIZEALL));
+            delete_drawing_objects();
+            create_drawing_objects();
 
-      }
 
-   }
+         }
 
 
+         //::atom window::hit_test(int x, int y)
+         //{
+         //
+         //   for (int i = 0; i < m_iButtonCount; i++)
+         //   {
+         //      if (m_buttona[i].m_rectangle.contains(point_i32(x, y)))
+         //      {
+         //
+         //         return m_buttona[i].m_edialogresult;
+         //
+         //      }
+         //
+         //   }
+         //
+         //   return e_dialog_result_none;
+         //
+         //}
+         //
 
-   ::size_i32 nano::user::window::get_main_screen_size()
-   {
+         void window::on_left_button_down(::user::mouse* pmouse)
+         {
 
-      HWND hwndDesktop = ::GetDesktopWindow();
+            //SetCapture(m_hwnd);
 
-      if (!hwndDesktop)
-      {
+            //m_atomLeftButtonDown = hit_test(x, y);
 
-         return ::nano::user::window_implementation::get_main_screen_size();
+            //if (m_pdragmove && m_atomLeftButtonDown == e_dialog_result_none)
+            //{
 
-      }
+            //   m_pdragmove->m_bLButtonDown = true;
 
-      RECT r;
+            //   m_pdragmove->m_bDrag = false;
 
-      ::GetWindowRect(hwndDesktop, &r);
+            //   point_i32 pointCursor(x, y);
 
-      return { r.right - r.left, r.bottom - r.top };
+            //   pointCursor += m_rectangle.origin();
 
-   }
+            //   m_pdragmove->m_pointLButtonDown = pointCursor;
 
+            //   m_pdragmove->m_sizeLButtonDownOffset = m_pdragmove->m_pointLButtonDown - m_rectangle.origin();
 
-   void nano::user::window::user_post(const ::procedure & procedure)
-   {
+            //   return;
 
-      if (m_ptask)
-      {
+            //}
 
-         m_ptask->post_procedure(procedure);
+            m_pinterface->on_left_button_down(pmouse);
 
-      }
-      else
-      {
+         }
 
-         ::nano::user::window_implementation::user_post(procedure);
 
-      }
+         void window::on_left_button_up(::user::mouse* pmouse)
+         {
 
+            //ReleaseCapture();
 
-   }
+            //if (m_pdragmove && (m_pdragmove->m_bLButtonDown || m_pdragmove->m_bDrag))
+            //{
 
+            //   m_pdragmove->m_bLButtonDown = false;
 
-   void nano::user::window::implementation_message_loop_step()
-   {
+            //   m_pdragmove->m_bDrag = false;
 
-      _c_simple_message_loop_step();
+            //   return;
 
-   }
+            //}
+
+            //m_atomLeftButtonUp = hit_test(x, y);
+
+            //if (m_atomLeftButtonUp == m_atomLeftButtonDown && m_atomLeftButtonUp != e_dialog_result_none)
+            //{
+
+            //   m_atomResult = m_atomLeftButtonUp;
+
+            //   on_click(m_atomResult);
+
+            //}
+
+            m_pinterface->on_left_button_up(pmouse);
+
+         }
+
+         void window::on_mouse_move(::user::mouse* pmouse)
+         {
+
+            //if (m_pdragmove && m_pdragmove->m_bLButtonDown)
+            //{
+
+            //   ::SetCursor(::LoadCursor(NULL, IDC_SIZEALL));
+
+            //   if (!m_pdragmove->m_bDrag)
+            //   {
+
+            //      m_pdragmove->m_bDrag = true;
+
+            //      point_i32 pointCursor(x, y);
+
+            //      pointCursor += m_rectangle.origin();
+
+            //      auto point = pointCursor - m_pdragmove->m_sizeLButtonDownOffset;
+
+            //      move_to(pmouse);
+
+            //      m_pdragmove->m_bDrag = false;
+
+            //   }
+
+            //   return;
+
+            //}
+
+            m_pinterface->on_mouse_move(pmouse);
+
+         }
+
+
+         void window::on_right_button_down(::user::mouse* pmouse)
+         {
+
+            //SetCapture(m_hwnd);
+
+            //m_atomLeftButtonDown = hit_test(x, y);
+
+            //if (m_pdragmove && m_atomLeftButtonDown == e_dialog_result_none)
+            //{
+
+            //   m_pdragmove->m_bLButtonDown = true;
+
+            //   m_pdragmove->m_bDrag = false;
+
+            //   point_i32 pointCursor(x, y);
+
+            //   pointCursor += m_rectangle.origin();
+
+            //   m_pdragmove->m_pointLButtonDown = pointCursor;
+
+            //   m_pdragmove->m_sizeLButtonDownOffset = m_pdragmove->m_pointLButtonDown - m_rectangle.origin();
+
+            //   return;
+
+            //}
+
+            m_pinterface->on_right_button_down(pmouse);
+
+         }
+
+
+         void window::on_right_button_up(::user::mouse* pmouse)
+         {
+
+            //ReleaseCapture();
+
+            //if (m_pdragmove && (m_pdragmove->m_bLButtonDown || m_pdragmove->m_bDrag))
+            //{
+
+            //   m_pdragmove->m_bLButtonDown = false;
+
+            //   m_pdragmove->m_bDrag = false;
+
+            //   return;
+
+            //}
+
+            //m_atomLeftButtonUp = hit_test(x, y);
+
+            //if (m_atomLeftButtonUp == m_atomLeftButtonDown && m_atomLeftButtonUp != e_dialog_result_none)
+            //{
+
+            //   m_atomResult = m_atomLeftButtonUp;
+
+            //   on_click(m_atomResult);
+
+            //}
+
+            m_pinterface->on_right_button_up(pmouse);
+
+         }
+
+
+
+         ::atom window::get_result()
+         {
+
+            return m_pinterface->get_result();
+
+         }
+
+
+
+
+         //::nano::user::child * window::hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+         //{
+
+         //   return m_pinterface->hit_test(point);
+
+         //}
+
+
+      //LRESULT CALLBACK ::nano::user::message_box::s_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+      //{
+      //if (msg == WM_NCCREATE)
+      //{
+      //
+      //   CREATESTRUCT * pcreatestruct = (CREATESTRUCT *)lParam;
+      //   SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pcreatestruct->lpCreateParams);
+      //
+      //}
+      //::nano::user::message_box * pwindow = (::nano::user::message_box *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+      //
+      //if (!pwindow)
+      //{
+      //   return DefWindowProc(hwnd, msg, wParam, lParam);
+      //}
+      //return pwindow->window_procedure(msg, wParam, lParam);
+      //
+      //}
+
+
+
+         bool window::_is_light_theme()
+         {
+
+            DWORD dwBuffer;
+
+            DWORD dwSize = sizeof(dwBuffer);
+
+            auto res = RegGetValueW(
+               HKEY_CURRENT_USER,
+               L"Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+               L"AppsUseLightTheme",
+               RRF_RT_REG_DWORD, // expected value type
+               nullptr,
+               &dwBuffer,
+               &dwSize);
+
+            if (res != ERROR_SUCCESS)
+            {
+
+               throw ::exception(error_failed);
+
+            }
+
+            return dwBuffer != FALSE;
+
+         }
+
+
+         LRESULT window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
+         {
+            switch (message)
+            {
+            case WM_CLOSE:
+               DestroyWindow(m_hwnd);
+               break;
+            case WM_NCDESTROY:
+               break;
+            case WM_DESTROY:
+               //PostQuitMessage(0);
+               nanowindowimplementationa().erase(this);
+               break;
+            case WM_CREATE:
+            {
+               update_drawing_objects();
+
+               on_create();
+
+            }
+            break;
+            case WM_CHAR:
+            {
+               on_char((int)wparam);
+               return 0;
+            }
+            break;
+            case WM_LBUTTONDOWN:
+            {
+
+               POINT point{ i32_x(lparam), i32_y(lparam) };
+
+               auto pmouse = __create_new < ::user::mouse >();
+
+               pmouse->m_pointHost = { point.x, point.y };
+
+               ::ClientToScreen(m_hwnd, &point);
+
+               pmouse->m_pointAbsolute = { point.x, point.y };
+
+               on_left_button_down(pmouse);
+
+            }
+            break;
+            case WM_MOUSEMOVE:
+            {
+
+               POINT point{ i32_x(lparam), i32_y(lparam) };
+
+               auto pmouse = __create_new < ::user::mouse >();
+
+               pmouse->m_pointHost = { point.x, point.y };
+
+               ::ClientToScreen(m_hwnd, &point);
+
+               pmouse->m_pointAbsolute = { point.x, point.y };
+
+               on_mouse_move(pmouse);
+
+            }
+            break;
+            case WM_LBUTTONUP:
+            {
+
+               POINT point{ i32_x(lparam), i32_y(lparam) };
+
+               auto pmouse = __create_new < ::user::mouse >();
+
+               pmouse->m_pointHost = { point.x, point.y };
+
+               ::ClientToScreen(m_hwnd, &point);
+
+               pmouse->m_pointAbsolute = { point.x, point.y };
+
+               on_left_button_up(pmouse);
+
+            }
+            break;
+            case WM_RBUTTONDOWN:
+            {
+
+               POINT point{ i32_x(lparam), i32_y(lparam) };
+
+               auto pmouse = __create_new < ::user::mouse >();
+
+               pmouse->m_pointHost = { point.x, point.y };
+
+               ::ClientToScreen(m_hwnd, &point);
+
+               pmouse->m_pointAbsolute = { point.x, point.y };
+
+               on_right_button_down(pmouse);
+
+            }
+            break;
+            case WM_RBUTTONUP:
+            {
+
+               POINT point{ i32_x(lparam), i32_y(lparam) };
+
+               auto pmouse = __create_new < ::user::mouse >();
+
+               pmouse->m_pointHost = { point.x, point.y };
+
+               ::ClientToScreen(m_hwnd, &point);
+
+               pmouse->m_pointAbsolute = { point.x, point.y };
+
+               on_right_button_up(pmouse);
+
+            }
+            break;
+            case WM_ERASEBKGND:
+               return 1;
+            case WM_MOUSEACTIVATE:
+               return MA_ACTIVATE;
+            case WM_PAINT:
+            {
+
+               PAINTSTRUCT paintstruct{};
+
+               HDC hdcWindow = BeginPaint(m_hwnd, &paintstruct);
+
+               HDC hdc = ::CreateCompatibleDC(hdcWindow);
+
+               ::rectangle_i32 rectangleX;
+
+               ::GetClientRect(m_hwnd, (LPRECT)&rectangleX);
+
+               HBITMAP hbitmap = ::CreateCompatibleBitmap(hdcWindow, rectangleX.width(), rectangleX.height());
+
+               HGDIOBJ hbitmapOld = ::SelectObject(hdc, hbitmap);
+
+               _draw(hdc);
+
+
+               ::BitBlt(hdcWindow, 0, 0, rectangleX.width(), rectangleX.height(),
+                  hdc, 0, 0, SRCCOPY);
+
+               hbitmapOld = ::SelectObject(hdc, hbitmapOld);
+
+               ::DeleteDC(hdc);
+               EndPaint(m_hwnd, &paintstruct);
+            }
+            break;
+            case WM_NCACTIVATE:
+            {
+               LRESULT lresult = DefWindowProc(m_hwnd, message, wparam, lparam);
+               m_pinterface->m_bNcActive = wparam != 0;
+               redraw();
+
+               return lresult;
+
+            }
+            case WM_ACTIVATE:
+            {
+
+               if (wparam > 0)
+               {
+
+                  ::SetFocus(m_hwnd);
+
+               }
+
+               return 0;
+
+            }
+            case WM_FONTCHANGE:
+            {
+
+               redraw();
+
+            }
+            break;
+            case WM_SETTINGCHANGE:
+            {
+
+               string strLparamString;
+
+               if (wparam == 0)
+               {
+
+                  strLparamString = (const WCHAR*)(LPARAM(lparam));
+
+               }
+
+               if (strLparamString == "ImmersiveColorSet")
+               {
+
+                  update_drawing_objects();
+
+                  redraw();
+
+               }
+               else if (wparam == SPI_SETWORKAREA)
+               {
+
+                  redraw();
+
+               }
+
+            }
+            break;
+
+            default:
+            {
+
+               return DefWindowProc(m_hwnd, message, wparam, lparam);
+
+            }
+
+            }
+
+            return 0;
+
+         }
+
+         //
+         //
+         //HINSTANCE nano_message_box_hinstance()
+         //{
+         //
+         //   HINSTANCE hinstanceWndProc = (HINSTANCE) ::GetModuleHandleA("acme.dll");
+         //
+         //   if (hinstanceWndProc == nullptr)
+         //   {
+         //
+         //      hinstanceWndProc = (HINSTANCE)::GetModuleHandleA(NULL);
+         //
+         //   }
+         //
+         //   return hinstanceWndProc;
+         //
+         //}
+
+         //
+         //void register_nano_window_class()
+         //{
+         //
+         //   if (g_bNanoWindowClassRegistered)
+         //   {
+         //
+         //      return;
+         //
+         //   }
+         //
+         //   auto hinstanceWndProc = nano_message_box_hinstance();
+         //
+         //   WNDCLASSEX wndclassex;
+         //
+         //   //Step 1: Registering the Window Class
+         //   wndclassex.cbSize = sizeof(WNDCLASSEX);
+         //   wndclassex.style = 0;
+         //   wndclassex.lpfnWndProc = &message_box_window_procedure;
+         //   wndclassex.cbClsExtra = 0;
+         //   wndclassex.cbWndExtra = 0;
+         //   wndclassex.hInstance = hinstanceWndProc;
+         //   wndclassex.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+         //   wndclassex.hCursor = LoadCursor(NULL, IDC_ARROW);
+         //   wndclassex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+         //   wndclassex.lpszMenuName = NULL;
+         //   wndclassex.lpszClassName = _T(NANO_MESSAGE_BOX_WINDOW_CLASS);
+         //   wndclassex.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
+         //
+         //   if (!RegisterClassEx(&wndclassex))
+         //   {
+         //
+         //      throw ::exception(error_failed, "Failed to register nano message box window class.");
+         //
+         //   }
+         //
+         //   g_bNanoWindowClassRegistered = true;
+         //
+         //}
+         //
+
+         void window::display()
+         {
+
+            ::ShowWindow(m_hwnd, SW_SHOW);
+
+            ::UpdateWindow(m_hwnd);
+
+            ::BringWindowToTop(m_hwnd);
+
+         }
+
+
+
+         void window::add_child(::nano::user::child* pchild)
+         {
+
+            m_pinterface->add_child(pchild);
+
+         }
+
+
+         void window::redraw()
+         {
+
+            ::RedrawWindow(m_hwnd, nullptr, nullptr, RDW_UPDATENOW | RDW_INVALIDATE);
+
+         }
+
+
+         //void window::_destroy_window()
+         //{
+         //
+         //}
+
+
+         void window::destroy()
+         {
+
+            user_post([this]()
+               {
+
+                  //::ShowWindow(m_hwnd, SW_HIDE);
+
+                  ::DestroyWindow(m_hwnd);
+
+                  win32_process_messages();
+
+               });
+
+         }
+
+
+         //
+         //LRESULT window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
+         //{
+         //   switch (message)
+         //   {
+         //   case WM_CLOSE:
+         //      DestroyWindow(m_hwnd);
+         //      break;
+         //   case WM_DESTROY:
+         //      PostQuitMessage(0);
+         //      break;
+         //   case WM_CREATE:
+         //   {
+         //      update_drawing_objects();
+         //   }
+         //   break;
+         //   case WM_LBUTTONDOWN:
+         //      on_left_button_down(i32_x(lparam), i32_y(lparam));
+         //      break;
+         //   case WM_LBUTTONUP:
+         //   {
+         //      on_left_button_up(i32_x(lparam), i32_y(lparam));
+         //   }
+         //
+         //   break;
+         //   case WM_PAINT:
+         //   {
+         //      PAINTSTRUCT paintstruct{};
+         //      HDC hdc = BeginPaint(m_hwnd, &paintstruct);
+         //      draw(hdc);
+         //      EndPaint(m_hwnd, &paintstruct);
+         //   }
+         //   break;
+         //   default:
+         //      return DefWindowProc(m_hwnd, message, wparam, lparam);
+         //   }
+         //   return 0;
+         //}
+
+
+         void window::on_click(const ::atom& atomParam, ::user::mouse* pmouse)
+         {
+
+            auto atom = atomParam;
+
+            //fork([this, atom, pmouse]()
+               //{
+
+            m_pinterface->on_click(atom, pmouse);
+
+            //}, { pmouse });
+
+         }
+
+
+         void window::on_right_click(const ::atom& atomParam, ::user::mouse* pmouse)
+         {
+
+            auto atom = atomParam;
+
+            //fork([this, atom, pmouse]()
+              // {
+
+            m_pinterface->on_right_click(atom, pmouse);
+
+            //}, {pmouse});
+
+
+         }
+
+
+         void window::move_to(const ::point_i32& point)
+         {
+
+            ::SetWindowPos(m_hwnd, nullptr, point.x(), point.y(), 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+
+            ::GetWindowRect(m_hwnd, (RECT*)&m_pinterface->m_rectangle);
+
+         }
+
+
+         ::point_i32 window::try_absolute_mouse_position(const ::point_i32& point)
+         {
+
+            return point;
+
+         }
+
+
+         void window::get_client_rectangle(::rectangle_i32& rectangle)
+         {
+
+            ::GetClientRect(m_hwnd, (LPRECT)&rectangle);
+
+         }
+
+
+         void window::get_window_rectangle(::rectangle_i32& rectangle)
+         {
+
+            ::GetWindowRect(m_hwnd, (LPRECT)&rectangle);
+
+         }
+
+
+         void window::set_capture()
+         {
+
+            SetCapture(m_hwnd);
+
+         }
+
+
+         bool window::has_capture() const
+         {
+
+            return ::GetCapture() == m_hwnd;
+
+         }
+
+
+         void window::release_capture()
+         {
+
+            ReleaseCapture();
+
+         }
+
+
+         void window::set_cursor(enum_cursor ecursor)
+         {
+
+            if (ecursor == e_cursor_move)
+            {
+
+               ::SetCursor(::LoadCursor(NULL, IDC_SIZEALL));
+
+            }
+
+         }
+
+
+
+         ::size_i32 window::get_main_screen_size()
+         {
+
+            HWND hwndDesktop = ::GetDesktopWindow();
+
+            if (!hwndDesktop)
+            {
+
+               return ::nano::user::window_implementation::get_main_screen_size();
+
+            }
+
+            RECT r;
+
+            ::GetWindowRect(hwndDesktop, &r);
+
+            return { r.right - r.left, r.bottom - r.top };
+
+         }
+
+
+         void window::user_post(const ::procedure& procedure)
+         {
+
+            if (m_ptask)
+            {
+
+               m_ptask->post_procedure(procedure);
+
+            }
+            else
+            {
+
+               ::nano::user::window_implementation::user_post(procedure);
+
+            }
+
+
+         }
+
+
+         void window::implementation_message_loop_step()
+         {
+
+            _c_simple_message_loop_step();
+
+         }
+
+
+         void process_messages(bool bWait)
+         {
+
+            auto strThreadName = ::task_get_name();
+
+            //auto pmessagebox = m_pinterface.cast < ::nano::user::message_box >();
+
+            //::string strAbbreviation("window");
+
+            //if (strType.contains("message_box"))
+            //if (pmessagebox)
+            //{
+               //auto pmessagebox = m_pinterface.cast<nano::me
+               /// @brief ////////123456789012345
+               //strAbbreviation = "msgbx:" + pmessagebox->m_strMessage.left(20);
+
+              // strAbbreviation = "msgbx:" + pmessagebox->m_strMessage;
+
+            //}
+
+            //scoped_task_name scopedtaskname(strAbbreviation);
+
+            //::task_set_name("nanownd");
+
+            MSG msg;
+
+            while (bWait ? (::GetMessage(&msg, NULL, 0, 0) > 0) :
+               (::PeekMessage(&msg, NULL, 0, 0, TRUE)))
+            {
+
+               TranslateMessage(&msg);
+
+               DispatchMessage(&msg);
+
+            }
+
+         }
+
+
+      } // namespace user
+
+
+   } // namespace nano
 
 } // namespace windows
 
 
 
-
-
-void win32_process_messages(bool bWait)
-{
-
-   auto strThreadName = ::task_get_name();
-
-   //auto pmessagebox = m_pinterface.cast < ::nano::user::message_box >();
-
-   //::string strAbbreviation("nano::user::window");
-
-   //if (strType.contains("message_box"))
-   //if (pmessagebox)
-   //{
-      //auto pmessagebox = m_pinterface.cast<nano::me
-      /// @brief ////////123456789012345
-      //strAbbreviation = "msgbx:" + pmessagebox->m_strMessage.left(20);
-
-     // strAbbreviation = "msgbx:" + pmessagebox->m_strMessage;
-
-   //}
-
-   //scoped_task_name scopedtaskname(strAbbreviation);
-
-   //::task_set_name("nanownd");
-
-   MSG msg;
-
-   while (bWait ? (::GetMessage(& msg, NULL, 0, 0) >0) :
-      (::PeekMessage(&msg, NULL, 0, 0, TRUE)))
-   {
-
-      TranslateMessage(&msg);
-
-      DispatchMessage(&msg);
-
-   }
-
-}

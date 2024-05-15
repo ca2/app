@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/platform/system.h"
 #include "acme/_operating_system.h"
-#include "nano/window.h"
+#include "nano/user/window.h"
 
 
 static HANDLE g_hMainThread = nullptr;
@@ -113,7 +113,7 @@ void _do_tasks()
    if (is_main_thread())
    {
 
-      win32_process_messages();
+      ::windows::nano::user::process_messages();
 
    }
 

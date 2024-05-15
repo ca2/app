@@ -239,6 +239,7 @@ public:
    //}
 
 
+
    template < typename PREDICATE >
    function(const PREDICATE & predicate) :
       function()
@@ -270,7 +271,6 @@ public:
       }
 
    }
-
 
 
    template < typename PREDICATE >
@@ -391,9 +391,10 @@ public:
       PREDICATE m_predicate;
 
 
-      implementation(PREDICATE && implementation) :
-         m_predicate(::transfer(implementation))
+      implementation(PREDICATE implementation) :
+           m_predicate(implementation)
       {
+
 
       }
 
@@ -436,6 +437,7 @@ public:
    //{
 
    //}
+
 
    template < typename PREDICATE >
    function(const PREDICATE & predicate) :
@@ -565,11 +567,14 @@ public:
 
       PREDICATE m_predicate;
 
-      implementation(PREDICATE && implementation) :
-         m_predicate(::transfer(implementation))
+
+      implementation(PREDICATE implementation) :
+           m_predicate(implementation)
       {
 
+
       }
+
 
 
       RETURN_TYPE operator()(TYPES... args) override

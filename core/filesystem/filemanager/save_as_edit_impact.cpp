@@ -10,7 +10,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
-#include "acme/nano/user/nano.h"
+#include "acme/nano/user/user.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/fs/data.h"

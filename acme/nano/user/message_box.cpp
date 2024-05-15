@@ -355,82 +355,6 @@ public:
 };
 
 
-CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & atom) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
-{
-
-   auto pmessagebox = __allocate< message_box_conversation_message >();
-
-   pmessagebox->m_pobject = pparticle;
-   pmessagebox->initialize_conversation(scopedstrMessage,scopedstrTitle, emessagebox, scopedstrDetails);
-
-   //pparticle->fork([pmessagebox]()
-   //{
-
-   //initialize_nano_window(pparticle->factory());
-
-   if (::is_null(pparticle))
-   {
-
-      throw ::exception(error_null_pointer);
-      
-   }
-
-#if defined(UNIVERSAL_WINDOWS)
-
-   if(pparticle->platform()->m_bConsole || !is_ui_possible())
-   {
-
-      auto result = message_box_for_console(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
-
-      function(result);
-
-   }
-   else
-   {
-
-      throw ::exception(error_failed);
-
-   }
-   
-#endif
-
-   pparticle->system()->nano();
-   
-   //main_asynchronous([ pmessagebox, pparticle ]()
-   //{
-
-      auto pnanomessagebox = pparticle->__create_new < message_box >();
-   
-      atom idResult;
-   
-      manual_reset_event event;
-
-      pnanomessagebox->initialize_conversation(
-         pmessagebox->m_strMessage,
-         pmessagebox->m_strTitle,
-         pmessagebox->m_emessagebox,
-         pmessagebox->m_strDetails);
-
-      pnanomessagebox->m_functionClose = [ pmessagebox ](::nano::user::window * pwindow)
-      {
-      
-         auto result = pwindow->m_payloadResult;
-         
-         if(pmessagebox->m_function)
-         {
-      
-            pmessagebox->m_function(result);
-            
-         }
-      
-      };
-
-      pnanomessagebox->do_asynchronously();
-
-   //});
-
-}
-
 
 void message_box::on_click(const ::atom & atom, ::user::mouse * pmouse)
 {
@@ -602,3 +526,82 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const ::s
    return atomResult;
 
 }
+
+
+
+CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & atom) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
+{
+
+   auto pmessagebox = __allocate< ::nano::user::message_box_conversation_message >();
+
+   pmessagebox->m_pobject = pparticle;
+   pmessagebox->initialize_conversation(scopedstrMessage,scopedstrTitle, emessagebox, scopedstrDetails);
+
+   //pparticle->fork([pmessagebox]()
+   //{
+
+   //initialize_nano_window(pparticle->factory());
+
+   if (::is_null(pparticle))
+   {
+
+      throw ::exception(error_null_pointer);
+      
+   }
+
+#if defined(UNIVERSAL_WINDOWS)
+
+   if(pparticle->platform()->m_bConsole || !is_ui_possible())
+   {
+
+      auto result = message_box_for_console(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
+
+      function(result);
+
+   }
+   else
+   {
+
+      throw ::exception(error_failed);
+
+   }
+   
+#endif
+
+   pparticle->system()->nano();
+   
+   //main_asynchronous([ pmessagebox, pparticle ]()
+   //{
+
+      auto pnanomessagebox = pparticle->__create_new < ::nano::user::message_box >();
+   
+      atom idResult;
+   
+      manual_reset_event event;
+
+      pnanomessagebox->initialize_conversation(
+         pmessagebox->m_strMessage,
+         pmessagebox->m_strTitle,
+         pmessagebox->m_emessagebox,
+         pmessagebox->m_strDetails);
+
+      pnanomessagebox->m_functionClose = [ pmessagebox ](::nano::user::window * pwindow)
+      {
+      
+         auto result = pwindow->m_payloadResult;
+         
+         if(pmessagebox->m_function)
+         {
+      
+            pmessagebox->m_function(result);
+            
+         }
+      
+      };
+
+      pnanomessagebox->do_asynchronously();
+
+   //});
+
+}
+

@@ -129,7 +129,7 @@ namespace filemanager
 
                //   });
 
-               auto psequencer = nano()->message_box("Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no);
+               auto psequencer = message_box("Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no);
 
                psequencer->then([this, strPath](auto pconversation)
                      {

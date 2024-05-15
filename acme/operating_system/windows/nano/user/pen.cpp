@@ -10,35 +10,50 @@ namespace windows
 {
 
 
-   ::nano::user::pen::nano::user::pen()
+
+   namespace nano
    {
 
-      m_pthis = this;
 
-   }
-
-
-   ::nano::user::pen::~::nano::user::pen()
-   {
-
-   }
-
-
-   void ::nano::user::pen::update(::nano::user::device * pnanodevice)
-   {
-
-      if (m_bModified)
+      namespace user
       {
 
-         destroy();
+         pen::pen()
+         {
 
-         m_hgdiobj = ::CreatePen(PS_SOLID, m_iWidth, win32_COLORREF(m_color));
+            m_pthis = this;
 
-         m_bModified = false;
+         }
 
-      }
 
-   }
+         pen::~pen()
+         {
+
+         }
+
+
+         void pen::update(::nano::user::device* pnanodevice)
+         {
+
+            if (m_bModified)
+            {
+
+               destroy();
+
+               m_hgdiobj = ::CreatePen(PS_SOLID, m_iWidth, win32_COLORREF(m_color));
+
+               m_bModified = false;
+
+            }
+
+         }
+
+
+
+      } // namespace user
+
+
+   } // namespace nano
 
 
 } // namespace windows

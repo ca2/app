@@ -5,17 +5,30 @@
 
 
 #include "acme/_operating_system.h"
-//#include <Winhttp.h>
+#include <Winhttp.h>
 
 
 namespace windows
 {
 
-{
 
-   class http_connect;
-   class http_request;
-   class http_session;
+   namespace nano
+   {
+
+
+      namespace http
+      {
+
+
+         class connect;
+         class request;
+         class session;
+
+
+      } // namespace http
+
+
+   } // namespace nano
 
 
 } // namespace windows

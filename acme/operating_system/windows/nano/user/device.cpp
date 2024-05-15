@@ -20,117 +20,131 @@ namespace windows
 {
 
 
-   ::nano::user::device::nano::user::device()
+
+   namespace nano
    {
 
-      m_hdc = ::CreateCompatibleDC(nullptr);
-      m_bDelete = true;
 
-   }
-
-
-   ::nano::user::device::nano::user::device(HDC hdc)
-   {
-
-      m_hdc = hdc;
-      m_bDelete = false;
-
-   }
-
-
-   ::nano::user::device::~::nano::user::device()
-   {
-
-      if (m_bDelete)
+      namespace user
       {
 
-         ::DeleteDC(m_hdc);
+         device::device()
+         {
 
-      }
+            m_hdc = ::CreateCompatibleDC(nullptr);
+            m_bDelete = true;
 
-   }
-
-
-
-
-   void ::nano::user::device::_draw_text(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext,
-                          ::nano::user::brush * pnanobrushBack, ::nano::user::brush * pnanobrushText,
-                          ::nano::user::font * pnanofont)
-   {
-
-      COLORREF colorrefBackgroundColor = win32_COLORREF(pnanobrushBack->m_color);
-
-      SetBkColor(m_hdc, colorrefBackgroundColor);
-
-      COLORREF colorrefTextColor = win32_COLORREF(pnanobrushText->m_color);
-
-      SetTextColor(m_hdc, colorrefTextColor);
-
-      SetBkMode(m_hdc, OPAQUE);
-
-      wstring wstrMessage(str);
-
-      pnanofont->update(this);
-
-      ::SelectObject(m_hdc, (HFONT) pnanofont->operating_system_data());
-
-      TEXTMETRICW textmetricw = {};
-
-      ::GetTextMetrics(m_hdc, &textmetricw);
-
-      int iAlign = align_to_windows_draw_text_align(ealign);
-
-      int iFlag = draw_text_to_windows_draw_text(edrawtext);
-
-      ::DrawText(m_hdc, wstrMessage, (int)wstrMessage.length(), (LPRECT)&rectangleText, iAlign | iFlag);
-
-   }
+         }
 
 
-   ::size_i32 ::nano::user::device::get_text_extents(const ::string & str, ::nano::user::font * pnanofont)
-   {
+         device::device(HDC hdc)
+         {
 
-      pnanofont->update(this);
+            m_hdc = hdc;
+            m_bDelete = false;
 
-      ::SelectObject(m_hdc, (HFONT)pnanofont->operating_system_data());
-
-      wstring wstr(str);
-
-      ::SIZE size;
-
-      if (!::GetTextExtentPoint32W(m_hdc, wstr, (int) wstr.length(), &size))
-      {
-
-         throw ::exception(error_failed);
-
-      }
-
-      return { size.cx, size.cy };
-
-   }
+         }
 
 
-   void ::nano::user::device::rectangle(const ::rectangle_i32 & rectangle, ::nano::user::brush * pnanobrush, ::nano::user::pen * pnanopen)
-   {
+         device::~device()
+         {
 
-      pnanobrush->update(this);
+            if (m_bDelete)
+            {
 
-      ::SelectObject(m_hdc, (HGDIOBJ) pnanobrush->operating_system_data());
+               ::DeleteDC(m_hdc);
 
-      pnanopen->update(this);
+            }
 
-      ::SelectObject(m_hdc, (HGDIOBJ) pnanopen->operating_system_data());
-
-      ::Rectangle(m_hdc,
-                  rectangle.left(),
-                  rectangle.top(),
-                  rectangle.right(),
-                  rectangle.bottom());
+         }
 
 
-   }
 
 
+         void device::_draw_text(const ::string& str, const ::rectangle_i32& rectangleText, const ::e_align& ealign, const ::e_draw_text& edrawtext,
+            ::nano::user::brush* pnanobrushBack, ::nano::user::brush* pnanobrushText,
+            ::nano::user::font* pnanofont)
+         {
+
+            COLORREF colorrefBackgroundColor = win32_COLORREF(pnanobrushBack->m_color);
+
+            SetBkColor(m_hdc, colorrefBackgroundColor);
+
+            COLORREF colorrefTextColor = win32_COLORREF(pnanobrushText->m_color);
+
+            SetTextColor(m_hdc, colorrefTextColor);
+
+            SetBkMode(m_hdc, OPAQUE);
+
+            wstring wstrMessage(str);
+
+            pnanofont->update(this);
+
+            ::SelectObject(m_hdc, (HFONT)pnanofont->operating_system_data());
+
+            TEXTMETRICW textmetricw = {};
+
+            ::GetTextMetrics(m_hdc, &textmetricw);
+
+            int iAlign = align_to_windows_draw_text_align(ealign);
+
+            int iFlag = draw_text_to_windows_draw_text(edrawtext);
+
+            ::DrawText(m_hdc, wstrMessage, (int)wstrMessage.length(), (LPRECT)&rectangleText, iAlign | iFlag);
+
+         }
+
+
+         ::size_i32device::get_text_extents(const ::string& str, ::nano::user::font* pnanofont)
+         {
+
+            pnanofont->update(this);
+
+            ::SelectObject(m_hdc, (HFONT)pnanofont->operating_system_data());
+
+            wstring wstr(str);
+
+            ::SIZE size;
+
+            if (!::GetTextExtentPoint32W(m_hdc, wstr, (int)wstr.length(), &size))
+            {
+
+               throw ::exception(error_failed);
+
+            }
+
+            return { size.cx, size.cy };
+
+         }
+
+
+         void device::rectangle(const ::rectangle_i32& rectangle, ::nano::user::brush* pnanobrush, ::nano::user::pen* pnanopen)
+         {
+
+            pnanobrush->update(this);
+
+            ::SelectObject(m_hdc, (HGDIOBJ)pnanobrush->operating_system_data());
+
+            pnanopen->update(this);
+
+            ::SelectObject(m_hdc, (HGDIOBJ)pnanopen->operating_system_data());
+
+            ::Rectangle(m_hdc,
+               rectangle.left(),
+               rectangle.top(),
+               rectangle.right(),
+               rectangle.bottom());
+
+
+         }
+
+
+
+
+      } // namespace user
+
+
+   } // namespace nano
 
 
 } // namespace windows

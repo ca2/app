@@ -11,50 +11,65 @@ namespace windows
 {
 
 
-   nano_object::nano_object()
+   namespace nano
    {
 
-      m_hgdiobj = nullptr;
 
-   }
-
-
-   nano_object::~nano_object()
-   {
-
-      if(m_hgdiobj)
+      namespace user
       {
 
-         ::DeleteObject(m_hgdiobj);
 
-         m_hgdiobj = nullptr;
+         object::object()
+         {
 
-      }
+            m_hgdiobj = nullptr;
 
-   }
-
-
-   void * nano_object::operating_system_data()
-   {
-
-      return m_hgdiobj;
-
-   }
+         }
 
 
-   void nano_object::destroy()
-   {
-    
-      if (m_hgdiobj)
-      {
+         object::~object()
+         {
 
-         ::DeleteObject(m_hgdiobj);
+            if (m_hgdiobj)
+            {
 
-         m_hgdiobj = nullptr;
+               ::DeleteObject(m_hgdiobj);
 
-      }
+               m_hgdiobj = nullptr;
 
-   }
+            }
+
+         }
+
+
+         void* object::operating_system_data()
+         {
+
+            return m_hgdiobj;
+
+         }
+
+
+         void object::destroy()
+         {
+
+            if (m_hgdiobj)
+            {
+
+               ::DeleteObject(m_hgdiobj);
+
+               m_hgdiobj = nullptr;
+
+            }
+
+         }
+
+
+
+      } // namespace user
+
+
+   } // namespace nano
 
 
 } // namespace windows

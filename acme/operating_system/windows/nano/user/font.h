@@ -11,27 +11,43 @@
 namespace windows
 {
 
-
-   class CLASS_DECL_ACME ::nano::user::font :
-      virtual public ::nano::user::font,
-      virtual public nano_object
+   namespace nano
    {
-   public:
-
-      //CreatableFromBase(::nano::user::font, ::nano::user::font);
 
 
-      ::nano::user::font();
-      ~::nano::user::font() override;
+      namespace user
+      {
 
 
-      void update(::nano::user::device * pnanodevice) override;
+
+         class CLASS_DECL_ACME font :
+            virtual public ::nano::user::font,
+            virtual public nano_object
+         {
+         public:
+
+            //CreatableFromBase(::nano::user::font, ::nano::user::font);
 
 
-      static HFONT _create_point_font(int nPointSize, const ::scoped_string & scopedstrFaceName, bool bBold, HDC hdc, LOGFONTW * plf);
-      static HFONT _create_point_font_indirect(LOGFONTW * pLogFont, HDC hdc);
+            font();
+            ~font() override;
 
-   };
+
+            void update(::nano::user::device* pnanodevice) override;
+
+
+            static HFONT _create_point_font(int nPointSize, const ::scoped_string& scopedstrFaceName, bool bBold, HDC hdc, LOGFONTW* plf);
+            static HFONT _create_point_font_indirect(LOGFONTW* pLogFont, HDC hdc);
+
+         };
+
+
+
+      } // namespace user
+
+
+   } // namespace nano
+
 
 
 } // namespace windows

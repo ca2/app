@@ -10,35 +10,50 @@ namespace windows
 {
 
 
-   ::nano::user::brush::nano::user::brush()
+
+   namespace nano
    {
 
-      m_pthis = this; 
 
-   }
-
-
-   ::nano::user::brush::~::nano::user::brush()
-   {
-
-   }
-
-
-   void ::nano::user::brush::update(::nano::user::device * pnanodevice)
-   {
-
-      if (m_bModified)
+      namespace user
       {
 
-         destroy();
+         brush::brush()
+         {
 
-         m_hgdiobj = ::CreateSolidBrush(win32_COLORREF(m_color));
+            m_pthis = this;
 
-         m_bModified = false;
+         }
 
-      }
 
-   }
+         brush::~brush()
+         {
+
+         }
+
+
+         void brush::update(::nano::user::device* pnanodevice)
+         {
+
+            if (m_bModified)
+            {
+
+               destroy();
+
+               m_hgdiobj = ::CreateSolidBrush(win32_COLORREF(m_color));
+
+               m_bModified = false;
+
+            }
+
+         }
+
+
+
+      } // namespace user
+
+
+   } // namespace nano
 
 
 } // namespace windows

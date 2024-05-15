@@ -12,24 +12,39 @@ namespace windows
 {
 
 
-   class CLASS_DECL_ACME ::nano::user::brush :
-      virtual public ::nano::user::brush,
-      virtual public nano_object
+
+   namespace nano
    {
-   public:
 
 
-      //CreatableFromBase(::nano::user::brush, ::nano::user::brush);
+      namespace user
+      {
+
+         class CLASS_DECL_ACME brush :
+            virtual public ::nano::user::brush,
+            virtual public nano_object
+         {
+         public:
 
 
-      ::nano::user::brush();
-      ~::nano::user::brush() override;
-
-      
-      void update(::nano::user::device * pnanodevice) override;
+            //CreatableFromBase(brush, brush);
 
 
-   };
+            brush();
+            ~brush() override;
+
+
+            void update(::nano::user::device* pnanodevice) override;
+
+
+         };
+
+
+
+      } // namespace user
+
+
+   } // namespace nano
 
 
 } // namespace windows

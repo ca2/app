@@ -12,26 +12,43 @@ namespace windows
 {
 
 
-   class CLASS_DECL_ACME nano_object :
-      virtual public ::nano_object
+
+
+   namespace nano
    {
-   public:
 
 
-      HGDIOBJ     m_hgdiobj;
+      namespace user
+      {
 
 
-      nano_object();
-      ~nano_object();
+         class CLASS_DECL_ACME object :
+            virtual public ::nano::user::object
+         {
+         public:
 
 
-      void * operating_system_data() override;
+            HGDIOBJ     m_hgdiobj;
 
 
-      void destroy() override;
+            nano_object();
+            ~nano_object();
 
 
-   };
+            void* operating_system_data() override;
+
+
+            void destroy() override;
+
+
+         };
+
+
+
+      } // namespace user
+
+
+   } // namespace nano
 
 
 } // namespace windows

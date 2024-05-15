@@ -112,7 +112,6 @@ public:
 
 #endif
 
-
    //inline ::acme::system* system() const;
 
    //inline element_array * _composite_array() { return m_pcompositea; }

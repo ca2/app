@@ -12,6 +12,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/filesystem/filesystem/listing.h"
+#include "acme/nano/http/get.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/primitive/primitive/url_domain.h"
 #include "acme/parallelization/event.h"
@@ -26,7 +27,8 @@
 //#include "acme/primitive/string/hex.h"
 #include "acme/primitive/string/str.h"
 #include "acme/user/user/conversation.h"
-#include "acme/user/nano/nano.h"
+#include "acme/nano/nano.h"
+#include "acme/nano/user/user.h"
 #include "acme/crypto/crypto.h"
 #include "acme/crypto/hasher.h"
 #include "acme/filesystem/filesystem/dir_system.h"
@@ -962,7 +964,7 @@ void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &me
    catch (const ::exception & exception)
    {
 
-      auto psequencer = nano()->exception_message_console(exception);
+      auto psequencer = nano()->user()->exception_message_console(exception);
 
       psequencer->do_asynchronously();
 
@@ -3518,11 +3520,21 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
 
    }
 
-   property_set set = payloadFile["http_set"].propset();
+   property_set & set = payloadFile["http_set"].property_set_reference();
+   
+   auto pget = __create_new < ::nano::http::get >();
+   
+   pget->m_strUrl = path;
+   
+   pget->m_timeSyncTimeout = 5_hour;
 
+   context()->sync(pget);
+   
    auto pmemoryfile = create_memory_file();
-
-   *pmemoryfile->get_primitive_memory() = context()->http_memory(path, set);
+   
+   *pmemoryfile->get_primitive_memory() = pget->m_memory;
+   
+   set = pget->m_setOut;
    //{
 
    //   return ::error_failed;

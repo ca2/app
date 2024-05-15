@@ -563,10 +563,3 @@ void apple_set_application_delegate(void * pApplication, void * pDelegate)
 
 }
 
-
-::user::enum_desktop calculate_edesktop()
-{
-   
-   return ::user::e_desktop_unknown;
-   
-}

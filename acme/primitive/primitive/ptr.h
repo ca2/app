@@ -209,6 +209,16 @@ public:
    }
    
    
+   template < typename T2 >
+   ptr & operator = (T2 * p2)
+   {
+      
+      auto p = dynamic_cast < TYPE * >(p2);
+      
+      return this->operator=(p);
+      
+   }
+   
    ::ptr < TYPE > & operator = (const ::ptr < TYPE > & p)
    {
       

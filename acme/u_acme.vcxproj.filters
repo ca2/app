@@ -191,14 +191,8 @@
     <Filter Include="Source Files\operating_system\universal_windows\nano">
       <UniqueIdentifier>{a01091f7-e243-45ad-9187-dcd81d0dd111}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\user\nano">
-      <UniqueIdentifier>{9596b8ca-86c2-4795-9f67-f015ed936bb1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user\user">
       <UniqueIdentifier>{e85e4dc8-53d1-4bf0-8a2c-c1cee8df7ab7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\user\nano">
-      <UniqueIdentifier>{fab5b1bc-2035-4f53-b7e8-3a522d9fc6a1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\user\user">
       <UniqueIdentifier>{bcf1dc20-5b72-4097-b55d-82be4da56523}</UniqueIdentifier>
@@ -251,12 +245,6 @@
     <Filter Include="Source Files\primitive\time\time">
       <UniqueIdentifier>{5da65cd5-e479-4833-a68d-223b0257d317}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\operating_system\universal_windows\nano_http">
-      <UniqueIdentifier>{686383b8-a61e-405b-807c-5eb7d8e6bc63}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\operating_system\universal_windows\nano_http">
-      <UniqueIdentifier>{819a17e3-a5ba-494f-b62f-b01e31589f52}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\crypto">
       <UniqueIdentifier>{2d533553-725f-4935-a586-02700caa8d9c}</UniqueIdentifier>
     </Filter>
@@ -289,6 +277,48 @@
     </Filter>
     <Filter Include="Source Files\memory\allocator">
       <UniqueIdentifier>{ea76a24e-cf5e-4d9e-ab1d-e1ffc3841912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\universal_windows\nano\user">
+      <UniqueIdentifier>{ad917fe0-6fe9-408b-b3e3-2eda124edcc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\universal_windows\nano\http">
+      <UniqueIdentifier>{686383b8-a61e-405b-807c-5eb7d8e6bc63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\universal_windows\nano\http">
+      <UniqueIdentifier>{819a17e3-a5ba-494f-b62f-b01e31589f52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\universal_windows\nano\user">
+      <UniqueIdentifier>{55d38c5f-e9b4-4c96-96dc-40cb2dfba599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\windows_common\nano">
+      <UniqueIdentifier>{713a5d22-26eb-4f5e-8ad6-08fca89e67dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\windows_common\nano\user">
+      <UniqueIdentifier>{91c7dc47-6ffd-4609-b486-a28329254865}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nano">
+      <UniqueIdentifier>{9a00577e-3ca4-4040-82f9-ac71de522874}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nano\http">
+      <UniqueIdentifier>{d77e0b8d-a965-45a2-af5e-fe9040667efb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nano\user">
+      <UniqueIdentifier>{b4266df5-39c0-4407-a38a-1d04f9e0c336}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nano\speech">
+      <UniqueIdentifier>{bf0a0821-2633-441b-ae53-636747d8f66d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano">
+      <UniqueIdentifier>{8b08bad3-ece3-4392-a8c2-b9a91a79bbf1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano\http">
+      <UniqueIdentifier>{28b4d7ba-6414-40c0-8163-8505450268a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano\speech">
+      <UniqueIdentifier>{fd078288-af93-42c9-a506-8fe0073c6a39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano\user">
+      <UniqueIdentifier>{e919c976-2b21-4647-9cb7-09ec738962c7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1018,54 +1048,6 @@
     <ClCompile Include="user\user\text.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\nano\_nano.cpp">
-      <Filter>Source Files\user\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="user\nano\brush.cpp">
-      <Filter>Source Files\user\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="user\nano\button.cpp">
-      <Filter>Source Files\user\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="user\nano\child.cpp">
-      <Filter>Source Files\user\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="user\nano\details_window.cpp">
-      <Filter>Source Files\user\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="user\nano\device.cpp">
-      <Filter>Source Files\user\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="user\nano\font.cpp">
-      <Filter>Source Files\user\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="user\nano\message_box.cpp">
-      <Filter>Source Files\user\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="user\nano\object.cpp">
-      <Filter>Source Files\user\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="user\nano\pen.cpp">
-      <Filter>Source Files\user\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="user\nano\popup_button.cpp">
-      <Filter>Source Files\user\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="user\nano\still.cpp">
-      <Filter>Source Files\user\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="user\nano\window.cpp">
-      <Filter>Source Files\user\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="user\nano\window_implementation.cpp">
-      <Filter>Source Files\user\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="user\nano\window_interface.cpp">
-      <Filter>Source Files\user\nano</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\nano\window.cpp">
-      <Filter>Source Files\operating_system\universal_windows\nano</Filter>
-    </ClCompile>
     <ClCompile Include="exception\library_not_loaded.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
@@ -1140,9 +1122,6 @@
     </ClCompile>
     <ClCompile Include="primitive\string\character.cpp">
       <Filter>Source Files\primitive\string</Filter>
-    </ClCompile>
-    <ClCompile Include="user\nano\display.cpp">
-      <Filter>Source Files\user\nano</Filter>
     </ClCompile>
     <ClCompile Include="primitive\string\_string.cpp">
       <Filter>Source Files\primitive\string</Filter>
@@ -1278,9 +1257,6 @@
     </ClCompile>
     <ClCompile Include="parallelization\synchronizer.cpp">
       <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="user\nano\nano.cpp">
-      <Filter>Source Files\user\nano</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\debug.cpp">
       <Filter>Source Files\operating_system\windows_common</Filter>
@@ -1489,23 +1465,8 @@
     <ClCompile Include="primitive\time\time\posix_time.cpp">
       <Filter>Source Files\primitive\time\time</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows_common\user.cpp">
-      <Filter>Source Files\operating_system\windows_common</Filter>
-    </ClCompile>
     <ClCompile Include="platform\muldiv64.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\nano_http.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\nano_http_response.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\nano_http\_nano_http.cpp">
-      <Filter>Source Files\operating_system\universal_windows\nano_http</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\nano_http\http.cpp">
-      <Filter>Source Files\operating_system\universal_windows\nano_http</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\link.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
@@ -1665,6 +1626,81 @@
     </ClCompile>
     <ClCompile Include="parallelization\queue.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\universal_windows\nano\user\window.cpp">
+      <Filter>Source Files\operating_system\universal_windows\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\universal_windows\nano\http\_http.cpp">
+      <Filter>Source Files\operating_system\universal_windows\nano\http</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\universal_windows\nano\http\http.cpp">
+      <Filter>Source Files\operating_system\universal_windows\nano\http</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\nano\user\_user.cpp">
+      <Filter>Source Files\operating_system\windows_common\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\user\_user.cpp">
+      <Filter>Source Files\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\user\brush.cpp">
+      <Filter>Source Files\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\user\button.cpp">
+      <Filter>Source Files\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\user\child.cpp">
+      <Filter>Source Files\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\user\details_window.cpp">
+      <Filter>Source Files\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\user\device.cpp">
+      <Filter>Source Files\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\user\display.cpp">
+      <Filter>Source Files\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\user\font.cpp">
+      <Filter>Source Files\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\user\message_box.cpp">
+      <Filter>Source Files\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\user\object.cpp">
+      <Filter>Source Files\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\user\pen.cpp">
+      <Filter>Source Files\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\user\popup_button.cpp">
+      <Filter>Source Files\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\user\still.cpp">
+      <Filter>Source Files\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\user\user.cpp">
+      <Filter>Source Files\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\user\window.cpp">
+      <Filter>Source Files\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\user\window_implementation.cpp">
+      <Filter>Source Files\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\user\window_interface.cpp">
+      <Filter>Source Files\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\speech\speech.cpp">
+      <Filter>Source Files\nano\speech</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\http\get.cpp">
+      <Filter>Source Files\nano\http</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\http\http.cpp">
+      <Filter>Source Files\nano\http</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\nano.cpp">
+      <Filter>Source Files\nano</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3465,51 +3501,6 @@
     <ClInclude Include="handler\extended_topic.h">
       <Filter>Header Files\handler</Filter>
     </ClInclude>
-    <ClInclude Include="user\nano\_nano.h">
-      <Filter>Header Files\user\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="user\nano\brush.h">
-      <Filter>Header Files\user\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="user\nano\button.h">
-      <Filter>Header Files\user\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="user\nano\child.h">
-      <Filter>Header Files\user\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="user\nano\details_window.h">
-      <Filter>Header Files\user\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="user\nano\device.h">
-      <Filter>Header Files\user\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="user\nano\font.h">
-      <Filter>Header Files\user\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="user\nano\message_box.h">
-      <Filter>Header Files\user\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="user\nano\object.h">
-      <Filter>Header Files\user\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="user\nano\pen.h">
-      <Filter>Header Files\user\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="user\nano\popup_button.h">
-      <Filter>Header Files\user\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="user\nano\still.h">
-      <Filter>Header Files\user\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="user\nano\window.h">
-      <Filter>Header Files\user\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="user\nano\window_implementation.h">
-      <Filter>Header Files\user\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="user\nano\window_interface.h">
-      <Filter>Header Files\user\nano</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\theme_colors.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -3548,12 +3539,6 @@
     </ClInclude>
     <ClInclude Include="user\user\_.h">
       <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\nano\window.h">
-      <Filter>Header Files\operating_system\universal_windows\nano</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\nano\_.h">
-      <Filter>Header Files\operating_system\universal_windows\nano</Filter>
     </ClInclude>
     <ClInclude Include="include\_c.h">
       <Filter>Header Files\include</Filter>
@@ -3969,12 +3954,6 @@
     <ClInclude Include="platform\nano_http.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\nano_http\_nano_http.h">
-      <Filter>Header Files\operating_system\universal_windows\nano_http</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\universal_windows\nano_http\http.h">
-      <Filter>Header Files\operating_system\universal_windows\nano_http</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\filesystem\link.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
@@ -4040,6 +4019,84 @@
     </ClInclude>
     <ClInclude Include="parallelization\queue.h">
       <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\universal_windows\nano\http\http.h">
+      <Filter>Header Files\operating_system\universal_windows\nano\http</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\universal_windows\nano\http\_http.h">
+      <Filter>Header Files\operating_system\universal_windows\nano\http</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\universal_windows\nano\user\window.h">
+      <Filter>Header Files\operating_system\universal_windows\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\universal_windows\nano\user\_.h">
+      <Filter>Header Files\operating_system\universal_windows\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\http\get.h">
+      <Filter>Header Files\nano\http</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\http\_.h">
+      <Filter>Header Files\nano\http</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\window_interface.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\window_implementation.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\window.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\user.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\still.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\popup_button.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\pen.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\object.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\message_box.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\font.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\display.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\device.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\details_window.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\child.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\button.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\brush.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\aaa_nano.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\_.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\speech\speech.h">
+      <Filter>Header Files\nano\speech</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\speech\_.h">
+      <Filter>Header Files\nano\speech</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

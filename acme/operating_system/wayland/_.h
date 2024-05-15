@@ -30,7 +30,6 @@
 //#include <X11/Xatom.h>
 
 //#undef pointer
-void copy(xdg_toplevel_resize_edge * presizeedge, ::experience::enum_frame * peframeSizing);
 
 
 
@@ -90,27 +89,37 @@ void copy(xdg_toplevel_resize_edge * presizeedge, ::experience::enum_frame * pef
 //
 //};
 
-
-inline bool xdg_toplevel_state_array_contains(::wl_array * pwlarray, xdg_toplevel_state state)
+namespace wayland
 {
 
-   ::collection::count c = pwlarray->size / sizeof(state);
-
-   for(::collection::index i = 0; i < c; i++)
+   namespace nano
    {
 
-      if(((xdg_toplevel_state *)pwlarray->data)[i] == state)
+      namespace user
       {
+         void copy(xdg_toplevel_resize_edge * presizeedge, ::experience::enum_frame * peframeSizing);
 
-         return true;
+         inline bool xdg_toplevel_state_array_contains(::wl_array * pwlarray, xdg_toplevel_state state)
+         {
 
-      }
+            ::collection::count c = pwlarray->size / sizeof(state);
 
-   }
+            for(::collection::index i = 0; i < c; i++)
+            {
 
-   return false;
+               if(((xdg_toplevel_state *)pwlarray->data)[i] == state)
+               {
 
-}
+                  return true;
 
+               }
 
+            }
+
+            return false;
+
+         }
+      } // namespace user
+   } // namespace nano
+} // namespace wayland
 

@@ -82,6 +82,9 @@ class CLASS_DECL_ACME property :
 public:
 
 
+   using PRIMITIVE_PAYLOAD_TAG = PRIMITIVE_PAYLOAD_TAG_TYPE;
+
+
    using TYPE1 = ::atom;
    using ARG_TYPE1 = const ::atom &;
    using TYPE2 = payload;

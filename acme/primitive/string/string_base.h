@@ -2,13 +2,34 @@
 
 
 #include "string_iterator.h"
+#ifdef   _STDIO_H_
+#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(1))"
+#endif
 #include "string_meta_data.h"
+#ifdef   _STDIO_H_
+#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(2))"
+#endif
 #include "const_string_range.h"
+#ifdef   _STDIO_H_
+#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(3))"
+#endif
 #include "string_range.h"
+#ifdef   _STDIO_H_
+#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(4))"
+#endif
 #include "mutable_string_range.h"
+#ifdef   _STDIO_H_
+#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(5))"
+#endif
 #include "acme/primitive/primitive/function.h"
+#ifdef   _STDIO_H_
+#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(A))"
+#endif
 //#include "acme/memory/string_memory_allocator.h"
 #include "acme/memory/memory.h"
+#ifdef   _STDIO_H_
+#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(C))"
+#endif
 
 
 template < typename ITERATOR_TYPE >
@@ -1107,7 +1128,7 @@ public:
    constexpr bool starts_with_word(const SCOPED_STRING& range) const
    {
 
-      return this->starts_with_word(range, ::string_get_word_separated_by_spaces < ITERATOR_TYPE >);
+      return this->starts_with_word(range, &::string_get_word_separated_by_spaces < ITERATOR_TYPE >);
 
    }
 

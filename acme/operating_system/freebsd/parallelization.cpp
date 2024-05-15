@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/operating_system/ansi/_pthread.h"
 #include "acme/platform/system.h"
-#include "acme/user/nano/display.h"
+#include "acme/nano/user/display.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/node.h"
 
@@ -229,7 +229,7 @@ CLASS_DECL_ACME ::acme::system * system();
 //   void system::windowing_post(const ::procedure &procedure)
 //   {
 //
-//      ::nano::display::g_p->display_post(procedure);
+//      ::nano::user::display::g_p->display_post(procedure);
 //
 //   }
 //
@@ -305,7 +305,7 @@ namespace acme
 
       information() << "acme::node::user_post going to display_post";
 
-      ::nano::display::g_p->display_post(procedure);
+      ::nano::user::display::g_p->display_post(procedure);
 
    }
 

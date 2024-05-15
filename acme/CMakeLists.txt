@@ -305,6 +305,52 @@ list(APPEND library_source
 #   memory/string_memory_allocate.cpp
 #   memory/string_memory_allocate.h
 #   memory/string_memory_allocator.h
+        nano/http/_.h
+   nano/http/http.cpp
+   nano/http/http.h
+   nano/http/get.cpp
+   nano/http/get.h
+        nano/speech/_.h
+   nano/speech/speech.cpp
+   nano/speech/speech.h
+   nano/user/_user.cpp
+   nano/user/_.h
+   nano/user/brush.cpp
+   nano/user/brush.h
+   nano/user/button.cpp
+   nano/user/button.h
+   nano/user/child.cpp
+   nano/user/child.h
+   nano/user/details_window.cpp
+   nano/user/details_window.h
+   nano/user/device.cpp
+   nano/user/device.h
+   nano/user/device.h
+   nano/user/display.cpp
+   nano/user/display.h
+   nano/user/font.cpp
+   nano/user/font.h
+   nano/user/message_box.cpp
+   nano/user/message_box.h
+   nano/user/user.cpp
+   nano/user/user.h
+   nano/user/object.cpp
+   nano/user/object.h
+   nano/user/pen.cpp
+   nano/user/pen.h
+   nano/user/popup_button.cpp
+   nano/user/popup_button.h
+   nano/user/still.cpp
+   nano/user/still.h
+   nano/user/window.cpp
+   nano/user/window.h
+   nano/user/window_implementation.cpp
+   nano/user/window_implementation.h
+   nano/user/window_interface.cpp
+   nano/user/window_interface.h
+   nano/nano.cpp
+        nano/nano.h
+        nano/_.h
    #networking/top_level_domain_list.cpp
    #networking/net.cpp
    #networking/net.h
@@ -447,10 +493,10 @@ list(APPEND library_source
    platform/message.h
    #platform/message_box.cpp
    #platform/muldiv64.cpp
-   platform/nano_http.cpp
-   platform/nano_http.h
-   platform/nano_http_response.cpp
-   platform/nano_http_response.h
+#   platform/nano_http.cpp
+#   platform/nano_http.h
+#   platform/nano_http_response.cpp
+#   platform/nano_http_response.h
    platform/nanosecond_timer.cpp
    platform/nanosecond_timer.h
    platform/node.cpp
@@ -1023,41 +1069,41 @@ list(APPEND library_source
    regular_expression/regular_expression.h
    regular_expression/result.cpp
    regular_expression/result.h
-   user/nano/_nano.cpp
-   user/nano/_.h
-   user/nano/brush.cpp
-   user/nano/brush.h
-   user/nano/button.cpp
-   user/nano/button.h
-   user/nano/child.cpp
-   user/nano/child.h
-   user/nano/details_window.cpp
-   user/nano/details_window.h
-   user/nano/device.cpp
-   user/nano/device.h
-   user/nano/device.h
-   user/nano/display.cpp
-   user/nano/display.h
-   user/nano/font.cpp
-   user/nano/font.h
-   user/nano/message_box.cpp
-   user/nano/message_box.h
-   user/nano/nano.cpp
-   user/nano/nano.h
-   user/nano/object.cpp
-   user/nano/object.h
-   user/nano/pen.cpp
-   user/nano/pen.h
-   user/nano/popup_button.cpp
-   user/nano/popup_button.h
-   user/nano/still.cpp
-   user/nano/still.h
-   user/nano/window.cpp
-   user/nano/window.h
-   user/nano/window_implementation.cpp
-   user/nano/window_implementation.h
-   user/nano/window_interface.cpp
-   user/nano/window_interface.h
+#   user/nano/_nano.cpp
+#   user/nano/_.h
+#   user/nano/brush.cpp
+#   user/nano/brush.h
+#   user/nano/button.cpp
+#   user/nano/button.h
+#   user/nano/child.cpp
+#   user/nano/child.h
+#   user/nano/details_window.cpp
+#   user/nano/details_window.h
+#   user/nano/device.cpp
+#   user/nano/device.h
+#   user/nano/device.h
+#   user/nano/display.cpp
+#   user/nano/display.h
+#   user/nano/font.cpp
+#   user/nano/font.h
+#   user/nano/message_box.cpp
+#   user/nano/message_box.h
+#   user/nano/nano.cpp
+#   user/nano/nano.h
+#   user/nano/object.cpp
+#   user/nano/object.h
+#   user/nano/pen.cpp
+#   user/nano/pen.h
+#   user/nano/popup_button.cpp
+#   user/nano/popup_button.h
+#   user/nano/still.cpp
+#   user/nano/still.h
+#   user/nano/window.cpp
+#   user/nano/window.h
+#   user/nano/window_implementation.cpp
+#   user/nano/window_implementation.h
+#   user/nano/window_interface.cpp
+#   user/nano/window_interface.h
    user/user/_string.cpp
    user/user/_string.h
    user/user/_text_stream.h
@@ -1903,33 +1949,33 @@ if (WIN32)
       #operating_system/windows/_operating_system_windows.h
       #operating_system/windows/_operating_system_windows_private.h
       #operating_system/windows/_windows.h
-      operating_system/windows/nano/_nano.cpp
-      operating_system/windows/nano/brush.cpp
-      operating_system/windows/nano/brush.h
-      operating_system/windows/nano/device.cpp
-      operating_system/windows/nano/device.h
-      operating_system/windows/nano/font.cpp
-      operating_system/windows/nano/font.h
-      operating_system/windows/nano/object.h
-      operating_system/windows/nano/object.cpp
-      operating_system/windows/nano/pen.cpp
-      operating_system/windows/nano/pen.h
-      operating_system/windows/nano/window.cpp
-      operating_system/windows/nano/window.h
-      operating_system/windows/nano_http/_nano_http.cpp
-      operating_system/windows/nano_http/_nano_http.h
-      operating_system/windows/nano_http/hinternet.cpp
-      operating_system/windows/nano_http/hinternet.h
-      operating_system/windows/nano_http/http.cpp
-      operating_system/windows/nano_http/http.h
-      operating_system/windows/nano_http/http_connect.cpp
-      operating_system/windows/nano_http/http_connect.h
-      operating_system/windows/nano_http/http_get.cpp
-      operating_system/windows/nano_http/http_get.h
-      operating_system/windows/nano_http/http_request.cpp
-      operating_system/windows/nano_http/http_request.h
-      operating_system/windows/nano_http/http_session.cpp
-      operating_system/windows/nano_http/http_session.h
+      operating_system/windows/nano/user/_user.cpp
+      operating_system/windows/nano/user/brush.cpp
+      operating_system/windows/nano/user/brush.h
+      operating_system/windows/nano/user/device.cpp
+      operating_system/windows/nano/user/device.h
+      operating_system/windows/nano/user/font.cpp
+      operating_system/windows/nano/user/font.h
+      operating_system/windows/nano/user/object.h
+      operating_system/windows/nano/user/object.cpp
+      operating_system/windows/nano/user/pen.cpp
+      operating_system/windows/nano/user/pen.h
+      operating_system/windows/nano/user/window.cpp
+      operating_system/windows/nano/user/window.h
+      operating_system/windows/nano/user/http/_nano_http.cpp
+      operating_system/windows/nano/http/_nano_http.h
+      operating_system/windows/nano/http/hinternet.cpp
+      operating_system/windows/nano/http/hinternet.h
+      operating_system/windows/nano/http/http.cpp
+      operating_system/windows/nano/http/http.h
+      operating_system/windows/nano/http/http_connect.cpp
+      operating_system/windows/nano/http/http_connect.h
+      operating_system/windows/nano/http/http_get.cpp
+      operating_system/windows/nano/http/http_get.h
+      operating_system/windows/nano/http/http_request.cpp
+      operating_system/windows/nano/http/http_request.h
+      operating_system/windows/nano/http/http_session.cpp
+      operating_system/windows/nano/http/http_session.h
    )
 else ()
 
@@ -2038,12 +2084,12 @@ endif ()
 if (${CURL_NANO_HTTP})
 
    list(APPEND library_source
-      operating_system/curl/nano_http/_nano_http.cpp
-      operating_system/curl/nano_http/_nano_http.h
-      operating_system/curl/nano_http/curl_easy.cpp
-      operating_system/curl/nano_http/curl_easy.h
-      operating_system/curl/nano_http/http.cpp
-      operating_system/curl/nano_http/http.h)
+      operating_system/curl/nano/http/_nano_http.cpp
+      operating_system/curl/nano/http/_nano_http.h
+      operating_system/curl/nano/http/curl_easy.cpp
+      operating_system/curl/nano/http/curl_easy.h
+      operating_system/curl/nano/http/http.cpp
+      operating_system/curl/nano/http/http.h)
 
    list(APPEND extra_pkg_modules libcurl)
 
@@ -2054,17 +2100,17 @@ if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
    if(${HAS_WAYLAND})
 list(APPEND library_source
-      operating_system/wayland/nano/_nano.cpp
-      operating_system/wayland/nano/_.h
-      operating_system/wayland/nano/display.cpp
-      operating_system/wayland/nano/display.h
-      operating_system/wayland/nano/display_base.cpp
-      operating_system/wayland/nano/display_base.h
-      operating_system/wayland/nano/event_listener.h
-      operating_system/wayland/nano/window.h
-      operating_system/wayland/nano/window.cpp
-      operating_system/wayland/nano/window_base.cpp
-      operating_system/wayland/nano/window_base.h
+      operating_system/wayland/nano/user/_user.cpp
+      operating_system/wayland/nano/user/_.h
+      operating_system/wayland/nano/user/display.cpp
+      operating_system/wayland/nano/user/display.h
+      operating_system/wayland/nano/user/display_base.cpp
+      operating_system/wayland/nano/user/display_base.h
+      operating_system/wayland/nano/user/event_listener.h
+      operating_system/wayland/nano/user/window.h
+      operating_system/wayland/nano/user/window.cpp
+      operating_system/wayland/nano/user/window_base.cpp
+      operating_system/wayland/nano/user/window_base.h
       operating_system/wayland/_.h
       operating_system/wayland/_.cpp
       operating_system/wayland/wayland-gtk_shell1.c
@@ -2079,19 +2125,19 @@ list(APPEND library_source
    endif()
 
    list(APPEND library_source
-      operating_system/cairo/nano/_nano.cpp
-      operating_system/cairo/nano/device.cpp
-      operating_system/cairo/nano/device.h
-      operating_system/x11/nano/_.h
-      operating_system/x11/nano/_nano.cpp
-      operating_system/x11/nano/_.h
-      operating_system/x11/nano/display.cpp
-      operating_system/x11/nano/display.h
-      operating_system/x11/nano/event_listener.h
-      operating_system/x11/nano/nano.cpp
-      operating_system/x11/nano/nano.h
-      operating_system/x11/nano/window.h
-      operating_system/x11/nano/window.cpp
+      operating_system/cairo/nano/user/_user.cpp
+      operating_system/cairo/nano/user/device.cpp
+      operating_system/cairo/nano/user/device.h
+      operating_system/x11/nano/user/_.h
+      operating_system/x11/nano/user/_user.cpp
+      operating_system/x11/nano/user/_.h
+      operating_system/x11/nano/user/display.cpp
+      operating_system/x11/nano/user/display.h
+      operating_system/x11/nano/user/event_listener.h
+      operating_system/x11/nano/user/user.cpp
+      operating_system/x11/nano/user/user.h
+      operating_system/x11/nano/user/window.h
+      operating_system/x11/nano/user/window.cpp
       operating_system/x11/_.cpp
       operating_system/x11/_atom.cpp
       operating_system/x11/_atom.h
@@ -2100,13 +2146,13 @@ list(APPEND library_source
       operating_system/x11/keyboard.cpp
       operating_system/x11/keyboard.h
       operating_system/x11/system.cpp
-      operating_system/xcb/nano/_nano.cpp
-      operating_system/xcb/nano/_.h
-      operating_system/xcb/nano/display.cpp
-      operating_system/xcb/nano/display.h
-      operating_system/xcb/nano/event_listener.h
-      operating_system/xcb/nano/window.h
-      operating_system/xcb/nano/window.cpp
+      operating_system/xcb/nano/user/_user.cpp
+      operating_system/xcb/nano/user/_.h
+      operating_system/xcb/nano/user/display.cpp
+      operating_system/xcb/nano/user/display.h
+      operating_system/xcb/nano/user/event_listener.h
+      operating_system/xcb/nano/user/window.h
+      operating_system/xcb/nano/user/window.cpp
       operating_system/xcb/_.h
       operating_system/xcb/_.cpp
 
@@ -2692,7 +2738,8 @@ if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+        operating_system/posix/file.h)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

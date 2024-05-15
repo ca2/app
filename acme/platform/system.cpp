@@ -6,7 +6,8 @@
 #include "system.h"
 #include "sequencer.h"
 #include "application.h"
-#include "nano_http.h"
+#include "acme/nano/nano.h"
+#include "acme/nano/http/http.h"
 #include "session.h"
 #include "simple_log.h"
 #include "hyperlink.h"
@@ -34,8 +35,8 @@
 #include "acme/regular_expression/context.h"
 //#include "acme/primitive/primitive/payload.h"
 //#include "acme/primitive/string/hex.h"
-#include "acme/user/nano/nano.h"
-#include "nano_http.h"
+#include "acme/nano/user/user.h"
+#include "acme/nano/http/http.h"
 //#include "acme/user/user/conversation.h"
 
 
@@ -1218,9 +1219,9 @@ namespace acme
       if(!m_pnano)
       {
 
-         initialize_nano_window(factory());
+         //initialize_nano_window(factory());
 
-         __construct(m_pnano);
+         __construct_new(m_pnano);
 
       }
 
@@ -1235,25 +1236,40 @@ namespace acme
       throw ::interface_only();
 
    }
+//::nano::nano * system::nano()
+//{
+//
+//   if (!m_pnanohttp)
+//   {
+//
+//      initialize_nano_http(factory());
+//
+//      __construct(m_pnanohttp);
+//
+//   }
+//
+//   return m_pnanohttp;
+//
+//}
 
 
-   ::nano::http * system::nano_http()
-   {
-
-      if (!m_pnanohttp)
-      {
-
-         initialize_nano_http(factory());
-
-         __construct(m_pnanohttp);
-
-      }
-
-      return m_pnanohttp;
-
-   }
-
-
+//   ::nano::http * system::nano_http()
+//   {
+//
+//      if (!m_pnanohttp)
+//      {
+//
+//         initialize_nano_http(factory());
+//
+//         __construct(m_pnanohttp);
+//
+//      }
+//
+//      return m_pnanohttp;
+//
+//   }
+//
+//
    bool system::has_audio()
    {
 
@@ -3198,6 +3214,12 @@ void system::on_application_dark_mode_change()
 {
 }
    
+void system::on_component_factory(const ::scoped_string & scopedstrComponent)
+{
+   
+   node()->on_component_factory(scopedstrComponent);
+   
+}
    
 
 } // namespace acme

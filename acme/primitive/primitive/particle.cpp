@@ -15,7 +15,8 @@
 #include "acme/platform/referencing_debugging.h"
 #include "acme/platform/session.h"
 #include "acme/platform/system.h"
-#include "acme/user/nano/nano.h"
+#include "acme/nano/nano.h"
+#include "acme/nano/user/user.h"
 //#include "acme/primitive/primitive/payload.h"
 
 
@@ -2561,7 +2562,7 @@ void particle::kick_idle()
 pointer < ::sequencer < ::conversation > > particle::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
 {
 
-   return system()->nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
+   return system()->nano()->user()->message_box(strMessage, strTitle, emessagebox, strDetails);
 
 }
 
@@ -2569,7 +2570,7 @@ pointer < ::sequencer < ::conversation > > particle::message_box(const ::string&
 pointer < ::sequencer < ::conversation > > particle::exception_message_box(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
 {
 
-   return system()->nano()->exception_message_box(exception, strMessage, strTitle, emessagebox, strDetails);
+   return system()->nano()->user()->exception_message_box(exception, strMessage, strTitle, emessagebox, strDetails);
 
 }
 
@@ -2577,7 +2578,7 @@ pointer < ::sequencer < ::conversation > > particle::exception_message_box(const
 pointer < ::sequencer < ::conversation > > particle::message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
 {
 
-   return system()->nano()->message_console(strMessage, strTitle, emessagebox, strDetails);
+   return system()->nano()->user()->message_console(strMessage, strTitle, emessagebox, strDetails);
 
 }
 
@@ -2585,7 +2586,7 @@ pointer < ::sequencer < ::conversation > > particle::message_console(const ::str
 pointer < ::sequencer < ::conversation > > particle::exception_message_console(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
 {
 
-   return system()->nano()->exception_message_console(exception, strMessage, strTitle, emessagebox, strDetails);
+   return system()->nano()->user()->exception_message_console(exception, strMessage, strTitle, emessagebox, strDetails);
 
 }
 

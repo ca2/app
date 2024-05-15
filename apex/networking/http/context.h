@@ -146,6 +146,8 @@ namespace http
 
       virtual void get(string & str, const ::scoped_string & scopedstrUrl, property_set & set);
       virtual void get(memory_base * pmemory, const ::scoped_string & scopedstrUrl, property_set & set);
+      
+      virtual void sync(::nano::http::get * pget);
 
       //virtual bool request(const ::scoped_string & scopedstrRequest, const ::scoped_string & scopedstrUrl, property_set & set);
 

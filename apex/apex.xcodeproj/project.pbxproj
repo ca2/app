@@ -1099,8 +1099,8 @@
 		9A1FB95C287253E90042849A /* socket_handler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = socket_handler.cpp; sourceTree = "<group>"; };
 		9A1FB95D287253E90042849A /* socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket.h; sourceTree = "<group>"; };
 		9A1FB95E287253E90042849A /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9A21998E2760FFE2001E14CC /* libssl.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.3.dylib; path = "../../../../operating_system/storage-macos/library/libssl.3.dylib"; sourceTree = "<group>"; };
-		9A21998F2760FFE2001E14CC /* libcrypto.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.3.dylib; path = "../../../../operating_system/storage-macos/library/libcrypto.3.dylib"; sourceTree = "<group>"; };
+		9A21998E2760FFE2001E14CC /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = "../../../../operating_system/storage-macos/library/libssl.dylib"; sourceTree = "<group>"; };
+		9A21998F2760FFE2001E14CC /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = "../../../../operating_system/storage-macos/library/libcrypto.dylib"; sourceTree = "<group>"; };
 		9A226CF827CE8FAA0042BAC2 /* app_consumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = app_consumer.h; sourceTree = "<group>"; };
 		9A226CF927CE8FAA0042BAC2 /* event_source.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = event_source.h; sourceTree = "<group>"; };
 		9A226CFA27CE8FAA0042BAC2 /* apex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = apex.cpp; sourceTree = "<group>"; };
@@ -2158,8 +2158,8 @@
 			isa = PBXGroup;
 			children = (
 				9A8BCB1929A03E1B002BE91E /* libarchive.tbd */,
-				9A21998F2760FFE2001E14CC /* libcrypto.3.dylib */,
-				9A21998E2760FFE2001E14CC /* libssl.3.dylib */,
+				9A21998F2760FFE2001E14CC /* libcrypto.dylib */,
+				9A21998E2760FFE2001E14CC /* libssl.dylib */,
 				9AD199AC251279BC00B4C44A /* libz.tbd */,
 				9AD199C825127AB500B4C44A /* Security.framework */,
 				9AD199C625127A4900B4C44A /* IOKit.framework */,

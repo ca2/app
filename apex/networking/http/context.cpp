@@ -2,8 +2,8 @@
 #include "context.h"
 #include "signal.h"
 #include "get_socket.h"
-////#include "acme/exception/exception.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/nano/http/get.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/primitive/primitive/url_domain.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -115,6 +115,18 @@ namespace http
 
       //return estatus;
 
+   }
+
+
+   void context::sync(::nano::http::get * pget)
+   {
+
+      ::property_set set(pget->m_setIn);
+      
+      get(&pget->m_memory, pget->m_strUrl, set);
+      
+      pget->m_setOut = set;
+   
    }
 
 
@@ -2044,9 +2056,8 @@ namespace http
 
       //psocket->set_topic_text(strTopicText);
 
-      auto ptransferprogressfunctionbase = set["transfer_progress_function"].cast < transfer_progress_function::base >();
-
-      psocket->m_transferprogressfunction = ptransferprogressfunctionbase.m_p;
+   
+      psocket->m_transferprogressfunction = set["transfer_progress_function"];
 
       psocket->EnablePool(psockethandler->PoolEnabled());
 

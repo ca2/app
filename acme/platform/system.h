@@ -13,6 +13,7 @@
 #include "acme/primitive/primitive/factory.h"
 
 
+
 class manager_room;
 
 
@@ -122,8 +123,6 @@ namespace acme
 
       ::pointer <::nano::nano >                                m_pnano;
       
-      ::pointer <::nano::http >                                m_pnanohttp;
-
 
       ::pointer <::crypto::crypto >                            m_pcrypto;
 
@@ -235,7 +234,7 @@ namespace acme
 
       virtual ::nano::nano * nano();
       
-      virtual ::nano::http * nano_http();
+      //virtual nano::nano * nano()
 
       inline ::crypto::crypto * crypto() { return m_pcrypto; }
 
@@ -682,7 +681,33 @@ namespace acme
       virtual void x11_sync(const ::procedure & procedure);
       virtual void x11_async(const ::procedure & procedure);
 #endif
+      
+      virtual void on_component_factory(const ::scoped_string & scopedstrComponent);
 
+      template < typename FACTORY_REPRESENTATIVE_TYPE >
+      FACTORY_REPRESENTATIVE_TYPE * __factory(::pointer < FACTORY_REPRESENTATIVE_TYPE > & p)
+      {
+         
+         if(!p)
+         {
+            
+            if(!platform()->factory()->has<FACTORY_REPRESENTATIVE_TYPE>())
+            {
+               
+               ::string strComponent = FACTORY_REPRESENTATIVE_TYPE::represented_component_name();
+               
+               this->on_component_factory(strComponent);
+               
+            }
+            
+            __construct(p);
+            
+         }
+         
+         return p;
+         
+      }
+      
 
    };
 

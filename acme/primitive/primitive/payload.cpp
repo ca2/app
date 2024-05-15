@@ -12078,3 +12078,9 @@ CLASS_DECL_ACME::string as_string(const ::payload & payload)
 }
 
 
+CLASS_DECL_ACME subparticle * as_subparticle(const payload & payload)
+{
+   
+   return payload.subparticle();
+   
+}

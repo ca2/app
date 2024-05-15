@@ -5,7 +5,7 @@
 #include "acme/handler/topic.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
-#include "acme/user/nano/nano.h"
+#include "acme/nano/user/nano.h"
 #include "aura/user/user/button.h"
 #include "aura/platform/application.h"
 

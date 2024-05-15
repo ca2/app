@@ -327,6 +327,13 @@ namespace std
 template < typename PAYLOAD >
 concept primitive_payload = ::std::is_same < typename PAYLOAD::PRIMITIVE_PAYLOAD_TAG, PRIMITIVE_PAYLOAD_TAG_TYPE >::value;
 
+
+template < typename A_CONST >
+concept primitive_const = ::std::is_const < A_CONST > ::value;
+
+template < typename NON_CONST >
+concept primitive_non_const = !primitive_const < NON_CONST >;
+
 template < typename HAS_AS_STRING_NOT_PAYLOAD >
 concept has_as_string_not_payload = has_as_string < HAS_AS_STRING_NOT_PAYLOAD > && !primitive_payload<HAS_AS_STRING_NOT_PAYLOAD>;
 

@@ -688,13 +688,21 @@ namespace integration
    }
 
 
-   void context::defer_has_posix_shell_command(const ::scoped_string& scopedstr, enum_posix_shell eposixshell)
+   void context::defer_has_posix_shell_command(const ::scoped_string& scopedstr, const ::scoped_string & scopedstrInstallHintPackage, enum_posix_shell eposixshell)
    {
 
       if (!has_posix_shell_command(scopedstr, eposixshell))
       {
+         
+         ::string strMessage;
+         
+         ::string strCommand(scopedstr);
+         
+         ::string strPackage(scopedstrInstallHintPackage);
+         
+         strMessage.formatf("Command \"%s\" not found. Suggested package to install: \"%s\".", strCommand.c_str(), strPackage.c_str());
 
-         throw ::exception(error_file_not_found, ::string("\"") + scopedstr + "\" was not found.");
+         throw ::exception(error_file_not_found, strMessage);
 
       }
 

@@ -20,10 +20,7 @@ namespace acme
 {
 
 
-   namespace nano
-   {
-      namespace user
-      {
+
          ::particle* system::x11_synchronization()
          {
 
@@ -59,26 +56,32 @@ namespace acme
             node()->x11_sync(procedure);
 
          }
-      } // namespace user
-   } // namespace nano
-
 } // namespace acme
 
 
-void x11_sync(const ::procedure & procedure)
+namespace x11
 {
+   namespace nano
+   {
+      namespace user
+      {
+         void x11_sync(const ::procedure & procedure)
+         {
 
-   ::platform::get()->system()->x11_sync(procedure);
+            ::platform::get()->system()->x11_sync(procedure);
 
-}
+         }
 
 
-void x11_async(const ::procedure & procedure)
-{
+         void x11_async(const ::procedure & procedure)
+         {
 
-   ::platform::get()->system()->x11_async(procedure);
+            ::platform::get()->system()->x11_async(procedure);
 
-}
+         }
+      } // namespace user
+   } // namespace nano
+} // namespace x11
 
 
 #endif

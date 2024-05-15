@@ -240,8 +240,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A94B9E92BE8AD5B00744150 /* libios_archive.a in Frameworks */,
 				9A94B9E72BE8AD5000744150 /* SystemConfiguration.framework in Frameworks */,
+				9A94B9E92BE8AD5B00744150 /* libios_archive.a in Frameworks */,
 				9A40BDF62B6B9C850077053E /* libios_darwin.a in Frameworks */,
 				9A40BDBE2B6B67770077053E /* UniformTypeIdentifiers.framework in Frameworks */,
 				9A40BDAF2B6B65510077053E /* libios_acme_darwin.a in Frameworks */,

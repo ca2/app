@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A0E4EF52BF4FF44007C7253 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A0E4EED2BF4FF44007C7253 /* SystemConfiguration.framework */; };
 		9A2F609B2474F2C400D392E8 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8181C21F21C33500FDAF74 /* libz.tbd */; };
 		9A2F609C2474F2CC00D392E8 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8181C61F21C35100FDAF74 /* libsqlite3.tbd */; };
 		9A2F609E2474F53900D392E8 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2F609D2474F53900D392E8 /* CoreServices.framework */; };
@@ -202,6 +203,7 @@
 		078C352F1921758500354453 /* _ios_app_message_box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _ios_app_message_box.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		078C35451921758600354453 /* ios_simple_drawing_simple_drawingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ios_simple_drawing_simple_drawingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B5903518866047002C6FEC /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		9A0E4EED2BF4FF44007C7253 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		9A2F609D2474F53900D392E8 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		9A40BE4A2B6C57B20077053E /* application_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application_main.cpp; sourceTree = "<group>"; };
 		9A40BE4D2B6C5A230077053E /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____release.xcconfig"; path = "../_____release.xcconfig"; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A0E4EF52BF4FF44007C7253 /* SystemConfiguration.framework in Frameworks */,
 				9A50CDFE2B6CB8C000FDB101 /* libios_archive.a in Frameworks */,
 				9A40BE5C2B6C5CD90077053E /* UniformTypeIdentifiers.framework in Frameworks */,
 				9A40BE522B6C5BC10077053E /* libios_acme_darwin.a in Frameworks */,
@@ -343,6 +346,7 @@
 		9A5752B516AAE1D2000CC4EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A0E4EED2BF4FF44007C7253 /* SystemConfiguration.framework */,
 				9A50CDFD2B6CB8C000FDB101 /* libios_archive.a */,
 				9A40BE5B2B6C5CD90077053E /* UniformTypeIdentifiers.framework */,
 				9A40BE592B6C5CA40077053E /* libios_archive.a */,

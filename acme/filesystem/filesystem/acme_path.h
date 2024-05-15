@@ -101,6 +101,9 @@ public:
    virtual ::file::path path_try_get_path(const scoped_string & scopedstrCommand, string_to_string_lookup * plookupEnvironment);
 
 
+   virtual ::file::path windows_posix_path(const ::file::path & path);
+
+
 };
 
 

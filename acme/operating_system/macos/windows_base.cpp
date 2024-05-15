@@ -1,7 +1,7 @@
 #include "framework.h"
 
 #include <string.h>
-#include <stdio.h> ::file::e_type_existent_folder
+#include <stdio.h>
 
 ::u32
 //WINAPI

@@ -9,6 +9,23 @@
 
 
 
+enum enum_display_type
+{
+
+   e_display_type_none,
+   e_display_type_system = 100,
+#ifdef WITH_X11
+   e_display_type_x11 = 1000,
+#endif
+#ifdef WITH_XCB
+   e_display_type_xcb = 2000,
+#endif
+#ifdef HAS_WAYLAND
+   e_display_type_wayland = 3000,
+#endif
+
+};
+
 
 namespace nano
 {
@@ -46,32 +63,14 @@ class font;
    CLASS_DECL_ACME ::pointer<pen>create_pen(::particle * pparticle, int iWidth, color32_t color);
 
 
-} //namespace user
+   ::enum_display_type get_display_type();
+
+
+
+   } //namespace user
+
 
 } // namespace nano
-
-
-
-
-enum enum_display_type
-{
-
-   e_display_type_none,
-   e_display_type_system = 100,
-#ifdef WITH_X11
-   e_display_type_x11 = 1000,
-#endif
-#ifdef WITH_XCB
-   e_display_type_xcb = 2000,
-#endif
-#ifdef HAS_WAYLAND
-   e_display_type_wayland = 3000,
-#endif
-
-};
-
-
-enum_display_type get_display_type();
 
 
 

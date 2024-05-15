@@ -65,6 +65,8 @@ struct xkb_state;
 
 struct gtk_shell1;
 
+#include "acme/operating_system/posix/file.h"
+
 namespace wayland
 {
 
@@ -79,7 +81,7 @@ namespace wayland
             ::wl_buffer *     m_pwlbuffer;
             ::wl_shm_pool *   m_pwlshmpool;
             void *            m_pdata;
-            int               m_iFd;
+            ::unistd::file    m_unistdfile;
             memsize           m_memsize2;
             memsize           m_memsizeStorage;
             ::size_i32        m_size;
@@ -92,7 +94,7 @@ namespace wayland
                m_pwlbuffer = nullptr;
                m_pwlshmpool = nullptr;
                m_pdata = nullptr;
-               m_iFd = -1;
+               //m_iFd = -1;
                m_memsize2 = 0;
                m_memsizeStorage = 0;
                m_stride = 0;

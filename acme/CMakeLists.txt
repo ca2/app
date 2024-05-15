@@ -2738,7 +2738,8 @@ if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+        operating_system/posix/file.h)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

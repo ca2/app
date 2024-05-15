@@ -9,8 +9,13 @@
 #include "acme/platform/system.h"
 #include "acme/platform/node.h"
 
-
-::user::enum_desktop get_edesktop();
+namespace nano
+{
+   namespace user
+   {
+      ::user::enum_desktop get_edesktop();
+   }//namespace user
+}// namespace nano
 
 
 void operating_system_initialize_x11_nano_user(::factory::factory * pfactory)
@@ -39,7 +44,7 @@ void operating_system_initialize_wayland_nano_user(::factory::factory * pfactory
 void operating_system_initialize_nano_user(::factory::factory * pfactory)
 {
 
-   auto edesktop = get_edesktop();
+   auto edesktop = ::nano::user::get_edesktop();
 
    auto psystem = pfactory->system();
 
@@ -69,7 +74,7 @@ void operating_system_initialize_nano_user(::factory::factory * pfactory)
 
    }
 
-   auto edisplaytype = ::get_display_type();
+   auto edisplaytype = ::nano::user::get_display_type();
 
 #ifdef HAS_WAYLAND
 

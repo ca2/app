@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "file.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/status.h"
 #include "acme/_operating_system.h"
@@ -13,6 +14,160 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
+
+#include <fcntl.h>
+
+
+namespace unistd
+{
+
+   file::file()
+   {
+      m_iFile = -1;
+   }
+   file::file(const file & file):
+m_iFile(file.m_iFile)
+   {
+   }
+   file::file(int iFile):
+m_iFile(iFile)
+   {
+   }
+   file::~file()
+   {
+
+close();
+
+   }
+
+   int file::close()
+   {
+      int res = 0;
+      if(m_iFile >= 0)
+      {
+
+         res = ::close(m_iFile);
+
+         m_iFile = -1;
+
+      }
+      return res;
+   }
+
+
+
+   memsize file::read(void * p, memsize s)
+   {
+
+      return ::read(m_iFile, p, s);
+
+   }
+
+
+   int file::write(const void * p, memsize s)
+   {
+
+      return ::write(m_iFile, p, s);
+
+   }
+
+
+
+      int file::set_cloexec_or_close()
+      {
+         long flags;
+
+         if (m_iFile == -1)
+            return -1;
+
+         flags = fcntl(m_iFile, F_GETFD);
+         if (flags == -1)
+            goto err;
+
+         if (fcntl(m_iFile, F_SETFD, flags | FD_CLOEXEC) == -1)
+            goto err;
+
+         return m_iFile;
+
+         err:
+         close();
+      return -1;
+      }
+
+
+      int file::create_tmpfile_cloexec(char * tmpname)
+      {
+
+#ifdef HAVE_MKOSTEMP
+         m_iFile = mkostemp(tmpname, O_CLOEXEC);
+         if (m_iFile >= 0)
+            unlink(tmpname);
+#else
+         m_iFile = mkstemp(tmpname);
+         if (m_iFile >= 0)
+         {
+            m_iFile = set_cloexec_or_close();
+            unlink(tmpname);
+         }
+#endif
+
+         return m_iFile;
+      }
+
+      /*
+       * Create a new, unique, anonymous file of the given size, and
+       * return the file descriptor for it. The file descriptor is set
+       * CLOEXEC. The file is immediately suitable for mmap()'ing
+       * the given size at offset zero.
+       *
+       * The file should not have a permanent backing store like a disk,
+       * but may have if XDG_RUNTIME_DIR is not properly implemented in OS.
+       *
+       * The file name is deleted from the file system.
+       *
+       * The file is suitable for buffer sharing between processes by
+       * transmitting the file descriptor over Unix sockets using the
+       * SCM_RIGHTS methods.
+       */
+      int    file::create_anonymous_file(memsize size)
+      {
+         static const char pszTemplate[] = "/weston-shared-XXXXXX";
+         const char * path;
+         char * name;
+
+         path = getenv("XDG_RUNTIME_DIR");
+         if (!path)
+         {
+            errno = ENOENT;
+            return -1;
+         }
+
+         ::file::path filepath;
+
+         filepath = path;
+         filepath /= pszTemplate;
+
+         ::string strPath = filepath;
+
+         m_iFile = create_tmpfile_cloexec(strPath.get_buffer(strPath.length()));
+
+         strPath.release_buffer();
+
+         if (m_iFile < 0)
+            return -1;
+
+         if (ftruncate(m_iFile, size) < 0)
+         {
+            close();
+            return -1;
+         }
+
+         return m_iFile;
+      }
+
+
+
+}//namespace unistd
 
 char * malloc_get_current_dir_name()
 {
@@ -1420,7 +1575,6 @@ void operating_system_determine_executable(::file::path & path)
    path.m_etype |= operating_system_executable_type(path);
 
 }
-
 
 
 

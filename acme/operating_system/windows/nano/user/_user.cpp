@@ -21,7 +21,7 @@ void operating_system_initialize_nano_user(::factory::factory * pfactory)
    pfactory->add_factory_item < ::windows::nano::user::pen, ::nano::user::pen >();
    pfactory->add_factory_item < ::windows::nano::user::device, ::nano::user::device >();
 
-   pfactory->add_factory_item < ::nano::nano >();
+   pfactory->add_factory_item < ::nano::user::user >();
 
    //::rectangle_i32 rectangleMainScreen;
 

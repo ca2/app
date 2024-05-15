@@ -997,3 +997,35 @@ bool acme_path::get_next_path(::scoped_string & scopedstr, ::string::RANGE & ran
    return _path_get_path(scopedstrCommand, PATH, plookupEnvironment);
 
 }
+
+
+::file::path acme_path::windows_posix_path(const ::file::path & path)
+{
+
+   if (path.size() > 3)
+   {
+
+      if (::character_isalpha(path[0])
+         && path[1] == ':'
+         && (path[2] == '/' || path[2] == '\\'))
+      {
+
+         ::string str;
+
+         str = "/";
+
+         str += ::character_tolower(path[0]);
+
+         str += "/";
+
+         str += path.substr(3);
+
+         return str;
+
+      }
+
+   }
+
+   return path;
+
+}

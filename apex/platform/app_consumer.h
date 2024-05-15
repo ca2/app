@@ -147,6 +147,8 @@ public:
    APP_CONSUMER_BODY
 
 
+    app_consumer_base & operator = (app_consumer_base &&) = delete;
+
    inline APP * get_app() { return m_papp.get(); }
    inline APP * get_app() const { return (APP*)m_papp.get(); }
 
@@ -173,6 +175,8 @@ public:
 
    }
 
+
+    app_interaction(app_interaction &&) = delete;
 
    void initialize(::particle * pparticle) override
    {

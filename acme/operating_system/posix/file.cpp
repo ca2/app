@@ -64,7 +64,7 @@ close();
    }
 
 
-   int file::write(const void * p, memsize s)
+   long file::write(const void * p, memsize s)
    {
 
       return ::write(m_iFile, p, s);

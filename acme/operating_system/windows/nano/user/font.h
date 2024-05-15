@@ -19,10 +19,9 @@ namespace windows
       {
 
 
-
          class CLASS_DECL_ACME font :
             virtual public ::nano::user::font,
-            virtual public nano_object
+            virtual public object
          {
          public:
 

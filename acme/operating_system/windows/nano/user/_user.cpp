@@ -6,7 +6,8 @@
 #include "font.h"
 #include "pen.h"
 #include "device.h"
-#include "acme/nano/user/nano.h"
+#include "acme/nano/nano.h"
+#include "acme/nano/user/user.h"
 //#include "acme/primitive/primitive/_factory.h"
 
 

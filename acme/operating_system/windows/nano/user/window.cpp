@@ -139,19 +139,18 @@ namespace windows
          }
 
 
-
          // Step 4: the Window Procedure
          LRESULT CALLBACK nano_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
          {
 
-            ::windows::window* pwindow = nullptr;
+            ::windows::nano::user::window* pwindow = nullptr;
 
             if (msg == WM_NCCREATE)
             {
 
                CREATESTRUCT* pcreatestruct = (CREATESTRUCT*)lParam;
 
-               pwindow = (::windows::window*)pcreatestruct->lpCreateParams;
+               pwindow = (::windows::nano::user::window*)pcreatestruct->lpCreateParams;
 
                SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pwindow);
 
@@ -161,7 +160,7 @@ namespace windows
             else
             {
 
-               pwindow = (::windows::window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+               pwindow = (::windows::nano::user::window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 
             }
 
@@ -930,7 +929,7 @@ namespace windows
 
                   ::DestroyWindow(m_hwnd);
 
-                  win32_process_messages();
+                  process_messages();
 
                });
 

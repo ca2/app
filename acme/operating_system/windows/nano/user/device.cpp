@@ -95,7 +95,7 @@ namespace windows
          }
 
 
-         ::size_i32device::get_text_extents(const ::string& str, ::nano::user::font* pnanofont)
+         ::size_i32 device::get_text_extents(const ::string& str, ::nano::user::font* pnanofont)
          {
 
             pnanofont->update(this);
@@ -137,8 +137,6 @@ namespace windows
 
 
          }
-
-
 
 
       } // namespace user

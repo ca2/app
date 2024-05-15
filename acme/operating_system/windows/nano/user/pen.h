@@ -12,7 +12,6 @@ namespace windows
 {
 
 
-
    namespace nano
    {
 
@@ -21,10 +20,9 @@ namespace windows
       {
 
 
-
-         class CLASS_DECL_ACME::nano::user::pen :
+         class CLASS_DECL_ACME pen :
             virtual public ::nano::user::pen,
-            virtual public nano_object
+            virtual public object
          {
          public:
 
@@ -32,8 +30,8 @@ namespace windows
             //__CreatableFromBase(::nano::user::pen, ::nano::user::pen);
 
 
-            ::nano::user::pen();
-            ~::nano::user::pen() override;
+            pen();
+            ~pen() override;
 
 
             void update(::nano::user::device* pnanodevice) override;

@@ -31,8 +31,8 @@ namespace windows
             HGDIOBJ     m_hgdiobj;
 
 
-            nano_object();
-            ~nano_object();
+            object();
+            ~object();
 
 
             void* operating_system_data() override;

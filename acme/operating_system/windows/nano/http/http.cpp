@@ -63,7 +63,7 @@ namespace windows
       //   }
 
 
-         void http::memory(const ::scoped_string& scopedstrUrl, ::nano::http_response& httpresponse, const class ::time& timeTimeout)
+         void http::sync(::nano::http::get * pget)
          {
 
             //using namespace std;
@@ -78,40 +78,40 @@ namespace windows
                //BOOL  bResults = FALSE;
                //HINTERNET  hSession = NULL, hConnect = NULL, hRequest = NULL;
 
-            session httpsession;
+            ::windows::nano::http::session session;
 
-            if (!httpsession.m_hinternet)
+            if (!session.m_hinternet)
             {
 
                throw ::exception(error_failed);
 
             }
 
-            ::string strServer = system()->url()->get_server(scopedstrUrl);
+            ::string strServer = system()->url()->get_server(pget->m_strUrl);
 
-            http_connect httpconnect(httpsession, strServer);
+            ::windows::nano::http::connect connect(session, strServer);
 
-            if (!httpconnect.m_hinternet)
+            if (!connect.m_hinternet)
             {
 
                throw ::exception(error_failed);
 
             }
 
-            ::string strObject = system()->url()->get_object(scopedstrUrl);
+            ::string strObject = system()->url()->get_object(pget->m_strUrl);
 
-            http_get httpget(httpconnect, strObject);
+            ::windows::nano::http::get get(connect, strObject);
 
-            if (!httpget.m_hinternet)
+            if (!get.m_hinternet)
             {
 
                throw ::exception(error_failed);
 
             }
 
-            httpget.send_request();
+            get.send_request();
 
-            httpget.get_response(httpresponse);
+            get.get_response(pget);
 
             // Use WinHttpOpen to obtain a session handle.
             // Specify an HTTP server.

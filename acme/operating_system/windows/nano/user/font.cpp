@@ -55,7 +55,7 @@ namespace windows
          }
 
 
-         HFONTfont::_create_point_font(int nPointSize, const ::scoped_string& scopedstrFaceName, bool bBold, HDC hdc, LOGFONTW* plf)
+         HFONT font::_create_point_font(int nPointSize, const ::scoped_string& scopedstrFaceName, bool bBold, HDC hdc, LOGFONTW* plf)
          {
 
             LOGFONTW lF;
@@ -87,7 +87,7 @@ namespace windows
 
 
          // pLogFont->nHeight is interpreted as PointSize * 10
-         HFONTfont::_create_point_font_indirect(LOGFONTW* pLogFont, HDC hdc)
+         HFONT font::_create_point_font_indirect(LOGFONTW* pLogFont, HDC hdc)
          {
 
             LOGFONTW& logFont = *pLogFont;
@@ -125,7 +125,7 @@ namespace windows
    } // namespace nano
 
 
-      } // namespace windows
+} // namespace windows
 
 
 

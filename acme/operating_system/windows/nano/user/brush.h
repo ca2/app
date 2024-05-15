@@ -20,9 +20,10 @@ namespace windows
       namespace user
       {
 
+
          class CLASS_DECL_ACME brush :
             virtual public ::nano::user::brush,
-            virtual public nano_object
+            virtual public object
          {
          public:
 

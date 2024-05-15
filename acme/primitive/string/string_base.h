@@ -1107,7 +1107,7 @@ public:
    constexpr bool starts_with_word(const SCOPED_STRING& range) const
    {
 
-      return this->starts_with_word(range, ::string_get_word_separated_by_spaces < ITERATOR_TYPE >);
+      return this->starts_with_word(range, &::string_get_word_separated_by_spaces < ITERATOR_TYPE >);
 
    }
 

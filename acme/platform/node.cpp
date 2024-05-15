@@ -29,9 +29,10 @@
 #include "acme/nano/user/user.h"
 #include "acme/user/user/os_theme_colors.h"
 
-
+namespace nano{namespace  user{
 ::user::enum_desktop calculate_edesktop();
-
+}//namespace user
+   }//namespace nano
 
 ::string errno_error_message(::i32 iError);
 
@@ -1733,7 +1734,7 @@ namespace acme
    ::user::enum_desktop node::calculate_edesktop()
    {
 
-      return ::calculate_edesktop();
+      return ::nano::user::calculate_edesktop();
 
    }
 

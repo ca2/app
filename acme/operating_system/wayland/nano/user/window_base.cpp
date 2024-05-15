@@ -1524,7 +1524,7 @@ namespace nano
 
          xdg_toplevel_resize_edge resizeedge = XDG_TOPLEVEL_RESIZE_EDGE_NONE;
 
-         ::copy(&resizeedge, &eframeSizing);
+         copy(&resizeedge, &eframeSizing);
 
          if(resizeedge == XDG_TOPLEVEL_RESIZE_EDGE_NONE)
          {

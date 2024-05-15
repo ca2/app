@@ -31,9 +31,9 @@ namespace wayland
 
    namespace nano
    {
+
       namespace user
       {
-
          display_base * display_base::s_pdisplaybase = nullptr;
 
 
@@ -1002,17 +1002,17 @@ namespace wayland
       //      }
       //
       ////      for(auto & r : rectanglea)
-            ////      {
-            ////         auto pmonitor = get_best_monitor(r);
-            ////
-            ////         if(::is_set(pmonitor))
-            ////         {
-            ////
-            ////            pmonitor->set_workspace_rectangle(r);
-            ////
-            ////         }
-            ////
-            ////      }
+      ////      {
+      ////         auto pmonitor = get_best_monitor(r);
+      ////
+      ////         if(::is_set(pmonitor))
+      ////         {
+      ////
+      ////            pmonitor->set_workspace_rectangle(r);
+      ////
+      ////         }
+      ////
+      ////      }
 
                       });
 
@@ -1989,48 +1989,49 @@ namespace wayland
          }
 
 
-      } // namespace wayland
 
-
-
-
-      void copy(xdg_toplevel_resize_edge * presizeedge, ::experience::enum_frame * peframeSizing)
-      {
-         auto & resizeedge = *presizeedge;
-
-         auto & eframeSizing = *peframeSizing;
-
-         switch (eframeSizing)
+         void copy(xdg_toplevel_resize_edge * presizeedge, ::experience::enum_frame * peframeSizing)
          {
-         case ::experience::e_frame_sizing_left:
-            resizeedge = XDG_TOPLEVEL_RESIZE_EDGE_LEFT;
-            break;
-         case ::experience::e_frame_sizing_top:
-            resizeedge = XDG_TOPLEVEL_RESIZE_EDGE_TOP;
-            break;
-         case ::experience::e_frame_sizing_right:
-            resizeedge = XDG_TOPLEVEL_RESIZE_EDGE_RIGHT;
-            break;
-         case ::experience::e_frame_sizing_bottom:
-            resizeedge = XDG_TOPLEVEL_RESIZE_EDGE_BOTTOM;
-            break;
-         case ::experience::e_frame_sizing_top_left:
-            resizeedge = XDG_TOPLEVEL_RESIZE_EDGE_TOP_LEFT;
-            break;
-         case ::experience::e_frame_sizing_top_right:
-            resizeedge = XDG_TOPLEVEL_RESIZE_EDGE_TOP_RIGHT;
-            break;
-         case ::experience::e_frame_sizing_bottom_left:
-            resizeedge = XDG_TOPLEVEL_RESIZE_EDGE_BOTTOM_LEFT;
-            break;
-         case ::experience::e_frame_sizing_bottom_right:
-            resizeedge = XDG_TOPLEVEL_RESIZE_EDGE_BOTTOM_RIGHT;
-            break;
-         default:
-            resizeedge = XDG_TOPLEVEL_RESIZE_EDGE_NONE;
-            break;
+            auto & resizeedge = *presizeedge;
+
+            auto & eframeSizing = *peframeSizing;
+
+            switch (eframeSizing)
+            {
+            case ::experience::e_frame_sizing_left:
+               resizeedge = XDG_TOPLEVEL_RESIZE_EDGE_LEFT;
+               break;
+            case ::experience::e_frame_sizing_top:
+               resizeedge = XDG_TOPLEVEL_RESIZE_EDGE_TOP;
+               break;
+            case ::experience::e_frame_sizing_right:
+               resizeedge = XDG_TOPLEVEL_RESIZE_EDGE_RIGHT;
+               break;
+            case ::experience::e_frame_sizing_bottom:
+               resizeedge = XDG_TOPLEVEL_RESIZE_EDGE_BOTTOM;
+               break;
+            case ::experience::e_frame_sizing_top_left:
+               resizeedge = XDG_TOPLEVEL_RESIZE_EDGE_TOP_LEFT;
+               break;
+            case ::experience::e_frame_sizing_top_right:
+               resizeedge = XDG_TOPLEVEL_RESIZE_EDGE_TOP_RIGHT;
+               break;
+            case ::experience::e_frame_sizing_bottom_left:
+               resizeedge = XDG_TOPLEVEL_RESIZE_EDGE_BOTTOM_LEFT;
+               break;
+            case ::experience::e_frame_sizing_bottom_right:
+               resizeedge = XDG_TOPLEVEL_RESIZE_EDGE_BOTTOM_RIGHT;
+               break;
+            default:
+               resizeedge = XDG_TOPLEVEL_RESIZE_EDGE_NONE;
+               break;
+            }
+
          }
+
+
       }// namespace user
+
    }// namespace nano
 
 } // namespace wayland

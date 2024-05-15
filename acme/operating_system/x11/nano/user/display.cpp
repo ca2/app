@@ -752,7 +752,7 @@ namespace x11
 
 
 
-i32 _x11_nano_user_c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
+i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 {
 
    const char * pszError;

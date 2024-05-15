@@ -10,7 +10,7 @@
 void operating_system_initialize_nano_http(::factory::factory * pfactory)
 {
 
-   pfactory->add_factory_item<::windows::nano_http, ::nano::http>();
+   pfactory->add_factory_item<::universal_windows::nano::http::http, ::nano::http::http>();
 
 }
 

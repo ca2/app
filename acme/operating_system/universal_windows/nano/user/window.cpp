@@ -5,6 +5,7 @@
 #include "acme/platform/platform.h"
 #include "acme/nano/user/button.h"
 #include "acme/nano/user/window.h"
+#include "acme/nano/user/user.h"
 
 
 #include <winrt/Windows.ApplicationModel.Core.h>
@@ -16,78 +17,90 @@ namespace universal_windows
 {
 
 
-   nano::user::window::nano::user::window()
+   namespace nano
    {
 
 
-   }
-
-
-   nano::user::window::~nano::user::window()
-   {
-
-
-   }
-
-
-   void nano::user::window::create()
-   {
-
-      if (platform()->m_bConsole)
+      namespace user
       {
 
-         _console_create();
-
-      }
-      else
-      {
-
-         m_messagedialog = ::winrt::Windows::UI::Popups::MessageDialog(as_hstring(m_pinterface->m_strMessage), as_hstring(m_pinterface->m_strTitle));
-
-         for (auto & pnanobutton : m_pinterface->m_nanobuttona)
+         window::window()
          {
 
-            auto predicate = [this, pnanobutton](::winrt::Windows::UI::Popups::IUICommand command)
-               {
-
-                  on_click(pnanobutton->m_edialogresult1, nullptr);
-
-               };
-
-            ::winrt::Windows::UI::Popups::UICommand command(as_hstring(pnanobutton->m_strText), predicate);
-
-            m_messagedialog.Commands().Append(command);
 
          }
 
-         m_messagedialog.DefaultCommandIndex(0);
 
-         m_messagedialog.CancelCommandIndex(1);
+         window::~window()
+         {
 
-      }
 
-      //::user::message_box::show(puserinteraction, strMessage, strMessage, emessagebox);
+         }
 
-   }
 
-   
-   void nano::user::window::display()
-   {
+         void window::create()
+         {
 
-      if (platform()->m_bConsole)
-      {
+            if (platform()->m_bConsole)
+            {
 
-         _display_console();
+               _console_create();
 
-      }
-      else
-      {
+            }
+            else
+            {
 
-         m_messagedialog.ShowAsync();
+               m_messagedialog = ::winrt::Windows::UI::Popups::MessageDialog(as_hstring(m_pinterface->m_strMessage), as_hstring(m_pinterface->m_strTitle));
 
-      }
+               for (auto & pnanobutton : m_pinterface->m_nanobuttona)
+               {
 
-   }
+                  auto predicate = [this, pnanobutton](::winrt::Windows::UI::Popups::IUICommand command)
+                     {
+
+                        on_click(pnanobutton->m_edialogresult1, nullptr);
+
+                     };
+
+                  ::winrt::Windows::UI::Popups::UICommand command(as_hstring(pnanobutton->m_strText), predicate);
+
+                  m_messagedialog.Commands().Append(command);
+
+               }
+
+               m_messagedialog.DefaultCommandIndex(0);
+
+               m_messagedialog.CancelCommandIndex(1);
+
+            }
+
+            //::user::message_box::show(puserinteraction, strMessage, strMessage, emessagebox);
+
+         }
+
+
+         void window::display()
+         {
+
+            if (platform()->m_bConsole)
+            {
+
+               _display_console();
+
+            }
+            else
+            {
+
+               m_messagedialog.ShowAsync();
+
+            }
+
+         }
+
+      } // namespace user
+
+
+   } // namespace nano
 
 
 } // namespace universal_windows
@@ -99,6 +112,8 @@ void operating_system_initialize_nano_user(::factory::factory * pfactory)
 
 
    pfactory->add_factory_item < ::universal_windows::nano::user::window, ::nano::user::window_implementation >();
+
+   pfactory->add_factory_item < ::nano::user::user >();
    //pfactory->add_factory_item < ::windows::nano::user::brush, ::nano::user::brush >();
    //pfactory->add_factory_item < ::windows::nano::user::font, ::nano::user::font >();
    //pfactory->add_factory_item < ::windows::nano::user::pen, ::nano::user::pen >();

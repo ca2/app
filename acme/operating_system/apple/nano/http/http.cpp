@@ -3,7 +3,7 @@
 //
 #include "framework.h"
 #include "http.h"
-#include "_nano_http.h"
+#include "_http.h"
 
 
 namespace apple
@@ -32,7 +32,7 @@ void http::s_http_response(long http_status, const void * data, long size, void 
    
    pget->set_response(http_status, data, size);
    
-   pget->m_callbackAsync(pget);
+   pget->set_finish();
    
 //
 //   passynchronoushttpdata->m_response.m_set["http_status_code"] = http_status;

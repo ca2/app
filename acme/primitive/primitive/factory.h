@@ -162,6 +162,7 @@ namespace factory
       ::atom                                 m_atomSource;
       ::pointer<::acme::library>             m_plibrary;
       ::critical_section                     m_criticalsection;
+      ::string                               m_strArgument;
 
 
       factory();

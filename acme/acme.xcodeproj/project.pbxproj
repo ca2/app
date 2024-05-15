@@ -684,6 +684,9 @@
 		9A20381D2BF45F7500599878 /* http.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2038162BF45F7400599878 /* http.h */; };
 		9A20381E2BF45F7500599878 /* ns_nano_http.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2038172BF45F7400599878 /* ns_nano_http.h */; };
 		9A20381F2BF45F7500599878 /* ns_nano_http.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2038182BF45F7400599878 /* ns_nano_http.mm */; };
+		9A2038222BF46C7800599878 /* _user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2038202BF46C7800599878 /* _user.cpp */; };
+		9A2038232BF46CCE00599878 /* _user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2038202BF46C7800599878 /* _user.cpp */; };
+		9A2038262BF46CD300599878 /* _user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2038202BF46C7800599878 /* _user.cpp */; };
 		9A220F09251A1993002B42B7 /* printf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A220EA7251A1993002B42B7 /* printf.cpp */; };
 		9A220F66251A1993002B42B7 /* printf.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A220F06251A1993002B42B7 /* printf.h */; };
 		9A22670F27CDDF430042BAC2 /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22670E27CDDF430042BAC2 /* time.cpp */; };
@@ -4823,6 +4826,7 @@
 		9A2038162BF45F7400599878 /* http.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = http.h; sourceTree = "<group>"; };
 		9A2038172BF45F7400599878 /* ns_nano_http.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ns_nano_http.h; sourceTree = "<group>"; };
 		9A2038182BF45F7400599878 /* ns_nano_http.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ns_nano_http.mm; sourceTree = "<group>"; };
+		9A2038202BF46C7800599878 /* _user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _user.cpp; sourceTree = "<group>"; };
 		9A21AFD127611EA0001E14CC /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9A21AFD527611F59001E14CC /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		9A220EA7251A1993002B42B7 /* printf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = printf.cpp; sourceTree = "<group>"; };
@@ -6395,6 +6399,14 @@
 			path = http;
 			sourceTree = "<group>";
 		};
+		9A2038212BF46C7800599878 /* user */ = {
+			isa = PBXGroup;
+			children = (
+				9A2038202BF46C7800599878 /* _user.cpp */,
+			);
+			path = user;
+			sourceTree = "<group>";
+		};
 		9A2354202BF0928400E20450 /* user */ = {
 			isa = PBXGroup;
 			children = (
@@ -7736,6 +7748,7 @@
 		9A818F382A71FC6B008F470C /* nano */ = {
 			isa = PBXGroup;
 			children = (
+				9A2038212BF46C7800599878 /* user */,
 				9A2038192BF45F7400599878 /* http */,
 			);
 			path = nano;
@@ -11748,6 +11761,7 @@
 				9A1FB4D12870DE460042849A /* _main_hold_base.cpp in Sources */,
 				9A08433B29366748009F7FF4 /* _synchronization.cpp in Sources */,
 				9A08442529367B73009F7FF4 /* pipe.cpp in Sources */,
+				9A2038222BF46C7800599878 /* _user.cpp in Sources */,
 				9ADD650B26B5CF1300D11298 /* strdup_array.cpp in Sources */,
 				9A68AEF925114435008DABD2 /* international.cpp in Sources */,
 				9A08411229348AAB009F7FF4 /* time.cpp in Sources */,
@@ -12264,6 +12278,7 @@
 				9AC106422B6AC9BD0053DB45 /* task_message_queue.cpp in Sources */,
 				9AC106432B6AC9BD0053DB45 /* link.cpp in Sources */,
 				9AC106442B6AC9BD0053DB45 /* text.cpp in Sources */,
+				9A2038232BF46CCE00599878 /* _user.cpp in Sources */,
 				9AC106452B6AC9BD0053DB45 /* filesystem.cpp in Sources */,
 				9AC106462B6AC9BD0053DB45 /* memory.cpp in Sources */,
 				9AC106472B6AC9BD0053DB45 /* paged_large.cpp in Sources */,
@@ -12753,6 +12768,7 @@
 				9AA8FCA627BA7299008FF9AA /* mmcpp.cpp in Sources */,
 				9A0B8D1927AA1F3300760D34 /* serialization.cpp in Sources */,
 				9A94DE27282C034800F5C1CA /* memory_container.cpp in Sources */,
+				9A2038262BF46CD300599878 /* _user.cpp in Sources */,
 				9A752AB02BEB7DAC00CFB049 /* quantum.cpp in Sources */,
 				9A53CD402BA2CD700018A746 /* shell.cpp in Sources */,
 				9A67FCF22B50C6460083ED38 /* message_box.cpp in Sources */,

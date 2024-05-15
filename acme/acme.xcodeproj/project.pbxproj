@@ -477,6 +477,12 @@
 		9A0E1D4428E679DF005E8DE6 /* error_code.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0E1D4128E679DF005E8DE6 /* error_code.cpp */; };
 		9A0E1D4528E679DF005E8DE6 /* error_code.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0E1D4228E679DF005E8DE6 /* error_code.h */; };
 		9A0E1D4628E679DF005E8DE6 /* error_code.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0E1D4228E679DF005E8DE6 /* error_code.h */; };
+		9A0E50D72BF51AC5007C7253 /* _http.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2038132BF45F7400599878 /* _http.cpp */; };
+		9A0E50D82BF51AC5007C7253 /* _http.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2038132BF45F7400599878 /* _http.cpp */; };
+		9A0E50D92BF51ACB007C7253 /* http.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2038152BF45F7400599878 /* http.cpp */; };
+		9A0E50DA2BF51ACC007C7253 /* http.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2038152BF45F7400599878 /* http.cpp */; };
+		9A0E50DB2BF51AD1007C7253 /* ns_nano_http.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2038182BF45F7400599878 /* ns_nano_http.mm */; };
+		9A0E50DC2BF51AD2007C7253 /* ns_nano_http.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A2038182BF45F7400599878 /* ns_nano_http.mm */; };
 		9A110F5427CDD2450081BCCD /* serial_shared.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A110F4027CDD23E0081BCCD /* serial_shared.h */; };
 		9A110F5527CDD2450081BCCD /* serial_shared.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A110F4027CDD23E0081BCCD /* serial_shared.h */; };
 		9A110F5627CDD2450081BCCD /* system_setup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A110F4127CDD23E0081BCCD /* system_setup.cpp */; };
@@ -11843,6 +11849,7 @@
 				9AC104922B6AC9BD0053DB45 /* factory.cpp in Sources */,
 				9AC104932B6AC9BD0053DB45 /* node.cpp in Sources */,
 				9AC104942B6AC9BD0053DB45 /* dir_system.cpp in Sources */,
+				9A0E50D92BF51ACB007C7253 /* http.cpp in Sources */,
 				9AC104952B6AC9BD0053DB45 /* particle.cpp in Sources */,
 				9AC104962B6AC9BD0053DB45 /* c_class.cpp in Sources */,
 				9AC104972B6AC9BD0053DB45 /* unicode.cpp in Sources */,
@@ -11873,6 +11880,7 @@
 				9AC104AF2B6AC9BD0053DB45 /* unicode16.cpp in Sources */,
 				9AC104B02B6AC9BD0053DB45 /* value.cpp in Sources */,
 				9AC104B12B6AC9BD0053DB45 /* path_array.cpp in Sources */,
+				9A0E50D72BF51AC5007C7253 /* _http.cpp in Sources */,
 				9AC104B22B6AC9BD0053DB45 /* container.cpp in Sources */,
 				9AC104B32B6AC9BD0053DB45 /* buffered_buffer.cpp in Sources */,
 				9AC104B42B6AC9BD0053DB45 /* windows_time.cpp in Sources */,
@@ -12116,6 +12124,7 @@
 				9AC105AA2B6AC9BD0053DB45 /* _.cpp in Sources */,
 				9AC105AB2B6AC9BD0053DB45 /* conversation_message.cpp in Sources */,
 				9AC105AC2B6AC9BD0053DB45 /* network_payload.cpp in Sources */,
+				9A0E50DB2BF51AD1007C7253 /* ns_nano_http.mm in Sources */,
 				9AC105AD2B6AC9BD0053DB45 /* simple_item.cpp in Sources */,
 				9AC105AE2B6AC9BD0053DB45 /* item.cpp in Sources */,
 				9AC105AF2B6AC9BD0053DB45 /* log.cpp in Sources */,
@@ -12333,6 +12342,7 @@
 				9A94DE24282C034800F5C1CA /* matter.cpp in Sources */,
 				9A0842E92935EB40009F7FF4 /* read_only_memory.cpp in Sources */,
 				9A750FF9282B936500C4861B /* node.cpp in Sources */,
+				9A0E50DA2BF51ACC007C7253 /* http.cpp in Sources */,
 				9AE466622AB1000300FE0DE4 /* matrix.cpp in Sources */,
 				9A787B78264BB118003DF8A0 /* context.cpp in Sources */,
 				9AD6913C251A753A00C0EBD7 /* strx.cpp in Sources */,
@@ -12363,6 +12373,7 @@
 				9AC1076C2B6AE9CF0053DB45 /* file.cpp in Sources */,
 				9AA3F8FD2A948585004283CA /* initializer.cpp in Sources */,
 				9A284A932BF0CD1F0070E1BD /* child.cpp in Sources */,
+				9A0E50D82BF51AC5007C7253 /* _http.cpp in Sources */,
 				9AA8FCB227BA7299008FF9AA /* time2.cpp in Sources */,
 				9A94DE62282C091B00F5C1CA /* path_array.cpp in Sources */,
 				9AE479C82A723FA100AA37BC /* muldiv64.cpp in Sources */,
@@ -12606,6 +12617,7 @@
 				9A15A6AF264B59EF0080670E /* _.cpp in Sources */,
 				9AD69213251A753A00C0EBD7 /* math.cpp in Sources */,
 				9A0843552936677C009F7FF4 /* tracer.cpp in Sources */,
+				9A0E50DC2BF51AD2007C7253 /* ns_nano_http.mm in Sources */,
 				9A9814A428E4EA8E001C9855 /* procedure_array.cpp in Sources */,
 				9AD69215251A753A00C0EBD7 /* strw.cpp in Sources */,
 				9AA8006227BA72A1008FF9AA /* _.cpp in Sources */,

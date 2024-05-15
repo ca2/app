@@ -10,7 +10,11 @@
 #include "_http.h"
 #include "ns_nano_http.h"
 #include <Foundation/Foundation.h>
+#ifdef MACOS
 #import <Cocoa/Cocoa.h>
+#elif defined(_APPLE_IOS_)
+#import <UIKit/UIKit.h>
+#endif
 void nano_http_get_transfer_progress(void * userdata, long done, long total);
 
 

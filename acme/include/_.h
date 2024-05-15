@@ -93,6 +93,9 @@
 #include "acme/platform/_.h"
 #include "acme/primitive/_.h"
 #include "acme/user/_.h"
+#ifdef   _STDIO_H_
+#error "already included?!?! WHAT?!?! (After including acme/include/(1))"
+#endif
 
 
 #include "acme/parallelization/_preamble.h"
@@ -107,6 +110,9 @@
 //#include "acme/platform/_c.h"
 #include "acme/memory/_memory.h"
 
+#ifdef   _STDIO_H_
+#error "already included?!?! WHAT?!?! (After including acme/include/(2))"
+#endif
 
 
 #include "acme/memory/allocation.h"
@@ -118,6 +124,9 @@
 #include "acme/memory/allocate_processor_cache_oriented.h"
 //#include "acme/memory/_heap.h"
 
+#ifdef   _STDIO_H_
+#error "already included?!?! WHAT?!?! (After including acme/include/(3))"
+#endif
 
 #include "acme/constant/parallelization.h"
 #include "acme/filesystem/file/_c.h"
@@ -132,16 +141,40 @@
 #include "acme/primitive/mathematics/numeric_info.h"
 #include "acme/primitive/primitive/e_flag.h"
 #include "acme/primitive/primitive/transfer.h"
+#ifdef   _STDIO_H_
+#error "already included?!?! WHAT?!?! (After including acme/include/(4))"
+#endif
 
 
 #include  "acme/primitive/primitive/_unit.h"
+#ifdef   _STDIO_H_
+#error "already included?!?! WHAT?!?! (After including acme/include/(5.0))"
+#endif
 #include  "acme/primitive/time/_.h"
+#ifdef   _STDIO_H_
+#error "already included?!?! WHAT?!?! (After including acme/include/(5.1))"
+#endif
 #include  "acme/primitive/string/string.h"
+#ifdef   _STDIO_H_
+#error "already included?!?! WHAT?!?! (After including acme/include/(5.2))"
+#endif
 #include  "acme/primitive/primitive/payload.h"
+#ifdef   _STDIO_H_
+#error "already included?!?! WHAT?!?! (After including acme/include/(5.3))"
+#endif
 #include  "acme/primitive/primitive/object.h"
+#ifdef   _STDIO_H_
+#error "already included?!?! WHAT?!?! (After including acme/include/(5.4))"
+#endif
 #include  "acme/exception/exception.h"
+#ifdef   _STDIO_H_
+#error "already included?!?! WHAT?!?! (After including acme/include/(5.5))"
+#endif
 #include  "acme/platform/class.h"
 
+#ifdef   _STDIO_H_
+#error "already included?!?! WHAT?!?! (After including acme/include/(5))"
+#endif
 
 #include "acme/primitive/string/scoped_string_base.h"
 #include "acme/operating_system/_.h"
@@ -167,6 +200,9 @@
 
 #include "acme/platform/platform.h"
 
+#ifdef   _STDIO_H_
+#error "already included?!?! WHAT?!?! (After including acme/include/(A))"
+#endif
 
 
 //

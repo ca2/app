@@ -2732,9 +2732,9 @@ CLASS_DECL_ACME ::allocator::accessor * __call__add_referer(const ::reference_re
 #endif
 
 
-
-#if defined(__GNUC__)
-#pragma message("defined(__GNUC__)")
-#else
-#pragma message("!defined(__GNUC__)")
-#endif
+//
+//#if defined(__GNUC__)
+//#pragma message("defined(__GNUC__)")
+//#else
+//#pragma message("!defined(__GNUC__)")
+//#endif

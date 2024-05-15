@@ -447,7 +447,7 @@ namespace integration
 
             ::function<void(const::scoped_string& scopedstr) > callback;
 
-            int iLastLineLength=0;
+            strsize iLastLineLength=0;
             int iFilesExtracted = 0;
             callback = [this,&iLastLineLength, &iFilesExtracted](const ::scoped_string& scopedstr)
                {

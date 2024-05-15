@@ -47,8 +47,6 @@
 		9A94DECF282C4ABB00F5C1CA /* libaura_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94DECE282C4ABB00F5C1CA /* libaura_ios.a */; };
 		9A94DED3282C4AC400F5C1CA /* libapex_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94DED2282C4AC400F5C1CA /* libapex_ios.a */; };
 		9A94DED6282C4ACB00F5C1CA /* libacme_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94DED5282C4ACB00F5C1CA /* libacme_ios.a */; };
-		9AC88AE82B6B3C76008F1C20 /* _____release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9AC88AE62B6B3C75008F1C20 /* _____release.xcconfig */; };
-		9AC88AE92B6B3C76008F1C20 /* _____debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 9AC88AE72B6B3C76008F1C20 /* _____debug.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -240,8 +238,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A94B9E92BE8AD5B00744150 /* libios_archive.a in Frameworks */,
 				9A94B9E72BE8AD5000744150 /* SystemConfiguration.framework in Frameworks */,
+				9A94B9E92BE8AD5B00744150 /* libios_archive.a in Frameworks */,
 				9A40BDF62B6B9C850077053E /* libios_darwin.a in Frameworks */,
 				9A40BDBE2B6B67770077053E /* UniformTypeIdentifiers.framework in Frameworks */,
 				9A40BDAF2B6B65510077053E /* libios_acme_darwin.a in Frameworks */,
@@ -499,7 +497,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					9AA14F5D282A2A6200B1621E = {
 						CreatedOnToolsVersion = 13.3.1;
@@ -642,10 +640,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A3810CC2B705569004C0373 /* Launch Screen.storyboard in Resources */,
-				9AC88AE82B6B3C76008F1C20 /* _____release.xcconfig in Resources */,
 				9A8E9C80282A2B90005FF778 /* InfoPlist.strings in Resources */,
 				9A8E9C82282A2B90005FF778 /* Images.xcassets in Resources */,
-				9AC88AE92B6B3C76008F1C20 /* _____debug.xcconfig in Resources */,
 				9A8E9D85282A2C09005FF778 /* _matter.zip in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

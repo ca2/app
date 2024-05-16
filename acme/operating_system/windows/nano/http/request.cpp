@@ -19,14 +19,17 @@ namespace windows
       {
 
 
-         request::request(connect& connect, const ::scoped_string& scopedstrOperation, const ::scoped_string& scopedstrObject)
+         request::request(connect& connect, const ::scoped_string& scopedstrOperation, const ::scoped_string& scopedstrObject) :
+            m_connect(connect)
          {
 
             wstring wstrOperation(scopedstrOperation);
 
             wstring wstrObject(scopedstrObject);
 
-            m_hinternet = WinHttpOpenRequest(connect.m_hinternet, wstrOperation, wstrObject, NULL, WINHTTP_NO_REFERER, NULL, NULL);
+            m_hinternet = WinHttpOpenRequest(connect.m_hinternet, wstrOperation, wstrObject, NULL, WINHTTP_NO_REFERER, NULL, WINHTTP_FLAG_SECURE);
+            DWORD dwOptionValue = WINHTTP_DISABLE_REDIRECTS;
+            BOOL b = WinHttpSetOption(m_hinternet, WINHTTP_OPTION_DISABLE_FEATURE, &dwOptionValue, sizeof(dwOptionValue));
 
          }
 
@@ -40,7 +43,16 @@ namespace windows
          bool request::send_request()
          {
 
-            auto bResults = WinHttpSendRequest(m_hinternet, WINHTTP_NO_ADDITIONAL_HEADERS, 0, WINHTTP_NO_REQUEST_DATA, 0, 0, 0);
+            ::wstring wstrHost = m_connect.m_wstrHost;
+
+            wstring wstrMoreHeaders;
+
+            wstrMoreHeaders += L"Host: ";
+            wstrMoreHeaders += wstrHost;
+            wstrMoreHeaders += L"\r\n";
+            wstrMoreHeaders += L"Accept: */*\r\n";
+
+            auto bResults = WinHttpSendRequest(m_hinternet, wstrMoreHeaders, 0, WINHTTP_NO_REQUEST_DATA, 0, 0, 0);
             // End the request.
 
             return bResults != FALSE;
@@ -56,9 +68,63 @@ namespace windows
             if (!bResults)
             {
 
+               DWORD dw = ::GetLastError();
+
                return false;
 
             }
+
+            DWORD dwSize = 0;
+            WinHttpQueryHeaders(m_hinternet,
+               WINHTTP_QUERY_FLAG_REQUEST_HEADERS
+               | WINHTTP_QUERY_RAW_HEADERS_CRLF,
+               WINHTTP_HEADER_NAME_BY_INDEX, NULL,
+               &dwSize, WINHTTP_NO_HEADER_INDEX);
+            wstring wstrRequestHeaders;
+            // Allocate memory for
+            // 
+            //  the buffer.
+            if (GetLastError() == ERROR_INSUFFICIENT_BUFFER)
+            {
+               auto pwszHeaders = wstrRequestHeaders.get_buffer(dwSize / sizeof(WCHAR));
+
+               // Now, use WinHttpQueryHeaders to retrieve the header.
+               bResults = WinHttpQueryHeaders(m_hinternet,
+                  WINHTTP_QUERY_FLAG_REQUEST_HEADERS
+                  | WINHTTP_QUERY_RAW_HEADERS_CRLF,
+                  WINHTTP_HEADER_NAME_BY_INDEX,
+                  pwszHeaders, &dwSize,
+                  WINHTTP_NO_HEADER_INDEX);
+               wstrRequestHeaders.release_buffer();
+            }
+            ::string strRequestHeaders(wstrRequestHeaders);
+
+            
+            dwSize = 0;
+            WinHttpQueryHeaders(m_hinternet, WINHTTP_QUERY_RAW_HEADERS_CRLF,
+               WINHTTP_HEADER_NAME_BY_INDEX, NULL,
+               &dwSize, WINHTTP_NO_HEADER_INDEX);
+            wstring wstrHeaders;
+            // Allocate memory for
+            // 
+            //  the buffer.
+            if (GetLastError() == ERROR_INSUFFICIENT_BUFFER)
+            {
+               auto pwszHeaders = wstrHeaders.get_buffer(dwSize / sizeof(WCHAR));
+
+               // Now, use WinHttpQueryHeaders to retrieve the header.
+               bResults = WinHttpQueryHeaders(m_hinternet,
+                  WINHTTP_QUERY_RAW_HEADERS_CRLF,
+                  WINHTTP_HEADER_NAME_BY_INDEX,
+                  pwszHeaders, &dwSize,
+                  WINHTTP_NO_HEADER_INDEX);
+               wstrHeaders.release_buffer();
+            }
+
+            ::string strHeaders(wstrHeaders);
+
+            pget->m_setOut.parse_network_headers(strHeaders);
+
             ::u64 contentLength = 0;
             DWORD dwContentLengthBufferSize = sizeof(contentLength);
 
@@ -76,11 +142,20 @@ namespace windows
 
             }
 
+            bool bOnlyHeaders = pget->m_setIn["only_headers"].as_bool();
+
+            if (bOnlyHeaders)
+            {
+
+               return true;
+
+            }
+
             transfer_progress_function transferprogressfunction;
 
             transferprogressfunction = pget->m_setIn["transfer_progress_function"];
 
-            DWORD dwSize = 0;
+            dwSize = 0;
             do
             {
 

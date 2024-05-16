@@ -42,6 +42,10 @@ namespace nano
          
          
          virtual void async(::nano::http::get * pget);
+
+
+         // Follow redirects and find final resource.
+         virtual ::string get_effective_url(const ::scoped_string & scopedstr);
          
          
       };

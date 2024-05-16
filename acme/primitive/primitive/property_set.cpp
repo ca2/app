@@ -1243,19 +1243,19 @@ void property_set::parse_network_headers(const ::scoped_string & scopedstrHeader
 
    string_array stra;
 
-   stra.add_tokens(scopedstrHeaders, "\r\n", true);
+   stra.add_lines(scopedstrHeaders, true);
 
    string strName;
 
-   for (i32 i = 0; i < stra.get_size(); i++)
+   for (auto & str : stra)
    {
 
-      auto pPos = stra[i].find(":");
+      auto pPos = str.find(":");
 
       if (::is_null(pPos))
       {
 
-         strName = stra[i].make_lower();
+         strName = str.make_lower();
 
          set_at(strName, ::e_type_empty);
 
@@ -1263,9 +1263,17 @@ void property_set::parse_network_headers(const ::scoped_string & scopedstrHeader
       else
       {
 
-         strName = stra[i].substr(0, pPos).make_lower();
+         strName = str.substr(0, pPos);
 
-         set_at(strName, stra[i](0, pPos + 2));
+         strName.trim();
+
+         strName.make_lower();
+
+         ::string strPayload = str.substr(pPos + 1);
+
+         strPayload.trim();
+
+         set_at(strName, strPayload);
 
       }
 

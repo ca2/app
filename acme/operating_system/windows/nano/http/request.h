@@ -25,6 +25,7 @@ namespace windows
          {
          public:
 
+            connect& m_connect;
 
             request(connect& connect, const ::scoped_string& scopedstrOperation, const ::scoped_string& scopedstrObject);
             ~request() override;

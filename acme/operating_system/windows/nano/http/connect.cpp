@@ -21,9 +21,9 @@ namespace windows
          connect::connect(session& session, const ::scoped_string& scopedstrHost)
          {
 
-            wstring wstrHost(scopedstrHost);
+            m_wstrHost = scopedstrHost;
 
-            m_hinternet = WinHttpConnect(session.m_hinternet, wstrHost, INTERNET_DEFAULT_HTTP_PORT, 0);
+            m_hinternet = WinHttpConnect(session.m_hinternet, m_wstrHost, INTERNET_DEFAULT_HTTPS_PORT, 0);
 
          }
 

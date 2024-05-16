@@ -380,7 +380,7 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
          if (tracestatement.m_etracelevel <= e_trace_level_information)
          {
 
-            printf("%s", str.c_str());
+            fwrite(str.c_str(), 1, str.size(), stdout);
 
             if(bFlush)
             {

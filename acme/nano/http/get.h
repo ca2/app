@@ -32,7 +32,7 @@ namespace nano
          ::property_set                m_setOut;
          
          memory                        m_memory;
-         
+
          transfer_progress_function    m_transferprogressfunction;
 
          virtual void set_response(long http_status, const void * data, long size);

@@ -25,6 +25,8 @@ namespace windows
          {
          public:
 
+            wstring m_wstrHost;
+
 
             connect(session& session, const ::scoped_string& scopedstrHost);
             ~connect() override;

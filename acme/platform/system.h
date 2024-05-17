@@ -7,7 +7,7 @@
 #include "context.h"
 //#include "plane_system.h"
 #include "application_flags.h"
-//#include "acme/memory/counter.h"
+#include "acme/constant/gender.h"
 #include "acme/parallelization/_types.h"
 #include "acme/primitive/collection/map.h"
 #include "acme/primitive/primitive/factory.h"
@@ -348,6 +348,8 @@ namespace acme
          //void system_construct(const ::scoped_string & scopedstrCommandLine, const ::e_display& edisplay = ::e_display_none);
 
 #endif
+
+      virtual void speak(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrLang = "en-us", enum_gender egender = e_gender_none);
 
 
       virtual ::pointer<::factory::factory> & node_factory();

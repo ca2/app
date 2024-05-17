@@ -35,6 +35,7 @@ namespace acme
 
       virtual void install_posix_shell_command(const ::scoped_string& scopedstr, enum_posix_shell eposixshell = e_posix_shell_system_default, const trace_function& tracefunction = nullptr);
 
+      virtual ::string posix_shell_command_install_package(const ::scoped_string& scopedstr, enum_posix_shell eposixshell = e_posix_shell_system_default);
 
       virtual void prepare_argc_argv(int& argc, char** argv, char* cmd_line);
       virtual int command(const ::scoped_string& scopedstr, const trace_function& tracefunction = nullptr);

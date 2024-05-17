@@ -232,6 +232,12 @@ namespace datetime
       //inline string local(const ::earth::time & time) { return local_get(time); }
 
 
+virtual ::string elapsed_nanoseconds_text(::i64 iNanoseconds);
+
+
+virtual ::string elapsed_time_text(const class ::time & time);
+
+
    };
 
 

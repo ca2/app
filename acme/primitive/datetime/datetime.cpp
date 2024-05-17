@@ -1975,6 +1975,90 @@ namespace datetime
    }
 
 
+::string datetime::elapsed_nanoseconds_text(::i64 iNanoseconds)
+{
+
+   ::string str;
+
+   if(iNanoseconds > 1'000'000)
+   {
+
+      str.formatf("%0.6f ms", (double) iNanoseconds / 1'000'000.);
+
+   }
+   else if(iNanoseconds > 1'000)
+   {
+
+      str.formatf("%0.3d μs", (double) iNanoseconds / 1'000.);
+
+   }
+   else
+   {
+
+      str.formatf("%d ηs", (int) (iNanoseconds));
+
+   }
+
+   return str;
+
+}
+
+
+::string datetime::elapsed_time_text(const class ::time & time)
+{
+
+
+   int iSeconds = time.m_iSecond;
+   int iSecond = iSeconds % 60;
+   int iMinutes = iSeconds / 60;
+   int iMinute = iMinutes % 60; 
+   int iHours = iMinutes / 60;
+   int iHour = iHours % 24; 
+   int iDays = iHours / 24;
+
+   ::string_array stra;
+
+   if(iDays > 0)
+   {
+
+      stra.append_formatf("%d day(s)", iDays);
+
+   }
+
+   if(iHour > 0)
+   {
+
+      stra.append_formatf("%d hour(s)", iHour);
+
+   }
+
+   if(iMinute > 0)
+   {
+
+      stra.append_formatf("%d minute(s)", iMinute);
+
+   }
+
+   if(iSecond > 0)
+   {
+
+      stra.append_formatf("%d second(s)", iSecond);
+
+   }
+
+   if(time.m_iNanosecond > 0)
+   {
+
+      stra.add(elapsed_nanoseconds_text(time.m_iNanosecond));
+
+   }
+
+   return stra._008Implode(", ", " and ");
+
+}
+
+
+
 } // namespace datetime
 
 

@@ -37,6 +37,7 @@
 //#include "acme/primitive/string/hex.h"
 #include "acme/nano/user/user.h"
 #include "acme/nano/http/http.h"
+#include "acme/nano/speech/speech.h"
 //#include "acme/user/user/conversation.h"
 
 
@@ -557,6 +558,14 @@ namespace acme
       //::acme::g_pengine;
 
       //return estatus;
+
+   }
+
+
+   void system::speak(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrLang, enum_gender egender)
+   {
+
+      nano()->speech()->speak(scopedstr, scopedstrLang, egender);
 
    }
 

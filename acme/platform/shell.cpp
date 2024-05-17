@@ -469,7 +469,12 @@ namespace acme
    }
 
 
-   //#ifdef LINUX
+   ::string shell::posix_shell_command_install_package(const ::scoped_string& scopedstr, enum_posix_shell eposixshell)
+   {
+
+      return scopedstr;
+
+   }
 
 
    int shell::posix_shell_command(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell, const trace_function& tracefunction)

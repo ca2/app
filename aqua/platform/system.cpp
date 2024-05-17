@@ -157,6 +157,31 @@ namespace aqua
    }
 
 
+   void system::speak(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrLang, enum_gender egender)
+   {
+
+      try
+      {
+
+         if (application()->m_bAudio)
+         {
+
+            audio()->speak(scopedstrLang, scopedstr, true);
+
+            return;
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      ::apex::system::speak(scopedstr, scopedstrLang, egender);
+
+   }
+
    void system::create_audio()
    {
 

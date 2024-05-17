@@ -36,7 +36,7 @@ namespace data
          return true;
 
       }
-      else
+      else if(::is_set(pdata))
       {
 
          pdata->m_listenera.erase(this);
@@ -48,6 +48,8 @@ namespace data
          return true;
 
       }
+
+      return false;
 
    }
 

@@ -249,7 +249,7 @@ namespace integration
 //      };
 //
       //auto iExitCode = node()->command_system(scopedstrCommand, ::std_inline_log());
-      auto iExitCode = node()->command_system(scopedstrCommand, 12_h, pathWorkingDirectory, edisplay);
+      auto iExitCode = node()->command_system(scopedstrCommand, timeOut, pathWorkingDirectory, edisplay);
       
       if (iExitCode != 0)
       {

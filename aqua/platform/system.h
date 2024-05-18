@@ -44,7 +44,7 @@ namespace aqua
 
       ::xml::xml* _xml() override;
 
-      virtual void speak(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrLang = "en-us", enum_gender egender = e_gender_none);
+      void speak(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrLang = "en-us", enum_gender egender = e_gender_none) override;
 
 
       virtual void create_audio();

@@ -35,7 +35,11 @@ namespace nano
 
          transfer_progress_function    m_transferprogressfunction;
 
+         virtual void set_out_header(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrPayload);
+         
          virtual void set_response(long http_status, const void * data, long size);
+         
+         virtual bool only_headers() const;
 
          virtual get * this_transport_payload() override;
 

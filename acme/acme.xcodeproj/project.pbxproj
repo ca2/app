@@ -697,6 +697,7 @@
 		9A220F66251A1993002B42B7 /* printf.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A220F06251A1993002B42B7 /* printf.h */; };
 		9A22670F27CDDF430042BAC2 /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22670E27CDDF430042BAC2 /* time.cpp */; };
 		9A22671027CDDF430042BAC2 /* time.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22670E27CDDF430042BAC2 /* time.cpp */; };
+		9A22FE7B2BF7F413008C7ABE /* device.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2037E12BF45B1900599878 /* device.cpp */; };
 		9A2353FB2BF0907500E20450 /* nano.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2353FA2BF0907500E20450 /* nano.h */; };
 		9A2353FC2BF0907500E20450 /* nano.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2353F92BF0907500E20450 /* nano.cpp */; };
 		9A2354212BF0928400E20450 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2353FD2BF0928400E20450 /* _.h */; };
@@ -12788,6 +12789,7 @@
 				9A786255264B90B5003DF8A0 /* number.cpp in Sources */,
 				9AA8FCB627BA7299008FF9AA /* ns_exception.cpp in Sources */,
 				9A94DE34282C034800F5C1CA /* work.cpp in Sources */,
+				9A22FE7B2BF7F413008C7ABE /* device.cpp in Sources */,
 				9A754FB12B212C3A00FFB669 /* vld.cpp in Sources */,
 				9AD69289251A753A00C0EBD7 /* exception.cpp in Sources */,
 				9A1625FA26EFCCC1003D9CB9 /* streamable_composite.cpp in Sources */,

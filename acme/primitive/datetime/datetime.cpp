@@ -2008,13 +2008,13 @@ namespace datetime
 {
 
 
-   int iSeconds = time.m_iSecond;
-   int iSecond = iSeconds % 60;
-   int iMinutes = iSeconds / 60;
-   int iMinute = iMinutes % 60; 
-   int iHours = iMinutes / 60;
-   int iHour = iHours % 24; 
-   int iDays = iHours / 24;
+   auto iSeconds = time.m_iSecond;
+   auto iSecond = iSeconds % 60;
+   auto iMinutes = iSeconds / 60;
+   auto iMinute = iMinutes % 60;
+   auto iHours = iMinutes / 60;
+   auto iHour = iHours % 24;
+   auto iDays = iHours / 24;
 
    ::string_array stra;
 

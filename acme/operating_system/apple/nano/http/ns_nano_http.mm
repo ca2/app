@@ -16,7 +16,8 @@
 #import <UIKit/UIKit.h>
 #endif
 void nano_http_get_transfer_progress(void * userdata, long done, long total);
-
+void nano_http_get_set_out_header(void * userdata, const char * pszKey, const char * pszPayload);
+bool nano_http_get_only_headers(void * userdata);
 
 @implementation ns_nano_http
 
@@ -56,14 +57,57 @@ void nano_http_get_transfer_progress(void * userdata, long done, long total);
     // Dispose of any resources that can be recreated.
 }
 
-- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
-    completionHandler(NSURLSessionResponseAllow);
+- (BOOL)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask onHeaders:(NSURLResponse *)response
+{
+   //progressBar.progress=0.0f;
+   _downloadSize=[response expectedContentLength];
+  NSHTTPURLResponse * phttpurlresponse =  (NSHTTPURLResponse *)response;
+  m_lHttpResponseStatus = [phttpurlresponse statusCode];
+  
+  auto dict = [phttpurlresponse allHeaderFields];
+  // To print out all key-value pairs in the NSDictionary myDict
+  for(id key in dict)
+  {
+     NSString * strKey = key;
+     NSString * strPayload = [dict objectForKey:key];
+     nano_http_get_set_out_header(
+                                  self->m_userdata,
+                                  [strKey UTF8String], [strPayload UTF8String]);
+  }
 
-    //progressBar.progress=0.0f;
-    _downloadSize=[response expectedContentLength];
-    _dataToDownload=[[NSMutableData alloc]init];
-   m_lHttpResponseStatus = ((NSHTTPURLResponse *)response).statusCode;
+   return !nano_http_get_only_headers(self->m_userdata);
+   
+}
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler
+{
+   
+
+   if(![self URLSession :session dataTask : dataTask onHeaders: response])
+   {
+      //[dataTask suspend];
+      //[dataTask cancel];
+      completionHandler(NSURLSessionResponseCancel);
+
+      return;
+   }
+   _dataToDownload=[[NSMutableData alloc]init];
    nano_http_get_transfer_progress(self->m_userdata, 0, _downloadSize);
+   completionHandler(NSURLSessionResponseAllow);
+
+
+}
+
+- (void)URLSession:(NSURLSession *)session
+              task:(NSURLSessionTask *)dataTask
+willPerformHTTPRedirection:(NSHTTPURLResponse *)response
+        newRequest:(NSURLRequest *)request
+ completionHandler:(void (^)(NSURLRequest *))completionHandler
+{
+   
+   //[self URLSession :session dataTask : dataTask onHeaders: response];
+   
+   completionHandler(nil);
 
 }
 

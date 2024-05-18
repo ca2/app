@@ -16,6 +16,35 @@ namespace nano
    {
    
    
+      void get::set_out_header(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrPayload)
+      {
+         
+         ::string strKey(scopedstrKey);
+         
+         strKey.make_lower();
+      
+         m_setOut[strKey] = scopedstrPayload;
+         
+      }
+   
+   
+      bool get::only_headers() const
+   {
+    
+      if(!m_setIn.has_property("only_headers"))
+      {
+       
+         return false;
+         
+         
+         
+      }
+      
+      return m_setIn["only_headers"].as_bool();
+      
+   }
+
+   
       void get::set_response(long http_status, const void * data, long size)
       {
          
@@ -70,6 +99,26 @@ void nano_http_get_transfer_progress(void * userdata, long done, long total)
    }
    
 }
+
+
+void nano_http_get_set_out_header(void * userdata, const char * pszKey, const char * pszPayload)
+{
+   
+   auto pget = dynamic_cast <::nano::http::get *>((::subparticle*)userdata);
+   
+   pget->set_out_header(pszKey, pszPayload);
+
+}
+
+bool nano_http_get_only_headers(void * userdata)
+{
+   
+   auto pget = dynamic_cast <::nano::http::get *>((::subparticle*)userdata);
+   
+   return pget->only_headers();
+
+}
+
 
 
 void nano_http_get_set_response(void * userdata, long http_status, const void * data, long size)

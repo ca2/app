@@ -32,7 +32,7 @@ void http::s_http_response(long http_status, const void * data, long size, void 
    
    pget->set_response(http_status, data, size);
    
-   pget->set_finish();
+   pget->set_finished();
    
 //
 //   passynchronoushttpdata->m_response.m_set["http_status_code"] = http_status;

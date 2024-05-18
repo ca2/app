@@ -103,6 +103,8 @@ namespace nano
             pget->m_strUrl = strUrl;
 
             pget->m_setIn["only_headers"] = true;
+            
+            pget->m_timeSyncTimeout = 5_min;
 
             sync(pget);
 

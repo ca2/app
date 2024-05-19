@@ -21,43 +21,43 @@
 #include <dispatch/dispatch.h>
 
 void ns_main_async(dispatch_block_t block);
+// /// Tags: proc_count, core_count, processor_count, cpu_count
+// int get_processor_count()
+// {
 
-int get_processor_count()
-{
+//    int nm[2];
 
-   int nm[2];
+//    size_t len = 4;
 
-   size_t len = 4;
+//    u32 count;
 
-   u32 count;
+//    nm[0] = CTL_HW;
 
-   nm[0] = CTL_HW;
+//    nm[1] = HW_AVAILCPU;
 
-   nm[1] = HW_AVAILCPU;
+//    sysctl(nm, 2, &count, &len, nullptr, 0);
 
-   sysctl(nm, 2, &count, &len, nullptr, 0);
+//    if(count < 1)
+//    {
 
-   if(count < 1)
-   {
+//       nm[1] = HW_NCPU;
 
-      nm[1] = HW_NCPU;
+//       sysctl(nm, 2, &count, &len, nullptr, 0);
 
-      sysctl(nm, 2, &count, &len, nullptr, 0);
+//       if(count < 1)
+//       {
+//          count = 1;
 
-      if(count < 1)
-      {
-         count = 1;
+//       }
 
-      }
+//    }
 
-   }
+//    return count;
 
-   return count;
-
-   //#else
-   // return sysconf(_SC_NPROCESSORS_ONLN);
-   //#endif
-}
+//    //#else
+//    // return sysconf(_SC_NPROCESSORS_ONLN);
+//    //#endif
+// }
 
 
 i32 process_get_os_priority(i32 nCa2Priority);

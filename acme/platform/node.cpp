@@ -42,6 +42,8 @@ CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception& 
 
 //CLASS_DECL_ACME void operating_system_open_url(const ::scoped_string & scopedstrUrl);
 
+::i32 get_processor_count();
+
 
 namespace acme
 {
@@ -3342,7 +3344,7 @@ bool node::_is_smart_git_installed()
       
       get_call_stack_frames(stack, frame_count);
       
-      ::string strCallStack = get_call_stack_trace(stack, frame_count);
+      ::string strCallStack = get_call_stack_trace(stack, frame_count, scopedstrFormat, iSkip);
       
       return strCallStack;
    
@@ -4490,7 +4492,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    int node::performance_core_count()
    {
 
-      return 1;
+      return ::get_processor_count();
 
    }
 

@@ -220,7 +220,7 @@ string get_status_message(const ::e_status & estatus)
 
    string strMessage;
 
-   strMessage += as_string(estatus) + "\n";
+   strMessage += as_string(estatus) + " ";
 
    strMessage += status_short_description(estatus);
 

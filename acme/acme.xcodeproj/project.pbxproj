@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A00AECD2BF9894F00616364 /* parallelization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A00AEC82BF9894E00616364 /* parallelization.cpp */; };
+		9A00AECE2BF9894F00616364 /* parallelization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A00AEC82BF9894E00616364 /* parallelization.cpp */; };
+		9A00AECF2BF9894F00616364 /* parallelization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A00AEC82BF9894E00616364 /* parallelization.cpp */; };
 		9A017F5827AE49D900DB039E /* result.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A017F5627AE49D800DB039E /* result.cpp */; };
 		9A017F5927AE49D900DB039E /* result.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A017F5727AE49D900DB039E /* result.h */; };
 		9A017F6527AE727100DB039E /* atom.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A017F5F27AE727000DB039E /* atom.h */; };
@@ -4436,6 +4439,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A00AEC72BF9894E00616364 /* call_stack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = call_stack.cpp; sourceTree = "<group>"; };
+		9A00AEC82BF9894E00616364 /* parallelization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parallelization.cpp; sourceTree = "<group>"; };
 		9A017F5627AE49D800DB039E /* result.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = result.cpp; sourceTree = "<group>"; };
 		9A017F5727AE49D900DB039E /* result.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = result.h; sourceTree = "<group>"; };
 		9A017F5F27AE727000DB039E /* atom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = atom.h; sourceTree = "<group>"; };
@@ -6070,6 +6075,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A00AEC92BF9894E00616364 /* darwin */ = {
+			isa = PBXGroup;
+			children = (
+				9A00AEC72BF9894E00616364 /* call_stack.cpp */,
+				9A00AEC82BF9894E00616364 /* parallelization.cpp */,
+			);
+			path = darwin;
+			sourceTree = "<group>";
+		};
 		9A0840B929348AAB009F7FF4 /* time */ = {
 			isa = PBXGroup;
 			children = (
@@ -7969,6 +7983,7 @@
 			children = (
 				9AA8F9E527BA7296008FF9AA /* ansi */,
 				9AA8F92E27BA7295008FF9AA /* apple */,
+				9A00AEC92BF9894E00616364 /* darwin */,
 				9AA8FA8227BA7296008FF9AA /* ios */,
 				9AA8F99D27BA7295008FF9AA /* macos */,
 				9AA8F98427BA7295008FF9AA /* posix */,
@@ -11768,6 +11783,7 @@
 				9A1FB4D12870DE460042849A /* _main_hold_base.cpp in Sources */,
 				9A08433B29366748009F7FF4 /* _synchronization.cpp in Sources */,
 				9A08442529367B73009F7FF4 /* pipe.cpp in Sources */,
+				9A00AECD2BF9894F00616364 /* parallelization.cpp in Sources */,
 				9A2038222BF46C7800599878 /* _user.cpp in Sources */,
 				9ADD650B26B5CF1300D11298 /* strdup_array.cpp in Sources */,
 				9A68AEF925114435008DABD2 /* international.cpp in Sources */,
@@ -12070,6 +12086,7 @@
 				9AC105742B6AC9BD0053DB45 /* streamable_composite.cpp in Sources */,
 				9AC105752B6AC9BD0053DB45 /* handler.cpp in Sources */,
 				9AC105762B6AC9BD0053DB45 /* earth_time.cpp in Sources */,
+				9A00AECE2BF9894F00616364 /* parallelization.cpp in Sources */,
 				9AC105772B6AC9BD0053DB45 /* image32_array.cpp in Sources */,
 				9AC105782B6AC9BD0053DB45 /* earth_gregorian_time.cpp in Sources */,
 				9AC1057A2B6AC9BD0053DB45 /* tracer.cpp in Sources */,
@@ -12538,6 +12555,7 @@
 				9AD691C2251A753A00C0EBD7 /* string_wide.cpp in Sources */,
 				9A97C7A6282365C600755A0A /* unicode.cpp in Sources */,
 				9A4EF4A92AE35AAB0048F22F /* image32_array.cpp in Sources */,
+				9A00AECF2BF9894F00616364 /* parallelization.cpp in Sources */,
 				9AD691C4251A753A00C0EBD7 /* checked.cpp in Sources */,
 				9AD691CA251A753A00C0EBD7 /* parse.cpp in Sources */,
 				9A754FB32B212C3A00FFB669 /* std.cpp in Sources */,

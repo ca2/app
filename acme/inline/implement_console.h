@@ -124,7 +124,16 @@ int main(int argc, char ** argv, char ** envp)
       if (pacme->platform()->m_bConsole)
       {
 
-         fprintf(stderr, 
+         
+         ::string strMessage(exception.get_message());
+         
+         strMessage.find_replace("\n", "\n      ");
+
+         ::string strStack(exception.m_strCallStackTrace.c_str());
+         
+         strStack.find_replace("\n", "\n      ");
+
+         fprintf(stderr,
             "\n"
             "\n"
             "\n"
@@ -137,18 +146,22 @@ int main(int argc, char ** argv, char ** envp)
             "      \n"
             "      \n"
             "      \n"
+            "      Callstack ---------  ---   --   -    - \n"
+            "      \n"
+            "      %s\n"
+            "      \n"
             "      ------------------------------------------------------------------------\n"
             "\n"
             "\n"
             "\n"
             "\n"
-            , exception.m_strMessage.c_str());
+            , strMessage.c_str(), strStack.c_str());
 
       }
       else
       {
 
-         ::message_box_synchronous(pacme->platform(), exception.m_strMessage);
+         ::message_box_synchronous(pacme->platform(), exception.get_message(), "Exception", e_message_box_icon_error, exception.get_message() +"\n\nCallstack:\n"+ exception.m_strCallStackTrace);
 
       }
 

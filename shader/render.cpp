@@ -489,15 +489,26 @@ namespace app_shader
 
    void render::_001OnDrawError(::draw2d::graphics_pointer & pgraphics)
    {
+      
+      auto pgpuprogram = m_pgpuprogram;
 
-      if (!m_pgpuprogram)
+      if (!pgpuprogram)
       {
 
          return;
 
       }
+      
+      auto pshader = pgpuprogram->m_pshader;
+      
+      if(!pshader)
+      {
+       
+         return;
+         
+      }
 
-      if (m_pgpuprogram->m_pshader->m_strError.is_empty())
+      if (pshader->m_strError.is_empty())
       {
 
          return;

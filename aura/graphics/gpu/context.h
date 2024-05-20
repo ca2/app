@@ -5,7 +5,7 @@
 #include "acme/primitive/geometry2d/size.h"
 #include "acme/primitive/primitive/memory.h"
 #include "aura/graphics/draw3d/matrix.h"
-
+#include "acme/parallelization/task.h"
 
 namespace gpu
 {
@@ -50,7 +50,7 @@ namespace gpu
 
 
    class CLASS_DECL_AURA context :
-      virtual public ::object
+      virtual public ::task
    {
    public:
 
@@ -150,6 +150,7 @@ namespace gpu
       
       context *      m_pcontext;
       ::e_status     m_estatus;
+      critical_section m_cs;
       
       context_lock(context * pcontext):
          m_estatus(error_failed),
@@ -159,6 +160,7 @@ namespace gpu
          if(m_pcontext)
          {
 
+            m_cs.lock();
             try
             {
 
@@ -190,7 +192,7 @@ namespace gpu
                m_pcontext->unlock_context();
                
             }
-            
+            m_cs.unlock();
          }
          
       }

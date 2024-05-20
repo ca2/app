@@ -130,12 +130,12 @@ void ns_main_sync(dispatch_block_t block);
 }
 
 
-//- (BOOL) canBecomeKeyWindow
-//{
-//   
-//   return YES;
-//   
-//}
+- (BOOL) canBecomeKeyWindow
+{
+   
+   return YES;
+   
+}
 //
 //
 //- (BOOL) canBecomeMainWindow

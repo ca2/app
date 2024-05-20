@@ -309,8 +309,7 @@ namespace gpu
    void render::to_draw2d_graphics(::draw2d::graphics_pointer & pgraphics)
    {
 
-      read_to_cpu_buffer();
-
+      
    //   m_pgpucontext->prepare_for_gpu_read();
 
    //   slImage.lock();

@@ -492,6 +492,13 @@ bool dir_context::_enumerate(::file::listing& listing)
       return true;
       
    }
+   
+   if(listing.m_pathFinal.is_empty() && listing.m_pathUser.has_char())
+   {
+      
+      listing.m_pathFinal = m_pcontext->defer_process_path(listing.m_pathUser);
+      
+   }
 
    if (listing.m_pathFinal.case_insensitive_begins("matter://"))
    {

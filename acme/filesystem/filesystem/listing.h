@@ -194,6 +194,8 @@ namespace file
          m_penumerator = nullptr;
 
          m_pathUser = path;
+         
+         m_pathFinal.empty();
 
          m_eflag = eflag;
 

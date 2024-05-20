@@ -23,7 +23,7 @@ namespace opengl
    void cpu_buffer::gpu_read()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_pixmap.nok())
       {
@@ -50,17 +50,23 @@ namespace opengl
       {
          glReadBuffer(GL_FRONT);
 
-
-         glReadPixels(
-                      0, 0,
-                      cx, cy,
-                      GL_RGBA,
-                      GL_UNSIGNED_BYTE,
-                      data);
+//if(0)
+{
+   glReadPixels(
+                0, 0,
+                cx, cy,
+                GL_RGBA,
+                GL_UNSIGNED_BYTE,
+                data);
+   
+}
          
       }
 
       //m_pixmap.mult_alpha();
+      information() << "after glReadPixels cx,cy : " << cx << ", " << cy;
+      
+      //::memory_set(m_pixmap.m_pimage32Raw, 127, cx * cy * 4);
 
 #elif defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
       glReadBuffer(GL_FRONT);

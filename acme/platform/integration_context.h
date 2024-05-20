@@ -65,7 +65,7 @@ namespace integration
       void initialize(::particle* pparticle) override;
 
 
-      virtual void prepare();
+      virtual void prepare(const ::scoped_string & scopedstrOperatingSystem);
 
       virtual ::file::path get_source_folder_path(const ::scoped_string& strRelative = {});
       virtual ::file::path get_build_folder_path(const ::scoped_string& strRelative = {});

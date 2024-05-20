@@ -61,7 +61,7 @@ namespace integration
    }
 
 
-   void context::prepare()
+   void context::prepare(const ::scoped_string & scopedstrOperatingSystem)
    {
 
       m_pathBase = m_strName / m_strRelease;

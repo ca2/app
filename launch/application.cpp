@@ -59,10 +59,10 @@ char * buffered_FILE_as_string(FILE * f)
 
       if(pOld)
       {
-         ::memory_copy(p, pOld, iPos);
+         ::memcpy(p, pOld, iPos);
       }
 
-      ::memory_copy(p+iPos, str, read);
+      ::memcpy(p+iPos, str, read);
 
       if(pOld)
       {
@@ -193,13 +193,19 @@ char * trim_quotes(char * psz)
 
 }
 
-namespace launch_store
+
+namespace launch
 {
 
-application::application()
+
+application::application(int argc, char * argv[]) :
+   m_argc(argc),
+   m_argv(argv)
 {
 
 m_iExitCode = 0;
+m_pszAppRoot = nullptr;
+m_pszAppName = nullptr;
 
 }
 
@@ -211,13 +217,42 @@ application::~application()
 
 
 
+void application::parse_app_root_and_app_name()
+{
+
+   if(m_argc <= 1)
+   {
+       throw "Wrong number of arguments";
+
+
+   }
+
+   auto p = strchr(m_argv[1], '/');
+
+   if(!p || p == m_argv[1] || (p-m_argv[1]) >= (strlen(m_argv[1]) -1))
+   {
+
+      throw "App Id must contain one slash and only one slash separating app_root and app_name";
+
+   }
+
+   m_pszAppRoot = strdup(m_argv[1]);
+
+   m_pszAppRoot[p -m_argv[1]] = '\0';
+
+   m_pszAppName = strdup(p+1);
+
+}
+
 
 void application::run()
 {
 
 printf("Calculating Download URL...\n");
 
-char * szDownloadUrl = get_download_url();
+parse_app_root_and_app_name();
+
+char * szDownloadUrl = get_download_url(m_pszAppRoot, m_pszAppName);
 
 if (!szDownloadUrl)
 {
@@ -253,9 +288,7 @@ return;
 
 }
 
-install_dependencies();
-
-printf("Launching store...\n");
+printf("Launching %s/%s...\n", m_pszAppRoot, m_pszAppName);
 
 char szHome[2048];
 
@@ -273,7 +306,9 @@ char szAppCore[4096];
 
 strcpy(szAppCore, szApplication);
 
-strcat(szAppCore, "/app-core");
+strcat(szAppCore, "/");
+
+strcat(szAppCore, m_pszAppRoot);
 
 mkdir(szAppCore, 0777);
 
@@ -281,7 +316,9 @@ char szStore[4096];
 
 strcpy(szStore, szAppCore);
 
-strcat(szStore, "/store");
+strcat(szStore, "/");
+
+strcat(szAppCore, m_pszAppName);
 
 mkdir(szStore, 0777);
 
@@ -332,20 +369,36 @@ mkdir(szX64, 0777);
 
 chdir(szX64);
 
-char szDownloadCommand[4096];
+   char szAppExeName[1024];
+   sprintf(szAppExeName, "_%s_%s", m_pszAppRoot, m_pszAppName);
 
+   for(int i = 0; i < strlen(szAppExeName); i++)
+   {
+
+if(szAppExeName[i] =='-')
+{
+szAppExeName[i] = '_';
+
+}
+
+   }
+   char szZipName[1024];
+   sprintf(szZipName, "_%s.zip", szAppExeName);
+   char szDownloadCommand[2048];
 if (!strcasecmp(m_pszDistro, "freebsd")) {
 
 strcpy(szDownloadCommand, "curl ");
 strcat(szDownloadCommand, szDownloadUrl);
-strcat(szDownloadCommand, " > __app-core-store.zip");
+strcat(szDownloadCommand, " > ");
+strcat(szDownloadCommand, szZipName);
 
 }
 else
 {
 strcpy(szDownloadCommand, "wget ");
 strcat(szDownloadCommand, szDownloadUrl);
-strcat(szDownloadCommand, " -O __app-core-store.zip");
+strcat(szDownloadCommand, " -O ");
+strcat(szDownloadCommand, szZipName);
 
 }
 
@@ -353,11 +406,22 @@ strcat(szDownloadCommand, " -O __app-core-store.zip");
 
 system(szDownloadCommand);
 
-system("unzip -o __app-core-store.zip -d .");
+   char szUnzipCommand[2048];
+
+   sprintf(szUnzipCommand, "unzip -o %s -d .", szZipName);
+
+system(szUnzipCommand);
+
+
+   install_dependencies();
+
+
 
 char szCommand[4096];
 
-strcpy(szCommand, "sh -c \"nohup ./_app_core_store > \\\"");
+strcpy(szCommand, "sh -c \"nohup ./");
+strcat(szCommand, szAppExeName);
+strcat(szCommand, " > \\\"");
 strcat(szCommand, szLogPath);
 strcat(szCommand, "\\\"\"");
 
@@ -366,7 +430,7 @@ system(szCommand);
 }
 
 
-char * application::get_download_url()
+char * application::get_download_url(const char * pszRoot, const char * pszName)
 {
 
 auto pszEtcOsRelease = as_string("/etc/os-release");
@@ -556,13 +620,13 @@ char szUrl[4096];
 if (m_pszBranch)
 {
 
-sprintf(szUrl, "https://%s.ca2.store/%s/%s/app-core/store.zip", m_pszDistro, m_pszBranch, m_pszVersion);
+sprintf(szUrl, "https://%s.ca2.store/%s/%s/%s/%s.zip", m_pszDistro, m_pszBranch, m_pszVersion, pszRoot, pszName);
 
 }
 else
 {
 
-sprintf(szUrl, "https://%s.ca2.store/%s/app-core/store.zip", m_pszDistro, m_pszVersion);
+sprintf(szUrl, "https://%s.ca2.store/%s/%s/%s.zip", m_pszDistro, m_pszVersion, pszRoot, pszName);
 
 }
 
@@ -585,23 +649,41 @@ void application::install_dependencies()
 
    printf("Going to install dependencies:\n");
 
+   auto psz = as_string("operating_system_packages.txt");
+
+   if(!psz)
+   {
+
+      return;
+
+   }
+
+   auto pszCommand = (char*) ::malloc(strlen(psz) + 1024);
+
    if(!strcmp(m_pszDistro, "ubuntu") || !strcmp(m_pszDistro, "kubuntu"))
    {
 
-      log_system("sudo apt -y install libfreeimage3 libstartup-notification0 libunac1 libxm4");
+      sprintf(pszCommand, "sudo apt -y install %s", psz);
+
+      log_system(pszCommand);
+
+ //     log_system("sudo apt -y install libfreeimage3 libstartup-notification0 libunac1 libxm4");
 
    }
    else if(!strcmp(m_pszDistro, "fedora"))
    {
 
-      log_system("sudo dnf --assumeyes install freeimage libidn motif libappindicator-gtk3");
+      sprintf(pszCommand, "sudo dnf --assumeyes install %s", psz);
+
+  //    log_system("sudo dnf --assumeyes install freeimage libidn motif libappindicator-gtk3");
+
+      log_system(pszCommand);
 
    }
    else if(!strcmp(m_pszDistro, "freebsd"))
    {
 
-      log_system("sudo pkg install freeimage open-motif openssl libappindicator");
-
+    //  log_system("sudo pkg install freeimage open-motif openssl libappindicator");
 
    }
    else
@@ -652,21 +734,29 @@ return bOk;
 
 }
 
-} // namespace launch_store
+} // namespace launch
 
 
-int main()
+
+int main(int argc, char * argv[])
 {
 
-   ::launch_store::application application;
 
-   application.run();
+      ::launch::application application(argc, argv);
 
-   return application.m_iExitCode;
+   try
+   {
+      application.run();
+   }
+   catch(const char * psz)
+   {
+
+   fprintf(stderr, psz, 1, strlen(psz));
+   }
+
+      return application.m_iExitCode;
 
 }
-
-
 
 
 

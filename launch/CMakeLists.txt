@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(launch_store CXX)
+project(launch CXX)
 
 
 list(APPEND executable_source
@@ -38,24 +38,24 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
 
-    set(LAUNCH_STORE_EXECUTABLE $ENV{HOME}/store/${LAUNCH_STORE_SYSTEM}/launch_store)
+    set(LAUNCH_EXECUTABLE $ENV{HOME}/bin/launch)
 
 else()
 
-    set(LAUNCH_STORE_EXECUTABLE $ENV{HOME}/store/${LAUNCH_STORE_SYSTEM}/debug_launch_store)
+    set(LAUNCH_EXECUTABLE $ENV{HOME}/bin/launch)
 
 endif()
 
-message(STATUS "Output of store_application_build_helper target custom_command dependency is \"${LAUNCH_STORE_EXECUTABLE}\"")
+message(STATUS "Output of LAUNCH_EXECUTABLE target custom_command dependency is \"${LAUNCH_EXECUTABLE}\"")
 
 add_custom_command(
-    OUTPUT ${LAUNCH_STORE_EXECUTABLE}
-    COMMAND echo "Copying from \"$<TARGET_FILE:${PROJECT_NAME}>\" to \"${LAUNCH_STORE_EXECUTABLE}\""
-    COMMAND cp $<TARGET_FILE:${PROJECT_NAME}> ${LAUNCH_STORE_EXECUTABLE}
+    OUTPUT ${LAUNCH_EXECUTABLE}
+    COMMAND echo "Copying from \"$<TARGET_FILE:${PROJECT_NAME}>\" to \"${LAUNCH_EXECUTABLE}\""
+    COMMAND cp $<TARGET_FILE:${PROJECT_NAME}> ${LAUNCH_EXECUTABLE}
     DEPENDS ${PROJECT_NAME}
 )
 
-add_custom_target(deploy_${PROJECT_NAME} DEPENDS ${LAUNCH_STORE_EXECUTABLE})
+add_custom_target(deploy_${PROJECT_NAME} DEPENDS ${LAUNCH_EXECUTABLE})
 
 
 

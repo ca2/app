@@ -2,7 +2,7 @@
 #pragma once
 
 
-namespace launch_store
+namespace launch
 {
 
 
@@ -11,19 +11,24 @@ namespace launch_store
    public:
 
 
+      int m_argc;
+      char ** m_argv;
       int m_iExitCode;
       const char * m_pszDistro;
       char * m_pszVersion;
       const char * m_pszBranch;
+      char * m_pszAppRoot;
+      char * m_pszAppName;
 
-      application();
+      application(int argc, char * argv[]);
       ~application();
 
+      void parse_app_root_and_app_name();
 
       void run();
 
 
-      char * get_download_url();
+      char * get_download_url(const char * pszRoot, const char * pszName);
 
       bool check_http_ok(const char * pszUrl);
 
@@ -36,7 +41,7 @@ namespace launch_store
 
 
 
-} // namespace launch_store
+} // namespace launch
 
 
 

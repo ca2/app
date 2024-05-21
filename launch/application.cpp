@@ -660,6 +660,20 @@ void application::install_dependencies()
 
    auto pszCommand = (char*) ::malloc(strlen(psz) + 1024);
 
+   auto len = strlen(pszCommand);
+
+   for(int i = 0; i < len; i++)
+   {
+
+      if(pszCommand[i] == '\n' || pszCommand[i] == '\r')
+      {
+
+         pszCommand[i] = ' ';
+
+      }
+
+   }
+
    if(!strcmp(m_pszDistro, "ubuntu") || !strcmp(m_pszDistro, "kubuntu"))
    {
 
@@ -692,8 +706,6 @@ void application::install_dependencies()
       printf("No known dependencies to install\n");
 
    }
-
-
 
 
 }

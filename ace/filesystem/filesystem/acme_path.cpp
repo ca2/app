@@ -1,15 +1,15 @@
 // Create on 2021-03-21 00:11 <3ThomasBS_
-#include "framework.h"
-#include "acme_path.h"
+#include "../../../acme/framework.h"
+#include "../../../acme/filesystem/filesystem/acme_path.h"
 #include "acme_directory.h"
 #include "acme_file.h"
-#include "acme/exception/interface_only.h"
-#include "acme/filesystem/filesystem/file_system_options.h"
-#include "acme/filesystem/filesystem/link.h"
-#include "acme/platform/application.h"
-#include "acme/platform/node.h"
-#include "acme/platform/system.h"
-#include "acme/primitive/collection/map_interface.h"
+#include "../../../acme/exception/interface_only.h"
+#include "../../../acme/filesystem/filesystem/file_system_options.h"
+#include "../../../acme/filesystem/filesystem/link.h"
+#include "../../../acme/platform/application.h"
+#include "../../../acme/platform/node.h"
+#include "../../../acme/platform/system.h"
+#include "../../../acme/primitive/collection/map_interface.h"
 
 
 #ifdef HAVE_UNISTD_H

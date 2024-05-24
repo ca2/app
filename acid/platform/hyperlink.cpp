@@ -1,0 +1,46 @@
+#include "framework.h"
+#include "hyperlink.h"
+#include "acid/constant/id.h"
+#include "acid/platform/system.h"
+
+
+hyperlink::hyperlink()
+{
+   
+   m_bProfile = false;
+
+}
+
+
+hyperlink::~hyperlink()
+{
+
+}
+
+
+//bool hyperlink::open_link(string strLink, string strProfile, string strTarget)
+//{
+//
+//   system()->open_profile_link(strLink, strProfile, strTarget);
+//
+//   return true;
+//
+//}
+//
+
+void hyperlink::run()
+{
+
+   if (m_bProfile)
+   {
+
+      return system()->open_profile_link(m_strLink, m_strBrowserAccount, m_strTarget);
+
+   }
+
+   return system()->open_link(m_strLink, m_strBrowserAccount, m_strTarget);
+
+}
+
+
+

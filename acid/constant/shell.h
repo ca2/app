@@ -1,0 +1,16 @@
+// Created by camilo on 2024-05-06 11:06 <3ThomasBorregaardSørensen!!
+#pragma once
+
+
+enum enum_posix_shell : ::i32
+{
+
+   e_posix_shell_system_default = 0,
+#ifdef WINDOWS_DESKTOP
+   e_posix_shell_msys2,
+#endif
+
+};
+
+
+

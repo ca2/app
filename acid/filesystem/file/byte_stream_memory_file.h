@@ -1,0 +1,44 @@
+//
+//  file_byte_stream_memory_file.h
+//  acid
+//
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 10/07/18.
+//
+
+
+
+
+//namespace file
+//{
+//
+//
+//   class CLASS_DECL_ACID byte_stream_memory_file :
+//      virtual public stream,
+//      virtual public memory_file
+//   {
+//   public:
+//
+//
+//      byte_stream_memory_file(::particle * pparticle);
+//      virtual ~byte_stream_memory_file();
+//
+//      virtual filesize seek(filesize offset, enum_seek seekOrigin);
+//      virtual filesize get_position() const;
+//      virtual void flush();
+//      virtual void * get_internal_data();
+//      virtual const void * get_internal_data() const;
+//      virtual memsize get_internal_data_size() const;
+//      virtual bool set_internal_data_size(memsize s);
+//      virtual void write(const void * p, memsize s);
+//      virtual memsize read(void * p, memsize s);
+//      virtual void set_length(filesize dwNewLen);
+//      virtual void close();
+//
+//   };
+//
+//
+//} // namespace file
+//
+//
+//
+//

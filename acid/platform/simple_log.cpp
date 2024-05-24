@@ -1,0 +1,527 @@
+#include "framework.h"
+#include "simple_log.h"
+#include "trace.h"
+#include "acid/platform/acid.h"
+#include "acid/platform/application.h"
+#include "acid/platform/debug.h"
+#include "acid/platform/system.h"
+#include "acid/primitive/datetime/datetime.h"
+#ifdef WINDOWS
+#include <process.h>
+#elif defined(LINUX)
+#include <sys/types.h>
+#include <unistd.h>
+#elif defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
+#include <stdio.h>
+#endif
+
+static bool g_bPrintfIfDebuggerIsNotAttached = false;
+
+string get_status_message(const ::e_status & estatus);
+
+
+CLASS_DECL_ACID void __simple_tracea(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const ::scoped_string & scopedstr);
+CLASS_DECL_ACID void __simple_tracev(enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const ::scoped_string & scopedstrFormat, va_list args);
+
+
+//CLASS_DECL_ACID void FUNCTION_DEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::callback callback)
+//{
+//
+//   ::message_box_synchronous(nullptr, pszMessage, pszTitle, iFlags, function);
+//
+//}
+
+
+//CLASS_DECL_ACID void FUNCTION_DEBUGBOXW(const WCHAR * pszMessage, const WCHAR * pszTitle, i32 iFlags, const ::function_arg& function)
+//{
+//
+//   ::os_message_box_w(nullptr, pszMessage, pszTitle, iFlags, function);
+//
+//}
+
+
+void matter::trace_last_status()
+{
+
+   auto estatus = ::get_last_status();
+
+   if (!estatus)
+   {
+
+      return;
+
+   }
+
+   string strStatusMessage = ::get_status_message(estatus);
+
+   warning() <<"Status Message :\n" << strStatusMessage << "\n";
+
+}
+
+
+extern "C"
+void o_debug_string(const ::scoped_string & scopedstr)
+{
+
+   ::acid::get()->platform()->informationf(scopedstr);
+
+}
+
+
+CLASS_DECL_ACID void __trace(enum_trace_level elevel, const ::scoped_string & scopedstrTag, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrFile, int iLine)
+{
+
+   strsize iLen;
+
+   iLen = scopedstrText.size();
+
+   if (scopedstrFile.has_char())
+   {
+
+      iLen += scopedstrFile.size();
+
+      iLen += 30;
+
+      if (iLine >= 1)
+      {
+
+         iLen += 30;
+
+      }
+
+   }
+
+   string str;
+
+   char * psz = str.get_buffer(iLen + 8);
+
+   ansi_ncpy(psz, scopedstrText, scopedstrText.size());
+
+   if (scopedstrFile.has_char())
+   {
+
+      ansi_concatenate(psz, ", \"");
+
+      ansi_concatenate(psz, scopedstrText.begin(), scopedstrText.size());
+
+      if (iLine >= 1)
+      {
+
+         char pszNum[30];
+
+         ansi_from_i64(pszNum, iLine, 10, e_digit_case_upper);
+
+         ansi_concatenate(psz, "(");
+
+         ansi_concatenate(psz, pszNum);
+
+         ansi_concatenate(psz, ")");
+
+      }
+
+      ansi_concatenate(psz, "\"");
+
+   }
+
+   str.release_buffer();
+
+   os_trace(elevel, scopedstrTag, str);
+
+}
+
+
+
+//int g_iMemoryCounters = -1;
+//
+//CLASS_DECL_ACID::pointer< ::mutex > g_pmutexMemoryCounters = nullptr;
+//
+//int g_iMemoryCountersStartable = 0;
+//
+//CLASS_DECL_ACID bool memory_counter_on()
+//{
+//
+//   if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
+//   {
+//
+//      g_iMemoryCounters = acefile()->exists(         auto psystem = system();
+
+//         auto pacedirectory = psystem->m_pacedirectory;
+//
+//pacedirectory->config() / "system/memory_counters.txt") ? 1 : 0;
+//
+//      if (g_iMemoryCounters)
+//      {
+//
+//         g_pmutexMemoryCounters = __new< ::pointer < ::mutex > >(e_create_new, nullptr, false, "Global\\ca2_memory_counters");
+//
+//      }
+//
+//   }
+//
+//   return g_iMemoryCountersStartable && g_iMemoryCounters;
+//
+//}
+//
+//
+//::file::path * g_pMemoryCounters = nullptr;
+//
+//
+//CLASS_DECL_ACID::file::path memory_counter_base_path()
+//{
+//
+//   if (g_iMemoryCountersStartable && g_pMemoryCounters == nullptr)
+//   {
+//
+//      g_pMemoryCounters = __new< ::file::path >();
+//
+//#if defined(UNIVERSAL_WINDOWS)
+//
+//      string strBasePath =          auto psystem = system();
+
+//         auto pacedirectory = psystem->m_pacedirectory;
+//
+//pacedirectory->system() / "memory_counters";
+//
+//#else
+//
+//      ::file::path strModule = module_path_from_pid(getpid());
+//
+//      string strBasePath =          auto psystem = system();
+
+//         auto pacedirectory = psystem->m_pacedirectory;
+//
+//pacedirectory->system() / "memory_counters" / strModule.title() / as_string(getpid());
+//
+//#endif
+//
+//      * g_pMemoryCounters = strBasePath;
+//
+//   }
+//
+//   return *g_pMemoryCounters;
+//
+//}
+
+
+
+simple_log::simple_log()
+{
+
+#if REFERENCING_DEBUGGING
+
+   disable_referencing_debugging();
+
+#endif
+
+   increment_reference_count();
+
+   m_bReallySimple = true;
+   m_bWithTimePrefix = true;
+   m_bDisplayRelativeTime = true;
+
+   ::file::path pathTrace;
+
+   auto pathHome = home_folder_path();
+
+   pathTrace = pathHome / "trace_using_printf.txt";
+
+   if (file_exists(pathTrace))
+   {
+
+      g_bPrintfIfDebuggerIsNotAttached = true;
+
+   }
+
+#ifdef _DEBUG
+
+   //information() << "Starting Simple Alog";
+
+#endif
+
+}
+
+
+simple_log::~simple_log()
+{
+
+   //information() << "Ending Simple Alog";
+
+}
+
+
+void simple_log::print(::trace_statement & tracestatement, bool bFlush)
+{
+
+   if (!m_bLog)
+   {
+
+      return;
+
+   }
+
+   if(tracestatement.m_etracelevel >= m_etracelevelMinimum)
+   {
+
+      string str;
+
+      ::string strTaskName;
+
+      strTaskName = ::current_task_name();
+
+      if (m_bReallySimple)
+      {
+
+         auto s = tracestatement.as_string();
+
+         if (s.begins_eat("\r"))
+         {
+            
+            str += "\r";
+
+            str += strTaskName + "> ";
+
+            str += s;
+
+         }
+         else
+         {
+
+            str += strTaskName + "> ";
+
+            str += s;
+
+            str += "\n";
+
+         }
+
+      }
+      else
+      {
+
+         str.formatf("%s> %c %s %d %s\n", strTaskName.c_str(), trace_level_char(tracestatement.m_etracelevel), tracestatement.m_pszFunction, tracestatement.m_iLine, tracestatement.as_string().c_str());
+
+      }
+
+      if(m_bWithTimePrefix)
+      {
+
+         ::string strTime;
+
+         class ::time timeNow;
+
+         timeNow.Now();
+
+         if(m_bDisplayRelativeTime)
+         {
+
+            auto Δtime = timeNow - platform()->m_timeStart;
+
+            ::earth::time_span earthtimepan(Δtime);
+
+            if(earthtimepan.GetDays() <= 0)
+            {
+
+               strTime.formatf("%02d:%02d:%02d %03d ",
+                              earthtimepan.GetHours(),
+                              earthtimepan.GetMinutes(),
+                              earthtimepan.GetSeconds(),
+                              Δtime.millisecond());
+
+            }
+            else
+            {
+
+               strTime.formatf("%3d %02d:%02d:%02d %03d ",
+                              earthtimepan.GetDays(),
+                              earthtimepan.GetHours(),
+                              earthtimepan.GetMinutes(),
+                              earthtimepan.GetSeconds(),
+                              Δtime.millisecond());
+
+            }
+
+         }
+         else
+         {
+
+            ::earth::time earthtime(timeNow);
+
+            strTime.formatf("%04d-%02d-%02d %02d:%02d:%02d %03d ",
+                           earthtime.year(),
+                           earthtime.month(),
+                           earthtime.day(),
+                           earthtime.hour(),
+                           earthtime.minute(),
+                           earthtime.second(),
+                           timeNow.millisecond());
+
+         }
+
+         if (str.begins_eat("\r"))
+         {
+
+
+            str = "\r"+strTime + str;
+
+         }
+         else
+         {
+
+            str = strTime + str;
+         }
+
+      }
+
+      auto papplication = application();
+
+      if ((papplication && papplication->is_console()) || (!::is_debugger_attached() && g_bPrintfIfDebuggerIsNotAttached))
+      {
+
+         if (tracestatement.m_etracelevel <= e_trace_level_information)
+         {
+
+            fwrite(str.c_str(), 1, str.size(), stdout);
+
+            if(bFlush)
+            {
+
+               fflush(stdout);
+
+            }
+
+         }
+         else
+         {
+
+            fprintf(stderr, "%s", str.c_str());
+
+            if(bFlush)
+            {
+
+               fflush(stderr);
+
+            }
+
+         }
+
+      }
+      else
+      {
+
+         ::output_debug_string(str);
+
+         ::output_debug_string_flush();
+
+      }
+
+   }
+
+}
+
+
+
+
+CLASS_DECL_ACID const char * e_trace_level_name(enum_trace_level elevel);
+
+#undef DEFINE_MESSAGE
+
+#define SIMPLE_TRACE_FUNCTION_NAME 0
+#define SIMPLE_TRACE_FILE_NAME 0
+
+CLASS_DECL_ACID void __simple_tracea(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const ::scoped_string & scopedstr)
+{
+
+#ifndef DEBUG
+
+   if (elevel < e_trace_level_error)
+   {
+
+      return;
+
+   }
+
+#endif
+
+   string strMessage;
+
+   auto pszTopicText = topic_text(pparticle);
+
+   if (::is_set(pszTopicText) && *pszTopicText != '\0')
+   {
+
+      string strTopic(pszTopicText);
+
+      strTopic.case_insensitive_begins_eat("class ");
+
+      strTopic.case_insensitive_begins_eat("struct ");
+
+      strMessage.formatf("%c:%s> %s", trace_level_char(elevel), strTopic.c_str(), scopedstr.c_str());
+
+   }
+   else
+   {
+
+      strMessage.formatf("%c> %s", trace_level_char(elevel), scopedstr.c_str());
+
+   }
+
+#if SIMPLE_TRACE_FUNCTION_NAME
+
+   if (::is_set(pszFunction))
+   {
+
+      strMessage += "\nFunction: ";
+
+      strMessage += pszFunction;
+
+   }
+
+#endif
+
+#if SIMPLE_TRACE_FILE_NAME
+
+   if (::is_set(pszFileName))
+   {
+
+      strMessage += "\nFile: ";
+
+      strMessage += pszFileName;
+
+      if (iLine >= 1)
+      {
+
+         strMessage += "(" + as_string(iLine) + ")";
+
+      }
+
+   }
+
+#endif
+
+   strMessage += "\n";
+
+   ::acid::get()->platform()->informationf(strMessage);
+
+}
+
+
+CLASS_DECL_ACID void __simple_tracev(::particle * pparticle, enum_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const ::ansi_character * pszFormat, va_list args)
+{
+
+   //if (s_pstringmanager == nullptr)
+   //{
+
+   //   vprintf(pszFormat, args);
+
+   //   return;
+
+   //}
+
+   string strMessage;
+
+   strMessage.formatf_arguments(pszFormat, args);
+
+   __simple_tracea(pparticle, elevel, pszFunction, pszFileName, iLine, strMessage);
+
+}
+

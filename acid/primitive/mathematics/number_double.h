@@ -1,0 +1,29 @@
+#pragma once
+
+
+#include "value.h"
+
+
+namespace mathematics
+{
+
+
+   class CLASS_DECL_ACID number_double :
+      virtual public value_impl
+   {
+   public:
+
+      virtual void set_value_string(const ::scoped_string & scopedstr);
+      virtual string get_value_string();
+
+
+   };
+
+   
+   CLASS_DECL_ACID bool convert_to_double(double & d, string str);
+
+
+} // namespace mathematics
+
+
+

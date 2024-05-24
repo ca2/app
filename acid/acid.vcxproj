@@ -1,0 +1,2801 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="StaticDebug|Win32">
+      <Configuration>StaticDebug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="StaticDebug|x64">
+      <Configuration>StaticDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="StaticMetaDebug|Win32">
+      <Configuration>StaticMetaDebug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="StaticMetaDebug|x64">
+      <Configuration>StaticMetaDebug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="StaticMetaRelease|Win32">
+      <Configuration>StaticMetaRelease</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="StaticMetaRelease|x64">
+      <Configuration>StaticMetaRelease</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="StaticRelease|Win32">
+      <Configuration>StaticRelease</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="StaticRelease|x64">
+      <Configuration>StaticRelease</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{638B242F-0F21-41C3-9F66-724660046133}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>app</RootNamespace>
+    <ProjectName>acid</ProjectName>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\operating_system\operating_system-windows\Common.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <EmbedManifest>false</EmbedManifest>
+    <GenerateManifest>false</GenerateManifest>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <EmbedManifest>false</EmbedManifest>
+    <GenerateManifest>false</GenerateManifest>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <StringPooling>false</StringPooling>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <FloatingPointExceptions>true</FloatingPointExceptions>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <SDLCheck>true</SDLCheck>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>archive.lib;Winhttp.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
+      <Profile>false</Profile>
+      <EnableCOMDATFolding>
+      </EnableCOMDATFolding>
+      <OptimizeReferences>false</OptimizeReferences>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <FixedBaseAddress>false</FixedBaseAddress>
+    </Link>
+    <PreBuildEvent />
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep />
+    <ResourceCompile />
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PreBuildEvent />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <FloatingPointExceptions>true</FloatingPointExceptions>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <AdditionalDependencies>pcre.lib;zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
+      <ShowProgress>NotSet</ShowProgress>
+    </Link>
+    <PreBuildEvent />
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep />
+    <ResourceCompile />
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
+    <Lib>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
+      <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
+    </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <FloatingPointExceptions>true</FloatingPointExceptions>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <AdditionalDependencies>pcre.lib;zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
+      <ShowProgress>NotSet</ShowProgress>
+    </Link>
+    <PreBuildEvent />
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep />
+    <ResourceCompile />
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
+    <Lib>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
+      <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
+    </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <SDLCheck>false</SDLCheck>
+      <OmitFramePointers>true</OmitFramePointers>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>archive.lib;Winhttp.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
+      <MergeSections>
+      </MergeSections>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+    </Link>
+    <PreBuildEvent />
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>
+      </Outputs>
+      <TreatOutputAsContent>
+      </TreatOutputAsContent>
+      <Inputs>
+      </Inputs>
+    </CustomBuildStep>
+    <ResourceCompile />
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PreBuildEvent />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <OmitFramePointers>true</OmitFramePointers>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <AdditionalDependencies>pcre.lib;zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <ShowProgress>NotSet</ShowProgress>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <MergeSections>
+      </MergeSections>
+    </Link>
+    <PreBuildEvent />
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep />
+    <ResourceCompile />
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
+    <Lib>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
+    </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
+      <OmitFramePointers>true</OmitFramePointers>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <AdditionalDependencies>pcre.lib;zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <SubSystem>Windows</SubSystem>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <ShowProgress>NotSet</ShowProgress>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <MergeSections>
+      </MergeSections>
+    </Link>
+    <PreBuildEvent />
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep />
+    <ResourceCompile />
+    <Xdcmake>
+      <DocumentLibraryDependencies>false</DocumentLibraryDependencies>
+    </Xdcmake>
+    <Lib>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
+    </Lib>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command />
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <StringPooling>false</StringPooling>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <FloatingPointModel>Precise</FloatingPointModel>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <FloatingPointExceptions>true</FloatingPointExceptions>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <SDLCheck>true</SDLCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <OmitFramePointers>false</OmitFramePointers>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>archive.lib;Winhttp.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <SubSystem>Windows</SubSystem>
+      <MapFileName>
+      </MapFileName>
+      <Profile>false</Profile>
+      <EnableCOMDATFolding>
+      </EnableCOMDATFolding>
+      <OptimizeReferences>false</OptimizeReferences>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <FixedBaseAddress>false</FixedBaseAddress>
+    </Link>
+    <PreBuildEvent />
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep />
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <ResourceCompile />
+    <PreBuildEvent />
+    <PreBuildEvent />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <OmitFramePointers>false</OmitFramePointers>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <AdditionalDependencies>pcre.lib;zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <SubSystem>Windows</SubSystem>
+      <MapFileName>
+      </MapFileName>
+    </Link>
+    <PreBuildEvent />
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep />
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <ResourceCompile />
+    <Lib />
+    <Lib />
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <Lib>
+      <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <Optimization>Disabled</Optimization>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <OmitFramePointers>false</OmitFramePointers>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <AdditionalDependencies>pcre.lib;zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <SubSystem>Windows</SubSystem>
+      <MapFileName>
+      </MapFileName>
+    </Link>
+    <PreBuildEvent />
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep />
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <ResourceCompile />
+    <Lib />
+    <Lib />
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <Lib>
+      <LinkTimeCodeGeneration>false</LinkTimeCodeGeneration>
+    </Lib>
+    <PreBuildEvent>
+      <Command />
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <SmallerTypeCheck>false</SmallerTypeCheck>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <StringPooling>true</StringPooling>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <Optimization>MaxSpeed</Optimization>
+      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <OmitFramePointers>true</OmitFramePointers>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <SDLCheck>false</SDLCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>archive.lib;Winhttp.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <SubSystem>Windows</SubSystem>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+    </Link>
+    <PreBuildEvent />
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep>
+      <Outputs>
+      </Outputs>
+      <Inputs>
+      </Inputs>
+      <TreatOutputAsContent>
+      </TreatOutputAsContent>
+    </CustomBuildStep>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <ResourceCompile />
+    <PreBuildEvent />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <AdditionalDependencies>pcre.lib;zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <SubSystem>Windows</SubSystem>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+    </Link>
+    <PreBuildEvent />
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep />
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <ResourceCompile />
+    <Lib />
+    <Lib />
+    <Lib />
+    <ProjectReference />
+    <Lib />
+    <Lib>
+      <ExportNamedFunctions>
+      </ExportNamedFunctions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <AdditionalDependencies>pcre.lib;zlib.lib;bzip2.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating_system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <SubSystem>Windows</SubSystem>
+      <FixedBaseAddress>false</FixedBaseAddress>
+      <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+    </Link>
+    <PreBuildEvent />
+    <CustomBuildStep>
+      <Command>
+      </Command>
+    </CustomBuildStep>
+    <CustomBuildStep />
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <ResourceCompile />
+    <Lib />
+    <Lib />
+    <Lib />
+    <ProjectReference />
+    <Lib />
+    <Lib>
+      <ExportNamedFunctions>
+      </ExportNamedFunctions>
+    </Lib>
+    <PreBuildEvent>
+      <Command />
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="compress\compress.cpp" />
+    <ClCompile Include="compress\is_dir.cpp" />
+    <ClCompile Include="compress\not_dir.cpp" />
+    <ClCompile Include="compress\uncompress.cpp" />
+    <ClCompile Include="crypto\crypto.cpp" />
+    <ClCompile Include="crypto\initializer.cpp" />
+    <ClCompile Include="crypto\rsa.cpp" />
+    <ClCompile Include="email.cpp" />
+    <ClCompile Include="exception\assert.cpp" />
+    <ClCompile Include="exception\bad_file_format.cpp" />
+    <ClCompile Include="exception\call_stack.cpp" />
+    <ClCompile Include="exception\no_memory.cpp" />
+    <ClCompile Include="exception\extended_status.cpp" />
+    <ClCompile Include="exception\interface_only.cpp" />
+    <ClCompile Include="exception\io.cpp" />
+    <ClCompile Include="exception\library_not_loaded.cpp" />
+    <ClCompile Include="exception\not_implemented.cpp" />
+    <ClCompile Include="exception\parsing.cpp" />
+    <ClCompile Include="exception\cancel.cpp" />
+    <ClCompile Include="exception\Debug.cpp" />
+    <ClCompile Include="exception\dump_context.cpp" />
+    <ClCompile Include="exception\dump_floating_point.cpp" />
+    <ClCompile Include="exception\exception.cpp" />
+    <ClCompile Include="exception\exit.cpp" />
+    <ClCompile Include="exception\resource.cpp" />
+    <ClCompile Include="exception\runtime_check.cpp" />
+    <ClCompile Include="exception\serialization.cpp" />
+    <ClCompile Include="exception\translator.cpp" />
+    <ClCompile Include="filesystem\filesystem\acme_directory.cpp" />
+    <ClCompile Include="filesystem\filesystem\acme_file.cpp" />
+    <ClCompile Include="filesystem\filesystem\acme_path.cpp" />
+    <ClCompile Include="filesystem\filesystem\dir_context.cpp" />
+    <ClCompile Include="filesystem\filesystem\dir_system.cpp" />
+    <ClCompile Include="filesystem\filesystem\enumerator.cpp" />
+    <ClCompile Include="filesystem\filesystem\file_context.cpp" />
+    <ClCompile Include="filesystem\filesystem\file_dialog.cpp" />
+    <ClCompile Include="filesystem\filesystem\file_path.cpp" />
+    <ClCompile Include="filesystem\filesystem\file_system.cpp" />
+    <ClCompile Include="filesystem\filesystem\file_system_options.cpp" />
+    <ClCompile Include="filesystem\filesystem\folder_dialog.cpp" />
+    <ClCompile Include="filesystem\filesystem\link.cpp" />
+    <ClCompile Include="filesystem\filesystem\path.cpp" />
+    <ClCompile Include="filesystem\filesystem\path_array.cpp" />
+    <ClCompile Include="filesystem\filesystem\path_object.cpp" />
+    <ClCompile Include="filesystem\file\binary_stream.cpp" />
+    <ClCompile Include="filesystem\file\buffered_buffer.cpp" />
+    <ClCompile Include="filesystem\file\circular_buffer.cpp" />
+    <ClCompile Include="filesystem\file\composite.cpp" />
+    <ClCompile Include="filesystem\file\cpp.cpp" />
+    <ClCompile Include="filesystem\file\exception.cpp" />
+    <ClCompile Include="filesystem\file\folder.cpp" />
+    <ClCompile Include="filesystem\file\payload_stream.cpp" />
+    <ClCompile Include="filesystem\file\print_formatting.cpp" />
+    <ClCompile Include="filesystem\file\streamable.cpp" />
+    <ClCompile Include="filesystem\file\streamable_composite.cpp" />
+    <ClCompile Include="filesystem\file\string_stream.cpp" />
+    <ClCompile Include="filesystem\file\transfer.cpp" />
+    <ClCompile Include="filesystem\file\translatable.cpp" />
+    <ClCompile Include="filesystem\file\write_text_stream.cpp" />
+    <ClCompile Include="filesystem\watcher\action.cpp" />
+    <ClCompile Include="filesystem\watcher\watch.cpp" />
+    <ClCompile Include="filesystem\watcher\watcher.cpp" />
+    <ClCompile Include="framework.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\color.cpp" />
+    <ClCompile Include="graphics\draw2d\color_array.cpp" />
+    <ClCompile Include="graphics\draw2d\os_font_name.cpp" />
+    <ClCompile Include="graphics\draw2d\_.cpp" />
+    <ClCompile Include="graphics\graphics\output_purpose.cpp" />
+    <ClCompile Include="graphics\image\image32_array.cpp" />
+    <ClCompile Include="graphics\image\pixmap.cpp" />
+    <ClCompile Include="graphics\image\image32.cpp" />
+    <ClCompile Include="handler\extended_topic.cpp" />
+    <ClCompile Include="handler\handler.cpp" />
+    <ClCompile Include="handler\item.cpp" />
+    <ClCompile Include="handler\item_container.cpp" />
+    <ClCompile Include="handler\item_container_map.cpp" />
+    <ClCompile Include="handler\request.cpp" />
+    <ClCompile Include="handler\source.cpp" />
+    <ClCompile Include="handler\topic.cpp" />
+    <ClInclude Include="aaa_id.h" />
+    <ClInclude Include="acme.h" />
+    <ClInclude Include="application.h" />
+    <ClInclude Include="array2d.h" />
+    <ClInclude Include="compress\compress.h" />
+    <ClInclude Include="compress\uncompress.h" />
+    <ClInclude Include="constant\aaa_thread.h" />
+    <ClInclude Include="constant\aaa_topic.h" />
+    <ClInclude Include="constant\activate.h" />
+    <ClInclude Include="constant\application_capability.h" />
+    <ClInclude Include="constant\button_state.h" />
+    <ClInclude Include="constant\character_set.h" />
+    <ClInclude Include="constant\check.h" />
+    <ClInclude Include="constant\code_page.h" />
+    <ClInclude Include="constant\context.h" />
+    <ClInclude Include="constant\cursor.h" />
+    <ClInclude Include="constant\data.h" />
+    <ClInclude Include="constant\data_type.h" />
+    <ClInclude Include="constant\earth.h" />
+    <ClInclude Include="constant\element.h" />
+    <ClInclude Include="constant\error_code_type.h" />
+    <ClInclude Include="constant\exception.h" />
+    <ClInclude Include="constant\exclusive_instance.h" />
+    <ClInclude Include="constant\filesystem.h" />
+    <ClInclude Include="constant\flag.h" />
+    <ClInclude Include="constant\future.h" />
+    <ClInclude Include="constant\happening.h" />
+    <ClInclude Include="constant\heap.h" />
+    <ClInclude Include="constant\id.h" />
+    <ClInclude Include="constant\idpool.h" />
+    <ClInclude Include="constant\impact.h" />
+    <ClInclude Include="constant\integration.h" />
+    <ClInclude Include="constant\media_library.h" />
+    <ClInclude Include="constant\memory_heap.h" />
+    <ClInclude Include="constant\message.h" />
+    <ClInclude Include="constant\message_box.h" />
+    <ClInclude Include="constant\message_prototype.h" />
+    <ClInclude Include="constant\os_text.h" />
+    <ClInclude Include="constant\parallelization.h" />
+    <ClInclude Include="constant\path.h" />
+    <ClInclude Include="constant\posix_shell.h" />
+    <ClInclude Include="constant\routine.h" />
+    <ClInclude Include="constant\scalar.h" />
+    <ClInclude Include="constant\simple_command.h" />
+    <ClInclude Include="constant\source.h" />
+    <ClInclude Include="constant\status.h" />
+    <ClInclude Include="constant\status_range_authentication.h" />
+    <ClInclude Include="constant\timer.h" />
+    <ClInclude Include="constant\user.h" />
+    <ClInclude Include="constant\user_key.h" />
+    <ClInclude Include="constant\user_text.h" />
+    <ClInclude Include="constant\_.h" />
+    <ClInclude Include="constant\_constant.h" />
+    <ClInclude Include="constant\_geometry.h" />
+    <ClInclude Include="constant\_id.h" />
+    <ClInclude Include="constant\aaa_mathematics.h" />
+    <ClInclude Include="constant\_message.h" />
+    <ClInclude Include="crypto\crypto.h" />
+    <ClInclude Include="crypto\hasher.h" />
+    <ClInclude Include="crypto\hasher_algorithm.h" />
+    <ClInclude Include="crypto\initializer.h" />
+    <ClInclude Include="crypto\rsa.h" />
+    <ClInclude Include="crypto\_.h" />
+    <ClInclude Include="crypto\_crypto.h" />
+    <ClInclude Include="exception\aaa_base.h" />
+    <ClInclude Include="exception\aaa_debug_stream.h" />
+    <ClInclude Include="exception\aaa_engine.h" />
+    <ClInclude Include="exception\aaa_file.h" />
+    <ClInclude Include="exception\aaa_file_open.h" />
+    <ClInclude Include="exception\aaa_index_out_of_bounds.h" />
+    <ClInclude Include="exception\aaa_installing.h" />
+    <ClInclude Include="exception\aaa_invalid_argument.h" />
+    <ClInclude Include="exception\aaa_invalid_character.h" />
+    <ClInclude Include="exception\aaa_invalid_handle.h" />
+    <ClInclude Include="exception\aaa_invalid_index.h" />
+    <ClInclude Include="exception\aaa_invalid_type.h" />
+    <ClInclude Include="exception\aaa_not_installed.h" />
+    <ClInclude Include="exception\aaa_not_licensed.h" />
+    <ClInclude Include="exception\aaa_not_supported.h" />
+    <ClInclude Include="exception\aaa_operation_canceled.h" />
+    <ClInclude Include="exception\aaa_os.h" />
+    <ClInclude Include="exception\aaa_overflow.h" />
+    <ClInclude Include="exception\aaa_range.h" />
+    <ClInclude Include="exception\aaa_runtime.h" />
+    <ClInclude Include="exception\aaa_simple.h" />
+    <ClInclude Include="exception\aaa_system.h" />
+    <ClInclude Include="exception\aaa_temporary.h" />
+    <ClInclude Include="exception\aaa_todo.h" />
+    <ClInclude Include="exception\aaa_user.h" />
+    <ClInclude Include="exception\aaa_want_to_remove_exception_verisimple.h" />
+    <ClInclude Include="exception\aaa_want_to_remove_memory_state.h" />
+    <ClInclude Include="exception\assert.h" />
+    <ClInclude Include="exception\bad_file_format.h" />
+    <ClInclude Include="exception\bad_unit_exception.h" />
+    <ClInclude Include="exception\aaa_callstack.h" />
+    <ClInclude Include="exception\call_stack.h" />
+    <ClInclude Include="exception\cancel.h" />
+    <ClInclude Include="exception\debug.h" />
+    <ClInclude Include="exception\dump_context.h" />
+    <ClInclude Include="exception\error_number.h" />
+    <ClInclude Include="exception\exception.h" />
+    <ClInclude Include="exception\exception2.h" />
+    <ClInclude Include="exception\exit.h" />
+    <ClInclude Include="exception\extended_status.h" />
+    <ClInclude Include="exception\extended_transport.h" />
+    <ClInclude Include="exception\interface_only.h" />
+    <ClInclude Include="exception\io.h" />
+    <ClInclude Include="exception\library_not_loaded.h" />
+    <ClInclude Include="exception\not_implemented.h" />
+    <ClInclude Include="exception\no_memory.h" />
+    <ClInclude Include="exception\parsing.h" />
+    <ClInclude Include="exception\resource.h" />
+    <ClInclude Include="exception\runtime_check.h" />
+    <ClInclude Include="exception\serialization.h" />
+    <ClInclude Include="exception\standard.h" />
+    <ClInclude Include="exception\status.h" />
+    <ClInclude Include="exception\translator.h" />
+    <ClInclude Include="exception\trap.h" />
+    <ClInclude Include="exception\unhandled_report.h" />
+    <ClInclude Include="exception\void_implementation.h" />
+    <ClInclude Include="exception\what_exclamation_exception.h" />
+    <ClInclude Include="exception\_.h" />
+    <ClInclude Include="exception\_c.h" />
+    <ClInclude Include="exception\_dump_context.h" />
+    <ClInclude Include="exception\_impl.h" />
+    <ClInclude Include="exception\_text_stream.h" />
+    <ClInclude Include="exception\__string.h" />
+    <ClInclude Include="filesystem\filesystem\acme_file.h" />
+    <ClInclude Include="filesystem\filesystem\dir_context.h" />
+    <ClInclude Include="filesystem\filesystem\dir_system.h" />
+    <ClInclude Include="filesystem\filesystem\dir_system_heap.h" />
+    <ClInclude Include="filesystem\filesystem\enumerator.h" />
+    <ClInclude Include="filesystem\filesystem\file_context.h" />
+    <ClInclude Include="filesystem\filesystem\file_dialog.h" />
+    <ClInclude Include="filesystem\filesystem\file_path.h" />
+    <ClInclude Include="filesystem\filesystem\file_system.h" />
+    <ClInclude Include="filesystem\filesystem\file_system_options.h" />
+    <ClInclude Include="filesystem\filesystem\folder_dialog.h" />
+    <ClInclude Include="filesystem\filesystem\link.h" />
+    <ClInclude Include="filesystem\filesystem\path_array.h" />
+    <ClInclude Include="filesystem\filesystem\_.h" />
+    <ClInclude Include="filesystem\filesystem\_2.h" />
+    <ClInclude Include="filesystem\filesystem\_impl2.h" />
+    <ClInclude Include="filesystem\filesystem\_impl_path.h" />
+    <ClInclude Include="filesystem\file\folder.h" />
+    <ClInclude Include="filesystem\file\payload_stream.h" />
+    <ClInclude Include="filesystem\file\plain_text_file_options.h" />
+    <ClInclude Include="filesystem\file\print_formatting.h" />
+    <ClInclude Include="filesystem\file\streamable.h" />
+    <ClInclude Include="filesystem\file\string_stream.h" />
+    <ClInclude Include="filesystem\file\transfer.h" />
+    <ClInclude Include="filesystem\file\translatable.h" />
+    <ClInclude Include="filesystem\file\write_text_stream.h" />
+    <ClInclude Include="filesystem\file\__string.h" />
+    <ClInclude Include="filesystem\watcher\action.h" />
+    <ClInclude Include="filesystem\watcher\listener.h" />
+    <ClInclude Include="filesystem\watcher\watch.h" />
+    <ClInclude Include="filesystem\watcher\watcher.h" />
+    <ClInclude Include="filesystem\watcher\_.h" />
+    <ClInclude Include="filesystem\_.h" />
+    <ClInclude Include="format.h" />
+    <ClInclude Include="handler\source.h" />
+    <ClInclude Include="include\_c.h" />
+    <ClInclude Include="memory\allocator.h" />
+    <ClInclude Include="memory\allocator\malloc.h" />
+    <ClInclude Include="memory\allocator_base.h" />
+    <ClInclude Include="memory\default_heap.h" />
+    <ClInclude Include="memory\heap.h" />
+    <ClInclude Include="memory\c_malloc.h" />
+    <ClInclude Include="memory\memory_allocate.h" />
+    <ClInclude Include="memory\operation.h" />
+    <ClInclude Include="memory\plex_heap.h" />
+    <ClInclude Include="memory\plex_heap_alloc_array.h" />
+    <ClInclude Include="memory\simple_memory_allocate.h" />
+    <ClInclude Include="memory\typed.h" />
+    <ClInclude Include="memory\typed_memory.h" />
+    <ClInclude Include="memory\_.h" />
+    <ClInclude Include="operating_system\errno.h" />
+    <ClInclude Include="operating_system\windows\heap_allocator.h" />
+    <ClInclude Include="operating_system\windows\nano\http\hinternet.h" />
+    <ClInclude Include="operating_system\windows\nano\http\http.h" />
+    <ClInclude Include="operating_system\windows\nano\http\connect.h" />
+    <ClInclude Include="operating_system\windows\nano\http\get.h" />
+    <ClInclude Include="operating_system\windows\nano\http\request.h" />
+    <ClInclude Include="operating_system\windows\nano\http\session.h" />
+    <ClInclude Include="operating_system\windows\nano\http\_.h" />
+    <ClInclude Include="operating_system\windows\nano\http\_http.h" />
+    <ClInclude Include="operating_system\windows\nano\user\aaa_nano.h" />
+    <ClInclude Include="operating_system\windows\nano\user\aaa_nano_child.h" />
+    <ClInclude Include="operating_system\windows\nano\user\aaa_nano_message_box.h" />
+    <ClInclude Include="operating_system\windows\nano\user\brush.h" />
+    <ClInclude Include="operating_system\windows\nano\user\device.h" />
+    <ClInclude Include="operating_system\windows\nano\user\font.h" />
+    <ClInclude Include="operating_system\windows\nano\user\object.h" />
+    <ClInclude Include="operating_system\windows\nano\user\pen.h" />
+    <ClInclude Include="operating_system\windows\nano\user\window.h" />
+    <ClInclude Include="operating_system\x11\display_lock.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\keyboard.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\nano\aaa_font.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\nano\aaa_nano.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\nano\display.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\nano\event_listener.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\nano\nano.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\nano\window.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\nano\_.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\_.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="operating_system\x11\_atom.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="platform\allocator.h" />
+    <ClInclude Include="platform\c.h" />
+    <ClInclude Include="platform\get_file_extension_mime_type.h" />
+    <ClInclude Include="platform\reference_referer.h" />
+    <ClInclude Include="platform\referencing_debugging.h" />
+    <ClInclude Include="platform\reference_item.h" />
+    <ClInclude Include="platform\release_time_for_project.h" />
+    <ClInclude Include="platform\shell.h" />
+    <ClInclude Include="platform\simple_array.h" />
+    <ClInclude Include="platform\tracing.h" />
+    <ClInclude Include="platform\_errno.h" />
+    <ClInclude Include="platform\_referencing_debugging.h" />
+    <ClInclude Include="primitive\collection\array_base_quantum.h" />
+    <ClInclude Include="primitive\primitive\primitive.h" />
+    <ClInclude Include="primitive\primitive\quantum.h" />
+    <ClInclude Include="primitive\primitive\referenceable.h" />
+    <ClInclude Include="primitive\primitive\subparticle.h" />
+    <ClInclude Include="primitive\primitive\subparticle_flags.h" />
+    <ClInclude Include="primitive\string\c_string.h" />
+    <ClInclude Include="primitive\time\__time.h" />
+    <ClInclude Include="_iostream.h" />
+    <ClInclude Include="handler\extended_topic.h" />
+    <ClInclude Include="handler\handler.h" />
+    <ClInclude Include="handler\item.h" />
+    <ClInclude Include="handler\item_container.h" />
+    <ClInclude Include="handler\item_container_map.h" />
+    <ClInclude Include="handler\topic.h" />
+    <ClInclude Include="include\_c_swap.h" />
+    <ClInclude Include="include\_enumeration.h" />
+    <ClInclude Include="include\_forward_declaration.h" />
+    <ClInclude Include="include\_function_declarations.h" />
+    <ClInclude Include="include\_inline_functions.h" />
+    <ClInclude Include="include\_macro.h" />
+    <ClInclude Include="include\_configuration.h" />
+    <ClInclude Include="include\_new.h" />
+    <ClInclude Include="include\_initial_concepts.h" />
+    <ClInclude Include="include\_operating_system.h" />
+    <ClInclude Include="include\_string.h" />
+    <ClInclude Include="include\_structures.h" />
+    <ClInclude Include="include\_tags.h" />
+    <ClInclude Include="include\_template_inline_functions.h" />
+    <ClInclude Include="include\_template_structures.h" />
+    <ClInclude Include="include\_template_forward_declaration.h" />
+    <ClInclude Include="include\_types.h" />
+    <ClInclude Include="inline\application\windows.h" />
+    <ClInclude Include="inline\implement_console.h" />
+    <ClInclude Include="inline\windows\main.h" />
+    <ClInclude Include="inline\_new.h" />
+    <ClInclude Include="inline\application.h" />
+    <ClInclude Include="inline\_main_hold.h" />
+    <ClInclude Include="map.h" />
+    <ClInclude Include="memory\aaa_array_memory_allocate.h" />
+    <ClInclude Include="operating_system\posix\time.h" />
+    <ClInclude Include="operating_system\shared_posix\c_error_number.h" />
+    <ClInclude Include="operating_system\shared_posix\stdio_file.h" />
+    <ClInclude Include="operating_system\shared_posix\time.h" />
+    <ClInclude Include="operating_system\windows\_gdiplus.h" />
+    <ClInclude Include="platform\integration_context.h" />
+    <ClInclude Include="platform\nano_http.h" />
+    <ClInclude Include="platform\nano_http_response.h" />
+    <ClInclude Include="platform\trace_statement.h" />
+    <ClInclude Include="platform\_.h" />
+    <ClInclude Include="primitive\collection\array_2d.h" />
+    <ClInclude Include="primitive\collection\_function.h" />
+    <ClInclude Include="primitive\collection\_generic_array.h" />
+    <ClInclude Include="primitive\geometry2d\matrix.h" />
+    <ClInclude Include="primitive\geometry\sequence.h" />
+    <ClInclude Include="primitive\mathematics\aaa_numeric.h" />
+    <ClInclude Include="primitive\mathematics\numeric.h" />
+    <ClInclude Include="primitive\mathematics\trigonometry.h" />
+    <ClInclude Include="primitive\mathematics\_constant.h" />
+    <ClInclude Include="primitive\primitive\integral_byte.h" />
+    <ClInclude Include="primitive\primitive\targeted_unit.h" />
+    <ClInclude Include="primitive\primitive\_SI.h" />
+    <ClInclude Include="primitive\primitive\_unit.h" />
+    <ClInclude Include="primitive\time\nanosecond.h" />
+    <ClInclude Include="primitive\time\time\posix_time.h" />
+    <ClInclude Include="primitive\time\time\time.h" />
+    <ClInclude Include="primitive\time\time\time_span.h" />
+    <ClInclude Include="_start.h" />
+    <ClInclude Include="_stdio.h" />
+    <ClInclude Include="_win32_gdi.h" />
+    <None Include="constant\character_set.enum" />
+    <None Include="inline\__apps.inl" />
+    <None Include="memory\heap_namespace.inl">
+      <FileType>Document</FileType>
+    </None>
+    <ClInclude Include="include\_integer.h" />
+    <ClCompile Include="memory\allocate_processor_cache_oriented.cpp" />
+    <ClCompile Include="memory\allocator\malloc.cpp" />
+    <ClCompile Include="memory\default_heap.cpp" />
+    <ClCompile Include="memory\allocate_x86_cache_oriented.cpp" />
+    <ClCompile Include="memory\allocation.cpp" />
+    <ClCompile Include="memory\aaa_array_memory_allocate.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="memory\allocator.cpp" />
+    <ClCompile Include="memory\allocator\c.cpp" />
+    <ClCompile Include="memory\allocator\default.cpp" />
+    <ClCompile Include="memory\allocator\memory.cpp" />
+    <ClCompile Include="memory\counter.cpp" />
+    <ClCompile Include="memory\heap.cpp" />
+    <ClCompile Include="memory\management.cpp" />
+    <ClCompile Include="memory\heap\bare.cpp" />
+    <ClCompile Include="memory\heap\mcheck.cpp" />
+    <ClCompile Include="memory\heap\mcrtdbg.cpp" />
+    <ClCompile Include="memory\heap\memdleak.cpp" />
+    <ClCompile Include="memory\heap\std.cpp" />
+    <ClCompile Include="memory\heap\vld.cpp" />
+    <ClCompile Include="memory\memory_allocate.cpp" />
+    <ClCompile Include="memory\operation.cpp" />
+    <ClCompile Include="memory\simple_memory_allocate.cpp" />
+    <ClCompile Include="memory\_.cpp" />
+    <ClCompile Include="memory\memory.cpp" />
+    <ClCompile Include="memory\memory_management.cpp" />
+    <ClCompile Include="memory\os_alloc.cpp" />
+    <ClCompile Include="memory\os_impl\aaa_WindowsHeapAlloc.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="memory\os_impl\aaa_select.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="memory\paged_win32.cpp" />
+    <ClCompile Include="memory\aaa_property_memory_allocate.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="memory\aaa_secondary_memory_allocate.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="memory\aaa_string_memory_allocate.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="memory\plex.cpp" />
+    <ClCompile Include="memory\plex_heap.cpp" />
+    <ClCompile Include="memory\plex_heap_alloc.cpp" />
+    <ClCompile Include="memory\plex_heap_alloc_array.cpp" />
+    <ClCompile Include="memory\plex_heap_alloc_sync.cpp" />
+    <ClCompile Include="nano\http\get.cpp" />
+    <ClCompile Include="nano\http\http.cpp" />
+    <ClCompile Include="nano\nano.cpp" />
+    <ClCompile Include="nano\speech\speech.cpp" />
+    <ClCompile Include="nano\user\brush.cpp" />
+    <ClCompile Include="nano\user\button.cpp" />
+    <ClCompile Include="nano\user\child.cpp" />
+    <ClCompile Include="nano\user\details_window.cpp" />
+    <ClCompile Include="nano\user\device.cpp" />
+    <ClCompile Include="nano\user\display.cpp" />
+    <ClCompile Include="nano\user\font.cpp" />
+    <ClCompile Include="nano\user\message_box.cpp" />
+    <ClCompile Include="nano\user\object.cpp" />
+    <ClCompile Include="nano\user\pen.cpp" />
+    <ClCompile Include="nano\user\popup_button.cpp" />
+    <ClCompile Include="nano\user\still.cpp" />
+    <ClCompile Include="nano\user\user.cpp" />
+    <ClCompile Include="nano\user\window.cpp" />
+    <ClCompile Include="nano\user\window_implementation.cpp" />
+    <ClCompile Include="nano\user\window_interface.cpp" />
+    <ClCompile Include="nano\user\_user.cpp" />
+    <ClCompile Include="no_precompiled_header_sample.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="operating_system\application.cpp" />
+    <ClCompile Include="operating_system\argcargv.cpp" />
+    <ClCompile Include="operating_system\bidirectional_pipe.cpp" />
+    <ClCompile Include="operating_system\chronometer.cpp" />
+    <ClCompile Include="operating_system\console.cpp" />
+    <ClCompile Include="operating_system\console_client.cpp" />
+    <ClCompile Include="operating_system\debug.cpp" />
+    <ClCompile Include="operating_system\dostime.cpp" />
+    <ClCompile Include="operating_system\error_code.cpp" />
+    <ClCompile Include="operating_system\exit_status.cpp" />
+    <ClCompile Include="operating_system\file.cpp" />
+    <ClCompile Include="operating_system\main_window.cpp" />
+    <ClCompile Include="operating_system\memory.cpp" />
+    <ClCompile Include="operating_system\message.cpp" />
+    <ClCompile Include="operating_system\message_box.cpp" />
+    <ClCompile Include="operating_system\parallelization.cpp" />
+    <ClCompile Include="operating_system\pipe.cpp" />
+    <ClCompile Include="operating_system\process.cpp" />
+    <ClCompile Include="operating_system\security_attributes.cpp" />
+    <ClCompile Include="operating_system\shared_posix\c_error_number.cpp" />
+    <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp" />
+    <ClCompile Include="operating_system\shared_posix\errno.cpp" />
+    <ClCompile Include="operating_system\shared_posix\stdio_file.cpp" />
+    <ClCompile Include="operating_system\shared_posix\time.cpp" />
+    <ClCompile Include="operating_system\shared_posix\windows_time.cpp" />
+    <ClCompile Include="operating_system\string.cpp" />
+    <ClCompile Include="operating_system\summary.cpp" />
+    <ClCompile Include="operating_system\time.cpp" />
+    <ClCompile Include="operating_system\windowing.cpp" />
+    <ClCompile Include="operating_system\windows\callstack.cpp" />
+    <ClCompile Include="operating_system\windows\file1.cpp" />
+    <ClInclude Include="operating_system\application.h" />
+    <ClInclude Include="operating_system\dostime.h" />
+    <ClInclude Include="operating_system\dos\dostime.h" />
+    <ClInclude Include="operating_system\main_window.h" />
+    <ClInclude Include="operating_system\aaa_operating_system_summary.h" />
+    <ClInclude Include="operating_system\summary.h" />
+    <ClInclude Include="operating_system\windows\find_file.h" />
+    <ClCompile Include="operating_system\windows\library.cpp" />
+    <ClCompile Include="operating_system\windows\message_box.cpp" />
+    <ClCompile Include="operating_system\windows\message_loop.cpp" />
+    <ClCompile Include="operating_system\windows\nano\http\hinternet.cpp" />
+    <ClCompile Include="operating_system\windows\nano\http\http.cpp" />
+    <ClCompile Include="operating_system\windows\nano\http\connect.cpp" />
+    <ClCompile Include="operating_system\windows\nano\http\get.cpp" />
+    <ClCompile Include="operating_system\windows\nano\http\request.cpp" />
+    <ClCompile Include="operating_system\windows\nano\http\session.cpp" />
+    <ClCompile Include="operating_system\windows\nano\http\_http.cpp" />
+    <ClCompile Include="operating_system\windows\nano\user\brush.cpp" />
+    <ClCompile Include="operating_system\windows\nano\user\device.cpp" />
+    <ClCompile Include="operating_system\windows\nano\user\font.cpp" />
+    <ClCompile Include="operating_system\windows\nano\user\object.cpp" />
+    <ClCompile Include="operating_system\windows\nano\user\pen.cpp" />
+    <ClCompile Include="operating_system\windows\nano\user\window.cpp" />
+    <ClCompile Include="operating_system\windows\nano\user\_user.cpp" />
+    <ClCompile Include="operating_system\windows\parallelization.cpp" />
+    <ClCompile Include="operating_system\windows\process.cpp" />
+    <ClCompile Include="operating_system\windows\thread.cpp" />
+    <ClCompile Include="operating_system\windows\user.cpp" />
+    <ClCompile Include="operating_system\windows\windows.cpp" />
+    <ClCompile Include="operating_system\windows_common\acme.cpp" />
+    <ClCompile Include="operating_system\windows_common\Debug.cpp" />
+    <ClCompile Include="operating_system\windows_common\file1.cpp" />
+    <ClCompile Include="operating_system\windows_common\find_file.cpp" />
+    <ClCompile Include="operating_system\windows_common\handle.cpp" />
+    <ClCompile Include="operating_system\windows_common\heap_allocator.cpp" />
+    <ClCompile Include="operating_system\windows_common\idn.cpp" />
+    <ClCompile Include="operating_system\windows_common\last_error_exception.cpp" />
+    <ClCompile Include="operating_system\windows_common\library.cpp" />
+    <ClCompile Include="operating_system\windows_common\dll.cpp" />
+    <ClCompile Include="operating_system\windows_common\file.cpp" />
+    <ClCompile Include="operating_system\windows_common\memory.cpp" />
+    <ClCompile Include="operating_system\windows_common\nano\user\_user.cpp" />
+    <ClCompile Include="operating_system\windows_common\parallelization.cpp" />
+    <ClCompile Include="operating_system\windows_common\process.cpp" />
+    <ClCompile Include="operating_system\windows_common\time.cpp" />
+    <ClCompile Include="operating_system\windows_common\unicode.cpp" />
+    <ClCompile Include="operating_system\windows_common\windows_common.cpp" />
+    <ClCompile Include="operating_system\winpr_keycode.cpp" />
+    <ClCompile Include="operating_system\winpr_scancode.cpp" />
+    <ClCompile Include="operating_system\x11\display_lock.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="operating_system\x11\keyboard.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="operating_system\x11\nano\aaa_font.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="operating_system\x11\nano\display.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="operating_system\x11\nano\nano.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="operating_system\x11\nano\window.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="operating_system\x11\nano\_nano.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="operating_system\x11\system.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="operating_system\x11\_.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="operating_system\x11\_atom.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="operating_system\_.cpp" />
+    <ClCompile Include="operating_system\_api.cpp" />
+    <ClCompile Include="platform\acme.cpp" />
+    <ClCompile Include="platform\allocator.cpp" />
+    <ClCompile Include="platform\application.cpp" />
+    <ClCompile Include="platform\application_array.cpp" />
+    <ClCompile Include="platform\application_base.cpp" />
+    <ClCompile Include="platform\application_container.cpp" />
+    <ClCompile Include="platform\application_exit.cpp" />
+    <ClCompile Include="platform\assert.cpp" />
+    <ClCompile Include="platform\build_debug.cpp" />
+    <ClCompile Include="platform\c.cpp" />
+    <ClCompile Include="platform\checked.cpp" />
+    <ClCompile Include="platform\context.cpp" />
+    <ClCompile Include="platform\conversation_message.cpp" />
+    <ClCompile Include="platform\c_class.cpp" />
+    <ClCompile Include="platform\Debug.cpp" />
+    <ClCompile Include="platform\department.cpp" />
+    <ClCompile Include="platform\display.cpp" />
+    <ClCompile Include="platform\exclusive.cpp" />
+    <ClCompile Include="platform\factory_function.cpp" />
+    <ClCompile Include="platform\fixed_alloc.cpp" />
+    <ClCompile Include="platform\flags.cpp" />
+    <ClCompile Include="platform\hyperlink.cpp" />
+    <ClCompile Include="platform\implementable.cpp" />
+    <ClCompile Include="platform\ini.cpp" />
+    <ClCompile Include="platform\integration_context.cpp" />
+    <ClCompile Include="platform\library.cpp" />
+    <ClCompile Include="platform\log.cpp" />
+    <ClCompile Include="platform\lparam.cpp" />
+    <ClCompile Include="platform\application_flags.cpp" />
+    <ClCompile Include="platform\math.cpp" />
+    <ClCompile Include="platform\muldiv64.cpp" />
+    <ClCompile Include="platform\nanosecond_timer.cpp" />
+    <ClCompile Include="platform\node.cpp" />
+    <ClCompile Include="platform\reference_item.cpp" />
+    <ClCompile Include="platform\reference_item_array.cpp" />
+    <ClCompile Include="platform\object_type_counter.cpp" />
+    <ClCompile Include="platform\predicate_holder.cpp" />
+    <ClCompile Include="platform\printf.cpp" />
+    <ClCompile Include="platform\procedure.cpp" />
+    <ClCompile Include="platform\procedure_array.cpp" />
+    <ClCompile Include="platform\profiler.cpp" />
+    <ClCompile Include="platform\reference_referer.cpp" />
+    <ClCompile Include="platform\referencing_debugging.cpp" />
+    <ClCompile Include="platform\sequence.cpp" />
+    <ClCompile Include="platform\serial.cpp" />
+    <ClCompile Include="platform\session.cpp" />
+    <ClCompile Include="platform\shell.cpp" />
+    <ClCompile Include="platform\simple_log.cpp" />
+    <ClCompile Include="platform\platform.cpp" />
+    <ClCompile Include="platform\system.cpp" />
+    <ClCompile Include="platform\system_setup.cpp" />
+    <ClCompile Include="platform\text.cpp" />
+    <ClCompile Include="platform\timer.cpp" />
+    <ClCompile Include="platform\timer_array.cpp" />
+    <ClCompile Include="platform\timer_callback.cpp" />
+    <ClCompile Include="platform\timer_event.cpp" />
+    <ClCompile Include="platform\timer_task.cpp" />
+    <ClCompile Include="platform\trace.cpp" />
+    <ClCompile Include="platform\tracer.cpp" />
+    <ClCompile Include="platform\trace_category.cpp" />
+    <ClCompile Include="platform\trace_statement.cpp" />
+    <ClCompile Include="platform\tracing.cpp" />
+    <ClCompile Include="platform\version.cpp" />
+    <ClCompile Include="platform\_.cpp" />
+    <ClCompile Include="platform\_main_hold_base.cpp" />
+    <ClCompile Include="platform\_synchronization.cpp" />
+    <ClCompile Include="primitive\collection\strdup_array.cpp" />
+    <ClCompile Include="primitive\collection\string_array.cpp" />
+    <ClCompile Include="primitive\collection\string_list.cpp" />
+    <ClCompile Include="primitive\collection\str_array.cpp" />
+    <ClCompile Include="primitive\collection\_compare_swap.cpp" />
+    <ClCompile Include="primitive\collection\_container.cpp" />
+    <ClCompile Include="primitive\collection\_range.cpp" />
+    <ClCompile Include="primitive\collection\__payload_array.cpp" />
+    <ClCompile Include="primitive\data\container.cpp" />
+    <ClCompile Include="primitive\data\data.cpp" />
+    <ClCompile Include="primitive\data\item.cpp" />
+    <ClCompile Include="primitive\data\listener.cpp" />
+    <ClCompile Include="primitive\data\node.cpp" />
+    <ClCompile Include="primitive\data\simple_item.cpp" />
+    <ClCompile Include="primitive\data\tree.cpp" />
+    <ClCompile Include="primitive\data\tree_item.cpp" />
+    <ClCompile Include="primitive\datetime\datetime.cpp" />
+    <ClCompile Include="primitive\datetime\earth_gregorian_time.cpp" />
+    <ClCompile Include="primitive\datetime\earth_time_shift.cpp" />
+    <ClCompile Include="primitive\datetime\file_time.cpp" />
+    <ClCompile Include="primitive\datetime\file_time_span.cpp" />
+    <ClCompile Include="primitive\datetime\microsecond_sleep.cpp" />
+    <ClCompile Include="primitive\datetime\result.cpp" />
+    <ClCompile Include="primitive\datetime\system_time.cpp" />
+    <ClCompile Include="primitive\geometry2d\aaa_shape.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\geometry2d\matrix.cpp" />
+    <ClCompile Include="primitive\geometry2d\rectangle_array.cpp" />
+    <ClCompile Include="primitive\geometry2d\region.cpp" />
+    <ClCompile Include="primitive\geometry2d\item.cpp" />
+    <ClCompile Include="primitive\geometry2d\size.cpp" />
+    <ClCompile Include="primitive\geometry2d\_aaa_shape.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="primitive\mathematics\binary_operation.cpp" />
+    <ClCompile Include="primitive\mathematics\cvt.cpp" />
+    <ClCompile Include="primitive\mathematics\cvt_g.cpp" />
+    <ClCompile Include="primitive\mathematics\int_biunique.cpp" />
+    <ClCompile Include="primitive\mathematics\mathematics.cpp" />
+    <ClCompile Include="primitive\mathematics\mkint_c.cpp" />
+    <ClCompile Include="primitive\mathematics\natural.cpp" />
+    <ClCompile Include="primitive\mathematics\number.cpp" />
+    <ClCompile Include="primitive\mathematics\number_double.cpp" />
+    <ClCompile Include="primitive\mathematics\number_float.cpp" />
+    <ClCompile Include="primitive\mathematics\number_integer.cpp" />
+    <ClCompile Include="primitive\mathematics\random_number_generator.cpp" />
+    <ClCompile Include="primitive\mathematics\value.cpp" />
+    <ClCompile Include="primitive\mathematics\_.cpp" />
+    <ClCompile Include="primitive\mathematics\_string.cpp" />
+    <ClCompile Include="primitive\media_library\item.cpp" />
+    <ClCompile Include="primitive\primitive\action_context.cpp" />
+    <ClCompile Include="primitive\primitive\atom.cpp" />
+    <ClCompile Include="primitive\primitive\block.cpp" />
+    <ClCompile Include="primitive\primitive\get_memory.cpp" />
+    <ClCompile Include="primitive\primitive\integral_byte.cpp" />
+    <ClCompile Include="primitive\primitive\object.cpp" />
+    <ClCompile Include="primitive\primitive\object_meta.cpp" />
+    <ClCompile Include="primitive\primitive\particle.cpp" />
+    <ClCompile Include="primitive\primitive\primitive.cpp" />
+    <ClCompile Include="primitive\primitive\property_object.cpp" />
+    <ClCompile Include="primitive\primitive\e_status.cpp" />
+    <ClCompile Include="primitive\primitive\linked_property.cpp" />
+    <ClCompile Include="primitive\primitive\matter.cpp" />
+    <ClCompile Include="primitive\primitive\match.cpp" />
+    <ClCompile Include="primitive\primitive\payload.cpp" />
+    <ClCompile Include="primitive\primitive\quantum.cpp" />
+    <ClCompile Include="primitive\primitive\read_only_memory.cpp" />
+    <ClCompile Include="primitive\primitive\subparticle.cpp" />
+    <ClCompile Include="primitive\primitive\url.cpp" />
+    <ClCompile Include="primitive\primitive\url_domain.cpp" />
+    <ClCompile Include="primitive\primitive\work.cpp" />
+    <ClCompile Include="primitive\string\c\ancient\ansi_impl.cpp" />
+    <ClCompile Include="primitive\string\c\ancient\wd16_impl.cpp" />
+    <ClCompile Include="primitive\string\c\ancient\wd32_impl.cpp" />
+    <ClCompile Include="primitive\string\c\ancient\_c.cpp" />
+    <ClCompile Include="primitive\string\c\coupling_impl.cpp" />
+    <ClCompile Include="primitive\string\c\extension\ansi_impl.cpp" />
+    <ClCompile Include="primitive\string\c\extension\wd16_impl.cpp" />
+    <ClCompile Include="primitive\string\c\extension\wd32_impl.cpp" />
+    <ClCompile Include="primitive\string\c\unicode_impl.cpp" />
+    <ClCompile Include="primitive\string\encoding_exception.cpp" />
+    <ClCompile Include="primitive\string\command_line.cpp" />
+    <ClCompile Include="primitive\string\string.cpp" />
+    <ClCompile Include="primitive\string\str_to.cpp" />
+    <ClCompile Include="primitive\string\sz\ansi.cpp" />
+    <ClCompile Include="primitive\string\sz\ansi_impl.cpp" />
+    <ClCompile Include="primitive\string\sz\wd16.cpp" />
+    <ClCompile Include="primitive\string\sz\wd16_impl.cpp" />
+    <ClCompile Include="primitive\string\sz\wd32.cpp" />
+    <ClCompile Include="primitive\string\as_string.cpp" />
+    <ClCompile Include="primitive\string\character.cpp" />
+    <ClCompile Include="primitive\string\sz\wd32_impl.cpp" />
+    <ClCompile Include="primitive\string\_string.cpp" />
+    <ClCompile Include="primitive\string\_str_impl.cpp" />
+    <ClCompile Include="primitive\string\__wide.cpp" />
+    <ClCompile Include="primitive\text\data.cpp" />
+    <ClCompile Include="primitive\text\international.cpp" />
+    <ClCompile Include="primitive\text\international_locale_schema.cpp" />
+    <ClCompile Include="primitive\text\context.cpp" />
+    <ClCompile Include="primitive\text\text.cpp" />
+    <ClCompile Include="primitive\text\translator.cpp" />
+    <ClCompile Include="primitive\time\time.cpp" />
+    <ClCompile Include="primitive\time\time\posix_time.cpp" />
+    <ClCompile Include="primitive\time\time\time.cpp" />
+    <ClCompile Include="primitive\time\__string.cpp" />
+    <ClCompile Include="regular_expression\context.cpp" />
+    <ClCompile Include="regular_expression\regular_expression.cpp" />
+    <ClCompile Include="regular_expression\result.cpp" />
+    <ClCompile Include="_.cpp" />
+    <ClInclude Include="compress\_.h" />
+    <ClInclude Include="console.h" />
+    <ClInclude Include="filesystem\filesystem\acme_directory.h" />
+    <ClInclude Include="filesystem\filesystem\acme_path.h" />
+    <ClInclude Include="filesystem\filesystem\listing.h" />
+    <ClInclude Include="filesystem\filesystem\path.h" />
+    <ClInclude Include="filesystem\filesystem\path_object.h" />
+    <ClInclude Include="filesystem\filesystem\_impl.h" />
+    <ClInclude Include="filesystem\file\_defer.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="inline\application_common.h" />
+    <ClInclude Include="inline\console.h" />
+    <ClInclude Include="inline\console_common.h" />
+    <ClInclude Include="inline\implement.h" />
+    <ClInclude Include="inline\_application.h" />
+    <ClInclude Include="inline\_app_impl1.h" />
+    <ClInclude Include="inline\_console_old.h" />
+    <ClInclude Include="inline\_new_impl.h" />
+    <ClInclude Include="memory\chunk.h" />
+    <ClInclude Include="memory\del.h" />
+    <ClInclude Include="memory\memory_management.h" />
+    <ClInclude Include="memory\aaa_property_memory_allocate.h" />
+    <ClInclude Include="memory\aaa_secondary_memory_allocate.h" />
+    <ClInclude Include="memory\_config.h" />
+    <ClInclude Include="memory\memory.h" />
+    <ClInclude Include="memory\_memory.h" />
+    <ClInclude Include="memory\aaa__aligned_memory_allocate.h" />
+    <ClInclude Include="memory\counter.h" />
+    <ClInclude Include="memory\memory_allocate1.h" />
+    <ClInclude Include="memory\aaa_string_memory_allocate.h" />
+    <ClInclude Include="memory\aaa_os_alloc.h" />
+    <ClInclude Include="memory\aaa_string_memory_allocator.h" />
+    <ClInclude Include="memory\__string.h" />
+    <ClInclude Include="memory\aaa__unaligned_memory_allocate.h" />
+    <ClInclude Include="memory\_impl.h" />
+    <ClInclude Include="memory\aaa__memory_allocate.h" />
+    <ClInclude Include="memory\_____heap_namespace.h" />
+    <ClInclude Include="operating_system\error_code.h" />
+    <ClInclude Include="operating_system\exit_status.h" />
+    <ClInclude Include="operating_system\process1.h" />
+    <ClInclude Include="operating_system\security_attributes.h" />
+    <ClInclude Include="operating_system\windows\_c.h" />
+    <ClInclude Include="operating_system\windows_common\file.h" />
+    <ClInclude Include="operating_system\windows_common\find_file.h" />
+    <ClInclude Include="operating_system\windows_common\handle.h" />
+    <ClInclude Include="operating_system\windows_common\last_error_exception.h" />
+    <ClInclude Include="operating_system\windows_common\_c.h" />
+    <ClInclude Include="operating_system\windows_common\_string.h" />
+    <ClInclude Include="operating_system\_.h" />
+    <ClInclude Include="platform\aaapredicate_function_pointer.h" />
+    <ClInclude Include="platform\aaa_acme_main_data.h" />
+    <ClInclude Include="platform\aaa_acme_main_struct.h" />
+    <ClInclude Include="platform\aaa_apex_main_struct.h" />
+    <ClInclude Include="platform\aaa_app_core.h" />
+    <ClInclude Include="platform\application_array.h" />
+    <ClInclude Include="platform\application_base.h" />
+    <ClInclude Include="platform\application_container.h" />
+    <ClInclude Include="platform\application_exit.h" />
+    <ClInclude Include="platform\conversation_message.h" />
+    <ClInclude Include="platform\enum_names.h" />
+    <ClInclude Include="platform\application_flags.h" />
+    <ClInclude Include="platform\factory_function.h" />
+    <ClInclude Include="platform\locale.h" />
+    <ClInclude Include="platform\main2.h" />
+    <ClInclude Include="platform\scoped_restore.h" />
+    <ClInclude Include="platform\session.h" />
+    <ClInclude Include="platform\tracer.h" />
+    <ClInclude Include="platform\_c.h" />
+    <ClInclude Include="platform\_main_hold_base.h" />
+    <ClInclude Include="platform\__string.h" />
+    <ClInclude Include="primitive\collection\address_array.h" />
+    <ClInclude Include="primitive\collection\array.h" />
+    <ClInclude Include="primitive\collection\array_base.h" />
+    <ClInclude Include="primitive\collection\array_iterator.h" />
+    <ClInclude Include="primitive\collection\atom_array.h" />
+    <ClInclude Include="primitive\collection\atom_map.h" />
+    <ClInclude Include="primitive\collection\attrib_map.h" />
+    <ClInclude Include="primitive\collection\auto_ptr_array.h" />
+    <ClInclude Include="primitive\collection\back_insert_iterator.h" />
+    <ClInclude Include="primitive\collection\base_enum.h" />
+    <ClInclude Include="primitive\collection\bitset.h" />
+    <ClInclude Include="primitive\collection\bit_array.h" />
+    <ClInclude Include="primitive\collection\bool_array.h" />
+    <ClInclude Include="primitive\collection\collection.h" />
+    <ClInclude Include="primitive\collection\color_map.h" />
+    <ClInclude Include="primitive\collection\comparable_array.h" />
+    <ClInclude Include="primitive\collection\comparable_eq_array.h" />
+    <ClInclude Include="primitive\collection\comparable_eq_list.h" />
+    <ClInclude Include="primitive\collection\comparable_eq_range.h" />
+    <ClInclude Include="primitive\collection\comparable_list.h" />
+    <ClInclude Include="primitive\collection\comparable_primitive_array.h" />
+    <ClInclude Include="primitive\collection\comparable_range.h" />
+    <ClInclude Include="primitive\collection\comparable_raw_array.h" />
+    <ClInclude Include="primitive\collection\composite_array.h" />
+    <ClInclude Include="primitive\collection\copy_elements.h" />
+    <ClInclude Include="primitive\collection\datetime_array.h" />
+    <ClInclude Include="primitive\collection\deque.h" />
+    <ClInclude Include="primitive\collection\hash_table.h" />
+    <ClInclude Include="primitive\collection\iterator.h" />
+    <ClInclude Include="primitive\collection\list_iterator.h" />
+    <ClInclude Include="primitive\collection\list_node.h" />
+    <ClInclude Include="primitive\collection\null_terminated_iterator.h" />
+    <ClInclude Include="primitive\collection\null_terminated_range.h" />
+    <ClInclude Include="primitive\collection\time_array.h" />
+    <ClInclude Include="primitive\collection\fifo_map.h" />
+    <ClInclude Include="primitive\collection\file_path_map.h" />
+    <ClInclude Include="primitive\collection\forward.h" />
+    <ClInclude Include="primitive\collection\insert_iterator.h" />
+    <ClInclude Include="primitive\collection\int_map.h" />
+    <ClInclude Include="primitive\collection\iterable.h" />
+    <ClInclude Include="primitive\collection\iterator2.h" />
+    <ClInclude Include="primitive\collection\list.h" />
+    <ClInclude Include="primitive\collection\map.h" />
+    <ClInclude Include="primitive\collection\set_node.h" />
+    <ClInclude Include="primitive\collection\map_to_smart_pointer.h" />
+    <ClInclude Include="primitive\collection\numeric_array.h" />
+    <ClInclude Include="primitive\collection\numeric_array_range.h" />
+    <ClInclude Include="primitive\collection\osdata_array.h" />
+    <ClInclude Include="primitive\collection\packset.h" />
+    <ClInclude Include="primitive\collection\pair.h" />
+    <ClInclude Include="primitive\collection\pointer_array.h" />
+    <ClInclude Include="primitive\collection\pointer_array_process.h" />
+    <ClInclude Include="primitive\collection\priority_queue.h" />
+    <ClInclude Include="primitive\collection\ptr_array.h" />
+    <ClInclude Include="primitive\collection\queue.h" />
+    <ClInclude Include="primitive\collection\range.h" />
+    <ClInclude Include="primitive\collection\raw_array.h" />
+    <ClInclude Include="primitive\collection\set.h" />
+    <ClInclude Include="primitive\collection\set_element.h" />
+    <ClInclude Include="primitive\collection\single.h" />
+    <ClInclude Include="primitive\collection\_sort.h" />
+    <ClInclude Include="primitive\collection\sort_array.h" />
+    <ClInclude Include="primitive\collection\sort_list.h" />
+    <ClInclude Include="primitive\collection\sort_map.h" />
+    <ClInclude Include="primitive\collection\spreadset.h" />
+    <ClInclude Include="primitive\collection\stack.h" />
+    <ClInclude Include="primitive\collection\std_iterator.h" />
+    <ClInclude Include="primitive\collection\std_pair.h" />
+    <ClInclude Include="primitive\collection\strdup_array.h" />
+    <ClInclude Include="primitive\collection\strid_map.h" />
+    <ClInclude Include="primitive\collection\string_array.h" />
+    <ClInclude Include="primitive\collection\string_iterable.h" />
+    <ClInclude Include="primitive\collection\string_list.h" />
+    <ClInclude Include="primitive\collection\string_map.h" />
+    <ClInclude Include="primitive\collection\str_array.h" />
+    <ClInclude Include="primitive\collection\tiny_array.h" />
+    <ClInclude Include="primitive\collection\array_range.h" />
+    <ClInclude Include="primitive\collection\unique_array.h" />
+    <ClInclude Include="primitive\collection\_.h" />
+    <ClInclude Include="primitive\collection\_array.h" />
+    <ClInclude Include="primitive\collection\_array_binary_stream.h" />
+    <ClInclude Include="primitive\collection\_collection.h" />
+    <ClInclude Include="primitive\collection\_compare_swap.h" />
+    <ClInclude Include="primitive\collection\_container.h" />
+    <ClInclude Include="primitive\collection\_generic_map.h" />
+    <ClInclude Include="primitive\collection\_impl_factory.h" />
+    <ClInclude Include="primitive\collection\_impl_generic_map.h" />
+    <ClInclude Include="primitive\collection\_impl.h" />
+    <ClInclude Include="primitive\collection\_impl_numeric_array.h" />
+    <ClInclude Include="primitive\collection\_impl_payload.h" />
+    <ClInclude Include="primitive\collection\_impl_string_array.h" />
+    <ClInclude Include="primitive\collection\_iterator.h" />
+    <ClInclude Include="primitive\collection\_list_iterator.h" />
+    <ClInclude Include="primitive\collection\_loosely.h" />
+    <ClInclude Include="primitive\collection\_loosely_map.h" />
+    <ClInclude Include="primitive\collection\_map_binary_stream.h" />
+    <ClInclude Include="primitive\collection\_papaya_heap.h" />
+    <ClInclude Include="primitive\collection\_range.h" />
+    <ClInclude Include="primitive\collection\_std.h" />
+    <ClInclude Include="primitive\collection\_string.h" />
+    <ClInclude Include="primitive\collection\_text_stream.h" />
+    <ClInclude Include="primitive\collection\__payload_array.h" />
+    <ClInclude Include="primitive\collection\__property_set.h" />
+    <ClInclude Include="primitive\geometry2d\angle.h" />
+    <ClInclude Include="primitive\geometry2d\arc.h" />
+    <ClInclude Include="primitive\geometry2d\ellipse.h" />
+    <ClInclude Include="primitive\geometry2d\item.h" />
+    <ClInclude Include="primitive\geometry2d\line.h" />
+    <ClInclude Include="primitive\geometry2d\lines.h" />
+    <ClInclude Include="primitive\geometry2d\point.h" />
+    <ClInclude Include="primitive\geometry2d\polygon.h" />
+    <ClInclude Include="primitive\geometry2d\rectangle.h" />
+    <ClInclude Include="primitive\geometry2d\rectangle_array.h" />
+    <ClInclude Include="primitive\geometry2d\region.h" />
+    <ClInclude Include="primitive\geometry2d\shift.h" />
+    <ClInclude Include="primitive\geometry2d\size.h" />
+    <ClInclude Include="primitive\geometry2d\vector.h" />
+    <ClInclude Include="primitive\geometry2d\_.h" />
+    <ClInclude Include="primitive\geometry2d\_aaa_collection_enhanced.h" />
+    <ClInclude Include="primitive\geometry2d\_aaa_defer_shape.h" />
+    <ClInclude Include="primitive\geometry2d\_aaa_enhanced.h" />
+    <ClInclude Include="primitive\geometry2d\_aaa_shape.h" />
+    <ClInclude Include="primitive\geometry2d\_aaa_shape_array.h" />
+    <ClInclude Include="primitive\geometry2d\_binary_stream.h" />
+    <ClInclude Include="primitive\geometry2d\_collection.h" />
+    <ClInclude Include="primitive\geometry2d\_collection_bounding_box.h" />
+    <ClInclude Include="primitive\geometry2d\_collection_contains.h" />
+    <ClInclude Include="primitive\geometry2d\_defer.h" />
+    <ClInclude Include="primitive\geometry2d\_defer_item.h" />
+    <ClInclude Include="primitive\geometry2d\_f32.h" />
+    <ClInclude Include="primitive\geometry2d\_f64.h" />
+    <ClInclude Include="primitive\geometry2d\_function.h" />
+    <ClInclude Include="primitive\geometry2d\_function_impl.h" />
+    <ClInclude Include="primitive\geometry2d\_aaa_geometry2d.h" />
+    <ClInclude Include="primitive\geometry2d\_i32.h" />
+    <ClInclude Include="primitive\geometry2d\_i64.h" />
+    <ClInclude Include="primitive\geometry2d\_random.h" />
+    <ClInclude Include="primitive\geometry2d\_shape.h" />
+    <ClInclude Include="primitive\geometry2d\_string.h" />
+    <ClInclude Include="primitive\geometry2d\_struct.h" />
+    <ClInclude Include="primitive\geometry2d\_text_stream.h" />
+    <ClInclude Include="primitive\geometry2d\__basic.h" />
+    <ClInclude Include="primitive\mathematics\logarithm.h" />
+    <ClInclude Include="primitive\mathematics\_random.h" />
+    <ClInclude Include="primitive\mathematics\_string.h" />
+    <ClInclude Include="primitive\numeric\types.h" />
+    <ClInclude Include="primitive\primitive\aaa_atom_array.h" />
+    <ClInclude Include="primitive\primitive\aaa_atom_space.h" />
+    <ClInclude Include="primitive\primitive\aaa_element_array.h" />
+    <ClInclude Include="primitive\primitive\aaa_member.h" />
+    <ClInclude Include="primitive\primitive\aaa_net.h" />
+    <ClInclude Include="primitive\primitive\collection\_array_string.h" />
+    <ClInclude Include="primitive\primitive\concrete.h" />
+    <ClInclude Include="primitive\primitive\muldiv64.h" />
+    <ClInclude Include="primitive\primitive\particle_flags.h" />
+    <ClInclude Include="primitive\primitive\ptr.h" />
+    <ClInclude Include="primitive\primitive\scope_stack.h" />
+    <ClInclude Include="primitive\primitive\typed.h" />
+    <ClInclude Include="primitive\primitive\aaa_factory.h" />
+    <ClInclude Include="primitive\primitive\unit.h" />
+    <ClInclude Include="primitive\primitive\url.h" />
+    <ClInclude Include="primitive\primitive\url_domain.h" />
+    <ClInclude Include="primitive\primitive\_impl_atom.h" />
+    <ClInclude Include="primitive\primitive\_property_object_impl.h" />
+    <ClInclude Include="primitive\primitive\_text_stream.h" />
+    <ClInclude Include="primitive\primitive\__payload_cast.h" />
+    <ClInclude Include="primitive\primitive\__payload_reference.h" />
+    <ClInclude Include="primitive\primitive\__url_string.h" />
+    <ClInclude Include="primitive\primitive\___url.h" />
+    <ClInclude Include="primitive\string\aaaa_conv_ansi.h" />
+    <ClInclude Include="primitive\string\aaaa__string.h" />
+    <ClInclude Include="primitive\string\aaa_character.h" />
+    <ClInclude Include="primitive\string\aaa_conv_ansi_impl.h" />
+    <ClInclude Include="primitive\string\aaa_international2.h" />
+    <ClInclude Include="primitive\string\aaa_international_locale_schema.h" />
+    <ClInclude Include="primitive\string\aaa_string_wide_conversion.h" />
+    <ClInclude Include="primitive\string\aaa_u32hash.h" />
+    <ClInclude Include="primitive\string\aaa_unicode_data.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_remove_001.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_remove_char_traits.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_remove_str_ch_class.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_remove_str_str3.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_remove_str_tokenizer.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_remove_str_wstring.h" />
+    <ClInclude Include="primitive\string\aaa_want_to_remove_str_x.h" />
+    <ClInclude Include="primitive\string\aaa__unicode_character.h" />
+    <ClInclude Include="primitive\string\aaa__unicode_data.h" />
+    <ClInclude Include="primitive\string\aaa___ch.h" />
+    <ClInclude Include="primitive\string\adaptor.h" />
+    <ClInclude Include="primitive\string\as_string.h" />
+    <ClInclude Include="primitive\string\command_line.h" />
+    <ClInclude Include="primitive\string\c\ancient\ansi.h" />
+    <ClInclude Include="primitive\string\c\ancient\ansi_impl.h" />
+    <ClInclude Include="primitive\string\c\ancient\wd16.h" />
+    <ClInclude Include="primitive\string\c\ancient\wd16_impl.h" />
+    <ClInclude Include="primitive\string\c\ancient\wd32.h" />
+    <ClInclude Include="primitive\string\c\ancient\wd32_impl.h" />
+    <ClInclude Include="primitive\string\c\ancient\_.h" />
+    <ClInclude Include="primitive\string\c\ancient\_impl.h" />
+    <ClInclude Include="primitive\string\c\extension\ansi.h" />
+    <ClInclude Include="primitive\string\c\extension\ansi_impl.h" />
+    <ClInclude Include="primitive\string\c\extension\wd16.h" />
+    <ClInclude Include="primitive\string\c\extension\wd16_impl.h" />
+    <ClInclude Include="primitive\string\c\extension\wd32.h" />
+    <ClInclude Include="primitive\string\c\extension\wd32_impl.h" />
+    <ClInclude Include="primitive\string\c\extension\_.h" />
+    <ClInclude Include="primitive\string\c\extension\_impl.h" />
+    <ClInclude Include="primitive\string\c\coupling_impl.h" />
+    <ClInclude Include="primitive\string\c\encoding_impl.h" />
+    <ClInclude Include="primitive\string\c\coupling.h" />
+    <ClInclude Include="primitive\string\c\encoding.h" />
+    <ClInclude Include="primitive\string\c\unicode.h" />
+    <ClInclude Include="primitive\string\c\unicode_impl.h" />
+    <ClInclude Include="primitive\string\c\_impl.h" />
+    <ClInclude Include="primitive\string\c\_.h" />
+    <ClInclude Include="primitive\string\encoding_exception.h" />
+    <ClInclude Include="primitive\string\inline_string.h" />
+    <ClInclude Include="primitive\string\network_payload.h" />
+    <ClInclude Include="primitive\string\scoped_string_base.h" />
+    <ClInclude Include="primitive\string\str.h" />
+    <ClInclude Include="primitive\string\string_file.h" />
+    <ClInclude Include="primitive\string\string_iterator.h" />
+    <ClInclude Include="primitive\string\aaaa_simple_string_base.h" />
+    <ClInclude Include="primitive\string\string_meta_data.h" />
+    <ClInclude Include="primitive\string\string_range.h" />
+    <ClInclude Include="primitive\string\const_string_range.h" />
+    <ClInclude Include="primitive\string\mutable_string_range.h" />
+    <ClInclude Include="primitive\string\sz\ansi.h" />
+    <ClInclude Include="primitive\string\sz\ansi_impl.h" />
+    <ClInclude Include="primitive\string\sz\wd16.h" />
+    <ClInclude Include="primitive\string\sz\wd16_impl.h" />
+    <ClInclude Include="primitive\string\sz\wd32.h" />
+    <ClInclude Include="primitive\string\sz\wd32_impl.h" />
+    <ClInclude Include="primitive\string\sz\_.h" />
+    <ClInclude Include="primitive\string\sz\_impl.h" />
+    <ClInclude Include="primitive\string\utf8_character.h" />
+    <ClInclude Include="primitive\string\_1.h" />
+    <ClInclude Include="primitive\string\_impl_string_base.h" />
+    <ClInclude Include="primitive\string\_impl_string_meta_data.h" />
+    <ClInclude Include="primitive\string\_string_base_impl1.h" />
+    <ClInclude Include="primitive\string\_string_range_impl.h" />
+    <ClInclude Include="primitive\string\_u32hash.h" />
+    <ClInclude Include="primitive\string\__wide.h" />
+    <ClInclude Include="primitive\time\day.h" />
+    <ClInclude Include="primitive\time\floating\_.h" />
+    <ClInclude Include="primitive\time\frequency.h" />
+    <ClInclude Include="primitive\time\integral\_.h" />
+    <ClInclude Include="primitive\time\integral\_impl.h" />
+    <ClInclude Include="primitive\time\time\unit.h" />
+    <ClInclude Include="primitive\time\time\_.h" />
+    <ClInclude Include="primitive\time\_.h" />
+    <ClInclude Include="primitive\time\_binary_stream.h" />
+    <ClInclude Include="primitive\time\_time.h" />
+    <ClInclude Include="primitive\time\_impl.h" />
+    <ClInclude Include="primitive\time\_string.h" />
+    <ClInclude Include="primitive\time\_structures.h" />
+    <ClInclude Include="primitive\time\_text_stream.h" />
+    <ClInclude Include="primitive\time\_unit_operator.h" />
+    <ClInclude Include="primitive\time\__string.h" />
+    <ClInclude Include="primitive\_.h" />
+    <ClInclude Include="procedure.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="_range.h" />
+    <ClInclude Include="_library.h" />
+    <ClInclude Include="_operating_system.h" />
+    <ClInclude Include="operating_system\aaa_c2.h" />
+    <ClInclude Include="operating_system\aaa_node2.h" />
+    <ClInclude Include="operating_system\argcargv.h" />
+    <ClInclude Include="operating_system\chronometer.h" />
+    <ClInclude Include="operating_system\console.h" />
+    <ClInclude Include="operating_system\console_client.h" />
+    <ClInclude Include="operating_system\cross.h" />
+    <ClInclude Include="operating_system\Debug.h" />
+    <ClInclude Include="operating_system\file.h" />
+    <ClInclude Include="operating_system\graphics.h" />
+    <ClInclude Include="operating_system\message.h" />
+    <ClInclude Include="operating_system\microsecond_sleep.h" />
+    <ClInclude Include="operating_system\_api.h" />
+    <ClInclude Include="operating_system\_common.h" />
+    <ClInclude Include="operating_system\os_windowing2.h" />
+    <ClInclude Include="operating_system\parallelization.h" />
+    <ClInclude Include="operating_system\process.h" />
+    <ClInclude Include="operating_system\serial.h" />
+    <ClInclude Include="operating_system\text.h" />
+    <ClInclude Include="operating_system\time.h" />
+    <ClInclude Include="operating_system\user.h" />
+    <ClInclude Include="operating_system\windows\_.h" />
+    <ClInclude Include="operating_system\windows_common\_.h" />
+    <ClInclude Include="operating_system\winpr_input.h" />
+    <ClInclude Include="operating_system\_operating_system.h" />
+    <ClInclude Include="operating_system\_aaa_c.h" />
+    <ClInclude Include="operating_system\_application.h" />
+    <ClInclude Include="operating_system\_c.h" />
+    <ClInclude Include="operating_system\_const_console.h" />
+    <ClInclude Include="operating_system\_impl.h" />
+    <ClInclude Include="platform\aaa_acme.h" />
+    <ClInclude Include="platform\aaa_str.h" />
+    <ClInclude Include="platform\application.h" />
+    <ClInclude Include="platform\auto.h" />
+    <ClInclude Include="platform\auto_pointer.h" />
+    <ClInclude Include="platform\class.h" />
+    <ClInclude Include="platform\cmp.h" />
+    <ClInclude Include="platform\cmp2.h" />
+    <ClInclude Include="platform\aaa_common.h" />
+    <ClInclude Include="platform\const.h" />
+    <ClInclude Include="platform\constraint.h" />
+    <ClInclude Include="platform\context.h" />
+    <ClInclude Include="platform\c_class.h" />
+    <ClInclude Include="platform\Debug.h" />
+    <ClInclude Include="platform\definition.h" />
+    <ClInclude Include="platform\department.h" />
+    <ClInclude Include="platform\display.h" />
+    <ClInclude Include="platform\enum.h" />
+    <ClInclude Include="platform\exclusive.h" />
+    <ClInclude Include="platform\factory.h" />
+    <ClInclude Include="platform\filestream.h" />
+    <ClInclude Include="platform\fixed_alloc.h" />
+    <ClInclude Include="platform\fixed_alloc_impl.h" />
+    <ClInclude Include="platform\flags.h" />
+    <ClInclude Include="platform\hyperlink.h" />
+    <ClInclude Include="platform\implementable.h" />
+    <ClInclude Include="platform\ini.h" />
+    <ClInclude Include="platform\keep.h" />
+    <ClInclude Include="platform\less.h" />
+    <ClInclude Include="platform\library.h" />
+    <ClInclude Include="platform\log.h" />
+    <ClInclude Include="platform\logic.h" />
+    <ClInclude Include="platform\lparam.h" />
+    <ClInclude Include="platform\acme.h" />
+    <ClInclude Include="platform\main1.h" />
+    <ClInclude Include="platform\message.h" />
+    <ClInclude Include="platform\nanosecond_timer.h" />
+    <ClInclude Include="platform\node.h" />
+    <ClInclude Include="platform\number.h" />
+    <ClInclude Include="platform\reference_item_array.h" />
+    <ClInclude Include="platform\aaa_object_reference_count_debug_impl.h" />
+    <ClInclude Include="platform\object_type_counter.h" />
+    <ClInclude Include="platform\options.h" />
+    <ClInclude Include="platform\predicate_holder.h" />
+    <ClInclude Include="platform\predicate_procedure.h" />
+    <ClInclude Include="platform\predicate_process.h" />
+    <ClInclude Include="platform\printf.h" />
+    <ClInclude Include="platform\procedure.h" />
+    <ClInclude Include="platform\procedure_array.h" />
+    <ClInclude Include="platform\profiler.h" />
+    <ClInclude Include="platform\sequence1.h" />
+    <ClInclude Include="platform\sequencer.h" />
+    <ClInclude Include="platform\serial.h" />
+    <ClInclude Include="platform\serial_shared.h" />
+    <ClInclude Include="platform\set_app_id.h" />
+    <ClInclude Include="platform\simple_log.h" />
+    <ClInclude Include="platform\status.h" />
+    <ClInclude Include="platform\string_exchange.h" />
+    <ClInclude Include="platform\platform.h" />
+    <ClInclude Include="platform\system.h" />
+    <ClInclude Include="platform\system_setup.h" />
+    <ClInclude Include="platform\text.h" />
+    <ClInclude Include="platform\this_type.h" />
+    <ClInclude Include="platform\timeout.h" />
+    <ClInclude Include="platform\timer.h" />
+    <ClInclude Include="platform\timer_array.h" />
+    <ClInclude Include="platform\timer_callback.h" />
+    <ClInclude Include="platform\timer_event.h" />
+    <ClInclude Include="platform\timer_item.h" />
+    <ClInclude Include="platform\timer_task.h" />
+    <ClInclude Include="platform\title.h" />
+    <ClInclude Include="platform\trace.h" />
+    <ClInclude Include="platform\trace_category.h" />
+    <ClInclude Include="platform\uint32_muldiv.h" />
+    <ClInclude Include="platform\uint64_muldiv.h" />
+    <ClInclude Include="platform\uint64_utilities.h" />
+    <ClInclude Include="platform\user_parent.h" />
+    <ClInclude Include="platform\release_time.h" />
+    <ClInclude Include="platform\_synchronization.h" />
+    <ClInclude Include="platform\_features.h" />
+    <ClInclude Include="include\objc.h" />
+    <ClInclude Include="include\objcpp.h" />
+    <ClInclude Include="include\winrt.h" />
+    <ClInclude Include="include\_.h" />
+    <ClInclude Include="include\_c_bridge.h" />
+    <ClInclude Include="include\_include.h" />
+    <ClInclude Include="memory\allocate.h" />
+    <ClInclude Include="memory\allocate_processor_cache_oriented.h" />
+    <ClInclude Include="memory\allocation.h" />
+    <ClInclude Include="memory\management.h" />
+    <ClInclude Include="memory\system_heap.h" />
+    <ClInclude Include="memory\heap_item.h" />
+    <ClInclude Include="memory\heap_item_array.h" />
+    <ClInclude Include="memory\heap_memory.h" />
+    <ClInclude Include="memory\malloc.h" />
+    <ClInclude Include="memory\raw_block.h" />
+    <ClInclude Include="memory\aaa_memory_allocator.h" />
+    <ClInclude Include="memory\_new.h" />
+    <ClInclude Include="memory\plex.h" />
+    <ClInclude Include="memory\plex_heap_alloc_sync.h" />
+    <ClInclude Include="memory\plex_heap_alloc.h" />
+    <ClInclude Include="platform\_global.h" />
+    <ClInclude Include="platform\_impl.h" />
+    <ClInclude Include="platform\_platform.h" />
+    <ClInclude Include="primitive\comparison\sign.h" />
+    <ClInclude Include="primitive\data\container.h" />
+    <ClInclude Include="primitive\data\data.h" />
+    <ClInclude Include="primitive\data\item.h" />
+    <ClInclude Include="primitive\data\listener.h" />
+    <ClInclude Include="primitive\data\node.h" />
+    <ClInclude Include="primitive\data\simple_item.h" />
+    <ClInclude Include="primitive\data\tree.h" />
+    <ClInclude Include="primitive\data\tree_item.h" />
+    <ClInclude Include="primitive\data\_.h" />
+    <ClInclude Include="primitive\data\aaa_data.h" />
+    <ClInclude Include="primitive\data\_impl.h" />
+    <ClInclude Include="primitive\data\_tree.h" />
+    <ClInclude Include="primitive\datetime\datetime.h" />
+    <ClInclude Include="primitive\datetime\earth_gregorian_time.h" />
+    <ClInclude Include="primitive\datetime\file_time.h" />
+    <ClInclude Include="primitive\datetime\file_time_span.h" />
+    <ClInclude Include="primitive\datetime\microsecond_sleep.h" />
+    <ClInclude Include="primitive\datetime\micro_duration.h" />
+    <ClInclude Include="primitive\datetime\result.h" />
+    <ClInclude Include="primitive\datetime\system_time.h" />
+    <ClInclude Include="primitive\datetime\time_zone.h" />
+    <ClInclude Include="primitive\datetime\_binary_stream.h" />
+    <ClInclude Include="primitive\datetime\_datetime.h" />
+    <ClInclude Include="primitive\geometry2d\bounding_box.h" />
+    <ClInclude Include="primitive\geometry2d\contains.h" />
+    <ClInclude Include="primitive\geometry3d\box.h" />
+    <ClInclude Include="primitive\geometry3d\dimension.h" />
+    <ClInclude Include="primitive\geometry3d\location.h" />
+    <ClInclude Include="primitive\geometry3d\pole.h" />
+    <ClInclude Include="primitive\geometry3d\quaternions.h" />
+    <ClInclude Include="primitive\geometry3d\_.h" />
+    <ClInclude Include="primitive\logic\boolean.h" />
+    <ClInclude Include="primitive\mathematics\binary_operation.h" />
+    <ClInclude Include="primitive\mathematics\cast.h" />
+    <ClInclude Include="primitive\mathematics\classes.h" />
+    <ClInclude Include="primitive\mathematics\complex.h" />
+    <ClInclude Include="primitive\mathematics\____count.h" />
+    <ClInclude Include="primitive\mathematics\c_number.h" />
+    <ClInclude Include="primitive\mathematics\filestream.h" />
+    <ClInclude Include="primitive\mathematics\mathematics.h" />
+    <ClInclude Include="primitive\mathematics\clip.h" />
+    <ClInclude Include="primitive\mathematics\mkint_c.h" />
+    <ClInclude Include="primitive\mathematics\natural.h" />
+    <ClInclude Include="primitive\mathematics\number.h" />
+    <ClInclude Include="primitive\mathematics\number_double.h" />
+    <ClInclude Include="primitive\mathematics\number_float.h" />
+    <ClInclude Include="primitive\mathematics\number_integer.h" />
+    <ClInclude Include="primitive\mathematics\number_limits.h" />
+    <ClInclude Include="primitive\mathematics\numeric_info.h" />
+    <ClInclude Include="primitive\mathematics\objects.h" />
+    <ClInclude Include="primitive\mathematics\random_number_generator.h" />
+    <ClInclude Include="primitive\mathematics\scalar.h" />
+    <ClInclude Include="primitive\mathematics\aaa_scalar_enum.h" />
+    <ClInclude Include="primitive\mathematics\static_numeric_info.h" />
+    <ClInclude Include="primitive\mathematics\std_template.h" />
+    <ClInclude Include="primitive\mathematics\value.h" />
+    <ClInclude Include="primitive\mathematics\_.h" />
+    <ClInclude Include="primitive\mathematics\_impl.h" />
+    <ClInclude Include="primitive\media_library\item.h" />
+    <ClInclude Include="primitive\primitive\bbb_object.h" />
+    <ClInclude Include="primitive\primitive\bits.h" />
+    <ClInclude Include="primitive\primitive\block.h" />
+    <ClInclude Include="primitive\primitive\compare_predicate.h" />
+    <ClInclude Include="primitive\primitive\e_check.h" />
+    <ClInclude Include="primitive\primitive\enumeration.h" />
+    <ClInclude Include="primitive\primitive\enumeration1.h" />
+    <ClInclude Include="primitive\primitive\enum_bitset.h" />
+    <ClInclude Include="primitive\primitive\e_flag.h" />
+    <ClInclude Include="primitive\primitive\function.h" />
+    <ClInclude Include="primitive\primitive\get_memory.h" />
+    <ClInclude Include="primitive\primitive\holder.h" />
+    <ClInclude Include="primitive\primitive\interlocked_count.h" />
+    <ClInclude Include="primitive\primitive\object.h" />
+    <ClInclude Include="primitive\primitive\object_meta.h" />
+    <ClInclude Include="primitive\primitive\particle.h" />
+    <ClInclude Include="primitive\primitive\property_object.h" />
+    <ClInclude Include="primitive\primitive\linked_property.h" />
+    <ClInclude Include="primitive\primitive\matter.h" />
+    <ClInclude Include="primitive\primitive\e_status.h" />
+    <ClInclude Include="primitive\primitive\match.h" />
+    <ClInclude Include="primitive\primitive\payload.h" />
+    <ClInclude Include="primitive\primitive\read_only_memory.h" />
+    <ClInclude Include="primitive\primitive\set_bit.h" />
+    <ClInclude Include="primitive\primitive\stick.h" />
+    <ClInclude Include="primitive\primitive\tuple.h" />
+    <ClInclude Include="primitive\primitive\work.h" />
+    <ClInclude Include="primitive\primitive\__property.h" />
+    <ClInclude Include="primitive\string\bstr.h" />
+    <ClInclude Include="primitive\string\from_numeric_type.h" />
+    <ClInclude Include="primitive\string\from_string.h" />
+    <ClInclude Include="primitive\string\string.h" />
+    <ClInclude Include="primitive\string\string_base.h" />
+    <ClInclude Include="primitive\string\string_block.h" />
+    <ClInclude Include="primitive\string\aaa_string_type.h" />
+    <ClInclude Include="primitive\string\_conv.h" />
+    <ClInclude Include="primitive\string\_string.h" />
+    <ClInclude Include="primitive\string\__end.h" />
+    <ClInclude Include="primitive\text\data.h" />
+    <ClInclude Include="primitive\text\international.h" />
+    <ClInclude Include="primitive\text\international_locale_schema.h" />
+    <ClInclude Include="primitive\text\context.h" />
+    <ClInclude Include="primitive\text\text.h" />
+    <ClInclude Include="primitive\text\translator.h" />
+    <ClInclude Include="primitive\text\_.h" />
+    <ClInclude Include="regular_expression\context.h" />
+    <ClInclude Include="regular_expression\regular_expression.h" />
+    <ClInclude Include="regular_expression\result.h" />
+    <ClInclude Include="regular_expression\_regular_expression.h" />
+    <ClInclude Include="version\version.h" />
+    <ClInclude Include="filesystem\file\___serialization_draft.h" />
+    <ClCompile Include="filesystem\file\text_stream.cpp" />
+    <ClCompile Include="filesystem\file\file.cpp" />
+    <ClCompile Include="filesystem\file\item.cpp" />
+    <ClCompile Include="filesystem\file\item_array.cpp" />
+    <ClCompile Include="filesystem\file\memory_file.cpp" />
+    <ClCompile Include="filesystem\file\memory_map.cpp" />
+    <ClCompile Include="filesystem\file\stream.cpp" />
+    <ClCompile Include="filesystem\file\string_buffer.cpp" />
+    <ClCompile Include="filesystem\file\text_file.cpp" />
+    <ClCompile Include="primitive\collection\array.cpp" />
+    <ClCompile Include="primitive\collection\bit_array.cpp" />
+    <ClCompile Include="primitive\collection\map_test_51778915.cpp" />
+    <ClCompile Include="primitive\collection\sort.cpp" />
+    <ClCompile Include="primitive\datetime\datetime1.cpp" />
+    <ClCompile Include="primitive\datetime\date_span.cpp" />
+    <ClCompile Include="primitive\datetime\mktime.cpp" />
+    <ClCompile Include="primitive\datetime\earth_time.cpp" />
+    <ClCompile Include="primitive\datetime\earth_time_span.cpp" />
+    <ClCompile Include="primitive\datetime\earth_zone_time.cpp" />
+    <ClCompile Include="primitive\geometry2d\geometry.cpp" />
+    <ClCompile Include="primitive\geometry2d\_.cpp" />
+    <ClCompile Include="primitive\geometry3d\box.cpp" />
+    <ClCompile Include="primitive\geometry3d\location.cpp" />
+    <ClCompile Include="primitive\primitive\bit.cpp" />
+    <ClCompile Include="primitive\primitive\factory.cpp" />
+    <ClCompile Include="primitive\primitive\interlocked_long.cpp" />
+    <ClCompile Include="primitive\primitive\memory.cpp" />
+    <ClCompile Include="primitive\primitive\memory_base.cpp" />
+    <ClCompile Include="primitive\primitive\memory_container.cpp" />
+    <ClCompile Include="primitive\primitive\property.cpp" />
+    <ClCompile Include="primitive\primitive\property_set.cpp" />
+    <ClCompile Include="primitive\primitive\type.cpp" />
+    <ClCompile Include="primitive\primitive\var_element.cpp" />
+    <ClCompile Include="primitive\primitive\paged_memory.cpp" />
+    <ClCompile Include="primitive\primitive\_.cpp" />
+    <ClCompile Include="primitive\string\base64.cpp" />
+    <ClCompile Include="primitive\string\ch.cpp" />
+    <ClCompile Include="primitive\string\ch_class.cpp" />
+    <ClCompile Include="primitive\string\from_integer.cpp" />
+    <ClCompile Include="primitive\string\hex.cpp" />
+    <ClCompile Include="primitive\string\international.cpp" />
+    <ClCompile Include="primitive\string\parse.cpp" />
+    <ClCompile Include="primitive\string\str.cpp" />
+    <ClCompile Include="primitive\string\stringtow.cpp" />
+    <ClCompile Include="primitive\string\string_ansi.cpp" />
+    <ClCompile Include="primitive\string\string_wide.cpp" />
+    <ClCompile Include="primitive\string\strw.cpp" />
+    <ClCompile Include="primitive\string\strx.cpp" />
+    <ClCompile Include="primitive\string\sz.cpp" />
+    <ClCompile Include="primitive\string\tokenizer.cpp" />
+    <ClCompile Include="primitive\string\to_integer.cpp" />
+    <ClCompile Include="primitive\string\whole_word.cpp" />
+    <ClCompile Include="primitive\string\_.cpp" />
+    <ClCompile Include="primitive\string\wildcard.cpp" />
+    <ClCompile Include="primitive\string\_c_trait_ansi.cpp" />
+    <ClCompile Include="primitive\string\_c_trait_wide.cpp" />
+    <ClCompile Include="primitive\string\unicode.cpp" />
+    <ClCompile Include="primitive\string\unicode16.cpp" />
+    <ClCompile Include="primitive\string\unicode16_32.cpp" />
+    <ClCompile Include="primitive\string\unicode32.cpp" />
+    <ClInclude Include="filesystem\filesystem.h" />
+    <ClInclude Include="filesystem\file\binary_stream.h" />
+    <ClInclude Include="filesystem\file\buffer.h" />
+    <ClInclude Include="filesystem\file\buffered_file.h" />
+    <ClInclude Include="filesystem\file\byte_stream_memory_file.h" />
+    <ClInclude Include="filesystem\file\circular_file.h" />
+    <ClInclude Include="filesystem\file\composite.h" />
+    <ClInclude Include="filesystem\file\_constant.h" />
+    <ClInclude Include="filesystem\file\cpp.h" />
+    <ClInclude Include="filesystem\file\dir.h" />
+    <ClInclude Include="filesystem\file\exception.h" />
+    <ClInclude Include="filesystem\file\_.h" />
+    <ClInclude Include="filesystem\file\file.h" />
+    <ClInclude Include="filesystem\file\stream.h" />
+    <ClInclude Include="filesystem\file\item.h" />
+    <ClInclude Include="filesystem\file\item_array.h" />
+    <ClInclude Include="filesystem\file\listing_provider.h" />
+    <ClInclude Include="filesystem\file\memory_file.h" />
+    <ClInclude Include="filesystem\file\memory_map.h" />
+    <ClInclude Include="filesystem\file\opened.h" />
+    <ClInclude Include="filesystem\file\ostream_flush.h" />
+    <ClInclude Include="filesystem\file\path.h" />
+    <ClInclude Include="filesystem\file\text_stream.h" />
+    <ClInclude Include="filesystem\file\primitive.h" />
+    <ClInclude Include="filesystem\file\serialize.h" />
+    <ClInclude Include="filesystem\file\status.h" />
+    <ClInclude Include="filesystem\file\file_stream1.h" />
+    <ClInclude Include="filesystem\file\string_buffer.h" />
+    <ClInclude Include="filesystem\file\text_file.h" />
+    <ClInclude Include="filesystem\file\transfer_file.h" />
+    <ClInclude Include="filesystem\file\_c.h" />
+    <ClInclude Include="filesystem\file\_papaya.h" />
+    <ClInclude Include="filesystem\file\_papaya_impl.h" />
+    <ClInclude Include="filesystem\file\_stream_process_impl.h" />
+    <ClInclude Include="filesystem\file\_text_stream_impl.h" />
+    <ClInclude Include="inline\_acid_app_impl.h" />
+    <ClInclude Include="inline\_draw2d_impl.h" />
+    <ClInclude Include="inline\__debug_box_clear_impl.h" />
+    <ClInclude Include="inline\__debug_box_set_impl.h" />
+    <ClInclude Include="primitive\api\api.h" />
+    <ClInclude Include="primitive\api\api_rotate.h" />
+    <ClInclude Include="primitive\comparison\_c.h" />
+    <ClInclude Include="primitive\comparison\_.h" />
+    <ClInclude Include="primitive\comparison\binary.h" />
+    <ClInclude Include="primitive\comparison\compare.h" />
+    <ClInclude Include="primitive\comparison\equals.h" />
+    <ClInclude Include="primitive\comparison\hash.h" />
+    <ClInclude Include="primitive\comparison\less.h" />
+    <ClInclude Include="primitive\comparison\md5.h" />
+    <ClInclude Include="primitive\datetime\_.h" />
+    <ClInclude Include="primitive\datetime\date_span.h" />
+    <ClInclude Include="primitive\datetime\earth_time.h" />
+    <ClInclude Include="primitive\datetime\earth_time_span.h" />
+    <ClInclude Include="primitive\datetime\earth_zone_time.h" />
+    <ClInclude Include="primitive\datetime\_c.h" />
+    <ClInclude Include="primitive\geometry2d\collection.h" />
+    <ClInclude Include="primitive\geometry2d\geometry.h" />
+    <ClInclude Include="primitive\geometry2d\point_array.h" />
+    <ClInclude Include="primitive\geometry2d\size_array.h" />
+    <ClInclude Include="primitive\geometry2d\types.h" />
+    <ClInclude Include="primitive\primitive\atomic.h" />
+    <ClInclude Include="primitive\primitive\bit.h" />
+    <ClInclude Include="primitive\primitive\collection_file.h" />
+    <ClInclude Include="primitive\primitive\action_context.h" />
+    <ClInclude Include="primitive\primitive\factory.h" />
+    <ClInclude Include="primitive\primitive\atom.h" />
+    <ClInclude Include="primitive\primitive\acme.h" />
+    <ClInclude Include="primitive\primitive\logic.h" />
+    <ClInclude Include="primitive\primitive\malloc.h" />
+    <ClInclude Include="primitive\primitive\map.h" />
+    <ClInclude Include="primitive\primitive\memory.h" />
+    <ClInclude Include="primitive\primitive\memory_base.h" />
+    <ClInclude Include="primitive\primitive\memory_container.h" />
+    <ClInclude Include="primitive\primitive\natural_pointer.h" />
+    <ClInclude Include="primitive\primitive\number.h" />
+    <ClInclude Include="primitive\primitive\pointer.h" />
+    <ClInclude Include="primitive\primitive\pointer2.h" />
+    <ClInclude Include="primitive\primitive\_.h" />
+    <ClInclude Include="primitive\primitive\request_interface.h" />
+    <ClInclude Include="primitive\primitive\type.h" />
+    <ClInclude Include="primitive\primitive\uid.h" />
+    <ClInclude Include="primitive\primitive\util.h" />
+    <ClInclude Include="primitive\primitive\value.h" />
+    <ClInclude Include="primitive\primitive\payload2.h" />
+    <ClInclude Include="primitive\primitive\paged_memory.h" />
+    <ClInclude Include="primitive\primitive\property_set_papaya.h" />
+    <ClInclude Include="primitive\primitive\_defer.h" />
+    <ClInclude Include="primitive\primitive\_papaya.h" />
+    <ClInclude Include="primitive\primitive\_papaya_impl.h" />
+    <ClInclude Include="primitive\string\base64.h" />
+    <ClInclude Include="primitive\string\bstring.h" />
+    <ClInclude Include="primitive\string\ch_class.h" />
+    <ClInclude Include="primitive\string\composite.h" />
+    <ClInclude Include="primitive\string\from_integer.h" />
+    <ClInclude Include="primitive\string\hex.h" />
+    <ClInclude Include="primitive\string\international.h" />
+    <ClInclude Include="primitive\string\parse.h" />
+    <ClInclude Include="primitive\string\static_string.h" />
+    <ClInclude Include="primitive\string\x\x_charcategory.h" />
+    <ClInclude Include="primitive\string\x\x_charcategory2.h" />
+    <ClInclude Include="primitive\string\x\x_charcategory_names.h" />
+    <ClInclude Include="primitive\string\x\x_defines.h" />
+    <ClInclude Include="primitive\string\x\x_encodings.h" />
+    <ClInclude Include="primitive\string\x\x_tables.h" />
+    <ClInclude Include="primitive\string\string_inst.h" />
+    <ClInclude Include="primitive\string\__begin.h" />
+    <ClInclude Include="primitive\string\_impl.h" />
+    <ClInclude Include="primitive\string\_impl_prio.h" />
+    <ClInclude Include="primitive\string\_international.h" />
+    <ClInclude Include="primitive\string\stringtow.h" />
+    <ClInclude Include="primitive\string\_str.h" />
+    <ClInclude Include="primitive\string\sz.h" />
+    <ClInclude Include="primitive\string\tokenizer.h" />
+    <ClInclude Include="primitive\string\to_integer.h" />
+    <ClInclude Include="primitive\string\whole_word.h" />
+    <ClInclude Include="primitive\string\_str_impl.h" />
+    <ClInclude Include="primitive\string\_trait_CHAR_TYPE.template" />
+    <ClInclude Include="primitive\string\unicode.h" />
+    <ClInclude Include="primitive\string\unicode_impl.h" />
+    <ClCompile Include="filesystem\filesystem\listing.cpp" />
+    <ClInclude Include="_.h" />
+    <ClInclude Include="aaaa__defer.h" />
+    <ClInclude Include="_start2.h" />
+    <None Include="filesystem\_impl.h" />
+    <None Include="filesystem\file\_impl.h" />
+    <None Include="filesystem\file\_serializable_impl.h" />
+    <None Include="memory\namespace_heap.inl" />
+    <ClCompile Include="primitive\mathematics\scalar.cpp" />
+    <None Include="memory\_new.inl" />
+    <None Include="primitive\mathematics\int_to_string_bases_table.dynamically_generated" />
+    <None Include="primitive\primitive\_impl.h" />
+    <None Include="primitive\string\_defer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="primitive\comparison\var_strict.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="primitive\datetime\_impl.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="deployment.rc">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="_references.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

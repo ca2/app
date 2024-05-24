@@ -1,0 +1,27 @@
+// Created by camilo on 2023-03-16 20:08 <3ThomasBorregaardSorensen!!
+#include "framework.h"
+#include "acid/operating_system/shared_posix/c_error_number.h"
+
+
+#if defined(FREEBSD) || defined(OPENBSD)
+#include <string.h>
+#endif
+
+
+[[noreturn]] CLASS_DECL_ACID void throw_errno_exception(const ::scoped_string & scopedstr, c_error_number cerrornumber)
+{
+
+   if (cerrornumber == 0)
+   {
+
+      cerrornumber.set_last_errno_status();
+
+   } 
+
+   auto estatus = cerrornumber.estatus();
+
+   auto errorcode = cerrornumber.error_code();
+
+   throw ::exception(estatus, { errorcode }, scopedstr);
+
+}

@@ -1,0 +1,41 @@
+//
+//  transfer.h
+//  acid
+//
+//  Created by Camilo Sasuke Thomas Borregaard Soerensen on 31/05/22.
+//  Copyright (c) 2022 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
+//
+#pragma once
+
+
+template < typename TYPE >
+inline
+non_reference < TYPE > && transfer(TYPE && t)
+{
+
+   return static_cast< non_reference< TYPE > && >(t);
+
+}
+
+
+template < typename TYPE >
+inline
+const non_reference < TYPE > &&transfer(const TYPE && t)
+{
+
+   return static_cast < const non_const < non_reference < TYPE > > && >(t);
+
+}
+
+template < typename TYPE >
+inline
+const non_reference < TYPE > * && transfer(TYPE * const & t)
+{
+
+   return (const non_reference < non_const < TYPE > > * &&)((const non_const < TYPE > * &) t);
+
+}
+
+
+
+

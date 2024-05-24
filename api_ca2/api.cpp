@@ -57,7 +57,12 @@ namespace api_ca2
    void api::api_login()
    {
 
-      m_bWaitingResponseFromUser = true;
+      if (m_bAuthenticated) 
+      {
+
+         return;
+
+      }
 
       string str;
 
@@ -78,15 +83,17 @@ namespace api_ca2
 
       strUrl += "&appstate=" + ::url::encode(m_strState);
 
-      auto phyperlink = __create_new <::hyperlink >();
+      m_phyperlinkPreLoginScreen = __create_new <::hyperlink >();
 
-      phyperlink->m_strLink = strUrl;
+      m_phyperlinkPreLoginScreen->m_strLink = strUrl;
 
-      phyperlink->m_strBrowserAccount = m_strBrowserAccount;
+      m_phyperlinkPreLoginScreen->m_strBrowserAccount = m_strBrowserAccount;
+
+      m_bWaitingResponseFromUser = true;
 
       m_timeLastNotifyOnPreLoginScreen.Now();
 
-      phyperlink->run();
+      m_phyperlinkPreLoginScreen->run();
 
       m_eventResponse.ResetEvent();
 
@@ -107,7 +114,7 @@ namespace api_ca2
 
             m_timeLastNotifyOnPreLoginScreen.Now();
 
-            phyperlink->run();
+            m_phyperlinkPreLoginScreen->run();
 
          }
 
@@ -175,9 +182,11 @@ namespace api_ca2
       if (::is_set(psocket))
       {
 
+         ::string strSecFetchMode = psocket->inheader("sec-fetch-mode");
+
          ::string strScript = system()->url()->get_script(strUrl);
 
-         if (strScript == m_strScriptNotifyOnPreLoginScreen)
+         if (strSecFetchMode.case_insensitive_equals("cors"))
          {
 
             ::string strOrigin = psocket->inheader("origin");
@@ -188,32 +197,41 @@ namespace api_ca2
 
             straAllowedOrigin.add("ca2.software");
             straAllowedOrigin.add("ca2.network");
-            straAllowedOrigin.add("ca2.network");
             straAllowedOrigin.add("ca2.store");
 
             bool bAllowedOrigin = false;
 
-            for (auto& strAllowedOrigin : straAllowedOrigin)
+            for (auto & strAllowedOrigin : straAllowedOrigin)
             {
 
-               if (strOriginHost.case_insensitive_ends("." + strAllowedOrigin) || strOrigin.case_insensitive_order(strAllowedOrigin) == 0)
+               if (strOriginHost.case_insensitive_ends("." + strAllowedOrigin) || strOriginHost.case_insensitive_order(strAllowedOrigin) == 0)
                {
 
                   bAllowedOrigin = true;
+
                   break;
 
                }
 
             }
 
-            if (bAllowedOrigin)
+            if (!bAllowedOrigin)
             {
 
-               m_timeLastNotifyOnPreLoginScreen.Now();
+               strHtml.formatf("Not allowed Origin: \"%s\"", strOrigin.c_str());
 
-               psocket->outheader("access-control-allow-origin") = strOrigin;
+               return ::success;
 
             }
+
+            psocket->outheader("access-control-allow-origin") = strOrigin;
+
+         }
+
+         if (strScript == m_strScriptNotifyOnPreLoginScreen)
+         {
+
+            m_timeLastNotifyOnPreLoginScreen.Now();
 
             strHtml = "Waiting for Authentication";
 
@@ -223,6 +241,9 @@ namespace api_ca2
 
       }
 
+      m_timeLastNotifyOnPreLoginScreen.Now();
+
+      strHtml += "<html>";
       strHtml += "<html>";
       strHtml += "<head>";
       strHtml += "<meta charset=\"UTF-8\">";
@@ -236,17 +257,27 @@ namespace api_ca2
 
       string strAppCode = system()->url()->get_param(strUrl, "appcode");
 
-      if (defer_account_token(strAppState, strAppCode))
+      if (check_authenticated(strAppState, strAppCode))
       {
 
          strHtml += "<h1>";
          strHtml += "Login successful";
          strHtml += "</h1>";
+         strHtml += "<h4>The login process has completed successfully.</h4>";
+         strHtml += "<h5>You can return to the application.</h5>";
+
+      }
+      else
+      {
+
+         strHtml += "<h1>";
+         strHtml += "Login failed";
+         strHtml += "</h1>";
+         strHtml += "<h4>The login process has failed.</h4>";
+         strHtml += "<h5>You should be redirected to the login page.</h5>";
 
       }
 
-      strHtml += "<h4>The login process has completed successfully.</h4>";
-      strHtml += "<h5>You can return to the application.</h5>";
       strHtml += "</body>";
       strHtml += "</html>";
 
@@ -257,7 +288,7 @@ namespace api_ca2
    }
 
 
-   bool api::defer_account_token(const ::string & strAppState, const ::string & strAppCode)
+   bool api::check_authenticated(const ::string & strAppState, const ::string & strAppCode)
    {
 
       string strAppLogin = get_app_login();
@@ -282,22 +313,30 @@ namespace api_ca2
 
       string strResponse = m_pcontext->m_papexcontext->http().get(strGet, set);
 
-      if (strResponse.case_insensitive_begins_eat("token://"))
+      if (!strResponse.case_insensitive_begins_eat("token://"))
       {
 
-         m_setProfile["applogin"] = strAppLogin;
+         m_setProfile.unset("applogin");
 
-         m_setProfile["appstate"] = strAppState;
+         m_setProfile.unset("appstate");
 
-         m_strToken = strResponse;
+         m_strToken.empty();
 
-         m_bAuthenticated = true;
+         m_bAuthenticated = false;
 
-         return true;
+         return false;
 
       }
 
-      return false;
+      m_setProfile["applogin"] = strAppLogin;
+
+      m_setProfile["appstate"] = strAppState;
+
+      m_strToken = strResponse;
+
+      m_bAuthenticated = true;
+
+      return true;
 
    }
 

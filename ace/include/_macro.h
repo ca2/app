@@ -1,12 +1,12 @@
 // Created by camilo on 2022-11-08 21:46 <3ThomasBorregaardSorensen!!
+// From acme by camilo on 2024-05-22 11:15 <3ThomasBorregaardSorensen!!
 #pragma once
+
 
 // Sorensen oe
 
 
-#include "acme/platform/_referencing_debugging.h"
-
-#include "acme/platform/release_time_for_project.h"
+#include "ace/platform/release_time_for_project.h"
 
 
 #define __RELEASE_TIME(library)  library ## _release_time
@@ -90,93 +90,11 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 #define __EVALUATE_MACRO(name) name
 
 
-///#define lower_u8(w)              ((::u8)((w) & 0xff))
-
-
-
-
-
-
-
 
 
 #define __CONCAT3(xxx, yyy, zzz) xxx ## yyy ## zzz
 
 
-// #define __u16(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))
-// #define __u32(a, b)                                   ((::u32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
-
-
-// #ifdef __cplusplus
-
-
-// #define __u64(a, b)                                   (((::u64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32)))
-
-
-// #else
-
-// #define __MAKE_LONG64(a, b)                              (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
-// #define __u64(a, b)                                   (((u64)(((u32)(((u64)(a)) & 0xffffffff)) | ((u64)((u32)(((u64)(b)) & 0xffffffff))) << 32)))
-
-// #endif
-
-// #define lower_u16(u)                                     ((::u16)(((::uptr)(u)) & 0xffff))
-// #define upper_u16(u)                                     ((::u16)((((::uptr)(u)) >> 16) & 0xffff))
-// #define lower_u32(u)                                     ((::u32)(u))
-// #define upper_u32(u)                                     ((::u32)(((u) >> 32) & 0xffffffff))
-
-// #define u32_x(u)                                     ((::i16)lower_u16(u))
-// #define u32_y(u)                                     ((::i16)upper_u16(u))
-
-// #define __u32xy(u)                                    u32_x(u), u32_y(u)
-
-// #define u64_x(u)                                     ((::i32)lower_u32(u))
-// #define u64_y(u)                                     ((::i32)upper_u32(u))
-
-// #define __u64xy(u)                                    u64_x(u), u64_y(u)
-
-
-//#define GET_X_LPARAM64(lparam)                        ((i32)(i16)lower_u32(lparam))
-//#define GET_Y_LPARAM64(lparam)                        ((i32)(i16)upper_u32(lparam))
-
-
-
-
-// #define make_i32(a, b)           ((::i32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
-
-// #define __MAKE_LONG64(a, b)         ((::i64)(((::u32)(((::u64)(a)) & 0xffffffff)) | ((::u64)((::u32)(((::u64)(b)) & 0xffffffff))) << 32))
-
-// #define make_u32(l, h)         ((::uptr)(::u32)make_i32(l, h))
-
-//#define lower_u8(w)                 ((::u8)(((dword_ptr)(w)) & 0xff))
-
-
-
-//
-//
-//#if !defined(O_BINARY) && !defined(WINDOWS)
-//# define O_BINARY 0
-//#endif
-//
-
-
-
-// #undef _
-
-// #define _(str) (__get_text(str))
-
-
-#define DECLARE_NEW_ACME_LIBRARY(X) extern "C" \
-::acme::library* X##_new_acme_library()
-
-
-#define REGISTER_GET_NEW_ACME_LIBRARY(X) register_get_new_acme_library(#X, &X##_get_new_library)
-
-
-
-
-//#define gp(TYPE) ::guard_pointer < TYPE >
-//
 
 #ifdef __APPLE__
 #undef err_none

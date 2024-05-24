@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.16)
 project(_app)
 
 
+add_subdirectory(ace)
+add_subdirectory(launch)
+
+
 add_subdirectory(acme)
 add_subdirectory(apex)
 add_subdirectory(aqua)
@@ -26,7 +30,6 @@ add_subdirectory(compress_zlib)
 add_subdirectory(folder_zip)
 add_subdirectory(database_sqlite3)
 add_subdirectory(regular_expression_pcre2)
-
 
 
 if(INCLUDE_DRAW2D_CAIRO)

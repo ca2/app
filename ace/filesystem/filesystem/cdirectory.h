@@ -18,7 +18,7 @@
 
 
 
-class CLASS_DECL_ACME acme_directory :
+class CLASS_DECL_ACME cdir :
    virtual public ::particle,
    virtual public ::file::enumerator
 {

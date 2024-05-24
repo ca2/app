@@ -4,12 +4,13 @@
 //
 //  Created by Camilo Sasuke Thomas Borregaard Soerensen on 16/09/20.
 //  Copyright (c) 2020 Camilo Sasuke Thomas Borregaard Soerensen. All rights reserved.
+//  From acme by camilo on 2024-05-22 11:16 <3ThomasBorregaardSorensen!!
 //
 #pragma once
 
 
 #include "ace/include/_ace.h"
-#include "ace/include/_release.h"
+#include "ace/release/_release.h"
 #include "configuration_selection.h"
 #include "ace/include/_features.h"
 #include "debugbreak.h"
@@ -33,8 +34,8 @@
 
 
 #include "__standard_type.h"
-#include "acme/include/_operating_system.h"
-#include "acme/include/_macro.h"
+#include "ace/include/_operating_system.h"
+#include "ace/include/_macro.h"
 #include "operating_system/types.h"
 #include "operating_system/system.h"
 #ifdef	_STDIO_H_
@@ -76,7 +77,7 @@
 #endif
 
 
-#define CA2_ACME
+#define CA2_ACE
 
 
 #if defined(__cplusplus)
@@ -139,85 +140,6 @@ typedef i64 filesize;
 
 
 #endif
-
-
-#define MEMORY_INLINE RELEASE_INLINE
-
-
-#if defined(FREEBSD)
-
-#define inplace_new_throw_spec throw()
-#define new_throw_spec
-#define del_throw_spec noexcept
-#define MEMORY_DECL
-
-#elif defined(OPENBSD)
-
-#define inplace_new_throw_spec throw()
-#define new_throw_spec
-#define del_throw_spec noexcept
-#define MEMORY_DECL
-
-#elif defined(WINDOWS)
-
-//#define inplace_new_throw_spec
-#define inplace_new_throw_spec noexcept
-#define new_throw_spec
-#define del_throw_spec noexcept
-#define MEMORY_DECL __cdecl
-
-#elif defined(SOLARIS)
-
-#define inplace_new_throw_spec
-#define new_throw_spec throw (std::bad_alloc)
-#define del_throw_spec throw()
-#define MEMORY_DECL
-
-#elif defined(LINUX)
-#define inplace_new_throw_spec noexcept
-#define new_throw_spec
-#define del_throw_spec noexcept
-#define MEMORY_DECL
-
-#elif defined(__APPLE__)
-
-#define inplace_new_throw_spec throw()
-#define new_throw_spec
-#define del_throw_spec throw()
-#define MEMORY_DECL
-
-#elif defined(ANDROID)
-
-#define inplace_new_throw_spec noexcept
-#define new_throw_spec
-#define del_throw_spec noexcept
-#define MEMORY_DECL
-
-#else
-
-#define inplace_new_throw_spec
-#define new_throw_spec
-#define del_throw_spec
-#define MEMORY_DECL
-
-#endif
-
-
-//#if defined(DEBUG) && !defined(NO_ACME_MEMORY_MANAGEMENT)
-//#define __new< new >(__FILE__, __LINE__)
-//#else
-//#define memory_new new
-//#endif
-
-#include "acme/constant/memory_heap.h"
-#include "acme/memory/_new.h"
-#ifdef	_STDIO_H_
-#error "already included?!?! _____ (After including acme/memory/_new.h)"
-#endif
-
-
-//#include "acme/include/_new.h"
-
 
 
 

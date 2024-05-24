@@ -1,8 +1,9 @@
 // From acme/_c.h by camilo on 2022-11-09 02:40 <3ThomasBorregaardSorensen!!
+// From acme by camilo on 2024-05-22 11:15 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
-inline bool is_null(const void* p, memsize s)
+constexpr bool is_null(const void* p, memsize s)
 {
 
    return ((iptr)p <= s);
@@ -10,10 +11,10 @@ inline bool is_null(const void* p, memsize s)
 }
 
 
-inline bool is_null(const void* p) { return ::is_null(p, 65535); }
+constexpr bool is_null(const void* p) { return ::is_null(p, 65535); }
 
 
-inline int is_set(const void* p) { return !is_null(p); }
+constexpr int is_set(const void* p) { return !is_null(p); }
 
 
 CLASS_DECL_ACME strsize safe_strlen(void* p, strsize n);

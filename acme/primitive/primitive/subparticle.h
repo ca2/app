@@ -25,7 +25,7 @@
 //
 //};
 
-#include "quantum.h"
+#include "ace/primitive/primitive/quantum.h"
 
 class CLASS_DECL_ACME subparticle :
    virtual public ::quantum,
@@ -36,7 +36,6 @@ public:
    
    //void * m_pAllocation = nullptr;
 
-   ::interlocked_count                 m_countReference;
 
 #if REFERENCING_DEBUGGING
    subparticle();

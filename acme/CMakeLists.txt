@@ -769,7 +769,7 @@ list(APPEND library_source
    #primitive/primitive/id_array.cpp
    primitive/primitive/integral_byte.cpp
    #primitive/primitive/interlocked.h
-   primitive/primitive/interlocked_count.h
+   #primitive/primitive/interlocked_count.h
    #primitive/primitive/interlocked_long_pulse.cpp
    #primitive/primitive/interlocked_long_pulse.h
    primitive/primitive/linked_property.cpp
@@ -818,8 +818,8 @@ list(APPEND library_source
    #primitive/primitive/property_set_composite.cpp
    #primitive/primitive/property_set_papaya.cpp
    primitive/primitive/property_set_papaya.h
-        primitive/primitive/quantum.cpp
-        primitive/primitive/quantum.h
+        #primitive/primitive/quantum.cpp
+        #primitive/primitive/quantum.h
    primitive/primitive/read_only_memory.cpp
    primitive/primitive/read_only_memory.h
    primitive/primitive/request_interface.h
@@ -1351,7 +1351,7 @@ list(APPEND library_source
    #xispolicy/policy_objcpp.h
    #xispolicy/policy_winrt.h
    _.h
-   _start.h
+   #_start.h
    acme.h
    array2d.h
    console.h
@@ -1462,7 +1462,7 @@ list(APPEND library_source
    #include/_c.h
    include/_c_bridge.h
    include/_include.h
-   include/_setup.h
+   #include/_setup.h
    include/_simple_templates.h
    include/objc.h
    include/objcpp.h
@@ -1617,7 +1617,7 @@ list(APPEND library_source
    parallelization/task.h
    parallelization/tools.cpp
    parallelization/tools.h
-   platform/_features.h
+   #platform/_features.h
    platform/_global.h
    platform/_impl.h
    platform/_platform.h
@@ -1766,8 +1766,8 @@ list(APPEND library_source
    user/user/_constant.h
    user/user/mouse.h
    user/user/os_colors.h
-   version/version.config.h
-   version/version.h
+   #version/version.config.h
+   #version/version.h
    include/_impl.h
 )
 
@@ -2738,8 +2738,7 @@ if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-        operating_system/posix/file.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
@@ -2839,6 +2838,9 @@ elseif (MACOS)
 
 
 endif ()
+
+
+add_dependencies(${PROJECT_NAME} ace)
 
 
 target_link_directories(${PROJECT_NAME} PRIVATE ${LIBRARY_OUTPUT_PATH})

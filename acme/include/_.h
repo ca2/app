@@ -70,7 +70,7 @@
 #include "_integer.h"
 #include "acme/constant/_.h"
 #include "_forward_declaration.h"
-#include "_structures.h"
+//#include "_structures.h"
 #include "_initial_concepts.h"
 #include "_template_forward_declaration.h"
 //#include "_other_initial_concepts.h"

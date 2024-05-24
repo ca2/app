@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include ""
 
 CLASS_DECL_ACME::e_status get_last_status();
 CLASS_DECL_ACME void set_last_status(const ::e_status & estatus);

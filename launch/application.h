@@ -2,35 +2,34 @@
 #pragma once
 
 
+#include "ace/platform/application.h"
+#include "ace/primitive/string/string.h"
+
+
 namespace launch
 {
 
 
-   class application
+   class application :
+      virtual public ::ace::application
    {
    public:
 
 
-      int m_argc;
-      char ** m_argv;
-      int m_iExitCode;
-      const char * m_pszDistro;
-      char * m_pszVersion;
-      const char * m_pszBranch;
-      char * m_pszAppRoot;
-      char * m_pszAppName;
+      ::ace::string        m_strAppRoot;
+      ::ace::string        m_strAppName;
 
-      application(int argc, char * argv[]);
+      application();
       ~application();
 
       void parse_app_root_and_app_name();
 
-      void run();
+      void run() override;
 
 
-      char * get_download_url(const char * pszRoot, const char * pszName);
+      ::ace::string get_download_url(const char * pszRoot, const char * pszName);
 
-      bool check_http_ok(const char * pszUrl);
+      //bool check_http_ok(const char * pszUrl);
 
 
       void log_system(const char * psz);

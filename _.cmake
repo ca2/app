@@ -111,7 +111,6 @@ add_subdirectory(port)
 add_subdirectory(source)
 
 
-add_subdirectory(source/app/launch)
 
 
 

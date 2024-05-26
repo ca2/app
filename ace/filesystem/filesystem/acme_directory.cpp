@@ -16,7 +16,7 @@
 CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr);
 
 
-cdirectory::cdirectory()
+acme_directory::acme_directory()
 {
 
 }

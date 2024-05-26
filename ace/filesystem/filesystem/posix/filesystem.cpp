@@ -9,11 +9,11 @@
 #include <fcntl.h>
 
 
-namespace filesystem
+namespace ace
 {
 
 
-    bool touch(const string_pointer * psz)
+    bool touch_file(const char *filename)
     {
         int fd = open(filename, O_CREAT, S_IRWXU | S_IRWXG | S_IRWXO);
 
@@ -34,12 +34,6 @@ namespace filesystem
 
     }
 
-    void change_directory(const char * psz)
-    {
-
-        chdir(psz);
-
-    }
 
     ::ace::string FILE_as_string(FILE * f)
     {
@@ -75,7 +69,7 @@ namespace filesystem
     }
 
 
-    ::ace::string as_string(const char * pszFilename)
+    ::ace::string file_as_string(const char * pszFilename)
     {
 
         ::ace::string str;
@@ -96,7 +90,7 @@ namespace filesystem
     }
 
 
-    ::ace::string current_directory()
+    ::ace::string get_current_directory()
     {
 
         //getcwd(strCurDir, sizeof(szCurDir));
@@ -110,7 +104,7 @@ namespace filesystem
 
         ::ace::string str;
 
-        ::ace::string strCurDir = ::filesystem::current_directory();
+        ::ace::string strCurDir = ::ace::get_current_directory();
 
         auto ptmpname = tempnam(strCurDir, "tmpfl");
 
@@ -119,7 +113,5 @@ namespace filesystem
     }
 
 
-} // namespace filesystem
 
-
-
+} // namespace ace

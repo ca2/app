@@ -6,7 +6,11 @@
 
 #ifdef cplusplus
 
-#include "ace/_.h"
+
+#include "acme/include/_c.h"
+#ifdef	_STDIO_H_
+#error "already included?!?! WHAT?!?! (At acme:_c)"
+#endif
 
 #include "acme/include/_.h"
 #ifdef	_STDIO_H_

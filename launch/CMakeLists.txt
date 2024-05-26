@@ -3,8 +3,8 @@ project(launch CXX)
 
 
 list(APPEND executable_source
-        #_curl.cpp
-        #_wget.cpp
+        _curl.cpp
+        _wget.cpp
         application.cpp
         application.h
 )
@@ -25,9 +25,6 @@ if (NOT ${NO_PRECOMPILED_HEADER})
     target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
 
 endif ()
-
-target_link_libraries(${PROJECT_NAME} PRIVATE ace)
-add_dependencies(${PROJECT_NAME} ace)
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -60,26 +57,5 @@ add_custom_command(
 
 add_custom_target(deploy_${PROJECT_NAME} DEPENDS ${LAUNCH_EXECUTABLE})
 
-if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
-
-    set(STORE_EXECUTABLE $ENV{HOME}/store/linux/launch)
-
-else()
-
-    set(STORE_EXECUTABLE $ENV{HOME}/store/linux/launch)
-
-endif()
-
-message(STATUS "Output of STORE_EXECUTABLE target custom_command dependency is \"${STORE_EXECUTABLE}\"")
-
-add_custom_command(
-        OUTPUT ${STORE_EXECUTABLE}
-        COMMAND echo "Copying from \"${LAUNCH_EXECUTABLE}\" to \"${STORE_EXECUTABLE}\""
-        COMMAND cp ${LAUNCH_EXECUTABLE} ${STORE_EXECUTABLE}
-        COMMAND chmod +x ${STORE_EXECUTABLE}
-        DEPENDS ${LAUNCH_EXECUTABLE}
-)
-
-add_custom_target(store_${PROJECT_NAME} DEPENDS ${STORE_EXECUTABLE})
 
 

@@ -94,6 +94,7 @@ class CLASS_DECL_ACME particle :
 public:
 
 
+   mutable ::acme::context *           m_pcontext;
    mutable ::ptr < ::particle >        m_pparticleSynchronization;
 
 //#if REFERENCING_DEBUGGING

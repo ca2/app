@@ -19,8 +19,7 @@ public:
    acme_path();
    ~acme_path() override;
    
-   cstring temporary_file_name();
-
+   
    virtual ::string icloud_container_identifier(const char * psz_iCloudContainerIdentifier);
    
    virtual ::file::path defer_get_icloud_container_path(const ::file::path & path, const char * psz_iCloudContainerIdentifier);

@@ -1,18 +1,8 @@
 //
-// Created by camilo on 2024-05-02 02:00 <3ThomasBorregaardSorensen!!
+// Created by camilo on 5/23/24.
 //
-#pragma once
 
+#ifndef HTTP_H
+#define HTTP_H
 
-namespace ace
-{
-
-
-
-
-
-
-} // namespace ace
-
-
-
+#endif //HTTP_H

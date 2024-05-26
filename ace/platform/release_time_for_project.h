@@ -1,5 +1,4 @@
 // Created by camilo on 2023-12-20 21:18 <3ThomasBorregaardSorensen!!
-// From acme by camilo on 2024-05-22 11:16 <3ThomasBorregaardSorensen!!
 #pragma once
 
 

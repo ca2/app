@@ -1,4 +1,3 @@
-#include "framework.h"
 #include "application.h"
 #include <stdio.h>
 #include <sys/stat.h>

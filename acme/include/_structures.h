@@ -17,6 +17,18 @@ struct i32_sz
 };
 
 
+union message_union
+{
+
+   void* m_p;
+   ::message::particle* m_pparticle;
+   ::message::key* m_pkey;
+   ::message::mouse* m_pmouse;
+   ::message::context_menu* m_pcontextmenu;
+
+};
+
+
 struct now_t {};
 struct infinite_t {};
 struct zero_t {};

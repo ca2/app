@@ -8,15 +8,15 @@
 #pragma once
 
 
-#include "ace/include/_ace.h"
-#include "ace/include/_release.h"
+#include "acme/include/_acme.h"
+#include "acme/version/version.h"
 #include "configuration_selection.h"
-#include "ace/include/_features.h"
+#include "acme/platform/_features.h"
 #include "debugbreak.h"
 #include "operating_system/platform_setup.h"
 #include "configuration/debug.h"
 #include "operating_system/configuration.h"
-#include "ace/include/_setup.h"
+#include "include/_setup.h"
 
 
 #if REFERENCING_DEBUGGING
@@ -35,6 +35,7 @@
 #include "__standard_type.h"
 #include "acme/include/_operating_system.h"
 #include "acme/include/_macro.h"
+#include "acme/constant/memory_heap.h"
 #include "operating_system/types.h"
 #include "operating_system/system.h"
 #ifdef	_STDIO_H_
@@ -209,7 +210,7 @@ typedef i64 filesize;
 //#define memory_new new
 //#endif
 
-#include "acme/constant/memory_heap.h"
+
 #include "acme/memory/_new.h"
 #ifdef	_STDIO_H_
 #error "already included?!?! _____ (After including acme/memory/_new.h)"

@@ -1,16 +1,16 @@
 // Create on 2021-03-20 23:59 <3ThomasBS_
-#include "../../../acme/framework.h"
-#include "../../../acme/filesystem/filesystem/acme_directory.h"
-#include "../../../acme/filesystem/filesystem/acme_file.h"
-#include "../../../acme/filesystem/filesystem/acme_path.h"
+#include "framework.h"
+#include "acme_directory.h"
+#include "acme_file.h"
+#include "acme_path.h"
 //#include "path_array.h"
-#include "../../../acme/filesystem/filesystem/listing.h"
-#include "../../../acme/exception/interface_only.h"
-#include "../../../acme/operating_system/process.h"
-#include "../../../acme/platform/application.h"
-#include "../../../acme/platform/node.h"
-#include "../../../acme/platform/system.h"
-#include "../../../acme/parallelization/synchronous_lock.h"
+#include "listing.h"
+#include "acme/exception/interface_only.h"
+#include "acme/operating_system/process.h"
+#include "acme/platform/application.h"
+#include "acme/platform/node.h"
+#include "acme/platform/system.h"
+#include "acme/parallelization/synchronous_lock.h"
 
 
 CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr);

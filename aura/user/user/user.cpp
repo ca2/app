@@ -643,7 +643,7 @@ namespace user
       if (m_phtml)
       {
 
-         m_phtml.m_pparticle->destroy();
+         m_phtml.m_psubparticle->destroy();
 
       }
 

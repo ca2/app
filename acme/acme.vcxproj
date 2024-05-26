@@ -2334,7 +2334,7 @@
     <ClInclude Include="primitive\primitive\concrete.h" />
     <ClInclude Include="primitive\primitive\muldiv64.h" />
     <ClInclude Include="primitive\primitive\particle_flags.h" />
-    <ClInclude Include="primitive\primitive\ptr.h" />
+    <ClInclude Include="primitive\primitive\aaa_ptr.h" />
     <ClInclude Include="primitive\primitive\scope_stack.h" />
     <ClInclude Include="primitive\primitive\typed.h" />
     <ClInclude Include="primitive\primitive\aaa_factory.h" />

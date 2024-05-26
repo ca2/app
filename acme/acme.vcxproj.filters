@@ -2060,7 +2060,7 @@
     <ClInclude Include="primitive\primitive\muldiv64.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\ptr.h">
+    <ClInclude Include="primitive\primitive\aaa_ptr.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\scope_stack.h">

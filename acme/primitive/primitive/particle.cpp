@@ -633,22 +633,6 @@ void particle::call_handle_item(::item* pitem)
 }
 
 
-bool particle::_is_set() const
-{
-
-   return true;
-
-}
-
-
-bool particle::_is_ok() const
-{
-
-   return has_ok_flag();
-
-}
-
-
 void particle::install_message_routing(::channel * pchannel)
 {
 
@@ -2415,52 +2399,6 @@ bool particle::should_run_async() const
 //}
 
 
-//void matter::finish(::property_object * pcontextobjectFinish)
-void particle::destroy()
-{
-
-   //auto estatus = set_finish();
-
-   //if (estatus == error_pending)
-   //{
-
-   //   //system()->add_pending_finish(this);
-
-   //   return estatus;
-
-   //}
-
-   ////estatus = on_finish();
-
-   ////if (estatus == error_pending)
-   ////{
-
-   ////   //system()->add_pending_finish(this);
-
-   ////   return estatus;
-
-   ////}
-
-   //return estatus;
-
-   //return ::success;
-
-
-}
-
-
-void particle::destroy_impl_data()
-{
-
-
-}
-
-
-void particle::destroy_os_data()
-{
-
-
-}
 
 
 void * particle::new_object(const char * psz)

@@ -6,7 +6,7 @@
 #include "acme/primitive/datetime/file_time.h"
 #include "acme/primitive/time/time/posix_time.h"
 #include "acme/graphics/draw2d/color.h"
-#include "ptr.h"
+#include "pointer.h"
 #include "acme/memory/memory.h"
 #include "acme/memory/raw_block.h"
 #include "acme/platform/procedure.h"
@@ -219,17 +219,17 @@ public:
 
       m_etype = e_type_new;
 
-      _set_element(p.m_pparticle);
+      _set_element(p.m_psubparticle);
 
    }
 
-   template < class T >
-   payload(const ptr < T > & p)
-   {
-      m_etype = e_type_new;
-      //operator = (p.m_p);
-      _set_element((T *)p.m_p);
-   }
+   //template < class T >
+   //payload(const pointer < T > & p)
+   //{
+   //   m_etype = e_type_new;
+   //   //operator = (p.m_p);
+   //   _set_element((T *)p.m_p);
+   //}
 
    //template < class T >
    //payload(const pointer < T >& resultpointer)
@@ -802,7 +802,7 @@ public:
    inline payload & operator = (const ::pointer<TYPE> & pointer)
    {
 
-      _set_element(pointer.m_pparticle);
+      _set_element(pointer.m_psubparticle);
 
       return *this;
 
@@ -1140,13 +1140,13 @@ public:
 
    //}
 
-   template < class T >
-   payload & operator = (const ptr < T > & p)
-   {
+   //template < class T >
+   //payload & operator = (const ::pointer < T > & p)
+   //{
 
-      return this->operator = (p.m_p);
+   //   return this->operator = (p.m_p);
 
-   }
+   //}
    //template < class T >
    //payload & operator = (const pointer < T > & resultpointer)
    //{
@@ -1195,7 +1195,7 @@ public:
 
 
    template < class T >
-   ::ptr< T > cast(T * pDefault);
+   ::pointer< T > cast(T * pDefault);
 
    template < class T >
    T & defer_create_type(T * pdefault = nullptr)
@@ -1221,15 +1221,15 @@ public:
    T & get_cast(T * pDefault);
 
 
-   template < class T >
-   ::ptr< T > cast(T * pDefault) const
-   {
-      return ((payload *)this)->cast < T >(pDefault);
-   }
+   //template < class T >
+   //::ptr< T > cast(T * pDefault) const
+   //{
+   //   return ((payload *)this)->cast < T >(pDefault);
+   //}
 
 
    template < class T >
-   ::ptr< T > cast();
+   ::pointer< T > cast();
 
    ::subparticle * subparticle()
    {

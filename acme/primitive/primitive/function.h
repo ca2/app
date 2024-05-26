@@ -2,12 +2,16 @@
 #pragma once
 
 
+//#define __pointer_is_null(p) (((uptr)(void *) p) < 4096)
+//
+//#define __pointer_is_set(p) (!__pointer_is_null(p))
+
 //#include <ios>
 //#include <ratio>
 
 #include "acme/primitive/primitive/transfer.h"
 
-#include "acme/primitive/primitive/ptr.h"
+#include "acme/primitive/primitive/pointer.h"
 
 #include "acme/primitive/primitive/subparticle.h"
 
@@ -185,7 +189,7 @@ public:
    };
 
 
-   ::ptr < base > m_pbase;
+   ::pointer < base > m_pbase;
 
 
    
@@ -195,14 +199,14 @@ public:
    }
 
 
-   function(const ptr < ::subparticle > & p) :
+   function(const pointer < ::subparticle > & p) :
       m_pbase(p)
    {
 
    }
 
 
-   function(ptr < ::subparticle > && p) :
+   function(pointer < ::subparticle > && p) :
       m_pbase(p)
    {
       
@@ -335,7 +339,7 @@ public:
 
    }
 
-   explicit operator bool() const { return ::is_set(this) && __pointer_is_set(m_pbase); }
+   explicit operator bool() const { return ::is_set(this) && ::is_set(m_pbase); }
 
    bool operator !() const { return !this->operator bool(); }
 
@@ -408,7 +412,7 @@ public:
 
    };
 
-   ptr<base >     m_pbase;
+   pointer<base >     m_pbase;
 
 
    function(nullptr_t = nullptr)
@@ -507,9 +511,9 @@ public:
    }
 
 
-   explicit operator bool() const { return __pointer_is_set(m_pbase); }
+   explicit operator bool() const { return ::is_set(m_pbase); }
 
-   bool operator !() const { return __pointer_is_null(m_pbase); }
+   bool operator !() const { return ::is_null(m_pbase); }
 
 
    operator ::u32hash() const 
@@ -587,7 +591,7 @@ public:
    };
 
    
-   ptr < base >     m_pbase;
+   pointer < base >     m_pbase;
 
 
    function(nullptr_t = nullptr)
@@ -680,9 +684,9 @@ public:
    }
 
 
-   explicit operator bool() const { return __pointer_is_set(m_pbase); }
+   explicit operator bool() const { return ::is_set(m_pbase); }
 
-   bool operator !() const { return __pointer_is_null(m_pbase); }
+   bool operator !() const { return ::is_null(m_pbase); }
 
    bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
 
@@ -760,7 +764,7 @@ public:
    };
 
    
-   ptr < base >     m_pbase;
+   pointer < base >     m_pbase;
 
 
    function()
@@ -845,9 +849,9 @@ public:
    }
 
 
-   explicit operator bool() const { return __pointer_is_set(m_pbase.m_p); }
+   explicit operator bool() const { return ::is_set(m_pbase.m_p); }
 
-   bool operator !() const { return __pointer_is_null(m_pbase.m_p); }
+   bool operator !() const { return ::is_null(m_pbase.m_p); }
 
    bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
 

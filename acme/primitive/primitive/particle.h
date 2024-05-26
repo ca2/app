@@ -95,7 +95,7 @@ public:
 
 
    mutable ::acme::context *           m_pcontext;
-   mutable ::ptr < ::particle >        m_pparticleSynchronization;
+   mutable ::pointer < ::particle >    m_pparticleSynchronization;
 
 //#if REFERENCING_DEBUGGING
    particle() : m_pcontext(nullptr) {}
@@ -204,13 +204,6 @@ public:
 
 
 
-   virtual bool _is_set() const;
-   inline bool is_null() const { return ::is_null(this); }
-   inline bool is_set() const { return !is_null() && _is_set(); }
-
-   virtual bool _is_ok() const;
-   inline bool is_ok() const { return is_set() && _is_ok(); }
-   inline bool nok() const { return !is_ok(); }
 
 
    virtual void install_message_routing(::channel * pchannel);
@@ -707,9 +700,6 @@ public:
    //virtual void release_reference(::particle * pparticle);
 
 
-   virtual void destroy();
-   virtual void destroy_impl_data();
-   virtual void destroy_os_data();
 
 
    virtual void kick_idle();

@@ -122,6 +122,70 @@ enum_type subparticle::get_payload_type() const
 }
 
 
+
+bool subparticle::_is_set() const
+{
+
+   return true;
+
+}
+
+
+bool subparticle::_is_ok() const
+{
+
+   return has_ok_flag();
+
+}
+
+
+//void matter::finish(::property_object * pcontextobjectFinish)
+void subparticle::destroy()
+{
+
+   //auto estatus = set_finish();
+
+   //if (estatus == error_pending)
+   //{
+
+   //   //system()->add_pending_finish(this);
+
+   //   return estatus;
+
+   //}
+
+   ////estatus = on_finish();
+
+   ////if (estatus == error_pending)
+   ////{
+
+   ////   //system()->add_pending_finish(this);
+
+   ////   return estatus;
+
+   ////}
+
+   //return estatus;
+
+   //return ::success;
+
+
+}
+
+
+void subparticle::destroy_impl_data()
+{
+
+
+}
+
+
+void subparticle::destroy_os_data()
+{
+
+
+}
+
 void subparticle::delete_this()
 {
 
@@ -137,6 +201,7 @@ void subparticle::delete_this()
    }
 
 }
+
 
 
 

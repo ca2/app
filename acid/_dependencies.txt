@@ -1,3 +1,0 @@
-default_acme_platform1
-default_acme_platform2
-default_acme_platform3

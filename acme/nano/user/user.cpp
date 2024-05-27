@@ -138,5 +138,13 @@ namespace nano
         void user::async(const ::procedure& procedure)
         {
         }
+
+void user::process_messages()
+{
+
+            
+}
+
+
     } // namespace user
 } // namespace nano

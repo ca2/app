@@ -6,7 +6,7 @@
 #include "acme/platform/node.h"
 #include "acme/platform/platform.h"
 #include "acme/platform/system.h"
-
+#include "acme/windowing_system/windowing_system.h"
 
 //::user::enum_desktop get_edesktop();
 
@@ -141,28 +141,6 @@ void _do_tasks()
    auto pwindowingsystem = psystem->windowing_system();
 
    pwindowingsystem->process_messages();
-
-#ifdef HAS_WAYLAND
-   if(psystem->m_ewindowing == e_windowing_wayland)
-   {
-
-      ::wayland::nano::user::process_messages();
-
-   }
-   else
-#endif
-   if(psystem->m_ewindowing == e_windowing_xcb)
-   {
-
-      ::xcb::nano::user::process_messages();
-
-   }
-   else
-   {
-
-      ::x11::nano::user::process_messages();
-
-   }
 
    psystem->node()->defer_do_main_tasks();
 

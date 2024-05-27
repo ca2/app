@@ -51,6 +51,9 @@ public:
    virtual void sync(const ::procedure & procedure);
    virtual void async(const ::procedure & procedure);
 
+
+   virtual void process_messages();
+
    
 };
 

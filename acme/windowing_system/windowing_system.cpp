@@ -55,6 +55,36 @@ namespace windowing_system
     }
 
 
+    void windowing_system::process_messages()
+    {
+
+        nano()->user()->process_messages();
+
+// #ifdef HAS_WAYLAND
+//         if(psystem->m_ewindowing == e_windowing_wayland)
+//         {
+//
+//             ::wayland::nano::user::process_messages();
+//
+//         }
+//         else
+// #endif
+//             if(psystem->m_ewindowing == e_windowing_xcb)
+//             {
+//
+//                 ::xcb::nano::user::process_messages();
+//
+//             }
+//             else
+//             {
+//
+//                 ::x11::nano::user::process_messages();
+//
+//             }
+
+
+    }
+
 
 } // namespace windowing_system
 

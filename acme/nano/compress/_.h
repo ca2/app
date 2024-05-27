@@ -1,4 +1,4 @@
-// Created by camilo on 2024-05-26 21:30 <3ThomasBorregaardSorensen!!
+// Created by camilo on 2024-05-27 02:14 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -6,14 +6,14 @@ namespace nano
 {
 
 
-   namespace archive
+   namespace compress
    {
 
 
-      class archive;
+      class compress;
 
 
-   }//namespace archive
+   }//namespace compress
 
 
 } // namespace nano

@@ -20,8 +20,8 @@ namespace launch
       int            m_iExitCode;
 
       ::string       m_strDistro;
-      ::string       m_strVersion;
       ::string       m_strBranch;
+      ::string       m_strRelease;
 
 
       ::string       m_strLaunchAppId;
@@ -31,9 +31,14 @@ namespace launch
       ::string       m_pszAppName;
 
 
+      ::file::path   m_pathLog;
+
+
       application();
       ~application() override;
 
+
+      void calculate_distro__branch_and_release();
 
       void parse_app_root_and_app_name();
 
@@ -41,12 +46,12 @@ namespace launch
       void run();
 
 
-      char * get_download_url(const char * pszRoot, const char * pszName);
+      ::string get_download_url(const char * pszRoot, const char * pszName);
 
-      bool check_http_ok(const char * pszUrl);
+      //bool check_http_ok(const char * pszUrl);
 
 
-      void log_system(const char * psz);
+      //void log_system(const char * psz);
       void install_dependencies();
 
 

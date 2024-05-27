@@ -132,6 +132,27 @@ namespace nano
       }
 
 
+      bool http::check_url_ok(const ::scoped_string& scopedstrUrl)
+      {
+
+         ::string strUrl(get_effective_url(scopedstrUrl));
+
+         auto pget = __create_new < ::nano::http::get>();
+
+         pget->m_strUrl = strUrl;
+
+         pget->m_setIn["only_headers"] = true;
+
+         pget->m_timeSyncTimeout = 5_min;
+
+         sync(pget);
+
+         auto iHttpStatusCode = pget->m_setOut["http_status_code"].as_i32();
+
+         return iHttpStatusCode == 200;
+
+      }
+
    } // namespace http
 
 } // namespace nano

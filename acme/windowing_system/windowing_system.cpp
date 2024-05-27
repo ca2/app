@@ -25,6 +25,30 @@ namespace windowing_system
     }
 
 
+    ::e_status windowing_system::defer_initialize_windowing_system()
+    {
+
+        return ::success;
+
+    }
+
+
+    ::e_status windowing_system::initialize_windowing_system()
+    {
+
+        return ::success;
+
+    }
+
+
+    void * windowing_system::get_display()
+    {
+
+        return nullptr;
+
+    }
+
+
     void windowing_system::sync(const ::procedure & procedure)
     {
 

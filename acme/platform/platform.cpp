@@ -264,11 +264,11 @@ namespace platform
 #else
 
 
-   void platform::initialize(int argc, platform_char ** argv, platform_char ** envp)
+   void platform::initialize(int argc, platform_char ** args, platform_char ** envp)
    {
 
       m_argc = argc;
-      m_argv = argv;
+      m_args = args;
       m_envp = envp;
 
    }
@@ -315,12 +315,12 @@ namespace platform
    //}
 
 
-   void platform::set_args(int argc, char ** argv, wchar_t ** wargv)
+   void platform::set_args(int argc, char ** args, wchar_t ** wargv)
    {
 
       m_argc = argc;
 
-      m_argv = argv;
+      m_args = args;
 
 #ifdef WINDOWS_DESKTOP
 
@@ -361,10 +361,10 @@ namespace platform
 
 #endif
 
-         if (m_argv && m_argv[iArgument])
+         if (m_args && m_args[iArgument])
          {
 
-            return m_argv[iArgument];
+            return m_args[iArgument];
 
          }
 
@@ -411,10 +411,10 @@ namespace platform
 
 #endif
 
-            if (m_argv && m_argv[i])
+            if (m_args && m_args[i])
             {
 
-               strArgument = m_argv[i];
+               strArgument = m_args[i];
 
             }
             else
@@ -526,7 +526,7 @@ namespace platform
    char *** platform::get_pargv()
    {
 
-      return &m_argv;
+      return &m_args;
 
    }
 

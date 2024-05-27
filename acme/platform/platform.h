@@ -222,13 +222,13 @@ namespace platform
 
 #if defined(WINDOWS) && defined(UNICODE)
 
-      void initialize(int argc, wchar_t * argv[], wchar_t * envp[]);
+      void initialize(int argc, wchar_t * args[], wchar_t * envp[]);
 
       void initialize(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow);
 
 #else
 
-      void initialize(int argc, platform_char ** argv, platform_char ** envp);
+      void initialize(int argc, platform_char ** args, platform_char ** envp);
 
 #endif
 
@@ -237,18 +237,18 @@ namespace platform
       void platform_finalize();
 
 
-      void set_args(int argc, char ** argv, wchar_t ** wargv);
+      void set_args(int argc, char ** args, wchar_t ** wargs);
 
-      string _get_argv(::collection::index iArg) const;
+      string _get_args(::collection::index iArg) const;
       ::collection::count get_argc();
       int * get_pargc();
-      char *** get_pargv();
-      char ** get_argv();
+      char *** get_pargs();
+      char ** get_args();
 
 #ifdef WINDOWS
 
-      wchar_t *** get_pwargv();
-      wchar_t ** get_wargv();
+      wchar_t *** get_pwargs();
+      wchar_t ** get_wargs();
 
 #endif
 

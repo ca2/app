@@ -2012,7 +2012,7 @@ namespace acme
          else
          {
 
-            strApp = m_pplatform->m_argv[0];
+            strApp = m_pplatform->m_args[0];
 
             ::string_array straFiles;
 
@@ -2023,7 +2023,7 @@ namespace acme
 
                if(node()->defer_consume_main_arguments(
                                          m_pplatform->m_argc,
-                                         m_pplatform->m_argv,
+                                         m_pplatform->m_args,
                                          iArgument)
                   && iArgument > iArgumentBefore)
                {
@@ -2034,7 +2034,7 @@ namespace acme
                   
                if(application()->defer_consume_main_arguments(
                                             m_pplatform->m_argc,
-                                            m_pplatform->m_argv,
+                                            m_pplatform->m_args,
                                             iArgument)
                   && iArgument > iArgumentBefore)
                {
@@ -2043,7 +2043,7 @@ namespace acme
                   
                }
                
-               ::string strArgument = m_pplatform->m_argv[iArgument];
+               ::string strArgument = m_pplatform->m_args[iArgument];
                
                if(strArgument.begins("-"))
                {

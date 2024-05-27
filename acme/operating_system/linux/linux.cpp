@@ -36,7 +36,7 @@
 
 
 
-void motif_factory(::factory::factory * pfactory);
-
-
-void linux_factory(::factory::factory * pfactory){motif_factory(pfactory);}
+// void motif_factory(::factory::factory * pfactory);
+//
+//
+// void linux_factory(::factory::factory * pfactory){motif_factory(pfactory);}

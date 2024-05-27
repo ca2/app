@@ -2231,21 +2231,21 @@ if (${LINUX})
 endif ()
 
 
-if(${LINUX} OR ${FREEBSD} OR ${OPENBSD})
-
-
-   list(APPEND library_source
-      operating_system/motif/message_box.cpp
-      operating_system/motif/message_box.h
-      operating_system/motif/application.cpp
-      operating_system/motif/application.h
-   )
-
-   list(APPEND system_libraries Xm)
-
-   list(APPEND extra_pkg_modules xt)
-
-endif()
+#if(${LINUX} OR ${FREEBSD} OR ${OPENBSD})
+#
+#
+#   list(APPEND library_source
+#      operating_system/motif/message_box.cpp
+#      operating_system/motif/message_box.h
+#      operating_system/motif/application.cpp
+#      operating_system/motif/application.h
+#   )
+#
+#   list(APPEND system_libraries Xm)
+#
+#   list(APPEND extra_pkg_modules xt)
+#
+#endif()
 
 if (MACOS)
    list(APPEND library_source

@@ -59,12 +59,12 @@ namespace platform
       ::e_display                                     m_edisplay;
       ::e_activation                                  m_eactivativation;
       int                                             m_argc = 0;
-      char ** m_argv = nullptr;
+      char ** m_args = nullptr;
       char ** m_envp = nullptr;
 
 #ifdef WINDOWS
 
-      wchar_t ** m_wargv = nullptr;
+      wchar_t ** m_wargs = nullptr;
       wchar_t ** m_wenvp = nullptr;
 
       hinstance                                       m_hinstanceThis = nullptr;

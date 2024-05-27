@@ -15,9 +15,9 @@ namespace launch
    public:
 
 
-      int            m_argc;
-      char **        m_argv;
-      int            m_iExitCode;
+      //int            m_argc;
+      //char **        m_argv;
+      //int            m_iExitCode;
 
       ::string       m_strDistro;
       ::string       m_strBranch;

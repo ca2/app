@@ -5,6 +5,8 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/http/http.h"
+#include "acme/nano/compress/compress.h"
+#include "acme/nano/shell/shell.h"
 #include "acme/operating_system/summary.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
@@ -218,14 +220,14 @@ void application::parse_app_root_and_app_name()
    if(m_strLaunchAppId.is_empty())
    {
 
-      if(m_argc <= 1)
+      if(platform()->m_argc <= 1)
       {
 
          throw "Wrong number of arguments";
 
       }
 
-      m_strLaunchAppId = m_argv[1];
+      m_strLaunchAppId = platform()->m_args[1];
 ;
    }
 
@@ -360,6 +362,8 @@ void application::parse_app_root_and_app_name()
 strExecutable.find_replace("-", "_");
 
 
+   auto pathExecutable = pathX64 / strExecutable;
+
    ::string strZipName;
 
    strZipName = "_" + strExecutable + ".zip";
@@ -403,7 +407,7 @@ strExecutable.find_replace("-", "_");
    install_dependencies();
 
 
-   nano()->shell()->launch_no_hup(pathExeName, pathLogFile);
+   nano()->shell()->launch_no_hup(pathExecutable, m_pathLog);
 
 //    char szCommand[4096];
 //    strcpy(szCommand, "sh -c \"nohup ./");
@@ -429,171 +433,183 @@ strExecutable.find_replace("-", "_");
 
    }
 
-if (!strcasecmp(m_pszDistro, "opensuse-tumbleweed") && strlen(m_pszVersion) > 4)
+// if (!strcasecmp(m_pszDistro, "opensuse-tumbleweed") && strlen(m_pszVersion) > 4)
+// {
+//
+// printf("This is a openSUSE Tumbleweed System...\n");
+// printf("Gonna tweak a bit the version :-)...\n");
+// m_pszVersion[4] = '\0';
+// printf("There it is new version : %s\n", m_pszVersion);
+//
+// }
+//
+// char szUrl[4096];
+
+   ::string strUrl;
+
+if (m_strBranch.has_char())
 {
 
-printf("This is a openSUSE Tumbleweed System...\n");
-printf("Gonna tweak a bit the version :-)...\n");
-m_pszVersion[4] = '\0';
-printf("There it is new version : %s\n", m_pszVersion);
-
-}
-
-char szUrl[4096];
-
-if (m_pszBranch)
-{
-
-sprintf(szUrl, "https://%s.ca2.store/%s/%s/%s/%s.zip", m_pszDistro, m_pszBranch, m_pszVersion, pszRoot, pszName);
+strUrl.formatf("https://%s.ca2.store/%s/%s/%s/%s.zip",
+m_strDistro.c_str(),
+m_strBranch.c_str(),
+m_strRelease.c_str(),
+pszRoot,
+pszName);
 
 }
 else
 {
 
-sprintf(szUrl, "https://%s.ca2.store/%s/%s/%s.zip", m_pszDistro, m_pszVersion, pszRoot, pszName);
-
-}
-
-return strdup(szUrl);
-
-}
-
-
-   // void application::log_system(const char * pszCommand)
-   // {
-   //
-   // printf("%s\n", pszCommand);
-   // ::system(pszCommand);
-   //
-   // }
-
-void application::install_dependencies()
-{
-
-
-   printf("Going to install dependencies:\n");
-
-   auto psz = as_string("operating_system_packages.txt");
-
-   if(!psz)
-   {
-
-      return;
-
-   }
-
-   auto pszCommand = (char*) ::malloc(strlen(psz) + 1024);
-
-   auto len = strlen(pszCommand);
-
-   for(int i = 0; i < len; i++)
-   {
-
-      if(pszCommand[i] == '\n' || pszCommand[i] == '\r')
-      {
-
-         pszCommand[i] = ' ';
-
-      }
-
-   }
-
-   if(!strcmp(m_pszDistro, "ubuntu") || !strcmp(m_pszDistro, "kubuntu"))
-   {
-
-      sprintf(pszCommand, "sudo apt -y install %s", psz);
-
-      log_system(pszCommand);
-
- //     log_system("sudo apt -y install libfreeimage3 libstartup-notification0 libunac1 libxm4");
-
-   }
-   else if(!strcmp(m_pszDistro, "fedora"))
-   {
-
-      sprintf(pszCommand, "sudo dnf --assumeyes install %s", psz);
-
-  //    log_system("sudo dnf --assumeyes install freeimage libidn motif libappindicator-gtk3");
-
-      log_system(pszCommand);
-
-   }
-   else if(!strcmp(m_pszDistro, "freebsd"))
-   {
-
-    //  log_system("sudo pkg install freeimage open-motif openssl libappindicator");
-
-   }
-   else
-   {
-
-      printf("No known dependencies to install\n");
-
-   }
+strUrl.formatf("https://%s.ca2.store/%s/%s/%s.zip",
+m_strDistro.c_str(),
+m_strRelease.c_str(),
+pszRoot,
+pszName);
 
 
 }
 
-
-bool application::check_http_ok(const char * pszUrl)
-{
-
-bool bOk = false;
-
-if (!strcasecmp(m_pszDistro, "freebsd"))
-{
-
-bOk = curl_check_http_ok(pszUrl);
-
-}
-else
-{
-
-bOk = wget_check_http_ok(pszUrl);
+return strUrl;
 
 }
 
-if (bOk)
-{
 
-printf("File at \"%s\" seems OK!\n", pszUrl);
+//    // void application::log_system(const char * pszCommand)
+//    // {
+//    //
+//    // printf("%s\n", pszCommand);
+//    // ::system(pszCommand);
+//    //
+//    // }
+//
+// void application::install_dependencies()
+// {
+//
+//
+//    printf("Going to install dependencies:\n");
+//
+//    auto line = acmefile()->as_string("operating_system_packages.txt");
+//
+//    if(!psz)
+//    {
+//
+//       return;
+//
+//    }
+//
+//    auto pszCommand = (char*) ::malloc(strlen(psz) + 1024);
+//
+//    auto len = strlen(pszCommand);
+//
+//    for(int i = 0; i < len; i++)
+//    {
+//
+//       if(pszCommand[i] == '\n' || pszCommand[i] == '\r')
+//       {
+//
+//          pszCommand[i] = ' ';
+//
+//       }
+//
+//    }
+//
+//    if(!strcmp(m_pszDistro, "ubuntu") || !strcmp(m_pszDistro, "kubuntu"))
+//    {
+//
+//       sprintf(pszCommand, "sudo apt -y install %s", psz);
+//
+//       log_system(pszCommand);
+//
+//  //     log_system("sudo apt -y install libfreeimage3 libstartup-notification0 libunac1 libxm4");
+//
+//    }
+//    else if(!strcmp(m_pszDistro, "fedora"))
+//    {
+//
+//       sprintf(pszCommand, "sudo dnf --assumeyes install %s", psz);
+//
+//   //    log_system("sudo dnf --assumeyes install freeimage libidn motif libappindicator-gtk3");
+//
+//       log_system(pszCommand);
+//
+//    }
+//    else if(!strcmp(m_pszDistro, "freebsd"))
+//    {
+//
+//     //  log_system("sudo pkg install freeimage open-motif openssl libappindicator");
+//
+//    }
+//    else
+//    {
+//
+//       printf("No known dependencies to install\n");
+//
+//    }
+//
+//
+// }
 
-}
-else
-{
 
-printf("Resource at \"%s\" doesn't exist!\n", pszUrl);
-
-}
-
-return bOk;
-
-}
-
-} // namespace launch
-
-
-
-int main(int argc, char * argv[])
-{
-
-
-      ::launch::application application(argc, argv);
-
-   try
-   {
-      application.run();
-   }
-   catch(const char * psz)
-   {
-
-   fprintf(stderr, psz, 1, strlen(psz));
-   }
-
-      return application.m_iExitCode;
-
-}
-
+// bool application::check_http_ok(const char * pszUrl)
+// {
+//
+// bool bOk = false;
+//
+// if (!strcasecmp(m_pszDistro, "freebsd"))
+// {
+//
+// bOk = curl_check_http_ok(pszUrl);
+//
+// }
+// else
+// {
+//
+// bOk = wget_check_http_ok(pszUrl);
+//
+// }
+//
+// if (bOk)
+// {
+//
+// printf("File at \"%s\" seems OK!\n", pszUrl);
+//
+// }
+// else
+// {
+//
+// printf("Resource at \"%s\" doesn't exist!\n", pszUrl);
+//
+// }
+//
+// return bOk;
+//
+// }
+//
+// } // namespace launch
+//
+//
+//
+// int main(int argc, char * argv[])
+// {
+//
+//
+//       ::launch::application application(argc, argv);
+//
+//    try
+//    {
+//       application.run();
+//    }
+//    catch(const char * psz)
+//    {
+//
+//    fprintf(stderr, psz, 1, strlen(psz));
+//    }
+//
+//       return application.m_iExitCode;
+//
+// }
+//
 
 
 //

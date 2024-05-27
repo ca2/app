@@ -1,5 +1,7 @@
 // Created by camilo on 2023-02-17 03:45 BRT <3ThomasBorregaardSørensen!!
 #pragma once
+
+
 #include "acme/platform/application.h"
 
 
@@ -8,24 +10,33 @@ namespace launch
 
 
    class application :
-   virtual public ::acme::application
+      virtual public ::acme::application
    {
    public:
 
 
-      int m_argc;
-      char ** m_argv;
-      int m_iExitCode;
-      const char * m_pszDistro;
-      char * m_pszVersion;
-      const char * m_pszBranch;
-      char * m_pszAppRoot;
-      char * m_pszAppName;
+      int            m_argc;
+      char **        m_argv;
+      int            m_iExitCode;
 
-      application(int argc, char * argv[]);
-      ~application();
+      ::string       m_strDistro;
+      ::string       m_strVersion;
+      ::string       m_strBranch;
+
+
+      ::string       m_strLaunchAppId;
+
+
+      ::string       m_strAppRoot;
+      ::string       m_pszAppName;
+
+
+      application();
+      ~application() override;
+
 
       void parse_app_root_and_app_name();
+
 
       void run();
 

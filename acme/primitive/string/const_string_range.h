@@ -142,6 +142,9 @@ public:
    auto& last() const { return (const CHARACTER&) ::get(this->end() - 1); }
 
 
+   auto last_index() const { return this->size() - 1; }
+
+
    STRING_RANGE operator()(strsize start, strsize count) const;
 
    STRING_RANGE operator()(strsize start, const_iterator end) const;

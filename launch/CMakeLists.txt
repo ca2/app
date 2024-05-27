@@ -3,14 +3,17 @@ project(launch CXX)
 
 
 list(APPEND executable_source
-        _curl.cpp
-        _wget.cpp
+        #_curl.cpp
+        #_wget.cpp
         application.cpp
         application.h
+)
+
+add_executable(${PROJECT_NAME} ${executable_source}
         application_main.cpp
 )
 
-add_executable(${PROJECT_NAME} ${executable_source})
+add_library(static_${PROJECT_NAME}_library STATIC ${executable_source})
 
 
 if (MSVC)
@@ -20,10 +23,12 @@ if (MSVC)
 endif ()
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE CUBE)
+target_compile_definitions(static_${PROJECT_NAME}_library PRIVATE CUBE)
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 
     target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME}_library PRIVATE framework.h)
 
 endif ()
 
@@ -32,14 +37,17 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+target_include_directories(static_${PROJECT_NAME}_library PRIVATE ${library_include_directories})
 
 target_link_options(${PROJECT_NAME} PRIVATE -static -static-libgcc -static-libstdc++)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE static_acme)
 
 add_dependencies(${PROJECT_NAME} static_acme)
+add_dependencies(static_${PROJECT_NAME}_library static_acme)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(static_${PROJECT_NAME}_library PROPERTIES LINKER_LANGUAGE CXX)
 
 if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
 

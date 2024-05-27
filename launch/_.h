@@ -4,16 +4,14 @@
 #include "acme/_.h"
 
 
-namespace application_build_helper
+namespace launch
 {
 
 
    class application;
 
-   class application_build_helper;
 
-
-} // namespace application_build_helper
+} // namespace launch
 
 
 

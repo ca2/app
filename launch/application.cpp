@@ -1,198 +1,198 @@
 // From application_build_helper to implement.cpp by camilo on 2021-12-17 21:04 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "application.h"
-#include <stdio.h>
-#include <sys/stat.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <time.h>
-#include <memory.h>
-
-
-bool curl_check_http_ok(const char * pszUrl);
-bool wget_check_http_ok(const char * pszUrl);
-char * get_command_output(const char * pszCommand);
-
-
-bool touch(const char *filename) {
-   int fd = open(filename, O_CREAT, S_IRWXU | S_IRWXG | S_IRWXO);
-
-   if (fd == -1) {
-      perror("Unable to touch file");
-      return false;
-   }
-
-   close(fd);
-   return true;
-}
-
-
-char * buffered_FILE_as_string(FILE * f)
-{
-
-   if (!f)
-   {
-
-      return nullptr;
-
-   }
-
-   //char buffer[1];
-
-   int iTotalSize = 0;
-
-   int iPos = 0;
-   char *str = NULL;
-   size_t size = 0;
-   ssize_t read = 0;
-   char * p = nullptr;
-
-   char * pOld = nullptr;
-   while((read = getline(&str, &size, f) )!= -1)
-   {
-
-      iPos = iTotalSize;
-      iTotalSize +=read;
-
-      p = (char *) malloc(iTotalSize);
-
-      if(pOld)
-      {
-         ::memcpy(p, pOld, iPos);
-      }
-
-      ::memcpy(p+iPos, str, read);
-
-      if(pOld)
-      {
-
-         free(pOld);
-
-      }
-
-      pOld = p;
-
-   }
-
-   return p;
-
-}
-
-
-char * FILE_as_string(FILE * f)
-{
-
-   if (!f)
-   {
-
-      return nullptr;
-
-   }
-
-   char * buffer = nullptr;
-
-   long length;
-
-   fseek (f, 0, SEEK_END);
-
-   length = ftell (f);
-
-   fseek (f, 0, SEEK_SET);
-
-   buffer = (char *) malloc (length);
-
-   if (buffer)
-   {
-
-      fread (buffer, 1, length, f);
-
-   }
-
-   return buffer;
-
-}
-
-
-char * as_string(const char * pszFilename)
-{
-
-   char * buffer = nullptr;
-
-   FILE * f = fopen (pszFilename, "rb");
-
-   if (f)
-   {
-
-      buffer = FILE_as_string(f);
-
-      fclose (f);
-
-   }
-
-   return buffer;
-
-}
-
-
-char * get_line(char * str, char * & next)
-{
-   auto start = str;
-   if(!str)
-      return nullptr;
-   while(*str && *str != '\n')
-   {
-
-      str++;
-
-   }
-   if(*str=='\n')
-   {
-      next = str+1;
-
-   }
-   else
-   {
-      next = nullptr;
-
-   }
-
-   char * psz = (char*)malloc (str - start + 1);
-   strncpy(psz, start, str - start);
-   psz[str-start] ='\0';
-   return psz;
-
-}
-
-char * case_insensitive_begins_skip(char * psz, const char * pszPrefix)
-{
-
-   auto iLenPrefix = strlen(pszPrefix);
-   if(strncmp(psz, pszPrefix, iLenPrefix) == 0)
-   {
-      return psz + iLenPrefix;
-
-   }
-   return nullptr;
-
-}
-
-char * trim_quotes(char * psz)
-{
-
-   auto iLen = strlen(psz);
-   if(*psz == '\"' && psz[iLen-1] == '\"')
-   {
-      char * pszTrimmed = (char*)malloc (iLen - 2 + 1);
-      strncpy(pszTrimmed, psz + 1, iLen -2);
-      psz[iLen -2] ='\0';
-      return pszTrimmed;
-
-   }
-   return strdup(psz);
-
-}
+//#include <stdio.h>
+//#include <sys/stat.h>
+//#include <stdlib.h>
+//#include <string.h>
+//#include <unistd.h>
+//#include <fcntl.h>
+//#include <time.h>
+//#include <memory.h>
+
+
+// bool curl_check_http_ok(const char * pszUrl);
+// bool wget_check_http_ok(const char * pszUrl);
+// char * get_command_output(const char * pszCommand);
+//
+//
+// bool touch(const char *filename) {
+//    int fd = open(filename, O_CREAT, S_IRWXU | S_IRWXG | S_IRWXO);
+//
+//    if (fd == -1) {
+//       perror("Unable to touch file");
+//       return false;
+//    }
+//
+//    close(fd);
+//    return true;
+// }
+//
+//
+// char * buffered_FILE_as_string(FILE * f)
+// {
+//
+//    if (!f)
+//    {
+//
+//       return nullptr;
+//
+//    }
+//
+//    //char buffer[1];
+//
+//    int iTotalSize = 0;
+//
+//    int iPos = 0;
+//    char *str = NULL;
+//    size_t size = 0;
+//    ssize_t read = 0;
+//    char * p = nullptr;
+//
+//    char * pOld = nullptr;
+//    while((read = getline(&str, &size, f) )!= -1)
+//    {
+//
+//       iPos = iTotalSize;
+//       iTotalSize +=read;
+//
+//       p = (char *) malloc(iTotalSize);
+//
+//       if(pOld)
+//       {
+//          ::memcpy(p, pOld, iPos);
+//       }
+//
+//       ::memcpy(p+iPos, str, read);
+//
+//       if(pOld)
+//       {
+//
+//          free(pOld);
+//
+//       }
+//
+//       pOld = p;
+//
+//    }
+//
+//    return p;
+//
+// }
+//
+//
+// char * FILE_as_string(FILE * f)
+// {
+//
+//    if (!f)
+//    {
+//
+//       return nullptr;
+//
+//    }
+//
+//    char * buffer = nullptr;
+//
+//    long length;
+//
+//    fseek (f, 0, SEEK_END);
+//
+//    length = ftell (f);
+//
+//    fseek (f, 0, SEEK_SET);
+//
+//    buffer = (char *) malloc (length);
+//
+//    if (buffer)
+//    {
+//
+//       fread (buffer, 1, length, f);
+//
+//    }
+//
+//    return buffer;
+//
+// }
+//
+//
+// char * as_string(const char * pszFilename)
+// {
+//
+//    char * buffer = nullptr;
+//
+//    FILE * f = fopen (pszFilename, "rb");
+//
+//    if (f)
+//    {
+//
+//       buffer = FILE_as_string(f);
+//
+//       fclose (f);
+//
+//    }
+//
+//    return buffer;
+//
+// }
+//
+//
+// char * get_line(char * str, char * & next)
+// {
+//    auto start = str;
+//    if(!str)
+//       return nullptr;
+//    while(*str && *str != '\n')
+//    {
+//
+//       str++;
+//
+//    }
+//    if(*str=='\n')
+//    {
+//       next = str+1;
+//
+//    }
+//    else
+//    {
+//       next = nullptr;
+//
+//    }
+//
+//    char * psz = (char*)malloc (str - start + 1);
+//    strncpy(psz, start, str - start);
+//    psz[str-start] ='\0';
+//    return psz;
+//
+// }
+//
+// char * case_insensitive_begins_skip(char * psz, const char * pszPrefix)
+// {
+//
+//    auto iLenPrefix = strlen(pszPrefix);
+//    if(strncmp(psz, pszPrefix, iLenPrefix) == 0)
+//    {
+//       return psz + iLenPrefix;
+//
+//    }
+//    return nullptr;
+//
+// }
+//
+// char * trim_quotes(char * psz)
+// {
+//
+//    auto iLen = strlen(psz);
+//    if(*psz == '\"' && psz[iLen-1] == '\"')
+//    {
+//       char * pszTrimmed = (char*)malloc (iLen - 2 + 1);
+//       strncpy(pszTrimmed, psz + 1, iLen -2);
+//       psz[iLen -2] ='\0';
+//       return pszTrimmed;
+//
+//    }
+//    return strdup(psz);
+//
+// }
 
 
 namespace launch
@@ -203,8 +203,8 @@ application::application()
 {
 
 m_iExitCode = 0;
-m_pszAppRoot = nullptr;
-m_pszAppName = nullptr;
+//m_pszAppRoot = nullptr;
+//m_pszAppName = nullptr;
 
 }
 
@@ -219,27 +219,32 @@ application::~application()
 void application::parse_app_root_and_app_name()
 {
 
-   if(m_argc <= 1)
+   if(m_strLaunchAppId.is_empty())
    {
-       throw "Wrong number of arguments";
 
+      if(m_argc <= 1)
+      {
 
+         throw "Wrong number of arguments";
+
+      }
+
+      m_strLaunchAppId = m_argv[1];
+;
    }
 
-   auto p = strchr(m_argv[1], '/');
+   auto iSlash = m_strLaunchAppId.find_index('/');
 
-   if(!p || p == m_argv[1] || (p-m_argv[1]) >= (strlen(m_argv[1]) -1))
+   if(iSlash < 0 || iSlash == 0 || iSlash >= m_strLaunchAppId.last_index())
    {
 
       throw "App Id must contain one slash and only one slash separating app_root and app_name";
 
    }
 
-   m_pszAppRoot = strdup(m_argv[1]);
+   m_strAppRoot = m_strLaunchAppId(0, iSlash);
 
-   m_pszAppRoot[p -m_argv[1]] = '\0';
-
-   m_pszAppName = strdup(p+1);
+   m_pszAppName = m_strLaunchAppId(iSlash + 1);
 
 }
 

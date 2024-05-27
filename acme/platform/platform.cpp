@@ -339,7 +339,7 @@ namespace platform
    }
 
 
-   string platform::_get_argv(::collection::index iArgument) const
+   string platform::_get_args(::collection::index iArgument) const
    {
 
       if (iArgument < 0 || iArgument >= _get_argc())
@@ -384,7 +384,7 @@ namespace platform
    string platform::get_executable() const
    {
 
-      return _get_argv(0);
+      return _get_args(0);
 
    }
 
@@ -484,7 +484,7 @@ namespace platform
    string platform::get_argument1(::collection::index iArgument) const
    {
 
-      return _get_argv(iArgument + 1);
+      return _get_args(iArgument + 1);
 
    }
 
@@ -523,7 +523,7 @@ namespace platform
    }
 
 
-   char *** platform::get_pargv()
+   char *** platform::get_pargs()
    {
 
       return &m_args;
@@ -531,10 +531,10 @@ namespace platform
    }
 
 
-   char ** platform::get_argv()
+   char ** platform::get_args()
    {
 
-      return *get_pargv();
+      return *get_pargs();
 
    }
 
@@ -596,10 +596,10 @@ namespace platform
 
 #endif
 
-         if (m_argv)
+         if (m_args)
          {
 
-            return string(m_argv[i]);
+            return string(m_args[i]);
 
          }
 

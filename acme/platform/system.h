@@ -205,9 +205,9 @@ namespace acme
 
       virtual class ::imaging * imaging();
 
-#if defined(WITH_X11) || defined(WITH_XCB)
-      virtual ::particle * x11_synchronization();
-#endif
+// #if defined(WITH_X11) || defined(WITH_XCB)
+//       virtual ::particle * x11_synchronization();
+// #endif
 
       inline ::pointer<::acme::node> & node() { return m_pnode; }
 
@@ -681,10 +681,10 @@ namespace acme
 
       virtual void set_dark_mode(bool bDark);
 
-#if defined(WITH_X11)
-      virtual void x11_sync(const ::procedure & procedure);
-      virtual void x11_async(const ::procedure & procedure);
-#endif
+// #if defined(WITH_X11)
+//       virtual void x11_sync(const ::procedure & procedure);
+//       virtual void x11_async(const ::procedure & procedure);
+// #endif
       
       virtual void on_component_factory(const ::scoped_string & scopedstrComponent);
 

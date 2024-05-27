@@ -136,26 +136,26 @@ namespace nano
 
 } // namespace nano
 
-
-void operating_system_initialize_nano_http(::factory::factory* pfactory);
-
-
-bool g_bNanoInitializeHttp = false;
-
-
-CLASS_DECL_ACME void initialize_nano_http(::factory::factory* pfactory)
-{
-
-   if (g_bNanoInitializeHttp)
-   {
-
-      return;
-
-   }
-
-   operating_system_initialize_nano_http(pfactory);
-
-   g_bNanoInitializeHttp = true;
-
-}
-
+//
+// void operating_system_initialize_nano_http(::factory::factory* pfactory);
+//
+//
+// bool g_bNanoInitializeHttp = false;
+//
+//
+// CLASS_DECL_ACME void initialize_nano_http(::factory::factory* pfactory)
+// {
+//
+//    if (g_bNanoInitializeHttp)
+//    {
+//
+//       return;
+//
+//    }
+//
+//    operating_system_initialize_nano_http(pfactory);
+//
+//    g_bNanoInitializeHttp = true;
+//
+// }
+//

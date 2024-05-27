@@ -2978,14 +2978,43 @@ return false;
       }
       else if(scopedstrComponentName == "nano_http")
       {
+
+#ifdef LINUX
        
-         return "(built-in)";
+         return "libcurl";
+
+#elif defined(WINDOWS_DESKTOP)
+
+         return "wininet";
+
+#endif
          
       }
       else if(scopedstrComponentName == "nano_user")
       {
        
-         return "(built-in)";
+#ifdef LINUX
+
+         if(system()->m_ewindowing == e_windowing_wayland)
+         {
+            return "wayland";
+         }
+         else if(system()->m_ewindowing == e_windowing_xcb)
+         {
+            return "xcb";
+         }
+         else
+         {
+
+            return "x11";
+
+         }
+
+#elif defined(WINDOWS_DESKTOP)
+
+         return "win32";
+
+#endif
          
       }
       

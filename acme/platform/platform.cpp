@@ -893,40 +893,40 @@ namespace platform
 
       }
       
-      if(strImplementation == "(built-in)")
-      {
-         
-         if(strComponent == "nano_http")
-         {
-            
-            pfactory = system()->__create_new < ::factory::factory >();
-            
-            initialize_nano_http(pfactory);
-            
-            return pfactory;
-            
-         }
-         else if(strComponent == "nano_user")
-         {
-            
-            pfactory = system()->__create_new < ::factory::factory >();
-            
-            initialize_nano_user(pfactory);
-            
-            return pfactory;
-            
-         }
-         else
-         {
-            
-            informationf("Not known built-in component: \"%s\".\n", strComponent.c_str());
-
-            //pfactory = (const ::extended::status&)plibrary;
-            throw ::exception(error_resource, strComponent + " factory not found!!");
-
-         }
-         
-      }
+      // if(strImplementation == "(built-in)")
+      // {
+      //
+      //    if(strComponent == "nano_http")
+      //    {
+      //
+      //       pfactory = system()->__create_new < ::factory::factory >();
+      //
+      //       initialize_nano_http(pfactory);
+      //
+      //       return pfactory;
+      //
+      //    }
+      //    else if(strComponent == "nano_user")
+      //    {
+      //
+      //       pfactory = system()->__create_new < ::factory::factory >();
+      //
+      //       initialize_nano_user(pfactory);
+      //
+      //       return pfactory;
+      //
+      //    }
+      //    else
+      //    {
+      //
+      //       informationf("Not known built-in component: \"%s\".\n", strComponent.c_str());
+      //
+      //       //pfactory = (const ::extended::status&)plibrary;
+      //       throw ::exception(error_resource, strComponent + " factory not found!!");
+      //
+      //    }
+      //
+      // }
 
       string strLibrary;
 

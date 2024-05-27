@@ -7,6 +7,11 @@
 //
 
 #pragma once
-#include "http/_.h"
-#include "speech/_.h"
-#include "user/_.h"
+
+
+#include "acme/nano/archive/_.h"
+#include "acme/nano/http/_.h"
+#include "acme/nano/speech/_.h"
+#include "acme/nano/user/_.h"
+
+

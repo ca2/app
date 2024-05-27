@@ -92,10 +92,10 @@ namespace acme
 
       m_pthemecolors = nullptr;
 
-#if defined(WITH_X11)
-      m_pvoidX11Display = nullptr;
-      m_estatusInitializeX11 = error_not_initialized;
-#endif
+//#if defined(WITH_X11)
+  //    m_pvoidX11Display = nullptr;
+    //  m_estatusInitializeX11 = error_not_initialized;
+//#endif
 
 
    }
@@ -2969,8 +2969,14 @@ return false;
 
    ::string node::default_component_implementation(const ::scoped_string & scopedstrComponentName)
    {
-   
-      if(scopedstrComponentName == "nano_http")
+
+      if(scopedstrComponentName == "nano_archive")
+      {
+
+         return "libarchive";
+
+      }
+      else if(scopedstrComponentName == "nano_http")
       {
        
          return "(built-in)";
@@ -4431,40 +4437,6 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
-#if defined(WITH_X11)
-
-
-   void node::x11_sync(const ::procedure & procedure)
-   {
-
-      nano()->user()->x11_sync(procedure);
-
-   }
-
-
-   void node::x11_async(const ::procedure & procedure)
-   {
-
-      nano()->user()->x11_async(procedure);
-
-   }
-
-
-   void node::x11_display_error_trap_push(int i)
-   {
-
-
-   }
-
-
-   void node::x11_display_error_trap_pop_ignored(int i)
-   {
-
-
-   }
-
-
-#endif
 
    
    int node::building_core_count(bool bDedicatedBuilder)

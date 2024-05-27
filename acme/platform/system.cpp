@@ -3229,6 +3229,13 @@ void system::on_component_factory(const ::scoped_string & scopedstrComponent)
    node()->on_component_factory(scopedstrComponent);
    
 }
+
+   ::windowing_system::windowing_system * system::windowing_system()
+   {
+
+return m_pwindowingsystem;
+
+   }
    
 
 } // namespace acme

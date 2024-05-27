@@ -138,6 +138,10 @@ void _do_tasks()
 
    auto psystem = ::platform::get()->system();
 
+   auto pwindowingsystem = psystem->windowing_system();
+
+   pwindowingsystem->process_messages();
+
 #ifdef HAS_WAYLAND
    if(psystem->m_ewindowing == e_windowing_wayland)
    {

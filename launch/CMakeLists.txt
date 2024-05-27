@@ -7,6 +7,7 @@ list(APPEND executable_source
         _wget.cpp
         application.cpp
         application.h
+        application_main.cpp
 )
 
 add_executable(${PROJECT_NAME} ${executable_source})
@@ -33,6 +34,10 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 target_link_options(${PROJECT_NAME} PRIVATE -static -static-libgcc -static-libstdc++)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE static_acme)
+
+add_dependencies(${PROJECT_NAME} static_acme)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 

@@ -305,7 +305,10 @@ list(APPEND library_source
 #   memory/string_memory_allocate.cpp
 #   memory/string_memory_allocate.h
 #   memory/string_memory_allocator.h
-        nano/http/_.h
+
+        nano/archive/archive.cpp
+        nano/archive/archive.h
+            nano/http/_.h
    nano/http/http.cpp
    nano/http/http.h
    nano/http/get.cpp
@@ -1140,7 +1143,9 @@ list(APPEND library_source
    user/_.h
    windowing/window_base.h
    windowing/window_base.cpp
-   #update.h
+        windowing_system/windowing_system.cpp
+        windowing_system/windowing_system.h
+        #update.h
 )
 
 
@@ -1545,6 +1550,7 @@ list(APPEND library_source
    operating_system/posix/_stdio_file.h
    operating_system/posix/call_stack.cpp
    operating_system/posix/mq_base.h
+   operating_system/posix/file.h
    operating_system/pthread/pthread_np.cpp
    operating_system/process.cpp
    operating_system/security_attributes.cpp
@@ -2081,88 +2087,88 @@ if (${WIN32} OR ${UWP})
 endif ()
 
 
-if (${CURL_NANO_HTTP})
-
-   list(APPEND library_source
-      operating_system/curl/nano/http/_nano_http.cpp
-      operating_system/curl/nano/http/_nano_http.h
-      operating_system/curl/nano/http/curl_easy.cpp
-      operating_system/curl/nano/http/curl_easy.h
-      operating_system/curl/nano/http/http.cpp
-      operating_system/curl/nano/http/http.h)
-
-   list(APPEND extra_pkg_modules libcurl)
-
-endif ()
-
-
-if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
-
-   if(${HAS_WAYLAND})
-list(APPEND library_source
-      operating_system/wayland/nano/user/_user.cpp
-      operating_system/wayland/nano/user/_.h
-      operating_system/wayland/nano/user/display.cpp
-      operating_system/wayland/nano/user/display.h
-      operating_system/wayland/nano/user/display_base.cpp
-      operating_system/wayland/nano/user/display_base.h
-      operating_system/wayland/nano/user/event_listener.h
-      operating_system/wayland/nano/user/window.h
-      operating_system/wayland/nano/user/window.cpp
-      operating_system/wayland/nano/user/window_base.cpp
-      operating_system/wayland/nano/user/window_base.h
-      operating_system/wayland/_.h
-      operating_system/wayland/_.cpp
-      operating_system/wayland/wayland-gtk_shell1.c
-      operating_system/wayland/wayland-gtk_shell1.h
-      operating_system/wayland/wayland-xdg_activation_v1.c
-      operating_system/wayland/wayland-xdg_activation_v1.h
-      operating_system/wayland/wayland-xdg_wm_base.c
-      operating_system/wayland/wayland-xdg_wm_base.h
-      operating_system/wayland/xfree86_key.h
-      operating_system/wayland/xkb_input.cpp
-      operating_system/wayland/xkb_input.h)
-   endif()
-
-   list(APPEND library_source
-      operating_system/cairo/nano/user/_user.cpp
-      operating_system/cairo/nano/user/device.cpp
-      operating_system/cairo/nano/user/device.h
-      operating_system/x11/nano/user/_.h
-      operating_system/x11/nano/user/_user.cpp
-      operating_system/x11/nano/user/_.h
-      operating_system/x11/nano/user/display.cpp
-      operating_system/x11/nano/user/display.h
-      operating_system/x11/nano/user/event_listener.h
-      operating_system/x11/nano/user/user.cpp
-      operating_system/x11/nano/user/user.h
-      operating_system/x11/nano/user/window.h
-      operating_system/x11/nano/user/window.cpp
-      operating_system/x11/_.cpp
-      operating_system/x11/_atom.cpp
-      operating_system/x11/_atom.h
-      operating_system/x11/display_lock.cpp
-      operating_system/x11/display_lock.h
-      operating_system/x11/keyboard.cpp
-      operating_system/x11/keyboard.h
-      operating_system/x11/system.cpp
-      operating_system/xcb/nano/user/_user.cpp
-      operating_system/xcb/nano/user/_.h
-      operating_system/xcb/nano/user/display.cpp
-      operating_system/xcb/nano/user/display.h
-      operating_system/xcb/nano/user/event_listener.h
-      operating_system/xcb/nano/user/window.h
-      operating_system/xcb/nano/user/window.cpp
-      operating_system/xcb/_.h
-      operating_system/xcb/_.cpp
+#if (${CURL_NANO_HTTP})
+#
+#   list(APPEND library_source
+#      operating_system/curl/nano/http/_nano_http.cpp
+#      operating_system/curl/nano/http/_nano_http.h
+#      operating_system/curl/nano/http/curl_easy.cpp
+#      operating_system/curl/nano/http/curl_easy.h
+#      operating_system/curl/nano/http/http.cpp
+#      operating_system/curl/nano/http/http.h)
+#
+#   list(APPEND extra_pkg_modules libcurl)
+#
+#endif ()
 
 
-      )
-
-   list(APPEND extra_pkg_modules cairo xcb x11 xkbcommon xcb-render xcb-aux x11-xcb libarchive)
-
-
-endif ()
+#if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+#
+##   if(${HAS_WAYLAND})
+##list(APPEND library_source
+##      operating_system/wayland/nano/user/_user.cpp
+##      operating_system/wayland/nano/user/_.h
+##      operating_system/wayland/nano/user/display.cpp
+##      operating_system/wayland/nano/user/display.h
+##      operating_system/wayland/nano/user/display_base.cpp
+##      operating_system/wayland/nano/user/display_base.h
+##      operating_system/wayland/nano/user/event_listener.h
+##      operating_system/wayland/nano/user/window.h
+##      operating_system/wayland/nano/user/window.cpp
+##      operating_system/wayland/nano/user/window_base.cpp
+##      operating_system/wayland/nano/user/window_base.h
+##      operating_system/wayland/_.h
+##      operating_system/wayland/_.cpp
+##      operating_system/wayland/wayland-gtk_shell1.c
+##      operating_system/wayland/wayland-gtk_shell1.h
+##      operating_system/wayland/wayland-xdg_activation_v1.c
+##      operating_system/wayland/wayland-xdg_activation_v1.h
+##      operating_system/wayland/wayland-xdg_wm_base.c
+##      operating_system/wayland/wayland-xdg_wm_base.h
+##      operating_system/wayland/xfree86_key.h
+##      operating_system/wayland/xkb_input.cpp
+##      operating_system/wayland/xkb_input.h)
+##   endif()
+##
+##   list(APPEND library_source
+##      operating_system/cairo/nano/user/_user.cpp
+##      operating_system/cairo/nano/user/device.cpp
+##      operating_system/cairo/nano/user/device.h
+###      operating_system/x11/nano/user/_.h
+###      operating_system/x11/nano/user/_user.cpp
+###      operating_system/x11/nano/user/_.h
+###      operating_system/x11/nano/user/display.cpp
+###      operating_system/x11/nano/user/display.h
+###      operating_system/x11/nano/user/event_listener.h
+###      operating_system/x11/nano/user/user.cpp
+###      operating_system/x11/nano/user/user.h
+###      operating_system/x11/nano/user/window.h
+###      operating_system/x11/nano/user/window.cpp
+##      operating_system/x11/_.cpp
+##      operating_system/x11/_atom.cpp
+##      operating_system/x11/_atom.h
+##      operating_system/x11/display_lock.cpp
+##      operating_system/x11/display_lock.h
+##      operating_system/x11/keyboard.cpp
+##      operating_system/x11/keyboard.h
+##      operating_system/x11/system.cpp
+##      operating_system/xcb/nano/user/_user.cpp
+##      operating_system/xcb/nano/user/_.h
+##      operating_system/xcb/nano/user/display.cpp
+##      operating_system/xcb/nano/user/display.h
+##      operating_system/xcb/nano/user/event_listener.h
+##      operating_system/xcb/nano/user/window.h
+##      operating_system/xcb/nano/user/window.cpp
+##      operating_system/xcb/_.h
+##      operating_system/xcb/_.cpp
+##
+##
+##      )
+##
+##   list(APPEND extra_pkg_modules cairo xcb x11 xkbcommon xcb-render xcb-aux x11-xcb libarchive)
+#
+#
+#endif ()
 
 
 if (${LINUX})
@@ -2739,7 +2745,7 @@ endif ()
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source}
-        operating_system/posix/file.h)
+        windowing_system/_.h)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
@@ -2781,17 +2787,18 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
    #//target_compile_options\([A-Za-z0-9_)]+\s+PRIVATE\s+\$\{PKGCONFIG_CFLAGS\}\)
 
    #if(USE_PKGCONFIG)
-   if(${HAS_WAYLAND})
-      list(APPEND extra_pkg_modules wayland-client wayland-server wayland-cursor)
-   endif()
+#   if(${HAS_WAYLAND})
+#      list(APPEND extra_pkg_modules wayland-client wayland-server wayland-cursor)
+#   endif()
 
-   list(APPEND extra_pkg_modules
-      xkbcommon x11 xrender xi xext libstartup-notification-1.0)
+#   list(APPEND extra_pkg_modules
+#      xkbcommon x11 xrender xi xext libstartup-notification-1.0)
 
-   list(APPEND pkg_config_modules_here cairo freetype2 libidn ${extra_pkg_modules})
+#   list(APPEND pkg_config_modules_here cairo freetype2 libidn ${extra_pkg_modules})
    
-   pkg_check_modules(PKGCONFIG ${pkg_config_modules_here})
+#   pkg_check_modules(PKGCONFIG ${pkg_config_modules_here})
    #endif()
+
    target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
    target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
@@ -2815,12 +2822,10 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
 
 
-   target_link_libraries(${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES} ${global_library_references})
-   target_link_libraries(static_${PROJECT_NAME} PRIVATE ${system_libraries} ${PKGCONFIG_LIBRARIES})
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${system_libraries} ${global_library_references})
+   target_link_libraries(static_${PROJECT_NAME} PRIVATE ${system_libraries})
 
-   target_link_directories(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARY_DIRS})
    target_link_options(${PROJECT_NAME} PRIVATE ${GLOBAL_EXTRA_LINKER_FLAGS} -Wl${GLOBAL_EXTRA_LINK_FLAGS},-z,defs)
-   # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
 
    message(STATUS "(3) pkg_config_modules_here is " ${pkg_config_modules_here})
@@ -2828,9 +2833,6 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
    message(STATUS "(3) global_library_references is " ${global_library_references})
 
    message(STATUS "(3) PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
-
-   message(STATUS "(3) PKGCONFIG_LIBRARY_DIRS is " ${PKGCONFIG_LIBRARY_DIRS})
-
 
 elseif (MACOS)
 

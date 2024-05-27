@@ -1,12 +1,14 @@
 // Created by camilo on 2023-02-17 03:45 BRT <3ThomasBorregaardSørensen!!
 #pragma once
+#include "acme/platform/application.h"
 
 
 namespace launch
 {
 
 
-   class application
+   class application :
+   virtual public ::acme::application
    {
    public:
 

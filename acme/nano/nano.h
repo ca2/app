@@ -21,7 +21,8 @@ class CLASS_DECL_ACME nano :
 virtual public acme::department
 {
 public:
-   
+
+   ::pointer <::nano::archive::archive>m_parchive;
    ::pointer <::nano::http::http>m_phttp;
    ::pointer <::nano::speech::speech>m_pspeech;
    ::pointer <::nano::user::user>m_puser;
@@ -29,7 +30,8 @@ public:
    
    nano();
    ~nano() override;
-   
+
+   ::nano::archive::archive*archive();
    ::nano::http::http*http();
    ::nano::speech::speech*speech();
    ::nano::user::user*user();

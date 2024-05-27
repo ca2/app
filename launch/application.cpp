@@ -1,4 +1,5 @@
 // From application_build_helper to implement.cpp by camilo on 2021-12-17 21:04 BRT <3ThomasBorregaardSørensen!!
+#include "framework.h"
 #include "application.h"
 #include <stdio.h>
 #include <sys/stat.h>
@@ -198,9 +199,7 @@ namespace launch
 {
 
 
-application::application(int argc, char * argv[]) :
-   m_argc(argc),
-   m_argv(argv)
+application::application()
 {
 
 m_iExitCode = 0;

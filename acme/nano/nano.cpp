@@ -7,9 +7,10 @@
 //
 #include "framework.h"
 #include "nano.h"
-#include "http/http.h"
-#include "speech/speech.h"
-#include "user/user.h"
+#include "acme/nano/archive/archive.h"
+#include "acme/nano/http/http.h"
+#include "acme/nano/speech/speech.h"
+#include "acme/nano/user/user.h"
 #include "acme/platform/system.h"
 
 
@@ -29,6 +30,10 @@ namespace nano
    }
 
 
+   ::nano::archive::archive*nano::archive()
+   {
+      return system()->__factory(m_parchive);
+   }
    ::nano::http::http*nano::http()
    {
       return system()->__factory(m_phttp);

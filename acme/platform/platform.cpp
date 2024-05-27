@@ -741,7 +741,7 @@ namespace platform
 
       //operating_system_initialize_nano_user();
 
-      IDENTIFIER_PREFIX_OPERATING_SYSTEM(_factory)(factory());
+      //IDENTIFIER_PREFIX_OPERATING_SYSTEM(_factory)(factory());
 
 
    }

@@ -54,6 +54,8 @@ public:
 
    virtual void process_messages();
 
+   virtual bool init_threads();
+
    
 };
 

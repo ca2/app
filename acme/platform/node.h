@@ -918,7 +918,6 @@ namespace acme
 
       virtual bool _is_strawberry_perl_installed();
 
-      virtual bool _is_code_exe_user_path_environment_variable_ok(::string *pstrCorrectPath=nullptr);
 
       virtual bool _is_coder_mode_enabled();
 
@@ -926,6 +925,7 @@ namespace acme
 
 #endif
 
+      virtual bool _is_code_exe_user_path_environment_variable_ok(::string *pstrCorrectPath=nullptr);
 
 #if defined(WINDOWS_DESKTOP) || defined(MACOS) || defined(LINUX)
 
@@ -974,6 +974,14 @@ namespace acme
       virtual int efficiency_core_count();
 
       virtual void on_component_factory(const ::scoped_string & scopedstrComponent);
+
+      virtual void launch_no_hup(const ::file::path & pathExecutable, const ::file::path & pathLog);
+
+//      virtual void * fetch_windowing_system_display();
+//      virtual void windowing_system_async(const ::procedure & procedure);
+//      virtual void windowing_system_display_error_trap_push(int i);
+//      virtual void windowing_system_display_error_trap_pop_ignored(int i);
+
 
    };
 

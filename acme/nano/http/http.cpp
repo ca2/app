@@ -8,6 +8,7 @@
 #include "framework.h"
 #include "http.h"
 #include "acme/exception/interface_only.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/primitive/primitive/factory.h"
 
@@ -152,6 +153,52 @@ namespace nano
          return iHttpStatusCode == 200;
 
       }
+
+
+
+      ::string http::get(const ::scoped_string & scopedstrUrl)
+      {
+
+         ::string strUrl(get_effective_url(scopedstrUrl));
+
+         auto pget = __create_new < ::nano::http::get>();
+
+         pget->m_strUrl = strUrl;
+
+         pget->m_timeSyncTimeout = 5_min;
+
+         sync(pget);
+
+         auto iHttpStatusCode = pget->m_setOut["http_status_code"].as_i32();
+
+         ::string strOutput;
+
+         strOutput = pget->m_memory.as_utf8();
+
+         return strOutput;
+
+      }
+
+
+      void http::download(const ::file::path & path, const ::scoped_string & scopedstrUrl)
+      {
+
+         ::string strUrl(get_effective_url(scopedstrUrl));
+
+         auto pget = __create_new < ::nano::http::get>();
+
+         pget->m_strUrl = strUrl;
+
+         pget->m_timeSyncTimeout = 2_hour;
+
+         sync(pget);
+
+         auto iHttpStatusCode = pget->m_setOut["http_status_code"].as_i32();
+
+         acmefile()->put_block(path, pget->m_memory);
+
+      }
+
 
    } // namespace http
 

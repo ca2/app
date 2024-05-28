@@ -92,7 +92,7 @@ namespace launch
 
       }
 
-      m_strRelease = psummary->m_strStoreRelease;
+      m_strRelease = psummary->m_strDistroRelease;
 
 
    }
@@ -240,7 +240,11 @@ namespace launch
 
       m_strAppRoot = m_strLaunchAppId(0, iSlash);
 
-      m_pszAppName = m_strLaunchAppId(iSlash + 1);
+      debugf("app_root: %s", m_strAppRoot.c_str());
+
+      m_strAppName = m_strLaunchAppId(iSlash + 1);
+
+      debugf("app_name: %s", m_strAppName.c_str());
 
    }
 
@@ -252,7 +256,7 @@ namespace launch
 
       parse_app_root_and_app_name();
 
-      auto strDownloadUrl = get_download_url(m_strAppRoot, m_strAppName);
+      auto strDownloadUrl = calculate_download_url();
 
       if (strDownloadUrl.is_empty())
       {
@@ -265,7 +269,7 @@ namespace launch
 
       }
 
-      print_line("Checking if version exists at server...");
+      printf_line("Checking if version exists at server... (%s)", strDownloadUrl.c_str());
 
       if (!nano()->http()->check_url_ok(strDownloadUrl))
       {
@@ -274,12 +278,24 @@ namespace launch
 
          ::string strErr;
 
-         strErr.formatf("Server seems not to have build for this release %s %s", m_strDistro.c_str(), m_strRelease.c_str());
+         auto psummary = node()->operating_system_summary();
+
+         strErr.formatf("Server seems not to have build of \"%s/%s\" for this operating-system release \"%s\" (%s)",
+                        m_strAppRoot.c_str(),
+                        m_strAppName.c_str(),
+                        psummary->m_strName.c_str(),
+                        psummary-> m_strDistroReleaseName.c_str());
 
          if(m_strBranch.has_char())
          {
 
-            strErr += " " + m_strBranch;
+            strErr.append_formatf(" \"%s\".", psummary->m_strDistroBranchName.c_str());
+
+         }
+         else
+         {
+
+            strErr += ".";
 
          }
 
@@ -297,7 +313,7 @@ namespace launch
 
       auto pathInstallingWithLaunchStore =  pathStore / "installing_with_launch_store";
 
-      acmefile()->touch(pathInstallingWithLaunchStore);
+      acmefile()->ensure_exists(pathInstallingWithLaunchStore);
 
       auto pathLogFolder =  pathStore / "log";
 
@@ -371,7 +387,7 @@ namespace launch
 
       auto pathZipName = pathX64 / strZipName;
 
-      system()->http_download(pathZipName,strDownloadUrl );
+      nano()->http()->download(pathZipName,strDownloadUrl );
       // if (!strcasecmp(m_pszDistro, "freebsd")) {
       //
       // strcpy(szDownloadCommand, "curl ");
@@ -405,7 +421,7 @@ namespace launch
       install_dependencies();
 
 
-      nano()->shell()->launch_no_hup(pathExecutable, m_pathLog);
+      node()->launch_no_hup(pathExecutable, m_pathLog);
 
       //    char szCommand[4096];
       //    strcpy(szCommand, "sh -c \"nohup ./");
@@ -419,7 +435,7 @@ namespace launch
    }
 
 
-   ::string application::get_download_url(const char * pszRoot, const char * pszName)
+   ::string application::calculate_download_url()
    {
 
       calculate_distro__branch_and_release();
@@ -452,8 +468,8 @@ namespace launch
          m_strDistro.c_str(),
          m_strBranch.c_str(),
          m_strRelease.c_str(),
-         pszRoot,
-         pszName);
+         m_strAppRoot.c_str(),
+         m_strAppName.c_str());
 
       }
       else
@@ -462,8 +478,8 @@ namespace launch
          strUrl.formatf("https://%s.ca2.store/%s/%s/%s.zip",
          m_strDistro.c_str(),
          m_strRelease.c_str(),
-         pszRoot,
-         pszName);
+         m_strAppRoot.c_str(),
+         m_strAppName.c_str());
 
 
       }

@@ -28,6 +28,8 @@ namespace windowing_system
         virtual void display_error_trap_push(int i);
         virtual void display_error_trap_pop_ignored(int i);
 
+       virtual void * fetch_windowing_system_display();
+
         virtual void process_messages();
 
     };

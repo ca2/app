@@ -29,7 +29,7 @@ namespace nano
       void compress::unzip(const ::file::path & pathFolder, const ::payload & payloadZip)
       {
 
-         throw interface_only();
+
 
       }
 

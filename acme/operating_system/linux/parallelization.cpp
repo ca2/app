@@ -140,7 +140,11 @@ void _do_tasks()
 
    auto pwindowingsystem = psystem->windowing_system();
 
-   pwindowingsystem->process_messages();
+   if(::is_set(pwindowingsystem)) {
+
+      pwindowingsystem->process_messages();
+
+   }
 
    psystem->node()->defer_do_main_tasks();
 

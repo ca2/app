@@ -3165,14 +3165,6 @@ void node::on_component_factory(const ::scoped_string & scopedstrComponent)
    }
 
 
-   bool node::_is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath)
-   {
-
-      throw interface_only();
-
-      return false;
-
-   }
 
 
    bool node::_is_coder_mode_enabled()
@@ -3195,6 +3187,14 @@ void node::on_component_factory(const ::scoped_string & scopedstrComponent)
 
 #endif
 
+   bool node::_is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath)
+   {
+
+      throw interface_only();
+
+      return false;
+
+   }
 
 #if defined(WINDOWS_DESKTOP) || defined(MACOS) || defined(LINUX)
 
@@ -4506,6 +4506,41 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
+   void node::launch_no_hup(const ::file::path & pathExecutable, const ::file::path & pathLog)
+   {
+
+
+
+   }
+
+
+//   void * node::fetch_windowing_system_display()
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//
+//   void node::windowing_system_async(const ::procedure &procedure)
+//   {
+//
+//
+//   }
+//
+//
+//   void node::windowing_system_display_error_trap_push(int i)
+//   {
+//
+//
+//   }
+//
+//
+//   void node::windowing_system_display_error_trap_pop_ignored(int i)
+//   {
+//
+//
+//   }
 
 
 } // namespace acme

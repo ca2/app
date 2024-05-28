@@ -4543,6 +4543,14 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 //   }
 
 
+   enum_windowing node::calculate_ewindowing()
+   {
+
+      return e_windowing_none;
+
+   }
+
+
 } // namespace acme
 
 

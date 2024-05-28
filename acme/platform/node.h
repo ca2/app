@@ -982,6 +982,8 @@ namespace acme
 //      virtual void windowing_system_display_error_trap_push(int i);
 //      virtual void windowing_system_display_error_trap_pop_ignored(int i);
 
+      virtual enum_windowing calculate_ewindowing();
+
 
    };
 

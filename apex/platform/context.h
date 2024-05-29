@@ -214,6 +214,9 @@ namespace apex
       void sync(::nano::http::get * pget) override;
 
 
+      ::string http_get_effective_url(const ::scoped_string & scopedstrUrl) override;
+
+
    };
 
 

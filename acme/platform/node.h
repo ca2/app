@@ -933,6 +933,9 @@ namespace acme
 
 #endif
 
+      virtual bool _is_git_credential_manager_installed();
+
+      virtual bool _is_jetbrains_clion_installed();
 
 #ifndef UNIVERSAL_WINDOWS
 

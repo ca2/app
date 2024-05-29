@@ -28,6 +28,7 @@
 #include "acme/nano/user/message_box.h"
 #include "acme/nano/user/user.h"
 #include "acme/user/user/os_theme_colors.h"
+#include "filesystem/filesystem/listing.h"
 
 namespace nano{namespace  user{
 ::user::enum_desktop calculate_edesktop();
@@ -3208,6 +3209,22 @@ bool node::_is_smart_git_installed()
 
 
 #endif
+
+
+   bool node::_is_git_credential_manager_installed()
+   {
+
+      return false;
+
+   }
+
+
+   bool node::_is_jetbrains_clion_installed()
+   {
+
+      return false;
+
+   }
 
 
    void node::set_user_run_once(const ::scoped_string& scopedstrLabel, const ::scoped_string& scopedstrCommand)

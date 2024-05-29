@@ -998,6 +998,14 @@ namespace acme
    }
 
 
+   ::string context::http_get_effective_url(const ::scoped_string & scopedstrUrl)
+   {
+
+      return nano()->http()->get_effective_url(scopedstrUrl);
+
+   }
+
+
    void context::sync(::nano::http::get * pget)
    {
       

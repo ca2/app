@@ -25,6 +25,7 @@ add_subdirectory(compress_bzip2)
 add_subdirectory(compress_zlib)
 add_subdirectory(folder_zip)
 add_subdirectory(database_sqlite3)
+add_subdirectory(nano_archive_libarchive)
 add_subdirectory(regular_expression_pcre2)
 
 

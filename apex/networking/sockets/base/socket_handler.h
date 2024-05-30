@@ -103,6 +103,7 @@ namespace sockets
    public:
 
       virtual bool contains(base_socket *) = 0;
+      virtual bool contains_socket_id(socket_id socket) = 0;
 
       ///** get status of read/write/exception file descriptor set for a socket. */
       //virtual void get(socket_id s,bool& r,bool& w,bool& e) = 0;

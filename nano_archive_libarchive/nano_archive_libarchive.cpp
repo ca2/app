@@ -2,16 +2,22 @@
 // Created by camilo on 5/26/24.
 //
 #include "framework.h"
-#include "app/archive/archive.h"
+#include "nano_archive_libarchive.h"
 #include <archive.h>
 
 
 namespace libarchive
 {
+
+
    namespace nano
    {
+
+
       namespace archive
       {
+
+
          void archive::untar(const ::file::path & pathFolder, const ::payload & payloadTar, int iStripComponent, ::function<void(const::scoped_string& scopedstr) > functionCallback)
          {
             struct archive * a;
@@ -97,9 +103,15 @@ namespace libarchive
             }
 
          }
+
+
       } // namespace archive
+
+
    } //namespace nano
 
+
 } // namespace libarchive
+
 
 

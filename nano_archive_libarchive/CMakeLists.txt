@@ -6,8 +6,8 @@ list(APPEND library_source
         _.cpp
         _.h
         _factory.cpp
-        archive.cpp
-        archive.h
+        nano_archive_libarchive.cpp
+        nano_archive_libarchive.h
         framework.cpp
         framework.h
         )

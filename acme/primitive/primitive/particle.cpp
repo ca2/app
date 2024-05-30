@@ -741,9 +741,7 @@ void particle::print_line(const ::scoped_string & scopedstr) const
 void particle::print_out(const ::scoped_string & scopedstr) const
 {
    
-   ::string strLine(scopedstr);
-   
-   printf("%s", strLine.c_str());
+   fwrite(scopedstr.begin(), 1, scopedstr.size(), stdout);
    
    fflush(stdout);
 

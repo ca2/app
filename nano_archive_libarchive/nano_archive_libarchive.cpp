@@ -3,7 +3,9 @@
 //
 #include "framework.h"
 #include "nano_archive_libarchive.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include <archive.h>
+#include <archive_entry.h>
 
 
 namespace libarchive
@@ -20,8 +22,8 @@ namespace libarchive
 
          void archive::untar(const ::file::path & pathFolder, const ::payload & payloadTar, int iStripComponent, ::function<void(const::scoped_string& scopedstr) > functionCallback)
          {
-            struct archive * a;
-            struct archive_entry * entry;
+            struct ::archive * a;
+            struct ::archive_entry * entry;
             int r;
 
             a = archive_read_new();

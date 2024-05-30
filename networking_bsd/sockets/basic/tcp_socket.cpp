@@ -704,8 +704,13 @@ m_ibuf(isize)
          if (iError == EINPROGRESS)
 #endif
          {
+
+            print_line("Connecting...");
+
             attach(s);
+
             set_connecting(true); // this flag will control fd_set's
+
          }
          else if (Socks4() && __Handler(socket_handler())->Socks4TryDirect()) // retry
          {
@@ -753,89 +758,105 @@ m_ibuf(isize)
    bool tcp_socket::open(const string& host, ::networking::port_t port)
    {
 
-      SetCloseAndDelete(false);
-
       auto pnetworking = system()->m_papexsystem->networking();
+
+      ::networking::enum_address_type eaddresstype = ::networking::e_address_type_none;
 
       ::networking::address_pointer paddress;
 
-      if (IsIpv6())
+      while(eaddresstype != ::networking::e_address_type_ipv4)
       {
 
-         printf("::networking_bsd::tcp_socket::open IsIpv6() true");
+         SetCloseAndDelete(false);
 
-         fflush(stdout);
-
-         //if(!__Handler(socket_handler())->ResolverEnabled() || paddressdepartment->isipv6(host))
-         //if (!pnetworking2->is_ip6(host))
-         //{
-
-         //   SetCloseAndDelete();
-
-         //   return false;
-
-         //}
-
-         paddress = pnetworking->create_ip6_address(host, port);
-
-         //if(!paddressdepartment->convert(a,host))
-         if (!paddress)
+         if (IsIpv6() && eaddresstype == ::networking::e_address_type_none)
          {
 
-            SetCloseAndDelete();
+            print_line("::networking_bsd::tcp_socket::open IsIpv6() true");
 
-            return false;
+            //if(!__Handler(socket_handler())->ResolverEnabled() || paddressdepartment->isipv6(host))
+            //if (!pnetworking2->is_ip6(host))
+            //{
+
+            //   SetCloseAndDelete();
+
+            //   return false;
+
+            //}
+
+            eaddresstype = ::networking::e_address_type_ipv6;
+
+            paddress = pnetworking->create_ip6_address(host, port);
+
+            //if(!paddressdepartment->convert(a,host))
+            if (!paddress)
+            {
+
+               SetCloseAndDelete();
+
+               return false;
+
+            }
+
+         }
+         else
+         {
+
+            print_line("::networking_bsd::tcp_socket::open IsIpv6() false");
+
+            ////if(!__Handler(socket_handler())->ResolverEnabled() || paddressdepartment->isipv4(host))
+            //if (!pnetworking2->is_ip4(host))
+            //{
+
+            //   SetCloseAndDelete();
+
+            //   return false;
+
+            //}
+
+            if(eaddresstype == ::networking::e_address_type_none)
+            {
+
+               eaddresstype = preferred_address_type();
+
+            }
+            else
+            {
+
+               eaddresstype = ::networking::e_address_type_ipv4;
+
+            }
+
+            paddress = pnetworking->create_address(host, eaddresstype, port);
+
+            //paddress = pnetworking->create_address(host, port);
+
+            //if(!paddressdepartment->convert(a,host))
+            if (!paddress)
+            {
+
+               SetCloseAndDelete();
+
+               return false;
+
+            }
 
          }
 
-      }
-      else
-      {
+         ::pointer < ::networking_bsd::address > pnetworkingbsdaddress = paddress;
 
-         printf("::networking_bsd::tcp_socket::open IsIpv6() false");
+         auto paddressLocal = __allocate< ::networking_bsd::address >();
 
-         fflush(stdout);
+         paddressLocal->set_family(pnetworkingbsdaddress->get_family());
 
-         ////if(!__Handler(socket_handler())->ResolverEnabled() || paddressdepartment->isipv4(host))
-         //if (!pnetworking2->is_ip4(host))
-         //{
-
-         //   SetCloseAndDelete();
-
-         //   return false;
-
-         //}
-
-         paddress = pnetworking->create_address(host, preferred_address_type(), port);
-
-         //paddress = pnetworking->create_address(host, port);
-
-         //if(!paddressdepartment->convert(a,host))
-         if (!paddress)
+         if (open(paddress, paddressLocal))
          {
 
-            SetCloseAndDelete();
-
-            return false;
+            return true;
 
          }
 
-      }
-
-      ::pointer < ::networking_bsd::address > pnetworkingbsdaddress = paddress;
-
-      auto paddressLocal = __allocate< ::networking_bsd::address >();
-
-      paddressLocal->set_family(pnetworkingbsdaddress->get_family());
-
-      if (!open(paddress, paddressLocal))
-      {
-
-         return false;
-
-      }
-
-      //return true;
+         //return true;
 
          //}
 
@@ -843,49 +864,53 @@ m_ibuf(isize)
 
          //return true;
 
-      //}
+         //}
 
-      //auto paddressdepartment = ::networking::address_department();
+         //auto paddressdepartment = ::networking::address_department();
 
 
 
-      ////if(!__Handler(socket_handler())->ResolverEnabled() || paddressdepartment->isipv4(host))
-      /////if( paddressdepartment->isipv4(host))
-      //{
+         ////if(!__Handler(socket_handler())->ResolverEnabled() || paddressdepartment->isipv4(host))
+         /////if( paddressdepartment->isipv4(host))
+         //{
 
-      //   in_addr l;
+         //   in_addr l;
 
-      //   if (!paddress)
-      //   {
-      //      
-      //      warning() <<"paddressdepartment->convert failed";
-      //      
-      //      SetCloseAndDelete();
-      //      
-      //      return false;
+         //   if (!paddress)
+         //   {
+         //
+         //      warning() <<"paddressdepartment->convert failed";
+         //
+         //      SetCloseAndDelete();
+         //
+         //      return false;
 
-      //   }
-      //   
-      //   ::networking::address ad(l, port);
-      //   
-      //   ::networking::address addrLocal;
+         //   }
+         //
+         //   ::networking::address ad(l, port);
+         //
+         //   ::networking::address addrLocal;
 
-      //   if (!open(ad, addrLocal))
-      //   {
+         //   if (!open(ad, addrLocal))
+         //   {
 
-      //      return false;
+         //      return false;
 
-      //   }
+         //   }
 
-      //   return true;
+         //   return true;
 
-      //}
+         //}
 
-      // resolve using async resolver thread
+         // resolve using async resolver thread
 
-      //m_resolver_id = Resolve(host,port);
+         //m_resolver_id = Resolve(host,port);
 
-      return true;
+
+     }
+
+      return false;
+
 
    }
 

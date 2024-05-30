@@ -567,6 +567,14 @@ namespace sockets_bsd
    }
 
 
+   bool socket_handler::contains_socket_id(socket_id socketid)
+   {
+
+      return m_socketmap.plookup(socketid);
+
+   }
+
+
    bool socket_handler::contains(::sockets::base_socket * pbasesocket)
    {
 

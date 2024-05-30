@@ -1163,6 +1163,8 @@
     <ClInclude Include="memory\typed.h" />
     <ClInclude Include="memory\typed_memory.h" />
     <ClInclude Include="memory\_.h" />
+    <ClInclude Include="nano\archive\archive.h" />
+    <ClInclude Include="nano\archive\_.h" />
     <ClInclude Include="nano\http\get.h" />
     <ClInclude Include="nano\http\http.h" />
     <ClInclude Include="nano\http\_.h" />
@@ -1594,6 +1596,7 @@
     <ClCompile Include="memory\plex_heap_alloc.cpp" />
     <ClCompile Include="memory\plex_heap_alloc_array.cpp" />
     <ClCompile Include="memory\plex_heap_alloc_sync.cpp" />
+    <ClCompile Include="nano\archive\archive.cpp" />
     <ClCompile Include="nano\http\get.cpp" />
     <ClCompile Include="nano\http\http.cpp" />
     <ClCompile Include="nano\nano.cpp" />

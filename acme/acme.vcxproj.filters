@@ -384,6 +384,12 @@
     <Filter Include="Source Files\operating_system\windows_common\nano\user">
       <UniqueIdentifier>{7819af4f-bfaf-4843-a6fd-a938945f1676}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\nano\archive">
+      <UniqueIdentifier>{9a810658-eafe-49fc-91af-59d42e485351}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano\archive">
+      <UniqueIdentifier>{c9102271-a193-4966-8ffe-5645f2a63a6e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -3704,6 +3710,12 @@
     <ClInclude Include="nano\_.h">
       <Filter>Header Files\nano</Filter>
     </ClInclude>
+    <ClInclude Include="nano\archive\_.h">
+      <Filter>Header Files\nano\archive</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\archive\archive.h">
+      <Filter>Header Files\nano\archive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -5199,6 +5211,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\nano\user\_user.cpp">
       <Filter>Source Files\operating_system\windows_common\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\archive\archive.cpp">
+      <Filter>Source Files\nano\archive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

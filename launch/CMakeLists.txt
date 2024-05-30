@@ -41,7 +41,9 @@ target_include_directories(static_${PROJECT_NAME}_library PRIVATE ${library_incl
 
 target_link_options(${PROJECT_NAME} PRIVATE -static -static-libgcc -static-libstdc++)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE static_acme)
+target_link_libraries(${PROJECT_NAME} PRIVATE
+        static_acme
+        static_acme_linux)
 
 add_dependencies(${PROJECT_NAME} static_acme)
 add_dependencies(static_${PROJECT_NAME}_library static_acme)

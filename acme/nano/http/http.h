@@ -48,8 +48,12 @@ namespace nano
          virtual ::string get_effective_url(const ::scoped_string & scopedstrUrl);
 
          virtual bool check_url_ok(const ::scoped_string & scopedstrUrl);
-         
-         
+
+         virtual ::string get(const ::scoped_string & scopedstrUrl);
+
+         virtual void download(const ::file::path & path, const ::scoped_string & scopedstrUrl);
+
+
       };
       
    

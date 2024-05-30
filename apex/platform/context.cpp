@@ -1187,6 +1187,14 @@ namespace apex
    }
 
 
+   ::string context::http_get_effective_url(const ::scoped_string & scopedstrUrl)
+   {
+
+      return http().get_effective_url(scopedstrUrl);
+
+   }
+
+
 } // namespace apex
 
 

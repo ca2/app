@@ -28,6 +28,7 @@
 #include "acme/nano/user/message_box.h"
 #include "acme/nano/user/user.h"
 #include "acme/user/user/os_theme_colors.h"
+#include "filesystem/filesystem/listing.h"
 
 namespace nano{namespace  user{
 ::user::enum_desktop calculate_edesktop();
@@ -3165,14 +3166,6 @@ void node::on_component_factory(const ::scoped_string & scopedstrComponent)
    }
 
 
-   bool node::_is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath)
-   {
-
-      throw interface_only();
-
-      return false;
-
-   }
 
 
    bool node::_is_coder_mode_enabled()
@@ -3195,6 +3188,14 @@ void node::on_component_factory(const ::scoped_string & scopedstrComponent)
 
 #endif
 
+   bool node::_is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath)
+   {
+
+      throw interface_only();
+
+      return false;
+
+   }
 
 #if defined(WINDOWS_DESKTOP) || defined(MACOS) || defined(LINUX)
 
@@ -3208,6 +3209,22 @@ bool node::_is_smart_git_installed()
 
 
 #endif
+
+
+   bool node::_is_git_credential_manager_installed()
+   {
+
+      return false;
+
+   }
+
+
+   bool node::_is_jetbrains_clion_installed()
+   {
+
+      return false;
+
+   }
 
 
    void node::set_user_run_once(const ::scoped_string& scopedstrLabel, const ::scoped_string& scopedstrCommand)
@@ -4506,6 +4523,49 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
+   void node::launch_no_hup(const ::file::path & pathExecutable, const ::file::path & pathLog)
+   {
+
+
+
+   }
+
+
+//   void * node::fetch_windowing_system_display()
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//
+//   void node::windowing_system_async(const ::procedure &procedure)
+//   {
+//
+//
+//   }
+//
+//
+//   void node::windowing_system_display_error_trap_push(int i)
+//   {
+//
+//
+//   }
+//
+//
+//   void node::windowing_system_display_error_trap_pop_ignored(int i)
+//   {
+//
+//
+//   }
+
+
+   enum_windowing node::calculate_ewindowing()
+   {
+
+      return e_windowing_none;
+
+   }
 
 
 } // namespace acme

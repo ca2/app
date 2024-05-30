@@ -106,6 +106,8 @@ namespace http
       virtual bool put(const ::scoped_string & scopedstrUrl, memory_base & memory, property_set & set);
       virtual bool put(const ::scoped_string & scopedstrUrl, file_pointer  pfile, property_set & set);
 
+      virtual ::string get_effective_url(const ::scoped_string & scopedstrUrl);
+
       virtual void defer_auto_initialize_proxy_configuration();
       virtual void auto_config_proxy(i32 i);
       virtual i32 auto_config_proxy_count();

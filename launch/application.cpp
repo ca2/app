@@ -15,86 +15,84 @@
 
 namespace launch
 {
-
-
-application::application()
-{
-
-m_iExitCode = 0;
-
-}
-
-
-application::~application()
-{
-
-}
-
-void application::calculate_distro__branch_and_release()
-{
-
-   if(m_strDistro.has_char())
+   application::application()
    {
 
-return;
+      m_iExitCode = 0;
 
    }
 
 
-   auto psummary = node()->operating_system_summary();
-
-
-   m_strDistro = psummary->m_strDistro;
-
-   m_strDistro.make_lower();
-
-   ::string strBranch = psummary->m_strDistroBranch;
-
-   strBranch.make_lower();
-
-   if (m_strDistro == "ubuntu")
+   application::~application()
    {
-      if (strBranch == "kde")
+
+   }
+
+   void application::calculate_distro__branch_and_release()
+   {
+
+      if(m_strDistro.has_char())
       {
-         m_strDistro = "kubuntu";
-         print_line("This is Kubuntu System...");
+
+         return;
+
       }
-      else if(strBranch == "xfce")
+
+
+      auto psummary = node()->operating_system_summary();
+
+
+      m_strDistro = psummary->m_strDistro;
+
+      m_strDistro.make_lower();
+
+      ::string strBranch = psummary->m_strDistroBranch;
+
+      strBranch.make_lower();
+
+      if (m_strDistro == "ubuntu")
       {
-         m_strDistro = "xubuntu";
-         print_line("This is Xubuntu System...");
+         if (strBranch == "kde")
+         {
+            m_strDistro = "kubuntu";
+            print_line("This is Kubuntu System...");
+         }
+         else if(strBranch == "xfce")
+         {
+            m_strDistro = "xubuntu";
+            print_line("This is Xubuntu System...");
+         }
+         else
+         {
+            print_line("This is Ubuntu System (Unity)...");
+         }
       }
-      else
+      else if (m_strDistro == "fedora")
       {
-         print_line("This is Ubuntu System (Unity)...");
+
+         print_line("This is Fedora Linux System...\n");
+
+         m_strBranch = strBranch;
+
       }
-   }
-   else if (m_strDistro == "fedora")
-   {
+      else if (m_strDistro == "freebsd")
+      {
 
-      print_line("This is Fedora Linux System...\n");
+         print_line("This is FreeBSD System...");
 
-      m_strBranch = strBranch;
+         m_strBranch = strBranch;
 
-   }
-   else if (m_strDistro == "freebsd")
-   {
+      }
+      else if (m_strDistro == "opensuse-tumbleweed")
+      {
 
-      print_line("This is FreeBSD System...");
+         print_line("This is openSUSE Tumbleweed System...\n");
 
-      m_strBranch = strBranch;
+         m_strBranch = strBranch;
 
-   }
-   else if (m_strDistro == "opensuse-tumbleweed")
-   {
+      }
 
-      print_line("This is openSUSE Tumbleweed System...\n");
-
-      m_strBranch = strBranch;
-
-   }
-
-   m_strRelease = psummary->m_strStoreRelease;
+      m_strRelease = psummary->m_strDistroRelease;
 
 
    }
@@ -108,143 +106,147 @@ return;
    //
    // }
 
-void application::install_dependencies()
-{
-
-
-   printf("Going to install dependencies:\n");
-
-   auto lines = acmefile()->lines("operating_system_packages.txt");
-
-   if(lines.is_empty())
+   void application::install_dependencies()
    {
 
-      print_line("no dependencies to install");
 
-      return;
+      printf("Going to install dependencies:\n");
 
-   }
+      auto lines = acmefile()->lines("operating_system_packages.txt");
 
-   ::string strPackages;
-
-   strPackages = lines.implode(" ");
-
-   ::string strCommand;
-
-   if(m_strDistro == "ubuntu" || m_strDistro == "kubuntu" || m_strDistro == "xubuntu")
-   {
-
-      strCommand.formatf("sudo apt -y install %s", strPackages.c_str());
-
- //     log_system("sudo apt -y install libfreeimage3 libstartup-notification0 libunac1 libxm4");
-
-   }
-   else if(m_strDistro ==  "fedora")
-   {
-
-      strCommand.formatf("sudo dnf --assumeyes install %s",strPackages.c_str());
-
-  //    log_system("sudo dnf --assumeyes install freeimage libidn motif libappindicator-gtk3");
-
-      //log_system(pszCommand);
-
-   }
-   else if(m_strDistro == "freebsd")
-   {
-
-      strCommand.formatf("sudo pkg install %s", strPackages.c_str());
-
-   }
-   else
-   {
-
-      printf_line("Don't know how to install dependencies for this system. (%s)", strPackages.c_str());
-
-   }
-
-   if(strCommand.has_char())
-   {
-
-      //log_system(strCommand);
-
-      print_line(strCommand);
-
-      ::system(strCommand);
-
-
-   }
-
-}
-
-
-// bool application::check_http_ok(const char * pszUrl)
-// {
-//
-// bool bOk = false;
-//
-// if (!strcasecmp(m_pszDistro, "freebsd"))
-// {
-//
-// bOk = curl_check_http_ok(pszUrl);
-//
-// }
-// else
-// {
-//
-// bOk = wget_check_http_ok(pszUrl);
-//
-// }
-//
-// if (bOk)
-// {
-//
-// printf("File at \"%s\" seems OK!\n", pszUrl);
-//
-// }
-// else
-// {
-//
-// printf("Resource at \"%s\" doesn't exist!\n", pszUrl);
-//
-// }
-//
-// return bOk;
-//
-//
-// }
-
-
-void application::parse_app_root_and_app_name()
-{
-
-   if(m_strLaunchAppId.is_empty())
-   {
-
-      if(platform()->m_argc <= 1)
+      if(lines.is_empty())
       {
 
-         throw "Wrong number of arguments";
+         print_line("no dependencies to install");
+
+         return;
 
       }
 
-      m_strLaunchAppId = platform()->m_args[1];
-;
+      ::string strPackages;
+
+      strPackages = lines.implode(" ");
+
+      ::string strCommand;
+
+      if(m_strDistro == "ubuntu" || m_strDistro == "kubuntu" || m_strDistro == "xubuntu")
+      {
+
+         strCommand.formatf("sudo apt -y install %s", strPackages.c_str());
+
+         //     log_system("sudo apt -y install libfreeimage3 libstartup-notification0 libunac1 libxm4");
+
+      }
+      else if(m_strDistro ==  "fedora")
+      {
+
+         strCommand.formatf("sudo dnf --assumeyes install %s",strPackages.c_str());
+
+         //    log_system("sudo dnf --assumeyes install freeimage libidn motif libappindicator-gtk3");
+
+         //log_system(pszCommand);
+
+      }
+      else if(m_strDistro == "freebsd")
+      {
+
+         strCommand.formatf("sudo pkg install %s", strPackages.c_str());
+
+      }
+      else
+      {
+
+         printf_line("Don't know how to install dependencies for this system. (%s)", strPackages.c_str());
+
+      }
+
+      if(strCommand.has_char())
+      {
+
+         //log_system(strCommand);
+
+         print_line(strCommand);
+
+         ::system(strCommand);
+
+
+      }
+
    }
 
-   auto iSlash = m_strLaunchAppId.find_index('/');
 
-   if(iSlash < 0 || iSlash == 0 || iSlash >= m_strLaunchAppId.last_index())
+   // bool application::check_http_ok(const char * pszUrl)
+   // {
+   //
+   // bool bOk = false;
+   //
+   // if (!strcasecmp(m_pszDistro, "freebsd"))
+   // {
+   //
+   // bOk = curl_check_http_ok(pszUrl);
+   //
+   // }
+   // else
+   // {
+   //
+   // bOk = wget_check_http_ok(pszUrl);
+   //
+   // }
+   //
+   // if (bOk)
+   // {
+   //
+   // printf("File at \"%s\" seems OK!\n", pszUrl);
+   //
+   // }
+   // else
+   // {
+   //
+   // printf("Resource at \"%s\" doesn't exist!\n", pszUrl);
+   //
+   // }
+   //
+   // return bOk;
+   //
+   //
+   // }
+
+
+   void application::parse_app_root_and_app_name()
    {
 
-      throw "App Id must contain one slash and only one slash separating app_root and app_name";
+      if(m_strLaunchAppId.is_empty())
+      {
+
+         if(platform()->m_argc <= 1)
+         {
+
+            throw "Wrong number of arguments";
+
+         }
+
+         m_strLaunchAppId = platform()->m_args[1];
+         ;
+      }
+
+      auto iSlash = m_strLaunchAppId.find_index('/');
+
+      if(iSlash < 0 || iSlash == 0 || iSlash >= m_strLaunchAppId.last_index())
+      {
+
+         throw "App Id must contain one slash and only one slash separating app_root and app_name";
+
+      }
+
+      m_strAppRoot = m_strLaunchAppId(0, iSlash);
+
+      debugf("app_root: %s", m_strAppRoot.c_str());
+
+      m_strAppName = m_strLaunchAppId(iSlash + 1);
+
+      debugf("app_name: %s", m_strAppName.c_str());
 
    }
-
-   m_strAppRoot = m_strLaunchAppId(0, iSlash);
-
-   m_pszAppName = m_strLaunchAppId(iSlash + 1);
-
-}
 
 
    void application::run()
@@ -254,7 +256,7 @@ void application::parse_app_root_and_app_name()
 
       parse_app_root_and_app_name();
 
-      auto strDownloadUrl = get_download_url(m_strAppRoot, m_strAppName);
+      auto strDownloadUrl = calculate_download_url();
 
       if (strDownloadUrl.is_empty())
       {
@@ -267,212 +269,226 @@ void application::parse_app_root_and_app_name()
 
       }
 
-         print_line("Checking if version exists at server...");
+      printf_line("Checking if version exists at server... (%s)", strDownloadUrl.c_str());
 
       if (!nano()->http()->check_url_ok(strDownloadUrl))
-         {
+      {
 
-      m_iExitCode = -1;
+         m_iExitCode = -1;
 
          ::string strErr;
 
-         strErr.formatf("Server seems not to have build for this release %s %s", m_strDistro.c_str(), m_strRelease.c_str());
+         auto psummary = node()->operating_system_summary();
+
+         strErr.formatf("Server seems not to have build of \"%s/%s\" for this operating-system release \"%s\" (%s)",
+                        m_strAppRoot.c_str(),
+                        m_strAppName.c_str(),
+                        psummary->m_strName.c_str(),
+                        psummary-> m_strDistroReleaseName.c_str());
 
          if(m_strBranch.has_char())
          {
 
-            strErr += " " + m_strBranch;
+            strErr.append_formatf(" \"%s\".", psummary->m_strDistroBranchName.c_str());
+
+         }
+         else
+         {
+
+            strErr += ".";
 
          }
 
          err_line(strErr);
 
-      return;
+         return;
 
-   }
+      }
 
       printf_line("Launching %s/%s...", m_strAppRoot.c_str(), m_strAppName.c_str());
 
-   auto pathStore = acmedirectory()->home() / "application" / m_strAppRoot / m_strAppName;
+      auto pathStore = acmedirectory()->home() / "application" / m_strAppRoot / m_strAppName;
 
-   acmedirectory()->create(pathStore);
+      acmedirectory()->create(pathStore);
 
-   auto pathInstallingWithLaunchStore =  pathStore / "installing_with_launch_store";
+      auto pathInstallingWithLaunchStore =  pathStore / "installing_with_launch_store";
 
-   acmefile()->touch(pathInstallingWithLaunchStore);
+      acmefile()->ensure_exists(pathInstallingWithLaunchStore);
 
-   auto pathLogFolder =  pathStore / "log";
+      auto pathLogFolder =  pathStore / "log";
 
-   acmedirectory()->create(pathLogFolder);
+      acmedirectory()->create(pathLogFolder);
 
-   auto strDateTimeName = datetime()->date_time_text_for_file_with_no_spaces();
+      auto strDateTimeName = datetime()->date_time_text_for_file_with_no_spaces();
 
-   strDateTimeName += ".txt";
+      strDateTimeName += ".txt";
 
-   //
-   // sprintf(szLogFilename,
-   // "%04d-%02d-%02d_%02d-%02d-%02d.txt",
-   // ptm->tm_year,
-   // ptm->tm_mon,
-   // ptm->tm_mday,
-   // ptm->tm_hour,
-   // ptm->tm_min,
-   // ptm->tm_sec);
+      //
+      // sprintf(szLogFilename,
+      // "%04d-%02d-%02d_%02d-%02d-%02d.txt",
+      // ptm->tm_year,
+      // ptm->tm_mon,
+      // ptm->tm_mday,
+      // ptm->tm_hour,
+      // ptm->tm_min,
+      // ptm->tm_sec);
 
-   m_pathLog = pathLogFolder / strDateTimeName;
+      m_pathLog = pathLogFolder / strDateTimeName;
 
-   auto pathX64 = pathStore / "x64";
-// char szX64[4096];
-//
-// strcpy(szX64, szStore);
-//
-// strcat(szX64, "/x64");
-//
-// mkdir(szX64, 0777);
-//
-// chdir(szX64);
+      auto pathX64 = pathStore / "x64";
+      // char szX64[4096];
+      //
+      // strcpy(szX64, szStore);
+      //
+      // strcat(szX64, "/x64");
+      //
+      // mkdir(szX64, 0777);
+      //
+      // chdir(szX64);
 
-   acmedirectory()->create(pathX64);
+      acmedirectory()->create(pathX64);
 
-   acmedirectory()->change_current(pathX64);
+      acmedirectory()->change_current(pathX64);
 
 #ifdef LINUX
 
-   ::string strExecutable = "_" + m_strAppRoot + "_" + m_strAppName;
+      ::string strExecutable = "_" + m_strAppRoot + "_" + m_strAppName;
 
 #else
 
-   ::string strExecutable = "shared_" + m_strAppRoot + "_" m_strAppName + ".exe";
+      ::string strExecutable = "shared_" + m_strAppRoot + "_" m_strAppName + ".exe";
 
 #endif
 
-//    char szAppExeName[1024];
-//    sprintf(szAppExeName, "_%s_%s", m_pszAppRoot, m_pszAppName);
-//
-//    for(int i = 0; i < strlen(szAppExeName); i++)
-//    {
-//
-// if(szAppExeName[i] =='-')
-// {
-// szAppExeName[i] = '_';
-//
-// }
-//
-//    }
-strExecutable.find_replace("-", "_");
+      //    char szAppExeName[1024];
+      //    sprintf(szAppExeName, "_%s_%s", m_pszAppRoot, m_pszAppName);
+      //
+      //    for(int i = 0; i < strlen(szAppExeName); i++)
+      //    {
+      //
+      // if(szAppExeName[i] =='-')
+      // {
+      // szAppExeName[i] = '_';
+      //
+      // }
+      //
+      //    }
+      strExecutable.find_replace("-", "_");
 
 
-   auto pathExecutable = pathX64 / strExecutable;
+      auto pathExecutable = pathX64 / strExecutable;
 
-   ::string strZipName;
+      ::string strZipName;
 
-   strZipName = "_" + strExecutable + ".zip";
-   // char szZipName[1024];
-   // sprintf(szZipName, "_%s.zip", szAppExeName);
-   // char szDownloadCommand[2048];
+      strZipName = "_" + strExecutable + ".zip";
+      // char szZipName[1024];
+      // sprintf(szZipName, "_%s.zip", szAppExeName);
+      // char szDownloadCommand[2048];
 
-   auto pathZipName = pathX64 / strZipName;
+      auto pathZipName = pathX64 / strZipName;
 
-   system()->http_download(pathZipName,strDownloadUrl );
-// if (!strcasecmp(m_pszDistro, "freebsd")) {
-//
-// strcpy(szDownloadCommand, "curl ");
-// strcat(szDownloadCommand, szDownloadUrl);
-// strcat(szDownloadCommand, " > ");
-// strcat(szDownloadCommand, szZipName);
-//
-// }
-// else
-// {
-// strcpy(szDownloadCommand, "wget ");
-// strcat(szDownloadCommand, szDownloadUrl);
-// strcat(szDownloadCommand, " -O ");
-// strcat(szDownloadCommand, szZipName);
-//
-// }
-
-
-
-//system(szDownloadCommand);
-
-   nano()->compress()->unzip(pathX64, pathZipName);
-
-   //char szUnzipCommand[2048];
-
-   //sprintf(szUnzipCommand, "unzip -o %s -d .", szZipName);
-
-//system(szUnzipCommand);
+      nano()->http()->download(pathZipName,strDownloadUrl );
+      // if (!strcasecmp(m_pszDistro, "freebsd")) {
+      //
+      // strcpy(szDownloadCommand, "curl ");
+      // strcat(szDownloadCommand, szDownloadUrl);
+      // strcat(szDownloadCommand, " > ");
+      // strcat(szDownloadCommand, szZipName);
+      //
+      // }
+      // else
+      // {
+      // strcpy(szDownloadCommand, "wget ");
+      // strcat(szDownloadCommand, szDownloadUrl);
+      // strcat(szDownloadCommand, " -O ");
+      // strcat(szDownloadCommand, szZipName);
+      //
+      // }
 
 
-   install_dependencies();
+
+      //system(szDownloadCommand);
+
+      nano()->compress()->unzip(pathX64, pathZipName);
+
+      //char szUnzipCommand[2048];
+
+      //sprintf(szUnzipCommand, "unzip -o %s -d .", szZipName);
+
+      //system(szUnzipCommand);
 
 
-   nano()->shell()->launch_no_hup(pathExecutable, m_pathLog);
-
-//    char szCommand[4096];
-//    strcpy(szCommand, "sh -c \"nohup ./");
-// strcat(szCommand, szAppExeName);
-// strcat(szCommand, " > \\\"");
-// strcat(szCommand, szLogPath);
-// strcat(szCommand, "\\\"\"");
-//
-// system(szCommand);
-
-}
+      install_dependencies();
 
 
-::string application::get_download_url(const char * pszRoot, const char * pszName)
-{
+      node()->launch_no_hup(pathExecutable, m_pathLog);
 
-   calculate_distro__branch_and_release();
-
-   if (m_strDistro.is_empty() || m_strRelease.is_empty())
-   {
-
-      return {};
+      //    char szCommand[4096];
+      //    strcpy(szCommand, "sh -c \"nohup ./");
+      // strcat(szCommand, szAppExeName);
+      // strcat(szCommand, " > \\\"");
+      // strcat(szCommand, szLogPath);
+      // strcat(szCommand, "\\\"\"");
+      //
+      // system(szCommand);
 
    }
 
-// if (!strcasecmp(m_pszDistro, "opensuse-tumbleweed") && strlen(m_pszVersion) > 4)
-// {
-//
-// printf("This is a openSUSE Tumbleweed System...\n");
-// printf("Gonna tweak a bit the version :-)...\n");
-// m_pszVersion[4] = '\0';
-// printf("There it is new version : %s\n", m_pszVersion);
-//
-// }
-//
-// char szUrl[4096];
 
-   ::string strUrl;
+   ::string application::calculate_download_url()
+   {
 
-if (m_strBranch.has_char())
-{
+      calculate_distro__branch_and_release();
 
-strUrl.formatf("https://%s.ca2.store/%s/%s/%s/%s.zip",
-m_strDistro.c_str(),
-m_strBranch.c_str(),
-m_strRelease.c_str(),
-pszRoot,
-pszName);
+      if (m_strDistro.is_empty() || m_strRelease.is_empty())
+      {
 
-}
-else
-{
+         return {};
 
-strUrl.formatf("https://%s.ca2.store/%s/%s/%s.zip",
-m_strDistro.c_str(),
-m_strRelease.c_str(),
-pszRoot,
-pszName);
+      }
+
+      // if (!strcasecmp(m_pszDistro, "opensuse-tumbleweed") && strlen(m_pszVersion) > 4)
+      // {
+      //
+      // printf("This is a openSUSE Tumbleweed System...\n");
+      // printf("Gonna tweak a bit the version :-)...\n");
+      // m_pszVersion[4] = '\0';
+      // printf("There it is new version : %s\n", m_pszVersion);
+      //
+      // }
+      //
+      // char szUrl[4096];
+
+      ::string strUrl;
+
+      if (m_strBranch.has_char())
+      {
+
+         strUrl.formatf("https://%s.ca2.store/%s/%s/%s/%s.zip",
+         m_strDistro.c_str(),
+         m_strBranch.c_str(),
+         m_strRelease.c_str(),
+         m_strAppRoot.c_str(),
+         m_strAppName.c_str());
+
+      }
+      else
+      {
+
+         strUrl.formatf("https://%s.ca2.store/%s/%s/%s.zip",
+         m_strDistro.c_str(),
+         m_strRelease.c_str(),
+         m_strAppRoot.c_str(),
+         m_strAppName.c_str());
 
 
-}
+      }
 
-return strUrl;
+      return strUrl;
 
-}
+   }
+
+} // namespace launch
 
 
 //    // void application::log_system(const char * pszCommand)
@@ -798,59 +814,59 @@ return strUrl;
 //
 //      }
 //
+//
+// char * start_temporary_file_name()
+// {
+//
+//    char sz[8192];
+//    char szCurDir[1024];
+//    getcwd(szCurDir, sizeof(szCurDir));
+//    auto ptmpname = tempnam(szCurDir, "tmpfl");
+//    return ptmpname;
+//
+// }
+//
+//
+// void end_temporary_file_name(char * ptmpname)
+// {
+//
+//    remove(ptmpname);
+//
+//    free(ptmpname);
+//
+// }
+//
+//
+// char * end_temporary_file_name_as_string(char * ptmpname)
+// {
+//
+//    auto p = as_string(ptmpname);
+//
+//    end_temporary_file_name(ptmpname);
+//
+//    return p;
+//
+// }
 
-char * start_temporary_file_name()
-{
 
-   char sz[8192];
-   char szCurDir[1024];
-   getcwd(szCurDir, sizeof(szCurDir));
-   auto ptmpname = tempnam(szCurDir, "tmpfl");
-   return ptmpname;
-
-}
-
-
-void end_temporary_file_name(char * ptmpname)
-{
-
-   remove(ptmpname);
-
-   free(ptmpname);
-
-}
-
-
-char * end_temporary_file_name_as_string(char * ptmpname)
-{
-
-   auto p = as_string(ptmpname);
-
-   end_temporary_file_name(ptmpname);
-
-   return p;
-
-}
-
-
-char * get_command_output(const char * pszCommand)
-{
-
-   auto ptmpname = start_temporary_file_name();
-
-   char sz[8129];
-
-   sprintf(sz, "%s &> %s", pszCommand, ptmpname);
-
-   printf("%s\n", sz);
-
-   system(sz);
-
-   auto p = end_temporary_file_name_as_string(ptmpname);
-
-   return p;
-
-}
+// char * get_command_output(const char * pszCommand)
+// {
+//
+//    auto ptmpname = start_temporary_file_name();
+//
+//    char sz[8129];
+//
+//    sprintf(sz, "%s &> %s", pszCommand, ptmpname);
+//
+//    printf("%s\n", sz);
+//
+//    system(sz);
+//
+//    auto p = end_temporary_file_name_as_string(ptmpname);
+//
+//    return p;
+//
+// }
 
 
 

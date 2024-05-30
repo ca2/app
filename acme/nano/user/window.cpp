@@ -171,8 +171,13 @@ void window::destroy()
       m_psequencer.release();
       
    }
-   
-   system()->m_pnano->user()->m_nanowindowa.erase(this);
+
+   if(system()->m_pnano->m_puser)
+   {
+
+      system()->m_pnano->m_puser->m_nanowindowa.erase(this);
+
+   }
    
 }
 

@@ -138,6 +138,7 @@ namespace acme
       virtual ::string http_text(const ::scoped_string & scopedstrUrl, const class ::time & timeTimeout = 5_min);
       virtual ::string http_text(const ::scoped_string & scopedstrUrl, ::property_set & set, const class ::time & timeTimeout = 5_min);
 
+      virtual ::string http_get_effective_url(const ::scoped_string & scopedstrUrl);
       
       virtual void sync(::nano::http::get * pget);
       virtual void async(::nano::http::get * pget, const ::function < void(::nano::http::get *) > & callback);

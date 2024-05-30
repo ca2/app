@@ -1165,9 +1165,13 @@
     <ClInclude Include="memory\_.h" />
     <ClInclude Include="nano\archive\archive.h" />
     <ClInclude Include="nano\archive\_.h" />
+    <ClInclude Include="nano\compress\compress.h" />
+    <ClInclude Include="nano\compress\_.h" />
     <ClInclude Include="nano\http\get.h" />
     <ClInclude Include="nano\http\http.h" />
     <ClInclude Include="nano\http\_.h" />
+    <ClInclude Include="nano\shell\shell.h" />
+    <ClInclude Include="nano\shell\_.h" />
     <ClInclude Include="nano\speech\speech.h" />
     <ClInclude Include="nano\speech\_.h" />
     <ClInclude Include="nano\user\aaa_nano.h" />
@@ -1597,9 +1601,11 @@
     <ClCompile Include="memory\plex_heap_alloc_array.cpp" />
     <ClCompile Include="memory\plex_heap_alloc_sync.cpp" />
     <ClCompile Include="nano\archive\archive.cpp" />
+    <ClCompile Include="nano\compress\compress.cpp" />
     <ClCompile Include="nano\http\get.cpp" />
     <ClCompile Include="nano\http\http.cpp" />
     <ClCompile Include="nano\nano.cpp" />
+    <ClCompile Include="nano\shell\shell.cpp" />
     <ClCompile Include="nano\speech\speech.cpp" />
     <ClCompile Include="nano\user\brush.cpp" />
     <ClCompile Include="nano\user\button.cpp" />

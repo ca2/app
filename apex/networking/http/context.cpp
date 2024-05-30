@@ -3136,6 +3136,40 @@ namespace http
    }
 
 
+   ::string context::get_effective_url(const ::scoped_string & scopedstrUrl)
+   {
+
+      ::string strUrl(scopedstrUrl);
+
+      while(true)
+      {
+
+         property_set set;
+
+         set["redirect_location"] = "";
+
+         this->get(strUrl, set);
+
+         ::string strNewUrl = set["redirect_location"];
+
+         information() << "Redirect Location : " << strNewUrl;
+
+         if(strNewUrl.is_empty())
+         {
+            break;
+         }
+
+            strUrl = strNewUrl;
+
+
+
+      }
+
+      return strUrl;
+
+   }
+
+
    bool context::request(const ::scoped_string & scopedstrMethod, const ::scoped_string & scopedstrUrl, property_set & set)
    {
 

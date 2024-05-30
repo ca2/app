@@ -25,6 +25,13 @@ namespace operating_system
    {
    public:
 
+      ::string m_strName;
+      ::string m_strDistroName;
+      ::string m_strDistroFamilyName;
+      ::string m_strDistroBranchName;
+      ::string m_strDistroReleaseName;
+      ::string m_strDesktopEnvironmentName;
+
       ::string m_strDistro;
       ::string m_strDistroFamily;
       ::string m_strDistroBranch;

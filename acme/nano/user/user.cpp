@@ -145,6 +145,13 @@ void user::process_messages()
 
 }
 
+         bool user::init_threads()
+         {
+
+           return true;
+
+         }
+
 
     } // namespace user
 } // namespace nano

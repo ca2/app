@@ -79,6 +79,14 @@ namespace windowing_system
     }
 
 
+    void * windowing_system::fetch_windowing_system_display()
+    {
+
+       return nullptr;
+
+    }
+
+
     void windowing_system::process_messages()
     {
 

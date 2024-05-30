@@ -28,7 +28,7 @@ namespace launch
 
 
       ::string       m_strAppRoot;
-      ::string       m_pszAppName;
+      ::string       m_strAppName;
 
 
       ::file::path   m_pathLog;
@@ -46,7 +46,7 @@ namespace launch
       void run();
 
 
-      ::string get_download_url(const char * pszRoot, const char * pszName);
+      ::string calculate_download_url();
 
       //bool check_http_ok(const char * pszUrl);
 

@@ -45,7 +45,7 @@ public:
    //inline lparam(const ptr < T > & p) : lparam((const ::subparticle *) p.m_p) { }
 
    template < typename T >
-   inline lparam(pointer < T > && p) : lparam(p.m_p REFDBG(, p.m_preferer)) { p.m_p = nullptr; p.m_pparticle = nullptr; REFDBG(p.m_preferer = nullptr); }
+   inline lparam(pointer < T > && p) : lparam(p.m_p REFDBG(, p.m_preferer)) { p.m_p = nullptr; p.m_psubparticle = nullptr; REFDBG(p.m_preferer = nullptr); }
    //template < typename T >
    //inline lparam(ptr < T > && p) : lparam(p.m_p REFDBG(, p.m_preferer)) { p.m_p = nullptr; REFDBG(p.m_preferer = nullptr); }
 
@@ -144,11 +144,11 @@ public:
 
 
 //template < class T >
-//   inline bool operator ==(lparam l, const pointer < T > & pointer) { return ((::subparticle *) l.m_lparam) == pointer.m_pparticle; }
+//   inline bool operator ==(lparam l, const pointer < T > & pointer) { return ((::subparticle *) l.m_lparam) == pointer.m_psubparticle; }
 //
 //
 //template < class T >
-//   inline bool operator !=(lparam l, const pointer < T > & pointer) { return ((::subparticle *) l.m_lparam) != pointer.m_pparticle; }
+//   inline bool operator !=(lparam l, const pointer < T > & pointer) { return ((::subparticle *) l.m_lparam) != pointer.m_psubparticle; }
 //
 
 

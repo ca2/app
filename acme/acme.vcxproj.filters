@@ -384,6 +384,24 @@
     <Filter Include="Source Files\operating_system\windows_common\nano\user">
       <UniqueIdentifier>{7819af4f-bfaf-4843-a6fd-a938945f1676}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\nano\archive">
+      <UniqueIdentifier>{e56db925-1349-4c4b-968b-68792eee64f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nano\compress">
+      <UniqueIdentifier>{590d39c8-d488-408e-9724-b6a145650550}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nano\shell">
+      <UniqueIdentifier>{36f1586b-d4df-4f78-90b6-adb1df65c8a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano\archive">
+      <UniqueIdentifier>{57bd3c72-40f2-4794-81cc-39f109602ccb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano\compress">
+      <UniqueIdentifier>{6be37a66-75ac-4e17-b135-95173e16e07b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano\shell">
+      <UniqueIdentifier>{eb77aa54-5204-419c-ba29-021579f40cc2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -3704,6 +3722,24 @@
     <ClInclude Include="nano\_.h">
       <Filter>Header Files\nano</Filter>
     </ClInclude>
+    <ClInclude Include="nano\archive\archive.h">
+      <Filter>Header Files\nano\archive</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\archive\_.h">
+      <Filter>Header Files\nano\archive</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\compress\_.h">
+      <Filter>Header Files\nano\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\compress\compress.h">
+      <Filter>Header Files\nano\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\shell\shell.h">
+      <Filter>Header Files\nano\shell</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\shell\_.h">
+      <Filter>Header Files\nano\shell</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -5199,6 +5235,15 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\nano\user\_user.cpp">
       <Filter>Source Files\operating_system\windows_common\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\archive\archive.cpp">
+      <Filter>Source Files\nano\archive</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\compress\compress.cpp">
+      <Filter>Source Files\nano\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\shell\shell.cpp">
+      <Filter>Source Files\nano\shell</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

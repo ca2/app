@@ -234,11 +234,11 @@ namespace platform
 #if defined(WINDOWS)  && defined(UNICODE)
 
 
-   void platform::initialize(int argc, wchar_t * argv[], wchar_t * envp[])
+   void platform::initialize(int argc, wchar_t * args[], wchar_t * envp[])
    {
 
       m_argc = argc;
-      m_wargv = argv;
+      m_wargs = args;
       m_wenvp = envp;
 
    }
@@ -254,7 +254,7 @@ namespace platform
       m_nCmdShow = nCmdShow;
 
       m_argc = __argc;
-      m_wargv = __wargv;
+      m_wargs = __wargv;
       m_wenvp = (wchar_t **)*__p__wenviron();
 
 
@@ -315,7 +315,7 @@ namespace platform
    //}
 
 
-   void platform::set_args(int argc, char ** args, wchar_t ** wargv)
+   void platform::set_args(int argc, char ** args, wchar_t ** wargs)
    {
 
       m_argc = argc;
@@ -324,7 +324,7 @@ namespace platform
 
 #ifdef WINDOWS_DESKTOP
 
-      m_wargv = wargv;
+      m_wargs = wargs;
 
 #endif
 
@@ -351,10 +351,10 @@ namespace platform
 
 #ifdef WINDOWS
 
-      if (m_wargv && m_wargv[iArgument])
+      if (m_wargs && m_wargs[iArgument])
       {
 
-         return m_wargv[iArgument];
+         return m_wargs[iArgument];
 
       }
       else
@@ -401,10 +401,10 @@ namespace platform
 
 #ifdef WINDOWS
 
-         if (m_wargv && m_wargv[i])
+         if (m_wargs && m_wargs[i])
          {
 
-            strArgument = m_wargv[i];
+            strArgument = m_wargs[i];
 
          }
          else
@@ -542,18 +542,18 @@ namespace platform
 #ifdef WINDOWS
 
 
-   wchar_t *** platform::get_pwargv()
+   wchar_t *** platform::get_pwargs()
    {
 
-      return &m_wargv;
+      return &m_wargs;
 
    }
 
 
-   wchar_t ** platform::get_wargv()
+   wchar_t ** platform::get_wargs()
    {
 
-      return *get_pwargv();
+      return *get_pwargs();
 
    }
 
@@ -586,10 +586,10 @@ namespace platform
 
 #ifdef WINDOWS
 
-      if (m_wargv)
+      if (m_wargs)
       {
 
-         return string(m_wargv[i]);
+         return string(m_wargs[i]);
 
       }
       else

@@ -96,31 +96,36 @@ namespace nanoui
 
       const Window* parent_window = window();
 
-      int anchor_size = m_ppopup->anchor_size();
-
-      if (parent_window) 
+      if (m_ppopup)
       {
 
-         int pos_y = absolute_position().y() - parent_window->position().y() + m_size.cy() / 2;
+         int anchor_size = m_ppopup->anchor_size();
 
-         if (m_ppopup->side() == Popup::Right)
+         if (parent_window)
          {
-          
-            m_ppopup->set_anchor_pos(sequence2_i32(parent_window->width() + anchor_size, pos_y));
+
+            int pos_y = absolute_position().y() - parent_window->position().y() + m_size.cy() / 2;
+
+            if (m_ppopup->side() == Popup::Right)
+            {
+
+               m_ppopup->set_anchor_pos(sequence2_i32(parent_window->width() + anchor_size, pos_y));
+
+            }
+            else
+            {
+
+               m_ppopup->set_anchor_pos(sequence2_i32(-anchor_size, pos_y));
+
+            }
 
          }
          else
          {
 
-            m_ppopup->set_anchor_pos(sequence2_i32(-anchor_size, pos_y));
+            m_ppopup->set_position(absolute_position() + sequence2_i32(width() + anchor_size + 1, m_size.cy() / 2 - anchor_size));
 
          }
-
-      }
-      else 
-      {
-
-         m_ppopup->set_position(absolute_position() + sequence2_i32(width() + anchor_size + 1, m_size.cy() / 2 - anchor_size));
 
       }
 

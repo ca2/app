@@ -2,7 +2,7 @@
 #include "context.h"
 
 
-__FACTORY_EXPORT void regular_expression_pcre2_factory(::factory::factory * pfactory)
+IMPLEMENT_FACTORY(regular_expression_pcre2)
 {
 
 

@@ -13,9 +13,9 @@
 #endif
 
 #include "acme/include/_.h"
-#ifdef	_STDIO_H_
-#error "already included?!?! WHAT?!?! (At acme:_)"
-#endif
+//#ifdef	_STDIO_H_
+//#error "already included?!?! WHAT?!?! (At acme:_)"
+//#endif
 
 
 #elif defined(__OBJECTIVE_CPP__)
@@ -32,15 +32,15 @@
 #endif
 
 #include "acme/include/objc.h"
-#if defined(_STDIO_H_)
-#error "already included?!?! WHAT?!?! (After including <acme/include/objc.h>)"
-#endif
+//#if defined(_STDIO_H_)
+//#error "already included?!?! WHAT?!?! (After including <acme/include/objc.h>)"
+//#endif
 
 
 #include "acme/include/objcpp.h"
-#if defined(_STDIO_H_)
-#error "already included?!?! WHAT?!?! (After including <acme/include/objcpp.h>)"
-#endif
+//#if defined(_STDIO_H_)
+//#error "already included?!?! WHAT?!?! (After including <acme/include/objcpp.h>)"
+//#endif
 
 
 

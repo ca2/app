@@ -31,6 +31,9 @@
 #error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(C))"
 #endif
 #include <format>
+//#ifdef   _STDIO_H_
+//#error "already included?!?! WHAT?!?! (After including <format>)"
+//#endif
 
 template < typename ITERATOR_TYPE >
 using string_natural_pointer =

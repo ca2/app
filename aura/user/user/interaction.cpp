@@ -9443,6 +9443,13 @@ namespace user
       interaction::_child_from_point(const ::point_i32 & point, const ::user::interaction_array * pinteractionaExclude)
    {
 
+      if(::is_null(window()))
+      {
+       
+         return nullptr;
+         
+      }
+         
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;

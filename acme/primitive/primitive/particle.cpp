@@ -4,6 +4,8 @@
 #include "factory.h"
 #include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"
+#include "acme/filesystem/file/exception.h"
+#include "acme/filesystem/file/memory_file.h"
 #include "acme/handler/extended_topic.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -2666,6 +2668,75 @@ CLASS_DECL_ACME ::allocator::accessor * __call__add_referer(const ::reference_re
 
 
 #endif
+
+
+memory_file_pointer particle::create_memory_file()
+{
+
+   return __create_new< ::memory_file >();
+
+}
+
+
+
+memory_file_pointer particle::create_memory_file(::memory_base& memory)
+{
+
+   return __allocate< ::memory_file >(memory);
+
+}
+
+
+memory_file_pointer particle::create_memory_file(const ::block& block)
+{
+
+   return __allocate< ::memory_file >(block);
+
+}
+
+
+memory_file_pointer particle::create_memory_file_as_copy(const memory& memory)
+{
+
+   return __allocate< ::memory_file >(__allocate< ::memory >(memory));
+
+}
+
+
+memory_file_pointer particle::create_memory_file_by_reading(::file::file* pfile)
+{
+
+   auto pmemoryfile = create_memory_file();
+
+   auto left = pfile->right_size();
+
+   if (left > UINTPTR_MAX)
+   {
+
+      throw ::exception(error_no_memory);
+
+   }
+
+   auto ptrleft = (::memsize)left;
+
+   pmemoryfile->full_data_set_size(ptrleft);
+
+   auto amountRead = pfile->read(pmemoryfile->full_data());
+
+   if (amountRead != pmemoryfile->full_data_size())
+   {
+
+      throw ::file::exception(error_failed, { e_error_code_type_unknown, -1 }, pfile->m_path, pfile->m_eopen, "Read bytes less than recorded left bytes");
+
+   }
+
+   //pmemoryfile->m_pbyte = pmemoryfile->data();
+
+   //pmemoryfile->m_memsize = (memsize) pmemoryfile->size();
+
+   return pmemoryfile;
+
+}
 
 
 

@@ -340,12 +340,12 @@ public:
 
 //auto __create_memory_stream() { return ::memory_stream(; }
 
-CLASS_DECL_ACME memory_file_pointer create_memory_file();
-CLASS_DECL_ACME memory_file_pointer create_memory_file(::memory_base & memory);
-CLASS_DECL_ACME memory_file_pointer create_memory_file(const ::block & block);
-CLASS_DECL_ACME memory_file_pointer create_memory_file_as_copy(const memory & memory);
-CLASS_DECL_ACME memory_file_pointer create_memory_file_by_reading(::file::file * pfile);
-
+//CLASS_DECL_ACME memory_file_pointer create_memory_file();
+//CLASS_DECL_ACME memory_file_pointer create_memory_file(::memory_base & memory);
+//CLASS_DECL_ACME memory_file_pointer create_memory_file(const ::block & block);
+//CLASS_DECL_ACME memory_file_pointer create_memory_file_as_copy(const memory & memory);
+//CLASS_DECL_ACME memory_file_pointer create_memory_file_by_reading(::file::file * pfile);
+//
 
 
 

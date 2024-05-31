@@ -3520,8 +3520,6 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
 
    }
 
-   property_set & set = payloadFile["http_set"].property_set_reference();
-   
    auto pget = __create_new < ::nano::http::get >();
    
    pget->m_strUrl = path;
@@ -3529,12 +3527,14 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
    pget->m_timeSyncTimeout = 5_hour;
 
    context()->sync(pget);
-   
+
    auto pmemoryfile = create_memory_file();
    
    *pmemoryfile->get_primitive_memory() = pget->m_memory;
    
-   set = pget->m_setOut;
+  /// property_set& set = payloadFile["http_set"].property_set_reference();
+
+   pmemoryfile->payload("http_set") = ::transfer(pget->m_setOut);
    //{
 
    //   return ::error_failed;

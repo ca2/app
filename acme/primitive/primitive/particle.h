@@ -727,6 +727,21 @@ public:
    virtual void process_owned_procedure_list(::procedure_list & procedurelist, bool & bHandled);
 
 
+   virtual memory_file_pointer create_memory_file();
+
+
+   virtual memory_file_pointer create_memory_file(::memory_base& memory);
+
+
+   virtual memory_file_pointer create_memory_file(const ::block& block);
+   
+
+   virtual memory_file_pointer create_memory_file_as_copy(const memory& memory);
+   
+
+   virtual memory_file_pointer create_memory_file_by_reading(::file::file* pfile);
+
+
    //template < typename T, typename ...Args >
    //inline ::pointer < T > __call__allocate(Args &&... args);
 

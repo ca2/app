@@ -904,72 +904,66 @@ memory_file & memory_file::operator = (const memory_file & file)
 }
 
 
-CLASS_DECL_ACME memory_file_pointer create_memory_file()
-{
-   
-   return __allocate< ::memory_file >(); 
-
-}
 
 
-CLASS_DECL_ACME memory_file_pointer create_memory_file(::memory_base & memory)
-{
-   
-   return __allocate< ::memory_file >(memory); 
-
-}
-
-
-CLASS_DECL_ACME memory_file_pointer create_memory_file(const ::block & block)
-{
-   
-   return __allocate< ::memory_file >(block); 
-
-}
-
-
-CLASS_DECL_ACME memory_file_pointer create_memory_file_as_copy(const memory & memory) 
-{
-   
-   return __allocate< ::memory_file >(__allocate< ::memory >(memory)); 
-
-}
-
-
-CLASS_DECL_ACME memory_file_pointer create_memory_file_by_reading(::file::file * pfile)
-{
-
-   auto pmemoryfile = create_memory_file();
-
-   auto left = pfile->right_size();
-
-   if (left > UINTPTR_MAX)
-   {
-
-      throw ::exception(error_no_memory);
-
-   }
-
-   auto ptrleft = (::memsize)left;
-
-   pmemoryfile->full_data_set_size(ptrleft);
-
-   auto amountRead = pfile->read(pmemoryfile->full_data());
-
-   if (amountRead != pmemoryfile->full_data_size())
-   {
-
-      throw ::file::exception(error_failed, { e_error_code_type_unknown, -1 }, pfile->m_path, pfile->m_eopen, "Read bytes less than recorded left bytes");
-
-   }
-
-   //pmemoryfile->m_pbyte = pmemoryfile->data();
-
-   //pmemoryfile->m_memsize = (memsize) pmemoryfile->size();
-
-   return pmemoryfile;
-
-}
-
+//CLASS_DECL_ACME memory_file_pointer create_memory_file(::memory_base & memory)
+//{
+//   
+//   return __allocate< ::memory_file >(memory); 
+//
+//}
+//
+//
+//CLASS_DECL_ACME memory_file_pointer create_memory_file(const ::block & block)
+//{
+//   
+//   return __allocate< ::memory_file >(block); 
+//
+//}
+//
+//
+//CLASS_DECL_ACME memory_file_pointer create_memory_file_as_copy(const memory & memory) 
+//{
+//   
+//   return __allocate< ::memory_file >(__allocate< ::memory >(memory)); 
+//
+//}
+//
+//
+//CLASS_DECL_ACME memory_file_pointer create_memory_file_by_reading(::file::file * pfile)
+//{
+//
+//   auto pmemoryfile = create_memory_file();
+//
+//   auto left = pfile->right_size();
+//
+//   if (left > UINTPTR_MAX)
+//   {
+//
+//      throw ::exception(error_no_memory);
+//
+//   }
+//
+//   auto ptrleft = (::memsize)left;
+//
+//   pmemoryfile->full_data_set_size(ptrleft);
+//
+//   auto amountRead = pfile->read(pmemoryfile->full_data());
+//
+//   if (amountRead != pmemoryfile->full_data_size())
+//   {
+//
+//      throw ::file::exception(error_failed, { e_error_code_type_unknown, -1 }, pfile->m_path, pfile->m_eopen, "Read bytes less than recorded left bytes");
+//
+//   }
+//
+//   //pmemoryfile->m_pbyte = pmemoryfile->data();
+//
+//   //pmemoryfile->m_memsize = (memsize) pmemoryfile->size();
+//
+//   return pmemoryfile;
+//
+//}
+//
 
 

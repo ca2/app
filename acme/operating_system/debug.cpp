@@ -157,7 +157,7 @@ CLASS_DECL_ACME void output_error_message(const ::scoped_string & strMessagePara
 }
 
 
-void output_debug_string_format(const char* pszFormat, ...)
+void output_debug_string_formatf(const char* pszFormat, ...)
 {
 
    ASSERT(is_string_ok(pszFormat));

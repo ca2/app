@@ -33,7 +33,7 @@ string _hex_color(const ::color::color & color)
 inline ::string as_string(const ::color::color & color)
 {
 
-   return ::string_format("%f %f %f %f", color.f32_red(), color.f32_green(), color.f32_blue(), color.f32_opacity());
+   return ::string_formatf("%f %f %f %f", color.f32_red(), color.f32_green(), color.f32_blue(), color.f32_opacity());
 
 }
 

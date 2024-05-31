@@ -30,7 +30,7 @@
 #ifdef   _STDIO_H_
 #error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(C))"
 #endif
-
+#include <format>
 
 template < typename ITERATOR_TYPE >
 using string_natural_pointer =
@@ -1339,7 +1339,7 @@ public:
    string_base & append_formatf_arguments(const CHARACTER * pszFormat, va_list args);
 
    
-#if defined(__STD_FORMAT__)
+//#if defined(__STD_FORMAT__)
 
    template<typename... Ts>
    string_base & format(const ::std::format_string<Ts...> fmt, Ts&&... args)
@@ -1358,7 +1358,7 @@ public:
    }
 
    
-#endif
+//#endif
 
    //void FormatMessage(const CHARACTER * pszFormat, ...);
 

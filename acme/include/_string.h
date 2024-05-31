@@ -15,7 +15,7 @@ CLASS_DECL_ACME void output_error_message(const ::scoped_string & strMessage, co
 CLASS_DECL_ACME void output_debug_string(const ::scoped_string & str);
 CLASS_DECL_ACME void output_debug_string_flush();
 ///CLASS_DECL_ACME void output_debug_string(const ::wide_character * psz);
-CLASS_DECL_ACME void output_debug_string_format(const char* pszFormat, ...);
+CLASS_DECL_ACME void output_debug_string_formatf(const char* pszFormat, ...);
 
 CLASS_DECL_ACME ::string as_string(const ::e_status & estatus);
 

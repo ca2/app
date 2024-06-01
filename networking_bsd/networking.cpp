@@ -3347,7 +3347,7 @@ namespace networking_bsd
       else
       {
 
-         if (lookup_ipv6(paddress, strAddress))
+         if (this->has_ip6_internet() && lookup_ipv6(paddress, strAddress))
          {
 
             return true;

@@ -1588,13 +1588,13 @@ namespace experience
             }
 
          }
-         else if(windowing()->is_sandboxed())
-         {
-            
-            m_bWindowFrame = false;
-            
-         }
-         else
+//         else if(windowing()->is_sandboxed())
+//         {
+//            
+//            m_bWindowFrame = false;
+//            
+//         }
+//         else
          {
 
             m_bWindowFrame = get_parent() == nullptr || wfi_has_up_down();

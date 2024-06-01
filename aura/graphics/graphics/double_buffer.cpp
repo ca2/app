@@ -137,7 +137,7 @@ namespace graphics
 
          }
 
-         information() << "double_buffer::_on_begin_draw Going to create image : " << sizeImage;
+         debug() << "double_buffer::_on_begin_draw Going to create image : " << sizeImage;
 
          pimage->create(sizeImage);
 
@@ -150,7 +150,7 @@ namespace graphics
 
          }
 
-         information() << "double_buffer::_on_begin_draw Created image : " << sizeImage;
+         debug() << "double_buffer::_on_begin_draw Deferred image Creation/Update : " << sizeImage;
 
          auto pgraphics = pimage->g();
 

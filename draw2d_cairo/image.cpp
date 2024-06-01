@@ -99,7 +99,7 @@ namespace draw2d_cairo
    void image::create(const ::size_i32 & size, ::enum_flag eflagCreate, int iGoodStride, bool bPreserve)
    {
 
-      information() << "draw2d_cairo::image::create : " << size;
+      debug() << "draw2d_cairo::image::create : " << size;
 
       if (m_pbitmap.is_set()
             && m_pbitmap->get_os_data() != nullptr
@@ -108,7 +108,7 @@ namespace draw2d_cairo
             && size == m_sizeRaw)
       {
 
-         information() << "draw2d_cairo::image::create seems already ok ";
+         debug() << "draw2d_cairo::image::create seems already ok ";
 
          //return true;
 

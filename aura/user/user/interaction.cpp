@@ -6207,7 +6207,7 @@ namespace user
          else
          {
 
-            information() << "_000TopCallOnLayout : " << strType;
+            debug() << "_000TopCallOnLayout : " << strType;
 
          }
 

@@ -392,6 +392,9 @@ __FACTORY_IMPORT void TOKEN_CONCATENATE(name, _factory)(::factory::factory * pfa
 #define IMPLEMENT_FACTORY(name) \
 __FACTORY_EXPORT void TOKEN_CONCATENATE(name, _factory)(::factory::factory * pfactory)
 
+#define CALL_FACTORY(name) \
+__FACTORY_EXPORT void TOKEN_CONCATENATE(name, _factory)(pfactory)
+
 
 #if defined(MACOS) || defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(__BSD__)
 #define IS_DESKTOP_SYSTEM() (true)

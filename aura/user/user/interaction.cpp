@@ -17659,9 +17659,9 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       if (!puserinteraction)
       {
 
-         //return false;
+         return ;
 
-         throw ::exception(error_wrong_state);
+         //throw ::exception(error_wrong_state);
 
       }
 
@@ -17670,7 +17670,8 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       if (!pprimitiveimpl)
       {
 
-         throw ::exception(error_null_pointer);
+         return;
+         //throw ::exception(error_null_pointer);
 
       }
 
@@ -25346,8 +25347,17 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
             if (!pitemOldHover)
             {
-
-               track_mouse_leave();
+               
+               try
+               {
+                  
+                  track_mouse_leave();
+                  
+               }
+               catch(...)
+               {
+                  
+               }
 
             }
 

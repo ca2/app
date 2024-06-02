@@ -213,6 +213,8 @@ namespace userfs
             //   return;
 
             //}
+            
+            
 
             auto & path = (*m_pitema)[psubitem->m_pitem->m_iItem]->final_path_reference();
 

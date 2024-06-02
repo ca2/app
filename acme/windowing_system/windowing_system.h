@@ -20,6 +20,10 @@ namespace windowing_system
         windowing_system();
         ~windowing_system() override;
 
+
+        void on_initialize_particle() override;
+
+
         virtual ::e_status defer_initialize_windowing_system();
         virtual ::e_status initialize_windowing_system();
         virtual void * get_display();

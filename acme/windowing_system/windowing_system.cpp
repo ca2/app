@@ -25,6 +25,16 @@ namespace windowing_system
     }
 
 
+   void windowing_system::on_initialize_particle()
+   {
+
+      ::acme::department::on_initialize_particle();
+
+      defer_create_synchronization();
+
+   }
+
+
     ::e_status windowing_system::defer_initialize_windowing_system()
     {
 

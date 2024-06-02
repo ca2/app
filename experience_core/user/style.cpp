@@ -13,6 +13,7 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/draw2d/brush.h"
+#include "aura/user/user/frame.h"
 #include "base/user/simple/scroll_bar.h"
 #include "base/user/user/tab.h"
 #include "base/user/user/tab_data.h"

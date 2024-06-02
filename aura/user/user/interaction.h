@@ -2388,7 +2388,7 @@ namespace user
       virtual ::item_pointer update_hover(::message::mouse * pmouse, e_zorder ezorder);
       virtual ::item_pointer update_hover_according_to_last_hover_update(e_zorder ezorder);
       //virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder);
-
+      virtual void on_update_hover(::item * pitem);
 
       virtual bool is_mouse_hover() const;
 

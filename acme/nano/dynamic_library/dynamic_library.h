@@ -32,8 +32,15 @@ namespace nano
 
          ~dynamic_library() override;
 
+         
+         virtual ::string get_module_path(library_t * plibrary);
 
-         virtual bool is_loaded(const char *pszPath);
+
+         virtual ::string get_module_path_by_name(const char *pszName);
+
+         
+         virtual library_t * get_module_by_name(const char * pszName);
+
 
          virtual library_t *touch(const ::file::path &path, string &strMessage);
 

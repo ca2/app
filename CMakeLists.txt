@@ -26,12 +26,10 @@ add_subdirectory(compress_zlib)
 add_subdirectory(folder_zip)
 add_subdirectory(database_sqlite3)
 add_subdirectory(nano_archive_libarchive)
-add_subdirectory(regular_expression_pcre2)
-
 if(${LINUX})
     add_subdirectory(nano_idn_libidn)
 endif()
-
+add_subdirectory(regular_expression_pcre2)
 
 
 if(INCLUDE_DRAW2D_CAIRO)

@@ -57,8 +57,6 @@ void api_client::defer_api()
 
          }
          
-         m_papi->m_bAuthenticating = true;
-
          //::file::path pathProfile;
 
          //pathProfile = dir()->appdata() / "api" / scopedstrImplementation / (m_strProfileStore + ".network_payload");

@@ -308,6 +308,8 @@ list(APPEND library_source
         nano/account/_.h
         nano/account/account.cpp
         nano/account/account.h
+        nano/account/id.cpp
+        nano/account/id.h
         nano/account/user.cpp
         nano/account/user.h
         nano/archive/_.h
@@ -1565,6 +1567,7 @@ list(APPEND library_source
         operating_system/parallelization.h
         operating_system/pipe.cpp
         operating_system/pipe.h
+        #operating_system/posix/_null_nano_dynamic_library_dl.cpp
         operating_system/posix/_stdio_file.h
         operating_system/posix/call_stack.cpp
         operating_system/posix/mq_base.h
@@ -2762,9 +2765,7 @@ if (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-        nano/account/id.cpp
-        nano/account/id.h)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
@@ -2843,8 +2844,13 @@ elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
     endif ()
 
 
-    target_link_libraries(${PROJECT_NAME} PRIVATE static_nano_dynamic_library_dl ${system_libraries} ${global_library_references})
-    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_system_libraries})
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+            ${system_libraries} ${global_library_references}
+            libstatic_nano_dynamic_library_dl.a
+    )
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE
+            ${static_system_libraries}
+    )
 
     target_link_options(${PROJECT_NAME} PRIVATE ${GLOBAL_EXTRA_LINKER_FLAGS} -Wl${GLOBAL_EXTRA_LINK_FLAGS},-z,defs)
 
@@ -2862,6 +2868,9 @@ elseif (MACOS)
 
 
 endif ()
+
+
+add_dependencies(${PROJECT_NAME} static_nano_dynamic_library_dl)
 
 
 target_link_directories(${PROJECT_NAME} PRIVATE ${LIBRARY_OUTPUT_PATH})

@@ -28,12 +28,41 @@ namespace nano
       }
 
 
-      bool dynamic_library::is_loaded(const char *pszPath)
+      ::string dynamic_library::get_module_path(library_t * plibrary)
       {
 
          throw ::interface_only();
 
-         return false;
+         return {};
+
+      }
+
+
+      ::string dynamic_library::get_module_path_by_name(const char *pszName)
+      {
+
+         auto plibrary = get_module_by_name(pszName);
+
+         if (::is_null(plibrary))
+         {
+
+            return nullptr;
+
+         }
+
+         ::string strPath = get_module_path(plibrary);
+
+         return strPath;
+
+      }
+
+
+      library_t * dynamic_library::get_module_by_name(const char * pszName)
+      {
+
+         throw ::interface_only();
+
+         return {};
 
       }
 

@@ -2843,7 +2843,7 @@ elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
     endif ()
 
 
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${system_libraries} ${global_library_references})
+    target_link_libraries(${PROJECT_NAME} PRIVATE static_nano_dynamic_library_dl ${system_libraries} ${global_library_references})
     target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_system_libraries})
 
     target_link_options(${PROJECT_NAME} PRIVATE ${GLOBAL_EXTRA_LINKER_FLAGS} -Wl${GLOBAL_EXTRA_LINK_FLAGS},-z,defs)

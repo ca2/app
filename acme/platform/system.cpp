@@ -40,6 +40,16 @@
 #include "acme/nano/speech/speech.h"
 //#include "acme/user/user/conversation.h"
 
+typedef void FUNCTION_FACTORY(::factory::factory * pfactory);
+using PFN_FACTORY = FUNCTION_FACTORY *;
+
+#if defined(LINUX)
+
+PFN_FACTORY g_pnanodynamiclibrarydl __attribute((weak)) = nullptr;
+
+DECLARE_FACTORY(nano_dynamic_library_dl);
+
+#endif
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
 CLASS_DECL_ACME void trace_category_static_init(::acme::system * psystem);
@@ -3226,7 +3236,18 @@ void system::on_application_dark_mode_change()
 void system::on_component_factory(const ::scoped_string & scopedstrComponent)
 {
 
-   
+      if(scopedstrComponent == "nano_dynamic_library")
+      {
+
+         auto pfactory = this->factory();
+
+#if defined(LINUX)
+
+         CALL_FACTORY(nano_dynamic_library_dl);
+
+#endif
+
+      }
    
    node()->on_component_factory(scopedstrComponent);
    

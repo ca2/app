@@ -33,7 +33,7 @@ namespace nano
          ~dynamic_library() override;
 
 
-         virtual bool is_loaded(const char *pszPath);
+         virtual ::string _if_loaded_get_path(const char *pszPath);
 
          virtual library_t *touch(const ::file::path &path, string &strMessage);
 

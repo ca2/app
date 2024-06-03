@@ -45,9 +45,7 @@ using PFN_FACTORY = FUNCTION_FACTORY *;
 
 #if defined(LINUX)
 
-PFN_FACTORY g_pnanodynamiclibrarydl __attribute((weak)) = nullptr;
-
-DECLARE_FACTORY(nano_dynamic_library_dl);
+extern "C" void nano_dynamic_library_dl_factory(::factory::factory * pfactory);
 
 #endif
 
@@ -3243,7 +3241,9 @@ void system::on_component_factory(const ::scoped_string & scopedstrComponent)
 
 #if defined(LINUX)
 
-         CALL_FACTORY(nano_dynamic_library_dl);
+         nano_dynamic_library_dl_factory(pfactory);
+
+         return;
 
 #endif
 

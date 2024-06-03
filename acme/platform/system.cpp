@@ -40,14 +40,9 @@
 #include "acme/nano/speech/speech.h"
 //#include "acme/user/user/conversation.h"
 
-typedef void FUNCTION_FACTORY(::factory::factory * pfactory);
-using PFN_FACTORY = FUNCTION_FACTORY *;
 
-#if defined(LINUX)
+extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory);
 
-extern "C" void nano_dynamic_library_dl_factory(::factory::factory * pfactory);
-
-#endif
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
 CLASS_DECL_ACME void trace_category_static_init(::acme::system * psystem);
@@ -243,7 +238,7 @@ namespace acme
 
       auto pathTraceLevelInformation = pathCa2ConfigSystemFolder / "trace_level_information.txt";
 
-      if(platform()->has_argument("--log"))
+      if (platform()->has_argument("--log"))
       {
 
          informationf("selecting informational trace\n");
@@ -251,7 +246,7 @@ namespace acme
          etracelevel = e_trace_level_information;
 
       }
-      else if(file_exists(pathTraceLevelInformation))
+      else if (file_exists(pathTraceLevelInformation))
       {
 
          etracelevel = e_trace_level_information;
@@ -269,38 +264,38 @@ namespace acme
       //if (etracelevel > e_trace_level_debug)
       //{
 
-         auto strTraceLevel = m_pplatform->get_argument_begins_eat("--trace-level=");
+      auto strTraceLevel = m_pplatform->get_argument_begins_eat("--trace-level=");
 
-      if(strTraceLevel == "debug")
+      if (strTraceLevel == "debug")
       {
 
          etracelevel = e_trace_level_debug;
 
       }
-      else if(strTraceLevel == "information")
+      else if (strTraceLevel == "information")
       {
 
          etracelevel = e_trace_level_information;
 
       }
 
-//         for (int i = 0; i < m_pplatform->get_argument_count1(); i++)
-//         {
-//
-//            string strArg = m_pplatform->get_argument1(i);
-//
-//            if (strArg == "verbose")
-//            {
-//
-//               etracelevel = e_trace_level_information;
-//
-//               break;
-//
-//            }
-//
-//         }
+      //         for (int i = 0; i < m_pplatform->get_argument_count1(); i++)
+      //         {
+      //
+      //            string strArg = m_pplatform->get_argument1(i);
+      //
+      //            if (strArg == "verbose")
+      //            {
+      //
+      //               etracelevel = e_trace_level_information;
+      //
+      //               break;
+      //
+      //            }
+      //
+      //         }
 
-//      }
+      //      }
 
       m_plogger->m_etracelevelMinimum = etracelevel;
 
@@ -507,7 +502,7 @@ namespace acme
       if (!pfactory)
       {
 
-         fatal() <<"node_factory has failed";
+         fatal() << "node_factory has failed";
 
          throw ::exception(error_resource);
 
@@ -570,7 +565,7 @@ namespace acme
    }
 
 
-   void system::speak(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrLang, enum_gender egender)
+   void system::speak(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrLang, enum_gender egender)
    {
 
       nano()->speech()->speak(scopedstr, scopedstrLang, egender);
@@ -1233,7 +1228,7 @@ namespace acme
    ::nano::nano * system::nano()
    {
 
-      if(!m_pnano)
+      if (!m_pnano)
       {
 
          //initialize_nano_window(factory());
@@ -1253,40 +1248,40 @@ namespace acme
       throw ::interface_only();
 
    }
-//::nano::nano * system::nano()
-//{
-//
-//   if (!m_pnanohttp)
-//   {
-//
-//      initialize_nano_http(factory());
-//
-//      __construct(m_pnanohttp);
-//
-//   }
-//
-//   return m_pnanohttp;
-//
-//}
+   //::nano::nano * system::nano()
+   //{
+   //
+   //   if (!m_pnanohttp)
+   //   {
+   //
+   //      initialize_nano_http(factory());
+   //
+   //      __construct(m_pnanohttp);
+   //
+   //   }
+   //
+   //   return m_pnanohttp;
+   //
+   //}
 
 
-//   ::nano::http * system::nano_http()
-//   {
-//
-//      if (!m_pnanohttp)
-//      {
-//
-//         initialize_nano_http(factory());
-//
-//         __construct(m_pnanohttp);
-//
-//      }
-//
-//      return m_pnanohttp;
-//
-//   }
-//
-//
+   //   ::nano::http * system::nano_http()
+   //   {
+   //
+   //      if (!m_pnanohttp)
+   //      {
+   //
+   //         initialize_nano_http(factory());
+   //
+   //         __construct(m_pnanohttp);
+   //
+   //      }
+   //
+   //      return m_pnanohttp;
+   //
+   //   }
+   //
+   //
    bool system::has_audio()
    {
 
@@ -2004,7 +1999,7 @@ namespace acme
 
          ::string strApp;
 
-         if(strCommandLine.has_char())
+         if (strCommandLine.has_char())
          {
 
             information() << "system::defer_post_initial_request ***strCommandLine*** : ***" << strCommandLine << "***";
@@ -2026,54 +2021,54 @@ namespace acme
 
             for (int iArgument = 1; iArgument < m_pplatform->m_argc; )
             {
-               
+
                auto iArgumentBefore = iArgument;
 
-               if(node()->defer_consume_main_arguments(
-                                         m_pplatform->m_argc,
-                                         m_pplatform->m_args,
-                                         iArgument)
+               if (node()->defer_consume_main_arguments(
+                  m_pplatform->m_argc,
+                  m_pplatform->m_args,
+                  iArgument)
                   && iArgument > iArgumentBefore)
                {
-                
+
                   continue;
-                  
+
                }
-                  
-               if(application()->defer_consume_main_arguments(
-                                            m_pplatform->m_argc,
-                                            m_pplatform->m_args,
-                                            iArgument)
+
+               if (application()->defer_consume_main_arguments(
+                  m_pplatform->m_argc,
+                  m_pplatform->m_args,
+                  iArgument)
                   && iArgument > iArgumentBefore)
                {
-                
+
                   continue;
-                  
+
                }
-               
+
                ::string strArgument = m_pplatform->m_args[iArgument];
-               
-               if(strArgument.begins("-"))
+
+               if (strArgument.begins("-"))
                {
-                  
+
                   prequest->get_property_set()._008AddArgument(strArgument);
-                  
+
                }
                else
                {
-                  
+
                   straFiles.add(strArgument);
-                  
+
                }
-                  
+
                iArgument++;
-                  
+
             }
 
-            if(straFiles.has_elements())
+            if (straFiles.has_elements())
             {
 
-               if(straFiles.size() == 1)
+               if (straFiles.size() == 1)
                {
 
                   prequest->m_payloadFile = straFiles[0];
@@ -2432,12 +2427,12 @@ namespace acme
             background_color(::color::white);
 
          }
-         
-         if(m_pnano)
+
+         if (m_pnano)
          {
-            
+
             m_pnano->handle(ptopic, pcontext);
-            
+
          }
 
       }
@@ -2497,11 +2492,11 @@ namespace acme
    }
 
 
-//   void system::add_handler(::matter * pmatter, bool bPriority)
-//   {
-//
-//
-//   }
+   //   void system::add_handler(::matter * pmatter, bool bPriority)
+   //   {
+   //
+   //
+   //   }
 
 
    void system::add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal)
@@ -2513,14 +2508,14 @@ namespace acme
 
    void system::erase_signal_handler(::signal_handler::base * pbase)
    {
-      
+
    }
 
 
-//   void system::erase_signal_handlers(::particle * pparticle)
-//   {
-//      
-//   }
+   //   void system::erase_signal_handlers(::particle * pparticle)
+   //   {
+   //      
+   //   }
 
 
    void system::node_will_finish_launching()
@@ -2952,25 +2947,25 @@ namespace acme
    }
 
 
-//   void system::windowing_send(const ::procedure & procedure)
-//   {
-//
-//      auto pmanualresetevent = __allocate< manual_reset_event >();
-//
-//      windowing_post([pmanualresetevent, procedure]()
-//                     {
-//
-//                        procedure();
-//
-//                        pmanualresetevent->set_event();
-//
-//      }
-//
-//      );
-//
-//      pmanualresetevent->wait(procedure.m_timeTimeout);
-//
-//   }
+   //   void system::windowing_send(const ::procedure & procedure)
+   //   {
+   //
+   //      auto pmanualresetevent = __allocate< manual_reset_event >();
+   //
+   //      windowing_post([pmanualresetevent, procedure]()
+   //                     {
+   //
+   //                        procedure();
+   //
+   //                        pmanualresetevent->set_event();
+   //
+   //      }
+   //
+   //      );
+   //
+   //      pmanualresetevent->wait(procedure.m_timeTimeout);
+   //
+   //   }
 
 
    void system::destroy()
@@ -3128,7 +3123,7 @@ namespace acme
 
    }
 
-   
+
    class ::manager_room * system::manager_room()
    {
 
@@ -3162,104 +3157,100 @@ namespace acme
    }
 
 
-::color::color system::background_color() const
-{
-   
-   return m_colorBackground;
-
-}
-
-
-double system::luminance() const
-{
-   
-   return m_dLuminance;
-
-}
-
-
-void system::background_color(const ::color::color & color)
-{
-
-   if (m_colorBackground == color)
+   ::color::color system::background_color() const
    {
 
-      return;
+      return m_colorBackground;
 
    }
 
-   m_colorBackground = color;
 
-   m_dLuminance = m_colorBackground.get_luminance();
-
-   set_dark_mode(m_dLuminance < 0.5);
-
-}
-
-
-void system::set_dark_mode(bool bDark)
-{
-
-   m_bDarkMode = bDark;
-
-   if (m_bDarkMode)
+   double system::luminance() const
    {
 
-      ::acme::get()->platform()->informationf("background_color :: Dark\n");
-
-   }
-   else
-   {
-
-      ::acme::get()->platform()->informationf("background_color :: Lite\n");
+      return m_dLuminance;
 
    }
 
-   on_application_dark_mode_change();
-}
+
+   void system::background_color(const ::color::color & color)
+   {
+
+      if (m_colorBackground == color)
+      {
+
+         return;
+
+      }
+
+      m_colorBackground = color;
+
+      m_dLuminance = m_colorBackground.get_luminance();
+
+      set_dark_mode(m_dLuminance < 0.5);
+
+   }
 
 
-bool system::dark_mode() const
-{
-   
-   return m_bDarkMode;
+   void system::set_dark_mode(bool bDark)
+   {
 
-}
+      m_bDarkMode = bDark;
+
+      if (m_bDarkMode)
+      {
+
+         ::acme::get()->platform()->informationf("background_color :: Dark\n");
+
+      }
+      else
+      {
+
+         ::acme::get()->platform()->informationf("background_color :: Lite\n");
+
+      }
+
+      on_application_dark_mode_change();
+   }
 
 
-void system::on_application_dark_mode_change()
-{
-}
-   
-void system::on_component_factory(const ::scoped_string & scopedstrComponent)
-{
+   bool system::dark_mode() const
+   {
 
-      if(scopedstrComponent == "nano_dynamic_library")
+      return m_bDarkMode;
+
+   }
+
+
+   void system::on_application_dark_mode_change()
+   {
+   }
+
+   void system::on_component_factory(const ::scoped_string & scopedstrComponent)
+   {
+
+      if (scopedstrComponent == "nano_dynamic_library")
       {
 
          auto pfactory = this->factory();
 
-#if defined(LINUX)
-
-         nano_dynamic_library_dl_factory(pfactory);
+         nano_dynamic_library_factory(pfactory);
 
          return;
 
-#endif
-
       }
-   
-   node()->on_component_factory(scopedstrComponent);
-   
-}
+
+      node()->on_component_factory(scopedstrComponent);
+
+   }
 
    ::windowing_system::windowing_system * system::windowing_system()
    {
 
-return m_pwindowingsystem;
+      return m_pwindowingsystem;
 
    }
-   
+
 
 } // namespace acme
 

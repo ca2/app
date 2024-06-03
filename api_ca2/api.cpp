@@ -95,7 +95,7 @@ namespace api_ca2
 
       m_bWaitingResponseFromUser = true;
 
-      phyperlink->run();
+      m_phyperlinkPreLoginScreen->run();
 
       m_eventResponse.ResetEvent();
 
@@ -116,7 +116,7 @@ namespace api_ca2
 
             m_timeLastNotifyOnPreLoginScreen.Now();
 
-            phyperlink->run();
+            m_phyperlinkPreLoginScreen->run();
 
          }
 

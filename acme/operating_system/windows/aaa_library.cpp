@@ -8,8 +8,16 @@
 #include "acme/operating_system/windows_common/_string.h"
 
 
-namespace platform
+namespace windows
 {
+
+
+namespace nano
+{
+
+
+   namespace dynamic_library
+   {
 
 
    void* platform::operating_system_library_open(const ::file::path & pathParam, string& strMessage)

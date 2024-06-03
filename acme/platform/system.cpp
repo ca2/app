@@ -3225,6 +3225,8 @@ void system::on_application_dark_mode_change()
    
 void system::on_component_factory(const ::scoped_string & scopedstrComponent)
 {
+
+   
    
    node()->on_component_factory(scopedstrComponent);
    

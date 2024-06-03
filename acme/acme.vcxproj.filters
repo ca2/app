@@ -406,6 +406,39 @@
     <Filter Include="Header Files\nano\shell">
       <UniqueIdentifier>{eb77aa54-5204-419c-ba29-021579f40cc2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\operating_system\windows\nano\dynamic_library">
+      <UniqueIdentifier>{546d7de7-1e6d-47df-bcff-f488010ebb14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano\dynamic_library">
+      <UniqueIdentifier>{93625460-ca0d-4fee-b145-56f6e3748c54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nano\dynamic_library">
+      <UniqueIdentifier>{984c9105-6a9e-48f7-942f-cfc63879da2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\windows\nano\dynamic_library">
+      <UniqueIdentifier>{028aaec9-6ff4-4fa5-bbd8-bd50a3ad7131}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nano\idn">
+      <UniqueIdentifier>{638fa9d1-cc11-4669-8d92-77f070702751}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano\idn">
+      <UniqueIdentifier>{9d3a0d9e-cadf-46ae-b43c-4a8c13b600f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano\account">
+      <UniqueIdentifier>{36f6764b-ef2d-4b7c-9036-735a0e217bcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nano\account">
+      <UniqueIdentifier>{132d5ce2-2ae5-4fb2-9f16-f1c4b33d8697}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operating_system\windows_common\nano\idn">
+      <UniqueIdentifier>{52929d65-f769-479c-ba78-4c25f49bbd85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\windows_common\nano">
+      <UniqueIdentifier>{8f3895af-1566-498f-8e4c-f9d2fb884240}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\windows_common\nano\idn">
+      <UniqueIdentifier>{107ae780-e40d-49ba-a772-8d9c2a304677}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -3750,6 +3783,36 @@
     <ClInclude Include="nano\shell\_.h">
       <Filter>Header Files\nano\shell</Filter>
     </ClInclude>
+    <ClInclude Include="nano\dynamic_library\dynamic_library.h">
+      <Filter>Header Files\nano\dynamic_library</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano\dynamic_library\dynamic_library.h">
+      <Filter>Header Files\operating_system\windows\nano\dynamic_library</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\dynamic_library\_.h">
+      <Filter>Header Files\nano\dynamic_library</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\idn\_.h">
+      <Filter>Header Files\nano\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\idn\idn.h">
+      <Filter>Header Files\nano\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\account\_.h">
+      <Filter>Header Files\nano\account</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\account\account.h">
+      <Filter>Header Files\nano\account</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\account\id.h">
+      <Filter>Header Files\nano\account</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\account\user.h">
+      <Filter>Header Files\nano\account</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\nano\idn\idn.h">
+      <Filter>Header Files\operating_system\windows_common\nano\idn</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -4358,9 +4421,6 @@
     <ClCompile Include="exception\no_memory.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\library.cpp">
-      <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\windows\message_box.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
@@ -4681,9 +4741,6 @@
     </ClCompile>
     <ClCompile Include="memory\aaa_string_memory_allocate.cpp">
       <Filter>Source Files\memory</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows_common\idn.cpp">
-      <Filter>Source Files\operating_system\windows_common</Filter>
     </ClCompile>
     <ClCompile Include="primitive\time\time.cpp">
       <Filter>Source Files\primitive\time</Filter>
@@ -5138,9 +5195,6 @@
     <ClCompile Include="primitive\primitive\quantum.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\nano\http\_http.cpp">
-      <Filter>Source Files\operating_system\windows\nano\http</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\windows\nano\http\hinternet.cpp">
       <Filter>Source Files\operating_system\windows\nano\http</Filter>
     </ClCompile>
@@ -5254,6 +5308,27 @@
     </ClCompile>
     <ClCompile Include="nano\shell\shell.cpp">
       <Filter>Source Files\nano\shell</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\dynamic_library\dynamic_library.cpp">
+      <Filter>Source Files\nano\dynamic_library</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\nano\dynamic_library\dynamic_library.cpp">
+      <Filter>Source Files\operating_system\windows\nano\dynamic_library</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\idn\idn.cpp">
+      <Filter>Source Files\nano\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\account\account.cpp">
+      <Filter>Source Files\nano\account</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\account\id.cpp">
+      <Filter>Source Files\nano\account</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\account\user.cpp">
+      <Filter>Source Files\nano\account</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\nano\idn\idn.cpp">
+      <Filter>Source Files\operating_system\windows_common\nano\idn</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

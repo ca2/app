@@ -5,7 +5,6 @@
 
 #include "acme/platform/department.h"
 
-struct passwd;
 
 namespace nano
 {
@@ -34,7 +33,7 @@ namespace nano
          ~dynamic_library() override;
 
 
-         virtual string is_loaded(const char *pszPath);
+         virtual bool is_loaded(const char *pszPath);
 
          virtual library_t *touch(const ::file::path &path, string &strMessage);
 

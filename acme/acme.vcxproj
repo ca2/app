@@ -1163,13 +1163,21 @@
     <ClInclude Include="memory\typed.h" />
     <ClInclude Include="memory\typed_memory.h" />
     <ClInclude Include="memory\_.h" />
+    <ClInclude Include="nano\account\account.h" />
+    <ClInclude Include="nano\account\id.h" />
+    <ClInclude Include="nano\account\user.h" />
+    <ClInclude Include="nano\account\_.h" />
     <ClInclude Include="nano\archive\archive.h" />
     <ClInclude Include="nano\archive\_.h" />
     <ClInclude Include="nano\compress\compress.h" />
     <ClInclude Include="nano\compress\_.h" />
+    <ClInclude Include="nano\dynamic_library\dynamic_library.h" />
+    <ClInclude Include="nano\dynamic_library\_.h" />
     <ClInclude Include="nano\http\get.h" />
     <ClInclude Include="nano\http\http.h" />
     <ClInclude Include="nano\http\_.h" />
+    <ClInclude Include="nano\idn\idn.h" />
+    <ClInclude Include="nano\idn\_.h" />
     <ClInclude Include="nano\shell\shell.h" />
     <ClInclude Include="nano\shell\_.h" />
     <ClInclude Include="nano\speech\speech.h" />
@@ -1195,6 +1203,7 @@
     <ClInclude Include="nano\_.h" />
     <ClInclude Include="operating_system\errno.h" />
     <ClInclude Include="operating_system\windows\heap_allocator.h" />
+    <ClInclude Include="operating_system\windows\nano\dynamic_library\dynamic_library.h" />
     <ClInclude Include="operating_system\windows\nano\http\hinternet.h" />
     <ClInclude Include="operating_system\windows\nano\http\http.h" />
     <ClInclude Include="operating_system\windows\nano\http\connect.h" />
@@ -1212,6 +1221,7 @@
     <ClInclude Include="operating_system\windows\nano\user\object.h" />
     <ClInclude Include="operating_system\windows\nano\user\pen.h" />
     <ClInclude Include="operating_system\windows\nano\user\window.h" />
+    <ClInclude Include="operating_system\windows_common\nano\idn\idn.h" />
     <ClInclude Include="operating_system\x11\display_lock.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
@@ -1600,10 +1610,15 @@
     <ClCompile Include="memory\plex_heap_alloc.cpp" />
     <ClCompile Include="memory\plex_heap_alloc_array.cpp" />
     <ClCompile Include="memory\plex_heap_alloc_sync.cpp" />
+    <ClCompile Include="nano\account\account.cpp" />
+    <ClCompile Include="nano\account\id.cpp" />
+    <ClCompile Include="nano\account\user.cpp" />
     <ClCompile Include="nano\archive\archive.cpp" />
     <ClCompile Include="nano\compress\compress.cpp" />
+    <ClCompile Include="nano\dynamic_library\dynamic_library.cpp" />
     <ClCompile Include="nano\http\get.cpp" />
     <ClCompile Include="nano\http\http.cpp" />
+    <ClCompile Include="nano\idn\idn.cpp" />
     <ClCompile Include="nano\nano.cpp" />
     <ClCompile Include="nano\shell\shell.cpp" />
     <ClCompile Include="nano\speech\speech.cpp" />
@@ -1688,16 +1703,15 @@
     <ClInclude Include="operating_system\aaa_operating_system_summary.h" />
     <ClInclude Include="operating_system\summary.h" />
     <ClInclude Include="operating_system\windows\find_file.h" />
-    <ClCompile Include="operating_system\windows\library.cpp" />
     <ClCompile Include="operating_system\windows\message_box.cpp" />
     <ClCompile Include="operating_system\windows\message_loop.cpp" />
+    <ClCompile Include="operating_system\windows\nano\dynamic_library\dynamic_library.cpp" />
     <ClCompile Include="operating_system\windows\nano\http\hinternet.cpp" />
     <ClCompile Include="operating_system\windows\nano\http\http.cpp" />
     <ClCompile Include="operating_system\windows\nano\http\connect.cpp" />
     <ClCompile Include="operating_system\windows\nano\http\get.cpp" />
     <ClCompile Include="operating_system\windows\nano\http\request.cpp" />
     <ClCompile Include="operating_system\windows\nano\http\session.cpp" />
-    <ClCompile Include="operating_system\windows\nano\http\_http.cpp" />
     <ClCompile Include="operating_system\windows\nano\user\brush.cpp" />
     <ClCompile Include="operating_system\windows\nano\user\device.cpp" />
     <ClCompile Include="operating_system\windows\nano\user\font.cpp" />
@@ -1716,12 +1730,12 @@
     <ClCompile Include="operating_system\windows_common\find_file.cpp" />
     <ClCompile Include="operating_system\windows_common\handle.cpp" />
     <ClCompile Include="operating_system\windows_common\heap_allocator.cpp" />
-    <ClCompile Include="operating_system\windows_common\idn.cpp" />
     <ClCompile Include="operating_system\windows_common\last_error_exception.cpp" />
     <ClCompile Include="operating_system\windows_common\library.cpp" />
     <ClCompile Include="operating_system\windows_common\dll.cpp" />
     <ClCompile Include="operating_system\windows_common\file.cpp" />
     <ClCompile Include="operating_system\windows_common\memory.cpp" />
+    <ClCompile Include="operating_system\windows_common\nano\idn\idn.cpp" />
     <ClCompile Include="operating_system\windows_common\nano\user\_user.cpp" />
     <ClCompile Include="operating_system\windows_common\parallelization.cpp" />
     <ClCompile Include="operating_system\windows_common\process.cpp" />

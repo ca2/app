@@ -28,12 +28,12 @@ namespace nano
       }
 
 
-      string dynamic_library::is_loaded(const char *pszPath)
+      bool dynamic_library::is_loaded(const char *pszPath)
       {
 
          throw ::interface_only();
 
-         return {};
+         return false;
 
       }
 

@@ -93,7 +93,9 @@ namespace api_ca2
 
       m_timeLastNotifyOnPreLoginScreen.Now();
 
-      m_phyperlinkPreLoginScreen->run();
+      m_bWaitingResponseFromUser = true;
+
+      phyperlink->run();
 
       m_eventResponse.ResetEvent();
 
@@ -114,7 +116,7 @@ namespace api_ca2
 
             m_timeLastNotifyOnPreLoginScreen.Now();
 
-            m_phyperlinkPreLoginScreen->run();
+            phyperlink->run();
 
          }
 
@@ -145,8 +147,14 @@ namespace api_ca2
          set["disable_common_name_cert_check"] = true;
 
          set["headers"]["Authorization"] = "Bearer " + m_strToken;
-         set["headers"]["appstate"] = m_setProfile["appstate"];
-         set["headers"]["applogin"] = m_setProfile["applogin"];
+
+         ::string strAppState = m_setProfile["appstate"];
+
+         ::string strAppLogin = m_setProfile["applogin"];
+
+         set["headers"]["appstate"] = strAppState;
+
+         set["headers"]["applogin"] = strAppLogin;
 
          m_pcontext->m_papexcontext->http().get(strNetworkPayload, scopedstrUrl, set);
 

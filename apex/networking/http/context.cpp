@@ -2694,15 +2694,15 @@ namespace http
 
       //::pointer<message>pmessage(pmessage);
 
-      ::url_domain domain;
+      auto pdomain = __create_new < ::url_domain >();
 
       auto psystem = system();
 
       auto purl = psystem->url();
 
-      domain.create(purl->get_server(pmessageMessage->m_strUrl));
+      pdomain->create(purl->get_server(pmessageMessage->m_strUrl));
 
-      if (domain.m_strRadix == "ca2" && string_begins(purl->get_object(pmessageMessage->m_strUrl), "/matter/"))
+      if (pdomain->m_strRadix == "ca2" && string_begins(purl->get_object(pmessageMessage->m_strUrl), "/matter/"))
       {
 
          string strUrl(pmessageMessage->m_strUrl);

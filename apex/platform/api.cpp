@@ -135,6 +135,16 @@ void api::on_login_response()
 
    m_bWaitingResponseFromUser = false;
 
+   fork([this]()
+      {
+
+         save_profile();
+
+      });
+
+
+   m_eventResponse.SetEvent();
+
    if (!m_bAuthenticated)
    {
 
@@ -150,15 +160,12 @@ void api::on_login_response()
       }
 
    }
-
-   fork([this]()
+   else
    {
 
-      save_profile();
+      m_bAuthenticating = false;
 
-   });
-
-   m_eventResponse.SetEvent();
+   }
 
 }
 

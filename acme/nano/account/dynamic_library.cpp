@@ -1,0 +1,104 @@
+// Created by camilo on 2024-06-02 16:56 <3ThomasBorregaardSorensen!!
+// From idn by camilo on 2024-06-02 17:58 <3ThomasBorregaardSorensen!!
+// Merged from acme/operating_system/linux/library.cpp by
+// camilo on 2024-06-02 17:58 <3ThomasBorregaardSorensen!!
+#include "framework.h"
+#include "dynamic_library.h"
+#include "acme/exception/interface_only.h"
+
+
+namespace nano
+{
+
+
+   namespace dynamic_library
+   {
+
+
+      dynamic_library::dynamic_library()
+      {
+
+      }
+
+
+      dynamic_library::~dynamic_library()
+      {
+
+
+      }
+
+
+      string dynamic_library::is_loaded(const char *pszPath)
+      {
+
+         throw ::interface_only();
+
+         return {};
+
+      }
+
+
+      void * dynamic_library::touch(const ::file::path & path, string &strMessage)
+      {
+
+         throw ::interface_only();
+
+         return nullptr;
+
+      }
+
+
+      void *dynamic_library::open(const ::file::path & path, string &strMessage)
+      {
+
+         throw ::interface_only();
+
+         return nullptr;
+
+      }
+
+
+      void * dynamic_library::open_on_context(const ::file::path & path, string &strMessage)
+      {
+
+         throw ::interface_only();
+
+         return nullptr;
+
+      }
+
+
+      bool dynamic_library::close(void *plibrary)
+      {
+
+         throw ::interface_only();
+         return false;
+
+      }
+
+
+      void *dynamic_library::raw_get(void *plibrary, const ::scoped_string & scopedstrEntryName)
+      {
+
+         throw ::interface_only();
+
+         return nullptr;
+
+
+      }
+
+
+      struct passwd * dynamic_library::__getpwuid(const char * pszUsername)
+      {
+
+
+      }
+
+
+   } // dynamic_library
+
+
+} // nano
+
+
+

@@ -1,10 +1,10 @@
+// url_domain_base based on particle for once upon a time globals by
+// camilo on 204-06-03 17:50 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
-
-
-
-class CLASS_DECL_ACME url_domain_base
+class CLASS_DECL_ACME url_domain_base :
+   virtual public ::particle
 {
 public:
 
@@ -35,7 +35,7 @@ public:
    void create(const ::scoped_string & scopedstrServerName);
 
 
-   static string get_name(const ::scoped_string & scopedstrServerName);
+   virtual string get_name(const ::scoped_string & scopedstrServerName);
 
 
 };

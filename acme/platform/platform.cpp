@@ -5,6 +5,8 @@
 #include "simple_log.h"
 //#include "acme.h"
 #include "acme/memory/counter.h"
+#include "acme/nano/nano.h"
+#include "acme/nano/dynamic_library/dynamic_library.h"
 #include "acme/parallelization/manual_reset_event.h"
 ////#include "acme/exception/exception.h"
 #include "acme/platform/context.h"
@@ -104,7 +106,7 @@ namespace platform
 
       {
 
-         array<void *> operatingsystemlibrarya;
+         array<library_t *> operatingsystemlibrarya;
 
          for (auto & pair : m_mapLibrary)
          {
@@ -129,7 +131,7 @@ namespace platform
          for (auto & poperatingsystemlibrary : operatingsystemlibrarya)
          {
 
-            operating_system_library_close(poperatingsystemlibrary);
+            nano()->dynamic_library()->close(poperatingsystemlibrary);
 
          }
 

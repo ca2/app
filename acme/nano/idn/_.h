@@ -1,8 +1,21 @@
-//
-// Created by camilo on 6/2/24.
-//
+// Created by camilo on 2024-06-02 16:46 <3ThomasBorregaardSorensen!!
+#pragma once
 
-#ifndef _LINUX_OPERATING_SYSTEM___H
-#define _LINUX_OPERATING_SYSTEM___H
 
-#endif //_LINUX_OPERATING_SYSTEM___H
+namespace nano
+{
+
+   namespace idn
+   {
+
+
+      class idn;
+
+
+   } // namespace idn
+
+
+} // namespace nano
+
+
+

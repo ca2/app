@@ -1,22 +1,22 @@
 // Created by camilo on 2024-06-02 16:46 <3ThomasBorregaardSorensen!!
 // From idn by camilo on 2024-06-02 17:58 <3ThomasBorregaardSorensen!!
-// From dynamic_library by camilo on 2024-06-02 18:36 <3ThomasBorregaardSorensen!!
 #pragma once
+
+
+struct library_t;
 
 
 namespace nano
 {
 
-   namespace account
+   namespace dynamic_library
    {
 
 
-      class account;
-      class user;
-      class id;
+      class dynamic_library;
 
 
-   } // namespace account
+   } // namespace dynamic_library
 
 
 } // namespace nano

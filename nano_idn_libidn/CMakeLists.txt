@@ -1,13 +1,14 @@
+# From nano_archive_libarchive by camilo on 2024-06-02 17:27 <3ThomasBorregaardSorensen!!
 cmake_minimum_required(VERSION 3.16)
-project(nano_archive_libarchive CXX)
+project(nano_idn_libidn CXX)
 
 
 list(APPEND library_source
         _.cpp
         _.h
         _factory.cpp
-        nano_archive_libarchive.cpp
-        nano_archive_libarchive.h
+        nano_idn_libidn.cpp
+        nano_idn_libidn.h
         framework.cpp
         framework.h
         )
@@ -42,7 +43,7 @@ if (MSVC)
 elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
 
-    pkg_check_modules(PKGCONFIG libarchive)
+    pkg_check_modules(PKGCONFIG libidn)
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
@@ -62,7 +63,7 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
     #target_link_options(${PROJECT_NAME} PRIVATE "-Wl,-rpath=\$ORIGIN")
     target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES} ${library_references})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-    # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+    # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-idn)
 
 endif ()
 
@@ -78,7 +79,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE _nano_archive_libarchive_project)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _nano_idn_libidn_project)
 
 
 

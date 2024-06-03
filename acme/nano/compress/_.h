@@ -13,7 +13,7 @@ namespace nano
       class compress;
 
 
-   }//namespace compress
+   } //namespace compress
 
 
 } // namespace nano

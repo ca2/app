@@ -38,7 +38,7 @@ namespace nano
       }
 
 
-      void * dynamic_library::touch(const ::file::path & path, string &strMessage)
+      library_t * dynamic_library::touch(const ::file::path & path, string &strMessage)
       {
 
          throw ::interface_only();
@@ -48,7 +48,7 @@ namespace nano
       }
 
 
-      void *dynamic_library::open(const ::file::path & path, string &strMessage)
+      library_t *dynamic_library::open(const ::file::path & path, string &strMessage)
       {
 
          throw ::interface_only();
@@ -58,7 +58,7 @@ namespace nano
       }
 
 
-      void * dynamic_library::open_on_context(const ::file::path & path, string &strMessage)
+      library_t * dynamic_library::open_on_context(const ::file::path & path, string &strMessage)
       {
 
          throw ::interface_only();
@@ -68,7 +68,7 @@ namespace nano
       }
 
 
-      bool dynamic_library::close(void *plibrary)
+      bool dynamic_library::close(library_t *plibrary)
       {
 
          throw ::interface_only();
@@ -77,7 +77,7 @@ namespace nano
       }
 
 
-      void *dynamic_library::raw_get(void *plibrary, const ::scoped_string & scopedstrEntryName)
+      void *dynamic_library::raw_get(library_t *plibrary, const ::scoped_string & scopedstrEntryName)
       {
 
          throw ::interface_only();
@@ -88,17 +88,10 @@ namespace nano
       }
 
 
-      struct passwd * dynamic_library::__getpwuid(const char * pszUsername)
-      {
+   } // namespace dynamic_library
 
 
-      }
-
-
-   } // dynamic_library
-
-
-} // nano
+} // namespace nano
 
 
 

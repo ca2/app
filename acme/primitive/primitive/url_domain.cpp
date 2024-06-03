@@ -3,9 +3,10 @@
 #include "url.h"
 #include "acme/primitive/string/str.h"
 ////#include "acme/exception/exception.h"
+#include "acme/nano/nano.h"
+#include "acme/nano/idn/idn.h"
 
-
-string idn_from_punycode(const ::string & str);
+//string idn_from_punycode(const ::string & str);
 
 
 url_domain_base::url_domain_base()
@@ -269,7 +270,7 @@ void url_domain::create(const ::scoped_string & scopedstrServerName)
       
       m_strRadix.assign(m_pszRadix, m_iLenRadix);
 
-      m_strTextRadix = ::idn_from_punycode(m_strRadix);
+      m_strTextRadix = nano()->idn()->idn_from_punycode(m_strRadix);
 
    }
 
@@ -278,7 +279,7 @@ void url_domain::create(const ::scoped_string & scopedstrServerName)
 
       m_strSuffix.assign(m_pszSuffix, m_iLenSuffix);
 
-      m_strTextRadix = ::idn_from_punycode(m_strRadix);
+      m_strTextRadix = nano()->idn()->idn_from_punycode(m_strRadix);
 
    }
 
@@ -287,7 +288,7 @@ void url_domain::create(const ::scoped_string & scopedstrServerName)
 
       m_strDomain.assign(m_pszDomain, m_iLenDomain);
 
-      m_strTextRadix = ::idn_from_punycode(m_strRadix);
+      m_strTextRadix = nano()->idn()->idn_from_punycode(m_strRadix);
 
    }
 
@@ -296,7 +297,7 @@ void url_domain::create(const ::scoped_string & scopedstrServerName)
 
       m_strPrefix.assign(m_pszPrefix, m_iLenPrefix);
 
-      m_strTextRadix = ::idn_from_punycode(m_strRadix);
+      m_strTextRadix = nano()->idn()->idn_from_punycode(m_strRadix);
 
    }
 
@@ -305,7 +306,7 @@ void url_domain::create(const ::scoped_string & scopedstrServerName)
 
       m_strTopLevel.assign(m_pszTopLevel, m_iLenTopLevel);
 
-      m_strTextRadix = ::idn_from_punycode(m_strRadix);
+      m_strTextRadix = nano()->idn()->idn_from_punycode(m_strRadix);
 
    }
 
@@ -314,7 +315,7 @@ void url_domain::create(const ::scoped_string & scopedstrServerName)
 
       m_strName.assign(m_pszName, m_iLenName);
 
-      m_strTextRadix = ::idn_from_punycode(m_strRadix);
+      m_strTextRadix = nano()->idn()->idn_from_punycode(m_strRadix);
 
    }
 

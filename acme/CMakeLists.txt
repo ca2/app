@@ -305,15 +305,26 @@ list(APPEND library_source
         #   memory/string_memory_allocate.cpp
         #   memory/string_memory_allocate.h
         #   memory/string_memory_allocator.h
+        nano/account/_.h
+        nano/account/account.cpp
+        nano/account/account.h
+        nano/account/user.cpp
+        nano/account/user.h
         nano/archive/_.h
         nano/archive/archive.cpp
         nano/archive/archive.h
         nano/compress/_.h
         nano/compress/compress.cpp
         nano/compress/compress.h
+        nano/dynamic_library/_.h
+        nano/dynamic_library/dynamic_library.cpp
+        nano/dynamic_library/dynamic_library.h
         nano/http/_.h
         nano/http/http.cpp
         nano/http/http.h
+        nano/idn/_.h
+        nano/idn/idn.cpp
+        nano/idn/idn.h
         nano/http/get.cpp
         nano/http/get.h
         nano/shell/_.h
@@ -1149,6 +1160,7 @@ list(APPEND library_source
         user/_.h
         windowing/window_base.h
         windowing/window_base.cpp
+        windowing_system/_.h
         windowing_system/windowing_system.cpp
         windowing_system/windowing_system.h
         #update.h
@@ -2073,7 +2085,7 @@ if (${WIN32} OR ${UWP})
             operating_system/windows_common/find_file.h
             operating_system/windows_common/handle.cpp
             operating_system/windows_common/handle.h
-            operating_system/windows_common/idn.cpp
+            #operating_system/windows_common/idn.cpp
             operating_system/windows_common/library.cpp
             operating_system/windows_common/parallelization.cpp
             operating_system/windows_common/process.cpp
@@ -2204,7 +2216,7 @@ if (${LINUX})
             operating_system/linux/file_lock.cpp
             operating_system/linux/graphics.cpp
             #operating_system/linux/internal.h
-            operating_system/linux/library.cpp
+            #operating_system/linux/library.cpp
             operating_system/linux/linux.cpp
             operating_system/linux/linux.cpp
             operating_system/linux/linux.inl
@@ -2710,7 +2722,7 @@ if (${LINUX} OR ${FREEBSD} OR ${NETBSD} OR ${OPENBSD} OR ${APPLE} OR ${SOLARIS})
             operating_system/posix/environment.h
             operating_system/posix/file_lock.cpp
             operating_system/posix/file_lock.h
-            operating_system/posix/idn.cpp
+            #operating_system/posix/idn.cpp
             #operating_system/posix/local_memory_map.cpp
             operating_system/posix/memory.cpp
             operating_system/posix/process.cpp
@@ -2751,7 +2763,8 @@ endif ()
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source}
-        windowing_system/_.h)
+        nano/account/id.cpp
+        nano/account/id.h)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
@@ -2817,18 +2830,21 @@ elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
     if (${OPENBSD})
         #list(APPEND system_libraries z pthread iconv execinfo kvm c)
         list(APPEND system_libraries z pthread iconv kvm c)
+        list(APPEND static_system_libraries z pthread iconv kvm c)
         message(STATUS "OPENBSD acme system_libraries ${system_libraries}")
     elseif (${FREEBSD})
         list(APPEND system_libraries z dl pthread iconv execinfo)
+        list(APPEND static_system_libraries z dl pthread iconv execinfo)
         message(STATUS "FREEBSD acme system_libraries ${system_libraries}")
     else ()
         list(APPEND system_libraries z dl pthread idn)
+        list(APPEND static_system_libraries dl pthread)
         message(STATUS "ELSE acme system_libraries ${system_libraries}")
     endif ()
 
 
     target_link_libraries(${PROJECT_NAME} PRIVATE ${system_libraries} ${global_library_references})
-    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${system_libraries})
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_system_libraries})
 
     target_link_options(${PROJECT_NAME} PRIVATE ${GLOBAL_EXTRA_LINKER_FLAGS} -Wl${GLOBAL_EXTRA_LINK_FLAGS},-z,defs)
 

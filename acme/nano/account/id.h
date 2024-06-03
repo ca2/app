@@ -1,8 +1,36 @@
 //
-// Created by camilo on 6/2/24.
+// Created by camilo on 2024-06-02 20:06 <3ThomasBorregaardSorensen!!
 //
+#pragma once
 
-#ifndef _LINUX_OPERATING_SYSTEM_ID_H
-#define _LINUX_OPERATING_SYSTEM_ID_H
 
-#endif //_LINUX_OPERATING_SYSTEM_ID_H
+namespace nano
+{
+
+
+   namespace account
+   {
+
+
+      class id :
+              virtual public ::particle
+      {
+      public:
+
+
+         id();
+         ~id() override;
+
+
+         virtual bool is_equal(id * pid);
+         virtual bool is_less(id * pid);
+         virtual ::string as_string();
+
+      };
+
+
+   } // namespace account
+
+
+} // namespace nano
+

@@ -5,12 +5,14 @@
 #include "acme/constant/id.h"
 //#include "acme/constant/idpool.h"
 //#include "acme/primitive/primitive/payload.h"
+#include "acme/nano/nano.h"
+#include "acme/nano/idn/idn.h"
 #include "acme/primitive/string/str.h"
 #include "acme/platform/system.h"
 
 
-::string idn_to_punycode(const ::string & str);
-::string idn_from_punycode(const ::string & str);
+//::string idn_to_punycode(const ::string & str);
+//::string idn_from_punycode(const ::string & str);
 
 
 namespace url
@@ -1830,14 +1832,14 @@ namespace url
    string url::to_punycode(const ::string & str)
    {
 
-      return ::idn_to_punycode(str);
+      return nano()->idn()->idn_to_punycode(str);
 
    }
 
    string url::from_punycode(const ::string & str)
    {
 
-      return ::idn_from_punycode(str);
+      return nano()->idn()->idn_from_punycode(str);
 
    }
 

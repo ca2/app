@@ -43,6 +43,7 @@ namespace user
       };
 
 
+      ::atom                           m_atomImpactSystem;
       //::atom                             m_atomToolbar;
       bool                             m_bHiddenOnNotifyIcon;
 

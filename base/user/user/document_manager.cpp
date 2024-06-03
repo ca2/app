@@ -385,10 +385,10 @@ namespace user
    }
    */
 
-   void document_manager::on_add_impact_system(const ::atom & atom)
+   void document_manager::on_add_impact_system(const ::atom & atomImpactSystem)
    {
       
-      auto pimpactsystem = m_mapImpactSystem[atom];
+      auto pimpactsystem = m_mapImpactSystem[atomImpactSystem];
 
       if (!pimpactsystem)
       {
@@ -396,6 +396,8 @@ namespace user
          throw ::exception(error_wrong_state);
 
       }
+
+      pimpactsystem->m_atomImpactSystem = atomImpactSystem;
       
       pimpactsystem->initialize(this);
 

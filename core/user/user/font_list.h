@@ -102,6 +102,8 @@ namespace user
 
       virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
+      void on_update_hover(::item * pitem) override;
+
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
       bool set_sel_by_name(const string & strName) override;

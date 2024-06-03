@@ -639,6 +639,29 @@ namespace user
    }
 
 
+   void font_list::on_update_hover(::item * pitem)
+   {
+
+      ::pointer < ::write_text::font_list_item > pfontlistitem = pitem;
+
+      if (pitem && has_handler())
+      {
+
+         auto ptopic = create_topic(::id_after_change_cur_hover);
+
+         ptopic->m_puserelement = this;
+
+         ptopic->m_actioncontext = ::e_source_user;
+
+         ptopic->m_pitem = pitem;
+
+         route(ptopic);
+
+      }
+
+   }
+
+
    bool font_list::set_sel_by_name(const ::string & strName)
    {
 

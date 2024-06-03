@@ -6603,7 +6603,7 @@ namespace user
       scoped_restore(pgraphics->m_bInheritDraw);
 
       auto pszType = typeid(*this).name();
-      
+
       if(::string(pszType).case_insensitive_contains("line_layout"))
       {
          
@@ -25324,6 +25324,8 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          m_pitemHover = pitemHitTest;
 
+         on_update_hover(m_pitemHover);
+
          //m_pitemHOver->m_bAnyHoverChange = true;
 
          if (::is_item_set(m_pitemHover))
@@ -25545,6 +25547,13 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       pmouse->m_pointAbsolute = absolute_mouse_cursor_position();
 
       return update_hover(pmouse, ezorder);
+
+   }
+
+
+   void interaction::on_update_hover(::item * pitem)
+   {
+
 
    }
 

@@ -40,19 +40,12 @@
 #include "acme/nano/speech/speech.h"
 //#include "acme/user/user/conversation.h"
 
-typedef void FUNCTION_FACTORY(::factory::factory * pfactory);
-using PFN_FACTORY = FUNCTION_FACTORY *;
 
-#if defined(LINUX)
+extern "C" void nano_dynamic_library_factory(::factory::factory* pfactory);
 
-PFN_FACTORY g_pnanodynamiclibrarydl __attribute((weak)) = nullptr;
 
-DECLARE_FACTORY(nano_dynamic_library_dl);
-
-#endif
-
-CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
-CLASS_DECL_ACME void trace_category_static_init(::acme::system * psystem);
+CLASS_DECL_ACME void exception_message_box(::particle* pparticle, ::exception& exception, const ::string& strMoreDetails);
+CLASS_DECL_ACME void trace_category_static_init(::acme::system* psystem);
 CLASS_DECL_ACME void trace_category_static_term();
 
 
@@ -103,14 +96,14 @@ CLASS_DECL_ACME void trace_category_static_term();
 //extern const char * g_pszTopLevelDomainList[];
 
 
-enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::enum_message_box & emessagebox);
+enum_dialog_result message_box_for_console(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrTitle, const ::enum_message_box& emessagebox);
 
 
 
 #include "acme/_operating_system.h"
 
 
-void initialize_nano_http(::factory::factory * pfactory);
+void initialize_nano_http(::factory::factory* pfactory);
 
 
 namespace acme
@@ -245,7 +238,7 @@ namespace acme
 
       auto pathTraceLevelInformation = pathCa2ConfigSystemFolder / "trace_level_information.txt";
 
-      if(platform()->has_argument("--log"))
+      if (platform()->has_argument("--log"))
       {
 
          informationf("selecting informational trace\n");
@@ -253,7 +246,7 @@ namespace acme
          etracelevel = e_trace_level_information;
 
       }
-      else if(file_exists(pathTraceLevelInformation))
+      else if (file_exists(pathTraceLevelInformation))
       {
 
          etracelevel = e_trace_level_information;
@@ -271,38 +264,38 @@ namespace acme
       //if (etracelevel > e_trace_level_debug)
       //{
 
-         auto strTraceLevel = m_pplatform->get_argument_begins_eat("--trace-level=");
+      auto strTraceLevel = m_pplatform->get_argument_begins_eat("--trace-level=");
 
-      if(strTraceLevel == "debug")
+      if (strTraceLevel == "debug")
       {
 
          etracelevel = e_trace_level_debug;
 
       }
-      else if(strTraceLevel == "information")
+      else if (strTraceLevel == "information")
       {
 
          etracelevel = e_trace_level_information;
 
       }
 
-//         for (int i = 0; i < m_pplatform->get_argument_count1(); i++)
-//         {
-//
-//            string strArg = m_pplatform->get_argument1(i);
-//
-//            if (strArg == "verbose")
-//            {
-//
-//               etracelevel = e_trace_level_information;
-//
-//               break;
-//
-//            }
-//
-//         }
+      //         for (int i = 0; i < m_pplatform->get_argument_count1(); i++)
+      //         {
+      //
+      //            string strArg = m_pplatform->get_argument1(i);
+      //
+      //            if (strArg == "verbose")
+      //            {
+      //
+      //               etracelevel = e_trace_level_information;
+      //
+      //               break;
+      //
+      //            }
+      //
+      //         }
 
-//      }
+      //      }
 
       m_plogger->m_etracelevelMinimum = etracelevel;
 
@@ -463,7 +456,7 @@ namespace acme
    //   }
 
 
-   class ::mathematics::mathematics * system::mathematics()
+   class ::mathematics::mathematics* system::mathematics()
    {
 
       return m_pmathematics;
@@ -471,7 +464,7 @@ namespace acme
    }
 
 
-   class ::imaging * system::imaging()
+   class ::imaging* system::imaging()
    {
 
       throw ::interface_only("imaging requires aura layer or upper layer");
@@ -484,7 +477,7 @@ namespace acme
 
 
 
-   ::xml::xml * system::_xml()
+   ::xml::xml* system::_xml()
    {
 
       return nullptr;
@@ -504,12 +497,12 @@ namespace acme
 
       //information() <<"::acme::system create_os_node";
 
-      auto & pfactory = node_factory();
+      auto& pfactory = node_factory();
 
       if (!pfactory)
       {
 
-         fatal() <<"node_factory has failed";
+         fatal() << "node_factory has failed";
 
          throw ::exception(error_resource);
 
@@ -580,10 +573,10 @@ namespace acme
    }
 
 
-   ::pointer<::factory::factory> & system::node_factory()
+   ::pointer<::factory::factory>& system::node_factory()
    {
 
-      auto & pfactory = factory("acme", OPERATING_SYSTEM_NAME);
+      auto& pfactory = factory("acme", OPERATING_SYSTEM_NAME);
 
       if (!pfactory)
       {
@@ -827,7 +820,7 @@ namespace acme
    }
 
 
-   void system::erase_from_any_hook(::matter * pmatter)
+   void system::erase_from_any_hook(::matter* pmatter)
    {
 
 
@@ -842,7 +835,7 @@ namespace acme
    }
 
 
-   ::u32 system::crc32(::u32 uCrc, const ::block & block)
+   ::u32 system::crc32(::u32 uCrc, const ::block& block)
    {
 
       auto pcompress = create < ::compress >("compress", "zlib");
@@ -929,7 +922,7 @@ namespace acme
    //   }
 
 
-   ::task * system::get_task(itask_t itask)
+   ::task* system::get_task(itask_t itask)
    {
 
       _synchronous_lock synchronouslock(m_pmutexTask);
@@ -939,14 +932,14 @@ namespace acme
    }
 
 
-   itask_t system::get_task_id(const ::task * ptask)
+   itask_t system::get_task_id(const ::task* ptask)
    {
 
       _synchronous_lock synchronouslock(m_pmutexTask);
 
       itask_t itask = null_itask;
 
-      if (!m_taskidmap.lookup((::task * const)ptask, itask))
+      if (!m_taskidmap.lookup((::task* const)ptask, itask))
       {
 
          return 0;
@@ -958,7 +951,7 @@ namespace acme
    }
 
 
-   void system::set_task(itask_t itask, ::task * ptask)
+   void system::set_task(itask_t itask, ::task* ptask)
    {
 
       _synchronous_lock synchronouslock(m_pmutexTask);
@@ -972,7 +965,7 @@ namespace acme
    }
 
 
-   void system::unset_task(itask_t itask, ::task * ptask)
+   void system::unset_task(itask_t itask, ::task* ptask)
    {
 
       _synchronous_lock synchronouslock(m_pmutexTask);
@@ -1003,7 +996,7 @@ namespace acme
 
    }
 
-   string system::__get_text(const ::string & str)
+   string system::__get_text(const ::string& str)
    {
 
       return str;
@@ -1074,7 +1067,7 @@ namespace acme
    }
 
 
-   bool system::is_active(::task * ptask)
+   bool system::is_active(::task* ptask)
    {
 
       if (::is_null(ptask))
@@ -1109,7 +1102,7 @@ namespace acme
    }
 
 
-   task_group * system::task_group(enum enum_priority)
+   task_group* system::task_group(enum enum_priority)
    {
 
       return nullptr;
@@ -1117,7 +1110,7 @@ namespace acme
    }
 
 
-   task_tool * system::task_tool(::enum_task_tool etool)
+   task_tool* system::task_tool(::enum_task_tool etool)
    {
 
       return nullptr;
@@ -1142,7 +1135,7 @@ namespace acme
          init_system();
 
       }
-      catch (::exception & exception)
+      catch (::exception& exception)
       {
 
          //message_box_synchronous(this, exception.m_strMessage, m_strAppId, e_message_box_ok, exception.m_strDetails);
@@ -1232,10 +1225,10 @@ namespace acme
    }
 
 
-   ::nano::nano * system::nano()
+   ::nano::nano* system::nano()
    {
 
-      if(!m_pnano)
+      if (!m_pnano)
       {
 
          //initialize_nano_window(factory());
@@ -1255,40 +1248,40 @@ namespace acme
       throw ::interface_only();
 
    }
-//::nano::nano * system::nano()
-//{
-//
-//   if (!m_pnanohttp)
-//   {
-//
-//      initialize_nano_http(factory());
-//
-//      __construct(m_pnanohttp);
-//
-//   }
-//
-//   return m_pnanohttp;
-//
-//}
+   //::nano::nano * system::nano()
+   //{
+   //
+   //   if (!m_pnanohttp)
+   //   {
+   //
+   //      initialize_nano_http(factory());
+   //
+   //      __construct(m_pnanohttp);
+   //
+   //   }
+   //
+   //   return m_pnanohttp;
+   //
+   //}
 
 
-//   ::nano::http * system::nano_http()
-//   {
-//
-//      if (!m_pnanohttp)
-//      {
-//
-//         initialize_nano_http(factory());
-//
-//         __construct(m_pnanohttp);
-//
-//      }
-//
-//      return m_pnanohttp;
-//
-//   }
-//
-//
+   //   ::nano::http * system::nano_http()
+   //   {
+   //
+   //      if (!m_pnanohttp)
+   //      {
+   //
+   //         initialize_nano_http(factory());
+   //
+   //         __construct(m_pnanohttp);
+   //
+   //      }
+   //
+   //      return m_pnanohttp;
+   //
+   //   }
+   //
+   //
    bool system::has_audio()
    {
 
@@ -1478,7 +1471,7 @@ namespace acme
    //}
 
 
-   class ::time system::get_update_poll_time(const ::atom & atom)
+   class ::time system::get_update_poll_time(const ::atom& atom)
    {
 
       return 0_s;
@@ -1486,7 +1479,7 @@ namespace acme
    }
 
 
-   ::acme::library * system::on_get_library(const ::string & pszLibrary)
+   ::acme::library* system::on_get_library(const ::string& pszLibrary)
    {
 
       return nullptr;
@@ -1611,7 +1604,7 @@ namespace acme
    }
 
 
-   ::regular_expression_pointer system::create_regular_expression(const ::string & pszStyle, const string & str)
+   ::regular_expression_pointer system::create_regular_expression(const ::string& pszStyle, const string& str)
    {
 
       auto pcontext = get_regular_expression_context(pszStyle);
@@ -1637,19 +1630,19 @@ namespace acme
    }
 
 
-   ::pointer<::regular_expression::context>system::get_regular_expression_context(const ::string & pszStyle)
+   ::pointer<::regular_expression::context>system::get_regular_expression_context(const ::string& pszStyle)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
       __defer_construct_new(m_pmapRegularExpressionContext);
 
-      auto & pcontext = (*m_pmapRegularExpressionContext)[pszStyle];
+      auto& pcontext = (*m_pmapRegularExpressionContext)[pszStyle];
 
       if (!pcontext)
       {
 
-         auto & pfactory = factory("regular_expression", pszStyle);
+         auto& pfactory = factory("regular_expression", pszStyle);
 
          if (!pfactory)
          {
@@ -1667,7 +1660,7 @@ namespace acme
    }
 
 
-   ::regular_expression_pointer system::compile_pcre(const string & str)
+   ::regular_expression_pointer system::compile_pcre(const string& str)
    {
 
       return create_regular_expression("pcre2", str);
@@ -1703,7 +1696,7 @@ namespace acme
    }
 
 
-   void system::get_public_internet_domain_extension_list(string_array & stra)
+   void system::get_public_internet_domain_extension_list(string_array& stra)
    {
 
       //::file::path pathPublicDomainExtensionList = "https://ca2.network/public_internet_domain_extension_list.txt";
@@ -1753,7 +1746,7 @@ namespace acme
 
       information() << "acme::system::get_public_internet_domain_extension_list";
 
-      for (auto & str : stra)
+      for (auto& str : stra)
       {
 
          informationf("%s", str.c_str());
@@ -1830,7 +1823,7 @@ namespace acme
    }
 
 
-   ::acme::session * system::session(::collection::index iEdge)
+   ::acme::session* system::session(::collection::index iEdge)
    {
 
       auto iterator = m_sessionmap.plookup(iEdge);
@@ -1847,7 +1840,7 @@ namespace acme
    }
 
 
-   void system::add_session(::collection::index iEdge, ::acme::session * psession)
+   void system::add_session(::collection::index iEdge, ::acme::session* psession)
    {
 
       if (!::is_set(psession))
@@ -1871,7 +1864,7 @@ namespace acme
    }
 
 
-   void system::on_add_session(::acme::session * pacmesession)
+   void system::on_add_session(::acme::session* pacmesession)
    {
 
       if (pacmesession->m_iEdge == 0)
@@ -1938,7 +1931,7 @@ namespace acme
    }
 
 
-   void system::on_request(::request * prequest)
+   void system::on_request(::request* prequest)
    {
 
       auto psession = session();
@@ -1958,7 +1951,7 @@ namespace acme
 
 
 
-   void system::process_exit_status(::particle * pparticle, const ::e_status & estatus)
+   void system::process_exit_status(::particle* pparticle, const ::e_status& estatus)
    {
 
       if (estatus == error_exit_system)
@@ -2006,7 +1999,7 @@ namespace acme
 
          ::string strApp;
 
-         if(strCommandLine.has_char())
+         if (strCommandLine.has_char())
          {
 
             information() << "system::defer_post_initial_request ***strCommandLine*** : ***" << strCommandLine << "***";
@@ -2028,54 +2021,54 @@ namespace acme
 
             for (int iArgument = 1; iArgument < m_pplatform->m_argc; )
             {
-               
+
                auto iArgumentBefore = iArgument;
 
-               if(node()->defer_consume_main_arguments(
-                                         m_pplatform->m_argc,
-                                         m_pplatform->m_args,
-                                         iArgument)
+               if (node()->defer_consume_main_arguments(
+                  m_pplatform->m_argc,
+                  m_pplatform->m_args,
+                  iArgument)
                   && iArgument > iArgumentBefore)
                {
-                
+
                   continue;
-                  
+
                }
-                  
-               if(application()->defer_consume_main_arguments(
-                                            m_pplatform->m_argc,
-                                            m_pplatform->m_args,
-                                            iArgument)
+
+               if (application()->defer_consume_main_arguments(
+                  m_pplatform->m_argc,
+                  m_pplatform->m_args,
+                  iArgument)
                   && iArgument > iArgumentBefore)
                {
-                
+
                   continue;
-                  
+
                }
-               
+
                ::string strArgument = m_pplatform->m_args[iArgument];
-               
-               if(strArgument.begins("-"))
+
+               if (strArgument.begins("-"))
                {
-                  
+
                   prequest->get_property_set()._008AddArgument(strArgument);
-                  
+
                }
                else
                {
-                  
+
                   straFiles.add(strArgument);
-                  
+
                }
-                  
+
                iArgument++;
-                  
+
             }
 
-            if(straFiles.has_elements())
+            if (straFiles.has_elements())
             {
 
-               if(straFiles.size() == 1)
+               if (straFiles.size() == 1)
                {
 
                   prequest->m_payloadFile = straFiles[0];
@@ -2311,7 +2304,7 @@ namespace acme
 
 
 
-   ::acme::application * system::get_main_app()
+   ::acme::application* system::get_main_app()
    {
 
 
@@ -2323,7 +2316,7 @@ namespace acme
    }
 
 
-   ::pointer<::factory::factory> & system::folder_factory()
+   ::pointer<::factory::factory>& system::folder_factory()
    {
 
       if (m_pfactoryFolder)
@@ -2342,7 +2335,7 @@ namespace acme
    }
 
 
-   void system::system_construct(::acme::application * papplication)
+   void system::system_construct(::acme::application* papplication)
    {
 
       m_pacmeapplication = papplication;
@@ -2415,7 +2408,7 @@ namespace acme
 
    }
 
-   void system::handle(::topic * ptopic, ::context * pcontext)
+   void system::handle(::topic* ptopic, ::context* pcontext)
    {
 
 
@@ -2434,12 +2427,12 @@ namespace acme
             background_color(::color::white);
 
          }
-         
-         if(m_pnano)
+
+         if (m_pnano)
          {
-            
+
             m_pnano->handle(ptopic, pcontext);
-            
+
          }
 
       }
@@ -2499,30 +2492,30 @@ namespace acme
    }
 
 
-//   void system::add_handler(::matter * pmatter, bool bPriority)
-//   {
-//
-//
-//   }
+   //   void system::add_handler(::matter * pmatter, bool bPriority)
+   //   {
+   //
+   //
+   //   }
 
 
-   void system::add_signal_handler(const ::signal_handler & signalhandler, const ::atom & atomSignal)
+   void system::add_signal_handler(const ::signal_handler& signalhandler, const ::atom& atomSignal)
    {
 
 
    }
 
 
-   void system::erase_signal_handler(::signal_handler::base * pbase)
+   void system::erase_signal_handler(::signal_handler::base* pbase)
    {
-      
+
    }
 
 
-//   void system::erase_signal_handlers(::particle * pparticle)
-//   {
-//      
-//   }
+   //   void system::erase_signal_handlers(::particle * pparticle)
+   //   {
+   //      
+   //   }
 
 
    void system::node_will_finish_launching()
@@ -2566,7 +2559,7 @@ namespace acme
    }
 
 
-   void system::on_open_file(const ::string & pszFile)
+   void system::on_open_file(const ::string& pszFile)
    {
 
       throw ::interface_only();
@@ -2574,7 +2567,7 @@ namespace acme
    }
 
 
-   ::pointer < ::compress > system::new_compress(const ::scoped_string & scopedstrImplementation)
+   ::pointer < ::compress > system::new_compress(const ::scoped_string& scopedstrImplementation)
    {
 
       auto pcompress = create < ::compress >("compress", scopedstrImplementation);
@@ -2591,7 +2584,7 @@ namespace acme
    }
 
 
-   ::pointer < ::uncompress > system::new_uncompress(const ::scoped_string & scopedstrImplementation)
+   ::pointer < ::uncompress > system::new_uncompress(const ::scoped_string& scopedstrImplementation)
    {
 
       auto puncompress = create < ::uncompress >("compress", scopedstrImplementation);
@@ -2611,7 +2604,7 @@ namespace acme
 
    }
 
-   void system::compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
+   void system::compress(const ::payload& payloadTarget, const ::payload& payloadSource, const ::scoped_string& scopedstrImplementation)
    {
 
       ::pointer<::compress>pcompress = new_compress(scopedstrImplementation);
@@ -2643,7 +2636,7 @@ namespace acme
    }
 
 
-   void system::uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation, transfer_progress_function transferprogressfunction)
+   void system::uncompress(const ::payload& payloadTarget, const ::payload& payloadSource, const ::scoped_string& scopedstrImplementation, transfer_progress_function transferprogressfunction)
    {
 
       ::pointer<::uncompress>puncompress = new_uncompress(scopedstrImplementation);
@@ -2675,7 +2668,7 @@ namespace acme
    }
 
 
-   bool system::fast_is_decompressable_folder(const ::file::path & path)
+   bool system::fast_is_decompressable_folder(const ::file::path& path)
    {
 
       auto bZip = path.case_insensitive_ends(".zip");
@@ -2705,7 +2698,7 @@ namespace acme
    //
    //}
 
-   ::pointer<::acme::application>system::new_app(const ::scoped_string & scopedstrAppId)
+   ::pointer<::acme::application>system::new_app(const ::scoped_string& scopedstrAppId)
    {
 
       ::pointer<::acme::application>papp;
@@ -2763,7 +2756,7 @@ namespace acme
 
             //auto psystem = system()->m_papexsystem;
 
-            auto & plibrary = m_pplatform->library(strLibrary);
+            auto& plibrary = m_pplatform->library(strLibrary);
 
             if (!plibrary)
             {
@@ -2915,7 +2908,7 @@ namespace acme
    }
 
 
-   bool system::_handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
+   bool system::_handle_call(::payload& payload, const ::string& strObject, const ::string& strMember, ::property_set& propertyset)
    {
 
       try
@@ -2946,7 +2939,7 @@ namespace acme
    }
 
 
-   string system::get_latest_deployment_number(const ::string & strBranch)
+   string system::get_latest_deployment_number(const ::string& strBranch)
    {
 
       return "(lastest deployed build)";
@@ -2954,25 +2947,25 @@ namespace acme
    }
 
 
-//   void system::windowing_send(const ::procedure & procedure)
-//   {
-//
-//      auto pmanualresetevent = __allocate< manual_reset_event >();
-//
-//      windowing_post([pmanualresetevent, procedure]()
-//                     {
-//
-//                        procedure();
-//
-//                        pmanualresetevent->set_event();
-//
-//      }
-//
-//      );
-//
-//      pmanualresetevent->wait(procedure.m_timeTimeout);
-//
-//   }
+   //   void system::windowing_send(const ::procedure & procedure)
+   //   {
+   //
+   //      auto pmanualresetevent = __allocate< manual_reset_event >();
+   //
+   //      windowing_post([pmanualresetevent, procedure]()
+   //                     {
+   //
+   //                        procedure();
+   //
+   //                        pmanualresetevent->set_event();
+   //
+   //      }
+   //
+   //      );
+   //
+   //      pmanualresetevent->wait(procedure.m_timeTimeout);
+   //
+   //   }
 
 
    void system::destroy()
@@ -3009,7 +3002,7 @@ namespace acme
    }
 
 
-   ::string system::implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
+   ::string system::implementation_name(const ::scoped_string& scopedstrComponent, const ::scoped_string& scopedstrImplementation)
    {
 
       return scopedstrImplementation;
@@ -3017,7 +3010,7 @@ namespace acme
    }
 
 
-   ::string system::library_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
+   ::string system::library_name(const ::scoped_string& scopedstrComponent, const ::scoped_string& scopedstrImplementation)
    {
 
       return scopedstrComponent + "_" + scopedstrImplementation;
@@ -3130,8 +3123,8 @@ namespace acme
 
    }
 
-   
-   class ::manager_room * system::manager_room()
+
+   class ::manager_room* system::manager_room()
    {
 
       return nullptr;
@@ -3148,7 +3141,7 @@ namespace acme
    }
 
 
-   ::draw2d::draw2d * system::draw2d() const
+   ::draw2d::draw2d* system::draw2d() const
    {
 
       return nullptr;
@@ -3156,7 +3149,7 @@ namespace acme
    }
 
 
-   ::write_text::write_text * system::write_text() const
+   ::write_text::write_text* system::write_text() const
    {
 
       return nullptr;
@@ -3164,102 +3157,100 @@ namespace acme
    }
 
 
-::color::color system::background_color() const
-{
-   
-   return m_colorBackground;
-
-}
-
-
-double system::luminance() const
-{
-   
-   return m_dLuminance;
-
-}
-
-
-void system::background_color(const ::color::color & color)
-{
-
-   if (m_colorBackground == color)
+   ::color::color system::background_color() const
    {
 
-      return;
+      return m_colorBackground;
 
    }
 
-   m_colorBackground = color;
 
-   m_dLuminance = m_colorBackground.get_luminance();
-
-   set_dark_mode(m_dLuminance < 0.5);
-
-}
-
-
-void system::set_dark_mode(bool bDark)
-{
-
-   m_bDarkMode = bDark;
-
-   if (m_bDarkMode)
+   double system::luminance() const
    {
 
-      ::acme::get()->platform()->informationf("background_color :: Dark\n");
-
-   }
-   else
-   {
-
-      ::acme::get()->platform()->informationf("background_color :: Lite\n");
+      return m_dLuminance;
 
    }
 
-   on_application_dark_mode_change();
-}
+
+   void system::background_color(const ::color::color& color)
+   {
+
+      if (m_colorBackground == color)
+      {
+
+         return;
+
+      }
+
+      m_colorBackground = color;
+
+      m_dLuminance = m_colorBackground.get_luminance();
+
+      set_dark_mode(m_dLuminance < 0.5);
+
+   }
 
 
-bool system::dark_mode() const
-{
-   
-   return m_bDarkMode;
+   void system::set_dark_mode(bool bDark)
+   {
 
-}
+      m_bDarkMode = bDark;
+
+      if (m_bDarkMode)
+      {
+
+         ::acme::get()->platform()->informationf("background_color :: Dark\n");
+
+      }
+      else
+      {
+
+         ::acme::get()->platform()->informationf("background_color :: Lite\n");
+
+      }
+
+      on_application_dark_mode_change();
+   }
 
 
-void system::on_application_dark_mode_change()
-{
-}
-   
-void system::on_component_factory(const ::scoped_string & scopedstrComponent)
-{
+   bool system::dark_mode() const
+   {
 
-      if(scopedstrComponent == "nano_dynamic_library")
+      return m_bDarkMode;
+
+   }
+
+
+   void system::on_application_dark_mode_change()
+   {
+   }
+
+   void system::on_component_factory(const ::scoped_string& scopedstrComponent)
+   {
+
+      if (scopedstrComponent == "nano_dynamic_library")
       {
 
          auto pfactory = this->factory();
 
-#if defined(LINUX)
+         CALL_FACTORY(nano_dynamic_library);
 
-         CALL_FACTORY(nano_dynamic_library_dl);
-
-#endif
+         return;
 
       }
-   
-   node()->on_component_factory(scopedstrComponent);
-   
-}
 
-   ::windowing_system::windowing_system * system::windowing_system()
-   {
-
-return m_pwindowingsystem;
+      node()->on_component_factory(scopedstrComponent);
 
    }
-   
+
+   ::windowing_system::windowing_system* system::windowing_system()
+   {
+
+      return m_pwindowingsystem;
+
+   }
+
 
 } // namespace acme
 
@@ -3325,45 +3316,45 @@ return m_pwindowingsystem;
 //}
 
 
-void system_id_update(void * pSystem, ::i64 iUpdate, ::i64 iParam)
+void system_id_update(void* pSystem, ::i64 iUpdate, ::i64 iParam)
 {
 
-   auto psystem = (::acme::system *)pSystem;
+   auto psystem = (::acme::system*)pSystem;
 
    psystem->system_id_update(iUpdate, iParam);
 
 }
 
 
-void node_will_finish_launching(void * pSystem);
-void system_on_open_untitled_file(void * pSystem);
-void system_on_open_file(void * pSystem, const char * pszFile);
+void node_will_finish_launching(void* pSystem);
+void system_on_open_untitled_file(void* pSystem);
+void system_on_open_file(void* pSystem, const char* pszFile);
 
 
-void node_will_finish_launching(void * pSystem)
+void node_will_finish_launching(void* pSystem)
 {
 
-   auto psystem = (::acme::system *)pSystem;
+   auto psystem = (::acme::system*)pSystem;
 
    psystem->node_will_finish_launching();
 
 }
 
 
-void system_on_open_untitled_file(void * pSystem)
+void system_on_open_untitled_file(void* pSystem)
 {
 
-   auto psystem = (::acme::system *)pSystem;
+   auto psystem = (::acme::system*)pSystem;
 
    psystem->on_open_untitled_file();
 
 }
 
 
-void system_on_open_file(void * pSystem, const char * pszFile)
+void system_on_open_file(void* pSystem, const char* pszFile)
 {
 
-   auto psystem = (::acme::system *)pSystem;
+   auto psystem = (::acme::system*)pSystem;
 
    psystem->on_open_file(pszFile);
 
@@ -3454,7 +3445,7 @@ void system_on_open_file(void * pSystem, const char * pszFile)
 //}
 //
 
-CLASS_DECL_ACME task_pointer fork(::particle * pparticle, const ::procedure & procedure)
+CLASS_DECL_ACME task_pointer fork(::particle* pparticle, const ::procedure& procedure)
 {
 
    return pparticle->system()->fork(procedure);

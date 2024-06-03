@@ -37,13 +37,16 @@ namespace windows
             ~dynamic_library() override;
 
 
-            ::string get_module_path(library_t * plibrary) override;
+            ::file::path module_path(library_t * plibrary) override;
 
 
-            library_t * get_module_by_name(const char* pszName) override;
+            library_t * module_by_name(const ::scoped_string & scopedstrName) override;
+
+            
+            library_t * module_by_path(const ::file::path & path) override;
 
 
-            library_t* touch(const ::file::path& path, string& strMessage) override;
+            //library_t* touch(const ::file::path& path, string& strMessage) override;
 
 
             library_t* open(const ::file::path& path, string& strMessage) override;

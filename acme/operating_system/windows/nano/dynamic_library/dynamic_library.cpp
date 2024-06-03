@@ -37,7 +37,7 @@ namespace windows
          }
 
 
-         ::string dynamic_library::get_module_path(library_t * plibrary)
+         ::file::path dynamic_library::module_path(library_t * plibrary)
          {
 
             auto hmodule = (HMODULE)plibrary;
@@ -79,10 +79,47 @@ namespace windows
          }
 
 
-         ::library_t * dynamic_library::get_module_by_name(const char* pszName)
+         ::library_t * dynamic_library::module_by_name(const ::scoped_string & scopedstrName)
          {
 
-            wstring wstrName(pszName);
+            ::string strName(scopedstrName);
+
+            if (ansi_ends_ci(strName, ".ilk"))
+            {
+
+               return nullptr;
+
+            }
+
+            if (ansi_ends_ci(strName, ".pdb"))
+            {
+
+               return nullptr;
+
+            }
+
+            if (ansi_ends_ci(strName, ".lib"))
+            {
+
+               return nullptr;
+
+            }
+
+            if (ansi_ends_ci(strName, ".exp"))
+            {
+
+               return nullptr;
+
+            }
+
+            if (ansi_find_string(file_path_name(strName), ".") == nullptr)
+            {
+
+               strName += ".dll";
+
+            }
+
+            wstring wstrName(strName);
 
             HMODULE hmodule = ::GetModuleHandleW(wstrName);
 
@@ -93,18 +130,10 @@ namespace windows
          }
 
 
-         library_t* dynamic_library::touch(const ::file::path& pathParam, string& strMessage)
+         ::library_t* dynamic_library::module_by_path(const ::file::path & path)
          {
 
-            strMessage.empty();
-
-            string strError;
-
-            string strPath(pathParam);
-
-            u32 uiError;
-
-            void* plibrary = nullptr;
+            ::string strPath(path);
 
             if (ansi_ends_ci(strPath, ".ilk"))
             {
@@ -141,180 +170,209 @@ namespace windows
 
             }
 
-            ::acme::get()->platform()->informationf("\n\nGoing to touch library (1) " + string(strPath) + "\n");
+            auto windowspath = ::file::path(strPath).windows_path();
 
-            ::file::path path;
+            ::wstring wstrPath;
+            
+            wstrPath = windowspath;
 
-            path = strPath;
+            HMODULE hmodule = ::GetModuleHandleW(wstrPath);
 
-            try
-            {
+            auto plibrary = (library_t*)hmodule;
 
-               plibrary = ::GetModuleHandleW(wstring(path));
-
-            }
-            catch (...)
-            {
-
-            }
-
-            if (plibrary != nullptr)
-            {
-
-               goto finished;
-
-            }
-
-            uiError = ::GetLastError();
-
-            strError = "\n (1) GetModuleHandleW " + path + " failed with (" + ::as_string(uiError) + ") " + ::windows::last_error_message(uiError);
-
-            strMessage += strError;
-
-            path = "\\\\?\\" + strPath;
-
-            try
-            {
-
-               plibrary = ::GetModuleHandleW(wstring(path));
-
-            }
-            catch (...)
-            {
-
-            }
-
-            if (plibrary != nullptr)
-            {
-
-               goto finished;
-
-            }
-
-            uiError = ::GetLastError();
-
-            strError = "\n (2) GetModuleHandleW " + path + " failed with (" + ::as_string(uiError) + ") " + ::windows::last_error_message(uiError);
-
-            strMessage += strError;
-
-            path = application()->get_module_folder() / strPath;
-
-            try
-            {
-
-               plibrary = ::GetModuleHandleW(wstring(path));
-
-            }
-            catch (...)
-            {
-
-            }
-
-            uiError = ::GetLastError();
-
-            strError = "\n (3) GetModuleHandleW " + path + " failed with (" + ::as_string(uiError) + ") " + ::windows::last_error_message(uiError);
-
-            strMessage += strError;
-
-            path = "\\\\?\\" + string(application()->get_module_folder() / strPath);
-
-            try
-            {
-
-               plibrary = ::GetModuleHandleW(wstring(path));
-
-            }
-            catch (...)
-            {
-
-            }
-
-            if (plibrary != nullptr)
-            {
-
-               goto finished;
-
-            }
-
-            uiError = ::GetLastError();
-
-            strError = "\n (4) GetModuleHandleW " + path + " failed with (" + ::as_string(uiError) + ") " + ::windows::last_error_message(uiError);
-
-            strMessage += strError;
-
-            /*path = ::dir_base_module() / strPath;
-
-            try
-            {
-
-               plibrary = ::GetModuleHandleW(wstring(path));
-
-            }
-            catch (...)
-            {
-
-            }
-
-            if (plibrary != nullptr)
-            {
-
-               goto finished;
-
-            }
-
-            uiError = ::GetLastError();
-
-            strError = "\n (5) GetModuleHandleW " + path + " failed with (" + as_string(uiError) + ") " + ::windows::last_error_message(uiError);
-
-            strMessage += strError;
-
-            path = "\\\\?\\" + string(::dir_base_module() / strPath);
-
-            try
-            {
-
-               plibrary = ::GetModuleHandleW(wstring(path));
-
-            }
-            catch (...)
-            {
-
-            }
-
-            if (plibrary != nullptr)
-            {
-
-               goto finished;
-
-            }
-
-            uiError = ::GetLastError();
-
-            strError = "\n (6) GetModuleHandleW " + path + " failed with (" + as_string(uiError) + ") " + ::windows::last_error_message(uiError);
-
-            strMessage += strError;*/
-
-
-         finished:
-
-            if (plibrary != nullptr)
-            {
-
-               strMessage = "node_library_touch Success touching " + path;
-
-            }
-            else
-            {
-
-               strMessage = "node_library_touch Failed touch " + strPath + strMessage;
-
-            }
-
-            ::acme::get()->platform()->informationf(strMessage + "\n\n");
-
-            return (library_t*)plibrary;
+            return plibrary;
 
          }
+
+
+         //library_t* dynamic_library::touch(const ::file::path& pathParam, string& strMessage)
+         //{
+
+         //   strMessage.empty();
+
+         //   string strError;
+
+         //   string strPath(pathParam);
+
+         //   u32 uiError;
+
+         //   void* plibrary = nullptr;
+
+
+         //   ::acme::get()->platform()->informationf("\n\nGoing to touch library (1) " + string(strPath) + "\n");
+
+         //   ::file::path path;
+
+         //   path = strPath;
+
+         //   try
+         //   {
+
+         //      plibrary = ::GetModuleHandleW(wstring(path));
+
+         //   }
+         //   catch (...)
+         //   {
+
+         //   }
+
+         //   if (plibrary != nullptr)
+         //   {
+
+         //      goto finished;
+
+         //   }
+
+         //   uiError = ::GetLastError();
+
+         //   strError = "\n (1) GetModuleHandleW " + path + " failed with (" + ::as_string(uiError) + ") " + ::windows::last_error_message(uiError);
+
+         //   strMessage += strError;
+
+         //   path = "\\\\?\\" + strPath;
+
+         //   try
+         //   {
+
+         //      plibrary = ::GetModuleHandleW(wstring(path));
+
+         //   }
+         //   catch (...)
+         //   {
+
+         //   }
+
+         //   if (plibrary != nullptr)
+         //   {
+
+         //      goto finished;
+
+         //   }
+
+         //   uiError = ::GetLastError();
+
+         //   strError = "\n (2) GetModuleHandleW " + path + " failed with (" + ::as_string(uiError) + ") " + ::windows::last_error_message(uiError);
+
+         //   strMessage += strError;
+
+         //   path = application()->get_module_folder() / strPath;
+
+         //   try
+         //   {
+
+         //      plibrary = ::GetModuleHandleW(wstring(path));
+
+         //   }
+         //   catch (...)
+         //   {
+
+         //   }
+
+         //   uiError = ::GetLastError();
+
+         //   strError = "\n (3) GetModuleHandleW " + path + " failed with (" + ::as_string(uiError) + ") " + ::windows::last_error_message(uiError);
+
+         //   strMessage += strError;
+
+         //   path = "\\\\?\\" + string(application()->get_module_folder() / strPath);
+
+         //   try
+         //   {
+
+         //      plibrary = ::GetModuleHandleW(wstring(path));
+
+         //   }
+         //   catch (...)
+         //   {
+
+         //   }
+
+         //   if (plibrary != nullptr)
+         //   {
+
+         //      goto finished;
+
+         //   }
+
+         //   uiError = ::GetLastError();
+
+         //   strError = "\n (4) GetModuleHandleW " + path + " failed with (" + ::as_string(uiError) + ") " + ::windows::last_error_message(uiError);
+
+         //   strMessage += strError;
+
+         //   /*path = ::dir_base_module() / strPath;
+
+         //   try
+         //   {
+
+         //      plibrary = ::GetModuleHandleW(wstring(path));
+
+         //   }
+         //   catch (...)
+         //   {
+
+         //   }
+
+         //   if (plibrary != nullptr)
+         //   {
+
+         //      goto finished;
+
+         //   }
+
+         //   uiError = ::GetLastError();
+
+         //   strError = "\n (5) GetModuleHandleW " + path + " failed with (" + as_string(uiError) + ") " + ::windows::last_error_message(uiError);
+
+         //   strMessage += strError;
+
+         //   path = "\\\\?\\" + string(::dir_base_module() / strPath);
+
+         //   try
+         //   {
+
+         //      plibrary = ::GetModuleHandleW(wstring(path));
+
+         //   }
+         //   catch (...)
+         //   {
+
+         //   }
+
+         //   if (plibrary != nullptr)
+         //   {
+
+         //      goto finished;
+
+         //   }
+
+         //   uiError = ::GetLastError();
+
+         //   strError = "\n (6) GetModuleHandleW " + path + " failed with (" + as_string(uiError) + ") " + ::windows::last_error_message(uiError);
+
+         //   strMessage += strError;*/
+
+
+         //finished:
+
+         //   if (plibrary != nullptr)
+         //   {
+
+         //      strMessage = "node_library_touch Success touching " + path;
+
+         //   }
+         //   else
+         //   {
+
+         //      strMessage = "node_library_touch Failed touch " + strPath + strMessage;
+
+         //   }
+
+         //   ::acme::get()->platform()->informationf(strMessage + "\n\n");
+
+         //   return (library_t*)plibrary;
+
+         //}
 
 
          library_t* dynamic_library::open(const ::file::path& pathParam, string& strMessage)

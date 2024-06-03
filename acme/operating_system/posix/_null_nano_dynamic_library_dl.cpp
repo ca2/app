@@ -6,7 +6,7 @@
 
 #if defined(LINUX)
 
-extern "C" __attribute__((weak)) void nano_dynamic_library_dl_factory(::factory::factory * pfactory)
+extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory)
 {
 
 

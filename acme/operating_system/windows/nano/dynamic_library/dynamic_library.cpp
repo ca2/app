@@ -37,10 +37,58 @@ namespace windows
          }
 
 
-         bool dynamic_library::is_loaded(const char* pszPath)
+         ::string dynamic_library::get_module_path(library_t * plibrary)
          {
 
-            return ::GetModuleHandleW(wstring(pszPath)) != nullptr;
+            auto hmodule = (HMODULE)plibrary;
+
+            DWORD dwSize = 128;
+
+            while (dwSize < 16_MiB)
+            {
+
+               ::wstring wstrPath;
+
+               auto pwsz = wstrPath.get_buffer(dwSize + 1);
+
+               DWORD dwPossiblyTruncatedSize = GetModuleFileNameW(hmodule, pwsz, dwSize);
+
+               wstrPath.release_buffer(dwPossiblyTruncatedSize);
+
+               if (dwPossiblyTruncatedSize == 0)
+               {
+
+                  throw_last_error_exception();
+
+               }
+               else if (dwPossiblyTruncatedSize < dwSize)
+               {
+
+                  return wstrPath;
+
+               }
+
+               dwSize *= 2;
+
+            }
+
+            throw ::exception(error_failed);
+
+            return {};
+
+         }
+
+
+         ::library_t * dynamic_library::get_module_by_name(const char* pszName)
+         {
+
+            wstring wstrName(pszName);
+
+            HMODULE hmodule = ::GetModuleHandleW(wstrName);
+
+            auto plibrary = (library_t *)hmodule;
+
+            return plibrary;
 
          }
 

@@ -41,6 +41,7 @@
 //#include "acme/user/user/conversation.h"
 
 
+
 extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory);
 
 

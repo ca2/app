@@ -33,28 +33,31 @@ namespace nano
          ~dynamic_library() override;
 
          
-         virtual ::string get_module_path(library_t * plibrary);
+         virtual ::file::path module_path(library_t * plibrary);
 
 
-         virtual ::string get_module_path_by_name(const char *pszName);
+         virtual ::file::path module_path_by_name(const ::scoped_string & scopedtrName);
 
          
-         virtual library_t * get_module_by_name(const char * pszName);
+         virtual library_t * module_by_name(const ::scoped_string & scopedstrsName);
 
 
-         virtual library_t *touch(const ::file::path &path, string &strMessage);
+         virtual library_t * module_by_path(const ::file::path & path);
 
 
-         virtual library_t *open(const ::file::path &path, string &strMessage);
+         virtual library_t * touch(const ::file::path & path, string & strMessage);
 
 
-         virtual library_t *open_on_context(const ::file::path &path, string &strMessage);
+         virtual library_t * open(const ::file::path & path, string & strMessage);
 
 
-         virtual bool close(library_t *plibrary);
+         virtual library_t * open_on_context(const ::file::path & path, string & strMessage);
 
 
-         virtual void *raw_get(library_t *plibrary, const ::scoped_string &scopedstrEntryName);
+         virtual bool close(library_t * plibrary);
+
+
+         virtual void *raw_get(library_t * plibrary, const ::scoped_string & scopedstrEntryName);
 
 
       };

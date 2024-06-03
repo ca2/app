@@ -28,7 +28,7 @@ namespace nano
       }
 
 
-      ::string dynamic_library::get_module_path(library_t * plibrary)
+      ::file::path dynamic_library::module_path(library_t * plibrary)
       {
 
          throw ::interface_only();
@@ -38,10 +38,10 @@ namespace nano
       }
 
 
-      ::string dynamic_library::get_module_path_by_name(const char *pszName)
+      ::file::path dynamic_library::module_path_by_name(const ::scoped_string & scopedstrName)
       {
 
-         auto plibrary = get_module_by_name(pszName);
+         auto plibrary = module_by_name(scopedstrName);
 
          if (::is_null(plibrary))
          {
@@ -50,14 +50,24 @@ namespace nano
 
          }
 
-         ::string strPath = get_module_path(plibrary);
+         auto path = module_path(plibrary);
 
-         return strPath;
+         return path;
 
       }
 
 
-      library_t * dynamic_library::get_module_by_name(const char * pszName)
+      library_t * dynamic_library::module_by_name(const ::scoped_string & scopedstrName)
+      {
+
+         throw ::interface_only();
+
+         return {};
+
+      }
+
+
+      library_t * dynamic_library::module_by_path(const ::file::path & path)
       {
 
          throw ::interface_only();
@@ -70,7 +80,23 @@ namespace nano
       library_t * dynamic_library::touch(const ::file::path & path, string &strMessage)
       {
 
-         throw ::interface_only();
+         auto plibrary = module_by_path(path);
+
+         if(plibrary)
+         {
+
+            return plibrary;
+
+         }
+
+         plibrary = module_by_name(path);
+
+         if(plibrary)
+         {
+
+            return plibrary;
+
+         }
 
          return nullptr;
 

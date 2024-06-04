@@ -93,7 +93,7 @@ namespace api_ca2
 
       m_timeLastNotifyOnPreLoginScreen.Now();
 
-      m_bWaitingResponseFromUser = true;
+      m_bAuthenticating = true;
 
       m_phyperlinkPreLoginScreen->run();
 

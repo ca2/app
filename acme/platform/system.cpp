@@ -45,6 +45,15 @@
 extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory);
 
 
+#if defined(WINDOWS)
+
+
+extern "C" void nano_idn_windows_common_factory(::factory::factory * pfactory);
+
+
+#endif
+
+
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
 CLASS_DECL_ACME void trace_category_static_init(::acme::system * psystem);
 CLASS_DECL_ACME void trace_category_static_term();
@@ -3227,6 +3236,7 @@ namespace acme
    {
    }
 
+
    void system::on_component_factory(const ::scoped_string & scopedstrComponent)
    {
 
@@ -3240,10 +3250,33 @@ namespace acme
          return;
 
       }
+      else if (scopedstrComponent == "nano_idn")
+      {
+
+
+#if defined(WINDOWS)
+
+
+         auto pfactory = this->factory();
+
+
+         nano_idn_windows_common_factory(pfactory);
+
+
+         return;
+
+
+#endif
+
+
+      }
+
 
       node()->on_component_factory(scopedstrComponent);
 
+
    }
+
 
    ::windowing_system::windowing_system * system::windowing_system()
    {

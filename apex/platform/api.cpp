@@ -142,9 +142,6 @@ void api::on_login_response()
 
       });
 
-
-   m_eventResponse.SetEvent();
-
    if (!m_bAuthenticated)
    {
 
@@ -166,6 +163,8 @@ void api::on_login_response()
       m_bAuthenticating = false;
 
    }
+
+   m_eventResponse.SetEvent();
 
 }
 

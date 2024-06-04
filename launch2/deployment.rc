@@ -41,8 +41,8 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-			VALUE "CompanyName", "integration"
-			VALUE "FileDescription", "integration_launch_store"
+			VALUE "CompanyName", "app"
+			VALUE "FileDescription", "app_launch2"
             VALUE "FileVersion", "34658.1932758.1214017156612.-1338225080"
             VALUE "LegalCopyright", "Copyright (C) 1900-20-32758-1214017156-612--1338225080"
             VALUE "ProductVersion", "34658.1932758.1214017156612.-1338225080"

@@ -32,21 +32,6 @@ namespace libarchive
          }
 
 
-
-         archive::archive()
-         {
-
-
-         }
-
-
-         archive::~archive()
-         {
-
-
-         }
-
-
          void archive::untar(const ::file::path & pathFolder, const ::payload & payloadTar, int iStripComponent, ::function<void(const::scoped_string& scopedstr) > functionCallback)
          {
             struct ::archive * a;

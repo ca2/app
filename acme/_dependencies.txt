@@ -1,5 +1,3 @@
 default_acme_platform1
 default_acme_platform2
 default_acme_platform3
-app/nano_archive_libarchive
-app/nano_idn_libidn

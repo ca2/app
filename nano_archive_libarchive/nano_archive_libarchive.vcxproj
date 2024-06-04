@@ -35,7 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{46D7D9C9-7B52-4DC6-AF84-46A5E3CDC43D}</ProjectGuid>
+    <ProjectGuid>{8FBB3C04-41E5-4452-BA9D-30763BD8BBD3}</ProjectGuid>
     <RootNamespace>app</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
@@ -744,28 +744,7 @@
     <ClInclude Include="_operating_system.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="address.cpp" />
-    <ClCompile Include="networking.cpp" />
-    <ClCompile Include="ip_enum.cpp" />
-    <ClCompile Include="networking_bsd.cpp" />
-    <ClCompile Include="port_forward.cpp" />
-    <ClCompile Include="sockets\base\socket.cpp" />
-    <ClCompile Include="sockets\base\socket_handler.cpp" />
-    <ClCompile Include="sockets\basic\listen_socket_impl.cpp" />
-    <ClCompile Include="sockets\basic\sctp_socket.cpp" />
-    <ClCompile Include="sockets\basic\socket.cpp" />
-    <ClCompile Include="sockets\basic\socket_handler.cpp" />
-    <ClCompile Include="sockets\basic\stream_socket.cpp" />
-    <ClCompile Include="sockets\basic\tcp_socket.cpp" />
-    <ClCompile Include="sockets\basic\tls_socket.cpp" />
-    <ClCompile Include="sockets\basic\udp_socket.cpp" />
-    <ClCompile Include="sockets\ssl\client_context.cpp" />
-    <ClCompile Include="sockets\ssl\client_context_map.cpp" />
-    <ClCompile Include="sockets\ssl\context.cpp" />
-    <ClCompile Include="sockets\ssl\initializer.cpp" />
-    <ClCompile Include="winsock2\list_computers.cpp" />
-    <ClCompile Include="winsock2\list_network_interfaces.cpp" />
-    <ClCompile Include="winsock2\_.cpp" />
+    <ClCompile Include="nano_archive_libarchive.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="_factory.cpp" />
     <ClCompile Include="framework.cpp">

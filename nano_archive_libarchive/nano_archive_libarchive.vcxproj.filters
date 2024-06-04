@@ -15,23 +15,11 @@
     <Filter Include="Header Files\sockets">
       <UniqueIdentifier>{29be7e16-9d4e-45ca-9168-ba1112290f02}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\sockets">
-      <UniqueIdentifier>{6d57a343-df8d-4a47-a77e-7b6420a10268}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\winsock2">
-      <UniqueIdentifier>{195257fa-ad36-48f2-b204-e655653a2caa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\winsock2">
       <UniqueIdentifier>{7b29f43c-c407-405a-9e33-6a2b9795776a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\sockets\basic">
-      <UniqueIdentifier>{4a89243c-8a82-481a-8edf-739d61cc6a50}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\sockets\basic">
       <UniqueIdentifier>{20562aed-ef9c-48fe-bbeb-e46516bb9c1e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\bsd">
-      <UniqueIdentifier>{5f62b344-ac4a-4fa8-a04f-94a83b2b6490}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\bsd">
       <UniqueIdentifier>{db71eb99-f28d-48a5-9a0d-bd953102cfcf}</UniqueIdentifier>
@@ -41,12 +29,6 @@
     </Filter>
     <Filter Include="Header Files\sockets\ssl">
       <UniqueIdentifier>{681c3481-b7e4-4478-ad7b-47b044394e6c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\sockets\ssl">
-      <UniqueIdentifier>{9a6b835a-c5da-4eb5-9281-3f29c58dd3da}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\sockets\base">
-      <UniqueIdentifier>{a7eb5daa-bd76-46ca-8a82-a7a18c29174d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -205,71 +187,8 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="address.cpp">
+    <ClCompile Include="nano_archive_libarchive.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="networking.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ip_enum.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="port_forward.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="winsock2\_.cpp">
-      <Filter>Source Files\winsock2</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\listen_socket_impl.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\sctp_socket.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\socket.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\stream_socket.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\tcp_socket.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\tls_socket.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\udp_socket.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\ssl\client_context.cpp">
-      <Filter>Source Files\sockets\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\ssl\client_context_map.cpp">
-      <Filter>Source Files\sockets\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\ssl\context.cpp">
-      <Filter>Source Files\sockets\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\ssl\initializer.cpp">
-      <Filter>Source Files\sockets\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\base\socket_handler.cpp">
-      <Filter>Source Files\sockets\base</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\basic\socket_handler.cpp">
-      <Filter>Source Files\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="networking_bsd.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="winsock2\list_network_interfaces.cpp">
-      <Filter>Source Files\winsock2</Filter>
-    </ClCompile>
-    <ClCompile Include="winsock2\list_computers.cpp">
-      <Filter>Source Files\winsock2</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\base\socket.cpp">
-      <Filter>Source Files\sockets\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

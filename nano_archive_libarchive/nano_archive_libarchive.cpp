@@ -19,6 +19,19 @@ namespace libarchive
       namespace archive
       {
 
+         archive::archive()
+         {
+
+
+         }
+
+
+         archive::~archive()
+         {
+
+         }
+
+
 
          archive::archive()
          {

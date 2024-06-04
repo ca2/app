@@ -937,6 +937,8 @@ namespace acme
 
       virtual bool _is_jetbrains_clion_installed();
 
+      virtual bool _is_shell_patched();
+
 #ifndef UNIVERSAL_WINDOWS
 
       virtual ::array <::serial::port_info> list_serial_ports();

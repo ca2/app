@@ -3219,6 +3219,14 @@ bool node::_is_smart_git_installed()
    }
 
 
+   bool node::_is_shell_patched()
+   {
+
+      return _is_code_exe_user_path_environment_variable_ok();
+
+   }
+
+
    bool node::_is_jetbrains_clion_installed()
    {
 

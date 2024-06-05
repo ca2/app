@@ -26,7 +26,7 @@ namespace nano
       }
 
 
-      void shell::launch_no_hup(const ::file::path & pathExecutable, const ::file::path & pathLog)
+      void shell::detached_command(const ::scoped_string & scopedstrCommand, const ::file::path & pathLog)
       {
 
          throw interface_only();

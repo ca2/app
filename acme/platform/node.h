@@ -925,7 +925,7 @@ namespace acme
 
 #endif
 
-      virtual bool _is_code_exe_user_path_environment_variable_ok(::string *pstrCorrectPath=nullptr);
+      virtual bool _is_code_exe_user_path_environment_variable_ok(::string *pstrCorrectPath=nullptr, const char * pszPath = nullptr);
 
 #if defined(WINDOWS_DESKTOP) || defined(MACOS) || defined(LINUX)
 
@@ -980,7 +980,7 @@ namespace acme
 
       virtual void on_component_factory(const ::scoped_string & scopedstrComponent);
 
-      virtual void launch_no_hup(const ::file::path & pathExecutable, const ::file::path & pathLog);
+      virtual void detached_command(const ::scoped_string & scopedstrCommand, const ::file::path & pathLog);
 
 //      virtual void * fetch_windowing_system_display();
 //      virtual void windowing_system_async(const ::procedure & procedure);

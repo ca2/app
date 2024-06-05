@@ -33,7 +33,7 @@ namespace nano
             ~shell() override;
 
 
-            virtual void launch_no_hup(const ::file::path & pathExecutable, const ::file::path & pathLog);
+            virtual void detached_command(const ::scoped_string & scopedstrCommand, const ::file::path & pathLog);
 
 
         };

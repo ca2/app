@@ -32,6 +32,7 @@ namespace launch
 
 
       ::file::path   m_pathLog;
+      ::file::path   m_pathX64;
 
 
       application();

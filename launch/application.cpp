@@ -112,7 +112,7 @@ namespace launch
 
       printf("Going to install dependencies:\n");
 
-      auto lines = acmefile()->lines("operating_system_packages.txt");
+      auto lines = acmefile()->lines(m_pathX64/"operating_system_packages.txt");
 
       if(lines.is_empty())
       {
@@ -335,7 +335,7 @@ namespace launch
 
       m_pathLog = pathLogFolder / strDateTimeName;
 
-      auto pathX64 = pathStore / "x64";
+      m_pathX64 = pathStore / "x64";
       // char szX64[4096];
       //
       // strcpy(szX64, szStore);
@@ -346,9 +346,9 @@ namespace launch
       //
       // chdir(szX64);
 
-      acmedirectory()->create(pathX64);
+      acmedirectory()->create(m_pathX64);
 
-      acmedirectory()->change_current(pathX64);
+      acmedirectory()->change_current(m_pathX64);
 
 #ifdef LINUX
 
@@ -376,7 +376,7 @@ namespace launch
       strExecutable.find_replace("-", "_");
 
 
-      auto pathExecutable = pathX64 / strExecutable;
+      auto pathExecutable = m_pathX64 / strExecutable;
 
       ::string strZipName;
 
@@ -385,7 +385,7 @@ namespace launch
       // sprintf(szZipName, "_%s.zip", szAppExeName);
       // char szDownloadCommand[2048];
 
-      auto pathZipName = pathX64 / strZipName;
+      auto pathZipName = m_pathX64 / strZipName;
 
       nano()->http()->download(pathZipName,strDownloadUrl );
       // if (!strcasecmp(m_pszDistro, "freebsd")) {
@@ -409,7 +409,7 @@ namespace launch
 
       //system(szDownloadCommand);
 
-      nano()->compress()->unzip(pathX64, pathZipName);
+      nano()->compress()->unzip(m_pathX64, pathZipName);
 
       //char szUnzipCommand[2048];
 
@@ -420,8 +420,30 @@ namespace launch
 
       install_dependencies();
 
+      if(platform()->has_argument("--install-only")
+         || platform()->has_argument("--only-install"))
+      {
 
-      node()->launch_no_hup(pathExecutable, m_pathLog);
+         print_line("Installed \"" + m_strAppRoot + "/" + m_strAppName + "\".");
+
+         return;
+
+      }
+
+      ::string strCommand;
+
+      strCommand = pathExecutable;
+
+      auto strTraceLevel = platform()->get_argument_begins_eat("--trace-level=");
+
+      if(strTraceLevel.has_char())
+      {
+
+         strCommand += " --trace-level=" + strTraceLevel;
+
+      }
+
+      node()->detached_command(strCommand, m_pathLog);
 
       //    char szCommand[4096];
       //    strcpy(szCommand, "sh -c \"nohup ./");

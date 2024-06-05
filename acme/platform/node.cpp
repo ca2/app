@@ -3188,7 +3188,7 @@ void node::on_component_factory(const ::scoped_string & scopedstrComponent)
 
 #endif
 
-   bool node::_is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath)
+   bool node::_is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath, const char * pszPath)
    {
 
       throw interface_only();
@@ -4531,7 +4531,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
-   void node::launch_no_hup(const ::file::path & pathExecutable, const ::file::path & pathLog)
+   void node::detached_command(const ::scoped_string & scopedstrCommand, const ::file::path & pathLog)
    {
 
 

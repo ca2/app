@@ -733,7 +733,7 @@ strExecutable.find_replace("-", "_");
    install_dependencies();
 
 
-   system()->node()->launch_no_hup(pathExeName, pathLogFile);
+   system()->node()->detached_command(pathExeName, pathLogFile);
 
 //    char szCommand[4096];
 //    strcpy(szCommand, "sh -c \"nohup ./");

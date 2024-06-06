@@ -62,7 +62,7 @@ public:
 
       }
 
-      bool _001SetCheck(::e_check echeck, const ::action_context & actioncontext)
+      bool set_check(::e_check echeck, const ::action_context & actioncontext)
       {
 
          return this->set_property(echeck, actioncontext);
@@ -188,19 +188,19 @@ public:
 //    }
 //
 
-   bool _001ToggleCheck(const ::action_context & context)
+   bool toggle_check(const ::action_context & context)
    {
 
       if(bcheck())
       {
 
-         return _001SetCheck(::e_check_unchecked, context);
+         return set_check(::e_check_unchecked, context);
 
       }
       else
       {
 
-         return _001SetCheck(::e_check_checked, context);
+         return set_check(::e_check_checked, context);
 
       }
 

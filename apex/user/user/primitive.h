@@ -3,8 +3,8 @@
 
 
 //#include "container.h"
-#include "acme/user/user/check.h"
-#include "acme/user/user/text.h"
+//#include "acme/user/user/check.h"
+//#include "acme/user/user/text.h"
 #include "acme/user/user/element.h"
 #include "apex/handler/manager.h"
 #include "apex/message/channel.h"
@@ -668,7 +668,7 @@ namespace user
 
       void edit_on_text(string str) override;
       void edit_on_sel(strsize iBeg, strsize iEnd) override;
-      void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
+      void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context) override;
 
 
       void on_text_composition(string str) override;

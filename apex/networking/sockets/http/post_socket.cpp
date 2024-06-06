@@ -132,7 +132,7 @@ namespace sockets
             if (payload.get_type() == ::e_type_property_set)
             {
 
-               payload.propset().get_network_payload(strBody);
+               payload.as_property_set().get_network_payload(strBody);
 
                information() << "JSON BODY: " << strBody;
 

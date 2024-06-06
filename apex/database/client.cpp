@@ -5,6 +5,7 @@
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/parallelization/event.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/data/property_link.h"
 #include "apex/handler/signal.h"
 #include "apex/platform/application.h"
 
@@ -21,36 +22,48 @@ namespace database
    }
 
 
-   void client::default_data_save_handling(const ::atom & idParam)
+   void client::default_data_save_handling(const ::property_link & propertylink)
    {
 
-      ::atom atom(idParam);
+      // ::atom atom(idParam);
+      //
+      // auto linkedproperty = fetch_property(atom);
+      //
+      // ::payload payload;
+      //
+      // if(data_get_payload(atom, payload))
+      // {
+      //
+      //    linkedproperty->convert(payload);
+      //
+      // }
+      //
+      // //auto idProcedure = translate_property_id(atom);
+      //
+      // //auto linkedproperty = fetch_property(atom);
+      //
+      // auto psignal = get_app()->m_papexapplication->get_signal(linkedproperty->m_atom);
+      //
+      // psignal->add_signal_handler([this, atom, linkedproperty](::topic * ptopic, ::context * pcontext)
+      //
+      // //connect(atom, [atom, linkedproperty](::message::message* pmessage)
+      //    {
+      //
+      //       data_set_payload(atom, *linkedproperty.m_pproperty);
+      //
+      //    });
 
-      auto linkedproperty = fetch_property(atom);
-
-      ::payload payload;
-
-      if(data_get_payload(atom, payload))
+      propertylink.m_ppropertycontainer->m_propertychangeda.add([propertylink, this](property_container * p, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext)
       {
+         if(actioncontext.is_user_source() && atoma.has_element() && atoma.first() == propertylink.m_atom)
 
-         linkedproperty->convert(payload);
-
-      }
-
-      //auto idProcedure = translate_property_id(atom);
-
-      //auto linkedproperty = fetch_property(atom);
-
-      auto psignal = get_app()->m_papexapplication->get_signal(linkedproperty->m_atom);
-
-      psignal->add_signal_handler([this, atom, linkedproperty](::topic * ptopic, ::context * pcontext)
-
-      //connect(atom, [atom, linkedproperty](::message::message* pmessage)
          {
 
-            data_set_payload(atom, *linkedproperty.m_pproperty);
+            data_set_payload(propertylink.m_atom, (const ::payload &) propertylink.get_property());
 
-         });
+         }
+
+      });
 
       //::add_procedure(get_app()->m_proceduremap[idProcedure], [this, atom]()
       //   {

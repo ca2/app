@@ -2,6 +2,7 @@
 //#include "check.h"
 //#include "text.h"
 #include "element.h"
+#include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/handler/item.h"
@@ -15,7 +16,9 @@ namespace user
 {
 
 
-   element::element()
+   element::element() :
+   m_checkproperty(this, id_check),
+   m_textproperty(this, id_text)
    {
 
 
@@ -4416,6 +4419,21 @@ namespace user
    //   return nullptr;
 
    //}
+
+   check_property & element::check()
+   {
+
+return m_checkproperty;
+
+   }
+
+   text_property & element::text()
+   {
+
+      return m_textproperty;
+
+   }
+
 
 
    void element::_001OnTimer(::timer * ptimer)

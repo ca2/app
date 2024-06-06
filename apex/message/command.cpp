@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "command.h"
 #include "channel.h"
-////#include "acme/exception/exception.h"
+#include "acme/user/user/element.h"
 
 
 namespace message
@@ -203,12 +203,12 @@ namespace message
       if (m_puiOther != nullptr)
       {
 
-         ::pointer<::user::command_update_target>pcheck = m_puiOther;
+         ::pointer<::user::element>pelement = m_puiOther;
 
-         if (pcheck)
+         if (pelement)
          {
 
-            pcheck->_001SetCheck(echeck, context + ::e_source_sync);
+            pelement->check().set_check(echeck, context + ::e_source_sync);
 
          }
 
@@ -240,7 +240,17 @@ namespace message
       if (m_puiOther != nullptr)
       {
 
-         m_puiOther->_001SetText(scopedstrText, ::e_source_sync);
+         ::pointer<::user::element>pelement = m_puiOther;
+
+         if (pelement)
+         {
+
+            pelement->text().set_text(scopedstrText, context + ::e_source_sync);
+
+         }
+
+
+         //m_puiOther->_001SetText(scopedstrText, ::e_source_sync);
 
       }
 

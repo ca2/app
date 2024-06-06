@@ -1997,7 +1997,7 @@ namespace http
          psocket->m_emethod = ::sockets::http_method_put;
 
       }
-      else if (set["post"].propset().has_property() || set("http_method") == "POST")
+      else if (set["post"].property_set_reference().has_property() || set("http_method") == "POST")
       {
 
          //bPost = true;
@@ -2010,7 +2010,7 @@ namespace http
 
          psocket = psocketPost;
 
-         dynamic_cast <::sockets::http_post_socket *> (psocket.m_p)->m_fields = set["post"].propset();
+         dynamic_cast <::sockets::http_post_socket *> (psocket.m_p)->m_fields = set["post"].property_set_reference();
 
          if (set.has_property("multipart"))
          {
@@ -2179,7 +2179,7 @@ namespace http
 
       bool bConfigProxy = !set.has_property("no_proxy_config") || set["no_proxy_config"].is_false();
 
-      class ::time tickTotalTimeout = set["timeout"].time();
+      class ::time tickTotalTimeout = set["timeout"].as_time();
 
       set["http_body_size_downloaded"] = &psocket->m_body_size_downloaded;
 

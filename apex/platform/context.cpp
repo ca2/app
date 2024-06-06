@@ -971,7 +971,7 @@ namespace apex
       else
       {
 
-         m_payloadFile.payloada().add(prequest->m_payloadFile);
+         m_payloadFile.payload_array_reference().add(prequest->m_payloadFile);
 
       }
 

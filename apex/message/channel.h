@@ -135,7 +135,7 @@ public:
    //}
 
 
-   void default_toggle_check_handling(const ::atom& atom);
+   //void default_toggle_check_handling(const ::atom& atom);
 
    
    void _001SendCommand(::message::command * pmessage);

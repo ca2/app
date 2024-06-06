@@ -1091,7 +1091,7 @@ namespace url
             else
             {
                
-               payload.payloada().add(strQuery.substr(pPos + strKeyEqual.length()));
+               payload.as_payload_array().add(strQuery.substr(pPos + strKeyEqual.length()));
                
             }
             
@@ -1110,7 +1110,7 @@ namespace url
             else
             {
                
-               payload.payloada().add(strQuery.substr(pPos + strKeyEqual.length(), pEnd - (pPos + strKeyEqual.length())));
+               payload.as_payload_array().add(strQuery.substr(pPos + strKeyEqual.length(), pEnd - (pPos + strKeyEqual.length())));
                
             }
             

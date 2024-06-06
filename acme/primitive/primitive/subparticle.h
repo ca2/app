@@ -3,7 +3,6 @@
 
 
 
-#include "subparticle_flags.h"
 #include "pointer.h"
 #include "acme/primitive/primitive/interlocked_count.h"
 
@@ -28,8 +27,7 @@
 #include "quantum.h"
 
 class CLASS_DECL_ACME subparticle :
-   virtual public ::quantum,
-   virtual public SUBPARTICLE_FLAGS
+   virtual public ::quantum
 {
 public:
 

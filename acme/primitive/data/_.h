@@ -35,3 +35,7 @@ namespace xml
 
 
 
+class property_container;
+class property_listener;
+
+

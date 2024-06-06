@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "check.h"
-#include "text.h"
+//#include "check.h"
+//#include "text.h"
 #include "element.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
@@ -15,7 +15,9 @@ namespace user
 {
 
 
-   element::element()
+   element::element() :
+   m_checkproperty(this),
+   m_textproperty(this)
    {
 
 
@@ -4515,7 +4517,7 @@ namespace user
    }
 
 
-   void element::insert_text(string str, bool bForceNewStep, const ::action_context & context)
+   void element::insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context)
    {
 
    }

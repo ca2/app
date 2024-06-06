@@ -77,7 +77,7 @@ void on_property_destruct(property * pproperty);
 
 
 class CLASS_DECL_ACME property : 
-   public ::payload
+   virtual public ::subparticle
 {
 public:
 
@@ -91,7 +91,8 @@ public:
    using ARG_TYPE2 = const ::payload &;
 
 
-   ::atom              m_atom;
+   ::atom                 m_atom;
+   ::payload               m_payload;
 
 
    property() { on_property_construct(this); }

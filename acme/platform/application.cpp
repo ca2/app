@@ -1198,19 +1198,19 @@ void application::fill_locale_schema(::text::international::locale_schema& local
    
    string_array stra;
    
-   stra = payload("locale").stra();
+   stra = payload("locale").as_string_array();
    
    stra.erase_ci("_std");
    
-   straLocale.append_unique(payload("locale").stra());
+   straLocale.append_unique(payload("locale").as_string_array());
    
    stra.empty();
    
-   stra = payload("schema").stra();
+   stra = payload("schema").as_string_array();
    
    stra.erase_ci("_std");
    
-   straSchema.append_unique(payload("schema").stra());
+   straSchema.append_unique(payload("schema").as_string_array());
    
    localeschema.m_atomLocale = straLocale[0];
    localeschema.m_atomSchema = straSchema[0];

@@ -3,6 +3,8 @@
 
 
 #include "command_update_target.h"
+#include "acme/primitive/data/check_property.h"
+#include "acme/primitive/data/text_property.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
 #include "acme/handler/source.h"
 #include "acme/platform/conversation_message.h"
@@ -40,6 +42,7 @@ namespace user
       virtual public ::conversation_message,
       virtual public ::user::drag_client,
       virtual public ::source
+       //, virtual public ::property_container
    {
    public:
 
@@ -98,7 +101,8 @@ namespace user
       ::user::interaction *                        m_puserinteraction;
       //pointer< pointer_array < ::user::item > >    m_puseritema;
 
-      
+      check_property <>                             m_checkproperty;
+       text_property <>                             m_textproperty;
 
 
       element();
@@ -766,7 +770,7 @@ namespace user
 
       virtual void edit_on_text(string str);
       virtual void edit_on_sel(strsize iBeg, strsize iEnd);
-      virtual void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
+      virtual void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context);
 
 
       virtual void on_text_composition(string str);
@@ -794,7 +798,7 @@ namespace user
       //virtual bool enable_window(bool bEnable );
 
       // Text Edit
-      virtual void _001GetSel(strsize & iBeg, strsize & iEnd) override;
+      virtual void _001GetSel(strsize & iBeg, strsize & iEnd);
       virtual void _001GetSel(strsize& iBeg, strsize& iEnd, strsize & iComposingStart, strsize & iComposingEnd);
       virtual ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel);
       virtual ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x);

@@ -23,6 +23,7 @@ public:
    payload_array(const ::i32_array & inta);
    payload_array(const ::property_set & propset);
    payload_array(const payload_array & payloada);
+   payload_array(payload_array && payloada);
    ~payload_array() override;
 
 

@@ -596,6 +596,10 @@ list(APPEND library_source
         primitive/data/listener.h
         primitive/data/node.cpp
         primitive/data/node.h
+        primitive/data/property_container.cpp
+        primitive/data/property_container.h
+        primitive/data/property_listener.cpp
+        primitive/data/property_listener.h
         primitive/data/simple_item.cpp
         primitive/data/simple_item.h
         primitive/data/tree.cpp
@@ -794,8 +798,8 @@ list(APPEND library_source
         primitive/primitive/interlocked_count.h
         #primitive/primitive/interlocked_long_pulse.cpp
         #primitive/primitive/interlocked_long_pulse.h
-        primitive/primitive/linked_property.cpp
-        primitive/primitive/linked_property.h
+        #primitive/primitive/linked_property.cpp
+        #primitive/primitive/linked_property.h
         primitive/primitive/logic.h
         primitive/primitive/malloc.h
         primitive/primitive/map.h
@@ -1129,8 +1133,8 @@ list(APPEND library_source
         user/user/_string.cpp
         user/user/_string.h
         user/user/_text_stream.h
-        user/user/check.cpp
-        user/user/check.h
+        #user/user/check.cpp
+        #user/user/check.h
         user/user/container.cpp
         user/user/container.h
         user/user/content.h
@@ -1153,8 +1157,8 @@ list(APPEND library_source
         user/user/os_colors.cpp
         user/user/os_theme_colors.cpp
         user/user/os_theme_colors.h
-        user/user/text.cpp
-        user/user/text.h
+        #user/user/text.cpp
+        #user/user/text.h
         user/user/theme_colors.h
         user/user/tool.h
         user/user/tool_item.cpp
@@ -2765,7 +2769,9 @@ if (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+        _static_factory.h
+        )
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

@@ -62,6 +62,7 @@ using hsynchronization = void *;
 
 #include "subparticle.h"
 
+#include "particle_flags.h"
 
 #include "acme/platform/trace_statement.h"
 
@@ -89,7 +90,8 @@ struct disable_referencing_debugging_t {};
 
 // ThomasBorregaardSorensen!! Like handlers : now particle with handle::handlers*
 class CLASS_DECL_ACME particle :
-   virtual public subparticle
+   virtual public subparticle,
+   virtual public PARTICLE_FLAGS
 {
 public:
 

@@ -614,7 +614,7 @@ void property_set::_008AddArgumentOrFile(::payload & payloadFile, const ::string
       else
       {
 
-         payloadFile.stra().add(strArgument);
+         payloadFile.as_string_array().add(strArgument);
 
       }
 
@@ -706,7 +706,7 @@ void property_set::_008Add(const ::scoped_string & scopedstrKey, const ::scoped_
    else if (pset->has_property(straKey[i]) && pset->operator[](straKey[i]) != scopedstrValue)
    {
 
-      pset->operator[](straKey[i]).stra().add(scopedstrValue);
+      pset->operator[](straKey[i]).as_string_array().add(scopedstrValue);
 
    }
    else
@@ -1603,7 +1603,7 @@ property_set & property_set::merge(const property_set & set)
                   if (pproperty->get_type() == ::e_type_property_set)
                   {
 
-                     ppropertyThis->propset().merge(pproperty->propset());
+                     ppropertyThis->property_set_reference().merge(pproperty->as_property_set());
 
                   }
                   else
@@ -1655,7 +1655,7 @@ property_set & property_set::merge(const property_set & set)
 
                   }
 
-                  operator[](pproperty->name()).payloada().append_unique(operator[](pproperty->name()).payloada());
+                  operator[](pproperty->name()).payload_array_reference().append_unique(operator[](pproperty->name()).as_payload_array());
 
                }
 

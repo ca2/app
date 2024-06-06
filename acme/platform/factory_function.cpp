@@ -2,7 +2,7 @@
 #include "framework.h"
 
 
-#ifdef CUBE
+//#ifdef CUBE
 
 
 #include "factory_function.h"
@@ -54,6 +54,6 @@ FACTORY_FUNCTION* factory_function::get(const ::scoped_string & scopedstrName)
 }
 
 
-#endif
+//#endif
 
 

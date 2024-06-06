@@ -131,12 +131,12 @@ namespace user
    void line_layout::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_bExtendOnParent || get_parent()->is_frame_window() || get_parent()->is_impact())
-      {
-
-         _extend_on_parent(pgraphics);
-
-      }
+      // if (m_bExtendOnParent || get_parent()->is_frame_window() || get_parent()->is_impact())
+      // {
+      //
+      //    _extend_on_parent(pgraphics);
+      //
+      // }
 
    }
 

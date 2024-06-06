@@ -1,15 +1,8 @@
-#ifdef CUBE
-#include "acme/platform/factory_function.h"
-#include "operating_system/appconfig.h"
-#include "_static_factory_.inl"
-DO_FACTORY(REFERENCE_FACTORY)
-#endif
 
 #include "acme/exception/exception.h"
 
 ::i32 application_main(::platform::platform * pplatform);
 
-#include "_main_hold.h"
 #include "acme/_operating_system.h"
 #include "acme/operating_system/process.h"
 #include APPLICATION_INCLUDE
@@ -409,6 +402,14 @@ int main(int argc, char ** argv, char ** envp)
 
 
 //#include "acme/_defer.h"
+
+
+
+
+#ifdef CUBE
+#define STATIC_FACTORY_INCLUDE "_static_factory_.inl"
+#include "acme/_static_factory.h"
+#endif
 
 
 

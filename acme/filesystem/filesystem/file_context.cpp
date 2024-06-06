@@ -3700,7 +3700,7 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
       if (payloadFile.has_property("file"))
       {
 
-         pfile = payloadFile.propset()["file"].cast<::file::file>();
+         pfile = payloadFile.as_property_set()["file"].cast<::file::file>();
 
          if (pfile.is_set())
          {

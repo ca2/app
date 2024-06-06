@@ -39,7 +39,7 @@ public:
    operator f32 () const { return m_payload.as_f32(); }
    operator f64 ()const { return m_payload.as_f64(); }
 
-   operator class ::time ()const { return m_payload.time(); }
+   operator class ::time ()const { return m_payload.as_time(); }
    operator earth::time()const { return m_payload.as_earth_time(); }
 
 
@@ -47,11 +47,11 @@ public:
    //operator property ()const { return m_payload.property(); }
 
 
-   operator ::i32_array ()const { return m_payload.ia(); }
-   operator ::i64_array ()const { return m_payload.i64a(); }
-   operator ::string_array ()const { return m_payload.stra(); }
-   operator ::payload_array() const { return m_payload.payloada(); }
-   operator ::property_set() const { return m_payload.propset(); }
+   operator ::i32_array ()const { return m_payload.as_i32_array(); }
+   operator ::i64_array ()const { return m_payload.as_i64_array(); }
+   operator ::string_array ()const { return m_payload.as_string_array(); }
+   operator ::payload_array() const { return m_payload.as_payload_array(); }
+   operator ::property_set() const { return m_payload.as_property_set(); }
    operator ::file::path() const { return m_payload.as_file_path(); }
 
 

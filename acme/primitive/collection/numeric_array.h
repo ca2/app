@@ -36,53 +36,43 @@ class numeric_array :
 public:
 
 
-   numeric_array(){}
+   using BASE_ARRAY = comparable_raw_array < TYPE, TYPE, ::typed::nodef < TYPE >, ::heap::typed_memory < TYPE, ::heap::e_memory_array >, t_etypeContainer >;
+   using BASE_TYPE = TYPE;
+   using BASE_ARG_TYPE = const TYPE &;
 
 
-   numeric_array(const std::initializer_list < TYPE > & initializer_list):
-      comparable_raw_array < TYPE, TYPE, ::typed::nodef < TYPE >, ::heap::typed_memory < TYPE, ::heap::e_memory_array >, t_etypeContainer >(initializer_list)
+   numeric_array() = default;
+
+
+   numeric_array(const std::initializer_list < TYPE > & initializerlist):
+      BASE_ARRAY(initializerlist)
    {
 
    }
 
    numeric_array(const TYPE * pa, ::collection::count c) :
-      numeric_array()
+      numeric_array(pa, c)
    {
 
-      this->set_size(c);
-
-      while(c > 0)
-      {
-
-         c--;
-
-         this->operator[](c) = pa[c];
-
-      }
 
    }
 
 
-   numeric_array(const numeric_array & array)
+   numeric_array(const numeric_array & array) :
+   BASE_ARRAY(array)
    {
-
-      operator = (array);
 
    }
 
-   numeric_array(numeric_array && array)
+   numeric_array(numeric_array && array) noexcept :
+   BASE_ARRAY(::transfer(array))
    {
-
-      this->transfer(::transfer(array));
-
    }
 
 
    //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(numeric_array, comparable_raw_array < TYPE >)
 
-   typedef TYPE BASE_TYPE;
-   typedef const TYPE & BASE_ARG_TYPE;
-   typedef comparable_raw_array < TYPE, TYPE, ::typed::nodef < TYPE >, ::heap::typed_memory < TYPE, ::heap::e_memory_array >, t_etypeContainer > BASE_ARRAY;
+   //using BASE_ARRAY = comparable_raw_array < TYPE, TYPE, ::typed::nodef < TYPE >, ::heap::typed_memory < TYPE, ::heap::e_memory_array >, t_etypeContainer >;
 
 
    ::collection::index find_first_maximum_value();

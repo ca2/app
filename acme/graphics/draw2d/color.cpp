@@ -958,7 +958,7 @@ namespace color
             {
                str.trim();
                ::payload a;
-               a.stra().explode(",", str);
+               a.as_string_array().explode(",", str);
                auto & ia = a.i32_array_reference();
                if (ia.get_count() == 3)
                {

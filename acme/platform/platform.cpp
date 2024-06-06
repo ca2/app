@@ -37,9 +37,9 @@ namespace acme
 //
 //
 } // namespace acme
-#ifdef CUBE
+//#ifdef CUBE
 #include "factory_function.h"
-#endif
+//#endif
 
 
 namespace mathematics
@@ -839,7 +839,7 @@ namespace platform
       if (!plibrary)
       {
 
-#ifdef CUBE
+//#ifdef CUBE
 
          auto pfnFactory = ::factory_function::get(strLibrary);
 
@@ -857,7 +857,7 @@ namespace platform
 
          plibrary->m_pfnFactory = pfnFactory;
 
-#endif
+//#endif
 
       }
 
@@ -942,7 +942,7 @@ namespace platform
       if (!plibrary)
       {
 
-#ifdef CUBE
+//#ifdef CUBE
 
          auto pfnFactory = ::factory_function::get(strLibrary);
 
@@ -957,7 +957,7 @@ namespace platform
 
          }
 
-#endif
+//#endif
 
          informationf("Library not found : \"%s\".\n", strLibrary.c_str());
 

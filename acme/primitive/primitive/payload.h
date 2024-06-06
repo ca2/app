@@ -475,7 +475,7 @@ public:
    }
 
 
-   ::posix_time as_time(const class ::time & timeDefault = {}) const;
+   ::posix_time as_time(const class ::time & timeDefault) const;
 
    ::string as_string(const ::scoped_string & scopedstrOnNull) const;
    ::string as_string() const;
@@ -483,14 +483,14 @@ public:
    ::atom as_atom() const;
    ::atom as_atom(const ::atom & idDefault) const;
 
-   ::memory memory() const;
-   ::string_array stra() const;
-   ::i32_array ia() const;
-   ::i64_array i64a() const;
-   ::payload_array payloada()  const;
-   ::property_set propset() const;
-   class ::time time() const;
-   ::property property() const;
+   ::memory as_memory() const;
+   ::string_array as_string_array() const;
+   ::i32_array as_i32_array() const;
+   ::i64_array as_i64_array() const;
+   ::payload_array as_payload_array()  const;
+   ::property_set as_property_set() const;
+   class ::time as_time() const;
+   ::property as_property() const;
 
 
    bool is_scalar() const;
@@ -1231,13 +1231,13 @@ public:
    template < class T >
    ::pointer< T > cast();
 
-   ::subparticle * subparticle()
+   ::subparticle * as_subparticle()
    {
       if (m_etype == e_type_element) { return m_p; }
       return cast < ::subparticle >();
    }
 
-   ::subparticle * subparticle() const { return ((payload *)this)->subparticle(); }
+   ::subparticle * as_subparticle() const { return ((payload *)this)->as_subparticle(); }
 
    template < class T >
    T * cast() const
@@ -1476,7 +1476,7 @@ public:
    //void consume_identifier((::ansi_range & range);
    void parse_network_payload(::ansi_range & range);
    //void parse_network_payload((::ansi_range & range);
-   const char * parse_network_payload(const ::string & strJson);
+   const char * parse_network_payload(const ::scoped_string & scopedstrNetworkPayload);
    ::enum_type find_network_payload_child(::ansi_range & range, const payload & payload);
    //::enum_type find_network_payload_child((::ansi_range & range, const payload & payload);
    ::enum_type find_network_payload_id(::ansi_range & range, const payload & payload);

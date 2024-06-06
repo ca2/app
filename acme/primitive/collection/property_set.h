@@ -28,7 +28,7 @@ public:
    property_set(::std::initializer_list < ::payload > list);
    property_set(const property_set & set);
    property_set(property_set && set);
-   virtual ~property_set();
+   ~property_set() override;
 
 
    ::collection::count erase_by_name(const atom & idName);

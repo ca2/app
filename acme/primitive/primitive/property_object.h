@@ -8,7 +8,7 @@
 
 
 #include "matter.h"
-#include "linked_property.h"
+//#include "linked_property.h"
 #include "payload.h"
 
 
@@ -152,7 +152,7 @@ public:
 
    //virtual string get_text(const ::payload & payload, const ::atom & atom);
 
-   virtual linked_property parent_lookup_property(const atom & atom) const;
+   //virtual linked_property parent_lookup_property(const atom & atom) const;
 
    virtual void property_set_replace(string & str) const;
    virtual string property_set_evaluate(const ::string & str) const;
@@ -167,9 +167,9 @@ public:
 
    virtual void on_property_changed(property * pproperty, const ::action_context& actioncontext);
 
-   virtual ::linked_property fetch_property(const ::atom & atom, bool bCreate = true);
+   //virtual ::linked_property fetch_property(const ::atom & atom, bool bCreate = true);
 
-   virtual ::linked_property on_fetch_property(const ::atom & atom) const;
+   //virtual ::linked_property on_fetch_property(const ::atom & atom) const;
 
    virtual ::property_object * parent_property_set_holder() const;
 

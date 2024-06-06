@@ -2,8 +2,7 @@
 #pragma once
 
 
-#include "check.h"
-#include "text.h"
+#include "acme/primitive/data/property_container.h"
 
 
 namespace user
@@ -11,13 +10,14 @@ namespace user
 
 
    class command_update_target :
-      virtual public ::user::check,
-      virtual public ::user::text
+      virtual public ::property_container
    {
    public:
 
 
+
       virtual void enable_window(bool bEnable) = 0;
+
 
 
    };

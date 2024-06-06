@@ -2,19 +2,19 @@
 
 
 #include "array.h"
+#include "acme/primitive/primitive/ptr.h"
 #include "comparable_eq_array.h"
 #include "comparable_array.h"
 #include "pointer_array_process.h"
 
 
-template < typename TYPE >
+template < class T >
 class ptr_array :
-   public pointer_array_process < comparable_array < TYPE * >, TYPE >
+   public pointer_array_process < comparable_array < ::ptr < T >, const T * >, T >
 {
 public:
 
-
-   using pointer_array_process < comparable_array < TYPE * >, TYPE >::pointer_array_process;
+   using BASE_ARRAY = pointer_array_process < comparable_array < ::ptr < T >, const T * > , T >;
 
 
    ptr_array() { }

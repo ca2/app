@@ -113,11 +113,19 @@ public:
    ~particle() override;
 
 
+   inline bool is_null() const { return ::is_null(this); }
+   inline bool is_set() const { return !is_null() && _is_set(); }
+
+   inline bool is_ok() const { return is_set() && _is_ok(); }
+   inline bool nok() const { return !is_ok(); }
+
 
 
    virtual void initialize(::particle * pparticle);
    virtual void finalize();
 
+
+   bool _is_ok() const override;
 
 //   virtual void delete_this();
 
@@ -171,7 +179,7 @@ public:
 
    //::aura::application* auraapplication() const;
 
-
+   void delete_this() override;
 
 
    ::acme_file * acmefile() const;

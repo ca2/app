@@ -576,7 +576,7 @@ payload::payload(const ::color::hls & hls) :
 payload::~payload()
 {
 
-   release();
+   payload_release();
 
 }
 
@@ -776,7 +776,7 @@ void payload::set_type(enum_type etype, bool bConvert)
    else if (etype != m_etype)
    {
 
-      release();
+      payload_release();
 
       if (bConvert && m_etype != e_type_new)
       {
@@ -1540,7 +1540,8 @@ class ::payload & payload::operator = (const ::property * pproperty)
 
 }
 
-void payload::increment_reference_count()
+
+void payload::payload_increment_reference_count()
 {
 
    switch(m_etype)
@@ -1602,7 +1603,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
          return *this;
       case e_type_property:
          // should dereference (this operator here means a content copy)
-         *this = *((class property&)payload).m_pproperty;
+         *this = *((class ::payload&)payload).m_pproperty;
          return *this;
           case e_type_property_set:
               // should dereference (this operator here means a content copy)
@@ -1671,7 +1672,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
 
 #endif
 
-         increment_reference_count();
+         payload_increment_reference_count();
 
       }
       else
@@ -9380,19 +9381,19 @@ IMPLEMENT_PAYLOAD_NUMBER(f64);
 
 
 //::extended::status payload::run()
-void payload::run()
+void payload::payload_run()
 {
 
    if (get_type() == e_type_payload_pointer)
    {
 
-      return m_ppayload->run();
+      return m_ppayload->payload_run();
 
    }
    else if (get_type() == e_type_property)
    {
 
-      return m_pproperty->run();
+      return m_pproperty->payload_run();
 
    }
    else if (get_type() == e_type_element)
@@ -9417,7 +9418,7 @@ void payload::run()
       for (auto & payload : payloada)
       {
 
-         payload.run();
+         payload.payload_run();
 
       }
 

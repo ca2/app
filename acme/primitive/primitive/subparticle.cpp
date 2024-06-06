@@ -134,7 +134,9 @@ bool subparticle::_is_set() const
 bool subparticle::_is_ok() const
 {
 
-   return has_ok_flag();
+   //return has_ok_flag();
+
+   return true;
 
 }
 
@@ -186,19 +188,11 @@ void subparticle::destroy_os_data()
 
 }
 
+
 void subparticle::delete_this()
 {
 
-   if (!(m_eflagElement & e_flag_statically_allocated))
-   {
-
-      //__delete(this, m_pAllocation);
-
-      //delete m_pAllocation;
-
-      delete this;
-
-   }
+   delete this;
 
 }
 

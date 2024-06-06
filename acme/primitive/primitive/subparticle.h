@@ -145,13 +145,7 @@ public:
 
 
    virtual bool _is_set() const;
-   inline bool is_null() const { return ::is_null(this); }
-   inline bool is_set() const { return !is_null() && _is_set(); }
-
    virtual bool _is_ok() const;
-   inline bool is_ok() const { return is_set() && _is_ok(); }
-   inline bool nok() const { return !is_ok(); }
-
 
 
    virtual enum_type get_payload_type() const;

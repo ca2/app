@@ -26,6 +26,10 @@ public:
    const T & object_at(::collection::index i) const { return *this->element_at(i); }
 
 
+   ptr_array & operator=(const ptr_array & ptra) { BASE_ARRAY::operator=(ptra); return *this; }
+   ptr_array & operator=(ptr_array && ptra) { BASE_ARRAY::operator=(::transfer(ptra)); return *this; }
+
+
 };
 
 

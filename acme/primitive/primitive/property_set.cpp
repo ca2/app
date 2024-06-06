@@ -1074,7 +1074,7 @@ string & property_set::get_network_payload(string & str, bool bNewLine) const
 
    str += "{";
 
-   auto p = m_propertyptra.begin();
+   auto p = this->begin();
 
    if (p)
    {
@@ -1086,7 +1086,7 @@ string & property_set::get_network_payload(string & str, bool bNewLine) const
 
          p++;
 
-         if (p >= m_propertyptra.end())
+         if (p >= this->end())
          {
 
             break;
@@ -1365,7 +1365,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 
    string str;
 
-   auto p = m_propertyptra.begin();
+   auto p = this->begin();
 
    if (p)
    {
@@ -1377,7 +1377,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 
          p++;
 
-         if (p >= m_propertyptra.end())
+         if (p >= this->end())
          {
 
             break;
@@ -1443,7 +1443,7 @@ property_set::property_set(const property_set & set)
 
 
 property_set::property_set(property_set && set) :
-   m_propertyptra(::transfer(set.m_propertyptra))
+   property_ptra(::transfer(set))
 {
 
 }
@@ -1512,7 +1512,7 @@ property_set & property_set::operator = (const ::payload & payload)
       //else
       //{
 
-      ::acme::copy((property_ptra &)*this, (const property_ptra &)*payload.m_ppropertyset);
+      (property_ptra &)*this = (const property_ptra &)*payload.m_ppropertyset;
 
       //      }
 
@@ -1543,7 +1543,7 @@ property_set & property_set::operator = (const property_set & set)
    if (&set != this)
    {
 
-      ::acme::copy(m_propertyptra, set.m_propertyptra);
+      ::property_ptra::operator=(set);
 
    }
 
@@ -1846,9 +1846,9 @@ bool property_set::contains(const property_set & set) const
 string & property_set::get_network_arguments(string & strNetworkArguments) const
 {
 
-   auto p = m_propertyptra.begin();
+   auto p = this->begin();
 
-   while (!m_propertyptra.is_end(p))
+   while (!this->is_end(p))
    {
 
       if (strNetworkArguments.has_char())
@@ -1926,7 +1926,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 //index stable_property_set::find(atom atom)
 //{
 //
-//   for (::collection::index i = 0; i < m_propertyptra.get_size(); i++)
+//   for (::collection::index i = 0; i < this->get_size(); i++)
 //   {
 //
 //      if (m_propertyptra[i]->m_atom == atom)
@@ -1953,7 +1953,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 //
 //      auto pproperty = __allocate< property >(nullptr);
 //
-//      m_propertyptra.add(pproperty);
+//      this->add(pproperty);
 //
 //      pproperty->m_atom = atom;
 //
@@ -1982,7 +1982,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 //
 //      iFind = (index) (atom.i64());
 //
-//      if (::is_null(pFind) || iFind >= m_propertyptra.get_count())
+//      if (::is_null(pFind) || iFind >= this->get_count())
 //      {
 //
 //         throw ::exception(error_index_out_of_bounds);
@@ -2311,10 +2311,10 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 ::collection::index property_set::index_of(const ::atom & atom, ::collection::index i) const
 {
 
-   for (; i < m_propertyptra.get_count(); i++)
+   for (; i < this->get_count(); i++)
    {
 
-      if (m_propertyptra[i]->m_atom == atom)
+      if (this->element_at(i)->m_atom == atom)
       {
 
          return i;
@@ -2331,9 +2331,9 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 ::property * property_set::find(const ::atom & atom, ::collection::index iStart) const
 {
 
-   auto p = m_propertyptra.begin() + iStart;
+   auto p = this->begin() + iStart;
 
-   for (; !m_propertyptra.is_end(p); p++)
+   for (; !this->is_end(p); p++)
    {
 
       if ((*p)->m_atom == atom)

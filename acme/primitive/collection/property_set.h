@@ -281,7 +281,7 @@ public:
    //using property_ptra::is_empty;
 
    bool is_empty(const atom & idName) const;
-   //bool is_empty() const { return this->is_empty(); }
+   bool is_empty() const { return ::property_ptra::is_empty(); }
    bool has_property() const { return this->has_element(); }
    ::collection::count property_count() const { return this->get_count(); }
    

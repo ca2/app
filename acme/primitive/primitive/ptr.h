@@ -64,18 +64,18 @@ public:
    
    /// consumes a referer
    template < typename TYPE2 >
-   ptr(TYPE2 * p)
+   ptr(const TYPE2 * p)
    {
 
-      if (p)
+      if (::is_set(p))
       {
 
 #if REFERENCING_DEBUGGING
          m_preferer = ::allocator::defer_get_referer(p, { this, __FUNCTION_FILE_LINE__ });
 #endif
-         p->increment_reference_count();
+         ((TYPE2*)p)->increment_reference_count();
 
-         m_p = dynamic_cast < TYPE * > (p);
+         m_p = dynamic_cast < TYPE * > ((TYPE2*)p);
 
       }
       else

@@ -302,7 +302,7 @@ template < class T >
 inline bool pointer < T > ::is_set() const
 {
 
-   return !is_null() && m_psubparticle->is_set();
+   return !is_null() && m_psubparticle->_is_set();
 
 }
 
@@ -1945,7 +1945,7 @@ template < typename T >
 inline bool pointer < T > ::ok() const
 {
 
-   return is_set() && m_psubparticle->is_ok();
+   return is_set() && m_psubparticle->_is_ok();
 
 }
 

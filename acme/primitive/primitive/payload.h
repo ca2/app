@@ -325,7 +325,7 @@ public:
 
    bool get_type(::type_atom & typeatom) const;
 
-   ::i64 release();
+   ::i64 payload_release();
 
    ::i64 logical_release();
 
@@ -849,7 +849,7 @@ public:
    }
 
 
-   void increment_reference_count();
+   void payload_increment_reference_count();
 
 
 
@@ -1498,9 +1498,9 @@ public:
    void _001Add(const ::string_array & stra);
 
 
-   void run();
+   void payload_run();
 
-   void operator()() { return run(); }
+   //void operator()() { return run(); }
 
    void receive_response(const payload & payload);
 

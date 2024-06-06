@@ -652,7 +652,7 @@ void subparticle::init_task()
 void subparticle::call_run()
 {
 
-   m_eflagElement += e_flag_running;
+   //m_eflagElement += e_flag_running;
 
    try
    {
@@ -671,9 +671,37 @@ void subparticle::call_run()
 
    }
 
-   m_eflagElement -= e_flag_running;
+   //m_eflagElement -= e_flag_running;
 
 }
+
+
+bool particle::_is_ok() const
+{
+
+   //return has_ok_flag();
+
+   return true;
+
+}
+
+
+void particle::delete_this()
+{
+
+   if (!(m_eflagElement & e_flag_statically_allocated))
+   {
+
+      //__delete(this, m_pAllocation);
+
+      //delete m_pAllocation;
+
+      delete this;
+
+   }
+
+}
+
 
 
 void subparticle::run()

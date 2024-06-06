@@ -101,12 +101,17 @@ namespace user
       ::user::interaction *                        m_puserinteraction;
       //pointer< pointer_array < ::user::item > >    m_puseritema;
 
-      check_property <>                             m_checkproperty;
-       text_property <>                             m_textproperty;
+      //check_property <>                             m_checkproperty;
+       //text_property <>                             m_textproperty;
 
 
       element();
       ~element() override;
+
+
+       check_property check() {return {this, ID_CHECK};}
+
+       text_property text() {return {this, ID_TEXT};}
 
 
       virtual void _001OnTimer(::timer * ptimer);

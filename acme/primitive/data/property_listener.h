@@ -13,8 +13,8 @@ class CLASS_DECL_ACME property_listener :
 public:
 
 
-    virtual bool on_property_will_change(property_container * pcontainer, const ::atom & atom, const ::payload & payload, const ::action_context & actioncontext);
-    virtual void on_property_changed(property_container * pcontainer, const ::atom & atom, const ::payload & payload, const ::action_context & actioncontext);
+    virtual bool on_property_will_change(property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext);
+    virtual void on_property_changed(property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext);
 
 
 };

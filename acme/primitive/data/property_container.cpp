@@ -6,40 +6,40 @@
 #include "property_listener.h"
 
 
-bool property_container::set_property(const ::atom & atom, const ::payload & payload, const ::action_context & actioncontext)
+bool property_container::set_property(const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext)
 {
 
-    if(!on_property_will_change(atom, payload, actioncontext))
+    if(!on_property_will_change(atoma, payload, actioncontext))
     {
 
         return false;
 
     }
 
-    m_propertyset[atom] = payload;
+    m_propertyset[atoma] = payload;
 
-    on_property_changed(atom, payload, actioncontext);
+    on_property_changed(atoma, payload, actioncontext);
 
     return true;
 
 }
 
 
-::payload property_container::get_property(const ::atom & atom) const
+::payload property_container::get_property(const ::atom_array & atoma) const
 {
 
-    return m_propertyset[atom];
+    return m_propertyset[atoma];
 
 }
 
 
-bool property_container::on_property_will_change(const ::atom & atom, const ::payload & payload, const ::action_context & actioncontext)
+bool property_container::on_property_will_change(const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext)
 {
 
     for(auto & propertywillchange : m_propertywillchangea)
     {
 
-        if(!propertywillchange(this, atom, payload, actioncontext))
+        if(!propertywillchange(this, atoma, payload, actioncontext))
         {
 
             return false;
@@ -51,7 +51,7 @@ bool property_container::on_property_will_change(const ::atom & atom, const ::pa
     for(auto & plistener : m_propertylistenera)
     {
 
-        if(!plistener->on_property_will_change(this, atom, payload, actioncontext))
+        if(!plistener->on_property_will_change(this, atoma, payload, actioncontext))
         {
 
             return false;
@@ -65,20 +65,20 @@ bool property_container::on_property_will_change(const ::atom & atom, const ::pa
 }
 
 
-void property_container::on_property_changed(const ::atom & atom, const ::payload & payload, const ::action_context & actioncontext)
+void property_container::on_property_changed(const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext)
 {
 
     for(auto & propertychanged : m_propertychangeda)
     {
 
-        propertychanged(this, atom, payload, actioncontext);
+        propertychanged(this, atoma, payload, actioncontext);
 
     }
 
     for(auto & plistener : m_propertylistenera)
     {
 
-        plistener->on_property_changed(this, atom, payload, actioncontext);
+        plistener->on_property_changed(this, atoma, payload, actioncontext);
 
     }
 

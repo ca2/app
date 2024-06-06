@@ -6,6 +6,7 @@
 
 
 #include "acme/primitive/primitive/property.h"
+#include "acme/primitive/collection/atom_array.h"
 //#include "payload_reference.h"
 
 
@@ -48,7 +49,9 @@ public:
    property * find(const ::atom & atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
    property & get(const ::atom & atom, ::collection::index iStart = 0); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
 
-   
+   property * find(const ::atom_array & atoma) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
+   property & get(const ::atom_array & atoma); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
+
    //property * find_index(::iptr i) const;
    //property & get_index(::iptr i);
 
@@ -73,6 +76,8 @@ public:
    //inline property & payload_text_key(const scoped_string & scopedstr, ::collection::index iStart = 0) { return get_property_text_key(scopedstr, iStart); }
 
 
+   inline ::payload operator[](const ::atom_array & atoma) const { return find(atoma); }
+   inline ::property & operator[](const ::atom_array & atoma) { return get(atoma); }
 
    inline ::payload operator[](const ::atom & atom) const { return find(atom); }
    inline ::property & operator[](const ::atom & atom) { return get(atom); }

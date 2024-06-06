@@ -67,30 +67,47 @@ public:
    bool set_property(const ::payload & payload, const ::action_context & actioncontext)
    {
 
-      return m_ppropertycontainer->set_property(m_atom, payload, actioncontext);
+      return m_ppropertycontainer->set_property({m_atom}, payload, actioncontext);
 
    }
 
-   bool set_property(const ::atom & atom, const ::payload & payload, const ::action_context & actioncontext)
+
+   ::atom_array get_key(const ::atom_array & atomaSuffix) const
    {
 
-      return m_ppropertycontainer->set_property(m_atom.as_string() + "." + atom.as_string(), payload, actioncontext);
+      if(atomaSuffix.is_empty())
+      {
+
+         return {m_atom};
+
+      }
+
+      ::atom_array atoma;
+
+      atoma.add(m_atom);
+
+      atoma.append(atomaSuffix);
+
+      return ::transfer(atoma);
 
    }
 
-   ::payload get_property() const
+
+   bool set_property(const ::atom_array & atomaSuffix, const ::payload & payload, const ::action_context & actioncontext)
    {
 
-      return m_ppropertycontainer->get_property(m_atom);
+      return m_ppropertycontainer->set_property(get_key(atomaSuffix), payload, actioncontext);
 
    }
 
-   ::payload get_property(const ::atom.) const
+   ::payload get_property(const ::atom_array & atomaSuffix = {}) const
    {
 
-      return m_ppropertycontainer->get_property(m_atom.as_string() + "." + atom.as_string());
+
+      return m_ppropertycontainer->get_property(get_key(atomaSuffix));
 
    }
+
 
 };
 

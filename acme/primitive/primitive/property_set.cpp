@@ -2369,6 +2369,74 @@ property & property_set::get(const ::atom & atom, ::collection::index iStart)
 }
 
 
+property * property_set::find(const ::atom_array & atoma) const
+{
+
+   const ::property_set * pset = this;
+
+   ::property * pproperty = nullptr;
+
+   for(auto & atom : atoma)
+   {
+
+      if(::is_set(pproperty))
+      {
+
+         if(pproperty->get_type() != e_type_property_set)
+         {
+
+            return nullptr;
+
+         }
+
+         pset = &pproperty->property_set_reference();
+
+      }
+
+      pproperty = pset->find(atom);
+
+      if(::is_null(pproperty))
+      {
+
+         return nullptr;
+
+      }
+
+   }
+
+   return pproperty;
+
+}
+
+
+property & property_set::get(const ::atom_array & atoma)
+{
+
+   ::property_set * pset = this;
+
+   ::property * pproperty = nullptr;
+
+   for(auto & atom : atoma)
+   {
+
+      if(::is_set(pproperty))
+      {
+
+         pset = &pproperty->property_set_reference();
+
+      }
+
+      pproperty = &pset->get(atom);
+
+   }
+
+   return *pproperty;
+
+}
+
+
+
+
 //::property * property_set::find_index(::iptr i) const
 //{
 //

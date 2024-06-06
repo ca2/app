@@ -15,9 +15,7 @@ namespace user
 {
 
 
-   element::element() :
-   m_checkproperty(this),
-   m_textproperty(this)
+   element::element()
    {
 
 

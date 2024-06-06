@@ -38,7 +38,8 @@ enum enum_id : ::uptr
    id_check  = ID_CHECK,
    id_enable = ID_ENABLE,
    id_text = ID_TEXT,
-   id_text_selection_array = ID_TEXT_SELECTION_ARRAY,
+   id_text_selection_begin = ID_TEXT_SELECTION_BEGIN,
+   id_text_selection_end = ID_TEXT_SELECTION_END,
    id_visible  = ID_VISIBLE,
 
 

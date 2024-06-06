@@ -81,9 +81,9 @@ public:
 
       //virtual void get_text_composition_area(::rectangle_i32& rectangle);
 */
-   ::string text() const { return this->get_property().as_string(); }
-   ::string text() const { return this->get_property().as_string(); }
-   ::string text() const { return this->get_property().as_string(); }
+   ::string text() const { return this->get_property({ID_TEXT}).as_string(); }
+   ::strsize selection_begin() const { return this->get_property({ID_TEXT_SELECTION_BEGIN}).as_iptr(); }
+   ::strsize selection_end() const { return this->get_property({ID_TEXT_SELECTION_END}).as_iptr(); }
 
 
    void    get_text(string & str)
@@ -95,7 +95,7 @@ public:
    }
 
 
-   void set_selection_text(const ::scoped_string & scopedstrNewSelectionText, const ::action_context & actioncontext)
+   bool set_selection_text(const ::scoped_string & scopedstrNewSelectionText, const ::action_context & actioncontext)
    {
 
       auto strText = this->text();
@@ -110,20 +110,22 @@ public:
 
       auto strRight = strText(iEnd);
 
-      if(set_text(strLeft + scopedstrNewSelectionText + strRight, actioncontext))
+      if(!set_text(strLeft + scopedstrNewSelectionText + strRight, actioncontext))
       {
 
-         set_selection_end(iBegin + scopedstrNewSelectionText.size());
+         return false;
 
       }
+
+      set_selection_end(iBegin + scopedstrNewSelectionText.size(), actioncontext);
 
    }
 
 
-   void set_text(const ::scoped_string & scopedstrText, const ::action_context & actioncontext)
+   bool set_text(const ::scoped_string & scopedstrText, const ::action_context & actioncontext)
    {
 
-      property_link::set_property(t_eid, scopedstrText, actioncontext);
+      return set_property({ID_TEXT}, scopedstrText, actioncontext);
 
    }
 
@@ -131,7 +133,7 @@ public:
    strsize get_size() const
    {
 
-      return this->text()->size();
+      return this->text().size();
 
    }
 
@@ -146,7 +148,7 @@ public:
    }
 
 
-   void get_text(string & str, strsize iBeg, strsize iEnd)
+   void get_text(string & str, strsize iBeg, strsize iEnd) const
    {
 
       auto strText = this->text();
@@ -166,59 +168,50 @@ public:
    }
 
 
-   void get_selection(strsize & iBeging, strsize & iEnd) const
+   void get_selection(strsize & iBegin, strsize & iEnd) const
    {
 
-      auto ia = ::property_link::get_property(t_eidSelection).as_i64_array();
+      iBegin = selection_begin();
 
-      while(ia.get_size() < 2)
-      {
-
-         ia.add(-1);
-
-      }
-
-      iBeging = ia[0];
-
-      iEnd = ia[1];
+      iEnd = selection_end();
 
    }
 
 
-   strsize selection_begin() const
+   // strsize selection_begin() const
+   // {
+   //
+   //    ::strsize iBegin;
+   //
+   //    ::strsize iEnd;
+   //
+   //    get_selection(iBegin, iEnd);
+   //
+   //    return iBegin;
+   //
+   // }
+
+
+   // strsize selection_end() const
+   // {
+   //
+   //    ::strsize iBegin;
+   //
+   //    ::strsize iEnd;
+   //
+   //    get_selection(iBegin, iEnd);
+   //
+   //    return iEnd;
+   //
+   // }
+
+
+   void set_selection(strsize iBegin, strsize iEnd, const ::action_context & actioncontext)
    {
 
-      ::strsize iBegin;
+      set_selection_begin(iBegin, actioncontext);
 
-      ::strsize iEnd;
-
-      get_selection(iBegin, iEnd);
-
-      return iBegin;
-
-   }
-
-
-   strsize selection_end() const
-   {
-
-      ::strsize iBegin;
-
-      ::strsize iEnd;
-
-      get_selection(iBegin, iEnd);
-
-      return iEnd;
-
-   }
-
-
-   void set_selection(strsize & iBegin, strsize & iEnd, const ::action_context & actioncontext)
-   {
-
-      i64_array ia{iBegin, iEnd};
-
-      ::property_link::set_property(t_eidSelection, ia, actioncontext);
+      set_selection_end(iEnd, actioncontext);
 
    }
 
@@ -245,11 +238,7 @@ public:
    void set_selection_begin(strsize iBegin, const ::action_context & actioncontext)
    {
 
-      strsize iBegin1, iEnd;
-
-      get_selection(iBegin1, iEnd);
-
-      set_selection(iBegin, iEnd);
+      set_property({ID_TEXT_SELECTION_BEGIN}, iBegin, actioncontext);
 
    }
 
@@ -257,11 +246,7 @@ public:
    void set_selection_end(strsize iEnd, const ::action_context & actioncontext)
    {
 
-      strsize iBegin, iEnd1;
-
-      get_selection(iBegin, iEnd1);
-
-      set_selection(iBegin, iEnd);
+      set_property({ID_TEXT_SELECTION_END}, iEnd, actioncontext);
 
    }
 

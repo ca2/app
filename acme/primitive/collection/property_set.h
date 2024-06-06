@@ -5,19 +5,16 @@
 // Don`t include this file directly
 
 
-#include "acme/primitive/primitive/__property.h"
+#include "acme/primitive/primitive/property.h"
 //#include "payload_reference.h"
 
 
 // property set key is case insensitive
 // PROPERTY_ARRAY Property set ordered
 class CLASS_DECL_ACME property_set :
-   virtual public ::particle
+   virtual public ::property_ptra
 {
 public:
-
-
-   property_ptra     m_propertyptra;
 
 
    //__declare_iterator(name_iterator, &(*this->m_pelement)->m_atom);
@@ -80,9 +77,9 @@ public:
    inline ::payload operator[](const ::atom & atom) const { return find(atom); }
    inline ::property & operator[](const ::atom & atom) { return get(atom); }
    template < primitive_integral INTEGRAL >
-   inline ::payload operator[](INTEGRAL i) const { return m_propertyptra[i]; }
+   inline ::payload operator[](INTEGRAL i) const { return this->object_at(i); }
    template < primitive_integral INTEGRAL >
-   inline ::property & operator[](INTEGRAL i) { return *m_propertyptra[i]; }
+   inline ::property & operator[](INTEGRAL i) { return this->object_at(i); }
 
 
 
@@ -284,24 +281,24 @@ public:
    //using property_ptra::is_empty;
 
    bool is_empty(const atom & idName) const;
-   bool is_empty() const { return m_propertyptra.is_empty(); }
-   bool has_property() const { return m_propertyptra.has_element(); }
-   ::collection::count property_count() const { return m_propertyptra.get_count(); }
+   //bool is_empty() const { return this->is_empty(); }
+   bool has_property() const { return this->has_element(); }
+   ::collection::count property_count() const { return this->get_count(); }
    
    
-   ::collection::index add_property(property * pproperty) { return m_propertyptra.add_item(pproperty); }
+   ::collection::index add_property(property * pproperty) { return this->add_item(pproperty); }
 
 
-   inline const property * property_at(::collection::index nIndex) const { return m_propertyptra.element_at(nIndex); }
-   inline property * property_at(::collection::index nIndex) { return m_propertyptra.element_at(nIndex); }
+   inline const property * property_at(::collection::index nIndex) const { return this->element_at(nIndex); }
+   inline property * property_at(::collection::index nIndex) { return this->element_at(nIndex); }
 
-   inline ::collection::index erase_property_at(::collection::index iIndex) { return m_propertyptra.erase_at(iIndex); }
+   inline ::collection::index erase_property_at(::collection::index iIndex) { return this->erase_at(iIndex); }
 
-   inline ::collection::count erase_all_properties() { return m_propertyptra.erase_all(); }
+   inline ::collection::count erase_all_properties() { return this->erase_all(); }
 
    
-   property_ptra & propertyptra() { return m_propertyptra; }
-   const property_ptra & propertyptra() const { return m_propertyptra; }
+   property_ptra & propertyptra() { return *this; }
+   const property_ptra & propertyptra() const { return *this; }
 
 
    auto begin() { return propertyptra().begin(); }

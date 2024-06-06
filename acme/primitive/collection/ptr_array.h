@@ -18,11 +18,12 @@ public:
 
 
    ptr_array() { }
-   ptr_array(ptr_array && array) : pointer_array_process < comparable_array < TYPE * >, TYPE >(::transfer(array)) { }
+   ptr_array(const ptr_array& array) : BASE_ARRAY(array) { }
+   ptr_array(ptr_array && array) : BASE_ARRAY(::transfer(array)) { }
 
 
-   TYPE & object_at(::collection::index i) { return *this->element_at(i); }
-   const TYPE & object_at(::collection::index i) const { return *this->element_at(i); }
+   T & object_at(::collection::index i) { return *this->element_at(i); }
+   const T & object_at(::collection::index i) const { return *this->element_at(i); }
 
 
 };

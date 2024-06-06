@@ -77,6 +77,7 @@ void on_property_destruct(property * pproperty);
 
 
 class CLASS_DECL_ACME property : 
+   virtual public ::payload,
    virtual public ::subparticle
 {
 public:
@@ -92,7 +93,6 @@ public:
 
 
    ::atom                 m_atom;
-   ::payload               m_payload;
 
 
    property() { on_property_construct(this); }
@@ -213,7 +213,7 @@ CLASS_DECL_ACME void property_skip_network_payload_payload(::ansi_range & range)
 #include "acme/primitive/collection/auto_ptr_array.h"
 
 
-using property_ptra = auto_ptr_array < ::property >;
+using property_ptra = ::ptr_array < ::property >;
 
 //using property_map = map < ::atom, const ::atom &, payload, const ::payload &, ::property >;
 

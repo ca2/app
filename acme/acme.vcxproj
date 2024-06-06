@@ -1391,6 +1391,11 @@
     <ClInclude Include="platform\_errno.h" />
     <ClInclude Include="platform\_referencing_debugging.h" />
     <ClInclude Include="primitive\collection\array_base_quantum.h" />
+    <ClInclude Include="primitive\data\check_property.h" />
+    <ClInclude Include="primitive\data\property_container.h" />
+    <ClInclude Include="primitive\data\property_link.h" />
+    <ClInclude Include="primitive\data\property_listener.h" />
+    <ClInclude Include="primitive\data\text_property.h" />
     <ClInclude Include="primitive\primitive\primitive.h" />
     <ClInclude Include="primitive\primitive\quantum.h" />
     <ClInclude Include="primitive\primitive\referenceable.h" />

@@ -75,7 +75,7 @@ namespace compress_bzip2
       void set_bzip2_parameters(int iBlockSize, int iVerbosity, int iWorkFactor);
 
 
-      void transfer(::file::file* pfileOut, ::file::file* pfileIn) override;
+      void transfer(::file::file* pfileOut, ::file::file* pfileIn, transfer_progress_function transferprogressfunction = {}) override;
 
 
    };

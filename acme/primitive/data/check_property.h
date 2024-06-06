@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "property_id_link.h"
+#include "property_link.h"
 
 
 //#include "acme/primitive/primitive/payload.h"
@@ -12,9 +12,9 @@
 //{
 
 
-template < enum_id t_eid = (enum_id) ID_CHECK>
+//template < enum_id t_eid = (enum_id) ID_CHECK>
 class check_property :
-   public ::property_id_link < t_eid >
+   public ::property_link
 {
 public:
 
@@ -24,12 +24,12 @@ public:
       //virtual public ::property_container
 
 
-      check_property(::property_container * ppropertycontainer = nullptr) :
-         property_id_link<t_eid>(ppropertycontainer)
+      check_property(::property_container * ppropertycontainer, const ::atom & atom) :
+         property_link(ppropertycontainer, atom)
       {
       }
       check_property(const check_property & checkproperty) :
-            property_id_link<t_eid>(checkproperty)
+         property_link(checkproperty)
       {
 
 
@@ -45,13 +45,13 @@ public:
       ::e_check echeck() const
       {
 
-         return ::property_id_link<t_eid>::get_property().as_echeck();
+         return this->get_property().as_echeck();
 
       }
 
       bool bcheck() const
       {
-         return  ::property_id_link<t_eid>::get_property().as_bool();
+         return this->get_property().as_bool();
 
       }
 
@@ -65,7 +65,7 @@ public:
       bool _001SetCheck(::e_check echeck, const ::action_context & actioncontext)
       {
 
-         return  ::property_id_link<t_eid>::set_property(echeck, actioncontext);
+         return this->set_property(echeck, actioncontext);
 
       }
 //       bool _001ToggleCheck(const ::action_context & action_context)

@@ -86,7 +86,7 @@ namespace compress_bzip2
    }
 
 
-   void compress::transfer(::file::file* pfileBzFileCompressed, ::file::file* pfileUncompressed)
+   void compress::transfer(::file::file* pfileBzFileCompressed, ::file::file* pfileUncompressed, transfer_progress_function transferprogressfunction)
    {
 
       memory                     memory;

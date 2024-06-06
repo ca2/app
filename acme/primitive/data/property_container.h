@@ -5,12 +5,13 @@
 
 
 #include "acme/primitive/primitive/action_context.h"
+#include "acme/primitive/collection/atom_array.h"
 #include "property_listener.h"
 
 
-using property_will_change_function = ::function < bool(property_container *, const ::atom &, const ::payload & , const ::action_context &) >;
+using property_will_change_function = ::function < bool(property_container *, const ::atom_array &, const ::payload & , const ::action_context &) >;
 
-using property_changed_function = ::function < void(property_container *, const ::atom &, const ::payload &, const ::action_context & ) >;
+using property_changed_function = ::function < void(property_container *, const ::atom_array &, const ::payload &, const ::action_context & ) >;
 
 
 class CLASS_DECL_ACME property_container :
@@ -26,11 +27,11 @@ public:
 
 
 
-    bool set_property(const ::atom & atom, const ::payload & payload, const ::action_context & context = {});
-    ::payload get_property(const ::atom & atom) const;
+    bool set_property(const ::atom_array & atoma, const ::payload & payload, const ::action_context & context = {});
+    ::payload get_property(const ::atom_array & atoma) const;
 
-    virtual bool on_property_will_change(const ::atom & atom, const ::payload & payload, const ::action_context & context = {});
-    virtual void on_property_changed(const ::atom & atom, const ::payload & payload, const ::action_context & context = {});
+    virtual bool on_property_will_change(const ::atom_array & atoma, const ::payload & payload, const ::action_context & context = {});
+    virtual void on_property_changed(const ::atom_array & atoma, const ::payload & payload, const ::action_context & context = {});
 
 
 };

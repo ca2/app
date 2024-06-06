@@ -3,7 +3,7 @@
 
 //#include "acme/primitive/geometry2d/_geometry2d.h"
 //#include "acme_context.h
-#include "property_id_link.h"
+#include "property_link.h"
 //#include "acme/primitive/primitive/payload.h"
 ////#include "acme/primitive/primitive/object.h"
 
@@ -12,7 +12,6 @@
 //{
 
 
-template < enum_id t_eid = (enum_id) ID_TEXT, enum_id t_eidSelection = (enum_id) ID_TEXT_SELECTION_ARRAY >
 class text_property :
    public ::property_link
 {
@@ -24,8 +23,8 @@ public:
    //virtual public ::property_container
 
 
-   text_property(::property_container * ppropertycontainer = nullptr) :
-      property_link(ppropertycontainer)
+   text_property(::property_container * ppropertycontainer, const ::atom & atom) :
+      property_link(ppropertycontainer, atom)
    {
    }
    text_property(const text_property & checkproperty) :
@@ -82,7 +81,9 @@ public:
 
       //virtual void get_text_composition_area(::rectangle_i32& rectangle);
 */
-   ::string text() const { return ::property_link::get_property(t_eid).as_string(); }
+   ::string text() const { return this->get_property().as_string(); }
+   ::string text() const { return this->get_property().as_string(); }
+   ::string text() const { return this->get_property().as_string(); }
 
 
    void    get_text(string & str)

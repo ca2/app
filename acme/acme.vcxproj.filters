@@ -3825,6 +3825,21 @@
     <ClInclude Include="windowing_system\_.h">
       <Filter>Header Files\windowing_system</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\data\text_property.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\property_listener.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\property_link.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\property_container.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\check_property.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

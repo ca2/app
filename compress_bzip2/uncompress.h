@@ -68,7 +68,7 @@ namespace compress_bzip2
       void initialize(::particle * pparticle) override;
 
 
-      void transfer(::file::file* pfileOut, ::file::file* pfileIn) override;
+      void transfer(::file::file* pfileOut, ::file::file* pfileIn, transfer_progress_function transferprogressfunction = {}) override;
 
 
    };

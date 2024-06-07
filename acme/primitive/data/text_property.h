@@ -1,3 +1,5 @@
+// Creating by camilo with 
+// property* system on 2024-06-06 21:20 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -23,21 +25,10 @@ public:
    //virtual public ::property_container
 
 
-   text_property(::property_container * ppropertycontainer, const ::atom & atom) :
-      property_link(ppropertycontainer, atom)
-   {
-   }
-   text_property(const text_property & checkproperty) :
-         property_link(checkproperty)
-   {
-
-
-   }
-   ~text_property()
-   {
-
-   }
-
+   text_property(::property_container * ppropertycontainer = nullptr, const ::atom & atom = {});
+   text_property(const text_property & checkproperty);
+   
+   ~text_property();
 /*
       virtual void _001GetText(string & str);
 
@@ -81,101 +72,28 @@ public:
 
       //virtual void get_text_composition_area(::rectangle_i32& rectangle);
 */
-   ::string text() const { return this->get_property({ID_TEXT}).as_string(); }
-   ::strsize selection_begin() const { return this->get_property({ID_TEXT_SELECTION_BEGIN}).as_iptr(); }
-   ::strsize selection_end() const { return this->get_property({ID_TEXT_SELECTION_END}).as_iptr(); }
+   ::string text() const;
+   ::strsize selection_begin() const;
+   ::strsize selection_end() const;
 
 
-   void    get_text(string & str)
-   {
+   void    get_text(string & str);
+   bool set_selection_text(const ::scoped_string & scopedstrNewSelectionText, const ::action_context & actioncontext);
+
+   bool set_text(const ::scoped_string & scopedstrText, const ::action_context & actioncontext);
+
+   strsize get_size() const;
+
+   void get_text(char * psz, strsize len);
 
 
-         str = this->text();
-
-   }
+   void get_text(string & str, strsize iBeg, strsize iEnd) const;
 
 
-   bool set_selection_text(const ::scoped_string & scopedstrNewSelectionText, const ::action_context & actioncontext)
-   {
-
-      auto strText = this->text();
-
-      strsize iBegin;
-
-      strsize iEnd;
-
-      this->get_selection(iBegin, iEnd);
-
-      auto strLeft = strText(0, iBegin);
-
-      auto strRight = strText(iEnd);
-
-      if(!set_text(strLeft + scopedstrNewSelectionText + strRight, actioncontext))
-      {
-
-         return false;
-
-      }
-
-      set_selection_end(iBegin + scopedstrNewSelectionText.size(), actioncontext);
-
-   }
+   void set_text(const ::scoped_string & scopedstrText, strsize iLen, const ::action_context & actioncontext);
 
 
-   bool set_text(const ::scoped_string & scopedstrText, const ::action_context & actioncontext)
-   {
-
-      return set_property({ID_TEXT}, scopedstrText, actioncontext);
-
-   }
-
-
-   strsize get_size() const
-   {
-
-      return this->text().size();
-
-   }
-
-
-   void get_text(char * psz, strsize len)
-   {
-
-      auto strText = this->text();
-
-      ansi_count_copy(psz,strText,len);
-
-   }
-
-
-   void get_text(string & str, strsize iBeg, strsize iEnd) const
-   {
-
-      auto strText = this->text();
-
-      __sort(iBeg, iEnd);
-
-      str = strText(iBeg, iEnd - iBeg);
-
-   }
-
-
-   void set_text(const ::scoped_string & scopedstrText, strsize iLen, const ::action_context & actioncontext)
-   {
-
-      set_text(scopedstrText(0, iLen),actioncontext);
-
-   }
-
-
-   void get_selection(strsize & iBegin, strsize & iEnd) const
-   {
-
-      iBegin = selection_begin();
-
-      iEnd = selection_end();
-
-   }
+   void get_selection(strsize & iBegin, strsize & iEnd) const;
 
 
    // strsize selection_begin() const
@@ -206,14 +124,7 @@ public:
    // }
 
 
-   void set_selection(strsize iBegin, strsize iEnd, const ::action_context & actioncontext)
-   {
-
-      set_selection_begin(iBegin, actioncontext);
-
-      set_selection_end(iEnd, actioncontext);
-
-   }
+   void set_selection(strsize iBegin, strsize iEnd, const ::action_context & actioncontext);
 
 /*
    void _001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context)
@@ -235,34 +146,10 @@ public:
    }
 */
 
-   void set_selection_begin(strsize iBegin, const ::action_context & actioncontext)
-   {
+   void set_selection_begin(strsize iBegin, const ::action_context & actioncontext);
 
-      set_property({ID_TEXT_SELECTION_BEGIN}, iBegin, actioncontext);
-
-   }
-
-
-   void set_selection_end(strsize iEnd, const ::action_context & actioncontext)
-   {
-
-      set_property({ID_TEXT_SELECTION_END}, iEnd, actioncontext);
-
-   }
-
-
-   void get_selection_text(::string & str) const
-   {
-
-      ::strsize iBegin;
-
-      ::strsize iEnd;
-
-      get_selection(iBegin, iEnd);
-
-      get_text(str, iBegin, iEnd);
-
-   }
+   void set_selection_end(strsize iEnd, const ::action_context & actioncontext);
+   void get_selection_text(::string & str) const;
 
 /*
    void text::MacroBegin()

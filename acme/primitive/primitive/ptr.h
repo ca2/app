@@ -36,7 +36,7 @@ public:
    
    
    /// consumes a referer
-   ptr(TYPE * p)
+   ptr(const TYPE * p)
    {
 
       if(p)
@@ -45,9 +45,9 @@ public:
 #if REFERENCING_DEBUGGING
          m_preferer = ::allocator::defer_get_referer(p, {this, __FUNCTION_FILE_LINE__});
 #endif
-         p->increment_reference_count();
+         ((TYPE *)p)->increment_reference_count();
 
-         m_p = p;
+         m_p = (TYPE*)p;
 
       }
       else
@@ -136,10 +136,10 @@ public:
    
    
    ///// referer is transferred ?
-   ptr(transfer_t, TYPE * p)
+   ptr(transfer_t, const TYPE * p)
    {
 
-      m_p = p;
+      m_p = (TYPE*) p;
 
    }
 
@@ -170,7 +170,7 @@ public:
    TYPE * get() { return m_p; }
    TYPE * get() const { return m_p; }
    
-   ptr & operator = (TYPE * p)
+   ptr & operator = (const TYPE * p)
    {
       
       auto pOld = m_p;
@@ -185,9 +185,9 @@ public:
 
          auto prefererNew = ::allocator::defer_get_referer(p, { this, __FUNCTION_FILE_LINE__ });
 #endif       
-         p->increment_reference_count();
+         ((TYPE *)p)->increment_reference_count();
          
-         m_p = p;
+         m_p = ((TYPE *)p);
          
          if(__pointer_is_set(pOld))
          {
@@ -210,10 +210,10 @@ public:
    
    
    template < typename T2 >
-   ptr & operator = (T2 * p2)
+   ptr & operator = (const T2 * p2)
    {
       
-      auto p = dynamic_cast < TYPE * >(p2);
+      auto p = dynamic_cast < TYPE * >((T2 *) p2);
       
       return this->operator=(p);
       
@@ -306,7 +306,7 @@ public:
 
          auto prefererNew = p.m_preferer;
 #endif
-         m_p = p;
+         m_p = (TYPE *)p;
 
          if (__pointer_is_set(pOld))
          {
@@ -425,4 +425,12 @@ public:
 };
 
 
+
+template < typename TYPE >
+inline bool EqualElements(const ::ptr<TYPE> & element1, const TYPE * element2)
+{
+
+   return element1 == element2;
+
+}
 

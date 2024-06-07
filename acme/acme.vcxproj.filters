@@ -1437,7 +1437,7 @@
     <ClInclude Include="user\user\theme_colors.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\text.h">
+    <ClInclude Include="user\user\text_control.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\os_theme_colors.h">
@@ -1452,7 +1452,7 @@
     <ClInclude Include="user\user\conversation.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\check.h">
+    <ClInclude Include="user\user\check_control.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\aaa_action_item_exchange.h">
@@ -3840,6 +3840,9 @@
     <ClInclude Include="primitive\data\check_property.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\control.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -4280,9 +4283,6 @@
     <ClCompile Include="exception\parsing.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\primitive\linked_property.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\primitive\property_object.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
@@ -4508,7 +4508,7 @@
     <ClCompile Include="operating_system\winpr_scancode.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\text.cpp">
+    <ClCompile Include="user\user\text_control.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\os_theme_colors.cpp">
@@ -4520,7 +4520,7 @@
     <ClCompile Include="user\user\element.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\check.cpp">
+    <ClCompile Include="user\user\check_control.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="_.cpp">
@@ -5365,6 +5365,24 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\nano\idn\_idn.cpp">
       <Filter>Source Files\operating_system\windows_common\nano\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\control.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\data\text_property.cpp">
+      <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\data\property_listener.cpp">
+      <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\data\property_link.cpp">
+      <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\data\property_container.cpp">
+      <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\data\check_property.cpp">
+      <Filter>Source Files\primitive\data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

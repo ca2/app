@@ -1,3 +1,5 @@
+// Creating by camilo with 
+// property* system on 2024-06-06 21:20 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -24,50 +26,19 @@ public:
       //virtual public ::property_container
 
 
-      check_property(::property_container * ppropertycontainer, const ::atom & atom) :
-         property_link(ppropertycontainer, atom)
-      {
-      }
-      check_property(const check_property & checkproperty) :
-         property_link(checkproperty)
-      {
-
-
-      }
-      ~check_property()
-      {
-
-      }
-
+   check_property(::property_container * ppropertycontainer = nullptr, const ::atom & atom = {});
+   check_property(const check_property & checkproperty);
+   ~check_property();
 
       // ::e_check get_echeck() const;
       // virtual bool get_bcheck() const;
-      ::e_check echeck() const
-      {
+   ::e_check echeck() const;
 
-         return this->get_property().as_echeck();
+   bool bcheck() const;
 
-      }
+   bool is_checked() const;
 
-      bool bcheck() const
-      {
-         return this->get_property().as_bool();
-
-      }
-
-      bool is_checked() const
-      {
-
-         return this->bcheck();
-
-      }
-
-      bool set_check(::e_check echeck, const ::action_context & actioncontext)
-      {
-
-         return this->set_property(echeck, actioncontext);
-
-      }
+   bool set_check(::e_check echeck, const ::action_context & actioncontext);
 //       bool _001ToggleCheck(const ::action_context & action_context)
 //       {
 //
@@ -188,24 +159,8 @@ public:
 //    }
 //
 
-   bool toggle_check(const ::action_context & context)
-   {
-
-      if(bcheck())
-      {
-
-         return set_check(::e_check_unchecked, context);
-
-      }
-      else
-      {
-
-         return set_check(::e_check_checked, context);
-
-      }
-
-   }
-
+bool toggle_check(const ::action_context & context);
+   
    //
    // bool check_property::on_check_will_change(::e_check echeck, const action_context & actioncontext)
    // {

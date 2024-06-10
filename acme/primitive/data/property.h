@@ -77,6 +77,9 @@ namespace data
 
       ::payload get_property(const ::atom_array & atomaSuffix = {}) const;
 
+      
+      bool operator == (const property & property) const;
+
 
    };
 

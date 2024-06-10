@@ -230,6 +230,15 @@ namespace user
    //}
 
 
+   bool check::operator == (const check_property & checkproperty) const
+   {
+
+      return ::data::check_property::operator == (checkproperty);
+
+   }
+
+
+
 } // namespace user
 
 

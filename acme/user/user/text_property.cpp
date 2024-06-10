@@ -387,6 +387,14 @@ namespace user
    }
 
 
+   bool text::operator == (const text_property & textproperty) const
+   {
+
+      return ::data::text_property::operator == (textproperty);
+
+   }
+
+
    //::comparable_array < text_will_change > & text::text_will_change()
    //{
 

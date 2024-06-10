@@ -10,8 +10,7 @@ namespace user
 
 
    class CLASS_DECL_AURA check_box :
-      virtual public ::user::interaction,
-      virtual public ::user::check
+      virtual public ::user::interaction
    {
    public:
 

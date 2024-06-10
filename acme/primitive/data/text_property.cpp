@@ -433,7 +433,7 @@ namespace data
 
       get_selection(iBegin, iEnd);
 
-      auto strFull = as_string();
+      auto strFull = as_text();
 
       auto str = strFull(iBegin, iEnd);
 

@@ -241,7 +241,7 @@ namespace data
    bool check_property::toggle(const ::action_context & context)
    {
 
-      if (operator bool())
+      if (bcheck())
       {
 
          return set(::e_check_unchecked, context);

@@ -453,7 +453,7 @@ namespace user
       void _001SetSelEnd(strsize iSelEnd, const ::action_context & action_context) override;
       void _set_sel_end(::draw2d::graphics_pointer& pgraphics, strsize iSelEnd, const ::action_context & action_context);
       void _ensure_selection_visible_x(::draw2d::graphics_pointer & pgraphics);
-      void _001SetSel(strsize iSelStart, strsize iSelEnd, const ::action_context & action_context = ::e_source_user) override;
+      void set_text_selection(strsize iSelStart, strsize iSelEnd, const ::action_context & action_context = ::e_source_user) override;
       void _001GetSel(strsize & iSelStart, strsize & iSelEnd) override;
       void _001GetSel(strsize& iSelStart, strsize& iSelEnd, strsize & iComposingStart, strsize & iComposingEnd) override;
 

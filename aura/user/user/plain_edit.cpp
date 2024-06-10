@@ -1211,7 +1211,7 @@ namespace user
       //   if (iSelStart == iSelEnd)
       //   {
 
-      //      _001SetSel(0, _001GetTextLength());
+      //      set_text_selection(0, _001GetTextLength());
 
       //   }
 
@@ -1882,7 +1882,7 @@ namespace user
    }
 
 
-   //void plain_edit::_001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context)
+   //void plain_edit::set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context)
    void plain_edit::set_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context)
    {
 

@@ -104,7 +104,7 @@ namespace user
    }
 
 
-   void text::_001SetSel(strsize iBeg, strsize iEnd)
+   void text::set_text_selection(strsize iBeg, strsize iEnd)
    {
 
       __UNREFERENCED_PARAMETER(iBeg);

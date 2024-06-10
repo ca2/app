@@ -1178,9 +1178,9 @@ namespace platform
 
       }
 
-#endif
-
       return plibrary;
+
+#endif
 
    }
 

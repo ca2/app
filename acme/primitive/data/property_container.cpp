@@ -9,6 +9,22 @@
 namespace data
 {
 
+
+   property_container::property_container()
+   {
+
+
+   }
+
+
+   property_container::~property_container()
+   {
+
+
+
+   }
+
+
    bool property_container::set_property(const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext)
    {
 

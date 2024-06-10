@@ -32,7 +32,7 @@ namespace user
 
 
       virtual void _001GetSel(strsize & iBeg, strsize & iEnd) const;
-      virtual void _001SetSel(strsize iBeg, strsize iEnd);
+      virtual void set_text_selection(strsize iBeg, strsize iEnd);
       virtual void _001SetSelEnd(strsize iSelEnd);
 
 

@@ -18,11 +18,14 @@ namespace data
    public:
 
 
-      ::property_set                                  m_propertyset;
-      ::pointer_array < ::data::property_listener >   m_propertylistenera;
-      ::comparable_array < property_will_change >     m_propertywillchangea;
-      ::comparable_array < property_changed >         m_propertychangeda;
+      ::property_set                                        m_propertyset;
+      ::pointer_array < ::data::property_listener >         m_propertylistenera;
+      ::comparable_array < ::data::property_will_change >   m_propertywillchangea;
+      ::comparable_array < ::data::property_changed >       m_propertychangeda;
 
+
+      property_container();
+      ~property_container() override;
 
 
       bool set_property(const ::atom_array & atoma, const ::payload & payload, const ::action_context & context = {});
@@ -32,8 +35,8 @@ namespace data
       virtual void on_property_changed(const ::atom_array & atoma, const ::payload & payload, const ::action_context & context = {});
 
 
-      ::comparable_array < property_will_change > & property_will_change();
-      ::comparable_array < property_changed > & property_changed();
+      ::comparable_array < ::data::property_will_change > & property_will_change();
+      ::comparable_array < ::data::property_changed > & property_changed();
 
 
    };

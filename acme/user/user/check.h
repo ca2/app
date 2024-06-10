@@ -87,8 +87,8 @@ namespace user
       bool set_check(::e_check echeck, const ::action_context & actioncontext);
       bool toggle_check(const ::action_context & actioncontext);
 
-      function_tracker < check_will_change > check_will_change(::matter * pmatterFunctionContainer = nullptr);
-      function_tracker < check_changed > check_changed(::matter * pmatterFunctionContainer = nullptr);
+      function_tracker < ::user::check_will_change > check_will_change(::matter * pmatterFunctionContainer = nullptr);
+      function_tracker < ::user::check_changed > check_changed(::matter * pmatterFunctionContainer = nullptr);
 
 
    };

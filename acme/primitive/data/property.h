@@ -33,9 +33,9 @@ namespace data
 
       ::atom atom() const { return m_atom; }
 
-      ::comparable_array < property_will_change > & property_will_change() const;
+      ::comparable_array < ::data::property_will_change > & property_will_change() const;
 
-      ::comparable_array < property_changed > & property_changed() const;
+      ::comparable_array < ::data::property_changed > & property_changed() const;
 
       //property_link(::property_container * ppropertycontainer = nullptr, const ::atom & atom = {});
       //property_link(const property_link & propertylink);

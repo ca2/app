@@ -1211,7 +1211,7 @@ namespace user
       //   if (iSelStart == iSelEnd)
       //   {
 
-      //      _001SetSel(0, _001GetTextLength());
+      //      set_text_selection(0, _001GetTextLength());
 
       //   }
 
@@ -1532,7 +1532,7 @@ namespace user
                m_iNewFocusSelectAllSelEnd = -1;
                m_iNewFocusSelectAllColumn = -1;
 
-               _001SetSel(iBegNew, iEndNew);
+               set_text_selection(iBegNew, iEndNew);
 
                m_iColumn = iColumn;
 
@@ -1773,7 +1773,7 @@ namespace user
 
       _001GetSel(iSelBeg, iSelEndOld);
 
-      _001SetSel(iSelBeg, iSelEnd, actioncontext);
+      set_text_selection(iSelBeg, iSelEnd, actioncontext);
 
       _ensure_selection_visible_x(pgraphics);
 
@@ -1868,7 +1868,7 @@ namespace user
    }
 
 
-   void plain_edit::_001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context)
+   void plain_edit::set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -2230,7 +2230,7 @@ namespace user
                else
                {
 
-                  _001SetSel(iBegNew, iEndNew);
+                  set_text_selection(iBegNew, iEndNew);
 
                   m_iColumn = iColumnNew;
 
@@ -6394,7 +6394,7 @@ namespace user
             if (psession->is_key_pressed(::user::e_key_control))
             {
 
-               _001SetSel(0, _001GetTextLength());
+               set_text_selection(0, _001GetTextLength());
 
                return;
 
@@ -7692,7 +7692,7 @@ namespace user
             if (iAfterComposingCursorPosition >= 0)
             {
 
-               _001SetSel(iAfterComposingCursorPosition, iAfterComposingCursorPosition, ::e_source_sync);
+               set_text_selection(iAfterComposingCursorPosition, iAfterComposingCursorPosition, ::e_source_sync);
 
             }
 
@@ -8147,7 +8147,7 @@ namespace user
 
             auto iTextLength = _001GetTextLength();
 
-            _001SetSel(iTextLength, iTextLength);
+            set_text_selection(iTextLength, iTextLength);
 
          }
          else
@@ -8161,7 +8161,7 @@ namespace user
 
             iSelectionEnd = plain_edit_line_x_to_sel(pgraphics, m_iLastSelectionEndLine, m_iLastSelectionEndX);
 
-            _001SetSel(iSelectionBegin, iSelectionEnd);
+            set_text_selection(iSelectionBegin, iSelectionEnd);
 
          }
 
@@ -8819,7 +8819,7 @@ namespace user
 
          strsize iEndAll = _001GetTextLength();
 
-         _001SetSel(iBegAll, iEndAll);
+         set_text_selection(iBegAll, iEndAll);
 
          m_bNewFocusSelectAll = true;
 

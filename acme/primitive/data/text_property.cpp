@@ -117,7 +117,7 @@ namespace data
    //   }
    //
    //
-   //   void text_property::_001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context)
+   //   void text_property::set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context)
    //   {
    //
    //      __UNREFERENCED_PARAMETER(iBeg);
@@ -389,7 +389,7 @@ namespace data
    }
 
    /*
-      void _001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context)
+      void set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context)
       {
 
          __UNREFERENCED_PARAMETER(iBeg);

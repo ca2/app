@@ -35,7 +35,7 @@ namespace user
    }
 
 
-   void check_box::_001SetCheck(::enum_check echeck, const ::action_context & context)
+   void check_box::set_check(::enum_check echeck, const ::action_context & context)
    {
 
       if(echeck != ::e_check_unchecked && echeck != ::e_check_checked && echeck != ::e_check_tristate)
@@ -50,7 +50,7 @@ namespace user
       if(this->echeck() != echeck)
       {
 
-         check::_001SetCheck(echeck, context);
+         check::set_check(echeck, context);
 
          ::topic topic;
 
@@ -283,7 +283,7 @@ namespace user
 
       }
 
-      //::enum_check echeck = _001GetCheck();
+      //::enum_check echeck = get_check();
 
       ::draw2d::save_context savecontext(pgraphics);
 

@@ -824,7 +824,7 @@ namespace user
 
       //virtual void set_window_text(const ::string & pszString);
 
-      //virtual void _001SetCheck(enum_check echeck, const ::action_context & action_context);
+      //virtual void set_check(enum_check echeck, const ::action_context & action_context);
       //virtual void set_text(const ::string & strText, const ::action_context & action_context);
 
       virtual ::user::element * first_child_user_primitive();

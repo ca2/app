@@ -586,11 +586,11 @@ namespace user
                      ::collection::index i = 0;
                      if(ia.BaseSortFind(pinteraction->m_ddx.m_pdbflags->m_value, i))
                      {
-                        pcheck->_001SetCheck(e_check_checked, false);
+                        pcheck->set_check(e_check_checked, false);
                      }
                      else
                      {
-                        pcheck->_001SetCheck(e_check_unchecked, false);
+                        pcheck->set_check(e_check_unchecked, false);
                      }
                   }*/
       }

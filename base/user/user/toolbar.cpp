@@ -49,8 +49,8 @@ public: // re-implementations only
 
    user_toolbar_command(::particle * pparticle);
    void enable(bool bOn = true, const ::action_context & context = ::e_source_system) override;
-   //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
-   //void _001SetCheck(const e_check & echeck, const ::action_context & context = ::e_source_system) override;   // 0, 1 or 2 (indeterminate)
+   //   virtual void set_check(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
+   //void set_check(const e_check & echeck, const ::action_context & context = ::e_source_system) override;   // 0, 1 or 2 (indeterminate)
    //   virtual void SetRadio(bool bOn = true, const ::action_context & context = ::e_source_system);
       //void set_text(const ::string & pszText, const ::action_context & context = ::e_source_system) override;
 
@@ -2183,7 +2183,7 @@ void user_toolbar_command::enable(bool bEnable, const ::action_context & context
 }
 
 
-//void user_toolbar_command::_001SetCheck(const e_check & echeck, const ::action_context & context)
+//void user_toolbar_command::set_check(const e_check & echeck, const ::action_context & context)
 void user_toolbar_command::on_check_changed(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext)
 {
 

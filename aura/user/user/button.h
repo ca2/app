@@ -115,9 +115,9 @@ namespace user
       void on_check_changed(::data::check_property & checkproperty, const ::payload &, const ::action_context &) override;
 
 
-      //using ::user::check::_001SetCheck;
-      //virtual void _001SetCheck(const ::e_check & check, const ::action_context & action_context) override;
-      //virtual ::enum_check _001GetCheck() override;
+      //using ::user::check::set_check;
+      //virtual void set_check(const ::e_check & check, const ::action_context & action_context) override;
+      //virtual ::enum_check get_check() override;
 
       //virtual bool is_pressed();
 

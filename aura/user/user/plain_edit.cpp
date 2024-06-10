@@ -4986,14 +4986,14 @@ namespace user
    }
 
 
-   void plain_edit::get_impact_selection(strsize & iSelBeg, strsize & iSelEnd)
-   {
+   //void plain_edit::get_impact_selection(strsize & iSelBeg, strsize & iSelEnd)
+   //{
 
-      _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization());
 
-      m_textproperty.get_selection(iSelBeg, iSelEnd);
+   //   m_textproperty.get_selection(iSelBeg, iSelEnd);
 
-   }
+   //}
 
 
    //void plain_edit::get_impact_selection(strsize & iSelBeg, strsize & iSelEnd)

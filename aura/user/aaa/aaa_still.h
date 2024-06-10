@@ -49,8 +49,8 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _002OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void _001SetCheck(::enum_check check, const ::action_context & action_context) override;
-      //virtual ::enum_check _001GetCheck() override;
+      virtual void set_check(::enum_check check, const ::action_context & action_context) override;
+      //virtual ::enum_check get_check() override;
 
       //virtual bool is_pressed();
 

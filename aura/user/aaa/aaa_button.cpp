@@ -235,13 +235,13 @@ namespace user
 
 
 
-   void button::_001SetCheck(::enum_check echeck, const ::action_context & context)
+   void button::set_check(::enum_check echeck, const ::action_context & context)
    {
 
       if (echeck != this->get_echeck())
       {
 
-         check::_001SetCheck(echeck, context);
+         check::set_check(echeck, context);
 
          set_need_redraw();
 
@@ -252,10 +252,10 @@ namespace user
    }
 
 
-//   ::enum_check button::_001GetCheck()
+//   ::enum_check button::get_check()
 //   {
 //
-//      return check::_001GetCheck();
+//      return check::get_check();
 //
 //   }
 

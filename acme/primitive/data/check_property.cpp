@@ -78,10 +78,10 @@ namespace data
    }
 
    //
-   // /*  void check_property::_001SetCheck(bool bChecked, const ::action_context & context)
+   // /*  void check_property::set_check(bool bChecked, const ::action_context & context)
    //   {
    //
-   //      _001SetCheck((::enum_check) (bChecked ? ::e_check_checked : ::e_check_unchecked),context);
+   //      set_check((::enum_check) (bChecked ? ::e_check_checked : ::e_check_unchecked),context);
    //
    //   }*/
    //
@@ -126,7 +126,7 @@ namespace data
    //   }
    //
    //
-   //   bool check_property::_001SetCheck(::e_check echeck, const ::action_context & actioncontext)
+   //   bool check_property::set_check(::e_check echeck, const ::action_context & actioncontext)
    //   {
    //
    //      return set_property(echeck, actioncontext);
@@ -168,13 +168,13 @@ namespace data
    //      if(bcheck())
    //      {
    //
-   //         return _001SetCheck(::e_check_unchecked, context);
+   //         return set_check(::e_check_unchecked, context);
    //
    //      }
    //      else
    //      {
    //
-   //         return _001SetCheck(::e_check_checked, context);
+   //         return set_check(::e_check_checked, context);
    //
    //      }
    //

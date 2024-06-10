@@ -66,7 +66,7 @@ namespace user
    }
 
 
-   //void check_box::_001SetCheck(const ::e_check & echeckInput, const ::action_context & context)
+   //void check_box::set_check(const ::e_check & echeckInput, const ::action_context & context)
    //void check_box::on_check_changed(const ::e_check & echeckInput, const ::action_context & context)
    void check_box::on_check_changed(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext)
    {
@@ -87,7 +87,7 @@ namespace user
       //if(this->echeck() != echeckEffective)
       //{
 
-      //   check::_001SetCheck(echeckEffective, context);
+      //   check::set_check(echeckEffective, context);
 
          if(has_handler())
          {
@@ -366,7 +366,7 @@ namespace user
 
       }
 
-      //::enum_check echeck = _001GetCheck();
+      //::enum_check echeck = get_check();
 
       ::draw2d::save_context savecontext(pgraphics);
 

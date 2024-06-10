@@ -76,10 +76,10 @@ namespace data
       // }
       //
       //
-      //  /*  void check::_001SetCheck(bool bChecked, const ::action_context & context)
+      //  /*  void check::set_check(bool bChecked, const ::action_context & context)
       //    {
       //
-      //       _001SetCheck((::enum_check) (bChecked ? ::e_check_checked : ::e_check_unchecked),context);
+      //       set_check((::enum_check) (bChecked ? ::e_check_checked : ::e_check_unchecked),context);
       //
       //    }*/
       //
@@ -124,7 +124,7 @@ namespace data
       //    }
       //
       //
-      //    bool check_property::_001SetCheck(::e_check echeck, const ::action_context & actioncontext)
+      //    bool check_property::set_check(::e_check echeck, const ::action_context & actioncontext)
       //    {
       //
       //       return set_property(echeck, actioncontext);

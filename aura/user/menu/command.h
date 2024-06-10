@@ -34,7 +34,7 @@ namespace user
       //void delete_this() override;
 
       virtual void enable(bool bOn, const ::action_context & action_context) override;
-      //virtual void _001SetCheck(const ::e_check & echeck, const ::action_context & action_context) override;
+      //virtual void set_check(const ::e_check & echeck, const ::action_context & action_context) override;
       //virtual void set_text(const string & pszText, const ::action_context & action_context) override;
       void on_check_changed(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext) override;
 

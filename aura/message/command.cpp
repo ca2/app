@@ -171,15 +171,15 @@
 //
 //      }
 //
-//      void command::_001SetCheck(bool bCheck, const ::action_context & context)
+//      void command::set_check(bool bCheck, const ::action_context & context)
 //      {
 //
-//         _001SetCheck((::enum_check)(bCheck ? ::e_check_checked : ::e_check_unchecked), context);
+//         set_check((::enum_check)(bCheck ? ::e_check_checked : ::e_check_unchecked), context);
 //
 //      }
 //
 //
-//      void command::_001SetCheck(::enum_check echeck, const ::action_context & context)
+//      void command::set_check(::enum_check echeck, const ::action_context & context)
 //      {
 //
 //         if (m_pmenu != nullptr)
@@ -197,7 +197,7 @@
 //            if (pcheck)
 //            {
 //
-//               pcheck->_001SetCheck(echeck, context + ::e_source_sync);
+//               pcheck->set_check(echeck, context + ::e_source_sync);
 //
 //            }
 //
@@ -211,7 +211,7 @@
 //      void ::message::command::SetRadio(bool bOn, const ::action_context & context)
 //      {
 //
-//         _001SetCheck(bOn, context);
+//         set_check(bOn, context);
 //
 //      }
 //

@@ -182,15 +182,15 @@ namespace message
 
    }
 
-   //void command::_001SetCheck(bool bCheck, const ::action_context & context)
+   //void command::set_check(bool bCheck, const ::action_context & context)
    //{
 
-   //   _001SetCheck((::enum_check)(bCheck ? ::e_check_checked : ::e_check_unchecked), context);
+   //   set_check((::enum_check)(bCheck ? ::e_check_checked : ::e_check_unchecked), context);
 
    //}
 
 
-   //void command::_001SetCheck(const ::e_check & echeck, const ::action_context & context)
+   //void command::set_check(const ::e_check & echeck, const ::action_context & context)
    //{
 
    //   //if (m_pmenu != nullptr)

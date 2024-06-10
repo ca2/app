@@ -277,13 +277,13 @@ namespace user
    }
 
 
-   //void button::_001SetCheck(const ::e_check & echeck, const ::action_context & context)
+   //void button::set_check(const ::e_check & echeck, const ::action_context & context)
    //{
 
    //   if (echeck != this->get_echeck())
    //   {
 
-   //      check::_001SetCheck(echeck, context);
+   //      check::set_check(echeck, context);
 
    //      auto pappearance = get_appearance();
 

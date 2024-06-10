@@ -183,8 +183,8 @@ public: // re-implementations only
          }
 
    }
-   //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
-   virtual void _001SetCheck(enum_check echeck, const ::action_context & context = ::e_source_system)   // 0, 1 or 2 (indeterminate)
+   //   virtual void set_check(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
+   virtual void set_check(enum_check echeck, const ::action_context & context = ::e_source_system)   // 0, 1 or 2 (indeterminate)
    {
 
       if(echeck == e_check_checked)

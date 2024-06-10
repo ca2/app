@@ -99,9 +99,9 @@ namespace user
 
       virtual bool is_custom_draw() override;
 
-      using ::user::check::_001SetCheck;
-      virtual void _001SetCheck(::enum_check check, const ::action_context & action_context) override;
-      //virtual ::enum_check _001GetCheck() override;
+      using ::user::check::set_check;
+      virtual void set_check(::enum_check check, const ::action_context & action_context) override;
+      //virtual ::enum_check get_check() override;
 
       //virtual bool is_pressed();
 

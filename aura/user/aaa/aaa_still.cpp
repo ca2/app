@@ -519,18 +519,18 @@ namespace user
 
 
 
-   void still::_001SetCheck(::enum_check echeck, const ::action_context & context)
+   void still::set_check(::enum_check echeck, const ::action_context & context)
    {
 
-      check::_001SetCheck(echeck, context);
+      check::set_check(echeck, context);
 
    }
 
 
-//   ::enum_check still::_001GetCheck()
+//   ::enum_check still::get_check()
 //   {
 //
-//      return check::_001GetCheck();
+//      return check::get_check();
 //
 //   }
 

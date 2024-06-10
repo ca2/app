@@ -239,7 +239,7 @@ namespace browser
 
                m_checkptraBilbo.add(pcheck);
 
-               m_checkptraBilbo.last()->_001SetCheck(pslide->m_bDatabase ? ::e_check_checked : ::e_check_unchecked, ::e_source_sync);
+               m_checkptraBilbo.last()->set_check(pslide->m_bDatabase ? ::e_check_checked : ::e_check_unchecked, ::e_source_sync);
 
                i++;
 

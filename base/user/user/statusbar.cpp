@@ -804,7 +804,7 @@ namespace user
       status_command(::particle * pparticle);
 
       virtual void enable(bool bOn);
-      //void _001SetCheck(const ::e_check & echeck, const ::action_context & context) override;
+      //void set_check(const ::e_check & echeck, const ::action_context & context) override;
       //void set_text(const ::string & strText, const ::action_context & context) override;
 
       void delete_this() override;
@@ -840,7 +840,7 @@ namespace user
    }
 
 
-   //void status_command::_001SetCheck(const ::e_check & echeck, const ::action_context & context) // "checking" will pop out the text
+   //void status_command::set_check(const ::e_check & echeck, const ::action_context & context) // "checking" will pop out the text
    void status_command::on_check_changed(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext)
    {
 

@@ -66,12 +66,12 @@ namespace user
    }
 
 
-   //void menu_command::_001SetCheck(const ::e_check & echeck, const ::action_context & context)
+   //void menu_command::set_check(const ::e_check & echeck, const ::action_context & context)
    //{
 
    //   ASSERT(echeck == ::e_check_checked || echeck == ::e_check_unchecked || echeck == ::e_check_tristate); // 0=>off, 1=>on, 2=>indeterminate
 
-   //   ::message::command::_001SetCheck(echeck, context);
+   //   ::message::command::set_check(echeck, context);
 
    //   if (m_puiOther != nullptr)
    //   {

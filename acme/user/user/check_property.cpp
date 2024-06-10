@@ -162,15 +162,15 @@ namespace user
    }
 
 
- /*  void check::_001SetCheck(bool bChecked, const ::action_context & context)
+ /*  void check::set_check(bool bChecked, const ::action_context & context)
    {
 
-      _001SetCheck((::enum_check) (bChecked ? ::e_check_checked : ::e_check_unchecked),context);
+      set_check((::enum_check) (bChecked ? ::e_check_checked : ::e_check_unchecked),context);
 
    }*/
 
 
-   //void check::_001SetCheck(const ::e_check & echeck, const ::action_context & context)
+   //void check::set_check(const ::e_check & echeck, const ::action_context & context)
    //{
 
    //   if (!m_linkedpropertyCheck)
@@ -210,13 +210,13 @@ namespace user
    //   if(bcheck())
    //   {
 
-   //      _001SetCheck(::e_check_unchecked, context);
+   //      set_check(::e_check_unchecked, context);
 
    //   }
    //   else
    //   {
 
-   //      _001SetCheck(::e_check_checked, context);
+   //      set_check(::e_check_checked, context);
 
    //   }
 

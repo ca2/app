@@ -598,6 +598,8 @@ list(APPEND library_source
         primitive/data/listener.h
         primitive/data/node.cpp
         primitive/data/node.h
+        primitive/data/property.cpp
+        primitive/data/property.h
         primitive/data/property_container.cpp
         primitive/data/property_container.h
         primitive/data/property_listener.cpp
@@ -1166,6 +1168,8 @@ list(APPEND library_source
         user/user/os_colors.cpp
         user/user/os_theme_colors.cpp
         user/user/os_theme_colors.h
+        user/user/property.cpp
+        user/user/property.h
         #user/user/text.cpp
         #user/user/text.h
         user/user/text.cpp

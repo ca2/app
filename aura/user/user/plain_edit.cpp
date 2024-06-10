@@ -1121,7 +1121,7 @@ namespace user
       //if (m_linkedpropertyText && !m_linkedpropertyText->is_empty())
       //{
 
-      //   _001SetText(m_linkedpropertyText->as_string(), ::e_source_initialize);
+      //   set_text(m_linkedpropertyText->as_string(), ::e_source_initialize);
 
       //}
 
@@ -1132,7 +1132,7 @@ namespace user
       //if(m_ppropertyText && !m_ppropertyText->is_empty())
       //{
 
-      //   _001SetText(m_ppropertyText->get_string(), ::e_source_initialize);
+      //   set_text(m_ppropertyText->get_string(), ::e_source_initialize);
 
       //}
 
@@ -1640,7 +1640,7 @@ namespace user
    }
 
 
-   //void plain_edit::_001GetSelText(string & str)
+   //void plain_edit::get_selection_text(string & str)
    //{
 
    //   get_text(str, m_ptree->m_iSelBeg, m_ptree->m_iSelEnd);
@@ -4996,7 +4996,7 @@ namespace user
    }
 
 
-   //void plain_edit::_001GetImpactSel(strsize & iSelBeg, strsize & iSelEnd)
+   //void plain_edit::get_impact_selection(strsize & iSelBeg, strsize & iSelEnd)
    //{
 
    //   _synchronous_lock synchronouslock(this->synchronization());
@@ -8504,7 +8504,7 @@ namespace user
 
 
 
-   ////void plain_edit::_001SetText(const ::string & strParam, const ::action_context & action_context)
+   ////void plain_edit::set_text(const ::string & strParam, const ::action_context & action_context)
    //{
 
    //   ::strsize iSelBeg = 0;

@@ -228,7 +228,7 @@
 //         if (m_puiOther != nullptr)
 //         {
 //
-//            m_puiOther->_001SetText(pszText, ::e_source_sync);
+//            m_puiOther->set_text(pszText, ::e_source_sync);
 //
 //         }
 //

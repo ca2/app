@@ -52,7 +52,7 @@ public: // re-implementations only
    //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
    //void _001SetCheck(const e_check & echeck, const ::action_context & context = ::e_source_system) override;   // 0, 1 or 2 (indeterminate)
    //   virtual void SetRadio(bool bOn = true, const ::action_context & context = ::e_source_system);
-      //void _001SetText(const ::string & pszText, const ::action_context & context = ::e_source_system) override;
+      //void set_text(const ::string & pszText, const ::action_context & context = ::e_source_system) override;
 
    void on_check_changed(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext) override;
 

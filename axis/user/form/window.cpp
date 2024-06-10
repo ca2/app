@@ -671,14 +671,14 @@ throw_todo();
 //            //   {
 //            //      string str;
 //            //      str = payload.m_str;
-//            //      pinteraction->_001SetText(str, ::e_source_database);
+//            //      pinteraction->set_text(str, ::e_source_database);
 //            //   }
 //            //   break;
 //            //   case ::e_type_i32:
 //            //   {
 //            //      string str;
 //            //      str.formatf("%d", payload.i32());
-//            //      pinteraction->_001SetText(str, ::e_source_database);
+//            //      pinteraction->set_text(str, ::e_source_database);
 //            //   }
 //            //   break;
 //            //   default:

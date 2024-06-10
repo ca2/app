@@ -244,7 +244,7 @@ namespace userex
 
    //            strText = m_pimpact->m_pfontlist->m_strFontFamily;
 
-   //            m_ptopimpact->m_peditimpact->_001SetText(strText, ::e_source_sync);
+   //            m_ptopimpact->m_peditimpact->set_text(strText, ::e_source_sync);
 
    //            m_ptopimpact->m_peditimpact->m_pfont.defer_create(this);
 

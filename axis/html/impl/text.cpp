@@ -809,7 +809,7 @@ namespace html
          draw2d::graphics_extension(pdata->m_pcoredata->get_app()).get_text_extent(pgraphics, unitext("gGYIp"), size3);
          i32 maxcy = size3.cy();
 
-         _001GetImpactSel(iSelStart, iSelEnd);
+         get_impact_selection(iSelStart, iSelEnd);
          strsize iCursor = iSelEnd;
          sort::sort(iSelStart, iSelEnd);
 

@@ -132,7 +132,7 @@ namespace browser
 
             auto pinteraction = get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact");
 
-            pinteraction->_001SetText(m_strNewHelloBrowser,::e_source_initialize);
+            pinteraction->set_text(m_strNewHelloBrowser,::e_source_initialize);
 
          }
 
@@ -269,7 +269,7 @@ namespace browser
 
             string strText;
 
-            peditview->_001GetText(strText);
+            peditview->get_text(strText);
 
             set_browser(strText);
 

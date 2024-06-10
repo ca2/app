@@ -443,15 +443,15 @@ namespace user
       virtual strsize _001_get_text_length();
       virtual ::collection::count line_count() const;
       virtual void plain_edit_get_text(string & str);
-      //virtual void _001GetText(string & str) override;
-      //virtual void _001GetSelText(string & str) override;
-      //virtual void _001GetText(string & str, ::collection::index iBeg, ::collection::index iEnd) override;
+      //virtual void get_text(string & str) override;
+      //virtual void get_selection_text(string & str) override;
+      //virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd) override;
       virtual void get_text(string & str, ::collection::index iBeg = 0, ::collection::index iEnd = -1);
 
-      //void _001GetImpactSel(strsize &iSelStart, strsize &iSelEnd) override;
+      //void get_impact_selection(strsize &iSelStart, strsize &iSelEnd) override;
       //void get_impact_selection(strsize & iSelStart, strsize & iSelEnd);
       void get_impact_selection(strsize & iSelBeg, strsize & iSelEnd);
-      //void _001SetText(const ::string & str, const ::action_context & action_context) override;
+      //void set_text(const ::string & str, const ::action_context & action_context) override;
       void set_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext);
       //void _001SetSelText(const ::string & psz, const ::action_context & action_context) override;
       void set_selection_text(const ::scoped_string & scopedstr, const ::action_context & action_context);

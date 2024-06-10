@@ -21,7 +21,7 @@ namespace user
    }
 
 
-   void text::_001GetText(string & str) const
+   void text::get_text(string & str) const
    {
 
       str = strtext();
@@ -37,7 +37,7 @@ namespace user
    }
 
 
-   void text::_001SetText(const ::string & str, const ::action_context & context)
+   void text::set_text(const ::string & str, const ::action_context & context)
    {
 
       strtext() = str;
@@ -50,35 +50,35 @@ namespace user
 
       string str;
 
-      _001GetText(str);
+      get_text(str);
 
       return str.length();
 
    }
 
 
-   void text::_001GetText(char * psz, strsize len) const
+   void text::get_text(char * psz, strsize len) const
    {
 
       string str;
 
-      _001GetText(str);
+      get_text(str);
 
       ansi_count_copy(psz,str,len);
 
    }
 
 
-   void text::_001GetText(string & str, strsize iBeg, strsize iEnd) const
+   void text::get_text(string & str, strsize iBeg, strsize iEnd) const
    {
 
       // default implementation, probably inefficient
-      // _001GetText(string) returns big string
+      // get_text(string) returns big string
       // or retrieving entire string, instead of portions, is slow
 
       string strText;
 
-      _001GetText(strText);
+      get_text(strText);
 
       __sort(iBeg, iEnd);
 
@@ -87,10 +87,10 @@ namespace user
    }
 
 
-   void text::_001SetText(const ::string & psz, strsize iLen, const ::action_context & context)
+   void text::set_text(const ::string & psz, strsize iLen, const ::action_context & context)
    {
 
-      _001SetText(string(psz, iLen),context);
+      set_text(string(psz, iLen),context);
 
    }
 
@@ -113,7 +113,7 @@ namespace user
    }
 
 
-   void text::_001GetImpactSel(strsize & iBeg, strsize & iEnd) const
+   void text::get_impact_selection(strsize & iBeg, strsize & iEnd) const
    {
 
       __UNREFERENCED_PARAMETER(iBeg);
@@ -130,14 +130,14 @@ namespace user
    }
 
 
-   void text::_001GetSelText(string & str) const
+   void text::get_selection_text(string & str) const
    {
 
       ::collection::index iBeg, iEnd;
 
       _001GetSel(iBeg, iEnd);
 
-      _001GetText(str, iBeg, iEnd);
+      get_text(str, iBeg, iEnd);
 
    }
 

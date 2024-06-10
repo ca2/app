@@ -56,16 +56,16 @@ namespace user
 
       //::text_property & text() { return m_textproperty; }
 
-      //virtual void _001GetText(string & str);
+      //virtual void get_text(string & str);
 
 
       //virtual strsize _001GetTextLength();
-      //virtual void _001GetText(char * psz, strsize len);
-      //virtual void _001GetText(string & str, ::collection::index iBeg, ::collection::index iEnd);
+      //virtual void get_text(char * psz, strsize len);
+      //virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd);
 
 
-      //virtual void _001SetText(const ::string & str, const ::action_context & action_context);
-      //virtual void _001SetText(const ::string & psz, strsize len, const ::action_context & action_context);
+      //virtual void set_text(const ::string & str, const ::action_context & action_context);
+      //virtual void set_text(const ::string & psz, strsize len, const ::action_context & action_context);
 
 
 
@@ -74,11 +74,11 @@ namespace user
       //virtual void _001SetSelEnd(strsize iSelEnd, const ::action_context & action_context = ::e_source_user);
 
 
-      //virtual void _001GetSelText(string & str);
+      //virtual void get_selection_text(string & str);
       //virtual void _001SetSelText(const ::string & psz, const ::action_context & action_context);
 
 
-      //virtual void _001GetImpactSel(strsize &iSelStart, strsize &iSelEnd);
+      //virtual void get_impact_selection(strsize &iSelStart, strsize &iSelEnd);
 
 
       //virtual void MacroBegin();

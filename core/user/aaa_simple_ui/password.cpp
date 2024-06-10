@@ -175,7 +175,7 @@ namespace simple_ui
 //
 
       double y = rectangleX.top();
-      _001GetImpactSel(iSelStart,iSelEnd);
+      get_impact_selection(iSelStart,iSelEnd);
       strsize iCursor = iSelEnd;
       __sort(iSelStart,iSelEnd);
       pgraphics->set(get_font(pstyle));

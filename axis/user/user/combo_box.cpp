@@ -441,10 +441,10 @@ namespace user
    }
 
 
-//   void combo_box::_001GetText(string & str)
+//   void combo_box::get_text(string & str)
 //   {
 //
-//      ::user::plain_edit::_001GetText(str);
+//      ::user::plain_edit::get_text(str);
 //
 ////      if(m_bEdit)
 ////      {
@@ -452,7 +452,7 @@ namespace user
 ////         if(!m_pitemCurrent.is_set())
 ////         {
 ////
-////            ::user::plain_edit::_001GetText(str);
+////            ::user::plain_edit::get_text(str);
 ////
 ////         }
 ////         else
@@ -484,13 +484,13 @@ namespace user
 //   }
 
 
-//   void combo_box::_001SetText(const ::string & str, const ::action_context & context)
+//   void combo_box::set_text(const ::string & str, const ::action_context & context)
 //   {
 //
 //      //if(m_bEdit)
 //      //{
 //
-//         ::user::plain_edit::_001SetText(str, context);
+//         ::user::plain_edit::set_text(str, context);
 //
 ////      }
 ////      else
@@ -1012,7 +1012,7 @@ namespace user
          //if(m_bEdit)
          //{
 
-         // ::user::plain_edit::_001GetText(str);
+         // ::user::plain_edit::get_text(str);
          str = as_text();
 
          //      }

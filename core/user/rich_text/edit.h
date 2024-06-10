@@ -127,7 +127,7 @@ namespace user
          ::pointer<::user::rich_text::format> get_selection_common_format() override;
 
          using ::user::interaction::get_text;
-         //void _001GetText(string & str) override;
+         //void get_text(string & str) override;
          virtual void _001GetLayoutText(string & str);
 
 

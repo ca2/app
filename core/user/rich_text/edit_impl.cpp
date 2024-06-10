@@ -714,12 +714,12 @@ namespace user
       }
 
 
-      //void edit_impl::_001GetText(string & str)
+      //void edit_impl::get_text(string & str)
       //{
 
       //   auto prichtextdata = get_rich_text_data();
 
-      //   prichtextdata->_001GetText(str);
+      //   prichtextdata->get_text(str);
 
       //}
 

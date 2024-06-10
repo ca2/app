@@ -114,8 +114,8 @@ namespace user
 
          //::user::tool_window * tool_window(enum_tool etool, bool bCreate) override;
 
-         //using ::user::interaction::_001GetText;
-         //void _001GetText(string & str) override;
+         //using ::user::interaction::get_text;
+         //void get_text(string & str) override;
          void _001GetLayoutText(string & str) override;
 
          void on_layout(::draw2d::graphics_pointer & pgraphics) override;

@@ -941,7 +941,7 @@ namespace tsf
        BOOL    fOldNotify = m_fNotify;
        m_fNotify = false;
        //SetWindowTextW(m_hwndEdit, NULL);
-       _001SetText("", ::e_source_user);
+       set_text("", ::e_source_user);
        m_fNotify = fOldNotify;
 
        //update current selection
@@ -982,7 +982,7 @@ namespace tsf
     
        //GetWindowTextW(m_hwndEdit, pwszText, cch + 1);
        string str;
-       _001GetText(str);
+       get_text(str);
        wstring wstr(str);
        wcscpy(pwszText, wstr);
        cch = (DWORD_cast)_001GetTextLength();

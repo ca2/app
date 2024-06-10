@@ -642,7 +642,7 @@ bool html_form::open_html(const ::string & str)
 }
 
 
-//void html_form::_001SetText(const ::string & str, const ::action_context & context)
+//void html_form::set_text(const ::string & str, const ::action_context & context)
 void html_form::set_html_form_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext)
 {
 

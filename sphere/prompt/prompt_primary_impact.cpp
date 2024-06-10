@@ -46,7 +46,7 @@ namespace prompt
    {
       string str;
 
-      _001GetText(str);
+      get_text(str);
       strsize iFind;
       strsize iFind2;
 
@@ -76,7 +76,7 @@ namespace prompt
 
                   strNewText.replace("\r\n", "\n");
 
-                  _001SetText(strNewText, ::e_source_sync);
+                  set_text(strNewText, ::e_source_sync);
 
                   str = strNewText;
 
@@ -128,7 +128,7 @@ namespace prompt
 
                         strNewText.replace("\r\n", "\n");
 
-                        _001SetText(strNewText, ::e_source_sync);
+                        set_text(strNewText, ::e_source_sync);
 
                         str = strNewText;
 
@@ -164,7 +164,7 @@ namespace prompt
 
                         strNewText.replace("\r\n", "\n");
 
-                        _001SetText(strNewText, ::e_source_sync);
+                        set_text(strNewText, ::e_source_sync);
 
                         str = strNewText;
 
@@ -203,7 +203,7 @@ namespace prompt
                   {
                      string strNewText = str + "executing " + strLine  + "...";
                      strNewText.replace("\r\n", "\n");
-                     _001SetText(strNewText, context + ::e_source_sync + ::e_source_system);
+                     set_text(strNewText, context + ::e_source_sync + ::e_source_system);
                      m_iCompromised = m_ptree->m_iSelBeg = m_ptree->m_iSelEnd = strNewText.length();
                   }
 

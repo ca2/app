@@ -402,10 +402,10 @@ namespace user
       }
 
 
-      //void edit::_001GetText(string & str)
+      //void edit::get_text(string & str)
       //{
 
-      //   ::user::interaction::_001GetText(str);
+      //   ::user::interaction::get_text(str);
 
       //}
 

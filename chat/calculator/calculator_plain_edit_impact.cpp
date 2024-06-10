@@ -36,7 +36,7 @@ namespace calculator
 
             string strExp;
 
-            _001GetText(strExp);
+            get_text(strExp);
 
 
             parser parser(this);

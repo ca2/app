@@ -26528,7 +26528,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    void interaction::edit_on_text(string str)
    {
 
-      //_001SetText(str, ::e_source_user);
+      //set_text(str, ::e_source_user);
 
       m_textproperty.set_text(str, ::e_source_user);
 

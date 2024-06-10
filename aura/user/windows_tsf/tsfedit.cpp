@@ -952,7 +952,7 @@ void edit_window::_ClearText(void)
     BOOL    fOldNotify = m_fNotify;
     m_fNotify = false;
     //SetWindowTextW(m_hwndEdit, NULL);
-    m_puserinteraction->_001SetText("", ::e_source_user);
+    m_puserinteraction->set_text("", ::e_source_user);
     m_fNotify = fOldNotify;
 
     //update current selection
@@ -993,7 +993,7 @@ HRESULT edit_window::_GetText(LPWSTR *ppwsz, LPLONG pcch)
     
     //GetWindowTextW(m_hwndEdit, pwszText, cch + 1);
     string str;
-    m_puserinteraction->_001GetText(str);
+    m_puserinteraction->get_text(str);
     wstring wstr(str);
     wcscpy(pwszText, wstr);
     cch = m_puserinteraction->_001GetTextLength();

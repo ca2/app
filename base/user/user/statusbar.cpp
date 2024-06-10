@@ -805,7 +805,7 @@ namespace user
 
       virtual void enable(bool bOn);
       //void _001SetCheck(const ::e_check & echeck, const ::action_context & context) override;
-      //void _001SetText(const ::string & strText, const ::action_context & context) override;
+      //void set_text(const ::string & strText, const ::action_context & context) override;
 
       void delete_this() override;
 
@@ -874,7 +874,7 @@ namespace user
 
    }
 
-   //void status_command::_001SetText(const ::string & strText, const ::action_context & context)
+   //void status_command::set_text(const ::string & strText, const ::action_context & context)
    void status_command::on_text_changed(::data::text_property & textproperty, const ::payload & payload, const ::action_context & actioncontext)
    {
 

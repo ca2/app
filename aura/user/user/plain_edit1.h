@@ -441,14 +441,14 @@ namespace user
       virtual strsize _001_get_text_length();
       virtual ::collection::count line_count() const;
       virtual void plain_edit_get_text(string & str);
-      virtual void _001GetText(string & str) override;
-      virtual void _001GetSelText(string & str) override;
-      virtual void _001GetText(string & str, ::collection::index iBeg, ::collection::index iEnd) override;
+      virtual void get_text(string & str) override;
+      virtual void get_selection_text(string & str) override;
+      virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd) override;
 
-      void _001GetImpactSel(strsize &iSelStart, strsize &iSelEnd) override;
+      void get_impact_selection(strsize &iSelStart, strsize &iSelEnd) override;
       void _001_get_impact_sel(strsize & iSelStart, strsize & iSelEnd);
 
-      void _001SetText(const ::string & str, const ::action_context & action_context) override;
+      void set_text(const ::string & str, const ::action_context & action_context) override;
       void _001SetSelText(const ::string & psz, const ::action_context & action_context) override;
       void _001SetSelEnd(strsize iSelEnd, const ::action_context & action_context) override;
       void _set_sel_end(::draw2d::graphics_pointer& pgraphics, strsize iSelEnd, const ::action_context & action_context);

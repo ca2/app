@@ -283,7 +283,7 @@ namespace message
          }
 
 
-         //m_puiOther->_001SetText(scopedstrText, ::e_source_sync);
+         //m_puiOther->set_text(scopedstrText, ::e_source_sync);
 
       }
 

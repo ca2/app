@@ -80,7 +80,7 @@ namespace filemanager
 
    //   //string str;
 
-   //   //_001GetText(str);
+   //   //get_text(str);
 
    //   //::pointer<document>pdocument = filemanager_document();
 

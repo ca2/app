@@ -28,8 +28,8 @@ namespace user
 
       ::data::property_will_change                 m_propertywillchange;
       ::data::property_changed                     m_propertychanged;
-      ::comparable_array < check_will_change >     m_checkwillchangea;
-      ::comparable_array < check_changed >         m_checkchangeda;
+      ::comparable_array < ::user::check_will_change >     m_checkwillchangea;
+      ::comparable_array < ::user::check_changed >         m_checkchangeda;
       void unhook_callbacks();
       void hook_callbacks();
 
@@ -53,8 +53,8 @@ namespace user
       bool on_check_will_change(::data::check_property & checkproperty, const ::payload &, const ::action_context &);
       void on_check_changed(::data::check_property & checkproperty, const ::payload &, const ::action_context &);
 
-      ::comparable_array < check_will_change > & check_will_change();
-      ::comparable_array < check_changed > & check_changed();
+      ::comparable_array < ::user::check_will_change > & check_will_change();
+      ::comparable_array < ::user::check_changed > & check_changed();
 
 
    };

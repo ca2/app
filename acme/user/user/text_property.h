@@ -29,12 +29,12 @@ namespace user
    protected:
 
 
-      ::data::property_will_change                m_propertywillchange;
-      ::data::property_changed                    m_propertychanged;
+      ::data::property_will_change                          m_propertywillchange;
+      ::data::property_changed                              m_propertychanged;
 
 
-      ::comparable_array < text_will_change >     m_textwillchangea;
-      ::comparable_array < text_changed >         m_textchangeda;
+      ::comparable_array < ::user::text_will_change >       m_textwillchangea;
+      ::comparable_array < ::user::text_changed >           m_textchangeda;
       //::comparable_array < insert_text >          m_inserttexta;
 
 
@@ -98,8 +98,8 @@ namespace user
 
       //virtual void get_text_composition_area(::rectangle_i32& rectangle);
 
-      ::comparable_array < text_will_change > & text_will_change();
-      ::comparable_array < text_changed > & text_changed();
+      ::comparable_array < ::user::text_will_change > & text_will_change();
+      ::comparable_array < ::user::text_changed > & text_changed();
 
       /*virtual bool on_property_will_change(property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext);
       virtual void on_property_changed(property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext);

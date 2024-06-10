@@ -59,7 +59,7 @@ namespace data
             virtual void _001SetSelText(const ::string & psz, const ::action_context & action_context);
 
 
-            virtual void get_impact_selection(strsize &iSelStart, strsize &iSelEnd);
+            virtual void get_text_selection(strsize &iSelStart, strsize &iSelEnd);
 
 
             virtual void MacroBegin();
@@ -147,7 +147,7 @@ namespace data
          }
 
 
-         void text::get_impact_selection(strsize & iBeg, strsize & iEnd)
+         void text::get_text_selection(strsize & iBeg, strsize & iEnd)
          {
 
             __UNREFERENCED_PARAMETER(iBeg);

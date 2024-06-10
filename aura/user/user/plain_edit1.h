@@ -445,7 +445,7 @@ namespace user
       virtual void get_selection_text(string & str) override;
       virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd) override;
 
-      void get_impact_selection(strsize &iSelStart, strsize &iSelEnd) override;
+      void get_text_selection(strsize &iSelStart, strsize &iSelEnd) override;
       void _001_get_impact_sel(strsize & iSelStart, strsize & iSelEnd);
 
       void set_text(const ::string & str, const ::action_context & action_context) override;

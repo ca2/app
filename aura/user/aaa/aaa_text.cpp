@@ -113,7 +113,7 @@ namespace user
    }
 
 
-   void text::get_impact_selection(strsize & iBeg, strsize & iEnd) const
+   void text::get_text_selection(strsize & iBeg, strsize & iEnd) const
    {
 
       __UNREFERENCED_PARAMETER(iBeg);

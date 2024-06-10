@@ -643,7 +643,7 @@ namespace user
 
       double y = rectangleX.top();
 
-      get_impact_selection(iSelBegOriginal, iSelEndOriginal);
+      get_text_selection(iSelBegOriginal, iSelEndOriginal);
 
       iSelBeg = iSelBegOriginal;
 
@@ -4986,7 +4986,7 @@ namespace user
    }
 
 
-   //void plain_edit::get_impact_selection(strsize & iSelBeg, strsize & iSelEnd)
+   //void plain_edit::get_text_selection(strsize & iSelBeg, strsize & iSelEnd)
    //{
 
    //   _synchronous_lock synchronouslock(this->synchronization());
@@ -4996,7 +4996,7 @@ namespace user
    //}
 
 
-   //void plain_edit::get_impact_selection(strsize & iSelBeg, strsize & iSelEnd)
+   //void plain_edit::get_text_selection(strsize & iSelBeg, strsize & iSelEnd)
    //{
 
    //   _synchronous_lock synchronouslock(this->synchronization());
@@ -5006,7 +5006,7 @@ namespace user
    //}
 
 
-   //void plain_edit::get_impact_selection(strsize & iSelBeg, strsize & iSelEnd)
+   //void plain_edit::get_text_selection(strsize & iSelBeg, strsize & iSelEnd)
    //{
 
    //   _synchronous_lock synchronouslock(this->synchronization());

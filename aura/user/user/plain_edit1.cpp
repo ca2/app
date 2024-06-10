@@ -4970,7 +4970,7 @@ namespace user
 
 
 
-   void plain_edit::get_impact_selection(strsize & iSelBeg, strsize & iSelEnd)
+   void plain_edit::get_text_selection(strsize & iSelBeg, strsize & iSelEnd)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());

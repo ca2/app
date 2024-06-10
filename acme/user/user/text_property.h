@@ -78,7 +78,7 @@ namespace user
       //virtual void _001SetSelText(const ::string & psz, const ::action_context & action_context);
 
 
-      //virtual void get_impact_selection(strsize &iSelStart, strsize &iSelEnd);
+      //virtual void get_text_selection(strsize &iSelStart, strsize &iSelEnd);
 
 
       //virtual void MacroBegin();

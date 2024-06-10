@@ -232,7 +232,7 @@ namespace user
    //}
 
 
-   //void text_property::get_impact_selection(strsize & iBeg, strsize & iEnd)
+   //void text_property::get_text_selection(strsize & iBeg, strsize & iEnd)
    //{
 
    //   __UNREFERENCED_PARAMETER(iBeg);

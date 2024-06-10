@@ -10,7 +10,7 @@
 #include "dynamic_library.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/library_not_loaded.h"
-#include "acme/filesystem/filessytem/acme_directory.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/platform/application.h"
 #include "acme/_operating_system.h"
 
@@ -383,7 +383,7 @@ namespace universal_windows
          library_t* dynamic_library::open(const ::file::path& pathParam, string& strMessage)
          {
 
-            void * plibrary = nullptr;
+            library_t * plibrary = nullptr;
 
             string strPath(pathParam);
 
@@ -427,7 +427,7 @@ namespace universal_windows
 
                wstring wstr(strPath);
 
-               plibrary = ::LoadPackagedLibrary(wstr, 0);
+               plibrary = (::library_t *)(void *)::LoadPackagedLibrary(wstr, 0);
 
                DWORD dwLastError = ::GetLastError();
 
@@ -449,7 +449,7 @@ namespace universal_windows
 
                   wstring wstrPath("\\\\?\\" + strPath);
 
-                  plibrary = ::LoadPackagedLibrary(wstrPath, 0);
+                  plibrary = (::library_t *)(void *)::LoadPackagedLibrary(wstrPath, 0);
 
                }
                catch (...)
@@ -467,7 +467,7 @@ namespace universal_windows
 
                   wstring wstrPath(acmedirectory()->module() / strPath);
 
-                  plibrary = ::LoadPackagedLibrary(wstrPath, 0);
+                  plibrary = (::library_t *)(void *)::LoadPackagedLibrary(wstrPath, 0);
 
                }
                catch (...)
@@ -485,7 +485,7 @@ namespace universal_windows
 
                   wstring wstrPath(("\\\\?\\" + acmedirectory()->module()) / strPath);
 
-                  plibrary = ::LoadPackagedLibrary(wstrPath, 0);
+                  plibrary = (::library_t *)(void *)::LoadPackagedLibrary(wstrPath, 0);
 
                }
                catch (...)
@@ -535,6 +535,7 @@ namespace universal_windows
 
          }
 
+
          library_t* dynamic_library::open_on_context(const ::file::path& path, string& strMessage)
          {
             /*      string str(psz);
@@ -556,7 +557,7 @@ namespace universal_windows
 
             wstring wstr(path);
 
-            return LoadPackagedLibrary(wstr, 0);
+            return (library_t *) (void*) LoadPackagedLibrary(wstr, 0);
 
          }
 

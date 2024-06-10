@@ -40,7 +40,7 @@ namespace data
             virtual void get_text(string & str);
 
 
-            virtual strsize _001GetTextLength();
+            virtual strsize get_text_length();
             virtual void get_text(char * psz, strsize len);
             virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd);
 
@@ -56,7 +56,7 @@ namespace data
 
 
             virtual void get_selection_text(string & str);
-            virtual void _001SetSelText(const ::string & psz, const ::action_context & action_context);
+            virtual void set_selection_text(const ::string & psz, const ::action_context & action_context);
 
 
             virtual void get_text_selection(strsize &iSelStart, strsize &iSelEnd);

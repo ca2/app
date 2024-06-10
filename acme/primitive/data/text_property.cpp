@@ -42,7 +42,7 @@ namespace data
    //   }
    //
    //
-   //   void text_property::_001SetSelText(const ::string & psz, const ::action_context & context)
+   //   void text_property::set_selection_text(const ::string & psz, const ::action_context & context)
    //   {
    //
    //      string_reference() = psz;
@@ -58,7 +58,7 @@ namespace data
    //   }
    //
    //
-   //   strsize text_property::_001GetTextLength()
+   //   strsize text_property::get_text_length()
    //   {
    //
    //      string str;

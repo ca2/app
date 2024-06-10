@@ -1211,7 +1211,7 @@ namespace user
       //   if (iSelStart == iSelEnd)
       //   {
 
-      //      set_text_selection(0, _001GetTextLength());
+      //      set_text_selection(0, get_text_length());
 
       //   }
 
@@ -1549,7 +1549,7 @@ namespace user
    }
 
 
-   //strsize plain_edit::_001GetTextLength()
+   //strsize plain_edit::get_text_length()
    //{
 
    //   _synchronous_lock synchronouslock(this->synchronization());
@@ -5957,17 +5957,17 @@ namespace user
 
    //   ::sort_non_negative(i1, i2);
 
-   //   if (i1 < 0 || i1 > _001GetTextLength())
+   //   if (i1 < 0 || i1 > get_text_length())
    //   {
 
-   //      i1 = _001GetTextLength();
+   //      i1 = get_text_length();
 
    //   }
 
-   //   if (i2 < 0 || i2 > _001GetTextLength())
+   //   if (i2 < 0 || i2 > get_text_length())
    //   {
 
-   //      i2 = _001GetTextLength();
+   //      i2 = get_text_length();
 
    //   }
 
@@ -8513,7 +8513,7 @@ namespace user
 
    //   _001GetSel(iSelBeg, iSelEnd);
 
-   //   ::strsize iTextLength = _001GetTextLength();
+   //   ::strsize iTextLength = get_text_length();
 
    //   m_bLastSelectionWasAtEnd = (iSelBeg == iSelEnd) && (iSelEnd == iTextLength);
 

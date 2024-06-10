@@ -40,7 +40,7 @@ namespace data
 
       
       bool set(::e_check echeck, const ::action_context & actioncontext);
-      //       bool _001ToggleCheck(const ::action_context & action_context)
+      //       bool toggle_check(const ::action_context & action_context)
       //       {
       //
       //

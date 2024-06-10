@@ -604,7 +604,7 @@ namespace tsf
            strsize           cch;
 
            //cch = GetWindowTextLength(m_hwndEdit);
-           cch = _001GetTextLength();
+           cch = get_text_length();
 
            /*
            dwFlags can be 0 or TS_TC_CORRECTION
@@ -973,7 +973,7 @@ namespace tsf
        *ppwsz = NULL;
     
        //cch = GetWindowTextLength(m_hwndEdit);
-       cch = (DWORD_cast)_001GetTextLength();
+       cch = (DWORD_cast)get_text_length();
        pwszText = (LPWSTR)GlobalAlloc(GMEM_FIXED, (cch + 1) * sizeof(WCHAR));
        if(NULL == pwszText)
        {
@@ -985,7 +985,7 @@ namespace tsf
        get_text(str);
        wstring wstr(str);
        wcscpy(pwszText, wstr);
-       cch = (DWORD_cast)_001GetTextLength();
+       cch = (DWORD_cast)get_text_length();
 
        *ppwsz = pwszText;
     
@@ -1023,7 +1023,7 @@ namespace tsf
 
            //get the range of the entire text
            //acpEnd = GetWindowTextLength(m_hwndEdit);
-           acpEnd = (LONG_cast)_001GetTextLength();
+           acpEnd = (LONG_cast)get_text_length();
            hr = m_pServices->CreateRange(0, acpEnd, &pRangeAllText);
            if(SUCCEEDED(hr))
            {
@@ -1158,7 +1158,7 @@ namespace tsf
 
            //get the range of the entire text
            //acpEnd = GetWindowTextLength(m_hwndEdit);
-           acpEnd = (LONG_cast)_001GetTextLength();
+           acpEnd = (LONG_cast)get_text_length();
            hr = m_pServices->CreateRange(0, acpEnd, &pRangeAllText);
            if(SUCCEEDED(hr))
            {
@@ -1269,7 +1269,7 @@ namespace tsf
 
            //get the range of the entire text
            //acpEnd = GetWindowTextLength(m_hwndEdit);
-           acpEnd = (LONG_cast)_001GetTextLength();
+           acpEnd = (LONG_cast)get_text_length();
            hr = m_pServices->CreateRange(0, acpEnd, &pRangeAllText);
            if(SUCCEEDED(hr))
            {
@@ -1378,7 +1378,7 @@ namespace tsf
 
            //get the range of the entire text
            //acpEnd = GetWindowTextLength(m_hwndEdit);
-           acpEnd = (LONG_cast)_001GetTextLength();
+           acpEnd = (LONG_cast)get_text_length();
            hr = m_pServices->CreateRange(0, acpEnd, &pRangeAllText);
            if(SUCCEEDED(hr))
            {

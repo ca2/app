@@ -25,7 +25,7 @@ namespace user
       inline bool is_checked() const { return bcheck(); }
       virtual void set_check(bool b, const ::action_context & action_context);
       virtual void set_check(::enum_check check, const ::action_context & action_context);
-      virtual void _001ToggleCheck(const ::action_context & action_context);
+      virtual void toggle_check(const ::action_context & action_context);
 
 
 

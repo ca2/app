@@ -168,7 +168,7 @@ namespace user
 
          virtual strsize _001GetLayoutTextLength() const;
 
-         //strsize _001GetTextLength() override;
+         //strsize get_text_length() override;
 
          //void write(::binary_stream & stream) const override;
          //void read(::binary_stream & stream) override;

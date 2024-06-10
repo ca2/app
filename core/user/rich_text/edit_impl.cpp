@@ -2198,12 +2198,12 @@ namespace user
       }
 
 
-      //strsize edit_impl::_001GetTextLength()
+      //strsize edit_impl::get_text_length()
       //{
 
       //   auto prichtextdata = get_rich_text_data();
 
-      //   return prichtextdata->_001GetTextLength();
+      //   return prichtextdata->get_text_length();
 
       //}
 

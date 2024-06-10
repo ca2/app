@@ -29,7 +29,7 @@ namespace user
    }
 
 
-   void text::_001SetSelText(const ::string & psz, const ::action_context & context)
+   void text::set_selection_text(const ::string & psz, const ::action_context & context)
    {
 
       strtext() = psz;
@@ -45,7 +45,7 @@ namespace user
    }
 
 
-   strsize text::_001GetTextLength() const
+   strsize text::get_text_length() const
    {
 
       string str;

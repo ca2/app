@@ -162,7 +162,7 @@ namespace data
    //   }
    //
    //
-   //   bool check_property::_001ToggleCheck(const ::action_context & context)
+   //   bool check_property::toggle_check(const ::action_context & context)
    //   {
    //
    //      if(bcheck())

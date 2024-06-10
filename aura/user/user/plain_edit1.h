@@ -437,7 +437,7 @@ namespace user
       virtual void _extend_selection_end(const ::point_i32 & pointHost);
 
 
-      virtual strsize _001GetTextLength() override;
+      virtual strsize get_text_length() override;
       virtual strsize _001_get_text_length();
       virtual ::collection::count line_count() const;
       virtual void plain_edit_get_text(string & str);
@@ -449,7 +449,7 @@ namespace user
       void _001_get_impact_sel(strsize & iSelStart, strsize & iSelEnd);
 
       void set_text(const ::string & str, const ::action_context & action_context) override;
-      void _001SetSelText(const ::string & psz, const ::action_context & action_context) override;
+      void set_selection_text(const ::string & psz, const ::action_context & action_context) override;
       void _001SetSelEnd(strsize iSelEnd, const ::action_context & action_context) override;
       void _set_sel_end(::draw2d::graphics_pointer& pgraphics, strsize iSelEnd, const ::action_context & action_context);
       void _ensure_selection_visible_x(::draw2d::graphics_pointer & pgraphics);

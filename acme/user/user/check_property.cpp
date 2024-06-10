@@ -204,7 +204,7 @@ namespace user
    //}
 
 
-   //void check::_001ToggleCheck(const ::action_context & context)
+   //void check::toggle_check(const ::action_context & context)
    //{
 
    //   if(bcheck())

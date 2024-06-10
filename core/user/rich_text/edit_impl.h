@@ -160,7 +160,7 @@ namespace user
          void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-         //strsize _001GetTextLength() override;
+         //strsize get_text_length() override;
 
          //void write(::binary_stream & stream) const override;
          //void read(::binary_stream & stream) override;

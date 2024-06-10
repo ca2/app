@@ -320,6 +320,12 @@
     <Filter Include="Header Files\nano\user">
       <UniqueIdentifier>{e919c976-2b21-4647-9cb7-09ec738962c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\operating_system\universal_windows\nano\dynamic_library">
+      <UniqueIdentifier>{35046f85-3728-4cd1-bcf0-1507067f98ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\universal_windows\nano\dynamic_library">
+      <UniqueIdentifier>{903943ad-f305-4245-8735-9805cd509bf6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -991,7 +997,7 @@
     <ClCompile Include="operating_system\universal_windows\graphics.cpp">
       <Filter>Source Files\operating_system\universal_windows</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\universal_windows\library.cpp">
+    <ClCompile Include="operating_system\universal_windows\aaa_library.cpp">
       <Filter>Source Files\operating_system\universal_windows</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\universal_windows\main.cpp">
@@ -1701,6 +1707,12 @@
     </ClCompile>
     <ClCompile Include="nano\nano.cpp">
       <Filter>Source Files\nano</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\universal_windows\nano\dynamic_library\_dynamic_library.cpp">
+      <Filter>Source Files\operating_system\universal_windows\nano\dynamic_library</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\universal_windows\nano\dynamic_library\dynamic_library.cpp">
+      <Filter>Source Files\operating_system\universal_windows\nano\dynamic_library</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -4097,6 +4109,9 @@
     </ClInclude>
     <ClInclude Include="nano\speech\_.h">
       <Filter>Header Files\nano\speech</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\universal_windows\nano\dynamic_library\dynamic_library.h">
+      <Filter>Header Files\operating_system\universal_windows\nano\dynamic_library</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

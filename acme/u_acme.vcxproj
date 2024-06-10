@@ -734,6 +734,7 @@
     <ClInclude Include="operating_system\universal_windows\exception_engine.h" />
     <ClInclude Include="operating_system\universal_windows\file_winrt1.h" />
     <ClInclude Include="operating_system\universal_windows\host_interaction.h" />
+    <ClInclude Include="operating_system\universal_windows\nano\dynamic_library\dynamic_library.h" />
     <ClInclude Include="operating_system\universal_windows\nano\http\http.h" />
     <ClInclude Include="operating_system\universal_windows\nano\http\_http.h" />
     <ClInclude Include="operating_system\universal_windows\nano\user\window.h" />
@@ -1721,8 +1722,27 @@
     <ClCompile Include="operating_system\universal_windows\file.cpp" />
     <ClCompile Include="operating_system\universal_windows\get_module_path.cpp" />
     <ClCompile Include="operating_system\universal_windows\graphics.cpp" />
-    <ClCompile Include="operating_system\universal_windows\library.cpp" />
+    <ClCompile Include="operating_system\universal_windows\aaa_library.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="operating_system\universal_windows\main.cpp" />
+    <ClCompile Include="operating_system\universal_windows\nano\dynamic_library\dynamic_library.cpp" />
+    <ClCompile Include="operating_system\universal_windows\nano\dynamic_library\_dynamic_library.cpp" />
     <ClCompile Include="operating_system\universal_windows\nano\http\http.cpp" />
     <ClCompile Include="operating_system\universal_windows\nano\http\_http.cpp" />
     <ClCompile Include="operating_system\universal_windows\nano\user\window.cpp" />

@@ -760,6 +760,8 @@
     <ClInclude Include="operating_system\windows_common\heap_allocator.h" />
     <ClInclude Include="operating_system\windows_common\last_error.h" />
     <ClInclude Include="operating_system\windows_common\last_error_exception.h" />
+    <ClInclude Include="operating_system\windows_common\nano\idn\idn.h" />
+    <ClInclude Include="operating_system\windows_common\nano\idn\_.h" />
     <ClInclude Include="operating_system\windows_common\parallelization.h" />
     <ClInclude Include="operating_system\windows_common\_.h" />
     <ClInclude Include="operating_system\windows_common\_c.h" />
@@ -1761,10 +1763,11 @@
     <ClCompile Include="operating_system\windows_common\find_file.cpp" />
     <ClCompile Include="operating_system\windows_common\handle.cpp" />
     <ClCompile Include="operating_system\windows_common\heap_allocator.cpp" />
-    <ClCompile Include="operating_system\windows_common\idn.cpp" />
     <ClCompile Include="operating_system\windows_common\last_error_exception.cpp" />
     <ClCompile Include="operating_system\windows_common\library.cpp" />
     <ClCompile Include="operating_system\windows_common\memory.cpp" />
+    <ClCompile Include="operating_system\windows_common\nano\idn\idn.cpp" />
+    <ClCompile Include="operating_system\windows_common\nano\idn\_idn.cpp" />
     <ClCompile Include="operating_system\windows_common\nano\user\_user.cpp" />
     <ClCompile Include="operating_system\windows_common\parallelization.cpp" />
     <ClCompile Include="operating_system\windows_common\time.cpp" />

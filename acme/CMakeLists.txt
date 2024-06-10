@@ -553,7 +553,6 @@ list(APPEND library_source
         platform/trace_category.cpp
         platform/version.cpp
         primitive/collection/__payload_array.cpp
-        primitive/collection/__property_set.h
         primitive/collection/_generic_array.h
 
         #primitive/collection/2d_array.cpp
@@ -570,6 +569,7 @@ list(APPEND library_source
         primitive/collection/map_test_51778915.cpp
         #primitive/collection/numeric_array.cpp
         #primitive/collection/point_array.cpp
+        primitive/collection/property_set.h
         #primitive/collection/rectangle_array.cpp
         primitive/collection/sort.cpp
         primitive/collection/str_array.cpp
@@ -586,6 +586,8 @@ list(APPEND library_source
         #primitive/data/_data.h
         primitive/data/_impl.h
         primitive/data/_tree.h
+        primitive/data/check_property.cpp
+        primitive/data/check_property.h
         primitive/data/container.cpp
         primitive/data/container.h
         primitive/data/data.cpp
@@ -603,6 +605,8 @@ list(APPEND library_source
         primitive/data/simple_item.cpp
         primitive/data/simple_item.h
         primitive/data/tree.cpp
+        primitive/data/text_property.cpp
+        primitive/data/text_property.h
         primitive/data/tree.h
         primitive/data/tree_item.cpp
         primitive/data/tree_item.h
@@ -741,7 +745,6 @@ list(APPEND library_source
         primitive/media_library/item.cpp
         primitive/media_library/item.h
         #primitive/primitive/__particle_factory.h
-        primitive/primitive/__property.h
         primitive/primitive/_.cpp
         primitive/primitive/_.h
         #primitive/primitive/_atom_impl.h
@@ -828,6 +831,7 @@ list(APPEND library_source
         #primitive/primitive/papaya.h
         primitive/primitive/particle.cpp
         primitive/primitive/particle.h
+        primitive/primitive/particle_flags.h
         primitive/primitive/payload.cpp
         primitive/primitive/payload.h
         primitive/primitive/payload2.h
@@ -836,6 +840,7 @@ list(APPEND library_source
         primitive/primitive/primitive.cpp
         primitive/primitive/primitive.h
         primitive/primitive/property.cpp
+        primitive/primitive/property.h
         primitive/primitive/property_object.cpp
         primitive/primitive/property_object.cpp
         primitive/primitive/property_object.h
@@ -857,8 +862,6 @@ list(APPEND library_source
         #primitive/primitive/simple_object.h
         primitive/primitive/stick.h
         #primitive/primitive/str.h
-
-        primitive/primitive/subparticle_flags.h
         primitive/primitive/subparticle.cpp
         primitive/primitive/subparticle.h
         #primitive/primitive/top_level_domain_list.cpp
@@ -1135,9 +1138,15 @@ list(APPEND library_source
         user/user/_text_stream.h
         #user/user/check.cpp
         #user/user/check.h
+        user/user/check.cpp
+        user/user/check.h
+        user/user/check_property.cpp
+        user/user/check_property.h
         user/user/container.cpp
         user/user/container.h
         user/user/content.h
+        user/user/control.cpp
+        user/user/control.h
         user/user/controller.cpp
         user/user/controller.h
         user/user/conversation.cpp
@@ -1159,6 +1168,10 @@ list(APPEND library_source
         user/user/os_theme_colors.h
         #user/user/text.cpp
         #user/user/text.h
+        user/user/text.cpp
+        user/user/text.h
+        user/user/text_property.cpp
+        user/user/text_property.h
         user/user/theme_colors.h
         user/user/tool.h
         user/user/tool_item.cpp

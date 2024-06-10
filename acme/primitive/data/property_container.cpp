@@ -17,7 +17,7 @@ namespace data
    }
 
 
-   property_container::s~property_container()
+   property_container::~property_container()
    {
 
 

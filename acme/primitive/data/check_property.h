@@ -211,6 +211,9 @@ namespace data
       //
       // }
 
+      bool operator == (const check_property & checkproperty) const;
+
+
    };
 
 

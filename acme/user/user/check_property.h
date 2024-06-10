@@ -57,6 +57,9 @@ namespace user
       ::comparable_array < ::user::check_changed > & check_changed();
 
 
+      bool operator == (const check_property & checkproperty) const;
+ 
+
    };
 
 

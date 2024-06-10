@@ -206,6 +206,28 @@ namespace data
    }
 
 
+   bool property::operator == (const property & property) const
+   {
+
+      if (m_ppropertycontainer != property.m_ppropertycontainer)
+      {
+
+         return false;
+
+      }
+
+      if (m_atom != property.m_atom)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
 } // namespace data
 
 

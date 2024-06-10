@@ -257,6 +257,14 @@ namespace data
    }
 
 
+   bool check_property::operator == (const check_property & checkproperty) const
+   {
+
+      return ::data::property::operator==(checkproperty);
+
+   }
+
+
 } // namespace data
 
 

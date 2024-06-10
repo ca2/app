@@ -41,6 +41,8 @@ namespace user
       void set_text_property(const ::data::text_property & textproperty);
 
 
+      ::user::text_property text_property() const { return m_textproperty; }
+
       virtual bool on_text_will_change(::data::text_property & textproperty, const ::payload &, const ::action_context &);
       virtual void on_text_changed(::data::text_property & textproperty, const ::payload &, const ::action_context &);
 

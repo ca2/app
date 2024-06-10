@@ -213,6 +213,10 @@ namespace data
          }
 
       */
+
+      bool operator == (const text_property & textproperty) const;
+
+
    };
 
 

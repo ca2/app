@@ -494,5 +494,11 @@ namespace data
 
    */
 
+   bool text_property::operator == (const text_property & textproperty) const
+   {
+
+      return ::data::property::operator ==(textproperty);
+
+   }
 
 } // namespace data

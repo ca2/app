@@ -111,6 +111,9 @@ namespace user
       void on_text_changed(::data::text_property & textproperty, const ::payload & payload, const ::action_context & actioncontext);
 
 
+      bool operator == (const text_property & textproperty) const;
+
+
    };
 
 

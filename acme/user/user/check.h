@@ -79,7 +79,7 @@ namespace user
 
       virtual ::e_check echeck() const;
 
-      virtual bool bcheck() const;
+      virtual bool is_checked() const;
 
       //bool is_checked() const;
 

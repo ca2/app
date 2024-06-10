@@ -34,7 +34,7 @@ namespace data
    }
 
    
-   bool check_property::bcheck() const
+   bool check_property::is_checked() const
    {
 
       return this->get_property().as_bool();
@@ -241,7 +241,7 @@ namespace data
    bool check_property::toggle(const ::action_context & context)
    {
 
-      if (bcheck())
+      if (is_checked())
       {
 
          return set(::e_check_unchecked, context);

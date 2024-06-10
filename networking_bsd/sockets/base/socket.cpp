@@ -90,7 +90,7 @@ namespace sockets_bsd
       ,m_bIpv6(false)
       ,m_bSocks4(false)
       ,m_b_chunked(false)
-      ,m_socket(INVALID_SOCKET)
+      ,m_socketid(INVALID_SOCKET)
       //,m_socks4_host(h.GetSocks4Host())
       //,m_socks4_port(h.GetSocks4Port())
       //,m_socks4_userid(h.GetSocks4Userid())
@@ -355,7 +355,7 @@ namespace sockets_bsd
    void base_socket::attach(SOCKET s)
    {
 
-      m_socket = s;
+      m_socketid = s;
 
       if (topic_text() == nullptr)
       {
@@ -374,7 +374,7 @@ namespace sockets_bsd
    socket_id base_socket::GetSocketId()
    {
 
-      return m_socket;
+      return m_socketid;
 
    }
 
@@ -408,7 +408,7 @@ namespace sockets_bsd
          if(socket_handler())
          {
 
-            __Handler(socket_handler())->socket_id_list_modify(m_socket, e_list_close, bCloseAndDelete);
+            __Handler(socket_handler())->socket_id_list_modify(m_socketid, e_list_close, bCloseAndDelete);
 
          }
 
@@ -533,7 +533,7 @@ namespace sockets_bsd
 #ifdef BSD_STYLE_SOCKETS
 #ifdef _WIN32
       unsigned long l = bNb ? 1 : 0;
-      int n = ioctlsocket(m_socket, FIONBIO, &l);
+      int n = ioctlsocket(m_socketid, FIONBIO, &l);
       if (n != 0)
       {
          information() << "ioctlsocket(FIONBIO) " << networking_last_error();
@@ -543,7 +543,7 @@ namespace sockets_bsd
 #else
       if (bNb)
       {
-         if (fcntl(m_socket, F_SETFL, O_NONBLOCK) == -1)
+         if (fcntl(m_socketid, F_SETFL, O_NONBLOCK) == -1)
          {
             error() <<"fcntl(F_SETFL, O_NONBLOCK) " << networking_last_error() << " " << bsd_socket_error(networking_last_error());
             return false;
@@ -551,7 +551,7 @@ namespace sockets_bsd
       }
       else
       {
-         if (fcntl(m_socket, F_SETFL, 0) == -1)
+         if (fcntl(m_socketid, F_SETFL, 0) == -1)
          {
             error() <<"fcntl(F_SETFL, 0)" << networking_last_error() << " " << bsd_socket_error(networking_last_error());
             return false;
@@ -608,14 +608,14 @@ namespace sockets_bsd
    void base_socket::Set(bool bRead, bool bWrite, bool bException)
    {
       
-      __Handler(socket_handler())->set(m_socket, bRead, bWrite, bException);
+      __Handler(socket_handler())->set(m_socketid, bRead, bWrite, bException);
 
    }
 
 
    bool base_socket::Ready()
    {
-      if (m_socket != INVALID_SOCKET && !IsCloseAndDelete())
+      if (m_socketid != INVALID_SOCKET && !IsCloseAndDelete())
          return true;
       return false;
    }
@@ -901,7 +901,7 @@ namespace sockets_bsd
       
       SetRemoteHostname(psocket -> GetRemoteHostname());
 
-      psocket2->m_socket = INVALID_SOCKET;
+      psocket2->m_socketid = INVALID_SOCKET;
 
 #ifdef BSD_STYLE_SOCKETS
       if (psocket2->m_psslcontext)

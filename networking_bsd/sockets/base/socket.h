@@ -56,7 +56,7 @@ namespace sockets_bsd
       string                  m_password; ///< ssl password
 
       ::pointer<::sockets::base_socket_handler>  m_psockethandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
-      SOCKET                  m_socket; ///< File descriptor
+      socket_id               m_socketid; ///< File descriptor
 
       static ::pointer< ::mutex >        s_pmutex;
 

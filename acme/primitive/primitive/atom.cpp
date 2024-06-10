@@ -143,7 +143,7 @@ bool atom::is_true(bool bDefault) const
       case e_type_status:
          return m_estatus.succeeded();
       case e_type_check:
-         return __bool(m_echeck);
+         return m_echeck.is_checked();
       default:
          break;
    };

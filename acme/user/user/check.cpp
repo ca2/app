@@ -50,15 +50,15 @@ namespace user
    ::e_check check::echeck() const
    {
 
-      return (::e_check) m_checkproperty;
+      return m_checkproperty.echeck();
 
    }
 
 
-   bool check::bcheck() const
+   bool check::is_checked() const
    {
 
-      return (bool) m_checkproperty;
+      return m_checkproperty.is_checked();
 
    }
 

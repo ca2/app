@@ -34,7 +34,7 @@ namespace data
       // virtual bool get_bcheck() const;
       ::e_check echeck() const;
 
-      bool bcheck() const;
+      bool is_checked() const;
 
       //bool is_checked() const;
 

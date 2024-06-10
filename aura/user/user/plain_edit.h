@@ -450,7 +450,7 @@ namespace user
 
       //void get_text_selection(strsize &iSelStart, strsize &iSelEnd) override;
       //void get_text_selection(strsize & iSelStart, strsize & iSelEnd);
-      void get_text_selection(strsize & iSelBeg, strsize & iSelEnd);
+      //void get_text_selection(strsize & iSelBeg, strsize & iSelEnd);
       //void set_text(const ::string & str, const ::action_context & action_context) override;
       void set_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext);
       //void _001SetSelText(const ::string & psz, const ::action_context & action_context) override;

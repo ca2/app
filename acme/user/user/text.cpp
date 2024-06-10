@@ -221,6 +221,13 @@ namespace user
 
    //}
 
+   //void text::get_text_selection(strsize & iBeg, strsize & iEnd) const
+   //{
+
+   //   m_textproperty.get_selection(iBeg, iEnd);
+
+   //}
+
 
    //void text_property::_001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context)
    //{
@@ -413,6 +420,14 @@ namespace user
    {
 
       str = get_selection_text();
+
+   }
+
+
+   void text::get_text_selection(strsize & iBegin, strsize & iEnd) const
+   {
+
+      m_textproperty.get_selection(iBegin, iEnd);
 
    }
 

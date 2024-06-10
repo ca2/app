@@ -104,6 +104,8 @@ namespace user
       /*virtual bool on_property_will_change(property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext);
       virtual void on_property_changed(property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext);
       */
+
+      
       
       bool on_text_will_change(::data::text_property & textproperty, const ::payload & payload, const ::action_context & actioncontext);
       void on_text_changed(::data::text_property & textproperty, const ::payload & payload, const ::action_context & actioncontext);

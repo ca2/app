@@ -344,7 +344,7 @@ namespace user
 
       string str;
 
-      pinteraction->_001GetText(str);
+      str = pinteraction->as_text();
 
       ::user::validate validate;
 
@@ -488,7 +488,7 @@ namespace user
 
             //pinteraction->datastream()->get(pdescriptor->m_strDataKey, ia);
 
-            ::pointer<check>pcheck = ptopic->user_interaction();
+            ::pointer<::user::check>pcheck = ptopic->user_interaction();
 
             if (pcheck->echeck() == ::e_check_checked)
             {

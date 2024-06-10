@@ -1,6 +1,9 @@
 #pragma once
 
 
+using atom_array = ::comparable_array < atom >;
+
+
 namespace data
 {
 
@@ -12,7 +15,31 @@ namespace data
    class tree;
 
 
+   class property;
+
+
+   class property_container;
+   class property_listener;
+
+   class property;
+
+   class check;
+   class text;
+
+
 } // namespace data
+
+
+namespace data
+{
+
+   using property_will_change = ::function < bool(property_container *, const ::atom_array &, const ::payload &, const ::action_context &) >;
+
+   using property_changed = ::function < void(property_container *, const ::atom_array &, const ::payload &, const ::action_context &) >;
+
+
+} // namespace data
+
 
 
 namespace xml
@@ -34,8 +61,5 @@ namespace xml
 //#include "node.h"
 
 
-
-class property_container;
-class property_listener;
 
 

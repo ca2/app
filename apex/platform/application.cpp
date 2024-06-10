@@ -2022,7 +2022,7 @@ namespace apex
             if (payload("locale").get_count() > 0)
             {
 
-               str = payload("locale").stra()[0];
+               str = payload("locale").as_string()[0];
 
                datastream()->set({ "system_locale", true }, str);
 
@@ -2034,7 +2034,7 @@ namespace apex
             else if (payload("lang").get_count() > 0)
             {
 
-               str = payload("lang").stra()[0];
+               str = payload("lang").as_string_array()[0];
 
                datastream()->set({ "system_locale", true }, str);
 
@@ -2093,7 +2093,7 @@ namespace apex
             if (payload("schema").get_count() > 0)
             {
 
-               str = payload("schema").stra()[0];
+               str = payload("schema").as_string_array()[0];
 
                datastream()->set({ "system_schema", true }, str);
 
@@ -2168,7 +2168,7 @@ namespace apex
             if (payload("locale").get_count() > 0)
             {
 
-               str = payload("locale").stra()[0];
+               str = payload("locale").as_string_array()[0];
 
                datastream()->set({ "system_locale", true }, str);
 
@@ -2180,7 +2180,7 @@ namespace apex
             else if (payload("lang").get_count() > 0)
             {
 
-               str = payload("lang").stra()[0];
+               str = payload("lang").as_string_array()[0];
 
                datastream()->set({ "system_locale", true }, str);
 
@@ -2239,7 +2239,7 @@ namespace apex
             if (payload("schema").get_count() > 0)
             {
 
-               str = payload("schema").stra()[0];
+               str = payload("schema").as_string_array()[0];
 
                datastream()->set({ "system_schema", true }, str);
 
@@ -2765,8 +2765,8 @@ namespace apex
       string_array straLocale;
       string_array straSchema;
 
-      straLocale = payload("locale").stra();
-      straSchema = payload("schema").stra();
+      straLocale = payload("locale").as_string_array();
+      straSchema = payload("schema").as_string_array();
 
       ::file::path pathExe = acmefile()->module();
 
@@ -3330,28 +3330,28 @@ namespace apex
          if (psystem->payload("locale").get_count() > 0)
          {
 
-            strLocale = psystem->payload("locale").stra()[0];
+            strLocale = psystem->payload("locale").as_string_array()[0];
 
          }
 
          if (psystem->payload("schema").get_count() > 0)
          {
 
-            strSchema = psystem->payload("schema").stra()[0];
+            strSchema = psystem->payload("schema").as_string_array()[0];
 
          }
 
          if (get_app()->payload("locale").get_count() > 0)
          {
 
-            strLocale = get_app()->payload("locale").stra()[0];
+            strLocale = get_app()->payload("locale").as_string_array()[0];
 
          }
 
          if (get_app()->payload("schema").get_count() > 0)
          {
 
-            strSchema = get_app()->payload("schema").stra()[0];
+            strSchema = get_app()->payload("schema").as_string_array()[0];
 
          }
 
@@ -3977,7 +3977,7 @@ namespace apex
 
             property_set set;
 
-            set["oh_my_god"].stra().add(str1);
+            set["oh_my_god"].as_string_array().add(str1);
             set["oh_my_god2"].i32_array_reference() = ::i32_array({ 1, 2, 3 });
 
             int a1 = 1;
@@ -3999,10 +3999,10 @@ namespace apex
 
             datastream()->get("test", set2);
 
-            string str2 = set2["oh_my_god"].stra()[0];
+            string str2 = set2["oh_my_god"].as_string_array()[0];
 
 
-            int i1 = set2["oh_my_god2"].ia()[0];
+            int i1 = set2["oh_my_god2"].as_i32_array()[0];
             int i2 = set2["oh_my_god2"].array_contains("2") ? (int)set2["oh_my_god2"][1].as_i32() : -1;
             int i3 = set2["oh_my_god2"][2].as_i32();
 

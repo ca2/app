@@ -114,8 +114,8 @@ namespace user
 
          //::user::tool_window * tool_window(enum_tool etool, bool bCreate) override;
 
-         using ::user::interaction::_001GetText;
-         void _001GetText(string & str) override;
+         //using ::user::interaction::_001GetText;
+         //void _001GetText(string & str) override;
          void _001GetLayoutText(string & str) override;
 
          void on_layout(::draw2d::graphics_pointer & pgraphics) override;
@@ -160,7 +160,7 @@ namespace user
          void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-         strsize _001GetTextLength() override;
+         //strsize _001GetTextLength() override;
 
          //void write(::binary_stream & stream) const override;
          //void read(::binary_stream & stream) override;

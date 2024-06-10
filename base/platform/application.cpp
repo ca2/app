@@ -317,12 +317,12 @@ namespace base
 
       bool bUserAutoStart = node()->is_user_auto_start(get_executable_appid());
 
-      pcheckbox->_001SetCheck(bUserAutoStart, ::e_source_initialize);
+      pcheckbox->set_check(bUserAutoStart, ::e_source_initialize);
 
-      pcheckbox->m_callbackOnCheck = [this](auto pcheck)
+      pcheckbox->check_changed() += [this](::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext)
       {
 
-         bool bCheck = pcheck->bcheck();
+         bool bCheck = payload.as_bool();
 
          auto papplication = m_papexapplication;
 

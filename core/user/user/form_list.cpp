@@ -11,6 +11,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
+#include "acme/primitive/data/tree_item.h"
 #include "aura/message/user.h"
 #include "axis/user/user/validate.h"
 #include "axis/user/user/combo_box.h"
@@ -630,7 +631,7 @@ namespace user
 
                   pinteraction->set_keyboard_focus();
 
-                  pedit->_001SetSel(0, pedit->_001GetTextLength());
+                  pedit->set_text_selection(0, pedit->get_text_length(), e_source_user);
 
                }
 
@@ -730,7 +731,7 @@ namespace user
          if (psubitem->m_bOk)
          {
 
-            pedit->_001SetText(psubitem->m_strText, ::e_source_initialize);
+            pedit->set_text(psubitem->m_strText, ::e_source_initialize);
 
          }
 
@@ -759,14 +760,14 @@ namespace user
          //      {
          //         string str;
          //         str = payload.m_str;
-         //         ptext->_001SetText(str, ::e_source_database);
+         //         ptext->set_text(str, ::e_source_database);
          //      }
          //      break;
          //      case ::type_int32:
          //      {
          //         string str;
          //         str.formatf("%d", payload.i32());
-         //         ptext->_001SetText(str, ::e_source_database);
+         //         ptext->set_text(str, ::e_source_database);
          //      }
          //      break;
          //      default:
@@ -925,7 +926,7 @@ namespace user
 
       string str;
 
-      pinteraction->_001GetText(str);
+      pinteraction->get_text(str);
 
       ::user::validate validate;
 
@@ -2089,7 +2090,7 @@ namespace user
                   else if (pkey->m_ekey == e_key_right)
                   {
 
-                     strsize iLen = pedit->_001GetTextLength();
+                     strsize iLen = pedit->get_text_length();
 
                      if (iSel != iLen)
                      {
@@ -2155,16 +2156,16 @@ namespace user
                   if (pkey->m_ekey == e_key_left)
                   {
 
-                     strsize iLen = pedit->_001GetTextLength();
+                     strsize iLen = pedit->get_text_length();
 
-                     pedit->_001SetSel(iLen, iLen);
+                     pedit->set_text_selection(iLen, iLen, e_source_user);
 
 
                   }
                   else if (pkey->m_ekey == e_key_right)
                   {
 
-                     pedit->_001SetSel(0, 0);
+                     pedit->set_text_selection(0, 0, e_source_user);
 
 
                   }
@@ -2449,7 +2450,7 @@ namespace user
 
                      string strText;
 
-                     pcombobox->_001GetText(strText);
+                     pcombobox->get_text(strText);
 
                      if (pcombobox->get_current_item_atom() != pdrawlistsubitem->m_strText)
                      {
@@ -2478,12 +2479,12 @@ namespace user
 
                      string strText;
 
-                     pedit->_001GetText(strText);
+                     pedit->get_text(strText);
 
                      if (strText != pdrawlistsubitem->m_strText)
                      {
 
-                        pedit->_001SetText(pdrawlistsubitem->m_strText, ::e_source_sync);
+                        pedit->set_text(pdrawlistsubitem->m_strText, ::e_source_sync);
 
                      }
 

@@ -5,7 +5,16 @@
 ////#include "acme/primitive/primitive/object.h"
 #include "acme/primitive/collection/address_array.h"
 
-class property_link;
+
+namespace data
+{
+   
+
+   class property;
+
+
+} // namespace data
+
 
 namespace database
 {
@@ -150,7 +159,7 @@ namespace database
       //}
 
       //virtual void default_data_save_handling(const ::atom & atom);
-      virtual void default_data_save_handling(const ::property_link & propertylink);
+      virtual void default_data_save_handling(const ::data::property & property);
 
       virtual bool data_pulse_change(const ::scoped_string & strKey, ::topic * ptopic);
 

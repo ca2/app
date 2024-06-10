@@ -2,6 +2,7 @@
 
 
 #include "acme/primitive/data/data.h"
+#include "acme/user/user/text.h"
 #include "span.h"
 #include "format_host.h"
 
@@ -19,7 +20,8 @@ namespace user
 
       class CLASS_DECL_CORE data :
          virtual public ::data::data,
-         virtual public ::user::rich_text::format_host
+         virtual public ::user::rich_text::format_host,
+         virtual public ::user::text
       {
       public:
 
@@ -75,12 +77,14 @@ namespace user
          virtual void _001Delete(strsize i1, strsize i2);
          virtual strsize _001InsertText(strsize i1, strsize i2, const ::string & psz, format * pformatParam = nullptr);
 
-         virtual void _001GetText(string & str) const;
+         //virtual void _001GetText(string & str) const;
+
+         virtual void __update_text();
 
          virtual void optimize_data();
 
 
-         virtual strsize _001GetTextLength() const;
+         virtual strsize _get_text_length() const;
 
          
          bool on_new_data() override;

@@ -537,12 +537,12 @@ namespace user
    //}
 
 
-   void still::_001SetCheck(const ::e_check & echeck, const ::action_context & context)
-   {
+   //void still::_001SetCheck(const ::e_check & echeck, const ::action_context & context)
+   //{
 
-      check::_001SetCheck(echeck, context);
+   //   check::_001SetCheck(echeck, context);
 
-   }
+   //}
 
 
    ::status < ::color::color > still::get_color(::user::style* pstyle, enum_element eelement, ::user::enum_state elayout)

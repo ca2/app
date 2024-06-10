@@ -679,9 +679,7 @@ void subparticle::call_run()
 bool particle::_is_ok() const
 {
 
-   //return has_ok_flag();
-
-   return true;
+   return has_ok_flag();
 
 }
 

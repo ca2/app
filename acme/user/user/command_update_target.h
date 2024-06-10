@@ -10,7 +10,7 @@ namespace user
 
 
    class command_update_target :
-      virtual public ::property_container
+      virtual public ::data::property_container
    {
    public:
 

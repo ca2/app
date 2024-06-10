@@ -105,7 +105,7 @@ namespace calculator
 
             string strExp;
 
-            _001GetText(strExp);
+            strExp = as_text();
 
             auto pparser = __create_new< parser >();
 

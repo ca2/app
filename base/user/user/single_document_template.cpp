@@ -156,7 +156,7 @@ namespace user
       if (prequest)
       {
 
-         prequest->payload("document").release();
+         prequest->payload("document").payload_release();
 
       }
       

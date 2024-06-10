@@ -207,7 +207,7 @@ public:
    virtual bool is_hidden() const;
 
    virtual ::string get_text(::collection::index iSubItem);
-   
+
    
 //   operator const ::item_t &() const {return m_item;}
 //   operator ::item_t &() {return m_item;}

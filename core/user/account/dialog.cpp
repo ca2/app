@@ -404,11 +404,11 @@ namespace account
 
          string strUser;
 
-         m_plogin->m_peditUser->_001GetText(strUser);
+         strUser = m_plogin->m_peditUser->as_text();
 
          string strPass;
 
-         m_plogin->m_peditPassword->_001GetText(strPass);
+         strPass = m_plogin->m_peditPassword->as_text();
 
          m_pcredentials->m_puser->m_strLogin = strUser;
 

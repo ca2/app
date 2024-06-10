@@ -3,8 +3,10 @@
 
 
 #include "command_update_target.h"
-#include "acme/primitive/data/check_property.h"
-#include "acme/primitive/data/text_property.h"
+#include "acme/primitive/data/property_container.h"
+#include "acme/user/user/check.h"
+#include "acme/user/user/control.h"
+#include "acme/user/user/text.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
 #include "acme/handler/source.h"
 #include "acme/platform/conversation_message.h"
@@ -41,8 +43,9 @@ namespace user
       virtual public ::user::command_update_target,
       virtual public ::conversation_message,
       virtual public ::user::drag_client,
-      virtual public ::source
-       //, virtual public ::property_container
+      virtual public ::source,
+      virtual public ::user::check,
+      virtual public ::user::text
    {
    public:
 
@@ -101,17 +104,17 @@ namespace user
       ::user::interaction *                        m_puserinteraction;
       //pointer< pointer_array < ::user::item > >    m_puseritema;
 
-      check_property                                m_checkproperty;
-       text_property                                m_textproperty;
+      ::user::check                                m_check;
+      ::user::text                                 m_text;
 
 
       element();
       ~element() override;
 
 
-       virtual check_property & check();
+       virtual ::user::check & check();
 
-       virtual text_property & text();
+       virtual ::user::text & text();
 
 
       virtual void _001OnTimer(::timer * ptimer);
@@ -399,6 +402,11 @@ namespace user
 
       virtual void edit_on_set_focus(::user::interaction* pinteraction);
       virtual void edit_on_kill_focus(::user::interaction* pinteraction);
+
+
+      using ::user::text::get_text;
+      using ::user::drag_client::get_text;
+
 
       virtual void set_window_text(const ::string & psz);
       virtual void set_window_text_source(const ::a_string_function & astringfunction);

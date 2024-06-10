@@ -110,13 +110,13 @@ namespace html
             if(bCheck)
             {
 
-               m_pcheckbox->_001SetCheck(e_check_checked, ::action_context(::e_source_data) +  ::e_source_load);
+               m_pcheckbox->set_check(e_check_checked, ::action_context(::e_source_data) +  ::e_source_load);
 
             }
             else if(m_pcheckbox->echeck() == ::e_check_undefined)
             {
 
-               m_pcheckbox->_001SetCheck(e_check_unchecked, ::action_context(::e_source_data) +  ::e_source_load);
+               m_pcheckbox->set_check(e_check_unchecked, ::action_context(::e_source_data) +  ::e_source_load);
 
             }
 

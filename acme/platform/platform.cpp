@@ -1083,31 +1083,9 @@ namespace platform
 
    }
 
-
-   ::pointer<::acme::library> platform::create_library(const ::string & strLibrary)
+   
+   ::pointer<::acme::library> platform::create_library_dynamically(const ::string & strLibrary)
    {
-
-#ifdef CUBE
-
-      auto pfnFactory = ::factory_function::get(strLibrary);
-
-      if (!pfnFactory)
-      {
-
-         return nullptr;
-
-      }
-
-      auto plibrary = __create_new < ::acme::library >();
-
-      plibrary->m_strName = strLibrary;
-
-      plibrary->m_pfnFactory = pfnFactory;
-
-      return plibrary;
-
-
-#else
 
       //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
@@ -1138,6 +1116,65 @@ namespace platform
          warning() << "Library wasn't opened (\"" << strLibrary << "\") : " << strMessage;
 
          throw ::exception(error_failed, "Library wasn't opened (\"" + strLibrary + "\")", strMessage);
+
+      }
+
+      return plibrary;
+
+   }
+
+
+   ::pointer<::acme::library> platform::create_library_statically(const ::string & strLibrary)
+   {
+
+      auto pfnFactory = ::factory_function::get(strLibrary);
+
+      if (!pfnFactory)
+      {
+
+         return nullptr;
+
+      }
+
+      auto plibrary = __create_new < ::acme::library >();
+
+      plibrary->m_strName = strLibrary;
+
+      plibrary->m_pfnFactory = pfnFactory;
+
+      return plibrary;
+
+   }
+
+
+
+   ::pointer<::acme::library> platform::create_library(const ::string & strLibrary)
+   {
+
+#ifdef CUBE
+
+      return create_library_statically(strLibrary);
+
+#else
+
+      ::pointer<::acme::library> plibrary;
+
+      try
+      {
+
+         plibrary = create_library_dynamically(strLibrary);
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+      if (!plibrary)
+      {
+
+         plibrary = create_library_statically(strLibrary);
 
       }
 

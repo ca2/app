@@ -325,10 +325,10 @@ namespace user
       }
 
 
-      string text(const pointer_array < span > & spana)
+      ::string as_text(const pointer_array < span > & spana)
       {
 
-         string str;
+         ::string str;
 
          for (auto & pspan : spana)
          {

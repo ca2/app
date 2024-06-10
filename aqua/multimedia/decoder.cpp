@@ -140,7 +140,7 @@ namespace multimedia
       if (multimedia_get_attribute(id_artist, strAttr))
       {
          //strAttr.ReleaseBuffer();
-         wstrAttr = strAttr.stra()._008Implode(", ", " and ");
+         wstrAttr = strAttr.as_string_array()._008Implode(", ", " and ");
          if (wstrAttr.has_char())
          {
             wstraFormat.add("Performer: %0");

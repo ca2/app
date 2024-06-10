@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "tree.h"
+#include "acme/primitive/data/tree_item.h"
 
 
 namespace user

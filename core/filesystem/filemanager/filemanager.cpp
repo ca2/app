@@ -15,6 +15,7 @@
 #include "tab_impact.h"
 #include "child_frame.h"
 #include "form_child_frame.h"
+#include "acme/primitive/data/tree_item.h"
 #include "folder/list_impact.h"
 #include "folder/selection_list_impact.h"
 #include "operation/document.h"

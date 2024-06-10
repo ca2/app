@@ -205,7 +205,7 @@ inline binary_stream & operator >>(binary_stream & stream, ::raw_array_quantum <
 inline binary_stream & operator <<(binary_stream & stream, const ::property_set & propertyset)
 {
 
-   return stream << propertyset.m_propertyptra;
+   return stream << (const property_ptra & ) propertyset;
 
 }
 
@@ -213,7 +213,7 @@ inline binary_stream & operator <<(binary_stream & stream, const ::property_set 
 inline binary_stream & operator >>(binary_stream & stream, ::property_set & propertyset)
 {
 
-   return stream >> propertyset.m_propertyptra;
+   return stream >> (property_ptra &) propertyset;
 
 }
 

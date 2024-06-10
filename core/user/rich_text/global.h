@@ -25,7 +25,7 @@ namespace user
       ::collection::index sel_line(const pointer_array < line > & span, ::collection::index iSel);
       ::collection::index sel_line_x666(pointer_array < line > & span, ::collection::index iSel, double & x);
       ::collection::index line_caret_x(pointer_array < line >& span, ::collection::index iSel, double& x);
-      string text(const pointer_array < span > & spana);
+      ::string as_text(const pointer_array < span > & spana);
       //::pointer<format>get_format(pointer_array < format > & formata, format * pformat);
       //::pointer<format>get_format(pointer_array < format > & formata, format * pformat, attribute_flags & eattributea);
       void words_trailing_spaces(string_array & stra, string str);

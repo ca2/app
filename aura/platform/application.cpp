@@ -8359,7 +8359,7 @@ namespace aura
 
                      auto pcontext = get_context();
 
-                     pcheck->_001SetCheck(
+                     pcheck->set_check(
                         node()->is_user_auto_start(get_executable_appid()),
                         ::e_source_initialize);
 

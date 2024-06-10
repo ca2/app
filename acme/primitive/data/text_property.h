@@ -5,208 +5,218 @@
 
 //#include "acme/primitive/geometry2d/_geometry2d.h"
 //#include "acme_context.h
-#include "property_link.h"
-//#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/data/property.h"
+#include "acme/primitive/primitive/action_context.h"
 ////#include "acme/primitive/primitive/object.h"
 
-
-//namespace user
-//{
-
-
-class text_property :
-   public ::property_link
+struct payload_action_context
 {
-public:
 
 
-   //linked_property   m_linkedpropertyCheck;
-   //::function < void(::user::check *) >     m_callbackOnCheck;
-   //virtual public ::property_container
+   ::payload            m_payload;
+   ::action_context     m_actioncontext;
+
+};
+
+namespace data
+{
 
 
-   text_property(::property_container * ppropertycontainer = nullptr, const ::atom & atom = {});
-   text_property(const text_property & checkproperty);
-   
-   ~text_property();
-/*
-      virtual void _001GetText(string & str);
-
-
-      virtual strsize _001GetTextLength();
-      virtual void _001GetText(char * psz, strsize len);
-      virtual void _001GetText(string & str, ::collection::index iBeg, ::collection::index iEnd);
-
-
-      virtual void _001SetText(const ::string & str, const ::action_context & action_context);
-      virtual void _001SetText(const ::string & psz, strsize len, const ::action_context & action_context);
-
-
-
-      virtual void _001GetSel(strsize & iBeg, strsize & iEnd);
-      virtual void _001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context = ::e_source_user);
-      virtual void _001SetSelEnd(strsize iSelEnd, const ::action_context & action_context = ::e_source_user);
-
-
-      virtual void _001GetSelText(string & str);
-      virtual void _001SetSelText(const ::string & psz, const ::action_context & action_context);
-
-
-      virtual void _001GetImpactSel(strsize &iSelStart, strsize &iSelEnd);
-
-
-      virtual void MacroBegin();
-      virtual void MacroEnd();
-
-
-      virtual void insert_text(string str, bool bForceNewStep, const ::action_context& context);
-
-
-      string as_string() const override;
-      //virtual string& string_reference();
-      //inline string as_string() const { return m_propertyText->get_string(); }
-
-
-      virtual bool edit_undo();
-
-
-      //virtual void get_text_composition_area(::rectangle_i32& rectangle);
-*/
-   ::string text() const;
-   ::strsize selection_begin() const;
-   ::strsize selection_end() const;
-
-
-   void    get_text(string & str);
-   bool set_selection_text(const ::scoped_string & scopedstrNewSelectionText, const ::action_context & actioncontext);
-
-   bool set_text(const ::scoped_string & scopedstrText, const ::action_context & actioncontext);
-
-   strsize get_size() const;
-
-   void get_text(char * psz, strsize len);
-
-
-   void get_text(string & str, strsize iBeg, strsize iEnd) const;
-
-
-   void set_text(const ::scoped_string & scopedstrText, strsize iLen, const ::action_context & actioncontext);
-
-
-   void get_selection(strsize & iBegin, strsize & iEnd) const;
-
-
-   // strsize selection_begin() const
-   // {
-   //
-   //    ::strsize iBegin;
-   //
-   //    ::strsize iEnd;
-   //
-   //    get_selection(iBegin, iEnd);
-   //
-   //    return iBegin;
-   //
-   // }
-
-
-   // strsize selection_end() const
-   // {
-   //
-   //    ::strsize iBegin;
-   //
-   //    ::strsize iEnd;
-   //
-   //    get_selection(iBegin, iEnd);
-   //
-   //    return iEnd;
-   //
-   // }
-
-
-   void set_selection(strsize iBegin, strsize iEnd, const ::action_context & actioncontext);
-
-/*
-   void _001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context)
+   class CLASS_DECL_ACME text_property :
+      public ::data::property
    {
-
-      __UNREFERENCED_PARAMETER(iBeg);
-      __UNREFERENCED_PARAMETER(iEnd);
-      __UNREFERENCED_PARAMETER(action_context);
-
-   }
+   public:
 
 
-   void text::_001GetImpactSel(strsize & iBeg, strsize & iEnd)
-   {
-
-      __UNREFERENCED_PARAMETER(iBeg);
-      __UNREFERENCED_PARAMETER(iEnd);
-
-   }
-*/
-
-   void set_selection_begin(strsize iBegin, const ::action_context & actioncontext);
-
-   void set_selection_end(strsize iEnd, const ::action_context & actioncontext);
-   void get_selection_text(::string & str) const;
-
-/*
-   void text::MacroBegin()
-   {
-
-   }
+      //linked_property   m_linkedpropertyCheck;
+      //::function < void(::user::check *) >     m_callbackOnCheck;
+      //virtual public ::property_container
 
 
-   void text::MacroEnd()
-   {
-
-   }
-
-
-   void text::insert_text(string str, bool bForceNewStep, const ::action_context& context)
-   {
+      text_property(::data::property_container * ppropertycontainer = nullptr, const ::atom & atom = {});
+      text_property(const text_property & textproperty);
+      ~text_property();
+      /*
+            virtual void _001GetText(string & str);
 
 
-   }
-*/
-/*
-   string as_string() const
-   {
+            virtual strsize _001GetTextLength();
+            virtual void _001GetText(char * psz, strsize len);
+            virtual void _001GetText(string & str, ::collection::index iBeg, ::collection::index iEnd);
 
-      return get_property().as_string();
 
-   }
-*/
-/*
-   string& text::string_reference()
-   {
-
-      return m_linkedpropertyText->string_reference();
-
-   }
+            virtual void _001SetText(const ::string & str, const ::action_context & action_context);
+            virtual void _001SetText(const ::string & psz, strsize len, const ::action_context & action_context);
 
 
 
-   bool text::edit_undo()
-   {
-
-      return false;
-
-   }
+            virtual void _001GetSel(strsize & iBeg, strsize & iEnd);
+            virtual void _001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context = ::e_source_user);
+            virtual void _001SetSelEnd(strsize iSelEnd, const ::action_context & action_context = ::e_source_user);
 
 
-   void text::get_text_composition_area(::rectangle_i32& rectangle)
-   {
+            virtual void _001GetSelText(string & str);
+            virtual void _001SetSelText(const ::string & psz, const ::action_context & action_context);
 
 
-   }
+            virtual void _001GetImpactSel(strsize &iSelStart, strsize &iSelEnd);
 
-*/
+
+            virtual void MacroBegin();
+            virtual void MacroEnd();
+
+
+            virtual void insert_text(string str, bool bForceNewStep, const ::action_context& context);
+
+
+            string as_string() const override;
+            //virtual string& string_reference();
+            //inline string as_string() const { return m_propertyText->get_string(); }
+
+
+            virtual bool edit_undo();
+
+
+            //virtual void get_text_composition_area(::rectangle_i32& rectangle);
+      */
+
+      ::string as_text() const;
+      ::strsize selection_begin() const;
+      ::strsize selection_end() const;
+
+
+      bool set_selection_text(const ::scoped_string & scopedstrNewSelectionText, const ::action_context & actioncontext);
+
+      bool set_text(const ::scoped_string & scopedstrText, const ::action_context & actioncontext);
+
+      strsize get_size() const;
+
+      void get_text(char * psz, strsize len);
+
+
+      void get_text(::string & str) const;
+
+      void get_text(::string & str, strsize iBeg, strsize iEnd = -1) const;
+
+
+      void set_text(const ::scoped_string & scopedstrText, strsize iLen, const ::action_context & actioncontext);
+
+      text_property & operator = (const payload_action_context & payloadactioncontext);
+
+      void get_selection(strsize & iBegin, strsize & iEnd) const;
+
+
+      // strsize selection_begin() const
+      // {
+      //
+      //    ::strsize iBegin;
+      //
+      //    ::strsize iEnd;
+      //
+      //    get_selection(iBegin, iEnd);
+      //
+      //    return iBegin;
+      //
+      // }
+
+
+      // strsize selection_end() const
+      // {
+      //
+      //    ::strsize iBegin;
+      //
+      //    ::strsize iEnd;
+      //
+      //    get_selection(iBegin, iEnd);
+      //
+      //    return iEnd;
+      //
+      // }
+
+
+      void set_selection(strsize iBegin, strsize iEnd, const ::action_context & actioncontext);
+
+      /*
+         void _001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context)
+         {
+
+            __UNREFERENCED_PARAMETER(iBeg);
+            __UNREFERENCED_PARAMETER(iEnd);
+            __UNREFERENCED_PARAMETER(action_context);
+
+         }
+
+
+         void text::_001GetImpactSel(strsize & iBeg, strsize & iEnd)
+         {
+
+            __UNREFERENCED_PARAMETER(iBeg);
+            __UNREFERENCED_PARAMETER(iEnd);
+
+         }
+      */
+
+      void set_selection_begin(strsize iBegin, const ::action_context & actioncontext);
+
+      void set_selection_end(strsize iEnd, const ::action_context & actioncontext);
+      ::string get_selection_text() const;
+
+      /*
+         void text::MacroBegin()
+         {
+
+         }
+
+
+         void text::MacroEnd()
+         {
+
+         }
+
+
+         void text::insert_text(string str, bool bForceNewStep, const ::action_context& context)
+         {
+
+
+         }
+      */
+      /*
+         string as_string() const
+         {
+
+            return get_property().as_string();
+
+         }
+      */
+      /*
+         string& text::string_reference()
+         {
+
+            return m_linkedpropertyText->string_reference();
+
+         }
+
+
+
+         bool text::edit_undo()
+         {
+
+            return false;
+
+         }
+
+
+         void text::get_text_composition_area(::rectangle_i32& rectangle)
+         {
+
+
+         }
+
+      */
    };
 
 
-//} // namespace user
+} // namespace data
 
 
 

@@ -5,7 +5,7 @@
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/parallelization/event.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/data/property_link.h"
+#include "acme/primitive/data/property.h"
 #include "apex/handler/signal.h"
 #include "apex/platform/application.h"
 
@@ -22,7 +22,7 @@ namespace database
    }
 
 
-   void client::default_data_save_handling(const ::property_link & propertylink)
+   void client::default_data_save_handling(const ::data::property & property)
    {
 
       // ::atom atom(idParam);
@@ -53,17 +53,17 @@ namespace database
       //
       //    });
 
-      propertylink.m_ppropertycontainer->m_propertychangeda.add([propertylink, this](property_container * p, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext)
+      property.property_changed() += [property, this](::data::property_container * ppropertycontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext)
       {
-         if(actioncontext.is_user_source() && atoma.has_element() && atoma.first() == propertylink.m_atom)
 
+         if(actioncontext.is_user_source() && property.matches(ppropertycontainer, atoma))
          {
 
-            data_set_payload(propertylink.m_atom, (const ::payload &) propertylink.get_property());
+            data_set_payload(property.atom(), (const ::payload &)property.get_property());
 
          }
 
-      });
+      };
 
       //::add_procedure(get_app()->m_proceduremap[idProcedure], [this, atom]()
       //   {

@@ -705,7 +705,7 @@ namespace user
       ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
 
 
-      void on_check_change() override;
+      //void on_check_changed() override;
 
       //virtual void set_window_text(const ::string & pszString);
 

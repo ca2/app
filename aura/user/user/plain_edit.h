@@ -4,6 +4,7 @@
 #include "scroll_base.h"
 #include "text_composition_composite.h"
 #include "acme/primitive/data/listener.h"
+#include "acme/user/user/text.h"
 
 
 class element_2d;
@@ -68,6 +69,7 @@ namespace user
 #else
      , virtual public text_composition_composite
 #endif
+      , virtual public ::user::text
    {
    public:
 
@@ -277,7 +279,7 @@ namespace user
       virtual bool is_new_focus_select_all() const;
 
 
-      void get_text_composition_area(::rectangle_i32 & r) override;
+      virtual void get_text_composition_area(::rectangle_i32 & r);
       void edit_on_text(string str) override;
       void edit_on_sel(strsize iSelBeg, strsize iSelEnd) override;
       void on_text_composition(string str) override;
@@ -437,23 +439,28 @@ namespace user
       virtual void _extend_selection_end(const ::point_i32 & pointHost);
 
 
-      virtual strsize _001GetTextLength() override;
+      //virtual strsize _001GetTextLength() override;
       virtual strsize _001_get_text_length();
       virtual ::collection::count line_count() const;
       virtual void plain_edit_get_text(string & str);
-      virtual void _001GetText(string & str) override;
-      virtual void _001GetSelText(string & str) override;
-      virtual void _001GetText(string & str, ::collection::index iBeg, ::collection::index iEnd) override;
+      //virtual void _001GetText(string & str) override;
+      //virtual void _001GetSelText(string & str) override;
+      //virtual void _001GetText(string & str, ::collection::index iBeg, ::collection::index iEnd) override;
+      virtual void get_text(string & str, ::collection::index iBeg = 0, ::collection::index iEnd = -1);
 
-      void _001GetImpactSel(strsize &iSelStart, strsize &iSelEnd) override;
-      void _001_get_impact_sel(strsize & iSelStart, strsize & iSelEnd);
-
-      void _001SetText(const ::string & str, const ::action_context & action_context) override;
-      void _001SetSelText(const ::string & psz, const ::action_context & action_context) override;
-      void _001SetSelEnd(strsize iSelEnd, const ::action_context & action_context) override;
+      //void _001GetImpactSel(strsize &iSelStart, strsize &iSelEnd) override;
+      //void get_impact_selection(strsize & iSelStart, strsize & iSelEnd);
+      void get_impact_selection(strsize & iSelBeg, strsize & iSelEnd);
+      //void _001SetText(const ::string & str, const ::action_context & action_context) override;
+      void set_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext);
+      //void _001SetSelText(const ::string & psz, const ::action_context & action_context) override;
+      void set_selection_text(const ::scoped_string & scopedstr, const ::action_context & action_context);
+      //void _001SetSelEnd(strsize iSelEnd, const ::action_context & action_context) override;
+      void set_selection_end(strsize iSelEnd, const ::action_context & action_context);
       void _set_sel_end(::draw2d::graphics_pointer& pgraphics, strsize iSelEnd, const ::action_context & action_context);
       void _ensure_selection_visible_x(::draw2d::graphics_pointer & pgraphics);
-      void _001SetSel(strsize iSelStart, strsize iSelEnd, const ::action_context & action_context = ::e_source_user) override;
+      //void _001SetSel(strsize iSelStart, strsize iSelEnd, const ::action_context & action_context = ::e_source_user) override;
+      void set_selection(strsize iSelStart, strsize iSelEnd, const ::action_context & action_context);
       void _001GetSel(strsize & iSelStart, strsize & iSelEnd) override;
       void _001GetSel(strsize& iSelStart, strsize& iSelEnd, strsize & iComposingStart, strsize & iComposingEnd) override;
 
@@ -495,14 +502,14 @@ namespace user
       void IndexRegisterInsert(strsize iSel, const ::string & pcszWhat);
 
 
-      virtual void MacroBegin() override;
+      virtual void MacroBegin();
       void MacroRecord(::pointer<plain_text_command>pcommand);
-      virtual void MacroEnd() override;
+      virtual void MacroEnd();
 
       virtual bool __plain_edit_undo();
       virtual bool __plain_edit_redo();
 
-      virtual bool edit_undo() override;
+      virtual bool edit_undo();
       virtual bool edit_redo();
       bool CanUndo();
       bool CanRedo();

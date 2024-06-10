@@ -2,6 +2,7 @@
 
 
 #include "interaction.h"
+#include "acme/user/user/check.h"
 
 
 namespace user
@@ -9,7 +10,8 @@ namespace user
 
 
    class CLASS_DECL_AURA check_box :
-      virtual public ::user::interaction
+      virtual public ::user::interaction,
+      virtual public ::user::check
    {
    public:
 
@@ -59,7 +61,10 @@ namespace user
 //      virtual ::enum_check _001GetCheck() override;
       //using ::user::interaction::_001SetCheck;
       //using check::_001SetCheck;
-      void _001SetCheck(const ::e_check & check, const ::action_context & action_context) override;
+      //void _001SetCheck(const ::e_check & check, const ::action_context & action_context) override;
+
+      void on_check_changed(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext) override;
+
 
       void install_message_routing(::channel * pchannel) override;
 

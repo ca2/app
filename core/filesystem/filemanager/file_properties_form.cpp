@@ -130,7 +130,7 @@ namespace filemanager
 
       string strName = m_itema[0]->final_path().name();
 
-      pinteraction->_001SetText(strName, ::e_source_none);
+      pinteraction->set_text(strName, ::e_source_none);
 
    }
 

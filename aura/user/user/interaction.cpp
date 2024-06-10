@@ -11129,7 +11129,7 @@ namespace user
    }
 
 
-   void interaction::insert_text(string str, bool bForceNewStep, const ::action_context & context)
+   void interaction::insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & actioncontext)
    {
 
       auto strText = get_window_text();
@@ -26524,10 +26524,13 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
+
    void interaction::edit_on_text(string str)
    {
 
-      _001SetText(str, ::e_source_user);
+      //_001SetText(str, ::e_source_user);
+
+      m_textproperty.set_text(str, ::e_source_user);
 
    }
 
@@ -26535,7 +26538,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    void interaction::edit_on_sel(strsize iBeg, strsize iEnd)
    {
 
-      _001SetSel(iBeg, iEnd);
+      set_text_selection(iBeg, iEnd, e_source_sync);
 
    }
 
@@ -27060,7 +27063,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
          if (pedit == nullptr)
             return false;
 
-         pedit->_001GetText(str);
+         str = pedit->as_text();
 
       }
       else
@@ -27075,7 +27078,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          }
 
-         ptext->_001GetText(str);
+         str = ptext->as_text();
 
       }
 

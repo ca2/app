@@ -126,7 +126,7 @@ namespace html
          if(::is_set(m_pedit) && m_pedit->is_window() && pdata->m_pcoredata->m_bEdit)
          {
 
-            m_pedit->_001SetText(str, ::action_context(::e_source_data) +  ::e_source_load);
+            m_pedit->set_text(str, ::action_context(::e_source_data) +  ::e_source_load);
 
          }
 
@@ -1276,7 +1276,7 @@ namespace html
 
          string strText;
 
-         m_pedit->_001GetText(strText);
+         strText = m_pedit->as_text();
 
          m_pelemental->set_text(strText);
 

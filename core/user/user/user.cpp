@@ -9,6 +9,7 @@
 #include "apex/database/change_event.h"
 #include "acme/handler/request.h"
 #include "apex/platform/node.h"
+#include "acme/primitive/data/tree_item.h"
 //#include "apex/platform/os_context.h"
 
 #include "apex/platform/savings.h"

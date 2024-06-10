@@ -79,8 +79,8 @@ namespace user
 
 
 
-      virtual void _001GetText(string & str) override;
-      virtual void _001SetText(const ::string & str, const ::action_context & action_context) override;
+      //virtual void _001GetText(string & str) override;
+      //virtual void _001SetText(const ::string & str, const ::action_context & action_context) override;
 
 
       virtual bool _001GetListText(::collection::index iSel, string & str) const;

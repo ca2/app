@@ -1651,7 +1651,7 @@ void simple_frame_window::_001OnUpdateImpactFullScreen(::message::message * pmes
 
    pcommand->enable();
 
-   pcommand->_001SetCheck(layout().is_full_screen());
+   pcommand->set_check(layout().is_full_screen(), e_source_sync);
 
    pcommand->m_bRet = true;
 
@@ -1702,7 +1702,7 @@ void simple_frame_window::_001OnUpdateToggleCustomFrame(::message::message * pme
 
    pcommand->enable();
 
-   pcommand->_001SetCheck(m_bWindowFrame);
+   pcommand->set_check(m_bWindowFrame, e_source_sync);
 
 }
 
@@ -1752,7 +1752,7 @@ void simple_frame_window::_001OnUpdateToggleTransparentFrame(::message::message 
 
    //}
 
-   pcommand->_001SetCheck(frame_is_transparent());
+   pcommand->set_check(frame_is_transparent(), e_source_sync);
 
 }
 

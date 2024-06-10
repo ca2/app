@@ -2199,7 +2199,7 @@ namespace filemanager
             if (pitem)
             {
 
-               pinteraction->_001SetText(ptopic->payload(id_name), ptopic->m_actioncontext);
+               pinteraction->set_text(ptopic->payload(id_name), ptopic->m_actioncontext);
 
             }
 

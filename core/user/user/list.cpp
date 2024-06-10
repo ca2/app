@@ -18,6 +18,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/collection/_range.h"
 #include "acme/primitive/data/listener.h"
+#include "acme/primitive/data/tree_item.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/primitive/time/_text_stream.h"
 #include "apex/database/selection.h"
@@ -7430,7 +7431,7 @@ namespace user
    void list::_001OnUpdateListImpactAutoArrange(::message::message * pmessage)
    {
       ::pointer<::message::command>pcommand(pmessage);
-      pcommand->_001SetCheck(get_auto_arrange());
+      pcommand->set_check(get_auto_arrange(), e_source_sync);
       pcommand->enable();
    }
 

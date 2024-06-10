@@ -1199,6 +1199,26 @@ namespace user
                }
 
             }
+            else if (pmenuitem->m_atom.begins("check://"))
+            {
+
+               ::string strId(pmenuitem->m_atom.as_string());
+
+               if (strId.case_insensitive_begins_eat("check://"))
+               {
+
+                  if (strId.case_insensitive_begins_eat("application/"))
+                  {
+
+                     ::data::check_property checkproperty((::data::property_container*) this->application(), strId);
+
+                     checkproperty.toggle(::e_source_user);
+
+                  }
+
+               }
+
+            }
             else
             {
 

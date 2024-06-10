@@ -37,7 +37,8 @@ namespace filemanager
 
             auto pinteraction = get_child_by_name("lfs");
 
-            pinteraction->_001SetText(filemanager_item()->user_path(), ::e_source_user);
+            //pinteraction->_001SetText(filemanager_item()->user_path(), ::e_source_user);
+            pinteraction->set_text(filemanager_item()->user_path(), ::e_source_user);
 
          }
          else if(ptopic->user_interaction()->m_atom == "ftp")

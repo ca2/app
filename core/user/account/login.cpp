@@ -393,7 +393,7 @@ namespace account
 
          string strText;
 
-         m_peditPassword->_001GetText(strText);
+         strText= m_peditPassword->as_text();
 
          m_iPasswordOriginalLength = strText.length();
 
@@ -404,7 +404,7 @@ namespace account
 
             strText = psystem->crypto()->nessie(strText);
 
-            m_peditPassword->_001SetText(strText,::e_source_database);
+            m_peditPassword->set_text(strText,::e_source_database);
 
          }
          
@@ -456,7 +456,7 @@ namespace account
 
          get_parent()->display(e_display_none);
 
-         m_peditPassword->_001SetText("",::e_source_database);
+         m_peditPassword->set_text("",::e_source_database);
 
          get_parent()->EndModalLoop("cancel");
 

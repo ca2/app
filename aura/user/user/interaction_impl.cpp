@@ -7297,7 +7297,7 @@ namespace user
 
          string strText;
 
-         pfocus->_001GetText(strText);
+         strText = pfocus->m_textproperty.as_text();
 
          auto pwindowing = windowing();
 

@@ -1437,7 +1437,7 @@
     <ClInclude Include="user\user\theme_colors.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\text_control.h">
+    <ClInclude Include="user\user\text_property.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\os_theme_colors.h">
@@ -1452,7 +1452,7 @@
     <ClInclude Include="user\user\conversation.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\check_control.h">
+    <ClInclude Include="user\user\check_property.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\aaa_action_item_exchange.h">
@@ -3831,7 +3831,7 @@
     <ClInclude Include="primitive\data\property_listener.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\data\property_link.h">
+    <ClInclude Include="primitive\data\property.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
     <ClInclude Include="primitive\data\property_container.h">
@@ -3840,7 +3840,16 @@
     <ClInclude Include="primitive\data\check_property.h">
       <Filter>Header Files\primitive\data</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\property.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
     <ClInclude Include="user\user\control.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\check.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\text.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
@@ -4508,7 +4517,7 @@
     <ClCompile Include="operating_system\winpr_scancode.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\text_control.cpp">
+    <ClCompile Include="user\user\text.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\os_theme_colors.cpp">
@@ -4520,7 +4529,7 @@
     <ClCompile Include="user\user\element.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\check_control.cpp">
+    <ClCompile Include="user\user\check_property.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="_.cpp">
@@ -5366,16 +5375,13 @@
     <ClCompile Include="operating_system\windows_common\nano\idn\_idn.cpp">
       <Filter>Source Files\operating_system\windows_common\nano\idn</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\control.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\data\text_property.cpp">
       <Filter>Source Files\primitive\data</Filter>
     </ClCompile>
     <ClCompile Include="primitive\data\property_listener.cpp">
       <Filter>Source Files\primitive\data</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\data\property_link.cpp">
+    <ClCompile Include="primitive\data\property.cpp">
       <Filter>Source Files\primitive\data</Filter>
     </ClCompile>
     <ClCompile Include="primitive\data\property_container.cpp">
@@ -5383,6 +5389,18 @@
     </ClCompile>
     <ClCompile Include="primitive\data\check_property.cpp">
       <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\property.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\check.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\control.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\text_property.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

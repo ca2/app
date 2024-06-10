@@ -16,9 +16,7 @@ namespace user
 {
 
 
-   element::element() :
-   m_checkproperty(this, id_check),
-   m_textproperty(this, id_text)
+   element::element()
    {
 
 
@@ -4420,17 +4418,19 @@ namespace user
 
    //}
 
-   check_property & element::check()
+   
+   ::user::check & element::check()
    {
 
-return m_checkproperty;
+      return m_check;
 
    }
 
-   text_property & element::text()
+
+   ::user::text & element::text()
    {
 
-      return m_textproperty;
+      return m_text;
 
    }
 

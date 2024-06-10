@@ -126,8 +126,8 @@ namespace user
 
          ::pointer<::user::rich_text::format> get_selection_common_format() override;
 
-         using ::user::interaction::_001GetText;
-         void _001GetText(string & str) override;
+         using ::user::interaction::get_text;
+         //void _001GetText(string & str) override;
          virtual void _001GetLayoutText(string & str);
 
 
@@ -168,7 +168,7 @@ namespace user
 
          virtual strsize _001GetLayoutTextLength() const;
 
-         strsize _001GetTextLength() override;
+         //strsize _001GetTextLength() override;
 
          //void write(::binary_stream & stream) const override;
          //void read(::binary_stream & stream) override;

@@ -804,10 +804,14 @@ namespace user
       status_command(::particle * pparticle);
 
       virtual void enable(bool bOn);
-      void _001SetCheck(const ::e_check & echeck, const ::action_context & context) override;
-      void _001SetText(const ::string & strText, const ::action_context & context) override;
+      //void _001SetCheck(const ::e_check & echeck, const ::action_context & context) override;
+      //void _001SetText(const ::string & strText, const ::action_context & context) override;
 
       void delete_this() override;
+
+      
+      void on_check_changed(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext) override;
+      void on_text_changed(::data::text_property & textproperty, const ::payload & payload, const ::action_context & actioncontext) override;
 
 
    };
@@ -836,7 +840,8 @@ namespace user
    }
 
 
-   void status_command::_001SetCheck(const ::e_check & echeck, const ::action_context & context) // "checking" will pop out the text
+   //void status_command::_001SetCheck(const ::e_check & echeck, const ::action_context & context) // "checking" will pop out the text
+   void status_command::on_check_changed(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -852,7 +857,7 @@ namespace user
       //::u32 nNewStyle = pStatusBar->GetPaneStyle((i32) m_iIndex) & ~SBPS_POPOUT;
       ::u32 nNewStyle = pStatusBar->GetPaneStyle((i32)m_iIndex);
 
-      if (echeck != ::e_check_unchecked)
+      if (payload.as_echeck() != ::e_check_unchecked)
       {
 
          //nNewStyle |= SBPS_POPOUT;
@@ -869,7 +874,8 @@ namespace user
 
    }
 
-   void status_command::_001SetText(const ::string & strText, const ::action_context & context)
+   //void status_command::_001SetText(const ::string & strText, const ::action_context & context)
+   void status_command::on_text_changed(::data::text_property & textproperty, const ::payload & payload, const ::action_context & actioncontext)
    {
 
       ::pointer<status_bar>pStatusBar = m_puiOther;
@@ -880,7 +886,7 @@ namespace user
 
       ASSERT(m_iIndex < m_iCount);
 
-      pStatusBar->SetPaneText((i32) m_iIndex, strText);
+      pStatusBar->SetPaneText((i32) m_iIndex, payload.as_string());
 
    }
 

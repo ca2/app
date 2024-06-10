@@ -321,7 +321,7 @@ namespace user
 
       string str;
 
-      pinteraction->_001GetText(str);
+      str = pinteraction->as_text();
 
       ::user::validate validate;
 

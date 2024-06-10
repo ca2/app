@@ -334,7 +334,7 @@ namespace user
          if (pstyle)
          {
 
-            pstyle->draw_check(this, get_echeck(), m_rectangleCheckBox, pgraphics);
+            pstyle->draw_check(this, echeck(), m_rectangleCheckBox, pgraphics);
 
          }
 
@@ -349,6 +349,18 @@ namespace user
       //descriptor().set_control_type(e_control_type_menu_button);
 
       pmessage->previous();
+
+      ::string strId(m_atom.as_string());
+
+      if (strId.case_insensitive_begins_eat("application://"))
+      {
+
+         ::data::check_property checkproperty((::data::property_container *)this->application(), strId);
+
+         set_check_property(checkproperty);
+
+      }
+
 
    }
 

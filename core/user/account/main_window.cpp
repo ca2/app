@@ -347,9 +347,9 @@ namespace account
       if (idResult == "ok")
       {
 
-         m_plogin->m_peditUser->_001GetText(strUsername);
+         strUsername = m_plogin->m_peditUser->as_text();
 
-         m_plogin->m_peditPassword->_001GetText(strPassword);
+         strPassword = m_plogin->m_peditPassword->as_text();
 
          return "ok";
 

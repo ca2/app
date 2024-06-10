@@ -455,13 +455,13 @@ namespace userex
          if (::is_item(pitemCurrent, i))
          {
 
-            pbutton->_001SetCheck(::e_check_checked, ::e_source_sync);
+            pbutton->set_check(::e_check_checked, ::e_source_sync);
 
          }
          else
          {
 
-            pbutton->_001SetCheck(::e_check_unchecked, ::e_source_sync);
+            pbutton->set_check(::e_check_unchecked, ::e_source_sync);
 
          }
 

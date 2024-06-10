@@ -1195,7 +1195,7 @@ namespace aura
 
       ::file::path path = acmedirectory()->roaming() / "system/draw2d.txt";
 
-      strImplementationName = acmefile()->as_string(path);
+      strImplementationName = acmefile()->safe_get_string(path);
 
       if(strImplementationName.has_char())
       {

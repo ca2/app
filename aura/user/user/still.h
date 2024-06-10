@@ -56,7 +56,7 @@ namespace user
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _002OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-      void _001SetCheck(const ::e_check & check, const ::action_context & action_context) override;
+      //void _001SetCheck(const ::e_check & check, const ::action_context & action_context) override;
       //virtual ::enum_check _001GetCheck() override;
        
       using ::user::interaction::get_color;

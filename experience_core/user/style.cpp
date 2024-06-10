@@ -1984,7 +1984,7 @@ namespace experience_core
          if (pbar->is_true("tracking_fade_in"))
          {
 
-            auto elapsed = pbar->payload("tracking_start_time").time().elapsed();
+            auto elapsed = pbar->payload("tracking_start_time").as_time().elapsed();
 
             if (elapsed < periodFadeIn)
             {
@@ -2005,7 +2005,7 @@ namespace experience_core
          else if (pbar->is_true("tracking_fade_out"))
          {
 
-            auto elapsed = pbar->payload("tracking_start_time").time().elapsed();
+            auto elapsed = pbar->payload("tracking_start_time").as_time().elapsed();
 
             if (elapsed < periodFadeOut)
             {

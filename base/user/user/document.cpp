@@ -796,9 +796,9 @@ namespace user
    {
       __UNREFERENCED_PARAMETER(bAddToMRU);
       string strPathName;
-      if (payloadFile.get_type() == ::e_type_property_set && payloadFile.propset()["url"].has_char())
+      if (payloadFile.get_type() == ::e_type_property_set && payloadFile.as_property_set()["url"].has_char())
       {
-         strPathName = payloadFile.propset()["url"];
+         strPathName = payloadFile.as_property_set()["url"];
       }
       else if (payloadFile.cast < ::file::file>() != nullptr)
       {

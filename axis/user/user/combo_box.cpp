@@ -124,7 +124,7 @@ namespace user
       if (m_bEdit)
       {
 
-         _001GetText(strText);
+         strText = as_text();
 
       }
       else
@@ -441,74 +441,74 @@ namespace user
    }
 
 
-   void combo_box::_001GetText(string & str)
-   {
+//   void combo_box::_001GetText(string & str)
+//   {
+//
+//      ::user::plain_edit::_001GetText(str);
+//
+////      if(m_bEdit)
+////      {
+////
+////         if(!m_pitemCurrent.is_set())
+////         {
+////
+////            ::user::plain_edit::_001GetText(str);
+////
+////         }
+////         else
+////         {
+////
+////            _001GetListText(m_pitemCurrent, str);
+////
+////         }
+////
+////      }
+////      else
+////      {
+////
+////         if(!m_pitemCurrent.is_set())
+////         {
+////
+////            str = m_strText;
+////
+////         }
+////         else
+////         {
+////
+////            _001GetListText(m_pitemCurrent, str);
+////
+////         }
+////
+////      }
+//
+//   }
 
-      ::user::plain_edit::_001GetText(str);
 
-//      if(m_bEdit)
-//      {
+//   void combo_box::_001SetText(const ::string & str, const ::action_context & context)
+//   {
 //
-//         if(!m_pitemCurrent.is_set())
-//         {
+//      //if(m_bEdit)
+//      //{
 //
-//            ::user::plain_edit::_001GetText(str);
+//         ::user::plain_edit::_001SetText(str, context);
 //
-//         }
-//         else
-//         {
+////      }
+////      else
+////      {
+////
+////         m_strText = str;
+////
+////         auto psystem = system()->m_paurasystem;
+////
+////         auto pdraw2d = psystem->draw2d();
+////
+////         auto pgraphics = pdraw2d->create_memory_graphics();
+////
+////         plain_edit_on_after_change_text(pgraphics, context);
+////
+////      }
 //
-//            _001GetListText(m_pitemCurrent, str);
-//
-//         }
-//
-//      }
-//      else
-//      {
-//
-//         if(!m_pitemCurrent.is_set())
-//         {
-//
-//            str = m_strText;
-//
-//         }
-//         else
-//         {
-//
-//            _001GetListText(m_pitemCurrent, str);
-//
-//         }
-//
-//      }
-
-   }
-
-
-   void combo_box::_001SetText(const ::string & str, const ::action_context & context)
-   {
-
-      //if(m_bEdit)
-      //{
-
-         ::user::plain_edit::_001SetText(str, context);
-
-//      }
-//      else
-//      {
-//
-//         m_strText = str;
-//
-//         auto psystem = system()->m_paurasystem;
-//
-//         auto pdraw2d = psystem->draw2d();
-//
-//         auto pgraphics = pdraw2d->create_memory_graphics();
-//
-//         plain_edit_on_after_change_text(pgraphics, context);
-//
-//      }
-
-   }
+//   }
 
 
    ::collection::index combo_box::_001GetListCount() const
@@ -968,7 +968,7 @@ namespace user
 
       }
 
-      _001SetText(strItem, actioncontext);
+      set_text(strItem, actioncontext);
 
       //return ::success;
 
@@ -1013,7 +1013,7 @@ namespace user
          //{
 
          // ::user::plain_edit::_001GetText(str);
-         ::user::plain_edit::_001GetText(str);
+         str = as_text();
 
          //      }
          //      else

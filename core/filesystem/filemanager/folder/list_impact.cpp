@@ -258,7 +258,7 @@ namespace filemanager
 
                bool bCheck = m_pfolderlistdata->get_recursive(iItem);
 
-               puserinteraction->_001SetCheck(bCheck, ::e_source_sync);
+               puserinteraction->set_check(bCheck, ::e_source_sync);
 
             }
 

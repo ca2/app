@@ -258,30 +258,49 @@ namespace user
    }
 
 
-   void button::_001SetCheck(const ::e_check & echeck, const ::action_context & context)
+   void button::on_check_changed(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext)
    {
 
-      if (echeck != this->get_echeck())
+      auto pappearance = get_appearance();
+
+      if (pappearance)
       {
 
-         check::_001SetCheck(echeck, context);
-
-         auto pappearance = get_appearance();
-
-         if (pappearance)
-         {
-
-            pappearance->call_check(echeck);
-
-         }
-
-         set_need_redraw();
-
-         post_redraw();
+         pappearance->call_check(payload.as_echeck());
 
       }
 
+      set_need_redraw();
+
+      post_redraw();
+
    }
+
+
+   //void button::_001SetCheck(const ::e_check & echeck, const ::action_context & context)
+   //{
+
+   //   if (echeck != this->get_echeck())
+   //   {
+
+   //      check::_001SetCheck(echeck, context);
+
+   //      auto pappearance = get_appearance();
+
+   //      if (pappearance)
+   //      {
+
+   //         pappearance->call_check(echeck);
+
+   //      }
+
+   //      set_need_redraw();
+
+   //      post_redraw();
+
+   //   }
+
+   //}
 
 
    void button::on_message_create(::message::message * pmessage)
@@ -296,7 +315,7 @@ namespace user
 
       }
 
-      m_linkedpropertyCheck = fetch_property(m_atom, true);
+      //m_linkedpropertyCheck = fetch_property(m_atom, true);
 
    }
 
@@ -561,7 +580,7 @@ namespace user
          if (pkey->m_ekey == ::user::e_key_space)
          {
 
-            _001ToggleCheck(::e_source_user);
+            toggle_check(::e_source_user);
 
          }
 
@@ -574,7 +593,7 @@ namespace user
          if (pkey->m_ekey == ::user::e_key_space)
          {
 
-            _001SetCheck(::e_check_checked, ::e_source_user);
+            toggle_check(::e_source_user);
 
          }
 
@@ -594,7 +613,7 @@ namespace user
          crBackground = argb(255, 180, 180, 180);
 
       }
-      else if (is_left_button_pressed() || get_echeck() == ::e_check_checked)
+      else if (is_left_button_pressed() || echeck() == ::e_check_checked)
       {
 
          crBackground = argb(255, 240, 240, 240);
@@ -635,9 +654,9 @@ namespace user
 
       auto colorBackground = get_color(pstyle, ::e_element_background, get_state());
 
-      auto & linkedpropertyCheck = m_linkedpropertyCheck;
+      //auto & linkedpropertyCheck = m_linkedpropertyCheck;
 
-      auto echeck = get_echeck();
+      auto echeck = this->echeck();
 
       if(echeck == ::e_check_checked)
       {
@@ -688,9 +707,9 @@ namespace user
 
       //::color::color crBackground = _001GetButtonBackgroundColor();
 
-      auto & linkedpropertyCheck = m_linkedpropertyCheck;
+      //auto & linkedpropertyCheck = m_linkedpropertyCheck;
 
-      auto echeck = get_echeck();
+      auto echeck = this->echeck();
 
       if(echeck == ::e_check_checked)
       {
@@ -1492,13 +1511,13 @@ namespace user
       if (m_estyle == e_style_push)
       {
 
-         _001ToggleCheck(::e_source_user);
+         toggle_check(::e_source_user);
 
       }
       else if (m_estyle == e_style_push_group)
       {
 
-         _001SetCheck(::e_check_checked, ::e_source_user);
+         set_check(::e_check_checked, ::e_source_user);
 
       }
 

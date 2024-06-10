@@ -2,6 +2,7 @@
 
 
 #include "interaction.h"
+#include "acme/user/user/check.h"
 
 
 namespace user
@@ -9,7 +10,8 @@ namespace user
 
 
    class CLASS_DECL_AURA button :
-      virtual public ::user::interaction
+      virtual public ::user::interaction,
+      virtual public ::user::check
    {
    public:
 
@@ -109,8 +111,12 @@ namespace user
 
       virtual bool is_custom_draw() override;
 
+
+      void on_check_changed(::data::check_property & checkproperty, const ::payload &, const ::action_context &) override;
+
+
       //using ::user::check::_001SetCheck;
-      virtual void _001SetCheck(const ::e_check & check, const ::action_context & action_context) override;
+      //virtual void _001SetCheck(const ::e_check & check, const ::action_context & action_context) override;
       //virtual ::enum_check _001GetCheck() override;
 
       //virtual bool is_pressed();

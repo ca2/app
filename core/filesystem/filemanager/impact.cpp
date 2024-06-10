@@ -255,7 +255,7 @@ namespace filemanager
 
                strName.find_replace(":", "-");
 
-               ptopview->m_pedit->_001SetText(strName, ptopic->m_actioncontext);
+               ptopview->m_pedit->set_text(strName, ptopic->m_actioncontext);
 
                get_document()->m_strTopic = strName;
 

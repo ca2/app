@@ -327,6 +327,8 @@ namespace platform
       //virtual ::pointer<::acme::library> open_component_library(const ::string &pszComponent, const ::string &pszImplementation);
 
       virtual ::pointer<::acme::library> create_library(const ::string & strLibrary);
+      virtual ::pointer<::acme::library> create_library_dynamically(const ::string & strLibrary);
+      virtual ::pointer<::acme::library> create_library_statically(const ::string & strLibrary);
 
       virtual ::pointer<::acme::library> & library(const ::string & str);
 

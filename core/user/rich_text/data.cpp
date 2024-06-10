@@ -4,6 +4,7 @@
 #include "format.h"
 #include "line.h"
 #include "box.h"
+#include "global.h"
 #include "text_format.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -211,12 +212,12 @@ namespace user
 
 
 
-      void data::_001GetText(string & str) const
+      void data::__update_text()
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
-         str = text(m_spana);
+         set_text(::user::rich_text::as_text(m_spana), ::e_source_sync);
 
       }
 
@@ -347,11 +348,11 @@ namespace user
       string data::get_full_text()
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          update_span_cache(m_spana);
 
-         return text(m_spana);
+         return ::user::rich_text::as_text(m_spana);
 
       }
 
@@ -953,10 +954,10 @@ namespace user
       }
 
 
-      strsize data::_001GetTextLength() const
+      strsize data::_get_text_length() const
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          if (m_spana.is_empty())
          {

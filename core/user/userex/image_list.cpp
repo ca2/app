@@ -407,7 +407,7 @@ namespace userex
 
             string strText;
 
-            peditimpact->_001GetText(strText);
+            peditimpact->get_text(strText);
 
          }
 

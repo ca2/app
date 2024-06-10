@@ -66,24 +66,28 @@ namespace user
    }
 
 
-   void check_box::_001SetCheck(const ::e_check & echeckInput, const ::action_context & context)
+   //void check_box::_001SetCheck(const ::e_check & echeckInput, const ::action_context & context)
+   //void check_box::on_check_changed(const ::e_check & echeckInput, const ::action_context & context)
+   void check_box::on_check_changed(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext)
    {
 
-      ::e_check echeckEffective = echeckInput;
+      //::e_check echeckInput = checkproperty;
 
-      if(echeckInput != ::e_check_unchecked && echeckInput != ::e_check_checked && echeckInput != ::e_check_tristate)
-      {
+      //::e_check echeckEffective = echeckInput;
 
-         // default value when setting a value that does not match the ones above
+      //if(echeckInput != ::e_check_unchecked && echeckInput != ::e_check_checked && echeckInput != ::e_check_tristate)
+      //{
 
-         echeckEffective = ::e_check_checked;
+      //   // default value when setting a value that does not match the ones above
 
-      }
+      //   echeckEffective = ::e_check_checked;
 
-      if(this->echeck() != echeckEffective)
-      {
+      //}
 
-         check::_001SetCheck(echeckEffective, context);
+      //if(this->echeck() != echeckEffective)
+      //{
+
+      //   check::_001SetCheck(echeckEffective, context);
 
          if(has_handler())
          {
@@ -92,7 +96,7 @@ namespace user
 
             ptopic->m_puserelement = this;
 
-            ptopic->m_actioncontext = context;
+            ptopic->m_actioncontext = actioncontext;
 
             route(ptopic);
             
@@ -102,7 +106,7 @@ namespace user
 
          post_redraw();
 
-      }
+      //}
 
    }
 
@@ -679,7 +683,7 @@ namespace user
       if(pkey->m_ekey == ::user::e_key_space)
       {
 
-         _001ToggleCheck(::e_source_user);
+         m_checkproperty.toggle(::e_source_user);
 
       }
 
@@ -703,7 +707,7 @@ namespace user
 
       SetTimer(e_timer_check_toggle_animation, 12_ms);
 
-      _001ToggleCheck(::e_source_user);
+      m_checkproperty.toggle(::e_source_user);
 
       return true;
 
@@ -743,7 +747,18 @@ namespace user
 
       }
 
-      m_linkedpropertyCheck = fetch_property(m_atom, true);
+      ::string strId(m_atom.as_string());
+
+      if (strId.case_insensitive_begins_eat("application://"))
+      {
+
+         ::data::check_property checkproperty((::data::property_container *) this->application(), strId);
+
+         set_check_property(checkproperty);
+
+      }
+
+      //m_linkedpropertyCheck = fetch_property(m_atom, true);
 
    }
 

@@ -52,7 +52,7 @@ namespace filemanager
 
       string strOld;
 
-      _001GetText(strOld);
+      strOld = as_text();
 
       string strPath = filemanager_item()->user_path();
 
@@ -63,7 +63,7 @@ namespace filemanager
 
       }
 
-      _001SetText(filemanager_item()->user_path(), ::e_source_sync);
+      set_text(filemanager_item()->user_path(), ::e_source_sync);
 
    }
 
@@ -229,7 +229,7 @@ namespace filemanager
 
       string str;
 
-      _001GetText(str);
+      str = as_text();
 
       ::pointer<document>pdocument = filemanager_document();
 

@@ -107,6 +107,15 @@ namespace user
    //}
 
 
+   ::user::text_property text::text_property() const
+   {
+
+      return m_textproperty;
+
+   }
+
+
+
    bool text::on_property_will_change(::data::property_container * ppropertycontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext)
    {
 

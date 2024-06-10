@@ -437,7 +437,7 @@ namespace tsf
     
        //::SendMessage(m_hwndEdit, EM_SETSEL, lStart, lEnd);
 
-       _001SetSel(lStart, lEnd);
+       set_text_selection(lStart, lEnd);
 
        m_fNotify = true;
     

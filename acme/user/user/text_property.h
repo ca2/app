@@ -70,7 +70,7 @@ namespace user
 
 
       //virtual void _001GetSel(strsize & iBeg, strsize & iEnd);
-      //virtual void _001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context = ::e_source_user);
+      //virtual void set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context = ::e_source_user);
       //virtual void _001SetSelEnd(strsize iSelEnd, const ::action_context & action_context = ::e_source_user);
 
 

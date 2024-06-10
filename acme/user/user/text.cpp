@@ -380,7 +380,7 @@ namespace user
    ::string text::as_text() const
    {
 
-      return m_textproperty;
+      return m_textproperty.as_text();
 
    }
 

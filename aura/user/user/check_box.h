@@ -15,8 +15,6 @@ namespace user
    public:
 
 
-
-
       enum e_style
       {
 
@@ -25,6 +23,7 @@ namespace user
          style_toggle_switch,
 
       };
+
 
    protected:
 

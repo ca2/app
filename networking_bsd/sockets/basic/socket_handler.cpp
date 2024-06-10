@@ -756,7 +756,7 @@ start_processing_adding:
 
          }
 
-         SOCKET socket = passociationAdd->m_socket;
+         SOCKET socket = passociationAdd->m_socketid;
 
          auto psocket = passociationAdd->m_psocket;
 
@@ -1025,14 +1025,14 @@ end_processing_adding:
                try
                {
 
-                  if (p->m_socket == __Socket(p->m_psocket)->GetSocketId())
+                  if (p->m_socketid == __Socket(p->m_psocket)->GetSocketId())
                   {
 
                      fd_set fds;
 
                      FD_ZERO(&fds);
 
-                     FD_SET(p->m_socket, &fds);
+                     FD_SET(p->m_socketid, &fds);
 
                      struct timeval tv;
 
@@ -1040,16 +1040,16 @@ end_processing_adding:
 
                      tv.tv_usec = 0;
 
-                     i32 n = ::select((i32)(p->m_socket + 1), &fds, nullptr, nullptr, &tv);
+                     i32 n = ::select((i32)(p->m_socketid + 1), &fds, nullptr, nullptr, &tv);
 
                      if (n == -1)
                      {
 
                         // %! bad fd, erase
 
-                        p->m_psocket->error() << " Select " << (i32)p->m_socket << "Bad fd in fd_set (2)"; // ->error() << LOG_LEVEL_ERROR);
+                        p->m_psocket->error() << " Select " << (i32)p->m_socketid << "Bad fd in fd_set (2)"; // ->error() << LOG_LEVEL_ERROR);
 
-                        m_socketlistErase.add(p->m_socket);
+                        m_socketlistErase.add(p->m_socketid);
 
                      }
                      else
@@ -1057,10 +1057,10 @@ end_processing_adding:
 
                         bool bAnySet = false;
 
-                        if (FD_ISSET(p->m_socket, &m_rfdsSelect))
+                        if (FD_ISSET(p->m_socketid, &m_rfdsSelect))
                         {
 
-                           //FD_SET(p->m_socket, &rfds);
+                           //FD_SET(p->m_socketid, &rfds);
 
                            //countR++;
 
@@ -1068,10 +1068,10 @@ end_processing_adding:
 
                         }
 
-                        if (FD_ISSET(p->m_socket, &m_wfdsSelect))
+                        if (FD_ISSET(p->m_socketid, &m_wfdsSelect))
                         {
 
-                           //FD_SET(p->m_socket, &wfds);
+                           //FD_SET(p->m_socketid, &wfds);
 
                            //countW++;
 
@@ -1079,10 +1079,10 @@ end_processing_adding:
 
                         }
 
-                        if (FD_ISSET(p->m_socket, &m_efdsSelect))
+                        if (FD_ISSET(p->m_socketid, &m_efdsSelect))
                         {
 
-                           //FD_SET(p->m_socket, &efds);
+                           //FD_SET(p->m_socketid, &efds);
 
                            //countE++;
 
@@ -1095,9 +1095,9 @@ end_processing_adding:
 
                            // %! none set
 
-                           p->m_psocket->error() << "Select " << (i32)p->m_socket << " No fd in fd_set"; // ->error() << LOG_LEVEL_ERROR);
+                           p->m_psocket->error() << "Select " << (i32)p->m_socketid << " No fd in fd_set"; // ->error() << LOG_LEVEL_ERROR);
 
-                           m_socketlistErase.add(p->m_socket);
+                           m_socketlistErase.add(p->m_socketid);
 
                         }
 
@@ -1109,9 +1109,9 @@ end_processing_adding:
 
                      // %! mismatch
 
-                     p->m_psocket->error() << "Select" << (i32)p->m_socket << "Bad fd in fd_set (3)"; // ->error() << LOG_LEVEL_ERROR);
+                     p->m_psocket->error() << "Select" << (i32)p->m_socketid << "Bad fd in fd_set (3)"; // ->error() << LOG_LEVEL_ERROR);
 
-                     m_socketlistErase.add(p->m_socket);
+                     m_socketlistErase.add(p->m_socketid);
 
                   }
 
@@ -1121,9 +1121,9 @@ end_processing_adding:
 
                   // general error
 
-                  p->m_psocket->error() << "Select" << (i32)p->m_socket << "Bad fd in fd_set (3)"; // ->error() << LOG_LEVEL_ERROR);
+                  p->m_psocket->error() << "Select" << (i32)p->m_socketid << "Bad fd in fd_set (3)"; // ->error() << LOG_LEVEL_ERROR);
 
-                  m_socketlistErase.add(p->m_socket);
+                  m_socketlistErase.add(p->m_socketid);
 
                }
 
@@ -1657,7 +1657,7 @@ end_processing_adding:
 
                      psocketmap->set_at(ptcpsocket->GetSocketId(), ptcpsocket);
 
-                     m_socketlistErase.add_tail(ptcpsocket->m_socket);
+                     m_socketlistErase.add_tail(ptcpsocket->m_socketid);
 
                   }
                   else
@@ -1687,7 +1687,7 @@ end_processing_adding:
 
                         auto pnetworking2 = __SystemNetworking(psystem);
 
-                        pnetworking2->m_pool.set_at(ppoolsocket->m_socket, ppoolsocket);
+                        pnetworking2->m_pool.set_at(ppoolsocket->m_socketid, ppoolsocket);
 
                         ppoolsocket->SetCloseAndDelete(false); // added - erase from m_socketlistClose
 
@@ -1806,7 +1806,7 @@ end_processing_adding:
                   if (p->m_psocket == psocket)
                   {
 
-                     auto pdst = m_trigger_dst[p->m_socket].begin();
+                     auto pdst = m_trigger_dst[p->m_socketid].begin();
 
                      for(;pdst.is_ok(); pdst++)
                      {
@@ -1814,15 +1814,15 @@ end_processing_adding:
                         if (Valid(pdst->m_pbasesocket))
                         {
 
-                           pdst->m_pbasesocket->OnCancelled(p->m_socket);
+                           pdst->m_pbasesocket->OnCancelled(p->m_socketid);
 
                         }
 
                      }
 
-                     m_trigger_src.erase_item(p->m_socket);
+                     m_trigger_src.erase_item(p->m_socketid);
 
-                     m_trigger_dst.erase_item(p->m_socket);
+                     m_trigger_dst.erase_item(p->m_socketid);
 
                      again = true;
 
@@ -2178,7 +2178,7 @@ end_processing_adding:
                   psocket->GetClientRemoteAddress() == ad)
             {
 
-               pnetworking2->m_pool.erase_item(p->m_socket);
+               pnetworking2->m_pool.erase_item(p->m_socketid);
 
                psocket->SetRetain(); // avoid close in socket destructor
 

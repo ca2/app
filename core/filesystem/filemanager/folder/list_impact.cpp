@@ -232,11 +232,11 @@ namespace filemanager
             if (m_pfolderlistdata)
             {
 
-               bool bCheck = puserinteraction->bcheck();
+               bool bChecked = puserinteraction->is_checked();
 
                bool iItem = puserinteraction->m_item.m_iItem;
 
-               m_pfolderlistdata->set_recursive(iItem, bCheck);
+               m_pfolderlistdata->set_recursive(iItem, bChecked);
 
             }
 

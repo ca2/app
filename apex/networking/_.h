@@ -57,8 +57,11 @@ namespace netserver
 //
 
 
-//using socket_id = ::uptr;
-using socket_id = ::i32;
+#ifdef WINDOWS
+using socket_id = ::uptr; 
+#else
+using socket_id = int;
+#endif
 
 
 #include "http/_.h"

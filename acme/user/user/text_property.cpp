@@ -387,7 +387,7 @@ namespace user
    }
 
 
-   bool text::operator == (const text_property & textproperty) const
+   bool text_property::operator == (const text_property & textproperty) const
    {
 
       return ::data::text_property::operator == (textproperty);

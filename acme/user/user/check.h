@@ -73,6 +73,8 @@ namespace user
 
       void set_check_property(const ::data::check_property & checkproperty);
 
+      ::user::check_property check_property() const;
+
 
       virtual bool on_check_will_change(::data::check_property & checkproperty, const ::payload &, const ::action_context &);
       virtual void on_check_changed(::data::check_property & checkproperty, const ::payload &, const ::action_context &);

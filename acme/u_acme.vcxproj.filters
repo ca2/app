@@ -326,6 +326,15 @@
     <Filter Include="Header Files\operating_system\universal_windows\nano\dynamic_library">
       <UniqueIdentifier>{903943ad-f305-4245-8735-9805cd509bf6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\operating_system\windows_common\nano\idn">
+      <UniqueIdentifier>{3a24fa81-ad5a-4fd7-b7fa-c84a2186d6bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\windows_common\nano">
+      <UniqueIdentifier>{a3158e33-34f9-4d81-8b77-61de5ab6694d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operating_system\windows_common\nano\idn">
+      <UniqueIdentifier>{1ad9ea33-74e0-4fde-b2d6-bc4268a1154d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -1324,9 +1333,6 @@
     <ClCompile Include="handler\request.cpp">
       <Filter>Source Files\handler</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows_common\idn.cpp">
-      <Filter>Source Files\operating_system\windows_common</Filter>
-    </ClCompile>
     <ClCompile Include="memory\paged_win32.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
@@ -1713,6 +1719,12 @@
     </ClCompile>
     <ClCompile Include="operating_system\universal_windows\nano\dynamic_library\dynamic_library.cpp">
       <Filter>Source Files\operating_system\universal_windows\nano\dynamic_library</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\nano\idn\_idn.cpp">
+      <Filter>Source Files\operating_system\windows_common\nano\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows_common\nano\idn\idn.cpp">
+      <Filter>Source Files\operating_system\windows_common\nano\idn</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -4112,6 +4124,12 @@
     </ClInclude>
     <ClInclude Include="operating_system\universal_windows\nano\dynamic_library\dynamic_library.h">
       <Filter>Header Files\operating_system\universal_windows\nano\dynamic_library</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\nano\idn\idn.h">
+      <Filter>Header Files\operating_system\windows_common\nano\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows_common\nano\idn\_.h">
+      <Filter>Header Files\operating_system\windows_common\nano\idn</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

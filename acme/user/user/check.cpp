@@ -32,6 +32,14 @@ namespace user
    }
 
 
+   ::user::check_property check::check_property() const
+   {
+
+      return m_checkproperty;
+
+   }
+
+
    bool check::on_check_will_change(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext)
    {
 

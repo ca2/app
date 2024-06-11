@@ -24331,13 +24331,15 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
                   if (pwindowimpl->m_pitemLButtonDown->m_atom.is_empty())
                   {
 
-                     atom = translate_property_id(m_atom);
+                     //atom = translate_property_id(m_atom);
+                     atom = m_atom;
 
                   }
                   else
                   {
 
-                     atom = translate_property_id(pwindowimpl->m_pitemLButtonDown->m_atom);
+                     //atom = translate_property_id(pwindowimpl->m_pitemLButtonDown->m_atom);
+                     atom = pwindowimpl->m_pitemLButtonDown->m_atom;
 
                   }
 
@@ -24916,13 +24918,16 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
             if (pwindowimpl->m_pitemLButtonDown->m_atom.is_empty())
             {
 
-               atom = translate_property_id(m_atom);
+               //atom = translate_property_id(m_atom);
+
+               atom = m_atom;
 
             }
             else
             {
 
-               atom = translate_property_id(pwindowimpl->m_pitemLButtonDown->m_atom);
+               //atom = translate_property_id(pwindowimpl->m_pitemLButtonDown->m_atom);
+               atom = pwindowimpl->m_pitemLButtonDown->m_atom;
 
             }
 

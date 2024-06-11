@@ -810,8 +810,8 @@ namespace user
       void delete_this() override;
 
       
-      void on_check_changed(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext) override;
-      void on_text_changed(::data::text_property & textproperty, const ::payload & payload, const ::action_context & actioncontext) override;
+      void on_check_changed(::data::check_change & change) override;
+      void on_text_changed(::data::text_change & change) override;
 
 
    };
@@ -841,7 +841,7 @@ namespace user
 
 
    //void status_command::set_check(const ::e_check & echeck, const ::action_context & context) // "checking" will pop out the text
-   void status_command::on_check_changed(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext)
+   void status_command::on_check_changed(::data::check_change & change)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -857,7 +857,7 @@ namespace user
       //::u32 nNewStyle = pStatusBar->GetPaneStyle((i32) m_iIndex) & ~SBPS_POPOUT;
       ::u32 nNewStyle = pStatusBar->GetPaneStyle((i32)m_iIndex);
 
-      if (payload.as_echeck() != ::e_check_unchecked)
+      if (change.payload().as_echeck() != ::e_check_unchecked)
       {
 
          //nNewStyle |= SBPS_POPOUT;
@@ -875,7 +875,7 @@ namespace user
    }
 
    //void status_command::set_text(const ::string & strText, const ::action_context & context)
-   void status_command::on_text_changed(::data::text_property & textproperty, const ::payload & payload, const ::action_context & actioncontext)
+   void status_command::on_text_changed(::data::text_change & change)
    {
 
       ::pointer<status_bar>pStatusBar = m_puiOther;
@@ -886,7 +886,7 @@ namespace user
 
       ASSERT(m_iIndex < m_iCount);
 
-      pStatusBar->SetPaneText((i32) m_iIndex, payload.as_string());
+      pStatusBar->SetPaneText((i32) m_iIndex, change.payload().as_string());
 
    }
 

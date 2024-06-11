@@ -127,6 +127,12 @@ namespace database
       virtual bool data_get_memory(const ::scoped_string & strKey, ::memory_base & memory);
       virtual void data_set_memory(const ::scoped_string & strKey, const block & block);
 
+      virtual bool data_get(const ::data::property & dataproperty);
+      virtual void data_set(const ::data::property & dataproperty);
+
+      
+      virtual ::string get_key(const ::data::property & dataproperty);
+
 
       //template < typename TYPE >
       //inline bool datastream()->get(const ::scoped_string & strKey, TYPE & t)

@@ -54,7 +54,7 @@ public: // re-implementations only
    //   virtual void SetRadio(bool bOn = true, const ::action_context & context = ::e_source_system);
       //void set_text(const ::string & pszText, const ::action_context & context = ::e_source_system) override;
 
-   void on_check_changed(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext) override;
+   void on_check_changed(::data::check_change & change) override;
 
 
 };
@@ -2184,10 +2184,10 @@ void user_toolbar_command::enable(bool bEnable, const ::action_context & context
 
 
 //void user_toolbar_command::set_check(const e_check & echeck, const ::action_context & context)
-void user_toolbar_command::on_check_changed(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext)
+void user_toolbar_command::on_check_changed(::data::check_change & change)
 {
 
-   auto echeck = payload.as_echeck();
+   auto echeck = change.payload().as_echeck();
 
    // 0=>off, 1=>on, 2=>indeterminate
 

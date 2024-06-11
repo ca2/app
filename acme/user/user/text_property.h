@@ -16,11 +16,22 @@
 namespace user
 {
    
-   using text_will_change = ::function < bool(::data::text_property & textproperty, const ::payload &, const ::action_context &) >;
+   //struct text_change
+   //{
+   //   ::data::text_property & m_textproperty;
+   //   ::data::property_change & m_propertychange;
+   //   auto & payload() {
+   //      return m_propertychange.m_payload;
+   //   }
+   //   auto & action_context() {
+   //      return m_propertychange.m_actioncontext;
+   //   }
+   //};
+   //using text_will_change = ::function < bool(text_change & textchange) >;
 
-   using text_changed = ::function < void(::data::text_property & textproperty, const ::payload &, const ::action_context &) >;
+   //using text_changed = ::function < void(text_change & textchange) >;
 
-   //using insert_text = ::function< void(::data::text_property & textproperty, const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context) >;
+   ////using insert_text = ::function< void(::data::text_property & textproperty, const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context) >;
 
    class CLASS_DECL_ACME text_property :
       public ::user::property,
@@ -29,17 +40,17 @@ namespace user
    protected:
 
 
-      ::data::property_will_change                          m_propertywillchange;
-      ::data::property_changed                              m_propertychanged;
+      //::data::property_will_change                          m_propertywillchange;
+      //::data::property_changed                              m_propertychanged;
 
 
-      ::comparable_array < ::user::text_will_change >       m_textwillchangea;
-      ::comparable_array < ::user::text_changed >           m_textchangeda;
-      //::comparable_array < insert_text >          m_inserttexta;
+      //::comparable_array < ::user::text_will_change >       m_textwillchangea;
+      //::comparable_array < ::user::text_changed >           m_textchangeda;
+      ////::comparable_array < insert_text >          m_inserttexta;
 
 
-      void unhook_callbacks();
-      void hook_callbacks();
+      //void unhook_callbacks();
+      //void hook_callbacks();
 
 
    public:
@@ -51,7 +62,7 @@ namespace user
       text_property(::user::control * pusercontrol, ::data::property_container * ppropertycontainer = nullptr, const ::atom & atom = {});
       ~text_property();
 
-      void set_text_property(const ::data::text_property & textproperty);
+      //void set_text_property(const ::data::text_property & textproperty);
 
 
       //::text_property & text() { return m_textproperty; }
@@ -98,8 +109,8 @@ namespace user
 
       //virtual void get_text_composition_area(::rectangle_i32& rectangle);
 
-      ::comparable_array < ::user::text_will_change > & text_will_change();
-      ::comparable_array < ::user::text_changed > & text_changed();
+      //::comparable_array < ::user::text_will_change > & text_will_change();
+      //::comparable_array < ::user::text_changed > & text_changed();
 
       /*virtual bool on_property_will_change(property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext);
       virtual void on_property_changed(property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext);
@@ -107,11 +118,12 @@ namespace user
 
       
       
-      bool on_text_will_change(::data::text_property & textproperty, const ::payload & payload, const ::action_context & actioncontext);
-      void on_text_changed(::data::text_property & textproperty, const ::payload & payload, const ::action_context & actioncontext);
+      //bool on_text_will_change(text_change & textchange);
+      //void on_text_changed(text_change & textchange);
 
 
-      bool operator == (const text_property & textproperty) const;
+      bool operator == (const ::data::text_property & textproperty) const;
+      bool operator == (const ::data::text_change & change) const;
 
 
    };

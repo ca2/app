@@ -40,7 +40,7 @@ namespace user
    }
 
 
-   bool check::on_check_will_change(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext)
+   bool check::on_check_will_change(::data::check_change & checkchange)
    {
 
       return true;
@@ -48,7 +48,7 @@ namespace user
    }
 
 
-   void check::on_check_changed(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext)
+   void check::on_check_changed(::data::check_change & checkchange)
    {
 
 
@@ -87,18 +87,18 @@ namespace user
    }
 
 
-   function_tracker < check_will_change > check::check_will_change(::matter * pmatterFunctionContainer)
+   add_signal_function_to_holder < ::data::check_will_change > check::check_will_change(::matter * pmatterFunctionContainer)
    {
 
-      return { m_checkproperty.check_will_change(), pmatterFunctionContainer };
+      return m_checkproperty.check_will_change(pmatterFunctionContainer);
 
    }
 
 
-   function_tracker < check_changed > check::check_changed(::matter * pmatterFunctionContainer)
+   add_signal_function_to_holder < ::data::check_changed > check::check_changed(::matter * pmatterFunctionContainer)
    {
 
-      return { m_checkproperty.check_changed(), pmatterFunctionContainer };
+      return m_checkproperty.check_changed(pmatterFunctionContainer);
 
    }
 

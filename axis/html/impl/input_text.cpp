@@ -64,7 +64,7 @@ namespace html
 
          ::atom atom = pelemental->m_phtmlbase->get_tag()->get_attr_value("id");
 
-         atom = translate_property_id(atom);
+         //atom = translate_property_id(atom);
 
          if(!m_pedit || !m_pedit->is_window())
          {

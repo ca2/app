@@ -112,7 +112,7 @@ namespace user
       virtual bool is_custom_draw() override;
 
 
-      void on_check_changed(::data::check_property & checkproperty, const ::payload &, const ::action_context &) override;
+      void on_check_changed(::data::check_change & change) override;
 
 
       //using ::user::check::set_check;

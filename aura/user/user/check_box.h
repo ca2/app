@@ -61,7 +61,7 @@ namespace user
       //using check::set_check;
       //void set_check(const ::e_check & check, const ::action_context & action_context) override;
 
-      void on_check_changed(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext) override;
+      void on_check_changed(::data::check_change & change) override;
 
 
       void install_message_routing(::channel * pchannel) override;

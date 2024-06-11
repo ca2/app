@@ -31,8 +31,8 @@ namespace data
       bool set_property(const ::atom_array & atoma, const ::payload & payload, const ::action_context & context = {});
       ::payload get_property(const ::atom_array & atoma) const;
 
-      virtual bool on_property_will_change(const ::atom_array & atoma, const ::payload & payload, const ::action_context & context = {});
-      virtual void on_property_changed(const ::atom_array & atoma, const ::payload & payload, const ::action_context & context = {});
+      virtual bool on_property_will_change(::data::property_change & change);
+      virtual void on_property_changed(::data::property_change & change);
 
 
       ::comparable_array < ::data::property_will_change > & property_will_change();

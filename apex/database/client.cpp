@@ -53,13 +53,13 @@ namespace database
       //
       //    });
 
-      property.property_changed() += [property, this](::data::property_container * ppropertycontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext)
+      property.property_changed() += [property, this](::data::property_change & change)
       {
 
-         if(actioncontext.is_user_source() && property.matches(ppropertycontainer, atoma))
+         if(change.m_actioncontext.is_user_source() && (property && change))
          {
 
-            data_set_payload(property.atom(), (const ::payload &)property.get_property());
+            data_set_payload(change.m_atoma.first(), change.m_payload);
 
          }
 
@@ -163,6 +163,45 @@ namespace database
    {
 
       return _data_get(strKey, payload);
+
+   }
+
+
+   bool client::data_get(const ::data::property & dataproperty)
+   {
+
+      ::payload payload;
+
+      if (!data_get_payload(get_key(dataproperty), payload))
+      {
+
+         return false;
+
+      }
+
+      dataproperty.set_property(payload, ::e_source_database);
+
+      return true;
+
+   }
+
+
+   void client::data_set(const ::data::property & dataproperty)
+   {
+
+      data_set_payload(get_key(dataproperty), (const ::payload &)dataproperty.get_property());
+
+   }
+
+
+   ::string client::get_key(const ::data::property & dataproperty)
+   {
+
+      ::string strKey;
+
+      strKey = dataproperty.atom().as_string();
+
+      return strKey;
 
    }
 

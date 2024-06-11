@@ -258,7 +258,7 @@ namespace user
    }
 
 
-   void button::on_check_changed(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext)
+   void button::on_check_changed(::data::check_change & change)
    {
 
       auto pappearance = get_appearance();
@@ -266,7 +266,7 @@ namespace user
       if (pappearance)
       {
 
-         pappearance->call_check(payload.as_echeck());
+         pappearance->call_check(change.payload().as_echeck());
 
       }
 

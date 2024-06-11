@@ -819,7 +819,7 @@ namespace apex
       //virtual ::type_atom control_type_from_id(const ::atom & atom, ::user::enum_control_type & econtroltype);
 
 
-      virtual ::atom translate_property_id(const ::atom & atom) override;
+      //virtual ::atom translate_property_id(const ::atom & atom) override;
       //virtual property fetch_property(const ::atom & atom) override;
 
       //virtual void get_time(micro_time * pmicrotime);

@@ -28,7 +28,9 @@ namespace data
    bool property_container::set_property(const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext)
    {
 
-      if (!on_property_will_change(atoma, payload, actioncontext))
+      property_change change{ this, atoma, payload, actioncontext };
+
+      if (!on_property_will_change(change))
       {
 
          return false;
@@ -37,7 +39,7 @@ namespace data
 
       m_propertyset[atoma] = payload;
 
-      on_property_changed(atoma, payload, actioncontext);
+      on_property_changed(change);
 
       return true;
 
@@ -52,13 +54,13 @@ namespace data
    }
 
 
-   bool property_container::on_property_will_change(const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext)
+   bool property_container::on_property_will_change(::data::property_change & change)
    {
 
       for (auto & propertywillchange : m_propertywillchangea)
       {
 
-         if (!propertywillchange(this, atoma, payload, actioncontext))
+         if (!propertywillchange(change))
          {
 
             return false;
@@ -70,7 +72,7 @@ namespace data
       for (auto & plistener : m_propertylistenera)
       {
 
-         if (!plistener->on_property_will_change(this, atoma, payload, actioncontext))
+         if (!plistener->on_property_will_change(change))
          {
 
             return false;
@@ -84,20 +86,20 @@ namespace data
    }
 
 
-   void property_container::on_property_changed(const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext)
+   void property_container::on_property_changed(::data::property_change & change)
    {
 
       for (auto & propertychanged : m_propertychangeda)
       {
 
-         propertychanged(this, atoma, payload, actioncontext);
+         propertychanged(change);
 
       }
 
       for (auto & plistener : m_propertylistenera)
       {
 
-         plistener->on_property_changed(this, atoma, payload, actioncontext);
+         plistener->on_property_changed(change);
 
       }
 

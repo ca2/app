@@ -10,39 +10,7 @@
 #include "acme/user/user/check_property.h"
 #include "acme/primitive/data/property_listener.h"
 
-template < typename FUNCTION >
-class function_tracker
-{
-public:
 
-   ::comparable_array < FUNCTION > *   m_parray;
-   ::matter * m_pmatterFunctionHolder;
-   function_tracker(::comparable_array < FUNCTION > & array, ::matter * pmatterFunctionHolder) :
-      m_parray(&array), m_pmatterFunctionHolder(pmatterFunctionHolder)
-   {
-
-   }
-
-   function_tracker & operator += (const FUNCTION & f)
-   {
-
-      FUNCTION function = f;
-
-      m_parray->add_item(function);
-
-      auto parray = m_parray;
-
-      m_pmatterFunctionHolder->destroying() += [parray, function]()
-         {
-
-            (*parray) -= function;
-
-         };
-      return *this;
-   }
-
-};
-   
 
 namespace user
 {
@@ -76,8 +44,8 @@ namespace user
       ::user::check_property check_property() const;
 
 
-      virtual bool on_check_will_change(::data::check_property & checkproperty, const ::payload &, const ::action_context &);
-      virtual void on_check_changed(::data::check_property & checkproperty, const ::payload &, const ::action_context &);
+      virtual bool on_check_will_change(::data::check_change & checkchange);
+      virtual void on_check_changed(::data::check_change & checkchange);
 
       virtual ::e_check echeck() const;
 
@@ -89,8 +57,8 @@ namespace user
       bool set_check(::e_check echeck, const ::action_context & actioncontext);
       bool toggle_check(const ::action_context & actioncontext);
 
-      function_tracker < ::user::check_will_change > check_will_change(::matter * pmatterFunctionContainer = nullptr);
-      function_tracker < ::user::check_changed > check_changed(::matter * pmatterFunctionContainer = nullptr);
+      add_signal_function_to_holder < ::data::check_will_change > check_will_change(::matter * pmatterFunctionContainer);
+      add_signal_function_to_holder < ::data::check_changed > check_changed(::matter * pmatterFunctionContainer);
 
 
    };

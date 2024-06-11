@@ -581,7 +581,7 @@ payload::~payload()
 }
 
 
-bool payload::convert(const ::payload & payload)
+bool payload::target_constrained_assign(const ::payload & payload)
 {
 
    if (m_etype == payload.m_etype)

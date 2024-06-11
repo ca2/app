@@ -31,12 +31,12 @@ namespace user
    }
    
    
-   void text_property::set_text_property(const ::data::text_property & textproperty)
-   {
+   //void text_property::set_text_property(const ::data::text_property & textproperty)
+   //{
 
-      set_data_property(*this, textproperty);
+   //   set_data_property(*this, textproperty);
 
-   }
+   //}
 
 
    //void text::unhook_callbacks()
@@ -354,43 +354,51 @@ namespace user
    //}
 
 
-   bool text_property::on_text_will_change(::data::text_property & textproperty, const ::payload & payload, const ::action_context & actioncontext)
-   {
+   //bool text_property::on_text_will_change(::user::text_change & textchange)
+   //{
 
-      for (auto & textwillchange : m_textwillchangea)
-      {
+   //   for (auto & textwillchange : m_textwillchangea)
+   //   {
 
-         if (!textwillchange(textproperty, payload, actioncontext))
-         {
+   //      if (!textwillchange(textchange))
+   //      {
 
-            return false;
+   //         return false;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
-
-
-   void text_property::on_text_changed(::data::text_property & textproperty, const ::payload & payload, const ::action_context & actioncontext)
-   {
-
-      for (auto & textchanged : m_textchangeda)
-      {
-
-         textchanged(textproperty, payload, actioncontext);
-
-      }
-
-   }
+   //}
 
 
-   bool text_property::operator == (const text_property & textproperty) const
+   //void text_property::on_text_changed(::user::text_change & textchange)
+   //{
+
+   //   for (auto & textchanged : m_textchangeda)
+   //   {
+
+   //      textchanged(textchange);
+
+   //   }
+
+   //}
+
+
+   bool text_property::operator == (const ::data::text_property & textproperty) const
    {
 
       return ::data::text_property::operator == (textproperty);
+
+   }
+
+
+   bool text_property::operator == (const ::data::text_change & change) const
+   {
+
+      return this->operator == (change.m_textproperty);
 
    }
 

@@ -115,6 +115,31 @@ namespace data
    }
 
 
+   void property::initialize_data_property(const ::data::property & propertySource)
+   {
+
+      //if (::is_set(m_ppropertycontainer) && m_ppropertycontainer != propertySource.m_ppropertycontainer)
+      //{
+
+         //propertyTarget.m_ppropertycontainer->m_propertylistenera.erase(m_pusercontrol);
+
+      m_ppropertycontainer = propertySource.m_ppropertycontainer;
+
+      //}
+
+      m_atom = propertySource.m_atom;
+
+      //if (::is_set(m_ppropertycontainer) && m_ppropertycontainer != propertySource.m_ppropertycontainer)
+      //{
+
+      //   propertyTarget.m_ppropertycontainer->m_propertylistenera.add(m_pusercontrol);
+
+      //}
+
+   }
+
+
+
    ::comparable_array < property_will_change > & property::property_will_change() const
    {
 
@@ -131,24 +156,24 @@ namespace data
    }
 
 
-   bool property::matches(::data::property_container * ppropertycontainer, const ::atom_array & atoma) const
+   bool property::operator &&(::data::property_change & change) const
    {
 
-      if (m_ppropertycontainer != ppropertycontainer)
+      if (m_ppropertycontainer != change.m_ppropertycontainer)
       {
 
          return false;
 
       }
 
-      if (atoma.is_empty())
+      if (change.m_atoma.is_empty())
       {
 
          return false;
 
       }
 
-      if (atoma.first() != m_atom)
+      if (change.m_atoma.first() != m_atom)
       {
 
          return false;
@@ -160,7 +185,7 @@ namespace data
    }
 
 
-   bool property::set_property(const ::payload & payload, const ::action_context & actioncontext)
+   bool property::set_property(const ::payload & payload, const ::action_context & actioncontext) const
    {
 
       return m_ppropertycontainer->set_property({ m_atom }, payload, actioncontext);
@@ -189,7 +214,7 @@ namespace data
    }
 
 
-   bool property::set_property(const ::atom_array & atomaSuffix, const ::payload & payload, const ::action_context & actioncontext)
+   bool property::set_property(const ::atom_array & atomaSuffix, const ::payload & payload, const ::action_context & actioncontext) const
    {
 
       return m_ppropertycontainer->set_property(get_key(atomaSuffix), payload, actioncontext);

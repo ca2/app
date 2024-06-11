@@ -116,13 +116,15 @@ namespace user
 
 
 
-   bool text::on_property_will_change(::data::property_container * ppropertycontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext)
+   bool text::on_property_will_change(::data::property_change & change)
    {
 
-      if (m_textproperty.matches(ppropertycontainer, atoma))
+      if (m_textproperty && change)
       {
 
-         if (!on_text_will_change(m_textproperty, payload, actioncontext))
+         ::data::text_change textchange{ m_textproperty, change };
+
+         if (!on_text_will_change(textchange))
          {
 
             return false;
@@ -136,7 +138,7 @@ namespace user
    }
 
 
-   void text::on_property_changed(::data::property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext)
+   void text::on_property_changed(::data::property_change & change)
    {
 
 
@@ -362,7 +364,7 @@ namespace user
    //}
 
 
-   bool text::on_text_will_change(::data::text_property & textproperty, const ::payload & payload, const ::action_context & actioncontext)
+   bool text::on_text_will_change(::data::text_change & textchange)
    {
 
       return true;
@@ -370,7 +372,7 @@ namespace user
    }
 
 
-   void text::on_text_changed(::data::text_property & textproperty, const ::payload & payload, const ::action_context & actioncontext)
+   void text::on_text_changed(::data::text_change & textchange)
    {
 
 

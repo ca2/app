@@ -90,7 +90,7 @@ namespace user
    //}
 
 
-   void menu_command::on_check_changed(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext)
+   void menu_command::on_check_changed(::data::check_change & change)
    {
 
       if (m_puiOther != nullptr)
@@ -101,7 +101,7 @@ namespace user
          if (pcheck.is_set())
          {
 
-            pcheck->set_check(payload.as_echeck(), actioncontext);
+            pcheck->set_check(change.payload().as_echeck(), change.action_context());
 
          }
 
@@ -110,7 +110,7 @@ namespace user
    }
 
 
-   void menu_command::on_text_changed(::data::text_property & textproperty, const ::payload & payload, const ::action_context & actioncontext)
+   void menu_command::on_text_changed(::data::text_change & change)
    {
 
       if (m_puiOther != nullptr)
@@ -121,7 +121,7 @@ namespace user
          if(ptext.is_set())
          {
 
-            ptext->m_textproperty.set_text(payload.as_string(), actioncontext);
+            ptext->m_textproperty.set_text(change.payload().as_string(), change.action_context());
 
          }
 

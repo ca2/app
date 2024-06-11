@@ -89,7 +89,7 @@ namespace message
 
 
       //virtual bool on_property_will_change(::data::property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext);
-      virtual void on_property_changed(::data::property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext);
+      void on_property_changed(::data::property_change & change) override;
 
 
    };

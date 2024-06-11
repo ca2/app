@@ -164,7 +164,7 @@ namespace user
 
          ::atom atom = pnode->attribute("id");
 
-         atom = translate_property_id(atom);
+         //atom = translate_property_id(atom);
 
          m_atom = atom;
 

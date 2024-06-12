@@ -1,6 +1,9 @@
 //
-// Created by camilo on 6/12/24.
+// Created by camilo on 2024-06-12 17:06 <3ThomasBorregaardSorensen!!
 //
+#pragma once
+
+
 template < typename ENUM, enum_domain t_edomain >
 class domain_enumeration
 {
@@ -18,21 +21,27 @@ public:
 
     }
 
+
     domain_enumeration & operator =(const domain_id & domainid)
     {
 
         if(domainid.m_edomain != t_edomain)
         {
 
-            throw ::exception(error_wrong_state);
+            m_eenum = (ENUM) 0;
 
         }
+        else
+        {
 
-        m_eenum = (ENUM) domainid.m_iId;
+            m_eenum = (ENUM) domainid.m_iId;
+
+        }
 
         return *this;
 
     }
+
 
     domain_enumeration & operator =(const ::atom & atom)
     {
@@ -40,12 +49,21 @@ public:
         if(atom.get_type() != ::atom::e_type_domainid)
         {
 
-            throw ::exception(error_wrong_state);
+            m_eenum = (ENUM)0;
+
+        }
+        else
+        {
+
+            this->operator=(atom.as_domainid());
 
         }
 
-        return this->operator=(atom.as_domainid());
+        return *this;
 
     }
 
 };
+
+
+

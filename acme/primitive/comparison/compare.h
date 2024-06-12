@@ -262,9 +262,6 @@ template < typename TYPE >
 }
 
 
-
-
-
 struct domain_id
 {
 
@@ -272,6 +269,9 @@ struct domain_id
    enum_domain    m_edomain;
    ::i32          m_iId;
 
+
+   domain_id() : m_edomain(e_domain_none), m_iId(-1){}
+   domain_id(const domain_id & domainid) : m_edomain(domainid.m_edomain), m_iId(domainid.m_iId){}
 
    inline constexpr bool operator == (const ::domain_id & domainid) const
    {
@@ -296,6 +296,19 @@ struct domain_id
 
    }
 
+   inline constexpr bool is_ok() const
+   {
+
+      return m_edomain > e_domain_none && m_iId > 0;
+
+   }
+
+   inline constexpr bool is_nok() const
+   {
+
+      return !is_ok();
+
+   }
 
 };
 

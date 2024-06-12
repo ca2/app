@@ -2788,7 +2788,8 @@ endif ()
 
 add_library(${PROJECT_NAME} SHARED ${library_source}
         _static_factory.h
-        )
+        primitive/primitive/domain_enumeration.h
+)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

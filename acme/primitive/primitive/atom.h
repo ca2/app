@@ -491,6 +491,13 @@ public:
 
    }
 
+   enum_type get_type() const
+   {
+
+      return m_etype;
+
+   }
+
 
    bool _is_compounded(enum_type etype) const { return (m_etype & 0xffff) == etype;}
 
@@ -705,6 +712,7 @@ public:
    //::string as_string() const;
    //::string string() const;
    ::string as_string() const;
+   ::domain_id as_domainid() const;
 
 
    //operator ::string() const { return as_string(); }

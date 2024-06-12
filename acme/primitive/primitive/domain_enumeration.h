@@ -66,4 +66,9 @@ public:
 };
 
 
+#define DECLARE_DOMAIN_ENUMERATION(EENUM, ENUM, EDOMAIN) \
+using EENUM = domain_enumeration<ENUM, EDOMAIN>; \
+::domain_id as_domainid(const EENUM & eenum) {return {EDOMAIN, (::i32) eenum.m_eenum};}
+
+
 

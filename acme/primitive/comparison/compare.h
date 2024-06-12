@@ -271,6 +271,7 @@ struct domain_id
 
 
    domain_id() : m_edomain(e_domain_none), m_iId(-1){}
+   domain_id(enum_domain edomain, ::i32 iId) : m_edomain(edomain), m_iId(iId){}
    domain_id(const domain_id & domainid) : m_edomain(domainid.m_edomain), m_iId(domainid.m_iId){}
 
    inline constexpr bool operator == (const ::domain_id & domainid) const

@@ -260,6 +260,7 @@ public:
       e_type_element,
       e_type_check,
       e_type_status,
+      e_type_domainid,
 
       e_type_not_an_atom = 127,
 
@@ -315,6 +316,7 @@ public:
       e_status             m_estatus;
       e_command            m_ecommand;
       e_check              m_echeck;
+      domain_id            m_domainid;
       ::string             m_str;
       ::ansi_range         m_range;
       ::i64                m_iLargest;
@@ -356,6 +358,7 @@ public:
 
    inline atom(enum_type etypeAdd, const atom & atom);
    inline atom(const atom & atom);
+   inline atom(const domain_id & domainid);
    atom(const ::ansi_character * psz);
    atom(const inline_number_string & inlinenumberstring);
 
@@ -583,6 +586,9 @@ public:
 
     inline bool operator == (::enum_impact eimpact) const;
     inline ::std::strong_ordering operator <=> (::enum_impact eid) const;
+
+   inline bool operator == (const ::domain_id & domainid) const;
+   inline ::std::strong_ordering operator <=> (const ::domain_id & domainid) const;
 
     inline bool operator == (::ENUM_IMPACT EIMPACT) const { return *this == (::enum_impact)EIMPACT; }
     inline ::std::strong_ordering operator <=> (::ENUM_IMPACT EIMPACT) const { return *this <=> (::enum_impact)EIMPACT; }

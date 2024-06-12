@@ -111,9 +111,12 @@ public:
 template < typename PRIMITIVE_FUNCTION >
 concept primitive_function = ::std::is_base_of < ::function_common, PRIMITIVE_FUNCTION >::value;
 
+namespace data
+{
+   template < primitive_function FUNCTION >
+   class signal;
+} // namespace data
 
-template < primitive_function FUNCTION >
-class signal;
 
 
 template < typename PAYLOAD >

@@ -4,7 +4,7 @@
 
 
 #include "acme/primitive/data/property.h"
-#include "acme/primitive/primitive/signal.h"
+#include "acme/primitive/data/signal.h"
 
 
 //#include "acme/primitive/primitive/payload.h"
@@ -39,10 +39,10 @@ namespace data
    protected:
 
 
-      ::data::property_will_change              m_propertywillchange;
-      ::data::property_changed                  m_propertychanged;
-      ::signal < ::data::check_will_change >    m_checkwillchangesignal;
-      ::signal < ::data::check_changed >        m_checkchangedsignal;
+      ::data::property_will_change                    m_propertywillchange;
+      ::data::property_changed                        m_propertychanged;
+      ::data::signal < ::data::check_will_change >    m_checkwillchangesignal;
+      ::data::signal < ::data::check_changed >        m_checkchangedsignal;
 
 
       void unhook_callbacks();
@@ -246,15 +246,15 @@ namespace data
       //virtual void on_property_changed(property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext);
       */
 
-      bool on_check_will_change(check_change & checkchange);
-      void on_check_changed(check_change & checkchange);
+      bool on_check_will_change(::data::check_change & checkchange);
+      void on_check_changed(::data::check_change & checkchange);
 
-      add_signal_function_to_holder < check_will_change > check_will_change(::matter * pmatterFunctionHolder);
-      add_signal_function_to_holder < check_changed > check_changed(::matter * pmatterFunctionHolder);
+      add_signal_function_to_holder < ::data::check_will_change > check_will_change(::matter * pmatterFunctionHolder);
+      add_signal_function_to_holder < ::data::check_changed > check_changed(::matter * pmatterFunctionHolder);
 
 
-      bool operator == (const check_property & checkproperty) const;
-      bool operator == (const check_change & change) const;
+      bool operator == (const ::data::check_property & checkproperty) const;
+      bool operator == (const ::data::check_change & change) const;
 
 
 

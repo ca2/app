@@ -263,3 +263,41 @@ template < typename TYPE >
 
 
 
+
+
+struct domain_id
+{
+
+
+   enum_domain    m_edomain;
+   ::i32          m_iId;
+
+
+   inline constexpr bool operator == (const ::domain_id & domainid) const
+   {
+
+      return ::comparison::tuple
+              (
+                      [&]() { return m_edomain == domainid.m_edomain; },
+                      [&]() { return m_iId == domainid.m_iId; }
+              );
+
+   }
+
+
+   inline constexpr ::std::strong_ordering operator <=>(const ::domain_id & domainid) const
+   {
+
+      return ::comparison::tuple
+              (
+                      [&]() { return m_edomain <=> domainid.m_edomain; },
+                      [&]() { return m_iId <=> domainid.m_iId; }
+              );
+
+   }
+
+
+};
+
+
+

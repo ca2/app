@@ -283,7 +283,7 @@ public:
 
    
    template < primitive_function FUNCTION >
-   void hold_signal_function(signal<FUNCTION> * psignal, FUNCTION f);
+   void hold_signal_function(::data::signal<FUNCTION> * psignal, FUNCTION f);
 
 };
 

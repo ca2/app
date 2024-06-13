@@ -3405,13 +3405,9 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
 
    ::file::path path = payloadFile.as_file_path();
 
-   ::url_domain domain;
+   auto pdomain = __create_new < ::url_domain >();
 
-   auto psystem = system();
-
-   auto purl = psystem->url();
-
-   domain.create(purl->get_server(path));
+   pdomain->create(url()->get_server(path));
 
    //bool bSaveCache = domain.m_strRadix != "ca2" || !string_begins(purl->get_object(path), "/matter/");
 

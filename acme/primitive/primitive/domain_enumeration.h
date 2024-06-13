@@ -13,13 +13,13 @@ public:
     ENUM m_eenum;
 
 
-    domain_enumeration() :m_eenum(ENUM(0)){}
-
-    
-    domain_enumeration(ENUM eenum) :m_eenum(eenum){}
+    constexpr domain_enumeration() :m_eenum(ENUM(0)){}
 
 
-    domain_enumeration(const ::domain_id & domainid)
+    constexpr domain_enumeration(ENUM eenum) :m_eenum(eenum){}
+
+
+    constexpr domain_enumeration(const ::domain_id & domainid)
     {
 
         if(domainid.m_edomain != t_edomain)
@@ -57,7 +57,7 @@ public:
     }
 
 
-    ::domain_id as_domainid()
+    constexpr ::domain_id as_domainid()
     {
 
         return {t_edomain, m_eenum};
@@ -65,7 +65,7 @@ public:
     }
 
 
-    domain_enumeration & operator =(const domain_enumeration & domainenumeration)
+    constexpr domain_enumeration & operator =(const domain_enumeration & domainenumeration)
     {
 
         m_eenum = domainenumeration.m_eenum;
@@ -75,12 +75,29 @@ public:
     }
 
 
+    constexpr bool operator == (const domain_enumeration & domainenumeration) const
+    {
+
+        return m_eenum == domainenumeration.m_eenum;
+
+    }
+
+
+    constexpr bool is_ok() const { return m_eenum != (ENUM) 0; }
+
+
+    constexpr bool is_nok() const { return !this->is_ok(); }
+
+
+    explicit constexpr operator ::u32hash() const { return (::u32) m_eenum; }
+
+
 };
 
 
 #define DECLARE_DOMAIN_ENUMERATION(EENUM, ENUM, EDOMAIN) \
 using EENUM = domain_enumeration<ENUM, EDOMAIN>; \
-::domain_id as_domainid(const EENUM & eenum) {return {EDOMAIN, (::i32) eenum.m_eenum};}
+inline constexpr ::domain_id as_domainid(const EENUM & eenum) {return {EDOMAIN, (::i32) eenum.m_eenum};}
 
 
 

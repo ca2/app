@@ -270,9 +270,9 @@ struct domain_id
    ::i32          m_iId;
 
 
-   domain_id() : m_edomain(e_domain_none), m_iId(-1){}
-   domain_id(enum_domain edomain, ::i32 iId) : m_edomain(edomain), m_iId(iId){}
-   domain_id(const domain_id & domainid) : m_edomain(domainid.m_edomain), m_iId(domainid.m_iId){}
+   constexpr domain_id() : m_edomain(e_domain_none), m_iId(-1){}
+   constexpr domain_id(enum_domain edomain, ::i32 iId) : m_edomain(edomain), m_iId(iId){}
+   constexpr domain_id(const domain_id & domainid) : m_edomain(domainid.m_edomain), m_iId(domainid.m_iId){}
 
    inline constexpr bool operator == (const ::domain_id & domainid) const
    {
@@ -297,12 +297,14 @@ struct domain_id
 
    }
 
+
    inline constexpr bool is_ok() const
    {
 
       return m_edomain > e_domain_none && m_iId > 0;
 
    }
+
 
    inline constexpr bool is_nok() const
    {
@@ -311,6 +313,7 @@ struct domain_id
 
    }
 
+   
 };
 
 

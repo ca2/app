@@ -989,6 +989,9 @@ namespace acme
 
       virtual enum_windowing calculate_ewindowing();
 
+      virtual bool _is_google_chrome_installed();
+
+      virtual bool _is_visual_studio_code_installed();
 
    };
 

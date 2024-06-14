@@ -4593,6 +4593,24 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
+   bool node::_is_google_chrome_installed()
+   {
+      
+      return false;
+      
+   }
+
+
+   bool node::_is_visual_studio_code_installed()
+   {
+    
+      return false;
+      
+   }
+   
+   
+
+
 } // namespace acme
 
 

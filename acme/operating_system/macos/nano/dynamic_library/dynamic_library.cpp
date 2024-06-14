@@ -6,12 +6,16 @@
 #include "dynamic_library.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/platform/system.h"
 #include <dlfcn.h>
 #include <mach-o/dyld.h>
 #include <mach-o/nlist.h>
 #include <sys/types.h> // for jl_raise_debugger
-#include <link.h>
+//#include <link.h>
+
+
+string apple_app_module_folder();
 
 
 namespace macos
@@ -40,39 +44,60 @@ dynamic_library::~dynamic_library()
 
 ::file::path dynamic_library::module_path(library_t * plibrary)
 {
-   ::link_map * pmap = nullptr;
-   int iError = dlinfo(plibrary, RTLD_DI_LINKMAP, &pmap);
-   
-   if(iError || ::is_null(pmap))
-   {
-      
-      return {};
-      
-   }
-   return pmap->l_name;
-   
-}
-
-library_t * dynamic_library::module_by_name(const ::file::path & path, string & strMessage)
-{
-   
-   auto strTitle = path.title();
-   
-   auto strLibTitle = "lib" + strTitle;
    
    for (i32 i = _dyld_image_count(); i >= 0 ; i--)
    {
       
+      ::string strMessage;
+      
       const char *image_name = _dyld_get_image_name(i);
       
-      if(::file_path_title(image_name).case_insensitive_equals(strTitle))
+      auto p = open(image_name, strMessage);
+      
+      close(p);
+      
+      if(p == plibrary)
+      {
+       
+         return image_name;
+         
+      }
+
+   }
+   
+   return nullptr;
+   
+}
+
+
+library_t * dynamic_library::module_by_name(const ::scoped_string & scopedstr)
+{
+   
+   ::file::path path;
+   
+   ::string strTitle = ::file::path(scopedstr).title();
+   
+   strTitle.case_insensitive_begins_eat("lib");
+   
+   ::string strLibTitle = strTitle;
+   
+   strLibTitle = "lib" + strLibTitle;
+   
+   for (i32 i = _dyld_image_count(); i >= 0 ; i--)
+   {
+      
+      path = _dyld_get_image_name(i);
+      
+      ::string strPathTitle = path.title();
+      
+      if(strPathTitle.case_insensitive_equals(strTitle))
       {
          
          goto found;
          
       }
       
-      if(::file_path_title(image_name).case_insensitive_equals(strLibTitle))
+      if(strPathTitle.case_insensitive_equals(strLibTitle))
       {
          
          goto found;
@@ -84,6 +109,8 @@ library_t * dynamic_library::module_by_name(const ::file::path & path, string & 
    return nullptr;
    
 found:
+   
+   ::string strMessage;
    
    auto p = open(path, strMessage);
    
@@ -94,16 +121,17 @@ found:
 }
 
 
-library_t * dynamic_library::module_by_path(const ::file::path & path, string & strMessage)
+library_t * dynamic_library::module_by_path(const ::file::path & path)
 {
    
+   ::file::path pathInProcess;
    
    for (i32 i = _dyld_image_count(); i >= 0 ; i--)
    {
       
-      const char *image_name = _dyld_get_image_name(i);
+      pathInProcess = _dyld_get_image_name(i);
       
-      if(acmepath()->real_path_is_equal(image_name, path))
+      if(acmepath()->real_path_is_same(pathInProcess, path))
       {
          
          goto found;
@@ -116,7 +144,9 @@ library_t * dynamic_library::module_by_path(const ::file::path & path, string & 
    
 found:
    
-   auto p = open(path, strMessage);
+   ::string strMessage;
+   
+   auto p = open(pathInProcess, strMessage);
    
    close(p);
    
@@ -152,7 +182,7 @@ library_t * dynamic_library::open(const ::file::path & pathParam, string & strMe
    
    //::acme::get()->platform()->informationf("\n\nGoing to dlopen: \"" + strPath + "\"");
    
-   auto pathModuleFolder = ::get_module_folder();
+   auto pathModuleFolder = ::apple_app_module_folder();
    
    path = pathModuleFolder / strPath;
    
@@ -173,7 +203,7 @@ library_t * dynamic_library::open(const ::file::path & pathParam, string & strMe
    
    path = strPath;
    
-   plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
+   plibrary = (library_t *) dlopen(path, RTLD_LOCAL | RTLD_LAZY);
    
    if(plibrary != nullptr)
    {
@@ -186,9 +216,9 @@ library_t * dynamic_library::open(const ::file::path & pathParam, string & strMe
    
    strMessage += "\n(2) dlopen: " + path + " with the error: \"" + strError + "\"";
    
-   path = ::file::path(apple_app_module_folder()) / strPath;
+   path = ::file::path(acmedirectory()->module()) / strPath;
    
-   plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
+   plibrary = (library_t *) dlopen(path, RTLD_LOCAL | RTLD_LAZY);
    
    if(plibrary != nullptr)
    {
@@ -206,7 +236,7 @@ library_t * dynamic_library::open(const ::file::path & pathParam, string & strMe
       
       path = ::file::path(strPath).name();
       
-      plibrary = dlopen(path, RTLD_LOCAL | RTLD_LAZY);
+      plibrary = (library_t *)  dlopen(path, RTLD_LOCAL | RTLD_LAZY);
       
       if(plibrary != nullptr)
       {
@@ -250,7 +280,7 @@ finished:
 }
 
 
-bool dynamic_library::::operating_system_library_close(library_t * plibrary)
+bool dynamic_library::close(library_t * plibrary)
 {
    
    if(plibrary != nullptr)

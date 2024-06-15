@@ -4,6 +4,7 @@
 
 
 #include "acme/primitive/data/property.h"
+#include "acme/primitive/data/signal.h"
 
 
 //#include "acme/primitive/primitive/payload.h"
@@ -12,35 +13,60 @@
 
 namespace data
 {
+   class check_property;
 
+   struct check_change
+   {
+      ::data::check_property & m_checkproperty;
+      ::data::property_change & m_propertychange;
+      auto & payload() {
+         return m_propertychange.m_payload;
+      }
+      auto & action_context() {
+         return m_propertychange.m_actioncontext;
+      }
+
+   };
+
+   using check_will_change = ::function < bool(check_change &) >;
+
+   using check_changed = ::function < void(check_change &) >;
 
    //template < enum_id t_eid = (enum_id) ID_CHECK>
    class CLASS_DECL_ACME check_property :
       public ::data::property
    {
+   protected:
+
+
+      ::data::property_will_change                    m_propertywillchange;
+      ::data::property_changed                        m_propertychanged;
+      ::data::signal < ::data::check_will_change >    m_checkwillchangesignal;
+      ::data::signal < ::data::check_changed >        m_checkchangedsignal;
+
+
+      void unhook_callbacks();
+      void hook_callbacks();
+
    public:
-
-
-      //linked_property   m_linkedpropertyCheck;
-      //::function < void(::user::check *) >     m_callbackOnCheck;
-      //virtual public ::property_container
-
 
       check_property(::data::property_container * ppropertycontainer = nullptr, const ::atom & atom = {});
       check_property(const check_property & checkproperty);
       ~check_property();
 
+
+
       // ::e_check get_echeck() const;
       // virtual bool get_bcheck() const;
       ::e_check echeck() const;
 
-      bool bcheck() const;
+      bool is_checked() const;
 
       //bool is_checked() const;
-
+      bool operator ==(::e_check echeck) const { return this->echeck() == echeck; }
       
       bool set(::e_check echeck, const ::action_context & actioncontext);
-      //       bool _001ToggleCheck(const ::action_context & action_context)
+      //       bool toggle_check(const ::action_context & action_context)
       //       {
       //
       //
@@ -76,10 +102,10 @@ namespace data
       // }
       //
       //
-      //  /*  void check::_001SetCheck(bool bChecked, const ::action_context & context)
+      //  /*  void check::set_check(bool bChecked, const ::action_context & context)
       //    {
       //
-      //       _001SetCheck((::enum_check) (bChecked ? ::e_check_checked : ::e_check_unchecked),context);
+      //       set_check((::enum_check) (bChecked ? ::e_check_checked : ::e_check_unchecked),context);
       //
       //    }*/
       //
@@ -124,7 +150,7 @@ namespace data
       //    }
       //
       //
-      //    bool check_property::_001SetCheck(::e_check echeck, const ::action_context & actioncontext)
+      //    bool check_property::set_check(::e_check echeck, const ::action_context & actioncontext)
       //    {
       //
       //       return set_property(echeck, actioncontext);
@@ -210,6 +236,30 @@ namespace data
       //    }
       //
       // }
+
+      void set_check_property(const ::data::check_property & checkproperty);
+
+      //check_property & check() { return m_checkproperty; }
+
+      /*
+      //virtual bool on_property_will_change(property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext);
+      //virtual void on_property_changed(property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext);
+      */
+
+      bool on_check_will_change(::data::check_change & checkchange);
+      void on_check_changed(::data::check_change & checkchange);
+
+      add_signal_function_to_holder < ::data::check_will_change > check_will_change(::matter * pmatterFunctionHolder);
+      add_signal_function_to_holder < ::data::check_changed > check_changed(::matter * pmatterFunctionHolder);
+
+
+      bool operator == (const ::data::check_property & checkproperty) const;
+      bool operator == (const ::data::check_change & change) const;
+
+
+
+      //bool operator == (const check_property & checkproperty) const;
+
 
    };
 

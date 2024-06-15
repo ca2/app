@@ -65,8 +65,8 @@ public:
 
 
 
-   //virtual void _001GetText(string & str) override;
-   //virtual void _001SetText(const ::string & str, const ::action_context & action_context) override;
+   //virtual void get_text(string & str) override;
+   //virtual void set_text(const ::string & str, const ::action_context & action_context) override;
    virtual ::string get_html_form_text();
    virtual void set_html_form_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext);
 

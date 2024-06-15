@@ -12,11 +12,23 @@
 
 namespace user
 {
-   
-   
-   using check_will_change = ::function < bool(::data::check_property & checkproperty, const ::payload &, const ::action_context &) >;
 
-   using check_changed = ::function < void(::data::check_property & checkproperty, const ::payload &, const ::action_context &) >;
+   //struct check_change
+   //{
+   //   ::data::check_property & m_checkproperty;
+   //   ::data::property_change & m_propertychange;
+   //   auto & payload() {
+   //      return m_propertychange.m_payload;
+   //   }
+   //   auto & action_context() {
+   //      return m_propertychange.m_actioncontext;
+   //   }
+
+   //};
+   //
+   //using check_will_change = ::function < bool(check_change &) >;
+
+   //using check_changed = ::function < void(check_change &) >;
 
 
    class CLASS_DECL_ACME check_property :
@@ -26,12 +38,12 @@ namespace user
    public:
       
 
-      ::data::property_will_change                 m_propertywillchange;
-      ::data::property_changed                     m_propertychanged;
-      ::comparable_array < check_will_change >     m_checkwillchangea;
-      ::comparable_array < check_changed >         m_checkchangeda;
-      void unhook_callbacks();
-      void hook_callbacks();
+      //::data::property_will_change                 m_propertywillchange;
+      //::data::property_changed                     m_propertychanged;
+      //::comparable_array < ::user::check_will_change >     m_checkwillchangea;
+      //::comparable_array < ::user::check_changed >         m_checkchangeda;
+      //void unhook_callbacks();
+      //void hook_callbacks();
 
 
    public:
@@ -41,7 +53,7 @@ namespace user
       ~check_property();
 
 
-      void set_check_property(const ::data::check_property & checkproperty);
+      //void set_check_property(const ::data::check_property & checkproperty);
 
       //check_property & check() { return m_checkproperty; }
 
@@ -50,12 +62,16 @@ namespace user
       //virtual void on_property_changed(property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext);
       */
 
-      bool on_check_will_change(::data::check_property & checkproperty, const ::payload &, const ::action_context &);
-      void on_check_changed(::data::check_property & checkproperty, const ::payload &, const ::action_context &);
+      //bool on_check_will_change(check_change & checkchange);
+      //void on_check_changed(check_change & checkchange);
 
-      ::comparable_array < check_will_change > & check_will_change();
-      ::comparable_array < check_changed > & check_changed();
+      //::comparable_array < ::user::check_will_change > & check_will_change();
+      //::comparable_array < ::user::check_changed > & check_changed();
 
+
+      bool operator == (const ::data::check_property & checkproperty) const;
+      bool operator == (const ::data::check_change & change) const;
+ 
 
    };
 

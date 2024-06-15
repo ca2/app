@@ -93,7 +93,7 @@ void manager::destroy()
 }
 
 
-class ::signal * manager::get_signal(const ::atom & atom)
+class ::handler::signal * manager::get_signal(const ::atom & atom)
 {
 
    return get_signal(atom, ::action_context());
@@ -101,7 +101,7 @@ class ::signal * manager::get_signal(const ::atom & atom)
 }
 
 
-class ::signal * manager::get_signal(const ::atom & atom, const ::action_context& actioncontext)
+class ::handler::signal * manager::get_signal(const ::atom & atom, const ::action_context& actioncontext)
 {
 
    _synchronous_lock synchronouslock(this->synchronization());
@@ -109,7 +109,7 @@ class ::signal * manager::get_signal(const ::atom & atom, const ::action_context
    if (!m_psignalmap)
    {
 
-      m_psignalmap = __allocate< signal_map >();
+      m_psignalmap = __allocate< ::handler::signal_map >();
 
    }
 
@@ -120,7 +120,7 @@ class ::signal * manager::get_signal(const ::atom & atom, const ::action_context
    if (!psignal)
    {
 
-      psignal = __allocate< class ::signal >(atom, this);
+      psignal = __allocate< class ::handler::signal >(atom, this);
 
       psignal->initialize(this);
 

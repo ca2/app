@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "acme/primitive/collection/raw_pointer_array.h"
 #include "aura/user/user/scroll_base.h"
 #include "acme/parallelization/manual_reset_event.h"
 
@@ -62,8 +63,8 @@ namespace user
 
       manual_reset_event                        m_evExpand;
       manual_reset_event                        m_evOpen;
-      ptr_array < ::data::tree_item >           m_treeitemaExpand;
-      ptr_array < ::data::tree_item >           m_treeitemaOpen;
+      raw_pointer_array < ::data::tree_item >   m_treeitemaExpand;
+      raw_pointer_array < ::data::tree_item >   m_treeitemaOpen;
 
 
 

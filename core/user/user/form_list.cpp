@@ -2072,7 +2072,7 @@ namespace user
 
                   strsize iSelEnd;
 
-                  pedit->_001GetSel(iSel, iSelEnd);
+                  pedit->plain_edit_get_text_selection(iSel, iSelEnd);
 
                   if (iSel != iSelEnd)
                   {

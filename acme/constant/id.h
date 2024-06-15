@@ -348,6 +348,8 @@ enum enum_id : ::uptr
    id_download,
    id_speech,
 
+      id_load_fragment_path_prefix,
+
 
 };
 

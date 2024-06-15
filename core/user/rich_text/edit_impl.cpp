@@ -297,10 +297,10 @@ namespace user
       }
 
 
-      void edit_impl::insert_text(string str, bool bForceNewStep, const ::action_context & context)
+      void edit_impl::plain_edit_insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context)
       {
 
-         _001InsertText(str);
+         _001InsertText(scopedstr);
 
       }
 
@@ -714,12 +714,12 @@ namespace user
       }
 
 
-      //void edit_impl::_001GetText(string & str)
+      //void edit_impl::get_text(string & str)
       //{
 
       //   auto prichtextdata = get_rich_text_data();
 
-      //   prichtextdata->_001GetText(str);
+      //   prichtextdata->get_text(str);
 
       //}
 
@@ -2078,7 +2078,7 @@ namespace user
                //                if(m_bMultiLine)
                {
 
-                  insert_text("\n", true, e_source_user);
+                  plain_edit_insert_text("\n", true, e_source_user);
 
                }
 
@@ -2198,20 +2198,20 @@ namespace user
       }
 
 
-      //strsize edit_impl::_001GetTextLength()
+      //strsize edit_impl::get_text_length()
       //{
 
       //   auto prichtextdata = get_rich_text_data();
 
-      //   return prichtextdata->_001GetTextLength();
+      //   return prichtextdata->get_text_length();
 
       //}
 
 
-      void edit_impl::_001GetSel(strsize & iBeg, strsize & iEnd)
+      void edit_impl::plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd) const
       {
 
-         auto prichtextdata = get_rich_text_data();
+         //auto prichtextdata = get_rich_text_data();
 
          iBeg = m_iSelBeg;
 
@@ -2229,7 +2229,7 @@ namespace user
 
          ::collection::index iLine = SelToLine(m_iSelBeg);
 
-         ::collection::index iLineEnd = SelToLine(m_iSelBeg);
+         ::collection::index iLineEnd = SelToLine(m_iSelEnd);
 
          if (iLine != iLineEnd)
          {

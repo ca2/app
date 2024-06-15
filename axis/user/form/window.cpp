@@ -586,11 +586,11 @@ namespace user
                      ::collection::index i = 0;
                      if(ia.BaseSortFind(pinteraction->m_ddx.m_pdbflags->m_value, i))
                      {
-                        pcheck->_001SetCheck(e_check_checked, false);
+                        pcheck->set_check(e_check_checked, false);
                      }
                      else
                      {
-                        pcheck->_001SetCheck(e_check_unchecked, false);
+                        pcheck->set_check(e_check_unchecked, false);
                      }
                   }*/
       }
@@ -671,14 +671,14 @@ throw_todo();
 //            //   {
 //            //      string str;
 //            //      str = payload.m_str;
-//            //      pinteraction->_001SetText(str, ::e_source_database);
+//            //      pinteraction->set_text(str, ::e_source_database);
 //            //   }
 //            //   break;
 //            //   case ::e_type_i32:
 //            //   {
 //            //      string str;
 //            //      str.formatf("%d", payload.i32());
-//            //      pinteraction->_001SetText(str, ::e_source_database);
+//            //      pinteraction->set_text(str, ::e_source_database);
 //            //   }
 //            //   break;
 //            //   default:

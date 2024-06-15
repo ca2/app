@@ -106,12 +106,12 @@ namespace helloworld
          if(get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact") != nullptr)
          {
 
-            get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact")->_001SetText(strText,::e_source_initialize);
+            get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact")->set_text(strText,::e_source_initialize);
 
 
 //            acmefile()->put_contents("C:\\dennisheazle\\ft.txt", as_string((iptr)get_top_level()->get_handle()));
 
-            //get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact")->_001SetText(as_string((iptr)get_top_level()->get_handle()), ::e_source_initialize);
+            //get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact")->set_text(as_string((iptr)get_top_level()->get_handle()), ::e_source_initialize);
 
 
          }
@@ -203,7 +203,7 @@ namespace helloworld
 
                string strText;
 
-               peditview->_001GetText(strText);
+               peditview->get_text(strText);
 
                m_strNewHelloWorld = strText;
 

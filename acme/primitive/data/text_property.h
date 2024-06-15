@@ -12,20 +12,128 @@
 struct payload_action_context
 {
 
-
    ::payload            m_payload;
    ::action_context     m_actioncontext;
 
 };
 
+
 namespace data
 {
+   
+   class text_property;
 
+   struct text_change
+   {
+      ::data::text_property & m_textproperty;
+      ::data::property_change & m_propertychange;
+      auto & payload() {
+         return m_propertychange.m_payload;
+      }
+      auto & action_context() {
+         return m_propertychange.m_actioncontext;
+      }
+   };
+   using text_will_change = ::function < bool(text_change & textchange) >;
+
+   using text_changed = ::function < void(text_change & textchange) >;
+
+   ////using insert_text = ::function< void(::data::text_property & textproperty, const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context) >;
 
    class CLASS_DECL_ACME text_property :
       public ::data::property
    {
+
+
+   protected:
+
+
+      ::data::property_will_change                          m_propertywillchange;
+      ::data::property_changed                              m_propertychanged;
+
+
+      ::comparable_array < ::data::text_will_change >       m_textwillchangea;
+      ::comparable_array < ::data::text_changed >           m_textchangeda;
+      //::comparable_array < insert_text >          m_inserttexta;
+
+
+      void unhook_callbacks();
+      void hook_callbacks();
+
+
    public:
+
+
+      text_property(::data::property_container * ppropertycontainer = nullptr, const ::atom & atom = {});
+      text_property(const text_property & textproperty);
+      ~text_property();
+      //property *     m_ppropertyText;
+
+
+      //text_prophandler(::data::property_container * ppropertycontainer = nullptr, const ::atom & atom = {});
+      //~text_handler();
+
+
+      void set_text_property(const ::data::text_property & textproperty);
+
+
+      //::text_property & text() { return m_textproperty; }
+
+      //virtual void get_text(string & str);
+
+
+      //virtual strsize get_text_length();
+      //virtual void get_text(char * psz, strsize len);
+      //virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd);
+
+
+      //virtual void set_text(const ::string & str, const ::action_context & action_context);
+      //virtual void set_text(const ::string & psz, strsize len, const ::action_context & action_context);
+
+
+
+      //virtual void _001GetSel(strsize & iBeg, strsize & iEnd);
+      //virtual void set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context = ::e_source_user);
+      //virtual void _001SetSelEnd(strsize iSelEnd, const ::action_context & action_context = ::e_source_user);
+
+
+      //virtual void get_selection_text(string & str);
+      //virtual void set_selection_text(const ::string & psz, const ::action_context & action_context);
+
+
+      //virtual void get_text_selection(strsize &iSelStart, strsize &iSelEnd);
+
+
+      //virtual void MacroBegin();
+      //virtual void MacroEnd();
+
+
+      void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & actioncontext);
+
+
+      //string as_string() const override;
+      //virtual string& string_reference();
+      ////inline string as_string() const { return m_propertyText->get_string(); }
+
+
+      //virtual bool edit_undo();
+
+
+      //virtual void get_text_composition_area(::rectangle_i32& rectangle);
+
+      ::comparable_array < ::data::text_will_change > & text_will_change();
+      ::comparable_array < ::data::text_changed > & text_changed();
+
+      /*virtual bool on_property_will_change(property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext);
+      virtual void on_property_changed(property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext);
+      */
+
+
+
+      bool on_text_will_change(text_change & textchange);
+      void on_text_changed(text_change & textchange);
+
+   //public:
 
 
       //linked_property   m_linkedpropertyCheck;
@@ -33,33 +141,30 @@ namespace data
       //virtual public ::property_container
 
 
-      text_property(::data::property_container * ppropertycontainer = nullptr, const ::atom & atom = {});
-      text_property(const text_property & textproperty);
-      ~text_property();
       /*
-            virtual void _001GetText(string & str);
+            virtual void get_text(string & str);
 
 
-            virtual strsize _001GetTextLength();
-            virtual void _001GetText(char * psz, strsize len);
-            virtual void _001GetText(string & str, ::collection::index iBeg, ::collection::index iEnd);
+            virtual strsize get_text_length();
+            virtual void get_text(char * psz, strsize len);
+            virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd);
 
 
-            virtual void _001SetText(const ::string & str, const ::action_context & action_context);
-            virtual void _001SetText(const ::string & psz, strsize len, const ::action_context & action_context);
+            virtual void set_text(const ::string & str, const ::action_context & action_context);
+            virtual void set_text(const ::string & psz, strsize len, const ::action_context & action_context);
 
 
 
             virtual void _001GetSel(strsize & iBeg, strsize & iEnd);
-            virtual void _001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context = ::e_source_user);
+            virtual void set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context = ::e_source_user);
             virtual void _001SetSelEnd(strsize iSelEnd, const ::action_context & action_context = ::e_source_user);
 
 
-            virtual void _001GetSelText(string & str);
-            virtual void _001SetSelText(const ::string & psz, const ::action_context & action_context);
+            virtual void get_selection_text(string & str);
+            virtual void set_selection_text(const ::string & psz, const ::action_context & action_context);
 
 
-            virtual void _001GetImpactSel(strsize &iSelStart, strsize &iSelEnd);
+            virtual void get_text_selection(strsize &iSelStart, strsize &iSelEnd);
 
 
             virtual void MacroBegin();
@@ -137,7 +242,7 @@ namespace data
       void set_selection(strsize iBegin, strsize iEnd, const ::action_context & actioncontext);
 
       /*
-         void _001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context)
+         void set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context)
          {
 
             __UNREFERENCED_PARAMETER(iBeg);
@@ -147,7 +252,7 @@ namespace data
          }
 
 
-         void text::_001GetImpactSel(strsize & iBeg, strsize & iEnd)
+         void text::get_text_selection(strsize & iBeg, strsize & iEnd)
          {
 
             __UNREFERENCED_PARAMETER(iBeg);
@@ -213,6 +318,11 @@ namespace data
          }
 
       */
+
+      bool operator == (const text_property & textproperty) const;
+      bool operator == (const text_change & change) const;
+
+
    };
 
 

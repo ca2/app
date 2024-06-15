@@ -459,21 +459,21 @@ void property_object::on_catch_all_exception()
 // }
 
 
-atom property_object::translate_property_id(const ::atom & atom)
-{
-
-   auto pparent = parent_property_set_holder();
-
-   if (!pparent)
-   {
-
-      return atom;
-
-   }
-
-   return pparent->translate_property_id(atom);
-
-}
+//atom property_object::translate_property_id(const ::atom & atom)
+//{
+//
+//   auto pparent = parent_property_set_holder();
+//
+//   if (!pparent)
+//   {
+//
+//      return atom;
+//
+//   }
+//
+//   return pparent->translate_property_id(atom);
+//
+//}
 
 //void property_object::add_property_set(property_set * pset)
 //{

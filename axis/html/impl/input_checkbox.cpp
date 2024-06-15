@@ -92,7 +92,9 @@ namespace html
 
          ::atom atom = pelement->m_phtmlbase->get_tag()->get_attr_value("id");
 
-         atom = translate_property_id(atom);
+         //atom = translate_property_id(atom);
+
+         //atom = atom);
 
          if(!m_pcheckbox || !m_pcheckbox->is_window())
          {

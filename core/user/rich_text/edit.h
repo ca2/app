@@ -127,7 +127,7 @@ namespace user
          ::pointer<::user::rich_text::format> get_selection_common_format() override;
 
          using ::user::interaction::get_text;
-         //void _001GetText(string & str) override;
+         //void get_text(string & str) override;
          virtual void _001GetLayoutText(string & str);
 
 
@@ -168,12 +168,12 @@ namespace user
 
          virtual strsize _001GetLayoutTextLength() const;
 
-         //strsize _001GetTextLength() override;
+         //strsize get_text_length() override;
 
          //void write(::binary_stream & stream) const override;
          //void read(::binary_stream & stream) override;
 
-         void _001GetSel(strsize & iBeg, strsize & iEnd) override;
+         void plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd) const override;
          virtual void _001GetSelLineText(string & str);
 
 

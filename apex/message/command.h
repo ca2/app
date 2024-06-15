@@ -71,8 +71,8 @@ namespace message
 
 
       virtual void enable(bool bOn = true, const ::action_context & action_context = ::e_source_system);
-      //virtual void _001SetCheck(bool bCheck = true, const ::action_context & action_context = ::e_source_system);   // true or false
-      ///virtual void _001SetCheck(const ::e_check & echeck, const ::action_context & action_context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
+      //virtual void set_check(bool bCheck = true, const ::action_context & action_context = ::e_source_system);   // true or false
+      ///virtual void set_check(const ::e_check & echeck, const ::action_context & action_context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
       virtual void SetRadio(bool bOn = true, const ::action_context & action_context = ::e_source_system);
       virtual void SetText(const ::scoped_string & scopedstrText, const ::action_context & action_context = ::e_source_system);
 
@@ -89,7 +89,7 @@ namespace message
 
 
       //virtual bool on_property_will_change(::data::property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext);
-      virtual void on_property_changed(::data::property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext);
+      void on_property_changed(::data::property_change & change) override;
 
 
    };

@@ -1226,7 +1226,7 @@ namespace user
 
                atom idCommand = pmenuitem->m_atom;
 
-               idCommand = translate_property_id(idCommand);
+               //idCommand = translate_property_id(idCommand);
 
                defer_close();
 

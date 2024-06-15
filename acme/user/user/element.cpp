@@ -3980,14 +3980,14 @@ namespace user
 
 
    // Text Edit
-   void element::_001GetSel(strsize & iBeg, strsize & iEnd)
+   void element::plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd) const
    {
 
 
    }
 
 
-   void element::_001GetSel(strsize & iBeg, strsize & iEnd, strsize & iComposingStart, strsize & iComposingEnd)
+   void element::plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd, strsize & iComposingStart, strsize & iComposingEnd) const
    {
 
 
@@ -4533,7 +4533,7 @@ namespace user
    }
 
 
-   void element::insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context)
+   void element::plain_edit_insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context)
    {
 
    }

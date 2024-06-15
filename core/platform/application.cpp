@@ -324,10 +324,10 @@ namespace core
 
       pcheckbox->set_check(bUserAutoStart, ::e_source_initialize);
 
-      pcheckbox->check_changed(this) += [this](::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext)
+      pcheckbox->check_changed(this) += [this](auto & change)
          {
 
-            bool bCheck = payload.as_bool();
+            bool bCheck = change.payload().as_bool();
 
             auto papplication = m_papexapplication;
 

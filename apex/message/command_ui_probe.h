@@ -25,8 +25,8 @@
 
 
 //    virtual void enable(bool bOn, const ::action_context & action_context = ::e_source_system);
-//    virtual void _001SetCheck(bool bCheck, const ::action_context & action_context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
-//    virtual void _001SetCheck(enum_check echeck, const ::action_context & action_context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
+//    virtual void set_check(bool bCheck, const ::action_context & action_context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
+//    virtual void set_check(enum_check echeck, const ::action_context & action_context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
 //    virtual void SetRadio(bool bOn = true, const ::action_context & action_context = ::e_source_system);
 //    virtual void SetText(const ::scoped_string & scopedstrText, const ::action_context & action_context = ::e_source_system);
 

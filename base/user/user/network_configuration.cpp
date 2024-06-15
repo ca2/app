@@ -54,10 +54,10 @@ namespace user
          i32 iProxyPort = node.attr("port");
          ::pointer<::user::interaction>pinteraction = m_pimpact->get_child_by_name("server");
          ::pointer<::user::primitive>ptext =  (pinteraction);
-         ptext->_001SetText(strProxy, false);
+         ptext->set_text(strProxy, false);
          pinteraction = m_pimpact->get_child_by_name("port");
          ptext =  (pinteraction);
-         ptext->_001SetText(as_string(iProxyPort), false);
+         ptext->set_text(as_string(iProxyPort), false);
       }*/
    }
 

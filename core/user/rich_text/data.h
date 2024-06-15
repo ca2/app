@@ -77,7 +77,7 @@ namespace user
          virtual void _001Delete(strsize i1, strsize i2);
          virtual strsize _001InsertText(strsize i1, strsize i2, const ::string & psz, format * pformatParam = nullptr);
 
-         //virtual void _001GetText(string & str) const;
+         //virtual void get_text(string & str) const;
 
          virtual void __update_text();
 

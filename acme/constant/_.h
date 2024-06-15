@@ -125,3 +125,19 @@ enum enum_image_type
 
 #include "application_capability.h"
 
+
+
+enum enum_domain : ::i32
+{
+
+   e_domain_none = 0,
+   e_domain_1024 = 1024,
+
+};
+
+
+
+
+
+
+

@@ -57,7 +57,7 @@ namespace sockets_bsd
       //   socket_handler()->erase(this);
       //}
 
-      if (m_socket != INVALID_SOCKET            && !m_bRetain         )
+      if (m_socketid != INVALID_SOCKET            && !m_bRetain         )
       {
          close();
       }
@@ -85,7 +85,7 @@ namespace sockets_bsd
    void socket::close()
    {
 
-      if (m_socket == INVALID_SOCKET) // this could happen
+      if (m_socketid == INVALID_SOCKET) // this could happen
       {
 
          if(!::is_null(socket_handler()))
@@ -101,7 +101,7 @@ namespace sockets_bsd
 
       i32 n;
 
-      if ((n = close_socket(m_socket)) == -1)
+      if ((n = close_socket(m_socketid)) == -1)
       {
 
          if(!::is_null(socket_handler()))
@@ -117,18 +117,18 @@ namespace sockets_bsd
       //if(::is_set(m_phandlerSlave))
       //{
 
-      //   m_phandlerSlave->erase_socket(m_socket);
+      //   m_phandlerSlave->erase_socket(m_socketid);
 
       //}
 
       if (::is_set(socket_handler()))
       {
 
-         __Handler(socket_handler())->erase_socket(m_socket);
+         __Handler(socket_handler())->erase_socket(m_socketid);
 
       }
 
-      m_socket = INVALID_SOCKET;
+      m_socketid = INVALID_SOCKET;
       
    }
 
@@ -233,7 +233,7 @@ namespace sockets_bsd
    void socket::set(bool bRead, bool bWrite, bool bException)
    {
       
-      __Handler(socket_handler())->set(m_socket, bRead, bWrite, bException);
+      __Handler(socket_handler())->set(m_socketid, bRead, bWrite, bException);
 
    }
 
@@ -241,7 +241,7 @@ namespace sockets_bsd
    bool socket::Ready()
    {
 
-      if (m_socket != INVALID_SOCKET && !IsCloseAndDelete())
+      if (m_socketid != INVALID_SOCKET && !IsCloseAndDelete())
       {
 
          return true;

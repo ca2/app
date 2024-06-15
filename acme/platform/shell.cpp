@@ -477,7 +477,7 @@ namespace acme
    }
 
 
-   int shell::synchronous_terminal(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell, const trace_function& tracefunction)
+   int shell::synchronous_posix_terminal(const ::scoped_string& scopedstrCommand, enum_posix_shell eposixshell, const trace_function& tracefunction)
    {
 
       throw interface_only();

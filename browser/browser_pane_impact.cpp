@@ -223,7 +223,7 @@ namespace browser
          if (m_prollfps != nullptr)
          {
 
-            m_prollfps->_001SetText(str, ::e_source_database);
+            m_prollfps->set_text(str, ::e_source_database);
 
          }
 
@@ -239,7 +239,7 @@ namespace browser
 
                m_checkptraBilbo.add(pcheck);
 
-               m_checkptraBilbo.last()->_001SetCheck(pslide->m_bDatabase ? ::e_check_checked : ::e_check_unchecked, ::e_source_sync);
+               m_checkptraBilbo.last()->set_check(pslide->m_bDatabase ? ::e_check_checked : ::e_check_unchecked, ::e_source_sync);
 
                i++;
 
@@ -364,7 +364,7 @@ namespace browser
 
                         string str;
 
-                        m_prollfps->_001GetText(str);
+                        m_prollfps->get_text(str);
 
                         m_pimpactLast->datastream()->set("cur_fps_text",str);
 
@@ -384,11 +384,11 @@ namespace browser
                   }
                   //if(fabs(d) < 0.0000000001)
                   //{
-                  //   m_prollspf->_001SetText("",::e_source_initialize);
+                  //   m_prollspf->set_text("",::e_source_initialize);
                   //}
                   //else
                   //{
-                  //   m_prollspf->_001SetText(as_string(1.0/d),::e_source_initialize);
+                  //   m_prollspf->set_text(as_string(1.0/d),::e_source_initialize);
                   //}
                }
                catch(...)
@@ -406,17 +406,17 @@ namespace browser
             //   try
             //   {
             //      string str;
-            //      m_prollspf->_001GetText(str);
+            //      m_prollspf->get_text(str);
             //      double d = atof(str);
             //      if(fabs(d) < 0.0000000001)
             //      {
-            //         m_prollfps->_001SetText("",::e_source_initialize);
+            //         m_prollfps->set_text("",::e_source_initialize);
             //      }
             //      else
             //      {
             //         m_pflagview->m_frequencyFramesPerSecond = 1.0/ d;
             //         m_pflagview->m_dwRoll= ::time::now();
-            //         m_prollfps->_001SetText(as_string(1.0 / d),::e_source_initialize);
+            //         m_prollfps->set_text(as_string(1.0 / d),::e_source_initialize);
             //      }
             //   }
             //   catch(...)

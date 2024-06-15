@@ -281,8 +281,9 @@ public:
 
    virtual ::string class_title();
 
-
-
+   
+   template < primitive_function FUNCTION >
+   void hold_signal_function(::data::signal<FUNCTION> * psignal, FUNCTION f);
 
 };
 

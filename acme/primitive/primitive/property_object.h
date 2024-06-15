@@ -161,7 +161,7 @@ public:
    virtual bool property_set_get_string(string & strResult, const string& str) const;
    virtual bool property_set_get_evaluation(string & strResult, const string& str) const;
 
-   virtual atom translate_property_id(const ::atom & atom);
+   //virtual atom translate_property_id(const ::atom & atom);
 
    virtual void notify_property_changed(property* pproperty, const ::action_context& actioncontext);
 

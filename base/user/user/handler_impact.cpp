@@ -120,7 +120,7 @@ namespace user
 
       //   //      string strText;
 
-      //   //      m_pedit->_001GetText(strText);
+      //   //      m_pedit->get_text(strText);
 
       //   //      auto papp = get_app();
 
@@ -144,7 +144,7 @@ namespace user
       ////         if (ptopic->m_puserelement->m_atom == "clear_button")
       ////         {
       ////
-      ////            m_pedit->_001SetText("", ::e_source_user);
+      ////            m_pedit->set_text("", ::e_source_user);
       ////
       ////         }
       ////         else if (ptopic->m_puserelement->m_atom == "send_button")
@@ -152,7 +152,7 @@ namespace user
       ////
       ////            string strText;
       ////
-      ////            m_pedit->_001GetText(strText);
+      ////            m_pedit->get_text(strText);
       ////
       ////            //main_async(__routine([this, strText]()
       ////              // {
@@ -200,7 +200,7 @@ namespace user
    //void handler_impact::_001OnClearButton(::message::message * pmessage)
    //{
 
-   //   m_pedit->_001SetText("", ::e_source_user);
+   //   m_pedit->set_text("", ::e_source_user);
 
    //   pmessage->m_bRet = true;
 
@@ -212,7 +212,7 @@ namespace user
 
    //   string strText;
 
-   //   m_pedit->_001GetText(strText);
+   //   m_pedit->get_text(strText);
 
    //   output_error_message("send_button clicked\nText: " + strText);
 

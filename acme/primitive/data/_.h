@@ -33,9 +33,29 @@ namespace data
 namespace data
 {
 
-   using property_will_change = ::function < bool(property_container *, const ::atom_array &, const ::payload &, const ::action_context &) >;
+   struct property_change
+   {
+      property_container * m_ppropertycontainer;
+      const ::atom_array & m_atoma;
+      const ::payload & m_payload;
+      const ::action_context & m_actioncontext;
 
-   using property_changed = ::function < void(property_container *, const ::atom_array &, const ::payload &, const ::action_context &) >;
+
+   };
+
+   using property_will_change = ::function < bool(property_change &) >;
+
+
+   //struct property_changed_arguments
+   //{
+
+   //   property_container * m_ppropertycontainer;
+   //   const ::atom_array & m_atoma;
+   //   const ::payload & m_payload;
+   //   const ::action_context & m_actioncontext;
+   //};
+
+   using property_changed = ::function < void(property_change &) >;
 
 
 } // namespace data

@@ -32,16 +32,15 @@ public:
    constexpr e_check(bool b) : m_echeck(b ? ::e_check_checked : e_check_unchecked) {}
   //e_check(const ::logic::boolean & triestate);
 
+   constexpr explicit operator ::iptr () const { return m_echeck; }
 
    operator ::enum_check & () { return m_echeck; }
 
-   constexpr operator ::enum_check() const { return m_echeck; }
+   constexpr bool is_checked() const { return m_echeck == ::e_check_checked; }
 
-   constexpr explicit operator bool() const { return m_echeck == ::e_check_checked; }
+   constexpr bool operator !() const { return !is_checked(); }
 
-   constexpr bool operator !() const { return m_echeck != ::e_check_checked; }
-
-   e_check & operator =(const e_check & echeck) { m_echeck = (enum_check)echeck; return *this; }
+   e_check & operator =(const e_check & echeck) { m_echeck = echeck.m_echeck; return *this; }
 
    //bool operator ==(const e_check & echeck) const { return m_echeck == echeck.m_echeck; }
    //bool operator !=(const e_check & echeck) const { return m_echeck != echeck.m_echeck; }

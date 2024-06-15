@@ -676,7 +676,7 @@ namespace user
 
       string strLineGraphics;
 
-      if (_001GetTextLength() == 0)
+      if (get_text_length() == 0)
       {
 
          if (m_strEmtpyText.has_char())
@@ -1121,7 +1121,7 @@ namespace user
       if (m_linkedpropertyText && !m_linkedpropertyText->is_empty())
       {
 
-         _001SetText(m_linkedpropertyText->as_string(), ::e_source_initialize);
+         set_text(m_linkedpropertyText->as_string(), ::e_source_initialize);
 
       }
 
@@ -1132,7 +1132,7 @@ namespace user
       //if(m_ppropertyText && !m_ppropertyText->is_empty())
       //{
 
-      //   _001SetText(m_ppropertyText->get_string(), ::e_source_initialize);
+      //   set_text(m_ppropertyText->get_string(), ::e_source_initialize);
 
       //}
 
@@ -1211,7 +1211,7 @@ namespace user
       //   if (iSelStart == iSelEnd)
       //   {
 
-      //      _001SetSel(0, _001GetTextLength());
+      //      set_text_selection(0, get_text_length());
 
       //   }
 
@@ -1532,7 +1532,7 @@ namespace user
                m_iNewFocusSelectAllSelEnd = -1;
                m_iNewFocusSelectAllColumn = -1;
 
-               _001SetSel(iBegNew, iEndNew);
+               set_text_selection(iBegNew, iEndNew);
 
                m_iColumn = iColumn;
 
@@ -1549,7 +1549,7 @@ namespace user
    }
 
 
-   strsize plain_edit::_001GetTextLength()
+   strsize plain_edit::get_text_length()
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1596,7 +1596,7 @@ namespace user
    }
 
 
-   void plain_edit::_001GetText(string & str)
+   void plain_edit::get_text(string & str)
    {
 
       plain_edit_get_text(str);
@@ -1640,15 +1640,15 @@ namespace user
    }
 
 
-   void plain_edit::_001GetSelText(string & str)
+   void plain_edit::get_selection_text(string & str)
    {
 
-      _001GetText(str, m_ptree->m_iSelBeg, m_ptree->m_iSelEnd);
+      get_text(str, m_ptree->m_iSelBeg, m_ptree->m_iSelEnd);
 
    }
 
 
-   void plain_edit::_001GetText(string & str, ::collection::index iBegParam, ::collection::index iEndParam)
+   void plain_edit::get_text(string & str, ::collection::index iBegParam, ::collection::index iEndParam)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1724,7 +1724,7 @@ namespace user
    }
 
 
-   void plain_edit::_001SetSelText(const ::string & psz, const ::action_context & context)
+   void plain_edit::set_selection_text(const ::string & psz, const ::action_context & context)
    {
 
       {
@@ -1773,7 +1773,7 @@ namespace user
 
       _001GetSel(iSelBeg, iSelEndOld);
 
-      _001SetSel(iSelBeg, iSelEnd, actioncontext);
+      set_text_selection(iSelBeg, iSelEnd, actioncontext);
 
       _ensure_selection_visible_x(pgraphics);
 
@@ -1868,7 +1868,7 @@ namespace user
    }
 
 
-   void plain_edit::_001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context)
+   void plain_edit::set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1891,7 +1891,7 @@ namespace user
 
             string strText;
 
-            _001GetText(strText);
+            get_text(strText);
 
             //      //operating_system_driver::get()->m_iInputMethodManagerSelectionStart = ansi_to_wd16_len(strText, iBeg);
 
@@ -2230,7 +2230,7 @@ namespace user
                else
                {
 
-                  _001SetSel(iBegNew, iEndNew);
+                  set_text_selection(iBegNew, iEndNew);
 
                   m_iColumn = iColumnNew;
 
@@ -2695,7 +2695,7 @@ namespace user
 
          string strTextPrevious;
 
-         _001GetText(strTextPrevious);
+         get_text(strTextPrevious);
 
          string strText(strTextPrevious);
 
@@ -4957,10 +4957,10 @@ namespace user
 
    end:
 
-      if (iSel > _001GetTextLength())
+      if (iSel > get_text_length())
       {
 
-         iSel = _001GetTextLength();
+         iSel = get_text_length();
 
       }
 
@@ -4970,7 +4970,7 @@ namespace user
 
 
 
-   void plain_edit::_001GetImpactSel(strsize & iSelBeg, strsize & iSelEnd)
+   void plain_edit::get_text_selection(strsize & iSelBeg, strsize & iSelEnd)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -5513,7 +5513,7 @@ namespace user
 
             string str;
 
-            _001GetText(str, iSelEnd, -1);
+            get_text(str, iSelEnd, -1);
 
             const char * pdata = str.c_str();
 
@@ -5543,7 +5543,7 @@ namespace user
 
             string strSel;
 
-            _001GetText(strSel, i1, i2);
+            get_text(strSel, i1, i2);
 
             bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
 
@@ -5577,7 +5577,7 @@ namespace user
 
             string str;
 
-            _001GetText(str, 0, iSelBeg);
+            get_text(str, 0, iSelBeg);
 
             const ::ansi_character * psz = str.c_str() + iSelBeg;
 
@@ -5607,7 +5607,7 @@ namespace user
 
             string strSel;
 
-            _001GetText(strSel, i1, i2);
+            get_text(strSel, i1, i2);
 
             bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
 
@@ -5685,7 +5685,7 @@ namespace user
 
             string strSel;
 
-            _001GetText(strSel, i1, i2);
+            get_text(strSel, i1, i2);
 
             bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
 
@@ -5816,7 +5816,7 @@ namespace user
 
             string strSel;
 
-            _001GetText(strSel, i1, i2);
+            get_text(strSel, i1, i2);
 
             bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
 
@@ -5932,17 +5932,17 @@ namespace user
 
    //   ::sort_non_negative(i1, i2);
 
-   //   if (i1 < 0 || i1 > _001GetTextLength())
+   //   if (i1 < 0 || i1 > get_text_length())
    //   {
 
-   //      i1 = _001GetTextLength();
+   //      i1 = get_text_length();
 
    //   }
 
-   //   if (i2 < 0 || i2 > _001GetTextLength())
+   //   if (i2 < 0 || i2 > get_text_length())
    //   {
 
-   //      i2 = _001GetTextLength();
+   //      i2 = get_text_length();
 
    //   }
 
@@ -5963,7 +5963,7 @@ namespace user
 
    //   string strSel;
 
-   //   _001GetText(strSel, i1, i2);
+   //   get_text(strSel, i1, i2);
 
    //   bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
 
@@ -6037,17 +6037,17 @@ namespace user
 
       ::sort_non_negative(i1, i2);
 
-      if (i1 < 0 || i1 > _001GetTextLength())
+      if (i1 < 0 || i1 > get_text_length())
       {
 
-         i1 = _001GetTextLength();
+         i1 = get_text_length();
 
       }
 
-      if (i2 < 0 || i2 > _001GetTextLength())
+      if (i2 < 0 || i2 > get_text_length())
       {
 
-         i2 = _001GetTextLength();
+         i2 = get_text_length();
 
       }
 
@@ -6068,7 +6068,7 @@ namespace user
 
       string strSel;
 
-      _001GetText(strSel, i1, i2);
+      get_text(strSel, i1, i2);
 
       bFullUpdate = strSel.find_index('\n') >= 0 || strSel.find_index('\r') >= 0;
 
@@ -6394,7 +6394,7 @@ namespace user
             if (psession->is_key_pressed(::user::e_key_control))
             {
 
-               _001SetSel(0, _001GetTextLength());
+               set_text_selection(0, get_text_length());
 
                return;
 
@@ -6653,7 +6653,7 @@ namespace user
 
                      //   string strSel;
 
-                     //   _001GetText(strSel, i1, i2);
+                     //   get_text(strSel, i1, i2);
 
                      //   information() << "strSel : " << strSel;
 
@@ -7341,7 +7341,7 @@ namespace user
 
          string strText;
 
-         _001GetText(strText);
+         get_text(strText);
 
          ::acme::get()->platform()->informationf("\nplain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
 
@@ -7414,7 +7414,7 @@ namespace user
 
          string strText;
 
-         _001GetText(strText);
+         get_text(strText);
 
          ::acme::get()->platform()->informationf("Current Text: " + strText + "\n");
 
@@ -7573,7 +7573,7 @@ namespace user
 
             //   string strFull;
 
-            //   _001GetText(strFull);
+            //   get_text(strFull);
 
             //   strsize iOffset = 0;
 
@@ -7626,7 +7626,7 @@ namespace user
 
                string strFull;
 
-               _001GetText(strFull);
+               get_text(strFull);
 
                strsize iOffset = 0;
 
@@ -7692,7 +7692,7 @@ namespace user
             if (iAfterComposingCursorPosition >= 0)
             {
 
-               _001SetSel(iAfterComposingCursorPosition, iAfterComposingCursorPosition, ::e_source_sync);
+               set_text_selection(iAfterComposingCursorPosition, iAfterComposingCursorPosition, ::e_source_sync);
 
             }
 
@@ -7723,7 +7723,7 @@ namespace user
 
             string strText;
 
-            _001GetText(strText);
+            get_text(strText);
 
             __sort(iCandidateBeg, iCandidateEnd);
 
@@ -7769,7 +7769,7 @@ namespace user
 
       string strText;
 
-      _001GetText(strText);
+      get_text(strText);
 
       wd16_string wstrText(strText);
 
@@ -8083,9 +8083,9 @@ namespace user
          _synchronous_lock synchronouslock(this->synchronization());
 
          //string str;
-         //_001GetText(str);
+         //get_text(str);
 
-         auto iLen = _001GetTextLength();
+         auto iLen = get_text_length();
 
          if (m_ptree->m_iSelBeg > iLen)
             m_ptree->m_iSelBeg = (strsize)(iLen);
@@ -8145,9 +8145,9 @@ namespace user
          if (bSelectionWasAtEnd)
          {
 
-            auto iTextLength = _001GetTextLength();
+            auto iTextLength = get_text_length();
 
-            _001SetSel(iTextLength, iTextLength);
+            set_text_selection(iTextLength, iTextLength);
 
          }
          else
@@ -8161,7 +8161,7 @@ namespace user
 
             iSelectionEnd = plain_edit_line_x_to_sel(pgraphics, m_iLastSelectionEndLine, m_iLastSelectionEndX);
 
-            _001SetSel(iSelectionBegin, iSelectionEnd);
+            set_text_selection(iSelectionBegin, iSelectionEnd);
 
          }
 
@@ -8182,7 +8182,7 @@ namespace user
 
                string strText;
 
-               _001GetText(strText);
+               get_text(strText);
 
                ptexteditorinterface->set_editor_text(strText);
 
@@ -8225,9 +8225,9 @@ namespace user
          _synchronous_lock synchronouslock(this->synchronization());
 
          //string str;
-         //_001GetText(str);
+         //get_text(str);
 
-         auto iLen = _001GetTextLength();
+         auto iLen = get_text_length();
 
          if (m_ptree->m_iSelBeg > iLen)
             m_ptree->m_iSelBeg = (strsize)(iLen);
@@ -8479,7 +8479,7 @@ namespace user
 
 
 
-   void plain_edit::_001SetText(const ::string & strParam, const ::action_context & action_context)
+   void plain_edit::set_text(const ::string & strParam, const ::action_context & action_context)
    {
 
       ::strsize iSelBeg = 0;
@@ -8488,7 +8488,7 @@ namespace user
 
       _001GetSel(iSelBeg, iSelEnd);
 
-      ::strsize iTextLength = _001GetTextLength();
+      ::strsize iTextLength = get_text_length();
 
       m_bLastSelectionWasAtEnd = (iSelBeg == iSelEnd) && (iSelEnd == iTextLength);
 
@@ -8645,7 +8645,7 @@ namespace user
 
       string str;
 
-      _001GetSelText(str);
+      get_selection_text(str);
 
       // commenting str.replace_with below fix app-core/plain_text copy and
       // paste at Windows
@@ -8817,9 +8817,9 @@ namespace user
 
          strsize iBegAll = 0;
 
-         strsize iEndAll = _001GetTextLength();
+         strsize iEndAll = get_text_length();
 
-         _001SetSel(iBegAll, iEndAll);
+         set_text_selection(iBegAll, iEndAll);
 
          m_bNewFocusSelectAll = true;
 
@@ -8853,7 +8853,7 @@ namespace user
 
          string strText;
 
-         _001GetText(strText);
+         get_text(strText);
 
          ptexteditorinterface->set_editor_selection(iBeg, iEnd);
 
@@ -8953,7 +8953,7 @@ namespace user
 
       string str;
 
-      _001GetSelText(str);
+      get_selection_text(str);
 
       pcommand->enable(str.has_char());
 
@@ -8979,7 +8979,7 @@ namespace user
 
       string str;
 
-      _001GetSelText(str);
+      get_selection_text(str);
 
       pcommand->enable(str.has_char());
 
@@ -9034,7 +9034,7 @@ namespace user
 
       string str;
 
-      _001GetSelText(str);
+      get_selection_text(str);
 
       if (!str.has_char())
       {
@@ -9134,7 +9134,7 @@ namespace user
 
       string str;
 
-      _001GetText(str);
+      get_text(str);
 
       return str;
 
@@ -9328,7 +9328,7 @@ namespace user
 
             string strSel;
 
-            _001GetSelText(strSel);
+            get_selection_text(strSel);
 
             bFullUpdate = strSel.contains('\n') || strSel.contains('\r');
 

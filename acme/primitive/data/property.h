@@ -18,6 +18,7 @@ namespace data
       ::data::property_container *     m_ppropertycontainer;
       ::atom                           m_atom;
       friend class ::user::property;
+      void initialize_data_property(const ::data::property & propertySource);
    public:
 
 
@@ -33,9 +34,9 @@ namespace data
 
       ::atom atom() const { return m_atom; }
 
-      ::comparable_array < property_will_change > & property_will_change() const;
+      ::comparable_array < ::data::property_will_change > & property_will_change() const;
 
-      ::comparable_array < property_changed > & property_changed() const;
+      ::comparable_array < ::data::property_changed > & property_changed() const;
 
       //property_link(::property_container * ppropertycontainer = nullptr, const ::atom & atom = {});
       //property_link(const property_link & propertylink);
@@ -45,7 +46,8 @@ namespace data
       //bool set_property(const ::payload & payload, const ::action_context & context = {});
       //::payload get_property() const;
 
-      bool matches(::data::property_container * ppropertycontainer, const ::atom_array & atoma) const;
+      bool operator &&(::data::property_change & change) const;
+      bool operator &&(const ::atom_array & atoma) const;
 
       /*   void notify_property_changed(const ::action_context & actioncontext) const;
 
@@ -68,14 +70,17 @@ namespace data
       */
 
 
-      bool set_property(const ::payload & payload, const ::action_context & actioncontext);
+      bool set_property(const ::payload & payload, const ::action_context & actioncontext) const;
 
       ::atom_array get_key(const ::atom_array & atomaSuffix) const;
 
 
-      bool set_property(const ::atom_array & atomaSuffix, const ::payload & payload, const ::action_context & actioncontext);
+      bool set_property(const ::atom_array & atomaSuffix, const ::payload & payload, const ::action_context & actioncontext) const;
 
       ::payload get_property(const ::atom_array & atomaSuffix = {}) const;
+
+      
+      bool operator == (const property & property) const;
 
 
    };

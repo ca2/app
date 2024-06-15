@@ -31,12 +31,12 @@ namespace user
    }
    
    
-   void text_property::set_text_property(const ::data::text_property & textproperty)
-   {
+   //void text_property::set_text_property(const ::data::text_property & textproperty)
+   //{
 
-      set_data_property(*this, textproperty);
+   //   set_data_property(*this, textproperty);
 
-   }
+   //}
 
 
    //void text::unhook_callbacks()
@@ -142,7 +142,7 @@ namespace user
    //}
 
 
-   ////void text_property::_001GetText(string & str)
+   ////void text_property::get_text(string & str)
    ////{
 
    ////   if (m_linkedpropertyText)
@@ -155,7 +155,7 @@ namespace user
    //}
 
 
-   //void text_property::_001SetSelText(const ::string & psz, const ::action_context & context)
+   //void text_property::set_selection_text(const ::string & psz, const ::action_context & context)
    //{
 
    //   string_reference() = psz;
@@ -163,7 +163,7 @@ namespace user
    //}
 
 
-   //void text_property::_001SetText(const ::string & str, const ::action_context & context)
+   //void text_property::set_text(const ::string & str, const ::action_context & context)
    //{
 
    //   string_reference() = str;
@@ -171,40 +171,40 @@ namespace user
    //}
 
 
-   //strsize text_property::_001GetTextLength()
+   //strsize text_property::get_text_length()
    //{
 
    //   string str;
 
-   //   _001GetText(str);
+   //   get_text(str);
 
    //   return str.length();
 
    //}
 
 
-   //void text_property::_001GetText(char * psz, strsize len)
+   //void text_property::get_text(char * psz, strsize len)
    //{
 
    //   string str;
 
-   //   _001GetText(str);
+   //   get_text(str);
 
    //   ansi_count_copy(psz,str,len);
 
    //}
 
 
-   //void text_property::_001GetText(string & str, strsize iBeg, strsize iEnd)
+   //void text_property::get_text(string & str, strsize iBeg, strsize iEnd)
    //{
 
    //   // default implementation, probably inefficient
-   //   // _001GetText(string) returns big string
+   //   // get_text(string) returns big string
    //   // or retrieving entire string, instead of portions, is slow
 
    //   string strText;
 
-   //   _001GetText(strText);
+   //   get_text(strText);
 
    //   __sort(iBeg, iEnd);
 
@@ -213,10 +213,10 @@ namespace user
    //}
 
 
-   //void text_property::_001SetText(const ::string & str, strsize iLen, const ::action_context & context)
+   //void text_property::set_text(const ::string & str, strsize iLen, const ::action_context & context)
    //{
 
-   //   _001SetText(str.substr(0, iLen),context);
+   //   set_text(str.substr(0, iLen),context);
 
    //}
 
@@ -230,7 +230,7 @@ namespace user
    //}
 
 
-   //void text_property::_001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context)
+   //void text_property::set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context)
    //{
 
    //   __UNREFERENCED_PARAMETER(iBeg);
@@ -240,7 +240,7 @@ namespace user
    //}
 
 
-   //void text_property::_001GetImpactSel(strsize & iBeg, strsize & iEnd)
+   //void text_property::get_text_selection(strsize & iBeg, strsize & iEnd)
    //{
 
    //   __UNREFERENCED_PARAMETER(iBeg);
@@ -258,14 +258,14 @@ namespace user
    //}
 
 
-   //void text_property::_001GetSelText(string & str)
+   //void text_property::get_selection_text(string & str)
    //{
 
    //   ::collection::index iBeg, iEnd;
 
    //   _001GetSel(iBeg, iEnd);
 
-   //   _001GetText(str, iBeg, iEnd);
+   //   get_text(str, iBeg, iEnd);
 
    //}
 
@@ -354,35 +354,51 @@ namespace user
    //}
 
 
-   bool text_property::on_text_will_change(::data::text_property & textproperty, const ::payload & payload, const ::action_context & actioncontext)
+   //bool text_property::on_text_will_change(::user::text_change & textchange)
+   //{
+
+   //   for (auto & textwillchange : m_textwillchangea)
+   //   {
+
+   //      if (!textwillchange(textchange))
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //   }
+
+   //   return true;
+
+   //}
+
+
+   //void text_property::on_text_changed(::user::text_change & textchange)
+   //{
+
+   //   for (auto & textchanged : m_textchangeda)
+   //   {
+
+   //      textchanged(textchange);
+
+   //   }
+
+   //}
+
+
+   bool text_property::operator == (const ::data::text_property & textproperty) const
    {
 
-      for (auto & textwillchange : m_textwillchangea)
-      {
-
-         if (!textwillchange(textproperty, payload, actioncontext))
-         {
-
-            return false;
-
-         }
-
-      }
-
-      return true;
+      return ::data::text_property::operator == (textproperty);
 
    }
 
 
-   void text_property::on_text_changed(::data::text_property & textproperty, const ::payload & payload, const ::action_context & actioncontext)
+   bool text_property::operator == (const ::data::text_change & change) const
    {
 
-      for (auto & textchanged : m_textchangeda)
-      {
-
-         textchanged(textproperty, payload, actioncontext);
-
-      }
+      return this->operator == (change.m_textproperty);
 
    }
 

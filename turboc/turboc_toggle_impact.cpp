@@ -48,7 +48,7 @@ namespace turboc
 
    //   {
    //      synchronous_lock synchronouslock(&m_pmainimpact->m_pimpact->m_pmutexText);
-   //      _001GetText(m_pmainimpact->m_pimpact->m_strNewHelloMultiverse);
+   //      get_text(m_pmainimpact->m_pimpact->m_strNewHelloMultiverse);
    //   }
 
    //   m_pmainimpact->m_pimpact->post_message(WM_USER + 2000 + 77 + 2);

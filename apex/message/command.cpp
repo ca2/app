@@ -182,15 +182,15 @@ namespace message
 
    }
 
-   //void command::_001SetCheck(bool bCheck, const ::action_context & context)
+   //void command::set_check(bool bCheck, const ::action_context & context)
    //{
 
-   //   _001SetCheck((::enum_check)(bCheck ? ::e_check_checked : ::e_check_unchecked), context);
+   //   set_check((::enum_check)(bCheck ? ::e_check_checked : ::e_check_unchecked), context);
 
    //}
 
 
-   //void command::_001SetCheck(const ::e_check & echeck, const ::action_context & context)
+   //void command::set_check(const ::e_check & echeck, const ::action_context & context)
    //{
 
    //   //if (m_pmenu != nullptr)
@@ -219,10 +219,10 @@ namespace message
    //}
 
    
-   void command::on_property_changed(::data::property_container * ppropertycontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext)
+   void command::on_property_changed(::data::property_change & change)
    {
 
-      if (m_checkproperty.matches(ppropertycontainer, atoma))
+      if (m_checkproperty && change)
       {
 
          ::pointer<::user::element> pelement = m_puiOther;
@@ -230,12 +230,12 @@ namespace message
          if (pelement)
          {
 
-            pelement->m_checkproperty.set(payload.as_echeck(), actioncontext + ::e_source_sync);
+            pelement->m_checkproperty.set(change.m_payload.as_echeck(), change.m_actioncontext + ::e_source_sync);
 
          }
 
       }
-      else if (m_textproperty.matches(ppropertycontainer, atoma))
+      else if (m_textproperty && change)
       {
 
          ::pointer<::user::element> pelement = m_puiOther;
@@ -243,7 +243,7 @@ namespace message
          if (pelement)
          {
 
-            pelement->m_textproperty.set_text(payload.as_string(), actioncontext + ::e_source_sync);
+            pelement->m_textproperty.set_text(change.m_payload.as_string(), change.m_actioncontext + ::e_source_sync);
 
          }
 
@@ -283,7 +283,7 @@ namespace message
          }
 
 
-         //m_puiOther->_001SetText(scopedstrText, ::e_source_sync);
+         //m_puiOther->set_text(scopedstrText, ::e_source_sync);
 
       }
 

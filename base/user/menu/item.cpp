@@ -16,10 +16,10 @@ public: // re-implementations only
 
    menu_item_command(::particle * pparticle);
    void enable(bool bOn = true, const ::action_context & context = ::e_source_system) override;
-   //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
-   //void _001SetCheck(const e_check & echeck, const ::action_context & context = ::e_source_system) override;   // 0, 1 or 2 (indeterminate)
+   //   virtual void set_check(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
+   //void set_check(const e_check & echeck, const ::action_context & context = ::e_source_system) override;   // 0, 1 or 2 (indeterminate)
 //   virtual void SetRadio(bool bOn = true, const ::action_context & context = ::e_source_system);
-   //void _001SetText(const ::string & pszText, const ::action_context & context = ::e_source_system) override;
+   //void set_text(const ::string & pszText, const ::action_context & context = ::e_source_system) override;
 
 };
 
@@ -164,7 +164,7 @@ namespace user
 
          ::atom atom = pnode->attribute("id");
 
-         atom = translate_property_id(atom);
+         //atom = translate_property_id(atom);
 
          m_atom = atom;
 

@@ -2945,7 +2945,7 @@ namespace user
 
       }
 
-      if (atomImpactSystem.m_eimpact == FONTSEL_IMPACT)
+      if (atomImpactSystem.m_eimpact == (enum_impact)FONTSEL_IMPACT)
       {
 
          information() << "FontSelImpact Frame";

@@ -41,18 +41,21 @@ namespace user
       void set_text_property(const ::data::text_property & textproperty);
 
 
-      virtual bool on_text_will_change(::data::text_property & textproperty, const ::payload &, const ::action_context &);
-      virtual void on_text_changed(::data::text_property & textproperty, const ::payload &, const ::action_context &);
+      ::user::text_property text_property() const;
+
+      virtual bool on_text_will_change(::data::text_change & textchange);
+      virtual void on_text_changed(::data::text_change & textchange);
 
 
-      bool on_property_will_change(::data::property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext) override;
-      void on_property_changed(::data::property_container * pcontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext) override;
+      bool on_property_will_change(::data::property_change & change) override;
+      void on_property_changed(::data::property_change & change) override;
 
       virtual ::string as_text() const;
       virtual void get_text(::string & str) const;
       virtual strsize get_text_length() const;
       virtual ::string get_selection_text() const;
       virtual void get_selection_text(::string & str) const;
+      virtual void get_text_selection(strsize & iBegin, strsize & iEnd) const;
       virtual void set_text_selection(strsize iBegin, strsize iEnd, const ::action_context & actioncontext);
       virtual void set_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext);
 

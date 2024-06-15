@@ -25,152 +25,156 @@ namespace user
    }
 
 
-   ::comparable_array < check_will_change > & check_property::check_will_change()
+   //::comparable_array < ::check_will_change > & check_property::check_will_change()
+   //{
+
+   //   return m_checkwillchangea;
+
+   //}
+
+
+   //::comparable_array < check_changed > & check_property::check_changed()
+   //{
+
+   //   return m_checkchangeda;
+
+   //}
+
+
+   //void check_property::set_check_property(const ::data::check_property & checkproperty)
+   //{
+
+   //   unhook_callbacks();
+
+   //   set_data_property(*this, checkproperty);
+
+   //   hook_callbacks();
+
+   //}
+
+
+   //void check_property::unhook_callbacks()
+   //{
+
+   //   if (m_ppropertycontainer)
+   //   {
+
+   //      if (m_propertywillchange)
+   //      {
+
+   //         m_ppropertycontainer->property_will_change() -= m_propertywillchange;
+
+   //      }
+
+   //      if (m_propertychanged)
+   //      {
+
+   //         m_ppropertycontainer->property_changed() -= m_propertychanged;
+
+   //      }
+
+   //   }
+
+   //}
+
+
+   //void check_property::hook_callbacks()
+   //{
+
+   //   m_propertywillchange = [this](::data::property_change & change)
+   //      {
+
+   //         if (operator &&(change))
+   //         {
+
+   //            check_change checkchange{ *this, change };
+
+   //            for (auto & checkwillchange : m_checkwillchangea)
+   //            {
+
+   //               if (!checkwillchange(checkchange))
+   //               {
+
+   //                  return false;
+
+   //               }
+
+   //            }
+
+   //         }
+
+   //         return true;
+
+   //      };
+
+   //   m_ppropertycontainer->property_will_change() += m_propertywillchange;
+
+   //   m_propertychanged = [this](::data::property_change & change)
+   //      {
+
+   //         if (operator &&(change))
+   //         {
+
+   //            check_change checkchange{ *this, change };
+
+   //            for (auto & checkchanged : m_checkchangeda)
+   //            {
+
+   //               checkchanged(checkchange);
+
+   //            }
+
+   //         }
+
+   //      };
+
+   //   m_ppropertycontainer->property_changed() += m_propertychanged;
+
+   //}
+
+
+   //bool check_property::on_check_will_change(::user::check_change & checkchange)
+   //{
+
+   //   for (auto & checkwillchange : m_checkwillchangea)
+   //   {
+
+   //      if (!checkwillchange(checkchange))
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //   }
+
+   //   return true;
+
+   //}
+
+
+   //void check_property::on_check_changed(::user::check_change & checkchange)
+   //{
+
+   //   for (auto & checkchanged : m_checkchangeda)
+   //   {
+
+   //      checkchanged(checkchange);
+
+   //   }
+
+   //}
+
+
+ /*  void check::set_check(bool bChecked, const ::action_context & context)
    {
 
-      return m_checkwillchangea;
-
-   }
-
-
-   ::comparable_array < check_changed > & check_property::check_changed()
-   {
-
-      return m_checkchangeda;
-
-   }
-
-
-   void check_property::set_check_property(const ::data::check_property & checkproperty)
-   {
-
-      unhook_callbacks();
-
-      set_data_property(*this, checkproperty);
-
-      hook_callbacks();
-
-   }
-
-
-   void check_property::unhook_callbacks()
-   {
-
-      if (m_ppropertycontainer)
-      {
-
-         if (m_propertywillchange)
-         {
-
-            m_ppropertycontainer->property_will_change() -= m_propertywillchange;
-
-         }
-
-         if (m_propertychanged)
-         {
-
-            m_ppropertycontainer->property_changed() -= m_propertychanged;
-
-         }
-
-      }
-
-   }
-
-
-   void check_property::hook_callbacks()
-   {
-
-      m_propertywillchange = [this](::data::property_container * ppropertycontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext)
-         {
-
-            if (matches(ppropertycontainer, atoma))
-            {
-
-               for (auto & checkwillchange : m_checkwillchangea)
-               {
-
-                  if (!checkwillchange(*this, payload, actioncontext))
-                  {
-
-                     return false;
-
-                  }
-
-               }
-
-            }
-
-            return true;
-
-         };
-
-      m_ppropertycontainer->property_will_change() += m_propertywillchange;
-
-      m_propertychanged = [this](::data::property_container * ppropertycontainer, const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext)
-         {
-
-            if (matches(ppropertycontainer, atoma))
-            {
-
-               for (auto & checkchanged : m_checkchangeda)
-               {
-
-                  checkchanged(*this, payload, actioncontext);
-
-               }
-
-            }
-
-         };
-
-      m_ppropertycontainer->property_changed() += m_propertychanged;
-
-   }
-
-
-   bool check_property::on_check_will_change(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext)
-   {
-
-      for (auto & checkwillchange : m_checkwillchangea)
-      {
-
-         if (!checkwillchange(checkproperty, payload, actioncontext))
-         {
-
-            return false;
-
-         }
-
-      }
-
-      return true;
-
-   }
-
-
-   void check_property::on_check_changed(::data::check_property & checkproperty, const ::payload & payload, const ::action_context & actioncontext)
-   {
-
-      for (auto & checkchanged : m_checkchangeda)
-      {
-
-         checkchanged(checkproperty, payload, actioncontext);
-
-      }
-
-   }
-
-
- /*  void check::_001SetCheck(bool bChecked, const ::action_context & context)
-   {
-
-      _001SetCheck((::enum_check) (bChecked ? ::e_check_checked : ::e_check_unchecked),context);
+      set_check((::enum_check) (bChecked ? ::e_check_checked : ::e_check_unchecked),context);
 
    }*/
 
 
-   //void check::_001SetCheck(const ::e_check & echeck, const ::action_context & context)
+   //void check::set_check(const ::e_check & echeck, const ::action_context & context)
    //{
 
    //   if (!m_linkedpropertyCheck)
@@ -204,19 +208,19 @@ namespace user
    //}
 
 
-   //void check::_001ToggleCheck(const ::action_context & context)
+   //void check::toggle_check(const ::action_context & context)
    //{
 
    //   if(bcheck())
    //   {
 
-   //      _001SetCheck(::e_check_unchecked, context);
+   //      set_check(::e_check_unchecked, context);
 
    //   }
    //   else
    //   {
 
-   //      _001SetCheck(::e_check_checked, context);
+   //      set_check(::e_check_checked, context);
 
    //   }
 
@@ -228,6 +232,22 @@ namespace user
 
 
    //}
+
+
+   bool check_property::operator == (const ::data::check_property & checkproperty) const
+   {
+
+      return ::data::check_property::operator == (checkproperty);
+
+   }
+
+
+   bool check_property::operator == (const ::data::check_change & change) const
+   {
+
+      return this->operator == (change.m_checkproperty);
+
+   }
 
 
 } // namespace user

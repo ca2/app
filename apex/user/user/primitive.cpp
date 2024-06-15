@@ -4110,12 +4110,12 @@ namespace user
    //}
 
 
-   // Text Edit
-   void primitive::_001GetSel(strsize & iBeg, strsize & iEnd)
-   {
+   //// Text Edit
+   //void primitive::plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd)
+   //{
 
 
-   }
+   //}
 
 
    ::collection::index primitive::plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel)
@@ -4607,7 +4607,7 @@ namespace user
    }
 
 
-   void primitive::insert_text(const ::scoped_string & str, bool bForceNewStep, const ::action_context & context)
+   void primitive::plain_edit_insert_text(const ::scoped_string & str, bool bForceNewStep, const ::action_context & context)
    {
 
    }

@@ -12,93 +12,95 @@ class context;
 
 using signal_handle_context = map < signal_handler, ::pointer < ::context > >;
 
-
-
-class CLASS_DECL_APEX signal :
-   virtual public ::extended_topic
+namespace handler
 {
-public:
+
+   class CLASS_DECL_APEX signal :
+      virtual public ::extended_topic
+   {
+   public:
 
 
-   ::manager *                            m_pmanager;
-   ::signal_handle_context                m_signalhandlercontext;
+      ::manager * m_pmanager;
+      ::signal_handle_context                m_signalhandlercontext;
 
 
-   signal(const ::atom & atom, ::manager * pmanager = nullptr);
-   ~signal() override;
+      signal(const ::atom & atom, ::manager * pmanager = nullptr);
+      ~signal() override;
 
 
 #ifdef _DEBUG
 
-   
-   virtual i64 increment_reference_count() override;
-   virtual i64 decrement_reference_count() override;
-   virtual i64 release() override;
+
+      virtual i64 increment_reference_count() override;
+      virtual i64 decrement_reference_count() override;
+      virtual i64 release() override;
 
 
 #endif
 
 
-   virtual void run() override;
+      virtual void run() override;
 
 
-   virtual void notify();
+      virtual void notify();
 
-   virtual void add_handler(::matter * pmatter);
+      virtual void add_handler(::matter * pmatter);
 
-   virtual void add_signal_handler(const signal_handler& signalhandler);
+      virtual void add_signal_handler(const signal_handler & signalhandler);
 
-   virtual void erase_signal_handler(const signal_handler& signalhandler);
-   
-   //virtual void erase_signal_handlers(::particle * pparticle);
+      virtual void erase_signal_handler(const signal_handler & signalhandler);
 
-   virtual void set_modified();
+      //virtual void erase_signal_handlers(::particle * pparticle);
 
-   virtual void clear_modified();
+      virtual void set_modified();
 
-   virtual bool is_modified() const;
+      virtual void clear_modified();
 
-   virtual ::context * listener_context(const signal_handler & signalhandler);
+      virtual bool is_modified() const;
 
-   void post_destroy_all();
+      virtual ::context * listener_context(const signal_handler & signalhandler);
 
-
-   class ::time poll_time();
+      void post_destroy_all();
 
 
-   static inline bool should_poll(const class time & time)
-   {
-
-      return time >= 100_ms;
-
-   }
+      class ::time poll_time();
 
 
-   ::topic & operator=(const ::atom & atom)
-   {
+      static inline bool should_poll(const class time & time)
+      {
 
-      m_atom = atom;
+         return time >= 100_ms;
 
-      return *this;
-
-   }
+      }
 
 
-   inline bool operator==(const ::atom & atom) const { return m_atom == atom || m_atom == ID_FULL; }
+      ::topic & operator=(const ::atom & atom)
+      {
 
-   void subject_common_construct();
+         m_atom = atom;
 
-   virtual void start_task();
+         return *this;
 
-   virtual bool is_up_to_date(const ::context * pcontext) const;
-
-   virtual void set_up_to_date(::context * pcontext);
-
+      }
 
 
-};
+      inline bool operator==(const ::atom & atom) const { return m_atom == atom || m_atom == ID_FULL; }
+
+      void subject_common_construct();
+
+      virtual void start_task();
+
+      virtual bool is_up_to_date(const ::context * pcontext) const;
+
+      virtual void set_up_to_date(::context * pcontext);
 
 
+
+   };
+
+
+} // namespace handler
 
 
 

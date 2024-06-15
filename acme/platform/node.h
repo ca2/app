@@ -933,6 +933,10 @@ namespace acme
 
 #endif
 
+      virtual bool _is_google_chrome_installed();
+
+      virtual bool _is_visual_studio_code_installed();
+
       virtual bool _is_git_credential_manager_installed();
 
       virtual bool _is_jetbrains_clion_installed();
@@ -988,7 +992,6 @@ namespace acme
 //      virtual void windowing_system_display_error_trap_pop_ignored(int i);
 
       virtual enum_windowing calculate_ewindowing();
-
 
    };
 

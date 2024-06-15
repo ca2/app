@@ -12,7 +12,7 @@ namespace user
 
 
    class CLASS_DECL_AURA form_handler :
-      virtual public ::particle
+      virtual public ::matter
    {
    public:
 

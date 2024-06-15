@@ -23,9 +23,9 @@ namespace user
       inline ::enum_check & echeck() { return m_ppropertyCheck->m_echeck; }
       inline bool bcheck() const { return m_ppropertyCheck->operator bool(); }
       inline bool is_checked() const { return bcheck(); }
-      virtual void _001SetCheck(bool b, const ::action_context & action_context);
-      virtual void _001SetCheck(::enum_check check, const ::action_context & action_context);
-      virtual void _001ToggleCheck(const ::action_context & action_context);
+      virtual void set_check(bool b, const ::action_context & action_context);
+      virtual void set_check(::enum_check check, const ::action_context & action_context);
+      virtual void toggle_check(const ::action_context & action_context);
 
 
 

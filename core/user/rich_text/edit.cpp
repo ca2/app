@@ -402,10 +402,10 @@ namespace user
       }
 
 
-      //void edit::_001GetText(string & str)
+      //void edit::get_text(string & str)
       //{
 
-      //   ::user::interaction::_001GetText(str);
+      //   ::user::interaction::get_text(str);
 
       //}
 
@@ -1767,7 +1767,7 @@ namespace user
       //}
 
 
-      void edit::_001GetSel(strsize & iBeg, strsize & iEnd)
+      void edit::plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd) const
       {
 
       }

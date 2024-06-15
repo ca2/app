@@ -537,10 +537,10 @@ namespace user
    //}
 
 
-   //void still::_001SetCheck(const ::e_check & echeck, const ::action_context & context)
+   //void still::set_check(const ::e_check & echeck, const ::action_context & context)
    //{
 
-   //   check::_001SetCheck(echeck, context);
+   //   check::set_check(echeck, context);
 
    //}
 

@@ -115,6 +115,31 @@ namespace data
    }
 
 
+   void property::initialize_data_property(const ::data::property & propertySource)
+   {
+
+      //if (::is_set(m_ppropertycontainer) && m_ppropertycontainer != propertySource.m_ppropertycontainer)
+      //{
+
+         //propertyTarget.m_ppropertycontainer->m_propertylistenera.erase(m_pusercontrol);
+
+      m_ppropertycontainer = propertySource.m_ppropertycontainer;
+
+      //}
+
+      m_atom = propertySource.m_atom;
+
+      //if (::is_set(m_ppropertycontainer) && m_ppropertycontainer != propertySource.m_ppropertycontainer)
+      //{
+
+      //   propertyTarget.m_ppropertycontainer->m_propertylistenera.add(m_pusercontrol);
+
+      //}
+
+   }
+
+
+
    ::comparable_array < property_will_change > & property::property_will_change() const
    {
 
@@ -131,15 +156,8 @@ namespace data
    }
 
 
-   bool property::matches(::data::property_container * ppropertycontainer, const ::atom_array & atoma) const
+   bool property::operator &&(const ::atom_array & atoma) const
    {
-
-      if (m_ppropertycontainer != ppropertycontainer)
-      {
-
-         return false;
-
-      }
 
       if (atoma.is_empty())
       {
@@ -160,7 +178,29 @@ namespace data
    }
 
 
-   bool property::set_property(const ::payload & payload, const ::action_context & actioncontext)
+   bool property::operator &&(::data::property_change & change) const
+   {
+
+      if (m_ppropertycontainer != change.m_ppropertycontainer)
+      {
+
+         return false;
+
+      }
+
+      if (!(*this && change.m_atoma))
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   bool property::set_property(const ::payload & payload, const ::action_context & actioncontext) const
    {
 
       return m_ppropertycontainer->set_property({ m_atom }, payload, actioncontext);
@@ -189,7 +229,7 @@ namespace data
    }
 
 
-   bool property::set_property(const ::atom_array & atomaSuffix, const ::payload & payload, const ::action_context & actioncontext)
+   bool property::set_property(const ::atom_array & atomaSuffix, const ::payload & payload, const ::action_context & actioncontext) const
    {
 
       return m_ppropertycontainer->set_property(get_key(atomaSuffix), payload, actioncontext);
@@ -202,6 +242,28 @@ namespace data
 
 
       return m_ppropertycontainer->get_property(get_key(atomaSuffix));
+
+   }
+
+
+   bool property::operator == (const property & property) const
+   {
+
+      if (m_ppropertycontainer != property.m_ppropertycontainer)
+      {
+
+         return false;
+
+      }
+
+      if (m_atom != property.m_atom)
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 

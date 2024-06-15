@@ -4031,30 +4031,30 @@ retry_license:
    //}
 
 
-   ::atom application::translate_property_id(const ::atom & atom)
-   {
-      return ::aqua::application::translate_property_id(atom);
-      //if(!is_system())
-      //{
+   //::atom application::translate_property_id(const ::atom & atom)
+   //{
+   //   return ::aqua::application::translate_property_id(atom);
+   //   //if(!is_system())
+   //   //{
 
-        // if(!is_session())
-         //{
+   //     // if(!is_session())
+   //      //{
 
-           // return psession->translate_property_id(atom);
+   //        // return psession->translate_property_id(atom);
 
-         //}
-         //else
-         //{
+   //      //}
+   //      //else
+   //      //{
 
-           // return psystem->translate_property_id(atom);
+   //        // return psystem->translate_property_id(atom);
 
-         //}
+   //      //}
 
-      //}
+   //   //}
 
-      return atom;
+   //   return atom;
 
-   }
+   //}
 
 
    //void application::record(::create * pcommand)

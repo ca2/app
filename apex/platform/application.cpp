@@ -859,7 +859,8 @@ namespace apex
          //
          ////return false;
          //
-         //}
+         //} 	apex.dll!thread::on_request_message(request * prequest) Line 4721	C++
+
 
          //on_update_matter_locator();
 
@@ -5342,44 +5343,44 @@ namespace apex
    //}
 
 
-   ::atom application::translate_property_id(const ::atom & atom)
-   {
+   //::atom application::translate_property_id(const ::atom & atom)
+   //{
 
-      if (atom == "hide_recycle_bin")
-      {
+   //   if (atom == "hide_recycle_bin")
+   //   {
 
-         return id_hide_recycle_bin;
+   //      return id_hide_recycle_bin;
 
-      }
-      else if (atom == "show_recycle_bin")
-      {
+   //   }
+   //   else if (atom == "show_recycle_bin")
+   //   {
 
-         return id_show_recycle_bin;
+   //      return id_show_recycle_bin;
 
-      }
+   //   }
 
 
-      //if(!is_system())
-      //{
+   //   //if(!is_system())
+   //   //{
 
-      // if(!is_session())
-      //{
+   //   // if(!is_session())
+   //   //{
 
-      // return psession->translate_property_id(atom);
+   //   // return psession->translate_property_id(atom);
 
-      //}
-      //else
-      //{
+   //   //}
+   //   //else
+   //   //{
 
-      // return psystem->translate_property_id(atom);
+   //   // return psystem->translate_property_id(atom);
 
-      //}
+   //   //}
 
-      //}
+   //   //}
 
-      return atom;
+   //   return atom;
 
-   }
+   //}
 
 
    //void application::record(::create * pcommand)

@@ -350,7 +350,7 @@ public:
 
    }
 
-   bool convert(const ::payload & payload);
+   bool target_constrained_assign(const ::payload & payload);
 
 
    bool                             get_bool(bool bDefault = false)     const;

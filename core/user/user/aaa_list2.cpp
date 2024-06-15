@@ -7263,7 +7263,7 @@ namespace user
    void list2::_001OnUpdateListImpactAutoArrange(::message::message* pmessage)
    {
       ::pointer<::message::command>pcommand(pmessage);
-      pcommand->_001SetCheck(get_auto_arrange());
+      pcommand->set_check(get_auto_arrange());
       pcommand->enable();
    }
 

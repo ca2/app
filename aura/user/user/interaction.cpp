@@ -4025,7 +4025,7 @@ namespace user
    }
 
 
-   void interaction::_001GetSel(strsize & iBeg, strsize & iEnd)
+   void interaction::plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd) const
    {
 
 
@@ -11129,7 +11129,7 @@ namespace user
    }
 
 
-   void interaction::insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & actioncontext)
+   void interaction::plain_edit_insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & actioncontext)
    {
 
       auto strText = get_window_text();
@@ -11138,7 +11138,7 @@ namespace user
 
       strsize iEnd = strText.length();
 
-      _001GetSel(iBeg, iEnd);
+      plain_edit_get_text_selection(iBeg, iEnd);
 
       strText.translate_index(iBeg);
 
@@ -24331,13 +24331,15 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
                   if (pwindowimpl->m_pitemLButtonDown->m_atom.is_empty())
                   {
 
-                     atom = translate_property_id(m_atom);
+                     //atom = translate_property_id(m_atom);
+                     atom = m_atom;
 
                   }
                   else
                   {
 
-                     atom = translate_property_id(pwindowimpl->m_pitemLButtonDown->m_atom);
+                     //atom = translate_property_id(pwindowimpl->m_pitemLButtonDown->m_atom);
+                     atom = pwindowimpl->m_pitemLButtonDown->m_atom;
 
                   }
 
@@ -24916,13 +24918,16 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
             if (pwindowimpl->m_pitemLButtonDown->m_atom.is_empty())
             {
 
-               atom = translate_property_id(m_atom);
+               //atom = translate_property_id(m_atom);
+
+               atom = m_atom;
 
             }
             else
             {
 
-               atom = translate_property_id(pwindowimpl->m_pitemLButtonDown->m_atom);
+               //atom = translate_property_id(pwindowimpl->m_pitemLButtonDown->m_atom);
+               atom = pwindowimpl->m_pitemLButtonDown->m_atom;
 
             }
 
@@ -26528,7 +26533,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    void interaction::edit_on_text(string str)
    {
 
-      //_001SetText(str, ::e_source_user);
+      //set_text(str, ::e_source_user);
 
       m_textproperty.set_text(str, ::e_source_user);
 

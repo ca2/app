@@ -560,7 +560,7 @@ namespace user
 
       bool bComposing = ::is_set(m_pitemComposing);
 
-      bool bShowSelection = bComposing || has_keyboard_focus();
+      bool bStrongSelection = bComposing || has_keyboard_focus();
 
       strsize iComposeBeg = -1;
 
@@ -643,7 +643,7 @@ namespace user
 
       double y = rectangleX.top();
 
-      get_impact_selection(iSelBegOriginal, iSelEndOriginal);
+      get_text_selection(iSelBegOriginal, iSelEndOriginal);
 
       iSelBeg = iSelBegOriginal;
 
@@ -698,7 +698,6 @@ namespace user
          return;
 
       }
-
 
       for (::collection::index iLine = m_iCurrentPageLineStart; iLine < m_iCurrentPageLineEnd; i++, iLine++)
       {
@@ -870,18 +869,27 @@ namespace user
 
             }
 
-            if (bShowSelection)
+            //if (bShowSelection)
             {
 
                if (iCurLineSelEnd > iCurLineSelBeg)
                {
+
+                  ::color::color colorBk(crBkSel);
+
+                  if (!bStrongSelection)
+                  {
+
+                     colorBk.set_opacity(colorBk.u8_opacity() / 2);
+
+                  }
 
                   pgraphics->fill_rectangle(
                      ::rectangle_f64_dimension((double)((double)left + x1),
                         (double)y,
                         (double)minimum(x2 - x1, (double)rectangleX.right() - ((double)left + x1)),
                         (double)minimum((double)m_dLineHeight, (double)rectangleX.bottom() - y)),
-                     crBkSel);
+                     colorBk);
 
                   pgraphics->set(pbrushTextSel);
 
@@ -904,7 +912,7 @@ namespace user
 
             }
 
-            if (bComposing && iCurLineComposeEnd > iCurLineComposeBeg)
+            if (iCurLineComposeEnd > iCurLineComposeBeg)
             {
 
                //pgraphics->fill_rectangle(
@@ -918,7 +926,7 @@ namespace user
                   ::rectangle_f64_dimension((double)((double)left + compose1),
                      ((double)minimum((double)m_dLineHeight, (double)rectangleX.bottom())) - 1.0,
                      (double)minimum(compose2 - compose1, (double)rectangleX.right() - ((double)left + compose1)),
-                     1.0));
+                     bComposing ? 1.0 : 0.5 ));
 
                //pgraphics->set(pbrushTextSel);
 
@@ -1121,7 +1129,7 @@ namespace user
       //if (m_linkedpropertyText && !m_linkedpropertyText->is_empty())
       //{
 
-      //   _001SetText(m_linkedpropertyText->as_string(), ::e_source_initialize);
+      //   set_text(m_linkedpropertyText->as_string(), ::e_source_initialize);
 
       //}
 
@@ -1132,7 +1140,7 @@ namespace user
       //if(m_ppropertyText && !m_ppropertyText->is_empty())
       //{
 
-      //   _001SetText(m_ppropertyText->get_string(), ::e_source_initialize);
+      //   set_text(m_ppropertyText->get_string(), ::e_source_initialize);
 
       //}
 
@@ -1211,7 +1219,7 @@ namespace user
       //   if (iSelStart == iSelEnd)
       //   {
 
-      //      _001SetSel(0, _001GetTextLength());
+      //      set_text_selection(0, get_text_length());
 
       //   }
 
@@ -1532,7 +1540,7 @@ namespace user
                m_iNewFocusSelectAllSelEnd = -1;
                m_iNewFocusSelectAllColumn = -1;
 
-               m_textproperty.set_selection(iBegNew, iEndNew, ::e_source_sync);
+               plain_edit_set_text_selection(iBegNew, iEndNew, ::e_source_sync);
 
                m_iColumn = iColumn;
 
@@ -1549,7 +1557,7 @@ namespace user
    }
 
 
-   //strsize plain_edit::_001GetTextLength()
+   //strsize plain_edit::get_text_length()
    //{
 
    //   _synchronous_lock synchronouslock(this->synchronization());
@@ -1604,7 +1612,7 @@ namespace user
    //}
 
 
-   void plain_edit::plain_edit_get_text(string & str)
+   void plain_edit::plain_edit_get_text(string & str) const
    {
 
       if (m_ptree == nullptr)
@@ -1640,7 +1648,7 @@ namespace user
    }
 
 
-   //void plain_edit::_001GetSelText(string & str)
+   //void plain_edit::get_selection_text(string & str)
    //{
 
    //   get_text(str, m_ptree->m_iSelBeg, m_ptree->m_iSelEnd);
@@ -1726,12 +1734,104 @@ namespace user
    }
 
 
-   void plain_edit::set_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext)
+   void plain_edit::on_set_property(::data::property_change & change)
    {
 
-      m_textproperty.set_text(scopedstr, actioncontext);
+      if (m_textproperty && change)
+      {
+
+         if (change.m_atoma.get_size() == 2)
+         {
+
+            switch (change.m_atoma[1].as_eid())
+            {
+            case ID_TEXT:
+               plain_edit_set_text(change.m_payload.as_string(), change.m_actioncontext);
+               return;
+            case ID_TEXT_SELECTION_BEGIN:
+               plain_edit_set_text_selection_begin(change.m_payload.as_iptr(), change.m_actioncontext);
+               return;
+            case ID_TEXT_SELECTION_END:
+               plain_edit_set_text_selection_begin(change.m_payload.as_iptr(), change.m_actioncontext);
+               return;
+            default:
+               break;
+            }
+
+         }
+
+      }
+
+      ::user::interaction::on_set_property(change);
 
    }
+
+
+   ::payload plain_edit::on_get_property(const ::atom_array & atoma) const
+   {
+
+      if (m_textproperty && atoma)
+      {
+
+         if (atoma.get_size() == 2)
+         {
+
+            switch (atoma[1].as_eid())
+            {
+            case ID_TEXT:
+            {
+
+               ::string str;
+
+               plain_edit_get_text(str);
+
+               return str;
+
+            }
+            case ID_TEXT_SELECTION_BEGIN:
+            {
+
+               strsize iBeg;
+
+               strsize iEnd;
+               
+               plain_edit_get_text_selection(iBeg, iEnd);
+
+               return iBeg;
+
+            }
+            case ID_TEXT_SELECTION_END:
+            {
+
+               strsize iBeg;
+
+               strsize iEnd;
+
+               plain_edit_get_text_selection(iBeg, iEnd);
+
+               return iEnd;
+
+            }
+            default:
+               break;
+            }
+
+         }
+
+      }
+
+      return ::user::interaction::on_get_property(atoma);
+
+   }
+
+
+
+   //void plain_edit::set_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext)
+   //{
+
+   //   m_textproperty.set_text(scopedstr, actioncontext);
+
+   //}
 
 
    void plain_edit::set_selection_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext)
@@ -1785,9 +1885,9 @@ namespace user
 
       ::strsize iSelBeg, iSelEndOld;
 
-      _001GetSel(iSelBeg, iSelEndOld);
+      plain_edit_get_text_selection(iSelBeg, iSelEndOld);
 
-      set_selection(iSelBeg, iSelEnd, actioncontext);
+      plain_edit_set_text_selection(iSelBeg, iSelEnd, actioncontext);
 
       _ensure_selection_visible_x(pgraphics);
 
@@ -1882,8 +1982,32 @@ namespace user
    }
 
 
-   //void plain_edit::_001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context)
-   void plain_edit::set_selection(strsize iBeg, strsize iEnd, const ::action_context & action_context)
+   void plain_edit::plain_edit_set_text_selection_begin(strsize iBeg, const ::action_context & actioncontext)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      m_ptree->m_iSelBeg = iBeg;
+
+      _unlocked_plain_edit_on_change_text_selection(actioncontext);
+
+   }
+
+
+   void plain_edit::plain_edit_set_text_selection_end(strsize iEnd, const ::action_context & actioncontext)
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      m_ptree->m_iSelEnd = iEnd;
+
+      _unlocked_plain_edit_on_change_text_selection(actioncontext);
+
+   }
+
+
+   //void plain_edit::set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & actioncontext)
+   void plain_edit::plain_edit_set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & actioncontext)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1892,9 +2016,17 @@ namespace user
 
       m_ptree->m_iSelEnd = iEnd;
 
+      _unlocked_plain_edit_on_change_text_selection(actioncontext);
+
+   }
+
+
+   void plain_edit::_unlocked_plain_edit_on_change_text_selection(const ::action_context & actioncontext)
+   {
+
       m_bNewSel = true;
 
-      if (action_context.is_user_source())
+      if (actioncontext.is_user_source())
       {
 
          auto pwindowing = windowing();
@@ -1914,9 +2046,9 @@ namespace user
 
             //      //operating_system_driver::get()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, iEnd);
 
-            auto iSelectionStart = ansi_to_wd32_len(strText, iBeg);
+            auto iSelectionStart = ansi_to_wd32_len(strText, m_ptree->m_iSelBeg);
 
-            auto iSelectionEnd = ansi_to_wd32_len(strText, iEnd);
+            auto iSelectionEnd = ansi_to_wd32_len(strText, m_ptree->m_iSelEnd);
 
             ptexteditorinterface->set_editor_selection(iSelectionStart, iSelectionEnd);
 
@@ -1973,6 +2105,47 @@ namespace user
       //      }
       //
       //#endif
+
+   }
+
+   
+   void plain_edit::plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd) const
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      iBeg = m_ptree->m_iSelBeg;
+
+      iEnd = m_ptree->m_iSelEnd;
+
+   }
+
+
+   void plain_edit::plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd, strsize & iComposingStart, strsize & iComposingEnd) const
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      iBeg = m_ptree->m_iSelBeg;
+
+      iEnd = m_ptree->m_iSelEnd;
+
+      if (m_pitemComposing)
+      {
+
+         iComposingStart = (strsize)m_pitemComposing->m_position;
+
+         iComposingEnd = (strsize)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
+
+      }
+      else
+      {
+
+         iComposingStart = iBeg;
+
+         iComposingEnd = iEnd;
+
+      }
 
    }
 
@@ -2224,7 +2397,7 @@ namespace user
                ::strsize iBegOld = -1;
                ::strsize iEndOld = -1;
 
-               _001GetSel(iBegOld, iEndOld);
+               plain_edit_get_text_selection(iBegOld, iEndOld);
 
                iBegNew = plain_edit_char_hit_test(pgraphics, point);
 
@@ -2247,7 +2420,7 @@ namespace user
                else
                {
 
-                  set_selection(iBegNew, iEndNew, e_source_sync);
+                  plain_edit_set_text_selection(iBegNew, iEndNew, e_source_sync);
 
                   m_iColumn = iColumnNew;
 
@@ -4986,17 +5159,17 @@ namespace user
    }
 
 
-   void plain_edit::get_impact_selection(strsize & iSelBeg, strsize & iSelEnd)
-   {
+   //void plain_edit::get_text_selection(strsize & iSelBeg, strsize & iSelEnd)
+   //{
 
-      _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization());
 
-      m_textproperty.get_selection(iSelBeg, iSelEnd);
+   //   m_textproperty.get_selection(iSelBeg, iSelEnd);
 
-   }
+   //}
 
 
-   //void plain_edit::_001GetImpactSel(strsize & iSelBeg, strsize & iSelEnd)
+   //void plain_edit::get_text_selection(strsize & iSelBeg, strsize & iSelEnd)
    //{
 
    //   _synchronous_lock synchronouslock(this->synchronization());
@@ -5006,7 +5179,7 @@ namespace user
    //}
 
 
-   //void plain_edit::get_impact_selection(strsize & iSelBeg, strsize & iSelEnd)
+   //void plain_edit::get_text_selection(strsize & iSelBeg, strsize & iSelEnd)
    //{
 
    //   _synchronous_lock synchronouslock(this->synchronization());
@@ -5057,45 +5230,45 @@ namespace user
    //}
 
 
-   void plain_edit::_001GetSel(strsize & iBeg, strsize & iEnd)
-   {
+   //void plain_edit::_001GetSel(strsize & iBeg, strsize & iEnd)
+   //{
 
-      _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization());
 
-      iBeg = m_ptree->m_iSelBeg;
+   //   iBeg = m_ptree->m_iSelBeg;
 
-      iEnd = m_ptree->m_iSelEnd;
+   //   iEnd = m_ptree->m_iSelEnd;
 
-   }
+   //}
 
 
-   void plain_edit::_001GetSel(strsize & iSelStart, strsize & iSelEnd, strsize & iComposingStart, strsize & iComposingEnd)
-   {
+   //void plain_edit::_001GetSel(strsize & iSelStart, strsize & iSelEnd, strsize & iComposingStart, strsize & iComposingEnd)
+   //{
 
-      _synchronous_lock synchronouslock(this->synchronization());
+   //   _synchronous_lock synchronouslock(this->synchronization());
 
-      iSelStart = m_ptree->m_iSelBeg;
+   //   iSelStart = m_ptree->m_iSelBeg;
 
-      iSelEnd = m_ptree->m_iSelEnd;
+   //   iSelEnd = m_ptree->m_iSelEnd;
 
-      if (m_pitemComposing)
-      {
+   //   if (m_pitemComposing)
+   //   {
 
-         iComposingStart = (strsize)m_pitemComposing->m_position;
+   //      iComposingStart = (strsize)m_pitemComposing->m_position;
 
-         iComposingEnd = (strsize)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
+   //      iComposingEnd = (strsize)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         iComposingStart = iSelStart;
+   //      iComposingStart = iSelStart;
 
-         iComposingEnd = iSelEnd;
+   //      iComposingEnd = iSelEnd;
 
-      }
+   //   }
 
-   }
+   //}
 
 
    void plain_edit::FileSave()
@@ -5957,17 +6130,17 @@ namespace user
 
    //   ::sort_non_negative(i1, i2);
 
-   //   if (i1 < 0 || i1 > _001GetTextLength())
+   //   if (i1 < 0 || i1 > get_text_length())
    //   {
 
-   //      i1 = _001GetTextLength();
+   //      i1 = get_text_length();
 
    //   }
 
-   //   if (i2 < 0 || i2 > _001GetTextLength())
+   //   if (i2 < 0 || i2 > get_text_length())
    //   {
 
-   //      i2 = _001GetTextLength();
+   //      i2 = get_text_length();
 
    //   }
 
@@ -6419,7 +6592,7 @@ namespace user
             if (psession->is_key_pressed(::user::e_key_control))
             {
 
-               set_selection(0, get_text_length(), ::e_source_sync);
+               plain_edit_set_text_selection(0, get_text_length(), ::e_source_sync);
 
                return;
 
@@ -7051,7 +7224,7 @@ namespace user
                if (m_bMultiLine)
                {
 
-                  insert_text("\n", true, e_source_user);
+                  plain_edit_insert_text("\n", true, e_source_user);
 
                }
 
@@ -7253,7 +7426,7 @@ namespace user
 
             }
 
-            insert_text(str, false, e_source_user);
+            plain_edit_insert_text(str, false, e_source_user);
 
             pkey->m_bRet = true;
 
@@ -7271,7 +7444,7 @@ namespace user
 
       strsize iEnd;
 
-      _001GetSel(iBeg, iEnd);
+      plain_edit_get_text_selection(iBeg, iEnd);
 
       // i32 x;
 
@@ -7376,11 +7549,11 @@ namespace user
 
 #if defined(LINUX) || defined(MACOS)
 
-         insert_text(strText, false, e_source_user);
+         plain_edit_sinsert_text(strText, false, e_source_user);
 
 #else
 
-         insert_text(strText, true, e_source_user);
+         plain_edit_insert_text(strText, true, e_source_user);
 
 #endif
 
@@ -7872,7 +8045,7 @@ namespace user
 
                strsize iComposingEnd = 0;
 
-               _001GetSel(iSelectionStart, iSelectionEnd, iComposingStart, iComposingEnd);
+               plain_edit_get_text_selection(iSelectionStart, iSelectionEnd, iComposingStart, iComposingEnd);
 
                ptexteditorinterface->set_input_method_manager_selection(iSelectionStart, iSelectionEnd, iComposingStart, iComposingEnd);
 
@@ -8186,7 +8359,7 @@ namespace user
 
             iSelectionEnd = plain_edit_line_x_to_sel(pgraphics, m_iLastSelectionEndLine, m_iLastSelectionEndX);
 
-            set_selection(iSelectionBegin, iSelectionEnd, e_source_sync);
+            plain_edit_set_text_selection(iSelectionBegin, iSelectionEnd, e_source_sync);
 
          }
 
@@ -8215,7 +8388,7 @@ namespace user
 
                ::strsize iEnd = -1;
 
-               _001GetSel(iBeg, iEnd);
+               plain_edit_get_text_selection(iBeg, iEnd);
 
                ptexteditorinterface->set_editor_selection(iBeg, iEnd);
 
@@ -8504,77 +8677,77 @@ namespace user
 
 
 
-   ////void plain_edit::_001SetText(const ::string & strParam, const ::action_context & action_context)
-   //{
+   void plain_edit::plain_edit_set_text(const ::scoped_string & scopedstrParam, const ::action_context & actioncontext)
+   {
 
-   //   ::strsize iSelBeg = 0;
+      ::strsize iSelBeg = 0;
 
-   //   ::strsize iSelEnd = 0;
+      ::strsize iSelEnd = 0;
 
-   //   _001GetSel(iSelBeg, iSelEnd);
+      plain_edit_get_text_selection(iSelBeg, iSelEnd);
 
-   //   ::strsize iTextLength = _001GetTextLength();
+      ::strsize iTextLength = get_text_length();
 
-   //   m_bLastSelectionWasAtEnd = (iSelBeg == iSelEnd) && (iSelEnd == iTextLength);
+      m_bLastSelectionWasAtEnd = (iSelBeg == iSelEnd) && (iSelEnd == iTextLength);
 
-   //   string str(strParam);
+      string str(scopedstrParam);
 
-   //   {
+      {
 
-   //      _synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
-   //      if (m_bParseDataPacks)
-   //      {
+         if (m_bParseDataPacks)
+         {
 
-   //         m_base64map.erase_all();
+            m_base64map.erase_all();
 
-   //         auto psystem = system()->m_paurasystem;
+            auto psystem = system()->m_paurasystem;
 
-   //         psystem->_001AddPacks(m_base64map, str);
+            psystem->_001AddPacks(m_base64map, str);
 
-   //      }
+         }
 
-   //      if (!m_ptree)
-   //      {
+         if (!m_ptree)
+         {
 
-   //         return;
+            return;
 
-   //      }
+         }
 
-   //      if (m_ptree->m_peditfile->get_length() > 0)
-   //      {
+         if (m_ptree->m_peditfile->get_length() > 0)
+         {
 
-   //         m_ptree->m_peditfile->seek(0, ::e_seek_set);
+            m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
-   //         m_ptree->m_peditfile->Delete((memsize)m_ptree->m_peditfile->get_length());
+            m_ptree->m_peditfile->Delete((memsize)m_ptree->m_peditfile->get_length());
 
-   //      }
+         }
 
-   //      if (str.has_char())
-   //      {
+         if (str.has_char())
+         {
 
-   //         m_ptree->m_peditfile->seek(0, ::e_seek_set);
+            m_ptree->m_peditfile->seek(0, ::e_seek_set);
 
-   //         m_ptree->m_peditfile->Insert(str, str.length());
+            m_ptree->m_peditfile->Insert(str, str.length());
 
-   //      }
+         }
 
-   //   }
+      }
 
-   //   m_bSetTextSelectionUpdatePending = true;
+      m_bSetTextSelectionUpdatePending = true;
 
-   //   queue_graphics_call([this, action_context](::draw2d::graphics_pointer & pgraphics)
-   //   {
+      queue_graphics_call([this, actioncontext](::draw2d::graphics_pointer & pgraphics)
+      {
 
-   //      plain_edit_on_update(pgraphics, action_context);
+         plain_edit_on_update(pgraphics, actioncontext);
 
-   //   });
+      });
 
-   //   set_need_redraw();
+      set_need_redraw();
 
-   //   post_redraw();
+      post_redraw();
 
-   //}
+   }
 
 
    void plain_edit::keyboard_focus_OnKeyDown(::message::message * pmessage)
@@ -8709,7 +8882,7 @@ namespace user
 
       }
 
-      insert_text(str, true, e_source_user);
+      plain_edit_insert_text(str, true, e_source_user);
 
       if (m_bEnterKeyOnPaste)
       {
@@ -8874,7 +9047,7 @@ namespace user
 
          strsize iEnd = 0;
 
-         _001GetSel(iBeg, iEnd);
+         plain_edit_get_text_selection(iBeg, iEnd);
 
          string strText;
 
@@ -9229,8 +9402,10 @@ namespace user
    }
 
 
-   void plain_edit::insert_text(string strText, bool bForceNewStep, const ::action_context & actioncontext)
+   void plain_edit::plain_edit_insert_text(const ::scoped_string & scopedstrText, bool bForceNewStep, const ::action_context & actioncontext)
    {
+
+      ::string strText(scopedstrText);
 
       queue_graphics_call([this, strText, bForceNewStep](::draw2d::graphics_pointer & pgraphics)
          {
@@ -9253,16 +9428,16 @@ namespace user
    }
 
 
-   void plain_edit::plain_edit_insert_text(::draw2d::graphics_pointer & pgraphics, string strText, bool bForceNewStep)
+   void plain_edit::plain_edit_insert_text(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstrText, bool bForceNewStep)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
       _synchronous_lock _synchronouslock2(m_ptree->m_peditfile->synchronization());
 
-      ::string strInsertLog = strText.left(64);
+      ::string strInsertLog = scopedstrText(0, 64);
 
-      if (strText == "1")
+      if (scopedstrText == "1")
       {
 
          information() << "typed \'1\'";
@@ -9276,6 +9451,8 @@ namespace user
       on_before_change_text();
 
       auto psystem = system()->m_paurasystem;
+
+      ::string strText(scopedstrText);
 
       psystem->_001AddPacks(m_base64map, strText);
 

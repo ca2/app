@@ -497,7 +497,7 @@ m_ibuf(isize)
    tcp_socket::~tcp_socket()
    {
 
-      if (m_socket != INVALID_SOCKET) // this could happen
+      if (m_socketid != INVALID_SOCKET) // this could happen
       {
 
          close();

@@ -1608,7 +1608,7 @@ namespace user
 
       virtual int on_text_composition_message(int iMessage);
 
-      virtual void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & actioncontext);
+      void plain_edit_insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & actioncontext) override;
       //void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
       virtual void get_text_composition_area(::rectangle_i32 & rectangle);
 
@@ -2194,7 +2194,7 @@ namespace user
       virtual void on_hide_place_holder_child(::user::interaction* pinteraction);
 
 
-      void _001GetSel(strsize& iBeg, strsize& iEnd) override;
+      void plain_edit_get_text_selection(strsize& iBeg, strsize& iEnd) const override;
 
       
       virtual bool set_sel_by_name(const ::string & strName);

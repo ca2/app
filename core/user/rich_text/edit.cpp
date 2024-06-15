@@ -1767,7 +1767,7 @@ namespace user
       //}
 
 
-      void edit::_001GetSel(strsize & iBeg, strsize & iEnd)
+      void edit::plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd) const
       {
 
       }

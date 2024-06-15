@@ -28,8 +28,11 @@ namespace data
       ~property_container() override;
 
 
-      bool set_property(const ::atom_array & atoma, const ::payload & payload, const ::action_context & context = {});
-      ::payload get_property(const ::atom_array & atoma) const;
+      virtual bool set_property(const ::atom_array & atoma, const ::payload & payload, const ::action_context & context = {});
+      virtual ::payload get_property(const ::atom_array & atoma) const;
+
+      virtual void on_set_property(::data::property_change & change);
+      virtual ::payload on_get_property(const ::atom_array & atoma) const;
 
       virtual bool on_property_will_change(::data::property_change & change);
       virtual void on_property_changed(::data::property_change & change);

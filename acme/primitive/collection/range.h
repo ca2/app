@@ -51,7 +51,7 @@ constexpr RANGE _start_count_range(const RANGE & range, memsize start, memsize c
    return {
       ::clipped_add(range.begin(), start, range.begin(), range.end()),
       ((count >= 0) ? ::clipped_add(range.begin(), start + count, range.begin(), range.end()) :
-      ::clipped_add(range.end(), count, range.begin(), range.end())) };
+      ::clipped_add(range.end(), count + 1, range.begin(), range.end())) };
 
 }
 
@@ -472,7 +472,7 @@ public:
       return {
          (ITERATOR_TYPE) (this->begin() + start),
          (ITERATOR_TYPE) (((count >= 0) ? ::clipped_add(this->begin(), start + count, this->begin(), this->end()) : ::clipped_add(
-            this->end(), count, this->begin(), this->end()))) };
+            this->end(), count + 1, this->begin(), this->end()))) };
 
    }
 

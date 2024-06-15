@@ -502,7 +502,11 @@ namespace geo
          char * out = nullptr;
          size_t out_length = 0;
 
-         int iError = unac_string("UTF8", strTry.begin(), strTry.size(), &out, &out_length);
+         auto in = strTry.begin();
+
+         auto in_length = strTry.size();
+
+         int iError = unac_string("UTF-8", in, in_length, &out, &out_length);
 
          if (iError != 0)
          {

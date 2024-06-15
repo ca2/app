@@ -108,7 +108,7 @@ namespace data
       //virtual void MacroEnd();
 
 
-      void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context);
+      void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & actioncontext);
 
 
       //string as_string() const override;

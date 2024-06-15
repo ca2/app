@@ -668,7 +668,7 @@ namespace user
 
       void edit_on_text(string str) override;
       void edit_on_sel(strsize iBeg, strsize iEnd) override;
-      void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context) override;
+      void plain_edit_insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context) override;
 
 
       void on_text_composition(string str) override;
@@ -695,7 +695,7 @@ namespace user
       //virtual bool enable_window(bool bEnable );
 
       // Text Edit
-      void _001GetSel(strsize & iBeg, strsize & iEnd) override;
+      //void plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd) const override;
       ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
       ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x) override;
       ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;

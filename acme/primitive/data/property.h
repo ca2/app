@@ -47,6 +47,7 @@ namespace data
       //::payload get_property() const;
 
       bool operator &&(::data::property_change & change) const;
+      bool operator &&(const ::atom_array & atoma) const;
 
       /*   void notify_property_changed(const ::action_context & actioncontext) const;
 

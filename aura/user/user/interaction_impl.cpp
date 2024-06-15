@@ -7293,7 +7293,7 @@ namespace user
 
          strsize iEnd = 0;
 
-         pfocus->_001GetSel(iBeg, iEnd);
+         pfocus->plain_edit_get_text_selection(iBeg, iEnd);
 
          string strText;
 

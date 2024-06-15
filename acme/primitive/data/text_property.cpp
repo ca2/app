@@ -315,7 +315,7 @@ namespace data
 
       auto strText = this->as_text();
 
-      __sort(iBeg, iEnd);
+      sort_non_negative(iBeg, iEnd);
 
       str = strText(iBeg, iEnd - iBeg);
 

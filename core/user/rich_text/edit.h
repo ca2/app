@@ -173,7 +173,7 @@ namespace user
          //void write(::binary_stream & stream) const override;
          //void read(::binary_stream & stream) override;
 
-         void _001GetSel(strsize & iBeg, strsize & iEnd) override;
+         void plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd) const override;
          virtual void _001GetSelLineText(string & str);
 
 

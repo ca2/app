@@ -4025,7 +4025,7 @@ namespace user
    }
 
 
-   void interaction::_001GetSel(strsize & iBeg, strsize & iEnd)
+   void interaction::plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd) const
    {
 
 
@@ -11129,7 +11129,7 @@ namespace user
    }
 
 
-   void interaction::insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & actioncontext)
+   void interaction::plain_edit_insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & actioncontext)
    {
 
       auto strText = get_window_text();
@@ -11138,7 +11138,7 @@ namespace user
 
       strsize iEnd = strText.length();
 
-      _001GetSel(iBeg, iEnd);
+      plain_edit_get_text_selection(iBeg, iEnd);
 
       strText.translate_index(iBeg);
 

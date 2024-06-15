@@ -37,7 +37,7 @@ namespace data
 
       }
 
-      m_propertyset[atoma] = payload;
+      on_set_property(change);
 
       on_property_changed(change);
 
@@ -49,9 +49,26 @@ namespace data
    ::payload property_container::get_property(const ::atom_array & atoma) const
    {
 
+      return on_get_property(atoma);
+
+   }
+
+
+   void property_container::on_set_property(::data::property_change & change)
+   {
+
+      m_propertyset[change.m_atoma] = change.m_payload;
+
+   }
+
+
+   ::payload property_container::on_get_property(const ::atom_array & atoma) const
+   {
+
       return m_propertyset[atoma];
 
    }
+
 
 
    bool property_container::on_property_will_change(::data::property_change & change)

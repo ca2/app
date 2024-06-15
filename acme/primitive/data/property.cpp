@@ -156,6 +156,28 @@ namespace data
    }
 
 
+   bool property::operator &&(const ::atom_array & atoma) const
+   {
+
+      if (atoma.is_empty())
+      {
+
+         return false;
+
+      }
+
+      if (atoma.first() != m_atom)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
    bool property::operator &&(::data::property_change & change) const
    {
 
@@ -166,14 +188,7 @@ namespace data
 
       }
 
-      if (change.m_atoma.is_empty())
-      {
-
-         return false;
-
-      }
-
-      if (change.m_atoma.first() != m_atom)
+      if (!(*this && change.m_atoma))
       {
 
          return false;

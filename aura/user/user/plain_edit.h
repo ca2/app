@@ -416,10 +416,10 @@ namespace user
       string plain_edit_get_line(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine);
       double plain_edit_get_line_extent(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, strsize iChar);
 
-      virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & action_context);
+      virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & actioncontext);
 
-      virtual void plain_edit_on_update(::draw2d::graphics_pointer & pgraphics, const ::action_context & action_context);
-      virtual void plain_edit_on_set_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & action_context);
+      virtual void plain_edit_on_update(::draw2d::graphics_pointer & pgraphics, const ::action_context & actioncontext);
+      virtual void plain_edit_on_set_text(::draw2d::graphics_pointer& pgraphics, const ::action_context & actioncontext);
 
       virtual bool has_text_input() override;
 
@@ -442,7 +442,11 @@ namespace user
       //virtual strsize get_text_length() override;
       virtual strsize _001_get_text_length();
       virtual ::collection::count line_count() const;
-      virtual void plain_edit_get_text(string & str);
+      virtual void plain_edit_get_text(string & str) const;
+
+      virtual void on_set_property(::data::property_change & change);
+      virtual ::payload on_get_property(const ::atom_array & atoma) const;
+
       //virtual void get_text(string & str) override;
       //virtual void get_selection_text(string & str) override;
       //virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd) override;
@@ -451,18 +455,21 @@ namespace user
       //void get_text_selection(strsize &iSelStart, strsize &iSelEnd) override;
       //void get_text_selection(strsize & iSelStart, strsize & iSelEnd);
       //void get_text_selection(strsize & iSelBeg, strsize & iSelEnd);
-      //void set_text(const ::string & str, const ::action_context & action_context) override;
-      void set_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext);
-      //void set_selection_text(const ::string & psz, const ::action_context & action_context) override;
-      void set_selection_text(const ::scoped_string & scopedstr, const ::action_context & action_context);
-      //void _001SetSelEnd(strsize iSelEnd, const ::action_context & action_context) override;
-      void set_selection_end(strsize iSelEnd, const ::action_context & action_context);
-      void _set_sel_end(::draw2d::graphics_pointer& pgraphics, strsize iSelEnd, const ::action_context & action_context);
+      //void set_text(const ::string & str, const ::action_context & actioncontext) override;
+      virtual void plain_edit_set_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext);
+      //void set_selection_text(const ::string & psz, const ::action_context & actioncontext) override;
+      void set_selection_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext);
+      //void _001SetSelEnd(strsize iSelEnd, const ::action_context & actioncontext) override;
+      void set_selection_end(strsize iSelEnd, const ::action_context & actioncontext);
+      void _set_sel_end(::draw2d::graphics_pointer& pgraphics, strsize iSelEnd, const ::action_context & actioncontext);
       void _ensure_selection_visible_x(::draw2d::graphics_pointer & pgraphics);
-      //void set_text_selection(strsize iSelStart, strsize iSelEnd, const ::action_context & action_context = ::e_source_user) override;
-      void set_selection(strsize iSelStart, strsize iSelEnd, const ::action_context & action_context);
-      void _001GetSel(strsize & iSelStart, strsize & iSelEnd) override;
-      void _001GetSel(strsize& iSelStart, strsize& iSelEnd, strsize & iComposingStart, strsize & iComposingEnd) override;
+      //void set_text_selection(strsize iSelStart, strsize iSelEnd, const ::action_context & actioncontext = ::e_source_user) override;
+      void plain_edit_set_text_selection_begin(strsize iSelStart, const ::action_context & actioncontext);
+      void plain_edit_set_text_selection_end(strsize iSelEnd, const ::action_context & actioncontext);
+      void plain_edit_set_text_selection(strsize iSelStart, strsize iSelEnd, const ::action_context & actioncontext);
+      virtual void _unlocked_plain_edit_on_change_text_selection(const ::action_context & actioncontext);
+      void plain_edit_get_text_selection(strsize & iSelStart, strsize & iSelEnd) const override;
+      void plain_edit_get_text_selection(strsize& iSelStart, strsize& iSelEnd, strsize & iComposingStart, strsize & iComposingEnd) const override;
 
       void _001EnsureVisibleChar(::draw2d::graphics_pointer & pgraphics, strsize iChar);
       void _001EnsureVisibleLine(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine);
@@ -482,7 +489,7 @@ namespace user
       void FileSave();
       void plain_edit_on_file_update(::draw2d::graphics_pointer& pgraphics);
       void plain_edit_create_line_index(::draw2d::graphics_pointer& pgraphics);
-      void plain_edit_on_line_update(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, const ::action_context & action_context);
+      void plain_edit_on_line_update(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, const ::action_context & actioncontext);
       void plain_edit_update_line_index(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine);
 
       ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
@@ -536,9 +543,9 @@ namespace user
 
       virtual void on_before_change_text();
 
-      virtual void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
+      void plain_edit_insert_text(const ::scoped_string & str, bool bForceNewStep, const ::action_context & context) override;
 
-      virtual void plain_edit_insert_text(::draw2d::graphics_pointer& pgraphics, string str, bool bForceNewStep);
+      virtual void plain_edit_insert_text(::draw2d::graphics_pointer& pgraphics, const ::scoped_string & str, bool bForceNewStep);
 
       virtual void plain_edit_update(::draw2d::graphics_pointer& pgraphics, bool bFullUpdate, ::collection::index iLineUpdate);
 

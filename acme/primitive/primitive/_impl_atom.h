@@ -1333,6 +1333,14 @@ inline enum_message atom::as_emessage() const
 }
 
 
+inline enum_id atom::as_eid() const
+{
+
+   return m_etype == e_type_id ? m_eid : (enum_id)ID_NONE;
+
+}
+
+
 //inline e_check atom::as_echeck() const
 //{
 //

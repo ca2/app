@@ -4,6 +4,7 @@
 #include "acme.h"
 #include "system_setup.h"
 #include "system.h"
+#include "system_factory.h"
 #include "sequencer.h"
 #include "application.h"
 #include "acme/nano/nano.h"
@@ -485,6 +486,19 @@ namespace acme
 
 
 
+   ::acme::system_factory* system::system_factory()
+   {
+
+      if (!m_psystemfactory)
+      {
+
+         __construct_new(m_psystemfactory);
+
+      }
+
+      return m_psystemfactory;
+
+   }
 
 
    ::xml::xml* system::_xml()
@@ -3234,6 +3248,8 @@ namespace acme
 
    void system::on_application_dark_mode_change()
    {
+
+
    }
 
 

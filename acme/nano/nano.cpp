@@ -20,6 +20,7 @@
 #include "acme/nano/speech/speech.h"
 #include "acme/nano/user/user.h"
 #include "acme/platform/system.h"
+#include "acme/platform/system_factory.h"
 
 
 namespace nano
@@ -39,40 +40,40 @@ namespace nano
 
    ::nano::account::account*nano::account()
    {
-      return system()->__factory(m_paccount);
+      return system()->system_factory()->__factory(m_paccount);
    }
 
    ::nano::archive::archive*nano::archive()
    {
-      return system()->__factory(m_parchive);
+      return system()->system_factory()->__factory(m_parchive);
    }
    ::nano::compress::compress*nano::compress()
    {
-      return system()->__factory(m_pcompress);
+      return system()->system_factory()->__factory(m_pcompress);
    }
    ::nano::dynamic_library::dynamic_library*nano::dynamic_library()
    {
-      return system()->__factory(m_pdynamiclibrary);
+      return system()->system_factory()->__factory(m_pdynamiclibrary);
    }
    ::nano::http::http*nano::http()
    {
-      return system()->__factory(m_phttp);
+      return system()->system_factory()->__factory(m_phttp);
    }
    ::nano::idn::idn*nano::idn()
    {
-      return system()->__factory(m_pidn);
+      return system()->system_factory()->__factory(m_pidn);
    }
    ::nano::shell::shell*nano::shell()
    {
-      return system()->__factory(m_pshell);
+      return system()->system_factory()->__factory(m_pshell);
    }
    ::nano::speech::speech*nano::speech()
    {
-      return system()->__factory(m_pspeech);
+      return system()->system_factory()->__factory(m_pspeech);
    }
    ::nano::user::user*nano::user()
    {
-      return system()->__factory(m_puser);
+      return system()->system_factory()->__factory(m_puser);
    }
 
 }//namespace nano

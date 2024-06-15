@@ -1984,7 +1984,7 @@ string_base<ITERATOR_TYPE> const_string_range<ITERATOR_TYPE>::double_quoted(bool
    if (bEscape)
    {
 
-      ::string_base str = *this;
+      ::string_base<ITERATOR_TYPE> str(*this);
 
       str.find_replace("\\", "\\\\");
 
@@ -2007,7 +2007,7 @@ string_base<ITERATOR_TYPE> const_string_range<ITERATOR_TYPE>::single_quoted(bool
    if (bEscape)
    {
 
-      ::string_base str = *this;
+      ::string_base<ITERATOR_TYPE> str(*this);
 
       str.replace("\\", "\\\\");
 
@@ -2017,7 +2017,7 @@ string_base<ITERATOR_TYPE> const_string_range<ITERATOR_TYPE>::single_quoted(bool
 
    }
 
-   return surrounded("\'");
+   return this->surrounded("\'");
 
 }
 

@@ -404,7 +404,8 @@ namespace windows
 
             }
 
-            if (!strPath.contains('.') || !::PathFileExistsW(wstring(strPath)))
+            if ((!strPath.contains('.') || !::PathFileExistsW(wstring(strPath)))
+               && !strPath.case_insensitive_ends(".dll"))
             {
 
                strPath += ".dll";

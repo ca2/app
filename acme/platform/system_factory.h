@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/parallelization/synchronous_lock.h"
+
+
 namespace acme
 {
 
@@ -22,6 +25,8 @@ namespace acme
 
          if (!p)
          {
+
+            _synchronous_lock(system()->synchronization());
 
             auto pplatform = platform();
 

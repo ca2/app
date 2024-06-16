@@ -51,6 +51,8 @@ extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory);
 
 extern "C" void nano_idn_windows_common_factory(::factory::factory * pfactory);
 
+extern "C" void nano_user_win32_factory(::factory::factory* pfactory);
+
 
 #endif
 
@@ -3277,6 +3279,25 @@ namespace acme
 
 
          nano_idn_windows_common_factory(pfactory);
+
+
+         return;
+
+
+#endif
+
+      }
+      else if (scopedstrComponent == "nano_user")
+      {
+
+
+#if defined(WINDOWS)
+
+
+         auto pfactory = this->factory();
+
+
+         nano_user_win32_factory(pfactory);
 
 
          return;

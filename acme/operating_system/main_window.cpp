@@ -30,6 +30,14 @@ namespace operating_system
    }
 
 
+   bool main_window::is_window()
+   {
+
+      return false;
+
+   }
+
+
    void main_window::post_close()
    {
 
@@ -45,6 +53,12 @@ namespace operating_system
 
    }
 
+
+   void main_window::activate()
+   {
+
+
+   }
 
    ::string main_window::get_window_text(const ::iptr_array & idPath)
    {

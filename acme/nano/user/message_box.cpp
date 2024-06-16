@@ -469,8 +469,6 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const ::s
    
 #endif
 
-   pparticle->system()->nano();
-
    auto psequencer = pparticle->node()->create_message_box_sequencer(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
    
    auto atomResult = psequencer->do_synchronously();

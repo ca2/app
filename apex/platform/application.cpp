@@ -3696,6 +3696,51 @@ namespace apex
 
 #endif
 
+      ::file::path pathPreviousLocation = platform()->get_argument_begins_eat("--previous-location");
+
+      if (pathPreviousLocation.has_char())
+      {
+
+         //message_box_synchronous(this, "there is a previous location");
+
+         auto pida = node()->module_path_processes_identifiers(pathPreviousLocation);
+
+         class ::time time;
+         
+         time.Now();
+
+         while(time.elapsed() < 5_minutes)
+         {
+            
+            for (auto pid : pida)
+            {
+
+               if (!acmepath()->real_path_is_same(
+                  node()->process_identifier_module_path(pid),
+                  pathPreviousLocation))
+               {
+
+                  pida.erase(pid);
+
+                  break;
+
+               }
+
+            }
+
+            if (pida.is_empty())
+            {
+
+               break;
+
+            }
+
+            preempt(300_ms);
+
+         }
+
+      }
+
       bool bResourceException = false;
 
       auto psystem = system();

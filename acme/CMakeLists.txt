@@ -537,6 +537,8 @@ list(APPEND library_source
         platform/shell.cpp
         platform/shell.h
         platform/system.cpp
+        platform/system_factory.cpp
+        platform/system_factory.h
         platform/system_setup.cpp
         platform/system_setup.h
         platform/text.cpp

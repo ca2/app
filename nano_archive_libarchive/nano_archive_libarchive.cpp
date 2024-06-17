@@ -62,7 +62,7 @@ namespace libarchive
             while (archive_read_next_header(a, &entry) == ARCHIVE_OK)
             {
                //printf("%s\n", archive_entry_pathname(entry));
-               string strPathName(archive_entry_pathname(entry));
+               string strPathName(archive_entry_pathname_w(entry));
                if (!strPathName.ends("/") && !strPathName.ends("\\"))
                {
 
@@ -85,6 +85,40 @@ namespace libarchive
                      path = p;
 
                   }
+
+                  string strSymlink(archive_entry_symlink_w(entry));
+
+                  if(strSymlink.has_char())
+                  {
+
+                     ::file::path pathSymlinkSource(strSymlink);
+
+                     for(int i = 0; i < iStripComponent; i++)
+                     {
+
+                        auto p = pathSymlinkSource.find_first_character_in("/\\");
+
+                        if (!p)
+                        {
+
+                           goto next;
+
+                        }
+
+                        p = pathSymlinkSource(p).skip_any_character_in("/\\").begin();
+
+                        pathSymlinkSource = p;
+
+                     }
+                     auto pathTarget = pathFolder / path;
+                     auto pathSource = pathTarget.folder() / pathSymlinkSource;
+                     auto pszSource = pathSource.c_str();
+                     auto pszTarget = pathTarget.c_str();
+                     ::symlink(pszSource, pszTarget);
+                     goto next;
+
+                  }
+
 
                   auto pfile = file()->get_writer(pathFolder / path);
 

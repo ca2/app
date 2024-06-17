@@ -51,7 +51,7 @@ namespace compress_zlib
 
       }
 
-      memIn.set_size((memsize)minimum(1024 * 4, pfileGzFileCompressed->right_size()));
+      memIn.set_size((memsize)minimum(1_MiB, pfileGzFileCompressed->right_size()));
 
       u32 uRead;
 
@@ -60,6 +60,8 @@ namespace compress_zlib
       z_stream zstream;
 
       zero(zstream);
+      //zstream.next_in = (u8*)memIn.data();
+      //zstream.avail_in = (u32)uRead;
       zstream.next_in = (u8*)memIn.data();
       zstream.avail_in = (u32)uRead;
       zstream.total_out = 0;
@@ -125,7 +127,8 @@ namespace compress_zlib
 
             }
 
-         } while (zstream.avail_out == 0 || zstream.avail_in > 0);
+         //} while (zstream.avail_out == 0 || zstream.avail_in > 0);
+         } while (zstream.avail_out == 0);
 
          uRead = (u32)(pfileGzFileCompressed->read(memIn));
 

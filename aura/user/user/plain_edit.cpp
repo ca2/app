@@ -7549,7 +7549,7 @@ namespace user
 
 #if defined(LINUX) || defined(MACOS)
 
-         plain_edit_sinsert_text(strText, false, e_source_user);
+         plain_edit_insert_text(strText, false, e_source_user);
 
 #else
 

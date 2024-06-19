@@ -59,7 +59,7 @@ namespace database
          if(change.m_actioncontext.is_user_source() && (property && change))
          {
 
-            data_set_payload(change.m_atoma.first(), change.m_payload);
+            data_set_payload(get_key(property), change.m_payload);
 
          }
 
@@ -200,6 +200,8 @@ namespace database
       ::string strKey;
 
       strKey = dataproperty.atom().as_string();
+
+      const char * pszKey = strKey.c_str();
 
       return strKey;
 
@@ -370,7 +372,7 @@ namespace database
    }
 
 
-   bool client::_data_get(const ::scoped_string & strKey, ::payload payload)
+   bool client::_data_get(const ::scoped_string & strKey, ::payload & payload)
    {
 
       if (m_pdataserver == nullptr)

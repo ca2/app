@@ -106,7 +106,7 @@ namespace database
 
       //}
 
-      virtual bool _data_get(const ::scoped_string & strKey, ::payload payload);
+      virtual bool _data_get(const ::scoped_string & strKey, ::payload & payload);
 
 
       //template < typename TYPE >

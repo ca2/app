@@ -192,34 +192,16 @@ binary_stream & binary_stream::operator <<(const atom & atom)
 
    raw_write(atom.m_etype);
 
-   if (atom.m_etype == ::atom::e_type_text)
+   if (atom.m_etype & ::atom::e_type_text)
    {
 
       operator <<(atom.m_str);
 
    }
-   else if (atom.m_etype == ::atom::e_type_integer)
+   else
    {
 
       operator <<(atom.m_iLargest);
-
-   }
-   else if (atom.m_etype >= ::atom::e_type_property)
-   {
-
-      raw_write(atom.m_eproperty);
-
-   }
-   else if (atom.m_etype >= ::atom::e_type_factory)
-   {
-
-      raw_write(atom.m_efactory);
-
-   }
-   else if (atom.m_etype >= ::atom::e_type_task_tool)
-   {
-
-      raw_write(atom.m_etasktool);
 
    }
 
@@ -442,44 +424,44 @@ binary_stream & binary_stream::operator >>(atom & atom)
 
    raw_read(atom.m_etype);
 
-   if (atom.m_etype == ::atom::e_type_text)
+   if (atom.m_etype & ::atom::e_type_text)
    {
 
       string str;
 
       operator >>(str);
 
-      atom = str;
+      atom.m_str =  str;
 
    }
-   else if (atom.m_etype == ::atom::e_type_integer)
+   else
    {
 
       i64 i;
 
       operator >>(i);
 
-      atom = i;
+      atom.m_iLargest = i;
 
    }
-   else if (atom.m_etype == ::atom::e_type_property)
-   {
-
-      raw_read(atom.m_eproperty);
-
-   }
-   else if (atom.m_etype == ::atom::e_type_factory)
-   {
-
-      raw_read(atom.m_efactory);
-
-   }
-   else if (atom.m_etype == ::atom::e_type_task_tool)
-   {
-
-      raw_read(atom.m_etasktool);
-
-   }
+//   else if (atom.m_etype == ::atom::e_type_property)
+//   {
+//
+//      raw_read(atom.m_eproperty);
+//
+//   }
+//   else if (atom.m_etype == ::atom::e_type_factory)
+//   {
+//
+//      raw_read(atom.m_efactory);
+//
+//   }
+//   else if (atom.m_etype == ::atom::e_type_task_tool)
+//   {
+//
+//      raw_read(atom.m_etasktool);
+//
+//   }
 
    return *this;
 

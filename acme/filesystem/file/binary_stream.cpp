@@ -662,6 +662,14 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
    }
    break;
+      case e_type_property:
+      {
+
+         throw ::exception(todo);
+         //payload._set_element(::__load_object<::matter>(*this));
+
+      }
+         break;
    default:
    {
       payload.set_type(etype, false);

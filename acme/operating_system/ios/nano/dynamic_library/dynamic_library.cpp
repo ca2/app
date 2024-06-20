@@ -12,7 +12,7 @@
 #include <mach-o/nlist.h>
 #include <sys/types.h>
 
-namespace macos
+namespace ios
 {
 
 
@@ -355,4 +355,4 @@ library_t * dynamic_library::open_on_context(const ::file::path & pathParam, str
 
 
 
-} // namespace macos
+} // namespace ios

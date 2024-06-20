@@ -79,12 +79,12 @@ namespace data
    }
 
    //
-   // /*  void check_property::set_check(bool bChecked, const ::action_context & context)
+   //   void check_property::set_check(bool bChecked, const ::action_context & context)
    //   {
    //
    //      set_check((::enum_check) (bChecked ? ::e_check_checked : ::e_check_unchecked),context);
    //
-   //   }*/
+   //   }
    //
    //
    //   //::e_check check_property::get_echeck() const

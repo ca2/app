@@ -39,7 +39,7 @@ public:
    virtual ::file::path module_path(library_t * plibrary);
    
    
-   virtual ::file::path module_path_by_name(const ::scoped_string & scopedtrName);
+//   virtual ::file::path module_path_by_name(const ::scoped_string & scopedtrName);
    
    
    virtual library_t * module_by_name(const ::scoped_string & scopedstrsName);

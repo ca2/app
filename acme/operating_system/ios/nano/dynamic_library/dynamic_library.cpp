@@ -53,6 +53,7 @@ library_t *__dl_______touch(const      char  ** image_name)
    
    for (i32 i = _dyld_image_count(); i >= 0 ; i--)
    {
+      ::string strMessage;
       
       ::string strMessage;
       

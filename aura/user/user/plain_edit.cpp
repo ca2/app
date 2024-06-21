@@ -1743,7 +1743,7 @@ namespace user
          if (change.m_atoma.get_size() == 2)
          {
 
-            switch (change.m_atoma[1].as_eid())
+            switch ((ENUM_ID) change.m_atoma[1].as_eid())
             {
             case ID_TEXT:
                plain_edit_set_text(change.m_payload.as_string(), change.m_actioncontext);
@@ -1776,7 +1776,7 @@ namespace user
          if (atoma.get_size() == 2)
          {
 
-            switch (atoma[1].as_eid())
+            switch ((ENUM_ID) atoma[1].as_eid())
             {
             case ID_TEXT:
             {

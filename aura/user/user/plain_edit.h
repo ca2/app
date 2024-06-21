@@ -279,7 +279,7 @@ namespace user
       virtual bool is_new_focus_select_all() const;
 
 
-      virtual void get_text_composition_area(::rectangle_i32 & r);
+      virtual void get_text_composition_area(::rectangle_i32 & r) override;
       void edit_on_text(string str) override;
       void edit_on_sel(strsize iSelBeg, strsize iSelEnd) override;
       void on_text_composition(string str) override;
@@ -444,8 +444,8 @@ namespace user
       virtual ::collection::count line_count() const;
       virtual void plain_edit_get_text(string & str) const;
 
-      virtual void on_set_property(::data::property_change & change);
-      virtual ::payload on_get_property(const ::atom_array & atoma) const;
+      virtual void on_set_property(::data::property_change & change) override;
+      virtual ::payload on_get_property(const ::atom_array & atoma) const override;
 
       //virtual void get_text(string & str) override;
       //virtual void get_selection_text(string & str) override;
@@ -516,7 +516,7 @@ namespace user
       virtual bool __plain_edit_undo();
       virtual bool __plain_edit_redo();
 
-      virtual bool edit_undo();
+      virtual bool edit_undo() override;
       virtual bool edit_redo();
       bool CanUndo();
       bool CanRedo();

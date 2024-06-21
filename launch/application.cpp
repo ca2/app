@@ -75,6 +75,14 @@ namespace launch
          m_strBranch = strBranch;
 
       }
+      else if (m_strDistro == "debian")
+      {
+
+         print_line("This is Debian Linux System...\n");
+
+         m_strBranch = strBranch;
+
+      }
       else if (m_strDistro == "freebsd")
       {
 
@@ -129,7 +137,8 @@ namespace launch
 
       ::string strCommand;
 
-      if(m_strDistro == "ubuntu" || m_strDistro == "kubuntu" || m_strDistro == "xubuntu")
+      if(m_strDistro == "ubuntu" || m_strDistro == "kubuntu" || m_strDistro == "xubuntu"
+      || m_strDistro == "debian")
       {
 
          strCommand.formatf("sudo apt -y install %s", strPackages.c_str());

@@ -151,7 +151,9 @@ namespace acme
 
       //virtual ::pointer < ::particle > create_quit_particle();
       virtual ::file::path get_default_base_integration_folder();
-      
+
+      virtual ::file::path ___fonts_folder();
+
       ///virtual void implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> & psystem);
 
       virtual void node_main();

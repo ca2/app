@@ -30,7 +30,9 @@
 #ifdef   _STDIO_H_
 #error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(C))"
 #endif
+#if defined(__STD_FORMAT)
 #include <format>
+#endif
 //#ifdef   _STDIO_H_
 //#error "already included?!?! WHAT?!?! (After including <format>)"
 //#endif
@@ -1351,7 +1353,7 @@ public:
    string_base & append_formatf_arguments(const CHARACTER * pszFormat, va_list args);
 
    
-//#if defined(__STD_FORMAT__)
+#if defined(__STD_FORMAT__)
 
    template<typename... Ts>
    string_base & format(const ::std::format_string<Ts...> fmt, Ts&&... args)
@@ -1370,7 +1372,7 @@ public:
    }
 
    
-//#endif
+#endif
 
    //void FormatMessage(const CHARACTER * pszFormat, ...);
 

@@ -4,8 +4,9 @@
 
 //#include "acme/primitive/primitive/pointer.h"
 #include "acme/filesystem/file/string_stream.h"
+#if defined(__STD_FORMAT)
 #include <format>
-
+#endif
 
 class particle;
 
@@ -66,6 +67,7 @@ public:
 
    void formatf_output_arguments(const ::ansi_character * psz, va_list & arguments);
 
+   #if defined(__STD_FORMAT)
    
    template<typename... Ts>
    void format_output(const std::format_string<Ts...> fmt, Ts&&... args)
@@ -88,7 +90,7 @@ public:
       return format_output(fmt, ::std::forward < Ts >(args)...);
 
    }
-
+   #endif
    
    
    //void format_output_arguments(const ::ansi_character * psz, va_list & arguments)

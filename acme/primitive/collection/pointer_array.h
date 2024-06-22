@@ -188,7 +188,7 @@ public:
    }
    
 
-   template < container_type CONTAINER >
+   template < primitive_container CONTAINER >
    ::collection::index append(const CONTAINER & a)
    {
 

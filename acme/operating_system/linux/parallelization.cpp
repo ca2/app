@@ -118,11 +118,11 @@ bool __os_term_thread()
 }
 
 
-namespace x11{namespace nano { namespace user{void process_messages();}}}
+//namespace x11{namespace nano { namespace user{void process_messages();}}}
 
-namespace xcb{namespace nano { namespace user{void process_messages();}}}
+//namespace xcb{namespace nano { namespace user{void process_messages();}}}
 
-namespace wayland{namespace nano { namespace user{void process_messages();}}}
+//namespace wayland{namespace nano { namespace user{void process_messages();}}}
 
 
 

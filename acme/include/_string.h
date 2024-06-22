@@ -17,6 +17,15 @@ CLASS_DECL_ACME void output_debug_string_flush();
 ///CLASS_DECL_ACME void output_debug_string(const ::wide_character * psz);
 CLASS_DECL_ACME void output_debug_string_formatf(const char* pszFormat, ...);
 
+CLASS_DECL_ACME void print_line(const ::scoped_string & scopedstr);
+CLASS_DECL_ACME void print_out(const ::scoped_string & scopedstr);
+CLASS_DECL_ACME void printf_line(const ::ansi_character * pszFormat, ...);
+CLASS_DECL_ACME void printf_out(const ::ansi_character * pszFormat, ...);
+CLASS_DECL_ACME void err_line(const ::scoped_string & scopedstr);
+CLASS_DECL_ACME void err_out(const ::scoped_string & scopedstr);
+CLASS_DECL_ACME void errf_line(const ::ansi_character * pszFormat, ...);
+CLASS_DECL_ACME void errf_out(const ::ansi_character * pszFormat, ...);
+
 CLASS_DECL_ACME ::string as_string(const ::e_status & estatus);
 
 inline ::string as_string(bool b) { return b ? "1" : "0"; }

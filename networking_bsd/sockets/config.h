@@ -145,28 +145,28 @@ namespace sockets
 #elif defined __FreeBSD__
 // ----------------------------------------
 // FreeBSD
-# if __FreeBSD_version >= 400014
-#  define s6_addr16 __u6_addr.__u6_addr16
-#  if !defined(MESSAGE_NOSIGNAL)
-#   define MESSAGE_NOSIGNAL 0
-#  endif
-typedef   in_addr_t ipaddr_t;
-typedef   in_port_t port_t;
-#ifdef sockets
-namespace sockets
-{
-#endif
-   // no defs
-
-#ifdef sockets
-}
-#endif
-
-#  define IPV6_ADD_MEMBERSHIP IPV6_JOIN_GROUP
-#  define IPV6_DROP_MEMBERSHIP IPV6_LEAVE_GROUP
-# else
-#  error FreeBSD versions prior to 400014 does not support ipv6
-# endif
+//# if __FreeBSD_version >= 400014
+//#  define s6_addr16 __u6_addr.__u6_addr16
+//#  if !defined(MESSAGE_NOSIGNAL)
+//#   define MESSAGE_NOSIGNAL 0
+//#  endif
+//typedef   in_addr_t ipaddr_t;
+//typedef   in_port_t port_t;
+//#ifdef sockets
+//namespace sockets
+//{
+//#endif
+//   // no defs
+//
+//#ifdef sockets
+//}
+//#endif
+//
+//#  define IPV6_ADD_MEMBERSHIP IPV6_JOIN_GROUP
+//#  define IPV6_DROP_MEMBERSHIP IPV6_LEAVE_GROUP
+//# else
+//#  error FreeBSD versions prior to 400014 does not support ipv6
+//# endif
 
 #elif defined __APPLE__
 // ----------------------------------------

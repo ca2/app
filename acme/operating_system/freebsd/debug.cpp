@@ -171,7 +171,7 @@ void output_debug_string(const scoped_string & scopedstrFormat)
 
       auto pszEnd = scopedstrFormat.m_end;
 
-      fwrite(stdout, 1, scopedstrFormat.size(), pszBegin);
+      fwrite(pszBegin, 1, scopedstrFormat.size(), stdout);
 
       //fflush(stdout);
 
@@ -191,6 +191,8 @@ void output_debug_string(const ::wide_character * pOutputString)
    }
 
 }
+
+
 
 
 ////CLASS_DECL_BASE extern fixed_alloc_array * g_pfixedallocaWstring;

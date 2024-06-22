@@ -53,7 +53,7 @@ void fprintf_line(FILE * pfile, const ::ansi_character * pszFormat, ...)
 }
 
 
-void printf_out(FILE * pfile, const ::ansi_character * pszFormat, ...)
+void fprintf_out(FILE * pfile, const ::ansi_character * pszFormat, ...)
 {
 
    va_list arguments;
@@ -67,6 +67,30 @@ void printf_out(FILE * pfile, const ::ansi_character * pszFormat, ...)
    fprint_out(pfile, str);
 
    va_end (arguments);
+
+}
+
+
+void fprintf_line_arguments(FILE * pfile, const ::ansi_character * pszFormat, va_list arguments)
+{
+
+   ::string str;
+
+   str.formatf_arguments(pszFormat, arguments);
+
+   fprintf_line(pfile, str);
+
+}
+
+
+void fprintf_out_arguments(FILE * pfile, const ::ansi_character * pszFormat, va_list arguments)
+{
+
+   ::string str;
+
+   str.formatf_arguments(pszFormat, arguments);
+
+   fprintf_out(pfile, str);
 
 }
 

@@ -776,24 +776,24 @@ void particle::print_out(const ::scoped_string & scopedstr) const
 }
 
 
-void printf_line(const ::ansi_character * pszFormat, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, pszFormat);
-
-   ::string strLine(pszFormat);
-
-   strLine += "\n";
-
-   vprintf(strLine.c_str(), arguments);
-
-   va_end(arguments);
-
-   fflush(stdout);
-
-}
+//void printf_line(const ::ansi_character * pszFormat, ...)
+//{
+//
+//   va_list arguments;
+//
+//   va_start(arguments, pszFormat);
+//
+//   ::string strLine(pszFormat);
+//
+//   strLine += "\n";
+//
+//   vprintf(strLine.c_str(), arguments);
+//
+//   va_end(arguments);
+//
+//   fflush(stdout);
+//
+//}
 
 
 void particle::printf_line(const ::ansi_character * pszFormat, ...) const

@@ -9,7 +9,7 @@
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < typename PRED >
-Type string_array_base < Type, RawType, t_etypeContainer > ::predicate_implode(PRED pred, const RawType &strSeparator,::collection::index i,::collection::count inCountLastOut) const
+Type string_array_base < Type, RawType, t_etypeContainer > ::predicate_implode(PRED pred, const SCOPED_STRING &strSeparator,::collection::index i,::collection::count inCountLastOut) const
 {
 
    Type str;
@@ -264,7 +264,7 @@ return get_data()[nIndex] = newElement;
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer >::_007FindLine(const RawType &strKey, ::collection::index iStart) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer >::_007FindLine(const SCOPED_STRING &strKey, ::collection::index iStart) const
 {
 
    for(::collection::index i = iStart; i < get_count(); i++)
@@ -292,7 +292,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer >::_007SetLine(const RawType &strKey, const RawType &strValue, ::collection::index iStart)
+void string_array_base < Type, RawType, t_etypeContainer >::_007SetLine(const SCOPED_STRING &strKey, const SCOPED_STRING &strValue, ::collection::index iStart)
 {
 
    ::collection::index iKeyIndex = _007FindLine(strKey, iStart);
@@ -316,7 +316,7 @@ void string_array_base < Type, RawType, t_etypeContainer >::_007SetLine(const Ra
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer >::_007GetLine(RawType & strValue, const RawType &strKey, ::collection::index iStart) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer >::_007GetLine(RawType & strValue, const SCOPED_STRING &strKey, ::collection::index iStart) const
 {
 
    ::collection::index iKeyIndex = _007FindLine(strKey, iStart);
@@ -336,7 +336,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-RawType string_array_base < Type, RawType, t_etypeContainer >::_007GetLine(const RawType &strKey, ::collection::index iStart) const
+RawType string_array_base < Type, RawType, t_etypeContainer >::_007GetLine(const SCOPED_STRING &strKey, ::collection::index iStart) const
 {
 
    RawType strValue;
@@ -354,7 +354,7 @@ RawType string_array_base < Type, RawType, t_etypeContainer >::_007GetLine(const
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer >::_007FindSection(const RawType &strSection) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer >::_007FindSection(const SCOPED_STRING &strSection) const
 {
 
    ::collection::index iSectionIndex = this->find_first_begins_ci(strSection);
@@ -365,7 +365,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer >::_007FindLine(const RawType &strSection, const RawType &strKey) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer >::_007FindLine(const SCOPED_STRING &strSection, const SCOPED_STRING &strKey) const
 {
 
    ::collection::index iSectionIndex = this->_007FindSection(strSection);
@@ -383,7 +383,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer >::_007OpenSection(const RawType &strSection)
+::collection::index string_array_base < Type, RawType, t_etypeContainer >::_007OpenSection(const SCOPED_STRING &strSection)
 {
 
    ::collection::index iSectionIndex = this->_007FindSection(strSection);
@@ -403,7 +403,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer >::_007SetLine(const RawType &strSection, const RawType &strKey, const RawType &strValue)
+void string_array_base < Type, RawType, t_etypeContainer >::_007SetLine(const SCOPED_STRING &strSection, const SCOPED_STRING &strKey, const SCOPED_STRING &strValue)
 {
 
    ::collection::index iSectionIndex = this->_007OpenSection(strSection);
@@ -423,7 +423,7 @@ void string_array_base < Type, RawType, t_etypeContainer >::_007SetLine(const Ra
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer >::_007GetLine(RawType & strValue, const RawType &strSection, const RawType &strKey) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer >::_007GetLine(RawType & strValue, const SCOPED_STRING &strSection, const SCOPED_STRING &strKey) const
 {
 
    ::collection::index iSectionIndex = this->_007FindSection(strSection);
@@ -440,7 +440,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 }
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-RawType string_array_base < Type, RawType, t_etypeContainer >::_007GetLine(const RawType &strSection, const RawType &strKey) const
+RawType string_array_base < Type, RawType, t_etypeContainer >::_007GetLine(const SCOPED_STRING &strSection, const SCOPED_STRING &strKey) const
 {
 
    RawType strValue;
@@ -848,7 +848,7 @@ string_array_base < Type, RawType, t_etypeContainer > ::string_array_base(CHARAC
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::add_tokens(const RawType &str, const RawType &strSeparator,bool bAddEmpty)
+void string_array_base < Type, RawType, t_etypeContainer > ::add_tokens(const SCOPED_STRING &str, const SCOPED_STRING &strSeparator,bool bAddEmpty)
 {
 
    ::tokenizer strTokenizer(str);
@@ -888,7 +888,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::add_tokens(const Ra
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::_001AddTokens(const RawType &str)
+void string_array_base < Type, RawType, t_etypeContainer > ::_001AddTokens(const SCOPED_STRING &str)
 
 {
 
@@ -908,7 +908,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::_001AddTokens(const
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::add_smallest_tokens(const RawType &str, const RawStringArray & straSeparator, bool bAddEmpty, bool bWithSeparator)
+void string_array_base < Type, RawType, t_etypeContainer > ::add_smallest_tokens(const SCOPED_STRING &str, const RawStringArray & straSeparator, bool bAddEmpty, bool bWithSeparator)
 {
 
    ::tokenizer strTokenizer(str);
@@ -947,7 +947,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::add_smallest_tokens
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::add_words(const RawType &str)
+void string_array_base < Type, RawType, t_etypeContainer > ::add_words(const SCOPED_STRING &str)
 {
 
    ::tokenizer strTokenizer(str);
@@ -1070,7 +1070,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::_add_lines(const SC
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::get_format_string(Type & str,const RawType &strSeparator) const
+void string_array_base < Type, RawType, t_etypeContainer > ::get_format_string(Type & str,const SCOPED_STRING &strSeparator) const
 
 {
    str.empty();
@@ -1172,7 +1172,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first(const RawType &str, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first(const SCOPED_STRING &str, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1198,7 +1198,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_ci(const RawType &str,::collection::index iFind,::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_ci(const SCOPED_STRING &str,::collection::index iFind,::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1242,7 +1242,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::rear_find(const RawType &str, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::rear_find(const SCOPED_STRING &str, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1267,7 +1267,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 }
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::reverse_find_ci(const RawType &str, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::reverse_find_ci(const SCOPED_STRING &str, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1297,7 +1297,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::count(const RawType &str, ::collection::index iFind, ::collection::index iLast) const
+::collection::count string_array_base < Type, RawType, t_etypeContainer > ::count(const SCOPED_STRING &str, ::collection::index iFind, ::collection::index iLast) const
 {
 
    ::collection::count count = 0;
@@ -1325,7 +1325,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::count_ci(const RawType &str, ::collection::index iFind, ::collection::index iLast) const
+::collection::count string_array_base < Type, RawType, t_etypeContainer > ::count_ci(const SCOPED_STRING &str, ::collection::index iFind, ::collection::index iLast) const
 {
 
    ::collection::count count = 0;
@@ -1355,7 +1355,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_last_ci(const RawType &str, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_last_ci(const SCOPED_STRING &str, ::collection::index iFind, ::collection::index iLast) const
 {
 
    return reverse_find_ci(str, iFind, iLast);
@@ -1364,7 +1364,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_last(const RawType &str, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_last(const SCOPED_STRING &str, ::collection::index iFind, ::collection::index iLast) const
 {
 
    return rear_find(str, iFind, iLast);
@@ -1373,7 +1373,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_066Find(const RawType &strParam) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_066Find(const SCOPED_STRING &strParam) const
 {
 
    RawString str(strParam);
@@ -1425,7 +1425,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_contains(const RawType &strSubstring, ::collection::index iFind, ::collection::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_contains(const SCOPED_STRING &strSubstring, ::collection::index iFind, ::collection::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1441,7 +1441,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_contains(const RawType &strSubstring, ::collection::index iFind, ::collection::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_contains(const SCOPED_STRING &strSubstring, ::collection::index iFind, ::collection::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
 {
 
    for (; iFind <= iLast; iFind++)
@@ -1464,7 +1464,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_contains_ci(const RawType &strSubstring,::collection::index iFind,::collection::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_contains_ci(const SCOPED_STRING &strSubstring,::collection::index iFind,::collection::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1480,7 +1480,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_contains_ci(const RawType &strSubstring, ::collection::index iFind, ::collection::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_contains_ci(const SCOPED_STRING &strSubstring, ::collection::index iFind, ::collection::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
 {
 
    for (; iFind <= iLast; iFind++)
@@ -1501,7 +1501,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::prefix_find_first_ci(const RawType &strTopic,::collection::index iFind,::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::prefix_find_first_ci(const SCOPED_STRING &strTopic,::collection::index iFind,::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1527,7 +1527,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::prefix_find_first(const RawType &strTopic, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::prefix_find_first(const SCOPED_STRING &strTopic, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1555,7 +1555,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::substring_find_first(const RawType &strTopic, ::collection::index iFind, ::collection::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::substring_find_first(const SCOPED_STRING &strTopic, ::collection::index iFind, ::collection::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1597,7 +1597,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::substring_find_first_ci(const RawType &strTopic, ::collection::index iFind, ::collection::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::substring_find_first_ci(const SCOPED_STRING &strTopic, ::collection::index iFind, ::collection::index iLast, const CHARACTER ** ppszBeg, const CHARACTER ** ppszEnd) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1641,7 +1641,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_suffixed_ci(const RawType &strSuffix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_suffixed_ci(const SCOPED_STRING &strSuffix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1657,7 +1657,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_suffixed(const RawType &strSuffix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_suffixed(const SCOPED_STRING &strSuffix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1673,7 +1673,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_begins_eat(Type & strFoundAndEaten, const RawType &strSuffix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_begins_eat(Type & strFoundAndEaten, const SCOPED_STRING &strSuffix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    iFind = find_first_begins(strSuffix, iFind, iLast);
@@ -1693,7 +1693,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_with_starting_word_eat(Type & strFoundAndEaten, const RawType &strStartingWord, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_with_starting_word_eat(Type & strFoundAndEaten, const SCOPED_STRING &strStartingWord, ::collection::index iFind, ::collection::index iLast) const
 {
 
    iFind = find_first_with_starting_word(strStartingWord, iFind, iLast);
@@ -1713,7 +1713,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_begins_eat_ci(Type & strFoundAndEaten,const RawType &strPrefix, ::collection::index iFind,::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_begins_eat_ci(Type & strFoundAndEaten,const SCOPED_STRING &strPrefix, ::collection::index iFind,::collection::index iLast) const
 {
 
    iFind  = find_first_begins_ci(strPrefix,iFind,iLast);
@@ -1735,7 +1735,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_ends_eat(Type & strFoundAndEaten, const RawType &strSuffix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_ends_eat(Type & strFoundAndEaten, const SCOPED_STRING &strSuffix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    iFind = find_first_ends(strSuffix, iFind, iLast);
@@ -1755,7 +1755,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_ends_eat_ci(Type & strFoundAndEaten, const RawType &strSuffix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_ends_eat_ci(Type & strFoundAndEaten, const SCOPED_STRING &strSuffix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    iFind = find_first_ends_ci(strSuffix, iFind, iLast);
@@ -1776,7 +1776,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_contains_eat(Type & strFoundAndEaten, const RawType &strSubstring, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_contains_eat(Type & strFoundAndEaten, const SCOPED_STRING &strSubstring, ::collection::index iFind, ::collection::index iLast) const
 {
 
    const CHARACTER * pszBeg = nullptr;
@@ -1802,7 +1802,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_contains_eat_ci(Type & strFoundAndEaten, const RawType &strTopic, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_contains_eat_ci(Type & strFoundAndEaten, const SCOPED_STRING &strTopic, ::collection::index iFind, ::collection::index iLast) const
 {
 
    const CHARACTER * pszBeg = nullptr;
@@ -1828,7 +1828,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_prefixed(const RawType &strPrefix,::collection::index iFind,::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_prefixed(const SCOPED_STRING &strPrefix,::collection::index iFind,::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1844,7 +1844,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_with_starting_word(const RawType &strPrefix,::collection::index iFind,::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_with_starting_word(const SCOPED_STRING &strPrefix,::collection::index iFind,::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1860,7 +1860,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_prefixed_ci(const RawType &strPrefix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::find_first_prefixed_ci(const SCOPED_STRING &strPrefix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -1876,7 +1876,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_prefixed(const RawType &strPrefix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_prefixed(const SCOPED_STRING &strPrefix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    for (; iFind <= iLast; iFind++)
@@ -1897,7 +1897,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_with_starting_word(const RawType &strStartingWord, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_with_starting_word(const SCOPED_STRING &strStartingWord, ::collection::index iFind, ::collection::index iLast) const
 {
 
    for (; iFind <= iLast; iFind++)
@@ -1918,7 +1918,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_prefixed_ci(const RawType &strPrefix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_prefixed_ci(const SCOPED_STRING &strPrefix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    for (; iFind <= iLast; iFind++)
@@ -1938,7 +1938,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 }
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_array_base < Type, RawType, t_etypeContainer > ::_067ContainsCi(const RawType &str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax) const
+bool string_array_base < Type, RawType, t_etypeContainer > ::_067ContainsCi(const SCOPED_STRING &str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax) const
 {
 
    ::collection::count count = 0;
@@ -1955,7 +1955,7 @@ bool string_array_base < Type, RawType, t_etypeContainer > ::_067ContainsCi(cons
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_array_base < Type, RawType, t_etypeContainer > ::_067Contains(const RawType &str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax) const
+bool string_array_base < Type, RawType, t_etypeContainer > ::_067Contains(const SCOPED_STRING &str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax) const
 {
 
    ::collection::count count = 0;
@@ -1973,7 +1973,7 @@ bool string_array_base < Type, RawType, t_etypeContainer > ::_067Contains(const 
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_array_base < Type, RawType, t_etypeContainer > ::_067ContainsSubstringCi(const RawType &str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax) const
+bool string_array_base < Type, RawType, t_etypeContainer > ::_067ContainsSubstringCi(const SCOPED_STRING &str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax) const
 {
 
    ::collection::count count = 0;
@@ -1991,7 +1991,7 @@ bool string_array_base < Type, RawType, t_etypeContainer > ::_067ContainsSubstri
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_array_base < Type, RawType, t_etypeContainer > ::_067ContainsSubstring(const RawType &str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax) const
+bool string_array_base < Type, RawType, t_etypeContainer > ::_067ContainsSubstring(const SCOPED_STRING &str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax) const
 {
 
    ::collection::count count = 0;
@@ -2009,7 +2009,7 @@ bool string_array_base < Type, RawType, t_etypeContainer > ::_067ContainsSubstri
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::erase_first_ci(const RawType &str,::collection::index iFind,::collection::index iLast)
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::erase_first_ci(const SCOPED_STRING &str,::collection::index iFind,::collection::index iLast)
 {
 
    if ((iFind = find_first_ci(str, iFind, iLast)) >= 0)
@@ -2025,7 +2025,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::erase_first(const RawType &str,::collection::index iFind,::collection::index iLast)
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::erase_first(const SCOPED_STRING &str,::collection::index iFind,::collection::index iLast)
 {
 
    if ((iFind = find_first(str, iFind, iLast)) >= 0)
@@ -2041,7 +2041,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::erase_last_ci(const RawType &str, ::collection::index iFind, ::collection::index iLast)
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::erase_last_ci(const SCOPED_STRING &str, ::collection::index iFind, ::collection::index iLast)
 {
 
    if ((iFind = find_last_ci(str, iFind, iLast)) >= 0)
@@ -2057,7 +2057,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::erase_last(const RawType &str, ::collection::index iFind, ::collection::index iLast)
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::erase_last(const SCOPED_STRING &str, ::collection::index iFind, ::collection::index iLast)
 {
 
    if ((iFind = find_last(str, iFind, iLast)) >= 0)
@@ -2074,7 +2074,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::_067RemoveCi(const RawType &str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax)
+::collection::count string_array_base < Type, RawType, t_etypeContainer > ::_067RemoveCi(const SCOPED_STRING &str, ::collection::index iFind, ::collection::index iLast, ::collection::count countMin, ::collection::count countMax)
 {
 
    ::collection::count count = 0;
@@ -2097,7 +2097,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::_067Remove(const RawType &str,::collection::index iFind,::collection::index iLast,::collection::count countMin,::collection::count countMax)
+::collection::count string_array_base < Type, RawType, t_etypeContainer > ::_067Remove(const SCOPED_STRING &str,::collection::index iFind,::collection::index iLast,::collection::count countMin,::collection::count countMax)
 {
 
    ::collection::count count = 0;
@@ -2119,7 +2119,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::erase_ci(const RawType &str, ::collection::index iFind, ::collection::index iLast)
+::collection::count string_array_base < Type, RawType, t_etypeContainer > ::erase_ci(const SCOPED_STRING &str, ::collection::index iFind, ::collection::index iLast)
 {
 
    ::collection::count count = 0;
@@ -2137,7 +2137,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::erase(const RawType &str, ::collection::index iFind, ::collection::index iLast)
+::collection::count string_array_base < Type, RawType, t_etypeContainer > ::erase(const SCOPED_STRING &str, ::collection::index iFind, ::collection::index iLast)
 {
 
    ::collection::count count = 0;
@@ -2192,7 +2192,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::trim_left(const RawType &strChars)
+void string_array_base < Type, RawType, t_etypeContainer > ::trim_left(const SCOPED_STRING &strChars)
 {
    for(::collection::index i = 0; i < this->size(); i++)
    {
@@ -2202,7 +2202,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::trim_left(const Raw
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::trim_right(const RawType &strChars)
+void string_array_base < Type, RawType, t_etypeContainer > ::trim_right(const SCOPED_STRING &strChars)
 {
    for(::collection::index i = 0; i < this->size(); i++)
    {
@@ -2212,7 +2212,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::trim_right(const Ra
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::trim(const RawType &strChars)
+void string_array_base < Type, RawType, t_etypeContainer > ::trim(const SCOPED_STRING &strChars)
 {
    for(::collection::index i = 0; i < this->size(); i++)
    {
@@ -2386,7 +2386,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 //}
 
 
-/*::collection::index string_array_base < Type, RawType, t_etypeContainer > ::CountPrefixNoCase(const RawType &strPrefix)
+/*::collection::index string_array_base < Type, RawType, t_etypeContainer > ::CountPrefixNoCase(const SCOPED_STRING &strPrefix)
 
 {
 Type str;
@@ -2419,7 +2419,7 @@ return iCount;
 
 /*void string_array_base < Type, RawType, t_etypeContainer > ::ExtractPrefixNoSortNoCase(
 string_array_base < Type, RawType, t_etypeContainer >  &stra,
-const RawType &str,
+const SCOPED_STRING &str,
 
 ::collection::index iLength,
 ::collection::index iMinLength)
@@ -2466,7 +2466,7 @@ add(strMid);
 
 }
 
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::FindFirstNoSortNoCase(const RawType &str)
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::FindFirstNoSortNoCase(const SCOPED_STRING &str)
 
 {
 for(::collection::index i = 0; i < this->get_size(); i++)
@@ -2506,7 +2506,7 @@ return -1;
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type string_array_base < Type, RawType, t_etypeContainer > ::implode(const RawType &strSeparator,::collection::index i, ::collection::count inCountLastOut) const
+Type string_array_base < Type, RawType, t_etypeContainer > ::implode(const SCOPED_STRING &strSeparator,::collection::index i, ::collection::count inCountLastOut) const
 {
 
    Type str;
@@ -2545,7 +2545,7 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::implode(const RawTy
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type string_array_base < Type, RawType, t_etypeContainer > ::reverse_implode(const RawType &strSeparator,::collection::index i,::collection::count inCountLastOut) const
+Type string_array_base < Type, RawType, t_etypeContainer > ::reverse_implode(const SCOPED_STRING &strSeparator,::collection::index i,::collection::count inCountLastOut) const
 {
 
    Type str;
@@ -2583,7 +2583,7 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::reverse_implode(con
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-string_array_base < Type, RawType, t_etypeContainer >  & string_array_base < Type, RawType, t_etypeContainer > ::explode(const RawType &strSeparator,const RawType &str, bool bAddEmpty)
+string_array_base < Type, RawType, t_etypeContainer >  & string_array_base < Type, RawType, t_etypeContainer > ::explode(const SCOPED_STRING &strSeparator,const SCOPED_STRING &str, bool bAddEmpty)
 {
 
    this->erase_all();
@@ -2596,7 +2596,7 @@ string_array_base < Type, RawType, t_etypeContainer >  & string_array_base < Typ
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-string_array_base < Type, RawType, t_etypeContainer >  & string_array_base < Type, RawType, t_etypeContainer > ::_001Explode(const RawType &str)
+string_array_base < Type, RawType, t_etypeContainer >  & string_array_base < Type, RawType, t_etypeContainer > ::_001Explode(const SCOPED_STRING &str)
 {
 
    this->erase_all();
@@ -2649,7 +2649,7 @@ bool string_array_base < Type, RawType, t_etypeContainer > ::operator != (const 
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::replace_with(const RawType &strNew, const RawType &strOld)
+void string_array_base < Type, RawType, t_etypeContainer > ::replace_with(const SCOPED_STRING &strNew, const SCOPED_STRING &strOld)
 {
 
    for(::collection::index i = 0; i < this->get_size(); i++)
@@ -2666,7 +2666,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::replace_with(const 
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::surround(const RawType &strPrefix,const RawType &strSuffix,::collection::index iStart,::collection::count inCountLastOut)
+void string_array_base < Type, RawType, t_etypeContainer > ::surround(const SCOPED_STRING &strPrefix,const SCOPED_STRING &strSuffix,::collection::index iStart,::collection::count inCountLastOut)
 {
 
    if (!this->prepare_first_in_count_last_out(iStart, inCountLastOut))
@@ -2691,7 +2691,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::surround(const RawT
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type string_array_base < Type, RawType, t_etypeContainer > ::surround_and_implode(const RawType &strSeparator,const RawType &strPrefix,const RawType &strSuffix,::collection::index iStart,::collection::count inCountLastOut)
+Type string_array_base < Type, RawType, t_etypeContainer > ::surround_and_implode(const SCOPED_STRING &strSeparator,const SCOPED_STRING &strPrefix,const SCOPED_STRING &strSuffix,::collection::index iStart,::collection::count inCountLastOut)
 {
 
    Type str;
@@ -2766,7 +2766,7 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::surround_and_implod
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_array_base < Type, RawType, t_etypeContainer > ::move_ci(const RawType &str,::collection::index iIndex)
+bool string_array_base < Type, RawType, t_etypeContainer > ::move_ci(const SCOPED_STRING &str,::collection::index iIndex)
 
 {
    ::collection::index i = find_first_ci(str);
@@ -2781,7 +2781,7 @@ bool string_array_base < Type, RawType, t_etypeContainer > ::move_ci(const RawTy
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-bool string_array_base < Type, RawType, t_etypeContainer > ::preferred(const RawType &str)
+bool string_array_base < Type, RawType, t_etypeContainer > ::preferred(const SCOPED_STRING &str)
 
 {
    return move_ci(str,0);
@@ -2891,7 +2891,7 @@ return this->get_count() >= countMinimum;
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::collection::count string_array_base < Type, RawType, t_etypeContainer > ::begins(string_array_base < Type, RawType, t_etypeContainer > & straPrefixed, const RawType &strPrefix, ::collection::index iFirst, ::collection::index iLast)
+//::collection::count string_array_base < Type, RawType, t_etypeContainer > ::begins(string_array_base < Type, RawType, t_etypeContainer > & straPrefixed, const SCOPED_STRING &strPrefix, ::collection::index iFirst, ::collection::index iLast)
 //{
 //
 //   ::collection::count count = 0;
@@ -2928,7 +2928,7 @@ return this->get_count() >= countMinimum;
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_begins(string_array_base < Type, RawType, t_etypeContainer > & straPrefixed,const RawType &strPrefix,::collection::index iFirst,::collection::index iLast)
+//::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_begins(string_array_base < Type, RawType, t_etypeContainer > & straPrefixed,const SCOPED_STRING &strPrefix,::collection::index iFirst,::collection::index iLast)
 //{
 //
 //   ::collection::count count = 0;
@@ -2968,7 +2968,7 @@ return this->get_count() >= countMinimum;
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < primitive_array INDEX_ARRAY >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::begins(INDEX_ARRAY & iaPrefixed, const RawType &strPrefix, ::collection::index iFirst, ::collection::index iLast)
+::collection::count string_array_base < Type, RawType, t_etypeContainer > ::begins(INDEX_ARRAY & iaPrefixed, const SCOPED_STRING &strPrefix, ::collection::index iFirst, ::collection::index iLast)
 {
 
 ::collection::count count = 0;
@@ -3006,7 +3006,7 @@ return count;
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < primitive_array INDEX_ARRAY >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_begins(INDEX_ARRAY & iaPrefixed, const RawType &strPrefix, ::collection::index iFirst, ::collection::index iLast)
+::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_begins(INDEX_ARRAY & iaPrefixed, const SCOPED_STRING &strPrefix, ::collection::index iFirst, ::collection::index iLast)
 {
 
 ::collection::count count = 0;
@@ -3043,7 +3043,7 @@ return count;
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::collection::count string_array_base < Type, RawType, t_etypeContainer > ::ends(string_array_base < Type, RawType, t_etypeContainer >& straSuffixed, const RawType &strSuffix, ::collection::index iFirst, ::collection::index iLast)
+//::collection::count string_array_base < Type, RawType, t_etypeContainer > ::ends(string_array_base < Type, RawType, t_etypeContainer >& straSuffixed, const SCOPED_STRING &strSuffix, ::collection::index iFirst, ::collection::index iLast)
 //{
 //
 //   ::collection::count count = 0;
@@ -3080,7 +3080,7 @@ return count;
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < primitive_array STRING_ARRAY >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_ends(STRING_ARRAY & straSuffixed, const RawType &strSuffix, ::collection::index iFirst, ::collection::index iLast)
+::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_ends(STRING_ARRAY & straSuffixed, const SCOPED_STRING &strSuffix, ::collection::index iFirst, ::collection::index iLast)
 {
 
 ::collection::count count = 0;
@@ -3119,7 +3119,7 @@ return count;
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < primitive_array STRING_ARRAY >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::ends(STRING_ARRAY & iaSuffixed, const RawType &strSuffix, ::collection::index iFirst, ::collection::index iLast)
+::collection::count string_array_base < Type, RawType, t_etypeContainer > ::ends(STRING_ARRAY & iaSuffixed, const SCOPED_STRING &strSuffix, ::collection::index iFirst, ::collection::index iLast)
 {
 
 ::collection::count count = 0;
@@ -3156,7 +3156,7 @@ return count;
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_ends(index_array & iaSuffixed, const RawType &strSuffix, ::collection::index iFirst, ::collection::index iLast)
+//::collection::count string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_ends(index_array & iaSuffixed, const SCOPED_STRING &strSuffix, ::collection::index iFirst, ::collection::index iLast)
 //{
 //
 //   ::collection::count count = 0;
@@ -3193,7 +3193,7 @@ return count;
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::collection::count string_array_base < Type, RawType, t_etypeContainer > ::search_ci(string_array_base < Type, RawType, t_etypeContainer > & stra, const RawType &str, ::collection::index iFirst, ::collection::index iLast)
+//::collection::count string_array_base < Type, RawType, t_etypeContainer > ::search_ci(string_array_base < Type, RawType, t_etypeContainer > & stra, const SCOPED_STRING &str, ::collection::index iFirst, ::collection::index iLast)
 //{
 //
 //   ::collection::count count = 0;
@@ -3229,7 +3229,7 @@ return count;
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::collection::count string_array_base < Type, RawType, t_etypeContainer > ::search(string_array_base < Type, RawType, t_etypeContainer > & stra, const RawType &str, ::collection::index iFirst, ::collection::index iLast)
+//::collection::count string_array_base < Type, RawType, t_etypeContainer > ::search(string_array_base < Type, RawType, t_etypeContainer > & stra, const SCOPED_STRING &str, ::collection::index iFirst, ::collection::index iLast)
 //{
 //
 //   ::collection::count count = 0;
@@ -3265,7 +3265,7 @@ return count;
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < primitive_array STRING_ARRAY >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::search(STRING_ARRAY & iaResult, const RawType &strTopic, ::collection::index iFirst, ::collection::index iLast)
+::collection::count string_array_base < Type, RawType, t_etypeContainer > ::search(STRING_ARRAY & iaResult, const SCOPED_STRING &strTopic, ::collection::index iFirst, ::collection::index iLast)
 {
 
 ::collection::count count = 0;
@@ -3303,7 +3303,7 @@ return count;
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 template < primitive_array STRING_ARRAY >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::search_ci(STRING_ARRAY & ia, const RawType &strTopic, ::collection::index iFirst, ::collection::index iLast)
+::collection::count string_array_base < Type, RawType, t_etypeContainer > ::search_ci(STRING_ARRAY & ia, const SCOPED_STRING &strTopic, ::collection::index iFirst, ::collection::index iLast)
 {
 
 ::collection::count count = 0;
@@ -3340,7 +3340,7 @@ return count;
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::filter_begins(const RawType &str, ::collection::index iFirst, ::collection::index iLast)
+::collection::count string_array_base < Type, RawType, t_etypeContainer > ::filter_begins(const SCOPED_STRING &str, ::collection::index iFirst, ::collection::index iLast)
 {
 
    ::collection::count count = 0;
@@ -3384,7 +3384,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::count string_array_base < Type, RawType, t_etypeContainer > ::filter_begins_ci(const RawType &str,::collection::index iFirst,::collection::index iLast)
+::collection::count string_array_base < Type, RawType, t_etypeContainer > ::filter_begins_ci(const SCOPED_STRING &str,::collection::index iFirst,::collection::index iLast)
 {
 
    ::collection::count count = 0;
@@ -3690,7 +3690,7 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::encode_v16()
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-void string_array_base < Type, RawType, t_etypeContainer > ::decode_v16(const RawType &str)
+void string_array_base < Type, RawType, t_etypeContainer > ::decode_v16(const SCOPED_STRING &str)
 {
    //::collection::index iSize = 1024;
    //char * str = nullptr;
@@ -3705,7 +3705,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::decode_v16(const Ra
    //   sz[0] = psz[-1];
    //   sz[1] = psz[0];
    //   sz[2] = '\0';
-   //   const RawType &strEnd;
+   //   const SCOPED_STRING &strEnd;
    //   ::collection::index iConversion = ::ansi_to_i32(sz,&pszEnd,16);
    //   char ch = static_cast <char> (iConversion);
    //   if(ch == '\0')
@@ -3741,7 +3741,7 @@ void string_array_base < Type, RawType, t_etypeContainer > ::decode_v16(const Ra
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-inline ::collection::count string_array_base < Type, RawType, t_etypeContainer >::count_except(const RawType &str)
+inline ::collection::count string_array_base < Type, RawType, t_etypeContainer >::count_except(const SCOPED_STRING &str)
 {
 
    ::collection::count c = get_count();
@@ -3749,7 +3749,7 @@ inline ::collection::count string_array_base < Type, RawType, t_etypeContainer >
    for (::collection::index i = 0; i < get_count(); i++)
    {
 
-      if (this->element_at(i) == str)
+      if (this->element_at(i).order(str) == 0)
       {
 
          c--;
@@ -3763,7 +3763,7 @@ inline ::collection::count string_array_base < Type, RawType, t_etypeContainer >
 }
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-inline ::collection::count string_array_base < Type, RawType, t_etypeContainer > ::count_except_ci(const RawType &str)
+inline ::collection::count string_array_base < Type, RawType, t_etypeContainer > ::count_except_ci(const SCOPED_STRING &str)
 {
 
    ::collection::count c = get_count();
@@ -3894,7 +3894,7 @@ Type & string_array_base < Type, RawType, t_etypeContainer > ::get_network_paylo
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type string_array_base < Type, RawType, t_etypeContainer > ::_008Implode(const RawType &strSeparator, const RawType &strLastSeparator, ::collection::index iStart, ::collection::count inCountLastOut) const
+Type string_array_base < Type, RawType, t_etypeContainer > ::_008Implode(const SCOPED_STRING &strSeparator, const SCOPED_STRING &strLastSeparator, ::collection::index iStart, ::collection::count inCountLastOut) const
 {
 
    Type str;
@@ -3938,7 +3938,7 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::_008Implode(const R
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-Type string_array_base < Type, RawType, t_etypeContainer > ::_008IfImplode(const RawType &strIfHasElementPrefix, const RawType &strSeparator, const RawType &strLastSeparator, bool bUseLast, ::collection::index iStart, ::collection::count inCountLastOut) const
+Type string_array_base < Type, RawType, t_etypeContainer > ::_008IfImplode(const SCOPED_STRING &strIfHasElementPrefix, const SCOPED_STRING &strSeparator, const SCOPED_STRING &strLastSeparator, bool bUseLast, ::collection::index iStart, ::collection::count inCountLastOut) const
 {
 
    Type str;
@@ -3988,7 +3988,7 @@ Type string_array_base < Type, RawType, t_etypeContainer > ::_008IfImplode(const
 
 
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//Type string_array_base < Type, RawType, t_etypeContainer > ::_008IfImplode(const RawType &strIfHasElementPrefix, const RawType &strSeparator, const RawType &strLastSeparator, bool bUseLast, ::collection::index iStart, ::collection::index iEnd) const
+//Type string_array_base < Type, RawType, t_etypeContainer > ::_008IfImplode(const SCOPED_STRING &strIfHasElementPrefix, const SCOPED_STRING &strSeparator, const SCOPED_STRING &strLastSeparator, bool bUseLast, ::collection::index iStart, ::collection::index iEnd) const
 //{
 //
 //   Type str;
@@ -4622,7 +4622,7 @@ inline void debug_output(::particle * pparticle, string_array_base < Type, RawTy
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::suffix_find_first_ci(const RawType &strTopic, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::suffix_find_first_ci(const SCOPED_STRING &strTopic, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -4648,7 +4648,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::suffix_find_first(const RawType &strTopic, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::suffix_find_first(const SCOPED_STRING &strTopic, ::collection::index iFind, ::collection::index iLast) const
 {
 
    if (this->prepare_first_last(iFind, iLast))
@@ -4674,7 +4674,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_suffixed(const RawType &strSuffix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_suffixed(const SCOPED_STRING &strSuffix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    for (; iFind < iLast; iFind++)
@@ -4695,7 +4695,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_suffixed_ci(const RawType &strSuffix, ::collection::index iFind, ::collection::index iLast) const
+::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_suffixed_ci(const SCOPED_STRING &strSuffix, ::collection::index iFind, ::collection::index iLast) const
 {
 
    for (; iFind < iLast; iFind++)

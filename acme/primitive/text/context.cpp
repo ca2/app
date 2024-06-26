@@ -114,8 +114,7 @@ namespace text
 
             ::atom & idLocale = m_plocaleschema->m_idaLocale[i];
 
-
-            if(straFailedLocale.contains(idLocale))
+            if(straFailedLocale.contains(idLocale.as_string()))
                continue;
 
             const locale * plocale = m_ptable->get_locale(idLocale);

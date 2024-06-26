@@ -438,24 +438,43 @@ inline void string_base < ITERATOR_TYPE >::construct2(const CHARACTER2 * psz, st
 
 CLASS_DECL_ACME void foo123();
 
+template < typename ITERATOR_TYPE >
+inline void string_base < ITERATOR_TYPE >::construct1(const RANGE& range)
+{
+
+   auto pmetadata = string_base::NATURAL_META_DATA::from_data(range.m_begin);
+
+   pmetadata->natural_increment_reference_count();
+
+   this->m_begin = (const CHARACTER*)range.m_begin;
+
+   this->m_end = (const CHARACTER*)range.m_end;
+
+   this->m_erange = range.m_erange;
+
+}
+
 
 template < typename ITERATOR_TYPE >
 template < primitive_character CHARACTER2 >
 inline void string_base < ITERATOR_TYPE >::construct5(const ::range <  const CHARACTER2 * > & range)
 {
 
-   if (sizeof(CHARACTER) == sizeof(CHARACTER2) && (range.m_erange & e_range_string))
+   if constexpr(sizeof(CHARACTER) == sizeof(CHARACTER2))
    {
 
-      auto pmetadata = string_base < const CHARACTER2 * >::NATURAL_META_DATA::from_data(range.m_begin);
+      if (range.m_erange & e_range_string)
+      {
 
-      pmetadata->natural_increment_reference_count();
+         this->construct1(*(const RANGE *) &range);
 
-      this->m_begin = (const CHARACTER *)range.m_begin;
+      }
+      else
+      {
 
-      this->m_end = (const CHARACTER *)range.m_end;
+         this->construct2(range.data(), range.size());
 
-      this->m_erange = range.m_erange;
+      }
 
    }
    else

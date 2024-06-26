@@ -159,9 +159,13 @@ public:
    //   string_base(const ::const_ansi_range & ansirange) : NATURAL_POINTER(no_initialize_t{}){construct2(ansirange);}
 //   string_base(const ::const_wd16_range & wd16range) : NATURAL_POINTER(no_initialize_t{}){construct2(wd16range);}
 //   string_base(const ::const_wd32_range & wd32range) : NATURAL_POINTER(no_initialize_t{}){construct2(wd32range);}
-   string_base(const const_ansi_range & ansirange) : NATURAL_POINTER(no_initialize_t{}) { construct2(ansirange.begin(), ansirange.size()); }
-   string_base(const const_wd16_range & wd16range) : NATURAL_POINTER(no_initialize_t{}) { construct2(wd16range.begin(), wd16range.size()); }
-   string_base(const const_wd32_range & wd32range) : NATURAL_POINTER(no_initialize_t{}) { construct2(wd32range.begin(), wd32range.size()); }
+   
+   //xxxstring_base(const const_ansi_range & ansirange) : NATURAL_POINTER(no_initialize_t{}) { construct2(ansirange.begin(), ansirange.size()); }
+   //xxxstring_base(const const_wd16_range & wd16range) : NATURAL_POINTER(no_initialize_t{}) { construct2(wd16range.begin(), wd16range.size()); }
+   //xxxstring_base(const const_wd32_range & wd32range) : NATURAL_POINTER(no_initialize_t{}) { construct2(wd32range.begin(), wd32range.size()); }
+   string_base(const const_ansi_range & ansirange) : NATURAL_POINTER(no_initialize_t{}) { construct5(ansirange); }
+   string_base(const const_wd16_range & wd16range) : NATURAL_POINTER(no_initialize_t{}) { construct5(wd16range); }
+   string_base(const const_wd32_range & wd32range) : NATURAL_POINTER(no_initialize_t{}) { construct5(wd32range); }
    //string_base(const const_ansi_range & ansirange, strsize len) : NATURAL_POINTER(no_initialize_t{})  { construct2(ansirange, 0, len); }
    //string_base(const const_wd16_range & wd16range, strsize len) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd16range, 0, len); }
    //string_base(const const_wd32_range & wd32range, strsize len) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd32range, 0, len); }
@@ -212,8 +216,8 @@ public:
    string_base(::ansi_character ansich) : string_base(&ansich, 1) {}
    string_base(::wd16_character wd16ch) : string_base(&wd16ch, 1) {}
    string_base(::wd32_character wd32ch) : string_base(&wd32ch, 1) {}
-   string_base(const ::scoped_string & scopedstr);
-   string_base(const ::scoped_wstring & str);
+   string_base(const ::scoped_string & scopedstr) :NATURAL_POINTER(no_initialize_t{}) { construct5(scopedstr); }
+   string_base(const ::scoped_wstring & scopedwstr) :NATURAL_POINTER(no_initialize_t{}) { construct5(scopedwstr); }
    string_base(const ::atom & atom);
    string_base(const ::payload & payload);
    string_base(const ::property & property);
@@ -240,6 +244,9 @@ public:
       NATURAL_POINTER::create_assign_natural_meta_data(pNew);
 
    }
+
+
+   inline void construct1(const RANGE & range);
 
    template < primitive_character CHARACTER2 >
    inline void construct2(const CHARACTER2 * psz, strsize len);
@@ -421,9 +428,9 @@ public:
       //string_base & operator = (const ::range < const CHARACTER2 * > & str);
       //string_base & operator = (string_base && str);
    string_base & operator = (const ::inline_number_string & inline_number_string) {assign(inline_number_string.begin(), inline_number_string.end()); return *this;}
-   string_base & operator = (const scoped_ansi_string & ansistr);
-   string_base & operator = (const scoped_wd16_string & wd16str);
-   string_base & operator = (const scoped_wd32_string & wd32str);
+   string_base & operator = (const scoped_ansi_string & ansistr) { assign_range(ansistr); return *this; }
+   string_base & operator = (const scoped_wd16_string & wd16str) { assign_range(wd16str); return *this; }
+   string_base & operator = (const scoped_wd32_string & wd32str) { assign_range(wd32str); return *this; }
       //string_base & operator = (const string_base & str);
       //string_base & operator = (const string_base & str);
       //string_base & operator = (::ansi_character ansich);

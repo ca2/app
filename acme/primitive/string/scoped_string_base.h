@@ -234,54 +234,69 @@ public:
 //}
 
 
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE >::string_base(const ::scoped_string & scopedstr):
-   string_base(scopedstr.begin(), scopedstr.size())
-{
-
-}
-
-
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE >::string_base(const ::scoped_wstring & scopedstr) :
-   string_base(scopedstr.begin(), scopedstr.size())
-{
-
-
-}
-
-
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const scoped_ansi_string & scopedansistring)
-{
-
-   assign(scopedansistring.begin(), scopedansistring.end());
-
-   return *this;
-
-}
+//template < typename ITERATOR_TYPE >
+//inline string_base < ITERATOR_TYPE >::string_base(const ::scoped_string & scopedstr)
+//{
+//
+//   if (sizeof(typename scoped_string::ITEM) == sizeof(CHARACTER)
+//      && (range.m_erange & e_range_string))
+//   {
+//
+//      this->m_begin = (ITERATOR_TYPE)range.m_begin;
+//      this->m_end = (ITERATOR_TYPE)range.m_end;
+//      this->m_erange = range.m_erange;
+//
+//   }
+//   else
+//   {
+//
+//      this->str(range);
+//
+//   }
+//
+//}
 
 
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const scoped_wd16_string & scopedwd16string)
-{
-
-   assign(scopedwd16string.begin(), scopedwd16string.end());
-
-   return *this;
-
-}
+//template < typename ITERATOR_TYPE >
+//inline string_base < ITERATOR_TYPE >::string_base(const ::scoped_wstring & scopedstr) :
+//   string_base(scopedstr.begin(), scopedstr.size())
+//{
+//   construct5(scopedstr);
+//
+//}
 
 
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const scoped_wd32_string & scopedwd32string)
-{
+//template < typename ITERATOR_TYPE >
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const scoped_ansi_string & scopedansistring)
+//{
+//
+//   assign(scopedansistring.begin(), scopedansistring.end());
+//
+//   return *this;
+//
+//}
 
-   assign(scopedwd32string.begin(), scopedwd32string.end());
 
-   return *this;
-
-}
+//template < typename ITERATOR_TYPE >
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const scoped_wd16_string & scopedwd16string)
+//{
+//
+//   assign(scopedwd16string.begin(), scopedwd16string.end());
+//
+//   return *this;
+//
+//}
+//
+//
+//template < typename ITERATOR_TYPE >
+//inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::operator = (const scoped_wd32_string & scopedwd32string)
+//{
+//
+//   assign(scopedwd32string.begin(), scopedwd32string.end());
+//
+//   return *this;
+//
+//}
 
 
 template < typename ITERATOR_TYPE >

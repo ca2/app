@@ -5384,7 +5384,7 @@ string payload::implode(const ::scoped_string & scopedstrGlue) const
 
    class ::payload payload;
 
-   payload.stra().add_tokens(*this, scopedstrGlue, bAddEmpty);
+   payload.stra().add_tokens(this->as_string(), scopedstrGlue, bAddEmpty);
 
    return payload;
 

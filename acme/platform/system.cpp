@@ -864,7 +864,14 @@ namespace acme
    ::u32 system::crc32(::u32 uCrc, const ::block& block)
    {
 
-      auto pcompress = create < ::compress >("compress", "zlib");
+      if (!m_pcompressZlibCrc32)
+      {
+
+         m_pcompressZlibCrc32 = new_zlib_compress();
+
+      }
+
+      auto pcompress = m_pcompressZlibCrc32;
 
       if (!pcompress)
       {
@@ -2593,7 +2600,7 @@ namespace acme
    }
 
 
-   ::pointer < ::compress > system::new_compress(const ::scoped_string& scopedstrImplementation)
+   ::pointer < ::compress > system::_new_compress(const ::scoped_string& scopedstrImplementation)
    {
 
       auto pcompress = create < ::compress >("compress", scopedstrImplementation);
@@ -2610,7 +2617,7 @@ namespace acme
    }
 
 
-   ::pointer < ::uncompress > system::new_uncompress(const ::scoped_string& scopedstrImplementation)
+   ::pointer < ::uncompress > system::_new_uncompress(const ::scoped_string& scopedstrImplementation)
    {
 
       auto puncompress = create < ::uncompress >("compress", scopedstrImplementation);
@@ -2630,10 +2637,54 @@ namespace acme
 
    }
 
-   void system::compress(const ::payload& payloadTarget, const ::payload& payloadSource, const ::scoped_string& scopedstrImplementation)
+
+   ::pointer < ::compress > system::new_zlib_compress()
    {
 
-      ::pointer<::compress>pcompress = new_compress(scopedstrImplementation);
+      if (!m_pfactoryitemCompressZlib)
+      {
+
+         auto& pfactory = this->factory("compress", "zlib");
+
+         m_pfactoryitemCompressZlib = pfactory->get_factory_item< ::compress>();
+
+      }
+
+      auto pcompress = m_pfactoryitemCompressZlib->__call__create_particle();
+
+      pcompress->initialize(this);
+
+      return pcompress;
+
+   }
+
+
+
+   ::pointer < ::uncompress > system::new_zlib_uncompress()
+   {
+
+      if (!m_pfactoryitemUncompressZlib)
+      {
+
+         auto& pfactory = this->factory("compress", "zlib");
+
+         m_pfactoryitemUncompressZlib = pfactory->get_factory_item< ::uncompress>();
+
+      }
+
+      auto puncompress = m_pfactoryitemUncompressZlib->__call__create_particle();
+
+      puncompress->initialize(this);
+
+      return puncompress;
+
+   }
+
+
+   void system::_compress(const ::payload& payloadTarget, const ::payload& payloadSource, const ::scoped_string& scopedstrImplementation)
+   {
+
+      ::pointer<::compress>pcompress = _new_compress(scopedstrImplementation);
 
       ///*auto estatus =*/ new_compress(&pcompress.m_p, scopedstrImplementation);
 
@@ -2662,10 +2713,74 @@ namespace acme
    }
 
 
-   void system::uncompress(const ::payload& payloadTarget, const ::payload& payloadSource, const ::scoped_string& scopedstrImplementation, transfer_progress_function transferprogressfunction)
+   void system::_uncompress(const ::payload& payloadTarget, const ::payload& payloadSource, const ::scoped_string& scopedstrImplementation, transfer_progress_function transferprogressfunction)
    {
 
-      ::pointer<::uncompress>puncompress = new_uncompress(scopedstrImplementation);
+      ::pointer<::uncompress>puncompress = _new_uncompress(scopedstrImplementation);
+
+      ///*auto estatus = */ new_uncompress(&puncompress.m_p, scopedstrImplementation);
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      auto pfileTarget = acmefile()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
+
+      auto pfileSource = acmefile()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
+
+      /*estatus = */ puncompress->transfer(pfileTarget, pfileSource, transferprogressfunction);
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //return estatus;
+
+   }
+
+
+   void system::zlib_compress(const ::payload& payloadTarget, const ::payload& payloadSource)
+   {
+
+      ::pointer<::compress>pcompress = new_zlib_compress();
+
+      ///*auto estatus =*/ new_compress(&pcompress.m_p, scopedstrImplementation);
+
+      /*  if (!estatus)
+       {
+
+       return estatus;
+
+       }*/
+
+      auto pfileTarget = acmefile()->get_file(payloadTarget, ::file::e_open_write | ::file::e_open_defer_create_directory | ::file::e_open_binary);
+
+      auto pfileSource = acmefile()->get_file(payloadSource, ::file::e_open_read | ::file::e_open_binary);
+
+      /*estatus = */ pcompress->transfer(pfileTarget, pfileSource);
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //return estatus;
+
+   }
+
+
+   void system::zlib_uncompress(const ::payload& payloadTarget, const ::payload& payloadSource, transfer_progress_function transferprogressfunction)
+   {
+
+      ::pointer<::uncompress>puncompress = new_zlib_uncompress();
 
       ///*auto estatus = */ new_uncompress(&puncompress.m_p, scopedstrImplementation);
 

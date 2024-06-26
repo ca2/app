@@ -1327,69 +1327,69 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   void system::compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
-   {
+   //void system::compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation)
+   //{
 
-      /*auto estatus =*/
+   //   /*auto estatus =*/
 
-      ::pointer<::compress>pcompress = new_compress(scopedstrImplementation);
-      /*  if (!estatus)
-      {
+   //   ::pointer<::compress>pcompress = new_compress(scopedstrImplementation);
+   //   /*  if (!estatus)
+   //   {
 
-         return estatus;
+   //      return estatus;
 
-      }*/
+   //   }*/
 
-      auto pfileTarget = file()->get_writer(payloadTarget);
+   //   auto pfileTarget = file()->get_writer(payloadTarget);
 
-      auto pfileSource = file()->get_reader(payloadSource);
+   //   auto pfileSource = file()->get_reader(payloadSource);
 
-      /*estatus = */ pcompress->transfer(pfileTarget, pfileSource);
+   //   /*estatus = */ pcompress->transfer(pfileTarget, pfileSource);
 
-      //if (!estatus)
-      //{
+   //   //if (!estatus)
+   //   //{
 
-      //   return estatus;
+   //   //   return estatus;
 
-      //}
+   //   //}
 
-      //return estatus;
+   //   //return estatus;
 
-   }
+   //}
 
 
-   void system::uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation, transfer_progress_function transferprogressfunction)
-   {
+   //void system::uncompress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation, transfer_progress_function transferprogressfunction)
+   //{
 
-      //::pointer<::uncompress>puncompress;
+   //   //::pointer<::uncompress>puncompress;
 
-      /*auto estatus = */ 
-      
-      auto puncompress = new_uncompress(scopedstrImplementation);
+   //   /*auto estatus = */ 
+   //   
+   //   auto puncompress = new_uncompress(scopedstrImplementation);
 
-      //if (!estatus)
-      //{
+   //   //if (!estatus)
+   //   //{
 
-      //   return estatus;
+   //   //   return estatus;
 
-      //}
+   //   //}
 
-      auto pfileTarget = file()->get_writer(payloadTarget);
+   //   auto pfileTarget = file()->get_writer(payloadTarget);
 
-      auto pfileSource = file()->get_reader(payloadSource);
+   //   auto pfileSource = file()->get_reader(payloadSource);
 
-      /*estatus = */ puncompress->transfer(pfileTarget, pfileSource, transferprogressfunction);
+   //   /*estatus = */ puncompress->transfer(pfileTarget, pfileSource, transferprogressfunction);
 
-      //if (!estatus)
-      //{
+   //   //if (!estatus)
+   //   //{
 
-      //   return estatus;
+   //   //   return estatus;
 
-      //}
+   //   //}
 
-      //return estatus;
+   //   //return estatus;
 
-   }
+   //}
 
 
    void system::init2()

@@ -366,7 +366,7 @@ namespace sockets
 
          m_pmemoryfile->seek_to_begin();
 
-         system()->uncompress(pmemoryfile, m_pmemoryfile, "zlib");
+         system()->zlib_uncompress(pmemoryfile, m_pmemoryfile);
 
          m_pmemoryfile = pmemoryfile;
 

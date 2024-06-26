@@ -7,6 +7,20 @@
 //#endif
 //
 
+#if MEMORY_ANNOTATION
+
+#define MEMORY_ANNOTATION_COMMA_PARAM , const char* pszAnnotation
+#define MEMORY_ANNOTATION_COMMA_PARAM_DEF MEMORY_ANNOTATION_COMMA_PARAM = nullptr
+#define MEMORY_ANNOTATION_COMMA_ARG , pszAllocation
+
+#else
+
+#define MEMORY_ANNOTATION_COMMA_PARAM
+#define MEMORY_ANNOTATION_COMMA_PARAM_DEF
+#define MEMORY_ANNOTATION_COMMA_ARG
+
+#endif
+
 
 #pragma pack(push, heap_memory, 1)
 
@@ -21,7 +35,11 @@ struct heap_memory_header
    ::heap::enum_memory     m_ememory;
    ::u8                    m_blockuse;
    ::u8                    m_align;
+#if MEMORY_ANNOTATION
    const char *            m_pszAnnotation;
+#else
+   const char *            m_pszMemoryAnnotationPadding;
+#endif
    ::u32                   m_size;
 
 };
@@ -66,7 +84,7 @@ inline static memsize heap_memory_unaligned_provision_get_size(memsize size)
 }
 
 
-inline static void * heap_memory_unaligned(void * p, memsize size, i32 blockuse, ::heap::enum_memory ememory, const char * pszAnnotation)
+inline static void * heap_memory_unaligned(void * p, memsize size, i32 blockuse, ::heap::enum_memory ememory MEMORY_ANNOTATION_COMMA_PARAM_DEF)
 {
 
    void * pmemory = (void *)((iptr)p + sizeof(struct heap_memory));
@@ -88,7 +106,7 @@ inline static void * heap_memory_unaligned(void * p, memsize size, i32 blockuse,
 }
 
 
-inline static void * heap_memory_aligned(void * p, memsize size, i32 blockuse, int iAlignByteCount, ::heap::enum_memory ememory, const char * pszAnnotation = nullptr)
+inline static void * heap_memory_aligned(void * p, memsize size, i32 blockuse, int iAlignByteCount, ::heap::enum_memory ememory MEMORY_ANNOTATION_COMMA_PARAM_DEF)
 {
 
    void * pmemory = (void *)((((iptr)p) + sizeof(struct heap_memory) + iAlignByteCount - 1) & ((~((iptr)iAlignByteCount - 1))));
@@ -105,7 +123,11 @@ inline static void * heap_memory_aligned(void * p, memsize size, i32 blockuse, i
 
    pheap->m_ememory = ememory;
 
+#if MEMORY_ANNOTATION
+
    pheap->m_pszAnnotation = pszAnnotation;
+
+#endif
 
    return pmemory;
 

@@ -368,7 +368,7 @@ namespace sockets
 
                //iInputFileSize = pfileIn->size();
 
-               system()->compress(pfile, pfileIn, "zlib");
+               system()->zlib_compress(pfile, pfileIn);
 
                response().m_strFile.empty();
 
@@ -380,7 +380,7 @@ namespace sockets
 
                //iInputFileSize = response().file()->size();
 
-               system()->compress(pfile, response().file(), "zlib");
+               system()->zlib_compress(pfile, response().file());
 
             }
 
@@ -548,7 +548,7 @@ namespace sockets
 
             //if (!system()->uncompress(response().file(), preader, "zlib"))
 
-            system()->uncompress(response().file(), preader, "zlib");
+            system()->zlib_uncompress(response().file(), preader);
             //{
 
                response().file()->write_from_beginning(preader);

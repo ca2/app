@@ -451,7 +451,7 @@ class ::write_text::write_text * particle::write_text() const
 ::acme::system * particle::system() const
 {
 
-   return ::is_set(m_pcontext) ? m_pcontext->system() : nullptr;
+   return ::is_set(m_pcontext) ? m_pcontext->system() : ::platform::get()->system();
 
 }
 

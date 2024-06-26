@@ -139,8 +139,8 @@ public:
 
 
    list_iterator_node(CONST_ITEM_POINTER p) : BASE_ITERATOR_TYPE(p) {}
-   list_iterator_node(const iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
-   list_iterator_node(const const_iterator & iterator) : BASE_ITERATOR_TYPE(*(BASE_ITERATOR_TYPE *)&iterator) {}
+   list_iterator_node(const iterator & iterator) : BASE_ITERATOR_TYPE((const BASE_ITERATOR_TYPE &)iterator) {}
+   list_iterator_node(const const_iterator & iterator) : BASE_ITERATOR_TYPE((const BASE_ITERATOR_TYPE&)iterator) {}
 
 
    auto & topic() { return BASE_ITERATOR_TYPE::topic(); }

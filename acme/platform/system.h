@@ -173,6 +173,9 @@ namespace acme
 //#if defined(WITH_X11) || defined(WITH_XCB)
   //    ::pointer < ::particle >                                 m_pmutexXlib;
 //#endif
+      ::pointer < ::factory::factory_item_interface >      m_pfactoryitemCompressZlib;
+      ::pointer < ::factory::factory_item_interface >      m_pfactoryitemUncompressZlib;
+      ::pointer < ::compress >                             m_pcompressZlibCrc32;
 
 
 
@@ -606,13 +609,17 @@ namespace acme
       //}
 
 
-      ::pointer < ::compress>    new_compress(const ::scoped_string & scopedstrImplementation);
-      ::pointer < ::uncompress>  new_uncompress(const ::scoped_string & scopedstrImplementation);
+      ::pointer < ::compress>    _new_compress(const ::scoped_string & scopedstrImplementation);
+      ::pointer < ::uncompress>  _new_uncompress(const ::scoped_string & scopedstrImplementation);
 
+      ::pointer < ::compress>    new_zlib_compress();
+      ::pointer < ::uncompress>  new_zlib_uncompress();
 
-      virtual void compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation);
-      virtual void uncompress(const ::payload& payloadTarget, const ::payload& payloadSource, const ::scoped_string& scopedstrImplementation, transfer_progress_function transferprogressfunction = {});
+      virtual void _compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation);
+      virtual void _uncompress(const ::payload& payloadTarget, const ::payload& payloadSource, const ::scoped_string& scopedstrImplementation, transfer_progress_function transferprogressfunction = {});
 
+      virtual void zlib_compress(const ::payload& payloadTarget, const ::payload& payloadSource);
+      virtual void zlib_uncompress(const ::payload& payloadTarget, const ::payload& payloadSource, transfer_progress_function transferprogressfunction = {});
 
       virtual bool fast_is_decompressable_folder(const ::file::path & path);
 

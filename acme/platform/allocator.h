@@ -233,7 +233,7 @@ namespace allocator
 
          char * pszAnnotation = nullptr;
 
-#ifdef _DEBUG
+#if MEMORY_ANNOTATION
 
          pszAnnotation = ::c::strdup(typeid(T).name());
 
@@ -258,9 +258,9 @@ namespace allocator
 
          char * pszAnnotation = nullptr;
 
-#ifdef _DEBUG
+#if MEMORY_ANNOTATION
 
-         pszAnnotation = strdup2("array of ", typeid(T).name());
+         pszAnnotation = ::c::strdup2("array of ", typeid(T).name());
 
 #endif
 

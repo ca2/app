@@ -75,7 +75,7 @@ namespace heap
 
             }
 
-            paligned = heap_memory_aligned(p, size, 128, (int)align, m_ememory, pszAnnotation);
+            paligned = heap_memory_aligned(p, size, 128, (int)align, m_ememory MEMORY_ANNOTATION_COMMA_ARG);
 
          }
          else
@@ -90,7 +90,7 @@ namespace heap
 
             }
 
-            paligned = heap_memory_aligned(p, size, 0, (int)align, m_ememory, pszAnnotation);
+            paligned = heap_memory_aligned(p, size, 0, (int)align, m_ememory MEMORY_ANNOTATION_COMMA_ARG);
 
          }
 
@@ -106,7 +106,7 @@ namespace heap
 
 #if defined(__APPLE__) || defined(LINUX)
 
-         punaligned = aligned_allocate(size, ALIGN_BYTE_COUNT, pszAnnotation);
+         punaligned = aligned_allocate(size, ALIGN_BYTE_COUNT MEMORY_ANNOTATION_COMMA_ARG);
 
 #else
 
@@ -126,7 +126,7 @@ namespace heap
 
             }
 
-            punaligned = heap_memory_unaligned(p, size, 129, m_ememory, pszAnnotation);
+            punaligned = heap_memory_unaligned(p, size, 129, m_ememory MEMORY_ANNOTATION_COMMA_ARG);
 
          }
          else
@@ -141,7 +141,7 @@ namespace heap
 
             }
 
-            punaligned = heap_memory_unaligned(p, size, 1, m_ememory, pszAnnotation);
+            punaligned = heap_memory_unaligned(p, size, 1, m_ememory MEMORY_ANNOTATION_COMMA_ARG);
 
          }
 
@@ -170,7 +170,7 @@ namespace heap
          if (m_pallocarray == nullptr)
          {
 
-            void * p = m_pallocator->allocate(sizeProvision, pszAnnotation);
+            void * p = m_pallocator->allocate(sizeProvision MEMORY_ANNOTATION_COMMA_ARG);
 
             if (p == nullptr)
             {
@@ -179,7 +179,7 @@ namespace heap
 
             }
 
-            paligned = heap_memory_aligned(p, size, 130, (int)align, m_ememory, pszAnnotation);
+            paligned = heap_memory_aligned(p, size, 130, (int)align, m_ememory MEMORY_ANNOTATION_COMMA_ARG);
 
             memory_set(paligned, 0, size);
 
@@ -196,7 +196,7 @@ namespace heap
 
             }
 
-            paligned = heap_memory_aligned(p, size, 2, (int)align, m_ememory, pszAnnotation);
+            paligned = heap_memory_aligned(p, size, 2, (int)align, m_ememory MEMORY_ANNOTATION_COMMA_ARG);
 
          }
 
@@ -212,7 +212,7 @@ namespace heap
 
 #if defined(__APPLE__) || defined(LINUX)
 
-         punaligned = aligned_allocate(size, ALIGN_BYTE_COUNT, pszAnnotation);
+         punaligned = aligned_allocate(size, ALIGN_BYTE_COUNT MEMORY_ANNOTATION_COMMA_ARG);
 
 #else
 
@@ -230,7 +230,7 @@ namespace heap
 
             }
 
-            punaligned = heap_memory_unaligned(p, size, 131, m_ememory, pszAnnotation);
+            punaligned = heap_memory_unaligned(p, size, 131, m_ememory MEMORY_ANNOTATION_COMMA_ARG);
 
          }
          else
@@ -245,7 +245,7 @@ namespace heap
 
             }
 
-            punaligned = heap_memory_unaligned(p, size, 3, m_ememory, pszAnnotation);
+            punaligned = heap_memory_unaligned(p, size, 3, m_ememory MEMORY_ANNOTATION_COMMA_ARG);
 
          }
 
@@ -263,7 +263,7 @@ namespace heap
       void * allocate(memsize size, const char * pszAnnotation = nullptr) override
       {
 
-         return aligned_allocate(size, ALIGN_BYTE_COUNT, pszAnnotation);
+         return aligned_allocate(size, ALIGN_BYTE_COUNT MEMORY_ANNOTATION_COMMA_ARG);
 
       }
 
@@ -287,7 +287,7 @@ namespace heap
       void * count_allocate(memsize size, memsize bytes, const char * pszAnnotation = nullptr) override
       {
 
-         return allocate(size * bytes, pszAnnotation);
+         return allocate(size * bytes MEMORY_ANNOTATION_COMMA_ARG);
 
       }
 
@@ -297,7 +297,7 @@ namespace heap
 
          // return unaligned_memory_allocate_debug(nSize, nBlockUse, szFileName, nLine);
 
-         return aligned_allocate_debug(nSize, nBlockUse, szFileName, nLine, ALIGN_BYTE_COUNT, pszAnnotation);
+         return aligned_allocate_debug(nSize, nBlockUse, szFileName, nLine, ALIGN_BYTE_COUNT MEMORY_ANNOTATION_COMMA_ARG);
 
       }
 
@@ -305,7 +305,7 @@ namespace heap
       void * reallocate(void * pmemory, memsize nSize, const char * pszAnnotation = nullptr) override
       {
 
-         return reallocate_debug(pmemory, nSize, 0, nullptr, -1, pszAnnotation);
+         return reallocate_debug(pmemory, nSize, 0, nullptr, -1 MEMORY_ANNOTATION_COMMA_ARG);
 
       }
 
@@ -316,7 +316,7 @@ namespace heap
          if (pmemory == nullptr)
          {
 
-            return allocate_debug(size, nBlockUse, szFileName, nLine, pszAnnotation);
+            return allocate_debug(size, nBlockUse, szFileName, nLine MEMORY_ANNOTATION_COMMA_ARG);
 
          }
 
@@ -442,13 +442,13 @@ namespace heap
          if (blockuse == 0 || blockuse == 2 || blockuse == 128 || blockuse == 130) // aligned
          {
 
-            return heap_memory_aligned(p, size, blockuse, align, m_ememory, pszAnnotation);
+            return heap_memory_aligned(p, size, blockuse, align, m_ememory MEMORY_ANNOTATION_COMMA_ARG);
 
          }
          else if (blockuse == 1 || blockuse == 3 || blockuse == 129 || blockuse == 131) // unaligned
          {
 
-            return heap_memory_unaligned(p, size, blockuse, m_ememory, pszAnnotation);
+            return heap_memory_unaligned(p, size, blockuse, m_ememory MEMORY_ANNOTATION_COMMA_ARG);
 
          }
          else

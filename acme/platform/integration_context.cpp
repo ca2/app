@@ -1,6 +1,7 @@
 // Created by camilo on 2023-01-15 16:16 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "integration_context.h"
+#include "acme/compress/compress.h"
 #include "acme/constant/integration.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/file.h"
@@ -441,7 +442,7 @@ namespace integration
                });
 
                
-            system()->uncompress(pmemoryFileTar, pmemoryFileTarGz, "zlib", t2);
+            system()->zlib_uncompress(pmemoryFileTar, pmemoryFileTarGz, t2);
 
             pmemoryFileTar->seek_to_begin();
 

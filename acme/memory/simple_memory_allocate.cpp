@@ -38,7 +38,7 @@ void * simple_memory_reallocate(void * p2, size_t s, const char * pszAllocation)
       
       auto prealloc = ::realloc(p, s2);
       
-      auto prealloc2 = heap_memory_aligned(prealloc, s, 0, ALIGN_BYTE_COUNT, ::heap::e_memory_simple, pszAllocation);
+      auto prealloc2 = heap_memory_aligned(prealloc, s, 0, ALIGN_BYTE_COUNT, ::heap::e_memory_simple MEMORY_ANNOTATION_COMMA_ARG);
       
       return prealloc2;
 
@@ -100,16 +100,18 @@ void simple_memory_free(void * p2)
       else
       {
 
-         output_debug_string("simple_memory_free (2) pheapmanagement not set\n");
+         print_line("simple_memory_free (2) pheapmanagement not set");
+
+#if MEMORY_ANNOTATION
 
          if(pheapmemory->m_pszAnnotation)
          {
 
-            output_debug_string(pheapmemory->m_pszAnnotation);
-
-            output_debug_string("\n");
+            print_line(pheapmemory->m_pszAnnotation);
 
          }
+
+#endif
 
       }
 

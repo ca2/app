@@ -445,6 +445,9 @@
     <Filter Include="Header Files\windowing_system">
       <UniqueIdentifier>{1fe5cf98-dbfd-4f0f-831e-9be20c60a5c2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\operating_system\shared_posix">
+      <UniqueIdentifier>{086d5169-6123-42a9-8673-7d8804ab61c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -5416,6 +5419,9 @@
     </ClCompile>
     <ClCompile Include="platform\system_factory.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\debug.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

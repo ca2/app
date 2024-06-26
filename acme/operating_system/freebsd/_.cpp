@@ -74,51 +74,6 @@ CLASS_DECL_ACME void __node_acme_pos_term()
 
 
 
-// http://stackoverflow.com/questions/150355/programmatically-find-the-number-of-cores-on-a-machine
-// http://stackoverflow.com/users/1275169/l3x
-int get_proc_cpuinfo_core_count()
-{
-
-   char str[256];
-
-   int procCount = 0;
-
-   FILE *fp;
-
-   if( (fp = fopen("/proc/cpuinfo", "r")) )
-   {
-
-      while(fgets(str, sizeof str, fp))
-      {
-
-         if(memory_order(str, "handler", 9) == 0)
-         {
-
-            procCount++;
-
-         }
-
-      }
-
-   }
-
-   if ( !procCount )
-   {
-      printf("Unable to get proc count. Defaulting to 2");
-      procCount=2;
-   }
-
-   printf("Proc Count:%d\n", procCount);
-   return procCount;
-
-}
-
-// int get_processor_count()
-// {
-
-//    return get_proc_cpuinfo_core_count();
-// }
-
 
 // int get_processor_count()
 // {

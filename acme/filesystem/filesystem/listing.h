@@ -102,7 +102,7 @@ namespace file
 
 
       //listing& operator = (const ::e_status & estatus) { return *this; }
-      template < container_type CONTAINER >
+      template < primitive_container CONTAINER >
       inline ::collection::index add_container(const CONTAINER & container)
       {
 

@@ -4,10 +4,12 @@
 #include "acme/nano/user/display.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/node.h"
+#include "acme/windowing_system/windowing_system.h"
 
-#if defined(FREEBSD)
-#define __XSI_VISIBLE 1
-#endif
+
+//#if defined(FREEBSD)
+//#define __XSI_VISIBLE 1
+//#endif
 #define bitset freebsd_bitset
 #include <sys/_cpuset.h>
 #include <sys/cpuset.h>
@@ -19,7 +21,7 @@
 #define ITIMER_VIRTUAL   1
 #define ITIMER_PROF      2
 #include <errno.h>
-
+#include <stdio.h>
 
 //void task_set_name(htask_t htask, const char * psz)
 //{
@@ -259,33 +261,46 @@ bool __os_term_thread()
 
 
 
-void x11_process_messages();
-void xcb_process_messages();
+//void x11_process_messages();
+//void xcb_process_messages();
 //void wayland_process_messages();
 
+//namespace x11{namespace nano { namespace user{void process_messages();}}}
+
+//namespace xcb{namespace nano { namespace user{void process_messages();}}}
 
 void _do_tasks()
 {
 
-   auto psystem = ::platform::get()->system();
-
-//   if(psystem->m_ewindowing == e_windowing_wayland)
+//   auto psystem = ::platform::get()->system();
+//
+////   if(psystem->m_ewindowing == e_windowing_wayland)
+////   {
+////
+////      wayland_process_messages();
+////
+////   }
+////   else
+//  if(psystem->m_ewindowing == e_windowing_xcb)
 //   {
 //
-//      wayland_process_messages();
+//      ::xcb::nano::user::process_messages();
 //
 //   }
 //   else
-  if(psystem->m_ewindowing == e_windowing_xcb)
-   {
+//   {
+//
+//      ::x11::nano::user::process_messages();
+//
+//   }
 
-      xcb_process_messages();
+   auto psystem = ::platform::get()->system();
 
-   }
-   else
-   {
+   auto pwindowingsystem = psystem->windowing_system();
 
-      x11_process_messages();
+   if(::is_set(pwindowingsystem)) {
+
+      pwindowingsystem->process_messages();
 
    }
 
@@ -311,5 +326,56 @@ namespace acme
 
 
 } // namespace acme
+
+
+
+
+
+// http://stackoverflow.com/questions/150355/programmatically-find-the-number-of-cores-on-a-machine
+// http://stackoverflow.com/users/1275169/l3x
+int get_proc_cpuinfo_core_count()
+{
+
+   char str[256];
+
+   int procCount = 0;
+
+   FILE *fp;
+
+   if( (fp = fopen("/proc/cpuinfo", "r")) )
+   {
+
+      while(fgets(str, sizeof str, fp))
+      {
+
+         if(memory_order(str, "handler", 9) == 0)
+         {
+
+            procCount++;
+
+         }
+
+      }
+
+   }
+
+   if ( !procCount )
+   {
+      print_line("Unable to get proc count. Defaulting to 2");
+      procCount=2;
+   }
+
+   printf_line("Proc Count:%d\n", procCount);
+   return procCount;
+
+}
+
+
+int get_processor_count()
+{
+
+   return get_proc_cpuinfo_core_count();
+
+}
 
 

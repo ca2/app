@@ -334,13 +334,13 @@ using atom_map = ::map < atom, TYPE, PAIR >;
 
 
 
-template < typename CONTAINER >
-concept container_type = requires(CONTAINER container)
-{
-
-   {container.this_is_a_container()} -> std::same_as<void>;
-
-};
+//template < typename CONTAINER >
+//concept container_type = requires(CONTAINER container)
+//{
+//
+//   {container.this_is_a_container()} -> std::same_as<void>;
+//
+//};
 
 
 template < typename ARRAY >

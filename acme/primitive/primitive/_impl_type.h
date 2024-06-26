@@ -31,7 +31,7 @@ inline bool type_atom::operator == (const ::atom& atom) const
 }
 
 
-type_atom::type_atom(const ::quantum * p)
+inline type_atom::type_atom(const ::quantum * p)
 {
 
    if(::is_null(p))

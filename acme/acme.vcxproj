@@ -1404,6 +1404,7 @@
     <ClInclude Include="primitive\primitive\referenceable.h" />
     <ClInclude Include="primitive\primitive\subparticle.h" />
     <ClInclude Include="primitive\primitive\subparticle_flags.h" />
+    <ClInclude Include="primitive\primitive\_impl_ptr.h" />
     <ClInclude Include="primitive\string\c_string.h" />
     <ClInclude Include="primitive\time\__time.h" />
     <ClInclude Include="user\user\check.h" />

@@ -19581,10 +19581,10 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
          if (iMatchingMonitor >= 0 && rectangleNew.bottom() > 0)
          {
 
-            if (rectangleWorkspace.bottom() > rectangleNew.bottom() - 2)
+            if (rectangleZoomedWindowSite.bottom() > rectangleNew.bottom() - 2)
             {
 
-               rectangleWorkspace.bottom() = rectangleNew.bottom() - 2;
+               rectangleZoomedWindowSite.bottom() = rectangleNew.bottom() - 2;
 
             }
 

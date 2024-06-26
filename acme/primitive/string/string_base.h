@@ -2011,9 +2011,9 @@ string_base<ITERATOR_TYPE> const_string_range<ITERATOR_TYPE>::single_quoted(bool
 
       ::string_base<ITERATOR_TYPE> str(*this);
 
-      str.replace("\\", "\\\\");
+      str.find_replace("\\", "\\\\");
 
-      str.replace("\'", "\\'");
+      str.find_replace("\'", "\\'");
 
       return str.double_quoted(false);
 

@@ -8,7 +8,7 @@ namespace menu
 {
 
 
-   class CLASS_DECL_AURA item :
+   class CLASS_DECL_BASE item :
       virtual public ::item,
       virtual public ::object
    {

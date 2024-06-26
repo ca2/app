@@ -10,7 +10,7 @@
 
 
 template < typename TYPE >
-::ptr < TYPE > & ptr < TYPE >::operator = (const ::pointer < TYPE > & p)
+inline ::ptr < TYPE > & ptr < TYPE >::operator = (const ::pointer < TYPE > & p)
 {
    
    auto pOld = m_p;
@@ -48,7 +48,7 @@ template < typename TYPE >
 
 
 template < typename TYPE >
-::ptr < TYPE > & ptr < TYPE >::operator = (::pointer < TYPE > && p)
+inline ::ptr < TYPE > & ptr < TYPE >::operator = (::pointer < TYPE > && p)
 {
 
    auto pOld = m_p;
@@ -89,7 +89,7 @@ template < typename TYPE >
 
 template < typename TYPE >
 template < typename TYPE2 >
-::ptr < TYPE > & ptr < TYPE >::operator = (const ::pointer < TYPE2 > & p)
+inline ::ptr < TYPE > & ptr < TYPE >::operator = (const ::pointer < TYPE2 > & p)
 {
    
    if(is_null(p))
@@ -139,7 +139,7 @@ template < typename TYPE2 >
 
 template < typename TYPE >
 template < typename TYPE2 >
-::ptr < TYPE > & ptr < TYPE >::operator = (::pointer < TYPE2 > && p)
+inline ::ptr < TYPE > & ptr < TYPE >::operator = (::pointer < TYPE2 > && p)
 {
 
    if(::is_null(p))

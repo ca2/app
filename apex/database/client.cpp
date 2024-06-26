@@ -5,6 +5,7 @@
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/parallelization/event.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/primitive/data/property.h"
 #include "apex/handler/signal.h"
 #include "apex/platform/application.h"
 
@@ -21,36 +22,48 @@ namespace database
    }
 
 
-   void client::default_data_save_handling(const ::atom & idParam)
+   void client::default_data_save_handling(const ::data::property & property)
    {
 
-      ::atom atom(idParam);
+      // ::atom atom(idParam);
+      //
+      // auto linkedproperty = fetch_property(atom);
+      //
+      // ::payload payload;
+      //
+      // if(data_get_payload(atom, payload))
+      // {
+      //
+      //    linkedproperty->convert(payload);
+      //
+      // }
+      //
+      // //auto idProcedure = translate_property_id(atom);
+      //
+      // //auto linkedproperty = fetch_property(atom);
+      //
+      // auto psignal = get_app()->m_papexapplication->get_signal(linkedproperty->m_atom);
+      //
+      // psignal->add_signal_handler([this, atom, linkedproperty](::topic * ptopic, ::context * pcontext)
+      //
+      // //connect(atom, [atom, linkedproperty](::message::message* pmessage)
+      //    {
+      //
+      //       data_set_payload(atom, *linkedproperty.m_pproperty);
+      //
+      //    });
 
-      auto linkedproperty = fetch_property(atom);
-
-      ::payload payload;
-
-      if(data_get_payload(atom, payload))
+      property.property_changed() += [property, this](::data::property_change & change)
       {
 
-         linkedproperty->convert(payload);
-
-      }
-
-      //auto idProcedure = translate_property_id(atom);
-
-      //auto linkedproperty = fetch_property(atom);
-
-      auto psignal = get_app()->m_papexapplication->get_signal(linkedproperty->m_atom);
-
-      psignal->add_signal_handler([this, atom, linkedproperty](::topic * ptopic, ::context * pcontext)
-
-      //connect(atom, [atom, linkedproperty](::message::message* pmessage)
+         if(change.m_actioncontext.is_user_source() && (property && change))
          {
 
-            data_set_payload(atom, *linkedproperty.m_pproperty);
+            data_set_payload(get_key(property), change.m_payload);
 
-         });
+         }
+
+      };
 
       //::add_procedure(get_app()->m_proceduremap[idProcedure], [this, atom]()
       //   {
@@ -150,6 +163,47 @@ namespace database
    {
 
       return _data_get(strKey, payload);
+
+   }
+
+
+   bool client::data_get(const ::data::property & dataproperty)
+   {
+
+      ::payload payload;
+
+      if (!data_get_payload(get_key(dataproperty), payload))
+      {
+
+         return false;
+
+      }
+
+      dataproperty.set_property(payload, ::e_source_database);
+
+      return true;
+
+   }
+
+
+   void client::data_set(const ::data::property & dataproperty)
+   {
+
+      data_set_payload(get_key(dataproperty), (const ::payload &)dataproperty.get_property());
+
+   }
+
+
+   ::string client::get_key(const ::data::property & dataproperty)
+   {
+
+      ::string strKey;
+
+      strKey = dataproperty.atom().as_string();
+
+      const char * pszKey = strKey.c_str();
+
+      return strKey;
 
    }
 
@@ -318,7 +372,7 @@ namespace database
    }
 
 
-   bool client::_data_get(const ::scoped_string & strKey, ::payload payload)
+   bool client::_data_get(const ::scoped_string & strKey, ::payload & payload)
    {
 
       if (m_pdataserver == nullptr)

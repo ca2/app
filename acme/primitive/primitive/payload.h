@@ -6,7 +6,7 @@
 #include "acme/primitive/datetime/file_time.h"
 #include "acme/primitive/time/time/posix_time.h"
 #include "acme/graphics/draw2d/color.h"
-#include "ptr.h"
+#include "pointer.h"
 #include "acme/memory/memory.h"
 #include "acme/memory/raw_block.h"
 #include "acme/platform/procedure.h"
@@ -219,17 +219,17 @@ public:
 
       m_etype = e_type_new;
 
-      _set_element(p.m_pparticle);
+      _set_element(p.m_psubparticle);
 
    }
 
-   template < class T >
-   payload(const ptr < T > & p)
-   {
-      m_etype = e_type_new;
-      //operator = (p.m_p);
-      _set_element((T *)p.m_p);
-   }
+   //template < class T >
+   //payload(const pointer < T > & p)
+   //{
+   //   m_etype = e_type_new;
+   //   //operator = (p.m_p);
+   //   _set_element((T *)p.m_p);
+   //}
 
    //template < class T >
    //payload(const pointer < T >& resultpointer)
@@ -325,7 +325,7 @@ public:
 
    bool get_type(::type_atom & typeatom) const;
 
-   ::i64 release();
+   ::i64 payload_release();
 
    ::i64 logical_release();
 
@@ -350,7 +350,7 @@ public:
 
    }
 
-   bool convert(const ::payload & payload);
+   bool target_constrained_assign(const ::payload & payload);
 
 
    bool                             get_bool(bool bDefault = false)     const;
@@ -475,7 +475,7 @@ public:
    }
 
 
-   ::posix_time as_time(const class ::time & timeDefault = {}) const;
+   ::posix_time as_time(const class ::time & timeDefault) const;
 
    ::string as_string(const ::scoped_string & scopedstrOnNull) const;
    ::string as_string() const;
@@ -483,14 +483,14 @@ public:
    ::atom as_atom() const;
    ::atom as_atom(const ::atom & idDefault) const;
 
-   ::memory memory() const;
-   ::string_array stra() const;
-   ::i32_array ia() const;
-   ::i64_array i64a() const;
-   ::payload_array payloada()  const;
-   ::property_set propset() const;
-   class ::time time() const;
-   ::property property() const;
+   ::memory as_memory() const;
+   ::string_array as_string_array() const;
+   ::i32_array as_i32_array() const;
+   ::i64_array as_i64_array() const;
+   ::payload_array as_payload_array()  const;
+   ::property_set as_property_set() const;
+   class ::time as_time() const;
+   ::property as_property() const;
 
 
    bool is_scalar() const;
@@ -802,7 +802,7 @@ public:
    inline payload & operator = (const ::pointer<TYPE> & pointer)
    {
 
-      _set_element(pointer.m_pparticle);
+      _set_element(pointer.m_psubparticle);
 
       return *this;
 
@@ -849,7 +849,7 @@ public:
    }
 
 
-   void increment_reference_count();
+   void payload_increment_reference_count();
 
 
 
@@ -1140,13 +1140,13 @@ public:
 
    //}
 
-   template < class T >
-   payload & operator = (const ptr < T > & p)
-   {
+   //template < class T >
+   //payload & operator = (const ::pointer < T > & p)
+   //{
 
-      return this->operator = (p.m_p);
+   //   return this->operator = (p.m_p);
 
-   }
+   //}
    //template < class T >
    //payload & operator = (const pointer < T > & resultpointer)
    //{
@@ -1195,7 +1195,7 @@ public:
 
 
    template < class T >
-   ::ptr< T > cast(T * pDefault);
+   ::pointer< T > cast(T * pDefault);
 
    template < class T >
    T & defer_create_type(T * pdefault = nullptr)
@@ -1221,23 +1221,23 @@ public:
    T & get_cast(T * pDefault);
 
 
-   template < class T >
-   ::ptr< T > cast(T * pDefault) const
-   {
-      return ((payload *)this)->cast < T >(pDefault);
-   }
+   //template < class T >
+   //::ptr< T > cast(T * pDefault) const
+   //{
+   //   return ((payload *)this)->cast < T >(pDefault);
+   //}
 
 
    template < class T >
-   ::ptr< T > cast();
+   ::pointer< T > cast();
 
-   ::subparticle * subparticle()
+   ::subparticle * as_subparticle()
    {
       if (m_etype == e_type_element) { return m_p; }
       return cast < ::subparticle >();
    }
 
-   ::subparticle * subparticle() const { return ((payload *)this)->subparticle(); }
+   ::subparticle * as_subparticle() const { return ((payload *)this)->as_subparticle(); }
 
    template < class T >
    T * cast() const
@@ -1476,7 +1476,7 @@ public:
    //void consume_identifier((::ansi_range & range);
    void parse_network_payload(::ansi_range & range);
    //void parse_network_payload((::ansi_range & range);
-   const char * parse_network_payload(const ::string & strJson);
+   const char * parse_network_payload(const ::scoped_string & scopedstrNetworkPayload);
    ::enum_type find_network_payload_child(::ansi_range & range, const payload & payload);
    //::enum_type find_network_payload_child((::ansi_range & range, const payload & payload);
    ::enum_type find_network_payload_id(::ansi_range & range, const payload & payload);
@@ -1498,9 +1498,9 @@ public:
    void _001Add(const ::string_array & stra);
 
 
-   void run();
+   void payload_run();
 
-   void operator()() { return run(); }
+   //void operator()() { return run(); }
 
    void receive_response(const payload & payload);
 
@@ -1512,7 +1512,7 @@ public:
 
 
 #include "__payload_reference.h"
-#include "acme/primitive/collection/__property_set.h"
+#include "acme/primitive/collection/property_set.h"
 
 
 //

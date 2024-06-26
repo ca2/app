@@ -62,6 +62,7 @@ using hsynchronization = void *;
 
 #include "subparticle.h"
 
+#include "particle_flags.h"
 
 #include "acme/platform/trace_statement.h"
 
@@ -89,13 +90,14 @@ struct disable_referencing_debugging_t {};
 
 // ThomasBorregaardSorensen!! Like handlers : now particle with handle::handlers*
 class CLASS_DECL_ACME particle :
-   virtual public subparticle
+   virtual public subparticle,
+   virtual public PARTICLE_FLAGS
 {
 public:
 
 
    mutable ::acme::context *           m_pcontext;
-   mutable ::ptr < ::particle >        m_pparticleSynchronization;
+   mutable ::pointer < ::particle >    m_pparticleSynchronization;
 
 //#if REFERENCING_DEBUGGING
    particle() : m_pcontext(nullptr) {}
@@ -106,16 +108,22 @@ public:
 //
 //   particle(::particle * pparticleParent);
 //#else
-   //particle(::particle * pparticleParent);
-//#endif
    ~particle() override;
 
+
+   inline bool is_null() const { return ::is_null(this); }
+   inline bool is_set() const { return !is_null() && _is_set(); }
+
+   inline bool is_ok() const { return is_set() && _is_ok(); }
+   inline bool nok() const { return !is_ok(); }
 
 
 
    virtual void initialize(::particle * pparticle);
    virtual void finalize();
 
+
+   bool _is_ok() const override;
 
 //   virtual void delete_this();
 
@@ -169,7 +177,7 @@ public:
 
    //::aura::application* auraapplication() const;
 
-
+   void delete_this() override;
 
 
    ::acme_file * acmefile() const;
@@ -204,13 +212,6 @@ public:
 
 
 
-   virtual bool _is_set() const;
-   inline bool is_null() const { return ::is_null(this); }
-   inline bool is_set() const { return !is_null() && _is_set(); }
-
-   virtual bool _is_ok() const;
-   inline bool is_ok() const { return is_set() && _is_ok(); }
-   inline bool nok() const { return !is_ok(); }
 
 
    virtual void install_message_routing(::channel * pchannel);
@@ -694,8 +695,6 @@ public:
    //virtual void exchange(::stream& s);
    //virtual void exchange(::payload_stream& s);
 
-   virtual void write_to_stream(::binary_stream & stream);
-   virtual void read_from_stream(::binary_stream & stream);
 
 
    //virtual void add_composite(::particle * pparticle);
@@ -707,9 +706,6 @@ public:
    //virtual void release_reference(::particle * pparticle);
 
 
-   virtual void destroy();
-   virtual void destroy_impl_data();
-   virtual void destroy_os_data();
 
 
    virtual void kick_idle();
@@ -735,6 +731,21 @@ public:
 
 
    virtual void process_owned_procedure_list(::procedure_list & procedurelist, bool & bHandled);
+
+
+   virtual memory_file_pointer create_memory_file();
+
+
+   virtual memory_file_pointer create_memory_file(::memory_base& memory);
+
+
+   virtual memory_file_pointer create_memory_file(const ::block& block);
+   
+
+   virtual memory_file_pointer create_memory_file_as_copy(const memory& memory);
+   
+
+   virtual memory_file_pointer create_memory_file_by_reading(::file::file* pfile);
 
 
    //template < typename T, typename ...Args >

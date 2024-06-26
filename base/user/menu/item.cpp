@@ -1,12 +1,13 @@
 #include "framework.h"
 #include "acme/constant/id.h"
-#include "base/platform/application.h"
+#include "axis/platform/application.h"
 #include "aqua/xml/document.h"
 #include "aura/graphics/image/context_image.h"
 #include "apex/message/command.h"
 #include "item.h"
-#include "menu.h"
-#include "interaction.h"
+#include "aura/user/user/interaction.h"
+#include "axis/user/user/user.h"
+#include "base/user/menu/menu.h"
 #include "item_ptra.h"
 
 
@@ -16,26 +17,26 @@ public: // re-implementations only
 
    menu_item_command(::particle * pparticle);
    void enable(bool bOn = true, const ::action_context & context = ::e_source_system) override;
-   //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
-   void _001SetCheck(const e_check & echeck, const ::action_context & context = ::e_source_system) override;   // 0, 1 or 2 (indeterminate)
+   //   virtual void set_check(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
+   //void set_check(const e_check & echeck, const ::action_context & context = ::e_source_system) override;   // 0, 1 or 2 (indeterminate)
 //   virtual void SetRadio(bool bOn = true, const ::action_context & context = ::e_source_system);
-   //void _001SetText(const ::string & pszText, const ::action_context & context = ::e_source_system) override;
+   //void set_text(const ::string & pszText, const ::action_context & context = ::e_source_system) override;
 
 };
 
 
 
-namespace user
+namespace menu
 {
 
 
-   menu_item::menu_item()
+   item::item()
    {
 
       m_puserinteractionHost = nullptr;
       m_bBreak = false;
       m_puserinteraction = nullptr;
-      m_pmenuitema = __allocate< menu_item_ptra >(this);
+      m_pmenuitema = __allocate< item_ptra >(this);
       m_iLevel = 0;
       m_bPopup = false;
       m_item.m_eelement = e_element_item;
@@ -43,17 +44,75 @@ namespace user
    }
 
 
-   menu_item::~menu_item()
+   item::~item()
    {
 
-      informationf("menu_item::~menu_item (1)");
-      informationf("menu_item::~menu_item (2)");
-      informationf("menu_item::~menu_item (3)");
+      informationf("item::~item (1)");
+      informationf("item::~item (2)");
+      informationf("item::~item (3)");
 
    }
 
 
-   bool menu_item::create_menu(const string_array & straCommand, const string_array & straCommandTitle)
+   ::collection::count item::get_separator_item_count()
+   {
+    
+      if(!m_pmenuitema)
+      {
+       
+         return 0;
+         
+      }
+      
+      ::collection::count cSeparator = 0;
+      
+      for(auto & pmenuitem : *m_pmenuitema)
+      {
+       
+         if(pmenuitem->is_separator())
+         {
+          
+            cSeparator++;
+            
+         }
+         
+      }
+      
+      return cSeparator;
+      
+   }
+
+
+   ::collection::count item::get_full_height_item_count()
+   {
+    
+      if(!m_pmenuitema)
+      {
+       
+         return 0;
+         
+      }
+      
+      ::collection::count cFullItemHeight = 0;
+      
+      for(auto & pmenuitem : *m_pmenuitema)
+      {
+       
+         if(!pmenuitem->is_separator())
+         {
+          
+            cFullItemHeight++;
+            
+         }
+         
+      }
+      
+      return cFullItemHeight;
+      
+   }
+
+
+   bool item::create_menu(const string_array & straCommand, const string_array & straCommandTitle)
    {
 
       ::collection::count iItemCount = straCommand.get_count();
@@ -65,16 +124,14 @@ namespace user
       {
          string strCommand = straCommand[i];
          string strCommandTitle = straCommandTitle[i];
-         auto pitemNewChild = __allocate< menu_item >();
+         auto pitemNewChild = __allocate< item >();
          pitemNewChild->m_bPopup = false;
          if (strCommand.is_empty())
          {
             pitemNewChild->m_atom = id_separator;
-            m_iSeparatorCount++;
          }
          else
          {
-            m_iFullHeightItemCount++;
             pitemNewChild->m_atom = strCommand;
             pitemNewChild->m_iLevel = 0;
             pitemNewChild->m_puserinteraction->set_window_text(strCommandTitle);
@@ -87,7 +144,7 @@ namespace user
    }
 
 
-   void menu_item::menu_item_destruct()
+   void item::menu_item_destruct()
    {
 
       for (auto & pitemChild : *m_pmenuitema)
@@ -107,21 +164,18 @@ namespace user
 
    }
 
-   bool menu_item::load_menu(::xml::node * pnode)
+   bool item::load_menu(::xml::node * pnode)
    {
-
-      m_iSeparatorCount = 0;
-      m_iFullHeightItemCount = 0;
 
       return load_menu(pnode, m_iLevel);
 
    }
 
 
-   menu_item * menu_item::separator()
+   item * item::separator()
    {
 
-   auto pitem = __create_new<menu_item>();
+   auto pitem = __create_new<item>();
 
    pitem->m_atom = id_separator;
 
@@ -135,12 +189,12 @@ namespace user
 
 
 
-   bool menu_item::load_menu(::xml::node * pnode, i32 iLevel)
+   bool item::load_menu(::xml::node * pnode, i32 iLevel)
    {
 
       ::collection::count iItemCount = pnode->get_children_count();
 
-      ::pointer<::base::application>papp = get_app();
+      //::pointer<::axis::application>papp = get_app();
 
       m_bPopup = pnode->get_children_count() > 0 && pnode->get_name() == "menubar";
 
@@ -149,22 +203,13 @@ namespace user
 
          m_atom = id_separator;
 
-         if(m_pmenu->m_pmenuParent != nullptr)
-         {
-
-            m_pmenu->m_pmenuParent->m_pmenuitem->m_iSeparatorCount++;
-
-         }
-
       }
       else
       {
 
-         m_iFullHeightItemCount++;
-
          ::atom atom = pnode->attribute("id");
 
-         atom = translate_property_id(atom);
+         //atom = translate_property_id(atom);
 
          m_atom = atom;
 
@@ -216,7 +261,7 @@ namespace user
 
          auto pnodeChild = pnode->child_at(i);
 
-         auto pitemNewChild = __create_new<menu_item>();
+         auto pitemNewChild = __create_new<item>();
 
          pitemNewChild->m_pmenu = m_pmenu;
 
@@ -231,7 +276,7 @@ namespace user
    }
 
 
-   void menu_item::add_item(menu_item * pitem)
+   void item::add_item(item * pitem)
    {
 
       pitem->m_pmenuitemParent = this;
@@ -241,7 +286,7 @@ namespace user
    }
 
 
-   bool menu_item::contains_menu_item(menu_item * pitem, bool bRecursive) const
+   bool item::contains_menu_item(item * pitem, bool bRecursive) const
    {
 
       if (this == pitem)
@@ -289,92 +334,9 @@ namespace user
    }
 
 
-   bool menu_item::create_buttons(::draw2d::graphics_pointer & pgraphics, menu * pmenu)
-   {
-
-      ::user::style_pointer pstyle;
-
-      for (i32 iItem = 0; iItem < m_pmenuitema->get_size(); iItem++)
-      {
-
-         auto pitem = m_pmenuitema->element_at(iItem);
-         
-         if (!pitem)
-         {
-
-            continue;
-
-         }
-
-         if (pitem->is_separator())
-         {
-
-            continue;
-
-         }
-
-         ::pointer<::user::interaction>pinteraction = pitem->m_puserinteraction;
-
-         if (pinteraction.is_null())
-         {
-
-            pinteraction = m_pmenu->create_menu_button(pgraphics, pitem);
-
-         }
-
-         if (pinteraction.is_null())
-         {
-
-            return false;
-
-         }
-
-         if (pinteraction->is_window())
-         {
-
-            pinteraction->start_destroying_window();
-
-         }
-
-         pinteraction->create_control(pmenu, pitem->m_atom);
-
-         //if (!pinteraction->create_control(pmenu, pitem->m_atom))
-         //{
-
-         //   return false;
-
-         //}
-
-         pinteraction->m_pmenuitem = pitem;
-
-         if (!pinteraction->is_window())
-         {
-
-            return false;
-
-         }
-
-         pitem->m_pmenu = pmenu;
-
-         pinteraction->set_window_text(pitem->m_strTitle);
-
-         if(pmenu->m_bInline)
-         {
-
-            pitem->create_buttons(pgraphics, pmenu);
-
-         }
-
-         pitem->m_puserinteraction = pinteraction;
-
-      }
-
-      return true;
-
-   }
 
 
-   bool menu_item::is_popup() const
+   bool item::is_popup() const
    {
 
       return m_bPopup 
@@ -383,7 +345,7 @@ namespace user
    }
 
 
-   bool menu_item::is_separator() const
+   bool item::is_separator() const
    {
 
       return m_atom == id_separator;
@@ -391,7 +353,7 @@ namespace user
    }
 
 
-   void menu_item::release_children_interaction()
+   void item::release_children_interaction()
    {
 
       for (auto & pitem : *m_pmenuitema)
@@ -436,7 +398,7 @@ namespace user
    }
 
 
-   menu_item_ptra::menu_item_ptra(menu_item * pitemParent)
+   item_ptra::item_ptra(item * pitemParent)
    {
 
       m_pitemParent = pitemParent;
@@ -444,13 +406,13 @@ namespace user
    }
 
 
-   menu_item_ptra::~menu_item_ptra()
+   item_ptra::~item_ptra()
    {
 
    }
 
 
-   menu_item * menu_item::find(const atom & atom)
+   item * item::find(const atom & atom)
    {
 
       if(m_pmenuitema.is_null())
@@ -464,27 +426,27 @@ namespace user
    }
 
 
-   //void menu_item::OnAddRef()
+   //void item::OnAddRef()
    //{
 
    //}
 
 
-   //void menu_item::OnRelease()
+   //void item::OnRelease()
    //{
 
    //}
 
 
-   menu_item * menu_item_ptra::find(const ::atom & atom)
+   item * item_ptra::find(const ::atom & atom)
    {
 
-      menu_item * pitemFind;
+      item * pitemFind;
 
       for(i32 i = 0; i < this->get_size(); i++)
       {
 
-         menu_item * pitem = element_at(i);
+         item * pitem = element_at(i);
 
          if(pitem->m_atom  == atom)
          {
@@ -505,6 +467,91 @@ namespace user
       }
 
       return nullptr;
+
+   }
+
+
+   bool item::create_buttons(::draw2d::graphics_pointer & pgraphics, ::user::menu * pusermenu)
+   {
+
+      ::user::style_pointer pstyle;
+
+      for (i32 iItem = 0; iItem < m_pmenuitema->get_size(); iItem++)
+      {
+
+         auto pitem = m_pmenuitema->element_at(iItem);
+         
+         if (!pitem)
+         {
+
+            continue;
+
+         }
+
+         if (pitem->is_separator())
+         {
+
+            continue;
+
+         }
+
+         ::pointer<::user::interaction>pinteraction = pitem->m_puserinteraction;
+
+         if (pinteraction.is_null())
+         {
+
+            pinteraction = user()->m_paxisuser->create_menu_button(m_pmenu, pgraphics, pitem);
+
+         }
+
+         if (pinteraction.is_null())
+         {
+
+            return false;
+
+         }
+
+         if (pinteraction->is_window())
+         {
+
+            pinteraction->start_destroying_window();
+
+         }
+
+         pinteraction->create_control(pusermenu, pitem->m_atom);
+
+         //if (!pinteraction->create_control(pmenu, pitem->m_atom))
+         //{
+
+         //   return false;
+
+         //}
+
+         pinteraction->m_pmenuitem = pitem;
+
+         if (!pinteraction->is_window())
+         {
+
+            return false;
+
+         }
+
+         pitem->m_pmenu = pusermenu;
+
+         pinteraction->set_window_text(pitem->m_strTitle);
+
+         if(pusermenu->m_bInline)
+         {
+
+            pitem->create_buttons(pgraphics, pusermenu);
+
+         }
+
+         pitem->m_puserinteraction = pinteraction;
+
+      }
+
+      return true;
 
    }
 

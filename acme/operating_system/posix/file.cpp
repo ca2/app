@@ -5,9 +5,9 @@
 #include "acme/_operating_system.h"
 #include "acme/operating_system/console.h"
 //#include "acme/primitive/collection/map_interface.h"
-#if defined( FREEBSD)
-#define __XSI_VISIBLE 1
-#endif
+//#if defined( FREEBSD)
+//#define __XSI_VISIBLE 1
+//#endif
 #include <stdio.h>
 #include <errno.h>
 #include <unistd.h>
@@ -1387,11 +1387,11 @@ void create_directory(const ::file::path & path)
       if(estatus == error_already_exists)
       {
          
-#ifdef DEBUG
-         
-         throw exception(error_failed, "Why the program is creating directory if it is alredy a directory");
-         
-#endif
+//#ifdef DEBUG
+//         
+//         throw exception(error_already_exists, "Why the program is creating directory if it is alredy a directory");
+//         
+//#endif
          
          return;
          

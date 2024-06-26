@@ -1,6 +1,5 @@
 #include "framework.h"
 #include "interaction.h"
-#include "item.h"
 #include "menu.h"
 #include "acme/constant/message.h"
 #include "acme/platform/application.h"
@@ -10,8 +9,9 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/message/user.h"
-#include "aura/user/user/calc_size.h"
 #include "base/platform/session.h"
+#include "aura/user/user/calc_size.h"
+#include "base/user/menu/item.h"
 #include "base/user/user/style.h"
 
 
@@ -33,7 +33,7 @@ namespace user
    }
 
 
-   void menu_interaction::initialize_menu_interaction(menu_item* pmenuitem)
+   void menu_interaction::initialize_menu_interaction(::menu::item* pmenuitem)
    {
 
       //auto estatus = 

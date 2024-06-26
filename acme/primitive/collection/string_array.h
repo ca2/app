@@ -73,6 +73,7 @@ public:
    }
 
    string_array_base(const string_array_base & array);
+   string_array_base(string_array_base && array);
    //#ifdef UNIVERSAL_WINDOWS
    //   string_array_base(Platform::Array < Platform::String ^ > ^ refstra);
    //#endif

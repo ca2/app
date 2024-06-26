@@ -29,7 +29,10 @@ namespace user
 
 
    class controller;
-
+   class control;
+   class property;
+   class check;
+   class text;
 
    class impact_system;
 
@@ -48,6 +51,8 @@ namespace windowing
 
 
 #include "acme/constant/button_state.h"
+
+//class property_container;
 
 
 namespace user

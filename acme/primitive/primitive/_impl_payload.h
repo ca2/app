@@ -467,7 +467,7 @@ inline payload & copy(payload & payload, const class time & time)
 
 
 template < class T >
-inline ptr < T > payload::cast(T * pDefault)
+inline pointer < T > payload::cast(T * pDefault)
 {
 
    if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
@@ -540,7 +540,7 @@ inline T & payload::get_cast(T * pDefault)
 
 
 template < class T >
-inline ptr < T > payload::cast()
+inline pointer < T > payload::cast()
 {
 
    if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
@@ -834,35 +834,35 @@ inline ::string_base < CHAR_TYPE > & copy(::string_base < CHAR_TYPE > & string, 
 
 
 template < primitive_integral INTEGRAL >
-inline void copy(INTEGRAL & integral, const ::payload & payload)
+inline INTEGRAL & copy(INTEGRAL & integral, const ::payload & payload)
 {
 
-   integral = (INTEGRAL)payload.as_i64();
+   return integral = payload.as(integral);
 
 }
 
 
-inline void copy(f32 & f, const ::payload & payload)
+inline ::f32 & copy(::f32 & f, const ::payload & payload)
 {
 
-   f = payload.as_f32();
+   return f = payload.as_f32();
 
 }
 
 
-inline void copy(::f64 & f, const ::payload & payload)
+inline ::f64 & copy(::f64 & f, const ::payload & payload)
 {
 
-   f = payload.as_f64();
+   return f = payload.as_f64();
 
 }
 
 
 template < primitive_number NUMBER >
-inline void copy(::payload & payload, const NUMBER & number)
+inline ::payload & copy(::payload & payload, const NUMBER & number)
 {
 
-   payload = number;
+   return payload = number;
 
 }
 
@@ -871,22 +871,17 @@ template < typename CHAR_TYPE >
 inline ::payload & copy(::payload & payload, const ::string_base < CHAR_TYPE > & string)
 {
 
-   payload = string;
-
-   return payload;
+   return payload = string;
 
 }
 
 
-inline void copy(::payload & payload1, const ::payload & payload2)
+inline ::payload & copy(::payload & payload1, const ::payload & payload2)
 {
 
-   payload1 = payload2;
+   return payload1 = payload2;
 
 }
-
-
-
 
 
 //inline ::string operator +(const ::string & str, const ::payload & payload)

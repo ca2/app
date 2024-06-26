@@ -25,8 +25,11 @@ add_subdirectory(compress_bzip2)
 add_subdirectory(compress_zlib)
 add_subdirectory(folder_zip)
 add_subdirectory(database_sqlite3)
+add_subdirectory(nano_archive_libarchive)
+if(${LINUX} OR ${FREEBSD})
+    add_subdirectory(nano_idn_libidn)
+endif()
 add_subdirectory(regular_expression_pcre2)
-
 
 
 if(INCLUDE_DRAW2D_CAIRO)
@@ -39,6 +42,13 @@ endif()
 if(INCLUDE_IMAGING_FREEIMAGE)
 
     add_subdirectory(imaging_freeimage)
+
+endif()
+
+
+if(INCLUDE_GPU_OPENGL)
+
+    add_subdirectory(gpu_opengl)
 
 endif()
 

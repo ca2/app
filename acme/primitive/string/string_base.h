@@ -30,7 +30,12 @@
 #ifdef   _STDIO_H_
 #error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(C))"
 #endif
-
+#if defined(__STD_FORMAT)
+#include <format>
+#endif
+//#ifdef   _STDIO_H_
+//#error "already included?!?! WHAT?!?! (After including <format>)"
+//#endif
 
 template < typename ITERATOR_TYPE >
 using string_natural_pointer =
@@ -535,6 +540,15 @@ public:
 //
 //   }
 
+
+
+   string_base& surround(const SCOPED_STRING& scopedstr);
+
+   string_base& surround(const SCOPED_STRING& scopedstrLeft, const SCOPED_STRING& scopedstrRight);
+
+   string_base& double_quote(bool bEscape = false);
+
+   string_base& single_quote(bool bEscape = false);
 
 //   template < typename TYPE >
 //   inline string_base operator /(const TYPE & t) const
@@ -1953,3 +1967,103 @@ inline const_string_range < ITERATOR_TYPE > string_get_word_with_separator_list(
    return { scopedstr.begin(), end };
 
 }
+
+
+
+template<typename ITERATOR_TYPE>
+string_base<ITERATOR_TYPE> const_string_range<ITERATOR_TYPE>::surrounded(const SCOPED_STRING& scopedstr) const
+{
+
+   return scopedstr + *this + scopedstr;
+
+}
+
+template<typename ITERATOR_TYPE>
+string_base<ITERATOR_TYPE> const_string_range<ITERATOR_TYPE>::surrounded(const SCOPED_STRING& scopedstrLeft, const SCOPED_STRING& scopedstrRight) const
+{
+
+   return scopedstrLeft + *this + scopedstrRight;
+
+}
+
+template<typename ITERATOR_TYPE>
+string_base<ITERATOR_TYPE> const_string_range<ITERATOR_TYPE>::double_quoted(bool bEscape) const
+{
+
+   if (bEscape)
+   {
+
+      ::string_base<ITERATOR_TYPE> str(*this);
+
+      str.find_replace("\\", "\\\\");
+
+      str.find_replace("\"", "\\\"");
+
+      return str.double_quoted(false);
+
+   }
+
+   return this->surrounded("\"");
+
+}
+
+
+
+template<typename ITERATOR_TYPE>
+string_base<ITERATOR_TYPE> const_string_range<ITERATOR_TYPE>::single_quoted(bool bEscape) const
+{
+
+   if (bEscape)
+   {
+
+      ::string_base<ITERATOR_TYPE> str(*this);
+
+      str.find_replace("\\", "\\\\");
+
+      str.find_replace("\'", "\\'");
+
+      return str.double_quoted(false);
+
+   }
+
+   return this->surrounded("\'");
+
+}
+
+
+template<typename ITERATOR_TYPE>
+string_base<ITERATOR_TYPE> & string_base<ITERATOR_TYPE>::surround(const SCOPED_STRING& scopedstr)
+{
+
+   return operator=(this->surrounded(scopedstr));
+
+}
+
+
+template<typename ITERATOR_TYPE>
+string_base<ITERATOR_TYPE>& string_base<ITERATOR_TYPE>::surround(const SCOPED_STRING& scopedstrLeft, const SCOPED_STRING& scopedstrRight)
+{
+
+   return operator=(this->surrounded(scopedstrLeft, scopedstrRight));
+
+}
+
+
+template<typename ITERATOR_TYPE>
+string_base<ITERATOR_TYPE>& string_base<ITERATOR_TYPE>::double_quote(bool bEscape)
+{
+
+   return operator=(this->double_quoted(bEscape));
+
+}
+
+
+template<typename ITERATOR_TYPE>
+string_base<ITERATOR_TYPE>& string_base<ITERATOR_TYPE>::single_quote(bool bEscape)
+{
+
+   return operator=(this->single_quoted(bEscape));
+
+}
+
+

@@ -82,7 +82,7 @@ namespace user
       if (m_bEdit)
       {
 
-         _001GetText(strText);
+         get_text(strText);
 
       }
       else
@@ -364,7 +364,7 @@ namespace user
    }
 
 
-   void combo_box::_001GetText(string & str) const
+   void combo_box::get_text(string & str) const
    {
 
       if(m_bEdit)
@@ -373,7 +373,7 @@ namespace user
          if(!m_pitemCurrent)
          {
 
-            ::user::plain_edit::_001GetText(str);
+            ::user::plain_edit::get_text(str);
 
          }
          else
@@ -405,13 +405,13 @@ namespace user
    }
 
 
-   void combo_box::_001SetText(const ::string & str, const ::action_context & context)
+   void combo_box::set_text(const ::string & str, const ::action_context & context)
    {
 
       if(m_bEdit)
       {
 
-         ::user::plain_edit::_001SetText(str, context);
+         ::user::plain_edit::set_text(str, context);
 
       }
       else
@@ -843,13 +843,13 @@ namespace user
       if (m_bEdit)
       {
 
-         _001SetText(strItem, context);
+         set_text(strItem, context);
 
       }
       else
       {
 
-         _001SetText(strItem, ::e_source_sync);
+         set_text(strItem, ::e_source_sync);
 
       }
 
@@ -900,7 +900,7 @@ namespace user
       if(m_bEdit)
       {
 
-         ::user::plain_edit::_001GetText(str);
+         ::user::plain_edit::get_text(str);
 
       }
       else

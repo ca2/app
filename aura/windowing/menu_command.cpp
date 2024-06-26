@@ -1,9 +1,6 @@
 #include "framework.h"
 #include "menu_command.h"
 #include "menu_item.h"
-#include "acme/user/user/check.h"
-#include "acme/user/user/text.h"
-////#include "aura/user/menu/_component.h"
 
 
 namespace windowing
@@ -36,8 +33,8 @@ namespace windowing
    }
 
 
-   //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
-   void menu_command::_001SetCheck(enum_check echeck, const ::action_context & context)   // 0, 1 or 2 (indeterminate)
+   //   virtual void set_check(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
+   void menu_command::set_check(enum_check echeck, const ::action_context & context)   // 0, 1 or 2 (indeterminate)
    {
 
       if (echeck == e_check_checked)

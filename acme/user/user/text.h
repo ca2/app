@@ -1,10 +1,14 @@
+// Changed by camilo with 
+// property* system on 2024-06-08 02:06 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
-//#include "acme/primitive/geometry2d/_geometry2d.h"
-#include "acme/primitive/primitive/action_context.h"
 //#include "acme/primitive/primitive/payload.h"
 ////#include "acme/primitive/primitive/object.h"
+#include "acme/user/user/control.h"
+#include "acme/user/user/property.h"
+#include "acme/user/user/text_property.h"
+#include "acme/primitive/data/property_listener.h"
 
 
 namespace user
@@ -12,60 +16,48 @@ namespace user
 
 
    class CLASS_DECL_ACME text :
-      virtual public ::object
+      public ::user::control
    {
    public:
 
 
-      //property *     m_ppropertyText;
-      linked_property      m_linkedpropertyText;
+      //::data::property_will_change                 m_propertywillchange;
+      //::data::property_changed                     m_propertychanged;
+      //::comparable_array < check_will_change >     m_checkwillchangea;
+      //::comparable_array < check_changed >         m_checkchangeda;
+      //void unhook_callbacks();
+      //void hook_callbacks();
+
+      ::user::text_property   m_textproperty;
+
+
+   public:
 
 
       text();
       ~text() override;
 
 
-      virtual void _001GetText(string & str);
+      void set_text_property(const ::data::text_property & textproperty);
 
 
-      virtual strsize _001GetTextLength();
-      virtual void _001GetText(char * psz, strsize len);
-      virtual void _001GetText(string & str, ::collection::index iBeg, ::collection::index iEnd);
+      ::user::text_property text_property() const;
+
+      virtual bool on_text_will_change(::data::text_change & textchange);
+      virtual void on_text_changed(::data::text_change & textchange);
 
 
-      virtual void _001SetText(const ::string & str, const ::action_context & action_context);
-      virtual void _001SetText(const ::string & psz, strsize len, const ::action_context & action_context);
+      bool on_property_will_change(::data::property_change & change) override;
+      void on_property_changed(::data::property_change & change) override;
 
-
-
-      virtual void _001GetSel(strsize & iBeg, strsize & iEnd);
-      virtual void _001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context = ::e_source_user);
-      virtual void _001SetSelEnd(strsize iSelEnd, const ::action_context & action_context = ::e_source_user);
-
-
-      virtual void _001GetSelText(string & str);
-      virtual void _001SetSelText(const ::string & psz, const ::action_context & action_context);
-
-
-      virtual void _001GetImpactSel(strsize &iSelStart, strsize &iSelEnd);
-
-
-      virtual void MacroBegin();
-      virtual void MacroEnd();
-
-
-      virtual void insert_text(string str, bool bForceNewStep, const ::action_context& context);
-
-
-      string as_string() const override;
-      virtual string& string_reference();
-      //inline string as_string() const { return m_propertyText->get_string(); }
-
-      
-      virtual bool edit_undo();
-
-
-      virtual void get_text_composition_area(::rectangle_i32& rectangle);
+      virtual ::string as_text() const;
+      virtual void get_text(::string & str) const;
+      virtual strsize get_text_length() const;
+      virtual ::string get_selection_text() const;
+      virtual void get_selection_text(::string & str) const;
+      virtual void get_text_selection(strsize & iBegin, strsize & iEnd) const;
+      virtual void set_text_selection(strsize iBegin, strsize iEnd, const ::action_context & actioncontext);
+      virtual void set_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext);
 
 
    };

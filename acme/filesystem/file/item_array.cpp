@@ -58,7 +58,7 @@ namespace file
          for (::collection::index i = 0; i < this->get_count(); i++)
          {
 
-            payload.stra().add(this->element_at(i)->user_path());
+            payload.as_string_array().add(this->element_at(i)->user_path());
 
          }
 
@@ -92,7 +92,7 @@ namespace file
          for (::collection::index i = 0; i < this->get_count(); i++)
          {
 
-            payload.stra().add(this->element_at(i)->final_path());
+            payload.as_string_array().add(this->element_at(i)->final_path());
 
          }
 
@@ -136,7 +136,7 @@ namespace file
 
             varPropSet["FileManagerItem_flags"] = __allocate< flags < enum_flag > >(this->element_at(i)->m_flags);
 
-            payload.payloada().add(varPropSet);
+            payload.as_payload_array().add(varPropSet);
 
          }
 

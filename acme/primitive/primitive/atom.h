@@ -260,6 +260,7 @@ public:
       e_type_element,
       e_type_check,
       e_type_status,
+      e_type_domainid,
 
       e_type_not_an_atom = 127,
 
@@ -315,6 +316,7 @@ public:
       e_status             m_estatus;
       e_command            m_ecommand;
       e_check              m_echeck;
+      domain_id            m_domainid;
       ::string             m_str;
       ::ansi_range         m_range;
       ::i64                m_iLargest;
@@ -356,6 +358,7 @@ public:
 
    inline atom(enum_type etypeAdd, const atom & atom);
    inline atom(const atom & atom);
+   inline atom(const domain_id & domainid);
    atom(const ::ansi_character * psz);
    atom(const inline_number_string & inlinenumberstring);
 
@@ -488,6 +491,13 @@ public:
 
    }
 
+   enum_type get_type() const
+   {
+
+      return m_etype;
+
+   }
+
 
    bool _is_compounded(enum_type etype) const { return (m_etype & 0xffff) == etype;}
 
@@ -584,6 +594,9 @@ public:
     inline bool operator == (::enum_impact eimpact) const;
     inline ::std::strong_ordering operator <=> (::enum_impact eid) const;
 
+   inline bool operator == (const ::domain_id & domainid) const;
+   inline ::std::strong_ordering operator <=> (const ::domain_id & domainid) const;
+
     inline bool operator == (::ENUM_IMPACT EIMPACT) const { return *this == (::enum_impact)EIMPACT; }
     inline ::std::strong_ordering operator <=> (::ENUM_IMPACT EIMPACT) const { return *this <=> (::enum_impact)EIMPACT; }
 
@@ -670,6 +683,7 @@ public:
    inline ::collection::index as_index() const { return (::collection::index)as_i64(); }
    inline ::u32 as_umessage() const { return u32(); }
    inline ::enum_message as_emessage() const;
+   inline ::enum_id as_eid() const;
    //inline ::e_check as_echeck() const { return m_etype == e_type_check ? m_echeck : (::e_check) e_check_undefined; }
    //inline ::e_status as_estatus() const { return m_etype == e_type_status ? m_estatus : (::e_status) e_status_none; }
 
@@ -699,6 +713,7 @@ public:
    //::string as_string() const;
    //::string string() const;
    ::string as_string() const;
+   ::domain_id as_domainid() const;
 
 
    //operator ::string() const { return as_string(); }

@@ -444,4 +444,16 @@ CLASS_DECL_ACME bool _hsynchronization_wait(::hsynchronization h, const class ::
 }
 
 
+CLASS_DECL_ACME int get_processor_count()
+{
+
+   SYSTEM_INFO sysinfo;
+
+   GetSystemInfo(&sysinfo);
+
+   return sysinfo.dwNumberOfProcessors;
+
+}
+
+
 

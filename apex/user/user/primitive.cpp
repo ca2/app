@@ -3239,106 +3239,6 @@ namespace user
    }
 
 
-   //bool primitive::track_popup_menu(::user::menu_item * pitem,i32 iFlags)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return false;
-
-   //}
-
-
-   //::pointer<::user::menu>primitive::track_popup_xml_menu_text(string strXml,i32 iFlags)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
-   //::pointer<::user::menu>primitive::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
-
-   //bool primitive::track_popup_menu(::user::menu_item * pitem,i32 iFlags,::message::message * pmessage)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return false;
-
-   //}
-
-
-   //::pointer<::user::menu>primitive::track_popup_xml_menu_text(string strXml,i32 iFlags,::message::message * pmessage)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
-   //::pointer<::user::menu>primitive::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags,::message::message * pmessage)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
-   //bool primitive::track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point_i32 & point)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return false;
-
-   //}
-
-
-   //::pointer<::user::menu>primitive::track_popup_xml_menu(const ::payload & varXml,i32 iFlags, const ::point_i32 & point, const size_i32 & size)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
-   //::pointer<::user::menu>primitive::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags, const ::point_i32 & point)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
-   //::pointer<::user::menu>primitive::track_popup_xml_menu_file(::payload payloadFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
 
    //bool primitive::_001OnExitIconic()
    //{
@@ -4110,12 +4010,12 @@ namespace user
    //}
 
 
-   // Text Edit
-   void primitive::_001GetSel(strsize & iBeg, strsize & iEnd)
-   {
+   //// Text Edit
+   //void primitive::get_text_selection(strsize & iBeg, strsize & iEnd)
+   //{
 
 
-   }
+   //}
 
 
    ::collection::index primitive::plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel)
@@ -4174,12 +4074,12 @@ namespace user
    }
 
 
-   void primitive::on_check_change()
-   {
+   //void primitive::on_check_change()
+   //{
 
-      get_app()->m_papexapplication->signal(m_linkedpropertyCheck->m_atom);
+   //   get_app()->m_papexapplication->signal(m_linkedpropertyCheck->m_atom);
 
-   }
+   //}
 
 
    void primitive::keyboard_focus_OnTimer(i32 iTimer)
@@ -4607,7 +4507,7 @@ namespace user
    }
 
 
-   void primitive::insert_text(string str, bool bForceNewStep, const ::action_context & context)
+   void primitive::insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context)
    {
 
    }

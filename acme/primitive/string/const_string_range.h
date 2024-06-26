@@ -80,6 +80,8 @@ public:
 
    using ARG_ITEM = typename BASE_RANGE::ARG_ITEM;
 
+   using STRING = string_base < ITERATOR_TYPE >;
+
 
    template<::std::size_t count>
    constexpr const_string_range(const ITEM(&array)[count]) : BASE_RANGE(array, array[count - 1] == 0 ? count - 1 : count) {}
@@ -140,6 +142,9 @@ public:
 
    //auto & last() { return ::get(this->end() - 1); }
    auto& last() const { return (const CHARACTER&) ::get(this->end() - 1); }
+
+
+   auto last_index() const { return this->size() - 1; }
 
 
    STRING_RANGE operator()(strsize start, strsize count) const;
@@ -1739,6 +1744,15 @@ public:
    ///========================================================
    ::std::strong_ordering escape_case_insensitive_count_order(const ::scoped_string& scopedstr, i32 escape) const;
 
+
+
+   STRING surrounded(const SCOPED_STRING& scopedstr) const;
+
+   STRING surrounded(const SCOPED_STRING& scopedstrLeft, const SCOPED_STRING& scopedstrRight) const;
+   
+   STRING double_quoted(bool bEscape = false) const;
+
+   STRING single_quoted(bool bEscape) const;
 
 
 };

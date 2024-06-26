@@ -5,18 +5,18 @@
 #include "acme/filesystem/file/binary_stream.h"
 
 
-template < class ITEM >
-inline binary_stream & operator <<(binary_stream & stream, const ::pointer_array < ITEM > & itema)
+template < primitive_particle_array POINTER_ARRAY >
+inline binary_stream & operator <<(binary_stream & stream, const POINTER_ARRAY & a)
 {
 
-   ::collection::count c = itema.get_count();
+   ::collection::count c = a.get_count();
 
    stream << c;
 
-   for (auto & pitem : itema)
+   for (auto & p : a)
    {
 
-      stream.write_particle(pitem);
+      stream.write_particle(p.m_p);
 
       if (stream.nok())
       {
@@ -32,8 +32,8 @@ inline binary_stream & operator <<(binary_stream & stream, const ::pointer_array
 }
 
 
-template < class ITEM >
-inline binary_stream & operator >>(binary_stream & stream, ::pointer_array < ITEM > & itema)
+template < primitive_particle_array POINTER_ARRAY >
+inline binary_stream & operator >>(binary_stream & stream, POINTER_ARRAY & a)
 {
 
    ::collection::count c;
@@ -47,7 +47,7 @@ inline binary_stream & operator >>(binary_stream & stream, ::pointer_array < ITE
 
    }
 
-   itema.set_size(c);
+   a.set_size(c);
 
    ::collection::index i = 0;
 
@@ -57,7 +57,7 @@ inline binary_stream & operator >>(binary_stream & stream, ::pointer_array < ITE
       for (; i < c && stream.has_ok_flag(); i++)
       {
 
-         itema[i] = stream.read_particle();
+         a[i] = stream.read_particle();
 
       }
 
@@ -72,7 +72,7 @@ inline binary_stream & operator >>(binary_stream & stream, ::pointer_array < ITE
    if (stream.nok())
    {
 
-      itema.set_size(i);
+      a.set_size(i);
 
    }
 
@@ -81,8 +81,8 @@ inline binary_stream & operator >>(binary_stream & stream, ::pointer_array < ITE
 }
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-inline binary_stream & operator <<(binary_stream & stream, const ::array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
+template < primitive_object_array ARRAY >
+inline binary_stream & operator <<(binary_stream & stream, const ARRAY & a)
 {
 
    ::collection::count c = a.get_count();
@@ -91,6 +91,7 @@ inline binary_stream & operator <<(binary_stream & stream, const ::array_base_qu
 
    for (auto & element : a)
    {
+      
       stream << element;
 
       if (stream.nok())
@@ -107,21 +108,21 @@ inline binary_stream & operator <<(binary_stream & stream, const ::array_base_qu
 }
 
 
-template < primitive_array ARRAY >
+template < primitive_object_array ARRAY >
 inline binary_stream & operator >>(binary_stream & stream, ARRAY & a)
 {
 
    ::collection::count c;
    
    stream >> c;
-
-   if (stream.nok())
+   
+   if (stream.nok() || c <= 0)
    {
 
       return stream;
 
    }
-
+   
    a.set_size(c);
 
    ::collection::index i = 0;
@@ -156,27 +157,39 @@ inline binary_stream & operator >>(binary_stream & stream, ARRAY & a)
 }
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-inline binary_stream & operator <<(binary_stream & stream, const ::raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
+template < primitive_raw_pointer_array ARRAY >
+inline binary_stream & operator <<(binary_stream & stream, const ARRAY & a)
 {
 
    ::collection::count c = a.get_count();
-
+   
    stream << c;
 
-   stream.write({ a.get_data(), sizeof(TYPE) * c});
+   for (auto & p : a)
+   {
+      
+      stream << *p;
+
+      if (stream.nok())
+      {
+
+         break;
+
+      }
+
+   }
 
    return stream;
 
 }
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class TYPED = ::typed::nodef < TYPE >, class MEMORY = ::heap::typed_memory < TYPE, ::heap::e_memory_array >, ::enum_type t_etypeContainer = e_type_element >
-inline binary_stream & operator >>(binary_stream & stream, ::raw_array_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & a)
+template < primitive_raw_pointer_array ARRAY >
+inline binary_stream & operator >>(binary_stream & stream, ARRAY & a)
 {
 
    ::collection::count c;
-
+   
    stream >> c;
 
    if (stream.nok())
@@ -188,12 +201,34 @@ inline binary_stream & operator >>(binary_stream & stream, ::raw_array_quantum <
 
    a.set_size(c);
 
-   auto iRead = stream.m_pfile->read({ a.get_data(), sizeof(TYPE) * c });
+   ::collection::index i = 0;
 
-   if (stream.nok() || iRead < (memsize)(sizeof(TYPE) * c))
+   try
    {
 
-      a.set_size(iRead / sizeof(TYPE));
+      for (; i < c && stream.has_ok_flag(); i++)
+      {
+         
+         auto p = new typename ARRAY::BASE_TYPE();
+         
+         a[i] = p;
+
+         stream >> *p;
+
+      }
+
+   }
+   catch (...)
+   {
+
+      stream.set_nok();
+
+   }
+
+   if (stream.nok())
+   {
+
+      a.set_size(i);
 
    }
 
@@ -202,10 +237,55 @@ inline binary_stream & operator >>(binary_stream & stream, ::raw_array_quantum <
 }
 
 
+template < primitive_raw_type_array ARRAY >
+inline binary_stream & operator <<(binary_stream & stream, const ARRAY & a)
+{
+
+   ::collection::count c = a.get_count();
+
+   stream << c;
+
+   stream.write({ a.get_data(), sizeof(typename ARRAY::BASE_TYPE) * c});
+
+   return stream;
+
+}
+
+template < primitive_raw_type_array ARRAY >
+inline binary_stream & operator >>(binary_stream & stream, ARRAY & a)
+{
+   
+   ::collection::count c;
+   
+   stream >> c;
+   
+   if (stream.nok())
+   {
+      
+      return stream;
+      
+   }
+   
+   a.set_size(c);
+   
+   auto iRead = stream.m_pfile->read({ a.get_data(), sizeof(typename ARRAY::BASE_TYPE) * c });
+   
+   if (stream.nok() || iRead < (memsize)(sizeof(typename ARRAY::BASE_TYPE) * c))
+   {
+      
+      a.set_size(iRead / sizeof(typename ARRAY::BASE_TYPE));
+      
+   }
+   
+   return stream;
+   
+}
+
+
 inline binary_stream & operator <<(binary_stream & stream, const ::property_set & propertyset)
 {
 
-   return stream << propertyset.m_propertyptra;
+   return stream << (const property_ptra & ) propertyset;
 
 }
 
@@ -213,7 +293,7 @@ inline binary_stream & operator <<(binary_stream & stream, const ::property_set 
 inline binary_stream & operator >>(binary_stream & stream, ::property_set & propertyset)
 {
 
-   return stream >> propertyset.m_propertyptra;
+   return stream >> (property_ptra &) propertyset;
 
 }
 

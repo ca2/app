@@ -631,7 +631,7 @@ public:
    //__declare_iterator(iterator, this->m_pelement);
    //__declare_iterator(ref_iterator, *this->m_pelement);
 
-   void this_is_a_container() {}
+   //void this_is_a_container() {}
 
    //enum_type get_payload_type() const override { return t_etypeContainer; }
 

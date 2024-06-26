@@ -102,10 +102,16 @@ if(NOT ${HAS_SYSTEM_UNAC})
 endif()
 
 
+
+
+
 add_subdirectory(source/app)
 add_subdirectory(operating_system)
 add_subdirectory(port)
 add_subdirectory(source)
+
+
+add_subdirectory(source/app/launch)
 
 
 

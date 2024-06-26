@@ -17,6 +17,7 @@ api::api()
 
    m_bAuthenticated = false;
    m_bWaitingResponseFromUser = false;
+   //m_bCheckingAuthenticated = false;
 
 }
 
@@ -126,8 +127,6 @@ void api::load_profile()
 
    }
 
-   //return ::success;
-
 }
 
 
@@ -142,9 +141,6 @@ void api::on_login_response()
          save_profile();
 
       });
-
-
-   m_eventResponse.SetEvent();
 
    if (!m_bAuthenticated)
    {
@@ -161,7 +157,14 @@ void api::on_login_response()
       }
 
    }
+   else
+   {
 
+      m_bAuthenticating = false;
+
+   }
+
+   m_eventResponse.SetEvent();
 
 }
 
@@ -174,8 +177,6 @@ void api::save_profile()
    auto strNetworkPayload = m_setProfile.get_network_payload();
 
    file()->put_text(m_pathProfileFolder / "profile.network_payload", strNetworkPayload);
-
-   //return ::success;
 
 }
 
@@ -192,11 +193,27 @@ void api::clear_profile()
 }
 
 
-void api::defer_api()
+void api::ensure_authenticated()
 {
 
-   if (!m_bAuthenticated)
+   for(int iTry = 0; iTry < 3; iTry++)
    {
+
+      if (m_bAuthenticated)
+      {
+
+         return;
+
+      }
+
+      if (!::task_get_run())
+      {
+
+         throw_exit_exception();
+
+         return;
+
+      }
 
       if (m_bAuthenticating)
       {
@@ -245,6 +262,8 @@ void api::defer_api()
       }
 
    }
+
+   throw ::exception(error_failed);
 
 }
 
@@ -295,7 +314,7 @@ void api::_api_get(::string & strNetworkPayload, const ::scoped_string & scopeds
 
       iTry++;
 
-      defer_api();
+      ensure_authenticated();
 
       _api_get(str, scopedstrUrl, set);
 

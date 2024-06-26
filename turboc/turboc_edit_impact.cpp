@@ -45,7 +45,7 @@ namespace turboc
 
          synchronous_lock synchronouslock(&m_ptopimpact->m_pimpact->m_pmutexText);
 
-         _001GetText(m_ptopimpact->m_pimpact->m_strNewHelloMultiverse);
+         get_text(m_ptopimpact->m_pimpact->m_strNewHelloMultiverse);
 
       }
 

@@ -56,7 +56,7 @@ public:
    virtual void clear_profile();
 
 
-   virtual void defer_api();
+   virtual void ensure_authenticated();
 
 
    virtual void on_login_response();

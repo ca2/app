@@ -6,8 +6,15 @@
 #include "size.h"
 #include "acme/primitive/mathematics/numeric_info.h"
 
+template < typename RECTANGLE_SOURCE >
+concept rectangle_source = requires(RECTANGLE_SOURCE rectanglesource)
+{
+   
+   {rectanglesource.rectangle_source_get()} -> primitive_rectangle;
+   
+};
 
-//template < primitive_number NUMBER >
+
 template < primitive_number NUMBER >
 class rectangle_type :
    public sequence_type < NUMBER, 4 >
@@ -75,6 +82,12 @@ public:
    rectangle_type(const RECTANGLE & r) :
       sequence_type < NUMBER, 4 >(r.left, r.top, r.right, r.bottom)
    {
+   }
+   template < rectangle_source RECTANGLE_SOURCE >
+   rectangle_type(RECTANGLE_SOURCE * prectanglesource) :
+   rectangle_type(prectanglesource->rectangle_source_get())
+   {
+    
    }
       // template < primitive_rectangle RECTANGLE >
    // rectangle_type & operator =(const RECTANGLE & rectangle) 
@@ -274,7 +287,49 @@ public:
    void set_height(UNIT_TYPE cy)  { this->bottom() = this->top() + cy; }
    void set_size(UNIT_TYPE cx, UNIT_TYPE cy)  { set_width(cx); set_height(cy); }
    void set_size(const SIZE_TYPE & size)  { set_size(size.cx(), size.cy()); }
+   
+   rectangle_type & set_center_and_half_size(const POINT_TYPE & center, const SIZE_TYPE & halfsize)
+   {
+      
+      *this = with_center_and_half_size(center, halfsize);
+      
+      return *this;
+      
 
+
+   }
+
+   rectangle_type & set_square_with_center(const POINT_TYPE & center, const UNIT_TYPE & apothem)
+   {
+      
+      *this = square_with_center_and_apothem(center, apothem);
+      
+      return *this;
+      
+   }
+   
+   
+   
+   static rectangle_type with_center_and_half_size(const POINT_TYPE & center, const SIZE_TYPE & halfsize)
+   {
+      
+      return {
+         center.x() - halfsize.cx(),
+         center.y() - halfsize.cy(),
+         center.x()+ halfsize.cx(),
+         center.y()+ halfsize.cx()
+      };
+      
+   }
+   
+   static rectangle_type square_with_center_and_apothem(const POINT_TYPE & center, const UNIT_TYPE & apothem)
+   {
+      
+      return with_center_and_half_size(center, {apothem, apothem});
+      
+   }
+
+   
    rectangle_type & move_top_to(UNIT_TYPE top)  { this->bottom() = height() + top; this->top() = top; return *this; }
    rectangle_type & move_left_to(UNIT_TYPE left)  { this->right() = width() + left; this->left() = left; return *this; }
 

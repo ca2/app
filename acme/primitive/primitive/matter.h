@@ -39,7 +39,7 @@ public:
    class ::atom                        m_atom;
 //   ::eobject                           m_eobject;
 
-
+   procedure_array   m_destroyinga;
 
 //#if REFERENCING_DEBUGGING
 //   inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_uObject(0), system()(nullptr) { increment_reference_count( REFERENCING_DEBUGGING_COMMA_NOTE("Initial Reference")); }
@@ -102,7 +102,7 @@ public:
 
    inline ::collection::count reference_count() const { return m_countReference; }
    
-   
+   procedure_array & destroying() { return m_destroyinga; }
 
 
    virtual bool is_ready_to_quit() const;
@@ -281,6 +281,9 @@ public:
 
    virtual ::string class_title();
 
+   
+   template < primitive_function FUNCTION >
+   void hold_signal_function(::data::signal<FUNCTION> * psignal, FUNCTION f);
 
 };
 

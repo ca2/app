@@ -1307,16 +1307,16 @@ public: \
 
 
 
-#define __END_PROPERTIES(xxx) }; \
-__ ## xxx ## _properties &  xxx ## _properties() {return *m_p ## xxx ## properties;} \
-const __ ## xxx ## _properties & xxx ## _properties() const {return *m_p ## xxx ## properties;} \
-inline void create_ ## xxx ## _properties() \
-{ \
-   if(::is_set(m_p ## xxx ## properties)) return; \
-   m_p ## xxx ## properties = __allocate<__ ## xxx ## _properties>(); \
-   m_ppropertyset = m_p ## xxx ## properties; \
-} \
-::pointer<__ ## xxx ## _properties> m_p ## xxx ## properties
+//#define __END_PROPERTIES(xxx) }; \
+//__ ## xxx ## _properties &  xxx ## _properties() {return *m_p ## xxx ## properties;} \
+//const __ ## xxx ## _properties & xxx ## _properties() const {return *m_p ## xxx ## properties;} \
+//inline void create_ ## xxx ## _properties() \
+//{ \
+//   if(::is_set(m_p ## xxx ## properties)) return; \
+//   m_p ## xxx ## properties = __allocate<__ ## xxx ## _properties>(); \
+//   m_ppropertyset = m_p ## xxx ## properties; \
+//} \
+//::pointer<__ ## xxx ## _properties> m_p ## xxx ## properties
 
 
 

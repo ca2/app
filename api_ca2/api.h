@@ -6,6 +6,9 @@
 #include "apex/platform/api.h"
 
 
+class hyperlink;
+
+
 namespace api_ca2
 {
 
@@ -25,6 +28,7 @@ namespace api_ca2
       string                           m_strScriptNotifyOnPreLoginScreen;
       class ::time                     m_timeLastNotifyOnPreLoginScreen;
       string                           m_strAppLogin;
+      ::pointer < ::hyperlink >        m_phyperlinkPreLoginScreen;
 
 
       api();
@@ -49,7 +53,7 @@ namespace api_ca2
 
       ::e_status on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;
 
-      virtual bool defer_account_token(const ::string & strAppState, const ::string & strAppCode);
+      virtual bool check_authenticated(const ::string & strAppState, const ::string & strAppCode);
       
       virtual string get_app_login();
 

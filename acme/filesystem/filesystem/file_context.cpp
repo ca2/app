@@ -3405,13 +3405,9 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
 
    ::file::path path = payloadFile.as_file_path();
 
-   ::url_domain domain;
+   auto pdomain = __create_new < ::url_domain >();
 
-   auto psystem = system();
-
-   auto purl = psystem->url();
-
-   domain.create(purl->get_server(path));
+   pdomain->create(url()->get_server(path));
 
    //bool bSaveCache = domain.m_strRadix != "ca2" || !string_begins(purl->get_object(path), "/matter/");
 
@@ -3520,8 +3516,6 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
 
    }
 
-   property_set & set = payloadFile["http_set"].property_set_reference();
-   
    auto pget = __create_new < ::nano::http::get >();
    
    pget->m_strUrl = path;
@@ -3529,12 +3523,14 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
    pget->m_timeSyncTimeout = 5_hour;
 
    context()->sync(pget);
-   
+
    auto pmemoryfile = create_memory_file();
    
    *pmemoryfile->get_primitive_memory() = pget->m_memory;
    
-   set = pget->m_setOut;
+  /// property_set& set = payloadFile["http_set"].property_set_reference();
+
+   pmemoryfile->payload("http_set") = ::transfer(pget->m_setOut);
    //{
 
    //   return ::error_failed;
@@ -3700,7 +3696,7 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
       if (payloadFile.has_property("file"))
       {
 
-         pfile = payloadFile.propset()["file"].cast<::file::file>();
+         pfile = payloadFile.as_property_set()["file"].cast<::file::file>();
 
          if (pfile.is_set())
          {

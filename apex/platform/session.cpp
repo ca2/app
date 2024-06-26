@@ -705,7 +705,7 @@ namespace apex
    }
 
 
-   //::pointer<::user::menu_interaction>session::create_menu_button(::user::style_pointer & pstyle,::user::menu_item * pitem)
+   //::pointer<::user::menu_interaction>session::create_menu_button(::user::style_pointer & pstyle,::menu::item * pitem)
    //{
 
    //   throw ::interface_only();

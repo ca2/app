@@ -44,15 +44,15 @@ application_menu_command::application_menu_command(int* pestatus) :
    }
 
 
-   void application_menu_command::_001SetCheck(enum_check echeck)
+   void application_menu_command::set_check(enum_check echeck)
    {
       
-      _001SetCheck(echeck, ::e_source_system);
+      set_check(echeck, ::e_source_system);
       
    }
 
-   //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
-   void application_menu_command::_001SetCheck(enum_check echeck, const ::action_context& context)   // 0, 1 or 2 (indeterminate)
+   //   virtual void set_check(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
+   void application_menu_command::set_check(enum_check echeck, const ::action_context& context)   // 0, 1 or 2 (indeterminate)
    {
       
       if (echeck == e_check_checked)

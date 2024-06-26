@@ -947,7 +947,7 @@ namespace acme
          else if (payload.get_type() == ::e_type_string_array)
          {
 
-            i = ::acme::array::add(array, payload.stra());
+            i = ::acme::array::add(array, payload.as_string_array());
 
          }
          else if (payload.cast < string_array_base < Type, RawType, t_etypeContainer > >() != nullptr)
@@ -959,10 +959,10 @@ namespace acme
          else if (payload.get_type() == ::e_type_payload_array)
          {
 
-            for (::collection::index i = 0; i < payload.payloada().get_count(); i++)
+            for (::collection::index i = 0; i < payload.as_payload_array().get_count(); i++)
             {
 
-               ::collection::index iItem = ::acme::array::add(array, payload.payloada()[i]);
+               ::collection::index iItem = ::acme::array::add(array, payload.as_payload_array()[i]);
 
                if (i < 0)
                {
@@ -977,13 +977,13 @@ namespace acme
          else if (payload.get_type() == ::e_type_i32_array)
          {
 
-            array.copy(payload.ia());
+            array.copy(payload.as_i32_array());
 
          }
          else if (payload.get_type() == ::e_type_property_set)
          {
 
-            for (auto& pproperty : payload.propset())
+            for (auto& pproperty : payload.as_property_set())
             {
 
                auto iItem = ::acme::array::add(array, *pproperty);

@@ -1206,8 +1206,14 @@ namespace user
          m_pupdowntarget = puiParent;
 
       }
-
-      if (should_save_window_rectangle())
+      
+      if(windowing()->is_sandboxed())
+      {
+         
+         display_zoomed();
+         
+      }
+      else if (should_save_window_rectangle())
       {
 
          //bool bForceRestore = false;
@@ -2933,6 +2939,24 @@ namespace user
 
    void frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
+
+      auto pimpactsystem = m_pimpactsystem;
+
+      ::atom atomImpactSystem;
+
+      if (pimpactsystem)
+      {
+
+         atomImpactSystem = pimpactsystem->m_atomImpactSystem;
+
+      }
+
+      if (atomImpactSystem.m_eimpact == (enum_impact)FONTSEL_IMPACT)
+      {
+
+         information() << "FontSelImpact Frame";
+
+      }
 
       ::user::main_window::_000OnDraw(pgraphics);
 

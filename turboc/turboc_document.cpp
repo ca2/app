@@ -61,7 +61,7 @@ namespace turboc
 
          str = str.left(84);
 
-         get_typed_impact < edit_impact >()->_001SetText(str,::e_source_user);
+         get_typed_impact < edit_impact >()->set_text(str,::e_source_user);
 
       }
       else if(get_typed_impact < pane_impact >() != NULL)

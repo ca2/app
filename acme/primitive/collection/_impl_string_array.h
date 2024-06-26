@@ -798,6 +798,13 @@ string_array_base < Type, RawType, t_etypeContainer > ::string_array_base(const 
 
 
 template < typename Type, typename RawType, ::enum_type t_etypeContainer >
+string_array_base < Type, RawType, t_etypeContainer > ::string_array_base(string_array_base < Type, RawType, t_etypeContainer > &&array) :
+        BASE_ARRAY(::transfer(array))
+{
+}
+
+
+template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 string_array_base < Type, RawType, t_etypeContainer > ::string_array_base(CHARACTER* const* ppsz, ::collection::count c)
 {
 

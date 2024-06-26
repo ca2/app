@@ -106,11 +106,11 @@ namespace usernet
          
       auto pinteraction = m_pimpact->get_child_by_name("server");
          
-      pinteraction->_001SetText(strProxy, ::action_context(::e_source_data) +  ::e_source_load);
+      pinteraction->set_text(strProxy, ::action_context(::e_source_data) +  ::e_source_load);
 
       pinteraction = m_pimpact->get_child_by_name("port");
          
-      pinteraction->_001SetText(::as_string(iProxyPort), ::action_context(::e_source_data) +  ::e_source_load);
+      pinteraction->set_text(::as_string(iProxyPort), ::action_context(::e_source_data) +  ::e_source_load);
 
    }
 
@@ -130,7 +130,7 @@ namespace usernet
 
             string strServer;
 
-            pinteraction->_001GetText(strServer);
+            pinteraction->get_text(strServer);
 
             if(strServer.length() == 0)
             {
@@ -151,7 +151,7 @@ namespace usernet
 
                string strPort;
 
-               pinteraction->_001GetText(strPort);
+               pinteraction->get_text(strPort);
 
                doc.root()->set_attribute("port", strPort);
 

@@ -1,7 +1,5 @@
 #include "framework.h"
 #include "impact.h"
-#include "item.h"
-#include "item_ptra.h"
 #include "acme/handler/item.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
@@ -23,11 +21,13 @@
 #include "aura/platform/node.h"
 #include "aura/user/user/plain_edit.h"
 #include "aura/user/user/system.h"
+#include "base/platform/application.h"
+#include "base/platform/system.h"
+#include "base/user/menu/item.h"
+#include "base/user/menu/item_ptra.h"
 #include "base/user/user/document.h"
 #include "base/user/user/impact_system.h"
 #include "base/user/user/split_impact.h"
-#include "base/platform/application.h"
-#include "base/platform/system.h"
 #include "base/user/user/impact_creator.h"
 
 
@@ -94,7 +94,7 @@ namespace user
 
       }
 
-      ::pointer < menu_item > pmenuitem = pitem;
+      ::pointer < ::menu::item > pmenuitem = pitem;
 
       if (pmenuitem->m_atom.is_empty())
       {
@@ -115,7 +115,7 @@ namespace user
 
       ////auto point = item.m_pointHitTest;
 
-      //::pointer < menu_item > pitemHit = pitem;
+      //::pointer < ::menu::item > pitemHit = pitem;
 
       //::atom idCommand;
 
@@ -245,7 +245,7 @@ namespace user
 
             auto pinteraction = get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact");
 
-            pinteraction->_001SetText(strText, ::e_source_initialize);
+            pinteraction->set_text(strText, ::e_source_initialize);
 
          }
 
@@ -278,7 +278,7 @@ namespace user
 
                string strText;
 
-               peditimpact->_001GetText(strText);
+               strText = peditimpact->as_text();
 
             }
 
@@ -312,7 +312,7 @@ namespace user
 
       int iSep = 0;
 
-      ::pointer < menu_item > pmenuitem;
+      ::pointer < ::menu::item > pmenuitem;
 
       for (int i = 0; i < m_pmenuitem->m_pmenuitema->get_count(); i++)
       {
@@ -766,7 +766,7 @@ namespace user
 
       //m_iaPopup.erase_all();
 
-      auto pmenuitemParent = __create_new < menu_item >();
+      auto pmenuitemParent = __create_new < ::menu::item >();
 
       m_pmenuitem = pmenuitemParent;
 
@@ -775,9 +775,9 @@ namespace user
 
          xml::node * pnode = pnodeMain->get_child_at("menubar", iMenu, 1);
 
-         auto pmenuitemMenuBar = __create_new < menu_item >();
+         auto pmenuitemMenuBar = __create_new < ::menu::item >();
 
-         pmenuitemMenuBar->m_pmenuitema = __allocate< menu_item_ptra >(pmenuitemMenuBar);
+         pmenuitemMenuBar->m_pmenuitema = __allocate< ::menu::item_ptra >(pmenuitemMenuBar);
 
          pmenuitemParent->add_item(pmenuitemMenuBar);
 
@@ -794,7 +794,7 @@ namespace user
 
             auto pnodeChild = pnode->child_at(iCommand);
 
-            auto pmenuitemCommand = __create_new < menu_item >();
+            auto pmenuitemCommand = __create_new < ::menu::item >();
 
             //statusrectangle = get_menu_item_rectangle(iPos);
 

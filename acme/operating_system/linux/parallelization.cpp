@@ -6,7 +6,7 @@
 #include "acme/platform/node.h"
 #include "acme/platform/platform.h"
 #include "acme/platform/system.h"
-
+#include "acme/windowing_system/windowing_system.h"
 
 //::user::enum_desktop get_edesktop();
 
@@ -118,11 +118,11 @@ bool __os_term_thread()
 }
 
 
-namespace x11{namespace nano { namespace user{void process_messages();}}}
+//namespace x11{namespace nano { namespace user{void process_messages();}}}
 
-namespace xcb{namespace nano { namespace user{void process_messages();}}}
+//namespace xcb{namespace nano { namespace user{void process_messages();}}}
 
-namespace wayland{namespace nano { namespace user{void process_messages();}}}
+//namespace wayland{namespace nano { namespace user{void process_messages();}}}
 
 
 
@@ -138,25 +138,11 @@ void _do_tasks()
 
    auto psystem = ::platform::get()->system();
 
-#ifdef HAS_WAYLAND
-   if(psystem->m_ewindowing == e_windowing_wayland)
-   {
+   auto pwindowingsystem = psystem->windowing_system();
 
-      ::wayland::nano::user::process_messages();
+   if(::is_set(pwindowingsystem)) {
 
-   }
-   else
-#endif
-   if(psystem->m_ewindowing == e_windowing_xcb)
-   {
-
-      ::xcb::nano::user::process_messages();
-
-   }
-   else
-   {
-
-      ::x11::nano::user::process_messages();
+      pwindowingsystem->process_messages();
 
    }
 

@@ -4,6 +4,8 @@
 #include "factory.h"
 #include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"
+#include "acme/filesystem/file/exception.h"
+#include "acme/filesystem/file/memory_file.h"
 #include "acme/handler/extended_topic.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -73,7 +75,6 @@ particle::particle() :
 
 
 #endif
-
 
 particle::~particle()
 {
@@ -633,22 +634,6 @@ void particle::call_handle_item(::item* pitem)
 }
 
 
-bool particle::_is_set() const
-{
-
-   return true;
-
-}
-
-
-bool particle::_is_ok() const
-{
-
-   return has_ok_flag();
-
-}
-
-
 void particle::install_message_routing(::channel * pchannel)
 {
 
@@ -666,7 +651,7 @@ void subparticle::init_task()
 void subparticle::call_run()
 {
 
-   m_eflagElement += e_flag_running;
+   //m_eflagElement += e_flag_running;
 
    try
    {
@@ -685,9 +670,35 @@ void subparticle::call_run()
 
    }
 
-   m_eflagElement -= e_flag_running;
+   //m_eflagElement -= e_flag_running;
 
 }
+
+
+bool particle::_is_ok() const
+{
+
+   return has_ok_flag();
+
+}
+
+
+void particle::delete_this()
+{
+
+   if (!(m_eflagElement & e_flag_statically_allocated))
+   {
+
+      //__delete(this, m_pAllocation);
+
+      //delete m_pAllocation;
+
+      delete this;
+
+   }
+
+}
+
 
 
 void subparticle::run()
@@ -757,33 +768,31 @@ void particle::print_line(const ::scoped_string & scopedstr) const
 void particle::print_out(const ::scoped_string & scopedstr) const
 {
    
-   ::string strLine(scopedstr);
-   
-   printf("%s", strLine.c_str());
+   fwrite(scopedstr.begin(), 1, scopedstr.size(), stdout);
    
    fflush(stdout);
 
 }
 
 
-void printf_line(const ::ansi_character * pszFormat, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, pszFormat);
-
-   ::string strLine(pszFormat);
-
-   strLine += "\n";
-
-   vprintf(strLine.c_str(), arguments);
-
-   va_end(arguments);
-
-   fflush(stdout);
-
-}
+//void printf_line(const ::ansi_character * pszFormat, ...)
+//{
+//
+//   va_list arguments;
+//
+//   va_start(arguments, pszFormat);
+//
+//   ::string strLine(pszFormat);
+//
+//   strLine += "\n";
+//
+//   vprintf(strLine.c_str(), arguments);
+//
+//   va_end(arguments);
+//
+//   fflush(stdout);
+//
+//}
 
 
 void particle::printf_line(const ::ansi_character * pszFormat, ...) const
@@ -2415,52 +2424,6 @@ bool particle::should_run_async() const
 //}
 
 
-//void matter::finish(::property_object * pcontextobjectFinish)
-void particle::destroy()
-{
-
-   //auto estatus = set_finish();
-
-   //if (estatus == error_pending)
-   //{
-
-   //   //system()->add_pending_finish(this);
-
-   //   return estatus;
-
-   //}
-
-   ////estatus = on_finish();
-
-   ////if (estatus == error_pending)
-   ////{
-
-   ////   //system()->add_pending_finish(this);
-
-   ////   return estatus;
-
-   ////}
-
-   //return estatus;
-
-   //return ::success;
-
-
-}
-
-
-void particle::destroy_impl_data()
-{
-
-
-}
-
-
-void particle::destroy_os_data()
-{
-
-
-}
 
 
 void * particle::new_object(const char * psz)
@@ -2472,21 +2435,6 @@ void * particle::new_object(const char * psz)
    
 }
 
-
-void particle::write_to_stream(::binary_stream & stream)
-{
-
-   throw interface_only();
-
-}
-
-
-void particle::read_from_stream(::binary_stream & stream)
-{
-
-   throw interface_only();
-
-}
 
 
 CLASS_DECL_ACME ::pointer < ::particle > detach_pointer(::lparam& lparam)
@@ -2730,6 +2678,75 @@ CLASS_DECL_ACME ::allocator::accessor * __call__add_referer(const ::reference_re
 
 
 #endif
+
+
+memory_file_pointer particle::create_memory_file()
+{
+
+   return __create_new< ::memory_file >();
+
+}
+
+
+
+memory_file_pointer particle::create_memory_file(::memory_base& memory)
+{
+
+   return __allocate< ::memory_file >(memory);
+
+}
+
+
+memory_file_pointer particle::create_memory_file(const ::block& block)
+{
+
+   return __allocate< ::memory_file >(block);
+
+}
+
+
+memory_file_pointer particle::create_memory_file_as_copy(const memory& memory)
+{
+
+   return __allocate< ::memory_file >(__allocate< ::memory >(memory));
+
+}
+
+
+memory_file_pointer particle::create_memory_file_by_reading(::file::file* pfile)
+{
+
+   auto pmemoryfile = create_memory_file();
+
+   auto left = pfile->right_size();
+
+   if (left > UINTPTR_MAX)
+   {
+
+      throw ::exception(error_no_memory);
+
+   }
+
+   auto ptrleft = (::memsize)left;
+
+   pmemoryfile->full_data_set_size(ptrleft);
+
+   auto amountRead = pfile->read(pmemoryfile->full_data());
+
+   if (amountRead != pmemoryfile->full_data_size())
+   {
+
+      throw ::file::exception(error_failed, { e_error_code_type_unknown, -1 }, pfile->m_path, pfile->m_eopen, "Read bytes less than recorded left bytes");
+
+   }
+
+   //pmemoryfile->m_pbyte = pmemoryfile->data();
+
+   //pmemoryfile->m_memsize = (memsize) pmemoryfile->size();
+
+   return pmemoryfile;
+
+}
 
 
 

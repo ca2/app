@@ -885,7 +885,6 @@
     <ClInclude Include="user\rich_text\format_host.h" />
     <ClInclude Include="user\rich_text\format_tool.h" />
     <ClInclude Include="user\rich_text\global.h" />
-    <ClInclude Include="user\rich_text\layout.h" />
     <ClInclude Include="user\rich_text\line.h" />
     <ClInclude Include="user\rich_text\rich_text.h" />
     <ClInclude Include="user\rich_text\selection.h" />

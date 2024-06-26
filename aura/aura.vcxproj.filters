@@ -693,6 +693,9 @@
     <ClCompile Include="hardware\device_group.cpp">
       <Filter>Source Files\hardware</Filter>
     </ClCompile>
+    <ClCompile Include="user\menu\track_popup.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">
@@ -931,12 +934,6 @@
     </ClInclude>
     <ClInclude Include="user\user\windowing.h">
       <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\menu\_component.h">
-      <Filter>Header Files\user\menu</Filter>
-    </ClInclude>
-    <ClInclude Include="user\menu\menu_command.h">
-      <Filter>Header Files\user\menu</Filter>
     </ClInclude>
     <ClInclude Include="user\appearance\still.h">
       <Filter>Header Files\user\appearance</Filter>
@@ -1550,12 +1547,6 @@
     <ClInclude Include="user\menu\_.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
-    <ClInclude Include="user\menu\menu_shared_command.h">
-      <Filter>Header Files\user\menu</Filter>
-    </ClInclude>
-    <ClInclude Include="user\menu\menu_shared.h">
-      <Filter>Header Files\user\menu</Filter>
-    </ClInclude>
     <ClInclude Include="message\aaa_menu_shared.h">
       <Filter>Header Files\message</Filter>
     </ClInclude>
@@ -1690,6 +1681,12 @@
     </ClInclude>
     <ClInclude Include="hardware\device_group.h">
       <Filter>Header Files\hardware</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\command.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\track_popup.h">
+      <Filter>Header Files\user\menu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

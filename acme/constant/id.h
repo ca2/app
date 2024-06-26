@@ -35,11 +35,17 @@ enum enum_id : ::uptr
    id_dialog_result = ID_DIALOG_RESULT,
    id_complete = ID_COMPLETE,
    id_incoming_document = ID_INCOMING_DOCUMENT,
+   id_check  = ID_CHECK,
+   id_enable = ID_ENABLE,
+   id_text = ID_TEXT,
+   id_text_selection_begin = ID_TEXT_SELECTION_BEGIN,
+   id_text_selection_end = ID_TEXT_SELECTION_END,
+   id_visible  = ID_VISIBLE,
+
 
 
 
    id_id = 1 << 16,
-   id_text,
    id_key,
    id_ostream,
    id_file,
@@ -341,6 +347,9 @@ enum enum_id : ::uptr
    id_system_install,
    id_download,
    id_speech,
+
+      id_load_fragment_path_prefix,
+
 
 };
 

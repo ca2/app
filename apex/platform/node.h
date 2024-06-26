@@ -147,7 +147,8 @@ namespace apex
       
 //      virtual bool defer_enumerate_protocol(::file::listing& listing);
 
-      
+       //::string http_get_effective_url(const ::scoped_string & scopedstrUrl) override;
+
       
    };
 

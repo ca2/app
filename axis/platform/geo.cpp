@@ -24,6 +24,9 @@
 #include "axis/platform/application.h"
 
 
+#define STRESS_DEBUGGING 1
+
+
 #include <unac.h>
 
 
@@ -499,7 +502,11 @@ namespace geo
          char * out = nullptr;
          size_t out_length = 0;
 
-         int iError = unac_string("UTF8", strTry.begin(), strTry.size(), &out, &out_length);
+         auto in = strTry.begin();
+
+         auto in_length = strTry.size();
+
+         int iError = unac_string("UTF-8", in, in_length, &out, &out_length);
 
          if (iError != 0)
          {
@@ -1387,7 +1394,11 @@ namespace geo
 
          auto& timezone = m_cityTimeZone[iOpenweatherCity];
 
+#if STRESS_DEBUGGING
+         if (timezone.is_valid(10_s))
+#else
          if (timezone.is_valid(1_day))
+#endif
          {
 
             return timezone;
@@ -1471,7 +1482,11 @@ namespace geo
 
          auto& timezone = m_localityTimeZone[dLat][dLng];
 
+#if STRESS_DEBUGGING
+         if (timezone.is_valid(10_s))
+#else
          if (timezone.is_valid(1_day))
+#endif
          {
 
             return timezone;
@@ -1606,7 +1621,11 @@ namespace geo
 
          auto& stringtimeout = m_cityWeather[pcity->m_iId];
 
-         if (stringtimeout.is_valid(1_min))
+#if STRESS_DEBUGGING
+         if (stringtimeout.is_valid(10_s))
+#else
+         if (stringtimeout.is_valid(1_minute))
+#endif
          {
 
             return stringtimeout.m_str;

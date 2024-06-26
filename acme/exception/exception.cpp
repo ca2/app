@@ -381,7 +381,7 @@ CLASS_DECL_ACME const char* status_short_description(const ::e_status & estatus)
 
    }
 
-   return "(Missing Error Text)";
+   return "(missing e_status text message)";
 
 }
 

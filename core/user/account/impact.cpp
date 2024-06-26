@@ -384,13 +384,13 @@ namespace account
 
             string strText;
 
-            m_peditPassword->_001GetText(strText);
+            m_peditPassword->get_text(strText);
 
             auto psystem = system()->m_paurasystem;
 
             strText = psystem->crypto()->nessie(strText);
 
-            m_peditPassword->_001SetText(strText, ::e_source_database);
+            m_peditPassword->set_text(strText, ::e_source_database);
 
          }
 
@@ -403,7 +403,7 @@ namespace account
       {
 
          get_parent()->display(e_display_none);
-         m_peditPassword->_001SetText("", ::e_source_database);
+         m_peditPassword->set_text("", ::e_source_database);
          get_parent()->EndModalLoop("cancel");
 
          return true;
@@ -564,9 +564,9 @@ namespace account
 
       m_strRequestUrl = pcredentials->m_puser->m_pathUrl;
 
-      m_peditUser->_001SetText(pcredentials->m_puser->m_strLogin, ::e_source_initialize);
+      m_peditUser->set_text(pcredentials->m_puser->m_strLogin, ::e_source_initialize);
 
-      m_peditPassword->_001SetText(pcredentials->m_strPassword, ::e_source_initialize);
+      m_peditPassword->set_text(pcredentials->m_strPassword, ::e_source_initialize);
 
       m_strResponse.empty();
 
@@ -577,9 +577,9 @@ namespace account
       if (m_strResponse == "ok")
       {
 
-         m_peditUser->_001GetText(pcredentials->m_puser->m_strLogin);
+         m_peditUser->get_text(pcredentials->m_puser->m_strLogin);
 
-         m_peditPassword->_001GetText(pcredentials->m_strPassword);
+         m_peditPassword->get_text(pcredentials->m_strPassword);
 
          if(pcredentials->m_puser->m_strLogin.has_char()
                && pcredentials->m_strPassword.has_char())

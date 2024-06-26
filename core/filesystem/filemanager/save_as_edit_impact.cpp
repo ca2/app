@@ -53,12 +53,12 @@ namespace filemanager
 
       string strText;
 
-      _001GetText(strText);
+      strText = as_text();
 
       if (strText != get_document()->m_strTopic.title())
       {
 
-         _001SetText(get_document()->m_strTopic.title(), context);
+         set_text(get_document()->m_strTopic.title(), context);
 
       }
 
@@ -70,7 +70,7 @@ namespace filemanager
 
       string str;
 
-      _001GetText(str);
+      str = as_text();
 
       auto pcontext = get_context();
 

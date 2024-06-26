@@ -301,6 +301,10 @@ namespace simpledb
 
       string strDataKey = pclient->calculate_data_key(scopedstrDataKey);
 
+      auto pszDataKey = strDataKey.c_str();
+
+      printf_line("data_server_save key : %s", pszDataKey);
+
       string strType = ::type(pclient).name();
 
       if(strType.contains("filemanager::frame"))
@@ -326,6 +330,10 @@ namespace simpledb
    {
 
       auto strDataKey = pclient->calculate_data_key(scopedstrDataKey);
+
+      auto pszDataKey = strDataKey.c_str();
+
+      printf_line("data_server_save key : %s", pszDataKey);
 
       string strType = ::type(pclient).name();
 

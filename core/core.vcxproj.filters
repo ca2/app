@@ -671,9 +671,6 @@
     <ClInclude Include="user\rich_text\global.h">
       <Filter>Header Files\user\rich_text</Filter>
     </ClInclude>
-    <ClInclude Include="user\rich_text\layout.h">
-      <Filter>Header Files\user\rich_text</Filter>
-    </ClInclude>
     <ClInclude Include="user\rich_text\line.h">
       <Filter>Header Files\user\rich_text</Filter>
     </ClInclude>

@@ -879,7 +879,8 @@ void matter::__send_procedure(const ::function < void(const ::procedure &) > & f
    if(estatus == error_wait_timeout)
    {
 
-      procedurePost->set_timed_out_flag();
+      //procedurePost->set_timed_out_flag();
+      throw ::exception(error_wait_timeout);
 
    }
 
@@ -904,6 +905,9 @@ void matter::__send_procedure(const ::function < void(const ::procedure &) > & f
 
 
 }
+
+
+
 
 //
 //::acme::system * matteracmesystem() const

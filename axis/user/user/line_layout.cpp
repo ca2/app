@@ -131,12 +131,12 @@ namespace user
    void line_layout::on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_bExtendOnParent || get_parent()->is_frame_window() || get_parent()->is_impact())
-      {
-
-         _extend_on_parent(pgraphics);
-
-      }
+      // if (m_bExtendOnParent || get_parent()->is_frame_window() || get_parent()->is_impact())
+      // {
+      //
+      //    _extend_on_parent(pgraphics);
+      //
+      // }
 
    }
 
@@ -173,7 +173,7 @@ namespace user
 
             bool bChanged = false;
 
-            int iMaximumAscent = 0;
+            double dMaximumAscent = 0.;
 
             auto pstyle = get_style(pgraphics);
 
@@ -184,9 +184,9 @@ namespace user
 
                iMaximumNormal = ::maximum(iMaximumNormal, sizeItem.get_normal_dimension(m_eorientation));
 
-               int iAscent = puserinteraction->get_font(pstyle)->get_ascent(pgraphics);
+               auto dAscent = puserinteraction->get_font(pstyle)->get_ascent(pgraphics);
 
-               iMaximumAscent = ::maximum(iMaximumAscent, iAscent);
+               dMaximumAscent = ::maximum(dMaximumAscent, dAscent);
 
             }
 
@@ -201,11 +201,11 @@ namespace user
                if (m_ealignrelativeOrthogonal == e_align_relative_base_bottom_line)
                {
 
-                  int iAscent = (int)  puserinteraction->get_font(pstyle)->get_ascent(pgraphics);
+                  auto dAscent = puserinteraction->get_font(pstyle)->get_ascent(pgraphics);
 
 
                   point.set_orthogonal_dimension(m_eorientation,
-                     iMaximumAscent - iAscent);
+                     (int) (dMaximumAscent - dAscent));
 
                }
                else if (m_ealignrelativeOrthogonal == e_align_relative_far)

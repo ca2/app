@@ -442,6 +442,15 @@ inline atom::atom(const atom & atom)
 }
 
 
+inline atom::atom(const domain_id & domainid)  :
+   m_etype(e_type_domainid),
+   m_iLargest(0)
+{
+
+   m_domainid = domainid;
+
+}
+
 inline atom::atom(const ::ansi_character * psz) :
    m_str(psz)
 {
@@ -977,6 +986,30 @@ inline ::std::strong_ordering atom::operator <=>(::enum_impact eimpact) const
 }
 
 
+
+inline bool atom::operator == (const ::domain_id & domainid) const
+{
+
+   return ::comparison::tuple
+           (
+                   [&]() { return m_etype == e_type_domainid; },
+                   [&]() { return m_domainid == domainid; }
+           );
+
+}
+
+
+inline ::std::strong_ordering atom::operator <=>(const ::domain_id & domainid) const
+{
+
+   return ::comparison::tuple
+           (
+                   [&]() { return m_etype <=> e_type_domainid; },
+                   [&]() { return m_domainid <=> domainid; }
+           );
+
+}
+
 //inline bool atom::operator != (::enum_id eid) const
 //{
 //
@@ -1296,6 +1329,14 @@ inline enum_message atom::as_emessage() const
 {
 
    return m_etype == e_type_message ? m_emessage : (enum_message) MESSAGE_UNDEFINED;
+
+}
+
+
+inline enum_id atom::as_eid() const
+{
+
+   return m_etype == e_type_id ? m_eid : (enum_id)ID_NONE;
 
 }
 

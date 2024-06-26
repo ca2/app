@@ -607,7 +607,7 @@ LRESULT edit_window::_OnEditChange(void)
         ULONG           cch;
 
         //cch = GetWindowTextLength(m_hwndEdit);
-        cch = m_puserinteraction->_001GetTextLength();
+        cch = m_puserinteraction->get_text_length();
 
         /*
         dwFlags can be 0 or TS_TC_CORRECTION
@@ -952,7 +952,7 @@ void edit_window::_ClearText(void)
     BOOL    fOldNotify = m_fNotify;
     m_fNotify = false;
     //SetWindowTextW(m_hwndEdit, NULL);
-    m_puserinteraction->_001SetText("", ::e_source_user);
+    m_puserinteraction->set_text("", ::e_source_user);
     m_fNotify = fOldNotify;
 
     //update current selection
@@ -984,7 +984,7 @@ HRESULT edit_window::_GetText(LPWSTR *ppwsz, LPLONG pcch)
     *ppwsz = NULL;
     
     //cch = GetWindowTextLength(m_hwndEdit);
-    cch = m_puserinteraction->_001GetTextLength();
+    cch = m_puserinteraction->get_text_length();
     pwszText = (LPWSTR)GlobalAlloc(GMEM_FIXED, (cch + 1) * sizeof(WCHAR));
     if(NULL == pwszText)
     {
@@ -993,10 +993,10 @@ HRESULT edit_window::_GetText(LPWSTR *ppwsz, LPLONG pcch)
     
     //GetWindowTextW(m_hwndEdit, pwszText, cch + 1);
     string str;
-    m_puserinteraction->_001GetText(str);
+    m_puserinteraction->get_text(str);
     wstring wstr(str);
     wcscpy(pwszText, wstr);
-    cch = m_puserinteraction->_001GetTextLength();
+    cch = m_puserinteraction->get_text_length();
 
     *ppwsz = pwszText;
     
@@ -1034,7 +1034,7 @@ void edit_window::_GetDisplayAttributes(void)
 
         //get the range of the entire text
         //acpEnd = GetWindowTextLength(m_hwndEdit);
-        acpEnd = m_puserinteraction->_001GetTextLength();
+        acpEnd = m_puserinteraction->get_text_length();
         hr = m_pServices->CreateRange(0, acpEnd, &pRangeAllText);
         if(SUCCEEDED(hr))
         {
@@ -1167,7 +1167,7 @@ void edit_window::_GetTextOwner(void)
 
         //get the range of the entire text
         //acpEnd = GetWindowTextLength(m_hwndEdit);
-        acpEnd = m_puserinteraction->_001GetTextLength();
+        acpEnd = m_puserinteraction->get_text_length();
         hr = m_pServices->CreateRange(0, acpEnd, &pRangeAllText);
         if(SUCCEEDED(hr))
         {
@@ -1278,7 +1278,7 @@ void edit_window::_GetReadingText(void)
 
         //get the range of the entire text
         //acpEnd = GetWindowTextLength(m_hwndEdit);
-        acpEnd = m_puserinteraction->_001GetTextLength();
+        acpEnd = m_puserinteraction->get_text_length();
         hr = m_pServices->CreateRange(0, acpEnd, &pRangeAllText);
         if(SUCCEEDED(hr))
         {
@@ -1387,7 +1387,7 @@ void edit_window::_GetComposing(void)
 
         //get the range of the entire text
         //acpEnd = GetWindowTextLength(m_hwndEdit);
-        acpEnd = m_puserinteraction->_001GetTextLength();
+        acpEnd = m_puserinteraction->get_text_length();
         hr = m_pServices->CreateRange(0, acpEnd, &pRangeAllText);
         if(SUCCEEDED(hr))
         {

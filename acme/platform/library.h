@@ -17,7 +17,7 @@ namespace acme
 
       string                                          m_strFolder;
       string                                          m_strName;
-      void *                                          m_plibrary;
+      library_t *                                     m_plibrary;
       string                                          m_strMessage;
       PFN_factory                                     m_pfnFactory;
 

@@ -44,9 +44,6 @@ namespace acme
       m_pacmesystem = nullptr;
       m_pacmenode = nullptr;
       
-//      m_ptexttranslator = __new< ::text::translator >();
-//
-//      m_ptexttranslator->m_pcontext = this;
 
    }
 
@@ -110,6 +107,10 @@ namespace acme
       }
 
       m_pcontext = this;
+
+      m_ptexttranslator = __new< ::text::translator >();
+
+      m_ptexttranslator->m_pcontext = this;
 
    }
 
@@ -994,6 +995,14 @@ namespace acme
       set = pget->m_setOut;
 
       return str;
+
+   }
+
+
+   ::string context::http_get_effective_url(const ::scoped_string & scopedstrUrl)
+   {
+
+      return nano()->http()->get_effective_url(scopedstrUrl);
 
    }
 

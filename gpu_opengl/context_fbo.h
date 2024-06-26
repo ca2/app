@@ -29,10 +29,10 @@ namespace opengl
 
       context_fbo();
       ~context_fbo() override;
-      
+      void on_initialize_particle() override;
       void lock_context() override;
       void unlock_context() override;
-
+      void run() override;
       void _create_offscreen_buffer(const ::size_i32& size) override;
       //virtual void resize_offscreen_buffer(const ::size_i32& size) override;
       void destroy_offscreen_buffer() override;

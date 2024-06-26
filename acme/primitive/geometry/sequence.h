@@ -167,6 +167,25 @@ struct sequence_type
       }
       
    }
+   
+   bool is_all(COORDINATE coordinate) const
+   {
+      
+      for (::collection::count i = 0; i < SIZE; ++i)
+      {
+         
+         if(m_coordinatea[i] != coordinate)
+         {
+          
+            return false;
+            
+         }
+         
+      }
+      
+      return true;
+      
+   }
 
 
 

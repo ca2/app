@@ -3,6 +3,10 @@
 
 
 #include "command_update_target.h"
+#include "acme/primitive/data/property_container.h"
+#include "acme/user/user/check.h"
+#include "acme/user/user/control.h"
+#include "acme/user/user/text.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
 #include "acme/handler/source.h"
 #include "acme/platform/conversation_message.h"
@@ -39,7 +43,9 @@ namespace user
       virtual public ::user::command_update_target,
       virtual public ::conversation_message,
       virtual public ::user::drag_client,
-      virtual public ::source
+      virtual public ::source,
+      virtual public ::user::check,
+      virtual public ::user::text
    {
    public:
 
@@ -98,11 +104,17 @@ namespace user
       ::user::interaction *                        m_puserinteraction;
       //pointer< pointer_array < ::user::item > >    m_puseritema;
 
-      
+      ::user::check                                m_check;
+      ::user::text                                 m_text;
 
 
       element();
       ~element() override;
+
+
+       virtual ::user::check & check();
+
+       virtual ::user::text & text();
 
 
       virtual void _001OnTimer(::timer * ptimer);
@@ -391,6 +403,11 @@ namespace user
       virtual void edit_on_set_focus(::user::interaction* pinteraction);
       virtual void edit_on_kill_focus(::user::interaction* pinteraction);
 
+
+      using ::user::text::get_text;
+      using ::user::drag_client::get_text;
+
+
       virtual void set_window_text(const ::string & psz);
       virtual void set_window_text_source(const ::a_string_function & astringfunction);
 
@@ -540,20 +557,6 @@ namespace user
 
       //virtual void on_notify_control_event(control_event* pevent);
 
-
-
-      //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point_i32 & point = {});
-      //virtual ::pointer<::user::menu>track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags, const ::point_i32 & point);
-      //virtual ::pointer<::user::menu>track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32 & pointScreen = nullptr, const ::size_i32& sizeMinimum = size_i32(0, 0));
-      //virtual ::pointer<::user::menu>track_popup_xml_menu_file(::payload payloadFile, i32 iFlags, const ::point_i32 & point = {}, const ::size_i32 & sizeMinimum = size_i32(0, 0));
-
-      //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags,::message::message * pmessage);
-      //virtual ::pointer<::user::menu>track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags,::message::message * pmessage);
-      //virtual ::pointer<::user::menu>track_popup_xml_menu_text(string strXml, i32 iFlags, ::message::message * pmessage);
-
-      //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags);
-      //virtual ::pointer<::user::menu>track_popup_xml_matter_menu(const ::string & pszMatter, i32 iFlags);
-      //virtual ::pointer<::user::menu>track_popup_xml_menu_text(string strXml,i32 iFlags);
 
 
       //virtual void exit_iconify();
@@ -766,7 +769,7 @@ namespace user
 
       virtual void edit_on_text(string str);
       virtual void edit_on_sel(strsize iBeg, strsize iEnd);
-      virtual void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
+      virtual void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context);
 
 
       virtual void on_text_composition(string str);
@@ -794,8 +797,8 @@ namespace user
       //virtual bool enable_window(bool bEnable );
 
       // Text Edit
-      virtual void _001GetSel(strsize & iBeg, strsize & iEnd) override;
-      virtual void _001GetSel(strsize& iBeg, strsize& iEnd, strsize & iComposingStart, strsize & iComposingEnd);
+      void get_text_selection(strsize & iBeg, strsize & iEnd) const override;
+      virtual void get_text_selection(strsize& iBeg, strsize& iEnd, strsize & iComposingStart, strsize & iComposingEnd) const;
       virtual ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel);
       virtual ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x);
       virtual ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel);
@@ -807,8 +810,8 @@ namespace user
 
       //virtual void set_window_text(const ::string & pszString);
 
-      //virtual void _001SetCheck(enum_check echeck, const ::action_context & action_context);
-      //virtual void _001SetText(const ::string & strText, const ::action_context & action_context);
+      //virtual void set_check(enum_check echeck, const ::action_context & action_context);
+      //virtual void set_text(const ::string & strText, const ::action_context & action_context);
 
       virtual ::user::element * first_child_user_primitive();
       virtual ::user::element * top_user_primitive();

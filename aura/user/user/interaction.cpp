@@ -3193,6 +3193,12 @@ namespace user
          }
 
       }
+      else if (::type(this).as_string().contains("main_frame"))
+      {
+         
+         print_line("main_frame");
+         
+      }
 
    }
 
@@ -4025,7 +4031,7 @@ namespace user
    }
 
 
-   void interaction::_001GetSel(strsize & iBeg, strsize & iEnd)
+   void interaction::get_text_selection(strsize & iBeg, strsize & iEnd) const
    {
 
 
@@ -6207,7 +6213,7 @@ namespace user
          else
          {
 
-            information() << "_000TopCallOnLayout : " << strType;
+            debug() << "_000TopCallOnLayout : " << strType;
 
          }
 
@@ -6603,7 +6609,7 @@ namespace user
       scoped_restore(pgraphics->m_bInheritDraw);
 
       auto pszType = typeid(*this).name();
-      
+
       if(::string(pszType).case_insensitive_contains("line_layout"))
       {
          
@@ -9443,6 +9449,13 @@ namespace user
       interaction::_child_from_point(const ::point_i32 & point, const ::user::interaction_array * pinteractionaExclude)
    {
 
+      if(::is_null(window()))
+      {
+       
+         return nullptr;
+         
+      }
+         
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
@@ -11122,7 +11135,7 @@ namespace user
    }
 
 
-   void interaction::insert_text(string str, bool bForceNewStep, const ::action_context & context)
+   void interaction::insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & actioncontext)
    {
 
       auto strText = get_window_text();
@@ -11131,7 +11144,7 @@ namespace user
 
       strsize iEnd = strText.length();
 
-      _001GetSel(iBeg, iEnd);
+      get_text_selection(iBeg, iEnd);
 
       strText.translate_index(iBeg);
 
@@ -17652,9 +17665,9 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       if (!puserinteraction)
       {
 
-         //return false;
+         return ;
 
-         throw ::exception(error_wrong_state);
+         //throw ::exception(error_wrong_state);
 
       }
 
@@ -17663,7 +17676,8 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       if (!pprimitiveimpl)
       {
 
-         throw ::exception(error_null_pointer);
+         return;
+         //throw ::exception(error_null_pointer);
 
       }
 
@@ -19555,9 +19569,9 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       ::collection::index iMatchingMonitor = pdisplay->get_best_monitor(&rectangleNew, rectangleWindow, eactivation, this);
 
-      ::rectangle_i32 rectangleWorkspace;
-
-      pdisplay->get_workspace_rectangle(iMatchingMonitor, rectangleWorkspace);
+      ::rectangle_i32 rectangleZoomedWindowSite;
+      
+      pdisplay->get_zoomed_window_site(iMatchingMonitor, rectangleZoomedWindowSite);
 
       if (bSet && (!::is_empty(rectangle) || iMatchingMonitor >= 0))
       {
@@ -19567,10 +19581,10 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
          if (iMatchingMonitor >= 0 && rectangleNew.bottom() > 0)
          {
 
-            if (rectangleWorkspace.bottom() > rectangleNew.bottom() - 2)
+            if (rectangleZoomedWindowSite.bottom() > rectangleNew.bottom() - 2)
             {
 
-               rectangleWorkspace.bottom() = rectangleNew.bottom() - 2;
+               rectangleZoomedWindowSite.bottom() = rectangleNew.bottom() - 2;
 
             }
 
@@ -19580,7 +19594,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          order(zorderParam);
 
-         place(rectangleWorkspace);
+         place(rectangleZoomedWindowSite);
 
          //display(e_display_zoomed, eactivation | e_activation_display_change);
 
@@ -19589,7 +19603,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       if (prectangle != nullptr)
       {
 
-         *prectangle = rectangleWorkspace;
+         *prectangle = rectangleZoomedWindowSite;
 
 
       }
@@ -24085,8 +24099,6 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       }
 
-
-
       if (m_bDefaultClickHandling || m_bDefaultMouseHoverHandling)
       {
 
@@ -24323,13 +24335,15 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
                   if (pwindowimpl->m_pitemLButtonDown->m_atom.is_empty())
                   {
 
-                     atom = translate_property_id(m_atom);
+                     //atom = translate_property_id(m_atom);
+                     atom = m_atom;
 
                   }
                   else
                   {
 
-                     atom = translate_property_id(pwindowimpl->m_pitemLButtonDown->m_atom);
+                     //atom = translate_property_id(pwindowimpl->m_pitemLButtonDown->m_atom);
+                     atom = pwindowimpl->m_pitemLButtonDown->m_atom;
 
                   }
 
@@ -24908,13 +24922,16 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
             if (pwindowimpl->m_pitemLButtonDown->m_atom.is_empty())
             {
 
-               atom = translate_property_id(m_atom);
+               //atom = translate_property_id(m_atom);
+
+               atom = m_atom;
 
             }
             else
             {
 
-               atom = translate_property_id(pwindowimpl->m_pitemLButtonDown->m_atom);
+               //atom = translate_property_id(pwindowimpl->m_pitemLButtonDown->m_atom);
+               atom = pwindowimpl->m_pitemLButtonDown->m_atom;
 
             }
 
@@ -25316,6 +25333,8 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          m_pitemHover = pitemHitTest;
 
+         on_update_hover(m_pitemHover);
+
          //m_pitemHOver->m_bAnyHoverChange = true;
 
          if (::is_item_set(m_pitemHover))
@@ -25339,8 +25358,17 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
             if (!pitemOldHover)
             {
-
-               track_mouse_leave();
+               
+               try
+               {
+                  
+                  track_mouse_leave();
+                  
+               }
+               catch(...)
+               {
+                  
+               }
 
             }
 
@@ -25528,6 +25556,13 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       pmouse->m_pointAbsolute = absolute_mouse_cursor_position();
 
       return update_hover(pmouse, ezorder);
+
+   }
+
+
+   void interaction::on_update_hover(::item * pitem)
+   {
+
 
    }
 
@@ -26498,10 +26533,13 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
+
    void interaction::edit_on_text(string str)
    {
 
-      _001SetText(str, ::e_source_user);
+      //set_text(str, ::e_source_user);
+
+      m_textproperty.set_text(str, ::e_source_user);
 
    }
 
@@ -26509,7 +26547,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    void interaction::edit_on_sel(strsize iBeg, strsize iEnd)
    {
 
-      _001SetSel(iBeg, iEnd);
+      set_text_selection(iBeg, iEnd, e_source_sync);
 
    }
 
@@ -27034,7 +27072,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
          if (pedit == nullptr)
             return false;
 
-         pedit->_001GetText(str);
+         str = pedit->as_text();
 
       }
       else
@@ -27049,7 +27087,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          }
 
-         ptext->_001GetText(str);
+         str = ptext->as_text();
 
       }
 

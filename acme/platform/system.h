@@ -21,6 +21,9 @@ namespace acme
 {
 
 
+   class system_factory;
+
+
    class CLASS_DECL_ACME system :
       //virtual public ::object,
       virtual public ::acme::context
@@ -72,7 +75,7 @@ namespace acme
 
       int                              m_iExitCode = 0;
 
-
+      ::pointer < ::acme::system_factory > m_psystemfactory;
       // END FROM ::main (Now main2)
 
 
@@ -166,9 +169,10 @@ namespace acme
       ::pointer < ::mutex >                  m_pmutexHttpDownload;
       string_array                           m_straHttpDownloading;
       string_array                           m_straHttpExists;
-#if defined(WITH_X11) || defined(WITH_XCB)
-      ::pointer < ::particle >                                 m_pmutexXlib;
-#endif
+         ::pointer < ::windowing_system::windowing_system > m_pwindowingsystem;
+//#if defined(WITH_X11) || defined(WITH_XCB)
+  //    ::pointer < ::particle >                                 m_pmutexXlib;
+//#endif
 
 
 
@@ -204,9 +208,9 @@ namespace acme
 
       virtual class ::imaging * imaging();
 
-#if defined(WITH_X11) || defined(WITH_XCB)
-      virtual ::particle * x11_synchronization();
-#endif
+// #if defined(WITH_X11) || defined(WITH_XCB)
+//       virtual ::particle * x11_synchronization();
+// #endif
 
       inline ::pointer<::acme::node> & node() { return m_pnode; }
 
@@ -219,6 +223,8 @@ namespace acme
       inline ::acme_directory * acmedirectory() const { return m_pacmedirectory; }
 
       inline ::acme_path * acmepath() const { return m_pacmepath; }
+
+      virtual ::acme::system_factory* system_factory();
 
       virtual ::xml::xml * _xml();
 
@@ -247,6 +253,7 @@ namespace acme
       virtual ::draw2d::draw2d * draw2d() const;
       virtual ::write_text::write_text * write_text() const;
 
+         virtual ::windowing_system::windowing_system * windowing_system();
 
       virtual string get_system_platform();
       virtual string get_system_configuration();
@@ -679,37 +686,13 @@ namespace acme
 
       virtual void set_dark_mode(bool bDark);
 
-#if defined(WITH_X11)
-      virtual void x11_sync(const ::procedure & procedure);
-      virtual void x11_async(const ::procedure & procedure);
-#endif
+// #if defined(WITH_X11)
+//       virtual void x11_sync(const ::procedure & procedure);
+//       virtual void x11_async(const ::procedure & procedure);
+// #endif
       
       virtual void on_component_factory(const ::scoped_string & scopedstrComponent);
 
-      template < typename FACTORY_REPRESENTATIVE_TYPE >
-      FACTORY_REPRESENTATIVE_TYPE * __factory(::pointer < FACTORY_REPRESENTATIVE_TYPE > & p)
-      {
-         
-         if(!p)
-         {
-            
-            if(!platform()->factory()->has<FACTORY_REPRESENTATIVE_TYPE>())
-            {
-               
-               ::string strComponent = FACTORY_REPRESENTATIVE_TYPE::represented_component_name();
-               
-               this->on_component_factory(strComponent);
-               
-            }
-            
-            __construct(p);
-            
-         }
-         
-         return p;
-         
-      }
-      
 
    };
 

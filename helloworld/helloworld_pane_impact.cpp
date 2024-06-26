@@ -187,7 +187,7 @@ namespace helloworld
          if (m_prollfps != nullptr)
          {
 
-            m_prollfps->_001SetText(str, ::e_source_database);
+            m_prollfps->set_text(str, ::e_source_database);
 
          }
 
@@ -201,7 +201,7 @@ namespace helloworld
 
                m_checkptraBilbo.add(dynamic_cast <::user::check_box *> (pimpact->get_child_by_id("bilbo" + as_string(i))));
 
-               m_checkptraBilbo.last()->_001SetCheck(bilbo.m_b ? ::e_check_checked : ::e_check_unchecked, ::e_source_sync);
+               m_checkptraBilbo.last()->set_check(bilbo.m_b ? ::e_check_checked : ::e_check_unchecked, ::e_source_sync);
 
                i++;
 
@@ -252,7 +252,7 @@ namespace helloworld
 //         m_prollspf = pimpact->get_child_by_id("roll_spf");
          //try
          //{
-         //   pform->get_child_by_id("clockverse_auto")->_001SetCheck(papp->should_auto_launch_clockverse_on_hover(),::e_source_initialize);
+         //   pform->get_child_by_id("clockverse_auto")->set_check(papp->should_auto_launch_clockverse_on_hover(),::e_source_initialize);
          //}
          //catch(...)
          //{
@@ -260,7 +260,7 @@ namespace helloworld
 
          //try
          //{
-         //   pform->get_child_by_id("flag")->_001SetCheck(papp->should_bind_flag_country_ca2_domain_image_on_hover(),::e_source_initialize);
+         //   pform->get_child_by_id("flag")->set_check(papp->should_bind_flag_country_ca2_domain_image_on_hover(),::e_source_initialize);
          //}
          //catch(...)
          //{
@@ -268,7 +268,7 @@ namespace helloworld
 
          //try
          //{
-         //   pform->get_child_by_id("flag_auto")->_001SetCheck(papp->should_auto_launch_flag_on_hover(),::e_source_initialize);
+         //   pform->get_child_by_id("flag_auto")->set_check(papp->should_auto_launch_flag_on_hover(),::e_source_initialize);
          //}
          //catch(...)
          //{
@@ -324,7 +324,7 @@ namespace helloworld
 
                         string str;
 
-                        m_prollfps->_001GetText(str);
+                        m_prollfps->get_text(str);
 
                         m_pimpactLast->datastream()->set("cur_fps_text",str);
 
@@ -344,11 +344,11 @@ namespace helloworld
                   }
                   //if(fabs(d) < 0.0000000001)
                   //{
-                  //   m_prollspf->_001SetText("",::e_source_initialize);
+                  //   m_prollspf->set_text("",::e_source_initialize);
                   //}
                   //else
                   //{
-                  //   m_prollspf->_001SetText(as_string(1.0/d),::e_source_initialize);
+                  //   m_prollspf->set_text(as_string(1.0/d),::e_source_initialize);
                   //}
                }
                catch(...)
@@ -362,17 +362,17 @@ namespace helloworld
             //   try
             //   {
             //      string str;
-            //      m_prollspf->_001GetText(str);
+            //      m_prollspf->get_text(str);
             //      double d = atof(str);
             //      if(fabs(d) < 0.0000000001)
             //      {
-            //         m_prollfps->_001SetText("",::e_source_initialize);
+            //         m_prollfps->set_text("",::e_source_initialize);
             //      }
             //      else
             //      {
             //         m_pflagview->m_frequencyFramesPerSecond = 1.0/ d;
             //         m_pflagview->m_dwRoll= ::time::now();
-            //         m_prollfps->_001SetText(as_string(1.0 / d),::e_source_initialize);
+            //         m_prollfps->set_text(as_string(1.0 / d),::e_source_initialize);
             //      }
             //   }
             //   catch(...)
@@ -401,7 +401,7 @@ namespace helloworld
                   if (m_pimpactLastBilbo != nullptr)
                   {
 
-                     m_pimpactLastBilbo->m_prender->m_bilboa[iCheck - 1].m_bNew = ptopic->user_interaction()->_001GetCheck() == ::e_check_checked;
+                     m_pimpactLastBilbo->m_prender->m_bilboa[iCheck - 1].m_bNew = ptopic->user_interaction()->get_check() == ::e_check_checked;
 
                      m_pimpactLastBilbo->m_prender->defer_update_bilbo();
 
@@ -415,22 +415,22 @@ namespace helloworld
 
          //if(ptopic->user_element_id() == "clockverse")
          //   {
-         //      papp->set_binding_clockverse_country_time_zone_set_on_hover(ptopic->user_interaction()->_001GetCheck() == ::e_check_checked);
+         //      papp->set_binding_clockverse_country_time_zone_set_on_hover(ptopic->user_interaction()->get_check() == ::e_check_checked);
          //      return true;
          //   }
          //   else if(ptopic->user_element_id() == "clockverse_auto")
          //   {
-         //      papp->set_auto_launch_clockverse_on_hover(ptopic->user_interaction()->_001GetCheck() == ::e_check_checked);
+         //      papp->set_auto_launch_clockverse_on_hover(ptopic->user_interaction()->get_check() == ::e_check_checked);
          //      return true;
          //   }
          //   else if(ptopic->user_element_id() == "flag")
          //   {
-         //      papp->set_binding_flag_country_ca2_domain_image_on_hover(ptopic->user_interaction()->_001GetCheck() == ::e_check_checked);
+         //      papp->set_binding_flag_country_ca2_domain_image_on_hover(ptopic->user_interaction()->get_check() == ::e_check_checked);
          //      return true;
          //   }
          //   else if(ptopic->user_element_id() == "flag_auto")
          //   {
-         //      papp->set_auto_launch_flag_on_hover(ptopic->user_interaction()->_001GetCheck() == ::e_check_checked);
+         //      papp->set_auto_launch_flag_on_hover(ptopic->user_interaction()->get_check() == ::e_check_checked);
          //      return true;
          //   }
          //}

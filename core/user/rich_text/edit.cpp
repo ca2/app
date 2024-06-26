@@ -402,12 +402,12 @@ namespace user
       }
 
 
-      void edit::_001GetText(string & str)
-      {
+      //void edit::get_text(string & str)
+      //{
 
-         ::user::interaction::_001GetText(str);
+      //   ::user::interaction::get_text(str);
 
-      }
+      //}
 
 
       void edit::_001GetLayoutText(string & str)
@@ -1552,7 +1552,7 @@ namespace user
 
                string str;
 
-               _001GetSelText(str);
+               get_selection_text(str);
 
                if (str.is_empty())
                {
@@ -1598,7 +1598,7 @@ namespace user
 
                string str;
 
-               _001GetSelText(str);
+               get_selection_text(str);
 
                auto pcopydesk = copydesk();
 
@@ -1759,15 +1759,15 @@ namespace user
       }
 
 
-      strsize edit::_001GetTextLength()
-      {
+      //strsize edit::get_text_length()
+      //{
 
-         return 0;
+      //   return 0;
 
-      }
+      //}
 
 
-      void edit::_001GetSel(strsize & iBeg, strsize & iEnd)
+      void edit::get_text_selection(strsize & iBeg, strsize & iEnd) const
       {
 
       }
@@ -1846,7 +1846,7 @@ namespace user
       strsize edit::get_sel_beg()
       {
 
-         return minimum(maximum(minimum_non_negative(m_iSelBeg, m_iSelEnd), 0), _001GetTextLength());
+         return minimum(maximum(minimum_non_negative(m_iSelBeg, m_iSelEnd), 0), get_text_length());
 
       }
 
@@ -1854,7 +1854,7 @@ namespace user
       strsize edit::get_sel_end()
       {
 
-         return minimum(maximum(maximum(m_iSelBeg, m_iSelEnd), 0), _001GetTextLength());
+         return minimum(maximum(maximum(m_iSelBeg, m_iSelEnd), 0), get_text_length());
 
       }
 
@@ -2129,7 +2129,7 @@ namespace user
          if (point.y() >= rBox.bottom())
          {
 
-            return _001GetTextLength();
+            return get_text_length();
 
          }
 
@@ -2237,7 +2237,7 @@ namespace user
 
          string str;
 
-         _001GetText(str);
+         get_text(str);
 
          strsize_array ia1;
 

@@ -25,6 +25,7 @@
 #include "acme/platform/profiler.h"
 #include "acme/primitive/collection/_array_binary_stream.h"
 #include "acme/primitive/datetime/datetime.h"
+#include "acme/primitive/primitive/_impl_ptr.h"
 #include "acme/primitive/string/command_line.h"
 #include "acme/primitive/string/str.h"
 #include "acme/primitive/text/context.h"
@@ -859,7 +860,8 @@ namespace apex
          //
          ////return false;
          //
-         //}
+         //} 	apex.dll!thread::on_request_message(request * prequest) Line 4721	C++
+
 
          //on_update_matter_locator();
 
@@ -2022,7 +2024,7 @@ namespace apex
             if (payload("locale").get_count() > 0)
             {
 
-               str = payload("locale").stra()[0];
+               str = payload("locale").as_string()[0];
 
                datastream()->set({ "system_locale", true }, str);
 
@@ -2034,7 +2036,7 @@ namespace apex
             else if (payload("lang").get_count() > 0)
             {
 
-               str = payload("lang").stra()[0];
+               str = payload("lang").as_string_array()[0];
 
                datastream()->set({ "system_locale", true }, str);
 
@@ -2093,7 +2095,7 @@ namespace apex
             if (payload("schema").get_count() > 0)
             {
 
-               str = payload("schema").stra()[0];
+               str = payload("schema").as_string_array()[0];
 
                datastream()->set({ "system_schema", true }, str);
 
@@ -2168,7 +2170,7 @@ namespace apex
             if (payload("locale").get_count() > 0)
             {
 
-               str = payload("locale").stra()[0];
+               str = payload("locale").as_string_array()[0];
 
                datastream()->set({ "system_locale", true }, str);
 
@@ -2180,7 +2182,7 @@ namespace apex
             else if (payload("lang").get_count() > 0)
             {
 
-               str = payload("lang").stra()[0];
+               str = payload("lang").as_string_array()[0];
 
                datastream()->set({ "system_locale", true }, str);
 
@@ -2239,7 +2241,7 @@ namespace apex
             if (payload("schema").get_count() > 0)
             {
 
-               str = payload("schema").stra()[0];
+               str = payload("schema").as_string_array()[0];
 
                datastream()->set({ "system_schema", true }, str);
 
@@ -2765,8 +2767,8 @@ namespace apex
       string_array straLocale;
       string_array straSchema;
 
-      straLocale = payload("locale").stra();
-      straSchema = payload("schema").stra();
+      straLocale = payload("locale").as_string_array();
+      straSchema = payload("schema").as_string_array();
 
       ::file::path pathExe = acmefile()->module();
 
@@ -3330,28 +3332,28 @@ namespace apex
          if (psystem->payload("locale").get_count() > 0)
          {
 
-            strLocale = psystem->payload("locale").stra()[0];
+            strLocale = psystem->payload("locale").as_string_array()[0];
 
          }
 
          if (psystem->payload("schema").get_count() > 0)
          {
 
-            strSchema = psystem->payload("schema").stra()[0];
+            strSchema = psystem->payload("schema").as_string_array()[0];
 
          }
 
          if (get_app()->payload("locale").get_count() > 0)
          {
 
-            strLocale = get_app()->payload("locale").stra()[0];
+            strLocale = get_app()->payload("locale").as_string_array()[0];
 
          }
 
          if (get_app()->payload("schema").get_count() > 0)
          {
 
-            strSchema = get_app()->payload("schema").stra()[0];
+            strSchema = get_app()->payload("schema").as_string_array()[0];
 
          }
 
@@ -3695,6 +3697,51 @@ namespace apex
 
 #endif
 
+      ::file::path pathPreviousLocation = platform()->get_argument_begins_eat("--previous-location");
+
+      if (pathPreviousLocation.has_char())
+      {
+
+         //message_box_synchronous(this, "there is a previous location");
+
+         auto pida = node()->module_path_processes_identifiers(pathPreviousLocation);
+
+         class ::time time;
+         
+         time.Now();
+
+         while(time.elapsed() < 5_minutes)
+         {
+            
+            for (auto pid : pida)
+            {
+
+               if (!acmepath()->real_path_is_same(
+                  node()->process_identifier_module_path(pid),
+                  pathPreviousLocation))
+               {
+
+                  pida.erase(pid);
+
+                  break;
+
+               }
+
+            }
+
+            if (pida.is_empty())
+            {
+
+               break;
+
+            }
+
+            preempt(300_ms);
+
+         }
+
+      }
+
       bool bResourceException = false;
 
       auto psystem = system();
@@ -3977,7 +4024,7 @@ namespace apex
 
             property_set set;
 
-            set["oh_my_god"].stra().add(str1);
+            set["oh_my_god"].as_string_array().add(str1);
             set["oh_my_god2"].i32_array_reference() = ::i32_array({ 1, 2, 3 });
 
             int a1 = 1;
@@ -3999,10 +4046,10 @@ namespace apex
 
             datastream()->get("test", set2);
 
-            string str2 = set2["oh_my_god"].stra()[0];
+            string str2 = set2["oh_my_god"].as_string_array()[0];
 
 
-            int i1 = set2["oh_my_god2"].ia()[0];
+            int i1 = set2["oh_my_god2"].as_i32_array()[0];
             int i2 = set2["oh_my_god2"].array_contains("2") ? (int)set2["oh_my_god2"][1].as_i32() : -1;
             int i3 = set2["oh_my_god2"][2].as_i32();
 
@@ -5342,44 +5389,44 @@ namespace apex
    //}
 
 
-   ::atom application::translate_property_id(const ::atom & atom)
-   {
+   //::atom application::translate_property_id(const ::atom & atom)
+   //{
 
-      if (atom == "hide_recycle_bin")
-      {
+   //   if (atom == "hide_recycle_bin")
+   //   {
 
-         return id_hide_recycle_bin;
+   //      return id_hide_recycle_bin;
 
-      }
-      else if (atom == "show_recycle_bin")
-      {
+   //   }
+   //   else if (atom == "show_recycle_bin")
+   //   {
 
-         return id_show_recycle_bin;
+   //      return id_show_recycle_bin;
 
-      }
+   //   }
 
 
-      //if(!is_system())
-      //{
+   //   //if(!is_system())
+   //   //{
 
-      // if(!is_session())
-      //{
+   //   // if(!is_session())
+   //   //{
 
-      // return psession->translate_property_id(atom);
+   //   // return psession->translate_property_id(atom);
 
-      //}
-      //else
-      //{
+   //   //}
+   //   //else
+   //   //{
 
-      // return psystem->translate_property_id(atom);
+   //   // return psystem->translate_property_id(atom);
 
-      //}
+   //   //}
 
-      //}
+   //   //}
 
-      return atom;
+   //   return atom;
 
-   }
+   //}
 
 
    //void application::record(::create * pcommand)
@@ -9475,18 +9522,7 @@ namespace apex
    //}
 
 
-   //i32 application::track_popup_menu(const ::string & pszMatter, const ::point_i32& point, ::pointer<::user::interaction>puie)
-   //{
-
-   //   __UNREFERENCED_PARAMETER(pszMatter);
-   //   __UNREFERENCED_PARAMETER(point);
-   //   __UNREFERENCED_PARAMETER(puie);
-
-   //   return 1;
-
-   //}
-
-
+  
    bool application::get_fs_size(string & strSize, const ::string & pszPath, bool & bPending)
    {
 

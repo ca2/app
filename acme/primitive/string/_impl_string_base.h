@@ -322,7 +322,7 @@ inline ::std::strong_ordering _case_insensitive_count_sz_collate(const ::ansi_ch
 }
 
 
-CLASS_DECL_ACME ::string string_format(const ::ansi_character * pszFormat, ...);
+CLASS_DECL_ACME ::string string_formatf(const ::ansi_character * pszFormat, ...);
 
 
 //template < typename ITERATOR_TYPE >

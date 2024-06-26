@@ -5,6 +5,8 @@
 #include "simple_log.h"
 //#include "acme.h"
 #include "acme/memory/counter.h"
+#include "acme/nano/nano.h"
+#include "acme/nano/dynamic_library/dynamic_library.h"
 #include "acme/parallelization/manual_reset_event.h"
 ////#include "acme/exception/exception.h"
 #include "acme/platform/context.h"
@@ -35,9 +37,9 @@ namespace acme
 //
 //
 } // namespace acme
-#ifdef CUBE
+//#ifdef CUBE
 #include "factory_function.h"
-#endif
+//#endif
 
 
 namespace mathematics
@@ -104,7 +106,7 @@ namespace platform
 
       {
 
-         array<void *> operatingsystemlibrarya;
+         array<library_t *> operatingsystemlibrarya;
 
          for (auto & pair : m_mapLibrary)
          {
@@ -129,7 +131,7 @@ namespace platform
          for (auto & poperatingsystemlibrary : operatingsystemlibrarya)
          {
 
-            operating_system_library_close(poperatingsystemlibrary);
+            nano()->dynamic_library()->close(poperatingsystemlibrary);
 
          }
 
@@ -234,11 +236,11 @@ namespace platform
 #if defined(WINDOWS)  && defined(UNICODE)
 
 
-   void platform::initialize(int argc, wchar_t * argv[], wchar_t * envp[])
+   void platform::initialize(int argc, wchar_t * args[], wchar_t * envp[])
    {
 
       m_argc = argc;
-      m_wargv = argv;
+      m_wargs = args;
       m_wenvp = envp;
 
    }
@@ -254,7 +256,7 @@ namespace platform
       m_nCmdShow = nCmdShow;
 
       m_argc = __argc;
-      m_wargv = __wargv;
+      m_wargs = __wargv;
       m_wenvp = (wchar_t **)*__p__wenviron();
 
 
@@ -264,11 +266,11 @@ namespace platform
 #else
 
 
-   void platform::initialize(int argc, platform_char ** argv, platform_char ** envp)
+   void platform::initialize(int argc, platform_char ** args, platform_char ** envp)
    {
 
       m_argc = argc;
-      m_argv = argv;
+      m_args = args;
       m_envp = envp;
 
    }
@@ -315,16 +317,16 @@ namespace platform
    //}
 
 
-   void platform::set_args(int argc, char ** argv, wchar_t ** wargv)
+   void platform::set_args(int argc, char ** args, wchar_t ** wargs)
    {
 
       m_argc = argc;
 
-      m_argv = argv;
+      m_args = args;
 
 #ifdef WINDOWS_DESKTOP
 
-      m_wargv = wargv;
+      m_wargs = wargs;
 
 #endif
 
@@ -339,7 +341,7 @@ namespace platform
    }
 
 
-   string platform::_get_argv(::collection::index iArgument) const
+   string platform::_get_args(::collection::index iArgument) const
    {
 
       if (iArgument < 0 || iArgument >= _get_argc())
@@ -351,20 +353,20 @@ namespace platform
 
 #ifdef WINDOWS
 
-      if (m_wargv && m_wargv[iArgument])
+      if (m_wargs && m_wargs[iArgument])
       {
 
-         return m_wargv[iArgument];
+         return m_wargs[iArgument];
 
       }
       else
 
 #endif
 
-         if (m_argv && m_argv[iArgument])
+         if (m_args && m_args[iArgument])
          {
 
-            return m_argv[iArgument];
+            return m_args[iArgument];
 
          }
 
@@ -384,7 +386,7 @@ namespace platform
    string platform::get_executable() const
    {
 
-      return _get_argv(0);
+      return _get_args(0);
 
    }
 
@@ -401,20 +403,20 @@ namespace platform
 
 #ifdef WINDOWS
 
-         if (m_wargv && m_wargv[i])
+         if (m_wargs && m_wargs[i])
          {
 
-            strArgument = m_wargv[i];
+            strArgument = m_wargs[i];
 
          }
          else
 
 #endif
 
-            if (m_argv && m_argv[i])
+            if (m_args && m_args[i])
             {
 
-               strArgument = m_argv[i];
+               strArgument = m_args[i];
 
             }
             else
@@ -484,7 +486,7 @@ namespace platform
    string platform::get_argument1(::collection::index iArgument) const
    {
 
-      return _get_argv(iArgument + 1);
+      return _get_args(iArgument + 1);
 
    }
 
@@ -523,18 +525,18 @@ namespace platform
    }
 
 
-   char *** platform::get_pargv()
+   char *** platform::get_pargs()
    {
 
-      return &m_argv;
+      return &m_args;
 
    }
 
 
-   char ** platform::get_argv()
+   char ** platform::get_args()
    {
 
-      return *get_pargv();
+      return *get_pargs();
 
    }
 
@@ -542,18 +544,18 @@ namespace platform
 #ifdef WINDOWS
 
 
-   wchar_t *** platform::get_pwargv()
+   wchar_t *** platform::get_pwargs()
    {
 
-      return &m_wargv;
+      return &m_wargs;
 
    }
 
 
-   wchar_t ** platform::get_wargv()
+   wchar_t ** platform::get_wargs()
    {
 
-      return *get_pwargv();
+      return *get_pwargs();
 
    }
 
@@ -586,20 +588,20 @@ namespace platform
 
 #ifdef WINDOWS
 
-      if (m_wargv)
+      if (m_wargs)
       {
 
-         return string(m_wargv[i]);
+         return string(m_wargs[i]);
 
       }
       else
 
 #endif
 
-         if (m_argv)
+         if (m_args)
          {
 
-            return string(m_argv[i]);
+            return string(m_args[i]);
 
          }
 
@@ -741,7 +743,7 @@ namespace platform
 
       //operating_system_initialize_nano_user();
 
-      IDENTIFIER_PREFIX_OPERATING_SYSTEM(_factory)(factory());
+      //IDENTIFIER_PREFIX_OPERATING_SYSTEM(_factory)(factory());
 
 
    }
@@ -837,7 +839,7 @@ namespace platform
       if (!plibrary)
       {
 
-#ifdef CUBE
+//#ifdef CUBE
 
          auto pfnFactory = ::factory_function::get(strLibrary);
 
@@ -855,7 +857,7 @@ namespace platform
 
          plibrary->m_pfnFactory = pfnFactory;
 
-#endif
+//#endif
 
       }
 
@@ -893,40 +895,40 @@ namespace platform
 
       }
       
-      if(strImplementation == "(built-in)")
-      {
-         
-         if(strComponent == "nano_http")
-         {
-            
-            pfactory = system()->__create_new < ::factory::factory >();
-            
-            initialize_nano_http(pfactory);
-            
-            return pfactory;
-            
-         }
-         else if(strComponent == "nano_user")
-         {
-            
-            pfactory = system()->__create_new < ::factory::factory >();
-            
-            initialize_nano_user(pfactory);
-            
-            return pfactory;
-            
-         }
-         else
-         {
-            
-            informationf("Not known built-in component: \"%s\".\n", strComponent.c_str());
-
-            //pfactory = (const ::extended::status&)plibrary;
-            throw ::exception(error_resource, strComponent + " factory not found!!");
-
-         }
-         
-      }
+      // if(strImplementation == "(built-in)")
+      // {
+      //
+      //    if(strComponent == "nano_http")
+      //    {
+      //
+      //       pfactory = system()->__create_new < ::factory::factory >();
+      //
+      //       initialize_nano_http(pfactory);
+      //
+      //       return pfactory;
+      //
+      //    }
+      //    else if(strComponent == "nano_user")
+      //    {
+      //
+      //       pfactory = system()->__create_new < ::factory::factory >();
+      //
+      //       initialize_nano_user(pfactory);
+      //
+      //       return pfactory;
+      //
+      //    }
+      //    else
+      //    {
+      //
+      //       informationf("Not known built-in component: \"%s\".\n", strComponent.c_str());
+      //
+      //       //pfactory = (const ::extended::status&)plibrary;
+      //       throw ::exception(error_resource, strComponent + " factory not found!!");
+      //
+      //    }
+      //
+      // }
 
       string strLibrary;
 
@@ -940,7 +942,7 @@ namespace platform
       if (!plibrary)
       {
 
-#ifdef CUBE
+//#ifdef CUBE
 
          auto pfnFactory = ::factory_function::get(strLibrary);
 
@@ -955,7 +957,7 @@ namespace platform
 
          }
 
-#endif
+//#endif
 
          informationf("Library not found : \"%s\".\n", strLibrary.c_str());
 
@@ -1081,31 +1083,9 @@ namespace platform
 
    }
 
-
-   ::pointer<::acme::library> platform::create_library(const ::string & strLibrary)
+   
+   ::pointer<::acme::library> platform::create_library_dynamically(const ::string & strLibrary)
    {
-
-#ifdef CUBE
-
-      auto pfnFactory = ::factory_function::get(strLibrary);
-
-      if (!pfnFactory)
-      {
-
-         return nullptr;
-
-      }
-
-      auto plibrary = __create_new < ::acme::library >();
-
-      plibrary->m_strName = strLibrary;
-
-      plibrary->m_pfnFactory = pfnFactory;
-
-      return plibrary;
-
-
-#else
 
       //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
 
@@ -1139,9 +1119,68 @@ namespace platform
 
       }
 
-#endif
+      return plibrary;
+
+   }
+
+
+   ::pointer<::acme::library> platform::create_library_statically(const ::string & strLibrary)
+   {
+
+      auto pfnFactory = ::factory_function::get(strLibrary);
+
+      if (!pfnFactory)
+      {
+
+         return nullptr;
+
+      }
+
+      auto plibrary = __create_new < ::acme::library >();
+
+      plibrary->m_strName = strLibrary;
+
+      plibrary->m_pfnFactory = pfnFactory;
 
       return plibrary;
+
+   }
+
+
+
+   ::pointer<::acme::library> platform::create_library(const ::string & strLibrary)
+   {
+
+#ifdef CUBE
+
+      return create_library_statically(strLibrary);
+
+#else
+
+      ::pointer<::acme::library> plibrary;
+
+      try
+      {
+
+         plibrary = create_library_dynamically(strLibrary);
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+      if (!plibrary)
+      {
+
+         plibrary = create_library_statically(strLibrary);
+
+      }
+
+      return plibrary;
+
+#endif
 
    }
 

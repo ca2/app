@@ -192,34 +192,16 @@ binary_stream & binary_stream::operator <<(const atom & atom)
 
    raw_write(atom.m_etype);
 
-   if (atom.m_etype == ::atom::e_type_text)
+   if (atom.m_etype & ::atom::e_type_text)
    {
 
       operator <<(atom.m_str);
 
    }
-   else if (atom.m_etype == ::atom::e_type_integer)
+   else
    {
 
       operator <<(atom.m_iLargest);
-
-   }
-   else if (atom.m_etype >= ::atom::e_type_property)
-   {
-
-      raw_write(atom.m_eproperty);
-
-   }
-   else if (atom.m_etype >= ::atom::e_type_factory)
-   {
-
-      raw_write(atom.m_efactory);
-
-   }
-   else if (atom.m_etype >= ::atom::e_type_task_tool)
-   {
-
-      raw_write(atom.m_etasktool);
 
    }
 
@@ -442,44 +424,44 @@ binary_stream & binary_stream::operator >>(atom & atom)
 
    raw_read(atom.m_etype);
 
-   if (atom.m_etype == ::atom::e_type_text)
+   if (atom.m_etype & ::atom::e_type_text)
    {
 
       string str;
 
       operator >>(str);
 
-      atom = str;
+      atom.m_str =  str;
 
    }
-   else if (atom.m_etype == ::atom::e_type_integer)
+   else
    {
 
       i64 i;
 
       operator >>(i);
 
-      atom = i;
+      atom.m_iLargest = i;
 
    }
-   else if (atom.m_etype == ::atom::e_type_property)
-   {
-
-      raw_read(atom.m_eproperty);
-
-   }
-   else if (atom.m_etype == ::atom::e_type_factory)
-   {
-
-      raw_read(atom.m_efactory);
-
-   }
-   else if (atom.m_etype == ::atom::e_type_task_tool)
-   {
-
-      raw_read(atom.m_etasktool);
-
-   }
+//   else if (atom.m_etype == ::atom::e_type_property)
+//   {
+//
+//      raw_read(atom.m_eproperty);
+//
+//   }
+//   else if (atom.m_etype == ::atom::e_type_factory)
+//   {
+//
+//      raw_read(atom.m_efactory);
+//
+//   }
+//   else if (atom.m_etype == ::atom::e_type_task_tool)
+//   {
+//
+//      raw_read(atom.m_etasktool);
+//
+//   }
 
    return *this;
 
@@ -680,6 +662,14 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
    }
    break;
+      case e_type_property:
+      {
+
+         throw ::exception(todo);
+         //payload._set_element(::__load_object<::matter>(*this));
+
+      }
+         break;
    default:
    {
       payload.set_type(etype, false);
@@ -833,7 +823,7 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 }
 
 
-::pointer < ::particle > binary_stream::read_particle()
+::pointer < ::subparticle > binary_stream::read_particle()
 {
 
    ::type_atom typeatom;
@@ -849,13 +839,13 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 }
 
 
-void binary_stream::write_particle(::particle * pparticle)
+void binary_stream::write_particle(const ::subparticle * pparticle)
 {
 
    ::type_atom typeatom(pparticle);
 
    *this << typeatom;
 
-   pparticle->write_to_stream(*this);
+   ((subparticle *)pparticle)->write_to_stream(*this);
 
 }

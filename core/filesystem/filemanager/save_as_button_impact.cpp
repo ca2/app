@@ -65,7 +65,7 @@ namespace filemanager
 
       ::file::path strPath;
 
-      get_typed_parent<save_as_impact>()->m_pedit->_001GetText(strTitle);
+      strTitle = get_typed_parent<save_as_impact>()->m_pedit->as_text();
 
       auto pcontext = get_context();
 

@@ -47,7 +47,6 @@ namespace opengl
 
       void swap_buffers() override;
 
-
       //virtual void create_offscreen_buffer(const ::size_i32& size);
       //virtual void _create_offscreen_buffer(const ::size_i32& size);
 

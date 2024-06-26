@@ -43,9 +43,9 @@ BEGIN
         BEGIN
 			VALUE "CompanyName", "app"
 			VALUE "FileDescription", "app_api_ca2"
-            VALUE "FileVersion", "34658.1932758.1214017156612.-1338224440"
-            VALUE "LegalCopyright", "Copyright (C) 1900-20-32758-1214017156-612--1338224440"
-            VALUE "ProductVersion", "34658.1932758.1214017156612.-1338224440"
+            VALUE "FileVersion", "34658.1932758.1214017156612.-1338225080"
+            VALUE "LegalCopyright", "Copyright (C) 1900-20-32758-1214017156-612--1338225080"
+            VALUE "ProductVersion", "34658.1932758.1214017156612.-1338225080"
         END
     END
     BLOCK "VarFileInfo"

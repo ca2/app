@@ -327,7 +327,7 @@ namespace hi5
 
                auto pinteraction = m_pviewAuth->get_child_by_name("pin");
 
-               pinteraction->_001GetText(m_strPin);
+               m_strPin = pinteraction->as_text();
 
                m_ptabimpact->get_wnd()->EndModalLoop(e_dialog_result_ok);
 

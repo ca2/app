@@ -11,6 +11,7 @@
 #include "acme/operating_system/argcargv.h"
 
 
+void ns_main_sync(dispatch_block_t block);
 void ns_main_async(dispatch_block_t block);
 
 void os_system_start();
@@ -599,22 +600,26 @@ void apple_set_application_delegate(void * pApplication, void * pDelegate);
 void ns_apple_set_application_delegate(void * pApplication, macos_app * pappdelegate)
 {
    
-   NSApplication * application = [NSApplication sharedApplication];
-   
-   pappdelegate->m_pApplication = pApplication;
-   
-   [ application setDelegate: pappdelegate ];
-   
-   apple_set_application_delegate(pApplication, (__bridge void *) pappdelegate);
-   
-   [ pappdelegate continueInitialization ];
-   
-   //[m_statusitem setEnabled:YES];
-   
-   [NSApplication sharedApplication];
-   
-//   bool bNoDock = argcargv_contains_parameter(argc, argv, "no_dock");
-
+   ns_main_sync(^
+                {
+      
+      NSApplication * application = [NSApplication sharedApplication];
+      
+      pappdelegate->m_pApplication = pApplication;
+      
+      [ application setDelegate: pappdelegate ];
+      
+      apple_set_application_delegate(pApplication, (__bridge void *) pappdelegate);
+      
+      [ pappdelegate continueInitialization ];
+      
+      //[m_statusitem setEnabled:YES];
+      
+      [NSApplication sharedApplication];
+      
+      //   bool bNoDock = argcargv_contains_parameter(argc, argv, "no_dock");
+      
+   });
    
 }
 

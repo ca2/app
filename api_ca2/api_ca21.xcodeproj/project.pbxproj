@@ -444,7 +444,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating_system",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/storage-macos/library/Debug",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/storage-macos/Debug/library/Debug",
 					"$(TARGET_BUILD_DIR)",
 				);
 				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/operating_system $(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include . .. $(WorkspaceDir)  $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/include $(WorkspaceDir)/operating_system $(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/include . .. $(WorkspaceDir)  $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/include/";
@@ -460,7 +460,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating_system",
-					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/storage-macos/library/Release",
+					"$(WorkspaceDir)/operating_system/operating_system-$(PLATFORM_MODIFIER)/storage-macos/Debug/library/Release",
 					"$(WorkspaceDir)/platform/thirdparty/library",
 					"$(TARGET_BUILD_DIR)",
 				);

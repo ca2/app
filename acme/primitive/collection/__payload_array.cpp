@@ -36,9 +36,15 @@ payload_array::payload_array(const property_set & propset)
    operator = (propset);
 }
 
-payload_array::payload_array(const payload_array & payloada)
+payload_array::payload_array(const payload_array & payloada) :
+BASE_ARRAY(payloada)
 {
-   operator = (payloada);
+}
+
+payload_array::payload_array(payload_array && payloada) :
+BASE_ARRAY(::transfer(payloada))
+{
+
 }
 
 payload_array::~payload_array()

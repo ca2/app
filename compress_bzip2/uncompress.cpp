@@ -46,7 +46,7 @@ namespace compress_bzip2
 
 
 
-   void uncompress::transfer(::file::file* pfileOut, ::file::file* pfileIn)
+   void uncompress::transfer(::file::file* pfileOut, ::file::file* pfileIn, transfer_progress_function transferprogressfunction)
    {
 
       bool done = false;

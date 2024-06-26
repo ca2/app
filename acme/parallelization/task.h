@@ -8,6 +8,7 @@
 //#include "acme/primitive/collection/procedure_array.h"
 #include "counter.h"
 #include "acme/handler/source.h"
+#include "acme/primitive/data/property_container.h"
 #include "acme/platform/implementable.h"
 
 
@@ -27,7 +28,8 @@ class CLASS_DECL_ACME task :
    //virtual public synchronization_object,
    virtual public acme::implementable,
    virtual public tracer,
-   virtual public ::source
+   virtual public ::source,
+   virtual public ::data::property_container
 {
 public:
 

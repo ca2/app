@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "library.h"
 ////#include "acme/exception/exception.h"
+#include "acme/nano/nano.h"
+#include "acme/nano/dynamic_library/dynamic_library.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/system.h"
@@ -178,7 +180,7 @@ namespace acme
 
          //KEEP(s_plibraryLoading, this, nullptr);
 
-         m_plibrary = ::platform::get()->operating_system_library_open(path, m_strMessage);
+         m_plibrary = nano()->dynamic_library()->open(path, m_strMessage);
 
       //}
             
@@ -532,7 +534,7 @@ namespace acme
 
                   }
 
-                  bOk = ::platform::get()->operating_system_library_close(m_plibrary);
+                  bOk = nano()->dynamic_library()->close(m_plibrary);
 
                   m_plibrary = nullptr;
 
@@ -925,7 +927,7 @@ namespace acme
 
       critical_section_lock synchronouslock(&psystem->m_pplatform->m_criticalsection);
 
-      return ::platform::get()->operating_system_library_raw_get(m_plibrary,scopedstrEntryName);
+      return nano()->dynamic_library()->raw_get(m_plibrary,scopedstrEntryName);
 
    }
 

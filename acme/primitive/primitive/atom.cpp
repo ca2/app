@@ -128,6 +128,21 @@ bool is_font_sel(const ::atom & atom)
 }
 
 
+::domain_id atom::as_domainid() const
+{
+
+   if(m_etype != e_type_domainid)
+   {
+
+      return {};
+
+   }
+
+   return m_domainid;
+
+}
+
+
 bool atom::is_true(bool bDefault) const
 {
 
@@ -143,7 +158,7 @@ bool atom::is_true(bool bDefault) const
       case e_type_status:
          return m_estatus.succeeded();
       case e_type_check:
-         return __bool(m_echeck);
+         return m_echeck.is_checked();
       default:
          break;
    };

@@ -1,7 +1,8 @@
 #include "framework.h"
-#include "check.h"
-#include "text.h"
+//#include "check.h"
+//#include "text.h"
 #include "element.h"
+#include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/handler/item.h"
@@ -3098,108 +3099,6 @@ namespace user
 
    }
 
-
-   //bool element::track_popup_menu(::user::menu_item * pitem,i32 iFlags)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return false;
-
-   //}
-
-
-   //::pointer<::user::menu>element::track_popup_xml_menu_text(string strXml,i32 iFlags)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
-   //::pointer<::user::menu>element::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
-
-   //bool element::track_popup_menu(::user::menu_item * pitem,i32 iFlags,::message::message * pmessage)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return false;
-
-   //}
-
-
-   //::pointer<::user::menu>element::track_popup_xml_menu_text(string strXml,i32 iFlags,::message::message * pmessage)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
-   //::pointer<::user::menu>element::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags,::message::message * pmessage)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
-   //bool element::track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point_i32 & point)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return false;
-
-   //}
-
-
-   //::pointer<::user::menu>element::track_popup_xml_menu(const ::payload & varXml,i32 iFlags, const ::point_i32 & point, const size_i32 & size)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
-   //::pointer<::user::menu>element::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags, const ::point_i32 & point)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
-   //::pointer<::user::menu>element::track_popup_xml_menu_file(::payload payloadFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
    bool element::_001OnBeforeEnterIconic()
    {
 
@@ -3979,14 +3878,14 @@ namespace user
 
 
    // Text Edit
-   void element::_001GetSel(strsize & iBeg, strsize & iEnd)
+   void element::get_text_selection(strsize & iBeg, strsize & iEnd) const
    {
 
 
    }
 
 
-   void element::_001GetSel(strsize & iBeg, strsize & iEnd, strsize & iComposingStart, strsize & iComposingEnd)
+   void element::get_text_selection(strsize & iBeg, strsize & iEnd, strsize & iComposingStart, strsize & iComposingEnd) const
    {
 
 
@@ -4417,6 +4316,23 @@ namespace user
 
    //}
 
+   
+   ::user::check & element::check()
+   {
+
+      return m_check;
+
+   }
+
+
+   ::user::text & element::text()
+   {
+
+      return m_text;
+
+   }
+
+
 
    void element::_001OnTimer(::timer * ptimer)
    {
@@ -4515,7 +4431,7 @@ namespace user
    }
 
 
-   void element::insert_text(string str, bool bForceNewStep, const ::action_context & context)
+   void element::insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context)
    {
 
    }

@@ -1,5 +1,4 @@
 LIBRARY "regular_expression_pcre2"
 
 EXPORTS
-regular_expression_pcre2_factory
 

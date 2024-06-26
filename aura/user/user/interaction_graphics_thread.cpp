@@ -951,7 +951,7 @@ namespace user
    bool graphics_thread::graphics_thread_iteration()
    {
 
-      if (::type(m_puserinteraction.m_p) == "user::list_box")
+      if (::type(m_puserinteraction) == "user::list_box")
       {
 
          information() << "user::list_box graphics_thread_iteration user::list_box";
@@ -961,7 +961,7 @@ namespace user
       else
       {
 
-         information() << "graphics_thread_iteration";
+         debug() << "graphics_thread_iteration";
 
       }
 #endif
@@ -1031,7 +1031,7 @@ namespace user
 
 #ifdef MORE_LOG
 
-         information() << "graphics_thread_iteration has_graphical_output_purpose";
+         debug() << "graphics_thread_iteration has_graphical_output_purpose";
 
 #endif
 
@@ -1090,7 +1090,7 @@ namespace user
 
 #ifdef MORE_LOG
                   
-                  information() << "graphics_thread_iteration has_screen_output_purpose before window_update_screen";
+                  debug() << "graphics_thread_iteration has_screen_output_purpose before window_update_screen";
 
 #endif
 

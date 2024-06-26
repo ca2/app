@@ -752,10 +752,15 @@ namespace nanoui
 
       auto elapsed = m_last_interaction.elapsed();
 
-      if (elapsed > 0.5_s) {
+      if (elapsed > 0.5_s) 
+      {
+
          /* Draw tooltips */
          auto pwidget = find_widget(m_mouse_pos);
-         if (pwidget && pwidget->tooltip().has_char()) {
+
+         if (pwidget && pwidget->tooltip().has_char()) 
+         {
+
             int tooltip_width = 150;
 
             ::rectangle_f32 bounds;
@@ -763,53 +768,72 @@ namespace nanoui
             pcontext->font_size(15.0f);
             pcontext->text_align(::nano2d::e_align_left | ::nano2d::e_align_top);
             pcontext->text_line_height(1.1f);
+
             point_i32 pos = pwidget->absolute_position() +
                sequence2_i32(pwidget->width() / 2, pwidget->height() + 10);
 
             pcontext->text_bounds((float)pos.x(), (float)pos.y(),
                pwidget->tooltip(), &bounds);
 
-            int h = (int)((bounds[2] - bounds[0]) / 2.f);
-            if (h > tooltip_width / 2) {
+            int h = (int)(bounds.height() / 2.f);
+
+            if (h > tooltip_width / 2) 
+            {
+
                pcontext->text_align(::nano2d::e_align_center | ::nano2d::e_align_top);
+
                pwidget->m_ptextboxTooltip = pcontext->text_box_layout(
                   pwidget->tooltip(),
                   (float)tooltip_width);
+
                pcontext->text_box_bounds((float)pos.x(), (float)pos.y(), pwidget->m_ptextboxTooltip, &bounds);
 
                h = (int)((bounds[2] - bounds[0]) / 2.f);
+
             }
             else
             {
+
                pwidget->m_ptextboxTooltip.release();
-            }
-            int shift = 0;
 
-            if (pos.x() - h - 8 < 0) {
-               /* Keep tooltips on pscreen */
-               shift = pos.x() - h - 8;
-               pos.x() -= shift;
-               bounds[0] -= shift;
-               bounds[2] -= shift;
             }
 
-            pcontext->global_alpha(minimum(1.f, (float)((elapsed - 0.5_s).floating_second() * 2.0 * 0.8)));
+            auto ptextboxTooltip = pwidget->m_ptextboxTooltip;
 
-            pcontext->begin_path();
-            pcontext->fill_color(::color::color(0, 255));
-            pcontext->rounded_rectangle(bounds[0] - 4.f - h, bounds[1] - 4.f,
-               (bounds[2] - bounds[0]) + 8.f,
-               (bounds[3] - bounds[1]) + 8.f, 3.f);
+            if (ptextboxTooltip)
+            {
 
-            int px = (int)(((bounds[2] + bounds[0]) / 2.f) - h + shift);
-            pcontext->move_to((float)px, bounds[1] - 10.f);
-            pcontext->line_to(px + 7.f, bounds[1] + 1.f);
-            pcontext->line_to(px - 7.f, bounds[1] + 1.f);
-            pcontext->fill();
+               int shift = 0;
 
-            pcontext->fill_color(::color::color(255, 255));
-            pcontext->font_blur(0.0f);
-            pcontext->text_box((float)(pos.x() - h), (float)pos.y(), pwidget->m_ptextboxTooltip);
+               if (pos.x() - h - 8 < 0) 
+               {
+                  /* Keep tooltips on pscreen */
+                  shift = pos.x() - h - 8;
+                  pos.x() -= shift;
+                  bounds[0] -= shift;
+                  bounds[2] -= shift;
+               }
+
+               pcontext->global_alpha(minimum(1.f, (float)((elapsed - 0.5_s).floating_second() * 2.0 * 0.8)));
+
+               pcontext->begin_path();
+               pcontext->fill_color(::color::color(0, 255));
+               pcontext->rounded_rectangle(bounds.left() - 4.f - h, bounds.top() - 4.f,
+                  bounds.width() + 8.f,
+                  bounds.height() + 8.f, 3.f);
+
+               int px = (int)(bounds.center_x() - h + shift);
+               pcontext->move_to((float)px, bounds.top() - 10.f);
+               pcontext->line_to(px + 7.f, bounds.top() + 1.f);
+               pcontext->line_to(px - 7.f, bounds.top() + 1.f);
+               pcontext->fill();
+
+               pcontext->fill_color(::color::color(255, 255));
+               pcontext->font_blur(0.0f);
+               pcontext->text_box((float)(pos.x() - h), (float)pos.y(), ptextboxTooltip);
+
+            }
+
          }
       }
 

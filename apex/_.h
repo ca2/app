@@ -3,9 +3,9 @@
 
 
 #include "acme/_.h"
-#if defined(_STDIO_H_)
-#error "already included?!?! WHAT?!?! (At apex:a)"
-#endif
+//#if defined(_STDIO_H_)
+//#error "already included?!?! WHAT?!?! (At apex:a)"
+//#endif
 
 
 #if defined(_apex_project)

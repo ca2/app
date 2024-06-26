@@ -8,10 +8,11 @@
 #include "device.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/user/user.h"
+#include "acme/platform/factory_function.h"
 //#include "acme/primitive/primitive/_factory.h"
 
 
-void operating_system_initialize_nano_user(::factory::factory * pfactory)
+extern "C" void nano_user_win32_factory(::factory::factory * pfactory)
 {
 
 
@@ -33,6 +34,9 @@ void operating_system_initialize_nano_user(::factory::factory * pfactory)
    //operating_system_set_main_screen_rectangle(rectangleMainScreen);
 
 }
+
+
+_REFERENCE_FACTORY(nano_user_win32);
 
 
 

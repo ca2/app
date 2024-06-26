@@ -2,6 +2,7 @@
 
 
 #include "interaction.h"
+#include "acme/user/user/check.h"
 
 
 namespace user
@@ -14,8 +15,6 @@ namespace user
    public:
 
 
-
-
       enum e_style
       {
 
@@ -24,6 +23,7 @@ namespace user
          style_toggle_switch,
 
       };
+
 
    protected:
 
@@ -56,10 +56,13 @@ namespace user
       virtual void _001OnDrawNormal(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawRedGreenCircle(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawToggleSwitch(::draw2d::graphics_pointer & pgraphics);
-//      virtual ::enum_check _001GetCheck() override;
-      //using ::user::interaction::_001SetCheck;
-      //using check::_001SetCheck;
-      void _001SetCheck(const ::e_check & check, const ::action_context & action_context) override;
+//      virtual ::enum_check get_check() override;
+      //using ::user::interaction::set_check;
+      //using check::set_check;
+      //void set_check(const ::e_check & check, const ::action_context & action_context) override;
+
+      void on_check_changed(::data::check_change & change) override;
+
 
       void install_message_routing(::channel * pchannel) override;
 

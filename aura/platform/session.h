@@ -196,7 +196,7 @@ namespace aura
 
       inline ::apex::savings &                  savings()      { return *m_psavings; }
 
-      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::user::menu_item * pitem);
+      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem);
 
       virtual ::color::color get_default_color(::color::color colors) override;
 
@@ -306,7 +306,7 @@ namespace aura
       //::pointer<::user::document>  create_child_form(::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = payload(::e_type_empty_argument));
       //::pointer<::user::document>  create_child_form(::pointer<::user::form>impact, ::user::form_callback* pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = payload(::e_type_empty_argument));
 
-      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle,::user::menu_item* pitem) override;
+      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle,::menu::item* pitem) override;
 
       virtual bool InitializeLocalDataCentral() override;
 

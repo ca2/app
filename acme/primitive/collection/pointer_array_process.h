@@ -109,6 +109,8 @@ public:
    }
 
 
+   pointer_array_process & operator=(const pointer_array_process & ptra) { POINTER_ARRAY_PROCESS::operator=(ptra); return *this; }
+   pointer_array_process & operator=(pointer_array_process && ptra) { POINTER_ARRAY_PROCESS::operator=(::transfer(ptra)); return *this; }
 
 
 };

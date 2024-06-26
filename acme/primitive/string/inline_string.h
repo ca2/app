@@ -47,7 +47,13 @@ public:
    }
 
 
-   constexpr inline_string(const inline_string & inlinestring) = default;
+   constexpr inline_string(const inline_string & inlinestring)
+   {
+      memory_copy(m_sz, inlinestring.m_sz, sizeof(m_sz));
+      this->m_begin = m_sz;
+      this->m_end = m_sz + inlinestring.size();
+      this->m_erange = inlinestring.m_erange;
+   }
 
 
    //const CHARACTER* c_str() { return m_sz; }

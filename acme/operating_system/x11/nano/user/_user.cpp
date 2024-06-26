@@ -27,8 +27,6 @@ void operating_system_initialize_x11_nano_user(::factory::factory * pfactory)
 
    pfactory->add_factory_item<::x11::nano::user::user, ::nano::user::user>();
 
-   //::x11::display::_nano_0get(pfactory);
-
 }
 
 

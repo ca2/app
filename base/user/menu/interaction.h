@@ -14,14 +14,14 @@ namespace user
    public:
 
 
-      ::pointer<menu_item>       m_pmenuitem;
+      ::pointer<::menu::item>       m_pmenuitem;
 
 
       menu_interaction();
       ~menu_interaction() override;
 
       
-      virtual void initialize_menu_interaction(menu_item* pmenuitem);
+      virtual void initialize_menu_interaction(::menu::item* pmenuitem);
 
 
       ::base::application* get_app();

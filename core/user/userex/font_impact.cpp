@@ -81,7 +81,7 @@ namespace userex
 
             string strText;
 
-            m_ptopimpact->m_peditimpact->_001GetText(strText);
+            m_ptopimpact->m_peditimpact->get_text(strText);
 
             m_pimpact->m_pfontlist->m_strText = strText;
 
@@ -101,7 +101,7 @@ namespace userex
 
                strText = m_pimpact->m_pfontlist->m_strFontFamily;
 
-               m_ptopimpact->m_peditimpact->_001SetText(strText, ::e_source_sync);
+               m_ptopimpact->m_peditimpact->set_text(strText, ::e_source_sync);
 
                __defer_construct(m_ptopimpact->m_peditimpact->m_pfont);
 
@@ -192,7 +192,7 @@ namespace userex
       if (m_bSourceFontSel)
       {
 
-         m_ptopimpact->m_peditimpact->_001SetText(str, ::e_source_sync);
+         m_ptopimpact->m_peditimpact->set_text(str, ::e_source_sync);
 
          __defer_construct(m_ptopimpact->m_peditimpact->m_pfont);
 
@@ -244,7 +244,7 @@ namespace userex
 
    //            strText = m_pimpact->m_pfontlist->m_strFontFamily;
 
-   //            m_ptopimpact->m_peditimpact->_001SetText(strText, ::e_source_sync);
+   //            m_ptopimpact->m_peditimpact->set_text(strText, ::e_source_sync);
 
    //            m_ptopimpact->m_peditimpact->m_pfont.defer_create(this);
 

@@ -9,9 +9,9 @@
 #include "aura/message/user.h"
 #include "aura/platform/context.h"
 #include "base/user/menu/button.h"
-#include "base/user/menu/menu.h"
 #include "base/user/menu/item.h"
 #include "base/user/menu/item_ptra.h"
+#include "base/user/menu/menu.h"
 #include "base/user/user/user.h"
 
 
@@ -428,10 +428,26 @@ namespace userex
       ::rectangle_i32 rectangleWindow;
 
       pinteraction->window_rectangle(rectangleWindow);
-
+      
       auto puser = baseuser();
+      
+      auto pmenuSource = puser->menu_from_xml(this, strXml);
+      
+      auto ptrackpopup = __new<::menu::track_popup >(
+                                                     pmenuSource,
+                                                     this,
+                                                     this,
+                                                     mouse_cursor_position(),
+                                                     rectangleWindow);
+      
+      ::pointer < ::user::menu > pmenu = ptrackpopup;
+      
+      pmenu->set_minimum_width(width());
+      
+      ptrackpopup->track([](){});
+      
 
-      m_pmenu = puser->track_popup_xml_menu(this, strXml, 0, rectangleWindow.bottom_left(), ::size_i32(width(), 0));
+//      m_pmenu = puser->track_popup_menu(this, strXml, 0, rectangleWindow.bottom_left(), ::size_i32(width(), 0));
       //m_pmenu->create_color(::user::color_button_background, argb(255, 255, 255, 255));
       //m_pmenu->create_color(::user::color_button_text, argb(255, 80, 80, 80));
 
@@ -455,13 +471,13 @@ namespace userex
          if (::is_item(pitemCurrent, i))
          {
 
-            pbutton->_001SetCheck(::e_check_checked, ::e_source_sync);
+            pbutton->set_check(::e_check_checked, ::e_source_sync);
 
          }
          else
          {
 
-            pbutton->_001SetCheck(::e_check_unchecked, ::e_source_sync);
+            pbutton->set_check(::e_check_unchecked, ::e_source_sync);
 
          }
 

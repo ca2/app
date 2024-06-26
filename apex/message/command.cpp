@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "command.h"
 #include "channel.h"
-////#include "acme/exception/exception.h"
+#include "acme/user/user/element.h"
 
 
 namespace message
@@ -42,7 +42,7 @@ namespace message
       m_iIndex = -1;
       m_iCount = -1;
       m_bEnable = false;
-      m_echeck = ::e_check_undefined;
+      //m_echeck = ::e_check_undefined;
       m_bRadio = false;
       m_bRadioChanged = false;
       //m_pmenu = nullptr;
@@ -182,39 +182,72 @@ namespace message
 
    }
 
-   //void command::_001SetCheck(bool bCheck, const ::action_context & context)
+   //void command::set_check(bool bCheck, const ::action_context & context)
    //{
 
-   //   _001SetCheck((::enum_check)(bCheck ? ::e_check_checked : ::e_check_unchecked), context);
+   //   set_check((::enum_check)(bCheck ? ::e_check_checked : ::e_check_unchecked), context);
 
    //}
 
 
-   void command::_001SetCheck(const ::e_check & echeck, const ::action_context & context)
+   //void command::set_check(const ::e_check & echeck, const ::action_context & context)
+   //{
+
+   //   //if (m_pmenu != nullptr)
+   //   //{
+
+   //   //   ENSURE(m_iIndex < m_iCount);
+
+   //   //}
+
+   //   if (m_puiOther != nullptr)
+   //   {
+
+   //      ::pointer<::user::element>pelement = m_puiOther;
+
+   //      if (pelement)
+   //      {
+
+   //         pelement->check().set_check(echeck, context + ::e_source_sync);
+
+   //      }
+
+   //   }
+
+   //   m_echeck = echeck;
+
+   //}
+
+   
+   void command::on_property_changed(::data::property_change & change)
    {
 
-      //if (m_pmenu != nullptr)
-      //{
-
-      //   ENSURE(m_iIndex < m_iCount);
-
-      //}
-
-      if (m_puiOther != nullptr)
+      if (m_checkproperty && change)
       {
 
-         ::pointer<::user::command_update_target>pcheck = m_puiOther;
+         ::pointer<::user::element> pelement = m_puiOther;
 
-         if (pcheck)
+         if (pelement)
          {
 
-            pcheck->_001SetCheck(echeck, context + ::e_source_sync);
+            pelement->m_checkproperty.set(change.m_payload.as_echeck(), change.m_actioncontext + ::e_source_sync);
 
          }
 
       }
+      else if (m_textproperty && change)
+      {
 
-      m_echeck = echeck;
+         ::pointer<::user::element> pelement = m_puiOther;
+
+         if (pelement)
+         {
+
+            pelement->m_textproperty.set_text(change.m_payload.as_string(), change.m_actioncontext + ::e_source_sync);
+
+         }
+
+      }
 
    }
 
@@ -222,12 +255,12 @@ namespace message
    void command::SetRadio(bool bOn, const ::action_context & context)
    {
 
-      _001SetCheck(bOn, context);
+      m_checkproperty.set(bOn, context);
 
    }
 
 
-   void command::SetText(const ::scoped_string & scopedstrText, const ::action_context & context)
+   void command::SetText(const ::scoped_string & scopedstrText, const ::action_context & actioncontext)
    {
 
       //if (m_pmenu != nullptr)
@@ -240,12 +273,21 @@ namespace message
       if (m_puiOther != nullptr)
       {
 
-         m_puiOther->_001SetText(scopedstrText, ::e_source_sync);
+         ::pointer<::user::element>pelement = m_puiOther;
+
+         if (pelement)
+         {
+
+            pelement->m_textproperty.set_text(scopedstrText, actioncontext + ::e_source_sync);
+
+         }
+
+
+         //m_puiOther->set_text(scopedstrText, ::e_source_sync);
 
       }
 
-      m_strText = scopedstrText;
-
+      m_textproperty.set_text(scopedstrText, actioncontext);
 
    }
 
@@ -262,7 +304,7 @@ namespace message
 
       m_bRadioChanged = false;
 
-      m_echeck = ::e_check_undefined;
+      //m_echeck = ::e_check_undefined;
 
       ptarget->_001SendCommandProbe(this);
 

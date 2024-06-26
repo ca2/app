@@ -504,7 +504,7 @@ void channel::command_handler(::message::command * pcommand)
 
       if (!pcommand->m_bEnableChanged
          && !pcommand->m_bRadioChanged
-         && pcommand->m_echeck == e_check_undefined
+         && pcommand->echeck() == e_check_undefined
          && !pcommand->m_bHasCommandHandler)
       {
 
@@ -584,7 +584,7 @@ void channel::on_command_probe(::message::command * pcommand)
    pcommand->m_bRet =
       pcommand->m_bEnableChanged
       || pcommand->m_bRadioChanged
-      || pcommand->m_echeck != e_check_undefined;
+      || pcommand->echeck() != e_check_undefined;
 
 }
 
@@ -648,34 +648,34 @@ void channel::on_command(::message::command * pcommand)
 
 
 
-void channel::default_toggle_check_handling(const ::atom & atom)
-{
-
-   auto linkedproperty = fetch_property(atom);
-
-   add_command_handler(atom, [linkedproperty](::message::message * pmessage)
-      {
-
-         if (linkedproperty->get_bool())
-         {
-
-            *linkedproperty = ::e_check_unchecked;
-
-         }
-         else
-         {
-
-            *linkedproperty = ::e_check_checked;
-
-         }
-
-         linkedproperty.notify_property_changed(pmessage->m_actioncontext);
-
-         pmessage->m_bRet = true;
-
-      });
-
-}
+// void channel::default_toggle_check_handling(const ::atom & atom)
+// {
+//
+//    auto linkedproperty = fetch_property(atom);
+//
+//    add_command_handler(atom, [linkedproperty](::message::message * pmessage)
+//       {
+//
+//          if (linkedproperty->get_bool())
+//          {
+//
+//             *linkedproperty = ::e_check_unchecked;
+//
+//          }
+//          else
+//          {
+//
+//             *linkedproperty = ::e_check_checked;
+//
+//          }
+//
+//          linkedproperty.notify_property_changed(pmessage->m_actioncontext);
+//
+//          pmessage->m_bRet = true;
+//
+//       });
+//
+// }
 
 
 

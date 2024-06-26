@@ -64,7 +64,7 @@ namespace html
 
          ::atom atom = pelemental->m_phtmlbase->get_tag()->get_attr_value("id");
 
-         atom = translate_property_id(atom);
+         //atom = translate_property_id(atom);
 
          if(!m_pedit || !m_pedit->is_window())
          {
@@ -105,7 +105,7 @@ namespace html
             if(bValue)
             {
 
-               m_pedit->_001SetText(pelemental->m_phtmlbase->get_tag()->get_attr_value("value"), ::e_source_data | ::e_source_load);
+               m_pedit->set_text(pelemental->m_phtmlbase->get_tag()->get_attr_value("value"), ::e_source_data | ::e_source_load);
 
             }
 

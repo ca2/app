@@ -297,10 +297,10 @@ namespace user
       }
 
 
-      void edit_impl::insert_text(string str, bool bForceNewStep, const ::action_context & context)
+      void edit_impl::insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context)
       {
 
-         _001InsertText(str);
+         _001InsertText(scopedstr);
 
       }
 
@@ -714,14 +714,14 @@ namespace user
       }
 
 
-      void edit_impl::_001GetText(string & str)
-      {
+      //void edit_impl::get_text(string & str)
+      //{
 
-         auto prichtextdata = get_rich_text_data();
+      //   auto prichtextdata = get_rich_text_data();
 
-         prichtextdata->_001GetText(str);
+      //   prichtextdata->get_text(str);
 
-      }
+      //}
 
 
       void edit_impl::_001GetLayoutText(string & str)
@@ -1297,7 +1297,7 @@ namespace user
 
                string str;
 
-               _001GetSelText(str);
+               get_selection_text(str);
 
                if (str.is_empty())
                {
@@ -1351,7 +1351,7 @@ namespace user
 
                string str;
 
-               _001GetSelText(str);
+               get_selection_text(str);
 
                auto pcopydesk = copydesk();
 
@@ -1587,7 +1587,7 @@ namespace user
             if (psession->is_key_pressed(::user::e_key_control))
             {
 
-               _001SetSel(0, _001GetTextLength());
+               set_text_selection(0, get_text_length(), e_source_user);
 
                return;
 
@@ -2044,7 +2044,7 @@ namespace user
                if (bControl)
                {
 
-                  m_iSelEnd = _001GetTextLength();
+                  m_iSelEnd = get_text_length();
 
                   //   _001EnsureVisibleLine(iLine);
 
@@ -2198,20 +2198,20 @@ namespace user
       }
 
 
-      strsize edit_impl::_001GetTextLength()
+      //strsize edit_impl::get_text_length()
+      //{
+
+      //   auto prichtextdata = get_rich_text_data();
+
+      //   return prichtextdata->get_text_length();
+
+      //}
+
+
+      void edit_impl::get_text_selection(strsize & iBeg, strsize & iEnd) const
       {
 
-         auto prichtextdata = get_rich_text_data();
-
-         return prichtextdata->_001GetTextLength();
-
-      }
-
-
-      void edit_impl::_001GetSel(strsize & iBeg, strsize & iEnd)
-      {
-
-         auto prichtextdata = get_rich_text_data();
+         //auto prichtextdata = get_rich_text_data();
 
          iBeg = m_iSelBeg;
 
@@ -2229,7 +2229,7 @@ namespace user
 
          ::collection::index iLine = SelToLine(m_iSelBeg);
 
-         ::collection::index iLineEnd = SelToLine(m_iSelBeg);
+         ::collection::index iLineEnd = SelToLine(m_iSelEnd);
 
          if (iLine != iLineEnd)
          {
@@ -2242,7 +2242,9 @@ namespace user
 
          ::collection::index iEnd = LineColumnToSel(iLine, -1);
 
-         _001GetText(strText, iBeg, iEnd);
+         ::string strFullText = prichtextdata->as_text();
+
+         strText = strFullText(iBeg, iEnd);
 
       }
 

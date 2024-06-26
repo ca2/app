@@ -1552,8 +1552,10 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)
 
 
 
-
-class signal;
+namespace handler
+{
+   class signal;
+}
 class backing;
 class manager;
 class topic;

@@ -115,10 +115,6 @@ namespace acme
 
       enum_application_capability_array                     m_eapplicationcapabilitya;
       string_map < ::pointer<::acme::exclusive > >          m_mapExclusive;
-#if defined(WITH_X11)
-      void *                                                m_pvoidX11Display;
-      ::e_status                                            m_estatusInitializeX11;
-#endif
 
       node();
       ~node() override;
@@ -155,12 +151,16 @@ namespace acme
 
       //virtual ::pointer < ::particle > create_quit_particle();
       virtual ::file::path get_default_base_integration_folder();
-      
+
+      virtual ::file::path ___fonts_folder();
+
       ///virtual void implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> & psystem);
 
       virtual void node_main();
       virtual void node_implement_main();
 
+      
+      virtual void on_app_activated();
       
       virtual void on_system_main();
 
@@ -922,7 +922,6 @@ namespace acme
 
       virtual bool _is_strawberry_perl_installed();
 
-      virtual bool _is_code_exe_user_path_environment_variable_ok(::string *pstrCorrectPath=nullptr);
 
       virtual bool _is_coder_mode_enabled();
 
@@ -930,6 +929,7 @@ namespace acme
 
 #endif
 
+      virtual bool _is_code_exe_user_path_environment_variable_ok(::string *pstrCorrectPath=nullptr, const char * pszPath = nullptr);
 
 #if defined(WINDOWS_DESKTOP) || defined(MACOS) || defined(LINUX)
 
@@ -937,6 +937,15 @@ namespace acme
 
 #endif
 
+      virtual bool _is_google_chrome_installed();
+
+      virtual bool _is_visual_studio_code_installed();
+
+      virtual bool _is_git_credential_manager_installed();
+
+      virtual bool _is_jetbrains_clion_installed();
+
+      virtual bool _is_shell_patched();
 
 #ifndef UNIVERSAL_WINDOWS
 
@@ -972,21 +981,21 @@ namespace acme
 
       virtual ::string eol();
 
-#if defined(WITH_X11)
-      virtual ::e_status x11_defer_initialize();
-      virtual ::e_status x11_initialize();
-      virtual void * x11_get_display();
-      virtual void x11_sync(const ::procedure & procedure);
-      virtual void x11_async(const ::procedure & procedure);
-      virtual void x11_display_error_trap_push(int i);
-      virtual void x11_display_error_trap_pop_ignored(int i);
-#endif
-      
+
       virtual int building_core_count(bool bDedicatedBuilding);
       virtual int performance_core_count();
       virtual int efficiency_core_count();
 
       virtual void on_component_factory(const ::scoped_string & scopedstrComponent);
+
+      virtual void detached_command(const ::scoped_string & scopedstrCommand, const ::file::path & pathLog);
+
+//      virtual void * fetch_windowing_system_display();
+//      virtual void windowing_system_async(const ::procedure & procedure);
+//      virtual void windowing_system_display_error_trap_push(int i);
+//      virtual void windowing_system_display_error_trap_pop_ignored(int i);
+
+      virtual enum_windowing calculate_ewindowing();
 
    };
 

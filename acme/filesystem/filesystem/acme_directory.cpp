@@ -739,6 +739,13 @@ void acme_directory::create(const ::file::path & pathParam)
       return;
 
    }
+   
+   if(acmefile()->exists(pathParam))
+   {
+      
+      acmefile()->erase(pathParam);
+      
+   }
 
    if (is(pathParam))
    {

@@ -48,11 +48,11 @@ void acme_auto_debug_teste()
 
          string str3("aaaabbbbccccddddaaaabbbbccccddddaaaabbbbccccddddaaaabbbbccccdddd");
 
-         output_debug_string_format("str1 %s", str1.c_str());
+         output_debug_string_formatf("str1 %s", str1.c_str());
 
-         output_debug_string_format("str2 %s", str2.c_str());
+         output_debug_string_formatf("str2 %s", str2.c_str());
 
-         output_debug_string_format("str3 %s", str3.c_str());
+         output_debug_string_formatf("str3 %s", str3.c_str());
 
          wstr1 = str1;
 

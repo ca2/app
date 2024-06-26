@@ -322,12 +322,12 @@ namespace core
 
       bool bUserAutoStart = node()->is_user_auto_start(papplication->get_executable_appid());
 
-      pcheckbox->_001SetCheck(bUserAutoStart, ::e_source_initialize);
+      pcheckbox->set_check(bUserAutoStart, ::e_source_initialize);
 
-      pcheckbox->m_callbackOnCheck = [this](auto pcheck)
+      pcheckbox->check_changed(this) += [this](auto & change)
          {
 
-            bool bCheck = pcheck->bcheck();
+            bool bCheck = change.payload().as_bool();
 
             auto papplication = m_papexapplication;
 

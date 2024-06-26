@@ -6,6 +6,16 @@
 #include "acme/primitive/collection/address_array.h"
 
 
+namespace data
+{
+   
+
+   class property;
+
+
+} // namespace data
+
+
 namespace database
 {
 
@@ -96,7 +106,7 @@ namespace database
 
       //}
 
-      virtual bool _data_get(const ::scoped_string & strKey, ::payload payload);
+      virtual bool _data_get(const ::scoped_string & strKey, ::payload & payload);
 
 
       //template < typename TYPE >
@@ -116,6 +126,12 @@ namespace database
 
       virtual bool data_get_memory(const ::scoped_string & strKey, ::memory_base & memory);
       virtual void data_set_memory(const ::scoped_string & strKey, const block & block);
+
+      virtual bool data_get(const ::data::property & dataproperty);
+      virtual void data_set(const ::data::property & dataproperty);
+
+      
+      virtual ::string get_key(const ::data::property & dataproperty);
 
 
       //template < typename TYPE >
@@ -148,7 +164,8 @@ namespace database
 
       //}
 
-      virtual void default_data_save_handling(const ::atom & atom);
+      //virtual void default_data_save_handling(const ::atom & atom);
+      virtual void default_data_save_handling(const ::data::property & property);
 
       virtual bool data_pulse_change(const ::scoped_string & strKey, ::topic * ptopic);
 

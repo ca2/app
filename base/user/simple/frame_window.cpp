@@ -24,6 +24,7 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/fastblur.h"
+#include "aura/user/menu/track_popup.h"
 #include "aura/user/user/alpha_source.h"
 #include "aura/user/user/primitive_impl.h"
 #include "aura/windowing/display.h"
@@ -1651,7 +1652,7 @@ void simple_frame_window::_001OnUpdateImpactFullScreen(::message::message * pmes
 
    pcommand->enable();
 
-   pcommand->_001SetCheck(layout().is_full_screen());
+   pcommand->set_check(layout().is_full_screen(), e_source_sync);
 
    pcommand->m_bRet = true;
 
@@ -1702,7 +1703,7 @@ void simple_frame_window::_001OnUpdateToggleCustomFrame(::message::message * pme
 
    pcommand->enable();
 
-   pcommand->_001SetCheck(m_bWindowFrame);
+   pcommand->set_check(m_bWindowFrame, e_source_sync);
 
 }
 
@@ -1752,7 +1753,7 @@ void simple_frame_window::_001OnUpdateToggleTransparentFrame(::message::message 
 
    //}
 
-   pcommand->_001SetCheck(frame_is_transparent());
+   pcommand->set_check(frame_is_transparent(), e_source_sync);
 
 }
 
@@ -3585,14 +3586,27 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
          //OnNotifyIconContextMenu(ptopic->m_puserelement->m_atom);
 
          auto pointCursor = windowing()->display()->get_mouse_cursor_position();
+         
+         auto squareHint = rectangle_i32::square_with_center_and_apothem(pointCursor, 8);
 
          auto pmenu = m_pnotifyicon->menu();
 
-         auto psession = get_session();
+         //auto psession = get_session();
 
-         auto puser = psession->baseuser();
+         //auto puser = psession->baseuser();
+         
+         
+         auto ptrackpopup  = __new < ::menu::track_popup >(
+                                                           pmenu,
+                                                           this,
+                                                           m_pnotifyicon,
+                                                           pointCursor,
+                                                           squareHint
+                                                           );
 
-         puser->track_popup_menu(this, pmenu, 0, pointCursor, size_i32(), m_pnotifyicon);
+         ptrackpopup->track([](){});
+         
+//         puser->track_popup_menu(this, pmenu, 0, pointCursor, size_i32(), m_pnotifyicon);
 
       }
       else if (ptopic->m_atom == ::id_left_button_double_click)

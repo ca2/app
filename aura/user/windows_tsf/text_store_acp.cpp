@@ -240,7 +240,7 @@ namespace tsf
        ::i32   lTextLength;
 
        //lTextLength = GetWindowTextLength(m_hwndEdit);
-       lTextLength = (LONG_cast) _001GetTextLength();
+       lTextLength = (LONG_cast) get_text_length();
 
        //make sure the parameters are within range of the document
        if( (acpTestStart > acpTestEnd) || 
@@ -437,7 +437,7 @@ namespace tsf
     
        //::SendMessage(m_hwndEdit, EM_SETSEL, lStart, lEnd);
 
-       _001SetSel(lStart, lEnd);
+       set_text_selection(lStart, lEnd);
 
        m_fNotify = true;
     
@@ -841,7 +841,7 @@ namespace tsf
 
        //int cch = GetWindowTextLength(m_hwndEdit);
 
-       int cch = (i32_cast) _001GetTextLength();
+       int cch = (i32_cast) get_text_length();
 
        if(acpPos < 0 || acpPos > cch)
        {
@@ -1091,7 +1091,7 @@ namespace tsf
     
        //lTextLength = (::i32)SendMessage(m_hwndEdit, WM_GETTEXTLENGTH, 0, 0);
 
-       lTextLength = (::i32)_001GetTextLength();
+       lTextLength = (::i32)get_text_length();
 
        //are the start and end reversed?
        if(acpStart > acpEnd)

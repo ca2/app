@@ -99,8 +99,8 @@ namespace url
       virtual bool server_ends(string strUrl, string strRoot);
 
 
-      static string to_punycode(const ::string & str);
-      static string from_punycode(const ::string & str);
+      virtual string to_punycode(const ::string & str);
+      virtual string from_punycode(const ::string & str);
       
       string os_fspath(string strUrl);
       

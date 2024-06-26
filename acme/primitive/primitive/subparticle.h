@@ -3,8 +3,7 @@
 
 
 
-#include "subparticle_flags.h"
-#include "ptr.h"
+#include "pointer.h"
 #include "acme/primitive/primitive/interlocked_count.h"
 
 
@@ -28,8 +27,7 @@
 #include "quantum.h"
 
 class CLASS_DECL_ACME subparticle :
-   virtual public ::quantum,
-   virtual public SUBPARTICLE_FLAGS
+   virtual public ::quantum
 {
 public:
 
@@ -146,14 +144,25 @@ public:
 #endif
 
 
+   virtual bool _is_set() const;
+   virtual bool _is_ok() const;
+
+
    virtual enum_type get_payload_type() const;
 
 
    virtual void init_task();
 
 
+   virtual void destroy();
+   virtual void destroy_impl_data();
+   virtual void destroy_os_data();
+
+
 
    virtual void delete_this();
 
+   virtual void write_to_stream(::binary_stream & stream);
+   virtual void read_from_stream(::binary_stream & stream);
 
 };

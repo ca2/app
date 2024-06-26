@@ -13,6 +13,7 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/draw2d/brush.h"
+#include "aura/user/user/frame.h"
 #include "base/user/simple/scroll_bar.h"
 #include "base/user/user/tab.h"
 #include "base/user/user/tab_data.h"
@@ -1983,7 +1984,7 @@ namespace experience_core
          if (pbar->is_true("tracking_fade_in"))
          {
 
-            auto elapsed = pbar->payload("tracking_start_time").time().elapsed();
+            auto elapsed = pbar->payload("tracking_start_time").as_time().elapsed();
 
             if (elapsed < periodFadeIn)
             {
@@ -2004,7 +2005,7 @@ namespace experience_core
          else if (pbar->is_true("tracking_fade_out"))
          {
 
-            auto elapsed = pbar->payload("tracking_start_time").time().elapsed();
+            auto elapsed = pbar->payload("tracking_start_time").as_time().elapsed();
 
             if (elapsed < periodFadeOut)
             {
@@ -2201,6 +2202,42 @@ namespace experience_core
             pgraphics->polyline(pointaB);
 
          }
+
+      }
+
+      return true;
+
+   }
+
+
+   bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame * pframe)
+   {
+
+      ::draw2d::save_context savecontext(pgraphics);
+
+      pgraphics->m_pdraw2dhost = pframe;
+
+      if (pframe->is_top_level())
+      {
+
+         //      if (!pframe->is_custom_draw() && pgraphics != nullptr && pgraphics->m_pnext == nullptr)
+         //      {
+         //
+         //         pframe->set_context_org(pgraphics);
+         //
+         //      }
+
+         ::rectangle_i32 rectangleX;
+
+         rectangleX = pframe->rectangle();
+
+         auto pstyle = pframe->get_style(pgraphics);
+
+         status < ::color::color > crBackground = pframe->get_color(pstyle, ::e_element_background);
+
+         //crBackground = argb(255, 200, 180, 180);
+
+         pgraphics->fill_rectangle(rectangleX, crBackground);
 
       }
 

@@ -2,7 +2,7 @@
 
 
 #include "acme/primitive/geometry2d/point.h"
-#include "acme/primitive/primitive/ptr.h"
+#include "acme/primitive/primitive/pointer.h"
 
 
 class CLASS_DECL_ACME lparam
@@ -24,30 +24,30 @@ public:
    lparam(::i32 x, ::i32 y) { m_lparam = make_u32(x, y); }
 
 
-   /// catching/receiving particle
+   /// catching/receiving subparticle
    inline lparam(void * p) { m_lparam = (iptr)p;  }
 
 
-   /// posting/sending particle with referencing forking
-   lparam(const ::particle * pelement);
+   /// posting/sending subparticle with referencing forking
+   lparam(const ::subparticle * psubparticle);
 
 #if REFERENCING_DEBUGGING
 
-   /// posting/sending particle with referencing transfer
-   lparam(::particle * pelement, ::reference_referer * preferer);
+   /// posting/sending subparticle with referencing transfer
+   lparam(::subparticle * psubparticle, ::reference_referer * preferer);
 
 #endif
 
-   /// posting/sending particle
+   /// posting/sending subparticle
    template < typename T >
-   inline lparam(const pointer < T > & p) : lparam((const ::particle *) p.m_p) { }
-   template < typename T >
-   inline lparam(const ptr < T > & p) : lparam((const ::particle *) p.m_p) { }
+   inline lparam(const pointer < T > & p) : lparam((const ::subparticle *) p.m_p) { }
+   //template < typename T >
+   //inline lparam(const ptr < T > & p) : lparam((const ::subparticle *) p.m_p) { }
 
    template < typename T >
-   inline lparam(pointer < T > && p) : lparam(p.m_p REFDBG(, p.m_preferer)) { p.m_p = nullptr; p.m_pparticle = nullptr; REFDBG(p.m_preferer = nullptr); }
-   template < typename T >
-   inline lparam(ptr < T > && p) : lparam(p.m_p REFDBG(, p.m_preferer)) { p.m_p = nullptr; REFDBG(p.m_preferer = nullptr); }
+   inline lparam(pointer < T > && p) : lparam(p.m_p REFDBG(, p.m_preferer)) { p.m_p = nullptr; p.m_psubparticle = nullptr; REFDBG(p.m_preferer = nullptr); }
+   //template < typename T >
+   //inline lparam(ptr < T > && p) : lparam(p.m_p REFDBG(, p.m_preferer)) { p.m_p = nullptr; REFDBG(p.m_preferer = nullptr); }
 
 
    lparam(const lparam & lparam)
@@ -144,11 +144,11 @@ public:
 
 
 //template < class T >
-//   inline bool operator ==(lparam l, const pointer < T > & pointer) { return ((::particle *) l.m_lparam) == pointer.m_pparticle; }
+//   inline bool operator ==(lparam l, const pointer < T > & pointer) { return ((::subparticle *) l.m_lparam) == pointer.m_psubparticle; }
 //
 //
 //template < class T >
-//   inline bool operator !=(lparam l, const pointer < T > & pointer) { return ((::particle *) l.m_lparam) != pointer.m_pparticle; }
+//   inline bool operator !=(lparam l, const pointer < T > & pointer) { return ((::subparticle *) l.m_lparam) != pointer.m_psubparticle; }
 //
 
 

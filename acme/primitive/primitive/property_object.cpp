@@ -118,7 +118,7 @@ CLASS_DECL_ACME void debug_debug_reference()
 
       strTitle1 += xxx;
 
-      output_debug_string_format("%s\n\n", strTitle1.c_str());
+      output_debug_string_formatf("%s\n\n", strTitle1.c_str());
 
    }
 
@@ -130,7 +130,7 @@ CLASS_DECL_ACME void debug_debug_reference()
 
       strTitle1 += 'C' + strTitle2;
 
-       output_debug_string_format("%s\n\n", strTitle1.c_str());
+       output_debug_string_formatf("%s\n\n", strTitle1.c_str());
 
    }
 
@@ -395,85 +395,85 @@ void property_object::on_catch_all_exception()
 }
 
 
-linked_property property_object::parent_lookup_property(const atom & atom) const
-{
+// linked_property property_object::parent_lookup_property(const atom & atom) const
+// {
+//
+//    auto pparticle = parent_property_set_holder();
+//
+//    if (!pparticle)
+//    {
+//
+//       return nullptr;
+//
+//    }
+//
+//    return pparticle->on_fetch_property(atom);
+//
+// }
+//
+//
+// ::linked_property property_object::on_fetch_property(const ::atom & atom) const
+// {
+//
+//    auto pproperty = find_property(atom);
+//
+//    if (pproperty)
+//    {
+//
+//       return { (property *) pproperty, (property_object *) this };
+//
+//    }
+//
+//    //auto ppropertyArray = find_property("property_set_array");
+//
+//    //pointer< pointer_array < property_set > > parray;
+//
+//    //if (ppropertyArray)
+//    //{
+//
+//    //   ppropertyArray->defer_get(parray);
+//
+//    //   if (parray)
+//    //   {
+//
+//    //      for (auto & pset : parray->ptra())
+//    //      {
+//
+//    //         pproperty = pset->find(atom); // first-level find
+//
+//    //         if (pproperty)
+//    //         {
+//
+//    //            return pproperty;
+//
+//    //         }
+//
+//    //      }
+//
+//    //   }
+//
+//    //}
+//
+//    return parent_lookup_property(atom);
+//
+// }
 
-   auto pparticle = parent_property_set_holder();
 
-   if (!pparticle)
-   {
-
-      return nullptr;
-
-   }
-
-   return pparticle->on_fetch_property(atom);
-
-}
-
-
-::linked_property property_object::on_fetch_property(const ::atom & atom) const
-{
-
-   auto pproperty = find_property(atom);
-
-   if (pproperty)
-   {
-
-      return { (property *) pproperty, (property_object *) this };
-
-   }
-
-   //auto ppropertyArray = find_property("property_set_array");
-
-   //pointer< pointer_array < property_set > > parray;
-
-   //if (ppropertyArray)
-   //{
-
-   //   ppropertyArray->defer_get(parray);
-
-   //   if (parray)
-   //   {
-
-   //      for (auto & pset : parray->ptra())
-   //      {
-
-   //         pproperty = pset->find(atom); // first-level find
-
-   //         if (pproperty)
-   //         {
-
-   //            return pproperty;
-
-   //         }
-
-   //      }
-
-   //   }
-
-   //}
-
-   return parent_lookup_property(atom);
-
-}
-
-
-atom property_object::translate_property_id(const ::atom & atom)
-{
-
-   auto pparent = parent_property_set_holder();
-
-   if (!pparent)
-   {
-
-      return atom;
-
-   }
-
-   return pparent->translate_property_id(atom);
-
-}
+//atom property_object::translate_property_id(const ::atom & atom)
+//{
+//
+//   auto pparent = parent_property_set_holder();
+//
+//   if (!pparent)
+//   {
+//
+//      return atom;
+//
+//   }
+//
+//   return pparent->translate_property_id(atom);
+//
+//}
 
 //void property_object::add_property_set(property_set * pset)
 //{
@@ -523,16 +523,18 @@ bool property_object::property_set_get_evaluation(string & strResult, const stri
 string property_object::property_set_get_string(const ::string & str) const
 {
 
-   auto pproperty = on_fetch_property(str);
+   // auto pproperty = on_fetch_property(str);
+   //
+   // if (is_reference_null(pproperty))
+   // {
+   //
+   //    return "";
+   //
+   // }
+   //
+   // return *pproperty;
 
-   if (is_reference_null(pproperty))
-   {
-
-      return "";
-
-   }
-
-   return *pproperty;
+   return {};
 
 }
 
@@ -540,16 +542,16 @@ string property_object::property_set_get_string(const ::string & str) const
 bool property_object::property_set_get_string(string & strResult, const string& str) const
 {
 
-   auto linkedproperty = on_fetch_property(str);
-
-   if (!linkedproperty)
-   {
-
-      return false;
-
-   }
-
-   strResult = linkedproperty->as_string();
+   // auto linkedproperty = on_fetch_property(str);
+   //
+   // if (!linkedproperty)
+   // {
+   //
+   //    return false;
+   //
+   // }
+   //
+   // strResult = linkedproperty->as_string();
 
    return true;
 
@@ -579,35 +581,35 @@ void property_object::on_property_changed(property* pproperty, const action_cont
 }
 
 
-::linked_property property_object::fetch_property(const ::atom & idParam, bool bCreate)
-{
-
-   auto atom = translate_property_id(idParam);
-
-   if(!atom.is_empty())
-   {
-
-      auto linkedproperty = on_fetch_property(atom);
-
-      if(linkedproperty)
-      {
-
-         return linkedproperty;
-
-      }
-
-   }
-
-   if (bCreate)
-   {
-
-      return { &get_property_set().get(atom), this };
-
-   }
-
-   return nullptr;
-
-}
+// ::linked_property property_object::fetch_property(const ::atom & idParam, bool bCreate)
+// {
+//
+//    auto atom = translate_property_id(idParam);
+//
+//    if(!atom.is_empty())
+//    {
+//
+//       auto linkedproperty = on_fetch_property(atom);
+//
+//       if(linkedproperty)
+//       {
+//
+//          return linkedproperty;
+//
+//       }
+//
+//    }
+//
+//    if (bCreate)
+//    {
+//
+//       return { &get_property_set().get(atom), this };
+//
+//    }
+//
+//    return nullptr;
+//
+// }
 
 //
 //string property_object::property_set_get_evaluation(const ::string & str) const
@@ -990,16 +992,18 @@ bool property_object::find_attribute(const ::atom & atom, TYPE & t)
 ::payload & property_object::topic(const ::atom& atom)
 {
 
-   auto property = fetch_property(atom);
-
-   if (!property)
-   {
+   // auto property = fetch_property(atom);
+   //
+   // if (!property)
+   // {
 
       throw ::exception(error_resource);
+   //
+   // }
+   //
+   // return *property.m_pproperty;
 
-   }
-
-   return *property.m_pproperty;
+   return *((::payload *)nullptr);
 
 }
 

@@ -103,8 +103,8 @@ namespace sockets_bsd
 
 
       //void erase(const ::sockets::socket_pointer & psocket) override;
-
-      virtual bool contains(::sockets::base_socket *) override;
+      bool contains_socket_id(socket_id socketid) override;
+      bool contains(::sockets::base_socket *) override;
 
       /** get status of read/write/exception file descriptor set for a base_socket. */
       void get(SOCKET s,bool& r,bool& w,bool& e) override;

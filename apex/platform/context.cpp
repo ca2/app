@@ -971,7 +971,7 @@ namespace apex
       else
       {
 
-         m_payloadFile.payloada().add(prequest->m_payloadFile);
+         m_payloadFile.payload_array_reference().add(prequest->m_payloadFile);
 
       }
 
@@ -1183,6 +1183,14 @@ namespace apex
    {
 
       http().sync(pget);
+
+   }
+
+
+   ::string context::http_get_effective_url(const ::scoped_string & scopedstrUrl)
+   {
+
+      return http().get_effective_url(scopedstrUrl);
 
    }
 

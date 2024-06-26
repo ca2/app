@@ -29,6 +29,7 @@
 		9A46D3E326785E7E000B22D0 /* libwindowing_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A46D3BF26785E7D000B22D0 /* libwindowing_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A46D3E526785E7E000B22D0 /* libwrite_text_quartz2d.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A6A47852660E5DE004ED97A /* libwrite_text_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A4E96B12785387B00B74C76 /* libfolder_zip.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A4E96AA278537A900B74C76 /* libfolder_zip.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A57BD0D2BFB082D00A232C7 /* libfolder_zip.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E96AA278537A900B74C76 /* libfolder_zip.dylib */; };
 		9A71BCA22A46CC6300F9FC3D /* libapp_shader.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D2C32678453B000B22D0 /* libapp_shader.dylib */; };
 		9A7F3F48274D5D9000D914CC /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D3BA26785E7D000B22D0 /* libaqua.dylib */; };
 		9A7F3F49274D5DC400D914CC /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6A47712660E5B3004ED97A /* libaura.dylib */; };
@@ -305,6 +306,7 @@
 			files = (
 				9A71BCA22A46CC6300F9FC3D /* libapp_shader.dylib in Frameworks */,
 				9A7F3F49274D5DC400D914CC /* libaura.dylib in Frameworks */,
+				9A57BD0D2BFB082D00A232C7 /* libfolder_zip.dylib in Frameworks */,
 				9A7F3F48274D5D9000D914CC /* libaqua.dylib in Frameworks */,
 				9A46D3C026785E7D000B22D0 /* libacme.dylib in Frameworks */,
 				9A46D3C826785E7D000B22D0 /* libapex.dylib in Frameworks */,
@@ -544,7 +546,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1540;
 				ORGANIZATIONNAME = "ca2 Desenvolvimento de Software Ltdal";
 				TargetAttributes = {
 					070B8EE91B6E53F900D26137 = {
@@ -821,6 +823,7 @@
 			baseConfigurationReference = 9A8F4D782A26D57C00097EE1 /* _____debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -913,6 +916,7 @@
 			baseConfigurationReference = 9A8F4D822A26D57C00097EE1 /* _____release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";

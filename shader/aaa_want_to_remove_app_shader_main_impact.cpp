@@ -116,7 +116,7 @@ namespace simple_shader
 
          m_pimpact->datastream()->get("cur_text",strText);
 
-         peditview->_001SetText(strText, ::e_source_initialize);
+         peditview->set_text(strText, ::e_source_initialize);
 
       }
 

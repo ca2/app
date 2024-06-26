@@ -643,7 +643,7 @@ namespace user
       if (m_phtml)
       {
 
-         m_phtml.m_pparticle->destroy();
+         m_phtml.m_psubparticle->destroy();
 
       }
 
@@ -898,7 +898,7 @@ namespace user
    //}
 
 
-   //::pointer<::user::menu_interaction>user::create_menu_button(::user::style * pstyle, menu_item* pitem)
+   //::pointer<::user::menu_interaction>user::create_menu_button(::user::style * pstyle, ::menu::item* pitem)
    //{
 
    //   return nullptr;
@@ -1595,6 +1595,21 @@ namespace user
 
    //__namespace_object_factory(user, ::system_setup::flag_object_user);
 
+   ::windowing::windowing* user::windowing()
+   {
+
+      if (::is_null(m_pwindowing))
+      {
+
+         create_windowing();
+
+      }
+
+      return m_pwindowing;
+
+   }
+
+
 
    ::aura::application * user::get_app()
    {
@@ -1641,6 +1656,18 @@ namespace user
 
       throw interface_only();
 
+   }
+
+
+
+   ::pointer < ::menu::menu > user::menu_from_xml(::particle * pparticleContext, const ::scoped_string & scopedstrXml)
+   {
+      
+      throw ::interface_only();
+      
+      return {};
+      
+      
    }
 
 
@@ -1707,36 +1734,4 @@ CLASS_DECL_AURA ::particle * user_synchronization()
    return pmutexUser;
 
 }
-
-
-//CLASS_DECL_AURA void initialize_user_mutex()
-//{
-//
-//   if(g_pmutexUser)
-//   {
-//
-//      return;
-//
-//   }
-//
-//   g_pmutexUser = this->platform()->system()->node()->create_mutex();
-//
-//}
-//
-//
-//CLASS_DECL_AURA void finalize_user_mutex()
-//{
-//
-//   if(!g_pmutexUser)
-//   {
-//
-//      return;
-//
-//   }
-//
-//   g_pmutexUser.release();
-//
-//}
-//
-
 

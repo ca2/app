@@ -321,7 +321,7 @@ namespace user
 
       string str;
 
-      pinteraction->_001GetText(str);
+      str = pinteraction->as_text();
 
       ::user::validate validate;
 
@@ -733,7 +733,7 @@ namespace user
 //
 //            //      str = payload.m_str;
 //
-//            //      pinteraction->_001SetText(str,::e_source_database);
+//            //      pinteraction->set_text(str,::e_source_database);
 //
 //            //   }
 //            //   break;
@@ -744,7 +744,7 @@ namespace user
 //
 //            //      str.formatf("%d",payload.i32());
 //
-//            //      pinteraction->_001SetText(str,::e_source_database);
+//            //      pinteraction->set_text(str,::e_source_database);
 //
 //            //   }
 //            //   break;

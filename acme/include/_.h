@@ -71,8 +71,8 @@
 #include "acme/constant/_.h"
 #include "_forward_declaration.h"
 #include "_structures.h"
-#include "_initial_concepts.h"
 #include "_template_forward_declaration.h"
+#include "_initial_concepts.h"
 //#include "_other_initial_concepts.h"
 #include "_template_structures.h"
 #include "_enumeration.h"
@@ -93,6 +93,7 @@
 #include "acme/platform/_.h"
 #include "acme/primitive/_.h"
 #include "acme/user/_.h"
+#include "acme/windowing_system/_.h"
 #ifdef   _STDIO_H_
 #error "already included?!?! WHAT?!?! (After including acme/include/(1))"
 #endif
@@ -155,26 +156,26 @@
 #error "already included?!?! WHAT?!?! (After including acme/include/(5.1))"
 #endif
 #include  "acme/primitive/string/string.h"
-#ifdef   _STDIO_H_
-#error "already included?!?! WHAT?!?! (After including acme/include/(5.2))"
-#endif
+//#ifdef   _STDIO_H_
+//#error "already included?!?! WHAT?!?! (After including acme/include/(5.2))"
+//#endif
 #include  "acme/primitive/primitive/payload.h"
-#ifdef   _STDIO_H_
-#error "already included?!?! WHAT?!?! (After including acme/include/(5.3))"
-#endif
+//#ifdef   _STDIO_H_
+//#error "already included?!?! WHAT?!?! (After including acme/include/(5.3))"
+//#endif
 #include  "acme/primitive/primitive/object.h"
-#ifdef   _STDIO_H_
-#error "already included?!?! WHAT?!?! (After including acme/include/(5.4))"
-#endif
+//#ifdef   _STDIO_H_
+//#error "already included?!?! WHAT?!?! (After including acme/include/(5.4))"
+//#endif
 #include  "acme/exception/exception.h"
-#ifdef   _STDIO_H_
-#error "already included?!?! WHAT?!?! (After including acme/include/(5.5))"
-#endif
+//#ifdef   _STDIO_H_
+//#error "already included?!?! WHAT?!?! (After including acme/include/(5.5))"
+//#endif
 #include  "acme/platform/class.h"
 
-#ifdef   _STDIO_H_
-#error "already included?!?! WHAT?!?! (After including acme/include/(5))"
-#endif
+//#ifdef   _STDIO_H_
+//#error "already included?!?! WHAT?!?! (After including acme/include/(5))"
+//#endif
 
 #include "acme/primitive/string/scoped_string_base.h"
 #include "acme/operating_system/_.h"
@@ -200,9 +201,9 @@
 
 #include "acme/platform/platform.h"
 
-#ifdef   _STDIO_H_
-#error "already included?!?! WHAT?!?! (After including acme/include/(A))"
-#endif
+//#ifdef   _STDIO_H_
+//#error "already included?!?! WHAT?!?! (After including acme/include/(A))"
+//#endif
 
 
 //

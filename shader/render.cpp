@@ -279,73 +279,85 @@ namespace app_shader
          return;
          
       }
-
-      ::gpu::context_lock lock(m_pgpucontext);
-
-      defer_update_shader();
-
-      if (m_pgpucontext &&
-        ::is_set(m_pgpucontext->m_pprogram) &&
-       m_pgpucontext->m_pcpubuffer && m_pgpucontext->m_pcpubuffer->m_pixmap.is_ok())
-      {
-
-         single_lock slImage(m_pgpucontext->m_pcpubuffer->synchronization());
-
+      
+      m_pgpucontext->post_procedure([this]
+                                    {
+         
+         ::gpu::context_lock lock(m_pgpucontext);
+         
+         defer_update_shader();
+         
+         if (m_pgpucontext &&
+             ::is_set(m_pgpucontext->m_pprogram) &&
+             m_pgpucontext->m_pcpubuffer && m_pgpucontext->m_pcpubuffer->m_pixmap.is_ok())
          {
-
-            ::gpu::context_lock lock(m_pgpucontext);
-
-            m_pgpucontext->make_current();
-
-            m_pgpucontext->start_drawing();
-
+            
             {
+               
+               //::gpu::context_lock lock(m_pgpucontext);
+               
+               m_pgpucontext->make_current();
+               
+               m_pgpucontext->start_drawing();
+               
+               {
+                  
+                  //::pointer<::aura::session>psession = get_session();
+                  
+                  //auto puser = psession->user();
+                  
+                  auto pointCursor = m_puserinteraction->mouse_cursor_position();
+                  
+                  float x = (float)pointCursor.x();
+                  
+                  float y = (float)pointCursor.y();
+                  
+                  m_pgpucontext->m_pprogram->m_pshader->setVec2("mouse", x, y);
+                  m_pgpucontext->m_pprogram->m_pshader->setVec2("iMouse", x, y);
+                  
+               }
+               
+               {
+                  
+                  float cx = (float)m_pgpucontext->m_pcpubuffer->m_pixmap.width();
+                  
+                  float cy = (float)m_pgpucontext->m_pcpubuffer->m_pixmap.height();
+                  
+                  m_pgpucontext->m_pprogram->m_pshader->setVec2("resolution", cx, cy);
+                  m_pgpucontext->m_pprogram->m_pshader->setVec2("iResolution", cx, cy);
+                  
+               }
+               
+               {
+                  
+                  auto dTime = m_timeStart.elapsed().floating_second();
+                  
+                  float time = (float)dTime;
+                  
+                  m_pgpucontext->m_pprogram->m_pshader->setFloat("time", time);
+                  m_pgpucontext->m_pprogram->m_pshader->setFloat("iTime", time);
+                  
+               }
 
-               //::pointer<::aura::session>psession = get_session();
-
-               //auto puser = psession->user();
-
-               auto pointCursor = m_puserinteraction->mouse_cursor_position();
-
-               float x = (float)pointCursor.x();
-
-               float y = (float)pointCursor.y();
-
-               m_pgpucontext->m_pprogram->m_pshader->setVec2("mouse", x, y);
-               m_pgpucontext->m_pprogram->m_pshader->setVec2("iMouse", x, y);
+               m_pgpucontext->render();
+               
+               read_to_cpu_buffer();
 
             }
-
-            {
-
-               float cx = (float)m_pgpucontext->m_pcpubuffer->m_pixmap.width();
-
-               float cy = (float)m_pgpucontext->m_pcpubuffer->m_pixmap.height();
-
-               m_pgpucontext->m_pprogram->m_pshader->setVec2("resolution", cx, cy);
-               m_pgpucontext->m_pprogram->m_pshader->setVec2("iResolution", cx, cy);
-
-            }
-
-            {
-
-               auto dTime = m_timeStart.elapsed().floating_second();
-
-               float time = (float)dTime;
-
-               m_pgpucontext->m_pprogram->m_pshader->setFloat("time", time);
-               m_pgpucontext->m_pprogram->m_pshader->setFloat("iTime", time);
-
-            }
-
-            m_pgpucontext->render();
-
+            
+            
+            
          }
-
-         to_draw2d_graphics(pgraphics);
-
       }
+                                    );
 
+         
+         {
+            
+            to_draw2d_graphics(pgraphics);
+            
+            
+         };
       ::rectangle_i32 rectangle;
 
 
@@ -477,15 +489,26 @@ namespace app_shader
 
    void render::_001OnDrawError(::draw2d::graphics_pointer & pgraphics)
    {
+      
+      auto pgpuprogram = m_pgpuprogram;
 
-      if (!m_pgpuprogram)
+      if (!pgpuprogram)
       {
 
          return;
 
       }
+      
+      auto pshader = pgpuprogram->m_pshader;
+      
+      if(!pshader)
+      {
+       
+         return;
+         
+      }
 
-      if (m_pgpuprogram->m_pshader->m_strError.is_empty())
+      if (pshader->m_strError.is_empty())
       {
 
          return;

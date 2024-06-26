@@ -163,7 +163,7 @@ void payload::_set_element(::subparticle * pelement)
    else
    {
 
-      return release();
+      return payload_release();
 
    }
 
@@ -171,7 +171,7 @@ void payload::_set_element(::subparticle * pelement)
 }
 
 
-::i64 payload::release()
+::i64 payload::payload_release()
 {
 
    if (m_etype == e_type_string)

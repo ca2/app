@@ -626,5 +626,37 @@ void windows_factory(::factory::factory * pfactory)
 }
 
 
+CLASS_DECL_ACME ::file::path windows_bash_path(const ::file::path& path)
+{
+
+   if (path.size() > 3)
+   {
+
+      if (::character_isalpha(path[0])
+         && path[1] == ':'
+         && (path[2] == '/' || path[2] == '\\'))
+      {
+
+         ::string str;
+
+         str = "/";
+
+         str += ::character_tolower(path[0]);
+
+         str += "/";
+
+         str += path.substr(3);
+
+         return str;
+
+      }
+
+   }
+
+   return path;
+
+}
+
+
 
 

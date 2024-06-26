@@ -28,6 +28,7 @@
 #include "acme/nano/user/message_box.h"
 #include "acme/nano/user/user.h"
 #include "acme/user/user/os_theme_colors.h"
+#include "filesystem/filesystem/listing.h"
 
 namespace nano{namespace  user{
 ::user::enum_desktop calculate_edesktop();
@@ -41,6 +42,8 @@ CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception& 
 
 
 //CLASS_DECL_ACME void operating_system_open_url(const ::scoped_string & scopedstrUrl);
+
+::i32 get_processor_count();
 
 
 namespace acme
@@ -90,10 +93,10 @@ namespace acme
 
       m_pthemecolors = nullptr;
 
-#if defined(WITH_X11)
-      m_pvoidX11Display = nullptr;
-      m_estatusInitializeX11 = error_not_initialized;
-#endif
+//#if defined(WITH_X11)
+  //    m_pvoidX11Display = nullptr;
+    //  m_estatusInitializeX11 = error_not_initialized;
+//#endif
 
 
    }
@@ -366,8 +369,19 @@ namespace acme
    }
 
 
+   ::file::path node::___fonts_folder()
+   {
+
+      throw interface_only();
+
+      return {};
+
+   }
+
+
    void node::node_main()
    {
+      
 
       auto psystem = system();
 
@@ -392,6 +406,13 @@ namespace acme
 
       system()->defer_post_initial_request();
 
+   }
+
+
+   void node::on_app_activated()
+   {
+      
+      
    }
 
 
@@ -2354,6 +2375,8 @@ return false;
    ::pointer<::conversation>node::create_new_message_box_conversation()
    {
 
+      system()->nano()->user();
+
       return __create_new < ::nano::user::message_box >();
 
    }
@@ -2967,17 +2990,52 @@ return false;
 
    ::string node::default_component_implementation(const ::scoped_string & scopedstrComponentName)
    {
-   
-      if(scopedstrComponentName == "nano_http")
+
+      if(scopedstrComponentName == "nano_archive")
       {
+
+         return "libarchive";
+
+      }
+      else if(scopedstrComponentName == "nano_http")
+      {
+
+#ifdef LINUX
        
-         return "(built-in)";
+         return "libcurl";
+
+#elif defined(WINDOWS_DESKTOP)
+
+         return "wininet";
+
+#endif
          
       }
       else if(scopedstrComponentName == "nano_user")
       {
        
-         return "(built-in)";
+#ifdef LINUX
+
+         if(system()->m_ewindowing == e_windowing_wayland)
+         {
+            return "wayland";
+         }
+         else if(system()->m_ewindowing == e_windowing_xcb)
+         {
+            return "xcb";
+         }
+         else
+         {
+
+            return "x11";
+
+         }
+
+#elif defined(WINDOWS_DESKTOP)
+
+         return "win32";
+
+#endif
          
       }
       
@@ -3128,14 +3186,6 @@ void node::on_component_factory(const ::scoped_string & scopedstrComponent)
    }
 
 
-   bool node::_is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath)
-   {
-
-      throw interface_only();
-
-      return false;
-
-   }
 
 
    bool node::_is_coder_mode_enabled()
@@ -3158,6 +3208,14 @@ void node::on_component_factory(const ::scoped_string & scopedstrComponent)
 
 #endif
 
+   bool node::_is_code_exe_user_path_environment_variable_ok(::string* pstrCorrectPath, const char * pszPath)
+   {
+
+      throw interface_only();
+
+      return false;
+
+   }
 
 #if defined(WINDOWS_DESKTOP) || defined(MACOS) || defined(LINUX)
 
@@ -3171,6 +3229,46 @@ bool node::_is_smart_git_installed()
 
 
 #endif
+
+
+   bool node::_is_google_chrome_installed()
+   {
+
+      return false;
+
+   }
+
+
+   bool node::_is_visual_studio_code_installed()
+   {
+
+      return false;
+
+   }
+
+
+   bool node::_is_git_credential_manager_installed()
+   {
+
+      return false;
+
+   }
+
+
+   bool node::_is_shell_patched()
+   {
+
+      return _is_code_exe_user_path_environment_variable_ok();
+
+   }
+
+
+   bool node::_is_jetbrains_clion_installed()
+   {
+
+      return false;
+
+   }
 
 
    void node::set_user_run_once(const ::scoped_string& scopedstrLabel, const ::scoped_string& scopedstrCommand)
@@ -3342,7 +3440,7 @@ bool node::_is_smart_git_installed()
       
       get_call_stack_frames(stack, frame_count);
       
-      ::string strCallStack = get_call_stack_trace(stack, frame_count);
+      ::string strCallStack = get_call_stack_trace(stack, frame_count, scopedstrFormat, iSkip);
       
       return strCallStack;
    
@@ -4429,40 +4527,6 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
-#if defined(WITH_X11)
-
-
-   void node::x11_sync(const ::procedure & procedure)
-   {
-
-      nano()->user()->x11_sync(procedure);
-
-   }
-
-
-   void node::x11_async(const ::procedure & procedure)
-   {
-
-      nano()->user()->x11_async(procedure);
-
-   }
-
-
-   void node::x11_display_error_trap_push(int i)
-   {
-
-
-   }
-
-
-   void node::x11_display_error_trap_pop_ignored(int i)
-   {
-
-
-   }
-
-
-#endif
 
    
    int node::building_core_count(bool bDedicatedBuilder)
@@ -4490,7 +4554,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    int node::performance_core_count()
    {
 
-      return 1;
+      return ::get_processor_count();
 
    }
 
@@ -4503,6 +4567,49 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
+   void node::detached_command(const ::scoped_string & scopedstrCommand, const ::file::path & pathLog)
+   {
+
+
+
+   }
+
+
+//   void * node::fetch_windowing_system_display()
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//
+//   void node::windowing_system_async(const ::procedure &procedure)
+//   {
+//
+//
+//   }
+//
+//
+//   void node::windowing_system_display_error_trap_push(int i)
+//   {
+//
+//
+//   }
+//
+//
+//   void node::windowing_system_display_error_trap_pop_ignored(int i)
+//   {
+//
+//
+//   }
+
+
+   enum_windowing node::calculate_ewindowing()
+   {
+
+      return e_windowing_none;
+
+   }
 
 
 } // namespace acme

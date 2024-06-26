@@ -21,9 +21,13 @@ namespace operating_system
 
       virtual void from_application(::operating_system::application * papplication);
 
+      virtual bool is_window();
+
       virtual void post_close();
 
       virtual void post_application_exit();
+
+      virtual void activate();
 
       virtual ::string get_window_text(const ::iptr_array & idPath);
       virtual ::string indexed_get_window_text(const ::iptr_array & idPath);

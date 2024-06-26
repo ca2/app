@@ -156,8 +156,6 @@ void set_apex_system_as_thread();
 willFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> *)launchOptions
 {
    
-   //ios_calc_dark_mode();
-   
    if(!m_pApplication)
    {
       

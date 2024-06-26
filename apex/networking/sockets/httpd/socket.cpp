@@ -397,7 +397,7 @@ namespace httpd
 
       auto tickExecuteEnd = ::time::now();
 
-      error() << "====> " << (tickExecuteEnd - tickExecuteBeg).floating_second() << "s";
+      debug() << "====> " << (tickExecuteEnd - tickExecuteBeg).floating_second() << "s";
 
    }
 

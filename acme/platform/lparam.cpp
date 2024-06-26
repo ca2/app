@@ -2,10 +2,10 @@
 
 
 /// posting/sending particle with referencing forking
-lparam::lparam(const ::particle * pparticle)
+lparam::lparam(const ::subparticle * psubparticle)
 {
 
-   if (is_null(pparticle))
+   if (is_null(psubparticle))
    {
 
       m_lparam = 0;
@@ -16,12 +16,12 @@ lparam::lparam(const ::particle * pparticle)
 
 #if   REFERENCING_DEBUGGING
 
-   ((particle *)pparticle)->m_prefererTransfer = ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
+   ((subparticle *)psubparticle)->m_prefererTransfer = ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
 #endif
 
-   ((particle *)pparticle)->increment_reference_count();
+   ((subparticle *)psubparticle)->increment_reference_count();
 
-   m_lparam = (iptr)(void *)pparticle;
+   m_lparam = (iptr)(void *)psubparticle;
 
 }
 
@@ -30,10 +30,10 @@ lparam::lparam(const ::particle * pparticle)
 
 
 /// posting/sending particle with referencing transfer
-lparam::lparam(::particle * pparticle, ::reference_referer * preferer)
+lparam::lparam(::subparticle * psubparticle, ::reference_referer * preferer)
 {
 
-   if (is_null(pparticle))
+   if (is_null(psubparticle))
    {
 
       m_lparam = 0;
@@ -42,9 +42,9 @@ lparam::lparam(::particle * pparticle, ::reference_referer * preferer)
 
    }
 
-   pparticle->m_prefererTransfer = preferer;
+   psubparticle->m_prefererTransfer = preferer;
 
-   m_lparam = (iptr)(void *)pparticle;
+   m_lparam = (iptr)(void *)psubparticle;
 
 }
 

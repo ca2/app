@@ -74,8 +74,6 @@ namespace user
    void system::create_common_construct()
    {
 
-      //m_bAutoWindowFrame = true;
-      //m_bWindowFrame = false;
 
    }
 

@@ -37,7 +37,8 @@ namespace filemanager
 
             auto pinteraction = get_child_by_name("lfs");
 
-            pinteraction->_001SetText(filemanager_item()->user_path(), ::e_source_user);
+            //pinteraction->set_text(filemanager_item()->user_path(), ::e_source_user);
+            pinteraction->set_text(filemanager_item()->user_path(), ::e_source_user);
 
          }
          else if(ptopic->user_interaction()->m_atom == "ftp")
@@ -66,7 +67,7 @@ namespace filemanager
 
          //      string str;
 
-         //      pinteraction->_001GetText(str);
+         //      pinteraction->get_text(str);
 
          //      stra.add_unique(str);
          //      papp->datastream()->set(get_document()->m_strDataKeyStatic,stra);
@@ -82,11 +83,11 @@ namespace filemanager
 
          //      auto pinteraction = get_child_by_name("find");
 
-         //      pinteraction->_001GetText(ptopic->payload(id_find).string_reference());
+         //      pinteraction->get_text(ptopic->payload(id_find).string_reference());
 
          //      pinteraction = get_child_by_name("replace");
 
-         //      pinteraction->_001GetText(ptopic->payload(id_replace).string_reference());
+         //      pinteraction->get_text(ptopic->payload(id_replace).string_reference());
 
          //      auto pdocument =  filemanager_document();
 
@@ -100,7 +101,7 @@ namespace filemanager
 
          //      auto pinteraction = get_child_by_name("name");
 
-         //      pinteraction->_001GetText(__reference(ptopic->payload(id_text)));
+         //      pinteraction->get_text(__reference(ptopic->payload(id_text)));
 
          //      auto pdocument = filemanager_document();
 

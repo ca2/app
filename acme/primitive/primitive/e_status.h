@@ -31,7 +31,7 @@ class e_status
 public:
 
 
-   using ENUM_TAG = ENUM_TYPE_TAG;
+   using ENUM_TYPE_TAG = enum_type_t;
    
    
    ::enum_status        m_eenum;

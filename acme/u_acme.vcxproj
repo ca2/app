@@ -734,6 +734,7 @@
     <ClInclude Include="operating_system\universal_windows\exception_engine.h" />
     <ClInclude Include="operating_system\universal_windows\file_winrt1.h" />
     <ClInclude Include="operating_system\universal_windows\host_interaction.h" />
+    <ClInclude Include="operating_system\universal_windows\nano\dynamic_library\dynamic_library.h" />
     <ClInclude Include="operating_system\universal_windows\nano\http\http.h" />
     <ClInclude Include="operating_system\universal_windows\nano\http\_http.h" />
     <ClInclude Include="operating_system\universal_windows\nano\user\window.h" />
@@ -759,6 +760,8 @@
     <ClInclude Include="operating_system\windows_common\heap_allocator.h" />
     <ClInclude Include="operating_system\windows_common\last_error.h" />
     <ClInclude Include="operating_system\windows_common\last_error_exception.h" />
+    <ClInclude Include="operating_system\windows_common\nano\idn\idn.h" />
+    <ClInclude Include="operating_system\windows_common\nano\idn\_.h" />
     <ClInclude Include="operating_system\windows_common\parallelization.h" />
     <ClInclude Include="operating_system\windows_common\_.h" />
     <ClInclude Include="operating_system\windows_common\_c.h" />
@@ -1721,8 +1724,27 @@
     <ClCompile Include="operating_system\universal_windows\file.cpp" />
     <ClCompile Include="operating_system\universal_windows\get_module_path.cpp" />
     <ClCompile Include="operating_system\universal_windows\graphics.cpp" />
-    <ClCompile Include="operating_system\universal_windows\library.cpp" />
+    <ClCompile Include="operating_system\universal_windows\aaa_library.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="operating_system\universal_windows\main.cpp" />
+    <ClCompile Include="operating_system\universal_windows\nano\dynamic_library\dynamic_library.cpp" />
+    <ClCompile Include="operating_system\universal_windows\nano\dynamic_library\_dynamic_library.cpp" />
     <ClCompile Include="operating_system\universal_windows\nano\http\http.cpp" />
     <ClCompile Include="operating_system\universal_windows\nano\http\_http.cpp" />
     <ClCompile Include="operating_system\universal_windows\nano\user\window.cpp" />
@@ -1741,10 +1763,11 @@
     <ClCompile Include="operating_system\windows_common\find_file.cpp" />
     <ClCompile Include="operating_system\windows_common\handle.cpp" />
     <ClCompile Include="operating_system\windows_common\heap_allocator.cpp" />
-    <ClCompile Include="operating_system\windows_common\idn.cpp" />
     <ClCompile Include="operating_system\windows_common\last_error_exception.cpp" />
     <ClCompile Include="operating_system\windows_common\library.cpp" />
     <ClCompile Include="operating_system\windows_common\memory.cpp" />
+    <ClCompile Include="operating_system\windows_common\nano\idn\idn.cpp" />
+    <ClCompile Include="operating_system\windows_common\nano\idn\_idn.cpp" />
     <ClCompile Include="operating_system\windows_common\nano\user\_user.cpp" />
     <ClCompile Include="operating_system\windows_common\parallelization.cpp" />
     <ClCompile Include="operating_system\windows_common\time.cpp" />

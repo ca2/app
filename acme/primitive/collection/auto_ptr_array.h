@@ -42,7 +42,7 @@ public:
    ::collection::index erase_at(::collection::index i)
    {
 
-      delete this->element_at(i);
+      ::acme::del(this->element_at(i));
 
       return BASE_ARRAY::erase_at(i);
 
@@ -55,7 +55,7 @@ public:
       for(auto & p : *this)
       {
 
-         delete p;
+         ::acme::del(p);
 
       }
 
@@ -82,7 +82,7 @@ namespace acme
       for (int i = 0; i < srca.get_size(); i++)
       {
          
-         dsta[i] = __new< TDST >(*srca[i]);
+         dsta[i] = new TDST(*srca[i]);
 
       }
 

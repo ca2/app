@@ -31,8 +31,7 @@ inline bool type_atom::operator == (const ::atom& atom) const
 }
 
 
-template < primitive_pointer POINTER >
-type_atom::type_atom(POINTER p)
+inline type_atom::type_atom(const ::quantum * p)
 {
 
    if(::is_null(p))
@@ -44,7 +43,7 @@ type_atom::type_atom(POINTER p)
    else
    {
 
-      auto name = typeid(*(non_const<POINTER>) p).name();
+      auto name = typeid(*(::quantum *) p).name();
 
       ::atom::operator=(demangle(name));
 
@@ -114,8 +113,7 @@ inline type_atom::type_atom(const ::pointer<BASE>& p)
 //}
 
 
-template < primitive_pointer POINTER >
-inline bool type_atom::operator == (POINTER p) const
+inline bool type_atom::operator == (const ::quantum * p) const
 {
 
    return operator ==(::type_atom(p));

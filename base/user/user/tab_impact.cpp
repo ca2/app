@@ -21,8 +21,8 @@
 #include "base/user/form/document.h"
 #include "base/user/menu/item.h"
 #include "base/user/menu/item_ptra.h"
-#include "base/user/menu/menu.h"
 #include "base/user/menu/list_impact.h"
+#include "base/user/menu/menu.h"
 #include "base/user/user/user.h"
 #include "base/user/user/tab_drop_target_window.h"
 
@@ -1065,7 +1065,7 @@ namespace user
          //if (!pmenu->m_pmenuitem->m_pmenuitema)
          //{
 
-         //   pmenu->m_pmenuitem->m_pmenuitema = __allocate< ::user::menu_item_ptra >(pmenu->m_pmenuitem);
+         //   pmenu->m_pmenuitem->m_pmenuitema = __allocate< ::menu::item_ptra >(pmenu->m_pmenuitem);
 
          //}
 
@@ -1081,7 +1081,7 @@ namespace user
 
          //   }
 
-         //   auto pmenuitem = __create_new < menu_item >();
+         //   auto pmenuitem = __create_new < ::menu::item >();
 
          //   pmenuitem->m_pmenu = pmenu;
 

@@ -696,6 +696,7 @@
     <ClCompile Include="platform\application_menu.cpp" />
     <ClCompile Include="platform\application_menu_command.cpp" />
     <ClCompile Include="platform\get_file_extension_mime_type.cpp" />
+    <ClCompile Include="user\menu\menu.cpp" />
     <ClCompile Include="user\menu\shared.cpp" />
     <ClCompile Include="user\user\language.cpp" />
     <ClCompile Include="user\user\language_map.cpp" />

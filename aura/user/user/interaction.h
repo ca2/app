@@ -43,8 +43,8 @@ namespace user
    class CLASS_DECL_AURA interaction :
       virtual public ::user::primitive,
       virtual public ::user::drawable,
-      virtual public ::timer_callback,
-      virtual public ::user::drag_client
+      virtual public ::timer_callback//,
+      //virtual public ::user::drag_client
       //, virtual public ::graphics::output_purpose
    {
    public:
@@ -384,7 +384,7 @@ namespace user
 
       //interaction_draw2d *                    m_pinteractiondraw2d;
 
-      /// The menu_item this user_interaction (window)
+      /// The ::menu::item this user_interaction (window)
       /// represents (this window is a button [a menu button],
       /// this window is a m_pcheckbox [a menu m_pcheckbox],
       /// this window is a player/impact [a menu picture/video/chat?!])
@@ -1594,12 +1594,13 @@ namespace user
       virtual void walk_pre_translate_tree(::message::message* pmessage, ::user::interaction* puiStop = nullptr);
 
 
-      bool edit_undo() override;
+      virtual bool edit_undo();
+
 
       virtual void edit_on_text(string str) override;
       virtual void edit_on_sel(strsize iBeg, strsize iEnd) override;
 
-      void get_text_composition_area(::rectangle_i32 & r) override;
+      //void get_text_composition_area(::rectangle_i32 & r) override;
       virtual void on_text_composition(string str) override;
       virtual void on_text_composition_done() override;
 
@@ -1607,7 +1608,10 @@ namespace user
 
       virtual int on_text_composition_message(int iMessage);
 
-      void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
+      void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & actioncontext) override;
+      //void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
+      virtual void get_text_composition_area(::rectangle_i32 & rectangle);
+
 
       virtual void set_window_text(const ::string & pszString) override;
       virtual void set_window_text_source(const ::a_string_function & astringfunction) override;
@@ -1971,8 +1975,6 @@ namespace user
 
 
 
-      //virtual void track_popup_menu(::user::menu_item* pitem, i32 iFlags, const ::point_i32& point) override;
-      //virtual ::pointer<::user::menu>track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32& pointScreen = nullptr, const ::size_i32 & sizeMinimum = {}) override;
 
       bool _001OnBeforeEnterIconic() override;
       bool _001OnBeforeEnterNormal() override;
@@ -2190,7 +2192,7 @@ namespace user
       virtual void on_hide_place_holder_child(::user::interaction* pinteraction);
 
 
-      void _001GetSel(strsize& iBeg, strsize& iEnd) override;
+      void get_text_selection(strsize& iBeg, strsize& iEnd) const override;
 
       
       virtual bool set_sel_by_name(const ::string & strName);
@@ -2388,7 +2390,7 @@ namespace user
       virtual ::item_pointer update_hover(::message::mouse * pmouse, e_zorder ezorder);
       virtual ::item_pointer update_hover_according_to_last_hover_update(e_zorder ezorder);
       //virtual ::item_pointer update_hover(::user::mouse * pmouse, e_zorder ezorder);
-
+      virtual void on_update_hover(::item * pitem);
 
       virtual bool is_mouse_hover() const;
 

@@ -4031,30 +4031,30 @@ retry_license:
    //}
 
 
-   ::atom application::translate_property_id(const ::atom & atom)
-   {
-      return ::aqua::application::translate_property_id(atom);
-      //if(!is_system())
-      //{
+   //::atom application::translate_property_id(const ::atom & atom)
+   //{
+   //   return ::aqua::application::translate_property_id(atom);
+   //   //if(!is_system())
+   //   //{
 
-        // if(!is_session())
-         //{
+   //     // if(!is_session())
+   //      //{
 
-           // return psession->translate_property_id(atom);
+   //        // return psession->translate_property_id(atom);
 
-         //}
-         //else
-         //{
+   //      //}
+   //      //else
+   //      //{
 
-           // return psystem->translate_property_id(atom);
+   //        // return psystem->translate_property_id(atom);
 
-         //}
+   //      //}
 
-      //}
+   //   //}
 
-      return atom;
+   //   return atom;
 
-   }
+   //}
 
 
    //void application::record(::create * pcommand)
@@ -7759,12 +7759,10 @@ namespace aura
    //}
 
 
-   i32 application::track_popup_menu(const ::string & pszMatter, const ::point_i32& point, ::pointer<::user::interaction>puie)
+   i32 application::track_popup_menu(::menu::track_popup * ptrackpopup)
    {
 
-      __UNREFERENCED_PARAMETER(pszMatter);
-      __UNREFERENCED_PARAMETER(point);
-      __UNREFERENCED_PARAMETER(puie);
+      __UNREFERENCED_PARAMETER(ptrackpopup);
 
       return 1;
 
@@ -8359,7 +8357,7 @@ namespace aura
 
                      auto pcontext = get_context();
 
-                     pcheck->_001SetCheck(
+                     pcheck->set_check(
                         node()->is_user_auto_start(get_executable_appid()),
                         ::e_source_initialize);
 

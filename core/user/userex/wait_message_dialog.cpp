@@ -152,7 +152,7 @@ namespace userex
 
          str.formatf("%d", time.integral_second());
 
-         pinteraction->_001SetText(str, ::e_source_sync);
+         pinteraction->set_text(str, ::e_source_sync);
 
       }
 

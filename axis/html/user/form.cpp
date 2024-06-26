@@ -630,15 +630,20 @@ bool html_form::open_html(const ::string & str)
 }
 
 
-void html_form::_001GetText(string & str)
+::string html_form::get_html_form_text()
 {
 
+   ::string str;
+
    ((html_form *) this)->get_html_data()->m_pcoredata->m_pelement->get_html((const_cast < html_form * > (this)->get_html_data()), str);
+
+   return str;
 
 }
 
 
-void html_form::_001SetText(const ::string & str, const ::action_context & context)
+//void html_form::set_text(const ::string & str, const ::action_context & context)
+void html_form::set_html_form_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext)
 {
 
    auto psession = get_session();
@@ -651,7 +656,7 @@ void html_form::_001SetText(const ::string & str, const ::action_context & conte
 
    phtmldata->m_pcoredata->m_pform = this;
 
-   phtmldata->load(str);
+   phtmldata->load(scopedstr);
 
    phtmldata->implement_and_layout(this);
 

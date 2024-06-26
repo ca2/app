@@ -59,12 +59,12 @@ namespace platform
       ::e_display                                     m_edisplay;
       ::e_activation                                  m_eactivativation;
       int                                             m_argc = 0;
-      char ** m_argv = nullptr;
+      char ** m_args = nullptr;
       char ** m_envp = nullptr;
 
 #ifdef WINDOWS
 
-      wchar_t ** m_wargv = nullptr;
+      wchar_t ** m_wargs = nullptr;
       wchar_t ** m_wenvp = nullptr;
 
       hinstance                                       m_hinstanceThis = nullptr;
@@ -222,13 +222,13 @@ namespace platform
 
 #if defined(WINDOWS) && defined(UNICODE)
 
-      void initialize(int argc, wchar_t * argv[], wchar_t * envp[]);
+      void initialize(int argc, wchar_t * args[], wchar_t * envp[]);
 
       void initialize(hinstance hinstanceThis, hinstance hinstancePrev, wchar_t * pCmdLine, int nCmdShow);
 
 #else
 
-      void initialize(int argc, platform_char ** argv, platform_char ** envp);
+      void initialize(int argc, platform_char ** args, platform_char ** envp);
 
 #endif
 
@@ -237,18 +237,18 @@ namespace platform
       void platform_finalize();
 
 
-      void set_args(int argc, char ** argv, wchar_t ** wargv);
+      void set_args(int argc, char ** args, wchar_t ** wargs);
 
-      string _get_argv(::collection::index iArg) const;
+      string _get_args(::collection::index iArg) const;
       ::collection::count get_argc();
       int * get_pargc();
-      char *** get_pargv();
-      char ** get_argv();
+      char *** get_pargs();
+      char ** get_args();
 
 #ifdef WINDOWS
 
-      wchar_t *** get_pwargv();
-      wchar_t ** get_wargv();
+      wchar_t *** get_pwargs();
+      wchar_t ** get_wargs();
 
 #endif
 
@@ -327,6 +327,8 @@ namespace platform
       //virtual ::pointer<::acme::library> open_component_library(const ::string &pszComponent, const ::string &pszImplementation);
 
       virtual ::pointer<::acme::library> create_library(const ::string & strLibrary);
+      virtual ::pointer<::acme::library> create_library_dynamically(const ::string & strLibrary);
+      virtual ::pointer<::acme::library> create_library_statically(const ::string & strLibrary);
 
       virtual ::pointer<::acme::library> & library(const ::string & str);
 
@@ -419,21 +421,22 @@ namespace platform
        
        
        
-       // [HERE]
-       //  __node_library should be here at acme
-       //
-       //  -- e.g. cannot lie inside a plugin,
-       // because it is used to load a plugin
-       //
-       virtual void* operating_system_library_open(const ::file::path & path, string& strMessage);
-
- #if defined FREEBSD || defined(OPENBSD)
-       virtual string operating_system_library_is_loaded(const ::file::path &path);
- #endif // FREEBSD
-    virtual void* operating_system_library_touch(const ::file::path & path, string& strMessage);
-       virtual void* operating_system_library_open_ca2(const ::file::path & path, string& strMessage);
-       virtual bool operating_system_library_close(void* plibrary);
-       virtual void* operating_system_library_raw_get(void* plibrary, const ::scoped_string & scopedstrEntryName);
+//       // [HERE]
+//       //  __node_library should be here at acme
+//       //
+//       //  -- e.g. cannot lie inside a plugin,
+//       // because it is used to load a plugin
+//       //
+//       virtual void* operating_system_library_open(const ::file::path & path, string& strMessage);
+//
+// #if defined FREEBSD || defined(OPENBSD)
+//       virtual string operating_system_library_is_loaded(const ::file::path &path);
+// #endif // FREEBSD
+//
+//       virtual void* operating_system_library_touch(const ::file::path & path, string& strMessage);
+//       virtual void* operating_system_library_open_ca2(const ::file::path & path, string& strMessage);
+//       virtual bool operating_system_library_close(void* plibrary);
+//       virtual void* operating_system_library_raw_get(void* plibrary, const ::scoped_string & scopedstrEntryName);
 
 
    };

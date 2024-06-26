@@ -11,7 +11,7 @@ class CLASS_DECL_APEX manager :
 public:
 
 
-   ::pointer<signal_map>                                 m_psignalmap;
+   ::pointer<::handler::signal_map>                                 m_psignalmap;
 
 
 
@@ -32,8 +32,8 @@ public:
    void destroy() override;
 
 
-   virtual class ::signal * get_signal(const ::atom& atom);
-   virtual class ::signal * get_signal(const ::atom & atom, const ::action_context & actioncontext);
+   virtual class ::handler::signal * get_signal(const ::atom& atom);
+   virtual class ::handler::signal * get_signal(const ::atom & atom, const ::action_context & actioncontext);
    
    virtual void add_signal_handler(const ::signal_handler& signalhandler, const ::atom & atomSignal);
    

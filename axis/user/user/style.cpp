@@ -1,10 +1,10 @@
 #include "framework.h"
 #include "style.h"
+#include "aura/user/user/frame.h"
 #include "aura/user/user/interaction.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/brush.h"
-
 
 
 namespace axis
@@ -54,7 +54,30 @@ namespace axis
    bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame * pframe)
    {
 
-      return false;
+      ::draw2d::save_context savecontext(pgraphics);
+
+      pgraphics->m_pdraw2dhost = pframe;
+
+      //      if (!pframe->is_custom_draw() && pgraphics != nullptr && pgraphics->m_pnext == nullptr)
+      //      {
+      //
+      //         pframe->set_context_org(pgraphics);
+      //
+      //      }
+
+      ::rectangle_i32 rectangleX;
+
+      rectangleX = pframe->rectangle();
+
+      auto pstyle = pframe->get_style(pgraphics);
+
+      status < ::color::color > crBackground = pframe->get_color(pstyle, ::e_element_background);
+
+      //crBackground = argb(255, 200, 180, 180);
+
+      pgraphics->fill_rectangle(rectangleX, crBackground);
+
+      return true;
 
    }
 
@@ -594,7 +617,7 @@ namespace axis
    }
 
 
-   //::pointer<::user::menu_interaction>style::create_menu_button(::user::style_pointer & pstyle, menu_item * pitem)
+   //::pointer<::user::menu_interaction>style::create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem)
    //{
 
    //   return psession->create_menu_button(pstyle, pitem);
@@ -602,7 +625,7 @@ namespace axis
    //}
 
 
-   //bool style::prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem)
+   //bool style::prepare_menu(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem)
    //{
 
    //   if (!prepare_menu_button(pgraphics,pitem))
@@ -617,7 +640,7 @@ namespace axis
    //}
 
 
-   //bool style::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem)
+   //bool style::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem)
    //{
 
    //   pgraphics->m_puserstyle = this;
@@ -1205,7 +1228,7 @@ namespace axis
    //}
 
 
-   //::pointer<::user::menu_interaction>style::create_menu_button(::user::style_pointer & pstyle, menu_item * pitem)
+   //::pointer<::user::menu_interaction>style::create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem)
    //{
 
    //   return psession->create_menu_button(pstyle, pitem);
@@ -1213,7 +1236,7 @@ namespace axis
    //}
 
 
-   //bool style::prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem)
+   //bool style::prepare_menu(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem)
    //{
 
    //   if (!prepare_menu_button(pgraphics,pitem))
@@ -1228,7 +1251,7 @@ namespace axis
    //}
 
 
-   //bool style::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem)
+   //bool style::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem)
    //{
 
    //   pgraphics->m_puserstyle = this;

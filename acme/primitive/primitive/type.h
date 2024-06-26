@@ -127,8 +127,7 @@ public:
 
    type_atom(const ::std::type_info & typeinfo);
 
-   template < primitive_pointer POINTER >
-   type_atom(POINTER p);
+   type_atom(const ::quantum * p);
 
    template < primitive_object_not_type_atom OBJECT_NOT_TYPE_ATOM >
    type_atom(OBJECT_NOT_TYPE_ATOM & objectnottypeatom);
@@ -159,10 +158,10 @@ public:
    bool operator == (const ::std::type_info& typeinfo) const;
 
 
-   bool operator == (const ::type_atom& datatype) const;
-
-
-   bool operator == (const ::string& strType) const;
+//   bool operator == (const ::type_atom& datatype) const;
+//
+//
+//   bool operator == (const ::string& strType) const;
 
 
    bool operator == (const ::atom& atom) const;
@@ -174,15 +173,14 @@ public:
 //   bool operator != (const ::type_atom& type) const;
 
 
-   template < primitive_pointer POINTER >
-   bool operator == (POINTER p) const;
+   bool operator == (const ::quantum * p) const;
 
 
    template < typename TYPE >
    bool operator == (const ::pointer < TYPE > & p) const;
 
 
-   //bool operator != (const ::particle* pparticle) const;
+   //bool operator != (const ::quantum* pparticle) const;
 
 
    inline operator bool() const { return ::atom::has_char(); }
@@ -219,8 +217,7 @@ inline ::typed_type_atom < TYPE > type()
 }
 
 
-template < primitive_pointer POINTER >
-inline ::type_atom type(POINTER p)
+inline ::type_atom type(const ::quantum * p)
 {
 
    return p;

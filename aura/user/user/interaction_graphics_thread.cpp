@@ -951,7 +951,7 @@ namespace user
    bool graphics_thread::graphics_thread_iteration()
    {
 
-      if (::type(m_puserinteraction.m_p) == "user::list_box")
+      if (::type(m_puserinteraction) == "user::list_box")
       {
 
          information() << "user::list_box graphics_thread_iteration user::list_box";

@@ -381,6 +381,7 @@ namespace acme
 
    void node::node_main()
    {
+      
 
       auto psystem = system();
 
@@ -405,6 +406,13 @@ namespace acme
 
       system()->defer_post_initial_request();
 
+   }
+
+
+   void node::on_app_activated()
+   {
+      
+      
    }
 
 

@@ -9,45 +9,51 @@
 #pragma once
 
 
-enum enum_track_popup_menu : i32
+namespace menu
 {
-  
-   e_track_popup_menu_none,
-   
-};
+
+   enum enum_track_popup : i32
+   {
+      
+      e_track_popup_none,
+      
+   };
 
 
-DECLARE_ENUMERATION(e_track_popup_menu, enum_track_popup_menu);
+   DECLARE_ENUMERATION(e_track_popup, enum_track_popup);
 
 
-class CLASS_DECL_AURA track_popup_menu :
-   virtual public ::particle
-{
-public:
-   
-   ::pointer < ::user::interaction >   m_puserinteraction;
-   ::string                            m_strXml;
-   ::pointer < ::application_menu >    m_papplicationmenu;
-   ::pointer < ::user::menu_item >     m_pmenuitem;
-   ::point_i32                         m_pointScreenHint = ::point_i32(I32_MINIMUM, I32_MINIMUM);
-   ::e_track_popup_menu                m_etrackpopupmenu = {};
-   ::pointer < ::user::interaction >   m_pinteractionMenu;
-   
-   track_popup_menu(::user::interaction * puserinteraction,
-                    const ::scoped_string & scopedstrXml,
-                    const ::point_i32 & pointScreenHint = ::point_i32(I32_MINIMUM, I32_MINIMUM),
-                    const e_track_popup_menu & etrackpopupmenu = {});
-  
-   track_popup_menu(::user::interaction * puserinteraction,
-                    ::application_menu * papplicationmenu,
-                    const ::point_i32 & pointScreenHint = ::point_i32(I32_MINIMUM, I32_MINIMUM),
-                    const e_track_popup_menu & etrackpopupmenu = {});
-  
-   track_popup_menu(::user::interaction * puserinteraction,
-                    const ::scoped_string & scopedstrXml,
-                    const ::point_i32 & pointScreenHint = ::point_i32(I32_MINIMUM, I32_MINIMUM),
-                    const e_track_popup_menu & etrackpopupmenu = {});
-  
-   virtual void post_start();
-   
-};
+   class CLASS_DECL_AURA track_popup :
+      virtual public ::particle
+   {
+   public:
+      
+      
+      ::pointer < ::menu::menu >          m_pmenu;
+      ::pointer < ::user::interaction >   m_puserinteractionTarget;
+      ::pointer < ::channel >             m_pchannelNotify;
+      ::rectangle_i32                     m_rectangleScreenHint;
+      ::point_i32                         m_pointCursorHint;
+      ::menu::e_track_popup               m_etrackpopup;
+      
+      
+      ::pointer < ::menu::menu >          m_pmenuImplementation;
+      ::procedure                         m_procedureCompleted;
+      
+      
+      track_popup(::menu::menu * pmenu,
+                  ::user::interaction * puserinteractionTarget,
+                  ::channel * pchannelNotify,
+                  const ::point_i32 & pointCursorHint = {I32_MINIMUM,I32_MINIMUM},
+                  const ::rectangle_i32 & rectangleScreenHint = {I32_MINIMUM, I32_MINIMUM, I32_MINIMUM, I32_MINIMUM},
+                  ::menu::e_track_popup etrackpopup = {});
+      
+      virtual void track(const ::procedure & procedureFinished);
+      
+   };
+
+
+} // namespace menu
+
+
+

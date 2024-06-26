@@ -440,7 +440,7 @@ namespace user
       virtual strsize get_text_length() override;
       virtual strsize _001_get_text_length();
       virtual ::collection::count line_count() const;
-      virtual void plain_edit_get_text(string & str);
+      virtual void get_text(string & str);
       virtual void get_text(string & str) override;
       virtual void get_selection_text(string & str) override;
       virtual void get_text(string & str, ::collection::index iBeg, ::collection::index iEnd) override;
@@ -531,7 +531,7 @@ namespace user
 
       virtual void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
 
-      virtual void plain_edit_insert_text(::draw2d::graphics_pointer& pgraphics, string str, bool bForceNewStep);
+      virtual void insert_text(::draw2d::graphics_pointer& pgraphics, string str, bool bForceNewStep);
 
       virtual void plain_edit_update(::draw2d::graphics_pointer& pgraphics, bool bFullUpdate, ::collection::index iLineUpdate);
 

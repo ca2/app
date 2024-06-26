@@ -384,7 +384,7 @@ namespace user
 
       //interaction_draw2d *                    m_pinteractiondraw2d;
 
-      /// The menu_item this user_interaction (window)
+      /// The ::menu::item this user_interaction (window)
       /// represents (this window is a button [a menu button],
       /// this window is a m_pcheckbox [a menu m_pcheckbox],
       /// this window is a player/impact [a menu picture/video/chat?!])
@@ -1608,7 +1608,7 @@ namespace user
 
       virtual int on_text_composition_message(int iMessage);
 
-      void plain_edit_insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & actioncontext) override;
+      void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & actioncontext) override;
       //void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
       virtual void get_text_composition_area(::rectangle_i32 & rectangle);
 
@@ -1975,8 +1975,6 @@ namespace user
 
 
 
-      //virtual void track_popup_menu(::user::menu_item* pitem, i32 iFlags, const ::point_i32& point) override;
-      //virtual ::pointer<::user::menu>track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32& pointScreen = nullptr, const ::size_i32 & sizeMinimum = {}) override;
 
       bool _001OnBeforeEnterIconic() override;
       bool _001OnBeforeEnterNormal() override;
@@ -2194,7 +2192,7 @@ namespace user
       virtual void on_hide_place_holder_child(::user::interaction* pinteraction);
 
 
-      void plain_edit_get_text_selection(strsize& iBeg, strsize& iEnd) const override;
+      void get_text_selection(strsize& iBeg, strsize& iEnd) const override;
 
       
       virtual bool set_sel_by_name(const ::string & strName);

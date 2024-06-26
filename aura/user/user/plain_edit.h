@@ -180,6 +180,8 @@ namespace user
       class ::time                           m_timeLastDraw;
       ::pointer_array < plain_edit_error >   m_errora;
       ::pointer<::message::key>              m_pmessagekeyLast;
+      
+      ::pointer < ::menu::track_popup >      m_ptrackpopupContextMenu;
 
       //bool                                m_bPendingOnSetText;
       //bool                                m_bPendingOnUpdate;
@@ -440,9 +442,9 @@ namespace user
 
 
       //virtual strsize get_text_length() override;
-      virtual strsize _001_get_text_length();
+      virtual strsize get_text_length();
       virtual ::collection::count line_count() const;
-      virtual void plain_edit_get_text(string & str) const;
+      void get_text(string & str) const override;
 
       virtual void on_set_property(::data::property_change & change) override;
       virtual ::payload on_get_property(const ::atom_array & atoma) const override;
@@ -456,7 +458,7 @@ namespace user
       //void get_text_selection(strsize & iSelStart, strsize & iSelEnd);
       //void get_text_selection(strsize & iSelBeg, strsize & iSelEnd);
       //void set_text(const ::string & str, const ::action_context & actioncontext) override;
-      virtual void plain_edit_set_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext);
+      void set_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext) override;
       //void set_selection_text(const ::string & psz, const ::action_context & actioncontext) override;
       void set_selection_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext);
       //void _001SetSelEnd(strsize iSelEnd, const ::action_context & actioncontext) override;
@@ -466,10 +468,10 @@ namespace user
       //void set_text_selection(strsize iSelStart, strsize iSelEnd, const ::action_context & actioncontext = ::e_source_user) override;
       void plain_edit_set_text_selection_begin(strsize iSelStart, const ::action_context & actioncontext);
       void plain_edit_set_text_selection_end(strsize iSelEnd, const ::action_context & actioncontext);
-      void plain_edit_set_text_selection(strsize iSelStart, strsize iSelEnd, const ::action_context & actioncontext);
+      void set_text_selection(strsize iSelStart, strsize iSelEnd, const ::action_context & actioncontext) override;
       virtual void _unlocked_plain_edit_on_change_text_selection(const ::action_context & actioncontext);
-      void plain_edit_get_text_selection(strsize & iSelStart, strsize & iSelEnd) const override;
-      void plain_edit_get_text_selection(strsize& iSelStart, strsize& iSelEnd, strsize & iComposingStart, strsize & iComposingEnd) const override;
+      void get_text_selection(strsize & iSelStart, strsize & iSelEnd) const override;
+      void get_text_selection(strsize& iSelStart, strsize& iSelEnd, strsize & iComposingStart, strsize & iComposingEnd) const override;
 
       void _001EnsureVisibleChar(::draw2d::graphics_pointer & pgraphics, strsize iChar);
       void _001EnsureVisibleLine(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine);
@@ -543,9 +545,9 @@ namespace user
 
       virtual void on_before_change_text();
 
-      void plain_edit_insert_text(const ::scoped_string & str, bool bForceNewStep, const ::action_context & context) override;
+      void insert_text(const ::scoped_string & str, bool bForceNewStep, const ::action_context & context) override;
 
-      virtual void plain_edit_insert_text(::draw2d::graphics_pointer& pgraphics, const ::scoped_string & str, bool bForceNewStep);
+      virtual void insert_text(::draw2d::graphics_pointer& pgraphics, const ::scoped_string & str, bool bForceNewStep);
 
       virtual void plain_edit_update(::draw2d::graphics_pointer& pgraphics, bool bFullUpdate, ::collection::index iLineUpdate);
 

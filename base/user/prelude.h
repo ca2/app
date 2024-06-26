@@ -20,7 +20,7 @@ namespace user
    class create_struct;
    class control_event;
 
-   class menu_item;
+   class ::menu::item;
    class menu_item_ptra;
    class menu;
 

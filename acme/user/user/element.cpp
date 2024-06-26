@@ -3099,108 +3099,6 @@ namespace user
 
    }
 
-
-   //bool element::track_popup_menu(::user::menu_item * pitem,i32 iFlags)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return false;
-
-   //}
-
-
-   //::pointer<::user::menu>element::track_popup_xml_menu_text(string strXml,i32 iFlags)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
-   //::pointer<::user::menu>element::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
-
-   //bool element::track_popup_menu(::user::menu_item * pitem,i32 iFlags,::message::message * pmessage)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return false;
-
-   //}
-
-
-   //::pointer<::user::menu>element::track_popup_xml_menu_text(string strXml,i32 iFlags,::message::message * pmessage)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
-   //::pointer<::user::menu>element::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags,::message::message * pmessage)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
-   //bool element::track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point_i32 & point)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return false;
-
-   //}
-
-
-   //::pointer<::user::menu>element::track_popup_xml_menu(const ::payload & varXml,i32 iFlags, const ::point_i32 & point, const size_i32 & size)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
-   //::pointer<::user::menu>element::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags, const ::point_i32 & point)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
-   //::pointer<::user::menu>element::track_popup_xml_menu_file(::payload payloadFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
-   //{
-
-   //   throw ::interface_only();
-
-   //   return nullptr;
-
-   //}
-
-
    bool element::_001OnBeforeEnterIconic()
    {
 
@@ -3980,14 +3878,14 @@ namespace user
 
 
    // Text Edit
-   void element::plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd) const
+   void element::get_text_selection(strsize & iBeg, strsize & iEnd) const
    {
 
 
    }
 
 
-   void element::plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd, strsize & iComposingStart, strsize & iComposingEnd) const
+   void element::get_text_selection(strsize & iBeg, strsize & iEnd, strsize & iComposingStart, strsize & iComposingEnd) const
    {
 
 
@@ -4533,7 +4431,7 @@ namespace user
    }
 
 
-   void element::plain_edit_insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context)
+   void element::insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context)
    {
 
    }

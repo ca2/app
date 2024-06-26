@@ -11,7 +11,7 @@ class enumeration
 public:
 
    
-   using ENUM_TAG = ENUM_TYPE_TAG;
+   using ENUM_TYPE_TAG = enum_type_t;
 
    using ENUM_TYPE = ENUM;
 
@@ -173,14 +173,5 @@ constexpr  ENUM operator & (ENUM e, INTEGRAL i) { return (ENUM) ((::u64)e & (::u
 template < primitive_integral INTEGRAL > \
 constexpr  ENUM operator & (INTEGRAL i, ENUM e) { return (ENUM) ((::u64)i & (::u64)e); } \
 using ENUMERATION = ::enumeration < ENUM >
-
-
-template < typename ENUM > struct raw_enum_of_struct<::enumeration <ENUM>> { using type = ENUM; };
-template < typename ENUM >
-using raw_enum_of = typename raw_enum_of_struct<erase_const_effemeral<ENUM>>::type;
-
-
-template < primitive_enum ENUM >
-inline ::i64 as_i64(const ENUM & e) { return (::i64)(::raw_enum_of<ENUM>) e; }
 
 

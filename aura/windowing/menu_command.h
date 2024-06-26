@@ -14,9 +14,10 @@
 namespace windowing
 {
 
+   class menu_item;
 
    class CLASS_DECL_AURA menu_command :
-      public ::user::menu_command        // class private to this file !
+      public ::menu::command        // class private to this file !
    {
    public: // re-implementations only
 

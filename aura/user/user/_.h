@@ -134,7 +134,7 @@ namespace user
    //class check_box;
    //class menu_interaction;
    //class menu_button;
-   //class menu_item;
+   //class ::menu::item;
    //class menu_item_ptra;
    //class frame_window;
    class toolbar;
@@ -290,10 +290,10 @@ namespace user
 
 
    //class menu_item_ptra;
-   //class menu_item;
+   //class ::menu::item;
    //class menu_item_ptra;
    class front_end;
-   //class menu_item;
+   //class ::menu::item;
 
    //class list_column_array;
 

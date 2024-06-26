@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "apex/user/menu/menu.h"
+#include "aura/user/menu/track_popup.h"
 #include "aura/user/user/interaction.h"
 
 
@@ -8,24 +10,22 @@ namespace user
 {
 
 
-   class menu_item;
-
-
    class CLASS_DECL_BASE menu :
-      virtual public ::user::interaction
+      virtual public ::user::interaction,
+      virtual public ::menu::menu
    {
    public:
 
-
+      
+      ::pointer<::user::menu>                m_pmenuParent;
+      ::pointer<::menu::item>                m_pmenuitem;
       ::size_i32                             m_sizeMinimum;
-      ::pointer<menu>                        m_pmenuParent;
-      ::pointer<menu_item>                   m_pmenuitem;
-      //::pointer<menu_item>                 m_pmenuitemClick;
-      ::pointer<menu_item>                   m_pmenuitemShowSubMenu2;
+      ::pointer<::menu::item>                m_pmenuitemShowSubMenu2;
       bool                                   m_bHideSubMenu2;
       ///::pointer<::user::interaction>        m_puserinteractionParent;
       ::pointer<::channel>                   m_pchannelNotify;
       bool                                   m_bCloseParentOnClose;
+      ::pointer < ::menu::track_popup >      m_ptrackpopup;
 //#ifdef WINDOWS_DESKTOP
 //      HMENU                                  m_hmenu;
 //#endif
@@ -34,28 +34,30 @@ namespace user
       double                                 m_dCheckBoxSize;
       bool                                   m_bAutoDelete;
       double                                 m_dHeaderHeight;
-      ::pointer<::user::menu_item>          m_pitemClose;
-      //atom                                     m_atomSubMenu;
-      //::pointer<::user::menu_item>          m_pitemSubMenu;
+      ::pointer<::menu::item>                m_pitemClose;
+      //atom                                 m_atomSubMenu;
+      //::pointer<::menu::item>              m_pitemSubMenu;
       i32                                    m_iHoverSubMenu;
       u32                                    m_dwOut;
-      ::pointer<menu>                       m_pmenuSubMenu;
-      //atom                                     m_atomTimerMenu;
+      ::pointer<menu>                        m_pmenuSubMenu;
+      //atom                                 m_atomTimerMenu;
       point_i32                              m_pointTrack;
-      bool                                   m_bUsePositionHint;
-      point_i32                              m_pointPositionHint;
-      int                                    m_iFlags;
-      bool                                   m_bPositionHint;
+      bool                                   m_bScreenHint;
+      rectangle_i32                          m_rectangleScreenHint;
+      //int                                  m_iFlags;
+      ::menu::e_track_popup                  m_etrackpopup;
+      bool                                   m_bCursorHint;
+      ::point_i32                            m_pointCursorHint;
       bool                                   m_bInline;
       bool                                   m_bMenuOk;
-      ::pointer<menu_item>                  m_pmenuitemSub;
-      ::i32_array                              m_iaColumnWidth;
-      ::i32_array                              m_iaColumnHeight;
+      ::pointer<::menu::item>                m_pmenuitemSub;
+      ::i32_array                            m_iaColumnWidth;
+      ::i32_array                            m_iaColumnHeight;
       bool                                   m_bCloseButton;
 
 
       menu();
-      menu(::user::menu_item * pitem);
+      menu(::menu::item * pitem);
       ~menu() override;
 
       //virtual void nextstyle(::user::style_context * pcontext) override;
@@ -79,33 +81,38 @@ namespace user
 
       virtual ::channel * get_notify_channel();
 
-      ::user::menu_item * GetSubMenu(i32 i);
+      ::menu::item * GetSubMenu(i32 i);
 
       virtual void defer_initialize_user_menu();
       virtual void initialize_user_menu();
+      
+      
+      virtual void set_minimum_width(::i32 iWidth);
 
       //virtual void layout_menu(::draw2d::graphics_pointer& pgraphics);
 
-      virtual bool contains_menu_item(menu_item * pitem, bool bRecursive = true) const;
+      virtual bool contains_menu_item(::menu::item * pitem, bool bRecursive = true) const;
 
-      virtual void update_flags(int iFlags);
-      virtual void update_position(const ::point_i32 & point);
-      virtual void hints(int iFlags, const ::point_i32 & point);
+      virtual void update_track_flags(const ::menu::e_track_popup & etrackpopup);
+      virtual void update_track_cursor(const ::point_i32 & pointCursorHint);
+      virtual void update_track_rectangle(const ::rectangle_i32 & rectangleScreenHint);
+      virtual void track_hints(::menu::track_popup * ptrackpopup);
 
       virtual bool create_menu(::channel * pchannelNotify = nullptr, ::user::interaction * puiParent = nullptr);
       virtual bool create_inline_menu(::channel* pchannelNotify = nullptr, ::user::interaction * puiParent = nullptr);
-      virtual bool track_popup_menu(::channel* pchannelNotify = nullptr, ::user::interaction * puiParent = nullptr);
+      ///virtual bool track_popup_menu(::channel* pchannelNotify = nullptr, ::user::interaction * puiParent = nullptr);
+      virtual bool track_popup_menu(::menu::track_popup * ptrackpopup);
 
       void _001OnTimer(::timer * ptimer) override;
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void show_sub_menu(::user::menu_item * pmenuitem);
+      virtual void show_sub_menu(::menu::item * pmenuitem);
       virtual void hide_sub_menu();
 
 
-      virtual void show_sub_menu_delayed(::user::menu_item * pmenuitem);
+      virtual void show_sub_menu_delayed(::menu::item * pmenuitem);
       virtual void hide_sub_menu_delayed();
 
 
@@ -133,9 +140,9 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      ::pointer<::user::menu_item>get_menu_item();
+      ::pointer<::menu::item>get_menu_item();
 
-      //::pointer<::user::menu_item>get_menu_item(::user::interaction * pinteraction);
+      //::pointer<::menu::item>get_menu_item(::user::interaction * pinteraction);
 
       //bool has_pending_graphical_update() override;
 
@@ -149,16 +156,16 @@ namespace user
 
       //virtual bool add_xml_menu(const ::payload & varXml);
 
-      virtual void update_command(menu_item * pitemParent);
+      virtual void update_command(::menu::item * pitemParent);
 
-      void calc_size(menu_item * pitem, ::draw2d::graphics_pointer & pgraphics, i32 & iMaxWidth, i32 & iMaxHeight);
-      void layout_buttons(menu_item * pitem, i32 iMaxWidth, ::rectangle_i32 * prectangle, const ::rectangle_i32 & lpcrectBound);
+      void calc_size(::menu::item * pitem, ::draw2d::graphics_pointer & pgraphics, i32 & iMaxWidth, i32 & iMaxHeight);
+      void layout_buttons(::menu::item * pitem, i32 iMaxWidth, ::rectangle_i32 * prectangle, const ::rectangle_i32 & lpcrectBound);
 
 
 
       virtual void defer_close();
 
-      virtual ::pointer<::user::menu_interaction>create_menu_button(::draw2d::graphics_pointer & pgraphics, ::user::menu_item * pitem);
+      virtual ::pointer<::user::menu_interaction>create_menu_button(::draw2d::graphics_pointer & pgraphics, ::menu::item * pitem);
 
       void route_command(::message::command* pcommand, bool bRouteToKeyDescendant) override;
 
@@ -168,6 +175,7 @@ namespace user
 
       void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 
+//      virtual bool create_buttons(::draw2d::graphics_pointer & pgraphics);
 
    };
 

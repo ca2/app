@@ -1102,7 +1102,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 //////   class interaction;
 //////   class layout;
 //////   //class place_holder;
-//////   //class menu_item;
+//////   //class ::menu::item;
 //////   //class form;
 //////   class style;
 //////   class menu_interaction;

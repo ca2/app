@@ -407,6 +407,22 @@ namespace windowing
    }
 
 
+   bool display::get_zoomed_window_site(::collection::index iWorkspace, ::rectangle_i32 & rectangle)
+   {
+   
+      return get_workspace_rectangle(iWorkspace, rectangle);
+      
+   }
+
+
+   int display::get_zoomed_title_bar_height()
+   {
+    
+      return -1;
+      
+   }
+
+
    bool display::get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 & rectangle)
    {
 

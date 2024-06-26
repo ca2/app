@@ -565,8 +565,13 @@ namespace user
             route(ptopic);
 
          }
-
-         m_callbackHls(m_hls, true);
+         
+         if(m_callbackHls)
+         {
+            
+            m_callbackHls(m_hls, true);
+            
+         }
 
       }
 

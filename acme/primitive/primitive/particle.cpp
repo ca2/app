@@ -76,7 +76,6 @@ particle::particle() :
 
 #endif
 
-
 particle::~particle()
 {
 
@@ -2436,21 +2435,6 @@ void * particle::new_object(const char * psz)
    
 }
 
-
-void particle::write_to_stream(::binary_stream & stream)
-{
-
-   throw interface_only();
-
-}
-
-
-void particle::read_from_stream(::binary_stream & stream)
-{
-
-   throw interface_only();
-
-}
 
 
 CLASS_DECL_ACME ::pointer < ::particle > detach_pointer(::lparam& lparam)

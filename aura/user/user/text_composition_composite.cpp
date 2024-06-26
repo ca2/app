@@ -62,10 +62,10 @@ namespace user
 	}
 
 
-	void text_composition_composite::plain_edit_insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & actioncontext)
+	void text_composition_composite::insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & actioncontext)
 	{
 
-		m_ptextcompositionclient->plain_edit_insert_text(scopedstr, bForceNewStep, actioncontext);
+		m_ptextcompositionclient->insert_text(scopedstr, bForceNewStep, actioncontext);
 
 	}
 

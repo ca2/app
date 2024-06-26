@@ -13,6 +13,9 @@
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/user/_text_stream.h"
 #include "aura/message/user.h"
+#include "aura/windowing/display.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
 #include "aura/user/user/style.h"
 #include "base/platform/session.h"
 
@@ -940,8 +943,22 @@ namespace experience
       auto iButtonSize = get_control_box()->calculate_button_size(pgraphics);
 
       auto iCaptionHeight = rectangleMargin.top() + iButtonSize + rectangleMargin.bottom();
+      
+      auto pdisplay = m_pframewindow->window()->windowing()->display();
+
+      if(pdisplay)
+      {
+         
+         auto iZoomedCaptionHeightHint= pdisplay->get_zoomed_title_bar_height();
+         
+         iCaptionHeight =maximum(iCaptionHeight, iZoomedCaptionHeightHint);
+         
+      }
+
 
       m_iCaptionHeight = iCaptionHeight;
+      
+      
 
    }
 

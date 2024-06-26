@@ -162,5 +162,7 @@ public:
 
    virtual void delete_this();
 
+   virtual void write_to_stream(::binary_stream & stream);
+   virtual void read_from_stream(::binary_stream & stream);
 
 };

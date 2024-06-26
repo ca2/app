@@ -56,7 +56,7 @@ namespace windowing
    //    for (int i = 0; i < straParent.get_count(); i++)
    //    {
 
-   //       auto pitem = pparticle->__create < menu_item >();
+   //       auto pitem = pparticle->__create < ::menu::item >();
 
    //       pitem->m_strParent = straParent[i];
    //       pitem->m_strMenu = straMenu[i];
@@ -81,7 +81,7 @@ namespace windowing
    // }
 
 
-   // menu_item * menu::find_item(const ::string & pszParent, const ::string & pszId)
+   // ::menu::item * menu::find_item(const ::string & pszParent, const ::string & pszId)
    // {
 
    //    for (int i = 0; i < m_itema.get_count(); i++)

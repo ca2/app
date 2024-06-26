@@ -37,9 +37,9 @@ namespace user
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
-      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, menu_item * pitem) = 0;
-      //virtual bool prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) = 0;
-      //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) = 0;
+      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem) = 0;
+      //virtual bool prepare_menu(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem) = 0;
+      //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem) = 0;
       //virtual void set_style(enum_style estyle);
 
       //virtual void set_style(const ::string & pszStyle);

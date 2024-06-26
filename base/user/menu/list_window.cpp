@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "list_window.h"
-#include "item.h"
-#include "item_ptra.h"
 #include "acme/constant/message.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "base/user/menu/item.h"
+#include "base/user/menu/item_ptra.h"
 
 
 namespace user
@@ -27,7 +27,7 @@ namespace user
    }
 
 
-   menu_list_window::menu_list_window(menu_item * pitem)
+   menu_list_window::menu_list_window(::menu::item * pitem)
    {
 
       m_bAutoClose         = true;
@@ -88,7 +88,7 @@ namespace user
    }
 
 
-   void menu_list_window::calc_size(menu_item * pitemParent, ::draw2d::graphics_pointer & pgraphics, i32 & iMaxWidth, i32 & iMaxHeight)
+   void menu_list_window::calc_size(::menu::item * pitemParent, ::draw2d::graphics_pointer & pgraphics, i32 & iMaxWidth, i32 & iMaxHeight)
    {
 
       if (!m_bMenuOk)
@@ -115,7 +115,7 @@ namespace user
       for(i32 i = 0; i < pitemParent->m_pmenuitema->get_size(); i++)
       {
 
-         menu_item * pitem = pitemParent->m_pmenuitema->element_at(i);
+         ::menu::item * pitem = pitemParent->m_pmenuitema->element_at(i);
 
          if(pitem->m_puserinteraction == nullptr)
          {
@@ -154,7 +154,7 @@ namespace user
    }
 
 
-   void menu_list_window::layout_buttons(menu_item * pitemParent, i32 iMaxWidth, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleBound)
+   void menu_list_window::layout_buttons(::menu::item * pitemParent, i32 iMaxWidth, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangleBound)
    {
 
       if (!m_bMenuOk)
@@ -174,7 +174,7 @@ namespace user
       for(i32 i = 0; i < pitemParent->m_pmenuitema->get_size(); i++)
       {
 
-         menu_item * pitem = pitemParent->m_pmenuitema->element_at(i);
+         ::menu::item * pitem = pitemParent->m_pmenuitema->element_at(i);
 
          prectangle->bottom() = (::i32) (prectangle->top() + m_dItemHeight * 1.2 - 2);
 
@@ -240,7 +240,7 @@ namespace user
 
       }
 
-      ::pointer<menu_item>pitem = get_menu_item();
+      ::pointer<::menu::item>pitem = get_menu_item();
 
       if(pitem == nullptr)
       {
@@ -272,7 +272,7 @@ namespace user
 
       m_size.cx() = iMaxWidth * 7 / 4;
 
-      m_size.cy() = (::i32) (m_dHeaderHeight + pitem->m_iSeparatorCount * 3 + pitem->m_iFullHeightItemCount * m_dItemHeight + 4);
+      m_size.cy() = (::i32) (m_dHeaderHeight + pitem->get_separator_item_count() * 3 + pitem->get_full_height_item_count() * m_dItemHeight + 4);
 
       ::rectangle_i32 rectangle(4, (::i32) m_dHeaderHeight + 4, m_size.cx() - 8, 4);
 

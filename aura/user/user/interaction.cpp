@@ -3193,6 +3193,12 @@ namespace user
          }
 
       }
+      else if (::type(this).as_string().contains("main_frame"))
+      {
+         
+         print_line("main_frame");
+         
+      }
 
    }
 
@@ -4025,7 +4031,7 @@ namespace user
    }
 
 
-   void interaction::plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd) const
+   void interaction::get_text_selection(strsize & iBeg, strsize & iEnd) const
    {
 
 
@@ -11129,7 +11135,7 @@ namespace user
    }
 
 
-   void interaction::plain_edit_insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & actioncontext)
+   void interaction::insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & actioncontext)
    {
 
       auto strText = get_window_text();
@@ -11138,7 +11144,7 @@ namespace user
 
       strsize iEnd = strText.length();
 
-      plain_edit_get_text_selection(iBeg, iEnd);
+      get_text_selection(iBeg, iEnd);
 
       strText.translate_index(iBeg);
 
@@ -19563,9 +19569,9 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       ::collection::index iMatchingMonitor = pdisplay->get_best_monitor(&rectangleNew, rectangleWindow, eactivation, this);
 
-      ::rectangle_i32 rectangleWorkspace;
-
-      pdisplay->get_workspace_rectangle(iMatchingMonitor, rectangleWorkspace);
+      ::rectangle_i32 rectangleZoomedWindowSite;
+      
+      pdisplay->get_zoomed_window_site(iMatchingMonitor, rectangleZoomedWindowSite);
 
       if (bSet && (!::is_empty(rectangle) || iMatchingMonitor >= 0))
       {
@@ -19588,7 +19594,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          order(zorderParam);
 
-         place(rectangleWorkspace);
+         place(rectangleZoomedWindowSite);
 
          //display(e_display_zoomed, eactivation | e_activation_display_change);
 
@@ -19597,7 +19603,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       if (prectangle != nullptr)
       {
 
-         *prectangle = rectangleWorkspace;
+         *prectangle = rectangleZoomedWindowSite;
 
 
       }
@@ -24092,8 +24098,6 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
          return;
 
       }
-
-
 
       if (m_bDefaultClickHandling || m_bDefaultMouseHoverHandling)
       {

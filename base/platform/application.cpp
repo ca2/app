@@ -387,7 +387,7 @@ namespace base
       else
       {
 
-         auto pitemNewChild = __create_new<::user::menu_item>();
+         auto pitemNewChild = __create_new<::menu::item>();
          pitemNewChild->m_pmenu = pmenu;
          pitemNewChild->m_atom = "separator";
          pmenu->m_pmenuitem->add_item(pitemNewChild);
@@ -399,7 +399,7 @@ namespace base
 
       {
 
-         auto pitemNewChild = __create_new<::user::menu_item>();
+         auto pitemNewChild = __create_new<::menu::item>();
          pitemNewChild->m_pmenu = pmenu;
          pitemNewChild->m_atom = "display_about";
          pitemNewChild->m_strTitle = "About";
@@ -440,6 +440,18 @@ namespace base
    {
 
       return document_manager_container::impact_system(atom);
+
+   }
+
+
+   i32 application::track_popup_menu(::menu::track_popup * ptrackpopup)
+   {
+      
+      auto puser = session()->user()->m_pbaseuser;
+
+      puser->track_popup_menu(ptrackpopup);
+
+      return 1;
 
    }
 

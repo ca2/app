@@ -61,9 +61,9 @@ namespace axis
 
       void default_style_construct();
 
-      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, menu_item * pitem) override;
-      //virtual bool prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) override;
-      //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) override;
+      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem) override;
+      //virtual bool prepare_menu(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem) override;
+      //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem) override;
 
 
       virtual void initialize_style() override;

@@ -53,6 +53,9 @@
 		9A4B40692524363C00F476B3 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4B40682524363C00F476B3 /* libaura.dylib */; };
 		9A4B406A2524363C00F476B3 /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A281ADA252435C3009FA9CB /* libbase.dylib */; };
 		9A4B406C2524376800F476B3 /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4B406B2524376800F476B3 /* libaxis.dylib */; };
+		9ADF04192C274B55004CF1C9 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF04162C274B55004CF1C9 /* user.cpp */; };
+		9ADF041A2C274B55004CF1C9 /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADF04172C274B55004CF1C9 /* user.h */; };
+		9ADF041B2C275401004CF1C9 /* user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADF04162C274B55004CF1C9 /* user.cpp */; };
 		9AE6421F284AA6570079EBA0 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A7825243402009FA9CB /* _.h */; };
 		9AE64220284AA6570079EBA0 /* session.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A7B25243402009FA9CB /* session.h */; };
 		9AE64221284AA6570079EBA0 /* android.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A281A8C25243402009FA9CB /* android.h */; };
@@ -176,6 +179,8 @@
 		9A4B406B2524376800F476B3 /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8C03522A281A370049B167 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A8C03532A281A380049B167 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
+		9ADF04162C274B55004CF1C9 /* user.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user.cpp; sourceTree = "<group>"; };
+		9ADF04172C274B55004CF1C9 /* user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user.h; sourceTree = "<group>"; };
 		9AE64252284AA6570079EBA0 /* libios_bred.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_bred.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -222,6 +227,7 @@
 				9A281A7725243402009FA9CB /* include */,
 				9A281A8225243402009FA9CB /* inline */,
 				9A281A7925243402009FA9CB /* platform */,
+				9ADF04142C274A9F004CF1C9 /* user */,
 				9A8C03522A281A370049B167 /* _____debug.xcconfig */,
 				9A8C03532A281A380049B167 /* _____release.xcconfig */,
 				9A281AA425243402009FA9CB /* _.cpp */,
@@ -333,6 +339,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9ADF04142C274A9F004CF1C9 /* user */ = {
+			isa = PBXGroup;
+			children = (
+				9ADF04152C274ABE004CF1C9 /* user */,
+			);
+			path = user;
+			sourceTree = "<group>";
+		};
+		9ADF04152C274ABE004CF1C9 /* user */ = {
+			isa = PBXGroup;
+			children = (
+				9ADF04182C274B55004CF1C9 /* user */,
+			);
+			path = user;
+			sourceTree = "<group>";
+		};
+		9ADF04182C274B55004CF1C9 /* user */ = {
+			isa = PBXGroup;
+			children = (
+				9ADF04162C274B55004CF1C9 /* user.cpp */,
+				9ADF04172C274B55004CF1C9 /* user.h */,
+			);
+			name = user;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -355,6 +386,7 @@
 				9A281ACB25243402009FA9CB /* __debug_box_clear_impl.h in Headers */,
 				9A281AAD25243402009FA9CB /* library.h in Headers */,
 				9A281AB625243402009FA9CB /* _platform.h in Headers */,
+				9ADF041A2C274B55004CF1C9 /* user.h in Headers */,
 				9A281AB025243402009FA9CB /* application.h in Headers */,
 				9A281ABA25243402009FA9CB /* _application.h in Headers */,
 				9A281ACA25243402009FA9CB /* _new_impl.h in Headers */,
@@ -517,6 +549,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9ADF04192C274B55004CF1C9 /* user.cpp in Sources */,
 				9A281AB525243402009FA9CB /* application.cpp in Sources */,
 				9A281AD125243402009FA9CB /* idpool.cpp in Sources */,
 				9A281AB225243402009FA9CB /* session.cpp in Sources */,
@@ -530,6 +563,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9ADF041B2C275401004CF1C9 /* user.cpp in Sources */,
 				9AE64242284AA6570079EBA0 /* application.cpp in Sources */,
 				9AE64243284AA6570079EBA0 /* idpool.cpp in Sources */,
 				9AE64244284AA6570079EBA0 /* session.cpp in Sources */,

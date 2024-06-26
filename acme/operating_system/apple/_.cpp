@@ -155,13 +155,6 @@ string apple_get_executable_path()
    
 }
 
-//void apple_on_app_activate()
-//{
-//
-//   ::acmeacmesystem()->call_subject(id_app_activated);
-//
-//}
-
 
 //void apple_on_new_file()
 //{

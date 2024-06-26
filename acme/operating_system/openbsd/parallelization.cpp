@@ -259,9 +259,12 @@ bool __os_term_thread()
 
 
 
-void x11_process_messages();
-void xcb_process_messages();
+//void x11_process_messages();
+//void xcb_process_messages();
 //void wayland_process_messages();
+namespace x11{namespace nano { namespace user{void process_messages();}}}
+
+namespace xcb{namespace nano { namespace user{void process_messages();}}}
 
 
 void _do_tasks()

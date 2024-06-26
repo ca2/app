@@ -26,7 +26,7 @@ namespace user
       string_map < ::image_pointer >      m_pimageMap;
       string_map < ::image_pointer >      m_pimageMapGray;
       //::i32_array                         m_iaPopup;
-      ::pointer < menu_item >             m_pmenuitem;
+      ::pointer < ::menu::item >             m_pmenuitem;
 
 
       menu_impact();

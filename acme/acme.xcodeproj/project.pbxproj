@@ -4987,6 +4987,7 @@
 		9A420C572B69146700D956E1 /* strdup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = strdup.cpp; sourceTree = "<group>"; };
 		9A4387B6299E499800D2EE15 /* request.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = request.cpp; sourceTree = "<group>"; };
 		9A4387B8299E499900D2EE15 /* request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = request.h; sourceTree = "<group>"; };
+		9A46F1222C2B72EB005BA13A /* _impl_ptr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _impl_ptr.h; sourceTree = "<group>"; };
 		9A4DDE1C2B77395700477878 /* subparticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = subparticle.h; sourceTree = "<group>"; };
 		9A4DDE1D2B77395700477878 /* subparticle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = subparticle.cpp; sourceTree = "<group>"; };
 		9A4EF4A42AE35AA70048F22F /* image32_array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = image32_array.cpp; sourceTree = "<group>"; };
@@ -7405,6 +7406,7 @@
 				9A68A68A2511442F008DABD2 /* var_element.cpp */,
 				9A787C97264C0370003DF8A0 /* work.cpp */,
 				9A787C98264C0370003DF8A0 /* work.h */,
+				9A46F1222C2B72EB005BA13A /* _impl_ptr.h */,
 			);
 			path = primitive;
 			sourceTree = "<group>";

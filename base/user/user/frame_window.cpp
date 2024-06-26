@@ -1206,8 +1206,14 @@ namespace user
          m_pupdowntarget = puiParent;
 
       }
-
-      if (should_save_window_rectangle())
+      
+      if(windowing()->is_sandboxed())
+      {
+         
+         display_zoomed();
+         
+      }
+      else if (should_save_window_rectangle())
       {
 
          //bool bForceRestore = false;

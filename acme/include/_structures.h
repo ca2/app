@@ -7,6 +7,13 @@ struct transfer_t {};
 struct allocate_t {};
 struct function_t {};
 
+struct sequence_t {};
+
+
+struct pointer_type_t{};
+struct enum_type_t {};
+struct raw_type_t {};
+
 
 struct i32_sz
 {

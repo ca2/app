@@ -20,7 +20,7 @@ class e_check
 public:
 
 
-   using ENUM_TAG = ENUM_TYPE_TAG;
+   using ENUM_TYPE_TAG = enum_type_t;
 
 
    ::enum_check        m_echeck;

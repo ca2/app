@@ -779,6 +779,7 @@ list(APPEND library_source
         #primitive/primitive/command.cpp
         primitive/primitive/compare_predicate.h
         #primitive/primitive/context_object_traits.cpp
+        primitive/primitive/domain_enumeration.h
         #primitive/primitive/edit.cpp
         #primitive/primitive/element.cpp
         #primitive/primitive/element.cpp
@@ -1601,6 +1602,7 @@ list(APPEND library_source
         operating_system/security_attributes.h
         operating_system/shared_posix/c_error_number.cpp
         operating_system/shared_posix/c_error_number.h
+        operating_system/shared_posix/debug.cpp
         operating_system/shared_posix/earth_time_shift.cpp
         operating_system/shared_posix/errno.cpp
         operating_system/shared_posix/stdio_file.cpp
@@ -2626,7 +2628,7 @@ if (${FREEBSD})
             #operating_system/freebsd/get_module_path_openbsd.cpp
             operating_system/freebsd/graphics.cpp
             operating_system/freebsd/internal.h
-            operating_system/freebsd/library.cpp
+            #operating_system/freebsd/library.cpp
             operating_system/freebsd/os.cpp
             operating_system/freebsd/parallelization.cpp
             operating_system/freebsd/process.cpp
@@ -2790,7 +2792,6 @@ endif ()
 
 add_library(${PROJECT_NAME} SHARED ${library_source}
         _static_factory.h
-        primitive/primitive/domain_enumeration.h
 )
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
@@ -2872,7 +2873,7 @@ elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
     target_link_libraries(${PROJECT_NAME} PRIVATE
             ${system_libraries} ${global_library_references}
-            libstatic_nano_dynamic_library_dl.a
+            -lstatic_nano_dynamic_library_dl
     )
     target_link_libraries(static_${PROJECT_NAME} PRIVATE
             ${static_system_libraries}

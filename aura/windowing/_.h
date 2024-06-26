@@ -52,11 +52,9 @@ namespace windowing
    
    DECLARE_ENUMERATION(e_status, enum_status);
 
-   
-   class menu;
    class menu_item;
-
-
+   class menu;
+   
 } // namespace windowing
 
 

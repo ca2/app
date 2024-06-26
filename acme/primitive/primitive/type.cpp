@@ -367,20 +367,20 @@ bool type_atom::operator == (const ::std::type_info& typeinfo) const
 }
 
 
-bool type_atom::operator == (const ::type_atom & typeatom) const
-{
-
-   return ::atom::operator == (typeatom);
-
-}
-
-
-bool type_atom::operator == (const ::string& strType) const
-{
-
-   return ::atom::operator == (strType);
-
-}
+//bool type_atom::operator == (const ::type_atom & typeatom) const
+//{
+//
+//   return ::atom::operator == (typeatom);
+//
+//}
+//
+//
+//bool type_atom::operator == (const ::string& strType) const
+//{
+//
+//   return ::atom::operator == (strType);
+//
+//}
 
 
 //bool type_atom::operator != (const ::std::type_info& typeinfo) const

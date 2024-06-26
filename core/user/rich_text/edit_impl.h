@@ -91,7 +91,7 @@ namespace user
          using rich_text::edit::on_selection_change;
          void on_selection_change() override;
 
-         void plain_edit_insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context) override;
+         void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context) override;
 
          void install_message_routing(::channel * psender) override;
 
@@ -165,7 +165,7 @@ namespace user
          //void write(::binary_stream & stream) const override;
          //void read(::binary_stream & stream) override;
 
-         void plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd) const override;
+         void get_text_selection(strsize & iBeg, strsize & iEnd) const override;
          void _001GetSelLineText(string & str) override;
 
 

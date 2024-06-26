@@ -1,6 +1,5 @@
 #include "framework.h"
 #include "button.h"
-#include "item.h"
 #include "menu.h"
 #include "aura/user/user/calc_size.h"
 #include "acme/constant/message.h"
@@ -9,6 +8,7 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/list.h"
+#include "base/user/menu/item.h"
 #include "base/user/user/style.h"
 #include "base/platform/session.h"
 #include "base/user/user/user.h"
@@ -41,7 +41,7 @@ namespace user
    }
 
 
-   void menu_button::initialize_menu_interaction(menu_item* pitem)
+   void menu_button::initialize_menu_interaction(::menu::item* pitem)
    {
 
       //auto estatus = 
@@ -372,7 +372,7 @@ namespace user
 
       pmouse->previous();
 
-      ::user::menu_item * pmenuitemPopup = nullptr;
+      ::menu::item * pmenuitemPopup = nullptr;
 
       if (m_pmenuitem->m_bPopup)
       {

@@ -501,20 +501,6 @@ namespace user
 
 
 
-      //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point_i32 & point = {});
-      //virtual ::pointer<::user::menu>track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags, const ::point_i32 & point);
-      //virtual ::pointer<::user::menu>track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32 & pointScreen = nullptr, const ::size_i32& sizeMinimum = size_i32(0, 0));
-      //virtual ::pointer<::user::menu>track_popup_xml_menu_file(::payload payloadFile, i32 iFlags, const ::point_i32 & point = {}, const ::size_i32 & sizeMinimum = size_i32(0, 0));
-
-      //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags,::message::message * pmessage);
-      //virtual ::pointer<::user::menu>track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags,::message::message * pmessage);
-      //virtual ::pointer<::user::menu>track_popup_xml_menu_text(string strXml, i32 iFlags, ::message::message * pmessage);
-
-      //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags);
-      //virtual ::pointer<::user::menu>track_popup_xml_matter_menu(const ::string & pszMatter, i32 iFlags);
-      //virtual ::pointer<::user::menu>track_popup_xml_menu_text(string strXml,i32 iFlags);
-
-
       //virtual void exit_iconify();
       //virtual void exit_full_screen();
 
@@ -668,7 +654,7 @@ namespace user
 
       void edit_on_text(string str) override;
       void edit_on_sel(strsize iBeg, strsize iEnd) override;
-      void plain_edit_insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context) override;
+      void insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context) override;
 
 
       void on_text_composition(string str) override;
@@ -695,7 +681,7 @@ namespace user
       //virtual bool enable_window(bool bEnable );
 
       // Text Edit
-      //void plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd) const override;
+      //void get_text_selection(strsize & iBeg, strsize & iEnd) const override;
       ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
       ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x) override;
       ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;

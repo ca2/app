@@ -48,40 +48,6 @@ void debug_object_event_promisse_predicate()
 //   system()->call_subject(id_app_activated);
 //
 //}
-//
-//
-//void system_call_update_app_activated()
-//{
-//
-//   system()->process_subject(id_app_activated);
-//
-//}
-//void system_call_update_app_changed_occlusion_state()
-//{
-//
-//   system()->call_subject(id_app_changed_occlusion_state);
-//
-//}
-
-
-
-
-
-
-
-//void debug_id_eid()
-//{
-//
-//   auto pupdate = new_update();
-//
-//   ptopic->payload(id_filter) = "*.jpg";
-//
-//}
-
-
-
-
-
 
 
 //

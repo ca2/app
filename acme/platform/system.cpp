@@ -2504,6 +2504,8 @@ namespace acme
       else if (ptopic->m_atom == id_app_activated)
       {
 
+         node()->on_app_activated();
+         
          if (::is_set(application()))
          {
 
@@ -2512,8 +2514,6 @@ namespace acme
          }
 
       }
-
-
 
    }
 

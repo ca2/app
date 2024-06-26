@@ -1,5 +1,6 @@
 // Created by camilo on 2024-02-07 22:52 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "acme/exception/interface_only.h"
 
 
 subparticle::~subparticle()
@@ -193,6 +194,23 @@ void subparticle::delete_this()
 {
 
    delete this;
+
+}
+
+
+
+void subparticle::write_to_stream(::binary_stream & stream)
+{
+
+   throw interface_only();
+
+}
+
+
+void subparticle::read_from_stream(::binary_stream & stream)
+{
+
+   throw interface_only();
 
 }
 

@@ -2,33 +2,24 @@
 
 
 #include "apex/message/command.h"
-#include "acme/user/user/check.h"
-#include "acme/user/user/text.h"
-#include "apex/message/channel.h"
 
 
-namespace user
+namespace menu
 {
 
-   
-   class menu_item_ptra;
-   class menu_item;
 
 
-   class CLASS_DECL_AURA menu_command :
-      virtual public ::message::command,
-      virtual public ::data::property_container,      
-      virtual public ::user::check,
-      virtual public ::user::text
+   class CLASS_DECL_AURA command :
+      virtual public ::message::command
    {
    public:
 
 
-      menu_item_ptra *     m_pitema;
-      menu_item *          m_pitemContainer;
+      ::menu::item_ptra *     m_pitema;
+      ::menu::item *          m_pitemContainer;
 
 
-      menu_command();
+      command();
 
 
       //void delete_this() override;

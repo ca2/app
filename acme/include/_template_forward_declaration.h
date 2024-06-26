@@ -334,31 +334,6 @@ using atom_map = ::map < atom, TYPE, PAIR >;
 
 
 
-template < typename CONTAINER >
-concept container_type = requires(CONTAINER container)
-{
-
-   {container.this_is_a_container()} -> std::same_as<void>;
-
-};
-
-
-template < typename ARRAY >
-concept primitive_array = requires(ARRAY array, ::collection::index i)
-{
-   array.get_count();
-   array.element_at(i);
-};
-
-
-template < typename CONTAINER >
-concept primitive_container = primitive_array < CONTAINER >;
-
-template < typename CONTAINER >
-concept non_container = !primitive_container < CONTAINER >;
-
-
-
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array < TYPE, ARG_TYPE > >
 class comparable_eq_array;
@@ -409,13 +384,6 @@ class exception;
 using exception_array = ::array < ::exception >;
 
 
-template < typename T >
-concept has_string_getter = requires(T t, ::string & str)
-{
-
-   { t.as(str) } -> std::same_as < void >;
-
-};
 
 using particle_array = pointer_array < particle >;
 
@@ -920,25 +888,6 @@ namespace acme
 } // namespace acme
 
 
-template < primitive_character CHARACTER >
-constexpr bool string_compare_prefix(::std::strong_ordering & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept;
-
-
-template < primitive_fundamental TYPE >
-constexpr bool equals(TYPE a, TYPE b) { return a == b; }
-
-
-template < primitive_type TYPE >
-constexpr bool equals(const TYPE & a, const TYPE & b) { return a == b; }
-
-
-template < primitive_fundamental TYPE >
-constexpr ::std::strong_ordering compare(TYPE a, TYPE b) { return ::std::strong_order(a, b); }
-
-
-template < primitive_type TYPE >
-constexpr ::std::strong_ordering compare(const TYPE & a, const TYPE & b) { return ::std::strong_order(a, b); }
-
 
 template < typename TYPE >
 constexpr memsize index_of(const TYPE * p, const TYPE * pBegin);
@@ -952,12 +901,6 @@ struct dereference_struct<T *> { using type = T; };
 template < typename T >
 using dereference = typename dereference_struct < T >::type;
 
-
-template<primitive_character CHARACTER, strsize m_sizeMaximumLength>
-class inline_string;
-
-
-using inline_number_string = inline_string<char, 64>;
 
 
 template < typename T, typename ...Args >
@@ -980,4 +923,32 @@ CLASS_DECL_ACME void __on_start_construct(void * p, memsize s);
 #endif
 
 
+
+
+
+template<typename _Tp>
+struct erase_const_effemeral_struct
+{ using type = _Tp; };
+
+template<typename _Tp>
+struct erase_const_effemeral_struct<const _Tp>
+{ using type = _Tp; };
+
+template<typename _Tp>
+struct erase_const_effemeral_struct<volatile _Tp>
+{ using type = _Tp; };
+
+template<typename _Tp>
+struct erase_const_effemeral_struct<const volatile _Tp>
+{ using type = _Tp; };
+
+
+template<typename _Tp>
+using erase_const_effemeral = typename erase_const_effemeral_struct<_Tp>::type;
+
+
+
+template < typename ENUM > struct raw_enum_of_struct<::enumeration <ENUM>> { using type = ENUM; };
+template < typename ENUM >
+using raw_enum_of = typename raw_enum_of_struct<erase_const_effemeral<ENUM>>::type;
 

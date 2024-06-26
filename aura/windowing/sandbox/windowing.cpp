@@ -188,28 +188,57 @@ namespace sandbox_windowing
    void windowing::defer_initialize_host_window(const ::rectangle_i32* lpcrect)
    {
 
-      if (::is_set(m_phostinteraction))
+//      if (::is_set(m_phostinteraction))
+//      {
+//
+//         return;
+//
+//      }
+//
+//      //__construct_new(m_phostinteraction);
+//      
+//      __construct(m_phostinteraction);
+//
+//      //m_phostinteraction->place(*lpcrect);
+//
+//      //m_phostinteraction->create_host(e_parallelization_synchronous);
+//      m_phostinteraction->create_host();
+//
+//      m_phostinteraction->display();
+//      
+//      m_phostinteraction->m_bNeedPerformLayout = true;
+//
+//      m_phostinteraction->set_need_layout();
+//
+//      m_phostinteraction->set_need_redraw();
+//
+//      m_phostinteraction->post_redraw();
+
+      if(::is_set(m_pwindowApplicationHost))
       {
-
+         
          return;
-
+         
       }
-
-      __construct_new(m_phostinteraction);
-
-      m_phostinteraction->place(*lpcrect);
-
-      //m_phostinteraction->create_host(e_parallelization_synchronous);
+      
+      __construct(m_phostinteraction);
+      
       m_phostinteraction->create_host();
-
+      
+      m_phostinteraction->add_graphical_output_purpose(this, ::graphics::e_output_purpose_screen);
+      
       m_phostinteraction->display();
-
+      
+      m_phostinteraction->m_bNeedPerformLayout = true;
+      
       m_phostinteraction->set_need_layout();
-
+      
       m_phostinteraction->set_need_redraw();
-
+      
       m_phostinteraction->post_redraw();
-
+      
+      m_pwindowApplicationHost = m_phostinteraction->window();
+      
    }
 
 

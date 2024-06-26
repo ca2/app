@@ -26,11 +26,11 @@
 #include "aura/user/user/button.h"
 #include "aura/user/user/plain_edit.h"
 #include "aura/user/user/interaction_array.h"
-#include "aura/user/menu/command.h"
 #include "aura/user/user/shell.h"
-#include "base/user/menu/menu.h"
+#include "aura/user/menu/command.h"
 #include "base/user/menu/item.h"
 #include "base/user/menu/item_ptra.h"
+#include "base/user/menu/menu.h"
 #include "core/filesystem/userfs/list_data.h"
 #include "core/filesystem/userfs/list_item.h"
 #include "core/filesystem/userfs/list_item_array.h"
@@ -213,11 +213,22 @@ namespace filemanager
             
             auto puser = psession->m_puser->m_pcoreuser;
 
-            auto point = pcontextmenu->m_pointHost;
+            auto pointCursor = pcontextmenu->m_pointHost;
+            
+            auto r = ::rectangle_i32::square_with_center_and_apothem(point, 8);
 
-            host_to_client()(point);
+//            host_to_client()(point);
+            
+            auto pusermenu = user()->menu_from_xml(this, filemanager_data()->m_strXmlPopup);
+            
+            auto ptrackpopup = __new < ::menu::track_popup >(
+                                                             pusermenu,
+                                                             this,
+                                                             this,
+                                                             pointCursor,
+                                                             r);
 
-            puser->track_popup_xml_menu(this, filemanager_data()->m_strXmlPopup, 0, point);
+            puser->track_popup_menu(ptrackpopup);
 
          }
 
@@ -231,11 +242,20 @@ namespace filemanager
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         auto point = pcontextmenu->m_pointHost;
+         auto pointCursor = pcontextmenu->m_pointHost;
 
-         host_to_client()(point);
+         auto r = ::rectangle_i32::square_with_center_and_apothem(point, 8);
+         
+         auto pmenu = puser->menu_from_xml(this, filemanager_data()->m_strXmlPopup);
+         
+         auto ptrackpopup = __allocate < ::menu::track_popup >(
+                                                             pmenu,
+                                                             this,
+                                                             this,
+                                                               pointCursor,
+                                                             r);
 
-         puser->track_popup_xml_menu(this, filemanager_data()->m_strPopup, 0, point);
+         puser->track_popup_menu(ptrackpopup);
 
       }
 
@@ -494,14 +514,22 @@ namespace filemanager
 
          if (pmenu->create_menu(straCommand, straCommandTitle))
          {
+            
+            auto ptrackpopup = __allocate < ::menu::track_popup > (
+                                                             pmenu,
+                                                             this,
+                                                             this);
 
-            pmenu->track_popup_menu(parent_frame());
+            //pmenu->track_popup_menu(parent_frame());
+            
+            ptrackpopup->track([](){});
 
          }
 
       }
 
    }
+
 
    void file_list::_017OpenContextMenuFile(const ::file::item_array & itema, const ::action_context & context)
    {
@@ -656,7 +684,7 @@ namespace filemanager
 
       ::pointer<::message::command>pcommand(pmessage);
 
-      ::pointer<::user::menu_command>pmenucommandui(pcommand);
+      ::pointer<::menu::command>pmenucommandui(pcommand);
 
       if (pmenucommandui)
       {
@@ -692,7 +720,7 @@ namespace filemanager
          for (i32 i = 0; i < iCount; i++)
          {
 
-            auto pmenuitem = __create_new < ::user::menu_item > ();
+            auto pmenuitem = __create_new < ::menu::item > ();
 
             pmenuitem->m_atom = "open with" + stra[i];
 

@@ -176,7 +176,7 @@ public:
    //operator TYPE *() {return this->m_begin;}
    //operator const TYPE *() const {return this->m_begin;}
 
-   template < container_type CONTAINER >
+   template < primitive_container CONTAINER >
    inline array_non_particle & operator += (const CONTAINER & container);
 
    template < typename... T >
@@ -560,7 +560,7 @@ inline void array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY, ::enum_type t_etypeContainer >
-template < container_type CONTAINER >
+template < primitive_container CONTAINER >
 inline array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > & array_non_particle < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::operator += (const CONTAINER & container)
 {
 

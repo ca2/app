@@ -31,7 +31,6 @@ inline i64 increment_reference_count(c_derived * pca);
 
 class subparticle;
 
-
 // ::ca::null_class back link to operational system oswindow.h
 //
 //
@@ -45,6 +44,7 @@ class pointer
 {
 public:
 
+   using POINTER_TYPE_TAG = pointer_type_t;
    using TYPE = T;
 
    using RAW_POINTER = TYPE *;

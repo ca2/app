@@ -960,7 +960,7 @@ namespace apex
       //virtual bool on_application_menu_action(const ::string & pszCommand) override;
 
 
-      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle,::user::menu_item * pitem) override;
+      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle,::menu::item * pitem) override;
 
       // set regsitry key name to be used by application's
       // profile member functions; prevents writing to an INI spfile->

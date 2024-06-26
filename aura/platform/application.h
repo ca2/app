@@ -7,6 +7,9 @@
 #include "aura/user/user/form_handler.h"
 
 
+class track_popup_menu;
+
+
 namespace aura
 {
 
@@ -986,7 +989,7 @@ namespace aura
 
 
 
-      virtual i32 track_popup_menu(const ::string & pszMatter, const ::point_i32& point, ::pointer<::user::interaction>puserelement);
+      virtual i32 track_popup_menu(::menu::track_popup* ptrackpopup);
 
       virtual bool get_fs_size(string& strSize, const ::string & pszPath, bool& bPending) override;
       virtual bool get_fs_size(i64& i64Size, const ::string & pszPath, bool& bPending) override;

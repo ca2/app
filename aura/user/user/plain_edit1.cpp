@@ -1599,12 +1599,12 @@ namespace user
    void plain_edit::get_text(string & str)
    {
 
-      plain_edit_get_text(str);
+      get_text(str);
 
    }
 
 
-   void plain_edit::plain_edit_get_text(string & str)
+   void plain_edit::get_text(string & str)
    {
 
       if (m_ptree == nullptr)
@@ -7551,7 +7551,7 @@ namespace user
             else
             {
 
-               plain_edit_insert_text(pgraphics, strText, false);
+               insert_text(pgraphics, strText, false);
 
                if (!m_pitemComposing)
                {
@@ -8592,7 +8592,7 @@ namespace user
          if (m_linkedpropertyText)
          {
 
-            plain_edit_get_text(m_linkedpropertyText.m_pproperty->string_reference());
+            get_text(m_linkedpropertyText.m_pproperty->string_reference());
 
             auto papp = get_app();
 
@@ -8604,7 +8604,7 @@ namespace user
 
       string strText;
 
-      plain_edit_get_text(strText);
+      get_text(strText);
 
       auto pwindowing = windowing();
 
@@ -9210,7 +9210,7 @@ namespace user
       queue_graphics_call([this, strText, bForceNewStep](::draw2d::graphics_pointer & pgraphics)
          {
 
-            plain_edit_insert_text(pgraphics, strText, bForceNewStep);
+            insert_text(pgraphics, strText, bForceNewStep);
 
             if (is_text_composition_active() && !m_pitemComposing)
             {
@@ -9228,7 +9228,7 @@ namespace user
    }
 
 
-   void plain_edit::plain_edit_insert_text(::draw2d::graphics_pointer & pgraphics, string strText, bool bForceNewStep)
+   void plain_edit::insert_text(::draw2d::graphics_pointer & pgraphics, string strText, bool bForceNewStep)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());

@@ -369,8 +369,19 @@ namespace acme
    }
 
 
+   ::file::path node::___fonts_folder()
+   {
+
+      throw interface_only();
+
+      return {};
+
+   }
+
+
    void node::node_main()
    {
+      
 
       auto psystem = system();
 
@@ -395,6 +406,13 @@ namespace acme
 
       system()->defer_post_initial_request();
 
+   }
+
+
+   void node::on_app_activated()
+   {
+      
+      
    }
 
 

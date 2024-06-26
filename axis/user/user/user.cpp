@@ -57,6 +57,13 @@ namespace axis
    {
 
    }
+::pointer < ::user::interaction > user::create_menu_button(::user::menu * pusermenu, ::draw2d::graphics_pointer & pgraphics, ::menu::item * pmenuitem)
+{
+   
+ 
+   return nullptr;
+   
+}
 
 
 } // namespace axis

@@ -20,6 +20,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -27,7 +28,7 @@
 #include "acme/primitive/string/international.h"
 #include "acme/primitive/string/_string.h"
 #include "acme/primitive/string/str.h"
-//#include "acme/primitive/time/integral/generic.h"
+#include "aura/user/menu/track_popup.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -336,6 +337,7 @@ namespace user
       MESSAGE_LINK(e_message_char, pchannel, this, &plain_edit::on_message_char);
 
       MESSAGE_LINK(e_message_size, pchannel, this, &::user::plain_edit::on_message_size);
+      MESSAGE_LINK(e_message_context_menu, pchannel, this, &::user::plain_edit::on_message_context_menu);
 
       //MESSAGE_LINK(e_message_set_focus, pchannel, this, &::user::plain_edit::on_message_set_focus);
       //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &::user::plain_edit::on_message_kill_focus);
@@ -1152,6 +1154,44 @@ namespace user
    void plain_edit::on_message_context_menu(::message::message * pmessage)
    {
 
+
+//      set_need_redraw();
+
+  //    m_bRMouseDown = false;
+
+//      auto strXml = file()->as_string();
+//      
+//      print_out(strXml);
+      
+      if(!m_ptrackpopupContextMenu)
+      {
+         
+         
+         ::pointer < ::message::context_menu > pcontextmenu = pmessage;
+
+         auto pointCursor = pcontextmenu->GetPoint();
+
+         auto pmenu = user()->menu_from_xml(this, "matter://plain_edit_context_menu.menu");
+         
+         m_ptrackpopupContextMenu = __new < ::menu::track_popup >(pmenu,
+                                                          this,
+                                                          this,
+                                                                  pointCursor);
+         
+         m_ptrackpopupContextMenu->track([this]()
+                                         {
+            
+            m_ptrackpopupContextMenu.release();
+         }
+                                         
+                                         
+                                         );
+         
+      }
+//                                                       )
+//      
+//      application()->m_pauraapplication->track_popup_menu(this, "matter://plain_edit_context_menu.menu", 0, pointCursor);
+
    }
 
 
@@ -1540,7 +1580,7 @@ namespace user
                m_iNewFocusSelectAllSelEnd = -1;
                m_iNewFocusSelectAllColumn = -1;
 
-               plain_edit_set_text_selection(iBegNew, iEndNew, ::e_source_sync);
+               set_text_selection(iBegNew, iEndNew, ::e_source_sync);
 
                m_iColumn = iColumn;
 
@@ -1568,7 +1608,7 @@ namespace user
    //}
 
 
-   strsize plain_edit::_001_get_text_length()
+   strsize plain_edit::get_text_length()
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1607,12 +1647,12 @@ namespace user
    //void plain_edit::get_text(string & str)
    //{
 
-   //   plain_edit_get_text(str);
+   //   get_text(str);
 
    //}
 
 
-   void plain_edit::plain_edit_get_text(string & str) const
+   void plain_edit::get_text(string & str) const
    {
 
       if (m_ptree == nullptr)
@@ -1746,7 +1786,7 @@ namespace user
             switch ((ENUM_ID) change.m_atoma[1].as_eid())
             {
             case ID_TEXT:
-               plain_edit_set_text(change.m_payload.as_string(), change.m_actioncontext);
+               set_text(change.m_payload.as_string(), change.m_actioncontext);
                return;
             case ID_TEXT_SELECTION_BEGIN:
                plain_edit_set_text_selection_begin(change.m_payload.as_iptr(), change.m_actioncontext);
@@ -1783,7 +1823,7 @@ namespace user
 
                ::string str;
 
-               plain_edit_get_text(str);
+               get_text(str);
 
                return str;
 
@@ -1795,7 +1835,7 @@ namespace user
 
                strsize iEnd;
                
-               plain_edit_get_text_selection(iBeg, iEnd);
+               get_text_selection(iBeg, iEnd);
 
                return iBeg;
 
@@ -1807,7 +1847,7 @@ namespace user
 
                strsize iEnd;
 
-               plain_edit_get_text_selection(iBeg, iEnd);
+               get_text_selection(iBeg, iEnd);
 
                return iEnd;
 
@@ -1885,9 +1925,9 @@ namespace user
 
       ::strsize iSelBeg, iSelEndOld;
 
-      plain_edit_get_text_selection(iSelBeg, iSelEndOld);
+      get_text_selection(iSelBeg, iSelEndOld);
 
-      plain_edit_set_text_selection(iSelBeg, iSelEnd, actioncontext);
+      set_text_selection(iSelBeg, iSelEnd, actioncontext);
 
       _ensure_selection_visible_x(pgraphics);
 
@@ -2007,7 +2047,7 @@ namespace user
 
 
    //void plain_edit::set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & actioncontext)
-   void plain_edit::plain_edit_set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & actioncontext)
+   void plain_edit::set_text_selection(strsize iBeg, strsize iEnd, const ::action_context & actioncontext)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -2109,7 +2149,7 @@ namespace user
    }
 
    
-   void plain_edit::plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd) const
+   void plain_edit::get_text_selection(strsize & iBeg, strsize & iEnd) const
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -2121,7 +2161,7 @@ namespace user
    }
 
 
-   void plain_edit::plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd, strsize & iComposingStart, strsize & iComposingEnd) const
+   void plain_edit::get_text_selection(strsize & iBeg, strsize & iEnd, strsize & iComposingStart, strsize & iComposingEnd) const
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -2377,7 +2417,25 @@ namespace user
          host_to_client()(point);
 
          {
-
+            
+#if defined(APPLE_IOS)
+            //if(windowing()->is_sandboxed()
+              if(has_keyboard_focus())
+            {
+               
+               auto pcontextmenu = __create_new < ::message::context_menu >();
+               
+               pcontextmenu->m_atom = e_message_context_menu;
+               
+               auto pointHost = pmouse->m_pointHost;
+               
+               pcontextmenu->m_pointMessage = pointHost;
+               
+               post_message(pcontextmenu);
+               
+            }
+#endif
+            
             _synchronous_lock synchronouslock(this->synchronization());
 
             m_bLMouseDown = true;
@@ -2397,7 +2455,7 @@ namespace user
                ::strsize iBegOld = -1;
                ::strsize iEndOld = -1;
 
-               plain_edit_get_text_selection(iBegOld, iEndOld);
+               get_text_selection(iBegOld, iEndOld);
 
                iBegNew = plain_edit_char_hit_test(pgraphics, point);
 
@@ -2420,7 +2478,7 @@ namespace user
                else
                {
 
-                  plain_edit_set_text_selection(iBegNew, iEndNew, e_source_sync);
+                  set_text_selection(iBegNew, iEndNew, e_source_sync);
 
                   m_iColumn = iColumnNew;
 
@@ -6592,7 +6650,7 @@ namespace user
             if (psession->is_key_pressed(::user::e_key_control))
             {
 
-               plain_edit_set_text_selection(0, get_text_length(), ::e_source_sync);
+               set_text_selection(0, get_text_length(), ::e_source_sync);
 
                return;
 
@@ -7224,7 +7282,7 @@ namespace user
                if (m_bMultiLine)
                {
 
-                  plain_edit_insert_text("\n", true, e_source_user);
+                  insert_text("\n", true, e_source_user);
 
                }
 
@@ -7426,7 +7484,7 @@ namespace user
 
             }
 
-            plain_edit_insert_text(str, false, e_source_user);
+            insert_text(str, false, e_source_user);
 
             pkey->m_bRet = true;
 
@@ -7444,7 +7502,7 @@ namespace user
 
       strsize iEnd;
 
-      plain_edit_get_text_selection(iBeg, iEnd);
+      get_text_selection(iBeg, iEnd);
 
       // i32 x;
 
@@ -7549,11 +7607,11 @@ namespace user
 
 #if defined(LINUX) || defined(MACOS)
 
-         plain_edit_insert_text(strText, false, e_source_user);
+         insert_text(strText, false, e_source_user);
 
 #else
 
-         plain_edit_insert_text(strText, true, e_source_user);
+         insert_text(strText, true, e_source_user);
 
 #endif
 
@@ -7749,7 +7807,7 @@ namespace user
             else
             {
 
-               plain_edit_insert_text(pgraphics, strText, false);
+               insert_text(pgraphics, strText, false);
 
                if (!m_pitemComposing)
                {
@@ -8045,7 +8103,7 @@ namespace user
 
                strsize iComposingEnd = 0;
 
-               plain_edit_get_text_selection(iSelectionStart, iSelectionEnd, iComposingStart, iComposingEnd);
+               get_text_selection(iSelectionStart, iSelectionEnd, iComposingStart, iComposingEnd);
 
                ptexteditorinterface->set_input_method_manager_selection(iSelectionStart, iSelectionEnd, iComposingStart, iComposingEnd);
 
@@ -8359,7 +8417,7 @@ namespace user
 
             iSelectionEnd = plain_edit_line_x_to_sel(pgraphics, m_iLastSelectionEndLine, m_iLastSelectionEndX);
 
-            plain_edit_set_text_selection(iSelectionBegin, iSelectionEnd, e_source_sync);
+            set_text_selection(iSelectionBegin, iSelectionEnd, e_source_sync);
 
          }
 
@@ -8388,7 +8446,7 @@ namespace user
 
                ::strsize iEnd = -1;
 
-               plain_edit_get_text_selection(iBeg, iEnd);
+               get_text_selection(iBeg, iEnd);
 
                ptexteditorinterface->set_editor_selection(iBeg, iEnd);
 
@@ -8677,14 +8735,14 @@ namespace user
 
 
 
-   void plain_edit::plain_edit_set_text(const ::scoped_string & scopedstrParam, const ::action_context & actioncontext)
+   void plain_edit::set_text(const ::scoped_string & scopedstrParam, const ::action_context & actioncontext)
    {
 
       ::strsize iSelBeg = 0;
 
       ::strsize iSelEnd = 0;
 
-      plain_edit_get_text_selection(iSelBeg, iSelEnd);
+      get_text_selection(iSelBeg, iSelEnd);
 
       ::strsize iTextLength = get_text_length();
 
@@ -8790,7 +8848,7 @@ namespace user
          //if (m_linkedpropertyText)
          //{
 
-         //   plain_edit_get_text(m_linkedpropertyText.m_pproperty->string_reference());
+         //   get_text(m_linkedpropertyText.m_pproperty->string_reference());
 
          //   auto papp = get_app();
 
@@ -8802,7 +8860,7 @@ namespace user
 
       string strText;
 
-      plain_edit_get_text(strText);
+      get_text(strText);
 
       auto pwindowing = windowing();
 
@@ -8882,7 +8940,7 @@ namespace user
 
       }
 
-      plain_edit_insert_text(str, true, e_source_user);
+      insert_text(str, true, e_source_user);
 
       if (m_bEnterKeyOnPaste)
       {
@@ -9047,7 +9105,7 @@ namespace user
 
          strsize iEnd = 0;
 
-         plain_edit_get_text_selection(iBeg, iEnd);
+         get_text_selection(iBeg, iEnd);
 
          string strText;
 
@@ -9402,7 +9460,7 @@ namespace user
    }
 
 
-   void plain_edit::plain_edit_insert_text(const ::scoped_string & scopedstrText, bool bForceNewStep, const ::action_context & actioncontext)
+   void plain_edit::insert_text(const ::scoped_string & scopedstrText, bool bForceNewStep, const ::action_context & actioncontext)
    {
 
       ::string strText(scopedstrText);
@@ -9410,7 +9468,7 @@ namespace user
       queue_graphics_call([this, strText, bForceNewStep](::draw2d::graphics_pointer & pgraphics)
          {
 
-            plain_edit_insert_text(pgraphics, strText, bForceNewStep);
+            insert_text(pgraphics, strText, bForceNewStep);
 
             if (is_text_composition_active() && !m_pitemComposing)
             {
@@ -9428,7 +9486,7 @@ namespace user
    }
 
 
-   void plain_edit::plain_edit_insert_text(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstrText, bool bForceNewStep)
+   void plain_edit::insert_text(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstrText, bool bForceNewStep)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());

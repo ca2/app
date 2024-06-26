@@ -25,6 +25,7 @@
 #include "acme/platform/profiler.h"
 #include "acme/primitive/collection/_array_binary_stream.h"
 #include "acme/primitive/datetime/datetime.h"
+#include "acme/primitive/primitive/_impl_ptr.h"
 #include "acme/primitive/string/command_line.h"
 #include "acme/primitive/string/str.h"
 #include "acme/primitive/text/context.h"
@@ -9521,18 +9522,7 @@ namespace apex
    //}
 
 
-   //i32 application::track_popup_menu(const ::string & pszMatter, const ::point_i32& point, ::pointer<::user::interaction>puie)
-   //{
-
-   //   __UNREFERENCED_PARAMETER(pszMatter);
-   //   __UNREFERENCED_PARAMETER(point);
-   //   __UNREFERENCED_PARAMETER(puie);
-
-   //   return 1;
-
-   //}
-
-
+  
    bool application::get_fs_size(string & strSize, const ::string & pszPath, bool & bPending)
    {
 

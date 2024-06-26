@@ -898,7 +898,7 @@ namespace user
    //}
 
 
-   //::pointer<::user::menu_interaction>user::create_menu_button(::user::style * pstyle, menu_item* pitem)
+   //::pointer<::user::menu_interaction>user::create_menu_button(::user::style * pstyle, ::menu::item* pitem)
    //{
 
    //   return nullptr;
@@ -1644,6 +1644,18 @@ namespace user
    }
 
 
+
+   ::pointer < ::menu::menu > user::menu_from_xml(::particle * pparticleContext, const ::scoped_string & scopedstrXml)
+   {
+      
+      throw ::interface_only();
+      
+      return {};
+      
+      
+   }
+
+
 } // namespace user
 
 
@@ -1707,36 +1719,4 @@ CLASS_DECL_AURA ::particle * user_synchronization()
    return pmutexUser;
 
 }
-
-
-//CLASS_DECL_AURA void initialize_user_mutex()
-//{
-//
-//   if(g_pmutexUser)
-//   {
-//
-//      return;
-//
-//   }
-//
-//   g_pmutexUser = this->platform()->system()->node()->create_mutex();
-//
-//}
-//
-//
-//CLASS_DECL_AURA void finalize_user_mutex()
-//{
-//
-//   if(!g_pmutexUser)
-//   {
-//
-//      return;
-//
-//   }
-//
-//   g_pmutexUser.release();
-//
-//}
-//
-
 

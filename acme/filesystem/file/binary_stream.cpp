@@ -823,7 +823,7 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 }
 
 
-::pointer < ::particle > binary_stream::read_particle()
+::pointer < ::subparticle > binary_stream::read_particle()
 {
 
    ::type_atom typeatom;
@@ -839,13 +839,13 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 }
 
 
-void binary_stream::write_particle(::particle * pparticle)
+void binary_stream::write_particle(const ::subparticle * pparticle)
 {
 
    ::type_atom typeatom(pparticle);
 
    *this << typeatom;
 
-   pparticle->write_to_stream(*this);
+   ((subparticle *)pparticle)->write_to_stream(*this);
 
 }

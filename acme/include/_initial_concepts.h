@@ -9,10 +9,6 @@
 #pragma once
 
 
-struct ENUM_TYPE_TAG {};
-
-
-struct sequence_t {};
 
 
 template < typename SEQUENCE >
@@ -22,7 +18,7 @@ concept primitive_sequence = ::std::is_same < typename SEQUENCE::sequence_tag, s
 template < typename ENUM >
 concept primitive_enum = 
    std::is_enum < ::decay < ENUM > >::value 
-   || ::std::is_same < typename ENUM::ENUM_TAG, ENUM_TYPE_TAG >::value;
+   || ::std::is_same < typename ENUM::ENUM_TYPE_TAG, enum_type_t >::value;
 
 
 template < typename BLOCK >
@@ -520,53 +516,54 @@ class rectangle_type;
 
 
 
-template<typename _Tp>
-struct erase_const_effemeral_struct
-{ using type = _Tp; };
-
-template<typename _Tp>
-struct erase_const_effemeral_struct<const _Tp>
-{ using type = _Tp; };
-
-template<typename _Tp>
-struct erase_const_effemeral_struct<volatile _Tp>
-{ using type = _Tp; };
-
-template<typename _Tp>
-struct erase_const_effemeral_struct<const volatile _Tp>
-{ using type = _Tp; };
-
-
-template<typename _Tp>
-using erase_const_effemeral = typename erase_const_effemeral_struct<_Tp>::type;
-
-
-
 template<typename>
-struct __is_pointer_helper
+struct __is_raw_pointer_helper
    : public false_type { };
 
 template<typename _Tp>
-struct __is_pointer_helper<_Tp*>
+struct __is_raw_pointer_helper<_Tp*>
    : public true_type { };
 
 /// is_pointer
 template<typename _Tp>
-struct is_pointer_struct
-   : public __is_pointer_helper<erase_const_effemeral<_Tp>>
+struct is_raw_pointer_struct
+   : public __is_raw_pointer_helper<erase_const_effemeral<_Tp>>
 { };
 
 
 template<typename T>
-inline constexpr bool is_pointer = is_pointer_struct < T >::value;
+inline constexpr bool is_raw_pointer = is_raw_pointer_struct < T >::value;
 
 
 template < typename POINTER >
-concept primitive_pointer = ::is_pointer < POINTER >;
+concept primitive_raw_pointer = ::is_raw_pointer < POINTER >;
 
+template < typename RAW_TYPE >
+concept _primitive_raw_type = 
+   ::primitive_number < decay < RAW_TYPE > >
+   || ::std::is_same_v < typename decay < RAW_TYPE >::RAW_TYPE_TAG, raw_type_t >;
+
+
+template < typename RAW_TYPE >
+concept primitive_raw_type = 
+   ::_primitive_raw_type < RAW_TYPE >
+   || (::std::is_bounded_array_v<RAW_TYPE>
+       && _primitive_raw_type<dereference<RAW_TYPE>>);
+
+
+template < typename POINTER >
+concept primitive_pointer2 = 
+   ::std::is_same_v < typename decay <POINTER >::POINTER_TYPE_TAG, pointer_type_t >;
 
 template < typename OBJECT >
-concept primitive_object = !::is_pointer < OBJECT > && !::is_function < OBJECT >;
+concept primitive_object = 
+   !::is_raw_pointer < OBJECT >
+   && !::is_function < OBJECT >
+   && !primitive_pointer2 < OBJECT >
+   && !primitive_raw_type < OBJECT >;
+
+template < typename PARTICLE >
+concept primitive_particle = ::std::is_base_of_v<::particle, PARTICLE>;
 
 
 template < typename T, typename TYPE >
@@ -578,7 +575,7 @@ concept non_same_as = !::std::is_same < TYPE, erase_const_effemeral < T > >::val
 
 
 template < typename T, typename TYPE >
-concept non_pointer_same_as = same_as < T, TYPE > && !::is_pointer < T >;
+concept non_pointer_same_as = same_as < T, TYPE > && !::is_raw_pointer < T >;
 
 
 template < typename T >
@@ -604,7 +601,109 @@ template < typename T >
 inline void __call__delete(T * p);
 
 
+template < primitive_character CHARACTER >
+constexpr bool string_compare_prefix(::std::strong_ordering & ordering, const CHARACTER * pszA, const CHARACTER * pszB) noexcept;
 
 
+template < primitive_fundamental TYPE >
+constexpr bool equals(TYPE a, TYPE b) { return a == b; }
+
+
+template < primitive_type TYPE >
+constexpr bool equals(const TYPE & a, const TYPE & b) { return a == b; }
+
+
+template < primitive_fundamental TYPE >
+constexpr ::std::strong_ordering compare(TYPE a, TYPE b) { return ::std::strong_order(a, b); }
+
+
+template < primitive_type TYPE >
+constexpr ::std::strong_ordering compare(const TYPE & a, const TYPE & b) { return ::std::strong_order(a, b); }
+
+
+
+template<primitive_character CHARACTER, strsize m_sizeMaximumLength>
+class inline_string;
+
+
+using inline_number_string = inline_string<char, 64>;
+
+
+
+
+template < typename T >
+concept has_string_getter = requires(T t, ::string & str)
+{
+
+   { t.as(str) } -> std::same_as < void >;
+
+};
+
+
+
+
+template < typename CONTAINER >
+concept container_type = requires(CONTAINER container)
+{
+
+   {container.this_is_a_container()} -> std::same_as<void>;
+
+};
+
+
+template < typename ARRAY >
+concept primitive_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
+{
+   array.get_count();
+   array.element_at(i);
+   array.set_size(c);
+};
+
+template < typename ARRAY >
+concept primitive_raw_type_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
+{
+   array.get_count();
+   {array.element_at(i)}->primitive_raw_type;
+   array.set_size(c);
+};
+
+
+template < typename ARRAY >
+concept primitive_raw_pointer_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
+{
+   array.get_count();
+   {array.element_at(i)}->primitive_raw_pointer;
+   array.set_size(c);
+};
+
+
+template < typename ARRAY >
+concept primitive_particle_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
+{
+   array.get_count();
+   {array.element_at(i)}->primitive_pointer2;
+   array.set_size(c);
+};
+
+
+template < typename ARRAY >
+concept primitive_object_array = requires(ARRAY array, ::collection::index i, ::collection::count c)
+{
+   array.get_count();
+   {array.element_at(i)}->primitive_object;
+   array.set_size(c);
+};
+
+
+template < typename CONTAINER >
+concept primitive_container = primitive_array < CONTAINER >;
+
+template < typename CONTAINER >
+concept non_container = !primitive_container < CONTAINER >;
+
+
+
+template < primitive_enum ENUM >
+inline ::i64 as_i64(const ENUM & e) { return (::i64)(::raw_enum_of<ENUM>) e; }
 
 

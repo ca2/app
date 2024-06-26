@@ -297,7 +297,7 @@ namespace user
       }
 
 
-      void edit_impl::plain_edit_insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context)
+      void edit_impl::insert_text(const ::scoped_string & scopedstr, bool bForceNewStep, const ::action_context & context)
       {
 
          _001InsertText(scopedstr);
@@ -2078,7 +2078,7 @@ namespace user
                //                if(m_bMultiLine)
                {
 
-                  plain_edit_insert_text("\n", true, e_source_user);
+                  insert_text("\n", true, e_source_user);
 
                }
 
@@ -2208,7 +2208,7 @@ namespace user
       //}
 
 
-      void edit_impl::plain_edit_get_text_selection(strsize & iBeg, strsize & iEnd) const
+      void edit_impl::get_text_selection(strsize & iBeg, strsize & iEnd) const
       {
 
          //auto prichtextdata = get_rich_text_data();

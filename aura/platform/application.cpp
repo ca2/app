@@ -7759,12 +7759,10 @@ namespace aura
    //}
 
 
-   i32 application::track_popup_menu(const ::string & pszMatter, const ::point_i32& point, ::pointer<::user::interaction>puie)
+   i32 application::track_popup_menu(::menu::track_popup * ptrackpopup)
    {
 
-      __UNREFERENCED_PARAMETER(pszMatter);
-      __UNREFERENCED_PARAMETER(point);
-      __UNREFERENCED_PARAMETER(puie);
+      __UNREFERENCED_PARAMETER(ptrackpopup);
 
       return 1;
 

@@ -76,7 +76,6 @@ particle::particle() :
 
 #endif
 
-
 particle::~particle()
 {
 
@@ -776,24 +775,24 @@ void particle::print_out(const ::scoped_string & scopedstr) const
 }
 
 
-void printf_line(const ::ansi_character * pszFormat, ...)
-{
-
-   va_list arguments;
-
-   va_start(arguments, pszFormat);
-
-   ::string strLine(pszFormat);
-
-   strLine += "\n";
-
-   vprintf(strLine.c_str(), arguments);
-
-   va_end(arguments);
-
-   fflush(stdout);
-
-}
+//void printf_line(const ::ansi_character * pszFormat, ...)
+//{
+//
+//   va_list arguments;
+//
+//   va_start(arguments, pszFormat);
+//
+//   ::string strLine(pszFormat);
+//
+//   strLine += "\n";
+//
+//   vprintf(strLine.c_str(), arguments);
+//
+//   va_end(arguments);
+//
+//   fflush(stdout);
+//
+//}
 
 
 void particle::printf_line(const ::ansi_character * pszFormat, ...) const
@@ -2436,21 +2435,6 @@ void * particle::new_object(const char * psz)
    
 }
 
-
-void particle::write_to_stream(::binary_stream & stream)
-{
-
-   throw interface_only();
-
-}
-
-
-void particle::read_from_stream(::binary_stream & stream)
-{
-
-   throw interface_only();
-
-}
 
 
 CLASS_DECL_ACME ::pointer < ::particle > detach_pointer(::lparam& lparam)

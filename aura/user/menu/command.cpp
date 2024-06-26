@@ -2,11 +2,11 @@
 #include "command.h"
 
 
-namespace user
+namespace menu
 {
 
 
-   menu_command::menu_command()
+   command::command()
    {
 
    }
@@ -51,7 +51,7 @@ namespace user
 
    //}
 
-   void menu_command::enable(bool bOn, const ::action_context & context)
+   void command::enable(bool bOn, const ::action_context & context)
    {
 
       ::message::command::enable(bOn, context);
@@ -90,7 +90,7 @@ namespace user
    //}
 
 
-   void menu_command::on_check_changed(::data::check_change & change)
+   void command::on_check_changed(::data::check_change & change)
    {
 
       if (m_puiOther != nullptr)
@@ -110,7 +110,7 @@ namespace user
    }
 
 
-   void menu_command::on_text_changed(::data::text_change & change)
+   void command::on_text_changed(::data::text_change & change)
    {
 
       if (m_puiOther != nullptr)

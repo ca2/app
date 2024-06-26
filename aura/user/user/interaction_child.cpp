@@ -4,6 +4,7 @@
 #include "acme/constant/message.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
+#include "aura/windowing/windowing.h"
 
 
 namespace user
@@ -118,7 +119,9 @@ namespace user
 
          install_message_routing(m_puserinteraction);
 
-         if (m_puserinteraction->m_ewindowflag & e_window_flag_load_window_rect_on_impl)
+         if (m_puserinteraction->m_ewindowflag & e_window_flag_load_window_rect_on_impl
+             && (!m_puserinteraction->is_top_level()
+                 || !m_puserinteraction->windowing()->is_sandboxed()))
          {
 
             information() << "-------------------------------------------------------------------";
@@ -131,6 +134,14 @@ namespace user
             m_puserinteraction->WindowDataLoadWindowRectangle();
 
          }
+         else
+         {
+            
+            m_puserinteraction->display(m_puserinteraction->const_layout().sketch().m_edisplay);
+            
+         }
+            
+            
 
          m_puserinteraction->m_ewindowflag |= e_window_flag_is_window;
 

@@ -108,8 +108,6 @@ public:
 //
 //   particle(::particle * pparticleParent);
 //#else
-   //particle(::particle * pparticleParent);
-//#endif
    ~particle() override;
 
 
@@ -697,8 +695,6 @@ public:
    //virtual void exchange(::stream& s);
    //virtual void exchange(::payload_stream& s);
 
-   virtual void write_to_stream(::binary_stream & stream);
-   virtual void read_from_stream(::binary_stream & stream);
 
 
    //virtual void add_composite(::particle * pparticle);

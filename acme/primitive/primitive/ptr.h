@@ -18,6 +18,7 @@ class ptr
 {
 public:
    
+   using POINTER_TYPE_TAG = pointer_type_t;
    
    TYPE * m_p;
 #if REFERENCING_DEBUGGING

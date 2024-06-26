@@ -146,7 +146,7 @@ namespace user
 
       virtual ::type_atom controltype_to_typeinfo(::user::enum_control_type econtroltype);
 
-      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style * pstyle, menu_item * pitem);
+      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style * pstyle, ::menu::item * pitem);
 
 
       virtual bool runnable_step();
@@ -157,6 +157,7 @@ namespace user
 
       virtual ::pointer<::user::impact_system> impact_system(const ::atom & atom);
 
+      virtual ::pointer < ::menu::menu > menu_from_xml(::particle * pparticleContext, const ::scoped_string & scopedstrXml);
 
    };
 

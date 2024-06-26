@@ -76,7 +76,7 @@ namespace base
    }
 
 
-   ::pointer<::user::menu_interaction>style::create_menu_button(::user::style_pointer& pstyle, ::user::menu_item* pitem)
+   ::pointer<::user::menu_interaction>style::create_menu_button(::user::style_pointer& pstyle, ::menu::item* pitem)
    {
 
       auto psession = get_session();
@@ -267,16 +267,16 @@ namespace base
 //
 //   }
 //
-//   //virtual ::user::menu_interaction * create_menu_button(::user::style_pointer & pstyle, menu_item * pitem) override;
+//   //virtual ::user::menu_interaction * create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem) override;
 
-   bool style::prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item* pitem)
+   bool style::prepare_menu(::draw2d::graphics_pointer& pgraphics, ::menu::item* pitem)
    {
 
          return true;
 
       }
 
-   bool style::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item* pitem)
+   bool style::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::menu::item* pitem)
    {
 
       return true;

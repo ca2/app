@@ -2,7 +2,7 @@
 
 
 #include "aura/user/user/button.h"
-#include "interaction.h"
+#include "base/user/menu/interaction.h"
 
 
 namespace user
@@ -20,7 +20,7 @@ namespace user
       ~menu_button() override;
 
 
-      virtual void initialize_menu_interaction(menu_item* pitem) override;
+      virtual void initialize_menu_interaction(::menu::item* pitem) override;
 
 
       void install_message_routing(::channel * pchannel) override;

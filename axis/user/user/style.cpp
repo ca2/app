@@ -617,7 +617,7 @@ namespace axis
    }
 
 
-   //::pointer<::user::menu_interaction>style::create_menu_button(::user::style_pointer & pstyle, menu_item * pitem)
+   //::pointer<::user::menu_interaction>style::create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem)
    //{
 
    //   return psession->create_menu_button(pstyle, pitem);
@@ -625,7 +625,7 @@ namespace axis
    //}
 
 
-   //bool style::prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem)
+   //bool style::prepare_menu(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem)
    //{
 
    //   if (!prepare_menu_button(pgraphics,pitem))
@@ -640,7 +640,7 @@ namespace axis
    //}
 
 
-   //bool style::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem)
+   //bool style::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem)
    //{
 
    //   pgraphics->m_puserstyle = this;
@@ -1228,7 +1228,7 @@ namespace axis
    //}
 
 
-   //::pointer<::user::menu_interaction>style::create_menu_button(::user::style_pointer & pstyle, menu_item * pitem)
+   //::pointer<::user::menu_interaction>style::create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem)
    //{
 
    //   return psession->create_menu_button(pstyle, pitem);
@@ -1236,7 +1236,7 @@ namespace axis
    //}
 
 
-   //bool style::prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem)
+   //bool style::prepare_menu(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem)
    //{
 
    //   if (!prepare_menu_button(pgraphics,pitem))
@@ -1251,7 +1251,7 @@ namespace axis
    //}
 
 
-   //bool style::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem)
+   //bool style::prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::menu::item * pitem)
    //{
 
    //   pgraphics->m_puserstyle = this;

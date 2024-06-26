@@ -2,10 +2,10 @@
 #include "time.h"
 #include "acme/primitive/datetime/earth_gregorian_time.h"
 #include "acme/primitive/datetime/earth_zone_time.h"
-#ifdef FREEBSD
-#undef _C11_SOURCE
-#define __XSI_VISIBLE 500
-#endif
+//#ifdef FREEBSD
+//#undef _C11_SOURCE
+//#define __XSI_VISIBLE 500
+//#endif
 #include <time.h>
 
 #ifdef HAVE_UNISTD_H

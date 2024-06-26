@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/user/user/user.h"
+#include "bred/user/user/user.h"
 //#include "core/filesystem/filemanager/component.h"
 
 
@@ -10,7 +10,7 @@ namespace core
 
 
    class CLASS_DECL_CORE user :
-      virtual public ::base::user
+      virtual public ::bred::user
       //,
       //virtual public ::filemanager::component
    {
@@ -142,7 +142,7 @@ namespace core
       void destroy() override;
 
 
-      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style* pstyle, ::user::menu_item* pitem) override;
+      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style* pstyle, ::menu::item* pitem) override;
 
 
       // ::user::shell* shell();
@@ -162,7 +162,7 @@ namespace core
 
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 
-      virtual i32 track_popup_menu(const ::string & pszMatter, const ::point_i32 & point, ::pointer<::user::interaction>puie);
+//      i32 track_popup_menu(::user::interaction * pinteraction, const ::scoped_string & scopedstrMatter, int iFlags, const ::point_i32 & pointCursor) override;
 
 
       virtual bool get_fs_size(string & strSize, const ::string & pszPath, bool & bPending);
@@ -349,7 +349,7 @@ namespace core
 
       ////::pointer<::aura::application>get_new_application(::particle * pparticle, const ::string & pszAppId);
 
-      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::user::menu_item * pitem) override;
+      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem) override;
 
       //virtual ::color::color get_default_color(u64 u);
 
@@ -506,7 +506,7 @@ namespace core
       //::pointer<::user::document>  create_child_form(::pointer<::user::form>impact, ::user::form_callback* pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = ::payload(::e_type_empty_argument));
 
 
-      ////virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::user::menu_item* pitem) override;
+      ////virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::menu::item* pitem) override;
 
 
 
@@ -648,7 +648,7 @@ namespace core
 
       ////virtual void on_finally_focus_set(::user::primitive* pelementalFocus) override;
 
-      ////virtual ::user::menu_interaction * create_menu_button(::user::style_pointer & pstyle, ::user::menu_item * pitem) override;
+      ////virtual ::user::menu_interaction * create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem) override;
 
       ////virtual oswindow get_capture() override;
 
@@ -656,7 +656,7 @@ namespace core
       ////virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& pbrushText) override;
 
 
-      //virtual bool prepare_menu_button(::user::menu_item* pitem) override;
+      //virtual bool prepare_menu_button(::menu::item* pitem) override;
 
       ////virtual bool on_ui_mouse_message(::message::mouse* pmouse) override;
 

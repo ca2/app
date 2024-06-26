@@ -2,30 +2,30 @@
 #pragma once
 
 
-namespace user
+namespace menu
 {
 
 
-   class CLASS_DECL_BASE menu_item_ptra :
-      public pointer_array < menu_item >
+   class CLASS_DECL_AURA item_ptra :
+public pointer_array < ::menu::item >
    {
    public:
 
 
-      menu_item * m_pitemParent;
+      ::menu::item * m_pitemParent;
 
 
-      menu_item_ptra(menu_item * pitemParent);
-      ~menu_item_ptra() override;
+      item_ptra(::menu::item * pitemParent);
+      ~item_ptra() override;
 
 
-      menu_item * find(const atom & atom);
+      ::menu::item * find(const atom & atom);
 
 
    };
 
 
-} // namespace user
+} // namespace menu
 
 
 

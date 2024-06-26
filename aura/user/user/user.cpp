@@ -1595,6 +1595,21 @@ namespace user
 
    //__namespace_object_factory(user, ::system_setup::flag_object_user);
 
+   ::windowing::windowing* user::windowing()
+   {
+
+      if (::is_null(m_pwindowing))
+      {
+
+         create_windowing();
+
+      }
+
+      return m_pwindowing;
+
+   }
+
+
 
    ::aura::application * user::get_app()
    {

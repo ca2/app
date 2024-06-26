@@ -375,7 +375,6 @@ namespace numeric_info_internal
    };
 
 #if !defined(GNU_COMPILER)
-
    template < >
    class CLASS_DECL_ACME numeric_info < ::i64 > :
       public numeric_integer_base

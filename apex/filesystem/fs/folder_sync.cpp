@@ -382,6 +382,168 @@ namespace fs
    }
 
 
+   ::string folder_sync::non__empty__file_as_string(const ::payload& payloadFile, const ::function < void(const ::scoped_string&) >& callbackStatus)
+   {
+
+      auto pathLocal(payloadFile.as_file_path());
+
+      if (!pathLocal.case_insensitive_begins_eat(m_pathProtocol))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      pathLocal = m_pathLocalFolder / pathLocal;
+
+      if (callbackStatus)
+      {
+
+         callbackStatus(
+            //"Checking for "+pathSourceFile.name() + " at "+pathSourceFile.folder() + "... (index.txt should exist to continue installation with code...)");
+            "Checking for " + pathLocal.name() + " at " + pathLocal.folder() + "...");
+
+      }
+
+      while (true)
+      {
+
+         if (acmefile()->exists(pathLocal))
+         {
+
+            break;
+
+         }
+
+         preempt(1_s);
+
+      }
+
+      if (callbackStatus)
+      {
+
+         callbackStatus("Checking if " + pathLocal.name() + " is up-to-date and present...");
+
+      }
+
+      ::string_array lines;
+
+      lines.add(pathLocal.name());
+
+      acmedirectory()->change_current(pathLocal.folder());
+
+      ::string strFile;
+
+      while (true)
+      {
+
+         strFile = acmefile()->as_string(pathLocal);
+         
+         auto strTrimmed = strFile.trimmed();
+
+         if (strTrimmed.has_char())
+         {
+
+            break;
+
+         }
+
+      }
+
+      return strFile;
+
+   }
+
+
+   void folder_sync::wait_folder_contains_files(const ::file::path& pathTargetFolder, const ::string_array& straName, int iMinimumSize, const ::function < void(const ::scoped_string&) >& callbackStatus)
+   {
+
+      if (callbackStatus)
+      {
+
+         callbackStatus(
+            //"Checking for "+pathSourceFile.name() + " at "+pathSourceFile.folder() + "... (index.txt should exist to continue installation with code...)");
+            "Checking for files at " + pathTargetFolder + "...");
+
+      }
+
+      while (true)
+      {
+
+         if (acmefile()->exists(pathTargetFolder))
+         {
+
+            break;
+
+         }
+
+         preempt(1_s);
+
+      }
+
+      if (callbackStatus)
+      {
+
+         callbackStatus("Checking if " + pathTargetFolder + " has all files...");
+
+      }
+
+      ::string_array lines;
+      
+      lines = straName;
+
+      acmedirectory()->change_current(pathTargetFolder);
+
+      while (true)
+      {
+
+         preempt(1_s);
+
+         bool bOk = true;
+
+         for (auto& line : lines)
+         {
+
+            auto pathFile = pathTargetFolder / line;
+
+            if(!acmefile()->exists(pathFile))
+            {
+
+               bOk = false;
+
+               break;
+
+            }
+
+            if (iMinimumSize > 0)
+            {
+
+               if (!acmefile()->get_size(pathFile) < iMinimumSize)
+               {
+
+                  bOk = false;
+
+                  break;
+
+               }
+
+            }
+
+         }
+
+         if (bOk)
+         {
+
+            break;
+
+         }
+
+      }
+
+   }
+
+
+
    bool folder_sync::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
    {
 

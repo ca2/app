@@ -369,14 +369,14 @@ namespace acme
    }
 
 
-   ::file::path node::___fonts_folder()
-   {
+   //::file::path node::___fonts_folder()
+   //{
 
-      throw interface_only();
+   //   throw interface_only();
 
-      return {};
+   //   return {};
 
-   }
+   //}
 
 
    void node::node_main()

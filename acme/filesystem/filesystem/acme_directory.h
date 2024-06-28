@@ -262,7 +262,14 @@ public:
    virtual ::file::path windows();
    virtual ::file::path system_drive();
 
+   virtual ::file::path fonts();
+   virtual ::file::path ___fonts();
+
+
    virtual bool is_accessible(const ::file::path & path);
+
+   virtual bool contains_files(const ::file::path& path, const ::string_array& straName, int iMinimumSize);
+
 
 };
 

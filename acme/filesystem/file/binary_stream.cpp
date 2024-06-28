@@ -319,13 +319,17 @@ binary_stream & binary_stream::operator <<(const ::payload & payload)
    case e_type_atom:
       *this << payload.m_atom;
       break;
+   case e_type_property:
+   {
+      this->write_particle(payload.m_pproperty);
+
+   }
+      break;
    case e_type_element:
    case e_type_path:
    {
 
-      throw ::exception(todo);
-
-      //__save_object(*this, payload.cast < ::matter >());
+      this->write_particle(payload.m_p);
 
    }
    break;
@@ -665,8 +669,11 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
       case e_type_property:
       {
 
-         throw ::exception(todo);
-         //payload._set_element(::__load_object<::matter>(*this));
+         auto pproperty = __allocate<::property>();
+
+         operator >>(*pproperty);
+
+         payload._set_element(pproperty);
 
       }
          break;

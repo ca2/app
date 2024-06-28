@@ -4583,7 +4583,7 @@ void file_context::set(const ::payload & payloadFile, const ::memory_base & memo
 }
 
 
-void file_context::unzip_to_folder(const ::file::path & pathFolder, const ::file::path & pathZip)
+void file_context::unzip_to_folder(const ::file::path & pathFolder, const ::file::path & pathZip, ::function<void(const::scoped_string& scopedstr) > functionCallback)
 {
 
    auto pfileZip = get_reader(pathZip);
@@ -4594,7 +4594,7 @@ void file_context::unzip_to_folder(const ::file::path & pathFolder, const ::file
 
    pfolder->open_for_reading(pfileZip);
 
-   pfolder->e_extract_all(pathFolder);
+   pfolder->e_extract_all(pathFolder, nullptr, nullptr, nullptr, functionCallback);
 
 }
 

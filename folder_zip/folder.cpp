@@ -458,7 +458,7 @@ namespace folder_zip
    }
 
 
-   void folder::e_extract_all(const ::file::path& pathTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
+   void folder::e_extract_all(const ::file::path& pathTargetDir, ::file::path_array* ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<void(const::scoped_string& scopedstr) > functionCallback)
    {
 
       ::file::listing listing;
@@ -475,6 +475,13 @@ namespace folder_zip
       {
 
          ::memory memory;
+
+         if (functionCallback)
+         {
+
+            functionCallback(path);
+
+         }
 
          extract(memory, path);
 

@@ -862,16 +862,6 @@ string file_context::as_string(const ::payload & payloadFile)
 }
 
 
-string file_context::safe_get_string(const ::payload & payloadFile, ::e_status * pestatus)
-{
-
-   memory memory;
-
-   safe_get_memory(payloadFile, memory, pestatus);
-
-   return memory.as_utf8();
-
-}
 
 
 void file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
@@ -937,58 +927,6 @@ void file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 }
 
 
-void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &mem, ::e_status * pestatus)
-{
-
-   file_pointer pfile;
-
-   try
-   {
-
-      pfile = get_file(payloadFile, ::file::e_open_file | ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary | ::file::e_open_no_exception_on_open);
-
-      if (!pfile)
-      {
-
-         return;
-
-      }
-      else if (pfile->m_estatus.failed())
-      {
-
-         return;
-
-      }
-
-   }
-   catch (const ::exception & exception)
-   {
-
-      auto psequencer = nano()->user()->exception_message_console(exception);
-
-      psequencer->do_asynchronously();
-
-   }
-
-   try
-   {
-      
-      if(!pfile)
-      {
-         
-         return;
-         
-      }
-
-      pfile->full_memory(mem);
-
-   }
-   catch (...)
-   {
-
-   }
-
-}
 
 
 ::memory file_context::as_memory(const ::payload &payloadFile)
@@ -1003,16 +941,6 @@ void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &me
 }
 
 
-::memory file_context::safe_get_memory(const ::payload &payloadFile)
-{
-
-   ::memory memory;
-
-   safe_get_memory(payloadFile, memory);
-
-   return ::transfer(memory);
-
-}
 
 
 memsize file_context::read(const ::payload& payloadFile, void * p, filesize position, memsize size, bool bNoExceptionOnFail)

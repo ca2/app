@@ -353,8 +353,8 @@ enum enum_id : ::uptr
    id_load_fragment_path_prefix,
    id_cloud_provider,
 
-   id_one_drive,
-   id_dropbox,
+   //id_one_drive,
+   //id_dropbox,
 
 
 };

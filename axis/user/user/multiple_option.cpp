@@ -35,7 +35,9 @@ namespace user
    {
 
       m_econtroltype                         = e_control_type_multiple_option;
-      m_bDefaultParentMouseMessageHandling   = false;
+      m_bDefaultParentMouseMessageHandling   = true;
+      m_bDefaultClickHandling = true;
+      m_iIndex                               = -1;
 
    }
 
@@ -44,6 +46,24 @@ namespace user
    {
 
 
+
+   } bool multiple_option::on_click(::item* pitem)
+   {
+
+      if (!::is_item_set(pitem))
+      {
+
+         return false;
+
+      }
+
+      m_propertyOption.set_property(pitem->m_atom, ::e_source_user);
+
+      set_need_redraw();
+
+      post_redraw();
+
+      return true;
 
    }
 
@@ -77,275 +97,12 @@ namespace user
    }
 
 
-   void multiple_option::_001OnDrawStaticText(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      string strText;
-
-      if (m_bEdit)
-      {
-
-         strText = as_text();
-
-      }
-      else
-      {
-
-         _001GetListText(current_item()->m_item.m_iItem, strText);
-
-      }
-
-      auto rectangleClinet = this->rectangle();
-      //::user::e_::color::color colorText = color_text;
-
-      ::color::color colorText = ::color::black;
-
-      //if (m_pdrawcontext != nullptr)
-      //{
-
-      //   if (m_pdrawcontext->is_control_selected())
-      //   {
-
-      //      if (m_pdrawcontext->is_control_hover())
-      //      {
-
-      //         colorText = ::rgba(192, 192, 192, 255);
-
-      //      }
-      //      else
-      //      {
-
-      //         colorText = ::rgba(255, 255, 255, 255);
-
-      //      }
-
-      //   }
-      //   else
-      //   {
-
-      //      if (m_pdrawcontext->is_control_hover())
-      //      {
-
-      //         colorText = ::rgba(80, 80, 80, 255);;
-
-      //      }
-      //      else
-      //      {
-
-      //         colorText = ::rgba(80, 80, 80, 255);;
-
-      //      }
-
-      //   }
-
-      //}
-
-      //if(!select_text_color(pgraphics, colorText))
-      //{
-
-         pgraphics->set_text_color(colorText);
-
-      //}
-
-      ::rectangle_i32 rectangleText;
-
-      get_element_rectangle(rectangleText, e_element_text);
-
-      pgraphics->set_font(this, ::e_element_none);
-
-      ::e_align ealign = e_align_left_center;
-
-      pgraphics->draw_text(strText, rectangleText, ealign);
-
-   }
-
-
-   enum_input_type multiple_option::preferred_input_type()
-   {
-
-      if (m_bEdit)
-      {
-
-         return e_input_type_text;
-
-      }
-      else
-      {
-
-         return e_input_type_list;
-
-      }
-
-   }
-
-
-   void multiple_option::get_simple_drop_down_open_arrow_polygon(point_f64_array& pointa)
-   {
-
-      ::rectangle_i32 rectangleDropDown;
-
-      get_element_rectangle(rectangleDropDown, e_element_drop_down);
-
-      i32 cx = rectangleDropDown.width() / 3;
-
-      i32 cy = cx * 2 / 3;
-
-      ::point_i32 pointCenter = rectangleDropDown.center();
-
-      pointa.add(pointCenter.x() - cx / 2, pointCenter.y() - cy / 2);
-
-      pointa.add(pointCenter.x() + cx / 2, pointCenter.y() - cy / 2);
-
-      pointa.add(pointCenter.x(), pointCenter.y() + cy / 2);
-
-   }
-
-
-   void multiple_option::_001OnDrawCombo(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      auto rectangleX = this->rectangle();
-
-      auto pbrush = __create < ::draw2d::brush > ();
-
-      //if(m_bEdit)
-      {
-
-         ::user::interaction::_001OnDraw(pgraphics);
-
-      }
-//      else
-//      {
-//
-//         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-//
-//         _001OnDrawStaticText(pgraphics);
-//
-//      }
-
-      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-      ::rectangle_i32 rectangleDropDown;
-
-      get_element_rectangle(rectangleDropDown, e_element_drop_down);
-
-      ::rectangle_i32 rectangleDropIn(rectangleDropDown);
-
-      //::user::e_::color::color colorDropDown = color_button_background_disabled;
-      ::color::color colorDropDown = ::color::gray;
-
-      //if (m_pdrawcontext != nullptr)
-      //{
-
-      //   if (m_pdrawcontext->is_control_selected())
-      //   {
-
-      //      if (m_pdrawcontext->is_control_hover())
-      //      {
-
-      //         colorDropDown = ::rgba(80, 80, 180, 255);
-
-      //      }
-      //      else
-      //      {
-
-      //         colorDropDown = ::rgba(100, 100, 200, 255);
-
-      //      }
-
-      //   }
-      //   else
-      //   {
-
-      //      if (m_pdrawcontext->is_control_hover())
-      //      {
-
-      //         colorDropDown = ::rgba(200, 200, 250, 255);
-
-      //      }
-      //      else
-      //      {
-
-      //         colorDropDown = ::rgba(192, 192, 192, 255);
-
-      //      }
-
-      //   }
-
-      //}
-      //else
-      {
-
-         bool bHasFocus = has_keyboard_focus();
-
-         if(bHasFocus)
-         {
-
-            if (::is_set(m_pitemHover))
-            {
-
-               colorDropDown = ::rgba(200, 200, 250, 255);
-
-            }
-            else
-            {
-
-               colorDropDown = ::rgba(200, 200, 250, 255);
-
-            }
-
-         }
-         else
-         {
-
-            if (::is_set(m_pitemHover))
-            {
-
-               colorDropDown = ::rgba(200, 200, 250, 255);
-
-            }
-            else
-            {
-
-               colorDropDown = ::rgba(200, 200, 250, 255);
-
-            }
-
-         }
-
-      }
-
-      ::color::color color(colorDropDown);
-
-      color.hls_rate(0.0, 0.5, 0.1);
-
-      pbrush->create_solid(color);
-
-      pgraphics->set(pbrush);
-
-      pgraphics->fill_rectangle(rectangleDropIn);
-
-      auto ppath = __create < ::draw2d::path > ();
-
-      point_f64_array pointa;
-
-      get_simple_drop_down_open_arrow_polygon(pointa);
-
-      pbrush->create_solid(argb(210, 0, 0, 0));
-
-      pgraphics->set(pbrush);
-
-      pgraphics->fill_polygon(pointa);
-
-      //pgraphics->fill_rectangle({0, 0, 200, 100}, color::green);
-
-   }
 
 
    bool multiple_option::should_show_keyboard_focus()
    {
 
-      return has_keyboard_focus() || (m_plistbox && m_plistbox->should_show_keyboard_focus());
+      return has_keyboard_focus();
 
    }
 
@@ -353,35 +110,11 @@ namespace user
    ::write_text::font_pointer multiple_option::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate)
    {
 
-      //if (pstyle)
-      //{
-
-      //   if (pstyle->m_pfontCombo)
-      //   {
-
-      //      return pstyle->m_pfontCombo;
-
-      //   }
-      //   else if (pstyle->m_pfont)
-      //   {
-
-      //      return pstyle->m_pfont;
-
-      //   }
-
-      //}
 
       return ::user::interaction::get_font(pstyle, eelement, estate);
 
    }
 
-
-   void multiple_option::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      ::user::interaction::_000OnDraw(pgraphics);
-
-   }
 
 
    void multiple_option::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
@@ -389,93 +122,69 @@ namespace user
 
       ::user::interaction::_001OnDraw(pgraphics);
 
-      _001OnDrawCombo(pgraphics);
+      ::rectangle_i32 r = client2_rectangle();
+
+      pgraphics->draw_rectangle(r);
+
+      auto iIndex = selected_index();
+
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+      for (::collection::index i = 0; i < main_content().item_count(); i++)
+      {
+
+         auto pitem = main_content().item_at(i);
+
+         auto puseritem = user_item(pitem);
+
+         auto rItem = puseritem->m_rectangle2;
+
+         if (i == iIndex)
+         {
+
+            pgraphics->fill_rectangle(rItem, ::argb(255, 10, 77, 189));
+
+            pgraphics->set_text_color(::color::white);
+
+
+         }
+         else
+         {
+
+            pgraphics->fill_rectangle(rItem, ::argb(80, 127, 127, 127));
+
+            pgraphics->set_text_color(::argb(255, 189, 189, 189));
+
+         }
+
+         ::string strName;
+
+         if (i < m_straName.size())
+         {
+
+            strName = m_straName[i];
+
+         }
+
+         
+         if (strName.has_char())
+         {
+
+            pgraphics->draw_text(strName, rItem, e_align_center);
+
+         }
+
+      }
+      
 
    }
 
 
-   void multiple_option::_001OnNcPostDraw(::draw2d::graphics_pointer & pgraphics)
+
+   ::collection::index multiple_option::get_option_count() const
    {
 
-      ::user::interaction::_001OnNcPostDraw(pgraphics);
-
-   }
-
-
-//   void multiple_option::get_text(string & str)
-//   {
-//
-//      ::user::interaction::get_text(str);
-//
-////      if(m_bEdit)
-////      {
-////
-////         if(!m_pitemCurrent.is_set())
-////         {
-////
-////            ::user::interaction::get_text(str);
-////
-////         }
-////         else
-////         {
-////
-////            _001GetListText(m_pitemCurrent, str);
-////
-////         }
-////
-////      }
-////      else
-////      {
-////
-////         if(!m_pitemCurrent.is_set())
-////         {
-////
-////            str = m_strText;
-////
-////         }
-////         else
-////         {
-////
-////            _001GetListText(m_pitemCurrent, str);
-////
-////         }
-////
-////      }
-//
-//   }
-
-
-//   void multiple_option::set_text(const ::string & str, const ::action_context & context)
-//   {
-//
-//      //if(m_bEdit)
-//      //{
-//
-//         ::user::interaction::set_text(str, context);
-//
-////      }
-////      else
-////      {
-////
-////         m_strText = str;
-////
-////         auto psystem = system()->m_paurasystem;
-////
-////         auto pdraw2d = psystem->draw2d();
-////
-////         auto pgraphics = pdraw2d->create_memory_graphics();
-////
-////         plain_edit_on_after_change_text(pgraphics, context);
-////
-////      }
-//
-//   }
-
-
-   ::collection::index multiple_option::_001GetListCount() const
-   {
-
-      return m_plistbox->_001GetListCount();
+      return m_atomaOptions.size();
 
    }
 
@@ -499,44 +208,46 @@ namespace user
    ::item_pointer multiple_option::on_hit_test(const ::point_i32& point, ::user::e_zorder ezorder)
    {
 
-      ::rectangle_i32 rectangleElement;
+      //::rectangle_i32 rectangleElement;
 
-      if(get_element_rectangle(rectangleElement, e_element_drop_down))
-      {
+      return ::user::interaction::on_hit_test(point, ezorder);
 
-         if (rectangleElement.contains(point))
-         {
+      //if(get_element_rectangle(rectangleElement, e_element_drop_down))
+      //{
 
-            auto pitem = __allocate< ::item >(e_element_drop_down);
+      //   if (rectangleElement.contains(point))
+      //   {
 
-            auto puseritem = user_item(pitem);
-            
-            puseritem->m_rectangle2 = rectangleElement;
+      //      auto pitem = __allocate< ::item >(e_element_drop_down);
 
-            return pitem;
+      //      auto puseritem = user_item(pitem);
+      //      
+      //      puseritem->m_rectangle2 = rectangleElement;
 
-         }
+      //      return pitem;
 
-      }
+      //   }
 
-      auto rectangleX = this->rectangle();
+      //}
 
-      if (rectangleX.contains(point))
-      {
+      ///auto rectangleX = this->rectangle();
 
-         auto pitem = __allocate< ::item >(e_element_text);
+      //if (rectangleX.contains(point))
+      //{
 
-         auto puseritem = user_item(pitem);
-            
-         puseritem->m_rectangle2 = rectangleElement;
+      //   auto pitem = __allocate< ::item >(e_element_text);
 
-         return pitem;
+      //   auto puseritem = user_item(pitem);
+      //      
+      //   puseritem->m_rectangle2 = rectangleElement;
 
-      }
-      
-      auto pitemNone = __allocate< ::item >(e_element_none);
-      
-      return pitemNone;
+      //   return pitem;
+
+      //}
+      //
+      //auto pitemNone = __allocate< ::item >(e_element_none);
+      //
+      //return pitemNone;
 
    }
 
@@ -549,12 +260,12 @@ namespace user
       if (!pshowwindow->m_bShow)
       {
 
-         if (m_plistbox.is_set() && m_plistbox->is_window())
-         {
+         //if (m_plistbox.is_set() && m_plistbox->is_window())
+         //{
 
-            m_plistbox->post_message(MESSAGE_CLOSE);
+         //   m_plistbox->post_message(MESSAGE_CLOSE);
 
-         }
+         //}
 
       }
 
@@ -580,16 +291,16 @@ namespace user
    void multiple_option::_on_reposition()
    {
 
-      if (is_drop_down())
-      {
+      //if (is_drop_down())
+      //{
 
-         ::rectangle_i32 rectangleWindow;
+      //   ::rectangle_i32 rectangleWindow;
 
-         window_rectangle(rectangleWindow, ::user::e_layout_sketch);
+      //   window_rectangle(rectangleWindow, ::user::e_layout_sketch);
 
-         m_plistbox->on_drop_down(rectangleWindow, m_sizeFull);
+      //   m_plistbox->on_drop_down(rectangleWindow, m_sizeFull);
 
-      }
+      //}
 
    }
 
@@ -602,12 +313,12 @@ namespace user
       if(pkey->m_ekey == ::user::e_key_down)
       {
 
-         if(!is_drop_down())
+         /*if(!is_drop_down())
          {
 
             _001ShowDropDown();
 
-         }
+         }*/
 
       }
 
@@ -622,14 +333,6 @@ namespace user
    }
 
 
-   bool multiple_option::plain_edit_is_enabled()
-   {
-
-      return m_bEdit;
-
-   }
-
-
    void multiple_option::on_message_mouse_move(::message::message * pmessage)
    {
 
@@ -640,18 +343,18 @@ namespace user
       if (is_window_enabled())
       {
 
-         if (!m_bEdit || (::is_set(m_pitemHover) && m_pitemHover->m_item.m_eelement == e_element_drop_down))
-         {
+         //if (!m_bEdit || (::is_set(m_pitemHover) && m_pitemHover->m_item.m_eelement == e_element_drop_down))
+         //{
 
-            auto pwindowing = windowing();
+         //   auto pwindowing = windowing();
 
-            auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+         //   auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
 
-            user_mouse_set_cursor(pmouse, pcursor);
+         //   user_mouse_set_cursor(pmouse, pcursor);
 
-            pmouse->m_bRet = true;
+         //   pmouse->m_bRet = true;
 
-         }
+         //}
 
       }
 
@@ -684,49 +387,49 @@ namespace user
 
       auto pitemHit = hit_test(pmouse, e_zorder_any);
 
-      if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_item.m_eelement == e_element_drop_down))
-      {
+      //if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_item.m_eelement == e_element_drop_down))
+      //{
 
-         class ::time timeLastVisibilityChangeElapsed;
+      //   class ::time timeLastVisibilityChangeElapsed;
 
-         if (m_plistbox.is_set())
-         {
+      //   if (m_plistbox.is_set())
+      //   {
 
-            timeLastVisibilityChangeElapsed = m_plistbox->m_timeLastVisibilityChange.elapsed();
+      //      timeLastVisibilityChangeElapsed = m_plistbox->m_timeLastVisibilityChange.elapsed();
 
-         }
+      //   }
 
-         bool bDropDownListBoxShown = false;
+      //   bool bDropDownListBoxShown = false;
 
-         if (m_plistbox.is_null() || timeLastVisibilityChangeElapsed > 300_ms)
-         {
+      //   if (m_plistbox.is_null() || timeLastVisibilityChangeElapsed > 300_ms)
+      //   {
 
-            bDropDownListBoxShown = _001ToggleDropDown();
+      //      bDropDownListBoxShown = _001ToggleDropDown();
 
-         }
-         else if (!m_plistbox->const_layout().sketch().is_screen_visible())
-         {
+      //   }
+      //   else if (!m_plistbox->const_layout().sketch().is_screen_visible())
+      //   {
 
-            //informationf("test");
+      //      //informationf("test");
 
-         }
+      //   }
 
-         if (!bDropDownListBoxShown)
-         {
+      //   if (!bDropDownListBoxShown)
+      //   {
 
-            set_keyboard_focus();
+      //      set_keyboard_focus();
 
-            set_active_window();
+      //      set_active_window();
 
-         }
+      //   }
 
-         set_need_redraw();
+      //   set_need_redraw();
 
-         post_redraw();
+      //   post_redraw();
 
-         pmouse->m_bRet = true;
+      //   pmouse->m_bRet = true;
 
-      }
+      //}
 
    }
 
@@ -741,14 +444,14 @@ namespace user
 
          //auto point = screen_to_client(pmouse->m_point);
 
-         auto pitemHit = hit_test(pmouse, e_zorder_any);
+         //auto pitemHit = hit_test(pmouse, e_zorder_any);
 
-         if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_item.m_eelement == e_element_drop_down))
-         {
+         //if (::is_set(pitemHit) && (!m_bEdit || pitemHit->m_item.m_eelement == e_element_drop_down))
+         //{
 
-            pmouse->m_bRet = true;
+         //   pmouse->m_bRet = true;
 
-         }
+         //}
 
       }
 
@@ -758,12 +461,12 @@ namespace user
    void multiple_option::on_set_keyboard_focus()
    {
 
-      if(m_bEdit)
-      {
+      //if(m_bEdit)
+      //{
 
-         plain_edit::on_set_keyboard_focus();
+      //   plain_edit::on_set_keyboard_focus();
 
-      }
+      //}
 
    }
 
@@ -771,125 +474,15 @@ namespace user
    void multiple_option::on_kill_keyboard_focus()
    {
 
-      if (::is_set(m_plistbox) && m_plistbox->is_window())
-      {
-
-         m_plistbox->post_message(MESSAGE_CLOSE);
-
-      }
-
-   }
-
-
-   bool multiple_option::_001ToggleDropDown()
-   {
-
-      defer_create_list_box();
-
-      if (m_plistbox.is_set())
-      {
-
-         if (_001ShowDropDown(!m_plistbox->is_window_visible(::user::e_layout_sketch)))
-         {
-
-            return true;
-
-         }
-
-      }
-
-      return false;
-
-   }
-
-
-   bool multiple_option::_001ShowDropDown(bool bShow)
-   {
-
-      //if (m_plistbox)
+      //if (::is_set(m_plistbox) && m_plistbox->is_window())
       //{
 
-      //   m_plistbox->m_bPendingKillFocusHiding = false;
+      //   m_plistbox->post_message(MESSAGE_CLOSE);
 
       //}
 
-      if(bShow)
-      {
-
-         m_timeShowComboList.Now();
-
-         defer_create_list_box();
-
-         auto psession = get_session();
-
-         psession->on_show_user_input_popup(m_plistbox);
-
-         auto psystem = system()->m_paurasystem;
-
-         auto pdraw2d = psystem->draw2d();
-
-         auto pgraphics = pdraw2d->create_memory_graphics(this);
-
-         m_plistbox->query_full_size(pgraphics, &m_sizeFull);
-
-         ::rectangle_i32 rectangleWindow;
-
-         window_rectangle(rectangleWindow, ::user::e_layout_sketch);
-
-         information() << "plisbox->on_drop_down (a) : " << rectangleWindow;
-
-         m_plistbox->on_drop_down(rectangleWindow, m_sizeFull);
-
-         return true;
-
-      }
-      else
-      {
-
-         if(m_plistbox.is_set())
-         {
-
-            m_plistbox->hide();
-
-//         m_plistbox->set_need_redraw();
-//
-//         m_plistbox->post_redraw();
-
-         }
-
-      }
-
-      return false;
-
    }
 
-
-   void multiple_option::defer_create_list_box()
-   {
-
-      if(!m_plistbox)
-      {
-
-         auto plistbox = __id_create(m_typeatomListBox);
-
-         m_plistbox = plistbox;
-
-         if(m_plistbox == nullptr)
-         {
-
-            throw ::exception(error_resource);
-
-         }
-
-         m_plistbox->m_pcombo = this;
-
-      }
-
-      auto rectangleX = this->rectangle();
-
-      m_plistbox->m_dItemHeight = minimum(24, rectangleX.height());
-
-   }
 
 
    void multiple_option::set_current_item(::item * pitem, const ::action_context & actioncontext)
@@ -902,12 +495,12 @@ namespace user
 
       }
 
-      if (m_plistbox)
-      {
+      //if (m_plistbox)
+      //{
 
-         m_plistbox->main_content().m_pitemCurrent = pitem;
+      //   m_plistbox->main_content().m_pitemCurrent = pitem;
 
-      }
+      //}
 
       ::user::interaction::set_current_item(pitem, actioncontext);
 
@@ -922,12 +515,12 @@ namespace user
 
       string strItem;
 
-      if (::is_set(pitem))
-      {
+      //if (::is_set(pitem))
+      //{
 
-         _001GetListText(pitem->m_item.m_iItem, strItem);
+      //   _001GetListText(pitem->m_item.m_iItem, strItem);
 
-      }
+      //}
 
       set_text(strItem, actioncontext);
 
@@ -939,12 +532,12 @@ namespace user
    void multiple_option::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if(m_bEdit)
-      {
+      //if(m_bEdit)
+      //{
 
-         ::user::interaction::on_layout(pgraphics);
+      //   ::user::interaction::on_layout(pgraphics);
 
-      }
+      //}
 
 
       /*      ::write_text::font_pointer fontxyz(e_create);
@@ -957,40 +550,94 @@ namespace user
 
             SetFont(fontxyz);*/
 
+      ::rectangle_i32 r = client2_rectangle();
 
+      pgraphics->draw_rectangle(r);
 
-   }
+      int iPad = 5;
 
+      r.deflate(iPad);
 
-   void multiple_option::plain_edit_on_after_change_text(::draw2d::graphics_pointer & pgraphics, const ::action_context & actioncontext)
-   {
+      int iW = (r.width()) / m_atomaOptions.size() ;
 
-      if(actioncontext.is_user_source())
+      int x = iPad;
+
+      auto iIndex = selected_index();
+
+      main_content().clear_items();
+
+      for (::collection::index i = 0; i < m_atomaOptions.size(); i++)
       {
 
-         string str;
+         ::rectangle_i32 rItem(r);
 
-         //if(m_bEdit)
-         //{
+         rItem.left() = x;
+         rItem.right() = rItem.left() + iW;
 
-         // ::user::interaction::get_text(str);
-         str = as_text();
+         if (i == iIndex)
+         {
 
-         //      }
-         //      else
-         //      {
-         //
-         //         str = m_strText;
-         //
-         //      }
+            pgraphics->fill_rectangle(rItem, ::argb(255, 10, 77, 189));
 
-         auto itemCurrent = _001FindListText(str);
+         }
+         else
+         {
 
-         set_current_item(__allocate< ::item >(e_element_item, itemCurrent), actioncontext);
+            pgraphics->fill_rectangle(rItem, ::argb(127, 127, 127, 127));
+
+         }
+         auto pitem = __create_new<::item>();
+         pitem->m_item.m_iItem = i;
+         pitem->m_item.m_eelement = e_element_item;
+         pitem->m_atom = m_atomaOptions[i];
+
+
+         main_content().add_item(pitem);
+
+         auto puseritem = user_item(pitem);
+
+         puseritem->m_rectangle2 = rItem;
+
+         //puseritem->m_euseritemflag
+
+         x += iW;
+
 
       }
 
+
    }
+
+
+   //void multiple_option::plain_edit_on_after_change_text(::draw2d::graphics_pointer & pgraphics, const ::action_context & actioncontext)
+   //{
+
+   //   if(actioncontext.is_user_source())
+   //   {
+
+   //      string str;
+
+   //      //if(m_bEdit)
+   //      //{
+
+   //      // ::user::interaction::get_text(str);
+   //      str = as_text();
+
+   //      //      }
+   //      //      else
+   //      //      {
+   //      //
+   //      //         str = m_strText;
+   //      //
+   //      //      }
+
+   //      auto itemCurrent = _001FindListText(str);
+
+   //      set_current_item(__allocate< ::item >(e_element_item, itemCurrent), actioncontext);
+
+   //   }
+
+   //}
 
 
    void multiple_option::handle(::topic * ptopic, ::context * pcontext)
@@ -1008,24 +655,24 @@ namespace user
 
          auto puserinteraction = ptopic->user_interaction();
 
-         if (puserinteraction == m_plistbox)
-         {
+         //if (puserinteraction == m_plistbox)
+         //{
 
-            set_current_item(ptopic->m_pitem, ptopic->m_actioncontext);
+         //   set_current_item(ptopic->m_pitem, ptopic->m_actioncontext);
 
-            _001ShowDropDown(false);
+         //   _001ShowDropDown(false);
 
-            ptopic->Ret();
+         //   ptopic->Ret();
 
-            set_need_redraw();
+         //   set_need_redraw();
 
-            post_redraw();
+         //   post_redraw();
 
-            keyboard_set_focus_next();
+         //   keyboard_set_focus_next();
 
-            return;
+         //   return;
 
-         }
+         //}
 
       }
 
@@ -1103,126 +750,15 @@ namespace user
 //   }
 //
 
-   void multiple_option::GetLBText(::collection::index nIndex, string & rString)
-   {
-
-      ASSERT(is_window());
-
-      GetLBText(nIndex, rString.get_buffer(GetLBTextLen(nIndex)));
-
-      rString.release_buffer();
-
-   }
-
-
-   //::collection::count multiple_option::get_count()
-   // { ASSERT(is_window()); return (count)send_message( CB_GETCOUNT, 0, 0); }
-   //index multiple_option::current_index()
-   // { ASSERT(is_window()); return (index)send_message( CB_GETCURSEL, 0, 0); }
-   //index multiple_option::set_current_item(index nSelect)
-   // { ASSERT(is_window()); return (index)send_message( CB_SETCURSEL, nSelect, 0); }
-   //IA64: Assuming retval of CB_GETEDITSEL won't be expanded
-   bool multiple_option::GetEditSel(strsize & nStartChar, strsize & nEndChar)
-   {
-      /*      ASSERT(is_window()); u32 dw = u32(send_message( CB_GETEDITSEL, 0, 0));
-            nStartChar = LOWORD(dw);
-            nEndChar = LOWORD(dw);*/
-      return true;
-   }
-   bool multiple_option::LimitText(strsize nMaxChars)
-   {
-      //ASSERT(is_window());
-      //return send_message( CB_LIMITTEXT, nMaxChars, 0) != false;
-      return true;
-   }
-
-   bool multiple_option::SetEditSel(strsize nStartChar, strsize nEndChar)
-   {
-      //ASSERT(is_window());
-      //return send_message( CB_SETEDITSEL, 0, MAKELONG(nStartChar, nEndChar)) != false;
-      return true;
-   }
-
-   uptr multiple_option::GetItemData(::collection::index nIndex)
-   {
-
-      //ASSERT(is_window());
-
-      //return send_message( CB_GETITEMDATA, nIndex, 0);
-      return 0;
-
-   }
-
-   ::collection::index multiple_option::SetItemData(::collection::index nIndex, uptr dwItemData)
-   {
-
-      //ASSERT(is_window());
-
-      //return (index)send_message( CB_SETITEMDATA, nIndex, (LPARAM)dwItemData);
-
-      return -1;
-
-   }
-
-   void * multiple_option::GetItemDataPtr(::collection::index nIndex)
-   {
-
-      //ASSERT(is_window()); return (LPVOID)GetItemData(nIndex);
-
-      return nullptr;
-
-   }
-
-   ::collection::index multiple_option::SetItemDataPtr(::collection::index nIndex, void * pData)
-   {
-
-      //ASSERT(is_window());
-
-      //return SetItemData(nIndex, (uptr)(LPVOID)pData);
-
-      return -1;
-
-   }
-
-   ::collection::index multiple_option::GetLBText(::collection::index nIndex, char * pszText)
-
-   {
-
-      //ASSERT(is_window());
-
-      //return (index)send_message( CB_GETLBTEXT, nIndex, (LPARAM)pszText);
-
-
-      return -1;
-
-   }
-
-   strsize multiple_option::GetLBTextLen(::collection::index nIndex)
-   {
-
-      //ASSERT(is_window());
-
-      //return (strsize)send_message( CB_GETLBTEXTLEN, nIndex, 0);
-
-      return -1;
-
-   }
-
-
-   void multiple_option::ShowDropDown(bool bShowIt)
-   {
-
-      _001ShowDropDown(bShowIt);
-
-   }
 
 
    ::collection::index multiple_option::erase_item_at(::collection::index nIndex)
    {
 
-      auto iIndex = m_plistbox->erase_item_at(nIndex);
+      //auto iIndex = m_plistbox->erase_item_at(nIndex);
 
-      return iIndex;
+      //;; return iIndex;
+      return - 1;
 
    }
 
@@ -1234,9 +770,9 @@ namespace user
 
       //return (i32)send_message( CB_INSERTSTRING, nIndex, (LPARAM)pszString);
 
-      auto iIndex= m_plistbox->insert_item_at(nIndex, pszString);
-      return iIndex;
-      //return -1;
+      //auto iIndex= m_plistbox->insert_item_at(nIndex, pszString);
+      //return iIndex;
+      return -1;
 
    }
 
@@ -1244,291 +780,30 @@ namespace user
    void multiple_option::reset_content()
    {
 
-      if (!m_plistbox)
-      {
+      //if (!m_plistbox)
+      //{
 
-         return;
+      //   return;
 
-      }
+      //}
 
-      m_plistbox->reset_content();
-
-   }
-
-
-   ::collection::index multiple_option::Dir(::collection::index attr, const ::string & pszWildCard)
-   {
-
-//      ASSERT(is_window());
-
-//      return (index)send_message( CB_DIR, attr, (LPARAM)pszWildCard);
-
-
-      return -1;
+      //m_plistbox->reset_content();
 
    }
 
 
-   void multiple_option::clear()
-   {
 
-      //ASSERT(is_window());
-
-      //send_message(WM_CLEAR, 0, 0);
-
-   }
-
-
-   void multiple_optioncopy()
-   {
-
-      //ASSERT(is_window());
-
-      //send_message(WM_COPY, 0, 0);
-
-   }
-
-
-   void multiple_option::Cut()
-   {
-
-      //ASSERT(is_window());
-
-      //send_message( WM_CUT, 0, 0);
-
-   }
-
-
-   void multiple_option::Paste()
-   {
-
-      //ASSERT(is_window());
-
-      //send_message( WM_PASTE, 0, 0);
-
-   }
-
-
-   i32 multiple_option::SetItemHeight(::collection::index nIndex, ::u32 cyItemHeight)
-   {
-
-      //ASSERT(is_window());
-
-      //return (i32)send_message( CB_SETITEMHEIGHT, nIndex, MAKELONG(cyItemHeight, 0));
-
-      return -1;
-
-   }
-
-
-   i32 multiple_option::GetItemHeight(::collection::index nIndex)
-   {
-
-      //ASSERT(is_window());
-
-      //return (i32)send_message( CB_GETITEMHEIGHT, nIndex, 0L);
-
-      return -1;
-
-   }
-
-
-   ::collection::index multiple_option::FindStringExact(::collection::index nIndexStart, const ::string & pszFind)
-   {
-
-      //ASSERT(is_window());
-
-      //return (index)send_message( CB_FINDSTRINGEXACT, nIndexStart, (LPARAM)pszFind);
-
-
-      return -1;
-
-   }
-
-
-   i32 multiple_option::SetExtendedUI(bool bExtended)
-   {
-
-      //ASSERT(is_window());
-
-      //return (i32)send_message( CB_SETEXTENDEDUI, bExtended, 0L);
-
-      return -1;
-
-   }
-
-
-   bool multiple_option::GetExtendedUI()
-   {
-
-      //ASSERT(is_window());
-
-      //return send_message( CB_GETEXTENDEDUI, 0, 0L) != 0;
-
-      return false;
-
-   }
-
-
-   void multiple_option::GetDroppedControlRect(::rectangle_i32 * prectangle)
-   {
-
-      //ASSERT(is_window());
-
-      //send_message( CB_GETDROPPEDCONTROLRECT, 0, (LPARAM)prectangle);
-
-
-   }
-
-
-   bool multiple_option::GetDroppedState()
-   {
-
-      //ASSERT(is_window());
-
-      //return send_message( CB_GETDROPPEDSTATE, 0, 0L) != 0;
-
-      return false;
-
-   }
-
-
-//   LCID multiple_option::GetLocale()
-//   {
-//
-//      //ASSERT(is_window());
-//
-//      //return (LCID)send_message( CB_GETLOCALE, 0, 0);
-//
-//      return -1; // everywhere
-//
-//   }
-//
-//   LCID multiple_option::SetLocale(LCID nNewLocale)
-//   {
-//
-//      //ASSERT(is_window());
-//
-//      //return (LCID)send_message( CB_SETLOCALE, (WPARAM)nNewLocale, 0);
-//
-//      return nNewLocale; // set where it is
-//
-//   }
-
-
-   ::collection::index multiple_option::GetTopIndex()
-   {
-
-      //ASSERT(is_window());
-
-      //return (index)send_message( CB_GETTOPINDEX, 0, 0);
-
-      return -1;
-
-   }
-
-
-   ::collection::index multiple_option::SetTopIndex(::collection::index nIndex)
-   {
-
-      //ASSERT(is_window());
-
-      //return (index)send_message( CB_SETTOPINDEX, nIndex, 0);
-
-      return -1;
-
-   }
-
-
-   ::collection::count multiple_option::InitStorage(::collection::count nItems, ::u32 nBytes)
-   {
-
-      //ASSERT(is_window());
-
-      //return (count)send_message( CB_INITSTORAGE, (WPARAM)nItems, nBytes);
-
-      return -1;
-
-   }
-
-   void multiple_option::SetHorizontalExtent(::u32 nExtent)
-   {
-
-      //ASSERT(is_window());
-
-      //send_message( CB_SETHORIZONTALEXTENT, nExtent, 0);
-
-   }
-
-
-   ::u32 multiple_option::GetHorizontalExtent()
-   {
-
-      //ASSERT(is_window());
-
-      //return (::u32)send_message( CB_GETHORIZONTALEXTENT, 0, 0);
-
-      return 0;
-
-   }
-
-
-   i32 multiple_option::SetDroppedWidth(::u32 nWidth)
-   {
-
-//      ASSERT(is_window());
-
-//      return (i32)send_message( CB_SETDROPPEDWIDTH, nWidth, 0);
-
-      return -1;
-
-   }
-
-
-   i32 multiple_option::GetDroppedWidth()
-   {
-
-//      ASSERT(is_window());
-
-//      return (i32)send_message( CB_GETDROPPEDWIDTH, 0, 0);
-
-      return -1;
-
-   }
-
-
-   bool multiple_option::_001GetListText(::collection::index iSel,string & str) const
-   {
-
-      return m_plistbox->_001GetListText(iSel, str);
-
-   }
-
-
-   ::collection::index multiple_option::_001FindListText(const ::string & str) const
-   {
-
-      return m_plistbox->_001FindListText(str);
-
-   }
 
    ::collection::index multiple_option::add_item(const ::scoped_string& scopedstr, const ::atom & atom)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-//      ASSERT(m_edatamode == data_mode_opaque);
-//
-//      if (m_edatamode != data_mode_opaque)
-//      {
-//
-//         return -1;
-//
-//      }
+      auto iIndex = m_atomaOptions.add(atom);
 
-      defer_create_list_box();
+      m_straName.add(scopedstr);
 
-      return m_plistbox->add_item(scopedstr, atom);
+      return iIndex;
 
    }
 
@@ -1577,15 +852,34 @@ namespace user
    bool multiple_option::has_action_hover()
    {
 
-      return ::is_set(m_pitemHover) || is_drop_down();
+      //return ::is_set(m_pitemHover) || is_drop_down();
+
+      return true;
 
    }
 
 
-   bool multiple_option::has_text_input()
+   ::collection::index multiple_option::selected_index() const
    {
 
-      return m_bEdit && ::user::interaction::has_text_input();
+      try
+      {
+
+         auto property = m_propertyOption.get_property();
+
+         auto atom = property.as_atom();
+
+         auto iIndex = m_atomaOptions.find_first(atom);
+
+         return iIndex;
+
+      }
+      catch (...)
+      {
+
+      }
+
+      return -1;
 
    }
 
@@ -1593,7 +887,14 @@ namespace user
    void multiple_option::set_current_item_by_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext)
    {
 
-      m_plistbox->set_current_item_by_text(scopedstr, actioncontext);
+      int iIndex = m_straName.find_first_ci(scopedstr);
+
+      if (iIndex >= 0)
+      {
+
+         set_current_item_by_index(iIndex, actioncontext);
+
+      }
 
    }
 
@@ -1601,15 +902,22 @@ namespace user
    void multiple_option::set_current_item_by_index(::collection::index iIndex, const ::action_context & action_context)
    {
 
-      m_plistbox->set_current_item_by_index(iIndex, action_context);
+      m_iIndex = iIndex;
 
    }
 
 
-   void multiple_option::set_current_item_by_atom(const ::atom & atom, const ::action_context & context)
+   void multiple_option::set_current_item_by_atom(const ::atom & atom, const ::action_context & actioncontext)
    {
 
-      m_plistbox->set_current_item_by_atom(atom, context);
+      int iIndex = m_atomaOptions.find_first(atom);
+
+      if (iIndex >= 0)
+      {
+
+         set_current_item_by_index(iIndex, actioncontext);
+
+      }
 
    }
 
@@ -1617,14 +925,14 @@ namespace user
    string multiple_option::get_current_item_text()
    {
 
-      if (::is_null(m_plistbox))
+      if (m_iIndex < 0 || m_iIndex >= m_straName.size())
       {
 
          return {};
 
       }
 
-      return m_plistbox->get_current_item_text();
+      return m_straName[m_iIndex];
 
    }
 
@@ -1632,16 +940,17 @@ namespace user
    ::atom multiple_option::get_current_item_atom()
    {
 
-      if (::is_null(m_plistbox))
+      if (m_iIndex < 0 || m_iIndex >= m_atomaOptions.size())
       {
 
          return {};
 
       }
 
-      return m_plistbox->get_current_item_atom();
+      return m_atomaOptions[m_iIndex];
 
    }
+
 
 
    bool multiple_option::keyboard_focus_is_focusable()
@@ -1649,14 +958,6 @@ namespace user
 
       // return m_bEdit && is_window_enabled() && is_window_visible(e_layout_sketch);
       return is_window_enabled() && is_window_visible(e_layout_sketch);
-
-   }
-
-
-   bool multiple_option::is_drop_down()
-   {
-
-      return m_plistbox != nullptr && m_plistbox->is_window_visible(e_layout_sketch);
 
    }
 

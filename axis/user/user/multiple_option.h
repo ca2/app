@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include "acme/user/user/property.h"
+#include "aura/user/user/interaction.h"
+#include "acme/primitive/data/property.h"
 
 
 namespace user
@@ -14,12 +15,14 @@ namespace user
    public:
 
 
-      ::user::property              m_propertyOption;
+      ::data::property              m_propertyOption;
 
 
       ::atom_array                  m_atomaOptions;
       ::pointer_array < ::image >   m_imagea;
       ::string_array                m_straName;
+
+      
 
 
       multiple_option();
@@ -34,6 +37,8 @@ namespace user
 
       ::pointer < ::particle > clone() override;
 
+      virtual bool on_click(::item* pitem);
+
 
       ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;
 
@@ -41,11 +46,9 @@ namespace user
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual enum_input_type preferred_input_type() override;
-
       virtual bool has_action_hover();
 
-
+      virtual ::collection::index selected_index() const;
 
       virtual ::collection::count get_option_count() const;
 

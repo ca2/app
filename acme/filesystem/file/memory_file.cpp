@@ -505,7 +505,7 @@ void memory_file::translate(filesize offset, ::enum_seek eseek)
    ASSERT(eseek == ::e_seek_set || eseek == ::e_seek_from_end || eseek == ::e_seek_current);
    //ASSERT(::e_seek_set == FILE_BEGIN && ::e_seek_end == FILE_END && ::e_seek_current == FILE_CURRENT);
 
-   m_memsize = m_pmemory->size();
+   //m_memsize = m_pmemory->size();
 
    m_pbyte = (::u8 *)m_pmemory->begin();
 

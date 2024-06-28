@@ -23,7 +23,7 @@ public:
 
    
    ::u8 *                                       m_pbyte;
-   memsize                                      m_memsize;
+   //memsize                                      m_memsize;
 
 
    memory_container(memsize size = 0);
@@ -226,6 +226,6 @@ memory_container::memory_container(PAYLOAD & payload)
 
    m_pmemory = &payload.memory_reference();
    m_pbyte = m_pmemory->data();
-   m_memsize = m_pmemory->size();
+   //m_memsize = m_pmemory->size();
 
 }

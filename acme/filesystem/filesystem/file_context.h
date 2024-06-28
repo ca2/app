@@ -3,12 +3,13 @@
 
 #include "acme/primitive/primitive/memory.h"
 #include "acme/filesystem/file/plain_text_file_options.h"
+#include "file_context_interface.h"
 ////#include "acme/primitive/primitive/object.h"
 //#include "acme/primitive/collection/string_array.h"
 
 
 class CLASS_DECL_ACME file_context :
-   virtual public object
+   virtual public file_context_interface
 {
 public:
 
@@ -168,11 +169,8 @@ public:
    virtual ::memory _005SignedMemory(const ::payload & payloadFile);
    virtual string _005SignedString(const ::payload & payloadFile);
    virtual string as_string(const ::payload & payloadFile);
-   virtual string safe_get_string(const ::payload & payloadFile, ::e_status * pestatus = nullptr);
    virtual void as_memory(const ::payload & payloadFile, memory_base & mem);
-   virtual void safe_get_memory(const ::payload & payloadFile, memory_base & mem, ::e_status * pestatus = nullptr);
    virtual ::memory as_memory(const ::payload & payloadFile);
-   virtual ::memory safe_get_memory(const ::payload & payloadFile);
    virtual memsize read(const ::payload& payloadFile, void * p, filesize position, memsize size, bool bNoExceptionOnFail = true);
    virtual memsize read_beginning(const ::payload& payloadFile, void * p, memsize size, bool bNoExceptionOnFail = true);
    virtual memory beginning(const ::payload& payloadFile, memsize size, bool bNoExceptionOnFail = true);
@@ -263,7 +261,7 @@ public:
 
    virtual ::file_pointer http_get_file(const ::payload & payloadFile, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_pointer get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception = nullptr) override;
+   ::file_pointer get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception = nullptr) override;
 
    virtual ::file_pointer _get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * ppfileexception = nullptr);
 

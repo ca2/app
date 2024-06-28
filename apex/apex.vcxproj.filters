@@ -1010,6 +1010,9 @@
     <ClInclude Include="networking\_constant.h">
       <Filter>Header Files\networking</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\fs\folder_sync.h">
+      <Filter>Header Files\filesystem\fs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1449,6 +1452,9 @@
     </ClCompile>
     <ClCompile Include="user\menu\menu.cpp">
       <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\fs\folder_sync.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -345,14 +345,14 @@ bool ifs::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
 }
 
 
-file_pointer ifs::get_file(const ::file::path & path, ::file::e_open eopen)
+file_pointer ifs::get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception)
 {
 
-   auto pfile = __allocate< ifs_file >( path);
+   auto pfile = __allocate< ifs_file >( payloadFile);
 
    //auto result =
    
-   pfile->open(path, eopen);
+   pfile->open(payloadFile, eopen, ppfileexception);
 
    //if(!result)
    //{

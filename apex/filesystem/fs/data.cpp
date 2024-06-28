@@ -212,7 +212,7 @@ namespace fs
    //}
 
 
-   file_pointer data::get_file(const ::file::path & payloadFile, ::file::e_open eopen)
+   file_pointer data::get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception)
    {
 
       __UNREFERENCED_PARAMETER(payloadFile);
@@ -268,7 +268,8 @@ namespace fs
 
    }
 
-   ::pointer<data>data::path_data(const ::file::path & psz)
+
+   ::pointer<data>data::path_data(const ::payload & payloadFile)
    {
 
       return this;

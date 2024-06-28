@@ -3867,6 +3867,9 @@
     <ClInclude Include="primitive\primitive\_impl_ptr.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_context_interface.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -5422,6 +5425,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\shared_posix\debug.cpp">
       <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\file_context_interface.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -29,7 +29,7 @@ namespace fs
       pointer_array < data > & fsa();
 
 
-      virtual ::pointer<data>path_data(const ::file::path & psz)override;
+      virtual ::pointer<data>path_data(const ::payload & payloadFile)override;
       virtual ::pointer<data>node_path_data(const ::file::path & psz)override;
       virtual ::file::listing & root_ones(::file::listing & listing)override;
       //virtual bool _enumerates(::file::listing & listing)override;
@@ -43,7 +43,7 @@ namespace fs
       virtual bool fast_has_subdir(const ::file::path & psz)override;
       virtual bool is_link(const ::file::path & psz)override;
 
-      virtual file_pointer get_file(const ::file::path & path, ::file::e_open eopen) override;
+      virtual file_pointer get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception = nullptr) override;
 
       virtual bool is_zero_latency(const ::file::path & psz)override;
 

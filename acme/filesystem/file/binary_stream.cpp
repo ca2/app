@@ -705,21 +705,21 @@ binary_stream & binary_stream::operator >>(property & property)
 binary_stream & binary_stream::operator >>(string & str)
 {
 
-   ::u64 u = 0;
+   ::i64 i = 0;
 
-   u = m_pfile->_right_size() > 8 ? read_buffer_length_unbounded() : read_buffer_length();
+   i = m_pfile->_right_size() > 8 ? read_buffer_length_unbounded() : read_buffer_length();
 
    //if (!fail() && u > 0)
-   if (u > 0)
+   if (i > 0)
    {
 
-      auto psz = str.get_buffer((strsize)u);
+      auto psz = str.get_buffer((strsize)i);
 
-      memsize s = character_count_to_byte_length(psz, (strsize)u);
+      memsize s = character_count_to_byte_length(psz, (strsize)i);
 
       read({ psz, s });
 
-      str.release_buffer((strsize)u);
+      str.release_buffer((strsize)i);
 
    }
 

@@ -265,7 +265,12 @@ namespace fs
             if (!acmefile()->exists(pathSource))
             {
 
-               callbackStatus(pathSource + " doesn't exist");
+               if (callbackStatus)
+               {
+
+                  callbackStatus(pathSource + " doesn't exist");
+
+               }
 
                preempt(1_s);
 
@@ -326,7 +331,12 @@ namespace fs
             if (!acmefile()->exists(pathSource))
             {
 
-               callbackStatus(pathSource + " doesn't exist");
+               if (callbackStatus)
+               {
+
+                  callbackStatus(pathSource + " doesn't exist");
+
+               }
 
                bOk = false;
 
@@ -347,7 +357,12 @@ namespace fs
             catch (...)
             {
 
-               callbackStatus("Failed to copy from" + pathSource + " to " + pathTarget);
+               if (callbackStatus)
+               {
+
+                  callbackStatus("Failed to copy from" + pathSource + " to " + pathTarget);
+
+               }
 
                bOk = false;
 
@@ -358,7 +373,12 @@ namespace fs
             if (!acmefile()->exists(pathTarget))
             {
 
-               callbackStatus(pathTarget + " doesn't exist");
+               if (callbackStatus)
+               {
+
+                  callbackStatus(pathTarget + " doesn't exist");
+
+               }
 
                bOk = false;
 
@@ -426,10 +446,6 @@ namespace fs
 
       }
 
-      ::string_array lines;
-
-      lines.add(pathLocal.name());
-
       acmedirectory()->change_current(pathLocal.folder());
 
       ::string strFile;
@@ -447,6 +463,8 @@ namespace fs
             break;
 
          }
+
+         preempt(1_s);
 
       }
 
@@ -518,7 +536,7 @@ namespace fs
             if (iMinimumSize > 0)
             {
 
-               if (!acmefile()->get_size(pathFile) < iMinimumSize)
+               if (acmefile()->get_size(pathFile) < iMinimumSize)
                {
 
                   bOk = false;

@@ -2580,6 +2580,16 @@ void file_context::set_extension(::file::path & path, const ::scoped_string & sc
 }
 
 
+::file::path file_context::dropbox_client()
+{
+
+   throw ::interface_only();
+
+   return {};
+
+}
+
+
 void file_context::normalize(string &str)
 {
 

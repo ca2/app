@@ -220,6 +220,9 @@ public:
    virtual void set_extension(::file::path & str, const ::scoped_string & scopedstrExtension);
 
 
+   virtual ::file::path dropbox_client();
+
+
    virtual void normalize(string & str);
    virtual ::std::strong_ordering cmp(const ::file::path & psz1, const ::file::path & psz2);
 

@@ -14,6 +14,45 @@ namespace user
       m_textproperty(this, this, ID_TEXT)
    {
 
+      m_textproperty.set_text_property(m_textproperty);
+
+      m_propertywillchangea += [this](auto & change)
+         {
+
+            if (m_textproperty && change)
+            {
+
+               ::data::text_change textchange{ m_textproperty, change };
+
+               if (!on_text_will_change(textchange))
+               {
+
+                  return false;
+
+               }
+
+            }
+
+            return true;
+
+         };
+
+      m_propertychangeda += [this](auto & change)
+         {
+
+            if (m_textproperty && change)
+            {
+
+               ::data::text_change textchange{ m_textproperty, change };
+
+               on_text_changed(textchange);
+
+            }
+
+            return true;
+
+         };
+
    }
 
 
@@ -116,33 +155,33 @@ namespace user
 
 
 
-   bool text::on_property_will_change(::data::property_change & change)
-   {
+   //bool text::on_property_will_change(::data::property_change & change)
+   //{
 
-      if (m_textproperty && change)
-      {
+   //   if (m_textproperty && change)
+   //   {
 
-         ::data::text_change textchange{ m_textproperty, change };
+   //      ::data::text_change textchange{ m_textproperty, change };
 
-         if (!on_text_will_change(textchange))
-         {
+   //      if (!on_text_will_change(textchange))
+   //      {
 
-            return false;
+   //         return false;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
-
-
-   void text::on_property_changed(::data::property_change & change)
-   {
+   //}
 
 
-   }
+   //void text::on_property_changed(::data::property_change & change)
+   //{
+
+
+   //}
 
 
    ////void text_property::get_text(string & str)

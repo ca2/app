@@ -65,6 +65,10 @@
 		9A268D942A3D86DE00AE8FE0 /* libunac.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA652752A33458D0082D8B3 /* libunac.dylib */; };
 		9A47A7E228CBBF1D0002CAE0 /* composite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A47A7E028CBBF1D0002CAE0 /* composite.cpp */; };
 		9A47A7E328CBBF1D0002CAE0 /* composite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A47A7E028CBBF1D0002CAE0 /* composite.cpp */; };
+		9A51A7B82C314D5500B52EDF /* multiple_option.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A51A7B52C314D5500B52EDF /* multiple_option.h */; };
+		9A51A7B92C314D5500B52EDF /* multiple_option.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A51A7B52C314D5500B52EDF /* multiple_option.h */; };
+		9A51A7BA2C314D5500B52EDF /* multiple_option.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A51A7B72C314D5500B52EDF /* multiple_option.cpp */; };
+		9A51A7BB2C314D5500B52EDF /* multiple_option.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A51A7B72C314D5500B52EDF /* multiple_option.cpp */; };
 		9A5ECCD728CCBE040084D354 /* form.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCBB28CCBE040084D354 /* form.cpp */; };
 		9A5ECCD828CCBE040084D354 /* table_row.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCBC28CCBE040084D354 /* table_row.cpp */; };
 		9A5ECCD928CCBE040084D354 /* input_text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCBD28CCBE040084D354 /* input_text.cpp */; };
@@ -706,6 +710,8 @@
 		9A1626B626F0041A003D9CB9 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A47A7E028CBBF1D0002CAE0 /* composite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = composite.cpp; sourceTree = "<group>"; };
 		9A47A7E128CBBF1D0002CAE0 /* composite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = composite.h; sourceTree = "<group>"; };
+		9A51A7B52C314D5500B52EDF /* multiple_option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = multiple_option.h; sourceTree = "<group>"; };
+		9A51A7B72C314D5500B52EDF /* multiple_option.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = multiple_option.cpp; sourceTree = "<group>"; };
 		9A5ECCBB28CCBE040084D354 /* form.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = form.cpp; sourceTree = "<group>"; };
 		9A5ECCBC28CCBE040084D354 /* table_row.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = table_row.cpp; sourceTree = "<group>"; };
 		9A5ECCBD28CCBE040084D354 /* input_text.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = input_text.cpp; sourceTree = "<group>"; };
@@ -1189,6 +1195,8 @@
 				9A0EF0442A623EE200067390 /* line_layout.h */,
 				9A979DA528C835450013DC54 /* list_box.cpp */,
 				9A979DA728C835450013DC54 /* list_box.h */,
+				9A51A7B72C314D5500B52EDF /* multiple_option.cpp */,
+				9A51A7B52C314D5500B52EDF /* multiple_option.h */,
 				9A979DA128C835450013DC54 /* object.cpp */,
 				9A979DAC28C835450013DC54 /* object.h */,
 				9A979DAA28C835450013DC54 /* plus_minus.cpp */,
@@ -1780,6 +1788,7 @@
 				9A93B5F42846EA94005ACD11 /* objc.h in Headers */,
 				9A93B5F52846EA94005ACD11 /* _.h in Headers */,
 				9A93B5F62846EA94005ACD11 /* openweather_city.h in Headers */,
+				9A51A7B92C314D5500B52EDF /* multiple_option.h in Headers */,
 				9A93B5F72846EA94005ACD11 /* item.h in Headers */,
 				9A93B5F92846EA94005ACD11 /* thread.h in Headers */,
 				9A93B5FA2846EA94005ACD11 /* parser_exception.h in Headers */,
@@ -2036,6 +2045,7 @@
 				9A1626C026F0041A003D9CB9 /* ievent_handler.h in Headers */,
 				9AE6493B252A5BF700BED5B8 /* policy_objc.h in Headers */,
 				9A979D1828C81E430013DC54 /* _component.h in Headers */,
+				9A51A7B82C314D5500B52EDF /* multiple_option.h in Headers */,
 				9AE64536252A5BF100BED5B8 /* system.h in Headers */,
 				9A5ECCE528CCBE040084D354 /* table_elemental.h in Headers */,
 				9AE644E3252A5BF000BED5B8 /* _include.h in Headers */,
@@ -2238,6 +2248,7 @@
 				9A93B6672846EA94005ACD11 /* dataset.cpp in Sources */,
 				9A93B6692846EA94005ACD11 /* file_set.cpp in Sources */,
 				9A93B66B2846EA94005ACD11 /* calculator.cpp in Sources */,
+				9A51A7BB2C314D5500B52EDF /* multiple_option.cpp in Sources */,
 				9A979DE428C835540013DC54 /* window.cpp in Sources */,
 				9A47A7E328CBBF1D0002CAE0 /* composite.cpp in Sources */,
 				9A979DD228C835450013DC54 /* slider.cpp in Sources */,
@@ -2346,6 +2357,7 @@
 				9AE6446B252A5BEF00BED5B8 /* dataset.cpp in Sources */,
 				9AE64498252A5BEF00BED5B8 /* file_set.cpp in Sources */,
 				9A5ECCEE28CCBE040084D354 /* input_checkbox.cpp in Sources */,
+				9A51A7BA2C314D5500B52EDF /* multiple_option.cpp in Sources */,
 				9AC01E072748CC4C006BEBCC /* calculator.cpp in Sources */,
 				9A979DE328C835540013DC54 /* window.cpp in Sources */,
 				9A47A7E228CBBF1D0002CAE0 /* composite.cpp in Sources */,

@@ -187,19 +187,19 @@ public:
 
    this_iterator     m_begin;
    this_iterator     m_end;
-   e_range           m_erange = e_range_none;
+   e_range           m_erange;
 
 
    constexpr range(no_initialize_t)
    {
    }
 
-   constexpr range(enum_zero_initialize) : range(nullptr, nullptr)
+   constexpr range(enum_zero_initialize) : range(nullptr, nullptr, e_range_none)
    {
 
    };
 
-   constexpr range() : range(nullptr, nullptr)
+   constexpr range() : range(nullptr, nullptr, e_range_none)
    {
    }
 
@@ -226,18 +226,18 @@ public:
    }
 
    template<::collection::count count>
-   constexpr range(const ITEM(&array)[count]) : range(array, count)
+   constexpr range(const ITEM(&array)[count], e_range erange = e_range_none) : range(array, count, erange)
    {
    }
 
    template<primitive_integral INTEGRAL>
-   constexpr range(this_iterator begin, INTEGRAL count) : 
-      m_begin(begin), m_end(begin + count)
+   constexpr range(this_iterator begin, INTEGRAL count, e_range erange = e_range_none) :
+      m_begin(begin), m_end(begin + count), m_erange(erange)
    {
    }
 
-   constexpr range(this_iterator begin, this_iterator end) : 
-      m_begin(begin), m_end(end)
+   constexpr range(this_iterator begin, this_iterator end, e_range erange = e_range_none) :
+      m_begin(begin), m_end(end), m_erange(erange)
    {
    }
 
@@ -285,7 +285,7 @@ public:
    }
 
 
-   bool is_string() const { return m_erange & e_range_string; }
+   constexpr bool is_string() const { return m_erange & e_range_string; }
    void set_string_flag() { m_erange |= e_range_string; }
    void clear_string_flag() { m_erange -= e_range_string; }
 

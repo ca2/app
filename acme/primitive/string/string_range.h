@@ -1484,7 +1484,69 @@ public:
      //
      //    ::strsize count_left(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { return this->skip_any_character_in(range) - this->begin(); }
 
-   string_range & trim_left(const SCOPED_STRING & range = "\t\r\n ") RELEASENOTHROW { this->m_begin += this->count_left(range); return *this; }
+
+   void add_to_begin(::strsize size)
+   {
+
+      if(size)
+      {
+
+         this->m_begin += size;
+
+         this->m_erange -= e_range_string;
+
+      }
+
+   }
+
+
+   void add_to_end(::strsize size)
+   {
+
+      if(size)
+      {
+
+         this->m_end += size;
+
+         this->m_erange -= e_range_string | e_range_null_terminated;
+
+      }
+
+   }
+
+
+   void set_begin(ITERATOR_TYPE p)
+   {
+
+      if(this->m_begin != p)
+      {
+
+         this->m_begin = p;
+
+         this->m_erange -= e_range_string;
+
+      }
+
+   }
+
+
+   void set_end(ITERATOR_TYPE p)
+   {
+
+      if(this->m_end != p)
+      {
+
+         this->m_end = p;
+
+         this->m_erange -= e_range_string | e_range_null_terminated;
+
+      }
+
+   }
+
+
+   string_range & trim_left(const SCOPED_STRING & range = "\t\r\n ") RELEASENOTHROW { add_to_begin(this->count_left(range));
+         return *this; }
 
    //    const_iterator rear_find_first_whitespace() const RELEASENOTHROW { return this->rear_find_first_character_in("\t\r\n "); }
    //
@@ -1492,7 +1554,7 @@ public:
    //
    //    ::strsize count_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { return this->m_end - this->rear_skip_any_character_in(range); }
 
-   string_range & trim_right(const SCOPED_STRING & range = "\t\r\n ") RELEASENOTHROW { this->m_end -= this->count_right(range); return *this; }
+   string_range & trim_right(const SCOPED_STRING & range = "\t\r\n ") RELEASENOTHROW { add_to_end(-this->count_right(range)); return *this; }
 
    //    ::strsize count_left_and_right(const SCOPED_STRING& range = "\t\r\n ") const RELEASENOTHROW { ::strsize c; return ((c = count_left(range)) == this->size()) ? c : c + count_right(range); }
 

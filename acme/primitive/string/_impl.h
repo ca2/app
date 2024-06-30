@@ -666,8 +666,15 @@ template < typename ITERATOR_TYPE >
    {
       
       auto range = (*this)();
-             
-      this->m_begin = this->m_end;
+
+      if(this->m_begin != this->m_end)
+      {
+
+         this->m_begin = this->m_end;
+
+         this->m_erange -= e_range_string;
+
+      }
       
       return range;
              
@@ -683,16 +690,16 @@ template < typename ITERATOR_TYPE >
          
          auto range = string_range < ITERATOR_TYPE >(this->m_begin, p2);
          
-         this->m_begin = p2;
-         
+         this->set_begin(p2);
+
          return range;
          
       }
          
       auto range = string_range < ITERATOR_TYPE >(this->m_begin, p1);
       
-      this->m_begin = p2;
-      
+      this->set_begin(p2);
+
       return range;
       
    }
@@ -701,17 +708,17 @@ template < typename ITERATOR_TYPE >
    {
       
       auto range = string_range < ITERATOR_TYPE >(this->m_begin, p1 + 1);
-      
-      this->m_begin = p1 + 1;
-      
+
+      this->set_begin(p1 + 1);
+
       return range;
       
    }
       
    auto range = string_range < ITERATOR_TYPE >(this->m_begin, p1);
    
-   this->m_begin = p1 + 1;
-   
+   this->set_begin(p1 + 1);
+
    return range;
 
 }

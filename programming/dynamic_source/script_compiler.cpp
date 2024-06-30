@@ -298,7 +298,9 @@ namespace dynamic_source
    void script_compiler::compile(ds_script * pscript)
    {
 
-      synchronous_lock synchronouslock(pscript->synchronization());
+      //synchronous_lock synchronouslock(pscript->synchronization());
+
+      _synchronous_lock slCompiler(&m_pmanager->m_semCompiler);
 
       informationf("Compiling script %s", pscript->m_strName.c_str());
 

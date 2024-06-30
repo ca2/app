@@ -595,7 +595,18 @@ namespace sockets
          //try
          //{
 
-         spfile->open(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
+         if (strFile.case_insensitive_ends("Bamboo Weathered Standard.jpg"))
+         {
+
+            spfile->open(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
+
+         }
+         else
+         {
+
+            spfile->open(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
+
+         }
 
          //   if (spfile->open(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none).failed())
          //   {
@@ -612,7 +623,7 @@ namespace sockets
 
          //}
 
-         __transfer_to_writable(this, spfile);
+         __transfer_to_writable(this, spfile, 1_MiB);
 
       }
       else if (response().file()->size() > 0)

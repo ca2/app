@@ -3306,7 +3306,7 @@ void dir_context::calculate_dropbox_installed()
 
    m_pathDropbox.empty();
 
-   m_bDropboxCalculated = false;
+   m_bDropboxCalculated = true;
 
    ::file::path pathNetworkPayload = file()->dropbox_info_network_payload();
 

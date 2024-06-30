@@ -77,6 +77,8 @@ list(APPEND apex_source
         #filesystem/fs/_fs.h
         filesystem/fs/data.cpp
         filesystem/fs/data.h
+        filesystem/fs/folder_sync.cpp
+        filesystem/fs/folder_sync.h
         filesystem/fs/fs.cpp
         filesystem/fs/fs.h
         filesystem/fs/ifs.cpp

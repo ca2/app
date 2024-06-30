@@ -208,6 +208,8 @@ list(APPEND library_source
         filesystem/filesystem/dir_system_heap.h
         filesystem/filesystem/file_context.cpp
         filesystem/filesystem/file_context.h
+        filesystem/filesystem/file_context_interface.cpp
+        filesystem/filesystem/file_context_interface.h
         filesystem/filesystem/file_system_options.cpp
         filesystem/filesystem/file_system_options.h
         filesystem/filesystem/file_system.cpp

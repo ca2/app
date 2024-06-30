@@ -23,8 +23,8 @@ namespace user
       ~form_handler() override;
 
 
-      template < typename LABEL =::user::still>
-      ::pointer < LABEL >create_label(::user::interaction * puserinteractionParent, const ::scoped_string & scopedstrLabel)
+      template < typename LABEL = ::user::still>
+      ::pointer < LABEL >create_label(::user::interaction* puserinteractionParent)
       {
 
          auto plabel = __create_new<LABEL>();
@@ -33,8 +33,6 @@ namespace user
 
          plabel->create_child(puserinteractionParent);
 
-         plabel->set_window_text(scopedstrLabel);
-
          plabel->display();
 
          plabel->set_need_layout();
@@ -42,6 +40,32 @@ namespace user
          return plabel;
 
       }
+
+      template < typename LABEL =::user::still>
+      ::pointer < LABEL >create_label(::user::interaction * puserinteractionParent, const ::data::property& propertyTitle)
+      {
+
+         auto plabel = create_label<LABEL>(puserinteractionParent);
+
+         plabel->set_text_property(propertyTitle);
+
+         return plabel;
+
+      }
+
+
+      template < typename LABEL = ::user::still>
+      ::pointer < LABEL >create_label(::user::interaction* puserinteractionParent, const ::scoped_string & scopedstrLabel)
+      {
+
+         auto plabel = create_label<LABEL>(puserinteractionParent);
+
+         plabel->set_window_text(scopedstrLabel);
+
+         return plabel;
+
+      }
+
 
       ::write_text::font_pointer get_title1_font();
 
@@ -60,10 +84,10 @@ namespace user
       ::write_text::font_pointer get_title2_font();
 
       template < typename LABEL = ::user::still >
-      ::pointer < LABEL >create_title2(::user::interaction* puserinteractionParent, const ::scoped_string& scopedstrTitle1)
+      ::pointer < LABEL >create_title2(::user::interaction* puserinteractionParent, const ::data::property & propertyTitle)
       {
 
-         auto plabel = create_label<LABEL>(puserinteractionParent, scopedstrTitle1);
+         auto plabel = create_label<LABEL>(puserinteractionParent, propertyTitle);
 
          plabel->m_pfont = get_title2_font();
 

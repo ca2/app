@@ -32,6 +32,50 @@ namespace fs_folder_sync_dropbox
    }
 
 
+   void folder_sync::folder_sync_touch_file(const ::file::path& pathParam)
+   {
+
+      auto path(pathParam);
+
+      if (!path.case_insensitive_begins_eat(m_pathProtocol)
+         && !path.case_insensitive_begins_eat(m_pathLocalFolder))
+      {
+
+         return;
+
+      }
+
+      char buffer[1_KiB];
+
+      path = m_pathLocalFolder / path;
+
+      for (int iTry = 0; iTry < 5; iTry)
+      {
+
+         try
+         {
+
+            auto pfile = file()->get_file(path, ::file::e_open_read | ::file::e_open_binary);
+
+            // touch entire file
+
+            while (pfile->read(buffer, sizeof(buffer)) > 0);
+
+            break;
+
+         }
+         catch (...)
+         {
+
+         }
+
+         preempt((iTry + 1) * 5_s);
+
+      }
+
+   }
+
+
    bool folder_sync::check_files(
       const ::file::path& pathSourceFolder,
       const ::string_array& straSource,

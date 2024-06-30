@@ -3239,6 +3239,14 @@ bool node::_is_smart_git_installed()
    }
 
 
+   bool node::_is_opera_browser_installed()
+   {
+
+      return false;
+
+   }
+
+
    bool node::_is_visual_studio_code_installed()
    {
 

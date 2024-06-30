@@ -13,12 +13,14 @@ namespace data
    }
 
 
-   check_property::check_property(const check_property & check_property) :
-      property(check_property)
+   check_property::check_property(const ::data::property & property) :
+      property(property)
    {
 
 
    }
+
+
    check_property::~check_property()
    {
 

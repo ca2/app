@@ -938,6 +938,8 @@ namespace acme
 
       virtual bool _is_google_chrome_installed();
 
+      virtual bool _is_opera_browser_installed();
+
       virtual bool _is_visual_studio_code_installed();
 
       virtual bool _is_git_credential_manager_installed();

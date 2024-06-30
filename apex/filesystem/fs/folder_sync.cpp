@@ -231,6 +231,13 @@ namespace fs
    }
 
 
+   void folder_sync::folder_sync_touch_file(const ::file::path& path)
+   {
+
+
+   }
+
+
    bool folder_sync::check_files(
       const ::file::path& pathSourceFolderParam,
       const ::string_array& straSource,
@@ -261,6 +268,15 @@ namespace fs
             ::file::path pathSource;
 
             pathSource = pathSourceFolder / strSource;
+
+            if (callbackStatus)
+            {
+
+               callbackStatus(pathSource);
+
+            }
+
+            folder_sync_touch_file(pathSource);
 
             if (!acmefile()->exists(pathSource))
             {

@@ -28,6 +28,7 @@ namespace fs
       void on_initialize_particle() override;
 
 
+      virtual void folder_sync_touch_file(const ::file::path& path);
       virtual bool check_files(const ::file::path& pathSourceFolder, const ::string_array& straSource, const ::function < void(const ::scoped_string&) >& callbackStatus = {});
       virtual void copy_files_out(const ::file::path& pathTargetFolder, const ::file::path& pathSourceFolder, const ::string_array& straSource, const ::function < void(const ::scoped_string&) >& callbackStatus = {});
       virtual ::string non__empty__file_as_string(const ::payload& payloadFile, const ::function < void(const ::scoped_string&) >& callbackStatus = {});

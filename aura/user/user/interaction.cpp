@@ -11182,7 +11182,8 @@ namespace user
 
          _synchronous_lock synchronouslock(this->synchronization());
 
-         m_strWindowText2 = pszString;
+         //m_strWindowText2 = pszString;
+         m_textproperty.set_property(pszString, ::e_source_sync);
 
       }
 
@@ -11234,7 +11235,9 @@ namespace user
 
          _synchronous_lock synchronouslock(this->synchronization());
 
-         return m_strWindowText2;
+         //return m_strWindowText2;
+
+         return m_textproperty.get_property();
 
       }
 

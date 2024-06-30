@@ -168,7 +168,7 @@ namespace fs
    }
 
 
-   file_pointer native::get_file(const ::file::path & path, ::file::e_open eopen)
+   file_pointer native::get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception)
    {
 
       file_pointer pfile;
@@ -187,7 +187,7 @@ namespace fs
 //      }
 
       //auto result =
-         pfile->open(path, eopen);
+         pfile->open(payloadFile, eopen, ppfileexception);
 
       //if(!result)
       //{

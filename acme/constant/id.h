@@ -345,10 +345,16 @@ enum enum_id : ::uptr
    
    id_network_reachability_status_change,
    id_system_install,
+   id_storage_install,
+   id_repository_install,
    id_download,
    id_speech,
 
-      id_load_fragment_path_prefix,
+   id_load_fragment_path_prefix,
+   id_cloud_provider,
+
+   //id_one_drive,
+   //id_dropbox,
 
 
 };

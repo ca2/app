@@ -65,7 +65,7 @@ namespace data
 
 
       text_property(::data::property_container * ppropertycontainer = nullptr, const ::atom & atom = {});
-      text_property(const text_property & textproperty);
+      text_property(const ::data::property & property);
       ~text_property();
       //property *     m_ppropertyText;
 

@@ -56,6 +56,12 @@ dir_context::dir_context()
 
    m_bDropboxCalculated = false;
 
+   m_bDropbox = false;
+
+   m_bOneDriveCalculated = false;
+
+   m_bOneDrive = false;
+
    //if (::file::dir_context::g_pthis == nullptr)
    //{
 
@@ -82,7 +88,7 @@ dir_context::~dir_context()
 }
 
 
-void dir_context::initialize(::particle * pparticle)
+void dir_context::initialize(::particle* pparticle)
 {
 
    /*auto estatus = */ ::object::initialize(pparticle);
@@ -460,7 +466,7 @@ inline bool myspace(char ch)
 bool dir_context::enumerate(::file::listing& listing)
 {
 
-   if(_enumerate(listing))
+   if (_enumerate(listing))
    {
 
       return true;
@@ -474,30 +480,30 @@ bool dir_context::enumerate(::file::listing& listing)
 
 bool dir_context::_enumerate(::file::listing& listing)
 {
-   
-   if(acmedirectory()->defer_enumerate_protocol(listing))
+
+   if (acmedirectory()->defer_enumerate_protocol(listing))
    {
-      
+
       listing.m_pathFinal = m_pcontext->defer_process_path(listing.m_pathUser);
 
       return true;
-      
+
    }
 
-   if(acmedirectory()->defer_enumerate_media_library(listing))
+   if (acmedirectory()->defer_enumerate_media_library(listing))
    {
-      
+
       listing.m_pathFinal = m_pcontext->defer_process_path(listing.m_pathUser);
 
       return true;
-      
+
    }
-   
-   if(listing.m_pathFinal.is_empty() && listing.m_pathUser.has_char())
+
+   if (listing.m_pathFinal.is_empty() && listing.m_pathUser.has_char())
    {
-      
+
       listing.m_pathFinal = m_pcontext->defer_process_path(listing.m_pathUser);
-      
+
    }
 
    if (listing.m_pathFinal.case_insensitive_begins("matter://"))
@@ -870,11 +876,11 @@ bool dir_context::has_subdir(const ::file::path& pathFolder)
 }
 
 
-bool dir_context::fast_has_subdir(const ::file::path & path)
+bool dir_context::fast_has_subdir(const ::file::path& path)
 {
- 
+
    return has_subdir(path);
-   
+
 }
 
 
@@ -900,7 +906,7 @@ bool dir_context::fast_has_subdir(const ::file::path & path)
          return etype;
 
       }
-      
+
       return cached_file_type(plink->m_pathTarget);
 
       //}
@@ -1159,15 +1165,15 @@ bool dir_context::fast_has_subdir(const ::file::path & path)
 //}
 
 
-::file::e_type dir_context::file_type(const ::payload & payload)
+::file::e_type dir_context::file_type(const ::payload& payload)
 {
 
-   if(payload.is_element())
+   if (payload.is_element())
    {
 
       auto pfile = payload.cast < ::file::file >();
 
-      if(pfile)
+      if (pfile)
       {
 
          return ::file::e_type_existent_file;
@@ -1226,7 +1232,7 @@ bool dir_context::fast_has_subdir(const ::file::path & path)
 
    auto etype = __file_type(path);
 
-   if(etype != ::file::e_type_unknown)
+   if (etype != ::file::e_type_unknown)
    {
 
       return etype;
@@ -1359,7 +1365,7 @@ bool dir_context::fast_has_subdir(const ::file::path & path)
          etype = ::file::e_type_existent_file;
 
       }
-      else if(bHasSubFolder)
+      else if (bHasSubFolder)
       {
 
          etype = ::file::e_type_existent_folder;
@@ -2092,7 +2098,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
          }
 
       }
-      
+
       _synchronous_lock synchronouslock(psystem->m_pmutexMatter);
 
       property_set set;
@@ -2156,7 +2162,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          ::file::path path = strDir / straLocaleSchema[i];
 
-         if(straLocaleSchema[i].ends("/"))
+         if (straLocaleSchema[i].ends("/"))
          {
 
             path.set_folder_path();
@@ -2484,7 +2490,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       //}
 
-      const ::scoped_string & scopedstrUrl = strUrl;
+      const ::scoped_string& scopedstrUrl = strUrl;
 
       strMatter = context()->http_text(strUrl, set);
 
@@ -2513,7 +2519,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          path = "appmatter://" + strMatter(iFind);
 
-         if(bDir)
+         if (bDir)
          {
 
             path.set_folder_path();
@@ -2569,7 +2575,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
          }
 
       }
-      
+
    }
    else
    {
@@ -2785,7 +2791,7 @@ ret:
 }
 
 
-::file::path dir_context::commonappdata(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
+::file::path dir_context::commonappdata(const ::scoped_string& scopedstrAppId, const ::scoped_string& scopedstrBuild, const ::scoped_string& scopedstrPlatform, const ::scoped_string& scopedstrConfiguration)
 {
 
    _synchronous_lock synchronouslock(this->synchronization());
@@ -2820,12 +2826,12 @@ ret:
 
 
 ::file::path dir_context::commonappdata_locale_schema(
-   const ::scoped_string & scopedstrAppId,
-   const ::scoped_string & scopedstrBuild, 
-   const ::scoped_string & scopedstrPlatform, 
-   const ::scoped_string & scopedstrConfiguration,
-   const ::scoped_string & scopedstrLocale, 
-   const ::scoped_string & scopedstrSchema)
+   const ::scoped_string& scopedstrAppId,
+   const ::scoped_string& scopedstrBuild,
+   const ::scoped_string& scopedstrPlatform,
+   const ::scoped_string& scopedstrConfiguration,
+   const ::scoped_string& scopedstrLocale,
+   const ::scoped_string& scopedstrSchema)
 {
 
    _synchronous_lock synchronouslock(this->synchronization());
@@ -3200,99 +3206,168 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 }
 
 
+//::file::path dir_context::dropbox()
+//{
+//
+//   if (!is_dropbox_installed())
+//   {
+//
+//      throw ::exception(error_wrong_state);
+//
+//   }
+//
+//   return m_pathDropbox;
+//
+//   //::file::path pathNetworkPayload = file()->dropbox_info_network_payload();
+//
+//   //if (!file()->exists(pathNetworkPayload))
+//   //{
+//   //   
+//   //   if(application()->is_desktop_system())
+//   //   {
+//   //      
+//   //      auto pathHome = dir()->home();
+//   //      
+//   //      auto pathTxt = pathHome / "dropbox.txt";
+//   //      
+//   //      string strPath = file()->safe_get_string(pathTxt);
+//   //      
+//   //      strPath.trim();
+//   //      
+//   //      m_pathDropbox = strPath;
+//   //      
+//   //      m_bDropboxCalculated = true;
+//   //      
+//   //      return strPath;
+//   //      
+//   //   }
+//   //   else
+//   //   {
+//   //      
+//   //      m_pathDropbox.empty();
+//   //      
+//   //      m_bDropboxCalculated = true;
+//   //      
+//   //      return {};
+//   //      
+//   //   }
+//
+//   //}
+//
+//   //string strNetworkPayload = file()->as_string(pathNetworkPayload);
+//
+//   //::property_set set;
+//
+//   //set.parse_network_payload(strNetworkPayload);
+//
+//   //m_pathDropbox = set["personal"]["path"];
+//
+//   //m_bDropboxCalculated = true;
+//
+//   //return m_pathDropbox;
+//
+//}
+
+
 ::file::path dir_context::dropbox()
 {
 
-   if (m_bDropboxCalculated)
+   if (!is_dropbox_installed())
    {
 
-
-      return m_pathDropbox;
-
-   }
-
-   ::file::path pathNetworkPayload = file()->dropbox_info_network_payload();
-
-   if (!file()->exists(pathNetworkPayload))
-   {
-      
-      if(application()->is_desktop_system())
-      {
-         
-         auto pathHome = dir()->home();
-         
-         auto pathTxt = pathHome / "dropbox.txt";
-         
-         string strPath = file()->safe_get_string(pathTxt);
-         
-         strPath.trim();
-         
-         m_pathDropbox = strPath;
-         
-         m_bDropboxCalculated = true;
-         
-         return strPath;
-         
-      }
-      else
-      {
-         
-         m_pathDropbox.empty();
-         
-         m_bDropboxCalculated = true;
-         
-         return {};
-         
-      }
+      throw ::exception(error_wrong_state);
 
    }
-
-   string strNetworkPayload = file()->as_string(pathNetworkPayload);
-
-   ::property_set set;
-
-   set.parse_network_payload(strNetworkPayload);
-
-   m_pathDropbox = set["personal"]["path"];
-
-   m_bDropboxCalculated = true;
 
    return m_pathDropbox;
 
 }
 
 
-::file::path dir_context::onedrive()
+bool dir_context::is_dropbox_installed()
 {
 
-   ::file::path pathIni = file()->onedrive_cid_ini();
-
-   string strIni = file()->safe_get_string(pathIni);
-
-   if (strIni.is_empty())
+   if (!m_bDropboxCalculated)
    {
 
-      return "";
+      calculate_dropbox_installed();
 
    }
 
-   ::property_set set;
+   return m_bDropbox;
 
-   set.parse_ini(strIni);
+}
 
-   string strLibrary;
 
-   strLibrary = set["library"];
+void dir_context::calculate_dropbox_installed()
+{
 
-   ::tokenizer token(strLibrary);
+   m_bDropbox = false;
 
-   token.skip_word(7);
+   m_pathDropbox.empty();
 
-   string strWork = token.get_word();
+   m_bDropboxCalculated = false;
 
-   strWork.trim("\"");
+   ::file::path pathNetworkPayload = file()->dropbox_info_network_payload();
 
-   return strWork;
+   if (!file()->exists(pathNetworkPayload))
+   {
+
+      if (application()->is_desktop_system())
+      {
+
+         auto pathHome = dir()->home();
+
+         auto pathTxt = pathHome / "dropbox.txt";
+
+         if (file()->exists(pathTxt))
+         {
+
+            string strPath = file()->safe_get_string(pathTxt);
+
+            strPath.trim();
+
+            if (strPath.has_char() && this->is(strPath))
+            {
+
+               m_pathDropbox = strPath;
+
+               m_bDropbox = true;
+
+            }
+
+         }
+
+      }
+      else
+      {
+
+         m_pathDropbox.empty();
+
+      }
+
+   }
+   else
+   {
+
+      string strNetworkPayload = file()->as_string(pathNetworkPayload);
+
+      ::property_set set;
+
+      set.parse_network_payload(strNetworkPayload);
+
+      m_pathDropbox = set["personal"]["path"];
+
+      if (this->is(m_pathDropbox))
+      {
+
+         m_bDropbox = true;
+
+      }
+
+   }
+
+   m_bDropboxCalculated = true;
 
 }
 
@@ -3330,10 +3405,141 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 }
 
 
+
+::file::path dir_context::onedrive()
+{
+
+   if (!is_onedrive_installed())
+   {
+
+      throw ::exception(error_wrong_state);
+
+   }
+
+   return m_pathOneDrive;
+
+}
+
+
+bool dir_context::is_onedrive_installed()
+{
+
+   if (!m_bOneDriveCalculated)
+   {
+
+      calculate_onedrive_installed();
+
+   }
+
+   return m_bOneDrive;
+
+}
+
+
+void dir_context::calculate_onedrive_installed()
+{
+
+   m_bDropbox = false;
+
+   m_pathDropbox.empty();
+
+   m_bDropboxCalculated = false;
+
+   ::file::path pathIni = file()->onedrive_cid_ini();
+
+   if (file()->exists(pathIni))
+   {
+
+      string strIni = file()->safe_get_string(pathIni);
+
+      if (strIni.has_char())
+      {
+
+         ::property_set set;
+
+         set.parse_ini(strIni);
+
+         string strLibrary;
+
+         strLibrary = set["library"];
+
+         ::tokenizer token(strLibrary);
+
+         token.skip_word(7);
+
+         string strWork = token.get_word();
+
+         strWork.trim("\"");
+
+         if (this->is(strWork))
+         {
+
+            m_pathOneDrive = strWork;
+
+            m_bOneDrive = true;
+
+         }
+
+      }
+
+   }
+
+   m_bDropboxCalculated = true;
+
+}
+
+
+//void dir_context::calculate_onedrive_installed()
+//{
+//
+//   ::file::path pathIni = file()->onedrive_cid_ini();
+//
+//   string strIni = file()->safe_get_string(pathIni);
+//
+//   if (strIni.is_empty())
+//   {
+//
+//      return "";
+//
+//   }
+//
+//   ::property_set set;
+//
+//   set.parse_ini(strIni);
+//
+//   string strLibrary;
+//
+//   strLibrary = set["library"];
+//
+//   ::tokenizer token(strLibrary);
+//
+//   token.skip_word(7);
+//
+//   string strWork = token.get_word();
+//
+//   strWork.trim("\"");
+//
+//   return strWork;
+//
+//}
+
+
+
+
 ::file::path dir_context::standalone()
 {
 
    return acmedirectory()->roaming() / application()->m_strStandalone;
+
+}
+
+
+::file::path dir_context::dropbox_client()
+{
+
+   throw ::interface_only();
+
+   return {};
 
 }
 

@@ -14,8 +14,8 @@ namespace sockets
    public:
 
       
-      ::u32                 m_nOpenFlags;
-      string               m_strPath;
+      //::file::e_open       m_eopen;
+      //string               m_strPath;
 
 
       http_batch_buffer();
@@ -23,7 +23,9 @@ namespace sockets
 
       //virtual ::extended::status open(const ::file::path & path, ::u32 nOpenFlags);
 
-      virtual void open(const ::file::path & path, ::u32 nOpenFlags);
+      
+      void open(const ::file::path& path, ::file::e_open eopen, ::pointer < ::file::exception >* pfileexception = nullptr) override;
+
 
       virtual void close();
       virtual void flush();

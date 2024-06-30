@@ -833,10 +833,12 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
 }
 
 
-void matter::__send_procedure(const ::function < void(const ::procedure &) > & functionPost, const ::procedure & procedure)
+void matter::__send_procedure(const ::function < void(const ::procedure &) > & functionPost, const ::procedure & procedureParam)
 {
 
    auto psignalization = __allocate< ::parallelization::signalization >();
+
+   auto procedure = procedureParam;
 
    auto function = [procedure, psignalization]()
    {

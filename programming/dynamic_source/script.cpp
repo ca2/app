@@ -469,11 +469,9 @@ namespace dynamic_source
    ::pointer<script_instance>ds_script::create_instance()
    {
 
-      synchronous_lock slCompiler(&m_pmanager->m_semCompiler);
-
-      synchronous_lock synchronouslock(this->synchronization());
-
       defer_build();
+
+      _synchronous_lock synchronouslock(this->synchronization());
 
       ::pointer<script_instance>pinstance;
 
@@ -516,7 +514,7 @@ namespace dynamic_source
    void ds_script::defer_build()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_plibrary.is_set() && !m_plibrary->is_closed())
       {
@@ -552,10 +550,14 @@ namespace dynamic_source
       do
       {
 
+
          if (iRetry > 0)
          {
+            synchronouslock.unlock();
 
             preempt(system()->primitive()->random(2._s, 4._s));
+
+            synchronouslock._lock();
 
          }
 
@@ -615,7 +617,7 @@ namespace dynamic_source
 
       {
 
-         synchronous_lock synchronouslock(m_pmanager->m_pmutexShouldBuild);
+         _synchronous_lock synchronouslock(m_pmanager->m_pmutexShouldBuild);
 
          m_pmanager->m_mapShouldBuild[m_strSourcePath] = false;
 

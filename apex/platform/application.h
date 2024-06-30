@@ -160,7 +160,7 @@ namespace apex
 
       ::pointer<::networking::application>         m_pnetworkingapplication;
 
-
+      ::string_map < ::pointer < ::fs::folder_sync > >  m_fsfoldersyncmap;
 
       application();
       ~application() override;
@@ -177,6 +177,9 @@ namespace apex
 
 
       virtual string __get_text(string str);
+
+
+      ::pointer < ::fs::folder_sync > fs_folder_sync(const ::scoped_string & scopedstr);
 
 
       //virtual void process_command_line(command_line* pcommandline);

@@ -15,8 +15,8 @@ namespace data
    }
 
 
-   text_property::text_property(const text_property & text_property) :
-      property(text_property)
+   text_property::text_property(const ::data::property & property) :
+      property(property)
    {
 
 

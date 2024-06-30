@@ -3,6 +3,7 @@
 
 
 #include "aura/user/user/form_handler.h"
+#include "axis/user/user/multiple_option.h"
 #include "line_layout.h"
 
 
@@ -51,6 +52,35 @@ namespace axis
          pcheckbox->set_need_layout();
 
          return pcheckbox;
+
+      }
+
+
+      template < typename MULTIPLE_OPTION = ::user::multiple_option>
+      ::pointer < MULTIPLE_OPTION >create_multiple_option(::user::interaction* puserinteractionParent, const ::data::property & property, const ::atom_array & atomaOptions, const ::string_array& straName)
+      {
+
+         auto pmultipleoption = __create_new<MULTIPLE_OPTION>();
+
+         pmultipleoption->create_child(puserinteractionParent);
+
+         pmultipleoption->m_propertyOption = property;
+
+         for (::collection::index i = 0; i < atomaOptions.size(); i++)
+         {
+
+            auto& atom = atomaOptions[i];
+            auto& name = straName[i];
+
+            pmultipleoption->add_item(name, atom);
+
+         }
+
+         pmultipleoption->display();
+
+         pmultipleoption->set_need_layout();
+
+         return pmultipleoption;
 
       }
 

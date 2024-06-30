@@ -107,8 +107,12 @@ namespace fs
    }
 
 
-   ::pointer<data>set::path_data(const ::file::path & psz)
+   ::pointer<data>set::path_data(const ::payload & payloadFile)
    {
+
+      auto filepath = payloadFile.as_file_path();
+
+      auto range = filepath();
 
       _synchronous_lock synchronouslock(synchronization());
 
@@ -130,7 +134,7 @@ namespace fs
             if (pdata.is_set())
             {
 
-               if (psz.case_insensitive_begins(strRoot))
+               if (range.case_insensitive_begins(strRoot))
                {
 
                   return pdata;
@@ -142,7 +146,7 @@ namespace fs
                if(pathRoot.has_char())
                {
                   
-                  if (psz.case_insensitive_begins(pathRoot))
+                  if (range.case_insensitive_begins(pathRoot))
                   {
                      
                      return pdata;
@@ -171,7 +175,7 @@ namespace fs
             if (pdata.is_set())
             {
 
-               if (pdata->is_dir(psz))
+               if (pdata->is_dir(range))
                {
 
                   return pdata;
@@ -404,10 +408,10 @@ namespace fs
    }
 
 
-   file_pointer set::get_file(const ::file::path & path, ::file::e_open eopen)
+   file_pointer set::get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception)
    {
 
-      ::fs::data * pdata = path_data(path);
+      ::fs::data * pdata = path_data(payloadFile);
 
       if (pdata == nullptr)
       {
@@ -416,7 +420,7 @@ namespace fs
 
       }
 
-      return pdata->get_file(path, eopen);
+      return pdata->get_file(payloadFile, eopen, ppfileexception);
 
    }
 

@@ -1577,11 +1577,21 @@ public:
 
       }
 
-      this->begin()++;
+      this->add_to_begin(1);
 
-      this->end()--;
+      this->add_to_end(-1);
 
       return true;
+
+   }
+
+
+   string_range& pair_trim_quotes()
+   {
+
+      while (paired_trim('\"', '\"') || paired_trim('\'', '\''));
+
+      return *this;
 
    }
 

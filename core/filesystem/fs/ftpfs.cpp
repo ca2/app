@@ -408,10 +408,10 @@ bool ftpfs::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
 }
 
 
-file_pointer ftpfs::get_file(const ::file::path & path, ::file::e_open eopen)
+file_pointer ftpfs::get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* pfileexception)
 {
 
-   if (is_dir(path))
+   if (is_dir(payloadFile))
    {
 
       return nullptr;
@@ -427,7 +427,7 @@ file_pointer ftpfs::get_file(const ::file::path & path, ::file::e_open eopen)
 
 retry:
 
-      defer_initialize(&pclient, path);
+      defer_initialize(&pclient, payloadFile);
 
       if (pclient->m_estate != ::ftp::client_socket::state_logged)
       {
@@ -451,7 +451,7 @@ retry:
 
       auto purl = psystem->url();
 
-      string strRemoteFile = purl->get_object(path);
+      string strRemoteFile = purl->get_object(payloadFile);
 
       if (!pclient->DownloadFile(strRemoteFile, pathTemp))
       {
@@ -479,7 +479,7 @@ retry:
 
       ::ftp::client_socket * pclient = nullptr;
 
-      defer_initialize(&pclient, path);
+      defer_initialize(&pclient, payloadFile);
 
       file_pointer spfile;
 
@@ -487,7 +487,7 @@ retry:
 
       //auto result = 
       
-      spfile->open(path, eopen);
+      spfile->open(payloadFile, eopen);
 
       //if (!result)
       //{

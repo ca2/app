@@ -29,6 +29,7 @@
 #include "acme/primitive/string/command_line.h"
 #include "acme/primitive/string/str.h"
 #include "acme/primitive/text/context.h"
+#include "apex/filesystem/fs/folder_sync.h"
 #include "apex/filesystem/fs/native.h"
 #include "apex/filesystem/fs/set.h"
 #include "apex/message/application.h"
@@ -522,6 +523,40 @@ namespace apex
       }
 
       return m_puserlanguagemap->__get_text(str);
+
+   }
+
+
+   ::pointer < ::fs::folder_sync > application::fs_folder_sync(const ::scoped_string& scopedstr)
+   {
+
+      ::string str(scopedstr);
+
+      str.trim();
+
+      str.make_lower();
+
+      auto& pfsfoldersync = m_fsfoldersyncmap[str];
+
+      if (pfsfoldersync)
+      {
+
+         return pfsfoldersync;
+
+      }
+
+      auto & pfactory = system()->factory("fs_folder_sync", scopedstr);
+
+      if (!pfactory)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      pfsfoldersync = pfactory->__create < ::fs::folder_sync >(this);
+
+      return pfsfoldersync;
 
    }
 

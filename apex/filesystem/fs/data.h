@@ -3,6 +3,7 @@
 
 #include "acme/primitive/data/data.h"
 #include "acme/filesystem/filesystem/enumerator.h"
+#include "acme/filesystem/filesystem/file_context_interface.h"
 
 
 namespace fs
@@ -14,7 +15,8 @@ namespace fs
 
    class CLASS_DECL_APEX data :
       virtual public ::data::data,
-      virtual public ::file::enumerator
+      virtual public ::file::enumerator,
+      virtual public ::file_context_interface
    {
    public:
 
@@ -45,12 +47,12 @@ namespace fs
 
       virtual bool file_move(const ::file::path & pszDst,const ::file::path & pszSrc);
 
-      virtual file_pointer get_file(const ::file::path & path, ::file::e_open eopen);
+      ::file_pointer get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* pfileexception = nullptr) override;
 
 
       virtual bool fast_has_subdir(const ::file::path & pszPath);
 
-      virtual ::pointer<data>path_data(const ::file::path & psz);
+      virtual ::pointer<data>path_data(const ::payload & payloadFile);
       virtual ::pointer<data>node_path_data(const ::file::path & psz);
 
 

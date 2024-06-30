@@ -51,7 +51,7 @@ namespace data
    public:
 
       check_property(::data::property_container * ppropertycontainer = nullptr, const ::atom & atom = {});
-      check_property(const check_property & checkproperty);
+      check_property(const ::data::property & property);
       ~check_property();
 
 

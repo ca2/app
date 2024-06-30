@@ -930,6 +930,7 @@
     <ClCompile Include="filesystem\filesystem\dir_system.cpp" />
     <ClCompile Include="filesystem\filesystem\enumerator.cpp" />
     <ClCompile Include="filesystem\filesystem\file_context.cpp" />
+    <ClCompile Include="filesystem\filesystem\file_context_interface.cpp" />
     <ClCompile Include="filesystem\filesystem\file_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\file_path.cpp" />
     <ClCompile Include="filesystem\filesystem\file_system.cpp" />
@@ -1120,6 +1121,7 @@
     <ClInclude Include="filesystem\filesystem\dir_system_heap.h" />
     <ClInclude Include="filesystem\filesystem\enumerator.h" />
     <ClInclude Include="filesystem\filesystem\file_context.h" />
+    <ClInclude Include="filesystem\filesystem\file_context_interface.h" />
     <ClInclude Include="filesystem\filesystem\file_dialog.h" />
     <ClInclude Include="filesystem\filesystem\file_path.h" />
     <ClInclude Include="filesystem\filesystem\file_system.h" />

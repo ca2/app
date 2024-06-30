@@ -18,7 +18,14 @@
 
 
       bool                          m_bDropboxCalculated;
+      bool                          m_bDropbox;
       ::file::path                  m_pathDropbox;
+
+
+      bool                          m_bOneDriveCalculated;
+      bool                          m_bOneDrive;
+      ::file::path                  m_pathOneDrive;
+
       ::file::path                  m_pathLocalFolder;
 
 
@@ -183,6 +190,11 @@
 
       virtual ::file::path dropbox_app();
 
+      virtual bool is_dropbox_installed();
+      virtual void calculate_dropbox_installed();
+      virtual bool is_onedrive_installed();
+      virtual void calculate_onedrive_installed();
+
       virtual ::file::path standalone();
 
       //virtual string_array locale_schema_matter(string & strLocale, const ::string & strStyle);
@@ -237,6 +249,9 @@
 
 
       //virtual ::file::path onedrive();
+
+      virtual ::file::path dropbox_client();
+     
 
 
    };

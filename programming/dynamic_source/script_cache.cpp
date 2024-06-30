@@ -162,12 +162,27 @@ namespace dynamic_source
 
       }
 
-      synchronous_lock slScript(pscript->synchronization());
+      _synchronous_lock slScript(pscript->synchronization());
 
-      if(!pscript->m_bNew && pscript->ShouldBuild())
+      int iTry = 0;
+
+      while(!pscript->m_bNew && pscript->ShouldBuild())
       {
 
+         slScript.unlock();
+
          pscript = create_new_ds_script(strName);
+
+         slScript._lock();
+
+         iTry++;
+
+         if (iTry > 5)
+         {
+
+            return nullptr;
+
+         }
 
       }
 

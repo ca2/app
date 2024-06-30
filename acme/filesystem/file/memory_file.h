@@ -159,8 +159,8 @@ public:
 
    memory_file & operator = (const memory_file & file);
 
-   inline memsize _get_left() { return m_memsize - m_position; }
-   inline bool _is_end_of_file() const { return m_position >= m_memsize; }
+   inline memsize _get_left() { return m_pmemory->size() - m_position; }
+   inline bool _is_end_of_file() const { return m_position >= m_pmemory->size(); }
 
    inline int _get_u8()
    {

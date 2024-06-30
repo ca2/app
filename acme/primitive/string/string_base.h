@@ -1320,6 +1320,50 @@ public:
    string_base left_trimmed(const SCOPED_STRING & scopedstrTargets) const;
 
 
+   bool pair_trim(CHARACTER character1, CHARACTER character2)
+   {
+
+      if (this->size() >= 2)
+      {
+
+         if (this->first() == character1 && this->last() == character2)
+         {
+
+            *this = substr(1, length() - 2);
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+   string_base & pair_trim_quotes()
+   {
+
+      while (pair_trim('\"', '\"') || pair_trim('\'', '\''));
+
+      return *this;
+
+   }
+
+
+   string_base paired_trim_quotes()
+   {
+
+      auto str = *this;
+
+      str.pair_trim_quotes();
+
+      return ::transfer(str);
+
+   }
+
+
    string_base substr(strsize iFirst) const;
 
    string_base substr(const_iterator p) const { return ::transfer(substr(p, -1)); }

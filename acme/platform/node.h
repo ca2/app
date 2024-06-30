@@ -152,7 +152,6 @@ namespace acme
       //virtual ::pointer < ::particle > create_quit_particle();
       virtual ::file::path get_default_base_integration_folder();
 
-      virtual ::file::path ___fonts_folder();
 
       ///virtual void implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> & psystem);
 
@@ -938,6 +937,8 @@ namespace acme
 #endif
 
       virtual bool _is_google_chrome_installed();
+
+      virtual bool _is_opera_browser_installed();
 
       virtual bool _is_visual_studio_code_installed();
 

@@ -334,13 +334,13 @@ namespace fs
    }
 
 
-   file_pointer remote_native::get_file(const ::file::path & path, ::file::e_open eopen)
+   file_pointer remote_native::get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception)
    {
 
-      file_pointer pfile = __allocate< remote_native_file >(path);
+      file_pointer pfile = __allocate< remote_native_file >(payloadFile);
 
       //auto result =
-      pfile->open(path, eopen);
+      pfile->open(payloadFile, eopen, ppfileexception);
 
       //if(!result)
       //{

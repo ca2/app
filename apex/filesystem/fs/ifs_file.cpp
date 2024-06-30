@@ -41,7 +41,7 @@ void ifs_file::write(const void * p, ::memsize s)
 filesize ifs_file::size() const
 {
 
-   if((m_nOpenFlags & ::file::e_open_read) != 0)
+   if((m_eopen & ::file::e_open_read) != 0)
    {
 
       return m_phttpfile->size();
@@ -60,7 +60,7 @@ filesize ifs_file::size() const
 void ifs_file::translate(filesize offset, ::enum_seek eseek)
 {
 
-   if((m_nOpenFlags & ::file::e_open_read) != 0)
+   if((m_eopen & ::file::e_open_read) != 0)
    {
 
       m_phttpfile->translate(offset, eseek);
@@ -85,11 +85,11 @@ void ifs_file::get_file_data()
 
    auto purl = psystem->url();
 
-   strUrl = "http://file.ca2.software/ifs/get?path=" + ::url::encode(m_strPath);
+   strUrl = "http://file.ca2.software/ifs/get?path=" + ::url::encode(m_path);
 
    ::file::e_open eopenAdd;
 
-   if(m_nOpenFlags & ::file::e_open_update_unknown_length_supported)
+   if(m_eopen & ::file::e_open_update_unknown_length_supported)
    {
 
       eopenAdd |= ::file::e_open_update_unknown_length_supported;
@@ -152,7 +152,7 @@ void ifs_file::set_file_data()
 
    }
 
-   strUrl = "http://file.ca2.software/ifs/set?path=" + ::url::encode(m_strPath);
+   strUrl = "http://file.ca2.software/ifs/set?path=" + ::url::encode(m_path);
 
    property_set setPut;
 

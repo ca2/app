@@ -245,6 +245,7 @@ namespace user
       e_control_type_system_menu_close,
       e_control_type_form,
       e_control_type_scroll_bar,
+      e_control_type_multiple_option,
 
    };
 

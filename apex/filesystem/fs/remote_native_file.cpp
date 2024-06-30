@@ -45,7 +45,7 @@ namespace fs
 
    filesize remote_native_file::size() const
    {
-      if((m_nOpenFlags & ::file::e_open_read) != 0)
+      if((m_eopen & ::file::e_open_read) != 0)
       {
          return m_phttpfile->size();
       }
@@ -59,7 +59,7 @@ namespace fs
    void remote_native_file::seek(filesize lOff, ::enum_seek eseek)
    {
 
-      if((m_nOpenFlags & ::file::e_open_read) != 0)
+      if((m_eopen & ::file::e_open_read) != 0)
       {
 
          return m_phttpfile->translate(lOff, eseek);
@@ -89,12 +89,12 @@ namespace fs
 
       auto purl = psystem->url();
 
-      strUrl = "http://fs.veriwell.net/fs/get?path=" + ::url::encode(purl->get_script(m_strPath))
-               + "&server=" + ::url::encode(purl->get_server(m_strPath));
+      strUrl = "http://fs.veriwell.net/fs/get?path=" + ::url::encode(purl->get_script(m_path))
+               + "&server=" + ::url::encode(purl->get_server(m_path));
 
       ::file::e_open eopenAdd;
 
-      if(m_nOpenFlags & ::file::e_open_update_unknown_length_supported)
+      if(m_eopen & ::file::e_open_update_unknown_length_supported)
       {
 
          eopenAdd |= ::file::e_open_update_unknown_length_supported;
@@ -155,8 +155,8 @@ namespace fs
       }
 
 
-      strUrl = "http://fs.veriwell.net/fs/set?path=" + ::url::encode(purl->get_script(m_strPath))
-               + "&server=" + ::url::encode(purl->get_server(m_strPath));
+      strUrl = "http://fs.veriwell.net/fs/set?path=" + ::url::encode(purl->get_script(m_path))
+               + "&server=" + ::url::encode(purl->get_server(m_path));
 
       property_set set;
 

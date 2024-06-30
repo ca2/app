@@ -1295,6 +1295,8 @@ void acme_directory::add_media_library_item(::media_library::item* pmedialibrary
 ::file::path acme_directory::windows()
 {
 
+   throw ::interface_only();
+
    return {};
 
 }
@@ -1303,9 +1305,32 @@ void acme_directory::add_media_library_item(::media_library::item* pmedialibrary
 ::file::path acme_directory::system_drive()
 {
 
+   throw ::interface_only();
+
    return {};
 
 }
+
+
+::file::path acme_directory::fonts()
+{
+
+   throw ::interface_only();
+
+   return {};
+
+}
+
+
+::file::path acme_directory::___fonts()
+{
+
+   throw ::interface_only();
+
+   return {};
+
+}
+
 
 
 bool acme_directory::is_accessible(const ::file::path & path)
@@ -1315,5 +1340,38 @@ bool acme_directory::is_accessible(const ::file::path & path)
 
 }
 
+
+bool acme_directory::contains_files(const ::file::path& path, const ::string_array& straName, int iMinimumSize)
+{
+
+   for (auto& strName : straName)
+   {
+
+      auto pathFile = path / strName;
+
+      if (!acmefile()->exists(pathFile))
+      {
+
+         return false;
+
+      }
+
+      if (iMinimumSize > 0)
+      {
+
+         if (acmefile()->get_size(pathFile) < iMinimumSize)
+         {
+
+            return false;
+
+         }
+
+      }
+
+   }
+
+   return true;
+
+}
 
 

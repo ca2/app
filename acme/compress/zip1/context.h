@@ -19,7 +19,7 @@ public:
 
    //virtual bool extract(const ::file::path & path, const ::scoped_string & scopedstrExtractFileName, ::file::enum_type * petype = nullptr);
 
-   virtual bool e_extract_all(const ::scoped_string & scopedstrDir,::payload payloadFile, ::file::path_array * ppatha = nullptr, string_array * pstraFilter = nullptr,bool_array * pbaBeginsFilterEat = nullptr);
+   virtual bool e_extract_all(const ::scoped_string& scopedstrDir, ::payload payloadFile, ::file::path_array* ppatha = nullptr, string_array* pstraFilter = nullptr, bool_array* pbaBeginsFilterEat = nullptr, , ::function<void(const::scoped_string& scopedstr) > functionCallback = {});
    virtual bool is_unzippable(const ::file::path & path);
 
    virtual bool has_sub_folder(const ::file::path & path);

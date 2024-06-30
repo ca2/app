@@ -122,7 +122,7 @@ bool folder::is_compressed(const ::file::path & path)
 }
 
 
-void folder::e_extract_all(const ::file::path & pathTargetDir, ::file::path_array * ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat)
+void folder::e_extract_all(const ::file::path & pathTargetDir, ::file::path_array * ppatha, string_array* pstraFilter, bool_array* pbaBeginsFilterEat, ::function<void(const::scoped_string& scopedstr) > functionCallback)
 {
 
    throw ::interface_only();

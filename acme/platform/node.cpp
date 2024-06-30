@@ -369,14 +369,14 @@ namespace acme
    }
 
 
-   ::file::path node::___fonts_folder()
-   {
+   //::file::path node::___fonts_folder()
+   //{
 
-      throw interface_only();
+   //   throw interface_only();
 
-      return {};
+   //   return {};
 
-   }
+   //}
 
 
    void node::node_main()
@@ -3232,6 +3232,14 @@ bool node::_is_smart_git_installed()
 
 
    bool node::_is_google_chrome_installed()
+   {
+
+      return false;
+
+   }
+
+
+   bool node::_is_opera_browser_installed()
    {
 
       return false;

@@ -22,7 +22,13 @@ namespace data
    public:
 
 
+      struct set_property_t
+      {
 
+         const ::payload& m_payload;
+         const ::action_context& m_actioncontext;
+
+      };
 
       property(::data::property_container * ppropertycontainer = nullptr, const ::atom & atom = {});
 
@@ -81,6 +87,15 @@ namespace data
 
       
       bool operator == (const property & property) const;
+
+      property& operator = (set_property_t setproperty)
+      {
+
+         set_property(setproperty.m_payload, setproperty.m_actioncontext);
+
+         return *this;
+
+      }
 
 
    };

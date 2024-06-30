@@ -17,7 +17,7 @@ public:
 
    }
 
-   operator memsize() const { return m_memsize; }
+   constexpr operator memsize() const { return m_memsize; }
 
 
 };

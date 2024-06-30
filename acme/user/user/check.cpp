@@ -15,6 +15,45 @@ namespace user
       m_checkproperty(this, this, ID_CHECK)
    {
 
+      m_checkproperty.set_check_property(m_checkproperty);
+
+      m_propertywillchangea += [this](auto & change)
+         {
+
+            if (m_checkproperty && change)
+            {
+
+               ::data::check_change checkchange{ m_checkproperty, change };
+
+               if (!on_check_will_change(checkchange))
+               {
+
+                  return false;
+
+               }
+
+            }
+
+            return true;
+
+         };
+
+      m_propertychangeda += [this](auto & change)
+         {
+
+            if (m_checkproperty && change)
+            {
+
+               ::data::check_change checkchange{ m_checkproperty, change };
+
+               on_check_changed(checkchange);
+
+            }
+
+            return true;
+
+         };
+
    }
 
 

@@ -195,7 +195,8 @@ public:
 
 
    //using payload::operator ::string;
-
+   void write_to_stream(::binary_stream & stream) override;
+   void read_from_stream(::binary_stream & stream) override;
 
 };
 

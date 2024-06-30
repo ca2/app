@@ -47,8 +47,8 @@ namespace user
       virtual void on_text_changed(::data::text_change & textchange);
 
 
-      bool on_property_will_change(::data::property_change & change) override;
-      void on_property_changed(::data::property_change & change) override;
+      //bool on_property_will_change(::data::property_change & change) override;
+      //void on_property_changed(::data::property_change & change) override;
 
       virtual ::string as_text() const;
       virtual void get_text(::string & str) const;

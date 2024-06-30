@@ -1860,7 +1860,7 @@
     <ClInclude Include="graphics\draw2d\_string.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\__property.h">
+    <ClInclude Include="primitive\primitive\property.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\debug.h">

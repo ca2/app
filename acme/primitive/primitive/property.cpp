@@ -1905,3 +1905,24 @@ void on_property_destruct(property* pproperty)
 
 
 
+void property::write_to_stream(::binary_stream & stream)
+{
+
+   stream << m_atom;
+
+   stream << (::payload &)*this;
+
+}
+
+
+void property::read_from_stream(::binary_stream & stream)
+{
+
+   stream >> m_atom;
+
+   stream >> (::payload &)*this;
+
+}
+
+
+

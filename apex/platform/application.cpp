@@ -344,6 +344,14 @@ namespace apex
 
    }
 
+
+   ::file::path application::cloud_protocol()
+   {
+
+      return "dropbox://";
+
+   }
+
    //void application::on_initialize_application(::main* pmain)
    //{
 

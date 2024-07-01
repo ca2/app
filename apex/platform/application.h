@@ -171,6 +171,8 @@ namespace apex
 
       void on_set_platform() override;
 
+      virtual ::file::path cloud_protocol();
+
       //void on_initialize_application(::main* pmain) override;
       //// void assert_ok() const override;
       //// void dump(dump_context & dumpcontext) const override;

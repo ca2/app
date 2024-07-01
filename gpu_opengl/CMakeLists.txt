@@ -67,6 +67,7 @@ if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
     list(APPEND library_references
             aura_posix
+       windowing_system_x11
             )
 
 else()
@@ -133,8 +134,8 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
     target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
     target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
-    target_link_libraries(gpu_opengl PRIVATE ${library_references})
-    target_link_libraries(gpu_opengl PRIVATE ${default_windowing})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${default_windowing})
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 

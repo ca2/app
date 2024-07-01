@@ -6576,7 +6576,7 @@ namespace user
       if (m_pgraphicscalla)
       {
 
-         while (m_pgraphicscalla->has_element())
+         while (m_pgraphicscalla && m_pgraphicscalla->has_element())
          {
 
             auto pcall = m_pgraphicscalla->pick_first();

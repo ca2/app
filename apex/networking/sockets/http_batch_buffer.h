@@ -27,8 +27,8 @@ namespace sockets
       void open(const ::file::path& path, ::file::e_open eopen, ::pointer < ::file::exception >* pfileexception = nullptr) override;
 
 
-      virtual void close();
-      virtual void flush();
+      void close() override;
+      void flush() override;
 
       virtual void get_file_data() = 0;
       virtual void set_file_data() = 0;

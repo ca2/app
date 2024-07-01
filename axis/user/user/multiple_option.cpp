@@ -887,7 +887,7 @@ namespace user
    void multiple_option::set_current_item_by_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext)
    {
 
-      int iIndex = m_straName.find_first_ci(scopedstr);
+      auto iIndex = m_straName.find_first_ci(scopedstr);
 
       if (iIndex >= 0)
       {
@@ -910,7 +910,7 @@ namespace user
    void multiple_option::set_current_item_by_atom(const ::atom & atom, const ::action_context & actioncontext)
    {
 
-      int iIndex = m_atomaOptions.find_first(atom);
+      auto iIndex = m_atomaOptions.find_first(atom);
 
       if (iIndex >= 0)
       {

@@ -521,13 +521,13 @@ namespace apex
          path = dir()->document() / path;
 
       }
-      else if (_001IsProtocol(path, "dropbox:/"))
+      else if (dir()->is_dropbox_installed() && _001IsProtocol(path, "dropbox:/"))
       {
 
          path = dir()->dropbox() / path;
 
       }
-      else if (_001IsProtocol(path, "dropbox-app:/"))
+      else if (dir()->is_dropbox_installed() && _001IsProtocol(path, "dropbox-app:/"))
       {
 
          auto papplication = application();

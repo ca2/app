@@ -4,7 +4,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura_posix/_.h"
 //#include "aura_posix/_library.h"
-#include "acme/operating_system/x11/display_lock.h"
+#include "operating_system-posix/windowing_system_x11/display_lock.h"
 #include "aura/platform/system.h"
 #include "aura/platform/session.h"
 #include "aura/user/user/user.h"

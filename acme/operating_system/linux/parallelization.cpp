@@ -146,7 +146,19 @@ void _do_tasks()
 
    }
 
-   psystem->node()->defer_do_main_tasks();
+   if(psystem)
+   {
+
+      auto pnode = psystem->node();
+
+      if(pnode)
+      {
+
+         pnode->defer_do_main_tasks();
+
+      }
+
+   }
 
 }
 

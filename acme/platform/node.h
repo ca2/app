@@ -36,7 +36,19 @@ namespace acme
    class CLASS_DECL_ACME node :
       virtual public ::acme::shell
    {
+   public:
+
+         bool                          m_bDropboxCalculated;
+         bool                          m_bDropbox;
+         ::file::path                  m_pathDropbox;
+
+
+         bool                          m_bOneDriveCalculated;
+         bool                          m_bOneDrive;
+         ::file::path                  m_pathOneDrive;
+
    protected:
+
 
 
 
@@ -935,6 +947,15 @@ namespace acme
       virtual bool _is_smart_git_installed();
 
 #endif
+
+      virtual bool _is_google_drive_installed();
+
+      virtual bool _is_dropbox_installed();
+
+      virtual bool _is_onedrive_installed();
+         virtual void calculate_dropbox_installed();
+
+         virtual void calculate_onedrive_installed();
 
       virtual bool _is_google_chrome_installed();
 

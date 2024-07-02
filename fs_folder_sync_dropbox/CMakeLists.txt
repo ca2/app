@@ -1,28 +1,27 @@
 cmake_minimum_required(VERSION 3.16)
-project(compress_bzip2 CXX)
+project(fs_folder_sync_dropbox CXX)
 
 
 list(APPEND library_source
-   _.cpp
-   _.h
-   #_compress_bzip2.h
-   compress.cpp
-   compress.h
-   uncompress.cpp
-   uncompress.cpp
-   _factory.cpp)
+        _.cpp
+        _.h
+        _factory.cpp
+        fs_folder_sync.cpp
+        fs_folder_sync.h
+)
 
 
 list(APPEND library_references
-   acme
-   )
+        acme
+        apex
+)
 
 
 if (MSVC)
     set(LIBCXX_TARGETING_MSVC ON)
-else()
+else ()
     set(LIBCXX_TARGETING_MSVC OFF)
-endif()
+endif ()
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source})
@@ -47,48 +46,48 @@ set_target_properties(compress_bzip2 PROPERTIES LINKER_LANGUAGE CXX)
 if (MSVC)
 
 
-   target_compile_options(compress_bzip2 PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-   target_link_options(compress_bzip2 PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(compress_bzip2 PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/compress_bzip2.lib")
-   target_link_options(compress_bzip2 PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/compress_bzip2.def")
-   target_link_libraries(compress_bzip2 PRIVATE acme apex aqua aura Gdiplus)
+    target_compile_options(compress_bzip2 PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(compress_bzip2 PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(compress_bzip2 PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/compress_bzip2.lib")
+    target_link_options(compress_bzip2 PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/compress_bzip2.def")
+    target_link_libraries(compress_bzip2 PRIVATE acme apex aqua aura Gdiplus)
 
 
-elseif(${LINUX})
+elseif (${LINUX})
 
 
-if(DEFINED UBUNTU OR DEFINED DEBIAN OR DEFINED RASPBIAN)
+    if (DEFINED UBUNTU OR DEFINED DEBIAN OR DEFINED RASPBIAN)
 
 
-   list(APPEND library_references
-      bz2)
+        list(APPEND library_references
+                bz2)
 
-   message("including bz2 \"manually\" at ubuntu/debian")
-
-
-else()
+        message("including bz2 \"manually\" at ubuntu/debian")
 
 
-   if(USE_PKGCONFIG)
-      pkg_check_modules(PKGCONFIG bzip2)
-   endif()
-   target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
-target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
-   target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
-   target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
+    else ()
 
 
-endif()
+        if (USE_PKGCONFIG)
+            pkg_check_modules(PKGCONFIG bzip2)
+        endif ()
+        target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+        target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+        target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
+        target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES})
 
 
-   target_link_libraries(compress_bzip2 PRIVATE ${library_references})
-   target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+    endif ()
+
+
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
+    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
 
-   #message(STATUS "(8) PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+    #message(STATUS "(8) PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 
 
-endif()
+endif ()
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
@@ -97,7 +96,6 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
-
 
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)

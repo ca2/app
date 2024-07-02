@@ -23,6 +23,7 @@
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/dir_system.h"
 //#include "apex/networking/http/context.h"
+#include "acme/platform/node.h"
 
 
 namespace zip
@@ -54,13 +55,6 @@ namespace zip
 dir_context::dir_context()
 {
 
-   m_bDropboxCalculated = false;
-
-   m_bDropbox = false;
-
-   m_bOneDriveCalculated = false;
-
-   m_bOneDrive = false;
 
    //if (::file::dir_context::g_pthis == nullptr)
    //{
@@ -3272,102 +3266,14 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 ::file::path dir_context::dropbox()
 {
 
-   if (!is_dropbox_installed())
+   if (!node()->_is_dropbox_installed())
    {
 
       throw ::exception(error_wrong_state);
 
    }
 
-   return m_pathDropbox;
-
-}
-
-
-bool dir_context::is_dropbox_installed()
-{
-
-   if (!m_bDropboxCalculated)
-   {
-
-      calculate_dropbox_installed();
-
-   }
-
-   return m_bDropbox;
-
-}
-
-
-void dir_context::calculate_dropbox_installed()
-{
-
-   m_bDropbox = false;
-
-   m_pathDropbox.empty();
-
-   m_bDropboxCalculated = true;
-
-   ::file::path pathNetworkPayload = file()->dropbox_info_network_payload();
-
-   if (!file()->exists(pathNetworkPayload))
-   {
-
-      if (application()->is_desktop_system())
-      {
-
-         auto pathHome = dir()->home();
-
-         auto pathTxt = pathHome / "dropbox.txt";
-
-         if (file()->exists(pathTxt))
-         {
-
-            string strPath = file()->safe_get_string(pathTxt);
-
-            strPath.trim();
-
-            if (strPath.has_char() && this->is(strPath))
-            {
-
-               m_pathDropbox = strPath;
-
-               m_bDropbox = true;
-
-            }
-
-         }
-
-      }
-      else
-      {
-
-         m_pathDropbox.empty();
-
-      }
-
-   }
-   else
-   {
-
-      string strNetworkPayload = file()->as_string(pathNetworkPayload);
-
-      ::property_set set;
-
-      set.parse_network_payload(strNetworkPayload);
-
-      m_pathDropbox = set["personal"]["path"];
-
-      if (this->is(m_pathDropbox))
-      {
-
-         m_bDropbox = true;
-
-      }
-
-   }
-
-   m_bDropboxCalculated = true;
+   return node()->m_pathDropbox;
 
 }
 
@@ -3409,84 +3315,84 @@ void dir_context::calculate_dropbox_installed()
 ::file::path dir_context::onedrive()
 {
 
-   if (!is_onedrive_installed())
+   if (!node()->_is_onedrive_installed())
    {
 
       throw ::exception(error_wrong_state);
 
    }
 
-   return m_pathOneDrive;
+   return node()->m_pathOneDrive;
 
 }
 
 
-bool dir_context::is_onedrive_installed()
-{
+// bool dir_context::is_onedrive_installed()
+// {
+//
+//    if (!m_bOneDriveCalculated)
+//    {
+//
+//       calculate_onedrive_installed();
+//
+//    }
+//
+//    return m_bOneDrive;
+//
+// }
 
-   if (!m_bOneDriveCalculated)
-   {
 
-      calculate_onedrive_installed();
-
-   }
-
-   return m_bOneDrive;
-
-}
-
-
-void dir_context::calculate_onedrive_installed()
-{
-
-   m_bDropbox = false;
-
-   m_pathDropbox.empty();
-
-   m_bDropboxCalculated = false;
-
-   ::file::path pathIni = file()->onedrive_cid_ini();
-
-   if (file()->exists(pathIni))
-   {
-
-      string strIni = file()->safe_get_string(pathIni);
-
-      if (strIni.has_char())
-      {
-
-         ::property_set set;
-
-         set.parse_ini(strIni);
-
-         string strLibrary;
-
-         strLibrary = set["library"];
-
-         ::tokenizer token(strLibrary);
-
-         token.skip_word(7);
-
-         string strWork = token.get_word();
-
-         strWork.trim("\"");
-
-         if (this->is(strWork))
-         {
-
-            m_pathOneDrive = strWork;
-
-            m_bOneDrive = true;
-
-         }
-
-      }
-
-   }
-
-   m_bDropboxCalculated = true;
-
-}
+// void dir_context::calculate_onedrive_installed()
+// {
+//
+//    m_bDropbox = false;
+//
+//    m_pathDropbox.empty();
+//
+//    m_bDropboxCalculated = false;
+//
+//    ::file::path pathIni = file()->onedrive_cid_ini();
+//
+//    if (file()->exists(pathIni))
+//    {
+//
+//       string strIni = file()->safe_get_string(pathIni);
+//
+//       if (strIni.has_char())
+//       {
+//
+//          ::property_set set;
+//
+//          set.parse_ini(strIni);
+//
+//          string strLibrary;
+//
+//          strLibrary = set["library"];
+//
+//          ::tokenizer token(strLibrary);
+//
+//          token.skip_word(7);
+//
+//          string strWork = token.get_word();
+//
+//          strWork.trim("\"");
+//
+//          if (this->is(strWork))
+//          {
+//
+//             m_pathOneDrive = strWork;
+//
+//             m_bOneDrive = true;
+//
+//          }
+//
+//       }
+//
+//    }
+//
+//    m_bDropboxCalculated = true;
+//
+// }
 
 
 //void dir_context::calculate_onedrive_installed()
@@ -3522,8 +3428,6 @@ void dir_context::calculate_onedrive_installed()
 //   return strWork;
 //
 //}
-
-
 
 
 ::file::path dir_context::standalone()

@@ -351,7 +351,7 @@ enum enum_id : ::uptr
    id_speech,
 
    id_load_fragment_path_prefix,
-   id_cloud_provider,
+   //id_cloud_provider,
 
    //id_one_drive,
    //id_dropbox,

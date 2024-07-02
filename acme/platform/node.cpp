@@ -55,6 +55,14 @@ namespace acme
 
       //m_bUserDarkMode = false;
 
+      m_bDropboxCalculated = false;
+
+      m_bDropbox = false;
+
+      m_bOneDriveCalculated = false;
+
+      m_bOneDrive = false;
+
       m_bCallStackInitialized = false;
       m_bUpdateCallStack = false;
 
@@ -3229,6 +3237,58 @@ bool node::_is_smart_git_installed()
 
 
 #endif
+
+
+   bool node::_is_google_drive_installed()
+   {
+
+      return false;
+
+   }
+
+
+   bool node::_is_dropbox_installed()
+   {
+
+      if (!m_bDropboxCalculated)
+      {
+
+         calculate_dropbox_installed();
+
+      }
+
+      return m_bDropbox;
+
+   }
+
+
+   void node::calculate_dropbox_installed()
+   {
+
+
+   }
+
+
+   bool node::_is_onedrive_installed()
+   {
+
+      if (!m_bOneDriveCalculated)
+      {
+
+         calculate_onedrive_installed();
+
+      }
+
+      return m_bOneDrive;
+
+   }
+
+
+   void node::calculate_onedrive_installed()
+   {
+
+
+   }
 
 
    bool node::_is_google_chrome_installed()

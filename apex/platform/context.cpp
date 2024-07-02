@@ -521,13 +521,13 @@ namespace apex
          path = dir()->document() / path;
 
       }
-      else if (dir()->is_dropbox_installed() && _001IsProtocol(path, "dropbox:/"))
+      else if (node()->_is_dropbox_installed() && _001IsProtocol(path, "dropbox:/"))
       {
 
          path = dir()->dropbox() / path;
 
       }
-      else if (dir()->is_dropbox_installed() && _001IsProtocol(path, "dropbox-app:/"))
+      else if (node()->_is_dropbox_installed() && _001IsProtocol(path, "dropbox-app:/"))
       {
 
          auto papplication = application();
@@ -542,7 +542,7 @@ namespace apex
          path = dir()->dropbox_app() / path;
 
       }
-      else if (_001IsProtocol(path, "onedrive:/"))
+      else if (node()->_is_onedrive_installed() && _001IsProtocol(path, "onedrive:/"))
       {
 
          path = dir()->onedrive() / path;

@@ -242,129 +242,140 @@ namespace fs_folder_sync_dropbox
 
 #if defined(LINUX)
 
-   //auto psummary = node()->operating_system_summary();
+      auto pathSourceFile = payloadFile.as_file_path();
 
-   ::file::path pathFolder = acmedirectory()->home();
+      ::file::path pathSourceFolder = pathSourceFile.folder();
 
-   ::file::path pathDropboxBin = acmedirectory()->home() / "bin/dropbox";
+      ::file::path pathDropboxBin = acmedirectory()->home() / "bin/dropbox";
 
-   ::string strDropboxCommand(pathDropboxBin);
+      ::string strDropboxCommand(pathDropboxBin);
 
-   ::file::path pathIndex = acmedirectory()->home() / ".config/integration/code/___repositories/index.txt";
+      //::file::path pathIndex = acmedirectory()->home() / ".config/integration/code/___repositories/index.txt";
 
-   //auto pathSourceFolder = pathFolder / "Dropbox/box/___repositories";
+      //auto pathSourceFolder = pathFolder / "Dropbox/box/___repositories";
 
-   //auto pathSourceIndex = pathSourceFolder / "index.txt";
+      //auto pathSourceIndex = pathSourceFolder / "index.txt";
 
-   auto pathSourceFile = payloadFile.as_file_path();
-
-   if (callbackStatus)
-   {
-
-      callbackStatus(
-         //"Checking for "+pathSourceFile.name() + " at "+pathSourceFile.folder() + "... (index.txt should exist to continue installation with code...)");
-         "Checking for " + pathSourceFile.name() + " at " + pathSourceFile.folder() + "...");
-
-   }
-
-   while (true)
-   {
-
-      if (acmefile()->exists(pathSourceFile))
+      if (callbackStatus)
       {
 
-         break;
-
-      }
-      preempt(1_s);
-   }
-
-   set_status2("Checking if " + pathSourceFile.name() + " is up-to-date and present...");
-
-   ::string_array lines;
-
-   lines.add(pathSourceFile.name());
-
-   acmedirectory()->change_current(pathSourceFile.folder());
-
-   while (true)
-   {
-      preempt(1_s);
-
-      ::string strLs;
-
-      int iExitCode = node()->
-         get_posix_shell_command_output(strLs, strDropboxCommand + " dropbox filestatus");
-
-      auto pszLs = strLs.c_str();
-
-      print_line(pszLs);
-
-      ::string_array stra;
-
-      stra.add_lines(pszLs);
-
-      bool bOk = true;
-
-      for (auto& line : lines)
-      {
-
-         auto pszLine = line.c_str();
-
-         int iFind = stra.find_first_begins_ci(line + ":");
-
-         if (iFind < 0)
-         {
-
-            bOk = false;
-
-            break;
-
-         }
-
-         auto dropboxLine = stra[iFind];
-
-         if (!dropboxLine.case_insensitive_ends("up to date"))
-         {
-
-            bOk = false;
-
-            break;
-
-         }
-
-         auto pathFile = pathSourceFolder / line;
-
-         if (!acmefile()->exists(pathFile))
-         {
-
-            bOk = false;
-
-            break;
-
-         }
-
-         auto strTrimmed = acmefile()->as_string(pathFile).trimmed();
-
-         if (strTrimmed.is_empty())
-         {
-
-            bOk = false;
-
-            break;
-
-         }
+         callbackStatus(
+            //"Checking for "+pathSourceFile.name() + " at "+pathSourceFile.folder() + "... (index.txt should exist to continue installation with code...)");
+            "Checking for " + pathSourceFile.name() + " at " + pathSourceFile.folder() + "...");
 
       }
 
-      if (bOk)
+      while (true)
       {
 
-         break;
+         if (acmefile()->exists(pathSourceFile))
+         {
+
+            break;
+
+         }
+
+         preempt(1_s);
 
       }
 
-   }
+      if(callbackStatus)
+      {
+
+         callbackStatus("Checking if " + pathSourceFile.name() + " is up-to-date and present...");
+
+      }
+
+      ::string strFile;
+
+      ::string_array lines;
+
+      lines.add(pathSourceFile.name());
+
+      acmedirectory()->change_current(pathSourceFile.folder());
+
+      while (true)
+      {
+
+         preempt(1_s);
+
+         ::string strLs;
+
+         int iExitCode = node()->get_posix_shell_command_output(strLs, strDropboxCommand + " dropbox filestatus");
+
+         auto pszLs = strLs.c_str();
+
+         print_line(pszLs);
+
+         ::string_array stra;
+
+         stra.add_lines(pszLs);
+
+         bool bOk = true;
+
+         for (auto& line : lines)
+         {
+
+            auto pszLine = line.c_str();
+
+            int iFind = stra.find_first_begins_ci(line + ":");
+
+            if (iFind < 0)
+            {
+
+               bOk = false;
+
+               break;
+
+            }
+
+            auto dropboxLine = stra[iFind];
+
+            if (!dropboxLine.case_insensitive_ends("up to date"))
+            {
+
+               bOk = false;
+
+               break;
+
+            }
+
+            auto pathFile = pathSourceFolder / line;
+
+            if (!acmefile()->exists(pathFile))
+            {
+
+               bOk = false;
+
+               break;
+
+            }
+
+            strFile = acmefile()->as_string(pathFile);
+
+            auto strTrimmed = strFile.trimmed();
+
+            if (strTrimmed.is_empty())
+            {
+
+               bOk = false;
+
+               break;
+
+            }
+
+         }
+
+         if (bOk)
+         {
+
+            break;
+
+         }
+
+      }
+
+      return strFile;
 
 #else
 
@@ -466,7 +477,7 @@ namespace fs_folder_sync_dropbox
 
             }
 
-            auto pathFile = pathSourceFolder / line;
+            auto pathFile = pathTargetFolder / line;
 
             if (!acmefile()->exists(pathFile))
             {
@@ -477,14 +488,19 @@ namespace fs_folder_sync_dropbox
 
             }
 
-            auto strTrimmed = acmefile()->as_string(pathFile).trimmed();
-
-            if (strTrimmed.is_empty())
+            if(iMinimumSize > 0)
             {
 
-               bOk = false;
+               auto iSize = acmefile()->get_size(pathFile);
 
-               break;
+               if (iSize < iMinimumSize)
+               {
+
+                  bOk = false;
+
+                  break;
+
+               }
 
             }
 

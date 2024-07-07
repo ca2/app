@@ -6,6 +6,7 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include <archive.h>
 #include <archive_entry.h>
+#include <unistd.h>
 
 
 namespace libarchive

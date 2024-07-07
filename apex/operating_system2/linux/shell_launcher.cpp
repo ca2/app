@@ -29,7 +29,7 @@ namespace ansios
             pnode->call_sync(m_strFile, m_strParameters, m_strDirectory, m_edisplay, 1_min, set);
 
          }
-         else if (ansi_compare_ci(m_strOperation, "open") == 0)
+         else if (case_insensitive_ansi_compare(m_strOperation, "open") == 0)
          {
 
             property_set set;

@@ -17,16 +17,16 @@ void * __node_library_open(const ::file::path & path, string & strMessage)
 
    string strPath(pszPath);
 
-   if(ansi_ends_ci(strPath,".ilk"))
+   if(case_insensitive_ansi_ends(strPath,".ilk"))
       return false;
 
-   if(ansi_ends_ci(strPath,".pdb"))
+   if(case_insensitive_ansi_ends(strPath,".pdb"))
       return false;
 
-   if(ansi_ends_ci(strPath,".lib"))
+   if(case_insensitive_ansi_ends(strPath,".lib"))
       return false;
 
-   if(ansi_ends_ci(strPath,".exp"))
+   if(case_insensitive_ansi_ends(strPath,".exp"))
       return false;
 
    if(ansi_find_string(file_path_name(strPath),".") == nullptr)

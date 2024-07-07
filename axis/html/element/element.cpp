@@ -1235,7 +1235,7 @@ namespace html
 
       }
 
-      if (pszCloseTag[0] == '/' && ansi_count_compare_ci(m_atomTagName.m_str, pszCloseTag + 1, range.m_begin - pszCloseTag - 1) == 0)
+      if (pszCloseTag[0] == '/' && case_insensitive_ansi_count_compare(m_atomTagName.m_str, pszCloseTag + 1, range.m_begin - pszCloseTag - 1) == 0)
       {
 
          range.m_begin++;

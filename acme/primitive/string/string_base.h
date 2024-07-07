@@ -1010,7 +1010,7 @@ public:
    //strsize xxx_replace(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0);
 
    //template < raw_pointer_castable < CHARACTER_TYPE > PCHAROLD, raw_pointer_castable < CHARACTER_TYPE > PCHARNEW >
-   //strsize xxx_replace_ci(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0);
+   //strsize case_insensitive_xxx_replace(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0);
 
    //// replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
    //template < raw_pointer_castable < CHARACTER_TYPE > PCHAROLD, raw_pointer_castable < CHARACTER_TYPE > PCHARNEW >
@@ -1224,7 +1224,7 @@ public:
    //inline string_base& case_insensitive_ensure_prefix(const string_base &strPrefix);
 
    //inline string_base& ensure_ends(const string_base &strSuffix);
-   //inline string_base& ensure_ends_ci(const string_base &strSuffix);
+   //inline string_base& case_insensitive_ensure_ends(const string_base &strSuffix);
 
    bool eat_before(string_base & strBefore, const SCOPED_STRING & scopedstrSeparator, bool bEatEverythingIfNotFound = false);
    bool eat_before_let_separator(string_base & strBefore, const SCOPED_STRING & scopedstrSeparator, bool bEatEverythingIfNotFound = false);

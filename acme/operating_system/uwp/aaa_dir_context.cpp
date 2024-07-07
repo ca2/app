@@ -354,7 +354,7 @@ pacmedirectory->roaming() / "home";
          return true; // assume empty string is root_ones directory
       }
 
-      if(task_flag().is_set(e_task_flag_compress_is_dir) && iLast >= 3 && !ansi_count_compare_ci(&((const char *)str)[iLast - 3],".zip",4))
+      if(task_flag().is_set(e_task_flag_compress_is_dir) && iLast >= 3 && !case_insensitive_ansi_count_compare(&((const char *)str)[iLast - 3],".zip",4))
       {
 
          return true;
@@ -750,7 +750,7 @@ try1:;
    bool dir_context::is_inside(const ::file::path & pszDir,const ::file::path & strPath)
    {
 
-      return string_begins_ci(pszDir,strPath);
+      return case_insensitive_string_begins(pszDir,strPath);
 
    }
 

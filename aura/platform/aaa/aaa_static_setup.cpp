@@ -95,7 +95,7 @@ system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const ::s
 //   while(papp != nullptr)
 //   {
 //
-//      if(!ansi_compare_ci(papp->m_pszName, lpszName))
+//      if(!case_insensitive_ansi_compare(papp->m_pszName, lpszName))
 //      {
 //
 //         return papp;

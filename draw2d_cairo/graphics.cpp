@@ -6900,7 +6900,7 @@ namespace draw2d_cairo
 //
 //        }
 //
-//        auto pFind = stra.find_first_ci(str);
+//        auto pFind = stra.case_insensitive_find_first(str);
 //
 //        if (::is_set(pFind))
 //        {
@@ -6911,7 +6911,7 @@ namespace draw2d_cairo
 //        else
 //        {
 //
-//            iFind = stra.find_first_begins_ci(str + " Regular");
+//            iFind = stra.case_insensitive_find_first_begins(str + " Regular");
 //
 //            if (::is_set(pFind))
 //            {
@@ -6922,7 +6922,7 @@ namespace draw2d_cairo
 //            else
 //            {
 //
-//                iFind = stra.find_first_begins_ci(str + ",");
+//                iFind = stra.case_insensitive_find_first_begins(str + ",");
 //
 //                if (::is_set(pFind))
 //                {
@@ -6933,7 +6933,7 @@ namespace draw2d_cairo
 //                else
 //                {
 //
-//                    iFind = stra.find_first_begins_ci(str + " ");
+//                    iFind = stra.case_insensitive_find_first_begins(str + " ");
 //
 //                    if (::is_set(pFind))
 //                    {

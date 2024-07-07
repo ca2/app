@@ -97,7 +97,7 @@ string salt(::ca::application * papp, const ::string & pszSourceSalt, string_arr
          GetModuleFileName(pmodulea[dw], strModule.get_buffer(4096), 4096); 
          strModule.ReleaseBuffer(); 
          fs->FullPath(strModule, strModule);
-         if(genstring_begins_ci(strModule, strModuleFolder))
+         if(case_insensitive_genstring_begins(strModule, strModuleFolder))
          { 
             if(!straSourceSalt.case_insensitive_contains(strModule)) 
             {

@@ -164,7 +164,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //i32 __cdecl char_traits::case_insensitive_string_collate(const ::scoped_string & scopedstrA,const ::scoped_string & scopedstrB) noexcept
 //{
-//   return ansi_compare_ci(reinterpret_cast<const  char*>(pszA),reinterpret_cast<const  char*>(pszB));
+//   return case_insensitive_ansi_compare(reinterpret_cast<const  char*>(pszA),reinterpret_cast<const  char*>(pszB));
 //}
 //
 //const char * __cdecl char_traits::string_find_string(const ::scoped_string & scopedstrBlock,const ::scoped_string & scopedstrMatch) noexcept

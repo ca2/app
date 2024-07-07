@@ -71,7 +71,7 @@ bool dialog::show(const ::string & pszMatter)
 
    string strMatter(pszMatter);
 
-   if(!string_begins_ci(strMatter, "matter://"))
+   if(!case_insensitive_string_begins(strMatter, "matter://"))
    {
 
       strMatter = "matter://" + strMatter;

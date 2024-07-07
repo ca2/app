@@ -333,7 +333,7 @@ namespace simple_ui
    bool message_box::on_action(const ::string & pszId)
    {
 
-      if(ansi_compare_ci(pszId,"ok") == 0)
+      if(case_insensitive_ansi_compare(pszId,"ok") == 0)
       {
 
          m_iResult = e_dialog_result_ok;
@@ -343,7 +343,7 @@ namespace simple_ui
          return true;
 
       }
-      else if(ansi_compare_ci(pszId,"yes") == 0)
+      else if(case_insensitive_ansi_compare(pszId,"yes") == 0)
       {
 
          m_iResult = e_dialog_result_yes;
@@ -353,7 +353,7 @@ namespace simple_ui
          return true;
 
       }
-      else if(ansi_compare_ci(pszId,"no") == 0)
+      else if(case_insensitive_ansi_compare(pszId,"no") == 0)
       {
 
          m_iResult = e_dialog_result_no;
@@ -363,7 +363,7 @@ namespace simple_ui
          return true;
 
       }
-      else if(ansi_compare_ci(pszId,"cancel") == 0)
+      else if(case_insensitive_ansi_compare(pszId,"cancel") == 0)
       {
 
          m_iResult = e_dialog_result_cancel;
@@ -373,7 +373,7 @@ namespace simple_ui
          return true;
 
       }
-      else if(ansi_compare_ci(pszId,"abort") == 0)
+      else if(case_insensitive_ansi_compare(pszId,"abort") == 0)
       {
 
          m_iResult = e_dialog_result_abort;
@@ -383,7 +383,7 @@ namespace simple_ui
          return true;
 
       }
-      else if(ansi_compare_ci(pszId,"retry") == 0)
+      else if(case_insensitive_ansi_compare(pszId,"retry") == 0)
       {
 
          m_iResult = e_dialog_result_retry;
@@ -393,7 +393,7 @@ namespace simple_ui
          return true;
 
       }
-      else if(ansi_compare_ci(pszId,"ignore") == 0)
+      else if(case_insensitive_ansi_compare(pszId,"ignore") == 0)
       {
 
          m_iResult = e_dialog_result_ignore;
@@ -403,7 +403,7 @@ namespace simple_ui
          return true;
 
       }
-      else if(ansi_compare_ci(pszId,"try") == 0)
+      else if(case_insensitive_ansi_compare(pszId,"try") == 0)
       {
 
          m_iResult = e_dialog_result_try_again;
@@ -413,7 +413,7 @@ namespace simple_ui
          return true;
 
       }
-      else if(ansi_compare_ci(pszId,"continue") == 0)
+      else if(case_insensitive_ansi_compare(pszId,"continue") == 0)
       {
 
          m_iResult = e_dialog_result_continue;

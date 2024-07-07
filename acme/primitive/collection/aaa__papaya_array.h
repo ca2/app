@@ -369,7 +369,7 @@ namespace acme
             for (auto & i : a)
             {
 
-               if (::ansi_compare_ci(i, t))
+               if (::case_insensitive_ansi_compare(i, t))
                {
 
                   return false;

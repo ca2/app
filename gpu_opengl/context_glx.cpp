@@ -306,7 +306,7 @@ namespace opengl
    void context_glx::_translate_shader(string_array & stra)
    {
 
-      strsize iFindPrecision = stra.find_first_begins_ci("precision ");
+      strsize iFindPrecision = stra.case_insensitive_find_first_begins("precision ");
 
       if(iFindPrecision >= 0)
       {
@@ -323,7 +323,7 @@ namespace opengl
 
       }
 
-      auto iFind = stra.find_first_begins_ci("out vec4 ");
+      auto iFind = stra.case_insensitive_find_first_begins("out vec4 ");
 
       if(::found(iFind))
       {

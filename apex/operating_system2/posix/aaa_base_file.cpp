@@ -484,7 +484,7 @@ int_bool file_copy_dup(const ::scoped_string & scopedstrNew, const ::scoped_stri
 
 int_bool file_is_equal_path_dup(const ::scoped_string & scopedstr1, const ::scoped_string & scopedstr2)
 {
-   if (ansi_compare_ci(psz1, psz2) == 0)
+   if (case_insensitive_ansi_compare(psz1, psz2) == 0)
       return true;
 
    //throw ::exception(::exception(" // TODO: it should follow links "));
@@ -543,7 +543,7 @@ int_bool file_path_is_equal(const ::file::path & pathParam1, const ::file::path 
       //{
    string path1 = unicode_to_utf8(pwszPath1);
    string path2 = unicode_to_utf8(pwszPath2);
-   iCmp = ansi_compare_ci(path1, path2);
+   iCmp = case_insensitive_ansi_compare(path1, path2);
    //}
    //}
    delete[] pwszPath1;

@@ -623,7 +623,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 //
 //   }
 //
-//   if (string_begins_ci(listing.m_pathUser, "http://") || string_begins_ci(listing.m_pathUser, "https://"))
+//   if (case_insensitive_string_begins(listing.m_pathUser, "http://") || case_insensitive_string_begins(listing.m_pathUser, "https://"))
 //   {
 //
 //      property_set set;
@@ -635,7 +635,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 //      return true;
 //
 //   }
-//   else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(listing.m_pathUser, ".zip") || ::str::find_file_extension("zip:", listing.m_pathUser) >= 0))
+//   else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (case_insensitive_string_ends(listing.m_pathUser, ".zip") || ::str::find_file_extension("zip:", listing.m_pathUser) >= 0))
 //   {
 //
 //      auto & pfactory = system()->folder_factory();
@@ -886,7 +886,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 
 #ifdef WINDOWS_DESKTOP
 #ifdef WINDOWS_DESKTOP
-   if (string_ends_ci(path, ".lnk"))
+   if (case_insensitive_string_ends(path, ".lnk"))
    {
 #endif
 
@@ -912,7 +912,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 
    //bIs = false;
 
-   //if (string_begins_ci(pcszPath, "http://") || string_begins_ci(lpcszPath, "https://"))
+   //if (case_insensitive_string_begins(pcszPath, "http://") || case_insensitive_string_begins(lpcszPath, "https://"))
 
    //{
 
@@ -925,7 +925,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 
    //}
 
-   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(path, ".zip")))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (case_insensitive_string_ends(path, ".zip")))
    {
 
       return ::file::e_type_existent_folder;
@@ -941,7 +941,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 
    //#ifdef WINDOWS_DESKTOP
    //#ifdef WINDOWS_DESKTOP
-   //         if (string_ends_ci(pcszPath, ".lnk"))
+   //         if (case_insensitive_string_ends(pcszPath, ".lnk"))
 
    //         {
    //#endif
@@ -1066,7 +1066,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 //
 //   //}
 //
-//   //if (string_begins_ci(path, "http://") || string_begins_ci(path, "https://"))
+//   //if (case_insensitive_string_begins(path, "http://") || case_insensitive_string_begins(path, "https://"))
 //   //{
 //
 //   //   property_set set;
@@ -1084,7 +1084,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 //
 //   //}
 //
-//   //if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(path, ".zip")))
+//   //if (::task_flag().is_set(e_task_flag_compress_is_dir) && (case_insensitive_string_ends(path, ".zip")))
 //   //{
 //
 //   //   bDir = true;
@@ -1250,7 +1250,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 
    ::file::e_type etype = ::file::e_type_unknown;
 
-   if (string_begins_ci(path, "http://") || string_begins_ci(path, "https://"))
+   if (case_insensitive_string_begins(path, "http://") || case_insensitive_string_begins(path, "https://"))
    {
 
       property_set set;
@@ -1275,7 +1275,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 
    }
 
-   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(path, ".zip")))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (case_insensitive_string_ends(path, ".zip")))
    {
 
       auto bFile = file()->exists(path);
@@ -1379,7 +1379,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 {
 
    //information(strPath);
-   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(strPath, ".zip")))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (case_insensitive_string_ends(strPath, ".zip")))
    {
       //            m_isdirmap.set(strPath, true, 0);
       return true;
@@ -1613,7 +1613,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //            auto pFind = pdir->predicate_binary_search(&find, [&](auto & t1, auto & t2)
 //            {
 //
-//               return ansi_compare_ci(t1->c_str(), t2->c_str()) < 0;
+//               return case_insensitive_ansi_compare(t1->c_str(), t2->c_str()) < 0;
 //
 //            });
 //
@@ -1662,7 +1662,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //            auto pFind = pdir->predicate_binary_search(&find, [&](auto & t1, auto & t2)
 //            {
 //
-//               return ansi_compare_ci(t1->c_str(), t2->c_str()) < 0;
+//               return case_insensitive_ansi_compare(t1->c_str(), t2->c_str()) < 0;
 //
 //            });
 //
@@ -1697,7 +1697,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //            auto pFind = pdir->predicate_binary_search(&find, [&](auto & t1, auto & t2)
 //            {
 //
-//               return ansi_compare_ci(t1->c_str(), t2->c_str()) < 0;
+//               return case_insensitive_ansi_compare(t1->c_str(), t2->c_str()) < 0;
 //
 //            });
 //

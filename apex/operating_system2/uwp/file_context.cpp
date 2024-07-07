@@ -25,14 +25,14 @@ namespace universal_windows
       /*      if(::file::system::FullPath(str, pszFileIn))
 
       return true;*/
-      if (string_begins_ci(pszFileIn, "http://"))
+      if (case_insensitive_string_begins(pszFileIn, "http://"))
 
       {
          str = pszFileIn;
 
          return true;
       }
-      else if (string_begins_ci(pszFileIn, "https://"))
+      else if (case_insensitive_string_begins(pszFileIn, "https://"))
 
       {
          str = pszFileIn;
@@ -59,12 +59,12 @@ namespace universal_windows
       //if(::file::system::FullPath(wstrFullPath, wstrPath))
       // return true;
 
-      if (string_begins_ci(wstrPath, L"http://"))
+      if (case_insensitive_string_begins(wstrPath, L"http://"))
       {
          wstrFullPath = wstrPath;
          return true;
       }
-      else if (string_begins_ci(wstrPath, L"https://"))
+      else if (case_insensitive_string_begins(wstrPath, L"https://"))
       {
          wstrFullPath = wstrPath;
          return true;

@@ -1638,7 +1638,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
    auto bSourceIsDir = pdir->is(varSource);
 
    if (bSourceIsDir &&
-       (eextract == e_extract_first || eextract == e_extract_all || !(string_ends_ci(varSource.as_file_path(), ".zip"))))
+       (eextract == e_extract_first || eextract == e_extract_all || !(case_insensitive_string_ends(varSource.as_file_path(), ".zip"))))
    {
 
       ::file::listing listing;
@@ -1674,7 +1674,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
          {
 
             if ((eextract == e_extract_first || eextract == e_extract_none) &&
-                (string_ends_ci(varSource.as_file_path(), ".zip")))
+                (case_insensitive_string_ends(varSource.as_file_path(), ".zip")))
             {
             }
             else
@@ -2701,7 +2701,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //
 //   for (i32 i = 0; i < stra.size(); i++)
 //   {
-//      if (string_ends_ci(stra[i], ".zip"))
+//      if (case_insensitive_string_ends(stra[i], ".zip"))
 //      {
 //      }
 //      else if (dir()->is(stra[i]))

@@ -13,6 +13,7 @@ public:
    virtual string safe_get_string(const ::payload& payloadFile, ::e_status* pestatus = nullptr);
    virtual void safe_get_memory(const ::payload& payloadFile, memory_base& mem, ::e_status* pestatus = nullptr);
    virtual ::memory safe_get_memory(const ::payload& payloadFile);
+   virtual string_array safe_get_lines(const ::payload& payloadFile, ::e_status* pestatus = nullptr);
 
 
 };

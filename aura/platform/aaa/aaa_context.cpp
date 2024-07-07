@@ -474,7 +474,7 @@ pacmedirectory->system() / path;
 ::file::path context::defer_process_matter_path(::file::path path)
 {
 
-   if (string_begins_ci(path, "matter://"))
+   if (case_insensitive_string_begins(path, "matter://"))
    {
 
       path = dir()->matter(path, false);

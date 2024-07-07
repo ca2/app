@@ -887,7 +887,7 @@ namespace user
    void multiple_option::set_current_item_by_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext)
    {
 
-      auto iIndex = m_straName.find_first_ci(scopedstr);
+      auto iIndex = m_straName.case_insensitive_find_first(scopedstr);
 
       if (iIndex >= 0)
       {

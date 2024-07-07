@@ -25,27 +25,27 @@ CLASS_DECL_ACME strsize                ansi_length(const ::ansi_character * psz)
 CLASS_DECL_ACME ::ansi_character * ansi_duplicate(const ::ansi_character * psz); // ATTENTION - ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
 CLASS_DECL_ACME ::ansi_character * ansi_count_duplicate(const ::ansi_character * psz, strsize len); // ATTENTION - ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate
 CLASS_DECL_ACME const ::ansi_character * ansi_find_string(const ::ansi_character * psz, const ::ansi_character * find);
-CLASS_DECL_ACME const ::ansi_character * ansi_find_string_ci(const ::ansi_character * psz, const ::ansi_character * find);
+CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_find_string(const ::ansi_character * psz, const ::ansi_character * find);
 CLASS_DECL_ACME const ::ansi_character * ansi_count_find_string(const ::ansi_character * psz, const ::ansi_character * find, strsize len);
-CLASS_DECL_ACME const ::ansi_character * ansi_count_find_string_ci(const ::ansi_character * psz, const ::ansi_character * find, strsize len);
+CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_count_find_string(const ::ansi_character * psz, const ::ansi_character * find, strsize len);
 
 //CLASS_DECL_ACME ::ansi_character *             ansi_next_token(::ansi_character * psz, ::ansi_character ch);
 
 
 CLASS_DECL_ACME i32                    ansi_compare(const ::ansi_character * sz1, const ::ansi_character * sz2);
-CLASS_DECL_ACME i32                    ansi_compare_ci(const ::ansi_character * sz1, const ::ansi_character * sz2);
+CLASS_DECL_ACME i32                    case_insensitive_ansi_compare(const ::ansi_character * sz1, const ::ansi_character * sz2);
 CLASS_DECL_ACME i32                    ansi_count_compare(const ::ansi_character * sz1, const ::ansi_character * sz2, strsize iLen);
-CLASS_DECL_ACME i32                    ansi_count_compare_ci(const ::ansi_character * sz1, const ::ansi_character * sz2, strsize iLen);
+CLASS_DECL_ACME i32                    case_insensitive_ansi_count_compare(const ::ansi_character * sz1, const ::ansi_character * sz2, strsize iLen);
 CLASS_DECL_ACME i32                    ansi_collate(const ::ansi_character * sz1, const ::ansi_character * sz2);
-CLASS_DECL_ACME i32                    ansi_collate_ci(const ::ansi_character * sz1, const ::ansi_character * sz2);
+CLASS_DECL_ACME i32                    case_insensitive_ansi_collate(const ::ansi_character * sz1, const ::ansi_character * sz2);
 CLASS_DECL_ACME i32                    ansi_count_collate(const ::ansi_character * sz1, const ::ansi_character * sz2, strsize iLen);
-CLASS_DECL_ACME i32                    ansi_count_collate_ci(const ::ansi_character * sz1, const ::ansi_character * sz2, strsize iLen);
+CLASS_DECL_ACME i32                    case_insensitive_ansi_count_collate(const ::ansi_character * sz1, const ::ansi_character * sz2, strsize iLen);
 CLASS_DECL_ACME i32                    ansi_begins(const ::ansi_character * sz1, const ::ansi_character * prefix);
-CLASS_DECL_ACME i32                    ansi_begins_ci(const ::ansi_character * sz1, const ::ansi_character * prefix);
+CLASS_DECL_ACME i32                    case_insensitive_ansi_begins(const ::ansi_character * sz1, const ::ansi_character * prefix);
 CLASS_DECL_ACME const ::ansi_character * ansi_begins_eat(const ::ansi_character * sz1, const ::ansi_character * prefix);
-CLASS_DECL_ACME const ::ansi_character * ansi_begins_eat_ci(const ::ansi_character * sz1, const ::ansi_character * prefix);
+CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_begins_eat(const ::ansi_character * sz1, const ::ansi_character * prefix);
 CLASS_DECL_ACME i32                    ansi_ends(const ::ansi_character * sz1, const ::ansi_character * suffix);
-CLASS_DECL_ACME i32                    ansi_ends_ci(const ::ansi_character * sz1, const ::ansi_character * suffix);
+CLASS_DECL_ACME i32                    case_insensitive_ansi_ends(const ::ansi_character * sz1, const ::ansi_character * suffix);
 CLASS_DECL_ACME const ::ansi_character * ansi_find_char(const ::ansi_character * sz, ::ansi_character ch);
 CLASS_DECL_ACME const ::ansi_character * ansi_find_char_reverse(const ::ansi_character * sz, ::ansi_character ch);
 CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::ansi_character * psz1, const ::ansi_character * psz2, int_bool iFree1 = false, int_bool iFree2 = false);
@@ -83,7 +83,7 @@ CLASS_DECL_ACME ::ansi_character * ansi_upper(::ansi_character * pch);
 
 
 CLASS_DECL_ACME int_bool matches_wildcard_criteria(const ::ansi_character * pszCriteria, const ::ansi_character * pszValue);
-CLASS_DECL_ACME int_bool matches_wildcard_criteria_ci(const ::ansi_character * pszCriteria, const ::ansi_character * pszValue);
+CLASS_DECL_ACME int_bool case_insensitive_matches_wildcard_criteria(const ::ansi_character * pszCriteria, const ::ansi_character * pszValue);
 
 
 CLASS_DECL_ACME void ansi_parse_command_line(::ansi_character * cmdstart, ::ansi_character ** argv, ::ansi_character * args, i32 * numargs, i32 * numchars);
@@ -98,7 +98,7 @@ CLASS_DECL_ACME const ::ansi_character * wildcard_next_stop(const ::ansi_charact
 
 
 CLASS_DECL_ACME int_bool               wildcard_matches_criteria(const ::ansi_character * pszCriteria, const ::ansi_character * pszValue);
-CLASS_DECL_ACME int_bool               wildcard_matches_criteria_ci(const ::ansi_character * pszCriteria, const ::ansi_character * pszValue);
+CLASS_DECL_ACME int_bool               case_insensitive_wildcard_matches_criteria(const ::ansi_character * pszCriteria, const ::ansi_character * pszValue);
 
 
 //CLASS_DECL_ACME const ::ansi_character * eol();

@@ -283,21 +283,21 @@ int ifs::is_dir(const ::file::path & path)
 
    }
 
-   if(ansi_compare_ci(path, "uifs://") == 0)
+   if(case_insensitive_ansi_compare(path, "uifs://") == 0)
    {
 
       return 1;
 
    }
 
-   if(ansi_compare_ci(path,"uifs:/") == 0)
+   if(case_insensitive_ansi_compare(path,"uifs:/") == 0)
    {
 
       return 1;
 
    }
 
-   if(ansi_compare_ci(path,"uifs:") == 0)
+   if(case_insensitive_ansi_compare(path,"uifs:") == 0)
    {
 
       return 1;
@@ -323,7 +323,7 @@ int ifs::is_dir(const ::file::path & path)
 
    }
 
-   auto iFind = dir.name_find_first_ci(path.name());
+   auto iFind = dir.case_insensitive_name_find_first(path.name());
 
    if(::not_found(iFind))
    {

@@ -449,7 +449,7 @@ namespace sockets
          }
 
       }
-      if (key.case_insensitive_order("transfer-encoding") == 0 && string_ends_ci(value, "chunked"))
+      if (key.case_insensitive_order("transfer-encoding") == 0 && case_insensitive_string_ends(value, "chunked"))
       {
          m_bChunked = true;
       }

@@ -295,7 +295,7 @@ namespace dynamic_source
       for (auto& path : listing)
       {
 
-         if (string_begins_ci(path.title(), "net-"))
+         if (case_insensitive_string_begins(path.title(), "net-"))
          {
 
             auto pwatcher = __allocate< clear_include_matches_file_watcher >(this);

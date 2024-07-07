@@ -584,7 +584,7 @@ namespace acme
    ::file::path context::defer_process_matter_path(::file::path path)
    {
 
-      if (string_begins_ci(path, "matter:/"))
+      if (case_insensitive_string_begins(path, "matter:/"))
       {
 
          return dir()->matter(path);

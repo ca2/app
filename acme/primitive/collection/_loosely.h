@@ -36,7 +36,7 @@ namespace loosely
    inline bool contains(const string& a, const ::block& b)
    {
 
-      return ansi_count_compare_ci(a, (const char*)b.data(), b.size());
+      return case_insensitive_ansi_count_compare(a, (const char*)b.data(), b.size());
 
    }
 
@@ -44,7 +44,7 @@ namespace loosely
    inline bool contains(const string & a, const ::scoped_string & scopedstr)
    {
 
-      return ansi_count_compare_ci(a, (const char *)scopedstr.data(), scopedstr.size());
+      return case_insensitive_ansi_count_compare(a, (const char *)scopedstr.data(), scopedstr.size());
 
    }
 
@@ -53,7 +53,7 @@ namespace loosely
    inline bool contains(const ::block& a, const ::string& b)
    {
 
-      return ansi_count_compare_ci((const char*)a.data(), b, a.size());
+      return case_insensitive_ansi_count_compare((const char*)a.data(), b, a.size());
 
    }
 

@@ -12,6 +12,8 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
 #include "acme/filesystem/filesystem/folder_dialog.h"
 #include "acme/handler/request.h"
@@ -3265,6 +3267,72 @@ bool node::_is_smart_git_installed()
    void node::calculate_dropbox_installed()
    {
 
+      m_bDropbox = false;
+
+      m_pathDropbox.empty();
+
+      m_bDropboxCalculated = true;
+
+      ::file::path pathNetworkPayload = file()->dropbox_info_network_payload();
+
+      if (!file()->exists(pathNetworkPayload))
+      {
+
+         if (application()->is_desktop_system())
+         {
+
+            auto pathHome = dir()->home();
+
+            auto pathTxt = pathHome / "dropbox.txt";
+
+            if (file()->exists(pathTxt))
+            {
+
+               string strPath = file()->safe_get_string(pathTxt);
+
+               strPath.trim();
+
+               if (strPath.has_char() && dir()->is(strPath))
+               {
+
+                  m_pathDropbox = strPath;
+
+                  m_bDropbox = true;
+
+               }
+
+            }
+
+         }
+         else
+         {
+
+            m_pathDropbox.empty();
+
+         }
+
+      }
+      else
+      {
+
+         string strNetworkPayload = file()->as_string(pathNetworkPayload);
+
+         ::property_set set;
+
+         set.parse_network_payload(strNetworkPayload);
+
+         m_pathDropbox = set["personal"]["path"];
+
+         if (dir()->is(m_pathDropbox))
+         {
+
+            m_bDropbox = true;
+
+         }
+
+      }
+
+      m_bDropboxCalculated = true;
 
    }
 
@@ -4028,7 +4096,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 //
 //         auto stra = file()->lines(path);
 //
-//         stra.filter_begins_ci("exec=");
+//         stra.case_insensitive_filter_begins("exec=");
 //
 //         if(stra.get_size() <= 0)
 //         {

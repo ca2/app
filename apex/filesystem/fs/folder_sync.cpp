@@ -20,6 +20,12 @@ namespace fs
    folder_sync::folder_sync()
    {
 
+      m_timeRestartTimeout = 40_s;
+
+      m_timeOperationThrottlingTime = 5_s;
+
+      m_iStableOkCount = 0;
+
    }
 
 
@@ -31,7 +37,7 @@ namespace fs
 
 
    // optional if ls_dir is implemented
-   bool folder_sync::has_subdir(const ::file::path & path)
+   bool folder_sync::has_subdir(const ::file::path& path)
    {
 
       auto pathLocal(path);
@@ -43,14 +49,14 @@ namespace fs
 
       }
 
-      pathLocal = m_pathLocalFolder / pathLocal;
+      pathLocal = local_folder_path() / pathLocal;
 
       return dir()->has_subdir(pathLocal);
 
    }
 
 
-   bool folder_sync::fast_has_subdir(const ::file::path & path)
+   bool folder_sync::fast_has_subdir(const ::file::path& path)
    {
 
       auto pathLocal(path);
@@ -62,14 +68,14 @@ namespace fs
 
       }
 
-      pathLocal = m_pathLocalFolder / pathLocal;
-      
+      pathLocal = local_folder_path() / pathLocal;
+
       return dir()->fast_has_subdir(pathLocal);
-      
+
    }
 
 
-   bool folder_sync::enumerate(::file::listing & listing)
+   bool folder_sync::enumerate(::file::listing& listing)
    {
 
       auto pathLocal(listing.m_pathUser);
@@ -81,7 +87,7 @@ namespace fs
 
       }
 
-      pathLocal = m_pathLocalFolder / pathLocal;
+      pathLocal = local_folder_path() / pathLocal;
 
       listing.m_pathFinal = pathLocal;
 
@@ -90,7 +96,7 @@ namespace fs
    }
 
 
-   bool folder_sync::is_link(const ::file::path & path)
+   bool folder_sync::is_link(const ::file::path& path)
    {
 
       //auto pathLocal(path);
@@ -123,6 +129,13 @@ namespace fs
    }
 
 
+   bool folder_sync::has_operation_error()
+   {
+
+      return false;
+
+   }
+
 
    /*::file::listing & folder_sync::ls_relative_name(::file::listing & listing)
    {
@@ -134,8 +147,7 @@ namespace fs
    }*/
 
 
-
-   int folder_sync::is_dir(const ::file::path & path)
+   int folder_sync::is_dir(const ::file::path& path)
    {
 
       auto pathLocal(path);
@@ -147,20 +159,20 @@ namespace fs
 
       }
 
-      pathLocal = m_pathLocalFolder / pathLocal;
+      pathLocal = local_folder_path() / pathLocal;
 
       return dir()->is(pathLocal) ? 1 : 0;
 
    }
 
 
-   ::file::listing & folder_sync::root_ones(::file::listing & listing)
+   ::file::listing& folder_sync::root_ones(::file::listing& listing)
    {
 
       auto pathLocal = m_pathProtocol;
 
       listing.m_pathUser = pathLocal;
-      
+
       node()->m_papexnode->root_ones(listing);
 
       return listing;
@@ -226,12 +238,32 @@ namespace fs
 
       ::fs::data::on_initialize_particle();
 
-      m_pathLocalFolder = m_pcontext->defer_process_path(m_pathProtocol);
+      //m_pathLocalFolder = m_pcontext->defer_process_path(m_pathProtocol);
 
    }
 
 
-   void folder_sync::folder_sync_touch_file(const ::file::path& path)
+   ::file::path folder_sync::local_path(const ::file::path& path)
+   {
+
+      auto pathProcessed(path);
+
+      if (!pathProcessed.begins_eat(m_pathProtocol))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      pathProcessed = local_folder_path() / pathProcessed;
+
+      return ::transfer(pathProcessed);
+
+   }
+
+
+   void folder_sync::folder_sync_touch_file(const ::file::path& path,
+                                            const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
 
@@ -241,7 +273,7 @@ namespace fs
    bool folder_sync::check_files(
       const ::file::path& pathSourceFolderParam,
       const ::string_array& straSource,
-      const ::function < void(const ::scoped_string&) >& callbackStatus)
+      const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
       auto pathSourceFolder(pathSourceFolderParam);
@@ -253,7 +285,7 @@ namespace fs
 
       }
 
-      pathSourceFolder = m_pathLocalFolder / pathSourceFolder;
+      pathSourceFolder = local_folder_path() / pathSourceFolder;
 
       bool bOk = false;
 
@@ -272,11 +304,15 @@ namespace fs
             if (callbackStatus)
             {
 
-               callbackStatus(pathSource);
+               ::string strMessage;
+
+               strMessage.formatf("Checking file %s", pathSource.c_str());
+
+               callbackStatus(strMessage);
 
             }
 
-            folder_sync_touch_file(pathSource);
+            folder_sync_touch_file(pathSource, callbackStatus);
 
             if (!acmefile()->exists(pathSource))
             {
@@ -318,7 +354,7 @@ namespace fs
       const ::file::path& pathTargetFolder,
       const ::file::path& pathSourceFolderParam,
       const ::string_array& straSource,
-      const ::function < void(const ::scoped_string&) >& callbackStatus)
+      const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
       auto pathSourceFolder(pathSourceFolderParam);
@@ -330,7 +366,7 @@ namespace fs
 
       }
 
-      pathSourceFolder = m_pathLocalFolder / pathSourceFolder;
+      pathSourceFolder = local_folder_path() / pathSourceFolder;
 
       while (true)
       {
@@ -418,7 +454,8 @@ namespace fs
    }
 
 
-   ::string folder_sync::non__empty__file_as_string(const ::payload& payloadFile, const ::function < void(const ::scoped_string&) >& callbackStatus)
+   ::string folder_sync::non__empty__file_as_string(const ::payload& payloadFile,
+                                                    const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
       auto pathLocal(payloadFile.as_file_path());
@@ -430,7 +467,7 @@ namespace fs
 
       }
 
-      pathLocal = m_pathLocalFolder / pathLocal;
+      pathLocal = local_folder_path() / pathLocal;
 
       if (callbackStatus)
       {
@@ -470,7 +507,7 @@ namespace fs
       {
 
          strFile = acmefile()->as_string(pathLocal);
-         
+
          auto strTrimmed = strFile.trimmed();
 
          if (strTrimmed.has_char())
@@ -489,7 +526,9 @@ namespace fs
    }
 
 
-   void folder_sync::wait_folder_contains_files(const ::file::path& pathTargetFolder, const ::string_array& straName, int iMinimumSize, const ::function < void(const ::scoped_string&) >& callbackStatus)
+   void folder_sync::wait_folder_contains_files(const ::file::path& pathTargetFolder, const ::string_array& straName,
+                                                int iMinimumSize,
+                                                const ::function<void(const ::scoped_string&)>& callbackStatus)
    {
 
       if (callbackStatus)
@@ -523,7 +562,7 @@ namespace fs
       }
 
       ::string_array lines;
-      
+
       lines = straName;
 
       acmedirectory()->change_current(pathTargetFolder);
@@ -540,7 +579,7 @@ namespace fs
 
             auto pathFile = pathTargetFolder / line;
 
-            if(!acmefile()->exists(pathFile))
+            if (!acmefile()->exists(pathFile))
             {
 
                bOk = false;
@@ -577,8 +616,99 @@ namespace fs
    }
 
 
+   ::file::path folder_sync::local_folder_path()
+   {
 
-   bool folder_sync::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
+      if (m_pathLocalFolder2.is_empty())
+      {
+
+         m_pathLocalFolder2 = m_pcontext->defer_process_path(m_pathProtocol);
+
+         if (m_pathLocalFolder2.contains("://"))
+         {
+
+            m_pathLocalFolder2.empty();
+
+         }
+
+      }
+
+      return m_pathLocalFolder2;
+
+   }
+
+
+   void folder_sync::defer_start_daemon(const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+
+      if (m_timeLastStart.elapsed() > m_timeRestartTimeout)
+      {
+
+         start_daemon(callbackStatus);
+
+         m_timeLastStart.Now();
+
+      }
+
+   }
+
+
+   void folder_sync::defer_throttle_operation()
+   {
+
+      auto elapsed = m_timeLastOperation.elapsed();
+
+      auto remaining = m_timeOperationThrottlingTime - elapsed;
+
+      if (remaining.m_iSecond > 0)
+      {
+
+         preempt(remaining);
+
+      }
+
+      m_timeLastOperation.Now();
+
+   }
+
+
+   string_array folder_sync::ls(const file::path& pathCloud, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+      return {};
+   }
+
+
+   string_array folder_sync::ls_folder(const file::path& pathCloud, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+      return {};
+   }
+
+
+   void folder_sync::sync_exclude(const string_array& stra, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+
+
+   }
+
+
+   void folder_sync::sync_reinclude(const string_array& stra, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+
+   }
+
+
+   string_array folder_sync::sync_exclusion_list(const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+      return {};
+   }
+
+
+   void folder_sync::start_daemon(const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+   }
+
+
+   bool folder_sync::file_move(const ::file::path& pszDst, const ::file::path& pszSrc)
    {
 
       auto pathSource(pszSrc);
@@ -590,7 +720,7 @@ namespace fs
 
       }
 
-      pathSource = m_pathLocalFolder / pathSource;
+      pathSource = local_folder_path() / pathSource;
 
       auto pathTarget(pszDst);
 
@@ -601,7 +731,7 @@ namespace fs
 
       }
 
-      pathTarget = m_pathLocalFolder / pathTarget;
+      pathTarget = local_folder_path() / pathTarget;
 
       file()->transfer(pathTarget, pathSource);
 
@@ -610,7 +740,8 @@ namespace fs
    }
 
 
-   file_pointer folder_sync::get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception)
+   file_pointer folder_sync::get_file(const ::payload& payloadFile, ::file::e_open eopen,
+                                      ::pointer<::file::exception>* ppfileexception)
    {
 
       auto pathLocal(payloadFile.as_file_path());
@@ -622,8 +753,7 @@ namespace fs
 
       }
 
-      pathLocal = m_pathLocalFolder / pathLocal;
-
+      pathLocal = local_folder_path() / pathLocal;
 
       file_pointer pfile;
 
@@ -636,12 +766,12 @@ namespace fs
       //else
       //{
 
-         __construct(pfile);
+      __construct(pfile);
 
-//      }
+      //      }
 
       //auto result =
-         pfile->open(pathLocal, eopen);
+      pfile->open(pathLocal, eopen);
 
       //if(!result)
       //{
@@ -655,7 +785,7 @@ namespace fs
    }
 
 
-   bool folder_sync::file_exists(const ::file::path & path)
+   bool folder_sync::file_exists(const ::file::path& path)
    {
 
       auto pathLocal(path);
@@ -667,15 +797,67 @@ namespace fs
 
       }
 
-      pathLocal = m_pathLocalFolder / pathLocal;
-
+      pathLocal = local_folder_path() / pathLocal;
 
       return file()->exists(pathLocal);
 
    }
 
 
+   void folder_sync::wait_up_and_running(const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+
+
+   }
+
+
+   bool folder_sync::_cloud_defer_check_file_txt(::file::path& pathTarget, const ::file::path& pathCloudFile,
+                                                 bool bForce, ::file::path* ppathSource,
+                                                 const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+
+      return false;
+
+   }
+
+
+   ::string_array folder_sync::_cloud_get_file_txt_lines(const ::file::path& pathCloudFile, bool bForce,
+                                                         ::file::path* ppathTarget, ::file::path* ppathSource,
+                                                         const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+
+      return {};
+
+   }
+
+
+   ::file::path folder_sync::_cloud_ensure_file_txt_is_up_to_date_and_present(
+      const ::file::path& pathCloudFile, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+
+      return {};
+
+   }
+
+
+   ::file::path folder_sync::_cloud_ensure_files_in_file_txt_are_up_to_date_and_present(
+      const ::file::path& pathCloudFile, const ::scoped_string& scopedstrFileExtension,
+      int iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+
+      return {};
+
+   }
+
+
+   void folder_sync::_cloud_ensure_files_are_up_to_date_and_present(
+      const ::file::path& pathFolder, const ::string_array & stra,
+      int iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+
+
+   }
+
+
+
 } // namespace fs
-
-
-

@@ -92,7 +92,7 @@
 //i32 str::case_insensitive_order(const ::string & str1, const ::string & str2)
 //{
 //
-//   return ansi_compare_ci(str1, str2);
+//   return case_insensitive_ansi_compare(str1, str2);
 //
 //}
 //
@@ -3254,7 +3254,7 @@ void str::increment_digit_letter(string & str)
 //}
 //
 //
-//bool str::while_begins_with_chars_eat_ci(string & str, const ::ansi_character * pszChars) // case insensitive
+//bool str::case_insensitive_while_begins_with_chars_eat(string & str, const ::ansi_character * pszChars) // case insensitive
 //{
 //
 //   i32 i = 0;
@@ -3312,7 +3312,7 @@ void str::increment_digit_letter(string & str)
 //}
 //
 //
-//bool str::replace_prefix_ci(::string & str, const ::ansi_character * pszPrefixReplacement, const ::ansi_character * pszPrefix)
+//bool str::case_insensitive_replace_prefix(::string & str, const ::ansi_character * pszPrefixReplacement, const ::ansi_character * pszPrefix)
 //{
 //
 //   if (!str.case_insensitive_begins_eat(pszPrefix))

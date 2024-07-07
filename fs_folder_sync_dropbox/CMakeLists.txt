@@ -10,6 +10,14 @@ list(APPEND library_source
         fs_folder_sync.h
 )
 
+if(${LINUX})
+
+    list(APPEND library_source
+            fs_folder_sync_linux.cpp
+    )
+
+endif()
+
 
 list(APPEND library_references
         acme
@@ -24,7 +32,8 @@ else ()
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+        fs_folder_sync_linux.cpp)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 if (NOT ${NO_PRECOMPILED_HEADER})

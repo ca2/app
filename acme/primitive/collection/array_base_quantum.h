@@ -811,7 +811,8 @@ public:
    inline bool prepare_first_in_count_last_out(::collection::index & first, ::collection::count & inCountLastOut) const;
 
 
-   inline void erase_last();
+   inline void erase_first(::collection::count c = 1);
+   inline void erase_last(::collection::count c = 1);
    inline ::collection::count erase_all();
    inline void clear();
 
@@ -3311,10 +3312,24 @@ inline void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer
 
 
 template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
-inline void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::erase_last()
+inline void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::erase_first(::collection::count c)
 {
-   ASSERT(this->size() > 0);
-   erase_at(get_upper_bound());
+
+   ASSERT(this->size() >= c);
+
+   erase_at(0, c);
+
+}
+
+
+template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  ::enum_type t_etypeContainer >
+inline void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > ::erase_last(::collection::count c)
+{
+
+   ASSERT(this->size() >= c);
+
+   erase_at(get_upper_bound(-c), c);
+
 }
 
 

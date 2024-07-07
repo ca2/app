@@ -180,6 +180,13 @@ namespace user
             for (auto& puserinteraction : children)
             {
 
+               if(!puserinteraction->is_this_visible(e_layout_sketch))
+               {
+
+                  continue;
+
+               }
+
                auto sizeItem = puserinteraction->size(e_layout_sketch);
 
                iMaximumNormal = ::maximum(iMaximumNormal, sizeItem.get_normal_dimension(m_eorientation));
@@ -192,6 +199,13 @@ namespace user
 
             for (auto & puserinteraction : children)
             {
+
+               if(!puserinteraction->is_this_visible(e_layout_sketch))
+               {
+
+                  continue;
+
+               }
 
                auto strType = ::type(puserinteraction).as_string();
                auto pszWndTxt = puserinteraction->get_window_text().c_str();

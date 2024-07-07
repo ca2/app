@@ -682,7 +682,7 @@ namespace sphere
             alt1:
             if(pcreate->m_payloadFile.get_type() == ::e_type_string)
             {
-               if(string_ends_ci(pcreate->m_payloadFile, ".ca2"))
+               if(case_insensitive_string_ends(pcreate->m_payloadFile, ".ca2"))
                {
                   string strCommand = pcontext->m_papexcontext->file()->as_string(pcreate->m_payloadFile);
                   if(strCommand.begins_eat("ca2prompt\r")

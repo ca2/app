@@ -731,7 +731,7 @@ namespace apex
 
       return node()->is_alias(path);
 
-      //return string_ends_ci(psz, ".lnk");
+      //return case_insensitive_string_ends(psz, ".lnk");
 
    }
 //

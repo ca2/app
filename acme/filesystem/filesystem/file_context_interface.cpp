@@ -85,6 +85,20 @@ void file_context_interface::safe_get_memory(const ::payload& payloadFile, memor
 }
 
 
+string_array file_context_interface::safe_get_lines(const ::payload& payloadFile, ::e_status* pestatus)
+{
+
+   ::string str = safe_get_string(payloadFile, pestatus);
+
+   ::string_array stra;
+
+   stra.add_lines(str);
+
+   return ::transfer(stra);
+
+}
+
+
 ::file_pointer file_context_interface::get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception)
 {
 

@@ -917,7 +917,7 @@
 //         {
 //
 //            str = (*pcontext->m_papexcontext->m_pschema)[atom];
-//            if(str.has_char() && string_begins_ci(pszTopic, str))
+//            if(str.has_char() && case_insensitive_string_begins(pszTopic, str))
 //               return true;
 //
 //         }
@@ -925,7 +925,7 @@
 //         if(pcontext->m_papexcontext->m_pschemaLocale != nullptr)
 //         {
 //            str = (*pcontext->m_papexcontext->m_pschemaLocale)[atom];
-//            if(str.has_char() && string_begins_ci(pszTopic, str))
+//            if(str.has_char() && case_insensitive_string_begins(pszTopic, str))
 //               return true;
 //         }
 //
@@ -933,7 +933,7 @@
 //         {
 //
 //            str = (*pcontext->m_papexcontext->m_schemaptra[i])[atom];
-//            if(str.has_char() && string_begins_ci(pszTopic, str))
+//            if(str.has_char() && case_insensitive_string_begins(pszTopic, str))
 //               return true;
 //
 //         }
@@ -944,20 +944,20 @@
 //      {
 //
 //         str = (*pcontext->m_papexcontext->m_pschemaSchemaEn)[atom];// lang=pszStyle style=en
-//         if(str.has_char() && string_begins_ci(pszTopic, str))
+//         if(str.has_char() && case_insensitive_string_begins(pszTopic, str))
 //            return true;
 //
 //      }
 //
 //      str = (*m_pschemaEn)[atom]; // lang=en style=en
-//      if(str.has_char() && string_begins_ci(pszTopic, str))
+//      if(str.has_char() && case_insensitive_string_begins(pszTopic, str))
 //         return true;
 //
 //      if(pcontext != nullptr && pcontext->m_papexcontext->m_pschemaSchemaStd != nullptr)
 //      {
 //
 //         str = (*pcontext->m_papexcontext->m_pschemaSchemaStd)[atom];// lang=pszStyle style=en
-//         if(str.has_char() && string_begins_ci(pszTopic, str))
+//         if(str.has_char() && case_insensitive_string_begins(pszTopic, str))
 //            return true;
 //
 //      }

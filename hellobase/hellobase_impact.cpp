@@ -265,10 +265,10 @@ namespace hellobase
             {
 
 
-               if(string_ends_ci(strImage,".png"))
+               if(case_insensitive_string_ends(strImage,".png"))
                {
                }
-               else if(string_ends_ci(strImage,".jpg"))
+               else if(case_insensitive_string_ends(strImage,".jpg"))
                {
                }
                else

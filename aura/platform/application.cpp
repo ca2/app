@@ -1061,7 +1061,7 @@ namespace aura
 //
 //      string str = ::str::get_window_text_timeout(hwnd, 1000);
 //
-//      if (string_ends_ci(str, penum->m_strWindowEnd))
+//      if (case_insensitive_string_ends(str, penum->m_strWindowEnd))
 //      {
 //
 //         penum->m_hwnd = hwnd;
@@ -1082,7 +1082,7 @@ namespace aura
 //
 //      string str = ::str::get_window_text_timeout(hwnd);
 //
-//      if (string_ends_ci(str, penum->m_strTopic))
+//      if (case_insensitive_string_ends(str, penum->m_strTopic))
 //      {
 //
 //         penum->m_hwndaTopic.add(hwnd);
@@ -1102,7 +1102,7 @@ namespace aura
 //
 //      string str = ::str::get_window_text_timeout(hwnd, 1000);
 //
-//      if (string_ends_ci(str, penum->m_strCounterTopic))
+//      if (case_insensitive_string_ends(str, penum->m_strCounterTopic))
 //      {
 //
 //         penum->m_hwndaCounterTopic.add(hwnd);
@@ -2752,7 +2752,7 @@ retry_license:
 
    //  stra = value("locale").stra();
 
-   //  stra.erase_ci("_std");
+   //  stra.case_insensitive_erase("_std");
 
    //  straLocale.add_unique(value("locale").stra());
 
@@ -2760,7 +2760,7 @@ retry_license:
 
    //  stra = value("schema").stra();
 
-   //  stra.erase_ci("_std");
+   //  stra.case_insensitive_erase("_std");
 
    //  straSchema.add_unique(value("schema").stra());
 
@@ -8562,7 +8562,7 @@ namespace aura
 
          string strIgnitionServer = acmefile()->as_string(acmedirectory()->system() / "config\\system\\ignition_server.txt");
 
-         if(string_ends_ci(strIgnitionServer,".ca2.software"))
+         if(case_insensitive_string_ends(strIgnitionServer,".ca2.software"))
          {
 
             strRequestUrl = "https://" + strIgnitionServer + "/";

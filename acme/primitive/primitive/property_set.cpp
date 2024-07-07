@@ -117,7 +117,7 @@ bool property_set::has_properties(::collection::count countMinimum) const
 }
 
 
-property * property_set::find_value_ci(const ::payload & payload) const
+property * property_set::case_insensitive_find_value(const ::payload & payload) const
 {
 
    for (auto & pproperty : this->propertyptra())
@@ -137,7 +137,7 @@ property * property_set::find_value_ci(const ::payload & payload) const
 }
 
 
-property * property_set::find_value_ci(const ::scoped_string & scopedstr) const
+property * property_set::case_insensitive_find_value(const ::scoped_string & scopedstr) const
 {
 
    for (auto & pproperty : this->propertyptra())
@@ -199,10 +199,10 @@ property * property_set::find_payload(const ::scoped_string & scopedstr) const
 }
 
 
-bool property_set::contains_value_ci(const ::payload & payload, ::collection::count countMin, ::collection::count countMax) const
+bool property_set::case_insensitive_contains_value(const ::payload & payload, ::collection::count countMin, ::collection::count countMax) const
 {
    ::collection::count count = 0;
-   while ((count < countMin || (countMax >= 0 && count <= countMax)) && find_value_ci(payload) != nullptr)
+   while ((count < countMin || (countMax >= 0 && count <= countMax)) && case_insensitive_find_value(payload) != nullptr)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
@@ -210,10 +210,10 @@ bool property_set::contains_value_ci(const ::payload & payload, ::collection::co
 
 
 
-bool property_set::contains_value_ci(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax) const
+bool property_set::case_insensitive_contains_value(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax) const
 {
    ::collection::count count = 0;
-   while ((count < countMin || (countMax >= 0 && count <= countMax)) && find_value_ci(scopedstr) != nullptr)
+   while ((count < countMin || (countMax >= 0 && count <= countMax)) && case_insensitive_find_value(scopedstr) != nullptr)
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
@@ -237,10 +237,10 @@ bool property_set::contains_payload(const ::scoped_string & scopedstr, ::collect
 }
 
 
-bool property_set::erase_first_value_ci(const ::payload & payload)
+bool property_set::case_insensitive_erase_first_value(const ::payload & payload)
 {
 
-   property * pproperty = find_value_ci(payload);
+   property * pproperty = case_insensitive_find_value(payload);
 
    if (pproperty != nullptr)
    {
@@ -254,10 +254,10 @@ bool property_set::erase_first_value_ci(const ::payload & payload)
 }
 
 
-bool property_set::erase_first_value_ci(const ::scoped_string & scopedstr)
+bool property_set::case_insensitive_erase_first_value(const ::scoped_string & scopedstr)
 {
 
-   property * pproperty = find_value_ci(scopedstr);
+   property * pproperty = case_insensitive_find_value(scopedstr);
 
    if (pproperty != nullptr)
    {
@@ -305,15 +305,15 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 }
 
 
-::collection::count property_set::erase_value_ci(const ::payload & payload, ::collection::count countMin, ::collection::count countMax)
+::collection::count property_set::case_insensitive_erase_value(const ::payload & payload, ::collection::count countMin, ::collection::count countMax)
 {
 
    ::collection::count count = 0;
 
-   if (contains_value_ci(payload, countMin, countMax))
+   if (case_insensitive_contains_value(payload, countMin, countMax))
    {
 
-      while (conditional(countMax >= 0, count < countMax) && (erase_first_value_ci(payload)))
+      while (conditional(countMax >= 0, count < countMax) && (case_insensitive_erase_first_value(payload)))
       {
 
          count++;
@@ -327,15 +327,15 @@ bool property_set::erase_first_value(const ::scoped_string & scopedstr)
 }
 
 
-::collection::count property_set::erase_value_ci(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax)
+::collection::count property_set::case_insensitive_erase_value(const ::scoped_string & scopedstr, ::collection::count countMin, ::collection::count countMax)
 {
 
    ::collection::count count = 0;
 
-   if (contains_value_ci(scopedstr, countMin, countMax))
+   if (case_insensitive_contains_value(scopedstr, countMin, countMax))
    {
 
-      while (conditional(countMax >= 0, count < countMax) && erase_first_value_ci(scopedstr))
+      while (conditional(countMax >= 0, count < countMax) && case_insensitive_erase_first_value(scopedstr))
       {
 
          count++;
@@ -1415,7 +1415,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
 //}
 //
 
-//property * property_set::find_value_ci(const ::scoped_string & scopedstr) const
+//property * property_set::case_insensitive_find_value(const ::scoped_string & scopedstr) const
 //{
 //
 //   for(const_iterator it = begin(); it != end(); it++)
@@ -1715,8 +1715,8 @@ property_set & property_set::operator |= (const property_set & set)
 }
 
 
-bool property_set::contains_value_ci(const ::payload & payload) const { return find_value_ci(payload) != nullptr; }
-bool property_set::contains_value_ci(const ::scoped_string & scopedstr) const { return find_value_ci(scopedstr) != nullptr; }
+bool property_set::case_insensitive_contains_value(const ::payload & payload) const { return case_insensitive_find_value(payload) != nullptr; }
+bool property_set::case_insensitive_contains_value(const ::scoped_string & scopedstr) const { return case_insensitive_find_value(scopedstr) != nullptr; }
 
 bool property_set::contains_payload(const ::payload & payload) const { return find_payload(payload) != nullptr; }
 bool property_set::contains_payload(const ::scoped_string & scopedstr) const { return find_payload(scopedstr) != nullptr; }

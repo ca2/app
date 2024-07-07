@@ -20,6 +20,8 @@ namespace fs_folder_sync_dropbox
    folder_sync::folder_sync()
    {
 
+      m_iLastExitCode = 0;
+
       m_pathProtocol = "dropbox://";
 
    }
@@ -32,13 +34,15 @@ namespace fs_folder_sync_dropbox
    }
 
 
-   void folder_sync::folder_sync_touch_file(const ::file::path& pathParam)
+
+
+   void folder_sync::folder_sync_touch_file(const ::file::path& pathParam, const ::function < void(const ::scoped_string&) >& callbackStatus)
    {
 
       auto path(pathParam);
 
       if (!path.case_insensitive_begins_eat(m_pathProtocol)
-         && !path.case_insensitive_begins_eat(m_pathLocalFolder))
+         && !path.case_insensitive_begins_eat(local_folder_path()))
       {
 
          return;
@@ -47,9 +51,9 @@ namespace fs_folder_sync_dropbox
 
       char buffer[1_KiB];
 
-      path = m_pathLocalFolder / path;
+      path = local_folder_path() / path;
 
-      for (int iTry = 0; iTry < 5; iTry)
+      for (int iTry = 0; iTry < 5; iTry++)
       {
 
          try
@@ -66,6 +70,17 @@ namespace fs_folder_sync_dropbox
          }
          catch (...)
          {
+
+            if(callbackStatus)
+            {
+
+               ::string strMessage;
+
+               strMessage.formatf("exception with %s", path.c_str());
+
+               callbackStatus(strMessage);
+
+            }
 
          }
 
@@ -242,9 +257,16 @@ namespace fs_folder_sync_dropbox
 
 #if defined(LINUX)
 
-      auto pathSourceFile = payloadFile.as_file_path();
+      auto pathLocal(payloadFile.as_file_path());
 
-      ::file::path pathSourceFolder = pathSourceFile.folder();
+      if (!pathLocal.case_insensitive_begins_eat(m_pathProtocol))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      pathLocal = local_folder_path() / pathLocal;
 
       ::file::path pathDropboxBin = acmedirectory()->home() / "bin/dropbox";
 
@@ -261,14 +283,14 @@ namespace fs_folder_sync_dropbox
 
          callbackStatus(
             //"Checking for "+pathSourceFile.name() + " at "+pathSourceFile.folder() + "... (index.txt should exist to continue installation with code...)");
-            "Checking for " + pathSourceFile.name() + " at " + pathSourceFile.folder() + "...");
+            "Checking for " + pathLocal.name() + " at " + pathLocal.folder() + "...");
 
       }
 
       while (true)
       {
 
-         if (acmefile()->exists(pathSourceFile))
+         if (acmefile()->exists(pathLocal))
          {
 
             break;
@@ -282,7 +304,7 @@ namespace fs_folder_sync_dropbox
       if(callbackStatus)
       {
 
-         callbackStatus("Checking if " + pathSourceFile.name() + " is up-to-date and present...");
+         callbackStatus("Checking if " + pathLocal.name() + " is up-to-date and present...");
 
       }
 
@@ -290,9 +312,11 @@ namespace fs_folder_sync_dropbox
 
       ::string_array lines;
 
-      lines.add(pathSourceFile.name());
+      lines.add(pathLocal.name());
 
-      acmedirectory()->change_current(pathSourceFile.folder());
+      auto pathLocalFolder = pathLocal.folder();
+
+      acmedirectory()->change_current(pathLocalFolder);
 
       while (true)
       {
@@ -318,7 +342,7 @@ namespace fs_folder_sync_dropbox
 
             auto pszLine = line.c_str();
 
-            int iFind = stra.find_first_begins_ci(line + ":");
+            int iFind = stra.case_insensitive_find_first_begins(line + ":");
 
             if (iFind < 0)
             {
@@ -340,7 +364,7 @@ namespace fs_folder_sync_dropbox
 
             }
 
-            auto pathFile = pathSourceFolder / line;
+            auto pathFile = pathLocalFolder / line;
 
             if (!acmefile()->exists(pathFile))
             {
@@ -385,143 +409,6 @@ namespace fs_folder_sync_dropbox
 
    }
 
-
-   void folder_sync::wait_folder_contains_files(const ::file::path& pathTargetFolder, const ::string_array& straName,  int iMinimumSize, const ::function < void(const ::scoped_string&) >& callbackStatus)
-   {
-
-#if defined(LINUX)
-
-      ::file::path pathDropboxBin = acmedirectory()->home() / "bin/dropbox";
-
-      ::string strDropboxCommand(pathDropboxBin);
-
-      if (callbackStatus)
-      {
-
-         callbackStatus(
-            //"Checking for "+pathSourceFile.name() + " at "+pathSourceFile.folder() + "... (index.txt should exist to continue installation with code...)");
-            "Checking for files at " + pathTargetFolder + "...");
-
-      }
-
-      while (true)
-      {
-
-         if (acmefile()->exists(pathTargetFolder))
-         {
-
-            break;
-
-         }
-
-         preempt(1_s);
-
-      }
-
-      if (callbackStatus)
-      {
-
-         callbackStatus("Checking if " + pathTargetFolder + " has all files...");
-
-      }
-
-      ::string_array lines;
-
-      lines = straName;
-
-      acmedirectory()->change_current(pathTargetFolder);
-
-      while (true)
-      {
-         preempt(1_s);
-
-         ::string strLs;
-
-         int iExitCode = node()->
-            get_posix_shell_command_output(strLs, strDropboxCommand + " dropbox filestatus");
-
-         auto pszLs = strLs.c_str();
-
-         print_line(pszLs);
-
-         ::string_array stra;
-
-         stra.add_lines(pszLs);
-
-         bool bOk = true;
-
-         for (auto& line : lines)
-         {
-
-            auto pszLine = line.c_str();
-
-            int iFind = stra.find_first_begins_ci(line + ":");
-
-            if (iFind < 0)
-            {
-
-               bOk = false;
-
-               break;
-
-            }
-
-            auto dropboxLine = stra[iFind];
-
-            if (!dropboxLine.case_insensitive_ends("up to date"))
-            {
-
-               bOk = false;
-
-               break;
-
-            }
-
-            auto pathFile = pathTargetFolder / line;
-
-            if (!acmefile()->exists(pathFile))
-            {
-
-               bOk = false;
-
-               break;
-
-            }
-
-            if(iMinimumSize > 0)
-            {
-
-               auto iSize = acmefile()->get_size(pathFile);
-
-               if (iSize < iMinimumSize)
-               {
-
-                  bOk = false;
-
-                  break;
-
-               }
-
-            }
-
-         }
-
-         if (bOk)
-         {
-
-            break;
-
-         }
-
-      }
-
-#else
-
-return ::fs::folder_sync::wait_folder_contains_files(pathTargetFolder, straName, iMinimumSize, callbackStatus);
-
-#endif
-
-   }
 
 
 

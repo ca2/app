@@ -10,11 +10,11 @@
 		9A0F8AF828D117E7002601B1 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AE128D1166D002601B1 /* networking.cpp */; };
 		9A0F8AF928D117F0002601B1 /* ip_enum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AA128D1166C002601B1 /* ip_enum.cpp */; };
 		9A0F8AFB28D11805002601B1 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AF628D1170B002601B1 /* _.cpp */; };
-		9A2199942761000D001E14CC /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2199932761000D001E14CC /* libcrypto.dylib */; };
-		9A226D4227CE99B40042BAC2 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A226D4127CE99B40042BAC2 /* libssl.dylib */; };
 		9A226D6427CEAE8E0042BAC2 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC019E22748A7D4006BEBCC /* libapex.dylib */; };
 		9A366DB628E598B40064C704 /* networking_bsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A366DB028E597CA0064C704 /* networking_bsd.cpp */; };
 		9A366DB728E598B60064C704 /* networking_bsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A366DB028E597CA0064C704 /* networking_bsd.cpp */; };
+		9A3CA4432C4D7DAA00158F29 /* libssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA4422C4D7DAA00158F29 /* libssl.dylib */; };
+		9A3CA4452C4D7DB200158F29 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3CA4442C4D7DB200158F29 /* libcrypto.dylib */; };
 		9A50CE102B6D1A7000FDB101 /* listen_socket_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABBFE9A2B3FFC770036DF8C /* listen_socket_impl.cpp */; };
 		9A50CE122B6D204900FDB101 /* list_computers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABBB6BA2AEB3210007611C5 /* list_computers.cpp */; };
 		9A50CE132B6D204E00FDB101 /* list_network_interfaces.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ABBB6B72AEB31FA007611C5 /* list_network_interfaces.cpp */; };
@@ -213,9 +213,9 @@
 		9A0F8AEB28D1166D002601B1 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A0F8AF628D1170B002601B1 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A0F8AF728D1170B002601B1 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9A2199932761000D001E14CC /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = "../../../../operating_system/storage-macos/Debug/library/libcrypto.dylib"; sourceTree = "<group>"; };
-		9A226D4127CE99B40042BAC2 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = "../../../../operating_system/storage-macos/Debug/library/libssl.dylib"; sourceTree = "<group>"; };
 		9A366DB028E597CA0064C704 /* networking_bsd.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = networking_bsd.cpp; sourceTree = "<group>"; };
+		9A3CA4422C4D7DAA00158F29 /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = "../../../../operating_system/storage-macos/Debug/library/libssl.dylib"; sourceTree = "<group>"; };
+		9A3CA4442C4D7DB200158F29 /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = "../../../../operating_system/storage-macos/Debug/library/libcrypto.dylib"; sourceTree = "<group>"; };
 		9A818E562A71D978008F470C /* libstatic_networking_bsd.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libstatic_networking_bsd.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81FBDD27516603003F38EC /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81FBE127518CAF003F38EC /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -236,9 +236,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A226D6427CEAE8E0042BAC2 /* libapex.dylib in Frameworks */,
-				9A2199942761000D001E14CC /* libcrypto.dylib in Frameworks */,
-				9A226D4227CE99B40042BAC2 /* libssl.dylib in Frameworks */,
 				9A81FBE227518CAF003F38EC /* libacme.dylib in Frameworks */,
+				9A3CA4432C4D7DAA00158F29 /* libssl.dylib in Frameworks */,
+				9A3CA4452C4D7DB200158F29 /* libcrypto.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,9 +441,9 @@
 		9AC019C82748A722006BEBCC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A3CA4422C4D7DAA00158F29 /* libssl.dylib */,
+				9A3CA4442C4D7DB200158F29 /* libcrypto.dylib */,
 				9A8E9ED6282A33D2005FF778 /* libios_acme.a */,
-				9A226D4127CE99B40042BAC2 /* libssl.dylib */,
-				9A2199932761000D001E14CC /* libcrypto.dylib */,
 				9A81FBE127518CAF003F38EC /* libacme.dylib */,
 				9A81FBDD27516603003F38EC /* libacme.dylib */,
 			);

@@ -1470,7 +1470,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
    if (this->prepare_first_last(iFind, iLast))
    {
 
-      return case_insensitive__find_first_contains(strSubstring, iFind, iLast, ppszBeg, ppszEnd);
+      return _case_insensitive_find_first_contains(strSubstring, iFind, iLast, ppszBeg, ppszEnd);
 
    }
 
@@ -1647,7 +1647,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
    if (this->prepare_first_last(iFind, iLast))
    {
 
-      return case_insensitive__find_first_suffixed(strSuffix, iFind, iLast);
+      return _case_insensitive_find_first_suffixed(strSuffix, iFind, iLast);
 
    }
 
@@ -2079,7 +2079,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 
    ::collection::count count = 0;
 
-   if (_067ContainsCi(str, iFind, iLast, countMin, countMax))
+   if (_067CaseInsensitiveContains(str, iFind, iLast, countMin, countMax))
    {
 
       while (conditional(countMax >= 0, count < countMax) && (iFind = case_insensitive_erase_first(str, iFind, iLast)) >= 0)

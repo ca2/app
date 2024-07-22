@@ -1029,3 +1029,11 @@ bool acme_path::get_next_path(::scoped_string & scopedstr, ::string::RANGE & ran
    return path;
 
 }
+
+
+void acme_path::symbolic_link(const ::file::path & pathTarget, const ::file::path & pathSource)
+{
+
+   throw ::interface_only();
+
+}

@@ -103,6 +103,7 @@ public:
 
    virtual ::file::path windows_posix_path(const ::file::path & path);
 
+   virtual void symbolic_link(const ::file::path & pathTarget, const ::file::path & pathSource);
 
 };
 

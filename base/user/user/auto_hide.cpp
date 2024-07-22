@@ -324,7 +324,7 @@ namespace user
       else if (pointClient.y() <= 1)
       {
 
-         if (m_bHideControlOnFullScreenOrTransparentFrame)
+         if (!m_bForceHiddenControl && m_bHideControlOnFullScreenOrTransparentFrame)
          {
 
             m_bOverrideVisibleControl = true;

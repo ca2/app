@@ -106,7 +106,7 @@ endif()
 
 
 add_subdirectory(source/app)
-add_subdirectory(operating_system)/home/camilo/cmake/integration/CMakeLists.txt
+add_subdirectory(operating_system)
 add_subdirectory(port)
 add_subdirectory(source)
 

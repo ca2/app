@@ -343,14 +343,14 @@ public:
       return m_end;
    }
 
-   const_iterator & begin() const
+   const_iterator begin() const
    {
-      return (const_iterator &)m_begin;
+      return m_begin;
    }
 
-   const_iterator & end() const
+   const_iterator end() const
    {
-      return (const_iterator &)m_end;
+      return m_end;
    }
 
    this_iterator & begin(this_iterator begin)

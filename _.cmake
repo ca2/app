@@ -71,7 +71,7 @@ include(operating_system/_.cmake)
 #   set(FREEBSD FALSE)
 #   set(OPENBSD FALSE)
 #   set(NETBSD TRUE)
-#   set(DARWIN TRUE)
+#   set(DARWIN TRUE)/home/camilo/cmake/integration/CMakeLists.txt
 #   set(BSD TRUE)
 #   add_compile_definitions(NETBSD)
 #   add_compile_definitions(BSD_UNIX)
@@ -106,7 +106,7 @@ endif()
 
 
 add_subdirectory(source/app)
-add_subdirectory(operating_system)
+add_subdirectory(operating_system)/home/camilo/cmake/integration/CMakeLists.txt
 add_subdirectory(port)
 add_subdirectory(source)
 

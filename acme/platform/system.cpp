@@ -53,6 +53,10 @@ extern "C" void nano_idn_windows_common_factory(::factory::factory * pfactory);
 
 extern "C" void nano_user_win32_factory(::factory::factory* pfactory);
 
+#elif defined(MACOS)
+
+extern "C" void nano_user_macos_factory(::factory::factory* pfactory);
+
 
 #endif
 
@@ -3416,7 +3420,17 @@ namespace acme
 
 
          return;
+         
+#elif defined(MACOS)
+         
+         auto pfactory = this->factory();
 
+
+         nano_user_macos_factory(pfactory);
+
+
+         return;
+         
 
 #endif
 

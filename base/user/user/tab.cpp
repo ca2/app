@@ -1184,6 +1184,15 @@ namespace user
 
    ::item_pointer tab::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
+      
+      if(!should_draw())
+      {
+       
+         auto pitemNone = __allocate< ::item >(e_element_none);
+
+         return pitemNone;
+         
+      }
 
       auto pointCursor = point;
 

@@ -118,20 +118,12 @@ namespace user
 
 
       template < typename CHECK_BOX = ::user::check_box>
-      ::pointer < CHECK_BOX >create_check_box(::user::interaction * puserinteractionParent, const ::data::property & dataproperty)
+      ::pointer < CHECK_BOX >create_check_box(::user::interaction * puserinteractionParent, const ::data::property & property)
       {
 
-         auto pcheckbox = __create_new<CHECK_BOX>();
+         auto pcheckbox = create_check_box<CHECK_BOX>(puserinteractionParent, property.atom());
 
-         pcheckbox->m_bAutoResize = true;
-
-         pcheckbox->create_control(puserinteractionParent, dataproperty.atom());
-
-         pcheckbox->set_check_property(dataproperty);
-
-         pcheckbox->display();
-
-         pcheckbox->set_need_layout();
+         pcheckbox->set_check_property(property);
 
          return pcheckbox;
 

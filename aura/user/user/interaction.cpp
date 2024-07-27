@@ -23019,7 +23019,6 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       }
 
-
       if (pitemLButtonDown && pitemLButtonDown->m_eitemflag & ::e_item_flag_drag)
       {
 

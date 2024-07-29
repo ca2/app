@@ -247,6 +247,7 @@ enum enum_id : ::uptr
    id_hide_recycle_bin,
    id_show_recycle_bin,
    id_not_modified,
+   id_did_pick_document_at_url,
       
 
    // procedures:

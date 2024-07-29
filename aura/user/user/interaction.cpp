@@ -26682,8 +26682,15 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          if (!pparent)
          {
+            
+            pparent = puserinteraction->get_host_user_interaction();
 
-            break;
+            if(!pparent || pparent == puserinteraction)
+            {
+               
+               break;
+               
+            }
 
          }
 

@@ -2448,7 +2448,6 @@ namespace acme
    void system::handle(::topic* ptopic, ::context* pcontext)
    {
 
-
       if (ptopic->m_atom == id_get_operating_system_dark_mode_reply)
       {
 
@@ -2521,6 +2520,19 @@ namespace acme
          {
 
             application()->handle(ptopic, pcontext);
+
+         }
+
+      }
+      else if (ptopic->m_atom == id_did_pick_document_at_url)
+      {
+
+         if (::is_set(application()))
+         {
+            
+            auto pszUrl = (const char *) ptopic->payload("wparam").as_iptr();
+
+            application()->did_pick_document_at_url(pszUrl);
 
          }
 

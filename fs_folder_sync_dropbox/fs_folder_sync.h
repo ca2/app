@@ -32,10 +32,10 @@ namespace fs_folder_sync_dropbox
       virtual ::string _dropbox(const ::scoped_string & scopedstr, const ::function < void(const ::scoped_string&) >& callbackStatus);
       virtual ::string_array _dropbox_lines(const ::scoped_string & scopedstr, const ::function < void(const ::scoped_string&) >& callbackStatus);
 
-      virtual bool check_files(const ::file::path& pathSourceFolder, const ::string_array& straSource, const ::function < void(const ::scoped_string&) >& callbackStatus);
-      virtual void copy_files_out(const ::file::path& pathTargetFolder, const ::file::path& pathSourceFolder, const ::string_array& straSource, const ::function < void(const ::scoped_string&) >& callbackStatus);
+      virtual bool check_files(const ::file::path& pathSourceFolder, const ::string_array& straSource, const ::function < void(const ::scoped_string&) >& callbackStatus) override;
+      virtual void copy_files_out(const ::file::path& pathTargetFolder, const ::file::path& pathSourceFolder, const ::string_array& straSource, const ::function < void(const ::scoped_string&) >& callbackStatus) override;
 
-      void folder_sync_touch_file(const ::file::path& path, const ::function < void(const ::scoped_string&) >& callbackStatus);
+      void folder_sync_touch_file(const ::file::path& path, const ::function < void(const ::scoped_string&) >& callbackStatus) override;
 
       //bool _enumerates(::file::listing & listing) override;
       bool enumerate(::file::listing& listing) override;
@@ -43,10 +43,14 @@ namespace fs_folder_sync_dropbox
 
       ::string_array ls(const file::path& pathCloud, const ::function < void(const ::scoped_string&) >& callbackStatus) override;
       ::string_array ls_folder(const file::path& pathCloud, const ::function < void(const ::scoped_string&) >& callbackStatus) override;
+#ifdef LINUX
+      
+      void start_daemon(const ::function < void(const ::scoped_string&) >& callbackStatus) override;
       void sync_exclude(const string_array& stra, const ::function < void(const ::scoped_string&) >& callbackStatus) override;
       void sync_reinclude(const string_array& stra, const ::function < void(const ::scoped_string&) >& callbackStatus) override;
       ::string_array sync_exclusion_list(const ::function < void(const ::scoped_string&) >& callbackStatus) override;
-      void start_daemon(const ::function < void(const ::scoped_string&) >& callbackStatus) override;
+
+#endif
 
       bool is_link(const ::file::path& path) override;
 
@@ -67,9 +71,9 @@ namespace fs_folder_sync_dropbox
 
 
       ::string non__empty__file_as_string(const ::payload& payloadFile, const ::function < void(const ::scoped_string&) >& callbackStatus = {}) override;
-#if defined(LINUX)
+//#if defined(LINUX)
       void wait_folder_contains_files(const ::file::path& pathTargetFolder, const ::string_array& straName, int iMinimumSize, const ::function < void(const ::scoped_string&) >& callbackStatus = {}) override;
-#endif
+//#endif
 
       void wait_up_and_running(const ::function < void(const ::scoped_string&) >& callbackStatus = {}) override;
 

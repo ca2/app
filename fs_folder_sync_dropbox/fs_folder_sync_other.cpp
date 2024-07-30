@@ -1,0 +1,840 @@
+// Created by camilo on 2024-07-03 03:09 ILoveYouThomasBorregaardSorensen!!
+#include "framework.h"
+#include "fs_folder_sync.h"
+#include "acme/filesystem/file/file.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/listing.h"
+#include "acme/primitive/data/listener.h"
+#include "acme/primitive/string/international.h"
+#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/file_context.h"
+#include "apex/platform/context.h"
+#include "apex/platform/node.h"
+
+
+namespace fs_folder_sync_dropbox
+{
+
+
+   ::string folder_sync::_dropbox(const ::scoped_string & scopedstr,
+                                  const ::function<void(const ::scoped_string&)> & callbackStatus)
+   {
+
+      ::string str;
+
+      int iTry = 0;
+
+      while (true)
+      {
+
+         while (true)
+         {
+
+            defer_throttle_operation();
+
+            auto pathFolder = local_folder_path();
+
+            pathFolder.trim();
+
+            if (pathFolder.has_char() && acmedirectory()->is(pathFolder))
+            {
+
+               iTry = 0;
+
+               break;
+
+            }
+
+            node()->calculate_dropbox_installed();
+
+            if (callbackStatus)
+            {
+
+               callbackStatus("Waiting for Dropbox folder " + pathFolder + " creation...");
+
+            }
+
+            iTry++;
+
+            if (iTry > 8)
+            {
+
+               m_iLastExitCode = -1;
+
+               m_iStableOkCount = 0;
+
+               return {};
+
+            }
+
+         }
+
+         acmedirectory()->change_current(local_folder_path());
+
+         ::file::path pathHomeFolder = acmedirectory()->home();
+
+         ::file::path pathDropboxBin = pathHomeFolder / "bin/dropbox";
+
+         ::string strDropboxCommand(pathDropboxBin);
+
+         str.empty();
+
+         ::string strCommand;
+
+         strCommand = strDropboxCommand + " " + scopedstr;
+
+         m_iLastExitCode = node()->get_posix_shell_command_output(str, strCommand);
+
+         if (m_iLastExitCode == 0)
+         {
+
+            m_iStableOkCount++;
+
+         }
+         else
+         {
+
+            m_iStableOkCount = 0;
+
+            iTry++;
+
+            if (iTry > 5)
+            {
+
+               callbackStatus(strCommand + " has failed too many times.");
+
+               return {};
+
+            }
+
+            if (callbackStatus)
+            {
+
+               callbackStatus(strCommand + " has failed.");
+
+            }
+
+         }
+
+         auto strError(str);
+
+         strError.trim();
+
+         ::string_array straError;
+
+         straError.add_lines(strError);
+
+         straError.erase_empty();
+
+         if (straError.size() == 1)
+         {
+
+            if (strError.case_insensitive_contains("isn't running"))
+            {
+
+               if (callbackStatus)
+               {
+
+                  callbackStatus("Dropbox daemon isn't running... Trying to start it...");
+
+               }
+
+               defer_start_daemon(callbackStatus);
+
+               m_iStableOkCount = 0;
+
+               if (m_iLastExitCode == 0)
+               {
+
+                  m_iLastExitCode = -1;
+
+               }
+
+               iTry = 0;
+
+            }
+            else if (strError.case_insensitive_contains("respond"))
+            {
+
+               if (callbackStatus)
+               {
+
+                  callbackStatus("Dropbox daemon isn't responding...");
+
+               }
+
+               m_iStableOkCount = 0;
+
+               if (m_iLastExitCode == 0)
+               {
+
+                  m_iLastExitCode = -1;
+
+               }
+
+               iTry = 0;
+
+            }
+            else
+            {
+
+               break;
+
+            }
+
+         }
+         else
+         {
+
+            break;
+
+         }
+
+      }
+
+      return str;
+
+   }
+
+
+   ::string_array folder_sync::_dropbox_lines(const ::scoped_string & scopedstr, const ::function < void(const ::scoped_string&) >& callbackStatus)
+   {
+
+      auto str = _dropbox(scopedstr, callbackStatus);
+
+      if(m_iLastExitCode != 0)
+      {
+
+         return {};
+
+      }
+
+      ::string_array stra;
+
+      stra.add_lines(str);
+
+      stra.trim();
+
+      stra.erase_empty();
+
+      return ::transfer(stra);
+
+   }
+
+
+   void folder_sync::wait_folder_contains_files(const ::file::path& pathTargetFolder, const ::string_array& straName,
+                                                int iMinimumSize,
+                                                const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+
+      if (callbackStatus)
+      {
+
+         callbackStatus(
+            //"Checking for "+pathSourceFile.name() + " at "+pathSourceFile.folder() + "... (index.txt should exist to continue installation with code...)");
+            "Checking for files at " + pathTargetFolder + "...");
+
+      }
+
+      while (true)
+      {
+
+         if (acmefile()->exists(pathTargetFolder))
+         {
+
+            break;
+
+         }
+
+         preempt(1_s);
+
+      }
+
+      if (callbackStatus)
+      {
+
+         callbackStatus("Checking if " + pathTargetFolder + " has all files...");
+
+      }
+
+      ::string_array lines;
+
+      lines = straName;
+
+      acmedirectory()->change_current(pathTargetFolder);
+
+      while (true)
+      {
+
+         auto lines = _dropbox_lines("filestatus", callbackStatus);
+
+         bool bOk = true;
+
+         for (auto& line : lines)
+         {
+
+            //auto pszLine = line.c_str();
+
+            auto iFind = lines.case_insensitive_find_first_begins(line + ":");
+
+            if (iFind < 0)
+            {
+
+               bOk = false;
+
+               break;
+
+            }
+
+            auto dropboxLine = lines[iFind];
+
+            if (!dropboxLine.case_insensitive_ends("up to date"))
+            {
+
+               bOk = false;
+
+               break;
+
+            }
+
+            auto pathFile = pathTargetFolder / line;
+
+            if (!acmefile()->exists(pathFile))
+            {
+
+               bOk = false;
+
+               break;
+
+            }
+
+            if (iMinimumSize > 0)
+            {
+
+               auto iSize = acmefile()->get_size(pathFile);
+
+               if (iSize < iMinimumSize)
+               {
+
+                  bOk = false;
+
+                  break;
+
+               }
+
+            }
+
+         }
+
+         if (bOk)
+         {
+
+            break;
+
+         }
+
+      }
+
+   }
+
+
+   void folder_sync::wait_up_and_running(const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+
+      m_iStableOkCount = 0;
+
+      while (::task_get_run())
+      {
+
+         if (callbackStatus)
+         {
+
+            callbackStatus("Waiting for Dropbox service to get up and running... please wait...");
+
+         }
+
+         auto stra = sync_exclusion_list(callbackStatus);
+
+         //auto stra = _dropbox_lines("exclude list", callbackStatus);
+
+         if (m_iStableOkCount >= 5)
+         {
+
+            break;
+
+         }
+
+      }
+
+   }
+
+
+   ::file::path folder_sync::_cloud_ensure_file_txt_is_up_to_date_and_present(
+      const ::file::path& pathCloudFile, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+
+      ::file::path pathHomeFolder = acmedirectory()->home();
+
+      auto pathSource = m_pathProtocol / pathCloudFile;
+
+      auto pathSourceFolder = pathSource.folder();
+
+      auto pathSourceLocalFolder = local_path(pathSourceFolder);
+
+      while (true)
+      {
+
+         if (callbackStatus)
+         {
+            callbackStatus("Checking for \"" + pathSourceLocalFolder +
+               "\" Cloud folder... (" + ::string(pathCloudFile.name()) +
+               " should exist to continue installation with code...)");
+         }
+
+         if(acmedirectory()->is(pathSourceLocalFolder))
+         {
+
+            break;
+
+         }
+
+         preempt(1_s);
+
+      }
+
+      acmedirectory()->change_current(pathSourceLocalFolder);
+
+      auto pathLocalSource = local_path(pathSource);
+
+      while (true)
+      {
+
+         if (callbackStatus)
+         {
+            callbackStatus("Checking for " + ::string(pathCloudFile.name()) + " at \"" + pathSourceFolder +
+               "\" Cloud folder... (" + ::string(pathCloudFile.name()) +
+               " should exist to continue installation with code...)");
+         }
+
+         if (acmefile()->exists(pathLocalSource))
+         {
+
+            break;
+
+         }
+
+         preempt(1_s);
+
+      }
+
+      ::string_array lines;
+
+      lines.add(pathCloudFile.name());
+
+      while (true)
+      {
+
+         auto stra = _dropbox_lines("filestatus", callbackStatus);
+
+         bool bOk = true;
+
+         for (auto& line : lines)
+         {
+
+            int iFind = stra.case_insensitive_find_first_begins(line + ":");
+
+            if (iFind < 0)
+            {
+               bOk = false;
+
+               break;
+            }
+
+            auto dropboxLine = stra[iFind];
+
+            if (!dropboxLine.case_insensitive_ends("up to date"))
+            {
+               bOk = false;
+
+               break;
+            }
+
+            auto pathFile = pathSourceLocalFolder / line;
+
+            if (!acmefile()->exists(pathFile))
+            {
+               bOk = false;
+
+               break;
+            }
+
+            if (acmefile()->as_string(pathFile).trimmed().is_empty())
+            {
+               bOk = false;
+
+               break;
+            }
+         }
+
+         if (bOk)
+         {
+            break;
+         }
+      }
+
+      return pathSource;
+   }
+
+
+   ::file::path folder_sync::_cloud_ensure_files_in_file_txt_are_up_to_date_and_present(
+      const ::file::path& pathCloudFile, const ::scoped_string& scopedstrFileExtension,
+      int iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+
+      ::string_array lines;
+
+      ::file::path pathTarget;
+
+      ::file::path pathSource;
+
+      while (true)
+      {
+
+         if (callbackStatus)
+         {
+
+            callbackStatus("Checking if all files in \""+pathCloudFile+"\" listing are up-to-date and present...");
+
+         }
+
+         lines = _cloud_get_file_txt_lines(pathCloudFile, true, &pathTarget, &pathSource);
+
+         if (lines.get_size() >= 7)
+         {
+
+            /// if file listing is empty it should contain empty lines like this
+            ///
+            ///
+            ///
+            /// (empty)
+            ///
+            ///
+            ///
+            ///
+            ///
+            ///
+
+            break;
+
+         }
+
+      }
+
+      lines.trim();
+
+      lines.erase_empty();
+
+      ::string strEnds;
+
+      strEnds = "." + scopedstrFileExtension;
+
+      //lines.erase_lines_not_ending(".ttf");
+      lines.predicate_erase([strEnds](auto& str)
+      {
+
+         return !str.case_insensitive_ends(strEnds);
+
+      });
+
+      _cloud_ensure_files_are_up_to_date_and_present(pathCloudFile.folder(), lines,
+         iMinimumFileSize, callbackStatus);
+
+      return pathTarget;
+
+   }
+
+
+   void folder_sync::_cloud_ensure_files_are_up_to_date_and_present(
+   const ::file::path& pathFolder, const ::string_array & stra,
+   int iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+
+      if(stra.is_empty())
+      {
+
+         return;
+
+      }
+
+      while (true)
+      {
+
+         if (callbackStatus)
+         {
+
+            callbackStatus("Checking if files are up-to-date and present...");
+
+         }
+
+         auto lines = _dropbox_lines("filestatus", callbackStatus);
+
+         bool bOk = true;
+
+         for (auto& str : stra)
+         {
+
+            if (callbackStatus)
+            {
+
+               callbackStatus("Checking if file \""+str+"\" is up-to-date and present...");
+
+            }
+
+            int iFind = lines.case_insensitive_find_first_begins(str + ":");
+
+            if (iFind < 0)
+            {
+
+               bOk = false;
+
+               break;
+
+            }
+
+            auto dropboxLine = lines[iFind];
+
+            if (!dropboxLine.case_insensitive_ends("up to date"))
+            {
+
+               bOk = false;
+
+               break;
+
+            }
+
+            auto pathFile = pathFolder / str;
+
+            if (!acmefile()->exists(pathFile))
+            {
+
+               bOk = false;
+
+               break;
+
+            }
+
+            if (iMinimumFileSize > 0 && acmefile()->get_size(pathFile) < iMinimumFileSize)
+            {
+
+               bOk = false;
+
+               break;
+
+            }
+
+         }
+
+         if (bOk)
+         {
+
+            break;
+
+         }
+
+      }
+
+   }
+
+
+//   void folder_sync::start_daemon(const ::function<void(const ::scoped_string&)>& callbackStatus)
+//   {
+//
+//      auto pathHomeFolder = acmedirectory()->home();
+//
+//      node()->detached_command(pathHomeFolder / ".dropbox-dist/dropboxd &", {});
+//
+//   }
+
+
+   ::string_array folder_sync::ls(const ::file::path& path, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+
+      ::string str;
+
+      if (path.is_empty())
+      {
+
+         str = _dropbox("ls", callbackStatus);
+
+      }
+      else
+      {
+
+         str = _dropbox("ls \"" + path + "\"", callbackStatus);
+
+      }
+
+      ::string_array stra;
+
+      stra.add_lines(str);
+
+      stra.trim();
+
+      stra.erase_empty();
+
+      return ::transfer(stra);
+
+   }
+
+
+   ::string_array folder_sync::ls_folder(const ::file::path& path, const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+
+      auto stra = ls(path, callbackStatus);
+
+      auto pathFolder = local_folder_path() / path;
+
+      stra.predicate_erase([this, &pathFolder](auto& str) { return !acmedirectory()->is(pathFolder / str); });
+
+      return ::transfer(stra);
+
+   }
+
+
+//   void folder_sync::sync_exclude(const string_array& straExclude, const ::function<void(const ::scoped_string&)>& callbackStatus)
+//   {
+//
+//      ::string_array stra(straExclude);
+//
+//      stra.predicate_each([](auto& str) { str.double_quote(); });
+//
+//      auto strExclude = stra.implode(" ");
+//
+//      auto strExcludeOutput = _dropbox("exclude add " + strExclude, callbackStatus);
+//
+//   }
+//
+//
+//   void folder_sync::sync_reinclude(const string_array& straInclude, const ::function<void(const ::scoped_string&)>& callbackStatus)
+//   {
+//
+//      ::string_array stra(straInclude);
+//
+//      stra.predicate_each([](auto& str) { str.double_quote(); });
+//
+//      auto strInclude = stra.implode(" ");
+//
+//      auto strIncludeOutput = _dropbox("exclude remove " + strInclude, callbackStatus);
+//
+//   }
+//
+//
+//   string_array folder_sync::sync_exclusion_list(const ::function<void(const ::scoped_string&)>& callbackStatus)
+//   {
+//
+//      auto stra = _dropbox_lines("exclude list", callbackStatus);
+//
+//      if (stra.size() == 1 && stra.first().case_insensitive_contains("no directories"))
+//      {
+//
+//         return {};
+//
+//      }
+//
+//      if(stra.size() >= 2 && stra.first().trimmed().case_insensitive_equals("excluded:"))
+//      {
+//
+//         stra.erase_first();
+//
+//      }
+//
+//      return ::transfer(stra);
+//
+//   }
+
+
+   bool folder_sync::_cloud_defer_check_file_txt(::file::path& pathTarget, const ::file::path& pathCloudFile,
+                                                 bool bForce, ::file::path* ppathSource,
+                                                 const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+
+      auto pathCloudFolder = pathCloudFile.folder();
+
+      ::file::path pathSourceFolder = m_pathProtocol / pathCloudFolder;
+
+      auto pathSource = m_pathProtocol / pathCloudFile;
+
+      auto pathApp = acmedirectory()->home() / ".config/integration/code";
+
+      auto pathTargetFolder = pathApp / pathCloudFolder;
+
+      pathTarget = pathApp / pathCloudFile;
+
+      if (bForce || !acmefile()->exists(pathTarget) || acmefile()->modification_time(pathTarget).elapsed() >=
+         12_hours)
+      {
+
+         auto pathLocalSource = _cloud_ensure_file_txt_is_up_to_date_and_present(pathSource, callbackStatus);
+
+         acmefile()->copy(pathTarget, pathSource, true);
+
+         if (ppathSource)
+         {
+
+            *ppathSource = pathLocalSource;
+
+         }
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   ::string_array folder_sync::_cloud_get_file_txt_lines(const ::file::path& pathCloudFile, bool bForce,
+                                                         ::file::path* ppathTarget, ::file::path* ppathSource,
+                                                         const ::function<void(const ::scoped_string&)>& callbackStatus)
+   {
+
+      ::file::path pathTarget;
+
+      if (!_cloud_defer_check_file_txt(pathTarget, pathCloudFile, bForce, ppathSource))
+      {
+
+         return {};
+
+      }
+
+      auto lines = acmefile()->lines(pathTarget);
+
+      lines.trim();
+
+      lines.erase_empty();
+
+      lines.erase_duplicates();
+
+      if (ppathTarget)
+      {
+
+         *ppathTarget = pathTarget;
+
+      }
+
+      return lines;
+
+   }
+
+
+   bool folder_sync::has_operation_error()
+   {
+
+      return m_iLastExitCode != 0;
+
+   }
+
+
+} // namespace fs_folder_sync_dropbox

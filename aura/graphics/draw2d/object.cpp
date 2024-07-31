@@ -38,8 +38,29 @@ namespace draw2d
 
    object::~object()
    {
-
-      system()->m_paurasystem->draw2d()->erase_object(this);
+       
+       auto psystem = system();
+       
+       if(::is_set(psystem))
+       {
+           
+           auto paurasystem = psystem->m_paurasystem;
+           
+           if(::is_set(paurasystem))
+           {
+               
+               auto pdraw2d = paurasystem->draw2d();
+               
+               if(::is_set(pdraw2d))
+               {
+                   
+                   pdraw2d->erase_object(this);
+                   
+               }
+               
+           }
+           
+       }
 
    }
 

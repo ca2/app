@@ -4611,11 +4611,15 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
    auto psz = (const CHARACTER *)this->begin();
 
-   auto pszEnd = (const CHARACTER *)unicode_decrement(this->end(), psz);
+   auto pszEnd = (const CHARACTER *)this->end();
+   
+   unicode_decrement(pszEnd, psz);
 
    auto pszBlock = (const CHARACTER *)scopedstr.begin();
 
-   auto pszBlockEnd = (const CHARACTER *)unicode_decrement(scopedstr.end(), pszBlock);
+   auto pszBlockEnd = (const CHARACTER *)scopedstr.end();
+
+   unicode_decrement(pszBlockEnd, pszBlock);
 
    if (::is_null(pszBlockEnd))
    {
@@ -4690,11 +4694,15 @@ inline typename const_string_range < ITERATOR_TYPE >::const_iterator const_strin
 
    auto psz = (const CHARACTER *)this->begin();
 
-   auto pszEnd = (const CHARACTER *)unicode_decrement(this->end(), psz);
+   auto pszEnd = (const CHARACTER *)this->end();
+
+   unicode_decrement(pszEnd, psz);
 
    auto pszBlock = (const CHARACTER *)scopedstr.begin();
 
-   auto pszBlockEnd = (const CHARACTER *)unicode_decrement(scopedstr.end(), pszBlock);
+   auto pszBlockEnd = (const CHARACTER *)scopedstr.end();
+
+   unicode_decrement(pszBlockEnd, pszBlock);
 
    if (::is_null(pszBlockEnd))
    {

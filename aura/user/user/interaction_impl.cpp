@@ -9728,6 +9728,21 @@ namespace user
    }
 
 
+   void interaction_impl::set_opacity(double dOpacity)
+   {
+
+      if (::is_null(m_pwindow))
+      {
+
+         return;
+
+      }
+
+      m_pwindow->set_opacity(dOpacity);
+
+   }
+
+
 } // namespace user
 
 

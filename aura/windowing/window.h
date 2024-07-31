@@ -442,6 +442,9 @@ namespace windowing
       virtual void pick_media(const char * pszMediaType);
       virtual void on_prompt_write_file(::user::controller * pusercontroller);
 
+
+      virtual void set_opacity(double dOpacity);
+
    };
 
 

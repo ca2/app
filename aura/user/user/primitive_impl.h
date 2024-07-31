@@ -500,6 +500,9 @@ namespace user
       void user_post(const ::procedure & procedure) override;
 
 
+      virtual void set_opacity(double dOpacity);
+
+
    };
 
 

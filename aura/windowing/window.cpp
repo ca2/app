@@ -2429,6 +2429,13 @@ void window::on_prompt_write_file(::user::controller *pusercontroller)
    
 }
 
+void window::set_opacity(double dOpacity)
+{
+
+
+}
+
+
 } // namespace windowing
 
 

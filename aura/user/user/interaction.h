@@ -2561,6 +2561,8 @@ namespace user
       virtual point_i32 host_origin(enum_layout elayout = e_layout_design);
 
 
+      virtual void set_opacity(double dOpacity);
+
       //::item_pointer get_child_as_item(::collection::index iIndex) override;
       //::collection::count get_child_as_item_count() override;
 

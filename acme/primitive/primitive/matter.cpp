@@ -193,12 +193,24 @@ void matter::set_finish()
 }
 
 
-//void matter::destroy()
-//{
-//
-//   return ::success;
-//
-//}
+void matter::destroy()
+{
+
+   for(auto & procedure : m_destroyinga)
+   {
+       
+       if(procedure)
+       {
+           
+           procedure();
+           
+       }
+       
+   }
+    
+   m_destroyinga.erase_all();
+
+}
 
 
 void matter::on_set_finish()

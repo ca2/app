@@ -457,7 +457,7 @@ namespace user
 
             m_pevNewImageKey->_wait(500_ms);
 
-            synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization());
 
             if (m_imagekeySchedule.has_elements())
             {

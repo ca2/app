@@ -28534,10 +28534,22 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
+   void interaction::set_opacity(double dOpacity)
+   {
+
+      if (::is_null(m_pprimitiveimpl))
+      {
+
+         return;
+
+      }
+
+      m_pprimitiveimpl->set_opacity(dOpacity);
+
+   }
 
 
-
-         } // namespace user
+} // namespace user
 
 
 ::point_i32 g_pointAuraTopRight;

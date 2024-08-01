@@ -1882,7 +1882,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
          try
          {
 
-            st = preader->get_status();
+            pwriter->set_modification_time(st.m_timeModification);
 
          }
          catch (...)

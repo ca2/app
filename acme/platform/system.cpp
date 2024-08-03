@@ -51,7 +51,15 @@ extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory);
 
 extern "C" void nano_idn_windows_common_factory(::factory::factory * pfactory);
 
+#if defined(WINDOWS_DESKTOP)
+
 extern "C" void nano_user_win32_factory(::factory::factory* pfactory);
+
+#elif defined(UNIVERSAL_WINDOWS)
+
+extern "C" void nano_user_universal_windows_factory(::factory::factory * pfactory);
+
+#endif
 
 #elif defined(MACOS)
 
@@ -3422,7 +3430,7 @@ namespace acme
       {
 
 
-#if defined(WINDOWS)
+#if defined(WINDOWS_DESKTOP)
 
 
          auto pfactory = this->factory();
@@ -3433,6 +3441,17 @@ namespace acme
 
          return;
          
+#elif defined(UNIVERSAL_WINDOWS)
+
+
+         auto pfactory = this->factory();
+
+
+         nano_user_universal_windows_factory(pfactory);
+
+
+         return;
+
 #elif defined(MACOS)
          
          auto pfactory = this->factory();

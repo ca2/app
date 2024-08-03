@@ -613,6 +613,7 @@
     <ClInclude Include="filesystem\filesystem\acme_file.h" />
     <ClInclude Include="filesystem\filesystem\acme_path.h" />
     <ClInclude Include="filesystem\filesystem\enumerator.h" />
+    <ClInclude Include="filesystem\filesystem\file_context_interface.h" />
     <ClInclude Include="filesystem\filesystem\file_path.h" />
     <ClInclude Include="filesystem\filesystem\link.h" />
     <ClInclude Include="filesystem\filesystem\path_array.h" />
@@ -834,6 +835,7 @@
     <ClInclude Include="platform\simple_log.h" />
     <ClInclude Include="platform\string_exchange.h" />
     <ClInclude Include="platform\synchronized_predicate_routine.h" />
+    <ClInclude Include="platform\system_factory.h" />
     <ClInclude Include="platform\system_setup.h" />
     <ClInclude Include="platform\text.h" />
     <ClInclude Include="platform\timeout.h" />
@@ -1426,6 +1428,7 @@
     <ClCompile Include="filesystem\filesystem\dir_system.cpp" />
     <ClCompile Include="filesystem\filesystem\enumerator.cpp" />
     <ClCompile Include="filesystem\filesystem\file_context.cpp" />
+    <ClCompile Include="filesystem\filesystem\file_context_interface.cpp" />
     <ClCompile Include="filesystem\filesystem\file_dialog.cpp" />
     <ClCompile Include="filesystem\filesystem\file_path.cpp" />
     <ClCompile Include="filesystem\filesystem\file_system.cpp" />
@@ -1765,6 +1768,7 @@
     <ClCompile Include="operating_system\process.cpp" />
     <ClCompile Include="operating_system\security_attributes.cpp" />
     <ClCompile Include="operating_system\shared_posix\c_error_number.cpp" />
+    <ClCompile Include="operating_system\shared_posix\debug.cpp" />
     <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp" />
     <ClCompile Include="operating_system\shared_posix\errno.cpp" />
     <ClCompile Include="operating_system\shared_posix\stdio_file.cpp" />
@@ -1802,6 +1806,7 @@
     <ClCompile Include="operating_system\universal_windows\nano\http\http.cpp" />
     <ClCompile Include="operating_system\universal_windows\nano\http\_http.cpp" />
     <ClCompile Include="operating_system\universal_windows\nano\user\window.cpp" />
+    <ClCompile Include="operating_system\universal_windows\nano\user\_user.cpp" />
     <ClCompile Include="operating_system\universal_windows\parallelization.cpp" />
     <ClCompile Include="operating_system\universal_windows\process.cpp" />
     <ClCompile Include="operating_system\universal_windows\universal_windows.cpp" />
@@ -1899,6 +1904,7 @@
     <ClCompile Include="platform\string_exchange.cpp" />
     <ClCompile Include="platform\platform.cpp" />
     <ClCompile Include="platform\system.cpp" />
+    <ClCompile Include="platform\system_factory.cpp" />
     <ClCompile Include="platform\system_setup.cpp" />
     <ClCompile Include="platform\text.cpp" />
     <ClCompile Include="platform\timer.cpp" />

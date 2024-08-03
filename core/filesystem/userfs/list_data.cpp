@@ -214,46 +214,66 @@ namespace userfs
 
             //}
             
+            ::pointer < list_item > plistitem;
             
-
-            auto & path = (*m_pitema)[psubitem->m_pitem->m_iItem]->final_path_reference();
-
-            if (path.not_file_or_folder())
+            auto iItem = psubitem->m_pitem->m_iItem;
+            
+            if(iItem >= 0 && iItem < m_pitema->size())
             {
-
-               (*m_pitema)[psubitem->m_pitem->m_iItem]->set_final_path_type(dir()->file_type(path));
-
+             
+               plistitem = (*m_pitema)[iItem];
+               
             }
-
-            if (path.is_folder())
+            
+            if(plistitem)
             {
-
-               psubitem->m_strText.empty();
-
-            }
-            else
-            {
-
-               if (path.m_iSize < 0)
+               
+               auto & path = plistitem->final_path_reference();
+               
+               if (path.not_file_or_folder())
                {
-
-                  path.m_iSize = pcontext->m_papexcontext->file()->length(path);
-
+                  
+                  plistitem->set_final_path_type(dir()->file_type(path));
+                  
                }
-
-               if (path.m_iSize >= 0)
+               
+               if (path.is_folder())
                {
 
-                  psubitem->m_strText = _001FileSizeText(path.m_iSize);
+                  psubitem->m_strText.empty();
 
                }
                else
                {
 
-                  //pitem->m_strText;
+                  if (path.m_iSize < 0)
+                  {
 
+                     path.m_iSize = pcontext->m_papexcontext->file()->length(path);
+
+                  }
+
+                  if (path.m_iSize >= 0)
+                  {
+
+                     psubitem->m_strText = _001FileSizeText(path.m_iSize);
+
+                  }
+                  else
+                  {
+
+                     //pitem->m_strText;
+
+                  }
+               
                }
 
+            }
+            else
+            {
+              
+               psubitem->m_strText.empty();
+               
             }
 
          }

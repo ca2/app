@@ -1819,6 +1819,18 @@
     <ClCompile Include="platform\factory_function.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="filesystem\filesystem\file_context_interface.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\system_factory.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\debug.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\universal_windows\nano\user\_user.cpp">
+      <Filter>Source Files\operating_system\universal_windows\nano\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -4360,6 +4372,12 @@
       <Filter>Header Files\nano\dynamic_library</Filter>
     </ClInclude>
     <ClInclude Include="platform\factory_function.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_context_interface.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\system_factory.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2086,9 +2086,12 @@ namespace user
 
             //      //operating_system_driver::get()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, iEnd);
 
-            auto iSelectionStart = ansi_to_wd32_len(strText, m_ptree->m_iSelBeg);
+            //auto iSelectionStart = ansi_to_wd32_len(strText, m_ptree->m_iSelBeg);
 
-            auto iSelectionEnd = ansi_to_wd32_len(strText, m_ptree->m_iSelEnd);
+            //auto iSelectionEnd = ansi_to_wd32_len(strText, m_ptree->m_iSelEnd);
+            auto iSelectionStart = m_ptree->m_iSelBeg;
+
+            auto iSelectionEnd = m_ptree->m_iSelEnd;
 
             ptexteditorinterface->set_editor_selection(iSelectionStart, iSelectionEnd);
 

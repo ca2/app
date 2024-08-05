@@ -1005,6 +1005,15 @@
     <ClInclude Include="hardware\device_group.h">
       <Filter>Header Files\hardware</Filter>
     </ClInclude>
+    <ClInclude Include="user\menu\_.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\command.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\track_popup.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\draw2d.inl">
@@ -1563,6 +1572,9 @@
     </ClCompile>
     <ClCompile Include="hardware\device_group.cpp">
       <Filter>Source Files\hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\track_popup.cpp">
+      <Filter>Source Files\user\menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

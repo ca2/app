@@ -2507,7 +2507,7 @@ namespace user
 
 
 
-      //virtual void post_procedure(const ::procedure & procedure) override;
+      void post_procedure(const ::procedure & procedure) override;
       //virtual void fps_interest_post_procedure(const ::procedure & procedure);
 
 

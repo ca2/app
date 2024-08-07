@@ -359,7 +359,7 @@ namespace launch
 
       acmedirectory()->change_current(m_pathX64);
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 
       ::string strExecutable = "_" + m_strAppRoot + "_" + m_strAppName;
 

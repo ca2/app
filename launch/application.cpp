@@ -118,7 +118,7 @@ namespace launch
    {
 
 
-      printf("Going to install dependencies:\n");
+      print_line("Going to install dependencies: ");
 
       auto lines = acmefile()->lines(m_pathX64/"operating_system_packages.txt");
 
@@ -365,7 +365,7 @@ namespace launch
 
 #else
 
-      ::string strExecutable = "shared_" + m_strAppRoot + "_" m_strAppName + ".exe";
+      ::string strExecutable = "shared_" + m_strAppRoot + "_" + m_strAppName + ".exe";
 
 #endif
 

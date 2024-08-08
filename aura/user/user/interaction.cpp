@@ -22628,19 +22628,22 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   //   void interaction::post_procedure(const ::procedure & procedure)
-   //   {
-   //
-   //      if (!::is_set(m_pthreadUserInteraction))
-   //      {
-   //
-   //         throw ::exception(error_null_pointer);
-   //
-   //      }
-   //
-   //      m_pthreadUserInteraction->post_procedure(procedure);
-   //
-   //   }
+   void interaction::post_procedure(const ::procedure & procedure)
+   {
+
+      if (::is_null(m_pthreadUserInteraction))
+      {
+
+         ::user::primitive::post_procedure(procedure);
+
+         return;
+
+      }
+
+      m_pthreadUserInteraction->post_procedure(procedure);
+
+   }
+
 
    //
    //#ifdef WINDOWS

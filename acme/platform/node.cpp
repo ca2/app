@@ -3010,7 +3010,19 @@ return false;
       else if(scopedstrComponentName == "nano_http")
       {
 
-#ifdef LINUX
+#if defined(FREEBSD)
+
+#if defined(CUBE)
+
+         return "command_line";
+
+#else
+
+         return "libcurl";
+
+#endif
+
+#elif defined(LINUX)
        
          return "libcurl";
 

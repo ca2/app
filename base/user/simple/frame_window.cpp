@@ -4582,7 +4582,13 @@ void simple_frame_window::_on_configure_notify_unlocked(const ::rectangle_i32 & 
          if (m_bPendingSaveWindowRectangle)
          {
 
-            defer_save_window_placement();
+            post_procedure([this]()
+                           {
+
+                              defer_save_window_placement();
+
+                           });
+
 
          }
 

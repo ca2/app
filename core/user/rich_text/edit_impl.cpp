@@ -327,7 +327,7 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         synchronous_lock synchronouslock(prichtextdata->synchronization());
+         _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
          auto pformatSelectionCommon = __create_new < format >();
 
@@ -368,6 +368,8 @@ namespace user
             pformattool->show_for_ui(this, pselection);
 
             m_bSelDrag = true;
+
+            m_timeStartDrag.Now();
 
             if (psession->is_key_pressed(e_key_shift))
             {
@@ -512,7 +514,7 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         if (m_bSelDrag)
+         if (m_bSelDrag && m_timeStartDrag.elapsed() > 300_ms)
          {
 
             if (!::is_item(m_pitemHover, m_iSelEnd))
@@ -724,7 +726,7 @@ namespace user
       //}
 
 
-      void edit_impl::_001GetLayoutText(string & str)
+      void edit_impl::_001GetLayoutText(string & str) const
       {
 
          ::user::rich_text::edit::_001GetLayoutText(str);
@@ -867,7 +869,7 @@ namespace user
       void edit_impl::draw_impl(::draw2d::graphics_pointer & pgraphics)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          //pgraphics->offset_origin(m_pointScroll.x(), m_pointScroll.y());
 
@@ -901,7 +903,7 @@ namespace user
 
          return _000OnDraw(pgraphics);
 
-         //synchronous_lock synchronouslock(this->synchronization());
+         //_synchronous_lock synchronouslock(this->synchronization());
 
          ////pgraphics->offset_origin(m_pointScroll.x(), m_pointScroll.y());
 
@@ -1077,7 +1079,7 @@ namespace user
 
                auto prichtextdata = get_rich_text_data();
 
-               synchronous_lock synchronouslock(prichtextdata->synchronization());
+               _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
                if (pformattool->m_eattribute & e_attribute_align)
                {
@@ -1203,7 +1205,7 @@ namespace user
       void edit_impl::on_message_key_down(::message::message * pmessage)
       {
 
-         //synchronous_lock synchronouslock(this->synchronization());
+         //_synchronous_lock synchronouslock(this->synchronization());
 
          {
 
@@ -1514,7 +1516,7 @@ namespace user
 
             auto prichtextdata = get_rich_text_data();
 
-            synchronous_lock synchronouslock(prichtextdata->synchronization());
+            _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
             strsize i1 = get_sel_beg();
 
@@ -1587,7 +1589,7 @@ namespace user
             if (psession->is_key_pressed(::user::e_key_control))
             {
 
-               set_text_selection(0, get_text_length(), e_source_user);
+               set_text_selection(0, _001GetLayoutTextLength(), e_source_user);
 
                return;
 
@@ -1651,7 +1653,7 @@ namespace user
 
          {
 
-            synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization());
 
             bool bControl = psession->is_key_pressed(::user::e_key_control);
 
@@ -1736,7 +1738,7 @@ namespace user
 
                   {
 
-                     synchronous_lock synchronouslock(prichtextdata->synchronization());
+                     _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
                      strsize i1 = get_sel_beg();
 
@@ -1803,7 +1805,7 @@ namespace user
 
                auto prichtextdata = get_rich_text_data();
 
-               synchronous_lock synchronouslock(prichtextdata->synchronization());
+               _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
                double x;
 
@@ -1841,7 +1843,7 @@ namespace user
 
                auto prichtextdata = get_rich_text_data();
 
-               synchronous_lock synchronouslock(prichtextdata->synchronization());
+               _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
                double x;
 
@@ -1881,7 +1883,7 @@ namespace user
                if (!bShift && m_iSelBeg > m_iSelEnd)
                {
 
-                  synchronous_lock synchronouslock(prichtextdata->synchronization());
+                  _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
                   m_iSelEnd = m_iSelBeg;
 
@@ -1893,7 +1895,7 @@ namespace user
 
                   auto prichtextdata = get_rich_text_data();
 
-                  synchronous_lock synchronouslock(prichtextdata->synchronization());
+                  _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
                   m_iSelBeg = m_iSelEnd;
 
@@ -1905,7 +1907,7 @@ namespace user
 
                   auto prichtextdata = get_rich_text_data();
 
-                  synchronous_lock synchronouslock(prichtextdata->synchronization());
+                  _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
                   if (m_iSelEnd < _001GetLayoutTextLength())
                   {
@@ -1946,7 +1948,7 @@ namespace user
                if (!bShift && m_iSelBeg < m_iSelEnd)
                {
 
-                  synchronous_lock synchronouslock(prichtextdata->synchronization());
+                  _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
                   m_iSelEnd = m_iSelBeg;
 
@@ -1958,7 +1960,7 @@ namespace user
 
                   auto prichtextdata = get_rich_text_data();
 
-                  synchronous_lock synchronouslock(prichtextdata->synchronization());
+                  _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
                   m_iSelBeg = m_iSelEnd;
 
@@ -1970,7 +1972,7 @@ namespace user
 
                   auto prichtextdata = get_rich_text_data();
 
-                  synchronous_lock synchronouslock(prichtextdata->synchronization());
+                  _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
                   string strText;
 
@@ -2003,7 +2005,7 @@ namespace user
 
                auto prichtextdata = get_rich_text_data();
 
-               synchronous_lock synchronouslock(prichtextdata->synchronization());
+               _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
                if (bControl)
                {
@@ -2039,12 +2041,12 @@ namespace user
 
                auto prichtextdata = get_rich_text_data();
 
-               synchronous_lock synchronouslock(prichtextdata->synchronization());
+               _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
                if (bControl)
                {
 
-                  m_iSelEnd = get_text_length();
+                  m_iSelEnd = _001GetLayoutTextLength();
 
                   //   _001EnsureVisibleLine(iLine);
 

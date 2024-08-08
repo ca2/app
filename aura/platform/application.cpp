@@ -9072,7 +9072,7 @@ namespace aura
    //}
 
 
-void application::pick_browse()
+void application::pick_browse(const ::function < void(const ::file::path &) > & callback)
 {
    
    auto puserinteraction = m_puserinteractionMain;
@@ -9093,7 +9093,7 @@ void application::pick_browse()
       
    }
    
-   pwindow->pick_browse();
+   pwindow->pick_browse(callback);
    
 }
 

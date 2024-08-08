@@ -33,6 +33,7 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/draw2d.h"
+#include "aura/windowing/keyboard.h"
 #include "acme/platform/timer.h"
 #include "acme/user/user/tool.h"
 #include "apex/filesystem/file/edit_file.h"
@@ -226,7 +227,7 @@ namespace user
       m_dy = -1;
       m_iImpactOffset = 0;
       m_iImpactSize = 0;
-      m_bLMouseDown = false;
+      //m_bLMouseDown = false;
       m_bRMouseDown = false;
       m_timeCaretPeriod = 1_s;
 
@@ -1299,7 +1300,7 @@ namespace user
 
          KillTimer(etimer);
 
-         if (m_bLMouseDown)
+         if (session()->m_papexsession->is_key_pressed(::user::e_key_left_button))
          {
 
             SetTimer(e_timer_overflow_scrolling, 300_ms);
@@ -1310,7 +1311,7 @@ namespace user
       else if (etimer == e_timer_overflow_scrolling)
       {
 
-         if (m_bLMouseDown)
+         if (session()->m_papexsession->is_key_pressed(::user::e_key_left_button))
          {
 
             auto pwindowing = windowing();
@@ -2370,7 +2371,7 @@ namespace user
 
          set_default_mouse_cursor(pcursor);
 
-         if (m_bLMouseDown && !is_new_focus_select_all())
+         if (session()->m_papexsession->is_key_pressed(::user::e_key_left_button) && !is_new_focus_select_all())
          {
 
             ::point_i32 pointHost = pmouse->m_pointHost;
@@ -2403,6 +2404,12 @@ namespace user
    }
 
 
+   void plain_edit::on_message_left_button_down_handle_keyboard_focus(::message::message * pmessage)
+   {
+      
+   }
+
+
    void plain_edit::on_message_left_button_down(::message::message * pmessage)
    {
 
@@ -2421,35 +2428,19 @@ namespace user
 
          {
             
-#if defined(APPLE_IOS)
-            //if(windowing()->is_sandboxed()
-              if(has_keyboard_focus())
-            {
-               
-               auto pcontextmenu = __create_new < ::message::context_menu >();
-               
-               pcontextmenu->m_atom = e_message_context_menu;
-               
-               auto pointHost = pmouse->m_pointHost;
-               
-               pcontextmenu->m_pointMessage = pointHost;
-               
-               post_message(pcontextmenu);
-               
-            }
-#endif
-            
             _synchronous_lock synchronouslock(this->synchronization());
 
-            m_bLMouseDown = true;
+            //m_bLMouseDown = true;
 
             SetTimer(e_timer_overflow_scrolling_start, 300_ms, nullptr);
 
             set_mouse_capture();
 
             bool bNewFocusSelectAll = is_new_focus_select_all();
+            
+            ::pointer < ::message::message > pmessageHold = pmessage;
 
-            queue_graphics_call([this, point, bNewFocusSelectAll](::draw2d::graphics_pointer & pgraphics)
+            queue_graphics_call([this, point, bNewFocusSelectAll, pmessageHold](::draw2d::graphics_pointer & pgraphics)
             {
 
                ::strsize iBegNew = -1;
@@ -2486,6 +2477,26 @@ namespace user
                   m_iColumn = iColumnNew;
 
                }
+               
+               ::user::interaction::on_message_left_button_down_handle_keyboard_focus(pmessageHold);
+               
+#if defined(APPLE_IOS)
+               //if(windowing()->is_sandboxed()
+               if(has_keyboard_focus())
+               {
+                  
+                  auto pcontextmenu = __create_new < ::message::context_menu >();
+                  
+                  pcontextmenu->m_atom = e_message_context_menu;
+                  
+                  auto pointHost = pmessageHold->m_union.m_pmouse->m_pointHost;
+                  
+                  pcontextmenu->m_pointMessage = pointHost;
+                  
+                  post_message(pcontextmenu);
+                  
+               }
+#endif
 
             });
 
@@ -2522,6 +2533,10 @@ namespace user
       auto pmouse = pmessage->m_union.m_pmouse;
 
       defer_release_mouse_capture();
+      
+      m_bNewFocusSelectAll = false;
+
+      //m_bLMouseDown = false;
 
       //if (m_bLMouseDown && !m_bNewFocus)
       //{
@@ -2541,11 +2556,7 @@ namespace user
 
       KillTimer(e_timer_overflow_scrolling);
 
-      m_bNewFocusSelectAll = false;
-
       set_need_redraw();
-
-      m_bLMouseDown = false;
 
       pmouse->m_bRet = true;
 
@@ -6010,14 +6021,14 @@ namespace user
 
             filesize posRead;
 
-            filesize amountRead;
+            filesize amountToRead;
 
             if (bBackIfSelectionEmpty)
             {
 
                posRead = maximum(0, m_ptree->m_iSelEnd - (::filesize)sizeof(buf));
 
-               amountRead = minimum(sizeof(buf), m_ptree->m_iSelEnd);
+               amountToRead = minimum(sizeof(buf), m_ptree->m_iSelEnd - posRead);
 
             }
             else
@@ -6025,13 +6036,13 @@ namespace user
 
                posRead = m_ptree->m_iSelEnd;
 
-               amountRead = sizeof(buf);
+               amountToRead = sizeof(buf);
 
             }
 
             m_ptree->m_peditfile->seek(posRead, ::e_seek_set);
 
-            m_ptree->m_peditfile->read(buf, amountRead);
+            auto amountRead = m_ptree->m_peditfile->read(buf, amountToRead);
 
             const ::ansi_character * pszBefore;
 
@@ -6039,10 +6050,15 @@ namespace user
 
             if (bBackIfSelectionEmpty)
             {
-
-               pszNext = buf + amountRead;
-
-               pszBefore = unicode_prior(pszNext, buf);
+               
+               if(amountRead == amountToRead)
+               {
+                  
+                  pszNext = buf + amountRead;
+                  
+                  pszBefore = unicode_prior(pszNext, buf);
+                  
+               }
 
             }
             else
@@ -6097,17 +6113,15 @@ namespace user
             if (bBackIfSelectionEmpty)
             {
 
-               auto iSelBeg = i1;
+               psetsel->m_iSelBeg = i1;
 
-               auto iSelEnd = i1;
+               psetsel->m_iSelEnd = i1;
 
-               psetsel->m_iSelBeg = iSelBeg;
+               m_ptree->m_iSelBeg = i1;
 
-               psetsel->m_iSelEnd = iSelEnd;
-
-               m_ptree->m_iSelBeg = iSelBeg;
-
-               m_ptree->m_iSelEnd = iSelEnd;
+               m_ptree->m_iSelEnd = i1;
+               
+               _unlocked_plain_edit_on_change_text_selection(e_source_sync);
 
             }
 
@@ -8399,17 +8413,17 @@ namespace user
 
          m_bSetTextSelectionUpdatePending = false;
 
-         bool bSelectionWasAtEnd = m_bLastSelectionWasAtEnd;
-
-         if (bSelectionWasAtEnd)
-         {
-
-            auto iTextLength = get_text_length();
-
-            set_text_selection(iTextLength, iTextLength, e_source_sync);
-
-         }
-         else
+//         bool bSelectionWasAtEnd = m_bLastSelectionWasAtEnd;
+//
+//         if (bSelectionWasAtEnd)
+//         {
+//
+//            auto iTextLength = get_text_length();
+//
+//            set_text_selection(iTextLength, iTextLength, e_source_sync);
+//
+//         }
+//         else
          {
 
             ::strsize iSelectionBegin = 0;
@@ -8747,9 +8761,9 @@ namespace user
 
       get_text_selection(iSelBeg, iSelEnd);
 
-      ::strsize iTextLength = get_text_length();
-
-      m_bLastSelectionWasAtEnd = (iSelBeg == iSelEnd) && (iSelEnd == iTextLength);
+//      ::strsize iTextLength = get_text_length();
+//
+//      m_bLastSelectionWasAtEnd = (iSelBeg == iSelEnd) && (iSelEnd == iTextLength);
 
       string str(scopedstrParam);
 
@@ -8807,6 +8821,127 @@ namespace user
       set_need_redraw();
 
       post_redraw();
+
+   }
+
+
+   void plain_edit::set_text_and_selection(const ::scoped_string & scopedstrParam, strsize iSelBeg, strsize iSelEnd, const ::action_context & actioncontext)
+   {
+      
+      ::strsize iTextLength = get_text_length();
+
+//      m_bLastSelectionWasAtEnd = (iSelBeg == iSelEnd) && (iSelEnd == iTextLength);
+
+      string str(scopedstrParam);
+
+      {
+         
+         _synchronous_lock synchronouslock(this->synchronization());
+
+         if (m_bParseDataPacks)
+         {
+
+            m_base64map.erase_all();
+
+            auto psystem = system()->m_paurasystem;
+
+            psystem->_001AddPacks(m_base64map, str);
+
+         }
+
+         if (!m_ptree)
+         {
+
+            return;
+
+         }
+
+         if (m_ptree->m_peditfile->get_length() > 0)
+         {
+
+            m_ptree->m_peditfile->seek(0, ::e_seek_set);
+
+            m_ptree->m_peditfile->Delete((memsize)m_ptree->m_peditfile->get_length());
+
+         }
+
+         if (str.has_char())
+         {
+
+            m_ptree->m_peditfile->seek(0, ::e_seek_set);
+
+            m_ptree->m_peditfile->Insert(str, str.length());
+
+         }
+
+         m_ptree->m_iSelBeg = iSelBeg;
+
+         m_ptree->m_iSelEnd = iSelEnd;
+         
+         m_bNewSel = true;
+
+      }
+
+      queue_graphics_call([this, actioncontext](::draw2d::graphics_pointer & pgraphics)
+      {
+
+         plain_edit_on_update(pgraphics, actioncontext);
+
+      });
+
+      set_need_redraw();
+
+      post_redraw();
+      
+//      if (actioncontext.is_user_source())
+//      {
+//
+//         auto pwindowing = windowing();
+//
+//         auto ptexteditorinterface = pwindowing->get_text_editor_interface();
+//
+//         if (::is_set(ptexteditorinterface))
+//         {
+//
+//            string strText;
+//
+//            //get_text(strText);
+//
+//            get_text(strText);
+//
+//            //      //operating_system_driver::get()->m_iInputMethodManagerSelectionStart = ansi_to_wd16_len(strText, iBeg);
+//
+//            //      //operating_system_driver::get()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, iEnd);
+//
+//            //auto iSelectionStart = ansi_to_wd32_len(strText, m_ptree->m_iSelBeg);
+//
+//            //auto iSelectionEnd = ansi_to_wd32_len(strText, m_ptree->m_iSelEnd);
+//            auto iSelectionStart = m_ptree->m_iSelBeg;
+//
+//            auto iSelectionEnd = m_ptree->m_iSelEnd;
+//
+//            ptexteditorinterface->set_editor_selection(iSelectionStart, iSelectionEnd);
+//
+//            //      if (m_pitemComposing)
+//            //      {
+//
+//            //         auto iCandidateStart = ansi_to_wd16_len(strText, m_pitemComposing->m_position);
+//
+//            //         auto iCandidateEnd = ansi_to_wd16_len(strText, m_pitemComposing->m_position + m_pitemComposing->get_extent());
+//
+//            //         ptexteditorinterface->set_input_method_manager_candidate_position(iCandidateStart, iCandidateEnd);
+//
+//            //      }
+//            //      else
+//            //      {
+//
+//            //         ptexteditorinterface->synchronize_input_method_manager_with_selection_end();
+//
+//            //      }
+//
+//         }
+//
+//      }
 
    }
 

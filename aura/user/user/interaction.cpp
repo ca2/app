@@ -2608,35 +2608,35 @@ namespace user
       if (emessage == e_message_left_button_down)
       {
 
-         auto psession = get_session();
-
-         try
-         {
-
-            psession->set_key_pressed(::user::e_key_left_button, true);
-
-         }
-         catch (...)
-         {
-
-         }
+//         auto psession = get_session();
+//
+//         try
+//         {
+//
+//            psession->set_key_pressed(::user::e_key_left_button, true);
+//
+//         }
+//         catch (...)
+//         {
+//
+//         }
 
       }
       else if (emessage == e_message_left_button_up)
       {
 
-         auto psession = get_session();
-
-         try
-         {
-
-            psession->set_key_pressed(::user::e_key_left_button, false);
-
-         }
-         catch (...)
-         {
-
-         }
+//         auto psession = get_session();
+//
+//         try
+//         {
+//
+//            psession->set_key_pressed(::user::e_key_left_button, false);
+//
+//         }
+//         catch (...)
+//         {
+//
+//         }
 
       }
       else if (emessage == e_message_right_button_down)
@@ -9119,6 +9119,12 @@ namespace user
 
       user_mouse_set_cursor(pdrag->m_pmouse, pcursor);
 
+   }
+
+
+   void interaction::set_text_and_selection(const ::scoped_string & scopedstr, strsize iSelStart, strsize iSelEnd, const ::action_context & actioncontext)
+   {
+   
    }
 
 
@@ -23853,24 +23859,9 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   void interaction::on_message_left_button_down(::message::message * pmessage)
+   void interaction::on_message_left_button_down_handle_keyboard_focus(::message::message * pmessage)
    {
-
-      auto pmouse = pmessage->m_union.m_pmouse;
-
-      ::string strType = ::type(this).name();
-
-      information() << "interaction::on_message_left_button_down : " << strType;
-
-      if (!is_window_enabled())
-      {
-
-         return;
-
-      }
-
-      auto psession = get_session();
-
+      
       try
       {
 
@@ -23880,6 +23871,8 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
             set_keyboard_focus();
 
             {
+
+               auto psession = get_session();
 
                psession->user()->set_mouse_focus_LButtonDown(this);
 
@@ -23902,6 +23895,29 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       {
 
       }
+      
+   }
+
+
+   void interaction::on_message_left_button_down(::message::message * pmessage)
+   {
+
+      auto pmouse = pmessage->m_union.m_pmouse;
+
+      ::string strType = ::type(this).name();
+
+      information() << "interaction::on_message_left_button_down : " << strType;
+
+      if (!is_window_enabled())
+      {
+
+         return;
+
+      }
+
+      auto psession = get_session();
+      
+      on_message_left_button_down_handle_keyboard_focus(pmessage);
 
       if ((m_bEnableHorizontalBarDragScroll && _001HasBarXDragScrolling())
           || (m_bEnableVerticalBarDragScroll && _001HasBarYDragScrolling()))
@@ -26034,19 +26050,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
          if (pdragClient)
          {
 
-            auto rectangleX = this->rectangle(::e_element_client);
-
-            //if (rectangleX.ok() && rectangleX.contains(point))
-            if (rectangleX.ok())
-            {
-
-               auto puseritem = user_item(pitemClient);
-
-               puseritem->m_rectangle2 = rectangleX;
-
-               //return pitemHitTest;
-
-            }
+            setup_default_client_area_user_item();
 
          }
 
@@ -26058,6 +26062,31 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
    }
 
+
+   void interaction::setup_default_client_area_user_item()
+   {
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      auto pitemClient = tool().item(e_element_client);
+
+      if (pitemClient)
+      {
+
+         auto rectangleX = this->rectangle(::e_element_client);
+
+         if (rectangleX.ok())
+         {
+
+            auto puseritem = user_item(pitemClient);
+
+            puseritem->m_rectangle2 = rectangleX;
+
+         }
+
+      }
+
+   }
 
    //bool interaction::get_rect(::item * pitem)
    //{

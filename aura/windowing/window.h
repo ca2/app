@@ -438,7 +438,7 @@ namespace windowing
 
       virtual void defer_show_system_menu(const ::point_i32 & pointAbsolute);
 
-      virtual void pick_browse();
+      virtual void pick_browse(const ::function < void(const ::file::path & path) > & callback);
       virtual void pick_media(const char * pszMediaType);
       virtual void on_prompt_write_file(::user::controller * pusercontroller);
 

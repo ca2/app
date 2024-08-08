@@ -2014,7 +2014,7 @@ get_file_extension_mime_type * application::get_get_file_extension_mime_type()
 }
 
 
-void application::pick_browse()
+void application::pick_browse(const ::function < void(const ::file::path & ) > & callback)
 {
    
    

@@ -7365,6 +7365,14 @@ namespace user
             }
 
          }
+//         else if(m_puserinteractionKeyboardFocus)
+//         {
+//
+//            synchronouslock.unlock();
+//
+//            m_puserinteractionKeyboardFocus->on_set_keyboard_focus();
+//
+//         }
 
       }
       //      else

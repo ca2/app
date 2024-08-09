@@ -1831,6 +1831,12 @@
     <ClCompile Include="operating_system\universal_windows\nano\user\_user.cpp">
       <Filter>Source Files\operating_system\universal_windows\nano\user</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\console_message_box.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\message_box.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -4379,6 +4385,9 @@
     </ClInclude>
     <ClInclude Include="platform\system_factory.h">
       <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\console_message_box.h">
+      <Filter>Header Files\operating_system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

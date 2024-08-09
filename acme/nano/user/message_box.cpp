@@ -9,12 +9,13 @@
 #include "window_implementation.h"
 #include "acme/nano/user/details_window.h"
 #include "acme/nano/user/popup_button.h"
-#include "acme/user/user/mouse.h"
+#include "acme/operating_system/console_message_box.h"
+#include "acme/operating_system/message_box.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
-#include "acme/operating_system/message_box.h"
+#include "acme/user/user/mouse.h"
 #include "acme/_operating_system.h"
 
 
@@ -437,7 +438,7 @@ CLASS_DECL_ACME pointer< ::sequencer < ::conversation > > message_box_sequencer(
    if (::is_null(pparticle))
    {
       
-auto psequencer =       ::operating_system::message_box::create_sequencer(::platform::get()->system(),                                                        scopedstrMessage, scopedstrTitle,
+      auto psequencer = ::operating_system::message_box::create_sequencer(::platform::get()->system(),                                                        scopedstrMessage, scopedstrTitle,
                                                         emessagebox,
                                                         scopedstrDetails);
       
@@ -462,7 +463,19 @@ auto psequencer =       ::operating_system::message_box::create_sequencer(::plat
    if(pparticle->platform()->m_bConsole || !is_ui_possible())
    {
 
-      return message_box_for_console(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
+      auto psequencer = pparticle->__create_new < ::sequencer < ::conversation > >();
+
+      auto pmessagebox = pparticle->__create_new < ::operating_system::console_message_box >();
+
+      psequencer->m_psequence = pmessagebox;
+
+      pmessagebox->m_psequencer = psequencer;
+
+      pmessagebox->initialize_conversation(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
+
+      return psequencer;
+
+//      return message_box_for_console(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
 
    }
    else

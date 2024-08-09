@@ -872,6 +872,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="fs_folder_sync.cpp" />
+    <ClCompile Include="fs_folder_sync_other.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="_factory.cpp" />
     <ClCompile Include="framework.cpp">

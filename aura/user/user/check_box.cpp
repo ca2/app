@@ -195,6 +195,8 @@ namespace user
 
       ::draw2d::save_context savecontext(pgraphics);
 
+      pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
       pgraphics->offset_origin(rectangleX.left(), rectangleX.top());
 
       ::rectangle_i32 rectangleCheckBox;

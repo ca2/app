@@ -247,7 +247,7 @@ namespace fs
 
       enumerate(listing);
 
-      auto iFind = listing.find_first_ci(path.name());
+      auto iFind = listing.case_insensitive_find_first(path.name());
 
       if (not_found(iFind))
       {

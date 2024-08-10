@@ -1079,7 +1079,7 @@ inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 &
 
 
 //template < typename TYPE_CHAR >
-//inline bool string_begins_ci(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszPrefix, strsize lenPrefix)
+//inline bool case_insensitive_string_begins(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszPrefix, strsize lenPrefix)
 //{
 //
 //   if (lenPrefix > len)
@@ -1089,13 +1089,13 @@ inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 &
 //
 //   }
 //
-//   return string_count_compare_ci(psz, pszPrefix, lenPrefix) == 0;
+//   return case_insensitive_string_count_compare(psz, pszPrefix, lenPrefix) == 0;
 //
 //}
 
 
 //template < typename TYPE_CHAR >
-//inline bool string_ends_ci(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszSuffix, strsize lenSuffix)
+//inline bool case_insensitive_string_ends(const TYPE_CHAR * psz, strsize len, const TYPE_CHAR * pszSuffix, strsize lenSuffix)
 //{
 //
 //   auto offset = len - lenSuffix;
@@ -1109,7 +1109,7 @@ inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 &
 //
 //   auto pszCompare = psz + offset;
 //
-//   return string_count_compare_ci(pszCompare, pszSuffix, lenSuffix) == 0;
+//   return case_insensitive_string_count_compare(pszCompare, pszSuffix, lenSuffix) == 0;
 //
 //}
 

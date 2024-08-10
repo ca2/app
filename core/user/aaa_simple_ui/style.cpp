@@ -139,8 +139,8 @@ namespace simple_ui
 
       //xxdebug_box("plugin::defer_get not logged", "defer get", 0);
 
-      if (ansi_begins_ci(m_strSchema, "darker;") || ansi_ends_ci(m_strSchema, ";darker") || ansi_find_string_ci(m_strSchema, ";darker;")
-         || ansi_begins_ci(m_strSchema, "darker%3B") || ansi_ends_ci(m_strSchema, "%3Bdarker") || ansi_find_string_ci(m_strSchema, "%3Bdarker%3B"))
+      if (case_insensitive_ansi_begins(m_strSchema, "darker;") || case_insensitive_ansi_ends(m_strSchema, ";darker") || case_insensitive_ansi_find_string(m_strSchema, ";darker;")
+         || case_insensitive_ansi_begins(m_strSchema, "darker%3B") || case_insensitive_ansi_ends(m_strSchema, "%3Bdarker") || case_insensitive_ansi_find_string(m_strSchema, "%3Bdarker%3B"))
       {
 
          m_etheme = ::user::e_theme_dark;

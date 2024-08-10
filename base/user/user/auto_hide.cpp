@@ -324,7 +324,7 @@ namespace user
       else if (pointClient.y() <= 1)
       {
 
-         if (m_bHideControlOnFullScreenOrTransparentFrame)
+         if (!m_bForceHiddenControl && m_bHideControlOnFullScreenOrTransparentFrame)
          {
 
             m_bOverrideVisibleControl = true;
@@ -421,7 +421,13 @@ namespace user
    void auto_hide::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == id_on_after_enter_full_screen)
+      if (m_bForceHiddenControl)
+      {
+
+         m_bEffectiveVisibleControl = false;
+
+      }
+      else if (ptopic->m_atom == id_on_after_enter_full_screen)
       {
 
          m_bEffectiveVisibleControl = false;

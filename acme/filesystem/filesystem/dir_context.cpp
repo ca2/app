@@ -23,6 +23,7 @@
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/dir_system.h"
 //#include "apex/networking/http/context.h"
+#include "acme/platform/node.h"
 
 
 namespace zip
@@ -54,13 +55,6 @@ namespace zip
 dir_context::dir_context()
 {
 
-   m_bDropboxCalculated = false;
-
-   m_bDropbox = false;
-
-   m_bOneDriveCalculated = false;
-
-   m_bOneDrive = false;
 
    //if (::file::dir_context::g_pthis == nullptr)
    //{
@@ -629,7 +623,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 //
 //   }
 //
-//   if (string_begins_ci(listing.m_pathUser, "http://") || string_begins_ci(listing.m_pathUser, "https://"))
+//   if (case_insensitive_string_begins(listing.m_pathUser, "http://") || case_insensitive_string_begins(listing.m_pathUser, "https://"))
 //   {
 //
 //      property_set set;
@@ -641,7 +635,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 //      return true;
 //
 //   }
-//   else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(listing.m_pathUser, ".zip") || ::str::find_file_extension("zip:", listing.m_pathUser) >= 0))
+//   else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (case_insensitive_string_ends(listing.m_pathUser, ".zip") || ::str::find_file_extension("zip:", listing.m_pathUser) >= 0))
 //   {
 //
 //      auto & pfactory = system()->folder_factory();
@@ -892,7 +886,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 
 #ifdef WINDOWS_DESKTOP
 #ifdef WINDOWS_DESKTOP
-   if (string_ends_ci(path, ".lnk"))
+   if (case_insensitive_string_ends(path, ".lnk"))
    {
 #endif
 
@@ -918,7 +912,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 
    //bIs = false;
 
-   //if (string_begins_ci(pcszPath, "http://") || string_begins_ci(lpcszPath, "https://"))
+   //if (case_insensitive_string_begins(pcszPath, "http://") || case_insensitive_string_begins(lpcszPath, "https://"))
 
    //{
 
@@ -931,7 +925,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 
    //}
 
-   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(path, ".zip")))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (case_insensitive_string_ends(path, ".zip")))
    {
 
       return ::file::e_type_existent_folder;
@@ -947,7 +941,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 
    //#ifdef WINDOWS_DESKTOP
    //#ifdef WINDOWS_DESKTOP
-   //         if (string_ends_ci(pcszPath, ".lnk"))
+   //         if (case_insensitive_string_ends(pcszPath, ".lnk"))
 
    //         {
    //#endif
@@ -1072,7 +1066,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 //
 //   //}
 //
-//   //if (string_begins_ci(path, "http://") || string_begins_ci(path, "https://"))
+//   //if (case_insensitive_string_begins(path, "http://") || case_insensitive_string_begins(path, "https://"))
 //   //{
 //
 //   //   property_set set;
@@ -1090,7 +1084,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 //
 //   //}
 //
-//   //if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(path, ".zip")))
+//   //if (::task_flag().is_set(e_task_flag_compress_is_dir) && (case_insensitive_string_ends(path, ".zip")))
 //   //{
 //
 //   //   bDir = true;
@@ -1256,7 +1250,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 
    ::file::e_type etype = ::file::e_type_unknown;
 
-   if (string_begins_ci(path, "http://") || string_begins_ci(path, "https://"))
+   if (case_insensitive_string_begins(path, "http://") || case_insensitive_string_begins(path, "https://"))
    {
 
       property_set set;
@@ -1281,7 +1275,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 
    }
 
-   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(path, ".zip")))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (case_insensitive_string_ends(path, ".zip")))
    {
 
       auto bFile = file()->exists(path);
@@ -1385,7 +1379,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 {
 
    //information(strPath);
-   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (string_ends_ci(strPath, ".zip")))
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (case_insensitive_string_ends(strPath, ".zip")))
    {
       //            m_isdirmap.set(strPath, true, 0);
       return true;
@@ -1619,7 +1613,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //            auto pFind = pdir->predicate_binary_search(&find, [&](auto & t1, auto & t2)
 //            {
 //
-//               return ansi_compare_ci(t1->c_str(), t2->c_str()) < 0;
+//               return case_insensitive_ansi_compare(t1->c_str(), t2->c_str()) < 0;
 //
 //            });
 //
@@ -1668,7 +1662,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //            auto pFind = pdir->predicate_binary_search(&find, [&](auto & t1, auto & t2)
 //            {
 //
-//               return ansi_compare_ci(t1->c_str(), t2->c_str()) < 0;
+//               return case_insensitive_ansi_compare(t1->c_str(), t2->c_str()) < 0;
 //
 //            });
 //
@@ -1703,7 +1697,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //            auto pFind = pdir->predicate_binary_search(&find, [&](auto & t1, auto & t2)
 //            {
 //
-//               return ansi_compare_ci(t1->c_str(), t2->c_str()) < 0;
+//               return case_insensitive_ansi_compare(t1->c_str(), t2->c_str()) < 0;
 //
 //            });
 //
@@ -3272,102 +3266,14 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 ::file::path dir_context::dropbox()
 {
 
-   if (!is_dropbox_installed())
+   if (!node()->_is_dropbox_installed())
    {
 
       throw ::exception(error_wrong_state);
 
    }
 
-   return m_pathDropbox;
-
-}
-
-
-bool dir_context::is_dropbox_installed()
-{
-
-   if (!m_bDropboxCalculated)
-   {
-
-      calculate_dropbox_installed();
-
-   }
-
-   return m_bDropbox;
-
-}
-
-
-void dir_context::calculate_dropbox_installed()
-{
-
-   m_bDropbox = false;
-
-   m_pathDropbox.empty();
-
-   m_bDropboxCalculated = false;
-
-   ::file::path pathNetworkPayload = file()->dropbox_info_network_payload();
-
-   if (!file()->exists(pathNetworkPayload))
-   {
-
-      if (application()->is_desktop_system())
-      {
-
-         auto pathHome = dir()->home();
-
-         auto pathTxt = pathHome / "dropbox.txt";
-
-         if (file()->exists(pathTxt))
-         {
-
-            string strPath = file()->safe_get_string(pathTxt);
-
-            strPath.trim();
-
-            if (strPath.has_char() && this->is(strPath))
-            {
-
-               m_pathDropbox = strPath;
-
-               m_bDropbox = true;
-
-            }
-
-         }
-
-      }
-      else
-      {
-
-         m_pathDropbox.empty();
-
-      }
-
-   }
-   else
-   {
-
-      string strNetworkPayload = file()->as_string(pathNetworkPayload);
-
-      ::property_set set;
-
-      set.parse_network_payload(strNetworkPayload);
-
-      m_pathDropbox = set["personal"]["path"];
-
-      if (this->is(m_pathDropbox))
-      {
-
-         m_bDropbox = true;
-
-      }
-
-   }
-
-   m_bDropboxCalculated = true;
+   return node()->m_pathDropbox;
 
 }
 
@@ -3409,84 +3315,84 @@ void dir_context::calculate_dropbox_installed()
 ::file::path dir_context::onedrive()
 {
 
-   if (!is_onedrive_installed())
+   if (!node()->_is_onedrive_installed())
    {
 
       throw ::exception(error_wrong_state);
 
    }
 
-   return m_pathOneDrive;
+   return node()->m_pathOneDrive;
 
 }
 
 
-bool dir_context::is_onedrive_installed()
-{
+// bool dir_context::is_onedrive_installed()
+// {
+//
+//    if (!m_bOneDriveCalculated)
+//    {
+//
+//       calculate_onedrive_installed();
+//
+//    }
+//
+//    return m_bOneDrive;
+//
+// }
 
-   if (!m_bOneDriveCalculated)
-   {
 
-      calculate_onedrive_installed();
-
-   }
-
-   return m_bOneDrive;
-
-}
-
-
-void dir_context::calculate_onedrive_installed()
-{
-
-   m_bDropbox = false;
-
-   m_pathDropbox.empty();
-
-   m_bDropboxCalculated = false;
-
-   ::file::path pathIni = file()->onedrive_cid_ini();
-
-   if (file()->exists(pathIni))
-   {
-
-      string strIni = file()->safe_get_string(pathIni);
-
-      if (strIni.has_char())
-      {
-
-         ::property_set set;
-
-         set.parse_ini(strIni);
-
-         string strLibrary;
-
-         strLibrary = set["library"];
-
-         ::tokenizer token(strLibrary);
-
-         token.skip_word(7);
-
-         string strWork = token.get_word();
-
-         strWork.trim("\"");
-
-         if (this->is(strWork))
-         {
-
-            m_pathOneDrive = strWork;
-
-            m_bOneDrive = true;
-
-         }
-
-      }
-
-   }
-
-   m_bDropboxCalculated = true;
-
-}
+// void dir_context::calculate_onedrive_installed()
+// {
+//
+//    m_bDropbox = false;
+//
+//    m_pathDropbox.empty();
+//
+//    m_bDropboxCalculated = false;
+//
+//    ::file::path pathIni = file()->onedrive_cid_ini();
+//
+//    if (file()->exists(pathIni))
+//    {
+//
+//       string strIni = file()->safe_get_string(pathIni);
+//
+//       if (strIni.has_char())
+//       {
+//
+//          ::property_set set;
+//
+//          set.parse_ini(strIni);
+//
+//          string strLibrary;
+//
+//          strLibrary = set["library"];
+//
+//          ::tokenizer token(strLibrary);
+//
+//          token.skip_word(7);
+//
+//          string strWork = token.get_word();
+//
+//          strWork.trim("\"");
+//
+//          if (this->is(strWork))
+//          {
+//
+//             m_pathOneDrive = strWork;
+//
+//             m_bOneDrive = true;
+//
+//          }
+//
+//       }
+//
+//    }
+//
+//    m_bDropboxCalculated = true;
+//
+// }
 
 
 //void dir_context::calculate_onedrive_installed()
@@ -3522,8 +3428,6 @@ void dir_context::calculate_onedrive_installed()
 //   return strWork;
 //
 //}
-
-
 
 
 ::file::path dir_context::standalone()

@@ -3,9 +3,11 @@
 //
 #include "framework.h"
 #include "nano_archive_libarchive.h"
+#include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include <archive.h>
 #include <archive_entry.h>
+//#include <unistd.h>
 
 
 namespace libarchive
@@ -114,10 +116,7 @@ namespace libarchive
                      }
                      auto pathTarget = pathFolder / path;
                      auto pathSource = pathTarget.folder() / pathSymlinkSource;
-                     auto pszSource = pathSource.c_str();
-                     auto pszTarget = pathTarget.c_str();
-                     ::symlink(pszSource, pszTarget);
-#endif
+                     acmepath()->symbolic_link(pathTarget, pathSource);
                      goto next;
 
                   }

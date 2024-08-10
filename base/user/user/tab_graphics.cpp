@@ -32,7 +32,7 @@ namespace user
    void tab::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (!m_bEffectiveVisibleControl)
+      if (!should_draw())
       {
 
          return;

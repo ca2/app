@@ -208,6 +208,8 @@ list(APPEND library_source
         filesystem/filesystem/dir_system_heap.h
         filesystem/filesystem/file_context.cpp
         filesystem/filesystem/file_context.h
+        filesystem/filesystem/file_context_interface.cpp
+        filesystem/filesystem/file_context_interface.h
         filesystem/filesystem/file_system_options.cpp
         filesystem/filesystem/file_system_options.h
         filesystem/filesystem/file_system.cpp
@@ -2862,7 +2864,7 @@ elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
         message(STATUS "OPENBSD acme system_libraries ${system_libraries}")
     elseif (${FREEBSD})
         list(APPEND system_libraries z dl pthread iconv execinfo)
-        list(APPEND static_system_libraries z dl pthread iconv execinfo)
+        list(APPEND static_system_libraries z dl pthread iconv execinfo elf)
         message(STATUS "FREEBSD acme system_libraries ${system_libraries}")
     else ()
         list(APPEND system_libraries z dl pthread idn)

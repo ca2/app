@@ -269,7 +269,7 @@ namespace interprocess
    //bool target::on_interprocess_handle(const ::string & strUri)
    //{
 
-   //   //if (string_begins_ci(strMessage, "synch_"))
+   //   //if (case_insensitive_string_begins(strMessage, "synch_"))
    //   //{
 
    //   //   if (m_phandler != nullptr)

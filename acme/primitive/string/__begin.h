@@ -65,7 +65,7 @@ namespace comparison
 
 //
 //template < primitive_character CHARACTER >
-//constexpr bool equals_character_ci(CHARACTER a, CHARACTER b)
+//constexpr bool case_insensitive_equals_character(CHARACTER a, CHARACTER b)
 //{
 //
 //   return character_tolower(a) == character_tolower(b);
@@ -75,7 +75,7 @@ namespace comparison
 //
 //
 //template < primitive_character CHARACTER >
-//constexpr ::std::strong_ordering compare_character_ci(CHARACTER a, CHARACTER b)
+//constexpr ::std::strong_ordering case_insensitive_compare_character(CHARACTER a, CHARACTER b)
 //{ 
 //   
 //   return character_tolower(a) <=> character_tolower(b); 

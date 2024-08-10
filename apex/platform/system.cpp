@@ -2783,8 +2783,8 @@ pacmedirectory->create("/ca2core");
    ////               || strLibraryId.case_insensitive_ends_eat(".dylib"))
    ////         {
    ////
-   ////            if(string_begins_ci(strLibraryId,"libdraw2d_")
-   ////                  || string_begins_ci(strLibraryId,"libbase"))
+   ////            if(case_insensitive_string_begins(strLibraryId,"libdraw2d_")
+   ////                  || case_insensitive_string_begins(strLibraryId,"libbase"))
    ////            {
    ////               continue;
    ////            }
@@ -2838,17 +2838,17 @@ pacmedirectory->create("/ca2core");
    //         INFORMATION("reach");
    //      }
    //
-   //      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
+   //      if(!case_insensitive_ansi_compare(pszLibrary, "app_core_hello_multiverse"))
    //      {
    //         INFORMATION("reach app_core_hello_multiverse");
    //      }
    //
-   //      if(!ansi_compare_ci(pszLibrary, "experience_lite"))
+   //      if(!case_insensitive_ansi_compare(pszLibrary, "experience_lite"))
    //      {
    //         INFORMATION("reach experience_lite");
    //      }
    //
-   //      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
+   //      if(!case_insensitive_ansi_compare(pszLibrary, "app_core_hello_multiverse"))
    //      {
    //         INFORMATION("reach app_core_hello_multiverse");
    //      }

@@ -50,9 +50,9 @@ CLASS_DECL_ACME void overlapped_string_count_copy(::ansi_character * pchDest, co
 
 
 CLASS_DECL_ACME ::std::strong_ordering _string_compare(const ::ansi_character * pszA, const ::ansi_character * pszB) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering _string_compare_ci(const ::ansi_character * pszA, const ::ansi_character * pszB) noexcept;
+CLASS_DECL_ACME ::std::strong_ordering case_insensitive__string_compare(const ::ansi_character * pszA, const ::ansi_character * pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering _string_count_compare(const ::ansi_character * pszA, const ::ansi_character * pszB, strsize len) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering _string_count_compare_ci(const ::ansi_character * pszA, const ::ansi_character * pszB, strsize len) noexcept;
+CLASS_DECL_ACME ::std::strong_ordering case_insensitive__string_count_compare(const ::ansi_character * pszA, const ::ansi_character * pszB, strsize len) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering _string_collate(const ::ansi_character * pszA, const ::ansi_character * pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering _case_insensitive_string_collate(const ::ansi_character * pszA, const ::ansi_character * pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering _string_count_collate(const ::ansi_character * pszA, const ::ansi_character * pszB, strsize len) noexcept;
@@ -64,7 +64,7 @@ CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_order(const ::ans
 CLASS_DECL_ACME ::std::strong_ordering string_compare(const ::ansi_character * pszA, const ::ansi_character * pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_order(const ::ansi_character * pszA, const ::ansi_character * pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering string_count_compare(const ::ansi_character * pszA, const ::ansi_character * pszB, strsize len) noexcept;
-CLASS_DECL_ACME ::std::strong_ordering string_count_compare_ci(const ::ansi_character * pszA, const ::ansi_character * pszB, strsize len) noexcept;
+CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_count_compare(const ::ansi_character * pszA, const ::ansi_character * pszB, strsize len) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering string_collate(const ::ansi_character * pszA, const ::ansi_character * pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_collate(const ::ansi_character * pszA, const ::ansi_character * pszB) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering string_count_collate(const ::ansi_character * pszA, const ::ansi_character * pszB, strsize len) noexcept;

@@ -212,7 +212,7 @@ return _strnicmp(left, right, len);
 
 #elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-return ansi_count_compare_ci(left, right, len);
+return case_insensitive_ansi_count_compare(left, right, len);
 
 #else
 
@@ -230,7 +230,7 @@ return _stricmp(left, right);
 
 #elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-return ansi_compare_ci(left, right);
+return case_insensitive_ansi_compare(left, right);
 
 #else
 
@@ -255,7 +255,7 @@ CLASS_DECL_ACME i32 compare_ignore_case(const string & left, const string & righ
 
 #elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-      return ansi_count_compare_ci(left.c_str(), right.c_str(), len);
+      return case_insensitive_ansi_count_compare(left.c_str(), right.c_str(), len);
 
 #else
 
@@ -273,7 +273,7 @@ CLASS_DECL_ACME i32 compare_ignore_case(const string & left, const string & righ
 
 #elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-      return ansi_compare_ci(left.c_str(), right.c_str());
+      return case_insensitive_ansi_compare(left.c_str(), right.c_str());
 
 #else
 
@@ -299,7 +299,7 @@ CLASS_DECL_ACME i32 compare_ignore_case(const char * left, const string & right,
 
 #elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-      return ansi_count_compare_ci(left, right.c_str(), len);
+      return case_insensitive_ansi_count_compare(left, right.c_str(), len);
 
 #else
 
@@ -317,7 +317,7 @@ CLASS_DECL_ACME i32 compare_ignore_case(const char * left, const string & right,
 
 #elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-      return ansi_compare_ci(left, right.c_str());
+      return case_insensitive_ansi_compare(left, right.c_str());
 
 #else
 
@@ -342,7 +342,7 @@ CLASS_DECL_ACME i32 compare_ignore_case(const string & left, const char * right,
 
 #elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-      return ansi_count_compare_ci(left.c_str(), right, len);
+      return case_insensitive_ansi_count_compare(left.c_str(), right, len);
 
 #else
 
@@ -360,7 +360,7 @@ CLASS_DECL_ACME i32 compare_ignore_case(const string & left, const char * right,
 
 #elif defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-      return ansi_compare_ci(left.c_str(), right);
+      return case_insensitive_ansi_compare(left.c_str(), right);
 
 #else
 
@@ -520,7 +520,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //
 //
 //
-//CLASS_DECL_ACME const ::ansi_character * ansi_find_string_ci(const ::ansi_character * psz, const ::ansi_character * find)
+//CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_find_string(const ::ansi_character * psz, const ::ansi_character * find)
 //{
 //
 //   if (::is_null(psz)) return nullptr;
@@ -586,7 +586,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME const ::ansi_character * ansi_count_find_string_ci(const ::ansi_character * psz, const ::ansi_character * find, strsize len)
+//CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_count_find_string(const ::ansi_character * psz, const ::ansi_character * find, strsize len)
 //{
 //
 //   if (::is_null(psz)) return nullptr;
@@ -655,7 +655,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME i32 ansi_compare_ci(const ::ansi_character * psz, const ::ansi_character * sz2)
+//CLASS_DECL_ACME i32 case_insensitive_ansi_compare(const ::ansi_character * psz, const ::ansi_character * sz2)
 //{
 //
 //   if (::is_null(psz))
@@ -734,7 +734,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME i32 ansi_count_compare_ci(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
+//CLASS_DECL_ACME i32 case_insensitive_ansi_count_compare(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
 //{
 //
 //   if (len < 0)
@@ -814,7 +814,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME i32 ansi_collate_ci(const ::ansi_character * psz, const ::ansi_character * sz2)
+//CLASS_DECL_ACME i32 case_insensitive_ansi_collate(const ::ansi_character * psz, const ::ansi_character * sz2)
 //{
 //
 //   if (::is_null(psz))
@@ -893,7 +893,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME i32 ansi_count_collate_ci(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
+//CLASS_DECL_ACME i32 case_insensitive_ansi_count_collate(const ::ansi_character * psz, const ::ansi_character * sz2, strsize len)
 //{
 //
 //   if (len < 0)
@@ -1024,7 +1024,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME i32 ansi_begins_ci(const ::ansi_character * psz, const ::ansi_character * prefix)
+//CLASS_DECL_ACME i32 case_insensitive_ansi_begins(const ::ansi_character * psz, const ::ansi_character * prefix)
 //{
 //
 //   if (::is_null(psz)) return false;
@@ -1057,7 +1057,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME const ::ansi_character * ansi_begins_eat_ci(const ::ansi_character * psz, const ::ansi_character * prefix)
+//CLASS_DECL_ACME const ::ansi_character * case_insensitive_ansi_begins_eat(const ::ansi_character * psz, const ::ansi_character * prefix)
 //{
 //
 //   if (::is_null(psz)) return nullptr;
@@ -1101,7 +1101,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //}
 //
 //
-//CLASS_DECL_ACME i32 ansi_ends_ci(const ::ansi_character * psz, const ::ansi_character * suffix)
+//CLASS_DECL_ACME i32 case_insensitive_ansi_ends(const ::ansi_character * psz, const ::ansi_character * suffix)
 //{
 //
 //   if (::is_null(psz)) return false;
@@ -1567,7 +1567,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_const_last_char(const ::ansi_chara
 //CLASS_DECL_ACME const ::ansi_character *       wildcard_next_stop(const ::ansi_character * pszCriteria);
 //
 //CLASS_DECL_ACME int_bool               wildcard_matches_criteria(const ::ansi_character * pszCriteria, const ::ansi_character * pszValue);
-//CLASS_DECL_ACME int_bool               wildcard_matches_criteria_ci(const ::ansi_character * pszCriteria, const ::ansi_character * pszValue);
+//CLASS_DECL_ACME int_bool               case_insensitive_wildcard_matches_criteria(const ::ansi_character * pszCriteria, const ::ansi_character * pszValue);
 //
 //
 //

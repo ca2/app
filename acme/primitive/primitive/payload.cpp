@@ -5782,7 +5782,7 @@ bool payload::array_contains(const ::scoped_string & scopedstr, ::collection::in
    return false;
 }
 
-bool payload::array_contains_ci(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last) const
+bool payload::case_insensitive_array_contains(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last) const
 {
    switch(m_etype)
    {
@@ -5795,7 +5795,7 @@ bool payload::array_contains_ci(const ::scoped_string & scopedstr, ::collection:
    case e_type_payload_array:
       return as_payload_array().case_insensitive_contains(scopedstr, find, last);
    case e_type_property_set:
-      return as_property_set().contains_value_ci(scopedstr, find, last);
+      return as_property_set().case_insensitive_contains_value(scopedstr, find, last);
    default:
    {
       ::collection::index upperbound = minimum(array_get_upper_bound(), last);
@@ -7376,15 +7376,15 @@ void payload_skip_identifier(::ansi_range & range)
    while (ansi_char_isalpha(*range.m_begin) && range.has_char())
       range.m_begin++;
    strsize iLen = range.m_begin - pszStart;
-   if (iLen == 5 && ansi_count_compare_ci(pszStart, "false", 5) == 0)
+   if (iLen == 5 && case_insensitive_ansi_count_compare(pszStart, "false", 5) == 0)
    {
    }
    else if (iLen == 4)
    {
-      if (ansi_count_compare_ci(pszStart, "true", 4) == 0)
+      if (case_insensitive_ansi_count_compare(pszStart, "true", 4) == 0)
       {
       }
-      else if (ansi_count_compare_ci(pszStart, "null", 4) == 0)
+      else if (case_insensitive_ansi_count_compare(pszStart, "null", 4) == 0)
       {
       }
       else

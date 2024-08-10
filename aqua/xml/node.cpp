@@ -2830,7 +2830,7 @@ namespace xml
             
             strValue = m_nodea[i]->get_xml_node()->attribute(scopedstrAttrName);
 
-            if(strValue.has_char() && ansi_compare_ci(strValue, scopedstrAttrValue) == 0)
+            if(strValue.has_char() && case_insensitive_ansi_compare(strValue, scopedstrAttrValue) == 0)
             {
 
                return m_nodea[i]->get_xml_node();
@@ -2858,7 +2858,7 @@ namespace xml
 
                ::string strValue = m_nodea[i]->get_xml_node()->attribute(straAttrName[j]);
 
-               if(strValue.has_char() && ansi_compare_ci(strValue.c_str(), straAttrValue[j]) == 0)
+               if(strValue.has_char() && case_insensitive_ansi_compare(strValue.c_str(), straAttrValue[j]) == 0)
                {
 
                   return m_nodea[i]->get_xml_node();
@@ -2894,7 +2894,7 @@ namespace xml
 
                ::string strValue = m_nodea[i]->get_xml_node()->attribute(straAttrName[j]);
 
-               if(strValue.is_empty()  || ansi_compare_ci(strValue, straAttrValue[j]) != 0)
+               if(strValue.is_empty()  || case_insensitive_ansi_compare(strValue, straAttrValue[j]) != 0)
                {
 
                   bAll = false;

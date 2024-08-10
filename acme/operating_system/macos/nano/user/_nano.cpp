@@ -10,7 +10,7 @@
 #include "window.h"
 
 
-void operating_system_initialize_nano_user(::factory::factory * pfactory)
+extern "C" void nano_user_macos_factory(::factory::factory * pfactory)
 {
 
    pfactory->add_factory_item<::macos::nano::user::window, ::nano::user::window_implementation>();

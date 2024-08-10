@@ -387,15 +387,15 @@ string & property::get_network_arguments(::string & str) const
 //   return array_contains(psz, first, last);
 //}
 //
-//bool property::array_contains_ci(const ::scoped_string & scopedstr, index first, ::collection::index last) const
+//bool property::case_insensitive_array_contains(const ::scoped_string & scopedstr, index first, ::collection::index last) const
 //{
-//   return array_contains_ci(psz, first, last);
+//   return case_insensitive_array_contains(psz, first, last);
 //}
 //
 //
 //::payload property::equals_ci_get(const ::scoped_string & scopedstrCompare, ::payload varOnEqual, ::payload varOnDifferent) const
 //{
-//   if(compare_value_ci(pszCompare) == 0)
+//   if(case_insensitive_compare_value(pszCompare) == 0)
 //   {
 //      return varOnEqual;
 //   }
@@ -407,7 +407,7 @@ string & property::get_network_arguments(::string & str) const
 //
 //::payload property::equals_ci_get(const ::scoped_string & scopedstrCompare, ::payload varOnEqual) const
 //{
-//   if(compare_value_ci(pszCompare) == 0)
+//   if(case_insensitive_compare_value(pszCompare) == 0)
 //   {
 //      return varOnEqual;
 //   }
@@ -433,7 +433,7 @@ string & property::get_network_arguments(::string & str) const
 ////}
 //
 //
-//::i32 property::compare_value_ci(const ::scoped_string & scopedstr) const
+//::i32 property::case_insensitive_compare_value(const ::scoped_string & scopedstr) const
 //{
 //   return case_insensitive_order(psz);
 //}
@@ -1900,6 +1900,27 @@ void on_property_destruct(property* pproperty)
    }
 
 #endif
+
+}
+
+
+
+void property::write_to_stream(::binary_stream & stream)
+{
+
+   stream << m_atom;
+
+   stream << (::payload &)*this;
+
+}
+
+
+void property::read_from_stream(::binary_stream & stream)
+{
+
+   stream >> m_atom;
+
+   stream >> (::payload &)*this;
 
 }
 

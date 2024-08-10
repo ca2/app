@@ -68,6 +68,9 @@ public:
    
    virtual ::memory get_app_cloud_data(const ::file::path & path, const char * pszContentIdentifier);
    
+   virtual void put_documents_cloud_data(const ::file::path & path, const ::block & block);
+   
+   virtual ::memory get_documents_cloud_data(const ::file::path & path);
 
    //virtual FILE * FILE_open(const ::file::path & path, const scoped_string & attrs, int iShare);
    //virtual i32 FILE_printf(FILE * fp, const scoped_string & s, ...);

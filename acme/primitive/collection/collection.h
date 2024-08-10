@@ -87,7 +87,7 @@ namespace collection
 
 
    template<typename SWAP>
-   void swap_quick_sort_ci(ARRAY & a, const ::function< void(index, index) > & swap)
+   void case_insensitive_swap_quick_sort(ARRAY & a, const ::function< void(index, index) > & swap)
    {
 
       index_array stackLowerBound;
@@ -162,7 +162,7 @@ namespace collection
 
 
    template < primitive_array ARRAY, primitive_array INDEX_ARRAY >
-   void get_quick_sort_ci(ARRAY & a, INDEX_ARRAY & ia)
+   void case_insensitive_get_quick_sort(ARRAY & a, INDEX_ARRAY & ia)
    {
 
       INDEX_ARRAY stackLowerBound;

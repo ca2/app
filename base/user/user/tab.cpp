@@ -1184,6 +1184,15 @@ namespace user
 
    ::item_pointer tab::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
    {
+      
+      if(!should_draw())
+      {
+       
+         auto pitemNone = __allocate< ::item >(e_element_none);
+
+         return pitemNone;
+         
+      }
 
       auto pointCursor = point;
 
@@ -1233,39 +1242,44 @@ namespace user
 
       //point += m_pointDragScroll;
 
-      ::rectangle_i32 rectangle;
-
-      for (i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
+      if (should_draw())
       {
 
-         auto ppane = get_data()->m_tabpanea[iIndex].get();
+         ::rectangle_i32 rectangle;
 
-         if (ppane->m_straTitle.get_size() > 1)
+         for (i32 iIndex = 0; iIndex < get_data()->m_tabpanea.get_size(); iIndex++)
          {
 
-            ::rectangle_i32 rectangleText;
+            auto ppane = get_data()->m_tabpanea[iIndex].get();
 
-            if (get_element_rectangle(iIndex, rectangleText, e_element_text))
+            if (ppane->m_straTitle.get_size() > 1)
             {
 
-               if (rectangleText.contains(point))
+               ::rectangle_i32 rectangleText;
+
+               if (get_element_rectangle(iIndex, rectangleText, e_element_text))
                {
 
-                  for (int iTitle = 0; iTitle < ppane->m_straTitle.get_size(); iTitle++)
+                  if (rectangleText.contains(point))
                   {
 
-                     rectangleText.left() += (::i32)(ppane->m_sizeaText[iTitle].cx());
-
-                     rectangleText.right() = (::i32)(rectangleText.left() + get_data()->m_sizeSep.cx());
-
-                     if (rectangleText.contains(point))
+                     for (int iTitle = 0; iTitle < ppane->m_straTitle.get_size(); iTitle++)
                      {
 
-                        return __allocate< ::item >((enum_element)((int)e_element_split + iTitle), iIndex);
+                        rectangleText.left() += (::i32)(ppane->m_sizeaText[iTitle].cx());
+
+                        rectangleText.right() = (::i32)(rectangleText.left() + get_data()->m_sizeSep.cx());
+
+                        if (rectangleText.contains(point))
+                        {
+
+                           return __allocate< ::item >((enum_element)((int)e_element_split + iTitle), iIndex);
+
+                        }
+
+                        rectangleText.left() += (::i32)(get_data()->m_sizeSep.cx());
 
                      }
-
-                     rectangleText.left() += (::i32)(get_data()->m_sizeSep.cx());
 
                   }
 
@@ -1273,36 +1287,36 @@ namespace user
 
             }
 
-         }
-
-         if (get_element_rectangle(iIndex, rectangle, e_element_close_tab_button))
-         {
-
-            if (rectangle.contains(point))
+            if (get_element_rectangle(iIndex, rectangle, e_element_close_tab_button))
             {
 
-               ppane->m_pitemClose->m_item.m_iItem = iIndex;
+               if (rectangle.contains(point))
+               {
 
-               user_item(ppane)->m_rectangle2 = rectangle;
+                  ppane->m_pitemClose->m_item.m_iItem = iIndex;
 
-               return ppane->m_pitemClose;
+                  user_item(ppane)->m_rectangle2 = rectangle;
+
+                  return ppane->m_pitemClose;
+
+               }
 
             }
 
-         }
-
-         if (get_element_rectangle(iIndex, rectangle, e_element_tab))
-         {
-
-            if (rectangle.contains(point))
+            if (get_element_rectangle(iIndex, rectangle, e_element_tab))
             {
 
-               ppane->m_item.m_iItem = iIndex;
+               if (rectangle.contains(point))
+               {
 
-               user_item(ppane)->m_rectangle2 = rectangle;
+                  ppane->m_item.m_iItem = iIndex;
 
-               return ppane;
-               //return __allocate< ::item >(e_element_tab, iIndex);
+                  user_item(ppane)->m_rectangle2 = rectangle;
+
+                  return ppane;
+                  //return __allocate< ::item >(e_element_tab, iIndex);
+
+               }
 
             }
 

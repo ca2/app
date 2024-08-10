@@ -58,7 +58,7 @@ e_net_wm_state net_wm_state(const ::scoped_string & scopedstrText)
    while(ppsz[i] != NULL)
    {
 
-      if(!ansi_compare_ci(pszText, ppsz[i]))
+      if(!case_insensitive_ansi_compare(pszText, ppsz[i]))
       {
 
          break;

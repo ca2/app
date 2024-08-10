@@ -23,8 +23,6 @@ namespace user
          m_bItalic = false;
          m_bUnderline = false;
          m_dFontSize = 12.0;
-         m_colorForeground = argb(255, 0, 0, 0);
-         m_colorBackground = ::color::transparent;
          m_escript = e_script_normal;
          m_elineheight = e_line_height_single;
          m_bUpdated = false;
@@ -81,6 +79,17 @@ namespace user
          auto pnode = psystem->node();
 
          m_strFontFamily = pnode->font_name(e_font_sans);
+
+         if (pnode->dark_mode())
+         {
+            m_colorForeground = argb(255, 255, 255, 255);
+         }
+         else
+         {
+            m_colorForeground = argb(255, 0, 0, 0);
+         }
+         m_colorBackground = ::color::transparent;
+
 
       }
 

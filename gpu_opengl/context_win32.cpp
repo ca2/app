@@ -393,7 +393,7 @@ namespace opengl
 
       context::_translate_shader(stra);
 
-      strsize iFindPrecision = stra.find_first_begins_ci("precision ");
+      strsize iFindPrecision = stra.case_insensitive_find_first_begins("precision ");
 
       if (iFindPrecision >= 0)
       {

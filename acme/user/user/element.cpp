@@ -150,7 +150,6 @@ namespace user
       ::conversation::destroy();
       ::user::drag_client::destroy();
 
-
    }
 
 

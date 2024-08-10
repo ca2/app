@@ -155,7 +155,7 @@ inline TYPE1 equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 &
 
 
 template < primitive_character CHARACTER >
-inline bool range_begins_ci(::range < const CHARACTER * > range, ::range < const CHARACTER * > rangePrefix)
+inline bool case_insensitive_range_begins(::range < const CHARACTER * > range, ::range < const CHARACTER * > rangePrefix)
 {
 
    return range.begins(rangePrefix, ::comparison::case_insensitive< CHARACTER >());
@@ -164,7 +164,7 @@ inline bool range_begins_ci(::range < const CHARACTER * > range, ::range < const
 
 
 template < primitive_character CHARACTER >
-inline bool range_ends_ci(::range < const CHARACTER * > range, ::range < const CHARACTER * > rangeSuffix)
+inline bool case_insensitive_range_ends(::range < const CHARACTER * > range, ::range < const CHARACTER * > rangeSuffix)
 {
 
    return range.ends(rangeSuffix, ::comparison::case_insensitive< CHARACTER >());
@@ -173,7 +173,7 @@ inline bool range_ends_ci(::range < const CHARACTER * > range, ::range < const C
 
 
 template < primitive_character CHARACTER >
-constexpr bool sz_begins_sz_ci(const CHARACTER * psz, const CHARACTER * pszPrefix)
+constexpr bool case_insensitive_sz_begins_sz(const CHARACTER * psz, const CHARACTER * pszPrefix)
 {
 
    bool b;
@@ -205,10 +205,10 @@ constexpr bool sz_begins_sz_ci(const CHARACTER * psz, const CHARACTER * pszPrefi
 
 }
 //template < primitive_character CHARACTER >
-//constexpr bool sz_ends_sz_ci(const CHARACTER * psz, const CHARACTER * pszSuffix)
+//constexpr bool case_insensitive_sz_ends_sz(const CHARACTER * psz, const CHARACTER * pszSuffix)
 //{
 //
-//   return string_range_ends_ci<CHARACTER>(psz, pszSuffix);
+//   return case_insensitive_string_range_ends<CHARACTER>(psz, pszSuffix);
 //
 //}
 
@@ -261,47 +261,47 @@ inline bool string_ends(const ::wd32_character * psz, const ::wd32_character * p
 
 
 
-inline bool string_begins_ci(const ::ansi_character * psz, const ::ansi_character * pszPrefix)
+inline bool case_insensitive_string_begins(const ::ansi_character * psz, const ::ansi_character * pszPrefix)
 {   return null_terminated_begins_null_terminated(psz, pszPrefix, ::comparison::case_insensitive<::ansi_character>()); }
-inline bool string_begins_ci(const ::wd16_character * psz, const ::wd16_character * pszPrefix)
+inline bool case_insensitive_string_begins(const ::wd16_character * psz, const ::wd16_character * pszPrefix)
 {   return null_terminated_begins_null_terminated(psz, pszPrefix, ::comparison::case_insensitive<::wd16_character>()); }
-inline bool string_begins_ci(const ::wd32_character * psz, const ::wd32_character * pszPrefix)
+inline bool case_insensitive_string_begins(const ::wd32_character * psz, const ::wd32_character * pszPrefix)
 {   return null_terminated_begins_null_terminated(psz, pszPrefix, ::comparison::case_insensitive<::wd32_character>()); }
 
 
 //template < primitive_character CHARACTER >
-//inline bool _string_begins_ci(const CHARACTER * psz, strsize len, const CHARACTER * pszPrefix, strsize & lenPrefix)
+//inline bool case_insensitive__string_begins(const CHARACTER * psz, strsize len, const CHARACTER * pszPrefix, strsize & lenPrefix)
 //{
-//   return string_begins_ci<const CHARACTER>({ psz, len }, { pszPrefix, (strsize)(lenPrefix = string_safe_length(pszPrefix)) });
+//   return case_insensitive_string_begins<const CHARACTER>({ psz, len }, { pszPrefix, (strsize)(lenPrefix = string_safe_length(pszPrefix)) });
 //}
-//inline bool _string_begins_ci(const ::wd16_character* psz, strsize len, const ::wd16_character* pszPrefix, strsize& lenPrefix)
+//inline bool case_insensitive__string_begins(const ::wd16_character* psz, strsize len, const ::wd16_character* pszPrefix, strsize& lenPrefix)
 //{
-//   return string_begins_ci<const ::wd16_character>({ psz, len }, { pszPrefix, (strsize)(lenPrefix = string_safe_length(pszPrefix)) });
+//   return case_insensitive_string_begins<const ::wd16_character>({ psz, len }, { pszPrefix, (strsize)(lenPrefix = string_safe_length(pszPrefix)) });
 //}
-//inline bool _string_begins_ci(const ::wd32_character* psz, strsize len, const ::wd32_character* pszPrefix, strsize& lenPrefix)
+//inline bool case_insensitive__string_begins(const ::wd32_character* psz, strsize len, const ::wd32_character* pszPrefix, strsize& lenPrefix)
 //{
-//   return string_begins_ci<const ::wd32_character>({ psz, len }, { pszPrefix, (strsize)(lenPrefix = string_safe_length(pszPrefix)) });
+//   return case_insensitive_string_begins<const ::wd32_character>({ psz, len }, { pszPrefix, (strsize)(lenPrefix = string_safe_length(pszPrefix)) });
 //}
 
-inline bool string_ends_ci(const ::ansi_character * psz, const ::ansi_character * pszSuffix)
+inline bool case_insensitive_string_ends(const ::ansi_character * psz, const ::ansi_character * pszSuffix)
 {   return ::null_terminated_ends(psz, pszSuffix, ::comparison::case_insensitive<::ansi_character>());}
-inline bool string_ends_ci(const ::wd16_character * psz, const ::wd16_character * pszSuffix)
+inline bool case_insensitive_string_ends(const ::wd16_character * psz, const ::wd16_character * pszSuffix)
 {   return ::null_terminated_ends(psz, pszSuffix, ::comparison::case_insensitive<::wd16_character>());}
-inline bool string_ends_ci(const ::wd32_character * psz, const ::wd32_character * pszSuffix)
+inline bool case_insensitive_string_ends(const ::wd32_character * psz, const ::wd32_character * pszSuffix)
 {   return ::null_terminated_ends(psz, pszSuffix, ::comparison::case_insensitive<::wd32_character>());}
 
 //template < primitive_character CHARACTER >
-//inline bool _string_ends_ci(const CHARACTER * psz, strsize len, const CHARACTER * pszSuffix, strsize & lenSuffix)
+//inline bool case_insensitive__string_ends(const CHARACTER * psz, strsize len, const CHARACTER * pszSuffix, strsize & lenSuffix)
 //{
-//   return string_ends_ci<const CHARACTER>({ psz, len }, { pszSuffix, (strsize)(lenSuffix = string_safe_length(pszSuffix)) });
+//   return case_insensitive_string_ends<const CHARACTER>({ psz, len }, { pszSuffix, (strsize)(lenSuffix = string_safe_length(pszSuffix)) });
 //}
-//inline bool _string_ends_ci(const ::wd16_character* psz, strsize len, const ::wd16_character* pszSuffix, strsize& lenSuffix)
+//inline bool case_insensitive__string_ends(const ::wd16_character* psz, strsize len, const ::wd16_character* pszSuffix, strsize& lenSuffix)
 //{
-//   return string_ends_ci<const ::wd16_character>({ psz, len }, { pszSuffix, (strsize)(lenSuffix = string_safe_length(pszSuffix)) });
+//   return case_insensitive_string_ends<const ::wd16_character>({ psz, len }, { pszSuffix, (strsize)(lenSuffix = string_safe_length(pszSuffix)) });
 //}
-//inline bool _string_ends_ci(const ::wd32_character* psz, strsize len, const ::wd32_character* pszSuffix, strsize& lenSuffix)
+//inline bool case_insensitive__string_ends(const ::wd32_character* psz, strsize len, const ::wd32_character* pszSuffix, strsize& lenSuffix)
 //{
-//   return string_ends_ci<const ::wd32_character>({ psz, len }, { pszSuffix, (strsize)(lenSuffix = string_safe_length(pszSuffix)) });
+//   return case_insensitive_string_ends<const ::wd32_character>({ psz, len }, { pszSuffix, (strsize)(lenSuffix = string_safe_length(pszSuffix)) });
 //}
 
 

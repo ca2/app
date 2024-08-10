@@ -722,7 +722,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
       if(strObject == "application")
       {
 
-         if(string_begins_ci(strMember, "reply."))
+         if(case_insensitive_string_begins(strMember, "reply."))
          {
 
             ::i64 iTask = payloada[0].i64();

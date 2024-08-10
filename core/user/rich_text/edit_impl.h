@@ -22,6 +22,7 @@ namespace user
          bool                             m_bComposing;
          //::pointer<data>                  m_pdata;
          bool                             m_bSelDrag;
+         class ::time                     m_timeStartDrag;
          ::pointer<::message::key>        m_pkeymessageLast;
          bool                             m_bKeyPressed;
          bool                             m_bEditable2;
@@ -116,7 +117,7 @@ namespace user
 
          //using ::user::interaction::get_text;
          //void get_text(string & str) override;
-         void _001GetLayoutText(string & str) override;
+         void _001GetLayoutText(string & str) const override;
 
          void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

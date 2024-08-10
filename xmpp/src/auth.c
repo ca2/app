@@ -24,7 +24,7 @@
 #include "sha1.h"
 
 #ifdef _MSC_VER
-#define strcasecmp ansi_compare_ci
+#define strcasecmp case_insensitive_ansi_compare
 #endif
 
 /* TODO: these should configurable at runtime on a per connection basis  */

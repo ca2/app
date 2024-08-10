@@ -22,7 +22,7 @@
 u32 c_inet_to_ui(const char * src)
 {
 
-   if(ansi_begins_ci(src, "0x"))
+   if(case_insensitive_ansi_begins(src, "0x"))
    {
 
       return (u32) ansi_to_i64(&src[2], nullptr, 16);

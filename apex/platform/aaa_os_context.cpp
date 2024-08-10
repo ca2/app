@@ -459,7 +459,7 @@
 ////
 ////         auto stra = file()->lines(path);
 ////
-////         stra.filter_begins_ci("exec=");
+////         stra.case_insensitive_filter_begins("exec=");
 ////
 ////         if(stra.get_size() <= 0)
 ////         {

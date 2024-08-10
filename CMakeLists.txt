@@ -29,6 +29,9 @@ add_subdirectory(nano_archive_libarchive)
 if(${LINUX} OR ${FREEBSD})
     add_subdirectory(nano_idn_libidn)
 endif()
+if(${LINUX})
+    add_subdirectory(fs_folder_sync_dropbox)
+endif()
 add_subdirectory(regular_expression_pcre2)
 
 

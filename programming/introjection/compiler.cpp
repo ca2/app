@@ -1366,7 +1366,7 @@ auto tickStart = ::time::now();
             //::system(strLCmd + "2");
             ::system(str2);
 
-            if(!string_begins_ci(dir()->module(), "/Applications/"))
+            if(!case_insensitive_string_begins(dir()->module(), "/Applications/"))
             {
                string str2 = pcontext->m_papexcontext->file()->as_string(strDCmd);
                str2.find_replace("%TARGET_PATH%", strTargetPath);

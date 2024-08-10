@@ -37,7 +37,7 @@ void * __node_library_open(const ::file::path & path, string & strMessage)
 
    }
 
-   if(!string_begins_ci(strPath, "/") && !ansi_begins(strPath, "lib"))
+   if(!case_insensitive_string_begins(strPath, "/") && !ansi_begins(strPath, "lib"))
    {
 
       strPath = "lib" + strPath;

@@ -105,7 +105,7 @@ namespace colorertake5
 
       for(i32 idx = 0; idx < sizeof(toTrace) / sizeof(toTrace[0]); idx++)
       {
-         if(ansi_compare_ci(toTrace[idx],cname) == 0)
+         if(case_insensitive_ansi_compare(toTrace[idx],cname) == 0)
          {
             found = true;
          }

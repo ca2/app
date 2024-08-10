@@ -654,7 +654,7 @@ namespace html
          if(pstyle == nullptr)
          {
 
-            if(pelement->m_pparent != nullptr && ansi_compare_ci(rangeName, "background-color"))
+            if(pelement->m_pparent != nullptr && case_insensitive_ansi_compare(rangeName, "background-color"))
             {
 
                if(pelement->m_pparent->m_pstyle->get_color(rangeName, strSubClass, pdata, pelement->m_pparent, color32))
@@ -686,9 +686,9 @@ namespace html
          {
             if(::is_set(pelement->m_pparent)
                && ::is_set(pelement->m_pparent->m_pstyle)
-                  && ansi_compare_ci(rangeName, "padding") != 0
-                  && ansi_compare_ci(rangeName, "margin") != 0
-                  && ansi_compare_ci(rangeName, "border") != 0)
+                  && case_insensitive_ansi_compare(rangeName, "padding") != 0
+                  && case_insensitive_ansi_compare(rangeName, "margin") != 0
+                  && case_insensitive_ansi_compare(rangeName, "border") != 0)
             {
                if(pelement->m_pparent->m_pstyle->get_text(rangeName, strSubClass, pdata, pelement->m_pparent, str))
                {
@@ -700,19 +700,19 @@ namespace html
 
 
             {
-               if(ansi_compare_ci("font-family", rangeName) == 0)
+               if(case_insensitive_ansi_compare("font-family", rangeName) == 0)
                {
                   auto psystem = system()->m_paurasystem;
                   auto pnode = psystem->node();
                   str = pnode->font_name(e_font_serif);
                   return true;
                }
-               else if(ansi_compare_ci("font-size", rangeName) == 0)
+               else if(case_insensitive_ansi_compare("font-size", rangeName) == 0)
                {
                   str = "30";
                   return true;
                }
-               else if(ansi_compare_ci("font-weight", rangeName) == 0)
+               else if(case_insensitive_ansi_compare("font-weight", rangeName) == 0)
                {
                   str = "bold";
                   return true;
@@ -724,7 +724,7 @@ namespace html
             }
             else if(etag == tag_h2)
             {
-               if(ansi_compare_ci("font-family", rangeName) == 0)
+               if(case_insensitive_ansi_compare("font-family", rangeName) == 0)
                {
                   auto psystem = system()->m_paurasystem;
                   auto pnode = psystem->node();
@@ -732,12 +732,12 @@ namespace html
                   str = pnode->font_name(e_font_serif);
                   return true;
                }
-               else if(ansi_compare_ci("font-size", rangeName) == 0)
+               else if(case_insensitive_ansi_compare("font-size", rangeName) == 0)
                {
                   str = "23";
                   return true;
                }
-               else if(ansi_compare_ci("font-weight", rangeName) == 0)
+               else if(case_insensitive_ansi_compare("font-weight", rangeName) == 0)
                {
                   str = "bold";
                   return true;
@@ -749,7 +749,7 @@ namespace html
             }
             else if(etag == tag_p)
             {
-               if(ansi_compare_ci("font-family", rangeName) == 0)
+               if(case_insensitive_ansi_compare("font-family", rangeName) == 0)
                {
                   auto psystem = system()->m_paurasystem;
                   auto pnode = psystem->node();
@@ -757,12 +757,12 @@ namespace html
                   str = pnode->font_name(e_font_serif);
                   return true;
                }
-               else if(ansi_compare_ci("font-size", rangeName) == 0)
+               else if(case_insensitive_ansi_compare("font-size", rangeName) == 0)
                {
                   str = "11";
                   return true;
                }
-               else if(ansi_compare_ci("font-weight", rangeName) == 0)
+               else if(case_insensitive_ansi_compare("font-weight", rangeName) == 0)
                {
                   str = "normal";
                   return true;
@@ -774,7 +774,7 @@ namespace html
             }
             else if(etag == tag_h3)
             {
-               if(ansi_compare_ci("font-family", rangeName) == 0)
+               if(case_insensitive_ansi_compare("font-family", rangeName) == 0)
                {
                   auto psystem = system()->m_paurasystem;
                   auto pnode = psystem->node();
@@ -782,12 +782,12 @@ namespace html
                   str = pnode->font_name(e_font_serif);
                   return true;
                }
-               else if(ansi_compare_ci("font-size", rangeName) == 0)
+               else if(case_insensitive_ansi_compare("font-size", rangeName) == 0)
                {
                   str = "18";
                   return true;
                }
-               else if(ansi_compare_ci("font-weight", rangeName) == 0)
+               else if(case_insensitive_ansi_compare("font-weight", rangeName) == 0)
                {
                   str = "bold";
                   return true;
@@ -799,7 +799,7 @@ namespace html
             }
             else if (etag == tag_strong)
             {
-               if (ansi_compare_ci("font-weight", rangeName) == 0)
+               if (case_insensitive_ansi_compare("font-weight", rangeName) == 0)
                {
                   str = "bold";
                   return true;
@@ -1190,7 +1190,7 @@ namespace html
       }
       f = (float) strtod(&str[iFindDigit], nullptr);
       str = str.substr(i);
-      if(string_begins_ci(str, "::point_f32"))
+      if(case_insensitive_string_begins(str, "::point_f32"))
       {
          str.trim();
          if(str.length() == 2 || character_isspace(str[3]))

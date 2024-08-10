@@ -103,7 +103,7 @@ namespace file
 
    {
 
-      return m_listing.find_first_ci(scopedstr, iStart);
+      return m_listing.case_insensitive_find_first(scopedstr, iStart);
 
    }
 

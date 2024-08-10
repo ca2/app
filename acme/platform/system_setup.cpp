@@ -245,7 +245,7 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const ::sc
 //   while(papp != nullptr)
 //   {
 //
-//      if(!ansi_compare_ci(papp->m_pszName, lpszName))
+//      if(!case_insensitive_ansi_compare(papp->m_pszName, lpszName))
 //      {
 //
 //         return papp;

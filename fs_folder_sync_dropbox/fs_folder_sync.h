@@ -20,20 +20,37 @@ namespace fs_folder_sync_dropbox
       //::file::path    m_pathProtocol;
       //::file::path    m_pathLocalFolder;
 
+       ::i32 m_iLastExitCode;
 
-      folder_sync();
+
+       folder_sync();
       ~folder_sync() override;
 
 
-      virtual bool check_files(const ::file::path& pathSourceFolder, const ::string_array& straSource, const ::function < void(const ::scoped_string&) >& callbackStatus);
-      virtual void copy_files_out(const ::file::path& pathTargetFolder, const ::file::path& pathSourceFolder, const ::string_array& straSource, const ::function < void(const ::scoped_string&) >& callbackStatus);
+      bool has_operation_error() override;
 
-      void folder_sync_touch_file(const ::file::path& path);
+      virtual ::string _dropbox(const ::scoped_string & scopedstr, const ::function < void(const ::scoped_string&) >& callbackStatus);
+      virtual ::string_array _dropbox_lines(const ::scoped_string & scopedstr, const ::function < void(const ::scoped_string&) >& callbackStatus);
+
+      virtual bool check_files(const ::file::path& pathSourceFolder, const ::string_array& straSource, const ::function < void(const ::scoped_string&) >& callbackStatus) override;
+      virtual void copy_files_out(const ::file::path& pathTargetFolder, const ::file::path& pathSourceFolder, const ::string_array& straSource, const ::function < void(const ::scoped_string&) >& callbackStatus) override;
+
+      void folder_sync_touch_file(const ::file::path& path, const ::function < void(const ::scoped_string&) >& callbackStatus) override;
 
       //bool _enumerates(::file::listing & listing) override;
       bool enumerate(::file::listing& listing) override;
       // virtual ::file::listing & ls_relative_name(::file::listing & listing) override;
 
+      ::string_array ls(const file::path& pathCloud, const ::function < void(const ::scoped_string&) >& callbackStatus) override;
+      ::string_array ls_folder(const file::path& pathCloud, const ::function < void(const ::scoped_string&) >& callbackStatus) override;
+#ifdef LINUX
+      
+      void start_daemon(const ::function < void(const ::scoped_string&) >& callbackStatus) override;
+      void sync_exclude(const string_array& stra, const ::function < void(const ::scoped_string&) >& callbackStatus) override;
+      void sync_reinclude(const string_array& stra, const ::function < void(const ::scoped_string&) >& callbackStatus) override;
+      ::string_array sync_exclusion_list(const ::function < void(const ::scoped_string&) >& callbackStatus) override;
+
+#endif
 
       bool is_link(const ::file::path& path) override;
 
@@ -54,7 +71,27 @@ namespace fs_folder_sync_dropbox
 
 
       ::string non__empty__file_as_string(const ::payload& payloadFile, const ::function < void(const ::scoped_string&) >& callbackStatus = {}) override;
+//#if defined(LINUX)
       void wait_folder_contains_files(const ::file::path& pathTargetFolder, const ::string_array& straName, int iMinimumSize, const ::function < void(const ::scoped_string&) >& callbackStatus = {}) override;
+//#endif
+
+      void wait_up_and_running(const ::function < void(const ::scoped_string&) >& callbackStatus = {}) override;
+
+
+      bool _cloud_defer_check_file_txt(::file::path & pathTarget, const ::file::path & pathCloudFile, bool bForce = false, ::file::path * ppathSource = nullptr, const ::function < void(const ::scoped_string&) >& callbackStatus ={}) override;
+      ::string_array _cloud_get_file_txt_lines(const ::file::path & pathCloudFile, bool bForce = false, ::file::path * ppathTarget = nullptr, ::file::path * ppathSource = nullptr, const ::function < void(const ::scoped_string&) >& callbackStatus ={}) override;
+
+
+      ::file::path _cloud_ensure_file_txt_is_up_to_date_and_present(const ::file::path & pathCloudFile, const ::function < void(const ::scoped_string&) >& callbackStatus) override;
+
+      ::file::path _cloud_ensure_files_in_file_txt_are_up_to_date_and_present(
+           const ::file::path & pathCloudFile, const ::scoped_string& scopedstrFileExtension,
+           int iMinimumFileSize, const ::function < void(const ::scoped_string&) >& callbackStatus) override;
+
+      void _cloud_ensure_files_are_up_to_date_and_present(
+         const ::file::path& pathFolder, const ::string_array & stra,
+         int iMinimumFileSize, const ::function<void(const ::scoped_string&)>& callbackStatus) override;
+
 
    };
 

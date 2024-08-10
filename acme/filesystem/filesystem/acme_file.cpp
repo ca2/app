@@ -483,6 +483,26 @@ void acme_file::put_app_cloud_data(const ::file::path & path, const char * pszCo
 }
 
 
+void acme_file::put_documents_cloud_data(const ::file::path & path, const ::block & block)
+{
+   
+   auto pathAppCloud = acmepath()->defer_get_icloud_container_path(path, "Documents");
+   
+   this->put_contents(pathAppCloud, block);
+   
+}
+
+
+::memory acme_file::get_documents_cloud_data(const ::file::path & path)
+{
+   
+   auto pathAppCloud = acmepath()->defer_get_icloud_container_path(path, "Documents");
+   
+   return this->as_memory(pathAppCloud);
+   
+}
+
+
 
 bool acme_file::is_true(const ::file::path & path)
 {

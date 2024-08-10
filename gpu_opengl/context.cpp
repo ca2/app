@@ -546,7 +546,7 @@ namespace opengl
 
       //   stra.add_lines(strFragment);
 
-      //   auto pFind = stra.find_first_begins_ci("#version ");
+      //   auto pFind = stra.case_insensitive_find_first_begins("#version ");
 
       //   if (::is_set(pFind))
       //   {

@@ -491,7 +491,7 @@ bool acme_path::is_absolute_path(const ::scoped_string & scopedstr)
 
       auto stra = acmefile()->lines(path);
 
-      stra.filter_begins_ci("exec=");
+      stra.case_insensitive_filter_begins("exec=");
 
       if(stra.get_size() <= 0)
       {
@@ -1027,5 +1027,13 @@ bool acme_path::get_next_path(::scoped_string & scopedstr, ::string::RANGE & ran
    }
 
    return path;
+
+}
+
+
+void acme_path::symbolic_link(const ::file::path & pathTarget, const ::file::path & pathSource)
+{
+
+   throw ::interface_only();
 
 }

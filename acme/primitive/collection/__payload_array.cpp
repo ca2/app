@@ -185,7 +185,7 @@ string payload_array::implode(const ::scoped_string & scopedstrGlue) const
 }
 
 
-::collection::index payload_array::find_first_ci(const ::scoped_string & scopedstr, ::collection::index find,::collection::index last) const
+::collection::index payload_array::case_insensitive_find_first(const ::scoped_string & scopedstr, ::collection::index find,::collection::index last) const
 {
    
    if (find < 0)
@@ -257,7 +257,7 @@ bool payload_array::case_insensitive_contains(const ::scoped_string & scopedstr,
 
    ::collection::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax))
-         && (find = find_first_ci(scopedstr, find, last)) >= 0)
+         && (find = case_insensitive_find_first(scopedstr, find, last)) >= 0)
 
       count++;
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
@@ -293,10 +293,10 @@ bool payload_array::contains(const ::payload & payload, ::collection::index find
 }
 
 
-::collection::count payload_array::erase_first_ci(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last)
+::collection::count payload_array::case_insensitive_erase_first(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last)
 {
 
-   if ((find = find_first_ci(scopedstr, find, last)) >= 0)
+   if ((find = case_insensitive_find_first(scopedstr, find, last)) >= 0)
    {
 
       erase_at(find);
@@ -338,7 +338,7 @@ bool payload_array::contains(const ::payload & payload, ::collection::index find
 }
 
 
-::collection::count payload_array::erase_ci(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last, ::collection::count countMin, ::collection::count countMax)
+::collection::count payload_array::case_insensitive_erase(const ::scoped_string & scopedstr, ::collection::index find, ::collection::index last, ::collection::count countMin, ::collection::count countMax)
 {
 
    ::collection::count count = 0;
@@ -347,7 +347,7 @@ bool payload_array::contains(const ::payload & payload, ::collection::index find
    {
     
       while (conditional(countMax >= 0, count < countMax)
-         && (find = erase_first_ci(scopedstr, find, last)) >= 0)
+         && (find = case_insensitive_erase_first(scopedstr, find, last)) >= 0)
       {
 
          count++;

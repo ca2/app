@@ -3122,6 +3122,13 @@ namespace user
    }
 
 
+   void primitive_impl::set_opacity(double dOpacity)
+   {
+
+
+   }
+
+
 } // namespace user
 
 

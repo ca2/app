@@ -4,7 +4,7 @@
 #include "acme/primitive/string/str.h"
 
 
-CLASS_DECL_ACME string_array stringa_from_strdup(::ansi_character ** ppParam)
+CLASS_DECL_ACME string_array stringa_from_strdupa(::ansi_character ** ppParam)
 {
 
    string_array stra;
@@ -111,4 +111,23 @@ CLASS_DECL_ACME string_array & csstidy_explode_ws(string_array & stra, char sep,
 }
 
 
+CLASS_DECL_ACME char ** strdupa_from_stringa(const ::string_array & stra)
+{
+   
+   auto pp = (char **) malloc((stra.size() + 1) * sizeof(char*));
+   
+   ::collection::index i = 0;
+   
+   for(; i < stra.size(); i++)
+   {
+    
+      pp[i] = ::c::strdup(stra[i]);
+      
+   }
+   
+   pp[i] = nullptr;
+   
+   return pp;
+   
+}
 

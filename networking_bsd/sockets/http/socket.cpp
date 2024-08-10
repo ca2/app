@@ -248,7 +248,7 @@ namespace sockets
 
          string str = pa.getword();
 
-         if (str.length() > 4 &&  string_begins_ci(str, "http/")) // response
+         if (str.length() > 4 &&  case_insensitive_string_begins(str, "http/")) // response
          {
 
             //m_response.attr("remote_addr") = GetRemoteAddress().get_display_number();
@@ -382,7 +382,7 @@ namespace sockets
          if (m_b_http_1_1)
          {
 
-            if(equals_ci(value,"close"))
+            if(case_insensitive_equals(value,"close"))
             {
 
                m_b_keepalive = false;
@@ -399,7 +399,7 @@ namespace sockets
          else
          {
 
-            if(equals_ci(value, "keep-alive"))
+            if(case_insensitive_equals(value, "keep-alive"))
             {
 
                m_b_keepalive = true;
@@ -415,7 +415,7 @@ namespace sockets
          }
 
       }
-      if (equals_ci(key, "transfer-encoding") && string_ends_ci(value, "chunked"))
+      if (case_insensitive_equals(key, "transfer-encoding") && case_insensitive_string_ends(value, "chunked"))
       {
          m_b_chunked = true;
       }
@@ -695,7 +695,7 @@ namespace sockets
 
       }
 
-      if(strProtocol.equals_ci("https") || strProtocol.equals_ci("wss"))
+      if(strProtocol.case_insensitive_equals("https") || strProtocol.case_insensitive_equals("wss"))
       {
 
 #ifdef HAVE_OPENSSL

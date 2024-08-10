@@ -1606,7 +1606,7 @@ namespace http
                
                strCa2Realm = psession->outheader("ca2realm-x");
 
-               if (string_begins_ci(strCa2Realm, "n7ot licensed: "))
+               if (case_insensitive_string_begins(strCa2Realm, "n7ot licensed: "))
                {
 
                   information() << "Not Licensed Result Total time ::http::apex::context::get(\"" << strUrl.left(minimum(255, strUrl.length())) << "\") " << tick1.elapsed().integral_second();
@@ -2418,7 +2418,7 @@ namespace http
          
          strCa2Realm = psocket->outheader("ca2realm-x");
 
-         if (string_begins_ci(strCa2Realm, "not licensed: "))
+         if (case_insensitive_string_begins(strCa2Realm, "not licensed: "))
          {
 
             auto tick2 = ::duration::now();

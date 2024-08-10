@@ -132,6 +132,8 @@ namespace windowing
 
          __construct_new(m_pcursormanager);
 
+         m_pcursormanager->m_pwindowing = this;
+
       }
 
       return m_pcursormanager->get_cursor(ecursor);

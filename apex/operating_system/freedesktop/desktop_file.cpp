@@ -106,7 +106,7 @@ namespace freedesktop
 
          string_array stra = registered_categories();
 
-         auto iFind = stra.find_first_ci(str);
+         auto iFind = stra.case_insensitive_find_first(str);
 
          if(found(iFind))
          {
@@ -158,7 +158,7 @@ namespace freedesktop
 
       }
 
-      straCategory.erase_duplicates_ci();
+      straCategory.case_insensitive_erase_duplicates();
 
       return straCategory;
 

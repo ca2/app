@@ -117,6 +117,17 @@ namespace user
       }
 
 
+      template < typename CHECK_BOX = ::user::check_box>
+      ::pointer < CHECK_BOX >create_check_box(::user::interaction * puserinteractionParent, const ::data::property & property)
+      {
+
+         auto pcheckbox = create_check_box<CHECK_BOX>(puserinteractionParent, property.atom());
+
+         pcheckbox->set_check_property(property);
+
+         return pcheckbox;
+
+      }
 
 
       template < typename BUTTON =::user::button>

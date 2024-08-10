@@ -65,7 +65,7 @@ int __atom_sgn(T x)
 //#define __atom_str_begins(a, b) string_begins(a, b)
 //
 //
-//#define __atom_str_begins_ci(a, b) string_begins_ci(a, b)
+//#define case_insensitive___atom_str_begins(a, b) case_insensitive_string_begins(a, b)
 
 
 #else
@@ -189,7 +189,7 @@ int __atom_sgn(T x)
 //}
 //
 //
-//inline bool __atom_str_begins_ci(const char * a, const char * b)
+//inline bool case_insensitive___atom_str_begins(const char * a, const char * b)
 //{
 //
 //   if (__atom_str_is_empty(a))

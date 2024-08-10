@@ -1361,7 +1361,7 @@ public:
    ::collection::count array_get_count() const;
    ::collection::index array_get_upper_bound() const;
    bool array_contains(const ::scoped_string & scopedstr, ::collection::index find = 0, ::collection::count count = -1) const;
-   bool array_contains_ci(const ::scoped_string & scopedstr, ::collection::index find = 0, ::collection::count count = -1) const;
+   bool case_insensitive_array_contains(const ::scoped_string & scopedstr, ::collection::index find = 0, ::collection::count count = -1) const;
    bool array_is_empty() const { return array_get_count() <= 0; }
 
 

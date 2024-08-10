@@ -378,7 +378,7 @@ namespace sockets
 
 
 
-//      if (string_ends_ci(strName, "03 Coisa De Acender - Se..... - Djavan.mp3"))
+//      if (case_insensitive_string_ends(strName, "03 Coisa De Acender - Se..... - Djavan.mp3"))
   //    {
     //     debug_print("%s", strName.c_str());
       //}
@@ -498,7 +498,7 @@ namespace sockets
       if (prangea == nullptr || prangea->get_count() == 0)
       {
 
-         if (string_begins_ci(strContentType, "audio/"))
+         if (case_insensitive_string_begins(strContentType, "audio/"))
          {
 
             auto preader = file()->get_reader(pcsz);

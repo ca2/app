@@ -266,7 +266,10 @@
     <ClInclude Include="user\appearance\still.h" />
     <ClInclude Include="user\appearance\_.h" />
     <ClInclude Include="user\appearance\_appearance.h" />
+    <ClInclude Include="user\menu\command.h" />
     <ClInclude Include="user\menu\menu_command.h" />
+    <ClInclude Include="user\menu\track_popup.h" />
+    <ClInclude Include="user\menu\_.h" />
     <ClInclude Include="user\menu\_menu.h" />
     <ClInclude Include="user\user\aaaa_plain_edit_style.h" />
     <ClInclude Include="user\user\aaa_create.h" />
@@ -516,6 +519,7 @@
     <ClCompile Include="user\appearance\button.cpp" />
     <ClCompile Include="user\appearance\still.cpp" />
     <ClCompile Include="user\menu\command.cpp" />
+    <ClCompile Include="user\menu\track_popup.cpp" />
     <ClCompile Include="user\user\alpha_source.cpp" />
     <ClCompile Include="user\user\box.cpp" />
     <ClCompile Include="user\user\button.cpp" />

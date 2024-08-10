@@ -3339,7 +3339,7 @@ m_ibuf(isize)
 
             data[255] = 0;
 
-            if (ansi_count_compare_ci(data, common_name, 255) == 0)
+            if (case_insensitive_ansi_count_compare(data, common_name, 255) == 0)
             {
 
                ok = true;

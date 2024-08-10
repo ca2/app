@@ -169,7 +169,7 @@ namespace experience
 
          straExperience.erase_empty();
 
-         straExperience.erase_duplicates_ci();
+         straExperience.case_insensitive_erase_duplicates();
 
          ::pointer<::experience::experience>pexperienceSelected;
 

@@ -15,13 +15,13 @@ namespace str
    inline  i32                is_digit(const CHAR_TYPE * pch) noexcept;
    inline  i32                is_space(const CHAR_TYPE * pch) noexcept;
    inline  i32                string_compare(const CHAR_TYPE * pszA, const CHAR_TYPE * pszB) noexcept;
-   inline  i32                string_compare_ci(const CHAR_TYPE * pszA, const CHAR_TYPE * pszB) noexcept;
+   inline  i32                case_insensitive_string_compare(const CHAR_TYPE * pszA, const CHAR_TYPE * pszB) noexcept;
    inline  i32                string_count_compare(const CHAR_TYPE * pszA, const CHAR_TYPE * pszB, strsize len) noexcept;
-   inline  i32                string_count_compare_ci(const CHAR_TYPE * pszA, const CHAR_TYPE * pszB, strsize len) noexcept;
+   inline  i32                case_insensitive_string_count_compare(const CHAR_TYPE * pszA, const CHAR_TYPE * pszB, strsize len) noexcept;
    inline  i32                string_collate(const CHAR_TYPE * pszA, const CHAR_TYPE * pszB) noexcept;
-   inline  i32                string_collate_ci(const CHAR_TYPE * pszA, const CHAR_TYPE * pszB) noexcept;
+   inline  i32                case_insensitive_string_collate(const CHAR_TYPE * pszA, const CHAR_TYPE * pszB) noexcept;
    inline  const CHAR_TYPE *   string_find_string(const CHAR_TYPE * pszBlock, const CHAR_TYPE * pszMatch) noexcept;
-   inline  const CHAR_TYPE *   string_find_string_ci(const CHAR_TYPE * pszBlock, const CHAR_TYPE * pszMatch) noexcept;
+   inline  const CHAR_TYPE *   case_insensitive_string_find_string(const CHAR_TYPE * pszBlock, const CHAR_TYPE * pszMatch) noexcept;
    inline  const CHAR_TYPE *   string_find_char(const CHAR_TYPE * pszBlock, CHAR_TYPE chMatch) noexcept;
    inline  const CHAR_TYPE *   string_find_char_reverse(const CHAR_TYPE * psz, CHAR_TYPE ch, strsize iStart) noexcept;
    inline  const CHAR_TYPE *   string_find_string_reverse(const CHAR_TYPE * psz, const CHAR_TYPE * pszFind, strsize iStart) noexcept;

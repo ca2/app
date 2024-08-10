@@ -13,7 +13,7 @@ void _debug_debug_string_string()
    ::atom atom("a-ha");
 
    /*auto bEndsInHa1 = string_ends<const ::ansi_character>(atom, "ha");
-   auto bEndsInHa2 = string_ends_ci<const ::ansi_character>(atom, "Ha");*/
+   auto bEndsInHa2 = case_insensitive_string_ends<const ::ansi_character>(atom, "Ha");*/
 
 }
 

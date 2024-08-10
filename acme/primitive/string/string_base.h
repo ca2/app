@@ -2,34 +2,34 @@
 
 
 #include "string_iterator.h"
-#ifdef   _STDIO_H_
-#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(1))"
-#endif
+//#ifdef   _STDIO_H_
+//#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(1))"
+//#endif
 #include "string_meta_data.h"
-#ifdef   _STDIO_H_
-#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(2))"
-#endif
+//#ifdef   _STDIO_H_
+//#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(2))"
+//#endif
 #include "const_string_range.h"
-#ifdef   _STDIO_H_
-#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(3))"
-#endif
+//#ifdef   _STDIO_H_
+//#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(3))"
+//#endif
 #include "string_range.h"
-#ifdef   _STDIO_H_
-#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(4))"
-#endif
+//#ifdef   _STDIO_H_
+//#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(4))"
+//#endif
 #include "mutable_string_range.h"
-#ifdef   _STDIO_H_
-#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(5))"
-#endif
+//#ifdef   _STDIO_H_
+//#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(5))"
+//#endif
 #include "acme/primitive/primitive/function.h"
-#ifdef   _STDIO_H_
-#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(A))"
-#endif
+//#ifdef   _STDIO_H_
+//#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(A))"
+//#endif
 //#include "acme/memory/string_memory_allocator.h"
 #include "acme/memory/memory.h"
-#ifdef   _STDIO_H_
-#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(C))"
-#endif
+//#ifdef   _STDIO_H_
+//#error "already included?!?! WHAT?!?! (After including acme/primitive/string/string_base.h(C))"
+//#endif
 #if defined(__STD_FORMAT)
 #include <format>
 #endif
@@ -1010,7 +1010,7 @@ public:
    //strsize xxx_replace(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0);
 
    //template < raw_pointer_castable < CHARACTER_TYPE > PCHAROLD, raw_pointer_castable < CHARACTER_TYPE > PCHARNEW >
-   //strsize xxx_replace_ci(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0);
+   //strsize case_insensitive_xxx_replace(PCHAROLD pcharOld, PCHARNEW pcharNew, strsize iStart = 0);
 
    //// replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
    //template < raw_pointer_castable < CHARACTER_TYPE > PCHAROLD, raw_pointer_castable < CHARACTER_TYPE > PCHARNEW >
@@ -1224,7 +1224,7 @@ public:
    //inline string_base& case_insensitive_ensure_prefix(const string_base &strPrefix);
 
    //inline string_base& ensure_ends(const string_base &strSuffix);
-   //inline string_base& ensure_ends_ci(const string_base &strSuffix);
+   //inline string_base& case_insensitive_ensure_ends(const string_base &strSuffix);
 
    bool eat_before(string_base & strBefore, const SCOPED_STRING & scopedstrSeparator, bool bEatEverythingIfNotFound = false);
    bool eat_before_let_separator(string_base & strBefore, const SCOPED_STRING & scopedstrSeparator, bool bEatEverythingIfNotFound = false);
@@ -1318,6 +1318,50 @@ public:
 
    // erase all leading occurrences of any of the characters in string_base 'pszTargets'
    string_base left_trimmed(const SCOPED_STRING & scopedstrTargets) const;
+
+
+   bool pair_trim(CHARACTER character1, CHARACTER character2)
+   {
+
+      if (this->size() >= 2)
+      {
+
+         if (this->first() == character1 && this->last() == character2)
+         {
+
+            *this = substr(1, length() - 2);
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+   string_base & pair_trim_quotes()
+   {
+
+      while (pair_trim('\"', '\"') || pair_trim('\'', '\''));
+
+      return *this;
+
+   }
+
+
+   string_base paired_trim_quotes()
+   {
+
+      auto str = *this;
+
+      str.pair_trim_quotes();
+
+      return ::transfer(str);
+
+   }
 
 
    string_base substr(strsize iFirst) const;

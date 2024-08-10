@@ -565,7 +565,7 @@ bool interprocess_intercommunication::on_interprocess_call(::payload & payload, 
    if(strObject == "application")
    {
 
-      if(string_begins_ci(strMember, "reply."))
+      if(case_insensitive_string_begins(strMember, "reply."))
       {
 
          ::i64 iTask = propertyset["protocol:call_id"];

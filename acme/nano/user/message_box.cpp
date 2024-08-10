@@ -9,12 +9,13 @@
 #include "window_implementation.h"
 #include "acme/nano/user/details_window.h"
 #include "acme/nano/user/popup_button.h"
-#include "acme/user/user/mouse.h"
+#include "acme/operating_system/console_message_box.h"
+#include "acme/operating_system/message_box.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
-#include "acme/operating_system/message_box.h"
+#include "acme/user/user/mouse.h"
 #include "acme/_operating_system.h"
 
 
@@ -431,15 +432,132 @@ bool message_box::is_popup_window() const
 } // namespace nano
 
 
+CLASS_DECL_ACME pointer< ::sequencer < ::conversation > > message_box_sequencer(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
+{
+
+   if (::is_null(pparticle))
+   {
+      
+      auto psequencer = ::operating_system::message_box::create_sequencer(::platform::get()->system(),                                                        scopedstrMessage, scopedstrTitle,
+                                                        emessagebox,
+                                                        scopedstrDetails);
+      
+      return psequencer;
+//      auto pmessagebox = ::platform::get()->__create < ::operating_system::message_box >();
+//
+//      return pmessagebox->create_sequencer(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
+
+   }
+
+   //initialize_nano_window(pparticle->factory());
+
+   if (::is_null(pparticle))
+   {
+
+      throw ::exception(error_null_pointer);
+      
+   }
+
+#if defined(UNIVERSAL_WINDOWS)
+
+   if(pparticle->platform()->m_bConsole || !is_ui_possible())
+   {
+
+      auto psequencer = pparticle->__create_new < ::sequencer < ::conversation > >();
+
+      auto pmessagebox = pparticle->__create_new < ::operating_system::console_message_box >();
+
+      psequencer->m_psequence = pmessagebox;
+
+      pmessagebox->m_psequencer = psequencer;
+
+      pmessagebox->initialize_conversation(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
+
+      return psequencer;
+
+//      return message_box_for_console(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
+
+   }
+   else
+   {
+
+      throw ::exception(error_failed);
+
+   }
+   
+#endif
+
+   auto psequencer = pparticle->node()->create_message_box_sequencer(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
+   
+   return psequencer;
+   
+   //auto atomResult = psequencer->do_synchronously();
+   
+//   auto pmanualresetevent = __allocate< manual_reset_event >();
+//
+//   atom atomResult;
+//
+//   psequence->then([ pmanualresetevent, &atomResult ](auto psequence)
+//   {
+//
+//      atomResult = psequence->m_atomResult;
+//
+//      pmanualresetevent->SetEvent();
+//
+//   });
+//
+//   pmanualresetevent->wait();
+//
+////   auto pmessagebox = pparticle->__create_new < message_box >();
+////
+////   atom idResult;
+////
+////   manual_reset_event event;
+////
+////   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
+////
+////   pmessagebox->m_functionClose = [&idResult, &event](nano::user::window * pwindow)
+////   {
+////
+////      idResult = pwindow->m_atomResult;
+////
+////      event.SetEvent();
+////
+////   };
+////
+////   if(is_single_main_user_thread() && is_main_thread())
+////   {
+////
+////      pmessagebox->_run_modal_loop();
+////
+////   }
+////   else
+////   {
+////      event.wait();
+////
+////   }
+////
+////   //auto idResult = pmessagebox->get_result();
+////
+////   return idResult;
+   
+   //return atomResult;
+
+}
+
+
+
 CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
 {
 
    if (::is_null(pparticle))
    {
 
-      auto pmessagebox = ::platform::get()->__create < ::operating_system::message_box >();
+      auto psequencer =       ::operating_system::message_box::create_sequencer(::platform::get()->system(),                                                        scopedstrMessage, scopedstrTitle,
+                                                              emessagebox,
+                                                              scopedstrDetails);
 
-      return pmessagebox->do_modal(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
+      return psequencer->do_synchronously();
 
    }
 

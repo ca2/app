@@ -568,7 +568,7 @@ pacmedirectory->is(strPath))
 
          i32 iImage = I32_MINIMUM;
 
-         if (string_begins_ci(imagekey.m_strPath, "uifs:"))
+         if (case_insensitive_string_begins(imagekey.m_strPath, "uifs:"))
          {
 
             ::file::path path = pcontext->m_papexcontext->dir()->matter("cloud.ico");
@@ -590,7 +590,7 @@ pacmedirectory->is(strPath))
             return iImage;
 
          }
-         else if (string_begins_ci(imagekey.m_strPath, "fs:"))
+         else if (case_insensitive_string_begins(imagekey.m_strPath, "fs:"))
          {
 
             ::file::path path = pcontext->m_papexcontext->dir()->matter("remote.ico");
@@ -612,7 +612,7 @@ pacmedirectory->is(strPath))
             return iImage;
 
          }
-         else if (string_begins_ci(imagekey.m_strPath, "ftp:"))
+         else if (case_insensitive_string_begins(imagekey.m_strPath, "ftp:"))
          {
 
             ::file::path path = pcontext->m_papexcontext->dir()->matter("ftp.ico");
@@ -639,7 +639,7 @@ pacmedirectory->is(strPath))
 
 
 
-         if (string_ends_ci(imagekey.m_strPath, ".acme"))
+         if (case_insensitive_string_ends(imagekey.m_strPath, ".acme"))
          {
             string str = pcontext->m_papexcontext->file()->as_string(imagekey.m_strPath);
             if (str.case_insensitive_begins_eat("ca2prompt\r\n"))
@@ -703,7 +703,7 @@ pacmedirectory->is(strPath))
 
          string strExtension;
 
-         if (string_ends_ci(imagekey.m_strPath, ".sln"))
+         if (case_insensitive_string_ends(imagekey.m_strPath, ".sln"))
          {
             
             // informationf("test .sln");
@@ -715,7 +715,7 @@ pacmedirectory->is(strPath))
 
          string strIcon16;
 
-         if (string_ends_ci(imagekey.m_strPath, ".desktop"))
+         if (case_insensitive_string_ends(imagekey.m_strPath, ".desktop"))
          {
 
             string str = pcontext->m_papexcontext->file()->as_string(imagekey.m_strPath);
@@ -724,7 +724,7 @@ pacmedirectory->is(strPath))
 
             stra.add_lines(str);
 
-            stra.filter_begins_ci("icon=");
+            stra.case_insensitive_filter_begins("icon=");
 
             if (stra.get_size() <= 0)
             {

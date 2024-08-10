@@ -48,11 +48,21 @@ extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory);
 
 #if defined(WINDOWS)
 
-
 extern "C" void nano_idn_windows_common_factory(::factory::factory * pfactory);
+
+#if defined(WINDOWS_DESKTOP)
 
 extern "C" void nano_user_win32_factory(::factory::factory* pfactory);
 
+#elif defined(UNIVERSAL_WINDOWS)
+
+extern "C" void nano_user_universal_windows_factory(::factory::factory * pfactory);
+
+#endif
+
+#elif defined(MACOS)
+
+extern "C" void nano_user_macos_factory(::factory::factory* pfactory);
 
 #endif
 
@@ -2444,7 +2454,6 @@ namespace acme
    void system::handle(::topic* ptopic, ::context* pcontext)
    {
 
-
       if (ptopic->m_atom == id_get_operating_system_dark_mode_reply)
       {
 
@@ -2517,6 +2526,19 @@ namespace acme
          {
 
             application()->handle(ptopic, pcontext);
+
+         }
+
+      }
+      else if (ptopic->m_atom == id_did_pick_document_at_url)
+      {
+
+         if (::is_set(application()))
+         {
+            
+            auto pszUrl = (const char *) ptopic->payload("wparam").as_iptr();
+
+            application()->did_pick_document_at_url(pszUrl);
 
          }
 
@@ -3406,20 +3428,35 @@ namespace acme
       {
 
 
-#if defined(WINDOWS)
+#if defined(WINDOWS_DESKTOP)
+
+
+         auto pfactory = this->factory();
+
+         nano_user_win32_factory(pfactory);
+
+         return;
+         
+#elif defined(UNIVERSAL_WINDOWS)
 
 
          auto pfactory = this->factory();
 
 
-         nano_user_win32_factory(pfactory);
+         nano_user_universal_windows_factory(pfactory);
 
 
          return;
 
+#elif defined(MACOS)
+         
+         auto pfactory = this->factory();
 
+         nano_user_macos_factory(pfactory);
+
+         return;
+         
 #endif
-
 
       }
 

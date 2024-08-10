@@ -334,8 +334,8 @@ public:
    
    inline auto items() { return ::range<item_iterator>(*(item_iterator *)&this->begin(), *(item_iterator *)&this->end()); }
    inline auto payloads() { return ::range<payload_iterator>(*(payload_iterator *)&this->begin(), *(payload_iterator *)&this->end()); }
-   inline auto items() const { return ::range<const_item_iterator>(*(item_iterator *)&this->begin(), *(item_iterator *)&this->end()); }
-   inline auto payloads() const { return ::range<const_payload_iterator>(*(payload_iterator *)&this->begin(), *(payload_iterator *)&this->end()); }
+   inline auto items() const { return ::range<const_item_iterator>((item_iterator)this->begin(), (item_iterator)this->end()); }
+   inline auto payloads() const { return ::range<const_payload_iterator>((payload_iterator )this->begin(), (payload_iterator)this->end()); }
 
 
    //inline auto keys() const { return ::range<const_key_iterator>(*(const_key_iterator*)&this->begin(), *(const_key_iterator*)&this->end()); }

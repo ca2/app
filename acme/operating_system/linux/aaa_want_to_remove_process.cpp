@@ -224,7 +224,7 @@ namespace ansios
 
       string strFallback;
 
-      if(string_begins_ci(strFallback, "/Users/"))
+      if(case_insensitive_string_begins(strFallback, "/Users/"))
       {
 
          ::collection::index i = 0;

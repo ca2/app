@@ -457,7 +457,7 @@ namespace user
 
             m_pevNewImageKey->_wait(500_ms);
 
-            synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization());
 
             if (m_imagekeySchedule.has_elements())
             {
@@ -805,7 +805,7 @@ namespace user
 ////
 ////         i32 iImage = I32_MINIMUM;
 //
-//      if (string_begins_ci(getfileimage.m_imagekey.m_strPath, "uifs:"))
+//      if (case_insensitive_string_begins(getfileimage.m_imagekey.m_strPath, "uifs:"))
 //      {
 //
 //         auto pcontext = m_pcontext;
@@ -831,7 +831,7 @@ namespace user
 //         return;
 //
 //      }
-//      else if (string_begins_ci(getfileimage.m_imagekey.m_strPath, "fs:"))
+//      else if (case_insensitive_string_begins(getfileimage.m_imagekey.m_strPath, "fs:"))
 //      {
 //
 //         auto pcontext = m_pcontext;
@@ -857,7 +857,7 @@ namespace user
 //         return;
 //
 //      }
-//      else if (string_begins_ci(getfileimage.m_imagekey.m_strPath, "ftp:"))
+//      else if (case_insensitive_string_begins(getfileimage.m_imagekey.m_strPath, "ftp:"))
 //      {
 //
 //         auto pcontext = m_pcontext;
@@ -884,7 +884,7 @@ namespace user
 //
 //      }
 //
-//      if (string_ends_ci(getfileimage.m_imagekey.m_strPath, ".aura"))
+//      if (case_insensitive_string_ends(getfileimage.m_imagekey.m_strPath, ".aura"))
 //      {
 //
 //         auto pcontext = m_pcontext;
@@ -961,7 +961,7 @@ namespace user
 //
 //      string strExtension;
 //
-//      if (string_ends_ci(getfileimage.m_imagekey.m_strPath, ".sln"))
+//      if (case_insensitive_string_ends(getfileimage.m_imagekey.m_strPath, ".sln"))
 //      {
 //
 //         // informationf("test .sln");
@@ -1216,7 +1216,7 @@ namespace user
 
          stra.add_lines(str);
 
-         stra.filter_begins_ci("icon=");
+         stra.case_insensitive_filter_begins("icon=");
 
          if (stra.get_size() <= 0)
          {

@@ -175,9 +175,9 @@ namespace file
       listing & operator = (const listing & listing);
 
 
-      ::collection::index name_find_first_ci(const path & pcsz,::collection::index find = 0,::collection::index last = -1) const;
+      ::collection::index case_insensitive_name_find_first(const path & pcsz,::collection::index find = 0,::collection::index last = -1) const;
 
-      bool name_move_ci(const path & pcsz, ::collection::index iIndex);
+      bool case_insensitive_name_move(const path & pcsz, ::collection::index iIndex);
 
       bool preferred_name(const path & pcsz);
 
@@ -272,6 +272,6 @@ CLASS_DECL_ACME string normalize_wildcard_criteria(const ::string & strPattern);
 
 
 CLASS_DECL_ACME bool matches_wildcard_criteria(const string_array & straCriteria, const ::string & strValue);
-CLASS_DECL_ACME bool matches_wildcard_criteria_ci(const string_array & straCriteria, const ::string & strValue);
+CLASS_DECL_ACME bool case_insensitive_matches_wildcard_criteria(const string_array & straCriteria, const ::string & strValue);
 
 

@@ -7,7 +7,15 @@ struct transfer_t {};
 struct allocate_t {};
 struct function_t {};
 
+
 struct sequence_t {};
+
+
+template < ::collection::count t_iSize >
+struct sequence_size_t
+{
+   inline static const ::collection::count sequence_size = t_iSize;
+};
 
 
 struct pointer_type_t{};

@@ -99,9 +99,9 @@ namespace geometry2d
       virtual void SetElements(float* fa);
 
 
-      void transform(point_i32& point);
+      void transform(sequence2_i32& point);
 
-      void transform(point_f64& point);
+      void transform(sequence2_f64& point);
 
    };
 

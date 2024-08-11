@@ -169,31 +169,31 @@ namespace user
    }
 
 
-   point_f64 picture::_transform(const point_f64 & pointParam) const
-   {
-
-      point_f64 point(pointParam);
-
-      _transform_point(point);
-
-      return point;
-
-   }
-
-
-   point_f64 picture::_transform_drawing(const point_f64 & pointParam) const
-   {
-
-      point_f64 point(pointParam);
-
-      _transform_point_drawing(point);
-
-      return point;
-
-   }
+//   point_f64 picture::_transform(const point_f64 & pointParam) const
+//   {
+//
+//      point_f64 point(pointParam);
+//
+//      _transform_point(point);
+//
+//      return point;
+//
+//   }
 
 
-   void picture::_transform_point(point_f64 & point) const
+//   point_f64 picture::_transform_drawing(const point_f64 & pointParam) const
+//   {
+//
+//      point_f64 point(pointParam);
+//
+//      _transform_point_drawing(point);
+//
+//      return point;
+//
+//   }
+
+
+   void picture::_transform_sequence(sequence2_f64 & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -211,7 +211,7 @@ namespace user
 
       m.translate(m_ppictureimpl->m_rectangle.center());
 
-      m.transform(point);
+      m.transform(sequence);
 
    }
 

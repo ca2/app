@@ -632,48 +632,53 @@ inline RECTANGLE & subtract(RECTANGLE & rectangle, const RECTANGLE1 & rectangle1
 //inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, const POINT & point) { return subtract(rectangle, point); }
 
 
-template < primitive_point POINT, primitive_number X, primitive_number Y >
-inline POINT & offset(POINT & point, X x, Y y)
+template < primitive_sequence2 SEQUENCE, primitive_number X, primitive_number Y >
+inline SEQUENCE & offset(SEQUENCE & sequence, X x, Y y)
 {
 
-   point.x() = (const decay<decltype(point.x()) & >)(point.x() + x);
-   point.y() = (const decay<decltype(point.y()) & >)(point.y() + y);
+   sequence.a() = (const decay<decltype(sequence.a()) & >)(sequence.a() + x);
+   sequence.b() = (const decay<decltype(sequence.b()) & >)(sequence.b() + y);
 
-   return point;
+   return sequence;
 
 }
 
 
-template < primitive_point POINT, primitive_point POINT2 >
-inline POINT & offset(POINT & point, const POINT2 & point2)
+template < primitive_sequence2 SEQUENCEA, primitive_sequence SEQUENCEB >
+inline SEQUENCEA & offset(SEQUENCEA & sequencea, const SEQUENCEB & sequenceb)
 {
 
-   return offset(point, point2.x(), point2.y());
+   return offset(sequencea, sequenceb.a(), sequenceb.b());
 
 }
 
 
-template < primitive_point POINT, primitive_point POINT2 >
-inline POINT & add(POINT & point, const POINT2 & point2) { return offset(point, point2); }
-
-
-template < primitive_point POINT_TYPE, typename X, typename Y >
-inline POINT_TYPE & subtract(POINT_TYPE & point, X x, Y y)
+template < primitive_sequence2 SEQUENCEA, primitive_sequence SEQUENCEB >
+inline SEQUENCEA & add(SEQUENCEA & sequencea, const SEQUENCEB & sequenceb)
 {
 
-   point.x() = (const decay<decltype(point.x())>&)(point.x() - x);
-   point.y() = (const decay<decltype(point.y())>&)(point.y() - y);
-
-   return point;
+   return offset(sequencea, sequenceb);
 
 }
 
 
-template < primitive_point POINT_TYPE, primitive_point POINT_TYPE2 >
-inline POINT_TYPE & subtract(POINT_TYPE & point, const POINT_TYPE2 & point2)
+template < primitive_sequence2 SEQUENCE, typename X, typename Y >
+inline SEQUENCE & subtract(SEQUENCE & sequence, X x, Y y)
 {
 
-   return subtract(point, point2.x(), point2.y());
+   sequence.a() = (const decay<decltype(sequence.a())>&)(sequence.a() - x);
+   sequence.b() = (const decay<decltype(sequence.b())>&)(sequence.b() - y);
+
+   return sequence;
+
+}
+
+
+template < primitive_sequence2 SEQUENCEA, primitive_sequence2 SEQUENCEB >
+inline SEQUENCEA & subtract(SEQUENCEA & sequence, const SEQUENCEB & sequenceb)
+{
+
+   return subtract(sequence, sequenceb.x(), sequenceb.y());
 
 }
 

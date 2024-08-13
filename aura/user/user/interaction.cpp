@@ -6805,7 +6805,7 @@ namespace user
                      else if (strType.case_insensitive_contains("app_core_store::impact"))
                      {
                         
-                        information() << "app_core_store::impact";
+                        debug() << "app_core_store::impact";
                         
                      }
                      else if (strType.case_insensitive_contains("main_window"))
@@ -12140,10 +12140,10 @@ namespace user
    //   }
 
 
-   void interaction::viewport_client_to_screen(::point_i32 & point)
+   void interaction::viewport_client_to_screen(::sequence2_i32 & sequence)
    {
 
-      m_pprimitiveimpl->viewport_client_to_screen(point);
+      m_pprimitiveimpl->viewport_client_to_screen(sequence);
 
    }
 
@@ -12156,7 +12156,7 @@ namespace user
    }
 
 
-   void interaction::viewport_screen_to_client(::point_i32 & point)
+   void interaction::viewport_screen_to_client(::sequence2_i32 & sequence)
    {
 
       if (m_pprimitiveimpl.is_null())
@@ -12166,7 +12166,7 @@ namespace user
 
       }
 
-      m_pprimitiveimpl->viewport_screen_to_client(point);
+      m_pprimitiveimpl->viewport_screen_to_client(sequence);
 
    }
 
@@ -12174,9 +12174,9 @@ namespace user
    void interaction::viewport_client_to_screen(::rectangle_i32 & rectangle)
    {
 
-      viewport_client_to_screen((::point_i32 &)rectangle.left());
+      viewport_client_to_screen(rectangle.top_left());
 
-      viewport_client_to_screen((::point_i32 &)rectangle.right());
+      viewport_client_to_screen(rectangle.bottom_right());
 
    }
 
@@ -12184,9 +12184,9 @@ namespace user
    void interaction::viewport_screen_to_client(::rectangle_i32 & rectangle)
    {
 
-      viewport_screen_to_client((::point_i32 &)rectangle.left());
+      viewport_screen_to_client(rectangle.top_left());
 
-      viewport_screen_to_client((::point_i32 &)rectangle.right());
+      viewport_screen_to_client(rectangle.bottom_right());
 
    }
 

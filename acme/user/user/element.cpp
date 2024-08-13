@@ -1939,7 +1939,7 @@ namespace user
    }
 
 
-   void element::viewport_client_to_screen(::point_i32 & point)
+   void element::viewport_client_to_screen(::sequence2_i32 & sequence)
    {
 
       throw ::interface_only();
@@ -1947,7 +1947,7 @@ namespace user
    }
 
 
-   void element::viewport_screen_to_client(::point_i32 & point)
+   void element::viewport_screen_to_client(::sequence2_i32 & sequence)
    {
 
       throw ::interface_only();

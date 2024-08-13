@@ -81,7 +81,7 @@ namespace experience_nanoui
    }
 
 
-   ::experience::frame * experience::frame_experience(const ::string & strFrameSchema)
+   ::pointer < ::experience::frame > experience::frame_experience(const ::string & strFrameSchema)
    {
 
       string strSchema(strFrameSchema);
@@ -89,43 +89,43 @@ namespace experience_nanoui
       if (strSchema == "001")
       {
 
-         return __new< ::experience_nanoui::frame_001 >();
+         return __create_new< ::experience_nanoui::frame_001 >();
 
       }
       else if (strSchema == "002")
       {
 
-         return __new< ::experience_nanoui::frame_002 >();
+         return __create_new< ::experience_nanoui::frame_002 >();
 
       }
       else if (strSchema == "005")
       {
 
-         return __new< ::experience_nanoui::frame_005 >();
+         return __create_new< ::experience_nanoui::frame_005 >();
 
       }
       else if (strSchema == "008")
       {
 
-         return __new< ::experience_nanoui::frame_008 >();
+         return __create_new< ::experience_nanoui::frame_008 >();
 
       }
       else if (strSchema == "011")
       {
 
-         return __new< ::experience_nanoui::frame_011 >();
+         return __create_new< ::experience_nanoui::frame_011 >();
 
       }
       else if (strSchema == "013")
       {
 
-         return __new< ::experience_nanoui::frame_013 >();
+         return __create_new< ::experience_nanoui::frame_013 >();
 
       }
       else if (strSchema == "Minimal001")
       {
 
-         return __new< ::experience_nanoui::frame_Minimal001 >();
+         return __create_new< ::experience_nanoui::frame_Minimal001 >();
 
       }
 

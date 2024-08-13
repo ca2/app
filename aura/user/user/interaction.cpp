@@ -6805,7 +6805,7 @@ namespace user
                      else if (strType.case_insensitive_contains("app_core_store::impact"))
                      {
                         
-                        information() << "app_core_store::impact";
+                        debug() << "app_core_store::impact";
                         
                      }
                      else if (strType.case_insensitive_contains("main_window"))

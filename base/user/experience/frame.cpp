@@ -1153,6 +1153,13 @@ namespace experience
 
             m_pcontrolbox->m_pframewindow = m_pframewindow;
 
+            if(::is_set(m_pcontrolbox->m_pframewindow))
+            {
+
+               print_line("oh");
+
+            }
+
             auto pframewindow = m_pframewindow;
 
             m_pcontrolbox->create_child(pframewindow);

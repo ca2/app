@@ -1,5 +1,6 @@
 #include "framework.h"
 
+#include <string.h>
 #include <wchar.h>
 
 CLASS_DECL_ACME ::ansi_character * ansi_dup(const ::ansi_character * psz) ;

@@ -1190,4 +1190,16 @@ public:
 };
 
 
+CLASS_DECL_ACME ::trace_statement debug();
+CLASS_DECL_ACME ::trace_statement information();
+CLASS_DECL_ACME ::trace_statement warning();
+CLASS_DECL_ACME ::trace_statement error();
+CLASS_DECL_ACME ::trace_statement fatal();
+
+
+CLASS_DECL_ACME void debugf(const ::ansi_character* pszFormat, ...);
+CLASS_DECL_ACME void informationf(const ::ansi_character* pszFormat, ...);
+CLASS_DECL_ACME void warningf(const ::ansi_character* pszFormat, ...);
+CLASS_DECL_ACME void errorf(const ::ansi_character* pszFormat, ...);
+CLASS_DECL_ACME void fatalf(const ::ansi_character* pszFormat, ...);
 

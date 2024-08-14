@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "geoip.h"
 #include <stdio.h>
-
+#include <string.h>
 
 static
 const i32 FULL_RECORD_LENGTH = 50;

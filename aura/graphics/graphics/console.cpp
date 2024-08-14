@@ -271,15 +271,7 @@ namespace graphics
 
       auto data = (::u8 *)p;
 
-#ifdef WINDOWS
-
-      string str((const char *)data, minimum(strnlen_s((const char *)data, (size_t)s), s));
-
-#else
-
       string str((const char *)data, minimum(ansi_nlen((const char *)data, (size_t)s), s));
-
-#endif
 
       write(str);
 

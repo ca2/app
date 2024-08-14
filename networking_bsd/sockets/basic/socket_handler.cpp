@@ -35,7 +35,7 @@ namespace sockets_bsd
 {
 
 
-   //::interlocked_count g_interlockedcountSocketHandler;
+   ::interlocked_count g_interlockedcountSocketHandler;
 
 
    //socket_handler::socket_handler(::particle * pparticle, ::apex::log *plogger) :
@@ -71,9 +71,9 @@ namespace sockets_bsd
       //m_countW = 0;
       //m_countE = 0;
 
-      //g_interlockedcountSocketHandler++;
+      g_interlockedcountSocketHandler++;
 
-      //::information() << "socket_handler allocated count = " << (::i64) g_interlockedcountSocketHandler;
+      ::informationf("%s currently allocated count = %lld", typeid(*this).name(), g_interlockedcountSocketHandler.operator long long());
 
    }
 
@@ -83,7 +83,7 @@ namespace sockets_bsd
 
       cleanup_handler();
 
-      //g_interlockedcountSocketHandler--;
+      g_interlockedcountSocketHandler--;
 
    }
 

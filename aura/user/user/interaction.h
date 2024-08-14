@@ -1726,6 +1726,10 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_parent_left_button_up);
       DECLARE_MESSAGE_HANDLER(on_message_parent_mouse_move);
 
+      
+      virtual void on_message_left_button_down_handle_keyboard_focus(::message::message * pmessage);
+      
+      
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
 
@@ -1751,6 +1755,9 @@ namespace user
       bool drag_hover(::item * pitem) override;
       void drag_release_capture() override;
       void drag_set_cursor(::item * pitem) override;
+
+      
+      virtual void set_text_and_selection(const ::scoped_string & scopedstr, strsize iSelStart, strsize iSelEnd, const ::action_context & actioncontext);
 
       //virtual void on_size_change_request(const ::rectangle_i32 & rectanglePrevious);
 
@@ -1926,8 +1933,8 @@ namespace user
       virtual void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual void viewport_screen_to_client(::point_i32 & point) override;
-      virtual void viewport_client_to_screen(::point_i32 & point) override;
+      virtual void viewport_screen_to_client(::sequence2_i32 & sequence) override;
+      virtual void viewport_client_to_screen(::sequence2_i32 & sequence) override;
       virtual void viewport_client_to_screen(::rectangle_i32 & rect) override;
       virtual void viewport_screen_to_client(::rectangle_i32 & rect) override;
 
@@ -2383,6 +2390,8 @@ namespace user
       virtual void defer_setup_default_bottom_right_resize_user_item();
 
       virtual void defer_setup_default_client_area_user_item();
+      
+      virtual void setup_default_client_area_user_item();
 
 ///      virtual ::item_pointer on_default_full_client_area_hit_test(const ::point_i32 & point, e_zorder ezorder);
 
@@ -2507,7 +2516,7 @@ namespace user
 
 
 
-      //virtual void post_procedure(const ::procedure & procedure) override;
+      void post_procedure(const ::procedure & procedure) override;
       //virtual void fps_interest_post_procedure(const ::procedure & procedure);
 
 
@@ -2560,6 +2569,8 @@ namespace user
       virtual point_i32 screen_origin(enum_layout elayout = e_layout_design);
       virtual point_i32 host_origin(enum_layout elayout = e_layout_design);
 
+
+      virtual void set_opacity(double dOpacity);
 
       //::item_pointer get_child_as_item(::collection::index iIndex) override;
       //::collection::count get_child_as_item_count() override;

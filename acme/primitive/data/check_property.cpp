@@ -14,7 +14,7 @@ namespace data
 
 
    check_property::check_property(const ::data::property & property) :
-      property(property)
+      ::data::property(property)
    {
 
 

@@ -16,7 +16,10 @@ namespace macos
    {
    public:
       
-      ::atom do_modal(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails = {}) override;
+      //::atom do_modal(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails = {}) override;
+      
+      ::payload do_synchronously(const class time & timeWait) override;
+
       
    };
 

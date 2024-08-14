@@ -447,7 +447,7 @@ namespace gpu
 
       stra.add_lines(strFragment);
 
-      auto iFind = stra.find_first_begins_ci("#version ");
+      auto iFind = stra.case_insensitive_find_first_begins("#version ");
 
       if (found(iFind))
       {

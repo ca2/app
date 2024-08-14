@@ -395,6 +395,10 @@ namespace aqua
 
       pfactory = factory("audio_mixer", "mmsystem");
 
+#elif defined(WINDOWS_DESKTOP)
+
+      pfactory = factory("audio_mixer", "macos");
+
 #elif defined(LINUX)
 
       pfactory = factory("audio_mixer", "alsa");

@@ -245,28 +245,28 @@ namespace nano
 
       void* plibrary = nullptr;
 
-      if (ansi_ends_ci(strPath, ".ilk"))
+      if (case_insensitive_ansi_ends(strPath, ".ilk"))
       {
 
          return nullptr;
 
       }
 
-      if (ansi_ends_ci(strPath, ".pdb"))
+      if (case_insensitive_ansi_ends(strPath, ".pdb"))
       {
 
          return nullptr;
 
       }
 
-      if (ansi_ends_ci(strPath, ".lib"))
+      if (case_insensitive_ansi_ends(strPath, ".lib"))
       {
 
          return nullptr;
 
       }
 
-      if (ansi_ends_ci(strPath, ".exp"))
+      if (case_insensitive_ansi_ends(strPath, ".exp"))
       {
 
          return nullptr;

@@ -29,6 +29,8 @@ list(APPEND library_source
         platform/session.h
         platform/system.cpp
         platform/system.h
+   user/user/user.cpp
+   user/user/user.h
         _.cpp
         _.h
         _defer.h

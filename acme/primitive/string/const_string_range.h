@@ -1735,7 +1735,7 @@ public:
 
    ///========================================================
    /// Name   : _tcsenicmp
-   /// Desc   : similar with ansi_count_compare_ci with escape process
+   /// Desc   : similar with case_insensitive_ansi_count_compare with escape process
    /// Param  : escape - will be escape character
    /// Return :
    ///--------------------------------------------------------

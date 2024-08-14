@@ -11,6 +11,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "acme/handler/topic.h"
+#include "acme/platform/node.h"
 #include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -410,10 +411,10 @@ namespace user
       //}
 
 
-      void edit::_001GetLayoutText(string & str)
-      {
+      //void edit::_001GetLayoutText(string & str)
+      //{
 
-      }
+      //}
 
 
       void edit::do_layout(::draw2d::graphics_pointer & pgraphics)
@@ -421,7 +422,7 @@ namespace user
 
          //m_rectangle = rectangle;
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
@@ -886,7 +887,9 @@ namespace user
       void edit::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
+
+         pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          if (pgraphics->m_bPrinting)
          {
@@ -1039,9 +1042,13 @@ namespace user
                   if (iBoxPosBeg <= get_sel_end() && get_sel_beg() <= iBoxPosEnd)
                   {
 
-                     iBoxPosBeg = maximum(iBoxPosBeg, get_sel_beg());
+                     auto iSelBeg = get_sel_beg();
 
-                     iBoxPosEnd = minimum(iBoxPosEnd, get_sel_end());
+                     auto iSelEnd = get_sel_end();
+
+                     iBoxPosBeg = maximum(iBoxPosBeg, iSelBeg);
+
+                     iBoxPosEnd = minimum(iBoxPosEnd, iSelEnd);
 
                      ::collection::index iBeg = pline->predicate_find_first([&](auto & pbox)
                      {
@@ -1212,7 +1219,7 @@ namespace user
                   pbox->m_rectangleBox.top() + 1,
                   r + 0.5,
                   pbox->m_rectangleBox.bottom() - dDescent),
-                  argb(255, 0, 0, 0));
+                  node()->dark_mode()? argb(255, 255, 255, 255):argb(255, 0, 0, 0));
 
             }
 
@@ -1352,7 +1359,7 @@ namespace user
 
             point += rectangleWindow.top_left();
 
-            _rtransform_point(point);
+            _rtransform_sequence(point);
 
             point -= rectangleWindow.top_left();
 
@@ -1846,7 +1853,13 @@ namespace user
       strsize edit::get_sel_beg()
       {
 
-         return minimum(maximum(minimum_non_negative(m_iSelBeg, m_iSelEnd), 0), get_text_length());
+         auto length = _001GetLayoutTextLength();
+
+         auto begin = m_iSelBeg;
+
+         auto end = m_iSelEnd;
+
+         return minimum(maximum(minimum_non_negative(begin, end), 0), length);
 
       }
 
@@ -1854,7 +1867,7 @@ namespace user
       strsize edit::get_sel_end()
       {
 
-         return minimum(maximum(maximum(m_iSelBeg, m_iSelEnd), 0), get_text_length());
+         return minimum(maximum(maximum(m_iSelBeg, m_iSelEnd), 0), _001GetLayoutTextLength());
 
       }
 
@@ -1864,7 +1877,7 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         synchronous_lock synchronouslock(prichtextdata->synchronization());
+         _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
          ::collection::index iSelBeg = get_sel_beg();
 
@@ -1880,7 +1893,7 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         synchronous_lock synchronouslock(prichtextdata->synchronization());
+         _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
          update_span_cache(prichtextdata->m_spana);
 
@@ -1945,9 +1958,9 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         auto i1 = get_sel_beg();
+         auto i1 = m_iSelBeg;
 
-         auto i2 = get_sel_end();
+         auto i2 = m_iSelEnd;
 
          auto iSelChar = prichtextdata->_001InsertText(i1, i2, str, pformat);
 
@@ -1961,7 +1974,7 @@ namespace user
       void edit::_001GetLayoutText(string & str) const
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          str = layout_text(*m_plinea);
 
@@ -1981,7 +1994,7 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         synchronous_lock synchronouslock(prichtextdata->synchronization());
+         _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
          if (iLine < 0)
          {
@@ -2017,7 +2030,9 @@ namespace user
 
          }
 
-         return minimum(plinea->element_at(iLine)->first()->m_iPosBeg + iColumn, iMax);
+         auto iPosBeg = plinea->element_at(iLine)->first()->m_iPosBeg;
+
+         return minimum(iPosBeg + iColumn, iMax);
 
       }
 
@@ -2027,7 +2042,7 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         synchronous_lock synchronouslock(prichtextdata->synchronization());
+         _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
          //double xLast = 0.0;
 
@@ -2129,7 +2144,7 @@ namespace user
          if (point.y() >= rBox.bottom())
          {
 
-            return get_text_length();
+            return _001GetLayoutTextLength();
 
          }
 
@@ -2150,7 +2165,7 @@ namespace user
 
          auto prichtextdata = get_rich_text_data();
 
-         synchronous_lock synchronouslock(prichtextdata->synchronization());
+         _synchronous_lock synchronouslock(prichtextdata->synchronization());
 
          auto plinea = m_plinea;
 
@@ -2223,7 +2238,7 @@ namespace user
       void edit::internal_update_sel_char()
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          //m_iSelBeg = sel_char(*plinea, m_iSelBeg3, m_ebiasBeg);
 
@@ -2309,7 +2324,7 @@ namespace user
       strsize edit::_001GetLayoutTextLength() const
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          auto plinea = m_plinea;
 
@@ -2328,13 +2343,13 @@ namespace user
       void edit::draw_text(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangleBox)
       {
 
-         synchronous_lock synchronouslock(pgraphics->synchronization());
+         _synchronous_lock synchronouslock(pgraphics->synchronization());
 
-         synchronous_lock sl1(this->synchronization());
+         _synchronous_lock sl1(this->synchronization());
 
-         //synchronous_lock sl2(m_plinea->synchronization());
+         //_synchronous_lock sl2(m_plinea->synchronization());
 
-         //synchronous_lock sl3(m_pformathost->synchronization());
+         //_synchronous_lock sl3(m_pformathost->synchronization());
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

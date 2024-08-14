@@ -12,6 +12,8 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
 #include "acme/filesystem/filesystem/folder_dialog.h"
 #include "acme/handler/request.h"
@@ -54,6 +56,14 @@ namespace acme
    {
 
       //m_bUserDarkMode = false;
+
+      m_bDropboxCalculated = false;
+
+      m_bDropbox = false;
+
+      m_bOneDriveCalculated = false;
+
+      m_bOneDrive = false;
 
       m_bCallStackInitialized = false;
       m_bUpdateCallStack = false;
@@ -3000,7 +3010,19 @@ return false;
       else if(scopedstrComponentName == "nano_http")
       {
 
-#ifdef LINUX
+#if defined(FREEBSD)
+
+#if defined(CUBE)
+
+         return "command_line";
+
+#else
+
+         return "libcurl";
+
+#endif
+
+#elif defined(LINUX)
        
          return "libcurl";
 
@@ -3229,6 +3251,124 @@ bool node::_is_smart_git_installed()
 
 
 #endif
+
+
+   bool node::_is_google_drive_installed()
+   {
+
+      return false;
+
+   }
+
+
+   bool node::_is_dropbox_installed()
+   {
+
+      if (!m_bDropboxCalculated)
+      {
+
+         calculate_dropbox_installed();
+
+      }
+
+      return m_bDropbox;
+
+   }
+
+
+   void node::calculate_dropbox_installed()
+   {
+
+      m_bDropbox = false;
+
+      m_pathDropbox.empty();
+
+      m_bDropboxCalculated = true;
+
+      ::file::path pathNetworkPayload = file()->dropbox_info_network_payload();
+
+      if (!file()->exists(pathNetworkPayload))
+      {
+
+         if (application()->is_desktop_system())
+         {
+
+            auto pathHome = dir()->home();
+
+            auto pathTxt = pathHome / "dropbox.txt";
+
+            if (file()->exists(pathTxt))
+            {
+
+               string strPath = file()->safe_get_string(pathTxt);
+
+               strPath.trim();
+
+               if (strPath.has_char() && dir()->is(strPath))
+               {
+
+                  m_pathDropbox = strPath;
+
+                  m_bDropbox = true;
+
+               }
+
+            }
+
+         }
+         else
+         {
+
+            m_pathDropbox.empty();
+
+         }
+
+      }
+      else
+      {
+
+         string strNetworkPayload = file()->as_string(pathNetworkPayload);
+
+         ::property_set set;
+
+         set.parse_network_payload(strNetworkPayload);
+
+         m_pathDropbox = set["personal"]["path"];
+
+         if (dir()->is(m_pathDropbox))
+         {
+
+            m_bDropbox = true;
+
+         }
+
+      }
+
+      m_bDropboxCalculated = true;
+
+   }
+
+
+   bool node::_is_onedrive_installed()
+   {
+
+      if (!m_bOneDriveCalculated)
+      {
+
+         calculate_onedrive_installed();
+
+      }
+
+      return m_bOneDrive;
+
+   }
+
+
+   void node::calculate_onedrive_installed()
+   {
+
+
+   }
 
 
    bool node::_is_google_chrome_installed()
@@ -3968,7 +4108,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 //
 //         auto stra = file()->lines(path);
 //
-//         stra.filter_begins_ci("exec=");
+//         stra.case_insensitive_filter_begins("exec=");
 //
 //         if(stra.get_size() <= 0)
 //         {

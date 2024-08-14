@@ -7365,6 +7365,14 @@ namespace user
             }
 
          }
+//         else if(m_puserinteractionKeyboardFocus)
+//         {
+//
+//            synchronouslock.unlock();
+//
+//            m_puserinteractionKeyboardFocus->on_set_keyboard_focus();
+//
+//         }
 
       }
       //      else
@@ -9724,6 +9732,21 @@ namespace user
       auto pwindow = pusermessage->window();
 
       return pwindow ? pwindow->m_puserinteractionimpl : nullptr;
+
+   }
+
+
+   void interaction_impl::set_opacity(double dOpacity)
+   {
+
+      if (::is_null(m_pwindow))
+      {
+
+         return;
+
+      }
+
+      m_pwindow->set_opacity(dOpacity);
 
    }
 

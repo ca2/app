@@ -491,26 +491,26 @@ namespace user
    }
 
 
-   void primitive_impl::viewport_client_to_screen(::point_i32 & point)
+   void primitive_impl::viewport_client_to_screen(::sequence2_i32 & sequence)
    {
 
       if (m_puserinteraction)
       {
 
-         ::add(point, m_puserinteraction->const_layout().design().origin());
+         ::add(sequence, m_puserinteraction->const_layout().design().origin());
 
       }
 
    }
 
 
-   void primitive_impl::viewport_screen_to_client(::point_i32 & point)
+   void primitive_impl::viewport_screen_to_client(::sequence2_i32 & sequence)
    {
 
       if (m_puserinteraction)
       {
 
-         ::subtract(point, m_puserinteraction->const_layout().design().origin());
+         ::subtract(sequence, m_puserinteraction->const_layout().design().origin());
 
       }
 
@@ -520,8 +520,9 @@ namespace user
    void primitive_impl::viewport_client_to_screen(::rectangle_i32 & rectangle)
    {
 
-      viewport_client_to_screen((::point_i32 &)rectangle.left());
-      viewport_client_to_screen((::point_i32 &)rectangle.right());
+      viewport_client_to_screen(rectangle.top_left());
+
+      viewport_client_to_screen(rectangle.bottom_right());
 
    }
 
@@ -3118,6 +3119,13 @@ namespace user
       }
 
       m_puserinteraction->user_post(procedure);
+
+   }
+
+
+   void primitive_impl::set_opacity(double dOpacity)
+   {
+
 
    }
 

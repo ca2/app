@@ -335,6 +335,45 @@
     <Filter Include="Header Files\operating_system\windows_common\nano\idn">
       <UniqueIdentifier>{1ad9ea33-74e0-4fde-b2d6-bc4268a1154d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\primitive\data">
+      <UniqueIdentifier>{81039af6-ed51-4728-b61a-cd2fefe55235}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nano\account">
+      <UniqueIdentifier>{c5b74583-0f9f-4064-973a-3b155b28bd07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nano\idn">
+      <UniqueIdentifier>{5d5cbd97-5a1b-4835-b654-e55f54137bb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano\account">
+      <UniqueIdentifier>{ec485791-ca06-48ac-b0ba-2a835acaa5a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano\idn">
+      <UniqueIdentifier>{afc8ed76-63e5-4a6f-8651-eda00539046c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nano\archive">
+      <UniqueIdentifier>{c6d1974f-6c18-4fe7-bf1b-875bbb717960}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano\archive">
+      <UniqueIdentifier>{d9e80d5e-5d2e-4dda-98f8-97772f47b537}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nano\compress">
+      <UniqueIdentifier>{f1930c67-3ed1-4cea-9619-7cfa463ef143}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nano\shell">
+      <UniqueIdentifier>{6dc55429-c06d-4328-8b28-9778cc6c8aa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano\shell">
+      <UniqueIdentifier>{6356ac06-dd80-4080-bd78-ab11c9c82d2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano\compress">
+      <UniqueIdentifier>{b2dbd7c4-361c-465c-9f1c-ae917bba6d36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano\dynamic_library">
+      <UniqueIdentifier>{6cc33873-f2f8-4e43-916c-4d1c39860005}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nano\dynamic_library">
+      <UniqueIdentifier>{db6c6f60-3c10-4757-9900-a102e3f0c527}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -818,9 +857,6 @@
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\match.cpp">
-      <Filter>Source Files\primitive\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\primitive\linked_property.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\interlocked_long.cpp">
@@ -1725,6 +1761,81 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\nano\idn\idn.cpp">
       <Filter>Source Files\operating_system\windows_common\nano\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\data\check_property.cpp">
+      <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\data\property.cpp">
+      <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\data\property_container.cpp">
+      <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\data\property_listener.cpp">
+      <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\data\text_property.cpp">
+      <Filter>Source Files\primitive\data</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\check_property.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\control.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\keyboard.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\property.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\text_property.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\account\account.cpp">
+      <Filter>Source Files\nano\account</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\account\id.cpp">
+      <Filter>Source Files\nano\account</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\account\user.cpp">
+      <Filter>Source Files\nano\account</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\idn\idn.cpp">
+      <Filter>Source Files\nano\idn</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\archive\archive.cpp">
+      <Filter>Source Files\nano\archive</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\compress\compress.cpp">
+      <Filter>Source Files\nano\compress</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\shell\shell.cpp">
+      <Filter>Source Files\nano\shell</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\dynamic_library\dynamic_library.cpp">
+      <Filter>Source Files\nano\dynamic_library</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\factory_function.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="filesystem\filesystem\file_context_interface.cpp">
+      <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\system_factory.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\debug.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\universal_windows\nano\user\_user.cpp">
+      <Filter>Source Files\operating_system\universal_windows\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\console_message_box.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\message_box.cpp">
+      <Filter>Source Files\operating_system</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -4130,6 +4241,153 @@
     </ClInclude>
     <ClInclude Include="operating_system\windows_common\nano\idn\_.h">
       <Filter>Header Files\operating_system\windows_common\nano\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\_.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\_impl.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\_tree.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\check_property.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\container.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\data.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\item.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\listener.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\node.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\property.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\property_container.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\property_listener.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\signal.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\simple_item.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\text_property.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\tree.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\data\tree_item.h">
+      <Filter>Header Files\primitive\data</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_string.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_text_stream.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\check_property.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\content.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\control.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\controller.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\drag_client.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\e_window_flag.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\item.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\keyboard.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\property.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\text_property.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\tool.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\tool_item.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\idn\idn.h">
+      <Filter>Header Files\nano\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\idn\_.h">
+      <Filter>Header Files\nano\idn</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\account\user.h">
+      <Filter>Header Files\nano\account</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\account\id.h">
+      <Filter>Header Files\nano\account</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\account\account.h">
+      <Filter>Header Files\nano\account</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\account\_.h">
+      <Filter>Header Files\nano\account</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\archive\archive.h">
+      <Filter>Header Files\nano\archive</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\archive\_.h">
+      <Filter>Header Files\nano\archive</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\shell\shell.h">
+      <Filter>Header Files\nano\shell</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\shell\_.h">
+      <Filter>Header Files\nano\shell</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\compress\compress.h">
+      <Filter>Header Files\nano\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\compress\_.h">
+      <Filter>Header Files\nano\compress</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\dynamic_library\dynamic_library.h">
+      <Filter>Header Files\nano\dynamic_library</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\dynamic_library\_.h">
+      <Filter>Header Files\nano\dynamic_library</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\factory_function.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filesystem\file_context_interface.h">
+      <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\system_factory.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\console_message_box.h">
+      <Filter>Header Files\operating_system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

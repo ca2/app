@@ -388,7 +388,7 @@
    bool os_context::resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory, string * pstrParams, ::user::primitive * puiMessageParentOptional)
    {
 
-      if(string_ends_ci(strSource, ".desktop"))
+      if(case_insensitive_string_ends(strSource, ".desktop"))
       {
 
          string str = pcontext->m_papexcontext->file()->as_string(strSource);
@@ -397,7 +397,7 @@
 
          stra.add_lines(str);
 
-         stra.filter_begins_ci("exec=");
+         stra.case_insensitive_filter_begins("exec=");
 
          if(stra.get_size() <= 0)
          {

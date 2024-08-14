@@ -649,6 +649,12 @@ namespace user
          }
 
       }
+      else if (pkey->m_ekey == ::user::e_key_return)
+      {
+
+
+
+      }
 
    }
 
@@ -1025,7 +1031,20 @@ namespace user
 
          auto itemCurrent = _001FindListText(str);
 
-         set_current_item(__allocate< ::item >(e_element_item, itemCurrent), actioncontext);
+         if (itemCurrent >= 0)
+         {
+
+            set_current_item(__allocate< ::item >(e_element_item, itemCurrent), actioncontext);
+
+         }
+         else if (m_bEdit)
+         {
+
+            main_content().m_pitemCurrent.release();
+
+            ::user::plain_edit::plain_edit_on_after_change_text(pgraphics, actioncontext);
+
+         }
 
       }
 

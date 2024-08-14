@@ -2509,8 +2509,31 @@ void particle::kick_idle()
 
 pointer < ::sequencer < ::conversation > > particle::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
 {
+   
+   ::nano::user::user * pnanouser = nullptr;
+   
+   try
+   {
+      
+      pnanouser = system()->nano()->user();
+      
+   }
+   catch (...)
+   {
+   
+      
+   }
+   
+   if(::is_set(pnanouser))
+   {
+    
+      return pnanouser->message_box(strMessage, strTitle, emessagebox, strDetails);
+      
+   }
+   
+   auto psequencer = message_box_sequencer(this, strMessage, strTitle, emessagebox, strDetails);
 
-   return system()->nano()->user()->message_box(strMessage, strTitle, emessagebox, strDetails);
+   return psequencer;
 
 }
 

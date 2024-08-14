@@ -133,7 +133,7 @@ public:
 
 
    void set_finish() override;
-   //void destroy() override;
+   void destroy() override;
 
    virtual void on_set_finish();
 

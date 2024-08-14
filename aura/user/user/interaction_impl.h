@@ -885,6 +885,11 @@ namespace user
 
       virtual void android_fill_plasma(const void * pixels, int width, int height, int stride, ::i64 time_ms);
 
+      void set_opacity(double dOpacity) override;
+
+
+
+
    };
 
 
@@ -930,7 +935,7 @@ namespace user
 
       }
 
-      
+
    };
 
 

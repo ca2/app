@@ -5,7 +5,7 @@
 
 
 CLASS_DECL_ACME ::payload ends_get(const ::scoped_string & scopedstrSuffix, const ::scoped_string & scopedstr);
-CLASS_DECL_ACME ::payload ends_get_ci(const ::scoped_string & scopedstrSuffix, const ::scoped_string & scopedstr);
+CLASS_DECL_ACME ::payload case_insensitive_ends_get(const ::scoped_string & scopedstrSuffix, const ::scoped_string & scopedstr);
 
 
 

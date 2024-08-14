@@ -63,7 +63,7 @@ namespace zip
 
       }
 
-      if(string_ends_ci(pszFileName,".zip"))
+      if(case_insensitive_string_ends(pszFileName,".zip"))
 
       {
 

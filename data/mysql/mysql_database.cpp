@@ -121,7 +121,7 @@ namespace mysql
 
 #ifdef WINDOWS
 
-      if (ansi_compare_ci(m_strHost, "localhost") == 0)
+      if (case_insensitive_ansi_compare(m_strHost, "localhost") == 0)
       {
 
          m_protocol = MYSQL_PROTOCOL_MEMORY;
@@ -155,7 +155,7 @@ namespace mysql
 
       }
 
-      mysql_query((MYSQL*)m_pmysql, "SET NAMES 'utf8mb4' COLLATE 'utf8_unicode_ci'");
+      mysql_query((MYSQL*)m_pmysql, "SET NAMES 'utf8mb4' COLLATE 'case_insensitive_utf8_unicode'");
 
       mysql_query((MYSQL*)m_pmysql, "SET CHARACTER SET 'utf8mb4'");
 

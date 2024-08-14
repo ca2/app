@@ -222,7 +222,7 @@ inline bool SpGetDefaultTokenFromCategoryIdAndLang(
 
    straAttributes.insert_at(0, "Language=" + strLang);
 
-   //auto pFind = straAttributes.find_first_begins_ci("voice=");
+   //auto pFind = straAttributes.case_insensitive_find_first_begins("voice=");
 
    //string strVoice;
 

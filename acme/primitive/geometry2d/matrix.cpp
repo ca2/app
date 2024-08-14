@@ -97,27 +97,29 @@ namespace geometry2d
 
    }
 
-   void matrix::transform(point_i32 & point)
+
+   void matrix::transform(sequence2_i32 & sequence)
    {
 
-      ::point_i32 p;
+      ::sequence2_i32 s;
 
-      p.x() = (::i32) (point.x() * a1 + point.y() * b1 + c1);
-      p.y() = (::i32) (point.x() * a2 + point.y() * b2 + c2);
+      s.a() = (::i32) (sequence.a() * a1 + sequence.b() * b1 + c1);
+      s.b() = (::i32) (sequence.a() * a2 + sequence.b() * b2 + c2);
 
-      point = p;
+      sequence = s;
 
    }
 
-   void matrix::transform(point_f64 & point)
+
+   void matrix::transform(sequence2_f64 & sequence)
    {
 
-      point_f64 p;
+      sequence2_f64 s;
 
-      p.x() = point.x() * a1 + point.y() * b1 + c1;
-      p.y() = point.x() * a2 + point.y() * b2 + c2;
+      s.a() = sequence.a() * a1 + sequence.b() * b1 + c1;
+      s.b() = sequence.a() * a2 + sequence.b() * b2 + c2;
 
-      point = p;
+      sequence = s;
 
    }
 

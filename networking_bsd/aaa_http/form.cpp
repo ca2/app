@@ -107,11 +107,11 @@ namespace http
                      ::parse pa(slask,";");
 
                      string h = pa.getword();
-                     if(!ansi_compare_ci(h,"Content-type:"))
+                     if(!case_insensitive_ansi_compare(h,"Content-type:"))
                      {
                         content-type = pa.getword();
                      }
-                     else if(!ansi_compare_ci(h,"Content-Disposition:"))
+                     else if(!case_insensitive_ansi_compare(h,"Content-Disposition:"))
                      {
 
                         h = pa.getword();

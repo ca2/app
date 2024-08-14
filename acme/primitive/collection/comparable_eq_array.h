@@ -61,7 +61,8 @@ public:
       return true;
    }
    
-   
+
+   using BASE_ARRAY::erase_first;
    using BASE_ARRAY::erase_last;
    ::collection::index erase_last(ARG_TYPE t);
    ::collection::index erase_first(ARG_TYPE t);

@@ -2628,8 +2628,8 @@ ch_else:
       for(i32 i = 0; i < stra.get_size(); i++)
       {
          string str = stra[i];
-         if(string_begins_ci(str, m_pmanager->m_strNetseedDsCa2Path/ "core/persistent")
-               && string_ends_ci(str, ".ds"))
+         if(case_insensitive_string_begins(str, m_pmanager->m_strNetseedDsCa2Path/ "core/persistent")
+               && case_insensitive_string_ends(str, ".ds"))
          {
             strBody += file()->as_string(str);
          }
@@ -2707,7 +2707,7 @@ ch_else:
    {
       string str(psz);
 
-      if(::str::case_insensitive_find("pstr_set", psz) && string_ends_ci(psz, ".txt"))
+      if(::str::case_insensitive_find("pstr_set", psz) && case_insensitive_string_ends(psz, ".txt"))
       {
 
          parse_pstr_set();
@@ -2910,7 +2910,7 @@ ch_else:
       for(int i = 0; i < straFile.get_count(); i++)
       {
          string strFile = straFile[i];
-         if(::str::case_insensitive_find(".svn",strFile) >= 0 || !string_ends_ci(strFile,".txt"))
+         if(::str::case_insensitive_find(".svn",strFile) >= 0 || !case_insensitive_string_ends(strFile,".txt"))
             continue;
          strFile = file()->as_string(strFile);
          string_array straLine;

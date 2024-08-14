@@ -57,10 +57,10 @@ bool ms_download_dup(const ::scoped_string & scopedstrUrl, const ::scoped_string
    if(bUrlEncode)
    {
       strUrl = ::url::encode(strUrl);
-      strUrl.replace_ci("%5C", "\\");
-      strUrl.replace_ci("\\", "/");
-      strUrl.replace_ci("%3A", ":");
-      strUrl.replace_ci("%2F", "/");
+      strUrl.case_insensitive_replace("%5C", "\\");
+      strUrl.case_insensitive_replace("\\", "/");
+      strUrl.case_insensitive_replace("%3A", ":");
+      strUrl.case_insensitive_replace("%2F", "/");
    }
    vsstring strHost;
    vsstring strReq;

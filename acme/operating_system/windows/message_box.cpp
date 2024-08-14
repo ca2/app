@@ -139,14 +139,15 @@ namespace windows
    {
    public:
 
-      ::atom do_modal(const ::scoped_string & scopedstrMessage,
-                                     const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox,
-                                     const ::scoped_string & scopedstrDetails) override
+      //::atom do_modal(const ::scoped_string & scopedstrMessage,
+      //                               const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox,
+      //                               const ::scoped_string & scopedstrDetails) override
+      ::payload do_synchronously(const class time& timeWait) override
       {
 
-         auto iType = message_box_to_windows_message_box(emessagebox);
-         ::wstring wstrMessage(scopedstrMessage);
-         ::wstring wstrTitle(scopedstrTitle);
+         auto iType = message_box_to_windows_message_box(m_emessagebox);
+         ::wstring wstrMessage(m_strMessage);
+         ::wstring wstrTitle(m_strTitle);
 
          auto iRet = ::MessageBoxW(nullptr, wstrMessage, wstrTitle, iType);
 

@@ -493,6 +493,7 @@
     <ClInclude Include="filesystem\file\set.h" />
     <ClInclude Include="filesystem\file\_.h" />
     <ClInclude Include="filesystem\fs\data.h" />
+    <ClInclude Include="filesystem\fs\folder_sync.h" />
     <ClInclude Include="filesystem\fs\fs.h" />
     <ClInclude Include="filesystem\fs\ifs.h" />
     <ClInclude Include="filesystem\fs\ifs_file.h" />
@@ -764,6 +765,7 @@
     <ClCompile Include="filesystem\file\html_file.cpp" />
     <ClCompile Include="filesystem\file\set.cpp" />
     <ClCompile Include="filesystem\fs\data.cpp" />
+    <ClCompile Include="filesystem\fs\folder_sync.cpp" />
     <ClCompile Include="filesystem\fs\fs.cpp" />
     <ClCompile Include="filesystem\fs\ifs.cpp" />
     <ClCompile Include="filesystem\fs\ifs_file.cpp" />
@@ -906,6 +908,7 @@
     <ClCompile Include="progress\listener.cpp" />
     <ClCompile Include="progress\progress.cpp" />
     <ClCompile Include="progress\real.cpp" />
+    <ClCompile Include="user\menu\menu.cpp" />
     <ClCompile Include="user\menu\shared.cpp" />
     <ClCompile Include="user\user\language.cpp" />
     <ClCompile Include="user\user\language_map.cpp" />

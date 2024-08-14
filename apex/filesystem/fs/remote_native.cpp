@@ -205,7 +205,7 @@ namespace fs
 
       }
 
-      if(ansi_compare_ci(path, "fs://") == 0)
+      if(case_insensitive_ansi_compare(path, "fs://") == 0)
       {
          
          return 1;

@@ -29,7 +29,7 @@ namespace windowing
 
       string strMessage(strMessageParam);
 
-      strMessage.replace_ci("<br>", " \n");
+      strMessage.case_insensitive_replace("<br>", " \n");
 
       m_stra.add_lines(strMessage);
 

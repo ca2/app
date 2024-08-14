@@ -173,11 +173,11 @@ public:
 //   }
 //
 //
-//   bool replace_prefix_ci(::string & str, const ::scoped_string & scopedstrPrefixReplacement, const ::scoped_string & scopedstrPrefix);
-//   inline bool begins_replace_ci(::string & str, const ::scoped_string & scopedstrPrefixReplacement, const ::scoped_string & scopedstrPrefix)
+//   bool case_insensitive_replace_prefix(::string & str, const ::scoped_string & scopedstrPrefixReplacement, const ::scoped_string & scopedstrPrefix);
+//   inline bool case_insensitive_begins_replace(::string & str, const ::scoped_string & scopedstrPrefixReplacement, const ::scoped_string & scopedstrPrefix)
 //   {
 //
-//      return replace_prefix_ci(str, scopedstrPrefixReplacement, scopedstrPrefix);
+//      return case_insensitive_replace_prefix(str, scopedstrPrefixReplacement, scopedstrPrefix);
 //
 //   }
 
@@ -305,7 +305,7 @@ public:
    static bool begins_ci_iws(const wstring & wstr, const wstring & wstrPrefix);
 
    //bool  while_begins_with_chars_eat(string & str, const ::scoped_string & scopedstrChars);
-   //bool  while_begins_with_chars_eat_ci(string & str, const ::scoped_string & scopedstrChars);
+   //bool  case_insensitive_while_begins_with_chars_eat(string & str, const ::scoped_string & scopedstrChars);
 
 
    // static inline const ::ansi_character * windows_bbqbunc(const ansi_string &);

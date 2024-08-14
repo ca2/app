@@ -206,7 +206,7 @@
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//void string_array_base < Type, RawType, t_etypeContainer >::get_quick_sort_ci(index_array & ia)
+//void string_array_base < Type, RawType, t_etypeContainer >::case_insensitive_get_quick_sort(index_array & ia)
 //{
 //   index_array stackLowerBound;
 //   index_array stackUpperBound;
@@ -299,7 +299,7 @@
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::collection::index string_array_base < Type, RawType, t_etypeContainer > ::suffix_find_first_ci(const Type& pcszTopic, ::collection::index iFind, ::collection::index iLast) const
+//::collection::index string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive_suffix_find_first(const Type& pcszTopic, ::collection::index iFind, ::collection::index iLast) const
 //{
 //
 //   if (this->prepare_first_last(iFind, iLast))
@@ -308,7 +308,7 @@
 //      for (; iFind <= iLast; iFind++)
 //      {
 //
-//         if (string_ends_ci(pcszTopic, this->element_at(iFind)))
+//         if (case_insensitive_string_ends(pcszTopic, this->element_at(iFind)))
 //         {
 //
 //            return iFind;
@@ -377,13 +377,13 @@
 //
 //
 //template < typename Type, typename RawType, ::enum_type t_etypeContainer >
-//::collection::index string_array_base < Type, RawType, t_etypeContainer > ::_find_first_suffixed_ci(const Type & strSuffix, ::collection::index iFind, ::collection::index iLast) const
+//::collection::index string_array_base < Type, RawType, t_etypeContainer > ::case_insensitive__find_first_suffixed(const Type & strSuffix, ::collection::index iFind, ::collection::index iLast) const
 //{
 //
 //   for (; iFind < iLast; iFind++)
 //   {
 //
-//      if (string_ends_ci(this->element_at(iFind), strSuffix))
+//      if (case_insensitive_string_ends(this->element_at(iFind), strSuffix))
 //      {
 //
 //         return iFind;

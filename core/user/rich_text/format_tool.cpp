@@ -586,16 +586,16 @@ namespace user
             else if (ptopic->m_atom == ::id_after_change_text)
             {
 
-               if (ptopic->user_interaction()->m_atom == "combo_size")
-               {
+               //if (ptopic->user_interaction()->m_atom == "combo_size")
+               //{
 
-                  m_eattribute |= ::user::rich_text::e_attribute_size;
+               //   m_eattribute |= ::user::rich_text::e_attribute_size;
 
-                  update_data(true);
+               //   update_data(true);
 
-                  ptopic->Ret();
+               //   ptopic->Ret();
 
-               }
+               //}
 
             }
             else if (ptopic->m_atom == ::id_enter_key)

@@ -195,11 +195,14 @@ namespace user
       bool                                m_bCalcLayoutHintNoTextChange;
       int                                 m_iInputConnectionBatch;
       bool                                m_bSetTextSelectionUpdatePending;
-      bool                                m_bLastSelectionWasAtEnd;
-      ::collection::index                             m_iLastSelectionBeginLine;
+      
+      //bool                              m_bLastSelectionWasAtEnd;
+      
+      ::collection::index                 m_iLastSelectionBeginLine;
       ::i32                               m_iLastSelectionBeginX;
-      ::collection::index                             m_iLastSelectionEndLine;
+      ::collection::index                 m_iLastSelectionEndLine;
       ::i32                               m_iLastSelectionEndX;
+      
       int                                 m_iTabWidth;
       bool                                m_bColorerTake5;
       ::collection::index                             m_iCurrentPageLineStart;
@@ -214,7 +217,7 @@ namespace user
 
       bool                                m_bPassword;
       bool                                m_bEnterKeyOnPaste;
-      bool                                m_bLMouseDown;
+      //bool                                m_bLMouseDown;
       //bool                                m_bLeftButtonDownIsSelectingAll;
       bool                                m_bNewFocusSelectAll;
       class ::time                        m_timeNewFocusSelectAll;
@@ -332,6 +335,9 @@ namespace user
 
       status < ::rectangle_f64 > get_margin(style * pstyle, enum_element eelement = ::e_element_none, ::user::enum_state estate = ::user::e_state_none) override;
   
+      
+      void on_message_left_button_down_handle_keyboard_focus(::message::message * pmessage) override;
+      
       
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
@@ -459,6 +465,7 @@ namespace user
       //void get_text_selection(strsize & iSelBeg, strsize & iSelEnd);
       //void set_text(const ::string & str, const ::action_context & actioncontext) override;
       void set_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext) override;
+      void set_text_and_selection(const ::scoped_string & scopedstr, strsize iSelStart, strsize iSelEnd, const ::action_context & actioncontext) override;
       //void set_selection_text(const ::string & psz, const ::action_context & actioncontext) override;
       void set_selection_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext);
       //void _001SetSelEnd(strsize iSelEnd, const ::action_context & actioncontext) override;

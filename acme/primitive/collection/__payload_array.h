@@ -48,7 +48,7 @@ public:
    string implode(const ::scoped_string & scopedstrGlue) const;
 
 
-   ::collection::index find_first_ci(const ::scoped_string & scopedstr, ::collection::index find = 0, ::collection::index last = -1) const;
+   ::collection::index case_insensitive_find_first(const ::scoped_string & scopedstr, ::collection::index find = 0, ::collection::index last = -1) const;
    ::collection::index find_first(const ::scoped_string & scopedstr, ::collection::index find = 0, ::collection::index last = -1) const;
    ::collection::index find_first(const ::payload & payload, ::collection::index find = 0, ::collection::index last = -1) const;
 
@@ -69,13 +69,13 @@ public:
    std::strong_ordering order(const ::payload_array & payloada) const;
    std::strong_ordering case_insensitive_order(const ::payload_array & payloada) const;
 
-   ::collection::count erase_first_ci(const ::scoped_string & str, ::collection::index find = 0, ::collection::index last = -1);
+   ::collection::count case_insensitive_erase_first(const ::scoped_string & str, ::collection::index find = 0, ::collection::index last = -1);
 
    ::collection::count erase_first(const ::scoped_string & str, ::collection::index find = 0, ::collection::index last = -1);
 
    ::collection::count erase_first(const ::payload & payload, ::collection::index find = 0, ::collection::index last = -1);
 
-   ::collection::count erase_ci(const ::scoped_string & str, ::collection::index find = 0, ::collection::index last = -1, ::collection::count countMin = 0, ::collection::count countMax = -1);
+   ::collection::count case_insensitive_erase(const ::scoped_string & str, ::collection::index find = 0, ::collection::index last = -1, ::collection::count countMin = 0, ::collection::count countMax = -1);
 
    ::collection::count erase(const ::scoped_string & str, ::collection::index find = 0, ::collection::index last = -1, ::collection::count countMin = 0, ::collection::count countMax = -1);
 

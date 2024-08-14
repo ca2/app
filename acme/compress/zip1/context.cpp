@@ -69,7 +69,7 @@ namespace str
 
       string strLastZip;
 
-      if(string_ends_ci(listing.m_pathUser, ".zip"))
+      if(case_insensitive_string_ends(listing.m_pathUser, ".zip"))
       {
 
          listing.m_pathFinal = m_pcontext->m_papexcontext->defer_process_path(listing.m_pathUser);
@@ -229,7 +229,7 @@ namespace str
 
       ::file::path pathFinal;
 
-      if (string_ends_ci(strPath, ".zip"))
+      if (case_insensitive_string_ends(strPath, ".zip"))
       {
 
          pathFinal = m_pcontext->m_papexcontext->defer_process_path(strPath);

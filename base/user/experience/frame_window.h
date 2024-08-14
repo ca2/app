@@ -234,6 +234,10 @@ namespace experience
       void place_set_need_redraw(const ::rectangle_i32 & rectangleAfter, const ::rectangle_i32 & rectangleBefore, ::draw2d::graphics * pgraphics) override;
 
 
+      void _001OnAfterEnterZoomed() override;
+      void _001OnAfterExitZoomed() override;
+
+
    };
 
 

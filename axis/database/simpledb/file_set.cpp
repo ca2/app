@@ -85,7 +85,7 @@ namespace simpledb
 
       ::collection::index i = -1;
 
-      if(!m_ppathaSearch || (i = m_ppathaSearch->find_first_ci(pathSearchFolder)) < 0)
+      if(!m_ppathaSearch || (i = m_ppathaSearch->case_insensitive_find_first(pathSearchFolder)) < 0)
       {
 
          __defer_construct_new(m_ppathaSearch);

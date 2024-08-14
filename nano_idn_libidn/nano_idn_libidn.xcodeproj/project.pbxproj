@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9AC1B6E92C32171500B503A1 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE8350A2C1CCF9800096100 /* _.h */; };
+		9AC1B6EA2C32171500B503A1 /* resource.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE835022C1CCF6F00096100 /* resource.h */; };
+		9AC1B6EB2C32171500B503A1 /* nano_idn_libidn.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE835052C1CCF7F00096100 /* nano_idn_libidn.h */; };
+		9AC1B6EC2C32171500B503A1 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE835042C1CCF7F00096100 /* framework.h */; };
+		9AC1B6EE2C32171500B503A1 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8350C2C1CCF9900096100 /* _factory.cpp */; };
+		9AC1B6EF2C32171500B503A1 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE8350B2C1CCF9900096100 /* _.cpp */; };
+		9AC1B6F02C32171500B503A1 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE835082C1CCF8900096100 /* framework.cpp */; };
+		9AC1B6F12C32171500B503A1 /* nano_idn_libidn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE834F52C1CCEF900096100 /* nano_idn_libidn.cpp */; };
+		9AC1B6F32C32171500B503A1 /* libidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE8352D2C1CD12500096100 /* libidn.dylib */; };
+		9AC1B6F42C32171500B503A1 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE8351D2C1CD0D200096100 /* libacme.dylib */; };
 		9AE834F62C1CCEF900096100 /* nano_idn_libidn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE834F52C1CCEF900096100 /* nano_idn_libidn.cpp */; };
 		9AE835032C1CCF6F00096100 /* resource.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE835022C1CCF6F00096100 /* resource.h */; };
 		9AE835062C1CCF7F00096100 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE835042C1CCF7F00096100 /* framework.h */; };
@@ -20,6 +30,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		9AC1B6E52C32171500B503A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AE835262C1CD12500096100 /* idn.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
+			remoteInfo = idn;
+		};
+		9AC1B6E72C32171500B503A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AE835162C1CD0D200096100 /* acme.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A68A41325114352008DABD2;
+			remoteInfo = acme;
+		};
 		9AE8351C2C1CD0D200096100 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AE835162C1CD0D200096100 /* acme.xcodeproj */;
@@ -79,6 +103,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9AC1B6F82C32171500B503A1 /* libios_nano_idn_libidn.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_nano_idn_libidn.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE834EE2C1CCEF900096100 /* libnano_idn_libidn.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libnano_idn_libidn.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE834F52C1CCEF900096100 /* nano_idn_libidn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = nano_idn_libidn.cpp; sourceTree = "<group>"; };
 		9AE835022C1CCF6F00096100 /* resource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resource.h; sourceTree = "<group>"; };
@@ -95,6 +120,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9AC1B6F22C32171500B503A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AC1B6F32C32171500B503A1 /* libidn.dylib in Frameworks */,
+				9AC1B6F42C32171500B503A1 /* libacme.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9AE834EC2C1CCEF900096100 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -122,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				9AE834EE2C1CCEF900096100 /* libnano_idn_libidn.dylib */,
+				9AC1B6F82C32171500B503A1 /* libios_nano_idn_libidn.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -173,6 +208,17 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		9AC1B6E82C32171500B503A1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AC1B6E92C32171500B503A1 /* _.h in Headers */,
+				9AC1B6EA2C32171500B503A1 /* resource.h in Headers */,
+				9AC1B6EB2C32171500B503A1 /* nano_idn_libidn.h in Headers */,
+				9AC1B6EC2C32171500B503A1 /* framework.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9AE834EA2C1CCEF900096100 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -187,6 +233,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		9AC1B6E32C32171500B503A1 /* ios_nano_idn_libidn */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AC1B6F52C32171500B503A1 /* Build configuration list for PBXNativeTarget "ios_nano_idn_libidn" */;
+			buildPhases = (
+				9AC1B6E82C32171500B503A1 /* Headers */,
+				9AC1B6ED2C32171500B503A1 /* Sources */,
+				9AC1B6F22C32171500B503A1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9AC1B6E42C32171500B503A1 /* PBXTargetDependency */,
+				9AC1B6E62C32171500B503A1 /* PBXTargetDependency */,
+			);
+			name = ios_nano_idn_libidn;
+			productName = nano_idn_libidn;
+			productReference = 9AC1B6F82C32171500B503A1 /* libios_nano_idn_libidn.a */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
 		9AE834ED2C1CCEF900096100 /* nano_idn_libidn */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AE834F92C1CCEF900096100 /* Build configuration list for PBXNativeTarget "nano_idn_libidn" */;
@@ -244,6 +309,7 @@
 			projectRoot = "";
 			targets = (
 				9AE834ED2C1CCEF900096100 /* nano_idn_libidn */,
+				9AC1B6E32C32171500B503A1 /* ios_nano_idn_libidn */,
 			);
 		};
 /* End PBXProject section */
@@ -294,6 +360,17 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9AC1B6ED2C32171500B503A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AC1B6EE2C32171500B503A1 /* _factory.cpp in Sources */,
+				9AC1B6EF2C32171500B503A1 /* _.cpp in Sources */,
+				9AC1B6F02C32171500B503A1 /* framework.cpp in Sources */,
+				9AC1B6F12C32171500B503A1 /* nano_idn_libidn.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9AE834EB2C1CCEF900096100 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -308,6 +385,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		9AC1B6E42C32171500B503A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = idn;
+			targetProxy = 9AC1B6E52C32171500B503A1 /* PBXContainerItemProxy */;
+		};
+		9AC1B6E62C32171500B503A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = acme;
+			targetProxy = 9AC1B6E72C32171500B503A1 /* PBXContainerItemProxy */;
+		};
 		9AE835232C1CD0E100096100 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = acme;
@@ -321,12 +408,56 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		9AC1B6F62C32171500B503A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		9AC1B6F72C32171500B503A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_EXTENSION = "$(STATIC_LIBRARY_EXTENSION:default=a)";
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				MACH_O_TYPE = staticlib;
+				PLATFORM_MODIFIER = ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		9AE834F72C1CCEF900096100 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9AE835102C1CD02200096100 /* _____debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
@@ -349,6 +480,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_PRAGMA_PACK = NO;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -358,10 +490,10 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -371,13 +503,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../operating_system/include";
+				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
@@ -390,6 +523,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-all_load";
+				PLATFORM_MODIFIER = macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -430,6 +564,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
@@ -452,6 +588,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_PRAGMA_PACK = NO;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -466,6 +603,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				EXECUTABLE_EXTENSION = dylib;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -473,12 +611,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../operating_system/include";
+				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
@@ -490,6 +628,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-all_load";
+				PLATFORM_MODIFIER = macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -565,6 +704,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9AC1B6F52C32171500B503A1 /* Build configuration list for PBXNativeTarget "ios_nano_idn_libidn" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AC1B6F62C32171500B503A1 /* Debug */,
+				9AC1B6F72C32171500B503A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9AE834E92C1CCEF900096100 /* Build configuration list for PBXProject "nano_idn_libidn" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

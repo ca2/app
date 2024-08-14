@@ -1200,7 +1200,7 @@ void application::fill_locale_schema(::text::international::locale_schema& local
    
    stra = payload("locale").as_string_array();
    
-   stra.erase_ci("_std");
+   stra.case_insensitive_erase("_std");
    
    straLocale.append_unique(payload("locale").as_string_array());
    
@@ -1208,7 +1208,7 @@ void application::fill_locale_schema(::text::international::locale_schema& local
    
    stra = payload("schema").as_string_array();
    
-   stra.erase_ci("_std");
+   stra.case_insensitive_erase("_std");
    
    straSchema.append_unique(payload("schema").as_string_array());
    
@@ -2014,7 +2014,7 @@ get_file_extension_mime_type * application::get_get_file_extension_mime_type()
 }
 
 
-void application::pick_browse()
+void application::pick_browse(const ::function < void(const ::file::path & ) > & callback)
 {
    
    

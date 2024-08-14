@@ -325,21 +325,21 @@ retry:
 
    }
 
-   if (ansi_compare_ci(path, "ftp://") == 0)
+   if (case_insensitive_ansi_compare(path, "ftp://") == 0)
    {
 
       return ::file::e_type_existent_folder;
 
    }
 
-   if (ansi_compare_ci(path, "ftp:/") == 0)
+   if (case_insensitive_ansi_compare(path, "ftp:/") == 0)
    {
 
       return ::file::e_type_existent_folder;
 
    }
 
-   if (ansi_compare_ci(path, "ftp:") == 0)
+   if (case_insensitive_ansi_compare(path, "ftp:") == 0)
    {
 
       return ::file::e_type_existent_folder;
@@ -385,7 +385,7 @@ retry:
 
    }
 
-   auto iFind = dir.name_find_first_ci(path.name());
+   auto iFind = dir.case_insensitive_name_find_first(path.name());
 
    if (::not_found(iFind))
    {

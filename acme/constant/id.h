@@ -247,6 +247,7 @@ enum enum_id : ::uptr
    id_hide_recycle_bin,
    id_show_recycle_bin,
    id_not_modified,
+   id_did_pick_document_at_url,
       
 
    // procedures:
@@ -351,7 +352,7 @@ enum enum_id : ::uptr
    id_speech,
 
    id_load_fragment_path_prefix,
-   id_cloud_provider,
+   //id_cloud_provider,
 
    //id_one_drive,
    //id_dropbox,

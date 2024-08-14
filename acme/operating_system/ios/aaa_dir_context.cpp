@@ -750,7 +750,7 @@ pacmedirectory->is(stra[i]))
    bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
    {
 
-      return string_begins_ci(pszDir, pszPath);
+      return case_insensitive_string_begins(pszDir, pszPath);
 
    }
 

@@ -326,7 +326,7 @@
 
          string strMessage(pszMessage);
 
-         if (string_begins_ci(strMessage, "synch_"))
+         if (case_insensitive_string_begins(strMessage, "synch_"))
          {
 
             if (m_preceiver != nullptr)

@@ -36,7 +36,7 @@ namespace iter
    typename ::collection::count add_unique_iter(ITERABLE & iterable, const ITERABLE & stra);
 
    template < typename ITERABLE, typename ITERABLE2, typename ITYPE >
-   typename ::collection::count add_unique_iter_ci(ITERABLE & iterable, const ITERABLE & stra);
+   typename ::collection::count case_insensitive_add_unique_iter(ITERABLE & iterable, const ITERABLE & stra);
 
    template < typename ITERABLE, typename ITERABLE2 >
    ITERABLE & add(ITERABLE & iterable, const ITERABLE2 & iterable2);
@@ -55,7 +55,7 @@ namespace iter
 
    // if ITYPE is found, transfer it to specified position
    template < typename ITERABLE, typename ITYPE, typename ITERABLE2 >
-   bool move_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator iIndex);
+   bool case_insensitive_move(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator iIndex);
 
    template < typename ITERABLE >
    ITERABLE & copy(ITERABLE & iterable, const ::payload payload);
@@ -133,7 +133,7 @@ namespace iter
    bool operator != (const ITERABLE & iterable, const ITERABLE & iterable2);
 
    template < typename ITERABLE, typename ITERABLE2 >
-   ::collection::count erase_iter_ci(ITERABLE & iterable, const ITERABLE & iterableRemove);
+   ::collection::count case_insensitive_erase_iter(ITERABLE & iterable, const ITERABLE & iterableRemove);
 
    template < typename ITERABLE, typename ITERABLE2 >
    ::collection::count erase_iter(ITERABLE & iterable, const ITERABLE2 & iterableRemove);
@@ -173,28 +173,28 @@ namespace iter
    typename ITERABLE::iterator predicate_find_first(ITERABLE & iterable, PRED pred, typename ITERABLE::iterator = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   typename index ifind_first_ci(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::collection::count count = -1);
+   typename index case_insensitive_ifind_first(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::collection::count count = -1);
 
    template < typename ITERABLE, typename ITYPE >
    typename index ifind_first_begins(const ITERABLE & iterable, const ITYPE & pcsz, ::collection::index find, ::collection::count count = -1);
 
    template < typename ITERABLE, typename ITYPE >
-   typename index ifind_first_begins_ci(const ITERABLE & iterable, const ITYPE & pcsz, ::collection::index find = 0, ::collection::count count = -1);
+   typename index case_insensitive_ifind_first_begins(const ITERABLE & iterable, const ITYPE & pcsz, ::collection::index find = 0, ::collection::count count = -1);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::const_iterator find_first_ci(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
+   typename ITERABLE::const_iterator case_insensitive_find_first(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::const_iterator find_first(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::const_iterator find_last_ci(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
+   typename ITERABLE::const_iterator case_insensitive_find_last(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::const_iterator find_last(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::const_iterator reverse_find_ci(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator find = -1, typename ITERABLE::const_iterator last = 0);
+   typename ITERABLE::const_iterator case_insensitive_reverse_find(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator find = -1, typename ITERABLE::const_iterator last = 0);
 
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::const_iterator rear_find(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator find = -1, typename ITERABLE::const_iterator last = 0);
@@ -209,46 +209,46 @@ namespace iter
    typename ITERABLE::const_iterator any_prefixes(const ITERABLE & iterable, const ITYPE & lpcszIsPrefixed, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::const_iterator any_prefixes_ci(const ITERABLE & iterable, const ITYPE & lpcszIsPrefixed, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
+   typename ITERABLE::const_iterator case_insensitive_any_prefixes(const ITERABLE & iterable, const ITYPE & lpcszIsPrefixed, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::const_iterator find_first_ends(const ITERABLE & iterable, const ITYPE & lpcszSuffix, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::const_iterator find_first_ends_ci(const ITERABLE & iterable, const ITYPE & lpcszSuffix, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
+   typename ITERABLE::const_iterator case_insensitive_find_first_ends(const ITERABLE & iterable, const ITYPE & lpcszSuffix, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::const_iterator find_first_ends_eat(const ITERABLE & iterable, ITYPE & str, const ITYPE & pcsz, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::const_iterator find_first_ends_eat_ci(const ITERABLE & iterable, ITYPE & str, const ITYPE & pcsz, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
+   typename ITERABLE::const_iterator case_insensitive_find_first_ends_eat(const ITERABLE & iterable, ITYPE & str, const ITYPE & pcsz, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::const_iterator find_first_begins(const ITERABLE & iterable, const ITYPE & lpcszPrefix, typename ITERABLE::const_iterator find = nullptr, typename ITERABLE::const_iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::const_iterator find_first_begins_ci(const ITERABLE & iterable, const ITYPE & lpcszPrefix, typename ITERABLE::const_iterator find = 0, typename ITERABLE::const_iterator last = nullptr);
+   typename ITERABLE::const_iterator case_insensitive_find_first_begins(const ITERABLE & iterable, const ITYPE & lpcszPrefix, typename ITERABLE::const_iterator find = 0, typename ITERABLE::const_iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::const_iterator find_first_begins_eat(const ITERABLE & iterable, ITYPE & str, const ITYPE & pcsz, typename ITERABLE::const_iterator find = 0, typename ITERABLE::const_iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::const_iterator find_first_begins_eat_ci(const ITERABLE & iterable, ITYPE & str, const ITYPE & pcsz, typename ITERABLE::const_iterator find = 0, typename ITERABLE::const_iterator last = nullptr);
+   typename ITERABLE::const_iterator case_insensitive_find_first_begins_eat(const ITERABLE & iterable, ITYPE & str, const ITYPE & pcsz, typename ITERABLE::const_iterator find = 0, typename ITERABLE::const_iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator find_first_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
+   typename ITERABLE::iterator case_insensitive_find_first(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::iterator find_first(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator find_last_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
+   typename ITERABLE::iterator case_insensitive_find_last(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::iterator find_last(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator reverse_find_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find = -1, typename ITERABLE::iterator last = 0);
+   typename ITERABLE::iterator case_insensitive_reverse_find(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find = -1, typename ITERABLE::iterator last = 0);
 
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::iterator rear_find(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find = -1, typename ITERABLE::iterator last = 0);
@@ -263,43 +263,43 @@ namespace iter
    typename ITERABLE::iterator any_prefixes(ITERABLE & iterable, const ITYPE & lpcszIsPrefixed, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator any_prefixes_ci(ITERABLE & iterable, const ITYPE & lpcszIsPrefixed, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
+   typename ITERABLE::iterator case_insensitive_any_prefixes(ITERABLE & iterable, const ITYPE & lpcszIsPrefixed, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::iterator find_first_ends(ITERABLE & iterable, const ITYPE & lpcszSuffix, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator find_first_ends_ci(ITERABLE & iterable, const ITYPE & lpcszSuffix, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
+   typename ITERABLE::iterator case_insensitive_find_first_ends(ITERABLE & iterable, const ITYPE & lpcszSuffix, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::iterator find_first_ends_eat(ITERABLE & iterable, ITYPE & str, const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator find_first_ends_eat_ci(ITERABLE & iterable, ITYPE & str, const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
+   typename ITERABLE::iterator case_insensitive_find_first_ends_eat(ITERABLE & iterable, ITYPE & str, const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::iterator find_first_begins(ITERABLE & iterable, const ITYPE & lpcszPrefix, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator find_first_begins_ci(ITERABLE & iterable, const ITYPE & lpcszPrefix, typename ITERABLE::iterator find = 0, typename ITERABLE::iterator last = nullptr);
+   typename ITERABLE::iterator case_insensitive_find_first_begins(ITERABLE & iterable, const ITYPE & lpcszPrefix, typename ITERABLE::iterator find = 0, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    typename ITERABLE::iterator find_first_begins_eat(ITERABLE & iterable, ITYPE & str, const ITYPE & pcsz, typename ITERABLE::iterator find = 0, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator find_first_begins_eat_ci(ITERABLE & iterable, ITYPE & str, const ITYPE & pcsz, typename ITERABLE::iterator find = 0, typename ITERABLE::iterator last = nullptr);
+   typename ITERABLE::iterator case_insensitive_find_first_begins_eat(ITERABLE & iterable, ITYPE & str, const ITYPE & pcsz, typename ITERABLE::iterator find = 0, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    bool case_insensitive_contains(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last = nullptr, ::collection::count countMin = 1, ::collection::count countMax = -1);
 
    template < typename ITERABLE, typename ITYPE >
-   bool icontains_ci(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::collection::count count = -1, ::collection::count countMin = 1, ::collection::count countMax = -1);
+   bool case_insensitive_icontains(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::collection::count count = -1, ::collection::count countMin = 1, ::collection::count countMax = -1);
 
    template < typename ITERABLE, typename STRITERABLE, typename ITYPE >
-   ::collection::count get_begins_ci(ITERABLE & iterable, STRITERABLE & stra, const ITYPE & pcsz, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
+   ::collection::count case_insensitive_get_begins(ITERABLE & iterable, STRITERABLE & stra, const ITYPE & pcsz, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   ::collection::count filter_begins_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr);
+   ::collection::count case_insensitive_filter_begins(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename PRED >
    ::collection::count filter(ITERABLE & iterable, PRED pred, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr);
@@ -311,7 +311,7 @@ namespace iter
    ::collection::count filter_out(ITERABLE & iterable, PRED pred, ArrayOut & a, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   bool erase_first_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
+   bool case_insensitive_erase_first(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    bool erase_first(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
@@ -320,7 +320,7 @@ namespace iter
    void erase_first(ITERABLE & iterable);
 
    template < typename ITERABLE, typename ITYPE >
-   bool erase_last_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
+   bool case_insensitive_erase_last(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    bool erase_last(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr);
@@ -329,25 +329,25 @@ namespace iter
    void erase_last(ITERABLE & iterable);
 
    template < typename ITERABLE, typename ITYPE >
-   ::collection::count erase_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last, ::collection::count countMin, ::collection::count countMax = -1);
+   ::collection::count case_insensitive_erase(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last, ::collection::count countMin, ::collection::count countMax = -1);
 
    template < typename ITERABLE, typename ITYPE >
    ::collection::count erase(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last, ::collection::count countMin, ::collection::count countMax = -1);
 
    template < typename ITERABLE, typename ITYPE >
-   ::collection::count erase_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last = nullptr);
+   ::collection::count case_insensitive_erase(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
    ::collection::count erase(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last = nullptr);
 
    template < typename ITERABLE, typename ITYPE >
-   ::collection::count erase_ci(ITERABLE & iterable, const ITYPE & pcsz);
+   ::collection::count case_insensitive_erase(ITERABLE & iterable, const ITYPE & pcsz);
 
    template < typename ITERABLE, typename ITYPE >
    ::collection::count erase(ITERABLE & iterable, const ITYPE & pcsz);
 
    template < typename ITERABLE, typename ITYPE >
-   ::collection::count ierase_ci(ITERABLE & iterable, const ITYPE & pcsz, index first = 0, ::collection::count count = -1);
+   ::collection::count case_insensitive_ierase(ITERABLE & iterable, const ITYPE & pcsz, index first = 0, ::collection::count count = -1);
 
    template < typename ITERABLE, typename ITYPE >
    ::collection::count ierase(ITERABLE & iterable, const ITYPE & pcsz, index first = 0, ::collection::count count = -1);
@@ -381,13 +381,13 @@ namespace iter
    ::collection::count get_count_except_iter(const ITERABLE & iterable, const ITERABLE & iterable2);
 
    template < typename ITERABLE, typename ITYPE >
-   ::collection::count get_count_except_ci(const ITERABLE & iterable, const ITYPE & psz);
+   ::collection::count case_insensitive_get_count_except(const ITERABLE & iterable, const ITYPE & psz);
 
    template < typename ITERABLE, typename ITYPE >
-   ::collection::count get_count_except_ci(const ITERABLE & iterable, const ITYPE & str);
+   ::collection::count case_insensitive_get_count_except(const ITERABLE & iterable, const ITYPE & str);
 
    template < typename ITERABLE, typename ITERABLE2 >
-   ::collection::count get_count_except_iter_ci(const ITERABLE & iterable, const ITERABLE & set);
+   ::collection::count case_insensitive_get_count_except_iter(const ITERABLE & iterable, const ITERABLE & set);
 
    template < typename ITERABLE, typename ITYPE >
    ITYPE & get_network_payload(const ITERABLE & iterable, ITYPE & str, bool bNewLine = true);
@@ -441,7 +441,7 @@ namespace iter
       for (auto & item : iterable)
       {
 
-         if (ansi_compare_ci(item, value) == 0)
+         if (case_insensitive_ansi_compare(item, value) == 0)
          {
 
             return true;
@@ -728,11 +728,11 @@ namespace iter
 
 
    template < typename ITERABLE, typename ITYPE >
-   bool icontains_ci(const ITERABLE & iterable, const ITYPE & t, index first, ::collection::count count, ::collection::count countMin, ::collection::count countMax)
+   bool case_insensitive_icontains(const ITERABLE & iterable, const ITYPE & t, index first, ::collection::count count, ::collection::count countMin, ::collection::count countMax)
    {
       ::collection::count c = 0;
       while ((c < countMin || (countMax >= 0 && c <= countMax))
-             && (first = ifind_first_ci(iterable, t, first, count)) >= 0)
+             && (first = case_insensitive_ifind_first(iterable, t, first, count)) >= 0)
       {
          c++;
          first++;
@@ -854,18 +854,18 @@ namespace iter
 
 
    template < typename ITERABLE, class ITYPE >
-   ::collection::count erase_ci(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator first, typename ITERABLE::iterator last, ::collection::count countMin, ::collection::count countMax)
+   ::collection::count case_insensitive_erase(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator first, typename ITERABLE::iterator last, ::collection::count countMin, ::collection::count countMax)
    {
       ::collection::count count = 0;
       if (case_insensitive_contains(iterable, t, first, last, countMin, countMax))
-         while (conditional(countMax >= 0, count < countMax) && erase_first_ci(iterable, t, first, last))
+         while (conditional(countMax >= 0, count < countMax) && case_insensitive_erase_first(iterable, t, first, last))
             count++;
       return count;
    }
 
 
    //template < typename ITERABLE, class ITYPE >
-   //::collection::count erase_ci(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
+   //::collection::count case_insensitive_erase(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
    //{
 
    //   ::collection::count c = 0;
@@ -877,7 +877,7 @@ namespace iter
    //   for (; iterable.valid_iter(first, last);)
    //   {
 
-   //      if (ansi_compare_ci(*first, t) == 0)
+   //      if (case_insensitive_ansi_compare(*first, t) == 0)
    //      {
 
    //         itRemove = first;
@@ -943,7 +943,7 @@ namespace iter
 
 
    template < typename ITERABLE, class ITYPE >
-   ::collection::count erase_ci(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
+   ::collection::count case_insensitive_erase(ITERABLE & iterable, const ITYPE & t, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
    {
 
       ::collection::count c = 0;
@@ -955,7 +955,7 @@ namespace iter
       for (; iterable.valid_iter(first, last);)
       {
 
-         if (ansi_compare_ci(*first, t) == 0)
+         if (case_insensitive_ansi_compare(*first, t) == 0)
          {
 
             itRemove = first;
@@ -1014,7 +1014,7 @@ namespace iter
 
 
    template < typename ITERABLE, class ITYPE >
-   ::collection::count erase_ci(ITERABLE & iterable, const ITYPE & t)
+   ::collection::count case_insensitive_erase(ITERABLE & iterable, const ITYPE & t)
    {
 
       ::collection::count c = 0;
@@ -1024,7 +1024,7 @@ namespace iter
       for (; iterable.valid_iter(first, iterable.end());)
       {
 
-         if (ansi_compare_ci(*first, t) == 0)
+         if (case_insensitive_ansi_compare(*first, t) == 0)
          {
 
             itRemove = first;
@@ -1173,7 +1173,7 @@ namespace iter
 
 
    template < typename ITERABLE, typename ITERABLE2 >
-   ::collection::count erase_iter_ci(ITERABLE & iterable, const ITERABLE2 & iterable2)
+   ::collection::count case_insensitive_erase_iter(ITERABLE & iterable, const ITERABLE2 & iterable2)
    {
 
       ::collection::count count = 0;
@@ -1181,7 +1181,7 @@ namespace iter
       for (auto & item : iterable2)
       {
 
-         count += erase_ci(iterable, item);
+         count += case_insensitive_erase(iterable, item);
 
       }
 
@@ -1653,7 +1653,7 @@ end:
 
 
    template < typename ITERABLE, typename ITERABLE2 >
-   ::collection::count add_unique_iter_ci(ITERABLE & iterable, const typename ITERABLE2 & iterable2)
+   ::collection::count case_insensitive_add_unique_iter(ITERABLE & iterable, const typename ITERABLE2 & iterable2)
    {
 
       ::collection::count count = 0;
@@ -1749,7 +1749,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename index ifind_first_ci(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::collection::count count)
+   typename index case_insensitive_ifind_first(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::collection::count count)
    {
 
       iterable.iprepare_first_count(first, count);
@@ -1757,7 +1757,7 @@ end:
       for (; first < count; first++)
       {
 
-         if (ansi_compare_ci(iterable.element_at(first), pcsz) == 0)
+         if (case_insensitive_ansi_compare(iterable.element_at(first), pcsz) == 0)
          {
 
             return first;
@@ -1794,7 +1794,7 @@ end:
    }
 
    template < typename ITERABLE, typename ITYPE >
-   typename index ifind_first_begins_ci(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::collection::count count)
+   typename index case_insensitive_ifind_first_begins(const ITERABLE & iterable, const ITYPE & pcsz, index first, ::collection::count count)
    {
 
       iterable.iprepare_first_count(first, count);
@@ -1802,7 +1802,7 @@ end:
       for (; first < count; find++)
       {
 
-         if (string_begins_ci(iterable.element_at(first), pcsz))
+         if (case_insensitive_string_begins(iterable.element_at(first), pcsz))
          {
 
             return first;
@@ -1818,7 +1818,7 @@ end:
 
 
    //template < typename ITERABLE, typename ITYPE >
-   //index ifind_first_ci(const ITERABLE & iterable, const ITYPE & pcsz, ::collection::index find, ::collection::count count)
+   //index case_insensitive_ifind_first(const ITERABLE & iterable, const ITYPE & pcsz, ::collection::index find, ::collection::count count)
    //{
    //   if (find < 0)
    //      find += iterable.get_count();
@@ -1840,10 +1840,10 @@ end:
    //}
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::const_iterator find_last_ci(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator first, typename ITERABLE::const_iterator last)
+   typename ITERABLE::const_iterator case_insensitive_find_last(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator first, typename ITERABLE::const_iterator last)
    {
 
-      return reverse_find_ci(pcsz, first, last);
+      return case_insensitive_reverse_find(pcsz, first, last);
 
    }
 
@@ -1859,7 +1859,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::const_iterator reverse_find_ci(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator first, typename ITERABLE::const_iterator last)
+   typename ITERABLE::const_iterator case_insensitive_reverse_find(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator first, typename ITERABLE::const_iterator last)
    {
 
       iterable.rprepare_first_last(first, last);
@@ -1867,7 +1867,7 @@ end:
       for (; iterable.rvalid_iter(first, last); first--)
       {
 
-         if (ansi_compare_ci(*first, pcsz) == 0)
+         if (case_insensitive_ansi_compare(*first, pcsz) == 0)
          {
 
             return find;
@@ -1928,7 +1928,7 @@ end:
    }
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::const_iterator find_first_ends_ci(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator find, typename ITERABLE::const_iterator last)
+   typename ITERABLE::const_iterator case_insensitive_find_first_ends(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator find, typename ITERABLE::const_iterator last)
    {
 
       iterable.prepare_first_last(first, last);
@@ -1936,7 +1936,7 @@ end:
       for (; iterable.valid_iter(first, last); first++)
       {
 
-         if (string_ends_ci(*first, pcsz))
+         if (case_insensitive_string_ends(*first, pcsz))
          {
 
             return first;
@@ -1969,10 +1969,10 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::const_iterator find_first_ends_eat_ci(ITERABLE & iterable, string & str, const ITYPE & pcsz, typename ITERABLE::const_iterator find, typename ITERABLE::const_iterator last)
+   typename ITERABLE::const_iterator case_insensitive_find_first_ends_eat(ITERABLE & iterable, string & str, const ITYPE & pcsz, typename ITERABLE::const_iterator find, typename ITERABLE::const_iterator last)
    {
 
-      find = find_first_ends_ci(pcsz, find, last);
+      find = case_insensitive_find_first_ends(pcsz, find, last);
 
       if (find < 0)
          return find;
@@ -2002,7 +2002,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::const_iterator find_first_begins_ci(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator first, typename ITERABLE::const_iterator last)
+   typename ITERABLE::const_iterator case_insensitive_find_first_begins(const ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::const_iterator first, typename ITERABLE::const_iterator last)
    {
 
       iterable.prepare_first_last(first, last);
@@ -2010,7 +2010,7 @@ end:
       for(; iterable.valid_iter(first, last); first++)
       {
 
-         if (string_begins_ci(*first, pcsz))
+         if (case_insensitive_string_begins(*first, pcsz))
             return first;
 
       }
@@ -2038,10 +2038,10 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::const_iterator find_first_begins_eat_ci(ITERABLE & iterable, string & str, const ITYPE & pcsz, typename ITERABLE::const_iterator find, typename ITERABLE::const_iterator last)
+   typename ITERABLE::const_iterator case_insensitive_find_first_begins_eat(ITERABLE & iterable, string & str, const ITYPE & pcsz, typename ITERABLE::const_iterator find, typename ITERABLE::const_iterator last)
    {
 
-      find = find_first_begins_ci(pcsz, find, last);
+      find = case_insensitive_find_first_begins(pcsz, find, last);
 
       if (find < 0)
          return find;
@@ -2079,7 +2079,7 @@ end:
       for (; iterable.valid_iter(find, last); find++)
       {
 
-         if (string_ends_ci(lpcszIdSuffixed, *find))
+         if (case_insensitive_string_ends(lpcszIdSuffixed, *find))
          {
 
             return find;
@@ -2111,7 +2111,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::const_iterator any_prefixes_ci(const ITERABLE & iterable, const ITYPE & lpcszIdPrefixed, typename ITERABLE::const_iterator find, typename ITERABLE::const_iterator last)
+   typename ITERABLE::const_iterator case_insensitive_any_prefixes(const ITERABLE & iterable, const ITYPE & lpcszIdPrefixed, typename ITERABLE::const_iterator find, typename ITERABLE::const_iterator last)
    {
 
       if (find < 0)
@@ -2120,7 +2120,7 @@ end:
          last += iterable.get_count();
       for (; find < iterable.get_count(); find++)
       {
-         if (string_begins_ci(lpcszIdPrefixed, iterable.element_at(find)))
+         if (case_insensitive_string_begins(lpcszIdPrefixed, iterable.element_at(find)))
             return find;
       }
       return -1;
@@ -2150,7 +2150,7 @@ end:
    }
 
    template < typename ITERABLE, typename ITYPE >
-   typename index find_first_begins_ci(ITERABLE & iterable, const ITYPE & pcsz, ::collection::index find, ::collection::count count)
+   typename index case_insensitive_find_first_begins(ITERABLE & iterable, const ITYPE & pcsz, ::collection::index find, ::collection::count count)
    {
 
       iterable.iprepare_first_count(find, count);
@@ -2158,7 +2158,7 @@ end:
       for (; find < count; find++)
       {
 
-         if (string_begins_ci(iterable.element_at(find), pcsz))
+         if (case_insensitive_string_begins(iterable.element_at(find), pcsz))
          {
 
             return find;
@@ -2174,7 +2174,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   ::collection::index find_first_ci(ITERABLE & iterable, const ITYPE & pcsz, ::collection::index find, ::collection::count count)
+   ::collection::index case_insensitive_find_first(ITERABLE & iterable, const ITYPE & pcsz, ::collection::index find, ::collection::count count)
    {
       if (find < 0)
          find += iterable.get_count();
@@ -2196,9 +2196,9 @@ end:
    //}
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator find_last_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last)
+   typename ITERABLE::iterator case_insensitive_find_last(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last)
    {
-      return reverse_find_ci(pcsz, find, last);
+      return case_insensitive_reverse_find(pcsz, find, last);
    }
 
 
@@ -2211,7 +2211,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator reverse_find_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last)
+   typename ITERABLE::iterator case_insensitive_reverse_find(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last)
    {
       if (find < 0)
          find += iterable.get_count();
@@ -2260,7 +2260,7 @@ end:
    }
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator find_first_ends_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last)
+   typename ITERABLE::iterator case_insensitive_find_first_ends(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last)
    {
       if (find < 0)
          find += iterable.get_count();
@@ -2268,7 +2268,7 @@ end:
          last += iterable.get_count();
       for (; find < iterable.get_count(); find++)
       {
-         if (string_ends_ci(iterable.element_at(find), pcsz))
+         if (case_insensitive_string_ends(iterable.element_at(find), pcsz))
             return find;
       }
       return -1;
@@ -2294,10 +2294,10 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator find_first_ends_eat_ci(ITERABLE & iterable, string & str, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last)
+   typename ITERABLE::iterator case_insensitive_find_first_ends_eat(ITERABLE & iterable, string & str, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last)
    {
 
-      find = find_first_ends_ci(pcsz, find, last);
+      find = case_insensitive_find_first_ends(pcsz, find, last);
 
       if (find < 0)
          return find;
@@ -2327,7 +2327,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator find_first_begins_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
+   typename ITERABLE::iterator case_insensitive_find_first_begins(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
    {
 
       iterable.prepare_first_last(first, last);
@@ -2335,7 +2335,7 @@ end:
       for (; iterable.valid_iter(first, last); first++)
       {
 
-         if (string_begins_ci(*first, pcsz))
+         if (case_insensitive_string_begins(*first, pcsz))
             return first;
 
       }
@@ -2363,10 +2363,10 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator find_first_begins_eat_ci(ITERABLE & iterable, string & str, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last)
+   typename ITERABLE::iterator case_insensitive_find_first_begins_eat(ITERABLE & iterable, string & str, const ITYPE & pcsz, typename ITERABLE::iterator find, typename ITERABLE::iterator last)
    {
 
-      find = find_first_begins_ci(pcsz, find, last);
+      find = case_insensitive_find_first_begins(pcsz, find, last);
 
       if (find < 0)
          return find;
@@ -2410,7 +2410,7 @@ end:
       for (; iterable.valid_iter(first, last); first++)
       {
 
-         if (string_ends_ci(lpcszIsSuffixed, *first))
+         if (case_insensitive_string_ends(lpcszIsSuffixed, *first))
          {
 
             return first;
@@ -2448,7 +2448,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator any_prefixes_ci(ITERABLE & iterable, const ITYPE & lpcszIsPrefixed, typename ITERABLE::iterator find, typename ITERABLE::iterator last)
+   typename ITERABLE::iterator case_insensitive_any_prefixes(ITERABLE & iterable, const ITYPE & lpcszIsPrefixed, typename ITERABLE::iterator find, typename ITERABLE::iterator last)
    {
 
       iterable.prepare_first_last(first, last);
@@ -2456,7 +2456,7 @@ end:
       for (; iterable.valid_iter(first, last); first++)
       {
 
-         if (string_begins_ci(lpcszIsPrefixed, *first))
+         if (case_insensitive_string_begins(lpcszIsPrefixed, *first))
          {
 
             return first;
@@ -2472,10 +2472,10 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator erase_first_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
+   typename ITERABLE::iterator case_insensitive_erase_first(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
    {
 
-      if ((first = find_first_ci(pcsz, first, last)) == iterable.end())
+      if ((first = case_insensitive_find_first(pcsz, first, last)) == iterable.end())
       {
 
          return false;
@@ -2490,10 +2490,10 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   typename ITERABLE::iterator erase_last_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
+   typename ITERABLE::iterator case_insensitive_erase_last(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
    {
 
-      if ((first = find_last_ci(pcsz, first, last)) == iterable.end())
+      if ((first = case_insensitive_find_last(pcsz, first, last)) == iterable.end())
       {
 
          return false;
@@ -3174,9 +3174,9 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   bool move_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator iIndex)
+   bool case_insensitive_move(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator iIndex)
    {
-      typename ITERABLE::iterator i = find_first_ci(pcsz);
+      typename ITERABLE::iterator i = case_insensitive_find_first(pcsz);
       if (i < 0)
          return false;
       iterable.erase_at(i);
@@ -3189,7 +3189,7 @@ end:
    bool preferred(ITERABLE & iterable, const ITYPE & pcsz)
    {
 
-      return move_ci(pcsz, 0);
+      return case_insensitive_move(pcsz, 0);
 
    }
 
@@ -3268,7 +3268,7 @@ end:
 
 
    template < typename ITERABLE, typename STRITERABLE, typename ITYPE >
-   ::collection::count get_begins_ci(const ITERABLE & iterable, STRITERABLE & stra, const ITYPE & pcsz, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
+   ::collection::count case_insensitive_get_begins(const ITERABLE & iterable, STRITERABLE & stra, const ITYPE & pcsz, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
    {
       if (last < 0)
          last = iterable.get_size() + last;
@@ -3281,7 +3281,7 @@ end:
       ::collection::count count = 0;
       while (true)
       {
-         iFind = find_first_begins_ci(pcsz, i, last);
+         iFind = case_insensitive_find_first_begins(pcsz, i, last);
          if (::is_null(pFind))
             return count;
          stra.add(iterable.element_at(iFind));
@@ -3292,7 +3292,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   ::collection::count filter_begins_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
+   ::collection::count case_insensitive_filter_begins(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator first, typename ITERABLE::iterator last)
    {
 
       iterable.prepare_first_last(first, last);
@@ -3306,7 +3306,7 @@ end:
       while (true)
       {
 
-         itFind = find_first_begins_ci(iterable, pcsz, it, last);
+         itFind = case_insensitive_find_first_begins(iterable, pcsz, it, last);
 
          if (itFind < 0)
          {
@@ -3582,7 +3582,7 @@ end:
 
 
    template < typename ITERABLE, typename ITYPE >
-   ::collection::count get_count_except_ci(const ITERABLE & iterable, const ITYPE & str)
+   ::collection::count case_insensitive_get_count_except(const ITERABLE & iterable, const ITYPE & str)
    {
 
       ::collection::count c = get_count();
@@ -3601,7 +3601,7 @@ end:
 
 
    template < typename ITERABLE, typename ITERABLE2 >
-   ::collection::count get_count_except_iter_ci(const ITERABLE & iterable, const ITERABLE2 & iterable2)
+   ::collection::count case_insensitive_get_count_except_iter(const ITERABLE & iterable, const ITERABLE2 & iterable2)
    {
 
       ::collection::count c = get_count();
@@ -4066,7 +4066,7 @@ public:
 
 
    template < typename ITYPE >
-   bool contains_iter_ci(const ITYPE & str, typename ITERABLE::iterator find = 0, typename ITERABLE::iterator last = nullptr, ::collection::count countMin = 1, ::collection::count countMax = -1) const
+   bool case_insensitive_contains_iter(const ITYPE & str, typename ITERABLE::iterator find = 0, typename ITERABLE::iterator last = nullptr, ::collection::count countMin = 1, ::collection::count countMax = -1) const
    {
 
       return ::iter::case_insensitive_contains(*this, str, find, last, countMin, countMax);
@@ -4084,10 +4084,10 @@ public:
 
 
    template < typename ITYPE >
-   bool icontains_ci(const ITYPE & str, ::collection::index find, ::collection::count count, ::collection::count countMin /*= 1*/, ::collection::count countMax = -1) const
+   bool case_insensitive_icontains(const ITYPE & str, ::collection::index find, ::collection::count count, ::collection::count countMin /*= 1*/, ::collection::count countMax = -1) const
    {
 
-      return ::iter::icontains_ci(*this, str, find, last, countMin, countMax);
+      return ::iter::case_insensitive_icontains(*this, str, find, last, countMin, countMax);
 
    }
 
@@ -4291,10 +4291,10 @@ public:
    }
 
    template < typename ITYPE >
-   ::collection::count erase_element_iter_ci(const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr, ::collection::count countMin = 0, ::collection::count countMax = -1)
+   ::collection::count case_insensitive_erase_element_iter(const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr, ::collection::count countMin = 0, ::collection::count countMax = -1)
    {
 
-      return ::iter::erase_ci(pcsz, find, last, countMin, countMax);
+      return ::iter::case_insensitive_erase(pcsz, find, last, countMin, countMax);
 
    }
 
@@ -4302,16 +4302,16 @@ public:
    ::collection::count erase_element_iter(const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr, ::collection::count countMin = 0, ::collection::count countMax = -1)
    {
 
-      return ::iter::erase_ci(pcsz, find, last, countMin, countMax);
+      return ::iter::case_insensitive_erase(pcsz, find, last, countMin, countMax);
 
    }
 
 
    template < typename ITYPE >
-   typename ITERABLE::iterator reverse_find_ci(const ITYPE & pcsz, typename ITERABLE::iterator find = -1, typename ITERABLE::iterator last = 0)
+   typename ITERABLE::iterator case_insensitive_reverse_find(const ITYPE & pcsz, typename ITERABLE::iterator find = -1, typename ITERABLE::iterator last = 0)
    {
 
-      return ::iter::reverse_find_ci(*this, pcsz, find, last);
+      return ::iter::case_insensitive_reverse_find(*this, pcsz, find, last);
 
    }
 
@@ -4348,10 +4348,10 @@ public:
    }
 
    template < typename ITYPE >
-   typename ITERABLE::iterator any_prefixes_ci(const ITYPE & lpcszIsPrefixed, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr)
+   typename ITERABLE::iterator case_insensitive_any_prefixes(const ITYPE & lpcszIsPrefixed, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr)
    {
 
-      return ::iter::any_prefixes_ci(*this, lpcszIsPrefixed, find, last);
+      return ::iter::case_insensitive_any_prefixes(*this, lpcszIsPrefixed, find, last);
 
    }
 
@@ -4364,10 +4364,10 @@ public:
    }
 
    template < typename ITYPE >
-   typename ITERABLE::iterator find_first_ends_ci(const ITYPE & lpcszSuffix, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr)
+   typename ITERABLE::iterator case_insensitive_find_first_ends(const ITYPE & lpcszSuffix, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr)
    {
 
-      return ::iter::find_first_ends_ci(*this, lpcszSuffix, find, last);
+      return ::iter::case_insensitive_find_first_ends(*this, lpcszSuffix, find, last);
 
    }
 
@@ -4380,10 +4380,10 @@ public:
    }
 
    template < typename ITYPE >
-   typename ITERABLE::iterator find_first_ends_eat_ci(ITYPE & str, const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr)
+   typename ITERABLE::iterator case_insensitive_find_first_ends_eat(ITYPE & str, const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr)
    {
 
-      return ::iter::find_first_ends_eat_ci(*this, str, pcsz, find, last);
+      return ::iter::case_insensitive_find_first_ends_eat(*this, str, pcsz, find, last);
 
    }
 
@@ -4396,10 +4396,10 @@ public:
    }
 
    template < typename ITYPE >
-   typename ITERABLE::iterator find_first_begins_ci(const ITYPE & lpcszPrefix, typename ITERABLE::iterator find = 0, typename ITERABLE::iterator last = nullptr)
+   typename ITERABLE::iterator case_insensitive_find_first_begins(const ITYPE & lpcszPrefix, typename ITERABLE::iterator find = 0, typename ITERABLE::iterator last = nullptr)
    {
 
-      return ::iter::find_first_begins_ci(*this, lpcszPrefix, find, last);
+      return ::iter::case_insensitive_find_first_begins(*this, lpcszPrefix, find, last);
 
    }
 
@@ -4412,27 +4412,27 @@ public:
    }
 
    template < typename ITYPE >
-   typename ITERABLE::iterator find_first_begins_eat_ci(ITYPE & str, const ITYPE & pcsz, typename ITERABLE::iterator find = 0, typename ITERABLE::iterator last = nullptr)
+   typename ITERABLE::iterator case_insensitive_find_first_begins_eat(ITYPE & str, const ITYPE & pcsz, typename ITERABLE::iterator find = 0, typename ITERABLE::iterator last = nullptr)
    {
 
-      return ::iter::find_first_begins_eat_ci(*this, str, pcsz, find, last);
+      return ::iter::case_insensitive_find_first_begins_eat(*this, str, pcsz, find, last);
 
    }
 
    template < typename STRITERABLE, typename ITYPE >
-   ::collection::count get_begins_ci(STRITERABLE & stra, const ITYPE & pcsz, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr)
+   ::collection::count case_insensitive_get_begins(STRITERABLE & stra, const ITYPE & pcsz, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr)
    {
 
-      return ::iter::get_begins_ci(*this, stra, pcsz, first, last);
+      return ::iter::case_insensitive_get_begins(*this, stra, pcsz, first, last);
 
    }
 
 
    template < typename ITYPE >
-   ::collection::count filter_begins_ci(const ITYPE & pcsz, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr)
+   ::collection::count case_insensitive_filter_begins(const ITYPE & pcsz, typename ITERABLE::iterator first = 0, typename ITERABLE::iterator last = nullptr)
    {
 
-      return ::iter::filter_begins_ci(*this, pcsz, first, last);
+      return ::iter::case_insensitive_filter_begins(*this, pcsz, first, last);
 
    }
 
@@ -4462,10 +4462,10 @@ public:
    }
 
    template < typename ITYPE >
-   ::collection::count erase_first_ci(const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr)
+   ::collection::count case_insensitive_erase_first(const ITYPE & pcsz, typename ITERABLE::iterator find = nullptr, typename ITERABLE::iterator last = nullptr)
    {
 
-      return ::iter::erase_first_ci(*this, pcsz, first, last);
+      return ::iter::case_insensitive_erase_first(*this, pcsz, first, last);
 
    }
 
@@ -4479,10 +4479,10 @@ public:
    }
 
    template < typename ITYPE >
-   ::collection::count erase_last_ci(const ITYPE & pcsz, typename ITERABLE::iterator first = nullptr, typename ITERABLE::iterator last = nullptr)
+   ::collection::count case_insensitive_erase_last(const ITYPE & pcsz, typename ITERABLE::iterator first = nullptr, typename ITERABLE::iterator last = nullptr)
    {
 
-      return ::iter::erase_last_ci(*this, pcsz, first, last);
+      return ::iter::case_insensitive_erase_last(*this, pcsz, first, last);
 
    }
 
@@ -4602,10 +4602,10 @@ public:
    }
 
    template < typename ITYPE >
-   bool icontains_ci(const ITYPE & value, index first = 0, ::collection::count count = -1) const
+   bool case_insensitive_icontains(const ITYPE & value, index first = 0, ::collection::count count = -1) const
    {
 
-      return ::iter::icontains_ci(*this, value, first, count);
+      return ::iter::case_insensitive_icontains(*this, value, first, count);
 
    }
 
@@ -4644,10 +4644,10 @@ public:
    }
 
    template < typename ITERABLE2 >
-   typename ::collection::count add_unique_iter_ci(const ITERABLE2 & stra)
+   typename ::collection::count case_insensitive_add_unique_iter(const ITERABLE2 & stra)
    {
 
-      return ::iter::add_unique_iter_ci(*this, stra);
+      return ::iter::case_insensitive_add_unique_iter(*this, stra);
 
    }
 
@@ -4739,18 +4739,18 @@ public:
 
 
    template < typename ITYPE >
-   typename index ifind_first_ci(const ITYPE & lpcszPrefix, ::collection::index find = 0, ::collection::count count = -1) const
+   typename index case_insensitive_ifind_first(const ITYPE & lpcszPrefix, ::collection::index find = 0, ::collection::count count = -1) const
    {
 
-      return ::iter::ifind_first_ci(*this, lpcszPrefix, find, count);
+      return ::iter::case_insensitive_ifind_first(*this, lpcszPrefix, find, count);
 
    }
 
    template < typename ITYPE >
-   typename index ifind_first_ci(const ITYPE & lpcszPrefix, ::collection::index find = 0, ::collection::count count = -1)
+   typename index case_insensitive_ifind_first(const ITYPE & lpcszPrefix, ::collection::index find = 0, ::collection::count count = -1)
    {
 
-      return ::iter::ifind_first_ci(*this, lpcszPrefix, find, count);
+      return ::iter::case_insensitive_ifind_first(*this, lpcszPrefix, find, count);
 
    }
 
@@ -4784,7 +4784,7 @@ public:
    }
 
    template < typename SWAP >
-   void swap_quick_sort_ci(SWAP __swap, bool bAscending)
+   void case_insensitive_swap_quick_sort(SWAP __swap, bool bAscending)
    {
 
       ::sort::swap_quick_sort(*this, __swap, bAscending);
@@ -4792,7 +4792,7 @@ public:
    }
 
    template < typename SWAP >
-   void swap_quick_sort_ci(SWAP __swap)
+   void case_insensitive_swap_quick_sort(SWAP __swap)
    {
 
       ::sort::swap_quick_sort(*this, __swap);
@@ -4883,10 +4883,10 @@ public:
    }
 
    template < typename INDEX_ARRAY  >
-   void get_quick_sort_ci(const INDEX_ARRAY & ia)
+   void case_insensitive_get_quick_sort(const INDEX_ARRAY & ia)
    {
 
-      ::sort::get_quick_sort_ci(*this, ia);
+      ::sort::case_insensitive_get_quick_sort(*this, ia);
 
    }
 

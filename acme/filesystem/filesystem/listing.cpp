@@ -59,7 +59,7 @@ namespace file
    }
 
 
-   ::collection::index listing::name_find_first_ci(const path & pcsz, ::collection::index find, ::collection::index last ) const
+   ::collection::index listing::case_insensitive_name_find_first(const path & pcsz, ::collection::index find, ::collection::index last ) const
    {
 
       if(find < 0)
@@ -78,10 +78,10 @@ namespace file
    }
 
 
-   bool listing::name_move_ci(const path & pcsz, ::collection::index iIndex)
+   bool listing::case_insensitive_name_move(const path & pcsz, ::collection::index iIndex)
    {
 
-      ::collection::index i = name_find_first_ci(pcsz);
+      ::collection::index i = case_insensitive_name_find_first(pcsz);
 
       if(i < 0)
          return false;
@@ -106,7 +106,7 @@ namespace file
    bool listing::preferred_name(const path & pcsz)
 
    {
-      return name_move_ci(pcsz,0);
+      return case_insensitive_name_move(pcsz,0);
 
    }
 
@@ -135,7 +135,7 @@ namespace file
       if (m_straPattern.has_element())
       {
 
-         bMatches = matches_wildcard_criteria_ci(m_straPattern, path.name());
+         bMatches = case_insensitive_matches_wildcard_criteria(m_straPattern, path.name());
 
       }
 
@@ -252,7 +252,7 @@ CLASS_DECL_ACME bool matches_wildcard_criteria(const string_array & straCriteria
 }
 
 
-CLASS_DECL_ACME bool matches_wildcard_criteria_ci(const string_array & straCriteria, const ::string & strValue)
+CLASS_DECL_ACME bool case_insensitive_matches_wildcard_criteria(const string_array & straCriteria, const ::string & strValue)
 {
 
    if (straCriteria.is_empty())
@@ -272,7 +272,7 @@ CLASS_DECL_ACME bool matches_wildcard_criteria_ci(const string_array & straCrite
 
       }
 
-      if (matches_wildcard_criteria_ci(strCriteria.c_str(), strValue.c_str()))
+      if (case_insensitive_matches_wildcard_criteria(strCriteria.c_str(), strValue.c_str()))
       {
 
          return true;

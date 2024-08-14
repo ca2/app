@@ -66,6 +66,16 @@ elseif(${LINUX})
 endif()
 
 
+add_dependencies(${PROJECT_NAME} crypto_openssl)
+add_dependencies(${PROJECT_NAME} folder_zip)
+
+
+if(${LINUX})
+    if(${WITH_X11})
+        add_dependencies(${PROJECT_NAME} nano_user_x11)
+    endif()
+endif()
+
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

@@ -386,9 +386,9 @@ public:
    constexpr double floating_day() const { return floating_second() / 86'400.0; }
    constexpr double floating_hour() const { return floating_second() / 3'600.0; }
    constexpr double floating_minute() const { return floating_second() / 60.0; }
-   constexpr double floating_second() const { return (double)m_iSecond + ((double) m_iNanosecond / 1'000'000'000.0); }
-   constexpr double floating_millisecond() const { return ((::f64)integral_nanosecond()) / 1'000'000.0; }
-   constexpr double floating_microsecond() const { return ((::f64)integral_nanosecond()) / 1'000.0; }
+   constexpr double floating_second() const { return ((double)m_iSecond) + ((double) m_iNanosecond / 1'000'000'000.0); }
+   constexpr double floating_millisecond() const { return ((double)m_iSecond * 1'000.0) + ((double)m_iNanosecond / 1'000'000.0);}
+   constexpr double floating_microsecond() const { return ((double)m_iSecond * 1'000'000.0) + ((double)m_iNanosecond / 1'000.0); }
    constexpr double floating_nanosecond() const { return (::f64)integral_nanosecond(); }
 
 
@@ -1237,15 +1237,15 @@ inline class time time::remaining(const class time & time, const class time & ti
 template < primitive_integral INTEGRAL >
 constexpr class time nanosecond_time(INTEGRAL i) { return { (INTEGRAL)i / 1'000'000'000, (long)(i % 1'000'000'000) }; }
 template < primitive_floating FLOATING >
-constexpr class time nanosecond_time(FLOATING f) { return { (FLOATING)(f / 1'000'000'000.0), (long)(fmod(f, 1'000'000'000.0)) }; }
+constexpr class time nanosecond_time(FLOATING f) { return { (::i64)(f / 1'000'000'000.0), (long)(fmod(f, 1'000'000'000.0)) }; }
 template < primitive_integral INTEGRAL >
 constexpr class time microsecond_time(INTEGRAL i) { return { i / 1'000'000, (long)((i % 1'000'000) * 1'000) }; }
 template < primitive_floating FLOATING >
-constexpr class time microsecond_time(FLOATING f) { return { (FLOATING)(f / 1'000'000.0), (long)(fmod(f, 1'000'000.0) * 1'000.0) }; }
+constexpr class time microsecond_time(FLOATING f) { return { (::i64)(f / 1'000'000.0), (long)(fmod(f, 1'000'000.0) * 1'000.0) }; }
 template < primitive_integral INTEGRAL >
 constexpr class time millisecond_time(INTEGRAL i) { return { i / 1'000, (long)((i % 1'000) * 1'000'000) }; }
 template < primitive_floating FLOATING >
-constexpr class time millisecond_time(FLOATING f) { return { (FLOATING)(f / 1'000.0), (long)(fmod(f, 1'000.0) * 1'000'000.0) }; }
+constexpr class time millisecond_time(FLOATING f) { return { (::i64)(f / 1'000.0), (long)(fmod(f, 1'000.0) * 1'000'000.0) }; }
 template < primitive_integral INTEGRAL >
 constexpr class time second_time(INTEGRAL i) { return { i }; }
 template < primitive_integral NUMERATOR, primitive_integral DENOMINATOR >

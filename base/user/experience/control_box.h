@@ -101,6 +101,8 @@ namespace experience
 
       void on_perform_top_down_layout(::draw2d::graphics_pointer & pgraphics) override;
 
+      virtual void layout_control_box_buttons();
+
       virtual ::size_i32 get_button_size(enum_button ebutton);
 
       virtual ::rectangle_i32 get_button_margin(enum_button ebutton);

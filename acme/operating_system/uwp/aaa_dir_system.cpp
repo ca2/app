@@ -229,7 +229,7 @@ namespace universal_windows
    //bool dir_system::is_inside(const ::file::path& pszDir, const ::file::path& strPath)
    //{
 
-   //   return string_begins_ci(pszDir, strPath);
+   //   return case_insensitive_string_begins(pszDir, strPath);
 
    //}
 

@@ -48,14 +48,14 @@ namespace platform
 
       q.m_strPathIn = path;
 
-      if (!string_ends_ci(q.m_strPathIn, ".so"))
+      if (!case_insensitive_string_ends(q.m_strPathIn, ".so"))
       {
 
          q.m_strPathIn += ".so";
 
       }
 
-      if (!string_begins_ci(q.m_strPathIn, "/") && !string_begins_ci(q.m_strPathIn, "lib"))
+      if (!case_insensitive_string_begins(q.m_strPathIn, "/") && !case_insensitive_string_begins(q.m_strPathIn, "lib"))
       {
 
          q.m_strPathIn = "lib" + q.m_strPathIn;

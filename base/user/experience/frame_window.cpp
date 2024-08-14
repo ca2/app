@@ -2853,6 +2853,15 @@ namespace experience
    void frame_window::frame_experience_restore(::e_activation eactivation)
    {
 
+      if(system()->m_ewindowing == e_windowing_wayland)
+      {
+
+         display_normal(m_windowdisplayandlayout.m_edisplayLastNormal, eactivation);
+
+         return;
+
+      }
+
       calculate_broad_and_compact_restore();
 
       //auto rectangleCurrent = screen_rect();
@@ -2966,6 +2975,41 @@ namespace experience
       ::user::frame_window::destroy();
 
    }
+
+
+   void frame_window::_001OnAfterEnterZoomed()
+   {
+
+      ::user::frame_window::_001OnAfterEnterZoomed();
+
+      if(m_bWindowFrame)
+      {
+
+         m_pframe->m_pcontrolbox->hide_button(e_button_maximize);
+
+         m_pframe->m_pcontrolbox->layout_control_box_buttons();
+
+      }
+
+   }
+
+
+   void frame_window::_001OnAfterExitZoomed()
+   {
+
+      ::user::frame_window::_001OnAfterEnterZoomed();
+
+      if(m_bWindowFrame)
+      {
+
+         m_pframe->m_pcontrolbox->hide_button(e_button_maximize, false);
+
+         m_pframe->m_pcontrolbox->layout_control_box_buttons();
+
+      }
+
+   }
+
 
 } // namespace experience
 

@@ -240,6 +240,7 @@
     <ClInclude Include="user\user\combo_box.h" />
     <ClInclude Include="user\user\form_handler.h" />
     <ClInclude Include="user\user\list_box.h" />
+    <ClInclude Include="user\user\multiple_option.h" />
     <ClInclude Include="user\user\object.h" />
     <ClInclude Include="user\user\plus_minus.h" />
     <ClInclude Include="user\user\simple_ui_draw.h" />
@@ -362,6 +363,7 @@
     <ClCompile Include="user\user\form_handler.cpp" />
     <ClCompile Include="user\user\line_layout.cpp" />
     <ClCompile Include="user\user\list_box.cpp" />
+    <ClCompile Include="user\user\multiple_option.cpp" />
     <ClCompile Include="user\user\object.cpp" />
     <ClCompile Include="user\user\plus_minus.cpp" />
     <ClCompile Include="user\user\simple_ui_draw.cpp" />

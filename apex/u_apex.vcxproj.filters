@@ -622,6 +622,12 @@
     <ClCompile Include="platform\get_file_extension_mime_type.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="filesystem\fs\folder_sync.cpp">
+      <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\menu.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -1487,6 +1493,9 @@
     </ClInclude>
     <ClInclude Include="platform\get_file_extension_mime_type.h">
       <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\fs\folder_sync.h">
+      <Filter>Header Files\filesystem\fs</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

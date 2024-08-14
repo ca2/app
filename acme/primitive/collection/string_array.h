@@ -10,7 +10,7 @@
 //#include "acme/array.h"
 
 template < typename CHARACTER >
-constexpr std::strong_ordering compare_string_ci(const CHARACTER * pszA, const CHARACTER * pszB)
+constexpr std::strong_ordering case_insensitive_compare_string(const CHARACTER * pszA, const CHARACTER * pszB)
 {
 
    return case_insensitive_string_order(pszA, pszB);
@@ -90,7 +90,7 @@ public:
 
    void erase_duplicates();
 
-   void erase_duplicates_ci();
+   void case_insensitive_erase_duplicates();
 
 
    ::collection::index _007FindLine(const SCOPED_STRING & strKey, ::collection::index iStart = 0) const;
@@ -110,7 +110,7 @@ public:
    void order();
    void case_insensitive_order();
    void collate_order();
-   void collate_sort_ci();
+   void case_insensitive_collate_sort();
 
 
    Type safe_at(::collection::index nIndex, Type tDefault = "") const;
@@ -255,7 +255,7 @@ public:
 
 
    // if Type is found, transfer it to specified position
-   bool move_ci(const SCOPED_STRING & str, ::collection::index iIndex);
+   bool case_insensitive_move(const SCOPED_STRING & str, ::collection::index iIndex);
 
 
    // transfer preferred in order
@@ -264,98 +264,98 @@ public:
    ::collection::count preferred(string_array_base & stra);
 
 
-   ::collection::count count_ci(const SCOPED_STRING & strFind, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
+   ::collection::count case_insensitive_count(const SCOPED_STRING & strFind, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
    ::collection::count count(const SCOPED_STRING & strFind, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
 
 
-   ::collection::index find_first_ci(const SCOPED_STRING & strFind, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
+   ::collection::index case_insensitive_find_first(const SCOPED_STRING & strFind, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
    ::collection::index find_first(const SCOPED_STRING & strFind, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
 
 
-   ::collection::index find_last_ci(const SCOPED_STRING & strFind, ::collection::index iFind = -1, ::collection::index iLast = 0) const;
+   ::collection::index case_insensitive_find_last(const SCOPED_STRING & strFind, ::collection::index iFind = -1, ::collection::index iLast = 0) const;
    ::collection::index find_last(const SCOPED_STRING & strFind, ::collection::index iFind = -1, ::collection::index iLast = 0) const;
 
 
-   ::collection::index reverse_find_ci(const SCOPED_STRING & strFind, ::collection::index iFind = -1, ::collection::index iLast = 0) const;
+   ::collection::index case_insensitive_reverse_find(const SCOPED_STRING & strFind, ::collection::index iFind = -1, ::collection::index iLast = 0) const;
    ::collection::index rear_find(const SCOPED_STRING & strFind, ::collection::index iFind = -1, ::collection::index iLast = 0) const;
 
 
    ::collection::index _066Find(const SCOPED_STRING & str) const;
 
-   ::collection::index _find_first_prefixed_ci(const SCOPED_STRING & strStarting, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
+   ::collection::index _case_insensitive_find_first_prefixed(const SCOPED_STRING & strStarting, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
    ::collection::index _find_first_prefixed(const SCOPED_STRING & strStarting, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
 
    ::collection::index _find_first_with_starting_word(const SCOPED_STRING & strStartingWord, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
 
-   ::collection::index find_first_prefixed_ci(const SCOPED_STRING & strStarting, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
+   ::collection::index case_insensitive_find_first_prefixed(const SCOPED_STRING & strStarting, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
    ::collection::index find_first_prefixed(const SCOPED_STRING & strStarting, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
 
-   ::collection::index _find_first_suffixed_ci(const SCOPED_STRING & strEnding, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
+   ::collection::index _case_insensitive_find_first_suffixed(const SCOPED_STRING & strEnding, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
    ::collection::index _find_first_suffixed(const SCOPED_STRING & strEnding, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
 
-   ::collection::index find_first_suffixed_ci(const SCOPED_STRING & strEnding, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
+   ::collection::index case_insensitive_find_first_suffixed(const SCOPED_STRING & strEnding, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
    ::collection::index find_first_suffixed(const SCOPED_STRING & strEnding, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
 
-   ::collection::index find_first_begins_ci(const SCOPED_STRING & strStarting, ::collection::index iFind = 0, ::collection::index iLast = -1) const { return find_first_prefixed_ci(strStarting, iFind, iLast); }
+   ::collection::index case_insensitive_find_first_begins(const SCOPED_STRING & strStarting, ::collection::index iFind = 0, ::collection::index iLast = -1) const { return case_insensitive_find_first_prefixed(strStarting, iFind, iLast); }
    ::collection::index find_first_begins(const SCOPED_STRING & strStarting, ::collection::index iFind = 0, ::collection::index iLast = -1) const { return find_first_prefixed(strStarting, iFind, iLast); }
 
    ::collection::index find_first_with_starting_word(const SCOPED_STRING & strStartingWord, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
 
-   ::collection::index find_first_ends_ci(const SCOPED_STRING & strEnding, ::collection::index iFind = 0, ::collection::index iLast = -1) const { return find_first_suffixed_ci(strEnding, iFind, iLast); }
+   ::collection::index case_insensitive_find_first_ends(const SCOPED_STRING & strEnding, ::collection::index iFind = 0, ::collection::index iLast = -1) const { return case_insensitive_find_first_suffixed(strEnding, iFind, iLast); }
    ::collection::index find_first_ends(const SCOPED_STRING & strEnding, ::collection::index iFind = 0, ::collection::index iLast = -1) const { return find_first_suffixed(strEnding, iFind, iLast); }
 
-   ::collection::index _find_first_contains_ci(const SCOPED_STRING & strSubstring, ::collection::index iFind = 0, ::collection::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
+   ::collection::index _case_insensitive_find_first_contains(const SCOPED_STRING & strSubstring, ::collection::index iFind = 0, ::collection::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
    ::collection::index _find_first_contains(const SCOPED_STRING & strSubstring, ::collection::index iFind = 0, ::collection::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
 
-   ::collection::index find_first_contains_ci(const SCOPED_STRING & strSubstring, ::collection::index iFind = 0, ::collection::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
+   ::collection::index case_insensitive_find_first_contains(const SCOPED_STRING & strSubstring, ::collection::index iFind = 0, ::collection::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
    ::collection::index find_first_contains(const SCOPED_STRING & strSubstring, ::collection::index iFind = 0, ::collection::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
 
-   ::collection::index find_first_begins_eat_ci(Type & strFoundAndEaten, const SCOPED_STRING & strStarting, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
+   ::collection::index case_insensitive_find_first_begins_eat(Type & strFoundAndEaten, const SCOPED_STRING & strStarting, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
    ::collection::index find_first_begins_eat(Type & strFoundAndEaten, const SCOPED_STRING & strStarting, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
 
    ::collection::index find_first_with_starting_word_eat(Type & strFoundAndEaten, const SCOPED_STRING & strStartingWord, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
 
-   ::collection::index find_first_ends_eat_ci(Type & strFoundAndEaten, const SCOPED_STRING & strEnding, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
+   ::collection::index case_insensitive_find_first_ends_eat(Type & strFoundAndEaten, const SCOPED_STRING & strEnding, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
    ::collection::index find_first_ends_eat(Type & strFoundAndEaten, const SCOPED_STRING & strEnding, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
 
-   ::collection::index find_first_contains_eat_ci(Type & strFoundAndEaten, const SCOPED_STRING & strEnding, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
+   ::collection::index case_insensitive_find_first_contains_eat(Type & strFoundAndEaten, const SCOPED_STRING & strEnding, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
    ::collection::index find_first_contains_eat(Type & strFoundAndEaten, const SCOPED_STRING & strEnding, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
 
 
-   ::collection::index prefix_find_first_ci(const SCOPED_STRING & strTopic, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
+   ::collection::index case_insensitive_prefix_find_first(const SCOPED_STRING & strTopic, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
    ::collection::index prefix_find_first(const SCOPED_STRING & strTopic, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
 
-   inline bool prefixes_ci(const SCOPED_STRING & strTopic, ::collection::index iFind = 0, ::collection::index iLast = -1) const { return found(prefix_find_first_ci(strTopic, iFind, iLast)); }
+   inline bool case_insensitive_prefixes(const SCOPED_STRING & strTopic, ::collection::index iFind = 0, ::collection::index iLast = -1) const { return found(case_insensitive_prefix_find_first(strTopic, iFind, iLast)); }
    inline bool prefixes(const SCOPED_STRING & strTopic, ::collection::index iFind = 0, ::collection::index iLast = -1) const { return found(prefix_find_first(strTopic, iFind, iLast)); }
 
-   ::collection::index suffix_find_first_ci(const SCOPED_STRING & strTopic, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
+   ::collection::index case_insensitive_suffix_find_first(const SCOPED_STRING & strTopic, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
    ::collection::index suffix_find_first(const SCOPED_STRING & strTopic, ::collection::index iFind = 0, ::collection::index iLast = -1) const;
 
-   inline bool case_insensitive_suffixes(const SCOPED_STRING & strTopic, ::collection::index iFind = 0, ::collection::index iLast = -1) const { return found(suffix_find_first_ci(strTopic, iFind, iLast)); }
+   inline bool case_insensitive_suffixes(const SCOPED_STRING & strTopic, ::collection::index iFind = 0, ::collection::index iLast = -1) const { return found(case_insensitive_suffix_find_first(strTopic, iFind, iLast)); }
    inline bool suffixes(const SCOPED_STRING & strTopic, ::collection::index iFind = 0, ::collection::index iLast = -1) const { return found(suffix_find_first(strTopic, iFind, iLast)); }
 
-   ::collection::index substring_find_first_ci(const SCOPED_STRING & strTopic, ::collection::index iFind = 0, ::collection::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
+   ::collection::index case_insensitive_substring_find_first(const SCOPED_STRING & strTopic, ::collection::index iFind = 0, ::collection::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
    ::collection::index substring_find_first(const SCOPED_STRING & strTopic, ::collection::index iFind = 0, ::collection::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const;
 
-   inline bool is_part_of_ci(const SCOPED_STRING & strTopic, ::collection::index iFind = 0, ::collection::index iLast = -1) const { return found(substring_find_first_ci(strTopic, iFind, iLast)); }
+   inline bool case_insensitive_is_part_of(const SCOPED_STRING & strTopic, ::collection::index iFind = 0, ::collection::index iLast = -1) const { return found(case_insensitive_substring_find_first(strTopic, iFind, iLast)); }
    inline bool is_part_of(const SCOPED_STRING & strTopic, ::collection::index iFind = 0, ::collection::index iLast = -1) const { return found(substring_find_first(strTopic, iFind, iLast)); }
 
 
 
-   bool _067ContainsCi(const SCOPED_STRING & strFind, ::collection::index iFind = 0, ::collection::index iLast = -1, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
+   bool _067CaseInsensitiveContains(const SCOPED_STRING & strFind, ::collection::index iFind = 0, ::collection::index iLast = -1, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
    bool _067Contains(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
 
 
-   bool _067ContainsSubstringCi(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
+   bool _067CaseInsensitiveContainsSubstring(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
    bool _067ContainsSubstring(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1, ::collection::count countMin = 1, ::collection::count countMax = -1) const;
 
 
-   bool case_insensitive_contains(const SCOPED_STRING & strFind, ::collection::index iFind = 0, ::collection::index iLast = -1) const { return found(find_first_ci(strFind, iFind, iLast)); }
-   bool contains(const SCOPED_STRING & strFind, ::collection::index iFind = 0, ::collection::index iLast = -1) const { return found(find_first_ci(strFind, iFind, iLast)); }
+   bool case_insensitive_contains(const SCOPED_STRING & strFind, ::collection::index iFind = 0, ::collection::index iLast = -1) const { return found(case_insensitive_find_first(strFind, iFind, iLast)); }
+   bool contains(const SCOPED_STRING & strFind, ::collection::index iFind = 0, ::collection::index iLast = -1) const { return found(case_insensitive_find_first(strFind, iFind, iLast)); }
 
 
-   bool theres_ci(const SCOPED_STRING & strSubstring, ::collection::index iFind = 0, ::collection::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const { return found(substring_find_first_ci(strSubstring, iFind, iLast, ppszBeg, ppszEnd)); }
-   bool theres(const SCOPED_STRING & strSubstring, ::collection::index iFind = 0, ::collection::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const { return found(substring_find_first_ci(strSubstring, iFind, iLast, ppszBeg, ppszEnd)); }
+   bool case_insensitive_theres(const SCOPED_STRING & strSubstring, ::collection::index iFind = 0, ::collection::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const { return found(case_insensitive_substring_find_first(strSubstring, iFind, iLast, ppszBeg, ppszEnd)); }
+   bool theres(const SCOPED_STRING & strSubstring, ::collection::index iFind = 0, ::collection::index iLast = -1, const CHARACTER ** ppszBeg = nullptr, const CHARACTER ** ppszEnd = nullptr) const { return found(case_insensitive_substring_find_first(strSubstring, iFind, iLast, ppszBeg, ppszEnd)); }
 
 
    template < primitive_array INDEX_ARRAY >
@@ -373,7 +373,7 @@ public:
 
 
    template < primitive_array STRING_ARRAY >
-   ::collection::count search_ci(STRING_ARRAY & stra, const SCOPED_STRING & strSubstring, ::collection::index first = 0, ::collection::index iLast = -1);
+   ::collection::count case_insensitive_search(STRING_ARRAY & stra, const SCOPED_STRING & strSubstring, ::collection::index first = 0, ::collection::index iLast = -1);
 
    template < primitive_array STRING_ARRAY >
    ::collection::count search(STRING_ARRAY & stra, const SCOPED_STRING & strSubstring, ::collection::index first = 0, ::collection::index iLast = -1);
@@ -387,11 +387,11 @@ public:
    //::collection::count ends(string_array_base& straSuffixed, const SCOPED_STRING &strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
 
 
-   //::collection::count search_ci(string_array_base& straResult, const SCOPED_STRING &strSubstring, ::collection::index first = 0, ::collection::index iLast = -1);
+   //::collection::count case_insensitive_search(string_array_base& straResult, const SCOPED_STRING &strSubstring, ::collection::index first = 0, ::collection::index iLast = -1);
    //::collection::count search(string_array_base& straResult, const SCOPED_STRING &strSubstring, ::collection::index first = 0, ::collection::index iLast = -1);
 
 
-   ::collection::count filter_begins_ci(const SCOPED_STRING & strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
+   ::collection::count case_insensitive_filter_begins(const SCOPED_STRING & strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
    ::collection::count filter_begins(const SCOPED_STRING & strPrefix, ::collection::index first = 0, ::collection::index iLast = -1);
 
 
@@ -404,26 +404,27 @@ public:
    template < typename Pred, typename ArrayOut >
    ::collection::count filter_out(Pred pred, ArrayOut & a, ::collection::index first = 0, ::collection::index iLast = -1);
 
-   ::collection::count erase_first_ci(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1);
+   using BASE_ARRAY::erase_first;
+   ::collection::count case_insensitive_erase_first(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1);
 
    ::collection::count erase_first(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1);
 
 
-   ::collection::count erase_last_ci(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1);
+   ::collection::count case_insensitive_erase_last(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1);
 
    using BASE_ARRAY::erase_last;
    ::collection::count erase_last(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1);
 
-   ::collection::count _067RemoveCi(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1, ::collection::count countMin = 0, ::collection::count countMax = -1);
+   ::collection::count _067CaseInsensitiveRemove(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1, ::collection::count countMin = 0, ::collection::count countMax = -1);
 
    ::collection::count _067Remove(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1, ::collection::count countMin = 0, ::collection::count countMax = -1);
 
-   ::collection::count erase_ci(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1);
+   ::collection::count case_insensitive_erase(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1);
 
    ::collection::count erase(const SCOPED_STRING & str, ::collection::index iFind = 0, ::collection::index iLast = -1);
 
 
-   ::collection::count erase_ci(const string_array_base & stra);
+   ::collection::count case_insensitive_erase(const string_array_base & stra);
    ::collection::count erase(const string_array_base & stra);
 
    string_array_base & explode(const SCOPED_STRING & strSeparator, const SCOPED_STRING & str, bool bAddEmpty = true);
@@ -586,8 +587,8 @@ public:
    ::collection::count count_except(const SCOPED_STRING & str);
    ::collection::count count_except(const string_array_base & stra);
 
-   ::collection::count count_except_ci(const SCOPED_STRING & str);
-   ::collection::count count_except_ci(const string_array_base & stra);
+   ::collection::count case_insensitive_count_except(const SCOPED_STRING & str);
+   ::collection::count case_insensitive_count_except(const string_array_base & stra);
 
    Type & get_network_payload(Type & str, bool bNewLine = true) const;
 
@@ -654,7 +655,7 @@ public:
 
    }
 
-   string_array_base & intersect_ci(const string_array_base & a)
+   string_array_base & case_insensitive_intersect(const string_array_base & a)
    {
 
       for (::collection::index i = 0; i < get_size(); )

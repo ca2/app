@@ -1058,7 +1058,7 @@ namespace aura
       ::bred::user * breduser() override;
       ::core::user * coreuser() override;
 
-      void pick_browse() override;
+      void pick_browse(const ::function < void(const ::file::path & path) > & callback) override;
       
       void pick_media(const char * pszMediaType) override;
       

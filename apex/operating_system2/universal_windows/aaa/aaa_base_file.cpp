@@ -92,7 +92,7 @@ int_bool file_is_equal_path_dup(const ::scoped_string & scopedstr1,const ::scope
 //      {
 //         string p1 = unicode_to_utf8(pwszPath1);
 //         string p2 = unicode_to_utf8(pwszPath2);
-//         iCmp = ansi_compare_ci(p1,p2);
+//         iCmp = case_insensitive_ansi_compare(p1,p2);
 //      }
 //   }
 //   delete pwszPath1;
@@ -179,7 +179,7 @@ string file_module_path_dup()
 //         if(GetModuleFileNameEx(hProcess,hMods[u],szModName,sizeof(szModName) / sizeof(TCHAR)))
 //         {
 //
-//            if(!ansi_compare_ci(szModName,pszDll))
+//            if(!case_insensitive_ansi_compare(szModName,pszDll))
 //            {
 //
 //               bFound = true;
@@ -922,7 +922,7 @@ int_bool file_delete(const char * lpszFileName)
 //      {
 //         string p1 = unicode_to_utf8(pwszPath1);
 //         string p2 = unicode_to_utf8(pwszPath2);
-//         iCmp = ansi_compare_ci(p1,p2);
+//         iCmp = case_insensitive_ansi_compare(p1,p2);
 //      }
 //   }
 //   delete pwszPath1;

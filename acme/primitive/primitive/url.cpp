@@ -1745,7 +1745,7 @@ namespace url
 
       }
 
-      if(string_ends_ci(strServer, "." + strRoot))
+      if(case_insensitive_string_ends(strServer, "." + strRoot))
       {
 
          return true;
@@ -1864,7 +1864,7 @@ namespace url
 
       }
 
-      bool bPublicDomainExtensionListSuffixesDomain = m_straPublicDomainExtension.suffix_find_first_ci(strDomain) >= 0;
+      bool bPublicDomainExtensionListSuffixesDomain = m_straPublicDomainExtension.case_insensitive_suffix_find_first(strDomain) >= 0;
 
       return bPublicDomainExtensionListSuffixesDomain;
 

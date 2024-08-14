@@ -419,7 +419,7 @@ namespace sockets
 
 
 
-//      if (string_ends_ci(strName, "03 Coisa De Acender - Se..... - Djavan.mp3"))
+//      if (case_insensitive_string_ends(strName, "03 Coisa De Acender - Se..... - Djavan.mp3"))
   //    {
     //     debug_print("%s", strName.c_str());
       //}

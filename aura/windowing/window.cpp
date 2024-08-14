@@ -2418,7 +2418,7 @@ namespace windowing
 //      return m_pmessagequeue;
 //
 //   }
-void window::pick_browse()
+void window::pick_browse(const ::function < void(const ::file::path & path) > & callback)
 {
 }
 void window::pick_media(const char * pszMediaType)
@@ -2428,6 +2428,13 @@ void window::on_prompt_write_file(::user::controller *pusercontroller)
 {
    
 }
+
+void window::set_opacity(double dOpacity)
+{
+
+
+}
+
 
 } // namespace windowing
 

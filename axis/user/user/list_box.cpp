@@ -225,7 +225,7 @@ namespace user
       else
       {
 
-         return m_straList.find_first_ci(str);
+         return m_straList.case_insensitive_find_first(str);
 
       }
 

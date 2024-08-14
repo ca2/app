@@ -847,7 +847,7 @@ string memory_base::as_utf8() const
 //
 //   }
 //
-//   return !ansi_count_compare_ci(pszThis, psz, (size_t) iCount);
+//   return !case_insensitive_ansi_count_compare(pszThis, psz, (size_t) iCount);
 //
 //}
 //
@@ -891,7 +891,7 @@ string memory_base::as_utf8() const
 //
 //   }
 //
-//   return ansi_count_compare_ci((const char*) data(), str.c_str(), iCount) == 0;
+//   return case_insensitive_ansi_count_compare((const char*) data(), str.c_str(), iCount) == 0;
 //
 //}
 //
@@ -951,7 +951,7 @@ string memory_base::as_utf8() const
 //
 //   }
 //
-//   return ansi_count_compare_ci(pszThis + size() - iCount, psz, (size_t) iCount) == 0;
+//   return case_insensitive_ansi_count_compare(pszThis + size() - iCount, psz, (size_t) iCount) == 0;
 //
 //}
 //
@@ -995,7 +995,7 @@ string memory_base::as_utf8() const
 //
 //   }
 //
-//   return ansi_count_compare_ci((const char*) data() + size() - iCount, str.c_str(), iCount) == 0;
+//   return case_insensitive_ansi_count_compare((const char*) data() + size() - iCount, str.c_str(), iCount) == 0;
 //
 //}
 

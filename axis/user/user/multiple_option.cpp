@@ -130,6 +130,8 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
+      pgraphics->set_font(this, ::e_element_none);
+
       for (::collection::index i = 0; i < main_content().item_count(); i++)
       {
 
@@ -887,7 +889,7 @@ namespace user
    void multiple_option::set_current_item_by_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext)
    {
 
-      int iIndex = m_straName.find_first_ci(scopedstr);
+      auto iIndex = m_straName.case_insensitive_find_first(scopedstr);
 
       if (iIndex >= 0)
       {
@@ -910,7 +912,7 @@ namespace user
    void multiple_option::set_current_item_by_atom(const ::atom & atom, const ::action_context & actioncontext)
    {
 
-      int iIndex = m_atomaOptions.find_first(atom);
+      auto iIndex = m_atomaOptions.find_first(atom);
 
       if (iIndex >= 0)
       {

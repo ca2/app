@@ -187,7 +187,7 @@ namespace sockets
 
          ::parse pa(line);
          string str = pa.getword();
-         if (str.length() > 4 &&  string_begins_ci(str, "http/")) // response
+         if (str.length() > 4 &&  case_insensitive_string_begins(str, "http/")) // response
          {
             m_request.attr("http_version") = str;
             m_request.attr("http_status_code") = pa.getword();
@@ -244,7 +244,7 @@ namespace sockets
       {
          if (m_b_http_1_1)
          {
-            if(equals_ci(value, "close"))
+            if(case_insensitive_equals(value, "close"))
             {
                m_b_keepalive = false;
             }
@@ -255,7 +255,7 @@ namespace sockets
          }
          else
          {
-            if(equals_ci(value, "keep-alive"))
+            if(case_insensitive_equals(value, "keep-alive"))
             {
                m_b_keepalive = true;
             }
@@ -265,7 +265,7 @@ namespace sockets
             }
          }
       }
-      if (equals_ci(key, "transfer-encoding") && string_ends_ci(value, "chunked"))
+      if (case_insensitive_equals(key, "transfer-encoding") && case_insensitive_string_ends(value, "chunked"))
       {
          m_b_chunked = true;
       }
@@ -368,7 +368,7 @@ namespace sockets
    {
       ::parse pa(url_in,"/");
       protocol = pa.getword(); // http
-      if (!ansi_compare_ci(protocol, "https:"))
+      if (!case_insensitive_ansi_compare(protocol, "https:"))
       {
 #ifdef HAVE_OPENSSL
          EnableSSL();

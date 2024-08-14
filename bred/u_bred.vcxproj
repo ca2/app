@@ -89,6 +89,7 @@
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />
+    <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +108,11 @@
     <ClInclude Include="inline\_new_impl.h" />
     <ClInclude Include="inline\__debug_box_clear_impl.h" />
     <ClInclude Include="inline\__debug_box_set_impl.h" />
+    <ClInclude Include="platform\application.h" />
+    <ClInclude Include="platform\session.h" />
+    <ClInclude Include="platform\system.h" />
+    <ClInclude Include="platform\_platform.h" />
+    <ClInclude Include="user\user\user.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_defer.h" />
   </ItemGroup>

@@ -1359,7 +1359,7 @@ namespace user
 
             point += rectangleWindow.top_left();
 
-            _rtransform_point(point);
+            _rtransform_sequence(point);
 
             point -= rectangleWindow.top_left();
 

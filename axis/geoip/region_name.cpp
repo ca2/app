@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "geoip.h"
+#include <string.h>
 
 
 const char * GeoIP_region_name_by_code(const char * country_code,const char * region_code) {

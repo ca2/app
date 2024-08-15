@@ -126,6 +126,15 @@
     <ClInclude Include="_nanoui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="in_place_edit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="in_place_edit_array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="in_place_edit_mapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -210,6 +219,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="platform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="in_place_edit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="in_place_edit_array.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="in_place_edit_mapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

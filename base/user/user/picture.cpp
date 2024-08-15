@@ -169,31 +169,31 @@ namespace user
    }
 
 
-   point_f64 picture::_transform(const point_f64 & pointParam) const
-   {
-
-      point_f64 point(pointParam);
-
-      _transform_point(point);
-
-      return point;
-
-   }
-
-
-   point_f64 picture::_transform_drawing(const point_f64 & pointParam) const
-   {
-
-      point_f64 point(pointParam);
-
-      _transform_point_drawing(point);
-
-      return point;
-
-   }
+//   point_f64 picture::_transform(const point_f64 & pointParam) const
+//   {
+//
+//      point_f64 point(pointParam);
+//
+//      _transform_point(point);
+//
+//      return point;
+//
+//   }
 
 
-   void picture::_transform_point(point_f64 & point) const
+//   point_f64 picture::_transform_drawing(const point_f64 & pointParam) const
+//   {
+//
+//      point_f64 point(pointParam);
+//
+//      _transform_point_drawing(point);
+//
+//      return point;
+//
+//   }
+
+
+   void picture::_transform_sequence(sequence2_f64 & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -211,12 +211,12 @@ namespace user
 
       m.translate(m_ppictureimpl->m_rectangle.center());
 
-      m.transform(point);
+      m.transform(sequence);
 
    }
 
 
-   void picture::_transform_point_drawing(point_f64 & point) const
+   void picture::_transform_sequence_drawing(sequence2_f64 & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -234,35 +234,36 @@ namespace user
 
       m.translate(m_ppictureimpl->m_rectangleDrawing.center());
 
-      m.transform(point);
-
-   }
-
-   point_f64 picture::_rtransform(const point_f64 & pointParam) const
-   {
-
-      point_f64 point(pointParam);
-
-      _rtransform_point(point);
-
-      return point;
+      m.transform(sequence);
 
    }
 
 
-   point_f64 picture::_rtransform_drawing(const point_f64 & pointParam) const
-   {
+//   point_f64 picture::_rtransform(const point_f64 & pointParam) const
+//   {
+//
+//      point_f64 point(pointParam);
+//
+//      _rtransform_point(point);
+//
+//      return point;
+//
+//   }
 
-      point_f64 point(pointParam);
 
-      _rtransform_point_drawing(point);
+//   point_f64 picture::_rtransform_drawing(const point_f64 & pointParam) const
+//   {
+//
+//      point_f64 point(pointParam);
+//
+//      _rtransform_point_drawing(point);
+//
+//      return point;
+//
+//   }
 
-      return point;
 
-   }
-
-
-   void picture::_rtransform_point(point_f64 & point) const
+   void picture::_rtransform_sequence(sequence2_f64 & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -280,12 +281,12 @@ namespace user
 
       m.translate(m_ppictureimpl->m_rectangle.center());
 
-      m.transform(point);
+      m.transform(sequence);
 
    }
 
 
-   void picture::_rtransform_point_drawing(point_f64 & point) const
+   void picture::_rtransform_sequence_drawing(sequence2_f64 & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -303,36 +304,36 @@ namespace user
 
       m.translate(m_ppictureimpl->m_rectangleDrawing.center());
 
-      m.transform(point);
+      m.transform(sequence);
 
    }
 
 
-   point_f64 picture::drag_transform(const point_f64 & pointParam) const
-   {
-
-      point_f64 point(pointParam);
-
-      drag_transform_point(point);
-
-      return point;
-
-   }
-
-
-   point_f64 picture::drag_transform_drawing(const point_f64 & pointParam) const
-   {
-
-      point_f64 point(pointParam);
-
-      drag_transform_point_drawing(point);
-
-      return point;
-
-   }
+//   point_f64 picture::drag_transform(const point_f64 & pointParam) const
+//   {
+//
+//      point_f64 point(pointParam);
+//
+//      drag_transform_point(point);
+//
+//      return point;
+//
+//   }
 
 
-   void picture::drag_transform_point(point_f64 & point) const
+//   point_f64 picture::drag_transform_drawing(const point_f64 & pointParam) const
+//   {
+//
+//      point_f64 point(pointParam);
+//
+//      drag_transform_point_drawing(point);
+//
+//      return point;
+//
+//   }
+
+
+   void picture::drag_transform_sequence(sequence2_f64 & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -352,12 +353,12 @@ namespace user
 
       m.translate(m_ppictureimpl->m_rectangle.center());
 
-      m.transform(point);
+      m.transform(sequence);
 
    }
 
 
-   void picture::drag_transform_point_drawing(point_f64 & point) const
+   void picture::drag_transform_sequence_drawing(sequence2_f64 & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -377,35 +378,36 @@ namespace user
 
       m.translate(m_ppictureimpl->m_rectangleDrawing.center());
 
-      m.transform(point);
-
-   }
-
-   point_f64 picture::drag_rtransform(const point_f64 & pointParam) const
-   {
-
-      point_f64 point(pointParam);
-
-      drag_rtransform_point(point);
-
-      return point;
+      m.transform(sequence);
 
    }
 
 
-   point_f64 picture::drag_rtransform_drawing(const point_f64 & pointParam) const
-   {
+//   point_f64 picture::drag_rtransform(const point_f64 & pointParam) const
+//   {
+//
+//      point_f64 point(pointParam);
+//
+//      drag_rtransform_point(point);
+//
+//      return point;
+//
+//   }
+//
+//
+//   point_f64 picture::drag_rtransform_drawing(const point_f64 & pointParam) const
+//   {
+//
+//      point_f64 point(pointParam);
+//
+//      drag_rtransform_point_drawing(point);
+//
+//      return point;
+//
+//   }
 
-      point_f64 point(pointParam);
 
-      drag_rtransform_point_drawing(point);
-
-      return point;
-
-   }
-
-
-   void picture::drag_rtransform_point(point_f64 & point) const
+   void picture::drag_rtransform_sequence(sequence2_f64 & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -425,7 +427,7 @@ namespace user
 
       m.scale(1.0 / dZoom, 1.0 / dZoom);
 
-      m.transform(point);
+      m.transform(sequence);
 
    }
 
@@ -458,7 +460,7 @@ namespace user
    }
 
 
-   void picture::drag_rtransform_point_drawing(point_f64 & point) const
+   void picture::drag_rtransform_sequence_drawing(sequence2_f64 & sequence) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -478,7 +480,7 @@ namespace user
 
       //m.translate(m_ppictureimpl->m_rectangleDrawing.center());
 
-      m.transform(point);
+      m.transform(sequence);
 
    }
 

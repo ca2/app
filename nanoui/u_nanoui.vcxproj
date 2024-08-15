@@ -83,6 +83,9 @@
     <ClInclude Include="Icons.h" />
     <ClInclude Include="ImagePanel.h" />
     <ClInclude Include="ImageView.h" />
+    <ClInclude Include="in_place_edit.h" />
+    <ClInclude Include="in_place_edit_array.h" />
+    <ClInclude Include="in_place_edit_mapper.h" />
     <ClInclude Include="Label.h" />
     <ClInclude Include="Layout.h" />
     <ClInclude Include="MessageDialog.h" />
@@ -136,6 +139,9 @@
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="ImagePanel.cpp" />
     <ClCompile Include="ImageImpact.cpp" />
+    <ClCompile Include="in_place_edit.cpp" />
+    <ClCompile Include="in_place_edit_array.cpp" />
+    <ClCompile Include="in_place_edit_mapper.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="Layout.cpp" />
     <ClCompile Include="MessageDialog.cpp" />

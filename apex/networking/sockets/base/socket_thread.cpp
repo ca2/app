@@ -90,6 +90,8 @@ namespace sockets
 
       m_psockethandler = create_socket_handler();
 
+      auto pszType = typeid(*m_psockethandler.m_p).name();
+
       psocket->m_psocketthread = this;
 
       m_psockethandler->SetSlave();

@@ -6051,14 +6051,14 @@ namespace user
             if (bBackIfSelectionEmpty)
             {
                
-               if(amountRead == amountToRead)
-               {
+               //if(amountRead == amountToRead)
+               //{
                   
-                  pszNext = buf + amountRead;
+               pszNext = buf + amountRead;
                   
-                  pszBefore = unicode_prior(pszNext, buf);
+               pszBefore = unicode_prior(pszNext, buf);
                   
-               }
+               //}
 
             }
             else

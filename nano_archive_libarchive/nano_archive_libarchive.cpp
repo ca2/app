@@ -93,6 +93,8 @@ namespace libarchive
                   if(strSymlink.has_char())
                   {
 
+#if defined(LINUX)
+
                      ::file::path pathSymlinkSource(strSymlink);
 
                      for(int i = 0; i < iStripComponent; i++)

@@ -28,6 +28,7 @@ namespace launch
 
    }
 
+
    void application::calculate_distro__branch_and_release()
    {
 
@@ -168,6 +169,14 @@ namespace launch
       {
 
          strCommand.formatf("sudo pkg install %s", strPackages.c_str());
+
+      }
+      else if(m_strDistro == "opensuse"
+         || m_strDistro == "opensuse-tumbleweed"
+         || m_strDistro == "opensuse-leap")
+      {
+
+         strCommand.formatf("sudo zypper install %s", strPackages.c_str());
 
       }
       else

@@ -51,6 +51,10 @@ namespace launch
 
       strBranch.make_lower();
 
+      ::string strRelease;
+
+      strRelease = psummary->m_strDistroRelease;
+
       if (m_strDistro == "ubuntu")
       {
          if (strBranch == "kde")
@@ -95,9 +99,40 @@ namespace launch
       else if (m_strDistro == "linuxmint")
       {
 
-         print_line("This is Linux Mint System...");
+         m_strDistro = "ubuntu";
 
-         m_strBranch = strBranch;
+         m_strBranch = "gnome";
+
+         if(strRelease == "21")
+         {
+
+            print_line("This is Linux Mint 21 System...");
+
+            print_line("Going to use Ubuntu 22.04 binaries...");
+
+            m_strRelease = "22.04";
+
+         }
+         else if(strRelease == "22")
+         {
+
+            print_line("This is Linux Mint 22 System...");
+
+            print_line("Going to use Ubuntu 24.04 binaries...");
+
+            m_strRelease = "24.04";
+
+         }
+         else
+         {
+
+            printf_line("This is Linux Mint %s System...", strRelease.c_str());
+
+            print_line("Currently not known how to handle. Fallback to Ubuntu 24.04 binaries...");
+
+            m_strRelease = "24.04";
+
+         }
 
       }
       else if (m_strDistro == "opensuse-tumbleweed")
@@ -109,7 +144,7 @@ namespace launch
 
       }
 
-      m_strRelease = psummary->m_strDistroRelease;
+      m_strRelease = strRelease;
 
 
    }

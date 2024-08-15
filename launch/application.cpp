@@ -91,6 +91,14 @@ namespace launch
          m_strBranch = strBranch;
 
       }
+      else if (m_strDistro == "linuxmint")
+      {
+
+         print_line("This is Linux Mint System...");
+
+         m_strBranch = strBranch;
+
+      }
       else if (m_strDistro == "opensuse-tumbleweed")
       {
 
@@ -138,7 +146,7 @@ namespace launch
       ::string strCommand;
 
       if(m_strDistro == "ubuntu" || m_strDistro == "kubuntu" || m_strDistro == "xubuntu"
-      || m_strDistro == "debian")
+      || m_strDistro == "debian" || m_strDistro == "linuxmint")
       {
 
          strCommand.formatf("sudo apt -y install %s", strPackages.c_str());

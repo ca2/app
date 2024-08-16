@@ -3870,6 +3870,9 @@
     <ClInclude Include="filesystem\filesystem\file_context_interface.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\console_message_box.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -5428,6 +5431,9 @@
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\file_context_interface.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\console_message_box.cpp">
+      <Filter>Source Files\operating_system</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

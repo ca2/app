@@ -617,6 +617,7 @@
     <ClCompile Include="handler\manager_room.cpp" />
     <ClCompile Include="handler\signal.cpp" />
     <ClCompile Include="input\input.cpp" />
+    <ClCompile Include="interprocess\handler.cpp" />
     <ClCompile Include="interprocess\base.cpp" />
     <ClCompile Include="interprocess\call.cpp" />
     <ClCompile Include="interprocess\caller.cpp" />
@@ -796,6 +797,7 @@
     <ClInclude Include="inline\_console_old.h" />
     <ClInclude Include="inline\_new_impl.h" />
     <ClInclude Include="input\input.h" />
+    <ClInclude Include="interprocess\handler.h" />
     <ClInclude Include="interprocess\base.h" />
     <ClInclude Include="interprocess\call.h" />
     <ClInclude Include="interprocess\caller.h" />

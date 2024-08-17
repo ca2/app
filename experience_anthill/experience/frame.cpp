@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "frame.h"
 #include "control_box.h"
+#include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/fastblur.h"
 #include "aura/graphics/image/image.h"

@@ -1203,6 +1203,7 @@
     <ClInclude Include="nano\user\window_interface.h" />
     <ClInclude Include="nano\user\_.h" />
     <ClInclude Include="nano\_.h" />
+    <ClInclude Include="operating_system\console_message_box.h" />
     <ClInclude Include="operating_system\errno.h" />
     <ClInclude Include="operating_system\windows\heap_allocator.h" />
     <ClInclude Include="operating_system\windows\nano\dynamic_library\dynamic_library.h" />
@@ -2829,7 +2830,7 @@
     <ClCompile Include="primitive\string\hex.cpp" />
     <ClCompile Include="primitive\string\international.cpp" />
     <ClCompile Include="primitive\string\parse.cpp" />
-    <ClCompile Include="primitive\string\str.cpp" />
+    <ClCompile Include="primitive\string\_str.cpp" />
     <ClCompile Include="primitive\string\stringtow.cpp" />
     <ClCompile Include="primitive\string\string_ansi.cpp" />
     <ClCompile Include="primitive\string\string_wide.cpp" />

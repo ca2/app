@@ -5,6 +5,7 @@
 #include "acme/graphics/image/image32.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/image/drawing.h"
@@ -414,11 +415,11 @@ namespace graphics
    //   MESSAGE_LINK(e_message_left_button_up, pchannel, this, &color_selector::on_message_left_button_up);
    //   MESSAGE_LINK(e_message_show_window, pchannel, this, &color_selector::on_message_show_window);
 
-   //   m_pimageTemplate = m_pcontext->m_pauracontext->create_image({ 2048,  2048 });
+   //   m_pimageTemplate = context_image()->create_image({ 2048,  2048 });
 
    //   ::visual::colors_with_shades_of_grey(m_pimageTemplate);
 
-   //   m_pimageLuminance = m_pcontext->m_pauracontext->create_image({ 100,  100 });
+   //   m_pimageLuminance = context_image()->create_image({ 100,  100 });
 
    //}
 
@@ -428,11 +429,11 @@ namespace graphics
 
       ::particle::on_initialize_particle();
 
-      m_pimageTemplate = m_pcontext->m_pauracontext->create_image({ 2048,  2048 });
+      m_pimageTemplate = context_image()->create_image({ 2048,  2048 });
 
       ::graphics::colors_with_shades_of_grey(m_pimageTemplate);
 
-      m_pimageLuminance = m_pcontext->m_pauracontext->create_image({ 100,  100 });
+      m_pimageLuminance = context_image()->create_image({ 100,  100 });
 
       if (__defer_construct(m_pfontOk))
       {
@@ -1027,7 +1028,7 @@ namespace graphics
 
       }
 
-      m_pimageLuminance = m_pcontext->m_pauracontext->create_image({ m_rectangleColors.width() / 8,  m_rectangleColors.height() });
+      m_pimageLuminance = context_image()->create_image({ m_rectangleColors.width() / 8,  m_rectangleColors.height() });
 
       rebuild_luminance();
 

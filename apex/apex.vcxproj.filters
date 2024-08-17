@@ -1013,6 +1013,9 @@
     <ClInclude Include="filesystem\fs\folder_sync.h">
       <Filter>Header Files\filesystem\fs</Filter>
     </ClInclude>
+    <ClInclude Include="interprocess\handler.h">
+      <Filter>Header Files\interprocess</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1455,6 +1458,9 @@
     </ClCompile>
     <ClCompile Include="filesystem\fs\folder_sync.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="interprocess\handler.cpp">
+      <Filter>Source Files\interprocess</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

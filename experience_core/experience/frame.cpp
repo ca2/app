@@ -2,6 +2,7 @@
 #include "frame.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/source.h"
 #include "aura/graphics/image/icon.h"
@@ -169,9 +170,9 @@ namespace experience_core
 
       ::image_pointer pimage2;
 
-      pimage1 = m_pcontext->m_pauracontext->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
+      pimage1 = context_image()->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
 
-      pimage2 = m_pcontext->m_pauracontext->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
+      pimage2 = context_image()->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
 
       ::rectangle_i32 rectangleWindow = rectangleX;
 

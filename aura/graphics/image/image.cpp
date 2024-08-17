@@ -5984,7 +5984,7 @@ image_pointer image::rotated(const ::angle_f64 & angle, double dScale)
       if (angle.degree() == 90.0)
       {
 
-            auto pimage = m_pcontext->m_pauracontext->create_image({height(), width() });
+            auto pimage = context_image()->create_image({height(), width() });
 
             //if (!create({ pimage->height(), pimage->width() }))
             //{
@@ -6024,7 +6024,7 @@ image_pointer image::rotated(const ::angle_f64 & angle, double dScale)
       else  if (angle.degree() == 180.0)
       {
 
-         auto pimage = m_pcontext->m_pauracontext->create_image(size());
+         auto pimage = context_image()->create_image(size());
 
 
 
@@ -6057,7 +6057,7 @@ image_pointer image::rotated(const ::angle_f64 & angle, double dScale)
       else if (angle.degree() ==270.0)
       {
 
-               auto pimage = m_pcontext->m_pauracontext->create_image({ height(), width() });
+               auto pimage = context_image()->create_image({ height(), width() });
 
             map();
 
@@ -6106,7 +6106,7 @@ image_pointer image::rotated(const ::angle_f64 & angle, double dScale)
 
    }
 
-   auto pimage = m_pcontext->m_pauracontext->create_image({ b, a });
+   auto pimage = context_image()->create_image({ b, a });
 
    map();
 
@@ -9948,7 +9948,7 @@ void image::defer_update_image()
 
    }
 
-   auto pimageNew = m_pcontext->m_pauracontext->create_image(size);
+   auto pimageNew = context_image()->create_image(size);
 
    image_source imagesource(this, this->rectangle());
 

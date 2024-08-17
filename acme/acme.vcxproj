@@ -1688,6 +1688,7 @@
     <ClCompile Include="operating_system\chronometer.cpp" />
     <ClCompile Include="operating_system\console.cpp" />
     <ClCompile Include="operating_system\console_client.cpp" />
+    <ClCompile Include="operating_system\console_message_box.cpp" />
     <ClCompile Include="operating_system\debug.cpp" />
     <ClCompile Include="operating_system\dostime.cpp" />
     <ClCompile Include="operating_system\error_code.cpp" />

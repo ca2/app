@@ -5429,6 +5429,9 @@
     <ClCompile Include="filesystem\filesystem\file_context_interface.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\console_message_box.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\_defer.h">

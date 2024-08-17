@@ -291,7 +291,7 @@ namespace user
             {
                ///return true;
 
-               m_pitem->m_pmesh->m_plist->m_pimageTime = m_pitem->m_pmesh->m_pcontext->m_pauracontext->create_image(m_pitem->m_pmesh->m_plist->m_pimageSpot->size());
+               m_pitem->m_pmesh->m_plist->m_pimageTime = m_pitem->m_pmesh->context_image()->create_image(m_pitem->m_pmesh->m_plist->m_pimageSpot->size());
 
                ::rectangle_i32 rectangle = rectangleI;
 

@@ -6223,13 +6223,13 @@ namespace user
             size.cy() += 4;
 
             ::image_pointer pimage1;
-            pimage1 = m_pitem->m_pmesh->m_pcontext->m_pauracontext->create_image(size);
+            pimage1 = m_pitem->m_pmesh->context_image()->create_image(size);
             pimage1->clear(::color::transparent);
             auto pbrushText = m_pitem->m_pmesh->__create < ::draw2d::brush > ();
             pbrushText->create_solid(argb(255,255,255,255));
             pimage1->get_graphics()->set(pbrushText);
             ::image_pointer pimage2;
-            pimage2 = m_pitem->m_pmesh->m_pcontext->m_pauracontext->create_image(size);
+            pimage2 = m_pitem->m_pmesh->context_image()->create_image(size);
             pimage2->clear(::color::transparent);
 
             ::rectangle_i32 rectangleCache;

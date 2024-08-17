@@ -29,10 +29,6 @@ namespace aura
 
       void finalize() override;
 
-      virtual ::image_pointer create_image();
-
-
-      virtual ::image_pointer create_image(const ::size_i32 & size, const image32_t * pcolor = nullptr, int iScan = -1, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
 
 
    };

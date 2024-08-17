@@ -9,6 +9,7 @@
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
@@ -440,7 +441,7 @@ void simple_toolbar::on_message_create(::message::message * pmessage)
    
    //descriptor().m_econtroltype = ::user::e_control_type_toolbar;
 
-   m_pimageDraft = m_pcontext->m_pauracontext->create_image({20,  20 });
+   m_pimageDraft = context_image()->create_image({20,  20 });
 
 }
 

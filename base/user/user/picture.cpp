@@ -3,6 +3,7 @@
 #include "aura/platform/context.h"
 #include <math.h>
 #include "acme/primitive/geometry2d/matrix.h"
+#include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "picture.h"
@@ -860,7 +861,7 @@ namespace user
 
          rectangleDib.inflate(iShift, iShift);
 
-         pimageDropShadow = m_pcontext->m_pauracontext->create_image(rectangleDib.size());
+         pimageDropShadow = context_image()->create_image(rectangleDib.size());
 
          if (pimageDropShadow)
          {

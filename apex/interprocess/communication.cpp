@@ -4,6 +4,7 @@
 #include "target.h"
 #include "caller.h"
 #include "call.h"
+#include "handler.h"
 #include "task.h"
 ////#include "acme/exception/exception.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -766,6 +767,23 @@ namespace interprocess
 
    bool communication::_handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
    {
+
+      if (m_phandler)
+      {
+
+         if (m_phandler->_handle_interprocess(
+            m_ptarget,
+            payload,
+            strObject,
+            strMember,
+            propertyset))
+         {
+
+            return true;
+
+         }
+
+      }
 
       if (strObject == "application")
       {

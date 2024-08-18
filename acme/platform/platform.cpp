@@ -4,6 +4,7 @@
 #include "acme.h"
 #include "simple_log.h"
 //#include "acme.h"
+#include "acme/exception/library_not_loaded.h"
 #include "acme/memory/counter.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/dynamic_library/dynamic_library.h"
@@ -1163,6 +1164,16 @@ namespace platform
       {
 
          plibrary = create_library_dynamically(strLibrary);
+
+      }
+      catch (library_not_loaded& librarynotloaded)
+      {
+
+         auto psequencer = message_box(librarynotloaded.get_message(),
+            "Library not loaded", e_message_box_icon_error, librarynotloaded.m_strDetails);
+
+         psequencer->do_asynchronously();
+            
 
       }
       catch (...)

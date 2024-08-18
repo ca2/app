@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "frame.h"
 #include "control_box.h"
+#include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/fastblur.h"
 #include "aura/graphics/image/image.h"
@@ -93,9 +94,9 @@ namespace experience_anthill
 
       ::image_pointer pimage2;
 
-      pimage1 = m_pcontext->m_pauracontext->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
+      pimage1 = context_image()->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
 
-      pimage2 = m_pcontext->m_pauracontext->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
+      pimage2 = context_image()->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
       ::rectangle_i32 rectangleWindow = rectangleX;
       pframewindow->client_to_screen()(rectangleWindow);
       //pimage = create_image({rectangleX.width(),  rectangleX.height()});

@@ -323,7 +323,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
                ::image_pointer pimage;
                if (rectangle.area() > 0)
                {
-                  pimage = m_pcontext->m_pauracontext->create_image(rectangle.size());
+                  pimage = context_image()->create_image(rectangle.size());
                   pimage->clear(::color::white);
                   pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
                   pgraphics->flush();
@@ -1605,7 +1605,7 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
    
    size.cy() += (::i32)(2 * (maximum(2.0, m_floatRateX * 8.0)));
 
-   pimageCache = m_pcontext->m_pauracontext->create_image(size);
+   pimageCache = context_image()->create_image(size);
 
    if (!pimageCache)
    {

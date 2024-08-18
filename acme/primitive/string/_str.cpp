@@ -4161,6 +4161,69 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 }
 
 
+strsize str::x_find_index(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrSearchedTerm)
+{
+
+   strsize start = 0;
+
+   while (auto found = scopedstr.case_insensitive_find_index(scopedstrSearchedTerm, start))
+   {
+
+      if (found < 0)
+      {
+
+         break;
+
+      }
+
+      if ((found == 0 || !ansi_char_isalpha(scopedstr[found - 1]))
+         && ((found + scopedstrSearchedTerm.size()) >= scopedstr.size() ||
+            !ansi_char_isalpha(scopedstr[found + scopedstrSearchedTerm.size()]))
+         )
+      {
+
+         return found;
+
+      }
+
+      start = found + scopedstrSearchedTerm.size();
+
+   }
+
+   return -1;
+
+}
+
+
+bool str::x_contains(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrSearchedTerm)
+{
+
+   auto found = x_find_index(scopedstr, scopedstrSearchedTerm);
+
+   return found >= 0;
+
+}
+
+
+bool str::x_contains(const ::scoped_string& scopedstr, const ::string_array& straSearchedTerm)
+{
+
+   for (auto& strSearchedTerm : straSearchedTerm)
+   {
+
+      if (x_contains(scopedstr, strSearchedTerm))
+      {
+
+         return true;
+
+      }
+
+   }
+
+   return false;
+
+}
+
 //::string as_string(const ::string_stream & strstream)
 //{
 //

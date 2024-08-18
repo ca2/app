@@ -288,7 +288,7 @@ payload::payload(const CHARACTER_RANGE & range) :
    payload(no_initialize_t{})
 {
 
-   m_etype = e_type_ansi_range;
+   m_etype = e_type_string;
    zero(m_all);
    m_str = range;
 

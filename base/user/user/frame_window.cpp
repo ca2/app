@@ -536,7 +536,7 @@ namespace user
 
                   window_rectangle(rectangle);
 
-                  pimage1 = m_pcontext->m_pauracontext->create_image(rectangle.size());
+                  pimage1 = context_image()->create_image(rectangle.size());
 
                   //auto pparticleSynchronization = pimpl->m_pgraphics->get_draw_lock();
 

@@ -7,6 +7,7 @@
 #include "acme/handler/topic.h"
 #include "acme/primitive/collection/_array.h"
 #include "acme/user/user/content.h"
+#include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/array.h"
@@ -540,7 +541,7 @@ namespace user
                   if (!szNew.is_empty())
                   {
 
-                     pimage = m_pcontext->m_pauracontext->create_image(szNew);
+                     pimage = context_image()->create_image(szNew);
 
                      auto pgraphics = pimage->g();
 

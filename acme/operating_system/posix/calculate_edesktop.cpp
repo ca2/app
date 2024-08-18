@@ -93,6 +93,14 @@ namespace nano
             return ::user::e_desktop_xfce;
 
          }
+         else if(file_exists("/usr/bin/cinnamon"))
+         {
+
+            printf("calculate_edesktop e_desktop_cinnamon\n");
+
+            return ::user::e_desktop_cinnamon;
+
+         }
          else if(file_exists("/usr/bin/mate-about"))
          {
 

@@ -88,7 +88,7 @@ namespace core
    void user::userfs_process_init()
    {
 
-      information() << "start";
+      information() << "user::userfs_process_init start";
 
       //m_puserfs = create_userfs();
 
@@ -121,7 +121,7 @@ namespace core
    void user::userfs_init1()
    {
 
-      information() << "start";
+      information() << "user::userfs_init1 start";
 
       //auto estatus =
       

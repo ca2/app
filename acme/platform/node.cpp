@@ -1869,19 +1869,19 @@ namespace acme
 
 #endif
 
-#ifdef WINDOWS
-
-      auto pathFolder = acmedirectory()->roaming() / scopedstrRepos / scopedstrApp / "x64" ;
-
-      path = pathFolder / strName;
-
-      return path;
-
-#else
+//#ifdef WINDOWS
+//
+//      auto pathFolder = acmedirectory()->roaming() / scopedstrRepos / scopedstrApp / "x64" ;
+//
+//      path = pathFolder / strName;
+//
+//      return path;
+//
+//#else
 
       auto pathFolder = acmedirectory()->home();
 
-      path = pathFolder / "application" / scopedstrRepos / scopedstrApp / "x64" / strName;
+      path = pathFolder / "application" / scopedstrRepos / scopedstrApp / "binary" / strName;
       
 #ifdef MACOS
       
@@ -1891,7 +1891,7 @@ namespace acme
 
       return path;
 
-#endif
+//#endif
 
 
 //#endif

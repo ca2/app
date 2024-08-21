@@ -1203,6 +1203,7 @@
     <ClInclude Include="nano\user\window_interface.h" />
     <ClInclude Include="nano\user\_.h" />
     <ClInclude Include="nano\_.h" />
+    <ClInclude Include="operating_system\console_message_box.h" />
     <ClInclude Include="operating_system\errno.h" />
     <ClInclude Include="operating_system\windows\heap_allocator.h" />
     <ClInclude Include="operating_system\windows\nano\dynamic_library\dynamic_library.h" />
@@ -1688,6 +1689,7 @@
     <ClCompile Include="operating_system\chronometer.cpp" />
     <ClCompile Include="operating_system\console.cpp" />
     <ClCompile Include="operating_system\console_client.cpp" />
+    <ClCompile Include="operating_system\console_message_box.cpp" />
     <ClCompile Include="operating_system\debug.cpp" />
     <ClCompile Include="operating_system\dostime.cpp" />
     <ClCompile Include="operating_system\error_code.cpp" />

@@ -84,15 +84,17 @@ namespace acme
 
       //m_pNodeX11 = nullptr;
       //m_pNodeXcb = nullptr;
+
       m_pNodeGtk3 = nullptr;
       m_pNodeGtk4 = nullptr;
+      m_pNodeGtkBased = nullptr;
 
-      m_pNodeGnome = nullptr;
-      m_pNodeKDE5 = nullptr;
-      m_pNodeKDE6 = nullptr;
       m_pNodeXfce = nullptr;
 
-      m_pNodeDesktopEnvironmentGnome = nullptr;
+      m_pNodeKDE5 = nullptr;
+      m_pNodeKDE6 = nullptr;
+
+      m_pNodeDesktopEnvironmentGtkBased = nullptr;
       m_pNodeDesktopEnvironmentKDE = nullptr;
       m_pNodeDesktopEnvironmentXfce = nullptr;
 
@@ -1263,7 +1265,7 @@ namespace acme
    }
 
 
-   string node::get_wallpaper(::collection::index iScreen)
+   string node::get_wallpaper(::collection::index iScreen, ::windowing::display * pwindowingdisplay)
    {
 
       return "";
@@ -3010,7 +3012,19 @@ return false;
       else if(scopedstrComponentName == "nano_http")
       {
 
-#ifdef LINUX
+#if defined(FREEBSD)
+
+#if defined(CUBE)
+
+         return "command_line";
+
+#else
+
+         return "libcurl";
+
+#endif
+
+#elif defined(LINUX)
        
          return "libcurl";
 

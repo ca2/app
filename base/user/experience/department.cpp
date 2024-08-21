@@ -269,7 +269,7 @@ namespace base
    void user::initialize1_experience()
    {
 
-      information() << "start";
+      information() << "base::user::initialize1_experience start";
 
       //auto estatus = 
       

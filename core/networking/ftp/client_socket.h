@@ -45,6 +45,7 @@
 
 #include "apex/networking/sockets/basic/tcp_socket.h"
 
+struct tm;
 
 namespace sockets
 {
@@ -191,7 +192,7 @@ namespace ftp
       int Restart(::u32 dwPosition);
 
       int FileSize(const string& strPath, long& lSize);
-      int FileModificationTime(const string& strPath, tm& tmModificationTime);
+      int FileModificationTime(const string& strPath, struct ::tm& tmModificationTime);
       int FileModificationTime(const string& strPath, string& strModificationTime);
 
       bool ExecuteDatachannelCommand(const command& crDatachannelCmd, const string& strPath, const representation& representation,

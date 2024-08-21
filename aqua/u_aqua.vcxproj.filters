@@ -204,6 +204,12 @@
     <ClCompile Include="multimedia\media_player_command.cpp">
       <Filter>Source Files\multimedia</Filter>
     </ClCompile>
+    <ClCompile Include="platform\sha256.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\tinyexpr.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="platform\system.h">
@@ -352,6 +358,15 @@
     </ClInclude>
     <ClInclude Include="audio\_.h">
       <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\hwid.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\sha256.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\tinyexpr.h">
+      <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

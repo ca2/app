@@ -50,7 +50,7 @@ if (MSVC)
     target_link_libraries(app_message_box PRIVATE ${library_references})
 elseif(${LINUX})
 
-    #if(GNOME_DESKTOP)
+    #if(GTK_BASED_DESKTOP)
     #    add_dependencies(app_message_box node_gnome windowing_x11)
     #endif()
     #if(KDE_DESKTOP)
@@ -65,6 +65,16 @@ elseif(${LINUX})
     message(STATUS "(F) PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif()
 
+
+add_dependencies(${PROJECT_NAME} crypto_openssl)
+add_dependencies(${PROJECT_NAME} folder_zip)
+
+
+if(${LINUX})
+    if(${WITH_X11})
+        add_dependencies(${PROJECT_NAME} nano_user_x11)
+    endif()
+endif()
 
 
 

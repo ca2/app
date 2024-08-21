@@ -73,7 +73,7 @@ bool image_array::explode(::particle * pparticle, const ::size_i32 & sizeParam, 
       for (int col = 0; col < cols; col++)
       {
 
-         auto pimage = pparticle->m_pcontext->m_pauracontext->create_image(size);
+         auto pimage = pparticle->context_image()->create_image(size);
 
          auto rectangleTarget = pimage->rectangle();
 

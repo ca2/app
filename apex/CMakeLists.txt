@@ -157,6 +157,8 @@ list(APPEND apex_source
         interprocess/caller.h
         interprocess/communication.cpp
         interprocess/communication.cpp
+   interprocess/handler.cpp
+   interprocess/handler.h
         interprocess/target.cpp
         interprocess/target.h
         interprocess/task.cpp

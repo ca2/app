@@ -3247,7 +3247,9 @@ namespace user
 
                _001GetSubItemImage(pdrawlistsubitem);
 
-               if (pdrawlistsubitem->m_bOk && pdrawlistsubitem->m_iImage >= 0)
+               if (pdrawlistsubitem->m_bOk && pdrawlistsubitem->m_iImage >= 0
+                  && pdrawlistsubitem->m_iImage <
+                  pdrawlistsubitem->m_pcolumn->m_pimagelist->get_image_count())
                {
 
                   string strText = pdrawlistsubitem->m_strText;

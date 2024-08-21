@@ -19,13 +19,12 @@
 
 
 
-
 template < primitive_number COORDINATE, ::collection::count t_iSize >
 struct sequence_type
 {
 
-
    using sequence_tag = sequence_t;
+   using sequence_size = sequence_size_t < t_iSize >;
    using BASE_COORDINATE = COORDINATE;
    using UNIT_TYPE = COORDINATE;
 

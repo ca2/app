@@ -482,7 +482,7 @@ namespace user
 
                ASSERT(iSelBeg >= pspan->m_iPosBeg);
 
-               strsize iMid = iSelBeg - pspan->m_iPosBeg + 1;
+               strsize iMid = iSelBeg - pspan->m_iPosBeg;
 
                if (iLine >= straLines.get_upper_bound())
                {

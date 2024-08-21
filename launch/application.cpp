@@ -28,6 +28,7 @@ namespace launch
 
    }
 
+
    void application::calculate_distro__branch_and_release()
    {
 
@@ -49,6 +50,10 @@ namespace launch
       ::string strBranch = psummary->m_strDistroBranch;
 
       strBranch.make_lower();
+
+      ::string strRelease;
+
+      strRelease = psummary->m_strDistroRelease;
 
       if (m_strDistro == "ubuntu")
       {
@@ -91,6 +96,45 @@ namespace launch
          m_strBranch = strBranch;
 
       }
+      else if (m_strDistro == "linuxmint")
+      {
+
+         m_strDistro = "ubuntu";
+
+         m_strBranch = "";
+
+         if(strRelease == "21")
+         {
+
+            print_line("This is Linux Mint 21 System...");
+
+            print_line("Going to use Ubuntu 22.04 binaries...");
+
+            strRelease = "22.04";
+
+         }
+         else if(strRelease == "22")
+         {
+
+            print_line("This is Linux Mint 22 System...");
+
+            print_line("Going to use Ubuntu 24.04 binaries...");
+
+            strRelease = "24.04";
+
+         }
+         else
+         {
+
+            printf_line("This is Linux Mint %s System...", strRelease.c_str());
+
+            print_line("Currently not known how to handle. Fallback to Ubuntu 24.04 binaries...");
+
+            strRelease = "24.04";
+
+         }
+
+      }
       else if (m_strDistro == "opensuse-tumbleweed")
       {
 
@@ -100,7 +144,7 @@ namespace launch
 
       }
 
-      m_strRelease = psummary->m_strDistroRelease;
+      m_strRelease = strRelease;
 
 
    }
@@ -118,7 +162,7 @@ namespace launch
    {
 
 
-      printf("Going to install dependencies:\n");
+      print_line("Going to install dependencies: ");
 
       auto lines = acmefile()->lines(m_pathX64/"operating_system_packages.txt");
 
@@ -138,7 +182,7 @@ namespace launch
       ::string strCommand;
 
       if(m_strDistro == "ubuntu" || m_strDistro == "kubuntu" || m_strDistro == "xubuntu"
-      || m_strDistro == "debian")
+      || m_strDistro == "debian" || m_strDistro == "linuxmint")
       {
 
          strCommand.formatf("sudo apt -y install %s", strPackages.c_str());
@@ -160,6 +204,14 @@ namespace launch
       {
 
          strCommand.formatf("sudo pkg install %s", strPackages.c_str());
+
+      }
+      else if(m_strDistro == "opensuse"
+         || m_strDistro == "opensuse-tumbleweed"
+         || m_strDistro == "opensuse-leap")
+      {
+
+         strCommand.formatf("sudo zypper install %s", strPackages.c_str());
 
       }
       else
@@ -359,13 +411,13 @@ namespace launch
 
       acmedirectory()->change_current(m_pathX64);
 
-#ifdef LINUX
+#if defined(LINUX) || defined(FREEBSD)
 
       ::string strExecutable = "_" + m_strAppRoot + "_" + m_strAppName;
 
 #else
 
-      ::string strExecutable = "shared_" + m_strAppRoot + "_" m_strAppName + ".exe";
+      ::string strExecutable = "shared_" + m_strAppRoot + "_" + m_strAppName + ".exe";
 
 #endif
 
@@ -518,6 +570,7 @@ namespace launch
       return strUrl;
 
    }
+
 
 } // namespace launch
 

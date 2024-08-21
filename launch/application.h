@@ -44,7 +44,7 @@ namespace launch
       void parse_app_root_and_app_name();
 
 
-      void run();
+      void run() override;
 
 
       ::string calculate_download_url();

@@ -48,7 +48,6 @@ extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory);
 
 #if defined(WINDOWS)
 
-
 extern "C" void nano_idn_windows_common_factory(::factory::factory * pfactory);
 
 #if defined(WINDOWS_DESKTOP)
@@ -64,7 +63,6 @@ extern "C" void nano_user_universal_windows_factory(::factory::factory * pfactor
 #elif defined(MACOS)
 
 extern "C" void nano_user_macos_factory(::factory::factory* pfactory);
-
 
 #endif
 
@@ -255,7 +253,7 @@ namespace acme
 
 #ifdef _DEBUG
 
-      etracelevel = e_trace_level_warning;
+      etracelevel = e_trace_level_information;
 
 #else
 
@@ -301,6 +299,12 @@ namespace acme
       {
 
          etracelevel = e_trace_level_information;
+
+      }
+      else if (strTraceLevel == "warning")
+      {
+
+         etracelevel = e_trace_level_warning;
 
       }
 
@@ -3435,9 +3439,7 @@ namespace acme
 
          auto pfactory = this->factory();
 
-
          nano_user_win32_factory(pfactory);
-
 
          return;
          
@@ -3456,15 +3458,11 @@ namespace acme
          
          auto pfactory = this->factory();
 
-
          nano_user_macos_factory(pfactory);
-
 
          return;
          
-
 #endif
-
 
       }
 

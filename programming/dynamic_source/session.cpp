@@ -9,15 +9,24 @@ namespace dynamic_source
 {
 
 
+   interlocked_count g_interlockedcountDynamicSourceSession;
+
+
    session::session()
    {
 
+      g_interlockedcountDynamicSourceSession++;
+
+      ::informationf("%s currently allocated count = %lld", typeid(*this).name(), g_interlockedcountDynamicSourceSession.operator ::i64());
 
    }
 
 
    session::~session()
    {
+
+      g_interlockedcountDynamicSourceSession--;
+
       ::text::international::locale_schema * pls = m_set["locale_schema"].cast < ::text::international::locale_schema > ();
       if(pls != nullptr)
       {

@@ -252,6 +252,13 @@ public:
    {
 
       auto target = (::u8 *)p;
+      
+      if(::is_null(m_pmemory))
+      {
+       
+         return 0;
+         
+      }
 
       memsize left = m_pmemory->size() - m_position;
 

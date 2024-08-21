@@ -117,7 +117,8 @@ elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
 
    if(${FREEBSD})
-      list(APPEND extra_pkg_modules glm)
+      #list(APPEND extra_pkg_modules glm gl)
+      list(APPEND extra_pkg_modules gl)
    endif()
 
     #if (USE_PKGCONFIG)

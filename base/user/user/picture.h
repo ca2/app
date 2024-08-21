@@ -116,24 +116,72 @@ namespace user
       virtual void set_drag_point(const ::point_f64 & point_f64);
       virtual ::point_f64 get_drag_point();
 
-      virtual void _transform_point(point_f64 & point) const;
-      virtual void _transform_point_drawing(point_f64 & point) const;
-      virtual point_f64 _transform(const point_f64 & point) const;
-      virtual point_f64 _transform_drawing(const point_f64 & point) const;
-      virtual void _rtransform_point(point_f64 & point) const;
-      virtual void _rtransform_point_drawing(point_f64 & point) const;
-      virtual point_f64 _rtransform(const point_f64 & point) const;
-      virtual point_f64 _rtransform_drawing(const point_f64 & point) const;
+      virtual void _transform_sequence(sequence2_f64 & sequence) const;
+      virtual void _transform_sequence_drawing(sequence2_f64 & sequence) const;
+      template < typename T >
+      inline T _transform(const T & t) const
+      {
+         auto tTransform = t;
+         _transform_sequence(tTransform);
+         return tTransform;
+      }
+      template < typename T >
+      inline T _transform_drawing(const T & t) const
+      {
+         auto tTransform = t;
+         _transform_sequence(tTransform);
+         return tTransform;
+      }
+      virtual void _rtransform_sequence(sequence2_f64 & sequence) const;
+      virtual void _rtransform_sequence_drawing(sequence2_f64 & sequence) const;
+      template < typename T >
+      inline T _rtransform(const T & t) const
+      {
+         auto tTransform = t;
+         _rtransform_sequence(tTransform);
+         return tTransform;
+      }
+      template < typename T >
+      inline T _rtransform_drawing(const T & t) const
+      {
+         auto tTransform = t;
+         _rtransform_sequence(tTransform);
+         return tTransform;
+      }
 
-      virtual void drag_transform_point(point_f64 & point) const;
-      virtual void drag_transform_point_drawing(point_f64 & point) const;
-      virtual point_f64 drag_transform(const point_f64 & point) const;
-      virtual point_f64 drag_transform_drawing(const point_f64 & point) const;
-      inline void drag_rtransform_size(size_f64& size) const { drag_rtransform_point((::point_f64 &) size); }
-      virtual void drag_rtransform_point(point_f64 & point) const;
-      virtual void drag_rtransform_point_drawing(point_f64 & point) const;
-      virtual point_f64 drag_rtransform(const point_f64 & point) const;
-      virtual point_f64 drag_rtransform_drawing(const point_f64 & point) const;
+      virtual void drag_transform_sequence(sequence2_f64 & sequence) const;
+      virtual void drag_transform_sequence_drawing(sequence2_f64 & sequence) const;
+      template < typename T >
+      inline T drag_transform(const T & t) const
+      {
+         auto tTransform = t;
+         drag_transform_sequence(tTransform);
+         return tTransform;
+      }
+      template < typename T >
+      inline T drag_transform_drawing(const T & t) const
+      {
+         auto tTransform = t;
+         drag_transform_sequence(tTransform);
+         return tTransform;
+      }
+      //inline void drag_rtransform_size(size_f64& size) const { drag_rtransform_point((::point_f64 &) size); }
+      virtual void drag_rtransform_sequence(sequence2_f64 & sequence) const;
+      virtual void drag_rtransform_sequence_drawing(sequence2_f64 & sequence) const;
+      template < typename T >
+      inline T drag_rtransform(const T & t) const
+      {
+         auto tTransform = t;
+         drag_rtransform_sequence(tTransform);
+         return tTransform;
+      }
+      template < typename T >
+      inline T drag_rtransform_drawing(const T & t) const
+      {
+         auto tTransform = t;
+         drag_rtransform_sequence(tTransform);
+         return tTransform;
+      }
 
 
       virtual void reset_cursor_rect();

@@ -505,9 +505,12 @@
     <ClInclude Include="multimedia\_.h" />
     <ClInclude Include="multimedia\_c.h" />
     <ClInclude Include="platform\application.h" />
+    <ClInclude Include="platform\hwid.h" />
     <ClInclude Include="platform\layer.h" />
     <ClInclude Include="platform\session.h" />
+    <ClInclude Include="platform\sha256.h" />
     <ClInclude Include="platform\system.h" />
+    <ClInclude Include="platform\tinyexpr.h" />
     <ClInclude Include="platform\_platform.h" />
     <ClInclude Include="user\controller.h" />
   </ItemGroup>
@@ -552,7 +555,9 @@
     <ClCompile Include="multimedia\multimedia.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\session.cpp" />
+    <ClCompile Include="platform\sha256.cpp" />
     <ClCompile Include="platform\system.cpp" />
+    <ClCompile Include="platform\tinyexpr.cpp" />
     <ClCompile Include="xml\data.cpp" />
     <ClCompile Include="xml\disp_option.cpp" />
     <ClCompile Include="xml\document.cpp" />

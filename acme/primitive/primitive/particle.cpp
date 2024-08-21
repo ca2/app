@@ -2509,8 +2509,31 @@ void particle::kick_idle()
 
 pointer < ::sequencer < ::conversation > > particle::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
 {
+   
+   ::nano::user::user * pnanouser = nullptr;
+   
+   try
+   {
+      
+      pnanouser = system()->nano()->user();
+      
+   }
+   catch (...)
+   {
+   
+      
+   }
+   
+   if(::is_set(pnanouser))
+   {
+    
+      return pnanouser->message_box(strMessage, strTitle, emessagebox, strDetails);
+      
+   }
+   
+   auto psequencer = message_box_sequencer(this, strMessage, strTitle, emessagebox, strDetails);
 
-   return system()->nano()->user()->message_box(strMessage, strTitle, emessagebox, strDetails);
+   return psequencer;
 
 }
 
@@ -2755,3 +2778,119 @@ memory_file_pointer particle::create_memory_file_by_reading(::file::file* pfile)
 //#else
 //#pragma message("!defined(__GNUC__)")
 //#endif
+
+
+
+CLASS_DECL_ACME::trace_statement debug()
+{
+
+   return ::transfer(::platform::get()->system()->debug());
+
+}
+
+
+CLASS_DECL_ACME::trace_statement information()
+{
+
+   return ::transfer(::platform::get()->system()->information());
+
+}
+
+
+CLASS_DECL_ACME::trace_statement warning()
+{
+
+   return ::transfer(::platform::get()->system()->warning());
+
+}
+
+
+
+CLASS_DECL_ACME::trace_statement error()
+{
+
+   return ::transfer(::platform::get()->system()->error());
+
+}
+
+
+
+CLASS_DECL_ACME::trace_statement fatal()
+{
+
+   return ::transfer(::platform::get()->system()->fatal());
+
+}
+
+
+
+
+
+CLASS_DECL_ACME void debugf(const ::ansi_character* pszFormat, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, pszFormat);
+
+   ::platform::get()->system()->formatf_trace(e_trace_level_debug, pszFormat, arguments);
+
+   va_end(arguments);
+
+}
+
+
+CLASS_DECL_ACME void informationf(const ::ansi_character* pszFormat, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, pszFormat);
+
+   ::platform::get()->system()->formatf_trace(e_trace_level_information, pszFormat, arguments);
+
+   va_end(arguments);
+
+}
+
+
+CLASS_DECL_ACME void warningf(const ::ansi_character* pszFormat, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, pszFormat);
+
+   ::platform::get()->system()->formatf_trace(e_trace_level_warning, pszFormat, arguments);
+
+   va_end(arguments);
+
+}
+
+
+CLASS_DECL_ACME void errorf(const ::ansi_character* pszFormat, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, pszFormat);
+
+   ::platform::get()->system()->formatf_trace(e_trace_level_error, pszFormat, arguments);
+
+   va_end(arguments);
+
+}
+
+
+CLASS_DECL_ACME void fatalf(const ::ansi_character* pszFormat, ...)
+{
+
+   va_list arguments;
+
+   va_start(arguments, pszFormat);
+
+   ::platform::get()->system()->formatf_trace(e_trace_level_fatal, pszFormat, arguments);
+
+   va_end(arguments);
+
+}

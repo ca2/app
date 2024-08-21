@@ -178,7 +178,7 @@ i16 parse_http_proxy(char **proxy_host, i32 *port) {
       if ( *proxy_host == nullptr )
          return 0; /* let the other functions deal with the memory error */
 
-      if ((port_value = strchr(*proxy_host, ':'))) {
+      if ((port_value = (char *) strchr(*proxy_host, ':'))) {
          *port_value++ = '\0';
          *port = atoi(port_value);
       }

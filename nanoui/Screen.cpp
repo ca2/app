@@ -674,7 +674,7 @@ namespace nanoui
    ::image_pointer Screen::create_image(const ::size_i32& size)
    {
 
-      return m_puserinteraction->m_pcontext->m_pauracontext->create_image(size);
+      return m_puserinteraction->context_image()->create_image(size);
 
    }
 

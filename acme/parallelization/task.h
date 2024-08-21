@@ -83,7 +83,8 @@ public:
    
    ::pointer < ::locale >                          m_plocale;
 
-   class ::time                                       m_timeHeartBeat;
+   class ::time                                    m_timeHeartBeat;
+
 
 
 
@@ -230,6 +231,10 @@ public:
    virtual void kick_idle() override;
 
    bool is_branch_current() const override;
+
+
+   virtual void synchronous_procedure(bool bAtAnotherThread, const procedure & procedure);
+
 
 };
 

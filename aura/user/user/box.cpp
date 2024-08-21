@@ -5,6 +5,7 @@
 #include "acme/parallelization/single_lock.h"
 #include "acme/platform/scoped_restore.h"
 #include "acme/platform/keep.h"
+#include "acme/platform/system.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/user/_text_stream.h"
 #include "apex/database/_binary_stream.h"
@@ -136,7 +137,7 @@ namespace user
          m_windowdisplayandlayout.m_rectangleSnapped = m_windowdisplayandlayout.m_rectangleWindow;
 
       }
-      else if (!layout().is_docking() && is_equivalent_in_equivalence_sink(edisplay, e_display_normal))
+      else if (!layout().is_docking() && (system()->m_ewindowing != e_windowing_wayland) && is_equivalent_in_equivalence_sink(edisplay, e_display_normal))
       {
 
          calculate_broad_and_compact_restore();

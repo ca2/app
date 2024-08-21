@@ -958,6 +958,9 @@ namespace apex
       }
       else
       {
+         
+         
+         
 
 
          try
@@ -1003,6 +1006,20 @@ namespace apex
          catch (...)
          {
 
+         }
+         
+         if(prequest->m_ecommand == e_command_file_open)
+         {
+            
+            auto path  = prequest->m_payloadFile.as_file_path();
+            
+            if(::is_url(path))
+            {
+               
+               handle_uri(path);
+               
+            }
+            
          }
 
          m_bAttendedFirstRequest = true;
@@ -3416,7 +3433,7 @@ namespace apex
 
       //}
 
-      information() << "start";
+      information() << "apex::application::init1 end";
 
       m_timeHeartBeat.Now();
 

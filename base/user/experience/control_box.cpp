@@ -6,6 +6,7 @@
 #include "experience.h"
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
+#include "acme/platform/system.h"
 #include "acme/platform/timer.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -458,7 +459,7 @@ namespace experience
 
          }
 
-         return !m_pframewindow->layout().is_zoomed();
+         return !m_pframewindow->layout().is_zoomed(user::e_layout_lading);
 
       } else if (ebutton == e_button_restore)
       {
@@ -467,6 +468,13 @@ namespace experience
          {
 
             return false;
+
+         }
+
+         if(system()->m_ewindowing == e_windowing_wayland)
+         {
+
+            return m_pframewindow->layout().is_zoomed(user::e_layout_lading);
 
          }
 
@@ -518,6 +526,12 @@ namespace experience
       } else if (ebutton == e_button_dock)
       {
 
+         if(system()->m_ewindowing == e_windowing_wayland)
+         {
+
+            return false;
+
+         }
          if (!m_pframewindow->is_docking_enabled())
          {
 
@@ -620,6 +634,16 @@ namespace experience
 
 //      reset_layout(pgraphics);
 
+      layout_control_box_buttons();
+
+      order(e_zorder_top);
+
+   }
+
+
+   void control_box::layout_control_box_buttons()
+   {
+
       auto rectangle = this->rectangle(::user::e_layout_lading);
 
 //      int iWidth = rectangleX.width();
@@ -643,8 +667,6 @@ namespace experience
       _layout_button(e_button_transparent_frame, rectangle);
 
       _layout_button(e_button_dock, rectangle);
-      
-      order(e_zorder_top);
 
    }
 

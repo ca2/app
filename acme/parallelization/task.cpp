@@ -1733,6 +1733,41 @@ bool task::is_branch_current() const
 
 
 
+void task::synchronous_procedure(bool bAtAnotherThread, const procedure & procedure)
+{
+
+   if (!bAtAnotherThread)
+   {
+
+      procedure();
+
+      return;
+
+   }
+
+   auto pmanualresetevent = __create_new < manual_reset_event >();
+
+   post_procedure([this, procedure, pmanualresetevent]()
+      {
+
+         procedure();
+
+         pmanualresetevent->SetEvent();
+
+      });
+
+   auto estatus = pmanualresetevent->wait(procedure.m_timeTimeout);
+
+   if (estatus.failed())
+   {
+
+      throw ::exception(estatus);
+
+   }
+
+}
+
+
 
 CLASS_DECL_ACME bool __task_sleep(task* task)
 {

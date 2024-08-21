@@ -334,8 +334,8 @@ namespace user
       virtual void set_origin(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void viewport_screen_to_client(::point_i32 & point);
-      virtual void viewport_client_to_screen(::point_i32 & point);
+      virtual void viewport_screen_to_client(::sequence2_i32 & sequence);
+      virtual void viewport_client_to_screen(::sequence2_i32 & sequence);
       virtual void viewport_client_to_screen(::rectangle_i32 & rectangle);
       virtual void viewport_screen_to_client(::rectangle_i32 & rectangle);
 

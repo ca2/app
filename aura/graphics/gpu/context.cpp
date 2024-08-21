@@ -185,7 +185,7 @@ namespace gpu
 
       //__construct(m_pbuffer);
 
-      //m_pbuffer->m_pimage = m_pcontext->m_pauracontext->create_image(size);
+      //m_pbuffer->m_pimage = context_image()->create_image(size);
 
       //if (!::is_ok(m_pbuffer->m_pimage))
       //{
@@ -232,7 +232,7 @@ namespace gpu
 
       __defer_construct(m_pcpubuffer);
 
-      //m_pbuffer->m_pimage = m_pcontext->m_pauracontext->create_image(size);
+      //m_pbuffer->m_pimage = context_image()->create_image(size);
 
       m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
 

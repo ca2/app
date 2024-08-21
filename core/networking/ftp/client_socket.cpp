@@ -61,6 +61,7 @@
 #include <time.h>
 
 
+
 namespace ftp
 {
 
@@ -2145,7 +2146,7 @@ auto tickStart = ::time::now();
    /// @lparam[in] strPath Pathname of a file.
    /// @lparam[out] tmModificationTime Modification time of the file specified in pathname.
    /// @return see return values of client_socket::SimpleErrorCheck
-   int client_socket::FileModificationTime(const string& strPath, tm& tmModificationTime)
+   int client_socket::FileModificationTime(const string& strPath, struct tm& tmModificationTime)
    {
       string strTemp;
       const int iRet = FileModificationTime(strPath, strTemp);

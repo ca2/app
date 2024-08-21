@@ -1949,20 +1949,7 @@ namespace user
    void toolbar::load_xml_toolbar(const ::payload & payloadFile)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
-
-      if (main_content().m_pitema)
-      {
-
-         main_content().m_pitema->erase_all();
-
-      }
-      else
-      {
-
-         __defer_construct_new(main_content().m_pitema);
-
-      }
+      ::pointer < ::item_array > pitema = __create_new < ::item_array >();
 
       auto pxmldocument = __create_new < ::xml::document >();
 
@@ -1994,6 +1981,8 @@ namespace user
          if (!pxmldocument->root())
          {
 
+            main_content().m_pitema = pitema;
+
             return;
 
          }
@@ -2014,7 +2003,11 @@ namespace user
 
             ptoolitem = __create_new < ::user::tool_item >();
 
-            main_content().indexed_set_item_at(iItem, ptoolitem);
+            //main_content().indexed_set_item_at(iItem, ptoolitem);
+
+            ptoolitem->m_item.m_iItem = iItem;
+
+            pitema->set_at_grow(iItem, ptoolitem);
 
             ptoolitem->m_item.m_iItem = main_content().item_count();
 
@@ -2066,7 +2059,11 @@ namespace user
 
             ptoolitem = __create_new < ::user::tool_item >();
 
-            main_content().indexed_set_item_at(iItem, ptoolitem);
+            //main_content().indexed_set_item_at(iItem, ptoolitem);
+
+            ptoolitem->m_item.m_iItem = iItem;
+
+            pitema->set_at_grow(iItem, ptoolitem);
 
             ptoolitem->m_atom = "separator";
 
@@ -2077,6 +2074,30 @@ namespace user
          }
 
       }
+
+
+      _synchronous_lock synchronouslock(this->synchronization());
+
+      if(main_content().m_pitema)
+      {
+
+         main_content().m_pitema->erase_all();
+
+      }
+      else
+      {
+
+         __defer_construct_new(main_content().m_pitema);
+
+      }
+
+      for (::collection::index iItem = 0; iItem < pitema->size(); iItem++)
+      {
+
+         main_content().indexed_set_item_at(iItem, pitema->element_at(iItem));
+
+      }
+
 
       //return true;
 

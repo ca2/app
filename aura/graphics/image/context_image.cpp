@@ -75,6 +75,59 @@ void context_image::on_destroy()
 }
 
 
+::image_pointer context_image::create_image()
+{
+
+   auto pimage = __create < ::image >();
+
+   if (!pimage)
+   {
+
+      return nullptr;
+
+   }
+
+   return ::transfer(pimage);
+
+}
+
+
+::image_pointer context_image::create_image(const ::size_i32& size, const image32_t* pcolor, int iScan, ::enum_flag eflagCreate)
+{
+
+   auto pimage = m_pcontext->__create < ::image >();
+
+   if (!pimage)
+   {
+
+      return nullptr;
+
+   }
+
+   //auto estatus =
+   pimage->create(size, eflagCreate);
+
+   if (::is_set(pcolor))
+   {
+
+      pimage->map();
+
+      copy_image32(pimage->data(), size.cx(), size.cy(), pimage->m_iScan, pcolor, iScan);
+
+   }
+
+   //if (!estatus)
+   //{
+
+   //   return nullptr;
+
+   //}
+
+   return ::transfer(pimage);
+
+}
+
+
 i32 context_image::image_integer(const ::file::path & path)
 {
 
@@ -117,7 +170,7 @@ i32 context_image::create_image_integer(int w, int h, const image32_t * pimage32
 
    }
 
-   auto pimage = m_pcontext->m_pauracontext->create_image({ w, h }, pimage32, iScan);
+   auto pimage = create_image({ w, h }, pimage32, iScan);
 
    string strPath;
 

@@ -2418,7 +2418,7 @@ namespace windowing
 //      return m_pmessagequeue;
 //
 //   }
-void window::pick_browse()
+void window::pick_browse(const ::function < void(const ::file::path & path) > & callback)
 {
 }
 void window::pick_media(const char * pszMediaType)

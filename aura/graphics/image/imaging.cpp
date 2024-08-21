@@ -2947,7 +2947,7 @@ void imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & p
 
    }
 
-   ::image_pointer pimageDst = m_pcontext->m_pauracontext->create_image(size);
+   ::image_pointer pimageDst = context_image()->create_image(size);
 
    if (!pimageDst)
    {
@@ -2956,7 +2956,7 @@ void imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & p
 
    }
 
-   ::image_pointer pimageSrc = m_pcontext->m_pauracontext->create_image(size);
+   ::image_pointer pimageSrc = context_image()->create_image(size);
 
    if (!pimageSrc)
    {
@@ -3027,7 +3027,7 @@ void imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
 
    }
 
-   ::image_pointer pimageDst = m_pcontext->m_pauracontext->create_image(size);
+   ::image_pointer pimageDst = context_image()->create_image(size);
 
    if (!pimageDst)
    {
@@ -3036,7 +3036,7 @@ void imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
 
    }
 
-   ::image_pointer pimageSrc = m_pcontext->m_pauracontext->create_image(size);
+   ::image_pointer pimageSrc = context_image()->create_image(size);
 
    if (!pimageSrc)
    {
@@ -3711,7 +3711,7 @@ const ::size_i32 & sizeFilter,
 
    }
 
-   ::image_pointer pimageDst = m_pcontext->m_pauracontext->create_image(size);
+   ::image_pointer pimageDst = context_image()->create_image(size);
 
    if (!pimageDst)
    {
@@ -3720,7 +3720,7 @@ const ::size_i32 & sizeFilter,
 
    }
 
-   ::image_pointer pimageSrc = m_pcontext->m_pauracontext->create_image(size);
+   ::image_pointer pimageSrc = context_image()->create_image(size);
 
    if (!pimageSrc)
    {
@@ -4219,7 +4219,7 @@ void imaging::color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & po
 //   else
 //   {
 //
-//      ::image_pointer pimage = m_pcontext->m_pauracontext->create_image(size);
+//      ::image_pointer pimage = context_image()->create_image(size);
 //
 //      if (!pimage)
 //      {
@@ -4916,9 +4916,9 @@ const ::color::color & color)
    if (size.is_empty())
       throw ::exception(error_bad_argument);
 
-   ::image_pointer pimageDst = m_pcontext->m_pauracontext->create_image(size);
+   ::image_pointer pimageDst = context_image()->create_image(size);
 
-   ::image_pointer pimageSrc = m_pcontext->m_pauracontext->create_image(size);
+   ::image_pointer pimageSrc = context_image()->create_image(size);
 
    pimageSrc->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
@@ -5016,9 +5016,9 @@ const ::color::color & color)
    if (size.is_empty())
       throw ::exception(error_bad_argument);
 
-   ::image_pointer pimageDst = m_pcontext->m_pauracontext->create_image(size);
+   ::image_pointer pimageDst = context_image()->create_image(size);
 
-   ::image_pointer pimageSrc = m_pcontext->m_pauracontext->create_image(size);
+   ::image_pointer pimageSrc = context_image()->create_image(size);
 
    pimageSrc->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
@@ -7052,7 +7052,7 @@ void context_image::set_cursor_image(const image * pimage, int xHotSpot, int yHo
 
       synchronouslock.unlock();
 
-      return m_pcontext->m_pauracontext->create_image();
+      return context_image()->create_image();
 
    }
 
@@ -7063,7 +7063,7 @@ void context_image::set_cursor_image(const image * pimage, int xHotSpot, int yHo
    if (pimpl.is_null())
    {
 
-      pimpl = m_pcontext->m_pauracontext->create_image();
+      pimpl = context_image()->create_image();
 
    }
 

@@ -128,7 +128,7 @@ namespace user
 
          using ::user::interaction::get_text;
          //void get_text(string & str) override;
-         virtual void _001GetLayoutText(string & str);
+         //virtual void _001GetLayoutText(string & str);
 
 
          void on_layout(::draw2d::graphics_pointer & pgraphics) override;

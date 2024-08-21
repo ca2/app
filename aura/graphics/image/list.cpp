@@ -612,7 +612,7 @@ i32 image_list::set(int iItem, const image_drawing & imagedrawing)
 ::image_pointer image_list::get_image(int iImage)
 {
 
-   ::image_pointer pimage = m_pcontext->m_pauracontext->create_image(m_size);
+   ::image_pointer pimage = context_image()->create_image(m_size);
 
    if (!pimage)
    {

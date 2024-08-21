@@ -9,8 +9,6 @@
 #pragma once
 
 
-
-
 template < typename SEQUENCE >
 concept primitive_sequence = ::std::is_same < typename SEQUENCE::sequence_tag, sequence_t >::value;
 
@@ -375,6 +373,24 @@ concept primitive_point = requires(POINT point)
    { point.x() }->primitive_number;
    { point.y() }->primitive_number;
 };
+
+
+template < typename SEQUENCE2 >
+concept primitive_sequence2 =
+   ::std::is_same < typename SEQUENCE2::sequence_tag, sequence_t >::value &&
+   ::std::is_same < typename SEQUENCE2::sequence_size, sequence_size_t < 2 > >::value;
+
+
+template < typename SEQUENCE3 >
+concept primitive_sequence3 =
+   ::std::is_same < typename SEQUENCE3::sequence_tag, sequence_t >::value &&
+   ::std::is_same < typename SEQUENCE3::sequence_size, sequence_size_t < 3 > >::value;
+
+
+template < typename SEQUENCE4 >
+concept primitive_sequence4 =
+   ::std::is_same < typename SEQUENCE4::sequence_tag, sequence_t >::value &&
+   ::std::is_same < typename SEQUENCE4::sequence_size, sequence_size_t < 4 > >::value;
 
 
 template < typename POLE >

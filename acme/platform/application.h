@@ -291,7 +291,7 @@ namespace acme
 
       virtual get_file_extension_mime_type * get_get_file_extension_mime_type();
 
-      virtual void pick_browse();
+      virtual void pick_browse(const ::function < void(const ::file::path & path) > & callback);
       virtual void pick_media(const char * pszMediaType);
       virtual void did_pick_document_at_url(const char * pszUrl);
       virtual void did_pick_document_at_urls(const ::string_array & stra);

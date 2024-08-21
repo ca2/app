@@ -130,6 +130,8 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
+      pgraphics->set_font(this, ::e_element_none);
+
       for (::collection::index i = 0; i < main_content().item_count(); i++)
       {
 

@@ -792,14 +792,14 @@ namespace node_gtk4
 } // namespace node_gtk4
 
 
-namespace node_gnome
+namespace node_gtk_based
 {
 
 
    class node;
 
 
-} // namespace node_gnome
+} // namespace node_gtk_based
 
 
 namespace node_kde5
@@ -832,14 +832,14 @@ namespace node_xfce
 } // namespace node_xfce
 
 
-namespace desktop_environment_gnome
+namespace desktop_environment_gtk_based
 {
 
 
    class node;
 
 
-} // namespace desktop_environment_gnome
+} // namespace desktop_environment_gtk_based
 
 
 namespace windowing

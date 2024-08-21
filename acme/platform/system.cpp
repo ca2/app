@@ -253,7 +253,7 @@ namespace acme
 
 #ifdef _DEBUG
 
-      etracelevel = e_trace_level_warning;
+      etracelevel = e_trace_level_information;
 
 #else
 
@@ -299,6 +299,12 @@ namespace acme
       {
 
          etracelevel = e_trace_level_information;
+
+      }
+      else if (strTraceLevel == "warning")
+      {
+
+         etracelevel = e_trace_level_warning;
 
       }
 

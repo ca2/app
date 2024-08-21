@@ -2160,7 +2160,7 @@ retry_license:
       // }
 
 
-      information() << "start";
+      information() << "apex::application::init1 end";
 
       m_timeHeartBeat.Now();
 

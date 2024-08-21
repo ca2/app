@@ -1335,7 +1335,7 @@ namespace user
          else
          {
 
-            image16 = m_pcontext->m_pauracontext->create_image({16, 16});
+            image16 = context_image()->create_image({16, 16});
 
             if (image16.nok())
             {
@@ -1369,7 +1369,7 @@ namespace user
          else
          {
 
-            image48 = m_pcontext->m_pauracontext->create_image({48, 48});
+            image48 = context_image()->create_image({48, 48});
 
             if (image48.nok())
             {

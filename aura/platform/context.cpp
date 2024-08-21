@@ -1039,57 +1039,57 @@ namespace aura
 //
 //   }
 
-   ::image_pointer context::create_image()
-   {
+   //::image_pointer context::create_image()
+   //{
 
-      auto pimage = __create < ::image >();
+   //   auto pimage = __create < ::image >();
 
-      if (!pimage)
-      {
+   //   if (!pimage)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      return ::transfer(pimage);
+   //   return ::transfer(pimage);
 
-   }
+   //}
 
 
-   ::image_pointer context::create_image(const ::size_i32 & size, const image32_t * pcolor, int iScan, ::enum_flag eflagCreate)
-   {
+   //::image_pointer context::create_image(const ::size_i32 & size, const image32_t * pcolor, int iScan, ::enum_flag eflagCreate)
+   //{
 
-      auto pimage = m_pcontext->__create < ::image >();
+   //   auto pimage = m_pcontext->__create < ::image >();
 
-      if (!pimage)
-      {
+   //   if (!pimage)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      //auto estatus =
-      pimage->create(size, eflagCreate);
+   //   //auto estatus =
+   //   pimage->create(size, eflagCreate);
 
-      if (::is_set(pcolor))
-      {
+   //   if (::is_set(pcolor))
+   //   {
 
-         pimage->map();
+   //      pimage->map();
 
-         copy_image32(pimage->data(), size.cx(), size.cy(), pimage->m_iScan, pcolor, iScan);
+   //      copy_image32(pimage->data(), size.cx(), size.cy(), pimage->m_iScan, pcolor, iScan);
 
-      }
+   //   }
 
-      //if (!estatus)
-      //{
+   //   //if (!estatus)
+   //   //{
 
-      //   return nullptr;
+   //   //   return nullptr;
 
-      //}
+   //   //}
 
-      return ::transfer(pimage);
+   //   return ::transfer(pimage);
 
-   }
+   //}
 
 
 } // namespace apex

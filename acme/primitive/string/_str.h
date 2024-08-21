@@ -329,6 +329,12 @@ public:
    static void get_lines(::string_array & stra, ::string & str, const ::string & strPrefix, bool bFinal, ::particle * pparticleSynchronization = nullptr, ::file::file * pfileLines = nullptr);
 
 
+   static strsize x_find_index(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrSearchedTerm);
+   static bool x_contains(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrSearchedTerm);
+
+   static bool x_contains(const ::scoped_string& scopedstr, const ::string_array & straSearchedTerm);
+
+
 }; // class str
 
 

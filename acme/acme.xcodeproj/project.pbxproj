@@ -7957,8 +7957,8 @@
 		9A818F382A71FC6B008F470C /* nano */ = {
 			isa = PBXGroup;
 			children = (
-				9A2038212BF46C7800599878 /* user */,
 				9A2038192BF45F7400599878 /* http */,
+				9A2038212BF46C7800599878 /* user */,
 			);
 			path = nano;
 			sourceTree = "<group>";

@@ -41,6 +41,12 @@ public:
    void on_destroy() override;
 
 
+   virtual ::image_pointer create_image();
+
+
+   virtual ::image_pointer create_image(const ::size_i32& size, const image32_t* pcolor = nullptr, int iScan = -1, ::enum_flag eflagFlag = DEFAULT_CREATE_IMAGE_FLAG);
+
+
    virtual i32 image_integer(const ::file::path & path);
    virtual i32 create_image_integer(int w, int h, const image32_t * pcolor, int iScan = -1);
    virtual image_pointer integer_image(i32 i);

@@ -603,7 +603,7 @@ namespace user
 
    //   m_rectangleColors = rectangleColors;
 
-   //   m_pimage = m_pcontext->m_pauracontext->create_image({m_rectangleColors.width() / 2,  m_rectangleColors.height()});
+   //   m_pimage = context_image()->create_image({m_rectangleColors.width() / 2,  m_rectangleColors.height()});
 
    //   {
 
@@ -617,7 +617,7 @@ namespace user
 
    //   }
 
-   //   m_pimageLuminance = m_pcontext->m_pauracontext->create_image({m_rectangleColors.width() / 8,  m_rectangleColors.height()});
+   //   m_pimageLuminance = context_image()->create_image({m_rectangleColors.width() / 8,  m_rectangleColors.height()});
 
    //   rebuild_luminance();
 

@@ -3,6 +3,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 //#include "core/user/user/_component.h"
 #endif
+#include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/list.h"
@@ -291,7 +292,7 @@ namespace user
             {
                ///return true;
 
-               m_pitem->m_pmesh->m_plist->m_pimageTime = m_pitem->m_pmesh->m_pcontext->m_pauracontext->create_image(m_pitem->m_pmesh->m_plist->m_pimageSpot->size());
+               m_pitem->m_pmesh->m_plist->m_pimageTime = m_pitem->m_pmesh->context_image()->create_image(m_pitem->m_pmesh->m_plist->m_pimageSpot->size());
 
                ::rectangle_i32 rectangle = rectangleI;
 

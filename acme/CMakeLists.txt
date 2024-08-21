@@ -973,6 +973,7 @@ list(APPEND library_source
         primitive/string/_international.h
         #primitive/string/_natural.h
         #primitive/string/_str.h
+        primitive/string/_str.cpp
         primitive/string/_string.cpp
         primitive/string/_str_impl.cpp
         #primitive/string/_str_impl.h
@@ -1025,7 +1026,6 @@ list(APPEND library_source
         #primitive/string/simple.cpp
         primitive/string/static_string.h
         #primitive/string/stdstring.h
-        primitive/string/str.cpp
         primitive/string/string.cpp
         primitive/string/string.h
         primitive/string/string_ansi.cpp

@@ -17,6 +17,8 @@
 		9A22742727CF37E40042BAC2 /* libaqua.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A22742527CF37E40042BAC2 /* libaqua.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A22742927CF38210042BAC2 /* libidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A22742827CF38210042BAC2 /* libidn.dylib */; };
 		9A22742A27CF38210042BAC2 /* libidn.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A22742827CF38210042BAC2 /* libidn.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		9A3275EE2C6DAE6E00EB43C5 /* libnano_dynamic_library_dyld.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3275ED2C6DAE6E00EB43C5 /* libnano_dynamic_library_dyld.dylib */; };
+		9A3275EF2C6DAE6E00EB43C5 /* libnano_dynamic_library_dyld.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A3275ED2C6DAE6E00EB43C5 /* libnano_dynamic_library_dyld.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A46D35E267859BC000B22D0 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC396FF25195DEB0036B92A /* libacme.dylib */; };
 		9A46D35F267859BC000B22D0 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3970125195DEB0036B92A /* libapex.dylib */; };
 		9A46D360267859BC000B22D0 /* libapp_just_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D2E12678453B000B22D0 /* libapp_just_message_box.dylib */; };
@@ -226,6 +228,7 @@
 				9A83B52A2807E6E200A1A2B6 /* libaura_posix.dylib in Embed Libraries */,
 				9A6A480526611203004ED97A /* libwindowing_macos.dylib in Embed Libraries */,
 				9A6A480326611202004ED97A /* libdraw2d_quartz2d.dylib in Embed Libraries */,
+				9A3275EF2C6DAE6E00EB43C5 /* libnano_dynamic_library_dyld.dylib in Embed Libraries */,
 				9A83B50F2807E68C00A1A2B6 /* libaura.dylib in Embed Libraries */,
 				9AA3F9932A95608D004283CA /* libacme_darwin.dylib in Embed Libraries */,
 			);
@@ -242,6 +245,7 @@
 		9A22742027CF35F40042BAC2 /* application_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application_main.cpp; sourceTree = SOURCE_ROOT; };
 		9A22742527CF37E40042BAC2 /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A22742827CF38210042BAC2 /* libidn.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libidn.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A3275ED2C6DAE6E00EB43C5 /* libnano_dynamic_library_dyld.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libnano_dynamic_library_dyld.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A39BAE424EB25CA003C070E /* libssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.dylib; path = ../../time/macos/libssl.dylib; sourceTree = "<group>"; };
 		9A39BAE524EB25CA003C070E /* libcrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.dylib; path = ../../time/macos/libcrypto.dylib; sourceTree = "<group>"; };
 		9A39BAE924EB25CA003C070E /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = ../../time/macos/libaura.dylib; sourceTree = "<group>"; };
@@ -291,6 +295,7 @@
 			files = (
 				9A46D35E267859BC000B22D0 /* libacme.dylib in Frameworks */,
 				9A46D35F267859BC000B22D0 /* libapex.dylib in Frameworks */,
+				9A3275EE2C6DAE6E00EB43C5 /* libnano_dynamic_library_dyld.dylib in Frameworks */,
 				9A22742627CF37E40042BAC2 /* libaqua.dylib in Frameworks */,
 				9A22742927CF38210042BAC2 /* libidn.dylib in Frameworks */,
 				9A46D360267859BC000B22D0 /* libapp_just_message_box.dylib in Frameworks */,
@@ -436,6 +441,7 @@
 		9ADF1D2922C16DBB00456537 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A3275ED2C6DAE6E00EB43C5 /* libnano_dynamic_library_dyld.dylib */,
 				9A90BA1C2B5495C2002BFC9E /* libarchive.dylib */,
 				9A9A157D2AFC236900FA9BEB /* libdarwin.dylib */,
 				9AA3F98F2A95608D004283CA /* libacme_darwin.dylib */,

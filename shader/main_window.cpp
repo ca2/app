@@ -222,7 +222,7 @@ namespace app_shader
 
             m_bSaveFrame = false;
 
-            auto pimage = m_pcontext->m_pauracontext->create_image(rectangleX.size());
+            auto pimage = context_image()->create_image(rectangleX.size());
 
             ::draw2d::graphics_pointer pgraphics = pimage->get_graphics();
 

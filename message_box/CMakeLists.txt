@@ -50,7 +50,7 @@ if (MSVC)
     target_link_libraries(app_message_box PRIVATE ${library_references})
 elseif(${LINUX})
 
-    #if(GNOME_DESKTOP)
+    #if(GTK_BASED_DESKTOP)
     #    add_dependencies(app_message_box node_gnome windowing_x11)
     #endif()
     #if(KDE_DESKTOP)

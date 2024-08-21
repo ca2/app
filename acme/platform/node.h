@@ -109,11 +109,11 @@ namespace acme
       //::windowing_xcb::node *                               m_pNodeXcb;
       ::node_gtk3::node *                                   m_pNodeGtk3;
       ::node_gtk4::node *                                   m_pNodeGtk4;
-      ::node_gnome::node *                                  m_pNodeGnome;
+      ::node_gtk_based::node *                              m_pNodeGtkBased;
       ::node_kde5::node *                                   m_pNodeKDE5;
       ::node_kde6::node *                                   m_pNodeKDE6;
       ::node_xfce::node *                                   m_pNodeXfce;
-      ::desktop_environment_gnome::node *                   m_pNodeDesktopEnvironmentGnome;
+      ::desktop_environment_gtk_based::node *               m_pNodeDesktopEnvironmentGtkBased;
       ::desktop_environment_kde::node *                     m_pNodeDesktopEnvironmentKDE;
       ::desktop_environment_xfce::node *                    m_pNodeDesktopEnvironmentXfce;
 
@@ -310,7 +310,7 @@ namespace acme
 
       virtual bool set_wallpaper(::collection::index iScreen, string strLocalImagePath, ::windowing::display * pwindowingdisplay);
 
-      virtual string get_wallpaper(::collection::index iScreen);
+      virtual string get_wallpaper(::collection::index iScreen, ::windowing::display * pwindowingdisplay);
 
       virtual string get_file_icon_path(const ::string & pszPath, int iSize);
 

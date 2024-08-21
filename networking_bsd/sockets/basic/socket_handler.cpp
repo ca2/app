@@ -73,7 +73,7 @@ namespace sockets_bsd
 
       g_interlockedcountSocketHandler++;
 
-      ::informationf("%s currently allocated count = %lld", typeid(*this).name(), g_interlockedcountSocketHandler.operator long long());
+      ::informationf("%s currently allocated count = %lld", typeid(*this).name(), g_interlockedcountSocketHandler.operator ::i64());
 
    }
 

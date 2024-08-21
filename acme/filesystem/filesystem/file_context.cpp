@@ -1513,7 +1513,7 @@ void file_context::calculate_main_resource_memory()
 
    strPath.replace_with("/", "\\");
 
-   this->informationf(strPath);
+   debugf("file_context::create_resource_file : %s", strPath.c_str());
 
    fflush(stdout);
 

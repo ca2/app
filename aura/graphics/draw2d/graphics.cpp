@@ -1238,7 +1238,7 @@ namespace draw2d
 
             ::size_i32 size(imagedrawing.m_rectangleTarget.size());
 
-            ::image_pointer pimage1 = m_pcontext->m_pauracontext->create_image(size);
+            ::image_pointer pimage1 = context_image()->create_image(size);
 
             image_source imagesource(imagedrawing.m_pimagesource, rectangleSource);
 
@@ -1674,7 +1674,7 @@ namespace draw2d
    ////            g_pimagea.add(pimage1);
    ////#endif
    //
-   //         pimage1 = m_pcontext->m_pauracontext->create_image(rectangleText.size());
+   //         pimage1 = context_image()->create_image(rectangleText.size());
    //
    //         pimage1->get_graphics()->set(get_current_font());
    //
@@ -1760,7 +1760,7 @@ namespace draw2d
 
             ::image_pointer pimage1;
 
-            pimage1 = m_pcontext->m_pauracontext->create_image(rectangleText.size());
+            pimage1 = context_image()->create_image(rectangleText.size());
 
             pimage1->fill_byte(0);
 

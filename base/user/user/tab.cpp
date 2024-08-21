@@ -810,6 +810,29 @@ namespace user
 
             if (eelement == e_element_tab_near_scroll)
             {
+               
+               if (get_data()->m_bVertical)
+               {
+
+                  if(m_pointBarDragScroll.y() >= 0)
+                  {
+                   
+                     return false;
+                     
+                  }
+
+               }
+               else
+               {
+
+                  if(m_pointBarDragScroll.x() >=  0)
+                  {
+                     
+                     return false;
+                     
+                  }
+
+               }
 
                if (ptabdata->m_bVertical)
                {
@@ -849,6 +872,30 @@ namespace user
             }
             else if (eelement == e_element_tab_far_scroll)
             {
+               
+               if (get_data()->m_bVertical)
+               {
+
+                  if(m_pointBarDragScroll.y() <= -m_pointBarDragScrollMax.y())
+                  {
+                   
+                     return false;
+                     
+                  }
+
+               }
+               else
+               {
+
+                  if(m_pointBarDragScroll.x() <= -m_pointBarDragScrollMax.x())
+                  {
+                     
+                     return false;
+                     
+                  }
+
+               }
+
 
                if (ptabdata->m_bVertical)
                {
@@ -894,7 +941,7 @@ namespace user
 
             ptOffset.y() += 4;
 
-            ptOffset.y() -= m_pointBarDragScroll.y();
+            ptOffset.y() += m_pointBarDragScroll.y();
 
          }
          else
@@ -902,7 +949,7 @@ namespace user
 
             ptOffset.x() += 4;
 
-            ptOffset.x() -= m_pointBarDragScroll.x();
+            ptOffset.x() += m_pointBarDragScroll.x();
 
          }
 
@@ -1416,17 +1463,9 @@ namespace user
 
          auto point = drag_point(pitem, pmouse);
 
-         auto Δ = minimum_maximum(-point.x(), 0, m_pointBarDragScrollMax.x());
+         m_pointBarDragScroll.x() = minimum_maximum(point.x(), -m_pointBarDragScrollMax.x(), 0);
          
-         m_pointBarDragScroll.x() = Δ;
          
-         if(Δ > 0)
-         {
-            
-            
-            
-         }
-
          set_need_redraw();
 
          post_redraw();

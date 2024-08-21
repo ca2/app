@@ -507,11 +507,11 @@ namespace experience_core
 
                   pgraphics->set(pbrush);
 
-                  pgraphics->offset_origin(- (ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
+                  pgraphics->offset_origin((ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
 
                   pgraphics->fill(ppath);
 
-                  pgraphics->offset_origin(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x(), 0);
+                  pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
 
                }
 
@@ -530,11 +530,11 @@ namespace experience_core
 
                   pgraphics->set(ppen);
 
-                  pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
+                  pgraphics->offset_origin((ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
 
                   pgraphics->draw(ppath);
 
-                  pgraphics->offset_origin(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x(), 0);
+                  pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
 
                }
 
@@ -638,11 +638,11 @@ namespace experience_core
 
                      pgraphics->set(pbrush);
 
-                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
+                     pgraphics->offset_origin((ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
 
                      pgraphics->fill(ppath);
 
-                     pgraphics->offset_origin(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x(), 0);
+                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
 
                   }
 
@@ -661,11 +661,11 @@ namespace experience_core
 
                      pgraphics->set(ppen);
 
-                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
+                     pgraphics->offset_origin((ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
 
                      pgraphics->draw(ppath);
 
-                     pgraphics->offset_origin(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x(), 0);
+                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
 
                      {
 
@@ -728,11 +728,11 @@ namespace experience_core
 
                      pgraphics->set(pbrush);
 
-                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
+                     pgraphics->offset_origin((ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
 
                      pgraphics->fill(ppath);
 
-                     pgraphics->offset_origin(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x(), 0);
+                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
 
                   }
 
@@ -751,11 +751,11 @@ namespace experience_core
 
                      pgraphics->set(ppen);
 
-                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
+                     pgraphics->offset_origin((ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
 
                      pgraphics->draw(ppath);
 
-                     pgraphics->offset_origin(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x(), 0);
+                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x() - ppath->m_pointUserOffset.x()), 0);
 
                   }
 

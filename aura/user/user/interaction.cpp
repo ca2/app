@@ -8943,6 +8943,15 @@ namespace user
          return true;
 
       }
+      else if (pitem->m_item.m_eelement == e_element_tab_near_scroll
+               ||pitem->m_item.m_eelement == e_element_tab_far_scroll)
+      {
+
+         pointDrag = m_pointBarDragScroll;
+
+         return true;
+
+      }
 
       return false;
 
@@ -23931,7 +23940,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
          m_bBarDragScrollLeftButtonDown = true;
 
          m_pointBarDragScrollStart = m_pointBarDragScroll;
-
+         
          set_mouse_capture();
 
       }
@@ -25903,7 +25912,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       //auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
 
-      auto pointScroll = point + m_pointBarDragScroll;
+      auto pointScroll = point - m_pointBarDragScroll;
 
       if (::is_null(pitema))
       {

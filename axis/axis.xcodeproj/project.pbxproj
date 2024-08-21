@@ -1300,8 +1300,8 @@
 		9AE63E92252A5B7800BED5B8 = {
 			isa = PBXGroup;
 			children = (
-				9AA6526F2A33458D0082D8B3 /* unac.xcodeproj */,
 				9AE63EAA252A5BD200BED5B8 /* aura.xcodeproj */,
+				9AA6526F2A33458D0082D8B3 /* unac.xcodeproj */,
 				9AE63EB8252A5BE900BED5B8 /* axis */,
 				9AE63E9C252A5B7800BED5B8 /* Products */,
 				9AE6494B252A638900BED5B8 /* Frameworks */,

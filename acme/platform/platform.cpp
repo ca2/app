@@ -1096,9 +1096,9 @@ namespace platform
 
       //auto estatus = plibrary->open(strLibrary);
 
-      informationf("platform::create_library Going to open library \"%s\".", strLibrary.c_str());
+      debugf("platform::create_library Going to open library \"%s\".", strLibrary.c_str());
 
-      information() << "platform::create_library Going to open library \"" << strLibrary << "\".";
+      //information() << "platform::create_library Going to open library \"" << strLibrary << "\".";
 
       plibrary->open(strLibrary);
 

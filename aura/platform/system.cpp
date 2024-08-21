@@ -1779,7 +1779,7 @@ namespace aura
       //
       //#endif // LINUX
 
-      information() << "success";
+      //information() << "success";
 
 //      enum_display_monitors();
 

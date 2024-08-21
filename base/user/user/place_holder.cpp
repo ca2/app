@@ -367,15 +367,15 @@ namespace user
 
             synchronouslock.unlock();
 
-            //auto puiChild = puserinteractionpointeraChild->first_interaction();
-
-            //lock_sketch_to_design lockSketchToDesign(puiChild);
-
-            information() << "rectangle : " << rectangle;
-
-            information() << "puiChild->parent_client_rectangle() : " << puiChild->parent_client_rectangle();
-
-            //if(rectangle != puiChild->parent_client_rectangle())
+//            //auto puiChild = puserinteractionpointeraChild->first_interaction();
+//
+//            //lock_sketch_to_design lockSketchToDesign(puiChild);
+//
+//            information() << "rectangle : " << rectangle;
+//
+//            information() << "puiChild->parent_client_rectangle() : " << puiChild->parent_client_rectangle();
+//
+//            //if(rectangle != puiChild->parent_client_rectangle())
             {
 
                puiChild->place(rectangle);

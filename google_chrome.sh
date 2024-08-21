@@ -18,25 +18,31 @@ detect_http_get()
 
 }
 
-start_store()
+start_google_chrome()
 {
 
-   chmod +x ./store
+   ext="$1"
+   
+   install="$2"
 
-   echo "Starting store"
+   echo "Install Google Chrome"
 
-   ./store
+   $install ./google_chrome.$ext
 
 }
 
 download_and_start()
 {
 
-   echo "Downloading from $url"
-   
-   url=$1
+   url="$1"
 
-   dir=$2
+   dir="$2"
+   
+   ext="$3"
+   
+   install="$4"
+
+   echo "Downloading from $url"
 
    detect_http_get
 
@@ -48,9 +54,9 @@ download_and_start()
 
    cd $dir
 
-   $HTTPGET store $url
+   $HTTPGET google_chrome.$ext $url
 
-   start_store
+   start_google_chrome "$ext" "$install"
 
 }
 
@@ -72,11 +78,27 @@ echo "Detected platform : $platform"
 
 if [ "$platform" = 'freebsd' ]; then
 
-   url='https://freebsd.ca2.store/store'
+   echo "Unknown download link."; url=""; exit -1;
 
 elif [ "$platform" = 'linux' ]; then
 
-   url='https://linux.ca2.store/store'
+	#https://stackoverflow.com/questions/75146772/how-to-detect-os-system-using-bash
+
+	. /etc/os-release
+
+	case $ID in
+	  ubuntu) echo "Detected distro: ubuntu"; url="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"; ext="deb"; install="sudo apt install ";
+		;;
+
+	  arch) echo "Detected distro: arch. Unknown download link."; url=""; exit -1;
+		;;
+
+	  centos) echo "Detected distro: centos. Unknown download link."; url=""; exit -1;
+		;;
+
+	  *) echo "This is an unknown distribution."; exit -1;
+		  ;;
+	esac
 
 else
 
@@ -95,7 +117,7 @@ else
 
    mkdir -p $dir
 
-   download_and_start $url $dir
+   download_and_start "$url" "$dir" "$ext" "$install"
 
 fi
 

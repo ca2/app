@@ -101,7 +101,7 @@ namespace launch
 
          m_strDistro = "ubuntu";
 
-         m_strBranch = "gnome";
+         m_strBranch = "";
 
          if(strRelease == "21")
          {
@@ -110,7 +110,7 @@ namespace launch
 
             print_line("Going to use Ubuntu 22.04 binaries...");
 
-            m_strRelease = "22.04";
+            strRelease = "22.04";
 
          }
          else if(strRelease == "22")
@@ -120,7 +120,7 @@ namespace launch
 
             print_line("Going to use Ubuntu 24.04 binaries...");
 
-            m_strRelease = "24.04";
+            strRelease = "24.04";
 
          }
          else
@@ -130,7 +130,7 @@ namespace launch
 
             print_line("Currently not known how to handle. Fallback to Ubuntu 24.04 binaries...");
 
-            m_strRelease = "24.04";
+            strRelease = "24.04";
 
          }
 

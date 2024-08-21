@@ -3433,7 +3433,7 @@ namespace apex
 
       //}
 
-      information() << "start";
+      information() << "apex::application::init1 end";
 
       m_timeHeartBeat.Now();
 

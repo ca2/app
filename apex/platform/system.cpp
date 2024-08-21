@@ -1181,7 +1181,7 @@ pacmedirectory->create("/ca2core");
          else
          {
 
-            information() << "Thomas Borregaard Sørensen.dedicatory not found";
+            warning() << "Thomas Borregaard Sørensen.dedicatory not found";
 
          }
 

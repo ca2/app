@@ -119,6 +119,8 @@ public:
    virtual ::file::path ca2appdata(); // writable root (non-bin, non-exe)
    virtual ::file::path roaming();
    virtual ::file::path program_data();
+   virtual ::file::path application_home();
+   virtual ::file::path application_home(const ::scoped_string & scopedstrAppId);
    virtual ::file::path public_root(); // writable common root (non-bin, non-exe)
    virtual ::file::path bookmark();
    virtual ::file::path home();

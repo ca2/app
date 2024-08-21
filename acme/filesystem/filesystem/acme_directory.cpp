@@ -521,6 +521,22 @@ void acme_directory::set_path_install_folder(const string & strPath)
 }
 
 
+::file::path acme_directory::application_home()
+{
+
+   return home() / "application";
+
+}
+
+
+::file::path acme_directory::application_home(const ::scoped_string & scopedstrAppId)
+{
+
+   return application_home() / scopedstrAppId;
+
+}
+
+
 ::file::path acme_directory::ca2appdata()
 {
 

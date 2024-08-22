@@ -857,13 +857,13 @@ namespace user
 
                   rectangle.left() = rectangleTab.left();
 
-                  rectangle.top() = rectangleTab.top();
+                  rectangle.top() = rectangleTab.top() + ptabdata->m_rectangleBorder.top();
 
                   fDensity = get_density_for_window();
 
                   rectangle.right() = rectangle.left() + (::i32)(16.0f * fDensity);
 
-                  rectangle.bottom() = rectangleTab.bottom();
+                  rectangle.bottom() = rectangleTab.bottom() - ptabdata->m_rectangleBorder.bottom();
 
                }
 
@@ -922,11 +922,12 @@ namespace user
 
                   rectangle.left() = rectangleTab.right() - (::i32)(16.0f * fDensity);
 
-                  rectangle.top() = rectangleTab.top();
+                  rectangle.top() = rectangleTab.top()
+                  +ptabdata->m_rectangleBorder.top();
 
                   rectangle.right() = rectangleTab.right();
 
-                  rectangle.bottom() = rectangleTab.bottom();
+                  rectangle.bottom() = rectangleTab.bottom() - ptabdata->m_rectangleBorder.bottom();
 
                }
 

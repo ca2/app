@@ -2478,28 +2478,30 @@ namespace user
 
                }
                
-               ::user::interaction::on_message_left_button_down_handle_keyboard_focus(pmessageHold);
-               
-#if defined(APPLE_IOS)
-               //if(windowing()->is_sandboxed()
-               if(has_keyboard_focus())
-               {
-                  
-                  auto pcontextmenu = __create_new < ::message::context_menu >();
-                  
-                  pcontextmenu->m_atom = e_message_context_menu;
-                  
-                  auto pointHost = pmessageHold->m_union.m_pmouse->m_pointHost;
-                  
-                  pcontextmenu->m_pointMessage = pointHost;
-                  
-                  post_message(pcontextmenu);
-                  
-               }
-#endif
 
             });
 
+#if defined(APPLE_IOS)
+            //if(windowing()->is_sandboxed()
+            if(has_keyboard_focus())
+            {
+               
+               auto pcontextmenu = __create_new < ::message::context_menu >();
+               
+               pcontextmenu->m_atom = e_message_context_menu;
+               
+               auto pointHost = pmessageHold->m_union.m_pmouse->m_pointHost;
+               
+               pcontextmenu->m_pointMessage = pointHost;
+               
+               post_message(pcontextmenu);
+               
+            }
+            
+#endif
+            
+            ::user::interaction::on_message_left_button_down_handle_keyboard_focus(pmessageHold);
+            
 #if defined(WINDOWS_DESKTOP)
 
             on_text_composition_message(TEXT_COMPOSITION_MESSAGE_UPDATE_CANDIDATE_WINDOW_POSITION);

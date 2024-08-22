@@ -843,14 +843,91 @@ namespace experience_core
          if (ptab->get_element_rectangle(-1, rectangleScroll, ::e_element_tab_near_scroll))
          {
 
-            pgraphics->fill_rectangle(rectangleScroll, argb(255, 255, 255, 255));
+            if (is_dark_mode())
+            {
+               
+               pgraphics->fill_rectangle(rectangleScroll, argb(127, 255, 255, 255));
+               
+            }
+            else
+            {
+               
+               if(ptab->m_pdata->m_bVertical)
+               {
+                  
+                  pgraphics->fill_rectangle(rectangleScroll, argb(127, 0, 0, 0));
+                  
+               }
+               else
+               {
+                
+                  
+                  auto ppath = __create < ::draw2d::path >();
+                  
+                  ppath->begin_figure();
+                  
+                  ppath->set_current_point(rectangleScroll.top_left());
+                  
+                  ppath->add_line(rectangleScroll.bottom_left());
+                  
+                  ppath->add_line({rectangleScroll.right(), rectangleScroll.center().y()});
+                  
+                  ppath->close_figure();
+                  
+                  auto pbrush = __create < ::draw2d::brush >();
+                  
+                  pbrush->create_solid( argb(127, 0, 0, 0));
+                  
+                  pgraphics->fill(ppath, pbrush);
+                  
+               }
+
+            }
 
          }
 
          if (ptab->get_element_rectangle(-1, rectangleScroll, ::e_element_tab_far_scroll))
          {
 
-            pgraphics->fill_rectangle(rectangleScroll, argb(255, 255, 255, 255));
+            if (is_dark_mode())
+            {
+               
+               pgraphics->fill_rectangle(rectangleScroll, argb(127, 255, 255, 255));
+               
+            }
+            else
+            {
+               
+               if(ptab->m_pdata->m_bVertical)
+               {
+                  
+                  pgraphics->fill_rectangle(rectangleScroll, argb(127, 0, 0, 0));
+                  
+               }
+               else
+               {
+                  
+                  auto ppath = __create < ::draw2d::path >();
+                  
+                  ppath->begin_figure();
+                  
+                  ppath->set_current_point(rectangleScroll.top_right());
+                  
+                  ppath->add_line(rectangleScroll.bottom_right());
+                  
+                  ppath->add_line({rectangleScroll.left(), rectangleScroll.center().y()});
+                  
+                  ppath->close_figure();
+                  
+                  auto pbrush = __create < ::draw2d::brush >();
+                  
+                  pbrush->create_solid( argb(127, 0, 0, 0));
+                  
+                  pgraphics->fill(ppath, pbrush);
+                  
+               }
+
+            }
 
          }
 

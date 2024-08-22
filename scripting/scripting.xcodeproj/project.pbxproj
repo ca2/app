@@ -44,12 +44,19 @@
 			remoteGlobalIDString = 9A68A41325114352008DABD2;
 			remoteInfo = acme;
 		};
+		9A8A49BD2C7790DC00B49A7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A7EDC342670E41B00BC7094 /* acme.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AC1067D2B6AC9BD0053DB45;
+			remoteInfo = ios_acme;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9A54A1452A2D57BE0052BAB6 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
 		9A54A1472A2D57BE0052BAB6 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
-		9A7EDBF72670E3A700BC7094 /* libscripting.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libscripting.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A7EDBF72670E3A700BC7094 /* scripting.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = scripting.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A7EDC122670E3DD00BC7094 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A7EDC142670E3DD00BC7094 /* _scripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _scripting.h; sourceTree = "<group>"; };
 		9A7EDC152670E3DD00BC7094 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
@@ -90,7 +97,7 @@
 		9A7EDBF82670E3A700BC7094 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A7EDBF72670E3A700BC7094 /* libscripting.dylib */,
+				9A7EDBF72670E3A700BC7094 /* scripting.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -114,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				9A7EDC3A2670E41B00BC7094 /* libacme.dylib */,
+				9A8A49BE2C7790DC00B49A7F /* libios_acme.a */,
 				9A7EDC3C2670E41B00BC7094 /* libstatic_acme.a */,
 			);
 			name = Products;
@@ -175,7 +183,7 @@
 			);
 			name = scripting;
 			productName = scripting;
-			productReference = 9A7EDBF72670E3A700BC7094 /* libscripting.dylib */;
+			productReference = 9A7EDBF72670E3A700BC7094 /* scripting.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -229,6 +237,13 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libstatic_acme.a;
 			remoteRef = 9A7EDC3B2670E41B00BC7094 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A8A49BE2C7790DC00B49A7F /* libios_acme.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_acme.a;
+			remoteRef = 9A8A49BD2C7790DC00B49A7F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -301,9 +316,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -447,18 +460,30 @@
 		9A7EDC012670E3A700BC7094 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEAD_CODE_STRIPPING = YES;
-				EXECUTABLE_PREFIX = lib;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
+				ENABLE_HARDENED_RUNTIME = YES;
+				EXECUTABLE_EXTENSION = dylib;
+				MACH_O_TYPE = mh_dylib;
 				PLATFORM_MODIFIER = macos;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		9A7EDC022670E3A700BC7094 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEAD_CODE_STRIPPING = YES;
-				EXECUTABLE_PREFIX = lib;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
+				ENABLE_HARDENED_RUNTIME = YES;
+				EXECUTABLE_EXTENSION = dylib;
+				MACH_O_TYPE = mh_dylib;
 				PLATFORM_MODIFIER = macos;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};

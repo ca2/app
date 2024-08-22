@@ -146,7 +146,7 @@
 		9AE24E691904CFE2001AEFFB /* experience_lite_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = experience_lite_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24E6A1904CFE2001AEFFB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9AE24E6D1904CFE2001AEFFB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		9AEB75F416F78EDC0085103B /* libexperience_tranquillum.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libexperience_tranquillum.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AEB75F416F78EDC0085103B /* experience_tranquillum.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = experience_tranquillum.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,7 +277,7 @@
 		9AEB75F516F78EDC0085103B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9AEB75F416F78EDC0085103B /* libexperience_tranquillum.dylib */,
+				9AEB75F416F78EDC0085103B /* experience_tranquillum.dylib */,
 				9AE24E5A1904CFE2001AEFFB /* libios_experience_tranquillum.a */,
 				9AE24E691904CFE2001AEFFB /* experience_lite_iosTests.xctest */,
 			);
@@ -363,7 +363,7 @@
 			);
 			name = experience_tranquillum;
 			productName = app_core_uinteraction;
-			productReference = 9AEB75F416F78EDC0085103B /* libexperience_tranquillum.dylib */;
+			productReference = 9AEB75F416F78EDC0085103B /* experience_tranquillum.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -781,8 +781,14 @@
 		9AEB75F916F78EDC0085103B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_PREFIX = lib;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
+				ENABLE_HARDENED_RUNTIME = YES;
+				EXECUTABLE_EXTENSION = dylib;
+				MACH_O_TYPE = mh_dylib;
 				PLATFORM_MODIFIER = macos;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -790,8 +796,14 @@
 		9AEB75FA16F78EDC0085103B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_PREFIX = lib;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
+				ENABLE_HARDENED_RUNTIME = YES;
+				EXECUTABLE_EXTENSION = dylib;
+				MACH_O_TYPE = mh_dylib;
 				PLATFORM_MODIFIER = macos;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 			};
 			name = Release;

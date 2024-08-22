@@ -62,6 +62,13 @@
 			remoteGlobalIDString = 9A68A41325114352008DABD2;
 			remoteInfo = acme;
 		};
+		9A8A49C42C77925500B49A7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A81F537275010ED003F38EC /* acme.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AC1067D2B6AC9BD0053DB45;
+			remoteInfo = ios_acme;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +76,7 @@
 		9A2D75BC2AAB780F00DFCE25 /* libstatic_compress_zlib.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libstatic_compress_zlib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A54A6322A2D66460052BAB6 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A54A6332A2D66460052BAB6 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "_____release.xcconfig"; sourceTree = "<group>"; };
-		9A81F4B227501077003F38EC /* libcompress_zlib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libcompress_zlib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A81F4B227501077003F38EC /* compress_zlib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = compress_zlib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81F4C5275010A4003F38EC /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A81F4C6275010A4003F38EC /* uncompress.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = uncompress.cpp; sourceTree = "<group>"; };
 		9A81F4E4275010A4003F38EC /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
@@ -118,7 +125,7 @@
 		9A81F4B327501077003F38EC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A81F4B227501077003F38EC /* libcompress_zlib.dylib */,
+				9A81F4B227501077003F38EC /* compress_zlib.dylib */,
 				9A1EAA9D284B05B0000F05A8 /* libios_compress_zlib.a */,
 				9A2D75BC2AAB780F00DFCE25 /* libstatic_compress_zlib.a */,
 			);
@@ -147,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				9A81F53D275010ED003F38EC /* libacme.dylib */,
+				9A8A49C52C77925500B49A7F /* libios_acme.a */,
 				9A81F53F275010ED003F38EC /* libstatic_acme.a */,
 			);
 			name = Products;
@@ -247,7 +255,7 @@
 			);
 			name = compress_zlib;
 			productName = compress_zlib;
-			productReference = 9A81F4B227501077003F38EC /* libcompress_zlib.dylib */;
+			productReference = 9A81F4B227501077003F38EC /* compress_zlib.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -303,6 +311,13 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libstatic_acme.a;
 			remoteRef = 9A81F53E275010ED003F38EC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9A8A49C52C77925500B49A7F /* libios_acme.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_acme.a;
+			remoteRef = 9A8A49C42C77925500B49A7F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -615,28 +630,30 @@
 		9A81F4B727501077003F38EC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_PREFIX = lib;
+				ENABLE_HARDENED_RUNTIME = YES;
+				EXECUTABLE_EXTENSION = dylib;
+				MACH_O_TYPE = mh_dylib;
 				PLATFORM_MODIFIER = macos;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		9A81F4B827501077003F38EC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXECUTABLE_PREFIX = lib;
+				ENABLE_HARDENED_RUNTIME = YES;
+				EXECUTABLE_EXTENSION = dylib;
+				MACH_O_TYPE = mh_dylib;
 				PLATFORM_MODIFIER = macos;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};

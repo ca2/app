@@ -352,9 +352,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AEB75F816F78EDC0085103B /* Build configuration list for PBXNativeTarget "experience_tranquillum" */;
 			buildPhases = (
+				9AEB75F216F78EDC0085103B /* Headers */,
 				9AEB75F016F78EDC0085103B /* Sources */,
 				9AEB75F116F78EDC0085103B /* Frameworks */,
-				9AEB75F216F78EDC0085103B /* Headers */,
 			);
 			buildRules = (
 			);

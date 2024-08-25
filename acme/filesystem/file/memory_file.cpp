@@ -459,7 +459,7 @@ void memory_file::set_size(filesize size_i32)
    if (m_position > size())
    {
 
-      m_position = 0;
+      m_position = size();
 
    }
 

@@ -2706,7 +2706,7 @@ if (${OPENBSD})
             operating_system/openbsd/openbsd_openbsd.h
             operating_system/openbsd/graphics.cpp
             operating_system/openbsd/internal.h
-            operating_system/openbsd/library.cpp
+#            operating_system/openbsd/library.cpp
             operating_system/openbsd/os.cpp
             operating_system/openbsd/parallelization.cpp
             operating_system/openbsd/process.cpp

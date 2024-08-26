@@ -1,10 +1,13 @@
 #include "framework.h"
 #include "acme/operating_system/ansi/_pthread.h"
+#include "acme/windowing_system/windowing_system.h"
 #include "acme/platform/system.h"
 #include "acme/nano/user/display.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/node.h"
-
+#include "acme/_operating_system.h"
+#include <sys/param.h>
+#include <sys/sysctl.h>
 // #if defined(OPENBSD)
 // #define __XSI_VISIBLE 1
 // #endif
@@ -272,6 +275,16 @@ void _do_tasks()
 
    auto psystem = ::platform::get()->system();
 
+   auto pwindowingsystem = psystem->windowing_system();
+
+   if(::is_set(pwindowingsystem))	
+   {
+
+      pwindowingsystem->process_messages();
+
+   }
+
+
 //   if(psystem->m_ewindowing == e_windowing_wayland)
 //   {
 //
@@ -279,22 +292,22 @@ void _do_tasks()
 //
 //   }
 //   else
-  if(psystem->m_ewindowing == e_windowing_xcb)
-   {
+//  if(psystem->m_ewindowing == e_windowing_xcb)
+  // {
 
-      xcb_process_messages();
+    //  xcb_process_messages();
 
-   }
-   else
-   {
+  // }
+  // else
+  // {
 
-#if !defined(OPENBSD)
+//#if !defined(OPENBSD)
 
-      x11_process_messages();
+  //    x11_process_messages();
 
-#endif
+//#endif
 
-   }
+  // }
 
    psystem->node()->defer_do_main_tasks();
 
@@ -320,3 +333,28 @@ namespace acme
 } // namespace acme
 
 
+int get_processor_count()
+{
+	// On OpenBSD HW_NCPUONLINE tells the number of processor cores that
+	// are online so it is preferred over HW_NCPU which also counts cores
+	// that aren't currently available. The number of cores online is
+	// often less than HW_NCPU because OpenBSD disables simultaneous
+	// multi-threading (SMT) by default.
+#	ifdef HW_NCPUONLINE
+	int name[2] = { CTL_HW, HW_NCPUONLINE };
+#	else
+	int name[2] = { CTL_HW, HW_NCPU };
+#	endif
+	int cpus;
+	size_t cpus_size = sizeof(cpus);
+	if (sysctl(name, 2, &cpus, &cpus_size, NULL, 0) == -1)
+	{
+
+		return 1;
+
+	}
+
+	return cpus;
+	
+
+}

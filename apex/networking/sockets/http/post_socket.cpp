@@ -43,6 +43,8 @@ namespace sockets
       //http_client_socket(h, url_in)
    {
 
+      payload("this_is_a_http_post_socket") = true;
+
       initialize_http_client_socket(url);
 
       m_emethod = http_method_post;

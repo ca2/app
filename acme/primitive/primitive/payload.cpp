@@ -4508,6 +4508,12 @@ string_array payload::as_string_array() const
          stra.add(as_string());
 
       }
+      else if (m_etype == e_type_key_exists)
+      {
+
+         stra.add({});
+
+      }
       else
       {
 

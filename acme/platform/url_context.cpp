@@ -597,6 +597,12 @@ namespace url
          iStart = 0;
 
       }
+      else
+      {
+
+         iStart++;
+
+      }
 
       return __get_parameter(strParameter, scopedstr, iStart, scopedstrKey);
 

@@ -528,12 +528,12 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
    auto purl = psystem->url();
 
-   plogon->Hostname() = purl->get_server(strPath);
+   plogon->Hostname() = ::url::get_host(strPath);
    //logon.Username() = purl->get_username(listing.m_path);
 
    string strUrl = "ftp://" + plogon->Hostname() + "/";
 
-   plogon->m_strToken = purl->os_fspath(strUrl);
+   //plogon->m_strToken = purl->os_fspath(strUrl);
 
    ::pointer<::ftp::client_socket>& pclient = m_pftpnet->m_mapClient[plogon->m_strToken];
 

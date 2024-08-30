@@ -162,7 +162,11 @@ namespace filemanager
 
                phttpmessage->payload("request") = "";
 
-               phttpmessage->m_strUrl.formatf("http://file.ca2.software/ifs/ls?atom=%I64d", iFolder);
+               ::string strUrl;
+
+               strUrl.formatf("http://file.ca2.software/ifs/ls?atom=%I64d", iFolder);
+
+               phttpmessage->m_url = strUrl;
 
                phttpmessage->want_memory_response();
 

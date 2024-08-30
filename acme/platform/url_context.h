@@ -43,15 +43,18 @@ namespace url
    //CLASS_DECL_ACME ::string query_has_parameter_replace(const ::scoped_string& scopedstrQuery, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstrParameter);
    //CLASS_DECL_ACME bool query_get_parameter(::string & strParameter, const ::scoped_string& scopedstrQuery, const ::scoped_string& scopedstrParam);
    //CLASS_DECL_ACME ::string query_get_parameter(const ::scoped_string& scopedstrQuery, const ::scoped_string& scopedstrParam);
+   CLASS_DECL_ACME ::string set_request_path(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrScript);
    CLASS_DECL_ACME bool has_parameter_replace(::string& str, const ::scoped_string& scopedstr, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstrParameter);
    CLASS_DECL_ACME ::string has_parameter_replace(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrKey, const ::scoped_string& scopedstrParameter);
    CLASS_DECL_ACME bool get_parameter(::string& strParameter, const ::scoped_string& scopedstr, const ::scoped_string& scopedstrParam);
    CLASS_DECL_ACME ::string get_parameter(const ::scoped_string& scopedstr, const ::scoped_string& scopedstrParam);
    CLASS_DECL_ACME ::string get_raw_request_path(const ::scoped_string& scopedstr);
    CLASS_DECL_ACME ::string get_request_path(const ::scoped_string& scopedstr);
+   CLASS_DECL_ACME ::string get_protocol(const ::scoped_string & scopedstr);
    CLASS_DECL_ACME ::string get_host(const ::scoped_string& scopedstr);
    CLASS_DECL_ACME ::string get_root(const ::scoped_string& scopedstr);
    CLASS_DECL_ACME ::string get_query(const ::scoped_string& scopedstr);
+   CLASS_DECL_ACME ::string get_object(const ::scoped_string & scopedstr);
 
 
 } // namespace url

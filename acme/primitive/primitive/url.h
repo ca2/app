@@ -16,6 +16,7 @@ namespace url
 
    CLASS_DECL_ACME::string decode(const ::block& block);
    CLASS_DECL_ACME::string encode(const ::block& block);
+   CLASS_DECL_ACME::string encode_path(const ::block & block);
 
    //struct CLASS_DECL_ACME part
    //{

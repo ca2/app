@@ -841,7 +841,7 @@ namespace url
 
 
 
-   string encode(const ::block& block)
+   string _encode(const ::block& block, bool bPath)
    {
 
       string strEncoded;
@@ -862,7 +862,8 @@ namespace url
          if (ansi_char_isalnum(ch)
             || ch == '.'
             || ch == '-'
-            || ch == '_')
+            || ch == '_'
+            || (bPath && ch =='/'))
          {
 
             pszEncoded = string_append_character(pszEncoded, ch);
@@ -871,7 +872,20 @@ namespace url
          else if (ch == ' ')
          {
 
-            pszEncoded = string_append_character(pszEncoded, '+');
+            if (bPath)
+            {
+
+               pszEncoded = string_append_character(pszEncoded, '%');
+               pszEncoded = string_append_character(pszEncoded, '2');
+               pszEncoded = string_append_character(pszEncoded, '0');
+
+            }
+            else
+            {
+
+               pszEncoded = string_append_character(pszEncoded, '+');
+
+            }
 
          }
          else
@@ -892,6 +906,22 @@ namespace url
       strEncoded.release_buffer(pszEncoded - pszEncodedStart);
 
       return ::transfer(strEncoded);
+
+   }
+
+   
+   string encode(const ::block & block)
+   {
+
+      return _encode(block, false);
+
+   }
+
+
+   string encode_path(const ::block & block)
+   {
+
+      return _encode(block, true);
 
    }
 

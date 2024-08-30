@@ -1,6 +1,7 @@
 // Created by camilo on 2024-08-29 12:18 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "url_context.h"
+#include "acme/primitive/string/_str.h"
 
 
 namespace url
@@ -390,6 +391,31 @@ namespace url
 
    }
 
+   
+   ::string set_request_path(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrScript)
+   {
+
+      return get_protocol(scopedstrUrl) + "://" + get_root(scopedstrUrl) + ::url::encode_path(scopedstrScript) + ::str::has_char(get_query(scopedstrUrl), "?");
+
+   }
+
+
+   ::string get_protocol(const ::scoped_string & scopedstr)
+   {
+
+      auto p = scopedstr.find(":");
+
+      if(::is_null(p))
+      {
+
+         return {};
+
+      }
+
+      return scopedstr(0, p);
+
+   }
+
 
    ::string get_raw_request_path(const ::scoped_string& scopedstr)
    {
@@ -548,6 +574,71 @@ namespace url
       return str(query + 1);
 
    }
+
+
+   ::string get_object(const ::scoped_string & scopedstr)
+   {
+
+      auto p1 = scopedstr.find("://");
+
+      auto p2 = scopedstr.find(":/");
+
+      string::const_iterator p;
+
+      if(not_found(p1))
+      {
+
+         if (not_found(p2))
+         {
+
+            return scopedstr;
+
+         }
+         else
+         {
+
+            p = p2 + 2;
+
+         }
+
+      }
+      else if(not_found(p2))
+      {
+
+         p = p1 + 3;
+
+      }
+      else if(p1 <= p2)
+      {
+
+         p = p1 + 3;
+
+      }
+      else
+      {
+
+         p = p2 + 2;         
+
+      }
+
+      auto object = scopedstr(p).find("/");
+
+      if (not_found(object))
+      {
+
+         return "";
+
+      }
+      else
+      {
+
+         return scopedstr(object);
+
+      }
+
+   }
+
+
 
 
    ::string get_host(const ::scoped_string& scopedstr)

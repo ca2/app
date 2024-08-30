@@ -192,14 +192,14 @@ namespace api_ca2
 
          ::string strSecFetchMode = psocket->inheader("sec-fetch-mode");
 
-         ::string strScript = system()->url()->get_script(strUrl);
+         ::string strScript = ::url::get_request_path(strUrl);
 
          if (strSecFetchMode.case_insensitive_equals("cors"))
          {
 
             ::string strOrigin = psocket->inheader("origin");
 
-            ::string strOriginHost = system()->url()->get_server(strOrigin);
+            ::string strOriginHost = ::url::get_host(strOrigin);
 
             string_array straAllowedOrigin;
 
@@ -261,9 +261,9 @@ namespace api_ca2
       strHtml += "</head>";
       strHtml += "<body style=\"font-family:'Fira Code', monospace;\">";
 
-      string strAppState = system()->url()->get_param(strUrl, "appstate");
+      string strAppState = ::url::get_parameter(strUrl, "appstate");
 
-      string strAppCode = system()->url()->get_param(strUrl, "appcode");
+      string strAppCode = ::url::get_parameter(strUrl, "appcode");
 
       if (check_authenticated(strAppState, strAppCode))
       {

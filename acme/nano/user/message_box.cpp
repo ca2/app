@@ -645,7 +645,7 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
 
 
 
-CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & atom) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
+CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload & payload) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
 {
 
    auto pmessagebox = __allocate< ::nano::user::message_box_conversation_message >();

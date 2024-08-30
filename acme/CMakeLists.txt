@@ -416,6 +416,7 @@ list(APPEND library_source
         operating_system/path.cpp
         operating_system/path.h
         operating_system/process.h
+	operating_system/string.cpp
         operating_system/summary.cpp
         operating_system/summary.h
         operating_system/time.cpp
@@ -2706,7 +2707,7 @@ if (${OPENBSD})
             operating_system/openbsd/openbsd_openbsd.h
             operating_system/openbsd/graphics.cpp
             operating_system/openbsd/internal.h
-            operating_system/openbsd/library.cpp
+#            operating_system/openbsd/library.cpp
             operating_system/openbsd/os.cpp
             operating_system/openbsd/parallelization.cpp
             operating_system/openbsd/process.cpp
@@ -2872,6 +2873,8 @@ elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
         message(STATUS "ELSE acme system_libraries ${system_libraries}")
     endif ()
 
+    add_dependencies(${PROJECT_NAME} static_nano_dynamic_library_dl)
+
 
     target_link_libraries(${PROJECT_NAME} PRIVATE
             ${system_libraries} ${global_library_references}
@@ -2899,12 +2902,10 @@ elseif (MACOS)
 endif ()
 
 
-add_dependencies(${PROJECT_NAME} static_nano_dynamic_library_dl)
-
+message(STATUS "Library Output Path at acme is : \"${LIBRARY_OUTPUT_PATH}\".")
 
 target_link_directories(${PROJECT_NAME} PRIVATE ${LIBRARY_OUTPUT_PATH})
 target_link_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/library/x64/basis)
-target_link_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/third/library/x64/basis)
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

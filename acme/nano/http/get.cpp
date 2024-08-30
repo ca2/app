@@ -50,7 +50,7 @@ namespace nano
          
          m_memory.assign(data, size);
          
-         m_setOut["http_status_code"] = http_status;
+         m_setOut["http_status_code"] = (::i64) http_status;
          
          //passynchronoushttpdata->m_function(passynchronoushttpdata);
          

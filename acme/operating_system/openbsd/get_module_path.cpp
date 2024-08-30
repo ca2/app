@@ -125,7 +125,7 @@ bool process_contains_module(pid_t pid, const ::file::path & path)
 ::file::path get_module_path()
 {
 
-   auto strArg0 = ::platform::get()->_get_argv(0);
+   auto strArg0 = ::platform::get()->_get_args(0);
    
    auto penvironment = ::operating_system_get_environment();
    

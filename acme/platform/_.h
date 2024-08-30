@@ -29,6 +29,27 @@ namespace primitive
 } // namespace primitive
 
 
+namespace internet
+{
+
+   
+   class internet;
+
+
+} // namespace internet
+
+
+namespace url
+{
+
+
+   class url;
+   class url_context;
+
+
+} // namespace url
+
+
 namespace platform
 {
 

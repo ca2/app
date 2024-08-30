@@ -738,11 +738,11 @@ namespace dynamic_source
    void script_interface::uri_set_var(string& strUrl, const ::string& pszUrl, const ::string& pszKey, ::payload payload)
    {
 
-      auto psystem = system();
+      ::url::parts parts(pszUrl);
 
-      auto purl = psystem->url();
+      parts.arguments()[pszKey] = payload;
 
-      purl->set_key(strUrl, pszUrl, pszKey, payload);
+      strUrl = parts.as_string();
 
    }
 
@@ -750,11 +750,11 @@ namespace dynamic_source
    void script_interface::uri_set_param(string& strUrl, const ::string& pszUrl, const ::string& pszKey, const string& strParam)
    {
 
-      auto psystem = system();
+      ::url::parts parts(pszUrl);
 
-      auto purl = psystem->url();
+      parts.arguments()[pszKey] = strParam;
 
-      purl->set_param(strUrl, pszUrl, pszKey, strParam);
+      strUrl = parts.as_string();
 
    }
 
@@ -762,11 +762,11 @@ namespace dynamic_source
    string script_interface::query_get_param(const ::string& pszUrl, const ::string& pszKey)
    {
 
-      auto psystem = system();
+      ::url::parts parts(pszUrl);
 
-      auto purl = psystem->url();
+      auto str = parts.arguments()[pszKey].as_string();
 
-      return purl->get_param(pszUrl, pszKey);
+      return str;
 
    }
 
@@ -774,11 +774,11 @@ namespace dynamic_source
    ::payload script_interface::query_get_var(const ::string& pszUrl, const ::string& pszKey)
    {
 
-      auto psystem = system();
+      ::url::parts parts(pszUrl);
 
-      auto purl = psystem->url();
+      auto payload = parts.arguments()[pszKey];
 
-      return purl->get_var(pszUrl, pszKey);
+      return payload;
 
    }
 

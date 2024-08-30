@@ -58,7 +58,7 @@ namespace sockets
       ~http_put_socket();
 
       
-      virtual void initialize_http_put_socket(const string & strUrl);
+      virtual void initialize_http_put_socket(const ::url::url & url);
 
 
       // these must be specified before connecting / adding to handler

@@ -28,11 +28,11 @@ namespace text
          bool                       m_bSchemaOnly;
          bool                       m_bAddAlternateStyle;
 
-         atom                       m_atomLocale;
-         atom                       m_atomSchema;
+         ::string                   m_strLocale;
+         ::string                   m_strSchema;
 
-         atom_array                 m_idaLocale;
-         atom_array                 m_idaSchema;
+         ::string_array             m_straLocale;
+         ::string_array             m_straSchema;
 
 
          locale_schema();
@@ -43,13 +43,13 @@ namespace text
          //::atom localeid(const scoped_string & strLocale, strsize iLen);
 
 
-         virtual bool add_locale_variant(const ::atom & idLocale, const ::atom & Style);
+         virtual bool add_locale_variant(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
          virtual bool end_prepare(bool bRtlLayout);
          //virtual void end_prepare();
 
-         bool defer_add_locale(const ::atom & idLocale, const ::atom & idStyle);
+         bool defer_add_locale(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
          //bool defer_add_locale(const scoped_string & str, strsize iLen, const ::atom & idStyle);
-         bool _add_locale_variant(const ::atom & pszLocale, const ::atom & idStyle);
+         bool _add_locale_variant(const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
          //bool _add_locale_variant(const scoped_string & str, strsize iLen, atom idStyle);
          bool process_final_locale_schema(bool bRTLLayout);
          //bool process_final_locale_schema();

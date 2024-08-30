@@ -77,8 +77,7 @@ void on_property_destruct(property * pproperty);
 
 
 class CLASS_DECL_ACME property : 
-   virtual public ::payload,
-   virtual public ::subparticle
+   public ::payload
 {
 public:
 
@@ -148,6 +147,8 @@ public:
       if(this != &property)
       {
 
+         m_atom = property.m_atom;
+
          payload::operator=((const ::payload & )property);
 
       }
@@ -195,11 +196,15 @@ public:
 
 
    //using payload::operator ::string;
-   void write_to_stream(::binary_stream & stream) override;
-   void read_from_stream(::binary_stream & stream) override;
 
 };
 
+CLASS_DECL_ACME binary_stream & operator << (::binary_stream& stream, const property & property);
+CLASS_DECL_ACME binary_stream & operator >> (::binary_stream& stream, property & property);
+//CLASS_DECL_ACME binary_stream& operator << (::binary_stream& stream, const property_particle& property);
+//CLASS_DECL_ACME binary_stream& operator >> (::binary_stream& stream, property_particle& property);
+CLASS_DECL_ACME binary_stream& binary_stream_write_property(::binary_stream& stream, const property& property);
+CLASS_DECL_ACME binary_stream& binary_stream_read_property(::binary_stream& stream, property& property);
 
 using property_pointer = ::property *;
 
@@ -212,9 +217,10 @@ CLASS_DECL_ACME void property_skip_network_payload_payload(::ansi_range & range)
 
 #include "acme/primitive/collection/ptr_array.h"
 #include "acme/primitive/collection/auto_ptr_array.h"
+#include "acme/primitive/collection/raw_pointer_array.h"
 
 
-using property_ptra = ::ptr_array < ::property >;
+using property_array = ::array < ::property >;
 
 //using property_map = map < ::atom, const ::atom &, payload, const ::payload &, ::property >;
 
@@ -280,13 +286,13 @@ using property_ptra = ::ptr_array < ::property >;
 //
 
 
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE >::string_base(const ::property & property) :
-   string_base(property.as_string())
-{
-
-
-}
+//template < typename ITERATOR_TYPE >
+//inline string_base < ITERATOR_TYPE >::string_base(const ::property & property) :
+//   string_base(property.as_string())
+//{
+//
+//
+//}
 
 
 //template < typename ITERATOR_TYPE >
@@ -348,6 +354,8 @@ namespace file
 
 
 } // namespace file
+
+
 
 
 

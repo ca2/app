@@ -67,7 +67,7 @@ public:
 
    void formatf_output_arguments(const ::ansi_character * psz, va_list & arguments);
 
-   #if defined(__STD_FORMAT)
+   #if defined(__STD_FORMAT__)
    
    template<typename... Ts>
    void format_output(const std::format_string<Ts...> fmt, Ts&&... args)

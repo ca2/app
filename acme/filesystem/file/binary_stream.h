@@ -670,13 +670,6 @@ public:
    //}
 
 
-   virtual binary_stream & operator <<(const atom & atom);
-
-   virtual binary_stream & operator <<(const ::payload & payload);
-
-
-   virtual binary_stream & operator <<(const property & property);
-
 
    //binary_stream & operator <<(const property_set& set)
    //{
@@ -1090,7 +1083,6 @@ public:
    //}
 
 
-virtual binary_stream & operator >>(::payload & payload);
  
 
    virtual void read_payload_type(enum_type & etype);
@@ -1100,9 +1092,6 @@ virtual binary_stream & operator >>(::payload & payload);
 
    virtual void read_payload_body(::payload & payload, enum_type etype);
    
-
-   virtual binary_stream & operator >>(property & property);
-
 
    virtual  binary_stream & operator >>(string & str);
 
@@ -1338,4 +1327,16 @@ virtual binary_stream & operator >>(::payload & payload);
 //}
 
 
+
+CLASS_DECL_ACME binary_stream& operator <<(binary_stream& stream,const atom& atom);
+
+CLASS_DECL_ACME binary_stream& operator <<(binary_stream& stream,const ::payload& payload);
+
+CLASS_DECL_ACME binary_stream& operator <<(binary_stream& stream, const ::property& property);
+
+
+
+CLASS_DECL_ACME binary_stream& operator >>(binary_stream& stream,property& property);
+
+CLASS_DECL_ACME binary_stream& operator >>(binary_stream& stream,::payload& payload);
 

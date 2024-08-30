@@ -137,7 +137,8 @@ namespace acme
       //string_map < string_map < i64 > >                                 m_mapTextToEnum;
 
 
-      ::pointer<::url::url>                                    m_purl;
+      ::pointer<::internet::internet>                                   m_pinternet;
+      ::pointer<::url::url_context>                                     m_purlcontext;
 
       ::pointer<class ::base64>                                  m_pbase64;
 
@@ -237,7 +238,8 @@ namespace acme
 
       inline ::text::table * texttable() { return m_ptexttable; }
 
-      inline ::url::url * url() { return m_purl; }
+      inline ::internet::internet* internet() { return m_pinternet; }
+      inline ::url::url_context* url() { return m_purlcontext; }
 
       ::particle * ui_destroyed_synchronization() { return m_pmutexUiDestroyed; }
 
@@ -707,11 +709,18 @@ namespace acme
 
 } // namespace acme
 
-
-
-
-
-//CLASS_DECL_ACME string get_latest_deployment_number(const ::string & strBranch);
-
-
-
+//
+//
+//
+//
+////CLASS_DECL_ACME string get_latest_deployment_number(const ::string & strBranch);
+//
+//inline ::acme::system* system()
+//{
+//
+//   return ::platform::get()->system();
+//
+//}
+//
+//
+//

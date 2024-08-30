@@ -96,7 +96,7 @@ namespace text
          else
          {
 
-            string strText = m_pdata->m_atom;
+            string strText = m_pdata->m_atom.as_string();
 
             auto find = strText.find_index("://");
 

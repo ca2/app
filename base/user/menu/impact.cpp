@@ -800,7 +800,7 @@ namespace user
 
             pmenuitemMenuBar->m_pmenuitema->add(pmenuitemCommand);
 
-            pmenuitemCommand->m_atom = pnodeChild->attribute("id");
+            pmenuitemCommand->m_atom = pnodeChild->attribute("id").as_atom();
 
             pmenuitemCommand->m_item.m_iItem = iPos;
 

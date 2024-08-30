@@ -73,7 +73,7 @@ namespace user
       void on_request(::request * prequest) override;
 
 
-      virtual ::atom get_topic_impact_id();
+      virtual ::string get_topic_impact_id();
       virtual bool set_topic_impact_by_id(::atom atom);
 
       virtual void update_title();

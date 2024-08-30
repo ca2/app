@@ -13,7 +13,7 @@
 // property set key is case insensitive
 // PROPERTY_ARRAY Property set ordered
 class CLASS_DECL_ACME property_set :
-   virtual public ::property_ptra
+   virtual public ::property_array
 {
 public:
 
@@ -45,6 +45,7 @@ public:
 
    ::collection::index index_of(const ::atom & atom, ::collection::index iStart = 0) const;
 
+   property* find_by_text(const ::scoped_string & scopedstr, ::collection::index iStart = 0) const;
 
    property * find(const ::atom & atom, ::collection::index iStart = 0) const;// { return atom.is_text() ? find_text_key((const ::scoped_string &)atom.m_str, iStart) : find_index(atom.m_i); }
    property & get(const ::atom & atom, ::collection::index iStart = 0); // { return atom.is_text() ? get_text_key((const ::scoped_string &)atom.m_str, iStart) : get_index(atom.m_i); }
@@ -75,16 +76,15 @@ public:
    //inline property * payload_text_key(const scoped_string & scopedstr, ::collection::index iStart = 0) const { return find_property_text_key(scopedstr, iStart); }
    //inline property & payload_text_key(const scoped_string & scopedstr, ::collection::index iStart = 0) { return get_property_text_key(scopedstr, iStart); }
 
+   ::payload operator[](const ::atom_array& atoma) const;
+   ::payload operator[](const ::atom& atom) const;
 
-   inline ::payload operator[](const ::atom_array & atoma) const { return find(atoma); }
    inline ::property & operator[](const ::atom_array & atoma) { return get(atoma); }
-
-   inline ::payload operator[](const ::atom & atom) const { return find(atom); }
    inline ::property & operator[](const ::atom & atom) { return get(atom); }
    template < primitive_integral INTEGRAL >
-   inline ::payload operator[](INTEGRAL i) const { return this->object_at(i); }
+   inline ::payload operator[](INTEGRAL i) const { return this->element_at(i); }
    template < primitive_integral INTEGRAL >
-   inline ::property & operator[](INTEGRAL i) { return this->object_at(i); }
+   inline ::property & operator[](INTEGRAL i) { return this->element_at(i); }
 
 
 
@@ -286,32 +286,27 @@ public:
    //using property_ptra::is_empty;
 
    bool is_empty(const atom & idName) const;
-   bool is_empty() const { return ::property_ptra::is_empty(); }
+   bool is_empty() const { return ::property_array::is_empty(); }
    bool has_property() const { return this->has_element(); }
    ::collection::count property_count() const { return this->get_count(); }
    
    
-   ::collection::index add_property(property * pproperty) { return this->add_item(pproperty); }
+   ::collection::index add_property(const property & property) { return this->add_item(property); }
 
 
-   inline const property * property_at(::collection::index nIndex) const { return this->element_at(nIndex); }
-   inline property * property_at(::collection::index nIndex) { return this->element_at(nIndex); }
+   inline const property & property_at(::collection::index nIndex) const { return this->element_at(nIndex); }
+   inline property & property_at(::collection::index nIndex) { return this->element_at(nIndex); }
 
    inline ::collection::index erase_property_at(::collection::index iIndex) { return this->erase_at(iIndex); }
 
    inline ::collection::count erase_all_properties() { return this->erase_all(); }
 
-   
-   property_ptra & propertyptra() { return *this; }
-   const property_ptra & propertyptra() const { return *this; }
+   //auto begin() { return propertyptra().begin(); }
+   //auto begin() const { return propertyptra().begin(); }
+   //auto end() { return propertyptra().end(); }
+   //auto end() const { return propertyptra().end(); }
 
-
-   auto begin() { return propertyptra().begin(); }
-   auto begin() const { return propertyptra().begin(); }
-   auto end() { return propertyptra().end(); }
-   auto end() const { return propertyptra().end(); }
-
-   auto is_end(property_ptra::const_iterator iterator) const { return propertyptra().is_end(iterator); }
+   //auto is_end(property_arraytra::const_iterator iterator) const { return propertyptra().is_end(iterator); }
 
    //template < typename TYPE >
    //bool find(const ::atom & atom, TYPE & t)
@@ -466,4 +461,9 @@ inline bool property_set::get_string(string & strResult, const atom & idKey) con
    return true;
 
 }
+
+
+
+CLASS_DECL_ACME ::pointer < ::property_set > create_network_arguments_property_set(const ::scoped_string& scopedstrNetworkArguments);
+
 

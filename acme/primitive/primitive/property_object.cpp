@@ -661,7 +661,7 @@ void property_object::on_property_changed(property* pproperty, const action_cont
 //}
 
 
-void property_object::run_property(const ::atom& atom)
+void property_object::defer_run_property(const ::atom& atom)
 {
 
    auto pproperty = find_property(atom);
@@ -675,7 +675,16 @@ void property_object::run_property(const ::atom& atom)
 
    }
 
-   pproperty->run();
+   if (pproperty->get_type() != e_type_element)
+   {
+
+      //throw ::exception(error_not_found);
+
+      return;
+
+   }
+
+   pproperty->defer_run_payload();
 
 }
 
@@ -918,9 +927,39 @@ bool property_object::is_false(const ::atom& atom) const
 
 ::payload & property_object::operator[](const ::atom & atom) { return payload(atom); }
 
-::payload property_object::operator[](const ::atom & atom) const { return find_property(atom); }
+::payload property_object::operator[](const ::atom & atom) const
+{ 
+   
+   auto pproperty = find_property(atom); 
 
-::payload property_object::payload(const ::atom & atom) const { return find_property(atom); }
+   if (!pproperty)
+   {
+
+      return e_type_new;
+
+   }
+
+   return *pproperty;
+
+}
+
+
+::payload property_object::payload(const ::atom & atom) const 
+{
+   
+   auto pproperty = find_property(atom); 
+
+   if (!pproperty)
+   {
+
+      return e_type_new;
+
+   }
+
+   return *pproperty;
+
+}
+
 
 ::payload property_object::payload(const ::atom & atom, const ::payload & varDefault) const { return operator()(atom, varDefault); }
 
@@ -942,7 +981,7 @@ bool property_object::is_false(const ::atom& atom) const
 
    }
 
-   return pproperty;
+   return *pproperty;
 
 }
 

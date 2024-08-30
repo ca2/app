@@ -550,7 +550,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 
       property_set set;
 
-      string str = context()->http_text(listing.m_pathFinal, set);
+      string str = context()->http_text(listing.m_pathFinal.as_url(), set);
 
       listing.add_tokens(str, "\n", false);
 
@@ -1253,6 +1253,8 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
    if (case_insensitive_string_begins(path, "http://") || case_insensitive_string_begins(path, "https://"))
    {
 
+      auto url = path.as_url();
+
       property_set set;
 
       if (path.flags() & ::file::e_flag_bypass_cache)
@@ -1262,7 +1264,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 
       }
 
-      auto bDir = system()->http_exists(path, set);
+      auto bDir = system()->http_exists(url, set);
 
       if (bDir)
       {
@@ -2127,9 +2129,9 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          // todo: keep cache timeout information;
 
-         auto psystem = system();
+         //auto psystem = system();
 
-         auto purl = psystem->url();
+         //auto purl = psystem->url();
 
          string strUrl = "https://api.ca2.software/api/matter/list_dir?dir=" + ::url::encode(strMatter);
 
@@ -2463,9 +2465,9 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       string strCandidate = stra.implode("|");
 
-      auto psystem = system();
+      //auto psystem = system();
 
-      auto purl = psystem->url();
+      //auto purl = psystem->url();
 
       string strParam = ::url::encode(strCandidate);
 
@@ -2785,72 +2787,72 @@ ret:
 }
 
 
-::file::path dir_context::commonappdata(const ::scoped_string& scopedstrAppId, const ::scoped_string& scopedstrBuild, const ::scoped_string& scopedstrPlatform, const ::scoped_string& scopedstrConfiguration)
-{
+//::file::path dir_context::commonappdata(const ::scoped_string& scopedstrAppId, const ::scoped_string& scopedstrBuild, const ::scoped_string& scopedstrPlatform, const ::scoped_string& scopedstrConfiguration)
+//{
+//
+//   _synchronous_lock synchronouslock(this->synchronization());
+//
+//   string strAppId(scopedstrAppId);
+//
+//   string strPlatform(scopedstrPlatform);
+//
+//   auto psystem = system();
+//
+//   if (strPlatform.is_empty())
+//   {
+//
+//      strPlatform = psystem->get_system_platform();
+//
+//   }
+//
+//   string strConfiguration(scopedstrConfiguration);
+//
+//   if (strConfiguration.is_empty())
+//   {
+//
+//      strConfiguration = psystem->get_system_configuration();
+//
+//   }
+//
+//   string strBuild(scopedstrBuild);
+//
+//   return commonappdata() / strBuild / strPlatform / strConfiguration / strAppId;
+//
+//}
+//
 
-   _synchronous_lock synchronouslock(this->synchronization());
-
-   string strAppId(scopedstrAppId);
-
-   string strPlatform(scopedstrPlatform);
-
-   auto psystem = system();
-
-   if (strPlatform.is_empty())
-   {
-
-      strPlatform = psystem->get_system_platform();
-
-   }
-
-   string strConfiguration(scopedstrConfiguration);
-
-   if (strConfiguration.is_empty())
-   {
-
-      strConfiguration = psystem->get_system_configuration();
-
-   }
-
-   string strBuild(scopedstrBuild);
-
-   return commonappdata() / strBuild / strPlatform / strConfiguration / strAppId;
-
-}
-
-
-::file::path dir_context::commonappdata_locale_schema(
-   const ::scoped_string& scopedstrAppId,
-   const ::scoped_string& scopedstrBuild,
-   const ::scoped_string& scopedstrPlatform,
-   const ::scoped_string& scopedstrConfiguration,
-   const ::scoped_string& scopedstrLocale,
-   const ::scoped_string& scopedstrSchema)
-{
-
-   _synchronous_lock synchronouslock(this->synchronization());
-
-   string strLocale(scopedstrLocale);
-
-   if (strLocale.is_empty())
-   {
-
-      strLocale = session()->m_strLocale;
-
-   }
-
-   string strSchema(scopedstrSchema);
-
-   if (strSchema.is_empty())
-   {
-
-      strSchema = session()->m_strSchema;
-
-   }
-
-   return commonappdata(scopedstrAppId, scopedstrBuild, scopedstrPlatform, scopedstrConfiguration) / strLocale / strSchema;
-
-}
+//::file::path dir_context::commonappdata_locale_schema(
+//   const ::scoped_string& scopedstrAppId,
+//   const ::scoped_string& scopedstrBuild,
+//   const ::scoped_string& scopedstrPlatform,
+//   const ::scoped_string& scopedstrConfiguration,
+//   const ::scoped_string& scopedstrLocale,
+//   const ::scoped_string& scopedstrSchema)
+//{
+//
+//   _synchronous_lock synchronouslock(this->synchronization());
+//
+//   string strLocale(scopedstrLocale);
+//
+//   if (strLocale.is_empty())
+//   {
+//
+//      strLocale = session()->m_atomLocale;
+//
+//   }
+//
+//   string strSchema(scopedstrSchema);
+//
+//   if (strSchema.is_empty())
+//   {
+//
+//      strSchema = session()->m_strSchema;
+//
+//   }
+//
+//   return commonappdata(scopedstrAppId, scopedstrBuild, scopedstrPlatform, scopedstrConfiguration) / strLocale / strSchema;
+//
+//}
 
 
 ::file::path dir_context::trash_that_is_not_trash(const ::file::path& psz)

@@ -23,6 +23,9 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 
 #define _S_ALOG_CONTEXT ::context_trace_object()
 
+#define __STD_FORMAT__
+
+#include <format>
 
 #ifdef WINDOWS_DESKTOP
 

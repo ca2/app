@@ -342,6 +342,7 @@ template < typename SCOPED_STRING >
 concept primitive_scoped_string = ::std::is_same < typename SCOPED_STRING::PRIMITIVE_SCOPED_STRING_TAG, PRIMITIVE_SCOPED_STRING_TAG_TYPE >::value;
 
 
+
 template < typename T >
 concept character_range_not_string = character_range<T> && !primitive_string<T>;
 
@@ -721,5 +722,15 @@ concept non_container = !primitive_container < CONTAINER >;
 
 template < primitive_enum ENUM >
 inline ::i64 as_i64(const ENUM & e) { return (::i64)(::raw_enum_of<ENUM>) e; }
+
+
+
+
+template < typename CONST_STRING_CASTABLE >
+concept const_string_castable =
+::std::is_convertible < CONST_STRING_CASTABLE, ::string >::value ||
+::std::is_convertible < CONST_STRING_CASTABLE, ::scoped_string >::value ||
+::std::is_convertible < CONST_STRING_CASTABLE, const char * >::value;
+
 
 

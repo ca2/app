@@ -285,7 +285,7 @@ inline binary_stream & operator >>(binary_stream & stream, ARRAY & a)
 inline binary_stream & operator <<(binary_stream & stream, const ::property_set & propertyset)
 {
 
-   return stream << (const property_ptra & ) propertyset;
+   return stream << (const property_array & ) propertyset;
 
 }
 
@@ -293,17 +293,19 @@ inline binary_stream & operator <<(binary_stream & stream, const ::property_set 
 inline binary_stream & operator >>(binary_stream & stream, ::property_set & propertyset)
 {
 
-   return stream >> (property_ptra &) propertyset;
+   return stream >> (property_array &) propertyset;
 
 }
 
 
+CLASS_DECL_ACME binary_stream& binary_stream_write_property(::binary_stream& stream, const property& property);
+CLASS_DECL_ACME binary_stream& binary_stream_read_property(::binary_stream& stream, property& property);
 
 
 inline binary_stream & operator <<(binary_stream & stream, const ::property * pproperty)
 {
 
-   return stream << *pproperty;
+   return binary_stream_write_property(stream, *pproperty);
 
 }
 
@@ -311,7 +313,7 @@ inline binary_stream & operator <<(binary_stream & stream, const ::property * pp
 inline binary_stream & operator >>(binary_stream & stream, ::property * pproperty)
 {
 
-   return stream >> *pproperty;
+   return binary_stream_read_property(stream, *pproperty);
 
 }
 

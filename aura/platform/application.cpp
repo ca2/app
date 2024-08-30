@@ -2669,12 +2669,12 @@ retry_license:
 
    //  ::text::context * pcontext = psession->textcontext();
 
-   //  for (i32 i = 0; i < localeschema().m_idaLocale.get_count(); i++)
+   //  for (i32 i = 0; i < localeschema().m_straLocale.get_count(); i++)
    //  {
 
-   //     string strLocale = localeschema().m_idaLocale[i];
+   //     string strLocale = localeschema().m_straLocale[i];
 
-   //     string strSchema = localeschema().m_idaSchema[i];
+   //     string strSchema = localeschema().m_straSchema[i];
 
    //     matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
@@ -2706,8 +2706,8 @@ retry_license:
    //{
 
 
-   //  localeschema.m_idaLocale.erase_all();
-   //  localeschema.m_idaSchema.erase_all();
+   //  localeschema.m_straLocale.erase_all();
+   //  localeschema.m_straSchema.erase_all();
 
 
    //  string strLocale(pszLocale);
@@ -2734,8 +2734,8 @@ retry_license:
    //{
 
 
-   //  localeschema.m_idaLocale.erase_all();
-   //  localeschema.m_idaSchema.erase_all();
+   //  localeschema.m_straLocale.erase_all();
+   //  localeschema.m_straSchema.erase_all();
 
 
    //  //localeschema.m_bAddAlternateStyle = true;
@@ -4754,21 +4754,21 @@ retry_license:
 
       //update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_atomLocale, plocaleschema->m_atomSchema);
 
-      ::collection::count iCount = plocaleschema->m_idaLocale.get_count();
+      ::collection::count iCount = plocaleschema->m_straLocale.get_count();
 
       for (::collection::index i = 0; i < iCount; i++)
       {
 
-         if (plocaleschema->m_idaLocale[i] == "std" && plocaleschema->m_idaSchema[i] == "std" && bIgnoreStdStd)
+         if (plocaleschema->m_straLocale[i] == "std" && plocaleschema->m_straSchema[i] == "std" && bIgnoreStdStd)
             continue;
 
          string strLocale;
 
-         strLocale = plocaleschema->m_idaLocale[i];
+         strLocale = plocaleschema->m_straLocale[i];
 
          string strSchema;
 
-         strSchema = plocaleschema->m_idaSchema[i];
+         strSchema = plocaleschema->m_straSchema[i];
 
          update_appmatter(psession, pszRoot, pszRelative, strLocale, strSchema);
 
@@ -4810,10 +4810,6 @@ retry_license:
          strUrl = "http://stage-ca2.network/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
-      auto psystem = system();
-
-      auto purl = psystem->url();
-
       strUrl += ::url::encode(strRelative);
 
       if (psession == nullptr)
@@ -4824,7 +4820,7 @@ retry_license:
 
             property_set setEmpty;
 
-            if (http().open(psession, purl->get_server(strUrl), purl->get_protocol(strUrl), setEmpty, nullptr))
+            if (http().open(psession, strUrl, setEmpty, nullptr))
             {
 
                break;

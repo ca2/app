@@ -34,26 +34,26 @@ namespace acme
 #pragma once
 
 
-CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate, const char** ppszRequest = nullptr);
+//CLASS_DECL_ACME bool is_url(const ::scoped_string & scopedstrCandidate, const char** ppszRequest = nullptr);
 
-CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr);
-
-
-namespace url
-{
+//CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr);
 
 
-   CLASS_DECL_ACME string encode(const ::scoped_string & scopedstr);
-
-
-   CLASS_DECL_ACME string decode(const ::scoped_string & scopedstr);
-
-
-   CLASS_DECL_ACME bool query_get_param(string& strParam, const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrUrl);
-
-
-} // namespace url
-
+//namespace url
+//{
+//
+//
+//   CLASS_DECL_ACME string encode(const ::scoped_string & scopedstr);
+//
+//
+//   CLASS_DECL_ACME string decode(const ::scoped_string & scopedstr);
+//
+//
+//   CLASS_DECL_ACME bool query_get_param(string& strParam, const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrUrl);
+//
+//
+//} // namespace url
+//
 
 #if defined(__APPLE__)
 

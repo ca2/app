@@ -526,7 +526,7 @@ bool channel::has_command_handler(::message::command * pcommand)
 
    scoped_restore(pcommand->m_atom.m_etype);
 
-   string strText = pcommand->m_atom;
+   string strText = pcommand->m_atom.as_string();
 
    if (strText.has_char())
    {

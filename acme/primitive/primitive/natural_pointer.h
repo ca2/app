@@ -305,18 +305,18 @@ public:
    }
 
 
-   void create_assign_natural_meta_data(NATURAL_META_DATA * p)
-   {
+   //void create_assign_natural_meta_data(NATURAL_META_DATA * p)
+   //{
 
-      p->natural_increment_reference_count();
+   //   p->natural_increment_reference_count();
 
-      this->m_begin = (iterator) p->begin();
+   //   this->m_begin = (iterator) p->begin();
 
-      this->m_end = (iterator) p->end();
-      
-      this->set_string_flag();
+   //   this->m_end = (iterator) p->end();
+   //   
+   //   this->set_string_flag();
 
-   }
+   //}
 
 
    void assign_natural_meta_data(natural_meta_data < BASE_META_DATA > * pNew)

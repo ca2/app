@@ -4,9 +4,7 @@
 namespace networking
 {
 
-
-   using port_t = u16;
-
+   using port_t = ::u16;
 
    class address;
 

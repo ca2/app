@@ -504,7 +504,16 @@ class ::write_text::write_text * particle::write_text() const
 }
 
 
-::url::url* particle::url() const
+
+::internet::internet* particle::internet() const
+{
+
+   return system()->internet();
+
+}
+
+
+::url::url_context* particle::url() const
 {
 
    return system()->url();

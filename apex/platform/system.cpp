@@ -35,6 +35,7 @@
 //#include "apex/operating_system.h"
 #include "apex/networking/http/context.h"
 #include "apex/networking/http/cookie.h"
+#include "apex/networking/internet.h"
 #include "apex/networking/networking.h"
 #include "apex/operating_system/department.h"
 #include "apex/user/user/language_map.h"
@@ -279,7 +280,7 @@ namespace apex
    }
 
 
-   void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
+   void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
 
 
@@ -334,6 +335,9 @@ namespace apex
 
    void system::process_init()
    {
+
+      __construct_new(m_pinternet);
+
 
       if (!application()->m_bShowApplicationInformation)
       {
@@ -3371,22 +3375,24 @@ pacmedirectory->create("/ca2core");
    void system::on_extra(string str)
    {
 
-      auto purl = url();
+//      auto purl = url();
 
-      string strProtocol = purl->get_protocol(str);
+      ::url::url url(str);
+
+      string strProtocol = url.connect().protocol();
 
 #ifdef WINDOWS_DESKTOP
 
       if (strProtocol == "ca2project")
       {
 
-         string strBase = purl->get_server(str);
+         string strBase = url.connect().host();
 
-         string strAppId = purl->get_script(str);
+         string strAppId = url.request().as_string();
 
          strAppId.begins_eat("/");
 
-         string strQuery = purl->get_query(str);
+         string strQuery = url.request().query();
 
          string strMessage;
 

@@ -89,10 +89,10 @@ namespace nano
       }
 
 
-      ::string http::get_effective_url(const ::scoped_string& scopedstr)
+      ::url::url http::get_effective_url(const ::url::url & url)
       {
 
-         ::string strUrl(scopedstr);
+         ::string strUrl(url.as_string());
 
          int iRedirectLimit = 30;
 
@@ -101,7 +101,7 @@ namespace nano
 
             auto pget = __create_new < ::nano::http::get>();
 
-            pget->m_strUrl = strUrl;
+            pget->m_url = strUrl;
 
             pget->m_setIn["only_headers"] = true;
             
@@ -133,14 +133,14 @@ namespace nano
       }
 
 
-      bool http::check_url_ok(const ::scoped_string& scopedstrUrl)
+      bool http::check_url_ok(const ::url::url& url)
       {
 
-         ::string strUrl(get_effective_url(scopedstrUrl));
+         ::string strUrl(get_effective_url(url).as_string());
 
          auto pget = __create_new < ::nano::http::get>();
 
-         pget->m_strUrl = strUrl;
+         pget->m_url = strUrl;
 
          pget->m_setIn["only_headers"] = true;
 
@@ -156,14 +156,14 @@ namespace nano
 
 
 
-      ::string http::get(const ::scoped_string & scopedstrUrl)
+      ::string http::get(const ::url::url & url)
       {
 
-         ::string strUrl(get_effective_url(scopedstrUrl));
+         auto urlEffetive = get_effective_url(url);
 
          auto pget = __create_new < ::nano::http::get>();
 
-         pget->m_strUrl = strUrl;
+         pget->m_url = urlEffetive;
 
          pget->m_timeSyncTimeout = 5_min;
 
@@ -180,14 +180,14 @@ namespace nano
       }
 
 
-      void http::download(const ::file::path & path, const ::scoped_string & scopedstrUrl)
+      void http::download(const ::file::path & path, const ::url::url & url)
       {
 
-         ::string strUrl(get_effective_url(scopedstrUrl));
+         auto urlEffective = get_effective_url(url);
 
          auto pget = __create_new < ::nano::http::get>();
 
-         pget->m_strUrl = strUrl;
+         pget->m_url = urlEffective;
 
          pget->m_timeSyncTimeout = 2_hour;
 

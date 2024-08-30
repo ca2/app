@@ -26,10 +26,10 @@ property & operator << (property & property, const ::rectangle_f64 & rectangle)
 property & operator >> (property & property, ::rectangle_f64 & rectangle)
 {
 
-   rectangle.left() = property["left"];
-   rectangle.top() = property["top"];
-   rectangle.right() = property["right"];
-   rectangle.bottom() = property["bottom"];
+   rectangle.left() = property["left"].as_f64();
+   rectangle.top() = property["top"].as_f64();
+   rectangle.right() = property["right"].as_f64();
+   rectangle.bottom() = property["bottom"].as_f64();
 
    return property;
 

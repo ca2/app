@@ -141,8 +141,8 @@
       virtual bool matter_enumerate(const ::file::path & str, ::file::listing & listing, ::file::e_flag eflag = ::file::e_flag_none, enum_depth edepth = e_depth_none);
       //virtual bool matter_ls_file(const ::file::path & str, ::file::listing& stra);
 
-      virtual ::file::path commonappdata(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild = nullptr, const ::scoped_string & scopedstrPlatform = nullptr, const ::scoped_string & scopedstrConfiguration = nullptr);
-      virtual ::file::path commonappdata_locale_schema(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild = nullptr, const ::scoped_string & scopedstrPlatform = nullptr, const ::scoped_string & scopedstrConfiguration = nullptr, const ::scoped_string & scopedstrLocale = nullptr, const ::scoped_string & scopedstrSchema = nullptr);
+      //virtual ::file::path commonappdata(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild = nullptr, const ::scoped_string & scopedstrPlatform = nullptr, const ::scoped_string & scopedstrConfiguration = nullptr);
+      //virtual ::file::path commonappdata_locale_schema(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrBuild = nullptr, const ::scoped_string & scopedstrPlatform = nullptr, const ::scoped_string & scopedstrConfiguration = nullptr, const ::scoped_string & scopedstrLocale = nullptr, const ::scoped_string & scopedstrSchema = nullptr);
 
       virtual ::file::path trash_that_is_not_trash(const ::file::path & psz);
 

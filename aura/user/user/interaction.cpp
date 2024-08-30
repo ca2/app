@@ -7900,7 +7900,7 @@ namespace user
 
       }
 
-      run_property(ID_CREATE);
+      defer_run_property(ID_CREATE);
 
       //call_procedures(CREATE_ROUTINE);
 

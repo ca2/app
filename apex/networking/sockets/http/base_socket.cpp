@@ -446,7 +446,9 @@ namespace sockets
       
       strReferer = inheader("referer");
 
-      string strServer = system()->url()->get_server(strReferer);
+      ::url::url url(strReferer);
+
+      string strRefererHost = url.connect().host();
 
       string_array straAllowedOrigin;
 
@@ -460,10 +462,11 @@ namespace sockets
       for (auto& strAllowedOrigin : straAllowedOrigin)
       {
 
-         if (strServer.case_insensitive_ends("." + strAllowedOrigin) || strServer.case_insensitive_order(strAllowedOrigin) == 0)
+         if (strRefererHost.case_insensitive_ends("." + strAllowedOrigin) || strRefererHost.case_insensitive_order(strAllowedOrigin) == 0)
          {
 
             bAllowedOrigin = true;
+
             break;
 
          }
@@ -473,7 +476,7 @@ namespace sockets
       if (bAllowedOrigin)
       {
 
-         string strOrigin = strServer;
+         string strOrigin = strRefererHost;
 
          if (strExtension == "ttf")
          {

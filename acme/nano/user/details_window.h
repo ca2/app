@@ -29,7 +29,7 @@ public:
 
 
 
-   void on_click(const ::atom& atom, ::user::mouse * pmouse) override;
+   void on_click(const ::payload& payload, ::user::mouse * pmouse) override;
 
 
 };

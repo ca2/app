@@ -1102,9 +1102,11 @@ namespace user
       if(pathFinal.is_empty())
       {
 
-         string strProtocol = url()->get_protocol(strPath);
+         ::url::url url(strPath);
 
-         string strRoot = url()->get_root(strPath);
+         string strProtocol = url.connect().protocol();
+
+         string strRoot = url.connect().host();
 
          if (strProtocol.has_char() && strRoot.has_char())
          {

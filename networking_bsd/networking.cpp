@@ -1330,12 +1330,19 @@ namespace networking_bsd
    //}
 
 
-   string networking::reverse_name(::networking::address * address)
+   string networking::reverse_name(::networking::address * paddress)
    {
+
+      if (::is_null(paddress))
+      {
+
+         throw ::exception(error_bad_argument);
+
+      }
 
       string hostname;
 
-      reverse(hostname, address);
+      reverse(hostname, paddress);
 
       return hostname;
 

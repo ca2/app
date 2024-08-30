@@ -207,7 +207,7 @@ namespace menu
       else
       {
 
-         ::atom atom = pnode->attribute("id");
+         auto atom = pnode->attribute("id").as_atom();
 
          //atom = translate_property_id(atom);
 

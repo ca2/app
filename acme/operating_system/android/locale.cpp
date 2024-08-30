@@ -15,7 +15,7 @@
       if(plconv == nullptr)
       {
 
-         plconv = __new< lconv >();
+         plconv = __allocate< lconv >();
 
          plconv->decimal_point = ".";
 

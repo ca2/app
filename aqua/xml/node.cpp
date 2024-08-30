@@ -144,7 +144,7 @@ namespace xml
    //}
 
 
-   property * node::set_attribute(const ::atom & atom, const ::payload & payload)
+   property & node::set_attribute(const ::atom & atom, const ::payload & payload)
    {
 
       auto & property = m_set.get(atom);
@@ -163,7 +163,7 @@ namespace xml
 
       }
 
-      return &property;
+      return property;
 
    }
 

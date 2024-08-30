@@ -51,8 +51,8 @@ namespace sockets
       ~http_get_socket() override;
 
 
-      virtual void initialize_http_get_socket(const string & url);
-      virtual void initialize_http_get_socket(const string & host, ::networking::port_t port, const string & url);
+      virtual void initialize_http_get_socket(const ::url::url & url);
+      virtual void initialize_http_get_socket(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrHost, ::networking::port_t port, const ::url::request & request);
 
 
       virtual bool http_request_step() override;

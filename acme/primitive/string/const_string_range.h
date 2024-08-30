@@ -146,6 +146,7 @@ public:
 
    auto last_index() const { return this->size() - 1; }
 
+   bool is_trimmed_empty() const;
 
    STRING_RANGE operator()(strsize start, strsize count) const;
 

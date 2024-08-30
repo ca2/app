@@ -4,6 +4,7 @@
 #pragma once
 
 
+
 //inline ::property & payload::operator[] (const ::scoped_string & scopedstr) { return get_property(scopedstr); }
 //inline ::payload payload::operator[] (const ::scoped_string & scopedstr) const { return find_property(scopedstr); }
 
@@ -470,18 +471,18 @@ template < class T >
 inline pointer < T > payload::cast(T * pDefault)
 {
 
-   if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
-   {
+   //if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
+   //{
 
-      return m_ppayload->cast < T >(pDefault);
+   //   return m_ppayload->cast < T >(pDefault);
 
-   }
-   else if (m_etype == e_type_property && m_pproperty != nullptr)
-   {
+   //}
+   //else if (m_etype == e_type_property && m_pproperty != nullptr)
+   //{
 
-      return m_pproperty->cast < T >(pDefault);
+   //   return m_pproperty->object().cast < T >(pDefault);
 
-   }
+   //}
 
    auto p = cast < T >();
 
@@ -504,19 +505,19 @@ template < class T >
 inline T & payload::get_cast(T * pDefault)
 {
 
-   if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
-   {
+   //if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
+   //{
 
-      return m_ppayload->get_cast <T>(pDefault);
+   //   return m_ppayload->get_cast <T>(pDefault);
 
-   }
+   //}
 
-   if (m_etype == e_type_property && m_pproperty != nullptr)
-   {
+   //if (m_etype == e_type_property && m_pproperty != nullptr)
+   //{
 
-      return m_pproperty->get_cast <T>(pDefault);
+   //   return m_pproperty->payload().get_cast <T>(pDefault);
 
-   }
+   //}
 
    if (m_etype != e_type_element)
    {
@@ -543,19 +544,19 @@ template < class T >
 inline pointer < T > payload::cast()
 {
 
-   if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
-   {
+   //if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
+   //{
 
-      return m_ppayload->cast < T >();
+   //   return m_ppayload->cast < T >();
 
-   }
+   //}
 
-   if (m_etype == e_type_property && m_pproperty != nullptr)
-   {
+   //if (m_etype == e_type_property && m_pproperty != nullptr)
+   //{
 
-      return m_pproperty->cast < T >();
+   //   return m_pproperty->cast < T >();
 
-   }
+   //}
 
 
    return get_subparticle();
@@ -950,13 +951,13 @@ inline ::payload & copy(::payload & payload1, const ::payload & payload2)
 //}
 
 
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE >::string_base(const ::payload & payload) :
-   string(payload.as_string())
-{
-
-
-}
+//template < typename ITERATOR_TYPE >
+//inline string_base < ITERATOR_TYPE >::string_base(const ::payload & payload) :
+//   string(payload.as_string())
+//{
+//
+//
+//}
 
 
 template < typename ITERATOR_TYPE >
@@ -1064,5 +1065,45 @@ namespace file
 //   return str;
 //
 //}
+
+
+
+
+
+
+template < typename PRIMITIVE >
+payload& payload::__assign_primitive(PRIMITIVE& member, enum_type etype, PRIMITIVE primitive)
+{
+
+   if (__assign_to_held_pointer_member(primitive))
+   {
+
+
+   }
+   //else if (get_type() == e_type_payload_pointer)
+   //{
+
+   //   *m_ppayload = primitive;
+
+   //}
+   //else if (get_type() == e_type_property)
+   //{
+
+   //   m_pproperty->object() = primitive;
+
+   //}
+   else
+   {
+
+      set_type(etype, false);
+
+      member = primitive;
+
+   }
+
+   return *this;
+
+}
+
 
 

@@ -894,7 +894,7 @@ enum_path file_path_get_type(const ::string & str, enum_path epathForce)
       return e_path_data;
 
    }
-   else if (is_url(str))
+   else if (::url::is(str))
    {
 
       return e_path_url;

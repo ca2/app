@@ -121,21 +121,21 @@ void payload::_set_element(::subparticle * pelement)
 
    logical_release();
 
-   if (m_etype == ::e_type_payload_pointer)
-   {
+   //if (m_etype == ::e_type_payload_pointer)
+   //{
 
-      //return ->logical_release();
+   //   //return ->logical_release();
 
-      ::set_element(*m_ppayload, pelement);
+   //   ::set_element(*m_ppayload, pelement);
 
-   }
-   else if (m_etype == ::e_type_property)
-   {
+   //}
+   //else if (m_etype == ::e_type_property)
+   //{
 
-      ::set_element(*m_pproperty, pelement);
+   //   ::set_element(*m_pproperty, pelement);
 
-   }
-   else
+   //}
+   //else
    {
 
       ::set_element(*this, pelement);
@@ -148,19 +148,19 @@ void payload::_set_element(::subparticle * pelement)
 ::i64 payload::logical_release()
 {
 
-   if (m_etype == ::e_type_payload_pointer)
-   {
+   //if (m_etype == ::e_type_payload_pointer)
+   //{
 
-      return m_ppayload->logical_release();
+   //   return m_ppayload->logical_release();
 
-   }
-   else if (m_etype == ::e_type_property)
-   {
+   //}
+   //else if (m_etype == ::e_type_property)
+   //{
 
-      return m_pproperty->logical_release();
+   //   return m_pproperty->logical_release();
 
-   }
-   else
+   //}
+   //else
    {
 
       return payload_release();
@@ -174,24 +174,18 @@ void payload::_set_element(::subparticle * pelement)
 ::i64 payload::payload_release()
 {
 
+   ::i64 iRelease = -1;
+
    if (m_etype == e_type_string)
    {
 
       m_str.::string::~string();
-
-      m_etype = e_type_new;
-
-      return 0;
 
    }
    else if (m_etype == e_type_atom)
    {
 
       m_atom.::atom::~atom();
-
-      m_etype = e_type_new;
-
-      return 0;
 
    }
    else
@@ -200,106 +194,116 @@ void payload::_set_element(::subparticle * pelement)
       if (is_element())
       {
 
-         if (::is_null(m_p))
+         if (::is_set(m_p))
          {
 
-            return -1;
-
-         }
-
-         switch (m_etype)
-         {
-         case e_type_element:
-         {
+            switch (m_etype)
+            {
+            case e_type_element:
+            {
 
 #if REFERENCING_DEBUGGING
 
 
-            auto prefererOld = m_preferer;
-            m_preferer = nullptr;
-            ::allocator::add_releaser(prefererOld);
+               auto prefererOld = m_preferer;
+               m_preferer = nullptr;
+               ::allocator::add_releaser(prefererOld);
 #endif
-            return ::release(m_p);
-         }
-         case e_type_string_array:
-         {
+               iRelease = ::release(m_p);
+            }
+            break;
+            case e_type_string_array:
+            {
 #if REFERENCING_DEBUGGING
 
-            auto prefererOld = m_preferer;
-            m_preferer = nullptr;
-            ::allocator::add_releaser(prefererOld);
+               auto prefererOld = m_preferer;
+               m_preferer = nullptr;
+               ::allocator::add_releaser(prefererOld);
 #endif
-            return ::release(m_pstra);
-         }
-         case e_type_i32_array:
-         {
+               iRelease = ::release(m_pstra);
+            }
+            break;
+            case e_type_i32_array:
+            {
 #if REFERENCING_DEBUGGING
 
-            auto prefererOld = m_preferer;
-            m_preferer = nullptr;
-            ::allocator::add_releaser(prefererOld);
+               auto prefererOld = m_preferer;
+               m_preferer = nullptr;
+               ::allocator::add_releaser(prefererOld);
 #endif
-            return ::release(m_pia);
-         }
-         case e_type_payload_array:
-         {
+               iRelease = ::release(m_pia);
+            }
+            break;
+            case e_type_payload_array:
+            {
 #if REFERENCING_DEBUGGING
 
-            auto prefererOld = m_preferer;
-            m_preferer = nullptr;
-            ::allocator::add_releaser(prefererOld);
+               auto prefererOld = m_preferer;
+               m_preferer = nullptr;
+               ::allocator::add_releaser(prefererOld);
 #endif
-            return ::release(m_ppayloada);
-         }
-         case e_type_property_set:
-         {
+               iRelease = ::release(m_ppayloada);
+            }
+            break;
+            case e_type_property_set:
+            {
 #if REFERENCING_DEBUGGING
 
-            auto prefererOld = m_preferer;
-            m_preferer = nullptr;
-            ::allocator::add_releaser(prefererOld);
+               auto prefererOld = m_preferer;
+               m_preferer = nullptr;
+               ::allocator::add_releaser(prefererOld);
 #endif
-            return ::release(m_ppropertyset);
-         }
-         case e_type_i64_array:
-         {
+               iRelease = ::release(m_ppropertyset);
+            }
+            break;
+            case e_type_i64_array:
+            {
 #if REFERENCING_DEBUGGING
 
-            auto prefererOld = m_preferer;
-            m_preferer = nullptr;
-            ::allocator::add_releaser(prefererOld);
+               auto prefererOld = m_preferer;
+               m_preferer = nullptr;
+               ::allocator::add_releaser(prefererOld);
 #endif
-            return ::release(m_pi64a);
-         }
-         case e_type_memory:
-         {
+               iRelease = ::release(m_pi64a);
+            }
+            break;
+            case e_type_memory:
+            {
 #if REFERENCING_DEBUGGING
 
-            auto prefererOld = m_preferer;
-            m_preferer = nullptr;
-            ::allocator::add_releaser(prefererOld);
+               auto prefererOld = m_preferer;
+               m_preferer = nullptr;
+               ::allocator::add_releaser(prefererOld);
 #endif
-            return ::release(m_pmemory);
-         }
-         case e_type_path:
-         {
+               iRelease = ::release(m_pmemory);
+            }
+            break;
+            case e_type_path:
+            {
 #if REFERENCING_DEBUGGING
 
-            auto prefererOld = m_preferer;
-            m_preferer = nullptr;
-            ::allocator::add_releaser(prefererOld);
+               auto prefererOld = m_preferer;
+               m_preferer = nullptr;
+               ::allocator::add_releaser(prefererOld);
 #endif
-            return ::release(m_ppath);
+               iRelease = ::release(m_ppath);
+            }
+            break;
+            default:
+               break;
+            };
+
          }
-         default:
-            return -1;
-         };
 
       }
 
    }
 
-   return 0;
+   m_etype = e_type_new;
+
+   m_payloadall = {};
+
+   return iRelease;
 
 }
 

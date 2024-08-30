@@ -1123,7 +1123,7 @@ bool task::has_message() const
 
 #ifdef __DEBUG
 
-   string strId = m_atom;
+   string strId = m_atom.as_string();
 
    if (strId.case_insensitive_contains("forking_thread"))
    {

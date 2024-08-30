@@ -1069,32 +1069,6 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 //}
 
 
-//template < typename TYPE_CHAR >
-//string_base < TYPE_CHAR >::string_base(::payload & payload) :
-//   string_base(payload.to_string())
-//{
-//
-//
-//}
-
-//
-//template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(property & property) :
-//   string_base(property.to_string())
-//{
-//
-//
-//}
-
-//
-//template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(atom & atom) :
-//   string_base(atom.to_string())
-//{
-//
-//
-//}
-
 
 
 

@@ -247,7 +247,7 @@ namespace factory
       virtual ::pointer < ::particle > __call__create(const ::string & strType, ::particle * pparticle);
 
 
-      virtual bool has(const ::string & strType) const;
+      virtual bool has(const ::atom & atom) const;
       
       template < typename TYPE >
       bool has() const

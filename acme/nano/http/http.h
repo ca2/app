@@ -45,13 +45,13 @@ namespace nano
 
 
          // Follow redirects and find final resource.
-         virtual ::string get_effective_url(const ::scoped_string & scopedstrUrl);
+         virtual ::url::url get_effective_url(const ::url::url & url);
 
-         virtual bool check_url_ok(const ::scoped_string & scopedstrUrl);
+         virtual bool check_url_ok(const ::url::url & url);
 
-         virtual ::string get(const ::scoped_string & scopedstrUrl);
+         virtual ::string get(const ::url::url & url);
 
-         virtual void download(const ::file::path & path, const ::scoped_string & scopedstrUrl);
+         virtual void download(const ::file::path & path, const ::url::url & url);
 
 
       };

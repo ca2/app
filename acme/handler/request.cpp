@@ -48,7 +48,7 @@ void request::initialize_create(arguments arguments)
          //}
          
          // estatus = 
-         initialize_command_line2(arg);
+         initialize_command_line2(arg.as_string());
 
          //if (!estatus)
          //{

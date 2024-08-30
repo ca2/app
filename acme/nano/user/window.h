@@ -122,15 +122,15 @@ public:
    void add_child(::nano::user::child * pchild) override;
    ::nano::user::child * get_child_by_id(const ::atom & atom);
 
-   ::atom get_result() override;
+   ::payload get_result() override;
 
    void on_mouse_move(::user::mouse * pmouse) override;
    void on_left_button_down(::user::mouse * pmouse) override;
    void on_left_button_up(::user::mouse * pmouse) override;
-   void on_click(const ::atom & atom, ::user::mouse * pmouse) override;
+   void on_click(const ::payload & payload, ::user::mouse * pmouse) override;
    void on_right_button_down(::user::mouse * pmouse) override;
    void on_right_button_up(::user::mouse * pmouse) override;
-   void on_right_click(const ::atom & atom, ::user::mouse * pmouse) override;
+   void on_right_click(const ::payload & payload, ::user::mouse * pmouse) override;
 
    void move_to(const ::point_i32 & point) override;
 

@@ -60,7 +60,7 @@ int main(Array < String ^ > ^ refstra)
 
    class acme_acme acme;
 
-   ap(acme_main_data) pmaindata = __new< acme_main_data >(refstra);
+   ap(acme_main_data) pmaindata = __allocate< acme_main_data >(refstra);
 
 #ifdef MAIN_STRING
 

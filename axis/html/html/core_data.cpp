@@ -556,40 +556,16 @@ namespace html
    }
 
 
-   string core_data::process_url(const ::string & pszUrl)
+   string core_data::process_url(const ::string & scopedstrUrl)
    {
    
-      string strUrl(pszUrl);
+      string strHref(scopedstrUrl);
 
-      auto psystem = system()->m_paurasystem;
+      ::url::parts parts(m_strPathName);
 
-      if (strUrl.contains(":"))
-      {
+      parts.set_href(strHref);
 
-      }
-      else if (strUrl[0] == '\\')
-      {
-
-      }
-      else if (m_strPathName.begins("http://") ||
-         m_strPathName.begins("https://"))
-      {
-
-         auto psystem = system();
-
-         auto purl = psystem->url();
-
-         strUrl = purl->path(m_strPathName, strUrl);
-
-      }
-      else
-      {
-
-         strUrl = m_strPathName.sibling(strUrl);
-
-         strUrl.find_replace("/", "\\");
-
-      }
+      auto strUrl = parts.as_string();
 
       return strUrl;
 

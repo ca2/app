@@ -1016,6 +1016,9 @@
     <ClInclude Include="interprocess\handler.h">
       <Filter>Header Files\interprocess</Filter>
     </ClInclude>
+    <ClInclude Include="networking\internet.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1461,6 +1464,9 @@
     </ClCompile>
     <ClCompile Include="interprocess\handler.cpp">
       <Filter>Source Files\interprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\internet.cpp">
+      <Filter>Source Files\networking</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -375,11 +375,11 @@ public:
    //atom(const type & type);
    template < character_range RANGE >
    atom(const RANGE & range);
-   template < has_as_string_not_payload HAS_AS_STRING_NOT_PAYLOAD >
-   atom(const HAS_AS_STRING_NOT_PAYLOAD& has_as_string_not_payload);
-   //atom(const ::scoped_string & str);
-   //atom(const ::payload & payload);
-   //atom(const ::lparam & lparam);
+   //template < has_as_string_not_payload HAS_AS_STRING_NOT_PAYLOAD >
+   //atom(const HAS_AS_STRING_NOT_PAYLOAD& has_as_string_not_payload);
+   ////atom(const ::scoped_string & str);
+   ////atom(const ::payload & payload);
+   ////atom(const ::lparam & lparam);
    template < primitive_payload PAYLOAD  >
    atom(const PAYLOAD & payload);
    

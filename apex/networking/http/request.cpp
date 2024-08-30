@@ -76,13 +76,17 @@ namespace http
 
       m_form.clear();
 
-      auto psystem = system();
+      ::url::request urlrequest(m_strRequestUri);
 
-      auto purl = psystem->url();
-
-      m_strQueryString = purl->object_get_query(m_strRequestUri);
+      m_strQueryString = urlrequest.query();
 
       attr("query_string") = m_strQueryString;
+      if (m_strQueryString.contains("code=") && m_strQueryString.contains("state="))
+      {
+
+         output_debug_string("a");
+
+      }
       m_form.parse_query_string(m_strQueryString, m_strQueryString.length());
       m_form.request()         = m_form.get();
       attr("http_referer") = header("referer");
@@ -122,7 +126,7 @@ namespace http
    string request::a_url()
    {
 
-      string strUrl = attr("http_protocol") + "://" + header("host") + attr("request_uri");
+      string strUrl = attr("http_protocol").as_string() + "://" + header("host").as_string() + attr("request_uri").as_string();
 
       return strUrl;
 

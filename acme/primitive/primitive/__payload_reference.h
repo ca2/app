@@ -51,7 +51,7 @@ public:
 
 
    operator string & () { return m_payload.string_reference(); }
-   operator property & () { return m_payload.property_reference(); }
+   //operator property & () { return m_payload.property_reference(); }
 
 
    operator i32_array & () { return m_payload.i32_array_reference(); }

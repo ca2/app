@@ -79,14 +79,14 @@ namespace html
             if (pelement->m_propertyset.has_property("width"))
             {
 
-               cx = pelement->m_propertyset["width"];
+               cx = pelement->m_propertyset["width"].as_i32();
 
             }
 
             if (pelement->m_propertyset.has_property("height"))
             {
                
-               cy = pelement->m_propertyset["height"];
+               cy = pelement->m_propertyset["height"].as_i32();
 
             }
 
@@ -117,14 +117,14 @@ namespace html
                if (m_pelemental->m_propertyset.has_property("width"))
                {
                   
-                  cx = m_pelemental->m_propertyset["width"];
+                  cx = m_pelemental->m_propertyset["width"].as_i32();
 
                }
 
                if (m_pelemental->m_propertyset.has_property("height"))
                {
                   
-                  cy = m_pelemental->m_propertyset["height"];
+                  cy = m_pelemental->m_propertyset["height"].as_i32();
 
                }
 

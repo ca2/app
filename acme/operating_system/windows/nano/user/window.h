@@ -76,7 +76,7 @@ namespace windows
 
             void add_child(::nano::user::child* pchild) override;
 
-            ::atom get_result() override;
+            ::payload get_result() override;
 
             void on_mouse_move(::user::mouse* pmouse) override;
 
@@ -84,13 +84,13 @@ namespace windows
 
             void on_left_button_up(::user::mouse* pmouse) override;
 
-            void on_click(const ::atom& atom, ::user::mouse* pmouse) override;
+            void on_click(const ::payload& payload, ::user::mouse* pmouse) override;
 
             void on_right_button_down(::user::mouse* pmouse) override;
 
             void on_right_button_up(::user::mouse* pmouse) override;
 
-            void on_right_click(const ::atom& atom, ::user::mouse* pmouse) override;
+            void on_right_click(const ::payload& payload, ::user::mouse* pmouse) override;
 
             virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 

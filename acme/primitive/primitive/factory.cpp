@@ -1015,7 +1015,7 @@ namespace factory
    }
 
 
-   bool factory::has(const ::string & strType) const
+   bool factory::has(const ::atom & atom) const
    {
 
       //auto psystem = system();
@@ -1029,7 +1029,7 @@ namespace factory
 
       //}
 
-      return has_factory_item(strType);
+      return has_factory_item(atom);
 
    }
 

@@ -20,6 +20,7 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/file/transfer.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/translator.h"
@@ -150,6 +151,35 @@ namespace acme
       ::unsetenv("LD_LIBRARY_PATH");
 
 #endif
+
+
+#ifdef DEBUG
+      ::atom atom;
+      int iAtom1 = sizeof(atom);
+      int iAtomType = sizeof(atom.m_etype);
+      int iDomainId = sizeof(atom.m_domainid);
+      ::payload payload;
+      auto pType = &payload.m_etype;
+      auto pAll = &payload.m_payloadall;
+      int iType = sizeof(payload.m_etype);
+      int iAll = sizeof(payload.m_payloadall);
+      int iThis = sizeof(payload);
+      int iComputed = ((::u8*)pAll - (::u8*)pType) + iAll;
+      int iColor = sizeof(payload.m_color);
+      int iStr = sizeof(payload.m_str);
+      int iHls = sizeof(payload.m_hls);
+      int iTime = sizeof(payload.m_time);
+      int iAtom = sizeof(payload.m_atom);
+      int iFileTime = sizeof(payload.m_filetime);
+      int iEarthTime = sizeof(payload.m_earthtime);
+      if (iThis != iComputed)
+      {
+
+         throw 0;
+
+      }
+#endif
+
 
 
    }
@@ -643,13 +673,14 @@ namespace acme
 
 #endif
 
+      __construct_new(m_purlcontext);
+
       //::acme::idpool::init(this);
 
 //      /// Create/Replace logger
 
       __construct_new(m_pdatetime);
 
-      __construct_new(m_purl);
 
 
       m_pnode->m_htaskSystem = m_htask;
@@ -1357,6 +1388,25 @@ namespace acme
          create_session();
 
       }
+
+      //::string strRoot = "ca2.network";
+
+      //::file::path pathGooglePayload = "C:\\sensitive\\sensitive\\api\\google\\account\\" + strRoot + ".network_payload";
+
+      //auto payloadGoogle = file()->as_network_payload(pathGooglePayload);
+
+      //::string strClientId = payloadGoogle["web"]["client_id"];
+
+      //auto straRedirectUri = payloadGoogle["web"]["redirect_uris"].as_string_array();
+
+      //auto iFind = straRedirectUri.find_first_begins("https://" + strRoot + "/");
+
+      //if (iFind < 0)
+      //{
+
+      //   throw ::exception(error_failed);
+
+      //}
 
    }
 

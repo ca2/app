@@ -284,23 +284,28 @@ namespace sockets
 
             string strRequestUri = pa.getword();
 
-            auto psystem = system();
+            ::url::request request(strRequestUri);
 
-            auto purl = psystem->url();
+            string strPath = request.path();
 
-            string strScript = purl->object_get_script(strRequestUri);
-
-            string strQuery = purl->object_get_query(strRequestUri);
+            string strQuery = request.query();
 
             //m_request.m_strRequestUri = ::url::decode(strScript) + ::str::has_char(strQuery, "?");
-            m_request.m_strRequestUri = strScript + ::str::has_char(strQuery, "?");
-            m_request.attr("request_uri") = m_request.m_strRequestUri;
+            
+            m_request.m_strRequestUri = strRequestUri;
+            
+            m_request.attr("request_uri") = strRequestUri;
+
             ::string strHttpVersion = pa.getword();
+
             m_request.attr("http_version") = strHttpVersion;
 
             m_b_http_1_1 = strHttpVersion.ends("/1.1");
+
             m_b_keepalive = m_b_http_1_1;
+
             m_bRequest = true;
+
             m_bResponse = false;
 
          }
@@ -466,10 +471,10 @@ namespace sockets
    }
 
 
-   bool http_socket::http_filter_response_header(string &strKey, string_array &straValue)
+   bool http_socket::http_filter_response_header(::property & property)
    {
-      __UNREFERENCED_PARAMETER(strKey);
-      __UNREFERENCED_PARAMETER(straValue);
+      __UNREFERENCED_PARAMETER(property);
+//      __UNREFERENCED_PARAMETER(straValue);
       return true;
    }
 
@@ -519,14 +524,27 @@ namespace sockets
 
       }
 
-      for (auto &pproperty: m_response.m_propertysetHeader.propertyptra())
+      for (auto & property: m_response.m_propertysetHeader)
       {
 
-         string strKey = pproperty->name();
+         string strKey = property.name();
 
-         auto &straValue = pproperty->string_array_reference();
+         ::string_array straValue;
 
-         if (!http_filter_response_header(strKey, straValue))
+         if (property.array_get_count() > 1)
+         {
+
+            straValue = property.as_string_array();
+
+         }
+         else
+         {
+
+            straValue.add(property.as_string());
+
+         }
+
+         if (!http_filter_response_header(property))
          {
 
             continue;
@@ -667,14 +685,14 @@ namespace sockets
 
       }
 
-      for (auto &pproperty: m_request.m_propertysetHeader.propertyptra())
+      for (auto & property: m_request.m_propertysetHeader)
       {
 
-         string strKey = pproperty->name();
+         string strKey = property.name();
 
-         string strValue = pproperty->as_string();
+         string strValue = property.as_string();
 
-         if (pproperty->name() == "content-type")
+         if (property.name() == "content-type")
          {
 
             msg += "Content-Type: " + strValue + "\r\n";
@@ -737,58 +755,96 @@ namespace sockets
    }
 
 
-   void http_socket::url_this(string strUrl, string &strProtocol, string &strHost, ::networking::port_t &port,
-                              string &strRequestUri, string &strFile)
+   void http_socket::set_url(const ::url::url & url)
    {
 
-      if (!strUrl.eat_before(strProtocol, "://"))
+      m_urlparts.from(url);
+
+      if (m_urlparts.connect().m_bSecure)
       {
 
-         return;
-
-      }
-
-      if (strProtocol.case_insensitive_equals("https") || strProtocol.case_insensitive_equals("wss"))
-      {
-
-//#ifdef HAVE_OPENSSL
+         ////#ifdef HAVE_OPENSSL
 
          EnableSSL();
 
-//#else
-//
-//#ifndef UNIVERSAL_WINDOWS
-//
-//
-//         warning() <<"url_this",-1,"SSL not available";
-//
-//#endif
-//
-//#endif
-         port = 443;
+         ////#else
+         ////
+         ////#ifndef UNIVERSAL_WINDOWS
+         ////
+         ////
+         ////         warning() <<"url_this",-1,"SSL not available";
+         ////
+         ////#endif
+         ////
+         ////#endif
+         //if(m_urlparts.connect().m_strPort.is_empty())
+         //{
+         //
+         //   m_urlparts.m_iPort = 443;
+
+         //}
 
       }
-      else
-      {
+      //else
+      //{
 
-         port = 80;
+      //   if (m_urlparts.m_strPort.is_empty())
+      //   {
 
-      }
+      //      m_urlparts.m_iPort = 80;
 
-      string strPort;
+      //   }
 
-      strUrl.eat_before_let_separator(strPort, "/", true);
+      //}
 
-      if (strPort.eat_before(strHost, ":", true))
-      {
+      //if (!strUrl.eat_before(strProtocol, "://"))
+      //{
 
-         port = atoi(strPort);
+      //   return;
 
-      }
+      //}
 
-      strRequestUri = strUrl;
+//      if (strProtocol.case_insensitive_equals("https") || strProtocol.case_insensitive_equals("wss"))
+//      {
+//
+////#ifdef HAVE_OPENSSL
+//
+//         EnableSSL();
+//
+////#else
+////
+////#ifndef UNIVERSAL_WINDOWS
+////
+////
+////         warning() <<"url_this",-1,"SSL not available";
+////
+////#endif
+////
+////#endif
+//         port = 443;
+//
+//      }
+//      else
+//      {
+//
+//         port = 80;
+//
+//      }
 
-      strUrl.eat_before(strFile, "?", true);
+      //string strPort;
+
+      //strUrl.eat_before_let_separator(strPort, "/", true);
+
+      //if (strPort.eat_before(strHost, ":", true))
+      //{
+
+      //   port = atoi(strPort);
+
+      //}
+
+      //strRequestUri = strUrl;
+
+      //strUrl.eat_before(strFile, "?", true);
 
    }
 
@@ -819,6 +875,10 @@ namespace sockets
 
    void http_socket::OnHeaderComplete()
    {
+
+      string strUrl = m_request.attr("http_protocol") + "://" + m_request.header("host") + m_request.attr("request_uri");
+
+      m_request.m_url = strUrl;
 
       //if(IsRequest())
       //{

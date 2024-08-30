@@ -78,15 +78,15 @@ public:
    virtual ::nano::user::child * on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
    virtual void add_child(::nano::user::child * pchild);
 
-   virtual ::atom get_result();
+   virtual ::payload get_result();
 
    virtual void on_mouse_move(::user::mouse * pmouse);
    virtual void on_left_button_down(::user::mouse * pmouse);
    virtual void on_left_button_up(::user::mouse * pmouse);
-   virtual void on_click(const ::atom & atom, ::user::mouse * pmouse);
+   virtual void on_click(const ::payload & payload, ::user::mouse * pmouse);
    virtual void on_right_button_down(::user::mouse * pmouse);
    virtual void on_right_button_up(::user::mouse * pmouse);
-   virtual void on_right_click(const ::atom & atom, ::user::mouse * pmouse);
+   virtual void on_right_click(const ::payload & payload, ::user::mouse * pmouse);
 
 
    //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);

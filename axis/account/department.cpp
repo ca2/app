@@ -129,11 +129,9 @@ namespace account
    bool department::url_requires_auth(::file::path pathUrl)
    {
 
-      auto psystem = system();
+      ::url::url url(pathUrl);
 
-      auto purl = psystem->url();
-
-      if (purl->get_server(pathUrl).lowered() == "ca2.network")
+      if (url.connect().host().case_insensitive_equals("ca2.network"))
       {
 
          return false;
@@ -161,14 +159,14 @@ namespace account
 
       }
 
-      if(::str::case_insensitive_find("/matter/",purl->get_script(pathUrl)) >= 0)
+      if (url.request().path().case_insensitive_contains("/matter/"))
       {
 
          return false;
 
       }
 
-      string strServer = purl->get_server(pathUrl);
+      string strServer = url.connect().host();
 
       url_domain domain;
 

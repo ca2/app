@@ -1413,3 +1413,54 @@ namespace file
 
 
 using windows_path = ::wstring;
+
+
+//namespace url
+//{
+//
+//
+//   inline url::url(const ::file::path& path) :
+//      url((const ::scoped_string &) (const ::string&)path)
+//   {
+//
+//
+//   }
+//
+//
+//
+//} //  namespace url
+
+
+
+
+namespace file
+{
+
+
+   inline ::url::url path::as_url() const
+   {
+
+      if (::url::is(*this))
+      {
+
+         return (const ::scoped_string &)*this;
+
+      }
+      else
+      {
+
+         ::string str("file://");
+
+         str += *this;
+
+         return (const ::scoped_string&) str;
+
+      }
+
+   }
+
+
+} // namespace file
+
+
+

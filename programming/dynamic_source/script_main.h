@@ -24,6 +24,8 @@ namespace dynamic_source
 
       ::pointer<::dynamic_source::script_interface>            m_pscriptinterfaceTopic;
 
+      //::url::url                                               m_url;
+
 
       script_main();
       ~script_main() override;

@@ -358,7 +358,7 @@ string demangle(const char* name)
 bool type_atom::operator == (const ::std::type_info& typeinfo) const
 {
 
-   ::string strName = ::type_atom(typeinfo);
+   ::string strName = typeinfo.name();
 
    strName = demangle(strName);
 

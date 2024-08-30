@@ -1246,6 +1246,9 @@ namespace mathematics
 #include "apex/user/_.h"
 
 
+#include "apex/networking/internet.h"
+
+
 #include "apex/parallelization/_impl.h"
 
 

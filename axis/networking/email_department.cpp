@@ -4,6 +4,7 @@
 #include "acme/primitive/primitive/url.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/networking/email.h"
+#include "apex/networking/internet.h"
 #include "apex/networking/sockets/basic/socket_handler.h"
 #include "axis/networking/sockets/bsd/smtp/smtp_socket.h"
 
@@ -147,11 +148,7 @@ namespace networking
 
       }
 
-      auto psystem = system();
-
-      auto purl = psystem->url();
-
-      if (!purl->is_valid_public_domain(strDomain))
+      if (!system()->internet()->is_valid_public_domain(strDomain))
       {
 
          return false;

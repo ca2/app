@@ -55,10 +55,10 @@ namespace sockets
       memsize m_content_ptr; ///< Number of bytes received from body
       bool m_b_complete; ///< The entire content-length number of bytes has been received
       bool m_b_close_when_complete; ///< close when the full response has been received
-      string m_protocol; ///< Protocol part of url_in
-      string m_url_filename; ///< Filename from url_in
+      //string m_protocol; ///< Protocol part of url_in
+      //string m_url_filename; ///< Filename from url_in
       string m_content_type; ///< Content-type: header from response
-
+      //::url::parts      m_url;
 
 
       http_client_socket();
@@ -66,12 +66,14 @@ namespace sockets
       ~http_client_socket() override;
 
 
-      virtual void initialize_http_client_socket(const ::string & strUrl);
+      virtual void initialize_http_client_socket(const ::url::url & url);
 
       virtual void OnConnect() override;
 
       /** Parse url to protocol,host,port,url and spfile-> */
-      void Url(const string & url_in,string & host,::networking::port_t& port);
+      //void Url(const string & url_in,string & host,::networking::port_t& port);
+
+      void set_url(const ::url::url& url);
 
       void OnFirst() override;
       void OnHeader(atom,const string &) override;
@@ -120,7 +122,7 @@ namespace sockets
       virtual void OnDataComplete() override;
 
 
-      virtual void request_url(string strUrlParam);
+      virtual void request_url(const ::url::url & url);
 
 
       bool on_set_scalar(enum_scalar escalar,::number number,int iFlags) override;

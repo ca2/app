@@ -1013,7 +1013,7 @@ namespace apex
             
             auto path  = prequest->m_payloadFile.as_file_path();
             
-            if(::is_url(path))
+            if(::url::is(path))
             {
                
                handle_uri(path);
@@ -6609,21 +6609,21 @@ namespace apex
 
       //update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_atomLocale, plocaleschema->m_atomSchema);
 
-      ::collection::count iCount = plocaleschema->m_idaLocale.get_count();
+      ::collection::count iCount = plocaleschema->m_straLocale.get_count();
 
       for (::collection::index i = 0; i < iCount; i++)
       {
 
-         if (plocaleschema->m_idaLocale[i] == "std" && plocaleschema->m_idaSchema[i] == "std" && bIgnoreStdStd)
+         if (plocaleschema->m_straLocale[i] == "std" && plocaleschema->m_straSchema[i] == "std" && bIgnoreStdStd)
             continue;
 
          string strLocale;
 
-         strLocale = plocaleschema->m_idaLocale[i];
+         strLocale = plocaleschema->m_straLocale[i];
 
          string strSchema;
 
-         strSchema = plocaleschema->m_idaSchema[i];
+         strSchema = plocaleschema->m_straSchema[i];
 
          update_appmatter(psession, pszRoot, pszRelative, strLocale, strSchema);
 
@@ -6649,16 +6649,16 @@ namespace apex
 
       if (node()->is_debug_build())
       {
+         
          strUrl = "http://basis-ca2.network/api/spaignition/download?authnone&configuration=basis&stage=";
+
       }
       else
       {
+
          strUrl = "http://stage-ca2.network/api/spaignition/download?authnone&configuration=stage&stage=";
+
       }
-
-      auto psystem = system();
-
-      auto purl = psystem->url();
 
       strUrl += ::url::encode(strRelative);
 
@@ -6670,7 +6670,7 @@ namespace apex
 
             property_set setEmpty;
 
-            if (m_pcontext->m_papexcontext->http().open(psession, purl->get_server(strUrl), purl->get_protocol(strUrl), setEmpty, nullptr))
+            if (m_pcontext->m_papexcontext->http().open(psession, strUrl, setEmpty, nullptr))
             {
 
                break;
@@ -9986,7 +9986,7 @@ namespace apex
       if (path.has_char())
       {
 
-         if (::is_url(path) || acmefile()->exists(path))
+         if (::url::is(path) || acmefile()->exists(path))
          {
 
             return file()->as_string(path);

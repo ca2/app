@@ -937,7 +937,7 @@
 //void memdleak_init()
 //{
 //
-//   g_pmutgen = __new< ::critical_section >();
+//   g_pmutgen = __allocate< ::critical_section >();
 //
 //}
 //

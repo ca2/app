@@ -397,12 +397,16 @@ CLASS_DECL_ACME ::string string_formatf(const ::ansi_character * pszFormat, ...)
 
 
 
+
+
+CLASS_DECL_ACME void foo123();
+
+
 template < typename ITERATOR_TYPE >
-template < primitive_character CHARACTER2 >
-inline void string_base < ITERATOR_TYPE >::construct2(const CHARACTER2 * psz, strsize len)
+inline void string_base < ITERATOR_TYPE >::construct1(const ITERATOR_TYPE p, strsize length)
 {
 
-   if (::is_null(psz) || len <= 0)
+   if (::is_null(p) || length <= 0)
    {
 
       default_construct();
@@ -411,35 +415,21 @@ inline void string_base < ITERATOR_TYPE >::construct2(const CHARACTER2 * psz, st
 
    }
 
-   //if constexpr (sizeof(CHARACTER) == sizeof(CHARACTER2))
-   //{
+   this->m_begin = create_string(length);
 
-   //   if (scopedstrStartCount.begin() == scopedstr.begin() && scopedstrStartCount.end() == scopedstr.end())
-   //   {
+   this->m_end = this->m_begin + length;
 
-   //      this->create_assign_natural_meta_data(NATURAL_META_DATA::from_data(scopedstr.begin()));
+   memcpy((void *) this->m_begin, p, length * sizeof(CHARACTER));
 
-   //      return;
+   *(CHARACTER*)this->m_end = (CHARACTER)0;
 
-   //   }
-
-   //}
-
-   auto dstlen = utf_to_utf_length(this->begin(), psz, len);
-
-   auto pszTarget = create_string(dstlen);
-
-   utf_to_utf(pszTarget, psz, len);
-
-   this->release_buffer(dstlen);
+   this->set_string_flag();
 
 }
 
 
-CLASS_DECL_ACME void foo123();
-
 template < typename ITERATOR_TYPE >
-inline void string_base < ITERATOR_TYPE >::construct1(const RANGE& range)
+inline void string_base < ITERATOR_TYPE >::construct2(const RANGE& range)
 {
 
    auto pmetadata = string_base::NATURAL_META_DATA::from_data(range.m_begin);
@@ -457,7 +447,36 @@ inline void string_base < ITERATOR_TYPE >::construct1(const RANGE& range)
 
 template < typename ITERATOR_TYPE >
 template < primitive_character CHARACTER2 >
-inline void string_base < ITERATOR_TYPE >::construct5(const ::range <  const CHARACTER2 * > & range)
+inline void string_base < ITERATOR_TYPE >::construct5(const CHARACTER2* p, strsize len)
+{
+
+   if (::is_null(p) || len <= 0)
+   {
+
+      default_construct();
+
+      return;
+
+   }
+
+   auto dstlen = utf_to_utf_length(this->begin(), p, len);
+
+   this->m_begin = create_string(dstlen);
+
+   this->m_end = this->m_begin + dstlen;
+
+   utf_to_utf((CHARACTER *)this->m_begin, p, len);
+
+   *(CHARACTER*)this->m_end = (CHARACTER)0;
+
+   this->set_string_flag();
+
+}
+
+
+template < typename ITERATOR_TYPE >
+template < primitive_character CHARACTER2 >
+inline void string_base < ITERATOR_TYPE >::construct10(const ::range <  const CHARACTER2 * > & range)
 {
 
    if constexpr(sizeof(CHARACTER) == sizeof(CHARACTER2))
@@ -466,13 +485,13 @@ inline void string_base < ITERATOR_TYPE >::construct5(const ::range <  const CHA
       if (range.m_erange & e_range_string)
       {
 
-         this->construct1(*(const RANGE *) &range);
+         this->construct2(*(const RANGE *) &range);
 
       }
       else
       {
 
-         this->construct2(range.data(), range.size());
+         this->construct5(range.data(), range.size());
 
       }
 
@@ -480,7 +499,45 @@ inline void string_base < ITERATOR_TYPE >::construct5(const ::range <  const CHA
    else
    {
 
-      this->construct2(range.data(), range.size());
+      this->construct5(range.data(), range.size());
+
+   }
+
+}
+
+
+template < typename ITERATOR_TYPE >
+template < primitive_character CHARACTER2 >
+inline void string_base < ITERATOR_TYPE >::construct20(const CHARACTER2 * start, strsize length, enum_range erange)
+{
+
+   if constexpr (sizeof(CHARACTER) == sizeof(CHARACTER2))
+   {
+
+      if(erange & e_range_string)
+      {
+
+         auto pmetadata = string_base::NATURAL_META_DATA::from_data(start);
+
+         pmetadata->natural_increment_reference_count();
+
+         this->m_begin = start;
+         this->m_end = start + length;
+         this->m_erange = erange;
+
+      }
+      else
+      {
+
+         this->construct1(start, length);
+
+      }
+
+   }
+   else
+   {
+
+      this->construct5(start, length);
 
    }
 
@@ -2452,13 +2509,9 @@ typename string_base < ITERATOR_TYPE >::CHARACTER * string_base < ITERATOR_TYPE 
 
    auto pNew = this->create_meta_data(sizeStorageInBytes);
 
-   this->create_assign_natural_meta_data(pNew);
-
    pNew->set_character_count(characterCount);
 
-   this->m_end = this->m_begin + characterCount;
-
-   *(CHARACTER *)this->m_end = (CHARACTER) 0;
+   pNew->natural_increment_reference_count();
 
    return (CHARACTER *) pNew->begin();
 
@@ -7287,3 +7340,33 @@ inline ::string operator +(char ch, const ::string & str)
 //   return str + ::string(ch);
 //
 //}
+
+
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE >::string_base(const ::atom& atom) :
+   string_base(atom.as_string())
+{
+
+
+}
+
+
+template < typename ITERATOR_TYPE >
+string_base < ITERATOR_TYPE >::string_base(const ::payload & payload) :
+   string_base(payload.as_string())
+{
+
+
+}
+
+
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE >::string_base(const property & property) :
+   string_base(property.as_string())
+{
+
+
+}
+
+
+

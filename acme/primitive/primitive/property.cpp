@@ -256,7 +256,7 @@ string & property::get_network_arguments(::string & str) const
 
    str += "=";
 
-   str += ::url::encode(*this);
+   str += ::url::encode(as_string());
 
    return str;
 
@@ -1904,25 +1904,64 @@ void on_property_destruct(property* pproperty)
 }
 
 
-
-void property::write_to_stream(::binary_stream & stream)
+CLASS_DECL_ACME binary_stream& binary_stream_write_property(::binary_stream& stream, const property& property)
 {
 
-   stream << m_atom;
+   stream << property.m_atom;
 
-   stream << (::payload &)*this;
+   stream << (::payload&)property;
+
+   return stream;
 
 }
 
 
-void property::read_from_stream(::binary_stream & stream)
+CLASS_DECL_ACME binary_stream& binary_stream_read_property(::binary_stream& stream, property& property)
 {
 
-   stream >> m_atom;
+   stream >> property.m_atom;
 
-   stream >> (::payload &)*this;
+   stream >> (::payload&)property;
+
+   return stream;
 
 }
 
+
+
+::binary_stream& operator << (::binary_stream& stream, const property & property)
+{
+
+   return binary_stream_write_property(stream, property);
+
+}
+
+
+::binary_stream & operator >>(::binary_stream & stream, property & property)
+{
+
+   return binary_stream_read_property(stream, property);
+
+}
+
+
+//::binary_stream& operator << (::binary_stream& stream, const property_particle & property)
+//{
+//
+//   stream << property.object();
+//
+//   return stream;
+//
+//}
+
+
+//::binary_stream& operator >>(::binary_stream& stream, property_particle& property)
+//{
+//
+//   stream >> property.object();
+//
+//   return stream;
+//
+//}
 
 

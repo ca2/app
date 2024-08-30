@@ -295,10 +295,10 @@ namespace aura
    }
 
 
-   void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
+   void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
 
-      ::aura::context::locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+      ::aura::context::locale_schema_matter(stra, straMatterLocator, scopedstrLocale, scopedstrSchema);
 
    }
 

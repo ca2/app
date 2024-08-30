@@ -30,7 +30,7 @@
 ////// {
 ////
 ////
-//////    HDC hdc = __new< device_context >();
+//////    HDC hdc = __allocate< device_context >();
 ////
 //////    hdc->m_pdisplay      = hwnd->display();
 //////    hdc->m_window        = hwnd->window();
@@ -45,7 +45,7 @@
 //// HDC CreateCompatibleDC(HDC hdcParam)
 //// {
 //
-////    HDC hdc = __new< device_context >();
+////    HDC hdc = __allocate< device_context >();
 //
 ////    return hdc;
 //

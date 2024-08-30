@@ -39,9 +39,9 @@ string ca2_module_folder_dup();
 //   if(g_pcsPid2 == nullptr)
 //   {
 //
-//      g_pcsPid2 = __new< critical_section >();
+//      g_pcsPid2 = __allocate< critical_section >();
 //
-//      g_ppid = __new< chldstatus_map >();
+//      g_ppid = __allocate< chldstatus_map >();
 //
 //
 //   }

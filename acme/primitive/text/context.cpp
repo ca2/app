@@ -30,18 +30,18 @@ namespace text
    }
 
 
-   const comparable_array < ::atom > & context::locale_ex() const
+   const string_array & context::locale_ex() const
    {
 
-      return m_plocaleschema->m_idaLocale;
+      return m_plocaleschema->m_straLocale;
 
    }
 
    
-   const comparable_array < ::atom > & context::schema_ex() const
+   const string_array & context::schema_ex() const
    {
 
-      return m_plocaleschema->m_idaLocale;
+      return m_plocaleschema->m_straLocale;
 
    }
 
@@ -75,26 +75,26 @@ namespace text
       if(m_plocaleschema != nullptr)
       {
 
-         if(!m_plocaleschema->m_atomLocale.is_empty())
+         if(!m_plocaleschema->m_strLocale.is_empty())
          {
 
-            m_plocale = (locale *) m_ptable->get_locale(m_plocaleschema->m_atomLocale);
+            m_plocale = (locale *) m_ptable->get_locale(m_plocaleschema->m_strLocale);
 
             if(m_plocale != nullptr)
             {
 
-               if(!m_plocaleschema->m_atomSchema.is_empty() && m_plocaleschema->m_atomSchema != m_plocaleschema->m_atomLocale)
+               if(!m_plocaleschema->m_strSchema.is_empty() && m_plocaleschema->m_strSchema != m_plocaleschema->m_strLocale)
                {
-                  m_pschema = (schema *) m_plocale->get_schema(m_plocaleschema->m_atomSchema);
+                  m_pschema = (schema *) m_plocale->get_schema(m_plocaleschema->m_strSchema);
                }
-               m_pschemaLocale = (schema *)m_plocale->get_schema(m_plocaleschema->m_atomSchema);
+               m_pschemaLocale = (schema *)m_plocale->get_schema(m_plocaleschema->m_strSchema);
             }
          }
 
-         if(!m_plocaleschema->m_atomSchema.is_empty())
+         if(!m_plocaleschema->m_strSchema.is_empty())
          {
 
-            const locale * plocale = m_ptable->get_locale(m_plocaleschema->m_atomSchema);
+            const locale * plocale = m_ptable->get_locale(m_plocaleschema->m_strSchema);
 
             if(plocale != nullptr)
             {
@@ -109,26 +109,26 @@ namespace text
 
          string_array straFailedLocale;
 
-         for(i32 i = 0; i < m_plocaleschema->m_idaLocale.get_count(); i++)
+         for(i32 i = 0; i < m_plocaleschema->m_straLocale.get_count(); i++)
          {
 
-            ::atom & idLocale = m_plocaleschema->m_idaLocale[i];
+            auto & strLocale = m_plocaleschema->m_straLocale[i];
 
-            if(straFailedLocale.contains(idLocale.as_string()))
+            if(straFailedLocale.contains(strLocale))
                continue;
 
-            const locale * plocale = m_ptable->get_locale(idLocale);
+            const locale * plocale = m_ptable->get_locale(strLocale);
 
             if(plocale == nullptr)
             {
-               straFailedLocale.add(idLocale);
+               straFailedLocale.add(strLocale);
                continue;
             }
 
-            ::atom & idSchema = m_plocaleschema->m_idaSchema[i];
+            auto & strSchema = m_plocaleschema->m_straSchema[i];
 
 
-            schema * pschema = (schema * ) plocale->get_schema(idSchema);
+            schema * pschema = (schema * ) plocale->get_schema(strSchema);
 
             if(pschema != nullptr)
             {
@@ -137,10 +137,10 @@ namespace text
 
             }
 
-            if(idLocale != idSchema)
+            if(strLocale != strSchema)
             {
 
-               schema * pschema = (schema * )plocale->get_schema(idLocale);
+               schema * pschema = (schema * )plocale->get_schema(strLocale);
 
                if(pschema != nullptr)
                {
@@ -151,7 +151,7 @@ namespace text
 
             }
 
-            if("std" != idSchema)
+            if("std" != strSchema)
             {
 
                schema * pschema = (schema *)plocale->get_schema("std");
@@ -260,10 +260,10 @@ namespace text
    }
 
 
-   void table::set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const ::scoped_string & scopedstr)
+   void table::set(const ::atom & atom, const ::atom & strLocale, const ::atom & strSchema, const ::scoped_string & scopedstr)
    {
 
-      (*this)[idLocale][idSchema][atom] = scopedstr;
+      (*this)[strLocale][strSchema][atom] = scopedstr;
 
    }
 
@@ -278,8 +278,8 @@ namespace text
 
       }
 
-      static ::atom idEn("en");
-      static ::atom idStd("_std");
+      static ::string idEn("en");
+      static ::string idStd("_std");
 
       string table;
       if(pcontext != nullptr)
@@ -341,7 +341,7 @@ namespace text
       if(bIdAsDefaultValue)
       {
 
-         return atom;
+         return atom.as_string();
 
       }
       else
@@ -354,19 +354,19 @@ namespace text
    }
 
 
-   string table::get(const ::text::context * pcontext,const ::atom & atom,const ::atom & idLocale,const ::atom & idSchema,bool bIdAsDefaultValue) const
+   string table::get(const ::text::context * pcontext,const ::atom & atom,const ::scoped_string & scopedstrLocale,const ::scoped_string & scopedstrSchema,bool bIdAsDefaultValue) const
    {
 
-      if(!idLocale.is_empty())
+      if(!scopedstrLocale.is_empty())
       {
          string table;
-         const locale * plocale = get_locale(idLocale);
+         const locale * plocale = get_locale(scopedstrLocale);
          if(plocale != nullptr)
          {
 
-            if(!idSchema.is_empty() && idSchema != idLocale)
+            if(!scopedstrSchema.is_empty() && scopedstrSchema != scopedstrLocale)
             {
-               const schema * pschema = plocale->get_schema(idSchema);
+               const schema * pschema = plocale->get_schema(scopedstrSchema);
                if(pschema != nullptr)
                {
                   table = (*pschema)[atom];
@@ -375,7 +375,7 @@ namespace text
                }
             }
 
-            const schema * pschema = plocale->get_schema(idLocale);
+            const schema * pschema = plocale->get_schema(scopedstrLocale);
             if(pschema != nullptr)
             {
                auto ptable = pschema->find_item(atom);
@@ -1074,22 +1074,22 @@ namespace text
 
    //   synchronous_lock synchronouslock(this->synchronization());
 
-   //   string_array straCandidate;
+   //   string_array straCandstrate;
 
-   //   get(straCandidate,idRoot);
+   //   get(straCandstrate,idRoot);
 
    //   auto psystem = system();
 
-   //   for(i32 i = 0; i < straCandidate.get_count(); i++)
+   //   for(i32 i = 0; i < straCandstrate.get_count(); i++)
    //   {
 
-   //      string strCandidate = straCandidate[i];
+   //      string strCandstrate = straCandstrate[i];
 
-   //      strCandidate.replace("-","\\-");
+   //      strCandstrate.replace("-","\\-");
 
    //      string strExp(idExpression);
 
-   //      strExp.replace("%1",strCandidate);
+   //      strExp.replace("%1",strCandstrate);
 
    //      string_array straResult;
 

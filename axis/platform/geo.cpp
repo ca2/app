@@ -248,7 +248,7 @@ namespace geo
 
                i64 iId;
 
-               iId = v["_id"];
+               iId = v["_id"].as_i64();
 
                m_iaIds.add(iId);
 

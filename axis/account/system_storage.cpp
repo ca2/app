@@ -66,13 +66,9 @@ namespace account
          
       }
 
-      auto psystem = system();
-
-      auto purl = psystem->url();
-
-      string strName = purl->os_fsname(strToken);
+      // string strName = purl->os_fsname(strToken);
       
-      return m_paccount->system_storage_default_path_prefix() / strName;
+      return m_paccount->system_storage_default_path_prefix() / strToken;
       
    }
    

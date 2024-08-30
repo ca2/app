@@ -151,10 +151,10 @@ void popup_button::on_draw(::nano::user::device * pnanodevice)
 
 
 
-void popup_button::on_click(const ::atom & atom, ::user::mouse * pmouse)
+void popup_button::on_click(const ::payload& payload, ::user::mouse * pmouse)
 {
 
-   m_payloadResult = atom;
+   m_payloadResult = payload;
 
    destroy();
 

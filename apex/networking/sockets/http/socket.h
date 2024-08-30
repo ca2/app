@@ -22,6 +22,7 @@ namespace sockets
    public:
 
 
+      ::url::parts         m_urlparts;
       string               m_strProxy;
       i32                  m_iProxyPort;
 
@@ -100,7 +101,8 @@ namespace sockets
       virtual string MyUseragent();
 
       /** Parse url. If protocol is https, EnableSSL() will be called. */
-      void url_this(string strUrl, string & strProtocol, string & strHost, ::networking::port_t & port, string & strRequestUri, string & strFile);
+      void set_url(const ::url::url & url);
+
 
       /** Transfer coding 'chunked' */
       inline bool IsChunked()
@@ -129,7 +131,7 @@ namespace sockets
       /** Reset state of socket to sucessfully implement keep-alive. */
       virtual void Reset();
 
-      virtual bool http_filter_response_header(string & strKey, string_array & straValue);
+      virtual bool http_filter_response_header(::property & property);
 
       virtual void client_to_server(http_socket * psocket);
 

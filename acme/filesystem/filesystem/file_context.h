@@ -262,7 +262,7 @@ public:
 
    virtual ::folder_pointer get_folder(::file::file * pfile, const ::scoped_string & scopedstrImplementation, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_pointer http_get_file(const ::payload & payloadFile, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::file_pointer http_get_file(const ::url::url & url, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary, bool bNoCache = false);
 
    ::file_pointer get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception = nullptr) override;
 

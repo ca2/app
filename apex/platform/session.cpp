@@ -206,7 +206,7 @@ namespace apex
    //}
 
 
-   void session::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
+   void session::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
 
 
@@ -756,18 +756,16 @@ namespace apex
 
       }
 
-      auto psystem = system();
+      ::url::url url(strPathName);
 
-      auto purl = psystem->url();
-
-      string strProtocol = purl->get_protocol(strPathName);
+      string strProtocol = url.connect().protocol();
 
       if (strProtocol == "app")
       {
 
-         strId = purl->get_server(strPathName);
+         strId = url.connect().host();
 
-         string str = purl->get_object(strPathName);
+         string str = url.request().path();
 
          str.begins_eat("/");
 

@@ -495,7 +495,7 @@ namespace acme
    }
 
 
-   string context::get_locale()
+   ::string context::get_locale()
    {
 
       return m_strLocale;
@@ -503,7 +503,7 @@ namespace acme
    }
 
 
-   string context::get_schema()
+   ::string context::get_schema()
    {
 
       return m_strSchema;
@@ -511,19 +511,19 @@ namespace acme
    }
 
 
-   void context::locale_schema_matter(string_array& stra, const string_array& straMatterLocator, const ::string& strLocale, const ::string& strSchema)
+   void context::locale_schema_matter(string_array& stra, const string_array& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema)
    {
 
       if (get_app())
       {
 
-         get_app()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+         get_app()->locale_schema_matter(stra, straMatterLocator, scopedstrLocale, scopedstrSchema);
 
       }
       else if (session()->m_papexsession)
       {
 
-         session()->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+         session()->locale_schema_matter(stra, straMatterLocator, scopedstrLocale, scopedstrSchema);
 
       }
       else
@@ -534,7 +534,7 @@ namespace acme
          if (psystem)
          {
 
-            psystem->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+            psystem->locale_schema_matter(stra, straMatterLocator, scopedstrLocale, scopedstrSchema);
 
          }
 
@@ -927,7 +927,7 @@ namespace acme
    }
 
 
-   bool context::http_exists(const ::scoped_string & scopedstrUrl, ::property_set & set)
+   bool context::http_exists(const ::url::url & url, ::property_set & set)
    {
 
       throw ::interface_only();
@@ -938,7 +938,7 @@ namespace acme
    }
 
 
-   ::file::enum_type context::http_get_type(const ::scoped_string & scopedstrUrl, property_set & set)
+   ::file::enum_type context::http_get_type(const ::url::url & url, property_set & set)
    {
 
       throw ::interface_only();
@@ -948,7 +948,7 @@ namespace acme
    }
 
 
-   ::file::enum_type context::http_get_type(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, property_set & set)
+   ::file::enum_type context::http_get_type(const ::url::url & url, ::payload * pvarQuery, property_set & set)
    {
 
       throw ::interface_only();
@@ -959,12 +959,12 @@ namespace acme
 
 
 
-   ::string context::http_text(const ::scoped_string & scopedstrUrl, const class ::time & timeTimeout)
+   ::string context::http_text(const ::url::url & url, const class ::time & timeTimeout)
    {
       
       auto pget = __create_new < ::nano::http::get >();
       
-      pget->m_strUrl = scopedstrUrl;
+      pget->m_url = url;
       
       pget->m_timeSyncTimeout = timeTimeout;
 
@@ -977,12 +977,12 @@ namespace acme
    }
 
 
-   ::string context::http_text(const ::scoped_string & scopedstrUrl, ::property_set & set, const class ::time & timeTimeout)
+   ::string context::http_text(const ::url::url & url, ::property_set & set, const class ::time & timeTimeout)
    {
 
       auto pget = __create_new < ::nano::http::get >();
       
-      pget->m_strUrl = scopedstrUrl;
+      pget->m_url = url;
       
       pget->m_setIn = set;
       
@@ -999,10 +999,10 @@ namespace acme
    }
 
 
-   ::string context::http_get_effective_url(const ::scoped_string & scopedstrUrl)
+   ::url::url context::http_get_effective_url(const ::url::url& url)
    {
 
-      return nano()->http()->get_effective_url(scopedstrUrl);
+      return nano()->http()->get_effective_url(url);
 
    }
 
@@ -1065,14 +1065,14 @@ namespace acme
 //   }
 
 
-   void context::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, const class ::time & timeTimeout)
+   void context::http_download(const ::payload & payloadFile, const ::url::url & url, const class ::time & timeTimeout)
    {
 
       auto pfile = acmefile()->get_writer(payloadFile);
      
       auto pget = __create_new < ::nano::http::get >();
       
-      pget->m_strUrl = scopedstrUrl;
+      pget->m_url = url;
       
       pget->m_timeSyncTimeout =  timeTimeout;
       
@@ -1085,14 +1085,14 @@ namespace acme
    }
 
 
-   void context::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set, const class ::time & timeTimeout)
+   void context::http_download(const ::payload & payloadFile, const ::url::url & url, ::property_set & set, const class ::time & timeTimeout)
    {
 
       auto pfile = acmefile()->get_writer(payloadFile);
 
       auto pget = __create_new < ::nano::http::get >();
       
-      pget->m_strUrl = scopedstrUrl;
+      pget->m_url = url;
       
       pget->m_setIn = set;
       

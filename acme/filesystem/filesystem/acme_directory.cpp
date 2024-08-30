@@ -13,7 +13,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 
 
-CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr);
+//CLASS_DECL_ACME bool is_like_url_protocol(const ::scoped_string & scopedstr);
 
 
 acme_directory::acme_directory()
@@ -749,13 +749,13 @@ void acme_directory::set_path_install_folder(const string & strPath)
 void acme_directory::create(const ::file::path & pathParam)
 {
 
-   if (is_like_url_protocol(pathParam))
-   {
+   //if (is_like_url_protocol(pathParam))
+   //{
 
-      return;
+   //   return;
 
-   }
-   
+   //}
+   //
    if(acmefile()->exists(pathParam))
    {
       

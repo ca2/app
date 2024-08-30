@@ -449,7 +449,8 @@ void window::add_button(const ::scoped_string & scopedstrText, enum_dialog_resul
    
 }
 
-::atom window::get_result()
+
+::payload window::get_result()
 {
    
    return m_payloadResult;
@@ -646,14 +647,14 @@ void window::on_right_button_up(::user::mouse * pmouse)
 }
 
 
-void window::on_click(const ::atom & atom, ::user::mouse * pmouse)
+void window::on_click(const ::payload& payload, ::user::mouse * pmouse)
 {
    
    
 }
 
 
-void window::on_right_click(const ::atom & atom, ::user::mouse * pmouse)
+void window::on_right_click(const ::payload& payload, ::user::mouse * pmouse)
 {
    
    

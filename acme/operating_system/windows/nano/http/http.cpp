@@ -87,9 +87,9 @@ namespace windows
 
             }
 
-            ::string strServer = system()->url()->get_server(pget->m_strUrl);
+            ::string strHost = pget->m_url.connect().host();
 
-            ::windows::nano::http::connect connect(session, strServer);
+            ::windows::nano::http::connect connect(session, strHost);
 
             if (!connect.m_hinternet)
             {
@@ -98,9 +98,9 @@ namespace windows
 
             }
 
-            ::string strObject = system()->url()->get_object(pget->m_strUrl);
+            ::string strRequestUri = pget->m_url.request().as_string();
 
-            ::windows::nano::http::get get(connect, strObject);
+            ::windows::nano::http::get get(connect, strRequestUri);
 
             if (!get.m_hinternet)
             {

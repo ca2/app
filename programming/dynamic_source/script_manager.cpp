@@ -373,7 +373,7 @@ namespace dynamic_source
 
       pmain->m_pscript2 = pinstance->m_pscript2;
 
-      pmain->run_property(ID_CREATE);
+      pmain->defer_run_property(ID_CREATE);
 
       pmain->call_procedures(ID_CREATE);
 
@@ -382,6 +382,12 @@ namespace dynamic_source
       pmain->m_psocket2 = pdssocket;
 
       pmain->m_pmanager2 = this;
+
+      //::string strUrl;
+
+      //strUrl = pdssocket->request().m_strRequestUri;
+
+      //pmain->m_url = strUrl;
 
       pmain->m_pscript2 = pinstance->m_pscript2;
 
@@ -393,7 +399,7 @@ namespace dynamic_source
 
       pinstance->initialize(pmain);
 
-      pinstance->run_property(ID_CREATE);
+      pinstance->defer_run_property(ID_CREATE);
 
       pinstance->call_procedures(ID_CREATE);
 
@@ -674,7 +680,7 @@ namespace dynamic_source
 
                   pinstance->m_pinstanceParent2 = pinstanceParent;
 
-                  pinstance->run_property(ID_CREATE);
+                  pinstance->defer_run_property(ID_CREATE);
 
                   pinstance->call_procedures(ID_CREATE);
 

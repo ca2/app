@@ -26,7 +26,7 @@ namespace http
    string cookie::as_string() const
    {
 
-      return m_varValue;
+      return m_payload.as_string();
 
    }
 
@@ -45,7 +45,7 @@ namespace http
 
          m_strName      = cookie.m_strName;
          m_strNameLow   = cookie.m_strNameLow;
-         m_varValue     = cookie.m_varValue;
+         m_payload     = cookie.m_payload;
          m_strExpire    = cookie.m_strExpire;
          m_strPath      = cookie.m_strPath;
          m_strDomain    = cookie.m_strDomain;
@@ -63,7 +63,7 @@ namespace http
       string str;
       str = m_strName;
       str += "=";
-      str += m_varValue;
+      str += m_payload;
       if(m_strExpire.has_char())
       {
          str += "; expires=";
@@ -214,7 +214,7 @@ namespace http
                cookie->m_strName = string(psz, pszEqual - psz);
                cookie->m_strNameLow = cookie->m_strName;
                cookie->m_strNameLow.make_lower();
-               cookie->m_varValue = string(pszEqual + 1, pszEnd - pszEqual - 1);
+               cookie->m_payload = string(pszEqual + 1, pszEnd - pszEqual - 1);
             }
             else
             {
@@ -267,7 +267,7 @@ namespace http
       for(::collection::index i = 0; i < this->get_size(); i++)
       {
 
-         strCookie += (const char *) (this->element_at(i)->m_strName + "=" + this->element_at(i)->m_varValue);
+         strCookie += (const char *) (this->element_at(i)->m_strName + "=" + this->element_at(i)->m_payload);
 
          strCookie += ";";
 
@@ -281,7 +281,7 @@ namespace http
    strsize cookies::get_length( const char * name)
    {
 
-      return cookie(name).m_varValue.as_string().length();
+      return cookie(name).m_payload.as_string().length();
 
    }
 
@@ -291,7 +291,7 @@ namespace http
 
       auto & cookie = this->cookie(scopedstrName);
 
-      cookie.m_varValue = payload;
+      cookie.m_payload = payload;
 
       if (time > 0_s)
       {
@@ -384,7 +384,7 @@ namespace http
 
                auto & cookie = this->cookie(pszParam);
 
-               cookie.m_varValue.set_type(::e_type_empty);
+               cookie.m_payload.set_type(::e_type_empty);
 
             }
             else
@@ -392,7 +392,7 @@ namespace http
 
                auto& cookie = this->cookie(string(pszParam, pszKeyEnd - pszParam));
 
-               cookie.m_varValue = string(pszKeyEnd + 1);
+               cookie.m_payload = string(pszKeyEnd + 1);
 
             }
 
@@ -407,7 +407,7 @@ namespace http
 
                auto& cookie = this->cookie(string(pszParam, pszParamEnd - pszParam));
 
-               cookie.m_varValue.set_type(::e_type_empty);
+               cookie.m_payload.set_type(::e_type_empty);
 
             }
             else
@@ -415,7 +415,7 @@ namespace http
 
                auto& cookie = this->cookie(string(pszParam, pszKeyEnd - pszParam));
 
-               cookie.m_varValue = string(pszKeyEnd + 1, pszParamEnd - (pszKeyEnd + 1));
+               cookie.m_payload = string(pszKeyEnd + 1, pszParamEnd - (pszKeyEnd + 1));
 
             }
 

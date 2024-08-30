@@ -215,25 +215,23 @@ namespace account
 
       string strDeferRegistration;
 
-      auto psystem = system();
-
-      auto purl = psystem->url();
+      ::property_set setAuthUrlQuery;
 
       if(puser->m_bDeferRegistration)
       {
 
-         purl->set_param(strAuthUrl, "defer_registration", "true");
+         setAuthUrlQuery["defer_registration"] = "true";
 
       }
 
       if(puser->m_bDeferRegistration)
       {
 
-         purl->set_param(strAuthUrl, "ruri", ::url::encode(puser->m_pathRuri));
+         setAuthUrlQuery["ruri"] =puser->m_pathRuri;
 
       }
 
-      purl->set_param(strAuthUrl, "sessid", puser->m_strSessId);
+      setAuthUrlQuery["sessid"] = puser->m_strSessId;
 
       property_set set;
 
@@ -295,21 +293,15 @@ namespace account
 
       auto puser = pcredentials->m_puser;
 
-      auto psystem = system();
+      ::url::url url(puser->m_pathUrl);
 
-      auto purl = psystem->url();
+      puser->m_strHost = url.connect().host();
 
-      puser->m_strHost = purl->get_server(puser->m_pathUrl);
+      ::url::parts partsGetFontopus("https://ca2.software/get_account_login");
+      
+      partsGetFontopus.arguments()["lang"] = m_pcontext->m_papexcontext->get_locale();
 
-      string strGetFontopus;
-
-      strGetFontopus = "https://ca2.software/get_account_login";
-
-      auto pcontext = m_pcontext;
-
-      purl->set_param(strGetFontopus,strGetFontopus,"lang",pcontext->m_papexcontext->get_locale());
-
-      purl->set_param(strGetFontopus,strGetFontopus,"styl",pcontext->m_papexcontext->get_schema());
+      partsGetFontopus.arguments()["styl"] = m_pcontext->m_papexcontext->get_schema();
 
       string strNode;
 
@@ -325,7 +317,9 @@ namespace account
 
       set["raw_http"] = true;
 
-      strNode = pcontext->m_papexcontext->http().get(strGetFontopus, set);
+      auto urlGetFontopus = partsGetFontopus.as_url();
+
+      strNode = m_pcontext->m_papexcontext->http().get(urlGetFontopus, set);
 
       if(set["get_status"].failed())
       {

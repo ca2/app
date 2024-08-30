@@ -325,7 +325,7 @@ void window_interface::add_child(child * pchild)
 }
 
 
-::atom window_interface::get_result()
+::payload window_interface::get_result()
 {
 
    return {};
@@ -353,7 +353,7 @@ void window_interface::on_left_button_up(::user::mouse * pmouse)
 }
 
 
-void window_interface::on_click(const ::atom & atom, ::user::mouse * pmouse)
+void window_interface::on_click(const ::payload& payload, ::user::mouse * pmouse)
 {
 
 
@@ -374,7 +374,7 @@ void window_interface::on_right_button_up(::user::mouse * pmouse)
 }
 
 
-void window_interface::on_right_click(const ::atom & atom, ::user::mouse * pmouse)
+void window_interface::on_right_click(const ::payload& payload, ::user::mouse * pmouse)
 {
 
 }

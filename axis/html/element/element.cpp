@@ -988,11 +988,11 @@ namespace html
                     m_pdata->m_pcoredata->m_strPathName.case_insensitive_begins("https://"))
             {
 
-               auto psystem = system()->m_paurasystem;
+               ::url::parts parts(m_pdata->m_pcoredata->m_strPathName);
 
-               auto purl = psystem->url();
+               parts.set_href(strUrl);
 
-               strUrl = purl->path(m_pdata->m_pcoredata->m_strPathName,strUrl);
+               strUrl = parts.as_string();
 
             }
             else
@@ -1812,18 +1812,18 @@ namespace html
 
          str += m_atomTagName;
 
-         for(auto & pproperty : this->m_propertyset)
+         for(auto & property : this->m_propertyset)
          {
 
             str += " ";
 
-            str += pproperty->m_atom;
+            str += property.name().as_string();
 
             str += "=";
 
             str += "\"";
 
-            str += pproperty->as_string();
+            str += property.as_string();
 
             str += "\"";
 

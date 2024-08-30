@@ -93,14 +93,14 @@ public:
    string_base(enum_zero_initialize) : NATURAL_POINTER(e_zero_initialize) { }
    string_base(nullptr_t) { }
    string_base(enum_for_moving) { }
-   //string_base(enum_get_buffer, strsize len) { get_buffer(len); }
+   //string_base(enum_get_buffer, strsize length) { get_buffer(length); }
    //string_base(const ::ansi_character * psz);
    //string_base(const ::wd16_character * psz);
    //string_base(const ::wd32_character * psz);
    //string_base(const ::std::string & str) : string_base(str.c_str()) { }
-   string_base(const ::ansi_string & ansistr) : NATURAL_POINTER(no_initialize_t{}) { construct5(ansistr); }
-   string_base(const ::wd16_string & wd16str) : NATURAL_POINTER(no_initialize_t{}) { construct5(wd16str); }
-   string_base(const ::wd32_string & wd32str) : NATURAL_POINTER(no_initialize_t{}) { construct5(wd32str); }
+   string_base(const ::ansi_string & ansistr) : NATURAL_POINTER(no_initialize_t{}) { construct10(ansistr); }
+   string_base(const ::wd16_string & wd16str) : NATURAL_POINTER(no_initialize_t{}) { construct10(wd16str); }
+   string_base(const ::wd32_string & wd32str) : NATURAL_POINTER(no_initialize_t{}) { construct10(wd32str); }
    string_base(string_base && str) :
       NATURAL_POINTER(no_initialize_t{}) 
    { 
@@ -127,19 +127,19 @@ public:
 
 
    template<typed_range<::ansi_character *> RANGE>
-   explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct5(str); }
+   explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
    template<typed_range<::wd16_character *> RANGE>
-   explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct5(str); }
+   explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
    template<typed_range<::wd32_character *> RANGE>
-   explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct5(str); }
+   explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
 
 
    template<typed_range<const ::ansi_character *> RANGE>
-   explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct5(str); }
+   explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
    template<typed_range<const ::wd16_character *> RANGE>
-   explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct5(str); }
+   explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
    template<typed_range<const ::wd32_character *> RANGE>
-   explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct5(str); }
+   explicit string_base(const RANGE & str) : NATURAL_POINTER(no_initialize_t{}) { construct10(str); }
 
 
 
@@ -163,51 +163,53 @@ public:
    //xxxstring_base(const const_ansi_range & ansirange) : NATURAL_POINTER(no_initialize_t{}) { construct2(ansirange.begin(), ansirange.size()); }
    //xxxstring_base(const const_wd16_range & wd16range) : NATURAL_POINTER(no_initialize_t{}) { construct2(wd16range.begin(), wd16range.size()); }
    //xxxstring_base(const const_wd32_range & wd32range) : NATURAL_POINTER(no_initialize_t{}) { construct2(wd32range.begin(), wd32range.size()); }
-   string_base(const const_ansi_range & ansirange) : NATURAL_POINTER(no_initialize_t{}) { construct5(ansirange); }
-   string_base(const const_wd16_range & wd16range) : NATURAL_POINTER(no_initialize_t{}) { construct5(wd16range); }
-   string_base(const const_wd32_range & wd32range) : NATURAL_POINTER(no_initialize_t{}) { construct5(wd32range); }
-   //string_base(const const_ansi_range & ansirange, strsize len) : NATURAL_POINTER(no_initialize_t{})  { construct2(ansirange, 0, len); }
-   //string_base(const const_wd16_range & wd16range, strsize len) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd16range, 0, len); }
-   //string_base(const const_wd32_range & wd32range, strsize len) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd32range, 0, len); }
-   //string_base(const const_ansi_range & ansirange, strsize len) : NATURAL_POINTER(no_initialize_t{})  { construct2(ansirange, start, len); }
-   //string_base(const const_wd16_range & wd16range, strsize len) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd16range, start, len); }
+   string_base(const const_ansi_range & ansirange) : NATURAL_POINTER(no_initialize_t{}) { construct10(ansirange); }
+   string_base(const const_wd16_range & wd16range) : NATURAL_POINTER(no_initialize_t{}) { construct10(wd16range); }
+   string_base(const const_wd32_range & wd32range) : NATURAL_POINTER(no_initialize_t{}) { construct10(wd32range); }
+   //string_base(const const_ansi_range & ansirange, strsize length) : NATURAL_POINTER(no_initialize_t{})  { construct2(ansirange, 0, length); }
+   //string_base(const const_wd16_range & wd16range, strsize length) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd16range, 0, length); }
+   //string_base(const const_wd32_range & wd32range, strsize length) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd32range, 0, length); }
+   //string_base(const const_ansi_range & ansirange, strsize length) : NATURAL_POINTER(no_initialize_t{})  { construct2(ansirange, start, length); }
+   //string_base(const const_wd16_range & wd16range, strsize length) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd16range, start, length); }
    // 
    // 
-   //string_base(const const_wd32_range & wd32range, strsize len) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd32range, start, len); }
+   //string_base(const const_wd32_range & wd32range, strsize length) : NATURAL_POINTER(no_initialize_t{})  { construct2(wd32range, start, length); }
    string_base(const ::block block) : string_base((const CHARACTER *)block.begin(), (const CHARACTER *)block.end()) {}
     template < primitive_character CHARACTER2 >
     string_base(const CHARACTER2 * start, const CHARACTER2 * end) : string_base(start, end-start) {}
    template < primitive_character CHARACTER2 >
-   string_base(const CHARACTER2 * start) : string_base(start, string_safe_length(start)) {}
+   string_base(const CHARACTER2 * start) : string_base(start, string_safe_length(start), e_range_null_terminated) {}
    template < primitive_character CHARACTER2 >
-   string_base(const CHARACTER2 * start, strsize len) : string_base(no_initialize_t{}) { construct2(start, len); }
+   string_base(const CHARACTER2* start, strsize length, enum_range erange) : string_base(no_initialize_t{}) { construct20(start, length, erange); }
+   template < primitive_character CHARACTER2 >
+   string_base(const CHARACTER2 * start, strsize length) : string_base(no_initialize_t{}) { construct5(start, length); }
 //   template < primitive_character CHARACTER2 >
-//   string_base(const CHARACTER2 * pszSource, strsize len);
+//   string_base(const CHARACTER2 * pszSource, strsize length);
    template < primitive_character CHARACTER2, strsize sizeMaximumLength >
    string_base(const inline_string < CHARACTER2, sizeMaximumLength > & inlinestring) :
       string_base(inlinestring.begin(), inlinestring.end())
    { }
-   //   string_base(const ::ansi_character * pansichar, strsize len);
+   //   string_base(const ::ansi_character * pansichar, strsize length);
       //string_base(::str < iterator > str) : string_base((const_iterator)str.begin(), (const_iterator)str.end()) {}
       //string_base(::str < const_iterator > str) : string_base(str.begin(), str.end()) {}
       //string_base(::block block) : string_base((const_iterator)block.begin(), (const_iterator)block.end()) {}
       //string_base(const string_base & str);
        //string_base(const ::wd16_character * pwd16char);
-   //   string_base(const ::wd16_character * pwd16char, strsize len);
+   //   string_base(const ::wd16_character * pwd16char, strsize length);
       //string_base(const ::wd32_character * pwd32char);
-   //   string_base(const ::wd32_character * pwd32char, strsize len);
-   //   string_base(const ::wd32_character * pwd32char, strsize len, strsize pos) : string_base(pwd32char + pos, len) { }
+   //   string_base(const ::wd32_character * pwd32char, strsize length);
+   //   string_base(const ::wd32_character * pwd32char, strsize length, strsize pos) : string_base(pwd32char + pos, length) { }
       //template < primitive_character CHARACTER2 >
    string_base(const_iterator begin, const_iterator end) : string_base(begin, end - begin) { }
    //string_base(const string_base & str) : string_base(str, 0, str.size()) { }
-   //string_base(const string_base & str, strsize len) : string_base(str, 0, len) { }
-   //string_base(const string_base & str, strsize len);
+   //string_base(const string_base & str, strsize length) : string_base(str, 0, length) { }
+   //string_base(const string_base & str, strsize length);
 //   template < primitive_character CHARACTER2 >
 //   string_base(const ::range < const CHARACTER2 * > & strSource) : string_base(strSource, 0, strSource.size()) {}
 //   template < primitive_character CHARACTER2 >
-//   string_base(const ::range < const CHARACTER2 * > & strSource, strsize len) : string_base(strSource, 0, minimum(strSource.size(), len)) {}
+//   string_base(const ::range < const CHARACTER2 * > & strSource, strsize length) : string_base(strSource, 0, minimum(strSource.size(), length)) {}
 //   template < primitive_character CHARACTER2 >
-//   string_base(const ::range < const CHARACTER2 * > & strSource, strsize len);
+//   string_base(const ::range < const CHARACTER2 * > & strSource, strsize length);
    //string_base(const simple_ansistring& simpleansistr);
    //string_base(const simple_wd16string& simplewd16str);
    //string_base(const simple_wd32string& simplewd32str);
@@ -216,13 +218,16 @@ public:
    string_base(::ansi_character ansich) : string_base(&ansich, 1) {}
    string_base(::wd16_character wd16ch) : string_base(&wd16ch, 1) {}
    string_base(::wd32_character wd32ch) : string_base(&wd32ch, 1) {}
-   string_base(const ::scoped_string & scopedstr) :NATURAL_POINTER(no_initialize_t{}) { construct5(scopedstr); }
-   string_base(const ::scoped_wstring & scopedwstr) :NATURAL_POINTER(no_initialize_t{}) { construct5(scopedwstr); }
+   string_base(const ::scoped_string & scopedstr) :NATURAL_POINTER(no_initialize_t{}) { construct10(scopedstr); }
+   string_base(const ::scoped_wstring & scopedwstr) :NATURAL_POINTER(no_initialize_t{}) { construct10(scopedwstr); }
+#if defined(__STD_FORMAT__)
+   string_base(const ::std::string & str) : string_base(str.c_str()) { }
+#endif
    string_base(const ::atom & atom);
    string_base(const ::payload & payload);
    string_base(const ::property & property);
-   //template < has_as_string HAS_AS_STRING >
-   //string_base(const HAS_AS_STRING & has_as_string) : string_base(has_as_string.as_string()) {}
+   ////template < has_as_string HAS_AS_STRING >
+   ////string_base(const HAS_AS_STRING & has_as_string) : string_base(has_as_string.as_string()) {}
    inline ~string_base() {}
 
 
@@ -245,16 +250,19 @@ public:
 
    }
 
+   inline void construct1(const ITERATOR_TYPE psz, strsize length);
 
-   inline void construct1(const RANGE & range);
-
-   template < primitive_character CHARACTER2 >
-   inline void construct2(const CHARACTER2 * psz, strsize len);
+   inline void construct2(const RANGE & range);
 
    template < primitive_character CHARACTER2 >
-   inline void construct5(const ::range < const CHARACTER2 * > & range);
+   inline void construct5(const CHARACTER2 * psz, strsize length);
 
-   
+   template < primitive_character CHARACTER2 >
+   inline void construct10(const ::range < const CHARACTER2 * > & range);
+
+   template < primitive_character CHARACTER2 >
+   inline void construct20(const CHARACTER2* psz, strsize length, enum_range erange);
+
    //   template < primitive_character CHARACTER2 >
 //   inline void construct2(const ::range < const CHARACTER2 * > & str);
 //   template < primitive_character CHARACTER2 >
@@ -263,7 +271,7 @@ public:
 
    template < primitive_character CHARACTER2 >
    strsize start_count_length(strsize & start, strsize & count, const CHARACTER2 * pszSource);
-   //void start_count(strsize & start, strsize & count, strsize len);
+   //void start_count(strsize & start, strsize & count, strsize length);
 
    inline const string_base & to_string() const { return *this; }
 
@@ -431,6 +439,9 @@ public:
    string_base & operator = (const scoped_ansi_string & ansistr) { assign_range(ansistr); return *this; }
    string_base & operator = (const scoped_wd16_string & wd16str) { assign_range(wd16str); return *this; }
    string_base & operator = (const scoped_wd32_string & wd32str) { assign_range(wd32str); return *this; }
+#ifdef __STD_FORMAT__
+   string_base& operator = (const ::std::string &str) { operator =(str.c_str()); return *this; }
+#endif
       //string_base & operator = (const string_base & str);
       //string_base & operator = (const string_base & str);
       //string_base & operator = (::ansi_character ansich);
@@ -477,6 +488,9 @@ public:
    string_base & operator += (const ::atom & atom);
    string_base & operator += (const ::payload & payload);
    string_base & operator += (const ::property & property);
+#ifdef __STD_FORMAT__
+   string_base& operator += (const ::std::string& str) { operator +=(str.c_str()); return *this; }
+#endif
 //   template < has_as_string HAS_AS_STRING >
 //   string_base & operator += (const HAS_AS_STRING & has_as_string) { return operator+=(has_as_string.as_string()); }
 
@@ -649,7 +663,7 @@ public:
    inline string_base & assign(const CHARACTER2 * start, const CHARACTER2 * end);
 
    template < primitive_character CHARACTER2 >
-   inline string_base & assign(const CHARACTER2 * pszSrc, strsize len);
+   inline string_base & assign(const CHARACTER2 * pszSrc, strsize length);
 
 
    template < primitive_character CHARACTER2 >
@@ -664,16 +678,16 @@ public:
    //inline string_base& assign(const wd16_string& wd16str);
    //inline string_base& assign(const wd32_string& wd32str);
 //   template < primitive_character CHARACTER2 >
-//   inline string_base & assign(const CHARACTER2 * pszSrc, strsize len)
+//   inline string_base & assign(const CHARACTER2 * pszSrc, strsize length)
 //   {
-//      return assign(pszSrc, 0, len);
+//      return assign(pszSrc, 0, length);
 //   }
    //template < primitive_block BLOCK >
-   //inline string_base& assign(const BLOCK & pszSrc, strsize len);
+   //inline string_base& assign(const BLOCK & pszSrc, strsize length);
    template < primitive_character CHARACTER2 >
-   inline string_base & _assign(const CHARACTER2 * pszSrc, strsize len);
-   //inline string_base& assign(const ::wd16_character* pwd16szSrc, strsize len);
-   //inline string_base& assign(const ::wd32_character* pwd32szSrc, strsize len);
+   inline string_base & _assign(const CHARACTER2 * pszSrc, strsize length);
+   //inline string_base& assign(const ::wd16_character* pwd16szSrc, strsize length);
+   //inline string_base& assign(const ::wd32_character* pwd32szSrc, strsize length);
    template < primitive_character CHARACTER2 >
    inline string_base & assign(CHARACTER2 chSrc, strsize repeat = 1);
    //   inline string_base & assign(::ansi_character ansich, strsize repeat);
@@ -686,10 +700,10 @@ public:
    //template < int t_nSize >
    //inline string_base & assign(const static_string<CHARACTER, t_nSize > & ansistrSrc);
 
-   inline string_base & append(strsize len, CHARACTER ch);
+   inline string_base & append(strsize length, CHARACTER ch);
    template < primitive_character CHARACTER2 >
-   inline string_base & append_character_array(const CHARACTER2 * psz, strsize len)
-   { auto pszEnd = psz + len; if(*(pszEnd - 1) == 0) pszEnd--; append(psz, pszEnd - psz); }
+   inline string_base & append_character_array(const CHARACTER2 * psz, strsize length)
+   { auto pszEnd = psz + length; if(*(pszEnd - 1) == 0) pszEnd--; append(psz, pszEnd - psz); }
 
    inline string_base & append_character(::wd32_character wch);
    inline string_base & append_character(::ansi_character ch);
@@ -876,6 +890,21 @@ public:
    inline this_iterator & truncate(this_iterator p);
    template < primitive_integral INTEGRAL >
    inline this_iterator & truncate(INTEGRAL count) {return truncate(this->m_begin + count);}
+
+   template < primitive_integral INTEGRAL >
+   inline string_base truncated(INTEGRAL count) const
+   {
+
+      if (this->length() <= count)
+      {
+
+         return *this;
+
+      }
+
+      return left(count);
+
+   }
 
    inline this_iterator & erase_beginning(this_iterator p);
 
@@ -1409,8 +1438,8 @@ public:
    template<typename... Ts>
    string_base & format(const ::std::format_string<Ts...> fmt, Ts&&... args)
    {
-      
-      return this->operator=(std::format(fmt, std::forward<Ts>(args)...));
+
+      return operator=(std::format(fmt, std::forward<Ts>(args)...));
 
    }
 
@@ -1680,15 +1709,15 @@ public:
 //
 //   string_base < ITERATOR_TYPE > str;
 //
-//   auto len = scopedstrA.size() + scopedstrB.size();
+//   auto length = scopedstrA.size() + scopedstrB.size();
 //
-//   auto p = str.get_buffer(len);
+//   auto p = str.get_buffer(length);
 //
 //   ::memory_copy(p, scopedstrA, scopedstrA.size());
 //
 //   ::memory_copy(p + scopedstrA.size(), scopedstrB, scopedstrB.size());
 //
-//   str.release_buffer(len);
+//   str.release_buffer(length);
 //
 //   return ::transfer(str);
 //
@@ -1910,12 +1939,21 @@ using a_string_function = ::function < ::string(void) >;
 
 // Simple specialization for strings in the Ca2 framework.
 // This just uses ::string::c_str() to format.
-template<>
-struct std::formatter<::string> : std::formatter<std::string> {
-   template<class FormatContext>
-   auto format(const ::string & value, FormatContext & fc) const
-   {
-      return std::formatter<std::string>::format(value.c_str(), fc);
+// template<>
+// struct std::formatter<::string> : std::formatter<std::string> {
+//    template<class FormatContext>
+//    auto format(const ::string & value, FormatContext & fc) const
+//    {
+//       return std::formatter<std::string>::format(value.c_str(), fc);
+//    }
+// };
+
+template < >
+struct std::formatter<::string > :
+   public ::std::formatter< ::std::string_view >
+{
+   auto format(const ::string& str, std::format_context& ctx) const {
+      return ::std::formatter<::std::string_view>::format(::std::string_view{ str.begin(), str.end() }, ctx);
    }
 };
 
@@ -2109,5 +2147,8 @@ string_base<ITERATOR_TYPE>& string_base<ITERATOR_TYPE>::single_quote(bool bEscap
    return operator=(this->single_quoted(bEscape));
 
 }
+
+
+
 
 

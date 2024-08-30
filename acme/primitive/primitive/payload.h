@@ -15,11 +15,12 @@
 #include  "acme/filesystem/filesystem/path_array.h"
 //#include "acme/primitive/datetime/file_time.h"
 #include "acme/primitive/string/sz.h"
+#include "acme/primitive/primitive/make_particle.h"
+
+
 
 
 inline payload & copy(payload & payload, const class time & time);
-
-
 
 
 enum para_return
@@ -40,6 +41,13 @@ ENUM enum_default()
    return (ENUM)0;
 
 }
+
+struct payload_all_t
+{
+
+   ::u8     m_ua[32];
+
+};
 
 
 class CLASS_DECL_ACME payload
@@ -83,11 +91,11 @@ public:
       ::f32 * m_pf32;
       ::f64                                  m_f64;
       ::f64 * m_pf64;
-      payload * m_ppayload;
+      //payload * m_ppayload;
       ::earth::time                          m_earthtime;
       file_time                              m_filetime;
       atom * m_patom;
-      ::property * m_pproperty;
+      //::property * m_pproperty;
       //integral_nanosecond                    m_integralnanosecond;
       //integral_nanosecond *                  m_pintegralnanosecond;
       //integral_microsecond                   m_integralmicrosecond;
@@ -134,7 +142,7 @@ public:
       ::i64_array * m_pi64a;
       ::memory * m_pmemory;
       ::file::path_object * m_ppath;
-      ::i64                                  m_all[3];
+      payload_all_t                          m_payloadall;
       ::string                               m_str;
       ::range < const ::ansi_character * >   m_ansirange;
       ::function_common * m_pfunctioncommon;
@@ -156,7 +164,13 @@ public:
    payload(enum_type etype);
    payload(std::nullptr_t);
    payload(const ::payload & payload);
-   payload(::payload && payload) { *this = payload; payload = ::payload{}; };
+   payload(::payload && payload) :
+      m_etype(payload.m_etype)
+   {
+      m_payloadall = payload.m_payloadall;
+      payload.m_etype = e_type_new;
+      payload.m_payloadall = {};
+   }
    template < bool_type BOOL > payload(BOOL b) : m_etype(e_type_bool) {m_b = b;}
    template < char_type CHAR > payload(CHAR c) : m_etype(e_type_i8) {m_i8 = c;}
    template < i8_type I8 > payload(I8 i) : m_etype(e_type_i8) {m_i8 = i;}
@@ -180,8 +194,8 @@ public:
    payload(::u64 * pu);
    payload(bool * pb);
    payload(::string * pstr);
-   payload(::payload * ppayload);
-   payload(::property * pproperty);
+   //payload(::payload * ppayload);
+   //payload(::property * pproperty);
    payload(::subparticle * pparticle);
    payload(class ::time * ptime);
    template < character_range CHARACTER_RANGE >
@@ -204,7 +218,7 @@ public:
    payload(const ::i32_array & ia);
    payload(const ::payload_array & payloada);
    payload(const ::property_set & set);
-   payload(const ::property & prop);
+   //payload(const ::property & property);
    payload(const class time & time);
 
    //   payload(const ::block & block)
@@ -285,7 +299,7 @@ public:
    ~payload();
 
 
-   void clear_data() { m_all[0] = 0; m_all[1] = 0; }
+   void clear_data() { m_etype = e_type_null; }
 
 
    void set_type(enum_type enum_type, bool bConvert = true);
@@ -457,6 +471,7 @@ public:
    inline ::uptr as_uptr(::uptr uiDefault = 0)  const;
 
    ::file::path as_file_path() const;
+   ::url::url as_url() const;
    ::file_time as_file_time() const;
    ::earth::time as_earth_time() const;
    ::color::color as_color(const ::color::color & colorDefault = ::color::color())  const;
@@ -490,7 +505,7 @@ public:
    ::payload_array as_payload_array()  const;
    ::property_set as_property_set() const;
    class ::time as_time() const;
-   ::property as_property() const;
+   //::property as_property() const;
 
 
    bool is_scalar() const;
@@ -593,7 +608,7 @@ public:
    bool operator !() const
    {
 
-      return ::is_null(this) || is_false();
+      return !as_bool();
 
    }
 
@@ -643,7 +658,7 @@ public:
    ::payload_array & payload_array_reference();
    class ::time & time_reference();
    ::property_set & property_set_reference();
-   ::property & property_reference();
+   //::property & property_reference();
 
    ::file::path & file_path_reference();
 
@@ -997,38 +1012,7 @@ protected:
 
 
    template < typename PRIMITIVE >
-   payload & __assign_primitive(PRIMITIVE & member, enum_type etype, PRIMITIVE primitive)
-   {
-
-      if(__assign_to_held_pointer_member(primitive))
-      {
-
-
-      }
-      else if(get_type() == e_type_payload_pointer)
-      {
-
-         *m_ppayload = primitive;
-
-      }
-      else if (get_type() == e_type_property)
-      {
-
-         *m_pproperty = primitive;
-
-      }
-      else
-      {
-
-         set_type(etype, false);
-
-         member = primitive;
-
-      }
-
-      return *this;
-
-   }
+   payload& __assign_primitive(PRIMITIVE& member, enum_type etype, PRIMITIVE primitive);
 
 
    template < typename PRIMITIVE >
@@ -1082,13 +1066,13 @@ public:
    inline payload & operator = (::const_ansi_range ansirange);
    inline payload & operator = (const ::inline_number_string & str);
    payload & operator = (::string * pstr);
-   payload & operator = (::payload * pvar);
-   payload & operator = (const ::payload * pvar);
+   //payload & operator = (::payload * pvar);
+   //payload & operator = (const ::payload * pvar);
    payload & operator = (const ::wide_character * pcsz);
    payload& operator = (const ::ansi_character* pcsz);
 
    payload & operator = (const ::property & prop);
-   payload & operator = (const ::property * pproperty);
+   //payload & operator = (const ::property * pproperty);
    payload & operator = (const ::payload & payload);
    payload & operator = (const ::i32_array & ia);
    payload & operator = (const ::string_array & stra);
@@ -1373,30 +1357,36 @@ public:
    ::payload find_property(const ::atom & atom) const; // { return atom.is_text() ? find_property_text_key((const ::scoped_string &)atom.m_str) : find_property_index(atom.m_i); }
    ::property & get_property(const ::atom & atom); // { return atom.is_text() ? get_property_text_key((const ::scoped_string &)atom.m_str) : get_property_index(atom.m_i); }
 
+   ::payload find_property_by_text(const ::scoped_string & scopedstr) const; 
 
 
-   ::payload operator[] (const ::atom & atom);
-   ::payload operator[] (const ::atom & atom) const;
+
+   //::payload operator[] (const ::atom & atom);
+   //::payload operator[] (const ::atom & atom) const;
+   template < primitive_integral INTEGRAL >
+   inline ::property& operator[] (INTEGRAL i) { return get_property((const ::atom &) i); }
+   template < primitive_integral INTEGRAL >
+   inline ::payload operator[] (INTEGRAL i) const { return find_property((const ::atom &) i); }
 
    template < primitive_character CHARACTER >
-   inline ::payload operator[] (const CHARACTER * psz) { return operator []((const ::atom &) psz); }
+   inline ::property & operator[] (const CHARACTER * psz) { return get_property(psz); }
    template < primitive_character CHARACTER >
-   inline ::payload operator[] (const CHARACTER * psz) const { return operator []((const ::atom &)psz); }
+   inline ::payload operator[] (const CHARACTER * psz) const { return find_property_by_text(psz); }
 
    template < character_range RANGE >
-   inline ::payload operator[] (const RANGE & range) { return operator []((const ::atom &)range); }
+   inline ::property & operator[] (const RANGE & range) { return get_property(range); }
    template < character_range RANGE >
-   inline ::payload operator[] (const RANGE & range) const { return operator []((const ::atom &)range); }
+   inline ::payload operator[] (const RANGE & range) const { return find_property_by_text(range); }
 
    template < has_as_string HAS_AS_STRING >
-   inline ::payload operator[] (const HAS_AS_STRING & has_as_string) { return operator []((const ::atom &)has_as_string); }
+   inline ::property & operator[] (const HAS_AS_STRING & has_as_string) { return get_property(has_as_string.as_string()); }
    template < has_as_string HAS_AS_STRING >
-   inline ::payload operator[] (const HAS_AS_STRING & has_as_string) const { return operator []((const ::atom &)has_as_string); }
+   inline ::payload operator[] (const HAS_AS_STRING & has_as_string) const { return find_property_by_text(has_as_string.as_string()); }
 
    template < has_get_string HAS_GET_STRING >
-   inline ::payload operator[] (const HAS_GET_STRING & has_get_string) { return operator []((const ::atom &) has_get_string); }
+   inline ::property & operator[] (const HAS_GET_STRING & has_get_string) { return get_property(has_get_string.get_string()); }
    template < has_get_string HAS_GET_STRING >
-   inline ::payload operator[] (const HAS_GET_STRING & has_get_string) const { return operator []((const ::atom &)has_get_string); }
+   inline ::payload operator[] (const HAS_GET_STRING & has_get_string) const { return find_property_by_text(has_get_string.get_string()); }
 
 
    //inline ::property & operator[] (::iptr i);
@@ -1498,9 +1488,7 @@ public:
    void _001Add(const ::string_array & stra);
 
 
-   void payload_run();
-
-   //void operator()() { return run(); }
+   void defer_run_payload();
 
    void receive_response(const payload & payload);
 
@@ -1513,6 +1501,8 @@ public:
 
 #include "__payload_reference.h"
 #include "acme/primitive/collection/property_set.h"
+#include "acme/primitive/primitive/url.h"
+
 
 
 //

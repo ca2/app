@@ -319,7 +319,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#endif
 ////
 ////
-////#define __CONCAT3(xxx, yyy, zzz) xxx ## yyy ## zzz
+////#define __CONCATENATE3(xxx, yyy, zzz) xxx ## yyy ## zzz
 ////
 ////
 ////#define color32_u8_red(rgb)    (lower_u8(rgb))

@@ -10,9 +10,9 @@
 
 class reference_count_debug;
 
-#define _STRINGFY(identifier) #identifier
-#define STRINGFY(identifier) _STRINGFY(identifier)
-//#define STRINGFY(x, y) TOKEN_CONCATENATE(x, y)
+#define _MAKE_STRING(identifier) #identifier
+#define MAKE_STRING(identifier) _MAKE_STRING(identifier)
+//#define MAKE_STRING(x, y) TOKEN_CONCATENATE(x, y)
 //#define UNIQUE static void TOKENPASTE2(Unique_, __LINE__)(void) {}
 
 #if REFERENCING_DEBUGGING
@@ -31,7 +31,7 @@ class reference_count_debug;
 #define  ((::matter *) this)
 #define REFERENCING_DEBUGGING_COMMA_THIS , 
 #define REFERENCING_DEBUGGING_THIS_NOTE(note) ((::matter *) this), note
-#define REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE REFERENCING_DEBUGGING_THIS_NOTE( __FUNCTION__ " (" STRINGFY(__LINE__) ")" )
+#define REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE REFERENCING_DEBUGGING_THIS_NOTE( __FUNCTION__ " (" MAKE_STRING(__LINE__) ")" )
 #define REFERENCING_DEBUGGING_COMMA_THIS_NOTE(note) , REFERENCING_DEBUGGING_THIS_NOTE(note)
 #define REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE , REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE
 #define REFERENCING_DEBUGGING_P_NOTE(p, note) p, note

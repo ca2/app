@@ -35,5 +35,10 @@ CLASS_DECL_ACME void copy(struct ::tm * ptm, const ::earth::gregorian_time * pti
 CLASS_DECL_ACME struct tm * GetZoneTm(struct tm * ptm, const ::earth::zone_time & zonetime);
 
 
+CLASS_DECL_ACME void copy(struct timespec * ptimespec, const class ::time * ptime);
+
+
+CLASS_DECL_ACME void copy(class ::time * ptime, const struct timespec * ptimespec);
+
 
 

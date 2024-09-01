@@ -5874,7 +5874,7 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append_formatf_ar
 
    ASSERT(is_string_ok(pszFormat));
 
-   strsize nCurrentLength = size();
+   strsize nCurrentLength = this->size();
 
    va_list argsForCount;
 

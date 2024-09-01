@@ -983,10 +983,12 @@ namespace acme
          else if (payload.get_type() == ::e_type_property_set)
          {
 
-            for (auto& pproperty : payload.as_property_set())
+            auto & set = payload.property_set_reference();
+
+            for (auto& property : set)
             {
 
-               auto iItem = ::acme::array::add(array, *pproperty);
+               auto iItem = ::acme::array::add(array, property);
 
                if (i < 0)
                {

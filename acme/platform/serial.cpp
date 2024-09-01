@@ -7,7 +7,7 @@
 //#include "acme/primitive/collection/string_array.h"
 
 
-#if !defined(_WIN32) && !defined(__OpenBSD__) && !defined(__FreeBSD__)
+#if !defined(_WIN32) && !defined(__BSD__)
 # include <alloca.h>
 #endif
 

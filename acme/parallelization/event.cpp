@@ -12,7 +12,7 @@
 
 void printf_line(const ::ansi_character * pszFormat, ...);
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(__BSD__)
 #include <sys/ipc.h>
 #include <sys/time.h>
 #include <time.h>
@@ -25,7 +25,7 @@ void printf_line(const ::ansi_character * pszFormat, ...);
 #endif
 #include "acme/operating_system/ansi/_ansi.h"
 
-#if defined(OPENBSD)
+#if defined(OPENBSD) || defined(NETBSD)
 
 #include <stdio.h>
 

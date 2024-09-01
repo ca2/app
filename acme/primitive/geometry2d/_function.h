@@ -465,10 +465,10 @@ template < primitive_rectangle RECTANGLE_TYPE >
 bool is_null(const RECTANGLE_TYPE & rectangle)
 {
 
-   return rectangle.left() == (decltype(rectangle.left()))0
-      && rectangle.top() == (decltype(rectangle.top()))0
-      && rectangle.right() == (decltype(rectangle.right()))0
-      && rectangle.bottom() == (decltype(rectangle.bottom()))0;
+   return rectangle.left() == (typename RECTANGLE_TYPE::UNIT_TYPE)0
+      && rectangle.top() == (typename RECTANGLE_TYPE::UNIT_TYPE)0
+      && rectangle.right() == (typename RECTANGLE_TYPE::UNIT_TYPE)0
+      && rectangle.bottom() == (typename RECTANGLE_TYPE::UNIT_TYPE)0;
 
 }
 
@@ -485,8 +485,8 @@ template < primitive_size SIZE_TYPE >
 bool is_null(const SIZE_TYPE & size)
 {
 
-   return size.cx() == (decltype(SIZE_TYPE::cx))0
-      && size.cy() == (decltype(SIZE_TYPE::cy))0;
+   return size.cx() == (typename SIZE_TYPE::UNIT_TYPE)0
+      && size.cy() == (typename SIZE_TYPE::UNIT_TYPE)0;
 
 }
 
@@ -495,7 +495,7 @@ template < primitive_point POINT_TYPE >
 bool is_null(const POINT_TYPE & point)
 {
 
-   return point.x() == (decltype(POINT_TYPE::cx))0 && point.y() == (decltype(POINT_TYPE::cy))0;
+   return point.x() == (typename POINT_TYPE::UNIT_TYPE)0 && point.y() == (typename POINT_TYPE::UNIT_TYPE)0;
 
 }
 
@@ -507,9 +507,9 @@ template < primitive_rectangle RECTANGLE_TYPE, typename X >
 inline RECTANGLE_TYPE & x_offset(RECTANGLE_TYPE & rectangle, X x)
 {
 
-   rectangle.left() = (decay<decltype(rectangle.left())>)(rectangle.left() + x);
+   rectangle.left() = (decay<typename RECTANGLE_TYPE::UNIT_TYPE>)(rectangle.left() + x);
 
-   rectangle.right() = (decay<decltype(rectangle.right())>)(rectangle.right() + x);
+   rectangle.right() = (decay<typename RECTANGLE_TYPE::UNIT_TYPE>)(rectangle.right() + x);
 
    return rectangle;
 
@@ -520,9 +520,9 @@ template < primitive_rectangle RECTANGLE_TYPE, typename Y >
 inline RECTANGLE_TYPE & y_offset(RECTANGLE_TYPE & rectangle, Y y)
 {
 
-   rectangle.top() = (decay<decltype(rectangle.top())>)(rectangle.top() + y);
+   rectangle.top() = (decay<typename RECTANGLE_TYPE::UNIT_TYPE>)(rectangle.top() + y);
 
-   rectangle.bottom() = (decay<decltype(rectangle.bottom())>)(rectangle.bottom() + y);
+   rectangle.bottom() = (decay<typename RECTANGLE_TYPE::UNIT_TYPE>)(rectangle.bottom() + y);
 
    return rectangle;
 
@@ -534,9 +534,9 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_number X >
 inline RECTANGLE_TYPE & x_subtract(RECTANGLE_TYPE & rectangle, X x)
 {
 
-   rectangle.left() = (::decay<decltype(rectangle.left())>)(rectangle.left() - x);
+   rectangle.left() = (::decay<typename RECTANGLE_TYPE::UNIT_TYPE>)(rectangle.left() - x);
 
-   rectangle.right() = (::decay<decltype(rectangle.right())>)(rectangle.right() - x);
+   rectangle.right() = (::decay<typename RECTANGLE_TYPE::UNIT_TYPE>)(rectangle.right() - x);
 
    return rectangle;
 
@@ -547,9 +547,9 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_number Y >
 inline RECTANGLE_TYPE & y_subtract(RECTANGLE_TYPE & rectangle, Y y)
 {
 
-   rectangle.top() = (::decay<decltype(rectangle.top())>)(rectangle.top() - y);
+   rectangle.top() = (::decay<typename RECTANGLE_TYPE::UNIT_TYPE>)(rectangle.top() - y);
 
-   rectangle.bottom() = (::decay<decltype(rectangle.bottom())>)(rectangle.bottom() - y);
+   rectangle.bottom() = (::decay<typename RECTANGLE_TYPE::UNIT_TYPE>)(rectangle.bottom() - y);
 
    return rectangle;
 
@@ -604,10 +604,10 @@ template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
 inline RECTANGLE1 & subtract(RECTANGLE1 & rectangle, const RECTANGLE2 & rectangle2)
 {
 
-   rectangle.left() = (decay<decltype(rectangle.left())>)(rectangle.left() - rectangle2.left());
-   rectangle.top() = (decay<decltype(rectangle.top())>)(rectangle.top() - rectangle2.top());
-   rectangle.right() = (decay<decltype(rectangle.right())>)(rectangle.right() - rectangle2.right());
-   rectangle.bottom() = (decay<decltype(rectangle.bottom())>)(rectangle.bottom() - rectangle2.bottom());
+   rectangle.left() = (decay<typename RECTANGLE1::UNIT_TYPE>)(rectangle.left() - rectangle2.left());
+   rectangle.top() = (decay<typename RECTANGLE1::UNIT_TYPE>)(rectangle.top() - rectangle2.top());
+   rectangle.right() = (decay<typename RECTANGLE1::UNIT_TYPE>)(rectangle.right() - rectangle2.right());
+   rectangle.bottom() = (decay<typename RECTANGLE1::UNIT_TYPE>)(rectangle.bottom() - rectangle2.bottom());
 
    return rectangle;
 
@@ -618,10 +618,10 @@ template < primitive_rectangle RECTANGLE, primitive_rectangle RECTANGLE1, primit
 inline RECTANGLE & subtract(RECTANGLE & rectangle, const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2)
 {
 
-   rectangle.left() = (decay<decltype(rectangle.left())>)(rectangle1.left() - rectangle2.left());
-   rectangle.top() = (decay<decltype(rectangle.top())>)(rectangle1.top() - rectangle2.top());
-   rectangle.right() = (decay<decltype(rectangle.right())>)(rectangle1.right() - rectangle2.right());
-   rectangle.bottom() = (decay<decltype(rectangle.bottom())>)(rectangle1.bottom() - rectangle2.bottom());
+   rectangle.left() = (decay<typename RECTANGLE::UNIT_TYPE>)(rectangle1.left() - rectangle2.left());
+   rectangle.top() = (decay<typename RECTANGLE::UNIT_TYPE>)(rectangle1.top() - rectangle2.top());
+   rectangle.right() = (decay<typename RECTANGLE::UNIT_TYPE>)(rectangle1.right() - rectangle2.right());
+   rectangle.bottom() = (decay<typename RECTANGLE::UNIT_TYPE>)(rectangle1.bottom() - rectangle2.bottom());
 
    return rectangle;
 
@@ -636,8 +636,8 @@ template < primitive_sequence2 SEQUENCE, primitive_number X, primitive_number Y 
 inline SEQUENCE & offset(SEQUENCE & sequence, X x, Y y)
 {
 
-   sequence.a() = (const decay<decltype(sequence.a()) & >)(sequence.a() + x);
-   sequence.b() = (const decay<decltype(sequence.b()) & >)(sequence.b() + y);
+   sequence.a() = (const decay<typename SEQUENCE::UNIT_TYPE>&)(sequence.a() + x);
+   sequence.b() = (const decay<typename SEQUENCE::UNIT_TYPE>&)(sequence.b() + y);
 
    return sequence;
 
@@ -666,8 +666,8 @@ template < primitive_sequence2 SEQUENCE, typename X, typename Y >
 inline SEQUENCE & subtract(SEQUENCE & sequence, X x, Y y)
 {
 
-   sequence.a() = (const decay<decltype(sequence.a())>&)(sequence.a() - x);
-   sequence.b() = (const decay<decltype(sequence.b())>&)(sequence.b() - y);
+   sequence.a() = (const decay<typename SEQUENCE::UNIT_TYPE>&)(sequence.a() - x);
+   sequence.b() = (const decay<typename SEQUENCE::UNIT_TYPE>&)(sequence.b() - y);
 
    return sequence;
 
@@ -957,7 +957,7 @@ bool top_left_null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect
 
 
 template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
-bool is_equal(const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2, largest_number < ::decay<decltype(rectangle1.left())>, ::decay<decltype(rectangle2.left()) > > epsilon = default_epsilon<largest_number < ::decay<decltype(rectangle1.left())>, ::decay<decltype(rectangle2.left()) > >>())
+bool is_equal(const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2, largest_number < ::decay<typename RECTANGLE1::UNIT_TYPE>, ::decay<typename RECTANGLE2::UNIT_TYPE > > epsilon = default_epsilon < ::largest_number < ::decay < typename RECTANGLE1::UNIT_TYPE >, ::decay<typename RECTANGLE2::UNIT_TYPE > >>())
 {
 
    return is_equal(rectangle1.left(), rectangle2.left(), epsilon)
@@ -969,7 +969,7 @@ bool is_equal(const RECTANGLE1 & rectangle1, const RECTANGLE2 & rectangle2, larg
 
 
 template < primitive_point POINT1, primitive_point POINT2 >
-bool is_equal(const POINT1 & point1, const POINT2 & point2, largest_number < ::decay<decltype(point1.x())>, ::decay<decltype(point2.x())> > epsilon = default_epsilon<largest_number < ::decay<decltype(point1.x())>, ::decay<decltype(point2.x())> >>())
+bool is_equal(const POINT1 & point1, const POINT2 & point2, largest_number < ::decay<typename POINT1::UNIT_TYPE>, ::decay<typename POINT2::UNIT_TYPE> > epsilon = default_epsilon<largest_number < ::decay<typename POINT1::UNIT_TYPE>, ::decay<typename POINT2::UNIT_TYPE> >>())
 {
 
    return is_equal(point1.x(), point2.x(), epsilon) && is_equal(point1.y(), point2.y(), epsilon);
@@ -978,7 +978,7 @@ bool is_equal(const POINT1 & point1, const POINT2 & point2, largest_number < ::d
 
 
 template < primitive_size SIZE1, primitive_size SIZE2 >
-bool is_equal(const SIZE1 & size1, const SIZE2 & size2, largest_number < ::decay<decltype(size1.cx())>, ::decay<decltype(size2.cx()) > > epsilon = default_epsilon<largest_number < ::decay<decltype(size1.cx())>, ::decay<decltype(size2.cx()) > >>())
+bool is_equal(const SIZE1 & size1, const SIZE2 & size2, largest_number < ::decay<typename SIZE1::UNIT_TYPE>, ::decay<typename SIZE2::UNIT_TYPE> > epsilon = default_epsilon<largest_number < ::decay<typename SIZE1::UNIT_TYPE>, ::decay<typename SIZE2::UNIT_TYPE > >>())
 {
 
    return is_equal(size1.cx(), size2.cx(), epsilon) && is_equal(size1.cy(), size2.cy(), epsilon);
@@ -990,10 +990,10 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_num
 RECTANGLE_TYPE & assign(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 {
 
-   rectangle.left() = (decltype(rectangle.left()))l;
-   rectangle.top() = (decltype(rectangle.top()))t;
-   rectangle.right() = (decltype(rectangle.right()))r;
-   rectangle.bottom() = (decltype(rectangle.bottom()))b;
+   rectangle.left() = (typename RECTANGLE_TYPE::UNIT_TYPE)l;
+   rectangle.top() = (typename RECTANGLE_TYPE::UNIT_TYPE)t;
+   rectangle.right() = (typename RECTANGLE_TYPE::UNIT_TYPE)r;
+   rectangle.bottom() = (typename RECTANGLE_TYPE::UNIT_TYPE)b;
 
    return rectangle;
 
@@ -1004,10 +1004,10 @@ template < primitive_rectangle RECTANGLE, primitive_number L, primitive_number T
 RECTANGLE & set_dimension(RECTANGLE & rectangle, L l, T t, W w, H h)
 {
 
-   rectangle.left() = (decltype(rectangle.left()))l;
-   rectangle.top() = (decltype(rectangle.top()))t;
-   rectangle.right() = (decltype(rectangle.right()))(l + w);
-   rectangle.bottom() = (decltype(rectangle.bottom()))(t + h);
+   rectangle.left() = (typename RECTANGLE::UNIT_TYPE)l;
+   rectangle.top() = (typename RECTANGLE::UNIT_TYPE)t;
+   rectangle.right() = (typename RECTANGLE::UNIT_TYPE)(l + w);
+   rectangle.bottom() = (typename RECTANGLE::UNIT_TYPE)(t + h);
 
    return rectangle;
 
@@ -1027,8 +1027,8 @@ template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size 
 RECTANGLE & set_bottom_right(RECTANGLE & rectangle, const SIZE & size)
 {
 
-   rectangle.right() = (decltype(rectangle.right()))(rectangle.left() + size.cx());
-   rectangle.bottom() = (decltype(rectangle.bottom()))(rectangle.top() + size.cy());
+   rectangle.right() = (typename RECTANGLE::UNIT_TYPE)(rectangle.left() + size.cx());
+   rectangle.bottom() = (typename RECTANGLE::UNIT_TYPE)(rectangle.top() + size.cy());
 
    return rectangle;
 
@@ -1039,10 +1039,10 @@ template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size 
 RECTANGLE & assign(RECTANGLE & rectangle, const POINT & point, const SIZE & size)
 {
 
-   rectangle.left() = (decay<decltype(rectangle.left())>)point.x();
-   rectangle.top() = (decay<decltype(rectangle.top())>)point.y();
-   rectangle.right() = (decay<decltype(rectangle.right())>)(point.x() + size.cx());
-   rectangle.bottom() = (decay<decltype(rectangle.bottom())>)(point.y() + size.cy());
+   rectangle.left() = (typename RECTANGLE::UNIT_TYPE)point.x();
+   rectangle.top() = (typename RECTANGLE::UNIT_TYPE)point.y();
+   rectangle.right() = (typename RECTANGLE::UNIT_TYPE)(point.x() + size.cx());
+   rectangle.bottom() = (typename RECTANGLE::UNIT_TYPE)(point.y() + size.cy());
 
    return rectangle;
 
@@ -1090,10 +1090,10 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_num
 inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 {
 
-   rectangle.left() = (decay<decltype(rectangle.left())>)(rectangle.left() - l);
-   rectangle.top() = (decay<decltype(rectangle.top())>)(rectangle.top() - t);
-   rectangle.right() = (decay<decltype(rectangle.right())>)(rectangle.right() + r);
-   rectangle.bottom() = (decay<decltype(rectangle.bottom())>)(rectangle.bottom() + b);
+   rectangle.left() = (typename RECTANGLE_TYPE::UNIT_TYPE)(rectangle.left() - l);
+   rectangle.top() = (typename RECTANGLE_TYPE::UNIT_TYPE)(rectangle.top() - t);
+   rectangle.right() = (typename RECTANGLE_TYPE::UNIT_TYPE)(rectangle.right() + r);
+   rectangle.bottom() = (typename RECTANGLE_TYPE::UNIT_TYPE)(rectangle.bottom() + b);
 
    return rectangle;
 
@@ -1127,10 +1127,10 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_num
 inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 {
 
-   rectangle.left() = (decay<decltype(rectangle.left())>)(rectangle.left() + l);
-   rectangle.top() = (decay<decltype(rectangle.top())>)(rectangle.top() + t);
-   rectangle.right() = (decay<decltype(rectangle.right())>)(rectangle.right() - r);
-   rectangle.bottom() = (decay<decltype(rectangle.bottom())>)(rectangle.bottom() - b);
+   rectangle.left() = (typename RECTANGLE_TYPE::UNIT_TYPE)(rectangle.left() + l);
+   rectangle.top() = (typename RECTANGLE_TYPE::UNIT_TYPE)(rectangle.top() + t);
+   rectangle.right() = (typename RECTANGLE_TYPE::UNIT_TYPE)(rectangle.right() - r);
+   rectangle.bottom() = (typename RECTANGLE_TYPE::UNIT_TYPE)(rectangle.bottom() - b);
 
    return rectangle;
 
@@ -1223,10 +1223,10 @@ inline bool polygon_contains_winding(const POINT1 * ppPolygon, i32 iCount, const
 
 /* intersection function */
 template < primitive_point POINT1, primitive_point POINT2 >
-inline bool polygon_contains_alternate(const POINT1 * ppPolygon, i32 iCount, const POINT2 & point, const bool use_holes, largest_number < ::decay<decltype(ppPolygon->x())>, ::decay<decltype(point.x())>> epsilon = default_epsilon<largest_number < ::decay<decltype(ppPolygon->x())>, ::decay<decltype(point.x())>>>())
+inline bool polygon_contains_alternate(const POINT1 * ppPolygon, i32 iCount, const POINT2 & point, const bool use_holes, largest_number < ::decay<typename POINT1::UNIT_TYPE>, ::decay<typename POINT2::UNIT_TYPE>> epsilon = default_epsilon<largest_number < ::decay < typename POINT1::UNIT_TYPE >, ::decay < typename POINT2::UNIT_TYPE > > > ())
 {
 
-   using UNIT_TYPE = largest_number < ::decay<decltype(ppPolygon->x())>, ::decay<decltype(point.x())>>;
+   using UNIT_TYPE = largest_number < ::decay <typename  POINT1::UNIT_TYPE >, ::decay<typename POINT2::UNIT_TYPE > >;
 
    /* we do the angle rule, define that all added angles should be about zero or (2 * PI) */
    UNIT_TYPE angletot{};
@@ -1325,10 +1325,10 @@ inline void expand_rect(RECT1& rectangle, const RECT2& r)
    else
    {
 
-      rectangle.left() = minimum((decltype(rectangle.left()))rectangle.left(), (decltype(rectangle.left()))r.left());
-      rectangle.right() = maximum((decltype(rectangle.right()))rectangle.right(), (decltype(rectangle.right()))r.right());
-      rectangle.top() = minimum((decltype(rectangle.top()))rectangle.top(), (decltype(rectangle.top()))r.top());
-      rectangle.bottom() = maximum((decltype(rectangle.bottom()))rectangle.bottom(), (decltype(rectangle.bottom()))r.bottom());
+      rectangle.left() = minimum((typename RECT1::UNIT_TYPE)rectangle.left(), (typename RECT1::UNIT_TYPE)r.left());
+      rectangle.right() = maximum((typename RECT1::UNIT_TYPE)rectangle.right(), (typename RECT1::UNIT_TYPE)r.right());
+      rectangle.top() = minimum((typename RECT1::UNIT_TYPE)rectangle.top(), (typename RECT1::UNIT_TYPE)r.top());
+      rectangle.bottom() = maximum((typename RECT1::UNIT_TYPE)rectangle.bottom(), (typename RECT1::UNIT_TYPE)r.bottom());
 
    }
 
@@ -1348,10 +1348,10 @@ inline void collapse_rect(RECT1& rectangle, const RECT2& r)
    else
    {
 
-      rectangle.left() = maximum((decltype(rectangle.left()))rectangle.left(), (decltype(rectangle.left()))r.left());
-      rectangle.right() = minimum((decltype(rectangle.right()))rectangle.right(), (decltype(rectangle.right()))r.right());
-      rectangle.top() = maximum((decltype(rectangle.top()))rectangle.top(), (decltype(rectangle.top()))r.top());
-      rectangle.bottom() = minimum((decltype(rectangle.bottom()))rectangle.bottom(), (decltype(rectangle.bottom()))r.bottom());
+      rectangle.left() = maximum((typename RECT1::UNIT_TYPE)rectangle.left(), (typename RECT1::UNIT_TYPE)r.left());
+      rectangle.right() = minimum((typename RECT1::UNIT_TYPE)rectangle.right(), (typename RECT1::UNIT_TYPE)r.right());
+      rectangle.top() = maximum((typename RECT1::UNIT_TYPE)rectangle.top(), (typename RECT1::UNIT_TYPE)r.top());
+      rectangle.bottom() = minimum((typename RECT1::UNIT_TYPE)rectangle.bottom(), (typename RECT1::UNIT_TYPE)r.bottom());
 
       if (::width(rectangle) == 0 || height(rectangle) == 0)
       {

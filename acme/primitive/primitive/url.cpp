@@ -482,7 +482,7 @@ namespace url
 
       m_rangeProtocol = connect.m_strProtocol;
       m_rangeHost = connect.m_strHost;
-      m_rangePort = {};
+      m_rangePort.clear();
       m_iPort = connect.m_iPort;
       m_bSecure = connect.m_bSecure;
 
@@ -537,9 +537,9 @@ namespace url
       if (scopedstr.is_empty())
       {
 
-         m_rangePath = {};
+         m_rangePath.clear();
 
-         m_rangePath = {};
+         m_rangePath.clear();
 
 
       }
@@ -548,7 +548,7 @@ namespace url
 
       auto pszLastSlashOnScript = strrchr(pszScript, '/');
 
-      auto pszQuestion = strchr(pszScript, '?');
+      const char * pszQuestion = strchr(pszScript, '?');
 
       const char* pszFragment;
 
@@ -631,7 +631,7 @@ namespace url
 
       m_rangePath = request.m_strPath;
       m_rangeName = ::file_path_name(m_rangePath);
-      m_rangeQuery = {};
+      m_rangeQuery.clear();
       m_psetArguments = request.m_psetArguments;
       m_rangeFragment = request.m_strFragment;
 

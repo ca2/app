@@ -13,7 +13,7 @@
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(LINUX) || defined(__APPLE__) || defined(__BSD__)
 #include <sys/ipc.h>
 #include <sys/sem.h>
 #include "acme/operating_system/ansi/_ansi.h"
@@ -149,7 +149,7 @@ semaphore::~semaphore()
 }
 
 
-#if defined(FREEBSD) || defined(OPENBSD)
+#if defined(__BSD__)
 
 int
 _semtimedop(int semid, struct sembuf *array, size_t nops, struct
@@ -197,7 +197,7 @@ bool semaphore::_wait(const class time & timeWait)
 
 }
 
-#elif defined(LINUX) || defined(SOLARIS) || defined(FREEBSD) || defined(OPENBSD)
+#elif defined(LINUX) || defined(SOLARIS) || defined(__BSD__)
 
 bool semaphore::_wait(const class time & timeWait)
 {
@@ -222,7 +222,7 @@ bool semaphore::_wait(const class time & timeWait)
 
       timespec += timeWait;
 
-#if defined(FREEBSD) || defined(OPENBSD)
+#if defined(__BSD__)
       iRet = _semtimedop(static_cast < i32 > (m_hsync), &sb, 1, &timespec);
 #else
       iRet = semtimedop(static_cast < i32 > (m_hsync), &sb, 1, &timespec);

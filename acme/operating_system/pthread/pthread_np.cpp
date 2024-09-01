@@ -12,9 +12,13 @@
 #define __BSD_VISIBLE 1
 #endif
 #include <pthread.h>
-#if defined(FREEBSD) || defined(OPENBSD)
+#if defined(__BSD__)
 #include <stdio.h>
+#if defined(NETBSD)
+#include <pthread.h>
+#else
 #include <pthread_np.h>
+#endif
 #include <sched.h>
 #include <errno.h>
 #else
@@ -23,7 +27,7 @@
 
 
 
-#if defined(FREEBSD) || defined(OPENBSD)
+#if defined(FREEBSD) || defined(OPENBSD) || defined(NETBSD)
 
 int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
 {
@@ -31,6 +35,49 @@ int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
 #if defined(OPENBSD)
 
     return 1;
+
+#elif defined(NETBSD)
+
+    cpuset_t * pcpuset = cpuset_create();
+
+    if(!pcpuset)
+    {
+
+        return 0;
+
+    }
+
+    cpuset_zero(pcpuset);
+
+    int iCpuSetErrorCount = 0;
+
+    for(int i = 0; i < sizeof(dwThreadAffinityMask) * 8; i++)
+    {
+
+       	if((1 << i) & dwThreadAffinityMask)
+       	{
+
+           if(cpuset_set(i, pcpuset) < 0)
+           {
+
+               iCpuSetErrorCount++;
+
+           }
+
+        }
+
+    }
+
+    if(iCpuSetErrorCount <= 0)
+    {
+
+       pthread_setaffinity_np((pthread_t) h, cpuset_size(pcpuset), pcpuset);
+
+    }
+
+    cpuset_destroy(pcpuset);
+
+    return iCpuSetErrorCount <= 0;
 
 #else
 
@@ -137,9 +184,9 @@ void task_set_name(htask_t htask, const char * psz)
 
    string strName(psz);
 
-   thread_name_abbreviate(strName, 15);
-
 #if defined(FREEBSD) || defined(OPENBSD)
+
+   thread_name_abbreviate(strName, 15);
 
    errno = 0;
 
@@ -147,7 +194,15 @@ void task_set_name(htask_t htask, const char * psz)
 
    int error = errno;
 
+#elif defined(NETBSD)
+
+   thread_name_abbreviate(strName, PTHREAD_MAX_NAMELEN_NP);
+
+   int error = pthread_setname_np(pthread, "%s", (void *) strName.c_str());
+
 #else
+
+   thread_name_abbreviate(strName, 15);
 
    int error = pthread_setname_np(pthread, strName);
 

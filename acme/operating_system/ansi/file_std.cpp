@@ -139,7 +139,7 @@ filesize FILE_get_size(FILE * fp)
 
 #ifdef WINDOWS
    auto pos = _ftelli64(fp);
-#elif (defined(ANDROID) && __ANDROID_API__ < 24) || defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
+#elif (defined(ANDROID) && __ANDROID_API__ < 24) || defined(__APPLE__) || defined(__BSD__)
    auto pos = ftello(fp);
 #else
    auto pos = ftello64(fp);
@@ -149,7 +149,7 @@ filesize FILE_get_size(FILE * fp)
 
 #ifdef WINDOWS
    auto len = _ftelli64(fp);
-#elif (defined(ANDROID) && __ANDROID_API__ < 24) || defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
+#elif (defined(ANDROID) && __ANDROID_API__ < 24) || defined(__APPLE__) || defined(__BSD__)
    auto len = ftello(fp);
 #else
    auto len = ftello64(fp);
@@ -157,7 +157,7 @@ filesize FILE_get_size(FILE * fp)
 
 #ifdef WINDOWS
    _fseeki64(fp, (long) (pos), SEEK_SET);
-#elif (defined(ANDROID) && __ANDROID_API__ < 24) || defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
+#elif (defined(ANDROID) && __ANDROID_API__ < 24) || defined(__APPLE__) || defined(__BSD__)
    fseeko(fp, (long)(pos), SEEK_SET);
 #else
    fseeko64(fp, (long) (pos), SEEK_SET);
@@ -177,7 +177,7 @@ filesize FILE_get_size(FILE * fp)
 
 
 
-#if !defined(__APPLE__) && !defined(WINDOWS)
+#if !defined(__APPLE__) && !defined(WINDOWS) && !defined(__BSD__)
 
 ::file::path __xxxnode_full_file_path(file::path path)
 {

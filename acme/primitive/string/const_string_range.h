@@ -148,6 +148,13 @@ public:
 
    bool is_trimmed_empty() const;
 
+void clear()
+{
+this->m_begin=nullptr;
+this->m_end = nullptr;
+this->m_erange = e_range_none;
+}
+
    STRING_RANGE operator()(strsize start, strsize count) const;
 
    STRING_RANGE operator()(strsize start, const_iterator end) const;

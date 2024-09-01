@@ -5,7 +5,7 @@
 
 #include <sys/utsname.h>
 
-#if defined(FREEBSD) || defined(OPENBSD)
+#if defined(__BSD__)
 #include <strings.h>
 #include <stdio.h>
 #endif

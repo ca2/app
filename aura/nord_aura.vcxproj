@@ -420,7 +420,6 @@
     <ClInclude Include="user\user\scroll_bar.h" />
     <ClInclude Include="user\user\scroll_base.h" />
     <ClInclude Include="user\user\scroll_state.h" />
-    <ClInclude Include="user\user\scroll_state.h" />
     <ClInclude Include="user\user\shell.h" />
     <ClInclude Include="user\user\still.h" />
     <ClInclude Include="user\user\style.h" />

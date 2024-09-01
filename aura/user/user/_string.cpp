@@ -7,7 +7,7 @@
 
 
 #undef DO
-#define DO(e) case e: return STRINGFY(e)
+#define DO(e) case e: return MAKE_STRING(e)
 
 
 const char * as_psz(::experience::enum_frame eframe)

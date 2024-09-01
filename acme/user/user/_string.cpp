@@ -138,7 +138,7 @@ CLASS_DECL_ACME ::string as_string(::enum_activation eactivation)
 
 
 #undef DO
-#define DO(e) STRINGFY(e)
+#define DO(e) MAKE_STRING(e)
 
 const char * g_pszaEnumCursor[]= {
    DO(e_cursor_unmodified),

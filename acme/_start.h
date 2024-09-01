@@ -113,11 +113,11 @@ typedef i64 filesize;
 
 
 #if WCHAR_T_SIZE == 16
-#define __END_CHARBIT(xxx) __CONCAT(xxx, 16)
-#define __MID_CHARBIT(xxx, zzz) __CONCAT3(xxx, 16, zzz)
+#define __END_CHARBIT(xxx) __CONCATENATE(xxx, 16)
+#define __MID_CHARBIT(xxx, zzz) __CONCATENATE3(xxx, 16, zzz)
 #elif WCHAR_T_SIZE == 32
-#define __END_CHARBIT(xxx) __CONCAT(xxx, 32)
-#define __MID_CHARBIT(xxx, zzz) __CONCAT3(xxx, 32, zzz)
+#define __END_CHARBIT(xxx) __CONCATENATE(xxx, 32)
+#define __MID_CHARBIT(xxx, zzz) __CONCATENATE3(xxx, 32, zzz)
 #else
 #error "Please define WCHAR_T_SIZE"
 #endif

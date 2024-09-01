@@ -15,9 +15,9 @@
 //#define DECLARE_FACTORY(library) \
 //__FACTORY_EXPORT void IDENTIFIER_CONCATENATE(library, _factory)(::factory::factory* pfactory);
 
-//#define STRINGFY(a) #a
+//#define MAKE_STRING(a) #a
 #define SETUP_FACTORY(library) \
-::system_setup IDENTIFIER_CONCATENATE(m_setup_, library){ &IDENTIFIER_CONCATENATE(library, _factory), STRINGFY(library)}
+::system_setup IDENTIFIER_CONCATENATE(m_setup_, library){ &IDENTIFIER_CONCATENATE(library, _factory), MAKE_STRING(library)}
 
 
 //class node_data_exchange;

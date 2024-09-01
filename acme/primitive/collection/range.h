@@ -205,7 +205,7 @@ public:
    {
    }
 
-   constexpr range(nullptr_t) : range()
+   constexpr range(::std::nullptr_t) : range()
    {
    }
 

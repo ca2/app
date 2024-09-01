@@ -55,7 +55,7 @@ namespace c
          m_psz = nullptr;
          if (psz) free(psz);
       }
-      string & operator = (nullptr_t) 
+      string & operator = (::std::nullptr_t) 
       {
          destroy(); 
          return *this;

@@ -125,7 +125,7 @@ public:
 };
 
 
-using nullptr_t = std::nullptr_t;
+using ::std::nullptr_t = ::std::nullptr_t;
 
 
 #pragma pack(push,1)

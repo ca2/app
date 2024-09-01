@@ -15,7 +15,7 @@ public:
    bits() { m_natural = 0; }
    bits(no_initialize_t) {}
    bits(NATURAL n) : m_natural(n) { }
-   bits(std::nullptr_t) { m_natural = 0; }
+   bits(::std::nullptr_t) { m_natural = 0; }
 
    
    template < primitive_integral INTEGRAL >

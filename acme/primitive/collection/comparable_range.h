@@ -34,7 +34,7 @@
 //
 //
 //   comparable_range(no_initialize_t) : RANGE_TYPE(no_initialize_t{}) {}
-//   comparable_range(nullptr_t) : RANGE_TYPE(nullptr) {}
+//   comparable_range(::std::nullptr_t) : RANGE_TYPE(nullptr) {}
 //   comparable_range() {}
 //   template<typed_range<iterator> RANGE>
 //   comparable_range(const RANGE &range) : BASE_RANGE(range) {}

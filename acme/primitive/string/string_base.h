@@ -91,7 +91,7 @@ public:
    string_base() { }
    string_base(no_initialize_t) : NATURAL_POINTER(no_initialize_t{}) { }
    string_base(enum_zero_initialize) : NATURAL_POINTER(e_zero_initialize) { }
-   string_base(nullptr_t) { }
+   string_base(::std::nullptr_t) { }
    string_base(enum_for_moving) { }
    //string_base(enum_get_buffer, strsize length) { get_buffer(length); }
    //string_base(const ::ansi_character * psz);

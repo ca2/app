@@ -24,7 +24,7 @@ public:
    
 
    comparable_eq_array(no_initialize_t):BASE_RANGE(no_initialize_t{}){}
-   comparable_eq_array(nullptr_t):BASE_RANGE(nullptr){}
+   comparable_eq_array(::std::nullptr_t):BASE_RANGE(nullptr){}
    comparable_eq_array():BASE_RANGE(){}
    comparable_eq_array(::std::initializer_list < TYPE > initializer_list) { this->add_initializer_list(initializer_list); }
    comparable_eq_array(const comparable_eq_array & array) : BASE_RANGE(array) {}

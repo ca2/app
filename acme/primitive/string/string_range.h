@@ -58,7 +58,7 @@ public:
 
    string_range(enum_zero_initialize) : ::const_string_range<ITERATOR_TYPE>(e_zero_initialize) {}
 
-   string_range(nullptr_t) : ::const_string_range<ITERATOR_TYPE>(nullptr) {}
+   string_range(::std::nullptr_t) : ::const_string_range<ITERATOR_TYPE>(nullptr) {}
 
    string_range() {}
 

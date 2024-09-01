@@ -94,7 +94,7 @@ public:
 
    const_string_range(enum_zero_initialize) : BASE_RANGE(e_zero_initialize) {}
 
-   const_string_range(nullptr_t) : BASE_RANGE(nullptr) {}
+   const_string_range(::std::nullptr_t) : BASE_RANGE(nullptr) {}
 
    const_string_range() {}
 

@@ -162,7 +162,7 @@ public:
    payload();
    payload(no_initialize_t) {}
    payload(enum_type etype);
-   payload(std::nullptr_t);
+   payload(::std::nullptr_t);
    payload(const ::payload & payload);
    payload(::payload && payload) :
       m_etype(payload.m_etype)
@@ -833,7 +833,7 @@ public:
 
    }
 
-   inline payload & operator = (nullptr_t){ set_type(e_type_null, false); return *this; }
+   inline payload & operator = (::std::nullptr_t){ set_type(e_type_null, false); return *this; }
 
    inline payload & operator = (::subparticle * pelement)
    {

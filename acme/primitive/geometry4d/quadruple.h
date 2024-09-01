@@ -31,7 +31,7 @@ struct quadruple_type :
 
    quadruple_type() {}
    quadruple_type(no_initialize_t) : sequence_type < NUMBER, 2 >(no_initialize_t{}) {}
-   //point_type(::std::nullptr_t) : sequence_type < NUMBER, 2 >(nullptr) {}
+   //point_type(::::std::nullptr_t) : sequence_type < NUMBER, 2 >(nullptr) {}
 
 //   sequence_type(const sequence_type&) = default;
 

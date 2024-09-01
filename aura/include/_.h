@@ -885,7 +885,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////};
 ////
 //////// very short name ([{c}])ontext (switchers, as it as action_context) enums
-//////enum nullptr_t
+//////enum ::std::nullptr_t
 //////{
 //////   nullptr
 //////};

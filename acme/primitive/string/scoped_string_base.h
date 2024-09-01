@@ -31,7 +31,7 @@ public:
 
 
    scoped_string_base():RANGE(e_zero_initialize) {}
-   scoped_string_base(nullptr_t) :RANGE(e_zero_initialize) {}
+   scoped_string_base(::std::nullptr_t) :RANGE(e_zero_initialize) {}
    scoped_string_base(const scoped_ansi_string & scopedstr) : RANGE(e_zero_initialize) { construct_range(scopedstr); }
    scoped_string_base(const scoped_wd16_string & scopedstr) : RANGE(e_zero_initialize) { construct_range(scopedstr); }
    scoped_string_base(const scoped_wd32_string & scopedstr) : RANGE(e_zero_initialize) { construct_range(scopedstr); }

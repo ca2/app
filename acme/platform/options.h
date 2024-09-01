@@ -11,7 +11,7 @@
 //
 //
 //   options() {}
-//   options(nullptr_t) {}
+//   options(::std::nullptr_t) {}
 //   options(std::initializer_list < ::payload > &);
 //
 //

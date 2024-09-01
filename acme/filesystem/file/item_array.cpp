@@ -9,7 +9,7 @@ namespace file
 {
 
 
-   item_array::item_array(std::nullptr_t)
+   item_array::item_array(::std::nullptr_t)
    {
 
    }

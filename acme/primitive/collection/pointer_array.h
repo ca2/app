@@ -32,7 +32,7 @@ public:
    }
 
 
-   explicit pointer_array(std::nullptr_t)
+   explicit pointer_array(::std::nullptr_t)
    {
 
    }

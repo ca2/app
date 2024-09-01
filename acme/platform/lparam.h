@@ -13,7 +13,7 @@ public:
    iptr             m_lparam;
 
 
-   lparam(std::nullptr_t = nullptr) { m_lparam = 0; }
+   lparam(::std::nullptr_t = nullptr) { m_lparam = 0; }
 
    template < primitive_integral INTEGRAL >
    lparam(INTEGRAL i) { m_lparam = (iptr)i; }

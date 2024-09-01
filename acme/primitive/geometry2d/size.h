@@ -26,7 +26,7 @@ public:
    
    size_type() {}
    size_type(no_initialize_t) : sequence_type < NUMBER, 2 >(no_initialize_t{}) {}
-   //size_type(::std::nullptr_t) : sequence_type < NUMBER, 2 >(nullptr) {}
+   //size_type(::::std::nullptr_t) : sequence_type < NUMBER, 2 >(nullptr) {}
 
 //   sequence_type(const sequence_type&) = default;
 
@@ -68,7 +68,7 @@ public:
 
    //size_type() noexcept { this->cx() = UNIT_TYPE{}; this->cy() = UNIT_TYPE{}; }
    //size_type(no_initialize_t) noexcept {}
-   //size_type(::std::nullptr_t) noexcept { this->cx() = UNIT_TYPE{}; this->cy() = UNIT_TYPE{}; }
+   //size_type(::::std::nullptr_t) noexcept { this->cx() = UNIT_TYPE{}; this->cy() = UNIT_TYPE{}; }
    //size_type(UNIT_TYPE cx, UNIT_TYPE cy) noexcept { this->cx() = cx; this->cy() = cy; }
 //   template < primitive_number NUMBER_TYPE >
 //   size_type(NUMBER_TYPE n) noexcept { this->cx() = (UNIT_TYPE) n; this->cy() = (UNIT_TYPE) n; }
@@ -240,8 +240,8 @@ public:
    template < primitive_number NUMBER1 >
    inline size_type < largest_number < UNIT_TYPE, NUMBER1 > > half_away(const size_type < NUMBER1 >& size) { return size_type < largest_number < UNIT_TYPE, NUMBER1 > >((this->cx() - size.cx()) / (largest_number < UNIT_TYPE, NUMBER1 >) 2, (this->cy() - size.cy()) / (largest_number < UNIT_TYPE, NUMBER1 >) 2); }
 
-//   inline bool operator ==(::std::nullptr_t) const noexcept { return ::is_null(this); }
-//   inline bool operator !=(::std::nullptr_t) const noexcept { return !operator==(nullptr); }
+//   inline bool operator ==(::::std::nullptr_t) const noexcept { return ::is_null(this); }
+//   inline bool operator !=(::::std::nullptr_t) const noexcept { return !operator==(nullptr); }
 
    inline bool operator == (const size_type & size) const noexcept { return this->cx() == size.cx() && this->cy() == size.cy(); }
 //   inline bool operator != (const size_type & size) const noexcept { return !operator ==(size); }

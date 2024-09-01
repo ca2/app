@@ -21,7 +21,7 @@ public:
    
    point_type() {}
    point_type(no_initialize_t) : sequence_type < NUMBER, 2 >(no_initialize_t{}) {}
-   //point_type(::std::nullptr_t) : sequence_type < NUMBER, 2 >(nullptr) {}
+   //point_type(::::std::nullptr_t) : sequence_type < NUMBER, 2 >(nullptr) {}
 
 //   sequence_type(const sequence_type&) = default;
 
@@ -72,7 +72,7 @@ public:
 
 //   point_type() noexcept { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE)0; }
 //   point_type(no_initialize_t) noexcept {  }
-//   point_type(::std::nullptr_t) noexcept { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE)0; }
+//   point_type(::::std::nullptr_t) noexcept { this->x() = (UNIT_TYPE)0; this->y() = (UNIT_TYPE)0; }
 //   point_type(UNIT_TYPE x, UNIT_TYPE y) noexcept { this->x() = x; this->y() = y; }
 //   ///point_type(const ::lparam& lparam) noexcept : point_type(lparam.x(), lparam.y()) {}
 //   //point_type(const ::u32 u) noexcept : point_type((UNIT_TYPE) u32_x(u), (UNIT_TYPE)u32_y(u)) {}
@@ -188,8 +188,8 @@ public:
    //inline bool operator!=(const POINT & point) const noexcept { return (this->x() != (UNIT_TYPE) point.x() || this->y() != (UNIT_TYPE) point.y()); }
 
 
-   inline bool operator==(::std::nullptr_t) const noexcept { return ::is_null(this); }
-   //inline bool operator!=(::std::nullptr_t) const noexcept { return !::is_null(this); }
+   inline bool operator==(::::std::nullptr_t) const noexcept { return ::is_null(this); }
+   //inline bool operator!=(::::std::nullptr_t) const noexcept { return !::is_null(this); }
 
    template < primitive_number NUMBER1 >
    point_type < largest_number < UNIT_TYPE, NUMBER1 > > operator *(NUMBER1 n) const

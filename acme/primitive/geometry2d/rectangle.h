@@ -37,7 +37,7 @@ public:
 
    rectangle_type() { }
    rectangle_type(no_initialize_t) { }
-   //rectangle_type(::std::nullptr_t)  : rectangle_type(0, 0, 0, 0) {}
+   //rectangle_type(::::std::nullptr_t)  : rectangle_type(0, 0, 0, 0) {}
 
    template < primitive_number LEFT, primitive_number TOP, primitive_number RIGHT, primitive_number BOTTOM >
    rectangle_type(LEFT left, TOP top, RIGHT right, BOTTOM bottom)  :
@@ -1512,8 +1512,8 @@ public:
 
    }
 
-   inline bool operator==(::std::nullptr_t) const  { return ::is_null(*this); }
-//   inline bool operator!=(::std::nullptr_t) const  { return !operator==(nullptr); }
+   inline bool operator==(::::std::nullptr_t) const  { return ::is_null(*this); }
+//   inline bool operator!=(::::std::nullptr_t) const  { return !operator==(nullptr); }
 
    template < primitive_size SIZE >
    inline bool operator == (const SIZE & size) const  { return this->width() == size.cx() && this->height() == size.cy(); }

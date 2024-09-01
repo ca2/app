@@ -39,7 +39,7 @@
 //   //using BASE_RANGE::BASE_RANGE;
 //
 //   array_range(no_initialize_t):BASE_RANGE(no_initialize_t{}){}
-//   array_range(::std::nullptr_t):BASE_RANGE(nullptr){}
+//   array_range(nullptr_t):BASE_RANGE(nullptr){}
 //   array_range():BASE_RANGE(){}
 //   array_range(const array_range & array_range) : BASE_RANGE(array_range) {}
 //   array_range(array_range && array_range) : BASE_RANGE(::transfer(array_range)) {}

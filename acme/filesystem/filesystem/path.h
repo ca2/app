@@ -55,7 +55,7 @@ namespace file
       path() { m_epath = e_path_file; }
       path(enum_path epath) { m_epath = epath; }
       path(no_initialize_t) : string(no_initialize_t{}) { }
-      path(::std::nullptr_t) { }
+      path(nullptr_t) { }
       //path(enum_for_moving) { }
       //path(enum_get_buffer, strsize len) { get_buffer(len); }
       path(const path & path) : string(path), path_meta(path) {}
@@ -177,7 +177,7 @@ namespace file
       //inline ~path() {}
 
 //      path() { m_epath = e_path_file; }
-//      path(::std::nullptr_t) {}
+//      path(nullptr_t) {}
 //      path(const ::ansi_string & str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, i64 iSize = -1);
 ////      path(const ::wd16_string & wd16str, enum_path epath = e_path_none, e_type etype = e_type_unknown, bool bNormalize = true, i64 iSize = -1) :
 ////         path((const::ansi_string &)wd16str, epath, iDir, bNormalize, iSize) {}

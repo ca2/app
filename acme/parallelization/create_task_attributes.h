@@ -18,7 +18,7 @@ public:
 
 
    create_task_attributes(::enum_priority epriority = e_priority_normal, ::u32 uStackSize = 0, ::u32 uCreateFlags = 0, security_attributes * psecurityattributes = nullptr);
-   create_task_attributes(::std::nullptr_t);
+   create_task_attributes(nullptr_t);
    create_task_attributes(const create_task_attributes & createtaskattributes);
 
 

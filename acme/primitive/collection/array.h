@@ -34,7 +34,7 @@ public:
    using BASE_ARRAY::BASE_ARRAY;
 
    array_non_particle();
-   array_non_particle(::std::nullptr_t) : array_non_particle() {}
+   array_non_particle(nullptr_t) : array_non_particle() {}
    array_non_particle(std::initializer_list < TYPE > initializer_list) : BASE_ARRAY(initializer_list) {}
    //array_non_particle(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
    array_non_particle(const array_non_particle & a);
@@ -326,7 +326,7 @@ public:
    //{
    //}
    array() {}
-   array(::std::nullptr_t) : BASE_ARRAY() {}
+   array(nullptr_t) : BASE_ARRAY() {}
    array(std::initializer_list < TYPE > initializer_list) : BASE_ARRAY(initializer_list) {}
    //array_non_particle(const_iterator begin, const_iterator end) : BASE_ARRAY(begin, end) {}
    array(const BASE_ARRAY & a) : BASE_ARRAY(a) {}

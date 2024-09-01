@@ -15,7 +15,7 @@ namespace file
    public:
 
 
-      item_array(::std::nullptr_t = nullptr);
+      item_array(nullptr_t = nullptr);
       item_array(const item_array & itema);
       item_array(item_array && itema);
       virtual ~item_array();

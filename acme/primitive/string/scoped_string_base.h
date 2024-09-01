@@ -31,7 +31,7 @@ public:
 
 
    scoped_string_base():RANGE(e_zero_initialize) {}
-   scoped_string_base(::std::nullptr_t) :RANGE(e_zero_initialize) {}
+   scoped_string_base(nullptr_t) :RANGE(e_zero_initialize) {}
    scoped_string_base(const scoped_ansi_string & scopedstr) : RANGE(e_zero_initialize) { construct_range(scopedstr); }
    scoped_string_base(const scoped_wd16_string & scopedstr) : RANGE(e_zero_initialize) { construct_range(scopedstr); }
    scoped_string_base(const scoped_wd32_string & scopedstr) : RANGE(e_zero_initialize) { construct_range(scopedstr); }
@@ -393,6 +393,7 @@ inline ::u32hash u32_hash < scoped_wd32_string >(const scoped_wd32_string & scop
 #include  "acme/primitive/mathematics/_string.h"
 
 
+#ifdef __STD_FORMAT__
 
 
 template < >
@@ -403,3 +404,9 @@ struct std::formatter<::scoped_string > :
       return formatter<::std::string_view>::format({ scopedstr.begin(), scopedstr.end() }, ctx);
    }
 };
+
+
+#endif
+
+
+

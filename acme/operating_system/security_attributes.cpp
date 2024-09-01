@@ -11,7 +11,7 @@ security_attributes::security_attributes()
 }
 
 
-//security_attributes::security_attributes(::std::nullptr_t) :
+//security_attributes::security_attributes(nullptr_t) :
 //   security_attributes()
 //{
 //

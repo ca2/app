@@ -48,7 +48,7 @@ union te_function{
    double (*m_clj5)(void *, double d, double d2, double d3, double d4, double d5);
    double (*m_clj6)(void *, double d, double d2, double d3, double d4, double d5, double d6);
    double (*m_clj7)(void *, double d, double d2, double d3, double d4, double d5, double d6, double d7);
-   te_function(::std::nullptr_t){m_fn1= nullptr;}
+   te_function(nullptr_t){m_fn1= nullptr;}
    te_function(double (*fn0)()):m_fn0(fn0){}
    te_function(double (*fn1)(double d)):m_fn1(fn1){}
    te_function(double (*fn2)(double d, double d2)):m_fn2(fn2){}
@@ -89,7 +89,7 @@ union bound_or_function{
    const double * bound;
    te_function function;
    
-   bound_or_function(::std::nullptr_t){bound= nullptr;}
+   bound_or_function(nullptr_t){bound= nullptr;}
    bound_or_function(const double * p):bound(p){}
    bound_or_function(double (*fn0)()):function(fn0){}
    bound_or_function(double (*fn1)(double d)):function(fn1){}

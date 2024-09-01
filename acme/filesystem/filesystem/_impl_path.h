@@ -226,7 +226,7 @@ namespace file
 
    //}
 
-   //   path::path(::std::nullptr_t)
+   //   path::path(nullptr_t)
    //   {
    //
    //      m_epath = path_file;

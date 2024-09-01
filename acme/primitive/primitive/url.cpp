@@ -149,13 +149,13 @@ namespace url
          || (m_iPort == 80 && m_strProtocol.case_insensitive_equals("http")))
       {
 
-         strConnectUrl.format("{}://{}", m_strProtocol, m_strHost);
+         strConnectUrl.formatf("%s://%s", m_strProtocol.c_str(), m_strHost.c_str());
 
       }
       else
       {
 
-         strConnectUrl.format("{}://{}:{}", m_strProtocol, m_strHost, m_iPort);
+         strConnectUrl.formatf("%s://%s:%d", m_strProtocol.c_str(), m_strHost.c_str(), m_iPort);
 
       }
 

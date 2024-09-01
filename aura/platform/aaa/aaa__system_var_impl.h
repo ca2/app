@@ -50,7 +50,7 @@ inline payload::payload(enum_type etype)
 //}
 
 
-inline payload::payload(::std::nullptr_t)
+inline payload::payload(nullptr_t)
 {
 
    m_etype = e_type_null;

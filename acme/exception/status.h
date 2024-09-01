@@ -52,7 +52,7 @@ public:
    }
 
 
-   status(::std::nullptr_t) :
+   status(nullptr_t) :
       m_estatus(error_null_result)
    {
 
@@ -193,7 +193,7 @@ using status_pointer = ::pointer < ::particle_of < TYPE > >;
 //   }
 //
 //
-//   holding_status(::std::nullptr_t)
+//   holding_status(nullptr_t)
 //   {
 //
 //      m_estatus = error_null_result;

@@ -256,7 +256,7 @@ public:
       function()
    {
 
-      if constexpr(::std::is_same_v<PREDICATE, ::std::nullptr_t>)
+      if constexpr(::std::is_same_v<PREDICATE, nullptr_t>)
       {
 
 
@@ -422,7 +422,7 @@ public:
    pointer<base >     m_pbase;
 
 
-   function(::std::nullptr_t = nullptr)
+   function(nullptr_t = nullptr)
    {
 
    }
@@ -455,7 +455,7 @@ public:
       function()
    {
 
-      if constexpr(::std::is_same_v<PREDICATE, ::std::nullptr_t>)
+      if constexpr(::std::is_same_v<PREDICATE, nullptr_t>)
       {
 
 
@@ -601,7 +601,7 @@ public:
    pointer < base >     m_pbase;
 
 
-   function(::std::nullptr_t = nullptr)
+   function(nullptr_t = nullptr)
    {
 
    }
@@ -626,7 +626,7 @@ public:
       function()
    {
 
-      if constexpr(::std::is_same_v<PREDICATE, ::std::nullptr_t>)
+      if constexpr(::std::is_same_v<PREDICATE, nullptr_t>)
       {
 
 
@@ -799,7 +799,7 @@ public:
       function()
    {
 
-      if constexpr(::std::is_same_v<PREDICATE, ::std::nullptr_t>)
+      if constexpr(::std::is_same_v<PREDICATE, nullptr_t>)
       {
 
 

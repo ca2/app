@@ -31,7 +31,7 @@
 //
 //
 //template < class T >
-//inline pointer < T > ::pointer(::std::nullptr_t):
+//inline pointer < T > ::pointer(nullptr_t):
 //   m_p(nullptr),
 //   m_pparticle(nullptr)
 //{

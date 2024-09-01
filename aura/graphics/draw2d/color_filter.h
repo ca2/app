@@ -17,7 +17,7 @@ public:
    
 
    color_filter() { m_pcolormatrix = nullptr; }
-   color_filter(::std::nullptr_t) { m_pcolormatrix = nullptr; }
+   color_filter(nullptr_t) { m_pcolormatrix = nullptr; }
    color_filter(const class ::opacity & opacity) : m_opacity(opacity), m_pcolormatrix(nullptr){}
    color_filter(const class ::color_filter & colorfilter) : 
       m_opacity(colorfilter.m_opacity), 

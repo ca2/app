@@ -23,7 +23,7 @@
 //#endif
 
 
-#define TEMPLATE_TYPE typename __TEMPLATE_TYPE__ = ::std::nullptr_t
+#define TEMPLATE_TYPE typename __TEMPLATE_TYPE__ = nullptr_t
 #define TEMPLATE_ARG __TEMPLATE_TYPE__ t = nullptr
 
 template < class c_derived >
@@ -58,7 +58,7 @@ public:
 
 
    inline pointer();
-   inline pointer( ::std::nullptr_t);
+   inline pointer( nullptr_t);
    inline pointer(lparam& lparam);
 
    template < typename ...Args >
@@ -514,11 +514,11 @@ public:
    inline pointer & transfer(T2 * ptr);
 
 
-   inline bool operator ==(::std::nullptr_t) const { return is_null(); }
-   //inline bool operator <=>(::std::nullptr_t) const { return m_p <=> nullptr; }
+   inline bool operator ==(nullptr_t) const { return is_null(); }
+   //inline bool operator <=>(nullptr_t) const { return m_p <=> nullptr; }
 
 
-   //inline bool operator !=(::std::nullptr_t) const { return is_set(); }
+   //inline bool operator !=(nullptr_t) const { return is_set(); }
 
 //   template < typename T2 >
 //   inline bool operator ==(const T2 * p) const { return m_p == p; }

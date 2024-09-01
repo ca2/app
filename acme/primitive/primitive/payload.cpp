@@ -139,7 +139,7 @@ payload::payload(enum_type etype) :
 //}
 
 
-payload::payload(::std::nullptr_t) :
+payload::payload(nullptr_t) :
    m_etype(e_type_null)
 #if REFERENCING_DEBUGGING
    , m_preferer(nullptr)

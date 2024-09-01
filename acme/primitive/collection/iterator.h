@@ -63,7 +63,7 @@ public:
 
 
    iterator_base(no_initialize_t) {}
-   iterator_base(::std::nullptr_t) { m_p = nullptr; }
+   iterator_base(nullptr_t) { m_p = nullptr; }
    iterator_base() { m_p = nullptr; }
    iterator_base(CONST_ITEM_POINTER p) : m_p((THIS_ITEM_POINTER)p) {}
    iterator_base(const const_iterator & iterator) : m_p((ITEM_POINTER)iterator.get()) {}
@@ -124,7 +124,7 @@ public:
 
 
    const_iterator_base(no_initialize_t) {};
-   const_iterator_base(::std::nullptr_t) { m_p = nullptr; }
+   const_iterator_base(nullptr_t) { m_p = nullptr; }
    const_iterator_base() { m_p = nullptr; }
    const_iterator_base(CONST_ITEM_POINTER p) : m_p((THIS_ITEM_POINTER)p) {}
    const_iterator_base(const const_iterator & iterator) : m_p(iterator.m_p) {}

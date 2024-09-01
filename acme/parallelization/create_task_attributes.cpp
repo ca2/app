@@ -14,7 +14,7 @@ create_task_attributes::create_task_attributes(::enum_priority epriority, ::u32 
 }
 
 
-create_task_attributes::create_task_attributes(::std::nullptr_t) :
+create_task_attributes::create_task_attributes(nullptr_t) :
    create_task_attributes()
 {
 

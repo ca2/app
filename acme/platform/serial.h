@@ -150,7 +150,7 @@ namespace serial
            m_timeWriteTimeoutConstant(timeWriteTimeoutConstant),
            m_uWriteTimeoutMultiplier(uWriteTimeoutMultiplier)
       {}
-      timeout(::std::nullptr_t) : timeout() { }
+      timeout(nullptr_t) : timeout() { }
    };
 
    /*!

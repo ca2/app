@@ -19,7 +19,7 @@ public:
    constexpr angle_type() : m_fAngle(0.0) {}
    constexpr angle_type(no_initialize_t) {}
    constexpr angle_type(with_t, UNIT_TYPE u):m_fAngle(u) {}
-   //constexpr angle_type(::std::nullptr_t) : m_fAngle(0.0) {}
+   //constexpr angle_type(nullptr_t) : m_fAngle(0.0) {}
    template < primitive_floating FLOATING1 >
    constexpr angle_type(const ::angle_type <FLOATING1 > & angle) : m_fAngle((UNIT_TYPE) angle.m_fAngle) {}
 

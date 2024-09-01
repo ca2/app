@@ -29,7 +29,7 @@
 ////
 ////
 ////   list_iterator(no_initialize_t) {};
-////   list_iterator(::std::nullptr_t) { m_p = nullptr; }
+////   list_iterator(nullptr_t) { m_p = nullptr; }
 ////   list_iterator() { m_p = nullptr; }
 ////   list_iterator(ITEM * p) : m_p(p) {}
 ////   list_iterator(const iterator & iterator) : m_p(iterator.get()) {}
@@ -76,7 +76,7 @@
 ////
 ////
 ////   const_iterator(no_initialize_t) {};
-////   const_iterator(::std::nullptr_t) { m_p = nullptr; }
+////   const_iterator(nullptr_t) { m_p = nullptr; }
 ////   const_iterator() { m_p = nullptr; }
 ////   const_iterator(const ITEM * p) : m_p(p) {}
 ////   const_iterator(const iterator & iterator) : m_p(iterator.m_p) {}
@@ -419,7 +419,7 @@ public:
    THIS_ITERATOR & operator =(ITEM_POINTER p) { this->m_p = p;  return *this; }
    THIS_ITERATOR & operator =(const iterator & iterator) { this->m_p = (ITEM_POINTER) iterator.get();  return *this;}
    THIS_ITERATOR & operator =(const const_iterator & iterator) { this->m_p = (ITEM_POINTER) iterator.get();  return *this; }
-   THIS_ITERATOR & operator =(::std::nullptr_t) { this->m_p = nullptr;  return *this; }
+   THIS_ITERATOR & operator =(nullptr_t) { this->m_p = nullptr;  return *this; }
 
 
    constexpr bool operator == (THIS_ITERATOR iterator) const

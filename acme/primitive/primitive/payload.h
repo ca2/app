@@ -1364,9 +1364,9 @@ public:
    //::payload operator[] (const ::atom & atom);
    //::payload operator[] (const ::atom & atom) const;
    template < primitive_integral INTEGRAL >
-   inline ::property& operator[] (INTEGRAL i) { return get_property((const ::atom &) i); }
+   inline ::payload operator[] (INTEGRAL i) { return at(i); }
    template < primitive_integral INTEGRAL >
-   inline ::payload operator[] (INTEGRAL i) const { return find_property((const ::atom &) i); }
+   inline ::payload operator[] (INTEGRAL i) const { return at(i); }
 
    template < primitive_character CHARACTER >
    inline ::property & operator[] (const CHARACTER * psz) { return get_property(psz); }

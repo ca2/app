@@ -249,8 +249,8 @@ namespace url
 
       
       bool                    m_bScoped = false;
-      connect                 m_connect;
-      request                 m_request;
+      ::url::connect          m_connect;
+      ::url::request          m_request;
 
 
       void __from(const ::scoped_string & scopedstr);

@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.16)
 project(compress_zlib CXX)
 
 
+unset(PKGCONFIG_CFLAGS)
+unset(PKGCONFIG_LDFLAGS)
+unset(PKGCONFIG_LIBRARIES)
+
+
 list(APPEND library_source
    _.cpp
    _.h
@@ -46,7 +51,7 @@ if (MSVC)
     target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/compress_zlib.lib")
     target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/compress_zlib.def")
     target_link_libraries(${PROJECT_NAME} PRIVATE acme apex)
-elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+elseif (${LINUX} OR ${BSD_LIKE})
 
 
     target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
@@ -54,7 +59,7 @@ elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
     target_compile_features(static_${PROJECT_NAME} PRIVATE cxx_std_20)
 
 
-    if(USE_PKGCONFIG)
+    if(${USE_PKGCONFIG})
         pkg_check_modules(PKGCONFIG zlib)
     endif()
 

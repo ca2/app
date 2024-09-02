@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.16)
 project(folder_zip CXX)
 
 
+unset(PKGCONFIG_CFLAGS)
+unset(PKGCONFIG_LDFLAGS)
+unset(PKGCONFIG_LIBRARIES)
+
+
 list(APPEND library_source
    _.cpp
    _.h

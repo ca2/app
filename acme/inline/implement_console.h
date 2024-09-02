@@ -8,7 +8,7 @@
 #include APPLICATION_INCLUDE
 #include <type_traits>
 
-#if defined(FREEBSD) || defined(OPENBSD)
+#if defined(__BSD__)
 #include <stdio.h>
 #endif
 

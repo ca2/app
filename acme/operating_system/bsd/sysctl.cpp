@@ -3,6 +3,8 @@
 #include <sys/sysctl.h>
 
 
+#if !defined(OPENBSD)
+
 //https://stackoverflow.com/questions/1528298/get-path-of-executable
 ::file::path get_module_path()
 {
@@ -57,3 +59,9 @@
    return path;
 
 }
+
+
+#endif
+
+
+

@@ -119,7 +119,7 @@ AllocContributions (::u32 uLineLength, ::u32 uWindowSize)
    res->LineLength = uLineLength;
    // Allocate list of contributions
    res->ContribRow = new ContributionType[uLineLength];
-   res->matrix = new double[](uWindowSize * uLineLength);
+   res->matrix = new double[uWindowSize * uLineLength];
    for (::u32 u = 0 ; u < uLineLength ; u++)
    {
       // Allocate contributions for every pixel

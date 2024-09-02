@@ -998,7 +998,7 @@ namespace user
       //         if (nCount != 0)
       //         {
       //            index i;
-      //            pData = new TBBUTTON[](nCount);
+      //            pData = new TBBUTTON[nCount];
       //            for (i = 0; i < nCount; i++)
       //               _GetButton(i, &pData[i]);
       //         }
@@ -1794,7 +1794,7 @@ namespace user
       //         if (nCount != 0)
       //         {
       //            index i;
-      //            pData = new TBBUTTON[](nCount);
+      //            pData = new TBBUTTON[nCount];
       //            for (i = 0; i < nCount; i++)
       //               _GetButton(i, &pData[i]);
       //         }

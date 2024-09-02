@@ -805,7 +805,7 @@ namespace dynamic_source
    {
       /*char * buf;
       u32 dwSize = GetDllDirectory(nullptr, nullptr);
-      buf = new char[](dwSize + 1024);
+      buf = new char[dwSize + 1024];
       GetDllDirectory(dwSize + 1024, buf);
       information(buf);
       //SetDllDirectory(buf);
@@ -831,7 +831,7 @@ namespace dynamic_source
       string strNew;
 #ifdef WINDOWS_DESKTOP
       u32 dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
-      LPWSTR lpsz = new wchar_t[](dwSize + 1024);
+      LPWSTR lpsz = new wchar_t[dwSize + 1024];
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1024);
       strNew = lpsz;
       delete lpsz;

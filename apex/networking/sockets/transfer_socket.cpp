@@ -471,7 +471,7 @@ namespace sockets
    //   tcp_socket(handler),
    //   transfer_socket(handler)
    //{
-   //   m_pReadBuf = new char[](nSizeRecv);
+   //   m_pReadBuf = new char[nSizeRecv];
    //   m_nReadBuf = 0;
    //}
 

@@ -760,7 +760,7 @@ namespace colorertake5
                }
             }
 
-            next->kwList->kwList = new KeywordInfo[](next->kwList->num);
+            next->kwList->kwList = new KeywordInfo[next->kwList->num];
             next->kwList->num = 0;
             KeywordInfo *pIDs = next->kwList->kwList;
             next->kwList->matchCase = isCase;

@@ -171,7 +171,7 @@ bool process_modules(string_array & stra, ::u32 processID)
 
    const int iMaxModuleCount = 1024 * 8;
 
-   HMODULE * hMods = new HMODULE[](iMaxModuleCount);
+   HMODULE * hMods = new HMODULE[iMaxModuleCount];
 
    const int iImageSize = MAX_PATH * 8;
 

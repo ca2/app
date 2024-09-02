@@ -9036,7 +9036,7 @@ namespace apex
    }
 
    // convert to string and write out
-   char * psz = new char[](nBytes*2+1);
+   char * psz = new char[nBytes*2+1];
 
    ::u32 i;
    for (i = 0; i < nBytes; i++)

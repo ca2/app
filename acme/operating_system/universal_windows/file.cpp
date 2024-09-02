@@ -108,8 +108,8 @@ int_bool file_is_equal_path_dup(const ::scoped_string & scopedstr1, const ::scop
    //   int iCmp = pwsz1.case_insensitive_order(pwsz2);
    ///*   unichar * pwszFile1;
    //   unichar * pwszFile2;
-   //   unichar * pwszPath1 = new unichar[](iBufSize);
-   //   unichar * pwszPath2 = new unichar[](iBufSize);
+   //   unichar * pwszPath1 = new unichar[iBufSize];
+   //   unichar * pwszPath2 = new unichar[iBufSize];
    //   i32 iCmp = -1;
    //   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
    //   {
@@ -180,7 +180,7 @@ string file_module_path_dup()
 //
 //   const i32 iMaxModuleCount = 1024;
 //
-//   HMODULE * hMods = new HMODULE[](iMaxModuleCount);
+//   HMODULE * hMods = new HMODULE[iMaxModuleCount];
 //
 //   const i32 iImageSize = MAX_PATH * 8;
 //
@@ -946,8 +946,8 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 //   wstring pwsz2 = utf8_to_unicode(psz2);
 //   unichar * pwszFile1;
 //   unichar * pwszFile2;
-//   unichar * pwszPath1 = new unichar[](iBufSize);
-//   unichar * pwszPath2 = new unichar[](iBufSize);
+//   unichar * pwszPath1 = new unichar[iBufSize];
+//   unichar * pwszPath2 = new unichar[iBufSize];
 //   i32 iCmp = -1;
 //   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
 //   {

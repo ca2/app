@@ -3,6 +3,10 @@
 #include <sys/sysctl.h>
 
 
+
+string get_current_directory_name();
+
+
 //https://stackoverflow.com/questions/1528298/get-path-of-executable
 ::file::path get_module_path()
 {

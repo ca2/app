@@ -2672,7 +2672,7 @@ if (${NETBSD})
             operating_system/netbsd/exception.cpp
             operating_system/netbsd/exception_engine.cpp
             operating_system/netbsd/exception_engine.h
-            operating_system/netbsd/get_module_path.cpp
+#            operating_system/netbsd/get_module_path.cpp
             operating_system/netbsd/file.cpp
             operating_system/netbsd/file.h
             operating_system/netbsd/file_lock.cpp
@@ -2706,9 +2706,11 @@ if (${NETBSD})
 endif ()
 
 if(${BSD_LIKE})
-list(APPEND library_source
-operating_system/bsd/time.cpp
-)
+
+   list(APPEND library_source
+       operating_system/bsd/time.cpp
+       operating_system/bsd/sysctl.cpp
+   )
 
 endif()
 

@@ -413,7 +413,6 @@ list(APPEND library_source
    user/user/main_frame.h
    user/user/mesh.cpp
    user/user/mesh.h
-   #user/user/mesh_cache.cpp
    user/user/mesh_cache.h
    user/user/mesh_cache_interface.cpp
    user/user/mesh_cache_interface.h
@@ -423,8 +422,6 @@ list(APPEND library_source
    user/user/mesh_item.h
    user/user/popup.cpp
    user/user/popup.h
-   #user/user/statusbar.cpp
-   #user/user/statusbar.h
    user/user/step_slider.cpp
    user/user/step_slider.h
    user/user/toggle_switch.cpp
@@ -452,20 +449,13 @@ list(APPEND library_source
    user/user/xfplayer_impact_line_selection.h
    user/user/xfplayer_impact_lines.cpp
    user/user/xfplayer_impact_lines.h
-   #user/userex/-ehrror_dialog.cpp
    user/userex/_.h
    user/userex/_impl.h
-   #user/userex/_userex.h
-   #user/userex/calculator_edit_impact.cpp
-   #user/userex/calculator_edit_impact.h
-   #user/userex/color_impact.cpp
-   #user/userex/color_impact.h
    user/userex/const.h
    user/userex/dialog.cpp
    user/userex/dialog.h
    user/userex/dialog_frame.cpp
    user/userex/dialog_frame.h
-   #user/userex/error_dialog.h
    user/userex/font_impact.cpp
    user/userex/font_impact.h
    user/userex/form_child_frame.cpp
@@ -486,8 +476,6 @@ list(APPEND library_source
    user/userex/menu_document.h
    user/userex/menu_frame.cpp
    user/userex/menu_frame.h
-   #user/userex/menu_impact.cpp
-   #user/userex/menu_impact.h
    user/userex/message_box.cpp
    user/userex/message_box.h
    user/userex/mini_dock_frame_window.h
@@ -511,8 +499,6 @@ list(APPEND library_source
    user/userex/top_toggle_impact.h
    user/userex/top_impact.cpp
    user/userex/top_impact.h
-   #user/userex/user.cpp
-   #user/userex/user.h
    user/userex/wait_message_dialog.cpp
    user/userex/wait_message_dialog.h
    user/userpresence/_.h
@@ -526,40 +512,15 @@ list(APPEND library_source
    version/version.h
    _.cpp
    _.h
-   #__matter_ca2.cpp
-   #_defer.h
-   #application.h
-   #astr.h
-   #callback.h
-   #console.h
-   #context_glx.cpp
    framework.cpp
    framework.h
-   #framework_c.h
-   #id.h
-   #library.h
-   #message.h
-   #procedure.h
-   #timer.mm
-   #update.h
-   #user.h
-   #xml.h
 )
 
 if (WIN32)
    list(APPEND core_source
-      #operating_system/windows/base/_windows.h
-      #operating_system/windows/base/_windows_node.cpp
-      #operating_system/windows/base/_factory.cpp
-      #operating_system/windows/base/
-      #operating_system/windows/base/implementation.h
-      #operating_system/windows/base/print_job.cpp
-      #operating_system/windows/base/print_job.h
       operating_system/windows/_.h
       operating_system/windows/_node_windows.h
       operating_system/windows/_windows.h
-      #operating_system/windows/shell.cpp
-      #operating_system/windows/shell.h
       operating_system/windows_common/application.cpp
       operating_system/windows/_windows_impl.h
       operating_system/windows_common/_.h
@@ -576,60 +537,6 @@ if (WIN32)
       operating_system/windows_common/multithreading.h
       operating_system/windows_common/new_api.h
       operating_system/windows_common/variant.h
-
-   )
-endif ()
-
-if (UWP)
-   list(APPEND core_source
-      #operating_system/universal_windows/_.h
-      #operating_system/universal_windows/_uwp.h
-      #operating_system/universal_windows/shell_uwp.cpp
-      #operating_system/universal_windows/shell_uwp.h
-      #operating_system/universal_windows/_.h
-      #operating_system/universal_windows/_os_metrowin.cpp
-      #operating_system/universal_windows/_uwp.h
-      #operating_system/universal_windows/_winrt.h
-      #operating_system/universal_windows/application_system_run.cpp
-      #operating_system/universal_windows/aura.cpp
-      #operating_system/universal_windows/base_file.cpp
-      #operating_system/universal_windows/base_file.h
-      #operating_system/universal_windows/debug.cpp
-      #operating_system/universal_windows/direct2d_tls.cpp
-      #operating_system/universal_windows/dpi.cpp
-      #operating_system/universal_windows/dummy_ipc.cpp
-      #operating_system/universal_windows/exception_engine.cpp
-      #operating_system/universal_windows/exception_engine.h
-      #operating_system/universal_windows/file.cpp
-      #operating_system/universal_windows/file_memory_map.cpp
-      #operating_system/universal_windows/file_winrt.h
-      #operating_system/universal_windows/gdi_winrt.h
-      #operating_system/universal_windows/graphics.cpp
-      #operating_system/universal_windows/host_interaction.h
-      #operating_system/universal_windows/language.cpp
-      #operating_system/universal_windows/launcher.cpp
-      #operating_system/universal_windows/library.cpp
-      #operating_system/universal_windows/lock.cpp
-      #operating_system/universal_windows/main.cpp
-      #operating_system/universal_windows/metrowin_metrowin.h
-      #operating_system/universal_windows/multithreading.cpp
-      #operating_system/universal_windows/multithreading.h
-      #operating_system/universal_windows/multithreading_winrt.h
-      #operating_system/universal_windows/os_message_box.cpp
-      #operating_system/universal_windows/oswindow.h
-      #operating_system/universal_windows/process.cpp
-      #operating_system/universal_windows/process.h
-      #operating_system/universal_windows/simple_app.cpp
-      #operating_system/universal_windows/simple_hold_handle.h
-      #operating_system/universal_windows/simple_shell_launcher.cpp
-      #operating_system/universal_windows/simple_ui.h
-      #operating_system/universal_windows/small_ipca_channel.cpp
-      #operating_system/universal_windows/sockets.cpp
-      #operating_system/universal_windows/sockets.h
-      #operating_system/universal_windows/time.cpp
-      #operating_system/universal_windows/user.cpp
-      #operating_system/universal_windows/windowing.cpp
-
    )
 endif ()
 
@@ -638,95 +545,14 @@ if (${LINUX})
    list(APPEND core_source
       operating_system/linux/_.h
       operating_system/linux/_linux.h
-      #operating_system/linux/application.cpp
-      #operating_system/linux/application.h
-      #operating_system/linux/console_window.cpp
-      #operating_system/linux/console_window.h
-      #operating_system/linux/copydesk.cpp
-      #operating_system/linux/copydesk.h
-      #operating_system/linux/dir_context.cpp
-      #operating_system/linux/dir_context.h
-      #operating_system/linux/dir_system.cpp
-      #operating_system/linux/dir_system.h
-      #operating_system/linux/dumpinit.cpp
-      #operating_system/linux/error.cpp
-      #operating_system/linux/exception.cpp
       operating_system/linux/_factory.cpp
       operating_system/linux/
-      #operating_system/linux/file.cpp
-      #operating_system/linux/file.h
-      #operating_system/linux/file_context.cpp
-      #operating_system/linux/file_context.h
-      #operating_system/linux/file_system.cpp
-      #operating_system/linux/file_system.h
-      #operating_system/linux/frame_window.cpp
-      #operating_system/linux/interaction_impl.cpp
-      #operating_system/linux/interaction_impl.h
       operating_system/linux/internal.h
       operating_system/linux/linux.cpp
-      #operating_system/linux/os_context.cpp
-      #operating_system/linux/os_context.h
-      #operating_system/linux/process.cpp
-      #operating_system/linux/process.h
       operating_system/linux/root_tools.cpp
       operating_system/linux/root_tools.h
       operating_system/linux/shell.cpp
       operating_system/linux/shell.h
-      #operating_system/linux/shell_linux.cpp
-      #operating_system/linux/shell_linux.h
-      #operating_system/linux/stdio_file.cpp
-      #operating_system/linux/stdio_file.h
-      #operating_system/linux/thread.cpp
-      #operating_system/linux/thread.h
-      #operating_system/linux/trace.cpp
-      #operating_system/linux/util.cpp
-      #      operating_system/cairo/_.h
-      #      operating_system/cairo/_impl.h
-      #      #operating_system/cross/universal_windows/cross_metrowin_user.cpp
-      #      #operating_system/cross/universal_windows/metrowin_user.cpp
-      #      operating_system/cross/windows/_.h
-      #      operating_system/cross/cross.h
-      #      #operating_system/gdk/aura_gdk.cpp
-      #      #operating_system/gdk/aura_gdk.h
-      #      operating_system/linux/_.h
-      #      operating_system/linux/_c.h
-      #      operating_system/linux/_linux.h
-      #      operating_system/linux/_user.h
-      #      operating_system/linux/appindicator.h
-      #      #operating_system/linux/application_system_run.cpp
-      #      operating_system/linux/aura.cpp
-      #      operating_system/linux/bloat_pad.h
-      #      #operating_system/linux/callstack.cpp
-      #      operating_system/linux/cross_win_file.cpp
-      #      operating_system/linux/cross_win_file.h
-      #      operating_system/linux/cross_win_gdi.cpp
-      #      operating_system/linux/cross_win_gdi.h
-      #      operating_system/linux/cross_win_gdi_internal.h
-      #      operating_system/linux/debug.cpp
-      #      operating_system/linux/debug.h
-      #      operating_system/linux/desktop_file.cpp
-      #      operating_system/linux/desktop_file.h
-      #      operating_system/linux/exception_engine.cpp
-      #      operating_system/linux/exception_engine.h
-      #      operating_system/linux/file.cpp
-      #      operating_system/linux/file.h
-      #      operating_system/linux/graphics.cpp
-      #      operating_system/linux/graphics.h
-      #      operating_system/linux/graphics2.h
-      #      operating_system/linux/language.cpp
-      #      operating_system/linux/linux.inl
-      #      operating_system/linux/linux_linux.h
-      #      operating_system/linux/user.h
-      #      operating_system/linux/user_private.h
-      #      operating_system/linux/x11.h
-      #      #operating_system/x11/debug.cpp
-      #      #operating_system/x11/x11.h
-      #      #operating_system/x11/x11_exception.h
-      #      #operating_system/x11/x11_keyboard.cpp
-      #      #operating_system/x11/x11_keyboard.h
-      #      #operating_system/x11/x11_windowing.cpp
-      #      #/x11/x11_xrender.cpp
-
    )
 endif ()
 

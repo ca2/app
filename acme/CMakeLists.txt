@@ -2136,90 +2136,6 @@ if (${WIN32} OR ${UWP})
 endif ()
 
 
-#if (${CURL_NANO_HTTP})
-#
-#   list(APPEND library_source
-#      operating_system/curl/nano/http/_nano_http.cpp
-#      operating_system/curl/nano/http/_nano_http.h
-#      operating_system/curl/nano/http/curl_easy.cpp
-#      operating_system/curl/nano/http/curl_easy.h
-#      operating_system/curl/nano/http/http.cpp
-#      operating_system/curl/nano/http/http.h)
-#
-#   list(APPEND extra_pkg_modules libcurl)
-#
-#endif ()
-
-
-#if(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
-#
-##   if(${HAS_WAYLAND})
-##list(APPEND library_source
-##      operating_system/wayland/nano/user/_user.cpp
-##      operating_system/wayland/nano/user/_.h
-##      operating_system/wayland/nano/user/display.cpp
-##      operating_system/wayland/nano/user/display.h
-##      operating_system/wayland/nano/user/display_base.cpp
-##      operating_system/wayland/nano/user/display_base.h
-##      operating_system/wayland/nano/user/event_listener.h
-##      operating_system/wayland/nano/user/window.h
-##      operating_system/wayland/nano/user/window.cpp
-##      operating_system/wayland/nano/user/window_base.cpp
-##      operating_system/wayland/nano/user/window_base.h
-##      operating_system/wayland/_.h
-##      operating_system/wayland/_.cpp
-##      operating_system/wayland/wayland-gtk_shell1.c
-##      operating_system/wayland/wayland-gtk_shell1.h
-##      operating_system/wayland/wayland-xdg_activation_v1.c
-##      operating_system/wayland/wayland-xdg_activation_v1.h
-##      operating_system/wayland/wayland-xdg_wm_base.c
-##      operating_system/wayland/wayland-xdg_wm_base.h
-##      operating_system/wayland/xfree86_key.h
-##      operating_system/wayland/xkb_input.cpp
-##      operating_system/wayland/xkb_input.h)
-##   endif()
-##
-##   list(APPEND library_source
-##      operating_system/cairo/nano/user/_user.cpp
-##      operating_system/cairo/nano/user/device.cpp
-##      operating_system/cairo/nano/user/device.h
-###      operating_system/x11/nano/user/_.h
-###      operating_system/x11/nano/user/_user.cpp
-###      operating_system/x11/nano/user/_.h
-###      operating_system/x11/nano/user/display.cpp
-###      operating_system/x11/nano/user/display.h
-###      operating_system/x11/nano/user/event_listener.h
-###      operating_system/x11/nano/user/user.cpp
-###      operating_system/x11/nano/user/user.h
-###      operating_system/x11/nano/user/window.h
-###      operating_system/x11/nano/user/window.cpp
-##      operating_system/x11/_.cpp
-##      operating_system/x11/_atom.cpp
-##      operating_system/x11/_atom.h
-##      operating_system/x11/display_lock.cpp
-##      operating_system/x11/display_lock.h
-##      operating_system/x11/keyboard.cpp
-##      operating_system/x11/keyboard.h
-##      operating_system/x11/system.cpp
-##      operating_system/xcb/nano/user/_user.cpp
-##      operating_system/xcb/nano/user/_.h
-##      operating_system/xcb/nano/user/display.cpp
-##      operating_system/xcb/nano/user/display.h
-##      operating_system/xcb/nano/user/event_listener.h
-##      operating_system/xcb/nano/user/window.h
-##      operating_system/xcb/nano/user/window.cpp
-##      operating_system/xcb/_.h
-##      operating_system/xcb/_.cpp
-##
-##
-##      )
-##
-##   list(APPEND extra_pkg_modules cairo xcb x11 xkbcommon xcb-render xcb-aux x11-xcb libarchive)
-#
-#
-#endif ()
-
-
 if (${LINUX})
     list(APPEND library_source
             operating_system/linux/
@@ -2290,7 +2206,7 @@ endif ()
 #      operating_system/motif/application.h
 #   )
 #
-#   list(APPEND system_libraries Xm)
+#   list(APPEND this_system_libraries Xm)
 #
 #   list(APPEND extra_pkg_modules xt)
 #
@@ -2834,21 +2750,6 @@ elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
     endif ()
 
 
-    #//target_compile_options\([A-Za-z0-9_)]+\s+PRIVATE\s+\$\{PKGCONFIG_CFLAGS\}\)
-
-    #if(USE_PKGCONFIG)
-    #   if(${HAS_WAYLAND})
-    #      list(APPEND extra_pkg_modules wayland-client wayland-server wayland-cursor)
-    #   endif()
-
-    #   list(APPEND extra_pkg_modules
-    #      xkbcommon x11 xrender xi xext libstartup-notification-1.0)
-
-    #   list(APPEND pkg_config_modules_here cairo freetype2 libidn ${extra_pkg_modules})
-
-    #   pkg_check_modules(PKGCONFIG ${pkg_config_modules_here})
-    #endif()
-
     target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
     target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
@@ -2859,33 +2760,33 @@ elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
 
     if (${OPENBSD})
-        #list(APPEND system_libraries z pthread iconv execinfo kvm c)
-        list(APPEND system_libraries z pthread iconv kvm c)
-        list(APPEND static_system_libraries z pthread iconv kvm c)
-        message(STATUS "OPENBSD acme system_libraries ${system_libraries}")
+        #list(APPEND this_system_libraries z pthread iconv execinfo kvm c)
+        list(APPEND this_system_libraries z pthread iconv kvm c)
+        list(APPEND static_this_system_libraries z pthread iconv kvm c)
+        message(STATUS "OPENBSD acme this_system_libraries ${this_system_libraries}")
     elseif (${FREEBSD})
-        list(APPEND system_libraries z dl pthread iconv execinfo)
-        list(APPEND static_system_libraries z dl pthread iconv execinfo elf)
-        message(STATUS "FREEBSD acme system_libraries ${system_libraries}")
+        list(APPEND this_system_libraries z dl pthread iconv execinfo)
+        list(APPEND static_this_system_libraries z dl pthread iconv execinfo elf)
+        message(STATUS "FREEBSD acme this_system_libraries ${this_system_libraries}")
     elseif (${NETBSD})
-        list(APPEND system_libraries z pthread execinfo)
-        list(APPEND static_system_libraries z pthread execinfo elf)
-        message(STATUS "FREEBSD acme system_libraries ${system_libraries}")
+        list(APPEND this_system_libraries z pthread execinfo)
+        list(APPEND static_this_system_libraries z pthread execinfo elf)
+        message(STATUS "FREEBSD acme this_system_libraries ${this_system_libraries}")
     else ()
-        list(APPEND system_libraries z pthread idn)
-        list(APPEND static_system_libraries pthread)
-        message(STATUS "ELSE acme system_libraries ${system_libraries}")
+        list(APPEND this_system_libraries z pthread idn)
+        list(APPEND static_this_system_libraries pthread)
+        message(STATUS "ELSE acme this_system_libraries ${this_system_libraries}")
     endif ()
 
     add_dependencies(${PROJECT_NAME} static_nano_dynamic_library_dl)
 
 
     target_link_libraries(${PROJECT_NAME} PRIVATE
-            ${system_libraries} ${global_library_references}
+            ${this_system_libraries} ${global_library_references}
             -lstatic_nano_dynamic_library_dl
     )
     target_link_libraries(static_${PROJECT_NAME} PRIVATE
-            ${static_system_libraries}
+            ${static_this_system_libraries}
     )
 
     target_link_options(${PROJECT_NAME} PRIVATE ${GLOBAL_EXTRA_LINKER_FLAGS} -Wl${GLOBAL_EXTRA_LINK_FLAGS},-z,defs)

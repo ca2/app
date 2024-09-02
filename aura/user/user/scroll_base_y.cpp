@@ -18,9 +18,9 @@ namespace user
 
       //m_iWheelDeltaScroll = 3;
 
-      //m_pscrollstateVertical = __allocate< scroll_state >();
+      //m_pscrollstateVertical = ::place(new scroll_state());
 
-      m_pscrolllayoutY = __allocate< scroll_layout >();
+      m_pscrolllayoutY = ::place(new scroll_layout());
 
       m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_bHasScroll = false;
       m_pscrolllayoutY->m_scrollstatea[::user::e_layout_sketch].m_dPage = 0.;
@@ -633,7 +633,7 @@ namespace user
    void scroll_base_y::send_scroll_y_message(enum_scroll_command ecommand, ::f64 dPosition)
    {
 
-      auto pscroll = __allocate< ::message::scroll >();
+      auto pscroll = ::place(new ::message::scroll());
 
       pscroll->m_ecommand = ecommand;
 

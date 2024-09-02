@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/memory/quantum.h"
+
+
 template < typename TYPE >
 ::collection::index index_as_of_iterator(const TYPE * p)
 {
@@ -35,7 +38,8 @@ class const_iterator_base;
 
 
 template < typename ITERATOR_TYPE >
-class iterator_base
+class iterator_base :
+   public memory_quantum
 {
 public:
 

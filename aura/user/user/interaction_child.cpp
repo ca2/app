@@ -251,7 +251,7 @@ namespace user
 //   bool interaction_child::create_child(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent)
 //   {
 //
-//      auto pusersystem = __allocate< ::user::system >();
+//      auto pusersystem = ::place(new ::user::system());
 //
 //      ::rectangle_i32 rectangle;
 //

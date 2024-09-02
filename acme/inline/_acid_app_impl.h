@@ -10,7 +10,7 @@
 ::acme::application* get_acid_app()
 {
 
-   return __allocate< APP_TYPE >();
+   return ::place(new APP_TYPE());
 
 }
 

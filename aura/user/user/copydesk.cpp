@@ -227,7 +227,7 @@ namespace user
 
             memory mem;
 
-            auto psaveimage = __allocate< save_image >();
+            auto psaveimage = ::place(new save_image());
 
             if (pimage->frames() && pimage->frames()->count() >= 2)
             {

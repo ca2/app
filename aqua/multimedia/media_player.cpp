@@ -120,7 +120,7 @@ media_player::~media_player()
 //      switch (pcommand->GetCommand())
 //      {
 //      case command_open_file_aiff:
-//         //m_pplugin = __new< _vmsaiffdec::plugin >();
+//         //m_pplugin = new _vmsaiffdec::plugin ();
 //         return false;
 //         break;
 //      case command_open_file_cda:
@@ -135,7 +135,7 @@ media_player::~media_player()
 //      }
 //      break;
 //      case command_open_file_vqf:
-//         //m_pplugin = __new< _vmstwinvqdec::plugin >();
+//         //m_pplugin = new _vmstwinvqdec::plugin ();
 //         return false;
 //         break;
 //      case command_open_file_wm:
@@ -874,7 +874,7 @@ void media_player::_Stop()
 //
 //   OnEvent(e_player_event_fade_out_and_stop);
 //
-//   effect_diminuendo * pdiminuendo = __new< effect_diminuendo >();
+//   effect_diminuendo * pdiminuendo = new effect_diminuendo();
 //
 //   pdiminuendo->m_bEnd = true;
 //   pdiminuendo->m_bSustain = true;

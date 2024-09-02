@@ -3854,7 +3854,7 @@ inline ::collection::count string_base < ITERATOR_TYPE >::replace_with(CHARACTER
 //   {
 //
 //      // if the buffer is too small, just
-//      //   allocate a __new< buffer  >(slow but sure)
+//      //   allocate a new buffer(slow but sure)
 //      strsize nOldLength = size();
 //
 //      strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * count;
@@ -3947,7 +3947,7 @@ template < typename ITERATOR_TYPE >
    if (count > 0)
    {
       // if the buffer is too small, just
-      //   allocate a __new< buffer  >(slow but sure)
+      //   allocate a new buffer(slow but sure)
       strsize nOldLength = size();
       strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * count;
 
@@ -4028,7 +4028,7 @@ template < typename ITERATOR_TYPE >
    if (count > 0)
    {
       // if the buffer is too small, just
-      //   allocate a __new< buffer  >(slow but sure)
+      //   allocate a new buffer(slow but sure)
       strsize nOldLength = size();
       strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * count;
 
@@ -6986,7 +6986,7 @@ inline ::collection::count string_base < ITERATOR_TYPE > ::_replace_with(const S
    }
 
    // if the buffer is too small, just
-   //   allocate a __new< buffer  >(slow but sure)
+   //   allocate a new buffer(slow but sure)
 
    strsize nNewLength = this->size() + (nReplacementLen - nReplacedLen) * count;
 

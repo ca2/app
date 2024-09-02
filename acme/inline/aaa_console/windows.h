@@ -19,7 +19,7 @@ namespace acme
    //
    //      //system() = ::pointer_transfer(platform_create_system(::GetModuleHandle(NULL)));
    //
-   ////      system() = __allocate< ::acme::system >();
+   ////      system() = ::place(new ::acme::system());
    //
    //      //system()->console_initialize();
    //

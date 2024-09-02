@@ -414,7 +414,7 @@ void window::add_child(::nano::user::child * pchild)
 void window::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
 {
    
-   auto pbutton = __allocate< ::nano::user::button >();
+   auto pbutton = ::place(new ::nano::user::button());
    
    pbutton->m_strText = scopedstrText;
    pbutton->m_atom = edialogresult;

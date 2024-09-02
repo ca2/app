@@ -513,7 +513,7 @@ namespace base
    ::pointer<::user::menu_interaction>user::create_menu_button(::user::style * pstyle, ::menu::item * pmenuitem)
    {
 
-      auto pmenubutton = __allocate< ::user::menu_button >();
+      auto pmenubutton = ::place(new ::user::menu_button());
 
       pmenubutton->initialize_menu_interaction(pmenuitem);
 
@@ -567,7 +567,7 @@ namespace base
       __UNREFERENCED_PARAMETER(hInstance);
       __UNREFERENCED_PARAMETER(pParam);
 
-      auto pinteraction = __allocate< ::user::interaction >();
+      auto pinteraction = ::place(new ::user::interaction());
 
       pinteraction->create_child(puiParent);
 
@@ -742,7 +742,7 @@ namespace base
    //session_docs * create_session_docs()
    //{
 
-   //   return __new< session_docs >();
+   //   return new session_docs();
 
    //}
 
@@ -1774,7 +1774,7 @@ namespace base
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
-      return __allocate< ::user::show < ::calculator::edit > >();
+      return ::place(new ::user::show < ::calculator::edit > ());
 
    }
 
@@ -1797,11 +1797,11 @@ namespace base
 
          add_impact_system(
             atom,
-            __allocate < ::user::multiple_document_template >(
+            ::place( new ::user::multiple_document_template (
                "system/form",
                ::type < form_document >(),
                get_simple_child_frame_type_info(),
-               ::type < ::user::form_impact >()));
+               ::type < ::user::form_impact >())));
 
          return true;
 

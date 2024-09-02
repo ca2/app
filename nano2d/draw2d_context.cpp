@@ -86,7 +86,7 @@ namespace nano2d
    ::pointer < ::nano2d::state > draw2d_context::create_new_state()
    {
 
-      auto pstate = __allocate< draw2d_state >(m_pgraphics);
+      auto pstate = ::place(new draw2d_state(m_pgraphics));
 
       pstate->initialize(m_pgraphics);
 

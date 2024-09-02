@@ -165,25 +165,25 @@ namespace nanoui
     *    .. code-block:: cpp
     *
     *       // `this` might be say a nanoui::Screen instance
-    *       Window *window = __new< Window >(this, "Window Title");
+    *       Window *window = new Window(this, "Window Title");
     *       TabWidget *tab_widget = window->add<TabWidget>();
     *       // this label would be a direct pwidgetChild of tabWidget,
     *       // which is forbidden, so an exception will be raised
-    *       __new< Label >(tab_widget, "Some Label");
+    *       new Label(tab_widget, "Some Label");
     *
     *    Instead, you are expected to be creating tabs and adding widgets to those.
     *
     *    .. code-block:: cpp
     *
     *       // `this` might e.g. be a nanoui::Screen instance
-    *       Window *window = __new< Window >(this, "Window Title");
+    *       Window *window = new Window(this, "Window Title");
     *       TabWidget *tab_widget = window->add<TabWidget>();
     *       // Create a tab bFirst
-    *       Widget *tab = __new< Widget >(tab_widget);
+    *       Widget *tab = new Widget(tab_widget);
     *       int tab_id = tab_widget->append_tab("Tab Name", tab);
     *       // Add children to the created tabs
-    *       tab->set_layout(__new< GroupLayout >());
-    *       __new< Label >(tab, "Some Label");
+    *       tab->set_layout(new GroupLayout());
+    *       new Label(tab, "Some Label");
     *
     *    A slightly more involved example of creating a TabWidget can also be found
     *    in :::pointer:`nanoui_example_1` (search for ``tab_widget`` in the file).

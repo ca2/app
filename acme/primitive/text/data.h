@@ -3,6 +3,7 @@
 
 
 #include "acme/primitive/primitive/atom.h"
+#include "acme/memory/memory_allocate.h"
 
 
 namespace acme
@@ -35,6 +36,8 @@ namespace text
 
       data(translator * ptranslator);
       ~data();
+
+      void operator delete(void* p) { memory_free(p); }
 
 
    };

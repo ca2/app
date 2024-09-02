@@ -2,7 +2,11 @@
 #pragma once
 
 
-class CLASS_DECL_ACME quantum
+#include "acme/memory/quantum.h"
+
+
+class CLASS_DECL_ACME quantum :
+   public memory_quantum
 {
 public:
 

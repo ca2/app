@@ -1248,7 +1248,7 @@ namespace console_hello
 ////   application.initialize_application(&main);
 ////
 ////
-////   //::pointer<APPLICATION_CLASS>papp(__allocate< APPLICATION_CLASS >());
+////   //::pointer<APPLICATION_CLASS>papp(::place(new APPLICATION_CLASS()));
 //////
 //////#ifdef NO_NETWORKING
 //////
@@ -1552,7 +1552,7 @@ namespace console_hello
 ::i32 application_main(::platform::platform * pplatform)
 {
 
-   auto papplication = __allocate< console_hello::application >();
+   auto papplication = ::place(new console_hello::application());
 
    auto iExitCode = papplication->application_main(pplatform);
 

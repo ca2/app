@@ -108,8 +108,8 @@ int_bool file_is_equal_path_dup(const ::scoped_string & scopedstr1, const ::scop
    //   int iCmp = pwsz1.case_insensitive_order(pwsz2);
    ///*   unichar * pwszFile1;
    //   unichar * pwszFile2;
-   //   unichar * pwszPath1 = __new_array< unichar >(iBufSize);
-   //   unichar * pwszPath2 = __new_array< unichar >(iBufSize);
+   //   unichar * pwszPath1 = new unichar[](iBufSize);
+   //   unichar * pwszPath2 = new unichar[](iBufSize);
    //   i32 iCmp = -1;
    //   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
    //   {
@@ -180,7 +180,7 @@ string file_module_path_dup()
 //
 //   const i32 iMaxModuleCount = 1024;
 //
-//   HMODULE * hMods = __new_array< HMODULE >(iMaxModuleCount);
+//   HMODULE * hMods = new HMODULE[](iMaxModuleCount);
 //
 //   const i32 iImageSize = MAX_PATH * 8;
 //
@@ -489,7 +489,7 @@ string file_module_path_dup()
 // //    }
 
 // //    // Get the list of all handles in the file_system
-// //    PSYSTEM_HANDLE_INFORMATION pSysHandleInformation = __new< SYSTEM_HANDLE_INFORMATION >();
+// //    PSYSTEM_HANDLE_INFORMATION pSysHandleInformation = new SYSTEM_HANDLE_INFORMATION();
 // //    u32 size = sizeof(SYSTEM_HANDLE_INFORMATION);
 // //    ::u32 needed = 0;
 // //    NTSTATUS status = NtQuerySystemInformation(SystemHandleInformation,pSysHandleInformation, size,&needed);
@@ -946,8 +946,8 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 //   wstring pwsz2 = utf8_to_unicode(psz2);
 //   unichar * pwszFile1;
 //   unichar * pwszFile2;
-//   unichar * pwszPath1 = __new_array< unichar >(iBufSize);
-//   unichar * pwszPath2 = __new_array< unichar >(iBufSize);
+//   unichar * pwszPath1 = new unichar[](iBufSize);
+//   unichar * pwszPath2 = new unichar[](iBufSize);
 //   i32 iCmp = -1;
 //   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
 //   {
@@ -1020,7 +1020,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   if(hFile == INVALID_HANDLE_VALUE)
 //      return 0;
 //
-//   FILE *file = __new< FILE >();
+//   FILE *file = new FILE();
 //   memory_set(file,0,sizeof(FILE));
 //   file->_base = (char *)hFile;
 //
@@ -1052,7 +1052,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   if(hFile == INVALID_HANDLE_VALUE)
 //      return 0;
 //
-//   FILE *file = __new< FILE >();
+//   FILE *file = new FILE();
 //   memory_set(file,0,sizeof(FILE));
 //   file->_base = (char *)hFile;
 //
@@ -1994,7 +1994,7 @@ filesize hfile_get_size(HANDLE h)
 //   
 //   ::winrt::Windows::Storage::Streams::DataReader^ r = ::winrt::Windows::Storage::Streams::DataReader::FromBuffer(ibuf);
 //   
-//   Array<uchar, 1U>^ a = ref __new< Array<uchar, 1U> >(ibuf->Length);
+//   Array<uchar, 1U>^ a = ref new Array<uchar, 1U> (ibuf->Length);
 //   
 //   r->ReadBytes(a);
 //
@@ -2034,7 +2034,7 @@ filesize hfile_get_size(HANDLE h)
 //   while (::task_get_run())
 //   {
 //
-//      ::winrt::Windows::Storage::Streams::IBuffer^ buffer = ref __new< ::winrt::Windows::Storage::Streams::Buffer >(1_mb);
+//      ::winrt::Windows::Storage::Streams::IBuffer^ buffer = ref new ::winrt::Windows::Storage::Streams::Buffer (1_mb);
 //
 //      ::winrt::Windows::Storage::Streams::IBuffer^ buffer2 = ::wait(stream->ReadAsync(buffer, 1_mb, ::winrt::Windows::Storage::Streams::InputStreamOptions::None));
 //

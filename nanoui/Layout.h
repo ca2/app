@@ -358,7 +358,7 @@ namespace nanoui
     * .. code-block:: cpp
     *
     *    using Anchor = AdvancedGridLayout::Anchor;
-    *    Label *label = __new< Label >(window, "A label");
+    *    Label *label = new Label(window, "A label");
     *    // Add a centered label at grid position (1, 5), which spans two horizontal cells
     *    layout->set_anchor(label, Anchor(1, 5, 2, 1, e_alignment_middle, e_alignment_middle));
     *

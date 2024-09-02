@@ -1960,7 +1960,7 @@ namespace user
 
       // }
 
-      // m_puserinteraction->interaction_post(__allocate< call_message_handler_task >(m_puserinteraction, atom, wparam, lparam));
+      // m_puserinteraction->interaction_post(::place(new call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
 
       //auto pmessage
 
@@ -2468,7 +2468,7 @@ namespace user
 
       // }
 
-      // m_puserinteraction->interaction_post(__allocate< call_message_handler_task >(m_puserinteraction, atom, wparam, lparam));
+      // m_puserinteraction->interaction_post(::place(new call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
 
       //auto pmessage
 

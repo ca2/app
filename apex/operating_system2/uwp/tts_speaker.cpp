@@ -58,7 +58,7 @@ namespace universal_windows
          //
          // Create text to speech engine
          //
-         ::winrt::Windows::Media::SpeechSynthesis::SpeechSynthesizer ^ psynth = ref __new< ::winrt::Windows::Media::SpeechSynthesis::SpeechSynthesizer >();
+         ::winrt::Windows::Media::SpeechSynthesis::SpeechSynthesizer ^ psynth = ref new ::winrt::Windows::Media::SpeechSynthesis::SpeechSynthesizer ();
          if (psynth == nullptr)
          {
 

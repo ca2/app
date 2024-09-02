@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
 
    //   {
 
-   //      auto psystem = __allocate< ::aura::system >();
+   //      auto psystem = ::place(new ::aura::system());
 
    //      psystem->system_construct(&mainstruct, argc, argv);
 
@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
 
    //}
 
-   auto psystem = __allocate< ::aura::system >();
+   auto psystem = ::place(new ::aura::system());
 
    psystem->console_initialize();
 

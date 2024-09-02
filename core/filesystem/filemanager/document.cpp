@@ -392,7 +392,7 @@ namespace filemanager
 
    //   ::file::path pathFinal = pcontext->m_papexcontext->defer_process_path(pathUser);
 
-   //   ::pointer<::file::item>pitem = __allocate< ::file::item >(pathUser, pathFinal);
+   //   ::pointer<::file::item>pitem = ::place(new ::file::item(pathUser, pathFinal));
 
    //   browse(pitem, context);
 
@@ -1620,7 +1620,7 @@ namespace filemanager
    //   //   if (ptemplate.is_null())
    //   //   {
 
-   //   //      m_pfilemanagerdata = __allocate< data >(this);
+   //   //      m_pfilemanagerdata = ::place(new data(this));
 
    //   //   }
    //   //   else
@@ -1650,7 +1650,7 @@ namespace filemanager
    ::pointer<::filemanager::data>document::create_file_manager_data(::request * prequest)
    {
 
-      ::pointer<::filemanager::data>pfilemanagerdata(__allocate< data >());
+      ::pointer<::filemanager::data>pfilemanagerdata(::place(new data()));
 
       ::filemanager::callback * pcallback = nullptr;
 

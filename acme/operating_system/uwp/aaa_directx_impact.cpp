@@ -325,7 +325,7 @@ namespace universal_windows
 
             ::pointer<::user::message>spbase;
 
-            auto pkey = __allocate< ::message::key >();
+            auto pkey = ::place(new ::message::key());
 
             spbase = pkey;
 

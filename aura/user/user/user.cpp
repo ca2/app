@@ -720,7 +720,7 @@ namespace user
       if (!m_pshell)
       {
 
-         //estatus = __construct(m_pshell, __allocate< ::windows::shell >());
+         //estatus = __construct(m_pshell, ::place(new ::windows::shell()));
          //estatus =
          __construct(m_pshell);
 
@@ -1087,7 +1087,7 @@ namespace aura
    //session_docs * create_session_docs()
    //{
 
-   //   return __new< session_docs >();
+   //   return new session_docs();
 
    //}
 
@@ -1638,7 +1638,7 @@ namespace user
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
-      return __allocate< ::user::plain_edit >();
+      return ::place(new ::user::plain_edit());
 
    }
 

@@ -50,7 +50,7 @@ namespace sqlite
    //::pointer<::database::dataset>database::dataset()
    //{
 
-   //   return __allocate< class dataset >(this);
+   //   return ::place(new class dataset (this));
 
    //}
 
@@ -205,7 +205,7 @@ namespace sqlite
 
       m_strLastError.empty();
 
-      ::pointer<::database::result_set>presultset = __allocate< ::database::result_set >();
+      ::pointer<::database::result_set>presultset = ::place(new ::database::result_set());
 
       char * errmsg = nullptr;
 
@@ -979,7 +979,7 @@ i32 database_sqlite3_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char*
 
       }
 
-      auto prow = __allocate< ::database::row >();
+      auto prow = ::place(new ::database::row());
 
       ::payload payload;
 

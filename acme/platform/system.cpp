@@ -372,7 +372,7 @@ namespace acme
 
       //m_bOnInitializeWindowObject = false;
 
-      //m_pcleanuptask = __allocate< ::parallelization::cleanup_task >();
+      //m_pcleanuptask = ::place(new ::parallelization::cleanup_task());
 
       //m_pcleanuptask->begin();
       //factory()->add_factory_item<::acme::idpool>();
@@ -423,7 +423,7 @@ namespace acme
 
       //__construct(m_pnano);
 
-      //m_psystemimpl = __new< system_impl >();
+      //m_psystemimpl = new system_impl();
 
       //set_os_data(LAYERED_ACME, this);
 
@@ -1087,13 +1087,13 @@ namespace acme
    //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
    //{
 
-   //   auto psequence = __allocate< ::sequence < ::conversation > >();
+   //   auto psequence = ::place(new ::sequence < ::conversation > ());
 
    //   psequence->set_status(error_interface_only);
 
    //   //return presult;
 
-   //   //auto pprocess = __allocate< status < enum_dialog_result > >();
+   //   //auto pprocess = ::place(new status < enum_dialog_result > ());
 
    //   //pprocess->set_result(message_box_for_console(pszText, pszTitle, emessagebox));
 
@@ -1543,7 +1543,7 @@ namespace acme
    //   if (!plibrary)
    //   {
 
-   //      plibrary = __allocate< ::acme::library >();
+   //      plibrary = ::place(new ::acme::library());
 
    //      plibrary->initialize_matter(this);
 
@@ -1635,7 +1635,7 @@ namespace acme
    //
    //      }
    //
-   //      plibrary = __allocate< ::acme::library >();
+   //      plibrary = ::place(new ::acme::library());
    //
    //      plibrary->initialize_matter(this);
    //
@@ -3169,7 +3169,7 @@ namespace acme
    //   void system::windowing_send(const ::procedure & procedure)
    //   {
    //
-   //      auto pmanualresetevent = __allocate< manual_reset_event >();
+   //      auto pmanualresetevent = ::place(new manual_reset_event());
    //
    //      windowing_post([pmanualresetevent, procedure]()
    //                     {
@@ -3584,7 +3584,7 @@ namespace acme
 //CLASS_DECL_ACME::acme::system * acme_system_init()
 //{
 //
-//   g_psystem = __new< ::acme::system >();
+//   g_psystem = new ::acme::system ();
 //
 //   return g_psystem;
 //

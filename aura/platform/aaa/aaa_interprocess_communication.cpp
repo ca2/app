@@ -158,7 +158,7 @@ namespace aura
    ::pointer<synchronization_array>inteprocess_channel::call::synca()
    {
 
-      auto psynca = __allocate< synchronization_array >();
+      auto psynca = ::place(new synchronization_array());
 
       for (auto & task : this->tasks())
       {
@@ -327,7 +327,7 @@ namespace aura
       if(pmutex.is_null())
       {
 
-         pmutex = __allocate< ::pointer < ::mutex > >();
+         pmutex = ::place(new ::pointer < ::mutex > ());
 
       }
 
@@ -399,7 +399,7 @@ started:
       if(m_txmap[strKey].is_null())
       {
 
-         m_txmap[strKey] = __allocate< ::aura::ipc::tx >();
+         m_txmap[strKey] = ::place(new ::aura::ipc::tx());
 
       }
 
@@ -416,7 +416,7 @@ started:
       if(m_txmap[strKey].is_null())
       {
 
-         m_txmap[strKey] = __allocate< ::aura::ipc::tx >();
+         m_txmap[strKey] = ::place(new ::aura::ipc::tx());
 
       }
 
@@ -444,7 +444,7 @@ started:
       if(m_txmap[strKey].is_null())
       {
 
-         m_txmap[strKey] = __allocate< ::aura::ipc::tx >();
+         m_txmap[strKey] = ::place(new ::aura::ipc::tx());
 
       }
 
@@ -677,7 +677,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
    ::pointer<class inteprocess_channel::task> inteprocess_channel::create_task(call * pcall, const ::atom & idPid)
    {
 
-      auto pobjectTask = __allocate< class task >(pcall, idPid, atomic_increment(&m_iTaskSeed));
+      auto pobjectTask = ::place(new class task (pcall, idPid, atomic_increment(&m_iTaskSeed)));
 
       synchronous_lock synchronouslock(this->synchronization());
 
@@ -703,7 +703,7 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / as_string(idPid);
    ::pointer<class inteprocess_channel::call> inteprocess_channel::create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember)
    {
 
-      return __allocate< class call >(this, strApp, strObject, strMember);
+      return ::place(new class call (this, strApp, strObject, strMember));
 
    }
 

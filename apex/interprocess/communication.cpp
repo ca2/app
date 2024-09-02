@@ -727,7 +727,7 @@ namespace interprocess
    ::pointer<::interprocess::task>communication::create_task(::interprocess::call * pcall, const ::atom & idPid)
    {
 
-      auto pobjectTask = __allocate< ::interprocess::task >(pcall, idPid, m_iTaskSeed++);
+      auto pobjectTask = ::place(new ::interprocess::task(pcall, idPid, m_iTaskSeed++));
 
       synchronous_lock synchronouslock(this->synchronization());
 
@@ -753,7 +753,7 @@ namespace interprocess
    ::pointer<::interprocess::call>communication::create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember)
    {
 
-      return __allocate< ::interprocess::call >(this, strApp, strObject, strMember);
+      return ::place(new ::interprocess::call(this, strApp, strObject, strMember));
 
    }
 

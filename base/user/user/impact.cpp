@@ -879,7 +879,7 @@ namespace user
 
       ::pointer<::request>pcreate(e_create, this);
 
-      auto pusersystem = __allocate< ::user::system >();
+      auto pusersystem = ::place(new ::user::system());
 
       m_pusersystem = pusersystem;
 
@@ -975,7 +975,7 @@ namespace user
 
       ::pointer<::request>pcreate(e_create_new, pdocument);
 
-      auto pusersystem= __allocate< ::user::system >();
+      auto pusersystem= ::place(new ::user::system());
 
       pusersystem->m_typeatomNewImpact = typeatom;
 

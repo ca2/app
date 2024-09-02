@@ -485,17 +485,17 @@ namespace platform
 } // namespace platform
 
 
-template < typename T, typename ...Args >
-::pointer < T > __call__allocate(Args &&... args)
-{
-
-   auto p = ::transfer(
-      ::platform::allocator::__call__allocate< T >(
-         ::std::forward<Args>(args)...));
-
-   return ::transfer(p);
-
-}
-
+//template < typename T, typename ...Args >
+//::pointer < T > __call__allocate(Args &&... args)
+//{
+//
+//   auto p = ::transfer(
+//      ::platform::allocator::__call__allocate< T >(
+//         ::std::forward<Args>(args)...));
+//
+//   return ::transfer(p);
+//
+//}
+//
 
 

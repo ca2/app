@@ -50,7 +50,7 @@ namespace aura
 
       delete_timer(uEvent);
 
-      auto ptimer = __allocate< timer >(this, uEvent, pfnTimer, pvoidData, mutex());
+      auto ptimer = ::place(new timer(this, uEvent, pfnTimer, pvoidData, mutex()));
 
       ptimer->set_context_thread(get_context_thread());
 

@@ -102,7 +102,7 @@ namespace file_lock
 
    //    }
 
-   //    i32 * pi = __allocate< i32 >();
+   //    i32 * pi = ::place(new i32());
 
    //    *pi = fd;
 

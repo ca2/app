@@ -24,21 +24,21 @@
 
 nsSBCSGroupProber::nsSBCSGroupProber()
 {
-  mProbers[0] = __new< nsSingleByteCharSetProber >(&Win1251Model);
-  mProbers[1] = __new< nsSingleByteCharSetProber >(&Koi8rModel);
-  mProbers[2] = __new< nsSingleByteCharSetProber >(&Latin5Model);
-  mProbers[3] = __new< nsSingleByteCharSetProber >(&MacCyrillicModel);
-  mProbers[4] = __new< nsSingleByteCharSetProber >(&Ibm866Model);
-  mProbers[5] = __new< nsSingleByteCharSetProber >(&Ibm855Model);
-  mProbers[6] = __new< nsSingleByteCharSetProber >(&Latin7Model);
-  mProbers[7] = __new< nsSingleByteCharSetProber >(&Win1253Model);
-  mProbers[8] = __new< nsSingleByteCharSetProber >(&Latin5BulgarianModel);
-  mProbers[9] = __new< nsSingleByteCharSetProber >(&Win1251BulgarianModel);
+  mProbers[0] = new nsSingleByteCharSetProber(&Win1251Model);
+  mProbers[1] = new nsSingleByteCharSetProber(&Koi8rModel);
+  mProbers[2] = new nsSingleByteCharSetProber(&Latin5Model);
+  mProbers[3] = new nsSingleByteCharSetProber(&MacCyrillicModel);
+  mProbers[4] = new nsSingleByteCharSetProber(&Ibm866Model);
+  mProbers[5] = new nsSingleByteCharSetProber(&Ibm855Model);
+  mProbers[6] = new nsSingleByteCharSetProber(&Latin7Model);
+  mProbers[7] = new nsSingleByteCharSetProber(&Win1253Model);
+  mProbers[8] = new nsSingleByteCharSetProber(&Latin5BulgarianModel);
+  mProbers[9] = new nsSingleByteCharSetProber(&Win1251BulgarianModel);
 
   // disable latin2 before latin1 is available, otherwise all latin1 
   // will be detected as latin2 because of their similarity.
-  //mProbers[10] = __new< nsSingleByteCharSetProber >(&Latin2HungarianModel);
-  //mProbers[11] = __new< nsSingleByteCharSetProber >(&Win1250HungarianModel);
+  //mProbers[10] = new nsSingleByteCharSetProber(&Latin2HungarianModel);
+  //mProbers[11] = new nsSingleByteCharSetProber(&Win1250HungarianModel);
 
   Reset();
 }

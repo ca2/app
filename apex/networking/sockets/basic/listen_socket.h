@@ -181,8 +181,8 @@ namespace sockets
    //   //   if (use_creator)
    //   //   {
 
-   //   //      //m_creator = __new< LISTENER >(h);
-   //   //      m_creator = __new< LISTENER >();
+   //   //      //m_creator = new LISTENER(h);
+   //   //      m_creator = new LISTENER();
 
    //   //      base_socket * plistener = m_creator->new_listen_socket();
 
@@ -236,7 +236,7 @@ namespace sockets
    //      else
    //      {
 
-   //         pbasesocket = __allocate< LISTENER >();
+   //         pbasesocket = ::place(new LISTENER());
 
    //         m_psocket = dynamic_cast < LISTENER * >(pbasesocket.m_p);
 

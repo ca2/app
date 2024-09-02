@@ -1749,7 +1749,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //
 //         is_dir * pdir = this;
 //
-//         ::pointer<is_dir>pfind(__allocate< is_dir >());
+//         ::pointer<is_dir>pfind(::place(new is_dir()));
 //
 //         index iFind0 = 0;
 //         index iFind3 = 0;
@@ -1816,7 +1816,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //
 //                  pdir = pfind;
 //
-//                  pfind = __allocate< is_dir >();
+//                  pfind = ::place(new is_dir());
 //                  iFind0 = iFind3 + 1;
 //               }
 //            }

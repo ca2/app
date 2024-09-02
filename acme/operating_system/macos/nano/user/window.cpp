@@ -162,7 +162,7 @@ return ::property_object::release();
       
       apple_defer_nano_application_create(system());
       
-      m_pwindowbridge = __allocate< nano_window_bridge >();
+      m_pwindowbridge = ::place(new nano_window_bridge());
 
       CGRect cgrect;
       
@@ -559,7 +559,7 @@ void nano_window_bridge::on_char(int iChar)
 void nano_window_bridge::_on_draw_frame(CGContextRef cg, CGSize sizeFrame)
 {
    
-   ::pointer<quartz2d::nano::user::device>pnanodevice = __allocate< quartz2d::nano::user::device >(cg);
+   ::pointer<quartz2d::nano::user::device>pnanodevice = ::place(new quartz2d::nano::user::device(cg));
    
    m_pwindow->_draw(pnanodevice);
    

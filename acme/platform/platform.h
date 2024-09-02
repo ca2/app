@@ -313,7 +313,7 @@ namespace platform
       void add_factory_item(const ::atom & atom)
       {
 
-         set_factory(atom, __allocate< ::factory::factory_item < TYPE, BASE > >());
+         set_factory(atom, ::place(new ::factory::factory_item < TYPE, BASE > ()));
 
       }
 

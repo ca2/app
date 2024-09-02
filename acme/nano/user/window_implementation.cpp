@@ -282,7 +282,7 @@ void window_implementation::handle(::topic * ptopic, ::context * pcontext)
 
    message_loop();
 
-   auto pmanualresetevent = __allocate< manual_reset_event >();
+   auto pmanualresetevent = ::place(new manual_reset_event());
 
    m_pinterface->m_psequencer->then([ pmanualresetevent](auto psequencer)
    {

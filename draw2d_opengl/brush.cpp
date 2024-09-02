@@ -152,10 +152,10 @@ namespace draw2d_opengl
    //   //      try
    //   //      {
 
-   //   //         plusplus::GraphicsPath * gp = __new< plusplus::GraphicsPath >();
+   //   //         plusplus::GraphicsPath * gp = new plusplus::GraphicsPath ();
    //   //         gp->AddEllipse((plusplus::REAL) (m_point.x() - m_size.cx() / 2),(plusplus::REAL)(m_point.y() - m_size.cy() / 2),(plusplus::REAL) (m_size.cx()),(plusplus::REAL) (m_size.cy()));
 
-   //   //         plusplus::PathGradientBrush * pgb = __new< plusplus::PathGradientBrush >(gp);
+   //   //         plusplus::PathGradientBrush * pgb = new plusplus::PathGradientBrush (gp);
 
    //   //         plusplus::Color c1(color32_u8_opacity(m_color1),color32_u8_red(m_color1),color32_u8_green(m_color1),color32_u8_blue(m_color1));
    //   //         plusplus::Color c2(color32_u8_opacity(m_color2),color32_u8_red(m_color2),color32_u8_green(m_color2),color32_u8_blue(m_color2));

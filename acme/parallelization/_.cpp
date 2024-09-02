@@ -30,7 +30,7 @@ namespace parallelization
    //CLASS_DECL_ACME void init_multitasking()
    //{
 
-   //   //s_pcs2 = __new< critical_section >();
+   //   //s_pcs2 = new critical_section();
 
    //   //s_piaThread2 = aaa_memory_new comparable_eq_array<itask_t>;
 
@@ -859,7 +859,7 @@ thread_local payload t_payloada[e_task_payload_count];
 //CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
 //{
 //
-//   auto pevent = __allocate< manual_reset_event >();
+//   auto pevent = ::place(new manual_reset_event());
 //
 //   main_asynchronous([ function, &pevent ]
 //   {

@@ -155,7 +155,7 @@ namespace filehandler
          ::pointer<::user::impact>pimpact = (CreateImpact(&cc, 101, this));
          if(pimpact != nullptr)
          {
-         pimpactdata = __new< ::user::impact_data >();
+         pimpactdata = new ::user::impact_data ();
          pimpactdata->m_eview = eview;
          pimpactdata->m_pdocument = get_document();
          pimpactdata->m_puserinteraction = pimpact;

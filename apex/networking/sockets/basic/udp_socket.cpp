@@ -12,7 +12,7 @@ namespace sockets
       //,
       //base_socket(h)
       //,socket(h)
-      m_ibuf(__new_array< char >(ibufsz))
+      m_ibuf(new char[](ibufsz))
       , m_ibufsz(ibufsz)
       , m_bind_ok(false)
       , m_port(0)

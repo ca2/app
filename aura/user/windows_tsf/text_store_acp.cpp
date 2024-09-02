@@ -680,7 +680,7 @@ namespace tsf
 
        HRESULT     hr;
 
-       CTSFDataObject *pdo = __new< CTSFDataObject >();
+       CTSFDataObject *pdo = new CTSFDataObject();
        if(NULL != pdo)
        {
            //get the text

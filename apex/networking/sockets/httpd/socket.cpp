@@ -234,7 +234,7 @@ namespace httpd
    //   if (g_pmapdh == nullptr)
    //   {
 
-   //      g_pmapdh = __new< map < int, DH * > >();
+   //      g_pmapdh = new map < int, DH * > ();
 
    //   }
 
@@ -546,7 +546,7 @@ namespace httpd
                if (straRange.get_count() == 2)
                {
 
-                  rangea.add(__new< ::i32_array >());
+                  rangea.add(new ::i32_array ());
 
                   rangea.last_ptr()->add(atoi(straRange[0]));
 

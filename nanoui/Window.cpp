@@ -102,9 +102,9 @@ void Window::on_destroy_window()
       if (!m_button_panel) 
       {
       
-         m_button_panel = __allocate< Widget >(this);
+         m_button_panel = ::place(new Widget(this));
 
-         m_button_panel->set_layout(__allocate< BoxLayout >(e_orientation_horizontal, e_alignment_middle, 0, 4));
+         m_button_panel->set_layout(::place(new BoxLayout(e_orientation_horizontal, e_alignment_middle, 0, 4)));
 
       }
 

@@ -54,7 +54,7 @@ namespace browser
 
          CefSettings settings;
          settings.multi_threaded_message_loop = true;
-         get_app() = __new< SimpleApp >();
+         get_app() = new SimpleApp();
 
          WCHAR szTempPath[MAX_PATH] = L"";
          GetTempPathW(_countof(szTempPath), szTempPath);
@@ -234,7 +234,7 @@ extern "C"
 ::acme::library * app_browser_get_new_library(::particle * pparticle)
 {
 
-   return __new< ::apex::single_application_library < ::browser::application >  >(pparticle, "app/browser");
+   return new ::apex::single_application_library < ::browser::application >  (pparticle, "app/browser");
 
 }
 
@@ -242,7 +242,7 @@ extern "C"
 ::aura::application * get_acid_app(::particle * pparticle)
 {
 
-   return __new< ::browser::application >(pparticle);
+   return new ::browser::application (pparticle);
 
 }
 

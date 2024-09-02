@@ -354,7 +354,7 @@ inline int_bool address_overlaps(const void * pszDst, const void * pszSrc, strsi
 //template < typename TYPE > inline TYPE*& __defer_new(TYPE*& p)
 //{
 //
-//   if (!p) p = __allocate< TYPE >();
+//   if (!p) p = ::place(new TYPE());
 //
 //   return p;
 //

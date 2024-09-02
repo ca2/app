@@ -48,7 +48,7 @@ namespace acme
 application::application()
 {
    
-   m_pfilesystemoptions = __allocate < ::filesystem::file_system_options >();
+   m_pfilesystemoptions = ::place(new ::filesystem::file_system_options ());
       
    m_bApplicationFirstRequest = true;
    

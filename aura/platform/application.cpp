@@ -172,7 +172,7 @@ namespace aura
       //m_pimaging = nullptr;
 
 
-      //m_phandler = __allocate< ::handler >(this);
+      //m_phandler = ::place(new ::handler(this));
 
 
       //m_bAuraProcessInitialize = false;
@@ -297,7 +297,7 @@ namespace aura
    //   if(m_pappmenu.is_null())
    //   {
 
-   //      m_pappmenu = __allocate< application_menu >();
+   //      m_pappmenu = ::place(new application_menu());
 
    //   }
 
@@ -2087,7 +2087,7 @@ retry_license:
    //   try
    //   {
 
-   //      return __allocate< ::interprocess::communication >(m_strAppName);
+   //      return ::place(new ::interprocess::communication(m_strAppName));
 
    //   }
    //   catch (...)
@@ -3768,7 +3768,7 @@ retry_license:
 
    //   }
 
-   //   auto pusermessage = __allocate< ::user::message >();
+   //   auto pusermessage = ::place(new ::user::message());
 
    //   if (!pusermessage)
    //   {
@@ -4250,7 +4250,7 @@ retry_license:
 
    //   //throw ::exception(todo("xml"));
 
-   //   //auto pdocument = __allocate< ::xml::document >();
+   //   //auto pdocument = ::place(new ::xml::document());
 
    //   //if (!pdocument->load(atom) || !*pdocument)
    //   //{
@@ -7199,7 +7199,7 @@ namespace aura
    }
 
    // convert to string and write out
-   char * psz = __new_array< char >(nBytes*2+1);
+   char * psz = new char[](nBytes*2+1);
 
    ::u32 i;
    for (i = 0; i < nBytes; i++)
@@ -8055,7 +8055,7 @@ namespace aura
 //   ::pointer<::apex::application>application::create_platform(::apex::session* psession)
 //   {
 //
-//      return __allocate< ::aura::session >();
+//      return ::place(new ::aura::session());
 //
 //   }
 
@@ -8575,7 +8575,7 @@ namespace aura
 
       }
 
-      pinteraction = __allocate< ::account::simple_ui >(this,strRequestUrl);
+      pinteraction = ::place(new ::account::simple_ui(this,strRequestUrl));
 
       pinteraction->m_login.m_peditUser->set_window_text(strUsername);
 
@@ -8595,7 +8595,7 @@ namespace aura
    //::pointer<::user::user>application::create_user()
    //{
 
-   //   return __allocate< ::user::user >();
+   //   return ::place(new ::user::user());
 
    //}
 

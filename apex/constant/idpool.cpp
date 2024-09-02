@@ -284,7 +284,7 @@
 //   //   if (!g_pthis)
 //   //   {
 //
-//   //      g_pthis = __new< idpool >();
+//   //      g_pthis = new idpool();
 //
 //   //   }
 //
@@ -315,7 +315,7 @@
 //   //void apex::init_id_pool()
 //   //{
 //
-//   //   ::idpool::g_p = __new< idpool >();
+//   //   ::idpool::g_p = new idpool();
 //
 //   //}
 //

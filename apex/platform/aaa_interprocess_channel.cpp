@@ -403,7 +403,7 @@ namespace interprocess_channel
    //void handler::dispatch_message(::string && strMessage)
    //{
 
-   //   auto pdispatchitem = __allocate< class dispatch_item >(::transfer(strMessage));
+   //   auto pdispatchitem = ::place(new class dispatch_item (::transfer(strMessage)));
 
    //   dispatch_item(::transfer(pdispatchitem));
 
@@ -413,7 +413,7 @@ namespace interprocess_channel
    //void handler::dispatch_message(::u64 uData, ::memory && memory)
    //{
 
-   //   auto pdispatchitem = __allocate< class dispatch_item >(uData, ::transfer(memory));
+   //   auto pdispatchitem = ::place(new class dispatch_item (uData, ::transfer(memory)));
 
    //   dispatch_item(::transfer(pdispatchitem));
 

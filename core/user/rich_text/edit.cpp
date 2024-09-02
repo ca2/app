@@ -456,7 +456,7 @@ namespace user
 
          //bool bFirstParagraph = true;
 
-         auto plinea = __allocate< pointer_array < line > >();
+         auto plinea = ::place(new pointer_array < line > ());
 
          ::pointer<line>pline;
 
@@ -465,7 +465,7 @@ namespace user
    //if (m_spana.first().m_pformat >= m_pformathost.get_count())
    //{
 
-   //   m_pformathost.add(__allocate< format >(this));
+   //   m_pformathost.add(::place(new format(this)));
 
    //}
 
@@ -479,7 +479,7 @@ namespace user
          //   if (m_spana.first_pointer()->m_iFormat >= m_pformathost.get_count())
          //   {
 
-         //      m_pformathost.add(__allocate< format >(this));
+         //      m_pformathost.add(::place(new format(this)));
 
          //   }
 
@@ -544,7 +544,7 @@ namespace user
 
                __construct_new(pline);
 
-               //pline = __allocate< line >();
+               //pline = ::place(new line());
 
                x = (int)rectangle.left();
 
@@ -554,7 +554,7 @@ namespace user
 
                x = (int)rectangle.left();
 
-               //pbox = __allocate< box >(pspan);
+               //pbox = ::place(new box(pspan));
 
                //index iSpan = find_char_span(m_spana, iCharLayout);
 
@@ -645,7 +645,7 @@ namespace user
                   if (pline->is_empty())
                   {
 
-                     auto pbox = __allocate< box >(pspan);
+                     auto pbox = ::place(new box(pspan));
 
                      pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -704,7 +704,7 @@ namespace user
                   if (cWords > 0)
                   {
 
-                     auto pbox = __allocate< box >(pspan);
+                     auto pbox = ::place(new box(pspan));
 
                      pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -753,7 +753,7 @@ namespace user
 
                      longest_word(strSlice, dPosition, strWord, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int)rectangleX.right() - x);
 
-                     auto pbox = __allocate< box >(pspan);
+                     auto pbox = ::place(new box(pspan));
 
                      pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -787,7 +787,7 @@ namespace user
                else
                {
 
-                  auto pbox = __allocate< box >(pspan);
+                  auto pbox = ::place(new box(pspan));
 
                   pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -2373,7 +2373,7 @@ namespace user
                //if (pformat.is_null())
                //{
 
-               //   pformat = __allocate< format >(this);
+               //   pformat = ::place(new format(this));
 
                //}
 

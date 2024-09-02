@@ -101,7 +101,7 @@ namespace acme
 ////void message_box_synchronous(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::future & future)
 ////{
 ////
-////   auto posmessagebox = __allocate< ::acme::message_box_synchronous >(pszText, pszTitle, emessagebox);
+////   auto posmessagebox = ::place(new ::acme::message_box_synchronous(pszText, pszTitle, emessagebox));
 ////
 ////   return __realize(posmessagebox, process);
 ////

@@ -67,7 +67,7 @@
 ////      }
 ////   }
 ////
-////   int * pi = __new< int >();
+////   int * pi = new int();
 ////   *pi = fd;
 ////   *pdata = pi;
 ////

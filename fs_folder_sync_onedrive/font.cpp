@@ -140,7 +140,7 @@ namespace draw2d_gdiplus
 
          ::acme::del(m_pfontcollection);
 
-         m_pfontcollection = __new< FontCollection >();
+         m_pfontcollection = new FontCollection();
 
          m_pfontcollection->AddFontFile(dir()->matter(m_strFontFamilyName));
 

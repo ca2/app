@@ -1668,7 +1668,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   if(nCount > 0)
 //   {
 //      // if the buffer is too small, just
-//      //   allocate a __new< buffer  >(slow but sure)
+//      //   allocate a new buffer(slow but sure)
 //      strsize nOldLength = get_length();
 //      strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen)*nCount;
 //
@@ -1734,7 +1734,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   if (nCount > 0)
 //   {
 //      // if the buffer is too small, just
-//      //   allocate a __new< buffer  >(slow but sure)
+//      //   allocate a new buffer(slow but sure)
 //      strsize nOldLength = get_length();
 //      strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen)*nCount;
 //

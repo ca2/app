@@ -290,8 +290,8 @@ void tool_task::initialize_tool_task(::task_group* pgroup)
    m_pgroup = pgroup;
 
    m_iIndex = 0;
-   m_pevStart = __allocate< manual_reset_event >();
-   m_pevReady = __allocate< manual_reset_event >();
+   m_pevStart = ::place(new manual_reset_event());
+   m_pevReady = ::place(new manual_reset_event());
 
    //return estatus;
 

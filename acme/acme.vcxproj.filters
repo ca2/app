@@ -3885,6 +3885,9 @@
     <ClInclude Include="platform\url_context.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="memory\quantum.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

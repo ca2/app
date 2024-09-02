@@ -1465,7 +1465,7 @@ void user::destroy()
 //   //::pointer<::user::user>application::create_userex()
 //   //{
 //
-//   //   return __allocate< ::user::user >();
+//   //   return ::place(new ::user::user());
 //
 //   //}
 //

@@ -46,7 +46,7 @@ namespace turboc
    bool application::initialize_application()
    {
 
-      m_pcontext = __new< context >(this);
+      m_pcontext = new context(this);
 
 
       add_factory_item <::turboc::document >();
@@ -128,7 +128,7 @@ namespace turboc
 
       }
 
-      m_pmain = __new< ::turboc::main >(this);
+      m_pmain = new ::turboc::main (this);
 
       m_pmain->m_pfnMain = pfnMain;
 

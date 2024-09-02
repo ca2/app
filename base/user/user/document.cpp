@@ -605,7 +605,7 @@ namespace user
    //   {
    //      ::pointer<::user::impact>pimpact = get_impact(index);
 
-   //      ptask = __new< update >();
+   //      ptask = new update();
    //      ptask->m_pSender = pSender;
    //      ptask->m_lHint = lHint;
    //      ptask->m_pHint = pHint;

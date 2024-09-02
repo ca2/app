@@ -406,7 +406,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //inline ::pointer<TYPE>__create_new()
 //{
 //
-//   auto ptype = __allocate< TYPE >();
+//   auto ptype = ::place(new TYPE());
 //
 //   if (!ptype)
 //   {
@@ -424,7 +424,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //inline ::pointer<TYPE>__create_new(const TYPE & t)
 //{
 //
-//   auto ptype = __allocate< TYPE >(t);
+//   auto ptype = ::place(new TYPE(t));
 //
 //   if (!ptype)
 //   {
@@ -825,7 +825,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //inline void __construct_new(::pointer<TYPE>& ptype)
 //{
 //
-//   ptype = __allocate< TYPE >();
+//   ptype = ::place(new TYPE());
 //
 //   if (!ptype)
 //   {

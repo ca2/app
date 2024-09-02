@@ -1056,7 +1056,7 @@ namespace acme
    ::os_theme_colors * node::_new_os_theme_colors()
    {
 
-      return __new< os_theme_colors >();
+      return new os_theme_colors();
 
    }
 
@@ -1361,7 +1361,7 @@ namespace acme
 //      CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
 //      {
 
-         auto pevent = __allocate< manual_reset_event >();
+         auto pevent = ::place(new manual_reset_event());
 
          user_post([ procedure, pevent ]
                            {

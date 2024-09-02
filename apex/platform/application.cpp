@@ -235,7 +235,7 @@ namespace apex
       //m_pimaging = nullptr;
 
 
-      //m_phandler = __allocate< ::handler >(this);
+      //m_phandler = ::place(new ::handler(this));
 
 
       //m_bAuraProcessInitialize = false;
@@ -276,7 +276,7 @@ namespace apex
 
       //m_timeGcomBackgroundUpdate = 30_s;
 
-      //m_pappimpl = __new< application_impl >();
+      //m_pappimpl = new application_impl();
 
 
    }
@@ -1079,7 +1079,7 @@ namespace apex
       //   /*        if (m_pfsdata.is_null())
       //           {
 
-      //              __construct(m_pfsdata, __allocate< ::fs::set >());
+      //              __construct(m_pfsdata, ::place(new ::fs::set()));
 
       //           }*/
 
@@ -3280,7 +3280,7 @@ namespace apex
    //   try
    //   {
 
-   //      return __allocate< ::interprocess::channel >();
+   //      return ::place(new ::interprocess::channel());
 
    //   }
    //   catch (...)
@@ -3311,7 +3311,7 @@ namespace apex
       auto psystem = system()->m_papexsystem;
 
       //estatus = 
-      m_puserlanguagemap = __allocate< ::user::language_map >();
+      m_puserlanguagemap = ::place(new ::user::language_map());
       
       //REFDBG(m_puserlanguagemap.add_reference_item({ this, __FUNCTION_FILE_LINE__ }));
 
@@ -5650,7 +5650,7 @@ namespace apex
 
       //throw ::exception(todo("xml"));
 
-      //auto pdocument = __allocate< ::xml::document >();
+      //auto pdocument = ::place(new ::xml::document());
 
       //if (!pdocument->load(atom) || !*pdocument)
       //{
@@ -9036,7 +9036,7 @@ namespace apex
    }
 
    // convert to string and write out
-   char * psz = __new_array< char >(nBytes*2+1);
+   char * psz = new char[](nBytes*2+1);
 
    ::u32 i;
    for (i = 0; i < nBytes; i++)
@@ -9897,7 +9897,7 @@ namespace apex
    //::pointer<::apex::application>application::create_platform(::apex::session* psession)
    //{
    //
-   //   return __allocate< ::apex::session >();
+   //   return ::place(new ::apex::session());
    //
    //}
 

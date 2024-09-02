@@ -46,7 +46,7 @@ namespace acme
 
          }
 
-         ptimer = __allocate< timer_task >();
+         ptimer = ::place(new timer_task());
 
          ptimer->m_ptimercallback = this;
 

@@ -106,7 +106,7 @@ namespace browser
 
       bool bAlternate = string(m_atom).case_insensitive_contains("switcher");
 
-      m_prender = __allocate< render >(get_app(), bAlternate);
+      m_prender = ::place(new render(get_app(), bAlternate));
 
       m_prender->m_pimpact = this;
 
@@ -393,7 +393,7 @@ namespace browser
                //            CreateBrow
                            //          Call CefWindowInfo::SetAsWindowless() before passing the CefWindowInfo structure to CefBrowserHost::CreateBrowser().If no parent window is passed to SetAsWindowless some functionality like context menus may not be available.
 
-                           //m_pclienthandler = __new< ClientHandler >(this);
+                           //m_pclienthandler = new ClientHandler(this);
                CreateBrowser(info, browserSettings, CefString("https://ca2.software/"));
                //m_pthreadBrowser = fork([=]()
                //                        // main_async([=]()

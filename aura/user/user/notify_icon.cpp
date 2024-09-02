@@ -136,7 +136,7 @@ namespace user
    bool notify_icon::on_application_menu_action(const ::atom &atom)
    {
 
-      auto pcommand = __allocate< ::message::command >(atom);
+      auto pcommand = ::place(new ::message::command(atom));
 
       route_command(pcommand);
 

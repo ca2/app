@@ -1190,7 +1190,7 @@ public:
       if (!p)
       {
 
-         p = __call__allocate< T >();
+         p = ::place(new T());
 
          operator =(p);
 

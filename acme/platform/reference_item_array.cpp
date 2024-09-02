@@ -851,7 +851,7 @@ reference_item_array * particle::reference_itema()
    //if (::is_null(m_preferenceitema))
    //{
 
-   //   m_preferenceitema = __allocate< reference_item_array >(this);
+   //   m_preferenceitema = ::place(new reference_item_array(this));
 
    //}
 

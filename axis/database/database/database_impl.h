@@ -137,7 +137,7 @@ namespace database
 
    //inline ::pointer<transaction>database::transaction()
    //{
-   //   return __allocate< class transaction >(this);
+   //   return ::place(new class transaction (this));
    //}
 
 

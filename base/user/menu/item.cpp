@@ -36,7 +36,7 @@ namespace menu
       m_puserinteractionHost = nullptr;
       m_bBreak = false;
       m_puserinteraction = nullptr;
-      m_pmenuitema = __allocate< item_ptra >(this);
+      m_pmenuitema = ::place(new item_ptra(this));
       m_iLevel = 0;
       m_bPopup = false;
       m_item.m_eelement = e_element_item;
@@ -124,7 +124,7 @@ namespace menu
       {
          string strCommand = straCommand[i];
          string strCommandTitle = straCommandTitle[i];
-         auto pitemNewChild = __allocate< item >();
+         auto pitemNewChild = ::place(new item());
          pitemNewChild->m_bPopup = false;
          if (strCommand.is_empty())
          {

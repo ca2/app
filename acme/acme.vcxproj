@@ -1161,6 +1161,7 @@
     <ClInclude Include="memory\operation.h" />
     <ClInclude Include="memory\plex_heap.h" />
     <ClInclude Include="memory\plex_heap_alloc_array.h" />
+    <ClInclude Include="memory\quantum.h" />
     <ClInclude Include="memory\simple_memory_allocate.h" />
     <ClInclude Include="memory\typed.h" />
     <ClInclude Include="memory\typed_memory.h" />

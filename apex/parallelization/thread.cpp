@@ -2396,7 +2396,7 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
 //   if (m_pstartup.is_null())
 //   {
 //
-//      m_pstartup = __allocate< thread_startup >();
+//      m_pstartup = ::place(new thread_startup());
 //
 //   }
 //
@@ -3271,7 +3271,7 @@ void thread::send_message(const ::atom& atom, wparam wparam, lparam lparam, cons
 
    //}
 
-   auto pmessage = __allocate< ::send_thread_message >(this);
+   auto pmessage = ::place(new ::send_thread_message(this));
 
    pmessage->m_message.m_atom = atom;
 
@@ -4254,7 +4254,7 @@ bool thread::initialize_message_queue()
    //if(m_spuiptra.is_null())
    //{
 
-   //   m_spuiptra = __allocate< ref_array < ::user::primitive > >();
+   //   m_spuiptra = ::place(new ref_array < ::user::primitive > ());
 
    //}
 
@@ -4761,7 +4761,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
    if (m_puserprimitiveaThread == nullptr)
    {
 
-      m_puserprimitiveaThread = __new< ::user::primitive_array  >();
+      m_puserprimitiveaThread = new ::user::primitive_array  ();
 
    }
 
@@ -4951,7 +4951,7 @@ thread::file_info* thread::get_file_info()
 
    }
 
-   m_pfileinfo = __allocate< file_info >();
+   m_pfileinfo = ::place(new file_info());
 
    return m_pfileinfo;
 

@@ -1142,7 +1142,7 @@ namespace sockets_bsd
 
    //   SetDetached();
 
-   //   auto psocketthread = __allocate< socket_thread >();
+   //   auto psocketthread = ::place(new socket_thread());
 
    //   psocketthread->initialize_socket_thread(this);
 

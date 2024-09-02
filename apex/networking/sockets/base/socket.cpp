@@ -1331,7 +1331,7 @@ namespace sockets
 
    //   SetDetached();
 
-   //   auto psocketthread = __allocate< socket_thread >();
+   //   auto psocketthread = ::place(new socket_thread());
 
    //   psocketthread->transfer(passociation, psocketmap);
 

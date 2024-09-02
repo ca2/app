@@ -146,7 +146,6 @@ public:
 
    //void operator()(::topic* ptopic, ::context* pcontext) override;
 
-
    //virtual void destroy();
 
    //virtual void initialize(::particle * pparticle);

@@ -2293,11 +2293,11 @@ namespace aura
 //
 //#ifdef UNIVERSAL_WINDOWS
 //
-//         m_spmutexOpenweatherCity = __allocate< ::pointer < ::mutex > >();
+//         m_spmutexOpenweatherCity = ::place(new ::pointer < ::mutex > ());
 //
 //#else
 //
-//         m_spmutexOpenweatherCity = __allocate< ::pointer < ::mutex > >(e_create_new, false, "Global\\ca2_weather_city");
+//         m_spmutexOpenweatherCity = ::place(new ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city"));
 //
 //#endif
 //
@@ -2926,7 +2926,7 @@ namespace aura
 //      return true;
 //#endif
 //
-//      /*      m_spfilehandler(__new< ::aura::filehandler::handler >(this));*/
+//      /*      m_spfilehandler(new ::aura::filehandler::handler (this));*/
 //
 ////      m_mapAppLibrary.erase_all();
 ////
@@ -4006,17 +4006,17 @@ namespace aura
 //#if defined(UNIVERSAL_WINDOWS)
 //
 //
-//         string * pstrNew = __new< string >(strUrl);
+//         string * pstrNew = new string(strUrl);
 //
 //         ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
 //            ref __new< ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew] >()
 //               {
 //
-//                  ::winrt::Windows::Foundation::Uri ^ uri = ref __new< ::winrt::Windows::Foundation::Uri >(*pstrNew);
+//                  ::winrt::Windows::Foundation::Uri ^ uri = ref new ::winrt::Windows::Foundation::Uri (*pstrNew);
 //
 //                  delete pstrNew;
 //
-//                  LauncherOptions ^ options = ref __new< LauncherOptions >();
+//                  LauncherOptions ^ options = ref new LauncherOptions();
 //
 //                  options->TreatAsUntrusted = false;
 //
@@ -4638,7 +4638,7 @@ namespace aura
    //   if (threadgroupa.is_empty())
    //   {
 
-   //      auto pgroup = __allocate< ::task_group >(this, epriority);
+   //      auto pgroup = ::place(new ::task_group(this, epriority));
 
    //      threadgroupa.add(pgroup);
 
@@ -4659,7 +4659,7 @@ namespace aura
    //   if (threadtoola.is_empty())
    //   {
 
-   //      auto ptool = __allocate< ::task_tool >();
+   //      auto ptool = ::place(new ::task_tool());
 
    //      ptool->m_atom = etool;
 
@@ -4862,7 +4862,7 @@ namespace aura
    //::pointer<::aura::session>system::on_create_session()
    //{
 
-   //   return __allocate< ::axis::session >();
+   //   return ::place(new ::axis::session());
 
    //}
 
@@ -5212,7 +5212,7 @@ namespace aura
   //
   //      //#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
   //      //
-  //      //      m_possystemwindow = __new< os_system_window >();
+  //      //      m_possystemwindow = new os_system_window();
   //      //
   //      //#endif
   //
@@ -5233,10 +5233,10 @@ namespace aura
   //            //m_strInstallToken             = "core_system";
   //
   //      m_phistory = nullptr;
-  //      m_ppatch = __new< aura::patch >();
+  //      m_ppatch = new aura::patch ();
   //      g_pszCooperativeLevel = "aura";
   //
-  //      estatus = __construct(m_puserset, __allocate< ::account::user_set >(this));
+  //      estatus = __construct(m_puserset, ::place(new ::account::user_set(this)));
   //
   //      if (!estatus)
   //      {
@@ -5630,7 +5630,7 @@ namespace aura
 //   void system::init1()
 //   {
 //
-//      m_pfilehandler = __allocate< ::filehandler::handler >(this);
+//      m_pfilehandler = ::place(new ::filehandler::handler(this));
 //
 //      //if (!::aura::application::init1())
 //      //{
@@ -5743,7 +5743,7 @@ namespace aura
 
    //   if(m_phistory == nullptr)
    //   {
-   //      m_phistory = __allocate< os_history >(this);
+   //      m_phistory = ::place(new os_history(this));
    //   }
 
    //   return true;
@@ -5777,7 +5777,7 @@ namespace aura
 
    //   //}
 
-   //   //m_pbergedgemap = __allocate< ::aura::session::map >();
+   //   //m_pbergedgemap = ::place(new ::aura::session::map());
 
 
    //   return true;
@@ -5858,7 +5858,7 @@ namespace aura
    //::pointer<::aura::session>system::on_create_session()
    //{
 
-   //   return __allocate< ::aura::session >();
+   //   return ::place(new ::aura::session());
 
    //}
 
@@ -6335,7 +6335,7 @@ namespace aura
 //
 //#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
 //
-//      m_possystemwindow = __new< os_system_window >();
+//      m_possystemwindow = new os_system_window();
 //
 //#endif
 //

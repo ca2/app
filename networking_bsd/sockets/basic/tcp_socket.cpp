@@ -540,7 +540,7 @@ m_ibuf(isize)
 
       auto paddress2 = __Address(paddress);
 
-      auto paddressBind2 = __allocate< ::networking_bsd::address >();
+      auto paddressBind2 = ::place(new ::networking_bsd::address());
 
       paddressBind2->set_family(paddress2->get_family());
 
@@ -845,7 +845,7 @@ m_ibuf(isize)
 
          ::pointer < ::networking_bsd::address > pnetworkingbsdaddress = paddress;
 
-         auto paddressLocal = __allocate< ::networking_bsd::address >();
+         auto paddressLocal = ::place(new ::networking_bsd::address());
 
          paddressLocal->set_family(pnetworkingbsdaddress->get_family());
 
@@ -1643,7 +1643,7 @@ m_ibuf(isize)
 
             }
 
-            m_obuf_top = __allocate< output >(TCP_OUTPUT_CAPACITY);
+            m_obuf_top = ::place(new output(TCP_OUTPUT_CAPACITY));
 
          }
 
@@ -2575,7 +2575,7 @@ m_ibuf(isize)
 
       ::pointer<ssl_client_context>psslclientcontext = clientcontextmap.get_context(context, pmethod);
 
-      m_psslcontext = __allocate< ssl_context >();
+      m_psslcontext = ::place(new ssl_context());
 
       m_psslcontext->m_pclientcontext = psslclientcontext;
 
@@ -2588,14 +2588,14 @@ m_ibuf(isize)
       if (m_psslcontext.is_null())
       {
 
-         m_psslcontext = __allocate< ssl_context >();
+         m_psslcontext = ::place(new ssl_context());
 
       }
 
       if (m_psslcontext->m_pclientcontext.is_null())
       {
 
-         m_psslcontext->m_pclientcontext = __allocate < ssl_client_context >(meth_in != nullptr ? meth_in : TLS_server_method());
+         m_psslcontext->m_pclientcontext = ::place(new ssl_client_context (meth_in != nullptr ? meth_in : TLS_server_method()));
 
          m_psslcontext->m_pclientcontext->initialize(m_pcontext);
 

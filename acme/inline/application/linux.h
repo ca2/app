@@ -50,7 +50,7 @@ public:
 
       m_pmain->m_pchar_binary__matter_zip_end = res_end;
 
-      m_pacmeapplication = __allocate< APPLICATION >();
+      m_pacmeapplication = ::place(new APPLICATION());
 
    }
 
@@ -90,7 +90,7 @@ public:
 int main(int argc, char * argv[], char * envp[])
 {
 
-   auto papp = __allocate< APPLICATION_CLASS >();
+   auto papp = ::place(new APPLICATION_CLASS());
 
    papp->set_args(argc, argv, envp);
 

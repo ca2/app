@@ -786,7 +786,7 @@ namespace filemanager
       //if (pcreate == nullptr)
       //{
 
-      //   pcreate = __allocate< ::create >(papp->handler(), payloadFile, true);
+      //   pcreate = ::place(new ::create(papp->handler(), payloadFile, true));
 
       //}
 
@@ -943,7 +943,7 @@ namespace filemanager
    //   if (pcreate == nullptr)
    //   {
 
-   //      pcreate = __allocate< ::create >(pappOnBehalfOf->handler());
+   //      pcreate = ::place(new ::create(pappOnBehalfOf->handler()));
 
    //   }
    //   else
@@ -1074,7 +1074,7 @@ namespace filemanager
    //   if (pcreate.is_null())
    //   {
 
-   //      pcreate = __allocate< ::create >(pappOnBehalfOf->handler());
+   //      pcreate = ::place(new ::create(pappOnBehalfOf->handler()));
 
    //   }
    //   else
@@ -1195,7 +1195,7 @@ namespace filemanager
    //   if (pfilemanagerdata == nullptr)
    //   {
 
-   //      pfilemanagerdata = __allocate< ::filemanager::data >(this);
+   //      pfilemanagerdata = ::place(new ::filemanager::data(this));
 
    //   }
 
@@ -1249,7 +1249,7 @@ namespace filemanager
    //   if (pfilemanagerdata == nullptr)
    //   {
 
-   //      pfilemanagerdata = __allocate< ::filemanager::data >(this);
+   //      pfilemanagerdata = ::place(new ::filemanager::data(this));
 
    //   }
 
@@ -1307,7 +1307,7 @@ namespace filemanager
    //   if (pfilemanagerdata == nullptr)
    //   {
 
-   //      pfilemanagerdata = __allocate< ::filemanager::data >(this);
+   //      pfilemanagerdata = ::place(new ::filemanager::data(this));
 
    //   }
 

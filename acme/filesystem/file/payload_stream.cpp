@@ -43,7 +43,7 @@
 ////   void payload_stream::write(const void *pdata, memsize nCount)
 //
 ////   {
-////      auto pm = __allocate< memory >();
+////      auto pm = ::place(new memory());
 ////      pm->assign(pdata, nCount);
 //
 ////      m_var = pm;

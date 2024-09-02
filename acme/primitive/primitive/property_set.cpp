@@ -1986,7 +1986,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 //   if (::is_null(pFind))
 //   {
 //
-//      auto pproperty = __allocate< property >(nullptr);
+//      auto pproperty = ::place(new property(nullptr));
 //
 //      this->add(pproperty);
 //

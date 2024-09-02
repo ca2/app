@@ -7,7 +7,7 @@
 ::i32 application_main(::platform::platform * pplatform)
 {
 
-   auto papplication = __allocate< app_just_message_box::application >();
+   auto papplication = ::place(new app_just_message_box::application());
 
    int iExitCode = papplication->application_main(pplatform);
 

@@ -285,7 +285,7 @@ namespace dynamic_source
 #ifdef WINDOWS_DESKTOP
 
       u32 dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
-      LPWSTR lpsz = __new_array< wchar_t >(dwSize + 1);
+      LPWSTR lpsz = new wchar_t[](dwSize + 1);
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1);
       str += lpsz;
       delete lpsz;
@@ -1389,7 +1389,7 @@ namespace dynamic_source
          return *p->element2();
       }
 
-      m_mapLib[pszLibrary] = __allocate< library >(this);
+      m_mapLib[pszLibrary] = ::place(new library(this));
 
       library & l = *m_mapLib[pszLibrary];
 

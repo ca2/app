@@ -212,7 +212,7 @@ extern "C"
 ::acme::library * app_helloworld_get_new_library(::particle * pparticle)
 {
 
-   return __new< ::apex::single_application_library < ::helloworld::application >  >(pparticle, "app/helloworld");
+   return new ::apex::single_application_library < ::helloworld::application >  (pparticle, "app/helloworld");
 
 }
 

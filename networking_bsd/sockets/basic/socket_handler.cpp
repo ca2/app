@@ -58,9 +58,9 @@ namespace sockets_bsd
       m_p2 = this;
       defer_create_synchronization();
       zero(m_socks4_host);
-      //m_prfds = __new< fd_set >();
-      //m_pwfds = __new< fd_set >();
-      //m_pefds = __new< fd_set >();
+      //m_prfds = new fd_set();
+      //m_pwfds = new fd_set();
+      //m_pefds = new fd_set();
       FD_ZERO(&m_rfdsSelect);
       FD_ZERO(&m_wfdsSelect);
       FD_ZERO(&m_efdsSelect);
@@ -1679,7 +1679,7 @@ end_processing_adding:
 
                         synchronous_lock synchronouslock(__SystemNetworking(psystem)->m_pmutexPool);
 
-                        auto ppoolsocket = __allocate< pool_socket >(psocket);
+                        auto ppoolsocket = ::place(new pool_socket(psocket));
 
                         ppoolsocket->m_psockethandler = this;
 
@@ -1935,7 +1935,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket>presolvsocket = __allocate< resolv_socket >(pbasesocket, host, port);
+//      ::pointer<resolv_socket>presolvsocket = ::place(new resolv_socket(pbasesocket, host, port));
 //
 //      presolvsocket->m_psockethandler = this;
 //
@@ -1972,7 +1972,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket>resolv = __allocate< resolv_socket >(pbasesocket, host, port, true);
+//      ::pointer<resolv_socket>resolv = ::place(new resolv_socket(pbasesocket, host, port, true));
 //
 //      resolv->m_psockethandler = this;
 //
@@ -2007,7 +2007,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket>resolv = __allocate< resolv_socket >(pbasesocket, a);
+//      ::pointer<resolv_socket>resolv = ::place(new resolv_socket(pbasesocket, a));
 //
 //      resolv->m_psockethandler = this;
 //
@@ -2042,7 +2042,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket>resolv = __allocate< resolv_socket >(pbasesocket, a);
+//      ::pointer<resolv_socket>resolv = ::place(new resolv_socket(pbasesocket, a));
 //
 //      resolv->m_psockethandler = this;
 //
@@ -2080,7 +2080,7 @@ end_processing_adding:
 //
 //         m_resolver_port = port;
 //
-//         auto presolvserver = __allocate< resolv_server >();
+//         auto presolvserver = ::place(new resolv_server());
 //
 //         m_resolver = presolvserver;
 //

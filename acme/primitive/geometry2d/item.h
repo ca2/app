@@ -40,7 +40,7 @@ namespace geometry2d
       ::particle_pointer clone() override
       {
 
-         auto pitem = __allocate< begin_figure_item >();
+         auto pitem = ::place(new begin_figure_item());
 
          return pitem;
 
@@ -63,7 +63,7 @@ namespace geometry2d
       ::particle_pointer clone() override
       {
 
-         auto pitem = __allocate< close_figure_item >();
+         auto pitem = ::place(new close_figure_item());
 
          return pitem;
 
@@ -86,7 +86,7 @@ namespace geometry2d
       ::particle_pointer clone() override
       {
 
-         auto pitem = __allocate< end_figure_item >();
+         auto pitem = ::place(new end_figure_item());
 
          return pitem;
 
@@ -108,7 +108,7 @@ namespace geometry2d
       ::particle_pointer clone() override
       {
 
-         auto pitem = __allocate< intersect_clip_item >();
+         auto pitem = ::place(new intersect_clip_item());
 
          return pitem;
 
@@ -143,7 +143,7 @@ namespace geometry2d
       ::particle_pointer clone() override
       {
 
-         auto pitem = __allocate< polygon_item >();
+         auto pitem = ::place(new polygon_item());
 
          pitem->m_polygon = m_polygon;
 
@@ -182,7 +182,7 @@ namespace geometry2d
       ::particle_pointer clone() override
       {
 
-         auto pitem = __allocate< poly_polygon_item >();
+         auto pitem = ::place(new poly_polygon_item());
 
          pitem->m_polypolygon = m_polypolygon;
 
@@ -243,7 +243,7 @@ namespace geometry2d
       ::particle_pointer clone() override
       {
 
-         auto pitem = __allocate< round_rectangle_item >();
+         auto pitem = ::place(new round_rectangle_item());
 
          pitem->m_rectangle = m_rectangle;
 

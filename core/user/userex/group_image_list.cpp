@@ -95,7 +95,7 @@ namespace userex
    ::userex::image_list_impact * group_image_list_impact::add_group(::atom idGroup, string strIcon, string strTitle, ::file::path pathFolder)
    {
 
-      ::pointer<group>pgroup = __allocate< group >();
+      ::pointer<group>pgroup = ::place(new group());
 
       pgroup->m_iIndex = m_groupa.get_size();
 

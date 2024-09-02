@@ -63,8 +63,8 @@ bool db_server::initialize_user(::simpledb::database * pmysqldbUser, const ::str
    m_psimpledbUser    = pmysqldbUser;
    m_strUser         = pszUser;
 
-//   m_plongset        = __allocate< db_long_set >(this);
-   m_pstrset         = __allocate< db_str_set >(this);
+//   m_plongset        = ::place(new db_long_set(this));
+   m_pstrset         = ::place(new db_str_set(this));
 
    if(!create_message_queue())
       return false;
@@ -93,7 +93,7 @@ bool db_server::initialize()
 
    }
 
-   m_pdb          = __allocate< ::sqlite::database >(this);
+   m_pdb          = ::place(new ::sqlite::database(this));
 
    ::pointer<::handler>phandler = psystem->handler();
 
@@ -156,9 +156,9 @@ pacmedirectory->system() / "database.sqlite";
 
    m_pdb->create_string_set("stringtable");
 
-//   m_plongset     = __allocate< db_long_set >(this);
+//   m_plongset     = ::place(new db_long_set(this));
 
-   m_pstrset      = __allocate< db_str_set >(this);
+   m_pstrset      = ::place(new db_str_set(this));
 
    i32 iBufferSize = 128 * 1024;
 

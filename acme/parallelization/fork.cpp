@@ -10,7 +10,7 @@
 //::pointer<::task> & branch(::pointer<::task> & ptask, ::particle * pparticle, const ::procedure & procedure)
 //{
 //
-//   ptask = __allocate< predicate_task < PRED > >(pparticle, pred);
+//   ptask = ::place(new predicate_task < PRED > (pparticle, pred));
 //
 //   ptask->branch();
 //

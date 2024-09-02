@@ -61,7 +61,7 @@
 //os_theme_colors * new_os_theme_colors()
 //{
 //
-//   return __new< os_theme_colors >();
+//   return new os_theme_colors();
 //
 //}
 //

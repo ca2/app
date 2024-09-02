@@ -178,7 +178,7 @@ extern "C"
 ::acme::library * get_new_library(::particle * pparticle)
 {
 
-   return __new< ::apex::single_application_library < ::tc4::application >  >(pparticle, "app-core");
+   return new ::apex::single_application_library < ::tc4::application >  (pparticle, "app-core");
 
 }
 

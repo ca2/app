@@ -2,11 +2,6 @@ cmake_minimum_required(VERSION 3.16)
 project(acme CXX)
 
 
-unset(PKGCONFIG_CFLAGS)
-unset(PKGCONFIG_LDFLAGS)
-unset(PKGCONFIG_LIBRARIES)
-
-
 list(APPEND library_source
         #compress/zip/api.cpp
         #compress/zip/file.cpp
@@ -561,6 +556,8 @@ list(APPEND library_source
         platform/tracer.cpp
         platform/tracer.h
         platform/trace_category.cpp
+        platform/url_context.cpp
+        platform/url_context.h
         platform/version.cpp
         primitive/collection/__payload_array.cpp
         primitive/collection/_generic_array.h
@@ -2576,6 +2573,7 @@ if (${FREEBSD})
 
 endif ()
 
+
 if (${OPENBSD})
     list(APPEND library_source
 
@@ -2652,6 +2650,68 @@ if (${OPENBSD})
 
 endif ()
 
+
+if (${NETBSD})
+    list(APPEND library_source
+
+            operating_system/netbsd/
+            operating_system/netbsd/_.cpp
+            operating_system/netbsd/_.cpp
+            operating_system/netbsd/_.h
+            operating_system/netbsd/_.h
+            operating_system/netbsd/_c.h
+            operating_system/netbsd/_factory.cpp
+            operating_system/netbsd/_netbsd.h
+            operating_system/netbsd/_netbsd2.h
+            operating_system/netbsd/application.h
+            operating_system/netbsd/call_stack.cpp
+            operating_system/netbsd/debug.cpp
+            operating_system/netbsd/debug.h
+            operating_system/netbsd/dumpinit.cpp
+            operating_system/netbsd/error.cpp
+            operating_system/netbsd/exception.cpp
+            operating_system/netbsd/exception_engine.cpp
+            operating_system/netbsd/exception_engine.h
+            operating_system/netbsd/get_module_path.cpp
+            operating_system/netbsd/file.cpp
+            operating_system/netbsd/file.h
+            operating_system/netbsd/file_lock.cpp
+            operating_system/netbsd/netbsd.cpp
+            operating_system/netbsd/netbsd.inl
+            operating_system/netbsd/netbsd2.cpp
+            operating_system/netbsd/netbsd_netbsd.h
+            operating_system/netbsd/graphics.cpp
+            operating_system/netbsd/internal.h
+            operating_system/netbsd/os.cpp
+            operating_system/netbsd/parallelization.cpp
+            operating_system/netbsd/process.cpp
+            operating_system/netbsd/process.h
+            operating_system/netbsd/process_pid.cpp
+            operating_system/netbsd/root_tools.cpp
+            operating_system/netbsd/root_tools.h
+            operating_system/netbsd/simple_app.cpp
+            operating_system/netbsd/standard_exception.cpp
+            operating_system/netbsd/standard_exception.h
+            operating_system/netbsd/system.cpp
+            operating_system/netbsd/thread.cpp
+            operating_system/netbsd/thread.h
+            operating_system/netbsd/time.cpp
+            operating_system/netbsd/trace.cpp
+            operating_system/netbsd/user.h
+            operating_system/netbsd/user_private.h
+            operating_system/netbsd/util.cpp
+            operating_system/netbsd/win_base.cpp
+    )
+
+endif ()
+
+if(${BSD_LIKE})
+list(APPEND library_source
+operating_system/bsd/time.cpp
+)
+
+endif()
+
 if (${LINUX} OR ${FREEBSD} OR ${NETBSD} OR ${OPENBSD})
 
     list(APPEND library_source
@@ -2659,6 +2719,7 @@ if (${LINUX} OR ${FREEBSD} OR ${NETBSD} OR ${OPENBSD})
     )
 
 endif ()
+
 
 
 if (${LINUX} OR ${FREEBSD} OR ${NETBSD} OR ${OPENBSD} OR ${APPLE} OR ${SOLARIS})
@@ -2685,6 +2746,7 @@ if (${LINUX} OR ${FREEBSD} OR ${NETBSD} OR ${OPENBSD} OR ${APPLE} OR ${SOLARIS})
             #operating_system/posix/timer.cpp
             operating_system/winpr_keycode.cpp
             operating_system/winpr_scancode.cpp
+            operating_system/strict_posix/debug.cpp
     )
 
     #set_source_files_properties(operating_system/posix/process.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
@@ -2760,9 +2822,9 @@ elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
     target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 
-    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS} ${GLOBAL_EXTRA_COMPILER_FLAGS})
-    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS} ${GLOBAL_EXTRA_COMPILER_FLAGS})
-    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
+    target_compile_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS} ${GLOBAL_EXTRA_COMPILER_FLAGS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS} ${GLOBAL_EXTRA_COMPILER_FLAGS})
+    target_link_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_LDFLAGS})
 
     if (${OPENBSD})
         #list(APPEND this_system_libraries z pthread iconv execinfo kvm c)
@@ -2801,7 +2863,7 @@ elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
     message(STATUS "(3) global_library_references is " ${global_library_references})
 
-    message(STATUS "(3) PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+    message(STATUS "(3) ${PROJECT_NAME}_PKGCONFIG_LIBRARIES is " ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES})
 
 elseif (MACOS)
 
@@ -2829,11 +2891,5 @@ target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_dire
 target_compile_definitions(${PROJECT_NAME} PRIVATE "_${PROJECT_NAME}_project")
 target_compile_definitions(static_${PROJECT_NAME} PRIVATE "_${PROJECT_NAME}_project")
 
-#if(${LINUX})
-#set(third_binaries "${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/third/binary/x64/basis/")
-#add_custom_command(TARGET acme POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${third_binaries} ${EXECUTABLE_OUTPUT_PATH})
-#set(storage_binaries "${CMAKE_CURRENT_SOURCE_DIR}/../../../operating_system/storage-${OPERATING_SYSTEM_NAME}/binary/x64/basis/")
-#add_custom_command(TARGET acme POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory ${storage_binaries} ${EXECUTABLE_OUTPUT_PATH})
-#endif()
 
 

@@ -2,6 +2,9 @@
 #include "framework.h"
 
 
+#include <stdio.h>
+
+
 void output_debug_string(const ::scoped_string & scopedstr)
 {
 

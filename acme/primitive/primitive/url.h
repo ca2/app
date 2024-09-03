@@ -143,6 +143,7 @@ namespace url
       ::const_ansi_range      m_rangeHost{ nullptr };
       ::const_ansi_range      m_rangePort{ nullptr };
       ::i32                   m_iPort = -1;
+      const char *            m_pszRequestStart{ nullptr };
 
       friend ::url::url;
 
@@ -169,10 +170,11 @@ namespace url
 
       connect& operator = (const ::url::connect& connect);
 
-      ::string as_string() const { return m_str; }
+      ::string as_string() const;
       auto protocol() const { return m_rangeProtocol; }
       auto host() const { return m_rangeHost; }
       auto port() const { return m_rangePort; }
+      ::string port_part() const;
       bool is_url() const { return m_bIsUrl; }
       bool is_secure() const { return m_bSecure; }
       bool is_scoped() const { return m_bScoped; }

@@ -2887,7 +2887,7 @@ ret:
 ::file::path dir_context::cache()
 {
 
-   return acmedirectory()->ca2roaming() / "cache";
+   return acmedirectory()->application_home() / "cache";
 
 }
 

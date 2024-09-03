@@ -1875,7 +1875,7 @@ namespace http
 
       string strHost = url.connect().host();
 
-      string strProtocol = url.connect().host();
+      string strProtocol = url.connect().protocol();
 
       string strPath = url.request().path();
 

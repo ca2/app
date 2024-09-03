@@ -470,6 +470,8 @@ namespace url
 
       }
 
+      m_pszRequestStart = pszRequest;
+
       return { pszRequest, m_str.m_end };
 
    }
@@ -485,7 +487,54 @@ namespace url
       m_rangePort.clear();
       m_iPort = connect.m_iPort;
       m_bSecure = connect.m_bSecure;
+      m_pszRequestStart = nullptr;
 
+   }
+
+
+   ::string connect::as_string() const
+   {
+
+      if (m_pszRequestStart && m_pszRequestStart <= m_str.m_end)
+      {
+
+         return { m_rangeProtocol.m_begin, m_pszRequestStart };
+
+      }
+      else if (m_bScoped)
+      {
+
+         return m_rangeProtocol + "://" + m_rangeHost + this->port_part();
+
+      }
+      else
+      {
+
+         return {};
+
+      }
+   
+   }
+
+
+   ::string connect::port_part() const 
+   { 
+
+      if (m_rangeProtocol == "https" && m_iPort == 443)
+      {
+
+         return {};
+
+      }
+      else if (m_rangeProtocol == "http" && m_iPort == 80)
+      {
+
+         return {};
+
+      }
+
+      return ":" + m_rangePort;
+   
    }
 
 

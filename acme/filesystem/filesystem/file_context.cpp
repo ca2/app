@@ -3391,7 +3391,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
          auto pfile = get_reader(pathCache);
 
-         if (pfile.ok())
+         if (pfile.ok() && pfile->size() > 0)
          {
 
             return pfile;
@@ -3428,7 +3428,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
          auto pfile = file_get_file(pathCache, eopen);
 
-         if (pfile)
+         if (pfile.ok() && pfile->size() > 0)
          {
 
             return pfile;
@@ -3704,7 +3704,7 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
 
    auto pathProcessed = m_pcontext->defer_process_path(path);
 
-   if(path == "matter://main/icon-256.png")
+   if(pathProcessed == "matter://main/icon-256.png")
    {
 
       informationf("for icon-2456 processed path is : %s", pathProcessed.c_str());
@@ -3734,7 +3734,7 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
       else
       {
 
-         throw file::exception(::error_file_not_found, {}, path, ::file::e_open_none, "defer_process_path returns empty path");
+         throw file::exception(::error_file_not_found, {}, pathProcessed, ::file::e_open_none, "defer_process_path returns empty path");
 
       }
 
@@ -3742,12 +3742,12 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
 
    }
    
-   auto strProtocol = ::url::url(path).connect().protocol();
+   auto strProtocol = ::url::url(pathProcessed).connect().protocol();
    
    if(strProtocol.has_char())
    {
       
-      auto pfile = defer_get_protocol_file(strProtocol, path, eopen, pfileexception);
+      auto pfile = defer_get_protocol_file(strProtocol, pathProcessed, eopen, pfileexception);
       
       if(pfile)
       {

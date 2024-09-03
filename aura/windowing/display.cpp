@@ -328,6 +328,14 @@ namespace windowing
    }
 
 
+   bool display::_get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle)
+   {
+
+      return false;
+
+   }
+
+
    ::collection::index  display::get_main_monitor_of_rectangle(const ::rectangle_i32 &rectangle)
    {
 
@@ -458,6 +466,14 @@ namespace windowing
       rectangle = pmonitor->workspace_rectangle();
 
       return true;
+
+   }
+
+
+   bool display::_get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 & rectangle)
+   {
+
+      return false;
 
    }
 
@@ -2159,6 +2175,7 @@ namespace windowing
       return false;
 
    }
+
 
 
 } // namespace windowing

@@ -154,43 +154,43 @@ gdb_check(void)
 //}
 
 
-void output_debug_string(const scoped_string & scopedstrFormat)
-{
+// void output_debug_string(const scoped_string & scopedstrFormat)
+// {
 
-   //if(::acme::g_bOutputDebugString)
-   {
+//    //if(::acme::g_bOutputDebugString)
+//    {
 
-//      if(scopedstrFormat == "font_list")
-//      {
-//
-//         output_debug_string("a");
-//
-//      }
+// //      if(scopedstrFormat == "font_list")
+// //      {
+// //
+// //         output_debug_string("a");
+// //
+// //      }
 
-      auto pszBegin = scopedstrFormat.m_begin;
+//       auto pszBegin = scopedstrFormat.m_begin;
 
-      auto pszEnd = scopedstrFormat.m_end;
+//       auto pszEnd = scopedstrFormat.m_end;
 
-      fwrite(pszBegin, 1, scopedstrFormat.size(), stdout);
+//       fwrite(pszBegin, 1, scopedstrFormat.size(), stdout);
 
-      //fflush(stdout);
+//       //fflush(stdout);
 
-   }
+//    }
 
-}
+// }
 
 
-void output_debug_string(const ::wide_character * pOutputString)
-{
+// void output_debug_string(const ::wide_character * pOutputString)
+// {
 
-   //if(::acme::g_bOutputDebugString)
-   {
+//    //if(::acme::g_bOutputDebugString)
+//    {
 
-      output_debug_string(string(pOutputString));
+//       output_debug_string(string(pOutputString));
 
-   }
+//    }
 
-}
+// }
 
 
 

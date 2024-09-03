@@ -2563,7 +2563,7 @@ if (${FREEBSD})
             operating_system/freebsd/system.cpp
             operating_system/freebsd/thread.cpp
             operating_system/freebsd/thread.h
-            operating_system/freebsd/time.cpp
+#            operating_system/freebsd/time.cpp
             operating_system/freebsd/trace.cpp
             operating_system/freebsd/user.h
             operating_system/freebsd/user_private.h
@@ -2640,7 +2640,7 @@ if (${OPENBSD})
             operating_system/openbsd/system.cpp
             operating_system/openbsd/thread.cpp
             operating_system/openbsd/thread.h
-            operating_system/openbsd/time.cpp
+#            operating_system/openbsd/time.cpp
             operating_system/openbsd/trace.cpp
             operating_system/openbsd/user.h
             operating_system/openbsd/user_private.h
@@ -2695,7 +2695,7 @@ if (${NETBSD})
             operating_system/netbsd/system.cpp
             operating_system/netbsd/thread.cpp
             operating_system/netbsd/thread.h
-            operating_system/netbsd/time.cpp
+#            operating_system/netbsd/time.cpp
             operating_system/netbsd/trace.cpp
             operating_system/netbsd/user.h
             operating_system/netbsd/user_private.h

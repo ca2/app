@@ -140,7 +140,7 @@ namespace user
    return false;
    ASSERT(pData->wVersion == 1);
 
-   ::u32* pItems = __new_array< ::u32 >(pData->wItemCount);
+   ::u32* pItems = new ::u32[pData->wItemCount];
    for (i32 i = 0; i < pData->wItemCount; i++)
    pItems[i] = pData->items()[i];
    bool bResult = SetButtons(pItems, pData->wItemCount);

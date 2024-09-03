@@ -433,7 +433,7 @@ namespace userex
       
       auto pmenuSource = puser->menu_from_xml(this, strXml);
       
-      auto ptrackpopup = __new<::menu::track_popup >(
+      auto ptrackpopup = new ::menu::track_popup(
                                                      pmenuSource,
                                                      this,
                                                      this,

@@ -29,7 +29,7 @@
 // //UICommand^ continueCommand = ref new UICommand(
 //       //      "Try again",
 //       //    ref new UICommandInvokedHandler(this, &CancelCommand::CommandInvokedHandler));
-//       ::winrt::Windows::UI::Popups::UICommand ^ upgradeCommand = ref __new< ::winrt::Windows::UI::Popups::UICommand >(
+//       ::winrt::Windows::UI::Popups::UICommand ^ upgradeCommand = ref new ::winrt::Windows::UI::Popups::UICommand(
 //             "OK");
 
 //       // Add the commands to the dialog

@@ -408,7 +408,7 @@ VertScale (::image32_t*pSrc,
 //{
    // Scale source image horizontally into temporary image
 //   m_bCanceled = false;
-//   ::color::color *pTemp = __new_array< ::color::color  >(uNewWidth * uOrigHeight);
+//   ::color::color *pTemp = new ::color::color[uNewWidth * uOrigHeight];
 //   HorizScale (pOrigImage,
 //               uOrigWidth,
 //               uOrigHeight,
@@ -421,7 +421,7 @@ VertScale (::image32_t*pSrc,
 //      return nullptr;
 //   }
    // Scale temporary image vertically into result image
-//   ::color::color *pRes = __new_array< ::color::color  >(uNewWidth * uNewHeight);
+//   ::color::color *pRes = new ::color::color[uNewWidth * uNewHeight];
 //   VertScale ( pTemp,
 //               uNewWidth,
 //               uOrigHeight,

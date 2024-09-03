@@ -22,14 +22,14 @@ namespace filehandler
       m_pimpactdataOld              = nullptr;
 
       /*   ::user::single_document_template* pdoctemplate;
-      pdoctemplate = __new< ::user::single_document_template >(
+      pdoctemplate = new ::user::single_document_template(
       IDR_ALBUM,
       ::type < MediaLibraryDoc >(),
       ::type < MediaLibraryChildFrame >(),
       ::type < ::mplite::library::impact >());
       m_pimpactsystemAlbum = pdoctemplate;
 
-      pdoctemplate = __new< ::user::single_document_template >(
+      pdoctemplate = new ::user::single_document_template(
       IDR_ALBUM,
       ::type < OptionsDoc >(),
       ::type < OptionsChildFrame >(),
@@ -38,7 +38,7 @@ namespace filehandler
 
       m_pimpactsystemOptions = pdoctemplate;
 
-      pdoctemplate = __new< ::user::single_document_template >(
+      pdoctemplate = new ::user::single_document_template(
       IDR_ALBUM,
       ::type < GoodMixerDoc >(),
       ::type < simple_child_frame >(),

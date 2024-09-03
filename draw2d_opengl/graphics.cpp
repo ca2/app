@@ -772,7 +772,7 @@ namespace draw2d_opengl
 
       bool bOk1 = false;
 
-      //plusplus::Point * ppoints = __new_array< plusplus::Point >(nCount);
+      //plusplus::Point * ppoints = new plusplus::Point[nCount];
 
       //try
       //{
@@ -1329,7 +1329,7 @@ namespace draw2d_opengl
 
       //   bool bOk1 = false;
 
-      //   plusplus::PointF * ppoints = __new_array< plusplus::PointF >(nCount);
+      //   plusplus::PointF * ppoints = new plusplus::PointF[nCount];
 
       //   try
       //   {
@@ -1376,7 +1376,7 @@ namespace draw2d_opengl
 
    //   //   bool bOk1 = false;
 
-   //   //   plusplus::Point * ppoints = __new_array< plusplus::Point >(nCount);
+   //   //   plusplus::Point * ppoints = new plusplus::Point[nCount];
 
    //   //   try
    //   //   {
@@ -1420,7 +1420,7 @@ namespace draw2d_opengl
 
       //bool bOk1 = false;
 
-      //plusplus::Point * ppoints = __new_array< plusplus::Point >(nCount);
+      //plusplus::Point * ppoints = new plusplus::Point[nCount];
 
       //try
       //{
@@ -1465,7 +1465,7 @@ namespace draw2d_opengl
 
    //   //bool bOk1 = false;
 
-   //   //plusplus::PointF * ppoints = __new_array< plusplus::PointF >(nCount);
+   //   //plusplus::PointF * ppoints = new plusplus::PointF[nCount];
 
    //   //try
    //   //{
@@ -1511,7 +1511,7 @@ namespace draw2d_opengl
 
       //bool bOk2 = false;
 
-      //plusplus::Point * ppoints = __new_array< plusplus::Point >(nCount);
+      //plusplus::Point * ppoints = new plusplus::Point[nCount];
 
       //try
       //{
@@ -1591,7 +1591,7 @@ namespace draw2d_opengl
 
    //   //bool bOk2 = false;
 
-   //   //plusplus::PointF * ppoints = __new_array< plusplus::PointF >(nCount);
+   //   //plusplus::PointF * ppoints = new plusplus::PointF[nCount];
 
    //   //try
    //   //{

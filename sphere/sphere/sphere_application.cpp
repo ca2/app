@@ -596,7 +596,7 @@ namespace sphere
       add_factory_item < ::userstack::pane_impact >();
       add_factory_item < ::userstack::frame >();
 
-      m_ptemplate_pane = __new< ::user::single_document_template >(
+      m_ptemplate_pane = new ::user::single_document_template(
       this,
       "bergedge/frame",
       ::type < ::userstack::document >(),

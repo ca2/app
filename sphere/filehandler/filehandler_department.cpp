@@ -39,7 +39,7 @@ namespace filehandler
 
 
 
-      ::user::single_document_template* pdoctemplate = __new< ::user::single_document_template >(
+      ::user::single_document_template* pdoctemplate = new ::user::single_document_template(
       this,
       "html/frame",
       ::type < document >(),

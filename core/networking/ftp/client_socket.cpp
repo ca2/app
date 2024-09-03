@@ -102,7 +102,7 @@ namespace ftp
       m_timeResponseWait(timeResponseWait),
       mc_strEolCharacterSequence("\r\n"),
       mc_strRemoteDirectorySeparator(strRemoteDirectorySeparator),//+# documentation missing
-      m_apFileListParser(__allocate< file_list_parser >()),
+      m_apFileListParser(::place(new file_list_parser())),
       m_fTransferInProgress(false),
       m_fAbortTransfer(false),
       m_fResumeIfPossible(true)

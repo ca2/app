@@ -807,7 +807,7 @@ namespace user
 
             auto iFind = pcombo->_001FindListText(psubitem->m_strText);
 
-            pcombo->set_current_item(::place(new ::item(::e_element_item, iFind), ::e_source_sync));
+            pcombo->set_current_item(::place(new ::item(::e_element_item, iFind)), ::e_source_sync);
 
          }
 

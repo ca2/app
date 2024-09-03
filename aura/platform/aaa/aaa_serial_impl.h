@@ -75,7 +75,7 @@ serial::serial(::particle * pparticle, const string & port, u32 baudrate, serial
    enum_byte_size ebytesize, enum_parity eparity, enum_stop_bit estopbit,
    enum_flow_control eflowcontrol)
    : ::object(pparticle),
-   pimpl_(__allocate< serial_impl >(pparticle, port, baudrate, ebytesize, eparity, estopbit, eflowcontrol))
+   pimpl_(::place(new serial_impl(pparticle, port, baudrate, ebytesize, eparity, estopbit, eflowcontrol)))
 {
    pimpl_->setTimeout(timeout);
 }

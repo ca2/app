@@ -1386,11 +1386,11 @@ namespace base
 
          //application()->m_pbaseapplication->add_impact_system(
          //   m_ptemplateForm->m_atom, 
-         //   __allocate < ::user::multiple_document_template >(
+         //   ::place(new ::user::multiple_document_template(
          //      m_ptemplateForm->m_atom,
          //      m_ptemplateForm->m_typeatomDocument,
          //      m_ptemplateForm->m_typeatomFrame,
-         //      typeatom));
+         //      typeatom)));
 
       }
 
@@ -1645,11 +1645,11 @@ namespace base
 
             //add_impact_system(
             //   m_ptemplateChildForm->m_atom,
-            //       __allocate < ::user::multiple_document_template >(
+            //       ::place(new ::user::multiple_document_template(
             //   m_ptemplateChildForm->m_atom,
             //   typeDocument,
             //   m_ptemplateChildForm->m_typeatomFrame,
-            //   typeatom));
+            //   typeatom)));
 
            /* pimpactsystemNew->initialize(pparticle);
 

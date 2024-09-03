@@ -523,7 +523,7 @@ const char * memory_counter_id(T * pthis)
 //inline T * __new_array(::collection::count c)
 //{
 //
-//   auto p = ::platform::allocator::__new_array < T >(c);
+//   auto p = ::platform::allocator::new  T[c];
 //
 //   return p;
 //

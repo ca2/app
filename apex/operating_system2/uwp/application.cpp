@@ -74,7 +74,7 @@ namespace apex
 
       if(dwResSize > 0)
       {
-         LPVOID lpdata = __new_array< ::u8 >(dwResSize);
+         LPVOID lpdata = new ::u8[dwResSize];
          if(GetFileVersionInfo(
                lpszModuleFilePath,
                0,

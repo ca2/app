@@ -234,7 +234,7 @@ string file_module_path_dup()
 //{
 //   // Get the list of process identifiers.
 //
-//   ::u32 * aProcesses = __new_array< ::u32 >(1024 * 8);
+//   ::u32 * aProcesses = new ::u32[1024 * 8];
 //
 //   ::u32 cbNeeded,cProcesses;
 //
@@ -413,7 +413,7 @@ string file_module_path_dup()
 // // {
 // //    THREAD_PARAMS* pThreadParam = (THREAD_PARAMS*)lParam;
 
-// //    FILE_NAME_INFO * pinfo = (FILE_NAME_INFO *)__new_array< ::u8 >(MAX_PATH * 8);
+// //    FILE_NAME_INFO * pinfo = (FILE_NAME_INFO *)new ::u8[MAX_PATH * 8];
 
 // //    GetFinalPathNameByHandleDef pGetFinalPathNameByHandle = pThreadParam->pGetFinalPathNameByHandle;
 // //    for(g_CurrentIndex; g_CurrentIndex < pThreadParam->pSysHandleInformation->dwCount;)
@@ -502,7 +502,7 @@ string file_module_path_dup()
 // //       // The previously supplied buffer wasn't enough.
 // //       delete pSysHandleInformation;
 // //       size = needed + 1024;
-// //       pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)__new_array< ::u8 >(size_i32);
+// //       pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)new ::u8[size_i32];
 // //       status = NtQuerySystemInformation(SystemHandleInformation,pSysHandleInformation, size,&needed);
 // //       if(!NT_SUCCESS(status))
 // //       {
@@ -691,7 +691,7 @@ string file_module_path_dup()
 // //    }
 
 // //    u32 dwsize = 300;
-// //    PDWORD pDwId = (PDWORD)__new_array< ::u8 >(dwsize);
+// //    PDWORD pDwId = (PDWORD)new ::u8[dwsize];
 // //    ::u32 dwReturned = dwsize;
 // //    // Enum all the process first
 // //    while(1)
@@ -703,7 +703,7 @@ string file_module_path_dup()
 // //       }
 // //       delete pDwId;
 // //       dwsize += 50;
-// //       pDwId = (PDWORD)__new_array< ::u8 >(dwsize);
+// //       pDwId = (PDWORD)new ::u8[dwsize];
 // //    }
 // //    i32 nCount = dwReturned / sizeof(u32);
 // //    i32 nItemCount = -1;

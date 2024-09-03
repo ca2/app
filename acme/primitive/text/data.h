@@ -17,7 +17,8 @@ namespace text
 {
 
 
-   class CLASS_DECL_ACME data
+   class CLASS_DECL_ACME data :
+      public ::memory_quantum
    {
    protected:
 
@@ -37,7 +38,6 @@ namespace text
       data(translator * ptranslator);
       ~data();
 
-      void operator delete(void* p) { memory_free(p); }
 
 
    };

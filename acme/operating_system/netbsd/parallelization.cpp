@@ -15,7 +15,7 @@
 //#include <sys/_cpuset.h>
 //#include <sys/cpuset.h>
 #undef bitset
-#include <pthread_np.h>
+#include <pthread.h>
 #include <signal.h>
 #include <sys/time.h>
 #define ITIMER_REAL      0

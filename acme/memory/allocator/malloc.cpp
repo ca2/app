@@ -86,7 +86,7 @@ namespace heap
 
       //{
 
-#if defined(OPENBSD)
+#if defined(OPENBSD) || defined(NETBSD)
 
       return 0;
 

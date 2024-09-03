@@ -105,7 +105,8 @@ void standard_exception::siginfofree(void * psiginfo)
 
 
 standard_sigfpe::standard_sigfpe (i32 iSignal, siginfo_t * psiginfo, void * pc) :
-   standard_exception(iSignal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->sc_rip)
+//   standard_exception(iSignal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext.mc_rip)
+   standard_exception(iSignal, psiginfo, pc, 3, (void *) nullptr)
 {
 
 }

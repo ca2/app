@@ -515,7 +515,7 @@ CLASS_DECL_ACME void * reverse_memory_copy(void * dst, const void * src, memsize
 
 
 
-#if defined(_WIN32) || defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
+#if defined(_WIN32) || defined(__APPLE__) || defined(__BSD__)
 
 
 const void * _memory_find(const void * l, memsize l_len, const void * s, memsize s_len)

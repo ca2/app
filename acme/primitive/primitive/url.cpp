@@ -334,6 +334,7 @@ namespace url
       m_iPort = connect.m_iPort;
       m_bSecure = connect.m_bSecure;
       m_bScoped = connect.m_bScoped;
+      m_pszRequestStart = connect.m_pszRequestStart;
 
       return *this;
 

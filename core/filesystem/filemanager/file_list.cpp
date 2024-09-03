@@ -221,7 +221,7 @@ namespace filemanager
             
             auto pusermenu = user()->menu_from_xml(this, filemanager_data()->m_strXmlPopup);
             
-            auto ptrackpopup = __new < ::menu::track_popup >(
+            auto ptrackpopup = new ::menu::track_popup(
                                                              pusermenu,
                                                              this,
                                                              this,

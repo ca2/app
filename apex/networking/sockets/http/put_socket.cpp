@@ -48,10 +48,10 @@ namespace sockets
    }
 
 
-   void http_put_socket::initialize_http_put_socket(const string & strUrl)
+   void http_put_socket::initialize_http_put_socket(const ::url::url & url)
    {
 
-      initialize_http_client_socket(strUrl);
+      initialize_http_client_socket(url);
 
    }
 

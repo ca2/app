@@ -107,7 +107,7 @@ public:
 
    //::extended::status run_property(const ::atom& atom);
 
-   void run_property(const ::atom& atom);
+   void defer_run_property(const ::atom& atom);
 
    ::payload attribute(const ::atom & atom);
    ::property * find_attribute(const ::atom & atom);

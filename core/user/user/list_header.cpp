@@ -791,9 +791,9 @@ namespace user
 
       //         host_to_client(rectangleX);
 
-      //         m_pshapeaClip->add_item(__allocate< rectangle_shape >(::rectangle_f64(rectangleX)));
+      //         m_pshapeaClip->add_item(::place(new rectangle_shape(::rectangle_f64(rectangleX))));
 
-      //         m_pshapeaClip->add_item(__allocate< intersect_clip_shape >());
+      //         m_pshapeaClip->add_item(::place(new intersect_clip_shape()));
 
       //         pinteraction = pinteraction->get_parent();
 
@@ -871,9 +871,9 @@ namespace user
 
       ////         rectangleFocus.right()++;
 
-      ////         m_pshapeaClip->add_item(__allocate< rectangle_shape >(rectangleIntersect));
+      ////         m_pshapeaClip->add_item(::place(new rectangle_shape(rectangleIntersect)));
 
-      ////         m_pshapeaClip->add_item(__allocate< intersect_clip_shape >());
+      ////         m_pshapeaClip->add_item(::place(new intersect_clip_shape()));
 
       ////         i++;
 

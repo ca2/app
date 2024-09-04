@@ -183,7 +183,7 @@ namespace user
       if (!pusersystem)
       {
 
-         pusersystem = __allocate< ::user::system >();
+         pusersystem = ::place(new ::user::system());
 
          prequest->m_pmatterUserPayload = pusersystem;
 

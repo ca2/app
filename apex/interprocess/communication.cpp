@@ -72,7 +72,7 @@ namespace interprocess
 
 #endif
 
-      run_property(ID_CREATE);
+      defer_run_property(ID_CREATE);
 
       //call_procedures(CREATE_ROUTINE);
 
@@ -256,14 +256,15 @@ namespace interprocess
       //
       //   }
 
+      ::url::url url(strUri);
 
-      string strObject = system()->url()->get_server(strUri);
+      string strObject = url.connect().host();
 
-      string strMember = system()->url()->get_script(strUri);
+      string strMember = url.request().path();
 
       strMember.trim_left("/");
 
-      string strNetworkArguments = system()->url()->get_query(strUri);
+      string strNetworkArguments = url.request().query();
 
       ::property_set propertyset;
 
@@ -285,9 +286,9 @@ namespace interprocess
          if (!strMember.case_insensitive_begins("reply."))
          {
 
-            string strOrigin = propertyset["protocol"]["origin"];
+            string strOrigin = propertyset["protocol"]["origin"].as_string();
 
-            string strOriginObject = propertyset["protocol"]["origin_object"];
+            string strOriginObject = propertyset["protocol"]["origin_object"].as_string();
 
             auto iCallId = propertyset["protocol"]["call_id"].as_i64();
 
@@ -726,7 +727,7 @@ namespace interprocess
    ::pointer<::interprocess::task>communication::create_task(::interprocess::call * pcall, const ::atom & idPid)
    {
 
-      auto pobjectTask = __allocate< ::interprocess::task >(pcall, idPid, m_iTaskSeed++);
+      auto pobjectTask = ::place(new ::interprocess::task(pcall, idPid, m_iTaskSeed++));
 
       synchronous_lock synchronouslock(this->synchronization());
 
@@ -752,7 +753,7 @@ namespace interprocess
    ::pointer<::interprocess::call>communication::create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember)
    {
 
-      return __allocate< ::interprocess::call >(this, strApp, strObject, strMember);
+      return ::place(new ::interprocess::call(this, strApp, strObject, strMember));
 
    }
 
@@ -829,7 +830,7 @@ namespace interprocess
          else if (strMember == "on_new_instance")
          {
 
-            on_new_instance(propertyset["module"], propertyset["pid"]);
+            on_new_instance(propertyset["module"].as_string(), propertyset["pid"].as_i64());
 
          }
          else

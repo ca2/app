@@ -8,6 +8,9 @@
 using process_identifier = ::i64;
 
 
+using nullptr_t = ::std::nullptr_t;
+
+
 constexpr ::u64 operator "" _uintmax(unsigned long long int u) { return u << 32LL; }
 
 

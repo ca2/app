@@ -16,7 +16,7 @@
 
 //    //   {
 
-//    //      auto psystem = __allocate< ::aura::system >();
+//    //      auto psystem = ::place(new ::aura::system());
 
 //    //      psystem->set_main_struct(&mainstruct);
 

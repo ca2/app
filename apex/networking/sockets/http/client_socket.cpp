@@ -192,7 +192,8 @@ namespace sockets
 
    }
 
-   void http_client_socket::initialize_http_client_socket(const ::string & strUrlParam) //:
+
+   void http_client_socket::initialize_http_client_socket(const ::url::url & url) //:
       //::object(&h),
       //base_socket(h),
       //socket(h),
@@ -206,16 +207,25 @@ namespace sockets
       //m_b_close_when_complete(false)
    {
 
-      string strRequestUri;
+      //string strRequestUri;
 
-      url_this(strUrlParam, m_protocol, m_host, m_port, strRequestUri, m_url_filename);
+      //url_this(strUrlParam, m_protocol, m_host, m_port, strRequestUri, m_url_filename);
 
-      set_host(m_host);
+      set_url(url);
+
+      set_host(m_urlparts.connect().m_strHost);
+
       m_request.header("host") = get_host();
-      m_request.attr("http_protocol") = m_protocol;
-      m_request.attr("request_uri") = strRequestUri;
-      m_response.attr("request_uri") = strRequestUri;
-      set_url(strUrlParam);
+
+      m_request.attr("http_protocol") = m_urlparts.connect().m_strProtocol;
+
+      ::string strRequest = m_urlparts.request().as_string();
+
+      m_request.attr("request_uri") = strRequest;
+
+      m_response.attr("request_uri") = strRequest;
+
+       //set_url(strUrlParam);
 
 #ifdef BSD_STYLE_SOCKETS
       
@@ -239,9 +249,11 @@ namespace sockets
 #endif
 
       set_connect_host(get_host());
-      set_connect_port(m_port);
+
+      set_connect_port(m_urlparts.connect().m_iPort);
 
       m_pfile = nullptr;
+
       m_iFinalSize = -1;
 
       //memory_counter_increment(this);
@@ -576,54 +588,59 @@ namespace sockets
    const string & http_client_socket::GetUrlProtocol()
    {
 
-      return m_protocol;
+      return m_urlparts.connect().m_strProtocol;
 
    }
 
 
    const string & http_client_socket::GetUrlFilename()
    {
-      return m_url_filename;
+      
+      return m_urlparts.request().m_strPath;
+
    }
+
 
    const string & http_client_socket::GetContentType()
    {
+
       return m_content_type;
-   }
-
-
-   void http_client_socket::Url(const string & url_in, string & host, ::networking::port_t & port)
-   {
-
-      string url;
-
-      url_this(url_in, m_protocol, m_host, m_port, url, m_url_filename);
-
-      m_request.attr("url") = url;
-
-      auto psystem = system();
-
-      auto purl = psystem->url();
-
-      host = purl->get_server(url);
-
-      port = (::networking::port_t) purl->get_port(url);
 
    }
 
 
-   void http_client_socket::request_url(string strUrlParam)
+   void http_client_socket::set_url(const ::url::url & url)
    {
-      string strRequestUri;
 
-      url_this(strUrlParam, m_protocol, m_host, m_port, strRequestUri, m_url_filename);
+      http_tunnel::set_url(url);
 
-      m_request.attr("http_protocol")     = m_protocol;
-      m_request.header("host")                   = m_host;
-      m_request.attr("request_uri")       = strRequestUri;
-      m_response.attr("request_uri")      = strRequestUri;
+      //m_request.attr("url") = url;
 
-      set_url(strUrlParam);
+      //host = purl->get_server(url);
+
+      //port = (::networking::port_t) purl->get_port(url);
+
+   }
+
+
+   void http_client_socket::request_url(const ::url::url& url)
+   {
+
+      //string strRequestUri;
+
+      //url_this(strUrlParam, m_protocol, m_host, m_port, strRequestUri, m_url_filename);
+
+      set_url(url);
+
+      m_request.attr("http_protocol")     = m_urlparts.connect().m_strProtocol;
+      m_request.header("host")            = m_urlparts.connect().m_strHost;
+      
+      ::string strRequest = m_urlparts.request().as_string();
+
+      m_request.attr("request_uri")       = strRequest;
+      m_response.attr("request_uri")      = strRequest;
+
+      //set_url(strUrlParam);
 
       m_pfile = nullptr;
 

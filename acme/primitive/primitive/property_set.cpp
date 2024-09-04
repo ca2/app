@@ -6,6 +6,7 @@
 //#include "acme/networking/as_string.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/platform.h"
+#include "acme/platform/system.h"
 //#include "acme/primitive/primitive/payload.h"
 #include "acme/primitive/string/command_line.h"
 #include "acme/primitive/string/str.h"
@@ -37,7 +38,7 @@ property_set::property_set(::std::initializer_list < ::payload > list)
       if (i % 2 == 0)
       {
 
-         atom = item;
+         atom = item.as_atom();
 
       }
       else if (i % 2 == 1)
@@ -120,13 +121,13 @@ bool property_set::has_properties(::collection::count countMinimum) const
 property * property_set::case_insensitive_find_value(const ::payload & payload) const
 {
 
-   for (auto & pproperty : this->propertyptra())
+   for (auto & property : *this)
    {
 
-      if (pproperty->case_insensitive_order(payload) == 0)
+      if (property.case_insensitive_order(payload) == 0)
       {
 
-         return pproperty;
+         return (::property *) & property;
 
       }
 
@@ -140,13 +141,13 @@ property * property_set::case_insensitive_find_value(const ::payload & payload) 
 property * property_set::case_insensitive_find_value(const ::scoped_string & scopedstr) const
 {
 
-   for (auto & pproperty : this->propertyptra())
+   for (auto & property : *this)
    {
 
-      if (pproperty->case_insensitive_equals(scopedstr))
+      if (property.case_insensitive_equals(scopedstr))
       {
 
-         return pproperty;
+         return (::property *)  &property;
 
       }
 
@@ -162,13 +163,13 @@ property * property_set::case_insensitive_find_value(const ::scoped_string & sco
 property * property_set::find_payload(const ::payload & payload) const
 {
 
-   for (auto & pproperty : this->propertyptra())
+   for (auto & property : *this)
    {
 
-      if (*pproperty == payload)
+      if (property == payload)
       {
 
-         return pproperty;
+         return (::property *) &property;
 
       }
 
@@ -182,13 +183,13 @@ property * property_set::find_payload(const ::payload & payload) const
 property * property_set::find_payload(const ::scoped_string & scopedstr) const
 {
 
-   for (auto & pproperty : this->propertyptra())
+   for (auto & property : *this)
    {
 
-      if (*pproperty == scopedstr)
+      if (property == scopedstr)
       {
 
-         return pproperty;
+         return (::property *)  &property;
 
       }
 
@@ -1082,7 +1083,7 @@ string & property_set::get_network_payload(string & str, bool bNewLine) const
       while (true)
       {
 
-         (*p)->get_network_payload(str, bNewLine);
+         p->get_network_payload(str, bNewLine);
 
          p++;
 
@@ -1373,7 +1374,7 @@ string property_set::implode(const ::scoped_string & scopedstrGlue) const
       while (true)
       {
 
-         str += **p;
+         str += *p;
 
          p++;
 
@@ -1443,7 +1444,7 @@ property_set::property_set(const property_set & set)
 
 
 property_set::property_set(property_set && set) :
-   property_ptra(::transfer(set))
+   property_array(::transfer(set))
 {
 
 }
@@ -1485,6 +1486,40 @@ property & property_set::at(::collection::index iIndex)
 }
 
 
+::payload property_set::operator[](const ::atom_array& atoma) const
+{
+
+   auto pproperty = find(atoma);
+   
+   if (!pproperty)
+   {
+
+      return e_type_new;
+
+   }
+
+   return *pproperty;
+
+}
+
+
+::payload property_set::operator[](const ::atom& atom) const
+{
+
+   auto pproperty = find(atom);
+
+   if (!pproperty)
+   {
+
+      return e_type_new;
+
+   }
+
+   return *pproperty;
+
+}
+
+
 property_set & property_set::operator = (const ::payload & payload)
 {
 
@@ -1512,20 +1547,20 @@ property_set & property_set::operator = (const ::payload & payload)
       //else
       //{
 
-      (property_ptra &)*this = (const property_ptra &)*payload.m_ppropertyset;
+      (property_array &)*this = (const property_array &)*payload.m_ppropertyset;
 
       //      }
 
    }
-   else if (payload.m_etype == e_type_property)
-   {
+   //else if (payload.m_etype == e_type_property)
+   //{
 
-      erase_all_properties();
+   //   erase_all_properties();
 
-      set_at(payload.m_pproperty->m_atom, *payload.m_pproperty);
+   //   set_at(payload.m_pproperty->m_atom, *payload.m_pproperty);
 
-   }
-   else
+   //}
+   //else
    {
 
       throw ::exception(error_wrong_type);
@@ -1543,7 +1578,7 @@ property_set & property_set::operator = (const property_set & set)
    if (&set != this)
    {
 
-      ::property_ptra::operator=(set);
+      ::property_array::operator=(set);
 
    }
 
@@ -1558,10 +1593,10 @@ property_set & property_set::append(const property_set & set)
    if (&set != this)
    {
 
-      for (auto & pproperty : propertyptra())
+      for (auto & property : *this)
       {
 
-         add_property(__new< property >(*pproperty));
+         add_property(property);
 
       }
 
@@ -1578,32 +1613,32 @@ property_set & property_set::merge(const property_set & set)
    if (::is_reference_set(set) && &set != this)
    {
 
-      for (auto & pproperty : set.propertyptra())
+      for (auto & property : set)
       {
 
-         atom idName = pproperty->name();
+         atom idName = property.name();
 
          auto ppropertyThis = find(idName);
 
-         if (!pproperty->is_new())
+         if (!property.is_new())
          {
 
             if (ppropertyThis != nullptr)
             {
 
-               if (ppropertyThis->get_type() == ::e_type_element || pproperty->get_type() == ::e_type_element)
+               if (ppropertyThis->get_type() == ::e_type_element || property.get_type() == ::e_type_element)
                {
 
-                  operator[](pproperty->name()) = *pproperty;
+                  operator[](property.name()) = property;
 
                }
                else if (ppropertyThis->get_type() == ::e_type_property_set)
                {
 
-                  if (pproperty->get_type() == ::e_type_property_set)
+                  if (property.get_type() == ::e_type_property_set)
                   {
 
-                     ppropertyThis->property_set_reference().merge(pproperty->as_property_set());
+                     ppropertyThis->property_set_reference().merge(property.as_property_set());
 
                   }
                   else
@@ -1617,7 +1652,7 @@ property_set & property_set::merge(const property_set & set)
                         if (!has_property(::as_string(i)))
                         {
 
-                           operator[](::as_string(i)) = *pproperty;
+                           operator[](::as_string(i)) = property;
 
                            break;
 
@@ -1630,10 +1665,10 @@ property_set & property_set::merge(const property_set & set)
                   }
 
                }
-               else if (operator[](pproperty->name()).is_empty())
+               else if (operator[](property.name()).is_empty())
                {
 
-                  operator[](pproperty->name()) = *pproperty;
+                  operator[](property.name()) = property;
 
                }
                else
@@ -1642,7 +1677,7 @@ property_set & property_set::merge(const property_set & set)
                   try
                   {
 
-                     if (operator[](pproperty->name()) == *pproperty)
+                     if (operator[](property.name()) == property)
                      {
 
                         continue;
@@ -1655,7 +1690,7 @@ property_set & property_set::merge(const property_set & set)
 
                   }
 
-                  operator[](pproperty->name()).payload_array_reference().append_unique(operator[](pproperty->name()).as_payload_array());
+                  operator[](property.name()).payload_array_reference().append_unique(operator[](property.name()).as_payload_array());
 
                }
 
@@ -1663,7 +1698,7 @@ property_set & property_set::merge(const property_set & set)
             else
             {
 
-               operator[](pproperty->name()) = *pproperty;
+               operator[](property.name()) = property;
 
             }
 
@@ -1777,13 +1812,13 @@ bool property_set::contains_payload(const ::scoped_string & scopedstr) const { r
 property * property_set::str_find(const property & property) const
 {
 
-   for (auto & pproperty : this->propertyptra())
+   for (auto & property : *this)
    {
 
-      if (pproperty->str_compare(property) == 0)
+      if (property.str_compare(property) == 0)
       {
 
-         return pproperty;
+         return (::property *) &property;
 
       }
 
@@ -1797,10 +1832,10 @@ property * property_set::str_find(const property & property) const
 bool property_set::str_contains(const property_set & set) const
 {
 
-   for (auto & pproperty : propertyptra())
+   for (auto & property : *this)
    {
 
-      if (str_find(*pproperty) == nullptr)
+      if (str_find(property) == nullptr)
       {
 
          return false;
@@ -1817,10 +1852,10 @@ bool property_set::str_contains(const property_set & set) const
 bool property_set::contains(const property_set & set) const
 {
 
-   for (auto & pproperty : propertyptra())
+   for (auto & property : *this)
    {
 
-      auto ppropertyHere = find(pproperty->name());
+      auto ppropertyHere = find(property.name());
 
       if (!ppropertyHere)
       {
@@ -1829,7 +1864,7 @@ bool property_set::contains(const property_set & set) const
 
       }
 
-      if (*ppropertyHere != *pproperty)
+      if (*ppropertyHere != property)
       {
 
          return false;
@@ -1858,7 +1893,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 
       }
 
-      (*p)->get_network_arguments(strNetworkArguments);
+      p->get_network_arguments(strNetworkArguments);
 
       p++;
 
@@ -1951,7 +1986,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 //   if (::is_null(pFind))
 //   {
 //
-//      auto pproperty = __allocate< property >(nullptr);
+//      auto pproperty = ::place(new property(nullptr));
 //
 //      this->add(pproperty);
 //
@@ -2033,7 +2068,7 @@ string property_set::get_command_line(const string_array & straKeys) const
 
       }
 
-      string strItem = pproperty->m_atom;
+      string strItem = pproperty->m_atom.as_string();
 
       if (strItem.contains(" ") || strItem.contains("\'"))
       {
@@ -2104,7 +2139,7 @@ string property_set::get_command_line() const
 
    string str;
 
-   for (auto & pproperty : this->propertyptra())
+   for (auto & property : *this)
    {
 
       if (str.has_char())
@@ -2114,7 +2149,7 @@ string property_set::get_command_line() const
 
       }
 
-      string strItem(pproperty->m_atom);
+      string strItem(property.m_atom.as_string());
 
       if (strItem.contains(" ") || strItem.contains("\'"))
       {
@@ -2139,7 +2174,7 @@ string property_set::get_command_line() const
 
       }
 
-      if (pproperty->is_empty())
+      if (property.is_empty())
       {
 
          continue;
@@ -2148,7 +2183,7 @@ string property_set::get_command_line() const
 
       str += "=";
 
-      strItem = *pproperty;
+      strItem = property;
 
       if (strItem.contains(" ") || strItem.contains("\'"))
       {
@@ -2243,10 +2278,9 @@ bool property_set::payload_bool(const atom & atom, bool bDefault) const
 
    }
 
-   return *pproperty;
+   return pproperty->as_string();
 
 }
-
 
 
 ::file::path property_set::payload_file_path(const atom & atom, const ::file::path & pathDefault) const
@@ -2290,14 +2324,14 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 
    ::string str;
 
-   for (auto & pproperty : this->propertyptra())
+   for (auto & property : *this)
    {
       
-      str += pproperty->m_atom.as_string();
+      str += property.m_atom.as_string();
 
       str += scopedstrSeparator1;
 
-      str += pproperty->as_string();
+      str += property.as_string();
 
       str += scopedstrSeparator2;
 
@@ -2314,7 +2348,7 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
    for (; i < this->get_count(); i++)
    {
 
-      if (this->element_at(i)->m_atom == atom)
+      if (this->element_at(i).m_atom == atom)
       {
 
          return i;
@@ -2328,6 +2362,28 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
 }
 
 
+property* property_set::find_by_text(const ::scoped_string & scopedstr, ::collection::index iStart) const
+{
+
+   auto p = this->begin() + iStart;
+
+   for (; !this->is_end(p); p++)
+   {
+
+      if (p->m_atom == scopedstr)
+      {
+
+         return (::property*)p;
+
+      }
+
+   }
+
+   return nullptr;
+
+}
+
+
 ::property * property_set::find(const ::atom & atom, ::collection::index iStart) const
 {
 
@@ -2336,10 +2392,10 @@ string property_set::as_string(const ::scoped_string& scopedstrSeparator1, const
    for (; !this->is_end(p); p++)
    {
 
-      if ((*p)->m_atom == atom)
+      if (p->m_atom == atom)
       {
 
-         return *p;
+         return (::property *) p;
 
       }
 
@@ -2358,9 +2414,9 @@ property & property_set::get(const ::atom & atom, ::collection::index iStart)
    if (!pproperty)
    {
 
-      pproperty = __new< property >(atom);
+      auto iNewlyAdded = add_property({atom, e_type_new});
 
-      add_property(pproperty);
+      pproperty = &element_at(iNewlyAdded);
 
    }
 
@@ -2488,7 +2544,7 @@ property & property_set::get(const ::atom_array & atoma)
 
    }
 
-   return pproperty;
+   return *pproperty;
 
 }
 
@@ -2509,9 +2565,7 @@ property & property_set::get(const ::atom_array & atoma)
    if (!pproperty)
    {
 
-      pproperty = __new< property >(atom);
-
-      add_property(pproperty);
+      add_property({ atom, e_type_new });
 
    }
 
@@ -2812,3 +2866,23 @@ bool property_set::get_evaluation(::string & str, const ::string & strExpression
 }
 
 
+
+
+CLASS_DECL_ACME ::pointer < ::property_set > create_network_arguments_property_set(const ::scoped_string& scopedstrNetworkArguments)
+{
+   
+   if (scopedstrNetworkArguments.is_trimmed_empty())
+   {
+
+      return {};
+
+   }
+
+
+   auto ppropertysetNetworkArguments = ::platform::get()->system()->__create_new<::property_set>();
+
+   ppropertysetNetworkArguments->parse_network_arguments(scopedstrNetworkArguments);
+
+   return ppropertysetNetworkArguments;
+
+}

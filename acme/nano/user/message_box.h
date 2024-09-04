@@ -43,9 +43,9 @@ public:
 
    void on_draw(::nano::user::device * pnanodevice) override;
 
-   void on_click(const ::atom & atom, ::user::mouse * pmouse) override;
+   void on_click(const ::payload & payload, ::user::mouse * pmouse) override;
 
-   void on_right_click(const ::atom & atom, ::user::mouse * pmouse) override;
+   void on_right_click(const ::payload& payload, ::user::mouse * pmouse) override;
 
    void defer_create_details_still();
 

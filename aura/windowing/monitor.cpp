@@ -60,11 +60,7 @@ namespace windowing
    ::rectangle_i32 monitor::monitor_rectangle()
    {
 
-      auto psession = session()->m_paurasession;
-
-      auto pdesktopenvironment = psession->user()->m_pdesktopenvironment;
-
-      pdesktopenvironment->get_monitor_rectangle(m_iIndex, &m_rectangle);
+      m_pdisplay->_get_monitor_rectangle(m_iIndex, m_rectangle);
 
       return m_rectangle;
 
@@ -126,11 +122,7 @@ namespace windowing
 
       }
 
-      auto psession = session()->m_paurasession;
-
-      auto pdesktopenvironment = psession->user()->m_pdesktopenvironment;
-
-      pdesktopenvironment->get_workspace_rectangle(m_iIndex, &m_rectangleWorkspace);
+      m_pdisplay->_get_workspace_rectangle(m_iIndex, m_rectangleWorkspace);
 
       return m_rectangleWorkspace;
 

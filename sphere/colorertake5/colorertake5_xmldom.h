@@ -431,7 +431,7 @@ namespace colorertak5
      const string *target;
 
      ProcessingInstruction(const string *_target, const string *_data):
-           xml::node(xml::node::PROCESSING_INSTRUCTION_NODE, __new< string >("#pi")),
+           xml::node(xml::node::PROCESSING_INSTRUCTION_NODE, new string("#pi")),
            target(_target), data(_data) {}
 
      ~ProcessingInstruction()

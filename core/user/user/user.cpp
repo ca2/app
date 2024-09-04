@@ -306,12 +306,11 @@ namespace core
       auto typeinfo = psystem->get_simple_frame_window_type_info();
 
       add_impact_system(
-         "system/form",
-         __allocate < ::user::multiple_document_template >(
+         "system/form", ::place(new ::user::multiple_document_template(
          "system/form",
          ::type < form_document >(),
          psystem->get_simple_frame_window_type_info(),
-         ::type < ::user::form_impact >()));
+         ::type < ::user::form_impact >())));
 
       //ptemplate->initialize(this);
 
@@ -321,11 +320,11 @@ namespace core
       //add_document_template(ptemplate);
       //add_impact_system(
       //   "system/form_child",
-      //   __allocate < ::user::multiple_document_template >(
+      //   ::place(new ::user::multiple_document_template(
       //   "system/form",
       //   ::type < form_document >(),
       //   get_simple_child_frame_type_info(),
-      //   ::type < ::user::form_impact >()));
+      //   ::type < ::user::form_impact >())));
 
       //ptemplate->initialize(this);
 
@@ -333,12 +332,11 @@ namespace core
 
       //add_document_template(m_ptemplateChildForm);
       add_impact_system(
-         "system/form_placeholder",
-         __allocate < ::user::multiple_document_template >(
+         "system/form_placeholder", ::place(new ::user::multiple_document_template(
          "system/form",
          ::type < ::user::document >(),
          psystem->get_simple_frame_window_type_info(),
-         ::type < ::user::place_holder >()));
+         ::type < ::user::place_holder >())));
 
       //ptemplate->initialize(this);
 
@@ -347,12 +345,11 @@ namespace core
       //add_document_template(ptemplate);
 
       add_impact_system(
-         "progress_impact",
-         __allocate< ::user::multiple_document_template >(
+         "progress_impact", ::place(new ::user::multiple_document_template(
          "main",
          ::type < ::user::document >(),
          ::type < ::userex::dialog_frame >(),
-         ::type < ::userex::progress_impact >()));
+         ::type < ::userex::progress_impact >())));
 
       //m_ptemplateProgress2 = pmultitemplate;
 
@@ -1585,7 +1582,7 @@ namespace core
    //::pointer<::user::user>application::create_userex()
    //{
 
-   //   return __allocate< ::user::user >();
+   //   return ::place(new ::user::user());
 
    //}
 
@@ -1739,12 +1736,12 @@ namespace core
 
          //add_factory_item <::user::color_impact >();
 
-         //user()->m_mapimpactsystem[COLORSEL_IMPACT] = __allocate < ::user::multiple_document_template >(
+         //user()->m_mapimpactsystem[COLORSEL_IMPACT] = ::place(new ::user::multiple_document_template(
          //   get_app(),
          //   "main",
          //   ::type < ::user::document >(),
          //   ::type < ::prodevian_translucent_simple_frame_window >(),
-         //   ::type < ::user::color_impact >()));
+         //   ::type < ::user::color_impact >())));
 
          //add_document_template(user()->m_mapimpactsystem[COLORSEL_IMPACT]);
 
@@ -1762,12 +1759,11 @@ namespace core
          factory()->add_factory_item <::user::color_selector_impact >();
 
          add_impact_system(
-            COLORSEL_IMPACT,
-            __allocate < ::user::multiple_document_template >(
+            COLORSEL_IMPACT, ::place(new ::user::multiple_document_template(
             "main",
             ::type < ::user::document >(),
             ::type < ::simple_frame_window >(),
-            ::type < ::user::color_selector_impact >()));
+            ::type < ::user::color_selector_impact >())));
 
          //auto psession = get_session();
 
@@ -1793,12 +1789,11 @@ namespace core
          factory()->add_factory_item <::userex::font_impact >();
 
          add_impact_system(
-            FONTSEL_IMPACT,
-            __allocate < ::user::multiple_document_template >(
+            FONTSEL_IMPACT, ::place(new ::user::multiple_document_template(
             "main",
             ::type < ::user::document >(),
             ::type < ::simple_frame_window >(),
-            ::type < ::userex::font_impact >()));
+            ::type < ::userex::font_impact >())));
 
          //auto psession = get_session();
 

@@ -29,7 +29,7 @@ public:
 
    virtual void initialize_popup_button(const ::string & strText, int x, int y);
 
-   void on_click(const ::atom & atom, ::user::mouse * pmouse) override;
+   void on_click(const ::payload& payload, ::user::mouse * pmouse) override;
 
    void on_draw(::nano::user::device * pnanodevice) override;
 

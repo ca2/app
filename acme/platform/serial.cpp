@@ -7,7 +7,7 @@
 //#include "acme/primitive/collection/string_array.h"
 
 
-#if !defined(_WIN32) && !defined(__OpenBSD__) && !defined(__FreeBSD__)
+#if !defined(_WIN32) && !defined(__BSD__)
 # include <alloca.h>
 #endif
 
@@ -28,7 +28,7 @@ namespace serial
       enum_byte_size ebytesize, enum_parity eparity, enum_stop_bit estopbit,
       enum_flow_control eflowcontrol)
       //:
-      //m_pimpl(__allocate< serial_impl >(port, baudrate, ebytesize, eparity, estopbit, eflowcontrol))
+      //m_pimpl(::place(new serial_impl(port, baudrate, ebytesize, eparity, estopbit, eflowcontrol)))
    {
 //      set_timeout(timeout);
 
@@ -786,7 +786,7 @@ namespace serial
 //   size)
 //{
 //   scoped_read_lock lock(this);
-//   u8 * buffer_ = __new_array< u8 >(size);
+//   u8 * buffer_ = new u8[size];
 //   size_t bytes_read = this->read(buffer_, size);
 //   buffer.append(reinterpret_cast
 //   <const char *>(buffer_), bytes_read

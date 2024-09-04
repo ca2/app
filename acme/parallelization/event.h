@@ -1,7 +1,7 @@
 #pragma once
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(LINUX) || defined(__APPLE__) || defined(__BSD__)
 #include <sys/types.h>
 #include <sys/sem.h>
 #endif
@@ -25,7 +25,7 @@ public:
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(__BSD__)
 
    /// Private Mutexes
    bool              m_bManualEvent;
@@ -38,7 +38,7 @@ public:
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(LINUX) || defined(__APPLE__) || defined(__BSD__)
 
    /// Named Mutexes
    int               m_sem;

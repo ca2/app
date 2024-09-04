@@ -83,14 +83,12 @@ namespace fs
       return;
       }*/
 
-      string strUrl;
+      ::url::url url(m_path);
 
-      auto psystem = system();
+      ::string strUrl;
 
-      auto purl = psystem->url();
-
-      strUrl = "http://fs.veriwell.net/fs/get?path=" + ::url::encode(purl->get_script(m_path))
-               + "&server=" + ::url::encode(purl->get_server(m_path));
+      strUrl = "http://fs.veriwell.net/fs/get?path=" + ::url::encode(url.request().path())
+               + "&host=" + ::url::encode(url.connect().host());
 
       ::file::e_open eopenAdd;
 
@@ -111,15 +109,13 @@ namespace fs
 
       string strUrl;
 
-      auto psystem = system();
-
-      auto purl = psystem->url();
-
       if(m_payloadFile["xmledit"].cast < ::memory_file >() != nullptr)
       {
 
-         strUrl = "http://fs.veriwell.net/fs/xmledit?path=" + ::url::encode(purl->get_script(m_payloadFile["url"]))
-                  + "&server=" + ::url::encode(purl->get_server(m_payloadFile["url"]));
+         ::url::url url(m_payloadFile["url"]);
+
+         strUrl = "http://fs.veriwell.net/fs/xmledit?path=" + ::url::encode(url.request().path())
+            + "&host=" + ::url::encode(url.connect().host());
 
          property_set setRequest;
 
@@ -127,7 +123,7 @@ namespace fs
 
          m_pcontext->m_papexcontext->http().put(strUrl,m_payloadFile["xmledit"].cast < ::memory_file >(),setRequest);
 
-         string strResponse(setRequest["get_response"]);
+         string strResponse(setRequest["get_response"].as_string());
 
          property_set set;
 
@@ -144,8 +140,8 @@ namespace fs
          if(strMd5Here == strMd5There)
             return;
 
-         strUrl = "http://fs.veriwell.net/fs/set?path=" + ::url::encode(purl->get_script(m_payloadFile["url"]))
-                  + "&server=" + ::url::encode(purl->get_server(m_payloadFile["url"]));
+         strUrl = "http://fs.veriwell.net/fs/set?path=" + ::url::encode(url.request().path())
+                  + "&host=" + ::url::encode(url.connect().host());
 
          property_set setPut;
 
@@ -154,9 +150,10 @@ namespace fs
          return;
       }
 
+      ::url::url url(m_path);
 
-      strUrl = "http://fs.veriwell.net/fs/set?path=" + ::url::encode(purl->get_script(m_path))
-               + "&server=" + ::url::encode(purl->get_server(m_path));
+      strUrl = "http://fs.veriwell.net/fs/set?path=" + ::url::encode(url.request().path())
+               + "&host=" + ::url::encode(url.connect().host());
 
       property_set set;
 

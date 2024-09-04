@@ -187,11 +187,11 @@ void user::init(){
 //
 //      add_impact_system(
 //         "system/form",
-//         __allocate < ::user::multiple_document_template >(
+//         ::place(new ::user::multiple_document_template(
 //         "system/form",
 //         ::type < form_document >(),
 //         psystem->get_simple_frame_window_type_info(),
-//         ::type < ::user::form_impact >()));
+//         ::type < ::user::form_impact >())));
 //
 //      //ptemplate->initialize(this);
 //
@@ -201,11 +201,11 @@ void user::init(){
 //      //add_document_template(ptemplate);
 //      //add_impact_system(
 //      //   "system/form_child",
-//      //   __allocate < ::user::multiple_document_template >(
+//      //   ::place(new ::user::multiple_document_template(
 //      //   "system/form",
 //      //   ::type < form_document >(),
 //      //   get_simple_child_frame_type_info(),
-//      //   ::type < ::user::form_impact >()));
+//      //   ::type < ::user::form_impact >())));
 //
 //      //ptemplate->initialize(this);
 //
@@ -214,11 +214,11 @@ void user::init(){
 //      //add_document_template(m_ptemplateChildForm);
 //      add_impact_system(
 //         "system/form_placeholder",
-//         __allocate < ::user::multiple_document_template >(
+//         ::place(new ::user::multiple_document_template(
 //         "system/form",
 //         ::type < ::user::document >(),
 //         psystem->get_simple_frame_window_type_info(),
-//         ::type < ::user::place_holder >()));
+//         ::type < ::user::place_holder >())));
 //
 //      //ptemplate->initialize(this);
 //
@@ -228,11 +228,11 @@ void user::init(){
 //
 //      add_impact_system(
 //         "progress_impact",
-//         __allocate< ::user::multiple_document_template >(
+//         ::place(new ::user::multiple_document_template(
 //         "main",
 //         ::type < ::user::document >(),
 //         ::type < ::userex::dialog_frame >(),
-//         ::type < ::userex::progress_impact >()));
+//         ::type < ::userex::progress_impact >())));
 //
 //      //m_ptemplateProgress2 = pmultitemplate;
 //
@@ -1465,7 +1465,7 @@ void user::destroy()
 //   //::pointer<::user::user>application::create_userex()
 //   //{
 //
-//   //   return __allocate< ::user::user >();
+//   //   return ::place(new ::user::user());
 //
 //   //}
 //
@@ -1619,12 +1619,12 @@ void user::destroy()
 //
 //         //add_factory_item <::user::color_impact >();
 //
-//         //user()->m_mapimpactsystem[COLORSEL_IMPACT] = __allocate < ::user::multiple_document_template >(
+//         //user()->m_mapimpactsystem[COLORSEL_IMPACT] = ::place(new ::user::multiple_document_template(
 //         //   get_app(),
 //         //   "main",
 //         //   ::type < ::user::document >(),
 //         //   ::type < ::prodevian_translucent_simple_frame_window >(),
-//         //   ::type < ::user::color_impact >()));
+//         //   ::type < ::user::color_impact >())));
 //
 //         //add_document_template(user()->m_mapimpactsystem[COLORSEL_IMPACT]);
 //
@@ -1643,11 +1643,11 @@ void user::destroy()
 //
 //         add_impact_system(
 //            COLORSEL_IMPACT,
-//            __allocate < ::user::multiple_document_template >(
+//            ::place(new ::user::multiple_document_template(
 //            "main",
 //            ::type < ::user::document >(),
 //            ::type < ::simple_frame_window >(),
-//            ::type < ::user::color_selector_impact >()));
+//            ::type < ::user::color_selector_impact >())));
 //
 //         //auto psession = get_session();
 //
@@ -1674,11 +1674,11 @@ void user::destroy()
 //
 //         add_impact_system(
 //            FONTSEL_IMPACT,
-//            __allocate < ::user::multiple_document_template >(
+//            ::place(new ::user::multiple_document_template(
 //            "main",
 //            ::type < ::user::document >(),
 //            ::type < ::simple_frame_window >(),
-//            ::type < ::userex::font_impact >()));
+//            ::type < ::userex::font_impact >())));
 //
 //         //auto psession = get_session();
 //

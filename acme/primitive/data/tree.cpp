@@ -20,7 +20,7 @@ namespace data
 
       m_bFill = false;
 
-      //m_proot = __allocate< tree_item >();
+      //m_proot = ::place(new tree_item());
 
       //if (m_proot == nullptr)
       //{
@@ -35,7 +35,7 @@ namespace data
 
       m_ptree = this;
 
-      m_pparent = __allocate < ::data::tree_item >();
+      m_pparent = ::place(new ::data::tree_item ());
 
    }
 
@@ -394,7 +394,7 @@ namespace data
 
       }
 
-      ::pointer<::data::tree_item>pitemNew = __allocate< tree_item >();
+      ::pointer<::data::tree_item>pitemNew = ::place(new tree_item());
 
       if(pitemNew == nullptr)
          return nullptr;

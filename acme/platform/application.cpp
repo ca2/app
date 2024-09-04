@@ -48,7 +48,7 @@ namespace acme
 application::application()
 {
    
-   m_pfilesystemoptions = __allocate < ::filesystem::file_system_options >();
+   m_pfilesystemoptions = ::place(new ::filesystem::file_system_options ());
       
    m_bApplicationFirstRequest = true;
    
@@ -1007,10 +1007,10 @@ string application::get_visual_studio_build()
 
 
 
-void application::set_locale(const string& pcsz, const ::action_context& context)
+void application::set_locale(const scoped_string& scopedstrLocale, const ::action_context& context)
 {
    
-   string strLocale(pcsz);
+   string strLocale(scopedstrLocale);
    
    
    strLocale.trim();
@@ -1022,12 +1022,10 @@ void application::set_locale(const string& pcsz, const ::action_context& context
 }
 
 
-void application::set_schema(const string& pcsz, const ::action_context& context)
-
+void application::set_schema(const ::scoped_string & scopedstrSchema, const ::action_context& context)
 {
    
-   string strSchema(pcsz);
-   
+   string strSchema(scopedstrSchema);
    
    strSchema.trim();
    
@@ -1038,27 +1036,24 @@ void application::set_schema(const string& pcsz, const ::action_context& context
 }
 
 
-void application::on_set_locale(const string& pcsz, const ::action_context& context)
-
+void application::on_set_locale(const ::scoped_string& scopedstrLocale, const ::action_context& context)
 {
+
+   __UNREFERENCED_PARAMETER(scopedstrLocale);
    __UNREFERENCED_PARAMETER(context);
-   __UNREFERENCED_PARAMETER(pcsz);
    
    //psystem->appa_load_string_table();
 }
 
 
-void application::on_set_schema(const string& pcsz, const ::action_context& context)
-
+void application::on_set_schema(const ::scoped_string& scopedstrSchema, const ::action_context& context)
 {
+
+   __UNREFERENCED_PARAMETER(scopedstrSchema);
    __UNREFERENCED_PARAMETER(context);
-   __UNREFERENCED_PARAMETER(pcsz);
    
    //psystem->appa_load_string_table();
 }
-
-
-
 
 
 string application::get_locale_schema_dir()
@@ -1069,18 +1064,18 @@ string application::get_locale_schema_dir()
 }
 
 
-string application::get_locale_schema_dir(const ::string& strLocale)
+string application::get_locale_schema_dir(const ::scoped_string& scopedstrLocale)
 {
    
-   return _001Concatenate(strLocale.is_empty() ? get_locale() : strLocale, "/", get_schema());
+   return _001Concatenate(scopedstrLocale.is_empty() ? get_locale() : ::string(scopedstrLocale), "/", get_schema());
    
 }
 
 
-void application::matter_locator_locale_schema_matter(string_array& stra, const string_array& straMatterLocator, const ::string& strLocale, const ::string& strSchema)
+void application::matter_locator_locale_schema_matter(string_array& stra, const string_array& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema)
 {
    
-   if (strLocale.is_empty() || strSchema.is_empty())
+   if (scopedstrLocale.is_empty() || scopedstrSchema.is_empty())
    {
       
       return;
@@ -1090,7 +1085,7 @@ void application::matter_locator_locale_schema_matter(string_array& stra, const 
    for (auto& strMatterLocator : straMatterLocator)
    {
       
-      string strLs = get_locale_schema_dir(strLocale, strSchema);
+      string strLs = get_locale_schema_dir(scopedstrLocale, scopedstrSchema);
       
       stra.add_unique(::file::path(strMatterLocator) / strLs);
       
@@ -1099,7 +1094,7 @@ void application::matter_locator_locale_schema_matter(string_array& stra, const 
 }
 
 
-void application::locale_schema_matter(string_array& stra, const string_array& straMatterLocator, const ::string& strLocale, const ::string& strSchema)
+void application::locale_schema_matter(string_array& stra, const string_array& straMatterLocator, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema)
 {
    
    if (straMatterLocator.has_elements())
@@ -1109,7 +1104,7 @@ void application::locale_schema_matter(string_array& stra, const string_array& s
       
    }
    
-   matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+   matter_locator_locale_schema_matter(stra, straMatterLocator, scopedstrLocale, scopedstrSchema);
    
    if (m_bSession)
    {
@@ -1118,12 +1113,12 @@ void application::locale_schema_matter(string_array& stra, const string_array& s
       
       auto ptextcontext = psession->text_context();
       
-      for (i32 i = 0; i < ptextcontext->localeschema().m_idaLocale.get_count(); i++)
+      for (i32 i = 0; i < ptextcontext->localeschema().m_straLocale.get_count(); i++)
       {
          
-         string strLocale = ptextcontext->localeschema().m_idaLocale[i];
+         auto strLocale = ptextcontext->localeschema().m_straLocale[i];
          
-         string strSchema = ptextcontext->localeschema().m_idaSchema[i];
+         auto strSchema = ptextcontext->localeschema().m_straSchema[i];
          
          matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
          
@@ -1145,27 +1140,27 @@ void application::locale_schema_matter(string_array& stra, const string_array& s
 }
 
 
-string application::get_locale_schema_dir(const ::string& strLocale, const ::string& strSchema)
+string application::get_locale_schema_dir(const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema)
 {
    
-   return _001Concatenate(strLocale, "/", strSchema);
+   return _001Concatenate(scopedstrLocale, "/", scopedstrSchema);
    
 }
 
 
-void application::fill_locale_schema(::text::international::locale_schema& localeschema, const string& pszLocale, const string& pszSchema)
+void application::fill_locale_schema(::text::international::locale_schema& localeschema, const ::scoped_string& scopedstrLocale, const ::scoped_string& scopedstrSchema)
 {
    
-   localeschema.m_idaLocale.erase_all();
-   localeschema.m_idaSchema.erase_all();
+   localeschema.m_straLocale.erase_all();
+   localeschema.m_straSchema.erase_all();
    
    
-   string strLocale(pszLocale);
-   string strSchema(pszSchema);
+   string strLocale(scopedstrLocale);
+   string strSchema(scopedstrSchema);
    
    
-   localeschema.m_atomLocale = pszLocale;
-   localeschema.m_atomSchema = pszSchema;
+   localeschema.m_strLocale = scopedstrLocale;
+   localeschema.m_strSchema = scopedstrSchema;
    
    
    localeschema.add_locale_variant(strLocale, strSchema);
@@ -1182,8 +1177,8 @@ void application::fill_locale_schema(::text::international::locale_schema& local
 {
    
    
-   localeschema.m_idaLocale.erase_all();
-   localeschema.m_idaSchema.erase_all();
+   localeschema.m_straLocale.erase_all();
+   localeschema.m_straSchema.erase_all();
    
    
    //localeschema.m_bAddAlternateStyle = true;
@@ -1212,8 +1207,8 @@ void application::fill_locale_schema(::text::international::locale_schema& local
    
    straSchema.append_unique(payload("schema").as_string_array());
    
-   localeschema.m_atomLocale = straLocale[0];
-   localeschema.m_atomSchema = straSchema[0];
+   localeschema.m_strLocale = straLocale[0];
+   localeschema.m_strSchema = straSchema[0];
    
    for (::collection::index iLocale = 0; iLocale < straLocale.get_count(); iLocale++)
    {

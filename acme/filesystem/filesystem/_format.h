@@ -5,9 +5,6 @@
 
 #ifdef __STD_FORMAT__
 
-#include "path.h"
-#include "acme/format.h"
-
 
 namespace std
 {

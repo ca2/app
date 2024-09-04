@@ -8,6 +8,7 @@
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/handler/extended_topic.h"
 #include "acme/handler/topic.h"
+#include "acme/memory/memory_allocate.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/application.h"
@@ -25,7 +26,7 @@
 CLASS_DECL_ACME void do_tasks();
 
 
-#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
+#if defined(__BSD__) || defined(__APPLE__)
 #include <stdio.h>
 #endif
 
@@ -504,7 +505,16 @@ class ::write_text::write_text * particle::write_text() const
 }
 
 
-::url::url* particle::url() const
+
+::internet::internet* particle::internet() const
+{
+
+   return system()->internet();
+
+}
+
+
+::url::url_context* particle::url() const
 {
 
    return system()->url();
@@ -699,32 +709,6 @@ void particle::delete_this()
 
 }
 
-
-
-void subparticle::run()
-{
-
-   while (true)
-   {
-
-      if(!subparticle_step())
-      {
-
-         break;
-
-      }
-
-   }
-
-}
-
-
-bool subparticle::subparticle_step()
-{
-
-   return false;
-
-}
 
 
 void particle::on_sequence()
@@ -2000,7 +1984,7 @@ bool particle::is_branch_current() const
 ::topic_pointer create_topic(::particle * pparticleCall, const ::atom & atom)
 {
 
-   auto ptopic = __allocate< ::topic >(atom);
+   auto ptopic = ::place(new ::topic(atom));
    
    ptopic->initialize(pparticleCall);
 
@@ -2715,7 +2699,7 @@ memory_file_pointer particle::create_memory_file()
 memory_file_pointer particle::create_memory_file(::memory_base& memory)
 {
 
-   return __allocate< ::memory_file >(memory);
+   return ::place(new ::memory_file(memory));
 
 }
 
@@ -2723,7 +2707,7 @@ memory_file_pointer particle::create_memory_file(::memory_base& memory)
 memory_file_pointer particle::create_memory_file(const ::block& block)
 {
 
-   return __allocate< ::memory_file >(block);
+   return ::place(new ::memory_file(block));
 
 }
 
@@ -2731,7 +2715,7 @@ memory_file_pointer particle::create_memory_file(const ::block& block)
 memory_file_pointer particle::create_memory_file_as_copy(const memory& memory)
 {
 
-   return __allocate< ::memory_file >(__allocate< ::memory >(memory));
+   return ::place(new ::memory_file(::place(new ::memory (memory))));
 
 }
 

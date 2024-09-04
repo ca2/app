@@ -1,6 +1,7 @@
 // Created by camilo on 2024-02-07 22:52 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/exception/interface_only.h"
+#include "acme/memory/memory_allocate.h"
 
 
 subparticle::~subparticle()
@@ -223,6 +224,39 @@ void subparticle::read_from_stream(::binary_stream & stream)
 
 }
 
+
+//void subparticle::operator delete(void* p)
+//{
+//
+//   ::memory_free(p);
+//
+//}
+
+
+void subparticle::run()
+{
+
+   while (true)
+   {
+
+      if (!subparticle_step())
+      {
+
+         break;
+
+      }
+
+   }
+
+}
+
+
+bool subparticle::subparticle_step()
+{
+
+   return false;
+
+}
 
 
 

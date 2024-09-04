@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.16)
 project(folder_zip CXX)
 
 
+unset(PKGCONFIG_CFLAGS)
+unset(PKGCONFIG_LDFLAGS)
+unset(PKGCONFIG_LIBRARIES)
+
+
 list(APPEND library_source
    _.cpp
    _.h
@@ -58,13 +63,10 @@ elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 
 
     target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
-   #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
     target_compile_features(static_${PROJECT_NAME} PRIVATE cxx_std_20)
 
-    #if(USE_PKGCONFIG)
-        pkg_check_modules(PKGCONFIG zlib)
-    #endif()
-
+    pkg_check_modules(PKGCONFIG zlib)
 
     target_compile_options(${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)
     target_compile_options(static_${PROJECT_NAME} PRIVATE $<$<COMPILE_LANGUAGE:CXX>:-fpermissive  ${EXTRA_CXX_TARGET_COMPILER_OPTIONS}>)

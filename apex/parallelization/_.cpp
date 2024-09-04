@@ -24,7 +24,7 @@ namespace parallelization
    CLASS_DECL_APEX void initialize()
    {
 
-      //s_pcs2 = __new< critical_section >();
+      //s_pcs2 = new critical_section();
 
       //s_piaThread2 = aaa_memory_new comparable_eq_array<itask_t>;
 

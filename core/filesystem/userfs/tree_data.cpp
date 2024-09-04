@@ -442,7 +442,7 @@ namespace userfs
    void tree_data::_001OnOpenItem(::data::tree_item * ptreeitem, const ::action_context & context)
    {
 
-      auto pitem = __allocate< ::file::item >(*ptreeitem->m_pdataitem.cast < ::userfs::item >());
+      auto pitem = ::place(new ::file::item(*ptreeitem->m_pdataitem.cast < ::userfs::item >()));
 
       m_puserfsdocument->browse(pitem, context);
 

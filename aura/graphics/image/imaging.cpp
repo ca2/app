@@ -402,7 +402,7 @@ void imaging::change_hue(image_list * pilHue, image_list * pil, const ::color::c
 ::draw2d::graphics * pgraphics,
 ::pointer<::image_list>pilParam)
 {
-::pointer<::image_list>pil = __new< ::image_list >();
+::pointer<::image_list>pil = new ::image_list ();
 
 pil->create(pilParam);
 
@@ -2277,7 +2277,7 @@ void imaging::blur_32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius)
 
    ::u8 *pFilter;
 
-   ::u8 * pFilterData = __new_array< ::u8 >(iFilterHeight *iFilterWidth);
+   ::u8 * pFilterData = new  ::u8[iFilterHeight *iFilterWidth];
    memory_set(pFilterData,1,iFilterHeight * iFilterWidth);
 
    ::u8 * pSrc = (::u8 *)pimageSrc->get_data();
@@ -3837,7 +3837,7 @@ void imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
 
    ::u8 *pFilter;
 
-   ::u8 * pFilterData = __new_array< ::u8 >(iFilterHeight *iFilterWidth);
+   ::u8 * pFilterData = new ::u8 [iFilterHeight *iFilterWidth];
 
    memory_set(pFilterData,1,iFilterHeight * iFilterWidth);
 
@@ -4723,7 +4723,7 @@ void imaging::alpha_spread_R2_24CC(::u8 * pDst,i32 xDest,i32 yDest,i32 wDest,i32
 
    //::u8 *pFilter;
 
-   ::u8 * pFilterData = __new_array< ::u8 >(iFilterHeight *iFilterWidth);
+   ::u8 * pFilterData = new  ::u8[iFilterHeight *iFilterWidth];
    memory_set(pFilterData,1,iFilterHeight * iFilterWidth);
 
    i32 maxx1 = cx;

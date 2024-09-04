@@ -809,7 +809,7 @@ namespace user
       //void window_move(i32 x, i32 y) override;
 
 
-      //auto fps_interest() { return __allocate< ::fps_interest >(this); }
+      //auto fps_interest() { return ::place(new ::fps_interest(this)); }
 
       virtual bool should_save_window_rectangle();
       

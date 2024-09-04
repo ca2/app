@@ -50,7 +50,7 @@
 //         if (t_preferencea.operator pointer_array<matter> * () == nullptr)
 //         {
 //
-//            t_preferencea = __allocate< pointer_array < ::matter > >();
+//            t_preferencea = ::place(new pointer_array < ::matter > ());
 //
 //         }
 //

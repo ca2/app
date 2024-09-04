@@ -3579,7 +3579,7 @@ SP_LIBEXPORT(sp_error) sp_playlistcontainer_release(sp_playlistcontainer *pc);
  *
  * @param[in]  pc         Playlist container.
  * @param[in]  playlist   Playlist object.
- * @param[out] tracks     Array of pointer to __new< tracks  >(maybe NULL)
+ * @param[out] tracks     Array of pointer to new tracks(maybe NULL)
  * @param[in]  num_tracks Size of tracks array
  * @return     Returns the number of unseen tracks
  */

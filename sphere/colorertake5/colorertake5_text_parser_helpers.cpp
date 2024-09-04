@@ -92,7 +92,7 @@ namespace colorertake5
       if(!node || node->virtualEntryVector.get_size() == 0)
          return false;
 
-      newitem = __new< VTList >();
+      newitem = new VTList();
 
       if(last->next)
       {
@@ -222,7 +222,7 @@ namespace colorertake5
       for(::collection::index i = 0; store[i] != nullptr; i++)
       {
 
-         pos->next = __new< VTList >();
+         pos->next = new VTList();
          prevpos = pos;
          pos = pos->next;
          pos->prev = prevpos;

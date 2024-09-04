@@ -49,7 +49,7 @@ namespace account
 //   credentials * department::create_credentials()
 //   {
 //
-//      return __allocate< network_credentials >(m_pstorage);
+//      return ::place(new network_credentials(m_pstorage));
 //
 //   }
 //
@@ -129,11 +129,9 @@ namespace account
    bool department::url_requires_auth(::file::path pathUrl)
    {
 
-      auto psystem = system();
+      ::url::url url(pathUrl);
 
-      auto purl = psystem->url();
-
-      if (purl->get_server(pathUrl).lowered() == "ca2.network")
+      if (url.connect().host().case_insensitive_equals("ca2.network"))
       {
 
          return false;
@@ -161,14 +159,14 @@ namespace account
 
       }
 
-      if(::str::case_insensitive_find("/matter/",purl->get_script(pathUrl)) >= 0)
+      if (url.request().path().case_insensitive_contains("/matter/"))
       {
 
          return false;
 
       }
 
-      string strServer = purl->get_server(pathUrl);
+      string strServer = url.connect().host();
 
       url_domain domain;
 
@@ -276,7 +274,7 @@ namespace account
 
       //}
 
-      auto pstorage = __allocate< system_storage >();
+      auto pstorage = ::place(new system_storage());
 
       m_pstorage = pstorage;
 
@@ -293,7 +291,7 @@ namespace account
 
       m_pauthenticator = __create_new< network_authenticator >();
 
-      auto pusera = __allocate< user_array >();
+      auto pusera = ::place(new user_array());
       
       m_pusera = pusera;
 
@@ -308,7 +306,7 @@ namespace account
 
       //}
 
-      m_pproducta = __allocate< product_array >();
+      m_pproducta = ::place(new product_array());
 
       //estatus = 
       

@@ -23,17 +23,19 @@ namespace nano
          virtual public ::transport_payload < get >
       {
       public:
-         
-         
-         ::string                      m_strUrl;
-         
+
+
+         ::url::url                    m_url;
+
          ::property_set                m_setIn;
-         
+
          ::property_set                m_setOut;
-         
+
          memory                        m_memory;
 
          transfer_progress_function    m_transferprogressfunction;
+
+         auto& url() {return m_url; }
 
          virtual void set_out_header(const ::scoped_string & scopedstrKey, const ::scoped_string & scopedstrPayload);
          

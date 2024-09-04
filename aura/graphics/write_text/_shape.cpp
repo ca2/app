@@ -13,7 +13,7 @@
 //CLASS_DECL_AURA ::pointer<___shape<::draw2d::path>> __create_shape(const ::write_text::text_out& textout, holdee<::draw2d::path>)
 //{
 //
-//   return __allocate< ::draw2d::text_out_shape<::draw2d::path> >(textout);
+//   return ::place(new ::draw2d::text_out_shape<::draw2d::path> (textout));
 //
 //}
 //
@@ -22,7 +22,7 @@
 //CLASS_DECL_AURA ::pointer<___shape<::draw2d::path>> __create_shape(const ::write_text::draw_text& drawtext, holdee<::draw2d::path>)
 //{
 //
-//   return __allocate< ::draw2d::draw_text_shape<::draw2d::path> >(drawtext);
+//   return ::place(new ::draw2d::draw_text_shape<::draw2d::path> (drawtext));
 //
 //}
 //

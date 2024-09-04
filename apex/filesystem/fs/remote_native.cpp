@@ -212,11 +212,9 @@ namespace fs
 
       }
 
-      auto psystem = system();
+      ::url::url url(path);
 
-      auto purl = psystem->url();
-
-      if(purl->get_script(path).is_empty() || purl->get_script(path) == "/")
+      if(url.request().path().is_empty() || url.request().path() == "/")
       {
          
          return 1;
@@ -230,7 +228,7 @@ namespace fs
       if(m_mapfileLast.lookup(path, millisLast))
       {
 
-         if(millisLast.elapsed() > psystem->m_timeFileListingCache)
+         if(millisLast.elapsed() > system()->m_timeFileListingCache)
          {
             
             ::file::listing listing;
@@ -252,7 +250,7 @@ namespace fs
       if(m_mapdirLast.lookup(path, millisLast))
       {
          
-         if(millisLast.elapsed() > psystem->m_timeFileListingCache)
+         if(millisLast.elapsed() > system()->m_timeFileListingCache)
          {
             
             ::file::listing listing;
@@ -270,7 +268,8 @@ namespace fs
 
       if(m_mapfileLast.lookup(path, millisLast))
       {
-         if(millisLast.elapsed() > psystem->m_timeFileListingCache)
+
+         if(millisLast.elapsed() > system()->m_timeFileListingCache)
          {
             return 0;
          }
@@ -337,7 +336,7 @@ namespace fs
    file_pointer remote_native::get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception)
    {
 
-      file_pointer pfile = __allocate< remote_native_file >(payloadFile);
+      file_pointer pfile = ::place(new remote_native_file(payloadFile));
 
       //auto result =
       pfile->open(payloadFile, eopen, ppfileexception);

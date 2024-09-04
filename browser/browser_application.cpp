@@ -54,7 +54,7 @@ namespace browser
 
          CefSettings settings;
          settings.multi_threaded_message_loop = true;
-         get_app() = __new< SimpleApp >();
+         get_app() = new SimpleApp();
 
          WCHAR szTempPath[MAX_PATH] = L"";
          GetTempPathW(_countof(szTempPath), szTempPath);
@@ -117,32 +117,32 @@ pacmedirectory->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); 
 
 
       auto
-      pDocTemplate = __allocate < ::user::single_document_template >(
+      pDocTemplate = ::place(new ::user::single_document_template(
                           this,
                           "main",
                           ::type < document >(),
                           ::type < main_frame >(),
-                          ::type < pane_impact >()));
+                          ::type < pane_impact >())));
       m_ptemplateHelloBrowserMain = pDocTemplate;
       add_document_template(pDocTemplate);
 
 
-      pDocTemplate = __allocate < ::user::single_document_template >(
+      pDocTemplate = ::place(new ::user::single_document_template(
                           this,
                           "main",
                           ::type < document >(),
                           ::type < frame >(),
-                          ::type < main_impact >()));
+                          ::type < main_impact >())));
       m_ptemplateHelloBrowserView = pDocTemplate;
       add_document_template(pDocTemplate);
 
 
-      pDocTemplate = __allocate < ::user::single_document_template >(
+      pDocTemplate = ::place(new ::user::single_document_template(
                           this,
                           "switcher",
                           ::type < document >(),
                           ::type < frame >(),
-                          ::type < switcher_impact >()));
+                          ::type < switcher_impact >())));
       m_ptemplateHelloBrowserSwitcher = pDocTemplate;
       add_document_template(pDocTemplate);
 
@@ -234,7 +234,7 @@ extern "C"
 ::acme::library * app_browser_get_new_library(::particle * pparticle)
 {
 
-   return __new< ::apex::single_application_library < ::browser::application >  >(pparticle, "app/browser");
+   return new ::apex::single_application_library < ::browser::application >  (pparticle, "app/browser");
 
 }
 
@@ -242,7 +242,7 @@ extern "C"
 ::aura::application * get_acid_app(::particle * pparticle)
 {
 
-   return __new< ::browser::application >(pparticle);
+   return new ::browser::application (pparticle);
 
 }
 

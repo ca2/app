@@ -237,25 +237,25 @@ namespace acme
 
       //information() << "acme::library::open success : " << m_strMessage;
       
-      if(platform()->is_verbose_log())
-      {
-
-         if(::is_set(m_plibrary))
-         {
-      
-            information() << "acme::library::open success : \"" << m_strName << "\"";
-
-         }
-         else
-         {
-
-            information() << "acme::library::open failure : \"" << m_strName << "\"";
-
-            information() << "acme::library::open failure message : \"" << m_strMessage << "\"";
-
-         }
-         
-      }
+      // if(platform()->is_verbose_log())
+      // {
+      //
+      //    if(::is_set(m_plibrary))
+      //    {
+      //
+      //       information() << "acme::library::open success : \"" << m_strName << "\"";
+      //
+      //    }
+      //    else
+      //    {
+      //
+      //       information() << "acme::library::open failure : \"" << m_strName << "\"";
+      //
+      //       information() << "acme::library::open failure message : \"" << m_strMessage << "\"";
+      //
+      //    }
+      //
+      // }
 
       if (m_strName.has_char())
       {
@@ -959,9 +959,9 @@ namespace acme
 
          strFactoryFunction = strName + "_factory";
 
-         warning() << "library::create_factory factory function not initialized!!";
+         //warning() << "library::create_factory factory function not initialized!!";
 
-         warning() << "library::create_factory factory function name: \"" << strFactoryFunction << "\"";
+         //warning() << "library::create_factory factory function name: \"" << strFactoryFunction << "\"";
 
          auto pfnFactory = get < PFN_factory >(strFactoryFunction);
 
@@ -984,13 +984,15 @@ namespace acme
 
          m_pfnFactory = pfnFactory;
 
+         debug() << "library::create_factory got : \"" << strFactoryFunction << "\".";
+
       }
 
       __defer_construct_new(pfactory);
 
       m_pfnFactory(pfactory);
 
-      informationf("%s_factory succeeded!", strName.c_str());
+      informationf("Factory has succeeded for library : \"%s\"", strName.c_str());
 
    }
 

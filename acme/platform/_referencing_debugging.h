@@ -8,9 +8,9 @@
 #pragma once
 
 
-#define __FILE_LINE__  __FILE__ "(" STRINGFY(__LINE__) ")"
-#define __FUNCTION_LINE__  __FUNCTION__ " (" STRINGFY(__LINE__) ")"
-#define __FUNCTION_FILE_LINE__  __FUNCTION__ "\n" __FILE__ "(" STRINGFY(__LINE__) ")"
+#define __FILE_LINE__  __FILE__ "(" MAKE_STRING(__LINE__) ")"
+#define __FUNCTION_LINE__  __FUNCTION__ " (" MAKE_STRING(__LINE__) ")"
+#define __FUNCTION_FILE_LINE__  __FUNCTION__ "\n" __FILE__ "(" MAKE_STRING(__LINE__) ")"
 
 
 class particle;
@@ -97,10 +97,10 @@ class reference_count_debug;
 
 
 #define __new__prefix(x) 
-#define __new __call__new
-#define __allocate __call__allocate
-#define __allocate_and_initialize __call__allocate_and_initialize
-#define __delete __call__delete
+//#define __new __call__new
+//#define __allocate __call__allocate
+//#define __allocate_and_initialize __call__allocate_and_initialize
+//#define __delete __call__delete
 
 //#define __construct_new(p) __call__construct_new(p)
 

@@ -412,6 +412,20 @@ namespace sockets_bsd
 
          }
 
+         if (payload("this_is_a_http_post_socket").is_true())
+         {
+
+            output_debug_string("p");
+
+         }
+
+         if (base_socket_composite()->payload("this_is_a_http_post_socket").is_true())
+         {
+
+            output_debug_string("p(2)");
+
+         }
+
          m_bCloseAndDelete = bCloseAndDelete;
 
          if (bCloseAndDelete)
@@ -1128,7 +1142,7 @@ namespace sockets_bsd
 
    //   SetDetached();
 
-   //   auto psocketthread = __allocate< socket_thread >();
+   //   auto psocketthread = ::place(new socket_thread());
 
    //   psocketthread->initialize_socket_thread(this);
 

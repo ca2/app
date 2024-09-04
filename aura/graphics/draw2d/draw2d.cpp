@@ -440,7 +440,7 @@ namespace draw2d
    ::pointer<save_image>draw2d::new_save_image(const ::payload & payloadFile, const ::payload & varOptions)
    {
 
-      auto psaveimage = __allocate< save_image >();
+      auto psaveimage = ::place(new save_image());
 
       auto psystem = system()->m_paurasystem;
 
@@ -774,7 +774,7 @@ void draw2d::emboss_predicate(
       else
       {
 
-         filter = __allocate< memory >();
+         filter = ::place(new memory());
 
          filter->set_size(iFilterArea);
 
@@ -1089,7 +1089,7 @@ void draw2d::emboss_predicate(
       }
       else
       {
-         filter = __allocate< memory >();
+         filter = ::place(new memory());
          filter->set_size(iFilterArea);
          pFilter = filter->begin();
          for (y = 0; y < iFilterH; y++)

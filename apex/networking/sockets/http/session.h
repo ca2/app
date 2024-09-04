@@ -19,13 +19,13 @@ namespace sockets
    public:
 
 
-      string                              m_strProtocol;
+      //string                              m_strProtocol;
       bool                                m_bRequestComplete;
 
 
 
 
-      http_session(const string & protocol, const string & host);
+      http_session(const ::url::connect_part & connectpart);
       ~http_session();
 
 

@@ -117,7 +117,7 @@ namespace colorertake5
 
       if (lineIsEmpty)
       {
-         outline.add(__new< OutlineItem >(lno, sx, curLevel, itemLabel, region));
+         outline.add(new OutlineItem(lno, sx, curLevel, itemLabel, region));
       }
       else
       {

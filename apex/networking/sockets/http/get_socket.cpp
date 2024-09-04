@@ -27,7 +27,7 @@ namespace sockets
    }
 
 
-   void http_get_socket::initialize_http_get_socket(const string & strUrl)
+   void http_get_socket::initialize_http_get_socket(const ::url::url & url)
       //:
       //::object(&h),
       //base_socket(h),
@@ -45,14 +45,15 @@ namespace sockets
 //
 //#endif
 
-      initialize_http_client_socket(strUrl);
+      initialize_http_client_socket(url);
+      
       m_emethod = http_method_get;
 
 
    }
 
 
-   void http_get_socket::initialize_http_get_socket(const string & host,::networking::port_t port,const string & strUrl)
+   void http_get_socket::initialize_http_get_socket(const ::scoped_string & scopedstrProtocol, const ::scoped_string& scopedstrHost, ::networking::port_t port, const ::url::request & request)
       //::object(&h),
       //base_socket(h),
       //socket(h),
@@ -70,13 +71,13 @@ namespace sockets
 //
 //#endif
 
+      ::string strUrl;
+
+      strUrl.formatf("%s://%s%s", scopedstrProtocol.c_str(), scopedstrHost.c_str(), request.as_string().c_str());
+
       initialize_http_client_socket(strUrl);
 
       m_emethod = http_method_get;
-
-      __UNREFERENCED_PARAMETER(host);
-
-      __UNREFERENCED_PARAMETER(port);
 
    }
 

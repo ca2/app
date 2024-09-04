@@ -22,7 +22,7 @@ public:
    ::i32              m_lMaxCount;
    sem_t *           m_psem;
 
-#elif defined(LINUX) || defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
+#elif defined(LINUX) || defined(__APPLE__) || defined(__BSD__)
 
    ::i32         m_lMaxCount;
    i32           m_hsync;

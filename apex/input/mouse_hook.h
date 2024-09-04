@@ -16,6 +16,9 @@ namespace input
    public:
       
       
+      bool m_bLeftPressed = false;
+      bool m_bRightPressed = false;
+      
       virtual void mouse_proc(enum_message emessage) = 0;
 
       

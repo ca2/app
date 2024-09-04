@@ -20,7 +20,7 @@ namespace http
 
       string         m_strName;
       string         m_strNameLow;
-      ::payload      m_varValue;
+      ::payload      m_payload;
       string         m_strExpire;
       string         m_strPath;
       string         m_strDomain;
@@ -37,7 +37,7 @@ namespace http
 
       cookie & operator = (::payload payload)
       {
-         m_varValue = payload;
+         m_payload = payload;
          return *this;
       }
 
@@ -46,12 +46,12 @@ namespace http
 
       bool is_set()
       {
-         return m_varValue.is_set();
+         return m_payload.is_set();
       }
 
       bool is_new()
       {
-         return m_varValue.is_new();
+         return m_payload.is_new();
       }
 
 
@@ -61,7 +61,7 @@ namespace http
       //inline string to_string() const
       //{
 
-      //   return m_varValue.to_string();
+      //   return m_payload.to_string();
 
       //}
 
@@ -69,7 +69,7 @@ namespace http
       operator property() const
       {
 
-         return property(m_strName,m_varValue);
+         return property(m_strName,m_payload);
 
       }
 

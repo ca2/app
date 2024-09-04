@@ -289,7 +289,7 @@ payload::payload(const CHARACTER_RANGE & range) :
 {
 
    m_etype = e_type_string;
-   zero(m_all);
+   zero(m_str);
    m_str = range;
 
 }

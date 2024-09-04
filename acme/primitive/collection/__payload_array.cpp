@@ -526,17 +526,17 @@ payload_array & payload_array::operator = (const ::i32_array & inta)
 }
 
 
-payload_array & payload_array::operator = (const property_set & propset)
+payload_array & payload_array::operator = (const property_set & propertyset)
 {
 
    erase_all();
 
    ::collection::index i = 0;
 
-   for(auto & pproperty : propset.propertyptra())
+   for(auto & property : propertyset)
    {
 
-      set_at(i++, *pproperty);
+      set_at(i++, property);
 
    }
 

@@ -34,7 +34,7 @@
 //   ::pointer < allocator > heap::_create_memory_allocator()
 //   {
 //
-//      return __allocate< memory_allocator >();
+//      return ::place(new memory_allocator());
 //
 //   }
 //

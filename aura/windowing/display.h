@@ -121,6 +121,7 @@ namespace windowing
 
       virtual ::collection::count get_monitor_count();
       virtual bool get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle);
+      virtual bool _get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle);
 
       virtual ::collection::index  get_main_monitor_of_rectangle(const ::rectangle_i32 &rectangle);
 
@@ -137,6 +138,7 @@ namespace windowing
       virtual int get_zoomed_title_bar_height();
       
       virtual bool get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 & rectangle);
+      virtual bool _get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 & rectangle);
 
       virtual ::collection::count get_desk_workspace_count();
       virtual bool get_desk_workspace_rect(::collection::index iWorkspace, ::rectangle_i32 & rectangle);

@@ -36,7 +36,7 @@ void motif_factory(::factory::factory * pfactory);
 void openbsd_factory(::factory::factory * pfactory)
 {
 
-   motif_factory(pfactory);
+//   motif_factory(pfactory);
 
 }
 

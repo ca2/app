@@ -1,7 +1,7 @@
 // Working on it on 2023-11-27 03:34 <3ThomasBorregaardSorensen!!
 #pragma once
 
-
+/*
 #if !defined(WINDOWS) \
  && !defined(LINUX) \
  && !defined(__APPLE__) \
@@ -12,7 +12,7 @@
 namespace std { enum class align_val_t : std::size_t {}; }
 
 #endif
-
+*/
 
 
 
@@ -74,7 +74,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //      }
 //
-//      auto pappNew = __allocate< APP >();
+//      auto pappNew = ::place(new APP());
 //
 //      if(pappNew == nullptr)
 //      {
@@ -431,7 +431,7 @@ const char * memory_counter_id(T * pthis)
 ////   while (c > 0)
 ////   {
 ////
-////      auto p = __allocate< TYPE >(&a);
+////      auto p = ::place(new TYPE(&a));
 ////
 ////      stream >> *p;
 ////
@@ -499,35 +499,35 @@ const char * memory_counter_id(T * pthis)
 #include "allocator.h"
 
 
-template < typename T, typename ...Args >
-inline T * __call__new(Args &&... args)
-{
+//template < typename T, typename ...Args >
+//inline T * __call__new(Args &&... args)
+//{
+//
+//   auto p = ::platform::allocator::__callnew T (::std::forward < Args >(args)...);
+//
+//   return p;
+//
+//}
 
-   auto p = ::platform::allocator::__call__new < T >(::std::forward < Args >(args)...);
+//
+//template < typename T >
+//inline void __call__delete(T * p)
+//{
+//
+//   ::platform::allocator::__call__delete < T >(p);
+//
+//}
 
-   return p;
-
-}
-
-
-template < typename T >
-inline void __call__delete(T * p)
-{
-
-   ::platform::allocator::__call__delete < T >(p);
-
-}
-
-
-template < typename T >
-inline T * __new_array(::collection::count c)
-{
-
-   auto p = ::platform::allocator::__new_array < T >(c);
-
-   return p;
-
-}
+//
+//template < typename T >
+//inline T * __new_array(::collection::count c)
+//{
+//
+//   auto p = ::platform::allocator::new  T[c];
+//
+//   return p;
+//
+//}
 
 
 //template < typename T >

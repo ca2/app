@@ -1098,7 +1098,7 @@ namespace networking
 
       //}
 
-      //pitem = __allocate< reverse_cache_item >();
+      //pitem = ::place(new reverse_cache_item());
 
       //pitem->m_address = address;
 

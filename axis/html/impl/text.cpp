@@ -82,7 +82,7 @@ namespace html
          if((!::is_set(m_pedit) || !m_pedit->is_window()) && pdata->m_pcoredata->m_bEdit)
          {
 
-            m_pedit = __allocate< ::user::plain_edit >();
+            m_pedit = ::place(new ::user::plain_edit());
 
             m_pedit->initialize(pdata);
 

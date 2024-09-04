@@ -812,7 +812,7 @@ namespace filemanager
                               }
 
                               */
-                  m_itema.add(__allocate< Item >(item));
+                  m_itema.add(::place(new Item(item)));
                   iNode++;
                }
             }
@@ -836,7 +836,7 @@ namespace filemanager
                   item.m_iImage = m_iIconSong;
 
 
-                  m_itema.add(__allocate< Item >(item));
+                  m_itema.add(::place(new Item(item)));
                   iNode++;
                }
             }

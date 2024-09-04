@@ -4,7 +4,7 @@
 #if defined(OPENBSD)
 #include <sys/types.h>
 #include <sys/malloc.h>
-#elif defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+#elif defined(LINUX) || defined(__BSD__)
 #include <malloc.h>
 #elif defined(__APPLE__)
 #include <malloc/malloc.h>
@@ -86,7 +86,7 @@ namespace heap
 
       //{
 
-#if defined(OPENBSD)
+#if defined(OPENBSD) || defined(NETBSD)
 
       return 0;
 

@@ -148,7 +148,7 @@ bool binary_stream::is_end_of_file() const
 string binary_stream::factory_id_to_text(const ::atom & atom)
 {
 
-   return atom;
+   return atom.as_string();
 
 }
 
@@ -187,37 +187,37 @@ memsize binary_stream::defer_write(const ::block & block)
 }
 
 
-binary_stream & binary_stream::operator <<(const atom & atom)
+binary_stream & operator <<(binary_stream & stream, const atom & atom)
 {
 
-   raw_write(atom.m_etype);
+   stream.raw_write(atom.m_etype);
 
    if (atom.m_etype & ::atom::e_type_text)
    {
 
-      operator <<(atom.m_str);
+      stream << atom.m_str;
 
    }
    else
    {
 
-      operator <<(atom.m_iLargest);
+      stream << atom.m_iLargest;
 
    }
 
-   return *this;
+   return stream;
 
 }
 
 
-binary_stream & binary_stream::operator <<(const ::payload & payload)
+binary_stream & operator <<(binary_stream&stream, const ::payload & payload)
 {
 
    enum_type etype = payload.get_type();
 
    ::i32 i = etype;
 
-   *this << i;
+   stream << i;
 
    switch (etype)
    {
@@ -231,67 +231,67 @@ binary_stream & binary_stream::operator <<(const ::payload & payload)
       break;
    case e_type_string:
    {
-      operator <<(payload.m_str);
+      stream <<(payload.m_str);
    }
    break;
    case e_type_pstring:
    {
-      operator <<(*payload.m_pstr);
+      stream <<(*payload.m_pstr);
    }
    break;
    case e_type_i8:
-      *this << payload.m_i8;
+      stream << payload.m_i8;
       break;
    case e_type_i16:
-      *this << payload.m_i16;
+      stream << payload.m_i16;
       break;
    case e_type_u8:
-      *this << payload.m_u8;
+      stream << payload.m_u8;
       break;
    case e_type_u16:
-      *this << payload.m_u16;
+      stream << payload.m_u16;
       break;
    case e_type_i32:
-      *this << payload.m_i32;
+      stream << payload.m_i32;
       break;
    case e_type_i64:
-      *this << payload.m_i64;
+      stream << payload.m_i64;
       break;
    case e_type_u32:
-      *this << payload.m_u32;
+      stream << payload.m_u32;
       break;
    case e_type_u64:
-      *this << payload.m_u64;
+      stream << payload.m_u64;
       break;
    case e_type_pi8:
-      *this << *payload.m_pi8;
+      stream << *payload.m_pi8;
       break;
    case e_type_pi16:
-      *this << *payload.m_pi16;
+      stream << *payload.m_pi16;
       break;
    case e_type_pu8:
-      *this << *payload.m_pu8;
+      stream << *payload.m_pu8;
       break;
    case e_type_pu16:
-      *this << *payload.m_pu16;
+      stream << *payload.m_pu16;
       break;
    case e_type_pi32:
-      *this << *payload.m_pi32;
+      stream << *payload.m_pi32;
       break;
    case e_type_pi64:
-      *this << *payload.m_pi64;
+      stream << *payload.m_pi64;
       break;
    case e_type_pu32:
-      *this << *payload.m_pu32;
+      stream << *payload.m_pu32;
       break;
    case e_type_pu64:
-      *this << *payload.m_pu64;
+      stream << *payload.m_pu64;
       break;
    case e_type_f64:
-      *this << payload.m_f64;
+      stream << payload.m_f64;
       break;
    case e_type_bool:
-      *this << payload.m_b;
+      stream << payload.m_b;
       break;
    case e_type_i32_array:
       throw ::exception(todo);
@@ -317,43 +317,43 @@ binary_stream & binary_stream::operator <<(const ::payload & payload)
       //   *this << *payload.m_pfileimage;
       //   break;
    case e_type_atom:
-      *this << payload.m_atom;
+      stream << payload.m_atom;
       break;
-   case e_type_property:
-   {
-      this->write_particle(payload.m_pproperty);
+   //case e_type_property:
+   //{
+   //   stream.write_particle(payload.m_pproperty);
 
-   }
+   //}
       break;
    case e_type_element:
    case e_type_path:
    {
 
-      this->write_particle(payload.m_p);
+      stream.write_particle(payload.m_p);
 
    }
    break;
    default:
-      write(::block(e_as_block, payload.m_all));
+      stream.write(::block(e_as_block, payload.m_payloadall));
       //throw ::exception(::exception("payload::write ::payload type not recognized"));
    }
 
-   return *this;
+   return stream;
 
 }
 
-
-binary_stream & binary_stream::operator <<(const property & property)
-{
-
-   operator <<(property.m_atom);
-   operator <<((const ::payload &)property);
-
-   return *this;
-
-}
-
-
+//
+//binary_stream & operator <<(binary_stream&stream,const property & property)
+//{
+//
+//   stream <<(property.m_atom);
+//   stream <<((const ::payload &)property);
+//
+//   return stream;
+//
+//}
+//
+//
 
 binary_stream & binary_stream::operator <<(const ::ansi_character * psz)
 {
@@ -474,16 +474,16 @@ binary_stream & binary_stream::operator >>(atom & atom)
 
 
 
-binary_stream & binary_stream::operator >>(::payload & payload)
+binary_stream & operator >>(binary_stream & stream, ::payload & payload)
 {
 
    enum_type etype = e_type_new;
 
-   read_payload_type(etype);
+   stream.read_payload_type(etype);
 
-   read_payload_body(payload, etype);
+   stream.read_payload_body(payload, etype);
 
-   return *this;
+   return stream;
 
 }
 
@@ -666,21 +666,21 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 
    }
    break;
-      case e_type_property:
-      {
+      //case e_type_property:
+      //{
 
-         auto pproperty = __allocate<::property>();
+      //   auto pproperty = ::place(new ::property_particle());
 
-         operator >>(*pproperty);
+      //   *this >> pproperty->object();
 
-         payload._set_element(pproperty);
+      //   payload._set_element(pproperty);
 
-      }
-         break;
+      //}
+      //   break;
    default:
    {
       payload.set_type(etype, false);
-      read({ e_as_block ,payload.m_all });
+      read({ e_as_block ,payload.m_payloadall });
       //payload.release();
       //setstate(::file::failbit); // stream corrupt
       break;
@@ -692,15 +692,15 @@ void binary_stream::read_payload_body(::payload & payload, enum_type etype)
 }
 
 
-binary_stream & binary_stream::operator >>(property & property)
-{
-
-   operator >>(property.m_atom);
-   operator >>((::payload &)property);
-
-   return *this;
-
-}
+//binary_stream & operator >>(binary_stream &stream, property & property)
+//{
+//
+//   stream >>(property.m_atom);
+//   stream >>((::payload &)property);
+//
+//   return stream;
+//
+//}
 
 binary_stream & binary_stream::operator >>(string & str)
 {

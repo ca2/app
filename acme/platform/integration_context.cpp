@@ -347,7 +347,7 @@ namespace integration
 
             property_set set;
 
-            system()->url()->defer_raw_http(set);
+            set["raw_http"] = true;
 
             set["disable_common_name_cert_check"] = true;
 

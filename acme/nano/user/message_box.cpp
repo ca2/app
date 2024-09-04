@@ -75,7 +75,7 @@ void message_box::defer_create_details_still()
    if (m_strDetails.has_char())
    {
 
-      m_pstillDetails = __allocate< ::nano::user::still >();
+      m_pstillDetails = ::place(new ::nano::user::still());
 
       m_pstillDetails->m_atom = "details";
 
@@ -298,7 +298,7 @@ void message_box::on_create()
 //pointer< ::sequence < ::conversation > > message_box::display(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
 //{
 //
-//   auto psequence = __allocate< ::sequence <::conversation > >();
+//   auto psequence = ::place(new ::sequence <::conversation > ());
 //
 //   psequence->m_p = this;
 //
@@ -345,22 +345,22 @@ struct message_box_conversation_message :
 public:
 
 
-   ::function < void(const ::atom & atom) >     m_function;
-   ::pointer<::object>                         m_pobject;
-//   string                                       m_strMessage;
-//   string                                       m_strTitle;
-//   e_message_box                                m_emessagebox;
-//   string                                       m_strDetails;
+   ::function < void(const ::payload & payload) >  m_function;
+   ::pointer<::object>                             m_pobject;
+//   string                                        m_strMessage;
+//   string                                        m_strTitle;
+//   e_message_box                                 m_emessagebox;
+//   string                                        m_strDetails;
 
 
 };
 
 
 
-void message_box::on_click(const ::atom & atom, ::user::mouse * pmouse)
+void message_box::on_click(const ::payload& payload, ::user::mouse * pmouse)
 {
 
-   if (atom == "details")
+   if (payload == "details")
    {
 
       auto psequencer = __create_new < ::sequencer < ::conversation > >();
@@ -381,14 +381,14 @@ void message_box::on_click(const ::atom & atom, ::user::mouse * pmouse)
 
    }
 
-   m_payloadResult = atom;
+   m_payloadResult = payload;
 
    destroy();
 
 }
 
 
-void message_box::on_right_click(const ::atom & atom, ::user::mouse * pmouse)
+void message_box::on_right_click(const ::payload& payload, ::user::mouse * pmouse)
 {
 
    auto pbutton = __create_new < popup_button >();
@@ -493,7 +493,7 @@ CLASS_DECL_ACME pointer< ::sequencer < ::conversation > > message_box_sequencer(
    
    //auto atomResult = psequencer->do_synchronously();
    
-//   auto pmanualresetevent = __allocate< manual_reset_event >();
+//   auto pmanualresetevent = ::place(new manual_reset_event());
 //
 //   atom atomResult;
 //
@@ -547,13 +547,13 @@ CLASS_DECL_ACME pointer< ::sequencer < ::conversation > > message_box_sequencer(
 
 
 
-CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
+CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
 {
 
    if (::is_null(pparticle))
    {
 
-      auto psequencer =       ::operating_system::message_box::create_sequencer(::platform::get()->system(),                                                        scopedstrMessage, scopedstrTitle,
+      auto psequencer = ::operating_system::message_box::create_sequencer(::platform::get()->system(),                                                        scopedstrMessage, scopedstrTitle,
                                                               emessagebox,
                                                               scopedstrDetails);
 
@@ -591,7 +591,7 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const ::s
    
    auto atomResult = psequencer->do_synchronously();
    
-//   auto pmanualresetevent = __allocate< manual_reset_event >();
+//   auto pmanualresetevent = ::place(new manual_reset_event());
 //
 //   atom atomResult;
 //
@@ -645,10 +645,10 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const ::s
 
 
 
-CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & atom) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
+CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload & payload) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
 {
 
-   auto pmessagebox = __allocate< ::nano::user::message_box_conversation_message >();
+   auto pmessagebox = ::place(new ::nano::user::message_box_conversation_message());
 
    pmessagebox->m_pobject = pparticle;
    pmessagebox->initialize_conversation(scopedstrMessage,scopedstrTitle, emessagebox, scopedstrDetails);
@@ -691,7 +691,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
 
       auto pnanomessagebox = pparticle->__create_new < ::nano::user::message_box >();
    
-      atom idResult;
+      ::payload idResult;
    
       manual_reset_event event;
 

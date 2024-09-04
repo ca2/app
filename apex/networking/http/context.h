@@ -23,10 +23,10 @@ namespace http
       public:
 
 
-         string         m_strUrl;
-         string         m_strAutoConfigScript;
-         tinyjs *       m_pjs;
-         class ::time           m_timeLastChecked;
+         ::url::url           m_url;
+         string               m_strAutoConfigScript;
+         tinyjs *             m_pjs;
+         class ::time         m_timeLastChecked;
 
 
          //pac(::particle * pparticle);
@@ -43,11 +43,11 @@ namespace http
       public:
 
 
-         string         m_strUrl;
-         bool           m_bDirect;
-         string         m_strProxy;
-         i32        m_iPort;
-         class ::time m_timeLastChecked;
+         ::url::url        m_url;
+         bool              m_bDirect;
+         string            m_strProxy;
+         i32               m_iPort;
+         class ::time      m_timeLastChecked;
 
 
          //proxy(::particle * pparticle);
@@ -82,87 +82,87 @@ namespace http
 
       DECLARE_MESSAGE_HANDLER(get);
 
-      virtual bool http_get(::pointer<::sockets::http_client_socket>& m_psocket, const ::scoped_string & scopedstrUrl, property_set & set);
-      virtual bool get(::http::session & session, const ::scoped_string & scopedstrUrl, string & str, property_set & set);
-      virtual string get(::http::session & session, const ::scoped_string & scopedstrUrl, property_set & set);
+      virtual bool http_get(::pointer<::sockets::http_client_socket>& m_psocket, const ::url::url & url, property_set & set);
+      virtual bool get(::http::session & session, const ::url::url & url, string & str, property_set & set);
+      virtual string get(::http::session & session, const ::url::url & url, property_set & set);
 
 
       //virtual void set_proxy_auth(::account::user * puser, ::sockets::http_client_socket * pfile);
       //virtual void clean_proxy_auth(::account::user * puser);
 
 
-      virtual bool open(::pointer<::sockets::http_session>& psession, const ::string & strHost, const ::string & strProtocol, property_set & set, const ::string & strVersion);
+      virtual bool open(::pointer<::sockets::http_session>& psession, const ::url::connect & connect, property_set & set, const ::string & strVersion);
 
 
-      virtual bool request(::pointer<::sockets::http_session>& spsession, const ::scoped_string & scopedstrUrl, property_set & set);
+      virtual bool request(::pointer<::sockets::http_session>& spsession, const ::url::request & request, property_set & set);
 
-      virtual ::payload get(const ::scoped_string & scopedstrUrl, property_set & set);
+      virtual ::payload get(const ::url::url & url, property_set & set);
 
-      virtual bool request(const ::scoped_string & scopedstrMethod, const ::scoped_string & scopedstrUrl, property_set & set);
+      virtual bool request(const ::scoped_string & scopedstrMethod, const ::url::url & url, property_set & set);
 
       virtual bool download(::pointer<::sockets::http_session>& psession, const ::scoped_string & scopedstrRequest, ::payload payloadFile, property_set & set);
-      virtual bool download(const ::scoped_string & scopedstrUrl, ::payload payloadFile, property_set & set);
+      virtual bool download(const ::url::url & url, ::payload payloadFile, property_set & set);
 
-      virtual bool put(const ::scoped_string & scopedstrUrl, memory_base & memory, property_set & set);
-      virtual bool put(const ::scoped_string & scopedstrUrl, file_pointer  pfile, property_set & set);
+      virtual bool put(const ::url::url & url, memory_base & memory, property_set & set);
+      virtual bool put(const ::url::url & url, file_pointer  pfile, property_set & set);
 
-      virtual ::string get_effective_url(const ::scoped_string & scopedstrUrl);
+      virtual ::url::url get_effective_url(const ::url::url & url);
 
       virtual void defer_auto_initialize_proxy_configuration();
       virtual void auto_config_proxy(i32 i);
       virtual i32 auto_config_proxy_count();
-      virtual void config_proxy(const ::scoped_string & scopedstrUrl, ::sockets::http_tunnel * psocket);
-      virtual void config_proxy(const ::scoped_string & scopedstrUrl, proxy * pproxy);
-      virtual bool try_pac_script(const ::scoped_string & scopedstrScriptUrl, const ::scoped_string & scopedstrUrl, proxy * pproxy);
+      virtual void config_proxy(const ::url::url & url, ::sockets::http_tunnel * psocket);
+      virtual void config_proxy(const ::url::url & url, proxy * pproxy);
+      virtual bool try_pac_script(const ::scoped_string & scopedstrScriptUrl, const ::url::url & url, proxy * pproxy);
 
       virtual string gmdate(posix_time t);
 
-      virtual pac * get_pac(const ::scoped_string & scopedstrUrl);
-      virtual proxy * get_proxy(const ::scoped_string & scopedstrUrl);
+      virtual pac * get_pac(const ::url::url & url);
+      virtual proxy * get_proxy(const ::url::url & url);
 
       //virtual void on_auth(property_set & set, ::apex::application * papp, string & strUrl, string & strSessId, ::pointer<::account::user>& puser);
 
       void http_application_destruct();
 
-      property_set & process_set(property_set & set, const ::scoped_string & scopedstrUrl);
+      property_set & process_set(property_set & set, const ::url::url & url);
 
       //DECLARE_MESSAGE_HANDLER(get);
 
-      virtual bool get(::pointer<::sockets::http_client_socket>& psocket, const ::scoped_string & scopedstrUrl, property_set & set);
+      virtual bool get(::pointer<::sockets::http_client_socket>& psocket, const ::url::url & url, property_set & set);
 
-      virtual string api_get(const ::scoped_string & scopedstrUrl, property_set & set);
-      virtual string api_get(const ::scoped_string & scopedstrUrl);
+      //virtual string api_get(const ::url::url & url, property_set & set);
+      //virtual string api_get(const ::url::url & url);
 
-      //virtual bool exists(const ::scoped_string & scopedstrUrl, property_set & set);
-      virtual bool exists(const ::scoped_string & scopedstrUrl, property_set & set);
-      virtual ::file::enum_type get_type(const ::scoped_string & scopedstrUrl, property_set & set);
-      virtual ::file::enum_type get_type(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, property_set & set);
+      //virtual bool exists(const ::url::url & url, property_set & set);
+      virtual bool exists(const ::url::url & url, property_set & set);
+      virtual ::file::enum_type get_type(const ::url::url & url, property_set & set);
+      virtual ::file::enum_type get_type(const ::url::url & url, ::payload * pvarQuery, property_set & set);
 
-      virtual ::payload length(const ::scoped_string & scopedstrUrl, property_set & set);
+      virtual ::payload length(const ::url::url & url, property_set & set);
 
-      //virtual ::payload length(const ::scoped_string & scopedstrUrl, property_set & set);
-      virtual ::payload length(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, property_set & set);
+      //virtual ::payload length(const ::url::url & url, property_set & set);
+      virtual ::payload length(const ::url::url & url, ::payload * pvarQuery, property_set & set);
 
-      //virtual string get(const ::scoped_string & scopedstrUrl, property_set & set);
-      virtual void _get(const ::scoped_string & scopedstrUrl, property_set & set);
+      //virtual string get(const ::url::url & url, property_set & set);
+      virtual void _get(const ::url::url & url, property_set & set);
 
-      virtual void get(string & str, const ::scoped_string & scopedstrUrl, property_set & set);
-      virtual void get(memory_base * pmemory, const ::scoped_string & scopedstrUrl, property_set & set);
+      virtual void get(string & str, const ::url::url & url , property_set & set);
+      virtual void get(memory_base * pmemory, const ::url::url & url, property_set & set);
       
       virtual void sync(::nano::http::get * pget);
 
-      //virtual bool request(const ::scoped_string & scopedstrRequest, const ::scoped_string & scopedstrUrl, property_set & set);
+      //virtual bool request(const ::scoped_string & scopedstrRequest, const ::url::url & url, property_set & set);
 
-      //virtual bool download(::pointer<::sockets::http_session>& psession, const ::scoped_string & scopedstrUrl, ::payload payloadFile, property_set & set);
-      //virtual bool download(const ::scoped_string & scopedstrUrl, ::payload payloadFile, property_set & set);
+      //virtual bool download(::pointer<::sockets::http_session>& psession, const ::url::url & url, ::payload payloadFile, property_set & set);
+      //virtual bool download(const ::url::url & url, ::payload payloadFile, property_set & set);
 
 
-      virtual bool put(const ::scoped_string & scopedstrUrl, memory_base * pmemory, property_set & set);
-      //virtual bool put(const ::scoped_string & scopedstrUrl, file_pointer  pfile, property_set & set);
+      virtual bool put(const ::url::url & url, memory_base * pmemory, property_set & set);
+      //virtual bool put(const ::url::url & url, file_pointer  pfile, property_set & set);
 
-      virtual string locale_schema_url(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+      virtual string locale_schema_url(const ::url::url & url, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
-      virtual string get_locale_schema(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
+      virtual string get_locale_schema(const ::url::url & url, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema);
 
    };
 

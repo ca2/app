@@ -272,12 +272,11 @@ namespace filemanager
 
       //}
       user()->m_pbaseuser->add_impact_system(
-         "filemanager",
-          __allocate < ::user::multiple_document_template >(
+         "filemanager", ::place(new ::user::multiple_document_template(
          "filemanager",
          __form_document_type(),
          ::type < form_child_frame >(),
-         ::type < form >()));
+         ::type < form >())));
 
       //__construct(m_pimpactsystemForm, pmulti);
 
@@ -286,12 +285,11 @@ namespace filemanager
       psession->add_document_template(pmulti);*/
 
       user()->m_pbaseuser->add_impact_system(
-         "filemanager_operation",
-      __allocate < ::user::multiple_document_template >(
+         "filemanager_operation", ::place(new ::user::multiple_document_template(
          "filemanager",
          ::type < operation_document >(),
          ::type < operation_child_frame >(),
-         ::type < operation_impact >()));
+         ::type < operation_impact >())));
 
       //__construct(m_pimpactsystemOperation, psingle);
 
@@ -330,12 +328,11 @@ namespace filemanager
 
          //m_pimpactsystemFileManager = 
          user()->add_impact_system(
-            "filemanager_filemanager",
-            __allocate < ::user::multiple_document_template >(
+            "filemanager_filemanager", ::place(new ::user::multiple_document_template(
             "filemanager",
             ::type < document >(),
             ::type < frame >(),
-               ::type < impact >()));
+               ::type < impact >())));
             //::type < main_impact >()));
 
          //auto psession = get_session();
@@ -375,41 +372,41 @@ namespace filemanager
 
    //   if (is_filemanager_group(atom, TABBED_GROUP))
    //   {
-   //      pdoctemplate = __allocate < ::user::multiple_document_template >(
+   //      pdoctemplate = ::place(new ::user::multiple_document_template(
    //         strTemplateId,
    //         ::type < document >(),
    //         ::type < frame >(),       // main SDI frame window
-   //         ::type < tab_impact >()));
+   //         ::type < tab_impact >())));
 
    //   }
    //   else if (is_filemanager_group(atom, LIST_GROUP))
    //   {
 
-   //      pdoctemplate = __allocate < ::user::multiple_document_template >(
+   //      pdoctemplate = ::place(new ::user::multiple_document_template(
    //         strTemplateId,
    //         ::type < document >(),
    //         ::type < main_frame >(),
-   //         ::type < file_list >()));
+   //         ::type < file_list >())));
 
    //   }
    //   else if (is_filemanager_group(atom, FOLDER_SELECTION_LIST_GROUP))
    //   {
 
-   //      pdoctemplate = __allocate < ::user::multiple_document_template >(
+   //      pdoctemplate = ::place(new ::user::multiple_document_template(
    //         strTemplateId,
    //         ::type < document >(),
    //         ::type < main_frame >(),
-   //         ::type < folder_selection_list_impact >()));
+   //         ::type < folder_selection_list_impact >())));
 
    //   }
    //   else
    //   {
 
-   //      pdoctemplate = __allocate < ::user::multiple_document_template >(
+   //      pdoctemplate = ::place(new ::user::multiple_document_template(
    //         strTemplateId,
    //         ::type < document >(),
    //         ::type < frame >(),
-   //         ::type < impact >()));
+   //         ::type < impact >())));
    //   }
 
    //   auto psession = get_session();
@@ -448,41 +445,41 @@ namespace filemanager
 
       //if (is_filemanager_group(atom, TABBED_GROUP))
       //{
-      //   pdoctemplate = __allocate < ::user::multiple_document_template >(
+      //   pdoctemplate = ::place(new ::user::multiple_document_template(
       //      strTemplateId,
       //      ::type < document >(),
       //      ::type < frame >(),       // main SDI frame window
-      //      ::type < tab_impact >()));
+      //      ::type < tab_impact >())));
 
       //}
       //else if (is_filemanager_group(atom, LIST_GROUP))
       //{
 
-      //   pdoctemplate = __allocate < ::user::multiple_document_template >(
+      //   pdoctemplate = ::place(new ::user::multiple_document_template(
       //      strTemplateId,
       //      ::type < document >(),
       //      ::type < main_frame >(),
-      //      ::type < file_list >()));
+      //      ::type < file_list >())));
 
       //}
       //else if (is_filemanager_group(atom, FOLDER_SELECTION_LIST_GROUP))
       //{
 
-      //   pdoctemplate = __allocate < ::user::multiple_document_template >(
+      //   pdoctemplate = ::place(new ::user::multiple_document_template(
       //      strTemplateId,
       //      ::type < document >(),
       //      ::type < main_frame >(),
-      //      ::type < folder_selection_list_impact >()));
+      //      ::type < folder_selection_list_impact >())));
 
       //}
       //else
       //{
 
-      //   pdoctemplate = __allocate < ::user::multiple_document_template >(
+      //   pdoctemplate = ::place(new ::user::multiple_document_template(
       //      strTemplateId,
       //      ::type < document >(),
       //      ::type < frame >(),
-      //      ::type < impact >()));
+      //      ::type < impact >())));
       //}
 
       //pdata->m_pimpactsystem = m_pimpactsystemFileManager;
@@ -786,7 +783,7 @@ namespace filemanager
       //if (pcreate == nullptr)
       //{
 
-      //   pcreate = __allocate< ::create >(papp->handler(), payloadFile, true);
+      //   pcreate = ::place(new ::create(papp->handler(), payloadFile, true));
 
       //}
 
@@ -943,7 +940,7 @@ namespace filemanager
    //   if (pcreate == nullptr)
    //   {
 
-   //      pcreate = __allocate< ::create >(pappOnBehalfOf->handler());
+   //      pcreate = ::place(new ::create(pappOnBehalfOf->handler()));
 
    //   }
    //   else
@@ -1074,7 +1071,7 @@ namespace filemanager
    //   if (pcreate.is_null())
    //   {
 
-   //      pcreate = __allocate< ::create >(pappOnBehalfOf->handler());
+   //      pcreate = ::place(new ::create(pappOnBehalfOf->handler()));
 
    //   }
    //   else
@@ -1195,7 +1192,7 @@ namespace filemanager
    //   if (pfilemanagerdata == nullptr)
    //   {
 
-   //      pfilemanagerdata = __allocate< ::filemanager::data >(this);
+   //      pfilemanagerdata = ::place(new ::filemanager::data(this));
 
    //   }
 
@@ -1249,7 +1246,7 @@ namespace filemanager
    //   if (pfilemanagerdata == nullptr)
    //   {
 
-   //      pfilemanagerdata = __allocate< ::filemanager::data >(this);
+   //      pfilemanagerdata = ::place(new ::filemanager::data(this));
 
    //   }
 
@@ -1307,7 +1304,7 @@ namespace filemanager
    //   if (pfilemanagerdata == nullptr)
    //   {
 
-   //      pfilemanagerdata = __allocate< ::filemanager::data >(this);
+   //      pfilemanagerdata = ::place(new ::filemanager::data(this));
 
    //   }
 

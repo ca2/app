@@ -118,32 +118,32 @@ namespace app_integration
 
       ::base::application::init_instance();
 
-      auto pdoctemplate = __allocate < ::user::single_document_template >(
+      auto pdoctemplate = ::place(new ::user::single_document_template(
                                "main",
                                ::type < document >(),
                                ::type < main_frame >(),
-                               get_pane_impact_type()));
+                               get_pane_impact_type())));
 
       m_ptemplateSimpleDrawingMain = pdoctemplate;
 
       add_document_template(pdoctemplate);
 
 
-      pdoctemplate = __allocate < ::user::single_document_template >(
+      pdoctemplate = ::place(new ::user::single_document_template(
          "openssl",
          ::type < document >(),
          ::type < main_frame >(),
-         ::type < impact >()));
+         ::type < impact >())));
 
       m_ptemplateOpenSSL = pdoctemplate;
 
       add_document_template(pdoctemplate);
 
-      pdoctemplate = __allocate < ::user::single_document_template >(
+      pdoctemplate = ::place(new ::user::single_document_template(
          "ffmpeg",
          ::type < document >(),
          ::type < main_frame >(),
-         ::type < impact >()));
+         ::type < impact >())));
 
       m_ptemplateFFMPEG = pdoctemplate;
 

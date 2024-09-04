@@ -430,7 +430,7 @@ namespace user
    impact_data * impact_host::new_impact_data(const atom & atom)
    {
 
-      auto pimpactdata  = __allocate< ::user::impact_data >(atom);
+      auto pimpactdata  = ::place(new ::user::impact_data(atom));
 
       m_impactdatamap[atom] = pimpactdata;
 

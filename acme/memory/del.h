@@ -174,7 +174,7 @@ namespace acme
 
    //   ::acme::del(p);
 
-   //   return p = __new< T >();
+   //   return p = ::place(new T());
 
    //}
 

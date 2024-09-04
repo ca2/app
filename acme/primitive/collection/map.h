@@ -843,13 +843,13 @@ pair_map < PAIR >::new_node(ARG_ITEM item, ::u32 nHashBucket, ::u32 nHashValue)
    //   //   this->m_pnodeFree = iterator;
 
    //   //}
-   //   this->m_pnodeFree = __new< node >();
+   //   this->m_pnodeFree = new node();
 
    //}
 
    //ENSURE(this->m_pnodeFree != nullptr);  // we must have something
 
-   auto p = __new< node >(item);
+   auto p = new node (item);
 
    attach(p, nHashBucket, nHashValue);
 

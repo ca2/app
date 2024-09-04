@@ -6,6 +6,8 @@
 #include "acme/platform/reference_referer.h"
 
 
+struct place_t {};
+
 //struct transfer_t {};
 
 
@@ -58,7 +60,7 @@ public:
 
 
    inline pointer();
-   inline pointer( std::nullptr_t);
+   inline pointer( nullptr_t);
    inline pointer(lparam& lparam);
 
    template < typename ...Args >
@@ -114,7 +116,9 @@ public:
 
    /// referer is transferred?
    template < typename T2 >
-   inline pointer(transfer_t, T2* p);
+   inline pointer(transfer_t, T2* p) :pointer(place_t{}, p) {}
+   template < typename T2 >
+   inline pointer(place_t, T2* p);
 
 
    /// consumes a referer
@@ -451,7 +455,7 @@ public:
    //pointer & merge(const CONTAINER & pcontainer, const OBJECT & pparticle, const ATTRIBUTE & attribute)
    //{
 
-   //   auto pModified = __allocate< TYPE >(*m_p);
+   //   auto pModified = ::place(new TYPE(*m_p));
 
    //   pModified->apply(pparticle, attribute);
 
@@ -475,7 +479,7 @@ public:
 
    //   auto pOld = m_p;
 
-   //   m_p = __new< TYPE >(*pparticle);
+   //   m_p = new TYPE(*pparticle);
 
    //   m_psubparticle = m_p;
 
@@ -514,11 +518,11 @@ public:
    inline pointer & transfer(T2 * ptr);
 
 
-   inline bool operator ==(std::nullptr_t) const { return is_null(); }
-   //inline bool operator <=>(std::nullptr_t) const { return m_p <=> nullptr; }
+   inline bool operator ==(nullptr_t) const { return is_null(); }
+   //inline bool operator <=>(nullptr_t) const { return m_p <=> nullptr; }
 
 
-   //inline bool operator !=(std::nullptr_t) const { return is_set(); }
+   //inline bool operator !=(nullptr_t) const { return is_set(); }
 
 //   template < typename T2 >
 //   inline bool operator ==(const T2 * p) const { return m_p == p; }
@@ -1282,5 +1286,17 @@ template < typename TYPE >
 {
 
 return p;
+
+}
+template < typename SUBPARTICLE >
+concept primitive_subparticle = ::std::is_base_of_v<::subparticle, SUBPARTICLE>;
+
+
+
+template < primitive_subparticle SUBPARTICLE >
+::pointer < SUBPARTICLE > place(SUBPARTICLE* p)
+{
+
+   return { place_t{}, p };
 
 }

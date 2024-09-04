@@ -998,7 +998,7 @@ namespace user
       //         if (nCount != 0)
       //         {
       //            index i;
-      //            pData = __new_array< TBBUTTON >(nCount);
+      //            pData = new TBBUTTON[nCount];
       //            for (i = 0; i < nCount; i++)
       //               _GetButton(i, &pData[i]);
       //         }
@@ -1317,7 +1317,7 @@ namespace user
 //      {
 //         // initialize map if necessary
 //         if (m_pStringMap == nullptr)
-//            m_pStringMap = __new< string_to_ptr >();
+//            m_pStringMap = new string_to_ptr();
 //
 //         string str;
 //         str = pszText;
@@ -1794,7 +1794,7 @@ namespace user
       //         if (nCount != 0)
       //         {
       //            index i;
-      //            pData = __new_array< TBBUTTON >(nCount);
+      //            pData = new TBBUTTON[nCount];
       //            for (i = 0; i < nCount; i++)
       //               _GetButton(i, &pData[i]);
       //         }

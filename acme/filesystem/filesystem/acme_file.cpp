@@ -451,10 +451,10 @@ void acme_file::find_replace(const ::file::path & path, const ::property_set & s
 
    auto str = as_string(path);
 
-   for(auto & pproperty : set.propertyptra())
+   for(auto & property : set)
    {
 
-      str.find_replace(pproperty->name(), pproperty->as_string());
+      str.find_replace(property.name(), property.as_string());
 
    }
 

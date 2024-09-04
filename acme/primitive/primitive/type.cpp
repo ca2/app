@@ -296,7 +296,7 @@ string demangle(const char* name)
 //ptra * type_atom::new_ptra()
 //{
 //
-//   return __new< ptra >();
+//   return new ptra();
 //
 //}
 //
@@ -358,7 +358,7 @@ string demangle(const char* name)
 bool type_atom::operator == (const ::std::type_info& typeinfo) const
 {
 
-   ::string strName = ::type_atom(typeinfo);
+   ::string strName = typeinfo.name();
 
    strName = demangle(strName);
 

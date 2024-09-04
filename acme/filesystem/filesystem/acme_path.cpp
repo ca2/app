@@ -168,7 +168,7 @@ void acme_path::safe_real_path(::file::path & path)
 ::file::path acme_path::get_uniform_resource_locator(const ::file::path& path)
 {
 
-   auto str = system()->http_text(path);
+   auto str = system()->http_text(path.as_url());
 
    return str;
 
@@ -261,7 +261,7 @@ bool acme_path::case_insensitive_real_path_begins_eat(string & str, const ::scop
 
    strPath = path;
 
-   if (is_url(strPath))
+   if (::url::is(strPath))
    {
 
       strPath += "/";

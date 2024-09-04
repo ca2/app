@@ -138,7 +138,7 @@ namespace platform
 
       }
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(__BSD__)
 
       ::critical_section m_criticalsectionTz;
 
@@ -313,7 +313,7 @@ namespace platform
       void add_factory_item(const ::atom & atom)
       {
 
-         set_factory(atom, __allocate< ::factory::factory_item < TYPE, BASE > >());
+         set_factory(atom, ::place(new ::factory::factory_item < TYPE, BASE > ()));
 
       }
 
@@ -352,7 +352,7 @@ namespace platform
 
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(__BSD__)
 
       ::critical_section * tz_critical_section() { return &m_criticalsectionTz; }
 

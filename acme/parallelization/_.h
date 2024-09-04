@@ -11,7 +11,7 @@
 #define MUTEX_NAMED_FD
 #undef MUTEX_NAMED_VSEM
 
-#elif defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
+#elif defined(__APPLE__) || defined(__BSD__)
 
 //#define MUTEX_COND_TIMED
 #undef MUTEX_NAMED_POSIX

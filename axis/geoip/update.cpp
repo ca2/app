@@ -234,7 +234,7 @@ string GeoIP_get_host_or_proxy()
 //   if(t_phostentGeoip == nullptr)
 //   {
 //
-//      t_phostentGeoip = __new< hostent >();
+//      t_phostentGeoip = new hostent();
 //
 //   }
 //

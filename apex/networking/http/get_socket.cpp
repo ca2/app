@@ -23,18 +23,18 @@ namespace http
    }
 
 
-   void get_socket::initialize_get_socket(const ::string & strUrl)
+   void get_socket::initialize_get_socket(const ::url::url & url)
    {
 
-      initialize_http_get_socket(strUrl);
+      initialize_http_get_socket(url);
 
    }
 
 
-   void get_socket::initialize_get_socket(const string & host, ::networking::port_t port, const string & strUrl)
+   void get_socket::initialize_get_socket(const ::scoped_string & scopedstrProtocol, const ::scoped_string & scopedstrHost, ::networking::port_t port, const ::url::request & request)
    {
 
-      initialize_http_get_socket(host, port, strUrl);
+      initialize_http_get_socket(scopedstrProtocol, scopedstrHost, port, request);
 
    }
 

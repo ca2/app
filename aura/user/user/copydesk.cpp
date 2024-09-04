@@ -7,6 +7,7 @@
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/primitive/primitive/url.h"
+#include "apex/networking/internet.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/save_image.h"
 #include "aura/graphics/image/frame_array.h"
@@ -93,7 +94,7 @@ namespace user
             (
                acmedirectory()->is(strPath)
             || acmefile()->exists(strPath)
-            || url()->is_common_internet_protocol(strPath)
+            || system()->internet()->is_common_internet_protocol(strPath)
             )
             )
          {
@@ -226,7 +227,7 @@ namespace user
 
             memory mem;
 
-            auto psaveimage = __allocate< save_image >();
+            auto psaveimage = ::place(new save_image());
 
             if (pimage->frames() && pimage->frames()->count() >= 2)
             {

@@ -481,7 +481,7 @@ namespace user
 
          auto pmenuitemPopup = m_pmenuitem->m_pmenuitema->element_at(i);
 
-         ///main_content().add_item(__allocate< ::item >(::e_element_item, iPos, iMenu, -1));
+         ///main_content().add_item(::place(new ::item(::e_element_item, iPos, iMenu, -1)));
 
          string strTitle;
          
@@ -777,7 +777,7 @@ namespace user
 
          auto pmenuitemMenuBar = __create_new < ::menu::item >();
 
-         pmenuitemMenuBar->m_pmenuitema = __allocate< ::menu::item_ptra >(pmenuitemMenuBar);
+         pmenuitemMenuBar->m_pmenuitema = ::place(new ::menu::item_ptra(pmenuitemMenuBar));
 
          pmenuitemParent->add_item(pmenuitemMenuBar);
 
@@ -800,7 +800,7 @@ namespace user
 
             pmenuitemMenuBar->m_pmenuitema->add(pmenuitemCommand);
 
-            pmenuitemCommand->m_atom = pnodeChild->attribute("id");
+            pmenuitemCommand->m_atom = pnodeChild->attribute("id").as_atom();
 
             pmenuitemCommand->m_item.m_iItem = iPos;
 

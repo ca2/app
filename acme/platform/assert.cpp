@@ -24,7 +24,7 @@
 //#endif
 
 
-CLASS_DECL_ACME ::atom __cpp_assert_failed_line(const ::ansi_character * pszFileName, int iLineNumber);
+CLASS_DECL_ACME ::payload __cpp_assert_failed_line(const ::ansi_character * pszFileName, int iLineNumber);
 
 
 CLASS_DECL_ACME string message_box_result_to_string(int iResult);
@@ -101,7 +101,7 @@ namespace acme
 ////void message_box_synchronous(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::future & future)
 ////{
 ////
-////   auto posmessagebox = __allocate< ::acme::message_box_synchronous >(pszText, pszTitle, emessagebox);
+////   auto posmessagebox = ::place(new ::acme::message_box_synchronous(pszText, pszTitle, emessagebox));
 ////
 ////   return __realize(posmessagebox, process);
 ////
@@ -152,7 +152,7 @@ CLASS_DECL_ACME bool __assert_failed_line(const char * pszFileName, int iLineNum
 }
 
 
-CLASS_DECL_ACME ::atom __cpp_assert_failed_line(const char * pszFileName, int iLineNumber)
+CLASS_DECL_ACME ::payload __cpp_assert_failed_line(const char * pszFileName, int iLineNumber)
 {
 
    char szMessage[1024*4];

@@ -17,7 +17,7 @@ namespace dynamic_source
 
       g_interlockedcountDynamicSourceSession++;
 
-      ::informationf("%s currently allocated count = %lld", typeid(*this).name(), g_interlockedcountDynamicSourceSession.operator long long());
+      ::informationf("%s currently allocated count = %lld", typeid(*this).name(), g_interlockedcountDynamicSourceSession.operator ::i64());
 
    }
 
@@ -30,7 +30,7 @@ namespace dynamic_source
       ::text::international::locale_schema * pls = m_set["locale_schema"].cast < ::text::international::locale_schema > ();
       if(pls != nullptr)
       {
-         ::acme::get()->platform()->informationf("locale_schema.m_atomLocale=" + pls->m_atomLocale);
+         ::acme::get()->platform()->informationf("locale_schema.m_atomLocale=" + pls->m_strLocale);
       }
       if(m_set.has_property("rsa_n"))
       {

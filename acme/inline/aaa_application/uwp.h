@@ -4,7 +4,7 @@
 int main(Array < String ^ > ^ stra)
 {
 
-   auto psystem = __allocate< ::acme::system >();
+   auto psystem = ::place(new ::acme::system());
 
    psystem->application_initialize();
 

@@ -20,6 +20,7 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/file/transfer.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/translator.h"
@@ -152,6 +153,35 @@ namespace acme
 #endif
 
 
+#ifdef DEBUG
+      ::atom atom;
+      int iAtom1 = sizeof(atom);
+      int iAtomType = sizeof(atom.m_etype);
+      int iDomainId = sizeof(atom.m_domainid);
+      ::payload payload;
+      auto pType = &payload.m_etype;
+      auto pAll = &payload.m_payloadall;
+      int iType = sizeof(payload.m_etype);
+      int iAll = sizeof(payload.m_payloadall);
+      int iThis = sizeof(payload);
+      int iComputed = ((::u8*)pAll - (::u8*)pType) + iAll;
+      int iColor = sizeof(payload.m_color);
+      int iStr = sizeof(payload.m_str);
+      int iHls = sizeof(payload.m_hls);
+      int iTime = sizeof(payload.m_time);
+      int iAtom = sizeof(payload.m_atom);
+      int iFileTime = sizeof(payload.m_filetime);
+      int iEarthTime = sizeof(payload.m_earthtime);
+      if (iThis != iComputed)
+      {
+
+         throw 0;
+
+      }
+#endif
+
+
+
    }
 
 
@@ -253,7 +283,7 @@ namespace acme
 
 #ifdef _DEBUG
 
-      etracelevel = e_trace_level_warning;
+      etracelevel = e_trace_level_information;
 
 #else
 
@@ -301,6 +331,12 @@ namespace acme
          etracelevel = e_trace_level_information;
 
       }
+      else if (strTraceLevel == "warning")
+      {
+
+         etracelevel = e_trace_level_warning;
+
+      }
 
       //         for (int i = 0; i < m_pplatform->get_argument_count1(); i++)
       //         {
@@ -336,7 +372,7 @@ namespace acme
 
       //m_bOnInitializeWindowObject = false;
 
-      //m_pcleanuptask = __allocate< ::parallelization::cleanup_task >();
+      //m_pcleanuptask = ::place(new ::parallelization::cleanup_task());
 
       //m_pcleanuptask->begin();
       //factory()->add_factory_item<::acme::idpool>();
@@ -387,7 +423,7 @@ namespace acme
 
       //__construct(m_pnano);
 
-      //m_psystemimpl = __new< system_impl >();
+      //m_psystemimpl = new system_impl();
 
       //set_os_data(LAYERED_ACME, this);
 
@@ -637,13 +673,14 @@ namespace acme
 
 #endif
 
+      __construct_new(m_purlcontext);
+
       //::acme::idpool::init(this);
 
 //      /// Create/Replace logger
 
       __construct_new(m_pdatetime);
 
-      __construct_new(m_purl);
 
 
       m_pnode->m_htaskSystem = m_htask;
@@ -1050,13 +1087,13 @@ namespace acme
    //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
    //{
 
-   //   auto psequence = __allocate< ::sequence < ::conversation > >();
+   //   auto psequence = ::place(new ::sequence < ::conversation > ());
 
    //   psequence->set_status(error_interface_only);
 
    //   //return presult;
 
-   //   //auto pprocess = __allocate< status < enum_dialog_result > >();
+   //   //auto pprocess = ::place(new status < enum_dialog_result > ());
 
    //   //pprocess->set_result(message_box_for_console(pszText, pszTitle, emessagebox));
 
@@ -1352,6 +1389,25 @@ namespace acme
 
       }
 
+      //::string strRoot = "ca2.network";
+
+      //::file::path pathGooglePayload = "C:\\sensitive\\sensitive\\api\\google\\account\\" + strRoot + ".network_payload";
+
+      //auto payloadGoogle = file()->as_network_payload(pathGooglePayload);
+
+      //::string strClientId = payloadGoogle["web"]["client_id"];
+
+      //auto straRedirectUri = payloadGoogle["web"]["redirect_uris"].as_string_array();
+
+      //auto iFind = straRedirectUri.find_first_begins("https://" + strRoot + "/");
+
+      //if (iFind < 0)
+      //{
+
+      //   throw ::exception(error_failed);
+
+      //}
+
    }
 
 
@@ -1487,7 +1543,7 @@ namespace acme
    //   if (!plibrary)
    //   {
 
-   //      plibrary = __allocate< ::acme::library >();
+   //      plibrary = ::place(new ::acme::library());
 
    //      plibrary->initialize_matter(this);
 
@@ -1579,7 +1635,7 @@ namespace acme
    //
    //      }
    //
-   //      plibrary = __allocate< ::acme::library >();
+   //      plibrary = ::place(new ::acme::library());
    //
    //      plibrary->initialize_matter(this);
    //
@@ -3113,7 +3169,7 @@ namespace acme
    //   void system::windowing_send(const ::procedure & procedure)
    //   {
    //
-   //      auto pmanualresetevent = __allocate< manual_reset_event >();
+   //      auto pmanualresetevent = ::place(new manual_reset_event());
    //
    //      windowing_post([pmanualresetevent, procedure]()
    //                     {
@@ -3456,6 +3512,10 @@ namespace acme
 
          return;
          
+#elif defined(APPLE_IOS)
+
+         return;
+
 #endif
 
       }
@@ -3524,7 +3584,7 @@ namespace acme
 //CLASS_DECL_ACME::acme::system * acme_system_init()
 //{
 //
-//   g_psystem = __new< ::acme::system >();
+//   g_psystem = new ::acme::system ();
 //
 //   return g_psystem;
 //

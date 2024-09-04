@@ -83,7 +83,7 @@ namespace colorertake5
          // our region breaks previous region into two parts
          if (ladd->prev->end > ladd->end || (ladd->prev->end == -1 && ladd->end != -1))
          {
-            LineRegion *ln1 = __new< LineRegion >(*ladd->prev);
+            LineRegion *ln1 = new LineRegion(*ladd->prev);
             ln1->prev = ladd;
             ln1->next = ladd->next;
             if (ladd->next) ladd->next->prev = ln1;

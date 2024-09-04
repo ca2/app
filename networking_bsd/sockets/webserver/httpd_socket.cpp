@@ -198,7 +198,7 @@ namespace sockets
       if (g_pmapdh == nullptr)
       {
 
-         g_pmapdh = __new< map < int, DH * > >();
+         g_pmapdh = new map < int, DH * > ();
 
       }
 

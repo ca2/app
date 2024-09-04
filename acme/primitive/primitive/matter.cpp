@@ -779,7 +779,7 @@ bool matter::handle_call(::payload & payload, const ::string & strObject, const 
 //::topic_pointer matter::create_topic(const ::atom & atom)
 //{
 //
-//   auto ptopic = __allocate< ::topic >(atom);
+//   auto ptopic = ::place(new ::topic(atom));
 //
 //   ptopic->m_pcontext = system();
 //
@@ -791,7 +791,7 @@ bool matter::handle_call(::payload & payload, const ::string & strObject, const 
 bool matter::__get_posted_payload_synchronously(const ::function < void(const ::procedure &) > & functionPost, const ::function < ::payload(void) > & functionReturn, ::payload & payload)
 {
 
-   auto psynchronizer = __allocate< ::parallelization::synchronizer >();
+   auto psynchronizer = ::place(new ::parallelization::synchronizer());
 
    psynchronizer->set_nok();
 
@@ -848,7 +848,7 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
 void matter::__send_procedure(const ::function < void(const ::procedure &) > & functionPost, const ::procedure & procedureParam)
 {
 
-   auto psignalization = __allocate< ::parallelization::signalization >();
+   auto psignalization = ::place(new ::parallelization::signalization());
 
    auto procedure = procedureParam;
 

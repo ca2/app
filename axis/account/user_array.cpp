@@ -72,13 +72,11 @@ namespace account
 
       ::pointer<::account::user>puser;
 
-      auto psystem = system();
-
-      auto purl = psystem->url();
+      ::url::url url(pathUrl);
 
       {
 
-         string strHost = purl->get_server(pathUrl);
+         string strHost = url.connect().host();
 
          //auto estatus = 
          
@@ -239,11 +237,9 @@ namespace account
 
       }
 
-      auto psystem = system();
+      ::url::url url(pathUrl);
 
-      auto purl = psystem->url();
-
-      string strHost = purl->get_server(pathUrl);
+      string strHost = url.connect().host();
 
       {
 

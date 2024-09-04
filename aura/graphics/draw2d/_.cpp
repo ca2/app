@@ -56,7 +56,7 @@ namespace draw2d
 //}
 
 
-//image::image(std::nullptr_t)
+//image::image(nullptr_t)
 //{
 //
 //}

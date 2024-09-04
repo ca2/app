@@ -235,19 +235,15 @@ namespace simpledb
 
             property_set set;
 
-            string strUrl;
+            ::string strApi = "/api/account/str_set_load";
 
-            string strApi = "/api/account/str_set_load";
+            ::url::parts parts("https://ca2.software" + strApi);
 
-            strUrl = "https://ca2.software" + strApi + "?key=";
+            parts.arguments()["key"] = strKey;
 
-            auto psystem = system();
+            auto url = parts.as_url();
 
-            auto purl = psystem->url();
-
-            strUrl += ::url::encode(strKey);
-
-            strValue = m_pcontext->m_papexcontext->http().get(strUrl, set);
+            strValue = m_pcontext->m_papexcontext->http().get(url, set);
 
             if (strValue.is_empty() || set["get_status"].failed())
             {
@@ -267,7 +263,7 @@ namespace simpledb
 
             string strListingTime = strFirstLine;
 
-            auto pdatetime = psystem->datetime();
+            auto pdatetime = datetime();
 
             auto ptextcontext = session()->text_context();
 
@@ -408,7 +404,7 @@ namespace simpledb
          if (pstorage->m_pthreadlocal.is_null())
          {
 
-            pstorage->m_pthreadlocal = __allocate< thread_localdatabase >();
+            pstorage->m_pthreadlocal = ::place(new thread_localdatabase());
 
             pstorage->m_pthreadlocal->initialize(pstorage);
 
@@ -441,7 +437,7 @@ namespace simpledb
          if (pstorage->m_pthread.is_null())
          {
 
-            pstorage->m_pthread = __allocate< thread >();
+            pstorage->m_pthread = ::place(new thread());
 
             pstorage->m_pthread->m_pstorage = pstorage;
 

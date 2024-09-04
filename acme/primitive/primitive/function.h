@@ -277,7 +277,7 @@ public:
       else
       {
 
-         m_pbase.transfer(__new< class implementation < PREDICATE > >(predicate));
+         m_pbase.transfer(new class implementation < PREDICATE > (predicate));
 
       }
 
@@ -476,7 +476,7 @@ public:
       else
       {
 
-         m_pbase.transfer(__new< class implementation < PREDICATE > >(predicate));
+         m_pbase.transfer(new class implementation < PREDICATE > (predicate));
 
       }
 
@@ -647,7 +647,7 @@ public:
       else
       {
 
-         m_pbase.transfer(__new< class implementation < PREDICATE > >(predicate));
+         m_pbase.transfer( new class implementation < PREDICATE > (predicate));
 
       }
 
@@ -820,7 +820,7 @@ public:
       else
       {
 
-         m_pbase.transfer(__new< class implementation < PREDICATE > >(predicate));
+         m_pbase.transfer(new class implementation < PREDICATE > (predicate));
 
       }
 

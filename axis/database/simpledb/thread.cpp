@@ -2,11 +2,12 @@
 #include "thread.h"
 #include "storage.h"
 #include "queue_item.h"
+#include "acme/filesystem/filesystem/dir_context.h"
+#include "acme/filesystem/filesystem/dir_system.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
 #include "acme/primitive/primitive/url.h"
 #include "apex/networking/http/context.h"
-#include "acme/filesystem/filesystem/dir_system.h"
 #include "apex/platform/system.h"
 #include "axis/platform/application.h"
 #include "axis/platform/session.h"
@@ -117,23 +118,33 @@ namespace simpledb
 
                string strUrl;
 
-               strUrl = "https://ca2.software/api/account/str_set_save?key=";
+               // property_set set;
 
-               auto psystem = system()->m_papexsystem;
+               ::url::parts parts("https://ca2.software/api/account/str_set_save");
 
-               auto purl = psystem->url();
+               parts.arguments()["key"] = strKey;
 
-               strUrl += ::url::encode(strKey);
+               parts.arguments()["value"] = strBase64;
 
-               strUrl += "&value=";
+               auto url = parts.as_url();
 
-               strUrl += ::url::encode(strBase64);
+               //strUrl = "https://ca2.software/api/account/str_set_save?key=";
+
+               //auto psystem = system()->m_papexsystem;
+
+               //auto purl = psystem->url();
+
+               //strUrl += ::url::encode(strKey);
+
+               //strUrl += "&value=";
+
+               //strUrl += ::url::encode(strBase64);
 
                {
 
                   synchronous_lock slDatabase(synchronization());
 
-                  m_pcontext->m_papexcontext->http().get(strUrl, set);
+                  m_pcontext->m_papexcontext->http().get(url, set);
 
                }
 
@@ -142,7 +153,7 @@ namespace simpledb
 
                   sleep(500_ms);
 
-                  psystem->m_pdirsystem->m_strApiCc = "";
+                  system()->dirsystem()->m_strApiCc = "";
 
                }
 
@@ -177,7 +188,7 @@ namespace simpledb
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto pitem = __allocate< queue_item >();
+      auto pitem = ::place(new queue_item());
 
       pitem->m_strKey = pszKey;
 

@@ -639,6 +639,7 @@
     <ClCompile Include="networking\application\application_incoming_socket.cpp" />
     <ClCompile Include="networking\application\application_socket.cpp" />
     <ClCompile Include="networking\http\listener.cpp" />
+    <ClCompile Include="networking\internet.cpp" />
     <ClCompile Include="networking\netserver\socket.cpp" />
     <ClCompile Include="networking\netserver\socket_thread.cpp" />
     <ClCompile Include="networking\networking.cpp" />
@@ -845,6 +846,7 @@
     <ClInclude Include="networking\http\stream.h" />
     <ClInclude Include="networking\http\transaction.h" />
     <ClInclude Include="networking\http\_.h" />
+    <ClInclude Include="networking\internet.h" />
     <ClInclude Include="networking\netserver\incoming_socket.h" />
     <ClInclude Include="networking\netserver\socket.h" />
     <ClInclude Include="networking\netserver\socket_handler.h" />

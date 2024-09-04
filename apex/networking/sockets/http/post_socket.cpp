@@ -32,7 +32,7 @@ namespace sockets
    {
    }
 
-   void http_post_socket::initialize_http_post_socket(const string & url_in)
+   void http_post_socket::initialize_http_post_socket(const ::url::url & url)
       //::object(&h),
       //base_socket(h),
       //socket(h),
@@ -43,23 +43,28 @@ namespace sockets
       //http_client_socket(h, url_in)
    {
 
-      initialize_http_client_socket(url_in);
+      payload("this_is_a_http_post_socket") = true;
+
+      initialize_http_client_socket(url);
 
       m_emethod = http_method_post;
-
 
    }
 
 
    void http_post_socket::AddField(const string & name, const string & value)
    {
+      
       m_fields[name] = value;
+
    }
 
 
    void http_post_socket::AddMultilineField(const string & name, string_array & value)
    {
+      
       m_fields[name] = value;
+
    }
 
 
@@ -72,7 +77,7 @@ namespace sockets
          if (m_pmultipart == nullptr)
          {
 
-            m_pmultipart = __allocate< multipart >(this);
+            m_pmultipart = ::place(new multipart(this));
 
          }
          m_pmultipart->m_map[name].m_spfile = file()->get_file(filename, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
@@ -258,12 +263,12 @@ namespace sockets
 
       {
 
-         for(auto & pproperty : m_fields.propertyptra())
+         for(auto & property : m_fields)
          {
 
-            atom & atom = pproperty->m_atom;
+            atom & atom = property.m_atom;
 
-            ::payload & payload = *pproperty;
+            ::payload & payload = property;
 
             strFields += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + atom + "\"\r\n\r\n";
 

@@ -91,7 +91,7 @@ namespace factory
       ::pointer<ORIGIN_TYPE>__call__create() override
       {
 
-         auto p = ::transfer(__call__allocate< TYPE >());
+         auto p = ::transfer(::place(new TYPE()));
 
          return ::transfer(p);
             
@@ -247,7 +247,7 @@ namespace factory
       virtual ::pointer < ::particle > __call__create(const ::string & strType, ::particle * pparticle);
 
 
-      virtual bool has(const ::string & strType) const;
+      virtual bool has(const ::atom & atom) const;
       
       template < typename TYPE >
       bool has() const
@@ -386,7 +386,7 @@ namespace factory
 
       critical_section_lock lock(&m_criticalsection);
 
-      auto pfactoryitem = __allocate< ::factory::factory_item< ORIGIN_TYPE, ORIGIN_TYPE > >();
+      auto pfactoryitem = ::place ( new ::factory::factory_item< ORIGIN_TYPE, ORIGIN_TYPE > ());
 
       set_at(atom, pfactoryitem);
 
@@ -417,7 +417,7 @@ namespace factory
 //
 //      critical_section_lock lock(&m_criticalsection);
 //
-//      auto pfactoryitem = __allocate< ::factory::factory_item< TYPE, ORIGIN_TYPE > >();
+//      auto pfactoryitem = ::place(new ::factory::factory_item< TYPE, ORIGIN_TYPE > ());
 //
 //      get_factory_item < ORIGIN_TYPE >(atomSource) = pfactoryitem;
 //
@@ -432,7 +432,7 @@ namespace factory
 
    //   critical_section_lock lock(&m_criticalsection);
 
-   //   auto pfactory = __allocate< ::factory::factory_item< TYPE, ORIGIN_TYPE > >();
+   //   auto pfactory = ::place(new ::factory::factory_item< TYPE, ORIGIN_TYPE > ());
 
    //   factory_item < ORIGIN_TYPE >() = pfactory;
 
@@ -447,7 +447,7 @@ namespace factory
 //
 //      critical_section_lock lock(&m_criticalsection);
 //
-//      auto pfactory = __allocate< ::factory::reusable_factory_item< TYPE, ORIGIN_TYPE > >();
+//      auto pfactory = ::place(new ::factory::reusable_factory_item< TYPE, ORIGIN_TYPE > ());
 //
 //      factory_item < TYPE, ORIGIN_TYPE >() = pfactory;
 //
@@ -530,7 +530,7 @@ namespace factory
 //
 //      critical_section_lock lock(&m_criticalsection);
 //
-//      auto pfactory = __allocate< ::factory::factory_item< TYPE, ORIGIN_TYPE > >();
+//      auto pfactory = ::place(new ::factory::factory_item< TYPE, ORIGIN_TYPE > ());
 //
 //      this->get_factory_item < ORIGIN_TYPE >() = pfactory;
 //

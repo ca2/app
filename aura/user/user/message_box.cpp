@@ -34,11 +34,11 @@ namespace user
 
       common_construct();
 
-      auto pitemClient = __allocate< ::item >(e_element_client);
+      auto pitemClient = ::place(new ::item(e_element_client));
 
       enable_drag(pitemClient, e_zorder_back);
 
-      auto pitemResize = __allocate< ::item >(e_element_resize);
+      auto pitemResize = ::place(new ::item(e_element_resize));
 
       enable_drag(pitemResize, e_zorder_back);
 
@@ -96,7 +96,7 @@ namespace user
    void default_message_box::add_button(const ::string & strTitle, enum_dialog_result edialogresult)
    {
 
-      m_buttona.add(__allocate< ::user::button >(strTitle, edialogresult));
+      m_buttona.add(::place(new ::user::button(strTitle, edialogresult)));
 
       //return ::success;
 
@@ -106,7 +106,7 @@ namespace user
    pointer< ::sequencer < ::conversation > > default_message_box::show(::user::interaction * puserinteraction, const string& strMessageParam, const string& strTitle, const ::e_message_box& emessagebox)
    {
 
-      auto psequencer = __allocate< ::sequencer <::conversation > >();
+      auto psequencer = ::place(new ::sequencer <::conversation > ());
 
       psequencer->m_psequence = this;
 
@@ -124,7 +124,7 @@ namespace user
 
       m_stra.add_lines(strMessage);
 
-      m_pbuttonClose = __allocate< ::user::button >("", e_dialog_result_close);
+      m_pbuttonClose = ::place(new ::user::button("", e_dialog_result_close));
 
       m_pbuttonClose->set_button_style(::user::button::e_style_stock_icon);
 
@@ -390,7 +390,7 @@ namespace user
 
       pgraphics->m_pdraw2dhost = this;
 
-      m_pinteractionScaler = __allocate< ::user::interaction_scaler >();
+      m_pinteractionScaler = ::place(new ::user::interaction_scaler());
 
       m_pinteractionScaler->on_display_change(this);
 

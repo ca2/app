@@ -3,6 +3,7 @@
 
 
 #include "acme/primitive/primitive/atom.h"
+#include "acme/memory/memory_allocate.h"
 
 
 namespace acme
@@ -16,7 +17,8 @@ namespace text
 {
 
 
-   class CLASS_DECL_ACME data
+   class CLASS_DECL_ACME data :
+      public ::memory_quantum
    {
    protected:
 
@@ -35,6 +37,7 @@ namespace text
 
       data(translator * ptranslator);
       ~data();
+
 
 
    };

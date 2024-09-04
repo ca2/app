@@ -234,7 +234,7 @@ namespace apex
       //m_pimaging = nullptr;
 
 
-      //m_phandler = __allocate< ::handler >(this);
+      //m_phandler = ::place(new ::handler(this));
 
 
       //m_bAuraProcessInitialize = false;
@@ -275,7 +275,7 @@ namespace apex
 
       //m_timeGcomBackgroundUpdate = 30_s;
 
-      //m_pappimpl = __new< application_impl >();
+      //m_pappimpl = new application_impl();
 
 
    }
@@ -1015,7 +1015,7 @@ namespace apex
             
             auto path  = prequest->m_payloadFile.as_file_path();
             
-            if(::is_url(path))
+            if(::url::is(path))
             {
                
                handle_uri(path);
@@ -1081,7 +1081,7 @@ namespace apex
       //   /*        if (m_pfsdata.is_null())
       //           {
 
-      //              __construct(m_pfsdata, __allocate< ::fs::set >());
+      //              __construct(m_pfsdata, ::place(new ::fs::set()));
 
       //           }*/
 
@@ -3282,7 +3282,7 @@ namespace apex
    //   try
    //   {
 
-   //      return __allocate< ::interprocess::channel >();
+   //      return ::place(new ::interprocess::channel());
 
    //   }
    //   catch (...)
@@ -3313,7 +3313,7 @@ namespace apex
       auto psystem = system()->m_papexsystem;
 
       //estatus = 
-      m_puserlanguagemap = __allocate< ::user::language_map >();
+      m_puserlanguagemap = ::place(new ::user::language_map());
       
       //REFDBG(m_puserlanguagemap.add_reference_item({ this, __FUNCTION_FILE_LINE__ }));
 
@@ -3435,7 +3435,7 @@ namespace apex
 
       //}
 
-      information() << "start";
+      information() << "apex::application::init1 end";
 
       m_timeHeartBeat.Now();
 
@@ -5652,7 +5652,7 @@ namespace apex
 
       //throw ::exception(todo("xml"));
 
-      //auto pdocument = __allocate< ::xml::document >();
+      //auto pdocument = ::place(new ::xml::document());
 
       //if (!pdocument->load(atom) || !*pdocument)
       //{
@@ -6611,21 +6611,21 @@ namespace apex
 
       //update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_atomLocale, plocaleschema->m_atomSchema);
 
-      ::collection::count iCount = plocaleschema->m_idaLocale.get_count();
+      ::collection::count iCount = plocaleschema->m_straLocale.get_count();
 
       for (::collection::index i = 0; i < iCount; i++)
       {
 
-         if (plocaleschema->m_idaLocale[i] == "std" && plocaleschema->m_idaSchema[i] == "std" && bIgnoreStdStd)
+         if (plocaleschema->m_straLocale[i] == "std" && plocaleschema->m_straSchema[i] == "std" && bIgnoreStdStd)
             continue;
 
          string strLocale;
 
-         strLocale = plocaleschema->m_idaLocale[i];
+         strLocale = plocaleschema->m_straLocale[i];
 
          string strSchema;
 
-         strSchema = plocaleschema->m_idaSchema[i];
+         strSchema = plocaleschema->m_straSchema[i];
 
          update_appmatter(psession, pszRoot, pszRelative, strLocale, strSchema);
 
@@ -6651,16 +6651,16 @@ namespace apex
 
       if (node()->is_debug_build())
       {
+         
          strUrl = "http://basis-ca2.network/api/spaignition/download?authnone&configuration=basis&stage=";
+
       }
       else
       {
+
          strUrl = "http://stage-ca2.network/api/spaignition/download?authnone&configuration=stage&stage=";
+
       }
-
-      auto psystem = system();
-
-      auto purl = psystem->url();
 
       strUrl += ::url::encode(strRelative);
 
@@ -6672,7 +6672,7 @@ namespace apex
 
             property_set setEmpty;
 
-            if (m_pcontext->m_papexcontext->http().open(psession, purl->get_server(strUrl), purl->get_protocol(strUrl), setEmpty, nullptr))
+            if (m_pcontext->m_papexcontext->http().open(psession, strUrl, setEmpty, nullptr))
             {
 
                break;
@@ -8890,7 +8890,7 @@ namespace apex
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
-   *ppData = __new_array< ::u8 >(*pBytes);
+   *ppData = new ::u8[*pBytes];
    lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    *ppData, &dwCount);
@@ -8918,7 +8918,7 @@ namespace apex
    ASSERT(str.length()%2 == 0);
    iptr nLen = str.length();
    *pBytes = ::u32(nLen)/2;
-   *ppData = __new_array< ::u8 >(*pBytes);
+   *ppData = new ::u8[*pBytes];
    for (i32 i=0;i<nLen;i+=2)
    {
    (*ppData)[i/2] = (::u8)
@@ -9038,7 +9038,7 @@ namespace apex
    }
 
    // convert to string and write out
-   char * psz = __new_array< char >(nBytes*2+1);
+   char * psz = new char[nBytes*2+1];
 
    ::u32 i;
    for (i = 0; i < nBytes; i++)
@@ -9899,7 +9899,7 @@ namespace apex
    //::pointer<::apex::application>application::create_platform(::apex::session* psession)
    //{
    //
-   //   return __allocate< ::apex::session >();
+   //   return ::place(new ::apex::session());
    //
    //}
 
@@ -9988,7 +9988,7 @@ namespace apex
       if (path.has_char())
       {
 
-         if (::is_url(path) || acmefile()->exists(path))
+         if (::url::is(path) || acmefile()->exists(path))
          {
 
             return file()->as_string(path);

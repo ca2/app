@@ -539,7 +539,7 @@ namespace sandbox_windowing
    //
    //      }
    //
-   //      ::window *pdata = __new< window >();
+   //      ::window *pdata = new window();
    //
    //      pdata->m_bMessageOnlyWindow = true;
    //      pdata->m_window = None;
@@ -590,7 +590,7 @@ namespace sandbox_windowing
    //   //
    //   //      }
    //   //
-   //   //      ::window *pdata = __new< ::window >();
+   //   //      ::window *pdata = new ::window ();
 
    //   m_bMessageOnlyWindow = false;
    //   //m_osdisplay = osdisplay_get(Display());
@@ -825,7 +825,7 @@ namespace sandbox_windowing
 //
 //#elif 1
 //
-//      auto d1 = m_pcontext->m_pauracontext->create_image({ 32, 32 });
+//      auto d1 = context_image()->create_image({ 32, 32 });
 //
 //      if (!::is_ok(d1))
 //      {

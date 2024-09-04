@@ -7,6 +7,7 @@
 #include  "acme/primitive/primitive/particle.h"
 //#include "acme/primitive/primitive/pointer.h"
 
+
 namespace file
 {
 
@@ -170,6 +171,7 @@ namespace file
       path(const RANGE & range) : path(::string(range)) { }
 
 
+      ::url::url as_url() const;
       //template < has_as_string HAS_AS_STRING >
       //path(const HAS_AS_STRING & has_as_string) : path(has_as_string.as_string()) {}
       //inline ~path() {}

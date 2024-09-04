@@ -17,14 +17,14 @@ namespace http
    public:
 
 
-      //memory                           m_memoryRet;
-      ::e_status                      m_estatusRet;
+      //memory                         m_memoryRet;
+      ::e_status                       m_estatusRet;
 
-      string                           m_strUrl;
+      ::url::url                       m_url;
       property_set                     m_setPost;
       property_set                     m_setHeaders;
 
-      ::pointer<::http::cookies>      m_pcookies;
+      ::pointer<::http::cookies>       m_pcookies;
 
 
       string                           m_strVersion;

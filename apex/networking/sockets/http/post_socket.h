@@ -82,7 +82,7 @@ namespace sockets
       virtual ~http_post_socket();
 
 
-      virtual void initialize_http_post_socket(const ::string & strUrl);
+      virtual void initialize_http_post_socket(const ::url::url & url);
 
       // these must be specified before connecting / adding to handler
       /** add field to post. */

@@ -61,10 +61,10 @@ void details_window::calculate_size()
 }
 
 
-void details_window::on_click(const ::atom& atom, ::user::mouse * pmouse)
+void details_window::on_click(const ::payload& payload, ::user::mouse * pmouse)
 {
 
-   if (atom == "details")
+   if (payload == "details")
    {
 
       //string m_strDetails;
@@ -79,7 +79,7 @@ void details_window::on_click(const ::atom& atom, ::user::mouse * pmouse)
 
    }
 
-   ::nano::user::message_box::on_click(atom, pmouse);
+   ::nano::user::message_box::on_click(payload, pmouse);
 
 }
 

@@ -108,7 +108,7 @@ namespace sphere
       if (m_pparserfactory == nullptr)
       {
 
-         m_pparserfactory = __new< colorertake5::ParserFactory >(this);
+         m_pparserfactory = new colorertake5::ParserFactory (this);
 
       }
 
@@ -120,7 +120,7 @@ namespace sphere
    ::pointer<::aura::application>application::get_context_system()
    {
 
-      return __new< application >(this);
+      return new application(this);
 
    }
 
@@ -452,7 +452,7 @@ namespace sphere
       if (m_pconsole.is_null())
       {
 
-         m_pconsole = __allocate< ::console::department >(this);
+         m_pconsole = ::place(new ::console::department(this));
 
          MESSAGE_LINK(WM_APP + 3243, this, m_pconsole.m_p, &console::department::_001OnImpact);
 
@@ -470,7 +470,7 @@ namespace sphere
       if (m_pprompt.is_null())
       {
 
-         m_pprompt = __allocate< ::prompt::department >(this);
+         m_pprompt = ::place(new ::prompt::department(this));
 
       }
 
@@ -485,7 +485,7 @@ namespace sphere
       if (m_pfilehandler.is_null())
       {
 
-         m_pfilehandler = __allocate< ::filehandler::department >(this);
+         m_pfilehandler = ::place(new ::filehandler::department(this));
 
       }
 
@@ -500,7 +500,7 @@ namespace sphere
       if (m_pcalculator.is_null())
       {
 
-         m_pcalculator = __allocate< ::calculator::department >(this);
+         m_pcalculator = ::place(new ::calculator::department(this));
 
       }
 
@@ -596,7 +596,7 @@ namespace sphere
       add_factory_item < ::userstack::pane_impact >();
       add_factory_item < ::userstack::frame >();
 
-      m_ptemplate_pane = __new< ::user::single_document_template >(
+      m_ptemplate_pane = new ::user::single_document_template(
       this,
       "bergedge/frame",
       ::type < ::userstack::document >(),

@@ -149,3 +149,38 @@ inline ::std::strong_ordering const_string_range < ITERATOR_TYPE > ::case_insens
 
 
 
+
+
+template < typename ITERATOR_TYPE >
+bool const_string_range < ITERATOR_TYPE > ::is_trimmed_empty() const
+{
+
+   auto p = this->m_begin;
+
+   if (::is_null(p))
+   {
+
+      return true;
+
+   }
+
+   auto end = this->m_end;
+
+   while (p < end)
+   {
+
+      if (!unicode_is_whitespace(p))
+      {
+
+         return false;
+
+      }
+
+      unicode_increment(p);
+
+   }
+
+   return true;
+
+}
+

@@ -24,8 +24,8 @@ namespace sockets
       };
       bool        m_bSslTunnel;
       bool        m_bOk;
-      string m_host; ///< Hostname from url_in
-      ::networking::port_t m_port; ///< Port from url_in
+      //string m_host; ///< Hostname from url_in
+      //::networking::port_t m_port; ///< Port from url_in
       string_array   m_straProxy;
       enum_state      m_estate;
       string      m_strRequest;

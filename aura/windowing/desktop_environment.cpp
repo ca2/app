@@ -26,20 +26,20 @@ namespace windowing
    }
 
 
-   void desktop_environment::get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 * prectangle)
-   {
+   //void desktop_environment::get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 * prectangle)
+   //{
 
-      information() << "DESKTOP_ENVIRONMENT::GET_MONITOR_RECTANGLE Empty!!";
+   //   information() << "DESKTOP_ENVIRONMENT::GET_MONITOR_RECTANGLE Empty!!";
 
-   }
-
-
-   void desktop_environment::get_workspace_rectangle(::collection::index iMonitor, ::rectangle_i32 * prectangle)
-   {
+   //}
 
 
+   //void desktop_environment::get_workspace_rectangle(::collection::index iMonitor, ::rectangle_i32 * prectangle)
+   //{
 
-   }
+
+
+   //}
 
 
 

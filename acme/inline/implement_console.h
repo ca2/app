@@ -8,7 +8,7 @@
 #include APPLICATION_INCLUDE
 #include <type_traits>
 
-#if defined(FREEBSD) || defined(OPENBSD)
+#if defined(__BSD__)
 #include <stdio.h>
 #endif
 
@@ -202,7 +202,7 @@ int main(int argc, char ** argv, char ** envp)
 //
 //   //set_argc_argv_envp(argc, argv, envp);
 //
-//   ::pointer<APPLICATION_CLASS>papp(__allocate< APPLICATION_CLASS >());
+//   ::pointer<APPLICATION_CLASS>papp(::place(new APPLICATION_CLASS()));
 //
 //#ifdef NO_NETWORKING
 //

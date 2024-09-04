@@ -80,12 +80,12 @@ public:
 //   scoped_string_base(const ::property & property):m_str(property.as_string()), RANGE(m_str) { }
 //   scoped_string_base(const ::inline_number_string & inline_number_string) : RANGE(inline_number_string) {}
    template < primitive_character CHARACTER2 >
-   scoped_string_base(const CHARACTER2 * start) : scoped_string_base(start, string_safe_length(start)) {}
+   scoped_string_base(const CHARACTER2 * start) : scoped_string_base(start, start + string_safe_length(start)) {}
    template < primitive_character CHARACTER2 >
    scoped_string_base(const CHARACTER2 * start, strsize len) : scoped_string_base(start, start + len) {}
    template < primitive_character CHARACTER2 >
    scoped_string_base(const CHARACTER2 * start, const CHARACTER2 * end) :
-      RANGE(e_zero_initialize) 
+      RANGE(no_initialize_t{})
    { 
    
       if constexpr (sizeof(CHARACTER2) == sizeof(CHARACTER))
@@ -391,5 +391,22 @@ inline ::u32hash u32_hash < scoped_wd32_string >(const scoped_wd32_string & scop
 
 
 #include  "acme/primitive/mathematics/_string.h"
+
+
+#ifdef __STD_FORMAT__
+
+
+template < >
+struct std::formatter<::scoped_string > :
+   public ::std::formatter< ::std::string_view >
+{
+   auto format(const ::scoped_string& scopedstr, std::format_context& ctx) const {
+      return formatter<::std::string_view>::format({ scopedstr.begin(), scopedstr.end() }, ctx);
+   }
+};
+
+
+#endif
+
 
 

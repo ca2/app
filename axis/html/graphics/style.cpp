@@ -431,35 +431,35 @@ namespace html
 
       const style *     pstyleCur;
       ::collection::index               iCur;
-      ::payload               varCur;
+      ::payload               payloadCurrent;
 
       pstyleCur         = pstyle1;
       iCur              = i1;
-      varCur            = var1;
-      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleLeft, iLeft, fLeft);
-      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleLeftW, iLeftW, fLeftW);
-      rectangle.left()          = (float) (double) varCur;
+      payloadCurrent            = var1;
+      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleLeft, iLeft, fLeft);
+      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleLeftW, iLeftW, fLeftW);
+      rectangle.left()          = (float) payloadCurrent.as_f64();
 
       pstyleCur         = pstyle1;
       iCur              = i1;
-      varCur            = var1;
-      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTop, iTop, fTop);
-      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTopW, iTopW, fTopW);
-      rectangle.top()           = (float) (double) varCur;
+      payloadCurrent            = var1;
+      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleTop, iTop, fTop);
+      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleTopW, iTopW, fTopW);
+      rectangle.top()           = (float)payloadCurrent.as_f64();
 
       pstyleCur         = pstyle1;
       iCur              = i1;
-      varCur            = var1;
-      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRight, iRight, fRight);
-      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRightW, iRightW, fRightW);
-      rectangle.right()         = (float) (double) varCur;
+      payloadCurrent            = var1;
+      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleRight, iRight, fRight);
+      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleRightW, iRightW, fRightW);
+      rectangle.right()         = (float)payloadCurrent.as_f64();
 
       pstyleCur         = pstyle1;
       iCur              = i1;
-      varCur            = var1;
-      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottom, iBottom, fBottom);
-      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottomW, iBottomW, fBottomW);
-      rectangle.bottom()        = (float) (double) varCur;
+      payloadCurrent            = var1;
+      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleBottom, iBottom, fBottom);
+      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleBottomW, iBottomW, fBottomW);
+      rectangle.bottom()        = (float)payloadCurrent.as_f64();
 
       return true;
 
@@ -604,35 +604,35 @@ namespace html
 
       const style *     pstyleCur;
       ::collection::index               iCur;
-      ::payload               varCur;
+      ::payload               payloadCurrent;
 
       pstyleCur         = pstyle1;
       iCur              = i1;
-      varCur            = var1;
-      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleLeft, iLeft, (::color::color &) colorLeft);
-      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleLeftW, iLeftW, (::color::color &) colorLeftW);
-      rectangle.colorLeft        = varCur;
+      payloadCurrent            = var1;
+      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleLeft, iLeft, (::color::color &) colorLeft);
+      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleLeftW, iLeftW, (::color::color &) colorLeftW);
+      rectangle.colorLeft        = payloadCurrent;
 
       pstyleCur         = pstyle1;
       iCur              = i1;
-      varCur            = var1;
-      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTop, iTop, (::color::color &) colorTop);
-      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTopW, iTopW, (::color::color &) colorTopW);
-      rectangle.colorTop         = varCur;
+      payloadCurrent            = var1;
+      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleTop, iTop, (::color::color &) colorTop);
+      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleTopW, iTopW, (::color::color &) colorTopW);
+      rectangle.colorTop         = payloadCurrent;
 
       pstyleCur         = pstyle1;
       iCur              = i1;
-      varCur            = var1;
-      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRight, iRight, (::color::color &) colorRight);
-      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRightW, iRightW, (::color::color &) colorRightW);
-      rectangle.colorRight       = varCur;
+      payloadCurrent            = var1;
+      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleRight, iRight, (::color::color &) colorRight);
+      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleRightW, iRightW, (::color::color &) colorRightW);
+      rectangle.colorRight       = payloadCurrent;
 
       pstyleCur         = pstyle1;
       iCur              = i1;
-      varCur            = var1;
-      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottom, iBottom, (::color::color &) colorBottom);
-      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottomW, iBottomW, (::color::color &) colorBottomW);
-      rectangle.colorBottom      = varCur;
+      payloadCurrent            = var1;
+      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleBottom, iBottom, (::color::color &) colorBottom);
+      pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, payloadCurrent, pstyleCur, iCur, payloadCurrent, pstyleBottomW, iBottomW, (::color::color &) colorBottomW);
+      rectangle.colorBottom      = payloadCurrent;
 
       return true;
 
@@ -865,7 +865,7 @@ namespace html
 
       }
 
-      d = m_propertyset["opacity"];
+      d = m_propertyset["opacity"].as_f64();
 
       return true;
 

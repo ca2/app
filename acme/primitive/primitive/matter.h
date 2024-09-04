@@ -307,7 +307,7 @@ template < typename TYPE >
 inline void __raw_construct_new(::pointer<TYPE> & ptype)
 {
 
-   ptype = __new< TYPE >();
+   ptype = new TYPE();
 
 }
 

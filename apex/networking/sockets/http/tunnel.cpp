@@ -199,7 +199,7 @@ namespace sockets
       //   outheader("Host") = GetUrlHost() + ":" + Utility::l2string(GetUrlPort());
       //else
       //   outheader("Host") = GetUrlHost();
-      outheader("host") = m_host;
+      outheader("host") = m_urlparts.connect().m_strHost;
       SendRequest();
 
       return true;
@@ -329,13 +329,17 @@ namespace sockets
 
    const string & http_tunnel::GetUrlHost()
    {
-      return m_host;
+      
+      return m_urlparts.connect().m_strHost;
+
    }
 
 
    ::networking::port_t http_tunnel::GetUrlPort()
    {
-      return m_port;
+
+      return m_urlparts.connect().m_iPort;
+
    }
 
 

@@ -607,7 +607,7 @@ namespace user
          } else
          {
 
-            pusersystem = __allocate<::user::system>();
+            pusersystem = ::place(new ::user::system());
 
          }
 
@@ -793,7 +793,7 @@ namespace user
       } else
       {
 
-         pusersystem = __allocate<::user::system>();
+         pusersystem = ::place(new ::user::system());
 
       }
 
@@ -981,7 +981,7 @@ namespace user
       //                      pusersystem->m_createstruct.cx(),
       //                      pusersystem->m_createstruct.cy()));
 
-      //auto psynca = __allocate< synchronization_array >();
+      //auto psynca = ::place(new synchronization_array());
 
       //::pointer<manual_reset_event>peventStartedUser;
 
@@ -1009,7 +1009,7 @@ namespace user
 
          m_puserinteraction->m_pthreadUserInteraction = m_puserthread;
 
-         //peventStartedUser = __allocate< manual_reset_event >();
+         //peventStartedUser = ::place(new manual_reset_event());
 
          //m_puserthread->m_peventStarted = peventStartedUser;
 
@@ -1256,7 +1256,7 @@ namespace user
 //      //ASSERT(puiParent != nullptr);
 //      //ASSERT((uStyle & WS_POPUP) == 0);
 //
-//      //auto pusersystem = __allocate< ::user::system >();
+//      //auto pusersystem = ::place(new ::user::system());
 //
 //      //pusersystem->m_createstruct.dwExStyle = 0;
 //
@@ -1634,7 +1634,7 @@ namespace user
 
       }
 
-      auto poutputpurpose = __allocate<::graphics::output_purpose>(pparticleGraphicalOutputPurposeOriginator, epurpose);
+      auto poutputpurpose = ::place(new ::graphics::output_purpose(pparticleGraphicalOutputPurposeOriginator, epurpose));
 
       bool bHadGraphicalOutputPurpose = m_puserinteraction->has_graphical_output_purpose();
 
@@ -5265,7 +5265,7 @@ namespace user
       if (::is_null(m_puserinteraction->m_pinteractionScaler))
       {
 
-         m_puserinteraction->m_pinteractionScaler = __allocate<::user::interaction_scaler>();
+         m_puserinteraction->m_pinteractionScaler = ::place(new ::user::interaction_scaler());
 
       }
 
@@ -5348,7 +5348,7 @@ namespace user
             if (!m_puserinteraction->m_bMessageWindow)
             {
 
-               m_pcsDisplay = __new<critical_section>();
+               m_pcsDisplay = new critical_section();
 
                information() << "interaction_impl m_pgraphics alloc : " << strType;
 

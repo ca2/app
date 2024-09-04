@@ -172,7 +172,7 @@ namespace aura
       //m_pimaging = nullptr;
 
 
-      //m_phandler = __allocate< ::handler >(this);
+      //m_phandler = ::place(new ::handler(this));
 
 
       //m_bAuraProcessInitialize = false;
@@ -297,7 +297,7 @@ namespace aura
    //   if(m_pappmenu.is_null())
    //   {
 
-   //      m_pappmenu = __allocate< application_menu >();
+   //      m_pappmenu = ::place(new application_menu());
 
    //   }
 
@@ -2087,7 +2087,7 @@ retry_license:
    //   try
    //   {
 
-   //      return __allocate< ::interprocess::communication >(m_strAppName);
+   //      return ::place(new ::interprocess::communication(m_strAppName));
 
    //   }
    //   catch (...)
@@ -2160,7 +2160,7 @@ retry_license:
       // }
 
 
-      information() << "start";
+      information() << "apex::application::init1 end";
 
       m_timeHeartBeat.Now();
 
@@ -2669,12 +2669,12 @@ retry_license:
 
    //  ::text::context * pcontext = psession->textcontext();
 
-   //  for (i32 i = 0; i < localeschema().m_idaLocale.get_count(); i++)
+   //  for (i32 i = 0; i < localeschema().m_straLocale.get_count(); i++)
    //  {
 
-   //     string strLocale = localeschema().m_idaLocale[i];
+   //     string strLocale = localeschema().m_straLocale[i];
 
-   //     string strSchema = localeschema().m_idaSchema[i];
+   //     string strSchema = localeschema().m_straSchema[i];
 
    //     matter_locator_locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
@@ -2706,8 +2706,8 @@ retry_license:
    //{
 
 
-   //  localeschema.m_idaLocale.erase_all();
-   //  localeschema.m_idaSchema.erase_all();
+   //  localeschema.m_straLocale.erase_all();
+   //  localeschema.m_straSchema.erase_all();
 
 
    //  string strLocale(pszLocale);
@@ -2734,8 +2734,8 @@ retry_license:
    //{
 
 
-   //  localeschema.m_idaLocale.erase_all();
-   //  localeschema.m_idaSchema.erase_all();
+   //  localeschema.m_straLocale.erase_all();
+   //  localeschema.m_straSchema.erase_all();
 
 
    //  //localeschema.m_bAddAlternateStyle = true;
@@ -3768,7 +3768,7 @@ retry_license:
 
    //   }
 
-   //   auto pusermessage = __allocate< ::user::message >();
+   //   auto pusermessage = ::place(new ::user::message());
 
    //   if (!pusermessage)
    //   {
@@ -4250,7 +4250,7 @@ retry_license:
 
    //   //throw ::exception(todo("xml"));
 
-   //   //auto pdocument = __allocate< ::xml::document >();
+   //   //auto pdocument = ::place(new ::xml::document());
 
    //   //if (!pdocument->load(atom) || !*pdocument)
    //   //{
@@ -4754,21 +4754,21 @@ retry_license:
 
       //update_appmatter(h, psession, pszRoot, pszRelative, plocaleschema->m_atomLocale, plocaleschema->m_atomSchema);
 
-      ::collection::count iCount = plocaleschema->m_idaLocale.get_count();
+      ::collection::count iCount = plocaleschema->m_straLocale.get_count();
 
       for (::collection::index i = 0; i < iCount; i++)
       {
 
-         if (plocaleschema->m_idaLocale[i] == "std" && plocaleschema->m_idaSchema[i] == "std" && bIgnoreStdStd)
+         if (plocaleschema->m_straLocale[i] == "std" && plocaleschema->m_straSchema[i] == "std" && bIgnoreStdStd)
             continue;
 
          string strLocale;
 
-         strLocale = plocaleschema->m_idaLocale[i];
+         strLocale = plocaleschema->m_straLocale[i];
 
          string strSchema;
 
-         strSchema = plocaleschema->m_idaSchema[i];
+         strSchema = plocaleschema->m_straSchema[i];
 
          update_appmatter(psession, pszRoot, pszRelative, strLocale, strSchema);
 
@@ -4810,10 +4810,6 @@ retry_license:
          strUrl = "http://stage-ca2.network/api/spaignition/download?authnone&configuration=stage&stage=";
       }
 
-      auto psystem = system();
-
-      auto purl = psystem->url();
-
       strUrl += ::url::encode(strRelative);
 
       if (psession == nullptr)
@@ -4824,7 +4820,7 @@ retry_license:
 
             property_set setEmpty;
 
-            if (http().open(psession, purl->get_server(strUrl), purl->get_protocol(strUrl), setEmpty, nullptr))
+            if (http().open(psession, strUrl, setEmpty, nullptr))
             {
 
                break;
@@ -7055,7 +7051,7 @@ namespace aura
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
-   *ppData = __new_array< ::u8 >(*pBytes);
+   *ppData = new ::u8[*pBytes];
    lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    *ppData, &dwCount);
@@ -7083,7 +7079,7 @@ namespace aura
    ASSERT(str.length()%2 == 0);
    iptr nLen = str.length();
    *pBytes = ::u32(nLen)/2;
-   *ppData = __new_array< ::u8 >(*pBytes);
+   *ppData = new ::u8[*pBytes];
    for (i32 i=0;i<nLen;i+=2)
    {
    (*ppData)[i/2] = (::u8)
@@ -7203,7 +7199,7 @@ namespace aura
    }
 
    // convert to string and write out
-   char * psz = __new_array< char >(nBytes*2+1);
+   char * psz = new char[nBytes*2+1];
 
    ::u32 i;
    for (i = 0; i < nBytes; i++)
@@ -8059,7 +8055,7 @@ namespace aura
 //   ::pointer<::apex::application>application::create_platform(::apex::session* psession)
 //   {
 //
-//      return __allocate< ::aura::session >();
+//      return ::place(new ::aura::session());
 //
 //   }
 
@@ -8579,7 +8575,7 @@ namespace aura
 
       }
 
-      pinteraction = __allocate< ::account::simple_ui >(this,strRequestUrl);
+      pinteraction = ::place(new ::account::simple_ui(this,strRequestUrl));
 
       pinteraction->m_login.m_peditUser->set_window_text(strUsername);
 
@@ -8599,7 +8595,7 @@ namespace aura
    //::pointer<::user::user>application::create_user()
    //{
 
-   //   return __allocate< ::user::user >();
+   //   return ::place(new ::user::user());
 
    //}
 

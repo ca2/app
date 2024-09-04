@@ -13,7 +13,7 @@ namespace sockets
 {
 
 
-   http_session::http_session(const string & protocol,const string & host) //:
+   http_session::http_session(const ::url::connect_part & connectpart) //:
      /* ::object(&handler),
       base_socket(handler),
       socket(handler),
@@ -27,25 +27,25 @@ namespace sockets
       http_put_socket(handler)*/
    {
 
-      //m_bEnablePool = false;
-      m_strProtocol                 = protocol;
-      m_host                        = host;
+      //::url::url url(connect);
 
-      inattr("http_protocol")   = protocol;
+      m_urlparts.m_connectpart = connectpart;
 
-      m_request.m_propertysetHeader["host"] = host;
+      //m_urlparts.m_strHost      = host;
 
-      set_url(protocol + "://" + host);
+      inattr("http_protocol") = connectpart.m_strProtocol;
 
-      if(protocol == "http")
-         m_port = 80;
-      else
-         m_port = 443;
+      m_request.m_propertysetHeader["host"] = connectpart.m_strHost;
 
-      set_connect_host(m_host);
-      set_connect_port(m_port);
+      //set_url(protocol + "://" + host);
 
-      m_bRequestComplete            = false;
+      set_url(connectpart);
+
+      set_connect_host(connectpart.m_strHost);
+
+      set_connect_port(connectpart.m_iPort);
+
+      m_bRequestComplete = false;
 
    }
 
@@ -67,10 +67,11 @@ namespace sockets
    void http_session::request(e_http_method emethod, const ::string & strRequest)
    {
 
-      m_emethod                     = emethod;
-      inattr("request_uri")     = strRequest;
-      inattr("http_protocol")   = m_strProtocol;
-      set_url(m_strProtocol + "://" + GetUrlHost() + inattr("request_uri"));
+      m_emethod                  = emethod;
+      inattr("request_uri")      = strRequest;
+      inattr("http_protocol")    = m_urlparts.connect().m_strProtocol;
+      m_urlparts.request() = strRequest;
+      set_url(m_urlparts.as_url());
       inattr("http_version")    = "HTTP/1.1";
       //m_b_keepalive                 = true;
       m_content_ptr                 = 0;

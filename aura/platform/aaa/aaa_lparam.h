@@ -11,7 +11,7 @@ public:
 
    LPARAM m_lparam;
 
-   lparam(std::nullptr_t = nullptr) { m_lparam = 0; }
+   lparam(nullptr_t = nullptr) { m_lparam = 0; }
 
    lparam(i32 i) { m_lparam = (LPARAM) i; }
 

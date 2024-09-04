@@ -78,31 +78,31 @@ namespace experience_anthill
 
       if (strSchema == "001")
       {
-         return __new< ::experience_anthill::frame_001 >();
+         return new ::experience_anthill::frame_001 ();
       }
       else if (strSchema == "002")
       {
-         return __new< ::experience_anthill::frame_002 >();
+         return new ::experience_anthill::frame_002 ();
       }
       else if (strSchema == "005")
       {
-         return __new< ::experience_anthill::frame_005 >();
+         return new ::experience_anthill::frame_005 ();
       }
       else if (strSchema == "008")
       {
-         return __new< ::experience_anthill::frame_008 >();
+         return new ::experience_anthill::frame_008 ();
       }
       else if (strSchema == "011")
       {
-         return __new< ::experience_anthill::frame_011 >();
+         return new ::experience_anthill::frame_011 ();
       }
       else if (strSchema == "022")
       {
-         return __new< ::experience_anthill::frame_022 >();
+         return new ::experience_anthill::frame_022 ();
       }
       else if (strSchema == "Minimal001")
       {
-         return __new< ::experience_anthill::frame_Minimal001 >();
+         return new ::experience_anthill::frame_Minimal001 ();
       }
 
       return nullptr;

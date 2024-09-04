@@ -5,7 +5,7 @@
 
 #include <sys/utsname.h>
 
-#if defined(FREEBSD) || defined(OPENBSD)
+#if defined(__BSD__)
 #include <strings.h>
 #include <stdio.h>
 #endif
@@ -91,6 +91,14 @@ namespace nano
             printf("calculate_edesktop e_desktop_xfce\n");
 
             return ::user::e_desktop_xfce;
+
+         }
+         else if(file_exists("/usr/bin/cinnamon"))
+         {
+
+            printf("calculate_edesktop e_desktop_cinnamon\n");
+
+            return ::user::e_desktop_cinnamon;
 
          }
          else if(file_exists("/usr/bin/mate-about"))

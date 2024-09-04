@@ -205,7 +205,7 @@ namespace filemanager
    void operation_thread::queue_copy(::file::listing & stra,const ::file::path & pszDstBase,const ::file::path & pszSrcBase,bool bExpand,bool bReplaceAll, bool bDeleteOriginOnSuccessfulCopy, ::pointer<::user::interaction>oswindowCallback,const ::atom & atom,wparam wparamCallback)
    {
 
-      auto poperation  = __allocate< ::filemanager::operation >();
+      auto poperation  = ::place(new ::filemanager::operation());
 
       poperation->m_oswindowCallback = oswindowCallback;
 

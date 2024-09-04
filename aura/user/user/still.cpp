@@ -669,7 +669,7 @@ namespace user
       if(::is_null(m_ptextouta))
       {
 
-         m_ptextouta = __allocate< write_text::text_out_array >();
+         m_ptextouta = ::place(new write_text::text_out_array());
 
       }
 
@@ -1277,13 +1277,13 @@ namespace user
       if(!m_ptextouta || ::not_found(iItem = m_ptextouta->hit_test(point, ezorder)))
       {
 
-         auto pitemNone = __allocate< ::item >(e_element_none);
+         auto pitemNone = ::place(new ::item(e_element_none));
 
          return pitemNone;
 
       }
 
-      return __allocate< ::item >(e_element_client);
+      return ::place(new ::item(e_element_client));
 
    }
 

@@ -15,13 +15,13 @@
 //
 //#endif
 //
-//   auto psystem = __allocate< ::apex::system >();
+//   auto psystem = ::place(new ::apex::system());
 //
 //   psystem->construct_system(argc, argv);
 //
 ////   return apex_run_system(psystem);
 //
-//   auto psystem = __allocate< ::apex::system >();
+//   auto psystem = ::place(new ::apex::system());
 //
 //   psystem->payload("main_string") = strMainString;
 //
@@ -50,7 +50,7 @@
 //
 //      {
 //
-//         auto psystem = __allocate< ::apex::system >();
+//         auto psystem = ::place(new ::apex::system());
 //
 //         psystem->set_main_struct(&mainstruct);
 //

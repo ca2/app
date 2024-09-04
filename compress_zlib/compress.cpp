@@ -72,12 +72,12 @@ namespace compress_zlib
 
       }
 
-      ::u64 size = 0;
+      filesize size = 0;
 
       if (pfileIn->is_seekable())
       {
-         size = pfileIn->size();
 
+         size = pfileIn->size();
 
       }
 
@@ -100,7 +100,9 @@ namespace compress_zlib
       zstream.zfree = Z_NULL;
 
       class memory memory;
+
       memory.set_size(1024 * 256);
+
       ASSERT(memory.size() <= UINT_MAX);
 
       // inflateInit2 knows how to deal with gzip format
@@ -132,12 +134,12 @@ namespace compress_zlib
 
             pfileOut->write(memory(0, amountToWrite));
 
-
             if (transferprogressfunction)
             {
 
                if (pfileOut->size() < size)
                {
+
                   transferprogressfunction((double)pfileOut->size()
                      / (double)size, pfileOut->size(), size);
 

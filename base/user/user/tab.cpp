@@ -810,6 +810,29 @@ namespace user
 
             if (eelement == e_element_tab_near_scroll)
             {
+               
+               if (get_data()->m_bVertical)
+               {
+
+                  if(m_pointBarDragScroll.y() >= 0)
+                  {
+                   
+                     return false;
+                     
+                  }
+
+               }
+               else
+               {
+
+                  if(m_pointBarDragScroll.x() >=  0)
+                  {
+                     
+                     return false;
+                     
+                  }
+
+               }
 
                if (ptabdata->m_bVertical)
                {
@@ -834,13 +857,13 @@ namespace user
 
                   rectangle.left() = rectangleTab.left();
 
-                  rectangle.top() = rectangleTab.top();
+                  rectangle.top() = rectangleTab.top() + ptabdata->m_rectangleBorder.top();
 
                   fDensity = get_density_for_window();
 
                   rectangle.right() = rectangle.left() + (::i32)(16.0f * fDensity);
 
-                  rectangle.bottom() = rectangleTab.bottom();
+                  rectangle.bottom() = rectangleTab.bottom() - ptabdata->m_rectangleBorder.bottom();
 
                }
 
@@ -849,6 +872,30 @@ namespace user
             }
             else if (eelement == e_element_tab_far_scroll)
             {
+               
+               if (get_data()->m_bVertical)
+               {
+
+                  if(m_pointBarDragScroll.y() <= -m_pointBarDragScrollMax.y())
+                  {
+                   
+                     return false;
+                     
+                  }
+
+               }
+               else
+               {
+
+                  if(m_pointBarDragScroll.x() <= -m_pointBarDragScrollMax.x())
+                  {
+                     
+                     return false;
+                     
+                  }
+
+               }
+
 
                if (ptabdata->m_bVertical)
                {
@@ -875,11 +922,12 @@ namespace user
 
                   rectangle.left() = rectangleTab.right() - (::i32)(16.0f * fDensity);
 
-                  rectangle.top() = rectangleTab.top();
+                  rectangle.top() = rectangleTab.top()
+                  +ptabdata->m_rectangleBorder.top();
 
                   rectangle.right() = rectangleTab.right();
 
-                  rectangle.bottom() = rectangleTab.bottom();
+                  rectangle.bottom() = rectangleTab.bottom() - ptabdata->m_rectangleBorder.bottom();
 
                }
 
@@ -894,7 +942,7 @@ namespace user
 
             ptOffset.y() += 4;
 
-            ptOffset.y() -= m_pointBarDragScroll.y();
+            ptOffset.y() += m_pointBarDragScroll.y();
 
          }
          else
@@ -902,7 +950,7 @@ namespace user
 
             ptOffset.x() += 4;
 
-            ptOffset.x() -= m_pointBarDragScroll.x();
+            ptOffset.x() += m_pointBarDragScroll.x();
 
          }
 
@@ -1188,7 +1236,7 @@ namespace user
       if(!should_draw())
       {
        
-         auto pitemNone = __allocate< ::item >(e_element_none);
+         auto pitemNone = ::place(new ::item(e_element_none));
 
          return pitemNone;
          
@@ -1273,7 +1321,7 @@ namespace user
                         if (rectangleText.contains(point))
                         {
 
-                           return __allocate< ::item >((enum_element)((int)e_element_split + iTitle), iIndex);
+                           return ::place(new ::item((enum_element)((int)e_element_split + iTitle), iIndex));
 
                         }
 
@@ -1314,7 +1362,7 @@ namespace user
                   user_item(ppane)->m_rectangle2 = rectangle;
 
                   return ppane;
-                  //return __allocate< ::item >(e_element_tab, iIndex);
+                  //return ::place(new ::item(e_element_tab, iIndex));
 
                }
 
@@ -1324,7 +1372,7 @@ namespace user
 
       }
 
-      auto pitemNone = __allocate< ::item >(e_element_none);
+      auto pitemNone = ::place(new ::item(e_element_none));
 
       return pitemNone;
 
@@ -1375,7 +1423,7 @@ namespace user
          if(!m_pitemTabFarScroll)
          {
             
-            m_pitemTabFarScroll = __allocate< ::item >(::e_element_tab_far_scroll, -1);
+            m_pitemTabFarScroll = ::place(new ::item(::e_element_tab_far_scroll, -1));
             
             enable_drag(m_pitemTabFarScroll, ::user::e_zorder_front);
             
@@ -1388,7 +1436,7 @@ namespace user
          if(!m_pitemTabNearScroll)
          {
             
-            m_pitemTabNearScroll = __allocate< ::item >(::e_element_tab_near_scroll, -1);
+            m_pitemTabNearScroll = ::place(new ::item(::e_element_tab_near_scroll, -1));
             
             enable_drag(m_pitemTabNearScroll, ::user::e_zorder_front);
             
@@ -1416,17 +1464,9 @@ namespace user
 
          auto point = drag_point(pitem, pmouse);
 
-         auto Δ = minimum_maximum(-point.x(), 0, m_pointBarDragScrollMax.x());
+         m_pointBarDragScroll.x() = minimum_maximum(point.x(), -m_pointBarDragScrollMax.x(), 0);
          
-         m_pointBarDragScroll.x() = Δ;
          
-         if(Δ > 0)
-         {
-            
-            
-            
-         }
-
          set_need_redraw();
 
          post_redraw();

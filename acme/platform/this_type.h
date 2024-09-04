@@ -44,7 +44,7 @@ public:
 };
 
 
-#define IMPLEMENT_THIS_TYPE(type) static this_type g_type_ ## type(STRINGFY(type));
+#define IMPLEMENT_THIS_TYPE(type) static this_type g_type_ ## type(MAKE_STRING(type));
 
 
 

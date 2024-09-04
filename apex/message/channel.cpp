@@ -173,7 +173,7 @@ void channel::route_message(::message::message * pmessage)
 ::pointer<::message::message>channel::get_message(MESSAGE * pmessage)
 {
 
-   auto pmessagemessage = __allocate< ::message::message >();
+   auto pmessagemessage = ::place(new ::message::message());
 
    pmessagemessage->m_oswindow = pmessage->oswindow;
    pmessagemessage->m_atom = pmessage->m_atom;
@@ -184,7 +184,7 @@ void channel::route_message(::message::message * pmessage)
 
 }
 #define _NEW_MESSAGE(TYPE) \
-   auto pmessage = __allocate< TYPE >(); \
+   auto pmessage = ::place(new TYPE()); \
    pmessageBase = pmessage; \
    pmessage->m_atom = atom; \
    pmessage->m_wparam = wparam; \
@@ -224,7 +224,7 @@ void channel::route_message(::message::message * pmessage)
    }
 
 
-   //auto pmessagemessage = __allocate< ::message::message >();
+   //auto pmessagemessage = ::place(new ::message::message());
 
    //pmessagemessage->m_atom = atom;
    //pmessagemessage->m_wparam = wparam;
@@ -526,7 +526,7 @@ bool channel::has_command_handler(::message::command * pcommand)
 
    scoped_restore(pcommand->m_atom.m_etype);
 
-   string strText = pcommand->m_atom;
+   string strText = pcommand->m_atom.as_string();
 
    if (strText.has_char())
    {

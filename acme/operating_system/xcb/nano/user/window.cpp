@@ -711,7 +711,7 @@ namespace nano
 
                auto pdc = cairo_create(m_psurface);
 
-               m_pnanodevice = __allocate< ::cairo::nano::user::device >(pdc);
+               m_pnanodevice = ::place(new ::cairo::nano::user::device(pdc));
 
             }
 

@@ -376,7 +376,7 @@ namespace base
 //      if (pstyle.is_null())
 //      {
 //
-//         pstyle = __allocate< style >(this);
+//         pstyle = ::place(new style(this));
 //
 //      }
 //

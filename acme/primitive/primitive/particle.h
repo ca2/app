@@ -146,7 +146,6 @@ public:
 
    //void operator()(::topic* ptopic, ::context* pcontext) override;
 
-
    //virtual void destroy();
 
    //virtual void initialize(::particle * pparticle);
@@ -187,7 +186,8 @@ public:
    ::aura::context* auracontext() const;
    ::context_image* context_image() const;
    ::datetime::datetime * datetime() const;
-   ::url::url * url() const;
+   ::internet::internet * internet() const;
+   ::url::url_context* url() const;
    ::crypto::crypto * crypto() const;
    ::nano::nano* nano() const;
    //::os_context * os_context() const;

@@ -154,39 +154,39 @@ gdb_check(void)
 //}
 
 
-void output_debug_string(const scoped_string & scopedstrFormat)
-{
+// void output_debug_string(const scoped_string & scopedstrFormat)
+// {
 
-   //if(::acme::g_bOutputDebugString)
-   {
+//    //if(::acme::g_bOutputDebugString)
+//    {
 
-      if(scopedstrFormat == "font_list")
-      {
+//       if(scopedstrFormat == "font_list")
+//       {
 
-         output_debug_string("a");
+//          output_debug_string("a");
 
-      }
+//       }
 
-      printf("%s", ::string(scopedstrFormat).c_str());
+//       printf("%s", ::string(scopedstrFormat).c_str());
 
-      //fflush(stdout);
+//       //fflush(stdout);
 
-   }
+//    }
 
-}
+// }
 
 
-void output_debug_string(const ::wide_character * pOutputString)
-{
+// void output_debug_string(const ::wide_character * pOutputString)
+// {
 
-   //if(::acme::g_bOutputDebugString)
-   {
+//    //if(::acme::g_bOutputDebugString)
+//    {
 
-      output_debug_string(string(pOutputString));
+//       output_debug_string(string(pOutputString));
 
-   }
+//    }
 
-}
+// }
 
 
 ////CLASS_DECL_BASE extern fixed_alloc_array * g_pfixedallocaWstring;
@@ -211,17 +211,17 @@ void output_debug_string(const ::wide_character * pOutputString)
 
 
 
-void output_debug_string_flush()
-{
+// void output_debug_string_flush()
+// {
 
-   if (::platform::get()->m_bOutputDebugString)
-   {
+//    if (::platform::get()->m_bOutputDebugString)
+//    {
 
-      fflush(stdout);
+//       fflush(stdout);
 
-   }
+//    }
 
-}
+// }
 
 
 

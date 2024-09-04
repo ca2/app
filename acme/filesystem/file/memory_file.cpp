@@ -8,7 +8,7 @@
 
 
 memory_file::memory_file() :
-   memory_container(__allocate< class ::memory >())
+   memory_container(new class ::memory ())
 {
 
    m_position = 0;
@@ -19,7 +19,7 @@ memory_file::memory_file() :
 
 
 memory_file::memory_file(::file::e_open eopen) :
-   memory_container(__allocate< class ::memory >())
+   memory_container(new class ::memory())
 {
 
    m_eopen = eopen;
@@ -459,7 +459,7 @@ void memory_file::set_size(filesize size_i32)
    if (m_position > size())
    {
 
-      m_position = 0;
+      m_position = size();
 
    }
 
@@ -916,7 +916,7 @@ memory_file & memory_file::operator = (const memory_file & file)
 //CLASS_DECL_ACME memory_file_pointer create_memory_file(::memory_base & memory)
 //{
 //   
-//   return __allocate< ::memory_file >(memory); 
+//   return ::place(new ::memory_file(memory)); 
 //
 //}
 //
@@ -924,7 +924,7 @@ memory_file & memory_file::operator = (const memory_file & file)
 //CLASS_DECL_ACME memory_file_pointer create_memory_file(const ::block & block)
 //{
 //   
-//   return __allocate< ::memory_file >(block); 
+//   return ::place(new ::memory_file(block)); 
 //
 //}
 //
@@ -932,7 +932,7 @@ memory_file & memory_file::operator = (const memory_file & file)
 //CLASS_DECL_ACME memory_file_pointer create_memory_file_as_copy(const memory & memory) 
 //{
 //   
-//   return __allocate< ::memory_file >(__allocate< ::memory >(memory)); 
+//   return ::place(new ::memory_file(::place(new ::memory (memory)))); 
 //
 //}
 //

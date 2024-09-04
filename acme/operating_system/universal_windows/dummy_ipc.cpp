@@ -181,7 +181,7 @@
 //
 //         }
 //
-//         m_pp = __new< rx_private >();
+//         m_pp = new rx_private();
 //
 //         try
 //         {
@@ -208,7 +208,7 @@
 //         }
 //
 //
-//         //::winrt::Windows::Storage::Search::QueryOptions ^ options = ref __new< ::winrt::Windows::Storage::Search::QueryOptions >();
+//         //::winrt::Windows::Storage::Search::QueryOptions ^ options = ref new ::winrt::Windows::Storage::Search::QueryOptions ();
 //
 //         //options->FileTypeFilter->Append(wstring(".topic"));
 //

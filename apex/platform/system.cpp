@@ -35,6 +35,7 @@
 //#include "apex/operating_system.h"
 #include "apex/networking/http/context.h"
 #include "apex/networking/http/cookie.h"
+#include "apex/networking/internet.h"
 #include "apex/networking/networking.h"
 #include "apex/operating_system/department.h"
 #include "apex/user/user/language_map.h"
@@ -279,7 +280,7 @@ namespace apex
    }
 
 
-   void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
+   void system::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
 
 
@@ -334,6 +335,9 @@ namespace apex
 
    void system::process_init()
    {
+
+      __construct_new(m_pinternet);
+
 
       if (!application()->m_bShowApplicationInformation)
       {
@@ -1181,7 +1185,7 @@ pacmedirectory->create("/ca2core");
          else
          {
 
-            information() << "Thomas Borregaard Sørensen.dedicatory not found";
+            warning() << "Thomas Borregaard Sørensen.dedicatory not found";
 
          }
 
@@ -2314,11 +2318,11 @@ pacmedirectory->create("/ca2core");
    //
    //#ifdef UNIVERSAL_WINDOWS
    //
-   //         m_spmutexOpenweatherCity = __allocate< ::pointer < ::mutex > >();
+   //         m_spmutexOpenweatherCity = ::place(new ::pointer < ::mutex > ());
    //
    //#else
    //
-   //         m_spmutexOpenweatherCity = __allocate< ::pointer < ::mutex > >(e_create_new, false, "Global\\ca2_weather_city");
+   //         m_spmutexOpenweatherCity = ::place(new ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city"));
    //
    //#endif
    //
@@ -2754,7 +2758,7 @@ pacmedirectory->create("/ca2core");
    //      return true;
    //#endif
    //
-   //      /*      m_spfilehandler(__new< ::apex::filehandler::handler >(this));*/
+   //      /*      m_spfilehandler(new ::apex::filehandler::handler (this));*/
    //
    ////      m_mapAppLibrary.erase_all();
    ////
@@ -3371,22 +3375,24 @@ pacmedirectory->create("/ca2core");
    void system::on_extra(string str)
    {
 
-      auto purl = url();
+//      auto purl = url();
 
-      string strProtocol = purl->get_protocol(str);
+      ::url::url url(str);
+
+      string strProtocol = url.connect().protocol();
 
 #ifdef WINDOWS_DESKTOP
 
       if (strProtocol == "ca2project")
       {
 
-         string strBase = purl->get_server(str);
+         string strBase = url.connect().host();
 
-         string strAppId = purl->get_script(str);
+         string strAppId = url.request().as_string();
 
          strAppId.begins_eat("/");
 
-         string strQuery = purl->get_query(str);
+         string strQuery = url.request().query();
 
          string strMessage;
 
@@ -3693,17 +3699,17 @@ pacmedirectory->create("/ca2core");
 #if defined(UNIVERSAL_WINDOWS)
 
 
-         string * pstrNew = __new< string >(strUrl);
+         string * pstrNew = new string(strUrl);
 
          ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
             ref __new< ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew] >()
                {
 
-                  ::winrt::Windows::Foundation::Uri ^ uri = ref __new< ::winrt::Windows::Foundation::Uri >(*pstrNew);
+                  ::winrt::Windows::Foundation::Uri ^ uri = ref new ::winrt::Windows::Foundation::Uri (*pstrNew);
 
                   delete pstrNew;
 
-                  LauncherOptions ^ options = ref __new< LauncherOptions >();
+                  LauncherOptions ^ options = ref new LauncherOptions();
 
                   options->TreatAsUntrusted = false;
 
@@ -4226,7 +4232,7 @@ pacmedirectory->create("/ca2core");
    //   if (threadgroupa.is_empty())
    //   {
 
-   //      auto pgroup = __allocate< ::task_group >(this, epriority);
+   //      auto pgroup = ::place(new ::task_group(this, epriority));
 
    //      threadgroupa.add(pgroup);
 
@@ -4247,7 +4253,7 @@ pacmedirectory->create("/ca2core");
    //   if (threadtoola.is_empty())
    //   {
 
-   //      auto ptool = __allocate< ::task_tool >();
+   //      auto ptool = ::place(new ::task_tool());
 
    //      ptool->m_atom = etool;
 

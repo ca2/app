@@ -73,7 +73,7 @@ property_set& _thread_property_set()
    if (!ppropertyset)
    {
 
-      ppropertyset = __allocate< property_set >();
+      ppropertyset = ::place(new property_set());
 
    }
 

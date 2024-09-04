@@ -261,19 +261,19 @@ namespace html
             if (m_etag == tag_head || m_etag == tag_html)
             {
 
-               m_pimpl = __allocate< ::html::impl::element >();
+               m_pimpl = ::place(new ::html::impl::element());
 
             }
             else if (m_etag == tag_body)
             {
 
-               m_pimpl = __allocate< ::html::impl::text >();
+               m_pimpl = ::place(new ::html::impl::text());
 
             }
             else
             {
 
-               m_pimpl = __allocate< ::html::impl::element >();
+               m_pimpl = ::place(new ::html::impl::element());
 
             }
 
@@ -286,13 +286,13 @@ namespace html
 
                phtmldata->m_pcoredata->m_strTitle = m_phtmlbase->get_value()->get_value();
 
-               m_pimpl = __allocate< ::html::impl::element >();
+               m_pimpl = ::place(new ::html::impl::element());
 
             }
             else
             {
 
-               m_pimpl = __allocate< ::html::impl::element >();
+               m_pimpl = ::place(new ::html::impl::element());
 
             }
 
@@ -314,37 +314,37 @@ namespace html
             if (strType == "text")
             {
 
-               m_pimpl = __allocate< ::html::impl::input_text >();
+               m_pimpl = ::place(new ::html::impl::input_text());
 
             }
             else if(strType == "calculator")
             {
 
-               m_pimpl = __allocate< ::html::impl::input_text >("calculator", m_propertyset["unit"]);
+               m_pimpl = ::place(new ::html::impl::input_text("calculator", m_propertyset["unit"]));
 
             }
             else if (strType == "password")
             {
 
-               m_pimpl = __allocate< ::html::impl::input_text >();
+               m_pimpl = ::place(new ::html::impl::input_text());
 
             }
             else if (strType == "button")
             {
 
-               m_pimpl = __allocate< ::html::impl::input_button >();
+               m_pimpl = ::place(new ::html::impl::input_button());
 
             }
             else if (strType == "checkbox")
             {
 
-               m_pimpl = __allocate< ::html::impl::input_checkbox >();
+               m_pimpl = ::place(new ::html::impl::input_checkbox());
 
             }
             else
             {
 
-               m_pimpl = __allocate< ::html::impl::text >();
+               m_pimpl = ::place(new ::html::impl::text());
 
             }
 
@@ -352,7 +352,7 @@ namespace html
          else if (m_etag == tag_select)
          {
 
-            m_pimpl = __allocate< ::html::impl::select >();
+            m_pimpl = ::place(new ::html::impl::select());
 
          }
          else if (m_etag == tag_option)
@@ -364,31 +364,31 @@ namespace html
          else if (m_etag == tag_img)
          {
 
-            m_pimpl = __allocate< ::html::impl::image >();
+            m_pimpl = ::place(new ::html::impl::image());
 
          }
          else if (m_etag == tag_table && m_elementalptra.has_elements())
          {
 
-            m_pimpl = __allocate< ::html::impl::table >();
+            m_pimpl = ::place(new ::html::impl::table());
 
          }
          else if (m_etag == tag_tr && m_elementalptra.has_elements())
          {
 
-            m_pimpl = __allocate< ::html::impl::table_row >();
+            m_pimpl = ::place(new ::html::impl::table_row());
 
          }
          else if (m_etag == tag_td && m_elementalptra.has_elements())
          {
 
-            m_pimpl = __allocate< ::html::impl::cell >();
+            m_pimpl = ::place(new ::html::impl::cell());
 
          }
          else
          {
 
-            m_pimpl = __allocate< ::html::impl::text >();
+            m_pimpl = ::place(new ::html::impl::text());
 
          }
 
@@ -988,11 +988,11 @@ namespace html
                     m_pdata->m_pcoredata->m_strPathName.case_insensitive_begins("https://"))
             {
 
-               auto psystem = system()->m_paurasystem;
+               ::url::parts parts(m_pdata->m_pcoredata->m_strPathName);
 
-               auto purl = psystem->url();
+               parts.set_href(strUrl);
 
-               strUrl = purl->path(m_pdata->m_pcoredata->m_strPathName,strUrl);
+               strUrl = parts.as_string();
 
             }
             else
@@ -1018,7 +1018,7 @@ namespace html
 
          for (i32 i = 0; i < ptag->baseptra().get_size(); i++)
          {
-            auto pelemental  = __allocate< ::html::element >();
+            auto pelemental  = ::place(new ::html::element());
 
             pelemental->initialize_html_elemental(phtmldata, this);
             pelemental->load(phtmldata, ptag->baseptra()[i]);
@@ -1184,7 +1184,7 @@ namespace html
       while (true)
       {
 
-         ::pointer<element>pelemental = __allocate< element >();
+         ::pointer<element>pelemental = ::place(new element());
 
          pelemental->initialize_html_elemental(phtmldata, this);
 
@@ -1812,18 +1812,18 @@ namespace html
 
          str += m_atomTagName;
 
-         for(auto & pproperty : this->m_propertyset)
+         for(auto & property : this->m_propertyset)
          {
 
             str += " ";
 
-            str += pproperty->m_atom;
+            str += property.name().as_string();
 
             str += "=";
 
             str += "\"";
 
-            str += pproperty->as_string();
+            str += property.as_string();
 
             str += "\"";
 

@@ -134,23 +134,11 @@ namespace networking
    ::e_status application::on_html_response(::networking::application_socket * psocket, ::string & strHtml, const ::string& strUrl, const ::property_set& setPost)
    {
 
-      string strRequestScript = system()->url()->get_script(strUrl);
+      ::url::url url(strUrl);
 
-      string strServer = system()->url()->get_server(strUrl);
+      string strPath = url.request().path();
 
-      if (strServer.is_empty())
-      {
-
-         auto iFind = strUrl.find_index(":/");
-
-         if (iFind > 0)
-         {
-
-            strRequestScript = strUrl(iFind + 1);
-
-         }
-
-      }
+      string strHost = url.connect().host();
 
       for (auto& assoc : m_maphandler)
       {
@@ -164,9 +152,9 @@ namespace networking
 
             string strScript = "/" + strFolder;
 
-            if (strRequestScript == strScript
-               || strRequestScript.case_insensitive_begins(strScript + "/")
-               || strRequestScript.case_insensitive_begins(strScript + "?"))
+            if (strPath == strScript
+               || strPath.case_insensitive_begins(strScript + "/")
+               || strPath.case_insensitive_begins(strScript + "?"))
             {
 
                auto estatus = phandler->on_html_response(psocket, strHtml, strUrl, setPost);

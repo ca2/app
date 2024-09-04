@@ -12,7 +12,7 @@ namespace user
       { 
          
       
-         return __allocate< class format >(*m_pformat);
+         return ::place(new class format (*m_pformat));
       
       }
 

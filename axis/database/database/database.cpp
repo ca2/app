@@ -182,7 +182,7 @@ namespace database
 
    //   }
 
-   //   auto pvara = __allocate< payload_array >();
+   //   auto pvara = ::place(new payload_array());
 
    //   for (::collection::index i = 0; i < pset->m_prowa->get_count(); i++)
    //   {
@@ -500,7 +500,7 @@ namespace database
    ::pointer<transaction>database::transaction()
    {
 
-      return __allocate< class transaction >(this);
+      return ::place(new class transaction (this));
 
    }
 

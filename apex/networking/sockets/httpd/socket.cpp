@@ -44,7 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #endif
 
-#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
+#if defined(__APPLE__) || defined(__BSD__)
 #include <stdio.h>
 #endif
 
@@ -234,7 +234,7 @@ namespace httpd
    //   if (g_pmapdh == nullptr)
    //   {
 
-   //      g_pmapdh = __new< map < int, DH * > >();
+   //      g_pmapdh = new map < int, DH * > ();
 
    //   }
 
@@ -354,18 +354,18 @@ namespace httpd
    void socket::OnExecute()
    {
 
-      string strUrl = m_request.attr("http_protocol") + "://" + m_request.header("host") + m_request.attr("request_uri");
+      string strUrl = m_request.attr("http_protocol").as_string() + "://" + m_request.header("host").as_string() + m_request.attr("request_uri").as_string();
 
       //informationf("socket::OnExecute: %s", strUrl.c_str());
 
       string str;
 
-      for (auto& pproperty : m_request.headers().propertyptra())
+      for (auto& property : m_request.headers())
       {
 
          ::string strNewHeader;
 
-         strNewHeader.formatf("{%s=%s}", pproperty->m_atom.as_string().c_str(), pproperty->as_string().c_str());
+         strNewHeader.formatf("{%s=%s}", property.m_atom.as_string().c_str(), property.as_string().c_str());
 
          if (str.length() + strNewHeader.length() > 80)
          {
@@ -421,16 +421,14 @@ namespace httpd
       if (key == "location" && straValue.get_count() >= 1)
       {
 
-         auto psystem = system();
-
-         auto purl = psystem->url();
-
          for (int i = 0; i < straValue.get_size(); i++)
          {
 
+            ::url::url url(straValue[i]);
+
             url_domain domain;
 
-            domain.create(purl->get_server(straValue[i]));
+            domain.create(url.connect().host());
 
             if (domain.m_strName == "ca2.software")
             {
@@ -548,7 +546,7 @@ namespace httpd
                if (straRange.get_count() == 2)
                {
 
-                  rangea.add(__new< ::i32_array >());
+                  rangea.add(new ::i32_array ());
 
                   rangea.last_ptr()->add(atoi(straRange[0]));
 

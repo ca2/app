@@ -32,7 +32,7 @@ inline pointer < T > ::pointer() :
 
 
 template < class T >
-inline pointer < T > ::pointer(std::nullptr_t):
+inline pointer < T > ::pointer(nullptr_t):
         m_p(nullptr),
         m_psubparticle(nullptr)
 {
@@ -42,7 +42,7 @@ inline pointer < T > ::pointer(std::nullptr_t):
 
 template < class T >
 template < typename T2 >
-inline pointer < T > ::pointer(transfer_t, T2 * p)
+inline pointer < T > ::pointer(place_t, T2 * p)
 {
 
    if(::is_set(p))
@@ -101,7 +101,7 @@ template < typename ...Args >
 pointer < T >::pointer(allocate_t, Args &&... args)
 {
 
-   auto p = __new < T >(::std::forward<Args>(args)...);
+   auto p = new T (::std::forward<Args>(args)...);
 
 //#if REFERENCING_DEBUGGING
 //
@@ -1276,7 +1276,7 @@ template < typename OBJECT >
 inline pointer < T > & pointer < T >::create_new(OBJECT * pparticle)
 {
 
-   auto p = __call__allocate< T >();
+   auto p = ::place(new T());
 
    //p.set_referer();
 
@@ -1860,7 +1860,7 @@ inline pointer < T >& pointer < T > ::operator = (pointer < T2 > && t)
 //
 //   }
 //
-//   auto p = __call__allocate< TYPE >();
+//   auto p = ::place(new TYPE());
 //
 //   if (p)
 //   {
@@ -1878,7 +1878,7 @@ inline pointer < T >& pointer < T > ::operator = (pointer < T2 > && t)
 //inline void __construct_new(::subparticle* pparticle, ::pointer<TYPE>& p)
 //{
 //
-//   p = __allocate< TYPE >();
+//   p = ::place(new TYPE());
 //
 //   if (!p)
 //   {

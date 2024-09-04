@@ -1778,14 +1778,14 @@ string_base < CHAR > & string_base < CHAR >::append(const ::atom & atom)
 //}
 
 
-template < typename ITERATOR_TYPE >
-inline string_base < ITERATOR_TYPE >::string_base(const ::atom & atom) :
-        string_base(atom.as_string())
-{
-
-
-}
-
+//template < typename ITERATOR_TYPE >
+//inline string_base < ITERATOR_TYPE >::string_base(const ::atom & atom) :
+//        string_base(atom.as_string())
+//{
+//
+//
+//}
+//
 
 //template < typename ITERATOR_TYPE >
 //inline const_string_range <  ITERATOR_TYPE >::const_string_range(const atom & atom)
@@ -1796,9 +1796,6 @@ inline string_base < ITERATOR_TYPE >::string_base(const ::atom & atom) :
 //
 //
 //}
-
-
-
 
 
 template < primitive_payload PAYLOAD >
@@ -1850,14 +1847,14 @@ atom::atom(const PAYLOAD & payload)
 
 
 
-template < has_as_string_not_payload HAS_AS_STRING_NOT_PAYLOAD >
-atom::atom(const HAS_AS_STRING_NOT_PAYLOAD & has_as_string_not_payload) :
-   m_str(has_as_string_not_payload)
-{
-
-   m_etype = e_type_text;
-
-}
+//template < has_as_string_not_payload HAS_AS_STRING_NOT_PAYLOAD >
+//atom::atom(const HAS_AS_STRING_NOT_PAYLOAD & has_as_string_not_payload) :
+//   m_str(has_as_string_not_payload)
+//{
+//
+//   m_etype = e_type_text;
+//
+//}
 
 
 inline ::string atom::operator +(const ::ansi_character * psz) const

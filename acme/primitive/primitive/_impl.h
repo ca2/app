@@ -111,7 +111,7 @@ inline ::pointer<TYPE>particle::__call__create_new()
 
    //}
 
-   auto p = __call__allocate< TYPE >();
+   auto p = ::place(new TYPE());
 
    if (p)
    {
@@ -143,7 +143,7 @@ inline ::pointer<TYPE>particle::__call__create_new_clone(TYPE * psrc)
 
    //}
 
-   auto p = __call__allocate< TYPE >();
+   auto p = ::place(new TYPE());
 
    if (p)
    {
@@ -398,7 +398,7 @@ inline void particle::__call__construct(::pointer<BASE_TYPE>& p, ::factory::fact
 //inline void matter::__raw_construct_new(::pointer<TYPE>& p)
 //{
 //
-//   auto ptypeNew = __allocate< TYPE >();
+//   auto ptypeNew = ::place(new TYPE());
 //
 //   if (!ptypeNew)
 //   {
@@ -435,7 +435,7 @@ inline void particle::__call__construct_new(::pointer<TYPE>& p)
 //
 //#endif
 //
-   auto ptypeNew = __call__allocate< TYPE >();
+   auto ptypeNew = ::place(new TYPE());
 
    if (!ptypeNew)
    {
@@ -465,7 +465,7 @@ inline void particle::__call__construct_new(::pointer<TYPE>& p)
 //
 //#endif
 //
-//   auto ptypeNew = __call__allocate< TYPE >();
+//   auto ptypeNew = ::place(new TYPE());
 //
 //   if (!ptypeNew)
 //   {
@@ -1069,32 +1069,6 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 //}
 
 
-//template < typename TYPE_CHAR >
-//string_base < TYPE_CHAR >::string_base(::payload & payload) :
-//   string_base(payload.to_string())
-//{
-//
-//
-//}
-
-//
-//template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(property & property) :
-//   string_base(property.to_string())
-//{
-//
-//
-//}
-
-//
-//template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(atom & atom) :
-//   string_base(atom.to_string())
-//{
-//
-//
-//}
-
 
 
 
@@ -1111,7 +1085,7 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 //inline void future::pred(PRED pred)
 //{
 //
-//   m_pparticle = __allocate< predicate_future < PRED >  >(pred);
+//   m_pparticle = ::place(new predicate_future < PRED >  (pred));
 //
 //}
 //
@@ -1180,7 +1154,7 @@ inline ::pointer < T > pointer_transfer(T* p) { return { transfer_t{}, p}; }
 //   for (::collection::index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
 //
-//      ::pointer<predicate_holder_base>p = __allocate< forking_count_predicate < PRED >  >(iOrder, iOrder + iStart, iScan, iCount, pred);
+//      ::pointer<predicate_holder_base>p = ::place(new forking_count_predicate < PRED >  (iOrder, iOrder + iStart, iScan, iCount, pred));
 //
 //      if (!pgroup->add_predicate(p))
 //      {
@@ -1479,7 +1453,7 @@ void reference_count_debug_release(TYPE * & p)
 //inline void object::__raw_construct_new(::pointer<TYPE> p)
 //{
 //
-//   auto ptypeNew = __allocate< TYPE >();
+//   auto ptypeNew = ::place(new TYPE());
 //
 //   if (!ptypeNew)
 //   {
@@ -1510,7 +1484,7 @@ void reference_count_debug_release(TYPE * & p)
 //inline void object::__construct_new(::pointer<TYPE> p)
 //{
 //
-//   auto ptypeNew = __allocate< TYPE >();
+//   auto ptypeNew = ::place(new TYPE());
 //
 //   if (!ptypeNew)
 //   {

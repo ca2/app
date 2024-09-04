@@ -63,7 +63,7 @@ namespace universal_windows
 
 //      psystem->get_session()->m_frameworkview = this;
 
-      m_pdxi = __allocate< directx_interaction >();
+      m_pdxi = ::place(new directx_interaction());
 
    }
 
@@ -292,7 +292,7 @@ namespace universal_windows
 
             string str = eventArgs->Uri->AbsoluteUri;
 
-            auto pcreate = __allocate< ::create >(system());
+            auto pcreate = ::place(new ::create(system()));
 
             pcreate->m_ecommand = ::command_protocol;
 
@@ -345,7 +345,7 @@ namespace universal_windows
 
       ::pointer<::user::message>spbase;
 
-      auto pkey  = __allocate< ::message::key >();
+      auto pkey  = ::place(new ::message::key());
 
       spbase = pkey;
 
@@ -376,7 +376,7 @@ namespace universal_windows
 
       ::pointer<::user::message>spbase;
 
-      auto pkey  = __allocate< ::message::key >();
+      auto pkey  = ::place(new ::message::key());
 
       spbase = pkey;
 

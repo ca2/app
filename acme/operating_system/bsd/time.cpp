@@ -1,3 +1,4 @@
+// From freebsd/time.cpp by camilo on 2024-09-02 19:25 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include <sys/time.h>
 #include <time.h>

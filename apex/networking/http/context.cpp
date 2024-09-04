@@ -65,16 +65,12 @@ namespace http
    }
 
 
-   property_set & context::process_set(property_set & set, const ::scoped_string & scopedstrUrl)
+   property_set & context::process_set(property_set & set, const ::url::url & url)
    {
 
       set["app"] = get_app();
 
-      auto psystem = system();
-
-      auto purl = psystem->url();
-
-      string strServer = purl->get_root(scopedstrUrl);
+      string strServer = url.connect().host();
 
       if (strServer == "ca2.network")
       {
@@ -94,22 +90,22 @@ namespace http
    }
 
 
-   bool context::get(::pointer<::sockets::http_client_socket>& psession, const ::scoped_string & scopedstrUrl, property_set & set)
+   bool context::get(::pointer<::sockets::http_client_socket>& psession, const ::url::url & url, property_set & set)
    {
 
-      return http_get(psession, scopedstrUrl, process_set(set, scopedstrUrl));
+      return http_get(psession, url, process_set(set, url));
 
    }
 
 
-   void context::get(memory_base * pmemory, const ::scoped_string & scopedstrUrl, property_set & set)
+   void context::get(memory_base * pmemory, const ::url::url & url, property_set & set)
    {
 
       set["get_memory"] = pmemory;
 
-      //auto estatus = _get(scopedstrUrl, process_set(set, scopedstrUrl));
+      //auto estatus = _get(url, process_set(set, url));
 
-      _get(scopedstrUrl, process_set(set, scopedstrUrl));
+      _get(url, process_set(set, url));
 
       set.erase_by_name("get_memory");
 
@@ -123,45 +119,45 @@ namespace http
 
       ::property_set set(pget->m_setIn);
       
-      get(&pget->m_memory, pget->m_strUrl, set);
+      get(&pget->m_memory, pget->url(), set);
       
       pget->m_setOut = set;
    
    }
 
 
-   string context::api_get(const ::scoped_string & scopedstrUrl, property_set & set)
-   {
+   //string context::api_get(const ::url::url & url, property_set & set)
+   //{
 
-      ::file::path url("https://api.ca2.software/");
+   //   ::file::path url("https://api.ca2.software/");
 
-      url /= scopedstrUrl;
+   //   url /= url;
 
-      return get(url, set);
+   //   return get(url, set);
 
-   }
-
-
-   string context::api_get(const ::scoped_string & scopedstrUrl)
-   {
-
-      property_set set;
-
-      set["disable_common_name_cert_check"] = true;
-
-      return api_get(scopedstrUrl, set);
-
-   }
+   //}
 
 
-   void context::_get(const ::scoped_string & scopedstrUrl, property_set & set)
+   //string context::api_get(const ::url::url & url)
+   //{
+
+   //   property_set set;
+
+   //   set["disable_common_name_cert_check"] = true;
+
+   //   return api_get(url, set);
+
+   //}
+
+
+   void context::_get(const ::url::url & url, property_set & set)
    {
 
       auto pmessage = __create_new < ::http::message >();
 
       pmessage->m_ppropertyset = &set;
 
-      pmessage->m_strUrl = scopedstrUrl;
+      pmessage->m_url = url;
       
       //pmessage->m_trans = set["transfer_progress_function"].cast < a_transfer_progress_function >();
 
@@ -172,14 +168,14 @@ namespace http
    }
 
 
-   ::payload context::get(const ::scoped_string & scopedstrUrl, property_set & set)
+   ::payload context::get(const ::url::url & url, property_set & set)
    {
 
       set["get_response"] = ""; // create get_response field
 
-      //auto estatus = _get(scopedstrUrl, set);
+      //auto estatus = _get(url, set);
 
-      _get(scopedstrUrl, set);
+      _get(url, set);
 
       //if (!estatus)
       //{
@@ -193,12 +189,12 @@ namespace http
    }
 
 
-   void context::get(string & str, const ::scoped_string & scopedstrUrl, property_set & set)
+   void context::get(string & str, const ::url::url & url, property_set & set)
    {
 
       set["get_response"] = "";
 
-      set["bool_result"] = get(scopedstrUrl, process_set(set, scopedstrUrl));
+      set["bool_result"] = get(url, process_set(set, url));
 
       str = set["get_response"];
 
@@ -207,12 +203,10 @@ namespace http
    }
 
 
-   ::file::enum_type context::get_type(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, property_set & set)
+   ::file::enum_type context::get_type(const ::url::url & url, ::payload * pvarQuery, property_set & set)
    {
 
-      string strUrl(scopedstrUrl);
-
-      string strFile(strUrl);
+      string strFile(url.as_string());
 
       strFile.replace_with("_", ":");
 
@@ -261,18 +255,14 @@ namespace http
 
       }
 
-      auto psystem = system();
-
-      auto purl = psystem->url();
-
-      if (::str::find_wwci("ca2", purl->get_server(scopedstrUrl)) < 0 && purl->get_object(scopedstrUrl).case_insensitive_find_index("/matter/") < 0)
+      if (::str::find_wwci("ca2", url.connect().host()) < 0 && url.request().path().case_insensitive_find_index("/matter/") < 0)
       {
 
          set["raw_http"] = true;
 
       }
 
-      auto etype = get_type(strUrl, process_set(set, scopedstrUrl));
+      auto etype = get_type(url, process_set(set, url));
 
       if (etype & ::file::e_type_folder2)
       {
@@ -306,20 +296,18 @@ namespace http
    }
 
 
-   //::payload context::length(const ::scoped_string & scopedstrUrl, property_set & set)
+   //::payload context::length(const ::url::url & url, property_set & set)
    //{
 
-   //   return length(scopedstrUrl, nullptr, set);
+   //   return length(url, nullptr, set);
 
    //}
 
 
-   ::payload context::length(const ::scoped_string & scopedstrUrl, ::payload * pvarQuery, property_set & set)
+   ::payload context::length(const ::url::url & url, ::payload * pvarQuery, property_set & set)
    {
 
-      string strUrl(scopedstrUrl);
-
-      string strFile(strUrl);
+      string strFile(url.as_string());
 
       strFile.replace_with("_", ":");
       
@@ -358,7 +346,7 @@ namespace http
 
       }
 
-      ::payload len = length(strUrl, process_set(set, scopedstrUrl));
+      ::payload len = length(url, process_set(set, url));
 
       if (len.is_empty())
       {
@@ -380,48 +368,44 @@ namespace http
    }
 
 
-   //bool context::request(const ::scoped_string & scopedstrRequest, const ::scoped_string & scopedstrUrl, property_set & set)
+   //bool context::request(const ::scoped_string & scopedstrRequest, const ::url::url & url, property_set & set)
    //{
 
-   //   return request(pszRequest, scopedstrUrl, process_set(set, scopedstrUrl));
+   //   return request(pszRequest, url, process_set(set, url));
 
    //}
 
 
-   //bool context::download(::pointer<::sockets::http_session>& psession, const ::scoped_string & scopedstrUrl, ::payload payloadFile, property_set & set)
+   //bool context::download(::pointer<::sockets::http_session>& psession, const ::url::url & url, ::payload payloadFile, property_set & set)
    //{
 
-   //   return download(psession, scopedstrUrl, payloadFile, process_set(set, scopedstrUrl));
+   //   return download(psession, url, payloadFile, process_set(set, url));
 
    //}
 
 
- /*  bool context::download(const ::scoped_string & scopedstrUrl, ::payload payloadFile, property_set & set)
+ /*  bool context::download(const ::url::url & url, ::payload payloadFile, property_set & set)
    {
-      return download(scopedstrUrl, payloadFile, process_set(set, scopedstrUrl));
+      return download(url, payloadFile, process_set(set, url));
    }*/
 
-   bool context::put(const ::scoped_string & scopedstrUrl, memory_base * pmemory, property_set & set)
+   bool context::put(const ::url::url & url, memory_base * pmemory, property_set & set)
    {
 
-      return put(scopedstrUrl, *pmemory, process_set(set, scopedstrUrl));
+      return put(url, *pmemory, process_set(set, url));
    }
 
-   //bool context::put(const ::scoped_string & scopedstrUrl, file_pointer  pfile, property_set & set)
+   //bool context::put(const ::url::url & url, file_pointer  pfile, property_set & set)
    //{
-   //   return put(scopedstrUrl, pfile, process_set(set, scopedstrUrl));
+   //   return put(url, pfile, process_set(set, url));
    //}
 
 
 
-   string context::locale_schema_url(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+   string context::locale_schema_url(const ::url::url & url, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
 
-      string str;
-
-      //      i32 iAttempt = 0;
-
-      string strUrl(scopedstrUrl);
+      ::string strUrl(url.as_string());
 
       if (strUrl.contains("?"))
       {
@@ -436,21 +420,21 @@ namespace http
 
       }
 
-      strUrl += "lang=" + string(scopedstrLocale) + "&styl=" + string(scopedstrSchema);
+      strUrl += "lang=" + scopedstrLocale + "&styl=" + scopedstrSchema;
 
       return strUrl;
 
    }
 
 
-   string context::get_locale_schema(const ::scoped_string & scopedstrUrl, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
+   string context::get_locale_schema(const ::url::url & url, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
 
       //output_error_message("What?!", nullptr, e_message_box_ok);
 
       informationf("What?!");
 
-      string strUrl = locale_schema_url(scopedstrUrl, scopedstrLocale, scopedstrSchema);
+      string strUrl = locale_schema_url(url, scopedstrLocale, scopedstrSchema);
 
       string str;
 
@@ -462,17 +446,17 @@ namespace http
       //
       //      string strFontopusServer;
       //
-      //      if(atoi(purl->get_param(scopedstrUrl, "authnone")) == 1
-      //            || purl->get_param(scopedstrUrl,"sessid").case_insensitive_order("noauth") == 0)
+      //      if(atoi(purl->get_param(url, "authnone")) == 1
+      //            || purl->get_param(url,"sessid").case_insensitive_order("noauth") == 0)
       //      {
       //
-      //         strFontopusServer = scopedstrUrl;
+      //         strFontopusServer = url;
       //
       //      }
       //      else
       //      {
       //
-      //         strFontopusServer = psession->account()->authenticator()->get_account_server(scopedstrUrl);
+      //         strFontopusServer = psession->account()->authenticator()->get_account_server(url);
       //
       //      }
       //
@@ -646,7 +630,7 @@ namespace http
    //{
 
    //   throw ::exception(todo, "scripting");
-   //   //m_pjs = __new< tinyjs >();
+   //   //m_pjs = new tinyjs();
 
    //}
 
@@ -655,7 +639,7 @@ namespace http
    {
 
       throw ::exception(todo, "scripting");
-      //m_pjs = __new< tinyjs >();
+      //m_pjs = new tinyjs();
 
    }
 
@@ -676,12 +660,12 @@ namespace http
    }
 
 
-   context::pac * context::get_pac(const ::scoped_string & scopedstrUrl)
+   context::pac * context::get_pac(const ::url::url & url)
    {
 
       single_lock synchronouslock(m_pmutexPac, true);
 
-      auto ppair = m_mapPac.plookup(scopedstrUrl);
+      auto ppair = m_mapPac.plookup(url);
 
       if (!ppair || ppair->element2()->m_timeLastChecked.elapsed() > 120_s)
       {
@@ -690,7 +674,7 @@ namespace http
          {
             
             //            delete ppair->element2();
-            m_mapPac.erase_item(scopedstrUrl);
+            m_mapPac.erase_item(url);
             
          }
 
@@ -698,18 +682,18 @@ namespace http
 
          ppac->m_timeLastChecked= ::time::now();
 
-         ppac->m_strUrl = scopedstrUrl;
+         ppac->m_url = url;
 
          ::payload payloadFile;
 
-         payloadFile["url"] = ppac->m_strUrl;
+         payloadFile["url"] = ppac->m_url;
          payloadFile["disable_ca2_sessid"] = true;
          payloadFile["no_proxy_config"] = true;
 
          ppac->m_strAutoConfigScript = file()->as_string(payloadFile);
 
 
-         m_mapPac.set_at(scopedstrUrl, ppac);
+         m_mapPac.set_at(url, ppac);
 
          if (ppac->m_strAutoConfigScript.is_empty())
          {
@@ -721,7 +705,7 @@ namespace http
          //registerJavascriptFunctions(ppac->m_pjs);
          //ppac->m_pjs->execute(ppac->m_strAutoConfigScript);
 
-         ppair = m_mapPac.plookup(scopedstrUrl);
+         ppair = m_mapPac.plookup(url);
 
          if (!ppair)
          {
@@ -761,12 +745,12 @@ namespace http
    }
 
 
-   ::http::context::proxy * context::get_proxy(const ::scoped_string & scopedstrUrl)
+   ::http::context::proxy * context::get_proxy(const ::url::url & url)
    {
 
       single_lock synchronouslock(m_pmutexProxy, true);
 
-      auto ppair = m_mapProxy.plookup(scopedstrUrl);
+      auto ppair = m_mapProxy.plookup(url);
 
       if (!ppair || ppair->element2()->m_timeLastChecked.elapsed() > 120_s)
       {
@@ -775,7 +759,7 @@ namespace http
          {
             
             //            delete ppair->element2();
-            m_mapPac.erase_item(scopedstrUrl);
+            m_mapPac.erase_item(url);
             
          }
 
@@ -783,11 +767,11 @@ namespace http
 
          pproxy->m_timeLastChecked= ::time::now();
 
-         pproxy->m_strUrl = scopedstrUrl;
+         pproxy->m_url = url;
 
-         config_proxy(scopedstrUrl, pproxy);
+         config_proxy(url, pproxy);
 
-         m_mapProxy.set_at(scopedstrUrl, pproxy);
+         m_mapProxy.set_at(url, pproxy);
 
          return pproxy;
 
@@ -798,7 +782,7 @@ namespace http
    }
 
 
-   bool context::try_pac_script(const ::scoped_string & scopedstrScriptUrl, const ::scoped_string & scopedstrUrl, proxy * pproxy)
+   bool context::try_pac_script(const ::scoped_string & scopedstrScriptUrl, const ::url::url & url, proxy * pproxy)
    {
 
       single_lock synchronouslock(m_pmutexPac, true);
@@ -807,26 +791,31 @@ namespace http
 
       string strUrl(scopedstrScriptUrl);
 
-      if (string_begins(scopedstrUrl, strUrl))
+      if (string_begins(url.as_string(), strUrl))
       {
+         
          pproxy->m_bDirect = true;
+         
          return true;
+
       }
 
-      class pac * ppac = get_pac(scopedstrUrl);
+      class pac * ppac = get_pac(url);
 
-      if (ppac == nullptr)
+      if (::is_null(ppac))
+      {
+
          return false;
+
+      }
 
       string strHost;
 
-      auto psystem = system();
+      strHost = url.connect().host();
 
-      auto purl = psystem->url();
-
-      strHost = purl->get_server(scopedstrUrl);
-
-      i32 port = purl->get_port(scopedstrUrl);
+      ::string strPort;
+      
+      strPort = url.connect().port();
 
       //::networking::address ad(strHost, port);
 
@@ -836,7 +825,7 @@ namespace http
       //throw ::exception(todo("scripting"));
       //try
       //{
-      //   payload = ppac->m_pjs->evaluate("FindProxyForURL('" + string(scopedstrUrl) + "', '" + strHost + "');");
+      //   payload = ppac->m_pjs->evaluate("FindProxyForURL('" + string(url) + "', '" + strHost + "');");
       //}
       //catch (...)
       //{
@@ -851,16 +840,23 @@ namespace http
       }
       else if (payload.case_insensitive_begins_eat("PROXY"))
       {
+         
          payload.trim();
+
          string_array stra;
+
          stra.explode(":", payload);
+
          pproxy->m_bDirect = false;
          pproxy->m_strProxy = stra[0];
          pproxy->m_iPort = stra.get_size() > 1 ? ::atoi(stra[1]) : 80;
+
       }
       else
       {
+
          pproxy->m_bDirect = true;
+
       }
 
       return true;
@@ -868,7 +864,7 @@ namespace http
    }
 
 
-   void context::config_proxy(const ::scoped_string & scopedstrUrl, ::sockets::http_tunnel * psocket)
+   void context::config_proxy(const ::url::url & url, ::sockets::http_tunnel * psocket)
    {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -877,7 +873,7 @@ namespace http
 
 #else
 
-      ::http::context::proxy * pproxy = get_proxy(scopedstrUrl);
+      ::http::context::proxy * pproxy = get_proxy(url);
 
       if (pproxy == nullptr)
          return;
@@ -898,7 +894,7 @@ namespace http
    }
 
 
-   void context::config_proxy(const ::scoped_string & scopedstrUrl, ::http::context::proxy * pproxy)
+   void context::config_proxy(const ::url::url & url, ::http::context::proxy * pproxy)
    {
 
       //throw ::exception(todo("xml"));
@@ -962,9 +958,9 @@ namespace http
 
       //bool bOk = true;
 
-      //string strHost = purl->get_server(scopedstrUrl);
+      //string strHost = purl->get_server(url);
 
-      //i32 iHostPort = purl->get_port(scopedstrUrl);
+      //i32 iHostPort = purl->get_port(url);
 
       //::networking::address ipHost(strHost, iHostPort);
       //for (i32 iNode = 0; iNode < doc.root()->get_children_count(); iNode++)
@@ -1046,7 +1042,7 @@ namespace http
       ////
       ////         //      informationf("get_auto_config_url : %s",strUrl);
       ////
-      ////         //      if(try_pac_script(strUrl,scopedstrUrl,pproxy))
+      ////         //      if(try_pac_script(strUrl,url,pproxy))
       ////         //         return;
       ////
       ////         //   }
@@ -1064,12 +1060,12 @@ namespace http
       ////
       ////         //      informationf("get_auto_config_url : %s",strUrl);
       ////
-      ////         //      if(try_pac_script(strUrl,scopedstrUrl,pproxy))
+      ////         //      if(try_pac_script(strUrl,url,pproxy))
       ////         //         return;
       ////
       ////         //   }
       ////
-      ////         //   if(try_pac_script("http://wpad/wpad.dat",scopedstrUrl,pproxy))
+      ////         //   if(try_pac_script("http://wpad/wpad.dat",url,pproxy))
       ////         //      return;
       ////
       ////         //}
@@ -1135,16 +1131,16 @@ namespace http
    //}
 
 
-   bool context::open(::pointer<::sockets::http_session>& psession, const ::string & strHost, const ::string & strProtocolParam, property_set & set, const string &strVersionParam)
+   bool context::open(::pointer<::sockets::http_session>& psession, const ::url::connect & connect, property_set & set, const string &strVersionParam)
    {
 
       auto tickTimeProfile1 = ::time::now();
 
       string strVersion(strVersionParam);
 
-      string strServer = strHost;
+      //string strHost = connect.host();
 
-      string strProtocol = strProtocolParam;
+      //string strProtocol = connect.protocol();
 
       ::pointer<::apex::application>papp = set["app"].cast < ::apex::application >();
 
@@ -1170,44 +1166,39 @@ namespace http
 
       }
 
-      string strUrl(strProtocol + "://" + strServer);
+      /*string strUrl(strProtocol + "://" + strServer);*/
 
-      // Format of script name example "context://server.com/the rain.mp3" => "context://server.com/the%20rain.mp3"
-      {
+      //::url::url url(strUrl)
 
-         auto psystem = system();
+      //// Format of script name example "context://server.com/the rain.mp3" => "context://server.com/the%20rain.mp3"
+      //{
 
-         auto purl = psystem->url();
+      //   string strScript = ::url::encode(::url::decode(purl->get_script(strUrl)));
 
-         string strScript = ::url::encode(::url::decode(purl->get_script(strUrl)));
+      //   strScript.replace_with("%20", "+");
 
-         strScript.replace_with("%20", "+");
+      //   strScript.replace_with("/", "%2F");
 
-         strScript.replace_with("/", "%2F");
+      //   strUrl = purl->set_script(strUrl, strScript);
 
-         strUrl = purl->set_script(strUrl, strScript);
+      //}
 
-      }
+  /*    property_set setQuery;
 
-      property_set setQuery;
-
-      auto psystem = system();
-
-      auto purl = psystem->url();
-
-      setQuery.parse_network_arguments(purl->get_query(strUrl));
+      setQuery.parse_network_arguments(purl->get_query(strUrl));*/
 
       string strIp;
 
       string strSessId;
 
-      psession = __allocate< ::sockets::http_session >(strProtocol, strHost);
+      psession = ::place(new ::sockets::http_session(connect));
 
       /*::pointer<::account::user>puser;
 
       on_auth(set, papp, strUrl, strSessId, puser);*/
 
-      if (strProtocol == "https")
+      if (connect.protocol().case_insensitive_equals("https")||
+         connect.protocol().case_insensitive_equals("wss"))
       {
 
          psession->EnableSSL();
@@ -1230,7 +1221,7 @@ namespace http
       if (!psession->open(bConfigProxy))
       {
 
-         information() << "Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.left(minimum(255, strUrl.length()))  << "\") " << tick1.elapsed().integral_second();
+         information() << "Not Opened/Connected Result Total time ::http::apex::context::get(\"" << connect.as_string() << "\") " << tick1.elapsed().integral_second();
 
          return false;
 
@@ -1243,7 +1234,7 @@ namespace http
    }
 
 
-   bool context::request(::pointer<::sockets::http_session>& psession, const ::scoped_string & scopedstrRequest, property_set & set)
+   bool context::request(::pointer<::sockets::http_session>& psession, const ::url::request & request, property_set & set)
    {
 
 //      information() << "http context request : " << pszRequest;
@@ -1743,7 +1734,7 @@ namespace http
 //            else
 //            {
 //
-//               set["get_memory"] = __allocate< memory >(psession->GetDataPtr(), psession->GetContentLength());
+//               set["get_memory"] = ::place(new memory(psession->GetDataPtr(), psession->GetContentLength()));
 //
 //            }
 //
@@ -1756,10 +1747,10 @@ namespace http
    }
 
 
-   bool context::get(::http::session & session, const ::scoped_string & scopedstrUrl, string & str, property_set & set)
+   bool context::get(::http::session & session, const ::url::url & url, string & str, property_set & set)
    {
 
-      bool bOk = http_get(session.m_psocket, scopedstrUrl, set);
+      bool bOk = http_get(session.m_psocket, url, set);
 
       if (bOk)
       {
@@ -1777,12 +1768,12 @@ namespace http
    }
 
 
-   string context::get(::http::session & session, const ::scoped_string & scopedstrUrl, property_set & set)
+   string context::get(::http::session & session, const ::url::url & url, property_set & set)
    {
 
       string str;
 
-      if (!get(session, scopedstrUrl, str, set))
+      if (!get(session, url, str, set))
       {
 
          return "";
@@ -1794,12 +1785,14 @@ namespace http
    }
 
 
-   bool context::http_get(::pointer<::sockets::http_client_socket>& psocket, const ::scoped_string & scopedstrUrl1, property_set & set)
+   bool context::http_get(::pointer<::sockets::http_client_socket>& psocket, const ::url::url & urlParam, property_set & set)
    {
+
+      auto url = urlParam;
 
       //auto ptask = ::get_task();
 
-      //KEEP(ptask->payload("work_url"), scopedstrUrl);
+      //KEEP(ptask->payload("work_url"), url);
 
       auto psystem = system()->m_papexsystem;
 
@@ -1809,8 +1802,6 @@ namespace http
          return false;
 
       }
-
-      auto purl = psystem->url();
 
       i64 iHttpGetSerial = ++psystem->networking()->m_lHttpGetSerial;
 
@@ -1845,10 +1836,7 @@ namespace http
       }
       information() << "------------------------------------------------------";
 
-      string strUrl;
-
-      strUrl = scopedstrUrl1;
-
+      
       string strRedirect;
 //#ifdef BSD_STYLE_SOCKETS
       retry :
@@ -1861,7 +1849,7 @@ namespace http
 
             information() << "Redirect: " << iHttpGetSerial << strRedirect;
 
-            strUrl = strRedirect;
+            url = strRedirect;
 
             strRedirect.empty();
 
@@ -1869,7 +1857,7 @@ namespace http
          else
          {
 
-            information() << "Redirect: " << iHttpGetSerial << strUrl;
+            information() << "Redirect: " << iHttpGetSerial << url.as_string();
 
          }
 
@@ -1877,7 +1865,7 @@ namespace http
       else
       {
 
-         information() << "Start: " << iHttpGetSerial << strUrl;
+         information() << "Start: " << iHttpGetSerial << url.as_string();
 
       }
 
@@ -1885,11 +1873,11 @@ namespace http
 
       auto tickTimeProfile1 = ::time::now();
 
-      string strServer = purl->get_root(strUrl);
+      string strHost = url.connect().host();
 
-      string strProtocol = purl->get_protocol(strUrl);
+      string strProtocol = url.connect().protocol();
 
-      string strObject = purl->get_object(strUrl);
+      string strPath = url.request().path();
 
       ::pointer<::apex::application>papp = set["app"].cast < ::apex::application >();
 
@@ -1954,24 +1942,24 @@ namespace http
          if (strSessId.has_char())
          {
 
-            string strCookie = set["cookie"];
+            string strCookie = set["cookie"].as_string();
 
             set["cookie"] = ::str::has_char(strCookie, "", "; ") + "sessid=" + strSessId;
 
          }
 
          // Format of script name example "context://server.com/the rain.mp3" => "context://server.com/the%20rain.mp3"
-         {
+         //{
 
-            string strScript = ::url::encode(::url::decode(purl->get_script(strUrl)));
+         //   string strScript = ::url::encode(::url::decode(purl->get_script(strUrl)));
 
-            strScript.replace_with("%20", "+");
+         //   strScript.replace_with("%20", "+");
 
-            strScript.replace_with("/", "%2F");
+         //   strScript.replace_with("/", "%2F");
 
-            strUrl = purl->set_script(strUrl, strScript);
+         //   strUrl = purl->set_script(strUrl, strScript);
 
-         }
+         //}
 
       }
 
@@ -1988,7 +1976,7 @@ namespace http
 
          auto psocketPut = pobjectCreator->__create_new < ::sockets::http_put_socket>();
 
-         psocketPut->initialize_http_put_socket(strUrl);
+         psocketPut->initialize_http_put_socket(url);
 
          psocket = psocketPut;
 
@@ -2006,7 +1994,7 @@ namespace http
 
          auto psocketPost = pobjectCreator->__create_new < ::sockets::http_post_socket >();
 
-         psocketPost->initialize_http_post_socket(strUrl);
+         psocketPost->initialize_http_post_socket(url);
 
          psocket = psocketPost;
 
@@ -2031,11 +2019,11 @@ namespace http
 
          auto psocketGet = pobjectCreator->__create_new < ::http::get_socket>();
 
-         psocketGet->initialize_get_socket(strUrl);
+         psocketGet->initialize_get_socket(url);
 
          psocket = psocketGet;
 
-         psocket->m_emethod = ::sockets::string_http_method(set("http_method", "GET"));
+         psocket->m_emethod = ::sockets::string_http_method(set("http_method", "GET").as_string());
 
       }
 
@@ -2071,7 +2059,7 @@ namespace http
       if (strProtocol == "https")
       {
 
-         psocket->set_tls_hostname(purl->get_server(strUrl));
+         psocket->set_tls_hostname(url.connect().host());
 
       }
 
@@ -2241,7 +2229,7 @@ namespace http
 
             auto tick2 = ::time::now();
 
-            information() << LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.left(minimum(255, strUrl.length())) << "\") " << tick1.elapsed().integral_second();
+            information() << LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::apex::context::get(\"" << url.as_string().truncated(255) << "\") " << tick1.elapsed().integral_second();
 
             return false;
 
@@ -2253,7 +2241,7 @@ namespace http
 
          set["get_status"] = (i64)error_http;
 
-         information() << LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.left(minimum(255, strUrl.length())) << "\") " << tick1.elapsed().integral_second();
+         information() << LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::apex::context::get(\"" << url.as_string().truncated(255) << "\") " << tick1.elapsed().integral_second();
 
          return false;
 
@@ -2478,7 +2466,7 @@ namespace http
       iBodySizeDownloaded = psocket->m_body_size_downloaded;
 
       information() << LOG_HTTP_PREFIX
-         << strUrl
+         << url.as_string()
          << " Status: "
          << iStatusCode
          << " - "
@@ -2526,7 +2514,7 @@ namespace http
 
          }
 
-         information() << LOG_HTTP_PREFIX << "URL: " << strUrl << " Too much tries("<< iTry <<")";
+         information() << LOG_HTTP_PREFIX << "URL: " << url.as_string() << " Too much tries("<< iTry <<")";
 
          estatus = error_http;
 
@@ -2549,7 +2537,7 @@ namespace http
 
             auto tick2 = ::time::now();
 
-            information() << LOG_HTTP_PREFIX << "Not Licensed Result Total time ::http::apex::context::get(\"" << strUrl.left(minimum(255, strUrl.length())) << "\") " << tick1.elapsed().integral_second();
+            information() << LOG_HTTP_PREFIX << "Not Licensed Result Total time ::http::apex::context::get(\"" << url.as_string().truncated(255) << "\") " << tick1.elapsed().integral_second();
 
             string strLocation;
             
@@ -2590,7 +2578,7 @@ namespace http
             else
             {
 
-               ::file::path pathBase = purl->get_protocol(strUrl) + purl->get_server(strUrl);
+               ::file::path pathBase = url.connect().protocol() + "://" + url.connect().host();
 
                strLocation = pathBase / strLocation;
 
@@ -2613,7 +2601,7 @@ namespace http
          //if (strSessId.has_char() && puser.is_set() && iRetrySession < 3)
          //{
 
-         //   psession->account()->not_auth(scopedstrUrl);
+         //   psession->account()->not_auth(url);
 
          //   iRetrySession++;
 
@@ -2667,7 +2655,7 @@ namespace http
          else
          {
 
-            set["get_memory"] = __allocate< memory >(psocket->GetDataPtr(), psocket->GetContentLength());
+            set["get_memory"] = ::place(new memory(psocket->GetDataPtr(), psocket->GetContentLength()));
 
          }
 
@@ -2696,22 +2684,16 @@ namespace http
 
       auto pdomain = __create_new < ::url_domain >();
 
-      auto psystem = system();
+      pdomain->create(pmessageMessage->m_url.connect().host());
 
-      auto purl = psystem->url();
-
-      pdomain->create(purl->get_server(pmessageMessage->m_strUrl));
-
-      if (pdomain->m_strRadix == "ca2" && string_begins(purl->get_object(pmessageMessage->m_strUrl), "/matter/"))
+      if (pdomain->m_strRadix == "ca2" && string_begins(pmessageMessage->m_url.request().as_string(), "/matter/"))
       {
-
-         string strUrl(pmessageMessage->m_strUrl);
 
          property_set& set = pmessage->get_property_set();
 
          single_lock synchronouslock(system()->m_pmutexHttpDownload, true);
 
-         if (!(system()->m_straHttpDownloading.contains(strUrl)) && !exists(pmessageMessage->m_strUrl, set))
+         if (!(system()->m_straHttpDownloading.contains(pmessageMessage->m_url.as_string())) && !exists(pmessageMessage->m_url.as_string(), set))
          {
 
             synchronouslock.unlock();
@@ -2726,7 +2708,7 @@ namespace http
 
       }
 
-      pmessage->get_property_set() = process_set(*pmessage->m_ppropertyset, pmessageMessage->m_strUrl);
+      pmessage->get_property_set() = process_set(*pmessage->m_ppropertyset, pmessageMessage->m_url);
 
       //auto phandler = __create< ::sockets::socket_handler >();
 
@@ -2762,7 +2744,7 @@ namespace http
 
       ::pointer<::sockets::http_client_socket>psocket;
 
-      if (!http_get(psocket, pmessageMessage->m_strUrl, set))
+      if (!http_get(psocket, pmessageMessage->m_url, set))
       {
 
          pmessageMessage->m_estatusRet = (::e_status) set["get_status"].as_i64();
@@ -2812,7 +2794,7 @@ namespace http
    }
 
 
-   bool context::download(const ::scoped_string & scopedstrUrl, ::payload payloadFile, property_set & set)
+   bool context::download(const ::url::url & url, ::payload payloadFile, property_set & set)
    {
 
       auto phandler = __create < ::sockets::socket_handler >();
@@ -2835,7 +2817,7 @@ namespace http
 
          set["file"] = (::file_pointer) rfile;
 
-         bOk = http_get(psocket, scopedstrUrl, set);
+         bOk = http_get(psocket, url, set);
 
          set["file"].null();
 
@@ -2853,17 +2835,17 @@ namespace http
    }
 
 
-   bool context::exists(const ::scoped_string & scopedstrUrl, ::property_set & set)
+   bool context::exists(const ::url::url & url, ::property_set & set)
    {
 
-      auto etype = get_type(scopedstrUrl, set);
+      auto etype = get_type(url, set);
 
       return ::exists(etype);
 
    }
 
 
-   ::file::enum_type context::get_type(const ::scoped_string & scopedstrUrl, ::property_set & set)
+   ::file::enum_type context::get_type(const ::url::url & url, ::property_set & set)
    {
 
       single_lock synchronouslock(system()->m_pmutexHttpDownload, true);
@@ -2873,7 +2855,7 @@ namespace http
       try
       {
 
-         while (system()->m_straHttpExists.contains(scopedstrUrl))
+         while (system()->m_straHttpExists.contains(url))
          {
 
             synchronouslock.unlock();
@@ -2884,7 +2866,7 @@ namespace http
 
          }
 
-         system()->m_straHttpExists.add(scopedstrUrl);
+         system()->m_straHttpExists.add(url.as_string());
 
          synchronouslock.unlock();
 
@@ -2894,13 +2876,9 @@ namespace http
 
          ::url_domain domain;
 
-         auto psystem = system();
+         domain.create(url.connect().host());
 
-         auto purl = psystem->url();
-
-         domain.create(purl->get_server(scopedstrUrl));
-
-         if (string_begins(purl->get_object(scopedstrUrl), "/matter/"))
+         if (string_begins(url.request().as_string(), "/matter/"))
          {
 
             set["raw_http"] = true;
@@ -2909,12 +2887,12 @@ namespace http
 
          ::pointer<::sockets::http_client_socket>psocket;
 
-         if (!http_get(psocket, scopedstrUrl, set))
+         if (!http_get(psocket, url, set))
          {
 
             synchronouslock.lock();
 
-            system()->m_straHttpExists.erase(scopedstrUrl);
+            system()->m_straHttpExists.erase(url);
 
             return ::file::e_type_doesnt_exist;
 
@@ -2930,7 +2908,7 @@ namespace http
 
       }
 
-      system()->m_straHttpExists.erase(scopedstrUrl);
+      system()->m_straHttpExists.erase(url);
 
       bool bExists = iStatusCode == 200;
 
@@ -2939,7 +2917,7 @@ namespace http
    }
 
 
-   ::payload context::length(const ::scoped_string & scopedstrUrl, ::property_set & set)
+   ::payload context::length(const ::url::url & url, ::property_set & set)
    {
 
       set["only_headers"] = true;
@@ -2948,13 +2926,9 @@ namespace http
 
       ::url_domain domain;
 
-      auto psystem = system();
+      domain.create(url.connect().host());
 
-      auto purl = psystem->url();
-
-      domain.create(purl->get_server(scopedstrUrl));
-
-      if (string_begins(purl->get_object(scopedstrUrl), "/matter/"))
+      if (string_begins(url.request().path(), "/matter/"))
       {
 
          set["disable_ca2_sessid"] = true;
@@ -2963,7 +2937,7 @@ namespace http
 
       ::pointer<::sockets::http_client_socket>psocket;
 
-      if (http_get(psocket, scopedstrUrl, set))
+      if (http_get(psocket, url, set))
       {
 
          return false;
@@ -3114,32 +3088,32 @@ namespace http
    //}
 
 
-   bool context::put(const ::scoped_string & scopedstrUrl, memory_base & memory, property_set & set)
+   bool context::put(const ::url::url & url, memory_base & memory, property_set & set)
    {
 
       auto pfile = create_memory_file(memory);
 
-      return put(scopedstrUrl, pfile, set);
+      return put(url, pfile, set);
 
    }
 
 
-   bool context::put(const ::scoped_string & scopedstrUrl, file_pointer  pfile, property_set & set)
+   bool context::put(const ::url::url & url, file_pointer  pfile, property_set & set)
    {
 
       set["put"] = pfile;
 
       set["noclose"] = false;
 
-      return get(scopedstrUrl, set).is_true();
+      return get(url, set).is_true();
 
    }
 
 
-   ::string context::get_effective_url(const ::scoped_string & scopedstrUrl)
+   ::url::url context::get_effective_url(const ::url::url & urlParam)
    {
 
-      ::string strUrl(scopedstrUrl);
+      auto url = urlParam;
 
       while(true)
       {
@@ -3148,34 +3122,34 @@ namespace http
 
          set["redirect_location"] = "";
 
-         this->get(strUrl, set);
+         this->get(url, set);
 
-         ::string strNewUrl = set["redirect_location"];
+         auto urlNew = set["redirect_location"].as_url();
 
-         information() << "Redirect Location : " << strNewUrl;
-
-         if(strNewUrl.is_empty())
+         if(urlNew.as_string())
          {
+            
             break;
+
          }
 
-            strUrl = strNewUrl;
+         information() << "Redirect Location : " << urlNew.as_string();
 
-
+         url = urlNew;
 
       }
 
-      return strUrl;
+      return url;
 
    }
 
 
-   bool context::request(const ::scoped_string & scopedstrMethod, const ::scoped_string & scopedstrUrl, property_set & set)
+   bool context::request(const ::scoped_string & scopedstrMethod, const ::url::url & url, property_set & set)
    {
 
       set["http_method"] = scopedstrMethod;
 
-      return get(scopedstrUrl, set).is_true();
+      return get(url, set).is_true();
 
    }
 

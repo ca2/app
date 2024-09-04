@@ -13,7 +13,7 @@
 //CLASS_DECL_ACME ::pointer<___shape>__create_shape(const ::lines & lines)
 //{
 //
-//   return __allocate< lines_shape >(lines);
+//   return ::place(new lines_shape(lines));
 //
 //}
 //
@@ -22,7 +22,7 @@
 //CLASS_DECL_ACME ::pointer<___shape>__create_shape(const ::polygon & polygon)
 //{
 //
-//   return __allocate< polygon_shape >(polygon);
+//   return ::place(new polygon_shape(polygon));
 //
 //}
 //

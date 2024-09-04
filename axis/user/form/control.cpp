@@ -70,7 +70,7 @@ namespace user
    //::pointer<class control_descriptor> form_control::new_form_control()
    //{
 
-   //   auto pdescriptor = __allocate< ::user::control_descriptor >();
+   //   auto pdescriptor = ::place(new ::user::control_descriptor());
 
    //   m_controldescriptorset.add(pdescriptor);
 
@@ -88,7 +88,7 @@ namespace user
    //         /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) window::FromHandlePermanent(pform->get_child_by_id(pinteraction->m_atom)->GetSafeoswindow_());
    //         if(pstatic == nullptr || !base_class < CTransparentStatic >::bases(pstatic))
    //         {
-   //         pstatic = __new< CTransparentStatic >();
+   //         pstatic = new CTransparentStatic();
    //         VERIFY(pstatic->subclass_window(pform->get_child_by_id(pinteraction->m_atom)->GetSafeoswindow_()));
    //         }
    //         pinteraction->m_unionwndptr.m_pstatic = pstatic;*/
@@ -1709,7 +1709,7 @@ namespace user
       if(m_pcallback != nullptr)
       {
          
-         auto pextendedtopic = __allocate< ::extended_topic >(id_timer);
+         auto pextendedtopic = ::place(new ::extended_topic(id_timer));
          
          pextendedtopic->m_puserelement = this;
          

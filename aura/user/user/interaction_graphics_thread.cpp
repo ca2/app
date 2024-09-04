@@ -21,6 +21,7 @@ CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
 
 
 #define MORE_LOG
+#undef MORE_LOG
 
 
 #if !defined(WINDOWS)

@@ -9,7 +9,7 @@ namespace file
 {
 
 
-   item_array::item_array(std::nullptr_t)
+   item_array::item_array(nullptr_t)
    {
 
    }
@@ -117,7 +117,7 @@ namespace file
 
          class ::payload payload;
 
-         auto pflags = __allocate< flags < enum_flag > > (this->element_at(0)->m_flags);
+         auto pflags = ::place(new  flags < enum_flag > (this->element_at(0)->m_flags));
 
          payload["FileManagerItem_flags"] = pflags;
 
@@ -134,7 +134,7 @@ namespace file
 
             class ::payload varPropSet;
 
-            varPropSet["FileManagerItem_flags"] = __allocate< flags < enum_flag > >(this->element_at(i)->m_flags);
+            varPropSet["FileManagerItem_flags"] = ::place(new flags < enum_flag > (this->element_at(i)->m_flags));
 
             payload.as_payload_array().add(varPropSet);
 

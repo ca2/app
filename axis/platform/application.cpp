@@ -718,7 +718,7 @@ namespace axis
 
       }
 
-      information() << "success";
+      //information() << "success";
 
    }
 
@@ -1905,7 +1905,7 @@ namespace axis
    ::user::interaction* application::create_menu_interaction()
    {
 
-      return __new< ::user::button >();
+      return new ::user::button ();
 
    }
 //

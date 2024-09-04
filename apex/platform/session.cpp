@@ -206,7 +206,7 @@ namespace apex
    //}
 
 
-   void session::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema)
+   void session::locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema)
    {
 
 
@@ -756,18 +756,16 @@ namespace apex
 
       }
 
-      auto psystem = system();
+      ::url::url url(strPathName);
 
-      auto purl = psystem->url();
-
-      string strProtocol = purl->get_protocol(strPathName);
+      string strProtocol = url.connect().protocol();
 
       if (strProtocol == "app")
       {
 
-         strId = purl->get_server(strPathName);
+         strId = url.connect().host();
 
-         string str = purl->get_object(strPathName);
+         string str = url.request().path();
 
          str.begins_eat("/");
 
@@ -1225,7 +1223,7 @@ ret:
       {
 
          //estatus = 
-         __construct(m_pifs, __allocate< ifs >(""));
+         __construct(m_pifs, ::place(new ifs("")));
 
          //if (!estatus)
          //{
@@ -1242,7 +1240,7 @@ ret:
       {
 
          //estatus = 
-         __construct(m_premotefs, __allocate< ::fs::remote_native >(""));
+         __construct(m_premotefs, ::place(new ::fs::remote_native("")));
 
          //if (!estatus)
          //{
@@ -1258,7 +1256,7 @@ ret:
       //if (!m_pftpfs)
       //{
 
-      //   auto pftpfs = __allocate< ftpfs >();
+      //   auto pftpfs = ::place(new ftpfs());
 
       //   auto estatus = pftpfs->initialize_ftpfs(this, "");
 
@@ -1631,7 +1629,7 @@ namespace apex
    bool session::InitializeLocalDataCentral()
    {
 
-      //m_pdatabase = __new< nature::database >(this);
+      //m_pdatabase = new nature::database (this);
 
       //if(m_pdatabase == nullptr)
       //{

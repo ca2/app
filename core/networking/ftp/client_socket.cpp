@@ -102,7 +102,7 @@ namespace ftp
       m_timeResponseWait(timeResponseWait),
       mc_strEolCharacterSequence("\r\n"),
       mc_strRemoteDirectorySeparator(strRemoteDirectorySeparator),//+# documentation missing
-      m_apFileListParser(__allocate< file_list_parser >()),
+      m_apFileListParser(::place(new file_list_parser())),
       m_fTransferInProgress(false),
       m_fAbortTransfer(false),
       m_fResumeIfPossible(true)
@@ -542,7 +542,7 @@ namespace ftp
       outputStream.SetStartPosition();
       while (outputStream.GetNextLine(strLine))
       {
-         ::pointer<file_status>spFtpFileStatus(__allocate< file_status >());
+         ::pointer<file_status>spFtpFileStatus(::place(new file_status()));
          if (m_apFileListParser->Parse(*spFtpFileStatus, strLine))
          {
             spFtpFileStatus->m_strPath = strPath;
@@ -572,7 +572,7 @@ namespace ftp
       outputStream.SetStartPosition();
       while (outputStream.GetNextLine(strLine))
       {
-         ::pointer<file_status>spFtpFileStatus(__allocate< file_status >());
+         ::pointer<file_status>spFtpFileStatus(::place(new file_status()));
          spFtpFileStatus->m_strPath = strPath;
          spFtpFileStatus->m_strName = strLine;
          vFileList.add(spFtpFileStatus);
@@ -814,13 +814,13 @@ namespace ftp
          if (crDatachannelCmd.IsDatachannelWriteCommand())
          {
 
-            apSckDataConnection = __new< ::sockets::write_socket >();
+            apSckDataConnection = new ::sockets::write_socket ();
 
          }
          else if (crDatachannelCmd.IsDatachannelReadCommand())
          {
 
-            apSckDataConnection = __new< ::sockets::read_socket >();
+            apSckDataConnection = new ::sockets::read_socket ();
 
          }
          else
@@ -848,7 +848,7 @@ namespace ftp
          if (crDatachannelCmd.IsDatachannelWriteCommand())
          {
 
-            apSckDataConnection = __new< ::sockets::listen_socket >();
+            apSckDataConnection = new ::sockets::listen_socket ();
 
             apSckDataConnection->m_typeAttendSocket = ::type< ::sockets::write_socket >();
 
@@ -856,7 +856,7 @@ namespace ftp
          else if (crDatachannelCmd.IsDatachannelReadCommand())
          {
 
-            apSckDataConnection = __new< ::sockets::listen_socket >();
+            apSckDataConnection = new ::sockets::listen_socket ();
 
             apSckDataConnection->m_typeAttendSocket = ::type< ::sockets::read_socket >();
 
@@ -1815,7 +1815,7 @@ auto tickStart = ::time::now();
       if (iRet == FTP_OK)
       {
          if (m_apCurrentRepresentation.is_null())
-            m_apCurrentRepresentation = __allocate< ::ftp::representation >(representation);
+            m_apCurrentRepresentation = ::place(new ::ftp::representation(representation));
          else
             *m_apCurrentRepresentation = representation;
       }

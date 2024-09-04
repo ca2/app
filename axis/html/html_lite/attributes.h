@@ -284,7 +284,7 @@ public:
          if (nElemCount)
          {
 
-            if ((m_parrAttrib = __new < CElemAttrArray>()) == nullptr)
+            if ((m_parrAttrib = new  CElemAttrArray()) == nullptr)
             {
 
                throw ::exception(error_no_memory);
@@ -298,7 +298,7 @@ public:
             /** DEEP COPY BEGIN */
             for (i32 iElem = 0; iElem < nElemCount; iElem++)
             {
-               if ((pItem = __new< LiteHTMLElemAttr >(rSource[iElem])) == nullptr)
+               if ((pItem = new LiteHTMLElemAttr(rSource[iElem])) == nullptr)
                {
                   eraseAll();
                   throw ::exception(error_no_memory);

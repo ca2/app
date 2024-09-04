@@ -23,6 +23,9 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 
 #define _S_ALOG_CONTEXT ::context_trace_object()
 
+//#define __STD_FORMAT__
+
+//#include <format>
 
 #ifdef WINDOWS_DESKTOP
 
@@ -60,11 +63,11 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 #endif
 
 
-#define _STRINGFY(identifier) #identifier
-#define STRINGFY(identifier) _STRINGFY(identifier)
-#define STRING_PREFIX_LAYER_NAMESPACE(str) STRINGFY(LAYER_NAMESPACE) str
+#define _MAKE_STRING(identifier) #identifier
+#define MAKE_STRING(identifier) _MAKE_STRING(identifier)
+#define STRING_PREFIX_LAYER_NAMESPACE(str) MAKE_STRING(LAYER_NAMESPACE) str
 
-#define PLATFORM_INCLUDE(include) STRINGFY(__IDENTIFIER(OPERATING_SYSTEM_NAMESPACE)/include)
+#define PLATFORM_INCLUDE(include) MAKE_STRING(__IDENTIFIER(OPERATING_SYSTEM_NAMESPACE)/include)
 
 #ifndef  __STRING
 #  define   __STRING(x) "x"
@@ -72,11 +75,11 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 
 
 #define __EVALUATE(xxx) xxx
-#ifndef __CONCAT
-#define __CONCAT(xxx, yyy) xxx ## yyy
+#ifndef __CONCATENATE
+#define __CONCATENATE(xxx, yyy) xxx ## yyy
 #endif
 
-#define __CONCAT3(xxx, yyy, zzz) xxx ## yyy ## zzz
+#define __CONCATENATE3(xxx, yyy, zzz) xxx ## yyy ## zzz
 
 
 #define TOKEN_CONCATENATE_PHASE1(x, y) x ## y
@@ -100,7 +103,7 @@ release_time_for_project  application::release_time() { return __RELEASE_TIME(li
 
 
 
-#define __CONCAT3(xxx, yyy, zzz) xxx ## yyy ## zzz
+//#define __CONCAT3____(xxx, yyy, zzz) xxx ## yyy ## zzz
 
 
 // #define __u16(a, b)                                   ((::u16)(((::u8)(((::uptr)(a)) & 0xff)) | ((::u16)((::u8)(((::uptr)(b)) & 0xff))) << 8))

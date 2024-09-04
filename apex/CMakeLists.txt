@@ -157,6 +157,8 @@ list(APPEND apex_source
         interprocess/caller.h
         interprocess/communication.cpp
         interprocess/communication.cpp
+   interprocess/handler.cpp
+   interprocess/handler.h
         interprocess/target.cpp
         interprocess/target.h
         interprocess/task.cpp
@@ -1462,15 +1464,15 @@ elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
     #target_link_options(${PROJECT_NAME} PRIVATE "-Wl,-rpath=\$ORIGIN")
     if (${OPENBSD})
-        list(APPEND system_libraries pthread z)
+        list(APPEND this_system_libraries pthread z)
     elseif (${FREEBSD})
-        list(APPEND system_libraries dl pthread z)
+        list(APPEND this_system_libraries dl pthread z)
     else ()
-        list(APPEND system_libraries dl pthread idn z)
+        list(APPEND this_system_libraries dl pthread idn z)
     endif ()
 
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES} ${system_libraries} ${global_library_references})
-    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_LIBRARIES} ${system_libraries})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES} ${this_system_libraries} ${global_library_references})
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_LIBRARIES} ${this_system_libraries})
 
 
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)

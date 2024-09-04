@@ -26,6 +26,7 @@ namespace http
       ::binary_stream                  m_binarystreamOutput;
       string                           m_null;
       http::form                       m_form;
+      ::url::url                       m_url;
 
 
       request();

@@ -18,7 +18,9 @@ add_subdirectory(experience_core)
 add_subdirectory(experience_nanoui)
 add_subdirectory(experience_tranquillum)
 
-
+if(${LINUX} OR ${BSD_LIKE})
+add_subdirectory(nano_idn_libidn)
+endif()
 add_subdirectory(networking_bsd)
 add_subdirectory(crypto_openssl)
 add_subdirectory(compress_bzip2)

@@ -441,7 +441,7 @@ namespace user
    void document::on_create(::request * prequest)
    {
 
-      run_property(ID_CREATE);
+      defer_run_property(ID_CREATE);
 
       //throw_todo();
 
@@ -452,7 +452,7 @@ namespace user
    }
 
 
-   ::atom document::get_topic_impact_id()
+   ::string document::get_topic_impact_id()
    {
 
       auto psignal = get_signal(id_get_topic_impact_id);
@@ -605,7 +605,7 @@ namespace user
    //   {
    //      ::pointer<::user::impact>pimpact = get_impact(index);
 
-   //      ptask = __new< update >();
+   //      ptask = new update();
    //      ptask->m_pSender = pSender;
    //      ptask->m_lHint = lHint;
    //      ptask->m_pHint = pHint;
@@ -1486,7 +1486,7 @@ namespace user
 
       }
 
-      run_property("on_destroy");
+      defer_run_property("on_destroy");
 
    }
 

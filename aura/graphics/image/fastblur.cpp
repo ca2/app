@@ -236,8 +236,8 @@ namespace draw2d
       // lookup table for clamping pixel offsets
       // as the kernel passes the right (or lower) edge
       // of the input data
-      vxmin = __new_array< int >(cx + 100 + div2);
-      vymin = __new_array< int >(cy + 100 + div2);
+      vxmin = new int[cx + 100 + div2];
+      vymin = new int[cy + 100 + div2];
 
       const int r1 = radius + 1;
       
@@ -1073,7 +1073,7 @@ auto tick2 = ::time::now();
       const int div = (radius * 2) + 1;
 
       // temporary output space for first pass.
-      //vector4* tsurface = __new_array< vector4 >(wh);
+      //vector4* tsurface = new vector4[wh];
 
       // lookup table for clamping pixel offsets
       // as the kernel passes the right (or lower) edge

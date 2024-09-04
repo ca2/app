@@ -62,7 +62,7 @@
 //      }
 //
 //
-//      transport(std::nullptr_t) :
+//      transport(nullptr_t) :
 //         status(::error_failed)
 //      {
 //
@@ -132,7 +132,7 @@
 //      }
 //
 //
-//      transport & operator =(std::nullptr_t)
+//      transport & operator =(nullptr_t)
 //      {
 //
 //         this->release();

@@ -25,7 +25,7 @@ int main(int argc, char * argv[])
 
 //      {
 
-         auto psystem = __allocate< ::acme::system >();
+         auto psystem = ::place(new ::acme::system());
          
          psystem->application_initialize();
 

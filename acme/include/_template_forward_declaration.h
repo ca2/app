@@ -860,7 +860,7 @@ using signal_handler = ::function < void(::topic*, ::context*) >;
 ////::matter_pointer __handle_function(PREDICATE predicate)
 ////{
 ////
-////   return __allocate< han<PREDICATE> >(predicate);
+////   return ::place(new han<PREDICATE> (predicate));
 ////
 ////}
 
@@ -902,16 +902,16 @@ template < typename T >
 using dereference = typename dereference_struct < T >::type;
 
 
-
-template < typename T, typename ...Args >
-inline T * __call__new(Args &&... args);
-
-template < typename T >
-inline void __call__delete(T * p);
-
-
-template < typename T >
-inline T * __new_array(::collection::count c);
+//
+//template < typename T, typename ...Args >
+//inline T * __call__new(Args &&... args);
+//
+//template < typename T >
+//inline void __call__delete(T * p);
+//
+//
+//template < typename T >
+//inline T * __new_array(::collection::count c);
 
 
 #if REFERENCING_DEBUGGING

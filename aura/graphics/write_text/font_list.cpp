@@ -444,7 +444,7 @@ namespace write_text
          //if (bCheckHover && rectangle.contains_y(pointCursor.y()))
          //{
 
-         //   //m_puserinteraction->m_pitemHover = __allocate< ::item >({ ::e_element_item, i });
+         //   //m_puserinteraction->m_pitemHover = ::place(new ::item({ ::e_element_item, i }));
 
          //   m_puserinteraction->m_pitemHover = pfontlistitem;
 
@@ -1137,7 +1137,7 @@ namespace write_text
 
                bNew = true;
 
-               plistitem = __allocate< font_list_item >();
+               plistitem = ::place(new font_list_item());
 
                plistitem->m_item.m_iItem = iItem;
 
@@ -1624,7 +1624,7 @@ namespace write_text
       if (!pfontlistdata)
       {
 
-         auto pitemNone = __allocate< ::item >(::e_element_none);
+         auto pitemNone = ::place(new ::item(::e_element_none));
 
          return pitemNone;
 
@@ -1659,14 +1659,14 @@ namespace write_text
          if (pfontlistitem->m_box[BOX].m_rectangle.contains(point))
          {
 
-            //return __allocate< ::item >(::e_element_item, iItem);
+            //return ::place(new ::item(::e_element_item, iItem));
             return pfontlistitem;
 
          }
 
       }
 
-      //auto pitemNone = __allocate< ::item >(::e_element_none);
+      //auto pitemNone = ::place(new ::item(::e_element_none));
 
       //return pitemNone;
 
@@ -1685,7 +1685,7 @@ namespace write_text
       if (!pfontlistdata)
       {
 
-         auto pitemNone = __allocate< ::item >(::e_element_none);
+         auto pitemNone = ::place(new ::item(::e_element_none));
 
          return pitemNone;
 
@@ -1716,7 +1716,7 @@ namespace write_text
 
       }
 
-      //auto pitemNone = __allocate< ::item >(::e_element_none);
+      //auto pitemNone = ::place(new ::item(::e_element_none));
 
       // return pitemNone;
 

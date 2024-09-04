@@ -182,7 +182,7 @@ namespace user
 
       m_bEnterKeyOnPaste = false;
 
-      //m_pcontrolstyle = __new< plain_edit_internal >();
+      //m_pcontrolstyle = new plain_edit_internal();
 
       m_ppropertysetsel = nullptr;
 
@@ -1102,9 +1102,9 @@ namespace user
       if (m_ptree == nullptr)
       {
 
-         set_root(__allocate< ::user::plain_text_tree >(), true);
+         set_root(::place(new ::user::plain_text_tree()), true);
 
-         m_ptree->m_pfile = __allocate< ::memory_file >();
+         m_ptree->m_pfile = ::place(new ::memory_file());
 
          m_ptree->m_peditfile->SetFile(m_ptree->m_pfile);
 
@@ -1174,10 +1174,10 @@ namespace user
 
          auto pmenu = user()->menu_from_xml(this, "matter://plain_edit_context_menu.menu");
          
-         m_ptrackpopupContextMenu = __new < ::menu::track_popup >(pmenu,
+         m_ptrackpopupContextMenu = ::place( new ::menu::track_popup (pmenu,
                                                           this,
                                                           this,
-                                                                  pointCursor);
+                                                                  pointCursor));
          
          m_ptrackpopupContextMenu->track([this]()
                                          {
@@ -2395,7 +2395,7 @@ namespace user
       if (!m_pitemHover || m_pitemHover->m_item.m_eelement != e_element_none)
       {
 
-         m_pitemHover = __allocate< ::item >(e_element_none);
+         m_pitemHover = ::place(new ::item(e_element_none));
 
          set_need_redraw();
 
@@ -2478,28 +2478,30 @@ namespace user
 
                }
                
-               ::user::interaction::on_message_left_button_down_handle_keyboard_focus(pmessageHold);
-               
-#if defined(APPLE_IOS)
-               //if(windowing()->is_sandboxed()
-               if(has_keyboard_focus())
-               {
-                  
-                  auto pcontextmenu = __create_new < ::message::context_menu >();
-                  
-                  pcontextmenu->m_atom = e_message_context_menu;
-                  
-                  auto pointHost = pmessageHold->m_union.m_pmouse->m_pointHost;
-                  
-                  pcontextmenu->m_pointMessage = pointHost;
-                  
-                  post_message(pcontextmenu);
-                  
-               }
-#endif
 
             });
 
+#if defined(APPLE_IOS)
+            //if(windowing()->is_sandboxed()
+            if(has_keyboard_focus())
+            {
+               
+               auto pcontextmenu = __create_new < ::message::context_menu >();
+               
+               pcontextmenu->m_atom = e_message_context_menu;
+               
+               auto pointHost = pmessageHold->m_union.m_pmouse->m_pointHost;
+               
+               pcontextmenu->m_pointMessage = pointHost;
+               
+               post_message(pcontextmenu);
+               
+            }
+            
+#endif
+            
+            ::user::interaction::on_message_left_button_down_handle_keyboard_focus(pmessageHold);
+            
 #if defined(WINDOWS_DESKTOP)
 
             on_text_composition_message(TEXT_COMPOSITION_MESSAGE_UPDATE_CANDIDATE_WINDOW_POSITION);
@@ -5834,7 +5836,7 @@ namespace user
 
             MacroBegin();
 
-            MacroRecord(__allocate< plain_text_file_command >());
+            MacroRecord(::place(new plain_text_file_command()));
 
             MacroEnd();
 
@@ -5902,7 +5904,7 @@ namespace user
 
             MacroBegin();
 
-            MacroRecord(__allocate< plain_text_file_command >());
+            MacroRecord(::place(new plain_text_file_command()));
 
             MacroEnd();
 
@@ -5938,7 +5940,7 @@ namespace user
          if (i1 != i2 || bBackIfSelectionEmpty)
          {
 
-            psetsel = __allocate< plain_text_set_sel_command >();
+            psetsel = ::place(new plain_text_set_sel_command());
 
             psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -6136,7 +6138,7 @@ namespace user
 
          }
 
-         MacroRecord(__allocate< plain_text_file_command >());
+         MacroRecord(::place(new plain_text_file_command()));
 
          MacroEnd();
 
@@ -6228,7 +6230,7 @@ namespace user
 
    //   on_before_change_text();
 
-   //   auto psetsel = __allocate< plain_text_set_sel_command >();
+   //   auto psetsel = ::place(new plain_text_set_sel_command());
 
    //   psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -6267,7 +6269,7 @@ namespace user
 
    //   MacroRecord(psetsel);
 
-   //   MacroRecord(__allocate< plain_text_file_command >());
+   //   MacroRecord(::place(new plain_text_file_command()));
 
    //   MacroEnd();
 
@@ -6333,7 +6335,7 @@ namespace user
 
       on_before_change_text();
 
-      auto psetsel = __allocate< plain_text_set_sel_command >();
+      auto psetsel = ::place(new plain_text_set_sel_command());
 
       psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -6385,7 +6387,7 @@ namespace user
 
       MacroRecord(psetsel);
 
-      MacroRecord(__allocate< plain_text_file_command >());
+      MacroRecord(::place(new plain_text_file_command()));
 
       MacroEnd();
 
@@ -6876,7 +6878,7 @@ namespace user
 
                      //   on_before_change_text();
 
-                     //   auto psetsel = __allocate< plain_text_set_sel_command >();
+                     //   auto psetsel = ::place(new plain_text_set_sel_command());
 
                      //   psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -6951,7 +6953,7 @@ namespace user
                      //   psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
                      //   MacroBegin();
                      //   MacroRecord(psetsel);
-                     //   MacroRecord(__allocate< plain_text_file_command >());
+                     //   MacroRecord(::place(new plain_text_file_command()));
                      //   MacroEnd();
 
                      //   _001SetSelEnd(m_ptree->m_iSelEnd);
@@ -8027,7 +8029,7 @@ namespace user
             m_ptree->m_peditfile->MacroEnd();
 
             MacroBegin();
-            MacroRecord(__allocate< plain_text_file_command >());
+            MacroRecord(::place(new plain_text_file_command()));
             MacroEnd();
 
          });
@@ -8050,7 +8052,7 @@ namespace user
 
       strsize iAnsiEnd = wd16_to_ansi_len(wstrText, iEnd);
 
-      auto psetsel = __allocate< plain_text_set_sel_command >();
+      auto psetsel = ::place(new plain_text_set_sel_command());
 
       psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -8554,7 +8556,7 @@ namespace user
 
    void plain_edit::MacroBegin()
    {
-      ::pointer<::user::plain_text_group_command>pgroupcommand = __allocate< plain_text_group_command >();
+      ::pointer<::user::plain_text_group_command>pgroupcommand = ::place(new plain_text_group_command());
       pgroupcommand->m_pparent = m_ptree->m_pgroupcommand;
       m_ptree->m_pgroupcommand = pgroupcommand;
    }
@@ -9307,7 +9309,7 @@ namespace user
    ::pointer<::data::item>plain_edit::on_allocate_item()
    {
 
-      return __allocate< plain_text_command >();
+      return ::place(new plain_text_command());
 
    }
 
@@ -9711,7 +9713,7 @@ namespace user
       else
       {
 
-         auto psetsel = __allocate< plain_text_set_sel_command >();
+         auto psetsel = ::place(new plain_text_set_sel_command());
 
          psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -9776,7 +9778,7 @@ namespace user
 
          MacroBegin();
          MacroRecord(psetsel);
-         MacroRecord(__allocate< plain_text_file_command >());
+         MacroRecord(::place(new plain_text_file_command()));
          MacroEnd();
 
          informationf("insert tree->iSelBeg=%lld,iSelEnd=%lld", m_ptree->m_iSelBeg, m_ptree->m_iSelEnd);
@@ -9965,7 +9967,7 @@ namespace user
    //   if (m_psimpleimm.is_null())
    //   {
    //
-   //      m_psimpleimm = __allocate< simple_imm >(this);
+   //      m_psimpleimm = ::place(new simple_imm(this));
    //
    //   }
    //

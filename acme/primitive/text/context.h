@@ -98,7 +98,7 @@ namespace text
 
       void set(const ::atom & atom, const ::atom & idLocale, const ::atom & idSchema, const ::scoped_string & scopedstr);
       string get(const ::text::context * pcontext, const ::atom & atom, bool bIdAsDefaultValue = true) const;
-      string get(const ::text::context * pcontext,const ::atom & atom,const ::atom & idLocale,const ::atom & idSchema,bool bIdAsDefaultValue = true) const;
+      string get(const ::text::context * pcontext,const ::atom & atom,const ::scoped_string & scopedstrLocale,const ::scoped_string & scopedstrSchema,bool bIdAsDefaultValue = true) const;
       void get(string_array & stra, const ::text::context * pcontext, const ::atom & atom) const;
       void _get(string_array & stra, const ::text::context * pcontext, const ::atom & atom) const ;
 
@@ -185,9 +185,9 @@ namespace text
       void prepare();
 
 
-      const comparable_array < ::atom > & locale_ex() const;
+      const string_array & locale_ex() const;
 
-      const comparable_array < ::atom > & schema_ex() const;
+      const string_array & schema_ex() const;
 
 
       inline ::text::international::locale_schema & localeschema()
@@ -217,7 +217,7 @@ namespace text
       inline bool begins(const ::atom & atom, const ::scoped_string & scopedstr) const
       {
 
-         return m_ptable->begins(this, atom, scopedstr);
+         return m_ptable->begins(this, scopedstr, atom);
 
       }
 
@@ -245,7 +245,7 @@ namespace text
          if (m_ptable == nullptr)
          {
 
-            return atom;
+            return atom.as_string();
 
          }
 

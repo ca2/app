@@ -201,7 +201,7 @@ namespace html
          if (m_fonta(i) == font)
             return i;
       }
-      auto pfont = __allocate< class font >(font);
+      auto pfont = ::place(new class font (font));
       pfont->create(this);
       m_fonta.add(pfont);
       pfont->m_iIndex = (i32)m_fonta.get_upper_bound();
@@ -289,9 +289,9 @@ namespace html
       if (m_ptag == nullptr)
       {
 
-         m_ptag = __new< tag >(nullptr);
+         m_ptag = new tag(nullptr);
 
-         class value * pvalue = __new< class value >(m_ptag);
+         class value * pvalue = new class value (m_ptag);
 
          m_ptag->baseptra().add(pvalue);
 
@@ -299,7 +299,7 @@ namespace html
 
       }
 
-      m_pelement = __allocate < ::html::element >();
+      m_pelement = ::place(new ::html::element ());
 
       m_pelement->initialize_html_elemental(this);
 
@@ -556,40 +556,16 @@ namespace html
    }
 
 
-   string core_data::process_url(const ::string & pszUrl)
+   string core_data::process_url(const ::string & scopedstrUrl)
    {
    
-      string strUrl(pszUrl);
+      string strHref(scopedstrUrl);
 
-      auto psystem = system()->m_paurasystem;
+      ::url::parts parts(m_strPathName);
 
-      if (strUrl.contains(":"))
-      {
+      parts.set_href(strHref);
 
-      }
-      else if (strUrl[0] == '\\')
-      {
-
-      }
-      else if (m_strPathName.begins("http://") ||
-         m_strPathName.begins("https://"))
-      {
-
-         auto psystem = system();
-
-         auto purl = psystem->url();
-
-         strUrl = purl->path(m_strPathName, strUrl);
-
-      }
-      else
-      {
-
-         strUrl = m_strPathName.sibling(strUrl);
-
-         strUrl.find_replace("/", "\\");
-
-      }
+      auto strUrl = parts.as_string();
 
       return strUrl;
 

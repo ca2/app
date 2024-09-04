@@ -1457,9 +1457,9 @@ void file_context::calculate_main_resource_memory()
 
       }
 
-      auto pmemory = __allocate< read_only_memory >(block);
+      auto pmemory = ::place(new read_only_memory(block));
 
-      auto pfile = __allocate< ::memory_file >(pmemory);
+      auto pfile = ::place(new ::memory_file(pmemory));
 
       system()->m_pfactoryFolder->__construct(m_pcontext, m_pfolderResource);
 
@@ -1513,7 +1513,7 @@ void file_context::calculate_main_resource_memory()
 
    strPath.replace_with("/", "\\");
 
-   this->informationf(strPath);
+   debugf("file_context::create_resource_file : %s", strPath.c_str());
 
    fflush(stdout);
 
@@ -3244,7 +3244,7 @@ file_pointer file_context::data_get_file(string strData, ::file::e_open eopen)
          if (strEncoding.case_insensitive_order("base64") == 0)
          {
 
-            ::pointer<memory_file>pmemoryfile = __allocate< memory_file >();
+            ::pointer<memory_file>pmemoryfile = ::place(new memory_file());
 
             auto psystem = system();
 
@@ -3331,7 +3331,7 @@ folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_stri
 }
 
 
-file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e_open eopen)
+file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open eopen, bool bNoCache)
 {
 
    if (eopen & (::file::e_open_write | ::file::e_open_truncate | ::file::e_open_create))
@@ -3341,22 +3341,20 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
 
    }
 
-   ::file::path path = payloadFile.as_file_path();
-
    auto pdomain = __create_new < ::url_domain >();
 
-   pdomain->create(url()->get_server(path));
+   pdomain->create(url.connect().host());
 
    //bool bSaveCache = domain.m_strRadix != "ca2" || !string_begins(purl->get_object(path), "/matter/");
 
-   bool bSaveCache = !::file::get_no_cache(payloadFile);
+   bool bSaveCache = !bNoCache;
 
    ::file::path pathCache;
 
    if (bSaveCache)
    {
 
-      pathCache = path;
+      pathCache = url.as_string();
 
       if (string_ends(pathCache, "en_us_international.xml"))
       {
@@ -3393,7 +3391,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
 
          auto pfile = get_reader(pathCache);
 
-         if (pfile.ok())
+         if (pfile.ok() && pfile->size() > 0)
          {
 
             return pfile;
@@ -3409,7 +3407,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
 
       _synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
 
-      return system()->m_straHttpDownloading.contains(path) || system()->m_straHttpExists.contains(path);
+      return system()->m_straHttpDownloading.contains(url.as_string()) || system()->m_straHttpExists.contains(url.as_string());
 
       });/* .failed())
    {
@@ -3423,18 +3421,14 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
 
       _synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
 
-      if (path.flags().is_clear(::file::e_flag_bypass_cache) && acmefile()->exists(pathCache))
+      if (!bNoCache && acmefile()->exists(pathCache))
       {
 
          synchronouslock.unlock();
 
          auto pfile = file_get_file(pathCache, eopen);
 
-         bool bBypassCacheIfEmpty = get_bypass_cache_if_empty(payloadFile);
-
-         bool bBypassCache = !bBypassCacheIfEmpty || pfile->is_empty();
-
-         if (pfile && !bBypassCache)
+         if (pfile.ok() && pfile->size() > 0)
          {
 
             return pfile;
@@ -3450,13 +3444,13 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
 
       _synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
 
-      system()->m_straHttpDownloading.add(path);
+      system()->m_straHttpDownloading.add(url.as_string());
 
    }
 
    auto pget = __create_new < ::nano::http::get >();
    
-   pget->m_strUrl = path;
+   pget->m_url = url;
    
    pget->m_timeSyncTimeout = 5_hour;
 
@@ -3498,7 +3492,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, ::file::e
       try
       {
 
-         system()->m_straHttpDownloading.erase(path);
+         system()->m_straHttpDownloading.erase(url.as_string());
 
       }
       catch (...)
@@ -3658,7 +3652,7 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
          if(eopen & ::file::e_open_no_exception_on_open)
          {
 
-            pfile = __allocate< ::file::file >();
+            pfile = ::place(new ::file::file());
 
             pfile->m_estatus = error_not_a_file;
 
@@ -3710,7 +3704,7 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
 
    auto pathProcessed = m_pcontext->defer_process_path(path);
 
-   if(path == "matter://main/icon-256.png")
+   if(pathProcessed == "matter://main/icon-256.png")
    {
 
       informationf("for icon-2456 processed path is : %s", pathProcessed.c_str());
@@ -3740,7 +3734,7 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
       else
       {
 
-         throw file::exception(::error_file_not_found, {}, path, ::file::e_open_none, "defer_process_path returns empty path");
+         throw file::exception(::error_file_not_found, {}, pathProcessed, ::file::e_open_none, "defer_process_path returns empty path");
 
       }
 
@@ -3748,12 +3742,12 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
 
    }
    
-   auto strProtocol = url()->get_protocol(path);
+   auto strProtocol = ::url::url(pathProcessed).connect().protocol();
    
    if(strProtocol.has_char())
    {
       
-      auto pfile = defer_get_protocol_file(strProtocol, path, eopen, pfileexception);
+      auto pfile = defer_get_protocol_file(strProtocol, pathProcessed, eopen, pfileexception);
       
       if(pfile)
       {
@@ -3793,7 +3787,7 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
    else if (string_begins(path, "http://") || string_begins(path, "https://"))
    {
 
-      return http_get_file(payloadFile, eopen);
+      return http_get_file(path, eopen);
 
    }
    else if (path.begins_eat("zipresource://"))

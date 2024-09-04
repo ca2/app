@@ -196,16 +196,12 @@ public:
    {
    }
 
-   constexpr range(enum_zero_initialize) : range(nullptr, nullptr, e_range_none)
+   constexpr range(nullptr_t) : range(nullptr, nullptr, e_range_none)
    {
 
    };
 
    constexpr range() : range(nullptr, nullptr, e_range_none)
-   {
-   }
-
-   constexpr range(nullptr_t) : range()
    {
    }
 

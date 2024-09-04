@@ -133,11 +133,11 @@ public:
    fixed_alloc_array(::heap::allocator * pallocator);
    virtual ~fixed_alloc_array();
 
-   void * _alloc(size_t nAllocSize);
+   void * _alloc(size_t nAllocSize, memsize * psizeAllocated);
    void _free(void * p, size_t nAllocSize);
    void * _realloc(void * p, size_t nOldAllocSize, size_t nNewAllocSize);
 
-   fixed_alloc * find(size_t nAllocSize);
+   fixed_alloc * find(size_t nAllocSize, memsize * psizeFound);
 
 
 };

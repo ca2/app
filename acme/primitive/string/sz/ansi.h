@@ -36,7 +36,7 @@ CLASS_DECL_ACME constexpr memsize null_terminated_character_count_to_byte_length
 
 
 template < primitive_character CHARACTER >
-CLASS_DECL_ACME constexpr strsize null_terminated_byte_length_to_character_count(const CHARACTER * pszTrigger, memsize nByteLength)
+constexpr strsize null_terminated_byte_length_to_character_count(const CHARACTER * pszTrigger, memsize nByteLength)
 {
 
    return (::strsize)((nByteLength / sizeof(CHARACTER)) - 1);

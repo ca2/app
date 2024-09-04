@@ -28,7 +28,7 @@ namespace windows_common
       void initialize_allocator(::acme::acme * pacme) override;
 
 
-      void * allocate(memsize s, const char * pszAnnotation = nullptr) override;
+      void * allocate(memsize s, ::memsize * psizeAllocated, const char * pszAnnotation = nullptr) override;
       void * reallocate(void * p, memsize s, const char * pszAnnotation = nullptr) override;
       void free(void * p) override;
       memsize size(void * p) override;

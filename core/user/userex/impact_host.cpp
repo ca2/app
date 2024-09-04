@@ -236,7 +236,7 @@ namespace userex
             ::type < simple_child_frame >(),
             ::type < ::userex::pane_tab_impact >())));
 
-         user()->m_pbaseuser->initialize(this);
+         //user()->m_pbaseuser->initialize(this);
 
       }
 
@@ -265,7 +265,7 @@ namespace userex
       information() << "";
       information() << "";
 
-      post_procedure([pupdown, this]
+      //post_procedure([pupdown, this]
       {
 
          ::pointer<::simple_frame_window>pframewindow = pupdown;
@@ -277,7 +277,7 @@ namespace userex
             if (ptabimpact->is_hosting(pframewindow))
             {
 
-               return;
+               return true;
 
             }
 
@@ -369,7 +369,7 @@ namespace userex
 
          }
 
-      });
+      }
 
       return true;
 

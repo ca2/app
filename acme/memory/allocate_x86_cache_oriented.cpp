@@ -12,7 +12,7 @@ public:
    void * alloc(int iSize)
    {
 
-      return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize);
+      return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize, nullptr);
 
    }
 
@@ -70,7 +70,7 @@ public:
 
       int iSize = calc_cache_size();
 
-      void * p = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize * 2);
+      void * p = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize * 2, nullptr);
 
       // TODO : better dynamically memory align
 
@@ -113,7 +113,7 @@ public:
       }
       else
       {
-         pb = (::u8 *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(c);
+         pb = (::u8 *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(c, nullptr);
 
          // can use string because messed all with cache out hot hit !!/^`}{{ **!
          //::acme::application * papp = get_app();

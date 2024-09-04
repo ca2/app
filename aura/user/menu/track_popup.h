@@ -16,6 +16,8 @@ namespace menu
    {
       
       e_track_popup_none,
+      e_track_popup_inside_target = 1,
+      e_track_popup_outside_target = 2,
       
    };
 
@@ -28,7 +30,7 @@ namespace menu
    {
    public:
       
-      
+
       ::pointer < ::menu::menu >          m_pmenu;
       ::pointer < ::user::interaction >   m_puserinteractionTarget;
       ::pointer < ::channel >             m_pchannelNotify;

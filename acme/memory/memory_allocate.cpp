@@ -10,7 +10,7 @@
 #include "simple_memory_allocate.h"
 
 
-CLASS_DECL_ACME void * memory_allocate(memsize size, const char * pszAnnotation)
+CLASS_DECL_ACME void * memory_allocate(memsize size, memsize * psizeAllocated, const char * pszAnnotation)
 {
    
    ::heap::memory * pmemory;
@@ -40,13 +40,20 @@ CLASS_DECL_ACME void * memory_allocate(memsize size, const char * pszAnnotation)
    if(::is_set(pmemory))
    {
    
-      p = pmemory->allocate(size);
+      p = pmemory->allocate(size, psizeAllocated, pszAnnotation);
    
    }
    else
    {
    
       p = simple_memory_allocate(size, pszAnnotation);
+
+      if (psizeAllocated)
+      {
+
+         *psizeAllocated = size;
+
+      }
    
    }
 

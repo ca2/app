@@ -19,7 +19,7 @@ CLASS_DECL_ACME void * processor_cache_oriented_memory_alloc(size_t s)
 
 #else
 
-   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(s);
+   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(s, nullptr);
 
 #endif
 

@@ -36,18 +36,42 @@ namespace heap
 
    }
 
-   void * malloc_allocator::allocate(memsize s, const char * pszAnnotation)
+   void * malloc_allocator::allocate(memsize s, memsize * psizeAllocated, const char * pszAnnotation)
    {
 
 #ifdef WINDOWS
 
-      return _malloc_base((size_t)s);
+      auto p = _malloc_base((size_t)s);
 
 #else
 
-      return ::malloc(s);
+      auto p = ::malloc(s);
+
 
 #endif
+
+      if (psizeAllocated)
+      {
+
+         auto sizeAlloc = size(p);
+
+         if (sizeAlloc <= 0)
+         {
+
+            *psizeAllocated = s;
+
+         }
+         else
+         {
+
+            *psizeAllocated = sizeAlloc;
+
+         }
+
+      }
+
+      return p;
+
    }
 
 

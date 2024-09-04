@@ -28,13 +28,13 @@ public:
    plex_heap_alloc * find(memsize nAllocSize);
 
 
-   void * _alloc(memsize size);
+   void * _alloc(memsize size, memsize * psizeAllocated);
    void * _realloc(void * p, memsize nAllocSize, memsize nOldAllocSize, int align);
    void _free(void * p, memsize nAllocSize);
 
    void pre_finalize();
 
-   void * alloc_debug(memsize nAllocSize, i32 nBlockUse, const char * szFileName, i32 iLine);
+   void * alloc_debug(memsize nAllocSize, memsize * psizeAllocated, i32 nBlockUse, const char * szFileName, i32 iLine);
    void * realloc_debug(void * p, memsize nAllocSize, memsize nOldAllocSize, int align, i32 nBlockUse, const char * szFileName, i32 iLine);
    void free_debug(void * p, memsize nAllocSize);
 

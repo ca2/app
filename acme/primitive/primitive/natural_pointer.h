@@ -37,7 +37,7 @@ public:
    meta_data(enum_zero_init) : m_countData(0), m_sizeStorageInBytes(0), m_countReference(1) {}
 
    
-   bool natural_is_shared() const { return m_countReference > 1; }
+   bool natural_is_shared() const { return m_countReference >= 2; }
 
    
    auto natural_increment_reference_count() { return ++m_countReference; }
@@ -136,13 +136,14 @@ public:
 
 
    using NATURAL_META_DATA = natural_meta_data < BASE_META_DATA >;
+   using META_DATA = BASE_META_DATA;
    using META = typename BASE_META_DATA::META;
    using DATA = typename BASE_META_DATA::DATA;
    using iterator = typename RANGE_TYPE::iterator;
 
 
    inline natural_pointer(no_initialize_t) : RANGE_TYPE(no_initialize_t{}) { }
-   inline natural_pointer(enum_zero_initialize) : RANGE_TYPE(e_zero_initialize) { }
+   inline natural_pointer(nullptr_t) : RANGE_TYPE(nullptr) { }
    inline natural_pointer(const natural_pointer & natural_pointer)
    {
 
@@ -220,6 +221,20 @@ public:
 
    }
 
+   
+   inline static NATURAL_META_DATA * _create_meta_data(memsize sizeStorageInBytes)
+   {
+
+      auto p = memory()->allocate(sizeStorageInBytes + sizeof(META_DATA), &sizeStorageInBytes);
+
+      auto pmetadata = new (p) natural_meta_data < META_DATA >();
+
+      pmetadata->m_sizeStorageInBytes = sizeStorageInBytes;
+
+      return pmetadata;
+
+   }
+
 
    natural_pointer & operator = (natural_pointer && natural_pointer) 
    { 
@@ -264,18 +279,6 @@ public:
    }
 
 
-   inline static NATURAL_META_DATA * create_meta_data(::memsize sizeStorageInBytes)
-   {
-
-      auto pmetadata = (natural_meta_data < BASE_META_DATA > *) memory()->allocate(sizeStorageInBytes + sizeof(BASE_META_DATA));
-
-      pmetadata->m_countReference.construct();
-
-      pmetadata->m_sizeStorageInBytes = sizeStorageInBytes;
-
-      return pmetadata;
-
-   }
 
 
    inline NATURAL_META_DATA * metadata() const
@@ -325,6 +328,27 @@ public:
       {
 
          pNew->natural_increment_reference_count();
+
+         this->m_begin = (iterator)pNew->begin();
+
+         this->m_end = (iterator)pNew->end();
+
+         this->set_string_flag();
+
+         natural_release(pOld);
+
+      }
+
+   }
+
+
+   void place_natural_meta_data(natural_meta_data < BASE_META_DATA > * pNew)
+   {
+
+      auto pOld = NATURAL_META_DATA::from_data(this->m_begin);
+
+      if (pOld != pNew)
+      {
 
          this->m_begin = (iterator)pNew->begin();
 

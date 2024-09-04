@@ -111,7 +111,7 @@ namespace user
 
       ::i32_map < ::pointer<::image_list >>                          m_pimagelist; // int is the size_i32
       ::i32_map < ::pointer<::image_list >>                          m_pimagelistHover; // int is the size;
-      map < ::user::interaction *, ::string_array >                  m_mapInterest;
+      map < ::pointer < ::user::interaction >, ::string_array >      m_mapInterest;
 
 
    public:

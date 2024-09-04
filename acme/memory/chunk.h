@@ -71,7 +71,7 @@ public:
          destroy();
       }
 
-      m_p = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(s);
+      m_p = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(s, nullptr);
 
       if (::is_set(m_p))
       {

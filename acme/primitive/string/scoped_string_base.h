@@ -30,20 +30,20 @@ public:
    using STRING = ::string_base < ITERATOR_TYPE >;
 
 
-   scoped_string_base():RANGE(e_zero_initialize) {}
-   scoped_string_base(nullptr_t) :RANGE(e_zero_initialize) {}
-   scoped_string_base(const scoped_ansi_string & scopedstr) : RANGE(e_zero_initialize) { construct_range(scopedstr); }
-   scoped_string_base(const scoped_wd16_string & scopedstr) : RANGE(e_zero_initialize) { construct_range(scopedstr); }
-   scoped_string_base(const scoped_wd32_string & scopedstr) : RANGE(e_zero_initialize) { construct_range(scopedstr); }
+   scoped_string_base():RANGE(nullptr) {}
+   scoped_string_base(nullptr_t) :RANGE(nullptr) {}
+   scoped_string_base(const scoped_ansi_string & scopedstr) : RANGE(nullptr) { construct_range(scopedstr); }
+   scoped_string_base(const scoped_wd16_string & scopedstr) : RANGE(nullptr) { construct_range(scopedstr); }
+   scoped_string_base(const scoped_wd32_string & scopedstr) : RANGE(nullptr) { construct_range(scopedstr); }
 
    template < primitive_string STRING >
    scoped_string_base(const STRING & str) { construct_range(str); }
 
    template < has_as_string HAS_AS_STRING >
-   scoped_string_base(const HAS_AS_STRING & has_as_string) : RANGE(e_zero_initialize) { this->str(has_as_string.as_string()); }
+   scoped_string_base(const HAS_AS_STRING & has_as_string) : RANGE(nullptr) { this->str(has_as_string.as_string()); }
 
    template < has_get_string HAS_GET_STRING >
-   scoped_string_base(const HAS_GET_STRING & has_get_string) : RANGE(e_zero_initialize) { this->str(has_get_string.get_string()); }
+   scoped_string_base(const HAS_GET_STRING & has_get_string) : RANGE(nullptr) { this->str(has_get_string.get_string()); }
 
 //   template < primitive_character CHARACTER2 >
 //   scoped_string_base(CHARACTER2 character) : RANGE(no_initialize_t{})
@@ -63,7 +63,7 @@ public:
 //   }
 
    template < character_range_not_string_neither_scoped_string CHARACTER_RANGE >
-   scoped_string_base(const CHARACTER_RANGE & range) : RANGE(e_zero_initialize) { construct_range(range); }
+   scoped_string_base(const CHARACTER_RANGE & range) : RANGE(nullptr) { construct_range(range); }
 
     //   scoped_string_base(const ::block & block) :m_str(e_zero_initialize), RANGE((const_iterator)block.begin(), (const_iterator)block.end()) {}
 //   scoped_string_base(const ::ansi_character ch) :m_str(ch), RANGE(m_str) { }

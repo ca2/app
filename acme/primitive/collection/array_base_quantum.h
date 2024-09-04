@@ -1548,20 +1548,22 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::fre
 
    auto size = this->size();
 
-   if(size != m_countAllocation)
+   auto sizeNew = size;
+
+   if(sizeNew != m_countAllocation)
    {
-      
+
       // shrink to desired size
 
 #ifdef SIZE_T_MAX
       
-      ASSERT(size <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
+      ASSERT(sizeNew <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
 
 #endif
       
       TYPE* pNewData = nullptr;
 
-      if(size != 0)
+      if(sizeNew != 0)
       {
 
          TYPE * pNewData;
@@ -1613,7 +1615,7 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::fre
 
 #else
 
-         pNewData = MEMORY::allocate(size);
+         pNewData = MEMORY::allocate(sizeNew, &sizeNew);
 
 #endif
 
@@ -1627,7 +1629,7 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::fre
 
       this->m_begin = pNewData;
 
-      m_countAllocation = size;
+      m_countAllocation = sizeNew;
 
       this->m_end = this->m_begin + size;
 
@@ -2324,7 +2326,7 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::res
 
 #else
 
-      this->m_begin = MEMORY::allocate(newAllocationSize);
+      this->m_begin = MEMORY::allocate(newAllocationSize, &newAllocationSize);
 
 #endif
       
@@ -2410,7 +2412,7 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::res
 
 #else
 
-      TYPE * pNewData = MEMORY::allocate(newAllocationSize);
+      TYPE * pNewData = MEMORY::allocate(newAllocationSize, &newAllocationSize);
 
 #endif
 
@@ -2538,7 +2540,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
 #else
 
-      this->m_begin = MEMORY::allocate(nAllocSize);
+      this->m_begin = MEMORY::allocate(nAllocSize, &nAllocSize);
 
 #endif
       
@@ -2688,7 +2690,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
 #else
 
-      TYPE * pNewData = MEMORY::allocate(countNewAllocation);
+      TYPE * pNewData = MEMORY::allocate(countNewAllocation, &countNewAllocation);
 
 #endif
 

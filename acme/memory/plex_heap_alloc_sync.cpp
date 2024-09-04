@@ -143,14 +143,20 @@ void plex_heap_alloc_sync::Free(void * pParam)
    //      printf("Free 8192");
    //
    //   }
+   u64 & u = ((u64 &)pParam);
+   if ((u & 0xffffffff) == 00)
+   {
+      informationf("");
+
+   }
 
    if (m_nAllocSize == 128)
    {
-      u64 & u = ((u64 &)pParam);
+      //u64 & u = ((u64 &)pParam);
 
       if ((u & 0xff000000) == 00)
       {
-         //informationf("");
+         informationf("");
 
       }
 

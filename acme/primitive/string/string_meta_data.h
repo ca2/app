@@ -35,6 +35,7 @@ public:
    /// always char count (before first [and possibly final, but not necessarily final] null terminator)
    inline ::strsize character_count() const { return (::strsize) this->m_countData; }
    inline ::memsize character_count_in_bytes() const;
+   inline ::memsize null_terminated_character_count_in_bytes() const;
    
 
    inline void raw_set_character_count(::strsize strsize);

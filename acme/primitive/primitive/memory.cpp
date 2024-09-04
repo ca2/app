@@ -314,13 +314,13 @@ memory::~memory()
    if(m_bAligned)
    {
 
-      return (::u8 *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->aligned_allocate((size_t)dwAllocation);
+      return (::u8 *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->aligned_allocate((size_t)dwAllocation, nullptr);
 
    }
    else
    {
 
-      return (::u8 *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate((size_t)dwAllocation);
+      return (::u8 *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate((size_t)dwAllocation, nullptr);
 
    }
 

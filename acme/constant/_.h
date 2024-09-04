@@ -32,14 +32,6 @@ enum enum_character_set : ::i32;
 enum enum_posix_shell : ::i32;
 
 
-enum enum_zero_initialize
-{
-
-   e_zero_initialize,
-
-};
-
-
 enum enum_integer_type : ::i32
 {
 

@@ -31,6 +31,9 @@
 #include "base/user/simple/child_frame.h"
 #include "base/user/simple/toolbar.h"
 #include "core/filesystem/filemanager/data.h"
+#include "core/filesystem/filemanager/document.h"
+#include "core/filesystem/filemanager/frame.h"
+#include "core/filesystem/filemanager/impact.h"
 #include "core/platform/application.h"
 #include "core/platform/session.h"
 #include "core/user/account/impact.h"
@@ -1732,9 +1735,40 @@ namespace core
 
          }
 
+
+         application()->m_pcoreapplication->filemanager();
+
+         //if (::is_null(user()->impact_system("filemanager_filemanager")))
+         {
+
+            //m_pimpactsystemFileManager = 
+            add_impact_system(
+               FILEMANAGER_IMPACT, ::place(new ::user::multiple_document_template(
+                  "filemanager",
+                  ::type < ::filemanager::document >(),
+                  ::type < ::filemanager::frame >(),
+                  ::type < ::filemanager::impact >())));
+            //::type < main_impact >()));
+
+         //auto psession = get_session();
+
+         //psession->add_document_template(m_pimpactsystemFileManager);
+
+         }
+
+
+
          //m_mapimpactsystem[FILEMANAGER_IMPACT] = filemanager(idImpact)->m_pimpactsystem;
 
          //add_factory_item <::user::color_impact >();
+
+   //      add_impact_system(
+   //COLORSEL_IMPACT, ::place(new ::user::multiple_document_template(
+   //   "main",
+   //   ::type < ::user::document >(),
+   //   ::type < ::simple_frame_window >(),
+   //   ::type < ::user::color_selector_impact >())));
+
 
          //user()->m_mapimpactsystem[COLORSEL_IMPACT] = ::place(new ::user::multiple_document_template(
          //   get_app(),

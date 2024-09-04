@@ -53,7 +53,7 @@ namespace heap
    //}
 
 
-   void * allocator::allocate(memsize iSize, const char * pszAnnotation)
+   void * allocator::allocate(memsize iSize, memsize * psizeAllocated, const char * pszAnnotation)
    {
 
       throw ::interface_only();

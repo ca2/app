@@ -59,10 +59,10 @@ namespace heap
 
 #else
 
-      void * allocate(memsize iSize, const char * pszAnnotation = nullptr) override
+      void * allocate(memsize iSize, memsize * psizeAllocated, const char * pszAnnotation = nullptr) override
       {
 
-         return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize, pszAnnotation);
+         return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(iSize, psizeAllocated, pszAnnotation);
 
       }
 

@@ -27,7 +27,7 @@ plex_heap * plex_heap::create(plex_heap *& pheapHead, uptr nMax, uptr cbElement,
 
    }
 
-   auto pheap = (plex_heap *)pallocator->allocate(sizeof(plex_heap) + nMax * cbElement);
+   auto pheap = (plex_heap *)pallocator->allocate(sizeof(plex_heap) + nMax * cbElement, nullptr);
 
    if ((iptr)pheap > g_iMonitor - 8192 && (iptr)pheap < g_iMonitor + 8192)
    {

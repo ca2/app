@@ -94,7 +94,7 @@ namespace heap
 
    //Created by camilo on 2021-07-24 01:06 BRT <3ThomasBorregaardSorensen!!
 //#include "__aligned_memory_allocate.h"
-   void * heap::aligned_allocate(memsize size, memsize align, const char * pszAnnotation)
+   void * heap::aligned_allocate(memsize size, memsize * psizeAllocated, memsize align, const char * pszAnnotation)
    {
 
       throw ::interface_only();
@@ -104,7 +104,7 @@ namespace heap
     }
 
 
-   void * heap::aligned_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align, const char * pszAnnotation)
+   void * heap::aligned_allocate_debug(memsize nSize, memsize * psizeAllocated, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align, const char * pszAnnotation)
    {
 
       throw ::interface_only();
@@ -117,7 +117,7 @@ namespace heap
 
    //Created by camilo on 2021-07-24 01:05 BRT <3ThomasBorregaardSorensen!!
 //#include "__unaligned_memory_allocate.h"
-    void * heap::unaligned_allocate(memsize size, const char * pszAnnotation)
+    void * heap::unaligned_allocate(memsize size, memsize * psizeAllocated, const char * pszAnnotation)
     {
 
        throw ::interface_only();
@@ -129,7 +129,7 @@ namespace heap
 
   
 
-    void * heap::unaligned_allocate_debug(memsize nSize, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation)
+    void * heap::unaligned_allocate_debug(memsize nSize, memsize * psizeAllocated, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation)
     {
 
        throw ::interface_only();
@@ -155,7 +155,7 @@ namespace heap
 #if !defined(MCHECK) && !defined(__VLD) && !defined(__MCRTDBG)
 
 
-    void * heap::allocate(memsize size, const char * pszAnnotation)
+    void * heap::allocate(memsize size, memsize * psizeAllocated, const char * pszAnnotation)
     {
 
        throw ::interface_only();

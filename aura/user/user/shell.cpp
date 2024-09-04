@@ -181,7 +181,7 @@ namespace user
 
       branch_synchronously();
 
-      synchronous_lock synchronouslock(this->synchronization());
+      //synchronous_lock synchronouslock(this->synchronization());
 
       //return success;
 
@@ -216,7 +216,7 @@ namespace user
 
       ::draw2d::lock lock(this);
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (contains_image(getfileimage.m_imagekey, getfileimage.m_iImage))
       {
@@ -235,7 +235,7 @@ namespace user
    int shell::_reserve_image(const image_key & key)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       int iImage = -1;
 
@@ -258,7 +258,7 @@ namespace user
    bool shell::contains_image(const image_key & imagekey, i32 & iImage)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_imagemap.lookup(imagekey, iImage))
       {
@@ -275,7 +275,7 @@ namespace user
    void shell::add_size_interest(::i32_array iaSize)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto cAddedCount = m_iaSize.append_unique(iaSize);
 
@@ -294,7 +294,7 @@ namespace user
    void shell::set_size_interest(::i32_array iaSize)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       ::sort::QuickSortAsc(iaSize);
 
@@ -393,7 +393,7 @@ namespace user
    void shell::on_update_sizes_interest()
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       m_imagemap.erase_all();
 
@@ -555,7 +555,7 @@ namespace user
    ::image_list * shell::GetImageList(int iSize)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bPendingUpdate)
       {
@@ -600,7 +600,7 @@ namespace user
    ::image_list * shell::GetImageListHover(int iSize)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bPendingUpdate)
       {
@@ -679,7 +679,7 @@ namespace user
    i32 shell::get_file_image(const ::file::path & path, const ::user::shell::enum_file_attribute & eattribute, ::user::shell::enum_icon eicon)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       image_key imagekey(path, m_strShellThemePrefix, eattribute, eicon);
 
@@ -691,7 +691,7 @@ namespace user
    i32 shell::get_file_image(const image_key & imagekey)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (m_bPendingUpdate)
       {
@@ -730,7 +730,7 @@ namespace user
 
       {
 
-         synchronous_lock synchronouslock(this->synchronization());
+         _synchronous_lock synchronouslock(this->synchronization());
 
          m_imagekeySchedule.add(imagekey);
 
@@ -746,7 +746,7 @@ namespace user
    void shell::warn_when_ok(const ::file::path & path, const ::user::interaction_array & userinteractionaInterested)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       for(auto & puserinteraction : userinteractionaInterested.m_interactiona)
       {
@@ -761,28 +761,41 @@ namespace user
    void shell::warn_ok(const ::file::path & path)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
-      for(auto & pair : m_mapInterest)
+      bool bErasedAnyAtForLoop;
+
+      do
       {
 
-         if(pair.m_element2.erase(path) > 0)
+         bErasedAnyAtForLoop = false;
+
+         for (auto & pair : m_mapInterest)
          {
 
-            pair.m_element1->set_need_redraw();
-
-            pair.m_element1->post_redraw();
-
-            if(pair.m_element2.is_empty())
+            if (pair.m_element2.erase(path) > 0)
             {
 
-               m_mapInterest.erase_item(pair.m_element1);
+               pair.m_element1->set_need_redraw();
+
+               pair.m_element1->post_redraw();
+
+               if (pair.m_element2.is_empty())
+               {
+
+                  m_mapInterest.erase_item(pair.m_element1);
+
+                  bErasedAnyAtForLoop = true;
+
+                  break;
+
+               }
 
             }
 
          }
 
-      }
+      } while (bErasedAnyAtForLoop);
 
    }
 
@@ -897,8 +910,8 @@ namespace user
 //            str.trim();
 //            /*HICON hicon16 = (HICON) ::LoadImage(nullptr, dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
 //            HICON hicon48 = (HICON) ::LoadImage(nullptr, dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
-//            synchronous_lock sl1(m_pil48Hover->synchronization());
-//            synchronous_lock sl2(m_pil48->synchronization());
+//            _synchronous_lock sl1(m_pil48Hover->synchronization());
+//            _synchronous_lock sl2(m_pil48->synchronization());
 //            iImage = m_pil16->add_icon_os_data(hicon16);
 //            m_pil48Hover->add_icon_os_data(hicon48);
 //
@@ -1069,8 +1082,8 @@ namespace user
             str.trim();
             /*HICON hicon16 = (HICON) ::LoadImage(nullptr, dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
             HICON hicon48 = (HICON) ::LoadImage(nullptr, dir()->matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
-            synchronous_lock sl1(m_pil48Hover->synchronization());
-            synchronous_lock sl2(m_pil48->synchronization());
+            _synchronous_lock sl1(m_pil48Hover->synchronization());
+            _synchronous_lock sl2(m_pil48->synchronization());
             iImage = m_pil16->add_icon_os_data(hicon16);
             m_pil48Hover->add_icon_os_data(hicon48);
 
@@ -1396,7 +1409,7 @@ namespace user
 
          {
 
-            synchronous_lock sl1(m_pimagelist[16]->synchronization());
+            _synchronous_lock sl1(m_pimagelist[16]->synchronization());
 
             image_source imagesource(pimage1, pimage1->rectangle());
 
@@ -1412,7 +1425,7 @@ namespace user
 
          {
 
-            synchronous_lock sl2(m_pimagelist[48]->synchronization());
+            _synchronous_lock sl2(m_pimagelist[48]->synchronization());
 
             image_source imagesource(image48, image48->rectangle());
 
@@ -1428,7 +1441,7 @@ namespace user
 
          {
 
-            synchronous_lock sl1(m_pimagelistHover[16]->synchronization());
+            _synchronous_lock sl1(m_pimagelistHover[16]->synchronization());
 
             image_source imagesource(image16, image16->rectangle());
 
@@ -1446,7 +1459,7 @@ namespace user
 
          {
 
-            synchronous_lock sl1(m_pimagelistHover[48]->synchronization());
+            _synchronous_lock sl1(m_pimagelistHover[48]->synchronization());
 
             image_source imagesource(image48, image48->rectangle());
 
@@ -1716,7 +1729,7 @@ namespace user
 
             m_pgetfileimage->m_imagekey.m_eicon = eicon;
 
-            synchronous_lock synchronouslock(this->synchronization());
+            _synchronous_lock synchronouslock(this->synchronization());
 
             if (m_pgetfileimage->m_iImage & I32_MINIMUM)
             {
@@ -1756,7 +1769,7 @@ namespace user
    void shell::set_icon(int iImage, const ::file::path & pathIcon)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       auto iaSize = m_iaSize;
 
@@ -1806,9 +1819,9 @@ namespace user
 //   void shell::set_image(int iImage, int iSize, ::image * pimage)
 //   {
 //
-//      synchronous_lock synchronouslock(m_pimagelist[iSize]->synchronization());
+//      _synchronous_lock synchronouslock(m_pimagelist[iSize]->synchronization());
 //
-//      synchronous_lock slHover(m_pimagelistHover[iSize]->synchronization());
+//      _synchronous_lock slHover(m_pimagelistHover[iSize]->synchronization());
 //
 //      m_pimagelist[iSize]->set(iImage, pimage);
 //
@@ -2028,7 +2041,7 @@ namespace user
    //int shell::add_hover_image(int iSize, int iImage, ::color::color crBk)
    //{
 
-   //   synchronous_lock synchronouslock(m_pimagelistHover[iSize]->synchronization());
+   //   _synchronous_lock synchronouslock(m_pimagelistHover[iSize]->synchronization());
 
    //   if (crBk == 0)
    //   {
@@ -2086,7 +2099,7 @@ namespace user
    //int shell::add_hover_image(int iSize, int iImage, const ::color::color& colorBackground)
    //{
 
-   //   synchronous_lock synchronouslock(m_pimagelistHover[iSize]->synchronization());
+   //   _synchronous_lock synchronouslock(m_pimagelistHover[iSize]->synchronization());
 
    //   if (colorBackground.is_transparent())
    //   {

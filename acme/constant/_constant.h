@@ -1041,13 +1041,13 @@ enum enum_command
 // };
 
 
-//class string;
-enum enum_for_moving
-{
-
-   e_for_moving,
-
-};
+////class string;
+//enum enum_for_moving
+//{
+//
+//   e_for_moving,
+//
+//};
 
 
 

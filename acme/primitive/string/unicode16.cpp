@@ -791,7 +791,7 @@ strsize ansi_to_wd16(::wd16_character* pwsz, const ::ansi_character * psz, strsi
 
    strsize s = ansi_to_wd16_len(input, input_size);
 
-   ::wd16_character* v = (::wd16_character*)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(::wd16_character) * (s + 1));
+   ::wd16_character* v = (::wd16_character*)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(sizeof(::wd16_character) * (s + 1), nullptr);
 
    ansi_to_wd16(v, input, s);
 

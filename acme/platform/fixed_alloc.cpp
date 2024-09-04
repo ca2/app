@@ -252,16 +252,18 @@ fixed_alloc_array::~fixed_alloc_array()
    }
 }
 
-void * fixed_alloc_array::_alloc(size_t nAllocSize)
+void * fixed_alloc_array::_alloc(size_t nAllocSize, memsize * psizeAllocated)
 {
-   fixed_alloc * palloc = find(nAllocSize);
+   fixed_alloc * palloc = find(nAllocSize, psizeAllocated);
    if(palloc != nullptr)
    {
       return palloc->Alloc();
    }
    else
    {
-      return m_pallocator->allocate(nAllocSize);
+      
+      return m_pallocator->allocate(nAllocSize, psizeAllocated);
+
    }
 }
 
@@ -269,7 +271,7 @@ void * fixed_alloc_array::_alloc(size_t nAllocSize)
 void fixed_alloc_array::_free(void * p, size_t nAllocSize)
 {
 
-   fixed_alloc * palloc = find(nAllocSize);
+   fixed_alloc * palloc = find(nAllocSize, nullptr);
 
    if(palloc != nullptr)
    {
@@ -290,9 +292,9 @@ void fixed_alloc_array::_free(void * p, size_t nAllocSize)
 void * fixed_alloc_array::_realloc(void * pOld, size_t nOldAllocSize, size_t nNewAllocSize)
 {
 
-   fixed_alloc * pallocOld = find(nOldAllocSize);
+   fixed_alloc * pallocOld = find(nOldAllocSize, nullptr);
 
-   fixed_alloc * pallocNew = find(nNewAllocSize);
+   fixed_alloc * pallocNew = find(nNewAllocSize, nullptr);
 
    //if(pallocOld == nullptr && pallocNew == nullptr)
    //{
@@ -310,7 +312,7 @@ void * fixed_alloc_array::_realloc(void * pOld, size_t nOldAllocSize, size_t nNe
    else
    {
 
-      void * pNew = pallocNew == nullptr ? m_pallocator->allocate(nNewAllocSize) : pallocNew->Alloc();
+      void * pNew = pallocNew == nullptr ? m_pallocator->allocate(nNewAllocSize, nullptr) : pallocNew->Alloc();
 
       if(pNew == nullptr)
          return nullptr;
@@ -337,7 +339,7 @@ void * fixed_alloc_array::_realloc(void * pOld, size_t nOldAllocSize, size_t nNe
 }
 
 
-fixed_alloc * fixed_alloc_array::find(size_t nAllocSize)
+fixed_alloc * fixed_alloc_array::find(size_t nAllocSize, memsize * psizeFound)
 {
    //synchronous_lock lock(m_pmutex, true);
    size_t nFoundSize = UINT_MAX;
@@ -352,8 +354,17 @@ fixed_alloc * fixed_alloc_array::find(size_t nAllocSize)
          break;
       }
    }
-   if(iFound >= 0)
-      return this->element_at(iFound);
+   if (iFound >= 0)
+   {
+      auto p = this->element_at(iFound);
+      if (*psizeFound)
+      {
+
+         *psizeFound = nFoundSize;
+
+      }
+      return p;
+   }
    else
       return nullptr;
 }

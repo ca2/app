@@ -48,7 +48,7 @@ template < primitive_character CHARACTER >
 inline ::strsize string_meta_data < CHARACTER>::storage_character_count() const
 {
 
-   return (::strsize)null_terminated_byte_length_to_character_count(&this->begin()[0], (::strsize)this->m_sizeStorageInBytes);
+   return (::strsize)null_terminated_byte_length_to_character_count(this->begin(), (::strsize)this->m_sizeStorageInBytes);
 
 }
 
@@ -61,5 +61,13 @@ inline ::memsize string_meta_data < CHARACTER>::character_count_in_bytes() const
 
 }
 
+
+template < primitive_character CHARACTER >
+inline ::memsize string_meta_data < CHARACTER>::null_terminated_character_count_in_bytes() const
+{
+
+   return this->character_count_in_bytes() + sizeof(CHARACTER);
+
+}
 
 

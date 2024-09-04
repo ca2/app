@@ -53,10 +53,10 @@ namespace heap
    }
 
 
-   void * memory::allocate(memsize size, const char * pszAnnotation)
+   void * memory::allocate(memsize size, memsize * psizeAllocated, const char * pszAnnotation)
    {
 
-      return m_pheap->allocate(size, pszAnnotation);
+      return m_pheap->allocate(size, psizeAllocated, pszAnnotation);
 
    }
 
@@ -163,34 +163,34 @@ namespace heap
    }
 
 
-   void * memory::aligned_allocate(memsize s, memsize align, const char * pszAnnotation)
+   void * memory::aligned_allocate(memsize s, memsize * psizeAllocated, memsize align, const char * pszAnnotation)
    {
 
-      return m_pheap->aligned_allocate(s, align, pszAnnotation);
+      return m_pheap->aligned_allocate(s, psizeAllocated, align, pszAnnotation);
 
    }
 
 
-   void * memory::aligned_allocate_debug(memsize s, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align, const char * pszAnnotation)
+   void * memory::aligned_allocate_debug(memsize s, memsize * psizeAllocated, i32 nBlockUse, const char * szFileName, i32 nLine, memsize align, const char * pszAnnotation)
    {
 
-      return m_pheap->aligned_allocate_debug(s, nBlockUse, szFileName, nLine, align, pszAnnotation);
+      return m_pheap->aligned_allocate_debug(s, psizeAllocated, nBlockUse, szFileName, nLine, align, pszAnnotation);
 
    }
 
 
-   void * memory::unaligned_allocate(memsize s, const char * pszAnnotation)
+   void * memory::unaligned_allocate(memsize s, memsize * psizeAllocated, const char * pszAnnotation)
    {
 
-      return m_pheap->unaligned_allocate(s, pszAnnotation);
+      return m_pheap->unaligned_allocate(s, psizeAllocated, pszAnnotation);
 
    }
 
 
-   void * memory::unaligned_allocate_debug(memsize s, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation)
+   void * memory::unaligned_allocate_debug(memsize s, memsize * psizeAllocated, i32 nBlockUse, const char * szFileName, i32 nLine, const char * pszAnnotation)
    {
 
-      return m_pheap->aligned_allocate_debug(s, nBlockUse, szFileName, nLine, 0, pszAnnotation);
+      return m_pheap->aligned_allocate_debug(s, psizeAllocated, nBlockUse, szFileName, nLine, 0, pszAnnotation);
 
    }
 

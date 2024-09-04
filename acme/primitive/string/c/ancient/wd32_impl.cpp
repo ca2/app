@@ -79,7 +79,7 @@ CLASS_DECL_ACME ::wd32_character * __wd32ncpy(::wd32_character * pszDst, const :
 
    auto pszStart = pszDst;
 
-   do { *pszDst++ = *psz++; len--; } while (*psz && len >= 0);
+   do { *pszDst++ = *psz++; len--; } while (*psz && len > 0);
 
    while (len > 0) { *pszDst++ = *psz++; len--; };
 

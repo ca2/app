@@ -76,6 +76,7 @@ public:
 
    using NATURAL_POINTER = string_natural_pointer < ITERATOR_TYPE >;
    using NATURAL_META_DATA = typename NATURAL_POINTER::NATURAL_META_DATA;
+   using META_DATA = typename NATURAL_POINTER::META_DATA;
    using PRIMITIVE_STRING_TAG = PRIMITIVE_STRING_TAG_TYPE;
    using ITEM_POINTER = get_type_item_pointer< ITERATOR_TYPE>;
    using ITEM = dereference < ITEM_POINTER >;
@@ -90,9 +91,8 @@ public:
 
    string_base() { }
    string_base(no_initialize_t) : NATURAL_POINTER(no_initialize_t{}) { }
-   string_base(enum_zero_initialize) : NATURAL_POINTER(e_zero_initialize) { }
-   string_base(nullptr_t) { }
-   string_base(enum_for_moving) { }
+   string_base(nullptr_t) : NATURAL_POINTER(nullptr) { }
+   //string_base(enum_for_moving) { }
    //string_base(enum_get_buffer, strsize length) { get_buffer(length); }
    //string_base(const ::ansi_character * psz);
    //string_base(const ::wd16_character * psz);
@@ -910,9 +910,78 @@ public:
 
    inline void set_at(strsize iChar, CHARACTER ch);
 
-   CHARACTER * fork_string(strsize strsize);
 
-   CHARACTER * create_string(strsize strsize);
+   inline NATURAL_META_DATA * create_meta_data(strsize characterCount)
+   {
+
+      auto newNullTerminatedByteCount = null_terminated_character_count_to_byte_length(this->begin(), characterCount);
+
+      auto pmetadata = this->_create_meta_data(newNullTerminatedByteCount);
+
+      pmetadata->m_countData = characterCount;
+
+      return pmetadata;
+
+   }
+
+
+   inline NATURAL_META_DATA * fork_meta_data(strsize characterCount)
+   {
+
+      auto newNullTerminatedByteCount = null_terminated_character_count_to_byte_length(this->begin(), characterCount);
+
+      auto pmetadataThis = this->NATURAL_POINTER::metadata();
+
+      if (!pmetadataThis->natural_is_shared() &&
+         newNullTerminatedByteCount <= pmetadataThis->m_sizeStorageInBytes)
+      {
+
+         pmetadataThis->m_countData = characterCount;
+
+         return pmetadataThis;
+
+      }
+
+      auto pmetadata = this->_create_meta_data(newNullTerminatedByteCount);
+
+      pmetadata->m_countData = characterCount;
+
+      ASSERT(::is_null(pmetadataThis) || pmetadataThis->m_countReference >= 1);
+
+      if (::is_set(pmetadataThis))
+      {
+
+         auto newByteCount = pmetadata->character_count_in_bytes();
+
+         auto oldByteCount = pmetadataThis->character_count_in_bytes();
+
+         auto sizeCopy = minimum(oldByteCount, newByteCount);
+
+         if (sizeCopy > 0)
+         {
+
+            memory_copy((void *)pmetadata->begin(), pmetadataThis->begin(), sizeCopy);
+
+         }
+
+         ((CHARACTER *)pmetadata->begin())[sizeCopy] = (CHARACTER)0;
+
+         this->natural_release(pmetadataThis);
+
+      }
+
+      return pmetadata;
+
+   }
+
+
+   void create_string(strsize strsize);
+
+
+   void fork_string(strsize strsize);
+
+
+   //inline static NATURAL_META_DATA * create_meta_data(strsize characterCount);
 
    void prepare_write(strsize nLength)
    {

@@ -142,7 +142,7 @@ CLASS_DECL_ACME ::ansi_character * ansi_duplicate(const ::ansi_character * psz)
 
   if (::is_null(psz)) return nullptr;
 
-  auto pszDup = (::ansi_character *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(psz) + 1);
+  auto pszDup = (::ansi_character *) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(strlen(psz) + 1, nullptr);
 
   strcpy(pszDup, psz);
 
@@ -158,7 +158,7 @@ CLASS_DECL_ACME ::ansi_character * ansi_count_duplicate(const ::ansi_character *
 
   if (len < 0) return nullptr;
 
-  auto pszDup = (::ansi_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len + 1);
+  auto pszDup = (::ansi_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len + 1, nullptr);
 
   strncpy(pszDup, psz, len);
 
@@ -1028,7 +1028,7 @@ CLASS_DECL_ACME const ::ansi_character * ansi_concatenate_and_duplicate(const ::
 
   strsize len = len1 + len2 + 1;
 
-  auto * psz = (::ansi_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
+  auto * psz = (::ansi_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len, nullptr);
 
   *psz = '\0';
 

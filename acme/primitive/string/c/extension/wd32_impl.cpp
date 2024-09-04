@@ -85,7 +85,7 @@ CLASS_DECL_ACME ::wd32_character * wd32_duplicate(const ::wd32_character * psz)
 
    if (::is_null(psz)) return nullptr;
 
-   auto pszDup = (::wd32_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(wd32_len(psz) + 1);
+   auto pszDup = (::wd32_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(wd32_len(psz) + 1, nullptr);
 
    wd32_cpy(pszDup, psz);
 
@@ -101,7 +101,7 @@ CLASS_DECL_ACME ::wd32_character * wd32_count_duplicate(const ::wd32_character *
 
    if (len < 0) return nullptr;
 
-   auto pszDup = (::wd32_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len + 1);
+   auto pszDup = (::wd32_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len + 1, nullptr);
 
    wd32_ncpy(pszDup, psz, len);
 
@@ -968,7 +968,7 @@ CLASS_DECL_ACME const ::wd32_character * wd32_concatenate_and_duplicate(const ::
 
    strsize len = len1 + len2 + 1;
 
-   auto * psz = (::wd32_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len);
+   auto * psz = (::wd32_character *)::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(len, nullptr);
 
    *psz = '\0';
 

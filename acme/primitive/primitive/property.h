@@ -105,7 +105,7 @@ public:
    void* operator new(size_t size)
    {
 
-      return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_property)->allocate(size);
+      return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_property)->allocate(size, nullptr);
 
    }
 
@@ -113,7 +113,7 @@ public:
    void* operator new(size_t size, const char* /* pszFileName */, int /* nLine */)
    {
 
-      return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_property)->allocate(size);
+      return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_property)->allocate(size, nullptr);
 
    }
 

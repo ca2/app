@@ -89,7 +89,7 @@ void plex_heap_alloc_array::pre_finalize()
 
 
 
-void * plex_heap_alloc_array::alloc_debug(memsize size, i32 nBlockUse, const ::ansi_character * pszFileName, i32 iLine)
+void * plex_heap_alloc_array::alloc_debug(memsize size, memsize * psizeAllocated, i32 nBlockUse, const ::ansi_character * pszFileName, i32 iLine)
 {
 
 #if LAST_MEM_FILE_AND_LINE
@@ -127,7 +127,7 @@ void * plex_heap_alloc_array::alloc_debug(memsize size, i32 nBlockUse, const ::a
 
 #else
 
-   return _alloc(size);
+   return _alloc(size, psizeAllocated);
 
 #endif
 
@@ -240,7 +240,7 @@ void * plex_heap_alloc_array::_realloc(void * p, memsize size, memsize sizeOld, 
       else
       {
 
-         pNew = (char *)m_pallocator->allocate(size);
+         pNew = (char *)m_pallocator->allocate(size, nullptr);
 
       }
 
@@ -361,7 +361,7 @@ plex_heap_alloc * plex_heap_alloc_array::find(memsize nAllocSize)
 }
 
 
-void * plex_heap_alloc_array::_alloc(memsize size)
+void * plex_heap_alloc_array::_alloc(memsize size, memsize * psizeAllocated)
 {
 
    plex_heap_alloc * palloc = find(size);
@@ -371,7 +371,16 @@ void * plex_heap_alloc_array::_alloc(memsize size)
 
       m_pallocator->m_pacme->heap()->on_plex_heap_alloc(palloc);
 
-      return palloc->Alloc();
+      auto p = palloc->Alloc();
+
+      if (psizeAllocated)
+      {
+
+         *psizeAllocated = palloc->m_iAllocSize;
+
+      }
+
+      return p;
 
    }
    else
@@ -379,7 +388,7 @@ void * plex_heap_alloc_array::_alloc(memsize size)
 
       m_pallocator->m_pacme->heap()->on_system_heap_alloc(size);
 
-      return m_pallocator->allocate(size);
+      return m_pallocator->allocate(size, psizeAllocated);
 
    }
 

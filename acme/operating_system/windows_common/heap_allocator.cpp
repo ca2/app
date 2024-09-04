@@ -57,12 +57,21 @@ namespace windows_common
    }
 
 
-   void * heap_allocator::allocate(memsize s, const char * pszAnnotation)
+   void * heap_allocator::allocate(memsize s, ::memsize * psizeAllocated, const char * pszAnnotation)
    {
 
       raw_critical_section_lock criticalsectionlock(&m_criticalsection);
 
-      return ::HeapAlloc(m_handle, 0, s);
+      auto p = ::HeapAlloc(m_handle, 0, s);
+
+      if (psizeAllocated)
+      {
+
+         *psizeAllocated = ::HeapSize(m_handle, 0, p);
+
+      }
+
+      return p;
 
    }
 

@@ -27,6 +27,7 @@
 
 #ifdef WINDOWS
 
+#define atomic_assign64(pi, i) _interlockedexchange64((::i64 *) (pi), i)
 #define atomic_increment64(pi) _interlockedincrement64((::i64 *) (pi))
   
 #else
@@ -53,6 +54,7 @@ inline i64 atomic_increment64(i64 * pi)
 
 #ifdef WINDOWS
 
+#define atomic_assign32(pi, i) _InterlockedExchange((long *)(pi), i)
 #define atomic_increment32(pi) _InterlockedIncrement((long *)(pi))
 
 #else

@@ -17,18 +17,40 @@ namespace heap
       inline ::heap::allocator* allocator() { return ::acme::get()->m_pheapmanagement->m_pallocator; }
 
 
-      inline TYPE* allocate(::collection::count c, const char* pszFile, int iLine)
+      inline TYPE* allocate(::collection::count c, ::collection::count * pcAllocated, const char* pszFile, int iLine)
       {
 
-         return (TYPE*)allocator()->allocate(sizeof(TYPE) * c);
+         memsize sizeAllocated = 0;
+
+         auto p = (TYPE*)allocator()->allocate(sizeof(TYPE) * c, &sizeAllocated);
+
+         if (pcAllocated)
+         {
+
+            *pcAllocated = sizeAllocated / sizeof(TYPE);
+
+         }
+
+         return p;
 
       }
 
 
-      inline TYPE* allocate(::collection::count c)
+      inline TYPE* allocate(::collection::count c, ::collection::count * pcAllocated)
       {
 
-         return (TYPE*)allocator()->allocate(sizeof(TYPE) * c);
+         memsize sizeAllocated = 0;
+
+         auto p = (TYPE*)allocator()->allocate(sizeof(TYPE) * c, &sizeAllocated);
+
+         if (pcAllocated)
+         {
+
+            *pcAllocated = sizeAllocated / sizeof(TYPE);
+
+         }
+
+         return p;
 
       }
 
@@ -62,10 +84,21 @@ namespace heap
       }
 
 
-      inline TYPE * allocate(::collection::count c)
+      inline TYPE * allocate(::collection::count c, ::collection::count * pcAllocated)
       {
 
-         return (TYPE *)memory()->allocate(sizeof(TYPE) * c);
+         memsize sizeAllocated = 0;
+
+         auto p = (TYPE *)memory()->allocate(sizeof(TYPE) * c, &sizeAllocated);
+
+         if (pcAllocated)
+         {
+
+            *pcAllocated = sizeAllocated / sizeof(TYPE);
+
+         }
+
+         return p;
 
       }
 

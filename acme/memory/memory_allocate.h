@@ -2,7 +2,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME void * memory_allocate(memsize size, const char * pszAnnotation = nullptr);
+CLASS_DECL_ACME void * memory_allocate(memsize size, memsize * psizeAllocated = nullptr, const char * pszAnnotation = nullptr);
 //CLASS_DECL_ACME void * memory_count_allocate(uptr count, memsize size);
 CLASS_DECL_ACME void * memory_reallocate(void * p, memsize size, const char * pszAnnotation = nullptr);
 CLASS_DECL_ACME void memory_free(void * p);

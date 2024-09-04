@@ -239,7 +239,7 @@ namespace allocator
 
 #endif
 
-         auto data = pallocatorbase->allocate(s, pszAnnotation);
+         auto data = pallocatorbase->allocate(s, nullptr,  pszAnnotation);
 
          auto p = __on_construct< T >(data, s, ::std::forward < Args >(args)...);
 

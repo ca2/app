@@ -2400,7 +2400,31 @@ namespace user
             ::rectangle_i32 rectangleWindow;
 
             rectangleWindow.left() = pointCursorHint.x();
-            rectangleWindow.top() = rectangleScreenHint.bottom();
+            //rectangleWindow.top() = rectangleScreenHint.bottom();
+            if (m_etrackpopup & ::menu::e_track_popup_outside_target)
+            {
+               
+               rectangleWindow.top() = rectangleScreenHint.bottom();
+
+            }
+            else if (m_etrackpopup & ::menu::e_track_popup_inside_target)
+            {
+               
+               auto p = pointCursorHint;
+
+               p = (rectangleScreenHint.center() + p) / 2.0;
+
+               rectangleWindow.top() = p.y();
+
+            }
+            else
+            {
+
+               rectangleWindow.left() = rectangleScreenHint.left() + pointCursorHint.x() + 8;
+               rectangleWindow.top() = rectangleScreenHint.top() + pointCursorHint.y() + 8;
+
+            }
+
             rectangleWindow.right() = rectangleWindow.left() + m_size.cx();
             rectangleWindow.bottom() = rectangleWindow.top() + m_size.cy();
 

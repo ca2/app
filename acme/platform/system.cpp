@@ -164,7 +164,7 @@ namespace acme
       int iType = sizeof(payload.m_etype);
       int iAll = sizeof(payload.m_payloadall);
       int iThis = sizeof(payload);
-      int iComputed = ((::u8*)pAll - (::u8*)pType) + iAll;
+      int iComputed = (int) (((::u8*)pAll - (::u8*)pType) + iAll);
       int iColor = sizeof(payload.m_color);
       int iStr = sizeof(payload.m_str);
       int iHls = sizeof(payload.m_hls);

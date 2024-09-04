@@ -2472,7 +2472,7 @@ void particle::kick_idle()
 }
 
 
- ::pointer<particle>particle::__call__id_create(const ::atom & atom, ::factory::factory * pfactory)
+ ::pointer<subparticle>particle::__call__id_create(const ::atom & atom, ::factory::factory * pfactory)
 {
 
     if (::is_null(pfactory))

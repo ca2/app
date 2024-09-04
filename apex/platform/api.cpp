@@ -32,26 +32,31 @@ api::~api()
 void api::initialize_api(::particle * pparticle, const ::file::path & pathProfileFolder, const ::scoped_string & scopedstrBrowserAccount)
 {
 
-   //auto estatus =
-   
+   load_api(pparticle, pathProfileFolder, scopedstrBrowserAccount);
+
+   initialization_api_call();
+
+}
+
+
+void api::load_api(::particle* pparticle, const ::file::path& pathProfileFolder, const ::scoped_string& scopedstrBrowserAccount)
+{
+
    ::object::initialize(pparticle);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
 
    m_pathProfileFolder = pathProfileFolder;
 
    m_strBrowserAccount = scopedstrBrowserAccount;
-   
+
    load_configuration();
 
    load_profile();
 
-   //return estatus;
+}
+
+
+void api::initialization_api_call()
+{
 
 }
 
@@ -240,7 +245,7 @@ void api::ensure_authenticated()
          try
          {
 
-            initialize_api(m_pparticleContext, m_pathProfileFolder, m_strBrowserAccount);
+            load_api(m_pparticleContext, m_pathProfileFolder, m_strBrowserAccount);
 
          }
          catch (...)

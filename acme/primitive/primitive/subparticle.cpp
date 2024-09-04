@@ -9,6 +9,15 @@ subparticle::~subparticle()
 
 }
 
+void subparticle::initialize(::particle* pparticle)
+{
+
+
+}
+void subparticle::finalize()
+{
+
+}
 
 
 #ifdef _DEBUG

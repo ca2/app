@@ -44,6 +44,9 @@ public:
    ~subparticle() override;
 
 
+   virtual void initialize(::particle * pparticle);
+   virtual void finalize();
+
 
    virtual bool defer_consume_main_arguments(int argc, char ** argv, int & iArgument);
 

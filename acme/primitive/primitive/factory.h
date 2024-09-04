@@ -37,9 +37,9 @@ namespace factory
 
       virtual string __type_name() const = 0;
 
-      virtual ::pointer < ::particle > __call__create_particle() = 0;
+      virtual ::pointer < ::subparticle > __call__create_particle() = 0;
 
-      virtual void return_back(::particle * pelement) = 0;
+      virtual void return_back(::subparticle * pelement) = 0;
 
 
    };
@@ -58,7 +58,7 @@ namespace factory
 
 
       /// @brief consumes a referer
-      virtual ::pointer < ::particle > __call__create_particle() override
+      virtual ::pointer < ::subparticle > __call__create_particle() override
       {
 
          return __call__create();
@@ -66,7 +66,7 @@ namespace factory
       }
 
 
-      virtual void return_back(::particle * pelement) override
+      virtual void return_back(::subparticle * pelement) override
       {
 
          delete pelement;

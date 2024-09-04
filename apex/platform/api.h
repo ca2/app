@@ -48,6 +48,10 @@ public:
    
    virtual void initialize_api(::particle * pparticle, const ::file::path & pathProfileFolder, const ::scoped_string & scopedstrBrowserAccount);
 
+   virtual void load_api(::particle* pparticle, const ::file::path& pathProfileFolder, const ::scoped_string& scopedstrBrowserAccount);
+
+   virtual void initialization_api_call();
+
 
    virtual void load_configuration();
 

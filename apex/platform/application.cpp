@@ -170,7 +170,6 @@ namespace apex
 
       ::parallelization::initialize();
 
-
       m_bEnableAutoStartOption = false;
       //m_bProcessingApplicationExitRequest = false;
       m_papexapplication = this;
@@ -300,6 +299,9 @@ namespace apex
       ::acme::application::initialize(pparticle);
 
       m_pacmesystem = m_pcontext->m_pacmesystem;
+
+      defer_create_synchronization();
+
 
       //if (!estatus)
       //{
@@ -10148,6 +10150,8 @@ namespace apex
 
    class networking::application * application::networking_application(::networking::application_handler * papplicationhandlerCreateNetworkApplication)
    {
+
+      synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_pnetworkingapplication)
       {

@@ -119,8 +119,8 @@ public:
 
 
 
-   virtual void initialize(::particle * pparticle);
-   virtual void finalize();
+   void initialize(::particle * pparticle) override;
+   void finalize() override;
 
 
    bool _is_ok() const override;
@@ -530,7 +530,7 @@ public:
    template < typename BASE_TYPE >
    inline ::pointer<BASE_TYPE>__call__create(::factory::factory * pfactory = nullptr);
 
-   ::pointer<particle>__call__id_create(const ::atom& atom, ::factory::factory * pfactory = nullptr);
+   ::pointer<subparticle>__call__id_create(const ::atom& atom, ::factory::factory * pfactory = nullptr);
 
    template < typename TYPE >
    inline ::pointer<TYPE> __call__create_new();
@@ -677,7 +677,7 @@ public:
 #if REFERENCING_DEBUGGING
 
 
-   ::particle * __call__add_referer2(const ::reference_referer & referer) const;
+   ::subparticle * __call__add_referer2(const ::reference_referer & referer) const;
 
 
 #endif
@@ -1063,10 +1063,10 @@ inline i64 global_release(T*& p);
 //#endif
 
 
-inline bool is_ok(const ::particle * pconstparticle)
+inline bool is_ok(const ::particle * pparticleConst)
 {
 
-   ::particle * pparticle = (::particle *)pconstparticle;
+   ::particle * pparticle = (::particle *)pparticleConst;
 
    return ::is_set(pparticle) && pparticle->is_ok();
 

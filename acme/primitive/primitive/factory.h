@@ -91,9 +91,7 @@ namespace factory
       ::pointer<ORIGIN_TYPE>__call__create() override
       {
 
-         auto p = ::transfer(::place(new TYPE()));
-
-         return ::transfer(p);
+         return { place_t{}, new TYPE() };
             
       }
 

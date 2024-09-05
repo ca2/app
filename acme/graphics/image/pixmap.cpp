@@ -5,6 +5,16 @@
 #include "pixmap.h"
 //#include "acme/primitive/geometry2d/_geometry2d.h"
 
+
+#if defined(WINDOWS_DESKTOP)
+int pixmap::g_iRedLowerDefault = 0;
+#elif defined(FREEBSD) || defined(OPENBSD) || (defined(UNIVERSAL_WINDOWS) && OSBIT == 32)
+int pixmap::g_iRedLowerDefault = 0;
+#else
+int pixmap::g_iRedLowerDefault = 1;
+#endif
+
+
 #define byte_clip2(i) (i)
 void pixmap::mult_alpha()
 {

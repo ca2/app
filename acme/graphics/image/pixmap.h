@@ -42,17 +42,13 @@ struct pixmap
    mutable bool                  m_bMapped; // optionally used by implementation
    bool                          m_bReduced; // optionally used by implementation
 
+   static int                    g_iRedLowerDefault;
 
 #ifdef __cplusplus
 
    pixmap()
    {
-
-#if defined(FREEBSD) || defined(OPENBSD) || (defined(UNIVERSAL_WINDOWS) && OSBIT == 32)
-      m_iRedLower = 0;
-#else
-      m_iRedLower = 1;
-#endif
+      m_iRedLower = g_iRedLowerDefault;
       m_iScan = 0;
       m_pimage32 = nullptr;
       m_pimage32Raw = nullptr;

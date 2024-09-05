@@ -78,10 +78,12 @@
 //template < > constexpr const T1 && get<0>(const PAIR && pair) { return pair.MEMBER1; } \
 //template < > constexpr const T2 && get<1>(const PAIR && pair) { return pair.MEMBER2; }
 
+#include "acme/memory/quantum.h"
 
 
 #define MAKE_PAIR(PAIR, T1, T2, MEMBER1, MEMBER2) \
-class PAIR \
+class PAIR : \
+   public memory_quantum\
 {  \
 public: \
 \

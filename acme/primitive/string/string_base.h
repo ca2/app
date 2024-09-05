@@ -932,7 +932,8 @@ public:
 
       auto pmetadataThis = this->NATURAL_POINTER::metadata();
 
-      if (!pmetadataThis->natural_is_shared() &&
+      if (::is_set(pmetadataThis) &&
+         !pmetadataThis->natural_is_shared() &&
          newNullTerminatedByteCount <= pmetadataThis->m_sizeStorageInBytes)
       {
 

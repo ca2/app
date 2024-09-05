@@ -28,7 +28,7 @@ plex_heap_alloc::plex_heap_alloc(::heap::allocator * pallocator, memsize nAllocS
    for (i32 i = 0; i < get_count(); i++)
    {
 
-      set_at(i, ::platform::allocator::__allocator_base_new < plex_heap_alloc_sync >(pallocator, pallocator, nAllocSize, nBlockSize));
+      set_at(i, new plex_heap_alloc_sync(pallocator, nAllocSize, nBlockSize));
 
    }
 

@@ -225,83 +225,83 @@ namespace allocator
       }
 
 
-      template < typename T, typename ...Args >
-      inline static T * __allocator_base_new(::heap::allocator_base * pallocatorbase, Args &&... args)
-      {
-
-         auto s = sizeof(T);
-
-         char * pszAnnotation = nullptr;
-
-#if MEMORY_ANNOTATION
-
-         pszAnnotation = ::c::strdup(typeid(T).name());
-
-#endif
-
-         auto data = pallocatorbase->allocate(s, nullptr,  pszAnnotation);
-
-         auto p = __on_construct< T >(data, s, ::std::forward < Args >(args)...);
-
-         return p;
-
-      }
-
-
-      template < typename T >
-      inline static T * __allocator_base_new_array(::heap::allocator_base * pallocatorbase, ::collection::count c)
-      {
-
-         constexpr auto sElement = sizeof(T);
-
-         auto s = sElement * c;
-
-         char * pszAnnotation = nullptr;
-
-#if MEMORY_ANNOTATION
-
-         pszAnnotation = ::c::strdup2("array of ", typeid(T).name());
-
-#endif
-
-         auto * data = pallocatorbase->allocate(s, pszAnnotation);
-
-         auto p = (::u8*)data;
-
-         for (::collection::index i = 0; i < c; i++)
-         {
-
-            __on_construct < T >(data, sElement);
-
-            p += sElement;
-
-         }
-
-         return (T *)data;
-
-      }
-
-
-      template < typename T >
-      inline static void __allocator_base_delete(::heap::allocator_base * pallocatorbase, T * p)
-      {
-
-         __on_destruct(p);
-
-         pallocatorbase->free(p);
-
-      }
-
-
-      template < typename T >
-      inline static void __allocator_base_delete(::heap::allocator_base * pallocatorbase, T* p, void * pAllocation)
-      {
-
-         __on_destruct(p);
-
-         pallocatorbase->free(pAllocation);
-
-      }
+//      template < typename T, typename ...Args >
+//      inline static T * __allocator_base_new(::heap::allocator_base * pallocatorbase, Args &&... args)
+//      {
+//
+//         auto s = sizeof(T);
+//
+//         char * pszAnnotation = nullptr;
+//
+//#if MEMORY_ANNOTATION
+//
+//         pszAnnotation = ::c::strdup(typeid(T).name());
+//
+//#endif
+//
+//         auto data = pallocatorbase->allocate(s, nullptr,  pszAnnotation);
+//
+//         auto p = __on_construct< T >(data, s, ::std::forward < Args >(args)...);
+//
+//         return p;
+//
+//      }
+//
+//
+//      template < typename T >
+//      inline static T * __allocator_base_new_array(::heap::allocator_base * pallocatorbase, ::collection::count c)
+//      {
+//
+//         constexpr auto sElement = sizeof(T);
+//
+//         auto s = sElement * c;
+//
+//         char * pszAnnotation = nullptr;
+//
+//#if MEMORY_ANNOTATION
+//
+//         pszAnnotation = ::c::strdup2("array of ", typeid(T).name());
+//
+//#endif
+//
+//         auto * data = pallocatorbase->allocate(s, pszAnnotation);
+//
+//         auto p = (::u8*)data;
+//
+//         for (::collection::index i = 0; i < c; i++)
+//         {
+//
+//            __on_construct < T >(data, sElement);
+//
+//            p += sElement;
+//
+//         }
+//
+//         return (T *)data;
+//
+//      }
+//
+//
+//      template < typename T >
+//      inline static void __allocator_base_delete(::heap::allocator_base * pallocatorbase, T * p)
+//      {
+//
+//         __on_destruct(p);
+//
+//         pallocatorbase->free(p);
+//
+//      }
+//
+//
+//      template < typename T >
+//      inline static void __allocator_base_delete(::heap::allocator_base * pallocatorbase, T* p, void * pAllocation)
+//      {
+//
+//         __on_destruct(p);
+//
+//         pallocatorbase->free(pAllocation);
+//
+//      }
 
 
       template < typename T, typename ...Args >

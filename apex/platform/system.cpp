@@ -1012,10 +1012,31 @@ pacmedirectory->create("/ca2core");
          if (platform()->m_wenvp)
          {
 
-            for (auto wenv = platform()->m_wenvp; *wenv != 0; wenv++)
+            int iIndex = 0;
+
+            for (auto wenv = platform()->m_wenvp; *wenv != 0; wenv++, iIndex++)
             {
 
                auto thisEnv = *wenv;
+
+               int iLen = wcslen(thisEnv);
+
+               /*if (iLen >= 42)
+               {
+                  output_debug_string("aaa");
+               }
+               else*/ if (!wcsncmp(thisEnv, L"Path=", 5))
+               {
+
+                  output_debug_string("aaa");
+
+               }
+               else if (!wcsncmp(thisEnv, L"VsPer", 5))
+               {
+
+                  output_debug_string("aaa");
+
+               }
 
                straEnv.add(thisEnv);
 

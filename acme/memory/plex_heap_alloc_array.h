@@ -7,15 +7,6 @@ class plex_heap_alloc;
 class CLASS_DECL_ACME plex_heap_alloc_array :
    public array_non_particle < plex_heap_alloc *, plex_heap_alloc *, ::typed::def < plex_heap_alloc*  >, ::heap::operating_system_typed_memory < plex_heap_alloc * > >
 {
-protected:
-
-   
-   friend class ::allocator::accessor;
-
-
-   plex_heap_alloc_array(::heap::allocator * pallocator, ::heap::enum_memory ememory);
-   ~plex_heap_alloc_array();
-
 public:
 
 
@@ -23,6 +14,8 @@ public:
    ::heap::enum_memory m_ememory;
 
 
+   plex_heap_alloc_array(::heap::allocator * pallocator, ::heap::enum_memory ememory);
+   ~plex_heap_alloc_array();
 
 
    plex_heap_alloc * find(memsize nAllocSize);

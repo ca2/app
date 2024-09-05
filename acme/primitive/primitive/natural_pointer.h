@@ -229,7 +229,7 @@ public:
 
       auto pmetadata = new (p) natural_meta_data < META_DATA >();
 
-      pmetadata->m_sizeStorageInBytes = sizeStorageInBytes;
+      pmetadata->m_sizeStorageInBytes = sizeStorageInBytes - sizeof(META_DATA);
 
       return pmetadata;
 

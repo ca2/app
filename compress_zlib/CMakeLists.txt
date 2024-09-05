@@ -51,7 +51,7 @@ if (MSVC)
     target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/compress_zlib.lib")
     target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/compress_zlib.def")
     target_link_libraries(${PROJECT_NAME} PRIVATE acme apex)
-elseif (${LINUX} OR ${BSD_LIKE})
+elseif (${LINUX} OR ${__BSD__})
 
 
     target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)

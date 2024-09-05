@@ -28,6 +28,31 @@
 #ifdef WINDOWS
 
 #define atomic_assign64(pi, i) _interlockedexchange64((::i64 *) (pi), i)
+
+#else
+
+inline i64 atomic_assign64(i64 * pi, i64 i)
+{
+
+
+#if defined(RASPBERRYPIOS) && defined(OS32BIT)
+  
+  return __sync_lock_test_and_set_4(pi, i);
+  
+#else
+  
+  return __sync_lock_test_and_set(pi, i);
+  
+#endif
+  
+}
+
+
+#endif
+
+
+#ifdef WINDOWS
+
 #define atomic_increment64(pi) _interlockedincrement64((::i64 *) (pi))
   
 #else

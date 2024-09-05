@@ -80,6 +80,29 @@ inline i64 atomic_increment64(i64 * pi)
 #ifdef WINDOWS
 
 #define atomic_assign32(pi, i) _InterlockedExchange((long *)(pi), i)
+
+#else
+   
+inline i32 atomic_assign32(i32* pi, ::i32 i)
+{
+
+#if defined(RASPBERRYPIOS) && defined(OS32BIT)
+
+   return __sync_lock_test_and_set_4(pi, i);
+
+#else
+
+   return __sync_lock_test_and_set(pi, i);
+
+#endif
+
+}
+
+#endif
+
+
+#ifdef WINDOWS
+
 #define atomic_increment32(pi) _InterlockedIncrement((long *)(pi))
 
 #else

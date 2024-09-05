@@ -11,6 +11,11 @@
 #include "acme/platform/system.h"
 
 
+#if defined(__APPLE__)
+#include <string.h>
+#endif
+
+
 //::string idn_to_punycode(const ::string & str);
 //::string idn_from_punycode(const ::string & str);
 

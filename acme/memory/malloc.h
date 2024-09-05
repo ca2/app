@@ -197,7 +197,7 @@ namespace acme
          else
          {
 
-            m_p = (POINTER) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size);
+            m_p = (POINTER) ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size, nullptr);
 
          }
 

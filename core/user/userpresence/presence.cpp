@@ -87,8 +87,8 @@ namespace userpresence
 
       string strUrl = "https://" + strHost + "/i2com/pulse_user_presence";
 
-      url()->string_set(strUrl, "short_status", ::as_string(m_iShortStatusWayTag));
-      url()->string_set(strUrl, "long_status", m_strLongStatus);
+      ::url::set_parameter(strUrl, "short_status", ::as_string(m_iShortStatusWayTag));
+      ::url::set_parameter(strUrl, "long_status", m_strLongStatus);
 
       property_set set;
 

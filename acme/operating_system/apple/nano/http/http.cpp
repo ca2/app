@@ -60,7 +60,7 @@ void http::async(::nano::http::get * pget)
    
    pget->increment_reference_count();
    
-   nano_asynchronous_http_get(pget->m_strUrl.c_str(), &s_http_response, (::subparticle *) pget);
+   nano_asynchronous_http_get(pget->m_url.as_string().c_str(), &s_http_response, (::subparticle *) pget);
    
          }
 

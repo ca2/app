@@ -3448,9 +3448,9 @@ pacmedirectory->create("/ca2core");
       if (strProtocol == "ca2project")
       {
 
-         string strBase = purl->get_server(str);
+         string strBase = ::url::get_host(str);
 
-         string strScheme = purl->get_script(str);
+         string strScheme = ::url::get_request_path(str);
 
          strScheme.begins_eat("/");
 

@@ -3589,6 +3589,10 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
          
          auto squareHint = rectangle_i32::square_with_center_and_apothem(pointCursor, 8);
 
+         pointCursor -= squareHint.top_left();
+
+         pointCursor += ::size_i32(16, 16);
+
          auto pmenu = m_pnotifyicon->menu();
 
          //auto psession = get_session();

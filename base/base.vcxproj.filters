@@ -703,9 +703,6 @@
     <ClCompile Include="user\simple\tab_document.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\menu\menu.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
     <ClCompile Include="user\menu\interaction.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
@@ -765,6 +762,9 @@
     </ClCompile>
     <ClCompile Include="user\user\auto_hide.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\menu.cpp">
+      <Filter>Source Files\user\menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

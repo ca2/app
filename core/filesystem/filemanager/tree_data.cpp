@@ -852,7 +852,7 @@ _001SelectItem(pchild);
 
          auto & path = patha[i];
          
-         ::file::path pathFinal = m_pcontext->defer_process_matter_path(path);
+         ::file::path pathFinal = m_pcontext->defer_process_path(path);
 
          if(bExpandAscendants && (filemanager_data()->m_listingRoot2.find_first_contains(path) >= 0
          || filemanager_data()->m_listingRoot2.find_first_contains(pathFinal) >= 0)

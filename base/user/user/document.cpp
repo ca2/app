@@ -43,6 +43,10 @@ namespace user
       m_bEmbedded = false;        // default to file-based document
 
       defer_create_synchronization();
+      
+      //m_impacta.allocate(20, false, true);
+      
+      //m_impacta.clear();
 
    }
 
@@ -82,10 +86,9 @@ namespace user
 
       m_prequest.release();
       m_pimpactsystem.release();
-      m_impacta.release();
       m_pimpactTopic.release();
 
-
+      m_impacta.clear();
       m_mapRoutine.clear();
 
       m_pdataIncoming.release();
@@ -222,6 +225,8 @@ namespace user
 
    bool document::contains(::user::interaction* pinteraction) const
    {
+      
+      _synchronous_lock synchronouslock(this->synchronization());
 
       for (auto& pimpact : m_impacta)
       {
@@ -585,7 +590,7 @@ namespace user
 
       ::pointer<::user::impact>pimpact = m_impacta[index];
 
-      ASSERT_KINDOF(::user::impact, pimpact);
+      //ASSERT_KINDOF(::user::impact, pimpact);
 
       return pimpact;
 
@@ -886,16 +891,21 @@ namespace user
 
    void document::on_changed_impact_list()
    {
-
-      // if no more views on the document_interface, delete ourself
-      // not called if directly closing the document_interface or terminating the cast
-      if (m_impacta.is_empty() && m_bAutoDelete)
+      
       {
-
-         on_close_document();
-
-         return;
-
+         _synchronous_lock synchronouslock(this->synchronization());
+         
+         // if no more views on the document_interface, delete ourself
+         // not called if directly closing the document_interface or terminating the cast
+         if (m_impacta.is_empty() && m_bAutoDelete)
+         {
+            synchronouslock.unlock();
+            on_close_document();
+            
+            return;
+            
+         }
+         
       }
 
       // update the frame counts as needed
@@ -1615,7 +1625,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      ASSERT_VALID(pframeParam);
+      //ASSERT_VALID(pframeParam);
 
       //UNUSED(pframeParam);   // unused in release builds
 
@@ -1626,7 +1636,7 @@ namespace user
 
          ::pointer<::user::impact>pimpact = get_impact(index);
 
-         ASSERT_VALID(pimpact);
+         //ASSERT_VALID(pimpact);
 
          auto pframe = pimpact->parent_frame();
 
@@ -1635,7 +1645,7 @@ namespace user
          {
 
             // assumes 1 document_interface per frame
-            ASSERT_VALID(pframe);
+            //ASSERT_VALID(pframe);
 
             if (pframe->m_puserframewindow->m_nWindow > 0)
             {
@@ -1928,7 +1938,7 @@ namespace user
 
          ::user::impact * pimpact = get_impact(index);
 
-         ASSERT_VALID(pimpact);
+         //ASSERT_VALID(pimpact);
 
          if (pimpact->is_window_visible())
          {
@@ -1956,7 +1966,7 @@ namespace user
 
          ::user::impact * pimpact = get_impact(index);
 
-         ASSERT_VALID(pimpact);
+         //ASSERT_VALID(pimpact);
 
          if (pimpact->is_window_visible())
          {
@@ -1966,7 +1976,7 @@ namespace user
             if (pframe != nullptr && pframe->m_puserframewindow->m_nWindow == -1)
             {
 
-               ASSERT_VALID(pframe);
+               //ASSERT_VALID(pframe);
 
                // not yet counted (give it a 1 based number)
                pframe->m_puserframewindow->m_nWindow = ++nFrames;
@@ -1988,7 +1998,7 @@ namespace user
 
          ::user::impact * pimpact = get_impact(index);
 
-         ASSERT_VALID(pimpact);
+         //ASSERT_VALID(pimpact);
 
          if (pimpact->is_window_visible())   // Do not ::collection::count invisible windows.
          {
@@ -1998,7 +2008,7 @@ namespace user
             if (pframe != nullptr && pframe->m_puserframewindow->m_nWindow == iFrame)
             {
 
-               ASSERT_VALID(pframe);
+               //ASSERT_VALID(pframe);
 
                if (nFrames == 1)
                {
@@ -2054,16 +2064,21 @@ namespace user
    void document::add_impact(::user::impact * pimpact)
    {
 
-      single_lock synchronouslock(synchronization(), true);
+      
+         _synchronous_lock synchronouslock(this->synchronization());
+         
+         //ASSERT_VALID(pimpact);
+      
+      //auto pszType = typeid(*pimpact).name();
 
-      ASSERT_VALID(pimpact);
-
-      if (pimpact->m_pdocument)
-      {
-
-         throw ::exception(::error_bad_argument);// must not be already attached
-
-      }
+         
+         if (pimpact->m_pdocument)
+         {
+            
+            throw ::exception(::error_bad_argument);// must not be already attached
+            
+         }
+         
 
       if (!m_impacta.add_unique(pimpact))
       {
@@ -2086,7 +2101,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      ASSERT_VALID(pimpact);
+      //ASSERT_VALID(pimpact);
 
       if(pimpact->get_document() != this)
       {
@@ -2209,15 +2224,23 @@ namespace user
       ASSERT(!ptopic || ptopic->m_psender == nullptr || !m_impacta.is_empty());
 
       ptopic->m_pparticle = this;
-
-      for (auto & pimpact : m_impacta)
+      
+      decltype(m_impacta) impacta;
+      
+      {
+         
+         _synchronous_lock synchronouslock(this->synchronization());
+         
+         impacta = m_impacta;
+         
+      }
+      
+      for (auto pimpact : impacta)
       {
 
-         //ASSERT_VALID(pimpact);
-
-         if (!ptopic || pimpact != ptopic->m_psender)
+         if (pimpact && (!ptopic || pimpact != ptopic->m_psender))
          {
-
+            
             pimpact->call_handle(ptopic, nullptr);
 
             if(ptopic && ptopic->m_bRet)
@@ -2228,7 +2251,7 @@ namespace user
             }
 
          }
-
+         
       }
 
    }

@@ -179,10 +179,8 @@ public:
 
       ::collection::index nIndex = this->size();
 
-      this->allocate(nIndex + 1, false, true);
-
-      ::new (this->m_begin + nIndex) ::pointer < T >(::transfer(p));
-
+      this->allocate(nIndex + 1, false, false, p);
+      
       return nIndex;
 
    }

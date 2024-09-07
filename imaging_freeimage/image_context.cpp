@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "context_image.h"
+#include "image_context.h"
 
 
 #include <FreeImage.h>
@@ -9,7 +9,7 @@ namespace imaging_freeimage
 {
 
 
-   context_image::context_image()
+   image_context::image_context()
    {
 
       FreeImage_Initialise(false);
@@ -17,7 +17,7 @@ namespace imaging_freeimage
    }
 
 
-   context_image::~context_image()
+   image_context::~image_context()
    {
 
       FreeImage_DeInitialise();

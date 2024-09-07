@@ -12,7 +12,7 @@
 #include "shell.h"
 
 
-bool android_get_file_image(::image * pimage, const ::scoped_string & scopedstr);
+bool android_get_file_image(::image::image *pimage, const ::scoped_string & scopedstr);
 
 
 namespace android
@@ -1646,7 +1646,7 @@ pacmedirectory->is(strPath))
    //   if (crBk == 0)
    //   {
 
-   //      return m_pimagelistHover[iSize]->predicate_add_image([&](::image_pointer & pimage)
+   //      return m_pimagelistHover[iSize]->predicate_add_image([&](::image::image_pointer & pimage)
    //      {
    //            ::acmeacmesystem()->imaging().color_blend(pimage, rgb(255, 255, 240), 64); 
    //         }
@@ -1660,7 +1660,7 @@ pacmedirectory->is(strPath))
 
    //      {
 
-   //         ::image_pointer pimage;
+   //         ::image::image_pointer pimage;
    //         pimage = create_image({iSize,  iSize});
    //         pimage->fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
    //         pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -1705,7 +1705,7 @@ pacmedirectory->is(strPath))
 
 
 
-bool android_get_file_image(::image * pimage, const ::scoped_string & scopedstr)
+bool android_get_file_image(::image::image *pimage, const ::scoped_string & scopedstr)
 {
 
    return false;

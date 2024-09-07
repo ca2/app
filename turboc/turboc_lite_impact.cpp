@@ -86,7 +86,7 @@ namespace turboc
    }
 
 
-/*   void lite_impact::turboc_render(::image * pimage)
+/*   void lite_impact::turboc_render(::image::image *pimage)
    {
 
       turboc_render_lite_impact(pgraphics);
@@ -94,7 +94,7 @@ namespace turboc
    }
 
 
-/*   void impact::turboc_render_lite_impact(::image * pimage)
+/*   void impact::turboc_render_lite_impact(::image::image *pimage)
    {
 
 

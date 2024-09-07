@@ -758,9 +758,9 @@ namespace user
       //lresult OnDisplayChange(wparam,lparam);
       //lresult OnDragList(wparam,lparam);
 
-      virtual void _001DeferPaintLayeredWindowBackground(::image * pimage);
+      virtual void _001DeferPaintLayeredWindowBackground(::image::image *pimage);
 
-      virtual void _001OnDeferPaintLayeredWindowBackground(::image * pimage);
+      virtual void _001OnDeferPaintLayeredWindowBackground(::image::image *pimage);
 
       //virtual ::i32 get_window_long(i32 nIndex) const override;
       //virtual ::i32 set_window_long(i32 nIndex,::i32 lValue) override;

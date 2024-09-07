@@ -713,7 +713,7 @@ namespace browser
             fork([=]()
             {
 
-/*               ::image_pointer pimage;
+/*               ::image::image_pointer pimage;
 
 /*               if (pimage = create_image(size))
                {

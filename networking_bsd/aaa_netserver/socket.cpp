@@ -225,7 +225,7 @@ namespace netserver
    //   else
    //   {
    //
-   //      ::image_pointer pimage;
+   //      ::image::image_pointer pimage;
 
    //      pimage->load_image(pszPath);
 
@@ -251,7 +251,7 @@ namespace netserver
 
    //      double dRate = minimum(dRateW, dRateH);
 
-   //      ::image_pointer pimage;
+   //      ::image::image_pointer pimage;
 
    //      pimage = create_image({(i32)(pimage->width() * dRate),  (i32)(pimage->height() * dRate)});
 

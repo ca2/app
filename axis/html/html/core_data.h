@@ -83,7 +83,7 @@ namespace html
 
          ::collection::index                   m_iIndex;
          string                  m_strPath;
-         ::image_pointer                 m_pimage;
+         ::image::image_pointer                 m_pimage;
 
 
          image();

@@ -14,11 +14,11 @@ namespace hellobase
 
 
       string                  m_strServer;
-      ::image_pointer        m_pimageAi1;
-      ::image_pointer        m_pimageAi2;
+      ::image::image_pointer        m_pimageAi1;
+      ::image::image_pointer        m_pimageAi2;
 
       string                  m_strImage;
-      ::image_pointer        m_pimageColor;
+      ::image::image_pointer        m_pimageColor;
 
       bool                    m_bOkPending;
 

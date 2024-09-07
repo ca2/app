@@ -524,7 +524,7 @@ namespace base
 
          //auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").i32();
 
-         //::image_pointer pimage = *pmenuitem->m_pimage + eimage;
+         //::image::image_pointer pimage = *pmenuitem->m_pimage + eimage;
 
          //pmenubutton->LoadBitmaps(pimage);
 

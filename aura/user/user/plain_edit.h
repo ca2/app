@@ -410,7 +410,7 @@ namespace user
       //void key_to_char(::message::key * pkey);
 
       void install_message_routing(::channel * pchannel) override;
-      virtual void OnDraw(::image * pimage);      // overridden to draw this ::user::impact
+      virtual void OnDraw(::image::image *pimage);      // overridden to draw this ::user::impact
       void handle(::topic * ptopic, ::context * pcontext) override;
 
 

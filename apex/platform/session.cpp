@@ -1818,7 +1818,7 @@ namespace apex
 
 
 
-   //::draw2d::cursor* session::get_default_cursor()
+   //::image::cursor* session::get_default_cursor()
    //{
 
    //   return pdraw2d->get_cursor(m_ecursorDefault);

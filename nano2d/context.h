@@ -300,7 +300,7 @@ namespace nano2d
 		// The gradient is transformed by the current transform when it is passed to FillPaint)() or StrokePaint)().
 		virtual ::nano2d::paint image_pattern_from_index(float ox, float oy, float ex, float ey, float angle, float alpha, int iImage);
 
-		virtual ::nano2d::paint image_pattern_from_image(float ox, float oy, float ex, float ey, float angle, float alpha, ::image * pimage);
+		virtual ::nano2d::paint image_pattern_from_image(float ox, float oy, float ex, float ey, float angle, float alpha, ::image::image *pimage);
 
 		//
 		// Scissoring
@@ -518,7 +518,7 @@ namespace nano2d
 
 		virtual void __append_commands(float* vals, int nvals);
 
-		virtual void _draw_image(float x, float y, float w, float h, ::image* pimage);
+		virtual void _draw_image(float x, float y, float w, float h, ::image::image* pimage);
 
 	};
 

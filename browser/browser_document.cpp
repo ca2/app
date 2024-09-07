@@ -68,7 +68,7 @@ namespace browser
 
       string str;
 
-/*      ::image_pointer pimage = get_image(payloadFile, true);
+/*      ::image::image_pointer pimage = get_image(payloadFile, true);
 
 /*      if(pimage->is_ok())
       {

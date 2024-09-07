@@ -429,7 +429,7 @@ HFONT CreatePointBoldFont_dup(int nPointSize, const ::scoped_string & scopedstrF
 
 
 
-bool macos_get_file_image(::image * pimage, const ::scoped_string & scopedstr);
+bool macos_get_file_image(::image::image *pimage, const ::scoped_string & scopedstr);
 
 CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy);
 bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage);
@@ -559,7 +559,7 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::sc
 
 
 
-bool macos_get_file_image(::image * pimage, const ::scoped_string & scopedstr);
+bool macos_get_file_image(::image::image *pimage, const ::scoped_string & scopedstr);
 
 CGContextRef CreateARGBBitmapContext (CGImageRef inImage, int cx, int cy);
 bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef inImage);
@@ -1162,7 +1162,7 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 
 
 
-bool macos_get_file_image(::image * pimage, const ::scoped_string & scopedstr)
+bool macos_get_file_image(::image::image *pimage, const ::scoped_string & scopedstr)
 {
 
    pimage->map();

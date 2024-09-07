@@ -275,15 +275,15 @@ namespace write_text
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-         image_source imagesource(pbox->m_pimage);
+         ::image::image_source imagesource(pbox->m_pimage);
 
          auto rectangle = pbox->m_rectangle;
 
          //information() << "rect:" << rectangle;
 
-         image_drawing_options imagedrawingoptions(rectangle);
+         ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          pgraphics->draw(imagedrawing);
 
@@ -315,13 +315,13 @@ namespace write_text
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            image_source imagesource(pbox->m_pimage);
+            ::image::image_source imagesource(pbox->m_pimage);
 
             auto rectangle = pbox->m_rectangle;
 
-            image_drawing_options imagedrawingoptions(rectangle);
+            ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
             pgraphics->draw(imagedrawing);
 
@@ -356,13 +356,13 @@ namespace write_text
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            image_source imagesource(pbox->m_pimage);
+            ::image::image_source imagesource(pbox->m_pimage);
 
             rectangle_f64 rectangle(pbox->m_rectangle);
 
-            image_drawing_options imagedrawingoptions(rectangle);
+            ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
             pgraphics->draw(imagedrawing);
 
@@ -490,13 +490,13 @@ namespace write_text
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            image_source imagesource(pbox->m_pimage);
+            ::image::image_source imagesource(pbox->m_pimage);
 
             rectangle_f64 rectangle(pbox->m_rectangle);
 
-            image_drawing_options imagedrawingoptions(rectangle);
+            ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
             pgraphics->draw(imagedrawing);
 

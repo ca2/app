@@ -49,7 +49,8 @@ namespace data
 
    }
 
-   image_list * simple_item::data_item_get_image_list(::particle * pparticle) const
+
+   ::image::image_list * simple_item::data_item_get_image_list(::particle * pparticle) const
    {
 
       return m_pdatatree->get_image_list();

@@ -3483,13 +3483,13 @@ namespace user
    }
    */
 
-   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::image *pimage)
+   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::image::image *pimage)
    {
       __UNREFERENCED_PARAMETER(pimage);
       throw ::interface_only();
    }
 
-   void interaction_impl::_001DeferPaintLayeredWindowBackground(::image *pimage)
+   void interaction_impl::_001DeferPaintLayeredWindowBackground(::image::image *pimage)
    {
       __UNREFERENCED_PARAMETER(pimage);
       throw ::interface_only();

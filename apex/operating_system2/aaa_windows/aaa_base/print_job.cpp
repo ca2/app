@@ -43,7 +43,7 @@ namespace windows
       ::draw2d::graphics_pointer & pgraphics = m_phprinter->create_graphics();
 
       // xxx
-      ::image_pointer pimage;
+      ::image::image_pointer pimage;
 
 
       DOCINFOW docinfo;

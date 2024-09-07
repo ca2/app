@@ -83,7 +83,7 @@ namespace filemanager
 
             set_cache_interface(m_puserlistcache);
 
-            m_pimagelist = __create_new< ::image_list>();
+            m_pimagelist = __create_new< ::image::image_list>();
 
             m_pimagelist->create(16, 16, 0, 0, 0);
 

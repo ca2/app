@@ -22,7 +22,7 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="context_image.cpp">
+    <ClCompile Include="image_context.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="loading_multi_frame.cpp">

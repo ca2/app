@@ -76,8 +76,6 @@ using particle_pointer = ::pointer < ::particle >;
 //#endif
 
 
-class imaging;
-
 namespace primitive
 {
 
@@ -160,13 +158,15 @@ public:
 
    ::primitive::primitive * primitive() const;
 
-   class ::imaging * imaging() const;
+
+   ::image::image_context* image() const;
+   ::image::imaging * imaging() const;
+   ::draw2d::draw2d * draw2d() const;
+   ::write_text::write_text * write_text() const;
+
 
    class ::user::user * user() const;
 
-   class ::draw2d::draw2d * draw2d() const;
-
-   class ::write_text::write_text * write_text() const;
 
    ::acme::system * system() const;
    ::acme::session * session() const;
@@ -184,7 +184,6 @@ public:
    ::acme_directory * acmedirectory() const;
    ::apex::context* apexcontext() const;
    ::aura::context* auracontext() const;
-   ::context_image* context_image() const;
    ::datetime::datetime * datetime() const;
    ::internet::internet * internet() const;
    ::url::url_context* url() const;

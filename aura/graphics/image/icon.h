@@ -12,7 +12,7 @@ using hicon = void *;
 class size_image;
 
 
-namespace draw2d
+namespace image
 {
 
 
@@ -20,7 +20,7 @@ namespace draw2d
    /// icon * -> image_source_pointer concept
    /// </summary>
    class CLASS_DECL_AURA icon :
-      virtual public ::image_source_interface
+      virtual public ::image::image_source_interface
    {
    protected:
 
@@ -92,8 +92,7 @@ namespace draw2d
    };
 
 
-} // namespace draw2d
-
+} // namespace image
 
 
 

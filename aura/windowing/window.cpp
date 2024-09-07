@@ -1590,6 +1590,13 @@ namespace windowing
    bool window::strict_set_window_position_unlocked(bool & bChangedPosition, bool & bChangedSize)
    {
 
+      if(!m_puserinteractionimpl || !m_puserinteractionimpl->m_puserinteraction)
+      {
+
+         return false;
+
+      }
+
       auto rectangle = m_puserinteractionimpl->m_puserinteraction->const_layout().parent_raw_rectangle(::user::e_layout_design);
 
       return strict_set_window_position_unlocked(bChangedPosition, bChangedSize, rectangle);

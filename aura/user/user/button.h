@@ -34,11 +34,11 @@ namespace user
       {
       public:
 
-         ::image_pointer                    m_pimage;          // not pressed default bitmap
-         ::image_pointer                    m_pimageSel;       // pressed bitmap
-         ::image_pointer                    m_pimageFocus;     // focus bitmap
-         ::image_pointer                    m_pimageDisabled;  // disabled bitmap
-         ::image_pointer                    m_pimageHover;     // hover bitmap
+         ::image::image_pointer                    m_pimage;          // not pressed default bitmap
+         ::image::image_pointer                    m_pimageSel;       // pressed bitmap
+         ::image::image_pointer                    m_pimageFocus;     // focus bitmap
+         ::image::image_pointer                    m_pimageDisabled;  // disabled bitmap
+         ::image::image_pointer                    m_pimageHover;     // hover bitmap
 
       };
 
@@ -48,9 +48,9 @@ namespace user
       {
       public:
 
-         ::pointer<::image_list>         m_pimagelistNormal;
-         ::pointer<::image_list>         m_pimagelistItemHover;
-         ::pointer<::image_list>         m_pimagelistSubItemHover;
+         ::pointer<::image::image_list>         m_pimagelistNormal;
+         ::pointer<::image::image_list>         m_pimagelistItemHover;
+         ::pointer<::image::image_list>         m_pimagelistSubItemHover;
          i32                              m_iImageNormal;
          i32                              m_iImageItemHover;
          i32                              m_iImageSubItemHover;

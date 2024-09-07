@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "context_image.h"
+#include "image_context.h"
 ////#include "acme/exception/exception.h"
 #include "aura/platform/context.h"
 #include "acme/filesystem/filesystem/acme_file.h"
@@ -10,37 +10,30 @@
 #include <FreeImage.h>
 
 
-CLASS_DECL_APEX void set_bypass_cache_if_empty(::payload & payloadFile);
+CLASS_DECL_APEX void set_bypass_cache_if_empty(::payload& payloadFile);
 
 
 namespace imaging_freeimage
 {
-
-
-   bool image_from_freeimage(::image * pimage, FIBITMAP * pfibitmap)
+   bool image_from_freeimage(::image::image* pimage, FIBITMAP* pfibitmap)
    {
-
       if (pfibitmap == nullptr)
       {
-
          return false;
-
       }
 
-      FIBITMAP * image32 = FreeImage_ConvertTo32Bits(pfibitmap);
+      FIBITMAP* image32 = FreeImage_ConvertTo32Bits(pfibitmap);
 
       if (image32 == nullptr)
       {
-
          return false;
-
       }
 
       int w = FreeImage_GetWidth(image32);
 
       int h = FreeImage_GetHeight(image32);
 
-      pimage->create({ w, h });
+      pimage->create({w, h});
 
       ////if (!pimage->create({ w, h}))
       //{
@@ -49,7 +42,7 @@ namespace imaging_freeimage
 
       //}
 
-      void * pdata = FreeImage_GetBits(image32);
+      void* pdata = FreeImage_GetBits(image32);
 
       int iSrcScan = FreeImage_GetPitch(image32);
 
@@ -115,12 +108,10 @@ namespace imaging_freeimage
 
       for (int i = 0; i < pimage->height(); i++)
       {
-
          ::memory_copy(
             &((u8 *)pimage->get_data())[pimage->scan_size() * (h - i - 1)],
             &((u8 *)pdata)[iSrcScan * i],
             iLineSize);
-
       }
 
 #endif
@@ -130,20 +121,13 @@ namespace imaging_freeimage
       FreeImage_Unload(image32);
 
       return true;
-
    }
-
-
-
 
 
    namespace draw2d
    {
-
-
-      void free_FreeImage(FIBITMAP * pfibitmap)
+      void free_FreeImage(FIBITMAP* pfibitmap)
       {
-
 #ifdef UNIVERSAL_WINDOWS
 
          throw ::exception(todo);
@@ -152,10 +136,7 @@ namespace imaging_freeimage
          FreeImage_Unload(pfibitmap);
 #endif
       }
-
-
    }
-
 
 
    /*FIBITMAP * imaging::LoadImageFile(CArchive & ar)
@@ -245,8 +226,16 @@ namespace imaging_freeimage
    //#endif // WINDOWS_DESKTOP
 
 
-   void context_image::_load_image(::image * pimage, const ::payload & varFileParam, const ::image::load_options & loadoptions)
+   void image_context::_load_image(::image::image* pimage, const ::payload& varFileParam,
+                                   const ::image::load_options& loadoptions)
    {
+
+      if (::is_null(pimage))
+      {
+
+         throw ::exception(error_null_pointer);
+
+      }
 
       memory memory;
 
@@ -255,180 +244,170 @@ namespace imaging_freeimage
       payloadFile = varFileParam;
 
       {
-
          auto tmp = payloadFile.as_file_path();
 
          if (tmp.case_insensitive_ends(".gif"))
          {
-
             informationf("GIF!!");
-
          }
-
       }
 
       set_bypass_cache_if_empty(payloadFile);
 
-      ::file::path path = payloadFile.as_file_path();
+      //::file::path path = payloadFile.as_file_path();
 
-      ::file::path pathProcess = m_pcontext->m_papexcontext->defer_process_path(path);
+      //::file::path pathProcess = m_pcontext->m_papexcontext->defer_process_path(path);
 
-      try
+      FIBITMAP* pfibitmap = nullptr;
+
+      FIMEMORY* pmem = nullptr;
+
+      for(int i = 0; i < 2; i++)
       {
 
-         file()->as_memory(payloadFile, memory);
-
-      }
-      catch(...)
-      {
-
-      }
-
-      auto p1 = memory.data();
-
-      auto s1 = memory.size();
-
-      //file()->non_empty_memory(payloadFile, *pmemory);
-
-      const char * psz = (const char *)memory.data();
-
-      if (::is_null(psz))
-      {
-
-         //return pimage->m_estatus;
-
-         return;
-
-      }
-
-      if (::is_null(pimage))
-      {
-
-         //return false;
-
-         throw ::exception(error_null_pointer);
-
-      }
-
-      if (memory.is_empty())
-      {
-
-         //return false;
-
-         throw ::exception(error_failed);
-
-      }
-
-      auto pcontext = m_pcontext->m_pauracontext;
-
-      auto pcontextimage = pcontext->context_image();
-
-      auto pszData = memory.data();
-
-      auto size = memory.size();
-
-      char  pszPngSignature []= {(char)137, 80, 78 ,71, 13 ,10, 26 ,10};
-
-      bool bPng = size > sizeof(pszPngSignature)
-      && ansi_ncmp((const char *) pszData, pszPngSignature, sizeof(pszPngSignature)) == 0;
-
-      bool bJpegBegins = memory.begins("\x0FF\x0D8");
-
-      bool bJpegEnds = memory.ends("\x0FF\x0D9");
-
-      bool bGif87a = memory.begins("GIF87a");
-
-      bool bGif89a = memory.begins("GIF89a");
-
-      bool bJpeg =  bJpegBegins && bJpegEnds;
-
-      bool bJfif = memory.begins("JFIF");
-
-      bool bExif = memory.begins("Exif");
-
-      bool bGif = bGif87a || bGif89a;
-
-      bool bBinary = *pszData == '\0';
-
-      if(!bPng
-      && !bBinary
-      && !bJpeg
-      && !bJfif
-      && !bExif
-      && !bGif
-      )
-      {
-
-         //estatus = 
-         
-         pcontextimage->load_svg(pimage, memory);
-
-         if (pimage->is_ok())
+         if(i == 1)
          {
+            if (get_bypass_cache(payloadFile))
+            {
+               return;
+            }
+            else
+            {
+               set_bypass_cache(payloadFile);
+
+            }
+         }
+
+         try
+         {
+
+            file()->as_memory(payloadFile, memory);
+
+         }
+         catch (...)
+         {
+            continue;
+         }
+
+         auto p1 = memory.data();
+
+         auto s1 = memory.size();
+
+         const char* psz = (const char *)memory.data();
+
+         if (::is_null(psz))
+         {
+            continue;
+         }
+
+         if (memory.is_empty())
+         {
+            continue;
+         }
+
+         auto pcontext = m_pcontext->m_pauracontext;
+
+         auto pcontextimage = pcontext->image_context();
+
+         auto pszData = memory.data();
+
+         auto size = memory.size();
+
+         char pszPngSignature[] = {(char)137, 80, 78, 71, 13, 10, 26, 10};
+
+         bool bPng = size > sizeof(pszPngSignature)
+                     && ansi_ncmp((const char *)pszData, pszPngSignature, sizeof(pszPngSignature)) == 0;
+
+         bool bJpegBegins = memory.begins("\x0FF\x0D8");
+
+         bool bJpegEnds = memory.ends("\x0FF\x0D9");
+
+         bool bGif87a = memory.begins("GIF87a");
+
+         bool bGif89a = memory.begins("GIF89a");
+
+         bool bJpeg = bJpegBegins && bJpegEnds;
+
+         bool bJfif = memory.begins("JFIF");
+
+         bool bExif = memory.begins("Exif");
+
+         bool bGif = bGif87a || bGif89a;
+
+         bool bBinary = *pszData == '\0';
+
+         if (!bPng
+             && !bBinary
+             && !bJpeg
+             && !bJfif
+             && !bExif
+             && !bGif
+         )
+         {
+            //estatus =
+
+            pcontextimage->load_svg(pimage, memory);
+
+            if (pimage->is_ok())
+            {
+               return;
+            }
+         }
+         else if (bGif)
+         {
+            //acmefile()->put_contents("/home/camilo/a.gif", memory);
+
+            _load_multi_frame_image(pimage, memory);
+
+            //if (!)
+            /*        {
+
+                       pimage->set_nok();
+
+                       return pimage->m_estatus;
+
+                    }*/
+
+            pimage->on_load_image();
+
+            pimage->set_ok_flag();
+
+            pimage->m_estatus = ::success;
 
             return;
 
+            // return pimage->m_estatus;
          }
 
-      }
-   else if (bGif)
-      {
+         pmem = FreeImage_OpenMemory(memory.data(), (::u32)memory.size());
 
-      //acmefile()->put_contents("/home/camilo/a.gif", memory);
+         if (pmem == nullptr)
+         {
+            continue;
+         }
 
-         _load_multi_frame_image(pimage, memory);
+         try
+         {
 
-         //if (!)
- /*        {
+            FREE_IMAGE_FORMAT format;
 
-            pimage->set_nok();
+            format = FreeImage_GetFileTypeFromMemory(pmem);
 
-            return pimage->m_estatus;
+            pfibitmap = FreeImage_LoadFromMemory(format, pmem);
 
-         }*/
+            if(pfibitmap)
+            {
+               break;
+            }
 
-         pimage->on_load_image();
-
-         pimage->set_ok_flag();
-
-         pimage->m_estatus = ::success;
-
-         return;
-
-         // return pimage->m_estatus;
-
-      }
-
-      FIMEMORY * pmem = FreeImage_OpenMemory(memory.data(), (::u32) memory.size());
-
-      if (pmem == nullptr)
-      {
-
-         throw ::exception(error_failed);
-
-      }
-
-      FIBITMAP * pfibitmap = nullptr;
-
-      try
-      {
-
-
-         FREE_IMAGE_FORMAT format;
-
-         format = FreeImage_GetFileTypeFromMemory(pmem);
-
-         pfibitmap = FreeImage_LoadFromMemory(format, pmem);
-
-      }
-      catch (...)
-      {
-
+         }
+         catch (...)
+         {
+         }
       }
 
       if (pfibitmap == nullptr)
       {
-
          FreeImage_CloseMemory(pmem);
 
          pimage->m_estatus = error_failed;
@@ -436,67 +415,54 @@ namespace imaging_freeimage
          pimage->set_nok();
 
          return;
-
       }
 
       int iExifOrientation = -1;
 
       bool bOrientation = false;
 
-      FITAG * tag = nullptr;
+      FITAG* tag = nullptr;
 
-      FIMETADATA * mdhandle = FreeImage_FindFirstMetadata(FIMD_EXIF_MAIN, pfibitmap, &tag);
+      FIMETADATA* mdhandle = FreeImage_FindFirstMetadata(FIMD_EXIF_MAIN, pfibitmap, &tag);
 
       if (mdhandle)
       {
-
          do
          {
-
             if (!ansi_icmp(FreeImage_GetTagKey(tag), "orientation"))
             {
-
                bOrientation = true;
 
                auto type = FreeImage_GetTagType(tag);
 
                if (type == FIDT_SHORT)
                {
-
                   auto value = FreeImage_GetTagValue(tag);
 
                   iExifOrientation = *((unsigned short *)value);
 
                   pimage->m_iExifOrientation = iExifOrientation;
-
                }
-
             }
 
             if (bOrientation)
             {
-
                break;
-
             }
-
          }
 
          while (FreeImage_FindNextMetadata(mdhandle, &tag));
 
          FreeImage_FindCloseMetadata(mdhandle);
-
       }
 
       if (!image_from_freeimage(pimage, pfibitmap))
       {
-
          FreeImage_Unload(pfibitmap);
 
          FreeImage_CloseMemory(pmem);
 
          throw ::exception(error_failed);
-
       }
 
       FreeImage_Unload(pfibitmap);
@@ -507,7 +473,7 @@ namespace imaging_freeimage
       //   if (iExifOrientation >= 0)
       //   {
       //
-      //      ::image_pointer pimage2;
+      //      ::image::image_pointer pimage2;
       //
       //      //double dPiQuarter = ::atan(1.0);
       //
@@ -567,36 +533,28 @@ namespace imaging_freeimage
 
       pimage->m_estatus = ::success;
 
-      if(loadoptions.functionLoaded)
+      if (loadoptions.functionLoaded)
       {
-
          loadoptions.functionLoaded(pimage);
-
       }
-//      return pimage->m_estatus;
-
+      //      return pimage->m_estatus;
    }
-
-
 } // namespace imaging_freeimage
 
 
+//bool os_init_imaging()
+//{
+
+//   FreeImage_Initialise(false);
+
+//   return true;
+//}
 
 
+//void os_term_imaging()
+//{
 
-   //bool os_init_imaging()
-   //{
-
-   //   FreeImage_Initialise(false);
-
-   //   return true;
-   //}
+//   FreeImage_DeInitialise();
 
 
-   //void os_term_imaging()
-   //{
-
-   //   FreeImage_DeInitialise();
-
-
-   //}
+//}

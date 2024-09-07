@@ -26,7 +26,7 @@ namespace data
       return -1;
    }
 
-   image_list * item::data_item_get_image_list(::particle * pparticle) const
+   ::image::image_list * item::data_item_get_image_list(::particle * pparticle) const
    {
       __UNREFERENCED_PARAMETER(pparticle);
       return nullptr;

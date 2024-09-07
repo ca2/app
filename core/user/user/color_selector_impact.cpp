@@ -435,11 +435,11 @@ namespace user
 
    //   {
 
-   //      image_source imagesource(m_pimage, rSource);
+   //      ::image::image_source imagesource(m_pimage, rSource);
 
-   //      image_drawing_options imagedrawingoptions(rTarget);
+   //      ::image::image_drawing_options imagedrawingoptions(rTarget);
 
-   //      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+   //      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
    //      pgraphics->draw(imagedrawing);
 
@@ -476,11 +476,11 @@ namespace user
 
    //   {
 
-   //      image_source imagesource(m_pimageLuminance);
+   //      ::image::image_source imagesource(m_pimageLuminance);
 
-   //      image_drawing_options imagedrawingoptions(rectangleLum1);
+   //      ::image::image_drawing_options imagedrawingoptions(rectangleLum1);
 
-   //      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+   //      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
    //      pgraphics->draw(imagedrawing);
 
@@ -603,21 +603,21 @@ namespace user
 
    //   m_rectangleColors = rectangleColors;
 
-   //   m_pimage = context_image()->create_image({m_rectangleColors.width() / 2,  m_rectangleColors.height()});
+   //   m_pimage = image()->create_image({m_rectangleColors.width() / 2,  m_rectangleColors.height()});
 
    //   {
 
-   //      image_source imagesource(m_pimageTemplate);
+   //      ::image::image_source imagesource(m_pimageTemplate);
 
-   //      image_drawing_options imagedrawingoptions(m_pimage->rectangle());
+   //      ::image::image_drawing_options imagedrawingoptions(m_pimage->rectangle());
 
-   //      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+   //      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
    //      m_pimage->g()->draw(imagedrawing);
 
    //   }
 
-   //   m_pimageLuminance = context_image()->create_image({m_rectangleColors.width() / 8,  m_rectangleColors.height()});
+   //   m_pimageLuminance = image()->create_image({m_rectangleColors.width() / 8,  m_rectangleColors.height()});
 
    //   rebuild_luminance();
 

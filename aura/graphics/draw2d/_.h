@@ -43,9 +43,6 @@ namespace draw2d
    class item;
 
 
-   class fastblur;
-
-
    class path_optimization;
 
 

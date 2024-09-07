@@ -198,7 +198,7 @@
     <ClInclude Include="graphics\draw2d\color_filter.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\draw2d\context_image.h">
+    <ClInclude Include="graphics\draw2d\image_context.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\device_lock.h">
@@ -207,10 +207,10 @@
     <ClInclude Include="graphics\draw2d\image_drawer.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\draw2d\image_drawing.h">
+    <ClInclude Include="graphics\draw2d\::image::image_drawing.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\draw2d\image_source.h">
+    <ClInclude Include="graphics\draw2d\::image::image_source.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="graphics\draw2d\load_image.h">
@@ -996,7 +996,7 @@
     <ClInclude Include="graphics\image\cursor.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\image\context_image.h">
+    <ClInclude Include="graphics\image\image_context.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
     <ClInclude Include="graphics\image\array.h">
@@ -1354,7 +1354,7 @@
     <ClCompile Include="graphics\image\cursor.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\image\context_image.cpp">
+    <ClCompile Include="graphics\image\image_context.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
     <ClCompile Include="graphics\image\array.cpp">

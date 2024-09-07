@@ -43,11 +43,11 @@ namespace html
 
                auto rectangleTarget = ::rectangle_f64(pointDst, sizeDst);
 
-               image_source imagesource(m_pimage);
+               ::image::image_source imagesource(m_pimage);
 
-               image_drawing_options imagedrawingoptions(rectangleTarget);
+               ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
                

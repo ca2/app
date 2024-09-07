@@ -258,7 +258,7 @@ inline vector4 Reflect(const vector4 & Incident,const vector4 & Normal)
 //#include "acme/primitive/geometry2d/_geometry2d.h"
 
 
-namespace draw2d
+namespace image
 {
 
 
@@ -268,7 +268,7 @@ namespace draw2d
    public:
 
 
-      //::image_pointer  m_pimage;
+      //::image::image_pointer  m_pimage;
 
 
 #if VECTOR3_SSE
@@ -310,10 +310,10 @@ namespace draw2d
       void initialize(::size_i32 sz, i32 iRadius);
 
 
-      virtual void blur(::image * pimage, const ::rectangle_i32 & rectangle);
+      virtual void blur(::image::image *pimage, const ::rectangle_i32 & rectangle);
 
 
-      virtual void blur(::image * pimage);
+      virtual void blur(::image::image *pimage);
 
 
       void do_fastblur(image32_t * pdata,i32 w,i32 h,u8 * rectangle,u8 * g,u8 * b,u8 * a,u8 * dv,i32 stride,i32 * vmin,i32 * vmax,int cx,int cy,int bottomup);
@@ -327,7 +327,7 @@ namespace draw2d
    };
 
 
-} // namespace draw2d
+} // namespace image
 
 
 

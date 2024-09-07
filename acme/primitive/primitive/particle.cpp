@@ -409,7 +409,16 @@ void particle::on_initialize_particle()
 }
 
 
-class ::imaging * particle::imaging() const
+::image::image_context* particle::image() const
+{
+
+   return m_pcontext ? m_pcontext->image() : nullptr;
+
+}
+
+
+
+class ::image::imaging * particle::imaging() const
 {
 
    auto psystem = system();
@@ -418,15 +427,6 @@ class ::imaging * particle::imaging() const
 
 }
 
-
-class ::user::user * particle::user() const
-{
-
-   auto psession = session();
-
-   return ::is_set(psession) ? psession->user() : nullptr;
-
-}
 
 
 class ::draw2d::draw2d * particle::draw2d() const
@@ -447,6 +447,17 @@ class ::write_text::write_text * particle::write_text() const
    return ::is_set(psystem) ? psystem->write_text() : nullptr;
 
 }
+
+
+class ::user::user * particle::user() const
+{
+
+   auto psession = session();
+
+   return ::is_set(psession) ? psession->user() : nullptr;
+
+}
+
 
 
 ::acme::system * particle::system() const
@@ -477,14 +488,6 @@ class ::write_text::write_text * particle::write_text() const
 {
 
    return m_pcontext ? m_pcontext->m_pauracontext : nullptr;
-
-}
-
-
-::context_image* particle::context_image() const
-{
-
-   return m_pcontext ? m_pcontext->context_image() : nullptr;
 
 }
 

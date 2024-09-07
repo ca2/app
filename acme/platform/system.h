@@ -210,7 +210,7 @@ namespace acme
 
       virtual ::mathematics::mathematics * mathematics();
 
-      virtual class ::imaging * imaging();
+      virtual ::image::imaging * imaging();
 
 // #if defined(WITH_X11) || defined(WITH_XCB)
 //       virtual ::particle * x11_synchronization();

@@ -332,7 +332,7 @@ namespace browser
 
       synchronous_lock synchronouslock(m_pmutexWork);
 
-/*      ::image_pointer pimage = m_pimageWork;
+/*      ::image::image_pointer pimage = m_pimageWork;
 
 /*      if (!pimage->is_ok())
       {
@@ -926,7 +926,7 @@ namespace browser
                   if (error == 0)
                   {
 
-/*                     ::image_pointer & pimage = m_pimageAi1;
+/*                     ::image::image_pointer & pimage = m_pimageAi1;
 
 /*                     pimage = create_image({face->glyph->bitmap.width,  face->glyph->bitmap.rows});
 
@@ -977,7 +977,7 @@ namespace browser
                   if (error == 0)
                   {
 
-/*                     ::image_pointer & pimage = m_pimageAi2;
+/*                     ::image::image_pointer & pimage = m_pimageAi2;
 
 /*                     pimage = create_image({face->glyph->bitmap.width,  face->glyph->bitmap.rows});
 
@@ -1187,9 +1187,9 @@ namespace browser
 
       }
 
-/*      ::image_pointer pimage;
+/*      ::image::image_pointer pimage;
 
-      ::image_pointer imageFast = m_pimageFast;
+      ::image::image_pointer imageFast = m_pimageFast;
 
       synchronous_lock synchronouslock(m_pmutexDraw);
 
@@ -1224,7 +1224,7 @@ namespace browser
    }
 
 
-   //::image_pointer & render::image23(string strImage)
+   //::image::image_pointer & render::image23(string strImage)
    //{
 
    //   synchronous_lock synchronouslock(this->synchronization());
@@ -1246,7 +1246,7 @@ namespace browser
    //      fork([=]()
    //      {
 
-/*   //         image * pimage = nullptr;
+/*   //         ::image::image *pimage = nullptr;
 
    //         {
 

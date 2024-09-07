@@ -131,7 +131,7 @@ namespace draw2d
 //   }
 
 
-   bool brush::CreatePatternBrush(::image * pimage, const ::size_f64 & size)
+   bool brush::CreatePatternBrush(::image::image *pimage, const ::size_f64 & size)
    {
 
       if (m_pimage != pimage || m_ebrush != e_brush_pattern)

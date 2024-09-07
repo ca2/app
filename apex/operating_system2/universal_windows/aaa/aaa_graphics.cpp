@@ -24,7 +24,7 @@ CLASS_DECL_APEX int_bool window_set_mouse_cursor(oswindow, HCURSOR hcursor)
 }
 
 
-HCURSOR CreateAlphaCursor(oswindow window, const ::image* pimage, int xHotSpot, int yHotSpot)
+HCURSOR CreateAlphaCursor(oswindow window, const ::image::image* pimage, int xHotSpot, int yHotSpot)
 {
 
    return false;

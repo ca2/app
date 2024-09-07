@@ -10,9 +10,9 @@ namespace filemanager
    {
    public:
 
-      ::pointer<::image_list>          m_pimagelistSubItemHover;
-      ::pointer<::image_list>          m_pimagelistItemHover;
-      ::pointer<::image_list>          m_pimagelistNormal;
+      ::pointer<::image::image_list>          m_pimagelistSubItemHover;
+      ::pointer<::image::image_list>          m_pimagelistItemHover;
+      ::pointer<::image::image_list>          m_pimagelistNormal;
 
       file_list_callback();
       virtual ~file_list_callback();
@@ -20,7 +20,7 @@ namespace filemanager
       virtual bool initialize_file_list_callback();
 
       virtual i32 GetActionButtonCount();
-      virtual ::pointer<::image_list>GetActionButtonImageList(atom i);
+      virtual ::pointer<::image::image_list>GetActionButtonImageList(atom i);
       virtual void InitializeActionButton(const ::atom & atomButton, ::pointer<::user::button>pbutton);
       virtual void OnButtonAction(atom i, ::pointer<::file::item> item);
 

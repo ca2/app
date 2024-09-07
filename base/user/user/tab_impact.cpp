@@ -985,13 +985,18 @@ namespace user
 
          auto phandlerimpact = m_maphandlerimpact[m_pimpactdata->m_atom];
 
-         phandlerimpact->call_handler(
-            [poptionsimpacthandler](auto puserinteractionParent)
-            {
+         if(poptionsimpacthandler && phandlerimpact)
+         {
 
-               poptionsimpacthandler->create_options_impact(puserinteractionParent);
+            phandlerimpact->call_handler(
+               [poptionsimpacthandler](auto puserinteractionParent)
+               {
 
-            });
+                  poptionsimpacthandler->create_options_impact(puserinteractionParent);
+
+               });
+
+         }
 
       }
 

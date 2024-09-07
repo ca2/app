@@ -61,7 +61,7 @@ namespace android
    }
 
 
-   bool buffer::update_window(::image * pimage)
+   bool buffer::update_window(::image::image *pimage)
    {
 
       //ANativeWindow_Buffer buffer;

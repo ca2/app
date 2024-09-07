@@ -2,14 +2,14 @@
 #include "dynamic.h"
 
 
-image_dynamic::image_dynamic()
+namespace image
 {
+   image_dynamic::image_dynamic()
+   {
 
-   m_bStart = false;
+      m_bStart = false;
 
-   m_iFrame = -1;
+      m_iFrame = -1;
 
-}
-
-
-
+   }
+} // namespace image

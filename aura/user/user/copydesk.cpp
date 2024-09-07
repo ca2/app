@@ -11,7 +11,7 @@
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/save_image.h"
 #include "aura/graphics/image/frame_array.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 #include "aura/windowing/window.h"
 #include "aura/platform/node.h"
 #include "aura/platform/application.h"
@@ -220,7 +220,7 @@ namespace user
       if (!(eflag & e_flag_prevent_data_blob) && _has_image())
       {
 
-         ::image_pointer pimage;
+         ::image::image_pointer pimage;
 
          if(desk_to_image(pimage))
          {
@@ -248,7 +248,7 @@ namespace user
 
             auto pcontext = m_pcontext->m_pauracontext;
 
-            auto pcontextimage = pcontext->context_image();
+            auto pcontextimage = pcontext->image_context();
 
             pcontextimage->save_image(mem, pimage, psaveimage);
 
@@ -306,7 +306,7 @@ namespace user
 
                   auto pcontext = m_pcontext->m_pauracontext;
 
-                  auto pcontextimage = pcontext->context_image();
+                  auto pcontextimage = pcontext->image_context();
 
                   auto pimage = pcontextimage->load_image(payloadFile, { .cache = false });
 
@@ -391,7 +391,7 @@ namespace user
    }
 
 
-   bool copydesk::desk_to_image(::image_pointer & pimage)
+   bool copydesk::desk_to_image(::image::image_pointer & pimage)
    {
 
       if (_has_image())
@@ -436,7 +436,7 @@ namespace user
 
             auto pcontext = m_pcontext->m_pauracontext;
 
-            auto pcontextimage = pcontext->context_image();
+            auto pcontextimage = pcontext->image_context();
 
             pcontextimage->_load_image(pimage, pmemory);
             //{
@@ -512,7 +512,7 @@ namespace user
    }
 
 
-   bool copydesk::image_to_desk(const ::image * pimage)
+   bool copydesk::image_to_desk(const ::image::image *pimage)
    {
 
       return _image_to_desk(pimage);
@@ -608,7 +608,7 @@ namespace user
    }
 
 
-   bool copydesk::_desk_to_image(::image * pimage)
+   bool copydesk::_desk_to_image(::image::image *pimage)
    {
 
       __UNREFERENCED_PARAMETER(pimage);
@@ -620,7 +620,7 @@ namespace user
    }
 
 
-   bool copydesk::_image_to_desk(const ::image * pimage)
+   bool copydesk::_image_to_desk(const ::image::image *pimage)
    {
 
       __UNREFERENCED_PARAMETER(pimage);

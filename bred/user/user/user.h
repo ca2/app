@@ -63,8 +63,8 @@ namespace bred
 //
 //      //::user::interaction_impl *                            m_pimplPendingFocus2;
 //      //::user::interaction *                                 m_puiLastUserInputPopup;
-//      //::draw2d::cursor *                                    m_pcursor;
-//      //::draw2d::cursor *                                    m_pcursorCursor;
+//      //::image::cursor *                                    m_pcursor;
+//      //::image::cursor *                                    m_pcursorCursor;
 //      //e_cursor                                              m_ecursorDefault;
 //      //e_cursor                                              m_ecursor;
 //
@@ -400,11 +400,11 @@ namespace bred
 //
 //      //virtual oswindow get_capture();
 //
-//      //virtual bool set_cursor(::user::interaction * pinteraction, ::draw2d::cursor * pcursor);
+//      //virtual bool set_cursor(::user::interaction * pinteraction, ::image::cursor * pcursor);
 //      //virtual bool set_cursor(::user::interaction * pinteraction, e_cursor ecursor);
 //      //virtual bool set_default_cursor(::user::interaction * pinteraction, e_cursor ecursor);
-//      //virtual ::draw2d::cursor * get_cursor();
-//      //virtual ::draw2d::cursor * get_default_cursor();
+//      //virtual ::image::cursor * get_cursor();
+//      //virtual ::image::cursor * get_default_cursor();
 //
 //      //virtual bool on_ui_mouse_message(::message::mouse * pmouse);
 //
@@ -604,8 +604,8 @@ namespace bred
 //
 //      //virtual bool is_remote_session();
 //
-//      ////virtual ::draw2d::cursor * get_cursor() override;
-//      ////virtual ::draw2d::cursor* get_default_cursor() override;
+//      ////virtual ::image::cursor * get_cursor() override;
+//      ////virtual ::image::cursor* get_default_cursor() override;
 //
 //      ////virtual ::collection::count   get_monitor_count() override;
 //      ////virtual bool      get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32* prectangle) override;

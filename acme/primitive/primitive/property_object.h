@@ -146,8 +146,9 @@ public:
 
    void defer_propset();
 
-   bool is_true(const ::atom & atom, bool bDefault = false) const;
+   bool is_true(const ::atom & atom) const;
    bool is_false(const ::atom & atom) const;
+   bool is_true_or_empty(const ::atom & atom) const;
    //inline bool is_true(const ::atom & atom, const ::payload & varDefault, bool bDefault) const;
 
    //virtual string get_text(const ::payload & payload, const ::atom & atom);

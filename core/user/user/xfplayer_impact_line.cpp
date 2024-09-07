@@ -5,7 +5,7 @@
 #include "acme/regular_expression/regular_expression.h"
 #include "acme/regular_expression/result.h"
 #include "acme/platform/message.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/image/imaging.h"
@@ -320,10 +320,10 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
                size_i32 size2 = pgraphics->get_text_extent(strFinal.left(iEnd + 1));
                rectangle.left() = rectanglePlacement.left() + size1.cx();
                rectangle.right() = rectanglePlacement.left() + size2.cx();
-               ::image_pointer pimage;
+               ::image::image_pointer pimage;
                if (rectangle.area() > 0)
                {
-                  pimage = context_image()->create_image(rectangle.size());
+                  pimage = image()->create_image(rectangle.size());
                   pimage->clear(::color::white);
                   pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
                   pgraphics->flush();
@@ -333,13 +333,13 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
                   {
 
-                     image_source imagesource(pgraphics, rectangle);
+                     ::image::image_source imagesource(pgraphics, rectangle);
 
                      ::rectangle_f64 rectangleTarget(rectangle.size());
 
-                     image_drawing_options imagedrawingoptions(rectangleTarget);
+                     ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
-                     image_drawing imagedrawing(imagedrawingoptions, imagesource);
+                     ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                      pimage->g()->draw(imagedrawing);
 
@@ -352,13 +352,13 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
                   {
 
-                     image_source imagesource(pimage);
+                     ::image::image_source imagesource(pimage);
 
                      rectangle_f64 rectangleTarget(rectangle);
 
-                     image_drawing_options imagedrawingoptions(rectangleTarget);
+                     ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
-                     image_drawing imagedrawing(imagedrawingoptions, imagesource);
+                     ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                      pgraphics->draw(imagedrawing);
 
@@ -1412,7 +1412,7 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 }
 
 
-void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, ::image * pimageCache, const ::scoped_string & scopedstr, i32 iLeft, i32 iTop, i32 iWidth, ::color32_t color32, ::color::color crOutline, strsize iLen, double dBlend)
+void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, ::image::image *pimageCache, const ::scoped_string & scopedstr, i32 iLeft, i32 iTop, i32 iWidth, ::color32_t color32, ::color::color crOutline, strsize iLen, double dBlend)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization());
@@ -1476,15 +1476,15 @@ void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraph
 
       {
 
-         image_source imagesource(m_pimageMain);
+         ::image::image_source imagesource(m_pimageMain);
 
          rectangle_f64 rectangleTarget(point, m_pimageMain->get_size());
 
-         image_drawing_options imagedrawingoptions(rectangleTarget);
+         ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
          imagedrawingoptions.opacity(dBlend);
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          pgraphics->draw(imagedrawing);
 
@@ -1570,7 +1570,7 @@ void xfplayer_impact_line::SetColors(::color32_t color32, ::color::color crOutli
 //#endif
 
 
-void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, ::image_pointer & pimageCache)
+void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, const ::scoped_string & scopedstr, ::image::image_pointer & pimageCache)
 {
 
    _synchronous_lock synchronouslock(m_pContainer->synchronization());
@@ -1605,7 +1605,7 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
    
    size.cy() += (::i32)(2 * (maximum(2.0, m_floatRateX * 8.0)));
 
-   pimageCache = context_image()->create_image(size);
+   pimageCache = image()->create_image(size);
 
    if (!pimageCache)
    {

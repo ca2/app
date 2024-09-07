@@ -1867,7 +1867,7 @@ namespace filemanager
    }
 
 
-   ::image_list * file_list::GetActionButtonImageList(::collection::index i)
+   ::image::image_list * file_list::GetActionButtonImageList(::collection::index i)
    {
 
       if (i == 0)

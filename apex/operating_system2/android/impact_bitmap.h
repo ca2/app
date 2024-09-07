@@ -12,7 +12,7 @@
 //   public:
 //
 //
-//      ::image_pointer     m_spimageBuffer;
+//      ::image::image_pointer     m_spimageBuffer;
 //      ::pointer < ::mutex >                m_pmutex;
 //
 //

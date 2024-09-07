@@ -31,7 +31,7 @@ namespace draw2d_opengl
 
       /*virtual color32_t * get_data() const;
 
-      */void stretch_image(::image::image * pimage);
+      */void stretch_image(::image::image *pimage);
 
       bool dc_select(bool bSelect = true);
 
@@ -52,12 +52,12 @@ namespace draw2d_opengl
       bool to(::draw2d::graphics * pgraphics, const ::point_i32 & point, ::size size, point ptSrc);
 
 
-      void SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy);
+      void SetIconMask(::image::icon * picon, i32 cx, i32 cy);
 
 
       //bool color_blend(color32_t color32, ::u8 bAlpha);
-      //bool Blend(imagepimage, ::image::image * pimageA, i32 A);
-      //void BitBlt(::image::image * pimage, i32 op);
+      //bool Blend(imagepimage, ::image::image *pimageA, i32 A);
+      //void BitBlt(::image::image *pimage, i32 op);
       //color32_t GetAverageColor();
       //i32 cos(i32 i, i32 iAngle);
       //i32 sin(i32 i, i32 iAngle);
@@ -65,19 +65,19 @@ namespace draw2d_opengl
       //i32 sin10(i32 i, i32 iAngle);
 
       //bool is_rgb_black();
-      //void xor(::image::image * pimage);
+      //void xor(::image::image *pimage);
 
       //void ToAlpha(i32 i);
       //void ToAlphaAndFill(i32 i, color32_t color32);
       //void GrayToARGB(color32_t color32);
 
       //void from_alpha();
-      //void mult_alpha(::image::image * pimageWork, bool bPreserveAlpha = true);
+      //void mult_alpha(::image::image *pimageWork, bool bPreserveAlpha = true);
       //void set_rgb(i32 R, i32 G, i32 B);
 
-      //void rotate(::image::image * pimage, const ::rectangle_f64 & rectangle, double dAngle, double dScale);
-      //void rotate(::image::image * pimage, double dAngle, double dScale);
-      //void Rotate034(::image::image * pimage, double dAngle, double dScale);
+      //void rotate(::image::image *pimage, const ::rectangle_f64 & rectangle, double dAngle, double dScale);
+      //void rotate(::image::image *pimage, double dAngle, double dScale);
+      //void Rotate034(::image::image *pimage, double dAngle, double dScale);
 
       //void RadialFill(::u8 a, ::u8 rectangle, ::u8 g, ::u8 b, i32 x, i32 y, i32 iRadius);
       //void RadialFill(

@@ -44,7 +44,7 @@ namespace windowing
       virtual void load_file(const ::string & strPath);
 
 
-      virtual image_pointer get_image(const ::size_i32 & size);
+      virtual ::image::image_pointer get_image(const ::size_i32 & size);
 
       
    };

@@ -754,7 +754,7 @@ pacmedirectory->is(strPath))
          if (strIcon48.has_char())
          {
 
-            ::image_pointer pimage1 = load_image(strIcon16);
+            ::image::image_pointer pimage1 = load_image(strIcon16);
 
             if (!::is_ok(pimage1))
             {
@@ -763,7 +763,7 @@ pacmedirectory->is(strPath))
 
             }
 
-            ::image_pointer pimage =  load_image(strIcon48);
+            ::image::image_pointer pimage =  load_image(strIcon48);
 
             if (!::is_ok(pimage))
             {
@@ -772,7 +772,7 @@ pacmedirectory->is(strPath))
 
             }
 
-            ::image_pointer image16 = __create_image({16, 16});
+            ::image::image_pointer image16 = __create_image({16, 16});
 
             if (!::is_ok(image16))
             {
@@ -781,7 +781,7 @@ pacmedirectory->is(strPath))
 
             }
 
-            ::image_pointer image48 = __create_image({48, 48});
+            ::image::image_pointer image48 = __create_image({48, 48});
 
             if (!::is_ok(image48))
             {
@@ -1064,7 +1064,7 @@ pacmedirectory->is(strPath))
 //
 //            {
 //
-//               ::image_pointer pimage;
+//               ::image::image_pointer pimage;
 //               pimage = create_image({iSize,  iSize});
 //               pimage->fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
 //               pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -1079,7 +1079,7 @@ pacmedirectory->is(strPath))
 //            {
 //               auto & d = m_pimagelistHover[iSize]->m_pimage;
 //               size s = m_pimagelist[iSize]->m_pimage->get_size();
-//               ::image_pointer pimage;
+//               ::image::image_pointer pimage;
 //               pimage = __create_image(d->size());
 //               pimage->fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
 //               pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);

@@ -5181,10 +5181,10 @@ namespace apex
    }
 
 
-   //::draw2d::icon * application::set_icon(object * pparticle, ::draw2d::icon * picon, bool bBigIcon)
+   //::image::icon * application::set_icon(object * pparticle, ::image::icon * picon, bool bBigIcon)
    //{
 
-   //   ::draw2d::icon * piconOld = get_icon(pparticle, bBigIcon);
+   //   ::image::icon * piconOld = get_icon(pparticle, bBigIcon);
 
    //   if (bBigIcon)
    //   {
@@ -5204,19 +5204,19 @@ namespace apex
    //}
 
 
-   //::draw2d::icon * application::get_icon(object * pparticle, bool bBigIcon) const
+   //::image::icon * application::get_icon(object * pparticle, bool bBigIcon) const
    //{
 
    //   if (bBigIcon)
    //   {
 
-   //      return ((object *)pparticle)->cast < ::draw2d::icon >("big_icon");
+   //      return ((object *)pparticle)->cast < ::image::icon >("big_icon");
 
    //   }
    //   else
    //   {
 
-   //      return ((object *)pparticle)->cast <::draw2d::icon>("small_icon");
+   //      return ((object *)pparticle)->cast <::image::icon>("small_icon");
 
    //   }
 
@@ -7017,7 +7017,7 @@ namespace apex
 
 
 
-   //::draw2d::icon * application::set_icon(object * pparticle, ::draw2d::icon * picon, bool bBigIcon)
+   //::image::icon * application::set_icon(object * pparticle, ::image::icon * picon, bool bBigIcon)
    //{
 
    //   return nullptr;
@@ -7025,7 +7025,7 @@ namespace apex
    //}
 
 
-   //::draw2d::icon * application::get_icon(object * pparticle, bool bBigIcon) const
+   //::image::icon * application::get_icon(object * pparticle, bool bBigIcon) const
    //{
 
    //   return nullptr;

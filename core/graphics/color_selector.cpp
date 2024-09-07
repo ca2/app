@@ -5,7 +5,7 @@
 #include "acme/graphics/image/image32.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/graphics/draw2d/graphics.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/image/drawing.h"
@@ -177,7 +177,7 @@ namespace graphics
    }
 
 
-   void colors_with_shades_of_grey(::image * pimage)
+   void colors_with_shades_of_grey(::image::image *pimage)
    {
 
       pimage->map();
@@ -220,7 +220,7 @@ namespace graphics
    }
 
 
-   void shades_of_luminance(::image * pimage, double dH, double dS)
+   void shades_of_luminance(::image::image *pimage, double dH, double dS)
    {
 
       pimage->map();
@@ -415,11 +415,11 @@ namespace graphics
    //   MESSAGE_LINK(e_message_left_button_up, pchannel, this, &color_selector::on_message_left_button_up);
    //   MESSAGE_LINK(e_message_show_window, pchannel, this, &color_selector::on_message_show_window);
 
-   //   m_pimageTemplate = context_image()->create_image({ 2048,  2048 });
+   //   m_pimageTemplate = image()->create_image({ 2048,  2048 });
 
    //   ::visual::colors_with_shades_of_grey(m_pimageTemplate);
 
-   //   m_pimageLuminance = context_image()->create_image({ 100,  100 });
+   //   m_pimageLuminance = image()->create_image({ 100,  100 });
 
    //}
 
@@ -429,11 +429,11 @@ namespace graphics
 
       ::particle::on_initialize_particle();
 
-      m_pimageTemplate = context_image()->create_image({ 2048,  2048 });
+      m_pimageTemplate = image()->create_image({ 2048,  2048 });
 
       ::graphics::colors_with_shades_of_grey(m_pimageTemplate);
 
-      m_pimageLuminance = context_image()->create_image({ 100,  100 });
+      m_pimageLuminance = image()->create_image({ 100,  100 });
 
       if (__defer_construct(m_pfontOk))
       {
@@ -809,11 +809,11 @@ namespace graphics
 
       {
 
-         image_source imagesource(m_pimage, rSource);
+         ::image::image_source imagesource(m_pimage, rSource);
 
-         image_drawing_options imagedrawingoptions(rTarget);
+         ::image::image_drawing_options imagedrawingoptions(rTarget);
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          pgraphics->draw(imagedrawing);
 
@@ -850,11 +850,11 @@ namespace graphics
 
       {
 
-         image_source imagesource(m_pimageLuminance);
+         ::image::image_source imagesource(m_pimageLuminance);
 
-         image_drawing_options imagedrawingoptions(rectangleLum1);
+         ::image::image_drawing_options imagedrawingoptions(rectangleLum1);
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          pgraphics->draw(imagedrawing);
 
@@ -1018,17 +1018,17 @@ namespace graphics
 
       {
 
-         image_source imagesource(m_pimageTemplate);
+         ::image::image_source imagesource(m_pimageTemplate);
 
-         image_drawing_options imagedrawingoptions(m_pimage->rectangle());
+         ::image::image_drawing_options imagedrawingoptions(m_pimage->rectangle());
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          m_pimage->g()->draw(imagedrawing);
 
       }
 
-      m_pimageLuminance = context_image()->create_image({ m_rectangleColors.width() / 8,  m_rectangleColors.height() });
+      m_pimageLuminance = image()->create_image({ m_rectangleColors.width() / 8,  m_rectangleColors.height() });
 
       rebuild_luminance();
 

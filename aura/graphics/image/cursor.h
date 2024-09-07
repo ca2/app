@@ -7,20 +7,20 @@
 using hcursor = void *;
 
 
-namespace draw2d
+namespace image
 {
    
    
    class CLASS_DECL_AURA cursor :
-      virtual public ::image_source_interface
+      virtual public ::image::image_source_interface
    {
    public:
 
 
       enum_cursor                         m_ecursor;
       bool                                m_bDefaultCursor;
-      ::image_pointer                     m_pimage;
-      ::image_pointer                     m_pimageCursor;
+      ::image::image_pointer                     m_pimage;
+      ::image::image_pointer                     m_pimageCursor;
       ::size_i32                          m_szHotspotOffset;
 
 
@@ -51,7 +51,7 @@ namespace draw2d
       ::draw2d::graphics * g(const ::size_f64 & sizeHint);
 
       
-      ::image_pointer image_source_image(const ::size_i32 & size) override;
+      ::image::image_pointer image_source_image(const ::size_i32 & size) override;
 
       ::size_i32 image_source_size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const override;
 
@@ -68,11 +68,11 @@ namespace draw2d
    CLASS_DECL_AURA image_pointer cursor_get_image(cursor * pcursor);
 
 
-} // namespace draw2d
+} // namespace image
 
 
 
-//CLASS_DECL_AURA hcursor CreateAlphaCursor(::windowing::window * pwindow, const ::image * pimage,int xHotSpot,int yHotSpot);
+//CLASS_DECL_AURA hcursor CreateAlphaCursor(::windowing::window * pwindow, const ::image::image *pimage,int xHotSpot,int yHotSpot);
 
 
 

@@ -15,7 +15,7 @@ public:
    
    bool                          m_bTransparent;
    ::draw2d::brush_pointer       m_pbrushBkg;
-   ::pointer<::image_list>      m_pimagelist;
+   ::pointer<::image::image_list>      m_pimagelist;
    
 
    simple_still();

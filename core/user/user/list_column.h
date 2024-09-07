@@ -50,8 +50,8 @@ namespace user
       i32                                    m_iSmallImageWidth;
       ::collection::index                                  m_iSubItem;
       ::collection::index                                  m_iColumn;
-      ::pointer<::image_list>               m_pimagelist;
-      ::pointer<::image_list>               m_pimagelistHover;
+      ::pointer<::image::image_list>               m_pimagelist;
+      ::pointer<::image::image_list>               m_pimagelistHover;
       ::pointer<draw_list_column>           m_pdrawlistcolumn;
       ::pointer<::user::interaction>        m_puserinteractionTemplate;
       ::pointer<::user::interaction_array>  m_puserinteractiona;
@@ -61,7 +61,7 @@ namespace user
       ::i32                                  m_iPosition;
       ::i32                                  m_iWidth;
       bool                                   m_bCustomDraw;
-      ::image_pointer                        m_pimageHeader;
+      ::image::image_pointer                        m_pimageHeader;
 
       // form list attributes
       bool                                   m_bEditOnSecondClick;

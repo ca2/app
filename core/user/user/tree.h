@@ -40,7 +40,7 @@ namespace user
       //::color::color                               m_colorTextHighlight;
       //::color::color                               m_colorTextSelectedHighlight;
       u32_array                                 m_dwaItemState;
-      ::pointer<::image_list>                   m_pimagelist;
+      ::pointer<::image::image_list>                   m_pimagelist;
       ::collection::index                                     m_iImageCollapse;
       ::collection::index                                     m_iImageExpand;
       ::collection::index                                     m_iImageCollapseDark;
@@ -138,7 +138,7 @@ namespace user
 
       void on_change_context_offset(::user::enum_layout elayout) override;
 
-      ::pointer<::image_list>get_image_list();
+      ::pointer<::image::image_list>get_image_list();
 
       
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);

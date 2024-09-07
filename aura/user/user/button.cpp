@@ -13,7 +13,7 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/list.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 #include "aura/windowing/windowing.h"
 #include "aura/user/appearance/appearance.h"
 #include "aura/message/user.h"
@@ -500,13 +500,13 @@ namespace user
 
             {
 
-               image_source imagesource(m_pbitmap->m_pimage);
+               ::image::image_source imagesource(m_pbitmap->m_pimage);
 
                auto rectangle = rectangleDib;
 
-               image_drawing_options imagedrawingoptions(rectangle);
+               ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 
@@ -924,7 +924,7 @@ namespace user
       ASSERT(m_pbitmap->m_pimage); // required
 
       // use the main bitmap for up, the selected bitmap for down
-      ::image_pointer pimage = m_pbitmap->m_pimage;
+      ::image::image_pointer pimage = m_pbitmap->m_pimage;
 
       auto psession = get_session();
 
@@ -978,13 +978,13 @@ namespace user
 
          {
 
-            image_source imagesource(pimage, ::rectangle_i32(pimage->get_size()));
+            ::image::image_source imagesource(pimage, ::rectangle_i32(pimage->get_size()));
 
             rectangle_f64 rectangle(rectangleAspect);
 
-            image_drawing_options imagedrawingoptions(rectangle);
+            ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
             pgraphics->draw(imagedrawing);
 
@@ -1023,7 +1023,7 @@ namespace user
             ASSERT(m_pbitmap->m_pimage); // required
 
             // use the main bitmap for up, the selected bitmap for down
-            ::image_pointer pimage = m_pbitmap->m_pimage;
+            ::image::image_pointer pimage = m_pbitmap->m_pimage;
 
             auto psession = get_session();
 
@@ -1061,13 +1061,13 @@ namespace user
 
                {
 
-                  image_source imagesource(pimage, ::rectangle_i32(pimage->get_size()));
+                  ::image::image_source imagesource(pimage, ::rectangle_i32(pimage->get_size()));
 
                   rectangle_f64 rectangle(rectangleAspect);
 
-                  image_drawing_options imagedrawingoptions(rectangle);
+                  ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+                  ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                   pgraphics->draw(imagedrawing);
 
@@ -1267,7 +1267,7 @@ namespace user
 
       auto pcontext = m_pcontext->m_pauracontext;
 
-      auto pcontextimage = pcontext->context_image();
+      auto pcontextimage = pcontext->image_context();
 
       if(!payload.is_empty())
       {

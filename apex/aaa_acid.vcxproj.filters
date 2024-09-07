@@ -5803,7 +5803,7 @@
     <ClCompile Include="apex\apex\context.cpp">
       <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
-    <ClCompile Include="apex\apex\context_image.cpp">
+    <ClCompile Include="apex\apex\image_context.cpp">
       <Filter>Source Files\apex\apex</Filter>
     </ClCompile>
     <ClCompile Include="apex\os\windows\exception_engine.cpp">

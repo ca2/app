@@ -174,7 +174,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="context_image.cpp" />
+    <ClCompile Include="image_context.cpp" />
     <ClCompile Include="loading_multi_frame.cpp" />
     <ClCompile Include="_factory.cpp" />
     <ClCompile Include="file_procedure.cpp" />

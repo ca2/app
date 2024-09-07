@@ -27,11 +27,11 @@ namespace user
       {
       public:
 
-         ::image_pointer                    m_pimage;          // not pressed default bitmap
-         ::image_pointer                    m_pimageSel;       // pressed bitmap
-         ::image_pointer                    m_pimageFocus;     // focus bitmap
-         ::image_pointer                    m_pimageDisabled;  // disabled bitmap
-         ::image_pointer                    m_pimageHover;     // hover bitmap
+         ::image::image_pointer                    m_pimage;          // not pressed default bitmap
+         ::image::image_pointer                    m_pimageSel;       // pressed bitmap
+         ::image::image_pointer                    m_pimageFocus;     // focus bitmap
+         ::image::image_pointer                    m_pimageDisabled;  // disabled bitmap
+         ::image::image_pointer                    m_pimageHover;     // hover bitmap
 
       };
 

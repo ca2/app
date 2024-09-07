@@ -91,7 +91,7 @@ namespace draw2d_opengl
       ::draw2d::bitmap *  get_current_bitmap() override;
 
 
-      void _draw_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const image_drawing_options & imagedrawingoptionsParam, const ::point_f64 & pointSrc) override;
+      void _draw_raw(const ::rectangle_f64 & rectangleTarget, ::image::image *pimage, const ::image::image_drawing_options & imagedrawingoptionsParam, const ::point_f64 & pointSrc) override;
 
       //plusplus::Pen *       gl2d_pen();
       //plusplus::Brush *     gl2d_brush();
@@ -293,9 +293,9 @@ namespace draw2d_opengl
       void frame_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush* pBrush) override;
       //bool DrawRect(const ::rectangle_i32 & rectangle, ::draw2d::pen * ppen);
       void invert_rectangle(const ::rectangle_f64 & rectangle_i32) override;
-      //void draw_icon(double x, double y, ::draw2d::icon * picon) override;
-      //void draw_icon(const ::point_i32 & point, ::draw2d::icon * picon);
-      //void draw_icon(double x, double y, ::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags);
+      //void draw_icon(double x, double y, ::image::icon * picon) override;
+      //void draw_icon(const ::point_i32 & point, ::image::icon * picon);
+      //void draw_icon(double x, double y, ::image::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags);
 //      bool DrawState(const ::point_i32 & point, const ::size_i32 & size, HBITMAP hBitmap, ::u32 nFlags,
 //                     HBRUSH hBrush = nullptr);
 //      bool DrawState(const ::point_i32 & point, const ::size_i32 & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags,

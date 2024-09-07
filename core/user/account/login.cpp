@@ -41,7 +41,7 @@ namespace account
 //         if(hicon95 != nullptr)
 //         {
 //
-//            m_picon95 = new ::draw2d::icon ();
+//            m_picon95 = new ::image::icon ();
 //
 //            m_picon95->attach_os_data(hicon95);
 //
@@ -305,14 +305,14 @@ namespace account
 
          auto rectangleSource = rectangle_f64_dimension(0, 0, m_pimage->width(), m_pimage->height());
 
-         image_source imagesource(m_pimage);
+         ::image::image_source imagesource(m_pimage);
 
          auto rectangleTarget = rectangle_f64_dimension((int)(49 * rx), (int)(49 * ry) + 2 - 11,
                                                         i32 (m_pimage->width() * r), i32 (m_pimage->height() * r));
 
-         image_drawing_options imagedrawingoptions(rectangleTarget);
+         ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          pgraphics->draw(imagedrawing);
 
@@ -346,13 +346,13 @@ namespace account
 
          pgraphics->draw_ca2_border2((int)(49 * rx), (int)(49 * ry) - 11, (int)((91 + 2 + 2) * ry), 1, 1, colorBackground, color, colorBorderOut, colorBorderIn);
 
-         image_source imagesource(m_picon95);
+         ::image::image_source imagesource(m_picon95);
 
          auto rectangleTarget = rectangle_f64_dimension((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11, (int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry));
 
-         image_drawing_options imagedrawingoptions(rectangleTarget);
+         ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          pgraphics->draw(imagedrawing);
 

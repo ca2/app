@@ -3331,7 +3331,7 @@ folder_pointer file_context::get_folder(::file::file *pfile, const ::scoped_stri
 }
 
 
-file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open eopen, bool bNoCache)
+file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open eopen, ::file::e_flag eflag)
 {
 
    if (eopen & (::file::e_open_write | ::file::e_open_truncate | ::file::e_open_create))
@@ -3347,11 +3347,13 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    //bool bSaveCache = domain.m_strRadix != "ca2" || !string_begins(purl->get_object(path), "/matter/");
 
-   bool bSaveCache = !bNoCache;
+   bool bBypassCache = (eopen & ::file::e_open_no_cache) || (eflag & ::file::e_flag_bypass_cache);
+
+   bool bDoCache = !bBypassCache;
 
    ::file::path pathCache;
 
-   if (bSaveCache)
+   if (bDoCache)
    {
 
       pathCache = url.as_string();
@@ -3421,7 +3423,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
       _synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
 
-      if (!bNoCache && acmefile()->exists(pathCache))
+      if (bDoCache && acmefile()->exists(pathCache))
       {
 
          synchronouslock.unlock();
@@ -3439,7 +3441,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    }
 
-   if (bSaveCache)
+   if (bDoCache)
    {
 
       _synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
@@ -3469,7 +3471,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
 
    //}
 
-   if (bSaveCache)
+   if (bDoCache)
    {
 
       _synchronous_lock synchronouslock(system()->m_pmutexHttpDownload);
@@ -3787,7 +3789,7 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
    else if (string_begins(path, "http://") || string_begins(path, "https://"))
    {
 
-      return http_get_file(path, eopen);
+      return http_get_file(path, eopen, path.m_flags);
 
    }
    else if (path.begins_eat("zipresource://"))
@@ -4489,7 +4491,7 @@ bool get_bypass_cache_if_empty(const ::payload & payloadFile)
    if(payloadFile.m_etype == e_type_property_set)
    {
 
-      if(payloadFile.is_true("bypass_cache_if_empty"))
+      if(payloadFile.is_property_true("bypass_cache_if_empty"))
       {
 
          return true;
@@ -4498,10 +4500,65 @@ bool get_bypass_cache_if_empty(const ::payload & payloadFile)
 
    }
 
-   return true;
+   return false;
 
 }
 
+
+void set_bypass_cache(::payload & payloadFile)
+{
+
+   auto etype = payloadFile.m_etype;
+
+   if(payloadFile.m_etype == e_type_path)
+   {
+
+      payloadFile.m_ppath->m_flags += ::file::e_flag_bypass_cache;
+
+   }
+   else
+   {
+
+      if(etype != e_type_property_set)
+      {
+
+         auto path = payloadFile.as_file_path();
+
+         payloadFile["url"] = path;
+
+      }
+
+      payloadFile["bypass_cache"] = true;
+
+   }
+
+}
+
+
+bool get_bypass_cache(const ::payload & payloadFile)
+{
+
+   if(payloadFile.m_etype == e_type_path)
+   {
+
+      return payloadFile.m_ppath->m_flags & ::file::e_flag_bypass_cache;
+
+   }
+   else if(payloadFile.m_etype == e_type_property_set)
+   {
+
+      if(payloadFile.is_property_true("bypass_cache"))
+      {
+
+         return true;
+
+      }
+
+   }
+
+   return false;
+
+}
 
 void file_context::set(const ::payload & payloadFile, const ::memory_base & memory)
 {

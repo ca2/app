@@ -14,17 +14,17 @@ namespace user
    public:
 
 
-      ::image_pointer                     m_pimageMem;
+      ::image::image_pointer                     m_pimageMem;
       //::pointer<::xml::document>          m_pxmldoc;
-      ::image_pointer                     m_pimageLogo;
+      ::image::image_pointer                     m_pimageLogo;
       ::write_text::font_pointer          m_pfontTitle;
       ::write_text::font_pointer          m_pfont;
       ::draw2d::brush_pointer             m_pbrushBkSel;
       ::draw2d::brush_pointer             m_pbrushBkHoverSel;
       ::draw2d::pen_pointer               m_ppenBkSel;
       ::draw2d::pen_pointer               m_ppen;
-      string_map < ::image_pointer >      m_pimageMap;
-      string_map < ::image_pointer >      m_pimageMapGray;
+      string_map < ::image::image_pointer >      m_pimageMap;
+      string_map < ::image::image_pointer >      m_pimageMapGray;
       //::i32_array                         m_iaPopup;
       ::pointer < ::menu::item >             m_pmenuitem;
 

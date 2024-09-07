@@ -26,7 +26,7 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics_extension.h"
 #include "aura/graphics/draw2d/draw2d.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/imaging.h"
 #include "aura/graphics/image/drawing.h"
@@ -2524,7 +2524,7 @@ namespace user
       //   {
 
 
-      //      ::image_list::info ii;
+      //      ::image::image_list::info ii;
 
       //      _001GetGroupImage(pdrawitem);
       //      if(pdrawitem->m_bOk && pdrawitem->m_iImage >= 0)
@@ -2677,7 +2677,7 @@ namespace user
             //else if(pdrawitem->m_pcolumnSubItemRect->m_pimagelist != nullptr)
             //{
 
-            //   ::image_list::info ii;
+            //   ::image::image_list::info ii;
 
             //   _001GetItemImage(pdrawitem);
             //   if(pdrawitem->m_bOk && pdrawitem->m_iImage >= 0)
@@ -2736,7 +2736,7 @@ namespace user
          {
 
 
-            ::image_list::info ii;
+            ::image::image_list::info ii;
 
             _001GetGroupImage(pdrawmeshgroup);
             if (pdrawmeshgroup->m_bOk && pdrawmeshgroup->m_iImage >= 0)
@@ -3773,9 +3773,9 @@ namespace user
    //   }
    //   if(pcolumn->m_pimagelist == nullptr)
    //   {
-   //      pcolumn->m_pimagelist = new ::image_list (this);
+   //      pcolumn->m_pimagelist = new ::image::image_list (this);
    //   }
-   //   //      ::pointer<::image_list>pil = pcolumn->m_pimagelist;
+   //   //      ::pointer<::image::image_list>pil = pcolumn->m_pimagelist;
    //   //   if(pil != nullptr)
    //   //      pil->DeleteImageMesh();
    //   throw ::interface_only();
@@ -4438,7 +4438,7 @@ namespace user
 
       pgraphics->set_font(this, ::e_element_none);
 
-      //::image_list::info ii;
+      //::image::image_list::info ii;
       //::rectangle_i32 rectangle;
       //::size_i32 size;
       int cx = 0;
@@ -6223,14 +6223,14 @@ namespace user
             size.cx() += 4;
             size.cy() += 4;
 
-            ::image_pointer pimage1;
-            pimage1 = m_pitem->m_pmesh->context_image()->create_image(size);
+            ::image::image_pointer pimage1;
+            pimage1 = m_pitem->m_pmesh->image()->create_image(size);
             pimage1->clear(::color::transparent);
             auto pbrushText = m_pitem->m_pmesh->__create < ::draw2d::brush > ();
             pbrushText->create_solid(argb(255,255,255,255));
             pimage1->get_graphics()->set(pbrushText);
-            ::image_pointer pimage2;
-            pimage2 = m_pitem->m_pmesh->context_image()->create_image(size);
+            ::image::image_pointer pimage2;
+            pimage2 = m_pitem->m_pmesh->image()->create_image(size);
             pimage2->clear(::color::transparent);
 
             ::rectangle_i32 rectangleCache;
@@ -6252,13 +6252,13 @@ namespace user
             psystem->imaging()->channel_alpha_gray_blur(pimage2->get_graphics(),{}, size, pimage1->get_graphics(),{},0,1);
             pimage2->clear(::color::transparent);
 
-            image_source imagesource(pimage2, rectangle_i32(1,1, m_rectangleText.width(), m_rectangleText.height()));
+            ::image::image_source imagesource(pimage2, rectangle_i32(1,1, m_rectangleText.width(), m_rectangleText.height()));
 
-            image_drawing_options imagedrawingoptions(m_rectangleText);
+            ::image::image_drawing_options imagedrawingoptions(m_rectangleText);
 
             imagedrawingoptions.opacity(0.5);
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
             m_pitem->m_pdrawlistitem->m_pgraphics->draw(imagedrawing);
 

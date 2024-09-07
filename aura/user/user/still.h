@@ -15,7 +15,7 @@ namespace user
 
 
       ::write_text::font_pointer          m_pfont;
-      ::image_pointer                     m_pimage;          // not pressed default bitmap
+      ::image::image_pointer                     m_pimage;          // not pressed default bitmap
       //::rectangle_i32                   m_rectangleMargin;
       //::rectangle_i32                   m_rectangleBorder;
       //::rectangle_i32                   m_rectanglePadding;
@@ -101,7 +101,7 @@ namespace user
       virtual void on_exit_still_style(enum_still estill);
 
 
-      virtual ::draw2d::icon * still_get_icon();
+      virtual ::image::icon * still_get_icon();
 
 
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);

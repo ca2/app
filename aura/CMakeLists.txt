@@ -149,8 +149,8 @@ list(APPEND library_source
         #graphics/image/_image.h
         graphics/image/_.cpp
         graphics/image/_image_impl.h
-        graphics/image/context_image.cpp
-        graphics/image/context_image.h
+        graphics/image/image_context.cpp
+        graphics/image/image_context.h
         graphics/image/cursor.cpp
         graphics/image/cursor.h
         graphics/image/icon.cpp
@@ -792,7 +792,11 @@ list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source}
+   graphics/image/save_options.h
+   graphics/image/load_options.h
+   graphics/image/_constant.h
+   graphics/image/save_options.cpp)
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 

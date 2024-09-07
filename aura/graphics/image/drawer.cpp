@@ -7,7 +7,11 @@
 #include "image.h"
 
 
-void image_drawer::draw(const image_drawing & imagedrawing)
+namespace image
+{
+
+
+void image_drawer::draw(const ::image::image_drawing & imagedrawing)
 {
 
    if (::is_null(imagedrawing.m_pimagesource))
@@ -34,7 +38,7 @@ void image_drawer::draw(const image_drawing & imagedrawing)
 }
 
 
-//void image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, const ::image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource)
+//void image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource)
 //{
 //
 //   if (rectangleTarget.size() == rectangleSource.size())
@@ -55,7 +59,7 @@ void image_drawer::draw(const image_drawing & imagedrawing)
 //}
 //
 //
-//void image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, const ::image_drawing & imagedrawing, const ::point_f64 & pointSrc)
+//void image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::point_f64 & pointSrc)
 //{
 //
 //   return false;
@@ -63,7 +67,7 @@ void image_drawer::draw(const image_drawing & imagedrawing)
 //}
 //
 //
-//void image_drawer::_stretch_raw(const ::rectangle_f64 & rectangleTarget, const ::image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource)
+//void image_drawer::_stretch_raw(const ::rectangle_f64 & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::rectangle_f64 & rectangleSource)
 //{
 //
 //   return false;
@@ -71,7 +75,7 @@ void image_drawer::draw(const image_drawing & imagedrawing)
 //}
 //
 //
-//void image_drawer::_draw_blend(const ::rectangle_f64 & rectangleTarget, const ::image_drawing & imagedrawing, const ::rectangle_f64 & pointSrc)
+//void image_drawer::_draw_blend(const ::rectangle_f64 & rectangleTarget, const ::image::image_drawing & imagedrawing, const ::rectangle_f64 & pointSrc)
 //{
 //
 //   return false;
@@ -89,7 +93,7 @@ bool image_drawer::has_blender() const
 }
 
 
-void image_drawer::_draw_raw(const image_drawing & imagedrawing)
+void image_drawer::_draw_raw(const ::image::image_drawing & imagedrawing)
 {
 
    auto rectangleSource = imagedrawing.source_rectangle();
@@ -112,26 +116,29 @@ void image_drawer::_draw_raw(const image_drawing & imagedrawing)
 }
 
 
-void image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, image * pimage, const image_drawing_options & imagedrawingoptionsParam, const ::point_f64 & pointSrc)
+void image_drawer::_draw_raw(const ::rectangle_f64 & rectangleTarget, ::image::image *pimage, const ::image::image_drawing_options & imagedrawingoptionsParam, const ::point_f64 & pointSrc)
 {
 
-   image_source imagesource(pimage, { pointSrc, rectangleTarget.size()});
+   ::image::image_source imagesource(pimage, { pointSrc, rectangleTarget.size()});
 
-   image_drawing_options imagedrawingoptions(imagedrawingoptionsParam);
+   ::image::image_drawing_options imagedrawingoptions(imagedrawingoptionsParam);
 
    imagedrawingoptions.m_rectangleTarget = rectangleTarget;
 
-   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
    _draw_raw(imagedrawing);
 
 }
 
 
-void image_drawer::_stretch_raw(const ::rectangle_f64 & rectangleTarget, image * pimage, const image_drawing_options & imagedrawingoptions, const ::rectangle_f64 & rectangleSource)
+void image_drawer::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image::image *pimage, const ::image::image_drawing_options & imagedrawingoptions, const ::rectangle_f64 & rectangleSource)
 {
 
 }
+
+
+} // namespace image
 
 
 

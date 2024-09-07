@@ -337,7 +337,7 @@ pacmedirectory->system() / "obs.png");
 
             ::u8 a, r, g, b, rm, gm, bm;
 
-/*            ::image_pointer pimage = pgraphics->m_pimage;
+/*            ::image::image_pointer pimage = pgraphics->m_pimage;
 
 /*            if (pimage->is_null())
             {

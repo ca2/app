@@ -7,7 +7,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/data/listener.h"
 #include "acme/primitive/datetime/datetime.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 #include "axis/platform/system.h"
 #include "axis/html/element/element.h"
 #include "axis/html/graphics/font.h"
@@ -175,7 +175,7 @@ void html_form::_001OnImageLoaded(::message::message * pmessage)
 
          synchronous_lock lock(get_html_data()->synchronization());
 
-         auto pimage = context_image()->create_image({ 50,  50 });
+         auto pimage = image()->create_image({ 50,  50 });
 
          get_html_data()->delete_implementation();
 
@@ -784,7 +784,7 @@ void html_form::defer_implement()
       
    }
 
-   auto pimage = context_image()->create_image({ 50,  50 });
+   auto pimage = image()->create_image({ 50,  50 });
 
    get_html_data()->m_pcoredata->m_puserinteraction = this;
 
@@ -808,7 +808,7 @@ void html_form::defer_html_layout()
    if(get_html_data()->m_pcoredata->m_box.area() <= 0.f)
       return;
 
-   auto pimage = context_image()->create_image({ 50,  50 });
+   auto pimage = image()->create_image({ 50,  50 });
 
    get_html_data()->m_pcoredata->m_puserinteraction = this;
 

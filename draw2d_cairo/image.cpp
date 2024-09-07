@@ -13,7 +13,7 @@ namespace draw2d_cairo
 {
 
 
-   image::image() //:
+   image::image::image() //:
 //      m_pbitmap(e_create),
   //    m_spgraphics(e_create)
    {
@@ -44,7 +44,7 @@ namespace draw2d_cairo
 
    //   _synchronous_lock ml(::draw2d_cairo::mutex());
 
-   //   ::image::read(stream);
+   //   ::image::image::read(stream);
 
    //   cairo_surface_t * surface = dynamic_cast <::draw2d_cairo::bitmap *> (m_pbitmap.m_p)->m_psurface;
 
@@ -63,7 +63,7 @@ namespace draw2d_cairo
 
    //   _synchronous_lock ml(::draw2d_cairo::mutex());
 
-   //   ::image::write(stream);
+   //   ::image::image::write(stream);
 
    //}
 
@@ -99,7 +99,7 @@ namespace draw2d_cairo
    void image::create(const ::size_i32 & size, ::enum_flag eflagCreate, int iGoodStride, bool bPreserve)
    {
 
-      debug() << "draw2d_cairo::image::create : " << size;
+      debug() << "draw2d_cairo::image::image::create : " << size;
 
       if (m_pbitmap.is_set()
             && m_pbitmap->get_os_data() != nullptr
@@ -108,7 +108,7 @@ namespace draw2d_cairo
             && size == m_sizeRaw)
       {
 
-         debug() << "draw2d_cairo::image::create seems already ok ";
+         debug() << "draw2d_cairo::image::image::create seems already ok ";
 
          //return true;
 
@@ -119,7 +119,7 @@ namespace draw2d_cairo
       if (size.is_empty())
       {
 
-         information() << "draw2d_cairo::image::create size is empty!!";
+         information() << "draw2d_cairo::image::image::create size is empty!!";
 
          throw ::exception(error_invalid_empty_argument);
 
@@ -147,7 +147,7 @@ namespace draw2d_cairo
 
       i32 iScan = iGoodStride;
 
-      information() << "draw2d_cairo::image::create going to create_bitmap size,iScan : " << size << ", " << iScan;
+      information() << "draw2d_cairo::image::image::create going to create_bitmap size,iScan : " << size << ", " << iScan;
 
       pbitmap->create_bitmap(nullptr, size, (void**)&pimage32Raw, &iScan);
       //pbitmap->create_bitmap(nullptr, size, nullptr, &iScan);
@@ -246,13 +246,13 @@ namespace draw2d_cairo
 
       //}
 
-      image_source imagesource(pgraphics);
+      ::image::image_source imagesource(pgraphics);
 
       rectangle_f64 rectangle(size);
 
-      image_drawing_options imagedrawingoptions(rectangle);
+      ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
       g()->draw(imagedrawing);
 
@@ -264,7 +264,7 @@ namespace draw2d_cairo
    void image::destroy()
    {
 
-      ::image::destroy();
+      ::image::image::destroy();
 
       m_pbitmap.release();
 
@@ -291,16 +291,16 @@ namespace draw2d_cairo
 //   }
 
    
-   void image::_draw_raw(const ::rectangle_i32 & rectangleTarget, ::image * pimage, const ::point_i32 & pointSrc)
+   void image::_draw_raw(const ::rectangle_i32 & rectangleTarget, ::image::image *pimage, const ::point_i32 & pointSrc)
    {
 
       rectangle_f64 rectangle(rectangleTarget);
 
-      image_source imagesource(pimage, ::rectangle_f64(pointSrc, rectangle.size()));
+      ::image::image_source imagesource(pimage, ::rectangle_f64(pointSrc, rectangle.size()));
 
-      image_drawing_options imagedrawingoptions(rectangle);
+      ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
       return g()->draw(imagedrawing);
 //      ::draw2d::bitmap_pointer bitmap;
@@ -636,7 +636,7 @@ namespace draw2d_cairo
    }
 
 
-   void image::SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy)
+   void image::SetIconMask(::image::icon * picon, i32 cx, i32 cy)
    {
 
       throw ::exception(todo);
@@ -736,7 +736,7 @@ namespace draw2d_cairo
    }
 
 
-   //bool image::stretch(const ::image * pimage)
+   //bool image::stretch(const ::image::image *pimage)
    //{
 
    //   if (!get_graphics()->stretch(this->rectangle(), pimage->g(), pimage->rectangle()))
@@ -813,7 +813,7 @@ namespace draw2d_cairo
 //
 //         puserinteraction->window_rectangle(rectangleWindow);
 //
-//         ::image_pointer pimage1(this);
+//         ::image::image_pointer pimage1(this);
 //
 //         if (!pimage1->create(rectangleWindow.bottom_right()))
 //         {
@@ -960,7 +960,7 @@ namespace draw2d_cairo
 //#endif
 
 
-   void image::blend(const ::point_i32 & pointDstParam, ::image * pimplSrc,  const ::point_i32 & pointSrcParam, const ::size_i32 & sizeParam, ::u8 bA)
+   void image::blend(const ::point_i32 & pointDstParam, ::image::image *pimplSrc,  const ::point_i32 & pointSrcParam, const ::size_i32 & sizeParam, ::u8 bA)
    {
 
       auto size = sizeParam;
@@ -969,7 +969,7 @@ namespace draw2d_cairo
 
       auto pointSrc = pointSrcParam;
 
-      ::image * pimplDst = this;
+      ::image::image *pimplDst = this;
 
       pimplDst->map();
 
@@ -1284,10 +1284,10 @@ namespace draw2d_cairo
    }
 
 
-//   void image::blend2(const ::point_i32& pointDstParam, ::image* pimageSrc, const ::point_i32& pointSrcParam, const ::size_i32& sizeParam, ::u8 bA)
+//   void image::blend2(const ::point_i32& pointDstParam, ::image::image* pimageSrc, const ::point_i32& pointSrcParam, const ::size_i32& sizeParam, ::u8 bA)
 //   {
 //
-//      ::image* pimageDst = this;
+//      ::image::image* pimageDst = this;
 //
 //      pimageDst->map();
 //
@@ -1475,7 +1475,7 @@ namespace draw2d_cairo
 //   }
 
 
-//   void image::blend2(const ::point_i32 & pointDstParam, ::image * pimplSrc,  const ::point_i32 & pointSrcParam, const ::size_i32 & sizeParam, ::u8 bA)
+//   void image::blend2(const ::point_i32 & pointDstParam, ::image::image *pimplSrc,  const ::point_i32 & pointSrcParam, const ::size_i32 & sizeParam, ::u8 bA)
 //   {
 //
 //      auto size = sizeParam;
@@ -1484,7 +1484,7 @@ namespace draw2d_cairo
 //
 //      auto pointSrc = pointSrcParam;
 //
-//      ::image * pimplDst = this;
+//      ::image::image *pimplDst = this;
 //
 //      pimplDst->map();
 //

@@ -89,7 +89,7 @@ namespace aura
    }
 
 
-   ::image_pointer node::get_file_image_by_type_identifier(int iSize, const ::scoped_string & scopedstrTypeIdentifier)
+   ::image::image_pointer node::get_file_image_by_type_identifier(int iSize, const ::scoped_string & scopedstrTypeIdentifier)
    {
       
       throw ::interface_only();
@@ -99,7 +99,7 @@ namespace aura
    }
 
 
-   ::image_pointer node::get_file_image(int iSize, const ::file::path & path)
+   ::image::image_pointer node::get_file_image(int iSize, const ::file::path & path)
    {
       
       throw ::interface_only();
@@ -189,7 +189,7 @@ namespace aura
 #ifdef WINDOWS_DESKTOP
 
 
-   void* node::HICON_from_image(::image * pimage)
+   void* node::HICON_from_image(::image::image *pimage)
    {
 
       throw ::interface_only();

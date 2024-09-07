@@ -62,9 +62,9 @@ namespace aura
 //#endif
 
 
-      virtual ::image_pointer get_file_image_by_type_identifier(int iSize, const ::scoped_string & scopedstrTypeIdentifier);
+      virtual ::image::image_pointer get_file_image_by_type_identifier(int iSize, const ::scoped_string & scopedstrTypeIdentifier);
 
-      virtual ::image_pointer get_file_image(int iSize, const ::file::path & path);
+      virtual ::image::image_pointer get_file_image(int iSize, const ::file::path & path);
       
       virtual void defer_dock_application(bool bDock);
 
@@ -89,7 +89,7 @@ namespace aura
 #ifdef WINDOWS_DESKTOP
 
       ///virtual void* HICON_from_ico_file(const ::block& block);
-      virtual void* HICON_from_image(::image * pimage);
+      virtual void* HICON_from_image(::image::image *pimage);
 
 #endif
 

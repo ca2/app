@@ -69,7 +69,7 @@ namespace user
          ::u32                mask;
          i32                  cxy;
          string               m_strTextText;
-         ::image_pointer      m_pimage;
+         ::image::image_pointer      m_pimage;
          i32                  cchTextMax;
          i32                  fmt;
          lparam               lParam;

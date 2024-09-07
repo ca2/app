@@ -20,6 +20,6 @@ public:
    virtual bool create_buffer(const ::size & size, int iStride = -1) override;
    virtual void destroy_buffer() override;
 
-   virtual bool update_window(::image * pimage) override;
+   virtual bool update_window(::image::image *pimage) override;
 
 };

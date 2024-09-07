@@ -178,7 +178,7 @@ namespace turboc
    }
 
 
-/*   void impact::_006OnDraw(::image * pimage)
+/*   void impact::_006OnDraw(::image::image *pimage)
    {
 
       ::rectangle_i32 rectangleX;
@@ -310,9 +310,9 @@ namespace turboc
 
       }
 
-/*      ::image_pointer pimage = NULL;
+/*      ::image::image_pointer pimage = NULL;
 
-      ::image_pointer pimageFast = m_pimageFast;
+      ::image::image_pointer pimageFast = m_pimageFast;
 
       synchronous_lock synchronouslock(m_pmutexDraw);
 
@@ -485,7 +485,7 @@ namespace turboc
 
          synchronous_lock synchronouslock(m_pmutexWork);
 
-/*         ::image_pointer pimage = m_pimageWork;
+/*         ::image::image_pointer pimage = m_pimageWork;
 
 /*         pimage->Fill(0,0,0,0);
 
@@ -596,7 +596,7 @@ namespace turboc
    }
 
 
-/*   void impact::_001OnPostProcess(::image * pimage)
+/*   void impact::_001OnPostProcess(::image::image *pimage)
    {
 
       if(m_eeffect == effect_crt)
@@ -866,7 +866,7 @@ namespace turboc
    }
 
 
-/*   void impact::turboc_render(::image * pimage)
+/*   void impact::turboc_render(::image::image *pimage)
    {
 
       if(m_pimageImage->is_set() && m_pimageImage->area() > 0)

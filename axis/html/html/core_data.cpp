@@ -10,7 +10,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/data/listener.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 #include "acme/platform/hyperlink.h"
 #include "axis/html/element/element.h"
 #include "axis/html/impl/element.h"
@@ -37,12 +37,12 @@ namespace html
    }
 
 
-   bool core_data::image::load_image()
+   bool core_data::image::image::load_image()
    {
 
       auto pcontext = m_pcontext->m_pauracontext;
 
-      auto pcontextimage = pcontext->context_image();
+      auto pcontextimage = pcontext->image_context();
 
       m_pimage = pcontextimage->load_image(m_strPath);
 
@@ -577,7 +577,7 @@ namespace html
 
       string strUrl = process_url(pszUrl);
 
-      auto pimage = m_pcontext->context_image()->get_image(strUrl);
+      auto pimage = m_pcontext->image_context()->get_image(strUrl);
 
       return ::transfer(pimage);
 
@@ -924,7 +924,7 @@ namespace html
    void core_data::implement_and_layout(::html_form * pform)
    {
 
-      ::image_pointer pimage;
+      ::image::image_pointer pimage;
 
       //auto estatus = 
       
@@ -975,7 +975,7 @@ namespace html
    void core_data::implement(::html_form * pform)
    {
 
-      ::image_pointer pimage;
+      ::image::image_pointer pimage;
 
       //auto estatus = 
       
@@ -1017,7 +1017,7 @@ namespace html
    void core_data::layout(::html_form * pform)
    {
 
-      ::image_pointer pimage;
+      ::image::image_pointer pimage;
 
       //auto estatus = 
       

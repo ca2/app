@@ -95,7 +95,7 @@ namespace user
       void initialize_draw_mesh_subitem(mesh_item * pmeshitem);
 
 
-      ::pointer<::image_list>get_image_list();
+      ::pointer<::image::image_list>get_image_list();
       bool draw_image();
       void update_color();
       // void draw_group_image();
@@ -281,7 +281,7 @@ namespace user
       void initialize_draw_mesh_group(mesh * pmesh);
 
 
-      //::pointer<::image_list>get_image_list();
+      //::pointer<::image::image_list>get_image_list();
       //bool draw_image();
       void draw_group_image();
       void update_group_color();

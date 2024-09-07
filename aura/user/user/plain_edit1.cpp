@@ -369,7 +369,7 @@ namespace user
    }
 
 
-   void plain_edit::OnDraw(::image * pimage)
+   void plain_edit::OnDraw(::image::image *pimage)
    {
 
       __UNREFERENCED_PARAMETER(pimage);

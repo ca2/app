@@ -345,7 +345,7 @@ namespace user
    }
 
 
-   ::draw2d::icon* frame::get_draw_icon()
+   ::image::icon* frame::get_draw_icon()
    {
 
       if (::is_set(m_pdrawicon))

@@ -26,8 +26,8 @@
 //      union
 //      {
 //         ::draw2d::bitmap *            m_pbitmap;
-//         ::draw2d::icon *              m_picon;
-//         ::draw2d::cursor *            m_pcursor;
+//         ::image::icon *              m_picon;
+//         ::image::cursor *            m_pcursor;
 //      };
 //
 //
@@ -53,12 +53,12 @@
 ////      HENHMETAFILE SetEnhMetaFile(HENHMETAFILE hMetaFile);
 ////      HENHMETAFILE GetEnhMetaFile();
 ////#endif
-//      void static_set_icon(::draw2d::icon * picon);
-//      ::draw2d::icon * static_get_icon();
+//      void static_set_icon(::image::icon * picon);
+//      ::image::icon * static_get_icon();
 //      void static_set_bitmap(::draw2d::bitmap * pbitmap);
 //      ::draw2d::bitmap * static_get_bitmap();
-//      void static_set_cursor(::draw2d::cursor * pcursor);
-//      ::draw2d::cursor * static_get_cursor();
+//      void static_set_cursor(::image::cursor * pcursor);
+//      ::image::cursor * static_get_cursor();
 //
 //
 //      enum_type get_type();

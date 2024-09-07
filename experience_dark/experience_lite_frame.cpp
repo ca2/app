@@ -101,9 +101,9 @@
 
                pframewindow->best_monitor(rectangleScreen);
 
-               ::image_pointer pimage1;
+               ::image::image_pointer pimage1;
 
-               ::image_pointer pimage2;
+               ::image::image_pointer pimage2;
 
 /*               pimage1 = create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
 
@@ -556,7 +556,7 @@
                   if (get_element_rectangle(rectangleIcon, e_element_top_left_icon))
                   {
 
-                     ::draw2d::icon * picon = m_pframewindow->m_picon;
+                     ::image::icon * picon = m_pframewindow->m_picon;
 
                      if (picon != nullptr)
                      {
@@ -653,7 +653,7 @@
                   if (get_element_rectangle(rectangleIcon, e_element_top_left_icon))
                   {
 
-                     ::draw2d::icon * picon = m_pframewindow->m_picon;
+                     ::image::icon * picon = m_pframewindow->m_picon;
 
                      if (picon != nullptr)
                      {

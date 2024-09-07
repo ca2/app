@@ -10,7 +10,7 @@
 #include "aura/graphics/image/image.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/platform/system.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 //#include "_defer.h"
 
 
@@ -154,7 +154,7 @@ namespace gpu
    }
 
 
-   void context::set_bitmap_1(::image * pimage)
+   void context::set_bitmap_1(::image::image *pimage)
    {
 
 
@@ -185,7 +185,7 @@ namespace gpu
 
       //__construct(m_pbuffer);
 
-      //m_pbuffer->m_pimage = context_image()->create_image(size);
+      //m_pbuffer->m_pimage = image()->create_image(size);
 
       //if (!::is_ok(m_pbuffer->m_pimage))
       //{
@@ -232,7 +232,7 @@ namespace gpu
 
       __defer_construct(m_pcpubuffer);
 
-      //m_pbuffer->m_pimage = context_image()->create_image(size);
+      //m_pbuffer->m_pimage = image()->create_image(size);
 
       m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
 
@@ -478,7 +478,7 @@ namespace gpu
    image_data context::image32(const ::payload & payloadFile)
    {
 
-      auto pimage = application()->context_image()->get_image(payloadFile, { .sync = true, .cache = false });
+      auto pimage = image()->get_image(payloadFile, { .sync = true, .cache = false });
 
       class image_data image32;
 
@@ -521,7 +521,7 @@ namespace gpu
    image_data context::image24(const ::payload & payloadFile)
    {
 
-      auto pimage = application()->context_image()->get_image(payloadFile, { .sync = true, .cache = false });
+      auto pimage = image()->get_image(payloadFile, { .sync = true, .cache = false });
 
       class image_data image24;
 

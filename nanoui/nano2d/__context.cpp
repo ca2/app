@@ -341,7 +341,7 @@ namespace nano2d
    }
 
 
-   void context::_draw_image(float x, float y, float w, float h, ::image * pimage)
+   void context::_draw_image(float x, float y, float w, float h, ::image::image *pimage)
    {
 
 

@@ -17,7 +17,7 @@ namespace graphics
 
 
       //::pointer < ::mutex >     m_pmutex;
-      //::image_pointer         m_pimage;
+      //::image::image_pointer         m_pimage;
       //int                   o  m_cx;
       //int                     m_cy;
       ::function < void() >                           m_functionFallback;
@@ -34,7 +34,7 @@ namespace graphics
 
       //virtual void update_wallpaper();
 
-      virtual void render(image* pimage);
+      virtual void render(::image::image* pimage);
 
       //virtual void on_image_updating();
 

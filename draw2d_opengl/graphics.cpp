@@ -907,7 +907,7 @@ namespace draw2d_opengl
    }
 
 
-   //bool graphics::DrawIcon(double x, double y, ::draw2d::icon * picon)
+   //bool graphics::DrawIcon(double x, double y, ::image::icon * picon)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -921,7 +921,7 @@ namespace draw2d_opengl
 
    //}
 
-   //bool graphics::DrawIcon(const ::point_i32 & point, ::draw2d::icon * picon)
+   //bool graphics::DrawIcon(const ::point_i32 & point, ::image::icon * picon)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -935,7 +935,7 @@ namespace draw2d_opengl
 
    //}
 
-   //bool graphics::DrawIcon(double x, double y, ::draw2d::icon * picon, double cx, double cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags)
+   //bool graphics::DrawIcon(double x, double y, ::image::icon * picon, double cx, double cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags)
    //{
 
    //   //try
@@ -2828,10 +2828,10 @@ namespace draw2d_opengl
 ////         ::rectangle_f64 rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->size());
 ////
 ////
-////         ::image_pointer pimageWork = nullptr;
-////         ::image_pointer pimageWork2 = nullptr;
-//////         ::image_pointer pimageWork3 = nullptr;
-////         ::image_pointer pimageWork4 = nullptr;
+////         ::image::image_pointer pimageWork = nullptr;
+////         ::image::image_pointer pimageWork2 = nullptr;
+//////         ::image::image_pointer pimageWork3 = nullptr;
+////         ::image::image_pointer pimageWork4 = nullptr;
 ////
 ////
 ////         ::point_i32 pointSrc(xSrc, ySrc);
@@ -2840,7 +2840,7 @@ namespace draw2d_opengl
 ////
 ////
 ////
-////         ::image_pointer pimage;
+////         ::image::image_pointer pimage;
 ////         if(imageWork == nullptr)
 ////         {
 ////            pimage->create(this);
@@ -2856,7 +2856,7 @@ namespace draw2d_opengl
 ////
 ////
 ////
-////         ::image_pointer pimage2;
+////         ::image::image_pointer pimage2;
 ////         if(imageWork2 == nullptr)
 ////         {
 ////            pimage2->create(this);
@@ -2864,7 +2864,7 @@ namespace draw2d_opengl
 ////         }
 ////
 ////
-////         ::image_pointer pimage4;
+////         ::image::image_pointer pimage4;
 ////         if(imageWork4 == nullptr)
 ////         {
 ////            image4.create(this);
@@ -2955,10 +2955,10 @@ namespace draw2d_opengl
          ::rectangle_f64 rectangleIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->size());
 
 
-         ::image_pointer pimageWork = nullptr;
-         ::image_pointer pimageWork2 = nullptr;
-   //         ::image_pointer pimageWork3 = nullptr;
-         ::image_pointer pimageWork4 = nullptr;
+         ::image::image_pointer pimageWork = nullptr;
+         ::image::image_pointer pimageWork2 = nullptr;
+   //         ::image::image_pointer pimageWork3 = nullptr;
+         ::image::image_pointer pimageWork4 = nullptr;
 
 
          ::point_i32 pointSrc(xSrc, ySrc);
@@ -2967,7 +2967,7 @@ namespace draw2d_opengl
 
 
 
-         ::image_pointer pimage;
+         ::image::image_pointer pimage;
          if(imageWork == nullptr)
          {
             pimage->create(this);
@@ -2983,7 +2983,7 @@ namespace draw2d_opengl
 
 
 
-         ::image_pointer pimage2;
+         ::image::image_pointer pimage2;
          if(imageWork2 == nullptr)
          {
             pimage2->create(this);
@@ -2991,7 +2991,7 @@ namespace draw2d_opengl
          }
 
 
-         ::image_pointer pimage4;
+         ::image::image_pointer pimage4;
          if(imageWork4 == nullptr)
          {
             image4.create(this);
@@ -5365,7 +5365,7 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::_draw_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const image_drawing_options & imagedrawingoptionsParam, const ::point_f64 & pointSrc)
+   void graphics::_draw_raw(const ::rectangle_f64 & rectangleTarget, ::image::image *pimage, const ::image::image_drawing_options & imagedrawingoptionsParam, const ::point_f64 & pointSrc)
    {
 
 

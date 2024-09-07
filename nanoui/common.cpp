@@ -14,7 +14,7 @@
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "apex/platform/context.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 #include "nano2d/context.h"
 
 
@@ -392,18 +392,18 @@ Object::~Object() { }
 
 
 
-::image_pointer ___load_image(::particle * pparticle, const ::file::path & path)
+::image::image_pointer ___load_image(::particle * pparticle, const ::file::path & path)
 {
 
-   return pparticle->m_pcontext->context_image()->path_image(path);
+   return pparticle->m_pcontext->image_context()->path_image(path);
 
 }
 
 
-void ___save_image(::particle * pparticle, const ::file::path & path, ::image * pimage)
+void ___save_image(::particle * pparticle, const ::file::path & path, ::image::image *pimage)
 {
 
-   return pparticle->m_pcontext->context_image()->save_image(path, pimage);
+   return pparticle->m_pcontext->image_context()->save_image(path, pimage);
 
 }
 

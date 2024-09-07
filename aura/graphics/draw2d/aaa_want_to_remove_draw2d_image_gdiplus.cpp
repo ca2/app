@@ -5,18 +5,18 @@
 #endif
 
 
-bool node_save_image(IStream * pstream, const ::image * pimage, ::save_image * psaveimage);
+bool node_save_image(IStream * pstream, const ::image::image *pimage, ::save_image * psaveimage);
 
 
 #ifdef UNIVERSAL_WINDOWS
 
 
-CLASS_DECL_AURA bool node_save_image(::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream, ::image * pimage, ::save_image * psaveimage);
+CLASS_DECL_AURA bool node_save_image(::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream, ::image::image *pimage, ::save_image * psaveimage);
 
 
 #endif
 
-bool windows_image_from_bitmap_source(::image * pimage, IWICBitmapSource * piConverter, IWICImagingFactory * piFactory)
+bool windows_image_from_bitmap_source(::image::image *pimage, IWICBitmapSource * piConverter, IWICImagingFactory * piFactory)
 {
 
    comptr < IWICBitmap > piBmp;
@@ -104,7 +104,7 @@ bool windows_image_from_bitmap_source(::image * pimage, IWICBitmapSource * piCon
 }
 
 
-bool imaging::load_image(::particle * pparticle, ::image * pimage, const ::memory & mem)
+bool imaging::load_image(::particle * pparticle, ::image::image *pimage, const ::memory & mem)
 {
 
    {
@@ -343,7 +343,7 @@ return hBitmapSource;
 #ifdef UNIVERSAL_WINDOWS
 
 
-bool node_save_image(::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream, const ::image * pimage, ::save_image * psaveimage)
+bool node_save_image(::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream, const ::image::image *pimage, ::save_image * psaveimage)
 {
 
    comptr < IStream > pstream;
@@ -366,7 +366,7 @@ bool node_save_image(::winrt::Windows::Storage::Streams::InMemoryRandomAccessStr
 
 
 
-bool node_save_image(::file::file * pfile, const ::image * pimage, ::save_image * psaveimage)
+bool node_save_image(::file::file * pfile, const ::image::image *pimage, ::save_image * psaveimage)
 {
 
 #ifdef UNIVERSAL_WINDOWS
@@ -433,7 +433,7 @@ bool node_save_image(::file::file * pfile, const ::image * pimage, ::save_image 
 }
 
 
-bool node_save_image(IStream * pstream, const ::image * pimage, ::save_image * psaveimage)
+bool node_save_image(IStream * pstream, const ::image::image *pimage, ::save_image * psaveimage)
 {
 
    comptr < IWICImagingFactory > piFactory = nullptr;

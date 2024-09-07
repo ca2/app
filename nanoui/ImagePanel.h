@@ -48,7 +48,7 @@ namespace nanoui
 
       void set_images(const Images& data) { m_images = data; }
       const Images& images() const { return m_images; }
-      ::image* _get_image(::collection::index iImage);
+      ::image::image* _get_image(::collection::index iImage);
 
       ::function<void(::collection::index)> callback() const { return m_callback; }
       void set_callback(const ::function<void(::collection::index)>& callback) { m_callback = callback; }

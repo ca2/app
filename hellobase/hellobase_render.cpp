@@ -300,7 +300,7 @@ namespace hellobase
 
          synchronous_lock synchronouslock(m_pmutexWork);
 
-/*         ::image_pointer pimage = m_pimageWork;
+/*         ::image::image_pointer pimage = m_pimageWork;
 
 /*         if (pimage->area() <= 0)
             return;
@@ -883,7 +883,7 @@ namespace hellobase
 //                  if (error == 0)
 //                  {
 //
-//                     ::image_pointer & pimage = m_pimageAi1;
+//                     ::image::image_pointer & pimage = m_pimageAi1;
 //
 /*                     pimage = create_image({face->glyph->bitmap.width,  face->glyph->bitmap.rows});
 //
@@ -934,7 +934,7 @@ namespace hellobase
 //                  if (error == 0)
 //                  {
 //
-//                     ::image_pointer & pimage = m_pimageAi2;
+//                     ::image::image_pointer & pimage = m_pimageAi2;
 //
 /*                     pimage = create_image({face->glyph->bitmap.width,  face->glyph->bitmap.rows});
 //
@@ -1226,9 +1226,9 @@ namespace hellobase
 
       //}
 
-      //::image_pointer pimage = nullptr;
+      //::image::image_pointer pimage = nullptr;
 
-      //::image_pointer pimageFast = m_pimageFast;
+      //::image::image_pointer pimageFast = m_pimageFast;
 
       //synchronous_lock synchronouslock(m_pmutexDraw);
 
@@ -1263,7 +1263,7 @@ namespace hellobase
    }
 
 
-   //::image_pointer & render::image23(string strImage)
+   //::image::image_pointer & render::image23(string strImage)
    //{
 
    //   auto & pimage = m_mapDib23[strImage];

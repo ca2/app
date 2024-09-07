@@ -364,7 +364,7 @@ namespace html
          else if (m_etag == tag_img)
          {
 
-            m_pimpl = ::place(new ::html::impl::image());
+            m_pimpl = ::place(new ::html::impl::image::image());
 
          }
          else if (m_etag == tag_table && m_elementalptra.has_elements())

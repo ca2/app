@@ -912,7 +912,7 @@ namespace draw2d_cairo
    }
 
 
-//void graphics::DrawIcon(double x, double y, ::draw2d::icon * picon)
+//void graphics::DrawIcon(double x, double y, ::image::icon * picon)
 //{
 //
 //    throw ::interface_only();
@@ -922,7 +922,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::DrawIcon(const ::point_f64 & point, ::draw2d::icon * picon)
+//void graphics::DrawIcon(const ::point_f64 & point, ::image::icon * picon)
 //{
 //
 //    throw ::interface_only();
@@ -934,7 +934,7 @@ namespace draw2d_cairo
 
 //#ifdef WINDOWS_DESKTOP
 //
-//void graphics::draw(::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags)
+//void graphics::draw(::image::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags)
 //{
 //
 //
@@ -1396,8 +1396,8 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::_draw_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage,
-                            const ::image_drawing_options & imagedrawingoptions, const ::point_f64 & pointSrc)
+   void graphics::_draw_raw(const ::rectangle_f64 & rectangleTarget, ::image::image *pimage,
+                            const ::image::image_drawing_options & imagedrawingoptions, const ::point_f64 & pointSrc)
    {
 
       synchronous_lock ml(::draw2d_cairo::mutex());
@@ -1542,7 +1542,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_draw_blend(const ::image_drawing & imagedrawing)
+   bool graphics::_draw_blend(const ::image::image_drawing & imagedrawing)
    {
 
       return ::draw2d::graphics::_draw_blend(imagedrawing);
@@ -1572,7 +1572,7 @@ namespace draw2d_cairo
 
             ::size_i32 size(imagedrawing.m_rectangleTarget.size());
 
-            ::image_pointer pimage1 = context_image()->create_image(size);
+            ::image::image_pointer pimage1 = image()->create_image(size);
 
             //if (!pimage1)
             //{
@@ -1583,13 +1583,13 @@ namespace draw2d_cairo
 
             {
 
-               image_source imagesource(imagedrawing.m_pimagesource, { pointSrc, size });
+               ::image::image_source imagesource(imagedrawing.m_pimagesource, { pointSrc, size });
 
                rectangle_f64 rectangle(size);
 
-               image_drawing_options imagedrawingoptions(rectangle);
+               ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                //if (!pimage1->draw(imagedrawing))
                pimage1->draw(imagedrawing);
@@ -1601,7 +1601,7 @@ namespace draw2d_cairo
 
             }
 
-            ::image_pointer pimage2 = context_image()->create_image(size);
+            ::image::image_pointer pimage2 = image()->create_image(size);
 
             //if (!pimage2)
             //{
@@ -1614,14 +1614,14 @@ namespace draw2d_cairo
 
             {
 
-               image_source imagesource(m_pimageAlphaBlend,
+               ::image::image_source imagesource(m_pimageAlphaBlend,
                   { ::point_f64(maximum(0, rectangleTarget.left() - m_pointAlphaBlend.x()), maximum(0, rectangleTarget.top() - m_pointAlphaBlend.y())), size });
 
                rectangle_f64 rectangle(point_f64(maximum(0, m_pointAlphaBlend.x() - rectangleTarget.left()), maximum(0, m_pointAlphaBlend.y() - rectangleTarget.top())), size);
 
-               image_drawing_options imagedrawingoptions(rectangle);
+               ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pimage2->g()->draw(imagedrawing);
 
@@ -1631,13 +1631,13 @@ namespace draw2d_cairo
 
             {
 
-               image_source imagesource(pimage1, ::rectangle_f64(pointSrc, size));
+               ::image::image_source imagesource(pimage1, ::rectangle_f64(pointSrc, size));
 
                rectangle_f64 rectangle(pointDst, size);
 
-               image_drawing_options imagedrawingoptions(rectangle);
+               ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                scoped_restore(m_pimageAlphaBlend);
 
@@ -1656,8 +1656,8 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage,
-                               const ::image_drawing_options & imagedrawingoptions,
+   void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image::image *pimage,
+                               const ::image::image_drawing_options & imagedrawingoptions,
                                const ::rectangle_f64 & rectangleSource)
    {
 

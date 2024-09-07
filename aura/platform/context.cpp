@@ -2,7 +2,7 @@
 #include "context.h"
 #include "acme/platform/application.h"
 #include "apex/platform/system.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 
 
 namespace aura
@@ -1039,10 +1039,10 @@ namespace aura
 //
 //   }
 
-   //::image_pointer context::create_image()
+   //::image::image_pointer context::create_image()
    //{
 
-   //   auto pimage = __create < ::image >();
+   //   auto pimage = __create < ::image::image >();
 
    //   if (!pimage)
    //   {
@@ -1056,10 +1056,10 @@ namespace aura
    //}
 
 
-   //::image_pointer context::create_image(const ::size_i32 & size, const image32_t * pcolor, int iScan, ::enum_flag eflagCreate)
+   //::image::image_pointer context::create_image(const ::size_i32 & size, const image32_t * pcolor, int iScan, ::enum_flag eflagCreate)
    //{
 
-   //   auto pimage = m_pcontext->__create < ::image >();
+   //   auto pimage = m_pcontext->__create < ::image::image >();
 
    //   if (!pimage)
    //   {

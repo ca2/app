@@ -289,8 +289,8 @@ class Window;
 
 
 
-CLASS_DECL_NANOUI ::image_pointer ___load_image(::particle * pparticle, const ::file::path & path);
-CLASS_DECL_NANOUI void ___save_image(::particle * pparticle, const ::file::path & path, ::image * pimage);
+CLASS_DECL_NANOUI ::image::image_pointer ___load_image(::particle * pparticle, const ::file::path & path);
+CLASS_DECL_NANOUI void ___save_image(::particle * pparticle, const ::file::path & path, ::image::image *pimage);
 
 
 /**

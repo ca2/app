@@ -6,6 +6,10 @@
 //#include "acme/primitive/primitive/payload.h"
 
 
+namespace image
+{
+
+
 class CLASS_DECL_AURA load_image :
    virtual public ::particle
 {
@@ -13,12 +17,12 @@ public:
 
 
    ::payload                        m_payload;
-   ::image_pointer                  m_pimage;
-   ::pointer<::context_image>       m_pcontextimage;
+   ::image::image_pointer                  m_pimage;
+   ::pointer<::image_context>       m_pcontextimage;
    ::function < void(image *) >     m_functionLoaded;
 
 
-   load_image(::context_image * pcontextimage);
+   load_image(::image_context * pcontextimage);
    ~load_image() override;
 
 
@@ -27,5 +31,10 @@ public:
 
 };
 
+
+
+
+
+} // namespace image
 
 

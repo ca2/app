@@ -23,7 +23,7 @@ namespace windowing
 
       enum_cursor                                  m_ecursor;
       ::size_i32                                   m_szHotspotOffset;
-      ::pointer<::draw2d::cursor>                  m_pcursor;
+      ::pointer<::image::cursor>                  m_pcursor;
       image_pointer                                m_pimage;
       ::file::path                                 m_path;
       ::pointer < ::windowing::cursor_manager >    m_pcursormanager;
@@ -38,7 +38,7 @@ namespace windowing
 
 //      virtual void load_system_default_cursor_hint();
 
-      virtual void set_image(::image * pimage, ::i32 xHotspot, ::i32 yHotspot);
+      virtual void set_image(::image::image *pimage, ::i32 xHotspot, ::i32 yHotspot);
 
       virtual void set_file_path(const ::file::path & path);
 

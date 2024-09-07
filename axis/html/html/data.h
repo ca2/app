@@ -52,10 +52,10 @@ public:
    DECLARE_MESSAGE_HANDLER(on_message_key_down);
 
    image_pointer get_image(const ::string & pszUrl);
-   //void load_image_asynch(::html::image::image * pimage);
-   //bool load_image(::html::image::image * pimage);
+   //void load_image_asynch(::html::image::image *pimage);
+   //bool load_image(::html::image::image *pimage);
 
-   //void on_image_loaded(::html::image::image * pimage);
+   //void on_image_loaded(::html::image::image *pimage);
 
 
    ::html::element* get_element_by_name(atom atom);

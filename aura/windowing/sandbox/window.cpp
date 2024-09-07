@@ -5,7 +5,7 @@
 #include "_sandbox.h"
 #include "acme/constant/message.h"
 #include "apex/platform/system.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/interaction_graphics_thread.h"
@@ -788,7 +788,7 @@ namespace sandbox_windowing
    //   }
 
 
-//   bool window::set_icon(::image* pimage)
+//   bool window::set_icon(::image::image* pimage)
 //   {
 //
 //      // http://stackoverflow.com/questions/10699927/xlib-argb-window-icon
@@ -825,7 +825,7 @@ namespace sandbox_windowing
 //
 //#elif 1
 //
-//      auto d1 = context_image()->create_image({ 32, 32 });
+//      auto d1 = image()->create_image({ 32, 32 });
 //
 //      if (!::is_ok(d1))
 //      {
@@ -838,13 +838,13 @@ namespace sandbox_windowing
 //
 //      {
 //
-//         image_source imagesource(pimage->g(), pimage->rectangle());
+//         ::image::image_source imagesource(pimage->g(), pimage->rectangle());
 //
 //         rectangle_f64 rectangle(d1->rectangle());
 //
-//         image_drawing_options imagedrawingoptions(rectangle);
+//         ::image::image_drawing_options imagedrawingoptions(rectangle);
 //
-//         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+//         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 //
 //         //getfileimage.m_iImage = m_pimagelist[16]->set(getfileimage.m_iImage, imagedrawing);
 //

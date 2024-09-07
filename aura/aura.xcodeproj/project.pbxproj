@@ -287,7 +287,7 @@
 		9A750FD0282B929E00C4861B /* imaging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230FF27EACF2100B5A78D /* imaging.cpp */; };
 		9A750FD2282B929E00C4861B /* list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230F927EACF2100B5A78D /* list.cpp */; };
 		9A750FD3282B929E00C4861B /* meta.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230FB27EACF2100B5A78D /* meta.cpp */; };
-		9A750FD4282B929E00C4861B /* context_image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230DA27EACF2100B5A78D /* context_image.cpp */; };
+		9A750FD4282B929E00C4861B /* image_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230DA27EACF2100B5A78D /* image_context.cpp */; };
 		9A750FD5282B929E00C4861B /* nanosvg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230EC27EACF2100B5A78D /* nanosvg.cpp */; };
 		9A750FD7282B929E00C4861B /* dynamic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230ED27EACF2100B5A78D /* dynamic.cpp */; };
 		9A750FD8282B929E00C4861B /* image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230E027EACF2100B5A78D /* image.cpp */; };
@@ -365,11 +365,11 @@
 		9A9230B127EACE1000B5A78D /* font_enumeration_item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230AF27EACE1000B5A78D /* font_enumeration_item.cpp */; };
 		9A92310B27EACF2100B5A78D /* frame_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230D827EACF2100B5A78D /* frame_array.cpp */; };
 		9A92310C27EACF2100B5A78D /* extension.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230D927EACF2100B5A78D /* extension.cpp */; };
-		9A92310D27EACF2100B5A78D /* context_image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230DA27EACF2100B5A78D /* context_image.cpp */; };
+		9A92310D27EACF2100B5A78D /* image_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230DA27EACF2100B5A78D /* image_context.cpp */; };
 		9A92310E27EACF2100B5A78D /* source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230DB27EACF2100B5A78D /* source.cpp */; };
 		9A92311027EACF2100B5A78D /* save_image.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9230DD27EACF2100B5A78D /* save_image.h */; };
 		9A92311127EACF2100B5A78D /* frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230DE27EACF2100B5A78D /* frame.cpp */; };
-		9A92311227EACF2100B5A78D /* context_image.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9230DF27EACF2100B5A78D /* context_image.h */; };
+		9A92311227EACF2100B5A78D /* image_context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9230DF27EACF2100B5A78D /* image_context.h */; };
 		9A92311327EACF2100B5A78D /* image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A9230E027EACF2100B5A78D /* image.cpp */; };
 		9A92311427EACF2100B5A78D /* header.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9230E127EACF2100B5A78D /* header.h */; };
 		9A92311627EACF2100B5A78D /* map.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A9230E327EACF2100B5A78D /* map.h */; };
@@ -931,11 +931,11 @@
 		9A9230AF27EACE1000B5A78D /* font_enumeration_item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = font_enumeration_item.cpp; sourceTree = "<group>"; };
 		9A9230D827EACF2100B5A78D /* frame_array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame_array.cpp; sourceTree = "<group>"; };
 		9A9230D927EACF2100B5A78D /* extension.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = extension.cpp; sourceTree = "<group>"; };
-		9A9230DA27EACF2100B5A78D /* context_image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context_image.cpp; sourceTree = "<group>"; };
+		9A9230DA27EACF2100B5A78D /* image_context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = image_context.cpp; sourceTree = "<group>"; };
 		9A9230DB27EACF2100B5A78D /* source.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = source.cpp; sourceTree = "<group>"; };
 		9A9230DD27EACF2100B5A78D /* save_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = save_image.h; sourceTree = "<group>"; };
 		9A9230DE27EACF2100B5A78D /* frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = frame.cpp; sourceTree = "<group>"; };
-		9A9230DF27EACF2100B5A78D /* context_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = context_image.h; sourceTree = "<group>"; };
+		9A9230DF27EACF2100B5A78D /* image_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image_context.h; sourceTree = "<group>"; };
 		9A9230E027EACF2100B5A78D /* image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = image.cpp; sourceTree = "<group>"; };
 		9A9230E127EACF2100B5A78D /* header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = header.h; sourceTree = "<group>"; };
 		9A9230E327EACF2100B5A78D /* map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = map.h; sourceTree = "<group>"; };
@@ -1640,8 +1640,8 @@
 				9A9230FE27EACF2100B5A78D /* _image_impl.h */,
 				9A9230F227EACF2100B5A78D /* array.cpp */,
 				9A9230FA27EACF2100B5A78D /* array.h */,
-				9A9230DA27EACF2100B5A78D /* context_image.cpp */,
-				9A9230DF27EACF2100B5A78D /* context_image.h */,
+				9A9230DA27EACF2100B5A78D /* image_context.cpp */,
+				9A9230DF27EACF2100B5A78D /* image_context.h */,
 				9A92310227EACF2100B5A78D /* cursor.cpp */,
 				9A9230EE27EACF2100B5A78D /* cursor.h */,
 				9A9230F627EACF2100B5A78D /* drawer.cpp */,
@@ -2029,7 +2029,7 @@
 				9A1E1D7522F0AF69004243B8 /* multiple_buffer.h in Headers */,
 				9A3764E52409BF10002D15D3 /* ortho.h in Headers */,
 				9A979D8A28C82B1C0013DC54 /* plain_text_tree.h in Headers */,
-				9A92311227EACF2100B5A78D /* context_image.h in Headers */,
+				9A92311227EACF2100B5A78D /* image_context.h in Headers */,
 				9A3764922409BF0C002D15D3 /* object.h in Headers */,
 				9A8FCD8C2651AFAB00C0D8A1 /* text_out.h in Headers */,
 				9A8FCD982651AFAB00C0D8A1 /* fonts.h in Headers */,
@@ -2387,7 +2387,7 @@
 				9A750FA8282B911800C4861B /* form.cpp in Sources */,
 				9A94DE63282C0ADA00F5C1CA /* cursor_manager.cpp in Sources */,
 				9A750FD3282B929E00C4861B /* meta.cpp in Sources */,
-				9A750FD4282B929E00C4861B /* context_image.cpp in Sources */,
+				9A750FD4282B929E00C4861B /* image_context.cpp in Sources */,
 				9A750FAE282B913600C4861B /* interaction_scaler.cpp in Sources */,
 				9A0F53C328E8D97A00025231 /* desktop_environment.cpp in Sources */,
 				9A0F53C228E8D93800025231 /* plain_text_tree.cpp in Sources */,
@@ -2564,7 +2564,7 @@
 				9A9230B127EACE1000B5A78D /* font_enumeration_item.cpp in Sources */,
 				9A979D9728C82B1C0013DC54 /* text_composition_composite.cpp in Sources */,
 				9AC2CEA12653452D00CC8096 /* color_filter.cpp in Sources */,
-				9A92310D27EACF2100B5A78D /* context_image.cpp in Sources */,
+				9A92310D27EACF2100B5A78D /* image_context.cpp in Sources */,
 				9A75C6A8283D6E6400EC37F2 /* devices.cpp in Sources */,
 				9A2BE852251EC3BC0075218C /* game.cpp in Sources */,
 				9A4AE6FF27F9549A00A4B000 /* control_box_button.cpp in Sources */,

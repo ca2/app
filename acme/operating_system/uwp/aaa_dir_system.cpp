@@ -285,7 +285,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::image_pointer()
+   //::file::path dir_system::image::image_pointer()
    //{
 
    //   return "image://";

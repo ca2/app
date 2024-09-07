@@ -69,7 +69,7 @@ void window_android::destroy_buffer()
 }
 
 
-bool window_android::update_window(::image * pimage)
+bool window_android::update_window(::image::image *pimage)
 {
 
    ::copy_image32((color32_t *)m_mem.get_data(), pimage->get_size(), m_size.cx(), pimage->get_data(), pimage->scan_size());

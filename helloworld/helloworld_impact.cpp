@@ -344,7 +344,7 @@ namespace helloworld
                //
                //   payloadFile["http_set"]["raw_http"] = purl->get_server(m_strImage).unicode_case_insensitive_find("ca2") < 0;
                //
-               //   ::image_pointer pimage;
+               //   ::image::image_pointer pimage;
                //
 /*               //   if(pimage->load_image(payloadFile))
                //   {

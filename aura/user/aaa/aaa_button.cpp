@@ -749,7 +749,7 @@ namespace user
       ASSERT(m_pbitmap->m_pimage); // required
 
       // use the main bitmap for up, the selected bitmap for down
-      ::image_pointer pimage = m_pbitmap->m_pimage;
+      ::image::image_pointer pimage = m_pbitmap->m_pimage;
 
       if(echeck() == ::e_check_checked && ::is_ok(m_pbitmap->m_pimageSel))
          pimage = m_pbitmap->m_pimageSel;
@@ -831,7 +831,7 @@ namespace user
          ASSERT(m_pbitmap->m_pimage); // required
 
          // use the main bitmap for up, the selected bitmap for down
-         ::image_pointer pimage = m_pbitmap->m_pimage;
+         ::image::image_pointer pimage = m_pbitmap->m_pimage;
 
          if (echeck() == ::e_check_checked && m_pbitmap->m_pimageSel->is_set() && m_pbitmap->m_pimageSel->area() > 0)
             pimage = m_pbitmap->m_pimageSel;

@@ -19,14 +19,14 @@
 
 #endif
 
-bool draw2d_gif_detect_8bit_borders(::image * pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & cra, int transparentIndex);
+bool draw2d_gif_detect_8bit_borders(::image::image *pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & cra, int transparentIndex);
 
-bool draw2d_gif_antialias_8bit(::image * pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & cra, int transparentIndex);
+bool draw2d_gif_antialias_8bit(::image::image *pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & cra, int transparentIndex);
 
-bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & cra, int transparentIndex);
+bool draw2d_gif_draw_frame(::image::image *pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & cra, int transparentIndex);
 
 
-//CLASS_DECL_AURA bool draw2d_gif_load_frame(::image * pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, colorref_array & cra, int transparentIndex)
+//CLASS_DECL_AURA bool draw2d_gif_load_frame(::image::image *pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, colorref_array & cra, int transparentIndex)
 //{
 //
 //   if (::is_null(pimageCanvas))
@@ -287,7 +287,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //}
 //
 
-bool imaging::draw2d_gif_draw_frame(image * pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & colora, int transparentIndex)
+bool imaging::draw2d_gif_draw_frame(::image::image *pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & colora, int transparentIndex)
 {
 
    auto pimage32 = pframe->m_pimage->image32();

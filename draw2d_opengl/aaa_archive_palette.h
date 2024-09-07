@@ -19,7 +19,7 @@ namespace draw2d_opengl
       static palette * from_handle(::particle * pparticle, HPALETTE hPalette);
 
       bool CreatePalette(LPLOGPALETTE lpLogPalette);
-      bool CreateHalftonePalette(::image::image * pimage);
+      bool CreateHalftonePalette(::image::image *pimage);
 
       
       operator HPALETTE() const;

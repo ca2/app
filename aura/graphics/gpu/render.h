@@ -20,13 +20,13 @@ namespace gpu
       //string                              m_strProjection;
       //string                              m_strFragment;
       ::pointer<::gpu::context>             m_pgpucontext;
-      ::image_pointer                       m_pimageFromGpu;
+      ::image::image_pointer                       m_pimageFromGpu;
       ::pointer<::gpu::program>             m_pgpuprogram;
       rectangle_i32                         m_rectangle;
       //string                              m_strFont1;
-      //string_map < ::image_pointer >      m_pimagemap;
-      //::image_pointer                     m_pimage1;
-      //::image_pointer                     m_pimage2;
+      //string_map < ::image::image_pointer >      m_pimagemap;
+      //::image::image_pointer                     m_pimage1;
+      //::image::image_pointer                     m_pimage2;
       //::color::hls                        m_hlsText;
       //class ::time                          m_timeStart;
       //::pointer<::gpu::object>            m_pobject;

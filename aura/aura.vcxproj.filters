@@ -426,7 +426,7 @@
     <ClCompile Include="graphics\image\array.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\image\context_image.cpp">
+    <ClCompile Include="graphics\image\image_context.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
     <ClCompile Include="graphics\image\cursor.cpp">
@@ -1328,7 +1328,7 @@
     <ClInclude Include="graphics\image\array.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\image\context_image.h">
+    <ClInclude Include="graphics\image\image_context.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
     <ClInclude Include="graphics\image\cursor.h">

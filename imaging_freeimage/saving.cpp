@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "context_image.h"
+#include "image_context.h"
 ////#include "acme/exception/exception.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/save_image.h"
@@ -12,7 +12,7 @@ namespace imaging_freeimage
 {
 
 
-   FIBITMAP * freeimage_from_image(const ::image * pimage)
+   FIBITMAP * freeimage_from_image(const ::image::image *pimage)
    {
 
       if (::is_null(pimage))
@@ -191,7 +191,7 @@ namespace imaging_freeimage
    }
 
 
-   void context_image::save_image(memory & memory, ::image * pimage, const ::save_image * psaveimage)
+   void image_context::save_image(memory & memory, ::image::image *pimage, const ::save_image * psaveimage)
    {
 
       if (::is_null(pimage))

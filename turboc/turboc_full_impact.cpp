@@ -83,7 +83,7 @@ namespace turboc
 
    }
 
-/*   void full_impact::turboc_render(::image * pimage)
+/*   void full_impact::turboc_render(::image::image *pimage)
    {
 
       turboc_render_full_impact(pgraphics);
@@ -91,7 +91,7 @@ namespace turboc
    }
 
 
-/*   void impact::turboc_render_full_impact(::image * pimage)
+/*   void impact::turboc_render_full_impact(::image::image *pimage)
    {
 
       if(m_pimageWork->area() <= 0)
@@ -328,7 +328,7 @@ namespace turboc
                   if(error == 0)
                   {
 
-/*                     ::image_pointer & pimage = m_pimageAi1;
+/*                     ::image::image_pointer & pimage = m_pimageAi1;
 
 /*                     pimage = create_image({face->glyph->bitmap.width, face->glyph->bitmap.rows});
 
@@ -379,7 +379,7 @@ namespace turboc
                   if(error == 0)
                   {
 
-/*                     ::image_pointer & pimage = m_pimageAi2;
+/*                     ::image::image_pointer & pimage = m_pimageAi2;
 
 /*                     pimage = create_image({face->glyph->bitmap.width, face->glyph->bitmap.rows});
 

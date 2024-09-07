@@ -351,11 +351,11 @@ public:
 
    //virtual void to_string(const string_exchange & str) const override;
 
-   //::image_pointer create_image();
-   //::image_pointer create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+   //::image::image_pointer create_image();
+   //::image::image_pointer create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
-   //::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
-   //::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
+   //::image::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
+   //::image::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
 
    //template < typename BASE_TYPE >
@@ -492,14 +492,14 @@ public:
    //virtual string __get_text(string str);
 
    //template < typename PRED >
-   //::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
+   //::image::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
-   //virtual ::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image_pointer load_matter_icon(string_array & straMatter, string strIcon);
-   //virtual ::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
-   //virtual ::image_pointer load_thumbnail(const ::file::path & path);
-   //virtual ::image_pointer load_dib(const ::file::path & pathDib);
+   //virtual ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image::image_pointer load_matter_icon(string_array & straMatter, string strIcon);
+   //virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
+   //virtual ::image::image_pointer load_thumbnail(const ::file::path & path);
+   //virtual ::image::image_pointer load_dib(const ::file::path & pathDib);
 
 
 
@@ -1057,14 +1057,14 @@ public:
    //virtual string __get_text(string str);
 
    //template < typename PRED >
-   //::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
+   //::image::image_pointer get_image(const ::payload & payloadFile, ::u64 uTrait, PRED pred);
 
-   //virtual ::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
-   //virtual ::image_pointer load_matter_icon(string_array & straMatter, string strIcon);
-   //virtual ::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
-   //virtual ::image_pointer load_thumbnail(const ::file::path & path);
-   //virtual ::image_pointer load_dib(const ::file::path & pathDib);
+   //virtual ::image::image_pointer load_image(const ::payload & payloadFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image::image_pointer load_matter_image(const ::scoped_string & scopedstrMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image::image_pointer load_matter_icon(string_array & straMatter, string strIcon);
+   //virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h);
+   //virtual ::image::image_pointer load_thumbnail(const ::file::path & path);
+   //virtual ::image::image_pointer load_dib(const ::file::path & pathDib);
 
 
 

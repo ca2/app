@@ -6,7 +6,9 @@
 #include "acme/platform/node.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/primitive/geometry2d/rectangle_array.h"
+#include "aura/user/user/user.h"
 #include "aura/windowing/display.h"
+#include "desktop_environment.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/monitor.h"
 #include "aura/windowing/window.h"
@@ -331,6 +333,16 @@ namespace windowing
    bool display::_get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle)
    {
 
+      if(user() && user()->m_pdesktopenvironment)
+      {
+         if(user()->m_pdesktopenvironment->get_monitor_rectangle(iMonitor, rectangle))
+         {
+
+            return true;
+
+         }
+      }
+
       return false;
 
    }
@@ -472,6 +484,16 @@ namespace windowing
 
    bool display::_get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 & rectangle)
    {
+
+      if(user() && user()->m_pdesktopenvironment)
+      {
+         if(node()->_get_workspace_rectangle(iWorkspace, rectangle))
+         {
+
+            return true;
+
+         }
+      }
 
       return false;
 

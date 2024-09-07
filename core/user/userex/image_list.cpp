@@ -8,7 +8,7 @@
 #include "acme/filesystem/filesystem/listing.h"
 #include "apex/database/_binary_stream.h"
 #include "acme/filesystem/filesystem/dir_context.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/array.h"
 #include "aura/message/user.h"
@@ -127,7 +127,7 @@ namespace userex
 
          load_images();
 
-         ::user::image_list::update_data(false);
+         ::user::image::image_list::update_data(false);
 
       }
 
@@ -157,13 +157,13 @@ namespace userex
 
             synchronouslock.unlock();
 
-            ::image_pointer pimage1;
+            ::image::image_pointer pimage1;
 
             ::file::path path = m_plisting->element_at(i);
 
             auto pcontext = m_pcontext->m_pauracontext;
 
-            auto pcontextimage = pcontext->context_image();
+            auto pcontextimage = pcontext->image_context();
 
             pimage1 = pcontextimage->load_image(path, { .cache = false });
 
@@ -173,15 +173,15 @@ namespace userex
                if (pimage1->width() > 256)
                {
 
-                  ::image_pointer pimageSmall;
+                  ::image::image_pointer pimageSmall;
 
-                  pimageSmall = context_image()->create_image({256,  256 * pimage1->height() / pimage1->width()});
+                  pimageSmall = image()->create_image({256,  256 * pimage1->height() / pimage1->width()});
 
-                  image_source imagesource(pimage1);
+                  ::image::image_source imagesource(pimage1);
 
-                  image_drawing_options imagedrawingoptions(pimageSmall->rectangle());
+                  ::image::image_drawing_options imagedrawingoptions(pimageSmall->rectangle());
 
-                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+                  ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                   pimageSmall->g()->draw(imagedrawing);
 

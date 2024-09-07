@@ -55,7 +55,7 @@ namespace graphics
    //}
 
 
-   ::image_pointer & buffer::get_buffer()
+   ::image::image_pointer & buffer::get_buffer()
    {
 
       return m_pimageBuffer;
@@ -123,7 +123,7 @@ namespace graphics
    }
 
 
-   //::image_pointer & buffer::get_screen_image()
+   //::image::image_pointer & buffer::get_screen_image()
    //{
 
    //   return m_pimageBuffer;

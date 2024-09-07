@@ -2954,7 +2954,7 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 }
 
 
-::file::path dir_context::image()
+::file::path dir_context::image::image()
 {
 
    return home() / "Image";

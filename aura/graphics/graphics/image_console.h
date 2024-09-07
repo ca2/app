@@ -11,7 +11,7 @@ namespace graphics
    {
    public:
 
-      ::image_pointer               m_pimage;
+      ::image::image_pointer               m_pimage;
       ::size_i32                        m_sizeTile;
       ::size_i32                        m_sizeWindow;
       int                           m_x;

@@ -159,11 +159,11 @@ namespace draw2d
 {
 
 
-   CLASS_DECL_ACME void image_copy(::image * imagethis, ::image * pimage);
-   CLASS_DECL_ACME void image_create(::particle * pparticle, ::image *& image);
-   CLASS_DECL_ACME void image_create_image(::image * pimage, const size_i32 & size);
-   CLASS_DECL_ACME unsigned int * image_get_data(::image * pimage);
-   CLASS_DECL_ACME graphics * image_get_graphics(::image * pimage);
+   CLASS_DECL_ACME void image_copy(::image::image *imagethis, ::image::image *pimage);
+   CLASS_DECL_ACME void image_create(::particle * pparticle, ::image::image *& image);
+   CLASS_DECL_ACME void image_create_image(::image::image *pimage, const size_i32 & size);
+   CLASS_DECL_ACME unsigned int * image_get_data(::image::image *pimage);
+   CLASS_DECL_ACME graphics * image_get_graphics(::image::image *pimage);
 
 
 } // namespace draw2d

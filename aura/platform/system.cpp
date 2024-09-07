@@ -256,7 +256,7 @@ namespace aura
 
       ::draw2d::static_initialize();
 
-      factory()->add_factory_item < ::draw2d::icon >();
+      factory()->add_factory_item < ::image::icon >();
 
     
 //#ifdef WINDOWS_DESKTOP
@@ -5208,7 +5208,7 @@ namespace aura
   //     //m_strBaseSupportId = "base_system";
   //     //m_strInstallToken = "base_system";
   //
-  //      add_factory_item < ::draw2d::icon >();
+  //      add_factory_item < ::image::icon >();
   //
   //      //#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
   //      //
@@ -6329,7 +6329,7 @@ namespace aura
 //      //m_strBaseSupportId = "base_system";
 //      //m_strInstallToken = "base_system";
 //
-//      add_factory_item < ::draw2d::icon >();
+//      add_factory_item < ::image::icon >();
 //
 //      g_pszCooperativeLevel = "aura";
 //

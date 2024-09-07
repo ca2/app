@@ -69,7 +69,7 @@ namespace user
       void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual image * get_current_image();
+      virtual ::image::image *get_current_image();
 
       virtual string get_current_image_link();
 
@@ -93,7 +93,7 @@ namespace user
 
 
    class CLASS_DECL_BASE image_list_impact :
-      virtual public show < margin < ::user::image_list > >
+      virtual public show < margin < ::user::image::image_list > >
    {
    public:
 

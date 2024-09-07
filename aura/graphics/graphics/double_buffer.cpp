@@ -178,7 +178,7 @@ namespace graphics
    }
 
 
-   //::image_pointer & double_buffer::get_buffer_image()
+   //::image::image_pointer & double_buffer::get_buffer_image()
    //{
 
    //   return get_buffer_item()->m_pimage;
@@ -202,7 +202,7 @@ namespace graphics
    }
 
 
-   //::image_pointer & double_buffer::get_screen_image()
+   //::image::image_pointer & double_buffer::get_screen_image()
    //{
 
    //   return get_screen_item()->m_pimage;

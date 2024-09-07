@@ -303,7 +303,7 @@ namespace user
       //void OnEnterIdle(::u32 nWhy, ::pointer<::user::interaction>pWho);
       void OnSetFocus(::pointer<::user::interaction>pOldWnd);
       void OnSize(::u32 nType, i32 cx, i32 cy);
-      bool OnEraseBkgnd(::image * pimage);
+      bool OnEraseBkgnd(::image::image *pimage);
       //void OnActivate(::u32 nState, ::pointer<::user::interaction>pWndOther, bool bMinimized);
       //bool OnNcActivate(bool bActive);
       //void OnSysCommand(::u32 nID, LPARAM lParam);

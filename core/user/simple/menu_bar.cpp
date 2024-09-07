@@ -382,8 +382,8 @@ void simple_menu_bar::on_message_destroy(::message::message * pmessage)
 }
 
 bool simple_menu_bar::Initialize(
-::pointer<::image_list>  imagelist,
-::pointer<::image_list>  imagelistDisabled,
+::pointer<::image::image_list>  imagelist,
+::pointer<::image::image_list>  imagelistDisabled,
 i32_spreadset * prel,
 ::write_text::font *        pfont)
 {

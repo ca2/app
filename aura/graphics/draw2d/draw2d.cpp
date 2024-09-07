@@ -2,7 +2,7 @@
 #include "lock.h"
 #include "acme/graphics/image/image32.h"
 #include "acme/platform/application.h"
-#include "aura/graphics/image/save_image.h"
+#include "aura/graphics/image/save_options.h"
 #include "aura/graphics/image/array.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/imaging.h"
@@ -117,7 +117,7 @@ namespace draw2d
    }
 
 
-   void draw2d::add_image(::image * pimage)
+   void draw2d::add_image(::image::image *pimage)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
@@ -127,7 +127,7 @@ namespace draw2d
    }
 
 
-   void draw2d::erase_image(::image * pimage)
+   void draw2d::erase_image(::image::image *pimage)
    {
 
       critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
@@ -319,53 +319,6 @@ namespace draw2d
    }
 
 
-   enum_format draw2d::file_extension_to_format(const ::payload & payloadFile)
-   {
-
-      return text_to_format(payloadFile.as_file_path().final_extension());
-
-   }
-
-
-   enum_format draw2d::text_to_format(string strText)
-   {
-
-      strText.make_lower();
-
-      if (strText == "png")
-      {
-
-         return ::draw2d::e_format_png;
-
-      }
-      else if (strText == "jpg" || strText == "jpeg")
-      {
-
-         return ::draw2d::e_format_jpeg;
-
-      }
-      else if (strText == "gif")
-      {
-
-         return ::draw2d::e_format_gif;
-
-      }
-      else if (strText == "bmp")
-      {
-
-         return ::draw2d::e_format_bmp;
-
-      }
-      else
-      {
-
-         return ::draw2d::e_format_none;
-
-      }
-
-   }
-
-
    void draw2d::term()
    {
 
@@ -437,68 +390,6 @@ namespace draw2d
    }
 
 
-   ::pointer<save_image>draw2d::new_save_image(const ::payload & payloadFile, const ::payload & varOptions)
-   {
-
-      auto psaveimage = ::place(new save_image());
-
-      auto psystem = system()->m_paurasystem;
-
-      auto pdraw2d = psystem->draw2d();
-
-      auto eformat = pdraw2d->text_to_format(varOptions["format"]);
-
-      if (eformat != ::draw2d::e_format_none)
-      {
-
-         ::pointer<::aura::system>psystem = system();
-
-         eformat = pdraw2d->file_extension_to_format(payloadFile.as_file_path());
-
-      }
-
-      if (eformat == ::draw2d::e_format_none)
-      {
-
-         psaveimage->m_eformat = ::draw2d::e_format_png;
-
-      }
-
-      if (varOptions["quality"].get_type() == e_type_f64
-         || varOptions["quality"].get_type() == e_type_f32)
-      {
-
-         psaveimage->m_iQuality = (int)(varOptions["quality"].as_f64() * 100.0);
-
-      }
-      else
-      {
-
-         psaveimage->m_iQuality = varOptions["quality"].as_i32();
-
-      }
-
-      if (psaveimage->m_iQuality == 0)
-      {
-
-         psaveimage->m_iQuality = 100;
-
-      }
-
-      psaveimage->m_iDpi = varOptions["dpi"].as_i32();
-
-      if (psaveimage->m_iDpi == 0)
-      {
-
-         psaveimage->m_iDpi = 96;
-
-      }
-
-      return psaveimage;
-
-   }
-
-
    ::draw2d::graphics_pointer draw2d::create_graphics(::draw2d::host * pdraw2dhost)
    {
 
@@ -550,8 +441,8 @@ namespace draw2d
       ::draw2d::graphics_pointer & pgraphics,
       const ::rectangle_i32 & rectangle,
       string strText,
-      ::draw2d::fastblur & blur,
-      ::image_pointer & imageBlur,
+      ::image::fastblur & blur,
+      ::image::image_pointer & imageBlur,
       ::write_text::font * pfont,
       const ::e_align & ealign,
       const ::e_draw_text & edrawtext,
@@ -612,8 +503,8 @@ void draw2d::emboss_predicate(
    ::draw2d::graphics_pointer & pgraphics,
    const ::rectangle_i32 & rectangle,
    const ::function < void(::draw2d::graphics *) > & functionDraw,
-   ::draw2d::fastblur & blur,
-   ::image_pointer & pimageBlur,
+   ::image::fastblur & blur,
+   ::image::image_pointer & pimageBlur,
    ::color::color crGlow,
    int iSpreadRadius,
    int iBlurRadius,
@@ -652,7 +543,7 @@ void draw2d::emboss_predicate(
 
       rectangleCache.bottom() = rectangleCache.top() + rectangle.height();
 
-      ::image_pointer pimage;
+      ::image::image_pointer pimage;
 
       //auto estatus =
 
@@ -712,13 +603,13 @@ void draw2d::emboss_predicate(
 
    pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-   image_source imagesource(pimageBlur);
+   ::image::image_source imagesource(pimageBlur);
 
-   image_drawing_options imagedrawingoptions(rectangleEmboss);
+   ::image::image_drawing_options imagedrawingoptions(rectangleEmboss);
 
    imagedrawingoptions = colorfilter;
 
-   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
    pgraphics->draw(imagedrawing);
 
@@ -1044,7 +935,7 @@ void draw2d::emboss_predicate(
    }
 
 
-   bool draw2d::channel_spread__32CC(::image * pimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius, const ::color::color & colorSpreadSetColor)
+   bool draw2d::channel_spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc, i32 iChannel, i32 iRadius, const ::color::color & colorSpreadSetColor)
    {
 
       pimageDst->map();

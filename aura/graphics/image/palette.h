@@ -6,23 +6,26 @@ typedef void * HPALETTE;
 
 #endif
 
-class image_palette
+namespace image
 {
-public:
+   class image_palette
+   {
+   public:
 
 
-   image_palette();
+      image_palette();
 
 
-   void create(::image * pimage);
+      void create(::image::image *pimage);
 
 
-   //HPALETTE m_hpalette;
+      //HPALETTE m_hpalette;
 
-public:
-   
-   
-   virtual ~image_palette();
+   public:
 
 
-};
+      virtual ~image_palette();
+
+
+   };
+} //namespace image

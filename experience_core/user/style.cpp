@@ -216,11 +216,11 @@ namespace experience_core
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-               image_source imagesource(ppane->m_pimage);
+               ::image::image_source imagesource(ppane->m_pimage);
 
-               image_drawing_options imagedrawingoptions(rectangleIcon);
+               ::image::image_drawing_options imagedrawingoptions(rectangleIcon);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 
@@ -448,11 +448,11 @@ namespace experience_core
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-               image_source imagesource(ppane->m_pimage);
+               ::image::image_source imagesource(ppane->m_pimage);
 
-               image_drawing_options imagedrawingoptions(rectangleIcon);
+               ::image::image_drawing_options imagedrawingoptions(rectangleIcon);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 
@@ -1246,7 +1246,7 @@ namespace experience_core
 
             if (ppane->m_pimage.ok())
             {
-               //::image_list::info ii;
+               //::image::image_list::info ii;
                ixAdd += ppane->m_pimage->width() + 2;
             }
 

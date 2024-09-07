@@ -891,7 +891,7 @@
     <ClCompile Include="apex\apex\command_ui_probe.cpp" />
     <ClCompile Include="apex\apex\console.cpp" />
     <ClCompile Include="apex\apex\context.cpp" />
-    <ClCompile Include="apex\apex\context_image.cpp" />
+    <ClCompile Include="apex\apex\image_context.cpp" />
     <ClCompile Include="apex\apex\conv.cpp" />
     <ClCompile Include="apex\apex\cpu_architecture.cpp" />
     <ClCompile Include="apex\apex\cregexp.cpp" />

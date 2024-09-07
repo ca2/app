@@ -19,18 +19,18 @@ namespace userstack
       i32 m_iV;
       i32 m_iVH;
       i32 m_iVW;
-      ::image_pointer m_pimageV;
+      ::image::image_pointer m_pimageV;
       i32 m_i_veriwell;
       i32 m_i_veriwell_h;
       i32 m_i_veriwell_w;
-      ::image_pointer m_pimage_veriwell;
+      ::image::image_pointer m_pimage_veriwell;
       i32 m_i_winactionarea;
       i32 m_i_winactionarea_h;
       i32 m_i_winactionarea_w;
-      ::image_pointer m_pimage_winactionarea;
+      ::image::image_pointer m_pimage_winactionarea;
 
 
-      ::image_pointer m_pimageBk;
+      ::image::image_pointer m_pimageBk;
 
       oswindow                   m_oswindowWinactionarea;
       oswindow                   m_oswindowCommand;

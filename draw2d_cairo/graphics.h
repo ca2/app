@@ -282,9 +282,9 @@ namespace draw2d_cairo
       //virtual bool frame_rectangle(const ::rectangle_f64 & rectangle_f64, ::draw2d::brush* pBrush) override;
       void invert_rectangle(const ::rectangle_f64 & rectangle_f64) override;
 
-      //bool DrawIcon(double x, double y, ::draw2d::icon * picon) override;
-      //virtual bool draw(const ::point_f64 & point_f64, ::draw2d::icon * picon, const ::size_f64 & size_f64) override;
-      //bool DrawIcon(double x, double y, ::draw2d::icon * picon, double cx, double cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags) override;
+      //bool DrawIcon(double x, double y, ::image::icon * picon) override;
+      //virtual bool draw(const ::point_f64 & point_f64, ::image::icon * picon, const ::size_f64 & size_f64) override;
+      //bool DrawIcon(double x, double y, ::image::icon * picon, double cx, double cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags) override;
       //bool DrawState(const ::point_f64 & point_f64, const ::size_f64 & size_f64, HBITMAP hBitmap, ::u32 nFlags,
         //             HBRUSH hBrush = nullptr) override;
 //      bool DrawState(const ::point_f64 & point_f64, const ::size_f64 & size_f64, ::draw2d::bitmap* pBitmap, ::u32 nFlags,
@@ -335,10 +335,10 @@ namespace draw2d_cairo
       //bool PatBlt(double x, double y, double nWidth, double nHeight) override;
 
 
-      //virtual bool _draw_raw(const ::image_drawing & imagedrawing) override;
-      void _draw_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::point_f64 & pointSrc) override;
-      bool _draw_blend(const ::image_drawing & imagedrawing) override;
-      void _stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::rectangle_f64 & rectdSrc) override;
+      //virtual bool _draw_raw(const ::image::image_drawing & imagedrawing) override;
+      void _draw_raw(const ::rectangle_f64 & rectangleTarget, ::image::image *pimage, const ::image::image_drawing_options & imagedrawing, const ::point_f64 & pointSrc) override;
+      bool _draw_blend(const ::image::image_drawing & imagedrawing) override;
+      void _stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image::image *pimage, const ::image::image_drawing_options & imagedrawing, const ::rectangle_f64 & rectdSrc) override;
       //bool _stretch_raw(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource) override;
 
 

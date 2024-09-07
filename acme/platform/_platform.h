@@ -16,7 +16,7 @@
 //
 //#endif
 
-class image_list;
+//Fclass image_list;
 //
 
 //namespace user

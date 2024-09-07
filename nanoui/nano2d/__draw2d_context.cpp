@@ -6,7 +6,7 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/image/image.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 #include "aura/graphics/write_text/font.h"
 
 
@@ -288,9 +288,9 @@ namespace nano2d
 
             m_pgraphics->intersect_clip(m_pstate->m_ppath);
 
-            image_source imagesource(paintimage.m_pimage);
+            ::image::image_source imagesource(paintimage.m_pimage);
 
-            image_drawing imagedrawing(paintimage.m_imagedrawingoptions, imagesource);
+            ::image::image_drawing imagedrawing(paintimage.m_imagedrawingoptions, imagesource);
 
             m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -409,7 +409,7 @@ namespace nano2d
 
       }
 
-      auto pimage = m_pgraphics->m_pcontext->context_image()->integer_image(image);
+      auto pimage = m_pgraphics->m_pcontext->image_context()->integer_image(image);
 
       auto & paintimage = _create_new_paint_image();
 
@@ -423,7 +423,7 @@ namespace nano2d
 
       ::rectangle_f64 rectangleTarget(::point_f64(cx, cy), ::size_f64(w, h));
 
-      ::image_drawing_options imagedrawingoptions(rectangleTarget);
+      ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
       imagedrawingoptions.opacity(alpha);
 
@@ -580,9 +580,9 @@ namespace nano2d
 
       //   m_pgraphics->intersect_clip(m_pstate->m_ppath);
 
-      //   image_source imagesource(paintimage.m_pimage);
+      //   ::image::image_source imagesource(paintimage.m_pimage);
 
-      //   image_drawing imagedrawing(paintimage.m_imagedrawingoptions, imagesource);
+      //   ::image::image_drawing imagedrawing(paintimage.m_imagedrawingoptions, imagesource);
 
       //   m_pgraphics->draw(imagedrawing);
 
@@ -966,7 +966,7 @@ namespace nano2d
    int draw2d_context::create_image(const char * filename, int imageFlags)
    {
 
-      return m_pgraphics->m_pcontext->context_image()->image_integer(filename);
+      return m_pgraphics->m_pcontext->image_context()->image_integer(filename);
 
    }
 
@@ -974,7 +974,7 @@ namespace nano2d
    int draw2d_context::create_image_rgba(int w, int h, int imageFlags, const void * data, int iScan)
    {
 
-      return m_pgraphics->m_pcontext->context_image()->create_image_integer(w, h, (const ::color32_t *)data, iScan);
+      return m_pgraphics->m_pcontext->image()->create_image_integer(w, h, (const ::color32_t *)data, iScan);
 
    }
 
@@ -993,7 +993,7 @@ namespace nano2d
 
       }
       
-      auto pimage = m_pgraphics->m_pcontext->context_image()->integer_image(image);
+      auto pimage = m_pgraphics->m_pcontext->image_context()->integer_image(image);
 
       if (::is_null(pimage))
       {
@@ -1026,7 +1026,7 @@ namespace nano2d
 
       auto pcontext = pgraphics->m_pcontext;
 
-      auto pcontextimage = pcontext->context_image();
+      auto pcontextimage = pcontext->image_context();
 
       auto pimage = pcontextimage->integer_image(image);
 
@@ -1037,16 +1037,16 @@ namespace nano2d
    }
 
 
-   void draw2d_context::_draw_image(float x, float y, float w, float h, ::image * pimage)
+   void draw2d_context::_draw_image(float x, float y, float w, float h, ::image::image *pimage)
    {
 
       ::rectangle_f64 rectangleTarget(x, y, x + w, y + h);
 
-      image_source imagesource(pimage);
+      ::image::image_source imagesource(pimage);
 
-      image_drawing_options imagedrawingoptions(rectangleTarget);
+      ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
-      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
       m_pgraphics->set_compositing_quality(::draw2d::e_compositing_quality_high_quality);
 

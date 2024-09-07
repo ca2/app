@@ -55,8 +55,8 @@ namespace nano2d
 
          int                           m_iImage;
          ::draw2d::brush_pointer       m_pbrush;
-         ::image_pointer               m_pimage;
-         ::image_drawing_options       m_imagedrawingoptions;
+         ::image::image_pointer               m_pimage;
+         ::image::image_drawing_options       m_imagedrawingoptions;
 
       };
 
@@ -108,7 +108,7 @@ namespace nano2d
       ::nano2d::paint box_gradient(float x, float y, float w, float h, float r, float f, ::color::color icol, ::color::color ocol) override;
       ::nano2d::paint radial_gradient(float cx, float cy, float inr, float outr, ::color::color icol, ::color::color ocol) override;
       ::nano2d::paint image_pattern_from_index(float cx, float cy, float w, float h, float angle, float alpha, int iImage) override;
-      ::nano2d::paint image_pattern_from_image(float cx, float cy, float w, float h, float angle, float alpha, ::image * pimage) override;
+      ::nano2d::paint image_pattern_from_image(float cx, float cy, float w, float h, float angle, float alpha, ::image::image *pimage) override;
 
 
 
@@ -156,7 +156,7 @@ namespace nano2d
 
 
       void update_image(int image, const void * data) override;
-      void _draw_image(float x, float y, float w, float h, ::image * pimage) override;
+      void _draw_image(float x, float y, float w, float h, ::image::image *pimage) override;
 
 
       virtual void __set_current_font();

@@ -39908,7 +39908,7 @@
     <frame>
       <ip>0x11FD6C5A</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;html::core_data::image, html::core_data::image&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;html::core_data::image::image, html::core_data::image::image&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>

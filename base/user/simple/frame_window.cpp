@@ -2843,11 +2843,11 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //
 //      pgraphicsParam->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
-//      image_source imagesource(pgraphics);
+//      ::image::image_source imagesource(pgraphics);
 //
-//      image_drawing_options imagedrawingoptions(rectangleX.size());
+//      ::image::image_drawing_options imagedrawingoptions(rectangleX.size());
 //
-//      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+//      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 //
 //      imagedrawing.opacity(dAlpha);
 //
@@ -2943,11 +2943,11 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
             {
 
-               image_source imagesource(pgraphics);
+               ::image::image_source imagesource(pgraphics);
 
-               image_drawing_options imagedrawingoptions(rectangleTarget);
+               ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                m_pimageBlur->g()->draw(imagedrawing);
 
@@ -2959,13 +2959,13 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
             {
 
-               image_source imagesource(m_pimageBk);
+               ::image::image_source imagesource(m_pimageBk);
 
-               image_drawing_options imagedrawingoptions(rectangleX.size());
+               ::image::image_drawing_options imagedrawingoptions(rectangleX.size());
 
                imagedrawingoptions.opacity(49);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                m_pimageBlur->draw(imagedrawing);
 
@@ -2973,11 +2973,11 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
             {
 
-               image_source imagesource(m_pimageBlur);
+               ::image::image_source imagesource(m_pimageBlur);
 
-               image_drawing_options imagedrawingoptions(rectangleX);
+               ::image::image_drawing_options imagedrawingoptions(rectangleX);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 

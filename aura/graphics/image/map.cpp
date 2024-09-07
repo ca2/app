@@ -4,7 +4,7 @@
 #include "acme/platform/system.h"
 
 
-::image * image_descriptor_map::operator[](const image_header & key)
+::image::image *image_descriptor_map::operator[](const image_header & key)
 {
 
    while (get_count() > m_iLimitCount)
@@ -85,7 +85,7 @@ image_pointer & size_image::operator[](const ::size_i32 & size)
 image_pointer & size_image::get(const ::size_i32 & size, bool & bExists)
 {
 
-   auto & pimage = ::map < ::size_i32, ::image_pointer >::operator [](size);
+   auto & pimage = ::map < ::size_i32, ::image::image_pointer >::operator [](size);
 
    if (pimage->is_null())
    {

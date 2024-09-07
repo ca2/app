@@ -1542,7 +1542,7 @@ namespace user
       }
 
 
-      ::image_list::info ii;
+      ::image::image_list::info ii;
 
       for (iColumn = 0; iColumn < iVisibleColumnCount; iColumn++)
       {
@@ -3108,7 +3108,7 @@ namespace user
             else if (pdrawlistsubitem->m_pcolumn->m_pimagelist != nullptr)
             {
 
-               ::image_list::info ii;
+               ::image::image_list::info ii;
 
                pdrawlistsubitem->m_bOk = false;
 
@@ -3205,7 +3205,7 @@ namespace user
          if (m_pimagelistGroup != nullptr)
          {
 
-            ::image_list::info ii;
+            ::image::image_list::info ii;
 
             _001GetGroupImage(*pdrawlistgroup);
 
@@ -5527,7 +5527,7 @@ namespace user
       if (pcolumn->m_pimagelist == nullptr)
       {
 
-         pcolumn->m_pimagelist = ::place(new ::image_list());
+         pcolumn->m_pimagelist = ::place(new ::image::image_list());
 
       }
 
@@ -5756,7 +5756,7 @@ namespace user
    i32 list2::_001CalcSubItemWidth(::draw2d::graphics_pointer& pgraphics, ::collection::index iItem, ::collection::index iSubItem)
    {
 
-      ::image_list::info ii;
+      ::image::image_list::info ii;
 
       ::rectangle_i32 rectangle;
 

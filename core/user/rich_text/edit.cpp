@@ -1136,7 +1136,7 @@ namespace user
 
          ::draw2d::fastblur blurDropShadow;
 
-         ::image_pointer imageDropShadow;
+         ::image::image_pointer imageDropShadow;
 
          ::rectangle_i32 rDropShadow;
 
@@ -1152,7 +1152,7 @@ namespace user
          if (m_ppictureimpl != nullptr && m_ppictureimpl->m_bGlowDropShadow)
          {
 
-            ::image_pointer pimage;
+            ::image::image_pointer pimage;
 
             __construct(pimage);
 

@@ -68,13 +68,13 @@ namespace draw2d
 {
    class cursor;
    void cursor_alloc(::particle * pparticle,cursor * & pcursor,int xHotspot,int yHotspot);
-   ::draw2d::image_pointer * cursor_get_dib(cursor * pcursor);
+   ::draw2d::image::image_pointer * cursor_get_dib(cursor * pcursor);
 }
 
 
 struct rdpclient_impact_interface
 {
-   virtual void rdpclient_set_cursor(::draw2d::cursor * pcursor) = 0;
+   virtual void rdpclient_set_cursor(::image::cursor * pcursor) = 0;
 };
 
 namespace message
@@ -125,7 +125,7 @@ typedef struct ca2rdp_context ca2rdpContext;
 struct ca2rdp_pointer
 {
    rdpPointer pointer;
-   ::draw2d::cursor * m_pcursor;
+   ::image::cursor * m_pcursor;
    ::u32 xhot;
    ::u32 yhot;
 };
@@ -143,8 +143,8 @@ struct ca2rdp_info
    int w;
    int h;
    //DFBSurfaceDescription dsc;
-   ::draw2d::image_pointer * primary;
-   ::draw2d::image_pointer * surface;
+   ::draw2d::image::image_pointer * primary;
+   ::draw2d::image::image_pointer * surface;
 //	IDirectFBDisplayLayer* layer;
    //IDirectFBEventBuffer* event_buffer;
 

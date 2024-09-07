@@ -7,7 +7,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/hyperlink.h"
 #include "acme/platform/timer.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
 #include "aura/message/user.h"
@@ -479,7 +479,7 @@ namespace account
 
             auto pcontext = m_pcontext->m_pauracontext;
 
-            auto pcontextimage = pcontext->context_image();
+            auto pcontextimage = pcontext->image_context();
 
             m_plogin->m_pimage = pcontextimage->load_matter_image(stra[0]);
 

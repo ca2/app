@@ -25,7 +25,7 @@
 
 
 //
-//bool ios_get_file_image(::image * pimage, const ::scoped_string & scopedstr)
+//bool ios_get_file_image(::image::image *pimage, const ::scoped_string & scopedstr)
 //{
 //
 //   if(!ios1_get_file_image(pimage->get_data(), pimage->width(), pimage->height(), pimage->scan_size(), psz))

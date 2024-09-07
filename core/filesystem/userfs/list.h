@@ -52,7 +52,7 @@ namespace userfs
 
       void install_message_routing(::channel * pchannel) override;
 
-      ::image_list * GetActionButtonImageList(::collection::index i);
+      ::image::image_list * GetActionButtonImageList(::collection::index i);
 
 
       virtual void get_selected_user_path(::file::path_array & stra);

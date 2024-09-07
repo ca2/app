@@ -26,7 +26,7 @@
     <ClInclude Include="fimemory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="context_image.h">
+    <ClInclude Include="image_context.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="_library.h">
@@ -55,7 +55,7 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="context_image.cpp">
+    <ClCompile Include="image_context.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="loading_multi_frame.cpp">

@@ -353,6 +353,8 @@ list(APPEND apex_source
         networking/email.h
         networking/email_address.cpp
         networking/email_address.h
+   networking/internet.cpp
+   networking/internet.h
         networking/ip_enum.cpp
         networking/ip_enum.h
         #networking/net.h

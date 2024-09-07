@@ -23,7 +23,7 @@ namespace user
 
       ::user::frame_window *                       m_puserframewindow;
 
-      ::pointer<::draw2d::icon>           m_pdrawicon;
+      ::pointer<::image::icon>           m_pdrawicon;
 
       enum_style                                   m_estyle;
       string                                       m_strStyle;
@@ -64,7 +64,7 @@ namespace user
 
      
       //::windowing::icon* get_windowing_icon() override;
-      ::draw2d::icon* get_draw_icon() override;
+      ::image::icon* get_draw_icon() override;
 
       
       //void this->rectangle(::rectangle_i32 * prectangle) override;

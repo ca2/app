@@ -13,7 +13,7 @@ public:
 
    ::draw2d::pen_pointer            m_ppenDraw;
    ::draw2d::brush_pointer          m_pbrushDraw;
-   ::image_pointer                  m_pimageDots;
+   ::image::image_pointer                  m_pimageDots;
    bool                             m_bTrackOffsetThumbAdjusted;
    point_i32                        m_pointaTrack[::user::e_layout_maximum_count];
    //::status < ::rectangle_i32 >     m_statusrectangleTrack;
@@ -75,7 +75,7 @@ public:
    virtual void update_rectangles(::user::enum_layout elayout);
    void UpdateBitmaps();
    //void OnDisplayChange(i32 iBitsPerPixel, ::size_i32 sizeScreen);
-   //virtual void OnDraw(::image * pimage);
+   //virtual void OnDraw(::image::image *pimage);
    //virtual i32 _001GetScrollPos() override;
    //virtual i32 _001SetScrollPos(i32 iPos) override;
    //virtual bool _001GetScrollState(::user::scroll_state * pscrollstate) override;

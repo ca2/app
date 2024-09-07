@@ -219,7 +219,7 @@ namespace acme
 
          m_iSize = c * sizeof(*m_p);
 
-         m_p = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_iSize);
+         m_p = ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(m_iSize, nullptr);
 
          if (m_p == nullptr)
          {

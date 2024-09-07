@@ -33,7 +33,7 @@
 //
 //      auto pcontext = m_pcontext->m_pauracontext;
 //
-//      auto pcontextimage = pcontext->context_image();
+//      auto pcontextimage = pcontext->image_context();
 //
 //      if(::is_set(pcontextimage))
 //      {

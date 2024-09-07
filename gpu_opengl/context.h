@@ -43,7 +43,7 @@ namespace opengl
       void render() override;
 
 
-      void set_bitmap_1(::image * pimage) override;
+      void set_bitmap_1(::image::image *pimage) override;
 
       void swap_buffers() override;
 

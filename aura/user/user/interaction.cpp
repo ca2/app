@@ -3913,19 +3913,17 @@ namespace user
          else
          {
 
-            user_post([this]()
+            ::pointer < ::user::interaction > puserinteraction = this;
+
+            user_post([puserinteraction]()
                              {
 
-                                if (get_app() != nullptr && get_app()->get_session() != nullptr &&
-                                    has_keyboard_focus())
+                                if (puserinteraction->get_parent() != nullptr
+                                   && puserinteraction->has_keyboard_focus()
+                                   && puserinteraction->is_window_visible(e_layout_sketch))
                                 {
 
-                                   if (get_parent() != nullptr && is_window_visible(e_layout_sketch))
-                                   {
-
-                                      keyboard_set_focus_next();
-
-                                   }
+                                   puserinteraction->keyboard_set_focus_next();
 
                                 }
 
@@ -4753,7 +4751,7 @@ namespace user
    }
 
 
-   ::draw2d::icon * interaction::get_draw_icon()
+   ::image::icon * interaction::get_draw_icon()
    {
 
       throw ::interface_only();

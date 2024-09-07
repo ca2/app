@@ -13,7 +13,7 @@
 #include "shell.h"
 
 
-bool ios_get_file_image(::image * pimage, const ::scoped_string & scopedstr);
+bool ios_get_file_image(::image::image *pimage, const ::scoped_string & scopedstr);
 
 
 namespace ios
@@ -1582,7 +1582,7 @@ pacmedirectory->is(strPath))
 //         informationf("test");
 //      }
 //
-//      ::image_pointer pimage48;
+//      ::image::image_pointer pimage48;
 //
 //      image48 = create_image({48,  48});
 //
@@ -1592,7 +1592,7 @@ pacmedirectory->is(strPath))
 //
 //      if (ios_get_file_image(image48, strPath))
 //      {
-//         ::image_pointer pimage16;
+//         ::image::image_pointer pimage16;
 //
 //         image16 = create_image({16,  16});
 //
@@ -1883,7 +1883,7 @@ pacmedirectory->is(strPath))
 //
 //         {
 //
-//            ::image_pointer pimage;
+//            ::image::image_pointer pimage;
 //            pimage = create_image({iSize,  iSize});
 //            pimage->Fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
 //            pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -1897,9 +1897,9 @@ pacmedirectory->is(strPath))
 //
 //         {
 //
-//            ::image_pointer & d = *m_pimagelistHover[iSize]->m_pimage;
+//            ::image::image_pointer & d = *m_pimagelistHover[iSize]->m_pimage;
 //            size_i32 s = m_pimagelist[iSize]->m_pimage->get_size();
-//            ::image_pointer pimage;
+//            ::image::image_pointer pimage;
 //            pimage = create_image(s);
 //            pimage->Fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
 //            pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);

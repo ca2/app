@@ -523,7 +523,7 @@ namespace acme
    }
 
 
-   class ::imaging* system::imaging()
+   class ::image::imaging* system::imaging()
    {
 
       throw ::interface_only("imaging requires aura layer or upper layer");

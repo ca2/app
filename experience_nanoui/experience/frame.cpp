@@ -101,13 +101,13 @@ namespace experience_nanoui
 
       pframewindow->best_monitor(&rectangleScreen);
 
-      ::image_pointer pimage1;
+      ::image::image_pointer pimage1;
 
-      ::image_pointer pimage2;
+      ::image::image_pointer pimage2;
 
-      pimage1 = context_image()->create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
+      pimage1 = image()->create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
 
-      pimage2 = context_image()->create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
+      pimage2 = image()->create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
 
       ::rectangle_i32 rectangleWindow = rectangleX;
 
@@ -125,13 +125,13 @@ namespace experience_nanoui
 
          rectangle_f64 rectangleSource(point, pimage1->get_size());
 
-         image_source imagesource(pgraphics, rectangleSource);
+         ::image::image_source imagesource(pgraphics, rectangleSource);
 
          rectangle_f64 rectangleTarget(pimage1->get_size());
 
-         image_drawing_options imagedrawingoptions(rectangleTarget);
+         ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          //b = 
             
@@ -147,13 +147,13 @@ namespace experience_nanoui
 
          rectangle_f64 rectangleSource(pointInflate, rectangleX.size());
 
-         image_source imagesource(pimage2, rectangleSource);
+         ::image::image_source imagesource(pimage2, rectangleSource);
 
          rectangle_f64 rectangleTarget(rectangleX);
 
-         image_drawing_options imagedrawingoptions(rectangleTarget);
+         ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          pgraphics->draw(imagedrawing);
 
@@ -667,11 +667,11 @@ namespace experience_nanoui
             if(::is_set(pdrawicon))
             {
 
-               image_source imagesource(pdrawicon);
+               ::image::image_source imagesource(pdrawicon);
 
-               image_drawing_options imagedrawingoptions(rectangleIcon);
+               ::image::image_drawing_options imagedrawingoptions(rectangleIcon);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 
@@ -759,11 +759,11 @@ namespace experience_nanoui
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-               image_source imagesource(pdrawicon);
+               ::image::image_source imagesource(pdrawicon);
 
-               image_drawing_options imagedrawingoptions(rectangleIcon);
+               ::image::image_drawing_options imagedrawingoptions(rectangleIcon);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 

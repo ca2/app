@@ -52,11 +52,11 @@ namespace user
 
 
       ::pointer<::draw2d::fastblur>               m_pfastblur;
-      index_map < ::image_pointer >                m_mapBlur;
+      index_map < ::image::image_pointer >                m_mapBlur;
       index_map < string >                         m_mapText;
       index_map < ::color::color >                 m_mapBackColor;
       ::pointer<::draw2d::fastblur>               m_pfastblurIcon;
-      index_map < ::image_pointer >                m_mapIconBlur;
+      index_map < ::image::image_pointer >                m_mapIconBlur;
       double                                       m_dIconSaturation;
       double                                       m_dIconLightness;
       double                                       m_dIconOpacity;
@@ -66,8 +66,8 @@ namespace user
       int                                          m_iTextBlurRadius;
       int                                          m_iTextBlur;
       ::rectangle_i32                              m_rectangleSpot;
-      ::image_pointer                              m_pimageSpot;
-      ::image_pointer                              m_pimageTime;
+      ::image::image_pointer                              m_pimageSpot;
+      ::image::image_pointer                              m_pimageTime;
       bool                                         m_bHighHighLight;
 
 

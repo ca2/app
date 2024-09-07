@@ -867,7 +867,7 @@ namespace user
       ASSERT(m_pimage->is_set() && m_pimage->area() > 0); // required
 
       // use the main bitmap for up, the selected bitmap for down
-      ::image_pointer pimage = m_pimage;
+      ::image::image_pointer pimage = m_pimage;
 
       if (pimage->area() > 0 && rectangleX.area() > 0)
       {

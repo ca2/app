@@ -50,19 +50,19 @@ namespace draw2d
 } // namespace draw2d
 
 //
-//image::image()
+//image::image::image()
 //{
 //
 //}
 
 
-//image::image(nullptr_t)
+//image::image::image(nullptr_t)
 //{
 //
 //}
 //
 //
-//image::image(::particle * pparticle)
+//image::image::image(::particle * pparticle)
 //{
 //
 //   m_pimpl = pparticle->create_image();
@@ -70,7 +70,7 @@ namespace draw2d
 //}
 
 
-//image::image(::image * pimage)
+//image::image::image(::image::image *pimage)
 //{
 //
 //   m_pimpl = pimpl;
@@ -78,7 +78,7 @@ namespace draw2d
 //}
 
 
-//image::image(const ::image_pointer & pimpl)
+//image::image::image(const ::image::image_pointer & pimpl)
 //{
 //
 //   m_pimpl = pimpl;
@@ -86,21 +86,21 @@ namespace draw2d
 //}
 
 
-//image::image(::image_pointer && pimpl) :
+//image::image::image(::image::image_pointer && pimpl) :
 //   m_pimpl(::transfer(pimpl))
 //{
 //
 //}
 
 
-//image::image(const image & image)
+//image::image::image(const image & image)
 //{
 //
 //   operator = (pimage);
 //
 //}
 
-//image::image(image && image) :
+//image::image::image(image && image) :
 //   m_pimpl(::transfer(pimage)), m_dynamic(pimage->m_dynamic)
 //{
 //

@@ -1019,6 +1019,11 @@ namespace acme
 
       virtual enum_windowing calculate_ewindowing();
 
+
+      virtual bool _get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle);
+      virtual bool _get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 & rectangle);
+
+
    };
 
 

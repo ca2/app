@@ -54,12 +54,12 @@ void simple_still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    if (get_still_type() == ::user::e_still_icon)
    {
 
-      ::draw2d::icon * picon = still_get_icon();
+      ::image::icon * picon = still_get_icon();
 
       if (picon != nullptr)
       {
 
-         image_source imagesource(picon);
+         ::image::image_source imagesource(picon);
          
          auto minimum_dimension = this->get_client_size().minimum();
          
@@ -67,9 +67,9 @@ void simple_still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
          rectangle_f64 rectangle(::point_f64(), size);
 
-         image_drawing_options imagedrawingoptions(rectangle);
+         ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          pgraphics->draw(imagedrawing);
 

@@ -9,7 +9,7 @@
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/draw2d.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
@@ -441,7 +441,7 @@ void simple_toolbar::on_message_create(::message::message * pmessage)
    
    //descriptor().m_econtroltype = ::user::e_control_type_toolbar;
 
-   m_pimageDraft = context_image()->create_image({20,  20 });
+   m_pimageDraft = image()->create_image({20,  20 });
 
 }
 
@@ -861,13 +861,13 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                auto statusrectangle = index_element_rectangle(iItem, ::e_element_image, estate);
 
-               image_source imagesource(ptoolitem->m_pimage);
+               ::image::image_source imagesource(ptoolitem->m_pimage);
 
-               image_drawing_options imagedrawingoptions(statusrectangle);
+               ::image::image_drawing_options imagedrawingoptions(statusrectangle);
 
                imagedrawingoptions.opacity(0.85);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 
@@ -913,11 +913,11 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             auto statusrectangle = index_element_rectangle(iItem, ::e_element_image, estate);
 
-            image_source imagesource(ptoolitem->m_pimage);
+            ::image::image_source imagesource(ptoolitem->m_pimage);
 
-            image_drawing_options imagedrawingoptions(statusrectangle);
+            ::image::image_drawing_options imagedrawingoptions(statusrectangle);
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
             pgraphics->draw(imagedrawing);
 
@@ -966,13 +966,13 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                //    }
 
-               image_source imagesource(ptoolitem->m_pimage);
+               ::image::image_source imagesource(ptoolitem->m_pimage);
 
-               image_drawing_options imagedrawingoptions(statusrectangle);
+               ::image::image_drawing_options imagedrawingoptions(statusrectangle);
 
                imagedrawingoptions.opacity(0.23);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 
@@ -1687,7 +1687,7 @@ void simple_toolbar::_001DiscardImageList()
 }
 
 
-void simple_toolbar::_001SetImageList(::pointer<::image_list>imagelist)
+void simple_toolbar::_001SetImageList(::pointer<::image::image_list>imagelist)
 {
 
    __UNREFERENCED_PARAMETER(imagelist);
@@ -1713,7 +1713,7 @@ void simple_toolbar::_001OnImageListAttrib()
    if(m_pimagelistHue == nullptr)
    {
 
-      m_pimagelistHue = new ::image_list ();
+      m_pimagelistHue = new ::image::image_list ();
 
    }
 
@@ -1732,7 +1732,7 @@ void simple_toolbar::_001OnImageListAttrib()
    if(m_pimagelistBlend == nullptr)
    {
 
-      m_pimagelistBlend = new ::image_list ();
+      m_pimagelistBlend = new ::image::image_list ();
 
    }
 
@@ -1746,7 +1746,7 @@ void simple_toolbar::_001OnImageListAttrib()
    if(m_pimagelistHueLight == nullptr)
    {
 
-      m_pimagelistHueLight = new ::image_list ();
+      m_pimagelistHueLight = new ::image::image_list ();
 
    }
 

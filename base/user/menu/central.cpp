@@ -7,7 +7,7 @@
 #include "acme/platform/debug.h"
 #include "aura/platform/node.h"
 #include "aura/graphics/write_text/font.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/imaging.h"
@@ -56,15 +56,15 @@ namespace user
 
          strImage = pchild->attribute("img");
 
-         auto pcontextimage = m_pcontext->context_image();
+         auto pcontextimage = m_pcontext->image_context();
 
          auto pimage = pcontextimage->get_image(strImage);
 
-         image_source imagesource(pimage);
+         ::image::image_source imagesource(pimage);
 
-         image_drawing_options imagedrawingoptions;
+         ::image::image_drawing_options imagedrawingoptions;
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          iIndex = MenuV033GetImageList()->add(imagedrawing);
 

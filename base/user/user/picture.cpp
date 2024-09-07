@@ -3,7 +3,7 @@
 #include "aura/platform/context.h"
 #include <math.h>
 #include "acme/primitive/geometry2d/matrix.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "picture.h"
@@ -845,7 +845,7 @@ namespace user
    //}
 
 
-   ::image_pointer picture::defer_draw_drop_shadow_phase1(rectangle_i32 & rectangleDropShadow, ::draw2d::fastblur & blurDropShadow, ::image_pointer & pimageDropShadow, ::image_pointer pimage)
+   ::image::image_pointer picture::defer_draw_drop_shadow_phase1(rectangle_i32 & rectangleDropShadow, ::draw2d::fastblur & blurDropShadow, ::image::image_pointer & pimageDropShadow, ::image::image_pointer pimage)
    {
 
       if (m_ppictureimpl->m_bGlowDropShadow)
@@ -861,7 +861,7 @@ namespace user
 
          rectangleDib.inflate(iShift, iShift);
 
-         pimageDropShadow = context_image()->create_image(rectangleDib.size());
+         pimageDropShadow = image()->create_image(rectangleDib.size());
 
          if (pimageDropShadow)
          {
@@ -870,11 +870,11 @@ namespace user
 
             pimageDropShadow->clear(color::transparent);
 
-            image_source imagesource(pimage);
+            ::image::image_source imagesource(pimage);
 
-            image_drawing_options imagedrawingoptions(pimage->rectangle({ iShift, iShift }));
+            ::image::image_drawing_options imagedrawingoptions(pimage->rectangle({ iShift, iShift }));
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
             pimageDropShadow->g()->draw(imagedrawing);
 
@@ -893,7 +893,7 @@ namespace user
    }
 
 
-   void picture::defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & rectangle, ::draw2d::fastblur & pblurDropShadow, ::image_pointer & pimageDropShadow)
+   void picture::defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & rectangle, ::draw2d::fastblur & pblurDropShadow, ::image::image_pointer & pimageDropShadow)
    {
 
       if (m_ppictureimpl->m_bGlowDropShadow)
@@ -903,11 +903,11 @@ namespace user
 
          rectangleDropShadow.offset(m_ppictureimpl->m_iGlowDropShadowOffset, m_ppictureimpl->m_iGlowDropShadowOffset);
 
-         image_source imagesource(pimageDropShadow);
+         ::image::image_source imagesource(pimageDropShadow);
 
-         image_drawing_options imagedrawingoptions(rectangleDropShadow);
+         ::image::image_drawing_options imagedrawingoptions(rectangleDropShadow);
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          pgraphics->draw(imagedrawing);
 

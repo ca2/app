@@ -2184,7 +2184,22 @@ bool payload::casts_to(::enum_type etype) const
 //}
 
 
-bool payload::is_true(bool bDefault) const
+bool payload::is_true_or_empty() const
+{
+
+   if(is_empty())
+   {
+
+      return true;
+
+   }
+
+   return is_true();
+
+}
+
+
+bool payload::is_true() const
 {
 
    //if (m_etype == e_type_payload_pointer)
@@ -2204,9 +2219,9 @@ bool payload::is_true(bool bDefault) const
       switch (m_etype)
       {
       case e_type_null:
-         return bDefault;
+         return false;
       case e_type_empty:
-         return bDefault;
+         return false;
       case e_type_key_exists:
          return true;
       case e_type_string:
@@ -2230,13 +2245,13 @@ bool payload::is_true(bool bDefault) const
       //case e_type_property:
       //   return m_pproperty->is_true(bDefault);
       case e_type_atom:
-         return m_atom.is_true(bDefault);
+         return m_atom.is_true();
 //      case e_type_enum_status:
 //         return m_estatus.succeeded();
 //      case e_type_enum_check:
 //         return __bool(m_echeck);
       default:
-         return bDefault;
+         return false;
       }
 
    }
@@ -3798,10 +3813,10 @@ unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
 }
 
 
-bool payload::get_bool(bool bDefault) const
+bool payload::get_bool() const
 {
    
-   return is_true(bDefault);
+   return is_true();
 
 }
 
@@ -4180,7 +4195,7 @@ bool payload::as_bool() const
 
 
 
-//image * payload::image() const
+//::image::image *payload::image::image() const
 //{
 //
 //   if (m_etype != ::e_type_element)
@@ -4190,7 +4205,7 @@ bool payload::as_bool() const
 //
 //   }
 //
-//   return cast < ::image >();
+//   return cast < ::image::image >();
 //
 //}
 
@@ -5260,7 +5275,7 @@ property_set & payload::property_set_reference()
       {
 
       }
-      else
+      else if(is_array())
       {
 
          for (::i32 i = 0; i < array_get_count(); i++)
@@ -5269,6 +5284,12 @@ property_set & payload::property_set_reference()
             psetNew->set_at(i, at(i));
 
          }
+
+      }
+      else
+      {
+
+         psetNew->set_at(0, *this);
 
       }
 
@@ -7041,7 +7062,7 @@ bool payload::has_string_reference() const
 //}
 
 
-bool payload::is_property_true(const ::atom & atom, bool bDefault) const
+bool payload::is_property_true(const ::atom & atom) const
 {
 
    auto property = find_property(atom);
@@ -7049,11 +7070,11 @@ bool payload::is_property_true(const ::atom & atom, bool bDefault) const
    if (property.is_empty())
    {
 
-      return bDefault;
+      return false;
 
    }
 
-   return property.is_true(bDefault);
+   return property.is_true();
 
 }
 
@@ -7236,6 +7257,23 @@ bool payload::has_property(const ::atom & atom) const
 {
 
    return found(index_of(atom));
+
+}
+
+
+bool payload::is_property_true_or_empty(const ::atom & atom) const
+{
+
+   auto property = find_property(atom);
+
+   if(property.is_empty())
+   {
+
+      return true;
+
+   }
+
+   return property.is_true_or_empty();
 
 }
 

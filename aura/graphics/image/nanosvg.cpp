@@ -12,7 +12,7 @@ void nsvg_rasterizer_set_output_format(NSVGrasterizer * prasterizer, int iRedLow
 double get_default_screen_dpi();
 
 
-bool imaging::nanosvg(::image * pimage, void * pNSVGimage, int iRedLower)
+bool imaging::nanosvg(::image::image *pimage, void * pNSVGimage, int iRedLower)
 {
 
    NSVGrasterizer * rast = nsvgCreateRasterizer();

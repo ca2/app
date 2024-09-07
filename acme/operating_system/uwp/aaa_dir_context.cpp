@@ -806,7 +806,7 @@ try1:;
    }
 
 
-   ::file::path dir_context::image()
+   ::file::path dir_context::image::image()
    {
 
       return "image://";

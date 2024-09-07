@@ -2,7 +2,7 @@
 #include "imaging.h"
 #include "list.h"
 #include "fastblur.h"
-#include "context_image.h"
+#include "image_context.h"
 #include "array.h"
 #include "acme/graphics/image/image32.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -14,7 +14,7 @@
 
 #ifdef WINDOWS_DESKTOP
 
-//void fastblur(::image * ppimg, i32 radius);
+//void fastblur(::image::image *ppimg, i32 radius);
 
 #elif defined(UNIVERSAL_WINDOWS)
 //#include <wincodec.h>
@@ -31,6 +31,10 @@
 
 
 #define AC_SRC_ALPHA                0x01
+
+
+namespace image
+{
 
 
 imaging::imaging()
@@ -281,12 +285,12 @@ i32                 cy)
 //             crTransparent);
 //}
 
-/*::pointer<::image_list>imaging::CreateGrayVRCPImageList(
+/*::pointer<::image::image_list>imaging::CreateGrayVRCPImageList(
 ::draw2d::graphics * pgraphics,
-::pointer<::image_list>pilGray,
-::pointer<::image_list>pilParam)
+::pointer<::image::image_list>pilGray,
+::pointer<::image::image_list>pilParam)
 {
-::pointer<::image_list>pil = pilGray;
+::pointer<::image::image_list>pil = pilGray;
 
 pil->create(pilParam);
 
@@ -294,7 +298,7 @@ pil->create(pilParam);
 
 spgraphics->CreateCompatibleDC(pgraphics);
 
-::image_list::info ii;
+::image::image_list::info ii;
 
 for(i32 i = 0; i < pil->get_image_count(); i++)
 {
@@ -309,12 +313,12 @@ return pil;
 
 void imaging::CreateHueImageList(
 ::draw2d::graphics * pgraphics,
-::pointer<::image_list>pilGray,
-::pointer<::image_list>pilParam,
+::pointer<::image::image_list>pilGray,
+::pointer<::image::image_list>pilParam,
 ::color::color crHue,
 double dCompress)
 {
-::pointer<::image_list>pil = pilGray;
+::pointer<::image::image_list>pil = pilGray;
 
 if(!pil->create(pilParam))
 return false;
@@ -323,7 +327,7 @@ return false;
 
 spgraphics->CreateCompatibleDC(pgraphics);
 
-::image_list::info ii;
+::image::image_list::info ii;
 
 for(i32 i = 0; i < pil->get_image_count(); i++)
 {
@@ -360,7 +364,7 @@ void imaging::change_hue(image_list * pilHue, image_list * pil, const ::color::c
 
 
 //
-//void imaging::color_blend(::image * pimage, const ::color::color& color32, ::u8 bAlpha)
+//void imaging::color_blend(::image::image *pimage, const ::color::color& color32, ::u8 bAlpha)
 //{
 //
 //   try
@@ -398,11 +402,11 @@ void imaging::change_hue(image_list * pilHue, image_list * pil, const ::color::c
 
 
 /*
-::pointer<::image_list>imaging::CreateGrayVRCPImageList(
+::pointer<::image::image_list>imaging::CreateGrayVRCPImageList(
 ::draw2d::graphics * pgraphics,
-::pointer<::image_list>pilParam)
+::pointer<::image::image_list>pilParam)
 {
-::pointer<::image_list>pil = new ::image_list ();
+::pointer<::image::image_list>pil = new ::image::image_list ();
 
 pil->create(pilParam);
 
@@ -410,7 +414,7 @@ pil->create(pilParam);
 
 spgraphics->CreateCompatibleDC(pgraphics);
 
-::image_list::info ii;
+::image::image_list::info ii;
 
 for(i32 i = 0; i < pil->get_image_count(); i++)
 {
@@ -1541,7 +1545,7 @@ void imaging::BitmapDivBlend(
    ::u8 bAlpha)
 {
 
-   ::image_pointer pimage;
+   ::image::image_pointer pimage;
 
    //auto estatus = 
    __construct(pimage);
@@ -1566,13 +1570,13 @@ void imaging::BitmapDivBlend(
 
    {
 
-      image_source imagesource(pdcSrc);
+      ::image::image_source imagesource(pdcSrc);
 
       rectangle_f64 rectangle(size);
 
-      image_drawing_options imagedrawingoptions(rectangle);
+      ::image::image_drawing_options imagedrawingoptions(rectangle);
       
-      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
       pimage->draw(imagedrawing);
 
@@ -1582,11 +1586,11 @@ void imaging::BitmapDivBlend(
 
    {
 
-      image_source imagesource(pimage, { pointSrc, size });
+      ::image::image_source imagesource(pimage, { pointSrc, size });
 
-      image_drawing_options imagedrawingoptions(::rectangle_f64(pointDst, size));
+      ::image::image_drawing_options imagedrawingoptions(::rectangle_f64(pointDst, size));
 
-      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
       pdcDst->draw(imagedrawing);
 
@@ -1612,7 +1616,7 @@ void imaging::BitmapDivBlend(
 //void imaging::bitmap_blend(::draw2d::graphics * pdcDst,
 //                           const ::point_i32 & pointDst,
 //                           const ::size_i32 & size,
-//                           ::image * pimage,
+//                           ::image::image *pimage,
 //                           const ::point_i32 & pointSrc,
 //                           ::u8 bAlpha)
 //{
@@ -2022,7 +2026,7 @@ void imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point_i32 
 }
 
 
-void imaging::trait(::image * pimage, ::i64 iTrait)
+void imaging::trait(::image::image *pimage, ::i64 iTrait)
 {
 
    return pimage->transform((enum_image)iTrait);
@@ -2207,7 +2211,7 @@ void imaging::trait(::image * pimage, ::i64 iTrait)
 //}
 
 
-void imaging::blur(::image * pimage, i32 iRadius)
+void imaging::blur(::image::image *pimage, i32 iRadius)
 {
 
    if (!pimage->is_ok())
@@ -2228,7 +2232,7 @@ void imaging::blur(::image * pimage, i32 iRadius)
 }
 
 
-void imaging::blur(::image * pimage, rectangle_i32 rectangle, i32 iRadius)
+void imaging::blur(::image::image *pimage, rectangle_i32 rectangle, i32 iRadius)
 {
 
    if (!pimage->is_ok())
@@ -2258,7 +2262,7 @@ void imaging::blur(::image * pimage, rectangle_i32 rectangle, i32 iRadius)
 }
 
 
-void imaging::blur_32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius)
+void imaging::blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,i32 iRadius)
 {
    i32 iFilterWidth = iRadius * 2 + 1;
    i32 iFilterHeight = iRadius * 2 + 1;
@@ -2580,7 +2584,7 @@ void imaging::blur_32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius)
 }
 
 
-void imaging::blur_32CC_r2(::image * pimageDst, ::image * pimageSrc)
+void imaging::blur_32CC_r2(::image::image *pimageDst, ::image::image *pimageSrc)
 {
 
    ::u8 * pSrc = (::u8 *)pimageSrc->get_data();
@@ -2947,7 +2951,7 @@ void imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & p
 
    }
 
-   ::image_pointer pimageDst = context_image()->create_image(size);
+   ::image::image_pointer pimageDst = image()->create_image(size);
 
    if (!pimageDst)
    {
@@ -2956,7 +2960,7 @@ void imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & p
 
    }
 
-   ::image_pointer pimageSrc = context_image()->create_image(size);
+   ::image::image_pointer pimageSrc = image()->create_image(size);
 
    if (!pimageSrc)
    {
@@ -2967,13 +2971,13 @@ void imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & p
 
    pimageSrc->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-   image_source imagesource(pdcSrc, ::rectangle_f64(pointSrc, size));
+   ::image::image_source imagesource(pdcSrc, ::rectangle_f64(pointSrc, size));
 
    rectangle_f64 rectangle(size);
 
-   image_drawing_options imagedrawingoptions(rectangle);
+   ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
    //if (!pdcSrc->draw(imagedrawing))
    pdcSrc->draw(imagedrawing);
@@ -2994,13 +2998,13 @@ void imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & p
 
    {
 
-      image_source imagesource(pimageDst);
+      ::image::image_source imagesource(pimageDst);
 
       rectangle_f64 rectangle(pointDst, size);
 
-      image_drawing_options imagedrawingoptions(rectangle);
+      ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
       //if (!pdcDst->draw(imagedrawing))
       pdcDst->draw(imagedrawing);
@@ -3027,7 +3031,7 @@ void imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
 
    }
 
-   ::image_pointer pimageDst = context_image()->create_image(size);
+   ::image::image_pointer pimageDst = image()->create_image(size);
 
    if (!pimageDst)
    {
@@ -3036,7 +3040,7 @@ void imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
 
    }
 
-   ::image_pointer pimageSrc = context_image()->create_image(size);
+   ::image::image_pointer pimageSrc = image()->create_image(size);
 
    if (!pimageSrc)
    {
@@ -3049,13 +3053,13 @@ void imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
 
    {
 
-      image_source imagesource(pdcSrc, ::rectangle_f64(pointSrc, size));
+      ::image::image_source imagesource(pdcSrc, ::rectangle_f64(pointSrc, size));
 
       ::rectangle_f64 rectangle(size);
 
-      image_drawing_options imagedrawingoptions(rectangle);
+      ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
       pimageSrc->g()->draw(imagedrawing);
       //{
@@ -3075,13 +3079,13 @@ void imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
 
    {
 
-      image_source imagesource(pimageDst);
+      ::image::image_source imagesource(pimageDst);
 
       rectangle_f64 rectangle(pointDst, size);
 
-      image_drawing_options imagedrawingoptions(rectangle);
+      ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
       /*if (!*/pdcDst->draw(imagedrawing);/*
       {
@@ -3097,7 +3101,7 @@ void imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
 }
 
 
-void imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
+void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,
                                      i32 iChannel,i32 iRadius)
 {
 
@@ -3390,7 +3394,7 @@ void imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
 }
 
 
-void imaging::channel_alpha_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
+void imaging::channel_alpha_gray_blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,
       i32 iChannel,i32 iRadius)
 {
 
@@ -3711,7 +3715,7 @@ const ::size_i32 & sizeFilter,
 
    }
 
-   ::image_pointer pimageDst = context_image()->create_image(size);
+   ::image::image_pointer pimageDst = image()->create_image(size);
 
    if (!pimageDst)
    {
@@ -3720,7 +3724,7 @@ const ::size_i32 & sizeFilter,
 
    }
 
-   ::image_pointer pimageSrc = context_image()->create_image(size);
+   ::image::image_pointer pimageSrc = image()->create_image(size);
 
    if (!pimageSrc)
    {
@@ -3731,13 +3735,13 @@ const ::size_i32 & sizeFilter,
 
    {
 
-      image_source imagesource(pimageSrc, ::rectangle_f64(pointSrc, size));
+      ::image::image_source imagesource(pimageSrc, ::rectangle_f64(pointSrc, size));
 
       rectangle_f64 rectangle(size);
 
-      image_drawing_options imagedrawingoptions(rectangle);
+      ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
       /*if (!*/pdcSrc->draw(imagedrawing);/*)
       {
@@ -3764,13 +3768,13 @@ const ::size_i32 & sizeFilter,
 
    {
 
-      image_source imagesource(pimageDst, ::rectangle_f64(pointDst, size));
+      ::image::image_source imagesource(pimageDst, ::rectangle_f64(pointDst, size));
 
       rectangle_f64 rectangle(size);
 
-      image_drawing_options imagedrawingoptions(rectangle);
+      ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
       pdcDst->draw(imagedrawing);
       //{
@@ -3786,7 +3790,7 @@ const ::size_i32 & sizeFilter,
 }
 
 
-void imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
+void imaging::channel_gray_blur_32CC(::image::image *pimageDst, ::image::image *pimageSrc,
                                      i32 iChannel,
                                      i32 iFilterWidth,
                                      i32 iFilterHeight,
@@ -4154,7 +4158,7 @@ void imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
 
 
 
-//void imaging::color_blend(::draw2d::graphics * pgraphics,const ::rectangle_i32 & rectangle,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlpha, ::image * pimageWork)
+//void imaging::color_blend(::draw2d::graphics * pgraphics,const ::rectangle_i32 & rectangle,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlpha, ::image::image *pimageWork)
 //{
 //
 //   return pgraphics->stretch(rectangle, pdcColorAlpha, ::rectangle_f64(pointAlpha, rectangle.size()));
@@ -4162,14 +4166,14 @@ void imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
 //}
 
 
-void imaging::true_blend(::draw2d::graphics * pgraphics,const ::rectangle_i32 & rectangle,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlpha, ::image * pimageWork, ::image * pimageWork2, ::image * pimageWork3)
+void imaging::true_blend(::draw2d::graphics * pgraphics,const ::rectangle_i32 & rectangle,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlpha, ::image::image *pimageWork, ::image::image *pimageWork2, ::image::image *pimageWork3)
 {
 
-   image_source imagesource(pdcColorAlpha, { pointAlpha, rectangle.size() } );
+   ::image::image_source imagesource(pdcColorAlpha, { pointAlpha, rectangle.size() } );
 
-   image_drawing_options imagedrawingoptions(rectangle);
+   ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
    return pgraphics->draw(imagedrawing);
 
@@ -4178,7 +4182,7 @@ void imaging::true_blend(::draw2d::graphics * pgraphics,const ::rectangle_i32 & 
 // COLOR_DEST = SRC_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA) * COLOR_DST
 
 /*
-void imaging::color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcColorAlpha, const ::point_i32 & pointAlpha, ::image * pimageWork, ::image * pimageWork2)
+void imaging::color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcColorAlpha, const ::point_i32 & pointAlpha, ::image::image *pimageWork, ::image::image *pimageWork2)
 {
 
 
@@ -4219,7 +4223,7 @@ void imaging::color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & po
 //   else
 //   {
 //
-//      ::image_pointer pimage = context_image()->create_image(size);
+//      ::image::image_pointer pimage = image()->create_image(size);
 //
 //      if (!pimage)
 //      {
@@ -4916,21 +4920,21 @@ const ::color::color & color)
    if (size.is_empty())
       throw ::exception(error_bad_argument);
 
-   ::image_pointer pimageDst = context_image()->create_image(size);
+   ::image::image_pointer pimageDst = image()->create_image(size);
 
-   ::image_pointer pimageSrc = context_image()->create_image(size);
+   ::image::image_pointer pimageSrc = image()->create_image(size);
 
    pimageSrc->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    {
 
-      image_source imagesource(pdcSrc, ::rectangle_f64(pointSrc, size));
+      ::image::image_source imagesource(pdcSrc, ::rectangle_f64(pointSrc, size));
 
       ::rectangle_f64 rectangle(size);
 
-      image_drawing_options imagedrawingoptions(rectangle);
+      ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
       //if (!)
       pimageSrc->g()->draw(imagedrawing);
@@ -4959,13 +4963,13 @@ const ::color::color & color)
 
    {
 
-      image_source imagesource(pimageDst, ::rectangle_f64(pointDst, size));
+      ::image::image_source imagesource(pimageDst, ::rectangle_f64(pointDst, size));
 
       ::rectangle_f64 rectangle(size);
 
-      image_drawing_options imagedrawingoptions(rectangle);
+      ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
       pdcDst->draw(imagedrawing);
       //if (!)
@@ -5016,21 +5020,21 @@ const ::color::color & color)
    if (size.is_empty())
       throw ::exception(error_bad_argument);
 
-   ::image_pointer pimageDst = context_image()->create_image(size);
+   ::image::image_pointer pimageDst = image()->create_image(size);
 
-   ::image_pointer pimageSrc = context_image()->create_image(size);
+   ::image::image_pointer pimageSrc = image()->create_image(size);
 
    pimageSrc->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    {
 
-      image_source imagesource(pdcSrc, ::rectangle_f64(pointSrc, size));
+      ::image::image_source imagesource(pdcSrc, ::rectangle_f64(pointSrc, size));
 
       ::rectangle_f64 rectangle(size);
 
-      image_drawing_options imagedrawingoptions(rectangle);
+      ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
       pimageSrc->g()->draw(imagedrawing);
       //if (!pimageSrc->g()->draw(imagedrawing))
@@ -5055,13 +5059,13 @@ const ::color::color & color)
 
    {
 
-      image_source imagesource(pimageDst, ::rectangle_f64(pointDst, size));
+      ::image::image_source imagesource(pimageDst, ::rectangle_f64(pointDst, size));
 
       ::rectangle_f64 rectangle(size);
 
-      image_drawing_options imagedrawingoptions(rectangle);
+      ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
       pdcDst->draw(imagedrawing);
       //{
@@ -5077,7 +5081,7 @@ const ::color::color & color)
 }
 
 
-void imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius, const ::color::color& colorSpreadSetColor)
+void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,i32 iRadius, const ::color::color& colorSpreadSetColor)
 {
 
    if (iRadius <= 1)
@@ -6859,7 +6863,7 @@ i32 iAlpha)
 
 
 // dCompress de 0 a 1
-void imaging::HueVRCP(::image * pimage,::color::color crHue,double dCompress)
+void imaging::HueVRCP(::image::image *pimage,::color::color crHue,double dCompress)
 {
 
    pimage->map();
@@ -6920,7 +6924,7 @@ void imaging::HueVRCP(::image * pimage,::color::color crHue,double dCompress)
 }
 
 //// platform implementation may use this imaging-"routing" to manipulate the image/clipboard
-//void imaging::_desk_to_image(::image* pimage)
+//void imaging::_desk_to_image(::image::image* pimage)
 //{
 //
 //   return false;
@@ -6935,7 +6939,7 @@ void imaging::HueVRCP(::image * pimage,::color::color crHue,double dCompress)
 //}
 
 //// platform implementation may use this imaging-"routing" to manipulate the image/clipboard
-//void imaging::_image_to_desk(const ::image* pimage)
+//void imaging::_image_to_desk(const ::image::image* pimage)
 //{
 //
 //   return false;
@@ -6981,7 +6985,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top, const
 
 //#ifndef __APPLE__
 //
-// void imaging::_load_image(::context_image * pparticle, ::image * pimageParam, const ::payload & payloadFile, bool bSync, bool bCreateHelperMaps)
+// void imaging::_load_image(::image_context * pparticle, ::image::image *pimageParam, const ::payload & payloadFile, bool bSync, bool bCreateHelperMaps)
 // {
 //
 //   return ::error_failed;
@@ -6989,7 +6993,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top, const
 // }
 //
 //
-// void imaging::_load_image(::image * pimage, ::pointer<image_frame_array>& pframea, ::memory_pointer pmemory)
+// void imaging::_load_image(::image::image *pimage, ::pointer<image_frame_array>& pframea, ::memory_pointer pmemory)
 // {
 //
 //    return ::error_failed;
@@ -6997,7 +7001,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top, const
 // }
 //
 //
-// void imaging::save_image(memory & memory, const ::image * pimage, ::save_image * psaveimage)
+// void imaging::save_image(memory & memory, const ::image::image *pimage, ::save_image * psaveimage)
 // {
 //
 //    return ::error_failed;
@@ -7013,7 +7017,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top, const
 //#if !defined(WINDOWS_DESKTOP) && !defined(LINUX)
 //
 //
-//hcursor context_image::CreateAlphaCursor(::windowing::window * pwindow, const image * pimage, int xHotSpot, int yHotSpot)
+//hcursor image_context::CreateAlphaCursor(::windowing::window * pwindow, const ::image::image *pimage, int xHotSpot, int yHotSpot)
 //{
 //
 //   return 0;
@@ -7021,7 +7025,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top, const
 //}
 //
 //
-////hcursor context_image::load_default_cursor(enum_cursor ecursor)
+////hcursor image_context::load_default_cursor(enum_cursor ecursor)
 ////{
 ////
 ////   return NULL;
@@ -7032,7 +7036,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top, const
 //
 //#endif
 
-void context_image::set_cursor_image(const image * pimage, int xHotSpot, int yHotSpot)
+void image_context::set_cursor_image(const ::image::image *pimage, int xHotSpot, int yHotSpot)
 {
 
 }
@@ -7042,7 +7046,7 @@ void context_image::set_cursor_image(const image * pimage, int xHotSpot, int yHo
 
 
 
-::image_pointer imaging::get_work_image()
+::image::image_pointer imaging::get_work_image()
 {
 
    synchronous_lock synchronouslock(m_pmutexWork);
@@ -7052,7 +7056,7 @@ void context_image::set_cursor_image(const image * pimage, int xHotSpot, int yHo
 
       synchronouslock.unlock();
 
-      return context_image()->create_image();
+      return image()->create_image();
 
    }
 
@@ -7063,7 +7067,7 @@ void context_image::set_cursor_image(const image * pimage, int xHotSpot, int yHo
    if (pimpl.is_null())
    {
 
-      pimpl = context_image()->create_image();
+      pimpl = image()->create_image();
 
    }
 
@@ -7072,7 +7076,7 @@ void context_image::set_cursor_image(const image * pimage, int xHotSpot, int yHo
 }
 
 
-void imaging::free_work_image(::image * pimage)
+void imaging::free_work_image(::image::image *pimage)
 {
 
    if (::is_null(pimage))
@@ -7089,7 +7093,7 @@ void imaging::free_work_image(::image * pimage)
 }
 
 
-void context_image::load_svg(::image * pimage, memory & memory)
+void image_context::load_svg(::image::image *pimage, memory & memory)
 {
 
    const char * psz = (const char *)memory.data();
@@ -7131,3 +7135,4 @@ void context_image::load_svg(::image * pimage, memory & memory)
 }
 
 
+} // namespace image

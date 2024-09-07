@@ -109,8 +109,8 @@ namespace user
 
    protected:
 
-      ::i32_map < ::pointer<::image_list >>                          m_pimagelist; // int is the size_i32
-      ::i32_map < ::pointer<::image_list >>                          m_pimagelistHover; // int is the size;
+      ::i32_map < ::pointer<::image::image_list >>                          m_pimagelist; // int is the size_i32
+      ::i32_map < ::pointer<::image::image_list >>                          m_pimagelistHover; // int is the size;
       map < ::pointer < ::user::interaction >, ::string_array >      m_mapInterest;
 
 
@@ -248,17 +248,17 @@ namespace user
       //virtual i32 impl_get_file_image(const image_key & imagekey) = 0;
 
 
-      ::image_list * GetImageList(int iSize);
-      ::image_list * GetImageListHover(int iSize);
+      ::image::image_list * GetImageList(int iSize);
+      ::image::image_list * GetImageListHover(int iSize);
 
 
       virtual enum_folder get_folder_type(::particle * pparticle, const ::wstring & wstrPath);
       virtual enum_folder get_folder_type(::particle * pparticle, const ::string & strPath);
 
 
-//      void set_image(int iIndex, int iSize, ::image * pimage);
+//      void set_image(int iIndex, int iSize, ::image::image *pimage);
 
-      virtual void set_image(int iIndex, int iSize, ::image_drawing imagedrawing);
+      virtual void set_image(int iIndex, int iSize, ::image::image_drawing imagedrawing);
       virtual void set_icon(int iIndex, const ::file::path & pathIcon);
 
 

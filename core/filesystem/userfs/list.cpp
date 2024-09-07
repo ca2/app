@@ -724,7 +724,7 @@ namespace userfs
    //}
 
 
-   ::image_list * list::GetActionButtonImageList(::collection::index i)
+   ::image::image_list * list::GetActionButtonImageList(::collection::index i)
    {
 
       if (i == 0)

@@ -799,7 +799,7 @@ pacmedirectory->is(path))
    }
 
 
-   ::file::path dir_context::image()
+   ::file::path dir_context::image::image()
    {
 
       ::file::path path = xdg_get_dir("XDG_PICTURES_DIR");

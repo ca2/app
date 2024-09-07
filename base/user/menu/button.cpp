@@ -262,7 +262,7 @@ namespace user
          ::rectangle_i32 rectangleImage = m_rectangleCheckBox;
          ::rectangle_i32 rectangleImageBorder = rectangleImage;
          rectangleImageBorder.inflate(2, 2);
-         ::image_list::info ii;
+         ::image::image_list::info ii;
          ::pointer<image_list>pimagelist;
 
          auto psession = get_session();

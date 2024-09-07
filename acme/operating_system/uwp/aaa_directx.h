@@ -41,7 +41,7 @@ namespace universal_windows
       ::user::interaction_impl *       m_pimpl;
       bool                             m_bInitialized;
       bool                             m_bInit;
-      ::image_pointer                  m_pimage;
+      ::image::image_pointer                  m_pimage;
 
 
       directx_base();

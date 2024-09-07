@@ -214,7 +214,7 @@
 ////   }
 //
 //
-//   void static_control::static_set_icon(::draw2d::icon * picon)
+//   void static_control::static_set_icon(::image::icon * picon)
 //   {
 //
 //      if(picon == nullptr)
@@ -227,7 +227,7 @@
 //   }
 //
 //
-//   ::draw2d::icon * static_control::static_get_icon()
+//   ::image::icon * static_control::static_get_icon()
 //   {
 //
 //      return m_etype == type_icon ? m_picon : nullptr;
@@ -288,7 +288,7 @@
 //   }
 //
 //
-//   void static_control::static_set_cursor(::draw2d::cursor * pcursor)
+//   void static_control::static_set_cursor(::image::cursor * pcursor)
 //   {
 //
 //      if(pcursor == nullptr)
@@ -301,7 +301,7 @@
 //   }
 //
 //
-//   ::draw2d::cursor *  static_control::static_get_cursor()
+//   ::image::cursor *  static_control::static_get_cursor()
 //   {
 //
 //      return m_etype == type_cursor ? m_pcursor : nullptr;

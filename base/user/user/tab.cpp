@@ -12,7 +12,7 @@
 #include "acme/platform/keep.h"
 #include "acme/handler/extended_topic.h"
 #include "acme/handler/request.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 #include "acme/primitive/data/listener.h"
 #include "acme/platform/timer.h"
 #include "acme/user/user/drag.h"
@@ -277,7 +277,7 @@ namespace user
 
       auto pcontext = m_pcontext->m_pauracontext;
 
-      auto pcontextimage = pcontext->context_image();
+      auto pcontextimage = pcontext->image_context();
 
       ppane->m_pimage = pcontextimage->load_image(strIcon, { .sync = false, .cache = false, });
 

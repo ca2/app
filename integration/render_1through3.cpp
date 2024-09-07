@@ -6,7 +6,7 @@
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/write_text/font.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 #include "base/user/user/impact.h"
 
 
@@ -40,14 +40,14 @@ namespace app_integration
 
                auto pcontext = m_pcontext;
 
-               auto pcontextimage = pcontext->context_image();
+               auto pcontextimage = pcontext->image_context();
 
                auto pimage1 = pcontextimage->get_image("matter://pat1.jpg");
 
                if (pimage1.ok())
                {
 
-                  ::pointer<::image> pimage2;
+                  ::pointer<::image::image> pimage2;
 
                   __construct(pimage2);
 

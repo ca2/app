@@ -23,12 +23,12 @@ public:
    ::pointer<::user::tool_window>                  m_ptoolwindowFont;
    class ::time                                      m_timeLastSaveWindowRect;
    class ::time                                      m_timeLastSaveWindowRectRequest;
-   ::image_pointer                                 m_pimageBk;
+   ::image::image_pointer                                 m_pimageBk;
    ::rectangle_i32                                 m_FullScreenWindowRect;
    ::pointer<::draw2d::fastblur>                   m_pfastblur;
-   ::image_pointer                                 m_pimageBlur;
+   ::image::image_pointer                                 m_pimageBlur;
    ::user::enum_translucency                       m_etranslucencyFrame;
-   ::image_pointer                                 m_pimageAlpha;
+   ::image::image_pointer                                 m_pimageAlpha;
    ::string                                        m_strDataKeyFrame;
    ::pointer<::windowing::icon>                    m_piconNotify;
    ::pointer<::user::notify_icon>                  m_pnotifyicon;

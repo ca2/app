@@ -2,7 +2,7 @@
 #include "acme/constant/id.h"
 #include "axis/platform/application.h"
 #include "aqua/xml/document.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/image_context.h"
 #include "apex/message/command.h"
 #include "item.h"
 #include "aura/user/user/interaction.h"
@@ -248,7 +248,7 @@ namespace menu
 
             auto pcontext = m_pcontext->m_pauracontext;
 
-            auto pcontextimage = pcontext->context_image();
+            auto pcontextimage = pcontext->image_context();
 
             __construct(m_pimage, pcontextimage->matter_image(strImage));
 

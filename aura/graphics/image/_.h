@@ -2,21 +2,33 @@
 #pragma once
 
 
+#include "_constant.h"
+
+
 //#include "acme/primitive/geometry2d/point.h"
 //#include "acme/primitive/geometry2d/size.h"
 //#include "acme/primitive/geometry2d/rectangle.h"
 
 
-class imaging;
-class image_drawing;
-class image_drawing_options;
-class image_frame;
-class image_frame_array;
-class save_image;
-class image_list;
+namespace image
+{
 
 
-using image_list_pointer = ::pointer<::image_list>;
+   class imaging;
+   class image_drawing;
+   class image_drawing_options;
+   class image_frame;
+   class image_frame_array;
+
+
+   class fastblur;
+
+
+   using image_list_pointer = ::pointer<::image::image_list>;
+
+
+} // namespace image
+
 
 
 
@@ -76,14 +88,14 @@ using image_list_pointer = ::pointer<::image_list>;
 //   virtual ::draw2d::bitmap_pointer detach_bitmap()= 0;
 //
 //   virtual ::collection::count get_image_count() const= 0;
-//   virtual ::image_pointer get_image(::collection::index i)= 0;
+//   virtual ::image::image_pointer get_image(::collection::index i)= 0;
 //
 //   virtual ::color::color * get_data() const= 0;
 //
 //   virtual bool set_mipmap(::draw2d::enum_mipmap emipmap)= 0;
 //   virtual bool _set_mipmap(::draw2d::enum_mipmap emipmap)= 0;
 //
-//   virtual bool create_isotropic(::image * pimage)= 0;
+//   virtual bool create_isotropic(::image::image *pimage)= 0;
 //   virtual bool create_isotropic(f64_array & daRate, ::enum_priority epriority)= 0;
 //
 //   virtual bool set_origin(const ::point_i32 & point)= 0;
@@ -104,22 +116,22 @@ using image_list_pointer = ::pointer<::image_list>;
 //
 //   virtual ::color::color GetAverageColor()= 0;
 //   virtual ::color::color GetAverageOpaqueColor()= 0;
-//   virtual bool blend(::image * pimage, ::image * pimageRate)= 0;
-//   virtual bool Blend(::image * pimage, ::image * pimageA, i32 A)= 0;
-//   virtual bool Blend(::image * pimage, ::image * pimageA)= 0;
-//   virtual bool blend(const ::point_i32 & pointDst, ::image * pimageSrc, const ::point_i32 & pointSrc, ::image * pimageAlf, const ::point_i32 & pointDstAlf, const ::size_i32 & size)= 0;
-//   virtual bool precision_blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size)= 0;
-//   virtual bool precision_blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA)= 0;
-//   virtual bool blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size)= 0;
-//   virtual bool blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA)= 0;
-//   virtual bool blend2(const ::point_i32 & pointDst, ::image * pimageSrc, const ::point_i32 & pointSrc, const ::size_i32 & size, ::u8 bA)= 0;
-//   virtual bool fork_blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size)= 0;
-//   virtual bool fork_blend(const ::point_i32 & pointDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA)= 0;
+//   virtual bool blend(::image::image *pimage, ::image::image *pimageRate)= 0;
+//   virtual bool Blend(::image::image *pimage, ::image::image *pimageA, i32 A)= 0;
+//   virtual bool Blend(::image::image *pimage, ::image::image *pimageA)= 0;
+//   virtual bool blend(const ::point_i32 & pointDst, ::image::image *pimageSrc, const ::point_i32 & pointSrc, ::image::image *pimageAlf, const ::point_i32 & pointDstAlf, const ::size_i32 & size)= 0;
+//   virtual bool precision_blend(const ::point_i32 & pointDst, ::image::image *pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size)= 0;
+//   virtual bool precision_blend(const ::point_i32 & pointDst, ::image::image *pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA)= 0;
+//   virtual bool blend(const ::point_i32 & pointDst, ::image::image *pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size)= 0;
+//   virtual bool blend(const ::point_i32 & pointDst, ::image::image *pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA)= 0;
+//   virtual bool blend2(const ::point_i32 & pointDst, ::image::image *pimageSrc, const ::point_i32 & pointSrc, const ::size_i32 & size, ::u8 bA)= 0;
+//   virtual bool fork_blend(const ::point_i32 & pointDst, ::image::image *pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size)= 0;
+//   virtual bool fork_blend(const ::point_i32 & pointDst, ::image::image *pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA)= 0;
 //   virtual bool bitmap_blend(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)= 0;
 //
 //   virtual bool color_blend(::color32_t color32, ::u8 bAlpha)= 0;
-//   virtual bool BitBlt(::image * pimage, i32 op)= 0;
-//   virtual bool BitBlt(int cxParam, int cyParam, ::image * pimage, i32 op)= 0;
+//   virtual bool BitBlt(::image::image *pimage, i32 op)= 0;
+//   virtual bool BitBlt(int cxParam, int cyParam, ::image::image *pimage, i32 op)= 0;
 //   virtual i32 cos(i32 i, i32 iAngle)= 0;
 //   virtual i32 sin(i32 i, i32 iAngle)= 0;
 //   virtual i32 cos10(i32 i, i32 iAngle)= 0;
@@ -131,22 +143,22 @@ using image_list_pointer = ::pointer<::image_list>;
 //   virtual bool unmap() const= 0; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 //   virtual bool set_mapped()= 0;
 //
-//   virtual bool flip_vertical(::image * pimage)= 0;
-//   virtual bool flip_horizontal(::image * pimage)= 0;
-//   virtual bool flipx(::image * pimage)= 0;
-//   virtual bool flipy(::image * pimage)= 0;
-//   virtual ::image_pointer flipx()= 0;
-//   virtual ::image_pointer flipy()= 0;
+//   virtual bool flip_vertical(::image::image *pimage)= 0;
+//   virtual bool flip_horizontal(::image::image *pimage)= 0;
+//   virtual bool flipx(::image::image *pimage)= 0;
+//   virtual bool flipy(::image::image *pimage)= 0;
+//   virtual ::image::image_pointer flipx()= 0;
+//   virtual ::image::image_pointer flipy()= 0;
 //
 //   virtual bool is_rgb_black()= 0;
-//   virtual bool do_xor(::image * pimage)= 0;
+//   virtual bool do_xor(::image::image *pimage)= 0;
 //
 //   virtual bool ToAlpha(i32 i)= 0;
 //   virtual bool ToAlphaAndFill(i32 i, ::color32_t color32)= 0;
 //   virtual bool GrayToARGB(::color32_t color32)= 0;
 //
 //   virtual bool from_alpha()= 0;
-//   virtual bool mult_alpha(::image * pimageWork, bool bPreserveAlpha = true)= 0;
+//   virtual bool mult_alpha(::image::image *pimageWork, bool bPreserveAlpha = true)= 0;
 //
 //   virtual bool mult_alpha()= 0;
 //   virtual bool mult_alpha_fast()= 0;
@@ -155,21 +167,21 @@ using image_list_pointer = ::pointer<::image_list>;
 //   virtual bool mult_alpha(const ::point_i32 & point, const ::size_i32 & size)= 0;
 //   virtual bool div_alpha(const ::point_i32 & point, const ::size_i32 & size)= 0;
 //
-//   virtual bool rotate(::image * pimage, const ::rectangle_i32 & rectangle, double dAngle, double dScale)= 0;
+//   virtual bool rotate(::image::image *pimage, const ::rectangle_i32 & rectangle, double dAngle, double dScale)= 0;
 //
-//   virtual bool rotate(::image * pimage, double dAngle, double dScale)= 0;
-//   virtual bool rotate(::image * pimage, double dAngle)= 0;
-//   virtual bool Rotate034(::image * pimage, double dAngle, double dScale)= 0;
+//   virtual bool rotate(::image::image *pimage, double dAngle, double dScale)= 0;
+//   virtual bool rotate(::image::image *pimage, double dAngle)= 0;
+//   virtual bool Rotate034(::image::image *pimage, double dAngle, double dScale)= 0;
 //
-//   virtual bool rotate90(::image * pimage)= 0;
-//   virtual bool rotate180(::image * pimage)= 0;
-//   virtual bool rotate270(::image * pimage)= 0;
+//   virtual bool rotate90(::image::image *pimage)= 0;
+//   virtual bool rotate180(::image::image *pimage)= 0;
+//   virtual bool rotate270(::image::image *pimage)= 0;
 //   virtual bool rotate90()= 0;
 //   virtual bool rotate180()= 0;
 //   virtual bool rotate270()= 0;
-//   virtual bool rotate90flipx(::image * pimage)= 0;
-//   virtual bool rotate180flipx(::image * pimage)= 0;
-//   virtual bool rotate270flipx(::image * pimage)= 0;
+//   virtual bool rotate90flipx(::image::image *pimage)= 0;
+//   virtual bool rotate180flipx(::image::image *pimage)= 0;
+//   virtual bool rotate270flipx(::image::image *pimage)= 0;
 //   virtual bool rotate90flipx()= 0;
 //   virtual bool rotate180flipx()= 0;
 //   virtual bool rotate270flipx()= 0;
@@ -177,9 +189,9 @@ using image_list_pointer = ::pointer<::image_list>;
 //
 //   virtual bool set_rgb(::color32_t color32)= 0;
 //   virtual bool set_rgb(i32 R, i32 G, i32 B)= 0;
-//   virtual bool tint(::image * pimage, const rgb & rgb)= 0;
+//   virtual bool tint(::image::image *pimage, const rgb & rgb)= 0;
 //   virtual bool set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A)= 0;
-//   virtual bool rgb_from(::image * pimage)= 0;
+//   virtual bool rgb_from(::image::image *pimage)= 0;
 //   virtual bool paint_rgb(::color::color color)= 0;
 //
 //
@@ -188,7 +200,7 @@ using image_list_pointer = ::pointer<::image_list>;
 //   virtual bool opacity(double dRate) = 0;
 //
 //
-//   virtual bool SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy)= 0;
+//   virtual bool SetIconMask(::image::icon * picon, i32 cx, i32 cy)= 0;
 //   virtual bool RadialFill(::u8 a, ::u8 rectangle, ::u8 g, ::u8 b, i32 x, i32 y, i32 iRadius)= 0;
 //   virtual bool RadialFill(
 //   ::u8 a1, ::u8 r1, ::u8 g1, ::u8 b1, // center colors
@@ -215,7 +227,7 @@ using image_list_pointer = ::pointer<::image_list>;
 //   virtual bool on_host_read_pixels(const pixmap* ppixmap) = 0;
 //   virtual bool create(::draw2d::graphics_pointer & pgraphics)= 0;
 //   virtual bool destroy()= 0;
-//   // virtual bool detach(::image * pimage) = 0;
+//   // virtual bool detach(::image::image *pimage) = 0;
 //
 //   // realization is semantically const
 //   // image keeps an image and image will be the same,
@@ -231,17 +243,17 @@ using image_list_pointer = ::pointer<::image_list>;
 //   virtual bool DivideA(i32 iDivide)= 0;
 //
 //
-//   virtual bool stretch_image(::image * pimage) = 0;
+//   virtual bool stretch_image(::image::image *pimage) = 0;
 //
 //
-//   virtual bool to(::image * pimage) const= 0;
-//   virtual bool from(const ::image * pimage)= 0;
+//   virtual bool to(::image::image *pimage) const= 0;
+//   virtual bool from(const ::image::image *pimage)= 0;
 //   virtual bool from(::draw2d::graphics_pointer & pgraphics)= 0;
 //   virtual bool from(const ::point_i32 & pointDst, ::draw2d::graphics_pointer & pgraphics, const ::point_i32 & pointSrc, const ::size_i32 & size)= 0;
-//   virtual bool from(const ::point_i32 & pointDst, ::image * pimage, const ::point_i32 & pointSrc, const ::size_i32 & size)= 0;
-//   virtual bool from(const ::point_i32 & pointDst, ::image * pimage, const ::point_i32 & pointSrc, const ::size_i32 & size, ::u8 bA)= 0;
-//   //virtual bool blend(const ::point_i32 & pointDst, ::image * pimage, const ::point_i32 & pointSrc, const ::size_i32 & size)= 0;
-//   virtual bool from_ignore_alpha(const ::point_i32 & pointDst, ::image * pimage, const ::point_i32 & pointSrc, const ::size_i32 & size)= 0;
+//   virtual bool from(const ::point_i32 & pointDst, ::image::image *pimage, const ::point_i32 & pointSrc, const ::size_i32 & size)= 0;
+//   virtual bool from(const ::point_i32 & pointDst, ::image::image *pimage, const ::point_i32 & pointSrc, const ::size_i32 & size, ::u8 bA)= 0;
+//   //virtual bool blend(const ::point_i32 & pointDst, ::image::image *pimage, const ::point_i32 & pointSrc, const ::size_i32 & size)= 0;
+//   virtual bool from_ignore_alpha(const ::point_i32 & pointDst, ::image::image *pimage, const ::point_i32 & pointSrc, const ::size_i32 & size)= 0;
 //
 //   virtual bool to(::draw2d::graphics_pointer & pgraphics)= 0;
 //   virtual bool to(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & point)= 0;
@@ -268,16 +280,16 @@ using image_list_pointer = ::pointer<::image_list>;
 //   virtual bool invert()= 0;
 //   virtual bool channel_invert(::color::enum_channel echannel)= 0;
 //   virtual bool channel_multiply(double dRate, ::color::enum_channel echannel, bool bIfAlphaIgnorePreDivPosMult = false)= 0;
-//   virtual bool channel_multiply(::color::enum_channel echannel, ::image * pimage, bool bIfAlphaIgnorePreDivPosMult = false)= 0;
-//   virtual bool channel_lighten(::color::enum_channel echannel, ::image * pimage)= 0;
-//   virtual bool channel_darken(::color::enum_channel echannel, ::image * pimage)= 0;
-//   virtual bool channel_from(::color::enum_channel echannel, ::image * pimage)= 0;
-//   virtual bool channel_multiply(::color::enum_channel echannel, ::image * pimage, const ::rectangle_i32 & rectangle, bool bIfAlphaIgnorePreDivPosMult = false)= 0;
+//   virtual bool channel_multiply(::color::enum_channel echannel, ::image::image *pimage, bool bIfAlphaIgnorePreDivPosMult = false)= 0;
+//   virtual bool channel_lighten(::color::enum_channel echannel, ::image::image *pimage)= 0;
+//   virtual bool channel_darken(::color::enum_channel echannel, ::image::image *pimage)= 0;
+//   virtual bool channel_from(::color::enum_channel echannel, ::image::image *pimage)= 0;
+//   virtual bool channel_multiply(::color::enum_channel echannel, ::image::image *pimage, const ::rectangle_i32 & rectangle, bool bIfAlphaIgnorePreDivPosMult = false)= 0;
 //
-//   virtual bool channel_from(::color::enum_channel echannel, ::image * pimage, const ::rectangle_i32 & rectangle)= 0;
+//   virtual bool channel_from(::color::enum_channel echannel, ::image::image *pimage, const ::rectangle_i32 & rectangle)= 0;
 //
 //   virtual bool channel_copy(::color::enum_channel echannelDst, ::color::enum_channel echannelSrc)= 0;
-//   virtual bool channel_copy(::color::enum_channel echannelDst, ::color::enum_channel echannelSrc, ::image * pimage)= 0;
+//   virtual bool channel_copy(::color::enum_channel echannelDst, ::color::enum_channel echannelSrc, ::image::image *pimage)= 0;
 //
 //   virtual bool Map(i32 ToRgb, i32 FromRgb)= 0;
 //
@@ -286,19 +298,19 @@ using image_list_pointer = ::pointer<::image_list>;
 //
 //   virtual bool op(string str)= 0;
 //
-//   //virtual bool from( ::image * pimage)= 0;
+//   //virtual bool from( ::image::image *pimage)= 0;
 //
-//   virtual bool Blend(::image * pimage, i32 A)= 0;
-//   virtual bool Darken(::image * pimage)= 0;
-//   virtual bool Difference(::image * pimage)= 0;
-//   virtual bool Lighten(::image * pimage)= 0;
-//   virtual bool Multiply(::image * pimage)= 0;
-//   virtual bool Screen(::image * pimage)= 0;
+//   virtual bool Blend(::image::image *pimage, i32 A)= 0;
+//   virtual bool Darken(::image::image *pimage)= 0;
+//   virtual bool Difference(::image::image *pimage)= 0;
+//   virtual bool Lighten(::image::image *pimage)= 0;
+//   virtual bool Multiply(::image::image *pimage)= 0;
+//   virtual bool Screen(::image::image *pimage)= 0;
 //
 //   virtual bool lighten(double dRate)= 0;
 //
-//   virtual bool copy(::image * pimage, i32 x, i32 y)= 0;
-//   virtual bool PasteRect(::image * pimage, i32 x, i32 y)= 0;
+//   virtual bool copy(::image::image *pimage, i32 x, i32 y)= 0;
+//   virtual bool PasteRect(::image::image *pimage, i32 x, i32 y)= 0;
 //
 //   virtual bool fill_rectangle(const ::rectangle_i32 & rectangle, ::color32_t color32)= 0;
 //
@@ -310,12 +322,12 @@ using image_list_pointer = ::pointer<::image_list>;
 //   virtual bool fill_stippled_glass_rect(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B)= 0;
 //
 //
-//   virtual bool BlendRect(::image * pimage, i32 x, i32 y, i32 A)= 0;
-//   virtual bool DarkenRect(::image * pimage, i32 x, i32 y)= 0;
-//   virtual bool DifferenceRect(::image * pimage, i32 x, i32 y)= 0;
-//   virtual bool LightenRect(::image * pimage, i32 x, i32 y)= 0;
-//   virtual bool MultiplyRect(::image * pimage, i32 x, i32 y)= 0;
-//   virtual bool ScreenRect(::image * pimage, i32 x, i32 y)= 0;
+//   virtual bool BlendRect(::image::image *pimage, i32 x, i32 y, i32 A)= 0;
+//   virtual bool DarkenRect(::image::image *pimage, i32 x, i32 y)= 0;
+//   virtual bool DifferenceRect(::image::image *pimage, i32 x, i32 y)= 0;
+//   virtual bool LightenRect(::image::image *pimage, i32 x, i32 y)= 0;
+//   virtual bool MultiplyRect(::image::image *pimage, i32 x, i32 y)= 0;
+//   virtual bool ScreenRect(::image::image *pimage, i32 x, i32 y)= 0;
 //
 //   virtual bool horizontal_line(i32 y, i32 R, i32 G, i32 B, i32 A = 0, i32 x1 = 0, i32 x2 = -1)= 0;
 //   virtual bool Line(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B)= 0;
@@ -331,8 +343,8 @@ using image_list_pointer = ::pointer<::image_list>;
 //   virtual bool xor_image_frame2(void * pdata, i32 iFrame, i32 iFrameCount)= 0;
 //
 //
-//   virtual bool create_circle(::image * pimage, int diameter)= 0;
-//   virtual bool create_framed_square(::image * pimage, int inner, int outer, ::color32_t color32)= 0;
+//   virtual bool create_circle(::image::image *pimage, int diameter)= 0;
+//   virtual bool create_framed_square(::image::image *pimage, int inner, int outer, ::color32_t color32)= 0;
 //
 //
 //   virtual bool invert_rgb(const ::rectangle_i32 & rectangle)= 0;

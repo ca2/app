@@ -15,7 +15,7 @@ namespace draw2d_opengl
 
 
    class CLASS_DECL_DRAW2D_OPENGL image :
-      virtual public ::image
+      virtual public ::image::image
    {
    public:
 
@@ -38,11 +38,11 @@ namespace draw2d_opengl
 
       bool host(const ::pixmap* ppixmap);
 
-      void stretch_image(::image * pimage) override;
+      void stretch_image(::image::image *pimage) override;
 
       void dc_select(bool bSelect = true) override;
 
-      using ::image::create;
+      using ::image::image::create;
 
       virtual void create(const ::size_i32& size, ::enum_flag eflagCreate = DEFAULT_CREATE_IMAGE_FLAG, int iGoodStride = -1, bool bPreserve = false) override;
 
@@ -58,13 +58,13 @@ namespace draw2d_opengl
       //void to(::draw2d::graphics * pgraphics, const ::point_i32& point, const ::size_i32& size, const ::point_i32& pointSrc) override;
 
 
-      //void SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy);
+      //void SetIconMask(::image::icon * picon, i32 cx, i32 cy);
 
       bool on_host_read_pixels(::pixmap* ppixmap) const override;
 
       //bool color_blend(color32_t color32, ::u8 bAlpha);
-      //bool Blend(imagepimage, ::image::image * pimageA, i32 A);
-      //void BitBlt(::image::image * pimage, i32 op);
+      //bool Blend(imagepimage, ::image::image *pimageA, i32 A);
+      //void BitBlt(::image::image *pimage, i32 op);
       //color32_t GetAverageColor();
       //i32 cos(i32 i, i32 iAngle);
       //i32 sin(i32 i, i32 iAngle);
@@ -72,19 +72,19 @@ namespace draw2d_opengl
       //i32 sin10(i32 i, i32 iAngle);
 
       //bool is_rgb_black();
-      //void xor(::image::image * pimage);
+      //void xor(::image::image *pimage);
 
       //void ToAlpha(i32 i);
       //void ToAlphaAndFill(i32 i, color32_t color32);
       //void GrayToARGB(color32_t color32);
 
       //void from_alpha();
-      //void mult_alpha(::image::image * pimageWork, bool bPreserveAlpha = true);
+      //void mult_alpha(::image::image *pimageWork, bool bPreserveAlpha = true);
       //void set_rgb(i32 R, i32 G, i32 B);
 
-      //void rotate(::image::image * pimage, const ::rectangle_i32 & rectangle, double dAngle, double dScale);
-      //void rotate(::image::image * pimage, double dAngle, double dScale);
-      //void Rotate034(::image::image * pimage, double dAngle, double dScale);
+      //void rotate(::image::image *pimage, const ::rectangle_i32 & rectangle, double dAngle, double dScale);
+      //void rotate(::image::image *pimage, double dAngle, double dScale);
+      //void Rotate034(::image::image *pimage, double dAngle, double dScale);
 
       //void RadialFill(::u8 a, ::u8 rectangle, ::u8 g, ::u8 b, i32 x, i32 y, i32 iRadius);
       //void RadialFill(

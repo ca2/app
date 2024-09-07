@@ -2,180 +2,183 @@
 #include "frame_array.h"
 #include "aura/graphics/image/drawing.h"
 
-
-image_frame_array::image_frame_array()
+namespace image
 {
-
-   m_iLoop = 0;
-   m_countLoop = 0;
-
-}
-
-
-image_frame_array::~image_frame_array()
-{
-
-}
-
-
-::image_pointer image_frame_array::calc_current_frame(image_dynamic & dynamic)
-{
-
-   if (is_empty())
+   image_frame_array::image_frame_array()
    {
 
-      return nullptr;
+      m_iLoop = 0;
+      m_countLoop = 0;
 
    }
 
-   auto pframe = first_pointer();
 
-   if (is_empty(1))
+   image_frame_array::~image_frame_array()
    {
-
-      return pframe->m_pimage;
 
    }
 
-   if (!dynamic.m_bStart)
+
+   ::image::image_pointer image_frame_array::calc_current_frame(image_dynamic & dynamic)
    {
 
-      dynamic.m_bStart = true;
-
-      dynamic.m_timeStart.Now();
-
-   }
-
-   auto pimage = m_pimage;
-
-   double dSpeed = 1.0;
-
-   if(pimage && extension())
-   { 
-   
-      dSpeed = extension()->m_dSpeed;
-
-   }
-
-   auto elapsed = dynamic.m_timeStart.elapsed();
-
-   elapsed *= dSpeed;
-
-   if (m_timeTotal <= 0_s)
-   {
-
-      return pframe->m_pimage;
-
-   }
-
-   auto uiLoop = elapsed / m_timeTotal;
-
-   if (uiLoop > m_iLoop)
-   {
-
-      m_iLoop = (::collection::index) uiLoop;
-
-      dynamic.m_iFrame = -1;
-
-   }
-
-   if (m_countLoop == 0 || m_iLoop < m_countLoop)
-   {
-
-      elapsed %= m_timeTotal;
-
-      class ::time timeUpperBound;
-
-      ::collection::index iFrame = 0;
-
-      for (; iFrame < get_count(); iFrame++)
+      if (is_empty())
       {
 
-         auto pframe = this->element_at(iFrame);
-
-         timeUpperBound += pframe->m_time;
-
-         if (elapsed < timeUpperBound)
-         {
-
-            break;
-
-         }
+         return nullptr;
 
       }
 
-      dynamic.m_iFrame = iFrame;
+      auto pframe = first_pointer();
 
-      return element_at(iFrame)->m_pimage;
+      if (is_empty(1))
+      {
+
+         return pframe->m_pimage;
+
+      }
+
+      if (!dynamic.m_bStart)
+      {
+
+         dynamic.m_bStart = true;
+
+         dynamic.m_timeStart.Now();
+
+      }
+
+      auto pimage = m_pimage;
+
+      double dSpeed = 1.0;
+
+      if(pimage && extension())
+      {
+
+         dSpeed = extension()->m_dSpeed;
+
+      }
+
+      auto elapsed = dynamic.m_timeStart.elapsed();
+
+      elapsed *= dSpeed;
+
+      if (m_timeTotal <= 0_s)
+      {
+
+         return pframe->m_pimage;
+
+      }
+
+      auto uiLoop = elapsed / m_timeTotal;
+
+      if (uiLoop > m_iLoop)
+      {
+
+         m_iLoop = (::collection::index) uiLoop;
+
+         dynamic.m_iFrame = -1;
+
+      }
+
+      if (m_countLoop == 0 || m_iLoop < m_countLoop)
+      {
+
+         elapsed %= m_timeTotal;
+
+         class ::time timeUpperBound;
+
+         ::collection::index iFrame = 0;
+
+         for (; iFrame < get_count(); iFrame++)
+         {
+
+            auto pframe = this->element_at(iFrame);
+
+            timeUpperBound += pframe->m_time;
+
+            if (elapsed < timeUpperBound)
+            {
+
+               break;
+
+            }
+
+         }
+
+         dynamic.m_iFrame = iFrame;
+
+         return element_at(iFrame)->m_pimage;
+
+      }
+      else
+      {
+
+         dynamic.m_iFrame = get_upper_bound();
+
+         return last()->m_pimage;
+
+      }
 
    }
-   else
+
+
+   void image_frame_array::update(::image::image *pimageHost, const ::image::image_drawing & imagedrawing)
    {
 
-      dynamic.m_iFrame = get_upper_bound();
+      auto pimageSource = imagedrawing.image();
 
-      return last()->m_pimage;
+      auto pframes = pimageSource->frames();
 
-   }
+      if (!pframes || pframes->is_empty())
+      {
 
-}
+         return;
 
+      }
 
-void image_frame_array::update(::image * pimageHost, const ::image_drawing & imagedrawing)
-{
+      m_pimage = pimageHost;
 
-   auto pimageSource = imagedrawing.image();
+      //auto dx = (double)imagedrawing.m_rectangleTarget.width() / (double)imagedrawing.image()->width();
+      //auto dy = (double)imagedrawing.m_rectangleTarget.height() / (double)imagedrawing.image()->height();
 
-   auto pframes = pimageSource->frames();
+      //::size_i32 size;
 
-   if (!pframes || pframes->is_empty())
-   {
+      //size.cx() = pframes->m_size.cx() * dx;
+      //size.cy() = pframes->m_size.cy() * dx;
 
-      return;
+      //m_size = size;
 
-   }
+      m_pimage->pixmap::init(imagedrawing.m_rectangleTarget.size(), nullptr, 0);
 
-   m_pimage = pimageHost;
+      this->set_size(pframes->get_count());
 
-   //auto dx = (double)imagedrawing.m_rectangleTarget.width() / (double)imagedrawing.image()->width();
-   //auto dy = (double)imagedrawing.m_rectangleTarget.height() / (double)imagedrawing.image()->height();
+      class ::time timeTotal;
 
-   //::size_i32 size;
+      for (::collection::index iFrame = 0; iFrame < pframes->get_count(); iFrame++)
+      {
 
-   //size.cx() = pframes->m_size.cx() * dx;
-   //size.cy() = pframes->m_size.cy() * dx;
+         auto pframeSource = pframes->element_at(iFrame);
 
-   //m_size = size;
+         auto time = pframeSource->m_time;
 
-   m_pimage->pixmap::init(imagedrawing.m_rectangleTarget.size(), nullptr, 0);
+         timeTotal += time;
 
-   this->set_size(pframes->get_count());
+         auto & pframeHost = this->element_at(iFrame);
 
-   class ::time timeTotal;
+         __construct_new(pframeHost);
 
-   for (::collection::index iFrame = 0; iFrame < pframes->get_count(); iFrame++)
-   {
+         pframeHost->create(pframeSource, imagedrawing, this);
 
-      auto pframeSource = pframes->element_at(iFrame);
+      }
 
-      auto time = pframeSource->m_time;
+      m_timeTotal = timeTotal;
 
-      timeTotal += time;
+      m_pimage->m_estatus = ::success;
 
-      auto & pframeHost = this->element_at(iFrame);
-
-      __construct_new(pframeHost);
-
-      pframeHost->create(pframeSource, imagedrawing, this);
+      m_pimage->set_ok_flag();
 
    }
 
-   m_timeTotal = timeTotal;
+} // namespace image
 
-   m_pimage->m_estatus = ::success;
-
-   m_pimage->set_ok_flag();
-
-}
- 
 

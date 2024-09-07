@@ -50,12 +50,12 @@ namespace user
       i32                                    m_iSmallImageWidth;
       ::collection::index                                  m_iSubItem;
       ::collection::index                                  m_iColumn;
-      ::pointer<::image::image_list>               m_pimagelist;
-      ::pointer<::image::image_list>               m_pimagelistHover;
+      ::image::image_list_pointer                m_pimagelist;
+      ::image::image_list_pointer                m_pimagelistHover;
       ::pointer<draw_list_column>           m_pdrawlistcolumn;
       ::pointer<::user::interaction>        m_puserinteractionTemplate;
       ::pointer<::user::interaction_array>  m_puserinteractiona;
-      ::draw2d::icon_int_map                 m_mapIcon;
+      ::image::icon_int_map                 m_mapIcon;
       ::size_i32                             m_sizeIcon;
       bool                                   m_bIcon;
       ::i32                                  m_iPosition;

@@ -111,7 +111,7 @@ namespace filemanager
 
             property_set set;
 
-//            pcontext->m_papexcontext->http().get("http://file.ca2.software/", set);
+//            http()->get("http://file.ca2.software/", set);
 
             open_folder(1000); // user ::music folder
 
@@ -123,7 +123,7 @@ namespace filemanager
 
             property_set set;
 
-            //          pcontext->m_papexcontext->http().get("http://file.ca2.software/", set);
+            //          http()->get("http://file.ca2.software/", set);
 
             open_folder(1); // user root folder
 
@@ -170,7 +170,7 @@ namespace filemanager
 
                phttpmessage->want_memory_response();
 
-               pcontext->m_papexcontext->http().get(phttpmessage);
+               http()->get(phttpmessage);
 
                on_request_response(phttpmessage);
 

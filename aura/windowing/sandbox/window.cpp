@@ -5,7 +5,7 @@
 #include "_sandbox.h"
 #include "acme/constant/message.h"
 #include "apex/platform/system.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/interaction_graphics_thread.h"

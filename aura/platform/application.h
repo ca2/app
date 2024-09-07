@@ -100,7 +100,7 @@ namespace aura
 
       //atom_map < ::pointer<::channel >>                m_mapNotify;
 
-      //::pointer<image_context>                       m_pcontextimage;
+      //::pointer<image_context>                       m_pimagecontext;
 
       //bool                                            m_bInitializeDataCentral;
 
@@ -204,7 +204,7 @@ namespace aura
 
       //virtual ::simpledb::server * simpledb();
       virtual ::database::server * dataserver() override;
-      //inline ::image_context& image() { return *m_pcontextimage; }
+      //inline ::image_context& image() { return *m_pimagecontext; }
 
 
       virtual void verb() override;

@@ -156,7 +156,7 @@ namespace api_ca2
 
          set["headers"]["applogin"] = strAppLogin;
 
-         m_pcontext->m_papexcontext->http().get(strNetworkPayload, scopedstrUrl, set);
+         http()->get(strNetworkPayload, scopedstrUrl, set);
 
          int iStatusCode = set["http_status_code"].as_i32();
 
@@ -319,7 +319,7 @@ namespace api_ca2
 
       string strGet = "https://ca2.network/account/token";
 
-      string strResponse = m_pcontext->m_papexcontext->http().get(strGet, set);
+      string strResponse = http()->get(strGet, set);
 
       if (!strResponse.case_insensitive_begins_eat("token://"))
       {
@@ -360,7 +360,7 @@ namespace api_ca2
 
       auto pmemoryfile = create_memory_file();
 
-      m_pcontext->m_papexcontext->http().download(scopedstrUrl, pmemoryfile, set);
+      http()->download(scopedstrUrl, pmemoryfile, set);
 
       return pmemoryfile->memory();
 

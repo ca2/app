@@ -3,7 +3,7 @@
 #include "aura/platform/context.h"
 #include <math.h>
 #include "acme/primitive/geometry2d/matrix.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "picture.h"
@@ -845,7 +845,7 @@ namespace user
    //}
 
 
-   ::image::image_pointer picture::defer_draw_drop_shadow_phase1(rectangle_i32 & rectangleDropShadow, ::draw2d::fastblur & blurDropShadow, ::image::image_pointer & pimageDropShadow, ::image::image_pointer pimage)
+   ::image::image_pointer picture::defer_draw_drop_shadow_phase1(rectangle_i32 & rectangleDropShadow, ::image::fastblur & blurDropShadow, ::image::image_pointer & pimageDropShadow, ::image::image_pointer pimage)
    {
 
       if (m_ppictureimpl->m_bGlowDropShadow)
@@ -893,7 +893,7 @@ namespace user
    }
 
 
-   void picture::defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & rectangle, ::draw2d::fastblur & pblurDropShadow, ::image::image_pointer & pimageDropShadow)
+   void picture::defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & rectangle, ::image::fastblur & pblurDropShadow, ::image::image_pointer & pimageDropShadow)
    {
 
       if (m_ppictureimpl->m_bGlowDropShadow)

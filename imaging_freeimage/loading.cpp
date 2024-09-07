@@ -256,7 +256,7 @@ namespace imaging_freeimage
 
       //::file::path path = payloadFile.as_file_path();
 
-      //::file::path pathProcess = m_pcontext->m_papexcontext->defer_process_path(path);
+      //::file::path pathProcess = m_pcontext->defer_process_matter_path(path);
 
       FIBITMAP* pfibitmap = nullptr;
 
@@ -305,10 +305,6 @@ namespace imaging_freeimage
             continue;
          }
 
-         auto pcontext = m_pcontext->m_pauracontext;
-
-         auto pcontextimage = pcontext->image_context();
-
          auto pszData = memory.data();
 
          auto size = memory.size();
@@ -346,7 +342,7 @@ namespace imaging_freeimage
          {
             //estatus =
 
-            pcontextimage->load_svg(pimage, memory);
+            image()->load_svg(pimage, memory);
 
             if (pimage->is_ok())
             {

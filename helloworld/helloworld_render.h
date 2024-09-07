@@ -58,13 +58,13 @@ namespace helloworld
       //int                              m_cxTarget;
       //int                              m_cyTarget;
 
-      //::draw2d::fastblur               m_pimageImage;
+      //::image::fastblur               m_pimageImage;
       //::image::image_pointer                 m_pimageOut;
       //::image::image_pointer                 m_pimageA;
       //::image::image_pointer                 m_pimageB;
       //::image::image_pointer                 m_pimageWork;
-      //::draw2d::fastblur               m_pimage;
-      //::draw2d::fastblur               m_pimageTint;
+      //::image::fastblur               m_pimage;
+      //::image::fastblur               m_pimageTint;
       //::image::image_pointer                 m_pimageTemplate;
       //::image::image_pointer                 m_pimageTemplate2;
 

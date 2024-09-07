@@ -1019,7 +1019,7 @@ pacmedirectory->create("/ca2core");
 
                auto thisEnv = *wenv;
 
-               int iLen = wcslen(thisEnv);
+               int iLen = (int) wcslen(thisEnv);
 
                /*if (iLen >= 42)
                {
@@ -4604,7 +4604,7 @@ namespace apex
 
       set["cookies"] = pcookies;
 
-      if (!m_pcontext->m_papexcontext->http().download(pszUrl, filename, set))
+      if (!::acme::context::http()->download(pszUrl, filename, set))
 
       {
 
@@ -4627,7 +4627,7 @@ namespace apex
 
          file()->erase(filename);
 
-         return m_pcontext->m_papexcontext->http().download(str, strLocation, set);
+         return ::acme::context::http()->download(str, strLocation, set);
 
       }
 

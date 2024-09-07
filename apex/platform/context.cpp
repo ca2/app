@@ -158,7 +158,7 @@ namespace apex
 
       ::acme::context::initialize_context();
 
-      __construct(m_phttp);
+      __construct(m_phttpcontext);
 
       //__construct(m_poscontext);
 
@@ -195,13 +195,13 @@ namespace apex
 //
 //      }
 
-      if (m_phttp)
+      if (m_phttpcontext)
       {
 
          try
          {
 
-            m_phttp->finalize();
+            m_phttpcontext->finalize();
 
          }
          catch (...)
@@ -214,7 +214,7 @@ namespace apex
 
       //m_poscontext.release();
 
-      m_phttp.release();
+      m_phttpcontext.release();
 
       acme::context::finalize_context();
 
@@ -829,7 +829,7 @@ namespace apex
 
       set["disable_common_name_cert_check"] = true;
 
-      return http().download(strUrl, scopedstrFile, set);
+      return http()->download(strUrl, scopedstrFile, set);
 
    }
 
@@ -847,9 +847,9 @@ namespace apex
 
       string strResponse;
 
-      http().get(strResponse, scopedstrUrl, set);
+      http()->get(strResponse, scopedstrUrl, set);
 
-      //if (!http().get(strResponse, pszUrl, set))
+      //if (!http()->get(strResponse, pszUrl, set))
       //{
 
       //   return "";
@@ -1166,7 +1166,7 @@ namespace apex
 //   ::string context::http_text(const ::scoped_string & scopedstrUrl, ::property_set & set)
 //   {
 //
-//      return http().get(scopedstrUrl, set);
+//      return http()->get(scopedstrUrl, set);
 //
 //   }
 //
@@ -1174,7 +1174,7 @@ namespace apex
 //   void context::http_download(const ::payload & payloadFile, const ::scoped_string & scopedstrUrl, ::property_set & set)
 //   {
 //
-//      http().download(scopedstrUrl, payloadFile, set);
+//      http()->download(scopedstrUrl, payloadFile, set);
 //
 //   }
 
@@ -1182,7 +1182,7 @@ namespace apex
    void context::sync(::nano::http::get * pget)
    {
 
-      http().sync(pget);
+      http()->sync(pget);
 
    }
 
@@ -1190,7 +1190,7 @@ namespace apex
    ::url::url context::http_get_effective_url(const ::url::url & url)
    {
 
-      return http().get_effective_url(url);
+      return http()->get_effective_url(url);
 
    }
 

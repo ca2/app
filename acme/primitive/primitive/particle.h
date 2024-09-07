@@ -201,6 +201,9 @@ public:
    ::file_system * filesystem() const;
 
 
+   ::http::context * http() const;
+
+
    virtual ::factory::factory_pointer & factory() const;
    virtual ::factory::factory_pointer & factory(const ::string& strLibrary) const;
    virtual ::factory::factory_pointer & factory(const ::string& strComponent, const ::string& strImplementation) const;

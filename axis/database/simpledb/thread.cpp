@@ -144,7 +144,7 @@ namespace simpledb
 
                   synchronous_lock slDatabase(synchronization());
 
-                  m_pcontext->m_papexcontext->http().get(url, set);
+                  http()->get(url, set);
 
                }
 

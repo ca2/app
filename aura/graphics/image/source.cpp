@@ -3,24 +3,35 @@
 //
 #include "framework.h"
 #include "source.h"
-#include "image_context.h"
+#include "context.h"
 #include "image.h"
 #include "icon.h"
 #include "acme/platform/context.h"
 
 
-image_payload::image_payload(::particle * pparticle, const ::payload & payload):
-   ::image::image_source(pparticle->m_pcontext->image_context()->get_image(payload))
+namespace image
 {
 
 
-}
+   image_payload::image_payload(::particle * pparticle, const ::payload & payload) :
+      ::image::image_source(pparticle->image()->get_image(payload))
+   {
+
+
+   }
 
 
 
-icon_payload::icon_payload(::particle * pparticle, const ::payload & payload) :
-   ::image::image_source(pparticle->m_pcontext->image_context()->get_icon(payload))
-{
+   icon_payload::icon_payload(::particle * pparticle, const ::payload & payload) :
+      ::image::image_source(pparticle->image()->get_icon(payload))
+   {
 
 
-}
+   }
+
+
+
+} // namespace image
+
+
+

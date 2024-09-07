@@ -54,7 +54,7 @@ namespace fs
 
       //property_set set;
 
-      //strSource = m_pcontext->m_papexcontext->http().get(strUrl, set);
+      //strSource = http()->get(strUrl, set);
 
       //if(strSource.is_empty())
       //   return false;
@@ -131,7 +131,7 @@ namespace fs
 
       //property_set set;
 
-      //strSource = m_pcontext->m_papexcontext->http().get(strUrl, set);
+      //strSource = http()->get(strUrl, set);
 
       //if(strSource.is_empty())
       //   return listing = ::error_failed;
@@ -291,7 +291,7 @@ namespace fs
 
       string strSource;
 
-      strSource = m_pcontext->m_papexcontext->http().get(strUrl);
+      strSource = http()->get(strUrl);
 
       if(strSource.is_empty())
       return false;
@@ -366,7 +366,7 @@ namespace fs
 
       if(!m_bInitialized)
       {
-         //m_pcontext->m_papexcontext->http().get("http://file.ca2.software/");
+         //http()->get("http://file.ca2.software/");
          m_bInitialized = true;
       }
 

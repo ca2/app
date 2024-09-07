@@ -23,7 +23,7 @@ namespace base
 
       factory()->add_factory_item < html_document >();
       factory()->add_factory_item < html_impact >();
-      factory()->add_factory_item < ::html::core_data::image::image >();
+      factory()->add_factory_item < ::html::core_data::image >();
 
       //auto ptemplate = ::place(new ::user::multiple_document_template(
       //   "system/form",

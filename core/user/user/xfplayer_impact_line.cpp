@@ -5,7 +5,7 @@
 #include "acme/regular_expression/regular_expression.h"
 #include "acme/regular_expression/result.h"
 #include "acme/platform/message.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/image/imaging.h"

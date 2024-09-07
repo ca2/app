@@ -1004,7 +1004,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
             auto pcontext = get_context();
 
-            m_varFrame = pcontext->m_papexcontext->file()->safe_get_network_payload(pathFrameJson);
+            m_varFrame = file()->safe_get_network_payload(pathFrameJson);
 
          }
 
@@ -2928,7 +2928,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
             m_pimageBk->create(rectangleX.size());
             m_pimageBk->clear_argb(0, 200, 200, 190);
             //HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
-            //::draw2d::fastblur *( *pfnNew )(::pointer<::aura::application> = (::draw2d::fastblur *(*)(::pointer<::aura::application> ::GetProcAddress(hmodule, "new_fastblur");
+            //::image::fastblur *( *pfnNew )(::pointer<::aura::application> = (::image::fastblur *(*)(::pointer<::aura::application> ::GetProcAddress(hmodule, "new_fastblur");
             //m_pimageBlur->create(this);
             //m_fastblur.initialize(rectangleX.size(),2);
 

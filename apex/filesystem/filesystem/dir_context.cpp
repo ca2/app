@@ -457,7 +457,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 
    acmedirectory()->defer_enumerate_media_library(listing);
 
-   listing.m_pathFinal = m_pcontext->m_papexcontext->defer_process_path(listing.m_pathUser);
+   listing.m_pathFinal = m_pcontext->defer_process_matter_path(listing.m_pathUser);
 
    if (listing.m_pathFinal.case_insensitive_begins("matter://"))
    {
@@ -509,7 +509,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 
       property_set set;
 
-      string str = m_pcontext->m_papexcontext->http().get(listing.m_pathFinal, set);
+      string str = http()->get(listing.m_pathFinal, set);
 
       listing.add_tokens(str, "\n", false);
 
@@ -587,7 +587,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 //
 //      property_set set;
 //
-//      string str = m_pcontext->m_papexcontext->http().get(listing.m_pathUser, set);
+//      string str = http()->get(listing.m_pathUser, set);
 //
 //      listing.add_tokens(str, "\n", false);
 //
@@ -863,7 +863,7 @@ bool dir_context::is_cached(bool& bIs, const ::file::path& path)
 
    //   property_set set;
 
-   //   bIs = Sess(papp).http().exists(pcszPath, set);
+   //   bIs = Sess(papp).http()->exists(pcszPath, set);
 
 
    //   return true;
@@ -1019,7 +1019,7 @@ bool dir_context::is(const ::file::path& pathParam)
    else
    {
 
-      path = m_pcontext->m_papexcontext->defer_process_path(pathParam);
+      path = m_pcontext->defer_process_matter_path(pathParam);
 
    }
 
@@ -1078,7 +1078,7 @@ bool dir_context::__is(const ::file::path& path, bool& bDir)
 
       }
 
-      bDir = m_pcontext->m_papexcontext->http().exists(path, set);
+      bDir = http()->exists(path, set);
 
       return true;
 
@@ -1917,7 +1917,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
          string strUrl = "https://api.ca2.software/api/matter/list_dir?dir=" + ::url::encode(strMatter);
 
-         strLs = m_pcontext->m_papexcontext->http().get(strUrl, set);
+         strLs = http()->get(strUrl, set);
 
          file()->put_text(strFile, strLs);
 
@@ -2259,7 +2259,7 @@ bool dir_context::matter_enumerate(const ::file::path& path, ::file::listing& li
 
       const ::scoped_string & scopedstrUrl = strUrl;
 
-      strMatter = m_pcontext->m_papexcontext->http().get(strUrl, set);
+      strMatter = http()->get(strUrl, set);
 
       bool bDir = strMatter.ends("/");
 

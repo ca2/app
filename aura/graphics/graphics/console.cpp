@@ -7,7 +7,7 @@
 #include "acme/primitive/string/international.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/graphics.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/write_text/font_family.h"
 #include "aura/user/user/interaction.h"

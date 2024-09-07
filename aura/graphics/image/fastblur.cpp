@@ -108,8 +108,6 @@ inline void storeFloatAsRGBA8(float32x4_t data,u32* destination)
 #endif // HAVE(ARM_NEON_INTRINSICS)
 
 //#endif // NEONHelpers_h
-namespace draw2d
-{
 
    fastblur::fastblur()
    {

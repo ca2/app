@@ -111,7 +111,7 @@ void ifs_file::set_file_data()
 
       setRequest["get_response"] = "";  // touch/create property to get_response
 
-      m_pcontext->m_papexcontext->http().put(strUrl, m_payloadFile["xmledit"].cast < ::memory_file >(), setRequest);
+      http()->put(strUrl, m_payloadFile["xmledit"].cast < ::memory_file >(), setRequest);
 
       string strResponse(setRequest["get_response"].as_string());
 
@@ -138,7 +138,7 @@ void ifs_file::set_file_data()
 
       property_set setPut;
 
-      m_pcontext->m_papexcontext->http().put(strUrl, m_payloadFile["xml"].cast < ::memory_file >(), setPut);
+      http()->put(strUrl, m_payloadFile["xml"].cast < ::memory_file >(), setPut);
 
       return;
 
@@ -148,7 +148,7 @@ void ifs_file::set_file_data()
 
    property_set setPut;
 
-   m_pcontext->m_papexcontext->http().put(strUrl, m_pmemfile, setPut);
+   http()->put(strUrl, m_pmemfile, setPut);
 
 }
 

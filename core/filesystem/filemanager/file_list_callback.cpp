@@ -41,9 +41,9 @@ namespace filemanager
 
       m_pimagelistSubItemHover->create(16, 16, 0, 10, 10);
 
-      m_pimagelistSubItemHover->add(image_payload(this, "matter://filemanager/execute_16.png"));
-      m_pimagelistSubItemHover->add(image_payload(this, "matter://filemanager/check_off_16.png"));
-      m_pimagelistSubItemHover->add(image_payload(this, "matter://filemanager/check_on_16.png"));
+      m_pimagelistSubItemHover->add(::image::image_payload(this, "matter://filemanager/execute_16.png"));
+      m_pimagelistSubItemHover->add(::image::image_payload(this, "matter://filemanager/check_off_16.png"));
+      m_pimagelistSubItemHover->add(::image::image_payload(this, "matter://filemanager/check_on_16.png"));
 
       auto psystem = system()->m_pcoresystem;
 
@@ -120,7 +120,7 @@ namespace filemanager
    }
 
 
-   ::pointer<::image::image_list>file_list_callback::GetActionButtonImageList(atom i)
+   ::image::image_list_pointer file_list_callback::GetActionButtonImageList(atom i)
    {
 
       __UNREFERENCED_PARAMETER(i);

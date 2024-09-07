@@ -625,7 +625,7 @@ pacmedirectory->system() / path;
          if (!retry([&]()
             {
 
-               return http().download(path, pfile, set);
+               return http()->download(path, pfile, set);
 
             }))
          {
@@ -924,7 +924,7 @@ bool context::http_download(const ::string & pszUrl, const ::string & pszFile)
 
    set["disable_common_name_cert_check"] = true;
 
-   return http().download(strUrl, pszFile, set);
+   return http()->download(strUrl, pszFile, set);
 
 }
 
@@ -942,7 +942,7 @@ string context::http_get(const ::string & pszUrl)
 
    string strResponse;
 
-   if (!http().get(strResponse, pszUrl, set))
+   if (!http()->get(strResponse, pszUrl, set))
    {
 
       return "";
@@ -1082,7 +1082,7 @@ void context::add_matter_locator(::aura::application * papp)
 void context::_load_from_file(::particle * pparticle, const ::payload& payloadFile, const ::payload& varOptions)
 {
 
-   binary_stream reader(pcontext->m_papexcontext->file()->get_reader(payloadFile));
+   binary_stream reader(file()->get_reader(payloadFile));
 
    read(reader);
 
@@ -1094,7 +1094,7 @@ void context::_load_from_file(::particle * pparticle, const ::payload& payloadFi
 void context::_save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::particle * pparticle)
 {
 
-   binary_stream writer(pcontext->m_papexcontext->file()->get_writer(payloadFile));
+   binary_stream writer(file()->get_writer(payloadFile));
 
    write(writer);
 

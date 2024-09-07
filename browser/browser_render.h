@@ -47,16 +47,16 @@ namespace browser
 
       bool                             m_bImageChanged;
 
-      ::draw2d::fastblur               m_blurImageImage;
+      ::image::fastblur               m_blurImageImage;
       ::image::image_pointer                            m_pimageImage;
       ::image::image_pointer                            m_pimageImageStretched;
       ::image::image_pointer                            m_pimageOut;
       ::image::image_pointer                            m_pimageA;
       ::image::image_pointer                            m_pimageB;
       ::image::image_pointer                            m_pimageWork;
-      ::draw2d::fastblur               m_blurImage;
+      ::image::fastblur               m_blurImage;
 /*      ::image::image_pointer                            m_pimage;
-      ::draw2d::fastblur               m_blurImageTint;
+      ::image::fastblur               m_blurImageTint;
       ::image::image_pointer                            m_pimageTint;
       ::image::image_pointer                            m_pimageTemplate;
       ::image::image_pointer                            m_pimageTemplate2;

@@ -2120,7 +2120,7 @@ retry_license:
       //{
 
       //   //estatus = 
-      //   __construct(m_pcontextimage);
+      //   __construct(m_pimagecontext);
 
       //   //if (!estatus)
       //   //{
@@ -2139,12 +2139,12 @@ retry_license:
 
          
 
-      // if (!m_pcontextimage)
+      // if (!m_pimagecontext)
       // {
 
       //    //estatus = 
          
-      //    __construct_new(m_pcontextimage);
+      //    __construct_new(m_pimagecontext);
 
       //    //if (!estatus)
       //    //{
@@ -4082,7 +4082,7 @@ retry_license:
    //      try
    //      {
 
-   //         psystem->http().m_setHttp.parse_network_payload(strNetworkPayload);
+   //         psystem->http()->m_setHttp.parse_network_payload(strNetworkPayload);
 
    //      }
    //      catch (...)
@@ -4820,7 +4820,7 @@ retry_license:
 
             property_set setEmpty;
 
-            if (http().open(psession, strUrl, setEmpty, nullptr))
+            if (http()->open(psession, strUrl, setEmpty, nullptr))
             {
 
                break;
@@ -4837,9 +4837,9 @@ retry_license:
 
       set["get_memory"] = "";
 
-      http().request(psession, strUrl, set);
+      http()->request(psession, strUrl, set);
 
-      //if (!http().request(psession, strUrl, set))
+      //if (!http()->request(psession, strUrl, set))
       //{
 
       //   return false;
@@ -5388,7 +5388,7 @@ retry_license:
       //string application::http_get(const ::string & strUrl, ::property_set & set)
       //{
 
-      //   return http().get(strUrl, set);
+      //   return http()->get(strUrl, set);
 
       //}
 

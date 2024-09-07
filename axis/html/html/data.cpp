@@ -195,7 +195,7 @@ html::element* html_data::get_element_by_id(atom atom)
 }
 
 
-image_pointer html_data::get_image(const ::string & pszUrl)
+::image::image_pointer html_data::get_image(const ::string & pszUrl)
 {
 
    return m_pcoredata->get_image(pszUrl);

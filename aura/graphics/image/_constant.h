@@ -39,7 +39,7 @@ namespace image
       /// rectangle are rates on any selectable source
       e_sub_image_rate,
       /// rectangle are coordinates on source image
-      /// that would be selected by image_source_interface::size();
+      /// that would be selected by ::image::image_source_interface::size();
       e_sub_image_coordinates,
       /// null image
       e_sub_image_none,

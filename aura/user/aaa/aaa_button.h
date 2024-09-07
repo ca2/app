@@ -40,9 +40,9 @@ namespace user
       {
       public:
 
-         ::pointer<image_list>           m_pimagelistNormal;
-         ::pointer<image_list>           m_pimagelistItemHover;
-         ::pointer<image_list>           m_pimagelistSubItemHover;
+         ::image::image_list_pointer            m_pimagelistNormal;
+         ::image::image_list_pointer            m_pimagelistItemHover;
+         ::image::image_list_pointer            m_pimagelistSubItemHover;
          i32                              m_iImageNormal;
          i32                              m_iImageItemHover;
          i32                              m_iImageSubItemHover;

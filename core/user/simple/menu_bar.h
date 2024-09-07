@@ -24,8 +24,8 @@ class CLASS_DECL_CORE simple_menu_bar :
 public:
 
 
-   ::pointer<::image::image_list>             m_pimagelist;
-   ::pointer<::image::image_list>             m_pimagelistDisabled;
+   ::image::image_list_pointer              m_pimagelist;
+   ::image::image_list_pointer              m_pimagelistDisabled;
    i32_spreadset *                     m_prel;
    bool                                m_bTracking;
    ::collection::index                               m_iTracking;
@@ -82,8 +82,8 @@ protected:
    void RemoveAllButtons();
 
    bool Initialize(
-   ::pointer<::image::image_list>imagelist,
-   ::pointer<::image::image_list>imagelistDisabled,
+   ::image::image_list_pointer imagelist,
+   ::image::image_list_pointer imagelistDisabled,
    ::i32_spreadset * prel,
    ::write_text::font * pfont);
 

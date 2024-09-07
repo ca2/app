@@ -135,7 +135,7 @@ namespace image
    }
 
 
-   void image_frame::create(image_frame * pframeSource, const ::image::image_drawing & imagedrawing, ::image_frame_array * pframea)
+   void image_frame::create(::image::image_frame * pframeSource, const ::image::image_drawing & imagedrawing, ::image::image_frame_array * pframea)
    {
 
       auto dx = (double) imagedrawing.m_rectangleTarget.width() / (double) imagedrawing.image()->width();

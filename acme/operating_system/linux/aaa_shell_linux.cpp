@@ -641,7 +641,7 @@ pacmedirectory->is(strPath))
 
          if (case_insensitive_string_ends(imagekey.m_strPath, ".acme"))
          {
-            string str = pcontext->m_papexcontext->file()->as_string(imagekey.m_strPath);
+            string str = file()->as_string(imagekey.m_strPath);
             if (str.case_insensitive_begins_eat("ca2prompt\r\n"))
             {
                str.trim();
@@ -718,7 +718,7 @@ pacmedirectory->is(strPath))
          if (case_insensitive_string_ends(imagekey.m_strPath, ".desktop"))
          {
 
-            string str = pcontext->m_papexcontext->file()->as_string(imagekey.m_strPath);
+            string str = file()->as_string(imagekey.m_strPath);
 
             string_array stra;
 

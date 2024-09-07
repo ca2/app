@@ -65,7 +65,7 @@ namespace image
 
 
    CLASS_DECL_AURA void cursor_alloc(::particle * pparticle, cursor_pointer & image,int xHotspot,int yHotspot);
-   CLASS_DECL_AURA image_pointer cursor_get_image(cursor * pcursor);
+   CLASS_DECL_AURA ::image::image_pointer cursor_get_image(cursor * pcursor);
 
 
 } // namespace image

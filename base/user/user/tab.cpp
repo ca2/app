@@ -12,7 +12,7 @@
 #include "acme/platform/keep.h"
 #include "acme/handler/extended_topic.h"
 #include "acme/handler/request.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 #include "acme/primitive/data/listener.h"
 #include "acme/platform/timer.h"
 #include "acme/user/user/drag.h"
@@ -275,11 +275,7 @@ namespace user
       ppane->m_atom = atom;
       ppane->m_pplaceholder = pplaceholder;
 
-      auto pcontext = m_pcontext->m_pauracontext;
-
-      auto pcontextimage = pcontext->image_context();
-
-      ppane->m_pimage = pcontextimage->load_image(strIcon, { .sync = false, .cache = false, });
+      ppane->m_pimage = image()->load_image(strIcon, { .sync = false, .cache = false, });
 
       on_change_tab_count({ ppane });
 

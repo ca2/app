@@ -26,7 +26,7 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics_extension.h"
 #include "aura/graphics/draw2d/draw2d.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/imaging.h"
 #include "aura/graphics/image/drawing.h"
@@ -3775,7 +3775,7 @@ namespace user
    //   {
    //      pcolumn->m_pimagelist = new ::image::image_list (this);
    //   }
-   //   //      ::pointer<::image::image_list>pil = pcolumn->m_pimagelist;
+   //   //      ::image::image_list_pointer pil = pcolumn->m_pimagelist;
    //   //   if(pil != nullptr)
    //   //      pil->DeleteImageMesh();
    //   throw ::interface_only();
@@ -6150,7 +6150,7 @@ namespace user
 
    //   //if(m_pcolumn->m_bIcon)
    //   //{
-   //   //   draw2d::icon * picon;
+   //   //   ::image::icon * picon;
    //   //   if(m_pcolumn->m_mapIcon.lookup((i32)m_iImage,picon))
    //   //   {
    //   //      m_pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);

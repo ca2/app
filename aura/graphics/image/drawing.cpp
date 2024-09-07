@@ -13,7 +13,7 @@ namespace image
 
 
 
-   image_drawing_options::image_drawing_options() :
+   ::image::image_drawing_options::image_drawing_options() :
       m_eimageselection(e_image_selection_default),
       m_eplacement(e_placement_stretch)
    {
@@ -22,7 +22,7 @@ namespace image
    }
 
 
-   image_drawing_options::image_drawing_options(const ::image::image_drawing_options & imagedrawingoptions) :
+   ::image::image_drawing_options::image_drawing_options(const ::image::image_drawing_options & imagedrawingoptions) :
       color_filter(imagedrawingoptions),
       m_eimageselection(imagedrawingoptions.m_eimageselection),
       m_rectangleTarget(imagedrawingoptions.m_rectangleTarget),
@@ -35,7 +35,7 @@ namespace image
    }
 
 
-   image_drawing_options::image_drawing_options(const ::rectangle_f64 & rectangleTarget, const ::image::enum_placement & eplacement, const ::point_f64 & pointAlign, enum_image_selection eimageselection) :
+   ::image::image_drawing_options::image_drawing_options(const ::rectangle_f64 & rectangleTarget, const ::image::enum_placement & eplacement, const ::point_f64 & pointAlign, enum_image_selection eimageselection) :
       m_rectangleTarget(rectangleTarget),
       m_eplacement(eplacement),
       m_pointAlign(pointAlign),
@@ -46,16 +46,16 @@ namespace image
 
 
 
-   image_drawing::image_drawing(const ::image::image_drawing & imagedrawing) :
-      image_drawing_options(imagedrawing),
+   ::image::image_drawing::image_drawing(const ::image::image_drawing & imagedrawing) :
+      ::image::image_drawing_options(imagedrawing),
       ::image::image_source(imagedrawing)
    {
 
    }
 
 
-   image_drawing::image_drawing(::image::image_drawing && imagedrawing) noexcept:
-      image_drawing_options(::transfer(imagedrawing)),
+   ::image::image_drawing::image_drawing(::image::image_drawing && imagedrawing) noexcept:
+      ::image::image_drawing_options(::transfer(imagedrawing)),
       ::image::image_source(::transfer(imagedrawing))
    {
 
@@ -63,7 +63,7 @@ namespace image
 
 
 
-   image_drawing::image_drawing(const ::image::image_drawing_options & imagedrawingoptions, const ::image::image_source & imagesource) :
+   ::image::image_drawing::image_drawing(const ::image::image_drawing_options & imagedrawingoptions, const ::image::image_source & imagesource) :
       ::image::image_drawing_options(imagedrawingoptions),
       ::image::image_source(imagesource)
    {
@@ -72,7 +72,7 @@ namespace image
 
 
 
-   image_drawing::image_drawing(const ::image::image_source & imagesource) :
+   ::image::image_drawing::image_drawing(const ::image::image_source & imagesource) :
       ::image::image_source(imagesource)
    {
 
@@ -116,7 +116,6 @@ namespace image
    }
 
 
-
    ::rectangle_f64 image_drawing::target_rectangle() const
    {
 
@@ -154,8 +153,6 @@ namespace image
       }
 
    }
-
-
 
 
    ::image::image_pointer image_drawing::image() const

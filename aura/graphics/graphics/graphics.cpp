@@ -348,7 +348,7 @@ namespace graphics
    //::image::image_pointer & graphics::get_buffer_image()
    //{
 
-   //   image_pointer * pimage = nullptr;
+   //   ::image::image_pointer * pimage = nullptr;
 
    //   return *pimage;
 

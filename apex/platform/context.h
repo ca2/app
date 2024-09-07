@@ -25,7 +25,7 @@ namespace apex
       string                              m_strStoreServerBaseUrl;
 
       string_to_string                    m_mapCachedLatestBuild;
-      ::pointer<::http::context>          m_phttp;
+      //::pointer<::http::context>          m_phttpcontext;
       //::pointer<::os_context>             m_poscontext;
 
 
@@ -80,7 +80,7 @@ namespace apex
       virtual bool is_local_data() const;
 
 
-      inline ::http::context& http() { return *m_phttp; }
+      //inline ::http::context& http() { return *m_phttp; }
       //inline ::os_context * os_context() { return m_poscontext; };
 
 

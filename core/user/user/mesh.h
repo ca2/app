@@ -236,8 +236,8 @@ namespace user
       ::collection::count                                      m_nGridItemCount;
       ::collection::count                                      m_nGridColumnCount;
 
-      ::pointer<::image::image_list>                     m_pimagelistGroup;
-      ::pointer<::image::image_list>                     m_pimagelistGroupHover;
+      ::image::image_list_pointer                      m_pimagelistGroup;
+      ::image::image_list_pointer                      m_pimagelistGroupHover;
       bool                                         m_bGroup;
       bool                                         m_bLateralGroup;
       i32                                          m_iLateralGroupWidth;

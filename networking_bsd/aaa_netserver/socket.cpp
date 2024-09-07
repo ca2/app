@@ -257,7 +257,7 @@ namespace netserver
 
    //      pimage->stretch_image(pimage);
 
-   //      ::save_image saveimage;
+   //      ::image::save_options saveoptions;
 
    //      savepimage->m_eformat = pimage::e_format_jpeg;
    //      savepimage->m_iQuality = 50;
@@ -265,7 +265,7 @@ namespace netserver
    //      outheader(__id(content-type)) = "image/jpeg";
 
 
-   //      pimage->save_to_file(&response().file(), &saveimage);
+   //      pimage->save_to_file(&response().file(), saveoptions);
 
    //   }
 

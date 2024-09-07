@@ -7,7 +7,7 @@
 #include "acme/handler/topic.h"
 #include "acme/primitive/collection/_array.h"
 #include "acme/user/user/content.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/array.h"
@@ -19,7 +19,7 @@ namespace user
 {
 
 
-   image_list::image::image_list()
+   image_list::image_list()
    {
 
       m_bDefaultClickHandling = true;
@@ -847,7 +847,7 @@ namespace user
    {
 
       ::user::impact::install_message_routing(pchannel);
-      ::user::image::image_list::install_message_routing(pchannel);
+      ::user::image_list::install_message_routing(pchannel);
 
       MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &image_list_impact::on_message_create);
       MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &image_list_impact::on_message_destroy);

@@ -17,22 +17,22 @@ namespace user
    public:
 
 
-      int                     m_iTextHeight;
-      int                     m_iMargin;
-      bool                    m_bLabel;
-      ::i32                   m_iLabelHeight;
-      ::e_align               m_ealign;
-      string_to_string        m_mapName;
+      int                                 m_iTextHeight;
+      int                                 m_iMargin;
+      bool                                m_bLabel;
+      ::i32                               m_iLabelHeight;
+      ::e_align                           m_ealign;
+      string_to_string                    m_mapName;
 
-      ::pointer<image_array>  m_pimagea;
-      ::pointer<image_array>  m_pimageaThumb;
+      ::pointer<::image::image_array>     m_pimagea;
+      ::pointer<::image::image_array>     m_pimageaThumb;
 
-      index_array             m_iaSel;
-      //::item                m_itemLButtonDown;
-      ::size_i32              m_size;
-      bool                    m_bMultiSel;
-      ::size_i32              m_sizeImage;
-      //::rectangle_i32         m_rectangleTotal;
+      index_array                         m_iaSel;
+      //::item                            m_itemLButtonDown;
+      ::size_i32                          m_size;
+      bool                                m_bMultiSel;
+      ::size_i32                          m_sizeImage;
+      //::rectangle_i32                   m_rectangleTotal;
 
 
       image_list();
@@ -93,7 +93,7 @@ namespace user
 
 
    class CLASS_DECL_BASE image_list_impact :
-      virtual public show < margin < ::user::image::image_list > >
+      virtual public show < margin < ::user::image_list > >
    {
    public:
 

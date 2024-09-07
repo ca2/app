@@ -13,7 +13,7 @@
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/draw2d.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/message/user.h"
 
@@ -1202,11 +1202,7 @@ namespace user
       if (!payload.is_empty())
       {
 
-         auto pcontext = m_pcontext->m_pauracontext;
-
-         auto pcontextimage = pcontext->image_context();
-
-         m_pimage = pcontextimage->get_image(payload);
+         m_pimage = image()->get_image(payload);
 
       }
 

@@ -28,7 +28,7 @@
 __FACTORY_EXPORT void imaging_freeimage_factory(::factory::factory * pfactory)
 {
 
-   pfactory->add_factory_item < ::imaging_freeimage::image_context, ::image_context >();
+   pfactory->add_factory_item < ::imaging_freeimage::image_context, ::image::image_context >();
 
 }
 

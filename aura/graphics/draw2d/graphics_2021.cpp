@@ -9,7 +9,7 @@
 #include "pen.h"
 #include "path.h"
 #include "aura/graphics/image/drawing.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 //#include <math.h>
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)
@@ -1212,7 +1212,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw_at(const ::point_f64 & pointDst, ::image_frame * pframe)
+   //void graphics::draw_at(const ::point_f64 & pointDst, ::::image::image_frame * pframe)
    //{
 
    //   return draw_at(pointDst, pframe->m_pimage);
@@ -1236,7 +1236,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw(::image_frame * pframe, const ::point_f64 & pointSrc)
+   //void graphics::draw(::::image::image_frame * pframe, const ::point_f64 & pointSrc)
    //{
 
    //   return draw(pframe->m_pimage, pointSrc);
@@ -1260,7 +1260,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw(const ::rectangle_f64 & rectangleTarget, ::image_frame * pframe, const ::point_f64 & pointSrc)
+   //void graphics::draw(const ::rectangle_f64 & rectangleTarget, ::::image::image_frame * pframe, const ::point_f64 & pointSrc)
    //{
 
    //   return draw(rectangleTarget, pframe->m_pimage, pointSrc);
@@ -1401,7 +1401,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::stretch(const ::rectangle_f64 & rectangleTarget, ::image_frame * pframe, const ::rectangle_f64 & rectangleSource)
+   //void graphics::stretch(const ::rectangle_f64 & rectangleTarget, ::::image::image_frame * pframe, const ::rectangle_f64 & rectangleSource)
    //{
 
    //   return stretch(rectangleTarget, pframe->m_pimage, rectangleSource);

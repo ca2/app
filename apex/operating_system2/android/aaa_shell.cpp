@@ -206,8 +206,8 @@ namespace android
 //
 //                     string strParams;
 //
-//                     //if(pcontext->m_papexcontext->file()->resolve_link(strTarget, strFilePath, ::apexacmesystem()->ui_from_handle))
-//                     if (pcontext->m_papexcontext->file()->resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
+//                     //if(file()->resolve_link(strTarget, strFilePath, ::apexacmesystem()->ui_from_handle))
+//                     if (file()->resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
 //                     {
 //
 //                        if (m_straThemeableIconName.get_count() > 0)
@@ -340,7 +340,7 @@ namespace android
 //
 //            string strParams;
 //
-//            if (pcontext->m_papexcontext->file()->resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
+//            if (file()->resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
 //            {
 //
 //               wstring wstr = utf8_to_unicode(strTarget);
@@ -1269,7 +1269,7 @@ pacmedirectory->is(strPath))
 
       if (case_insensitive_string_ends(imagekey.m_strPath, ".apex"))
       {
-         string str = pcontext->m_papexcontext->file()->as_string(imagekey.m_strPath);
+         string str = file()->as_string(imagekey.m_strPath);
          if (str.case_insensitive_begins_eat("ca2prompt\r\n"))
          {
             str.trim();

@@ -304,7 +304,7 @@ namespace userstack
 
          dir()->create(str.folder());
 
-         pcontext->m_papexcontext->file()->copy(str, straPath[i], true);
+         file()->copy(str, straPath[i], true);
 
       }
 
@@ -319,7 +319,7 @@ namespace userstack
 
          dir()->create(str.folder());
 
-         pcontext->m_papexcontext->file()->copy(str, straPath[i], true);
+         file()->copy(str, straPath[i], true);
 
       }
 
@@ -354,13 +354,13 @@ namespace userstack
          if(strApp.begins_eat("application:"))
          {
 
-            pcontext->m_papexcontext->file()->put_contents(strDir / strApp + ".ca2", "ca2prompt\r\n"+ strApp);
+            file()->put_contents(strDir / strApp + ".ca2", "ca2prompt\r\n"+ strApp);
 
          }
 
       }
 
-      //pcontext->m_papexcontext->file()->put_contents(dir()->path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
+      //file()->put_contents(dir()->path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
       /*      string_array straPath;
             string_array straRelative;
             straPath.erase_all();

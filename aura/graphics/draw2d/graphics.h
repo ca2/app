@@ -57,7 +57,7 @@ namespace draw2d
    //};
 
 /// <summary>
-/// graphics * -> image_source_pointer concept
+/// graphics * -> ::image::image_source_pointer concept
 /// </summary>
    class CLASS_DECL_AURA graphics :
       virtual public ::aura::simple_chain < ::aura::draw_context >,
@@ -699,7 +699,7 @@ namespace draw2d
 
 //      virtual void color_blend(image_list * pilBlend, image_list * pil, const ::color::color& color32, const ::opacity& opacity);
 
-//      template < image_source_pointer IMAGE_SOURCE_POINTER >
+//      template < ::image::image_source_pointer IMAGE_SOURCE_POINTER >
 //      void color_blend(IMAGE_SOURCE_POINTER pimagesource, const ::color::color& color, const ::opacity& opacity)
 //      {
 //
@@ -751,7 +751,7 @@ namespace draw2d
 
       // bit block transfer (pixel-to-pixel)
       //virtual void draw_at(const ::point_f64 & pointDst, ::image::image *pimage);
-      //virtual void draw_at(const ::point_f64 & pointDst, ::image_frame * pframe);
+      //virtual void draw_at(const ::point_f64 & pointDst, ::::image::image_frame * pframe);
       //virtual void draw_at(const ::point_f64 & pointDst, ::draw2d::graphics * pgraphicsSrc);
 
 
@@ -773,7 +773,7 @@ namespace draw2d
 
       // potentially stretching
       //virtual void stretch(const ::rectangle_f64 & rectangleTarget, ::image::image *pimage, const ::rectangle_f64 & rectangleSource = ::rectangle_f64());
-      //virtual void stretch(const ::rectangle_f64 & rectangleTarget, ::image_frame * pframe, const ::rectangle_f64 & rectangleSource = ::rectangle_f64());
+      //virtual void stretch(const ::rectangle_f64 & rectangleTarget, ::::image::image_frame * pframe, const ::rectangle_f64 & rectangleSource = ::rectangle_f64());
       //virtual void stretch(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource = ::rectangle_f64());
       //virtual void stretch_raw(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource = ::rectangle_f64());
       //virtual void stretch_blend(const ::rectangle_f64 & rectangleTarget, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectangleSource = ::rectangle_f64());

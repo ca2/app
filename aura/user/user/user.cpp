@@ -498,7 +498,7 @@ namespace user
 
       //xml::document docUser;
 
-      //string strUser = pcontext->m_papexcontext->file()->as_string(dir()->appdata()/"langstyle_settings.xml");
+      //string strUser = file()->as_string(dir()->appdata()/"langstyle_settings.xml");
 
       //string strLangUser;
 

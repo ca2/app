@@ -17,7 +17,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/user_key.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 #include "aura/message/user.h"
 #include "aura/user/user/interaction.h"
 #include "aura/platform/context.h"

@@ -19,7 +19,7 @@ namespace image
 
 
    /// <summary>
-   /// ::image::image *-> image_source_pointer concept
+   /// ::image::image *-> ::image::image_source_pointer concept
    /// </summary>
    class CLASS_DECL_AURA image :
       virtual public ::image::image_meta,
@@ -162,8 +162,8 @@ namespace image
       //virtual void flip_horizontal(::image::image *pimage);
       virtual void flip_horizontally();
       virtual void flip_vertically();
-      virtual image_pointer horizontally_flipped();
-      virtual image_pointer vertically_flipped();
+      virtual ::image::image_pointer horizontally_flipped();
+      virtual ::image::image_pointer vertically_flipped();
       //virtual void flipx(::image::image *pimage);
       //virtual void flipy(::image::image *pimage);
       //virtual ::image::image *flipx();
@@ -187,10 +187,10 @@ namespace image
       virtual void div_alpha(const ::point_i32 & point, const ::size_i32 & size);
 
       //virtual void rotated(const angle & angle);
-      //virtual image_pointer rotated(const angle& angle);
+      //virtual ::image::image_pointer rotated(const angle& angle);
       virtual void rotate(const ::angle_f64 & angle, double dScale = 1.0);
       virtual void rotate(::image::image *pimage, const ::angle_f64 & angle, double dScale = 1.0);
-      virtual image_pointer rotated(const ::angle_f64 & angle, double dScale = 1.0);
+      virtual ::image::image_pointer rotated(const ::angle_f64 & angle, double dScale = 1.0);
 
       //virtual void rotate(::image::image *pimage, double dAngle, double dScale);
       //virtual void rotate(::image::image *pimage, double dAngle);
@@ -869,7 +869,7 @@ namespace image
 
       inline ::size_i32 get_size() const { return size(); }
 
-      virtual image_pointer get_resized_image(const ::size_i32 & size);
+      virtual ::image::image_pointer get_resized_image(const ::size_i32 & size);
 
 
    };

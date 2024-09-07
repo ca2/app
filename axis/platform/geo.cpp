@@ -93,7 +93,7 @@ namespace geo
 
       auto pcontext = m_pcontext->m_pcontext;
 
-      auto pfile = pcontext->m_papexcontext->file();
+      auto pfile = file();
 
       {
 
@@ -121,27 +121,27 @@ namespace geo
 
             }
 
-            //pcontext->m_papexcontext->file()->to_array(m_straCity,          auto psystem = system();
+            //file()->to_array(m_straCity,          auto psystem = system();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
    //pacmedirectory->system() / "weather-cit.bin");
-            //pcontext->m_papexcontext->file()->to_array(m_straCityLo,          auto psystem = system();
+            //file()->to_array(m_straCityLo,          auto psystem = system();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
    //pacmedirectory->system() / "weather-cil.bin");
-            //pcontext->m_papexcontext->file()->to_array(m_iaIds,          auto psystem = system();
+            //file()->to_array(m_iaIds,          auto psystem = system();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
    //pacmedirectory->system() / "weather-ids.bin");
-            //pcontext->m_papexcontext->file()->to_array(m_daLon,          auto psystem = system();
+            //file()->to_array(m_daLon,          auto psystem = system();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
    //pacmedirectory->system() / "weather-lon.bin");
-            //pcontext->m_papexcontext->file()->to_array(m_daLat,          auto psystem = system();
+            //file()->to_array(m_daLat,          auto psystem = system();
 
    //         auto pacmedirectory = psystem->m_pacmedirectory;
    //
@@ -598,7 +598,7 @@ namespace geo
 
       auto pcontext = get_context();
 
-      string str = pcontext->m_papexcontext->http().get(strGetUrl, set);
+      string str = http()->get(strGetUrl, set);
 
       _synchronous_lock synchronouslock(this->synchronization());
 
@@ -791,7 +791,7 @@ namespace geo
       //
       //         ::file::path path = acmedirectory()->public_system() / "datetime_departament_m_countryLocalityTimeZone.bin";
       //
-      //         auto & file = pcontext->m_papexcontext->file()->friendly_get_file(path, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory);
+      //         auto & file = file()->friendly_get_file(path, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_defer_create_directory);
       //
       //         stream os(file);
       //

@@ -9,7 +9,7 @@ namespace image
 {
 
 
-   class CLASS_DECL_AURA image_frame :
+   class CLASS_DECL_AURA ::image::image_frame :
       virtual public particle
    {
    public:
@@ -33,7 +33,7 @@ namespace image
 
 
       virtual void _001Process(::image::image *pimageCompose, ::image::image *pimageFrame, ::image::image_frame_array * pframea);
-      virtual void create(image_frame * pframeSource, const ::image::image_drawing & imagedrawing, ::image::image_frame_array * pframea);
+      virtual void create(::image::image_frame * pframeSource, const ::image::image_drawing & imagedrawing, ::image::image_frame_array * pframea);
 
 
    };

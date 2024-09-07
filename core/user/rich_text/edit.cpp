@@ -1134,7 +1134,7 @@ namespace user
 
          }
 
-         ::draw2d::fastblur blurDropShadow;
+         ::image::fastblur blurDropShadow;
 
          ::image::image_pointer imageDropShadow;
 

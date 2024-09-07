@@ -51,11 +51,11 @@ namespace user
       ::pointer<simple_list_data>                 m_psimplelistdata;
 
 
-      ::pointer<::draw2d::fastblur>               m_pfastblur;
+      ::pointer<::image::fastblur>               m_pfastblur;
       index_map < ::image::image_pointer >                m_mapBlur;
       index_map < string >                         m_mapText;
       index_map < ::color::color >                 m_mapBackColor;
-      ::pointer<::draw2d::fastblur>               m_pfastblurIcon;
+      ::pointer<::image::fastblur>               m_pfastblurIcon;
       index_map < ::image::image_pointer >                m_mapIconBlur;
       double                                       m_dIconSaturation;
       double                                       m_dIconLightness;

@@ -590,6 +590,15 @@ class ::user::user * particle::user() const
 }
 
 
+::http::context * particle::http() const
+{
+
+   return m_pcontext->http();
+
+}
+
+
+
 ::factory::factory_pointer & particle::factory() const
 {
 

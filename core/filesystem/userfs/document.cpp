@@ -255,7 +255,7 @@ namespace userfs
       //   
       //   pathToProcess.flags() += ::file::e_flag_resolve_alias;
 
-      //   ::file::path pathFinal  = pcontext->m_papexcontext->defer_process_path(pathToProcess );
+      //   ::file::path pathFinal  = m_pcontext->defer_process_matter_path(pathToProcess );
 
       //   pathFinal.m_iDir = pathItem.m_iDir;
 

@@ -628,7 +628,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 //
 //      property_set set;
 //
-//      string str = m_pcontext->http().get(listing.m_pathUser, set);
+//      string str = m_pcontext->http()->get(listing.m_pathUser, set);
 //
 //      listing.add_tokens(str, "\n", false);
 //
@@ -918,7 +918,7 @@ bool dir_context::fast_has_subdir(const ::file::path& path)
 
    //   property_set set;
 
-   //   bIs = Sess(papp).http().exists(pcszPath, set);
+   //   bIs = Sess(papp).http()->exists(pcszPath, set);
 
 
    //   return true;

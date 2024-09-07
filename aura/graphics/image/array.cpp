@@ -3,7 +3,7 @@
 #include "drawing.h"
 #include "image.h"
 //#include "acme/primitive/geometry2d/_geometry2d.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 #include "aura/platform/context.h"
 
 

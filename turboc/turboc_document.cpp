@@ -57,7 +57,7 @@ namespace turboc
       else if(get_typed_impact < edit_impact >() != NULL)
       {
 
-         string str = pcontext->m_papexcontext->file()->as_string(payloadFile);
+         string str = file()->as_string(payloadFile);
 
          str = str.left(84);
 

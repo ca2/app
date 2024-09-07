@@ -369,6 +369,14 @@ namespace acme
    }
 
 
+   ::http::context * context::http()
+   {
+
+      return m_pacmesystem->m_phttpcontext;
+
+   }
+
+
    void context::translate_text_data(::text::data * ptextdata)
    {
 

@@ -54,7 +54,6 @@ namespace draw2d
 
    using graphics_call_array = pointer_array < graphics_call_base >;
 
-   using icon_pointer = ::pointer<icon>;
    using brush_pointer = ::pointer<brush>;
    using pen_pointer = ::pointer<pen>;
    using bitmap_pointer = ::pointer<bitmap>;

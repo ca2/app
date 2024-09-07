@@ -276,7 +276,7 @@ namespace aura
 
       int iPid = pcontext->m_papexcontext->os().get_pid();
 
-      //defer_add_module(pcontext->m_papexcontext->file()->module(), iPid);
+      //defer_add_module(file()->module(), iPid);
 
 //      ::file::path path;
 //
@@ -954,7 +954,7 @@ repeat:
 
       m_straModule = straUnique;
 
-      ::file::path pathThisModule = pcontext->m_papexcontext->file()->module();
+      ::file::path pathThisModule = file()->module();
 
       string strItem;
 
@@ -975,7 +975,7 @@ repeat:
 
       strModuleList = m_straModule.implode("\n");
 
-      pcontext->m_papexcontext->file()->put_contents(pathModule,strModuleList);
+      file()->put_contents(pathModule,strModuleList);
 
 #endif
 

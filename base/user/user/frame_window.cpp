@@ -26,7 +26,7 @@
 #include "apex/message/simple_command.h"
 #include "apex/platform/savings.h"
 #include "aura/graphics/graphics/graphics.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/windowing/windowing.h"
 #include "aura/message/user.h"
@@ -560,11 +560,7 @@ namespace user
 
                   pcopydesk->image_to_desk(pimage1);
 
-                  auto pcontext = m_pcontext->m_pauracontext;
-
-                  auto pcontextimage = pcontext->image_context();
-
-                  pcontextimage->save_image(acmedirectory()->system() / "control_alt_p.png", pimage1);
+                  image()->save_image(acmedirectory()->system() / "control_alt_p.png", pimage1);
 
                   ::image::image_pointer pimage2;
 
@@ -608,7 +604,7 @@ namespace user
 
                   }
 
-                  pcontextimage->save_image(acmedirectory()->system() / "control_alt_p_w300.png", pimage2);
+                  image()->save_image(acmedirectory()->system() / "control_alt_p_w300.png", pimage2);
 
                   pkey->m_bRet = true;
 
@@ -2090,7 +2086,7 @@ namespace user
 
       string strMatter = dir()->matter(strToolbar);
 //
-//      string strXml = pcontext->m_papexcontext->file()->safe_get_string(strMatter);
+//      string strXml = file()->safe_get_string(strMatter);
 
       ptoolbar->load_xml_toolbar(strMatter);
 

@@ -175,7 +175,7 @@ namespace html
 
       address_array < impl::table* >   m_tableptra;
 
-      //string_map < image_pointer >     m_imagemap;
+      //string_map < ::image::image_pointer >     m_imagemap;
 
       pointer_array < font >                 m_fonta;
 
@@ -251,7 +251,7 @@ namespace html
 
       DECLARE_MESSAGE_HANDLER(on_message_key_down);
 
-      image_pointer get_image(const ::string & pszUrl);
+      ::image::image_pointer get_image(const ::string & pszUrl);
       void load_image_asynch(image* pimage);
       bool load_image(image* pimage);
 

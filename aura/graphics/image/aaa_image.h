@@ -3,7 +3,7 @@
 //
 //
 //class image_frame_array;
-//class image_frame;
+//class ::image::image_frame;
 //class colorref_array;
 //class image_extension;
 //class image_map;

@@ -40,7 +40,7 @@
 
 
 
-               ::draw2d::fastblur               m_blur1;
+               ::image::fastblur               m_blur1;
                e_style                          m_estyle;
                //::user::front_end_schema         m_schema;
                color32_t                         m_colorFrameBorder;

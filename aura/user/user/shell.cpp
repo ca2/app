@@ -12,7 +12,7 @@
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/list.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/graphics/image/icon.h"
@@ -338,9 +338,9 @@ namespace user
    bool shell::defer_set_thumbnail(_get_file_image_ & getfileimage)
    {
 
-      auto pcontextimage = m_pcontext->image_context();
+      auto pimagecontext = image();
 
-      auto pimageTemplate = pcontextimage->load_image(getfileimage.m_imagekey.m_strPath);
+      auto pimageTemplate = image()->load_image(getfileimage.m_imagekey.m_strPath);
 
       if (pimageTemplate.ok())
       {
@@ -371,7 +371,7 @@ namespace user
 
                rectangle_f64 rectangle(::size_f64(iSize, iSize));
 
-               ::image::image_drawing_options imagedrawingoptions(rectangle, e_placement_aspect_fit, {0.0, 0.0});
+               ::image::image_drawing_options imagedrawingoptions(rectangle, ::image::e_placement_aspect_fit, {0.0, 0.0});
 
                ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
@@ -522,7 +522,7 @@ namespace user
       if (getfileimage.m_pathProcessed.is_empty())
       {
 
-         ::file::path pathProcessed = m_pcontext->m_papexcontext->defer_process_path(getfileimage.m_imagekey.m_strPath);
+         ::file::path pathProcessed = m_pcontext->defer_process_matter_path(getfileimage.m_imagekey.m_strPath);
 
          getfileimage.m_pathProcessed = pathProcessed;
 
@@ -902,7 +902,7 @@ namespace user
 //
 //         auto pcontext = m_pcontext;
 //
-//         string str = pcontext->m_papexcontext->file()->as_string(getfileimage.m_imagekey.m_strPath);
+//         string str = file()->as_string(getfileimage.m_imagekey.m_strPath);
 //
 //         if (str.case_insensitive_begins_eat("ca2prompt\r\n"))
 //         {
@@ -940,7 +940,7 @@ namespace user
 //
 //      string strPath = getfileimage.m_imagekey.m_strPath;
 //
-//      string strRealPath = m_pcontext->m_papexcontext->defer_process_path(strPath);
+//      string strRealPath = m_pcontext->defer_process_matter_path(strPath);
 //
 //      string strFinalPath = acmepath()->_final(strRealPath);
 //
@@ -993,9 +993,7 @@ namespace user
       if (strPath.case_insensitive_begins("uifs:"))
       {
 
-         auto pcontext = m_pcontext;
-
-         ::file::path path = dir()->matter("cloud.ico");
+            ::file::path path = dir()->matter("cloud.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -1019,9 +1017,7 @@ namespace user
       else if (strPath.case_insensitive_begins("fs:"))
       {
 
-         auto pcontext = m_pcontext;
-
-         ::file::path path = dir()->matter("remote.ico");
+            ::file::path path = dir()->matter("remote.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -1045,9 +1041,7 @@ namespace user
       else if (strPath.case_insensitive_begins("ftp:"))
       {
 
-         auto pcontext = m_pcontext;
-
-         ::file::path path = dir()->matter("ftp.ico");
+            ::file::path path = dir()->matter("ftp.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -1072,9 +1066,7 @@ namespace user
       if (strPath.case_insensitive_ends(".aura"))
       {
 
-         auto pcontext = m_pcontext;
-
-         string str = pcontext->m_papexcontext->file()->as_string(strPath);
+            string str = file()->as_string(strPath);
 
          if (str.case_insensitive_begins_eat("ca2prompt\r\n"))
          {
@@ -1223,9 +1215,7 @@ namespace user
       if (getfileimage.m_imagekey.m_strPath.case_insensitive_ends(".desktop"))
       {
 
-         auto pcontext = m_pcontext;
-
-         string str = pcontext->m_papexcontext->file()->as_string(getfileimage.m_imagekey.m_strPath);
+            string str = file()->as_string(getfileimage.m_imagekey.m_strPath);
 
          string_array stra;
 
@@ -1317,7 +1307,7 @@ namespace user
 
          }
 
-         ::image::image_pointer pimage1 = m_pcontext->m_pcontextimage->load_image(strIcon16);
+         ::image::image_pointer pimage1 = m_pcontext->m_pimagecontext->load_image(strIcon16);
 
          if (pimage1.nok())
          {
@@ -1326,11 +1316,7 @@ namespace user
 
          }
 
-         auto pcontext = m_pcontext;
-
-         auto pcontextimage = pcontext->image_context();
-
-         ::image::image_pointer pimage = pcontextimage->load_image(strIcon48);
+         ::image::image_pointer pimage = image()->load_image(strIcon48);
 
          if (pimage.nok())
          {
@@ -1518,7 +1504,7 @@ namespace user
          
       }
       
-      image_pointer pimageFirst;
+      ::image::image_pointer pimageFirst;
       
       auto iaSize = m_iaSize;
       
@@ -1626,7 +1612,7 @@ namespace user
       
       string strPath = pcontext->defer_process_path(getfileimage.m_imagekey.m_strPath);
       
-      image_pointer pimageFirst;
+      ::image::image_pointer pimageFirst;
       
       auto iaSize = m_iaSize;
       
@@ -1775,22 +1761,18 @@ namespace user
 
       synchronouslock.unlock();
 
-      ::file::path path = m_pcontext->m_papexcontext->defer_process_path(pathIcon);
+      ::file::path path = m_pcontext->defer_process_matter_path(pathIcon);
 
       auto pwindowingicon = __create < windowing::icon >();
 
       pwindowingicon->load_file(path);
 
-      auto pdraw2dicon = __create < draw2d::icon >();
+      auto pdraw2dicon = __create < ::image::icon >();
 
       pdraw2dicon->initialize_with_windowing_icon(pwindowingicon);
 
       for (auto iSize : m_iaSize)
       {
-
-         auto pcontext = m_pcontext->m_pauracontext;
-
-         auto pcontextimage = pcontext->image_context();
 
          auto pimage = pdraw2dicon->image_source_image(::size_f64(iSize, iSize));
 
@@ -1915,10 +1897,6 @@ namespace user
       if (strIcon.case_insensitive_begins_eat("icon://"))
       {
 
-         auto pcontext = m_pcontext->m_papexcontext;
-
-         auto pcontextimage = pcontext->image_context();
-
          ::file::path pathFolder = acmedirectory()->ca2roaming() / "matter/icon";
 
          //::file::path pathIco = pathFolder / "ico" / (strIcon + ".ico");
@@ -1961,7 +1939,7 @@ namespace user
             if (acmefile()->exists(pathImage))
             {
 
-               pimage = pcontextimage->get_image(pathImage);
+               pimage = image()->get_image(pathImage);
 
             }
 
@@ -1981,7 +1959,7 @@ namespace user
                      if (acmefile()->exists(pathImage))
                      {
 
-                        pimage = pcontextimage->get_image(pathImage);
+                        pimage = image()->get_image(pathImage);
 
                         if (pimage.ok())
                         {

@@ -143,7 +143,7 @@ bool file_context::exists(const ::file::path &pathParam)
 //bool file_context::is_file_or_dir(const ::file::path & path, ::file::enum_type * petype)
 //{
 //
-//   path = m_pcontext->m_papexcontext->defer_process_matter_path(path, papp, bOptional, bNoCache);
+//   path = m_pcontext->defer_process_matter_path(path, papp, bOptional, bNoCache);
 //
 //   if (bOptional && path.is_empty())
 //   {

@@ -7,7 +7,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/hyperlink.h"
 #include "acme/platform/timer.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
 #include "aura/message/user.h"
@@ -477,11 +477,7 @@ namespace account
          if (stra.get_size() >= 2)
          {
 
-            auto pcontext = m_pcontext->m_pauracontext;
-
-            auto pcontextimage = pcontext->image_context();
-
-            m_plogin->m_pimage = pcontextimage->load_matter_image(stra[0]);
+            m_plogin->m_pimage = image()->load_matter_image(stra[0]);
 
             m_plogin->m_strCred = stra.implode("|", 1);
 

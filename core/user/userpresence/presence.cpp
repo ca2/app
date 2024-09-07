@@ -73,9 +73,7 @@ namespace userpresence
       //if(psystem->m_strAppName == "netnode" || psystem->m_strAppName == "simpledbcfg")
         // return;
 
-      auto pcontext = m_pcontext;
-
-      string strHost = pcontext->m_papexcontext->file()->as_string(dir()->appdata() / "database\\text\\last_good_known_account_com.txt");
+      string strHost = file()->as_string(dir()->appdata() / "database\\text\\last_good_known_account_com.txt");
       string_array straRequestingServer;
       straRequestingServer.add("api.ca2.software");
       straRequestingServer.add("eu-api.ca2.software");
@@ -92,7 +90,7 @@ namespace userpresence
 
       property_set set;
 
-      pcontext->m_papexcontext->http().get(strUrl, set);
+      http()->get(strUrl, set);
 
    }
 

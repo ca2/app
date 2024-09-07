@@ -31,6 +31,7 @@ namespace acme
       ::pointer<::image::image_context>               m_pimagecontext;
       ::pointer<::dir_context>                        m_pdir;
       ::pointer<::file_context>                       m_pfile;
+      ::pointer<::http::context>                      m_phttpcontext;
 
       //::pointer < ::os_context >                      m_poscontext;
 
@@ -90,6 +91,9 @@ namespace acme
       virtual ::file_context* file();
       ::dir_system * dirsystem();
       ::file_system * filesystem();
+
+
+      ::http::context * http();
 
 
       virtual ::payload file_payload(const ::payload & payloadFile);

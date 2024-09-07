@@ -8,7 +8,7 @@
 #include "acme/filesystem/filesystem/listing.h"
 #include "apex/database/_binary_stream.h"
 #include "acme/filesystem/filesystem/dir_context.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/array.h"
 #include "aura/message/user.h"
@@ -108,9 +108,7 @@ namespace userex
 
          m_pimagea->m_imagea.clear();
 
-         auto pcontext = m_pcontext;
-
-         auto papp = get_app();
+            auto papp = get_app();
 
          if (m_pathFolder.has_char())
          {
@@ -127,7 +125,7 @@ namespace userex
 
          load_images();
 
-         ::user::image::image_list::update_data(false);
+         ::user::image_list::update_data(false);
 
       }
 
@@ -161,11 +159,7 @@ namespace userex
 
             ::file::path path = m_plisting->element_at(i);
 
-            auto pcontext = m_pcontext->m_pauracontext;
-
-            auto pcontextimage = pcontext->image_context();
-
-            pimage1 = pcontextimage->load_image(path, { .cache = false });
+            pimage1 = image()->load_image(path, { .cache = false });
 
             if (::is_ok(pimage1))
             {

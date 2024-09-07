@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "image_context.h"
+#include "context.h"
 #include "icon.h"
 #include "frame_array.h"
 //#include "save_options.h"
@@ -178,7 +178,7 @@ i32 image_context::create_image_integer(int w, int h, const image32_t * pimage32
 
    string strPath;
 
-   strPath.formatf("image_pointer://%016" PRIxPTR, pimage.m_p);
+   strPath.formatf("::image::image_pointer://%016" PRIxPTR, pimage.m_p);
 
    _synchronous_lock  synchronouslock(this->synchronization());
 
@@ -197,7 +197,7 @@ i32 image_context::create_image_integer(int w, int h, const image32_t * pimage32
 }
 
 
-image_pointer image_context::integer_image(i32 iImage)
+::image::image_pointer image_context::integer_image(i32 iImage)
 {
 
    _synchronous_lock  synchronouslock(this->synchronization());
@@ -211,7 +211,7 @@ image_pointer image_context::integer_image(i32 iImage)
 }
 
 
-image_pointer image_context::path_image(const ::file::path & path)
+::image::image_pointer image_context::path_image(const ::file::path & path)
 {
 
    _synchronous_lock  synchronouslock(this->synchronization());
@@ -251,10 +251,10 @@ void image_context::_save_to_file(const ::payload & payloadFile, ::image::image 
 }
 
 
-::draw2d::icon_pointer image_context::get_icon(const ::payload & payloadFile, const ::image::load_options & loadoptions)
+::image::icon_pointer image_context::get_icon(const ::payload & payloadFile, const ::image::load_options & loadoptions)
 {
 
-   ::draw2d::icon_pointer picon;
+   ::image::icon_pointer picon;
 
    //auto estatus = 
    
@@ -286,7 +286,7 @@ void image_context::_save_to_file(const ::payload & payloadFile, ::image::image 
 ::image::image_pointer image_context::get_image(const ::payload & payloadFile, const ::image::load_options & loadoptions)
 {
 
-   image_pointer pimage;
+   ::image::image_pointer pimage;
 
    //auto estatus = 
    
@@ -318,7 +318,7 @@ void image_context::_save_to_file(const ::payload & payloadFile, ::image::image 
 ::image::image_pointer image_context::matter_image(const ::string & strMatter, const ::image::load_options & loadoptions)
 {
 
-   image_pointer pimage;
+   ::image::image_pointer pimage;
 
    if (loadoptions.cache)
    {
@@ -362,7 +362,7 @@ void image_context::_save_to_file(const ::payload & payloadFile, ::image::image 
 ::image::image_pointer image_context::load_image(const ::payload & payloadFile, const ::image::load_options & loadoptions)
 {
 
-   image_pointer pimage;
+   ::image::image_pointer pimage;
 
    if (loadoptions.cache)
    {
@@ -414,7 +414,7 @@ void image_context::_save_to_file(const ::payload & payloadFile, ::image::image 
 ::image::image_pointer image_context::load_matter_image(const ::string & strMatter, const ::image::load_options & loadoptions)
 {
 
-   image_pointer pimage;
+   ::image::image_pointer pimage;
 
    if (loadoptions.cache)
    {
@@ -460,7 +460,7 @@ void image_context::_save_to_file(const ::payload & payloadFile, ::image::image 
 ::image::image_pointer image_context::load_matter_icon(string_array & straMatter, string strIcon)
 {
 
-   image_pointer pimage;
+   ::image::image_pointer pimage;
 
    //auto estatus = 
    
@@ -492,7 +492,7 @@ void image_context::_save_to_file(const ::payload & payloadFile, ::image::image 
 ::image::image_pointer image_context::load_thumbnail(const ::payload & payloadFile, int w, int h)
 {
 
-   image_pointer pimage;
+   ::image::image_pointer pimage;
 
    //auto estatus = 
    
@@ -524,7 +524,7 @@ void image_context::_save_to_file(const ::payload & payloadFile, ::image::image 
 ::image::image_pointer image_context::load_thumbnail(const ::string & strPath)
 {
 
-   image_pointer pimage;
+   ::image::image_pointer pimage;
 
    //auto estatus = 
    
@@ -556,7 +556,7 @@ void image_context::_save_to_file(const ::payload & payloadFile, ::image::image 
 ::image::image_pointer image_context::load_dib(const ::file::path & pathDib)
 {
 
-   image_pointer pimage;
+   ::image::image_pointer pimage;
 
    //auto estatus = 
    __construct(pimage);
@@ -791,7 +791,7 @@ void image_context::_load_dib(::image::image *pimage, const ::file::path & pathD
 
       auto pcontext = get_context();
 
-      auto pfile = pcontext->m_papexcontext->file()->get_file(pathDib, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+      auto pfile = file()->get_file(pathDib, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
       //if (!pfile)
       //{
@@ -844,7 +844,7 @@ void image_context::save_image(const ::payload & payloadFile, ::image::image *pi
 
    auto pcontext = get_context();
 
-   pcontext->m_papexcontext->file()->put_memory(payloadFile, mem);
+   file()->put_memory(payloadFile, mem);
 
 }
 
@@ -878,7 +878,7 @@ void image_context::save_dib(const ::file::path & pathDib, ::image::image *pimag
 
       auto pcontext = get_context();
 
-      auto pfile = pcontext->m_papexcontext->file()->get_file(pathDib, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory);
+      auto pfile = file()->get_file(pathDib, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory);
 
       if (pfile)
       {
@@ -1131,13 +1131,7 @@ void image_context::_task_load_image(::image::image *pimage, ::payload payload, 
 
    ::draw2d::lock draw2dlock(this);
 
-   auto pcontext = m_pcontext->m_pauracontext;
-
-   auto pcontextimage = pcontext->image_context();
-
-   //auto estatus =
-   
-   pcontextimage->load_svg(pimage, memory);
+   image()->load_svg(pimage, memory);
 
    if (pimage->m_estatus.succeeded())
    {
@@ -1239,7 +1233,7 @@ void image_context::_os_load_image(::image::image *pimage, memory & memory)
    if (!pimage)
    {
 
-      pimage = __create<image>();
+      pimage = __create<::image::image>();
 
       pimage->set_nok();
 
@@ -1260,9 +1254,9 @@ void image_context::_os_load_image(::image::image *pimage, memory & memory)
 //
 //      auto pcontext = m_pcontext->m_pauracontext;
 //
-//      auto pcontextimage = pcontext->image_context();
+//      auto pimagecontext = pcontext->image_context();
 //
-//      pcontextimage->_load_image(pimage, payloadFile, loadoptions);
+//      image()->_load_image(pimage, payloadFile, loadoptions);
 //
 //   }
 //
@@ -1363,31 +1357,31 @@ enum_format image_context::text_to_format(string strText)
    if (strText == "png")
    {
 
-      return ::draw2d::e_format_png;
+      return ::image::e_format_png;
 
    }
    else if (strText == "jpg" || strText == "jpeg")
    {
 
-      return ::draw2d::e_format_jpeg;
+      return ::image::e_format_jpeg;
 
    }
    else if (strText == "gif")
    {
 
-      return ::draw2d::e_format_gif;
+      return ::image::e_format_gif;
 
    }
    else if (strText == "bmp")
    {
 
-      return ::draw2d::e_format_bmp;
+      return ::image::e_format_bmp;
 
    }
    else
    {
 
-      return ::draw2d::e_format_none;
+      return ::image::e_format_none;
 
    }
 

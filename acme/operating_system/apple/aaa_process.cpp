@@ -400,14 +400,14 @@ namespace apple
 
       ::file::path path = str;
 
-      if(pcontext->m_papexcontext->file()->exists(path.folder() / "libaura.dylib"))
+      if(file()->exists(path.folder() / "libaura.dylib"))
       {
 
          ::file::path folderNew = path.folder();
 
          folderNew -= 3;
 
-         if(pcontext->m_papexcontext->file()->exists(folderNew / "libaura.dylib"))
+         if(file()->exists(folderNew / "libaura.dylib"))
          {
 
             strFallback = folderNew;

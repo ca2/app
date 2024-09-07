@@ -18,7 +18,7 @@ namespace image
    public:
 
 
-      //template < primitive_point POINT, image_source_pointer IMAGE_SOURCE_POINTER >
+      //template < primitive_point POINT, ::image::image_source_pointer IMAGE_SOURCE_POINTER >
       //inline void draw(const POINT & pointDst, IMAGE_SOURCE_POINTER pimagesource, ::image::image_drawing imagedrawing = nullptr)
       //{
 
@@ -29,7 +29,7 @@ namespace image
       //}
 
 
-      //template < image_source_pointer IMAGE_SOURCE_POINTER >
+      //template < ::image::image_source_pointer IMAGE_SOURCE_POINTER >
       //inline void draw(IMAGE_SOURCE_POINTER pimagesource, ::image::image_drawing imagedrawing = nullptr)
       //{
 
@@ -40,7 +40,7 @@ namespace image
       //}
 
 
-      //template < primitive_point POINT, image_source_pointer IMAGE_SOURCE_POINTER >
+      //template < primitive_point POINT, ::image::image_source_pointer IMAGE_SOURCE_POINTER >
       //inline void draw(IMAGE_SOURCE_POINTER pimagesource, const POINT & pointSrc, ::image::image_drawing imagedrawing = nullptr)
       //{
 
@@ -50,7 +50,7 @@ namespace image
 
       //}
 
-      //template < primitive_rectangle RECTANGLE, image_source_pointer IMAGE_SOURCE_POINTER >
+      //template < primitive_rectangle RECTANGLE, ::image::image_source_pointer IMAGE_SOURCE_POINTER >
       //inline void draw(IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE & rectangleSource, ::image::image_drawing imagedrawing = nullptr)
       //{
 
@@ -61,7 +61,7 @@ namespace image
       //}
 
 
-      //template < primitive_size SIZE, image_source_pointer IMAGE_SOURCE_POINTER, primitive_point POINT >
+      //template < primitive_size SIZE, ::image::image_source_pointer IMAGE_SOURCE_POINTER, primitive_point POINT >
       //inline void draw(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, ::image::image_drawing imagedrawing = nullptr)
       //{
 
@@ -72,7 +72,7 @@ namespace image
       //}
 
 
-      //template < primitive_size SIZE, image_source_pointer IMAGE_SOURCE_POINTER, primitive_point POINT >
+      //template < primitive_size SIZE, ::image::image_source_pointer IMAGE_SOURCE_POINTER, primitive_point POINT >
       //inline void draw(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, const POINT & pointSrc, ::image::image_drawing imagedrawing = nullptr)
       //{
 
@@ -83,7 +83,7 @@ namespace image
       //}
 
 
-      //template < primitive_rectangle RECTANGLE, image_source_pointer IMAGE_SOURCE_POINTER >
+      //template < primitive_rectangle RECTANGLE, ::image::image_source_pointer IMAGE_SOURCE_POINTER >
       //inline void draw(const RECTANGLE & rectangleTarget, IMAGE_SOURCE_POINTER pimagesource, ::image::image_drawing imagedrawing = nullptr)
       //{
 
@@ -94,7 +94,7 @@ namespace image
       //}
 
 
-      //template < primitive_rectangle RECTANGLE, image_source_pointer IMAGE_SOURCE_POINTER, primitive_point POINT >
+      //template < primitive_rectangle RECTANGLE, ::image::image_source_pointer IMAGE_SOURCE_POINTER, primitive_point POINT >
       //inline void draw(const RECTANGLE & rectangleTarget, IMAGE_SOURCE_POINTER pimagesource, const POINT & pointSrc, ::image::image_drawing imagedrawing = nullptr)
       //{
 
@@ -105,7 +105,7 @@ namespace image
       //}
 
 
-      //template < primitive_size SIZE, image_source_pointer IMAGE_SOURCE_POINTER >
+      //template < primitive_size SIZE, ::image::image_source_pointer IMAGE_SOURCE_POINTER >
       //inline void draw(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, ::image::image_drawing imagedrawing = nullptr)
       //{
 
@@ -116,7 +116,7 @@ namespace image
       //}
 
 
-      //template < image_source_pointer IMAGE_SOURCE_POINTER, primitive_rectangle RECTANGLE >
+      //template < ::image::image_source_pointer IMAGE_SOURCE_POINTER, primitive_rectangle RECTANGLE >
       //inline void stretch(IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE & rectangleSource, enum_image_selection eimageselection = e_image_selection_default, ::image::image_drawing imagedrawing = nullptr)
       //{
 
@@ -127,7 +127,7 @@ namespace image
       //}
 
 
-      //template < image_source_pointer IMAGE_SOURCE_POINTER, primitive_size SIZE_SRC >
+      //template < ::image::image_source_pointer IMAGE_SOURCE_POINTER, primitive_size SIZE_SRC >
       //inline void stretch(IMAGE_SOURCE_POINTER pimagesource, const SIZE_SRC & sizeSrc, ::image::image_drawing imagedrawing = nullptr)
       //{
 
@@ -138,7 +138,7 @@ namespace image
       //}
 
 
-      //template < primitive_size SIZE, image_source_pointer IMAGE_SOURCE_POINTER >
+      //template < primitive_size SIZE, ::image::image_source_pointer IMAGE_SOURCE_POINTER >
       //inline void stretch(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, ::image::image_drawing imagedrawing = nullptr)
       //{
 
@@ -149,7 +149,7 @@ namespace image
       //}
 
 
-      //template < primitive_size SIZE, image_source_pointer IMAGE_SOURCE_POINTER, primitive_rectangle RECTANGLE >
+      //template < primitive_size SIZE, ::image::image_source_pointer IMAGE_SOURCE_POINTER, primitive_rectangle RECTANGLE >
       //inline void stretch(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE & rectangleSource, enum_image_selection eimageselection = e_image_selection_default, ::image::image_drawing imagedrawing = nullptr)
       //{
 
@@ -160,7 +160,7 @@ namespace image
       //}
 
 
-      //template < primitive_rectangle RECTANGLE, image_source_pointer IMAGE_SOURCE_POINTER >
+      //template < primitive_rectangle RECTANGLE, ::image::image_source_pointer IMAGE_SOURCE_POINTER >
       //inline void stretch(const RECTANGLE & rectangleTarget, IMAGE_SOURCE_POINTER pimagesource, enum_image_selection eimageselection = e_image_selection_default, ::image::image_drawing imagedrawing = nullptr)
       //{
 
@@ -171,7 +171,7 @@ namespace image
       //}
 
 
-      //template < primitive_rectangle RECTANGLE_DST, image_source_pointer IMAGE_SOURCE_POINTER, primitive_rectangle RECTANGLE_SRC >
+      //template < primitive_rectangle RECTANGLE_DST, ::image::image_source_pointer IMAGE_SOURCE_POINTER, primitive_rectangle RECTANGLE_SRC >
       //inline void stretch(const RECTANGLE_DST & rectangleTarget, IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE_SRC & rectangleSource, ::image::image_drawing imagedrawing = nullptr)
       //{
 
@@ -182,7 +182,7 @@ namespace image
       //}
 
 
-      //template < primitive_size SIZE_DST, image_source_pointer IMAGE_SOURCE_POINTER, primitive_size SIZE_SRC >
+      //template < primitive_size SIZE_DST, ::image::image_source_pointer IMAGE_SOURCE_POINTER, primitive_size SIZE_SRC >
       //inline void stretch(const SIZE_DST & sizeDst, IMAGE_SOURCE_POINTER pimagesource, const SIZE_SRC & sizeSrc, ::image::image_drawing imagedrawing = nullptr)
       //{
 

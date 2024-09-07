@@ -12,8 +12,8 @@
 //   public:
 //
 //
-//      ::pointer<image_list>m_pimagelist;
-//      ::pointer<image_list>m_pimagelistDisable;
+//      ::image::image_list_pointer m_pimagelist;
+//      ::image::image_list_pointer m_pimagelistDisable;
 //      ///CBaseNumericDiscreteRelation < ::u32, ::u32, ::u32, ::u32 > m_rel;
 //      atom_map < int > m_rel;
 //

@@ -6,7 +6,7 @@
 #include "frame_array.h"
 #include "drawing.h"
 //#include "save_image.h"
-#include "image_context.h"
+#include "context.h"
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/image/_exif.h"
 #include "acme/graphics/image/image32.h"
@@ -5766,7 +5766,7 @@ void image::SetIconMask(::image::icon* picon, i32 cx, i32 cy)
 void image::rotate(const ::angle_f64 & angle, double dScale)
 {
 
-   image_pointer pimage = this->clone();
+   ::image::image_pointer pimage = this->clone();
 
    rotate(pimage, angle, dScale);
 
@@ -5979,7 +5979,7 @@ void image::rotate(::image::image *pimage, const ::angle_f64 & angle, double dSc
 }
 
 
-image_pointer image::rotated(const ::angle_f64 & angle, double dScale)
+::image::image_pointer image::rotated(const ::angle_f64 & angle, double dScale)
 {
 
    if (dScale == 1.0)
@@ -5988,7 +5988,7 @@ image_pointer image::rotated(const ::angle_f64 & angle, double dScale)
       if (angle.degree() == 90.0)
       {
 
-            auto pimage = image()->create_image({height(), width() });
+            auto pimage = ::particle::image()->create_image({height(), width() });
 
             //if (!create({ pimage->height(), pimage->width() }))
             //{
@@ -6028,7 +6028,7 @@ image_pointer image::rotated(const ::angle_f64 & angle, double dScale)
       else  if (angle.degree() == 180.0)
       {
 
-         auto pimage = image()->create_image(size());
+         auto pimage = ::particle::image()->create_image(size());
 
 
 
@@ -6061,7 +6061,7 @@ image_pointer image::rotated(const ::angle_f64 & angle, double dScale)
       else if (angle.degree() ==270.0)
       {
 
-               auto pimage = image()->create_image({ height(), width() });
+               auto pimage = ::particle::image()->create_image({ height(), width() });
 
             map();
 
@@ -6110,7 +6110,7 @@ image_pointer image::rotated(const ::angle_f64 & angle, double dScale)
 
    }
 
-   auto pimage = image()->create_image({ b, a });
+   auto pimage = ::particle::image()->create_image({ b, a });
 
    map();
 
@@ -6185,7 +6185,7 @@ image_pointer image::rotated(const ::angle_f64 & angle, double dScale)
 }
 
 
-//image_pointer image::rotated(const angle& angle, double dScale)
+//::image::image_pointer image::rotated(const angle& angle, double dScale)
 //{
 //
 //   map();
@@ -7268,7 +7268,7 @@ void image::DivideA(i32 iDivide)
 
 
 
-void image::set_mipmap(::draw2d::enum_mipmap emipmap)
+void image::set_mipmap(::image::enum_mipmap emipmap)
 {
 
    if (m_emipmap == emipmap)
@@ -7280,7 +7280,7 @@ void image::set_mipmap(::draw2d::enum_mipmap emipmap)
 
    }
 
-   if (emipmap != ::draw2d::e_mipmap_none)
+   if (emipmap != ::image::e_mipmap_none)
    {
 
       return _set_mipmap(emipmap);
@@ -7292,10 +7292,10 @@ void image::set_mipmap(::draw2d::enum_mipmap emipmap)
 }
 
 
-void image::_set_mipmap(::draw2d::enum_mipmap emipmap)
+void image::_set_mipmap(::image::enum_mipmap emipmap)
 {
 
-   ASSERT(emipmap != ::draw2d::e_mipmap_none);
+   ASSERT(emipmap != ::image::e_mipmap_none);
 
    ::image::image_pointer pimage = this->clone();
 
@@ -7309,7 +7309,7 @@ void image::_set_mipmap(::draw2d::enum_mipmap emipmap)
 
    double cy = cySource;
 
-   if (emipmap == ::draw2d::e_mipmap_isotropic)
+   if (emipmap == ::image::e_mipmap_isotropic)
    {
 
       double newcx = cx + cx / 2.0 - 1.0;
@@ -7387,7 +7387,7 @@ void image::_set_mipmap(::draw2d::enum_mipmap emipmap)
 
       }
 
-      m_emipmap = ::draw2d::e_mipmap_isotropic;
+      m_emipmap = ::image::e_mipmap_isotropic;
 
    }
    else
@@ -7473,7 +7473,7 @@ void image::_set_mipmap(::draw2d::enum_mipmap emipmap)
 
       }
 
-      m_emipmap = ::draw2d::e_mipmap_anisotropic;
+      m_emipmap = ::image::e_mipmap_anisotropic;
 
    }
 
@@ -9780,20 +9780,20 @@ void image::on_exif_orientation()
    }
 
 }
-
-
-//save_image::save_image(::matter * pmatter)
-save_image::save_image()
-{
-
-   m_eformat = ::draw2d::e_format_png;
-
-   m_iQuality = 100;
-
-   m_iDpi = 96;
-
-}
-
+//
+//
+////save_image::save_image(::matter * pmatter)
+//save_image::save_image()
+//{
+//
+//   m_eformat = ::draw2d::e_format_png;
+//
+//   m_iQuality = 100;
+//
+//   m_iDpi = 96;
+//
+//}
+//
 
 //save_image::save_image(::matter * pmatter, const ::payload & payloadFile, const ::payload & varOptions)
 //{
@@ -9952,7 +9952,7 @@ void image::defer_update_image()
 
    }
 
-   auto pimageNew = image()->create_image(size);
+   auto pimageNew = ::particle::image()->create_image(size);
 
    ::image::image_source imagesource(this, this->rectangle());
 
@@ -10538,7 +10538,7 @@ void image::_unmap()
 //
 
 
-::image_extension* image::get_extension()
+::image::image_extension* image::get_extension()
 {
 
    if (::is_null(m_pextension))
@@ -10636,10 +10636,10 @@ void image::_draw_raw(const ::image::image_drawing& imagedrawing)
 
 
 
-image_pointer image::get_resized_image(const ::size_i32 & size)
+::image::image_pointer image::get_resized_image(const ::size_i32 & size)
 {
 
-   image_pointer pimage;
+   ::image::image_pointer pimage;
 
    m_pcontext->__construct(pimage);
 

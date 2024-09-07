@@ -364,7 +364,7 @@ namespace html
          else if (m_etag == tag_img)
          {
 
-            m_pimpl = ::place(new ::html::impl::image::image());
+            m_pimpl = ::place(new ::html::impl::image());
 
          }
          else if (m_etag == tag_table && m_elementalptra.has_elements())
@@ -1006,7 +1006,7 @@ namespace html
 
             auto pcontext = get_context();
 
-            ::string str = pcontext->m_papexcontext->file()->as_string(strUrl);
+            ::string str = file()->as_string(strUrl);
 
             auto range = str();
 
@@ -1056,7 +1056,7 @@ namespace html
 
             auto pcontext = get_context();
 
-            string str = pcontext->m_papexcontext->file()->as_string(m_pparent->get_tag()->get_attr_value("href"));
+            string str = file()->as_string(m_pparent->get_tag()->get_attr_value("href"));
 
             auto range = str();
 

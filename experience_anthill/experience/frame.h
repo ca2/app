@@ -32,7 +32,7 @@ namespace experience_anthill
 
 
 
-      ::pointer<::draw2d::fastblur>         m_pfastblur;
+      ::pointer<::image::fastblur>         m_pfastblur;
       ::draw2d::pen_pointer                  m_ppenText1;
       ::draw2d::pen_pointer                  m_ppenFace1;
       ::draw2d::pen_pointer                  m_ppenHilight1;

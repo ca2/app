@@ -258,7 +258,7 @@ namespace android
    //         for(::collection::index i = iStart; i < pstraRelative->get_size(); i++)
    //         {
 
-   //            pstraRelative->element_at(i) = get_context()->dir_context().path(pcontext->m_papexcontext->file()->name_(strDir), pstraRelative->element_at(i));
+   //            pstraRelative->element_at(i) = get_context()->dir_context().path(file()->name_(strDir), pstraRelative->element_at(i));
 
    //         }
 
@@ -894,7 +894,7 @@ namespace android
                   str.trim_right("\\/");
                   try
                   {
-                     pcontext->m_papexcontext->file()->del(str);
+                     file()->del(str);
                   }
                   catch (...)
                   {
@@ -903,7 +903,7 @@ namespace android
                   str.trim_right("\\/");
                   try
                   {
-                     pcontext->m_papexcontext->file()->del(str);
+                     file()->del(str);
                   }
                   catch (...)
                   {
@@ -993,7 +993,7 @@ namespace android
 
       xml::document doc;
 
-      doc.load(pcontext->m_papexcontext->file()->as_string(appdata() / "configuration\\directory.xml"));
+      doc.load(file()->as_string(appdata() / "configuration\\directory.xml"));
 
       ::file::path pathInstall = ::acmeacmesystem()->m_pathCacheDir;
 

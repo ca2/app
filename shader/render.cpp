@@ -20,7 +20,7 @@
 CLASS_DECL_ACME ::color::color dk_red(); // <3ThomasBorregaardSorensen!!
 
 
-void image_gl_set(image* pimage);
+void image_gl_set(::image::image* pimage);
 
 
 namespace app_shader

@@ -18,11 +18,11 @@ public:
 
    ::payload                        m_payload;
    ::image::image_pointer                  m_pimage;
-   ::pointer<::image_context>       m_pcontextimage;
-   ::function < void(image *) >     m_functionLoaded;
+   ::pointer<::image::image_context>       m_pimagecontext;
+   ::function < void(::image::image *) >     m_functionLoaded;
 
 
-   load_image(::image_context * pcontextimage);
+   load_image(::image::image_context * pimagecontext);
    ~load_image() override;
 
 

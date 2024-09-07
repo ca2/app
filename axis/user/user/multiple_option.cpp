@@ -560,7 +560,7 @@ namespace user
 
       r.deflate(iPad);
 
-      int iW = (r.width()) / m_atomaOptions.size() ;
+      int iW = (int) ( r.width() / m_atomaOptions.size()) ;
 
       int x = iPad;
 

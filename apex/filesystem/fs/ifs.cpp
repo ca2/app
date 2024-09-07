@@ -150,7 +150,7 @@ bool ifs::enumerate(::file::listing & listing)
 
    //property_set set;
 
-   //strSource = m_pcontext->m_papexcontext->http().get(strUrl, set);
+   //strSource = http()->get(strUrl, set);
 
    //if(strSource.is_empty())
    //{

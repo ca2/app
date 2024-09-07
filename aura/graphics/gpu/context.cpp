@@ -10,7 +10,7 @@
 #include "aura/graphics/image/image.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/platform/system.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 //#include "_defer.h"
 
 

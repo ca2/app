@@ -9,7 +9,7 @@
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/draw2d.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
@@ -1687,7 +1687,7 @@ void simple_toolbar::_001DiscardImageList()
 }
 
 
-void simple_toolbar::_001SetImageList(::pointer<::image::image_list>imagelist)
+void simple_toolbar::_001SetImageList(::image::image_list_pointer imagelist)
 {
 
    __UNREFERENCED_PARAMETER(imagelist);

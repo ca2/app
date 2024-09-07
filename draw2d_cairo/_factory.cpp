@@ -16,7 +16,7 @@ __FACTORY_EXPORT void draw2d_cairo_factory(::factory::factory * pfactory)
 
    //init_cairo_mutex();
 
-   pfactory->add_factory_item < ::draw2d_cairo::image::image, ::image::image >();
+   pfactory->add_factory_item < ::draw2d_cairo::image, ::image::image >();
    pfactory->add_factory_item < ::draw2d_cairo::graphics, ::draw2d::graphics >();
    pfactory->add_factory_item < ::draw2d_cairo::bitmap, ::draw2d::bitmap >();
    pfactory->add_factory_item < ::draw2d_cairo::pen, ::draw2d::pen >();

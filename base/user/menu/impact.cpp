@@ -15,7 +15,7 @@
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/message/user.h"
 #include "aura/platform/node.h"
@@ -223,11 +223,7 @@ namespace user
 
       papp->datastream()->get(m_atom + ".cur_text", strText);
 
-      auto pcontext = m_pcontext->m_pauracontext;
-
-      auto pcontextimage = pcontext->image_context();
-
-      m_pimageLogo = pcontextimage->load_image("matter://main/logo.png", { .cache = false });
+      m_pimageLogo = image()->load_image("matter://main/logo.png", { .cache = false });
 
       __construct(m_pfontTitle);
 
@@ -724,7 +720,7 @@ namespace user
 
       auto pcontext = get_context();
 
-      string strXml = pcontext->m_papexcontext->file()->as_string(payloadFile);
+      string strXml = file()->as_string(payloadFile);
 
       auto pxmldoc = __create_new < ::xml::document >();
 
@@ -808,11 +804,7 @@ namespace user
 
             pmenuitemCommand->m_strTitle = strTitle;
 
-            auto pcontext = m_pcontext->m_pauracontext;
-
-            auto pcontextimage = pcontext->image_context();
-
-            ::image::image_pointer pimage1 = pcontextimage->load_image(pnodeChild->attribute("image"), { .cache = false });
+            ::image::image_pointer pimage1 = image()->load_image(pnodeChild->attribute("image"), { .cache = false });
 
             if (pimage1)
             {

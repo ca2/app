@@ -1034,7 +1034,7 @@ namespace dynamic_source
 
       }
 
-      bool bFileExists = pcontext->m_papexcontext->file()->exists(strPath);
+      bool bFileExists = file()->exists(strPath);
 
       m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
 
@@ -1098,7 +1098,7 @@ namespace dynamic_source
 
       // roughly detect this way: by finding the <?
 
-      bool bHasScript = pcontext->m_papexcontext->file()->safe_get_string(strPath).contains("<?");
+      bool bHasScript = file()->safe_get_string(strPath).contains("<?");
 
       m_mapIncludeHasScript.set_at(strPath, bHasScript);
 
@@ -1624,7 +1624,7 @@ namespace dynamic_source
 
       auto pcontext = get_context();
 
-      auto pfile = pcontext->m_papexcontext->file()->get_file(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_no_exception_on_open);
+      auto pfile = file()->get_file(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_no_exception_on_open);
 
       if (!pfile || pfile->m_estatus.failed())
       {

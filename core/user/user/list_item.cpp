@@ -3,7 +3,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 //#include "core/user/user/_component.h"
 #endif
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/list.h"
@@ -155,7 +155,7 @@ namespace user
       if (m_pcolumn->m_bIcon)
       {
 
-         draw2d::icon * picon;
+         ::image::icon * picon;
 
          if (m_pcolumn->m_mapIcon.lookup((i32)m_iImage, picon))
          {

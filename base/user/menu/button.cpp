@@ -263,7 +263,7 @@ namespace user
          ::rectangle_i32 rectangleImageBorder = rectangleImage;
          rectangleImageBorder.inflate(2, 2);
          ::image::image_list::info ii;
-         ::pointer<image_list>pimagelist;
+         ::image::image_list_pointer  pimagelist;
 
          auto psession = get_session();
 

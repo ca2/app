@@ -34,7 +34,7 @@ namespace user
 
       pointer_array < ::user::tree >         m_usertreea;
       pointer_array < ::user::tree >         m_usertreeaBound;
-      ::pointer<::image::image_list>                m_pimagelist;
+      ::image::image_list_pointer                 m_pimagelist;
 
 
 

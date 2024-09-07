@@ -169,7 +169,7 @@ namespace write_text
 
       __construct_new(pmemory);
 
-      *pmemory = pcontext->m_papexcontext->file()->as_memory(path);
+      *pmemory = file()->as_memory(path);
 
       return pmemory;
 

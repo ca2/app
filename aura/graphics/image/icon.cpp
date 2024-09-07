@@ -143,7 +143,7 @@ namespace image
    }
 
 
-   image_pointer icon::image_source_image(const ::size_i32 & size)
+   ::image::image_pointer icon::image_source_image(const ::size_i32 & size)
    {
 
       bool bExists;
@@ -227,7 +227,7 @@ namespace image
    }
 
 
-   /*image_pointer icon::image::image_source_image(const concrete < ::size_i32 > & size) const
+   /*::image::image_pointer icon::image::image_source_image(const concrete < ::size_i32 > & size) const
    {
 
       return ((icon *)this)->get_image(size);
@@ -322,7 +322,7 @@ namespace image
    }
 
 
-   ::size_i32 icon::image::image_source_size() const
+   ::size_i32 icon::image_source_size() const
    { 
       
       return image_source_size(::size_f64(), e_image_selection_default);

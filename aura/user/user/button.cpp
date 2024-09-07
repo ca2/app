@@ -13,7 +13,7 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/list.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 #include "aura/windowing/windowing.h"
 #include "aura/user/appearance/appearance.h"
 #include "aura/message/user.h"
@@ -1265,21 +1265,17 @@ namespace user
 
       }
 
-      auto pcontext = m_pcontext->m_pauracontext;
-
-      auto pcontextimage = pcontext->image_context();
-
       if(!payload.is_empty())
       {
 
-         m_pbitmap->m_pimage = pcontextimage->get_image(payload);
+         m_pbitmap->m_pimage = image()->get_image(payload);
 
       }
 
       if(!varSel.is_empty())
       {
 
-         m_pbitmap->m_pimageSel = pcontextimage->get_image(varSel);
+         m_pbitmap->m_pimageSel = image()->get_image(varSel);
 
       }
 
@@ -1287,7 +1283,7 @@ namespace user
       if(!varFocus.is_empty())
       {
 
-         m_pbitmap->m_pimageFocus = pcontextimage->get_image(varFocus);
+         m_pbitmap->m_pimageFocus = image()->get_image(varFocus);
 
       }
 
@@ -1295,7 +1291,7 @@ namespace user
       if(!varDisabled.is_empty())
       {
          
-         m_pbitmap->m_pimageDisabled = pcontextimage->get_image(varDisabled);
+         m_pbitmap->m_pimageDisabled = image()->get_image(varDisabled);
 
       }
 
@@ -1303,7 +1299,7 @@ namespace user
       if(!varHover.is_empty())
       {
 
-         m_pbitmap->m_pimageHover = pcontextimage->get_image(varHover);
+         m_pbitmap->m_pimageHover = image()->get_image(varHover);
 
       }
 

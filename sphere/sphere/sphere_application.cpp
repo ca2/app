@@ -684,7 +684,7 @@ namespace sphere
             {
                if(case_insensitive_string_ends(pcreate->m_payloadFile, ".ca2"))
                {
-                  string strCommand = pcontext->m_papexcontext->file()->as_string(pcreate->m_payloadFile);
+                  string strCommand = file()->as_string(pcreate->m_payloadFile);
                   if(strCommand.begins_eat("ca2prompt\r")
                   || strCommand.begins_eat("ca2prompt\n"))
                   {

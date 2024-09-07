@@ -270,7 +270,7 @@ return g_pdraw2dcairo;
 //   ::draw2d::graphics_pointer & pgraphics,
 //   const ::rectangle_i32 & rectangle,
 //   string strText,
-//   ::draw2d::fastblur & blur,
+//   ::image::fastblur & blur,
 //   ::image::image_pointer & imageBlur,
 //   ::write_text::font * pfont,
 //   const ::e_align & ealign,
@@ -942,7 +942,7 @@ return g_pdraw2dcairo;
 //
 //      double dAndroid = 4.4;
 //
-//      string strSystemFonts = pcontext->m_papexcontext->file()->as_string("/system/etc/system_fonts.xml");
+//      string strSystemFonts = file()->as_string("/system/etc/system_fonts.xml");
 //
 //            auto psystem = system()->m_paurasystem;
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 
 
 #include <FreeImage.h>
@@ -12,7 +12,7 @@ namespace imaging_freeimage
 
 
    class CLASS_DECL_IMAGING_FREEIMAGE image_context :
-      virtual public ::image_context
+      virtual public ::image::image_context
    {
    public:
 
@@ -21,10 +21,10 @@ namespace imaging_freeimage
       ~image_context() override;
 
 
-      virtual void _load_image(::image::image *pimageParam, const ::payload & payloadFile, const image::load_options & loadoptions) override;
+      void _load_image(::image::image *pimageParam, const ::payload & payloadFile, const image::load_options & loadoptions) override;
 
-      virtual void _load_image(::image::image *pimage, ::pointer<image_frame_array>& pframea, memory & memory) override;
-      virtual void save_image(memory & memory, ::image::image *pimage, const ::save_image * psaveimage) override;
+      void _load_image(::image::image *pimage, ::pointer<::image::image_frame_array>& pframea, memory & memory) override;
+      void save_image(memory & memory, ::image::image *pimage, const ::image::save_options & saveoptions) override;
       //void load_svg(::image::image *pimage, memory & memory) override;
 
       //virtual void _load_image(::particle * pparticle, image_frame_array * pimageframea, const ::memory & memory);

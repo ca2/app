@@ -35,6 +35,8 @@
 
 namespace image
 {
+
+
    class image_map :
       virtual public map < enum_image, ::image::image_pointer >
    {

@@ -390,7 +390,7 @@ namespace filemanager
 
    //   auto pcontext = get_context();
 
-   //   ::file::path pathFinal = pcontext->m_papexcontext->defer_process_path(pathUser);
+   //   ::file::path pathFinal = m_pcontext->defer_process_matter_path(pathUser);
 
    //   ::pointer<::file::item>pitem = ::place(new ::file::item(pathUser, pathFinal));
 
@@ -1068,7 +1068,7 @@ namespace filemanager
    void document::_001OnEditPaste(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-      //pcontext->m_papexcontext->file()->paste(pfilemanagerdata->filemanager_item().m_strPath, psystem->m_strCopy);
+      //file()->paste(pfilemanagerdata->filemanager_item().m_strPath, psystem->m_strCopy);
       //update_all_impacts(nullptr, 123, nullptr);
       //pmessage->m_bRet = true;
    }

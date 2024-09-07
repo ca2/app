@@ -25,7 +25,7 @@ public:
    class ::time                                      m_timeLastSaveWindowRectRequest;
    ::image::image_pointer                                 m_pimageBk;
    ::rectangle_i32                                 m_FullScreenWindowRect;
-   ::pointer<::draw2d::fastblur>                   m_pfastblur;
+   ::pointer<::image::fastblur>                   m_pfastblur;
    ::image::image_pointer                                 m_pimageBlur;
    ::user::enum_translucency                       m_etranslucencyFrame;
    ::image::image_pointer                                 m_pimageAlpha;

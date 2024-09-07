@@ -24,7 +24,7 @@ namespace windowing
       enum_cursor                                  m_ecursor;
       ::size_i32                                   m_szHotspotOffset;
       ::pointer<::image::cursor>                  m_pcursor;
-      image_pointer                                m_pimage;
+      ::image::image_pointer                                m_pimage;
       ::file::path                                 m_path;
       ::pointer < ::windowing::cursor_manager >    m_pcursormanager;
       //bool                                       m_bLoadSystemDefaultCursorHint;

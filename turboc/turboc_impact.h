@@ -40,8 +40,8 @@ namespace turboc
 
       string                  m_strImage;
       ::image::image_pointer        m_pimagePost;
-      ::draw2d::fastblur      m_pimageImage;
-/*      ::draw2d::fastblur      m_pimage;
+      ::image::fastblur      m_pimageImage;
+/*      ::image::fastblur      m_pimage;
       ::image::image_pointer        m_pimageColor;
       ::image::image_pointer        m_pimageWork;
       ::image::image_pointer        m_pimageFast;

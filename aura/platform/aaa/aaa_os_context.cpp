@@ -391,7 +391,7 @@
       if(case_insensitive_string_ends(strSource, ".desktop"))
       {
 
-         string str = pcontext->m_papexcontext->file()->as_string(strSource);
+         string str = file()->as_string(strSource);
 
          string_array stra;
 

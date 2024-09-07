@@ -120,7 +120,7 @@ namespace filemanager
 
    //   //      bool bIsDir = false;
 
-   //   //      ::file::path path = pcontext->m_papexcontext->defer_process_path(pathAddress | ::file::e_flag_resolve_alias);
+   //   //      ::file::path path = m_pcontext->defer_process_matter_path(pathAddress | ::file::e_flag_resolve_alias);
 
    //   //      bIsDir = filemanager_document()->fs_data()->is_dir(path);
 
@@ -277,7 +277,7 @@ namespace filemanager
 
             pathToProcess.flags() += ::file::e_flag_resolve_alias;
 
-            ::file::path path = pcontext->m_papexcontext->defer_process_path(pathToProcess);
+            ::file::path path = m_pcontext->defer_process_matter_path(pathToProcess);
 
             bIsDir = filemanager_data()->fs_data()->is_dir(path);
 

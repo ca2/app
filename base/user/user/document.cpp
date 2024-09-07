@@ -841,7 +841,7 @@ namespace user
 
       auto pcontext = get_context();
 
-      m_path = pcontext->m_papexcontext->defer_process_path(pathFull);
+      m_path = m_pcontext->defer_process_matter_path(pathFull);
       //m_filepathEx = strFullPath;
       //!m_strPathName.is_empty());       // must be set to something
       m_bEmbedded = false;
@@ -867,7 +867,7 @@ namespace user
       ASSERT_VALID(this);
 
       // set the document_interface title based on path name
-      string strTitle = pcontext->m_papexcontext->file()->title_(m_strPathName);
+      string strTitle = file()->title_(m_strPathName);
       set_title(strTitle);
 
 
@@ -1092,7 +1092,7 @@ namespace user
 
       //auto pcontext = get_context();
 
-      //auto preader = pcontext->m_papexcontext->file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+      //auto preader = file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
       //if (preader.nok())
       //{
@@ -1165,7 +1165,7 @@ namespace user
 
       //auto pcontext = get_context();
 
-      //auto preader = pcontext->m_papexcontext->file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+      //auto preader = file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
       //if (preader.nok())
       //{
@@ -1241,7 +1241,7 @@ namespace user
 
       auto pcontext = get_context();
 
-      auto pwriter = pcontext->m_papexcontext->file()->get_writer(payloadFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive | ::file::e_open_no_exception_on_open);
+      auto pwriter = file()->get_writer(payloadFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive | ::file::e_open_no_exception_on_open);
 
       if(pwriter.nok())
       {
@@ -1853,7 +1853,7 @@ namespace user
             try
             {
 
-               pcontext->m_papexcontext->file()->erase(newName);
+               file()->erase(newName);
 
             }
             catch(const ::exception &)
@@ -1880,7 +1880,7 @@ namespace user
 
       auto pcontext = get_context();
 
-      if (is_new_document() || pcontext->m_papexcontext->file()->is_read_only(m_path))
+      if (is_new_document() || file()->is_read_only(m_path))
       {
 
          // we do not have read-write access or the file does not (now) exist

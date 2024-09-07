@@ -82,7 +82,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         ::file::path filepathUser = pcontext->m_papexcontext->defer_process_path(filepathFinal);
+         ::file::path filepathUser = m_pcontext->defer_process_matter_path(filepathFinal);
 
          auto pfileitem = ::place(new ::file::item(filepathUser, filepathFinal));
 
@@ -150,8 +150,6 @@ namespace filemanager
 
       ::file::listing listing;
 
-      auto pcontext = m_pcontext;
-
       listing.set_listing(strParent);
 
       dir()->enumerate(listing);
@@ -187,7 +185,7 @@ namespace filemanager
          {
             pcolumn->m_pimagelist = ::place(new ::image::image_list());
          }
-         ::pointer<::image::image_list>pil = pcolumn->m_pimagelist;
+         ::image::image_list_pointer pil = pcolumn->m_pimagelist;
          //if(pil->GetSafeHandle() != nullptr)
          //pil->DeleteImageList();
          //if(pil->create(16, 16, ILC_COLOR32 | ILC_MASK, 0, 1))

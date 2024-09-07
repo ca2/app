@@ -20,7 +20,7 @@ namespace image
 
       i32_map < string > m_mapIntPath;
       string_map < i32 > m_mapPathInt;
-      string_map < image_pointer > m_mapPathImage;
+      string_map < ::image::image_pointer > m_mapPathImage;
       int         m_iImageSeed;
       ::pointer < ::particle >         m_pparticleImageSynchronization;
 
@@ -59,11 +59,11 @@ namespace image
 
       virtual i32 image_integer(const ::file::path & path);
       virtual i32 create_image_integer(int w, int h, const image32_t * pcolor, int iScan = -1);
-      virtual image_pointer integer_image(i32 i);
-      virtual image_pointer path_image(const ::file::path & pathImage);
+      virtual ::image::image_pointer integer_image(i32 i);
+      virtual ::image::image_pointer path_image(const ::file::path & pathImage);
 
 
-      virtual ::draw2d::icon_pointer get_icon(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
+      virtual ::image::icon_pointer get_icon(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
       virtual ::image::image_pointer get_image(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
       virtual ::image::image_pointer matter_image(const ::string & strMatter, const ::image::load_options & loadoptions = ::image::load_options());
 

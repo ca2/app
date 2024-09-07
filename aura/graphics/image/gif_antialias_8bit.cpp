@@ -2,13 +2,15 @@
 #include "frame_array.h"
 
 
+namespace image
+{
 
 #define pixel(x, y) (ba[(pointer->m_rectangle.height() - (y) - 1) * iScan + (x)])
 
 //#define trans(color, alpha, un) (color * color * alpha * un / (255.0 * 255.0))
 #define trans(color, alpha, un) (color * alpha /  255.0)
 
-bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagepointera, image_pointer * pointer, int uFrameIndex, u8 * ba, int iScan, color_array & colora, int transparentIndex)
+bool draw2d_gif_antialias_8bit(::image::image & imageCompose, image_frame_array * pimagepointera, ::image::image_pointer * pointer, int uFrameIndex, u8 * ba, int iScan, color_array & colora, int transparentIndex)
 {
 
    return true;
@@ -1053,3 +1055,9 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //   return true;
 
 }
+
+
+} // namespace image
+
+
+

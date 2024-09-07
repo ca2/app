@@ -74,7 +74,7 @@ namespace image
    }
 
 
-   image_pointer cursor_get_image(cursor * pcursor)
+   ::image::image_pointer cursor_get_image(cursor * pcursor)
    {
 
       return pcursor->m_pimage;

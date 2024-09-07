@@ -503,7 +503,7 @@ namespace sqlite
 
          auto pcontext = get_context();
 
-         pcontext->m_papexcontext->file()->erase(m_strName);
+         file()->erase(m_strName);
 
       }
       catch (...)

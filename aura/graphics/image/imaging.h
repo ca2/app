@@ -335,7 +335,7 @@ public:
    void free_work_image(::image::image *pimage);
    
 
-   virtual bool draw2d_gif_draw_frame(::image::image *pimageCanvas, image_frame_array * pframea, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & colora, int transparentIndex);
+   virtual bool draw2d_gif_draw_frame(::image::image *pimageCanvas, image_frame_array * pframea, ::image::image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, color_array & colora, int transparentIndex);
 
    virtual bool nanosvg(::image::image *pimage, void * pNSVGimage, int iRedLower);
 

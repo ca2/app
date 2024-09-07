@@ -68,7 +68,7 @@ namespace image
       ~image_meta();
 
 
-      //inline ::pointer<::image_frame_array>frames();
+      //inline ::pointer<::image::image_frame_array>frames();
 
 
 

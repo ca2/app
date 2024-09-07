@@ -2,7 +2,7 @@
 #include "imaging.h"
 #include "list.h"
 #include "fastblur.h"
-#include "image_context.h"
+#include "context.h"
 #include "array.h"
 #include "acme/graphics/image/image32.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -285,12 +285,12 @@ i32                 cy)
 //             crTransparent);
 //}
 
-/*::pointer<::image::image_list>imaging::CreateGrayVRCPImageList(
+/*::image::image_list_pointer imaging::CreateGrayVRCPImageList(
 ::draw2d::graphics * pgraphics,
-::pointer<::image::image_list>pilGray,
-::pointer<::image::image_list>pilParam)
+::image::image_list_pointer pilGray,
+::image::image_list_pointer pilParam)
 {
-::pointer<::image::image_list>pil = pilGray;
+::image::image_list_pointer pil = pilGray;
 
 pil->create(pilParam);
 
@@ -313,12 +313,12 @@ return pil;
 
 void imaging::CreateHueImageList(
 ::draw2d::graphics * pgraphics,
-::pointer<::image::image_list>pilGray,
-::pointer<::image::image_list>pilParam,
+::image::image_list_pointer pilGray,
+::image::image_list_pointer pilParam,
 ::color::color crHue,
 double dCompress)
 {
-::pointer<::image::image_list>pil = pilGray;
+::image::image_list_pointer pil = pilGray;
 
 if(!pil->create(pilParam))
 return false;
@@ -402,11 +402,11 @@ void imaging::change_hue(image_list * pilHue, image_list * pil, const ::color::c
 
 
 /*
-::pointer<::image::image_list>imaging::CreateGrayVRCPImageList(
+::image::image_list_pointer imaging::CreateGrayVRCPImageList(
 ::draw2d::graphics * pgraphics,
-::pointer<::image::image_list>pilParam)
+::image::image_list_pointer pilParam)
 {
-::pointer<::image::image_list>pil = new ::image::image_list ();
+::image::image_list_pointer pil = new ::image::image_list ();
 
 pil->create(pilParam);
 
@@ -2221,7 +2221,7 @@ void imaging::blur(::image::image *pimage, i32 iRadius)
 
    }
 
-   ::draw2d::fastblur f;
+   ::image::fastblur f;
 
    f.initialize(pimage->size(), iRadius);
 
@@ -2242,7 +2242,7 @@ void imaging::blur(::image::image *pimage, rectangle_i32 rectangle, i32 iRadius)
 
    }
 
-   ::draw2d::fastblur fastblur;
+   ::image::fastblur fastblur;
 
    fastblur.initialize(rectangle.size(), abs(iRadius));
       //return false;

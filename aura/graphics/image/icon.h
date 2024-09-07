@@ -17,7 +17,7 @@ namespace image
 
 
    /// <summary>
-   /// icon * -> image_source_pointer concept
+   /// icon * -> ::image::image_source_pointer concept
    /// </summary>
    class CLASS_DECL_AURA icon :
       virtual public ::image::image_source_interface
@@ -67,10 +67,10 @@ namespace image
       inline ::size_f64 origin() const { return ::size_f64(); }
 
 
-//      image_pointer get_image(const concrete < ::size_i32 > & size);
+//      ::image::image_pointer get_image(const concrete < ::size_i32 > & size);
 
 
-      image_pointer image_source_image(const ::size_i32& size) override;
+      ::image::image_pointer image_source_image(const ::size_i32& size) override;
 
 
       // inline concrete < ::size_i32 > size_i32(const ::size_f64 & sizeDst, const ::size_f64 & sizeSrc, enum_image_selection eimageselection) const { return get_image(sizeDst)->size_i32(sizeDst, sizeSrc, eimageselection); }

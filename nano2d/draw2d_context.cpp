@@ -7,7 +7,7 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/image/image.h"
-#include "aura/graphics/image/image_context.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/write_text/font.h"
 
 
@@ -433,7 +433,7 @@ namespace nano2d
 
       }
 
-      auto pimage = m_pgraphics->m_pcontext->image_context()->integer_image(iImage);
+      auto pimage = m_pgraphics->image()->integer_image(iImage);
 
       return image_pattern_from_image(cx, cy, w, h, angle, alpha, pimage);
 
@@ -1071,7 +1071,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
    int draw2d_context::create_image(const ::scoped_string& scopedstrFilename, int imageFlags)
    {
 
-      return m_pgraphics->m_pcontext->image_context()->image_integer(scopedstrFilename);
+      return m_pgraphics->image()->image_integer(scopedstrFilename);
 
    }
 
@@ -1098,7 +1098,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
 
       }
       
-      auto pimage = m_pgraphics->m_pcontext->image_context()->integer_image(image);
+      auto pimage = m_pgraphics->image()->integer_image(image);
 
       if (::is_null(pimage))
       {
@@ -1129,11 +1129,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
 
       auto pgraphics = m_pgraphics;
 
-      auto pcontext = pgraphics->m_pcontext;
-
-      auto pcontextimage = pcontext->image_context();
-
-      auto pimage = pcontextimage->integer_image(image);
+      auto pimage = ::particle::image()->integer_image(image);
 
       pimage->map();
 

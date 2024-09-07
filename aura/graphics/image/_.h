@@ -21,10 +21,21 @@ namespace image
    class image_frame_array;
 
 
+   class size_image;
+
+   class image_map;
+
+
    class fastblur;
 
 
+   class image_list;
+
+
    using image_list_pointer = ::pointer<::image::image_list>;
+
+
+   using icon_pointer = ::pointer<icon>;
 
 
 } // namespace image

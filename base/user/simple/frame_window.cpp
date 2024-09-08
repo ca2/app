@@ -1002,7 +1002,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
             ::file::path pathFrameJson = "matter://" + m_pimpactsystem->m_atom + "/frame.network_payload";
 
-            auto pcontext = get_context();
+            //auto pcontext = get_context();
 
             m_varFrame = file()->safe_get_network_payload(pathFrameJson);
 

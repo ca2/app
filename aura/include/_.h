@@ -1006,7 +1006,6 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 //namespace draw2d
 //{
 //
-//   class icon;
 //   class graphics;
 //   class bitmap;
 //   class brush;
@@ -1036,7 +1035,6 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////   class graphics;
 ////
 ////
-////   class icon;
 ////   class cursor;
 ////   class region;
 ////   class brush;

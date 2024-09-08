@@ -28,15 +28,12 @@ namespace draw2d
    class printer;
    
 
-   class cursor;
    class brush;
    class pen;
    class region;
    class path;
    class host;
    class graphics;
-   class bitmap;
-   class icon;
    class bitmap;
 
 
@@ -59,9 +56,6 @@ namespace draw2d
    using bitmap_pointer = ::pointer<bitmap>;
    using path_pointer = ::pointer<path>;
    using region_pointer = ::pointer<region>;
-
-
-   class icon;
 
 
    CLASS_DECL_ACME void colora_from_quada(color_array & colora, WINRGBQUAD * prgbquad, int iCount);

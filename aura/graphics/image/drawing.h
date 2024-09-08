@@ -13,7 +13,7 @@ namespace image
 {
 
 
-   class CLASS_DECL_AURA ::image::image_drawing_options :
+   class CLASS_DECL_AURA image_drawing_options :
       public color_filter
    {
    public:
@@ -30,16 +30,16 @@ namespace image
       bool                    m_bIntegerPlacement = false;
 
 
-      ::image::image_drawing_options();
-      ::image::image_drawing_options(const ::image::image_drawing_options & imagedrawingoptions);
+      image_drawing_options();
+      image_drawing_options(const ::image::image_drawing_options & imagedrawingoptions);
 
-      explicit ::image::image_drawing_options(const ::rectangle_f64 & rectangleTarget, const ::image::enum_placement & eplacement = e_placement_stretch, const ::point_f64 & pointAlign = ::point_f64(0., 0.), enum_image_selection eimageselection = e_image_selection_default);
+      explicit image_drawing_options(const ::rectangle_f64 & rectangleTarget, const ::image::enum_placement & eplacement = e_placement_stretch, const ::point_f64 & pointAlign = ::point_f64(0., 0.), enum_image_selection eimageselection = e_image_selection_default);
 
 
    };
 
 
-   class CLASS_DECL_AURA ::image::image_drawing :
+   class CLASS_DECL_AURA image_drawing :
       public ::image::image_drawing_options,
       public ::image::image_source
    {
@@ -51,15 +51,15 @@ namespace image
       using ::image::image_drawing_options::operator=;
 
 
-      ::image::image_drawing(const ::image::image_drawing & imagedrawing) ;
+      image_drawing(const ::image::image_drawing & imagedrawing) ;
 
 
-      ::image::image_drawing(::image::image_drawing && imagedrawing) noexcept;
+      image_drawing(::image::image_drawing && imagedrawing) noexcept;
 
 
-      ::image::image_drawing(const ::image::image_drawing_options & imagedrawingoptions, const ::image::image_source & imagesource);
+      image_drawing(const ::image::image_drawing_options & imagedrawingoptions, const ::image::image_source & imagesource);
 
-      ::image::image_drawing(const ::image::image_source & imagesource);
+      image_drawing(const ::image::image_source & imagesource);
 
       ::rectangle_f64 source_rectangle() const;
 

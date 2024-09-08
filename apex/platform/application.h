@@ -1074,7 +1074,7 @@ namespace apex
 
       virtual string as_string(const ::payload & payload);
 
-#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(LINUX) || defined(__BSD__)
 
       virtual string get_wm_class() const;
 

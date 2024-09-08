@@ -1479,7 +1479,7 @@ void draw2d::emboss_predicate(
 
       return "android";
 
-#elif defined(FREEBSD) || defined(OPENBSD)
+#elif defined(__BSD__)
 
       return "pango";
 

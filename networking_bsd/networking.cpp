@@ -34,10 +34,10 @@ bool defer_finalize_operating_system_networking();
 #endif
 
 
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(__BSD__)
 #undef USE_MISC
 
-#if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(__APPLE__) || defined(__BSD__)
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
@@ -48,7 +48,7 @@ bool defer_finalize_operating_system_networking();
 //#include <ctype.h>
 #endif
 
-#if defined(FREEBSD) || defined(OPENBSD) || defined(LINUX)
+#if defined(LINUX) || defined(__BSD__)
 #include <unistd.h>
 #endif
 

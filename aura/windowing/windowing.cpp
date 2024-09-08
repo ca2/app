@@ -728,7 +728,7 @@ namespace windowing
    }
 
 
-#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(LINUX) || defined(__BSD__)
 
 
    void windowing::_libsn_start_context()

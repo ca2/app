@@ -5,6 +5,8 @@
 
 //#include <string.h>
 
+#include "acme/operating_system/shared_posix/c_error_number.h"
+
 
 ::i32 networking_last_error()
 {

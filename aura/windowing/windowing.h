@@ -211,7 +211,7 @@ namespace windowing
       virtual void _message_handler(void * p);
 
 
-#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(LINUX) || defined(__BSD__)
 
 
       virtual void _libsn_start_context();

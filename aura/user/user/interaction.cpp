@@ -6783,7 +6783,7 @@ namespace user
                   if (!m_bOnDraw)
                   {
 
-                     information() << "_000OnDraw exit on !m_bOnDraw";
+                     //information() << "_000OnDraw exit on !m_bOnDraw";
 
                   }
                   else

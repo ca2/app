@@ -4528,7 +4528,7 @@ void set_bypass_cache(::payload & payloadFile)
 
       }
 
-      payloadFile["bypass_cache"] = true;
+      payloadFile["nocache"] = true;
 
    }
 
@@ -4547,7 +4547,7 @@ bool get_bypass_cache(const ::payload & payloadFile)
    else if(payloadFile.m_etype == e_type_property_set)
    {
 
-      if(payloadFile.is_property_true("bypass_cache"))
+      if(payloadFile.is_property_true("nocache"))
       {
 
          return true;

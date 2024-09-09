@@ -41,7 +41,7 @@ void details_window::calculate_size()
    //int wScreen = 1280;
    //int hScreen = 768;
 
-   auto sizeScreen = m_pimplementation->get_main_screen_size();
+   auto sizeScreen = m_pnanouserwindowimplementation->get_main_screen_size();
 
    //operating_system_get_main_screen_size(wScreen, hScreen);
 

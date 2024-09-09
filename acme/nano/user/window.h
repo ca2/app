@@ -27,7 +27,7 @@ public:
 
    ::function < void(window *) >        m_functionClose;
 
-   ::pointer<::nano::user::window_implementation>     m_pimplementation;
+   ::pointer<::nano::user::window_implementation>     m_pnanouserwindowimplementation;
    ::pointer<::nano::user::brush>                     m_pbrushWindow;
    ::pointer<::nano::user::brush>                     m_pbrushText;
    ::pointer<::nano::user::brush>                     m_pbrushHyperlink;

@@ -8138,7 +8138,7 @@ namespace aura
 
             pframe->set_finish();
 
-            _001TryCloseApplication();
+//            _001TryCloseApplication();
 
          }
          else

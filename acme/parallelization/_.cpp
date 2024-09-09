@@ -789,6 +789,8 @@ CLASS_DECL_ACME void task_release()
    if(ptask)
    {
 
+      printf_line("::task_release() ptask=%s", typeid(*ptask.m_p).name());
+
       ptask->set_flag(e_flag_task_terminated);
 
    }

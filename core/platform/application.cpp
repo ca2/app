@@ -359,9 +359,14 @@ namespace core
       if(m_ppaneimpactCore && puserdocument)
       {
          
-         m_ppaneimpactCore->set_current_tab_by_id("file_manager_save");
-         
-         m_ppaneimpactCore->filemanager_document("file_manager_save")->FileManagerSaveAs(puserdocument);
+         m_ppaneimpactCore->post_procedure([this, puserdocument]()
+                                           {
+            
+            m_ppaneimpactCore->set_current_tab_by_id("file_manager_save");
+            
+            m_ppaneimpactCore->filemanager_document("file_manager_save")->FileManagerSaveAs(puserdocument);
+            
+         });
 
       }
 

@@ -240,7 +240,7 @@ namespace user
 //
 //      //strFile = dir()->matter("keyboard/windows/" + str + ".xml");
 //
-//      //if(pcontext->m_papexcontext->file()->exists(strFile))
+//      //if(file()->exists(strFile))
 //      //{
 //
 //      //   if (load_os_layout(strFile))
@@ -304,7 +304,7 @@ namespace user
 
       auto pcontext = get_context();
 
-      string str = pcontext->m_papexcontext->file()->as_string(pszPath);
+      string str = file()->as_string(pszPath);
 
 
       informationf(pszPath);
@@ -575,7 +575,7 @@ namespace user
 //
 //         string strPath = dir()->matter("keyboard layout/" + strOverride + ".xml");
 //
-//         strTest = pcontext->m_papexcontext->file()->as_string(strPath);
+//         strTest = file()->as_string(strPath);
 //
 //         if(strTest.has_char())
 //         {
@@ -638,7 +638,7 @@ namespace user
 //
 //         string strPath = dir()->matter("keyboard layout/br_abnt2.xml");
 //
-//         if(pcontext->m_papexcontext->file()->exists(strPath))
+//         if(file()->exists(strPath))
 //         {
 //
 //            return strPath;
@@ -653,7 +653,7 @@ namespace user
 //
 //      string strPath = dir()->matter("keyboard layout/en_us_international.xml");
 //
-//      if(pcontext->m_papexcontext->file()->exists(strPath))
+//      if(file()->exists(strPath))
 //      {
 //
 //         return strPath;
@@ -668,10 +668,10 @@ namespace user
 //   bool keyboard::initialize(keyboard_layout_id * playoutid, const ::string & pszPath)
 //   {
 //
-//      if(!pcontext->m_papexcontext->file()->exists(pszPath))
+//      if(!file()->exists(pszPath))
 //         return false;
 //
-//      string str = pcontext->m_papexcontext->file()->as_string(pszPath);
+//      string str = file()->as_string(pszPath);
 //
 //      if(str.is_empty())
 //         return false;

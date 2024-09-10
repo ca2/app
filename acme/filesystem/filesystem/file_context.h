@@ -262,7 +262,7 @@ public:
 
    virtual ::folder_pointer get_folder(::file::file * pfile, const ::scoped_string & scopedstrImplementation, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary);
 
-   virtual ::file_pointer http_get_file(const ::url::url & url, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary, bool bNoCache = false);
+   virtual ::file_pointer http_get_file(const ::url::url & url, ::file::e_open eopen = ::file::e_open_read | ::file::e_open_binary, ::file::e_flag eflag = ::file::e_flag_none);
 
    ::file_pointer get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception = nullptr) override;
 
@@ -459,6 +459,8 @@ public:
 CLASS_DECL_ACME void set_bypass_cache_if_empty(::payload & payloadFile);
 CLASS_DECL_ACME bool get_bypass_cache_if_empty(const ::payload & payloadFile);
 
+CLASS_DECL_ACME void set_bypass_cache(::payload & payloadFile);
+CLASS_DECL_ACME bool get_bypass_cache(const ::payload & payloadFile);
 
 
 

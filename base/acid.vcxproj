@@ -891,7 +891,7 @@
     <ClCompile Include="aura\aura\command_ui_probe.cpp" />
     <ClCompile Include="aura\aura\console.cpp" />
     <ClCompile Include="aura\aura\context.cpp" />
-    <ClCompile Include="aura\aura\context_image.cpp" />
+    <ClCompile Include="aura\aura\image_context.cpp" />
     <ClCompile Include="aura\aura\conv.cpp" />
     <ClCompile Include="aura\aura\cpu_architecture.cpp" />
     <ClCompile Include="aura\aura\cregexp.cpp" />

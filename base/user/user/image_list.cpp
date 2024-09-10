@@ -7,7 +7,7 @@
 #include "acme/handler/topic.h"
 #include "acme/primitive/collection/_array.h"
 #include "acme/user/user/content.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/array.h"
@@ -86,7 +86,7 @@ namespace user
 //   }
 
 
-   ::image * image_list::get_current_image()
+   ::image::image *image_list::get_current_image()
    {
 
       synchronous_lock synchronouslock(this->synchronization());
@@ -500,7 +500,7 @@ namespace user
          ///if (this->get_item_rectangle(pitem))
          {
 
-            ::image_pointer pimageSrc = m_pimagea->image_at(iImage);
+            ::image::image_pointer pimageSrc = m_pimagea->image_at(iImage);
 
             if (pimageSrc.ok())
             {
@@ -521,7 +521,7 @@ namespace user
 
                }
 
-               ::image_pointer pimage = m_pimageaThumb->image_at(iImage);
+               ::image::image_pointer pimage = m_pimageaThumb->image_at(iImage);
 
                if (pimage->area() <= 0)
                {
@@ -541,19 +541,19 @@ namespace user
                   if (!szNew.is_empty())
                   {
 
-                     pimage = context_image()->create_image(szNew);
+                     pimage = image()->create_image(szNew);
 
                      auto pgraphics = pimage->g();
 
                      pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-                     image_source imagesource(pimageSrc);
+                     ::image::image_source imagesource(pimageSrc);
 
                      rectangle_f64 rectangleImageNew(szNew);
 
-                     image_drawing_options imagedrawingoptions(rectangleImageNew);
+                     ::image::image_drawing_options imagedrawingoptions(rectangleImageNew);
 
-                     image_drawing imagedrawing(imagedrawingoptions, imagesource);
+                     ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                      pgraphics->draw(imagedrawing);
 
@@ -654,11 +654,11 @@ namespace user
 
                }
 
-               image_source imagesource(pimage);
+               ::image::image_source imagesource(pimage);
 
-               image_drawing_options imagedrawingoptions(rectangleImage);
+               ::image::image_drawing_options imagedrawingoptions(rectangleImage);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 
@@ -830,7 +830,7 @@ namespace user
 //   void image_list_impact::assert_ok() const
 //   {
 //
-//      ::user::image_list::assert_ok();
+//      ::user::image::image_list::assert_ok();
 //
 //   }
 //
@@ -838,7 +838,7 @@ namespace user
 //   void image_list_impact::dump(dump_context & dumpcontext) const
 //   {
 //
-//      ::user::image_list::dump(dumpcontext);
+//      ::user::image::image_list::dump(dumpcontext);
 //
 //   }
 
@@ -874,7 +874,7 @@ namespace user
    //void image_list_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   ::user::image_list::on_layout(pgraphics);
+   //   ::user::image::image_list::on_layout(pgraphics);
 
    //   auto rectangleX = this->rectangle();
 

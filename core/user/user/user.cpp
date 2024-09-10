@@ -68,9 +68,9 @@
 //#endif
 
 
-#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
-#include <stdio.h>
-#endif
+//#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
+//#include <stdio.h>
+//#endif
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -132,7 +132,7 @@ namespace core
    user::user()
    {
 
-      printf("core::user::user\n");
+      print_line("core::user::user");
 
       m_pcoreuser = this;
       //m_ptemplateForm = nullptr;
@@ -185,7 +185,7 @@ namespace core
 
       //auto estatus =
 
-      printf("core::user::initialize\n");
+      print_line("core::user::initialize\n");
 
       ::base::user::initialize(pparticle);
 
@@ -392,7 +392,7 @@ namespace core
       //
       //      auto pcontext = get_context();
       //
-      //      string strUser = pcontext->m_papexcontext->file()->as_string(dir()->appdata() / "langstyle_settings.xml");
+      //      string strUser = file()->as_string(dir()->appdata() / "langstyle_settings.xml");
       //
       //      string strLangUser;
       //
@@ -1883,13 +1883,7 @@ namespace user
    ::pointer<::user::mesh_data>mesh::create_mesh_data()
    {
 
-      auto pcontext = m_pcontext;
-
-      auto psession = pcontext->m_pacmesession->m_paurasession;
-
-      auto puser = psession->m_puser->m_pcoreuser;
-
-      return puser->default_create_mesh_data(this);
+      return user()->m_pcoreuser->default_create_mesh_data(this);
 
    }
 
@@ -1897,13 +1891,7 @@ namespace user
    ::pointer<::user::list_header>list::create_list_header()
    {
 
-      auto pcontext = m_pcontext;
-
-      auto psession = pcontext->m_pacmesession->m_paurasession;
-
-      auto puser = psession->m_puser->m_pcoreuser;
-
-      return puser->default_create_list_header(this);
+      return user()->m_pcoreuser->default_create_list_header(this);
 
    }
 
@@ -1911,13 +1899,7 @@ namespace user
    ::pointer<::user::mesh_data>list::create_mesh_data()
    {
 
-      auto pcontext = m_pcontext;
-
-      auto psession = pcontext->m_pacmesession->m_paurasession;
-
-      auto puser = psession->m_puser->m_pcoreuser;
-
-      return puser->default_create_list_data(this);
+      return user()->m_pcoreuser->default_create_list_data(this);
 
    }
 

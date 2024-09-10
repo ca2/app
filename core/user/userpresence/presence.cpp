@@ -73,9 +73,7 @@ namespace userpresence
       //if(psystem->m_strAppName == "netnode" || psystem->m_strAppName == "simpledbcfg")
         // return;
 
-      auto pcontext = m_pcontext;
-
-      string strHost = pcontext->m_papexcontext->file()->as_string(dir()->appdata() / "database\\text\\last_good_known_account_com.txt");
+      string strHost = file()->as_string(dir()->appdata() / "database\\text\\last_good_known_account_com.txt");
       string_array straRequestingServer;
       straRequestingServer.add("api.ca2.software");
       straRequestingServer.add("eu-api.ca2.software");
@@ -87,12 +85,12 @@ namespace userpresence
 
       string strUrl = "https://" + strHost + "/i2com/pulse_user_presence";
 
-      url()->string_set(strUrl, "short_status", ::as_string(m_iShortStatusWayTag));
-      url()->string_set(strUrl, "long_status", m_strLongStatus);
+      ::url::set_parameter(strUrl, "short_status", ::as_string(m_iShortStatusWayTag));
+      ::url::set_parameter(strUrl, "long_status", m_strLongStatus);
 
       property_set set;
 
-      pcontext->m_papexcontext->http().get(strUrl, set);
+      http()->get(strUrl, set);
 
    }
 

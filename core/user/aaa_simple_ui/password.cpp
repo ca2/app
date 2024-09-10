@@ -82,7 +82,7 @@ namespace simple_ui
       m_pimageBk = create_image(rectangleX->size());
       m_pimage->Fill(184, 184, 170);
       HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
-      ::draw2d::fastblur *( *pfnNew )(::pointer<::aura::application> = (::draw2d::fastblur *(*)(::pointer<::aura::application> ::GetProcAddress(hmodule, "new_fastblur");*/
+      ::image::fastblur *( *pfnNew )(::pointer<::aura::application> = (::image::fastblur *(*)(::pointer<::aura::application> ::GetProcAddress(hmodule, "new_fastblur");*/
 //                  m_fastblur.create(this);
 //      m_fastblur.initialize(rectangleX.size(), 2);
 //      }

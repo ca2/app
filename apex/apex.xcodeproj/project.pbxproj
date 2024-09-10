@@ -451,6 +451,8 @@
 		9A97C07228C83B9400A43004 /* socket_id_list.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A97C06F28C83B9400A43004 /* socket_id_list.h */; };
 		9A97C07628C83BBE00A43004 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97C07328C83BBD00A43004 /* networking.cpp */; };
 		9A97C07728C83BBE00A43004 /* networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A97C07428C83BBD00A43004 /* networking.h */; };
+		9AA331AC2C8A5B45006DE525 /* internet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA331AA2C8A5B44006DE525 /* internet.cpp */; };
+		9AA331AD2C8A5B45006DE525 /* internet.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA331AB2C8A5B44006DE525 /* internet.h */; };
 		9ABBB6962AEA11BD007611C5 /* shared.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ABBB68E2AEA11BB007611C5 /* shared.h */; };
 		9ABBB6972AEA11BD007611C5 /* shared.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ABBB68E2AEA11BB007611C5 /* shared.h */; };
 		9ABBB6982AEA11BD007611C5 /* shared.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ABBB68E2AEA11BB007611C5 /* shared.h */; };
@@ -1439,6 +1441,8 @@
 		9A97C06F28C83B9400A43004 /* socket_id_list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = socket_id_list.h; sourceTree = "<group>"; };
 		9A97C07328C83BBD00A43004 /* networking.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = networking.cpp; sourceTree = "<group>"; };
 		9A97C07428C83BBD00A43004 /* networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = networking.h; sourceTree = "<group>"; };
+		9AA331AA2C8A5B44006DE525 /* internet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = internet.cpp; sourceTree = "<group>"; };
+		9AA331AB2C8A5B44006DE525 /* internet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = internet.h; sourceTree = "<group>"; };
 		9ABBB68E2AEA11BB007611C5 /* shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shared.h; sourceTree = "<group>"; };
 		9ABBB6922AEA11BB007611C5 /* shared.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shared.cpp; sourceTree = "<group>"; };
 		9ABBDF362AF02C0D0032EAD3 /* application_menu_command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application_menu_command.cpp; sourceTree = "<group>"; };
@@ -1561,6 +1565,8 @@
 				9A239D7726CDF9AE00F98012 /* email_address.h */,
 				9A239D9C26CDF9AE00F98012 /* email.cpp */,
 				9A239CBC26CDF9AE00F98012 /* email.h */,
+				9AA331AA2C8A5B44006DE525 /* internet.cpp */,
+				9AA331AB2C8A5B44006DE525 /* internet.h */,
 				9A239D7826CDF9AE00F98012 /* ip_enum.cpp */,
 				9A239CBA26CDF9AE00F98012 /* ip_enum.h */,
 				9A97C07328C83BBD00A43004 /* networking.cpp */,
@@ -2479,6 +2485,7 @@
 				9A54077C2C299C55004C70B3 /* menu.h in Headers */,
 				9A787DDA264CA98C003DF8A0 /* machine_event.h in Headers */,
 				9A68BDE72511444F008DABD2 /* item.h in Headers */,
+				9AA331AD2C8A5B45006DE525 /* internet.h in Headers */,
 				9AE6DF4F296390D4008A1335 /* caller.h in Headers */,
 				9ABBFE6C2B3FE1B80036DF8C /* socket_thread.h in Headers */,
 				9A68BC9C2511444E008DABD2 /* _include.h in Headers */,
@@ -3108,6 +3115,7 @@
 				9A2898852A652A4E00F46A84 /* language_map.cpp in Sources */,
 				9A68BD1F2511444E008DABD2 /* os_history.cpp in Sources */,
 				9A68BC6D2511444E008DABD2 /* framework.cpp in Sources */,
+				9AA331AC2C8A5B45006DE525 /* internet.cpp in Sources */,
 				9A787D9D264C960F003DF8A0 /* threading.cpp in Sources */,
 				9ABBDF3A2AF02C100032EAD3 /* application_menu_command.cpp in Sources */,
 				9AE6DF54296390D4008A1335 /* communication.cpp in Sources */,

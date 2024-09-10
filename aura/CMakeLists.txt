@@ -149,8 +149,8 @@ list(APPEND library_source
         #graphics/image/_image.h
         graphics/image/_.cpp
         graphics/image/_image_impl.h
-        graphics/image/context_image.cpp
-        graphics/image/context_image.h
+        graphics/image/context.cpp
+        graphics/image/context.h
         graphics/image/cursor.cpp
         graphics/image/cursor.h
         graphics/image/icon.cpp
@@ -165,6 +165,10 @@ list(APPEND library_source
         graphics/image/drawing.h
         graphics/image/dynamic.cpp
         graphics/image/dynamic.h
+   graphics/image/save_options.h
+   graphics/image/load_options.h
+   graphics/image/_constant.h
+   graphics/image/save_options.cpp
         graphics/image/extension.cpp
         graphics/image/extension.h
         graphics/image/fastblur.cpp

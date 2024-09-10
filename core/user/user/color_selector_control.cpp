@@ -449,11 +449,11 @@ namespace user
 
    //   {
 
-   //      image_source imagesource(m_pimage, rSource);
+   //      ::image::image_source imagesource(m_pimage, rSource);
 
-   //      image_drawing_options imagedrawingoptions(rTarget);
+   //      ::image::image_drawing_options imagedrawingoptions(rTarget);
 
-   //      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+   //      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
    //      pgraphics->draw(imagedrawing);
 
@@ -490,11 +490,11 @@ namespace user
 
    //   {
 
-   //      image_source imagesource(m_pimageLuminance);
+   //      ::image::image_source imagesource(m_pimageLuminance);
 
-   //      image_drawing_options imagedrawingoptions(rectangleLum1);
+   //      ::image::image_drawing_options imagedrawingoptions(rectangleLum1);
 
-   //      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+   //      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
    //      pgraphics->draw(imagedrawing);
 

@@ -2120,14 +2120,14 @@ retry_license:
       //{
 
       //   //estatus = 
-      //   __construct(m_pcontextimage);
+      //   __construct(m_pimagecontext);
 
       //   //if (!estatus)
       //   //{
 
-      //   //   information() << "ERROR: context_image required but missing.";
+      //   //   information() << "ERROR: image_context required but missing.";
 
-      //   //   //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
+      //   //   //output_error_message("image_context required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
 
       //   //   return estatus;
 
@@ -2139,19 +2139,19 @@ retry_license:
 
          
 
-      // if (!m_pcontextimage)
+      // if (!m_pimagecontext)
       // {
 
       //    //estatus = 
          
-      //    __construct_new(m_pcontextimage);
+      //    __construct_new(m_pimagecontext);
 
       //    //if (!estatus)
       //    //{
 
-      //    //   information() << "ERROR: context_image required but missing.";
+      //    //   information() << "ERROR: image_context required but missing.";
 
-      //    //   //output_error_message("context_image required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
+      //    //   //output_error_message("image_context required but missing.\n\nIs it a image library missing?", get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
 
       //    //   return estatus;
 
@@ -3818,10 +3818,10 @@ retry_license:
    }
 
 
-   //::draw2d::icon * application::set_icon(object * pparticle, ::draw2d::icon * picon, bool bBigIcon)
+   //::image::icon * application::set_icon(object * pparticle, ::image::icon * picon, bool bBigIcon)
    //{
 
-   //   ::draw2d::icon * piconOld = get_icon(pparticle, bBigIcon);
+   //   ::image::icon * piconOld = get_icon(pparticle, bBigIcon);
 
    //   if (bBigIcon)
    //   {
@@ -3841,19 +3841,19 @@ retry_license:
    //}
 
 
-   //::draw2d::icon * application::get_icon(object * pparticle, bool bBigIcon) const
+   //::image::icon * application::get_icon(object * pparticle, bool bBigIcon) const
    //{
 
    //   if (bBigIcon)
    //   {
 
-   //      return ((object *)pparticle)->cast < ::draw2d::icon >("big_icon");
+   //      return ((object *)pparticle)->cast < ::image::icon >("big_icon");
 
    //   }
    //   else
    //   {
 
-   //      return ((object *)pparticle)->cast <::draw2d::icon>("small_icon");
+   //      return ((object *)pparticle)->cast <::image::icon>("small_icon");
 
    //   }
 
@@ -4082,7 +4082,7 @@ retry_license:
    //      try
    //      {
 
-   //         psystem->http().m_setHttp.parse_network_payload(strNetworkPayload);
+   //         psystem->http()->m_setHttp.parse_network_payload(strNetworkPayload);
 
    //      }
    //      catch (...)
@@ -4820,7 +4820,7 @@ retry_license:
 
             property_set setEmpty;
 
-            if (http().open(psession, strUrl, setEmpty, nullptr))
+            if (http()->open(psession, strUrl, setEmpty, nullptr))
             {
 
                break;
@@ -4837,9 +4837,9 @@ retry_license:
 
       set["get_memory"] = "";
 
-      http().request(psession, strUrl, set);
+      http()->request(psession, strUrl, set);
 
-      //if (!http().request(psession, strUrl, set))
+      //if (!http()->request(psession, strUrl, set))
       //{
 
       //   return false;
@@ -5163,7 +5163,7 @@ retry_license:
 
 
 
-   //::draw2d::icon * application::set_icon(object * pparticle, ::draw2d::icon * picon, bool bBigIcon)
+   //::image::icon * application::set_icon(object * pparticle, ::image::icon * picon, bool bBigIcon)
    //{
 
    //   return nullptr;
@@ -5171,7 +5171,7 @@ retry_license:
    //}
 
 
-   //::draw2d::icon * application::get_icon(object * pparticle, bool bBigIcon) const
+   //::image::icon * application::get_icon(object * pparticle, bool bBigIcon) const
    //{
 
    //   return nullptr;
@@ -5388,7 +5388,7 @@ retry_license:
       //string application::http_get(const ::string & strUrl, ::property_set & set)
       //{
 
-      //   return http().get(strUrl, set);
+      //   return http()->get(strUrl, set);
 
       //}
 
@@ -8138,7 +8138,7 @@ namespace aura
 
             pframe->set_finish();
 
-            _001TryCloseApplication();
+//            _001TryCloseApplication();
 
          }
          else
@@ -8713,10 +8713,10 @@ namespace aura
    //}
 
 
-   ::draw2d::icon* application::set_icon(::object * pobject, ::draw2d::icon* picon, bool bBigIcon)
+   ::image::icon* application::set_icon(::object * pobject, ::image::icon* picon, bool bBigIcon)
    {
 
-      ::draw2d::icon* piconOld = get_icon(pobject, bBigIcon);
+      ::image::icon* piconOld = get_icon(pobject, bBigIcon);
 
       if (bBigIcon)
       {
@@ -8736,19 +8736,19 @@ namespace aura
    }
 
 
-   ::draw2d::icon* application::get_icon(object* pobject, bool bBigIcon) const
+   ::image::icon* application::get_icon(object* pobject, bool bBigIcon) const
    {
 
       if (bBigIcon)
       {
 
-         return const_cast <object*> (pobject)->cast < ::draw2d::icon >("big_icon");
+         return const_cast <object*> (pobject)->cast < ::image::icon >("big_icon");
 
       }
       else
       {
 
-         return const_cast <object*> (pobject)->cast < ::draw2d::icon >("small_icon");
+         return const_cast <object*> (pobject)->cast < ::image::icon >("small_icon");
 
       }
 
@@ -8899,7 +8899,7 @@ namespace aura
 //
 //      }
 //
-//      auto picon = __create_new < ::draw2d::icon >();
+//      auto picon = __create_new < ::image::icon >();
 //
 //      if (!picon)
 //      {

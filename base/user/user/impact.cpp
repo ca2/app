@@ -1105,7 +1105,7 @@ namespace user
    }
 
 
-   //void impact::on_draw_impact_nc(::image * pimage)
+   //void impact::on_draw_impact_nc(::image::image *pimage)
    //{
 
    //   __UNREFERENCED_PARAMETER(pgraphics);
@@ -1120,7 +1120,7 @@ namespace user
 
    //}
 
-   //void impact::defer_draw_impact(::image * pimage)
+   //void impact::defer_draw_impact(::image::image *pimage)
    //{
 
    //   if (get_document() == nullptr)

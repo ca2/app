@@ -3,7 +3,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 //#include "core/user/user/_component.h"
 #endif
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/list.h"
@@ -130,7 +130,7 @@ namespace user
    }
 
 
-   ::image_list * draw_list_subitem::get_image_list()
+   ::image::image_list * draw_list_subitem::get_image_list()
    {
 
       if (m_pitem->m_pdrawmeshitem->m_bListItemHover && m_pcolumn->m_pimagelistHover != nullptr)
@@ -155,18 +155,18 @@ namespace user
       if (m_pcolumn->m_bIcon)
       {
 
-         draw2d::icon * picon;
+         ::image::icon * picon;
 
          if (m_pcolumn->m_mapIcon.lookup((i32)m_iImage, picon))
          {
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            image_source imagesource(picon);
+            ::image::image_source imagesource(picon);
 
-            image_drawing_options imagedrawingoptions(m_rectangleImage);
+            ::image::image_drawing_options imagedrawingoptions(m_rectangleImage);
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
             //m_pgraphics->draw(imagedrawing) != false;
 
@@ -272,14 +272,14 @@ namespace user
             if (pimage.ok())
             {
 
-               image_source imagesource(pimage);
+               ::image::image_source imagesource(pimage);
 
                rectangle_f64 rectangleDib(m_rectangleImage.top_left() - size_i32(m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate),
                   m_rectangleImage.size() + size_i32(m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate * 2, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate * 2));
 
-               image_drawing_options imagedrawingoptions(rectangleDib);
+               ::image::image_drawing_options imagedrawingoptions(rectangleDib);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                m_pitem->m_pdrawlistitem->m_pgraphics->draw(imagedrawing);
 
@@ -292,7 +292,7 @@ namespace user
             {
                ///return true;
 
-               m_pitem->m_pmesh->m_plist->m_pimageTime = m_pitem->m_pmesh->context_image()->create_image(m_pitem->m_pmesh->m_plist->m_pimageSpot->size());
+               m_pitem->m_pmesh->m_plist->m_pimageTime = m_pitem->m_pmesh->image()->create_image(m_pitem->m_pmesh->m_plist->m_pimageSpot->size());
 
                ::rectangle_i32 rectangle = rectangleI;
 
@@ -324,11 +324,11 @@ namespace user
 
                {
 
-                  image_source imagesource(m_pitem->m_pmesh->m_plist->m_pimageTime, rect2);
+                  ::image::image_source imagesource(m_pitem->m_pmesh->m_plist->m_pimageTime, rect2);
 
-                  image_drawing_options imagedrawingoptions(rectangleI);
+                  ::image::image_drawing_options imagedrawingoptions(rectangleI);
 
-                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+                  ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                   m_pitem->m_pdrawlistitem->m_pgraphics->draw(imagedrawing);
 
@@ -515,7 +515,7 @@ namespace user
             if (m_strText.has_char())
             {
 
-               ::image_pointer & pimage2 = m_pitem->m_pmesh->m_plist->m_mapBlur[m_pitem->m_iItem];
+               ::image::image_pointer & pimage2 = m_pitem->m_pmesh->m_plist->m_mapBlur[m_pitem->m_iItem];
 
                m_pitem->m_pmesh->m_plist->__defer_construct(pimage2);
 

@@ -64,7 +64,14 @@ template<class T>
 class pointer_array;
 
 
-using image_pointer = ::pointer<::image>;
+namespace image
+{
+
+   
+   using image_pointer = ::pointer<::image::image>;
+
+
+} // namespace image
 
 
 using mutex_pointer = ::pointer<::mutex>;

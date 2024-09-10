@@ -2,7 +2,7 @@
 #include "context.h"
 #include "acme/platform/application.h"
 #include "apex/platform/system.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/context.h"
 
 
 namespace aura
@@ -61,7 +61,7 @@ namespace aura
          try
          {
 
-            __construct(m_pcontextimage);
+            __construct(m_pimagecontext);
 
          }
          catch (...)
@@ -78,13 +78,13 @@ namespace aura
    void context::finalize()
    {
 
-      if (m_pcontextimage)
+      if (m_pimagecontext)
       {
 
          try
          {
 
-            m_pcontextimage->finalize();
+            m_pimagecontext->finalize();
 
          }
          catch (...)
@@ -95,7 +95,7 @@ namespace aura
 
       }
 
-      m_pcontextimage.release();
+      m_pimagecontext.release();
 
 
       apex::context::finalize();
@@ -549,7 +549,7 @@ namespace aura
 //            if (!retry([&]()
 //            {
 //
-//               return http().download(path, pfile, set);
+//               return http()->download(path, pfile, set);
 //
 //            }))
 //            {
@@ -859,7 +859,7 @@ namespace aura
 //
 //      set["disable_common_name_cert_check"] = true;
 //
-//      return http().download(strUrl, pszFile, set);
+//      return http()->download(strUrl, pszFile, set);
 //
 //   }
 //
@@ -877,7 +877,7 @@ namespace aura
 //
 //      string strResponse;
 //
-//      if (!http().get(strResponse, pszUrl, set))
+//      if (!http()->get(strResponse, pszUrl, set))
 //      {
 //
 //         return "";
@@ -1039,10 +1039,10 @@ namespace aura
 //
 //   }
 
-   //::image_pointer context::create_image()
+   //::image::image_pointer context::create_image()
    //{
 
-   //   auto pimage = __create < ::image >();
+   //   auto pimage = __create < ::image::image >();
 
    //   if (!pimage)
    //   {
@@ -1056,10 +1056,10 @@ namespace aura
    //}
 
 
-   //::image_pointer context::create_image(const ::size_i32 & size, const image32_t * pcolor, int iScan, ::enum_flag eflagCreate)
+   //::image::image_pointer context::create_image(const ::size_i32 & size, const image32_t * pcolor, int iScan, ::enum_flag eflagCreate)
    //{
 
-   //   auto pimage = m_pcontext->__create < ::image >();
+   //   auto pimage = m_pcontext->__create < ::image::image >();
 
    //   if (!pimage)
    //   {

@@ -12,7 +12,7 @@ namespace graphics
 
 
       int                           m_iGoodStride;
-      ::image_pointer               m_pimageBuffer;
+      ::image::image_pointer               m_pimageBuffer;
 
       bool                          m_bDibIsHostingBuffer;
       file::memory_map              m_memorymap;
@@ -35,9 +35,9 @@ namespace graphics
 
       virtual void defer_initialize_ipc_copy();
 
-/*      virtual bool update_window(::image * pimage);
+/*      virtual bool update_window(::image::image *pimage);
       virtual bool is_buffer_ok();
-      ::image_pointer & get_buffer();
+      ::image::image_pointer & get_buffer();
 
       virtual bool ipc_copy(const pixmap * ppixmap);
 

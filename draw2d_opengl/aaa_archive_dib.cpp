@@ -12,7 +12,7 @@ namespace draw2d_opengl
    //////////////////////////////////////////////////////////////////////
 
 
-   image::image()
+   image::image::image()
    {
 
       m_sizeWnd.cx()         = 0;
@@ -346,7 +346,7 @@ namespace draw2d_opengl
 
    //DIB = DIB * SRC_ALPHA
 
-   void image::mult_alpha(::image * pimageWork, bool bPreserveAlpha)
+   void image::mult_alpha(::image::image *pimageWork, bool bPreserveAlpha)
    {
       image::mult_alpha(imageWork, bPreserveAlpha);
       return ;
@@ -355,7 +355,7 @@ namespace draw2d_opengl
          return;
 
       //return image::mult_alpha(nullptr, true);
-      ::image pimageWork;
+      ::image::image pimageWork;
 
       if(imageWork == nullptr)
       {
@@ -614,7 +614,7 @@ namespace draw2d_opengl
    //   }
    //}
 
-   //void imagecopy(::image * pimage)
+   //void imagecopy(::image::image *pimage)
    //{
    //   // If DibSize Wrong Re-create image
    //   if (pimage->get_size() != m_size)
@@ -624,7 +624,7 @@ namespace draw2d_opengl
    //}
 
 
-   //void image::Paste ( ::image pimage )
+   //void image::Paste ( ::image::image pimage )
    //{
    //   // If DibSize Wrong Re-create image
    //   if (m_size !=pimage.get_size() )
@@ -658,7 +658,7 @@ namespace draw2d_opengl
    //}
 
 
-   //void image::Blend (::image * pimage, i32 A )
+   //void image::Blend (::image::image *pimage, i32 A )
    //{
    //   if(size() != pimage->size())
    //      return;
@@ -703,7 +703,7 @@ namespace draw2d_opengl
    //   return true;
    //}
 
-   //void image::Darken (::image * pimage )
+   //void image::Darken (::image::image *pimage )
    //{
    //   if(size() != pimage->size())
    //      return;
@@ -722,7 +722,7 @@ namespace draw2d_opengl
    //   }
    //}
 
-   //void image::Difference (::image * pimage )
+   //void image::Difference (::image::image *pimage )
    //{
    //   if(size() != pimage->size())
    //      return;
@@ -745,7 +745,7 @@ namespace draw2d_opengl
    //   }
    //}
 
-   //void image::Lighten (::image * pimage )
+   //void image::Lighten (::image::image *pimage )
    //{
    //   if(size() != pimage->size())
    //      return;
@@ -765,7 +765,7 @@ namespace draw2d_opengl
    //}
 
 
-   //void image::Multiply (::image * pimage )
+   //void image::Multiply (::image::image *pimage )
    //{
    //   if(size() != pimage->size())
    //      return;
@@ -784,7 +784,7 @@ namespace draw2d_opengl
    //   }
    //}
 
-   //void image::Screen (::image * pimage )
+   //void image::Screen (::image::image *pimage )
    //{
    //   if(size() != pimage->size())
    //      return;
@@ -807,7 +807,7 @@ namespace draw2d_opengl
    //// Rectangle Functions
    ////////////////////////////////////////////////////////////////////////
 
-   //void image::copy (::image * pimage, i32 x, i32 y )
+   //void image::copy (::image::image *pimage, i32 x, i32 y )
    //{
    //   // Clip Rect
    //   i32 px=(x>=0) ? x : 0;
@@ -838,7 +838,7 @@ namespace draw2d_opengl
    //   }
    //}
 
-   //void image::PasteRect (::image * pimage, i32 x, i32 y )
+   //void image::PasteRect (::image::image *pimage, i32 x, i32 y )
    //{
    //   // Clip Rect
    //   i32 px=(x>=0) ? x : 0;
@@ -955,7 +955,7 @@ namespace draw2d_opengl
    //   }
    //}
 
-   //void image::BlendRect (::image * pimage, i32 x, i32 y, i32 A )
+   //void image::BlendRect (::image::image *pimage, i32 x, i32 y, i32 A )
    //{
    //   // Clip Rect
    //   i32 px=(x>=0) ? x : 0;
@@ -989,7 +989,7 @@ namespace draw2d_opengl
    //   }
    //}
 
-   //void image::DarkenRect (::image * pimage, i32 x, i32 y )
+   //void image::DarkenRect (::image::image *pimage, i32 x, i32 y )
    //{
    //   // Clip Rect
    //   i32 px=(x>=0) ? x : 0;
@@ -1023,7 +1023,7 @@ namespace draw2d_opengl
    //   }
    //}
 
-   //void image::DifferenceRect (::image * pimage, i32 x, i32 y )
+   //void image::DifferenceRect (::image::image *pimage, i32 x, i32 y )
    //{
    //   // Clip Rect
    //   i32 px=(x>=0) ? x : 0;
@@ -1061,7 +1061,7 @@ namespace draw2d_opengl
    //   }
    //}
 
-   //void image::LightenRect (::image * pimage, i32 x, i32 y )
+   //void image::LightenRect (::image::image *pimage, i32 x, i32 y )
    //{
    //   // Clip Rect
    //   i32 px=(x>=0) ? x : 0;
@@ -1095,7 +1095,7 @@ namespace draw2d_opengl
    //   }
    //}
 
-   //void image::MultiplyRect (::image * pimage, i32 x, i32 y )
+   //void image::MultiplyRect (::image::image *pimage, i32 x, i32 y )
    //{
    //   // Clip Rect
    //   i32 px=(x>=0) ? x : 0;
@@ -1129,7 +1129,7 @@ namespace draw2d_opengl
    //   }
    //}
 
-   //void image::ScreenRect (::image * pimage, i32 x, i32 y )
+   //void image::ScreenRect (::image::image *pimage, i32 x, i32 y )
    //{
    //   // Clip Rect
    //   i32 px=(x>=0) ? x : 0;
@@ -1669,7 +1669,7 @@ namespace draw2d_opengl
 //      }
 //   }
 
-   void image::SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy)
+   void image::SetIconMask(::image::icon * picon, i32 cx, i32 cy)
    {
       create(cx, cy);
 
@@ -1680,7 +1680,7 @@ namespace draw2d_opengl
 
 
       // White blend image
-      ::image pimage1(this);
+      ::image::image pimage1(this);
       pimage1 = create_image({cx,  cy});
       pimage1->set(255, 255, 255);
 
@@ -1693,7 +1693,7 @@ namespace draw2d_opengl
       DI_IMAGE | DI_MASK);
 
       // Black blend image
-      ::image pimage2;
+      ::image::image pimage2;
       pimage2 = create_image({cx,  cy});
       pimage2->Fill(0, 0, 0, 0);
 
@@ -1706,7 +1706,7 @@ namespace draw2d_opengl
       DI_IMAGE | DI_MASK);
 
       // Mask image
-      ::image pimageM(this);
+      ::image::image pimageM(this);
       imageM = create_image({cx,  cy});
 
       imageM.m_spgraphics->DrawIcon(
@@ -1755,9 +1755,9 @@ namespace draw2d_opengl
 
    }
 
-   //void image::rotate(::image * pimage, double dAngle, double dScale)
+   //void image::rotate(::image::image *pimage, double dAngle, double dScale)
    //{
-   //  // ::image pimage;
+   //  // ::image::image pimage;
    ////   pimage->Paste(this);
 
    //   i32 cx = this->cx();
@@ -1842,7 +1842,7 @@ namespace draw2d_opengl
    //}
 
 
-   //void image::Rotate034(::image * pimage, double dAngle, double dScale)
+   //void image::Rotate034(::image::image *pimage, double dAngle, double dScale)
    //{
    //
    //   i32 cx = this->cx();
@@ -1913,12 +1913,12 @@ namespace draw2d_opengl
    //}
 
    //void image::rotate(
-   //   ::image * pimage,
+   //   ::image::image *pimage,
    //   const ::rectangle_f64 & rectangle,
    //   double dAngle,
    //   double dScale)
    //{
-   //  // ::image pimage;
+   //  // ::image::image pimage;
    ////   pimage->Paste(this);
 
 
@@ -2112,7 +2112,7 @@ namespace draw2d_opengl
    //}
 
 
-   //void image::xor(::image * pimage)
+   //void image::xor(::image::image *pimage)
    //{
    //   if(cx != pimage->cx()
    //   || cy != pimage->cy())
@@ -2338,7 +2338,7 @@ namespace draw2d_opengl
    //}
 
 
-   void image::stretch_image(::image * pimage)
+   void image::stretch_image(::image::image *pimage)
    {
 
       if (area() <= 0 || pimage->area() <= 0)
@@ -2614,7 +2614,7 @@ namespace draw2d_opengl
 //
 //         puserinteraction->window_rectangle(rectangleWindow);
 //
-//         ::image pimage;
+//         ::image::image pimage;
 //
 //         if(!pimage = create_image(rectangleWindow.bottom_right()))
 //            return false;

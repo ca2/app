@@ -11,7 +11,7 @@
 #include "shell_uwp.h"
 
 
-bool uwp_get_file_image(::image * pimage, const ::scoped_string & scopedstr);
+bool uwp_get_file_image(::image::image *pimage, const ::scoped_string & scopedstr);
 
 
 namespace universal_windows
@@ -255,7 +255,7 @@ pacmedirectory->is(strPath))
       if (case_insensitive_string_ends(imagekey.m_strPath, ".apex"))
       {
             
-         string str = pcontext->m_papexcontext->file()->as_string(imagekey.m_strPath);
+         string str = file()->as_string(imagekey.m_strPath);
 
          if (str.case_insensitive_begins_eat("ca2prompt\r\n"))
          {
@@ -419,7 +419,7 @@ pacmedirectory->is(strPath))
 } // namespace universal_windows
 
 
-bool uwp_get_file_image(::image * pimage, const ::scoped_string & scopedstr)
+bool uwp_get_file_image(::image::image *pimage, const ::scoped_string & scopedstr)
 {
 
    return false;

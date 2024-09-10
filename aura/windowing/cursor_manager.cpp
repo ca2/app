@@ -205,7 +205,7 @@ namespace windowing
 
       auto pcontext = get_context();
 
-      parse_hotspot_text(pcontext->m_papexcontext->file()->as_string(pathDir / "hotspot.txt"));
+      parse_hotspot_text(file()->as_string(pathDir / "hotspot.txt"));
 
    }
 

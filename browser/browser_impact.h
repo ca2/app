@@ -182,11 +182,11 @@ namespace browser
       //Call CefBrowserHost::CloseBrowser() to destroy browser.
       ::task_pointer m_pthreadBrowser;
       string                  m_strServer;
-      ::image_pointer        m_pimageAi1;
-      ::image_pointer        m_pimageAi2;
-      ::image_pointer          m_pimageBrowser;
+      ::image::image_pointer        m_pimageAi1;
+      ::image::image_pointer        m_pimageAi2;
+      ::image::image_pointer          m_pimageBrowser;
       string                  m_strImage;
-      ::image_pointer        m_pimageColor;
+      ::image::image_pointer        m_pimageColor;
 
       bool                    m_bOkPending;
 

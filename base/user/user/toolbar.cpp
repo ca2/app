@@ -12,7 +12,7 @@
 //#include "aura/operating_system/_user.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/context.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/frame.h"
 #include "aura/message/user.h"
@@ -2029,11 +2029,7 @@ namespace user
             if (pchild->attribute("image").has_char())
             {
 
-               auto pcontext = m_pcontext->m_pauracontext;
-
-               auto pcontextimage = pcontext->context_image();
-
-               ptoolitem->m_pimage = pcontextimage->load_image(pchild->attribute("image"), { .cache = false });
+               ptoolitem->m_pimage = image()->load_image(pchild->attribute("image"), { .cache = false });
 
             }
             

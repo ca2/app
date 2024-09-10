@@ -694,7 +694,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
                   //strPluginData = http_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
 
-                  pcontext->m_papexcontext->http().get(strUrl,m_phost->m_pbasecomposer->m_strPluginData,set);
+                  http()->get(strUrl,m_phost->m_pbasecomposer->m_strPluginData,set);
 
                   if(::http::status_succeeded(set["get_status"]))
                      break;
@@ -1414,7 +1414,7 @@ retry_get_prompt:
 
             set["raw_http"] = true;
 
-            strData = pcontext->m_papexcontext->http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
+            strData = http()->get(m_phost->m_pbasecomposer->m_strPluginUrl,set);
 
             if(strData.is_empty())
             {
@@ -1558,7 +1558,7 @@ restart:
 
       property_set set;
 
-      while((str = pcontext->m_papexcontext->http().get(m_phost->m_pbasecomposer->m_strPluginUrl,set)).is_empty())
+      while((str = http()->get(m_phost->m_pbasecomposer->m_strPluginUrl,set)).is_empty())
       {
          if(!m_phost->m_bStream)
          {

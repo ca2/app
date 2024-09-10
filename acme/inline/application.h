@@ -45,7 +45,7 @@ DO_FACTORY(REFERENCE_FACTORY)
 #include "acme/platform/acme.h"
 
 
-#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) || defined(RASPBERRYPIOS)
+#if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
 extern char _binary__matter_zip_start[];
 extern char _binary__matter_zip_end[];
 #endif
@@ -97,7 +97,7 @@ int main(int argc, char * argv[], char * envp[])
 
 #endif
 
-#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) || defined(RASPBERRYPIOS)
+#if defined(LINUX) || defined(__BSD__) || defined(RASPBERRYPIOS)
 
    pacme->platform()->set_resource_block(_binary__matter_zip_start, _binary__matter_zip_end);
 

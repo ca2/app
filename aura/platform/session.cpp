@@ -521,7 +521,7 @@ namespace aura
 
 
 
-   //bool session::set_cursor(::user::interaction * pinteraction, ::draw2d::cursor * pcursor)
+   //bool session::set_cursor(::user::interaction * pinteraction, ::image::cursor * pcursor)
    //{
 
    //   m_ecursor = cursor_draw2d;
@@ -542,7 +542,7 @@ namespace aura
    //   else
    //   {
 
-   //      if (!::draw2d::cursor::reset(pinteraction, this))
+   //      if (!::image::cursor::reset(pinteraction, this))
    //      {
 
    //         return false;
@@ -561,7 +561,7 @@ namespace aura
 
    //   m_ecursor = ecursor;
 
-   //   ::draw2d::cursor * pcursor = get_cursor();
+   //   ::image::cursor * pcursor = get_cursor();
 
    //   if (pcursor != nullptr)
    //   {
@@ -577,7 +577,7 @@ namespace aura
    //   else
    //   {
 
-   //      if (!::draw2d::cursor::reset(pinteraction, this))
+   //      if (!::image::cursor::reset(pinteraction, this))
    //      {
 
    //         return false;

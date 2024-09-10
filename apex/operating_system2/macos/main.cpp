@@ -235,9 +235,7 @@ namespace apex
    bool application::os_on_start_application()
    {
 
-      auto pcontext = m_pcontext;
-
-      ::file::path path = pcontext->m_papexcontext->file()->module();
+      ::file::path path = file()->module();
 
       path -= 3;
       

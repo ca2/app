@@ -1118,7 +1118,31 @@ namespace user
 class conversation;
 
 
-class image;
+namespace image
+{
+
+
+   class image;
+
+
+   class image_list;
+
+
+   class image_context;
+
+
+   class imaging;
+
+
+   class icon;
+
+
+   class cursor;
+
+
+} // namespace image
+
+
 //class e_check;
 //class boolean;
 
@@ -2053,9 +2077,6 @@ class sticker;
 
 
 
-class context_image;
-
-
 using lresult = iptr;
 
 
@@ -2157,9 +2178,6 @@ namespace html
    class html; // defined and set by html library/component
 
 }
-
-
-class image_list;
 
 
 namespace acme

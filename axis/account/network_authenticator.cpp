@@ -103,7 +103,7 @@ namespace account
       //   if(puser->m_strHost == purl->get_server(psession->account()->get_default_url()))
       //   {
 
-      //      pcontext->m_papexcontext->file()->put_contents(dir()->appdata()/"database/text/last_good_known_account_com.txt", puser->m_strAccountServer);
+      //      file()->put_contents(dir()->appdata()/"database/text/last_good_known_account_com.txt", puser->m_strAccountServer);
 
       //   }
 
@@ -260,13 +260,13 @@ namespace account
 
       auto tickTimeProfile1 = ::time::now();
 
-      auto strResponse = m_pcontext->m_papexcontext->http().get(strAuthUrl, set);
+      auto strResponse = http()->get(strAuthUrl, set);
 
       pcredentials->m_strResponse = strResponse;
 
       pcredentials->m_estatusHttp = set["get_status"].as_atom().as_estatus();
 
-      information() << "login_task::NetLogin Total time pcontext->m_papexcontext->http().get(\""<<strAuthUrl<<"\") : " << tickTimeProfile1.elapsed().integral_millisecond();
+      information() << "login_task::NetLogin Total time http()->get(\""<<strAuthUrl<<"\") : " << tickTimeProfile1.elapsed().integral_millisecond();
 
       information() << "NetLogin: Authentication Millis = " << tickAuthBeg.elapsed().integral_millisecond();
 
@@ -319,7 +319,7 @@ namespace account
 
       auto urlGetFontopus = partsGetFontopus.as_url();
 
-      strNode = m_pcontext->m_papexcontext->http().get(urlGetFontopus, set);
+      strNode = http()->get(urlGetFontopus, set);
 
       if(set["get_status"].failed())
       {
@@ -476,7 +476,7 @@ namespace account
 //
 //      set["raw_http"] = true;
 //
-//      strNode = pcontext->m_papexcontext->http().get(strGetFontopus, set);
+//      strNode = http()->get(strGetFontopus, set);
 //
 //      ::u32 tickEnd= ::time::now();
 //

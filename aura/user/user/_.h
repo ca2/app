@@ -358,7 +358,7 @@ class cregexp;
 //
 //} // namespace database
 
-class image_list;
+//class image_list;
 //class simple_list_data;
 
 CLASS_DECL_AURA ::user::primitive* __user_primitive(::windowing::window * pwindow);

@@ -13,7 +13,7 @@
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/draw2d.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/message/user.h"
 
@@ -89,7 +89,7 @@ namespace user
       if (m_bAutoResize)
       {
 
-         informationf("m_bAutoResize");
+         //informationf("m_bAutoResize");
 
       }
 
@@ -931,13 +931,13 @@ namespace user
 
          {
 
-            image_source imagesource(m_pimage);
+            ::image::image_source imagesource(m_pimage);
 
             auto rectangle = rectangleDib;
 
-            image_drawing_options imagedrawingoptions(rectangle);
+            ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
             pgraphics->draw(imagedrawing);
 
@@ -1101,7 +1101,7 @@ namespace user
       ASSERT(m_pimage->is_set() && m_pimage->area() > 0); // required
 
       // use the main bitmap for up, the selected bitmap for down
-      ::image_pointer pimage = m_pimage;
+      ::image::image_pointer pimage = m_pimage;
 
       if (pimage->area() > 0 && rectangleX.area() > 0)
       {
@@ -1126,13 +1126,13 @@ namespace user
 
          {
 
-            image_source imagesource(pimage, ::rectangle_f64(pimage->get_size()));
+            ::image::image_source imagesource(pimage, ::rectangle_f64(pimage->get_size()));
 
             rectangle_f64 rectangle(rectangleX);
 
-            image_drawing_options imagedrawingoptions(rectangle);
+            ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
             pgraphics->draw(imagedrawing);
 
@@ -1185,7 +1185,7 @@ namespace user
    }
 
 
-   ::draw2d::icon * still::still_get_icon()
+   ::image::icon * still::still_get_icon()
    {
 
       return m_estill == e_still_icon ? m_picon : nullptr;
@@ -1202,11 +1202,7 @@ namespace user
       if (!payload.is_empty())
       {
 
-         auto pcontext = m_pcontext->m_pauracontext;
-
-         auto pcontextimage = pcontext->context_image();
-
-         m_pimage = pcontextimage->get_image(payload);
+         m_pimage = image()->get_image(payload);
 
       }
 

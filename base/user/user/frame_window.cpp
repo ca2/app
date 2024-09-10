@@ -26,7 +26,7 @@
 #include "apex/message/simple_command.h"
 #include "apex/platform/savings.h"
 #include "aura/graphics/graphics/graphics.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/windowing/windowing.h"
 #include "aura/message/user.h"
@@ -530,13 +530,13 @@ namespace user
 
                   //synchronous_lock synchronouslock(pimpl->m_spgraphics->synchronization());
 
-                  ::image_pointer pimage1;
+                  ::image::image_pointer pimage1;
 
                   ::rectangle_i32 rectangle;
 
                   window_rectangle(rectangle);
 
-                  pimage1 = context_image()->create_image(rectangle.size());
+                  pimage1 = image()->create_image(rectangle.size());
 
                   //auto pparticleSynchronization = pimpl->m_pgraphics->get_draw_lock();
 
@@ -548,11 +548,11 @@ namespace user
 
                   auto pgraphics = pbufferitem->g();
 
-                  image_source imagesource(pgraphics);
+                  ::image::image_source imagesource(pgraphics);
 
-                  image_drawing_options imagedrawingoptions(rectangleTarget);
+                  ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
-                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+                  ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                   pimage1->get_graphics()->draw(imagedrawing);
 
@@ -560,13 +560,9 @@ namespace user
 
                   pcopydesk->image_to_desk(pimage1);
 
-                  auto pcontext = m_pcontext->m_pauracontext;
+                  image()->save_image(acmedirectory()->system() / "control_alt_p.png", pimage1);
 
-                  auto pcontextimage = pcontext->context_image();
-
-                  pcontextimage->save_image(acmedirectory()->system() / "control_alt_p.png", pimage1);
-
-                  ::image_pointer pimage2;
+                  ::image::image_pointer pimage2;
 
                   //auto estatus = 
                   
@@ -596,19 +592,19 @@ namespace user
 
                   {
 
-                     image_source imagesource(pimage1, rectangleSource);
+                     ::image::image_source imagesource(pimage1, rectangleSource);
 
                      rectangle_f64 rectangleTarget(pimage2->size());
 
-                     image_drawing_options imagedrawingoptions(rectangleTarget);
+                     ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
-                     image_drawing imagedrawing(imagedrawingoptions, imagesource);
+                     ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                      pimage2->get_graphics()->draw(imagedrawing);
 
                   }
 
-                  pcontextimage->save_image(acmedirectory()->system() / "control_alt_p_w300.png", pimage2);
+                  image()->save_image(acmedirectory()->system() / "control_alt_p_w300.png", pimage2);
 
                   pkey->m_bRet = true;
 
@@ -2090,7 +2086,7 @@ namespace user
 
       string strMatter = dir()->matter(strToolbar);
 //
-//      string strXml = pcontext->m_papexcontext->file()->safe_get_string(strMatter);
+//      string strXml = file()->safe_get_string(strMatter);
 
       ptoolbar->load_xml_toolbar(strMatter);
 
@@ -2633,7 +2629,7 @@ namespace user
    }
 
 
-   bool frame_window::OnEraseBkgnd(::image * pimage)
+   bool frame_window::OnEraseBkgnd(::image::image *pimage)
    {
 
       __UNREFERENCED_PARAMETER(pimage);

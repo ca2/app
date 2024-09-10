@@ -136,7 +136,7 @@ namespace userfs
    }
 
 
-   ::image_list * item::data_item_get_image_list(::particle * pparticle) const
+   ::image::image_list * item::data_item_get_image_list(::particle * pparticle) const
    {
 
       return m_ptreedata->m_pimagelist;

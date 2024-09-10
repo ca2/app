@@ -265,7 +265,7 @@ public:
 
    bool bamf_set_icon();
 
-   bool set_icon(::image * pimage);
+   bool set_icon(::image::image *pimage);
 
    int x_change_property(Atom property, Atom type, int format, int mode, const unsigned char * data, int nelements);
 

@@ -83,9 +83,9 @@ namespace experience_tranquillum
 
       //pframewindow->best_monitor(rectangleScreen);
 
-      //::image_pointer pimage;
+      //::image::image_pointer pimage;
 
-      //::image_pointer pimage2;
+      //::image::image_pointer pimage2;
 
       //pimage = create_image({rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2});
 
@@ -574,15 +574,15 @@ namespace experience_tranquillum
             if (pdrawicon != nullptr)
             {
 
-               image_source imagesource(pdrawicon);
+               ::image::image_source imagesource(pdrawicon);
 
                rectangle_f64 rectangleTarget(pdrawicon->get_smaller_size(rectangleIcon.size()));
 
                rectangleTarget.CenterOf(rectangleIcon);
 
-               image_drawing_options imagedrawingoptions(rectangleTarget);
+               ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 
@@ -755,20 +755,20 @@ namespace experience_tranquillum
          if (get_element_rectangle(rectangleIcon, e_element_top_left_icon))
          {
 
-            ::draw2d::icon * picon = m_pframewindow->m_pdrawicon;
+            ::image::icon * picon = m_pframewindow->m_pdrawicon;
 
             if (::is_set(picon) && picon->is_ok())
             {
 
-               image_source imagesource(picon);
+               ::image::image_source imagesource(picon);
 
                //rectangle_f64 rectangleTarget(picon->get_smaller_size(rectangleIcon.size()));
 
                //rectangleTarget.CenterOf(rectangleIcon);
 
-               image_drawing_options imagedrawingoptions(rectangleIcon);
+               ::image::image_drawing_options imagedrawingoptions(rectangleIcon);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 

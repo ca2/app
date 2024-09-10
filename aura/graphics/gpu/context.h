@@ -110,7 +110,7 @@ namespace gpu
       virtual void render();
 
 
-      virtual void set_bitmap_1(::image * pimage);
+      virtual void set_bitmap_1(::image::image *pimage);
 
       virtual void swap_buffers();
 

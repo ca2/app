@@ -12,7 +12,7 @@ namespace browser
    public:
 
 
-      ::image_pointer        m_pimageBk;
+      ::image::image_pointer        m_pimageBk;
 
 
       gcom(::particle * pparticle);

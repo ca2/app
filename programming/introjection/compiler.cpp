@@ -96,7 +96,7 @@ namespace introjection
 //
 //         path = pacmedirectory->config() / "programming/vs.txt";
 //
-//         m_strVs = pcontext->m_papexcontext->file()->as_string(path);
+//         m_strVs = file()->as_string(path);
 //
 //         m_strVs.trim();
 //
@@ -340,7 +340,7 @@ namespace introjection
 //      m_strLibPlatform = "x86/";
 //#endif
 //
-//      //pcontext->m_papexcontext->file()->lines(m_straSync, "C:\\aura\\database\\text\\introjection\\syncer.txt", get_app());
+//      //file()->lines(m_straSync, "C:\\aura\\database\\text\\introjection\\syncer.txt", get_app());
 //#if defined(LINUX)
 //      prepare1(m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash",
 //               m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bash");
@@ -371,14 +371,14 @@ namespace introjection
 //      //      vars2batDst = m_pintegrationcontext->m_pathBuildFolder/m_strDynamicSourceStage /"front"/"vc_vars_query_registry.bat";
 //      //      try
 //      //      {
-//      //         pcontext->m_papexcontext->file()->copy(vars1batDst, vars1batSrc, false);
+//      //         file()->copy(vars1batDst, vars1batSrc, false);
 //      //      }
 //      //      catch(...)
 //      //      {
 //      //      }
 //      //      try
 //      //      {
-//      //         pcontext->m_papexcontext->file()->copy(vars2batDst, vars2batSrc, false);
+//      //         file()->copy(vars2batDst, vars2batSrc, false);
 //      //      }
 //      //      catch(...)
 //      //      {
@@ -537,9 +537,9 @@ namespace introjection
 //      // strTemplate = strFolder, "app/time/aura/account/app/main/matter/dynamic_source_cl.bat", false);
 //      //#endif
 //      string str;
-//      str = pcontext->m_papexcontext->file()->as_string(strTemplate);
+//      str = file()->as_string(strTemplate);
 //      /*string strVars = getenv("VS100COMNTOOLS");
-//      pcontext->m_papexcontext->file()->path().eat_end_level(strVars, 2, "/");
+//      file()->path().eat_end_level(strVars, 2, "/");
 //      strVars += "vc/bin/vcvars32.bat";*/
 //      str.find_replace("%VS_VARS%",m_strContext);
 //      str.find_replace("%VS_VARS_PLAT2%",m_strPlat2);
@@ -560,8 +560,8 @@ namespace introjection
 //      // strCmd = strFolder, "app\\time\\aura\\account\\app\\main\\front\\dynamic_source_cl.bat", false);
 //      //#endif
 //      dir()->create(strCmd.folder());
-//      //pcontext->m_papexcontext->file()->put_text_utf8(strCmd, str);
-//      pcontext->m_papexcontext->file()->put_contents(strCmd,str);
+//      //file()->put_text_utf8(strCmd, str);
+//      file()->put_contents(strCmd,str);
 //      dir()->create(m_strTime / "dynamic_source");
 //
 //   }
@@ -645,9 +645,7 @@ namespace introjection
 
       ::file::path strTransformName = strName;
 
-      auto pcontext = m_pcontext;
-
-      if(pcontext->m_papexcontext->file()->exists(strName))
+      if(file()->exists(strName))
       {
 
          strTransformName.find_replace(":","");
@@ -692,7 +690,7 @@ namespace introjection
 
       {
 
-         string str2 = pcontext->m_papexcontext->file()->as_string(strLfl+".LinkFileList");
+         string str2 = file()->as_string(strLfl+".LinkFileList");
          str2.find_replace("%TARGET_PATH%", strTargetPath);
          str2.find_replace("%DSYM_PATH%", strDsymPath);
          str2.find_replace("%DERIVED_DATA%", strDdPath);
@@ -700,7 +698,7 @@ namespace introjection
          str2.find_replace("%BUILD_FOLDER%", strBuildFolderPath);
          str2.find_replace("%SRC_FOLDER%", strSrcFolder);
          str2.find_replace("%SRC_NAME%", strSrcName);
-         pcontext->m_papexcontext->file()->put_text(strLfl + "2.LinkFileList", str2);
+         file()->put_text(strLfl + "2.LinkFileList", str2);
 
       }
 
@@ -749,7 +747,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       ::file::path strSourceDir;
       strSourceDir = strName.folder();
 
-      //if(!pcontext->m_papexcontext->file()->exists(lib->m_strSourcePath))
+      //if(!file()->exists(lib->m_strSourcePath))
       //{
       //   lib->m_memfileError << "<pre>";
       //   str.formatf("Source File : \"%s\" does not exist",lib->m_strSourcePath);
@@ -809,9 +807,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
       try
       {
-         if(pcontext->m_papexcontext->file()->exists(strO))
+         if(file()->exists(strO))
          {
-            pcontext->m_papexcontext->file()->erase(strO);
+            file()->erase(strO);
          }
       }
       catch(...)
@@ -819,9 +817,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       }
       try
       {
-         if(pcontext->m_papexcontext->file()->exists(strObj))
+         if(file()->exists(strObj))
          {
-            pcontext->m_papexcontext->file()->erase(strObj);
+            file()->erase(strObj);
          }
       }
       catch(...)
@@ -830,9 +828,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 #ifndef LINUX
       try
       {
-         if(pcontext->m_papexcontext->file()->exists(strP))
+         if(file()->exists(strP))
          {
-            pcontext->m_papexcontext->file()->erase(strP);
+            file()->erase(strP);
          }
       }
       catch(...)
@@ -840,9 +838,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       }
       try
       {
-         if(pcontext->m_papexcontext->file()->exists(strL))
+         if(file()->exists(strL))
          {
-            pcontext->m_papexcontext->file()->erase(strL);
+            file()->erase(strL);
          }
       }
       catch(...)
@@ -850,9 +848,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       }
       try
       {
-         if(pcontext->m_papexcontext->file()->exists(strE))
+         if(file()->exists(strE))
          {
-            pcontext->m_papexcontext->file()->erase(strE);
+            file()->erase(strE);
          }
       }
       catch(...)
@@ -860,9 +858,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       }
       //try
       //{
-      //   if(pcontext->m_papexcontext->file()->exists(strDPC))
+      //   if(file()->exists(strDPC))
       //   {
-      //      pcontext->m_papexcontext->file()->del(strDPC);
+      //      file()->del(strDPC);
       //   }
       //}
       //catch(...)
@@ -870,9 +868,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       //}
       //try
       //{
-      //   if(pcontext->m_papexcontext->file()->exists(strDVP))
+      //   if(file()->exists(strDVP))
       //   {
-      //      pcontext->m_papexcontext->file()->del(strDVP);
+      //      file()->del(strDVP);
       //   }
       //}
       //catch(...)
@@ -880,9 +878,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       //}
       //try
       //{
-      //   if(pcontext->m_papexcontext->file()->exists(strDVI))
+      //   if(file()->exists(strDVI))
       //   {
-      //      pcontext->m_papexcontext->file()->del(strDVI);
+      //      file()->del(strDVI);
       //   }
       //}
       //catch(...)
@@ -890,9 +888,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       //}
       //try
       //{
-      //   if(pcontext->m_papexcontext->file()->exists(strDO1))
+      //   if(file()->exists(strDO1))
       //   {
-      //      pcontext->m_papexcontext->file()->del(strDO1);
+      //      file()->del(strDO1);
       //   }
       //}
       //catch(...)
@@ -900,9 +898,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       //}
       //try
       //{
-      //   if(pcontext->m_papexcontext->file()->exists(strDO2))
+      //   if(file()->exists(strDO2))
       //   {
-      //      pcontext->m_papexcontext->file()->del(strDO2);
+      //      file()->del(strDO2);
       //   }
       //}
       //catch(...)
@@ -911,9 +909,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 #endif
       try
       {
-         if(pcontext->m_papexcontext->file()->exists(strClog))
+         if(file()->exists(strClog))
          {
-            pcontext->m_papexcontext->file()->erase(strClog);
+            file()->erase(strClog);
          }
       }
       catch(...)
@@ -921,9 +919,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       }
       try
       {
-         if(pcontext->m_papexcontext->file()->exists(strLlog))
+         if(file()->exists(strLlog))
          {
-            pcontext->m_papexcontext->file()->erase(strLlog);
+            file()->erase(strLlog);
          }
       }
       catch(...)
@@ -932,9 +930,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       //::DeleteFile(lib->m_strBuildBat);
       //try
       //{
-      //   if(pcontext->m_papexcontext->file()->exists(lib->m_pathScript + ".old"))
+      //   if(file()->exists(lib->m_pathScript + ".old"))
       //   {
-      //      pcontext->m_papexcontext->file()->del(lib->m_pathScript + ".old");
+      //      file()->del(lib->m_pathScript + ".old");
       //   }
       //}
       //catch(string strError)
@@ -943,9 +941,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       //}
       try
       {
-         //if(pcontext->m_papexcontext->file()->exists(lib->m_pathScript))
+         //if(file()->exists(lib->m_pathScript))
          //{
-         //   pcontext->m_papexcontext->file()->copy(strCppPath,lib->m_pathScript);
+         //   file()->copy(strCppPath,lib->m_pathScript);
          //}
       }
       catch(string strError)
@@ -956,9 +954,9 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       }
       //try
       //{
-      //   if(pcontext->m_papexcontext->file()->exists(lib->m_pathScript + ".old"))
+      //   if(file()->exists(lib->m_pathScript + ".old"))
       //   {
-      //      pcontext->m_papexcontext->file()->del(lib->m_pathScript + ".old");
+      //      file()->del(lib->m_pathScript + ".old");
       //   }
       //}
       //catch(string strError)
@@ -971,33 +969,21 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       //      dir()->create(lib->m_strBuildBat.folder());
       //try
       //{
-      //   //         pcontext->m_papexcontext->file()->copy(strDVI, strSVI, false);
+      //   //         file()->copy(strDVI, strSVI, false);
       //}
       //catch(...)
       //{
       //}
       //try
       //{
-      //   pcontext->m_papexcontext->file()->copy(strDVP, strSVP, false);
+      //   file()->copy(strDVP, strSVP, false);
       //}
       //catch(...)
       //{
       //}
       //try
       //{
-      //   pcontext->m_papexcontext->file()->copy(strDPC, strSPC, false);
-      //}
-      //catch(...)
-      //{
-
-      //   lib->m_bHasTempOsError = true;
-
-      //   return;
-
-      //}
-      //try
-      //{
-      //   pcontext->m_papexcontext->file()->copy(strDO1,strSO1,false);
+      //   file()->copy(strDPC, strSPC, false);
       //}
       //catch(...)
       //{
@@ -1009,7 +995,19 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       //}
       //try
       //{
-      //   pcontext->m_papexcontext->file()->copy(strDO2,strSO2,false);
+      //   file()->copy(strDO1,strSO1,false);
+      //}
+      //catch(...)
+      //{
+
+      //   lib->m_bHasTempOsError = true;
+
+      //   return;
+
+      //}
+      //try
+      //{
+      //   file()->copy(strDO2,strSO2,false);
       //}
       //catch(...)
       //{
@@ -1049,7 +1047,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       strBuildCmd.formatf(m_pintegrationcontext->m_pathBuildFolder / "operating_system/operating_system-windows/_stage/introjection" / m_strApp / m_pintegrationcontext->payload("vstools").as_string() / (m_strDynamicSourceConfiguration + "_c_" + m_pintegrationcontext->m_strPlatform + ".bat"));
 #endif
 
-      str = pcontext->m_papexcontext->file()->as_string(strBuildCmd);
+      str = file()->as_string(strBuildCmd);
       str.find_replace("%SOURCE%",::str::find_replace("\\","/",string(strName)));
       str.find_replace("%ITEM_NAME%",::str::find_replace("\\","/",string(strTransformName)));
       str.find_replace("%ITEM_TITLE%",strTransformName.name());
@@ -1141,7 +1139,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
       str.trim();
 
-      pcontext->m_papexcontext->file()->put_text(strCmdCompile, str);
+      file()->put_text(strCmdCompile, str);
 
       process->create_child_process(str,true,m_pintegrationcontext->m_pathProjectFolder,::e_priority_highest);
 
@@ -1164,7 +1162,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
          strBuildFolderPath.find_replace(" ", "\\ ");
          strTargetPath.trim();
          strTargetPath.find_replace(" ", "\\ ");
-         string str2 = pcontext->m_papexcontext->file()->as_string(strCmd);
+         string str2 = file()->as_string(strCmd);
          str2.find_replace("%TARGET_PATH%", strTargetPath);
          str2.find_replace("%DSYM_PATH%", strDsymPath);
          str2.find_replace("%DERIVED_DATA%", strDdPath);
@@ -1173,7 +1171,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
          str2.find_replace("%SRC_FOLDER%", strSrcFolder);
          str2.find_replace("%SRC_NAME%", strSrcName);
          str2.find_replace("%LOG_NAME%", strLogName);
-         pcontext->m_papexcontext->file()->put_text(strCmd + "2", str2);
+         file()->put_text(strCmd + "2", str2);
 
          ::system(str2);
 
@@ -1243,7 +1241,7 @@ auto tickStart = ::time::now();
          if(str.has_char())
          {
 #ifndef MACOS
-            pcontext->m_papexcontext->file()->put_text_utf8(strClog,strLog);
+            file()->put_text_utf8(strClog,strLog);
 #endif
             plibrary->m_memfileError << "<pre>";
 
@@ -1269,7 +1267,7 @@ auto tickStart = ::time::now();
          strBuildCmd.formatf(m_pintegrationcontext->m_pathBuildFolder / "operating_system/operating_system-windows/_stage/introjection" / m_strApp / m_pintegrationcontext->payload("vstools").as_string() / (m_strDynamicSourceConfiguration + "_l_" + m_pintegrationcontext->m_strPlatform + ".bat"));
 #endif
 
-         str = pcontext->m_papexcontext->file()->as_string(strBuildCmd);
+         str = file()->as_string(strBuildCmd);
 
 
          str.find_replace("%ITEM_NAME%",::str::find_replace("\\","/",string(strTransformName)));
@@ -1300,11 +1298,11 @@ auto tickStart = ::time::now();
          //         strTargetPath = m_pintegrationcontext->m_pathBuildFolder /
          str.find_replace("%TARGET_PATH%",strTargetPath);
 
-         pcontext->m_papexcontext->file()->put_text(strCmdLink, str);
+         file()->put_text(strCmdLink, str);
          //strBuildCmd = lib->m_strBuildBat;
-         //pcontext->m_papexcontext->file()->put_text_utf8(strBuildCmd, str);
+         //file()->put_text_utf8(strBuildCmd, str);
 
-         //pcontext->m_papexcontext->file()->put_contents(strBuildCmd,str);
+         //file()->put_contents(strBuildCmd,str);
 
          //str.find_replace("\\", "/");
 
@@ -1330,7 +1328,7 @@ auto tickStart = ::time::now();
 
          {
 
-            string str2 = pcontext->m_papexcontext->file()->as_string(strPreLinkScript);
+            string str2 = file()->as_string(strPreLinkScript);
             str2.find_replace("%TARGET_PATH%", strTargetPath);
             str2.find_replace("%DSYM_PATH%", strDsymPath);
             str2.find_replace("%DERIVED_DATA%", strDdPath);
@@ -1339,7 +1337,7 @@ auto tickStart = ::time::now();
             str2.find_replace("%SRC_FOLDER%", strSrcFolder);
             str2.find_replace("%SRC_NAME%", strSrcName);
             str2.find_replace("%LOG_NAME%", strLogName);
-            pcontext->m_papexcontext->file()->put_text(strPreLinkScript + "2", str2);
+            file()->put_text(strPreLinkScript + "2", str2);
 
             ::chmod(strPreLinkScript + "2", 0755);
 
@@ -1353,7 +1351,7 @@ auto tickStart = ::time::now();
 
          {
 
-            string str2 = pcontext->m_papexcontext->file()->as_string(strLCmd);
+            string str2 = file()->as_string(strLCmd);
             str2.find_replace("%TARGET_PATH%", strTargetPath);
             str2.find_replace("%DSYM_PATH%", strDsymPath);
             str2.find_replace("%DERIVED_DATA%", strDdPath);
@@ -1362,13 +1360,13 @@ auto tickStart = ::time::now();
             str2.find_replace("%SRC_FOLDER%", strSrcFolder);
             str2.find_replace("%SRC_NAME%", strSrcName);
             str2.find_replace("%LOG_NAME%", strLogName);
-            pcontext->m_papexcontext->file()->put_text(strLCmd + "2", str2);
+            file()->put_text(strLCmd + "2", str2);
             //::system(strLCmd + "2");
             ::system(str2);
 
             if(!case_insensitive_string_begins(dir()->module(), "/Applications/"))
             {
-               string str2 = pcontext->m_papexcontext->file()->as_string(strDCmd);
+               string str2 = file()->as_string(strDCmd);
                str2.find_replace("%TARGET_PATH%", strTargetPath);
                str2.find_replace("%DSYM_PATH%", strDsymPath);
                str2.find_replace("%DERIVED_DATA%", strDdPath);
@@ -1377,7 +1375,7 @@ auto tickStart = ::time::now();
                str2.find_replace("%SRC_FOLDER%", strSrcFolder);
                str2.find_replace("%SRC_NAME%", strSrcName);
                str2.find_replace("%LOG_NAME%", strLogName);
-               pcontext->m_papexcontext->file()->put_text(strDCmd + "2", str2);
+               file()->put_text(strDCmd + "2", str2);
                //              ::system(strDCmd + "2");
                ::system(str2);
             }
@@ -1438,7 +1436,7 @@ auto tickStart = ::time::now();
 
 #ifndef MACOS
 
-               pcontext->m_papexcontext->file()->put_text_utf8(strLlog,strLog);
+               file()->put_text_utf8(strLlog,strLog);
 
 #endif
 
@@ -1465,7 +1463,7 @@ auto tickStart = ::time::now();
       try
       {
 
-         pcontext->m_papexcontext->file()->erase(strDVP);
+         file()->erase(strDVP);
 
       }
       catch(...)

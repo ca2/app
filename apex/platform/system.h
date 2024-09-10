@@ -198,7 +198,7 @@ namespace apex
       inline ::parallelization::threading           *  threading() { return m_pthreading; }
 
 
-      virtual ::networking::networking * networking() { return m_pnetworking; }
+      virtual ::networking::networking * networking();
 
 
       virtual void on_allocation_error(const ::string & strName, ::object * pobjectSometimes);

@@ -17,7 +17,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/user_key.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/context.h"
 #include "aura/message/user.h"
 #include "aura/user/user/interaction.h"
 #include "aura/platform/context.h"
@@ -671,10 +671,10 @@ namespace nanoui
 #endif
    }
 
-   ::image_pointer Screen::create_image(const ::size_i32& size)
+   ::image::image_pointer Screen::create_image(const ::size_i32& size)
    {
 
-      return m_puserinteraction->context_image()->create_image(size);
+      return m_puserinteraction->image()->create_image(size);
 
    }
 

@@ -191,7 +191,7 @@ namespace aura
 
       auto pcontext = get_context();
 
-      string strState = pcontext->m_papexcontext->file()->safe_get_string(pathWeatherState);
+      string strState = file()->safe_get_string(pathWeatherState);
 
       if (strState.is_empty())
       {
@@ -320,7 +320,7 @@ namespace aura
 
       auto pcontext = get_context();
 
-      string strWeatherState = pcontext->m_papexcontext->file()->safe_get_string(pathWeatherState);
+      string strWeatherState = file()->safe_get_string(pathWeatherState);
 
       m_strWeatherState = strWeatherState;
 

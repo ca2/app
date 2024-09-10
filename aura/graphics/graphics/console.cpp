@@ -7,7 +7,7 @@
 #include "acme/primitive/string/international.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/graphics.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/write_text/font_family.h"
 #include "aura/user/user/interaction.h"
@@ -181,7 +181,7 @@ namespace graphics
    void console::SetWindowSize(int iHeight, int iWidth)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+      _synchronous_lock synchronouslock(this->synchronization());
 
       m_sizeWindow.cx() = iWidth;
 
@@ -189,7 +189,7 @@ namespace graphics
 
       ::size_i32 sizeImage(m_sizeTile.cx() * m_sizeWindow.cx() + m_iBorder * 2, m_sizeTile.cy() * m_sizeWindow.cy() + m_iBorder * 2);
 
-      m_pimage = context_image()->create_image(sizeImage);
+      m_pimage = image()->create_image(sizeImage);
 
       m_pimage->g()->m_pdraw2dhost = m_puserinteraction;
 

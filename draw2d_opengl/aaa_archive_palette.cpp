@@ -32,7 +32,7 @@ namespace draw2d_opengl
       //return attach(::CreatePalette(lpLogPalette));
       return false;
    }
-   bool palette::CreateHalftonePalette(::image * pimage)
+   bool palette::CreateHalftonePalette(::image::image *pimage)
    {
       //ASSERT(pgraphics != nullptr && (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_handle1() != nullptr);
       //return attach(::CreateHalftonePalette((dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_handle1()));

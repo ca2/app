@@ -124,7 +124,7 @@ namespace graphics
 
       }
 
-      ::image_pointer & pimage = m_bufferitema[m_iBuffer]->m_pimage2;
+      ::image::image_pointer & pimage = m_bufferitema[m_iBuffer]->m_pimage2;
 
       if (!pimage)
       {
@@ -370,7 +370,7 @@ namespace graphics
    }
 
 
-   //::image_pointer & multiple_buffer::get_screen_image()
+   //::image::image_pointer & multiple_buffer::get_screen_image()
    //{
 
    //   return m_bufferitema[m_iScreen].m_pimage;

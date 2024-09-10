@@ -7,7 +7,7 @@
 #include "acme/platform/debug.h"
 #include "aura/platform/node.h"
 #include "aura/graphics/write_text/font.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/imaging.h"
@@ -56,15 +56,15 @@ namespace user
 
          strImage = pchild->attribute("img");
 
-         auto pcontextimage = m_pcontext->context_image();
+         //auto pimagecontext = image();
 
-         auto pimage = pcontextimage->get_image(strImage);
+         auto pimage = image()->get_image(strImage);
 
-         image_source imagesource(pimage);
+         ::image::image_source imagesource(pimage);
 
-         image_drawing_options imagedrawingoptions;
+         ::image::image_drawing_options imagedrawingoptions;
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          iIndex = MenuV033GetImageList()->add(imagedrawing);
 
@@ -80,11 +80,7 @@ namespace user
 
       spgraphics->CreateCompatibleDC(nullptr);
 
-      auto psystem = system()->m_pbasesystem;
-
-      class imaging * pimaging = psystem->imaging();
-
-      pimaging->change_hue(
+      imaging()->change_hue(
       m_pimagelistHue,
       MenuV033GetImageList(),
       rgb(192, 192, 180),
@@ -95,7 +91,7 @@ namespace user
       rgb(255, 255, 240),
       64);
 
-      pimaging->change_hue(
+      imaging()->change_hue(
       m_pimagelistHueLight,
       m_pimagelist,
       rgb(220, 220, 215),
@@ -194,7 +190,7 @@ namespace user
    }
 
 
-   ::pointer<image_list>menu_central::MenuV033GetImageList()
+   ::image::image_list_pointer menu_central::MenuV033GetImageList()
    {
 
       defer_initialize();
@@ -204,7 +200,7 @@ namespace user
    }
 
 
-   ::pointer<image_list>menu_central::MenuV033GetImageListHue()
+   ::image::image_list_pointer menu_central::MenuV033GetImageListHue()
    {
 
       return m_pimagelistHue;
@@ -212,7 +208,7 @@ namespace user
    }
 
 
-   ::pointer<image_list>menu_central::MenuV033GetImageListBlend()
+   ::image::image_list_pointer menu_central::MenuV033GetImageListBlend()
    {
 
       return m_pimagelistBlend;
@@ -220,7 +216,7 @@ namespace user
    }
 
 
-   ::pointer<image_list>menu_central::MenuV033GetImageListHueLight()
+   ::image::image_list_pointer menu_central::MenuV033GetImageListHueLight()
    {
 
       return m_pimagelistHueLight;

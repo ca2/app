@@ -489,7 +489,7 @@
     <ClInclude Include="procedure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\draw2d\context_image.h">
+    <ClInclude Include="graphics\draw2d\image_context.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="platform\shell_open.h">
@@ -705,7 +705,7 @@
     <ClInclude Include="graphics\image\pixmap.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\image\context_image.h">
+    <ClInclude Include="graphics\image\image_context.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
     <ClInclude Include="graphics\image\load_image.h">
@@ -1285,7 +1285,7 @@
     <ClCompile Include="graphics\image\source.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\image\context_image.cpp">
+    <ClCompile Include="graphics\image\image_context.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
     <ClCompile Include="graphics\image\load_gif_frame.cpp">

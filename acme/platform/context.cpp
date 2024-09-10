@@ -53,6 +53,20 @@ namespace acme
 
       //::release(m_ptexttranslator);
 
+      m_pplatform = nullptr;
+
+      m_pcontext = this;
+
+      m_papexcontext = nullptr;
+      m_pauracontext = nullptr;
+
+
+      m_pacmeapplication = nullptr;
+      m_pacmesession = nullptr;
+      m_pacmesystem = nullptr;
+      m_pacmenode = nullptr;
+
+
    }
 
 
@@ -365,6 +379,14 @@ namespace acme
    {
 
       return m_pacmesystem->m_pfilesystem;
+
+   }
+
+
+   ::http::context * context::http()
+   {
+
+      return m_pacmesystem->m_phttpcontext;
 
    }
 

@@ -58,8 +58,8 @@ namespace draw2d
 //
 //
 //
-//CLASS_DECL_AURA void draw_freetype_bitmap(::image * pm_p, i32 Δx, i32 Δy, void * pftbitmap, int x, int y);
-//CLASS_DECL_AURA void draw_freetype_bitmap(::image * pm_p, i32 Δx, i32 Δy, void * pftbitmap, int x, int y, ::u8 a, ::u8 rectangle, ::u8 g, ::u8 b);
+//CLASS_DECL_AURA void draw_freetype_bitmap(::image::image *pm_p, i32 Δx, i32 Δy, void * pftbitmap, int x, int y);
+//CLASS_DECL_AURA void draw_freetype_bitmap(::image::image *pm_p, i32 Δx, i32 Δy, void * pftbitmap, int x, int y, ::u8 a, ::u8 rectangle, ::u8 g, ::u8 b);
 //
 //
 //
@@ -134,7 +134,7 @@ namespace draw2d
 //
 ////#include "load_image.h"
 ////
-////#include "context_image.h"
+////#include "image_context.h"
 //
 //#include "draw2d.h"
 //
@@ -181,7 +181,7 @@ namespace draw2d
 ////
 ////
 ////   template < >
-////   inline ::pointer<factory_item_interface>& get_factory_item < ::image >()
+////   inline ::pointer<factory_item_interface>& get_factory_item < ::image::image >()
 ////   {
 ////
 ////      return factory_item_array()->element_at_grow(e_factory_draw2d_image);

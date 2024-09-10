@@ -47,19 +47,19 @@ namespace browser
 
       bool                             m_bImageChanged;
 
-      ::draw2d::fastblur               m_blurImageImage;
-      ::image_pointer                            m_pimageImage;
-      ::image_pointer                            m_pimageImageStretched;
-      ::image_pointer                            m_pimageOut;
-      ::image_pointer                            m_pimageA;
-      ::image_pointer                            m_pimageB;
-      ::image_pointer                            m_pimageWork;
-      ::draw2d::fastblur               m_blurImage;
-/*      ::image_pointer                            m_pimage;
-      ::draw2d::fastblur               m_blurImageTint;
-      ::image_pointer                            m_pimageTint;
-      ::image_pointer                            m_pimageTemplate;
-      ::image_pointer                            m_pimageTemplate2;
+      ::image::fastblur               m_blurImageImage;
+      ::image::image_pointer                            m_pimageImage;
+      ::image::image_pointer                            m_pimageImageStretched;
+      ::image::image_pointer                            m_pimageOut;
+      ::image::image_pointer                            m_pimageA;
+      ::image::image_pointer                            m_pimageB;
+      ::image::image_pointer                            m_pimageWork;
+      ::image::fastblur               m_blurImage;
+/*      ::image::image_pointer                            m_pimage;
+      ::image::fastblur               m_blurImageTint;
+      ::image::image_pointer                            m_pimageTint;
+      ::image::image_pointer                            m_pimageTemplate;
+      ::image::image_pointer                            m_pimageTemplate2;
 
       ::color::color::color::hls                     m_hlsForeground;
 
@@ -84,7 +84,7 @@ namespace browser
       class ::time                            m_timeAnime;
       class ::time m_timeLastFast;
       ::u32                            m_timeFastAnime;
-      ::image_pointer                            m_pimageFast;
+      ::image::image_pointer                            m_pimageFast;
 
 
       image_array                      m_pimageaSlide;

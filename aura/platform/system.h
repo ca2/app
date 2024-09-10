@@ -16,9 +16,9 @@ namespace aura
    public:
 
 
-      bool                                               m_bAvoidFirstResponder;
+      bool                                              m_bAvoidFirstResponder;
 
-      ::type_atom                                        m_typeatomPaneTabImpact;
+      ::type_atom                                       m_typeatomPaneTabImpact;
       
       ::pointer<::windowing::window>                    m_pwindowMain;
 
@@ -29,14 +29,14 @@ namespace aura
       double                                            m_dDpi;
 
       ::pointer < ::mutex >                             m_pmutexUserChildren;
-      ::pointer<class ::imaging>                        m_pimaging;
+      ::pointer<class ::image::imaging>                 m_pimaging;
 
       ::pointer<::gpu::approach>                        m_pgpu;
 
-      bool                                               m_bProdevianMouse;
+      bool                                              m_bProdevianMouse;
 
 
-      string_map < ::pointer<image >>                 m_mapImage;
+      string_map < ::image::image_pointer >             m_mapImage;
 
       ::pointer<::hardware::devices>                    m_phardwaredevices;
 
@@ -274,7 +274,7 @@ namespace aura
       class ::write_text::write_text * write_text() const override;
       
       
-      class ::imaging * imaging() override;
+      class ::image::imaging * imaging() override;
 
 
       //inline ::url::url                     &  url()

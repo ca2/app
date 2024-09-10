@@ -905,7 +905,7 @@ void TransformSkewX(float* t, float a)
 
 
 	::nano2d::paint context::image_pattern_from_image(float cx, float cy, float w, float h, float angle,
-		float alpha, ::image * pimage)
+		float alpha, ::image::image *pimage)
 	{
 
 		return {};
@@ -3441,7 +3441,7 @@ void TransformSkewX(float* t, float a)
 
 	// vim: ft=c nu noet ts=4
 
-	void context::_draw_image(float x, float y, float w, float h, ::image* pimage)
+	void context::_draw_image(float x, float y, float w, float h, ::image::image* pimage)
 	{
 
 

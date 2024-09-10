@@ -18,7 +18,7 @@
 //void * cg_image_get_image_data(int & width, int & height, int & iScan, CGImageRef image);
 //
 //
-//void imaging::_load_image(::image * pimage, ::pointer<image_frame_array>& pframea, ::memory_pointer pmemory)
+//void imaging::_load_image(::image::image *pimage, ::pointer<image_frame_array>& pframea, ::memory_pointer pmemory)
 //{
 //
 //   if(!pmemory || pmemory->is_empty())
@@ -141,7 +141,7 @@
 //         ::apex::malloc < color32_t * > pdata((color32_t *) cg_image_get_image_data(w, h, iScan, pimage));
 //         // Check for valid `frameImage` before parsing its properties as frames can be corrupted (and `frameImage` even `nil` when `frameImageRef` was valid).
 //
-//         auto p = ::place(new image_frame());
+//         auto p = ::place(new ::image::image_frame());
 //
 //         p->m_pimage = create_image();
 //

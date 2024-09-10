@@ -6,7 +6,7 @@
 #include "aura/windowing/icon.h"
 
 
-namespace draw2d
+namespace image
 {
 
 
@@ -143,7 +143,7 @@ namespace draw2d
    }
 
 
-   image_pointer icon::image_source_image(const ::size_i32 & size)
+   ::image::image_pointer icon::image_source_image(const ::size_i32 & size)
    {
 
       bool bExists;
@@ -227,7 +227,7 @@ namespace draw2d
    }
 
 
-   /*image_pointer icon::image_source_image(const concrete < ::size_i32 > & size) const
+   /*::image::image_pointer icon::image::image_source_image(const concrete < ::size_i32 > & size) const
    {
 
       return ((icon *)this)->get_image(size);
@@ -331,6 +331,6 @@ namespace draw2d
 
 
 
-} // namespace draw2d
+} // namespace image
 
 

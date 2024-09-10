@@ -68,8 +68,8 @@ namespace apex
       // apex commented
       //::user::interaction_impl *                            m_pimplPendingFocus2;
       //::layered *                                 m_puiLastUserInputPopup;
-      //::draw2d::cursor *                                    m_pcursor;
-      //::draw2d::cursor *                                    m_pcursorCursor;
+      //::image::cursor *                                    m_pcursor;
+      //::image::cursor *                                    m_pcursorCursor;
       //enum_cursor                                              m_ecursorDefault;
       //enum_cursor                                              m_ecursor;
 

@@ -34,16 +34,16 @@ NAMESPACE_BEGIN(nanoui)
       // opengl
       /// Return the currently active image
       // Texture * image() { return m_image; }
-      ::image * image() { return m_pimage; }
+      ::image::image *image() { return m_pimage; }
       /// Return the currently active image (const version)
       // opengl
       // const Texture * image() const { return m_image.get(); }
-      const ::image * image() const { return m_pimage; }
+      const ::image::image *image() const { return m_pimage; }
       /// Set the currently active image
       // opengl
       // void set_image(Texture * image);
 
-      void set_image(::image * pimage);
+      void set_image(::image::image *pimage);
 
       /// Center the image on the screen
       void center();
@@ -85,7 +85,7 @@ NAMESPACE_BEGIN(nanoui)
       //nanoui::ref<Shader> m_image_shader;
       // opengl
       //nanoui::ref<Texture> m_image;
-      //::image_pointer m_pimage;
+      //::image::image_pointer m_pimage;
       float m_scale = 0;
       sequence2_f32 m_offset = 0;
       bool m_draw_image_border;

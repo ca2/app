@@ -169,15 +169,18 @@ public:
    ::collection::count erase_value(const ::payload & payload, ::collection::count countMin = 0, ::collection::count countMax = -1);
    ::collection::count erase_value(const ::scoped_string & scopedstr, ::collection::count countMin = 0, ::collection::count countMax = -1);
 
-   bool has_property(atom idName) const;
+   bool has_property(const atom & atom) const;
 
-   bool is_true(atom idName, bool bDefault = false) const;
+   bool is_true(const atom & atom) const;
 
-   bool is_false(atom idName) const { auto p = find(idName); return !p || p->is_false(); }
+   bool is_true_or_empty(const atom & atom) const;
 
-   bool is_set_false(atom idName) const { auto p = find(idName); return !p || p->is_set_false(); }
+   bool is_false(const atom & atom) const { auto p = find(atom); return !p || p->is_false(); }
+
+   bool is_set_false(const atom & atom) const { auto p = find(atom); return !p || p->is_set_false(); }
 
    bool is_set_empty(::collection::count countMinimum = 1) const;
+
    bool has_properties(::collection::count countMinimum = 1) const;
 
 

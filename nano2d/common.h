@@ -281,8 +281,8 @@ class Window;
 
 
 
-NANOUI_EXPORT ::image_pointer ___load_image(::particle * pparticle, const ::file::path & path);
-NANOUI_EXPORT void ___save_image(::particle * pparticle, const ::file::path & path, ::image * pimage);
+NANOUI_EXPORT ::image::image_pointer ___load_image(::particle * pparticle, const ::file::path & path);
+NANOUI_EXPORT void ___save_image(::particle * pparticle, const ::file::path & path, ::image::image *pimage);
 
 
 /**

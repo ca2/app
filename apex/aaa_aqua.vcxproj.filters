@@ -4039,7 +4039,7 @@
     <ClCompile Include="platform\context.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\context_image.cpp">
+    <ClCompile Include="platform\image_context.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\debug.cpp">

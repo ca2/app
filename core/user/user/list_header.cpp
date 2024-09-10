@@ -69,11 +69,11 @@ namespace user
 
          rectangle.Align(::e_align_left_center, rC);
 
-         image_source imagesource(plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader);
+         ::image::image_source imagesource(plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader);
 
-         image_drawing_options imagedrawingoptions(rectangle);
+         ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          pgraphics->draw(imagedrawing);
 

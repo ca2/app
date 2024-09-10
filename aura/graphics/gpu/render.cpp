@@ -158,13 +158,13 @@ namespace gpu
          //}
          //return pixmap;
 
-         //image_source imagesource(m_pgpucontext->m_pbuffer->m_pimage);
+         //::image::image_source imagesource(m_pgpucontext->m_pbuffer->m_pimage);
 
          //::rectangle_f64 rectangleTarget(m_rectangle);
 
-         //image_drawing_options imagedrawingoptions(rectangleTarget);
+         //::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
-         //image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         //::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          //pgraphics->draw(imagedrawing);
 
@@ -279,13 +279,13 @@ namespace gpu
          //}
          //return pixmap;
 
-         //image_source imagesource(m_pgpucontext->m_pbuffer->m_pimage);
+         //::image::image_source imagesource(m_pgpucontext->m_pbuffer->m_pimage);
 
          //::rectangle_f64 rectangleTarget(m_rectangle);
 
-         //image_drawing_options imagedrawingoptions(rectangleTarget);
+         //::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
-         //image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         //::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          //pgraphics->draw(imagedrawing);
 
@@ -345,11 +345,11 @@ namespace gpu
 
    ::copy_image32(m_pimageFromGpu, &m_pgpucontext->m_pcpubuffer->m_pixmap);
 
-   image_source imagesource(m_pimageFromGpu);
+   ::image::image_source imagesource(m_pimageFromGpu);
 
-   image_drawing_options imagedrawingoptions(m_rectangle);
+   ::image::image_drawing_options imagedrawingoptions(m_rectangle);
 
-   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
    pgraphics->draw(imagedrawing);
 

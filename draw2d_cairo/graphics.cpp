@@ -988,7 +988,7 @@ namespace draw2d_cairo
    }
 
 
-//void graphics::DrawIcon(double x, double y, ::draw2d::icon * picon)
+//void graphics::DrawIcon(double x, double y, ::image::icon * picon)
 //{
 //
 //    throw ::interface_only();
@@ -998,7 +998,7 @@ namespace draw2d_cairo
 //}
 
 
-//void graphics::DrawIcon(const ::point_f64 & point, ::draw2d::icon * picon)
+//void graphics::DrawIcon(const ::point_f64 & point, ::image::icon * picon)
 //{
 //
 //    throw ::interface_only();
@@ -1010,7 +1010,7 @@ namespace draw2d_cairo
 
 //#ifdef WINDOWS_DESKTOP
 //
-//void graphics::draw(::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags)
+//void graphics::draw(::image::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags)
 //{
 //
 //
@@ -1479,8 +1479,8 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::_draw_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage,
-                            const ::image_drawing_options & imagedrawingoptions, const ::point_f64 & pointSrc)
+   void graphics::_draw_raw(const ::rectangle_f64 & rectangleTarget, ::image::image *pimage,
+                            const ::image::image_drawing_options & imagedrawingoptions, const ::point_f64 & pointSrc)
    {
 
       _synchronous_lock ml(::draw2d_cairo::mutex());
@@ -1625,7 +1625,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_draw_blend(const ::image_drawing & imagedrawing)
+   bool graphics::_draw_blend(const ::image::image_drawing & imagedrawing)
    {
 
       return ::draw2d::graphics::_draw_blend(imagedrawing);
@@ -1633,8 +1633,8 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image * pimage,
-                               const ::image_drawing_options & imagedrawingoptions,
+   void graphics::_stretch_raw(const ::rectangle_f64 & rectangleTarget, ::image::image *pimage,
+                               const ::image::image_drawing_options & imagedrawingoptions,
                                const ::rectangle_f64 & rectangleSource)
    {
 
@@ -3945,7 +3945,9 @@ namespace draw2d_cairo
       if(strParam.is_empty())
       {
 
-         throw exception(error_invalid_empty_argument);
+         //throw exception(error_invalid_empty_argument);
+
+         return;
 
       }
 

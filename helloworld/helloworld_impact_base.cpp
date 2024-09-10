@@ -116,7 +116,7 @@ auto m_timeRoll = ::time::now();
 
          on_draw_image_layer(pgraphicsParam);
 
-/*         ::image_pointer pimage = m_pimagePost;
+/*         ::image::image_pointer pimage = m_pimagePost;
 
 /*         _006OnDraw(pimage->g());
 
@@ -293,7 +293,7 @@ pacmedirectory->system() / "obs.png");
 
             ::u8 a, r, g, b, rm, gm, bm;
 
-/*            ::image_pointer pimage = pgraphics->m_pimage;
+/*            ::image::image_pointer pimage = pgraphics->m_pimage;
 
 /*            if (pimage->is_null())
             {

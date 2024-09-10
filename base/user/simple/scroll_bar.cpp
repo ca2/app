@@ -1042,7 +1042,7 @@ bool simple_scroll_bar::scrollbar_pageB(const ::point_i32 & point, ::user::enum_
 }
 
 
-//void simple_scroll_bar::OnDraw(::image * pimage)
+//void simple_scroll_bar::OnDraw(::image::image *pimage)
 //{
 /*    if(GetExStyle() & WS_EX_TRANSPARENT)
 {
@@ -2092,11 +2092,11 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
    auto rectangleSource = ::rectangle_f64(pointSrc, sizeSrc);
 
-   image_source imagesource(m_pimageDots, rectangleSource);
+   ::image::image_source imagesource(m_pimageDots, rectangleSource);
 
-   image_drawing_options imagedrawingoptions(rectangleTarget);
+   ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
-   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+   ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
    imagedrawing.opacity(uchAlpha);
 

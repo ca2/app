@@ -904,11 +904,7 @@ namespace user
          if (case_insensitive_string_begins(pimpactdata->m_atom.m_str, "form_"))
          {
 
-            auto pcontext = m_pcontext;
-
-            auto psession = pcontext->m_pacmesession->m_pbasesession;
-
-            auto puser = psession->m_puser->m_pbaseuser;
+            auto puser = user()->m_pbaseuser;
 
             ::pointer<form_document>pformdocument = puser->create_child_form(this, nullptr, this, pimpactdata->m_pplaceholder);
 
@@ -985,13 +981,18 @@ namespace user
 
          auto phandlerimpact = m_maphandlerimpact[m_pimpactdata->m_atom];
 
-         phandlerimpact->call_handler(
-            [poptionsimpacthandler](auto puserinteractionParent)
-            {
+         if(poptionsimpacthandler && phandlerimpact)
+         {
 
-               poptionsimpacthandler->create_options_impact(puserinteractionParent);
+            phandlerimpact->call_handler(
+               [poptionsimpacthandler](auto puserinteractionParent)
+               {
 
-            });
+                  poptionsimpacthandler->create_options_impact(puserinteractionParent);
+
+               });
+
+         }
 
       }
 

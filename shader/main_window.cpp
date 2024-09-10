@@ -13,8 +13,8 @@
 #include "acme/user/user/tool.h"
 #include "aura/graphics/user/control_box_icon.h"
 #include "aura/graphics/image/image.h"
-#include "aura/graphics/image/save_image.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/save_options.h"
+#include "aura/graphics/image/context.h"
 #include "aura/message/user.h"
 #include "aura/platform/system.h"
 
@@ -222,7 +222,7 @@ namespace app_shader
 
             m_bSaveFrame = false;
 
-            auto pimage = context_image()->create_image(rectangleX.size());
+            auto pimage = image()->create_image(rectangleX.size());
 
             ::draw2d::graphics_pointer pgraphics = pimage->get_graphics();
 
@@ -231,13 +231,13 @@ namespace app_shader
             fork([this, pimage]()
                  {
 
-                    auto psaveimage = ::place(new save_image());
+                    ::image::save_options saveoptions;
 
-                    psaveimage->m_eformat = ::draw2d::e_format_png;
+                    saveoptions.m_eformat = ::image::e_format_png;
 
                     string strDate = datetime()->date_time_text_for_file();
 
-                    context_image()->save_image("image://app_simple_shader-" + strDate + ".png", pimage, psaveimage);
+                    image()->save_image("image://app_simple_shader-" + strDate + ".png", pimage, saveoptions);
 
                  });
 

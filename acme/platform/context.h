@@ -28,9 +28,10 @@ namespace acme
 
       ::pointer<::text::translator>                   m_ptexttranslator;
 
-      ::pointer<::context_image>                      m_pcontextimage;
+      ::pointer<::image::image_context>               m_pimagecontext;
       ::pointer<::dir_context>                        m_pdir;
       ::pointer<::file_context>                       m_pfile;
+      ::pointer<::http::context>                      m_phttpcontext;
 
       //::pointer < ::os_context >                      m_poscontext;
 
@@ -61,7 +62,7 @@ namespace acme
       virtual void finalize_context();
 
 
-      inline ::context_image* context_image() { return m_pcontextimage; }
+      inline ::image::image_context* image() { return m_pimagecontext; }
 
       virtual bool is_system() const;
       virtual bool is_session() const;
@@ -90,6 +91,9 @@ namespace acme
       virtual ::file_context* file();
       ::dir_system * dirsystem();
       ::file_system * filesystem();
+
+
+      ::http::context * http();
 
 
       virtual ::payload file_payload(const ::payload & payloadFile);

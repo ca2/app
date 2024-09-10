@@ -10,6 +10,10 @@
 ////#include "acme/exception/exception.h"
 
 
+namespace image
+{
+
+
 inline void kernelPosition(int boxBlur,unsigned& std,int& dLeft,int& dRight)
 {
 
@@ -104,8 +108,6 @@ inline void storeFloatAsRGBA8(float32x4_t data,u32* destination)
 #endif // HAVE(ARM_NEON_INTRINSICS)
 
 //#endif // NEONHelpers_h
-namespace draw2d
-{
 
    fastblur::fastblur()
    {
@@ -303,7 +305,7 @@ namespace draw2d
    }
 
 
-   void fastblur::blur(::image * pimage, const ::rectangle_i32 & rectangle)
+   void fastblur::blur(::image::image *pimage, const ::rectangle_i32 & rectangle)
    {
 
       pixmap_lock lock(pimage, rectangle);
@@ -313,7 +315,7 @@ namespace draw2d
    }
 
 
-   void fastblur::blur(::image * pimage)
+   void fastblur::blur(::image::image *pimage)
    {
 
       int cx = pimage->width();
@@ -1690,7 +1692,6 @@ auto tick2 = ::time::now();
 
 
 
+} // namespace image
 
 
-
-} // namespace draw2d

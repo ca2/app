@@ -15,7 +15,7 @@ namespace graphics
 
 
       int                           m_iGoodStride;
-      //::image_pointer               m_imageaBuffer[2];
+      //::image::image_pointer               m_imageaBuffer[2];
       //::pointer_array < ::mutex >   m_mutexa;
       //bool                          m_bSingleBufferMode;
 
@@ -41,12 +41,12 @@ namespace graphics
       // synchronous_lock buffer synchronization first...
       buffer_item * get_buffer_item() override;
       //::particle * get_buffer_sync() override;
-      //::image_pointer & get_buffer_image() override;
+      //::image::image_pointer & get_buffer_image() override;
 
       // synchronous_lock screen synchronization first...
       buffer_item * get_screen_item() override;
       //virtual ::particle * get_screen_sync() override;
-      //virtual ::image_pointer & get_screen_image() override;
+      //virtual ::image::image_pointer & get_screen_image() override;
 
 
       ::collection::index get_buffer_index() const;

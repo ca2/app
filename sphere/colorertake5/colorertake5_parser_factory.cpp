@@ -50,7 +50,7 @@ namespace colorertake5
 
             if (logLocation.has_char())
             {
-               string str = pcontext->m_papexcontext->file()->as_string(logLocation);
+               string str = file()->as_string(logLocation);
                colorer_logger_set_target(str);
             }
             if (fileErrorHandler == nullptr)
@@ -204,7 +204,7 @@ namespace colorertake5
             {
                if(!dir()->is(patha[i]))
                {
-                  string str = pcontext->m_papexcontext->file()->as_string(patha[i]);
+                  string str = file()->as_string(patha[i]);
                   try
                   {
                      hrcParser->loadSource(patha[i], str);
@@ -221,7 +221,7 @@ namespace colorertake5
          }
          else
          {
-            string strSource = pcontext->m_papexcontext->file()->as_string(path);
+            string strSource = file()->as_string(path);
             if(strSource.has_char())
             {
                try
@@ -306,7 +306,7 @@ namespace colorertake5
 
                strPath = strDir / hrdLocV->element_at(idx);
 
-               stream spfile(pcontext->m_papexcontext->file()->get_file(strPath, ::file::e_open_read | ::file::e_open_binary), FIRST_VERSION);
+               stream spfile(file()->get_file(strPath, ::file::e_open_read | ::file::e_open_binary), FIRST_VERSION);
 
                if(spfile.is_reader_set())
                {
@@ -350,7 +350,7 @@ namespace colorertake5
          {
             try
             {
-               stream stream(pcontext->m_papexcontext->file()->get_file(hrdLocV->element_at(idx), ::file::e_open_read |::file::e_open_binary), FIRST_VERSION);
+               stream stream(file()->get_file(hrdLocV->element_at(idx), ::file::e_open_read |::file::e_open_binary), FIRST_VERSION);
                if(stream.is_reader_set())
                {
                   mapper->loadRegionMappings(stream);

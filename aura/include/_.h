@@ -991,8 +991,8 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 //
 //class image_frame_array;
 //class image_drawer;
-//class image_drawing;
-//class image_drawing_options;
+//class ::image::image_drawing;
+//class ::image::image_drawing_options;
 //
 //template < typename SHAPE_FACTORY >
 //class shape_array;
@@ -1006,7 +1006,6 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 //namespace draw2d
 //{
 //
-//   class icon;
 //   class graphics;
 //   class bitmap;
 //   class brush;
@@ -1036,7 +1035,6 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////   class graphics;
 ////
 ////
-////   class icon;
 ////   class cursor;
 ////   class region;
 ////   class brush;

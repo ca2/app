@@ -68,7 +68,7 @@ namespace browser
 
       string str;
 
-/*      ::image_pointer pimage = get_image(payloadFile, true);
+/*      ::image::image_pointer pimage = get_image(payloadFile, true);
 
 /*      if(pimage->is_ok())
       {
@@ -95,8 +95,8 @@ namespace browser
 
       }
       else if(get_typed_impact < ::user::plain_edit_impact >() != nullptr
-              && pcontext->m_papexcontext->file()->exists(payloadFile)
-              && (str = pcontext->m_papexcontext->file()->as_string(payloadFile)).has_char())
+              && file()->exists(payloadFile)
+              && (str = file()->as_string(payloadFile)).has_char())
       {
 
          get_typed_impact < ::user::plain_edit_impact >()->set_text(str.left(84),::e_source_user);

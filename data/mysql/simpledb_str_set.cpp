@@ -193,7 +193,7 @@ repeat:;
 
              set["user"] = psession->account()->get_user();
 
-             m_phttpsession = pcontext->m_papexcontext->http().request(m_phttpsession, strUrl, set);
+             m_phttpsession = http()->request(m_phttpsession, strUrl, set);
 
              if(m_phttpsession == nullptr || ::http::status_failed(set["get_status"]))
              {
@@ -307,7 +307,7 @@ bool db_str_set::load(const ::string & lpKey, string & strValue)
 
       set["get_response"] = "";
 
-      m_pcore->m_phttpsession = pcontext->m_papexcontext->http().request(m_pcore->m_phttpsession,strUrl,set);
+      m_pcore->m_phttpsession = http()->request(m_pcore->m_phttpsession,strUrl,set);
 
       if(m_pcore->m_phttpsession == nullptr || ::http::status_failed(set["get_status"]))
       {

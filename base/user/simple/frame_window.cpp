@@ -1002,9 +1002,9 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
             ::file::path pathFrameJson = "matter://" + m_pimpactsystem->m_atom + "/frame.network_payload";
 
-            auto pcontext = get_context();
+            //auto pcontext = get_context();
 
-            m_varFrame = pcontext->m_papexcontext->file()->safe_get_network_payload(pathFrameJson);
+            m_varFrame = file()->safe_get_network_payload(pathFrameJson);
 
          }
 
@@ -2843,11 +2843,11 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 //
 //      pgraphicsParam->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
-//      image_source imagesource(pgraphics);
+//      ::image::image_source imagesource(pgraphics);
 //
-//      image_drawing_options imagedrawingoptions(rectangleX.size());
+//      ::image::image_drawing_options imagedrawingoptions(rectangleX.size());
 //
-//      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+//      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 //
 //      imagedrawing.opacity(dAlpha);
 //
@@ -2928,7 +2928,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
             m_pimageBk->create(rectangleX.size());
             m_pimageBk->clear_argb(0, 200, 200, 190);
             //HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
-            //::draw2d::fastblur *( *pfnNew )(::pointer<::aura::application> = (::draw2d::fastblur *(*)(::pointer<::aura::application> ::GetProcAddress(hmodule, "new_fastblur");
+            //::image::fastblur *( *pfnNew )(::pointer<::aura::application> = (::image::fastblur *(*)(::pointer<::aura::application> ::GetProcAddress(hmodule, "new_fastblur");
             //m_pimageBlur->create(this);
             //m_fastblur.initialize(rectangleX.size(),2);
 
@@ -2943,11 +2943,11 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
             {
 
-               image_source imagesource(pgraphics);
+               ::image::image_source imagesource(pgraphics);
 
-               image_drawing_options imagedrawingoptions(rectangleTarget);
+               ::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                m_pimageBlur->g()->draw(imagedrawing);
 
@@ -2959,13 +2959,13 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
             {
 
-               image_source imagesource(m_pimageBk);
+               ::image::image_source imagesource(m_pimageBk);
 
-               image_drawing_options imagedrawingoptions(rectangleX.size());
+               ::image::image_drawing_options imagedrawingoptions(rectangleX.size());
 
                imagedrawingoptions.opacity(49);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                m_pimageBlur->draw(imagedrawing);
 
@@ -2973,11 +2973,11 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
             {
 
-               image_source imagesource(m_pimageBlur);
+               ::image::image_source imagesource(m_pimageBlur);
 
-               image_drawing_options imagedrawingoptions(rectangleX);
+               ::image::image_drawing_options imagedrawingoptions(rectangleX);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 
@@ -3588,6 +3588,10 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
          auto pointCursor = windowing()->display()->get_mouse_cursor_position();
          
          auto squareHint = rectangle_i32::square_with_center_and_apothem(pointCursor, 8);
+
+         pointCursor -= squareHint.top_left();
+
+         pointCursor += ::size_i32(16, 16);
 
          auto pmenu = m_pnotifyicon->menu();
 

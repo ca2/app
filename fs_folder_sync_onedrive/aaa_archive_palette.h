@@ -18,7 +18,7 @@ namespace draw2d_gdiplus
 
       bool CreatePalette(LPLOGPALETTE pLogPalette);
 
-      bool CreateHalftonePalette(::image * pimage);
+      bool CreateHalftonePalette(::image::image *pimage);
 
       
       operator HPALETTE() const;

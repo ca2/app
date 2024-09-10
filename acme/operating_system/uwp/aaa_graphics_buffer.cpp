@@ -164,7 +164,7 @@ namespace universal_windows
    }
 
 
-   bool buffer::update_window(::image* pimage)
+   bool buffer::update_window(::image::image* pimage)
    {
 
       if (m_bNewBuffer)

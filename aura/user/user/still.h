@@ -15,7 +15,7 @@ namespace user
 
 
       ::write_text::font_pointer          m_pfont;
-      ::image_pointer                     m_pimage;          // not pressed default bitmap
+      ::image::image_pointer                     m_pimage;          // not pressed default bitmap
       //::rectangle_i32                   m_rectangleMargin;
       //::rectangle_i32                   m_rectangleBorder;
       //::rectangle_i32                   m_rectanglePadding;
@@ -24,7 +24,7 @@ namespace user
       //::rectangle_i32                     m_rectangleText;
       ::collection::index                               m_iClick;
       enum_stock_icon                     m_estockicon;
-      ::draw2d::icon_pointer              m_picon;
+      ::image::icon_pointer              m_picon;
       ::pointer < ::write_text::text_out_array > m_ptextouta;
       //::string                            m_strTextOutArray;
 
@@ -101,7 +101,7 @@ namespace user
       virtual void on_exit_still_style(enum_still estill);
 
 
-      virtual ::draw2d::icon * still_get_icon();
+      virtual ::image::icon * still_get_icon();
 
 
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);

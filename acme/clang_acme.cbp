@@ -1813,7 +1813,7 @@
 		<Unit filename="platform/constraint.h" />
 		<Unit filename="platform/context.cpp" />
 		<Unit filename="platform/context.h" />
-		<Unit filename="platform/context_image.cpp" />
+		<Unit filename="platform/image_context.cpp" />
 		<Unit filename="platform/conv.cpp" />
 		<Unit filename="platform/conv.h" />
 		<Unit filename="platform/core.h" />

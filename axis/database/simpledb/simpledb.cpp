@@ -243,7 +243,7 @@ namespace simpledb
 
             auto url = parts.as_url();
 
-            strValue = m_pcontext->m_papexcontext->http().get(url, set);
+            strValue = http()->get(url, set);
 
             if (strValue.is_empty() || set["get_status"].failed())
             {

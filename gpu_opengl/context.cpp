@@ -273,7 +273,7 @@ namespace opengl
 }
 
 
-   void context::set_bitmap_1(::image * pimage)
+   void context::set_bitmap_1(::image::image *pimage)
    {
 
       ASSERT(m_itaskGpu == ::current_itask());

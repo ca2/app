@@ -4762,6 +4762,22 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
+   bool node::_get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle)
+   {
+
+      return false;
+
+   }
+
+
+   bool node::_get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 & rectangle)
+   {
+
+      return false;
+
+   }
+
+
 } // namespace acme
 
 

@@ -22,7 +22,7 @@ namespace write_text
    public:
 
 
-      ::image_pointer               m_pimage;
+      ::image::image_pointer               m_pimage;
       ::write_text::font_pointer    m_pfont;
       ::rectangle_i32               m_rectangle;
       size_i32                      m_size;

@@ -33,12 +33,12 @@
 //
 //      auto pcontext = m_pcontext->m_pauracontext;
 //
-//      auto pcontextimage = pcontext->context_image();
+//      auto pimagecontext = pcontext->image_context();
 //
-//      if(::is_set(pcontextimage))
+//      if(::is_set(pimagecontext))
 //      {
 //
-//         auto pimage = pcontextimage->get_image("matter://icon.png");
+//         auto pimage = image()->get_image("matter://icon.png");
 //
 //      }
 //

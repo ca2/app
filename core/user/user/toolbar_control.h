@@ -58,16 +58,16 @@ namespace user
       i32 GetRows();
       bool SetCmdID(i32 nIndex, ::u32 nID);
       ::u32 GetBitmapFlags();
-      ::image_list* GetDisabledImageList();
-      ::image_list* GetHotImageList();
-      ::image_list* GetImageList();
+      ::image::image_list* GetDisabledImageList();
+      ::image::image_list* GetHotImageList();
+      ::image::image_list* GetImageList();
       u32 GetStyle();
       i32 GetMaxTextRows();
       bool IsButtonHighlighted(i32 nID);
       bool SetButtonWidth(i32 cxMin, i32 cxMax);
-      ::image_list* SetDisabledImageList(::image_list* pImageList);
-      ::image_list* SetHotImageList(::image_list* pImageList);
-      ::image_list* SetImageList(::image_list* pImageList);
+      ::image::image_list* SetDisabledImageList(::image::image_list* pImageList);
+      ::image::image_list* SetHotImageList(::image::image_list* pImageList);
+      ::image::image_list* SetImageList(::image::image_list* pImageList);
 
 
 //#ifdef WINDOWS_DESKTOP

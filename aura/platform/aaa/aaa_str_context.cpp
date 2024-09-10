@@ -635,7 +635,7 @@
 //
 //      memory mem;
 //
-//      pcontext->m_papexcontext->file()->as_memory(pszFilePath,mem);
+//      file()->as_memory(pszFilePath,mem);
 //
 //
 //      strsize len;

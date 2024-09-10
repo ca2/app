@@ -353,6 +353,8 @@ list(APPEND apex_source
         networking/email.h
         networking/email_address.cpp
         networking/email_address.h
+   networking/internet.cpp
+   networking/internet.h
         networking/ip_enum.cpp
         networking/ip_enum.h
         #networking/net.h
@@ -1464,6 +1466,8 @@ elseif (${LINUX} OR ${__BSD__})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
     #target_link_options(${PROJECT_NAME} PRIVATE "-Wl,-rpath=\$ORIGIN")
     if (${OPENBSD})
+        list(APPEND this_system_libraries pthread z)
+    elseif (${NETBSD})
         list(APPEND this_system_libraries pthread z)
     elseif (${FREEBSD})
         list(APPEND this_system_libraries dl pthread z)

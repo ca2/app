@@ -27,7 +27,7 @@ namespace hotplugin
 
       ::pointer < ::mutex >                       m_pmutexSystem;
 
-      ::image_pointer               m_pimage;
+      ::image::image_pointer               m_pimage;
 
       ::rectangle_i32                        m_rectangle;
       ::rectangle_i32                        m_rectangleX;

@@ -3913,19 +3913,17 @@ namespace user
          else
          {
 
-            user_post([this]()
+            ::pointer < ::user::interaction > puserinteraction = this;
+
+            user_post([puserinteraction]()
                              {
 
-                                if (get_app() != nullptr && get_app()->get_session() != nullptr &&
-                                    has_keyboard_focus())
+                                if (puserinteraction->get_parent() != nullptr
+                                   && puserinteraction->has_keyboard_focus()
+                                   && puserinteraction->is_window_visible(e_layout_sketch))
                                 {
 
-                                   if (get_parent() != nullptr && is_window_visible(e_layout_sketch))
-                                   {
-
-                                      keyboard_set_focus_next();
-
-                                   }
+                                   puserinteraction->keyboard_set_focus_next();
 
                                 }
 
@@ -4361,59 +4359,21 @@ namespace user
 
       }
 
-            //task_erase_all();
-
-
-      //_synchronous_lock synchronouslock(mutex_children());
       auto children = synchronized_get_children();
 
-      //if (m_puserinteractionpointeraChild)
+      for (auto & pinteraction : children)
       {
 
-         //         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+	 try
+	 {
 
-           //       for (i32 i = 0; i < puserinteractionpointeraChild->interaction_count(); i++)
-         for (auto & pinteraction : children)
-         {
+	    pinteraction->destroy_window();
 
-            //auto pinteraction = puserinteractionpointeraChild->interaction_at(i);
+	 }
+	 catch (...)
+	 {
 
-            //auto type = ::type(this);
-
-            if (type.name().contains("auraclick::impact"))
-            {
-
-               informationf("auraclick::impact");
-
-            }
-
-            //synchronouslock.unlock();
-
-            try
-            {
-
-               pinteraction->destroy_window();
-
-            }
-            catch (...)
-            {
-
-            }
-
-            //           synchronouslock.lock();
-           //
-                       //try
-                       //{
-
-                       //   pinteraction->destroy();
-
-                       //}
-                       //catch (...)
-                       //{
-
-                       //}
-
-         }
+	 }
 
       }
 
@@ -4470,6 +4430,8 @@ namespace user
             try
             {
 
+               printf_line("About to erase a %s instance from an aura::application from thread %s!!", typeid(*this).name(), task_get_name().c_str());
+
                auto papp = get_app()->m_pauraapplication;
 
                papp->erase_user_interaction(
@@ -4481,24 +4443,24 @@ namespace user
 
             }
 
-            if (get_app()->get_session() != nullptr)
-            {
-
-               try
-               {
-
-                  auto papp = get_app()->m_pauraapplication;
-
-                  papp->erase_user_interaction(
-                     this); // guess this may be a frame, it doesn't hurt to erase if this is not there
-
-               }
-               catch (...)
-               {
-
-               }
-
-            }
+//            if (get_app()->get_session() != nullptr)
+//            {
+//
+//               try
+//               {
+//
+//                  auto papp = get_app()->m_pauraapplication;
+//
+//                  papp->erase_user_interaction(
+//                     this); // guess this may be a frame, it doesn't hurt to erase if this is not there
+//
+//               }
+//               catch (...)
+//               {
+//
+//               }
+//
+//            }
 
          }
 
@@ -4516,6 +4478,10 @@ namespace user
          informationf("simple_scroll_bar::user_interaction_on_destroy");
 
       }
+
+
+      //task_erase_all();
+
 
 
       //m_pdescriptor.release();
@@ -4753,7 +4719,7 @@ namespace user
    }
 
 
-   ::draw2d::icon * interaction::get_draw_icon()
+   ::image::icon * interaction::get_draw_icon()
    {
 
       throw ::interface_only();
@@ -6785,7 +6751,7 @@ namespace user
                   if (!m_bOnDraw)
                   {
 
-                     information() << "_000OnDraw exit on !m_bOnDraw";
+                     //information() << "_000OnDraw exit on !m_bOnDraw";
 
                   }
                   else

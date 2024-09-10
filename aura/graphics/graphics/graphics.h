@@ -17,7 +17,7 @@ namespace graphics
 
       
       ::e_graphics                  m_egraphics;
-      ::image_pointer               m_pimage2;
+      ::image::image_pointer               m_pimage2;
       ::mutex_pointer               m_pmutex;
       ::draw2d::graphics_pointer    m_pgraphics;
       ::point_i32                   m_point;
@@ -105,10 +105,10 @@ namespace graphics
       virtual string get_bitmap_source() const;
 
       virtual buffer_item * get_buffer_item();
-      //virtual ::image_pointer & get_buffer_image();
+      //virtual ::image::image_pointer & get_buffer_image();
       //virtual ::particle * get_buffer_sync();
       virtual buffer_item * get_screen_item();
-      //virtual ::image_pointer & get_screen_image();
+      //virtual ::image::image_pointer & get_screen_image();
       //virtual ::particle * get_screen_sync();
 
       ::trace_statement & trace_statement_prefix(::trace_statement & statement) const override;

@@ -31,13 +31,13 @@ public:
 //#endif
   // HINSTANCE        m_hInstImageWell; // instance handle to load image well from
    //HBITMAP          m_hbmImageWell; // contains color mapped button images
-//   ::pointer<::image_list>   m_pimagelist;
-//   ::pointer<::image_list>   m_pimagelistHue;
-//   ::pointer<::image_list>   m_pimagelistBlend;
-//   ::pointer<::image_list>   m_pimagelistHueLight;
+//   ::image::image_list_pointer    m_pimagelist;
+//   ::image::image_list_pointer    m_pimagelistHue;
+//   ::image::image_list_pointer    m_pimagelistBlend;
+//   ::image::image_list_pointer    m_pimagelistHueLight;
    //bool           m_bInternalImageList;
    //bool             m_bDelayedButtonLayout;
-   ::image_pointer     m_pimageDraft;
+   ::image::image_pointer     m_pimageDraft;
 
 
    simple_toolbar();
@@ -77,7 +77,7 @@ public:
    //enumeration < ::enum_tool_item_style > GetButtonStyle(::collection::index iButton);
    //bool SetItemStyle(::collection::index iItem, const enumeration < ::enum_tool_item_style > & bStyle);
    //enumeration < ::enum_tool_item_style > GetItemStyle(::collection::index iItem);
-   void _001SetImageList(::pointer<::image_list>imagelist);
+   void _001SetImageList(::image::image_list_pointer imagelist);
    void _001DiscardImageList();
    bool on_click(::item * pitem) override;
    virtual ::item_pointer on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;

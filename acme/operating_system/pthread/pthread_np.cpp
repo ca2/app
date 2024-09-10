@@ -196,7 +196,7 @@ void task_set_name(htask_t htask, const char * psz)
 
 #elif defined(NETBSD)
 
-   thread_name_abbreviate(strName, PTHREAD_MAX_NAMELEN_NP);
+   thread_name_abbreviate(strName, PTHREAD_MAX_NAMELEN_NP - 1);
 
    int error = pthread_setname_np(pthread, "%s", (void *) strName.c_str());
 

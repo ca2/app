@@ -901,10 +901,10 @@ template < typename TYPE > TYPE & property_object::get_cast(const ::atom & atom,
 }
 
 
-bool property_object::is_true(const ::atom & atom, bool bDefault) const
+bool property_object::is_true(const ::atom & atom) const
 {
 
-   return m_ppropertyset && payload(atom).is_true(bDefault);
+   return m_ppropertyset && m_ppropertyset->is_true(atom);
 
 }
 
@@ -913,6 +913,14 @@ bool property_object::is_false(const ::atom& atom) const
 {
 
    return !is_true(atom);
+
+}
+
+
+bool property_object::is_true_or_empty(const ::atom & atom) const
+{
+
+   return m_ppropertyset && m_ppropertyset->is_true_or_empty(atom);
 
 }
 

@@ -60,9 +60,9 @@ namespace graphics
       // synchronous_lock screen synchronization first...
       virtual buffer_item * get_screen_item() override;
       //virtual ::particle * get_screen_sync() override;
-      //virtual ::image_pointer & get_screen_image() override;
+      //virtual ::image::image_pointer & get_screen_image() override;
 
-      //virtual ::image_pointer & get_screen_image_and_sync(synchronization ** psync, const ::size_i32 & size) override;
+      //virtual ::image::image_pointer & get_screen_image_and_sync(synchronization ** psync, const ::size_i32 & size) override;
       //virtual synchronization * get_screen_sync() override;
 
    };

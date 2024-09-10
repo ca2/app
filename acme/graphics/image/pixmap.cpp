@@ -8,6 +8,8 @@
 
 #if defined(WINDOWS_DESKTOP)
 int pixmap::g_iRedLowerDefault = 0;
+#elif defined(LINUX)
+int pixmap::g_iRedLowerDefault = 0;
 #elif defined(FREEBSD) || defined(OPENBSD) || (defined(UNIVERSAL_WINDOWS) && OSBIT == 32)
 int pixmap::g_iRedLowerDefault = 0;
 #else

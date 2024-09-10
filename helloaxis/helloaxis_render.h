@@ -45,15 +45,15 @@ namespace helloaxis
                int                              m_cxTarget;
                int                              m_cyTarget;
 
-               ::draw2d::fastblur               m_pimageImage;
-               ::image_pointer                 m_pimageOut;
-               ::image_pointer                 m_pimageA;
-               ::image_pointer                 m_pimageB;
-               ::image_pointer                 m_pimageWork;
-/*               ::draw2d::fastblur               m_pimage;
-               ::draw2d::fastblur               m_pimageTint;
-               ::image_pointer                 m_pimageTemplate;
-               ::image_pointer                 m_pimageTemplate2;
+               ::image::fastblur               m_pimageImage;
+               ::image::image_pointer                 m_pimageOut;
+               ::image::image_pointer                 m_pimageA;
+               ::image::image_pointer                 m_pimageB;
+               ::image::image_pointer                 m_pimageWork;
+/*               ::image::fastblur               m_pimage;
+               ::image::fastblur               m_pimageTint;
+               ::image::image_pointer                 m_pimageTemplate;
+               ::image::image_pointer                 m_pimageTemplate2;
 
                bool                             m_bVoidTransfer;
                bool                             m_bFirstDone;
@@ -73,11 +73,11 @@ namespace helloaxis
                class ::time                            m_timeAnime;
                class ::time m_timeLastFast;
                ::u32                            m_timeFastAnime;
-               ::image_pointer                 m_pimageFast;
+               ::image::image_pointer                 m_pimageFast;
 
 
                string_array                          m_stra23;
-               string_map < ::image_pointer >    m_mapDib23;
+               string_map < ::image::image_pointer >    m_mapDib23;
                bool                             m_b23;
                u32                         m_uiCurrent23;
                string                           m_strCurrent23;
@@ -119,7 +119,7 @@ namespace helloaxis
 
       virtual void defer_update_bilbo() override;
 
-      ::image_pointer & image23(string strDib) override;
+      ::image::image_pointer & image23(string strDib) override;
 
       virtual bool in_anime() override;
       virtual void helloaura_fast_render(const ::string & strHelloAxis) override;

@@ -20,7 +20,7 @@
 CLASS_DECL_ACME ::color::color dk_red(); // <3ThomasBorregaardSorensen!!
 
 
-void image_gl_set(image* pimage);
+void image_gl_set(::image::image* pimage);
 
 
 namespace app_shader
@@ -470,13 +470,13 @@ namespace app_shader
       if(m_pimageLabel.ok())
       {
 
-         image_source imagesource(m_pimageLabel);
+         ::image::image_source imagesource(m_pimageLabel);
 
          rectangle_f64 rectangle(point_f64(10, 10), m_pimageLabel->size());
 
-         image_drawing_options imagedrawingoptions(rectangle);
+         ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -609,13 +609,13 @@ namespace app_shader
       if(m_pimageError.ok())
       {
 
-         image_source imagesource(m_pimageError);
+         ::image::image_source imagesource(m_pimageError);
 
          rectangle_f64 rectangle(point_f64(10, 40), m_pimageError->size());
 
-         image_drawing_options imagedrawingoptions(rectangle);
+         ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

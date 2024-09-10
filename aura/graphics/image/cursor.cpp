@@ -6,7 +6,7 @@
 //#include "acme/operating_system.h"
 
 
-namespace draw2d
+namespace image
 {
 
 
@@ -74,7 +74,7 @@ namespace draw2d
    }
 
 
-   image_pointer cursor_get_image(cursor * pcursor)
+   ::image::image_pointer cursor_get_image(cursor * pcursor)
    {
 
       return pcursor->m_pimage;
@@ -98,7 +98,7 @@ namespace draw2d
    }
 
 
-   ::image_pointer cursor::image_source_image(const ::size_i32 & size)
+   ::image::image_pointer cursor::image_source_image(const ::size_i32 & size)
    {
       
       return m_pimage->get_image(size); 
@@ -122,7 +122,7 @@ namespace draw2d
    }
 
 
-} // namespace draw2d
+} // namespace image
 
 
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "context_image.h"
+#include "image_context.h"
 #include "fimemory.h"
 ////#include "acme/exception/exception.h"
 #include "acme/primitive/time/_text_stream.h"
@@ -17,10 +17,10 @@ namespace imaging_freeimage
 {
 
 
-   bool freeimage_load_imagea_frame(::image * pimageCompose, image_frame_array * pimagea, ::collection::index iFrame, FIBITMAP * pfi);
+   bool freeimage_load_imagea_frame(::image::image *pimageCompose, ::image::image_frame_array * pimagea, ::collection::index iFrame, FIBITMAP * pfi);
 
 
-   void context_image::_load_image(::image * pimageCompose, ::pointer<image_frame_array>& pframea, memory & memory)
+   void image_context::_load_image(::image::image *pimageCompose, ::pointer<::image::image_frame_array>& pframea, memory & memory)
    {
 
       fimemory mem(memory);
@@ -52,7 +52,7 @@ namespace imaging_freeimage
                for (::collection::index iFrame = 0; iFrame < cFrame; iFrame++)
                {
 
-                  auto pframe = ::place(new image_frame());
+                  auto pframe = ::place(new ::image::image_frame());
 
                   pframea->add(pframe);
 
@@ -250,7 +250,7 @@ namespace imaging_freeimage
    }
 
 
-   bool freeimage_load_imagea_frame(image * pimageCompose, image_frame_array * pframea, ::collection::index iFrame, FIBITMAP * pfi)
+   bool freeimage_load_imagea_frame(::image::image *pimageCompose, ::image::image_frame_array * pframea, ::collection::index iFrame, FIBITMAP * pfi)
    {
 
       if (pfi == nullptr)
@@ -260,7 +260,7 @@ namespace imaging_freeimage
 
       }
 
-      image_frame * pframe = pframea->element_at(iFrame);
+      ::image::image_frame * pframe = pframea->element_at(iFrame);
 
       //BITMAPINFO * pbi = nullptr;
 
@@ -274,7 +274,7 @@ namespace imaging_freeimage
 
       //int h = FreeImage_GetHeight(pfi);
 
-      image_pointer pimageFrame;
+      ::image::image_pointer pimageFrame;
 
       //auto estatus = 
       

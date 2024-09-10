@@ -17,7 +17,7 @@ namespace user
          style_image
       };
 
-      ::image_pointer                     m_pimage;          // not pressed default bitmap
+      ::image::image_pointer                     m_pimage;          // not pressed default bitmap
       //::rectangle_f64                              m_rectangleMargin;
       //::rectangle_f64                              m_rectangleBorder;
       //::rectangle_f64                              m_rectanglePadding;

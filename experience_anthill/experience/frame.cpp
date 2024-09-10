@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "frame.h"
 #include "control_box.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/fastblur.h"
 #include "aura/graphics/image/image.h"
@@ -90,13 +90,13 @@ namespace experience_anthill
 
       pframewindow->best_monitor(&rectangleScreen);
 
-      ::image_pointer pimage1;
+      ::image::image_pointer pimage1;
 
-      ::image_pointer pimage2;
+      ::image::image_pointer pimage2;
 
-      pimage1 = context_image()->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
+      pimage1 = image()->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
 
-      pimage2 = context_image()->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
+      pimage2 = image()->create_image({ rectangleX.width() + iInflate * 2,  rectangleX.height() + iInflate * 2 });
       ::rectangle_i32 rectangleWindow = rectangleX;
       pframewindow->client_to_screen()(rectangleWindow);
       //pimage = create_image({rectangleX.width(),  rectangleX.height()});
@@ -104,14 +104,14 @@ namespace experience_anthill
 
       {
 
-         image_source imagesource(pgraphics,
+         ::image::image_source imagesource(pgraphics,
             rectangle_f64(::point_i32(rectangleX.left() - iInflate, rectangleX.top() - iInflate), ::size_f64(rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2)));
 
          auto rectangle = rectangle_f64_dimension(0, 0, rectangleX.width() + iInflate * 2, rectangleX.height() + iInflate * 2);
 
-         image_drawing_options imagedrawingoptions(rectangle);
+         ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          pimage2->get_graphics()->draw(imagedrawing);
 
@@ -145,11 +145,11 @@ namespace experience_anthill
 
       {
 
-         image_source imagesource(pimage1, ::rectangle_f64(point_f64(iInflate, iInflate), rectangleX.size()));
+         ::image::image_source imagesource(pimage1, ::rectangle_f64(point_f64(iInflate, iInflate), rectangleX.size()));
 
-         image_drawing_options imagedrawingoptions(rectangleX);
+         ::image::image_drawing_options imagedrawingoptions(rectangleX);
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          pgraphics->draw(imagedrawing);
 
@@ -566,11 +566,11 @@ namespace experience_anthill
             if (pdrawicon != nullptr)
             {
 
-               image_source imagesource(pdrawicon);
+               ::image::image_source imagesource(pdrawicon);
 
-               image_drawing_options imagedrawingoptions(rectangleIcon);
+               ::image::image_drawing_options imagedrawingoptions(rectangleIcon);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 
@@ -667,11 +667,11 @@ namespace experience_anthill
             if (::is_ok(pdrawicon))
             {
 
-               image_source imagesource(pdrawicon);
+               ::image::image_source imagesource(pdrawicon);
 
-               image_drawing_options imagedrawingoptions(rectangleIcon);
+               ::image::image_drawing_options imagedrawingoptions(rectangleIcon);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 

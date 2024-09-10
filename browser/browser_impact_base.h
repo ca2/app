@@ -37,11 +37,11 @@ namespace browser
       string                  m_strHelloBrowser;
 
 
-      ::image_pointer        m_pimagePost;
-      ::image_pointer        m_pimageTime;
+      ::image::image_pointer        m_pimagePost;
+      ::image::image_pointer        m_pimageTime;
 
-      ::image_pointer        m_pimage1;
-      ::image_pointer        m_pimage2;
+      ::image::image_pointer        m_pimage1;
+      ::image::image_pointer        m_pimage2;
 
       ::pointer<render>             m_prender;
 

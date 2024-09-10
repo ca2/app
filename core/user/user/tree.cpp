@@ -427,7 +427,7 @@ namespace user
 
       ::pointer<::data::tree_item>pitem = data.m_pitem;
 
-      ::pointer<::image_list>pimagelistItem = pitem->get_image_list();
+      ::image::image_list_pointer pimagelistItem = pitem->get_image_list();
 
       if (pimagelistItem)
       {
@@ -445,7 +445,7 @@ namespace user
 
       auto pstyle = ptree->get_style(data.m_pdc);
 
-      ::pointer<::image_list>pimagelistTree = get_image_list();
+      ::image::image_list_pointer pimagelistTree = get_image_list();
 
       bool bSelected = ptree->is_selected(pitem.m_p);
 
@@ -1521,7 +1521,7 @@ namespace user
    void tree::_001SetExpandImage(const ::string & pszMatter)
    {
 
-      m_iImageExpand = m_pimagelist->add(image_payload(this, pszMatter));
+      m_iImageExpand = m_pimagelist->add(::image::image_payload(this, pszMatter));
 
    }
 
@@ -1529,7 +1529,7 @@ namespace user
    void tree::_001SetCollapseImage(const ::string & pszMatter)
    {
 
-      m_iImageCollapse = m_pimagelist->add(image_payload(this, pszMatter));
+      m_iImageCollapse = m_pimagelist->add(::image::image_payload(this, pszMatter));
 
    }
 
@@ -1537,7 +1537,7 @@ namespace user
    void tree::_001SetExpandImageDark(const ::string & pszMatter)
    {
 
-      m_iImageExpandDark = m_pimagelist->add(image_payload(this, pszMatter));
+      m_iImageExpandDark = m_pimagelist->add(::image::image_payload(this, pszMatter));
 
    }
 
@@ -1545,7 +1545,7 @@ namespace user
    void tree::_001SetCollapseImageDark(const ::string & pszMatter)
    {
 
-      m_iImageCollapseDark = m_pimagelist->add(image_payload(this, pszMatter));
+      m_iImageCollapseDark = m_pimagelist->add(::image::image_payload(this, pszMatter));
 
    }
 
@@ -1880,7 +1880,7 @@ namespace user
    }
 
 
-   ::pointer<::image_list>tree::get_image_list()
+   ::image::image_list_pointer tree::get_image_list()
    {
 
       return m_pimagelist;

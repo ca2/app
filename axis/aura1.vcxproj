@@ -1595,7 +1595,7 @@ copy $(__operating_system)storage-windows\third\binary\$(PlatformName)\$(Configu
     <ClCompile Include="platform\console_application.cpp" />
     <ClCompile Include="platform\constraint.cpp" />
     <ClCompile Include="platform\context.cpp" />
-    <ClCompile Include="platform\context_image.cpp" />
+    <ClCompile Include="platform\image_context.cpp" />
     <ClCompile Include="platform\context_thread.cpp" />
     <ClCompile Include="platform\conv.cpp" />
     <ClCompile Include="platform\cpu_architecture.cpp" />

@@ -30,22 +30,22 @@ namespace turboc
       ::pointer < ::mutex >                   m_pmutexDraw;
       ::pointer < ::mutex >                   m_pmutexSwap;
       ::pointer < ::mutex >                   m_pmutexText;
-      ::image_pointer        m_pimageAi1;
-      ::image_pointer        m_pimageAi2;
+      ::image::image_pointer        m_pimageAi1;
+      ::image::image_pointer        m_pimageAi2;
 
-      ::image_pointer        m_pimage1;
-      ::image_pointer        m_pimage2;
+      ::image::image_pointer        m_pimage1;
+      ::image::image_pointer        m_pimage2;
       bool                    m_bDib1;
       bool                    m_bVoidTransfer;
 
       string                  m_strImage;
-      ::image_pointer        m_pimagePost;
-      ::draw2d::fastblur      m_pimageImage;
-/*      ::draw2d::fastblur      m_pimage;
-      ::image_pointer        m_pimageColor;
-      ::image_pointer        m_pimageWork;
-      ::image_pointer        m_pimageFast;
-      ::image_pointer        m_pimageTemplate;
+      ::image::image_pointer        m_pimagePost;
+      ::image::fastblur      m_pimageImage;
+/*      ::image::fastblur      m_pimage;
+      ::image::image_pointer        m_pimageColor;
+      ::image::image_pointer        m_pimageWork;
+      ::image::image_pointer        m_pimageFast;
+      ::image::image_pointer        m_pimageTemplate;
 
       ::write_text::font_pointer       m_pfont;
       string                  m_strNewHelloMultiverse;
@@ -86,9 +86,9 @@ namespace turboc
       virtual void install_message_handling(::message::dispatch * pdispatch);
 
 
-/*      virtual void _001OnPostProcess(::image * pimage);
+/*      virtual void _001OnPostProcess(::image::image *pimage);
 
-/*      virtual void _006OnDraw(::image * pimage);
+/*      virtual void _006OnDraw(::image::image *pimage);
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
       virtual void on_update(::aura::impact * pSender, e_update eupdate, object* pHint);
@@ -96,7 +96,7 @@ namespace turboc
       ::aura::document * get_document();
 
       virtual void turboc_render();
-/*      virtual void turboc_render(::image * pimage);
+/*      virtual void turboc_render(::image::image *pimage);
       virtual void turboc_fast_render(const ::string & strHelloMultiverse);
       virtual void turboc_draw();
       virtual void full_render();
@@ -114,8 +114,8 @@ namespace turboc
       virtual bool in_anime();
 
 
-/*      virtual void turboc_render_lite_impact(::image * pimage);
-/*      virtual void turboc_render_full_impact(::image * pimage);
+/*      virtual void turboc_render_lite_impact(::image::image *pimage);
+/*      virtual void turboc_render_full_impact(::image::image *pimage);
 
    };
 

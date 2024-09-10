@@ -3,8 +3,6 @@
 
 
 
-class image_list;
-
 
 //#ifdef WINDOWS
 //

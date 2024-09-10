@@ -149,7 +149,7 @@ namespace app_net
 
             auto papp = get_app();
 
-            string strGet = papp->http().get(m_strUrl, set);
+            string strGet = papp->http()->get(m_strUrl, set);
 
             {
 

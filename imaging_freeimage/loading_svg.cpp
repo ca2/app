@@ -33,10 +33,10 @@ namespace imaging_freeimage
 {
 
 
-//   void context_image::load_svg(::image * pimage, memory & memory)
+//   void image_context::load_svg(::image::image *pimage, memory & memory)
 //   {
 //
-//      return ::context_image::load_svg(pimage, memory);
+//      return ::image_context::load_svg(pimage, memory);
 //
 ////      int ret;
 ////

@@ -661,7 +661,7 @@ namespace apex
       if(pfilesystemoptions->m_bDropbox)
       {
          
-         ::file::path pathDropbox = m_pcontext->m_papexcontext->defer_process_path("dropbox://");
+         ::file::path pathDropbox = m_pcontext->defer_process_matter_path("dropbox://");
          
          if(pathDropbox.has_char() && dir()->is(pathDropbox))
          {
@@ -674,7 +674,7 @@ namespace apex
             
          }
          
-         ::file::path pathDropboxApp = m_pcontext->m_papexcontext->defer_process_path("dropbox-app://");
+         ::file::path pathDropboxApp = m_pcontext->defer_process_matter_path("dropbox-app://");
          
          if(pathDropboxApp.m_epath == ::e_path_file && dir()->is(pathDropboxApp))
          {
@@ -692,7 +692,7 @@ namespace apex
       if(pfilesystemoptions->m_bOneDrive)
       {
          
-         ::file::path pathOneDrive = m_pcontext->m_papexcontext->defer_process_path("onedrive://");
+         ::file::path pathOneDrive = m_pcontext->defer_process_matter_path("onedrive://");
          
          if(pathOneDrive.m_epath == ::e_path_file && dir()->is(pathOneDrive))
          {

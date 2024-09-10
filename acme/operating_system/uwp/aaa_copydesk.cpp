@@ -4,12 +4,12 @@
 #include <shlobj.h>
 
 
-CLASS_DECL_ACME bool node_save_image(::winrt::Windows::Storage::Streams::IRandomAccessStream^ stream, ::image* pimage, ::save_image* psaveimage);
+CLASS_DECL_ACME bool node_save_image(::winrt::Windows::Storage::Streams::IRandomAccessStream^ stream, ::image::image* pimage, ::save_image* psaveimage);
 
-bool node_save_image(::image * pimage, ::winrt::Windows::Storage::Streams::IRandomAccessStream ^stream, ::acme::application * papp);
+bool node_save_image(::image::image *pimage, ::winrt::Windows::Storage::Streams::IRandomAccessStream ^stream, ::acme::application * papp);
 
 
-CLASS_DECL_ACME bool node_save_image(::winrt::Windows::Storage::Streams::IRandomAccessStream ^ randomAccessStream, const ::image * pimage, ::save_image * psaveimage);
+CLASS_DECL_ACME bool node_save_image(::winrt::Windows::Storage::Streams::IRandomAccessStream ^ randomAccessStream, const ::image::image *pimage, ::save_image * psaveimage);
 
 
 namespace universal_windows
@@ -324,7 +324,7 @@ namespace universal_windows
    }
 
 
-   bool copydesk::_desk_to_image(::image * pimage)
+   bool copydesk::_desk_to_image(::image::image *pimage)
    {
 
       return ::acmeacmesystem()->imaging()._desk_to_image(pimage);
@@ -332,7 +332,7 @@ namespace universal_windows
    }
 
 
-   bool copydesk::_image_to_desk(const ::image * pimage)
+   bool copydesk::_image_to_desk(const ::image::image *pimage)
    {
 
       return ::acmeacmesystem()->imaging()._image_to_desk(pimage);

@@ -104,7 +104,7 @@ namespace nanoui
 
    protected:
       ::color::color     m_colorClear;
-      ::image_pointer m_pimage;
+      ::image::image_pointer m_pimage;
       // opengl
 //      ::pointer<RenderPass> m_render_pass;
 //#if defined(NANOUI_USE_METAL)

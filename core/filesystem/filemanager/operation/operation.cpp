@@ -215,7 +215,7 @@ namespace filemanager
 
       }
 
-      m_fileSrc = pcontext->m_papexcontext->file()->get_file(pszSrc,::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_write);
+      m_fileSrc = file()->get_file(pszSrc,::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_write);
 
       if(m_fileSrc.is_null())
       {
@@ -229,7 +229,7 @@ namespace filemanager
       if(!m_bReplaceAll)
       {
 
-         //if(pcontext->m_papexcontext->file()->exists(pszDst))
+         //if(file()->exists(pszDst))
          //{
          //   property_set propertyset;
          //   propertyset["srcfile"].get_value().set_string(pszSrc);
@@ -238,7 +238,7 @@ namespace filemanager
          //   return false;
          //}
 
-         if(pcontext->m_papexcontext->file()->exists(strDst) || dir()->is(strDst))
+         if(file()->exists(strDst) || dir()->is(strDst))
          {
 
             //auto function = function_arg([](::payload& varRet, const ::payload& varVal)
@@ -285,7 +285,7 @@ namespace filemanager
 
       dir()->create(strDst.folder());
 
-      m_fileDst = pcontext->m_papexcontext->file()->get_file(strDst,::file::e_open_write | ::file::e_open_binary | ::file::e_open_create);
+      m_fileDst = file()->get_file(strDst,::file::e_open_write | ::file::e_open_binary | ::file::e_open_create);
 
       auto papp = get_app();
 
@@ -497,7 +497,7 @@ namespace filemanager
 
          }
 
-         pcontext->m_papexcontext->file()->erase(m_stra[m_iFile]);
+         file()->erase(m_stra[m_iFile]);
 
          m_iFile++;
 
@@ -528,7 +528,7 @@ namespace filemanager
 
             m_fileDst->close();
 
-            pcontext->m_papexcontext->file()->erase(m_stra[m_iFile]);
+            file()->erase(m_stra[m_iFile]);
 
             m_iFile++;
 
@@ -623,7 +623,7 @@ namespace filemanager
          else
          {
 
-            varLen = pcontext->m_papexcontext->file()->length(m_stra[i]);
+            varLen = file()->length(m_stra[i]);
 
             if(varLen.is_null())
             {
@@ -908,7 +908,7 @@ namespace filemanager
          {
             strFormat = set_number_value(strName, iValue + i);
             str = strDir /strFormat + strExtension;
-            if(!pcontext->m_papexcontext->file()->exists(str))
+            if(!file()->exists(str))
                return true;
          }
       }
@@ -920,7 +920,7 @@ namespace filemanager
          {
             strFormat.formatf("-Copy-%03d",i);
             str = strDir /strName + strFormat + strExtension;
-            if(!pcontext->m_papexcontext->file()->exists(str))
+            if(!file()->exists(str))
                return true;
          }
       }

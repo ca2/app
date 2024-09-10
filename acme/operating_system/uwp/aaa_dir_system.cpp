@@ -43,7 +43,7 @@ namespace universal_windows
 
       //auto pdocument = create_xml_document();
 
-      //pdocument->load(pcontext->m_papexcontext->file()->as_string(appdata() / "configuration\\directory.xml"));
+      //pdocument->load(file()->as_string(appdata() / "configuration\\directory.xml"));
 
       //if (pdocument->get_root()->get_name() == "directory_configuration")
       //{
@@ -285,7 +285,7 @@ namespace universal_windows
    //}
 
 
-   //::file::path dir_system::image_pointer()
+   //::file::path dir_system::image::image_pointer()
    //{
 
    //   return "image://";

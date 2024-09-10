@@ -92,11 +92,8 @@ namespace user
          bOk = false;
 
          string strMessage;
-#if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD) || defined(OPENBSD)
+
          strMessage.formatf("split_impact::on_create_impact failed to create views for split impact %s", typeid(this).name());
-#else
-         strMessage.formatf("split_impact::on_create_impact failed to create views for split impact %s", typeid(this).raw_name());
-#endif
 
          //message_box(strMessage, nullptr, e_message_box_icon_exclamation)->get_object(10_s);
 

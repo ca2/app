@@ -725,7 +725,7 @@ namespace data
    }
 
 
-   ::collection::count   tree::selection_set(::data::tree_item_ptr_array & itemptra)
+   ::collection::count tree::selection_set(::data::tree_item_ptr_array & itemptra)
    {
 
       return 0;
@@ -733,7 +733,7 @@ namespace data
    }
 
 
-   bool      tree::selection_set(::data::tree_item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
+   bool tree::selection_set(::data::tree_item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
       return false;
@@ -741,7 +741,7 @@ namespace data
    }
 
 
-   bool      tree::selection_set(::data::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
+   bool tree::selection_set(::data::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
       return false;
@@ -749,7 +749,7 @@ namespace data
    }
 
 
-   bool      tree::selection_set(::collection::index iIndex, ::data::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
+   bool tree::selection_set(::collection::index iIndex, ::data::item * pitem, bool bIfNotInSelection, bool bIfParentInSelection)
    {
 
       return false;
@@ -757,7 +757,7 @@ namespace data
    }
 
 
-   image_list * tree::get_image_list() const
+   ::image::image_list * tree::get_image_list() const
    {
 
       return nullptr;

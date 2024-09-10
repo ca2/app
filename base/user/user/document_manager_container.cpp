@@ -4,9 +4,9 @@
 #include "impact_system.h"
 ////#include "acme/exception/exception.h"
 
-#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
-#include <stdio.h>
-#endif
+//#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
+//#include <stdio.h>
+//#endif
 
 
 namespace user
@@ -52,7 +52,7 @@ namespace user
 
       //estatus =
 
-      printf("base::user::document_manager_container Going to create new document manager\n");
+      print_line("base::user::document_manager_container Going to create new document manager");
       
       __construct_new(m_pdocmanager);
 

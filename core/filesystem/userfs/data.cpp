@@ -118,7 +118,7 @@ namespace userfs
 
    //   //      auto pcontext = get_context();
 
-   //   //      m_pitem = ::place(new ::file::item(pcontext->m_papexcontext->defer_process_path(strOldPath), strOldPath));
+   //   //      m_pitem = ::place(new ::file::item(m_pcontext->defer_process_matter_path(strOldPath), strOldPath));
 
    //   //      OnFileManagerBrowse(context + ::e_source_sync);
 
@@ -280,7 +280,7 @@ namespace userfs
 
       auto pcontext = get_context();
 
-      ::file::path pathFinal = pcontext->m_papexcontext->defer_process_path(pathUser);
+      ::file::path pathFinal = m_pcontext->defer_process_matter_path(pathUser);
 
       ::pointer<::file::item>pitem = ::place(new ::file::item(pathUser, pathFinal));
 
@@ -346,8 +346,6 @@ namespace userfs
       ::file::listing listingUser;
 
       auto papp = get_app();
-
-      auto pcontext = m_pcontext;
 
       listingUser.clear();
 
@@ -454,7 +452,7 @@ namespace userfs
          
          pathToProcess.flags() += ::file::e_flag_resolve_alias;
 
-         ::file::path pathFinal  = pcontext->m_papexcontext->defer_process_path(pathToProcess );
+         ::file::path pathFinal = m_pcontext->defer_process_path(pathToProcess);
 
          pathFinal.set_type(pathItem.type());
 
@@ -579,7 +577,12 @@ namespace userfs
       m_pusercontroller->on_update_data(this, ptopic, context);
 
    }
-
+::user::document *data:: get_document()
+{
+ 
+   return m_pusercontroller.cast <::user::document>();
+   
+}
 
    void data::browse(::pointer<::file::item>pitem, const ::action_context & context)
    {
@@ -601,7 +604,7 @@ namespace userfs
 
       }
 
-      fork([this, pitem, context]()
+      get_document()->m_impacta.first()->post_procedure([this, pitem, context]()
       {
 
          __browse(pitem, context);

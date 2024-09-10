@@ -70,7 +70,7 @@ string true_type_font_utilities::GetFontNameFromFile(const ::file::path & path)
 
    auto pcontext = m_pcontext;
 
-   file_pointer f = pcontext->m_papexcontext->file()->get_file(path, ::file::e_open_read | ::file::e_open_share_deny_write);
+   file_pointer f = file()->get_file(path, ::file::e_open_read | ::file::e_open_share_deny_write);
 
    string csRetVal;
 

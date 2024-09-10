@@ -5,10 +5,20 @@
 #include "meta.h"
 
 
-image_meta::~image_meta()
+namespace image
 {
 
-   //::release(m_pbitmap);
-   //::release(m_pgraphics);
 
-}
+   image_meta::~image_meta()
+   {
+
+      //::release(m_pbitmap);
+      //::release(m_pgraphics);
+
+   }
+
+
+} // namespace image
+
+
+

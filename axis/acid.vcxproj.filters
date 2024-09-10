@@ -5803,7 +5803,7 @@
     <ClCompile Include="aura\aura\context.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
-    <ClCompile Include="aura\aura\context_image.cpp">
+    <ClCompile Include="aura\aura\image_context.cpp">
       <Filter>Source Files\aura\aura</Filter>
     </ClCompile>
     <ClCompile Include="aura\os\windows\exception_engine.cpp">

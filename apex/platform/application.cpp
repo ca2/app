@@ -5181,10 +5181,10 @@ namespace apex
    }
 
 
-   //::draw2d::icon * application::set_icon(object * pparticle, ::draw2d::icon * picon, bool bBigIcon)
+   //::image::icon * application::set_icon(object * pparticle, ::image::icon * picon, bool bBigIcon)
    //{
 
-   //   ::draw2d::icon * piconOld = get_icon(pparticle, bBigIcon);
+   //   ::image::icon * piconOld = get_icon(pparticle, bBigIcon);
 
    //   if (bBigIcon)
    //   {
@@ -5204,19 +5204,19 @@ namespace apex
    //}
 
 
-   //::draw2d::icon * application::get_icon(object * pparticle, bool bBigIcon) const
+   //::image::icon * application::get_icon(object * pparticle, bool bBigIcon) const
    //{
 
    //   if (bBigIcon)
    //   {
 
-   //      return ((object *)pparticle)->cast < ::draw2d::icon >("big_icon");
+   //      return ((object *)pparticle)->cast < ::image::icon >("big_icon");
 
    //   }
    //   else
    //   {
 
-   //      return ((object *)pparticle)->cast <::draw2d::icon>("small_icon");
+   //      return ((object *)pparticle)->cast <::image::icon>("small_icon");
 
    //   }
 
@@ -5300,9 +5300,9 @@ namespace apex
 
       ::file::path path2;
 
-      path1 = m_pcontext->m_papexcontext->defer_process_path(path1Param);
+      path1 = m_pcontext->defer_process_matter_path(path1Param);
 
-      path2 = m_pcontext->m_papexcontext->defer_process_path(path2Param);
+      path2 = m_pcontext->defer_process_matter_path(path2Param);
 
       path1 = acmepath()->safe_get_real_path(path1);
 
@@ -5516,7 +5516,7 @@ namespace apex
          try
          {
 
-            psystem->http().m_setHttp.parse_network_payload(strNetworkPayload);
+            psystem->http()->m_setHttp.parse_network_payload(strNetworkPayload);
 
          }
          catch (...)
@@ -6672,7 +6672,7 @@ namespace apex
 
             property_set setEmpty;
 
-            if (m_pcontext->m_papexcontext->http().open(psession, strUrl, setEmpty, nullptr))
+            if (::acme::context::http()->open(psession, strUrl, setEmpty, nullptr))
             {
 
                break;
@@ -6689,7 +6689,7 @@ namespace apex
 
       set["get_memory"] = "";
 
-      m_pcontext->m_papexcontext->http().request(psession, strUrl, set);
+      ::acme::context::http()->request(psession, strUrl, set);
       //{
       //
       //m_pdraw2d->init()
@@ -7017,7 +7017,7 @@ namespace apex
 
 
 
-   //::draw2d::icon * application::set_icon(object * pparticle, ::draw2d::icon * picon, bool bBigIcon)
+   //::image::icon * application::set_icon(object * pparticle, ::image::icon * picon, bool bBigIcon)
    //{
 
    //   return nullptr;
@@ -7025,7 +7025,7 @@ namespace apex
    //}
 
 
-   //::draw2d::icon * application::get_icon(object * pparticle, bool bBigIcon) const
+   //::image::icon * application::get_icon(object * pparticle, bool bBigIcon) const
    //{
 
    //   return nullptr;
@@ -7273,7 +7273,7 @@ namespace apex
    //string application::http_get(const ::string & strUrl, ::property_set & set)
    //{
 
-   //   return http().get(strUrl, set);
+   //   return http()->get(strUrl, set);
 
    //}
 
@@ -10128,7 +10128,7 @@ namespace apex
    }
 
 
-#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(LINUX) || defined(__BSD__)
 
 
    string application::get_wm_class() const

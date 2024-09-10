@@ -158,7 +158,7 @@ repeat:;
 
           set["user"] = psession->account()->get_user();
 
-          m_phttpsession = pcontext->m_papexcontext->http().request( m_phttpsession, strUrl, set);
+          m_phttpsession = http()->request( m_phttpsession, strUrl, set);
 
           if(m_phttpsession == nullptr || ::http::status_failed(set["get_status"]))
           {
@@ -231,8 +231,8 @@ bool db_long_set::load(const ::string & lpKey, i64 * plValue)
       strUrl = "https://" + dir()->get_api_cc() + "/account/long_set_load?key=";
       strUrl += ::url::encode(lpKey);
 
-      //m_phttpsession = pcontext->m_papexcontext->http().request(m_handler, m_phttpsession, strUrl, post, headers, set, nullptr, psession->account()->get_user(), nullptr, &estatus);
-      m_pcore-> m_phttpsession = pcontext->m_papexcontext->http().request(m_pcore->m_phttpsession,strUrl,set);
+      //m_phttpsession = http()->request(m_handler, m_phttpsession, strUrl, post, headers, set, nullptr, psession->account()->get_user(), nullptr, &estatus);
+      m_pcore-> m_phttpsession = http()->request(m_pcore->m_phttpsession,strUrl,set);
 
       if(m_pcore->m_phttpsession == nullptr || ::http::status_failed(set["get_status"]))
       {

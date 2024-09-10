@@ -90,7 +90,7 @@ pacmedirectory->system() / "config\\xmpp_resident\\room\\ca2@livecoding.tv\\xmpp
 
 pacmedirectory->config() / "programming/vs_build.txt";
 
-      string strBuild = pcontext->m_papexcontext->file()->as_string(path);
+      string strBuild = file()->as_string(path);
 
       strBuild.trim();
 

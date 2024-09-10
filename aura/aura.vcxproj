@@ -694,7 +694,7 @@
     <ClCompile Include="graphics\graphics\multiple_buffer.cpp" />
     <ClCompile Include="graphics\graphics\target.cpp" />
     <ClCompile Include="graphics\image\array.cpp" />
-    <ClCompile Include="graphics\image\context_image.cpp" />
+    <ClCompile Include="graphics\image\context.cpp" />
     <ClCompile Include="graphics\image\cursor.cpp" />
     <ClCompile Include="graphics\image\drawer.cpp" />
     <ClCompile Include="graphics\image\drawing.cpp" />
@@ -917,7 +917,7 @@
     <ClInclude Include="graphics\graphics\_graphics.h" />
     <ClInclude Include="graphics\graphics\_impl.h" />
     <ClInclude Include="graphics\image\array.h" />
-    <ClInclude Include="graphics\image\context_image.h" />
+    <ClInclude Include="graphics\image\context.h" />
     <ClInclude Include="graphics\image\cursor.h" />
     <ClInclude Include="graphics\image\drawer.h" />
     <ClInclude Include="graphics\image\drawing.h" />

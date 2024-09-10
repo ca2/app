@@ -12,7 +12,7 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/list.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/context.h"
 #include "aura/windowing/windowing.h"
 #include "aura/user/appearance/appearance.h"
 #include "aura/message/user.h"

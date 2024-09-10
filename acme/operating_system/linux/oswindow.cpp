@@ -457,7 +457,7 @@ Atom oswindow_data::intern_atom(e_net_wm_state estate, bool bCreate)
 }
 
 
-bool oswindow_data::set_icon(::image * pimage)
+bool oswindow_data::set_icon(::image::image *pimage)
 {
 
    // http://stackoverflow.com/questions/10699927/xlib-argb-window-icon

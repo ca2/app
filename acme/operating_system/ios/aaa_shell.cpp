@@ -13,7 +13,7 @@
 #include "shell.h"
 
 
-bool ios_get_file_image(::image * pimage, const ::scoped_string & scopedstr);
+bool ios_get_file_image(::image::image *pimage, const ::scoped_string & scopedstr);
 
 
 namespace ios
@@ -153,7 +153,7 @@ namespace ios
 
       if (case_insensitive_string_ends(imagekey.m_strPath, ".acme"))
       {
-         string str = pcontext->m_papexcontext->file()->as_string(imagekey.m_strPath);
+         string str = file()->as_string(imagekey.m_strPath);
          if (str.case_insensitive_begins_eat("ca2prompt\r\n"))
          {
             str.trim();
@@ -453,8 +453,8 @@ namespace ios
 ////
 ////                     string strParams;
 ////
-////                     //if(pcontext->m_papexcontext->file()->resolve_link(strTarget, strFilePath, ::acmeacmesystem()->ui_from_handle))
-////                     if (pcontext->m_papexcontext->file()->resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
+////                     //if(file()->resolve_link(strTarget, strFilePath, ::acmeacmesystem()->ui_from_handle))
+////                     if (file()->resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
 ////                     {
 ////
 ////                        if (m_straThemeableIconName.get_count() > 0)
@@ -587,7 +587,7 @@ namespace ios
 ////
 ////            string strParams;
 ////
-////            if (pcontext->m_papexcontext->file()->resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
+////            if (file()->resolve_link(strTarget, strFolder, strParams, strFilePath, nullptr))
 ////            {
 ////
 ////               wstring wstr = utf8_to_unicode(strTarget);
@@ -1513,7 +1513,7 @@ pacmedirectory->is(strPath))
 //
 //      if (case_insensitive_string_ends(imagekey.m_strPath, ".acme"))
 //      {
-//         string str = pcontext->m_papexcontext->file()->as_string(imagekey.m_strPath);
+//         string str = file()->as_string(imagekey.m_strPath);
 //         if (str.case_insensitive_begins_eat("ca2prompt\r\n"))
 //         {
 //            str.trim();
@@ -1582,7 +1582,7 @@ pacmedirectory->is(strPath))
 //         informationf("test");
 //      }
 //
-//      ::image_pointer pimage48;
+//      ::image::image_pointer pimage48;
 //
 //      image48 = create_image({48,  48});
 //
@@ -1592,7 +1592,7 @@ pacmedirectory->is(strPath))
 //
 //      if (ios_get_file_image(image48, strPath))
 //      {
-//         ::image_pointer pimage16;
+//         ::image::image_pointer pimage16;
 //
 //         image16 = create_image({16,  16});
 //
@@ -1883,7 +1883,7 @@ pacmedirectory->is(strPath))
 //
 //         {
 //
-//            ::image_pointer pimage;
+//            ::image::image_pointer pimage;
 //            pimage = create_image({iSize,  iSize});
 //            pimage->Fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
 //            pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -1897,9 +1897,9 @@ pacmedirectory->is(strPath))
 //
 //         {
 //
-//            ::image_pointer & d = *m_pimagelistHover[iSize]->m_pimage;
+//            ::image::image_pointer & d = *m_pimagelistHover[iSize]->m_pimage;
 //            size_i32 s = m_pimagelist[iSize]->m_pimage->get_size();
-//            ::image_pointer pimage;
+//            ::image::image_pointer pimage;
 //            pimage = create_image(s);
 //            pimage->Fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
 //            pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);

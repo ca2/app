@@ -1,8 +1,8 @@
 #include "framework.h"
-#include "context_image.h"
+#include "image_context.h"
 ////#include "acme/exception/exception.h"
 #include "aura/graphics/image/image.h"
-#include "aura/graphics/image/save_image.h"
+#include "aura/graphics/image/save_options.h"
 
 
 #include <FreeImage.h>
@@ -12,7 +12,7 @@ namespace imaging_freeimage
 {
 
 
-   FIBITMAP * freeimage_from_image(const ::image * pimage)
+   FIBITMAP * freeimage_from_image(const ::image::image *pimage)
    {
 
       if (::is_null(pimage))
@@ -191,22 +191,13 @@ namespace imaging_freeimage
    }
 
 
-   void context_image::save_image(memory & memory, ::image * pimage, const ::save_image * psaveimage)
+   void image_context::save_image(memory & memory, ::image::image *pimage, const ::image::save_options & saveoptions)
    {
 
       if (::is_null(pimage))
       {
 
          throw ::exception(error_invalid_empty_argument);
-
-      }
-
-      ::save_image saveimageDefault;
-
-      if (psaveimage == nullptr)
-      {
-
-         psaveimage = &saveimageDefault;
 
       }
 
@@ -222,38 +213,38 @@ namespace imaging_freeimage
 
       string strFile;
 
-      switch (psaveimage->m_eformat)
+      switch (saveoptions.m_eformat)
       {
-      case ::draw2d::e_format_png:
+      case ::image::e_format_png:
          eformat = FreeImage_GetFIFFromFormat("PNG");
          strFile = "foo.png";
          break;
-      case ::draw2d::e_format_bmp:
+      case ::image::e_format_bmp:
          eformat = FIF_BMP;
          strFile = "foo.bmp";
          break;
-      case ::draw2d::e_format_gif:
+      case ::image::e_format_gif:
          b8 = true;
          eformat = FIF_GIF;
          strFile = "foo.gif";
          break;
-      case ::draw2d::e_format_jpeg:
+      case ::image::e_format_jpeg:
          b24 = true;
          eformat = FreeImage_GetFIFFromFormat("JPEG");
          strFile = "foo.jpg";
-         if (psaveimage->m_iQuality > 80)
+         if (saveoptions.m_iQuality > 80)
          {
             iFreeImageSave |= JPEG_QUALITYSUPERB;
          }
-         else if (psaveimage->m_iQuality > 67)
+         else if (saveoptions.m_iQuality > 67)
          {
             iFreeImageSave |= JPEG_QUALITYGOOD;
          }
-         else if (psaveimage->m_iQuality > 33)
+         else if (saveoptions.m_iQuality > 33)
          {
             iFreeImageSave |= JPEG_QUALITYNORMAL;
          }
-         else if (psaveimage->m_iQuality > 15)
+         else if (saveoptions.m_iQuality > 15)
          {
             iFreeImageSave |= JPEG_QUALITYAVERAGE;
          }

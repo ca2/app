@@ -175,7 +175,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      pcontext->m_papexcontext->file()->rename(filepathNew, filepath);
+      file()->rename(filepathNew, filepath);
 
       browse_sync(context);
 
@@ -670,7 +670,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      pcontext->m_papexcontext->file()->trash_that_is_not_trash(patha);
+      file()->trash_that_is_not_trash(patha);
 
       _001Refresh();
 
@@ -886,8 +886,8 @@ namespace filemanager
    //            {
    //               strFileList += straSub[j] + "\n";
    //               strFileCheck += straSub[j] + ",";
-   //               strFileCheck += pcontext->m_papexcontext->file()->length(straSub[j]).get_string() + ",";
-   //               strFileCheck += pcontext->m_papexcontext->file()->md5(straSub[j]) + "\n";
+   //               strFileCheck += file()->length(straSub[j]).get_string() + ",";
+   //               strFileCheck += file()->md5(straSub[j]) + "\n";
    //            }
    //         }
    //      }
@@ -895,8 +895,8 @@ namespace filemanager
    //      {
    //         strFileList += itema[i]->m_filepathUser + "\n";
    //         strFileCheck += itema[i]->m_filepathUser + ",";
-   //         strFileCheck += pcontext->m_papexcontext->file()->length(itema[i]->m_filepathFinal).get_string() + ",";
-   //         strFileCheck += pcontext->m_papexcontext->file()->md5(itema[i]->m_filepathFinal) + "\n";
+   //         strFileCheck += file()->length(itema[i]->m_filepathFinal).get_string() + ",";
+   //         strFileCheck += file()->md5(itema[i]->m_filepathFinal) + "\n";
    //      }
    //   }
 
@@ -917,8 +917,8 @@ namespace filemanager
    //   string strCheck = strBase + "check_" + strTime + ".txt";
 
 
-   //   pcontext->m_papexcontext->file()->put_contents(strList, strFileList);
-   //   pcontext->m_papexcontext->file()->put_contents(strCheck, strFileCheck);
+   //   file()->put_contents(strList, strFileList);
+   //   file()->put_contents(strCheck, strFileCheck);
 
    //}
 
@@ -968,8 +968,8 @@ namespace filemanager
 
    //               strFileList += straSub[j] + "\n";
    //               strFileCheck += straSub[j] + ",";
-   //               strFileCheck += pcontext->m_papexcontext->file()->length(straSub[j]).get_string() + ",";
-   //               strFileCheck += pcontext->m_papexcontext->file()->md5(straSub[j]) + "\n";
+   //               strFileCheck += file()->length(straSub[j]).get_string() + ",";
+   //               strFileCheck += file()->md5(straSub[j]) + "\n";
 
    //            }
 
@@ -986,8 +986,8 @@ namespace filemanager
 
    //            strFileList += pdata->item(i)->m_filepathUser + "\n";
    //            strFileCheck += pdata->item(i)->m_filepathUser + ",";
-   //            strFileCheck += pcontext->m_papexcontext->file()->length(pdata->item(i)->m_filepathFinal).get_string() + ",";
-   //            strFileCheck += pcontext->m_papexcontext->file()->md5(pdata->item(i)->m_filepathFinal) + "\n";
+   //            strFileCheck += file()->length(pdata->item(i)->m_filepathFinal).get_string() + ",";
+   //            strFileCheck += file()->md5(pdata->item(i)->m_filepathFinal) + "\n";
 
    //         }
 
@@ -1012,9 +1012,9 @@ namespace filemanager
 
    //   string strCheck = strBase + "check_" + strTime + ".txt";
 
-   //   pcontext->m_papexcontext->file()->put_contents(strList, strFileList);
+   //   file()->put_contents(strList, strFileList);
 
-   //   pcontext->m_papexcontext->file()->put_contents(strCheck, strFileCheck);
+   //   file()->put_contents(strCheck, strFileCheck);
 
    //}
 
@@ -1108,7 +1108,7 @@ namespace filemanager
 
             item.set_user_path(strPath);
 
-            item.set_final_path(pcontext->m_papexcontext->defer_process_path(strPath));
+            item.set_final_path(m_pcontext->defer_process_matter_path(strPath));
 
             item.m_strName = strName;
 
@@ -1194,7 +1194,7 @@ namespace filemanager
 
             ::file::path pathFinal = listingFinal[i];
 
-            pathFinal = pcontext->m_papexcontext->defer_process_path(pathFinal);
+            pathFinal = m_pcontext->defer_process_matter_path(pathFinal);
 
             pathFinal.set_type(listingFinal[i].type());
 
@@ -1867,7 +1867,7 @@ namespace filemanager
    }
 
 
-   ::image_list * file_list::GetActionButtonImageList(::collection::index i)
+   ::image::image_list * file_list::GetActionButtonImageList(::collection::index i)
    {
 
       if (i == 0)
@@ -1985,7 +1985,7 @@ namespace filemanager
 
          string strName = strPath.name();
 
-         pcontext->m_papexcontext->file()->transfer(fs_list_item(strict)->final_path(), strPath);
+         file()->transfer(fs_list_item(strict)->final_path(), strPath);
 
       }
       else
@@ -2243,7 +2243,7 @@ namespace filemanager
 
                ::file::path pathFolder = filemanager_item()->user_path();
 
-               pcontext->m_papexcontext->file()->replace_with(pathFolder, ptopic->payload(id_replace), ptopic->payload(id_find));
+               file()->replace_with(pathFolder, ptopic->payload(id_replace), ptopic->payload(id_find));
 
             }
 

@@ -104,36 +104,36 @@ public:
    virtual ::file::listing & perform_file_relative_name_listing(::file::listing & listing) override;
 
 
-   virtual ::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
-   virtual ::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
+   virtual ::image::image_pointer get_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true);
+   virtual ::image::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
-   virtual ::image_pointer load_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false) override;
-   virtual ::image_pointer load_matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false);
-   virtual ::image_pointer load_matter_icon(string_array & straMatter, string strIcon) override;
-   virtual ::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h) override;
-   virtual ::image_pointer load_thumbnail(const ::string & strPath);
-   virtual ::image_pointer load_dib(const ::file::path & pathDib) override;
+   virtual ::image::image_pointer load_image(const ::payload & payloadFile, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false) override;
+   virtual ::image::image_pointer load_matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true, bool bCreateHelperMaps = false);
+   virtual ::image::image_pointer load_matter_icon(string_array & straMatter, string strIcon) override;
+   virtual ::image::image_pointer load_thumbnail(const ::payload & payloadFile, int w, int h) override;
+   virtual ::image::image_pointer load_thumbnail(const ::string & strPath);
+   virtual ::image::image_pointer load_dib(const ::file::path & pathDib) override;
    virtual ::icon_pointer load_icon(const ::payload & payloadFile);
 
 
-   virtual void _get_image(image * pimage, const ::payload & payloadFile, bool bSync = true);
-   virtual void _matter_image(image * pimage, const ::string & strMatter, bool bSync = true);
+   virtual void _get_image(::image::image *pimage, const ::payload & payloadFile, bool bSync = true);
+   virtual void _matter_image(::image::image *pimage, const ::string & strMatter, bool bSync = true);
 
 
-   virtual void _load_image(image * pimage, const ::payload & payloadFile, bool bSync = true, bool bCreateHelperMaps = false);
-   virtual void _load_matter_image(image * pimage, const string & pszMatter, bool bSync = true, bool bCreateHelperMaps = false);
-   virtual void _load_matter_icon(image * pimage, string_array & straMatter, string strIcon);
-   virtual void _load_thumbnail(image * pimage, const ::payload & payloadFile, int w, int h);
-   virtual void _load_thumbnail(image * pimage, const ::payload & payloadFile);
-   virtual void _load_dib(image * pimage, const ::file::path & pathDib);
+   virtual void _load_image(::image::image *pimage, const ::payload & payloadFile, bool bSync = true, bool bCreateHelperMaps = false);
+   virtual void _load_matter_image(::image::image *pimage, const string & pszMatter, bool bSync = true, bool bCreateHelperMaps = false);
+   virtual void _load_matter_icon(::image::image *pimage, string_array & straMatter, string strIcon);
+   virtual void _load_thumbnail(::image::image *pimage, const ::payload & payloadFile, int w, int h);
+   virtual void _load_thumbnail(::image::image *pimage, const ::payload & payloadFile);
+   virtual void _load_dib(::image::image *pimage, const ::file::path & pathDib);
 
 
-   virtual void save_image(const ::payload & payloadFile, const image * pimage, ::save_image * psaveimage = nullptr);
-   virtual void save_dib(const ::file::path & path, const image * pimage);
+   virtual void save_image(const ::payload & payloadFile, const ::image::image *pimage, ::save_image * psaveimage = nullptr);
+   virtual void save_dib(const ::file::path & path, const ::image::image *pimage);
 
 
-   virtual ::image_pointer _load_image_from_file(const ::payload & payloadFile, const ::payload & varOptions);
-   virtual void _save_to_file(const ::payload & payloadFile, const image * pimage, const ::payload & varOptions);
+   virtual ::image::image_pointer _load_image_from_file(const ::payload & payloadFile, const ::payload & varOptions);
+   virtual void _save_to_file(const ::payload & payloadFile, const ::image::image *pimage, const ::payload & varOptions);
 
 
    virtual string matter_locator(string strApp);

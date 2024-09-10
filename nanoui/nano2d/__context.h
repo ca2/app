@@ -90,7 +90,7 @@ namespace nano2d
 
 
 		virtual void update_image(int image, const void * data);
-		virtual void _draw_image(float x, float y, float w, float h, ::image * pimage);
+		virtual void _draw_image(float x, float y, float w, float h, ::image::image *pimage);
 
 	};
 

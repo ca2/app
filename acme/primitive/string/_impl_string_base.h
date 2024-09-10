@@ -346,7 +346,7 @@ inline void string_base < ITERATOR_TYPE >::construct1(const ITERATOR_TYPE p, str
 
    create_string(length);
 
-   memcpy((void *) this->m_begin, p, length * sizeof(CHARACTER));
+   memory_copy((void *) this->m_begin, p, length * sizeof(CHARACTER));
 
    *(CHARACTER*)this->m_end = (CHARACTER)0;
 

@@ -168,7 +168,7 @@ void request::create_common_construct(const ::payload & varOptions, ::user::elem
    m_bOuterPopupAlertLike              = false;
    m_bHold                             = true;
 
-   if(m_payloadOptions.is_property_true("screen_graphical_output_purpose", true))
+   if(m_payloadOptions.is_property_true_or_empty("screen_graphical_output_purpose"))
    {
 
       m_egraphicsoutputpurpose |= ::graphics::e_output_purpose_screen;

@@ -8,9 +8,9 @@
 #include "aura/user/user/still.h"
 
 
-#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
-#include <stdio.h>
-#endif
+//#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
+//#include <stdio.h>
+//#endif
 
 
 namespace axis
@@ -20,7 +20,7 @@ namespace axis
    user::user()
    {
 
-      printf("axis::user::user\n");
+      print_line("axis::user::user");
 
       m_paxisuser = this;
 

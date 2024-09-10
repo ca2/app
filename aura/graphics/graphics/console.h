@@ -22,7 +22,7 @@ namespace graphics
 
 
       //::write_text_stream < ::file::file >      m_cout;
-      ::image_pointer                           m_pimage;
+      ::image::image_pointer                           m_pimage;
       ::size_i32                                m_sizeTile;
       ::size_i32                                m_sizeWindow;
       int                                       m_x;

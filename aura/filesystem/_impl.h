@@ -461,7 +461,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 //bool file_context::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 //
-//   return pcontext->m_papexcontext->file()->output(get_app(), pfileOut, p, pfnOuput, pfileIn);
+//   return file()->output(get_app(), pfileOut, p, pfnOuput, pfileIn);
 //
 //}
 
@@ -470,7 +470,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 //bool application::output(const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return pcontext->m_papexcontext->file()->output(get_app(), pathOut, p, pfnOuput, pfileIn);
+//   return file()->output(get_app(), pathOut, p, pfnOuput, pfileIn);
 
 //}
 
@@ -479,7 +479,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 //bool application::output(const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return pcontext->m_papexcontext->file()->output(get_app(), pathOut, point, pfnOuput, istream);
+//   return file()->output(get_app(), pathOut, point, pfnOuput, istream);
 
 //}
 
@@ -488,7 +488,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 //bool application::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), const ::file::path & pathIn)
 //{
 
-//   return pcontext->m_papexcontext->file()->output(get_app(), pfileOut, point, pfnOuput, pathIn);
+//   return file()->output(get_app(), pfileOut, point, pfnOuput, pathIn);
 
 
 //}
@@ -498,7 +498,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 //bool application::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return pcontext->m_papexcontext->file()->output(get_app(), pfileOut, p, pfnOuput, pfileIn);
+//   return file()->output(get_app(), pfileOut, p, pfnOuput, pfileIn);
 
 //}
 
@@ -507,7 +507,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 //bool application::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return pcontext->m_papexcontext->file()->output(get_app(), pfileOut, p, pfnOuput, pfileIn);
+//   return file()->output(get_app(), pfileOut, p, pfnOuput, pfileIn);
 
 //}
 
@@ -516,7 +516,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 //bool application::output(::file::file * pfileOut, T * p, bool (T::* pfnOuput)(::file::file*, ::file::file*), ::file::file * pfileIn)
 //{
 
-//   return pcontext->m_papexcontext->file()->output(get_app(), os, p, pfnOuput, pathIn);
+//   return file()->output(get_app(), os, p, pfnOuput, pathIn);
 
 //}
 
@@ -525,7 +525,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 //bool application::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return pcontext->m_papexcontext->file()->output(get_app(), os, p, pfnOuput, pfileIn);
+//   return file()->output(get_app(), os, p, pfnOuput, pfileIn);
 
 //}
 
@@ -535,7 +535,7 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 
 //{
 
-//   return pcontext->m_papexcontext->file()->output(get_app(), os, point, pfnOuput, istream);
+//   return file()->output(get_app(), os, point, pfnOuput, istream);
 
 
 //}

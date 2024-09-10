@@ -188,7 +188,24 @@ namespace acme
    system::~system()
    {
 
+      print_line("acme::system::~system() (start)");
+
       trace_category_static_term();
+
+      m_pacmesystem = nullptr;
+      m_papexsystem = nullptr;
+      m_paquasystem = nullptr;
+      m_paurasystem = nullptr;
+      m_paxissystem = nullptr;
+      m_pbasesystem = nullptr;
+      m_pbredsystem = nullptr;
+      m_pcoresystem = nullptr;
+
+      m_taskmap.clear();
+
+      m_taskidmap.clear();
+
+      print_line("acme::system::~system() (end)");
 
    }
 
@@ -523,7 +540,7 @@ namespace acme
    }
 
 
-   class ::imaging* system::imaging()
+   class ::image::imaging* system::imaging()
    {
 
       throw ::interface_only("imaging requires aura layer or upper layer");
@@ -1050,9 +1067,9 @@ namespace acme
 
       _synchronous_lock synchronouslock(m_pmutexTask);
 
-      m_taskmap.erase_item(itask);
+      if(m_taskmap.has(itask)) m_taskmap.erase_item(itask);
 
-      m_taskidmap.erase_item(ptask);
+      if(m_taskidmap.has(ptask)) m_taskidmap.erase_item(ptask);
 
    }
 

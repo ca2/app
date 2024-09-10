@@ -385,8 +385,6 @@ browse(pathInitialBrowse, ::e_source_initialize);
 
       ::pointer<::core::application>papp = pparticle->application();
 
-      auto pcontext = m_pcontext;
-
       if (papp->datastream()->get(m_strDataKey +".last_browse_folder", strPath))
       {
 

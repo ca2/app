@@ -69,8 +69,8 @@ namespace nano2d
 
          int                           m_iImage;
          ::draw2d::brush_pointer       m_pbrush;
-         ::image_pointer               m_pimage;
-         ::image_drawing_options       m_imagedrawingoptions;
+         ::image::image_pointer               m_pimage;
+         ::image::image_drawing_options       m_imagedrawingoptions;
 
       };
 
@@ -168,7 +168,7 @@ namespace nano2d
 
 
       void update_image(int image, const void * data) override;
-      void _draw_image(float x, float y, float w, float h, ::image * pimage) override;
+      void _draw_image(float x, float y, float w, float h, ::image::image *pimage) override;
 
 
    };

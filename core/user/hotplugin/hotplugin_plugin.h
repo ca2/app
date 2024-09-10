@@ -36,7 +36,7 @@ namespace hotplugin
       bool                          m_bOk;
       bool                          m_bStream;
 
-      ::image_pointer              m_pimage;
+      ::image::image_pointer              m_pimage;
       ::draw2d::graphics_pointer         m_pgraphics;
       file::memory_map              m_memorymapBitmap;
       ::size_i32                        m_sizeBitmap;

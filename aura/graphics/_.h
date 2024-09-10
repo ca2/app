@@ -1,16 +1,14 @@
 #pragma once
 
 
-class context_image;
+namespace image
+{
 
 
-class image;
+   class image_array;
 
 
-using image_pointer = ::pointer<::image>;
-
-
-class image_array;
+} // namespace image
 
 
 #include "draw2d/_.h"

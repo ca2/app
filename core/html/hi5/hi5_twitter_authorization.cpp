@@ -176,7 +176,7 @@ namespace hi5
 
          auto pcontext = get_context();
 
-         setDoc["application_name"] = pcontext->m_papexcontext->http().get(strUrl,set);
+         setDoc["application_name"] = http()->get(strUrl,set);
 
          setDoc["authorization_link"] = m_strAuthorizationUrl;
 

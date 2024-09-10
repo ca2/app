@@ -13,7 +13,7 @@
 #include "aura/graphics/image/array.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
 #include "aura/graphics/write_text/fonts.h"
 #include "acme/parallelization/single_lock.h"
@@ -168,7 +168,7 @@ namespace draw2d
    }
 
 
-   ::image_pointer graphics::image_source_image(const ::size_i32 & sizeDst)
+   ::image::image_pointer graphics::image_source_image(const ::size_i32 & sizeDst)
    {
 
       return m_pimage->get_image(sizeDst);
@@ -1212,7 +1212,7 @@ namespace draw2d
    }
 
 
-   bool graphics::_draw_blend(const ::image_drawing & imagedrawing)
+   bool graphics::_draw_blend(const ::image::image_drawing & imagedrawing)
    {
 
       if (!has_blender())
@@ -1238,15 +1238,15 @@ namespace draw2d
 
             ::size_i32 size(imagedrawing.m_rectangleTarget.size());
 
-            ::image_pointer pimage1 = context_image()->create_image(size);
+            ::image::image_pointer pimage1 = image()->create_image(size);
 
-            image_source imagesource(imagedrawing.m_pimagesource, rectangleSource);
+            ::image::image_source imagesource(imagedrawing.m_pimagesource, rectangleSource);
 
             rectangle_f64 rectangle(size);
 
-            image_drawing_options imagedrawingoptions(rectangle);
+            ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
             pimage1->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
@@ -1270,7 +1270,7 @@ namespace draw2d
 
             pimage1->blend2(pointDst, m_pimageAlphaBlend, pointSrc, rectangleIntersect.size(), 255);
 
-            image_drawing_options imagedrawingoptionsDrawRaw;
+            ::image::image_drawing_options imagedrawingoptionsDrawRaw;
 
             set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -1301,7 +1301,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw_at(const ::point_f64 & pointDst, ::image * pimage)
+   //void graphics::draw_at(const ::point_f64 & pointDst, ::image::image *pimage)
    //{
 
    //   return draw(::rectangle_f64(pointDst, pimage->get_size()), pimage->g());
@@ -1309,7 +1309,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw_at(const ::point_f64 & pointDst, ::image_frame * pframe)
+   //void graphics::draw_at(const ::point_f64 & pointDst, ::::image::image_frame * pframe)
    //{
 
    //   return draw_at(pointDst, pframe->m_pimage);
@@ -1325,7 +1325,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw(::image * pimage, const ::point_f64 & pointSrc)
+   //void graphics::draw(::image::image *pimage, const ::point_f64 & pointSrc)
    //{
 
    //   return draw(pimage->get_size() - pointSrc, pimage, pointSrc);
@@ -1333,7 +1333,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw(::image_frame * pframe, const ::point_f64 & pointSrc)
+   //void graphics::draw(::::image::image_frame * pframe, const ::point_f64 & pointSrc)
    //{
 
    //   return draw(pframe->m_pimage, pointSrc);
@@ -1349,7 +1349,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::point_f64 & pointSrc)
+   //void graphics::draw(const ::rectangle_f64 & rectangleTarget, ::image::image *pimage, const ::point_f64 & pointSrc)
    //{
 
    //   return draw(rectangleTarget, pimage->g(), pointSrc);
@@ -1357,7 +1357,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::draw(const ::rectangle_f64 & rectangleTarget, ::image_frame * pframe, const ::point_f64 & pointSrc)
+   //void graphics::draw(const ::rectangle_f64 & rectangleTarget, ::::image::image_frame * pframe, const ::point_f64 & pointSrc)
    //{
 
    //   return draw(rectangleTarget, pframe->m_pimage, pointSrc);
@@ -1429,7 +1429,7 @@ namespace draw2d
    //   //      //else
    //   //      {
 
-   //   //         ::image_pointer pimage1;
+   //   //         ::image::image_pointer pimage1;
    //   //         //#ifdef UNIVERSAL_WINDOWS
    //   //         //               g_pimagea.add(pimage1);
    //   //         //#endif
@@ -1474,7 +1474,7 @@ namespace draw2d
 
    //   }
 
-   //   ::image_pointer pimage = pgraphicsSrc->m_pimage;
+   //   ::image::image_pointer pimage = pgraphicsSrc->m_pimage;
 
    //   if(pimage->is_null())
    //   {
@@ -1490,7 +1490,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::stretch(const ::rectangle_f64 & rectangleTarget, ::image * pimage, const ::rectangle_f64 & rectangleSource)
+   //void graphics::stretch(const ::rectangle_f64 & rectangleTarget, ::image::image *pimage, const ::rectangle_f64 & rectangleSource)
    //{
 
    //   return stretch(rectangleTarget, pimage->g(), rectangleSource.is_null() ? ::rectangle_f64(pimage->rectangle()) : rectangleSource);
@@ -1498,7 +1498,7 @@ namespace draw2d
    //}
 
 
-   //void graphics::stretch(const ::rectangle_f64 & rectangleTarget, ::image_frame * pframe, const ::rectangle_f64 & rectangleSource)
+   //void graphics::stretch(const ::rectangle_f64 & rectangleTarget, ::::image::image_frame * pframe, const ::rectangle_f64 & rectangleSource)
    //{
 
    //   return stretch(rectangleTarget, pframe->m_pimage, rectangleSource);
@@ -1669,12 +1669,12 @@ namespace draw2d
    //      if (rectangleIntersect.intersect(rectangleIntersect, rectangleText))
    //      {
    //
-   //         ::image_pointer pimage1;
+   //         ::image::image_pointer pimage1;
    ////#ifdef UNIVERSAL_WINDOWS
    ////            g_pimagea.add(pimage1);
    ////#endif
    //
-   //         pimage1 = context_image()->create_image(rectangleText.size());
+   //         pimage1 = image()->create_image(rectangleText.size());
    //
    //         pimage1->get_graphics()->set(get_current_font());
    //
@@ -1686,13 +1686,13 @@ namespace draw2d
    //
    //         {
    //
-   //            image_source imagesource(m_pimageAlphaBlend, ::rectangle_f64(point_i32((int)maximum(0, x - m_pointAlphaBlend.x()), (int)maximum(0, y - m_pointAlphaBlend.y())), rectangleText.size()));
+   //            ::image::image_source imagesource(m_pimageAlphaBlend, ::rectangle_f64(point_i32((int)maximum(0, x - m_pointAlphaBlend.x()), (int)maximum(0, y - m_pointAlphaBlend.y())), rectangleText.size()));
    //
    //            rectangle_f64 rectangle(pimage1->rectangle());
    //
-   //            image_drawing_options imagedrawingoptions(rectangle);
+   //            ::image::image_drawing_options imagedrawingoptions(rectangle);
    //
-   //            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+   //            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
    //
    //            pimage1->g()->draw(imagedrawing);
    //
@@ -1702,13 +1702,13 @@ namespace draw2d
    //
    //            set_alpha_mode(::draw2d::e_alpha_mode_blend);
    //
-   //            image_source imagesource(pimage1);
+   //            ::image::image_source imagesource(pimage1);
    //
    //            rectangle_f64 rectangle(::rectangle_f64(::point_f64(x, y), rectangleText.size()));
    //
-   //            image_drawing_options imagedrawingoptions(rectangle);
+   //            ::image::image_drawing_options imagedrawingoptions(rectangle);
    //
-   //            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+   //            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
    //
    //            draw(imagedrawing);
    //
@@ -1758,9 +1758,9 @@ namespace draw2d
          if (rectangleIntersect.intersect(rectangleAlphaBlend, rectangleText))
          {
 
-            ::image_pointer pimage1;
+            ::image::image_pointer pimage1;
 
-            pimage1 = context_image()->create_image(rectangleText.size());
+            pimage1 = image()->create_image(rectangleText.size());
 
             pimage1->fill_byte(0);
 
@@ -1788,7 +1788,7 @@ namespace draw2d
 
             pimage1->blend2(pointDst, m_pimageAlphaBlend, pointSrc, rectangleIntersect.size(), 255);
 
-            image_drawing_options imagedrawingoptions;
+            ::image::image_drawing_options imagedrawingoptions;
 
             set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -5400,7 +5400,7 @@ namespace draw2d
       else
       {
 
-         ::image_pointer pimage;
+         ::image::image_pointer pimage;
 
          double w = x2 - x1 + 1;
 
@@ -5526,13 +5526,13 @@ namespace draw2d
 
          {
 
-            image_source imagesource(pimage);
+            ::image::image_source imagesource(pimage);
 
             rectangle_f64 rectangle(rectangleTarget);
 
-            image_drawing_options imagedrawingoptions(rectangle);
+            ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
             draw(imagedrawing);
 

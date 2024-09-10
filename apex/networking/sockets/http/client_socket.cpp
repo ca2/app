@@ -227,26 +227,26 @@ namespace sockets
 
        //set_url(strUrlParam);
 
-#ifdef BSD_STYLE_SOCKETS
-      
-      if (m_host.is_empty())
-      {
-
-         auto psystem = system();
-
-         auto purl = psystem->url();
-
-         set_init_ssl_client_context(purl->get_server(strRequestUri));
-
-      }
-      else
-      {
-
-         set_init_ssl_client_context(m_host);
-
-      }
-      
-#endif
+//#ifdef BSD_STYLE_SOCKETS
+//      
+//      if (m_host.is_empty())
+//      {
+//
+//         auto psystem = system();
+//
+//         auto purl = psystem->url();
+//
+//         set_init_ssl_client_context(purl->get_server(strRequestUri));
+//
+//      }
+//      else
+//      {
+//
+//         set_init_ssl_client_context(m_host);
+//
+//      }
+//      
+//#endif
 
       set_connect_host(get_host());
 

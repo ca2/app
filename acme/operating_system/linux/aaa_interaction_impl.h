@@ -257,7 +257,7 @@ namespace linux
       // Update/Painting Functions
 //      virtual ::draw2d::graphics * GetDC();
 //      virtual ::draw2d::graphics * GetWindowDC();
-//      virtual bool ReleaseDC(::image * pimage);
+//      virtual bool ReleaseDC(::image::image *pimage);
 //      virtual void Print(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const;
 //      virtual void PrintClient(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const;
 

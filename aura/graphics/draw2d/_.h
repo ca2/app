@@ -28,7 +28,6 @@ namespace draw2d
    class printer;
    
 
-   class cursor;
    class brush;
    class pen;
    class region;
@@ -36,14 +35,9 @@ namespace draw2d
    class host;
    class graphics;
    class bitmap;
-   class icon;
-   class bitmap;
 
 
    class item;
-
-
-   class fastblur;
 
 
    class path_optimization;
@@ -57,15 +51,11 @@ namespace draw2d
 
    using graphics_call_array = pointer_array < graphics_call_base >;
 
-   using icon_pointer = ::pointer<icon>;
    using brush_pointer = ::pointer<brush>;
    using pen_pointer = ::pointer<pen>;
    using bitmap_pointer = ::pointer<bitmap>;
    using path_pointer = ::pointer<path>;
    using region_pointer = ::pointer<region>;
-
-
-   class icon;
 
 
    CLASS_DECL_ACME void colora_from_quada(color_array & colora, WINRGBQUAD * prgbquad, int iCount);

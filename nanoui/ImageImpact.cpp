@@ -66,7 +66,7 @@ ImageImpact::ImageImpact(Widget * parent) : Canvas(parent, 1, false, false, fals
 //   m_image = image;
 //}
 
-void ImageImpact::set_image(::image *pimage) {
+void ImageImpact::set_image(::image::image *pimage) {
    m_pimage = pimage;
 }
 

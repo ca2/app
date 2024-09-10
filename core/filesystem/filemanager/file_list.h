@@ -116,7 +116,7 @@ namespace filemanager
       bool add_fs_item(::file::path pathUser, ::file::path pathFinal, string strName);
       virtual void browse_sync(const ::action_context & action_context) override;
 
-      ::image_list * GetActionButtonImageList(::collection::index i);
+      ::image::image_list * GetActionButtonImageList(::collection::index i);
 
       //void GetSelected(::file::item_array & itema);
 

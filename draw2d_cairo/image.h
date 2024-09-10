@@ -9,7 +9,7 @@ namespace draw2d_cairo
 
 
    class CLASS_DECL_DRAW2D_CAIRO image :
-      virtual public ::image
+      virtual public ::image::image
    {
    public:
 
@@ -33,7 +33,7 @@ namespace draw2d_cairo
       ::draw2d::bitmap_pointer get_bitmap() const override;
       ::draw2d::bitmap_pointer detach_bitmap() override;
 
-      //virtual bool stretch(const ::image * pimage) override;
+      //virtual bool stretch(const ::image::image *pimage) override;
 
       void dc_select(bool bSelect = true) override;
 
@@ -42,19 +42,19 @@ namespace draw2d_cairo
       void destroy() override;
 
       bool on_host_read_pixels(::pixmap * ppixmap) const override;
-      //virtual bool stretch(const ::image * pimage) override;
-      void _draw_raw(const ::rectangle_i32 & rectangle, ::image * pimage, const ::point_i32 & point = ::point_i32()) override;
+      //virtual bool stretch(const ::image::image *pimage) override;
+      void _draw_raw(const ::rectangle_i32 & rectangle, ::image::image *pimage, const ::point_i32 & point = ::point_i32()) override;
 
       //bool to(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, const ::point_i32 & pointSrc) override;
-      void SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy) override;
+      void SetIconMask(::image::icon * picon, i32 cx, i32 cy) override;
 
 
       //void write(::binary_stream & stream) const override;
       //void read(::binary_stream & stream) override;
 
 
-      void blend(const ::point_i32 & ptDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA) override;
-      //void blend2(const ::point_i32 & ptDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA) override;
+      void blend(const ::point_i32 & ptDst, ::image::image *pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA) override;
+      //void blend2(const ::point_i32 & ptDst, ::image::image *pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, ::u8 bA) override;
 
 
    };

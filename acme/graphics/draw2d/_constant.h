@@ -185,33 +185,13 @@ namespace draw2d
       e_compositing_quality_high_quality,
    };
 
+
    enum enum_disposal
    {
       e_disposal_undefined = 0,
       e_disposal_none = 1,
       e_disposal_background = 2,
       e_disposal_previous = 3
-   };
-
-
-   enum enum_mipmap
-   {
-
-      e_mipmap_none,
-      e_mipmap_isotropic, // 3x original size (a bit more or less if there are scan adjustments)
-      e_mipmap_anisotropic, // 4x original size (a bit more or less if there are scan adjustments)
-
-   };
-
-
-   enum enum_format
-   {
-      e_format_none,
-      e_format_png,
-      e_format_bmp,
-      e_format_gif,
-      e_format_jpeg,
-      e_format_tga,
    };
 
 

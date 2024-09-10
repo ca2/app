@@ -495,15 +495,13 @@ namespace account
 
       set["post"]["source"] = straHash.implode(";");
 
-      auto pcontext = m_pcontext;
-
       for(i32 i = 0; i < 3; i++)
       {
 
          try
          {
 
-            pcontext->m_papexcontext->http().get(strUrl, strResponse, set);
+            http()->get(strUrl, strResponse, set);
 
             break;
 

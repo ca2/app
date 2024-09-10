@@ -2,7 +2,7 @@
 #include "group_image_list.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/context.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
 #include "acme/user/user/content.h"
@@ -132,11 +132,8 @@ namespace userex
 
       ::pointer<::message::create>pcreate(pmessage);
 
-      auto pcontext = m_pcontext->m_pauracontext;
 
-      auto pcontextimage = pcontext->context_image();
-
-      m_pimage = pcontextimage->load_image("project.jpg", { .cache = false });
+      m_pimage = image()->load_image("project.jpg", { .cache = false });
 
       pcreate->previous();
 
@@ -278,7 +275,7 @@ namespace userex
 
       //auto * plist = get_group_list(strGroup);
 
-     //::image_pointer pimage = papp->matter_image(pgroup->m_strIcon);
+     //::image::image_pointer pimage = papp->matter_image(pgroup->m_strIcon);
 
       //m_pbuttonMenu->set_window_text(get_group_title(pgroup));
 
@@ -320,11 +317,8 @@ namespace userex
 
       main_content().m_pitemCurrent = main_content().defer_item(::e_element_item, plist->m_iIndex);
 
-      auto pcontext = m_pcontext->m_pauracontext;
 
-      auto pcontextimage = pcontext->context_image();
-
-      ::image_pointer pimage = pcontextimage->matter_image(pgroup->m_strIcon);
+      ::image::image_pointer pimage = image()->matter_image(pgroup->m_strIcon);
 
       m_pbuttonMenu->set_window_text(get_group_title(pgroup));
 
@@ -460,7 +454,7 @@ namespace userex
 
          ::pointer<::user::menu_button>pbutton = item->m_puserinteraction;
 
-         ::image_pointer pimage;
+         ::image::image_pointer pimage;
          
          pimage= pbutton->m_pbitmap->m_pimage->clone();
 

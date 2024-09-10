@@ -9,9 +9,9 @@
 #include "acme/primitive/primitive/url.h"
 #include "apex/networking/internet.h"
 #include "aura/graphics/draw2d/draw2d.h"
-#include "aura/graphics/image/save_image.h"
+#include "aura/graphics/image/save_options.h"
 #include "aura/graphics/image/frame_array.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/context.h"
 #include "aura/windowing/window.h"
 #include "aura/platform/node.h"
 #include "aura/platform/application.h"
@@ -220,49 +220,41 @@ namespace user
       if (!(eflag & e_flag_prevent_data_blob) && _has_image())
       {
 
-         ::image_pointer pimage;
+         ::image::image_pointer pimage;
 
          if(desk_to_image(pimage))
          {
 
             memory mem;
 
-            auto psaveimage = ::place(new save_image());
+            ::image::save_options saveoptions;
 
             if (pimage->frames() && pimage->frames()->count() >= 2)
             {
 
-               psaveimage->m_eformat = ::draw2d::e_format_gif;
+               saveoptions.m_eformat = ::image::e_format_gif;
 
             }
             else
             {
 
-               psaveimage->m_eformat = ::draw2d::e_format_png;
+               saveoptions.m_eformat = ::image::e_format_png;
 
             }
 
-            ::pointer<::aura::application>papp = get_app();
+            image()->save_image(mem, pimage, saveoptions);
 
-            auto psystem = system()->m_paurasystem;
-
-            auto pcontext = m_pcontext->m_pauracontext;
-
-            auto pcontextimage = pcontext->context_image();
-
-            pcontextimage->save_image(mem, pimage, psaveimage);
-
-            auto pbase64 = psystem->base64();
+            auto pbase64 = system()->base64();
 
             str = pbase64->encode(mem);
 
-            if (psaveimage->m_eformat == ::draw2d::e_format_png)
+            if (saveoptions.m_eformat == ::image::e_format_png)
             {
 
                str = "data:image/png;base64;" + str;
 
             }
-            else if (psaveimage->m_eformat == ::draw2d::e_format_gif)
+            else if (saveoptions.m_eformat == ::image::e_format_gif)
             {
 
                str = "data:image/gif;base64;" + str;
@@ -304,20 +296,14 @@ namespace user
                   payloadFile["raw_http"] = true;
                   payloadFile["disable_common_name_cert_check"] = true;
 
-                  auto pcontext = m_pcontext->m_pauracontext;
-
-                  auto pcontextimage = pcontext->context_image();
-
-                  auto pimage = pcontextimage->load_image(payloadFile, { .cache = false });
+                  auto pimage = image()->load_image(payloadFile, { .cache = false });
 
                   if (pimage)
                   {
 
                      ::memory mem;
 
-                     auto pcontext = get_context();
-
-                     pcontext->m_papexcontext->file()->as_memory(payloadFile, mem);
+                     file()->as_memory(payloadFile, mem);
 
                      auto psystem = system();
 
@@ -391,7 +377,7 @@ namespace user
    }
 
 
-   bool copydesk::desk_to_image(::image_pointer & pimage)
+   bool copydesk::desk_to_image(::image::image_pointer & pimage)
    {
 
       if (_has_image())
@@ -430,15 +416,11 @@ namespace user
 
                auto pcontext = get_context();
 
-               pcontext->m_papexcontext->file()->as_memory(payloadFile, *pmemory);
+               file()->as_memory(payloadFile, *pmemory);
 
             }
 
-            auto pcontext = m_pcontext->m_pauracontext;
-
-            auto pcontextimage = pcontext->context_image();
-
-            pcontextimage->_load_image(pimage, pmemory);
+            image()->_load_image(pimage, pmemory);
             //{
 
                // Couldn't load image from file/URL path...
@@ -512,7 +494,7 @@ namespace user
    }
 
 
-   bool copydesk::image_to_desk(const ::image * pimage)
+   bool copydesk::image_to_desk(const ::image::image *pimage)
    {
 
       return _image_to_desk(pimage);
@@ -608,7 +590,7 @@ namespace user
    }
 
 
-   bool copydesk::_desk_to_image(::image * pimage)
+   bool copydesk::_desk_to_image(::image::image *pimage)
    {
 
       __UNREFERENCED_PARAMETER(pimage);
@@ -620,7 +602,7 @@ namespace user
    }
 
 
-   bool copydesk::_image_to_desk(const ::image * pimage)
+   bool copydesk::_image_to_desk(const ::image::image *pimage)
    {
 
       __UNREFERENCED_PARAMETER(pimage);

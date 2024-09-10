@@ -355,7 +355,7 @@ namespace user
             if (m_pimagelist[iSize].is_null())
             {
 
-               m_pimagelist[iSize] = ::place(new ::image_list());
+               m_pimagelist[iSize] = ::place(new ::image::image_list());
                m_pimagelist[iSize]->create(iSize, iSize, 0, 10, 10);
 
             }
@@ -369,7 +369,7 @@ namespace user
             if (m_pimagelistHover[iSize].is_null())
             {
 
-               m_pimagelistHover[iSize] = ::place(new ::image_list());
+               m_pimagelistHover[iSize] = ::place(new ::image::image_list());
                m_pimagelistHover[iSize]->create(iSize, iSize, 0, 10, 10);
 
             }
@@ -444,7 +444,7 @@ namespace user
       }
 
 
-      ::image_list * shell::GetImageList(int iSize)
+      ::image::image_list * shell::GetImageList(int iSize)
       {
 
          synchronous_lock synchronouslock(this->synchronization());
@@ -489,7 +489,7 @@ namespace user
       }
 
 
-      ::image_list * shell::GetImageListHover(int iSize)
+      ::image::image_list * shell::GetImageListHover(int iSize)
       {
 
          synchronous_lock synchronouslock(this->synchronization());
@@ -802,7 +802,7 @@ namespace user
 
    //      {
 
-   //         ::image_pointer pimage(this);
+   //         ::image::image_pointer pimage(this);
    //         pimage->create({ iSize, iSize });
    //         pimage->fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
    //         pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -815,9 +815,9 @@ namespace user
    //      }
 
    //      {
-   //         ::image_pointer d = m_pimagelistHover[iSize]->m_pimage;
+   //         ::image::image_pointer d = m_pimagelistHover[iSize]->m_pimage;
    //         size_i32 s = m_pimagelist[iSize]->m_pimage->get_size();
-   //         ::image_pointer pimage(this);
+   //         ::image::image_pointer pimage(this);
    //         pimage->create(d->size());
    //         pimage->fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
    //         pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -860,7 +860,7 @@ namespace user
 
          {
 
-            ::image_pointer pimage(this);
+            ::image::image_pointer pimage(this);
             pimage->create({ iSize, iSize });
             pimage->fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
             pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -878,9 +878,9 @@ namespace user
          }
 
          {
-            ::image_pointer d = m_pimagelistHover[iSize]->m_pimage;
+            ::image::image_pointer d = m_pimagelistHover[iSize]->m_pimage;
             //size_i32 s = m_pimagelist[iSize]->m_pimage->get_size();
-            ::image_pointer pimage(this);
+            ::image::image_pointer pimage(this);
             pimage->create(d->size());
             pimage->fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
             pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);

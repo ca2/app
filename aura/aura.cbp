@@ -732,11 +732,11 @@
 			<Option target="aura"/>
 			<Option target="static_aura"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/aura/graphics/image/context_image.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/aura/graphics/image/image_context.cpp">
 			<Option target="aura"/>
 			<Option target="static_aura"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/aura/graphics/image/context_image.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/aura/graphics/image/image_context.h">
 			<Option target="aura"/>
 			<Option target="static_aura"/>
 		</Unit>

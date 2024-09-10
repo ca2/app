@@ -173,7 +173,7 @@ namespace nanoui
       /// Set the pscreen's background color
       void set_background(const ::color::color& background) { m_background = background; }
 
-      ::image_pointer create_image(const ::size_i32& size);
+      ::image::image_pointer create_image(const ::size_i32& size);
 
       //   /// Set the top-level window visibility (no effect on full-pscreen windows)
       //   void set_visible(bool visible);

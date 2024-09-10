@@ -31,7 +31,7 @@ namespace menu
       ::rectangle_i32                  m_rectangleUi;
       ::i32                            m_iColumn;
       ::i32                            m_iRow;
-      ::pointer<::image>               m_pimage;
+      ::pointer<::image::image>               m_pimage;
       //::pointer<::item_array>          m_pmenuitema;
 
 

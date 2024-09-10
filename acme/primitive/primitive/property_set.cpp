@@ -2261,7 +2261,14 @@ bool property_set::payload_bool(const atom & atom, bool bDefault) const
 
    }
 
-   return pproperty->get_bool(bDefault);
+   if(pproperty->is_empty())
+   {
+
+      return bDefault;
+
+   }
+
+   return pproperty->get_bool();
 
 }
 
@@ -2654,7 +2661,7 @@ property & property_set::get(const ::atom_array & atoma)
 //}
 
 
-bool property_set::has_property(atom idName) const
+bool property_set::has_property(const atom & atom) const
 {
 
    if (::is_null(this))
@@ -2664,26 +2671,43 @@ bool property_set::has_property(atom idName) const
 
    }
 
-   const property * pproperty = find(idName);
+   const property * pproperty = find(atom);
 
    return pproperty != nullptr && pproperty->m_etype != ::e_type_new;
 
 }
 
 
-bool property_set::is_true(atom idName, bool bDefault) const
+bool property_set::is_true(const atom & atom) const
 {
 
-   const property * pproperty = find(idName);
+   const property * pproperty = find(atom);
 
    if (pproperty == nullptr)
    {
 
-      return bDefault;
+      return false;
 
    }
 
-   return pproperty->is_true(bDefault);
+   return pproperty->is_true();
+
+}
+
+
+bool property_set::is_true_or_empty(const atom & atom) const
+{
+
+   const property * pproperty = find(atom);
+
+   if (pproperty == nullptr)
+   {
+
+      return true;
+
+   }
+
+   return pproperty->is_true_or_empty();
 
 }
 

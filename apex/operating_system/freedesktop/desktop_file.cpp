@@ -271,11 +271,9 @@ namespace freedesktop
    void desktop_file::create()
    {
 
-      auto pcontext = m_pcontext;
-
       ::file::path path = dir()->matter("app.desktop");
 
-      m_straLine = pcontext->m_papexcontext->file()->lines(path);
+      m_straLine = file()->lines(path);
 
       //m_straLine.add("Line1\n");
 
@@ -367,17 +365,17 @@ namespace freedesktop
 //
 //         strScript += "\n";
 //
-//         strScript += "   cd " + string(pcontext->m_papexcontext->file()->module().folder()) + "/\n";
+//         strScript += "   cd " + string(file()->module().folder()) + "/\n";
 //
 //         strScript += "\n";
 //
-//         strScript += "   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:" + string(pcontext->m_papexcontext->file()->module().folder()) + "\n";
+//         strScript += "   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:" + string(file()->module().folder()) + "\n";
 //
 //         */
 //
 //         //strScript += "\n";
 //
-//         //strScript += "   /bin/bash -i -c \"" + string(pcontext->m_papexcontext->file()->module()) + "\" ${@:1:99}\n";
+//         //strScript += "   /bin/bash -i -c \"" + string(file()->module()) + "\" ${@:1:99}\n";
 //
 //         /*
 //
@@ -397,14 +395,14 @@ namespace freedesktop
 //
 //         strScript += "\n";
 //
-//   //      strScript += "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:" + string(pcontext->m_papexcontext->file()->module().folder()) + "\n";
+//   //      strScript += "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.:" + string(file()->module().folder()) + "\n";
 //   //
 //   //      strScript += "\n";
 //   //
 //
-//         //strScript += "/bin/bash -l -c " + string(pcontext->m_papexcontext->file()->module()) + " ${@:1:99}\n";
+//         //strScript += "/bin/bash -l -c " + string(file()->module()) + " ${@:1:99}\n";
 //
-//         strScript += string(pcontext->m_papexcontext->file()->module()) + " ${@:1:99}\n";
+//         strScript += string(file()->module()) + " ${@:1:99}\n";
 //
 //         strScript += "\n";
 //
@@ -417,18 +415,18 @@ namespace freedesktop
 
 //return;
 
-      string strModule = pcontext->m_papexcontext->file()->module();
+      string strModule = file()->module();
 
       straLine._007SetLine("[Desktop Entry]", "GenericName", strTitle);
       straLine._007SetLine("[Desktop Entry]", "Name", strTitle);
       straLine._007SetLine("[Desktop Entry]", "Comment", strTitle + " Comment");
       //straLine._007SetLine("[Desktop Entry]", "Exec", pathLaunch + " %U");
       //straLine._007SetLine("[Desktop Entry]", "Exec", strName + " %U");
-      //straLine._007SetLine("[Desktop Entry]", "Exec", string(pcontext->m_papexcontext->file()->module()) + " %U");
+      //straLine._007SetLine("[Desktop Entry]", "Exec", string(file()->module()) + " %U");
       straLine._007SetLine("[Desktop Entry]", "Exec", strModule + " %U");
-      //straLine._007SetLine("Path", string(pcontext->m_papexcontext->file()->module().folder()));
+      //straLine._007SetLine("Path", string(file()->module().folder()));
 
-      if(pcontext->m_papexcontext->file()->exists(pathModuleIcon256))
+      if(file()->exists(pathModuleIcon256))
       {
 
          straLine._007SetLine("[Desktop Entry]", "Icon", pathModuleIcon256);
@@ -485,7 +483,7 @@ namespace freedesktop
       // //straLine._007SetLine("[Desktop Action transparent-frame]", "StartupWMClass", "com." + strPrgName);
       // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", pathLaunch + " : post transparent_frame");
       // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strName + " : post transparent_frame");
-      // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", string(pcontext->m_papexcontext->file()->module()) + " : post transparent_frame");
+      // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", string(file()->module()) + " : post transparent_frame");
       // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strName + " : post transparent_frame");
       // straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strModule + " : post transparent_frame");
 
@@ -502,15 +500,13 @@ namespace freedesktop
    void desktop_file::write()
    {
 
-      auto pcontext = m_pcontext;
-
       {
 
          auto path = get_file_path();
 
          information() << "Writing desktop file to : " << path;
 
-         pcontext->m_papexcontext->file()->put_lines(path, m_straLine);
+         file()->put_lines(path, m_straLine);
 
          chmod(path, S_IRUSR | S_IWUSR | S_IXUSR);
 
@@ -522,7 +518,7 @@ namespace freedesktop
 
          information() << "Writing desktop file (2) to : " << path;
 
-         pcontext->m_papexcontext->file()->put_lines(path, m_straLine);
+         file()->put_lines(path, m_straLine);
 
          chmod(path, S_IRUSR | S_IWUSR | S_IXUSR);
 

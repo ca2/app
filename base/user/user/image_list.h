@@ -17,22 +17,22 @@ namespace user
    public:
 
 
-      int                     m_iTextHeight;
-      int                     m_iMargin;
-      bool                    m_bLabel;
-      ::i32                   m_iLabelHeight;
-      ::e_align               m_ealign;
-      string_to_string        m_mapName;
+      int                                 m_iTextHeight;
+      int                                 m_iMargin;
+      bool                                m_bLabel;
+      ::i32                               m_iLabelHeight;
+      ::e_align                           m_ealign;
+      string_to_string                    m_mapName;
 
-      ::pointer<image_array>  m_pimagea;
-      ::pointer<image_array>  m_pimageaThumb;
+      ::pointer<::image::image_array>     m_pimagea;
+      ::pointer<::image::image_array>     m_pimageaThumb;
 
-      index_array             m_iaSel;
-      //::item                m_itemLButtonDown;
-      ::size_i32              m_size;
-      bool                    m_bMultiSel;
-      ::size_i32              m_sizeImage;
-      //::rectangle_i32         m_rectangleTotal;
+      index_array                         m_iaSel;
+      //::item                            m_itemLButtonDown;
+      ::size_i32                          m_size;
+      bool                                m_bMultiSel;
+      ::size_i32                          m_sizeImage;
+      //::rectangle_i32                   m_rectangleTotal;
 
 
       image_list();
@@ -69,7 +69,7 @@ namespace user
       void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual image * get_current_image();
+      virtual ::image::image *get_current_image();
 
       virtual string get_current_image_link();
 

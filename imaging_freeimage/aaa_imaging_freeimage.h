@@ -21,8 +21,8 @@
 //{
 //
 //
-//   CLASS_DECL_IMAGING_FREEIMAGE FIBITMAP * freeimage_from_image(const ::image * pimage);
-//   CLASS_DECL_IMAGING_FREEIMAGE bool image_from_freeimage(::image * pimage, FIBITMAP * pfibitmap);
+//   CLASS_DECL_IMAGING_FREEIMAGE FIBITMAP * freeimage_from_image(const ::image::image *pimage);
+//   CLASS_DECL_IMAGING_FREEIMAGE bool image_from_freeimage(::image::image *pimage, FIBITMAP * pfibitmap);
 //
 //
 //} // namespace imaging_freeimage

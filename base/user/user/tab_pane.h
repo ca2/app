@@ -32,7 +32,7 @@ namespace user
       ::draw2d::brush_pointer             m_pbrushFillSel;
       ::draw2d::brush_pointer             m_pbrushFillHover;
       atom                                m_atom;
-      ::image_pointer                     m_pimage;
+      ::image::image_pointer                     m_pimage;
       ::pointer<place_holder>            m_pplaceholder;
       ::pointer<impact_data>             m_pimpactdata;
       bool                                m_bTabPaneVisible;

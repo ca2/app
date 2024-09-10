@@ -25,9 +25,9 @@ namespace graphics
 
       ::rectangle_i32                  m_rectangleTarget;
 
-      ::image_pointer                  m_pimageTemplate;
-      ::image_pointer                  m_pimage;
-      ::image_pointer                  m_pimageLuminance;
+      ::image::image_pointer                  m_pimageTemplate;
+      ::image::image_pointer                  m_pimage;
+      ::image::image_pointer                  m_pimageLuminance;
 
       ::color::hls                     m_hls;
 
@@ -104,9 +104,9 @@ namespace graphics
 {
 
 
-   CLASS_DECL_CORE void colors_with_shades_of_grey(::image * pimage);
+   CLASS_DECL_CORE void colors_with_shades_of_grey(::image::image *pimage);
 
-   CLASS_DECL_CORE void shades_of_luminance(::image * pimage, double dH, double dS);
+   CLASS_DECL_CORE void shades_of_luminance(::image::image *pimage, double dH, double dS);
 
 
 } // namespace graphics

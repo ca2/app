@@ -8,7 +8,7 @@
 #include "acme/filesystem/filesystem/listing.h"
 #include "apex/database/_binary_stream.h"
 #include "acme/filesystem/filesystem/dir_context.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/array.h"
 #include "aura/message/user.h"
@@ -108,9 +108,7 @@ namespace userex
 
          m_pimagea->m_imagea.clear();
 
-         auto pcontext = m_pcontext;
-
-         auto papp = get_app();
+            auto papp = get_app();
 
          if (m_pathFolder.has_char())
          {
@@ -157,15 +155,11 @@ namespace userex
 
             synchronouslock.unlock();
 
-            ::image_pointer pimage1;
+            ::image::image_pointer pimage1;
 
             ::file::path path = m_plisting->element_at(i);
 
-            auto pcontext = m_pcontext->m_pauracontext;
-
-            auto pcontextimage = pcontext->context_image();
-
-            pimage1 = pcontextimage->load_image(path, { .cache = false });
+            pimage1 = image()->load_image(path, { .cache = false });
 
             if (::is_ok(pimage1))
             {
@@ -173,15 +167,15 @@ namespace userex
                if (pimage1->width() > 256)
                {
 
-                  ::image_pointer pimageSmall;
+                  ::image::image_pointer pimageSmall;
 
-                  pimageSmall = context_image()->create_image({256,  256 * pimage1->height() / pimage1->width()});
+                  pimageSmall = image()->create_image({256,  256 * pimage1->height() / pimage1->width()});
 
-                  image_source imagesource(pimage1);
+                  ::image::image_source imagesource(pimage1);
 
-                  image_drawing_options imagedrawingoptions(pimageSmall->rectangle());
+                  ::image::image_drawing_options imagedrawingoptions(pimageSmall->rectangle());
 
-                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+                  ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                   pimageSmall->g()->draw(imagedrawing);
 

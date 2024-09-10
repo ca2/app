@@ -26,8 +26,8 @@ namespace universal_windows
       virtual bool _get_plain_text(string & str) override;
       virtual bool _has_plain_text() override;
 
-      virtual bool _desk_to_image(::image * pimage) override;
-      virtual bool _image_to_desk(const ::image * pimage) override;
+      virtual bool _desk_to_image(::image::image *pimage) override;
+      virtual bool _image_to_desk(const ::image::image *pimage) override;
       virtual bool _has_image() override;
 
    };

@@ -1651,7 +1651,7 @@ namespace user
       virtual void set_windowing_icon(::windowing::icon* picon);
 
       virtual ::windowing::icon* get_windowing_icon();
-      virtual ::draw2d::icon* get_draw_icon();
+      virtual ::image::icon* get_draw_icon();
 
 
 

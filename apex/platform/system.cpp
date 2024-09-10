@@ -1019,7 +1019,7 @@ pacmedirectory->create("/ca2core");
 
                auto thisEnv = *wenv;
 
-               int iLen = wcslen(thisEnv);
+               int iLen = (int) wcslen(thisEnv);
 
                /*if (iLen >= 42)
                {
@@ -3448,9 +3448,9 @@ pacmedirectory->create("/ca2core");
       if (strProtocol == "ca2project")
       {
 
-         string strBase = purl->get_server(str);
+         string strBase = ::url::get_host(str);
 
-         string strScheme = purl->get_script(str);
+         string strScheme = ::url::get_request_path(str);
 
          strScheme.begins_eat("/");
 
@@ -4568,6 +4568,20 @@ namespace apex
 
    //}
 
+   networking::networking* system::networking()
+   {
+
+      if(!m_pnetworking)
+      {
+
+         initialize_networking();
+
+      }
+
+      return m_pnetworking;
+
+   }
+
 
    void system::on_allocation_error(const ::string & str, ::object * pparticle)
    {
@@ -4604,7 +4618,7 @@ namespace apex
 
       set["cookies"] = pcookies;
 
-      if (!m_pcontext->m_papexcontext->http().download(pszUrl, filename, set))
+      if (!::acme::context::http()->download(pszUrl, filename, set))
 
       {
 
@@ -4627,7 +4641,7 @@ namespace apex
 
          file()->erase(filename);
 
-         return m_pcontext->m_papexcontext->http().download(str, strLocation, set);
+         return ::acme::context::http()->download(str, strLocation, set);
 
       }
 

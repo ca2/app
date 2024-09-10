@@ -39,7 +39,7 @@ namespace filemanager
 
 
       i32                 m_iImage;
-      ::draw2d::icon *        m_picon;
+      ::image::icon *        m_picon;
 
       icon();
 

@@ -6,8 +6,8 @@ list(APPEND library_source
         _.cpp
         _.h
         _factory.cpp
-        context_image.cpp
-        context_image.h
+        image_context.cpp
+        image_context.h
         file_procedure.cpp
         file_procedure_ex1.cpp
         fimemory.h

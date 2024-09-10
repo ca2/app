@@ -22,7 +22,7 @@ void os_term_imaging()
 
 
 
-//HCURSOR CreateAlphaCursor(oswindow window, const ::image* pimage, int xHotSpot, int yHotSpot)
+//HCURSOR CreateAlphaCursor(oswindow window, const ::image::image* pimage, int xHotSpot, int yHotSpot)
 //{
 //
 //   return false;

@@ -64,7 +64,7 @@ public:
 
 
    // 09, Sept 2004 attributes with change inApril 2010 from dcMain/bmpMain to imageMain
-   ::image_pointer                     m_pimageMain;
+   ::image::image_pointer                     m_pimageMain;
    bool                             m_bEnhancedEmboss;
    bool                             m_bCacheEmboss;
    string                           m_strCache;
@@ -136,7 +136,7 @@ public:
 
    void embossed_text_out(
    ::draw2d::graphics_pointer & pgraphics,
-   ::image * pimageCache,
+   ::image::image *pimageCache,
    const ::scoped_string & scopedstr,
    i32 iLeft,
    i32 iTop,
@@ -150,7 +150,7 @@ public:
    virtual void CacheEmboss(
    ::draw2d::graphics_pointer & pgraphics,
    const ::scoped_string & scopedstr,
-   ::image_pointer & imageCache);
+   ::image::image_pointer & imageCache);
 
    bool IsVisible();
    void Validate(const ::rectangle_i32 & rectangle = {});

@@ -26,7 +26,7 @@ namespace draw2d
       ::color::color          m_color2;
       point_f64               m_point;
       size_f64                m_size;
-      ::image_pointer         m_pimage;
+      ::image::image_pointer         m_pimage;
       double                  m_dRadius;
 
 
@@ -45,7 +45,7 @@ namespace draw2d
       virtual bool CreateHatchBrush(i32 nIndex, ::color::color color);
       //virtual bool CreateBrushIndirect(const LOGBRUSH* pLogBrush);
 
-      virtual bool CreatePatternBrush(::image * pimage, const ::size_f64 & size = {});
+      virtual bool CreatePatternBrush(::image::image *pimage, const ::size_f64 & size = {});
 //#ifdef WINDOWS
 //      virtual bool CreateDIBPatternBrush(HGLOBAL hPackedDIB, ::u32 nUsage);
 //#endif

@@ -43,9 +43,9 @@
 #include "base/user/form/impact.h"
 
 
-#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
-#include <stdio.h>
-#endif
+//#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
+//#include <stdio.h>
+//#endif
 
 
 
@@ -57,7 +57,7 @@ namespace base
    user::user()
    {
 
-      printf("base::user::user\n");
+      print_line("base::user::user");
 
       m_pbaseuser = this;
 
@@ -75,7 +75,7 @@ namespace base
 
       //auto estatus =
 
-      printf("base::user::initialize\n");
+      print_line("base::user::initialize");
 
       ::axis::user::initialize(pparticle);
 
@@ -88,7 +88,7 @@ namespace base
 
       //estatus =
 
-      printf("base::user::initialize (2)\n");
+      print_line("base::user::initialize (2)");
 
       ::user::document_manager_container::initialize(pparticle);
 
@@ -244,7 +244,7 @@ namespace base
 
       //xml::document docUser;
 
-      //string strUser = pcontext->m_papexcontext->file()->as_string(dir()->appdata()/"langstyle_settings.xml");
+      //string strUser = file()->as_string(dir()->appdata()/"langstyle_settings.xml");
 
       //string strLangUser;
 
@@ -524,7 +524,7 @@ namespace base
 
          //auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").i32();
 
-         //::image_pointer pimage = *pmenuitem->m_pimage + eimage;
+         //::image::image_pointer pimage = *pmenuitem->m_pimage + eimage;
 
          //pmenubutton->LoadBitmaps(pimage);
 

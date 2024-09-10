@@ -12,7 +12,7 @@ namespace turboc
 
 
 
-/*      ::image_pointer           m_pimage;
+/*      ::image::image_pointer           m_pimage;
 /*      image_array         m_pimagea;
 
       int m_iDriver;
@@ -34,7 +34,7 @@ namespace turboc
       void defer_synch();
 
 
-/*      ::image_pointer & aimage() { return *m_pimagea[m_iActivePage]; }
+/*      ::image::image_pointer & aimage() { return *m_pimagea[m_iActivePage]; }
 /*      ::draw2d::graphics & ag() { return *aimage().get_graphics(); }
 
 /*      image_array & Pixmaps() { return m_pimagea; }

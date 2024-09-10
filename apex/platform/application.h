@@ -801,9 +801,9 @@ namespace apex
       virtual void post_message(const ::atom & atom, wparam wParam = {}, lparam lParam = 0) override;
 
 
-      //virtual ::draw2d::icon * set_icon(object * pparticle, ::draw2d::icon * picon, bool bBigIcon);
+      //virtual ::image::icon * set_icon(object * pparticle, ::image::icon * picon, bool bBigIcon);
 
-      //virtual ::draw2d::icon * get_icon(object * pparticle, bool bBigIcon) const;
+      //virtual ::image::icon * get_icon(object * pparticle, bool bBigIcon) const;
 
       //virtual void handle(::topic * ptopic, ::context * pcontext);
 
@@ -1074,7 +1074,7 @@ namespace apex
 
       virtual string as_string(const ::payload & payload);
 
-#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(LINUX) || defined(__BSD__)
 
       virtual string get_wm_class() const;
 

@@ -3265,7 +3265,7 @@ bool & payload::bool_reference()
 
 
 
-//image * payload::image() const
+//::image::image *payload::image::image() const
 //{
 //
 //   if (m_etype != ::e_type_element)
@@ -3275,7 +3275,7 @@ bool & payload::bool_reference()
 //
 //   }
 //
-//   return cast < ::image >();
+//   return cast < ::image::image >();
 //
 //}
 

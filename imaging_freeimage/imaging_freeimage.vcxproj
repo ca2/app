@@ -735,7 +735,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="context_image.h" />
+    <ClInclude Include="image_context.h" />
     <ClInclude Include="fimemory.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="factory_exchange.h" />
@@ -743,7 +743,7 @@
     <ClInclude Include="_library.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="context_image.cpp" />
+    <ClCompile Include="image_context.cpp" />
     <ClCompile Include="loading_multi_frame.cpp" />
     <ClCompile Include="_factory.cpp" />
     <ClCompile Include="file_procedure.cpp" />

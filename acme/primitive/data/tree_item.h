@@ -4,7 +4,7 @@
 //#include "acme/primitive/collection/pointer_array.h"
 
 
-class image_list;
+//class image_list;
 
 
 template < typename LIST_ITEM >
@@ -497,7 +497,7 @@ namespace data
 
       virtual string get_text() const;
       virtual ::collection::index get_image() const;
-      virtual ::image_list * get_image_list() const;
+      virtual ::image::image_list * get_image_list() const;
 
 
       void set_parent(tree_item * pparent);

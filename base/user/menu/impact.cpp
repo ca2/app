@@ -15,7 +15,7 @@
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/message/user.h"
 #include "aura/platform/node.h"
@@ -223,11 +223,7 @@ namespace user
 
       papp->datastream()->get(m_atom + ".cur_text", strText);
 
-      auto pcontext = m_pcontext->m_pauracontext;
-
-      auto pcontextimage = pcontext->context_image();
-
-      m_pimageLogo = pcontextimage->load_image("matter://main/logo.png", { .cache = false });
+      m_pimageLogo = image()->load_image("matter://main/logo.png", { .cache = false });
 
       __construct(m_pfontTitle);
 
@@ -417,7 +413,7 @@ namespace user
    void menu_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphicsParam)
    {
 
-      ::image_pointer pimage1;
+      ::image::image_pointer pimage1;
 
       __defer_construct(m_pimageMem);
 
@@ -451,11 +447,11 @@ namespace user
 
       pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      image_source imagesource(m_pimageLogo);
+      ::image::image_source imagesource(m_pimageLogo);
 
-      image_drawing_options imagedrawingoptions(m_pimageLogo->rectangle({ 10, 10 }));
+      ::image::image_drawing_options imagedrawingoptions(m_pimageLogo->rectangle({ 10, 10 }));
 
-      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
       pgraphics->draw(imagedrawing);
 
@@ -588,7 +584,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-            ::image_pointer pimage1;
+            ::image::image_pointer pimage1;
 
             if (::is_set(main_content().m_pitemCurrent) && *main_content().m_pitemCurrent == item)
             {
@@ -617,11 +613,11 @@ namespace user
                rectangleDib.top() = puseritem->m_rectangle2.top() + (puseritem->m_rectangle2.height() - pimage1->height()) / 2;
                rectangleDib.set_size(pimage1->width(), pimage1->height());
 
-               image_source imagesource(pimage1);
+               ::image::image_source imagesource(pimage1);
 
-               image_drawing_options imagedrawingoptions(rectangleDib);
+               ::image::image_drawing_options imagedrawingoptions(rectangleDib);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 
@@ -687,11 +683,11 @@ namespace user
 
       {
 
-         image_source imagesource(pimage1);
+         ::image::image_source imagesource(pimage1);
 
-         image_drawing_options imagedrawingoptions(rectangleX);
+         ::image::image_drawing_options imagedrawingoptions(rectangleX);
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          pgraphicsParam->draw(imagedrawing);
 
@@ -722,9 +718,9 @@ namespace user
    bool menu_impact::load_xml(::payload payloadFile)
    {
 
-      auto pcontext = get_context();
+      //auto pcontext = get_context();
 
-      string strXml = pcontext->m_papexcontext->file()->as_string(payloadFile);
+      string strXml = file()->as_string(payloadFile);
 
       auto pxmldoc = __create_new < ::xml::document >();
 
@@ -808,11 +804,7 @@ namespace user
 
             pmenuitemCommand->m_strTitle = strTitle;
 
-            auto pcontext = m_pcontext->m_pauracontext;
-
-            auto pcontextimage = pcontext->context_image();
-
-            ::image_pointer pimage1 = pcontextimage->load_image(pnodeChild->attribute("image"), { .cache = false });
+            ::image::image_pointer pimage1 = image()->load_image(pnodeChild->attribute("image"), { .cache = false });
 
             if (pimage1)
             {
@@ -821,7 +813,7 @@ namespace user
 
                m_pimageMap[strId] = pimage1;
 
-               ::image_pointer pimageGray;
+               ::image::image_pointer pimageGray;
 
                pimageGray = pimage1->clone();
 

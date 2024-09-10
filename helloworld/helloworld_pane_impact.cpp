@@ -450,13 +450,13 @@ namespace helloworld
       if (m_pimpactLast == nullptr && m_pimpactLastBilbo == nullptr)
       {
 
-         str = pcontext->m_papexcontext->file()->as_string("matter://home.html");
+         str = file()->as_string("matter://home.html");
 
       }
       else
       {
 
-         str = pcontext->m_papexcontext->file()->as_string("matter://menu.html");
+         str = file()->as_string("matter://menu.html");
 
       }
 
@@ -499,7 +499,7 @@ namespace helloworld
 
       path = dir()->appdata() / "helloworld_menu.html";
 
-      pcontext->m_papexcontext->file()->put_contents(path, str);
+      file()->put_contents(path, str);
 
       return path;
 

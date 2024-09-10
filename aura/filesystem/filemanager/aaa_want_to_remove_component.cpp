@@ -411,7 +411,7 @@ pacmedirectory->localconfig() / "user.component";
 
             synchronous_lock synchronouslock(&m);
 
-            stra.add_lines(pcontext->m_papexcontext->file()->as_string(m_pathFilemanagerProject), true);
+            stra.add_lines(file()->as_string(m_pathFilemanagerProject), true);
 
          }
 
@@ -572,7 +572,7 @@ pacmedirectory->localconfig() / "user.component";
 
       //   synchronous_lock synchronouslock(&m);
 
-      //   pcontext->m_papexcontext->file()->put_contents(m_pathFilemanagerProject, stra.implode("\r\n"));
+      //   file()->put_contents(m_pathFilemanagerProject, stra.implode("\r\n"));
 
       //}
 

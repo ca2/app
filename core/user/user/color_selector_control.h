@@ -26,9 +26,9 @@ namespace user
       ::user::plain_edit               m_editBlue;
       ::user::plain_edit               m_editHex;
 
-      //::image_pointer                  m_pimageTemplate;
-      //::image_pointer                  m_pimage;
-      //::image_pointer                  m_pimageLuminance;
+      //::image::image_pointer                  m_pimageTemplate;
+      //::image::image_pointer                  m_pimage;
+      //::image::image_pointer                  m_pimageLuminance;
 
       //::color::hls                            m_hls;
 

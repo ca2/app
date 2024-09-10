@@ -14,7 +14,7 @@
 #include "VScrollPanel.h"
 #include "Screen.h"
 #include "acme/platform/context.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/context.h"
 #include "aura/user/user/interaction.h"
 #include "acme/platform/scoped_restore.h"
 #include "nano2d/context.h"
@@ -262,10 +262,10 @@ namespace nanoui
    }
 
 
-   ::image * ImagePanel::_get_image(::collection::index iImage)
+   ::image::image *ImagePanel::_get_image(::collection::index iImage)
    {
 
-      auto pimage = screen()->m_puserinteraction->m_pcontext->context_image()->integer_image(m_images[iImage].m_element1);
+      auto pimage = screen()->m_puserinteraction->image()->integer_image(m_images[iImage].m_element1);
 
       return pimage;
 

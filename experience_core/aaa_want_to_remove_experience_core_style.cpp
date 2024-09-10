@@ -546,7 +546,7 @@ namespace experience_lite
 
 /*            if(tab_pane.m_pimage->is_set())
             {
-               //::image_list::info ii;
+               //::image::image_list::info ii;
 /*               ixAdd += tab_pane.m_pimage->width() + 2;
             }
 

@@ -1080,7 +1080,7 @@ namespace data
    }
 
 
-   image_list * tree_item::get_image_list() const
+   ::image::image_list * tree_item::get_image_list() const
    {
 
       if (!m_pdataitem)

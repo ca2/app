@@ -408,7 +408,7 @@
 		<Unit filename="aura/constraint.h" />
 		<Unit filename="aura/context.cpp" />
 		<Unit filename="aura/context.h" />
-		<Unit filename="aura/context_image.cpp" />
+		<Unit filename="aura/image_context.cpp" />
 		<Unit filename="aura/conv.cpp" />
 		<Unit filename="aura/conv.h" />
 		<Unit filename="aura/core.h" />

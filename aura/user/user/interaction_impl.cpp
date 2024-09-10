@@ -382,7 +382,7 @@ namespace user
 //
 //#endif
 
-#if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(FREEBSD) && !defined(OPENBSD)
+#if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(__BSD__)
 
 
    ::user::interaction_impl * interaction_impl::GetAncestor(::u32 gaFlags) const
@@ -3483,13 +3483,13 @@ namespace user
    }
    */
 
-   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::image *pimage)
+   void interaction_impl::_001OnDeferPaintLayeredWindowBackground(::image::image *pimage)
    {
       __UNREFERENCED_PARAMETER(pimage);
       throw ::interface_only();
    }
 
-   void interaction_impl::_001DeferPaintLayeredWindowBackground(::image *pimage)
+   void interaction_impl::_001DeferPaintLayeredWindowBackground(::image::image *pimage)
    {
       __UNREFERENCED_PARAMETER(pimage);
       throw ::interface_only();

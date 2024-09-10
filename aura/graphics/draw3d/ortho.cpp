@@ -225,7 +225,7 @@ namespace draw3d
    }
 
 
-   ::i32_array ortho::draw_ortho_plain_fill(::box_f64 * pbox,int iHint,int bA,bool bFirst,::image * pimage)
+   ::i32_array ortho::draw_ortho_plain_fill(::box_f64 * pbox,int iHint,int bA,bool bFirst,::image::image *pimage)
    {
 
       ::draw2d::bitmap bm;

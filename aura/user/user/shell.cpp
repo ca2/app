@@ -12,7 +12,7 @@
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/list.h"
-#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/context.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/graphics/image/icon.h"
@@ -338,9 +338,9 @@ namespace user
    bool shell::defer_set_thumbnail(_get_file_image_ & getfileimage)
    {
 
-      auto pcontextimage = m_pcontext->context_image();
+      auto pimagecontext = image();
 
-      auto pimageTemplate = pcontextimage->load_image(getfileimage.m_imagekey.m_strPath);
+      auto pimageTemplate = image()->load_image(getfileimage.m_imagekey.m_strPath);
 
       if (pimageTemplate.ok())
       {
@@ -367,13 +367,13 @@ namespace user
 //
 //               auto pimage = pimageTemplate->get_image(cx, cy);
 
-               image_source imagesource(pimageTemplate);
+               ::image::image_source imagesource(pimageTemplate);
 
                rectangle_f64 rectangle(::size_f64(iSize, iSize));
 
-               image_drawing_options imagedrawingoptions(rectangle, e_placement_aspect_fit, {0.0, 0.0});
+               ::image::image_drawing_options imagedrawingoptions(rectangle, ::image::e_placement_aspect_fit, {0.0, 0.0});
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                set_image(getfileimage.m_iImage, iSize, imagedrawing);
 
@@ -412,7 +412,7 @@ namespace user
          if (m_pimagelist[iSize].is_null())
          {
 
-            m_pimagelist[iSize] = __create_new < ::image_list >();
+            m_pimagelist[iSize] = __create_new < ::image::image_list >();
             m_pimagelist[iSize]->create(iSize, iSize, 0, 10, 10);
 
          }
@@ -426,7 +426,7 @@ namespace user
          if (m_pimagelistHover[iSize].is_null())
          {
 
-            m_pimagelistHover[iSize] = __create_new < ::image_list >();
+            m_pimagelistHover[iSize] = __create_new < ::image::image_list >();
 
             m_pimagelistHover[iSize]->create(iSize, iSize, 0, 10, 10);
 
@@ -522,7 +522,7 @@ namespace user
       if (getfileimage.m_pathProcessed.is_empty())
       {
 
-         ::file::path pathProcessed = m_pcontext->m_papexcontext->defer_process_path(getfileimage.m_imagekey.m_strPath);
+         ::file::path pathProcessed = m_pcontext->defer_process_matter_path(getfileimage.m_imagekey.m_strPath);
 
          getfileimage.m_pathProcessed = pathProcessed;
 
@@ -552,7 +552,7 @@ namespace user
    }
 
 
-   ::image_list * shell::GetImageList(int iSize)
+   ::image::image_list * shell::GetImageList(int iSize)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -597,7 +597,7 @@ namespace user
    }
 
 
-   ::image_list * shell::GetImageListHover(int iSize)
+   ::image::image_list * shell::GetImageListHover(int iSize)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -902,7 +902,7 @@ namespace user
 //
 //         auto pcontext = m_pcontext;
 //
-//         string str = pcontext->m_papexcontext->file()->as_string(getfileimage.m_imagekey.m_strPath);
+//         string str = file()->as_string(getfileimage.m_imagekey.m_strPath);
 //
 //         if (str.case_insensitive_begins_eat("ca2prompt\r\n"))
 //         {
@@ -940,7 +940,7 @@ namespace user
 //
 //      string strPath = getfileimage.m_imagekey.m_strPath;
 //
-//      string strRealPath = m_pcontext->m_papexcontext->defer_process_path(strPath);
+//      string strRealPath = m_pcontext->defer_process_matter_path(strPath);
 //
 //      string strFinalPath = acmepath()->_final(strRealPath);
 //
@@ -993,9 +993,7 @@ namespace user
       if (strPath.case_insensitive_begins("uifs:"))
       {
 
-         auto pcontext = m_pcontext;
-
-         ::file::path path = dir()->matter("cloud.ico");
+            ::file::path path = dir()->matter("cloud.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -1019,9 +1017,7 @@ namespace user
       else if (strPath.case_insensitive_begins("fs:"))
       {
 
-         auto pcontext = m_pcontext;
-
-         ::file::path path = dir()->matter("remote.ico");
+            ::file::path path = dir()->matter("remote.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -1045,9 +1041,7 @@ namespace user
       else if (strPath.case_insensitive_begins("ftp:"))
       {
 
-         auto pcontext = m_pcontext;
-
-         ::file::path path = dir()->matter("ftp.ico");
+            ::file::path path = dir()->matter("ftp.ico");
 
 //            for (auto iSize : m_iaSize)
 //            {
@@ -1072,9 +1066,7 @@ namespace user
       if (strPath.case_insensitive_ends(".aura"))
       {
 
-         auto pcontext = m_pcontext;
-
-         string str = pcontext->m_papexcontext->file()->as_string(strPath);
+            string str = file()->as_string(strPath);
 
          if (str.case_insensitive_begins_eat("ca2prompt\r\n"))
          {
@@ -1223,9 +1215,7 @@ namespace user
       if (getfileimage.m_imagekey.m_strPath.case_insensitive_ends(".desktop"))
       {
 
-         auto pcontext = m_pcontext;
-
-         string str = pcontext->m_papexcontext->file()->as_string(getfileimage.m_imagekey.m_strPath);
+            string str = file()->as_string(getfileimage.m_imagekey.m_strPath);
 
          string_array stra;
 
@@ -1317,7 +1307,7 @@ namespace user
 
          }
 
-         ::image_pointer pimage1 = m_pcontext->m_pcontextimage->load_image(strIcon16);
+         ::image::image_pointer pimage1 = m_pcontext->m_pimagecontext->load_image(strIcon16);
 
          if (pimage1.nok())
          {
@@ -1326,11 +1316,7 @@ namespace user
 
          }
 
-         auto pcontext = m_pcontext;
-
-         auto pcontextimage = pcontext->context_image();
-
-         ::image_pointer pimage = pcontextimage->load_image(strIcon48);
+         ::image::image_pointer pimage = image()->load_image(strIcon48);
 
          if (pimage.nok())
          {
@@ -1339,7 +1325,7 @@ namespace user
 
          }
 
-         ::image_pointer image16;
+         ::image::image_pointer image16;
 
          if(pimage1->get_size() == ::size_i32(16, 16))
          {
@@ -1350,7 +1336,7 @@ namespace user
          else
          {
 
-            image16 = context_image()->create_image({16, 16});
+            image16 = image()->create_image({16, 16});
 
             if (image16.nok())
             {
@@ -1361,19 +1347,19 @@ namespace user
 
             image16->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-            image_source imagesource(pimage1, pimage1->rectangle());
+            ::image::image_source imagesource(pimage1, pimage1->rectangle());
 
             rectangle_f64 rectangle(::size_i32(16, 16));
 
-            image_drawing_options imagedrawingoptions(rectangle);
+            ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
             image16->get_graphics()->draw(imagedrawing);
 
          }
 
-         ::image_pointer image48;
+         ::image::image_pointer image48;
 
          if(pimage->get_size() == ::size_i32(48, 48))
          {
@@ -1384,7 +1370,7 @@ namespace user
          else
          {
 
-            image48 = context_image()->create_image({48, 48});
+            image48 = image()->create_image({48, 48});
 
             if (image48.nok())
             {
@@ -1395,13 +1381,13 @@ namespace user
 
             image48->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-            image_source imagesource(pimage, pimage->rectangle());
+            ::image::image_source imagesource(pimage, pimage->rectangle());
 
             rectangle_f64 rectangle(::size_i32(48, 48));
 
-            image_drawing_options imagedrawingoptions(rectangle);
+            ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
             image48->get_graphics()->draw(imagedrawing);
 
@@ -1411,13 +1397,13 @@ namespace user
 
             _synchronous_lock sl1(m_pimagelist[16]->synchronization());
 
-            image_source imagesource(pimage1, pimage1->rectangle());
+            ::image::image_source imagesource(pimage1, pimage1->rectangle());
 
             rectangle_f64 rectangle(::size_i32(16, 16));
 
-            image_drawing_options imagedrawingoptions(rectangle);
+            ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
             getfileimage.m_iImage = m_pimagelist[16]->set(getfileimage.m_iImage, imagedrawing);
 
@@ -1427,13 +1413,13 @@ namespace user
 
             _synchronous_lock sl2(m_pimagelist[48]->synchronization());
 
-            image_source imagesource(image48, image48->rectangle());
+            ::image::image_source imagesource(image48, image48->rectangle());
 
             rectangle_f64 rectangle(::size_i32(48, 48));
 
-            image_drawing_options imagedrawingoptions(rectangle);
+            ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
             getfileimage.m_iImage = m_pimagelist[48]->set(getfileimage.m_iImage, imagedrawing);
 
@@ -1443,13 +1429,13 @@ namespace user
 
             _synchronous_lock sl1(m_pimagelistHover[16]->synchronization());
 
-            image_source imagesource(image16, image16->rectangle());
+            ::image::image_source imagesource(image16, image16->rectangle());
 
             rectangle_f64 rectangle(::size_i32(16, 16));
 
-            image_drawing_options imagedrawingoptions(rectangle);
+            ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
             getfileimage.m_iImage = m_pimagelist[16]->set(getfileimage.m_iImage, imagedrawing);
 
@@ -1461,13 +1447,13 @@ namespace user
 
             _synchronous_lock sl1(m_pimagelistHover[48]->synchronization());
 
-            image_source imagesource(image48, image48->rectangle());
+            ::image::image_source imagesource(image48, image48->rectangle());
 
             rectangle_f64 rectangle(::size_i32(48, 48));
 
-            image_drawing_options imagedrawingoptions(rectangle);
+            ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-            image_drawing imagedrawing(imagedrawingoptions, imagesource);
+            ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
             getfileimage.m_iImage = m_pimagelist[48]->set(getfileimage.m_iImage, imagedrawing);
 
@@ -1518,7 +1504,7 @@ namespace user
          
       }
       
-      image_pointer pimageFirst;
+      ::image::image_pointer pimageFirst;
       
       auto iaSize = m_iaSize;
       
@@ -1553,7 +1539,7 @@ namespace user
             
          }
 
-         image_source imagesource(pimage);
+         ::image::image_source imagesource(pimage);
 
          set_image(getfileimage.m_iImage, iSize, imagesource);
 
@@ -1579,7 +1565,7 @@ namespace user
 //
 //         }
 //
-//         ::image_pointer pimage;
+//         ::image::image_pointer pimage;
 //
 //         pimage.create();
 //
@@ -1591,7 +1577,7 @@ namespace user
 //            if (pimage.ok())
 //            {
 //
-//               image_source imagesource(pimage);
+//               ::image::image_source imagesource(pimage);
 //
 //               for(int & iSize : m_iaSize)
 //               {
@@ -1626,7 +1612,7 @@ namespace user
       
       string strPath = pcontext->defer_process_path(getfileimage.m_imagekey.m_strPath);
       
-      image_pointer pimageFirst;
+      ::image::image_pointer pimageFirst;
       
       auto iaSize = m_iaSize;
       
@@ -1659,7 +1645,7 @@ namespace user
             
          }
 
-         image_source imagesource(pimage);
+         ::image::image_source imagesource(pimage);
 
          set_image(getfileimage.m_iImage, iSize, imagesource);
 
@@ -1775,22 +1761,18 @@ namespace user
 
       synchronouslock.unlock();
 
-      ::file::path path = m_pcontext->m_papexcontext->defer_process_path(pathIcon);
+      ::file::path path = m_pcontext->defer_process_matter_path(pathIcon);
 
       auto pwindowingicon = __create < windowing::icon >();
 
       pwindowingicon->load_file(path);
 
-      auto pdraw2dicon = __create < draw2d::icon >();
+      auto pdraw2dicon = __create < ::image::icon >();
 
       pdraw2dicon->initialize_with_windowing_icon(pwindowingicon);
 
       for (auto iSize : m_iaSize)
       {
-
-         auto pcontext = m_pcontext->m_pauracontext;
-
-         auto pcontextimage = pcontext->context_image();
 
          auto pimage = pdraw2dicon->image_source_image(::size_f64(iSize, iSize));
 
@@ -1801,13 +1783,13 @@ namespace user
 
          }
 
-         image_source imagesource(pimage);
+         ::image::image_source imagesource(pimage);
 
          rectangle_f64 rectangle(::size_f64(iSize, iSize));
 
-         image_drawing_options imagedrawingoptions(rectangle);
+         ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          set_image(iImage, iSize, imagedrawing);
 
@@ -1816,7 +1798,7 @@ namespace user
    }
 
    
-//   void shell::set_image(int iImage, int iSize, ::image * pimage)
+//   void shell::set_image(int iImage, int iSize, ::image::image *pimage)
 //   {
 //
 //      _synchronous_lock synchronouslock(m_pimagelist[iSize]->synchronization());
@@ -1834,7 +1816,7 @@ namespace user
 //   }
 
 
-   void shell::set_image(int iImage, int iSize, image_drawing imagedrawing)
+   void shell::set_image(int iImage, int iSize, ::image::image_drawing imagedrawing)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -1915,10 +1897,6 @@ namespace user
       if (strIcon.case_insensitive_begins_eat("icon://"))
       {
 
-         auto pcontext = m_pcontext->m_papexcontext;
-
-         auto pcontextimage = pcontext->context_image();
-
          ::file::path pathFolder = acmedirectory()->ca2roaming() / "matter/icon";
 
          //::file::path pathIco = pathFolder / "ico" / (strIcon + ".ico");
@@ -1933,7 +1911,7 @@ namespace user
          //}
 
 
-         ::pointer<::image>pimage;
+         ::pointer<::image::image>pimage;
 
          ::i32_array iaSizeFallback;
 
@@ -1961,7 +1939,7 @@ namespace user
             if (acmefile()->exists(pathImage))
             {
 
-               pimage = pcontextimage->get_image(pathImage);
+               pimage = image()->get_image(pathImage);
 
             }
 
@@ -1981,7 +1959,7 @@ namespace user
                      if (acmefile()->exists(pathImage))
                      {
 
-                        pimage = pcontextimage->get_image(pathImage);
+                        pimage = image()->get_image(pathImage);
 
                         if (pimage.ok())
                         {
@@ -2001,13 +1979,13 @@ namespace user
             if (pimage.ok())
             {
 
-               image_source imagesource(pimage);
+               ::image::image_source imagesource(pimage);
 
                rectangle_f64 rectangle(::size_f64(iSize, iSize));
 
-               image_drawing_options imagedrawingoptions(rectangle);
+               ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                set_image(getfileimage.m_iImage, iSize, imagedrawing);
 
@@ -2062,7 +2040,7 @@ namespace user
 
    //      {
 
-   //         ::image_pointer pimage(this);
+   //         ::image::image_pointer pimage(this);
    //         pimage->create({ iSize, iSize });
    //         pimage->fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
    //         pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -2075,9 +2053,9 @@ namespace user
    //      }
 
    //      {
-   //         ::image_pointer d = m_pimagelistHover[iSize]->m_pimage;
+   //         ::image::image_pointer d = m_pimagelistHover[iSize]->m_pimage;
    //         size_i32 s = m_pimagelist[iSize]->m_pimage->get_size();
-   //         ::image_pointer pimage(this);
+   //         ::image::image_pointer pimage(this);
    //         pimage->create(d->size());
    //         pimage->fill(255, color32_u8_red(crBk), color32_u8_green(crBk), color32_u8_blue(crBk));
    //         pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
@@ -2122,7 +2100,7 @@ namespace user
 
    //      {
 
-   //         ::image_pointer pimage(this);
+   //         ::image::image_pointer pimage(this);
 
    //         pimage->create({ iSize, iSize });
 
@@ -2146,9 +2124,9 @@ namespace user
 
    //      {
 
-   //         ::image_pointer d = m_pimagelistHover[iSize]->m_pimage;
+   //         ::image::image_pointer d = m_pimagelistHover[iSize]->m_pimage;
 
-   //         ::image_pointer pimage(this);
+   //         ::image::image_pointer pimage(this);
 
    //         pimage->create(d->size());
 

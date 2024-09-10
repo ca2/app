@@ -36,7 +36,7 @@ namespace user
       void initialize_draw_list_subitem(list_item * plistitem);
 
 
-      ::image_list * get_image_list();
+      ::image::image_list * get_image_list();
       void draw_image(::draw2d::graphics_pointer & pgraphics);
       void draw_group_image(::draw2d::graphics_pointer & pgraphics);
       void update_color(::draw2d::graphics_pointer & pgraphics);
@@ -118,7 +118,7 @@ namespace user
       void initialize_draw_list_group(list * plist);
 
 
-      //::pointer<::image_list>get_image_list();
+      //::image::image_list_pointer get_image_list();
       //void draw_image();
       void draw_group_image(::draw2d::graphics_pointer & pgraphics);
       void update_item_color(::draw2d::graphics_pointer & pgraphics);

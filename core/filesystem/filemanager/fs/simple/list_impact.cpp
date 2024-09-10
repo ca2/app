@@ -83,7 +83,7 @@ namespace filemanager
 
             set_cache_interface(m_puserlistcache);
 
-            m_pimagelist = __create_new< ::image_list>();
+            m_pimagelist = __create_new< ::image::image_list>();
 
             m_pimagelist->create(16, 16, 0, 0, 0);
 
@@ -102,17 +102,17 @@ namespace filemanager
             //m_iIconSong = m_pimagelist->add(icon_payload("matter://mplite/vmskarlib_song_normal.ico"));
 #endif
 
-            m_iIconFolder = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_normal"));
+            m_iIconFolder = m_pimagelist->add(::image::icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_normal"));
 
-            m_iIconArtist = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_normal"));
+            m_iIconArtist = m_pimagelist->add(::image::icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_normal"));
 
-            m_iIconSong = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_song_normal"));
+            m_iIconSong = m_pimagelist->add(::image::icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_song_normal"));
 
-            m_iIconFolder = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_normal"));
+            m_iIconFolder = m_pimagelist->add(::image::icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_normal"));
 
-            m_iIconArtist = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_normal"));
+            m_iIconArtist = m_pimagelist->add(::image::icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_normal"));
 
-            m_iIconSong = m_pimagelist->add(icon_payload(this, "matter://app-veriwell/musical_player_lite/karaoke_library_song_normal"));
+            m_iIconSong = m_pimagelist->add(::image::icon_payload(this, "matter://app-veriwell/musical_player_lite/karaoke_library_song_normal"));
 
          }
 

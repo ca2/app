@@ -367,7 +367,7 @@ public:
    bool target_constrained_assign(const ::payload & payload);
 
 
-   bool                             get_bool(bool bDefault = false)     const;
+   bool                             get_bool()     const;
 
    template < typename ENUM >
    ENUM                             e(ENUM edefault = enum_default < ENUM >())  const { return (ENUM)i64(edefault); }
@@ -556,7 +556,8 @@ public:
    bool is_false() const;
    bool is_bool_false() const;
    bool is_set_false() const;
-   bool is_true(bool bDefault = false) const;
+   bool is_true() const;
+   bool is_true_or_empty() const;
 
    //bool is_property_true(const ::atom & atom, bool bDefault = false) const;
 
@@ -565,7 +566,8 @@ public:
 
    ///property * defer_get_property(const ::atom & atom) const;
    bool has_property(const ::atom & atom) const;
-   bool is_property_true(const ::atom & atom, bool bDefault = false) const;
+   bool is_property_true_or_empty(const ::atom & atom) const;
+   bool is_property_true(const ::atom & atom) const;
    bool is_property_false(const ::atom & atom) const;
 
 

@@ -57,8 +57,8 @@ namespace user
       virtual bool get_plain_text(string & str, enum_flag eflag = e_flag_none);
       virtual bool has_plain_text();
 
-      virtual bool desk_to_image(::image_pointer & pimage);
-      virtual bool image_to_desk(const ::image * pimage);
+      virtual bool desk_to_image(::image::image_pointer & pimage);
+      virtual bool image_to_desk(const ::image::image *pimage);
       virtual bool has_image();
 
 
@@ -70,8 +70,8 @@ namespace user
       virtual bool _get_plain_text(string & str);
       virtual bool _has_plain_text();
 
-      virtual bool _desk_to_image(::image * pimage);
-      virtual bool _image_to_desk(const ::image * pimage);
+      virtual bool _desk_to_image(::image::image *pimage);
+      virtual bool _image_to_desk(const ::image::image *pimage);
       virtual bool _has_image();
 
    };

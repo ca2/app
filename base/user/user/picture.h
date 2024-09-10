@@ -190,8 +190,8 @@ namespace user
       virtual ::size_f64 get_size();
       virtual ::size_f64 get_request_size();
 
-      virtual ::image_pointer defer_draw_drop_shadow_phase1(rectangle_i32 & rectangleDropShadow, ::draw2d::fastblur & blurDropShadow, ::image_pointer & imageDropShadow, ::image_pointer pimage);
-      virtual void defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & rectangleDropShadow, ::draw2d::fastblur & blurDropShadow, ::image_pointer & imageDropShadow);
+      virtual ::image::image_pointer defer_draw_drop_shadow_phase1(rectangle_i32 & rectangleDropShadow, ::image::fastblur & blurDropShadow, ::image::image_pointer & imageDropShadow, ::image::image_pointer pimage);
+      virtual void defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & rectangleDropShadow, ::image::fastblur & blurDropShadow, ::image::image_pointer & imageDropShadow);
 
       virtual bool set_text_editable(bool bEditable = true);
 

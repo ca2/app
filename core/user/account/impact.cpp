@@ -52,7 +52,7 @@ namespace account
 //         if (hicon95 != nullptr)
 //         {
 //
-//            m_picon95 = new ::draw2d::icon ();
+//            m_picon95 = new ::image::icon ();
 //
 //            m_picon95->attach_os_data(hicon95);
 //
@@ -352,13 +352,13 @@ namespace account
 
          pgraphics->draw_ca2_border2((int)(49 * rx), (int)(49 * ry) - 11, (int)((91 + 2 + 2) * ry), 1, 1, colorBackground, color, colorBorderOut, colorBorderIn);
 
-         image_source imagesource(m_picon95);
+         ::image::image_source imagesource(m_picon95);
 
          rectangle_f64 rectangle(::point_i32((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11), ::size_i32((int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry)));
 
-         image_drawing_options imagedrawingoptions(rectangle);
+         ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-         image_drawing imagedrawing(imagedrawingoptions, imagesource);
+         ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
          pgraphics->draw(imagedrawing);
 

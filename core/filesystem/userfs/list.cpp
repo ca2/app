@@ -724,19 +724,13 @@ namespace userfs
    //}
 
 
-   ::image_list * list::GetActionButtonImageList(::collection::index i)
+   ::image::image_list * list::GetActionButtonImageList(::collection::index i)
    {
 
       if (i == 0)
       {
 
-         auto pcontext = m_pcontext;
-
-         auto psession = pcontext->m_pacmesession->m_pcoresession;
-
-         auto puser = psession->m_puser->m_pcoreuser;
-
-         return puser->shell()->GetImageList(16);
+         return user()->m_pcoreuser->shell()->GetImageList(16);
 
       }
 

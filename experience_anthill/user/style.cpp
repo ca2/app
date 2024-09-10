@@ -1060,11 +1060,11 @@ namespace experience_anthill
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-               image_source imagesource(ppane->m_pimage);
+               ::image::image_source imagesource(ppane->m_pimage);
 
-               image_drawing_options imagedrawingoptions(rectangleIcon);
+               ::image::image_drawing_options imagedrawingoptions(rectangleIcon);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 
@@ -1195,11 +1195,11 @@ namespace experience_anthill
 
                pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-               image_source imagesource(ppane->m_pimage);
+               ::image::image_source imagesource(ppane->m_pimage);
 
-               image_drawing_options imagedrawingoptions(rectangleIcon);
+               ::image::image_drawing_options imagedrawingoptions(rectangleIcon);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 
@@ -1725,7 +1725,7 @@ namespace experience_anthill
             if (ppane->m_pimage->is_set())
             {
 
-               //::image_list::info ii;
+               //::image::image_list::info ii;
                ixAdd += ppane->m_pimage->width() + 2;
 
             }
@@ -2004,13 +2004,13 @@ namespace experience_anthill
 
                   auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_image, ::user::e_state_hover);
 
-                  image_source imagesource(ptoolitem->m_pimage, ::rectangle_f64(rectangle.size()));
+                  ::image::image_source imagesource(ptoolitem->m_pimage, ::rectangle_f64(rectangle.size()));
 
-                  image_drawing_options imagedrawingoptions(rectangle);
+                  ::image::image_drawing_options imagedrawingoptions(rectangle);
 
                   imagedrawingoptions.opacity(0.9);
 
-                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+                  ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                   pgraphics->draw(imagedrawing);
 
@@ -2051,11 +2051,11 @@ namespace experience_anthill
 
                auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_image, ::user::e_state_pressed);
 
-               image_source imagesource(ptoolitem->m_pimage, ::rectangle_f64(rectangle.size()));
+               ::image::image_source imagesource(ptoolitem->m_pimage, ::rectangle_f64(rectangle.size()));
 
-               image_drawing_options imagedrawingoptions(rectangle);
+               ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 
@@ -2092,13 +2092,13 @@ namespace experience_anthill
 
                auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_image, ::user::e_state_none);
 
-               image_source imagesource(ptoolitem->m_pimage, ::rectangle_f64(rectangle.size()));
+               ::image::image_source imagesource(ptoolitem->m_pimage, ::rectangle_f64(rectangle.size()));
 
-               image_drawing_options imagedrawingoptions(rectangle);
+               ::image::image_drawing_options imagedrawingoptions(rectangle);
 
                imagedrawingoptions.opacity(0.2);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 
@@ -2270,13 +2270,13 @@ namespace experience_anthill
 
                   auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_image, ::user::e_state_hover);
 
-                  image_source imagesource(ptoolitem->m_pimage, ::rectangle_f64(rectangle.size()));
+                  ::image::image_source imagesource(ptoolitem->m_pimage, ::rectangle_f64(rectangle.size()));
 
-                  image_drawing_options imagedrawingoptions(rectangle);
+                  ::image::image_drawing_options imagedrawingoptions(rectangle);
 
                   imagedrawingoptions.opacity(0.8);
 
-                  image_drawing imagedrawing(imagedrawingoptions, imagesource);
+                  ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                   pgraphics->draw(imagedrawing);
 
@@ -2318,11 +2318,11 @@ namespace experience_anthill
 
                auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_image, ::user::e_state_pressed);
 
-               image_source imagesource(ptoolitem->m_pimage);
+               ::image::image_source imagesource(ptoolitem->m_pimage);
 
-               image_drawing_options imagedrawingoptions(rectangle);
+               ::image::image_drawing_options imagedrawingoptions(rectangle);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 
@@ -2374,13 +2374,13 @@ namespace experience_anthill
 
                auto rectangle = ptoolbar->index_element_rectangle(iItem, ::e_element_image, estate);
 
-               image_source imagesource(ptoolitem->m_pimage);
+               ::image::image_source imagesource(ptoolitem->m_pimage);
 
-               image_drawing_options imagedrawingoptions(rectangle);
+               ::image::image_drawing_options imagedrawingoptions(rectangle);
 
                imagedrawingoptions.opacity(0.20);
 
-               image_drawing imagedrawing(imagedrawingoptions, imagesource);
+               ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
                pgraphics->draw(imagedrawing);
 

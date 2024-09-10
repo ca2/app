@@ -24,19 +24,19 @@ namespace app_shader
       string                              m_strFragment;
       //::pointer<::gpu::context>           m_pgpucontext;
       //::pointer<::gpu::program>           m_pgpuprogram;
-      ::image_pointer                     m_pimageFromGpu;
+      ::image::image_pointer                     m_pimageFromGpu;
       //rectangle_i32                       m_rectangle;
       string                              m_strFont1;
-      string_map < ::image_pointer >      m_pimagemap;
-      ::image_pointer                     m_pimage1;
-      ::image_pointer                     m_pimage2;
+      string_map < ::image::image_pointer >      m_pimagemap;
+      ::image::image_pointer                     m_pimage1;
+      ::image::image_pointer                     m_pimage2;
       ::color::hls                        m_hlsText;
       class ::time                        m_timeStart;
       ::gpu::enum_shader_source           m_eshadersource;
-      ::image_pointer                     m_pimageLabel;
+      ::image::image_pointer                     m_pimageLabel;
       string                              m_strLastLabel;
       ::color::color                      m_colorLastLabelBackground;
-      ::image_pointer                     m_pimageError;
+      ::image::image_pointer                     m_pimageError;
       string                              m_strLastError;
       ::pointer<::user::interaction>     m_puserinteraction;
 

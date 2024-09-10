@@ -297,7 +297,7 @@ namespace user
    }
 
 
-   ::image_list * tree_data::get_image_list() const
+   ::image::image_list * tree_data::get_image_list() const
    {
 
       return m_pimagelist;

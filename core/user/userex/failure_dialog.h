@@ -17,7 +17,7 @@ namespace userex
 
       
       ::pointer < ::exception >              m_pexception;
-      ::image_pointer                        m_pimage;
+      ::image::image_pointer                        m_pimage;
 
 
       failure_dialog();

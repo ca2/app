@@ -43,6 +43,10 @@ namespace user
       m_bEmbedded = false;        // default to file-based document
 
       defer_create_synchronization();
+      
+      //m_impacta.allocate(20, false, true);
+      
+      //m_impacta.clear();
 
    }
 
@@ -82,10 +86,9 @@ namespace user
 
       m_prequest.release();
       m_pimpactsystem.release();
-      m_impacta.release();
       m_pimpactTopic.release();
 
-
+      m_impacta.clear();
       m_mapRoutine.clear();
 
       m_pdataIncoming.release();
@@ -222,6 +225,8 @@ namespace user
 
    bool document::contains(::user::interaction* pinteraction) const
    {
+      
+      _synchronous_lock synchronouslock(this->synchronization());
 
       for (auto& pimpact : m_impacta)
       {
@@ -585,7 +590,7 @@ namespace user
 
       ::pointer<::user::impact>pimpact = m_impacta[index];
 
-      ASSERT_KINDOF(::user::impact, pimpact);
+      //ASSERT_KINDOF(::user::impact, pimpact);
 
       return pimpact;
 
@@ -839,9 +844,9 @@ namespace user
       //      psystem->file_system().FullPath(strFullPath, strPathName);
       pathFull = strPathName;
 
-      auto pcontext = get_context();
+      //auto pcontext = get_context();
 
-      m_path = pcontext->m_papexcontext->defer_process_path(pathFull);
+      m_path = m_pcontext->defer_process_path(pathFull);
       //m_filepathEx = strFullPath;
       //!m_strPathName.is_empty());       // must be set to something
       m_bEmbedded = false;
@@ -867,7 +872,7 @@ namespace user
       ASSERT_VALID(this);
 
       // set the document_interface title based on path name
-      string strTitle = pcontext->m_papexcontext->file()->title_(m_strPathName);
+      string strTitle = file()->title_(m_strPathName);
       set_title(strTitle);
 
 
@@ -886,16 +891,21 @@ namespace user
 
    void document::on_changed_impact_list()
    {
-
-      // if no more views on the document_interface, delete ourself
-      // not called if directly closing the document_interface or terminating the cast
-      if (m_impacta.is_empty() && m_bAutoDelete)
+      
       {
-
-         on_close_document();
-
-         return;
-
+         _synchronous_lock synchronouslock(this->synchronization());
+         
+         // if no more views on the document_interface, delete ourself
+         // not called if directly closing the document_interface or terminating the cast
+         if (m_impacta.is_empty() && m_bAutoDelete)
+         {
+            synchronouslock.unlock();
+            on_close_document();
+            
+            return;
+            
+         }
+         
       }
 
       // update the frame counts as needed
@@ -1092,7 +1102,7 @@ namespace user
 
       //auto pcontext = get_context();
 
-      //auto preader = pcontext->m_papexcontext->file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+      //auto preader = file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
       //if (preader.nok())
       //{
@@ -1165,7 +1175,7 @@ namespace user
 
       //auto pcontext = get_context();
 
-      //auto preader = pcontext->m_papexcontext->file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
+      //auto preader = file()->get_reader(payloadFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
       //if (preader.nok())
       //{
@@ -1239,9 +1249,9 @@ namespace user
    bool document::on_save_document(const ::payload & payloadFile)
    {
 
-      auto pcontext = get_context();
+      //auto pcontext = get_context();
 
-      auto pwriter = pcontext->m_papexcontext->file()->get_writer(payloadFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive | ::file::e_open_no_exception_on_open);
+      auto pwriter = file()->get_writer(payloadFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive | ::file::e_open_no_exception_on_open);
 
       if(pwriter.nok())
       {
@@ -1615,7 +1625,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      ASSERT_VALID(pframeParam);
+      //ASSERT_VALID(pframeParam);
 
       //UNUSED(pframeParam);   // unused in release builds
 
@@ -1626,7 +1636,7 @@ namespace user
 
          ::pointer<::user::impact>pimpact = get_impact(index);
 
-         ASSERT_VALID(pimpact);
+         //ASSERT_VALID(pimpact);
 
          auto pframe = pimpact->parent_frame();
 
@@ -1635,7 +1645,7 @@ namespace user
          {
 
             // assumes 1 document_interface per frame
-            ASSERT_VALID(pframe);
+            //ASSERT_VALID(pframe);
 
             if (pframe->m_puserframewindow->m_nWindow > 0)
             {
@@ -1840,7 +1850,7 @@ namespace user
 
       wait_cursor wait(this);
 
-      auto pcontext = get_context();
+      //auto pcontext = get_context();
 
       if (!on_save_document(newName))
       {
@@ -1853,7 +1863,7 @@ namespace user
             try
             {
 
-               pcontext->m_papexcontext->file()->erase(newName);
+               file()->erase(newName);
 
             }
             catch(const ::exception &)
@@ -1878,9 +1888,9 @@ namespace user
    bool document::do_file_save()
    {
 
-      auto pcontext = get_context();
+      //auto pcontext = get_context();
 
-      if (is_new_document() || pcontext->m_papexcontext->file()->is_read_only(m_path))
+      if (is_new_document() || file()->is_read_only(m_path))
       {
 
          // we do not have read-write access or the file does not (now) exist
@@ -1928,7 +1938,7 @@ namespace user
 
          ::user::impact * pimpact = get_impact(index);
 
-         ASSERT_VALID(pimpact);
+         //ASSERT_VALID(pimpact);
 
          if (pimpact->is_window_visible())
          {
@@ -1956,7 +1966,7 @@ namespace user
 
          ::user::impact * pimpact = get_impact(index);
 
-         ASSERT_VALID(pimpact);
+         //ASSERT_VALID(pimpact);
 
          if (pimpact->is_window_visible())
          {
@@ -1966,7 +1976,7 @@ namespace user
             if (pframe != nullptr && pframe->m_puserframewindow->m_nWindow == -1)
             {
 
-               ASSERT_VALID(pframe);
+               //ASSERT_VALID(pframe);
 
                // not yet counted (give it a 1 based number)
                pframe->m_puserframewindow->m_nWindow = ++nFrames;
@@ -1988,7 +1998,7 @@ namespace user
 
          ::user::impact * pimpact = get_impact(index);
 
-         ASSERT_VALID(pimpact);
+         //ASSERT_VALID(pimpact);
 
          if (pimpact->is_window_visible())   // Do not ::collection::count invisible windows.
          {
@@ -1998,7 +2008,7 @@ namespace user
             if (pframe != nullptr && pframe->m_puserframewindow->m_nWindow == iFrame)
             {
 
-               ASSERT_VALID(pframe);
+               //ASSERT_VALID(pframe);
 
                if (nFrames == 1)
                {
@@ -2054,16 +2064,21 @@ namespace user
    void document::add_impact(::user::impact * pimpact)
    {
 
-      single_lock synchronouslock(synchronization(), true);
+      
+         _synchronous_lock synchronouslock(this->synchronization());
+         
+         //ASSERT_VALID(pimpact);
+      
+      //auto pszType = typeid(*pimpact).name();
 
-      ASSERT_VALID(pimpact);
-
-      if (pimpact->m_pdocument)
-      {
-
-         throw ::exception(::error_bad_argument);// must not be already attached
-
-      }
+         
+         if (pimpact->m_pdocument)
+         {
+            
+            throw ::exception(::error_bad_argument);// must not be already attached
+            
+         }
+         
 
       if (!m_impacta.add_unique(pimpact))
       {
@@ -2086,7 +2101,7 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      ASSERT_VALID(pimpact);
+      //ASSERT_VALID(pimpact);
 
       if(pimpact->get_document() != this)
       {
@@ -2209,15 +2224,23 @@ namespace user
       ASSERT(!ptopic || ptopic->m_psender == nullptr || !m_impacta.is_empty());
 
       ptopic->m_pparticle = this;
-
-      for (auto & pimpact : m_impacta)
+      
+      decltype(m_impacta) impacta;
+      
+      {
+         
+         _synchronous_lock synchronouslock(this->synchronization());
+         
+         impacta = m_impacta;
+         
+      }
+      
+      for (auto pimpact : impacta)
       {
 
-         //ASSERT_VALID(pimpact);
-
-         if (!ptopic || pimpact != ptopic->m_psender)
+         if (pimpact && (!ptopic || pimpact != ptopic->m_psender))
          {
-
+            
             pimpact->call_handle(ptopic, nullptr);
 
             if(ptopic && ptopic->m_bRet)
@@ -2228,7 +2251,7 @@ namespace user
             }
 
          }
-
+         
       }
 
    }

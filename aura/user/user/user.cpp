@@ -57,7 +57,7 @@ namespace user
    user::user()
    {
 
-      printf("aura::user::initialize\n");
+      print_line("user::user::initialize (aura)");
 
       m_paxisuser = nullptr;
       m_pbaseuser = nullptr;
@@ -87,7 +87,7 @@ namespace user
 
       //auto estatus =
 
-      printf("aura::user::initialize\n");
+      print_line("::user::user::initialize (aura)");
 
 
       ::acme::department::initialize(pparticle);
@@ -107,7 +107,7 @@ namespace user
 
       //estatus =
 
-      printf("base::user::initialize (2)\n");
+      print_line("user::user::initialize (2) (aura)");
 
       //create_windowing();
 
@@ -498,7 +498,7 @@ namespace user
 
       //xml::document docUser;
 
-      //string strUser = pcontext->m_papexcontext->file()->as_string(dir()->appdata()/"langstyle_settings.xml");
+      //string strUser = file()->as_string(dir()->appdata()/"langstyle_settings.xml");
 
       //string strLangUser;
 
@@ -1527,7 +1527,7 @@ namespace user
       node()->user_send([this]()
       {
 
-         printf("aura::user::create_windowing (1)\n");
+         print_line("aura::user::create_windowing (1) (aura)");
 
          __construct(m_pdesktopenvironment);
 
@@ -1539,27 +1539,27 @@ namespace user
 
          m_pdesktopenvironment->m_bUnhook = pauranode->m_bUnhookX;
 
-         printf("aura::user::create_windowing (2)\n");
+         debugf("aura::user::create_windowing (2)");
 
          __construct(m_pwindowing);
 
          m_pdesktopenvironment->m_pwindowing = m_pwindowing;
 
-         printf("aura::user::create_windowing (2.1)\n");
+         debugf("aura::user::create_windowing (2.1)");
 
          //m_pwindowing->_initialize_windowing();
 
-         //printf("aura::user::create_windowing (2.2)\n");
+         //debugf("aura::user::create_windowing (2.2)\n");
 
          m_pwindowing->initialize_windowing(this);
 
-         printf("aura::user::create_windowing (2.2)\n");
+         debugf("aura::user::create_windowing (2.2)");
 
          auto paurasystem = psystem->m_paurasystem;
 
          pauranode->m_pwindowingAuraNode = m_pwindowing;
 
-         printf("aura::user::create_windowing end\n");
+         debugf("aura::user::create_windowing end");
 
       });
 

@@ -43,7 +43,7 @@ namespace graphics
    //}
 
 
-   void target::render(image* pimage)
+   void target::render(::image::image* pimage)
    {
 
    }
@@ -76,11 +76,11 @@ namespace graphics
    //
    //   //   {
    //
-   //   //      image_source imagesource(pimage);
+   //   //      ::image::image_source imagesource(pimage);
    //
-   //   //      image_drawing_options imagedrawingoptions(rectangle_i32(0, 0, m_cx, m_cy));
+   //   //      ::image::image_drawing_options imagedrawingoptions(rectangle_i32(0, 0, m_cx, m_cy));
    //
-   //   //      image_drawing imagedrawing(imagedrawingoptions, imagesource);
+   //   //      ::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
    //
    //   //      m_pimage->draw(imagedrawing);
    //

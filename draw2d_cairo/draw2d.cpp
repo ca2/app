@@ -270,8 +270,8 @@ return g_pdraw2dcairo;
 //   ::draw2d::graphics_pointer & pgraphics,
 //   const ::rectangle_i32 & rectangle,
 //   string strText,
-//   ::draw2d::fastblur & blur,
-//   ::image_pointer & imageBlur,
+//   ::image::fastblur & blur,
+//   ::image::image_pointer & imageBlur,
 //   ::write_text::font * pfont,
 //   const ::e_align & ealign,
 //   const ::e_draw_text & edrawtext,
@@ -641,7 +641,7 @@ return g_pdraw2dcairo;
 //   }
 //
 //
-//   bool draw2d::channel_spread__32CC(::image * pimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius, color32_t crSpreadSetColor)
+//   bool draw2d::channel_spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc, i32 iChannel, i32 iRadius, color32_t crSpreadSetColor)
 //   {
 //
 //      pimageDst->map();
@@ -942,7 +942,7 @@ return g_pdraw2dcairo;
 //
 //      double dAndroid = 4.4;
 //
-//      string strSystemFonts = pcontext->m_papexcontext->file()->as_string("/system/etc/system_fonts.xml");
+//      string strSystemFonts = file()->as_string("/system/etc/system_fonts.xml");
 //
 //            auto psystem = system()->m_paurasystem;
 

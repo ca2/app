@@ -32,7 +32,7 @@
 
 #ifndef __PARTIAL_CPP
 
-class image_list;
+//class image_list;
 
 
 //#ifdef WINDOWS

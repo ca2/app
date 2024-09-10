@@ -407,7 +407,7 @@
 		<Unit filename="apex/constraint.h" />
 		<Unit filename="apex/context.cpp" />
 		<Unit filename="apex/context.h" />
-		<Unit filename="apex/context_image.cpp" />
+		<Unit filename="apex/image_context.cpp" />
 		<Unit filename="apex/conv.cpp" />
 		<Unit filename="apex/conv.h" />
 		<Unit filename="apex/core.h" />

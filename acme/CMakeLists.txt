@@ -2705,7 +2705,7 @@ if (${NETBSD})
 
 endif ()
 
-if(${BSD_LIKE})
+if(${__BSD__})
 
    list(APPEND library_source
        operating_system/bsd/time.cpp

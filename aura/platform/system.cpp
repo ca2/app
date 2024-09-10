@@ -256,7 +256,7 @@ namespace aura
 
       ::draw2d::static_initialize();
 
-      factory()->add_factory_item < ::draw2d::icon >();
+      factory()->add_factory_item < ::image::icon >();
 
     
 //#ifdef WINDOWS_DESKTOP
@@ -2901,7 +2901,7 @@ namespace aura
 ////      if(has_property("install"))
 ////         return true;
 ////
-////      file_pointer pfile = pcontext->m_papexcontext->file()->get_file(dir()->appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
+////      file_pointer pfile = file()->get_file(dir()->appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
 ////
 ////      if(!pfile)
 ////         return false;
@@ -3908,7 +3908,7 @@ namespace aura
 //      if (strWeather.is_empty() || !strWeather.case_insensitive_begins("browser_"))
 //      {
 //
-//         strWeather = pcontext->m_papexcontext->file()->as_string(acmedirectory()->system() / "browser_weather.txt");
+//         strWeather = file()->as_string(acmedirectory()->system() / "browser_weather.txt");
 //
 //      }
 //
@@ -4422,7 +4422,7 @@ namespace aura
 //
 //      }
 //
-//      if (!pcontext->m_papexcontext->file()->exists(strBrowserPath) || !dir()->is(strBrowserDir))
+//      if (!file()->exists(strBrowserPath) || !dir()->is(strBrowserDir))
 //      {
 //
 //         return error_not_found;
@@ -4451,11 +4451,11 @@ namespace aura
 //      if (strBrowser.has_char())
 //      {
 //
-//         pcontext->m_papexcontext->file()->put_text_utf8(acmedirectory()->system() / "browser.txt", strBrowser);
+//         file()->put_text_utf8(acmedirectory()->system() / "browser.txt", strBrowser);
 //
-//         pcontext->m_papexcontext->file()->put_text_utf8(acmedirectory()->system() / "browser_path.txt", strBrowserPath);
+//         file()->put_text_utf8(acmedirectory()->system() / "browser_path.txt", strBrowserPath);
 //
-//         pcontext->m_papexcontext->file()->put_text_utf8(acmedirectory()->system() / "browser_dir.txt", strBrowserDir);
+//         file()->put_text_utf8(acmedirectory()->system() / "browser_dir.txt", strBrowserDir);
 //
 //      }
 //
@@ -5208,7 +5208,7 @@ namespace aura
   //     //m_strBaseSupportId = "base_system";
   //     //m_strInstallToken = "base_system";
   //
-  //      add_factory_item < ::draw2d::icon >();
+  //      add_factory_item < ::image::icon >();
   //
   //      //#if defined(UNIVERSAL_WINDOWS) || defined(APPLE_IOS) || defined(ANDROID)
   //      //
@@ -6011,7 +6011,7 @@ namespace aura
 
    //{
 
-   //   string filename = pcontext->m_papexcontext->file()->time_square();
+   //   string filename = file()->time_square();
 
    //   property_set set;
 
@@ -6019,7 +6019,7 @@ namespace aura
 
    //   set["cookies"] = pcookies;
 
-   //   if (!pcontext->m_papexcontext->http().download(pszUrl, filename, set))
+   //   if (!http()->download(pszUrl, filename, set))
 
    //   {
 
@@ -6040,13 +6040,13 @@ namespace aura
 
    //      set["cookies"] = pcookies;
 
-   //      pcontext->m_papexcontext->file()->del(filename);
+   //      file()->del(filename);
 
-   //      return pcontext->m_papexcontext->http().download(str, strLocation, set);
+   //      return http()->download(str, strLocation, set);
 
    //   }
 
-   //   str = pcontext->m_papexcontext->file()->as_string(filename);
+   //   str = file()->as_string(filename);
 
    //   return true;
 
@@ -6329,7 +6329,7 @@ namespace aura
 //      //m_strBaseSupportId = "base_system";
 //      //m_strInstallToken = "base_system";
 //
-//      add_factory_item < ::draw2d::icon >();
+//      add_factory_item < ::image::icon >();
 //
 //      g_pszCooperativeLevel = "aura";
 //
@@ -6927,7 +6927,7 @@ namespace aura
    }
 
 
-   class ::imaging * system::imaging()
+   class ::image::imaging * system::imaging()
    {
 
       return m_pimaging;

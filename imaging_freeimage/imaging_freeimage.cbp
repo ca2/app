@@ -228,11 +228,11 @@
 			<Option target="imaging_freeimage"/>
 			<Option target="static_imaging_freeimage"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/imaging_freeimage/context_image.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/imaging_freeimage/image_context.cpp">
 			<Option target="imaging_freeimage"/>
 			<Option target="static_imaging_freeimage"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/imaging_freeimage/context_image.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/imaging_freeimage/image_context.h">
 			<Option target="imaging_freeimage"/>
 			<Option target="static_imaging_freeimage"/>
 		</Unit>

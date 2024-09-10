@@ -15,7 +15,7 @@ namespace graphics
 
 
       int                           m_iGoodStride;
-      ::image_pointer               m_pimageBuffer;
+      ::image::image_pointer               m_pimageBuffer;
 
       bool                          m_bDibIsHostingBuffer;
 
@@ -37,9 +37,9 @@ namespace graphics
 //
       //virtual bool update_screen() override;
       virtual bool is_buffer_ok();
-      ::image_pointer & get_buffer();
+      ::image::image_pointer & get_buffer();
 
-      //virtual ::image_pointer & get_screen_image() override;
+      //virtual ::image::image_pointer & get_screen_image() override;
       //virtual ::particle * get_screen_sync() override;
 
 

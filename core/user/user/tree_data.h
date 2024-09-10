@@ -34,7 +34,7 @@ namespace user
 
       pointer_array < ::user::tree >         m_usertreea;
       pointer_array < ::user::tree >         m_usertreeaBound;
-      ::pointer<::image_list>                m_pimagelist;
+      ::image::image_list_pointer                 m_pimagelist;
 
 
 
@@ -55,7 +55,7 @@ namespace user
       virtual void _001OnOpenItem(::data::tree_item * pitem, const ::action_context & action_context) override;
       virtual void _001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & action_context,::user::tree * ptree,const ::point_i32 & point);
 
-      ::image_list * get_image_list() const override;
+      ::image::image_list * get_image_list() const override;
 
       virtual void _001ExpandItem(::data::tree_item * pitem, const ::action_context & action_context,bool bExpand = true,bool bRedraw = true,bool bLayout = true) override;
       virtual void _001EnsureVisible(::data::tree_item * pitem) override;

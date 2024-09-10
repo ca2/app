@@ -100,7 +100,7 @@ namespace aura
 
       //atom_map < ::pointer<::channel >>                m_mapNotify;
 
-      //::pointer<context_image>                       m_pcontextimage;
+      //::pointer<image_context>                       m_pimagecontext;
 
       //bool                                            m_bInitializeDataCentral;
 
@@ -204,7 +204,7 @@ namespace aura
 
       //virtual ::simpledb::server * simpledb();
       virtual ::database::server * dataserver() override;
-      //inline ::context_image& image() { return *m_pcontextimage; }
+      //inline ::image_context& image() { return *m_pimagecontext; }
 
 
       virtual void verb() override;
@@ -332,9 +332,9 @@ namespace aura
       virtual ::draw2d::printer * get_printer(const ::string & pszDeviceName);
 
 
-      virtual ::draw2d::icon * set_icon(::object * pobject, ::draw2d::icon * picon, bool bBigIcon);
+      virtual ::image::icon * set_icon(::object * pobject, ::image::icon * picon, bool bBigIcon);
 
-      virtual ::draw2d::icon * get_icon(::object * pobject, bool bBigIcon) const;
+      virtual ::image::icon * get_icon(::object * pobject, bool bBigIcon) const;
 
       //virtual void on_service_request(::request * prequest) override;
 
@@ -830,9 +830,9 @@ namespace aura
       virtual void post_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
 
 
-      //virtual ::draw2d::icon * set_icon(object * pparticle, ::draw2d::icon * picon, bool bBigIcon);
+      //virtual ::image::icon * set_icon(object * pparticle, ::image::icon * picon, bool bBigIcon);
 
-      //virtual ::draw2d::icon * get_icon(object * pparticle, bool bBigIcon) const;
+      //virtual ::image::icon * get_icon(object * pparticle, bool bBigIcon) const;
 
       //virtual void handle(::topic * ptopic, ::context * pcontext);
 

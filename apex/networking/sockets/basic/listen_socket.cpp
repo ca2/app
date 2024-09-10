@@ -138,7 +138,7 @@ namespace sockets
    i32 listen_socket::Bind(const string & intf,::networking::port_t port,i32 depth)
    {
       
-      return m_plistensocketimpl->Bind(intf, port, depth);
+      return m_plistensocketImpl->Bind(intf, port, depth);
       //::networking::address address(intf, port);
 
       //if (address.is_valid())
@@ -324,6 +324,9 @@ namespace sockets
    /** OnRead on a listen_socket receives an incoming connection. */
    void listen_socket::OnRead()
    {
+
+      listen_socket_impl::OnRead();
+
 //      char sz[sizeof(sockaddr_in6)];
 //      struct sockaddr * psa = (sockaddr *)sz;
 //      socklen_t sa_len = sizeof(sz);
@@ -461,13 +464,13 @@ namespace sockets
 
       socket::initialize(pparticle);
 
-      __construct(m_plistensocketimpl);
+      __construct(m_plistensocketImpl);
 
-      m_p2 = m_plistensocketimpl->m_p2;
+      //m_p2 = m_plistensocketImpl->m_p2;
 
-      m_plistensocketimpl->m_plistensocketimpl = this;
+      m_plistensocketImpl->m_plistensocketInterface = this;
 
-      m_plistensocketimpl->m_bImpl = true;
+      m_plistensocketImpl->m_bImpl = true;
       
    }
 
@@ -479,13 +482,19 @@ namespace sockets
    }
 
 
-   base_socket * listen_socket::base_socket_composite()
+   base_socket * listen_socket::base_socket_impl()
    {
 
-      return m_plistensocketimpl;
+      return m_plistensocketImpl;
 
    }
 
+   base_socket* listen_socket::base_socket_interface()
+   {
+
+      return m_plistensocketInterface;
+
+   }
 
    ::pointer<listen_socket_impl>listen_socket::create_listen_socket_impl()
    {
@@ -498,7 +507,7 @@ namespace sockets
    void listen_socket::set_ssl_catalog(const ::string & strCat)
    {
 
-      return m_plistensocketimpl->set_ssl_catalog(strCat);
+      return m_plistensocketImpl->set_ssl_catalog(strCat);
 
    }
 
@@ -506,7 +515,7 @@ namespace sockets
    void listen_socket::set_ssl_cipher_list(const ::string & strCipherList)
    {
 
-      return m_plistensocketimpl->set_ssl_cipher_list(strCipherList);
+      return m_plistensocketImpl->set_ssl_cipher_list(strCipherList);
 
    }
 

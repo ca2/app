@@ -50,7 +50,8 @@ namespace sockets
 
       void initialize(::particle * pparticle) override;
 
-      base_socket * base_socket_composite() override;
+      base_socket * base_socket_impl() override;
+      base_socket* base_socket_interface() override;
 
       ::pointer<socket>create_attend_socket() override;
 

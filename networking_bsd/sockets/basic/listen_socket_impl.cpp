@@ -248,7 +248,7 @@ namespace sockets_bsd
    i32 listen_socket_impl::Bind(::networking::address * paddress,const string & protocol,i32 depth)
    {
 
-      auto paddress2 = __Address(paddress);
+      ::pointer < ::networking_bsd::address > paddress2 = paddress;
 
       SOCKET s;
       m_iBindPort = paddress->get_service_number();
@@ -380,7 +380,9 @@ namespace sockets_bsd
 
       }
 
-      if (!__Handler(m_psockethandler)->OkToAccept(this))
+      ::pointer < ::sockets_bsd::socket_handler> phandler = m_psockethandler;
+
+      if (!phandler->OkToAccept(this))
       {
 
          warning() <<"accept: -1 Not OK to accept";
@@ -402,13 +404,13 @@ namespace sockets_bsd
 
       }
       
-      auto psocketAttend = m_plistensocketimpl->create_attend_socket();
+      auto psocketAttend = m_plistensocketInterface->create_attend_socket();
 
-      psocketAttend->initialize(this);
+      //psocketAttend->initialize(this);
 
-      auto psocket = __Socket(psocketAttend);
+      ::pointer < ::sockets_bsd::base_socket > psocketImpl = psocketAttend->base_socket_impl();
 
-      psocket->set_start_time();
+      psocketImpl->set_start_time();
 
       auto psystem = system()->m_papexsystem;
 
@@ -433,24 +435,24 @@ namespace sockets_bsd
 
       //tmp->set_topic_text(strTopicText);
 
-      psocket->m_strCat = m_strCat;
+      psocketImpl->m_strCat = m_strCat;
       
-      psocket->m_strCipherList = m_strCipherList;
-      psocket-> EnableSSL(IsSSL()); // SSL Enabled socket
-      psocket-> SetIpv6( IsIpv6() );
-      psocket-> set_parent(this);
-      psocket-> attach(socketAccept);
-      psocket->OnOptions(m_iFamily, m_iSocketType, m_iProtocolType, socketAccept);
-      psocket-> SetNonblocking(true);
+      psocketImpl->m_strCipherList = m_strCipherList;
+      psocketImpl-> EnableSSL(IsSSL()); // SSL Enabled socket
+      psocketImpl-> SetIpv6( IsIpv6() );
+      psocketImpl-> set_parent(this);
+      psocketImpl-> attach(socketAccept);
+      psocketImpl->OnOptions(m_iFamily, m_iSocketType, m_iProtocolType, socketAccept);
+      psocketImpl-> SetNonblocking(true);
       auto paddressRemote = ::place(new ::networking_bsd::address());
       paddressRemote->set_address(sockaddr.c, sockaddr_len);
       //tmp->SetRemoteHostname(::networking::address(*psa));
-      psocket->SetRemoteHostname(paddressRemote);
-      psocket->m_iBindPort = m_iBindPort;
-      psocket-> SetConnected(true);
-      psocket-> Init();
-      psocket-> SetDeleteByHandler(true);
-      if (psocket-> IsSSL()) // SSL Enabled socket
+      psocketImpl->SetRemoteHostname(paddressRemote);
+      psocketImpl->m_iBindPort = m_iBindPort;
+      psocketImpl-> SetConnected(true);
+      psocketImpl-> Init();
+      psocketImpl-> SetDeleteByHandler(true);
+      if (psocketImpl-> IsSSL()) // SSL Enabled socket
       {
          // %! OnSSLAccept calls SSLNegotiate that can finish in this one call.
          // %! If that happens and negotiation fails, the 'tmp' instance is
@@ -460,17 +462,17 @@ namespace sockets_bsd
          // %! An even better fugbix (see tcp_socket::OnSSLAccept) now avoids
          // %! the add problem altogether, so ignore the above.
          // %! (OnSSLAccept does no longer call SSLNegotiate().)
-         psocket-> OnSSLAccept();
+         psocketImpl-> OnSSLAccept();
       }
       else
       {
-         psocket-> OnAccept();
+         psocketImpl-> OnAccept();
       }
       
-      if (m_plistensocketimpl->m_bListeningDetach)
+      if (m_plistensocketInterface->m_bListeningDetach)
       {
          
-         psocket->prepare_for_detach();
+         psocketImpl->prepare_for_detach();
 
       }
       else
@@ -483,7 +485,7 @@ namespace sockets_bsd
 
       //socket_handler()->transfer(passociation);
 
-      m_psockethandler->add(psocket);
+      m_psockethandler->add(psocketAttend);
 
    }
 

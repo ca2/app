@@ -13,7 +13,7 @@ namespace networking_bsd
    address::address()
    {
 
-      m_p2 = this;
+      //m_p2 = this;
 
 #ifdef BSD_STYLE_SOCKETS
       ::zero(&u, sizeof(u));
@@ -258,7 +258,7 @@ namespace networking_bsd
 //
 //#endif
 
-      auto paddress2 = (::networking_bsd::address *)paddress->m_p2;
+      auto paddress2 = paddress->cast < ::networking_bsd::address>();
 
       operator =(*paddress2);
 
@@ -342,9 +342,9 @@ namespace networking_bsd
    bool address::is_in_same_net(::networking::address * paddress, ::networking::address * paddressMask) const
    {
 
-      auto paddress2 = __Address(paddress);
+      ::pointer < address > paddress2 = paddress;
 
-      auto paddressMask2 = __Address(paddressMask);
+      ::pointer < address > paddressMask2 = paddressMask;
 
       if (_is_ip4() && paddress2->_is_ip4() && paddressMask2->_is_ip4())
       {
@@ -404,7 +404,7 @@ namespace networking_bsd
 
 #ifdef BSD_STYLE_SOCKETS
 
-      auto paddress2 = (::networking_bsd::address *)paddress->m_p2;
+      auto paddress2 = paddress->cast <::networking_bsd::address>();
 
       if (u.s.m_port != paddress2->u.s.m_port)
          return false;

@@ -283,7 +283,7 @@ namespace httpd
    void socket::InitSSLServer()
    {
 
-      base_socket_composite()->_001InitSSLServer();
+      base_socket_impl()->_001InitSSLServer();
 
    }
 

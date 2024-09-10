@@ -12,7 +12,8 @@ namespace sockets
 //   bool tcp_socket::s_bReuseSession = true;
 //#endif
 
-   tcp_socket::tcp_socket()//:
+   tcp_socket::tcp_socket():
+      m_ptcpsocketInterface(nullptr)//:
       //::object(&h),
       //base_socket(h),
       //socket(h),
@@ -29,6 +30,7 @@ namespace sockets
       ,m_bReconnect(false)
       ,m_bTryingReconnect(false)*/
    {
+      
       m_bImpl = false;
 //      m_bReuseSession = s_bReuseSession;
 ////      SSL_init_app_data2_3_idx();
@@ -93,31 +95,53 @@ namespace sockets
 
       stream_socket::initialize(pparticle);
 
-      __construct(m_ptcpsocketComposite);
+      if (!m_ptcpsocketImpl)
+      {
 
-      m_ptcpsocketComposite->m_ptcpsocketComposite = this;
+         __construct(m_ptcpsocketImpl);
 
-      m_ptcpsocketComposite->m_bImpl = true;
+         m_ptcpsocketImpl->m_ptcpsocketInterface = this;
 
-      m_p2 = m_ptcpsocketComposite->m_p2;
+         m_ptcpsocketImpl->m_bImpl = true;
+
+         //m_p2 = m_ptcpsocketImpl->m_p2;
+
+      }
 
    }
 
 
-   base_socket * tcp_socket::base_socket_composite()
+   base_socket * tcp_socket::base_socket_impl()
    {
 
-      return m_ptcpsocketComposite;
+      return m_ptcpsocketImpl;
 
    }
 
 
-   const base_socket * tcp_socket::base_socket_composite() const
+   const base_socket* tcp_socket::base_socket_impl() const
    {
 
-      return m_ptcpsocketComposite;
+      return ((tcp_socket *)this)->base_socket_impl();
 
    }
+
+
+   base_socket * tcp_socket::base_socket_interface()
+   {
+
+      return m_ptcpsocketInterface;
+
+   }
+
+
+   const base_socket* tcp_socket::base_socket_interface() const
+   {
+
+      return ((tcp_socket*)this)->base_socket_interface();
+
+   }
+
 
 
    /*
@@ -141,14 +165,14 @@ namespace sockets
       //::networking::address bind_ad("0.0.0.0",0);
       //return open(ad,bind_ad,skip_socks);
 
-      return m_ptcpsocketComposite->open(paddress, skip_socks);
+      return m_ptcpsocketImpl->open(paddress, skip_socks);
 
    }
 
 
    bool tcp_socket::open(::networking::address * ad,::networking::address * bind_ad,bool skip_socks)
    {
-      return m_ptcpsocketComposite->open(ad, bind_ad, skip_socks);
+      return m_ptcpsocketImpl->open(ad, bind_ad, skip_socks);
       //string strIp = ad.get_display_number();
 
       //int iPort = ad.get_service_number();
@@ -315,7 +339,7 @@ return true;
    bool tcp_socket::open(const string &host,::networking::port_t port)
    {
 
-      return m_ptcpsocketComposite->open(host, port);
+      return m_ptcpsocketImpl->open(host, port);
 
       //SetCloseAndDelete(false);
 
@@ -406,7 +430,7 @@ return true;
    void tcp_socket::set_host(const ::string & strHost)
    {
 
-      m_ptcpsocketComposite->set_host(strHost);
+      m_ptcpsocketImpl->set_host(strHost);
 
    }
 
@@ -414,7 +438,7 @@ return true;
    ::string tcp_socket::get_host() const
    {
 
-      return m_ptcpsocketComposite->get_host();
+      return m_ptcpsocketImpl->get_host();
 
    }
 
@@ -422,7 +446,7 @@ return true;
    void tcp_socket::set_tls_hostname(const ::string & strTlsHostname)
    {
 
-      m_ptcpsocketComposite->set_tls_hostname(strTlsHostname);
+      m_ptcpsocketImpl->set_tls_hostname(strTlsHostname);
 
    }
 
@@ -430,7 +454,7 @@ return true;
    void tcp_socket::set_connect_host(const ::string & strConnectHost)
    {
 
-      m_ptcpsocketComposite->set_connect_host(strConnectHost);
+      m_ptcpsocketImpl->set_connect_host(strConnectHost);
 
    }
 
@@ -438,7 +462,7 @@ return true;
    ::string tcp_socket::get_connect_host() const
    {
 
-      return m_ptcpsocketComposite->get_connect_host();
+      return m_ptcpsocketImpl->get_connect_host();
 
    }
 
@@ -446,7 +470,7 @@ return true;
    void tcp_socket::set_connect_port(const ::networking::port_t portConnect)
    {
 
-      m_ptcpsocketComposite->set_connect_port(portConnect);
+      m_ptcpsocketImpl->set_connect_port(portConnect);
 
    }
 
@@ -454,7 +478,7 @@ return true;
    ::networking::port_t tcp_socket::get_connect_port() const
    {
 
-      return m_ptcpsocketComposite->get_connect_port();
+      return m_ptcpsocketImpl->get_connect_port();
 
    }
 
@@ -462,7 +486,7 @@ return true;
    void tcp_socket::set_url(const ::string & strUrl)
    {
 
-      m_ptcpsocketComposite->set_url(strUrl);
+      m_ptcpsocketImpl->set_url(strUrl);
 
    }
 
@@ -470,7 +494,7 @@ return true;
    string tcp_socket::get_url() const
    {
 
-      return m_ptcpsocketComposite->get_url();
+      return m_ptcpsocketImpl->get_url();
 
    }
 
@@ -702,7 +726,7 @@ return true;
    int tcp_socket::read(void * buf, int nBufSize)
    {
 
-      return m_ptcpsocketComposite->read(buf, nBufSize);
+      return m_ptcpsocketImpl->read(buf, nBufSize);
 
       //int n = (int) nBufSize;
 
@@ -756,7 +780,7 @@ return true;
    void tcp_socket::OnRead()
    {
 
-      m_ptcpsocketComposite->OnRead();
+      m_ptcpsocketImpl->OnRead();
 
       //char * buf = (char *) m_memRead.get_data();
 
@@ -817,7 +841,7 @@ return true;
 
       ////}
 
-      m_ptcpsocketComposite->on_read(buf, n);
+      m_ptcpsocketImpl->on_read(buf, n);
 
    }
 
@@ -1073,7 +1097,7 @@ return true;
    void tcp_socket::buffer(const void * pdata,int len)
    {
 
-      m_ptcpsocketComposite->buffer(pdata, len);
+      m_ptcpsocketImpl->buffer(pdata, len);
 
       //const char * buf = (const char *)pdata;
 
@@ -1131,7 +1155,7 @@ return true;
    void tcp_socket::write(const void * p, ::memsize s)
    {
 
-      m_ptcpsocketComposite->write(p, s);
+      m_ptcpsocketImpl->write(p, s);
 
       //const u8 * buf = (const u8 *)pdata;
 
@@ -1212,7 +1236,7 @@ return true;
    void tcp_socket::OnLine(const string & str)
    {
 
-      m_ptcpsocketComposite->OnLine(str);
+      m_ptcpsocketImpl->OnLine(str);
 
    }
 
@@ -1777,7 +1801,7 @@ return true;
    void tcp_socket::set_init_ssl_client_context(const ::string & strInitSSLClientContext)
    {
 
-      m_ptcpsocketComposite->set_init_ssl_client_context(strInitSSLClientContext);
+      m_ptcpsocketImpl->set_init_ssl_client_context(strInitSSLClientContext);
 
    }
 
@@ -2094,7 +2118,7 @@ return true;
 
    void tcp_socket::close()
    {
-      m_ptcpsocketComposite->close();
+      m_ptcpsocketImpl->close();
 
 //      if (get_socket_id() == INVALID_SOCKET) // this could happen
 //      {
@@ -2185,9 +2209,9 @@ return true;
    {
       //m_bReconnect = bReconnect;
 
-      // m_ptcpsocketComposite->m_bReconnect;
+      // m_ptcpsocketImpl->m_bReconnect;
 
-      m_ptcpsocketComposite->SetReconnect(bReconnect);
+      m_ptcpsocketImpl->SetReconnect(bReconnect);
 
    }
 
@@ -2197,7 +2221,7 @@ return true;
 
       //socket::OnRawData(buf_in,len);
 
-      m_ptcpsocketComposite->OnRawData(buf_in, len);
+      m_ptcpsocketImpl->OnRawData(buf_in, len);
 
 
    }
@@ -2206,7 +2230,7 @@ return true;
    memsize tcp_socket::GetInputLength()
    {
 
-      return m_ptcpsocketComposite->GetInputLength();
+      return m_ptcpsocketImpl->GetInputLength();
       //return (memsize)ibuf.get_length();
    }
 
@@ -2215,7 +2239,7 @@ return true;
    {
       //return m_output_length;
 
-      return m_ptcpsocketComposite->GetOutputLength();
+      return m_ptcpsocketImpl->GetOutputLength();
 
    }
 
@@ -2223,7 +2247,7 @@ return true;
    u64 tcp_socket::GetBytesReceived(bool clear)
    {
 
-      return m_ptcpsocketComposite->GetBytesReceived(clear);
+      return m_ptcpsocketImpl->GetBytesReceived(clear);
 
       //u64 z = m_bytes_received;
       //if(clear)
@@ -2234,7 +2258,7 @@ return true;
 
    u64 tcp_socket::GetBytesSent(bool clear)
    {
-      return m_ptcpsocketComposite->GetBytesSent(clear);
+      return m_ptcpsocketImpl->GetBytesSent(clear);
       //u64 z = m_bytes_sent;
       //if(clear)
       //   m_bytes_sent = 0;
@@ -2245,7 +2269,7 @@ return true;
    tcp_socket::output * tcp_socket::top_output_buffer()
    {
 
-      return m_ptcpsocketComposite->top_output_buffer();
+      return m_ptcpsocketImpl->top_output_buffer();
 
    }
 
@@ -2253,7 +2277,7 @@ return true;
    bool tcp_socket::Reconnect()
    {
       
-      return m_ptcpsocketComposite->Reconnect();
+      return m_ptcpsocketImpl->Reconnect();
 
    }
 
@@ -2263,7 +2287,7 @@ return true;
 
       //m_bTryingReconnect = bTryingReconnect;
 
-      m_ptcpsocketComposite->SetIsReconnect(bTryingReconnect);
+      m_ptcpsocketImpl->SetIsReconnect(bTryingReconnect);
 
    }
 
@@ -2273,7 +2297,7 @@ return true;
 
       //return m_bTryingReconnect;
 
-      return m_ptcpsocketComposite->IsReconnect();
+      return m_ptcpsocketImpl->IsReconnect();
 
    }
 
@@ -2285,7 +2309,7 @@ return true;
 
       //return m_password;
 
-      return m_ptcpsocketComposite->GetPassword();
+      return m_ptcpsocketImpl->GetPassword();
 
    }
 
@@ -2295,7 +2319,7 @@ return true;
 
       //m_b_input_buffer_disabled = x;
 
-      m_ptcpsocketComposite->DisableInputBuffer(x);
+      m_ptcpsocketImpl->DisableInputBuffer(x);
 
    }
 
@@ -2314,10 +2338,10 @@ return true;
 ////      SetSoReuseaddr(true);
 ////      SetSoKeepalive(true);
 //      
-//      if(m_ptcpsocketComposite)
+//      if(m_ptcpsocketImpl)
 //      {
 //         
-//         m_ptcpsocketComposite->OnOptions(family, type, protocol, iSocket);
+//         m_ptcpsocketImpl->OnOptions(family, type, protocol, iSocket);
 //         
 //      }
 //      
@@ -2327,7 +2351,7 @@ return true;
    void tcp_socket::SetLineProtocol(bool x)
    {
 
-      m_ptcpsocketComposite->SetLineProtocol(x);
+      m_ptcpsocketImpl->SetLineProtocol(x);
       //stream_socket::SetLineProtocol(x);
       //DisableInputBuffer(x);
    }
@@ -2335,7 +2359,7 @@ return true;
 
    bool tcp_socket::SetTcpNodelay(bool x)
    {
-      return m_ptcpsocketComposite->SetTcpNodelay(x);
+      return m_ptcpsocketImpl->SetTcpNodelay(x);
 //#ifdef TCP_NODELAY
 //      i32 optval = x ? 1 : 0;
 //      if(setsockopt(get_socket_id(),IPPROTO_TCP,TCP_NODELAY,(char *)&optval,sizeof(optval)) == -1)
@@ -2358,7 +2382,7 @@ return true;
 
    void tcp_socket::on_connection_timeout()
    {
-      m_ptcpsocketComposite->on_connection_timeout();
+      m_ptcpsocketImpl->on_connection_timeout();
       //fatal() <<"connect: connect timeout";
 
       //m_estatus = error_connection_timed_out;
@@ -2413,7 +2437,7 @@ return true;
    void tcp_socket::OnException()
    {
 
-      //m_ptcpsocketComposite->OnException();
+      //m_ptcpsocketImpl->OnException();
 
       //if(is_connecting())
       //{
@@ -2485,7 +2509,7 @@ return true;
    i32 tcp_socket::Protocol()
    {
 
-      return m_ptcpsocketComposite->Protocol();
+      return m_ptcpsocketImpl->Protocol();
       ////return IPPROTO_TCP;
 
       //return 0;
@@ -2498,7 +2522,7 @@ return true;
 
       //m_transfer_limit = sz;
 
-      m_ptcpsocketComposite->SetTransferLimit(sz);
+      m_ptcpsocketImpl->SetTransferLimit(sz);
 
    }
 
@@ -2506,7 +2530,7 @@ return true;
    void tcp_socket::OnTransferLimit()
    {
 
-      m_ptcpsocketComposite->OnTransferLimit();
+      m_ptcpsocketImpl->OnTransferLimit();
 
    }
 
@@ -2516,7 +2540,7 @@ return true;
 
       //return m_strUrl;
 
-      return m_ptcpsocketComposite->get_url();
+      return m_ptcpsocketImpl->get_url();
 
    }
 
@@ -2524,7 +2548,7 @@ return true;
    string tcp_socket::get_short_description()
    {
 
-      return m_ptcpsocketComposite->get_short_description();
+      return m_ptcpsocketImpl->get_short_description();
 
    }
 
@@ -2532,7 +2556,7 @@ return true;
    long tcp_socket::cert_common_name_check(const ::string & common_name)
    {
 
-      return m_ptcpsocketComposite->cert_common_name_check(common_name);
+      return m_ptcpsocketImpl->cert_common_name_check(common_name);
 
 //      if(!m_bCertCommonNameCheckEnabled)
 //      {
@@ -2744,7 +2768,7 @@ return true;
 
       //m_bCertCommonNameCheckEnabled = bEnable;
 
-      m_ptcpsocketComposite->enable_cert_common_name_check(bEnable);
+      m_ptcpsocketImpl->enable_cert_common_name_check(bEnable);
 
    }
 
@@ -2752,7 +2776,7 @@ return true;
    string tcp_socket::get_connect_host()
    {
 
-      return m_ptcpsocketComposite->get_connect_host();
+      return m_ptcpsocketImpl->get_connect_host();
 
    }
 
@@ -2760,14 +2784,14 @@ return true;
    ::networking::port_t tcp_socket::get_connect_port()
    {
 
-      return m_ptcpsocketComposite->get_connect_port();
+      return m_ptcpsocketImpl->get_connect_port();
 
    }
 
 
    void tcp_socket::InitializeContextTLSClientMethod()
    {
-      m_ptcpsocketComposite->InitializeContextTLSClientMethod();
+      m_ptcpsocketImpl->InitializeContextTLSClientMethod();
 //#if defined(HAVE_OPENSSL)
 //
 //      InitializeContext("", TLS_client_method());
@@ -2780,7 +2804,7 @@ return true;
    void tcp_socket::finalize()
    {
 
-      ::defer_finalize_and_release(m_ptcpsocketComposite);
+      ::defer_finalize_and_release(m_ptcpsocketImpl);
 
       ::sockets::stream_socket::finalize();
 

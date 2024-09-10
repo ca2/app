@@ -127,7 +127,7 @@ namespace sockets
    void base_socket::SetSocketHandler(base_socket_handler* phandler)
    {
 
-      base_socket_composite()->SetSocketHandler(phandler);
+      base_socket_impl()->SetSocketHandler(phandler);
 
       //::object::initialize(phandler);
 
@@ -153,7 +153,7 @@ namespace sockets
 
       SetDetached();
 
-      auto psocketthread = ::transfer(base_socket_composite()->create_socket_thread());
+      auto psocketthread = ::transfer(create_socket_thread());
 
       psocketthread->initialize_socket_thread(this);
 
@@ -216,7 +216,7 @@ namespace sockets
    }
 
 
-   base_socket * base_socket::base_socket_composite()
+   base_socket * base_socket::base_socket_impl()
    {
 
       return nullptr;
@@ -224,18 +224,34 @@ namespace sockets
    }
 
 
-   ::socket_id base_socket::GetSocketId()
+   const base_socket* base_socket::base_socket_impl() const
    {
 
-      return base_socket_composite()->GetSocketId();
+      return ((base_socket*)this)->base_socket_impl();
 
    }
 
 
-   const base_socket * base_socket::base_socket_composite() const
+   base_socket* base_socket::base_socket_interface()
    {
 
-      return ((base_socket *) this)->base_socket_composite();
+      return nullptr;
+
+   }
+
+
+   const base_socket* base_socket::base_socket_interface() const
+   {
+
+      return ((base_socket*)this)->base_socket_interface();
+
+   }
+
+
+   ::socket_id base_socket::GetSocketId()
+   {
+
+      return base_socket_impl()->GetSocketId();
 
    }
 
@@ -252,7 +268,7 @@ namespace sockets
    enum_trace_category base_socket::trace_category() const
    {
 
-      return base_socket_composite()->trace_category();
+      return base_socket_impl()->trace_category();
 
    }
 
@@ -272,7 +288,7 @@ namespace sockets
    void base_socket::Init()
    {
 
-      base_socket_composite()->Init();
+      base_socket_impl()->Init();
 
    }
 
@@ -280,7 +296,7 @@ namespace sockets
    void base_socket::OnRead()
    {
 
-      base_socket_composite()->OnRead();
+      base_socket_impl()->OnRead();
 
    }
 
@@ -288,7 +304,7 @@ namespace sockets
    //::collection::index base_socket::http_request_index()
    //{
 
-   //   return base_socket_composite()->http_request_index();
+   //   return base_socket_impl()->http_request_index();
 
    //}
 
@@ -296,7 +312,7 @@ namespace sockets
    ::string_array & base_socket::debugstra()
    {
 
-      return base_socket_composite()->debugstra();
+      return base_socket_impl()->debugstra();
 
    }
    
@@ -304,7 +320,7 @@ namespace sockets
    void base_socket::OnWrite()
    {
 
-      base_socket_composite()->OnWrite();
+      base_socket_impl()->OnWrite();
 
    }
 
@@ -324,7 +340,7 @@ namespace sockets
 
       //SetCloseAndDelete();
 
-      base_socket_composite()->OnException();
+      base_socket_impl()->OnException();
 
 
    }
@@ -333,7 +349,7 @@ namespace sockets
    void base_socket::OnDelete()
    {
 
-      //base_socket_composite()->OnDelete();
+      //base_socket_impl()->OnDelete();
 
    }
 
@@ -341,7 +357,7 @@ namespace sockets
    void base_socket::OnConnect()
    {
 
-      //base_socket_composite()->OnConnect();
+      //base_socket_impl()->OnConnect();
 
    }
 
@@ -349,7 +365,7 @@ namespace sockets
    void base_socket::OnAccept()
    {
 
-      //base_socket_composite()->OnAccept();
+      //base_socket_impl()->OnAccept();
 
    }
 
@@ -357,7 +373,7 @@ namespace sockets
    void base_socket::close()
    {
 
-      base_socket_composite()->close();
+      base_socket_impl()->close();
 
 #ifdef BSD_STYLE_SOCKETS
 
@@ -378,7 +394,7 @@ namespace sockets
    void base_socket::set_end()
    {
 
-      base_socket_composite()->set_end();
+      base_socket_impl()->set_end();
 
    }
 
@@ -386,7 +402,7 @@ namespace sockets
    bool base_socket::is_end() const
    {
 
-      return base_socket_composite()->is_end();
+      return base_socket_impl()->is_end();
 
    }
 
@@ -394,7 +410,7 @@ namespace sockets
    ::networking::port_t base_socket::get_bind_port() const
    {
 
-      return base_socket_composite()->get_bind_port();
+      return base_socket_impl()->get_bind_port();
 
    }
 
@@ -413,7 +429,7 @@ namespace sockets
    bool base_socket::is_connecting()
    {
       
-      return base_socket_composite()->is_connecting();
+      return base_socket_impl()->is_connecting();
 
    }
 
@@ -486,7 +502,7 @@ namespace sockets
    {
       //m_bDelete = x;
 
-      base_socket_composite()->SetDeleteByHandler(x);
+      base_socket_impl()->SetDeleteByHandler(x);
 
    }
 
@@ -494,7 +510,7 @@ namespace sockets
    bool base_socket::DeleteByHandler()
    {
       //return m_bDelete;
-      return base_socket_composite()->DeleteByHandler();
+      return base_socket_impl()->DeleteByHandler();
 
    }
 
@@ -502,7 +518,7 @@ namespace sockets
    void base_socket::SetCloseAndDelete(bool bCloseAndDelete)
    {
 
-      base_socket_composite()->SetCloseAndDelete(bCloseAndDelete);
+      base_socket_impl()->SetCloseAndDelete(bCloseAndDelete);
 
       //if (is_different(bCloseAndDelete, m_bCloseAndDelete))
       //{
@@ -533,7 +549,7 @@ namespace sockets
       
       //return m_bCloseAndDelete;
 
-      return base_socket_composite()->IsCloseAndDelete();
+      return base_socket_impl()->IsCloseAndDelete();
 
    }
 
@@ -543,7 +559,7 @@ namespace sockets
 
       //m_paddressRemote = ad;
 
-      base_socket_composite()->SetRemoteHostname(paddress);
+      base_socket_impl()->SetRemoteHostname(paddress);
 
    }
 
@@ -552,7 +568,7 @@ namespace sockets
    {
 
       //return m_paddressRemote;
-      return base_socket_composite()->GetRemoteHostname();
+      return base_socket_impl()->GetRemoteHostname();
 
    }
 
@@ -569,7 +585,7 @@ namespace sockets
 
       //return m_psockethandler;
 
-      return base_socket_composite()->socket_handler();
+      return base_socket_impl()->socket_handler();
 
    }
 
@@ -579,7 +595,7 @@ namespace sockets
       
       //return m_psockethandler;
 
-      return base_socket_composite()->master_socket_handler();
+      return base_socket_impl()->master_socket_handler();
 
    }
 
@@ -587,7 +603,7 @@ namespace sockets
    memory_file * base_socket::get_input_memory_file()
    {
 
-      return base_socket_composite()->get_input_memory_file();
+      return base_socket_impl()->get_input_memory_file();
 
    }
 
@@ -640,7 +656,7 @@ namespace sockets
    bool base_socket::SetNonblocking(bool bNb)
    {
 
-      return base_socket_composite()->SetNonblocking(bNb);
+      return base_socket_impl()->SetNonblocking(bNb);
 
 //      m_bNonBlocking = bNb;
 //
@@ -725,7 +741,7 @@ namespace sockets
    {
       //socket_handler()->set(m_socket, bRead, bWrite, bException);
 
-      base_socket_composite()->Set(bRead, bWrite, bException);
+      base_socket_impl()->Set(bRead, bWrite, bException);
 
    }
 
@@ -734,7 +750,7 @@ namespace sockets
    {
       //if (m_socket != INVALID_SOCKET && !IsCloseAndDelete())
       //   return true;
-      return base_socket_composite()->Ready();
+      return base_socket_impl()->Ready();
 
    }
 
@@ -742,7 +758,7 @@ namespace sockets
    bool base_socket::is_valid()
    {
 
-      return base_socket_composite()->is_valid();
+      return base_socket_impl()->is_valid();
 
    }
 
@@ -750,7 +766,7 @@ namespace sockets
    void base_socket::OnLine(const string & str)
    {
 
-      base_socket_composite()->OnLine(str);
+      base_socket_impl()->OnLine(str);
 
    }
 
@@ -758,7 +774,7 @@ namespace sockets
    bool base_socket::on_select_idle()
    {
       
-      return base_socket_composite()->on_select_idle();
+      return base_socket_impl()->on_select_idle();
 
    }
 
@@ -766,7 +782,7 @@ namespace sockets
    void base_socket::OnConnectFailed()
    {
 
-      base_socket_composite()->OnConnectFailed();
+      base_socket_impl()->OnConnectFailed();
 
    }
 
@@ -775,7 +791,7 @@ namespace sockets
    {
       //return m_psocketParent;
 
-      return base_socket_composite()->get_parent();
+      return base_socket_impl()->get_parent();
 
    }
 
@@ -784,7 +800,7 @@ namespace sockets
    {
       //m_psocketParent = psocketParent;
 
-      base_socket_composite()->set_parent(psocketParent);
+      base_socket_impl()->set_parent(psocketParent);
 
    }
 
@@ -794,7 +810,7 @@ namespace sockets
 
       warning() <<"GetPort only implemented for listen_socket";
 
-      return base_socket_composite()->GetPort();
+      return base_socket_impl()->GetPort();
 
    }
 
@@ -809,7 +825,7 @@ namespace sockets
    bool base_socket::OnConnectRetry()
    {
 
-      return base_socket_composite()->OnConnectRetry();
+      return base_socket_impl()->OnConnectRetry();
 
    }
 
@@ -817,7 +833,7 @@ namespace sockets
    void base_socket::OnReconnect()
    {
 
-      base_socket_composite()->OnReconnect();
+      base_socket_impl()->OnReconnect();
 
    }
 
@@ -827,7 +843,7 @@ namespace sockets
       
       //return time(nullptr) - m_timeCreate;
 
-      return base_socket_composite()->Uptime();
+      return base_socket_impl()->Uptime();
 
    }
 
@@ -836,7 +852,7 @@ namespace sockets
    {
       
       //m_bIpv6 = bIpv6;
-      base_socket_composite()->SetIpv6(bIpv6);
+      base_socket_impl()->SetIpv6(bIpv6);
 
    }
 
@@ -846,7 +862,7 @@ namespace sockets
       
       //return m_bIpv6;
 
-      return base_socket_composite()->IsIpv6();
+      return base_socket_impl()->IsIpv6();
 
    }
 
@@ -855,7 +871,7 @@ namespace sockets
    {
 
       //m_bDisableRead = x;
-      base_socket_composite()->DisableRead(x);
+      base_socket_impl()->DisableRead(x);
 
    }
 
@@ -865,7 +881,7 @@ namespace sockets
 
       //return m_bDisableRead;
 
-      return base_socket_composite()->IsDisableRead();
+      return base_socket_impl()->IsDisableRead();
 
    }
 
@@ -874,7 +890,7 @@ namespace sockets
    {
 
       //m_bConnected = bConnected;
-      base_socket_composite()->SetConnected(bConnected);
+      base_socket_impl()->SetConnected(bConnected);
 
    }
 
@@ -886,7 +902,7 @@ namespace sockets
 
       //return;
 
-      return base_socket_composite()->IsConnected();
+      return base_socket_impl()->IsConnected();
 
    }
 
@@ -894,7 +910,7 @@ namespace sockets
    void base_socket::OnDisconnect()
    {
 
-      base_socket_composite()->OnDisconnect();
+      base_socket_impl()->OnDisconnect();
 
    }
 
@@ -903,7 +919,7 @@ namespace sockets
    {
 
       //m_bLost = true;
-      base_socket_composite()->SetLost();
+      base_socket_impl()->SetLost();
 
    }
 
@@ -913,7 +929,7 @@ namespace sockets
       
       //return m_bLost;
 
-      return base_socket_composite()->Lost();
+      return base_socket_impl()->Lost();
 
    }
 
@@ -922,7 +938,7 @@ namespace sockets
    {
 
       //m_bErasedByHandler = bErasedByHandler;
-      base_socket_composite()->SetErasedByHandler(bErasedByHandler);
+      base_socket_impl()->SetErasedByHandler(bErasedByHandler);
 
    }
 
@@ -932,7 +948,7 @@ namespace sockets
 
       //return m_bErasedByHandler;
 
-      return base_socket_composite()->ErasedByHandler();
+      return base_socket_impl()->ErasedByHandler();
 
    }
 
@@ -942,7 +958,7 @@ namespace sockets
       
       //return time(nullptr) - m_timeClose;
 
-      return base_socket_composite()->TimeSinceClose();
+      return base_socket_impl()->TimeSinceClose();
 
    }
 
@@ -957,7 +973,7 @@ namespace sockets
 
       //m_paddressRemoteClient = paddress;
 
-      base_socket_composite()->SetClientRemoteAddress(paddress);
+      base_socket_impl()->SetClientRemoteAddress(paddress);
 
    }
 
@@ -973,7 +989,7 @@ namespace sockets
       //return m_addressRemoteClient;
 
       //return m_paddressRemoteClient;
-      return base_socket_composite()->GetClientRemoteAddress();
+      return base_socket_impl()->GetClientRemoteAddress();
 
    }
 
@@ -981,7 +997,7 @@ namespace sockets
    u64 base_socket::GetBytesSent(bool b)
    {
       
-      return base_socket_composite()->GetBytesSent(b);
+      return base_socket_impl()->GetBytesSent(b);
 
    }
 
@@ -989,7 +1005,7 @@ namespace sockets
    u64 base_socket::GetBytesReceived(bool b)
    {
       
-      return base_socket_composite()->GetBytesReceived(b);
+      return base_socket_impl()->GetBytesReceived(b);
 
    }
 
@@ -997,7 +1013,7 @@ namespace sockets
    void base_socket::OnSSLConnect()
    {
 
-      base_socket_composite()->OnSSLConnect();
+      base_socket_impl()->OnSSLConnect();
 
    }
 
@@ -1005,7 +1021,7 @@ namespace sockets
    void base_socket::OnSSLAccept()
    {
 
-      base_socket_composite()->OnSSLAccept();
+      base_socket_impl()->OnSSLAccept();
 
    }
 
@@ -1013,7 +1029,7 @@ namespace sockets
    bool base_socket::SSLNegotiate()
    {
 
-      return base_socket_composite()->SSLNegotiate();
+      return base_socket_impl()->SSLNegotiate();
 
    }
 
@@ -1021,7 +1037,7 @@ namespace sockets
    void base_socket::OnSSLConnectFailed()
    {
 
-      base_socket_composite()->OnSSLConnectFailed();
+      base_socket_impl()->OnSSLConnectFailed();
 
    }
 
@@ -1029,7 +1045,7 @@ namespace sockets
    void base_socket::OnSSLAcceptFailed()
    {
 
-      base_socket_composite()->OnSSLAcceptFailed();
+      base_socket_impl()->OnSSLAcceptFailed();
 
    }
 
@@ -1037,7 +1053,7 @@ namespace sockets
    bool base_socket::IsSSL()
    {
 
-      return base_socket_composite()->IsSSL();
+      return base_socket_impl()->IsSSL();
 
    }
 
@@ -1045,7 +1061,7 @@ namespace sockets
    void base_socket::EnableSSL(bool bEnable)
    {
 
-      base_socket_composite()->EnableSSL(bEnable);
+      base_socket_impl()->EnableSSL(bEnable);
 
    }
 
@@ -1053,7 +1069,7 @@ namespace sockets
    bool base_socket::IsSSLNegotiate()
    {
 
-      return base_socket_composite()->IsSSLNegotiate();
+      return base_socket_impl()->IsSSLNegotiate();
 
    }
 
@@ -1061,7 +1077,7 @@ namespace sockets
    void base_socket::SetSSLNegotiate(bool bSslNegotiate)
    {
       
-      base_socket_composite()->SetSSLNegotiate(bSslNegotiate);
+      base_socket_impl()->SetSSLNegotiate(bSslNegotiate);
 
    }
 
@@ -1069,7 +1085,7 @@ namespace sockets
    bool base_socket::IsSSLServer()
    {
       
-      return base_socket_composite()->IsSSLServer();
+      return base_socket_impl()->IsSSLServer();
 
    }
 
@@ -1077,7 +1093,7 @@ namespace sockets
    void base_socket::SetSSLServer(bool bSSLServer)
    {
       
-      base_socket_composite()->SetSSLServer(bSSLServer);
+      base_socket_impl()->SetSSLServer(bSSLServer);
 
    }
 
@@ -1129,7 +1145,7 @@ namespace sockets
    void base_socket::SetIsClient()
    {
       
-      base_socket_composite()->SetIsClient();
+      base_socket_impl()->SetIsClient();
 
    }
 
@@ -1137,7 +1153,7 @@ namespace sockets
    void base_socket::SetSocketType(int iSocketType)
    {
       
-      base_socket_composite()->SetSocketType(iSocketType);
+      base_socket_impl()->SetSocketType(iSocketType);
 
    }
 
@@ -1145,7 +1161,7 @@ namespace sockets
    int base_socket::GetSocketType()
    {
 
-      return base_socket_composite()->GetSocketType();
+      return base_socket_impl()->GetSocketType();
 
    }
 
@@ -1153,7 +1169,7 @@ namespace sockets
    void base_socket::SetSocketProtocol(const ::string & strProtocol)
    {
 
-      base_socket_composite()->SetSocketProtocol(strProtocol);
+      base_socket_impl()->SetSocketProtocol(strProtocol);
 
    }
 
@@ -1161,7 +1177,7 @@ namespace sockets
    string base_socket::GetSocketProtocol()
    {
 
-      return base_socket_composite()->GetSocketProtocol();
+      return base_socket_impl()->GetSocketProtocol();
 
    }
 
@@ -1169,7 +1185,7 @@ namespace sockets
    bool base_socket::IsPoolEnabled() const
    {
 
-      return base_socket_composite()->IsPoolEnabled();
+      return base_socket_impl()->IsPoolEnabled();
 
    }
 
@@ -1177,7 +1193,7 @@ namespace sockets
    void base_socket::EnablePool(bool bEnable)
    {
 
-      base_socket_composite()->EnablePool(bEnable);
+      base_socket_impl()->EnablePool(bEnable);
 
    }
 
@@ -1185,7 +1201,7 @@ namespace sockets
    void base_socket::SetRetain()
    {
 
-      base_socket_composite()->SetRetain();
+      base_socket_impl()->SetRetain();
 
    }
 
@@ -1193,7 +1209,7 @@ namespace sockets
    bool base_socket::Retain()
    {
 
-      return base_socket_composite()->Retain();
+      return base_socket_impl()->Retain();
 
    }
 
@@ -1203,7 +1219,7 @@ namespace sockets
 
       information() << "Use with tcp_socket only";
 
-      base_socket_composite()->OnSocks4Connect();
+      base_socket_impl()->OnSocks4Connect();
 
    }
 
@@ -1212,7 +1228,7 @@ namespace sockets
    {
       information() << "Use with tcp_socket only";
 
-      base_socket_composite()->OnSocks4ConnectFailed();
+      base_socket_impl()->OnSocks4ConnectFailed();
 
    }
 
@@ -1220,7 +1236,7 @@ namespace sockets
    bool base_socket::OnSocks4Read()
    {
       information() << "Use with tcp_socket only";
-      return base_socket_composite()->OnSocks4Read();
+      return base_socket_impl()->OnSocks4Read();
    }
 //
 //
@@ -1243,7 +1259,7 @@ namespace sockets
    bool base_socket::Socks4()
    {
 
-      return base_socket_composite()->Socks4();
+      return base_socket_impl()->Socks4();
       //return m_bSocks4;
    }
 
@@ -1251,52 +1267,52 @@ namespace sockets
    void base_socket::SetSocks4(bool x)
    {
 
-      return base_socket_composite()->SetSocks4(x);
+      return base_socket_impl()->SetSocks4(x);
       //m_bSocks4 = x;
    }
 
 
    void base_socket::SetSocks4Host(const ::string & a)
    {
-   return base_socket_composite()->SetSocks4Host(a);
+   return base_socket_impl()->SetSocks4Host(a);
    }
 
 
    void base_socket::SetSocks4Port(::networking::port_t port)
    {
 
-      return base_socket_composite()->SetSocks4Port(port);
+      return base_socket_impl()->SetSocks4Port(port);
 
    }
 
 
    void base_socket::SetSocks4Userid(const string & x)
    {
-      return base_socket_composite()->SetSocks4Userid(x);
+      return base_socket_impl()->SetSocks4Userid(x);
    }
 
 
    ::string base_socket::GetSocks4Host()
    {
-      return base_socket_composite()->GetSocks4Host();
+      return base_socket_impl()->GetSocks4Host();
    }
 
 
    ::networking::port_t base_socket::GetSocks4Port()
    {
-      return base_socket_composite()->GetSocks4Port();
+      return base_socket_impl()->GetSocks4Port();
    }
 
 
    const string & base_socket::GetSocks4Userid()
    {
-      return base_socket_composite()->GetSocks4Userid();
+      return base_socket_impl()->GetSocks4Userid();
    }
 
    bool base_socket::prepare_for_detach()
    {
 
-      return base_socket_composite()->prepare_for_detach();
+      return base_socket_impl()->prepare_for_detach();
 
       //if (!DeleteByHandler())
       //{
@@ -1341,7 +1357,7 @@ namespace sockets
    void base_socket::OnDetached()
    {
 
-      base_socket_composite()->OnDetached();
+      base_socket_impl()->OnDetached();
 
    }
 
@@ -1349,7 +1365,7 @@ namespace sockets
    void base_socket::SetDetach(bool bDetach)
    {
 
-      base_socket_composite()->SetDetach(bDetach);
+      base_socket_impl()->SetDetach(bDetach);
 
    }
 
@@ -1357,7 +1373,7 @@ namespace sockets
    bool base_socket::IsDetach()
    {
 
-      return base_socket_composite()->IsDetach();
+      return base_socket_impl()->IsDetach();
 
    }
 
@@ -1365,7 +1381,7 @@ namespace sockets
    void base_socket::SetDetached(bool x)
    {
       
-      base_socket_composite()->SetDetached(x);
+      base_socket_impl()->SetDetached(x);
 
    }
 
@@ -1373,7 +1389,7 @@ namespace sockets
    const bool base_socket::IsDetached() const
    {
 
-      return base_socket_composite()->IsDetached();
+      return base_socket_impl()->IsDetached();
 
    }
 
@@ -1383,7 +1399,7 @@ namespace sockets
 
       //m_phandlerSlave = phandler;
 
-      base_socket_composite()->SetSlaveHandler(phandler);
+      base_socket_impl()->SetSlaveHandler(phandler);
 
    }
 
@@ -1394,7 +1410,7 @@ namespace sockets
    {
 
       //return nullptr;
-      base_socket_composite()->SetTrafficMonitor(p);
+      base_socket_impl()->SetTrafficMonitor(p);
 
    }
 
@@ -1405,7 +1421,7 @@ namespace sockets
 
       //return nullptr;
 
-      return base_socket_composite()->GetTrafficMonitor();
+      return base_socket_impl()->GetTrafficMonitor();
 
    }
 
@@ -1633,7 +1649,7 @@ namespace sockets
    bool base_socket::SetIpTOS(unsigned char tos)
    {
 
-      return base_socket_composite()->SetIpTOS(tos);
+      return base_socket_impl()->SetIpTOS(tos);
 //#if defined(IP_TOS) && defined(BSD_STYLE_SOCKETS)
 //      
 //      if (setsockopt(get_socket_id(), IPPROTO_IP, IP_TOS, (char *)&tos, sizeof(tos)) == -1)
@@ -1682,7 +1698,7 @@ namespace sockets
 //
 //#endif
 //
-      return base_socket_composite()->IpTOS();
+      return base_socket_impl()->IpTOS();
 
    }
 
@@ -1711,7 +1727,7 @@ namespace sockets
 //
 //#endif
 
-      return base_socket_composite()->SetIpTTL(ttl);
+      return base_socket_impl()->SetIpTTL(ttl);
 
    }
 
@@ -1738,7 +1754,7 @@ namespace sockets
 //
 //#endif
 
-      return base_socket_composite()->IpTTL();
+      return base_socket_impl()->IpTTL();
 
    }
 
@@ -1773,7 +1789,7 @@ namespace sockets
 //
 //#endif
 
-      return base_socket_composite()->SetIpHdrincl(x);
+      return base_socket_impl()->SetIpHdrincl(x);
 
    }
 
@@ -1783,7 +1799,7 @@ namespace sockets
    bool base_socket::SetIpRecverr(bool x)
    {
 
-      return base_socket_composite()->SetIpRecverr(x);
+      return base_socket_impl()->SetIpRecverr(x);
 
       //int optval = x ? 1 : 0;
 
@@ -1808,7 +1824,7 @@ namespace sockets
    bool base_socket::SetIpMtudiscover(bool x)
    {
 
-      return base_socket_composite()->SetIpMtudiscover(x);
+      return base_socket_impl()->SetIpMtudiscover(x);
    
       //int optval = x ? 1 : 0;
 
@@ -1833,7 +1849,7 @@ namespace sockets
    int base_socket::IpMtu()
    {
 
-      return base_socket_composite()->IpMtu();
+      return base_socket_impl()->IpMtu();
    
       //int mtu = 0;
 
@@ -1858,7 +1874,7 @@ namespace sockets
    bool base_socket::SetIpRouterAlert(bool x)
    {
 
-      return base_socket_composite()->SetIpRouterAlert(x);
+      return base_socket_impl()->SetIpRouterAlert(x);
    
       //int optval = x ? 1 : 0;
    
@@ -1881,7 +1897,7 @@ namespace sockets
    bool base_socket::SetIpMulticastTTL(int ttl)
    {
 
-      return base_socket_composite()->SetIpMulticastTTL(ttl);
+      return base_socket_impl()->SetIpMulticastTTL(ttl);
 
 //#if defined(IP_MULTICAST_TTL) && defined(BSD_STYLE_SOCKETS)
 //
@@ -1929,7 +1945,7 @@ namespace sockets
 //
 //#endif
 
-      return base_socket_composite()->IpMulticastTTL();
+      return base_socket_impl()->IpMulticastTTL();
 
    }
 
@@ -1959,7 +1975,7 @@ namespace sockets
 //      return false;
 //
 //#endif
-      return base_socket_composite()->SetMulticastLoop(x);
+      return base_socket_impl()->SetMulticastLoop(x);
 
    }
 
@@ -2114,7 +2130,7 @@ namespace sockets
 //      return false;
 //
 //#endif
-      return base_socket_composite()->SetSoReuseaddr(x);
+      return base_socket_impl()->SetSoReuseaddr(x);
 
    }
 
@@ -2144,7 +2160,7 @@ namespace sockets
 //      return false;
 //
 //#endif
-      return base_socket_composite()->SetSoKeepalive(x);
+      return base_socket_impl()->SetSoKeepalive(x);
 
    }
 
@@ -2154,7 +2170,7 @@ namespace sockets
    bool base_socket::SetSoNosigpipe(bool x)
    {
 
-      return base_socket_composite()->SetSoNosigpipe(x);
+      return base_socket_impl()->SetSoNosigpipe(x);
 
 //      int optval = x ? 1 : 0;
 //
@@ -2196,7 +2212,7 @@ namespace sockets
 //
 //#endif
 
-      return base_socket_composite()->SoAcceptconn();
+      return base_socket_impl()->SoAcceptconn();
 
    }
 
@@ -2206,7 +2222,7 @@ namespace sockets
    bool base_socket::SetSoBsdcompat(bool x)
    {
 
-      return base_socket_composite()->SetSoBsdcompat(x);
+      return base_socket_impl()->SetSoBsdcompat(x);
    
       //int optval = x ? 1 : 0;
    
@@ -2230,7 +2246,7 @@ namespace sockets
    
    bool base_socket::SetSoBindtodevice(const string & intf)
    {
-      return base_socket_composite()->SetSoBindtodevice(intf);
+      return base_socket_impl()->SetSoBindtodevice(intf);
    
       //if (setsockopt(get_socket_id(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const char *)intf, intf.get_length()) == -1)
       //{
@@ -2273,7 +2289,7 @@ namespace sockets
 //      return false;
 //
 //#endif
-      return base_socket_composite()->SetSoBroadcast(x);
+      return base_socket_impl()->SetSoBroadcast(x);
 
    }
 
@@ -2304,7 +2320,7 @@ namespace sockets
 //
 //#endif
 
-      return base_socket_composite()->SetSoDebug(x);
+      return base_socket_impl()->SetSoDebug(x);
    }
 
 
@@ -2330,7 +2346,7 @@ namespace sockets
 //
 //#endif
 
-      return base_socket_composite()->SoError();
+      return base_socket_impl()->SoError();
 
    }
 
@@ -2360,7 +2376,7 @@ namespace sockets
 //      return false;
 //
 //#endif
-      return base_socket_composite()->SetSoDontroute(x);
+      return base_socket_impl()->SetSoDontroute(x);
    }
 
 
@@ -2394,7 +2410,7 @@ namespace sockets
 //
 //#endif
 
-      return base_socket_composite()->SetSoLinger(onoff, linger);
+      return base_socket_impl()->SetSoLinger(onoff, linger);
    }
 
 
@@ -2424,7 +2440,7 @@ namespace sockets
 //
 //#endif
 
-      return base_socket_composite()->SetSoOobinline(x);
+      return base_socket_impl()->SetSoOobinline(x);
    }
 
 
@@ -2433,7 +2449,7 @@ namespace sockets
    bool base_socket::SetSoPasscred(bool x)
    {
 
-      return base_socket_composite()->SetSoPasscred(x);
+      return base_socket_impl()->SetSoPasscred(x);
       //int optval = x ? 1 : 0;
 
       //if (setsockopt(get_socket_id(), SOL_SOCKET, SO_PASSCRED, (char *)&optval, sizeof(optval)) == -1)
@@ -2478,7 +2494,7 @@ namespace sockets
    bool base_socket::SetSoPriority(int x)
    {
 
-      return base_socket_composite()->SetSoPriority(x);
+      return base_socket_impl()->SetSoPriority(x);
       
       //if (setsockopt(get_socket_id(), SOL_SOCKET, SO_PRIORITY, (char *)&x, sizeof(x)) == -1)
       //{
@@ -2520,7 +2536,7 @@ namespace sockets
 //
 //#endif
 
-      return base_socket_composite()->SetSoRcvlowat(x);
+      return base_socket_impl()->SetSoRcvlowat(x);
    }
 
 
@@ -2548,7 +2564,7 @@ namespace sockets
 //
 //#endif
 
-      return base_socket_composite()->SetSoSndlowat(x);
+      return base_socket_impl()->SetSoSndlowat(x);
    }
 
 
@@ -2632,7 +2648,7 @@ namespace sockets
 //
 //#endif
 
-      return base_socket_composite()->SetSoRcvbuf(x);
+      return base_socket_impl()->SetSoRcvbuf(x);
    }
 
 
@@ -2657,7 +2673,7 @@ namespace sockets
 //
 //#endif
 
-      return base_socket_composite()->SoRcvbuf();
+      return base_socket_impl()->SoRcvbuf();
 
    }
 
@@ -2667,7 +2683,7 @@ namespace sockets
    bool base_socket::SetSoRcvbufforce(int x)
    {
 
-      return base_socket_composite()->SetSoRcvbufforce(x);
+      return base_socket_impl()->SetSoRcvbufforce(x);
 
       //if (setsockopt(get_socket_id(), SOL_SOCKET, SO_RCVBUFFORCE, (char *)&x, sizeof(x)) == -1)
       //{
@@ -2709,7 +2725,7 @@ namespace sockets
 //
 //#endif
 
-      return base_socket_composite()->SetSoSndbuf(x);
+      return base_socket_impl()->SetSoSndbuf(x);
    }
 
 
@@ -2735,7 +2751,7 @@ namespace sockets
 //
 //#endif
 
-      return base_socket_composite()->SoSndbuf();
+      return base_socket_impl()->SoSndbuf();
 
    }
 
@@ -2745,7 +2761,7 @@ namespace sockets
    bool base_socket::SetSoSndbufforce(int x)
    {
 
-      return base_socket_composite()->SetSoSndbufforce(x);
+      return base_socket_impl()->SetSoSndbufforce(x);
 
       //if (setsockopt(get_socket_id(), SOL_SOCKET, SO_SNDBUFFORCE, (char *)&x, sizeof(x)) == -1)
       //{
@@ -2768,7 +2784,7 @@ namespace sockets
    bool base_socket::SetSoTimestamp(bool x)
    {
 
-      return base_socket_composite()->SetSoTimestamp(x);
+      return base_socket_impl()->SetSoTimestamp(x);
    
 //      int optval = x ? 1 : 0;
 //   
@@ -2809,7 +2825,7 @@ namespace sockets
 //
 //#endif
 
-      return base_socket_composite()->SoType();
+      return base_socket_impl()->SoType();
 
    }
 
@@ -2817,14 +2833,14 @@ namespace sockets
    void base_socket::Subscribe(int atom)
    {
       //socket_handler()->Subscribe(atom, this);
-      base_socket_composite()->Subscribe(atom);
+      base_socket_impl()->Subscribe(atom);
    }
 
 
    void base_socket::Unsubscribe(int atom)
    {
       //socket_handler()->Unsubscribe(atom, this);
-      base_socket_composite()->Unsubscribe(atom);
+      base_socket_impl()->Unsubscribe(atom);
    }
 
 
@@ -2841,7 +2857,7 @@ namespace sockets
    class ::time base_socket::get_last_interaction_time() const
    {
 
-      return base_socket_composite()->get_last_interaction_time();
+      return base_socket_impl()->get_last_interaction_time();
       
    }
 
@@ -2849,7 +2865,7 @@ namespace sockets
    void base_socket::set_connection_start_time()
    {
 
-      base_socket_composite()->set_connection_start_time();
+      base_socket_impl()->set_connection_start_time();
 
       //m_timeConnectionStart.Now();
 
@@ -2861,7 +2877,7 @@ namespace sockets
    void base_socket::set_connection_last_activity()
    {
 
-      base_socket_composite()->set_connection_start_time();
+      base_socket_impl()->set_connection_start_time();
       //m_timeConnectionLastActivity.Now();
 
    }
@@ -2872,7 +2888,7 @@ namespace sockets
    {
 
       //m_timeConnectionMaximum = time;
-      base_socket_composite()->set_maximum_connection_time(time);
+      base_socket_impl()->set_maximum_connection_time(time);
 
    }
 
@@ -2880,7 +2896,7 @@ namespace sockets
    void base_socket::set_start_time()
    {
 
-      base_socket_composite()->set_start_time();
+      base_socket_impl()->set_start_time();
 
       //m_timeStart.Now();
 
@@ -2893,7 +2909,7 @@ namespace sockets
    {
 
       //m_timeMaximum = time;
-      base_socket_composite()->set_maximum_time(time);
+      base_socket_impl()->set_maximum_time(time);
 
    }
 
@@ -2902,7 +2918,7 @@ namespace sockets
    {
 
       //m_estatus = error_on_connection_timeout;
-      base_socket_composite()->on_timeout();
+      base_socket_impl()->on_timeout();
 
    }
 
@@ -2910,7 +2926,7 @@ namespace sockets
    void base_socket::on_connection_timeout()
    {
 
-      base_socket_composite()->on_connection_timeout();
+      base_socket_impl()->on_connection_timeout();
 
    }
 
@@ -2918,7 +2934,7 @@ namespace sockets
    bool base_socket::has_timed_out()
    {
 
-      return base_socket_composite()->has_timed_out();
+      return base_socket_impl()->has_timed_out();
 
       //if (is_connecting())
       //{
@@ -2960,7 +2976,7 @@ namespace sockets
    void base_socket::on_read(const void * pdata, memsize n )
    {
 
-      base_socket_composite()->on_read(pdata, n);
+      base_socket_impl()->on_read(pdata, n);
       //char * buf = (char *) pdata;
 
       //if (m_pmemfileInput != nullptr)
@@ -3059,7 +3075,7 @@ namespace sockets
    void base_socket::SetLineProtocol(bool x)
    {
 
-      base_socket_composite()->SetLineProtocol(x);
+      base_socket_impl()->SetLineProtocol(x);
       //m_bLineProtocol = x;
 
    }
@@ -3069,7 +3085,7 @@ namespace sockets
    {
 
       //return m_bLineProtocol;
-      return base_socket_composite()->LineProtocol();
+      return base_socket_impl()->LineProtocol();
 
    }
 
@@ -3077,7 +3093,7 @@ namespace sockets
    string base_socket::as_string() const
    {
 
-      return base_socket_composite()->as_string();
+      return base_socket_impl()->as_string();
 
    }
 
@@ -3085,7 +3101,7 @@ namespace sockets
    void base_socket::OnRawData(char * buf, memsize len)
    {
 
-      base_socket_composite()->OnRawData(buf, len);
+      base_socket_impl()->OnRawData(buf, len);
 
       //if(m_pcallback != nullptr)
       //{
@@ -3102,7 +3118,7 @@ namespace sockets
 
       //return m_paddressRemote->get_service_number();
 
-      return base_socket_composite()->GetRemotePort();
+      return base_socket_impl()->GetRemotePort();
 
    }
 
@@ -3111,7 +3127,7 @@ namespace sockets
    {
 
       //return m_paddressRemote;
-      return base_socket_composite()->GetRemoteAddress();
+      return base_socket_impl()->GetRemoteAddress();
 
    }
 
@@ -3123,7 +3139,7 @@ namespace sockets
 
       //return 0;
 
-      return base_socket_composite()->GetLocalPort();
+      return base_socket_impl()->GetLocalPort();
 
    }
 
@@ -3134,7 +3150,7 @@ namespace sockets
       /*throw ::interface_only();
 
       return nullptr;*/
-      return base_socket_composite()->GetLocalAddress();
+      return base_socket_impl()->GetLocalAddress();
 
    }
 
@@ -3142,7 +3158,7 @@ namespace sockets
    void     base_socket::run()
    {
 
-      base_socket_composite()->run();
+      base_socket_impl()->run();
 
    }
 
@@ -3152,7 +3168,7 @@ namespace sockets
 
    //   //return ::e_status_no_work;
 
-   //   return base_socket_composite()->http_step();
+   //   return base_socket_impl()->http_step();
 
    //}
 
@@ -3161,7 +3177,7 @@ namespace sockets
    {
 
 
-      return base_socket_composite()->get_short_description();
+      return base_socket_impl()->get_short_description();
 
       //auto paddressdepartment = ::networking::address_department();
 
@@ -3172,7 +3188,7 @@ namespace sockets
 
    void base_socket::destroy_ssl_session()
    {
-      base_socket_composite()->destroy_ssl_session();
+      base_socket_impl()->destroy_ssl_session();
 
 //#ifdef BSD_STYLE_SOCKETS
 //
@@ -3195,7 +3211,7 @@ namespace sockets
 
       //synchronous_lock synchronouslock(this->synchronization());
 
-      base_socket_composite()->get_ssl_session();
+      base_socket_impl()->get_ssl_session();
 
 //#ifdef BSD_STYLE_SOCKETS
 //      if (m_psslcontext->m_pclientcontext->m_psslsession == nullptr)
@@ -3212,7 +3228,7 @@ namespace sockets
    void base_socket::write(const void * p, ::memsize s)
    {
 
-      base_socket_composite()->write(p, s);
+      base_socket_impl()->write(p, s);
 
    }
 

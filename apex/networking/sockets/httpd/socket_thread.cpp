@@ -26,7 +26,7 @@ namespace httpd
    void socket_thread::initialize_socket_thread(::sockets::base_socket* psocket)
    {
 
-      m_psocket = psocket->base_socket_composite();
+      m_psocket = psocket;
 
       ::sockets::socket_thread::initialize_socket_thread(psocket);
 

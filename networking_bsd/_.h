@@ -102,15 +102,15 @@ namespace networking_bsd
 } // namespace networking_bsd
 
 
-#define __Address(paddress) \
-   ((::networking_bsd::address *)((paddress)->m_p2))
-
-#define __Socket(psocket) \
-   ((::sockets_bsd::base_socket *)((psocket)->m_p2))
-
-#define __Handler(phandler) \
-   ((::sockets_bsd::socket_handler *)((phandler)->m_p2))
-
+//#define __Address(paddress) \
+//   ((::networking_bsd::address *)((paddress)->m_p2))
+//
+//#define __Socket(psocket) \
+//   ((::sockets_bsd::base_socket *)((psocket)->m_p2))
+//
+//#define __Handler(phandler) \
+//   ((::sockets_bsd::socket_handler *)((phandler)->m_p2))
+//
 #define __SystemNetworking(psystem) \
    ((::networking_bsd::networking *)((psystem)->m_papexsystem->networking()))
 

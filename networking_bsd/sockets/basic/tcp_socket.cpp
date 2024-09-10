@@ -538,7 +538,7 @@ m_ibuf(isize)
    bool tcp_socket::open(::networking::address* paddress, bool skip_socks)
    {
 
-      auto paddress2 = __Address(paddress);
+      ::pointer < ::networking_bsd::address > paddress2 = paddress;
 
       auto paddressBind2 = ::place(new ::networking_bsd::address());
 
@@ -712,7 +712,7 @@ m_ibuf(isize)
             set_connecting(true); // this flag will control fd_set's
 
          }
-         else if (Socks4() && __Handler(socket_handler())->Socks4TryDirect()) // retry
+         else if (Socks4() && ::pointer < sockets_bsd::socket_handler >(socket_handler())->Socks4TryDirect()) // retry
          {
             ::closesocket(s);
             return open(paddress, true);
@@ -1453,7 +1453,7 @@ m_ibuf(isize)
          bool br;
          bool bw;
          bool bx;
-         __Handler(socket_handler())->get(GetSocketId(), br, bw, bx);
+         ::pointer <sockets_bsd::socket_handler >(socket_handler())->get(GetSocketId(), br, bw, bx);
          if (m_obuf.get_size())
             set(br, true);
          else
@@ -1740,7 +1740,7 @@ m_ibuf(isize)
          bool br;
          bool bw;
          bool bx;
-         __Handler(socket_handler())->get(GetSocketId(), br, bw, bx);
+         ::pointer < sockets_bsd::socket_handler >(socket_handler())->get(GetSocketId(), br, bw, bx);
          if (m_obuf.get_size())
             set(br, true);
          else
@@ -1752,7 +1752,7 @@ m_ibuf(isize)
    void tcp_socket::OnLine(const string& str)
    {
 
-      m_ptcpsocketComposite->OnLine(str);
+      m_ptcpsocketInterface->OnLine(str);
 
    }
 
@@ -1766,7 +1766,7 @@ m_ibuf(isize)
       request[1] = 1; // command code: CONNECT
       {
          auto paddress = GetClientRemoteAddress();
-         auto paddress2 = __Address(paddress);
+         ::pointer < ::networking_bsd::address > paddress2 = paddress;
          if (paddress2->is_valid())
          {
             struct sockaddr* psockaddr = (struct sockaddr*)paddress2->sa();
@@ -1803,7 +1803,7 @@ m_ibuf(isize)
 
       warning() << "OnSocks4ConnectFailed: connection to socks4 server failed, trying direct connection";
 
-      if (!__Handler(socket_handler())->Socks4TryDirect())
+      if (!::pointer < sockets_bsd::socket_handler >(socket_handler())->Socks4TryDirect())
       {
 
          set_connecting(false);
@@ -2411,7 +2411,7 @@ m_ibuf(isize)
    void tcp_socket::InitSSLServer()
    {
 
-      m_ptcpsocketComposite->InitSSLServer();
+      m_ptcpsocketInterface->InitSSLServer();
 
       //fatal() <<"InitSSLServer: You MUST implement your own InitSSLServer method";
 
@@ -3136,7 +3136,7 @@ m_ibuf(isize)
    void tcp_socket::on_connection_timeout()
    {
 
-      //m_ptcpsocketComposite->on_connection_timeout();
+      //m_ptcpsocketInterface->on_connection_timeout();
 
       fatal() << "connect: connect timeout";
 
@@ -3192,12 +3192,12 @@ m_ibuf(isize)
    void tcp_socket::OnException()
    {
 
-      m_ptcpsocketComposite->OnException();
+      m_ptcpsocketInterface->OnException();
 
       if (is_connecting())
       {
 
-         i32 iError = __Handler(socket_handler())->m_iSelectErrno;
+         i32 iError = ::pointer < ::sockets_bsd::socket_handler >(socket_handler())->m_iSelectErrno;
 
          if (iError == ETIMEDOUT)
          {
@@ -3264,7 +3264,7 @@ m_ibuf(isize)
    i32 tcp_socket::Protocol()
    {
 
-      return m_ptcpsocketComposite->Protocol();
+      return m_ptcpsocketInterface->Protocol();
 
    }
 
@@ -3274,7 +3274,7 @@ m_ibuf(isize)
 
       //m_transfer_limit = sz;
 
-      m_ptcpsocketComposite->SetTransferLimit(sz);
+      m_ptcpsocketInterface->SetTransferLimit(sz);
 
    }
 
@@ -3282,7 +3282,7 @@ m_ibuf(isize)
    void tcp_socket::OnTransferLimit()
    {
 
-      m_ptcpsocketComposite->OnTransferLimit();
+      m_ptcpsocketInterface->OnTransferLimit();
 
    }
 

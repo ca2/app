@@ -64,11 +64,11 @@ namespace sockets_bsd
 
       //::networking::address ad(intf, port);
 
-      auto paddress2 = __Address(paddress);
+      ::pointer < ::networking_bsd::address > paddress2 = paddress;
 
       if (paddress->is_valid())
       {
-         if(__Address(paddress)->is_ip6())
+         if(paddress->is_ip6())
          {
             return Bind((in6_addr) paddress2->u.m_addr6.sin6_addr, paddress2->u.m_addr6.sin6_port, range);
          }
@@ -109,7 +109,9 @@ namespace sockets_bsd
    i32 udp_socket::Bind(::networking::address * paddress, i32 range)
    {
 
-      auto paddress2 = __Address(paddress);
+      ::pointer < ::networking_bsd::address > paddress2 = paddress;
+
+      //auto paddress2 = __Address(paddress);
 
       if (GetSocketId() == INVALID_SOCKET)
       {
@@ -177,7 +179,9 @@ namespace sockets_bsd
 
             //::networking::address ad(intf, port);
 
-      auto paddress2 = __Address(paddress);
+      ::pointer < ::networking_bsd::address > paddress2 = paddress;
+
+      //auto paddress2 = __Address(paddress);
 
 
       if (!paddress2->is_valid())
@@ -209,7 +213,9 @@ namespace sockets_bsd
    bool udp_socket::open(::networking::address * paddress)
    {
 
-      auto paddress2 = __Address(paddress);
+      ::pointer < ::networking_bsd::address > paddress2 = paddress;
+
+      //auto paddress2 = __Address(paddress);
 
       if (GetSocketId() == INVALID_SOCKET)
       {
@@ -306,7 +312,9 @@ namespace sockets_bsd
    void udp_socket::SendToBuf(::networking::address * paddress, const char *data, i32 len, i32 flags)
    {
 
-      auto paddress2 = __Address(paddress);
+      ::pointer < ::networking_bsd::address > paddress2 = paddress;
+
+      //auto paddress2 = __Address(paddress);
 
       if (GetSocketId() == INVALID_SOCKET)
       {

@@ -45,7 +45,7 @@ namespace sockets
       , m_next_trigger_id(0)
       //, m_slave(false)
    {
-      m_p2 = nullptr;
+      //m_p2 = nullptr;
       defer_create_synchronization();
       //zero(m_socks4_host);
       //m_prfds = new fd_set();

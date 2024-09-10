@@ -793,7 +793,7 @@ __declare_pair_tuple_size(::sockets::socket_map);
 #endif
 
 
-using socket_id_list = ::comparable_list < SOCKET >;
+using socket_id_list = ::comparable_list < socket_id >;
 
 
 

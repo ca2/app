@@ -13,7 +13,6 @@ namespace networking
    {
    public:
 
-      void * m_p2;
       ::string  m_strName;
       
       

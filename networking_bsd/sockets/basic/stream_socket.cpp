@@ -155,7 +155,9 @@ namespace sockets_bsd
    void stream_socket::SetCallOnConnect(bool bCallOnConnect)
    {
 
-      __Handler(m_psockethandler)->socket_id_list_modify(GetSocketId(), e_list_call_on_connect, bCallOnConnect);
+      ::pointer < ::sockets_bsd::socket_handler > phandler = m_psockethandler;
+
+      phandler->socket_id_list_modify(GetSocketId(), e_list_call_on_connect, bCallOnConnect);
 
       m_bCallOnConnect = bCallOnConnect;
 
@@ -173,7 +175,9 @@ namespace sockets_bsd
    void stream_socket::SetRetryClientConnect(bool bSetRetryClientConnect)
    {
 
-      __Handler(m_psockethandler)->socket_id_list_modify(GetSocketId(), e_list_retry_client_connect, bSetRetryClientConnect);
+      ::pointer < ::sockets_bsd::socket_handler > phandler = m_psockethandler;
+
+      phandler->socket_id_list_modify(GetSocketId(), e_list_retry_client_connect, bSetRetryClientConnect);
 
       m_bRetryClientConnect = bSetRetryClientConnect;
 

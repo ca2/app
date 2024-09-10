@@ -48,7 +48,7 @@ namespace sockets
    public:
 
 
-      void * m_p2;
+      //void * m_p2;
 
 
       friend class base_socket;

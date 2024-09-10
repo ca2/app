@@ -156,7 +156,9 @@ namespace netserver
 
                   m_pincomingsocket->set_maximum_time(0_s);
 
-                  m_psockethandlerIncoming->add(m_pincomingsocket->base_socket_composite());
+                  auto psocketInterface = m_pincomingsocket->base_socket_interface();
+
+                  m_psockethandlerIncoming->add(psocketInterface);
 
                   while (m_psockethandlerIncoming->get_count() > 0 && task_get_run())
                   {

@@ -24,7 +24,8 @@ namespace sockets
       i32                                 m_depth;
       base_socket* m_pbasesocket;
 
-      ::pointer < listen_socket_impl >    m_plistensocketimpl;
+      ::pointer < listen_socket_impl >    m_plistensocketImpl;
+      listen_socket_impl *                m_plistensocketInterface;
       bool                                m_bImpl;
       bool                                m_bListeningDetach;
       //::type_atom                         m_typeListenSocket;
@@ -47,7 +48,8 @@ namespace sockets
 
       void initialize(::particle* pparticle) override;
 
-      base_socket* base_socket_composite() override;
+      base_socket* base_socket_impl() override;
+      base_socket* base_socket_interface() override;
 
       virtual ::pointer<socket>create_attend_socket();
 

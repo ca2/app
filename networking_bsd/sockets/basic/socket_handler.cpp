@@ -55,7 +55,7 @@ namespace sockets_bsd
       , m_bSlave(false)
    {
 
-      m_p2 = this;
+      //m_p2 = this;
       defer_create_synchronization();
       zero(m_socks4_host);
       //m_prfds = new fd_set();
@@ -269,10 +269,10 @@ namespace sockets_bsd
 
       socket_pointer plookup;
 
-      if (m_socketmapAdd.lookup((::i32) __Socket(psocket)->GetSocketId(), plookup))
+      if (m_socketmapAdd.lookup((::i32)psocket->GetSocketId(), plookup))
       {
 
-         information() << "add: Invalid socket " << (i32) __Socket(psocket)->GetSocketId() << " Attempt to add socket already in add queue";
+         information() << "add: Invalid socket " << (i32)psocket->GetSocketId() << " Attempt to add socket already in add queue";
 
          //m_delete.add_tail(psocket);
          return;
@@ -296,7 +296,7 @@ namespace sockets_bsd
          if (psocket->m_timeMaximum > 0_s)
          {
 
-            socket_id_list_add(__Socket(psocket)->GetSocketId(), e_list_timeout);
+            socket_id_list_add(psocket->GetSocketId(), e_list_timeout);
 
          }
 
@@ -305,7 +305,7 @@ namespace sockets_bsd
       if (psocket->IsDetach())
       {
 
-         socket_id_list_add(__Socket(psocket)->GetSocketId(), e_list_detach);
+         socket_id_list_add(psocket->GetSocketId(), e_list_detach);
 
       }
 
@@ -345,7 +345,9 @@ namespace sockets_bsd
          if (passociation->m_psocket->m_timeMaximum > 0_s)
          {
 
-            socket_id_list_add(__Socket(passociation->m_psocket)->GetSocketId(), e_list_timeout);
+            ::pointer < ::sockets_bsd::base_socket > psocket2 = passociation->m_psocket;
+
+            socket_id_list_add(psocket2->GetSocketId(), e_list_timeout);
 
          }
 
@@ -629,14 +631,14 @@ namespace sockets_bsd
 
                warning() <<"socket_handler " << (i32)socket << " Did not find expected socket using file descriptor(4)";
 
-               socket_id_list_erase(__Socket(psocket)->GetSocketId(), e_list_call_on_connect);
+               socket_id_list_erase(psocket->GetSocketId(), e_list_call_on_connect);
 
             }
 
             if (psocket != nullptr)
             {
 
-               auto ptcpsocket = psocket.cast < tcp_socket >();
+               auto ptcpsocket = psocket.cast < sockets::tcp_socket >();
 
                if (ptcpsocket != nullptr)
                {
@@ -700,7 +702,7 @@ namespace sockets_bsd
 
                      ptcpsocket->SetCallOnConnect(false);
 
-                     socket_id_list_erase(__Socket(psocket)->GetSocketId(), e_list_call_on_connect);
+                     socket_id_list_erase(psocket->GetSocketId(), e_list_call_on_connect);
 
                   }
 
@@ -763,7 +765,7 @@ start_processing_adding:
          if (m_socketmap.has(socket))
          {
 
-            psocket->warning() << "add" << (i32)__Socket(psocket)->GetSocketId() << "Attempt to add socket already in controlled queue";
+            psocket->warning() << "add" << (i32)psocket->GetSocketId() << "Attempt to add socket already in controlled queue";
 
             m_socketmapAdd.erase(passociationAdd);
 
@@ -774,7 +776,7 @@ start_processing_adding:
          if (psocket->IsCloseAndDelete())
          {
 
-            psocket->warning() << "add " << (i32)__Socket(psocket)->GetSocketId() << " Trying to add socket with SetCloseAndDelete() true";
+            psocket->warning() << "add " << (i32)psocket->GetSocketId() << " Trying to add socket with SetCloseAndDelete() true";
 
             m_socketlist.add_tail(socket);
 
@@ -786,9 +788,9 @@ start_processing_adding:
 
          }
 
-         auto pstreamsocket = dynamic_cast < stream_socket * > (psocket.m_p);
+         auto pstreamsocket = psocket.cast < ::sockets::stream_socket >();
 
-         if (::is_set(pstreamsocket) && pstreamsocket->is_connecting()) // 'open' called before adding socket
+         if (pstreamsocket && pstreamsocket->is_connecting()) // 'open' called before adding socket
          {
 
             set(socket, true, true);
@@ -797,7 +799,7 @@ start_processing_adding:
          else
          {
 
-            auto ptcpsocket = dynamic_cast < tcp_socket * > (psocket.m_p);
+            auto ptcpsocket = psocket.cast < ::sockets::tcp_socket>();
 
             bool bWrite = ::is_set(ptcpsocket) ? ptcpsocket->GetOutputLength() != 0 || ptcpsocket->CallOnConnect() : false;
 
@@ -1025,7 +1027,7 @@ end_processing_adding:
                try
                {
 
-                  if (p->m_socketid == __Socket(p->m_psocket)->GetSocketId())
+                  if (p->m_socketid == p->m_psocket->GetSocketId())
                   {
 
                      fd_set fds;
@@ -1216,12 +1218,12 @@ end_processing_adding:
 
                   }
 
-                  if (ppairSocket->m_psocket->base_socket_composite() && ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0)
+                  if (ppairSocket->m_psocket && ppairSocket->m_psocket->m_iKeepAliveCount > 0)
                   {
 
                      //output_debug_string("ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount > 0");
 
-                     m_iMaxKeepAliveCount = maximum(m_iMaxKeepAliveCount, ppairSocket->m_psocket->base_socket_composite()->m_iKeepAliveCount);
+                     m_iMaxKeepAliveCount = maximum(m_iMaxKeepAliveCount, ppairSocket->m_psocket->m_iKeepAliveCount);
 
                   }
 
@@ -1494,7 +1496,7 @@ end_processing_adding:
             if (ppairSocket.is_ok() && ::is_set(ppairSocket->m_psocket))
             {
 
-               auto ptcpsocket = ppairSocket->m_psocket.cast < tcp_socket >();
+               auto ptcpsocket = ppairSocket->m_psocket.cast < ::sockets::tcp_socket >();
 
                if (::is_set(ptcpsocket))
                {
@@ -1585,12 +1587,12 @@ end_processing_adding:
             if (ppairSocket.is_ok() && ::is_set(ppairSocket->m_psocket))
             {
 
-               auto psocket = ppairSocket->m_psocket.m_p;
+               auto psocket = ppairSocket->m_psocket;
 
                if (psocket->IsCloseAndDelete())
                {
 
-                  auto ptcpsocket = dynamic_cast <tcp_socket*> (psocket);
+                  auto ptcpsocket = psocket.cast < ::sockets::tcp_socket >();
 
                   // new graceful ptcpsocket - flush and close timeout 5s
                   if (::is_set(ptcpsocket) && psocket->IsConnected() && ptcpsocket->GetFlushBeforeClose() &&
@@ -1657,7 +1659,7 @@ end_processing_adding:
 
                      psocketmap->set_at(ptcpsocket->GetSocketId(), ptcpsocket);
 
-                     m_socketlistErase.add_tail(ptcpsocket->m_socketid);
+                     m_socketlistErase.add_tail((::socket_id &&) ptcpsocket->GetSocketId());
 
                   }
                   else
@@ -1702,10 +1704,10 @@ end_processing_adding:
                      //   continue;
 
                      //}
-                     else if(__Socket(psocket)->GetSocketId() != INVALID_SOCKET)
+                     else if(psocket->GetSocketId() != INVALID_SOCKET)
                      {
 
-                        set(__Socket(psocket)->GetSocketId(), false, false, false);
+                        set(psocket->GetSocketId(), false, false, false);
 
                         //information() << "close() before OnDelete\n");
 
@@ -2449,7 +2451,7 @@ end_processing_adding:
       if (m_trigger_src.plookup(atom))
       {
 
-         auto psocketDst2 = __Socket(psocketDst);
+         ::pointer < ::sockets_bsd::base_socket > psocketDst2 = psocketDst;
 
          if (m_trigger_dst[atom].plookup(psocketDst2))
          {
@@ -2478,7 +2480,7 @@ end_processing_adding:
       if (m_trigger_src.plookup(atom))
       {
 
-         auto psocketDst2 = __Socket(psocketDst);
+         ::pointer < ::sockets_bsd::base_socket > psocketDst2 = psocketDst;
 
          if (m_trigger_dst[atom].plookup(psocketDst2))
          {

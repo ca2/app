@@ -35,10 +35,21 @@ memory_container::memory_container(memory_base & memory)
 }
 
 
-memory_container::memory_container(memory_base * pmemory)
+memory_container::memory_container(const ::pointer < ::memory_base > & pmemory) :
+   m_pmemory(pmemory)
 {
 
-   m_pmemory = pmemory;
+   //m_pmemory = pmemory;
+   m_pbyte = m_pmemory->data();
+   //m_memsize = m_pmemory->size();
+
+}
+
+memory_container::memory_container(::pointer < ::memory_base >&& pmemory) :
+   m_pmemory(::transfer(pmemory))
+{
+
+   //m_pmemory = pmemory;
    m_pbyte = m_pmemory->data();
    //m_memsize = m_pmemory->size();
 

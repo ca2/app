@@ -13,7 +13,8 @@ namespace sockets
       //base_socket(h),
       //socket(h),
       m_bListeningDetach(false),
-      m_depth(0)
+      m_depth(0),
+      m_plistensocketInterface(nullptr)
       //, m_bDetach(false)
    {
       m_bImpl = false;
@@ -326,6 +327,9 @@ namespace sockets
    /** OnRead on a listen_socket_impl receives an incoming connection. */
    void listen_socket_impl::OnRead()
    {
+
+      m_plistensocketImpl->OnRead();
+
       //      char sz[sizeof(sockaddr_in6)];
       //      struct sockaddr * psa = (sockaddr *)sz;
       //      socklen_t sa_len = sizeof(sz);
@@ -457,13 +461,13 @@ namespace sockets
 
       socket::initialize(pparticle);
 
-      __construct(m_plistensocketimpl);
+      __construct(m_plistensocketImpl);
 
-      m_p2 = m_plistensocketimpl->m_p2;
+      //m_p2 = m_plistensocketImpl->m_p2;
 
-      m_plistensocketimpl->m_plistensocketimpl = this;
+      m_plistensocketImpl->m_plistensocketInterface = this;
 
-      m_plistensocketimpl->m_bImpl = true;
+      m_plistensocketImpl->m_bImpl = true;
 
    }
 
@@ -475,10 +479,18 @@ namespace sockets
    }
 
 
-   base_socket* listen_socket_impl::base_socket_composite()
+   base_socket* listen_socket_impl::base_socket_impl()
    {
 
-      return m_plistensocketimpl;
+      return m_plistensocketImpl;
+
+   }
+
+
+   base_socket* listen_socket_impl::base_socket_interface()
+   {
+
+      return m_plistensocketInterface;
 
    }
 
@@ -505,7 +517,7 @@ namespace sockets
    void listen_socket_impl::set_ssl_catalog(const ::string& strCat)
    {
 
-      return m_plistensocketimpl->set_ssl_catalog(strCat);
+      return m_plistensocketInterface->set_ssl_catalog(strCat);
 
    }
 
@@ -513,7 +525,7 @@ namespace sockets
    void listen_socket_impl::set_ssl_cipher_list(const ::string& strCipherList)
    {
 
-      return m_plistensocketimpl->set_ssl_cipher_list(strCipherList);
+      return m_plistensocketInterface->set_ssl_cipher_list(strCipherList);
 
    }
 

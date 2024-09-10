@@ -32,7 +32,8 @@ public:
    template < primitive_payload PAYLOAD >
    memory_container(PAYLOAD & payload);
    memory_container(memory_base & memory);
-   memory_container(memory_base * pmemory);
+   memory_container(const ::pointer < memory_base > & pmemory);
+   memory_container(::pointer < memory_base >&& pmemory);
    template < typename MEMORY>
    memory_container(const ::pointer<MEMORY> pmemory, ::file::e_open eopen = e_null) : memory_container((MEMORY*)pmemory.get(), eopen) {}
    virtual ~memory_container();

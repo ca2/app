@@ -20,7 +20,7 @@ namespace sockets
    {
    public:
 
-      void * m_p2;
+      //void * m_p2;
       i32      m_iKeepAliveCount = 0;
 
       
@@ -202,8 +202,10 @@ namespace sockets
       virtual void defer_toggle_preferred_address_type();
 
 
-      virtual base_socket * base_socket_composite();
-      virtual const base_socket * base_socket_composite() const;
+      virtual base_socket * base_socket_impl();
+      virtual const base_socket * base_socket_impl() const;
+      virtual base_socket* base_socket_interface();
+      virtual const base_socket* base_socket_interface() const;
 
       virtual ::networking::networking * networking();
       /** base_socket class instantiation method. Used when a "non-standard" constructor

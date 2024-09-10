@@ -30,7 +30,6 @@ namespace networking
 
    address::address()
    {
-      m_p2 = nullptr;
 //
 //#ifdef BSD_STYLE_SOCKETS
 //      ::zero(this, sizeof(u.m_sa));

@@ -7,8 +7,7 @@
 #include "acme/filesystem/file/status.h"
 
 
-memory_file::memory_file() :
-   memory_container(new class ::memory ())
+memory_file::memory_file()
 {
 
    m_position = 0;
@@ -18,8 +17,7 @@ memory_file::memory_file() :
 }
 
 
-memory_file::memory_file(::file::e_open eopen) :
-   memory_container(new class ::memory())
+memory_file::memory_file(::file::e_open eopen)
 {
 
    m_eopen = eopen;

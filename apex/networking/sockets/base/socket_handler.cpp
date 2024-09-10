@@ -38,7 +38,7 @@ namespace sockets
    base_socket_handler::base_socket_handler() 
    {
 
-      m_p2 = nullptr;
+      //m_p2 = nullptr;
 
       //m_plogger = plogger;
 

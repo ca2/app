@@ -53,7 +53,8 @@ namespace sockets
    /*   array < ssl_ticket_key >   m_ticketkeya;
 */
 
-      ::pointer<tcp_socket>         m_ptcpsocketComposite;
+      ::pointer<tcp_socket>         m_ptcpsocketImpl;
+      tcp_socket *                  m_ptcpsocketInterface;
       bool                          m_bImpl;
       //static bool s_bReuseSession; // Default psystem Wide Setting
 
@@ -171,9 +172,11 @@ namespace sockets
       void initialize(::particle * pparticle) override;
 
 
-      base_socket * base_socket_composite() override;
-      const base_socket * base_socket_composite() const override;
+      base_socket * base_socket_impl() override;
+      const base_socket * base_socket_impl() const override;
 
+      base_socket* base_socket_interface() override;
+      const base_socket* base_socket_interface() const override;
 
       //using ::sockets::stream_socket::open;
       virtual bool open(::networking::address * address, bool skip_socks = false);

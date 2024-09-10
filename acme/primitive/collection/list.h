@@ -377,8 +377,8 @@ public:
    // add before head or after tail
    iterator add_head(ARG_TYPE newElement);
    iterator add_tail(ARG_TYPE newElement);
-   iterator add_head(TYPE && newElement);
-   iterator add_tail(TYPE && newElement);
+   iterator transfer_head(TYPE && newElement);
+   iterator transfer_tail(TYPE && newElement);
 
    void push_front(ARG_TYPE newElement);
    void add(ARG_TYPE newElement);
@@ -1881,7 +1881,7 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::add_tail(ARG_TYPE 
 }
 
 template<class TYPE, class ARG_TYPE>
-typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::add_head(TYPE && newElement)
+typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::transfer_head(TYPE && newElement)
 {
 
    ASSERT_VALID(this);
@@ -1917,7 +1917,7 @@ typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::add_head(TYPE && n
 
 
 template<class TYPE, class ARG_TYPE>
-typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::add_tail(TYPE && newElement)
+typename list<TYPE, ARG_TYPE>::iterator list<TYPE, ARG_TYPE>::transfer_tail(TYPE && newElement)
 {
 
    ASSERT_VALID(this);

@@ -1111,7 +1111,7 @@ namespace networking_bsd
                while (task_get_run())
                {
 
-                  synchronouslock.lock();
+                  synchronouslock._lock();
 
                   if (m_reversecacheaRequest.has_elements())
                   {
@@ -1434,7 +1434,7 @@ namespace networking_bsd
 
       string str;
 
-      auto paddress2 = (::networking_bsd::address *) paddress->m_p2;
+      auto paddress2 =  paddress->cast <::networking_bsd::address>();
 
       if (paddress2->u.m_sa.sa_family == AF_INET)
       {

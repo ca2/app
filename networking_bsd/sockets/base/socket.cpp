@@ -104,7 +104,7 @@ namespace sockets_bsd
       //,m_event(h.get_())
 //#endif
    {
-      m_p2 = this;
+      //m_p2 = this;
 #ifdef WINRT_SOCKETS
       m_bErrorReading = false;
       m_bErrorWriting = false;
@@ -245,10 +245,10 @@ namespace sockets_bsd
    void base_socket::OnDelete()
    {
 
-      if (base_socket_composite())
+      if (base_socket_interface())
       {
 
-         base_socket_composite()->OnDelete();
+         base_socket_interface()->OnDelete();
 
       }
 
@@ -258,7 +258,7 @@ namespace sockets_bsd
    void base_socket::OnConnect()
    {
 
-      base_socket_composite()->OnConnect();
+      base_socket_interface()->OnConnect();
 
    }
 
@@ -266,7 +266,7 @@ namespace sockets_bsd
    void base_socket::OnAccept()
    {
 
-      base_socket_composite()->OnAccept();
+      base_socket_interface()->OnAccept();
 
    }
 
@@ -408,7 +408,9 @@ namespace sockets_bsd
          if(socket_handler())
          {
 
-            __Handler(socket_handler())->socket_id_list_modify(m_socketid, e_list_close, bCloseAndDelete);
+            ::pointer < ::sockets_bsd::socket_handler > phandler = socket_handler();
+
+            phandler->socket_id_list_modify(m_socketid, e_list_close, bCloseAndDelete);
 
          }
 
@@ -419,7 +421,7 @@ namespace sockets_bsd
 
          }
 
-         if (base_socket_composite()->payload("this_is_a_http_post_socket").is_true())
+         if (base_socket_interface()->payload("this_is_a_http_post_socket").is_true())
          {
 
             output_debug_string("p(2)");
@@ -621,8 +623,10 @@ namespace sockets_bsd
 
    void base_socket::Set(bool bRead, bool bWrite, bool bException)
    {
+
+      ::pointer < sockets_bsd::socket_handler > phandler = this->socket_handler();
       
-      __Handler(socket_handler())->set(m_socketid, bRead, bWrite, bException);
+      phandler->set(m_socketid, bRead, bWrite, bException);
 
    }
 
@@ -820,7 +824,7 @@ namespace sockets_bsd
    void base_socket::OnSSLConnect()
    {
 
-      base_socket_composite()->OnSSLConnect();
+      base_socket_interface()->OnSSLConnect();
 
    }
 
@@ -828,7 +832,7 @@ namespace sockets_bsd
    void base_socket::OnSSLAccept()
    {
 
-      base_socket_composite()->OnSSLAccept();
+      base_socket_interface()->OnSSLAccept();
 
    }
 
@@ -890,7 +894,7 @@ namespace sockets_bsd
    void base_socket::CopyConnection(::sockets::base_socket * psocket)
    {
 
-      auto psocket2 = __Socket(psocket);
+      ::pointer < ::sockets_bsd::base_socket > psocket2 = psocket;
 
 #ifdef BSD_STYLE_SOCKETS
       m_psslcontext = psocket2->m_psslcontext;
@@ -1152,7 +1156,7 @@ namespace sockets_bsd
    void base_socket::OnDetached()
    {
 
-      //base_socket_composite()->OnDetached();
+      //base_socket_interface()->OnDetached();
 
    }
 
@@ -2687,10 +2691,10 @@ bool base_socket::SetSoNosigpipe(bool x)
 
       //}
 
-      //if (base_socket_composite() && base_socket_composite()->m_iKeepAliveCount > 0)
+      //if (base_socket_interface() && base_socket_interface()->m_iKeepAliveCount > 0)
       //{
 
-      //   output_debug_string("base_socket_composite()->m_iKeepAliveCount > 0");
+      //   output_debug_string("base_socket_interface()->m_iKeepAliveCount > 0");
 
       //}
 
@@ -2814,7 +2818,7 @@ bool base_socket::SetSoNosigpipe(bool x)
 
       }
 
-      base_socket_composite()->OnRawData(buf, len);
+      base_socket_interface()->OnRawData(buf, len);
 
    }
 

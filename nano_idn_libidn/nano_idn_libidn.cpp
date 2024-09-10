@@ -12,7 +12,7 @@
 // apt install libidn11-dev
 // dnf install libidn-devel
 #include <idna.h>
-#elif defined(FREEBSD) || defined(OPENBSD)
+#elif defined(__BSD__)
 // apt install libidn11-dev
 // dnf install libidn-devel
 #include <idna.h>

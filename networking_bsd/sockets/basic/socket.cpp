@@ -13,12 +13,12 @@
 ////#include <ctype.h>
 
 
-#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(LINUX) || defined(__BSD__)
 #undef USE_MISC
 #include <unistd.h>
 #endif
 
-#if defined(__APPLE__) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(__APPLE__) || defined(__BSD__)
 #include <netdb.h>
 #endif
 

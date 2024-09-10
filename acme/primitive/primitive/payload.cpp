@@ -5830,11 +5830,11 @@ property & payload::get_property(const ::atom & atom)
    //case e_type_property:
    //   return m_pproperty->at(i);
    default:
-      //if(i == 0)
-      //{
-      //   return this;
-      //}
-      //else
+      if(i == 0)
+      {
+         return *this;
+      }
+      else
       {
 
          throw ::exception(error_index_out_of_bounds, "index out of bounds");

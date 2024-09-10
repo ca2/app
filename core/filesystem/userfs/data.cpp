@@ -577,7 +577,12 @@ namespace userfs
       m_pusercontroller->on_update_data(this, ptopic, context);
 
    }
-
+::user::document *data:: get_document()
+{
+ 
+   return m_pusercontroller.cast <::user::document>();
+   
+}
 
    void data::browse(::pointer<::file::item>pitem, const ::action_context & context)
    {
@@ -599,7 +604,7 @@ namespace userfs
 
       }
 
-      fork([this, pitem, context]()
+      get_document()->m_impacta.first()->post_procedure([this, pitem, context]()
       {
 
          __browse(pitem, context);

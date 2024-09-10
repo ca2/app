@@ -4359,6 +4359,24 @@ namespace user
 
       }
 
+      auto children = synchronized_get_children();
+
+      for (auto & pinteraction : children)
+      {
+
+	 try
+	 {
+
+	    pinteraction->destroy_window();
+
+	 }
+	 catch (...)
+	 {
+
+	 }
+
+      }
+
       ::user::interaction * puserinteractionParent = m_puserinteractionParent;
 
       if (puserinteractionParent != nullptr)
@@ -4412,6 +4430,8 @@ namespace user
             try
             {
 
+               printf_line("About to erase a %s instance from an aura::application from thread %s!!", typeid(*this).name(), task_get_name().c_str());
+
                auto papp = get_app()->m_pauraapplication;
 
                papp->erase_user_interaction(
@@ -4423,24 +4443,24 @@ namespace user
 
             }
 
-            if (get_app()->get_session() != nullptr)
-            {
-
-               try
-               {
-
-                  auto papp = get_app()->m_pauraapplication;
-
-                  papp->erase_user_interaction(
-                     this); // guess this may be a frame, it doesn't hurt to erase if this is not there
-
-               }
-               catch (...)
-               {
-
-               }
-
-            }
+//            if (get_app()->get_session() != nullptr)
+//            {
+//
+//               try
+//               {
+//
+//                  auto papp = get_app()->m_pauraapplication;
+//
+//                  papp->erase_user_interaction(
+//                     this); // guess this may be a frame, it doesn't hurt to erase if this is not there
+//
+//               }
+//               catch (...)
+//               {
+//
+//               }
+//
+//            }
 
          }
 
@@ -4463,58 +4483,6 @@ namespace user
       //task_erase_all();
 
 
-      //_synchronous_lock synchronouslock(mutex_children());
-      auto children = synchronized_get_children();
-
-      //if (m_puserinteractionpointeraChild)
-      {
-
-         //         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-
-           //       for (i32 i = 0; i < puserinteractionpointeraChild->interaction_count(); i++)
-         for (auto & pinteraction : children)
-         {
-
-            //auto pinteraction = puserinteractionpointeraChild->interaction_at(i);
-
-            //auto type = ::type(this);
-
-            if (type.name().contains("auraclick::impact"))
-            {
-
-               informationf("auraclick::impact");
-
-            }
-
-            //synchronouslock.unlock();
-
-            try
-            {
-
-               pinteraction->destroy_window();
-
-            }
-            catch (...)
-            {
-
-            }
-
-            //           synchronouslock.lock();
-           //
-                       //try
-                       //{
-
-                       //   pinteraction->destroy();
-
-                       //}
-                       //catch (...)
-                       //{
-
-                       //}
-
-         }
-
-      }
 
       //m_pdescriptor.release();
 
@@ -6783,7 +6751,7 @@ namespace user
                   if (!m_bOnDraw)
                   {
 
-                     information() << "_000OnDraw exit on !m_bOnDraw";
+                     //information() << "_000OnDraw exit on !m_bOnDraw";
 
                   }
                   else

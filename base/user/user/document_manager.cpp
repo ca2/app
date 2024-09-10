@@ -9,9 +9,9 @@
 #include "aura/user/user/frame.h"
 
 
-#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
-#include <stdio.h>
-#endif
+//#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
+//#include <stdio.h>
+//#endif
 
 
 
@@ -69,11 +69,11 @@ namespace user
    document_manager::document_manager()
    {
 
-      printf("core::user::document_manager::document_manager\n");
+      print_line("core::user::document_manager::document_manager");
 
       defer_create_synchronization();
 
-      printf("core::user::document_manager::document_manager end\n");
+      print_line("core::user::document_manager::document_manager end");
 
    }
 

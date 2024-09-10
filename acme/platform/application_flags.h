@@ -28,7 +28,7 @@ struct CLASS_DECL_ACME APPLICATION_FLAGS // : public ::acme::reference
    ::logic::boolean                       m_bInitializeDataCentral;
 #ifdef WINDOWS_DESKTOP
    ::logic::boolean                       m_bGdiplus;
-#elif defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+#elif defined(LINUX) || defined(__BSD__)
    ::logic::boolean                       m_bGtkApp;
 #endif
    ::logic::boolean                       m_bShowApplicationInformation;

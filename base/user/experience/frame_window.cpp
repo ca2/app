@@ -844,7 +844,9 @@ namespace experience
    void frame_window::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == ::id_click && m_pframe != nullptr)
+      if (ptopic->m_atom == ::id_click && m_pframe != nullptr
+          && m_pframe
+          && m_pframe->get_control_box() != nullptr)
       {
 
          auto atom = ptopic->user_element_id();

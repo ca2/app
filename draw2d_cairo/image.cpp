@@ -147,7 +147,11 @@ namespace draw2d_cairo
 
       i32 iScan = iGoodStride;
 
+#ifdef MORE_LOG
+
       information() << "draw2d_cairo::image::image::create going to create_bitmap size,iScan : " << size << ", " << iScan;
+
+#endif
 
       pbitmap->create_bitmap(nullptr, size, (void**)&pimage32Raw, &iScan);
       //pbitmap->create_bitmap(nullptr, size, nullptr, &iScan);

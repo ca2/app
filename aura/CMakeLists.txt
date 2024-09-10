@@ -149,8 +149,8 @@ list(APPEND library_source
         #graphics/image/_image.h
         graphics/image/_.cpp
         graphics/image/_image_impl.h
-        graphics/image/image_context.cpp
-        graphics/image/image_context.h
+        graphics/image/context.cpp
+        graphics/image/context.h
         graphics/image/cursor.cpp
         graphics/image/cursor.h
         graphics/image/icon.cpp
@@ -165,6 +165,10 @@ list(APPEND library_source
         graphics/image/drawing.h
         graphics/image/dynamic.cpp
         graphics/image/dynamic.h
+   graphics/image/save_options.h
+   graphics/image/load_options.h
+   graphics/image/_constant.h
+   graphics/image/save_options.cpp
         graphics/image/extension.cpp
         graphics/image/extension.h
         graphics/image/fastblur.cpp
@@ -792,11 +796,7 @@ list(APPEND static_library_references ${library_references})
 list(TRANSFORM static_library_references PREPEND static_)
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source}
-   graphics/image/save_options.h
-   graphics/image/load_options.h
-   graphics/image/_constant.h
-   graphics/image/save_options.cpp)
+add_library(${PROJECT_NAME} SHARED ${library_source})
 add_library(static_${PROJECT_NAME} STATIC ${library_source})
 
 
@@ -823,7 +823,7 @@ if (MSVC)
     target_link_options(aura PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/aura.lib")
     target_link_options(aura PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/aura.def")
     target_link_libraries(aura PRIVATE acme apex aqua zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
-elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+elseif (${LINUX} OR ${__BSD__})
 
     target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
     #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)

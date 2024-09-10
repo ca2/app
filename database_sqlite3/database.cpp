@@ -501,8 +501,6 @@ namespace sqlite
       try
       {
 
-         auto pcontext = get_context();
-
          file()->erase(m_strName);
 
       }

@@ -1493,15 +1493,13 @@ namespace filemanager
 
       pfilemanagerdata->m_emode = ::userfs::e_mode_saving;
 
-      auto pfilemanagerdataFilemanager = this;
-
       {
 
          auto pextendedtopic = create_topic(id_topic_start);
 
-         pextendedtopic->payload(id_document) = pfilemanagerdataFilemanager;
+         pextendedtopic->payload(id_document) = this;
 
-         pfilemanagerdataFilemanager->update_all_impacts(pextendedtopic);
+         update_all_impacts(pextendedtopic);
 
       }
 
@@ -1509,9 +1507,9 @@ namespace filemanager
 
          auto pextendedtopic = create_topic(id_create_bars);
 
-         pextendedtopic->payload(id_document) = pfilemanagerdataFilemanager;
+         pextendedtopic->payload(id_document) = this;
 
-         pfilemanagerdataFilemanager->update_all_impacts(pextendedtopic);
+         update_all_impacts(pextendedtopic);
 
       }
 

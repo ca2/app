@@ -4568,6 +4568,20 @@ namespace apex
 
    //}
 
+   networking::networking* system::networking()
+   {
+
+      if(!m_pnetworking)
+      {
+
+         initialize_networking();
+
+      }
+
+      return m_pnetworking;
+
+   }
+
 
    void system::on_allocation_error(const ::string & str, ::object * pparticle)
    {

@@ -2714,7 +2714,7 @@ if(${__BSD__})
 
 endif()
 
-if (${LINUX} OR ${FREEBSD} OR ${NETBSD} OR ${OPENBSD})
+if (${LINUX} OR ${__BSD__} OR ${NETBSD} OR ${OPENBSD})
 
     list(APPEND library_source
             operating_system/posix/calculate_edesktop.cpp
@@ -2724,7 +2724,7 @@ endif ()
 
 
 
-if (${LINUX} OR ${FREEBSD} OR ${NETBSD} OR ${OPENBSD} OR ${APPLE} OR ${SOLARIS})
+if (${LINUX} OR ${LINUX} OR ${__BSD__} OR ${APPLE} OR ${SOLARIS})
 
 
     list(APPEND library_source
@@ -2755,7 +2755,7 @@ if (${LINUX} OR ${FREEBSD} OR ${NETBSD} OR ${OPENBSD} OR ${APPLE} OR ${SOLARIS})
 endif ()
 
 
-if (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+if (${LINUX} OR ${__BSD__})
 
 
     list(APPEND library_source
@@ -2767,7 +2767,7 @@ if (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 endif ()
 
 
-if (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+if (${LINUX} OR ${__BSD__})
 
 
     list(APPEND library_source
@@ -2808,7 +2808,7 @@ if (MSVC)
     target_link_libraries(${PROJECT_NAME} PRIVATE archive zlib dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32.lib)
 
 
-elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+elseif (${LINUX} OR ${__BSD__})
 
     if (NOT ${SUSE})
 

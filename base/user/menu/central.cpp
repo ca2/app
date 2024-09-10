@@ -56,7 +56,7 @@ namespace user
 
          strImage = pchild->attribute("img");
 
-         auto pimagecontext = image();
+         //auto pimagecontext = image();
 
          auto pimage = image()->get_image(strImage);
 

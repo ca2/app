@@ -327,7 +327,9 @@ namespace user
 
       }
 
-      for(auto pinteraction : proper_children())
+      auto children = synchronized_get_children();
+
+      for(auto pinteraction : children)
       {
 
          if(pinteraction->m_econtroltype == e_control_type_edit  || pinteraction->m_econtroltype == e_control_type_edit_plain_text)

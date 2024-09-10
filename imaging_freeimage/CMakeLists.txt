@@ -60,7 +60,7 @@ if (MSVC)
     target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura freeimage)
 
 
-elseif (${FREEBSD})
+elseif (${__BSD__})
 
 
     #pkg_check_modules(PKGCONFIG librsvg-2.0 freeimage)
@@ -83,7 +83,7 @@ elseif (${FREEBSD})
     message(STATUS "(E) PKGCONFIG_LIBRARIES is ${PKGCONFIG_LIBRARIES}")
 
 
-elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+elseif (${LINUX} OR ${__BSD__})
 
 
     #if(USE_PKGCONFIG)

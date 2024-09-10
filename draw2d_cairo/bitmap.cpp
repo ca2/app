@@ -140,14 +140,27 @@ namespace draw2d_cairo
       //try
       //{
 
+#ifdef MORE_LOG
+
       informationf("bitmap::create_bitmap");
 
+#endif
+
          _synchronous_lock ml(::draw2d_cairo::mutex());
+
+#ifdef MORE_LOG
+
          informationf("bitmap::create_bitmap (1)");
+
+#endif
 
          destroy();
 
+#ifdef MORE_LOG
+
          informationf("bitmap::create_bitmap (2)");
+
+#endif
 
          ::i32 iScanWidth = -1;
 
@@ -178,7 +191,11 @@ namespace draw2d_cairo
 
          ::i32 iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, iScanWidth);
 
+#ifdef MORE_LOG
+
          informationf("draw2d_cairo::bitmap::create_bitmap cairo stride (andWidth): %d(%d)", iStride, iScanWidth);
+
+#endif
 
 #if MEMDLEAK
 
@@ -276,8 +293,11 @@ namespace draw2d_cairo
 
          m_size = size;
 
+#ifdef MORE_LOG
 
          informationf("draw2d_cairo::bitmap::create_bitmap OK");
+
+#endif
          //return true;
 
       //}

@@ -1447,7 +1447,7 @@ if (MSVC)
     target_link_libraries(${PROJECT_NAME} PRIVATE zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32 ${library_references})
 
 
-elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+elseif (${LINUX} OR ${__BSD__})
 
 
     target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
@@ -1466,6 +1466,8 @@ elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
     #target_link_options(${PROJECT_NAME} PRIVATE "-Wl,-rpath=\$ORIGIN")
     if (${OPENBSD})
+        list(APPEND this_system_libraries pthread z)
+    elseif (${NETBSD})
         list(APPEND this_system_libraries pthread z)
     elseif (${FREEBSD})
         list(APPEND this_system_libraries dl pthread z)

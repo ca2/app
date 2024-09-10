@@ -54,14 +54,14 @@ namespace image
       ::pointer<image_source_interface>  m_pimagesource;
 
 
-      ::image::image_source() :
+      image_source() :
          m_esubimage(e_sub_image_entire)
       {
 
       }
 
 
-      ::image::image_source(const ::image::image_source & imagesource) :
+      image_source(const ::image::image_source & imagesource) :
          m_esubimage(imagesource.m_esubimage),
          m_rectangleSubImage(imagesource.m_rectangleSubImage),
          m_pimagesource(imagesource.m_pimagesource)
@@ -70,7 +70,7 @@ namespace image
       }
 
 
-      ::image::image_source(::image::image_source && imagesource) :
+      image_source(::image::image_source && imagesource) :
          m_esubimage(imagesource.m_esubimage),
          m_rectangleSubImage(::transfer(imagesource.m_rectangleSubImage)),
          m_pimagesource(::transfer(imagesource.m_pimagesource))
@@ -80,7 +80,7 @@ namespace image
       }
 
 
-      ::image::image_source(image_source_interface * pimagesource) :
+      image_source(image_source_interface * pimagesource) :
          m_esubimage(e_sub_image_entire),
          m_pimagesource(pimagesource)
       {
@@ -89,7 +89,7 @@ namespace image
       }
 
 
-      ::image::image_source(image_source_interface * pimagesource, const ::rectangle_f64 & rectangleSubImage, enum_sub_image esubimage = e_sub_image_coordinates) :
+      image_source(image_source_interface * pimagesource, const ::rectangle_f64 & rectangleSubImage, enum_sub_image esubimage = e_sub_image_coordinates) :
          m_esubimage(esubimage),
          m_pimagesource(pimagesource),
          m_rectangleSubImage(rectangleSubImage)

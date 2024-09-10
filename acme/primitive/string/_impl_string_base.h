@@ -2444,8 +2444,6 @@ template < typename ITERATOR_TYPE >
 void string_base < ITERATOR_TYPE >::fork_string(strsize characterCount)
 {
 
-   //auto pCur = this->NATURAL_POINTER::metadata();
-
    auto pNew = this->fork_meta_data(characterCount);
 
    this->m_begin = pNew->begin();

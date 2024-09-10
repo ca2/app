@@ -82,9 +82,9 @@ namespace filemanager
 
          initialize_split_layout();
 
-         path_impact * ppathview = create_pane_impact < path_impact >(0);
+         auto ppathview = create_pane_impact < path_impact >(0);
 
-         if (ppathview == nullptr)
+         if (!ppathview)
          {
 
             output_error_message("Could not create filemanager path impact");
@@ -100,9 +100,9 @@ namespace filemanager
       }
 
 
-      main_impact * pmainview = create_pane_impact < main_impact >(bPathImpact ? 1 : 0);
+      auto pmainview = create_pane_impact < main_impact >(bPathImpact ? 1 : 0);
 
-      if (pmainview == nullptr)
+      if (!pmainview)
       {
 
          output_error_message("Could not create file list ::user::impact");

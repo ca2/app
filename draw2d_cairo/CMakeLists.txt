@@ -72,7 +72,7 @@ if (MSVC)
     target_link_libraries(draw2d_cairo PRIVATE acme)
 
 
-elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+elseif(${LINUX} OR ${__BSD__})
 
 
     #if(USE_PKGCONFIG)

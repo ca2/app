@@ -25,6 +25,7 @@
 CLASS_DECL_ACME void initialize_nano_http(::factory::factory * pfactory);
 CLASS_DECL_ACME void initialize_nano_user(::factory::factory * pfactory);
 
+extern bool g_bWindowingOutputDebugString;
 
 void IDENTIFIER_PREFIX_OPERATING_SYSTEM(_factory)(::factory::factory * pfactory);
 
@@ -712,6 +713,15 @@ namespace platform
          initialize(m_psystem);
 
          m_psystem->on_initialize_particle();
+
+	 auto strWindowingDebug = get_argument_begins_eat("--windowing-debug=");
+
+	 if(strWindowingDebug.case_insensitive_equals("true")
+|| strWindowingDebug == "1"
+|| strWindowingDebug.case_insensitive_equals("yes"))
+{
+g_bWindowingOutputDebugString = true;
+}
 
       }
 

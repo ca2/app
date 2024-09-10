@@ -9,7 +9,7 @@ namespace image
 {
 
 
-   class CLASS_DECL_AURA ::image::image_frame :
+   class CLASS_DECL_AURA image_frame :
       virtual public particle
    {
    public:

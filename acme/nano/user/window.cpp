@@ -76,9 +76,9 @@ void window::on_initialize_particle()
    
    ::object::on_initialize_particle();
    
-   __construct(m_pimplementation);
+   __construct(m_pnanouserwindowimplementation);
    
-   m_pimplementation->m_pinterface = this;
+   m_pnanouserwindowimplementation->m_pinterface = this;
    
    system()->m_pnano->user()->m_nanowindowa.add(this);
    
@@ -132,7 +132,7 @@ void window::draw_children(::nano::user::device * pnanodevice)
 void window::create()
 {
    
-   m_pimplementation->create();
+   m_pnanouserwindowimplementation->create();
    
 }
 
@@ -147,12 +147,12 @@ void window::on_create()
 void window::destroy()
 {
    
-   if (m_pimplementation)
+   if (m_pnanouserwindowimplementation)
    {
       
-      m_pimplementation->destroy();
+      m_pnanouserwindowimplementation->destroy();
       
-      m_pimplementation.release();
+      m_pnanouserwindowimplementation.release();
       
    }
    
@@ -185,7 +185,7 @@ void window::destroy()
 void window::display()
 {
    
-   m_pimplementation->display();
+   m_pnanouserwindowimplementation->display();
    
 }
 
@@ -193,7 +193,7 @@ void window::display()
 void window::hide()
 {
    
-   m_pimplementation->hide();
+   m_pnanouserwindowimplementation->hide();
    
 }
 
@@ -201,7 +201,7 @@ void window::hide()
 void window::message_loop()
 {
    
-   m_pimplementation->message_loop();
+   m_pnanouserwindowimplementation->message_loop();
    
 }
 
@@ -210,7 +210,7 @@ void window::message_loop()
 void window::on_draw(::nano::user::device * pnanodevice)
 {
    
-   m_pimplementation->draw(pnanodevice);
+   m_pnanouserwindowimplementation->draw(pnanodevice);
    
 }
 
@@ -251,7 +251,7 @@ bool window::is_active()
 void window::set_active()
 {
    
-   m_pimplementation->set_active();
+   m_pnanouserwindowimplementation->set_active();
    
 }
 
@@ -271,7 +271,7 @@ void window::delete_drawing_objects()
 bool window::get_dark_mode()
 {
    
-   return m_pimplementation->get_dark_mode();
+   return m_pnanouserwindowimplementation->get_dark_mode();
    
 }
 
@@ -347,10 +347,10 @@ void window::update_drawing_objects()
 bool window::defer_perform_entire_reposition_process()
 {
    
-   if(m_pimplementation)
+   if(m_pnanouserwindowimplementation)
    {
       
-      if(m_pimplementation->defer_perform_entire_reposition_process())
+      if(m_pnanouserwindowimplementation->defer_perform_entire_reposition_process())
       {
          
          return true;
@@ -368,7 +368,7 @@ bool window::defer_perform_entire_reposition_process()
 ::point_i32 window::try_absolute_mouse_position(const ::point_i32 & point)
 {
    
-   return m_pimplementation->try_absolute_mouse_position(point);
+   return m_pnanouserwindowimplementation->try_absolute_mouse_position(point);
    
 }
 
@@ -574,7 +574,7 @@ void window::on_left_button_up(::user::mouse * pmouse)
       
       m_payloadResult = m_atomLeftButtonUp;
       
-      m_pimplementation->on_click(m_payloadResult, pmouse);
+      m_pnanouserwindowimplementation->on_click(m_payloadResult, pmouse);
       
    }
    
@@ -640,7 +640,7 @@ void window::on_right_button_up(::user::mouse * pmouse)
    if (m_atomRightButtonUp == m_atomRightButtonDown)
    {
       
-      m_pimplementation->on_right_click(m_atomLeftButtonUp, pmouse);
+      m_pnanouserwindowimplementation->on_right_click(m_atomLeftButtonUp, pmouse);
       
    }
    
@@ -664,7 +664,7 @@ void window::on_right_click(const ::payload& payload, ::user::mouse * pmouse)
 void window::move_to(const ::point_i32 & point)
 {
    
-   m_pimplementation->move_to(point);
+   m_pnanouserwindowimplementation->move_to(point);
    
 }
 
@@ -673,7 +673,7 @@ void window::move_to(const ::point_i32 & point)
 void window::redraw()
 {
    
-   m_pimplementation->redraw();
+   m_pnanouserwindowimplementation->redraw();
    
 }
 
@@ -707,7 +707,7 @@ void window::set_capture()
       
    }
    
-   m_pimplementation->set_capture();
+   m_pnanouserwindowimplementation->set_capture();
    
    m_bCapture = true;
    
@@ -717,7 +717,7 @@ void window::set_capture()
 void window::set_cursor(enum_cursor ecursor)
 {
    
-   m_pimplementation->set_cursor(ecursor);
+   m_pnanouserwindowimplementation->set_cursor(ecursor);
    
 }
 
@@ -725,7 +725,7 @@ void window::set_cursor(enum_cursor ecursor)
 bool window::has_capture() const
 {
    
-   return m_pimplementation->has_capture();
+   return m_pnanouserwindowimplementation->has_capture();
    
 }
 
@@ -745,7 +745,7 @@ void window::release_capture()
    
    m_bCapture = false;
    
-   m_pimplementation->release_capture();
+   m_pnanouserwindowimplementation->release_capture();
    
    
 }
@@ -781,7 +781,7 @@ void window::display_temporary_file_with_text(const ::string & str)
 void window::_run_modal_loop()
 {
    
-   m_pimplementation->_run_modal_loop();
+   m_pnanouserwindowimplementation->_run_modal_loop();
    
 }
 
@@ -789,7 +789,7 @@ void window::_run_modal_loop()
 ::payload window::do_synchronously(const class time & timeWait)
 {
    
-   return m_pimplementation->do_synchronously(timeWait);
+   return m_pnanouserwindowimplementation->do_synchronously(timeWait);
    
 }
 
@@ -800,7 +800,7 @@ void window::handle(::topic* ptopic, ::context* pcontext)
    if (ptopic->m_atom == id_set_application_dark_mode)
    {
       
-      m_pimplementation->handle(ptopic, pcontext);
+      m_pnanouserwindowimplementation->handle(ptopic, pcontext);
       
    }
    
@@ -818,7 +818,7 @@ void window::handle(::topic* ptopic, ::context* pcontext)
 void window::do_asynchronously()
 {
    
-   m_pimplementation->do_asynchronously();
+   m_pnanouserwindowimplementation->do_asynchronously();
    
 }
 

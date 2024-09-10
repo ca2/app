@@ -68,7 +68,7 @@ endif()
 
 add_dependencies(${PROJECT_NAME} crypto_openssl)
 add_dependencies(${PROJECT_NAME} folder_zip)
-
+add_dependencies(${PROJECT_NAME} ${default_write_text})
 
 if(${LINUX})
     if(${WITH_X11})

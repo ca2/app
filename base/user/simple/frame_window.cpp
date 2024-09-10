@@ -3601,7 +3601,8 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
                                                            this,
                                                            m_pnotifyicon,
                                                            pointCursor,
-                                                           squareHint
+                                                           squareHint,
+            ::menu::e_track_popup_outside_target
                                                            ));
 
          ptrackpopup->track([](){});

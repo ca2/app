@@ -48,7 +48,7 @@ if (MSVC)
     target_link_options(crypto_openssl PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/crypto_openssl.lib")
     target_link_options(crypto_openssl PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/crypto_openssl.def")
     target_link_libraries(crypto_openssl PRIVATE ${library_references})
-elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+elseif(${LINUX} OR ${__BSD__})
 
     if(${USE_PKGCONFIG})
         pkg_check_modules(PKGCONFIG libcrypto)

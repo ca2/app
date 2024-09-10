@@ -66,7 +66,7 @@ if (MSVC)
     target_link_options(app_integration PRIVATE "/SUBSYSTEM:WINDOWS")
     target_link_libraries(app_integration PRIVATE ${library_references})
 
-elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+elseif(${LINUX} OR ${__BSD__})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)

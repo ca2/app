@@ -132,7 +132,7 @@ if (WIN32 OR UWP)
 endif ()
 
 
-if (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+if (${LINUX} OR ${__BSD__})
 
    list(APPEND library_source
       bsd/_.cpp
@@ -144,7 +144,7 @@ if (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
 endif()
 
 
-if (${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+if (${__BSD__})
 
    list(APPEND library_source
    bsd/bsd_list_computers.cpp
@@ -181,7 +181,7 @@ if (MSVC)
    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.lib")
    target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT_NAME}.def")
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} Ws2_32)
-elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+elseif(${LINUX} OR ${__BSD__})
 
    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
    #set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)

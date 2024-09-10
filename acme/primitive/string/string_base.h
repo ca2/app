@@ -949,10 +949,10 @@ public:
 
       ASSERT(::is_null(pmetadataThis) || pmetadataThis->m_countReference >= 1);
 
+      auto newByteCount = pmetadata->character_count_in_bytes();
+
       if (::is_set(pmetadataThis))
       {
-
-         auto newByteCount = pmetadata->character_count_in_bytes();
 
          auto oldByteCount = pmetadataThis->character_count_in_bytes();
 
@@ -965,11 +965,11 @@ public:
 
          }
 
-         ((CHARACTER *)pmetadata->begin())[sizeCopy] = (CHARACTER)0;
-
          this->natural_release(pmetadataThis);
 
       }
+
+      *((CHARACTER *)((::u8 *)pmetadata->begin() + newByteCount)) = (CHARACTER)0;
 
       return pmetadata;
 

@@ -59,7 +59,7 @@ if (MSVC)
     target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/folder_zip.lib")
     target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/folder_zip.def")
     target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura Gdiplus sqlite)
-elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+elseif (${LINUX} OR ${__BSD__})
 
 
     target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)

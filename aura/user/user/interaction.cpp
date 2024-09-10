@@ -4361,6 +4361,62 @@ namespace user
 
       }
 
+            //task_erase_all();
+
+
+      //_synchronous_lock synchronouslock(mutex_children());
+      auto children = synchronized_get_children();
+
+      //if (m_puserinteractionpointeraChild)
+      {
+
+         //         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+
+           //       for (i32 i = 0; i < puserinteractionpointeraChild->interaction_count(); i++)
+         for (auto & pinteraction : children)
+         {
+
+            //auto pinteraction = puserinteractionpointeraChild->interaction_at(i);
+
+            //auto type = ::type(this);
+
+            if (type.name().contains("auraclick::impact"))
+            {
+
+               informationf("auraclick::impact");
+
+            }
+
+            //synchronouslock.unlock();
+
+            try
+            {
+
+               pinteraction->destroy_window();
+
+            }
+            catch (...)
+            {
+
+            }
+
+            //           synchronouslock.lock();
+           //
+                       //try
+                       //{
+
+                       //   pinteraction->destroy();
+
+                       //}
+                       //catch (...)
+                       //{
+
+                       //}
+
+         }
+
+      }
+
       ::user::interaction * puserinteractionParent = m_puserinteractionParent;
 
       if (puserinteractionParent != nullptr)
@@ -4461,62 +4517,6 @@ namespace user
 
       }
 
-
-      //task_erase_all();
-
-
-      //_synchronous_lock synchronouslock(mutex_children());
-      auto children = synchronized_get_children();
-
-      //if (m_puserinteractionpointeraChild)
-      {
-
-         //         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-
-           //       for (i32 i = 0; i < puserinteractionpointeraChild->interaction_count(); i++)
-         for (auto & pinteraction : children)
-         {
-
-            //auto pinteraction = puserinteractionpointeraChild->interaction_at(i);
-
-            //auto type = ::type(this);
-
-            if (type.name().contains("auraclick::impact"))
-            {
-
-               informationf("auraclick::impact");
-
-            }
-
-            //synchronouslock.unlock();
-
-            try
-            {
-
-               pinteraction->destroy_window();
-
-            }
-            catch (...)
-            {
-
-            }
-
-            //           synchronouslock.lock();
-           //
-                       //try
-                       //{
-
-                       //   pinteraction->destroy();
-
-                       //}
-                       //catch (...)
-                       //{
-
-                       //}
-
-         }
-
-      }
 
       //m_pdescriptor.release();
 

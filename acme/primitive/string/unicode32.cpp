@@ -194,6 +194,8 @@ strsize ansi_to_wd32(::wd32_character* pwsz, const ::ansi_character * psz, strsi
 
       *pwsz++ = iWd32;
 
+      srclen -= len;
+
    }
 
    if (psz != nullptr)

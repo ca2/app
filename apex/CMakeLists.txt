@@ -1445,7 +1445,7 @@ if (MSVC)
     target_link_libraries(${PROJECT_NAME} PRIVATE zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32 ${library_references})
 
 
-elseif (${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+elseif (${LINUX} OR ${__BSD__})
 
 
     target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)

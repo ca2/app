@@ -54,7 +54,7 @@ if (MSVC)
    target_link_libraries(database_sqlite3 PRIVATE ${library_references} sqlite ${global_library_references})
 
 
-elseif(${LINUX} OR ${FREEBSD} OR ${OPENBSD} OR ${NETBSD})
+elseif(${LINUX} OR ${__BSD__})
 
 
    if(USE_PKGCONFIG)

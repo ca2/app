@@ -68,9 +68,9 @@
 //#endif
 
 
-#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
-#include <stdio.h>
-#endif
+//#if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
+//#include <stdio.h>
+//#endif
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -132,7 +132,7 @@ namespace core
    user::user()
    {
 
-      printf("core::user::user\n");
+      print_line("core::user::user");
 
       m_pcoreuser = this;
       //m_ptemplateForm = nullptr;
@@ -185,7 +185,7 @@ namespace core
 
       //auto estatus =
 
-      printf("core::user::initialize\n");
+      print_line("core::user::initialize\n");
 
       ::base::user::initialize(pparticle);
 

@@ -144,6 +144,39 @@ namespace platform
    }
 
 
+   bool platform::is_console() const
+   {
+
+      return m_bConsole;
+
+   }
+
+
+   bool platform::is_desktop_system() const
+   {
+
+      return IS_DESKTOP_SYSTEM();
+
+   }
+
+
+   bool platform::is_sandboxed() const
+   {
+
+#if defined(APPLE_IOS)
+      return true;
+#elif defined(ANDROID)
+      return true;
+#elif defined(UNIVERSAL_WINDOWS)
+      return true;
+#else
+      return false;
+#endif
+
+   }
+
+
+
    void platform::platform_initialize()
    {
 

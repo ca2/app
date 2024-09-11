@@ -267,10 +267,11 @@ const char * particle::topic_text() const
 //}
 
 
-::platform::platform * particle::platform() const
+::platform::platform * particle::platform()
 {
 
-   return ::is_set(m_pcontext) ? m_pcontext->m_pplatform : _platform();
+   return ::platform::get();
+   //return ::is_set(m_pcontext) ? m_pcontext->m_pplatform : _platform();
 
 }
 

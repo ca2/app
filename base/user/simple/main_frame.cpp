@@ -43,7 +43,7 @@ void simple_main_frame::install_message_routing(::channel * pchannel)
 void simple_main_frame::on_message_create(::message::message * pmessage)
 {
 
-   if (application()->is_sandboxed())
+   if (platform()->is_sandboxed())
    {
 
       //m_bWindowFrame = false;

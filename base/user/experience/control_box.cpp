@@ -427,7 +427,7 @@ namespace experience
 
       }
 
-      if (application()->is_sandboxed() && m_pframewindow->get_parent() == nullptr)
+      if (platform()->is_sandboxed() && m_pframewindow->get_parent() == nullptr)
       {
 
          return false;

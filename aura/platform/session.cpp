@@ -313,7 +313,7 @@ namespace aura
    bool session::on_get_task_name(string& strThreadName)
    {
 
-      if (application()->is_console())
+      if (platform()->is_console())
       {
 
          return false;
@@ -2173,7 +2173,7 @@ namespace aura
       if (::is_set(m_pappCurrent))
       {
 
-         m_pappCurrent->pre_translate_message(pmessage);
+         m_pappCurrent->m_papexapplication->pre_translate_message(pmessage);
 
       }
 

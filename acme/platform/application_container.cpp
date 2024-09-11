@@ -48,7 +48,28 @@ namespace acme
 
       }
 
+      if (m_applicationa.contains(papplication))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
       m_applicationa.add(papplication);
+
+      if (papplication->m_bTransferToContainer)
+      {
+
+         if (!papplication->m_bTransferredToContainer)
+         {
+
+            papplication->release();
+
+            papplication->m_bTransferredToContainer = true;
+
+         }
+
+      }
 
    }
 
@@ -61,6 +82,13 @@ namespace acme
       m_applicationa.erase(papplication);
 
       auto iSizeAfter = m_applicationa.get_size();
+
+      if (m_pappCurrent == papplication)
+      {
+
+         m_pappCurrent.release();
+
+      }
 
       if (m_applicationa.is_empty() && m_bFinalizeIfNoApplication)
       {

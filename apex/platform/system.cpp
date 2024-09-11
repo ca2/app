@@ -302,7 +302,7 @@ namespace apex
    bool system::on_get_task_name(string & strTaskName)
    {
 
-      if (application()->is_console())
+      if (platform()->is_console())
       {
 
          return false;

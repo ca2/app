@@ -1475,6 +1475,7 @@ return true;
    void tcp_socket::OnSSLAccept()
    {
 
+
       SetNonblocking(true);
 
       //synchronous_lock slMap(psystem->sockets().m_servercontextmap.m_pmutex);
@@ -1527,7 +1528,7 @@ return true;
 
    bool tcp_socket::SSLNegotiate()
    {
-
+      return base_socket_impl()->SSLNegotiate();
       //if(!IsSSLServer()) // client
       //{
 
@@ -1790,6 +1791,7 @@ return true;
 
    void tcp_socket::InitSSLClient()
    {
+      //base_socket_impl()->InitSSLCl
       //InitializeContext(m_strInitSSLClientContext,SSLv23_method());
       //InitializeContext(m_strInitSSLClientContext,TLSv1_client_method());
 

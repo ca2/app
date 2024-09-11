@@ -151,7 +151,7 @@ namespace httpd
                   while (m_psockethandlerIncoming->get_count() > 0 && task_get_run())
                   {
 
-                     m_psockethandlerIncoming->select(0, 200'000);
+                     m_psockethandlerIncoming->select(1, 0);
 
                   }
 

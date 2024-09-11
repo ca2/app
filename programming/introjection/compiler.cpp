@@ -1039,7 +1039,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
 
       string strBuildCmd;
 
-#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(LINUX) || defined(__BSD__)
       strBuildCmd = m_pintegrationcontext->m_pathBuildFolder / "operating_system/operating_system-linux/stage/_introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bash");
 #elif defined(__APPLE__)
       strBuildCmd.formatf(m_pintegrationcontext->m_pathBuildFolder / "operating_system/operating_system-macos/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_c" + m_pintegrationcontext->m_strPlatform + ".bat"));
@@ -1104,7 +1104,7 @@ pacmedirectory->create("/var/tmp/ca2/intermediate");
       dir()->create(pathOutputFolder);
 
 
-#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(LINUX) || defined(__BSD__)
 
       string strTargetPath =  m_pintegrationcontext->m_pathBuildFolder /"time" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / plibrary->m_pathScript.title();
       strTargetPath.case_insensitive_ends_eat(".cpp");
@@ -1261,7 +1261,7 @@ auto tickStart = ::time::now();
 
 #ifndef MACOS
 
-#if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+#if defined(LINUX) || defined(__BSD__)
          strBuildCmd.formatf(m_pintegrationcontext->m_pathBuildFolder / "operating_system/operating_system-linux/_stage/introjection" / m_strApp / (m_strDynamicSourceConfiguration + "_l" + m_pintegrationcontext->m_strPlatform + ".bash"));
 #else
          strBuildCmd.formatf(m_pintegrationcontext->m_pathBuildFolder / "operating_system/operating_system-windows/_stage/introjection" / m_strApp / m_pintegrationcontext->payload("vstools").as_string() / (m_strDynamicSourceConfiguration + "_l_" + m_pintegrationcontext->m_strPlatform + ".bat"));

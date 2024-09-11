@@ -60,18 +60,16 @@ if (MSVC)
     target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura freeimage)
 
 
-elseif (${__BSD__})
+elseif (${FREEBSD})
 
 
     #pkg_check_modules(PKGCONFIG librsvg-2.0 freeimage)
-    pkg_check_modules(PKGCONFIG freeimage)
-    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive ${PKGCONFIG_CFLAGS})
-    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive ${PKGCONFIG_CFLAGS})
-    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
-
-
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
-    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_LIBRARIES})
+    pkg_check_modules(PKGCONFIG_${PROJECT_NAME} freeimage)
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive ${PKGCONFIG_${PROJECT_NAME}_CFLAGS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive ${PKGCONFIG_${PROJECT_NAME}_CFLAGS})
+    target_link_options(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_${PROJECT_NAME}_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_${PROJECT_NAME}_LIBRARIES})
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_${PROJECT_NAME}_LIBRARIES})
 
 
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
@@ -83,11 +81,11 @@ elseif (${__BSD__})
     message(STATUS "(E) PKGCONFIG_LIBRARIES is ${PKGCONFIG_LIBRARIES}")
 
 
-elseif (${LINUX} OR ${__BSD__})
+elseif (${LINUX} OR ${OPENBSD} OR ${NETBSD})
 
 
     #if(USE_PKGCONFIG)
-    #    pkg_check_modules(PKGCONFIG librsvg-2.0)
+    #    pkg_check_modules(PKGCONFIG_${PROJECT_NAME} librsvg-2.0)
     #endif()
 
 
@@ -97,13 +95,11 @@ elseif (${LINUX} OR ${__BSD__})
 
 
 
-    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
-    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LIBRARIES} freeimage acme apex aqua aura
-    ${global_library_references})
+    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_${PROJECT_NAME}_CFLAGS})
+    target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_${PROJECT_NAME}_LDFLAGS})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${PKGCONFIG_${PROJECT_NAME}_LIBRARIES} freeimage acme apex aqua aura)
     target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
     # target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
-
 
 
 endif ()
@@ -118,7 +114,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories
 target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE _imaging_freeimage_project)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)
 
 
 

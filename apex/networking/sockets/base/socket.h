@@ -207,6 +207,19 @@ namespace sockets
       virtual base_socket* base_socket_interface();
       virtual const base_socket* base_socket_interface() const;
 
+
+      virtual stream_socket * stream_socket_impl();
+      virtual const stream_socket * stream_socket_impl() const;
+      virtual stream_socket * stream_socket_interface();
+      virtual const stream_socket * stream_socket_interface() const;
+
+
+      virtual tcp_socket * tcp_socket_impl();
+      virtual const tcp_socket * tcp_socket_impl() const;
+      virtual tcp_socket * tcp_socket_interface();
+      virtual const tcp_socket * tcp_socket_interface() const;
+
+
       virtual ::networking::networking * networking();
       /** base_socket class instantiation method. Used when a "non-standard" constructor
       * needs to be used for the base_socket class. Note: the base_socket class still needs

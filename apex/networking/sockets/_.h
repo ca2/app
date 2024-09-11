@@ -11,6 +11,10 @@ namespace sockets
 
    class base_socket;
 
+   class stream_socket;
+
+   class tcp_socket;
+
    class base_socket_handler;
 
    using socket_pointer = ::pointer<base_socket>;

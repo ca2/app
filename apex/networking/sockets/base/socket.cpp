@@ -248,6 +248,70 @@ namespace sockets
    }
 
 
+   stream_socket * base_socket::stream_socket_impl()
+   {
+
+      return nullptr;
+
+   }
+
+
+   const stream_socket * base_socket::stream_socket_impl() const
+   {
+
+      return ((base_socket *)this)->stream_socket_impl();
+
+   } 
+
+   
+   stream_socket * base_socket::stream_socket_interface()
+   {
+
+      return nullptr;
+
+   }
+
+
+   const stream_socket * base_socket::stream_socket_interface() const
+   {
+
+      return ((base_socket *)this)->stream_socket_interface();
+
+   }
+
+
+   tcp_socket * base_socket::tcp_socket_impl()
+   {
+
+      return nullptr;
+
+   }
+
+
+   const tcp_socket * base_socket::tcp_socket_impl() const
+   {
+
+      return ((base_socket *)this)->tcp_socket_impl();
+
+   }   
+   
+   
+   tcp_socket * base_socket::tcp_socket_interface()
+   {
+
+      return nullptr;
+
+   }
+
+
+   const tcp_socket * base_socket::tcp_socket_interface() const
+   {
+
+      return ((base_socket *)this)->tcp_socket_interface();
+
+   }
+
+
    ::socket_id base_socket::GetSocketId()
    {
 

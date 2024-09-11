@@ -114,6 +114,13 @@ namespace sockets
    base_socket * tcp_socket::base_socket_impl()
    {
 
+      if (!m_ptcpsocketImpl)
+      {
+
+         return this;
+
+      }
+
       return m_ptcpsocketImpl;
 
    }
@@ -130,6 +137,13 @@ namespace sockets
    base_socket * tcp_socket::base_socket_interface()
    {
 
+      if (!m_ptcpsocketInterface)
+      {
+
+         return this;
+
+      }
+
       return m_ptcpsocketInterface;
 
    }
@@ -142,6 +156,97 @@ namespace sockets
 
    }
 
+
+   stream_socket * tcp_socket::stream_socket_impl()
+   {
+
+      if (!m_ptcpsocketImpl)
+      {
+
+         return this;
+
+      }
+
+      return m_ptcpsocketImpl;
+
+   }
+
+
+   const stream_socket * tcp_socket::stream_socket_impl() const
+   {
+
+      return ((tcp_socket *)this)->stream_socket_impl();
+
+   }
+
+
+   stream_socket * tcp_socket::stream_socket_interface()
+   {
+
+      if (!m_ptcpsocketInterface)
+      {
+
+         return this;
+
+      }
+
+      return m_ptcpsocketInterface;
+
+   }
+
+
+   const stream_socket * tcp_socket::stream_socket_interface() const
+   {
+
+      return ((tcp_socket *)this)->stream_socket_interface();
+
+   }
+
+
+   tcp_socket * tcp_socket::tcp_socket_impl()
+   {
+
+      if (!m_ptcpsocketImpl)
+      {
+
+         return this;
+
+      }
+
+      return m_ptcpsocketImpl;
+
+   }
+
+
+   const tcp_socket * tcp_socket::tcp_socket_impl() const
+   {
+
+      return ((tcp_socket *)this)->tcp_socket_impl();
+
+   }
+
+
+   tcp_socket * tcp_socket::tcp_socket_interface()
+   {
+
+      if (!m_ptcpsocketInterface)
+      {
+
+         return this;
+
+      }
+
+      return m_ptcpsocketInterface;
+
+   }
+
+
+   const tcp_socket * tcp_socket::tcp_socket_interface() const
+   {
+
+      return ((tcp_socket *)this)->tcp_socket_interface();
+
+   }
 
 
    /*
@@ -854,6 +959,7 @@ return true;
    void tcp_socket::OnWrite()
    {
 
+      base_socket_impl()->OnWrite();
       //if (is_true("from_pool") && CallOnConnect())
       //{
 
@@ -1367,6 +1473,10 @@ return true;
 
    void tcp_socket::OnSSLConnect()
    {
+
+      tcp_socket_impl()->OnSSLConnect();
+
+      return;
 
       SetNonblocking(true);
 

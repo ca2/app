@@ -8,7 +8,7 @@ namespace sockets
 {
 
 
-   stream_socket::stream_socket() : 
+   stream_socket::stream_socket() //: 
       //::object(&h)
       //,
       //base_socket(h)
@@ -16,12 +16,12 @@ namespace sockets
       //,
       //m_bConnecting(false)
       //,m_secsConnectionTimeout(5)
-      m_bFlushBeforeClose(true)
-      ,m_iMaximumConnectionRetryCount(0)
-      ,m_iConnectionRetryCount(0)
-      ,m_bCallOnConnect(false)
-      ,m_bRetryClientConnect(false)
-      ,m_iShutdownStatus(0)
+      //m_bFlushBeforeClose(true)
+      //,m_iMaximumConnectionRetryCount(0)
+      //,m_iConnectionRetryCount(0)
+      //,m_bCallOnConnect(false)
+      //,m_bRetryClientConnect(false)
+      //,m_iShutdownStatus(0)
    {
 
    }
@@ -70,14 +70,7 @@ namespace sockets
    bool stream_socket::Ready()
    {
 
-      //if (get_socket_id() != INVALID_SOCKET && !is_connecting() && !IsCloseAndDelete())
-      //{
-
-      //   return true;
-
-      //}
-
-      return false;
+      return stream_socket_impl()->Ready();
 
    }
 
@@ -98,7 +91,7 @@ namespace sockets
    void stream_socket::SetFlushBeforeClose(bool bFlushBeforeClose)
    {
 
-      m_bFlushBeforeClose = bFlushBeforeClose;
+      return stream_socket_impl()->SetFlushBeforeClose(bFlushBeforeClose);
 
    }
 
@@ -106,7 +99,7 @@ namespace sockets
    bool stream_socket::GetFlushBeforeClose()
    {
 
-      return m_bFlushBeforeClose;
+      return stream_socket_impl()->GetFlushBeforeClose();
 
    }
 
@@ -114,7 +107,8 @@ namespace sockets
    i32 stream_socket::GetMaximumConnectionRetryCount()
    {
 
-      return m_iMaximumConnectionRetryCount;
+      return stream_socket_impl()->GetMaximumConnectionRetryCount();
+
 
    }
 
@@ -122,7 +116,7 @@ namespace sockets
    void stream_socket::SetMaximumConnectionRetryCount(i32 x)
    {
 
-      m_iMaximumConnectionRetryCount = x;
+      stream_socket_impl()->SetMaximumConnectionRetryCount(x);
 
    }
 
@@ -130,7 +124,7 @@ namespace sockets
    i32 stream_socket::GetConnectionRetryCount()
    {
 
-      return m_iConnectionRetryCount;
+      return stream_socket_impl()->GetConnectionRetryCount();
 
    }
 
@@ -138,7 +132,8 @@ namespace sockets
    void stream_socket::IncrementConnectionRetryCount()
    {
 
-      m_iConnectionRetryCount++;
+      stream_socket_impl()->IncrementConnectionRetryCount();
+      
 
    }
 
@@ -146,7 +141,8 @@ namespace sockets
    void stream_socket::ResetConnectionRetryCount()
    {
 
-      m_iConnectionRetryCount = 0;
+      stream_socket_impl()->ResetConnectionRetryCount();
+      
 
    }
 
@@ -156,15 +152,15 @@ namespace sockets
 
       //socket_handler()->socket_id_list_modify(get_socket_id(), e_list_call_on_connect, bCallOnConnect);
 
-      m_bCallOnConnect = bCallOnConnect;
+      return stream_socket_impl()->SetCallOnConnect(bCallOnConnect);
 
    }
 
 
    bool stream_socket::CallOnConnect()
    {
-      
-      return m_bCallOnConnect;
+
+      return stream_socket_impl()->CallOnConnect();
 
    }
 
@@ -174,7 +170,7 @@ namespace sockets
 
       //socket_handler()->socket_id_list_modify(get_socket_id(), e_list_retry_client_connect, bSetRetryClientConnect);
 
-      m_bRetryClientConnect = bSetRetryClientConnect;
+      stream_socket_impl()->SetRetryClientConnect(bSetRetryClientConnect);
 
    }
 
@@ -182,7 +178,7 @@ namespace sockets
    bool stream_socket::RetryClientConnect()
    {
 
-      return m_bRetryClientConnect;
+      return stream_socket_impl()->RetryClientConnect();
 
    }
 
@@ -190,7 +186,7 @@ namespace sockets
    void stream_socket::SetShutdownStatus(i32 x)
    {
 
-      m_iShutdownStatus = x;
+      stream_socket_impl()->SetShutdownStatus(x);
 
    }
 
@@ -198,7 +194,7 @@ namespace sockets
    i32 stream_socket::GetShutdownStatus()
    {
       
-      return m_iShutdownStatus;
+      return stream_socket_impl()->GetShutdownStatus();
 
    }
 
@@ -206,9 +202,7 @@ namespace sockets
    i32 stream_socket::Protocol()
    {
       
-      throw ::interface_only();
-
-      return -1;
+      return stream_socket_impl()->Protocol();
 
    }
 

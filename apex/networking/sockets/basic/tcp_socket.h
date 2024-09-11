@@ -171,12 +171,24 @@ namespace sockets
 
       void initialize(::particle * pparticle) override;
 
-
       base_socket * base_socket_impl() override;
       const base_socket * base_socket_impl() const override;
 
       base_socket* base_socket_interface() override;
       const base_socket* base_socket_interface() const override;
+
+      stream_socket * stream_socket_impl() override;
+      const stream_socket * stream_socket_impl() const override;
+
+      stream_socket * stream_socket_interface() override;
+      const stream_socket * stream_socket_interface() const override;
+
+
+      tcp_socket * tcp_socket_impl() override;
+      const tcp_socket * tcp_socket_impl() const override;
+
+      tcp_socket * tcp_socket_interface() override;
+      const tcp_socket * tcp_socket_interface() const override;
 
       //using ::sockets::stream_socket::open;
       virtual bool open(::networking::address * address, bool skip_socks = false);

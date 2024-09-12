@@ -40,7 +40,7 @@ namespace sockets_bsd
       virtual void close();
 
       /** add file descriptor to sockethandler fd_set's. */
-      void set(bool bRead,bool bWrite,bool bException = true);
+      //void set(bool bRead,bool bWrite,bool bException = true);
 
       /** Returns true when socket file descriptor is valid
       and socket is not about to be closed. */

@@ -137,6 +137,10 @@ namespace sockets_bsd
 
       ::string_array          m_straDebug;
 
+      int m_iSelectRead;
+      int m_iSelectWrite;
+      int m_iSelectError;
+
 
 #if !defined(BSD_STYLE_SOCKETS)
       bool                    m_bErrorWriting;
@@ -189,7 +193,9 @@ namespace sockets_bsd
       ~base_socket() override;
 
 
-       void SetSocketHandler(::sockets::base_socket_handler* phandler) override;
+      //void set_select(bool bRead, bool bWrite, bool bError) override;
+
+      void SetSocketHandler(::sockets::base_socket_handler* phandler) override;
 
 
       /** base_socket class instantiation method. Used when a "non-standard" constructor
@@ -260,7 +266,7 @@ namespace sockets_bsd
       bool is_connecting() override;
 
       /** add file descriptor to sockethandler fd_set's. */
-      void Set(bool bRead,bool bWrite,bool bException = true) override;
+      void set(bool bRead,bool bWrite,bool bException = true) override;
 
       /** Returns true when base_socket file descriptor is valid
       and base_socket is not about to be closed. */

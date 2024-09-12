@@ -198,10 +198,10 @@ namespace sockets
 //   }
 
 
-   void socket::set(bool bRead, bool bWrite, bool bException)
-   {
-      //socket_handler()->set(m_socket, bRead, bWrite, bException);
-   }
+   //void socket::set(bool bRead, bool bWrite, bool bException)
+   //{
+   //   //socket_handler()->set(m_socket, bRead, bWrite, bException);
+   //}
 
 
    bool socket::Ready()

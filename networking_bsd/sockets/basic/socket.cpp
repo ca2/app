@@ -232,14 +232,14 @@ namespace sockets_bsd
    }
 
 
-   void socket::set(bool bRead, bool bWrite, bool bException)
-   {
+   //void socket::set(bool bRead, bool bWrite, bool bException)
+   //{
 
-      ::pointer < ::sockets_bsd::socket_handler > phandler = m_psockethandler;
-      
-      phandler->set(m_socketid, bRead, bWrite, bException);
+   //   ::pointer < ::sockets_bsd::socket_handler > phandler = m_psockethandler;
+   //   
+   //   phandler->set(m_socketid, bRead, bWrite, bException);
 
-   }
+   //}
 
 
    bool socket::Ready()

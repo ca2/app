@@ -42,7 +42,7 @@ namespace sockets_bsd
       void close() override;
 
       /** add file descriptor to sockethandler fd_set's. */
-      void set(bool bRead,bool bWrite,bool bException = true);
+      //void set(bool bRead,bool bWrite,bool bException = true);
 
       /** Returns true when socket file descriptor is valid
       and socket is not about to be closed. */

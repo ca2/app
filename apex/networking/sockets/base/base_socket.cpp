@@ -233,6 +233,14 @@ namespace sockets
    }
 
 
+   //void base_socket::set_select(bool bRead, bool bWrite, bool bError)
+   //{
+
+   //   base_socket_impl()->set_select(bRead, bWrite, bError);
+
+   //}
+
+
    base_socket * base_socket::base_socket_impl()
    {
 
@@ -818,11 +826,10 @@ namespace sockets
    //}
 
 
-   void base_socket::Set(bool bRead, bool bWrite, bool bException)
+   void base_socket::set(bool bRead, bool bWrite, bool bException)
    {
-      //socket_handler()->set(m_socket, bRead, bWrite, bException);
 
-      base_socket_impl()->Set(bRead, bWrite, bException);
+      base_socket_impl()->set(bRead, bWrite, bException);
 
    }
 

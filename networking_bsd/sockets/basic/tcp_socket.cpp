@@ -1453,16 +1453,19 @@ m_ibuf(isize)
       }
 
       // check output buffer set, set/reset m_wfds accordingly
+      if (m_obuf.get_size())
       {
-         bool br;
-         bool bw;
-         bool bx;
-         ::pointer <sockets_bsd::socket_handler >(socket_handler())->get(GetSocketId(), br, bw, bx);
-         if (m_obuf.get_size())
-            set(br, true);
-         else
-            set(br, false);
+
+         m_iSelectWrite = 1;
+
       }
+      else
+      {
+
+         m_iSelectWrite = 0;
+
+      }
+
    }
 
 
@@ -1775,16 +1778,20 @@ m_ibuf(isize)
       // if any data is unsent, buffer it and set m_wfds
 
       // check output buffer set, set/reset m_wfds accordingly
+      
+      if (m_obuf.get_size())
       {
-         bool br;
-         bool bw;
-         bool bx;
-         ::pointer < sockets_bsd::socket_handler >(socket_handler())->get(GetSocketId(), br, bw, bx);
-         if (m_obuf.get_size())
-            set(br, true);
-         else
-            set(br, false);
+       
+         m_iSelectWrite = 1;
+
       }
+      else
+      {
+
+         m_iSelectWrite = 0;
+
+      }
+
    }
 
 

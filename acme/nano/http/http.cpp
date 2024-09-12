@@ -109,7 +109,7 @@ namespace nano
 
             sync(pget);
 
-            auto strLocation = pget->m_setOut["location"];
+            auto strLocation = pget->m_setOut["location"].as_string();
 
             if (strLocation.is_empty())
             {
@@ -119,6 +119,8 @@ namespace nano
             }
             else
             {
+
+               strLocation.trim();
 
                strUrl = strLocation;
 

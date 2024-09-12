@@ -240,10 +240,10 @@ list(APPEND apex_source
         networking/netserver/socket_thread.h
         networking/netserver/socket_handler.cpp
         networking/netserver/socket_handler.h
-        networking/sockets/base/socket.cpp
-        networking/sockets/base/socket.h
-        networking/sockets/base/socket_handler.cpp
-        networking/sockets/base/socket_handler.h
+        networking/sockets/base/base_socket.cpp
+        networking/sockets/base/base_socket.h
+        networking/sockets/base/base_socket_handler.cpp
+        networking/sockets/base/base_socket_handler.h
         networking/sockets/base/socket_thread.cpp
         networking/sockets/base/socket_thread.h
         networking/sockets/basic/_.h
@@ -316,12 +316,12 @@ list(APPEND apex_source
         networking/sockets/http/post_socket.h
         networking/sockets/http/put_socket.cpp
         networking/sockets/http/put_socket.h
-        networking/sockets/http/session.cpp
-        networking/sockets/http/session.h
-        networking/sockets/http/socket.cpp
-        networking/sockets/http/socket.h
-        networking/sockets/http/tunnel.cpp
-        networking/sockets/http/tunnel.h
+        networking/sockets/http/http_session.cpp
+        networking/sockets/http/http_session.h
+        networking/sockets/http/http_socket.cpp
+        networking/sockets/http/http_socket.h
+        networking/sockets/http/http_tunnel.cpp
+        networking/sockets/http/http_tunnel.h
         networking/sockets/_.h
         #networking/sockets/_system_sockets.cpp
         networking/sockets/http_batch_buffer.cpp

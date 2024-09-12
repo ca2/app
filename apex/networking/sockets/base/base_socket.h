@@ -287,7 +287,7 @@ namespace sockets
       virtual bool is_connecting();
 
       /** add file descriptor to sockethandler fd_set's. */
-      virtual void Set(bool bRead,bool bWrite,bool bException = true);
+      virtual void set(bool bRead,bool bWrite,bool bException = true);
 
       /** Returns true when base_socket file descriptor is valid
       and base_socket is not about to be closed. */

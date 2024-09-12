@@ -39,12 +39,15 @@ namespace sockets_bsd
       //::collection::count                    m_countR;
       //::collection::count                    m_countW;
       //::collection::count                    m_countE;
-      fd_set                     m_rfdsSelect; ///< file descriptor set monitored for read events
-      fd_set                     m_wfdsSelect; ///< file descriptor set monitored for write events
-      fd_set                     m_efdsSelect; ///< file descriptor set monitored for exceptions
-      fd_set                     m_rfdsSelected; ///< file descriptor set monitored for read events
-      fd_set                     m_wfdsSelected; ///< file descriptor set monitored for write events
-      fd_set                     m_efdsSelected; ///< file descriptor set monitored for exceptions
+      fd_set                     m_rfds; ///< file descriptor set monitored for read events
+      fd_set                     m_wfds; ///< file descriptor set monitored for write events
+      fd_set                     m_efds; ///< file descriptor set monitored for exceptions
+      //fd_set                     m_rfdsSelect; ///< file descriptor set monitored for read events
+      //fd_set                     m_wfdsSelect; ///< file descriptor set monitored for write events
+      //fd_set                     m_efdsSelect; ///< file descriptor set monitored for exceptions
+      //fd_set                     m_rfdsSelected; ///< file descriptor set monitored for read events
+      //fd_set                     m_wfdsSelected; ///< file descriptor set monitored for write events
+      //fd_set                     m_efdsSelected; ///< file descriptor set monitored for exceptions
       i32                        m_iPreviousError; ///< debug select() error
       class ::time                       m_timeLastError;
       ::earth::time                 m_tlast; ///< timeout control
@@ -107,12 +110,12 @@ namespace sockets_bsd
       bool contains(::sockets::base_socket *) override;
 
       /** get status of read/write/exception file descriptor set for a base_socket. */
-      void get(SOCKET s,bool& r,bool& w,bool& e) override;
-      virtual void _get(SOCKET s, i32& r, i32& w, i32& e);
-      virtual void get(i32& r, i32& w, i32& e);
+      //void get(SOCKET s,bool& r,bool& w,bool& e) override;
+      //virtual void _get(SOCKET s, i32& r, i32& w, i32& e);
+      //virtual void get(i32& r, i32& w, i32& e);
 
       /** set read/write/exception file descriptor sets (fd_set). */
-      void set(SOCKET s,bool bRead,bool bWrite,bool bException = true) override;
+      //void set(SOCKET s,bool bRead,bool bWrite,bool bException = true) override;
 
       /** Wait for events, generate callbacks. */
       i32 select(i32 sec, i32 usec) override;

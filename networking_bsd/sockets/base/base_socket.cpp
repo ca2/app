@@ -105,6 +105,9 @@ namespace sockets_bsd
       //,m_event(h.get_())
 //#endif
    {
+      m_iSelectRead = 0;
+      m_iSelectWrite = 0;
+      m_iSelectError = 0;
       //m_p2 = this;
 #ifdef WINRT_SOCKETS
       m_bErrorReading = false;
@@ -130,6 +133,18 @@ namespace sockets_bsd
 
    base_socket::~base_socket()
    {
+
+   }
+
+
+   void base_socket::set(bool bRead, bool bWrite, bool bError)
+   {
+
+      m_iSelectRead = bRead ? 1 : 0;
+
+      m_iSelectWrite = bWrite ? 1 : 0;
+
+      m_iSelectRead = bError ? 1 : 0;
 
    }
 
@@ -623,14 +638,14 @@ namespace sockets_bsd
    }
 
 
-   void base_socket::Set(bool bRead, bool bWrite, bool bException)
-   {
+   //void base_socket::Set(bool bRead, bool bWrite, bool bException)
+   //{
 
-      ::pointer < sockets_bsd::socket_handler > phandler = this->socket_handler();
-      
-      phandler->set(m_socketid, bRead, bWrite, bException);
+   //   ::pointer < sockets_bsd::socket_handler > phandler = this->socket_handler();
+   //   
+   //   phandler->set(m_socketid, bRead, bWrite, bException);
 
-   }
+   //}
 
 
    bool base_socket::Ready()

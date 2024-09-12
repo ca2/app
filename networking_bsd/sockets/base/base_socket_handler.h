@@ -106,9 +106,9 @@ namespace sockets_bsd
       virtual bool contains(::sockets::base_socket *)override = 0;
 
       /** get status of read/write/exception file descriptor set for a socket. */
-      virtual void get(SOCKET s,bool& r,bool& w,bool& e) = 0;
+      //virtual void get(SOCKET s,bool& r,bool& w,bool& e) = 0;
       /** Set read/write/exception file descriptor sets (fd_set). */
-      virtual void set(SOCKET s,bool bRead,bool bWrite,bool bException = true) = 0;
+      //virtual void set(SOCKET s,bool bRead,bool bWrite,bool bException = true) = 0;
       /** Wait for events, generate callbacks. */
       virtual int select(i32 sec, i32 usec) override = 0;
       /** This method will not return until an event has been detected. */

@@ -61,12 +61,12 @@ namespace sockets_bsd
       //m_prfds = new fd_set();
       //m_pwfds = new fd_set();
       //m_pefds = new fd_set();
-      FD_ZERO(&m_rfdsSelect);
-      FD_ZERO(&m_wfdsSelect);
-      FD_ZERO(&m_efdsSelect);
-      FD_ZERO(&m_rfdsSelected);
-      FD_ZERO(&m_wfdsSelected);
-      FD_ZERO(&m_efdsSelected);
+      //FD_ZERO(&m_rfdsSelect);
+      //FD_ZERO(&m_wfdsSelect);
+      //FD_ZERO(&m_efdsSelect);
+      //FD_ZERO(&m_rfdsSelected);
+      //FD_ZERO(&m_wfdsSelected);
+      //FD_ZERO(&m_efdsSelected);
       //m_countR = 0;
       //m_countW = 0;
       //m_countE = 0;
@@ -378,162 +378,162 @@ namespace sockets_bsd
    }
 
 
-   void socket_handler::get(SOCKET s, bool& r, bool& w, bool& e)
-   {
+   //void socket_handler::get(SOCKET s, bool& r, bool& w, bool& e)
+   //{
 
-      if (s >= 0)
-      {
+   //   if (s >= 0)
+   //   {
 
-         r = FD_ISSET(s, &m_rfdsSelect) ? true : false;
+   //      r = FD_ISSET(s, &m_rfds) ? true : false;
 
-         w = FD_ISSET(s, &m_wfdsSelect) ? true : false;
+   //      w = FD_ISSET(s, &m_wfds) ? true : false;
 
-         e = FD_ISSET(s, &m_efdsSelect) ? true : false;
+   //      e = FD_ISSET(s, &m_efds) ? true : false;
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   void socket_handler::_get(SOCKET s, i32& r, i32& w, i32& e)
-   {
+   //void socket_handler::_get(SOCKET s, i32& r, i32& w, i32& e)
+   //{
 
-      if (s >= 0)
-      {
+   //   if (s >= 0)
+   //   {
 
-         if (FD_ISSET(s, &m_rfdsSelect))
-         {
+   //      if (FD_ISSET(s, &m_rfds))
+   //      {
 
-            r++;
+   //         r++;
 
-         }
+   //      }
 
-         if (FD_ISSET(s, &m_wfdsSelect))
-         {
+   //      if (FD_ISSET(s, &m_wfds))
+   //      {
 
-            w++;
+   //         w++;
 
-         }
+   //      }
 
-         if (FD_ISSET(s, &m_efdsSelect))
-         {
+   //      if (FD_ISSET(s, &m_efds))
+   //      {
 
-            e++;
+   //         e++;
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   void socket_handler::get(i32& r, i32& w, i32& e)
-   {
+   //void socket_handler::get(i32& r, i32& w, i32& e)
+   //{
 
-      r = 0;
-      w = 0;
-      e = 0;
+   //   r = 0;
+   //   w = 0;
+   //   e = 0;
 
-      for (auto& s : m_socketlist)
-      {
+   //   for (auto& s : m_socketlist)
+   //   {
 
-         _get(s, r, w, e);
+   //      _get(s, r, w, e);
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   void socket_handler::set(SOCKET s, bool bRead, bool bWrite, bool bException)
-   {
+   //void socket_handler::set(SOCKET s, bool bRead, bool bWrite, bool bException)
+   //{
 
-      if (s >= 0)
-      {
+   //   if (s >= 0)
+   //   {
 
-         if (bRead)
-         {
+   //      if (bRead)
+   //      {
 
-            if (!FD_ISSET(s, &m_rfdsSelect))
-            {
+   //         if (!FD_ISSET(s, &m_rfds))
+   //         {
 
-               FD_SET(s, &m_rfdsSelect);
+   //            FD_SET(s, &m_rfds);
 
-               //m_countR++;
+   //            //m_countR++;
 
-            }
+   //         }
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            if (FD_ISSET(s, &m_rfdsSelect))
-            {
+   //         if (FD_ISSET(s, &m_rfds))
+   //         {
 
-               FD_CLR(s, &m_rfdsSelect);
+   //            FD_CLR(s, &m_rfds);
 
-               //m_countR--;
+   //            //m_countR--;
 
-            }
+   //         }
 
-         }
+   //      }
 
-         if (bWrite)
-         {
+   //      if (bWrite)
+   //      {
 
-            if (!FD_ISSET(s, &m_wfdsSelect))
-            {
+   //         if (!FD_ISSET(s, &m_wfds))
+   //         {
 
-               FD_SET(s, &m_wfdsSelect);
+   //            FD_SET(s, &m_wfds);
 
-               //m_countW++;
+   //            //m_countW++;
 
-            }
+   //         }
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            if (FD_ISSET(s, &m_wfdsSelect))
-            {
+   //         if (FD_ISSET(s, &m_wfds))
+   //         {
 
-               FD_CLR(s, &m_wfdsSelect);
+   //            FD_CLR(s, &m_wfds);
 
-               //m_countW--;
+   //            //m_countW--;
 
-            }
+   //         }
 
-         }
+   //      }
 
-         if (bException)
-         {
+   //      if (bException)
+   //      {
 
-            if (!FD_ISSET(s, &m_efdsSelect))
-            {
+   //         if (!FD_ISSET(s, &m_efds))
+   //         {
 
-               FD_SET(s, &m_efdsSelect);
+   //            FD_SET(s, &m_efds);
 
-               //m_countE++;
+   //            //m_countE++;
 
-            }
+   //         }
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            if (FD_ISSET(s, &m_efdsSelect))
-            {
+   //         if (FD_ISSET(s, &m_efds))
+   //         {
 
-               FD_CLR(s, &m_efdsSelect);
+   //            FD_CLR(s, &m_efds);
 
-               //m_countE--;
+   //            //m_countE--;
 
-            }
+   //         }
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
+   //}
 
 
    i32 socket_handler::select(i32 lSeconds, i32 lMicroseconds)
@@ -809,7 +809,7 @@ start_processing_adding:
          if (pstreamsocket && pstreamsocket->is_connecting()) // 'open' called before adding socket
          {
 
-            set(socket, true, true);
+            psocket->set(true, true);
 
          }
          else
@@ -821,7 +821,7 @@ start_processing_adding:
 
             bool bRead = ::is_set(ptcpsocket) ? !ptcpsocket->IsDisableRead() : true;
 
-            set(socket, bRead, bWrite);
+            psocket->set(bRead, bWrite);
 
          }
 
@@ -867,15 +867,61 @@ end_processing_adding:
       i32 countW = 0;
       i32 countE = 0;
 
-      get(countR, countW, countE);
+      //get(countR, countW, countE);
 
-      FD_COPY(&m_rfdsSelect, &m_rfdsSelected);
-      FD_COPY(&m_wfdsSelect, &m_wfdsSelected);
-      FD_COPY(&m_efdsSelect, &m_efdsSelected);
+      //FD_COPY(&m_rfdsSelect, &m_rfdsSelected);
+      //FD_COPY(&m_wfdsSelect, &m_wfdsSelected);
+      //FD_COPY(&m_efdsSelect, &m_efdsSelected);
 
-      fd_set * psetR = countR > 0 ? &m_rfdsSelected : nullptr;
-      fd_set * psetW = countW > 0 ? &m_wfdsSelected : nullptr;
-      fd_set * psetE = countE > 0 ? &m_efdsSelected : nullptr;
+      FD_ZERO(&m_rfds);
+      FD_ZERO(&m_wfds);
+      FD_ZERO(&m_efds);
+
+      for (auto& pair : m_socketmap)
+      {
+
+         auto socketid = pair.m_socketid;
+
+         ::pointer < ::sockets_bsd::base_socket > psocketImpl = pair.m_psocket->base_socket_impl();
+
+         if (psocketImpl)
+         {
+
+            if (psocketImpl->m_iSelectRead)
+            {
+
+               FD_SET(socketid, &m_rfds);
+
+               countR++;
+
+            }
+
+            if (psocketImpl->m_iSelectWrite)
+            {
+
+               FD_SET(socketid, &m_wfds);
+
+               countW++;
+
+            }
+               
+            if(psocketImpl->m_iSelectError)
+            {
+             
+               FD_SET(socketid, &m_efds);
+
+               countE++;
+
+            }
+
+         }
+
+      }
+
+
+      fd_set * psetR = countR > 0 ? &m_rfds : nullptr;
+      fd_set * psetW = countW > 0 ? &m_wfds : nullptr;
+      fd_set * psetE = countE > 0 ? &m_efds : nullptr;
 
       i32 n = 0;
 
@@ -1070,56 +1116,56 @@ end_processing_adding:
                         m_socketlistErase.add(p->m_socketid);
 
                      }
-                     else
-                     {
+                     //else
+                     //{
 
-                        bool bAnySet = false;
+                     //   bool bAnySet = false;
 
-                        if (FD_ISSET(p->m_socketid, &m_rfdsSelect))
-                        {
+                     //   if (FD_ISSET(p->m_socketid, &m_rfdsSelect))
+                     //   {
 
-                           //FD_SET(p->m_socketid, &rfds);
+                     //      //FD_SET(p->m_socketid, &rfds);
 
-                           //countR++;
+                     //      //countR++;
 
-                           bAnySet = true;
+                     //      bAnySet = true;
 
-                        }
+                     //   }
 
-                        if (FD_ISSET(p->m_socketid, &m_wfdsSelect))
-                        {
+                     //   if (FD_ISSET(p->m_socketid, &m_wfdsSelect))
+                     //   {
 
-                           //FD_SET(p->m_socketid, &wfds);
+                     //      //FD_SET(p->m_socketid, &wfds);
 
-                           //countW++;
+                     //      //countW++;
 
-                           bAnySet = true;
+                     //      bAnySet = true;
 
-                        }
+                     //   }
 
-                        if (FD_ISSET(p->m_socketid, &m_efdsSelect))
-                        {
+                     //   if (FD_ISSET(p->m_socketid, &m_efdsSelect))
+                     //   {
 
-                           //FD_SET(p->m_socketid, &efds);
+                     //      //FD_SET(p->m_socketid, &efds);
 
-                           //countE++;
+                     //      //countE++;
 
-                           bAnySet = true;
+                     //      bAnySet = true;
 
-                        }
+                     //   }
 
-                        if (!bAnySet)
-                        {
+                     //   if (!bAnySet)
+                     //   {
 
-                           // %! none set
+                     //      // %! none set
 
-                           p->m_psocket->error() << "Select " << (i32)p->m_socketid << " No fd in fd_set"; // ->error() << LOG_LEVEL_ERROR);
+                     //      p->m_psocket->error() << "Select " << (i32)p->m_socketid << " No fd in fd_set"; // ->error() << LOG_LEVEL_ERROR);
 
-                           m_socketlistErase.add(p->m_socketid);
+                     //      m_socketlistErase.add(p->m_socketid);
 
-                        }
+                     //   }
 
-                     }
+                     //}
 
                   }
                   else
@@ -1178,7 +1224,7 @@ end_processing_adding:
             
             SOCKET socket = *p;
 
-            if (FD_ISSET(socket, &m_rfdsSelected))
+            if (FD_ISSET(socket, &m_rfds))
             {
                
                auto ppairSocket = m_socketmap.plookup(socket);
@@ -1255,7 +1301,7 @@ end_processing_adding:
 
             }
 
-            if (FD_ISSET(socket, &m_wfdsSelected))
+            if (FD_ISSET(socket, &m_wfds))
             {
                
                auto ppairSocket = m_socketmap.plookup(socket);
@@ -1293,7 +1339,7 @@ end_processing_adding:
 
             }
 
-            if (FD_ISSET(socket, &m_efdsSelected))
+            if (FD_ISSET(socket, &m_efds))
             {
 
                auto ppairSocket = m_socketmap.plookup(socket);
@@ -1723,7 +1769,7 @@ end_processing_adding:
                      else if(psocket->GetSocketId() != INVALID_SOCKET)
                      {
 
-                        set(psocket->GetSocketId(), false, false, false);
+                        psocket->set(false, false, false);
 
                         //information() << "close() before OnDelete\n");
 
@@ -2437,7 +2483,7 @@ end_processing_adding:
    void socket_handler::erase_socket(SOCKET s)
    {
 
-      set(s, false, false, false); // erase from fd_set's
+      //set(s, false, false, false); // erase from fd_set's
 
       m_socketlistCallOnConnect.erase_item(s);
       m_socketlistDetach.erase_item(s);

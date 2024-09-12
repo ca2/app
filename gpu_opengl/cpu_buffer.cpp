@@ -68,7 +68,8 @@ namespace opengl
       
       //::memory_set(m_pixmap.m_pimage32Raw, 127, cx * cy * 4);
 
-#elif defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+#elif defined(LINUX) || defined(__BSD__)
+
       glReadBuffer(GL_FRONT);
       
 

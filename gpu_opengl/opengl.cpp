@@ -5,9 +5,9 @@
 #include "aura/graphics/gpu/context.h"
 
 
-#if defined(FREEBSD) || defined(OPENBSD)
-#include <string.h>
-#endif
+//#if defined(FREEBSD) || defined(OPENBSD)
+//#include <string.h>
+//#endif
 
 
 namespace opengl
@@ -185,7 +185,7 @@ namespace opengl
 
       }
 
-#if !defined(LINUX) && !defined(__APPLE__) && !defined(FREEBSD) && !defined(OPENBSD)
+#if !defined(LINUX) && !defined(__APPLE__) && !defined(__BSD__)
 
       gladLoadGL();
 

@@ -48,7 +48,7 @@
 #include <EGL/eglplatform.h>
 
 
-#elif defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+#elif defined(LINUX) || defined(FREEBSD) || defined(OPENBSD) || defined(NETBSD)
 
 
 #define __GPU_OPENGL_USE_EGL

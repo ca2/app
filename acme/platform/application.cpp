@@ -446,7 +446,7 @@ void application::initialize_application_flags()
    if (m_bGtkApp.undefined())
    {
       
-      m_bGtkApp = !is_console();
+      m_bGtkApp = !platform()->is_console();
       
    }
    

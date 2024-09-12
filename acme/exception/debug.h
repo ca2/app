@@ -73,7 +73,7 @@ CLASS_DECL_ACME int throw_assert_exception(const char * pszFileName, int iLineNu
 #define ASSERT_VALID(cond)
 #elif defined(__APPLE__)
 #define ASSERT_VALID(cond)
-#elif defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
+#elif defined(LINUX) || defined(__BSD__)
 #define ASSERT_VALID(cond)
 #else
 #define ASSERT_VALID(cond) __noop;

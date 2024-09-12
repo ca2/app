@@ -2050,7 +2050,7 @@ m_ibuf(isize)
    void tcp_socket::OnSSLAccept()
    {
 
-      SetNonblocking(true);
+      //SetNonblocking(true);
 
       //synchronous_lock slMap(pnetworking2->m_servercontextmap.m_pmutex);
 

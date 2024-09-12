@@ -53,7 +53,7 @@ namespace sockets
       bool                 m_bOnlyHeaders;
       bool                 m_bNoClose;
       ::pointer<::http::listener>    m_plistener;
-
+      ::i64                m_iHttpSocketRequestSerial;
 
       http_socket();
       ~http_socket() override;
@@ -61,6 +61,8 @@ namespace sockets
 
       void initialize(::particle * pparticle) override;
 
+      virtual ::i64 get_request_serial();
+      ::string get_request_url_string() override;
 
       virtual void OnEndChunk();
 

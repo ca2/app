@@ -493,7 +493,7 @@
 ////               //}
 ////               else if (n > 0 && n <= nBufSize)
 ////               {
-////                  set_connection_last_activity();
+////                  set_connection_last_operation();
 ////                  return n;
 ////               }
 ////               else
@@ -567,7 +567,7 @@
 ////         }
 ////         else if(n > 0 && n <= nBufSize)
 ////         {
-////            set_connection_last_activity();
+////            set_connection_last_operation();
 ////            return n;
 ////         }
 ////         else
@@ -671,7 +671,7 @@
 //   {
 //
 //
-//      set_connection_last_activity();
+//      set_connection_last_operation();
 //
 //      // unbuffered
 //      if(n > 0)
@@ -949,7 +949,7 @@
 ////         {
 ////            GetTrafficMonitor() -> write(buf,n);
 ////         }
-////         set_connection_last_activity();
+////         set_connection_last_operation();
 ////      }
 //      return (i32)n;
 //   }

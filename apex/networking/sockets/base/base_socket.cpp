@@ -28,8 +28,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include "socket.h"
-#include "socket_handler.h"
+#include "base_socket.h"
+#include "base_socket_handler.h"
 #include "acme/exception/interface_only.h"
 #include "apex/networking/networking.h"
 #include "apex/networking/sockets/base/socket_thread.h"
@@ -120,6 +120,23 @@ namespace sockets
 
    base_socket::~base_socket()
    {
+
+   }
+
+
+   ::string base_socket::get_request_url_string()
+   {
+
+      auto pinterface = base_socket_interface();
+
+      if (pinterface)
+      {
+
+         return pinterface->get_request_url_string();
+
+      }
+
+      return {};
 
    }
 
@@ -2933,19 +2950,25 @@ namespace sockets
 
       //m_timeConnectionStart.Now();
 
-      //set_connection_last_activity();
+      //set_connection_last_operation();
 
    }
 
 
-   void base_socket::set_connection_last_activity()
+   void base_socket::set_connection_last_read_time()
    {
 
-      base_socket_impl()->set_connection_start_time();
-      //m_timeConnectionLastActivity.Now();
+      return base_socket_impl()->set_connection_last_read_time();
 
    }
 
+
+   void base_socket::set_connection_last_write_time()
+   {
+
+      return base_socket_impl()->set_connection_last_write_time();
+
+   }
 
 
    void base_socket::set_maximum_connection_time(const class time & time)
@@ -2964,16 +2987,23 @@ namespace sockets
 
       //m_timeStart.Now();
 
-      //set_connection_last_activity();
+      //set_connection_last_operation();
 
    }
 
 
-   void base_socket::set_maximum_time(const class time & time)
+   void base_socket::set_keep_connection_after_last_read_time(const class time & time)
    {
 
-      //m_timeMaximum = time;
-      base_socket_impl()->set_maximum_time(time);
+      base_socket_impl()->set_keep_connection_after_last_read_time(time);
+
+   }
+
+
+   void base_socket::set_keep_connection_after_last_write_time(const class time& time)
+   {
+
+      base_socket_impl()->set_keep_connection_after_last_write_time(time);
 
    }
 
@@ -3021,7 +3051,7 @@ namespace sockets
       //else if(m_timeMaximum > 0_s)
       //{
 
-      //   auto tElapsed = m_timeConnectionLastActivity.elapsed();
+      //   auto tElapsed = m_timeConnectionLastOperation.elapsed();
 
       //   if (tElapsed > m_timeMaximum)
       //   {

@@ -12337,47 +12337,49 @@ namespace user
             if (pchild && pchild->layout().sketch().zorder().is_change_request())
             {
 
-               ::string strType = ::type(pchild).name();
+               //::string strType = ::type(pchild).name();
 
-               if (strType.case_insensitive_contains("place_holder"))
-               {
+               //if (strType.case_insensitive_contains("place_holder"))
+               //{
 
-                  _synchronous_lock synchronouslockChild(pchild->window()->m_pparticleChildrenSynchronization);
+               //   _synchronous_lock synchronouslockChild(pchild->window()->m_pparticleChildrenSynchronization);
 
-                  if (pchild->m_puserinteractionpointeraChild
-                     && pchild->m_puserinteractionpointeraChild->has_interaction())
-                  {
+               //   if (pchild->m_puserinteractionpointeraChild
+               //      && pchild->m_puserinteractionpointeraChild->has_interaction())
+               //   {
 
-                     auto puserinteractionChild = pchild->m_puserinteractionpointeraChild->first_interaction();
+               //      auto puserinteractionChild = pchild->m_puserinteractionpointeraChild->first_interaction();
 
-                     ::string strTypePlaceHolderChild = ::type(puserinteractionChild).name();
 
-                     if (strTypePlaceHolderChild.case_insensitive_contains("simple_frame_window"))
-                     {
 
-                        auto puserinteractionChild2 = puserinteractionChild->m_puserinteractionpointeraChild->first_interaction();
+               //      ::string strTypePlaceHolderChild = ::type(puserinteractionChild).name();
 
-                        ::string strTypePlaceHolderChild2 = ::type(puserinteractionChild2).name();
+               //      if (strTypePlaceHolderChild.case_insensitive_contains("simple_frame_window"))
+               //      {
 
-                        if (strTypePlaceHolderChild2.case_insensitive_contains("font_impact"))
-                        {
+               //         auto puserinteractionChild2 = puserinteractionChild->m_puserinteractionpointeraChild->first_interaction();
 
-                           information() << "interaction::check_child_zorder " << strTypePlaceHolderChild2;
+               //         ::string strTypePlaceHolderChild2 = ::type(puserinteractionChild2).name();
 
-                           if (m_puserinteractionpointeraChild->contains_interaction(pchild))
-                           {
+               //         if (strTypePlaceHolderChild2.case_insensitive_contains("font_impact"))
+               //         {
 
-                              information() << "tab impact has font_list place_holder as child window";
+               //            information() << "interaction::check_child_zorder " << strTypePlaceHolderChild2;
 
-                           }
+               //            if (m_puserinteractionpointeraChild->contains_interaction(pchild))
+               //            {
 
-                        }
+               //               information() << "tab impact has font_list place_holder as child window";
 
-                     }
+               //            }
 
-                  }
+               //         }
 
-               }
+               //      }
+
+               //   }
+
+               //}
 
                m_bPendingChildrenZorder = true;
 

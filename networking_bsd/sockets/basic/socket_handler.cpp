@@ -282,7 +282,9 @@ namespace sockets_bsd
       if (psocket->is_connecting())
       {
 
-         if (psocket->m_timeConnectionMaximum > 0_s)
+         ::pointer < ::sockets_bsd::base_socket > psocketImpl = psocket->base_socket_impl();
+
+         if (psocketImpl->m_timeConnectionMaximum > 0_s)
          {
 
             socket_id_list_add(psocket->GetSocketId(), e_list_timeout);
@@ -293,10 +295,19 @@ namespace sockets_bsd
       else
       {
 
-         if (psocket->m_timeMaximum > 0_s)
+         ::pointer < ::sockets_bsd::base_socket > psocketImpl = psocket->base_socket_impl();
+
+         if (psocketImpl->m_timeKeepConnectionAfterLastRead > 0_s
+            || psocketImpl->m_timeKeepConnectionAfterLastWrite > 0_s)
          {
 
             socket_id_list_add(psocket->GetSocketId(), e_list_timeout);
+
+         }
+         else
+         {
+
+            socket_id_list_erase(psocket->GetSocketId(), e_list_timeout);
 
          }
 
@@ -330,8 +341,10 @@ namespace sockets_bsd
 
       if (passociation->m_psocket->is_connecting())
       {
+         
+         ::pointer < ::sockets_bsd::base_socket > psocketImpl = passociation->m_psocket;
 
-         if (passociation->m_psocket->m_timeConnectionMaximum > 0_s)
+         if (psocketImpl->m_timeConnectionMaximum > 0_s)
          {
 
             socket_id_list_add(passociation->m_psocket->GetSocketId(), e_list_timeout);
@@ -342,7 +355,10 @@ namespace sockets_bsd
       else
       {
 
-         if (passociation->m_psocket->m_timeMaximum > 0_s)
+         ::pointer < ::sockets_bsd::base_socket > psocketImpl = passociation->m_psocket;
+
+         if (psocketImpl->m_timeKeepConnectionAfterLastRead > 0_s
+            || psocketImpl->m_timeKeepConnectionAfterLastWrite > 0_s)
          {
 
             ::pointer < ::sockets_bsd::base_socket > psocket2 = passociation->m_psocket;
@@ -1038,7 +1054,7 @@ end_processing_adding:
 
                      struct timeval tv;
 
-                     tv.tv_sec = 0;
+                     tv.tv_sec = 1;
 
                      tv.tv_usec = 0;
 

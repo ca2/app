@@ -28,14 +28,15 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include "socket.h"
-//#include "socket_thread.h"
+#include "base_socket.h"
+#include "base_socket_handler.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "networking_bsd/sockets/basic/socket_handler.h"
 #include "apex/networking/networking.h"
 #include "apex/platform/system.h"
+#include "networking_bsd/sockets/basic/socket_handler.h"
 #include "networking_bsd/sockets/ssl/context.h"
 #include "networking_bsd/sockets/ssl/client_context.h"
 #ifdef _WIN32
@@ -121,7 +122,8 @@ namespace sockets_bsd
       m_bEnablePool  = true;
 
       m_timeConnectionMaximum = 30_s;
-      m_timeMaximum = 30_s;
+      m_timeKeepConnectionAfterLastRead = 30_s;
+      m_timeKeepConnectionAfterLastWrite = 30_s;
 
    }
 
@@ -650,19 +652,29 @@ namespace sockets_bsd
    {
    }
 
+   
    bool base_socket::on_select_idle()
    {
+      
+      //return base_socket_interface()->on_select_idle();
+
       return false;
+
    }
+
 
    void base_socket::OnConnectFailed()
    {
+
+
    }
 
 
    ::sockets::base_socket *base_socket::get_parent()
    {
+      
       return m_psocketParent;
+
    }
 
 
@@ -2578,18 +2590,23 @@ bool base_socket::SetSoNosigpipe(bool x)
       
       m_timeConnectionStart.Now();
 
-      set_connection_last_activity();
-
    }
 
 
-   void base_socket::set_connection_last_activity()
+   void base_socket::set_connection_last_read_time()
    {
 
-      m_timeConnectionLastActivity.Now();
+      m_timeConnectionLastRead.Now();
 
    }
 
+
+   void base_socket::set_connection_last_write_time()
+   {
+
+      m_timeConnectionLastWrite.Now();
+
+   }
 
 
    void base_socket::set_maximum_connection_time(const class time & time)
@@ -2605,18 +2622,67 @@ bool base_socket::SetSoNosigpipe(bool x)
 
       m_timeStart.Now();
 
-      set_connection_last_activity();
+      //set_connection_last_operation();
 
    }
 
 
-   void base_socket::set_maximum_time(const class time & time)
+   void base_socket::set_keep_connection_after_last_read_time(const class time & time)
    {
 
-      m_timeMaximum = time;
+      m_timeKeepConnectionAfterLastRead = time;
+
+      ::pointer < ::sockets_bsd::socket_handler > phandler = socket_handler();
+
+      if (phandler)
+      {
+
+         if (m_timeKeepConnectionAfterLastRead > 0_s
+            || m_timeKeepConnectionAfterLastWrite > 0_s)
+         {
+
+            phandler->socket_id_list_add(GetSocketId(), e_list_timeout);
+
+         }
+         else
+         {
+
+            phandler->socket_id_list_erase(GetSocketId(), e_list_timeout);
+
+         }
+
+      }
 
    }
 
+
+   void base_socket::set_keep_connection_after_last_write_time(const class time& time)
+   {
+
+      m_timeKeepConnectionAfterLastWrite = time;
+
+      ::pointer < ::sockets_bsd::socket_handler > phandler = socket_handler();
+
+      if (phandler)
+      {
+
+         if (m_timeKeepConnectionAfterLastRead > 0_s
+            || m_timeKeepConnectionAfterLastWrite > 0_s)
+         {
+
+            phandler->socket_id_list_add(GetSocketId(), e_list_timeout);
+
+         }
+         else
+         {
+
+            phandler->socket_id_list_erase(GetSocketId(), e_list_timeout);
+
+         }
+
+      }
+
+   }
 
    void base_socket::on_timeout()
    {
@@ -2653,15 +2719,36 @@ bool base_socket::SetSoNosigpipe(bool x)
          }
 
       }
-      else if(m_timeMaximum > 0_s)
+      else
       {
-
-         auto tElapsed = m_timeConnectionLastActivity.elapsed();
-
-         if (tElapsed > m_timeMaximum)
+         
+         if (m_timeKeepConnectionAfterLastRead > 0_s 
+            && m_timeConnectionLastRead > 0_s)
          {
 
-            return true;
+            auto tElapsed = m_timeConnectionLastRead.elapsed();
+
+            if (tElapsed > m_timeKeepConnectionAfterLastRead)
+            {
+
+               return true;
+
+            }
+
+         }
+
+         if (m_timeKeepConnectionAfterLastWrite > 0_s
+            && m_timeConnectionLastWrite > 0_s)
+         {
+
+            auto tElapsed = m_timeConnectionLastWrite.elapsed();
+
+            if (tElapsed > m_timeKeepConnectionAfterLastWrite)
+            {
+
+               return true;
+
+            }
 
          }
 

@@ -31,6 +31,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 #include "acme/filesystem/file/circular_file.h"
+#include "acme/filesystem/file/memory_file.h"
 #include "stream_socket.h"
 
 
@@ -57,7 +58,8 @@ namespace sockets
       tcp_socket *                  m_ptcpsocketInterface;
       bool                          m_bImpl;
       //static bool s_bReuseSession; // Default psystem Wide Setting
-
+      //::memory_file                 m_memoryfileBuffer;
+ 
       /** Output buffer struct.
       \ingroup internal */
       //string m_strTlsHostName;
@@ -168,6 +170,9 @@ namespace sockets
       //tcp_socket(memsize isize,memsize osize);
       ~tcp_socket() override;
 
+      //virtual int flush_memory_file_buffer();
+      virtual int try_write(const void* buf, int len);
+      virtual int _try_write(const void* buf, int len);
 
       void initialize(::particle * pparticle) override;
 
@@ -364,7 +369,7 @@ namespace sockets
 
 
       /** the actual send() */
-      int try_write(const void * buf, int len);
+      //int try_write(const void * buf, int len);
       /** add data to output buffer top */
       virtual void buffer(const void * buf, int len);
 

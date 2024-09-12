@@ -196,10 +196,25 @@ namespace sockets
             informationf(" *** keepalive: false");
          }*/
 
+      if (m_request.m_url.as_string() == "https://ca2.software/")
+      {
+
+         print_line("Testing Response for https://ca2.software/");
+
+      }
+
+      if (m_b_keepalive)
+      {
+
+         tcp_socket_impl()->set_keep_connection_after_last_write_time(2_s);
+
+      }
+
       // prepare page
       OnExecute();
 
       Reset();
+
    }
 
 
@@ -272,6 +287,14 @@ namespace sockets
       //informationf("");
       //informationf("http_base_socket::OnTransferLimit");
       //   char msg[32768];
+
+      if (m_request.m_url.as_string() == "https://xn--thomasborregaardsrensen-1mc.com/")
+      {
+
+         print_line("Testing Response for https://xn--thomasborregaardsrensen-1mc.com/");
+
+      }
+
       
       OnResponseComplete();
       
@@ -285,9 +308,18 @@ namespace sockets
       else
       {
 
-         m_iKeepAliveCount++;
+         SetCloseAndDelete();
 
-         information() << "keep-alive : " << m_iKeepAliveCount;
+         //m_iKeepAliveCount++;
+
+         //information() << "keep-alive : " << m_iKeepAliveCount;
+
+         //if (m_request.m_url.as_string() == "https://xn--thomasborregaardsrensen-1mc.com/")
+         //{
+
+         //   print_line("Testing Response for https://xn--thomasborregaardsrensen-1mc.com/");
+
+         //}
 
       }
 
@@ -315,6 +347,8 @@ namespace sockets
 
    void http_base_socket::OnResponseComplete()
    {
+
+      
 
    }
 
@@ -438,7 +472,9 @@ namespace sockets
       else
       {
 
-         outheader("content-type") = node()->get_file_extension_mime_type(strExtension);
+         ::string strContentType = node()->get_file_extension_mime_type(strExtension);
+
+         outheader("content-type") = strContentType;
 
       }
 

@@ -698,8 +698,8 @@
     <ClInclude Include="bsd\_.h" />
     <ClInclude Include="networking.h" />
     <ClInclude Include="sockets\base\aaa_socket_thread.h" />
-    <ClInclude Include="sockets\base\socket.h" />
-    <ClInclude Include="sockets\base\socket_handler.h" />
+    <ClInclude Include="sockets\base\base_socket.h" />
+    <ClInclude Include="sockets\base\base_socket_handler.h" />
     <ClInclude Include="sockets\basic\listen_socket_impl.h" />
     <ClInclude Include="sockets\basic\sctp_socket.h" />
     <ClInclude Include="sockets\basic\socket.h" />
@@ -749,8 +749,8 @@
     <ClCompile Include="ip_enum.cpp" />
     <ClCompile Include="networking_bsd.cpp" />
     <ClCompile Include="port_forward.cpp" />
-    <ClCompile Include="sockets\base\socket.cpp" />
-    <ClCompile Include="sockets\base\socket_handler.cpp" />
+    <ClCompile Include="sockets\base\base_socket.cpp" />
+    <ClCompile Include="sockets\base\base_socket_handler.cpp" />
     <ClCompile Include="sockets\basic\listen_socket_impl.cpp" />
     <ClCompile Include="sockets\basic\sctp_socket.cpp" />
     <ClCompile Include="sockets\basic\socket.cpp" />

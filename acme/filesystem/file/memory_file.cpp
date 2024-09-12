@@ -508,11 +508,15 @@ void memory_file::translate(filesize offset, ::enum_seek eseek)
    if(::is_null(m_pmemory))
    {
     
-      return;
+      m_pbyte = nullptr;
       
    }
+   else
+   {
 
-   m_pbyte = (::u8 *)m_pmemory->begin();
+      m_pbyte = (::u8*)m_pmemory->begin();
+
+   }
 
    memsize dwNew = (memsize)m_position;
 

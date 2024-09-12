@@ -90,7 +90,7 @@ namespace sockets
       //::pointer<base_socket>          m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
       
       //class ::time              m_timeConnectionStart; ///< Set by SetTimeout
-      //class ::time              m_timeConnectionLastActivity; ///< Set by SetTimeout
+      //class ::time              m_timeConnectionLastOperation; ///< Set by SetTimeout
       //class ::time              m_timeConnectionMaximum; ///< Defined by SetTimeout
       //class ::time              m_timeStart; ///< Set by SetTimeout
       //class ::time              m_timeMaximum; ///< Defined by SetTimeout
@@ -182,14 +182,15 @@ namespace sockets
       ::pointer<::sockets::socket_thread>          m_psocketthread; ///< detach base_socket thread class pointer
 
       transfer_progress_function                   m_transferprogressfunction;
-      class ::time                                 m_timeConnectionMaximum; ///< Defined by SetTimeout
-      class ::time                                 m_timeMaximum; ///< Defined by SetTimeout
 
       
       /** "Default" constructor */
       base_socket();
 
       ~base_socket() override;
+
+
+      virtual ::string get_request_url_string();
 
 
       virtual void SetSocketHandler(base_socket_handler* phandler);
@@ -336,13 +337,17 @@ namespace sockets
 
       virtual void set_connection_start_time();
 
-      virtual void set_connection_last_activity();
+      virtual void set_connection_last_read_time();
+
+      virtual void set_connection_last_write_time();
 
       virtual void set_maximum_connection_time(const class time & time);
 
       virtual void set_start_time();
 
-      virtual void set_maximum_time(const class ::time& time);
+      virtual void set_keep_connection_after_last_read_time(const class ::time& time);
+
+      virtual void set_keep_connection_after_last_write_time(const class ::time& time);
 
       /** Check timeout. \return true if time limit reached */
       virtual bool has_timed_out();

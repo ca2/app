@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "socket.h"
+#include "http_socket.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/primitive/primitive/url.h"
 #include "acme/platform/system.h"
@@ -13,6 +13,9 @@
 
 namespace sockets
 {
+
+
+   ::interlocked_count g_interlockedcountHttpSocketRequestSerial;
 
 
    http_socket::http_socket() :
@@ -267,6 +270,8 @@ namespace sockets
          {
 
             m_iRequestIndex++;
+
+            m_iHttpSocketRequestSerial = g_interlockedcountHttpSocketRequestSerial++;
 
             str.make_lower();
             //m_request.attr("remote_addr") = GetRemoteAddress().get_display_number();
@@ -585,7 +590,36 @@ namespace sockets
 
       msg += "\r\n";
 
-      information() << "Out Headers\n" << msg;
+      ::string strMessage;
+
+      ::string strTitle1;
+
+      strTitle1.formatf("Response for request %lld ------------------------------------", get_request_serial());
+
+      ::string strMessage2;
+
+      strMessage2 = "\n\n" + strTitle1 + "\n";
+      
+      strMessage2 += m_request.m_url.as_string() + "\n";
+
+      ::string strMsg(msg);
+
+      strMsg.ends_eat("\r\n");
+      
+      strMessage2 += strMsg;
+
+      strMessage2 += string('-', strTitle1.length());
+
+      strMessage2 += "\n";
+
+      information() << strMessage2;
+
+      if (m_request.m_url.as_string() == "https://xn--thomasborregaardsrensen-1mc.com/")
+      {
+
+         print_line("Testing Response for https://xn--thomasborregaardsrensen-1mc.com/");
+
+      }
 
       print(msg);
 
@@ -597,6 +631,7 @@ namespace sockets
       }
 
    }
+
 
    void http_socket::SendResponseBody()
    {
@@ -929,6 +964,22 @@ namespace sockets
       //m_bConnected      = psocket->m_bConnected;
 
       SetRemoteHostname(psocket->GetRemoteHostname());
+
+   }
+
+
+   ::i64 http_socket::get_request_serial()
+   {
+
+      return m_iHttpSocketRequestSerial;
+
+   }
+
+
+   ::string http_socket::get_request_url_string()
+   {
+
+      return m_request.m_url.as_string();
 
    }
 

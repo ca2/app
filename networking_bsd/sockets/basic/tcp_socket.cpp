@@ -1111,7 +1111,9 @@ m_ibuf(isize)
                //}
                else if (n > 0 && n <= nBufSize)
                {
-                  set_connection_last_activity();
+                  
+                  set_connection_last_read_time();
+
                   return n;
                }
                else
@@ -1185,8 +1187,11 @@ m_ibuf(isize)
          }
          else if (n > 0 && n <= nBufSize)
          {
-            set_connection_last_activity();
+            
+            set_connection_last_read_time();
+
             return n;
+
          }
          else
          {
@@ -1290,12 +1295,11 @@ m_ibuf(isize)
    void tcp_socket::on_read(const void* buf, memsize n)
    {
 
-
-      set_connection_last_activity();
-
       // unbuffered
       if (n > 0)
       {
+
+         set_connection_last_read_time();
 
          stream_socket::on_read(buf, n);
 
@@ -1462,7 +1466,11 @@ m_ibuf(isize)
    }
 
 
-   int tcp_socket::try_write(const void* buf, int len)
+
+
+
+   
+   int tcp_socket::_try_write(const void* buf, int len)
    {
 
       ::iptr n = 0;
@@ -1476,6 +1484,13 @@ m_ibuf(isize)
       {
 
          n = SSL_write(m_psslcontext->m_ssl, psz, (i32)len);
+
+         if (get_request_url_string() == "https://xn--thomasborregaardsrensen-1mc.com/")
+         {
+
+            print_line("Testing Response for https://xn--thomasborregaardsrensen-1mc.com/");
+
+         }
 
          if (n == -1)
          {
@@ -1492,7 +1507,15 @@ m_ibuf(isize)
 
                   auto strError = cerrornumber.get_error_description();
 
-                  information() << strError;
+                  information() << "SSL_ERROR_SYSCALL errno : " << strError;
+
+#ifdef WINDOWS
+
+                  int iWsaError = ::WSAGetLastError();
+
+                  information() << "SSL_ERROR_SYSCALL WSAGetLastError : " << iWsaError;
+
+#endif
 
                }
 
@@ -1506,7 +1529,7 @@ m_ibuf(isize)
 
                const char* errbuf = ERR_error_string(errnr, nullptr);
 
-               fatal() << "OnWrite / SSL_write " << errnr << errbuf;
+               fatal() << "OnWrite / SSL_write " << errnr << " " << errbuf;
 
                //throw ::exception(io_exception(errbuf));
 
@@ -1595,7 +1618,7 @@ m_ibuf(isize)
 
          }
 
-         set_connection_last_activity();
+         set_connection_last_write_time();
 
       }
 
@@ -1658,6 +1681,22 @@ m_ibuf(isize)
          write(str,  (i32) str.length());
       }
    */
+
+
+   int tcp_socket::try_write(const void* buf, int len)
+   {
+
+      return _try_write(buf, len);
+
+      //auto poutput = ::place(::new output(len));
+
+      //poutput->m_memory.assign(buf, len);
+
+      //m_obuf.add_tail(poutput);
+
+      //return len;
+
+   }
 
 
    void tcp_socket::write(const void* p, ::memsize s)
@@ -2166,7 +2205,7 @@ m_ibuf(isize)
 
          /// \todo: resurrect certificate check... client
          //         CheckCertificateChain( "");//ServerHOST);
-         SetNonblocking(false);
+         //SetNonblocking(false);
          //
          {
             SetConnected();

@@ -360,6 +360,10 @@ namespace httpd
 
       string str;
 
+      ::string strMessage;
+
+      strMessage = "Request for " + m_request.m_url.as_string() + "\n";
+
       for (auto& property : m_request.headers())
       {
 
@@ -370,7 +374,7 @@ namespace httpd
          if (str.length() + strNewHeader.length() > 80)
          {
 
-            informationf("Headers %s", str.c_str());
+            strMessage.append_formatf("Headers %s\n", str.c_str());
 
             str = strNewHeader;
 
@@ -387,9 +391,11 @@ namespace httpd
       if (str.length() > 0)
       {
 
-         informationf("Headers %s", str.c_str());
+         strMessage.append_formatf("Headers %s\n", str.c_str());
 
       }
+
+      information() << strMessage;
 
       auto tickExecuteBeg = ::time::now();
 
@@ -519,6 +525,15 @@ namespace httpd
    {
 
       pointer_array < ::i32_array > rangea;
+
+      if (m_request.m_url.as_string() ==
+         "https://designbykyle.com/images/me1.jpg")
+      {
+
+         print_line("Testing request for https://designbykyle.com/images/me1.jpg");
+
+      }
+
 
       if (inheader("range").has_char())
       {

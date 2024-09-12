@@ -321,7 +321,9 @@ namespace sockets_bsd
 
 
       /** the actual send() */
-      int try_write(const void * buf, int len);
+      int flush();
+      int try_write(const void* buf, int len) override;
+      int _try_write(const void* buf, int len) override;
       /** add data to output buffer top */
       void buffer(const void * buf, int len) override;
 

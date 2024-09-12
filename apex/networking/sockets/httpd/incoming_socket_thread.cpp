@@ -144,7 +144,9 @@ namespace httpd
 
                   m_iConnectPort = m_iCurrentPort;
 
-                  m_pincomingsocket->set_maximum_time(0_s);
+                  m_pincomingsocket->set_keep_connection_after_last_read_time(0_s);
+
+                  m_pincomingsocket->set_keep_connection_after_last_write_time(0_s);
 
                   m_psockethandlerIncoming->add(m_pincomingsocket);
 

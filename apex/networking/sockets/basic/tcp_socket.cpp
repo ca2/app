@@ -731,7 +731,7 @@ return true;
 //               //}
 //               else if (n > 0 && n <= nBufSize)
 //               {
-//                  set_connection_last_activity();
+//                  set_connection_last_operation();
 //                  return n;
 //               }
 //               else
@@ -805,7 +805,7 @@ return true;
 //         }
 //         else if(n > 0 && n <= nBufSize)
 //         {
-//            set_connection_last_activity();
+//            set_connection_last_operation();
 //            return n;
 //         }
 //         else
@@ -913,7 +913,7 @@ return true;
    {
 
 
-      //set_connection_last_activity();
+      //set_connection_last_operation();
 
       //// unbuffered
       //if(n > 0)
@@ -1085,120 +1085,120 @@ return true;
       //}
    }
 
-
-   int tcp_socket::try_write(const void * buf,int len)
-   {
-
-      int n = 0;
-
 //
-//#ifdef HAVE_OPENSSL
+//   int tcp_socket::try_write(const void * buf,int len)
+//   {
 //
-//      if(IsSSL())
-//      {
+//      int n = 0;
 //
-//         n = SSL_write(m_psslcontext->m_ssl,buf,(i32)len);
+////
+////#ifdef HAVE_OPENSSL
+////
+////      if(IsSSL())
+////      {
+////
+////         n = SSL_write(m_psslcontext->m_ssl,buf,(i32)len);
+////
+////         if(n == -1)
+////         {
+////            i32 errnr = SSL_get_error(m_psslcontext->m_ssl,(i32)n);
+////            if(errnr != SSL_ERROR_WANT_READ && errnr != SSL_ERROR_WANT_WRITE)
+////            {
+////               if(errnr == SSL_ERROR_SYSCALL)
+////               {
+////                  int iError = errno;
+////
+////                  const ::scoped_string & scopedstrError = strerror(iError);
+////                  information() << pszError;
+////               }
+////               OnDisconnect();
+////               SetCloseAndDelete(true);
+////               SetFlushBeforeClose(false);
+////               SetLost();
+////               const char *errbuf = ERR_error_string(errnr,nullptr);
+////
+////               fatal() <<"OnWrite / SSL_write " << errnr << errbuf;
+////
+////               //throw ::exception(io_exception(errbuf));
+////            }
+////            //return 0;
+////         }
+////         else if(!n)
+////         {
+////            OnDisconnect();
+////            SetCloseAndDelete(true);
+////            SetFlushBeforeClose(false);
+////            SetLost();
+////            i32 errnr = SSL_get_error(m_psslcontext->m_ssl,(i32)n);
+////            const char *errbuf = ERR_error_string(errnr,nullptr);
+////            information() << "SSL_write() returns 0: " << errnr << ", " << errbuf;
+////            //throw ::exception(io_exception(errbuf));
+////         }
+////
+////      }
+////      else
+////#endif // HAVE_OPENSSL
+////      {
+//////         retry:
+////#if defined(__APPLE__)
+////         int iSocket = get_socket_id();
+////         n = (int) (::send(iSocket,buf,len,SO_NOSIGPIPE));
+////#elif defined(SOLARIS)
+////         n = ::send(get_socket_id(),(const char *)buf,(int)len,0);
+////#else
+////         n = ::send(get_socket_id(),(const char *)buf,(int)len,MSG_NOSIGNAL);
+////#endif
+////         if(n == -1)
+////         {
+////            int iError = Errno;
+////            // normal error codes:
+////            // WSAEWOULDBLOCK
+////            //       EAGAIN or EWOULDBLOCK
+////#ifdef _WIN32
+////            if(iError != WSAEWOULDBLOCK) // 10035L
+////#else
+////            if(iError != EWOULDBLOCK)
+////#endif
+////            {
+////
+////               fatal() <<"send " << Errno << bsd_socket_error(Errno);
+////
+////               OnDisconnect();
+////               SetCloseAndDelete(true);
+////               SetFlushBeforeClose(false);
+////               SetLost();
+////               //throw ::exception(io_exception(bsd_socket_error(Errno)));
+////            }
+////            //else
+////            //{
+////            //   fd_set w;
+////            //   fd_set e;
+////            //   FD_ZERO(&e);
+////            //   FD_ZERO(&w);
+////            //   FD_SET(get_socket_id(), &e);
+////            //   FD_SET(get_socket_id(), &w);
+////            //   struct timeval tv;
+////            //   tv.tv_sec = 1;
+////            //   tv.tv_usec = 0;
+////            //   ::select((int) (get_socket_id() + 1), nullptr, &w, &e, &tv);
+////            //   goto retry;
+////            //}
+////
+////            //return 0;
+////         }
+////      }
+////      if(n > 0)
+////      {
+////         m_bytes_sent += n;
+////         if(GetTrafficMonitor())
+////         {
+////            GetTrafficMonitor() -> write(buf,n);
+////         }
+////         set_connection_last_operation();
+////      }
+//      return (i32)n;
+//   }
 //
-//         if(n == -1)
-//         {
-//            i32 errnr = SSL_get_error(m_psslcontext->m_ssl,(i32)n);
-//            if(errnr != SSL_ERROR_WANT_READ && errnr != SSL_ERROR_WANT_WRITE)
-//            {
-//               if(errnr == SSL_ERROR_SYSCALL)
-//               {
-//                  int iError = errno;
-//
-//                  const ::scoped_string & scopedstrError = strerror(iError);
-//                  information() << pszError;
-//               }
-//               OnDisconnect();
-//               SetCloseAndDelete(true);
-//               SetFlushBeforeClose(false);
-//               SetLost();
-//               const char *errbuf = ERR_error_string(errnr,nullptr);
-//
-//               fatal() <<"OnWrite / SSL_write " << errnr << errbuf;
-//
-//               //throw ::exception(io_exception(errbuf));
-//            }
-//            //return 0;
-//         }
-//         else if(!n)
-//         {
-//            OnDisconnect();
-//            SetCloseAndDelete(true);
-//            SetFlushBeforeClose(false);
-//            SetLost();
-//            i32 errnr = SSL_get_error(m_psslcontext->m_ssl,(i32)n);
-//            const char *errbuf = ERR_error_string(errnr,nullptr);
-//            information() << "SSL_write() returns 0: " << errnr << ", " << errbuf;
-//            //throw ::exception(io_exception(errbuf));
-//         }
-//
-//      }
-//      else
-//#endif // HAVE_OPENSSL
-//      {
-////         retry:
-//#if defined(__APPLE__)
-//         int iSocket = get_socket_id();
-//         n = (int) (::send(iSocket,buf,len,SO_NOSIGPIPE));
-//#elif defined(SOLARIS)
-//         n = ::send(get_socket_id(),(const char *)buf,(int)len,0);
-//#else
-//         n = ::send(get_socket_id(),(const char *)buf,(int)len,MSG_NOSIGNAL);
-//#endif
-//         if(n == -1)
-//         {
-//            int iError = Errno;
-//            // normal error codes:
-//            // WSAEWOULDBLOCK
-//            //       EAGAIN or EWOULDBLOCK
-//#ifdef _WIN32
-//            if(iError != WSAEWOULDBLOCK) // 10035L
-//#else
-//            if(iError != EWOULDBLOCK)
-//#endif
-//            {
-//
-//               fatal() <<"send " << Errno << bsd_socket_error(Errno);
-//
-//               OnDisconnect();
-//               SetCloseAndDelete(true);
-//               SetFlushBeforeClose(false);
-//               SetLost();
-//               //throw ::exception(io_exception(bsd_socket_error(Errno)));
-//            }
-//            //else
-//            //{
-//            //   fd_set w;
-//            //   fd_set e;
-//            //   FD_ZERO(&e);
-//            //   FD_ZERO(&w);
-//            //   FD_SET(get_socket_id(), &e);
-//            //   FD_SET(get_socket_id(), &w);
-//            //   struct timeval tv;
-//            //   tv.tv_sec = 1;
-//            //   tv.tv_usec = 0;
-//            //   ::select((int) (get_socket_id() + 1), nullptr, &w, &e, &tv);
-//            //   goto retry;
-//            //}
-//
-//            //return 0;
-//         }
-//      }
-//      if(n > 0)
-//      {
-//         m_bytes_sent += n;
-//         if(GetTrafficMonitor())
-//         {
-//            GetTrafficMonitor() -> write(buf,n);
-//         }
-//         set_connection_last_activity();
-//      }
-      return (i32)n;
-   }
-
 
    void tcp_socket::buffer(const void * pdata,int len)
    {
@@ -2909,6 +2909,60 @@ return true;
 //      InitializeContext("", TLS_client_method());
 //
 //#endif
+
+   }
+
+   
+   //int tcp_socket::flush_memory_file_buffer()
+   //{
+
+   //   if (tcp_socket_interface() == this)
+   //   {
+
+   //      auto pmemory = m_memoryfileBuffer.detach();
+
+   //      if (pmemory)
+   //      {
+
+   //         m_memoryfileBuffer.seek_to_begin();
+
+   //         return _try_write(pmemory->data(), pmemory->size());
+
+   //      }
+
+   //      return 0;
+
+   //   }
+
+   //   return tcp_socket_interface()->flush_memory_file_buffer();
+
+   //}
+
+
+   int tcp_socket::try_write(const void* buf, int len)
+   {
+
+    //  return _try_write(buf, len);
+      
+      //if (tcp_socket_interface() == this)
+      //{
+
+      //   m_memoryfileBuffer.write(buf, len);
+
+      //   return len;
+
+      //}
+
+      return tcp_socket_impl()->try_write(buf, len);
+
+   }
+
+
+
+   int tcp_socket::_try_write(const void* buf, int len)
+   {
+
+      return tcp_socket_impl()->_try_write(buf, len);
 
    }
 

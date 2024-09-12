@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "apex/networking/sockets/base/socket.h"
+#include "apex/networking/sockets/base/base_socket.h"
 #include "networking_bsd/sockets/ssl/context.h"
 #include "networking_bsd/sockets/_collection.h"
 #include "acme/primitive/collection/comparable_eq_list.h"
@@ -67,6 +67,8 @@ namespace sockets_bsd
       bool                       m_b_chunked;
 
 
+      //memory_file m_memoryfileInputBuffer;
+
       ::pointer<::memory_file>   m_pmemfileInput;
       bool                       m_bEnd; // should finish by not sending no more writes
       string                     m_strCat;
@@ -83,11 +85,15 @@ namespace sockets_bsd
       bool                       m_bCloseAndDelete; ///< close and delete flag
       ::pointer < ::sockets::base_socket >  m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
       class ::time               m_timeLastRead;
-      class ::time            m_timeLastWrite;
-      class ::time            m_timeConnectionStart; ///< Set by SetTimeout
-      class ::time              m_timeConnectionLastActivity; ///< Set by SetTimeout
-      class ::time              m_timeStart; ///< Set by SetTimeout
-      bool                    m_bNonBlocking;
+      class ::time               m_timeLastWrite;
+      class ::time               m_timeConnectionMaximum; ///< Defined by SetTimeout
+      class ::time               m_timeConnectionStart; ///< Set by SetTimeout
+      class ::time               m_timeConnectionLastRead; ///< Set by SetTimeout
+      class ::time               m_timeConnectionLastWrite; ///< Set by SetTimeout
+      class ::time               m_timeKeepConnectionAfterLastRead; ///< Defined by SetTimeout
+      class ::time               m_timeKeepConnectionAfterLastWrite; ///< Defined by SetTimeout
+      class ::time               m_timeStart; ///< Set by SetTimeout
+      bool                       m_bNonBlocking;
       //    unsigned long           m_flags; ///< boolean flags, replacing old 'bool' members
 
 #if !defined(BSD_STYLE_SOCKETS)
@@ -303,13 +309,17 @@ namespace sockets_bsd
 
       void set_connection_start_time() override;
 
-      void set_connection_last_activity() override;
+      void set_connection_last_read_time() override;
+
+      void set_connection_last_write_time() override;
 
       void set_maximum_connection_time(const class time & time) override;
 
       void set_start_time() override;
 
-      void set_maximum_time(const class ::time& time) override;
+      void set_keep_connection_after_last_read_time(const class ::time& time) override;
+
+      void set_keep_connection_after_last_write_time(const class ::time& time) override;
 
       /** Check timeout. \return true if time limit reached */
       bool has_timed_out() override;

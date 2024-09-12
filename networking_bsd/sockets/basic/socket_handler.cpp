@@ -1054,7 +1054,7 @@ end_processing_adding:
 
                      struct timeval tv;
 
-                     tv.tv_sec = 0;
+                     tv.tv_sec = 1;
 
                      tv.tv_usec = 0;
 

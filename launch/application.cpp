@@ -96,6 +96,22 @@ namespace launch
          m_strBranch = strBranch;
 
       }
+      else if (m_strDistro == "openbsd")
+      {
+
+         print_line("This is OpenBSD System...");
+
+         m_strBranch = strBranch;
+
+      }
+      else if (m_strDistro == "netbsd")
+      {
+
+         print_line("This is NetBSD System...");
+
+         m_strBranch = strBranch;
+
+      }
       else if (m_strDistro == "linuxmint")
       {
 

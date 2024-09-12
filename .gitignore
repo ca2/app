@@ -35,9 +35,11 @@ solution.vc.db*
 *.expand_fileset
 *.expand_fileset.spa
 Thumbs.db
+deployment.rc
 _matter.zip
 Makefile
 _packages.txt
+
 application_build_helper_input.txt
 application_build_helper_output.txt
 matter_output.txt

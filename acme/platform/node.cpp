@@ -3617,7 +3617,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 
    ::file::path_array patha;
 
-   ::file::path pathBin = acmedirectory()->roaming() / scopedstrRepos / scopedstrApp / "x64";
+   ::file::path pathBin = acmedirectory()->home() / "application" / scopedstrRepos / scopedstrApp / "binary";
 
    patha = pathBin / stra;
 

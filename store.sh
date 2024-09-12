@@ -66,6 +66,10 @@ elif [ "$unamestr" = 'FreeBSD' ]; then
 
    platform='freebsd'
 
+elif [ "$unamestr" = 'NetBSD' ]; then
+
+   platform='netbsd'
+
 fi
 
 echo "Detected platform : $platform"
@@ -77,6 +81,10 @@ if [ "$platform" = 'freebsd' ]; then
 elif [ "$platform" = 'linux' ]; then
 
    url='https://linux.ca2.store/store'
+
+elif [ "$platform" = 'netbsd' ]; then
+
+   url='https://netbsd.ca2.store/store'
 
 else
 

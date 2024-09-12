@@ -21,7 +21,7 @@ namespace acme
       bool                             m_bFinalizeIfNoApplicationSetting;
       bool                             m_bFinalizeIfNoApplication;
 
-      ::pointer<::apex::application>  m_pappCurrent;
+      ::pointer<::acme::application>   m_pappCurrent;
 
 
 

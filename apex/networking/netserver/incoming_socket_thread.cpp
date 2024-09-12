@@ -156,11 +156,9 @@ namespace netserver
 
                   m_pincomingsocket->set_keep_connection_after_last_read_time(0_s);
 
-                  m_pincomingsocket->set_keep_connection_after_last_write_time(0_s);
+                  m_pincomingsocket->set_maximum_time(0_s);
 
-                  auto psocketInterface = m_pincomingsocket;
-
-                  m_psockethandlerIncoming->add(psocketInterface);
+                  m_psockethandlerIncoming->add(m_pincomingsocket);
 
                   while (m_psockethandlerIncoming->get_count() > 0 && task_get_run())
                   {

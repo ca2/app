@@ -59,6 +59,9 @@ namespace acme
          
       };
 
+      bool                                            m_bTransferToContainer;
+      bool                                            m_bTransferredToContainer;
+
       //mutable ::platform::platform *               m_pplatform;
 
       //::APPLICATION_FLAGS                      m_applicationflags;
@@ -113,11 +116,6 @@ namespace acme
       virtual void initialize_application(::platform::platform * pplatform);
 
 
-      virtual bool is_console() const;
-      
-      virtual bool is_desktop_system() const;
-      
-      virtual bool is_sandboxed() const;
       
       
       virtual void application_on_status(::e_status estatus, ::particle * pparticle = nullptr, long long ll = 0, void * p = nullptr);

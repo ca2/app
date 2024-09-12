@@ -397,7 +397,7 @@ namespace acme
 
       auto psystem = system();
 
-      if (psystem->m_pfnImplement || psystem->m_pacmeapplication->is_console())
+      if (psystem->m_pfnImplement || platform()->is_console())
       {
 
          node_implement_main();
@@ -3292,7 +3292,7 @@ bool node::_is_smart_git_installed()
       if (!file()->exists(pathNetworkPayload))
       {
 
-         if (application()->is_desktop_system())
+         if (platform()->is_desktop_system())
          {
 
             auto pathHome = dir()->home();

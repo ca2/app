@@ -500,7 +500,7 @@ namespace acme
       run();
 
 
-      if (application()->is_console())
+      if (platform()->is_console())
       {
 
          application()->main();
@@ -2217,7 +2217,7 @@ namespace acme
 
       process_init();
 
-      if (application()->is_console())
+      if (platform()->is_console())
       {
 
          application()->main();
@@ -2966,7 +2966,7 @@ namespace acme
       if (!papp)
       {
 
-         if (strAppId.is_empty() || application()->is_console())
+         if (strAppId.is_empty() || platform()->is_console())
          {
 
             papp = __create < ::acme::application >();

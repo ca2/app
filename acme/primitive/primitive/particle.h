@@ -149,7 +149,8 @@ public:
    //virtual void initialize(::particle * pparticle);
    virtual void on_initialize_particle();
 
-   class ::platform::platform * platform() const;
+   //class ::platform::platform * platform() const;
+   static class ::platform::platform * platform();
 
    virtual class ::platform::platform * _platform() const;
 

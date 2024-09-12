@@ -47,6 +47,9 @@ namespace acme
 
 application::application()
 {
+
+   m_bTransferToContainer = true;
+   m_bTransferredToContainer = false;
    
    m_pfilesystemoptions = ::place(new ::filesystem::file_system_options ());
       
@@ -144,38 +147,6 @@ void application::on_initialize_particle()
 //   return m_iExitCode;
 
 //}
-
-
-bool application::is_console() const
-{
-   
-   return platform()->m_bConsole;
-   
-}
-
-
-bool application::is_desktop_system() const
-{
-   
-   return IS_DESKTOP_SYSTEM();
-   
-}
-
-
-bool application::is_sandboxed() const
-{
-   
-#if defined(APPLE_IOS)
-   return true;
-#elif defined(ANDROID)
-   return true;
-#elif defined(UNIVERSAL_WINDOWS)
-   return true;
-#else
-   return false;
-#endif
-   
-}
 
 
 //void application::initialize(::particle* pparticle)
@@ -316,7 +287,7 @@ void application::on_error_icloud_not_available(::particle * pparticle, long lon
    
    string strAppId;
    
-   if (!is_console())
+   if (!platform()->is_console())
    {
       
       strAppId = m_strAppId;
@@ -411,7 +382,7 @@ void application::initialize_application_flags()
    if (m_bDraw2d.undefined())
    {
       
-      m_bDraw2d = !is_console();
+      m_bDraw2d = !platform()->is_console();
       
    }
    
@@ -425,28 +396,28 @@ void application::initialize_application_flags()
    if (m_bUser.undefined())
    {
       
-      m_bUser = !is_console();
+      m_bUser = !platform()->is_console();
       
    }
    
    if (m_bUserEx.undefined())
    {
       
-      m_bUserEx = !is_console();
+      m_bUserEx = !platform()->is_console();
       
    }
    
    if (m_bImaging.undefined())
    {
       
-      m_bImaging = !is_console();
+      m_bImaging = !platform()->is_console();
       
    }
    
    if (m_bCrypto.undefined())
    {
       
-      m_bCrypto = !is_console();
+      m_bCrypto = !platform()->is_console();
       
    }
    
@@ -464,7 +435,7 @@ void application::initialize_application_flags()
    if (m_bGdiplus.undefined())
    {
       
-      m_bGdiplus = !is_console();
+      m_bGdiplus = !platform()->is_console();
       
    }
    
@@ -488,7 +459,7 @@ void application::initialize_application_flags()
       
    }
    
-   if (is_console())
+   if (platform()->is_console())
    {
       
       if (m_bSession.undefined())

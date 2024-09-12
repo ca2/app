@@ -1922,7 +1922,7 @@ namespace apex
 
       bool bHandled = false;
 
-      if (!is_sandboxed())
+      if (!platform()->is_sandboxed())
       {
          
          if (!check_exclusive(m_prequest, bHandled))
@@ -5540,8 +5540,8 @@ namespace apex
       if (!is_service())
       {
 
-         if ((is_console() && m_bCreateAppShorcut.is_set_true())
-            || (!is_console() && m_bCreateAppShorcut.is_true_or_undefined()))
+         if ((platform()->is_console() && m_bCreateAppShorcut.is_set_true())
+            || (!platform()->is_console() && m_bCreateAppShorcut.is_true_or_undefined()))
          {
 
             on_create_app_shortcut();

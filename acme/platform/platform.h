@@ -110,6 +110,11 @@ namespace platform
 
       bool m_bConsole;
 
+      virtual bool is_console() const;
+
+      virtual bool is_desktop_system() const;
+
+      virtual bool is_sandboxed() const;
 
 
       ::critical_section * channel_critical_section()

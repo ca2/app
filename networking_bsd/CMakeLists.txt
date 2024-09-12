@@ -17,10 +17,10 @@ list(APPEND library_source
    #sockets/aaa_transfer_socket.cpp
    #sockets/aaa_want_to_remove_sockets_sockets.h
    #sockets/aaa_websocket_client.cpp
-   sockets/base/socket.cpp
-   sockets/base/socket.h
-   sockets/base/socket_handler.cpp
-   sockets/base/socket_handler.h
+   sockets/base/base_socket.cpp
+   sockets/base/base_socket.h
+   sockets/base/base_socket_handler.cpp
+   sockets/base/base_socket_handler.h
    #sockets/base/socket_thread.cpp
    #sockets/base/socket_thread.h
    sockets/basic/_.h

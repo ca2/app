@@ -51,6 +51,8 @@ namespace user
       m_flagNonClient.erase(e_non_client_background);
       m_flagNonClient.erase(e_non_client_focus_rect);
 
+      m_einteraction -= ::user::e_interaction_system_context_menu;
+
       m_pviewMain = nullptr;
       //m_bAutoWindowFrame = true;
       //m_bWindowFrame = true;

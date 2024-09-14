@@ -1339,6 +1339,23 @@ namespace acme
    }
 
 
+   void system::defer_innate_ui()
+   {
+
+
+   }
+
+
+   ::innate_ui::innate_ui * system::innate_ui()
+   {
+
+      defer_innate_ui();
+
+      return m_pinnateui;
+
+   }
+
+
    void system::defer_audio()
    {
 

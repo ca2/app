@@ -541,7 +541,16 @@ namespace user
 
    };
 
+   enum enum_interaction : ::i64
+   {
 
+      e_interaction_none = 0,
+      e_interaction_system_context_menu = 1 << 0,
+      e_interaction_wfi_up_down_loading2 = 1 << 1,
+      e_interaction_wfi_up_tool_window2 = 1 << 2,
+
+
+   };
 
 
 } // namespace user

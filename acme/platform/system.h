@@ -13,6 +13,15 @@
 #include "acme/primitive/primitive/factory.h"
 
 
+namespace innate_ui
+{
+
+
+   class innate_ui;
+
+
+} // namespace innate_ui
+
 
 class manager_room;
 
@@ -63,7 +72,7 @@ namespace acme
       bool                                                  m_bDarkMode;
       ::color::color                                        m_colorBackground;
       double                                                m_dLuminance;
-
+      ::pointer < ::innate_ui::innate_ui >                  m_pinnateui;
 
       // END FROM MAIN (Now APPLICATION_FLAGS)
 
@@ -244,6 +253,10 @@ namespace acme
       ::particle * ui_destroyed_synchronization() { return m_pmutexUiDestroyed; }
 
       virtual ::nano::nano * nano();
+
+      virtual void defer_innate_ui();
+
+      virtual ::innate_ui::innate_ui * innate_ui();
       
       //virtual nano::nano * nano()
 

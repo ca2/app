@@ -27,7 +27,7 @@ namespace app_app
 
       m_bLicense = false;
 
-      m_bImaging = false;
+      m_bImaging = true; // for showing application icon
 
       m_bWriteText = false;
 

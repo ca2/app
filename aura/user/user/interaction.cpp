@@ -18036,7 +18036,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    string interaction::get_window_default_matter()
    {
 
-      return "";
+      return "main";
 
    }
 
@@ -25164,6 +25164,17 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       }
 
+      if (m_einteraction & ::user::e_interaction_system_context_menu)
+      {
+
+         if (pmouse->m_pointHost.y() <= 48)
+         {
+
+            window()->defer_show_system_menu(pmouse->m_pointAbsolute);
+
+         }
+
+      }
 
    }
 

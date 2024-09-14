@@ -34,6 +34,8 @@ namespace user
 
       m_ewindowflag += ::e_window_flag_miniaturizable;
 
+      m_einteraction += ::user::e_interaction_system_context_menu;
+
       m_bEnableDragClient = true;
 
       m_bEnableDragResize = true;

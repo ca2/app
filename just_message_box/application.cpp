@@ -24,7 +24,7 @@ namespace app_just_message_box
 
       m_bLicense = false;
 
-      m_bImaging = false;
+      m_bImaging = true; // for showing application icon
 
    }
 
@@ -100,7 +100,7 @@ namespace app_just_message_box
          auto result = message_box_synchronous(this, "Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
 
 
-         if (result == e_dialog_result_yes)
+         if (result == e_dialog_result_cancel)
          {
 
             _001TryCloseApplication();
@@ -114,10 +114,14 @@ namespace app_just_message_box
             message_box_synchronous(this, "No!", nullptr, e_message_box_ok);
 
          }
-         else  if (result == e_dialog_result_cancel)
+         else  if (result == e_dialog_result_yes)
          {
 
-            message_box_synchronous(this, "Cancel", nullptr, e_message_box_ok);
+            message_box_synchronous(this, "Yes!!", nullptr, e_message_box_ok);
+
+            _001TryCloseApplication();
+
+            break;
 
          }
 

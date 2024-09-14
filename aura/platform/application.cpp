@@ -30,8 +30,6 @@
 #include "aura/constant/idpool.h"
 #include "aura/platform/node.h"
 #include "aura/graphics/image/icon.h"
-#include "aura/windowing/window.h"
-#include "aura/windowing/windowing.h"
 #include "aura/user/user/interaction_array.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/user.h"
@@ -42,6 +40,10 @@
 #include "aura/platform/system.h"
 #include "aura/platform/session.h"
 #include "aura/platform/theme.h"
+#include "aura/windowing/icon.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
+
 
 
 extern "C"
@@ -9143,6 +9145,20 @@ void application::on_prompt_write_file(::user::controller *pusercontroller)
    
    pwindow->on_prompt_write_file(pusercontroller);
    
+}
+
+::pointer < ::innate_ui::icon > application::innate_ui_icon(const ::size_i32 & size)
+{
+
+   auto pwindowingicon = __create<windowing::icon>();
+
+   payload("windowing_icon") = pwindowingicon;
+
+   pwindowingicon->load_file("matter://main/icon.png");
+
+   return pwindowingicon->innate_ui_icon(size);
+
+
 }
 
 

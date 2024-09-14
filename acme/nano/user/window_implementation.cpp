@@ -407,6 +407,11 @@ void window_implementation::do_asynchronously()
 }
 
 
+void window_implementation::defer_show_system_menu(const ::point_i32 & pointAbsolute)
+{
+
+
+}
 
 
 //::atom message_box::do_synchronously()

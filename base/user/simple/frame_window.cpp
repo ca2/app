@@ -580,10 +580,10 @@ bool simple_frame_window::WindowDataLoadWindowRectangle()
    if (wfi_has_up_down())
    {
 
-      if (!(m_uiUserInteractionFlags & ::user::e_interaction_wfi_up_down_loading))
+      if (!(m_uiUserInteractionFlags & ::user::e_interaction_wfi_up_down_loading2))
       {
 
-         __keep_on(&m_uiUserInteractionFlags, ::user::e_interaction_wfi_up_down_loading);
+         __keep_on(&m_uiUserInteractionFlags, ::user::e_interaction_wfi_up_down_loading2);
 
          bool bWfiDown = true;
 
@@ -3234,7 +3234,7 @@ void simple_frame_window::design_down()
 
    }
 
-   __keep_on(&m_uiUserInteractionFlags, ::user::e_interaction_wfi_up_down_loading);
+   __keep_on(&m_uiUserInteractionFlags, ::user::e_interaction_wfi_up_down_loading2);
 
    frame_Attach();
 
@@ -3276,11 +3276,11 @@ void simple_frame_window::design_up()
 
    }
 
-   __keep_on(&m_uiUserInteractionFlags, ::user::e_interaction_wfi_up_down_loading);
+   __keep_on(&m_uiUserInteractionFlags, ::user::e_interaction_wfi_up_down_loading2);
 
    frame_Detach();
 
-   if (m_pupdowntarget->m_uiUserInteractionFlags & ::user::e_interaction_wfi_up_tool_window)
+   if (m_pupdowntarget->m_uiUserInteractionFlags & ::user::e_interaction_wfi_up_tool_window2)
    {
 
       set_tool_window();
@@ -3605,8 +3605,8 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
                                                            this,
                                                            m_pnotifyicon,
                                                            pointCursor,
-                                                           squareHint,
-            ::menu::e_track_popup_outside_target
+                                                           squareHint//,
+            //::menu::e_track_popup_outside_target
                                                            ));
 
          ptrackpopup->track([](){});

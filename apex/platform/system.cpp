@@ -30,6 +30,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/primitive/datetime/datetime.h"
 #include "acme/primitive/string/command_line.h"
+#include "apex/innate_ui/innate_ui.h"
 #include "apex/input/input.h"
 #include "apex/message/message.h"
 //#include "apex/operating_system.h"
@@ -5093,6 +5094,25 @@ namespace apex
    }
 
 
+   void system::defer_innate_ui()
+   {
+      
+      if (!m_pinnateui)
+      {
+
+#ifdef WINDOWS
+
+         auto pfactory = factory("innate_ui", "win32");
+
+         pfactory->merge_to_global_factory();
+
+#endif
+
+         __construct(m_pinnateui);
+
+      }
+
+   }
 
 
 #ifdef __APPLE__

@@ -414,16 +414,18 @@ namespace base
    void application::show_about_box()
    {
 
-      if (!m_ptabimpactBase)
-      {
+      ::axis::application::show_about_box();
 
-         ::axis::application::show_about_box();
+      //if (!m_ptabimpactBase)
+      //{
 
-         return;
+      //   ::axis::application::show_about_box();
 
-      }
+      //   return;
 
-      m_ptabimpactBase->show_about_tab_pane();
+      //}
+
+      //m_ptabimpactBase->show_about_tab_pane();
 
    }
 

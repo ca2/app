@@ -68,6 +68,9 @@ public:
    
    virtual ::payload do_synchronously(const class time & timeWait = ::time::infinity()) override;
    virtual void do_asynchronously() override;
+
+
+   virtual void defer_show_system_menu(const ::point_i32 & pointAbsolute);
    
 
 };

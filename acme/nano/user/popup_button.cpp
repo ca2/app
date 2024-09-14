@@ -103,11 +103,19 @@ void popup_button::initialize_popup_button(const ::string & strText, int x, int 
       auto pnanobutton = m_nanobuttona[iButton];
 
       pnanobutton->m_rectangle.bottom() = iBottom;
+      
       pnanobutton->m_rectangle.top() = pnanobutton->m_rectangle.bottom() - hButton;
       pnanobutton->m_rectangle.right() = iRight;
       pnanobutton->m_rectangle.left() = pnanobutton->m_rectangle.right() - wButton;
 
       iBottom = pnanobutton->m_rectangle.top();
+
+      if (iButton >= 1)
+      {
+
+         pnanobutton->m_rectangle.top()--;
+
+      }
 
    }
 

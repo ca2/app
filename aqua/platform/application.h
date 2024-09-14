@@ -29,7 +29,6 @@ namespace aqua
 
       //inline ::aqua::system* system();
 
-
       void initialize(::particle * pparticle) override;
 
 

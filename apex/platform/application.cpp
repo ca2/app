@@ -25,6 +25,7 @@
 #include "acme/platform/profiler.h"
 #include "acme/primitive/collection/_array_binary_stream.h"
 #include "acme/primitive/datetime/datetime.h"
+#include "acme/primitive/geometry2d/size.h"
 #include "acme/primitive/primitive/_impl_ptr.h"
 #include "acme/primitive/string/command_line.h"
 #include "acme/primitive/string/str.h"
@@ -32,6 +33,9 @@
 #include "apex/filesystem/fs/folder_sync.h"
 #include "apex/filesystem/fs/native.h"
 #include "apex/filesystem/fs/set.h"
+#include "apex/innate_ui/button.h"
+#include "apex/innate_ui/dialog.h"
+#include "apex/innate_ui/still.h"
 #include "apex/message/application.h"
 #include "acme/platform/release_time.h"
 #include "apex/platform/machine_event_data.h"
@@ -1069,6 +1073,15 @@ namespace apex
       }
 
    }
+
+
+   ::pointer < ::innate_ui::icon > application::innate_ui_icon(const ::size_i32 & size)
+   {
+
+      return {};
+
+   }
+
 
    void application::init_fs_set(::fs::set * pfsset)
    {
@@ -10312,7 +10325,86 @@ namespace apex
 //   
 //   }
 
+   void application::show_about_box()
+   {
 
+      system()->defer_innate_ui();
+
+      auto pdialog = __create < ::innate_ui::dialog>();
+
+      pdialog->create();
+
+      ::string strTitle;
+
+      strTitle = "About " + m_strAppId;
+
+      pdialog->set_text(strTitle);
+
+      auto stra = get_about_box_lines();
+
+      int y = 30;
+
+      auto pstillIcon = __create < ::innate_ui::still>();
+
+      pstillIcon->create_icon_still(pdialog);
+
+      pstillIcon->set_size({48, 48});
+
+      pstillIcon->set_position({ 30, 30 });
+
+      auto piconApplication = innate_ui_icon({48, 48});
+
+      pstillIcon->set_icon(piconApplication);
+
+      for (auto str : stra)
+      {
+
+         auto pstill = __create < ::innate_ui::still>();
+
+         pstill->create_child(pdialog);
+
+         pstill->set_text(str);
+
+         pstill->set_position({ 30 + 48+10, y });
+
+         pstill->set_size({ 400, 30 });
+
+         y += 30;
+
+      }
+
+      y += 30;
+
+      auto pbutton = __create < ::innate_ui::button>();
+
+      pbutton->create_child(pdialog);
+
+      pbutton->set_text("OK");
+
+      pbutton->set_size({ 100, 35 });
+
+      pbutton->set_position({ 520 - 100 -30, y });
+
+      y += 35;
+
+      pdialog->adjust_for_client_size({ 520, y+30 });
+
+      pdialog->center();
+
+
+      pbutton->m_callbackOnClick = [pdialog]()
+         {
+
+            pdialog->hide();
+            pdialog->destroy_window();
+
+         };
+
+
+
+      pdialog->show();
+
+   }
 
 
 } // namespace apex

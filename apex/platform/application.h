@@ -266,7 +266,9 @@ namespace apex
 
       void term_application() override;
 
+      void show_about_box() override;
 
+      virtual ::pointer < ::innate_ui::icon > innate_ui_icon(const ::size_i32 & size);
 
       virtual void init_fs_set(::fs::set * pfsset);
       //virtual bool InitApplication();

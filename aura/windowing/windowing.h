@@ -128,7 +128,7 @@ namespace windowing
 
       virtual bool defer_release_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
 
-      virtual void set_mouse_cursor(::windowing::cursor * pcursor);
+      virtual void set_mouse_cursor2(::windowing::cursor * pcursor);
 
       virtual void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr);
 

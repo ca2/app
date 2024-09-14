@@ -616,6 +616,12 @@
     <ClCompile Include="handler\manager.cpp" />
     <ClCompile Include="handler\manager_room.cpp" />
     <ClCompile Include="handler\signal.cpp" />
+    <ClCompile Include="innate_ui\button.cpp" />
+    <ClCompile Include="innate_ui\dialog.cpp" />
+    <ClCompile Include="innate_ui\icon.cpp" />
+    <ClCompile Include="innate_ui\innate_ui.cpp" />
+    <ClCompile Include="innate_ui\still.cpp" />
+    <ClCompile Include="innate_ui\window.cpp" />
     <ClCompile Include="input\input.cpp" />
     <ClCompile Include="interprocess\handler.cpp" />
     <ClCompile Include="interprocess\base.cpp" />
@@ -797,6 +803,13 @@
     <ClInclude Include="inline\_app_impl1.h" />
     <ClInclude Include="inline\_console_old.h" />
     <ClInclude Include="inline\_new_impl.h" />
+    <ClInclude Include="innate_ui\button.h" />
+    <ClInclude Include="innate_ui\dialog.h" />
+    <ClInclude Include="innate_ui\icon.h" />
+    <ClInclude Include="innate_ui\innate_ui.h" />
+    <ClInclude Include="innate_ui\still.h" />
+    <ClInclude Include="innate_ui\window.h" />
+    <ClInclude Include="innate_ui\_.h" />
     <ClInclude Include="input\input.h" />
     <ClInclude Include="interprocess\handler.h" />
     <ClInclude Include="interprocess\base.h" />

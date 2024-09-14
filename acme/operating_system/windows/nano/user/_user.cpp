@@ -6,8 +6,8 @@
 #include "font.h"
 #include "pen.h"
 #include "device.h"
+#include "user.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/user/user.h"
 #include "acme/platform/factory_function.h"
 //#include "acme/primitive/primitive/_factory.h"
 
@@ -22,7 +22,7 @@ extern "C" void nano_user_win32_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::windows::nano::user::pen, ::nano::user::pen >();
    pfactory->add_factory_item < ::windows::nano::user::device, ::nano::user::device >();
 
-   pfactory->add_factory_item < ::nano::user::user >();
+   pfactory->add_factory_item < ::windows::nano::user::user, ::nano::user::user >();
 
    //::rectangle_i32 rectangleMainScreen;
 

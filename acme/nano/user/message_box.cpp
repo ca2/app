@@ -391,6 +391,15 @@ void message_box::on_click(const ::payload& payload, ::user::mouse * pmouse)
 void message_box::on_right_click(const ::payload& payload, ::user::mouse * pmouse)
 {
 
+   if (pmouse->m_pointHost.y() < 48)
+   {
+
+      m_pnanouserwindowimplementation->defer_show_system_menu(pmouse->m_pointAbsolute);
+
+      return;
+
+   }
+
    auto pbutton = __create_new < popup_button >();
 
    pbutton->m_functionClose = [this](::nano::user::window * pwindow)

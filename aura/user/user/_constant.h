@@ -7,14 +7,6 @@ namespace user
 
 
 
-   enum enum_interaction
-   {
-
-      e_interaction_wfi_up_down_loading = 1 << 0,
-      e_interaction_wfi_up_tool_window = 1 << 1,
-
-   };
-
 
    enum enum_text_composition_state
    {

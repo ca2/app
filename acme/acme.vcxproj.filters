@@ -436,9 +436,6 @@
     <Filter Include="Header Files\operating_system\windows_common\nano\idn">
       <UniqueIdentifier>{107ae780-e40d-49ba-a772-8d9c2a304677}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\operating_system\windows\shared_posix">
-      <UniqueIdentifier>{620b5613-dd46-4a84-bcdf-431c91d5510e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\windowing_system">
       <UniqueIdentifier>{76668c48-e3db-42b8-b319-037b509e106a}</UniqueIdentifier>
     </Filter>
@@ -3459,12 +3456,6 @@
     <ClInclude Include="format.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\_operating_system.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="_operating_system.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
     <ClInclude Include="_iostream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -3670,9 +3661,6 @@
       <Filter>Header Files\operating_system\windows\nano\http</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\windows\nano\user\aaa_nano.h">
-      <Filter>Header Files\operating_system\windows\nano\user</Filter>
-    </ClInclude>
-    <ClInclude Include="operating_system\windows\nano\user\aaa_nano_child.h">
       <Filter>Header Files\operating_system\windows\nano\user</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\windows\nano\user\aaa_nano_message_box.h">
@@ -3887,6 +3875,24 @@
     </ClInclude>
     <ClInclude Include="memory\quantum.h">
       <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano\user\user.h">
+      <Filter>Header Files\operating_system\windows\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano\user\aaa_user.h">
+      <Filter>Header Files\operating_system\windows\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_operating_system.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="_operating_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\window.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\nano\user\aaa_nano_child.h">
+      <Filter>Header Files\operating_system\windows\nano\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4997,18 +5003,6 @@
     <ClCompile Include="filesystem\file\string_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\shared_posix\c_error_number.cpp">
-      <Filter>Source Files\operating_system\windows\shared_posix</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\shared_posix\stdio_file.cpp">
-      <Filter>Source Files\operating_system\windows\shared_posix</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\shared_posix\time.cpp">
-      <Filter>Source Files\operating_system\windows\shared_posix</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp">
-      <Filter>Source Files\operating_system\windows\shared_posix</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\datetime\system_time.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
@@ -5017,9 +5011,6 @@
     </ClCompile>
     <ClCompile Include="primitive\time\time\time.cpp">
       <Filter>Source Files\primitive\time\time</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\shared_posix\windows_time.cpp">
-      <Filter>Source Files\operating_system\windows\shared_posix</Filter>
     </ClCompile>
     <ClCompile Include="platform\muldiv64.cpp">
       <Filter>Source Files\platform</Filter>
@@ -5209,9 +5200,6 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows\message_loop.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\shared_posix\errno.cpp">
-      <Filter>Source Files\operating_system\windows\shared_posix</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\subparticle.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
@@ -5452,6 +5440,30 @@
     </ClCompile>
     <ClCompile Include="platform\url_context.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\nano\user\user.cpp">
+      <Filter>Source Files\operating_system\windows\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\c_error_number.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\earth_time_shift.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\errno.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\stdio_file.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\time.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\shared_posix\windows_time.cpp">
+      <Filter>Source Files\operating_system\shared_posix</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\window.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

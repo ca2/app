@@ -99,6 +99,15 @@ namespace windowing
    }
 
 
+   ::pointer < ::innate_ui::icon > icon::innate_ui_icon(const ::size_i32 & size)
+   {
+
+      return {};
+
+   }
+
+
+
    void icon::get_sizes(::size_i32_array & a)
    {
 

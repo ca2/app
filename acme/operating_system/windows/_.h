@@ -95,7 +95,9 @@ namespace windows
 } // namespace windows
 
 
+inline int width(RECT & r) { return r.right - r.left; }
 
+inline int height(RECT & r) { return r.bottom - r.top; }
 
 
 

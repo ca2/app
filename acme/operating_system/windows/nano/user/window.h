@@ -3,6 +3,7 @@
 
 
 #include "acme/nano/user/window_implementation.h"
+#include "acme/operating_system/windows/window.h"
 #undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
 #include "acme/_operating_system.h"
 
@@ -20,14 +21,16 @@ namespace windows
 
 
          class window :
-            virtual public ::nano::user::window_implementation
+            virtual public ::nano::user::window_implementation,
+            virtual public ::windows::window
          {
          public:
 
 
             //CreatableFromBase(window, ::nano::user::window_implementation);
-
-            HWND m_hwnd;
+            //bool m_bSizeMoveMode;
+            //HWND m_hwnd;
+            //HMENU m_hmenuSystem;
             //bool m_bDestroy;
       //      HFONT m_hfont;
       //      color32_t m_crText;
@@ -129,6 +132,8 @@ namespace windows
 
 
             void implementation_message_loop_step() override;
+
+            void defer_show_system_menu(const ::point_i32 & pointAbsolute) override;
 
          };
 

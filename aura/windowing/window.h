@@ -58,7 +58,7 @@ namespace windowing
       ::pointer<::windowing::windowing>         m_pwindowing;
       ::pointer<::user::copydesk>               m_pcopydesk;
       ::pointer<::windowing::cursor>            m_pcursor;
-      ::oswindow                                m_oswindow;
+      //::oswindow                                m_oswindow;
       bool                                      m_bUpdateScreenSynchronously;
       
       bool                                      m_bActiveWindow;
@@ -140,8 +140,12 @@ namespace windowing
 
       virtual ::user::copydesk * copydesk();
 
-      inline ::oswindow oswindow() const { return m_oswindow; }
-      void set_oswindow(::oswindow oswindow);
+      virtual ::oswindow oswindow() const;
+      virtual void set_oswindow(::oswindow oswindow);
+      virtual void _set_oswindow(::oswindow oswindow);
+
+
+      
 
       inline ::windowing::windowing * windowing() { return m_pwindowing; }
       inline ::windowing::windowing * windowing() const { return m_pwindowing.m_p; }
@@ -401,7 +405,7 @@ namespace windowing
       inline bool operator == (const ::windowing::window & window) const
       {
 
-         return oswindow() == window.oswindow();
+         return oswindow() == window.get_os_data();
 
       }
 

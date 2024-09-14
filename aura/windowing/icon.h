@@ -46,6 +46,8 @@ namespace windowing
 
       virtual ::image::image_pointer get_image(const ::size_i32 & size);
 
+
+      virtual ::pointer < ::innate_ui::icon > innate_ui_icon(const ::size_i32 & size);
       
    };
 

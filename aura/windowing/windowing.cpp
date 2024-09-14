@@ -394,7 +394,7 @@ namespace windowing
    }
 
 
-   void windowing::set_mouse_cursor(::windowing::cursor * pcursor)
+   void windowing::set_mouse_cursor2(::windowing::cursor * pcursor)
    {
 
       throw ::interface_only();

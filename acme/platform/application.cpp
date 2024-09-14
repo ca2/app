@@ -23,6 +23,7 @@
 #include "acme/nano/user/user.h"
 
 
+
 #ifdef WINDOWS_DESKTOP
 
 
@@ -1910,6 +1911,7 @@ void application::on_uninstall()
 
 void application::show_about_box()
 {
+
    
    auto lines = get_about_box_lines();
    

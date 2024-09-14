@@ -2870,7 +2870,7 @@ void object::initialize(::particle * pparticle)
    if(::is_null(m_pparticleContext))
    {
 
-      m_pparticleContext = application();
+      m_pparticleContext = this->application();
 
    }
 

@@ -94,6 +94,7 @@ namespace apex
       //virtual void _compress(const ::payload & payloadTarget, const ::payload & payloadSource, const ::scoped_string & scopedstrImplementation) override;
       //virtual void _uncompress(const ::payload& payloadTarget, const ::payload& payloadSource, const ::scoped_string& scopedstrImplementation, transfer_progress_function transferprogressfunction = {}) override;
 
+      void defer_innate_ui() override;
 
 
 #ifdef WINDOWS_DESKTOP

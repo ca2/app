@@ -17,6 +17,9 @@ namespace user
    DECLARE_ENUMERATION(e_mouse, enum_mouse);
    DECLARE_ENUMERATION(e_key, enum_key);
 
+
+   DECLARE_ENUMERATION(e_interaction, enum_interaction);
+
 } // namespace user
 
 

@@ -108,7 +108,7 @@ namespace draw2d
 
       virtual class api & api();
 
-      inline class ::write_text::write_text * write_text() { return m_pwritetext; }
+      virtual class ::write_text::write_text * write_text();
 
 
       virtual bool graphics_context_supports_single_buffer_mode();

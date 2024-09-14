@@ -1,12 +1,14 @@
 // Created by camilo on 2022-01-21 05:05 PM <3ThomasBorregaardSorensen
 #include "framework.h"
-#include "window.h"
 #include "device.h"
+#include "window.h"
+#include "user.h"
 #include "acme/parallelization/task.h"
+#include "acme/nano/nano.h"
 #include "acme/nano/user/button.h"
 #include "acme/nano/user/message_box.h"
-#include "acme/user/user/mouse.h"
 #include "acme/nano/user/window.h"
+#include "acme/user/user/mouse.h"
 
 
 bool _c_simple_message_loop_step();
@@ -55,8 +57,10 @@ namespace windows
 
          window::window()
          {
-
+            m_bSizeMoveMode = false;
             //      m_bDestroy = false;
+            m_hwnd = nullptr;
+            m_hmenuSystem = nullptr;
 
          }
 
@@ -198,7 +202,7 @@ namespace windows
                m_pinterface->m_bTopMost ? WS_EX_TOPMOST : 0,
                _T(NANO_WINDOW_CLASS),
                wstrTitle,
-               WS_POPUP,
+               WS_POPUP | WS_SYSMENU,
                m_pinterface->m_rectangle.left(),
                m_pinterface->m_rectangle.top(),
                m_pinterface->m_rectangle.width(),
@@ -610,13 +614,70 @@ namespace windows
 
          LRESULT window::window_procedure(UINT message, WPARAM wparam, LPARAM lparam)
          {
+
+            {
+
+               LRESULT lresult = 0;
+
+               if (on_window_procedure(lresult, message, wparam, lparam))
+               {
+
+                  return lresult;
+
+               }
+
+            }
+
             switch (message)
             {
+            case WM_COMMAND:
+            {
+              /* ::pointer < ::windows::nano::user::user > pnanouser = nano()->user();
+
+               LRESULT lresult = 0;
+
+               if (pnanouser->_on_command(lresult, m_hwnd, wparam, lparam))
+               {
+
+                  return lresult;
+
+               }*/
+
+               return DefWindowProc(m_hwnd, message, wparam, lparam);
+
+            }
+
+            break;
+            case WM_SYSCOMMAND:
+            {
+
+               return DefWindowProc(m_hwnd, message, wparam, lparam);
+
+            }
+
+            break;
             case WM_CLOSE:
-               DestroyWindow(m_hwnd);
+               //DestroyWindow(m_hwnd);
+               m_pinterface->on_click(e_dialog_result_cancel, nullptr);
+               return 0;
                break;
             case WM_NCDESTROY:
                break;
+            //case WM_INITMENU:
+            //   {
+            //   ::pointer < ::windows::nano::user::user > pnanouser = nano()->user();
+
+            //   LRESULT lresult = 0;
+
+            //   if (pnanouser->_on_default_system_menu_init_menu(lresult, m_hwnd, m_hmenuSystem, wparam))
+            //   {
+
+            //      return lresult;
+
+            //   }
+
+            //   }
+            //   break;
             case WM_DESTROY:
                //PostQuitMessage(0);
                nanowindowimplementationa().erase(this);
@@ -1124,6 +1185,19 @@ namespace windows
          {
 
             _c_simple_message_loop_step();
+
+         }
+
+
+         void window::defer_show_system_menu(const ::point_i32 & pointAbsolute)
+         {
+
+            //::pointer < ::windows::nano::user::user > pnanouser = nano()->user();
+
+            //pnanouser->_defer_show_system_menu(m_hwnd, &m_hmenuSystem, pointAbsolute);
+
+            _defer_show_system_menu(pointAbsolute);
+            
 
          }
 

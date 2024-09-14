@@ -670,6 +670,8 @@ namespace user
    void user::term()
    {
 
+      set_finishing_flag();
+
       try
       {
 
@@ -1601,7 +1603,12 @@ namespace user
       if (::is_null(m_pwindowing))
       {
 
-         create_windowing();
+         if (!has_finishing_flag())
+         {
+
+            create_windowing();
+
+         }
 
       }
 

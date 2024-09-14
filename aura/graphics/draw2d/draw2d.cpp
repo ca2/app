@@ -244,6 +244,22 @@ namespace draw2d
    }
 
 
+   class ::write_text::write_text * draw2d::write_text()
+   {
+
+      if (application()->m_bWriteText)
+      {
+
+         initialize_write_text();
+
+      }
+
+
+      return m_pwritetext;
+
+   }
+
+
    void draw2d::init1()
    {
 
@@ -256,12 +272,6 @@ namespace draw2d
 
       //}
 
-      if (application()->m_bWriteText)
-      {
-
-         initialize_write_text();
-
-      }
 
       //return true;
 

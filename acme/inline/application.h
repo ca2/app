@@ -23,7 +23,13 @@ DO_FACTORY(REFERENCE_FACTORY)
 
 //DECLARE_APPLICATION(APPLICATION);
 
+#ifdef WINDOWS
+#pragma comment(linker,"\"/manifestdependency:type='win32' \
+name='Microsoft.Windows.Common-Controls' version='6.0.0.0' \
+processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 
+
+#endif
 //__FACTORY_IMPORT void IDENTIFIER_CONCATENATE(APPLICATION, _factory)(::factory::factory *);
 
 

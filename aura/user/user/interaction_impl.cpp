@@ -5322,7 +5322,7 @@ namespace user
       if (puserthread)
       {
 
-         puserthread->m_oswindow = window()->m_oswindow;
+         puserthread->m_oswindow = window()->oswindow();
 
       }
 
@@ -9721,7 +9721,7 @@ namespace user
    ::oswindow interaction_impl::oswindow() const
    {
 
-      return m_pwindow->m_oswindow;
+      return m_pwindow->oswindow();
 
    }
 

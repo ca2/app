@@ -155,6 +155,8 @@ namespace user
       bool                                      m_bToolWindow;
       bool                                      m_bMessageWindow;
       ::logic::boolean                          m_bLockGraphicalUpdate;
+
+      e_interaction                             m_einteraction;
       
       bool                                      m_bCompositedFrameWindow;
       bool                                      m_bEdgeGestureDisableTouchWhenFullscreen;

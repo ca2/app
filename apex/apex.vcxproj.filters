@@ -186,6 +186,12 @@
     <Filter Include="Source Files\networking\sockets\httpd">
       <UniqueIdentifier>{a62b8d99-510e-44fa-8a41-3f09485af14e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\innate_ui">
+      <UniqueIdentifier>{5a1bbba6-86cb-48b7-a27e-7736a5bda14a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\innate_ui">
+      <UniqueIdentifier>{07140a3c-3896-49b9-965a-8a3e11eaa3b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -1016,6 +1022,27 @@
     <ClInclude Include="networking\internet.h">
       <Filter>Header Files\networking</Filter>
     </ClInclude>
+    <ClInclude Include="innate_ui\window.h">
+      <Filter>Header Files\innate_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="innate_ui\still.h">
+      <Filter>Header Files\innate_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="innate_ui\dialog.h">
+      <Filter>Header Files\innate_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="innate_ui\button.h">
+      <Filter>Header Files\innate_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="innate_ui\innate_ui.h">
+      <Filter>Header Files\innate_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="innate_ui\icon.h">
+      <Filter>Header Files\innate_ui</Filter>
+    </ClInclude>
+    <ClInclude Include="innate_ui\_.h">
+      <Filter>Header Files\innate_ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1464,6 +1491,24 @@
     </ClCompile>
     <ClCompile Include="networking\sockets\http\http_tunnel.cpp">
       <Filter>Source Files\networking\sockets\http</Filter>
+    </ClCompile>
+    <ClCompile Include="innate_ui\button.cpp">
+      <Filter>Source Files\innate_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="innate_ui\dialog.cpp">
+      <Filter>Source Files\innate_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="innate_ui\still.cpp">
+      <Filter>Source Files\innate_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="innate_ui\window.cpp">
+      <Filter>Source Files\innate_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="innate_ui\innate_ui.cpp">
+      <Filter>Source Files\innate_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="innate_ui\icon.cpp">
+      <Filter>Source Files\innate_ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

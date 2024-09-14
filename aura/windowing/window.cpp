@@ -35,7 +35,7 @@ namespace windowing
 
       m_pWindow4 = nullptr;
 
-      set_oswindow(nullptr);
+      //set_oswindow(nullptr);
 
       m_bMessageOnlyWindow = false;
 
@@ -691,11 +691,22 @@ namespace windowing
 //
 //   }
 
+   ::oswindow window::oswindow() const
+   {
+
+      throw interface_only();
+
+      return nullptr;
+
+   }
+
+
+
 
    void window::set_oswindow(::oswindow oswindow)
    {
 
-      m_oswindow = oswindow;
+      _set_oswindow(oswindow);
 
       auto puserinteractionimpl = m_puserinteractionimpl;
 
@@ -712,6 +723,14 @@ namespace windowing
          }
 
       }
+
+   }
+
+
+   void window::_set_oswindow(::oswindow oswindow)
+   {
+
+      throw interface_only();
 
    }
 

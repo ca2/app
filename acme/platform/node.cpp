@@ -643,6 +643,20 @@ namespace acme
 //   }
 
 
+   void node::do_windowing_system_factory()
+   {
+
+
+   }
+
+
+
+   void node::defer_show_system_menu(::user::mouse * pmouse)
+   {
+
+
+   }
+
    void node::install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension)
    {
 

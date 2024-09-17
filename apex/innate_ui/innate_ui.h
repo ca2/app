@@ -26,6 +26,10 @@ namespace innate_ui
       virtual void post(const ::procedure & procedure);
       virtual void sync(const ::procedure & procedure);
 
+
+      virtual ::pointer < ::innate_ui::icon > innate_ui_icon(const ::payload & payloadFile, const ::size_i32 & size);
+
+
    };
 
 

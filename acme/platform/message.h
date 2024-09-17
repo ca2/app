@@ -19,13 +19,14 @@ namespace acme
    public:
 
 
-      message_union                 m_union;
+      message_union        m_union;
 
-      class ::time      m_time;
-      ::point_f64       m_pointMessage;
-      wparam            m_wparam;
-      lparam            m_lparam;
-      lresult           m_lresult;
+      class ::time         m_time;
+      ::i64                m_iTimestamp;
+      ::point_f64          m_pointMessage;
+      wparam               m_wparam;
+      lparam               m_lparam;
+      lresult              m_lresult;
 
 
    };

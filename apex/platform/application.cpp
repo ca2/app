@@ -35,6 +35,7 @@
 #include "apex/filesystem/fs/set.h"
 #include "apex/innate_ui/button.h"
 #include "apex/innate_ui/dialog.h"
+#include "apex/innate_ui/innate_ui.h"
 #include "apex/innate_ui/still.h"
 #include "apex/message/application.h"
 #include "acme/platform/release_time.h"
@@ -1078,7 +1079,9 @@ namespace apex
    ::pointer < ::innate_ui::icon > application::innate_ui_icon(const ::size_i32 & size)
    {
 
-      return {};
+      auto pfile = file()->get("matter://main/icon.png");
+
+      return system()->innate_ui()->innate_ui_icon(pfile, size);
 
    }
 
@@ -10392,13 +10395,13 @@ namespace apex
       pdialog->center();
 
 
-      pbutton->m_callbackOnClick = [pdialog]()
+      pbutton->set_callback_on_click([pdialog]()
          {
 
             pdialog->hide();
             pdialog->destroy_window();
 
-         };
+         });
 
 
 

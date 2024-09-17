@@ -421,9 +421,9 @@ namespace windowing
 
       virtual void window_update_screen();
 
-      virtual bool defer_perform_entire_reposition_process();
+      virtual bool defer_perform_entire_reposition_process(::user::mouse * pmouse);
 
-      virtual bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing);
+      virtual bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse);
 
       virtual void on_destruct_mouse_message(::message::mouse * pmouse);
 
@@ -440,7 +440,7 @@ namespace windowing
       ::string get_window_text() override;
 
 
-      virtual void defer_show_system_menu(const ::point_i32 & pointAbsolute);
+      virtual void defer_show_system_menu(::user::mouse * pmouse);
 
       virtual void pick_browse(const ::function < void(const ::file::path & path) > & callback);
       virtual void pick_media(const char * pszMediaType);
@@ -448,6 +448,11 @@ namespace windowing
 
 
       virtual void set_opacity(double dOpacity);
+
+      virtual void window_restore();
+      virtual void window_minimize();
+      virtual void window_maximize();
+
 
    };
 

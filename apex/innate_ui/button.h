@@ -12,16 +12,20 @@ namespace innate_ui
    class CLASS_DECL_APEX button :
       virtual public ::innate_ui::window
    {
+   protected:
+      ::procedure          m_callbackOnClick;
    public:
 
 
-      ::procedure          m_callbackOnClick;
+
 
 
       button();
       ~button() override;
 
-   
+
+      virtual void set_callback_on_click(const ::procedure & callbackOnClick);
+   virtual void call_on_click();
    };
 
 

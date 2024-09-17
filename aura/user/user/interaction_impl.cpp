@@ -27,15 +27,16 @@
 #include "aura/windowing/text_editor_interface.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
-#include "aura/windowing/monitor.h"
-#include "aura/windowing/placement_log.h"
-#include "aura/windowing/windowing.h"
-#include "aura/windowing/window.h"
-#include "aura/windowing/display.h"
 #include "aura/message/user.h"
 #include "aura/platform/message_queue.h"
 #include "aura/platform/session.h"
 #include "aura/platform/application.h"
+#include "aura/windowing/desktop_environment.h"
+#include "aura/windowing/display.h"
+#include "aura/windowing/monitor.h"
+#include "aura/windowing/placement_log.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/window.h"
 
 #if defined(LINUX)
 
@@ -6600,7 +6601,9 @@ namespace user
             if (m_pgraphicsgraphics)
             {
 
+#ifndef LINUX
                m_pgraphicsgraphics->on_end_draw();
+#endif
 
             }
 
@@ -6907,7 +6910,9 @@ namespace user
 
          //auto estatus =
 
-         __raw_construct(m_pgraphicsgraphics);
+         m_pgraphicsgraphics = user()->m_pdesktopenvironment->create_graphics();
+
+         //__raw_construct(m_pgraphicsgraphics);
 
          //if (!estatus)
          //{

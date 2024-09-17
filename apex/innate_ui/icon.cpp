@@ -1,6 +1,7 @@
 // Created by camilo on 2024-09-13 07:38 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "icon.h"
+#include "acme/filesystem/filesystem/file_context.h"
 
 
 namespace innate_ui
@@ -17,6 +18,24 @@ namespace innate_ui
 
    }
 
+
+   void icon::_create()
+   {
+
+   }
+
+
+   void icon::create(const ::payload & payloadFile, const ::size_i32 & size)
+   {
+
+      m_memory = file()->as_memory(payloadFile);
+
+      m_size = size;
+
+      _create();
+
+
+   }
 
 
 } // namespace innate_ui

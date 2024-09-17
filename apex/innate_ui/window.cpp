@@ -11,7 +11,12 @@ namespace innate_ui
    
    window::window()
    {
+
+      m_pwindowParent = nullptr;
+
    }
+
+
    window::~window()
    {
 
@@ -113,7 +118,7 @@ namespace innate_ui
    }
 
    
-   void window::defer_show_system_menu(const ::point_i32 & pointAbsolute)
+   void window::defer_show_system_menu(::user::mouse * pmouse)
    {
 
 

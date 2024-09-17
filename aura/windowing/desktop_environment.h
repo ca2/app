@@ -30,7 +30,7 @@ namespace windowing
 
 
       //virtual void windowing_post(const ::procedure & procedure);
-
+      virtual ::pointer < ::graphics::graphics > create_graphics();
 
       virtual bool message_loop_step();
 

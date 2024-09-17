@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "aura/windowing/desktop_environment.h"
+#include "aura/graphics/graphics/graphics.h"
 
 
 namespace windowing
@@ -47,7 +48,16 @@ namespace windowing
 
 
 
+   ::pointer < ::graphics::graphics > desktop_environment::create_graphics()
+   {
 
+      ::pointer < ::graphics::graphics > pgraphicsgraphics;
+
+      __raw_construct(pgraphicsgraphics);
+
+      return pgraphicsgraphics;
+
+   }
 
 //   void desktop_environment::windowing_post(const ::procedure & procedure)
 //   {

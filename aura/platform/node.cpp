@@ -5,6 +5,8 @@
 #include "node.h"
 #include "acme/exception/interface_only.h"
 #include "acme/platform/system.h"
+#include "aura/platform/session.h"
+#include "aura/user/user/user.h"
 
 
 //#ifdef LINUX
@@ -123,6 +125,13 @@ namespace aura
 
    ::windowing::windowing * node::windowing()
    {
+
+      if(!m_pwindowingAuraNode)
+      {
+
+         session()->user()->create_windowing();
+
+      }
 
       return m_pwindowingAuraNode;
 

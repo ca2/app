@@ -147,6 +147,18 @@ list(APPEND apex_source
         inline/console.h
         inline/console_common.h
         #inline/library.h
+   innate_ui/button.cpp
+   innate_ui/button.h
+   innate_ui/dialog.cpp
+   innate_ui/dialog.h
+   innate_ui/icon.cpp
+   innate_ui/icon.h
+   innate_ui/innate_ui.cpp
+   innate_ui/innate_ui.h
+   innate_ui/still.cpp
+   innate_ui/still.h
+   innate_ui/window.cpp
+   innate_ui/window.h
         input/input.cpp
         input/input.h
         interprocess/base.cpp

@@ -62,7 +62,7 @@ namespace experience
 
       }
 
-      if(m_pframewindow->window()->defer_perform_entire_reposition_process())
+      if(m_pframewindow->window()->defer_perform_entire_reposition_process(pmouse))
       {
 
          pmouse->m_lresult = 1;

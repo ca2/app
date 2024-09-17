@@ -11,8 +11,8 @@ namespace innate_ui
    public:
 
 
-      ::pointer_array < window > m_childa;
-
+      window *                      m_pwindowParent;
+      ::pointer_array < window >    m_childa;
 
 
       window();
@@ -43,7 +43,7 @@ namespace innate_ui
       virtual void post(const ::procedure & procedure);
       virtual void sync(const ::procedure & procedure);
 
-      virtual void defer_show_system_menu(const ::point_i32 & pointAbsolute);
+      virtual void defer_show_system_menu(::user::mouse * pmouse);
 
    
    };

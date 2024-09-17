@@ -12,6 +12,8 @@
 #include "acme/primitive/geometry2d/_text_stream.h"
 #include "acme/user/user/_text_stream.h"
 #include "aura/windowing/window.h"
+//#include "windowing_gtk3/window.h"
+
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/icon.h"
 #include "aura/user/user/user.h"
@@ -2230,7 +2232,7 @@ namespace windowing
    }
 
 
-   bool window::defer_perform_entire_reposition_process()
+   bool window::defer_perform_entire_reposition_process(::user::mouse * pmouse)
    {
 
       return false;
@@ -2238,7 +2240,7 @@ namespace windowing
    }
 
 
-   bool window::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing)
+   bool window::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse)
    {
 
       return false;
@@ -2432,7 +2434,7 @@ namespace windowing
    }
 
 
-   void window::defer_show_system_menu(const ::point_i32 & pointAbsolute)
+   void window::defer_show_system_menu(::user::mouse * pmouse)
    {
 
    }
@@ -2460,6 +2462,26 @@ void window::set_opacity(double dOpacity)
 
 
 }
+
+   void window::window_restore()
+   {
+
+
+   }
+
+
+   void window::window_minimize()
+   {
+
+
+   }
+
+
+   void window::window_maximize()
+   {
+
+
+   }
 
 
 } // namespace windowing

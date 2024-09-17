@@ -8,8 +8,8 @@
 #pragma once
 
 
-//
-//#include "acme/primitive/primitive/pointer.h"
+
+#include "acme/platform/message.h"
 #include "acme/primitive/geometry2d/point.h"
 
 
@@ -18,7 +18,7 @@ namespace user
 
 
    class CLASS_DECL_ACME mouse :
-      virtual public ::particle
+      virtual public ::acme::message
    {
    protected:
       friend class ::user::interaction;

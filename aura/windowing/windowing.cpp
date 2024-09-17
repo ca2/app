@@ -513,6 +513,7 @@ namespace windowing
    }
 
 
+
    window *windowing::new_message_window(::user::interaction_impl *pimpl)
    {
 
@@ -847,6 +848,12 @@ namespace windowing
    {
 
       return nullptr;
+
+   }
+
+   void windowing::windowing_application_main_loop()
+   {
+
 
    }
 

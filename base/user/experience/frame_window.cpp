@@ -1909,7 +1909,7 @@ namespace experience
          if (pitem->m_item.m_eelement == e_element_title_bar)
          {
 
-            window()->defer_show_system_menu(pmouse->m_pointAbsolute);
+            window()->defer_show_system_menu(pmouse);
 
          }
 

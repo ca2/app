@@ -40,6 +40,7 @@
 #include "acme/nano/user/user.h"
 #include "acme/nano/http/http.h"
 #include "acme/nano/speech/speech.h"
+#include "acme/windowing_system/windowing_system.h"
 //#include "acme/user/user/conversation.h"
 
 
@@ -3563,6 +3564,15 @@ namespace acme
 
    ::windowing_system::windowing_system * system::windowing_system()
    {
+
+      if(!m_pwindowingsystem)
+      {
+
+         node()->do_windowing_system_factory();
+
+         __construct(m_pwindowingsystem);
+
+      }
 
       return m_pwindowingsystem;
 

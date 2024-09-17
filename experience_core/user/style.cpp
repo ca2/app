@@ -2314,6 +2314,9 @@ namespace experience_core
 
          //crBackground = argb(255, 200, 180, 180);
 
+         // xxx xxx xxx
+         //pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_set);
+
          pgraphics->fill_rectangle(rectangleX, crBackground);
 
       }

@@ -340,6 +340,15 @@ namespace apex
    }
 
 
+   void node::defer_innate_ui()
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+
    void node::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
    {
 

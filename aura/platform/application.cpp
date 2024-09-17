@@ -9147,19 +9147,19 @@ void application::on_prompt_write_file(::user::controller *pusercontroller)
    
 }
 
-::pointer < ::innate_ui::icon > application::innate_ui_icon(const ::size_i32 & size)
-{
-
-   auto pwindowingicon = __create<windowing::icon>();
-
-   payload("windowing_icon") = pwindowingicon;
-
-   pwindowingicon->load_file("matter://main/icon.png");
-
-   return pwindowingicon->innate_ui_icon(size);
-
-
-}
+// ::pointer < ::innate_ui::icon > application::innate_ui_icon(const ::size_i32 & size)
+// {
+//
+//    auto pwindowingicon = __create<windowing::icon>();
+//
+//    payload("windowing_icon") = pwindowingicon;
+//
+//    pwindowingicon->load_file("matter://main/icon.png");
+//
+//    return pwindowingicon->innate_ui_icon(size);
+//
+//
+// }
 
 
 } // namespace aura

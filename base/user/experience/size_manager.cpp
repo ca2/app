@@ -87,7 +87,7 @@ namespace experience
 
       auto eframeSizing = eframeCursor;
 
-      if(m_pframewindow->window()->defer_perform_entire_resizing_process(eframeSizing))
+      if(m_pframewindow->window()->defer_perform_entire_resizing_process(eframeSizing, pmouse))
       {
 
          pmouse->m_lresult = 1;

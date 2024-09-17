@@ -1549,13 +1549,9 @@ namespace user
 
          debugf("aura::user::create_windowing (2.1)");
 
-         //m_pwindowing->_initialize_windowing();
-
-         //debugf("aura::user::create_windowing (2.2)\n");
-
          m_pwindowing->initialize_windowing(this);
 
-         debugf("aura::user::create_windowing (2.2)");
+         debugf("aura::user::create_windowing (2.2)\n");
 
          auto paurasystem = psystem->m_paurasystem;
 

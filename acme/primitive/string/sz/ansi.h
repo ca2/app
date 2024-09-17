@@ -70,6 +70,7 @@ CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_collate(const ::a
 CLASS_DECL_ACME ::std::strong_ordering string_count_collate(const ::ansi_character * pszA, const ::ansi_character * pszB, strsize len) noexcept;
 CLASS_DECL_ACME ::std::strong_ordering case_insensitive_string_count_collate(const ::ansi_character * pszA, const ::ansi_character * pszB, strsize len) noexcept;
 
+inline bool string_equals(const ::ansi_character * pszA, const ::ansi_character * pszB) noexcept{return string_compare(pszA, pszB) == 0; }
 
 CLASS_DECL_ACME strsize string_get_length(const ::ansi_character * psz) noexcept;
 CLASS_DECL_ACME strsize string_get_length(const ::ansi_character* psz, strsize sizeMaximumInterest) noexcept;

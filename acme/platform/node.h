@@ -203,7 +203,7 @@ namespace acme
 
       virtual void reboot();
 
-
+         virtual void defer_show_system_menu(::user::mouse * pmouse);
       virtual void install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension);
 
 
@@ -252,6 +252,8 @@ namespace acme
 
 
       virtual ::file::path _module_path();
+
+      virtual void do_windowing_system_factory();
 
 
       //virtual bool memory_counter_on();

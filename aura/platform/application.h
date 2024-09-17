@@ -1064,7 +1064,7 @@ namespace aura
       
       void on_prompt_write_file(::user::controller * pusercontroller) override;
       
-      ::pointer < ::innate_ui::icon > innate_ui_icon(const ::size_i32 & size) override;
+      //::pointer < ::innate_ui::icon > innate_ui_icon(const ::size_i32 & size) override;
 
       
    };

@@ -82,6 +82,9 @@ namespace apex
       void on_operating_system_font_list_change() override;
 
 
+      virtual void defer_innate_ui();
+
+
       virtual void shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco = "", int iIcon = -1);
 
       virtual bool shell_link_target(::file::path & pathTarget, const ::file::path & pathLnk);

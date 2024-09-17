@@ -8882,7 +8882,9 @@ namespace user
 
          }
 
-         if (window()->defer_perform_entire_reposition_process())
+         auto puseritem = user_item(pitem);
+
+         if (window()->defer_perform_entire_reposition_process(puseritem->m_pmouse.cast<::message::mouse>()))
          {
 
             return false;
@@ -8897,7 +8899,9 @@ namespace user
       else if (pitem->m_item.m_eelement == e_element_resize)
       {
 
-         if (window()->defer_perform_entire_resizing_process(::experience::e_frame_sizing_bottom_right))
+         auto puseritem = user_item(pitem);
+
+         if (window()->defer_perform_entire_resizing_process(::experience::e_frame_sizing_bottom_right, puseritem->m_pmouse.cast<::message::mouse>()))
          {
 
             return false;
@@ -19594,6 +19598,15 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       }
 
+      if(is_top_level())
+      {
+
+         auto pwindow = window();
+
+         pwindow->window_maximize();
+
+      }
+
       return iMatchingMonitor;
 
    }
@@ -20178,6 +20191,16 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       }
 
+      if(is_top_level())
+      {
+
+         auto pwindow = window();
+
+         pwindow->window_restore();
+
+      }
+
+
       return iMatchingMonitor;
 
    }
@@ -20223,6 +20246,15 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       {
 
          *prectangle = rectangleNew;
+
+      }
+
+      if(is_top_level())
+      {
+
+         auto pwindow = window();
+
+         pwindow->window_minimize();
 
       }
 
@@ -25170,7 +25202,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
          if (pmouse->m_pointHost.y() <= 48)
          {
 
-            window()->defer_show_system_menu(pmouse->m_pointAbsolute);
+            window()->defer_show_system_menu(pmouse);
 
          }
 

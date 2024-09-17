@@ -260,6 +260,8 @@ namespace windowing
       virtual ::pointer < ::user::interaction > create_message_window(const ::string & pszName, ::user::interaction_listener * plistener = nullptr);
 
 
+      virtual void windowing_application_main_loop();
+
    };
 
 

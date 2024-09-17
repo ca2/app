@@ -1,5 +1,6 @@
 // Created by camilo on 2024-09-13 01:53 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "icon.h"
 #include "innate_ui.h"
 #include "window.h"
 #include "acme/parallelization/manual_reset_event.h"
@@ -70,5 +71,19 @@ namespace innate_ui
       event._wait();
 
    }
+
+
+   ::pointer < ::innate_ui::icon > innate_ui::innate_ui_icon(const ::payload & payloadFile, const ::size_i32 & size)
+   {
+
+      auto picon = __create < ::innate_ui::icon >();
+
+      picon->create(payloadFile, size);
+
+      return picon;
+
+   }
+
+
 } // namespace innate_ui
 

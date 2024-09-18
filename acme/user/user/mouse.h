@@ -32,6 +32,7 @@ namespace user
       point_i32                             m_pointDesired;
       //bool                                m_bTranslated;
       ::pointer<::user::interaction>        m_puserinteractionHit;
+      void *                                 m_pOsMouseDataOkIfOnStack = nullptr;
 
 
       virtual unsigned int get_message()

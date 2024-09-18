@@ -401,6 +401,8 @@ list(APPEND library_source
         operating_system/application.cpp
         operating_system/application.h
         operating_system/argcargv.cpp
+	operating_system/a_system_menu.cpp
+	operating_system/a_system_menu.h
         operating_system/chronometer.cpp
         operating_system/console.cpp
         operating_system/console_client.cpp

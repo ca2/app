@@ -617,6 +617,8 @@ namespace user
       void user_send(const ::procedure & procedure) override;
       void user_post(const ::procedure & procedure) override;
 
+      void main_send(const ::procedure & procedure) override;
+      void main_post(const ::procedure & procedure) override;
 
       //inline void fps_interest_on_show() { m_ewindowflag |= e_window_flag_fps_interest_on_show; }
       //inline void clear_fps_interest_on_show() { m_ewindowflag -= e_window_flag_fps_interest_on_show; }

@@ -642,6 +642,8 @@ public:
    virtual void user_send(const ::procedure & procedure);
    virtual void user_post(const ::procedure & procedure);
 
+   virtual void main_send(const ::procedure & procedure);
+   virtual void main_post(const ::procedure & procedure);
 
    template < typename BASE_TYPE >
    inline bool __call__defer_construct(::pointer<BASE_TYPE>& ptype, ::factory::factory * pfactory = nullptr);

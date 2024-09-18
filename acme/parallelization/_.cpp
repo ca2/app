@@ -573,6 +573,8 @@ void thread_name_abbreviate(string & strName, int len)
       if(::not_found(pfindNext))
       {
 
+         stra.add(range(pfind));
+
          break;
 
       }

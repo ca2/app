@@ -24,3 +24,20 @@ CLASS_DECL_ACME itask_t main_user_itask();
 
 
 
+class os_task_init_term
+{
+public:
+
+
+   //static thread_local thread_local_particle * t_pthreadlocalparticleList;
+
+
+   os_task_init_term();
+
+   ~os_task_init_term();
+
+
+};
+
+
+

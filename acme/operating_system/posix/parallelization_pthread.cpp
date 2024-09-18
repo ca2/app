@@ -473,7 +473,7 @@ int g_iDebug_post_thread_msg_time;
 
 bool __os_init_thread();
 
-bool on_init_thread()
+bool os_on_init_thread()
 {
 
    if (!__os_init_thread())
@@ -489,7 +489,7 @@ bool on_init_thread()
 
 bool __os_term_thread();
 
-void on_term_thread()
+void os_on_term_thread()
 {
 
    __os_term_thread();

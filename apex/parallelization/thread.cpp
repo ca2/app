@@ -2054,6 +2054,8 @@ void thread::main()
 void thread::init_task()
 {
 
+   ::task::init_task();
+
    //if (get_app() && get_app()->m_papexapplication != this)
    //{
 
@@ -2925,14 +2927,14 @@ void thread::__set_thread_on()
 
    //}
 
-   if (!on_init_task())
-   {
-
-      m_estatus = error_failed;
-
-      return;
-
-   }
+//   if (!os_on_init_task())
+//   {
+//
+//      m_estatus = error_failed;
+//
+//      return;
+//
+//   }
 
 
 }
@@ -2941,24 +2943,24 @@ void thread::__set_thread_on()
 void thread::__set_thread_off()
 {
 
-   try
-   {
-
-      // apex commented
-      //if (g_axisontermthread)
-      //{
-
-      //   g_axisontermthread();
-
-      //}
-
-      on_term_task();
-
-   }
-   catch (...)
-   {
-
-   }
+//   try
+//   {
+//
+//      // apex commented
+//      //if (g_axisontermthread)
+//      //{
+//
+//      //   g_axisontermthread();
+//
+//      //}
+//
+//      os_on_term_task();
+//
+//   }
+//   catch (...)
+//   {
+//
+//   }
 
    ::thread* pthread = this;
 
@@ -4452,13 +4454,13 @@ bool thread::process_message()
 
       ::pointer<::message::message>pmessage;
 
-      if (get_app())
+      if (get_app() && get_app()->m_papexapplication)
       {
 
          pmessage = get_app()->m_papexapplication->get_message(&message);
 
       }
-      else if (session())
+      else if (session() && node()->m_papexnode)
       {
 
          pmessage = node()->m_papexnode->get_message(&message);

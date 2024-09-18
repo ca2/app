@@ -10,6 +10,14 @@
 #include "acme/windowing/window_base.h"
 
 
+namespace operating_system
+{
+
+   class a_system_menu_item;
+
+} // namespace operating_system
+
+
 namespace windowing
 {
 
@@ -216,6 +224,8 @@ namespace windowing
       virtual bool is_destroying();
 
 
+      virtual void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem);
+
       virtual void activate_top_parent();
 
 
@@ -384,6 +394,9 @@ namespace windowing
 
       void user_send(const ::procedure & procedure) override;
       void user_post(const ::procedure & procedure) override;
+
+      void main_send(const ::procedure & procedure) override;
+      void main_post(const ::procedure & procedure) override;
 
       bool is_branch_current() const override;
 

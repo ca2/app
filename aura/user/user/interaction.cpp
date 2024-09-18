@@ -7637,8 +7637,6 @@ namespace user
    void interaction::user_send(const ::procedure & procedure)
    {
 
-#ifdef WINDOWS_DESKTOP
-
       auto pthread = m_pthreadUserInteraction;
 
       if (::is_null(pthread))
@@ -7661,19 +7659,11 @@ namespace user
 
       pthread->send_procedure(procedure);
 
-#else
-
-      node()->user_send(procedure);
-
-#endif
-
    }
 
 
    void interaction::user_post(const ::procedure & procedure)
    {
-
-#ifdef WINDOWS_DESKTOP
 
       auto pthread = m_pthreadUserInteraction;
 
@@ -7688,9 +7678,35 @@ namespace user
 
       pthread->post_procedure(procedure);
 
+   }
+
+
+   void interaction::main_send(const ::procedure & procedure)
+   {
+
+#ifdef WINDOWS_DESKTOP
+
+      user_send(procedure);
+
 #else
 
-      node()->user_post(procedure);
+      node()->main_send(procedure);
+
+#endif
+
+   }
+
+
+   void interaction::main_post(const ::procedure & procedure)
+   {
+
+#ifdef WINDOWS_DESKTOP
+
+      user_post(procedure);
+
+#else
+
+      node()->main_post(procedure);
 
 #endif
 
@@ -24330,7 +24346,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          auto pwindowimpl = get_host_user_interaction_impl();
 
-         if (m_bDefaultClickHandling && ::is_set(pwindowimpl->m_pitemLButtonDown))
+         if (m_bDefaultClickHandling && ::is_set(pwindowimpl) && ::is_set(pwindowimpl->m_pitemLButtonDown))
          {
 
             auto puseritemLButtonDown = user_item(pwindowimpl->m_pitemLButtonDown);

@@ -82,6 +82,19 @@ namespace windowing
 
       }
 
+      if(m_rectangleWorkspace.left() != I32_MINIMUM
+         && m_rectangleWorkspace.top() != I32_MINIMUM
+         && m_rectangleWorkspace.right() != I32_MINIMUM
+         && m_rectangleWorkspace.bottom() != I32_MINIMUM)
+      {
+
+         information() << "monitor returning fixed workspace rectangle : " << m_rectangleWorkspace;
+
+         return m_rectangleWorkspace;
+
+      }
+
+
       ::rectangle_i32 rectangleWorkspace = _workspace_rectangle();
 
       for(auto i = 0; i < 4; i++)

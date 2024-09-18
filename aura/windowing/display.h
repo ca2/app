@@ -131,7 +131,7 @@ namespace windowing
 
       virtual ::collection::index get_main_workspace(::rectangle_i32 & prectangle);
 
-      virtual ::collection::count get_workspace_count();
+      ///virtual ::collection::count get_workspace_count();
       
       virtual bool get_zoomed_window_site(::collection::index iWorkspace, ::rectangle_i32 & rectangle);
       
@@ -140,7 +140,7 @@ namespace windowing
       virtual bool get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 & rectangle);
       virtual bool _get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 & rectangle);
 
-      virtual ::collection::count get_desk_workspace_count();
+      //virtual ::collection::count get_desk_workspace_count();
       virtual bool get_desk_workspace_rect(::collection::index iWorkspace, ::rectangle_i32 & rectangle);
 
       virtual ::collection::index get_ui_workspace(::user::interaction * pinteraction);

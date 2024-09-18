@@ -413,6 +413,8 @@ namespace apex
    void session::init_task()
    {
 
+      ::acme::session::init_task();
+
       init_session();
 
       //auto estatus =

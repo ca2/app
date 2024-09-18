@@ -5,6 +5,8 @@
 #include "window.h"
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/system.h"
+#include "acme/windowing_system/windowing_system.h"
 
 
 namespace innate_ui
@@ -47,7 +49,15 @@ namespace innate_ui
    void innate_ui::post(const ::procedure & procedure)
    {
 
+      auto psystem = system();
 
+      auto pwindowingsystem = psystem->windowing_system();
+
+      pwindowingsystem->async(procedure);      //auto pparticle = (::subparticle *)procedure.m_pbase;
+
+      //pparticle->increment_reference_count();
+
+      //PostThreadMessage(m_dwThread, WM_APP + 123, 0, (LPARAM)pparticle);
 
    }
 
@@ -55,23 +65,17 @@ namespace innate_ui
    void innate_ui::sync(const ::procedure & procedure)
    {
 
-      manual_reset_event event;
+      auto psystem = system();
 
-      event.ResetEvent();
+      auto pwindowingsystem = psystem->windowing_system();
 
-      post([procedure, &event]
-         {
+      pwindowingsystem->sync(procedure);      //auto pparticle = (::subparticle *)procedure.m_pbase;
 
-               procedure();
+      //pparticle->increment_reference_count();
 
-               event.SetEvent();
-
-         });
-
-      event._wait();
+      //PostThreadMessage(m_dwThread, WM_APP + 123, 0, (LPARAM)pparticle);
 
    }
-
 
    ::pointer < ::innate_ui::icon > innate_ui::innate_ui_icon(const ::payload & payloadFile, const ::size_i32 & size)
    {

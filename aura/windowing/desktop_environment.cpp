@@ -30,8 +30,6 @@ namespace windowing
    bool desktop_environment::get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle)
    {
 
-      information() << "DESKTOP_ENVIRONMENT::GET_MONITOR_RECTANGLE Empty!!";
-
       return false;
 
    }
@@ -39,8 +37,6 @@ namespace windowing
 
    bool desktop_environment::get_workspace_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle)
    {
-
-      information() << "DESKTOP_ENVIRONMENT::GET_WORKSPACE_RECTANGLE Empty!!";
 
       return false;
 

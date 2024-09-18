@@ -20,6 +20,8 @@ DO_FACTORY(REFERENCE_FACTORY)
 
 
 #include "acme/operating_system/acme_initialize.h"
+#include "acme/operating_system/parallelization.h"
+
 
 //DECLARE_APPLICATION(APPLICATION);
 
@@ -112,6 +114,10 @@ int main(int argc, char * argv[], char * envp[])
    acme.platform()->set_resource_block(p1, p2);
 
 #endif
+
+   os_task_init_term ostaskinitterm;
+
+   set_main_user_thread();
 
    auto iExitCode = application_main(pacme->platform());
 

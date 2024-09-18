@@ -146,7 +146,7 @@ namespace windowing
          return true;
 
       }
-      else if (iWorkspace < 0 || iWorkspace >= get_workspace_count())
+      else if (iWorkspace < 0 || iWorkspace >= get_monitor_count())
       {
 
          return false;
@@ -295,7 +295,7 @@ namespace windowing
 //
 //#endif
 
-      return 1;
+      return m_monitora.size();
 
    }
 
@@ -303,23 +303,12 @@ namespace windowing
    bool display::get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle)
    {
 
-      if(iMonitor < 0 || iMonitor >= get_monitor_count())
-      {
-
-         return false;
-
-      }
-
-      auto & pmonitor = m_monitora.element_at_grow(iMonitor);
+      auto pmonitor = get_monitor(iMonitor);
 
       if(!pmonitor)
       {
 
-         ((display*)this)->__construct(pmonitor);
-
-         pmonitor->m_iIndex = iMonitor;
-
-         pmonitor->m_pdisplay = this;
+         return false;
 
       }
 
@@ -419,12 +408,12 @@ namespace windowing
    }
 
 
-   ::collection::count display::get_workspace_count()
-   {
-
-      return get_monitor_count();
-
-   }
+//   ::collection::count display::get_workspace_count()
+//   {
+//
+//      return get_monitor_count();
+//
+//   }
 
 
    bool display::get_zoomed_window_site(::collection::index iWorkspace, ::rectangle_i32 & rectangle)
@@ -446,32 +435,12 @@ namespace windowing
    bool display::get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 & rectangle)
    {
 
-      if(iWorkspace < 0 || iWorkspace >= get_workspace_count())
-      {
-
-         return false;
-
-      }
-
-      auto & pmonitor = m_monitora.element_at_grow(iWorkspace);
+      auto pmonitor = get_monitor(iWorkspace);
 
       if(!pmonitor)
       {
 
-         information() << "create_monitor";
-
-         __construct(pmonitor);
-
-         if (!pmonitor)
-         {
-
-            return false;
-
-         }
-
-         pmonitor->m_iIndex = iWorkspace;
-
-         pmonitor->m_pdisplay = this;
+         return false;
 
       }
 
@@ -487,12 +456,14 @@ namespace windowing
 
       if(user() && user()->m_pdesktopenvironment)
       {
+
          if(node()->_get_workspace_rectangle(iWorkspace, rectangle))
          {
 
             return true;
 
          }
+
       }
 
       return false;
@@ -500,12 +471,12 @@ namespace windowing
    }
 
 
-   ::collection::count display::get_desk_workspace_count()
-   {
-
-      return get_workspace_count();
-
-   }
+//   ::collection::count display::get_desk_workspace_count()
+//   {
+//
+//      return get_workspace_count();
+//
+//   }
 
 
    bool display::get_desk_workspace_rect(::collection::index iWorkspace, ::rectangle_i32 & rectangle)
@@ -640,14 +611,36 @@ namespace windowing
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      if (iMonitor < 0 || iMonitor >= m_monitora.get_count())
+      if(iMonitor < 0 || iMonitor >= get_monitor_count())
       {
 
          return nullptr;
 
       }
 
-      return m_monitora[iMonitor];
+      auto & pmonitor = m_monitora.element_at_grow(iMonitor);
+
+      if(!pmonitor)
+      {
+
+         information() << "create_monitor";
+
+         __construct(pmonitor);
+
+         if (!pmonitor)
+         {
+
+            return nullptr;
+
+         }
+
+         pmonitor->m_iIndex = iMonitor;
+
+         pmonitor->m_pdisplay = this;
+
+      }
+
+      return pmonitor;
 
    }
 
@@ -1199,17 +1192,17 @@ namespace windowing
 
       }
 
-      for (::collection::index iWorkspace = 0; iWorkspace < get_workspace_count(); iWorkspace++)
+      for (::collection::index iWorkspace = 0; iWorkspace < get_monitor_count(); iWorkspace++)
       {
 
          ::rectangle_i32 rectangleIntersect;
 
-         ::rectangle_i32 rectangleMonitor;
+         ::rectangle_i32 rectangleWorkspace;
 
-         if (get_workspace_rectangle(iWorkspace, rectangleMonitor))
+         if (get_workspace_rectangle(iWorkspace, rectangleWorkspace))
          {
 
-            if (rectangleIntersect.top_left_null_intersect(rectangle, rectangleMonitor))
+            if (rectangleIntersect.top_left_null_intersect(rectangle, rectangleWorkspace))
             {
 
                if (rectangleIntersect.area() > iBestArea)
@@ -1219,17 +1212,17 @@ namespace windowing
 
                   iBestArea = rectangleIntersect.area();
 
-                  rectangleMatch = rectangleMonitor;
+                  rectangleMatch = rectangleWorkspace;
 
                }
 
             }
-            else if (rectangleMonitor.contains(rectangle))
+            else if (rectangleWorkspace.contains(rectangle))
             {
 
                iMatchingWorkspace = iWorkspace;
 
-               rectangleMatch = rectangleMonitor;
+               rectangleMatch = rectangleWorkspace;
 
             }
 

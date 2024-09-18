@@ -1640,10 +1640,14 @@ pacmedirectory->create("/ca2core");
    //   }
    //
 
+
    void system::init_task()
    {
 
+      ::thread::init_task();
+
       call_init_system();
+
       //auto estatus = ([a-z0-9_]+)_factory();
 
       //if(!estatus)

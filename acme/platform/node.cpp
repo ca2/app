@@ -1344,20 +1344,6 @@ namespace acme
    }
 
 
-//   void node::user_post(const ::procedure & procedure)
-//   {
-//
-//      throw interface_only();
-//
-////      defer_create_synchronization();
-////
-////      synchronous_lock synchronouslock(this->synchronization());
-////
-////      m_routineaPost.add(routine);
-//
-//   }
-
-
    void node::user_send(const ::procedure & procedure)
    {
 
@@ -1370,36 +1356,23 @@ namespace acme
 
       }
 
-      //__matter_send_procedure(this, this, &node::node_post, procedure);
+      auto pevent = ::place(new manual_reset_event());
 
-//      CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
-//      {
+      user_post([ procedure, pevent ]
+      {
 
-         auto pevent = ::place(new manual_reset_event());
+         procedure();
 
-         user_post([ procedure, pevent ]
-                           {
+         pevent->SetEvent();
 
-                                 procedure();
+      });
 
-                                    pevent->SetEvent();
+      if(!pevent->wait(procedure.m_timeTimeout))
+      {
 
-                           });
+         throw ::exception(error_timeout);
 
-         if(!pevent->wait(procedure.m_timeTimeout))
-         {
-
-            throw ::exception(error_timeout);
-            //pevent.release();
-
-            //return false;
-
-         }
-
-         ///return true;
-//
-//      }
-
+      }
 
    }
 
@@ -1411,22 +1384,6 @@ namespace acme
    }
 
 
-//   void node::post_procedure(const ::procedure & procedure)
-//   {
-//
-//      node_post(procedure);
-//
-//   }
-//
-//
-//   void node::send_procedure(const ::procedure & procedure)
-//   {
-//
-//      node_send(procedure);
-//
-//   }
-
-
    void node::user_post_quit()
    {
 
@@ -1434,25 +1391,12 @@ namespace acme
    }
 
 
-//   void node::enum_display_monitors(::aura::session * psession)
-//   {
-//
-//
-//   }
-
-
-//   void node::node_quit()
-//   {
-//
-//   }
-
-
-  bool node::should_launch_on_node(::topic * ptopic)
-  {
+   bool node::should_launch_on_node(::topic * ptopic)
+   {
 
       return false;
 
-  }
+   }
 
 
   bool node::defer_launch_on_node(::topic * ptopic)

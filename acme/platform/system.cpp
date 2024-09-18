@@ -1080,7 +1080,7 @@ namespace acme
 
       task::init_task();
 
-      init_system();
+      call_init_system();
 
    }
 

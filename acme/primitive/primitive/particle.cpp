@@ -2607,6 +2607,22 @@ void particle::user_post(const ::procedure & procedure)
 }
 
 
+void particle::main_send(const ::procedure & procedure)
+{
+
+   user_send(procedure);
+
+}
+
+
+void particle::main_post(const ::procedure & procedure)
+{
+
+   user_post(procedure);
+
+}
+
+
 //::pointer < particle > particle::clone() const
 //{
 //

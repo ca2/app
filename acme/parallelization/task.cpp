@@ -11,18 +11,13 @@
 #include "acme/nano/user/window_implementation.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task_message_queue.h"
-
-
 #include "acme/exception/_text_stream.h"
 #include "acme/_operating_system.h"
+#include "acme/operating_system/parallelization.h"
 
 
 extern bool g_bIntermediateThreadReferencingDebugging;
 
-
-bool on_init_thread();
-
-void on_term_thread();
 
 CLASS_DECL_ACME void _do_tasks();
 
@@ -310,27 +305,27 @@ void task::on_pre_run_task()
 }
 
 
-bool task::on_init_task()
-{
-
-   if (!::on_init_thread())
-   {
-
-      return false;
-    
-   }
-
-   return true;
-
-}
-
-
-void task::on_term_task()
-{
-
-   ::on_term_thread();
-
-}
+//bool task::os_on_init_task()
+//{
+//
+//   if (!::os_on_init_thread())
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
+//
+//
+//void task::os_on_term_task()
+//{
+//
+//   ::os_on_term_thread();
+//
+//}
 
 
 void task::main()
@@ -547,6 +542,8 @@ void* task::s_os_task(void* p)
    try
    {
 
+      os_task_init_term ostaskinitterm;
+
       ::task * ptask = (::task*)p;
 
       ::set_task(ptask);
@@ -672,13 +669,13 @@ void* task::s_os_task(void* p)
 
       }
 
-      ::task_release();
-
    }
    catch (...)
    {
 
    }
+
+   ::task_release();
 
    return 0;
 
@@ -2337,34 +2334,6 @@ void preempt()
 //
 //}
 
-
-task_guard::task_guard()
-{
-
-   on_init_thread();
-
-}
-
-
-task_guard::~task_guard()
-{
-
-   //auto p = t_pthreadlocalparticleList;
-
-   //while(p)
-   //{
-
-   //   auto pNext = t_pthreadlocalparticleList->m_pthreadlocalparticleNext;
-
-   //   ::release(p);
-
-   //   p = pNext;
-
-   //}
-
-   on_term_thread();
-
-}
 
 
 //::factory::factory_pointer & get_system_factory()

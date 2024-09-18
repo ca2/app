@@ -278,10 +278,6 @@ void application::on_error_icloud_not_available(::particle * pparticle, long lon
    
    //output_debug_string("acme::application implement_application\n");
    
-   set_main_user_thread();
-   
-   task_guard taskguard;
-   
    ::e_status estatus = error_failed;
    
    ::e_status estatusEnd = error_failed;
@@ -814,6 +810,8 @@ void application::init_instance()
 
 void application::init_task()
 {
+
+   ::task::init_task();
    
    try
    {

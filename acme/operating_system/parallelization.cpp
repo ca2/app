@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/parallelization/task.h"
+#include "parallelization.h"
 //#include "acme/operating_system.h"
 //#include "acme/primitive/primitive/payload.h"
 
@@ -126,6 +127,40 @@ CLASS_DECL_ACME string current_task_name()
    ::string strTaskName = ::get_task_name(ptask);
 
    return strTaskName;
+
+}
+
+
+bool os_on_init_thread();
+
+void os_on_term_thread();
+
+
+os_task_init_term::os_task_init_term()
+{
+
+   ::os_on_init_thread();
+
+}
+
+
+os_task_init_term::~os_task_init_term()
+{
+
+   //auto p = t_pthreadlocalparticleList;
+
+   //while(p)
+   //{
+
+   //   auto pNext = t_pthreadlocalparticleList->m_pthreadlocalparticleNext;
+
+   //   ::release(p);
+
+   //   p = pNext;
+
+   //}
+
+   ::os_on_term_thread();
 
 }
 

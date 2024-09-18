@@ -6,6 +6,7 @@
 #include "placement_log.h"
 #include "acme/constant/message.h"
 #include "acme/exception/interface_only.h"
+#include "acme/operating_system/a_system_menu.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
@@ -514,11 +515,68 @@ namespace windowing
    }
 
 
+   void window::on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem)
+   {
+
+      ::string strActionName(psystemmenuitem->m_strAtom);
+
+      if(strActionName == "minimize")
+      {
+
+         window_minimize();
+
+      }
+      else if(strActionName == "maximize")
+      {
+
+         window_maximize();
+
+      }
+      else if(strActionName == "maximize")
+      {
+
+         window_maximize();
+
+      }
+      else if(strActionName == "about_box")
+      {
+
+         application()->show_about_box();
+
+      }
+      else if(strActionName == "close")
+      {
+
+         m_puserinteractionimpl->m_puserinteraction->post_message(e_message_close);
+
+      }
+      else if(strActionName == "")
+      {
+
+         print_line("reaching here?!");
+         //defer_perform_entire_reposition_process(nullptr);
+
+      }
+      else if(strActionName == "")
+      {
+
+         print_line("also here");
+
+         //defer_perform_entire_resizing_process(::experience::e_frame_sizing_top_left, nullptr);
+
+      }
+
+
+   }
+
+
    void window::activate_top_parent()
    {
 
 
    }
+
+
 
 
 //   void window::on_visual_applied()
@@ -1930,7 +1988,36 @@ namespace windowing
    void window::user_send(const ::procedure & procedure)
    {
 
-      __matter_send_procedure(this, this, &window::user_post, procedure);
+      auto puserinteractionimpl = m_puserinteractionimpl;
+
+      if (puserinteractionimpl)
+      {
+
+         auto puserinteraction = puserinteractionimpl->m_puserinteraction;
+
+         if (puserinteraction)
+         {
+
+            puserinteraction->user_send(procedure);
+
+            return;
+
+//            auto pthread = puserinteraction->m_pthreadUserInteraction;
+//
+//            if (pthread)
+//            {
+//
+//               pthread->post_procedure(procedure);
+//
+//               return;
+//
+//            }
+
+         }
+
+      }
+
+      throw ::exception(error_failed);
 
    }
 
@@ -1948,16 +2035,20 @@ namespace windowing
          if (puserinteraction)
          {
 
-            auto pthread = puserinteraction->m_pthreadUserInteraction;
+            puserinteraction->user_post(procedure);
 
-            if (pthread)
-            {
+            return;
 
-               pthread->post_procedure(procedure);
-
-               return;
-
-            }
+//            auto pthread = puserinteraction->m_pthreadUserInteraction;
+//
+//            if (pthread)
+//            {
+//
+//               pthread->post_procedure(procedure);
+//
+//               return;
+//
+//            }
 
          }
 
@@ -1966,6 +2057,40 @@ namespace windowing
       throw ::exception(error_failed);
 
    }
+
+
+   void window::main_send(const ::procedure & procedure)
+   {
+
+#ifdef WINDOWS_DESKTOP
+
+      user_send(procedure);
+
+#else
+
+      node()->main_send(procedure);
+
+#endif
+
+   }
+
+
+   void window::main_post(const ::procedure & procedure)
+   {
+
+#ifdef WINDOWS_DESKTOP
+
+      user_post(procedure);
+
+#else
+
+      node()->main_post(procedure);
+
+#endif
+
+   }
+
+
 
 
    bool window::is_branch_current() const

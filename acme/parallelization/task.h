@@ -98,8 +98,8 @@ public:
    virtual void on_pre_run_task();
 
 
-   virtual bool on_init_task();
-   virtual void on_term_task();
+   //virtual bool os_on_init_task();
+   //virtual void os_on_term_task();
 
 
    string get_tag() const override;
@@ -286,20 +286,6 @@ inline ::payload & task_property(const ::atom & atom) { return ::get_task()->pay
 
 
 
-class task_guard
-{
-public:
-
-
-   //static thread_local thread_local_particle * t_pthreadlocalparticleList;
-
-
-   task_guard();
-
-   ~task_guard();
-
-
-};
 
 
 

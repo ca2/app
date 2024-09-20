@@ -129,7 +129,11 @@ namespace aura
       if(!m_pwindowingAuraNode)
       {
 
-         session()->user()->create_windowing();
+         auto psession = session();
+
+         auto puser = psession->user();
+
+         puser->create_windowing();
 
       }
 

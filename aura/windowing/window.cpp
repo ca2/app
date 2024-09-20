@@ -587,6 +587,40 @@ namespace windowing
 //   }
 
 
+   bool window::is_window_zoomed()
+   {
+
+      return false;
+
+   }
+
+
+   ::pointer < ::operating_system::a_system_menu > window::create_system_menu()
+   {
+
+      auto psystemmenu = ::place(new ::operating_system::a_system_menu());
+
+      psystemmenu->add_item("Minimize", "minimize");
+      if(is_window_zoomed())
+      {
+         psystemmenu->add_item("Restore", "restore");
+      }
+      else
+      {
+         psystemmenu->add_item("Maximize", "maximize");
+      }
+      psystemmenu->add_item("Drag to Move","***move");
+      psystemmenu->add_item("Drag to Size", "***size");
+      psystemmenu->add_separator();
+      psystemmenu->add_item("About...", "about_box");
+      psystemmenu->add_separator();
+      psystemmenu->add_item("Close", "close");
+
+      return psystemmenu;
+
+   }
+
+
    void window::_on_configure_notify_unlocked(const ::rectangle_i32 & rectangle)
    {
 

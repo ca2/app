@@ -14,6 +14,7 @@ namespace operating_system
 {
 
    class a_system_menu_item;
+   class a_system_menu;
 
 } // namespace operating_system
 
@@ -73,6 +74,7 @@ namespace windowing
       bool                                      m_bKeyboardFocus;
       ::pointer < class placement_log >         m_pplacementlog;
       ::pointer < ::particle >                  m_pparticleChildrenSynchronization;
+      ::pointer < ::operating_system::a_system_menu >       m_psystemmenu;
 
       window();
       ~window() override;
@@ -224,6 +226,11 @@ namespace windowing
       virtual bool is_destroying();
 
 
+      virtual bool is_window_zoomed();
+
+      virtual ::pointer < ::operating_system::a_system_menu > create_system_menu();
+      virtual void defer_show_system_menu(::user::mouse * pmouse);
+
       virtual void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem);
 
       virtual void activate_top_parent();
@@ -241,6 +248,9 @@ namespace windowing
 
 
       //virtual void on_visual_applied();
+
+
+
 
       virtual void _on_configure_notify_unlocked(const ::rectangle_i32 & rectangle);
       virtual void _on_reposition_notify_unlocked(const ::point_i32 & point);
@@ -453,7 +463,6 @@ namespace windowing
       ::string get_window_text() override;
 
 
-      virtual void defer_show_system_menu(::user::mouse * pmouse);
 
       virtual void pick_browse(const ::function < void(const ::file::path & path) > & callback);
       virtual void pick_media(const char * pszMediaType);

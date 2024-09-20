@@ -3,9 +3,9 @@
 
 #include "_c.h"
 
-
+#undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
 #include "acme/_operating_system.h"
-
+#include <windowsx.h>
 
 //#include <Tlhelp32.h>
 
@@ -100,4 +100,9 @@ inline int width(RECT & r) { return r.right - r.left; }
 inline int height(RECT & r) { return r.bottom - r.top; }
 
 
+inline ::point_i32 lparam_as_point(LPARAM lparam)
+{
 
+   return ::point_i32(GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+
+}

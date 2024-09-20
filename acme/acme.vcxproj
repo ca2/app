@@ -1204,6 +1204,7 @@
     <ClInclude Include="nano\user\window_interface.h" />
     <ClInclude Include="nano\user\_.h" />
     <ClInclude Include="nano\_.h" />
+    <ClInclude Include="operating_system\a_system_menu.h" />
     <ClInclude Include="operating_system\console_message_box.h" />
     <ClInclude Include="operating_system\errno.h" />
     <ClInclude Include="operating_system\windows\heap_allocator.h" />
@@ -1693,6 +1694,7 @@
     </ClCompile>
     <ClCompile Include="operating_system\application.cpp" />
     <ClCompile Include="operating_system\argcargv.cpp" />
+    <ClCompile Include="operating_system\a_system_menu.cpp" />
     <ClCompile Include="operating_system\bidirectional_pipe.cpp" />
     <ClCompile Include="operating_system\chronometer.cpp" />
     <ClCompile Include="operating_system\console.cpp" />

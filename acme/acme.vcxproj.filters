@@ -445,6 +445,9 @@
     <Filter Include="Source Files\operating_system\shared_posix">
       <UniqueIdentifier>{086d5169-6123-42a9-8673-7d8804ab61c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\parallelization\NewFilter1">
+      <UniqueIdentifier>{b3f26e27-ec2e-4fcc-86c1-4b1f20602c7c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -3894,6 +3897,9 @@
     <ClInclude Include="operating_system\windows\nano\user\aaa_nano_child.h">
       <Filter>Header Files\operating_system\windows\nano\user</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\a_system_menu.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -5464,6 +5470,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows\window.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\a_system_menu.cpp">
+      <Filter>Source Files\operating_system</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

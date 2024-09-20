@@ -37,16 +37,16 @@ namespace windows
 
 
          
-         void user::_erase_minimize_box_style(HWND hwnd)
-         {
-          
-            LONG style = GetWindowLong(hwnd, GWL_STYLE);
+         //void user::_erase_minimize_box_style(HWND hwnd)
+         //{
+         // 
+         //   LONG style = GetWindowLong(hwnd, GWL_STYLE);
 
-            style = style & ~(WS_MINIMIZEBOX);
+         //   style = style & ~(WS_MINIMIZEBOX);
 
-            SetWindowLong(hwnd, GWL_STYLE, style);
+         //   SetWindowLong(hwnd, GWL_STYLE, style);
 
-         }
+         //}
 
 
       } // namespace user

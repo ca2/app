@@ -24,7 +24,7 @@ CLASS_DECL_ACME itask_t main_user_itask();
 
 
 
-class os_task_init_term
+class CLASS_DECL_ACME os_task_init_term
 {
 public:
 

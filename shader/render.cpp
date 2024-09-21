@@ -64,12 +64,12 @@ namespace app_shader
 
       m_pgpucontext = pgpu->create_context(this);
 
-      if (m_pgpucontext)
-      {
+      //if (m_pgpucontext)
+      //{
 
-         m_pgpucontext->initialize(this);
+      //   m_pgpucontext->initialize(this);
 
-      }
+      //}
 
       //return estatus;
 
@@ -280,7 +280,7 @@ namespace app_shader
          
       }
       
-      m_pgpucontext->post_procedure([this]
+      m_pgpucontext->send_procedure([this]
                                     {
          
          ::gpu::context_lock lock(m_pgpucontext);

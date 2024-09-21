@@ -57,9 +57,9 @@ namespace gpu
 
       ::particle::initialize(pparticle);
 
-      m_pgpucontext = system()->m_paurasystem->get_gpu()->create_context(this);
+      //m_pgpucontext = system()->m_paurasystem->get_gpu()->create_context(this);
 
-      m_pgpucontext->initialize(this);
+      //m_pgpucontext->initialize(this);
 
    }
 

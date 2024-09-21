@@ -23,6 +23,7 @@ namespace gpu
 
       m_bCreated = false;
       m_emode = e_mode_none;
+      m_bSimpleMessageLoop = false;
 
    }
 
@@ -270,18 +271,21 @@ namespace gpu
    void context::resize_offscreen_buffer(const ::size_i32& size)
    {
 
-      if(!m_pcpubuffer)
-      {
+      send_procedure([this, size]()
+         {
 
-         return create_offscreen_buffer(size);
+            if (!m_pcpubuffer)
+            {
 
-      }
+               return create_offscreen_buffer(size);
 
-      synchronous_lock synchronouslock(m_pcpubuffer->synchronization());
+            }
 
-      m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
+            synchronous_lock synchronouslock(m_pcpubuffer->synchronization());
 
-      //return ::success_none;
+            m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
+
+      });
 
    }
 
@@ -289,6 +293,7 @@ namespace gpu
    void context::create_context()
    {
 
+      branch_synchronously();
 
    }
 

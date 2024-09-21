@@ -105,7 +105,12 @@ namespace windows
                GetWindowRect(m_hwnd, &r);
 
                m_bMovingNow = true;
-               SetWindowPos(m_hwnd, nullptr, r.left + Δx, r.top + Δy, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+
+               auto x = (int)(r.left + Δx);
+
+               auto y = (int)(r.top + Δy);
+
+               SetWindowPos(m_hwnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
                m_bMovingNow = false;
                m_timeLastSizeMove.Now();
 

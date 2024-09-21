@@ -2037,7 +2037,7 @@
     <ClCompile Include="primitive\string\international.cpp" />
     <ClCompile Include="primitive\string\network_payload.cpp" />
     <ClCompile Include="primitive\string\parse.cpp" />
-    <ClCompile Include="primitive\string\str.cpp" />
+    <ClCompile Include="primitive\string\_str.cpp" />
     <ClCompile Include="primitive\string\string.cpp" />
     <ClCompile Include="primitive\string\stringtow.cpp" />
     <ClCompile Include="primitive\string\string_ansi.cpp" />

@@ -544,6 +544,7 @@
     <ClInclude Include="interprocess\caller.h" />
     <ClInclude Include="interprocess\channel.h" />
     <ClInclude Include="interprocess\communication.h" />
+    <ClInclude Include="interprocess\handler.h" />
     <ClInclude Include="interprocess\target.h" />
     <ClInclude Include="interprocess\task.h" />
     <ClInclude Include="interprocess\_.h" />
@@ -802,6 +803,7 @@
     <ClCompile Include="interprocess\caller.cpp" />
     <ClCompile Include="interprocess\channel.cpp" />
     <ClCompile Include="interprocess\communication.cpp" />
+    <ClCompile Include="interprocess\handler.cpp" />
     <ClCompile Include="interprocess\target.cpp" />
     <ClCompile Include="interprocess\task.cpp" />
     <ClCompile Include="message\application.cpp" />

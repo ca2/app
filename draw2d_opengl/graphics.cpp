@@ -5815,6 +5815,14 @@ namespace draw2d_opengl
 
    //}
 
+   void graphics::do_on_context(const ::procedure & procedure)
+   {
+
+      m_pgpucontext->send_procedure(procedure);
+
+   }
+
+
    //void graphics::on_begin_draw(oswindow wnd, const ::size_i32 & sz)
    void graphics::on_begin_draw()
    {

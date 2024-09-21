@@ -64,7 +64,7 @@ namespace draw2d_opengl
 //      ::user::interaction_impl * GetWindow() const;
 
       virtual void thread_select();
-
+      void do_on_context(const ::procedure & procedure) override;
 
       //void attach(void * pgraphics) override;   // attach/detach affects only the Output DC
       void * detach() override;

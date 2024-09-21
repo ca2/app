@@ -48,7 +48,7 @@ namespace gpu
 
       void initialize(::particle * pparticle) override;
 
-
+      //virtual void initialize_render(::user::interaction * puserinteraction);
       ///// Initialization routines
       //virtual void set_vertex_source_code(const string & strVertexSourceCode);
       //virtual void set_fragment_source_code(const string & strFragmentSourceCode);

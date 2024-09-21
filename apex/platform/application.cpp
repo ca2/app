@@ -10346,7 +10346,7 @@ namespace apex
       auto stra = get_about_box_lines();
 
       int y = 30;
-
+      
       auto pstillIcon = __create < ::innate_ui::still>();
 
       pstillIcon->create_icon_still(pdialog);
@@ -10394,12 +10394,12 @@ namespace apex
 
       pdialog->center();
 
-
-      pbutton->set_callback_on_click([pdialog]()
+      auto pdialogRaw = pdialog.m_p;
+      pbutton->set_callback_on_click([pdialogRaw]()
          {
 
-            pdialog->hide();
-            pdialog->destroy_window();
+         pdialogRaw->hide();
+         pdialogRaw->destroy_window();
 
          });
 

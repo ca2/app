@@ -5,14 +5,22 @@
 namespace innate_ui
 {
 
+
+   class innate_ui;
+   class icon;
+
+
    class CLASS_DECL_APEX window :
-      virtual public ::object
+      virtual public ::particle
    {
    public:
 
 
       window *                      m_pwindowParent;
       ::pointer_array < window >    m_childa;
+      procedure_array   m_procedureaLayoutChildSize;
+      procedure_array   m_procedureaLayoutChildPosition;
+      procedure_array   m_procedureaLayoutParent;
 
 
       window();

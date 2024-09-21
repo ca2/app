@@ -1478,106 +1478,106 @@ return true;
 
       return;
 
-      SetNonblocking(true);
-
-      //synchronous_lock slMap(psystem->sockets().m_clientcontextmap.m_pmutex);
-
-      if (is_true("from_pool"))
-         return;
-
-      //{
-
-      //   if(m_ssl_ctx)
-      //   {
-
-      //      informationf("SSL Context already initialized - closing socket");
-
-      //      SetCloseAndDelete(true);
-
-      //      return;
-
-      //   }
-
-      //   InitSSLClient();
-
-      //}
-
-//      if(!m_ssl_ctx)
-      //    {
-
-      int iError = 0;
-
-//retry_init_ssl_client:
-
-      InitSSLClient();
-
-      //  }
-
-      //slMap.unlock();
-
-      //if(m_psslcontext->m_pclientcontext.is_set()
-      //      && m_psslcontext->m_pclientcontext->m_psslcontext != nullptr)
-      //{
-
-      //   /* Connect the SSL socket */
-
-      //   m_psslcontext->m_ssl = SSL_new(m_psslcontext->m_pclientcontext->m_psslcontext);
-
-      //   if(!m_psslcontext->m_ssl)
-      //   {
-
-      //      information() << "m_ssl is nullptr";
-
-      //      SetCloseAndDelete(true);
-
-      //      return;
-
-      //   }
-
-      //   if (m_bClientSessionSet || m_psslcontext->m_pclientcontext->m_psslsession == nullptr)
-      //   {
-
-      //      if (m_strTlsHostName.has_char())
-      //      {
-
-      //         SSL_set_tlsext_host_name(m_psslcontext->m_ssl, (char *)(const char *)m_strTlsHostName);
-
-      //      }
-
-      //      //SSL_set_mode(m_ssl, SSL_MODE_AUTO_RETRY);
-
-      //   }
-
-      //   m_psslcontext->m_sbio = BIO_new_socket((i32)get_socket_id(),BIO_NOCLOSE);
-
-      //   if(!m_psslcontext->m_sbio)
-      //   {
-
-      //      information() << "m_sbio is nullptr";
-
-      //      SetCloseAndDelete(true);
-
-      //      return;
-
-      //   }
-
-      //   SSL_set_bio(m_psslcontext->m_ssl,m_psslcontext->m_sbio,m_psslcontext->m_sbio);
-
-
-      //   if(!SSLNegotiate())
-      //   {
-
-      //      SetSSLNegotiate();
-
-      //   }
-
-      //}
-      //else
-      //{
-
-      //   SetCloseAndDelete();
-
-      //}
+//      SetNonblocking(true);
+//
+//      //synchronous_lock slMap(psystem->sockets().m_clientcontextmap.m_pmutex);
+//
+//      if (is_true("from_pool"))
+//         return;
+//
+//      //{
+//
+//      //   if(m_ssl_ctx)
+//      //   {
+//
+//      //      informationf("SSL Context already initialized - closing socket");
+//
+//      //      SetCloseAndDelete(true);
+//
+//      //      return;
+//
+//      //   }
+//
+//      //   InitSSLClient();
+//
+//      //}
+//
+////      if(!m_ssl_ctx)
+//      //    {
+//
+//      int iError = 0;
+//
+////retry_init_ssl_client:
+//
+//      InitSSLClient();
+//
+//      //  }
+//
+//      //slMap.unlock();
+//
+//      //if(m_psslcontext->m_pclientcontext.is_set()
+//      //      && m_psslcontext->m_pclientcontext->m_psslcontext != nullptr)
+//      //{
+//
+//      //   /* Connect the SSL socket */
+//
+//      //   m_psslcontext->m_ssl = SSL_new(m_psslcontext->m_pclientcontext->m_psslcontext);
+//
+//      //   if(!m_psslcontext->m_ssl)
+//      //   {
+//
+//      //      information() << "m_ssl is nullptr";
+//
+//      //      SetCloseAndDelete(true);
+//
+//      //      return;
+//
+//      //   }
+//
+//      //   if (m_bClientSessionSet || m_psslcontext->m_pclientcontext->m_psslsession == nullptr)
+//      //   {
+//
+//      //      if (m_strTlsHostName.has_char())
+//      //      {
+//
+//      //         SSL_set_tlsext_host_name(m_psslcontext->m_ssl, (char *)(const char *)m_strTlsHostName);
+//
+//      //      }
+//
+//      //      //SSL_set_mode(m_ssl, SSL_MODE_AUTO_RETRY);
+//
+//      //   }
+//
+//      //   m_psslcontext->m_sbio = BIO_new_socket((i32)get_socket_id(),BIO_NOCLOSE);
+//
+//      //   if(!m_psslcontext->m_sbio)
+//      //   {
+//
+//      //      information() << "m_sbio is nullptr";
+//
+//      //      SetCloseAndDelete(true);
+//
+//      //      return;
+//
+//      //   }
+//
+//      //   SSL_set_bio(m_psslcontext->m_ssl,m_psslcontext->m_sbio,m_psslcontext->m_sbio);
+//
+//
+//      //   if(!SSLNegotiate())
+//      //   {
+//
+//      //      SetSSLNegotiate();
+//
+//      //   }
+//
+//      //}
+//      //else
+//      //{
+//
+//      //   SetCloseAndDelete();
+//
+//      //}
 
    }
 

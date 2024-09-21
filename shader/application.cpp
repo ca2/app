@@ -27,7 +27,7 @@ namespace app_shader
 
       m_bLicense = false;
 
-      m_bImaging = false;
+      m_bImaging = false; // showing application icon may use innate_ui icon?
 
       m_bWriteText = false;
 

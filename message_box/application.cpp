@@ -24,7 +24,7 @@ namespace app_message_box
 
       m_bLicense = false;
 
-      m_bImaging = true; // for showing application icon
+      m_bImaging = false; // showing application icon may use innate_ui icon?
 
       m_bNetworking = false;
 

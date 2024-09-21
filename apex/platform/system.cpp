@@ -5104,17 +5104,21 @@ namespace apex
       if (!m_pinnateui)
       {
 
-#ifdef WINDOWS
-
-         auto pfactory = factory("innate_ui", "win32");
-
-         pfactory->merge_to_global_factory();
-
-#elif defined(LINUX)
+//#ifdef WINDOWS
+//
+//         auto pfactory = factory("innate_ui", "win32");
+//
+//         pfactory->merge_to_global_factory();
+//
+//#elif defined(LINUX)
 
          node()->m_papexnode->defer_innate_ui();
 
-#endif
+//#elif defined(MACOS)
+//
+//         node()->m_papexnode->defer_innate_ui();
+//         
+//#endif
 
          __construct(m_pinnateui);
 

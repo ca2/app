@@ -281,7 +281,7 @@ namespace userex
 
             }
 
-            __keep_on(&pframewindow->m_uiUserInteractionFlags, ::user::e_interaction_wfi_up_down_loading);
+            __keep_on(&pframewindow->m_uiUserInteractionFlags, ::user::e_interaction_wfi_up_down_loading2);
 
             //::user::lock_sketch_to_design lockSketchToDesign(pframewindow);
 
@@ -428,7 +428,7 @@ namespace userex
 
                //::user::lock_sketch_to_design lockSketchToDesign(pframewindow);
 
-               __keep_on(&pframewindow->m_uiUserInteractionFlags, ::user::e_interaction_wfi_up_down_loading);
+               __keep_on(&pframewindow->m_uiUserInteractionFlags, ::user::e_interaction_wfi_up_down_loading2);
 
                pframewindow->set_parent(nullptr);
 

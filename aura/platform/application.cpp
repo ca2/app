@@ -8337,6 +8337,22 @@ namespace aura
             }
             
          }
+         else if (ptopic->m_atom == id_application_dark_mode_change)
+         {
+
+            if (m_puserinteractionaFrame)
+            {
+               for (auto & pinteraction : m_puserinteractionaFrame->interactiona())
+               {
+
+                  pinteraction->set_need_redraw();
+
+                  pinteraction->post_redraw();
+
+               }
+            }
+
+         }
 
          if (ptopic->m_atom == ::id_initialize_control)
          {

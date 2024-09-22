@@ -10,6 +10,7 @@
 #include "context.h"
 #include "node.h"
 #include "history.h"
+#include "acme/handler/topic.h"
 //#include "app_launcher.h"
 //#include "log.h"
 #include "acme/compress/compress.h"
@@ -5282,6 +5283,10 @@ namespace apex
    {
    
       this->signal(id_application_dark_mode_change);
+
+      auto ptopic = ::place(new ::topic(id_application_dark_mode_change));
+
+      application()->handle(ptopic, nullptr);
 
    }
 

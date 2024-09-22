@@ -21,6 +21,9 @@ namespace operating_system
       union {
          void * m_pWindowingImplWindow;
       };
+      union {
+         void * m_pWidgetImpl;
+      };
 
 
       a_system_menu_item();

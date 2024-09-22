@@ -2783,7 +2783,8 @@ endif ()
 add_library(${PROJECT_NAME} SHARED ${library_source}
         _static_factory.h
 )
-add_library(static_${PROJECT_NAME} STATIC ${library_source})
+add_library(static_${PROJECT_NAME} STATIC ${library_source}
+		operating_system/posix/_null_nano_dynamic_library_dl.cpp)
 
 
 if (NOT ${NO_PRECOMPILED_HEADER})

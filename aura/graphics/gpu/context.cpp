@@ -23,6 +23,7 @@ namespace gpu
 
       m_bCreated = false;
       m_emode = e_mode_none;
+      m_bSimpleMessageLoop = false;
 
    }
 
@@ -219,42 +220,47 @@ namespace gpu
    void context::create_offscreen_buffer(const ::size_i32& size)
    {
 
-      ::pointer<::aura::system>psystem = system();
-
-      auto pgpu = psystem->get_gpu();
-
-      if (::is_null(pgpu))
+      send_procedure([this, size]()
       {
 
-         throw ::exception(error_null_pointer);
+         ::pointer<::aura::system>psystem = system();
 
-      }
+         auto pgpu = psystem->get_gpu();
 
-      __defer_construct(m_pcpubuffer);
+         if (::is_null(pgpu))
+         {
 
-      //m_pbuffer->m_pimage = image()->create_image(size);
+            throw ::exception(error_null_pointer);
 
-      m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
+         }
 
-      if (m_pcpubuffer->m_pixmap.nok())
-      {
+         __defer_construct(m_pcpubuffer);
 
-         throw ::exception(error_resource);
+         //m_pbuffer->m_pimage = image()->create_image(size);
 
-      }
+         m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
 
-      _create_offscreen_buffer(size);
+         if (m_pcpubuffer->m_pixmap.nok())
+         {
 
-      //if(!estatus)
-      //{
+            throw ::exception(error_resource);
 
-      //   return estatus;
+         }
 
-      //}
+         _create_offscreen_buffer(size);
 
-      //return ::success_none;
-      
-      m_bCreated = true;
+         //if(!estatus)
+         //{
+
+         //   return estatus;
+
+         //}
+
+         //return ::success_none;
+
+         m_bCreated = true;
+
+      });
 
    }
 
@@ -270,18 +276,21 @@ namespace gpu
    void context::resize_offscreen_buffer(const ::size_i32& size)
    {
 
-      if(!m_pcpubuffer)
-      {
+      send_procedure([this, size]()
+         {
 
-         return create_offscreen_buffer(size);
+            if (!m_pcpubuffer)
+            {
 
-      }
+               return create_offscreen_buffer(size);
 
-      synchronous_lock synchronouslock(m_pcpubuffer->synchronization());
+            }
 
-      m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
+            synchronous_lock synchronouslock(m_pcpubuffer->synchronization());
 
-      //return ::success_none;
+            m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
+
+      });
 
    }
 
@@ -289,6 +298,7 @@ namespace gpu
    void context::create_context()
    {
 
+      branch_synchronously();
 
    }
 

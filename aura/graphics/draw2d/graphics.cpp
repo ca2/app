@@ -2723,6 +2723,14 @@ namespace draw2d
    }
 
 
+   void graphics::do_on_context(const ::procedure & procedure)
+   {
+
+      procedure();
+
+   }
+
+
    void graphics::DeleteDC()
    {
 

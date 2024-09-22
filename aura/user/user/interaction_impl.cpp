@@ -6094,6 +6094,10 @@ namespace user
 
          }
 
+
+         pgraphics->do_on_context([this, &pgraphics, &pbufferitem]()
+            {
+
          {
 
             //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
@@ -6326,6 +6330,8 @@ namespace user
 
          }
 
+         });
+
       }
 
       {
@@ -6394,220 +6400,228 @@ namespace user
 
          }
 
+         pgraphics->do_on_context([this, &pgraphics, &pbufferitem]()
+   {
+
+
+      {
+
+         //pgraphics->m_egraphics = e_graphics_draw;
+
+         //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+         //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+         //#endif
+
+         pgraphics->payload("set_transparent") = "";
+
+         pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
+
+         pgraphics->m_pgraphicsbufferitem = pbufferitem;
+
+         pgraphics->on_begin_draw();
+
+         pgraphics->reset_clip();
+
+         pgraphics->set_origin(0., 0.);
+
+         //{
+
+         //   _synchronous_lock synchronouslock(synchronization());
+
+         //   pgraphics->__construct_new(pgraphics->m_puserredraw);
+
+         //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+
+         //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+
+         //   if (m_redrawitema.has_element())
+         //   {
+
+         //      throw "what?!?!";
+
+         //   }
+
+         //}
+
+
+
+         //pgraphics->m_egraphics = e_graphics_layout;
+
+         //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
+         //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
+         ////#endif
+
+         //pgraphics->payload("set_transparent") = "";
+
+         //pgraphics->m_pgraphicsgraphics = m_pgraphics;
+
+         //pgraphics->m_pgraphicsbufferitem = pbufferitem;
+
+         //pgraphics->on_begin_draw();
+
+         //pgraphics->reset_clip();
+
+         //pgraphics->set_origin(0., 0.);
+
+         //{
+
+         //   _synchronous_lock synchronouslock(synchronization());
+
+         //   pgraphics->__construct_new(pgraphics->m_puserredraw);
+
+         //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
+
+         //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
+
+         //   if (m_redrawitema.has_element())
+         //   {
+
+         //      throw "what?!?!";
+
+         //   }
+
+         //}
+
+
+
+         //if (!bDraw)
+         //{
+
+         //   if (pgraphics->m_rectangleaNeedRedraw.has_element())
+         //   {
+
+         //      bDraw = true;
+
+         //   }
+
+         //}
+
+         //pgraphics->m_pdraw2dhost = m_puserinteraction;
+
+         //pgraphics->m_puserstyle.release();
+
+         //if (pgraphics->m_pimage)
+         //{
+
+         //   pgraphics->m_pimage->m_rectangleTag.Null();
+
+         //   //sizeDrawn = pgraphics->m_pimage->m_size;
+
+         //   ///sizeDrawn = m_puserinteraction->const_layout().design().size();
+
+         //}
+
+         //string strBitmapSource = payload("bitmap-source");
+
+         //if (strBitmapSource.has_char())
+         //{
+
+         //   //            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pgraphics;
+         //   //
+         //   //            if(pbitmapsourcebuffer)
+         //   //            {
+         //   //
+         //   //
+         //   //
+         //   //
+         //   //            }
+
+         //}
+
+         if (m_puserinteraction)
          {
 
-            //pgraphics->m_egraphics = e_graphics_draw;
+            //auto r = m_puserinteraction->screen_rect();
 
-            //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
-            //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
-            //#endif
-
-            pgraphics->payload("set_transparent") = "";
-
-            pgraphics->m_pgraphicsgraphics = m_pgraphicsgraphics;
-
-            pgraphics->m_pgraphicsbufferitem = pbufferitem;
-
-            pgraphics->on_begin_draw();
-
-            pgraphics->reset_clip();
-
-            pgraphics->set_origin(0., 0.);
-
-            //{
-
-            //   _synchronous_lock synchronouslock(synchronization());
-
-            //   pgraphics->__construct_new(pgraphics->m_puserredraw);
-
-            //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
-
-            //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
-
-            //   if (m_redrawitema.has_element())
-            //   {
-
-            //      throw "what?!?!";
-
-            //   }
-
-            //}
-
-
-
-            //pgraphics->m_egraphics = e_graphics_layout;
-
-            //ASSERT(!(pgraphics->m_egraphics & e_graphics_from_context));
-            //ASSERT(pgraphics->m_egraphics & (e_graphics_layout | e_graphics_draw));
-            ////#endif
-
-            //pgraphics->payload("set_transparent") = "";
-
-            //pgraphics->m_pgraphicsgraphics = m_pgraphics;
-
-            //pgraphics->m_pgraphicsbufferitem = pbufferitem;
-
-            //pgraphics->on_begin_draw();
-
-            //pgraphics->reset_clip();
-
-            //pgraphics->set_origin(0., 0.);
-
-            //{
-
-            //   _synchronous_lock synchronouslock(synchronization());
-
-            //   pgraphics->__construct_new(pgraphics->m_puserredraw);
-
-            //   pgraphics->user_redraw()->m_pgraphics = pgraphics;
-
-            //   pgraphics->user_redraw()->initialize_and_transfer(m_redrawitema);
-
-            //   if (m_redrawitema.has_element())
-            //   {
-
-            //      throw "what?!?!";
-
-            //   }
-
-            //}
-
-
-
-            //if (!bDraw)
-            //{
-
-            //   if (pgraphics->m_rectangleaNeedRedraw.has_element())
-            //   {
-
-            //      bDraw = true;
-
-            //   }
-
-            //}
-
-            //pgraphics->m_pdraw2dhost = m_puserinteraction;
-
-            //pgraphics->m_puserstyle.release();
-
-            //if (pgraphics->m_pimage)
-            //{
-
-            //   pgraphics->m_pimage->m_rectangleTag.Null();
-
-            //   //sizeDrawn = pgraphics->m_pimage->m_size;
-
-            //   ///sizeDrawn = m_puserinteraction->const_layout().design().size();
-
-            //}
-
-            //string strBitmapSource = payload("bitmap-source");
-
-            //if (strBitmapSource.has_char())
-            //{
-
-            //   //            ::pointer < ::graphics::bitmap_source_buffer > pbitmapsourcebuffer = pgraphics;
-            //   //
-            //   //            if(pbitmapsourcebuffer)
-            //   //            {
-            //   //
-            //   //
-            //   //
-            //   //
-            //   //            }
-
-            //}
-
-            if (m_puserinteraction)
+            if (m_puserinteraction->has_finishing_flag())
             {
 
-               //auto r = m_puserinteraction->screen_rect();
+               informationf("::user::interaction_impl set_finish");
 
-               if (m_puserinteraction->has_finishing_flag())
-               {
+            }
+            else
+            {
 
-                  informationf("::user::interaction_impl set_finish");
+               //pgraphics->m_bDraw = bDraw;
 
-               } else
-               {
+               pgraphics->m_bDraw = true;
 
-                  //pgraphics->m_bDraw = bDraw;
+               pgraphics->m_bInheritDraw = true;
 
-                  pgraphics->m_bDraw = true;
-
-                  pgraphics->m_bInheritDraw = true;
-
-                  //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
+               //            pgraphics->fill_solid_rectangle({ 0, 0, 200, 200 }, ::color::green);
 
 
 #ifdef MORE_LOG
-                  debug() << "defer_do_graphics _000TopCallOnDraw";
+               debug() << "defer_do_graphics _000TopCallOnDraw";
 #endif
-                  m_puserinteraction->_000TopCallOnDraw(pgraphics);
+               m_puserinteraction->_000TopCallOnDraw(pgraphics);
 
-                  //m_puserinteraction->_000CallOnDraw(pgraphics);
+               //m_puserinteraction->_000CallOnDraw(pgraphics);
 
-                  //                  if (!bDraw && m_redrawa.has_element())
-                  //                  {
-                  //
-                  //                     synchronouslock.unlock();
-                  //
-                  //                     bDraw = true;
-                  //
-                  //                     pgraphics->m_bDraw = bDraw;
-                  //
-                  //                     m_puserinteraction->_000CallOnDraw(pgraphics);
-                  //
-                  //                  }
-
-               }
-
-               //m_rectangleUpdateBuffer = r;
-
-               //informationf("PrintBuffer (%d, %d)",  r.right(), r.bottom());
-
-               if (!m_pgraphicsgraphics)
-               {
-
-                  return;
-
-               }
-
-               m_pgraphicsgraphics->m_bNewBuffer = true;
-
-            } else
-            {
-
-
-               information() << "defer_do_graphics !m_puserinteraction";
+               //                  if (!bDraw && m_redrawa.has_element())
+               //                  {
+               //
+               //                     synchronouslock.unlock();
+               //
+               //                     bDraw = true;
+               //
+               //                     pgraphics->m_bDraw = bDraw;
+               //
+               //                     m_puserinteraction->_000CallOnDraw(pgraphics);
+               //
+               //                  }
 
             }
 
-            //if (pgraphics->m_pimage.ok())
-            //{
+            //m_rectangleUpdateBuffer = r;
 
-            //   //pgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
+            //informationf("PrintBuffer (%d, %d)",  r.right(), r.bottom());
 
-            //   //m_sizeDrawn = sizeDrawn;
-
-            //   pgraphics->m_sizeDrawnAnnotation = sizeDrawn;
-
-            //}
-
-            m_sizeLastBuffer = pbufferitem->m_size;
-
-            //}
-
-            if (m_pgraphicsgraphics)
+            if (!m_pgraphicsgraphics)
             {
 
-#ifndef LINUX
-               m_pgraphicsgraphics->on_end_draw();
-#endif
+               return;
 
             }
+
+            m_pgraphicsgraphics->m_bNewBuffer = true;
 
          }
+         else
+         {
+
+
+            information() << "defer_do_graphics !m_puserinteraction";
+
+         }
+
+         //if (pgraphics->m_pimage.ok())
+         //{
+
+         //   //pgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
+
+         //   //m_sizeDrawn = sizeDrawn;
+
+         //   pgraphics->m_sizeDrawnAnnotation = sizeDrawn;
+
+         //}
+
+         m_sizeLastBuffer = pbufferitem->m_size;
+
+         //}
+
+         if (m_pgraphicsgraphics)
+         {
+
+#ifndef LINUX
+            m_pgraphicsgraphics->on_end_draw();
+#endif
+
+         }
+
+      }
+
+      });
 
       }
 

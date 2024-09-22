@@ -9,6 +9,7 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
 #include "aura/platform/system.h"
+#include "aura/user/user/interaction.h"
 
 
 namespace gpu
@@ -57,11 +58,54 @@ namespace gpu
 
       ::particle::initialize(pparticle);
 
-      m_pgpucontext = system()->m_paurasystem->get_gpu()->create_context(this);
+      //m_pgpucontext = system()->m_paurasystem->get_gpu()->create_context(this);
 
-      m_pgpucontext->initialize(this);
+      //m_pgpucontext->initialize(this);
+
+      auto psystem = system()->m_paurasystem;
+
+      auto pgpu = psystem->get_gpu();
+
+      m_pgpucontext = pgpu->create_context(this);
+
 
    }
+
+
+   //void render::initialize_render(::user::interaction * puserinteraction)
+   //{
+
+   //   m_puserinteraction = puserinteraction;
+
+   //   //auto estatus = 
+   //   //::particle::initialize(puserinteraction);
+
+   //   //if (!estatus)
+   //   //{
+
+   //   //   return estatus;
+
+   //   //}
+
+   //   //initialize_application_consumer();
+
+   //   auto psystem = system()->m_paurasystem;
+
+   //   auto pgpu = psystem->get_gpu();
+
+   //   m_pgpucontext = pgpu->create_context(this);
+
+   //   //if (m_pgpucontext)
+   //   //{
+
+   //   //   m_pgpucontext->initialize(this);
+
+   //   //}
+
+   //   //return estatus;
+
+   //}
+
 
 
    void render::draw()
@@ -76,105 +120,109 @@ namespace gpu
            // && m_pgpucontext->m_pbuffer->m_pixmap.is_ok())
       if (::is_set(m_pgpucontext))
       {
+         m_pgpucontext->send_procedure([this]()
+            {
+               //if (::is_set(m_pobject))
+               {
 
-         //if (::is_set(m_pobject))
-         {
+                  ::gpu::context_lock lock(m_pgpucontext);
 
-            ::gpu::context_lock lock(m_pgpucontext);
+                  m_pgpucontext->make_current();
 
-            m_pgpucontext->make_current();
+                  // global_transform
 
-            // global_transform
+                  ////{
 
-            ////{
+                  ////   float x = (float) psession->get_cursor_position().x();
 
-            ////   float x = (float) psession->get_cursor_position().x();
+                  ////   float y = (float) psession->get_cursor_position().y();
 
-            ////   float y = (float) psession->get_cursor_position().y();
+                  ////   m_pcontext->m_pprogram->m_pshader->setVec2("mouse", x, y);
+                  ////   m_pcontext->m_pprogram->m_pshader->setVec2("iMouse", x, y);
 
-            ////   m_pcontext->m_pprogram->m_pshader->setVec2("mouse", x, y);
-            ////   m_pcontext->m_pprogram->m_pshader->setVec2("iMouse", x, y);
+                  ////}
 
-            ////}
+                  //{
 
-            //{
+                  //   float cx = (float) m_pcontext->m_pbuffer->m_pimage->width();
 
-            //   float cx = (float) m_pcontext->m_pbuffer->m_pimage->width();
+                  //   float cy = (float) m_pcontext->m_pbuffer->m_pimage->height();
 
-            //   float cy = (float) m_pcontext->m_pbuffer->m_pimage->height();
+                  //   m_pcontext->m_pprogram->m_pshader->setVec2("resolution", cx, cy);
+                  //   m_pcontext->m_pprogram->m_pshader->setVec2("iResolution", cx, cy);
 
-            //   m_pcontext->m_pprogram->m_pshader->setVec2("resolution", cx, cy);
-            //   m_pcontext->m_pprogram->m_pshader->setVec2("iResolution", cx, cy);
+                  //}
 
-            //}
+                  //{
 
-            //{
+                  //   double dElapsed = m_timeStart.elapsed().floating_second().m_d;
 
-            //   double dElapsed = m_timeStart.elapsed().floating_second().m_d;
+                  //   double dTime = dElapsed / 1000.0;
 
-            //   double dTime = dElapsed / 1000.0;
+                  //   float time = (float) dTime;
 
-            //   float time = (float) dTime;
+                  //   m_pcontext->m_pprogram->m_pshader->setFloat("time", time);
+                  //   m_pcontext->m_pprogram->m_pshader->setFloat("iTime", time);
 
-            //   m_pcontext->m_pprogram->m_pshader->setFloat("time", time);
-            //   m_pcontext->m_pprogram->m_pshader->setFloat("iTime", time);
+                  //}
 
-            //}
+                  on_start_drawing(m_pgpucontext);
 
-            on_start_drawing(m_pgpucontext);
+                  on_global_transform(m_pgpucontext);
 
-            on_global_transform(m_pgpucontext);
+                  on_draw(m_pgpucontext);
 
-            on_draw(m_pgpucontext);
+                  read_to_cpu_buffer();
 
-            ///m_pobject->draw();
+                  ///m_pobject->draw();
 
-            //m_pcontext->render();
+                  //m_pcontext->render();
 
-            //m_pgpucontext->prepare_for_gpu_read();
+                  //m_pgpucontext->prepare_for_gpu_read();
 
-            //m_pgpucontext->m_pbuffer->gpu_read();
+                  //m_pgpucontext->m_pbuffer->gpu_read();
 
-         }
+               }
 
-//#if !defined(__APPLE__)
-//         ::geometry2d::matrix matrixOriginal;
-//         pgraphics->get(matrixOriginal);
-//         ::geometry2d::matrix matrix(matrixOriginal);
-//         matrix.scale(1.0, -1.0);
-//         matrix.translate(0, m_rectangle.height());
-//         pgraphics->set(matrix);
-//#endif
+               //#if !defined(__APPLE__)
+               //         ::geometry2d::matrix matrixOriginal;
+               //         pgraphics->get(matrixOriginal);
+               //         ::geometry2d::matrix matrix(matrixOriginal);
+               //         matrix.scale(1.0, -1.0);
+               //         matrix.translate(0, m_rectangle.height());
+               //         pgraphics->set(matrix);
+               //#endif
 
-         //auto & pixmap = m_pgpucontext->m_pbuffer->m_pixmap;
+                        //auto & pixmap = m_pgpucontext->m_pbuffer->m_pixmap;
 
-         //if (pixmap.is_ok())
-         //{
+                        //if (pixmap.is_ok())
+                        //{
 
-         //   //pimage->map();
+                        //   //pimage->map();
 
-         //   //pimage->fill_channel(255, ::color::e_channel_opacity);
+                        //   //pimage->fill_channel(255, ::color::e_channel_opacity);
 
-         //}
-         //return pixmap;
+                        //}
+                        //return pixmap;
 
-         //::image::image_source imagesource(m_pgpucontext->m_pbuffer->m_pimage);
+                        //::image::image_source imagesource(m_pgpucontext->m_pbuffer->m_pimage);
 
-         //::rectangle_f64 rectangleTarget(m_rectangle);
+                        //::rectangle_f64 rectangleTarget(m_rectangle);
 
-         //::image::image_drawing_options imagedrawingoptions(rectangleTarget);
+                        //::image::image_drawing_options imagedrawingoptions(rectangleTarget);
 
-         //::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
+                        //::image::image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-         //pgraphics->draw(imagedrawing);
+                        //pgraphics->draw(imagedrawing);
 
-//         pgraphics->draw(pixmap, m_rectangleTarget);
-//
-//#if !defined(__APPLE__)
-//
-//         pgraphics->set(matrixOriginal);
-//
-//#endif
+               //         pgraphics->draw(pixmap, m_rectangleTarget);
+               //
+               //#if !defined(__APPLE__)
+               //
+               //         pgraphics->set(matrixOriginal);
+               //
+               //#endif
+         });
 
       }
 

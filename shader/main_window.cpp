@@ -308,7 +308,7 @@ namespace app_shader
 
          }
 
-         prender->initialize_render(this);
+         prender->m_puserinteraction = this;
 
          string strText;
 

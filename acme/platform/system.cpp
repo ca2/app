@@ -153,6 +153,7 @@ namespace acme
 
 #endif
 
+      m_etracelevelMinimum = e_trace_level_undefined;
 
 #ifdef DEBUG
       ::atom atom;
@@ -219,72 +220,17 @@ namespace acme
    }
 
 
-   void system::on_initialize_particle()
+   enum_trace_level system::get_trace_level()
    {
 
-      ::acme::context::on_initialize_particle();
+      if(m_etracelevelMinimum != e_trace_level_undefined)
+      {
 
-      //::output_debug_string("Going to create simple log\n");
+         return m_etracelevelMinimum;
 
-      //m_plogger = __create_new < ::simple_log >();
+      }
 
-      __construct(m_plogger);
-
-      //::output_debug_string("output_debug_string : simple log created\n");
-
-      //information() << "information() << output_debug_string : simple log created";
-
-#ifdef PARALLELIZATION_PTHREAD
-
-#if defined(__APPLE__)
-
-      m_bJoinable = true;
-
-#endif
-
-#endif
-
-      //#ifdef WINDOWS_DESKTOP
-      //
-      //      //{
-      //
-      //      //   auto papp = ::app_factory::new_app();
-      //
-      //      //papplication->m_argc = __argc;
-      //
-      //      //papplication->m_argv = __argv;
-      //
-      //      //papplication->m_wargv = __wargv;
-      //
-      //      //papplication->m_envp = *__p__environ();
-      //
-      //      //papplication->m_wenvp = *__p__wenviron();
-      //
-      //      //papplication->m_hinstanceThis = hinstanceThis;
-      //
-      //      //papplication->m_hinstancePrev = hinstancePrev;
-      //
-      //      //papplication->m_nCmdShow = nCmdShow;
-      //
-      //      //papplication->is_console() = false;
-      //
-      //      //int iExitCode = papplication->main_loop();
-      //
-      //      //return iExitCode;
-      //
-      //#elif !defined(UNIVERSAL_WINDOWS)
-      //
-      //      //papplication->set_args(g_argc, g_argv, g_envp);
-      //
-      //#endif
-      //
-      m_ewindowing = e_windowing_none;
-
-      //m_plogger->m_etracelevelMinimum = e_trace_level_warning;
-
-      //m_strAppId = papplication->m_strAppId;
-
-      enum_trace_level etracelevel;
+      enum_trace_level etracelevel = e_trace_level_none;
 
       // if(is_debugger_attached())
       // {
@@ -374,7 +320,78 @@ namespace acme
 
       //      }
 
-      m_plogger->m_etracelevelMinimum = etracelevel;
+      m_etracelevelMinimum = etracelevel;
+
+      return m_etracelevelMinimum;
+
+   }
+
+
+   void system::on_initialize_particle()
+   {
+
+      ::acme::context::on_initialize_particle();
+
+      //::output_debug_string("Going to create simple log\n");
+
+      //m_plogger = __create_new < ::simple_log >();
+
+      __construct(m_plogger);
+
+      //::output_debug_string("output_debug_string : simple log created\n");
+
+      //information() << "information() << output_debug_string : simple log created";
+
+#ifdef PARALLELIZATION_PTHREAD
+
+#if defined(__APPLE__)
+
+      m_bJoinable = true;
+
+#endif
+
+#endif
+
+      //#ifdef WINDOWS_DESKTOP
+      //
+      //      //{
+      //
+      //      //   auto papp = ::app_factory::new_app();
+      //
+      //      //papplication->m_argc = __argc;
+      //
+      //      //papplication->m_argv = __argv;
+      //
+      //      //papplication->m_wargv = __wargv;
+      //
+      //      //papplication->m_envp = *__p__environ();
+      //
+      //      //papplication->m_wenvp = *__p__wenviron();
+      //
+      //      //papplication->m_hinstanceThis = hinstanceThis;
+      //
+      //      //papplication->m_hinstancePrev = hinstancePrev;
+      //
+      //      //papplication->m_nCmdShow = nCmdShow;
+      //
+      //      //papplication->is_console() = false;
+      //
+      //      //int iExitCode = papplication->main_loop();
+      //
+      //      //return iExitCode;
+      //
+      //#elif !defined(UNIVERSAL_WINDOWS)
+      //
+      //      //papplication->set_args(g_argc, g_argv, g_envp);
+      //
+      //#endif
+      //
+      m_ewindowing = e_windowing_none;
+
+      //m_plogger->m_etracelevelMinimum = e_trace_level_warning;
+
+      //m_strAppId = papplication->m_strAppId;
+
 
 
       //information() << "initialize_system trace_category_static_init";

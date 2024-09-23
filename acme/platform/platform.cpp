@@ -929,12 +929,14 @@ g_bWindowingOutputDebugString = true;
 
       //informationf("platform::factory(\"%s\", \"%s\");\n", strComponent.c_str(), strImplementation.c_str());
 
-      auto & pfactory = m_componentfactorymap[strComponent][implementation_name(strComponent, strImplementation)];
+      auto strImplementationName = implementation_name(strComponent, strImplementation);
+
+      auto & pfactory = m_componentfactorymap[strComponent][strImplementationName];
 
       if (pfactory)
       {
 
-         informationf("Returning existing factory \"%s\" - \"%s\".\n", strComponent.c_str(), strImplementation.c_str());
+         debugf("Returning existing factory \"%s\" - \"%s\".\n", strComponent.c_str(), strImplementation.c_str());
 
          return pfactory;
 

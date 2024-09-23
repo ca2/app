@@ -78,13 +78,13 @@ namespace acme
 
       // FROM ::main (Now main2)
 
-      ::file::path                     m_pathCacheDirectory;
-      class ::time                          m_timeStart;
-      class ::time                          m_timeAfterApplicationFirstRequest;
+      ::file::path                              m_pathCacheDirectory;
+      class ::time                              m_timeStart;
+      class ::time                              m_timeAfterApplicationFirstRequest;
 
-      int                              m_iExitCode = 0;
-
-      ::pointer < ::acme::system_factory > m_psystemfactory;
+      int                                       m_iExitCode = 0;
+      enum_trace_level                          m_etracelevelMinimum;
+      ::pointer < ::acme::system_factory >      m_psystemfactory;
       // END FROM ::main (Now main2)
 
 
@@ -202,7 +202,7 @@ namespace acme
       
       void initialize_system();
 
-
+      virtual enum_trace_level get_trace_level();
       //void os_construct();
 
 

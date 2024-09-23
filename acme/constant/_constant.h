@@ -347,6 +347,7 @@ enum enum_trace_level
 {
 
 
+   e_trace_level_undefined,
    e_trace_level_none,
    e_trace_level_debug,       // debug
    e_trace_level_information, // info

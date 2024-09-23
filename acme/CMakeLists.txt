@@ -511,6 +511,8 @@ list(APPEND library_source
         platform/library.h
         platform/log.cpp
         platform/log.h
+		platform/logger.cpp
+        platform/logger.h
         #platform/logic.cpp
         platform/lparam.cpp
         platform/application_flags.cpp

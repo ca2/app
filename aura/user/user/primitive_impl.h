@@ -499,6 +499,8 @@ namespace user
       void user_send(const ::procedure & procedure) override;
       void user_post(const ::procedure & procedure) override;
 
+      void main_send(const ::procedure & procedure) override;
+      void main_post(const ::procedure & procedure) override;
 
       virtual void set_opacity(double dOpacity);
 

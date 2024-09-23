@@ -3123,6 +3123,40 @@ namespace user
    }
 
 
+    void primitive_impl::main_send(const ::procedure & procedure)
+    {
+
+        if (!m_puserinteraction)
+        {
+
+            ::channel::main_send(procedure);
+
+            return;
+
+        }
+
+        m_puserinteraction->main_send(procedure);
+
+    }
+
+
+    void primitive_impl::main_post(const ::procedure & procedure)
+    {
+
+        if (!m_puserinteraction)
+        {
+
+            ::channel::main_post(procedure);
+
+            return;
+
+        }
+
+        m_puserinteraction->main_post(procedure);
+
+    }
+
+
    void primitive_impl::set_opacity(double dOpacity)
    {
 

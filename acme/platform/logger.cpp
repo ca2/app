@@ -3,11 +3,7 @@
 // 2024-09-23 01:19 Always(altid) dedicated to <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "logger.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/platform/acme.h"
-#include "acme/platform/application.h"
-
+#include "acme/platform/system.h"
 
 
 void logger::initialize(::particle * pparticle)

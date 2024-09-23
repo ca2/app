@@ -853,7 +853,7 @@ void application::init_task()
 void application::term_task()
 {
    
-   information() << "acme::application::term_task";
+   debug() << "acme::application::term_task";
    
    m_timeHeartBeat.Now();
    
@@ -1647,7 +1647,7 @@ void application::init_application()
 void application::pos_run()
 {
    
-   information() << "acme::application::pos_run";
+   debug() << "acme::application::pos_run";
    
    try
    {

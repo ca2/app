@@ -48,6 +48,9 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 add_dependencies(${PROJECT_NAME} static_acme)
 add_dependencies(static_${PROJECT_NAME}_library static_acme)
 
+add_dependencies(static_${PROJECT_NAME}_library static_nano_compress_command_line)
+add_dependencies(static_${PROJECT_NAME}_library static_nano_http_command_line)
+
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 set_target_properties(static_${PROJECT_NAME}_library PROPERTIES LINKER_LANGUAGE CXX)
 

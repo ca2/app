@@ -2998,20 +2998,43 @@ return false;
        
 #ifdef LINUX
 
-         if(system()->m_ewindowing == e_windowing_wayland)
+         auto edesktop = this->get_edesktop();
+
+         if(edesktop & user::e_desktop_kde)
          {
-            return "wayland";
-         }
-         else if(system()->m_ewindowing == e_windowing_xcb)
-         {
-            return "xcb";
+
+            return "kde5";
+
          }
          else
          {
 
-            return "x11";
+#if HAS_GTK4
+
+            return "gtk4";
+
+#else
+
+            return "gtk3";
+
+#endif
 
          }
+
+         // if(system()->m_ewindowing == e_windowing_wayland)
+         // {
+         //    return "wayland";
+         // }
+         // else if(system()->m_ewindowing == e_windowing_xcb)
+         // {
+         //    return "xcb";
+         // }
+         // else
+         // {
+         //
+         //    return "x11";
+         //
+         // }
 
 #elif defined(WINDOWS_DESKTOP)
 

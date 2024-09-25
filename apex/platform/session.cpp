@@ -415,49 +415,49 @@ namespace apex
 
       ::acme::session::init_task();
 
-      init_session();
-
-      //auto estatus =
-      
-      //process_init();
-
-      //if (!estatus)
-      //{
-
-      //   warning() <<"Failed at apex::session::init_thread after process_init";
-
-      //   return estatus;
-
-      //}
-
-      //estatus = 
-      
-      //init_session();
-
-      //if (!estatus)
-      //{
-
-      //   warning() <<"Failed at apex::session::init_thread after init_session";
-
-      //   return estatus;
-
-      //}
-
-      // // now there is attempt here
-      //estatus = defer_initialize_host_window();
-
-      //if(!estatus)
-      //{
-
-      //   throw ::exception(::exception(estatus));
-
-      //}
-
-      //information() << ".1";
-
-      //return true;
-
-      //return estatus;
+      // init_session();
+      //
+      // //auto estatus =
+      //
+      // //process_init();
+      //
+      // //if (!estatus)
+      // //{
+      //
+      // //   warning() <<"Failed at apex::session::init_thread after process_init";
+      //
+      // //   return estatus;
+      //
+      // //}
+      //
+      // //estatus =
+      //
+      // //init_session();
+      //
+      // //if (!estatus)
+      // //{
+      //
+      // //   warning() <<"Failed at apex::session::init_thread after init_session";
+      //
+      // //   return estatus;
+      //
+      // //}
+      //
+      // // // now there is attempt here
+      // //estatus = defer_initialize_host_window();
+      //
+      // //if(!estatus)
+      // //{
+      //
+      // //   throw ::exception(::exception(estatus));
+      //
+      // //}
+      //
+      // //information() << ".1";
+      //
+      // //return true;
+      //
+      // //return estatus;
 
    }
 
@@ -465,35 +465,73 @@ namespace apex
    void session::term_task()
    {
 
-      try
-      {
+      acme::session::term_task();
 
-         term_session();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         process_term();
-
-      }
-      catch(...)
-      {
-
-      }
+      // try
+      // {
+      //
+      //    term_session();
+      //
+      // }
+      // catch (...)
+      // {
+      //
+      // }
+      //
+      // try
+      // {
+      //
+      //    process_term();
+      //
+      // }
+      // catch(...)
+      // {
+      //
+      // }
 
       ::thread::term_task();
+
+   }
+
+   void session::term1()
+   {
+
+
+   }
+
+   void session::term2()
+   {
+
+
+   }
+
+
+   void session::process_term()
+   {
+
+      ::acme::session::process_term();
+
+      auto psystem = system()->m_papexsystem;
+
+      psystem->post_message(e_message_erase_session, m_iEdge);
+
+   }
+
+
+   void session::on_message_erase_application(::message::message* pmessage)
+   {
+
+      ::pointer<::apex::application>papp(pmessage->m_lparam);
+
+      erase_application(papp);
 
    }
 
 
    void session::process_init()
    {
+
+      acme::session::process_init();
 
       //information() << "apex::session::process_init";
 
@@ -507,7 +545,6 @@ namespace apex
       //}
 
       //auto estatus =
-      __construct_new(m_ptextcontext);
 
       //if (!estatus)
       //{
@@ -524,129 +561,10 @@ namespace apex
 
       //return ::success;
 
-      initialize_context();
+      //initialize_context();
 
    }
 
-
-   void session::init_session()
-   {
-
-
-      process_init();
-
-
-      //auto estatus = 
-      init1();
-
-      //if (!estatus)
-      //{
-
-      //   warning() <<"Failed to init1 the session (::apex::session or ::apex::session derived)";
-
-      //   return estatus;
-
-      //}
-
-      //estatus = 
-      init2();
-
-      //if (!estatus)
-      //{
-
-      //   warning() <<"Failed to init2 the session (::apex::session or ::apex::session derived)";
-
-      //   return estatus;
-
-      //}
-
-      init();
-
-      //if (!estatus)
-      //{
-
-      //   warning() <<"Failed to init() the session (::apex::session or ::apex::session derived)";
-
-      //   return estatus;
-
-      //}
-
-//      return ::success;
-
-   }
-
-
-   void session::term_session()
-   {
-
-      try
-      {
-
-         term2();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         term1();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         term();
-
-      }
-      catch (...)
-      {
-
-      }
-
-
-
-   }
-
-
-   void session::on_message_erase_application(::message::message* pmessage)
-   {
-
-      ::pointer<::apex::application>papp(pmessage->m_lparam);
-
-      erase_application(papp);
-
-   }
-
-
-   void session::term2()
-   {
-
-   }
-
-
-   void session::term1()
-   {
-
-   }
-
-
-   void session::process_term()
-   {
-
-      auto psystem = system()->m_papexsystem;
-
-      psystem->post_message(e_message_erase_session, m_iEdge);
-
-   }
 
 
    bool session::on_get_task_name(string& strTaskName)
@@ -667,42 +585,44 @@ namespace apex
    void session::on_request(::request * prequest)
    {
 
-      auto psystem = system()->m_papexsystem;
+      ::acme::session::on_request(prequest);
 
-      if (prequest->m_ecommand == e_command_protocol)
-      {
-
-         m_pappCurrent->request(prequest);
-
-         return;
-
-      }
-
-      information() << "::apex::session::on_request(::pointer<::create> " << ::type(this).name();
-
-      //string strAppId = prequest->m_strAppId;
-
-      //if (strAppId.is_empty())
-      //{
-
-      //   information() << "m_strAppId Is Empty!!";
-
-      //   return;
-
-      //}
-
-      information() << "m_strAppId = " << prequest->m_strAppId;
-
-      auto papplication = get_application(prequest->m_strAppId, true, prequest);
-
-      if (!papplication)
-      {
-
-         destroy();
-
-      }
-
-      m_varCurrentImpactFile = prequest->m_payloadFile;
+      // auto psystem = system()->m_papexsystem;
+      //
+      // if (prequest->m_ecommand == e_command_protocol)
+      // {
+      //
+      //    m_pappCurrent->request(prequest);
+      //
+      //    return;
+      //
+      // }
+      //
+      // information() << "::apex::session::on_request(::pointer<::create> " << ::type(this).name();
+      //
+      // //string strAppId = prequest->m_strAppId;
+      //
+      // //if (strAppId.is_empty())
+      // //{
+      //
+      // //   information() << "m_strAppId Is Empty!!";
+      //
+      // //   return;
+      //
+      // //}
+      //
+      // information() << "m_strAppId = " << prequest->m_strAppId;
+      //
+      // auto papplication = get_application(prequest->m_strAppId, true, prequest);
+      //
+      // if (!papplication)
+      // {
+      //
+      //    destroy();
+      //
+      // }
+      //
+      // m_varCurrentImpactFile = prequest->m_payloadFile;
 
    }
 
@@ -1383,6 +1303,24 @@ ret:
    }
 
 
+   void session::init_session()
+   {
+
+
+      ::acme::session::init_session();
+
+   }
+
+
+   void session::term_session()
+   {
+
+      ::acme::session::term_session();
+
+   }
+
+
+
    void session::term()
    {
 
@@ -1398,6 +1336,8 @@ ret:
          //m_result.add(error_failed);
 
       }
+
+      ::acme::session::term();
 
    }
 

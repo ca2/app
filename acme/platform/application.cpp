@@ -9,6 +9,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/file_system_options.h"
 #include "acme/handler/request.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -21,7 +22,8 @@
 #include "acme/primitive/text/context.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/user/user.h"
-
+#include "nano/user/icon.h"
+#include "windowing_system/windowing_system.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -224,6 +226,18 @@ void application::initialize_application(::platform::platform * pplatform)
       
    }
    
+}
+
+   void application::_001TryCloseApplication()
+{
+
+   if(!platform()->is_console())
+   {
+
+      system()->windowing_system()->windowing_system_post_quit();
+
+   }
+
 }
 
 
@@ -1245,7 +1259,17 @@ void application::process_init()
 {
    
    initialize_context();
-   
+
+   string_array stra;
+
+   stra.explode("/", m_strAppId);
+
+   m_strRoot = stra[0];
+
+   m_strDomain = stra.slice(1).implode("/");
+
+   add_matter_locator(this);
+
 }
 
 
@@ -1916,8 +1940,14 @@ void application::show_about_box()
    ::string strMessage;
    
    strMessage = lines.implode("\n");
+
+   auto picon = __create < ::nano::user::icon>();
+
+   auto pfile = file()->get("matter://main/icon.png");
+
+   picon->load_image_from_file(pfile);
    
-   auto psequencer = nano()->user()->message_box("About\n\n" + strMessage, nullptr, e_message_box_ok);
+   auto psequencer = nano()->user()->message_box("About\n\n" + strMessage, nullptr, e_message_box_ok, "", picon);
    
    //psequencer->then([this, strPath](auto pconversation)
    //      {

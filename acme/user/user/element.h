@@ -15,6 +15,17 @@
 #include "drag_client.h"
 
 
+namespace operating_system
+{
+
+
+   class a_system_menu_item;
+   class a_system_menu;
+
+
+} // namespace operating_system
+
+
 namespace user
 {
 
@@ -154,6 +165,28 @@ namespace user
 //      virtual strsize _009GetWindowTextLength();
 
       virtual bool GetFocusRect(::rectangle_i32 & rectangle);
+
+
+      virtual bool is_window_stored_iconic(); // m_puserinteractionimpl->m_puserinteraction->const_layout().window().display() == e_display_iconic
+      virtual void window_minimize();
+      virtual void window_maximize(); // m_puserinteractionimpl->m_puserinteraction->display(::e_display_zoomed);
+      virtual void window_full_screen(); // m_puserinteractionimpl->m_puserinteraction->display(::e_display_full_screen);
+      virtual void window_restore(); // m_puserinteractionimpl->m_puserinteraction->display(::e_display_normal);
+      virtual void window_close();
+
+
+      virtual void _on_window_simple_action(const char * pszActionName);
+
+
+      virtual ::pointer < ::operating_system::a_system_menu > create_system_menu();
+
+      //bool defer_perform_entire_reposition_process(::user::mouse * pmouse) override;
+
+      //bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse) override;
+
+      virtual bool defer_perform_entire_reposition_process(::user::mouse * pmouse);
+
+      virtual bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse);
 
 
       virtual void defer_update_display();
@@ -572,6 +605,8 @@ namespace user
       //virtual bool window_is_full_screen_enabled();
       //virtual bool onscreen_is_zoomed();
       //virtual bool onscreen_is_iconic();
+
+      virtual bool is_window_zoomed();
 
       //virtual bool display(::e_display edisplay);
 

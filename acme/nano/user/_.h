@@ -46,7 +46,7 @@ class window;
 class window_implementation;
 
 
-
+class icon;
 class button;
 class still;
 

@@ -32,6 +32,7 @@ public:
    virtual ::size_i32 get_text_extents(const ::string & str, ::nano::user::font * pnanofont);
    virtual void rectangle(const ::rectangle_i32 & rectangle, ::nano::user::brush * pnanobrush, ::nano::user::pen * pnanopen);
 
+   virtual void draw(::nano::user::icon * picon, int x, int y, int cx, int cy);
 
    //void set_antialias(bool bAntialiasOn);
 

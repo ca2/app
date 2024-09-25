@@ -30,6 +30,7 @@
 #include "acme/nano/user/message_box.h"
 #include "acme/nano/user/user.h"
 #include "acme/user/user/os_theme_colors.h"
+#include "acme/windowing_system/windowing_system.h"
 #include "filesystem/filesystem/listing.h"
 
 namespace nano{namespace  user{
@@ -416,7 +417,14 @@ namespace acme
    void node::on_start_system()
    {
 
-      system()->defer_post_initial_request();
+      //system()->defer_post_initial_request();
+
+      if(!platform()->is_console())
+      {
+
+         system()->windowing_system()->on_start_system();
+
+      }
 
    }
 
@@ -2352,7 +2360,7 @@ return false;
    }
 
 
-   pointer< ::sequencer < ::conversation > > node::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+   pointer< ::sequencer < ::conversation > > node::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::user::icon * picon)
    {
 
       auto psequencer = __create_new < ::sequencer < ::conversation > >();
@@ -2363,14 +2371,14 @@ return false;
 
       pmessagebox->m_psequencer = psequencer;
 
-      pmessagebox->initialize_conversation(strMessage, strTitle, emessagebox, strDetails);
+      pmessagebox->initialize_conversation(strMessage, strTitle, emessagebox, strDetails, picon);
 
       return psequencer;
 
    }
 
 
-   pointer< ::sequencer < ::conversation > > node::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+   pointer< ::sequencer < ::conversation > > node::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::user::icon * picon)
    {
 
       auto psequencer = __create_new < ::sequencer < ::conversation > >();
@@ -2381,7 +2389,7 @@ return false;
 
       pmessage->m_psequencer = psequencer;
 
-      pmessage->initialize_conversation(strMessage, strTitle, emessagebox, strDetails);
+      pmessage->initialize_conversation(strMessage, strTitle, emessagebox, strDetails, picon);
 
       return psequencer;
 

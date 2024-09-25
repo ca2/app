@@ -1072,6 +1072,29 @@ void object::transfer_tasks_from(::object* ptask)
 
    }
 
+   ::pointer < ::task > ptaskTask = ptask;
+
+   if(ptaskTask)
+   {
+
+      if(ptaskTask->m_procedurea.has_element())
+      {
+
+         ::pointer < ::task > ptaskTaskTarget = this;
+
+         if(ptaskTaskTarget)
+         {
+
+            auto procedurea = ::transfer(ptaskTask->m_procedurea);
+
+            ptaskTaskTarget->m_procedurea.append(procedurea);
+
+         }
+
+      }
+
+   }
+
    _synchronous_lock synchronouslockParent2(ptask->synchronization());
 
    if(!ptask->m_pparticleaChildrenTask || ptask->m_pparticleaChildrenTask->is_empty())

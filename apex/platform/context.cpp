@@ -10,10 +10,8 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
-#include "acme/filesystem/filesystem/link.h"
 #include "acme/parallelization/retry.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/parallelization/task_flag.h"
 #include "acme/platform/ini.h"
 #include "acme/handler/request.h"
 #include "acme/primitive/string/str.h"
@@ -353,74 +351,71 @@ namespace apex
    ::file::path context::defer_process_path(::file::path path)
    {
 
-      if (path.flags() & ::file::e_flag_final_path)
-      {
-
-         return path;
-
-      }
-
-      path = _defer_process_path(path);
-
-      if (path.flags() & ::file::e_flag_resolve_alias)
-      {
-
-         while (true)
-         {
-
-            try
-            {
-
-               __keep_task_flag(e_task_flag_resolve_alias);
-
-               //if (!os_resolve_alias(path, path,::is_set(get_app())? get_app()->m_puiCurrent.get(): nullptr))
-               auto plink = os_resolve_alias(path);
-
-               if(!plink || plink->m_pathTarget.is_empty() || plink->m_pathTarget == path)
-               {
-
-                  break;
-
-               }
-
-               path = plink->m_pathTarget;
-
-            }
-            catch (...)
-            {
-
-            }
-
-            path = _defer_process_path(path);
-
-         }
-
-      }
-
-      path.flags().set(::file::e_flag_final_path);
-
-      return path;
-
+      return ::acme::context::defer_process_path(path);
+   //
+   //    if (path.flags() & ::file::e_flag_final_path)
+   //    {
+   //
+   //       return path;
+   //
+   //    }
+   //
+   //    path = _defer_process_path(path);
+   //
+   //    if (path.flags() & ::file::e_flag_resolve_alias)
+   //    {
+   //
+   //       while (true)
+   //       {
+   //
+   //          try
+   //          {
+   //
+   //             __keep_task_flag(e_task_flag_resolve_alias);
+   //
+   //             //if (!os_resolve_alias(path, path,::is_set(get_app())? get_app()->m_puiCurrent.get(): nullptr))
+   //             auto plink = os_resolve_alias(path);
+   //
+   //             if(!plink || plink->m_pathTarget.is_empty() || plink->m_pathTarget == path)
+   //             {
+   //
+   //                break;
+   //
+   //             }
+   //
+   //             path = plink->m_pathTarget;
+   //
+   //          }
+   //          catch (...)
+   //          {
+   //
+   //          }
+   //
+   //          path = _defer_process_path(path);
+   //
+   //       }
+   //
+   //    }
+   //
+   //    path.flags().set(::file::e_flag_final_path);
+   //
+   //    return path;
+   //
    }
 
 
    ::file::path context::_defer_process_path(::file::path path)
    {
 
-      ::file::path pathProcess = __defer_process_path(path);
+      return ::acme::context::_defer_process_path(path);
 
-      if (path.flags().is(::file::e_flag_required)
-         && pathProcess.is_empty()
-         && path.flags().is_clear(::file::e_flag_bypass_cache))
-      {
+   }
 
-         path.flags() += ::file::e_flag_bypass_cache;
 
-         pathProcess = __defer_process_path(path);
+   ::file::path context::__defer_process_path(::file::path path)
+   {
 
-      }
-
-      return pathProcess;
+      return ::acme::context::__defer_process_path(path);
 
    }
 
@@ -433,42 +428,7 @@ namespace apex
    }
 
 
-   ::file::path context::__defer_process_path(::file::path path)
-   {
 
-      path = defer_process_matter_path(path);
-      
-      if(path.is_empty())
-      {
-         
-         return {};
-         
-      }
-
-      path = acmepath()->defer_process_relative_path(path);
-
-      if (defer_process_media_library_path(path))
-      {
-
-         return path;
-
-      }
-      else if(defer_process_known_folder_path(path))
-      {
-          
-         return path;
-
-      }
-      else if(defer_process_protocol_path(path))
-      {
-         
-         return path;
-         
-      }
-
-      return path;
-
-   }
 
 
    bool context::_001IsProtocol(::file::path & path, const ::string & strProtocol)
@@ -653,49 +613,51 @@ namespace apex
    ::pointer < ::file::link > context::os_resolve_alias(const ::file::path & path, bool bNoUI, bool bNoMount)
    {
 
-      auto plink = _os_resolve_alias(path, bNoUI, bNoMount);
+      return ::acme::context::os_resolve_alias(path, bNoUI, bNoMount);
 
-      if(plink)
-      {
-
-         return plink;
-
-      }
-
-      if (_os_has_alias_in_path(path))
-      {
-
-         ::pointer < ::file::link > plink;
-
-         ::file::path_array patha;
-
-         ::file::path_array pathaRelative;
-
-         ascendants_path(path, patha, &pathaRelative);
-
-         for (::collection::index i = 0; i < patha.get_count(); i++)
-         {
-
-            ::file::path pathAlias = patha[i];
-
-            auto plinkHere = _os_resolve_alias(pathAlias, bNoUI, bNoMount);
-
-            if(plinkHere)
-            {
-
-               plink = plinkHere;
-
-               plink->m_pathTarget /= pathaRelative[i];
-
-            }
-
-         }
-
-         return plink;
-
-      }
-
-      return nullptr;
+      // auto plink = _os_resolve_alias(path, bNoUI, bNoMount);
+      //
+      // if(plink)
+      // {
+      //
+      //    return plink;
+      //
+      // }
+      //
+      // if (_os_has_alias_in_path(path))
+      // {
+      //
+      //    ::pointer < ::file::link > plink;
+      //
+      //    ::file::path_array patha;
+      //
+      //    ::file::path_array pathaRelative;
+      //
+      //    ascendants_path(path, patha, &pathaRelative);
+      //
+      //    for (::collection::index i = 0; i < patha.get_count(); i++)
+      //    {
+      //
+      //       ::file::path pathAlias = patha[i];
+      //
+      //       auto plinkHere = _os_resolve_alias(pathAlias, bNoUI, bNoMount);
+      //
+      //       if(plinkHere)
+      //       {
+      //
+      //          plink = plinkHere;
+      //
+      //          plink->m_pathTarget /= pathaRelative[i];
+      //
+      //       }
+      //
+      //    }
+      //
+      //    return plink;
+      //
+      // }
+      //
+      // return nullptr;
 
    }
 
@@ -703,7 +665,9 @@ namespace apex
    bool context::_os_has_alias_in_path(const ::file::path & path, bool bNoUI, bool bNoMount)
    {
 
-      return node()->has_alias_in_path(path);
+      return ::acme::context::_os_has_alias_in_path(path, bNoUI, bNoMount);
+
+      //return node()->has_alias_in_path(path);
 
    }
 
@@ -712,14 +676,16 @@ namespace apex
    ::pointer < ::file::link > context::_os_resolve_alias(const ::file::path & path, bool bNoUI, bool bNoMount)
    {
 
-      if (os_is_alias(path))
-      {
+      return ::acme::context::_os_resolve_alias(path, bNoUI, bNoMount);
 
-         return acmepath()->resolve_link(path);
-
-      }
-
-      return nullptr;
+      // if (os_is_alias(path))
+      // {
+      //
+      //    return acmepath()->resolve_link(path);
+      //
+      // }
+      //
+      // return nullptr;
 
    }
 
@@ -729,7 +695,9 @@ namespace apex
    bool context::os_is_alias(const ::file::path & path)
    {
 
-      return node()->is_alias(path);
+      return ::acme::context::os_is_alias(path);
+
+//      return node()->is_alias(path);
 
       //return case_insensitive_string_ends(psz, ".lnk");
 

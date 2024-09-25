@@ -133,7 +133,7 @@ namespace windows
 
             void implementation_message_loop_step() override;
 
-            void defer_show_system_menu(const ::point_i32 & pointAbsolute) override;
+            void defer_show_system_menu(::user::mouse * pmouse) override;
 
          };
 

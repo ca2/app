@@ -182,10 +182,10 @@ void window::destroy()
 }
 
 
-void window::display()
+void window::show_window()
 {
    
-   m_pnanouserwindowimplementation->display();
+   m_pnanouserwindowimplementation->show_window();
    
 }
 
@@ -344,13 +344,13 @@ void window::update_drawing_objects()
 }
 
 
-bool window::defer_perform_entire_reposition_process()
+bool window::defer_perform_entire_reposition_process(::user::mouse * pmouse)
 {
    
    if(m_pnanouserwindowimplementation)
    {
       
-      if(m_pnanouserwindowimplementation->defer_perform_entire_reposition_process())
+      if(m_pnanouserwindowimplementation->defer_perform_entire_reposition_process(pmouse))
       {
          
          return true;
@@ -363,6 +363,25 @@ bool window::defer_perform_entire_reposition_process()
    
 }
 
+
+   bool window::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse)
+   {
+
+      if(m_pnanouserwindowimplementation)
+      {
+
+         if(m_pnanouserwindowimplementation->defer_perform_entire_resizing_process(eframeSizing, pmouse))
+         {
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   }
 
 
 ::point_i32 window::try_absolute_mouse_position(const ::point_i32 & point)

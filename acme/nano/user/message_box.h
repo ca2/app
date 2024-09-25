@@ -13,15 +13,17 @@ namespace nano
 
 namespace user
 {
-
+class icon;
 class message_box :
    virtual public ::nano::user::window
 {
 public:
 
 
-   string                              m_strLabelDetails;
+   string                                       m_strLabelDetails;
    ::pointer<::nano::user::still>               m_pstillDetails;
+   //::pointer<::nano::user::still>             m_pstillIcon;
+   ::pointer<::nano::user::icon>                m_picon;
 
 
    message_box();
@@ -30,12 +32,12 @@ public:
 
 
    //::e_message_box get_conversation_flags() override;
-
+virtual void set_icon(::nano::user::icon * picon);
 
    virtual void calculate_size();
 
 
-   void initialize_conversation(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails = nullptr) override;
+   void initialize_conversation(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails = nullptr, ::nano::user::icon * picon = nullptr) override;
 
    // void initialize_message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails) override;
 

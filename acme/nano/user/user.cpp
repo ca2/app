@@ -43,11 +43,11 @@ namespace nano
 
         pointer<::sequencer<::conversation>> user::message_box(const ::string& strMessage, const ::string& strTitle,
                                                                const ::e_message_box& emessagebox,
-                                                               const ::string& strDetails)
+                                                               const ::string& strDetails, ::nano::user::icon * picon)
         {
             auto pnode = node();
 
-            auto psequencer = pnode->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails);
+            auto psequencer = pnode->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
 
             return psequencer;
         }
@@ -55,7 +55,7 @@ namespace nano
 
         pointer<::sequencer<::conversation>> user::exception_message_box(
             const ::exception& exception, const ::string& strMessageParam, const ::string& strTitleParam,
-            const ::e_message_box& emessagebox, const ::string& strDetailsParam)
+            const ::e_message_box& emessagebox, const ::string& strDetailsParam, ::nano::user::icon * picon)
         {
             string strExceptionDetails = exception.get_consolidated_details(this);
 
@@ -89,7 +89,8 @@ namespace nano
                 strMessage,
                 strTitle,
                 emessagebox,
-                strDetails);
+                strDetails,
+                picon);
 
             return psequencer;
         }
@@ -97,9 +98,9 @@ namespace nano
 
         pointer<::sequencer<::conversation>> user::message_console(const ::string& strMessage, const ::string& strTitle,
                                                                    const ::e_message_box& emessagebox,
-                                                                   const ::string& strDetails)
+                                                                   const ::string& strDetails, ::nano::user::icon * picon)
         {
-            auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails);
+            auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
 
             return psequencer;
         }
@@ -107,12 +108,12 @@ namespace nano
 
         pointer<::sequencer<::conversation>> user::exception_message_console(
             const ::exception& exception, const ::string& strMessage, const ::string& strTitle,
-            const ::e_message_box& emessagebox, const ::string& strDetails)
+            const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::user::icon * picon)
         {
             string strExceptionDetails = exception.get_consolidated_details(this);
 
             auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox,
-                                                               strDetails + "\n" + strExceptionDetails);
+                                                               strDetails + "\n" + strExceptionDetails, picon);
 
             return psequencer;
         }

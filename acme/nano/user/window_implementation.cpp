@@ -278,7 +278,7 @@ void window_implementation::handle(::topic * ptopic, ::context * pcontext)
 
    create();
 
-   m_pinterface->display();
+   m_pinterface->show_window();
 
    message_loop();
 
@@ -374,7 +374,7 @@ void window_implementation::do_asynchronously()
 
          pnanowindowimplementation->create();
 
-         pnanowindowimplementation->m_pinterface->::nano::user::window::display();
+         pnanowindowimplementation->m_pinterface->::nano::user::window::show_window();
 
          //if (!is_main_thread())
          //{
@@ -407,7 +407,7 @@ void window_implementation::do_asynchronously()
 }
 
 
-void window_implementation::defer_show_system_menu(const ::point_i32 & pointAbsolute)
+void window_implementation::defer_show_system_menu(::user::mouse * pmouse)
 {
 
 

@@ -41,6 +41,7 @@ namespace acme
 
 
 
+      ::payload                                                   m_varCurrentImpactFile;
 
 
       session();
@@ -52,6 +53,36 @@ namespace acme
 
 
       virtual class ::user::user * user();
+
+
+      void on_request(::request* prequest) override;
+
+
+      virtual void init_task() override;
+
+      virtual void term_task() override;
+
+      virtual void process_init();
+
+      virtual void init1();
+
+      virtual void init2();
+
+      virtual void init_session();
+
+      virtual void init();
+
+      virtual void term();
+
+      virtual void term1();
+
+      virtual void term2();
+
+      virtual void process_term();
+
+      virtual void term_session();
+
+      void main() override;
 
 
    };

@@ -2971,16 +2971,6 @@ namespace apex
 
       ::acme::application::process_init();
 
-      string_array stra;
-
-      stra.explode("/", m_strAppId);
-
-      m_strRoot = stra[0];
-
-      m_strDomain = stra.slice(1).implode("/");
-
-      add_matter_locator(this);
-
       auto psystem = system()->m_papexsystem;
 
       if (!m_bAppHasInstallerChangedProtected)

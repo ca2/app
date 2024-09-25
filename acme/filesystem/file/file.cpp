@@ -1420,6 +1420,21 @@ namespace file
     }
 
 
+   ::memory file::as_memory()
+   {
+
+      ::memory memory;
+
+      memory.set_size(right_size());
+
+      auto sizeRead = read(memory.data(), memory.size());
+
+      memory.set_size(sizeRead);
+
+      return ::transfer(memory);
+
+
+   }
 
 
    ::file::file& file::put(char ch) 

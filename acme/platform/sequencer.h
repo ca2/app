@@ -192,16 +192,17 @@ void sequencer < SEQUENCE > ::on_sequence()
       auto step = m_stepa.pop_first();
 
       lock.unlock();
-      
-      m_pcontext->post_procedure(
-                                                 [this, step, psequencer]
-                                                 {
-                                                    
-                                                    step(m_psequence);
 
-                                                    psequencer->on_sequence();
-                                                    
-                                                 });
+      auto λ = [this, step, psequencer]
+      {
+
+         step(m_psequence);
+
+         psequencer->on_sequence();
+
+      };
+      
+      m_pcontext->post_procedure(λ);
 
    }
    else 

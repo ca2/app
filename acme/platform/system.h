@@ -205,6 +205,7 @@ namespace acme
       virtual enum_trace_level get_trace_level();
       //void os_construct();
 
+         virtual void initialize_matter();
 
 #ifdef _DEBUG
 

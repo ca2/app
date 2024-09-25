@@ -48,6 +48,7 @@ public:
 #ifdef PARALLELIZATION_PTHREAD
    bool                                            m_bJoinable : 1;
 #endif
+   bool                                            m_bKeepRunningPostedProcedures : 1;
 
    ::u64                                           m_uThreadAffinityMask;
 

@@ -100,7 +100,7 @@ void dir_system::init_system()
 
    }
 
-   __construct(m_pfilewatcher);
+   //__construct(m_pfilewatcher);
 
    pacmedirectory->create(acmedirectory()->bookmark());
 
@@ -192,7 +192,7 @@ void dir_system::init_system()
 void dir_system::term_system()
 {
 
-   m_pfilewatcher.release();
+   //m_pfilewatcher.release();
 
 }
 

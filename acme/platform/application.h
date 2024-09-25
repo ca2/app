@@ -116,7 +116,7 @@ namespace acme
       virtual void initialize_application(::platform::platform * pplatform);
 
 
-      
+      virtual void _001TryCloseApplication();
       
       virtual void application_on_status(::e_status estatus, ::particle * pparticle = nullptr, long long ll = 0, void * p = nullptr);
       

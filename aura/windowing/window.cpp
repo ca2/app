@@ -73,6 +73,16 @@ namespace windowing
    }
 
 
+   void window::destroy()
+   {
+
+      ::channel::destroy();
+
+      ::windowing::window_base::destroy();
+
+
+   }
+
    void window::window_on_activate()
    {
 
@@ -299,6 +309,13 @@ namespace windowing
 
 
    }
+
+   void window::set_context_org(draw2d::graphics_pointer& pgraphics)
+   {
+
+
+   }
+
 
 
 //   void window::set_cursor_position(const ::point_i32 & pointCursor)
@@ -595,32 +612,6 @@ namespace windowing
    }
 
 
-   ::pointer < ::operating_system::a_system_menu > window::create_system_menu()
-   {
-
-      auto psystemmenu = ::place(new ::operating_system::a_system_menu());
-
-      psystemmenu->add_item("Minimize", "minimize");
-      if(is_window_zoomed())
-      {
-         psystemmenu->add_item("Restore", "restore");
-      }
-      else
-      {
-         psystemmenu->add_item("Maximize", "maximize");
-      }
-      psystemmenu->add_item("Drag to Move","***move");
-      psystemmenu->add_item("Drag to Size", "***size");
-      psystemmenu->add_separator();
-      psystemmenu->add_item("About...", "about_box");
-      psystemmenu->add_separator();
-      psystemmenu->add_item("Close", "close");
-
-      return psystemmenu;
-
-   }
-
-
    void window::_on_configure_notify_unlocked(const ::rectangle_i32 & rectangle)
    {
 
@@ -659,10 +650,10 @@ namespace windowing
    }
 
 
-   bool window::post_message(const ::atom & atom, wparam wParam, lparam lParam)
+   void window::post_message(const ::atom & atom, wparam wParam, lparam lParam)
    {
 
-      return false;
+      //return false;
 
    }
 
@@ -939,12 +930,12 @@ namespace windowing
    }
 
 
-   bool window::enable_window(bool bEnable)
+   void window::enable_window(bool bEnable)
    {
 
       throw ::interface_only();
 
-      return false;
+      //return false;
 
    }
 

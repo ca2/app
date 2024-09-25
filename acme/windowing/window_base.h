@@ -5,6 +5,7 @@
 
 
 #include "acme/primitive/geometry2d/size.h"
+#include "acme/nano/user/window_implementation.h"
 
 
 namespace windowing
@@ -12,7 +13,7 @@ namespace windowing
 
 
    class CLASS_DECL_ACME window_base :
-      virtual public ::particle
+      virtual public ::nano::user::window_implementation
    {
    public:
 
@@ -20,6 +21,7 @@ namespace windowing
       ::point_i32                               m_pointWindow;
       ::size_i32                                m_sizeWindow;
       ::point_i32                               m_pointCursor2;
+
 
 
       window_base();
@@ -33,6 +35,14 @@ namespace windowing
       virtual bool is_satellite_window();
       virtual window_base * owner_window();
       virtual ::string get_window_text();
+
+
+      ::pointer < ::operating_system::a_system_menu > create_system_menu() override;
+
+      bool defer_perform_entire_reposition_process(::user::mouse * pmouse) override;
+
+      bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse) override;
+
 
 
    };

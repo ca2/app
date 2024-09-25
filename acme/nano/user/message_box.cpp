@@ -2,10 +2,11 @@
 // Created by camilo on 2022-01-21 14:57 <3ThomasBorregaardSorensen
 // Generalization by camilo on 31/01/2022 14:53 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "message_box.h"
-#include "device.h"
-#include "still.h"
 #include "button.h"
+#include "device.h"
+#include "icon.h"
+#include "message_box.h"
+#include "still.h"
 #include "window_implementation.h"
 #include "acme/nano/user/details_window.h"
 #include "acme/nano/user/popup_button.h"
@@ -48,6 +49,8 @@ message_box::~message_box()
 void message_box::on_draw(::nano::user::device * pnanodevice)
 {
 
+
+
    rectangle_i32 rectangleText;
 
    get_client_rectangle(rectangleText);
@@ -55,6 +58,15 @@ void message_box::on_draw(::nano::user::device * pnanodevice)
    rectangleText.bottom() = rectangleText.top() + rectangleText.height() * 3 / 4;
 
    rectangleText.deflate(25);
+
+   if(m_picon)
+   {
+
+      pnanodevice->draw(m_picon, 25, 25, 48, 48);
+
+      rectangleText.left() += 48+10;
+
+   }
 
    pnanodevice->draw_text123(
       m_strMessage, 
@@ -110,6 +122,20 @@ void message_box::defer_create_details_still()
 
 }
 
+void message_box::set_icon(::nano::user::icon* picon)
+{
+   m_picon = picon;
+//    if(!picon)
+//    {
+// m_pstillIcon = nullptr;
+//
+//       return;
+//
+//    }
+//    __construct_new(m_pstillIcon);
+//
+//    m_pstillIcon->set_icon(picon);
+}
 
 void message_box::calculate_size()
 {
@@ -144,10 +170,10 @@ void message_box::calculate_size()
 }
 
 
-void message_box::initialize_conversation(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+void message_box::initialize_conversation(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::user::icon * picon)
 {
    
-   conversation_message::initialize_conversation(strMessage, strTitle, emessagebox, strDetails);
+   conversation_message::initialize_conversation(strMessage, strTitle, emessagebox, strDetails, picon);
 
    calculate_size();
 
@@ -186,6 +212,8 @@ void message_box::initialize_conversation(const ::string & strMessage, const ::s
          add_button("OK", e_dialog_result_ok, 'o');
          break;
    }
+
+   set_icon(picon);
 
    defer_create_details_still();
 
@@ -281,6 +309,15 @@ void message_box::initialize_conversation(const ::string & strMessage, const ::s
 void message_box::on_create()
 {
 
+   int x = 25;
+
+   if(m_picon)
+   {
+
+      x+= 48 + 10;
+
+   }
+
    if (m_pstillDetails)
    {
 
@@ -288,7 +325,7 @@ void message_box::on_create()
 
       m_pstillDetails->m_rectangle.move_bottom_to(m_nanobuttona[0]->m_rectangle.bottom());
 
-      m_pstillDetails->m_rectangle.move_left_to(25);
+      m_pstillDetails->m_rectangle.move_left_to(x);
 
    }
 
@@ -394,7 +431,7 @@ void message_box::on_right_click(const ::payload& payload, ::user::mouse * pmous
    if (pmouse->m_pointHost.y() < 48)
    {
 
-      m_pnanouserwindowimplementation->defer_show_system_menu(pmouse->m_pointAbsolute);
+      m_pnanouserwindowimplementation->defer_show_system_menu(pmouse);
 
       return;
 
@@ -441,7 +478,7 @@ bool message_box::is_popup_window() const
 } // namespace nano
 
 
-CLASS_DECL_ACME pointer< ::sequencer < ::conversation > > message_box_sequencer(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
+CLASS_DECL_ACME pointer< ::sequencer < ::conversation > > message_box_sequencer(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::user::icon * picon)
 {
 
    if (::is_null(pparticle))
@@ -449,7 +486,7 @@ CLASS_DECL_ACME pointer< ::sequencer < ::conversation > > message_box_sequencer(
       
       auto psequencer = ::operating_system::message_box::create_sequencer(::platform::get()->system(),                                                        scopedstrMessage, scopedstrTitle,
                                                         emessagebox,
-                                                        scopedstrDetails);
+                                                        scopedstrDetails, picon);
       
       return psequencer;
 //      auto pmessagebox = ::platform::get()->__create < ::operating_system::message_box >();
@@ -496,7 +533,7 @@ CLASS_DECL_ACME pointer< ::sequencer < ::conversation > > message_box_sequencer(
    
 #endif
 
-   auto psequencer = pparticle->node()->create_message_box_sequencer(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
+   auto psequencer = pparticle->node()->create_message_box_sequencer(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
    
    return psequencer;
    
@@ -556,7 +593,7 @@ CLASS_DECL_ACME pointer< ::sequencer < ::conversation > > message_box_sequencer(
 
 
 
-CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
+CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::user::icon * picon)
 {
 
    if (::is_null(pparticle))
@@ -564,7 +601,7 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
 
       auto psequencer = ::operating_system::message_box::create_sequencer(::platform::get()->system(),                                                        scopedstrMessage, scopedstrTitle,
                                                               emessagebox,
-                                                              scopedstrDetails);
+                                                              scopedstrDetails, picon);
 
       return psequencer->do_synchronously();
 
@@ -596,7 +633,9 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
    
 #endif
 
-   auto psequencer = pparticle->node()->create_message_box_sequencer(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails);
+   auto pnode = pparticle->node();
+
+   auto psequencer = pnode->create_message_box_sequencer(scopedstrMessage, scopedstrTitle, emessagebox, scopedstrDetails, picon);
    
    auto atomResult = psequencer->do_synchronously();
    
@@ -654,13 +693,13 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
 
 
 
-CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload & payload) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails)
+CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload & payload) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::user::icon * picon)
 {
 
    auto pmessagebox = ::place(new ::nano::user::message_box_conversation_message());
 
    pmessagebox->m_pobject = pparticle;
-   pmessagebox->initialize_conversation(scopedstrMessage,scopedstrTitle, emessagebox, scopedstrDetails);
+   pmessagebox->initialize_conversation(scopedstrMessage,scopedstrTitle, emessagebox, scopedstrDetails, picon);
 
    //pparticle->fork([pmessagebox]()
    //{
@@ -708,7 +747,8 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload 
          pmessagebox->m_strMessage,
          pmessagebox->m_strTitle,
          pmessagebox->m_emessagebox,
-         pmessagebox->m_strDetails);
+         pmessagebox->m_strDetails,
+         pmessagebox->m_picon);
 
       pnanomessagebox->m_functionClose = [ pmessagebox ](::nano::user::window * pwindow)
       {

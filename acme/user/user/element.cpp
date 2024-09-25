@@ -9,6 +9,8 @@
 #include "item.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
+#include "acme/operating_system/a_system_menu.h"
+#include "acme/platform/application.h"
 #include "acme/platform/node.h"
 
 
@@ -2881,6 +2883,135 @@ namespace user
    }
 
 
+   bool element::is_window_stored_iconic() // m_puserinteractionimpl->m_puserinteraction->const_layout().window().display() == e_display_iconic
+{
+
+      return false;
+
+}
+   void element::window_minimize() // m_puserinteractionimpl->m_puserinteraction->display(::e_display_zoomed);
+   {
+
+   }
+   void element::window_maximize() // m_puserinteractionimpl->m_puserinteraction->display(::e_display_zoomed);
+   {
+
+   }
+   void element::window_full_screen() // m_puserinteractionimpl->m_puserinteraction->display(::e_display_full_screen);
+   {
+
+   }
+   void element::window_restore() // m_puserinteractionimpl->m_puserinteraction->display(::e_display_normal);
+   {
+
+   }
+
+
+   void element::window_close()
+   {
+
+
+   }
+
+
+   void element::_on_window_simple_action(const char * pszActionName)
+   {
+
+      ::string strActionName(pszActionName);
+
+      if(strActionName == "minimize")
+      {
+
+         window_minimize();
+
+      }
+      else if(strActionName == "maximize")
+      {
+
+         window_maximize();
+
+      }
+      else if(strActionName == "maximize")
+      {
+
+         window_maximize();
+
+      }
+      else if(strActionName == "about_box")
+      {
+
+         application()->show_about_box();
+
+      }
+      else if(strActionName == "close")
+      {
+
+         //m_puserinteractionimpl->m_puserinteraction->post_message(e_message_close);
+         window_close();
+
+      }
+      else if(strActionName == "")
+      {
+
+         print_line("reaching here?!");
+         //defer_perform_entire_reposition_process(nullptr);
+
+      }
+      else if(strActionName == "")
+      {
+
+         print_line("also here");
+
+         //defer_perform_entire_resizing_process(::experience::e_frame_sizing_top_left, nullptr);
+
+      }
+
+   }
+
+
+   ::pointer < ::operating_system::a_system_menu > element::create_system_menu()
+   {
+
+      auto psystemmenu = ::place(new ::operating_system::a_system_menu());
+
+      psystemmenu->add_item("Minimize", "minimize");
+      if(is_window_zoomed())
+      {
+         psystemmenu->add_item("Restore", "restore");
+      }
+      else
+      {
+         psystemmenu->add_item("Maximize", "maximize");
+      }
+      psystemmenu->add_item("Drag to Move","***move");
+      psystemmenu->add_item("Drag to Size", "***size");
+      psystemmenu->add_separator();
+      psystemmenu->add_item("About...", "about_box");
+      psystemmenu->add_separator();
+      psystemmenu->add_item("Close", "close");
+
+      return psystemmenu;
+
+   }
+
+
+
+   bool element::defer_perform_entire_reposition_process(::user::mouse * pmouse)
+   {
+
+      return false;
+
+   }
+
+
+   bool element::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse)
+   {
+
+      return false;
+
+   }
+
+
    void element::defer_update_display()
    {
 
@@ -3097,6 +3228,15 @@ namespace user
 
 
    }
+
+
+   bool element::is_window_zoomed()
+   {
+
+      return false;
+
+   }
+
 
    bool element::_001OnBeforeEnterIconic()
    {

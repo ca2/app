@@ -147,6 +147,9 @@ namespace file
       ::filesize right_size() const override;
 
 
+      virtual ::memory as_memory();
+
+
       template < typename TYPE >
       void write_as_block(const TYPE & t) { write({ e_as_block, t }); }
 

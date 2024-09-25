@@ -104,6 +104,11 @@ void device::rectangle(const ::rectangle_i32 & rectangle, ::nano::user::brush * 
 
 }
 
+      void device::draw(::nano::user::icon * picon, int x, int y, int cx, int cy)
+{
+
+
+}
 
    } // namespace user
 

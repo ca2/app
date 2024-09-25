@@ -97,7 +97,6 @@ namespace apex
       //::pointer<::layered>                     m_puserinteractionSystem;
 
       ::payload                                                   m_varTopicFile;
-      ::payload                                                   m_varCurrentImpactFile;
       bool                                                  m_bShowPlatform;
 
 
@@ -169,19 +168,19 @@ namespace apex
 
       //virtual ::collection::index get_ui_workspace(::user::interaction * pinteraction);
 
-      virtual void process_init();
+      virtual void process_init() override;
 
-      virtual void init1();
+      void init1() override;
 
-      virtual void init2();
+      void init2() override;
 
-      virtual void init_session();
+      void init_session() override;
 
-      virtual void init();
+      void init() override;
 
-      virtual void term();
+      void term() override;
 
-      virtual void term_session();
+      void term_session() override;
 
       DECLARE_MESSAGE_HANDLER(on_message_erase_application);
 
@@ -260,9 +259,9 @@ namespace apex
       //virtual void init();
 
       //virtual void term();
-      virtual void term2();
+      void term2() override;
 
-      virtual void term1();
+      void term1() override;
 
       virtual void term_task() override;
 

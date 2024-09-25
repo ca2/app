@@ -10,14 +10,6 @@
 #include "acme/windowing/window_base.h"
 
 
-namespace operating_system
-{
-
-   class a_system_menu_item;
-   class a_system_menu;
-
-} // namespace operating_system
-
 
 namespace windowing
 {
@@ -74,7 +66,6 @@ namespace windowing
       bool                                      m_bKeyboardFocus;
       ::pointer < class placement_log >         m_pplacementlog;
       ::pointer < ::particle >                  m_pparticleChildrenSynchronization;
-      ::pointer < ::operating_system::a_system_menu >       m_psystemmenu;
 
       window();
       ~window() override;
@@ -84,7 +75,10 @@ namespace windowing
 
       void on_initialize_particle() override;
 
-      
+
+      void destroy() override;
+
+
       virtual void window_on_activate();
       virtual void window_on_deactivate();
       virtual void window_on_set_keyboard_focus();
@@ -228,7 +222,7 @@ namespace windowing
 
       virtual bool is_window_zoomed();
 
-      virtual ::pointer < ::operating_system::a_system_menu > create_system_menu();
+      //virtual ::pointer < ::operating_system::a_system_menu > create_system_menu();
       virtual void defer_show_system_menu(::user::mouse * pmouse);
 
       virtual void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem);
@@ -260,7 +254,7 @@ namespace windowing
 
       virtual lresult send_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr);
 
-      virtual bool post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr);
+      virtual void post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr);
 
 
       virtual void set_window_text(const ::scoped_string & scopedstr);
@@ -303,7 +297,7 @@ namespace windowing
 
       // Window State Functions
       virtual bool is_this_enabled();
-      virtual bool enable_window(bool bEnable = true);
+      virtual void enable_window(bool bEnable = true);
 
       // the active interaction_impl applies only to top-level (frame windows)
       virtual ::user::interaction * get_active_window();

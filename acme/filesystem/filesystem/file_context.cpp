@@ -3704,9 +3704,19 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
 
    }
 
+   if(path == "matter://main/icon.png")
+   {
+
+      informationf("Ok let's hey hohohou");
+      informationf("Ok let's hey hohohou");
+
+      //pathProcessed = "zipresource://_matter/integration/_std/_std/main/icon-256.png";
+
+   }
+
    auto pathProcessed = m_pcontext->defer_process_path(path);
 
-   if(pathProcessed == "matter://main/icon-256.png")
+   if(path == "matter://main/icon-256.png")
    {
 
       informationf("for icon-2456 processed path is : %s", pathProcessed.c_str());

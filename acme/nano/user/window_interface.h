@@ -29,7 +29,7 @@ public:
 
    virtual void create();
 
-   virtual void display();
+   virtual void show_window();
 
    virtual void message_loop();
 
@@ -54,7 +54,19 @@ public:
 
    virtual ::point_i32 origin();
 
-   virtual bool defer_perform_entire_reposition_process();
+   //virtual bool defer_perform_entire_reposition_process();
+
+
+   // virtual ::pointer < ::operating_system::a_system_menu > create_system_menu();
+   //
+   // //bool defer_perform_entire_reposition_process(::user::mouse * pmouse) override;
+   //
+   // //bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse) override;
+   //
+   // virtual bool defer_perform_entire_reposition_process(::user::mouse * pmouse);
+   //
+   // virtual bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse);
+
 
    virtual ::shift_i32 host_to_client();
    virtual ::shift_i32 client_to_host();

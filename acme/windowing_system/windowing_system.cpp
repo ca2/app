@@ -35,6 +35,13 @@ namespace windowing_system
    }
 
 
+    void windowing_system::on_start_system()
+    {
+
+
+    }
+
+
     ::e_status windowing_system::defer_initialize_windowing_system()
     {
 
@@ -126,6 +133,22 @@ namespace windowing_system
 
 
     }
+
+
+    void windowing_system::windowing_system_application_main_loop()
+    {
+
+
+
+    }
+
+
+    void windowing_system::windowing_system_post_quit()
+    {
+
+
+    }
+
 
 
 } // namespace windowing_system

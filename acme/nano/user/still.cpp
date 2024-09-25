@@ -1,5 +1,6 @@
 // Created by camilo on 2022-02-06 09:28 <3ThomasBorregaardSorensen
 #include "framework.h"
+#include "icon.h"
 #include "still.h"
 #include "window.h"
 #include "device.h"
@@ -24,6 +25,16 @@ still::~still()
 
 void still::on_draw(::nano::user::device * pnanodevice)
 {
+
+   if(m_picon)
+   {
+
+      pnanodevice->draw(m_picon, 0, 0, m_rectangle.width(), m_rectangle.height());
+
+
+      return;
+
+   }
 
    ::pointer<::nano::user::pen>ppenBorder;
 
@@ -73,6 +84,14 @@ void still::on_char(int iChar)
 }
 
 
+void still::set_icon(::nano::user::icon * picon)
+{
+
+   m_picon = picon;
+
+}
+
+
 void still::on_mouse_move(::user::mouse * pmouse)
 {
 
@@ -118,8 +137,21 @@ bool still::is_focusable() const
 }
 
 
-//void still::resize_to_fit()
-//{
+void still::resize_to_fit()
+{
+
+   if(m_picon)
+   {
+
+      m_rectangle.set_size(m_picon->size());
+
+      return;
+
+   }
+
+
+child::resize_to_fit();
+
 //
 //   auto pdevice = __create < ::nano::user::device >();
 //
@@ -129,7 +161,7 @@ bool still::is_focusable() const
 //
 //   m_rectangle.bottom() = m_rectangle.top() + size.cy();
 //
-//}
+}
 
 
 

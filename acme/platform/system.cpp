@@ -20,7 +20,9 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/dir_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/file/transfer.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/translator.h"
@@ -327,6 +329,75 @@ namespace acme
    }
 
 
+   void system::initialize_matter()
+   {
+
+      if (application()->m_bResource)
+      {
+
+         bool bMatterFromHttpCache = false;
+
+         bool bMatterFromResource = false;
+
+         auto pfile = file()->create_resource_file("app/_matter/main/_std/_std/Thomas Borregaard Sørensen.dedicatory");
+
+         if (pfile)
+         {
+
+            information() << "found Thomas Borregaard Sørensen.dedicatory";
+
+            bMatterFromResource = true;
+
+         }
+         else
+         {
+
+            warning() << "Thomas Borregaard Sørensen.dedicatory not found";
+
+         }
+
+         if (bMatterFromResource)
+         {
+
+            m_pdirsystem->m_bMatterFromHttpCache = false;
+
+            m_pdirsystem->m_bMatterFromResource = true;
+
+         }
+         else
+         {
+
+            if (m_iMatterFromHttpCache == -1)
+            {
+
+               ::file::path pathSide = m_pcontext->side_get_matter_path("app/_matter/main");
+
+               ::file::path pathLocal = local_get_matter_path("app/_matter/main");
+
+               bool bFileSystemMatter = m_pacmedirectory->is(pathSide) || m_pacmedirectory->is(pathLocal);
+
+               bMatterFromHttpCache = !bFileSystemMatter;
+
+            }
+            else
+            {
+
+               bMatterFromHttpCache = m_iMatterFromHttpCache != 0;
+
+            }
+
+            m_pdirsystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
+
+            m_pdirsystem->m_bMatterFromResource = false;
+
+         }
+
+      }
+
+   }
+
+
+
    void system::on_initialize_particle()
    {
 
@@ -505,7 +576,7 @@ namespace acme
    void system::main()
    {
 
-      /*auto estatus = */ process_init();
+      /*auto estatus = */
 
       //if (!estatus)
       //{
@@ -515,15 +586,40 @@ namespace acme
       //}
 
       /*estatus =*/
-      run();
-
-
       if (platform()->is_console())
       {
+
+         process_init();
+
+         run_posted_procedures();
 
          application()->main();
 
       }
+      else
+      {
+
+         task_osinit();
+
+         __task_init();
+
+//         m_peventInitialization->SetEvent();
+
+         while(task_get_run())
+         {
+
+            run_posted_procedures();
+
+            preempt(100_ms);
+
+         }
+
+
+      }
+
+
+
+      //run();
 
 
 
@@ -702,6 +798,12 @@ namespace acme
    void system::process_init()
    {
 
+      application()->initialize_application_flags();
+
+      factory()->add_factory_item<::request>();
+
+
+
 #if REFERENCING_DEBUGGING
 
       ::refdbg_top_track toptrack(this);
@@ -848,12 +950,188 @@ namespace acme
       //   //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
 
       //}
+      //estatus =
+
+      __construct(m_pfilesystem);
+
+      //if(!estatus)
+      //{
+
+      //   ERROR("failed to initialize file-system");
+
+      //   return estatus;
+
+      //}
+
+      //estatus =
+
+      //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
+
+      __construct(m_pdirsystem);
+
+      //if (!estatus)
+      //{
+
+      //   ERROR("failed to initialize dir-system");
+
+      //   return false;
+
+      //}
+
+      ///INFORMATION("apex::session::process_init .3");
+
+      //estatus =
+      m_pfilesystem->init_system();
+
+      //if (!estatus)
+      //{
+
+      //   m_estatus = estatus;
+
+      //   return estatus;
+
+      //}
+
+      //estatus =
+      m_pdirsystem->init_system();
+
+      //if (!estatus)
+      //{
+
+      //   m_estatus = estatus;
+
+      //   return estatus;
+
+      //}
+
+      //estatus = ::apex::context::initialize_context();
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+#if !defined(APPLE_IOS)
+
+      auto pid = node()->current_process_identifier();
+
+      string strPid = ::as_string(pid);
+
+      //auto psystem = system();
+
+      auto pdatetime = datetime();
+
+      string strLogTime = pdatetime->date_time_text_for_file_with_no_spaces();
+
+      strLogTime.replace_with("/", "-");
+
+      strLogTime.replace_with("/", "_");
+
+      {
+
+         string strExecutable = platform()->get_executable();
+
+         string_array straArguments;
+
+         for (int i = 0; i < platform()->get_argument_count1(); i++)
+         {
+
+            string strArgument = platform()->get_argument1(i);
+
+            straArguments.add(strArgument);
+
+         }
+
+         string strCmd = strExecutable + " " + straArguments.implode("\n");
+
+         string strAppId = application()->m_strAppId;
+
+         string strCmdLineDumpFileName = strAppId / (strLogTime + "-pid" + strPid + "-command_line.txt");
+
+         ::file::path pathCmdLineDumpFile = acmedirectory()->home() / "application" / strCmdLineDumpFileName;
+
+         acmefile()->put_contents(pathCmdLineDumpFile, strCmd);
+
+      }
+
+      {
+
+         string_array straEnv;
+#ifdef WINDOWS_DESKTOP
+         if (platform()->m_wenvp)
+         {
+
+            int iIndex = 0;
+
+            for (auto wenv = platform()->m_wenvp; *wenv != 0; wenv++, iIndex++)
+            {
+
+               auto thisEnv = *wenv;
+
+               int iLen = (int) wcslen(thisEnv);
+
+               /*if (iLen >= 42)
+               {
+                  output_debug_string("aaa");
+               }
+               else*/ if (!wcsncmp(thisEnv, L"Path=", 5))
+               {
+
+                  output_debug_string("aaa");
+
+               }
+               else if (!wcsncmp(thisEnv, L"VsPer", 5))
+               {
+
+                  output_debug_string("aaa");
+
+               }
+
+               straEnv.add(thisEnv);
+
+            }
+
+         }
+         else
+#endif
+            if (platform()->m_envp)
+            {
+
+               for (auto env = platform()->m_envp; *env != 0; env++)
+               {
+
+                  auto thisEnv = *env;
+
+                  straEnv.add(thisEnv);
+
+               }
+
+            }
+
+         string strEnv = straEnv.implode("\n");
+
+         string strAppId = application()->m_strAppId;
+
+         string strEnvDumpFileName = strAppId / strLogTime + "-pid" + strPid + "-environment_variables.txt";
+
+         ::file::path pathEnvDumpFile = acmedirectory()->home() / "application" / strEnvDumpFileName;
+
+         acmefile()->put_contents(pathEnvDumpFile, strEnv);
+
+      }
+
+#endif
 
 #if !defined(APPLE_IOS)
 
       report_system_instance();
 
 #endif
+
+
+
 
 
    }
@@ -1433,6 +1711,9 @@ namespace acme
    void system::init2()
    {
 
+
+      initialize_matter();
+
       if (application()->m_bSession)
       {
 
@@ -1459,6 +1740,14 @@ namespace acme
       //   throw ::exception(error_failed);
 
       //}
+
+      if (application()->m_bSession)
+      {
+
+         session()->branch_synchronously();
+
+      }
+
 
    }
 

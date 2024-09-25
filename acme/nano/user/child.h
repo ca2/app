@@ -37,7 +37,7 @@ public:
    virtual void release_capture();
 
 
-   void resize_to_fit();
+   virtual void resize_to_fit();
 
 
    //virtual void display_temporary_file_with_text(const ::string & str);

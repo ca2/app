@@ -2504,7 +2504,7 @@ void particle::kick_idle()
 }
 
 
-pointer < ::sequencer < ::conversation > > particle::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+pointer < ::sequencer < ::conversation > > particle::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::user::icon * picon)
 {
    
    ::nano::user::user * pnanouser = nullptr;
@@ -2524,37 +2524,37 @@ pointer < ::sequencer < ::conversation > > particle::message_box(const ::string&
    if(::is_set(pnanouser))
    {
     
-      return pnanouser->message_box(strMessage, strTitle, emessagebox, strDetails);
+      return pnanouser->message_box(strMessage, strTitle, emessagebox, strDetails, picon);
       
    }
    
-   auto psequencer = message_box_sequencer(this, strMessage, strTitle, emessagebox, strDetails);
+   auto psequencer = message_box_sequencer(this, strMessage, strTitle, emessagebox, strDetails, picon);
 
    return psequencer;
 
 }
 
 
-pointer < ::sequencer < ::conversation > > particle::exception_message_box(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+pointer < ::sequencer < ::conversation > > particle::exception_message_box(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::user::icon * picon)
 {
 
-   return system()->nano()->user()->exception_message_box(exception, strMessage, strTitle, emessagebox, strDetails);
+   return system()->nano()->user()->exception_message_box(exception, strMessage, strTitle, emessagebox, strDetails, picon);
 
 }
 
 
-pointer < ::sequencer < ::conversation > > particle::message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+pointer < ::sequencer < ::conversation > > particle::message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::user::icon * picon)
 {
 
-   return system()->nano()->user()->message_console(strMessage, strTitle, emessagebox, strDetails);
+   return system()->nano()->user()->message_console(strMessage, strTitle, emessagebox, strDetails, picon);
 
 }
 
 
-pointer < ::sequencer < ::conversation > > particle::exception_message_console(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+pointer < ::sequencer < ::conversation > > particle::exception_message_console(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::user::icon * picon)
 {
 
-   return system()->nano()->user()->exception_message_console(exception, strMessage, strTitle, emessagebox, strDetails);
+   return system()->nano()->user()->exception_message_console(exception, strMessage, strTitle, emessagebox, strDetails, picon);
 
 }
 

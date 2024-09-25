@@ -79,6 +79,31 @@ namespace windowing
    }
 
 
+   ::pointer < ::operating_system::a_system_menu > window_base::create_system_menu()
+   {
+
+      return ::nano::user::window_implementation::create_system_menu();
+
+   }
+
+
+   bool window_base::defer_perform_entire_reposition_process(::user::mouse * pmouse)
+   {
+
+      return false;
+
+   }
+
+
+   bool window_base::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse)
+   {
+
+      return false;
+
+   }
+
+
+
 } // namespace windowing
 
 

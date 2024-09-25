@@ -5,6 +5,10 @@
 
 
 #include "window_interface.h"
+
+
+
+
 namespace nano
 {
 
@@ -27,8 +31,8 @@ public:
 
    } m_console;
 
+   ::pointer < ::operating_system::a_system_menu >       m_psystemmenu;
 
-   static ::pointer_array < ::nano::user::window_implementation > & nanowindowimplementationa();
 
    ::pointer < ::nano::user::window >         m_pinterface;
 
@@ -41,6 +45,9 @@ public:
 
 
    void draw(::nano::user::device * pnanodevice) override;
+
+   static ::pointer_array < ::nano::user::window_implementation > & nanowindowimplementationa();
+
 
 
    bool get_dark_mode() override;
@@ -70,7 +77,7 @@ public:
    virtual void do_asynchronously() override;
 
 
-   virtual void defer_show_system_menu(const ::point_i32 & pointAbsolute);
+   virtual void defer_show_system_menu(::user::mouse * pmouse);
    
 
 };

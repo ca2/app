@@ -8,6 +8,7 @@
 #include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/translator.h"
+#include "acme/handler/request.h"
 #include "acme/nano/user/window_implementation.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task_message_queue.h"
@@ -64,6 +65,8 @@ task::task()
    
    m_htask = null_htask;
    m_itask = 0;
+
+   m_bKeepRunningPostedProcedures = false;
 
 }
 
@@ -183,7 +186,7 @@ bool task::is_current_task() const
 void task::post_request(::request* prequest)
 {
 
-   ::pointer < ::request > prequestTransport;
+   ::pointer < ::request > prequestTransport(prequest);
 
    post_procedure([this, prequestTransport]
       {
@@ -331,6 +334,10 @@ void task::on_pre_run_task()
 void task::main()
 {
 
+   task_osinit();
+
+
+
    __task_init();
 
    if(defer_implement(system()))
@@ -408,6 +415,20 @@ void task::run()
       {
 
          return;
+
+      }
+
+      if(m_bKeepRunningPostedProcedures)
+      {
+
+         while(task_get_run())
+         {
+
+            run_posted_procedures();
+
+            preempt(100_ms);
+
+         }
 
       }
 
@@ -609,8 +630,6 @@ void* task::s_os_task(void* p)
 
       }
 
-      ptask->destroy();
-
       ///ptask->release();
 
       //::task_release(REFERENCING_DEBUGGING_P_FUNCTION_FILE_LINE(ptask));
@@ -668,6 +687,8 @@ void* task::s_os_task(void* p)
       {
 
       }
+
+      ptask->destroy();
 
    }
    catch (...)

@@ -78,7 +78,6 @@ namespace acme
       //inline ::os_context * os_context() { return m_poscontext; }
 
 
-      virtual bool os_is_alias(const ::file::path & path);
 
       ::acme_file * acmefile();
       ::acme_path * acmepath();
@@ -103,6 +102,9 @@ namespace acme
 
 
       virtual ::file::path defer_process_path(::file::path path);
+      virtual ::file::path _defer_process_path(::file::path path);
+      virtual ::file::path __defer_process_path(::file::path path);
+
 
       virtual void fork_count(::collection::count iCount, const ::function < void(::collection::index, ::collection::index, ::collection::index, ::collection::index) > & function, const ::procedure & procedureCompletion, ::collection::index iStart = 0);
 
@@ -133,6 +135,16 @@ namespace acme
       virtual ::file::path get_matter_cache_path(::file::path path);
       virtual ::file::path side_get_matter_path(string strMatter);
 
+
+      virtual bool os_is_alias(const ::file::path & path);
+      virtual ::pointer < ::file::link > os_resolve_alias(const ::file::path& path, bool bNoUI = false, bool bNoMount = false);
+      virtual bool _os_has_alias_in_path(const ::file::path & path, bool bNoUI = false, bool bNoMount = false);
+      virtual ::pointer < ::file::link > _os_resolve_alias(const ::file::path& path, bool bNoUI, bool bNoMount);
+      //virtual bool os_is_alias(const ::file::path & path) override;
+
+      virtual bool defer_process_media_library_path(::file::path & path);
+      virtual bool defer_process_known_folder_path(::file::path & path);
+      virtual bool defer_process_protocol_path(::file::path & path) ;
 
       virtual bool http_exists(const ::url::url & url, ::property_set & set);
       virtual ::file::enum_type http_get_type(const ::url::url & url, property_set & set);

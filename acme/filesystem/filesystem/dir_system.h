@@ -14,7 +14,7 @@ public:
    ::file::path                  m_pathLocalAppMatterFolder;
    ::file::path                  m_pathLocalAppMatterCacheFolder;
 
-   ::pointer<::file::watcher>   m_pfilewatcher;
+   //::pointer<::file::watcher>   m_pfilewatcher;
 
    ::file::path                  m_pathAppData;
    ::file::path                  m_pathDefaultAppData;

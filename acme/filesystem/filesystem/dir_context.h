@@ -35,7 +35,7 @@
 
       void finalize() override;
 
-      ::file::watcher & watcher();
+      //::file::watcher & watcher();
 
 
       //bool _enumerates(::file::listing & listing) override;

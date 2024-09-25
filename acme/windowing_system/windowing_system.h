@@ -24,6 +24,9 @@ namespace windowing_system
         void on_initialize_particle() override;
 
 
+       virtual void on_start_system();
+
+
         virtual ::e_status defer_initialize_windowing_system();
         virtual ::e_status initialize_windowing_system();
         virtual void * get_display();
@@ -35,6 +38,9 @@ namespace windowing_system
        virtual void * fetch_windowing_system_display();
 
         virtual void process_messages();
+
+       virtual void windowing_system_application_main_loop();
+       virtual void windowing_system_post_quit();
 
     };
 

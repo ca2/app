@@ -84,7 +84,7 @@ public:
 
    void create() override;
 
-   void display() override;
+   void show_window() override;
     
    void hide() override;
 
@@ -108,8 +108,11 @@ public:
    void update_drawing_objects() override;
 
 
-   bool defer_perform_entire_reposition_process() override;
+   //bool defer_perform_entire_reposition_process() override;
 
+   virtual bool defer_perform_entire_reposition_process(::user::mouse * pmouse);
+
+   virtual bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse);
 
    ::point_i32 try_absolute_mouse_position(const ::point_i32 & point) override;
 

@@ -31,7 +31,7 @@ void window_interface::create()
 }
 
 
-void window_interface::display()
+void window_interface::show_window()
 {
 
 
@@ -130,15 +130,23 @@ void window_interface::update_drawing_objects()
 }
 
 
-bool window_interface::defer_perform_entire_reposition_process()
-{
+// bool window_interface::defer_perform_entire_reposition_process(::user::mouse * pmouse)
+// {
+//
+//    return false;
+//
+// }
+//
+//
+//    bool window_interface::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse)
+// {
+//
+//    return false;
+//
+// }
 
-   return false;
 
-}
-
-
-::shift_i32 window_interface::host_to_client()
+   ::shift_i32 window_interface::host_to_client()
 {
 
    return - client_to_host();
@@ -207,7 +215,9 @@ bool window_interface::on_drag_start(::point_i32 & point, ::item * pitem)
    if (pitem->m_item.m_eelement == e_element_client)
    {
 
-      if(defer_perform_entire_reposition_process())
+      auto pdrag = drag(pitem);
+
+      if(defer_perform_entire_reposition_process(pdrag->m_pmouse))
       {
 
          return false;

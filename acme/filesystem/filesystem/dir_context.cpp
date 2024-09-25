@@ -3071,14 +3071,14 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 }
 
 
-::file::watcher& dir_context::watcher()
-{
-
-   auto psystem = system();
-
-   return *psystem->m_pdirsystem->m_pfilewatcher;
-
-}
+// ::file::watcher& dir_context::watcher()
+// {
+//
+//    auto psystem = system();
+//
+//    return *psystem->m_pdirsystem->m_pfilewatcher;
+//
+// }
 
 
 //::file::path dir_context::pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode)

@@ -37,7 +37,7 @@ namespace windowing
       virtual ::string get_window_text();
 
 
-      ::pointer < ::operating_system::a_system_menu > create_system_menu() override;
+      ::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true) override;
 
       bool defer_perform_entire_reposition_process(::user::mouse * pmouse) override;
 

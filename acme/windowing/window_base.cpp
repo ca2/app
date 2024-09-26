@@ -79,10 +79,10 @@ namespace windowing
    }
 
 
-   ::pointer < ::operating_system::a_system_menu > window_base::create_system_menu()
+   ::pointer < ::operating_system::a_system_menu > window_base::create_system_menu(bool bContextual)
    {
 
-      return ::nano::user::window_implementation::create_system_menu();
+      return ::nano::user::window_implementation::create_system_menu(bContextual);
 
    }
 

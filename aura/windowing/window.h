@@ -46,7 +46,7 @@ namespace windowing
       ::sandbox_windowing::window *             m_psandboxwindowingwindow;
       void *                                    m_pWindow4;
 
-      ::pointer<::windowing::display>           m_pdisplay;
+      //::pointer<::windowing::display>           m_pdisplay;
       ::pointer<::user::interaction_impl>       m_puserinteractionimpl;
       string                                    m_strDebug;
       ::pointer<::message_queue>                m_pmessagequeue;
@@ -220,7 +220,7 @@ namespace windowing
       virtual bool is_destroying();
 
 
-      virtual bool is_window_zoomed();
+//      virtual bool is_window_zoomed();
 
       //virtual ::pointer < ::operating_system::a_system_menu > create_system_menu();
       virtual void defer_show_system_menu(::user::mouse * pmouse);
@@ -465,9 +465,9 @@ namespace windowing
 
       virtual void set_opacity(double dOpacity);
 
-      virtual void window_restore();
-      virtual void window_minimize();
-      virtual void window_maximize();
+      // virtual void window_restore();
+      // virtual void window_minimize();
+      // virtual void window_maximize();
 
 
    };

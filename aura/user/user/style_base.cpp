@@ -86,9 +86,9 @@ namespace user
 
          auto psystem = system();
 
-         auto pnode = psystem->node();
+         //auto pnode = psystem->node();
 
-         auto bDarkMode = pnode->dark_mode();
+         auto bDarkMode = psystem->dark_mode();
 
          m_bDarkMode = bDarkMode;
 

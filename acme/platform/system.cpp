@@ -3752,6 +3752,59 @@ namespace acme
    }
 
 
+   ::color::color system::get_simple_ui_color(::enum_element eelement, ::user::enum_state estate)
+   {
+
+      ::color::color color;
+
+      if (eelement == ::e_element_background)
+      {
+
+         if (dark_mode())
+         {
+
+            color = argb(255, 0x50, 0x50, 0x58);
+
+         }
+         else
+         {
+
+            color = argb(255, 0xcd, 0xcd, 0xc8);
+
+         }
+
+      }
+      else
+      {
+
+         if (dark_mode())
+         {
+
+            color = argb(255, 255, 255, 255);
+
+         }
+         else
+         {
+
+            color = argb(255, 49, 50, 42);
+
+         }
+
+      }
+
+      return color;
+
+   }
+
+
+   ::color::color system::get_default_color(::color::color color)
+   {
+
+      return argb(255, 0, 0, 0);
+
+   }
+
+
    void system::set_dark_mode(bool bDark)
    {
 
@@ -3771,6 +3824,7 @@ namespace acme
       }
 
       on_application_dark_mode_change();
+
    }
 
 

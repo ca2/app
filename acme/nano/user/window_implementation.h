@@ -36,6 +36,8 @@ public:
 
    ::pointer < ::nano::user::window >         m_pinterface;
 
+   ::pointer < ::nano::user::display >         m_pnanouserdisplay;
+
 
    window_implementation();
    ~window_implementation() override;

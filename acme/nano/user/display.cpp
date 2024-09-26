@@ -14,7 +14,9 @@ namespace nano
 namespace user
 {
 
-   display::display()
+   display::display():
+   m_pointCursor2(I32_MINIMUM)
+
    {
 
       defer_create_synchronization();

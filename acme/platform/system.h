@@ -709,6 +709,11 @@ namespace acme
 
       virtual void set_dark_mode(bool bDark);
 
+      virtual ::color::color get_simple_ui_color(::enum_element eelement, ::user::enum_state estate = ::user::e_state_none);
+
+      virtual ::color::color get_default_color(::color::color color);
+
+
 // #if defined(WITH_X11)
 //       virtual void x11_sync(const ::procedure & procedure);
 //       virtual void x11_async(const ::procedure & procedure);

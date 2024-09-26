@@ -3,6 +3,7 @@
 #pragma once
 
 
+#include "acme/nano/user/display.h"
 #include "acme/primitive/geometry2d/_collection.h"
 ////#include "acme/primitive/primitive/object.h"
 
@@ -13,7 +14,7 @@ namespace windowing
    // X11 contribution : a display may contain more than one monitor
 
    class CLASS_DECL_AURA display :
-      virtual public ::object
+      virtual public ::nano::user::display
    {
    public:
 
@@ -36,7 +37,6 @@ namespace windowing
 
       ::rectangle_i32_array         m_rectangleaWorkAreas;
       ::string                      m_strDarkModeAnnotation;
-      ::point_i32                   m_pointCursor2;
 
 
 

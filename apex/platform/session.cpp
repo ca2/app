@@ -393,7 +393,7 @@ namespace apex
 
       }
 
-      return pnode->get_default_color(color);
+      return psystem->get_default_color(color);
 
    }
 

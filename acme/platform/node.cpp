@@ -1450,59 +1450,6 @@ namespace acme
   }
 
 
-  ::color::color node::get_simple_ui_color(::enum_element eelement, ::user::enum_state estate)
-  {
-
-     ::color::color color;
-
-     if (eelement == ::e_element_background)
-     {
-
-        if (dark_mode())
-        {
-
-           color = argb(255, 0x50, 0x50, 0x58);
-
-        }
-        else
-        {
-
-           color = argb(255, 0xcd, 0xcd, 0xc8);
-
-        }
-
-     }
-     else
-     {
-
-        if (dark_mode())
-        {
-
-           color = argb(255, 255, 255, 255);
-
-        }
-        else
-        {
-
-           color = argb(255, 49, 50, 42);
-
-        }
-
-     }
-
-      return color;
-
-   }
-
-
-   ::color::color node::get_default_color(::color::color color)
-   {
-
-      return argb(255, 0, 0, 0);
-
-   }
-
-
    void node::set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha)
    {
 

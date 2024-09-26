@@ -2937,6 +2937,12 @@ namespace user
          window_maximize();
 
       }
+      else if(strActionName == "restore")
+      {
+
+         window_restore();
+
+      }
       else if(strActionName == "about_box")
       {
 
@@ -2969,17 +2975,17 @@ namespace user
    }
 
 
-   ::pointer < ::operating_system::a_system_menu > element::create_system_menu()
+   ::pointer < ::operating_system::a_system_menu > element::create_system_menu(bool bContextual)
    {
 
       auto psystemmenu = ::place(new ::operating_system::a_system_menu());
 
       psystemmenu->add_item("Minimize", "minimize");
-      if(is_window_zoomed())
+      if(!bContextual || is_window_zoomed())
       {
          psystemmenu->add_item("Restore", "restore");
       }
-      else
+      if(!bContextual || !is_window_zoomed())
       {
          psystemmenu->add_item("Maximize", "maximize");
       }

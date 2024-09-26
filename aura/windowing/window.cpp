@@ -6,6 +6,7 @@
 #include "placement_log.h"
 #include "acme/constant/message.h"
 #include "acme/exception/interface_only.h"
+#include "acme/nano/user/display.h"
 #include "acme/operating_system/a_system_menu.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/platform/node.h"
@@ -395,7 +396,7 @@ namespace windowing
    ::windowing::display * window::display()
    {
 
-      return m_pdisplay;
+      return m_pnanouserdisplay.cast < ::windowing::display>();
 
    }
 
@@ -429,7 +430,7 @@ namespace windowing
 
       windowing()->set_mouse_capture(pthread, this);
 
-      //::pointer < ::windowing_wayland::display > pwaylanddisplay = m_pdisplay;
+      //::pointer < ::windowing_wayland::display > pwaylanddisplay = m_pnanouserdisplay;
 
       //pwaylanddisplay->__capture_mouse(this, pwaylanddisplay->m_uLastButtonSerial);
 
@@ -604,12 +605,12 @@ namespace windowing
 //   }
 
 
-   bool window::is_window_zoomed()
-   {
-
-      return false;
-
-   }
+   // bool window::is_window_zoomed()
+   // {
+   //
+   //    return false;
+   //
+   // }
 
 
    void window::_on_configure_notify_unlocked(const ::rectangle_i32 & rectangle)
@@ -1292,7 +1293,7 @@ namespace windowing
       m_pwindowParent.release();
       m_pmessagequeue.release();
       m_puserinteractionimpl.release();
-      m_pdisplay.release();
+      m_pnanouserdisplay.release();
 
       ::channel::destroy();
 
@@ -2159,9 +2160,9 @@ namespace windowing
 
       m_pointCursor2.y() = yHost;
 
-      m_pdisplay->m_pointCursor2.x() = xAbsolute;
+      m_pnanouserdisplay->m_pointCursor2.x() = xAbsolute;
 
-      m_pdisplay->m_pointCursor2.y() = yAbsolute;
+      m_pnanouserdisplay->m_pointCursor2.y() = yAbsolute;
 
       m_puserinteractionimpl->m_puserinteraction->post_message(e_message_left_button_down, 0, lparam);
 
@@ -2177,9 +2178,9 @@ namespace windowing
 
       m_pointCursor2.y() = yHost;
 
-      m_pdisplay->m_pointCursor2.x() = xAbsolute;
+      m_pnanouserdisplay->m_pointCursor2.x() = xAbsolute;
 
-      m_pdisplay->m_pointCursor2.y() = yAbsolute;
+      m_pnanouserdisplay->m_pointCursor2.y() = yAbsolute;
 
       m_puserinteractionimpl->m_puserinteraction->post_message(e_message_mouse_move, 0, lparam);
 
@@ -2195,9 +2196,9 @@ namespace windowing
 
       m_pointCursor2.y() = yHost;
 
-      m_pdisplay->m_pointCursor2.x() = xAbsolute;
+      m_pnanouserdisplay->m_pointCursor2.x() = xAbsolute;
 
-      m_pdisplay->m_pointCursor2.y() = yAbsolute;
+      m_pnanouserdisplay->m_pointCursor2.y() = yAbsolute;
 
       m_puserinteractionimpl->m_puserinteraction->post_message(e_message_left_button_up, 0, lparam);
 
@@ -2613,25 +2614,25 @@ void window::set_opacity(double dOpacity)
 
 }
 
-   void window::window_restore()
-   {
-
-
-   }
-
-
-   void window::window_minimize()
-   {
-
-
-   }
-
-
-   void window::window_maximize()
-   {
-
-
-   }
+   // void window::window_restore()
+   // {
+   //
+   //
+   // }
+   //
+   //
+   // void window::window_minimize()
+   // {
+   //
+   //
+   // }
+   //
+   //
+   // void window::window_maximize()
+   // {
+   //
+   //
+   // }
 
 
 } // namespace windowing

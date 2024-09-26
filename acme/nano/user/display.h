@@ -20,6 +20,7 @@ namespace nano
 
 
       ::array < ::procedure >      m_procedureaPost;
+      ::point_i32                   m_pointCursor2;
 
 
       inline static display * g_p = nullptr;

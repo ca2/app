@@ -51,13 +51,11 @@ namespace user
 
       default_style_construct();
 
-      auto pnode = this->node();
+      auto bSystemDarkMode = system()->dark_mode();
 
-      auto bOperatingSystemDarkMode = pnode->dark_mode();
+      //system()->set_dark_mode(bOperatingSystemDarkMode);
 
-      system()->set_dark_mode(bOperatingSystemDarkMode);
-
-      pnode->_get_os_theme_colors();
+      //pnode->_get_os_theme_colors();
 
       m_puserstyle = this;
 

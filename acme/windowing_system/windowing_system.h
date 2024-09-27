@@ -54,7 +54,7 @@ namespace windowing_system
        
        virtual bool dark_mode();
 
-
+       virtual void fetch_system_background_color();
 
     };
 

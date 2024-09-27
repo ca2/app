@@ -206,6 +206,14 @@ namespace windowing_system
     }
 
 
+    void windowing_system::fetch_system_background_color()
+    {
+
+
+
+    }
+
+
     void windowing_system::_do_tasks()
     {
 

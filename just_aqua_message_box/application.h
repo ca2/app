@@ -5,7 +5,7 @@
 #include "aqua/platform/application.h"
 
 
-namespace app_just_message_box
+namespace app_just_aqua_message_box
 {
 
 
@@ -43,7 +43,7 @@ namespace app_just_message_box
    };
 
 
-} // namespace app_just_message_box
+} // namespace app_just_aqua_message_box
 
 
 

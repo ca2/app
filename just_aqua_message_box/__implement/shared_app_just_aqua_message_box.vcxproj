@@ -179,11 +179,11 @@
     <ProjectReference Include="..\..\apex\apex.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-777ca238991f}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\aura\aura.vcxproj">
-      <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
+    <ProjectReference Include="..\..\aqua\aqua.vcxproj">
+      <Project>{1b06fe5f-f783-41a1-ac68-0e02880dbbac}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\just_app_message_box.vcxproj">
-      <Project>{5f24e5df-0984-45cf-bc93-c850814c0eeb}</Project>
+    <ProjectReference Include="..\app_just_aqua_message_box.vcxproj">
+      <Project>{9c3c1297-b606-4782-afd0-c38eecdceb15}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

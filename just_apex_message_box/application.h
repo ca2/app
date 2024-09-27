@@ -5,11 +5,11 @@
 #include "apex/platform/application.h"
 
 
-namespace app_just_message_box
+namespace app_just_apex_message_box
 {
 
 
-   class CLASS_DECL_APP_JUST_MESSAGE_BOX_APP application :
+   class CLASS_DECL_APP_JUST_APEX_MESSAGE_BOX_APP application :
       virtual public ::apex::application
    {
    public:
@@ -43,7 +43,7 @@ namespace app_just_message_box
    };
 
 
-} // namespace app_just_message_box
+} // namespace app_just_apex_message_box
 
 
 

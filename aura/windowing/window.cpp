@@ -2633,13 +2633,6 @@ void window::set_opacity(double dOpacity)
    
    
     }
-    void window::destroy()
-    {
-
-       ::channel::destroy();
-       ::windowing::window_base::destroy();
-
-    }
 
 } // namespace windowing
 

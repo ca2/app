@@ -5,11 +5,11 @@
 #include "acme/platform/application.h"
 
 
-namespace app_just_message_box
+namespace app_just_acme_message_box
 {
 
 
-   class CLASS_DECL_APP_JUST_MESSAGE_BOX_APP application :
+   class CLASS_DECL_APP_JUST_ACME_MESSAGE_BOX_APP application :
       virtual public ::acme::application
    {
    public:
@@ -43,7 +43,7 @@ namespace app_just_message_box
    };
 
 
-} // namespace app_just_message_box
+} // namespace app_just_acme_message_box
 
 
 

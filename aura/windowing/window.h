@@ -459,6 +459,7 @@ namespace windowing
 
 
       void main_send(const ::procedure & procedure) override;
+      void main_post(const ::procedure & procedure) override;
 
    };
 

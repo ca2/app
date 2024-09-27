@@ -167,7 +167,7 @@ namespace apex
 
       ::apex::context::install_message_routing(pchannel);
       
-      MESSAGE_LINK(e_message_erase_application, pchannel, this, &session::on_message_erase_application);
+      //MESSAGE_LINK(e_message_erase_application, pchannel, this, &session::on_message_erase_application);
 
    }
 
@@ -511,21 +511,18 @@ namespace apex
 
       ::acme::session::process_term();
 
-      auto psystem = system()->m_papexsystem;
-
-      psystem->post_message(e_message_erase_session, m_iEdge);
 
    }
 
 
-   void session::on_message_erase_application(::message::message* pmessage)
-   {
+   //void session::on_message_erase_application(::message::message* pmessage)
+   //{
 
-      ::pointer<::apex::application>papp(pmessage->m_lparam);
+   //   ::pointer<::apex::application>papp(pmessage->m_lparam);
 
-      erase_application(papp);
+   //   erase_application(papp);
 
-   }
+   //}
 
 
    void session::process_init()

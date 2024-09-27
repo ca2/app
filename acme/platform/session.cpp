@@ -320,6 +320,21 @@ namespace acme
    void session::process_term()
    {
 
+      auto psystem = system();
+
+      if (::is_set(psystem))
+      {
+
+         psystem->post_procedure([this]()
+            {
+
+                  system()->erase_session(m_iEdge);
+
+         });
+
+      }
+
+
    }
 
 

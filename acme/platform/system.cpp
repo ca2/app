@@ -176,6 +176,8 @@ namespace acme
 #endif
 
 
+      m_bFinalizeIfNoSession = false;
+      m_bFinalizeIfNoSessionSetting = true;
 
    }
 
@@ -2281,16 +2283,18 @@ namespace acme
 
       }
 
-      if (m_sessionmap.is_empty())
+      bool bWasEmpty = m_sessionmap.is_empty();
+
+      m_sessionmap[iEdge] = psession;
+
+      on_add_session(psession);
+
+      if (bWasEmpty)
       {
 
          m_bFinalizeIfNoSession = m_bFinalizeIfNoSessionSetting;
 
       }
-
-      m_sessionmap[iEdge] = psession;
-
-      on_add_session(psession);
 
    }
 

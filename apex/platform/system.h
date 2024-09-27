@@ -134,7 +134,7 @@ namespace apex
 
       virtual void term();
 
-      DECLARE_MESSAGE_HANDLER(on_message_erase_session);
+      //DECLARE_MESSAGE_HANDLER(on_message_erase_session);
 
       string get_application_server_name() override;
 

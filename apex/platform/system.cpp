@@ -215,8 +215,6 @@ namespace apex
 
       m_bSimpleMessageLoop = false;
 
-      m_bFinalizeIfNoSession = false;
-      m_bFinalizeIfNoSessionSetting = true;
 
       m_bFinalizeIfNoSessionSetting = true;
       m_bFinalizeIfNoSession = false;
@@ -277,7 +275,7 @@ namespace apex
 
       ::apex::context::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_erase_session, pchannel, this, &system::on_message_erase_session);
+      //MESSAGE_LINK(e_message_erase_session, pchannel, this, &system::on_message_erase_session);
 
    }
 
@@ -1766,14 +1764,14 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   void system::on_message_erase_session(::message::message * pmessage)
-   {
+   //void system::on_message_erase_session(::message::message * pmessage)
+   //{
 
-      auto iEdge = pmessage->m_wparam;
+   //   auto iEdge = pmessage->m_wparam;
 
-      erase_session(iEdge);
+   //   erase_session(iEdge);
 
-   }
+   //}
 
 
    string system::get_application_server_name()

@@ -236,6 +236,8 @@ void application::initialize_application(::platform::platform * pplatform)
 
       system()->windowing_system()->windowing_system_post_quit();
 
+      set_finish();
+
    }
 
 }
@@ -1878,6 +1880,20 @@ void application::term_application()
 
 void application::process_term()
 {
+
+   auto psession = session();
+
+   if (::is_set(psession))
+   {
+
+      psession->post_procedure([this]()
+         {
+
+            session()->erase_application(this);
+
+         });
+
+   }
    
    finalize_context();
    

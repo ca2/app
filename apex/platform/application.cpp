@@ -3116,12 +3116,6 @@ namespace apex
    {
 
 
-      if (::is_set(session()))
-      {
-
-         session()->m_papexsession->post_message(e_message_erase_application, 0, this);
-
-      }
 
 
       try

@@ -455,9 +455,9 @@ void message_box::on_right_click(const ::payload& payload, ::user::mouse * pmous
 
    }
 
-   auto pbutton = __create_new < popup_button >();
+   auto ppopupbutton = __create_new < popup_button >();
 
-   pbutton->m_functionClose = [this](::nano::user::interchange * pinterchange)
+   ppopupbutton->m_functionClose = [this](::nano::user::interchange * pinterchange)
    {
 
       auto result = pinterchange->m_payloadResult.as_atom();
@@ -471,9 +471,9 @@ void message_box::on_right_click(const ::payload& payload, ::user::mouse * pmous
 
    };
 
-   pbutton->initialize_popup_button("Dump to File...", pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y());
+   ppopupbutton->initialize_popup_button("Dump to File...", pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y());
 
-   pbutton->do_asynchronously();
+   ppopupbutton->do_asynchronously();
 
 }
 

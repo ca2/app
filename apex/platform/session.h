@@ -182,7 +182,7 @@ namespace apex
 
       void term_session() override;
 
-      DECLARE_MESSAGE_HANDLER(on_message_erase_application);
+      //DECLARE_MESSAGE_HANDLER(on_message_erase_application);
 
       inline class ::fs::data * fs() { return m_pfsdata; }
 

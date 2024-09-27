@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "acme/nano/user/device.h"
+#include "acme/nano/graphics/device.h"
 #undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
 #include "acme/_operating_system.h"
 
@@ -17,12 +17,12 @@ namespace windows
    {
 
 
-      namespace user
+      namespace graphics
       {
 
 
          class CLASS_DECL_ACME device :
-            virtual public ::nano::user::device
+            virtual public ::nano::graphics::device
          {
          public:
 
@@ -35,13 +35,15 @@ namespace windows
 
 
             device();
-            device(HDC hdc);
+            
             ~device() override;
 
 
-            void _draw_text(const ::string& str, const ::rectangle_i32& rectangleText, const ::e_align& ealign, const ::e_draw_text& edrawtext, ::nano::user::brush* pnanobrushBack, ::nano::user::brush* pnanobrushText, ::nano::user::font* pnanofont) override;
-            ::size_i32 get_text_extents(const ::string& str, ::nano::user::font* pnanofont) override;
-            void rectangle(const ::rectangle_i32& rectangle, ::nano::user::brush* pnanobrush, ::nano::user::pen* pnanopen) override;
+            void attach(void * posdata) override;
+
+            void _draw_text(const ::string& str, const ::rectangle_i32& rectangleText, const ::e_align& ealign, const ::e_draw_text& edrawtext, ::nano::graphics::brush* pnanobrushBack, ::nano::graphics::brush* pnanobrushText, ::nano::graphics::font* pnanofont) override;
+            ::size_i32 get_text_extents(const ::string& str, ::nano::graphics::font* pnanofont) override;
+            void rectangle(const ::rectangle_i32& rectangle, ::nano::graphics::brush* pnanobrush, ::nano::graphics::pen* pnanopen) override;
 
 
          };
@@ -49,7 +51,7 @@ namespace windows
 
 
 
-      } // namespace user
+      } // namespace graphics
 
 
    } // namespace nano

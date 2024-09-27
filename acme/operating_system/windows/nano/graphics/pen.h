@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "acme/nano/user/pen.h"
+#include "acme/nano/graphics/pen.h"
 #include "object.h"
 
 
@@ -16,32 +16,32 @@ namespace windows
    {
 
 
-      namespace user
+      namespace graphics
       {
 
 
          class CLASS_DECL_ACME pen :
-            virtual public ::nano::user::pen,
+            virtual public ::nano::graphics::pen,
             virtual public object
          {
          public:
 
 
-            //__CreatableFromBase(::nano::user::pen, ::nano::user::pen);
+            //__CreatableFromBase(::nano::graphics::pen, ::nano::graphics::pen);
 
 
             pen();
             ~pen() override;
 
 
-            void update(::nano::user::device* pnanodevice) override;
+            void update(::nano::graphics::device* pnanodevice) override;
 
 
          };
 
 
 
-      } // namespace user
+      } // namespace graphics
 
 
    } // namespace nano

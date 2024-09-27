@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "acme/nano/user/brush.h"
+#include "acme/nano/graphics/brush.h"
 #include "object.h"
 
 
@@ -17,12 +17,12 @@ namespace windows
    {
 
 
-      namespace user
+      namespace graphics
       {
 
 
          class CLASS_DECL_ACME brush :
-            virtual public ::nano::user::brush,
+            virtual public ::nano::graphics::brush,
             virtual public object
          {
          public:
@@ -35,14 +35,14 @@ namespace windows
             ~brush() override;
 
 
-            void update(::nano::user::device* pnanodevice) override;
+            void update(::nano::graphics::device* pnanodevice) override;
 
 
          };
 
 
 
-      } // namespace user
+      } // namespace graphics
 
 
    } // namespace nano

@@ -62,6 +62,8 @@ namespace windowing
 
       bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse) override;
 
+
+      virtual void on_char(int iChar);
 //       //
 //       // Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSorensen!!
 //       //
@@ -141,7 +143,7 @@ namespace windowing
 
                virtual void defer_show_system_menu(::user::mouse * pmouse);
 
-
+               virtual void implementation_message_loop_step();
 
    };
 

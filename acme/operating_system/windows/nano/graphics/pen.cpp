@@ -15,7 +15,7 @@ namespace windows
    {
 
 
-      namespace user
+      namespace graphics
       {
 
          pen::pen()
@@ -32,7 +32,7 @@ namespace windows
          }
 
 
-         void pen::update(::nano::user::device* pnanodevice)
+         void pen::update(::nano::graphics::device* pnanodevice)
          {
 
             if (m_bModified)
@@ -50,7 +50,7 @@ namespace windows
 
 
 
-      } // namespace user
+      } // namespace graphics
 
 
    } // namespace nano

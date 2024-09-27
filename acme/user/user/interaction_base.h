@@ -43,6 +43,7 @@ public:
     bool                                      m_bMinimizeBox;
     bool                                      m_bMaximizeBox;
     bool                                      m_bResizeable;
+    bool                                     m_bTopMost;
 
 
    ::pointer < ::windowing::window_base >    m_pwindowbase;

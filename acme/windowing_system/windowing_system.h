@@ -30,7 +30,7 @@ namespace windowing_system
 
        virtual void on_start_system();
 
-
+       virtual void _do_tasks();
         virtual ::e_status defer_initialize_windowing_system();
         virtual ::e_status initialize_windowing_system();
         virtual void * get_display();

@@ -2,7 +2,7 @@
 // Created by camilo on 2024-09-13 14:01 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
-#include "user.h"
+#include "graphics.h"
 #include "acme/platform/application.h"
 
 
@@ -15,7 +15,7 @@ namespace windows
    {
 
 
-      namespace user
+      namespace graphics
       {
 
 
@@ -49,7 +49,7 @@ namespace windows
          //}
 
 
-      } // namespace user
+      } // namespace graphics
 
 
    } // namespace nano

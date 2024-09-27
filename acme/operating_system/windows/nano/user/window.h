@@ -3,6 +3,7 @@
 
 
 #include "acme/nano/user/window_implementation.h"
+#include "acme/windowing/window_base.h"
 #include "acme/operating_system/windows/window.h"
 #undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS
 #include "acme/_operating_system.h"
@@ -21,12 +22,13 @@ namespace windows
 
 
          class window :
-            virtual public ::nano::user::window_implementation,
+            virtual public ::windowing::window_base,
             virtual public ::windows::window
          {
          public:
 
 
+            bool m_bNcActive;
             //CreatableFromBase(window, ::nano::user::window_implementation);
             //bool m_bSizeMoveMode;
             //HWND m_hwnd;
@@ -49,13 +51,17 @@ namespace windows
       //      ::pointer<::nano::user::child>m_pchildFocus;
             ::task_pointer       m_ptask;
 
+            ::pointer < ::nano::graphics::device > m_pnanodevice;
+
             window();
 
             ~window() override;
 
-            void create() override;
+            void create_window() override;
 
-            void display() override;
+            void _create_window() override;
+
+            void show_window() override;
 
             virtual void _draw(HDC hdc);
 
@@ -67,37 +73,37 @@ namespace windows
 
             //virtual void draw_children(::nano::graphics::device * pnanodevice);
 
-            void delete_drawing_objects() override;
+            //void delete_drawing_objects() override;
 
-            bool get_dark_mode() override;
+            //bool get_dark_mode() override;
 
-            void create_drawing_objects() override;
+            //void create_drawing_objects() override;
 
-            void update_drawing_objects() override;
+            //void update_drawing_objects() override;
 
             //::nano::user::child * on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder) override;
 
-            void add_child(::nano::user::child* pchild) override;
+            //void add_child(::nano::user::child* pchild) override;
 
-            ::payload get_result() override;
+            //::payload get_result() override;
 
-            void on_mouse_move(::user::mouse* pmouse) override;
+            //void on_mouse_move(::user::mouse* pmouse) override;
 
-            void on_left_button_down(::user::mouse* pmouse) override;
+            //void on_left_button_down(::user::mouse* pmouse) override;
 
-            void on_left_button_up(::user::mouse* pmouse) override;
+            //void on_left_button_up(::user::mouse* pmouse) override;
 
-            void on_click(const ::payload& payload, ::user::mouse* pmouse) override;
+            //void on_click(const ::payload& payload, ::user::mouse* pmouse) override;
 
-            void on_right_button_down(::user::mouse* pmouse) override;
+            //void on_right_button_down(::user::mouse* pmouse) override;
 
-            void on_right_button_up(::user::mouse* pmouse) override;
+            //void on_right_button_up(::user::mouse* pmouse) override;
 
-            void on_right_click(const ::payload& payload, ::user::mouse* pmouse) override;
+            //void on_right_click(const ::payload& payload, ::user::mouse* pmouse) override;
 
             virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 
-            void move_to(const ::point_i32& point) override;
+            void set_position(const ::point_i32& point) override;
 
             //void _destroy_window();
 
@@ -110,13 +116,13 @@ namespace windows
 
 
 
-            void get_client_rectangle(::rectangle_i32& rectangle) override;
+            //void get_client_rectangle(::rectangle_i32& rectangle) override;
 
-            void get_window_rectangle(::rectangle_i32& rectangle) override;
+            ::rectangle_i32 get_window_rectangle() override;
 
             void set_capture() override;
 
-            bool has_capture() const override;
+            bool has_capture() override;
 
             void release_capture() override;
 
@@ -131,7 +137,7 @@ namespace windows
             void user_post(const ::procedure& procedure) override;
 
 
-            void implementation_message_loop_step() override;
+            virtual void implementation_message_loop_step();
 
             void defer_show_system_menu(::user::mouse * pmouse) override;
 

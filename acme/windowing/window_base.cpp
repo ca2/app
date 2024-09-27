@@ -428,6 +428,18 @@ void window_base::defer_show_system_menu(::user::mouse * pmouse)
 
 }
 
+void window_base::implementation_message_loop_step()
+{
+
+
+}
+
+
+void window_base::on_char(int iChar)
+{
+
+
+}
 
 //::atom message_box::do_synchronously()
 //{

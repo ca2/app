@@ -285,7 +285,8 @@ bool interchange::get_dark_mode()
 {
    
    return system()->dark_mode();
-   
+
+     
 }
 
 

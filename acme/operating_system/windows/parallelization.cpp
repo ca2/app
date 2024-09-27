@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/platform/system.h"
+#include "acme/windowing_system/windowing_system.h"
 #include "nano/user/window.h"
 #include "acme/_operating_system.h"
 
@@ -117,20 +118,12 @@ void _do_tasks()
 
    }
 
-   if (::nano::user::window_implementation::nanowindowimplementationa().has_element())
+   auto pwindowingsystem = ::platform::get()->system()->windowing_system();
+
+   if (pwindowingsystem)
    {
 
-      for (auto & pimplementation : ::nano::user::window_implementation::nanowindowimplementationa())
-      {
-
-         if (pimplementation)
-         {
-
-            pimplementation->implementation_message_loop_step();
-
-         }
-
-      }
+      pwindowingsystem->_do_tasks();
 
    }
 

@@ -14,7 +14,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_APEX primitive :
+   class CLASS_DECL_APEX prototype :
       virtual public ::user::interaction_base,
       virtual public ::channel,
       //virtual public ::source,
@@ -300,18 +300,18 @@ namespace user
 
 
 
-      virtual bool is_ascendant(const primitive * puiIsAscendant, bool bIncludeSelf) const;
-      virtual bool is_parent(const primitive * puiIsParent) const;
-      virtual bool is_child(const primitive * puiIsChild) const;
-      virtual bool is_descendant(const primitive * puiIsDescendant, bool bIncludeSelf) const;
+      virtual bool is_ascendant(const prototype * puiIsAscendant, bool bIncludeSelf) const;
+      virtual bool is_parent(const prototype * puiIsParent) const;
+      virtual bool is_child(const prototype * puiIsChild) const;
+      virtual bool is_descendant(const prototype * puiIsDescendant, bool bIncludeSelf) const;
 
       virtual bool is_descendant_of_or_owned_by(const ::user::prototype * puiAscendantCandidate, bool bIncludeSelf) const;
       virtual bool is_ascendant_or_owner_of(const ::user::prototype * puiDescendantCandidate, bool bIncludeSelf) const;
 
-      virtual bool is_ascendant_of(const primitive * puiIsDescendant, bool bIncludeSelf) const;
-      virtual bool is_parent_of(const primitive * puiIsChild) const; 
-      virtual bool is_child_of(const primitive * puiIsParent) const; 
-      virtual bool is_descendant_of(const primitive * puiIsAscendant, bool bIncludeSelf) const; 
+      virtual bool is_ascendant_of(const prototype * puiIsDescendant, bool bIncludeSelf) const;
+      virtual bool is_parent_of(const prototype * puiIsChild) const; 
+      virtual bool is_child_of(const prototype * puiIsParent) const; 
+      virtual bool is_descendant_of(const prototype * puiIsAscendant, bool bIncludeSelf) const; 
 
       atom GetDlgCtrlId() const override;
       atom SetDlgCtrlId(const ::atom & atom) override;
@@ -606,7 +606,7 @@ namespace user
       bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;
       bool keyboard_focus_OnChildKillFocus() override;
       ::user::element * keyboard_get_next_focusable(::user::element * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
-      //virtual primitive * get_keyboard_focus() const;
+      //virtual prototype * get_keyboard_focus() const;
       void set_keyboard_focus() override;
       void erase_keyboard_focus() override;
       void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;

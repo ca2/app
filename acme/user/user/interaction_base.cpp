@@ -24,6 +24,7 @@ namespace user
       m_bMinimizeBox = true;
       m_bMaximizeBox = true;
       m_bResizeable = true;
+      m_bTopMost = false;
 
    }
 

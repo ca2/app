@@ -1,7 +1,7 @@
 // Created by camilo on 2022-11-19 03:54 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "user.h"
-#include "interchange.h"
+#include "graphics.h"
+#include "acme/nano/user/interchange.h"
 #include "acme/constant/id.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/node.h"
@@ -119,15 +119,15 @@ namespace nano
 //        }
 //
 
-        void user::handle(::topic* ptopic, ::context* pcontext)
+        void graphics::handle(::topic* ptopic, ::context* pcontext)
         {
-//            if (ptopic->m_atom == id_set_application_dark_mode)
-//            {
-//                for (auto& pinterchange : m_interchangea)
-//                {
-//                    pinterchange->handle(ptopic, pcontext);
-//                }
-//            }
+////            if (ptopic->m_atom == id_set_application_dark_mode)
+////            {
+////                for (auto& pinterchange : m_interchangea)
+////                {
+////                    pinterchange->handle(ptopic, pcontext);
+////                }
+////            }
         }
 
 //

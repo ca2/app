@@ -2,10 +2,10 @@
 // Renamed to _nano by camilo on 2021-02-01 13:44 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "window.h"
-#include "brush.h"
-#include "font.h"
-#include "pen.h"
-#include "device.h"
+//#include "acme/operating_system/windows/nano/graphics/brush.h"
+//#include "acme/operating_system/windows/nano/graphics/font.h"
+//#include "acme/operating_system/windows/nano/graphics/pen.h"
+//#include "acme/operating_system/windows/nano/graphics/device.h"
 #include "user.h"
 #include "acme/nano/nano.h"
 #include "acme/platform/factory_function.h"
@@ -16,11 +16,11 @@ extern "C" void nano_user_win32_factory(::factory::factory * pfactory)
 {
 
 
-   pfactory->add_factory_item < ::windows::nano::user::interchange, ::nano::user::window_implementation >();
-   pfactory->add_factory_item < ::windows::nano::graphics::brush, ::nano::graphics::brush >();
-   pfactory->add_factory_item < ::windows::nano::graphics::font, ::nano::graphics::font >();
-   pfactory->add_factory_item < ::windows::nano::graphics::pen, ::nano::graphics::pen >();
-   pfactory->add_factory_item < ::windows::nano::graphics::device, ::nano::graphics::device >();
+   pfactory->add_factory_item < ::windows::nano::user::window, ::windowing::window_base >();
+   //pfactory->add_factory_item < ::windows::nano::graphics::brush, ::nano::graphics::brush >();
+   //pfactory->add_factory_item < ::windows::nano::graphics::font, ::nano::graphics::font >();
+   //pfactory->add_factory_item < ::windows::nano::graphics::pen, ::nano::graphics::pen >();
+   //pfactory->add_factory_item < ::windows::nano::graphics::device, ::nano::graphics::device >();
 
    pfactory->add_factory_item < ::windows::nano::user::user, ::nano::user::user >();
 

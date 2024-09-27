@@ -16,7 +16,7 @@ namespace windows
    {
 
 
-      namespace user
+      namespace graphics
       {
 
          font::font()
@@ -33,7 +33,7 @@ namespace windows
          }
 
 
-         void font::update(::nano::user::device* pnanodevice)
+         void font::update(::nano::graphics::device* pnanodevice)
          {
 
             if (m_bModified)
@@ -43,7 +43,7 @@ namespace windows
 
                LOGFONTW logfontw = {};
 
-               auto pwindowsnanodevice = dynamic_cast <::windows::nano::user::device*>(pnanodevice);
+               auto pwindowsnanodevice = dynamic_cast <::windows::nano::graphics::device*>(pnanodevice);
 
                m_hgdiobj = _create_point_font(m_iFontSize * 10, m_strFontName, m_bBold, pwindowsnanodevice->m_hdc, &logfontw);
 
@@ -119,7 +119,7 @@ namespace windows
 
 
 
-      } // namespace user
+      } // namespace graphics
 
 
    } // namespace nano

@@ -1,28 +1,31 @@
 // Created by camilo on 2021-01-21 05:05 PM <3ThomasBorregaardSorensen
 // Renamed to _nano by camilo on 2021-02-01 13:44 <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "window.h"
 #include "brush.h"
 #include "font.h"
 #include "pen.h"
 #include "device.h"
-#include "user.h"
+//#include "acme/operating_system/windows/nano/user/user.h"
+//#include "acme/operating_system/windows/nano/user/window.h"
 #include "acme/nano/nano.h"
 #include "acme/platform/factory_function.h"
-//#include "acme/primitive/primitive/_factory.h"
+//#include "acme/windowing/window_base.h"
+
+//#include "acme/prototype/prototype/_factory.h"
 
 
-extern "C" void nano_user_win32_factory(::factory::factory * pfactory)
+extern "C" void nano_graphics_win32_factory(::factory::factory * pfactory)
 {
 
 
-   pfactory->add_factory_item < ::windows::nano::user::window, ::nano::user::window_implementation >();
-   pfactory->add_factory_item < ::windows::nano::user::brush, ::nano::user::brush >();
-   pfactory->add_factory_item < ::windows::nano::user::font, ::nano::user::font >();
-   pfactory->add_factory_item < ::windows::nano::user::pen, ::nano::user::pen >();
-   pfactory->add_factory_item < ::windows::nano::user::device, ::nano::user::device >();
+   //pfactory->add_factory_item < ::windows::nano::user::window, ::windowing::window_base >();
+   pfactory->add_factory_item < ::windows::nano::graphics::brush, ::nano::graphics::brush >();
+   pfactory->add_factory_item < ::windows::nano::graphics::font, ::nano::graphics::font >();
+   pfactory->add_factory_item < ::windows::nano::graphics::pen, ::nano::graphics::pen >();
+   pfactory->add_factory_item < ::windows::nano::graphics::device, ::nano::graphics::device >();
 
-   pfactory->add_factory_item < ::windows::nano::user::user, ::nano::user::user >();
+   //pfactory->add_factory_item < ::windows::nano::user::user, ::nano::user::user >();
+   //pfactory->add_factory_item < ::windows::nano::user::user, ::nano::user::user >();
 
    //::rectangle_i32 rectangleMainScreen;
 
@@ -36,7 +39,7 @@ extern "C" void nano_user_win32_factory(::factory::factory * pfactory)
 }
 
 
-_REFERENCE_FACTORY(nano_user_win32);
+_REFERENCE_FACTORY(nano_graphics_win32);
 
 
 

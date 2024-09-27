@@ -15,7 +15,7 @@ namespace windows
    {
 
 
-      namespace user
+      namespace graphics
       {
 
 
@@ -66,7 +66,7 @@ namespace windows
 
 
 
-      } // namespace user
+      } // namespace graphics
 
 
    } // namespace nano

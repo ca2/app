@@ -24,6 +24,7 @@ public:
 
 
    virtual void create(int cx, int cy);
+   virtual void attach(void * posdata);
 
 
    virtual void on_begin_draw();

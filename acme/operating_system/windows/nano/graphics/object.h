@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "acme/nano/user/object.h"
+#include "acme/nano/graphics/object.h"
 #include "acme/_win32_gdi.h"
 
 
@@ -18,12 +18,12 @@ namespace windows
    {
 
 
-      namespace user
+      namespace graphics
       {
 
 
          class CLASS_DECL_ACME object :
-            virtual public ::nano::user::object
+            virtual public ::nano::graphics::object
          {
          public:
 
@@ -45,7 +45,7 @@ namespace windows
 
 
 
-      } // namespace user
+      } // namespace graphics
 
 
    } // namespace nano

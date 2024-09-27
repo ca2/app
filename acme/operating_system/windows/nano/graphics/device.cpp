@@ -6,8 +6,8 @@
 #include "brush.h"
 #include "font.h"
 #include "pen.h"
-#include "acme/primitive/geometry2d/size.h"
-#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/prototype/geometry2d/size.h"
+#include "acme/prototype/geometry2d/rectangle.h"
 ////#include "acme/exception/exception.h"
 
 
@@ -25,7 +25,7 @@ namespace windows
    {
 
 
-      namespace user
+      namespace graphics
       {
 
          device::device()
@@ -37,13 +37,6 @@ namespace windows
          }
 
 
-         device::device(HDC hdc)
-         {
-
-            m_hdc = hdc;
-            m_bDelete = false;
-
-         }
 
 
          device::~device()
@@ -59,11 +52,20 @@ namespace windows
          }
 
 
+         void device::attach(void * posdata)
+         {
+
+            auto hdc = (HDC)posdata;
+
+            m_hdc = hdc;
+            m_bDelete = false;
+
+         }
 
 
          void device::_draw_text(const ::string& str, const ::rectangle_i32& rectangleText, const ::e_align& ealign, const ::e_draw_text& edrawtext,
-            ::nano::user::brush* pnanobrushBack, ::nano::user::brush* pnanobrushText,
-            ::nano::user::font* pnanofont)
+            ::nano::graphics::brush* pnanobrushBack, ::nano::graphics::brush* pnanobrushText,
+            ::nano::graphics::font* pnanofont)
          {
 
             COLORREF colorrefBackgroundColor = win32_COLORREF(pnanobrushBack->m_color);
@@ -95,7 +97,7 @@ namespace windows
          }
 
 
-         ::size_i32 device::get_text_extents(const ::string& str, ::nano::user::font* pnanofont)
+         ::size_i32 device::get_text_extents(const ::string& str, ::nano::graphics::font* pnanofont)
          {
 
             pnanofont->update(this);
@@ -118,7 +120,7 @@ namespace windows
          }
 
 
-         void device::rectangle(const ::rectangle_i32& rectangle, ::nano::user::brush* pnanobrush, ::nano::user::pen* pnanopen)
+         void device::rectangle(const ::rectangle_i32& rectangle, ::nano::graphics::brush* pnanobrush, ::nano::graphics::pen* pnanopen)
          {
 
             pnanobrush->update(this);
@@ -139,7 +141,7 @@ namespace windows
          }
 
 
-      } // namespace user
+      } // namespace graphics
 
 
    } // namespace nano

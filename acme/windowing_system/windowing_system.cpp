@@ -5,6 +5,7 @@
 #include "windowing_system.h"
 #include "acme/constant/id.h"
 #include "acme/exception/interface_only.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/handler/topic.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/user/user.h"
@@ -193,6 +194,36 @@ namespace windowing_system
             pwindowbase->post_redraw();
 
         }
+
+    }
+
+
+    void windowing_system::_do_tasks()
+    {
+
+       _synchronous_lock synchronouslock(this->synchronization());
+
+       auto windowbasea = m_windowbasea;
+
+       synchronouslock.unlock();
+
+       //if (::nano::user::window_implementation::nanowindowimplementationa().has_element())
+       //{
+
+          for (auto & pimplementation : windowbasea)
+          {
+
+             if (pimplementation)
+             {
+
+                pimplementation->implementation_message_loop_step();
+
+             }
+
+          }
+
+       
+
 
     }
 

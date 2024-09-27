@@ -30,6 +30,13 @@ void device::create(int cx, int cy)
 
 }
 
+void device::attach(void * posdata)
+{
+
+
+}
+
+
 void device::on_begin_draw()
 {
 

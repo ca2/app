@@ -440,7 +440,7 @@ namespace windowing
       ::string get_window_text() override;
 
 
-      virtual void defer_show_system_menu(const ::point_i32 & pointAbsolute);
+      virtual void defer_show_system_menu(::user::mouse * pmouse);
 
       virtual void pick_browse(const ::function < void(const ::file::path & path) > & callback);
       virtual void pick_media(const char * pszMediaType);

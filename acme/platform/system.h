@@ -719,7 +719,8 @@ namespace acme
 //       virtual void x11_async(const ::procedure & procedure);
 // #endif
       
-      virtual void on_component_factory(const ::scoped_string & scopedstrComponent);
+      virtual bool defer_component_factory(const ::scoped_string & scopedstrComponent);
+      virtual bool _defer_component_factory(const ::scoped_string & scopedstrComponent);
 
 
    };

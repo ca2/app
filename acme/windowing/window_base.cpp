@@ -10,6 +10,7 @@
 #include "windowing_system/windowing_system.h"
 #include "acme/nano/user/display.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/user/user/interaction_base.h"
 
 
 namespace windowing
@@ -233,10 +234,10 @@ void window_base::nano_window_on_destroy()
 }
 
 
-void window_base::on_create()
+void window_base::on_create_window()
 {
 
-   //return m_pinterface->on_create();
+   m_puserinteractionbase->on_create_window();
 
 }
 

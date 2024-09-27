@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/platform/system.h"
 #include "acme/windowing_system/windowing_system.h"
-#include "nano/user/window.h"
+//#include "acme/nano/user/window.h"
 #include "acme/_operating_system.h"
 
 
@@ -114,7 +114,14 @@ void _do_tasks()
    if (is_main_thread())
    {
 
-      ::windows::nano::user::process_messages();
+      auto pwindowingsystem = ::platform::get()->system()->windowing_system();
+
+      if (pwindowingsystem)
+      {
+
+         pwindowingsystem->process_messages();
+
+      }
 
    }
 

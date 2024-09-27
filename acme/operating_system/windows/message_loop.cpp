@@ -2,7 +2,7 @@
 #include "acme/_operating_system.h"
 
 
-bool _c_simple_message_loop_step()
+CLASS_DECL_ACME bool _c_simple_message_loop_step()
 {
 
    MSG msg;

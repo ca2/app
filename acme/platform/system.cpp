@@ -46,29 +46,20 @@
 //#include "acme/user/user/conversation.h"
 
 
-
 extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory);
 
 
-#if defined(WINDOWS)
-
-extern "C" void nano_idn_windows_common_factory(::factory::factory * pfactory);
-
-#if defined(WINDOWS_DESKTOP)
-
-extern "C" void nano_user_win32_factory(::factory::factory* pfactory);
-
-#elif defined(UNIVERSAL_WINDOWS)
-
-extern "C" void nano_user_universal_windows_factory(::factory::factory * pfactory);
-
-#endif
-
-#elif defined(MACOS)
-
-extern "C" void nano_user_macos_factory(::factory::factory* pfactory);
-
-#endif
+//#elif defined(UNIVERSAL_WINDOWS)
+//
+//extern "C" void nano_user_universal_windows_factory(::factory::factory * pfactory);
+//
+//#endif
+//
+//#elif defined(MACOS)
+//
+//extern "C" void nano_user_macos_factory(::factory::factory* pfactory);
+//
+//#endif
 
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
@@ -3846,7 +3837,56 @@ namespace acme
    }
 
 
-   void system::on_component_factory(const ::scoped_string & scopedstrComponent)
+   bool system::defer_component_factory(const ::scoped_string & scopedstrComponent)
+   {
+
+      auto pnode = node();
+
+      if (::is_set(pnode))
+      {
+
+         if (pnode->defer_component_factory(scopedstrComponent))
+         {
+
+            return true;
+
+         }
+
+         ::string strComponentDefaultImplementation = pnode->default_component_implementation(scopedstrComponent);
+
+         if (strComponentDefaultImplementation.has_char())
+         {
+
+            auto pfactory = this->factory(scopedstrComponent, strComponentDefaultImplementation);
+
+            if (pfactory)
+            {
+
+               pfactory->merge_to_global_factory();
+
+               return true;
+
+            }
+
+         }
+
+
+      }
+
+      if(_defer_component_factory(scopedstrComponent))
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+
+   }
+
+
+   bool system::_defer_component_factory(const ::scoped_string & scopedstrComponent)
    {
 
       if (scopedstrComponent == "nano_dynamic_library")
@@ -3856,71 +3896,90 @@ namespace acme
 
          nano_dynamic_library_factory(pfactory);
 
-         return;
-
-      }
-      else if (scopedstrComponent == "nano_idn")
-      {
-
-
-#if defined(WINDOWS)
-
-
-         auto pfactory = this->factory();
-
-
-         nano_idn_windows_common_factory(pfactory);
-
-
-         return;
-
-
-#endif
-
-      }
-      else if (scopedstrComponent == "nano_user")
-      {
-
-
-#if defined(WINDOWS_DESKTOP)
-
-
-         auto pfactory = this->factory();
-
-         nano_user_win32_factory(pfactory);
-
-         return;
-         
-#elif defined(UNIVERSAL_WINDOWS)
-
-
-         auto pfactory = this->factory();
-
-
-         nano_user_universal_windows_factory(pfactory);
-
-
-         return;
-
-#elif defined(MACOS)
-         
-         auto pfactory = this->factory();
-
-         nano_user_macos_factory(pfactory);
-
-         return;
-         
-#elif defined(APPLE_IOS)
-
-         return;
-
-#endif
+         return true;
 
       }
 
+//      else if (scopedstrComponent == "nano_user")
+//      {
+//
+//
+//#if defined(WINDOWS_DESKTOP)
+//
+//
+//         auto pfactory = this->factory();
+//
+//         nano_user_win32_factory(pfactory);
+//
+//         return;
+//         
+//#elif defined(UNIVERSAL_WINDOWS)
+//
+//
+//         auto pfactory = this->factory();
+//
+//
+//         nano_user_universal_windows_factory(pfactory);
+//
+//
+//         return;
+//
+//#elif defined(MACOS)
+//         
+//         auto pfactory = this->factory();
+//
+//         nano_user_macos_factory(pfactory);
+//
+//         return;
+//         
+//#elif defined(APPLE_IOS)
+//
+//         return;
+//
+//#endif
+//
+//      }
+//      else if (scopedstrComponent == "nano_user")
+//      {
+//
+//
+//#if defined(WINDOWS_DESKTOP)
+//
+//
+//         auto pfactory = this->factory();
+//
+//         nano_user_win32_factory(pfactory);
+//
+//         return;
+//
+//#elif defined(UNIVERSAL_WINDOWS)
+//
+//
+//         auto pfactory = this->factory();
+//
+//
+//         nano_user_universal_windows_factory(pfactory);
+//
+//
+//         return;
+//
+//#elif defined(MACOS)
+//
+//         auto pfactory = this->factory();
+//
+//         nano_user_macos_factory(pfactory);
+//
+//         return;
+//
+//#elif defined(APPLE_IOS)
+//
+//         return;
+//
+//#endif
+//
+//      }
 
-      node()->on_component_factory(scopedstrComponent);
-
+      return false;
 
    }
 

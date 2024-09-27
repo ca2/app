@@ -2998,14 +2998,11 @@ return false;
    }
 
 
-void node::on_component_factory(const ::scoped_string & scopedstrComponent)
+bool node::defer_component_factory(const ::scoped_string & scopedstrComponent)
 {
    
-   ::string strComponentDefaultImplementation = this->default_component_implementation(scopedstrComponent);
-   
-   auto pfactory = system()->factory(scopedstrComponent, strComponentDefaultImplementation);
-   
-   pfactory->merge_to_global_factory();
+
+   return false;
 
 }
    

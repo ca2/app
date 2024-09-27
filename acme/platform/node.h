@@ -1007,7 +1007,7 @@ namespace acme
       virtual int performance_core_count();
       virtual int efficiency_core_count();
 
-      virtual void on_component_factory(const ::scoped_string & scopedstrComponent);
+      virtual bool defer_component_factory(const ::scoped_string & scopedstrComponent);
 
       virtual void detached_command(const ::scoped_string & scopedstrCommand, const ::file::path & pathLog);
 

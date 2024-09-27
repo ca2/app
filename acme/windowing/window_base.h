@@ -110,7 +110,7 @@ namespace windowing
       virtual void create_window();
       virtual void _create_window();
 
-               virtual void on_create();
+               virtual void on_create_window();
 
                virtual void nano_window_on_destroy();
 

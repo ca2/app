@@ -11,7 +11,7 @@ namespace nano {
 namespace graphics {
 
 class icon :
-virtual public ::nano::user::object{
+virtual public ::nano::graphics::object{
   public:
 
     //::memory_file_pointer      m_pfile;

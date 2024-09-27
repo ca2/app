@@ -198,6 +198,14 @@ namespace windowing_system
     }
 
 
+    bool windowing_system::dark_mode()
+    {
+
+       return false;
+
+    }
+
+
     void windowing_system::_do_tasks()
     {
 

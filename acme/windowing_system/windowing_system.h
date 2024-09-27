@@ -50,6 +50,10 @@ namespace windowing_system
 
 
        virtual void on_system_dark_mode_change(bool bDarkMode, const ::color::color & colorBackground = ::color::transparent);
+       
+       
+       virtual bool dark_mode();
+
 
 
     };

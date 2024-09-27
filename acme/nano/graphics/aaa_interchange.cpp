@@ -332,17 +332,17 @@ void interchange::create_drawing_objects()
       
    }
    
-   m_pbrushWindow = ::nano::user::create_solid_brush(this, m_colorWindow);
+   m_pbrushWindow = ::nano::graphics::create_solid_brush(this, m_colorWindow);
    
-   m_pbrushText = ::nano::user::create_solid_brush(this, m_colorText);
+   m_pbrushText = ::nano::graphics::create_solid_brush(this, m_colorText);
    
-   m_pbrushHyperlink = ::nano::user::create_solid_brush(this, m_colorHyperlink);
+   m_pbrushHyperlink = ::nano::graphics::create_solid_brush(this, m_colorHyperlink);
    
-   m_pbrushHyperlinkHover = ::nano::user::create_solid_brush(this, m_colorHyperlinkHover);
+   m_pbrushHyperlinkHover = ::nano::graphics::create_solid_brush(this, m_colorHyperlinkHover);
    
-   m_ppenBorder = ::nano::user::create_pen(this, 1, m_colorText);
+   m_ppenBorder = ::nano::graphics::create_pen(this, 1, m_colorText);
    
-   m_ppenBorderFocus = ::nano::user::create_pen(this, 1, m_colorFocus);
+   m_ppenBorderFocus = ::nano::graphics::create_pen(this, 1, m_colorFocus);
    
 }
 

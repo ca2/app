@@ -760,14 +760,14 @@ void task::post_procedure(const ::procedure & procedure)
 
    }
 
-   if (is_current_task())
-   {
+   //if (is_current_task())
+   //{
 
-      procedure();
+   //   procedure();
 
-      return;
+   //   return;
 
-   }
+   //}
 
    {
 

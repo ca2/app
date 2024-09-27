@@ -352,6 +352,8 @@ void interchange::update_drawing_objects()
 {
    
    delete_drawing_objects();
+
+   nano()->graphics();
    
    create_drawing_objects();
    
@@ -945,6 +947,13 @@ void interchange::do_asynchronously()
 {
    
    //m_pwindowbase->do_asynchronously();
+
+   main_post([this]()
+      {
+
+         do_synchronously();
+
+});
    
 }
 

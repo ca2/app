@@ -10,7 +10,7 @@
 namespace nano {
 namespace graphics {
 
-class icon :
+class CLASS_DECL_ACME icon :
 virtual public ::nano::graphics::object{
   public:
 

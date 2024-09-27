@@ -44,6 +44,7 @@ public:
    ::nano::archive::archive*archive();
    ::nano::compress::compress*compress();
    ::nano::dynamic_library::dynamic_library*dynamic_library();
+   ::nano::graphics::graphics*graphics();
    ::nano::http::http*http();
    ::nano::idn::idn*idn();
    ::nano::shell::shell*shell();

@@ -1,8 +1,17 @@
 //
-// Created by camilo on 9/26/24.
+// Created by camilo on 2024-09-26 00:32 <3ThomasBorregaardSorensen!!
 //
+#pragma once
 
-#ifndef __H
-#define __H
 
-#endif //__H
+
+
+namespace windowing
+
+    {
+
+
+class window_base;
+
+
+}

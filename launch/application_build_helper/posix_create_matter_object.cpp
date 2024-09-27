@@ -9,14 +9,14 @@
 #include "acme/operating_system/process.h"
 #include "acme/platform/ini.h"
 #include "acme/platform/node.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/string/str.h"
 #include "acme/platform/system.h"
 #ifdef WINDOWS_DESTKOP
 #include <direct.h>
 #endif
 #include "application_build_helper.h"
 //#include "acme/platform/system.h"
-//#include "acme/primitive/collection/string_array.h"
+//#include "acme/prototype/collection/string_array.h"
 //#include "_factory.h"
 
 namespace application_build_helper

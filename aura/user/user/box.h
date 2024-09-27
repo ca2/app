@@ -96,8 +96,8 @@ namespace user
       void on_command(::message::command * pcommand) override;
 
 
-      virtual bool on_set_parent(::user::primitive * puiParent) override;
-      virtual bool on_before_set_parent(::user::primitive * pinterface) override;
+      virtual bool on_set_parent(::user::prototype * puiParent) override;
+      virtual bool on_before_set_parent(::user::prototype * pinterface) override;
 
 
       //virtual bool parent_is_local_data();

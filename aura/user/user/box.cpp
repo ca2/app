@@ -6,7 +6,7 @@
 #include "acme/platform/scoped_restore.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/user/user/_text_stream.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/message/simple_command.h"
@@ -961,7 +961,7 @@ namespace user
    }
 
 
-   bool box::on_before_set_parent(::user::primitive * puiParent)
+   bool box::on_before_set_parent(::user::prototype * puiParent)
    {
 
       if (!::user::interaction::on_before_set_parent(puiParent))
@@ -978,7 +978,7 @@ namespace user
    }
 
 
-   bool box::on_set_parent(::user::primitive * puiParent)
+   bool box::on_set_parent(::user::prototype * puiParent)
    {
 
       if(!::user::interaction::on_set_parent(puiParent))

@@ -3,7 +3,7 @@
 //
 #include "framework.h"
 #include "pixmap.h"
-//#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
 
 
 #if defined(WINDOWS_DESKTOP)

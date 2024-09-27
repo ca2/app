@@ -2,7 +2,7 @@
 
 
 #include "aura/graphics/image/icon.h"
-#include "acme/primitive/text/text.h"
+#include "acme/prototype/text/text.h"
 #include "apex/database/key.h"
 
 

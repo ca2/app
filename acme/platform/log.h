@@ -7,7 +7,7 @@
 #include "acme/platform/logger.h"
 
 
-// ////#include "acme/primitive/primitive/object.h"
+// ////#include "acme/prototype/prototype/object.h"
 //
 //
 // class logger :

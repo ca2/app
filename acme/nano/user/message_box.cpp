@@ -3,11 +3,11 @@
 // Generalization by camilo on 31/01/2022 14:53 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "button.h"
-#include "device.h"
-#include "icon.h"
 #include "message_box.h"
 #include "still.h"
 #include "window_implementation.h"
+#include "acme/nano/graphics/device.h"
+#include "acme/nano/graphics/icon.h"
 #include "acme/nano/user/details_window.h"
 #include "acme/nano/user/popup_button.h"
 #include "acme/operating_system/console_message_box.h"
@@ -18,6 +18,7 @@
 #include "acme/platform/system.h"
 #include "acme/user/user/mouse.h"
 #include "acme/_operating_system.h"
+#include "windowing/window_base.h"
 
 
 bool is_ui_possible();
@@ -36,6 +37,11 @@ message_box::message_box()
 
    m_strLabelDetails = "Details...";
 
+   m_bMinimizeBox = false;
+   m_bMaximizeBox = false;
+   m_bResizeable = false;
+
+
 }
 
 
@@ -46,7 +52,7 @@ message_box::~message_box()
 }
 
 
-void message_box::on_draw(::nano::user::device * pnanodevice)
+void message_box::on_draw(::nano::graphics::device * pnanodevice)
 {
 
 
@@ -122,7 +128,7 @@ void message_box::defer_create_details_still()
 
 }
 
-void message_box::set_icon(::nano::user::icon* picon)
+void message_box::set_icon(::nano::graphics::icon* picon)
 {
    m_picon = picon;
 //    if(!picon)
@@ -145,7 +151,7 @@ void message_box::calculate_size()
    //int wScreen = 1280;
    //int hScreen = 768;
 
-   auto sizeScreen = m_pnanouserwindowimplementation->get_main_screen_size();
+   auto sizeScreen = m_pwindowbase->get_main_screen_size();
 
    //operating_system_get_main_screen_size(wScreen, hScreen);
 
@@ -170,7 +176,7 @@ void message_box::calculate_size()
 }
 
 
-void message_box::initialize_conversation(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::user::icon * picon)
+void message_box::initialize_conversation(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
 {
    
    conversation_message::initialize_conversation(strMessage, strTitle, emessagebox, strDetails, picon);
@@ -267,7 +273,7 @@ void message_box::initialize_conversation(const ::string & strMessage, const ::s
 //void message_box::initialize_message_box(const ::string & strMessage, const string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
 //{
 //
-//   m_functionClose = [this](nano::user::window * pwindow)
+//   m_functionClose = [this](nano::user::interchange * pinterchange)
 //   {
 //
 //      m_psequence->on_sequence();
@@ -289,7 +295,7 @@ void message_box::initialize_conversation(const ::string & strMessage, const ::s
 //void message_box::do_message_box(const ::string& strMessage, const string& strTitle, const ::e_message_box& emessagebox, const ::string & strDetails)
 //{
 //
-//   m_functionClose = [this](nano::user::window* pwindow)
+//   m_functionClose = [this](nano::user::interchange* pinterchange)
 //   {
 //
 //      m_psequence->on_sequence();
@@ -306,8 +312,20 @@ void message_box::initialize_conversation(const ::string & strMessage, const ::s
 //}
 
 
-void message_box::on_create()
+   void message_box::on_before_create_window(::windowing::window_base * pwindowbase)
 {
+
+   // pwindowbase->m_bMinimizeBox = false;
+   // pwindowbase->m_bMaximizeBox = false;
+   // pwindowbase->m_bResizeable = false;
+
+}
+
+
+void message_box::on_create_window()
+{
+
+   ::nano::user::interchange::on_create_window();
 
    int x = 25;
 
@@ -431,7 +449,7 @@ void message_box::on_right_click(const ::payload& payload, ::user::mouse * pmous
    if (pmouse->m_pointHost.y() < 48)
    {
 
-      m_pnanouserwindowimplementation->defer_show_system_menu(pmouse);
+      m_pwindowbase->defer_show_system_menu(pmouse);
 
       return;
 
@@ -439,10 +457,10 @@ void message_box::on_right_click(const ::payload& payload, ::user::mouse * pmous
 
    auto pbutton = __create_new < popup_button >();
 
-   pbutton->m_functionClose = [this](::nano::user::window * pwindow)
+   pbutton->m_functionClose = [this](::nano::user::interchange * pinterchange)
    {
 
-      auto result = pwindow->m_payloadResult.as_atom();
+      auto result = pinterchange->m_payloadResult.as_atom();
 
       if (result == e_dialog_result_yes)
       {
@@ -478,7 +496,7 @@ bool message_box::is_popup_window() const
 } // namespace nano
 
 
-CLASS_DECL_ACME pointer< ::sequencer < ::conversation > > message_box_sequencer(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::user::icon * picon)
+CLASS_DECL_ACME pointer< ::sequencer < ::conversation > > message_box_sequencer(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
    if (::is_null(pparticle))
@@ -562,10 +580,10 @@ CLASS_DECL_ACME pointer< ::sequencer < ::conversation > > message_box_sequencer(
 ////
 ////   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
 ////
-////   pmessagebox->m_functionClose = [&idResult, &event](nano::user::window * pwindow)
+////   pmessagebox->m_functionClose = [&idResult, &event](nano::user::interchange * pinterchange)
 ////   {
 ////
-////      idResult = pwindow->m_atomResult;
+////      idResult = pinterchange->m_atomResult;
 ////
 ////      event.SetEvent();
 ////
@@ -593,7 +611,7 @@ CLASS_DECL_ACME pointer< ::sequencer < ::conversation > > message_box_sequencer(
 
 
 
-CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::user::icon * picon)
+CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
    if (::is_null(pparticle))
@@ -662,10 +680,10 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
 ////
 ////   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
 ////
-////   pmessagebox->m_functionClose = [&idResult, &event](nano::user::window * pwindow)
+////   pmessagebox->m_functionClose = [&idResult, &event](nano::user::interchange * pinterchange)
 ////   {
 ////
-////      idResult = pwindow->m_atomResult;
+////      idResult = pinterchange->m_atomResult;
 ////
 ////      event.SetEvent();
 ////
@@ -693,7 +711,7 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
 
 
 
-CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload & payload) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::user::icon * picon)
+CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload & payload) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon)
 {
 
    auto pmessagebox = ::place(new ::nano::user::message_box_conversation_message());
@@ -750,10 +768,10 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload 
          pmessagebox->m_strDetails,
          pmessagebox->m_picon);
 
-      pnanomessagebox->m_functionClose = [ pmessagebox ](::nano::user::window * pwindow)
+      pnanomessagebox->m_functionClose = [ pmessagebox ](::nano::user::interchange * pinterchange)
       {
       
-         auto result = pwindow->m_payloadResult;
+         auto result = pinterchange->m_payloadResult;
          
          if(pmessagebox->m_function)
          {

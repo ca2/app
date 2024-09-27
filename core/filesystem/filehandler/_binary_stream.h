@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/primitive/collection/_array_binary_stream.h"
+#include "acme/prototype/collection/_array_binary_stream.h"
 
 
 // template < typename FILE >

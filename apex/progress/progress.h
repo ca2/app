@@ -14,7 +14,7 @@ namespace progress
    public:
 
 
-      progress(::user::primitive * pprimitiveParent, const ::string & strTitle, ::collection::count iStepCount);
+      progress(::user::prototype * pprimitiveParent, const ::string & strTitle, ::collection::count iStepCount);
 
       ~progress();
 

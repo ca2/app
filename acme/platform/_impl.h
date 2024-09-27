@@ -300,7 +300,7 @@ const char * memory_counter_id(T * pthis)
 //
 ////#ifndef __DEBUG
 ////
-////#include "acme/primitive/primitive/block.inl"
+////#include "acme/prototype/prototype/block.inl"
 ////
 ////#endif // !__DEBUG
 //

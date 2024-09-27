@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "acme/parallelization/mutex.h"
-#include "acme/primitive/collection/int_map.h"
-#include "acme/primitive/collection/string_map.h"
-#include "acme/primitive/primitive/factory.h"
-#include "acme/primitive/geometry2d/matrix.h"
+#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/string_map.h"
+#include "acme/prototype/prototype/factory.h"
+#include "acme/prototype/geometry2d/matrix.h"
 
 
 //

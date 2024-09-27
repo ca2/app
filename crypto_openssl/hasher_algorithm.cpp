@@ -2,7 +2,7 @@
 #include "hasher_algorithm.h"
 #include "hasher.h"
 ////#include "acme/exception/exception.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 
 
 namespace crypto_openssl

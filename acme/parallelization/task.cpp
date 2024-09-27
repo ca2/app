@@ -15,6 +15,8 @@
 #include "acme/exception/_text_stream.h"
 #include "acme/_operating_system.h"
 #include "acme/operating_system/parallelization.h"
+#include "windowing/window_base.h"
+#include "windowing_system/windowing_system.h"
 
 
 extern bool g_bIntermediateThreadReferencingDebugging;
@@ -356,17 +358,24 @@ void task::main()
 
       run_posted_procedures();
 
-      while (::nano::user::window_implementation::nanowindowimplementationa().has_element())
+      // ITCN?   Is This Code Needed?
+
+      auto windowbasea = system()->windowing_system()->m_windowbasea;
+
+      //while (::windowing::window_base::nanowindowimplementationa().has_element())
       {
 
-         for (auto & pimplementation : ::nano::user::window_implementation::nanowindowimplementationa())
+         //for (auto & pimplementation : ::windowing::window_base::nanowindowimplementationa())
+         for (auto & pwindowbase : windowbasea)
          {
 
-            pimplementation->implementation_message_loop_step();
+            //pwindowbase->implementation_message_loop_step();
 
          }
 
       }
+
+      // ITCN?-END   Is This Code Needed? -end
 
    }
 

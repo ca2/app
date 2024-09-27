@@ -23,8 +23,8 @@
 #include "acme/parallelization/install_mutex.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/exception/interface_only.h"
-//#include "acme/primitive/collection/array.h"
-//#include "acme/primitive/collection/string_array.h"
+//#include "acme/prototype/collection/array.h"
+//#include "acme/prototype/collection/string_array.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/user/button.h"
 #include "acme/nano/user/message_box.h"
@@ -102,7 +102,7 @@ namespace acme
 
       //m_pWindowingWin32Node = nullptr;
 
-      m_bOperatingSystemDarkMode = false;
+      //m_bOperatingSystemDarkMode = false;
 
       m_pthemecolors = nullptr;
 
@@ -1057,128 +1057,122 @@ namespace acme
    }
 
 
-   ::color::color node::get_system_color(enum_system_color esystemcolor)
-   {
-
-      throw ::interface_only();
-
-      return argb(0, 0, 0, 0);
-
-   }
 
 
-   bool node::dark_mode() const 
-   { 
-      
-      return m_bOperatingSystemDarkMode;
-   
-   }
+   // bool node::dark_mode() const
+   // {
+   //
+   //    return m_bOperatingSystemDarkMode;
+   //
+   // }
+   //
 
-
-   ::os_theme_colors * node::_new_os_theme_colors()
-   {
-
-      return new os_theme_colors();
-
-   }
-
-
-   ::os_theme_colors * node::_get_os_theme_colors()
-   {
-
-      if(!m_pthemecolors)
-      {
-
-         _fetch_user_color();
-
-      }
-
-      return m_pthemecolors;
-
-   }
+   // ::os_theme_colors * node::_new_os_theme_colors()
+   // {
+   //
+   //    return new os_theme_colors();
+   //
+   // }
+   //
+   //
+   // ::os_theme_colors * node::_get_os_theme_colors()
+   // {
+   //
+   //    if(!m_pthemecolors)
+   //    {
+   //
+   //       _fetch_user_color();
+   //
+   //    }
+   //
+   //    return m_pthemecolors;
+   //
+   // }
 
 
 
-   void node::_fill_os_theme_colors(::os_theme_colors * pthemecolors)
-   {
-
-      pthemecolors->m_colorBack = argb(255, 255, 255, 255);
-      pthemecolors->m_colorFace = argb(255, 128, 128, 128);
-      pthemecolors->m_colorFore = argb(255, 0, 0, 0);
-
-   }
-
-
-   void node::_set_os_theme_colors(::os_theme_colors * pthemecolors)
-   {
-
-      m_pthemecolors = pthemecolors;
-
-   }
-
-
-   void node::_del_os_theme_colors(::os_theme_colors * pthemecolors)
-   {
-
-      delete pthemecolors;
-
-   }
-
-
-   void node::_term_os_theme_colors()
-   {
-
-      if(m_pthemecolors)
-      {
-
-         _del_os_theme_colors(m_pthemecolors);
-
-         m_pthemecolors = nullptr;
-
-      }
-
-   }
+   // void node::_fill_os_theme_colors(::os_theme_colors * pthemecolors)
+   // {
+   //
+   //    pthemecolors->m_colorBack = argb(255, 255, 255, 255);
+   //    pthemecolors->m_colorFace = argb(255, 128, 128, 128);
+   //    pthemecolors->m_colorFore = argb(255, 0, 0, 0);
+   //
+   // }
+   //
+   //
+   // void node::_set_os_theme_colors(::os_theme_colors * pthemecolors)
+   // {
+   //
+   //    m_pthemecolors = pthemecolors;
+   //
+   // }
+   //
+   //
+   // void node::_del_os_theme_colors(::os_theme_colors * pthemecolors)
+   // {
+   //
+   //    delete pthemecolors;
+   //
+   // }
 
 
-   void node::_fetch_user_color()
-   {
+   // void node::_term_os_theme_colors()
+   // {
+   //
+   //    if(m_pthemecolors)
+   //    {
+   //
+   //       _del_os_theme_colors(m_pthemecolors);
+   //
+   //       m_pthemecolors = nullptr;
+   //
+   //    }
+   //
+   // }
+   //
+   //
+   // void node::_fetch_user_color()
+   // {
+   //
+   //    if(m_pthemecolors)
+   //    {
+   //
+   //       _del_os_theme_colors(m_pthemecolors);
+   //
+   //       m_pthemecolors = nullptr;
+   //
+   //    }
+   //
+   //    {
+   //
+   //       auto pthemecolors = _new_os_theme_colors();
+   //
+   //       _fill_os_theme_colors(pthemecolors);
+   //
+   //       _set_os_theme_colors(pthemecolors);
+   //
+   //    }
+   //
+   // }
 
-      if(m_pthemecolors)
-      {
 
-         _del_os_theme_colors(m_pthemecolors);
-
-         m_pthemecolors = nullptr;
-
-      }
-
-      {
-
-         auto pthemecolors = _new_os_theme_colors();
-
-         _fill_os_theme_colors(pthemecolors);
-
-         _set_os_theme_colors(pthemecolors);
-
-      }
-
-   }
-
-
-   void node::fetch_user_color()
-   {
-
-      _fetch_user_color();
-
-      auto pthemecolors = _get_os_theme_colors();
-
-      auto colorBack = pthemecolors->m_colorBack;
-
-      system()->background_color(colorBack);
-
-      m_bOperatingSystemDarkMode = colorBack.get_luminance() < 0.5;
-
-   }
+   // void node::fetch_user_color()
+   // {
+   //
+   //
+   //
+   //    _fetch_user_color();
+   //
+   //    auto pthemecolors = _get_os_theme_colors();
+   //
+   //    auto colorBack = pthemecolors->m_colorBack;
+   //
+   //    system()->background_color(colorBack);
+   //
+   //    m_bOperatingSystemDarkMode = colorBack.get_luminance() < 0.5;
+   //
+   // }
 
 
 //   int node::get_simple_ui_darkness()
@@ -1203,28 +1197,28 @@ namespace acme
 //   }
 
 
-   void node::on_operating_system_user_theme_change()
-   {
-
-
-   }
-
-
-   void node::on_operating_system_user_color_change()
-   {
-
-      //auto psystem = system();
-
-      //psystem->signal(id_operating_system_user_color_change);
-
-   }
-
-
-   void node::on_operating_system_font_list_change()
-   {
-
-
-   }
+   // void node::on_operating_system_user_theme_change()
+   // {
+   //
+   //
+   // }
+   //
+   //
+   // void node::on_operating_system_user_color_change()
+   // {
+   //
+   //    //auto psystem = system();
+   //
+   //    //psystem->signal(id_operating_system_user_color_change);
+   //
+   // }
+   //
+   //
+   // void node::on_operating_system_font_list_change()
+   // {
+   //
+   //
+   // }
 
 
 
@@ -1245,34 +1239,34 @@ namespace acme
 
 
 
-   string node::os_get_user_theme()
-   {
-
-      return "";
-
-   }
-
-
-   void node::os_set_user_theme(const ::string & strUserTheme)
-   {
-
-      throw ::interface_only();
-
-      //throw ::interface_only();
-
-   }
+   // string node::os_get_user_theme()
+   // {
+   //
+   //    return "";
+   //
+   // }
 
 
-   void node::os_process_user_theme(string strTheme)
-   {
+   // void node::os_set_user_theme(const ::string & strUserTheme)
+   // {
+   //
+   //    throw ::interface_only();
+   //
+   //    //throw ::interface_only();
+   //
+   // }
 
-   }
 
-
-   void node::os_process_user_icon_theme(string strTheme)
-   {
-
-   }
+   // void node::os_process_user_theme(string strTheme)
+   // {
+   //
+   // }
+   //
+   //
+   // void node::os_process_user_icon_theme(string strTheme)
+   // {
+   //
+   // }
 
 
    bool node::set_wallpaper(::collection::index iScreen, string strLocalImagePath, ::windowing::display * pwindowingdisplay)
@@ -2307,7 +2301,7 @@ return false;
    }
 
 
-   pointer< ::sequencer < ::conversation > > node::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::user::icon * picon)
+   pointer< ::sequencer < ::conversation > > node::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
    {
 
       auto psequencer = __create_new < ::sequencer < ::conversation > >();
@@ -2325,7 +2319,7 @@ return false;
    }
 
 
-   pointer< ::sequencer < ::conversation > > node::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::user::icon * picon)
+   pointer< ::sequencer < ::conversation > > node::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
    {
 
       auto psequencer = __create_new < ::sequencer < ::conversation > >();
@@ -4258,14 +4252,14 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
-   void node::set_dark_mode(bool bDarkMode)
-   {
-
-      throw ::interface_only();
-
-      //node()->set_dark_mode(bDarkMode);
-
-   }
+   // void node::set_dark_mode(bool bDarkMode)
+   // {
+   //
+   //    throw ::interface_only();
+   //
+   //    //node()->set_dark_mode(bDarkMode);
+   //
+   // }
 
 
    void node::file_open(const ::file::path & pathTarget, const ::string & strParams, const ::file::path & pathFolder)

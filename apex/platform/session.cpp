@@ -8,12 +8,12 @@
 #include "acme/constant/user_key.h"
 #include "acme/constant/message.h"
 ////#include "acme/exception/exception.h"
-#include "acme/primitive/primitive/url.h"
+#include "acme/prototype/prototype/url.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/handler/request.h"
 #include "acme/platform/system_setup.h"
-#include "acme/primitive/data/listener.h"
-#include "acme/primitive/text/context.h"
+#include "acme/prototype/data/listener.h"
+#include "acme/prototype/text/context.h"
 #include "apex/filesystem/fs/fs.h"
 #include "apex/filesystem/fs/ifs.h"
 #include "apex/filesystem/fs/link.h"
@@ -1975,7 +1975,7 @@ namespace apex
    }
 
 
-   ::user::primitive* session::get_user_interaction_host()
+   ::user::prototype* session::get_user_interaction_host()
    {
 
       return m_puserprimitiveHost;
@@ -1983,7 +1983,7 @@ namespace apex
    }
 
 
-   ::user::primitive * session::get_host_primitive()
+   ::user::prototype * session::get_host_primitive()
    {
 
       return m_puserprimitiveHost;

@@ -4,8 +4,8 @@
 
 #include "path.h"
 
-//#include "acme/primitive/primitive/pointer.h"
-#include "acme/primitive/collection/int_map.h"
+//#include "acme/prototype/prototype/pointer.h"
+#include "acme/prototype/collection/int_map.h"
 
 
 namespace draw2d

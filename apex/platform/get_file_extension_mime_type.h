@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/primitive/collection/string_array.h"
+#include "acme/prototype/collection/string_array.h"
 
 
 class CLASS_DECL_APEX get_file_extension_mime_type :

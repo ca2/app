@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/_collection.h"
+#include "acme/prototype/geometry2d/_collection.h"
 
 
 namespace write_text

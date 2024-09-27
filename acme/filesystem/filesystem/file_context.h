@@ -1,11 +1,11 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 #include "acme/filesystem/file/plain_text_file_options.h"
 #include "file_context_interface.h"
-////#include "acme/primitive/primitive/object.h"
-//#include "acme/primitive/collection/string_array.h"
+////#include "acme/prototype/prototype/object.h"
+//#include "acme/prototype/collection/string_array.h"
 
 
 class CLASS_DECL_ACME file_context :

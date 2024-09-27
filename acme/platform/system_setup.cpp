@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "system_setup.h"
 #include "library.h"
-//#include "acme/primitive/primitive/element.h"
+//#include "acme/prototype/prototype/element.h"
 
 
 ::system_setup * system_setup::s_psetupList = nullptr;

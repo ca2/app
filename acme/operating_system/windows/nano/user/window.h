@@ -59,13 +59,13 @@ namespace windows
 
             virtual void _draw(HDC hdc);
 
-            //void on_draw(::nano::user::device * pnanodevice) override;
+            //void on_draw(::nano::graphics::device * pnanodevice) override;
 
             void on_char(int iChar) override;
 
             //bool is_active() override;
 
-            //virtual void draw_children(::nano::user::device * pnanodevice);
+            //virtual void draw_children(::nano::graphics::device * pnanodevice);
 
             void delete_drawing_objects() override;
 

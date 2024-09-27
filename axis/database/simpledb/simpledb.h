@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/get_memory.h"
+#include "acme/prototype/prototype/get_memory.h"
 #include "apex/database/client.h"
 
 

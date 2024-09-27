@@ -14,7 +14,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #include "framework.h"
 #include "fft.h"
 #include "fft_guts.h"
-#include "acme/primitive/mathematics/complex.h"
+#include "acme/prototype/mathematics/complex.h"
 #include <math.h>
 
 /* The guts header contains all the multiplication and addition macros that are defined for

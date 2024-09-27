@@ -2,9 +2,9 @@
 #pragma once
 
 
-//#include "acme/primitive/mathematics/c_number.h"
-#include "acme/primitive/primitive/atom.h"
-#include "acme/primitive/geometry2d/point.h"
+//#include "acme/prototype/mathematics/c_number.h"
+#include "acme/prototype/prototype/atom.h"
+#include "acme/prototype/geometry2d/point.h"
 
 
 struct MESSAGE

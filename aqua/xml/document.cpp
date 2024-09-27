@@ -4,7 +4,7 @@
 #include "exception.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/parsing.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/string/str.h"
 #include "apex/platform/context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 

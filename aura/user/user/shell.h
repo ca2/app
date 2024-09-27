@@ -3,10 +3,10 @@
 
 //#include "acme/filesystem/filesystem/path.h"
 #include "acme/parallelization/task.h"
-#include "acme/primitive/collection/int_map.h"
+#include "acme/prototype/collection/int_map.h"
 #include "acme/platform/auto_pointer.h"
-//#include "acme/primitive/collection/numeric_array.h"
-//#include "acme/primitive/collection/string_array.h"
+//#include "acme/prototype/collection/numeric_array.h"
+//#include "acme/prototype/collection/string_array.h"
 
 
 namespace user

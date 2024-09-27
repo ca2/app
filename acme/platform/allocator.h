@@ -4,7 +4,7 @@
 
 #include "acme/memory/allocator_base.h"
 #include "acme/platform/acme.h"
-#include "acme/primitive/string/c/strdup.h"
+#include "acme/prototype/string/c/strdup.h"
 
 
 namespace allocator

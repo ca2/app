@@ -1,11 +1,11 @@
 #include "framework.h"
 #include "http_socket.h"
 #include "acme/filesystem/file/memory_file.h"
-#include "acme/primitive/primitive/url.h"
+#include "acme/prototype/prototype/url.h"
 #include "acme/platform/system.h"
-//#include "acme/primitive/string/hex.h"
-#include "acme/primitive/string/parse.h"
-#include "acme/primitive/string/str.h"
+//#include "acme/prototype/string/hex.h"
+#include "acme/prototype/string/parse.h"
+#include "acme/prototype/string/str.h"
 #include "apex/constant/idpool.h"
 
 #define HEAVY_HTTP_LOG 0

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "tree_data.h"
 #include "tree.h"
-#include "acme/primitive/data/listener.h"
+#include "acme/prototype/data/listener.h"
 #include "aura/graphics/draw2d/draw2d.h"
 
 
@@ -31,10 +31,10 @@ namespace user
    }
 
 
-   ::user::primitive * tree_data::get_data_bound_impact(::collection::index iImpact)
+   ::user::prototype * tree_data::get_data_bound_impact(::collection::index iImpact)
    {
 
-      return m_usertreeaBound[iImpact].cast < ::user::primitive >();
+      return m_usertreeaBound[iImpact].cast < ::user::prototype >();
 
    }
 

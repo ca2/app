@@ -5,7 +5,7 @@
 ////#include "acme/exception/exception.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 #include "acme/crypto/initializer.h"
 #include "apex/platform/context.h"
 

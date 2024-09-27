@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "database.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/string/base64.h"
+#include "acme/prototype/string/base64.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"

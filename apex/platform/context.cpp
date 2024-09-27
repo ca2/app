@@ -14,14 +14,14 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/ini.h"
 #include "acme/handler/request.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/string/str.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/dir_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/networking/http/context.h"
 
 
-#include "acme/primitive/time/_text_stream.h"
+#include "acme/prototype/time/_text_stream.h"
 
 
 namespace apex

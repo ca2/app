@@ -292,7 +292,7 @@ class synchronous_lock;
 //#include "synchronized_process.h"
 //
 //
-//#include "acme/primitive/promise/signalization.h"
+//#include "acme/prototype/promise/signalization.h"
 //
 //
 //#include "acme/platform/synchronized_predicate_routine.h"

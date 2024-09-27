@@ -3,14 +3,14 @@
 #include "acme/exception/interface_only.h"
 //#include "aura/graphics/write_text/_.h"
 #include "aura/graphics/draw2d/graphics.h"
-//#include "acme/primitive/geometry2d/_collection_enhanced.h"
-//#include "acme/primitive/geometry2d/shape_array.h"
-#include "acme/primitive/geometry2d/item.h"
+//#include "acme/prototype/geometry2d/_collection_enhanced.h"
+//#include "acme/prototype/geometry2d/shape_array.h"
+#include "acme/prototype/geometry2d/item.h"
 #include "aura/graphics/write_text/draw_text.h"
-#include "acme/primitive/geometry2d/_defer_item.h"
+#include "acme/prototype/geometry2d/_defer_item.h"
 #include "aura/graphics/write_text/_defer_geometry2d_item.h"
 #include "path_shape.h"
-//#include "acme/primitive/geometry2d/_defer_shape.h"
+//#include "acme/prototype/geometry2d/_defer_shape.h"
 
 
 point_f64 arc_point(double dAngle, size_f64 sizeRadius)

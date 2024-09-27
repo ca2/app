@@ -1,8 +1,8 @@
 #pragma once
 
 
-////#include "acme/primitive/primitive/object.h"
-//#include "acme/primitive/collection/procedure_array.h"
+////#include "acme/prototype/prototype/object.h"
+//#include "acme/prototype/collection/procedure_array.h"
 
 
 // <3ThomasBS_ [THE MAN], [THE ONLY], [THE GOD], [THE ONLY GOD], Mummi the Goddess, and bilbo my pet mate :)

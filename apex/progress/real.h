@@ -2,8 +2,8 @@
 
 
 
-#include "acme/primitive/mathematics/scalar.h"
-////#include "acme/primitive/primitive/object.h"
+#include "acme/prototype/mathematics/scalar.h"
+////#include "acme/prototype/prototype/object.h"
 
 
 namespace progress

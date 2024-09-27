@@ -1,9 +1,9 @@
 // Created by camilo on 2022-02-06 09:28 <3ThomasBorregaardSorensen
 #include "framework.h"
-#include "icon.h"
+#include "acme/nano/graphics/icon.h"
 #include "still.h"
-#include "window.h"
-#include "device.h"
+#include "interchange.h"
+#include "acme/nano/graphics/device.h"
 #include "button.h"
 #include "acme/user/user/mouse.h"
 
@@ -23,7 +23,7 @@ still::~still()
 
 
 
-void still::on_draw(::nano::user::device * pnanodevice)
+void still::on_draw(::nano::graphics::device * pnanodevice)
 {
 
    if(m_picon)
@@ -36,18 +36,18 @@ void still::on_draw(::nano::user::device * pnanodevice)
 
    }
 
-   ::pointer<::nano::user::pen>ppenBorder;
+   ::pointer<::nano::graphics::pen>ppenBorder;
 
-   if (m_pnanowindow->m_pchildHover == this || m_pnanowindow->m_pchildFocus == this)
+   if (m_pinterchange->m_pchildHover == this || m_pinterchange->m_pchildFocus == this)
    {
 
-      ppenBorder = m_pnanowindow->m_ppenBorderFocus;
+      ppenBorder = m_pinterchange->m_ppenBorderFocus;
 
    }
    else
    {
 
-      ppenBorder = m_pnanowindow->m_ppenBorder;
+      ppenBorder = m_pinterchange->m_ppenBorder;
 
    }
 
@@ -62,11 +62,11 @@ void still::on_draw(::nano::user::device * pnanodevice)
       rectangleText,
       e_align_center,
       e_draw_text_single_line,
-      m_pnanowindow->m_pbrushWindow,
+      m_pinterchange->m_pbrushWindow,
       m_bHyperlink ? (has_capture() ?
-         m_pnanowindow->m_pbrushHyperlinkHover :
-         m_pnanowindow->m_pbrushHyperlink) : m_pnanowindow->m_pbrushText,
-      m_pnanowindow->m_pfont);
+         m_pinterchange->m_pbrushHyperlinkHover :
+         m_pinterchange->m_pbrushHyperlink) : m_pinterchange->m_pbrushText,
+      m_pinterchange->m_pfont);
 
 }
 
@@ -77,14 +77,14 @@ void still::on_char(int iChar)
    if (iChar == '\r' || iChar == ' ')
    {
 
-      m_pnanowindow->on_click(m_atom, nullptr);
+      m_pinterchange->on_click(m_atom, nullptr);
 
    }
 
 }
 
 
-void still::set_icon(::nano::user::icon * picon)
+void still::set_icon(::nano::graphics::icon * picon)
 {
 
    m_picon = picon;
@@ -98,19 +98,19 @@ void still::on_mouse_move(::user::mouse * pmouse)
    if (m_bHyperlink)
    {
 
-      if (m_pnanowindow->m_pchildHover == this)
+      if (m_pinterchange->m_pchildHover == this)
       {
 
          auto r = m_rectangle;
 
-         r += m_pnanowindow->m_rectangle.top_left();
+         r += m_pinterchange->m_rectangle.top_left();
 
          if (!r.contains(pmouse->m_pointAbsolute))
          {
 
-            m_pnanowindow->m_pchildHover = nullptr;
+            m_pinterchange->m_pchildHover = nullptr;
 
-            m_pnanowindow->redraw();
+            m_pinterchange->redraw();
 
          }
 
@@ -118,9 +118,9 @@ void still::on_mouse_move(::user::mouse * pmouse)
       else
       {
 
-         m_pnanowindow->m_pchildHover = this;
+         m_pinterchange->m_pchildHover = this;
 
-         m_pnanowindow->redraw();
+         m_pinterchange->redraw();
 
       }
 
@@ -129,7 +129,7 @@ void still::on_mouse_move(::user::mouse * pmouse)
 }
 
 
-bool still::is_focusable() const
+bool still::is_focusable()
 {
 
    return m_bHyperlink;
@@ -153,9 +153,9 @@ void still::resize_to_fit()
 child::resize_to_fit();
 
 //
-//   auto pdevice = __create < ::nano::user::device >();
+//   auto pdevice = __create < ::nano::graphics::device >();
 //
-//   auto size = pdevice->get_text_extents(m_strText, m_pnanowindow->m_pfont);
+//   auto size = pdevice->get_text_extents(m_strText, m_pinterchange->m_pfont);
 //
 //   m_rectangle.right() = m_rectangle.left() + size.cx();
 //

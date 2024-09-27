@@ -7,8 +7,8 @@
 
 
 #include "acme/platform/_c.h"
-#include "acme/primitive/primitive/interlocked_count.h"
-#include "acme/primitive/string/c_string.h"
+#include "acme/prototype/prototype/interlocked_count.h"
+#include "acme/prototype/string/c_string.h"
 
 
 CLASS_DECL_ACME::i64 new_reference_referer_serial();

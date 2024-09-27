@@ -2,7 +2,7 @@
 #include "_opengl.h"
 #include "draw2d.h"
 #include "acme/exception/resource.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 
 
 //CLASS_DECL_DRAW2D_OPENGL void initialize_opengl();

@@ -3,7 +3,7 @@
 #include "file_system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/parallelization/event.h"
-#include "acme/primitive/string/_string.h"
+#include "acme/prototype/string/_string.h"
 #include "acme/filesystem/watcher/watcher.h"
 #include "acme/platform/application.h"
 #include "acme/platform/context.h"

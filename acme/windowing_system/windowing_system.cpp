@@ -3,8 +3,13 @@
 //
 #include "framework.h"
 #include "windowing_system.h"
+#include "acme/constant/id.h"
+#include "acme/exception/interface_only.h"
+#include "acme/handler/topic.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/user/user.h"
+#include "acme/windowing/window_base.h"
+#include "platform/system.h"
 
 
 namespace windowing_system
@@ -149,6 +154,47 @@ namespace windowing_system
 
     }
 
+
+    ::color::color windowing_system::get_system_color(enum_system_color esystemcolor)
+    {
+
+        throw ::interface_only();
+
+        return argb(0, 0, 0, 0);
+
+    }
+
+
+    void windowing_system::on_system_dark_mode_change(bool bDarkMode, const ::color::color & colorBackground)
+    {
+
+        if(colorBackground != ::color::transparent)
+        {
+
+            system()->background_color(colorBackground);
+
+        }
+        else
+        {
+
+            system()->set_dark_mode(bDarkMode);
+
+        }
+
+        auto ptopic = ::place(new ::topic(id_application_dark_mode_change));
+
+        for (auto & pwindowbase : m_windowbasea)
+        {
+
+            pwindowbase->handle(ptopic, nullptr);
+
+            pwindowbase->set_need_redraw();
+
+            pwindowbase->post_redraw();
+
+        }
+
+    }
 
 
 } // namespace windowing_system

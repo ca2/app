@@ -13,7 +13,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/string/str.h"
 #include "acme/crypto/crypto.h"
 #include "acme/crypto/rsa.h"
 #include "acme/filesystem/filesystem/dir_context.h"

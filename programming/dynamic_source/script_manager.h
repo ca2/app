@@ -2,8 +2,8 @@
 
 
 #include "acme/parallelization/semaphore.h"
-#include "acme/primitive/collection/string_map.h"
-#include "acme/primitive/geometry2d/size.h"
+#include "acme/prototype/collection/string_map.h"
+#include "acme/prototype/geometry2d/size.h"
 #include "apex/message/channel.h"
 #include "acme/filesystem/watcher/listener.h"
 

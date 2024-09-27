@@ -14,8 +14,8 @@ CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/message_queue.h"
 #include "acme/platform/node.h"
-#include "acme/primitive/time/_text_stream.h"
-#include "acme/primitive/datetime/_text_stream.h"
+#include "acme/prototype/time/_text_stream.h"
+#include "acme/prototype/datetime/_text_stream.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/windowing/window.h"
 

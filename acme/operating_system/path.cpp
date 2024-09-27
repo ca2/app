@@ -5,7 +5,7 @@
 #include "acme/filesystem/file/status.h"
 #include "acme/_operating_system.h"
 #include "acme/operating_system/console.h"
-#include "acme/primitive/collection/map_interface.h"
+#include "acme/prototype/collection/map_interface.h"
 //#if defined( FREEBSD)
 //#define __XSI_VISIBLE 1
 //#endif

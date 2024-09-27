@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "session.h"
 #include "script_manager.h"
-#include "acme/primitive/text/international_locale_schema.h"
+#include "acme/prototype/text/international_locale_schema.h"
 #include "acme/crypto/rsa.h"
 
 

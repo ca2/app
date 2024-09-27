@@ -32,7 +32,7 @@ namespace windows
          }
 
 
-         void pen::update(::nano::user::device* pnanodevice)
+         void pen::update(::nano::graphics::device* pnanodevice)
          {
 
             if (m_bModified)

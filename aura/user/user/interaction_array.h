@@ -43,12 +43,12 @@ namespace user
    public:
 
 
-      DECLARE_ARRAY_OF(primitive_pointer_array, primitive, ::user::primitive);
+      DECLARE_ARRAY_OF(primitive_pointer_array, primitive, ::user::prototype);
 
 
       primitive_pointer_array();
-      primitive_pointer_array(const address_array < ::user::primitive * > & a);
-      primitive_pointer_array(const pointer_array < ::user::primitive > & a)
+      primitive_pointer_array(const address_array < ::user::prototype * > & a);
+      primitive_pointer_array(const pointer_array < ::user::prototype > & a)
       {
 
          m_primitivea.copy(a);
@@ -62,12 +62,12 @@ namespace user
       }
 
 
-      ::user::primitive * find_first_typed(const ::type_atom & typeatom);
-      ::user::primitive * find_first(oswindow oswindow);
+      ::user::prototype * find_first_typed(const ::type_atom & typeatom);
+      ::user::prototype * find_first(oswindow oswindow);
 
 
-      virtual bool get_child(::pointer<::user::primitive>& pprimitive);
-      virtual bool rget_child(::pointer<::user::primitive>& pprimitive);
+      virtual bool get_child(::pointer<::user::prototype>& pprimitive);
+      virtual bool rget_child(::pointer<::user::prototype>& pprimitive);
 
 
    };

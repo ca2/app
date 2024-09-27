@@ -13,6 +13,9 @@ namespace operating_system
    class application;
    class main_window;
 
+   class a_system_menu;
+   class a_system_menu_item;
+
 
 } // namespace operating_system
 

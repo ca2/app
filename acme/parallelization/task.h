@@ -2,13 +2,13 @@
 
 
 //#include "acme/operating_system/error_code.h"
-//#include "acme/primitive/primitive/_u32hash.h"
-//#include "acme/primitive/primitive/function.h"
-//#include "acme/primitive/primitive/object.h"
-//#include "acme/primitive/collection/procedure_array.h"
+//#include "acme/prototype/prototype/_u32hash.h"
+//#include "acme/prototype/prototype/function.h"
+//#include "acme/prototype/prototype/object.h"
+//#include "acme/prototype/collection/procedure_array.h"
 #include "counter.h"
 #include "acme/handler/source.h"
-#include "acme/primitive/data/property_container.h"
+#include "acme/prototype/data/property_container.h"
 #include "acme/platform/implementable.h"
 
 

@@ -73,13 +73,13 @@ namespace apex
       void application_handle(long long l, void * p) override;
 
 
-      void on_operating_system_user_theme_change() override;
-
-
-      void on_operating_system_user_color_change() override;
-
-
-      void on_operating_system_font_list_change() override;
+      // void on_operating_system_user_theme_change() override;
+      //
+      //
+      // void on_operating_system_user_color_change() override;
+      //
+      //
+      // void on_operating_system_font_list_change() override;
 
 
       virtual void defer_innate_ui();

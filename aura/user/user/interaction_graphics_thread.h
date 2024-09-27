@@ -4,7 +4,7 @@
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/synchronization_array.h"
 #include "acme/platform/nanosecond_timer.h"
-#include "acme/primitive/time/frequency.h"
+#include "acme/prototype/time/frequency.h"
 #include "apex/parallelization/thread.h"
 
 

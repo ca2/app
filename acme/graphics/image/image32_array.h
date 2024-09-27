@@ -4,7 +4,7 @@
 #include "image32.h"
 
 
-//#include "acme/primitive/collection/numeric_array.h"
+//#include "acme/prototype/collection/numeric_array.h"
 
 
 //class CLASS_DECL_ACME image32_array :

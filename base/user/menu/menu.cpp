@@ -8,7 +8,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/sequencer.h"
 #include "acme/platform/timer.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/nano/nano.h"
 #include "apex/user/menu/menu.h"
 #include "aqua/xml/document.h"

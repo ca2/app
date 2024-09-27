@@ -109,7 +109,7 @@ return ::property_object::release();
    }
 
 
-   void window::_draw(::nano::user::device * pnanodevice)
+   void window::_draw(::nano::graphics::device * pnanodevice)
    {
 
       m_pinterface->draw(pnanodevice);
@@ -559,7 +559,7 @@ void nano_window_bridge::on_char(int iChar)
 void nano_window_bridge::_on_draw_frame(CGContextRef cg, CGSize sizeFrame)
 {
    
-   ::pointer<quartz2d::nano::user::device>pnanodevice = ::place(new quartz2d::nano::user::device(cg));
+   ::pointer<quartz2d::nano::graphics::device>pnanodevice = ::place(new quartz2d::nano::graphics::device(cg));
    
    m_pwindow->_draw(pnanodevice);
    

@@ -2,9 +2,9 @@
 #include "semaphore.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
-//#include "acme/primitive/time/time.h"
+//#include "acme/prototype/time/time.h"
 ////#include "acme/exception/exception.h"
-#include "acme/primitive/time/timespec.h"
+#include "acme/prototype/time/timespec.h"
 #include "acme/_operating_system.h"
 
 

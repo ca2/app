@@ -9,7 +9,7 @@
 #include "system.h"
 #include "acme/exception/interface_only.h"
 #include "acme/handler/request.h"
-#include "acme/primitive/text/context.h"
+#include "acme/prototype/text/context.h"
 
 
 namespace acme

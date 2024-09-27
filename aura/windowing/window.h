@@ -4,11 +4,10 @@
 
 
 #include "apex/message/channel.h"
-#include "acme/primitive/collection/osdata_array.h"
-#include "acme/primitive/geometry2d/rectangle.h"
-#include "acme/primitive/geometry2d/size.h"
+#include "acme/prototype/collection/osdata_array.h"
+#include "acme/prototype/geometry2d/rectangle.h"
+#include "acme/prototype/geometry2d/size.h"
 #include "acme/windowing/window_base.h"
-
 
 
 namespace windowing
@@ -46,7 +45,7 @@ namespace windowing
       ::sandbox_windowing::window *             m_psandboxwindowingwindow;
       void *                                    m_pWindow4;
 
-      //::pointer<::windowing::display>           m_pdisplay;
+      ::pointer<::windowing::display>           m_pdisplay;
       ::pointer<::user::interaction_impl>       m_puserinteractionimpl;
       string                                    m_strDebug;
       ::pointer<::message_queue>                m_pmessagequeue;
@@ -75,10 +74,7 @@ namespace windowing
 
       void on_initialize_particle() override;
 
-
-      void destroy() override;
-
-
+      
       virtual void window_on_activate();
       virtual void window_on_deactivate();
       virtual void window_on_set_keyboard_focus();
@@ -220,13 +216,6 @@ namespace windowing
       virtual bool is_destroying();
 
 
-//      virtual bool is_window_zoomed();
-
-      //virtual ::pointer < ::operating_system::a_system_menu > create_system_menu();
-      virtual void defer_show_system_menu(::user::mouse * pmouse);
-
-      virtual void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem);
-
       virtual void activate_top_parent();
 
 
@@ -243,9 +232,6 @@ namespace windowing
 
       //virtual void on_visual_applied();
 
-
-
-
       virtual void _on_configure_notify_unlocked(const ::rectangle_i32 & rectangle);
       virtual void _on_reposition_notify_unlocked(const ::point_i32 & point);
 
@@ -254,7 +240,7 @@ namespace windowing
 
       virtual lresult send_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr);
 
-      virtual void post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr);
+      virtual bool post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr);
 
 
       virtual void set_window_text(const ::scoped_string & scopedstr);
@@ -297,7 +283,7 @@ namespace windowing
 
       // Window State Functions
       virtual bool is_this_enabled();
-      virtual void enable_window(bool bEnable = true);
+      virtual bool enable_window(bool bEnable = true);
 
       // the active interaction_impl applies only to top-level (frame windows)
       virtual ::user::interaction * get_active_window();
@@ -399,9 +385,6 @@ namespace windowing
       void user_send(const ::procedure & procedure) override;
       void user_post(const ::procedure & procedure) override;
 
-      void main_send(const ::procedure & procedure) override;
-      void main_post(const ::procedure & procedure) override;
-
       bool is_branch_current() const override;
 
       
@@ -438,7 +421,7 @@ namespace windowing
 
       virtual void window_update_screen();
 
-      virtual bool defer_perform_entire_reposition_process(::user::mouse * pmouse);
+      virtual bool defer_perform_entire_reposition_process();
 
       virtual bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse);
 
@@ -457,6 +440,7 @@ namespace windowing
       ::string get_window_text() override;
 
 
+      virtual void defer_show_system_menu(const ::point_i32 & pointAbsolute);
 
       virtual void pick_browse(const ::function < void(const ::file::path & path) > & callback);
       virtual void pick_media(const char * pszMediaType);
@@ -465,9 +449,9 @@ namespace windowing
 
       virtual void set_opacity(double dOpacity);
 
-      // virtual void window_restore();
-      // virtual void window_minimize();
-      // virtual void window_maximize();
+      virtual void window_restore();
+      virtual void window_minimize();
+      virtual void window_maximize();
 
 
    };

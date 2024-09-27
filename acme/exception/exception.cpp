@@ -2,12 +2,12 @@
 #include "framework.h"
 //#include "exception.h"
 //#include "callstack.h"
-//#include "acme/primitive/string/as_string.h"
+//#include "acme/prototype/string/as_string.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/primitive/atom.h"
+#include "acme/prototype/prototype/atom.h"
 //#include "_api.h"
 #include <stdio.h>
 

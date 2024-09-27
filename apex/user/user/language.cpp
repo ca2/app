@@ -2,8 +2,8 @@
 #include "language.h"
 #include "acme/exception/parsing.h"
 //#include "acme/operating_system.h"
-//#include "acme/primitive/collection/string_array.h"
-#include "acme/primitive/string/str.h"
+//#include "acme/prototype/collection/string_array.h"
+#include "acme/prototype/string/str.h"
 
 
 #define STR_BOM "\xEF\xBB\xBF"

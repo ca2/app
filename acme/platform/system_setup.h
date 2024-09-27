@@ -9,7 +9,7 @@
 
 
 
-//#include "acme/primitive/primitive/pointer.h"
+//#include "acme/prototype/prototype/pointer.h"
 
 
 //#define DECLARE_FACTORY(library) \

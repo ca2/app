@@ -5,7 +5,7 @@
 //#include "acme/memory/plex_heap1.h"
 //#include "acme/memory/plex_heap_impl1.h"
 //#include "apex/platform/app_core.h"
-//#include "acme/primitive/primitive/malloc.h"
+//#include "acme/prototype/prototype/malloc.h"
 //#include "aura/astr.h"
 //#include "acme/platform/static_start_internal.h"
 //#include "aura/os/_os.h"

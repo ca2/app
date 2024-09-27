@@ -2,7 +2,7 @@
 #include "bitmap.h"
 #include "graphics.h"
 #include "acme/exception/interface_only.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 #include "acme/graphics/image/pixmap.h"
 
 

@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/atom.h"
-//#include "acme/primitive/collection/pointer_array.h"
+#include "acme/prototype/prototype/atom.h"
+//#include "acme/prototype/collection/pointer_array.h"
 
 
 namespace html

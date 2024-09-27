@@ -60,25 +60,25 @@ namespace user
 
    }
 
-
-   ::task * element::get_task()
-   {
-
-      return nullptr;
-
-      //auto puserinteraction = get_wnd();
-
-      //if (::is_null(puserinteraction))
-      //{
-
-      //   return get_app();
-
-      //}
-
-      //return puserinteraction->m_pthreadUserInteraction;
-
-   }
-
+   //
+   // ::task * element::get_task()
+   // {
+   //
+   //    return nullptr;
+   //
+   //    //auto puserinteraction = get_wnd();
+   //
+   //    //if (::is_null(puserinteraction))
+   //    //{
+   //
+   //    //   return get_app();
+   //
+   //    //}
+   //
+   //    //return puserinteraction->m_pthreadUserInteraction;
+   //
+   // }
+   //
 
 
    //::user::interaction_impl * element::get_impl() const
@@ -149,8 +149,6 @@ namespace user
    {
 
       ::user::command_update_target::destroy();
-      ::conversation::destroy();
-      ::user::drag_client::destroy();
 
    }
 
@@ -1173,23 +1171,6 @@ namespace user
    }
 
 
-   void element::create_control(::user::interaction * puserinteractionParent, const ::atom & atom)
-   {
-
-      m_atom = atom;
-
-      /*auto estatus =*/ create_child(puserinteractionParent);
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      ///return estatus;
-
-   }
 
 
    enum_control_type element::get_control_type() const
@@ -1210,45 +1191,20 @@ namespace user
    //}
 
 
-   void element::create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom)
+   void element::on_before_create_window(::windowing::window_base * pwindowbase)
    {
 
-      if (!atom.is_empty())
-      {
-
-         m_atom = atom;
-
-      }
-
-      ::e_status estatus;
-
-      if (!puserinteractionParent)
-      {
-
-         //estatus = create_host();
-
-         //create_host(e_parallelization_synchronous);
-
-         create_host();
-
-      }
-      else
-      {
-
-         create_child(puserinteractionParent);
-
-      }
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
 
    }
+
+
+   void element::on_create_window()
+   {
+
+
+
+   }
+
 
 
    //bool element::create_window_ex(::pointer<::user::system>pcs, ::user::interaction * puiParent, const ::atom & atom)
@@ -1621,10 +1577,49 @@ namespace user
    }
 
 
+   void element::set_position(const ::point_i32 & point)
+   {
+
+
+   }
+
+
+   ::rectangle_i32 element::get_window_rectangle()
+   {
+
+      return {};
+
+   }
+
+
+   void element::redraw()
+   {
+
+
+   }
+
+
+   void element::set_capture()
+   {
+
+
+   }
+
+
+   void element::set_cursor(enum_cursor ecursor)
+   {
+
+
+   }
+
+
    void element::edit_on_set_focus(::user::interaction * pinteraction)
    {
 
    }
+
+
+
 
 
    void element::edit_on_kill_focus(::user::interaction * pinteraction)
@@ -2336,6 +2331,14 @@ namespace user
    }
 
 
+   void element::_run_modal_loop()
+   {
+
+
+   }
+
+
+
    void element::message_handler(const ::atom & atom, wparam wparam, lparam lparam)
    {
 
@@ -2591,6 +2594,14 @@ namespace user
       throw ::interface_only();
 
       //return false;
+
+   }
+
+
+   ::user::interaction * element::user_interaction()
+   {
+
+      return nullptr;
 
    }
 
@@ -2975,30 +2986,6 @@ namespace user
    }
 
 
-   ::pointer < ::operating_system::a_system_menu > element::create_system_menu(bool bContextual)
-   {
-
-      auto psystemmenu = ::place(new ::operating_system::a_system_menu());
-
-      psystemmenu->add_item("Minimize", "minimize");
-      if(!bContextual || is_window_zoomed())
-      {
-         psystemmenu->add_item("Restore", "restore");
-      }
-      if(!bContextual || !is_window_zoomed())
-      {
-         psystemmenu->add_item("Maximize", "maximize");
-      }
-      psystemmenu->add_item("Drag to Move","***move");
-      psystemmenu->add_item("Drag to Size", "***size");
-      psystemmenu->add_separator();
-      psystemmenu->add_item("About...", "about_box");
-      psystemmenu->add_separator();
-      psystemmenu->add_item("Close", "close");
-
-      return psystemmenu;
-
-   }
 
 
 
@@ -4022,78 +4009,6 @@ namespace user
    //}
 
 
-   // Text Edit
-   void element::get_text_selection(strsize & iBeg, strsize & iEnd) const
-   {
-
-
-   }
-
-
-   void element::get_text_selection(strsize & iBeg, strsize & iEnd, strsize & iComposingStart, strsize & iComposingEnd) const
-   {
-
-
-   }
-
-
-   ::collection::index element::plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, strsize iSel)
-   {
-
-      return -1;
-
-   }
-
-
-   ::collection::index element::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
-   {
-
-      return -1;
-
-   }
-
-
-   ::collection::index element::plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, strsize iSel)
-   {
-
-      return -1;
-
-   }
-
-
-   ::collection::index element::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
-   {
-
-      return -1;
-
-   }
-
-
-   strsize element::plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::collection::index iColumn)
-   {
-
-      return -1;
-
-   }
-
-
-   strsize element::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, i32 x)
-   {
-
-      return -1;
-
-   }
-
-
-   ::collection::index element::plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, strsize iSel)
-   {
-
-      return -1;
-
-   }
-
-
-
 
    void element::keyboard_focus_OnTimer(i32 iTimer)
    {
@@ -4915,16 +4830,16 @@ namespace user
 
       statement << strType;
 
-      ::string strAtom = m_atom.as_string();
+      // ::string strAtom = m_atom.as_string();
+      //
+      // if(strAtom.has_char() && strAtom != strType)
+      // {
+      //
+      //    statement << "=" << strAtom;
+      //
+      // }
 
-      if(strAtom.has_char() && strAtom != strType)
-      {
-
-         statement << "=" << strAtom;
-
-      }
-
-      statement << "  ";
+      //statement << "  ";
 
       return statement;
 
@@ -4939,6 +4854,20 @@ namespace user
       return raw_trace_statement_prefix(statement);
 
    }
+
+   bool element::has_capture()
+   {
+
+      return false;
+   }
+
+
+   void element::release_capture()
+   {
+
+
+   }
+
 
 
 } // namespace user

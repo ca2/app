@@ -36,31 +36,33 @@ namespace user
 class user;
 
 
-class device;
+//class device;
 class child;
 
 
-class window;
+   class interchange;
+
+//class window;
 
 
-class window_implementation;
+//class window_implementation;
 
 
-class icon;
+//class icon;
 class button;
 class still;
 
    class display;
 
-class brush;
-class pen;
-class font;
-
-
-
-   CLASS_DECL_ACME ::pointer<brush>create_solid_brush(::particle * pparticle, color32_t color);
-   CLASS_DECL_ACME ::pointer<font>create_point_font(::particle * pparticle, int iPoint, enum_font efont, bool bBold = false);
-   CLASS_DECL_ACME ::pointer<pen>create_pen(::particle * pparticle, int iWidth, color32_t color);
+// class brush;
+// class pen;
+// class font;
+//
+//
+//
+//    CLASS_DECL_ACME ::pointer<brush>create_solid_brush(::particle * pparticle, color32_t color);
+//    CLASS_DECL_ACME ::pointer<font>create_point_font(::particle * pparticle, int iPoint, enum_font efont, bool bBold = false);
+//    CLASS_DECL_ACME ::pointer<pen>create_pen(::particle * pparticle, int iWidth, color32_t color);
 
 
    ::enum_display_type get_display_type();

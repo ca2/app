@@ -17,6 +17,10 @@ namespace windowing_system
     public:
 
 
+       ::pointer_array < ::windowing::window_base >           m_windowbasea;
+
+
+
         windowing_system();
         ~windowing_system() override;
 
@@ -41,6 +45,12 @@ namespace windowing_system
 
        virtual void windowing_system_application_main_loop();
        virtual void windowing_system_post_quit();
+
+       virtual ::color::color get_system_color(enum_system_color esystemcolor);
+
+
+       virtual void on_system_dark_mode_change(bool bDarkMode, const ::color::color & colorBackground = ::color::transparent);
+
 
     };
 

@@ -3,8 +3,8 @@
 #include "data.h"
 #include "format.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/collection/_array_binary_stream.h"
-#include "acme/primitive/data/listener.h"
+#include "acme/prototype/collection/_array_binary_stream.h"
+#include "acme/prototype/data/listener.h"
 #include "aura/graphics/draw2d/graphics.h"
 
 

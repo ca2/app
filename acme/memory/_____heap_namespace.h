@@ -4,17 +4,17 @@
 #include "memory_management.h"
 
 
-//#include "acme/primitive/collection/allocator.h"
+//#include "acme/prototype/collection/allocator.h"
 
 
-//#include "acme/primitive/collection/array.h"
+//#include "acme/prototype/collection/array.h"
 
 
 #include "acme/memory/typed.h"
 #include "acme/memory/typed_memory.h"
 
 
-#include "acme/primitive/collection/atom_map.h"
+#include "acme/prototype/collection/atom_map.h"
 #include "acme/exception/__string.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"

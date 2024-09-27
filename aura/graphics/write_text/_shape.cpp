@@ -4,9 +4,9 @@
 #include "framework.h"
 #include "font.h"
 //#include "_shape.h"
-//#include "acme/primitive/geometry2d/_enhanced.h"
+//#include "acme/prototype/geometry2d/_enhanced.h"
 #include "aura/graphics/draw2d/path.h"
-#include "acme/primitive/geometry2d/_defer.h"
+#include "acme/prototype/geometry2d/_defer.h"
 
 
 //template < >

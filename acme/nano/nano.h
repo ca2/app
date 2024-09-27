@@ -28,6 +28,7 @@ public:
    ::pointer <::nano::archive::archive>m_parchive;
    ::pointer <::nano::compress::compress>m_pcompress;
    ::pointer <::nano::dynamic_library::dynamic_library>m_pdynamiclibrary;
+   ::pointer <::nano::graphics::graphics>m_pgraphics;
    ::pointer <::nano::http::http>m_phttp;
    ::pointer <::nano::idn::idn>m_pidn;
    ::pointer <::nano::shell::shell>m_pshell;

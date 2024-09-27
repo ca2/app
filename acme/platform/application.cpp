@@ -18,11 +18,11 @@
 #include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
 #include "acme/platform/session.h"
-#include "acme/primitive/string/_str.h"
-#include "acme/primitive/text/context.h"
+#include "acme/prototype/string/_str.h"
+#include "acme/prototype/text/context.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/user/user.h"
-#include "nano/user/icon.h"
+#include "acme/nano/graphics/icon.h"
 #include "windowing_system/windowing_system.h"
 
 
@@ -1941,7 +1941,7 @@ void application::show_about_box()
    
    strMessage = lines.implode("\n");
 
-   auto picon = __create < ::nano::user::icon>();
+   auto picon = __create < ::nano::graphics::icon>();
 
    auto pfile = file()->get("matter://main/icon.png");
 

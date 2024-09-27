@@ -4,7 +4,7 @@
 #pragma once
 
 
-//#include "acme/primitive/primitive/pointer.h"
+//#include "acme/prototype/prototype/pointer.h"
 #include "acme/parallelization/manual_reset_event.h"
 
 

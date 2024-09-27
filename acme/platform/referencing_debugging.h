@@ -11,7 +11,7 @@
 //#include "simple_array.h"
 
 
-//#include "acme/primitive/collection/array.h"
+//#include "acme/prototype/collection/array.h"
 
 #if REFERENCING_DEBUGGING
 

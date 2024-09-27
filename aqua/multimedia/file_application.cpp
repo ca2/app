@@ -2,7 +2,7 @@
 #include "file_application.h"
 #include "audio/audio.h"
 #include "acme/parallelization/event.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/string/str.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aqua/platform/system.h"
 

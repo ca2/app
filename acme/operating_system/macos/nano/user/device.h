@@ -22,7 +22,7 @@ namespace quartz2d
 
 
    class CLASS_DECL_ACME device :
-      virtual public ::nano::user::device
+      virtual public ::nano::graphics::device
    {
    public:
 
@@ -36,11 +36,11 @@ namespace quartz2d
       ~device() override;
 
 
-      void _draw_text(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::user::brush * pnanobrushBack, ::nano::user::brush * pnanobrushText, ::nano::user::font * pnanofont) override;
+      void _draw_text(const ::string & str, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack, ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font * pnanofont) override;
       
-      ::size_i32 get_text_extents(const ::string & str, ::nano::user::font * pnanofont) override;
+      ::size_i32 get_text_extents(const ::string & str, ::nano::graphics::font * pnanofont) override;
 
-      void rectangle(const ::rectangle_i32 & rectangle, ::nano::user::brush * pnanobrush, ::nano::user::pen * pnanopen) override;
+      void rectangle(const ::rectangle_i32 & rectangle, ::nano::graphics::brush * pnanobrush, ::nano::graphics::pen * pnanopen) override;
 
 
       void _set_source(const ::color::color & color);
@@ -49,7 +49,7 @@ namespace quartz2d
       void _set_fill_color(const ::color::color & color);
       
       
-      void _select_font(::nano::user::font * pnanofont);
+      void _select_font(::nano::graphics::font * pnanofont);
       
       
    };

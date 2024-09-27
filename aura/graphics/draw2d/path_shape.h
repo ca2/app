@@ -2,9 +2,9 @@
 #pragma once
 
 
-//#include "acme/primitive/geometry2d/_enhanced.h"
-//#include "acme/primitive/geometry2d/shape_array.h"
-#include "acme/primitive/geometry2d/lines.h"
+//#include "acme/prototype/geometry2d/_enhanced.h"
+//#include "acme/prototype/geometry2d/shape_array.h"
+#include "acme/prototype/geometry2d/lines.h"
 
 //
 //template < >

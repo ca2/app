@@ -9,7 +9,7 @@
 //{
 //
 //
-//   ::nano::user::font::nano::user::font()
+//   ::nano::graphics::font::nano::graphics::font()
 //   {
 //
 //      m_pdisplay = nullptr;
@@ -18,7 +18,7 @@
 //   }
 //
 //
-//   ::nano::user::font::~::nano::user::font()
+//   ::nano::graphics::font::~::nano::graphics::font()
 //   {
 //
 //      if(m_xfontset)
@@ -31,10 +31,10 @@
 //   }
 //
 //
-//   void ::nano::user::font::update(::nano::user::device * pnanodevice)
+//   void ::nano::graphics::font::update(::nano::graphics::device * pnanodevice)
 //   {
 //
-//      auto px11nanodevice = dynamic_cast < ::x11::nano::user::device * >(pnanodevice);
+//      auto px11nanodevice = dynamic_cast < ::x11::nano::graphics::device * >(pnanodevice);
 //
 //      if(m_pdisplay == nullptr)
 //      {

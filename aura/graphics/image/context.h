@@ -2,8 +2,8 @@
 
 
 #include "image.h"
-#include "acme/primitive/collection/int_map.h"
-#include "acme/primitive/collection/string_map.h"
+#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/string_map.h"
 #include "load_options.h"
 #include "save_options.h"
 

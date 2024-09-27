@@ -8,7 +8,7 @@
 #include "color.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task.h"
-#include "acme/primitive/mathematics/mathematics.h"
+#include "acme/prototype/mathematics/mathematics.h"
 #include "aura/graphics/gpu/approach.h"
 #include "aura/graphics/gpu/cpu_buffer.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
@@ -394,7 +394,7 @@ namespace draw2d_opengl
    }
 
 
-   int graphics::ExcludeUpdateRgn(::user::primitive * pwindow)
+   int graphics::ExcludeUpdateRgn(::user::prototype * pwindow)
    {
       // ASSERT(m_hdc != nullptr);
       //throw ::interface_only();

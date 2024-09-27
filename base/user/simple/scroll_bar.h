@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/point_array.h"
+#include "acme/prototype/geometry2d/point_array.h"
 #include "aura/user/user/scroll_bar.h"
 
 

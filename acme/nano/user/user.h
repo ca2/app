@@ -3,7 +3,7 @@
 
 
 #include "acme/platform/department.h"
-#include "acme/primitive/collection/comparable_list.h"
+#include "acme/prototype/collection/comparable_list.h"
 #include "_.h"
 
 
@@ -18,7 +18,7 @@ virtual public acme::department
 public:
    
    
-   ::pointer_array < ::nano::user::window >         m_nanowindowa;
+   ::pointer_array < ::nano::user::interchange >         m_interchangea;
    
    
    user();
@@ -36,13 +36,13 @@ public:
    //pointer< ::sequencer < ::conversation > > nano()->message_console(const ::string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr);
    
    
-   pointer< ::sequencer < ::conversation > > message_box(const ::string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::user::icon * picon=nullptr);
+   pointer< ::sequencer < ::conversation > > message_box(const ::string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon=nullptr);
    
-   pointer< ::sequencer < ::conversation > > exception_message_box(const ::exception& exception, const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::user::icon * picon=nullptr);
+   pointer< ::sequencer < ::conversation > > exception_message_box(const ::exception& exception, const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon=nullptr);
    
-   pointer< ::sequencer < ::conversation > > message_console(const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::user::icon * picon=nullptr);
+   pointer< ::sequencer < ::conversation > > message_console(const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon=nullptr);
    
-   pointer< ::sequencer < ::conversation > > exception_message_console(const ::exception& exception, const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::user::icon * picon=nullptr);
+   pointer< ::sequencer < ::conversation > > exception_message_console(const ::exception& exception, const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon=nullptr);
    
    
    void handle(::topic* ptopic, ::context* pcontext) override;

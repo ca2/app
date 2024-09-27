@@ -3,7 +3,7 @@
 #include "uncompress.h"
 ////#include "acme/exception/exception.h"
 #include "acme/filesystem/file/file.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 #include <zlib.h>
 
 

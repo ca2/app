@@ -19,7 +19,7 @@ namespace operating_system
    }
 
 
-::pointer< ::sequencer < ::conversation > > message_box::create_sequencer(::particle * pparticle, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::user::icon * picon)
+::pointer< ::sequencer < ::conversation > > message_box::create_sequencer(::particle * pparticle, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
 {
 
    auto psequencer = pparticle->__create_new < ::sequencer < ::conversation > >();

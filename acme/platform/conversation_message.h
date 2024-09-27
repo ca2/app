@@ -21,7 +21,7 @@ public:
    string                                 m_strTitle;
    e_message_box                          m_emessagebox;
    string                                 m_strDetails;
-   ::pointer < ::nano::user::icon >       m_picon;
+   ::pointer < ::nano::graphics::icon >       m_picon;
 
    
    ::string get_conversation_message() override;
@@ -30,7 +30,7 @@ public:
    ::string get_conversation_details() override;
 
    
-   void initialize_conversation(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails = nullptr, ::nano::user::icon * picon = nullptr) override;
+   void initialize_conversation(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
 
    
    ::payload do_synchronously(const class time & timeWait) override;

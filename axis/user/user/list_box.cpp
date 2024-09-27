@@ -8,7 +8,7 @@
 #include "acme/constant/timer.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/user/user/content.h"
 #include "acme/parallelization/message_queue.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -124,7 +124,7 @@ namespace user
    }
 
 
-   bool list_box::on_set_owner(::user::primitive* pprimitive)
+   bool list_box::on_set_owner(::user::prototype* pprimitive)
    {
 
       auto puserinteractionOwner = pprimitive->get_owner();
@@ -954,7 +954,7 @@ namespace user
 
          m_pcombo->ShowDropDown(false);
 
-         ::pointer<::user::primitive>pelemental = m_pcombo->keyboard_get_next_focusable();
+         ::pointer<::user::prototype>pelemental = m_pcombo->keyboard_get_next_focusable();
 
          if (pelemental.is_set())
          {
@@ -984,7 +984,7 @@ namespace user
 
          m_pcombo->ShowDropDown(false);
 
-         ::pointer<::user::primitive>pelemental = m_pcombo->keyboard_get_next_focusable();
+         ::pointer<::user::prototype>pelemental = m_pcombo->keyboard_get_next_focusable();
 
          if (pelemental.is_set())
          {

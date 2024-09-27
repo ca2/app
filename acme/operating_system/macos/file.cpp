@@ -45,7 +45,7 @@
 
 //#ifndef __APPLE__
 //
-//bool context::_os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
+//bool context::_os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, ::user::prototype * pinteraction, bool bNoUI, bool bNoMount)
 //{
 //
 //   char * pszTarget = ns_resolve_alias(psz, bNoUI, bNoMount);
@@ -66,7 +66,7 @@
 //#endif
 
 //
-//CLASS_DECL_ACME bool _os_resolve_alias(::particle * pparticle, ::file::path & path, const ::scoped_string & scopedstr, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
+//CLASS_DECL_ACME bool _os_resolve_alias(::particle * pparticle, ::file::path & path, const ::scoped_string & scopedstr, ::user::prototype * pinteraction, bool bNoUI, bool bNoMount)
 //{
 //
 //   return _os_resolve_alias(path, psz, pinteraction, bNoUI, bNoMount);

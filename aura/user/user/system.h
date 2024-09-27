@@ -1,7 +1,7 @@
 #pragma once
 
 
-////#include "acme/primitive/primitive/object.h"
+////#include "acme/prototype/prototype/object.h"
 
 
 namespace user
@@ -36,7 +36,7 @@ namespace user
    public:
 
 
-      ::pointer<::user::primitive>              m_puserprimitiveOwner;
+      ::pointer<::user::prototype>              m_puserprimitiveOwner;
       ::procedure                               m_procedureSuccess;
       ::procedure                               m_procedureFailure;
       ::pointer<::user::interaction_impl>       m_puserinteractionimpl;
@@ -46,12 +46,12 @@ namespace user
       ::logic::boolean                          m_bWindowFrame;
       ::type_atom                               m_typeatomNewImpact;
       ::pointer<::object>                       m_pdocumentCurrent;
-      ::pointer<::user::primitive>              m_puserprimitiveNew;
+      ::pointer<::user::prototype>              m_puserprimitiveNew;
 
       ::pointer<::object>                       m_ptemplateNewDocument;
 
-      ::pointer<::user::primitive>              m_puserprimitiveLastImpact;
-      ::pointer<::user::primitive>              m_puserprimitiveCurrentFrame;
+      ::pointer<::user::prototype>              m_puserprimitiveLastImpact;
+      ::pointer<::user::prototype>              m_puserprimitiveCurrentFrame;
       ::pointer<::matter>                       m_pimpactdata;
       ::pointer_array<::graphics::output_purpose>     m_graphicsoutputpurposea;
 

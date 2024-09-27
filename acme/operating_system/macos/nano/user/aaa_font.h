@@ -8,8 +8,8 @@
 //{
 //
 //
-//   class CLASS_DECL_ACME ::nano::user::font :
-//      virtual public ::nano::user::font
+//   class CLASS_DECL_ACME ::nano::graphics::font :
+//      virtual public ::nano::graphics::font
 //   {
 //   public:
 //
@@ -18,11 +18,11 @@
 //      XFontSet          m_xfontset;
 //
 //
-//      ::nano::user::font();
-//      ~::nano::user::font() override;
+//      ::nano::graphics::font();
+//      ~::nano::graphics::font() override;
 //
 //
-//      void update(::nano::user::device * pnanodevice) override;
+//      void update(::nano::graphics::device * pnanodevice) override;
 //
 //
 //   };

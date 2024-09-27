@@ -9,8 +9,8 @@
 #include "application_flags.h"
 #include "acme/constant/gender.h"
 #include "acme/parallelization/_types.h"
-#include "acme/primitive/collection/map.h"
-#include "acme/primitive/primitive/factory.h"
+#include "acme/prototype/collection/map.h"
+#include "acme/prototype/prototype/factory.h"
 
 
 namespace innate_ui
@@ -105,7 +105,7 @@ namespace acme
 
       ::pointer<::apex::system>                                       m_psystemParent;
 
-      ::pointer < ::primitive::primitive >                              m_pprimitive;
+      ::pointer < ::prototype::prototype >                              m_pprototype;
       //::pointer < ::mutex >                                           m_pmutexFactory;
       //string_map < ::pointer<::factory::factory >>                  m_mapFactory;
       //string_map < ::pointer<::factory::factory >>                      m_mapFactory;
@@ -267,7 +267,7 @@ namespace acme
 
       ::acme::acme * acme() const { return m_pplatform->m_pacme; }
 
-      ::primitive::primitive * primitive() const { return m_pprimitive; }
+      ::prototype::prototype * prototype() const { return m_pprototype; }
 
       virtual ::draw2d::draw2d * draw2d() const;
       virtual ::write_text::write_text * write_text() const;

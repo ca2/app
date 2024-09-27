@@ -15,7 +15,7 @@ class message_queue;
 namespace user
 {
 
-   using primitive_array = ::pointer_array < ::user::primitive >;
+   using primitive_array = ::pointer_array < ::user::prototype >;
 
 } // namespace user
 
@@ -78,8 +78,8 @@ public:
 
    bool                                               m_bAuraMessageQueue;
    bool                                               m_bReady;
-   ::pointer<::user::primitive>                       m_puserprimitiveMain;           // Main interaction_impl (usually same psystem->m_puiMain)
-   ::pointer<::user::primitive>                       m_puserprimitiveActive;         // Active Main interaction_impl (may not be m_puiMain)
+   ::pointer<::user::prototype>                       m_puserprimitiveMain;           // Main interaction_impl (usually same psystem->m_puiMain)
+   ::pointer<::user::prototype>                       m_puserprimitiveActive;         // Active Main interaction_impl (may not be m_puiMain)
    bool                                               m_bSimpleMessageLoop;
    bool                                               m_bZipIsDir2;
 
@@ -309,15 +309,15 @@ public:
 
    virtual void process_message_filter(i32 code, ::message::message * pmessage);
 
-   // virtual void add(::user::primitive * pinteraction);
-   //virtual void erase(::user::primitive * pinteraction);
+   // virtual void add(::user::prototype * pinteraction);
+   //virtual void erase(::user::prototype * pinteraction);
    //virtual ::collection::count get_ui_count();
-   //virtual ::user::primitive * get_ui(::collection::index iIndex);
-   //virtual void set_timer(::user::primitive * pinteraction, uptr uEvent, ::u32 nEllapse);
-   //virtual void unset_timer(::user::primitive * pinteraction, uptr uEvent);
+   //virtual ::user::prototype * get_ui(::collection::index iIndex);
+   //virtual void set_timer(::user::prototype * pinteraction, uptr uEvent, ::u32 nEllapse);
+   //virtual void unset_timer(::user::prototype * pinteraction, uptr uEvent);
    //virtual void set_auto_delete(bool bAutoDelete = true);
-   virtual ::user::primitive * get_active_user_primitive();
-   virtual void set_active_user_primitive(::user::primitive * pinteraction);
+   virtual ::user::prototype * get_active_user_primitive();
+   virtual void set_active_user_primitive(::user::prototype * pinteraction);
    //virtual void step_timer();
    //virtual bool on_run_step();
 

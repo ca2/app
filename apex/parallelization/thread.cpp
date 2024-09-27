@@ -1249,7 +1249,7 @@ void thread::on_thread_on_idle(thread* pimpl, ::i32 lCount)
 }
 
 
-::user::primitive* thread::get_active_user_primitive()
+::user::prototype* thread::get_active_user_primitive()
 {
 
    return m_puserprimitiveActive;
@@ -1257,7 +1257,7 @@ void thread::on_thread_on_idle(thread* pimpl, ::i32 lCount)
 }
 
 
-void thread::set_active_user_primitive(::user::primitive* puserprimitive)
+void thread::set_active_user_primitive(::user::prototype* puserprimitive)
 {
 
    m_puserprimitiveActive = puserprimitive;
@@ -4256,7 +4256,7 @@ bool thread::initialize_message_queue()
    //if(m_spuiptra.is_null())
    //{
 
-   //   m_spuiptra = ::place(new ref_array < ::user::primitive > ());
+   //   m_spuiptra = ::place(new ref_array < ::user::prototype > ());
 
    //}
 

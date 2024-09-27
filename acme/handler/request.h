@@ -2,8 +2,8 @@
 #pragma once
 
 
-////#include "acme/primitive/primitive/object.h"
-//#include "acme/primitive/primitive/payload.h"
+////#include "acme/prototype/prototype/object.h"
+//#include "acme/prototype/prototype/payload.h"
 #include "acme/user/user/e_window_flag.h"
 
 #include "acme/parallelization/manual_reset_event.h"

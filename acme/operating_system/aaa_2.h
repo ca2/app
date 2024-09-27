@@ -164,7 +164,7 @@ enum enum_command_system
 };
 
 
-#include "acme/primitive/duration/_.h"
+#include "acme/prototype/duration/_.h"
 
 
 CLASS_DECL_ACME void command_system(string & strOutput, string & strError, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const ::duration & durationTimeout = ::duration::infinite());

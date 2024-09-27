@@ -5,7 +5,8 @@
 //#include "acme/user/user/check.h"
 //#include "acme/user/user/text.h"
 #include "acme/user/user/command_update_target.h"
-#include "acme/user/user/element.h"
+//#include "acme/user/user/element.h"
+#include "acme/user/user/interaction_base.h"
 
 
 //
@@ -72,22 +73,38 @@
 
    }
 
-   return m_puserelement->m_puserinteraction;
+   return m_puserelement->user_interaction();
+
+}
+
+::user::interaction_base * topic::user_interaction_base()
+{
+
+   if (::is_null(m_puserelement))
+   {
+
+      return nullptr;
+
+   }
+
+   return m_puserelement.cast < ::user::interaction_base >();
 
 }
 
 
-::atom topic::user_element_id() const
+::atom topic::user_interaction_id() const
 {
 
-   if (::is_null(m_puserelement))
+   auto puserinteractionbase = ((topic*)this)->user_interaction_base();
+
+   if (::is_null(puserinteractionbase))
    {
 
       return ::atom::e_type_null;
 
    }
 
-   return m_puserelement->m_atom;
+   return puserinteractionbase->m_atom;
 
 }
 

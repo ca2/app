@@ -1,8 +1,8 @@
 #pragma once
 
 
-//#include "acme/primitive/geometry2d/_geometry2d.h"
-////#include "acme/primitive/primitive/object.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
+////#include "acme/prototype/prototype/object.h"
 
 
 //#ifdef WINDOWS_DESKTOP

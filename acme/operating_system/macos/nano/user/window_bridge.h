@@ -42,7 +42,7 @@ class nano_window_bridge :
 public:
 
    bool m_bRunningAppMainLoop;
-   ::macos::nano::user::window *     m_pwindow;
+   ::macos::nano::user::interchange *     m_pwindow;
    CFTypeRef                  m_pnsnanowindow;
    
    

@@ -6,22 +6,22 @@
 #include "font_family.h"
 #include "acme/graphics/write_text/font_size.h"
 #include "acme/graphics/write_text/font_weight.h"
-#include "acme/primitive/geometry2d/size.h"
+#include "acme/prototype/geometry2d/size.h"
 #include "aura/graphics/draw2d/object.h"
 
 
-//#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
 
 
 
 //#include "acme/constant/character_set.h"
 
 
-//#include "acme/primitive/collection/comparable_eq_array.h"
-//#include "acme/primitive/collection/comparable_array.h"
+//#include "acme/prototype/collection/comparable_eq_array.h"
+//#include "acme/prototype/collection/comparable_array.h"
 
 
-#include "acme/primitive/collection/string_map.h"
+#include "acme/prototype/collection/string_map.h"
 
 
 //#include "acme/filesystem/filesystem/path.h"

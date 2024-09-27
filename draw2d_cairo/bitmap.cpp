@@ -4,7 +4,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/image/pixmap.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 
 
 namespace draw2d_cairo

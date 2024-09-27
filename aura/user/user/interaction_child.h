@@ -21,7 +21,7 @@ namespace user
       size_i32                            m_size;
       bool                                m_bCreate;
       ::pointer<::user::interaction>      m_puserinteractionMessage;
-      ::pointer<::user::primitive>        m_puserprimitiveOwner;
+      ::pointer<::user::prototype>        m_puserprimitiveOwner;
       ::pointer < ::mutex >               m_pmutexLongPtr;
       //iptr_to_iptr                      m_longptr;
       uptr                                m_uStyle;
@@ -35,7 +35,7 @@ namespace user
 
       virtual void message_handler(::message::message * pusermessage) override;
 
-      //using ::user::primitive::set_window_position;
+      //using ::user::prototype::set_window_position;
       //virtual bool set_window_position(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW) override;
 
 
@@ -76,14 +76,14 @@ namespace user
 
       virtual void __synthesizes_creates_styles(::user::interaction * pinteraction, ::u32 & nExStyle, ::u32 & nStyle);
 
-      //virtual bool create_interaction(::user::interaction * pinteraction, const ::rectangle_i32 & rectangle, ::user::primitive * pparent, atom atom) override;
-      //virtual bool create_interaction(::user::interaction * pinteraction, ::u32 uExStyle, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::primitive * puiParent, ::request * prequest = nullptr) override;
+      //virtual bool create_interaction(::user::interaction * pinteraction, const ::rectangle_i32 & rectangle, ::user::prototype * pparent, atom atom) override;
+      //virtual bool create_interaction(::user::interaction * pinteraction, ::u32 uExStyle, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::prototype * puiParent, ::request * prequest = nullptr) override;
 
       
-      void create_child(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent) override;
+      void create_child(::user::interaction * pinteraction, ::user::prototype * pprimitiveParent) override;
 
 
-      //virtual bool create_window_ex(::user::interaction * pinteraction, ::pointer<::user::system>pcs, ::user::primitive * puiParent, atom atom) override;
+      //virtual bool create_window_ex(::user::interaction * pinteraction, ::pointer<::user::system>pcs, ::user::prototype * puiParent, atom atom) override;
 
       //virtual bool create_interaction() override;
 
@@ -117,7 +117,7 @@ namespace user
 
       void RedrawWindow(const ::rectangle_i32& rectangleUpdate,::draw2d::region* prgnUpdate,::u32 flags) override;
 
-      ::user::primitive * set_owner(::user::primitive * pinteraction) override;
+      ::user::prototype * set_owner(::user::prototype * pinteraction) override;
       ::user::interaction * get_owner() override;
 
       //bool _get_client_rect(::rectangle_i64 * prectangle) override;

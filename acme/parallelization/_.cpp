@@ -4,13 +4,13 @@
 #include "task_flag.h"
 #include "acme/constant/id.h"
 
-//#include "acme/primitive/collection/string_array.h"
-//#include "acme/primitive/primitive/payload.h"
+//#include "acme/prototype/collection/string_array.h"
+//#include "acme/prototype/prototype/payload.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/platform.h"
 #include "acme/platform/system.h"
 #include "acme/nano/user/window_implementation.h"
-
+#include "acme/windowing/window_base.h"
 #ifdef LINUX
 #include "acme/operating_system/ansi/_pthread.h"
 #endif
@@ -782,9 +782,9 @@ CLASS_DECL_ACME void task_release()
 
    //::release(ptask);
 
-   ::nano::user::window_implementation::nanowindowimplementationa().clear();
+   //::windowing::window_base::nanowindowimplementationa().clear();
 
-   ::nano::user::window_implementation::nanowindowimplementationa().free_extra();
+   //::windowing::window_base::nanowindowimplementationa().free_extra();
 
    auto ptask = t_ptask;
 

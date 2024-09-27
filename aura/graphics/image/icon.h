@@ -2,8 +2,8 @@
 
 
 #include "aura/graphics/image/source.h"
-#include "acme/primitive/collection/int_map.h"
-#include "acme/primitive/geometry2d/_collection.h"
+#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/geometry2d/_collection.h"
 
 
 using hicon = void *;

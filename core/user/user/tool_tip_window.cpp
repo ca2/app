@@ -4,7 +4,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "acme/exception/interface_only.h"
-#include "acme/primitive/geometry2d/geometry.h"
+#include "acme/prototype/geometry2d/geometry.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"

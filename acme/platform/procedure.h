@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include  "acme/primitive/primitive/function.h"
+#include  "acme/prototype/prototype/function.h"
 
 
 using procedure = ::function < void() >;
@@ -16,8 +16,8 @@ using procedure = ::function < void() >;
 
 //
 //#include "acme/handler/handler.h"
-//#include "acme/primitive/primitive/element.h"
-////#include "acme/primitive/primitive/function.h"
+//#include "acme/prototype/prototype/element.h"
+////#include "acme/prototype/prototype/function.h"
 
 
 //   class CLASS_DECL_ACME routine :

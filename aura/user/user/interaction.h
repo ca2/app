@@ -6,11 +6,11 @@
 #include "scroll_state.h"
 #include "acme/exception/status.h"
 #include "acme/user/user/drag_client.h"
-#include "acme/primitive/collection/string_map.h"
+#include "acme/prototype/collection/string_map.h"
 #include "acme/platform/timer_callback.h"
 #include "acme/platform/flags.h"
-#include "acme/primitive/geometry2d/shift.h"
-#include "acme/primitive/time/frequency.h"
+#include "acme/prototype/geometry2d/shift.h"
+#include "acme/prototype/time/frequency.h"
 #include "acme/user/user/e_window_flag.h"
 //#include "apex/database/key.h"
 #include "apex/message/command.h"
@@ -41,7 +41,7 @@ namespace user
 
 
    class CLASS_DECL_AURA interaction :
-      virtual public ::user::primitive,
+      virtual public ::user::prototype,
       virtual public ::user::drawable,
       virtual public ::timer_callback//,
       //virtual public ::user::drag_client
@@ -795,7 +795,7 @@ namespace user
 
       virtual void set_place_child_title(const ::string & pszTitle);
 
-      virtual ::user::primitive * get_bind_ui();
+      virtual ::user::prototype * get_bind_ui();
 
       virtual string get_display_tag();
 
@@ -1074,13 +1074,13 @@ namespace user
       //virtual iptr get_window_long_ptr(i32 nIndex) override;
       //virtual void set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
-      virtual bool on_before_set_parent(::user::primitive * pinterface);
-      virtual bool on_set_parent(::user::primitive * pinterface);
+      virtual bool on_before_set_parent(::user::prototype * pinterface);
+      virtual bool on_set_parent(::user::prototype * pinterface);
       virtual bool on_add_child(::user::interaction * puserinteractionChild);
       virtual void on_after_set_parent();
 
 
-      virtual bool on_set_owner(::user::primitive * pinterface);
+      virtual bool on_set_owner(::user::prototype * pinterface);
 
 
       ::user::element * first_child_user_primitive() override;
@@ -1705,7 +1705,7 @@ namespace user
 
 
       /*void pre_create_window(::user::system* pusersystem);*/
-      using ::user::primitive::handle;
+      using ::user::prototype::handle;
       void handle(::topic * ptopic, ::context * pcontext) override;
 
 
@@ -1832,12 +1832,12 @@ namespace user
       ::user::interaction* get_wnd() override;
       ::user::interaction* get_wnd(::u32 nCmd) override;
 
-      ::user::primitive * set_parent(::user::primitive * pinteraction) override;
-      ::user::primitive * set_owner(::user::primitive * pinteraction) override;
+      ::user::prototype * set_parent(::user::prototype * pinteraction) override;
+      ::user::prototype * set_owner(::user::prototype * pinteraction) override;
 
       virtual void __defer_set_owner_to_impl();
 
-      void on_add_owned(::user::primitive * pprimitive) override;
+      void on_add_owned(::user::prototype * pprimitive) override;
 
       ::user::interaction * get_parent_window() override;
 
@@ -1879,7 +1879,7 @@ namespace user
       i32 get_descendant_level(::user::element * puserelement) override;
 
 
-      //virtual bool is_descendant(const ::user::primitive * pinteraction, bool bIncludeSelf = false) override;
+      //virtual bool is_descendant(const ::user::prototype * pinteraction, bool bIncludeSelf = false) override;
 
       ::oswindow GetParentHandle();
 
@@ -2027,7 +2027,7 @@ namespace user
       virtual void on_end_layout_experience(enum_layout_experience elayoutexperience) override;
 
 
-      virtual void on_configuration_change(::user::primitive * pprimitiveSource) override;
+      virtual void on_configuration_change(::user::prototype * pprimitiveSource) override;
 
 
       //virtual void show_keyboard(bool bShow = true) override;
@@ -2253,9 +2253,9 @@ namespace user
 
       virtual enum_input_type preferred_input_type();
 
-      //virtual ::user::primitive * get_keyboard_focus();
-      //virtual void set_keyboard_focus(::user::primitive* pprimitive);
-      //virtual void erase_keyboard_focus(::user::primitive * pprimitive);
+      //virtual ::user::prototype * get_keyboard_focus();
+      //virtual void set_keyboard_focus(::user::prototype* pprimitive);
+      //virtual void erase_keyboard_focus(::user::prototype * pprimitive);
 
       //virtual void erase_keyboard_focus() override;
 
@@ -2435,7 +2435,7 @@ namespace user
       //void create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
       //virtual elayout get_state() override;
       //bool _003IsCustomMessage();
-      //::user::primitive* _003GetCustomMessageWnd();
+      //::user::prototype* _003GetCustomMessageWnd();
       //virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics) override;
       virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
       //virtual bool has_function(enum_control_function econtrolfunction);

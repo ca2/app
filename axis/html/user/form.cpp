@@ -5,8 +5,8 @@
 #include "acme/constant/user_key.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/data/listener.h"
-#include "acme/primitive/datetime/datetime.h"
+#include "acme/prototype/data/listener.h"
+#include "acme/prototype/datetime/datetime.h"
 #include "aura/graphics/image/context.h"
 #include "axis/platform/system.h"
 #include "axis/html/element/element.h"
@@ -663,7 +663,7 @@ void html_form::set_html_form_text(const ::scoped_string & scopedstr, const ::ac
    if(bFocus)
    {
 
-      ::pointer<::user::primitive>pfocus = get_focusable_descendant();
+      ::pointer<::user::prototype>pfocus = get_focusable_descendant();
 
       if(pfocus != nullptr)
       {

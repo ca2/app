@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/enum_bitset.h"
+#include "acme/prototype/prototype/enum_bitset.h"
 
 
 using task_bitset = enum_bitset < enum_task_flag, e_task_flag_count >;

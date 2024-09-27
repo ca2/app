@@ -1,8 +1,8 @@
 // Created by camilo on 2022-01-21 14:57 <3ThomasBorregaardSorensen
 #include "framework.h"
 #include "button.h"
-#include "window.h"
-#include "device.h"
+#include "interchange.h"
+#include "acme/nano/graphics/device.h"
 #include "popup_button.h"
 
 namespace nano
@@ -12,27 +12,27 @@ namespace nano
    {
    
 
-void button::on_draw(::nano::user::device * pnanodevice)
+void button::on_draw(::nano::graphics::device * pnanodevice)
 {
 
-   //::SelectObject(hdc, m_pnanowindow->m_hbrushWindow);
+   //::SelectObject(hdc, m_pinterchange->m_hbrushWindow);
 
-   ::pointer<::nano::user::pen>ppenBorder;
+   ::pointer<::nano::graphics::pen>ppenBorder;
 
-   if (m_pnanowindow->m_pchildFocus == this)
+   if (m_pinterchange->m_pchildFocus == this)
    {
 
-      ppenBorder = m_pnanowindow->m_ppenBorderFocus;
+      ppenBorder = m_pinterchange->m_ppenBorderFocus;
 
    }
    else
    {
 
-      ppenBorder = m_pnanowindow->m_ppenBorder;
+      ppenBorder = m_pinterchange->m_ppenBorder;
 
    }
 
-   pnanodevice->rectangle(m_rectangle, m_pnanowindow->m_pbrushWindow, ppenBorder);
+   pnanodevice->rectangle(m_rectangle, m_pinterchange->m_pbrushWindow, ppenBorder);
 
    wstring wstrText(m_strText);
 
@@ -45,9 +45,9 @@ void button::on_draw(::nano::user::device * pnanodevice)
       rectangleText, 
       e_align_center,
       e_draw_text_single_line, 
-      m_pnanowindow->m_pbrushWindow,
-      m_pnanowindow->m_pbrushText, 
-      m_pnanowindow->m_pfont);
+      m_pinterchange->m_pbrushWindow,
+      m_pinterchange->m_pbrushText, 
+      m_pinterchange->m_pfont);
 
 }
 
@@ -58,14 +58,14 @@ void button::on_char(int iChar)
    if (iChar == '\r' || iChar == ' ')
    {
 
-      m_pnanowindow->on_click(m_atom, nullptr);
+      m_pinterchange->on_click(m_atom, nullptr);
 
    }
 
 }
 
 
-bool button::is_focusable() const
+bool button::is_focusable()
 {
 
    return true;
@@ -76,9 +76,9 @@ bool button::is_focusable() const
 //void nano_still::resize_to_fit()
 //{
 //
-//   auto pdevice = __create < ::nano::user::device >();
+//   auto pdevice = __create < ::nano::graphics::device >();
 //
-//   auto size = pdevice->get_text_extents(m_strText, m_pnanowindow->m_pfont);
+//   auto size = pdevice->get_text_extents(m_strText, m_pinterchange->m_pfont);
 //
 //   m_rectangle.right() = m_rectangle.left() + size.cx();
 //

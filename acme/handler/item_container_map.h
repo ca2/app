@@ -4,7 +4,7 @@
 
 
 #include "item_container.h"
-#include "acme/primitive/collection/int_map.h"
+#include "acme/prototype/collection/int_map.h"
 
 
 class CLASS_DECL_ACME item_container_map :

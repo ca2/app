@@ -1,10 +1,10 @@
 #include "framework.h"
 #include "incoming_socket.h"
 ////#include "acme/exception/exception.h"
-#include "acme/primitive/primitive/url.h"
-#include "acme/primitive/primitive/url_domain.h"
+#include "acme/prototype/prototype/url.h"
+#include "acme/prototype/prototype/url_domain.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/time/_text_stream.h"
+#include "acme/prototype/time/_text_stream.h"
 
 
 namespace netserver

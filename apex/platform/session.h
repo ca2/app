@@ -3,7 +3,7 @@
 
 #include "context.h"
 #include "acme/platform/session.h"
-//#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
 
 
 namespace apex
@@ -47,7 +47,7 @@ namespace apex
       // ... is is the "Main Window" (sometimes just a concept) holding the App.
       // For Desktop Applications a meaning should be given or this member could be ignored?
       // The Main papp window?
-      ::pointer<::user::primitive>                        m_puserprimitiveHost;
+      ::pointer<::user::prototype>                        m_puserprimitiveHost;
       //::pointer<::layered>    m_pimplLastSeed;
       //::pointer<::layered>                       m_puiMain2;
 
@@ -474,8 +474,8 @@ namespace apex
 
       virtual string_array get_user_wallpaper();
 
-      virtual ::user::primitive * get_user_interaction_host();
-      virtual ::user::primitive * get_host_primitive();
+      virtual ::user::prototype * get_user_interaction_host();
+      virtual ::user::prototype * get_host_primitive();
 
 
    };

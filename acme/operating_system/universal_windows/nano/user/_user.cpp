@@ -5,18 +5,18 @@
 #include "acme/nano/nano.h"
 #include "acme/nano/user/user.h"
 #include "acme/platform/factory_function.h"
-//#include "acme/primitive/primitive/_factory.h"
+//#include "acme/prototype/prototype/_factory.h"
 
 
 extern "C" void nano_user_universal_windows_factory(::factory::factory * pfactory)
 {
 
 
-   pfactory->add_factory_item < ::universal_windows::nano::user::window, ::nano::user::window_implementation >();
-   //pfactory->add_factory_item < ::windows::nano::user::brush, ::nano::user::brush >();
-   //pfactory->add_factory_item < ::windows::nano::user::font, ::nano::user::font >();
-   //pfactory->add_factory_item < ::windows::nano::user::pen, ::nano::user::pen >();
-   //pfactory->add_factory_item < ::windows::nano::user::device, ::nano::user::device >();
+   pfactory->add_factory_item < ::universal_windows::nano::user::interchange, ::nano::user::window_implementation >();
+   //pfactory->add_factory_item < ::windows::nano::graphics::brush, ::nano::graphics::brush >();
+   //pfactory->add_factory_item < ::windows::nano::graphics::font, ::nano::graphics::font >();
+   //pfactory->add_factory_item < ::windows::nano::graphics::pen, ::nano::graphics::pen >();
+   //pfactory->add_factory_item < ::windows::nano::graphics::device, ::nano::graphics::device >();
 
    //pfactory->add_factory_item < ::nano::user::user >();
 

@@ -296,7 +296,7 @@ namespace user
    //   case mesh::PropertyBaseWndInterface:
    //   case mesh::PropertyDrawBaseWndInterface:
    //   {
-   //      const ::user::primitive ** ppinterface = (const ::user::primitive **) lparam;
+   //      const ::user::prototype ** ppinterface = (const ::user::prototype **) lparam;
 
    //      *ppinterface = (mesh *)this;
    //   }

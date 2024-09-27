@@ -14,6 +14,7 @@
 #include "acme/nano/archive/archive.h"
 #include "acme/nano/compress/compress.h"
 #include "acme/nano/dynamic_library/dynamic_library.h"
+#include "acme/nano/graphics/graphics.h"
 #include "acme/nano/http/http.h"
 #include "acme/nano/idn/idn.h"
 #include "acme/nano/shell/shell.h"
@@ -54,6 +55,10 @@ namespace nano
    ::nano::dynamic_library::dynamic_library*nano::dynamic_library()
    {
       return system()->system_factory()->__factory(m_pdynamiclibrary);
+   }
+   ::nano::graphics::graphics*nano::graphics()
+   {
+      return system()->system_factory()->__factory(m_pgraphics);
    }
    ::nano::http::http*nano::http()
    {

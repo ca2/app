@@ -9,7 +9,7 @@
 
 //
 //
-//////#include "acme/primitive/primitive/object.h"
+//////#include "acme/prototype/prototype/object.h"
 ////#include "implementable.h"
 //
 //

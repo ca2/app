@@ -141,7 +141,7 @@ namespace nano
       }
 
 
-      void window::_draw(::nano::user::device * pnanodevice)
+      void window::_draw(::nano::graphics::device * pnanodevice)
       {
 
          m_pinterface->draw(pnanodevice);
@@ -711,7 +711,7 @@ namespace nano
 
                auto pdc = cairo_create(m_psurface);
 
-               m_pnanodevice = ::place(new ::cairo::nano::user::device(pdc));
+               m_pnanodevice = ::place(new ::cairo::nano::graphics::device(pdc));
 
             }
 

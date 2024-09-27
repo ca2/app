@@ -16,7 +16,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/system_setup.h"
-#include "acme/primitive/collection/_container.h"
+#include "acme/prototype/collection/_container.h"
 #include "apex/message/simple_command.h"
 #include "acme/handler/request.h"
 #include "aura/windowing/windowing.h"
@@ -749,7 +749,7 @@ namespace user
 
 
 
-   ::user::primitive * user::get_mouse_focus_LButtonDown()
+   ::user::prototype * user::get_mouse_focus_LButtonDown()
    {
 
       return m_pmousefocusLButtonDown;
@@ -757,7 +757,7 @@ namespace user
    }
 
 
-   void user::set_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
+   void user::set_mouse_focus_LButtonDown(::user::prototype * pmousefocus)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -767,7 +767,7 @@ namespace user
    }
 
 
-   void user::defer_erase_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
+   void user::defer_erase_mouse_focus_LButtonDown(::user::prototype * pmousefocus)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -782,7 +782,7 @@ namespace user
    }
 
 
-   ::user::primitive * user::get_mouse_focus_RButtonDown()
+   ::user::prototype * user::get_mouse_focus_RButtonDown()
    {
 
       return m_pmousefocusRButtonDown;
@@ -790,7 +790,7 @@ namespace user
    }
 
 
-   void user::set_mouse_focus_RButtonDown(::user::primitive * pmousefocus)
+   void user::set_mouse_focus_RButtonDown(::user::prototype * pmousefocus)
    {
 
       m_pmousefocusRButtonDown = pmousefocus;

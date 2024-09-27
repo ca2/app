@@ -10,7 +10,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/image/_exif.h"
 #include "acme/graphics/image/image32.h"
-#include "acme/primitive/mathematics/mathematics.h"
+#include "acme/prototype/mathematics/mathematics.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/task_tool.h"
 #include "aura/graphics/draw2d/draw2d.h"

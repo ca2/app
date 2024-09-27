@@ -2,7 +2,7 @@
 
 
 #include "client.h"
-#include "acme/primitive/primitive/get_memory.h"
+#include "acme/prototype/prototype/get_memory.h"
 
 
 namespace database

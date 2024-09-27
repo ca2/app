@@ -3,7 +3,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/file/status.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 #include <stdio.h>
 #include <stdarg.h>
 

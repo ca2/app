@@ -444,7 +444,7 @@ namespace xcb
          }
 
 
-         void display::add_window(::xcb::nano::user::window * pwindow)
+         void display::add_window(::xcb::nano::user::interchange * pwindow)
          {
 
             synchronous_lock synchronouslock(this->synchronization());
@@ -464,7 +464,7 @@ namespace xcb
          }
 
 
-         void display::erase_window(nano::user::window * pwindow)
+         void display::erase_window(nano::user::interchange * pwindow)
          {
 
             synchronous_lock synchronouslock(this->synchronization());

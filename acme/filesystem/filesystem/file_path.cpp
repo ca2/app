@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "acme_file.h"
 //#include "acme/networking/as_string.h"
-//#include "acme/primitive/collection/numeric_array.h"
+//#include "acme/prototype/collection/numeric_array.h"
 
 
 void copy_character_per_character(char * pszTarget, const char * pszSource)

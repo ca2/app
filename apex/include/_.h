@@ -746,7 +746,7 @@ class type;
 class thread_parameter;
 
 
-namespace primitive
+namespace prototype
 {
 
 
@@ -762,7 +762,7 @@ namespace primitive
    class reference;
 
 
-} // namespace primitive
+} // namespace prototype
 
 
 
@@ -833,7 +833,7 @@ namespace core
 
 //#include "apex/primitive/primitive/object.h"
 
-//#include "acme/primitive/primitive/object_meta.h"
+//#include "acme/prototype/prototype/object_meta.h"
 
 //#include "app/acme/platform/trace.h"
 

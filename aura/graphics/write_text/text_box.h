@@ -1,8 +1,8 @@
 #pragma once
 
 
-//#include "acme/primitive/geometry2d/_geometry2d.h"
-//#include "acme/primitive/primitive/pointer.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
+//#include "acme/prototype/prototype/pointer.h"
 #include "aura/graphics/image/image.h"
 
 

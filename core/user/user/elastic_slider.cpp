@@ -3,7 +3,7 @@
 #include "mesh.h"
 #include "acme/constant/message.h"
 #include "acme/platform/timer.h"
-#include "acme/primitive/mathematics/scalar.h"
+#include "acme/prototype/mathematics/scalar.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
 

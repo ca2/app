@@ -4,8 +4,8 @@
 
 
 #include "acme/nano/user/display.h"
-#include "acme/primitive/geometry2d/_collection.h"
-////#include "acme/primitive/primitive/object.h"
+#include "acme/prototype/geometry2d/_collection.h"
+////#include "acme/prototype/prototype/object.h"
 
 
 namespace windowing

@@ -1,13 +1,13 @@
 #pragma once
 
 
-//#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
 
 
-//#include "acme/primitive/geometry2d/_collection.h"
+//#include "acme/prototype/geometry2d/_collection.h"
 
 
-//#include "acme/primitive/mathematics/c_number.h"
+//#include "acme/prototype/mathematics/c_number.h"
 
 
 struct size_parent_layout

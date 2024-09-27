@@ -7,7 +7,7 @@
 #include "acme/parallelization/mutex.h"
 #include "acme/platform/_synchronization.h"
 #include "acme/platform/referencing_debugging.h"
-#include "acme/primitive/primitive/malloc.h"
+#include "acme/prototype/prototype/malloc.h"
 #include "acme/user/user/theme_colors.h"
 
 

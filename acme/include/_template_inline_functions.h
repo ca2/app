@@ -94,7 +94,7 @@ void reverse(TYPE * begin, TYPE * end)
 
 }
 
-#include "acme/primitive/collection/pair.h"
+#include "acme/prototype/collection/pair.h"
 //template < typename A, typename B >
 //struct as_p
 //{
@@ -714,7 +714,7 @@ constexpr bool null_terminated_begins_null_terminated(const ITEM * pz, const ITE
 }
 
 
-#include "acme/primitive/mathematics/_.h"
+#include "acme/prototype/mathematics/_.h"
 
 
 template < typename TYPE >

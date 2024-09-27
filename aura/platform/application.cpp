@@ -6,12 +6,12 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/folder.h"
 #include "acme/filesystem/file/memory_file.h"
-#include "acme/primitive/primitive/url.h"
-#include "acme/primitive/primitive/memory.h"
-#include "acme/primitive/string/base64.h"
+#include "acme/prototype/prototype/url.h"
+#include "acme/prototype/prototype/memory.h"
+#include "acme/prototype/string/base64.h"
 #include "acme/handler/request.h"
 #include "acme/platform/profiler.h"
-#include "acme/primitive/text/context.h"
+#include "acme/prototype/text/context.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/dir_context.h"
@@ -652,7 +652,7 @@ namespace aura
    //}
 
 
-   //void application::message_box_synchronous(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_synchronous(::user::prototype * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   return ::message_box_synchronous(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
@@ -660,7 +660,7 @@ namespace aura
    //}
 
 
-   //void application::ui_message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box(::user::prototype* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -675,7 +675,7 @@ namespace aura
    //}
 
 
-   //void application::ui_message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box_timeout(::user::prototype* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -690,7 +690,7 @@ namespace aura
    //}
 
 
-   //void application::message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box(::user::prototype* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -707,7 +707,7 @@ namespace aura
    //}
 
 
-   //void application::message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_timeout(::user::prototype* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, timeTimeout, emessagebox, callback);
@@ -727,7 +727,7 @@ namespace aura
    //void application::message_box(const ::payload & payload)
    //{
 
-   //   ::pointer<::user::primitive>puiOwner;
+   //   ::pointer<::user::prototype>puiOwner;
 
    //   string strMessage;
 
@@ -748,7 +748,7 @@ namespace aura
    //   else
    //   {
 
-   //      puiOwner = payload["owner"].cast < ::user::primitive >();
+   //      puiOwner = payload["owner"].cast < ::user::prototype >();
    //      strMessage = payload["message"];
    //      strTitle = payload["title"];
    //      uFlags = payload["flags"];
@@ -2530,7 +2530,7 @@ retry_license:
    //}
 
 
-   ////i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::time timeTimeOut, ::u32 fuStyle)
+   ////i32 application::sync_message_box_timeout(::user::prototype * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::time timeTimeOut, ::u32 fuStyle)
    ////{
 
    ////   __UNREFERENCED_PARAMETER(timeTimeOut);
@@ -3323,7 +3323,7 @@ retry_license:
    }
 
 
-   bool application::keyboard_focus_is_focusable(const ::user::primitive * pue)
+   bool application::keyboard_focus_is_focusable(const ::user::prototype * pue)
    {
 
       return false;
@@ -3331,7 +3331,7 @@ retry_license:
    }
 
 
-   bool application::keyboard_focus_OnSetFocus(::user::primitive * pprimitive)
+   bool application::keyboard_focus_OnSetFocus(::user::prototype * pprimitive)
    {
 
       return true;
@@ -3712,7 +3712,7 @@ retry_license:
    //::pointer<::user::message>application::get_user_message(MESSAGE * pmsg)
    //{
 
-   //   ::user::primitive * pinteraction = nullptr;
+   //   ::user::prototype * pinteraction = nullptr;
 
    //   ::windowing::window * pwindow = nullptr;
 

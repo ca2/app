@@ -11,7 +11,7 @@
 
 
 
-#include "acme/primitive/math/mkint_c.h"
+#include "acme/prototype/math/mkint_c.h"
 
 //#if defined(ANDROID)
 //#include "axis/axis/os/android/android.h"

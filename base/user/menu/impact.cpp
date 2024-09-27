@@ -5,7 +5,7 @@
 #include "acme/constant/message.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/sequencer.h"
-#include "acme/primitive/geometry2d/_collection.h"
+#include "acme/prototype/geometry2d/_collection.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/user/user.h"
 #include "acme/user/user/content.h"

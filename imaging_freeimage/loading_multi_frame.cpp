@@ -2,7 +2,7 @@
 #include "image_context.h"
 #include "fimemory.h"
 ////#include "acme/exception/exception.h"
-#include "acme/primitive/time/_text_stream.h"
+#include "acme/prototype/time/_text_stream.h"
 #include "aura/graphics/image/frame.h"
 #include "aura/graphics/image/frame_array.h"
 

@@ -10,19 +10,19 @@
 #include "aura/graphics/write_text/drawer.h"
 #include "aura/graphics/image/drawer.h"
 #include "aura/graphics/image/source.h"
-//#include "acme/primitive/geometry2d/collection.h"
-#include "acme/primitive/geometry2d/angle.h"
-#include "acme/primitive/geometry2d/matrix.h"
-#include "acme/primitive/geometry2d/shift.h"
+//#include "acme/prototype/geometry2d/collection.h"
+#include "acme/prototype/geometry2d/angle.h"
+#include "acme/prototype/geometry2d/matrix.h"
+#include "acme/prototype/geometry2d/shift.h"
 #include "aura/user/user/redraw.h"
 #include "region.h"
 #include "bitmap.h"
 
 
-//#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
 
 
-//#include "acme/primitive/geometry2d/ellipse.h"
+//#include "acme/prototype/geometry2d/ellipse.h"
 
 
 using hdc = void *;

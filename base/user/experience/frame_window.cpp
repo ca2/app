@@ -4,7 +4,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "apex/handler/signal.h"
 #include "apex/platform/application_menu.h"
 #include "aura/graphics/draw2d/graphics.h"

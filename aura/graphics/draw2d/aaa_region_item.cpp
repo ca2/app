@@ -2,9 +2,9 @@
 #include "framework.h"
 #include "region.h"
 #include "region_shape.h"
-#include "acme/primitive/geometry2d/_enhanced.h"
-#include "acme/primitive/geometry2d/_collection_enhanced.h"
-#include "acme/primitive/geometry2d/_defer_shape.h"
+#include "acme/prototype/geometry2d/_enhanced.h"
+#include "acme/prototype/geometry2d/_collection_enhanced.h"
+#include "acme/prototype/geometry2d/_defer_shape.h"
 
 
 namespace draw2d

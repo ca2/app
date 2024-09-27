@@ -3,7 +3,7 @@
 
 
 #include "acme/handler/item.h"
-#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/prototype/geometry2d/rectangle.h"
 
 
 namespace user

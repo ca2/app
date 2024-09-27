@@ -14,7 +14,7 @@ namespace user
    class language_map;
 
 
-   class primitive;
+   class prototype;
 
 
 } // namespace user

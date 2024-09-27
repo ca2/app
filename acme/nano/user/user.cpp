@@ -1,7 +1,7 @@
 // Created by camilo on 2022-11-19 03:54 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "user.h"
-#include "window.h"
+#include "interchange.h"
 #include "acme/constant/id.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/node.h"
@@ -43,7 +43,7 @@ namespace nano
 
         pointer<::sequencer<::conversation>> user::message_box(const ::string& strMessage, const ::string& strTitle,
                                                                const ::e_message_box& emessagebox,
-                                                               const ::string& strDetails, ::nano::user::icon * picon)
+                                                               const ::string& strDetails, ::nano::graphics::icon * picon)
         {
             auto pnode = node();
 
@@ -55,7 +55,7 @@ namespace nano
 
         pointer<::sequencer<::conversation>> user::exception_message_box(
             const ::exception& exception, const ::string& strMessageParam, const ::string& strTitleParam,
-            const ::e_message_box& emessagebox, const ::string& strDetailsParam, ::nano::user::icon * picon)
+            const ::e_message_box& emessagebox, const ::string& strDetailsParam, ::nano::graphics::icon * picon)
         {
             string strExceptionDetails = exception.get_consolidated_details(this);
 
@@ -98,7 +98,7 @@ namespace nano
 
         pointer<::sequencer<::conversation>> user::message_console(const ::string& strMessage, const ::string& strTitle,
                                                                    const ::e_message_box& emessagebox,
-                                                                   const ::string& strDetails, ::nano::user::icon * picon)
+                                                                   const ::string& strDetails, ::nano::graphics::icon * picon)
         {
             auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
 
@@ -108,7 +108,7 @@ namespace nano
 
         pointer<::sequencer<::conversation>> user::exception_message_console(
             const ::exception& exception, const ::string& strMessage, const ::string& strTitle,
-            const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::user::icon * picon)
+            const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::graphics::icon * picon)
         {
             string strExceptionDetails = exception.get_consolidated_details(this);
 
@@ -123,9 +123,9 @@ namespace nano
         {
             if (ptopic->m_atom == id_set_application_dark_mode)
             {
-                for (auto& pnanowindow : m_nanowindowa)
+                for (auto& pinterchange : m_interchangea)
                 {
-                    pnanowindow->handle(ptopic, pcontext);
+                    pinterchange->handle(ptopic, pcontext);
                 }
             }
         }

@@ -15,11 +15,11 @@
 #include "acme/operating_system/security_attributes.h"
 #include "acme/platform/serial_shared.h"
 //#include "acme/exception/status.h"
-////#include "acme/primitive/primitive/object.h"
-//#include "acme/primitive/primitive/pointer.h"
-#include "acme/primitive/collection/atom_array.h"
-#include "acme/primitive/collection/string_map.h"
-//#include "acme/primitive/time/time.h"
+////#include "acme/prototype/prototype/object.h"
+//#include "acme/prototype/prototype/pointer.h"
+#include "acme/prototype/collection/atom_array.h"
+#include "acme/prototype/collection/string_map.h"
+//#include "acme/prototype/time/time.h"
 #include "shell.h"
 
 struct os_theme_colors;
@@ -119,7 +119,7 @@ namespace acme
 
       //bool                                                m_bUserDarkMode;
 
-      bool                                                  m_bOperatingSystemDarkMode;
+      //bool                                                  m_bOperatingSystemDarkMode;
       //int                                                   m_iWeatherDarkness;
       ::file::path                                          m_pathModule;
 
@@ -270,45 +270,45 @@ namespace acme
 
       virtual void install_sigchld_handler();
 
-      virtual ::color::color get_system_color(enum_system_color esystemcolor);
-
-      virtual bool dark_mode() const;
-
-      virtual ::os_theme_colors * _new_os_theme_colors();
-
-      virtual ::os_theme_colors * _get_os_theme_colors();
-
-      virtual void _fill_os_theme_colors(::os_theme_colors * pthemecolors);
-
-      virtual void _set_os_theme_colors(::os_theme_colors * pthemecolors);
-
-      virtual void _del_os_theme_colors(::os_theme_colors * pthemecolors);
-
-      virtual void _term_os_theme_colors();
+      // virtual ::color::color get_system_color(enum_system_color esystemcolor);
+      //
+      // //virtual bool dark_mode() const;
+      //
+      // virtual ::os_theme_colors * _new_os_theme_colors();
+      //
+      // virtual ::os_theme_colors * _get_os_theme_colors();
+      //
+      // virtual void _fill_os_theme_colors(::os_theme_colors * pthemecolors);
+      //
+      // virtual void _set_os_theme_colors(::os_theme_colors * pthemecolors);
+      //
+      // virtual void _del_os_theme_colors(::os_theme_colors * pthemecolors);
+      //
+      // virtual void _term_os_theme_colors();
 
 //      virtual int get_simple_ui_darkness();
 
 //      virtual void set_simple_ui_darkness(int iWeatherDarkness);
 
-      virtual void set_dark_mode(bool bDark);
+      //virtual void set_dark_mode(bool bDark);
 
-      virtual void fetch_user_color();
+      // virtual void fetch_user_color();
+      //
+      // virtual void _fetch_user_color();
 
-      virtual void _fetch_user_color();
+      //virtual void on_operating_system_user_theme_change();
 
-      virtual void on_operating_system_user_theme_change();
+      //virtual void on_operating_system_user_color_change();
 
-      virtual void on_operating_system_user_color_change();
+      //virtual void on_operating_system_font_list_change();
 
-      virtual void on_operating_system_font_list_change();
+      //virtual string os_get_user_theme();
 
-      virtual string os_get_user_theme();
+      //virtual void os_set_user_theme(const ::string & strUserTheme);
 
-      virtual void os_set_user_theme(const ::string & strUserTheme);
+      //virtual void os_process_user_theme(string strTheme);
 
-      virtual void os_process_user_theme(string strTheme);
-
-      virtual void os_process_user_icon_theme(string strIconTheme);
+      //virtual void os_process_user_icon_theme(string strIconTheme);
 
       virtual bool set_wallpaper(::collection::index iScreen, string strLocalImagePath, ::windowing::display * pwindowingdisplay);
 
@@ -475,12 +475,12 @@ namespace acme
       virtual ::pointer<::conversation> create_new_message_conversation();
 
 
-      virtual pointer< ::sequencer < ::conversation > > create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::user::icon * picon);
+      virtual pointer< ::sequencer < ::conversation > > create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon);
 
 
       //virtual void ::nano::user::message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox);
 
-      virtual pointer< ::sequencer < ::conversation > > create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::user::icon * picon);
+      virtual pointer< ::sequencer < ::conversation > > create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon);
 
 
 

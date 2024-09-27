@@ -15,7 +15,7 @@
 #include "acme/platform/set_app_id.h"
 #include "acme/platform/system.h"
 #include "acme/platform/system_setup.h"
-#include "acme/primitive/string/command_line.h"
+#include "acme/prototype/string/command_line.h"
 #include "_main_hold_base.h"
 #include "acme/_operating_system.h"
 

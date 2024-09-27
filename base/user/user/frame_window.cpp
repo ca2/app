@@ -19,7 +19,7 @@
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
 #include "acme/platform/sequencer.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/user/user.h"
 #include "acme/user/user/_text_stream.h"
@@ -311,7 +311,7 @@ namespace user
    //}
 
 
-   bool frame_window::on_set_parent(::user::primitive * puiParent)
+   bool frame_window::on_set_parent(::user::prototype * puiParent)
    {
 
       if (!::user::interaction::on_set_parent(puiParent))

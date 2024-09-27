@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/atom.h"
+#include "acme/prototype/prototype/atom.h"
 
 
 ////class system;

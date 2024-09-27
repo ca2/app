@@ -41,7 +41,7 @@ namespace user
 {
 
 
-   class primitive;
+   class prototype;
    class interaction;
 
 

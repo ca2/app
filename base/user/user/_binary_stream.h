@@ -3,7 +3,7 @@
 
 
 #include "acme/filesystem/file/binary_stream.h"
-#include "acme/primitive/geometry2d/_binary_stream.h"
+#include "acme/prototype/geometry2d/_binary_stream.h"
 
 
 // template < typename FILE >

@@ -26,7 +26,7 @@ namespace input
    }
 
 
-   ::e_status input::is_keyboard_message_handling_enabled(::user::primitive * puserprimitiveEnablePrompt)
+   ::e_status input::is_keyboard_message_handling_enabled(::user::prototype * puserprimitiveEnablePrompt)
    {
 
       return ::success;
@@ -35,7 +35,7 @@ namespace input
 
 
 
-   ::e_status input::is_mouse_message_handling_enabled(::user::primitive * puserprimitiveEnablePrompt)
+   ::e_status input::is_mouse_message_handling_enabled(::user::prototype * puserprimitiveEnablePrompt)
    {
 
       return ::success;
@@ -162,7 +162,7 @@ namespace input
    }
 
 
-   void input::install_mouse_hook(::particle * pparticle, ::user::primitive * puserprimitiveEnablePrompt)
+   void input::install_mouse_hook(::particle * pparticle, ::user::prototype * puserprimitiveEnablePrompt)
    {
 
       auto estatus = is_mouse_message_handling_enabled(puserprimitiveEnablePrompt);
@@ -179,7 +179,7 @@ namespace input
    }
 
 
-   void input::install_keyboard_hook(::particle * pparticle, ::user::primitive * puserprimitiveEnablePrompt)
+   void input::install_keyboard_hook(::particle * pparticle, ::user::prototype * puserprimitiveEnablePrompt)
    {
 
       auto estatus = is_keyboard_message_handling_enabled(puserprimitiveEnablePrompt);

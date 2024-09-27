@@ -13,11 +13,11 @@
 #include "acme/platform/ini.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/datetime/datetime.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/datetime/datetime.h"
+#include "acme/prototype/prototype/memory.h"
 #include "acme/platform/session.h"
-//#include "acme/primitive/collection/string_array.h"
-////#include "acme/primitive/datetime/earth_time.h"
+//#include "acme/prototype/collection/string_array.h"
+////#include "acme/prototype/datetime/earth_time.h"
 
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);

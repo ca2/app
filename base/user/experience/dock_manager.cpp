@@ -5,7 +5,7 @@
 #include "control_box.h"
 #include "button.h"
 #include "acme/constant/message.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "apex/parallelization/thread.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/collection/raw_pointer_array.h"
+#include "acme/prototype/collection/raw_pointer_array.h"
 #include "aura/user/user/scroll_base.h"
 #include "acme/parallelization/manual_reset_event.h"
 

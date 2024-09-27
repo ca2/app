@@ -3,27 +3,16 @@
 
 
 #include "command_update_target.h"
-#include "acme/primitive/data/property_container.h"
+#include "acme/prototype/data/property_container.h"
 #include "acme/user/user/check.h"
 #include "acme/user/user/control.h"
 #include "acme/user/user/text.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
 #include "acme/handler/source.h"
 #include "acme/platform/conversation_message.h"
-#include "acme/primitive/geometry2d/rectangle.h"
-#include "acme/primitive/geometry2d/rectangle_array.h"
-#include "drag_client.h"
+#include "acme/prototype/geometry2d/rectangle.h"
+#include "acme/prototype/geometry2d/rectangle_array.h"
 
-
-namespace operating_system
-{
-
-
-   class a_system_menu_item;
-   class a_system_menu;
-
-
-} // namespace operating_system
 
 
 namespace user
@@ -51,12 +40,7 @@ namespace user
 
 
    class CLASS_DECL_ACME element :
-      virtual public ::user::command_update_target,
-      virtual public ::conversation_message,
-      virtual public ::user::drag_client,
-      virtual public ::source,
-      virtual public ::user::check,
-      virtual public ::user::text
+      virtual public ::user::command_update_target
    {
    public:
 
@@ -111,8 +95,8 @@ namespace user
 
       //class ::time                           m_timeFocusStart;
       bool                                         m_bUserElementOk;
-      ::user::primitive *                          m_puserprimitive;
-      ::user::interaction *                        m_puserinteraction;
+      //::user::prototype *                          m_puserprimitive;
+      //::user::interaction *                        m_puserinteraction;
       //pointer< pointer_array < ::user::item > >    m_puseritema;
 
       ::user::check                                m_check;
@@ -133,7 +117,7 @@ namespace user
 
       virtual void create_message_queue(const ::string & lpszName);
 
-
+virtual ::user::interaction * user_interaction();
       //virtual void set_config_per_second(::frequency dConfigFps);
       //virtual ::frequency get_config_per_second();
       //virtual ::frequency get_output_per_second();
@@ -178,8 +162,6 @@ namespace user
 
       virtual void _on_window_simple_action(const char * pszActionName);
 
-
-      virtual ::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true);
 
       //bool defer_perform_entire_reposition_process(::user::mouse * pmouse) override;
 
@@ -268,7 +250,7 @@ namespace user
       virtual bool ContinueModal();
       virtual void EndModalLoop(atom nResult);
 
-
+      virtual void _run_modal_loop();
 
       // Dialog data support
       virtual void update_data(bool bSaveAndValidate = true);
@@ -327,14 +309,13 @@ namespace user
 
       virtual string get_class_name();
 
-      
-      virtual void create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom = nullptr);
 
+      virtual void on_before_create_window(::windowing::window_base * pwindowbase);
+      virtual void on_create_window();
 
       //virtual void create_host(enum_parallelization eparallelization);
       virtual void create_host();
       virtual void create_child(::user::interaction * puserinteractionParent);
-      virtual void create_control(::user::interaction * puserinteractionParent, const ::atom & atom);
 
       //virtual void create_window_ex(::pointer<::user::system>pcs, ::user::interaction * puiParent, const ::atom & atom);
       //virtual void CalcWindowRect(::rectangle_i32 * pClientRect,::u32 nAdjustType = adjustBorder);
@@ -432,14 +413,26 @@ namespace user
 
       //virtual void set_foreground_window();
 
+      virtual void set_position(const ::point_i32 & point);
+
+
+
+      virtual void redraw();
+      virtual void set_cursor(enum_cursor ecursor);
+      virtual void set_capture();
+      virtual bool has_capture();
+      virtual void release_capture();
       
 
       virtual void edit_on_set_focus(::user::interaction* pinteraction);
       virtual void edit_on_kill_focus(::user::interaction* pinteraction);
 
 
-      using ::user::text::get_text;
-      using ::user::drag_client::get_text;
+      //using ::user::text::get_text;
+//      using ::user::drag_client::get_text;
+
+
+      virtual ::rectangle_i32 get_window_rectangle();
 
 
       virtual void set_window_text(const ::string & psz);
@@ -472,7 +465,7 @@ namespace user
       virtual ::user::interaction * get_wnd();
       virtual ::user::interaction * get_wnd(::u32 nCmd);
       //virtual ::user::interaction_impl * get_impl() const;
-      virtual ::task * get_task() override;
+      //virtual ::task * get_task() override;
 
       virtual ::user::element * set_parent(::user::element * pinteraction);
       virtual ::user::element * set_owner(::user::element * pinteraction);
@@ -830,16 +823,6 @@ namespace user
 
       //virtual bool enable_window(bool bEnable );
 
-      // Text Edit
-      void get_text_selection(strsize & iBeg, strsize & iEnd) const override;
-      virtual void get_text_selection(strsize& iBeg, strsize& iEnd, strsize & iComposingStart, strsize & iComposingEnd) const;
-      virtual ::collection::index plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel);
-      virtual ::collection::index plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x);
-      virtual ::collection::index plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel);
-      virtual ::collection::index plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32 & x);
-      virtual strsize plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::collection::index iColumn);
-      virtual strsize plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, i32 x);
-      virtual ::collection::index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel);
 
 
       //virtual void set_window_text(const ::string & pszString);

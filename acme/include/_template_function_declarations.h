@@ -3,7 +3,7 @@
 
 
 #include "acme/exception/debug.h"
-#include "acme/primitive/primitive/e_status.h"
+#include "acme/prototype/prototype/e_status.h"
 
 
 template < typename CHAR_STRING >

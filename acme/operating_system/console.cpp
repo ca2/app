@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "acme/operating_system/_const_console.h"
 #include "acme/operating_system/console.h"
-#include "acme/primitive/collection/strdup_array.h"
+#include "acme/prototype/collection/strdup_array.h"
 #include "acme/exception/interface_only.h"
-#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/prototype/geometry2d/rectangle.h"
 #include <stdio.h>
 #ifdef WINDOWS
 #include <conio.h>

@@ -5,9 +5,9 @@
 #pragma once
 
 
-#include  "acme/primitive/collection/string_array.h"
+#include  "acme/prototype/collection/string_array.h"
 #include "path.h"
-#include  "acme/primitive/primitive/atom.h"
+#include  "acme/prototype/prototype/atom.h"
 
 
 namespace file

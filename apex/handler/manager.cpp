@@ -4,7 +4,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/primitive/action_context.h"
+#include "acme/prototype/prototype/action_context.h"
 
 
 //::critical_section manager::s_criticalsection;

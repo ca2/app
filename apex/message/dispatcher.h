@@ -3,10 +3,10 @@
 
 #include "predicate_handler.h"
 #include "acme/memory/chunk.h"
-#include "acme/primitive/collection/atom_map.h"
-//#include "acme/primitive/primitive/function.h"
+#include "acme/prototype/collection/atom_map.h"
+//#include "acme/prototype/prototype/function.h"
 
-//#include "acme/primitive/primitive/pointer.h"
+//#include "acme/prototype/prototype/pointer.h"
 
 
 CLASS_DECL_APEX int get_member_function_offset();

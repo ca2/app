@@ -1,4 +1,4 @@
-// Extracted part from acme/primitive/primitive/url to
+// Extracted part from acme/prototype/prototype/url to
 // apex/networking/internet by
 // camilo on 2024-08-27 19:11 <3ThomasBorregaardSorensen!!
 #include "framework.h"

@@ -10,7 +10,7 @@
 #include "exception.h"
 #include "acme/exception/parsing.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/string/str.h"
 #include "acme/exception/extended_status.h"
 
 

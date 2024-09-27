@@ -21,7 +21,7 @@
 #include "_constant.h"
 #include "text_box.h"
 #include "types.h"
-#include "acme/primitive/geometry2d/angle.h"
+#include "acme/prototype/geometry2d/angle.h"
 
 
 namespace nano2d

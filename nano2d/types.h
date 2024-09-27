@@ -18,7 +18,7 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/matrix.h"
+#include "acme/prototype/geometry2d/matrix.h"
 
 
 namespace nano2d

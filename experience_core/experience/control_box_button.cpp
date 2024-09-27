@@ -2,7 +2,7 @@
 #include "control_box_button.h"
 #include "acme/handler/item.h"
 #include "acme/user/user/tool.h"
-#include "acme/primitive/geometry2d/ellipse.h"
+#include "acme/prototype/geometry2d/ellipse.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/path.h"

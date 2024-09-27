@@ -3,7 +3,7 @@
 
 #include "acme/operating_system/error_code.h"
 
-//#include "acme/primitive/collection/array.h"
+//#include "acme/prototype/collection/array.h"
 
 
 class CLASS_DECL_ACME exception :

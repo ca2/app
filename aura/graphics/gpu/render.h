@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/prototype/geometry2d/rectangle.h"
 
 
 namespace gpu

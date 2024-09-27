@@ -32,13 +32,13 @@
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/debug.h"
-#include "acme/primitive/datetime/datetime.h"
-#include "acme/primitive/mathematics/mathematics.h"
-#include "acme/primitive/primitive/primitive.h"
-#include "acme/primitive/primitive/url.h"
+#include "acme/prototype/datetime/datetime.h"
+#include "acme/prototype/mathematics/mathematics.h"
+#include "acme/prototype/prototype/prototype.h"
+#include "acme/prototype/prototype/url.h"
 #include "acme/regular_expression/context.h"
-//#include "acme/primitive/primitive/payload.h"
-//#include "acme/primitive/string/hex.h"
+//#include "acme/prototype/prototype/payload.h"
+//#include "acme/prototype/string/hex.h"
 #include "acme/nano/user/user.h"
 #include "acme/nano/http/http.h"
 #include "acme/nano/speech/speech.h"
@@ -489,7 +489,7 @@ namespace acme
 
       __defer_construct_new(m_pmathematics);
 
-      __defer_construct_new(m_pprimitive);
+      __defer_construct_new(m_pprototype);
 
       //::plane_system::on_initialize_particle();
 
@@ -2878,16 +2878,16 @@ namespace acme
       else if (ptopic->m_atom == id_operating_system_user_theme_change)
       {
 
-         auto pnode = node();
-
-         string strTheme = pnode->os_get_user_theme();
-
-         if (strTheme != m_strOsUserTheme)
-         {
-
-            m_strOsUserTheme = strTheme;
-
-         }
+         // auto pnode = node();
+         //
+         // string strTheme = pnode->os_get_user_theme();
+         //
+         // if (strTheme != m_strOsUserTheme)
+         // {
+         //
+         //    m_strOsUserTheme = strTheme;
+         //
+         // }
 
       }
       else if (ptopic->m_atom == id_open_hyperlink)
@@ -3839,6 +3839,9 @@ namespace acme
    void system::on_application_dark_mode_change()
    {
 
+      auto ptopic = ::place(new ::topic(id_application_dark_mode_change));
+
+      application()->handle(ptopic, nullptr);
 
    }
 

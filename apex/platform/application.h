@@ -9,7 +9,7 @@
 #include "apex/networking/application/application_handler.h"
 //#include "acme/parallelization/semaphore.h"
 #include "acme/platform/application.h"
-//#include "acme/primitive/mathematics/scalar.h"
+//#include "acme/prototype/mathematics/scalar.h"
 #include "apex/progress/real.h"
 
 
@@ -56,7 +56,7 @@ namespace apex
 
       //::pointer<::game::game>                    m_pgame;
 
-      ::pointer<::user::primitive>                 m_puiCurrent;
+      ::pointer<::user::prototype>                 m_puiCurrent;
       bool                                         m_bContextTheme;
 
 // #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
@@ -447,16 +447,16 @@ namespace apex
       //// os_* functions generally
       //// reserves a lot of surprises from each
       //// operating system specific behavior
-      //virtual void message_box_synchronous(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box_synchronous(::user::prototype * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
-      //virtual void ui_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual void ui_message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void ui_message_box(::user::prototype * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void ui_message_box_timeout(::user::prototype * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       //using ::apex::context::message_box;
-      //virtual void message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual void message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box(::user::prototype * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box_timeout(::user::prototype * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       virtual void on_file_new();
@@ -770,8 +770,8 @@ namespace apex
 
 
 
-      virtual bool keyboard_focus_is_focusable(const ::user::primitive * pue);
-      virtual bool keyboard_focus_OnSetFocus(::user::primitive * pue);
+      virtual bool keyboard_focus_is_focusable(const ::user::prototype * pue);
+      virtual bool keyboard_focus_OnSetFocus(::user::prototype * pue);
 
       //virtual ::user::interaction * main_window();
 
@@ -865,7 +865,7 @@ namespace apex
 
       //virtual u32 guess_code_page(const string& str);
 
-      //virtual i32 _sync_message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle) override;
+      //virtual i32 _sync_message_box(::user::prototype* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle) override;
 
 
       virtual void pre_translate_message(::message::message * pmessage) override;
@@ -946,8 +946,8 @@ namespace apex
       //void EnableHtmlHelp();
 
 
-      //virtual i32 sync_message_box_timeout(::user::primitive * puiOwner,::payload payload, const ::string & pszTitle, class ::time timeTimeout,::u32 fuStyle = e_message_box_ok) override;
-      //virtual i32 sync_message_box(::user::primitive * puiOwner,const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle = e_message_box_ok) override;
+      //virtual i32 sync_message_box_timeout(::user::prototype * puiOwner,::payload payload, const ::string & pszTitle, class ::time timeTimeout,::u32 fuStyle = e_message_box_ok) override;
+      //virtual i32 sync_message_box(::user::prototype * puiOwner,const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle = e_message_box_ok) override;
 
 
       //bool on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId) override;

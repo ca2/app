@@ -1,6 +1,6 @@
 #include "framework.h"
 
-//#include "acme/primitive/collection/string_array.h"
+//#include "acme/prototype/collection/string_array.h"
 
 
 CLASS_DECL_ACME int framework_is_basis()

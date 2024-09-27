@@ -11,7 +11,7 @@
 #include "acme/parallelization/asynchronous.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/user/user/_text_stream.h"
 #include "aura/windowing/window.h"
 //#include "windowing_gtk3/window.h"

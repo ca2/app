@@ -14,12 +14,12 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/constant/timer.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/primitive/primitive/url.h"
-#include "acme/primitive/primitive/url_domain.h"
+#include "acme/prototype/prototype/url.h"
+#include "acme/prototype/prototype/url_domain.h"
 #include "acme/parallelization/pool.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/string/str.h"
 #include "axis/platform/session.h"
 
 

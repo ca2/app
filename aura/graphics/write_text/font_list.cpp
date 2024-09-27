@@ -792,9 +792,15 @@ namespace write_text
 
          auto psystem = system();
 
-         auto pnode = psystem->node();
+         m_bDarkMode = psystem->dark_mode();
 
-         m_bDarkMode = pnode->dark_mode();
+      }
+      else if (eid == id_application_dark_mode_change)
+      {
+
+         auto psystem = system();
+
+         m_bDarkMode = psystem->dark_mode();
 
       }
 

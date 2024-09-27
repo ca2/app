@@ -1,7 +1,7 @@
 // Created by camilo on 2022-11-02 05:09 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/constant/message.h"
-#include "acme/primitive/primitive/tuple.h"
+#include "acme/prototype/prototype/tuple.h"
 #ifdef WINDOWS_DESKTOP
 #include "acme/_operating_system.h"
 #endif

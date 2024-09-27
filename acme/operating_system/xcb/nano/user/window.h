@@ -28,8 +28,8 @@ namespace xcb
             ::pointer<class display>        m_pdisplay;
             xcb_window_t                    m_window;
             cairo_surface_t *               m_psurface;
-            ::pointer<::nano::user::device>         m_pnanodevice;
-            //::pointer<::nano::user::font>         m_pfont;
+            ::pointer<::nano::graphics::device>         m_pnanodevice;
+            //::pointer<::nano::graphics::font>         m_pfont;
             //color32_t                     m_colorText;
             //color32_t                     m_colorFocus;
             //color32_t                     m_colorWindow;
@@ -75,9 +75,9 @@ namespace xcb
 
             //virtual bool aaa_message_loop_step();
 
-            virtual void _draw(::nano::user::device * pnanodevice);
+            virtual void _draw(::nano::graphics::device * pnanodevice);
 
-            //virtual void on_draw(::nano::user::device * pnanodevice);
+            //virtual void on_draw(::nano::graphics::device * pnanodevice);
 
             void on_char(int iChar) override;
 
@@ -85,7 +85,7 @@ namespace xcb
 
             void set_active() override;
 
-            ///virtual void draw_children(::nano::user::device * pnanodevice);
+            ///virtual void draw_children(::nano::graphics::device * pnanodevice);
 
             void delete_drawing_objects() override;
 

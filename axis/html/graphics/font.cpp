@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "font.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/string/str.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/platform/node.h"
 #include "axis/platform/system.h"

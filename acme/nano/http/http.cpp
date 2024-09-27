@@ -10,7 +10,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/parallelization/manual_reset_event.h"
-#include "acme/primitive/primitive/factory.h"
+#include "acme/prototype/prototype/factory.h"
 
 
 namespace nano

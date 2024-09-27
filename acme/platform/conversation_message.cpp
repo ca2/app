@@ -9,7 +9,7 @@
 #include "conversation_message.h"
 #include "acme/platform/node.h"
 #include "acme/platform/sequencer.h"
-#include "acme/nano/user/icon.h"
+#include "acme/nano/graphics/icon.h"
 
 //#include "acme/filesystem/file/string_buffer.h"
 //#include "acme/filesystem/file/text_stream.h"
@@ -62,7 +62,7 @@ namespace acme
 }
 
 
-void conversation_message::initialize_conversation(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::user::icon * picon)
+void conversation_message::initialize_conversation(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
 {
 
    m_strMessage = strMessage;

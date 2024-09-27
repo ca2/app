@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "region.h"
 #include "acme/exception/interface_only.h"
-#include "acme/primitive/geometry2d/item.h"
+#include "acme/prototype/geometry2d/item.h"
 
 
 namespace draw2d

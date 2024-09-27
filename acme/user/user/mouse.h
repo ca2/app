@@ -10,7 +10,7 @@
 
 
 #include "acme/platform/message.h"
-#include "acme/primitive/geometry2d/point.h"
+#include "acme/prototype/geometry2d/point.h"
 
 
 namespace user

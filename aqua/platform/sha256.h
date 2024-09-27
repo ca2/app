@@ -5,7 +5,7 @@
 //
 
 #pragma once
-#include "acme/primitive/string/hex.h"
+#include "acme/prototype/string/hex.h"
 //#include "hash.h"
 #include <string>
 

@@ -2,7 +2,7 @@
 
 
 #include "aura/user/user/scroll.h"
-#include "acme/primitive/mathematics/int_biunique.h"
+#include "acme/prototype/mathematics/int_biunique.h"
 
 
 namespace user

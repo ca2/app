@@ -247,7 +247,7 @@ namespace draw2d_opengl
       i32 SelectClipRgn(::draw2d::region* pRgn);
       i32 ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2);
       i32 ExcludeClipRect(const ::rectangle_i32 & rectangle_i32);
-      i32 ExcludeUpdateRgn(::user::primitive * pwindow);
+      i32 ExcludeUpdateRgn(::user::prototype * pwindow);
       i32 IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2);
       i32 IntersectClipRect(const ::rectangle_i32 & rectangle_i32);
       i32 OffsetClipRgn(i32 x, i32 y);

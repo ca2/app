@@ -2,8 +2,8 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/point.h"
-#include "acme/primitive/geometry2d/size.h"
+#include "acme/prototype/geometry2d/point.h"
+#include "acme/prototype/geometry2d/size.h"
 #include "acme/constant/element.h"
 #include "acme/handler/item.h"
 

@@ -11,7 +11,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/data/tree_item.h"
+#include "acme/prototype/data/tree_item.h"
 #include "aura/message/user.h"
 #include "axis/user/user/validate.h"
 #include "axis/user/user/combo_box.h"
@@ -1186,7 +1186,7 @@ namespace user
    //   case list::PropertyBaseWndInterface:
    //   case list::PropertyDrawBaseWndInterface:
    //   {
-   //      const ::user::primitive ** ppinterface = (const ::user::primitive **) lparam;
+   //      const ::user::prototype ** ppinterface = (const ::user::prototype **) lparam;
 
    //      *ppinterface = (list *)this;
    //   }

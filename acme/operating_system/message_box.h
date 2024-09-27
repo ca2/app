@@ -27,7 +27,7 @@ virtual public ::conversation_message
       ::payload do_synchronously(const class time & timeWait) override;
 
       
-      static ::pointer< ::sequencer < ::conversation > > create_sequencer(::particle * pparticle, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::user::icon * picon);
+      static ::pointer< ::sequencer < ::conversation > > create_sequencer(::particle * pparticle, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon);
 
       
    };

@@ -147,14 +147,14 @@ namespace windows
          LRESULT CALLBACK nano_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
          {
 
-            ::windows::nano::user::window* pwindow = nullptr;
+            ::windows::nano::user::interchange* pwindow = nullptr;
 
             if (msg == WM_NCCREATE)
             {
 
                CREATESTRUCT* pcreatestruct = (CREATESTRUCT*)lParam;
 
-               pwindow = (::windows::nano::user::window*)pcreatestruct->lpCreateParams;
+               pwindow = (::windows::nano::user::interchange*)pcreatestruct->lpCreateParams;
 
                SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pwindow);
 
@@ -164,7 +164,7 @@ namespace windows
             else
             {
 
-               pwindow = (::windows::nano::user::window*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+               pwindow = (::windows::nano::user::interchange*)GetWindowLongPtr(hwnd, GWLP_USERDATA);
 
             }
 
@@ -239,7 +239,7 @@ namespace windows
 
             {
 
-               auto pnanodevice = ::place(new ::windows::nano::user::device(hdc));
+               auto pnanodevice = ::place(new ::windows::nano::graphics::device(hdc));
 
                m_pinterface->draw(pnanodevice);
 

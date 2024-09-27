@@ -2,7 +2,7 @@
 #pragma once
 
 
-//#include "acme/primitive/primitive/pointer.h"
+//#include "acme/prototype/prototype/pointer.h"
 #include "acme/filesystem/file/string_stream.h"
 #if defined(__STD_FORMAT)
 #include <format>

@@ -13,7 +13,7 @@
 //#endif
 
 //
-//namespace primitive
+//namespace prototype
 //{
 //
 //
@@ -27,7 +27,7 @@
 //   }
 //
 //
-//} // namespace primitive
+//} // namespace prototype
 //
 //
 //template < class T >

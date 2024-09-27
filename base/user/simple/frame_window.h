@@ -71,7 +71,7 @@ public:
    void install_message_routing(::channel * pchannel) override;
 
    virtual bool on_before_set_parent(::pointer<::user::interaction>pframewindow);
-   bool on_set_parent(::user::primitive * puiParent) override;
+   bool on_set_parent(::user::prototype * puiParent) override;
    void on_after_set_parent() override;
 
    

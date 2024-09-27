@@ -4,7 +4,7 @@
 #include "acme/constant/timer.h"
 #include "acme/handler/extended_topic.h"
 #include "acme/handler/topic.h"
-#include "acme/primitive/primitive/atom.h"
+#include "acme/prototype/prototype/atom.h"
 #include "base/user/form/impact.h"
 
 

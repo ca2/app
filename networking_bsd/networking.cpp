@@ -5,15 +5,15 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/string_stream.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/mathematics/mathematics.h"
-#include "acme/primitive/time/_binary_stream.h"
-#include "acme/primitive/string/parse.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/mathematics/mathematics.h"
+#include "acme/prototype/time/_binary_stream.h"
+#include "acme/prototype/string/parse.h"
+#include "acme/prototype/string/str.h"
 #include "apex/platform/context.h"
 #include "apex/platform/system.h"
 
 
-#include "acme/primitive/collection/_array.h"
+#include "acme/prototype/collection/_array.h"
 
 bool operating_system_has_ipv4_internet();
 bool operating_system_has_ipv6_internet();

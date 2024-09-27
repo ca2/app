@@ -4,7 +4,7 @@
 #include "list_column.h"
 #include "list_column_array.h"
 #include "acme/constant/message.h"
-#include "acme/primitive/collection/_array_binary_stream.h"
+#include "acme/prototype/collection/_array_binary_stream.h"
 #include "apex/database/_binary_stream.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/item.h"

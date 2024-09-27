@@ -23,14 +23,14 @@
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/handler/request.h"
 //#include "apex/id.h"
-#include "acme/primitive/primitive/url.h"
+#include "acme/prototype/prototype/url.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/single_lock.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/system_setup.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/datetime/datetime.h"
-#include "acme/primitive/string/command_line.h"
+#include "acme/prototype/datetime/datetime.h"
+#include "acme/prototype/string/command_line.h"
 #include "apex/innate_ui/innate_ui.h"
 #include "apex/input/input.h"
 #include "apex/message/message.h"
@@ -51,12 +51,12 @@
 #include "acme/filesystem/filesystem/dir_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/parallelization/install_mutex.h"
-#include "acme/primitive/text/context.h"
+#include "acme/prototype/text/context.h"
 #include "apex/message/command.h"
-#include "acme/primitive/geometry2d/geometry.h"
+#include "acme/prototype/geometry2d/geometry.h"
 #include "acme/platform/hyperlink.h"
 //#include "acme/platform/system_impl.h"
-#include "acme/primitive/string/base64.h"
+#include "acme/prototype/string/base64.h"
 
 int file_put_contents(const ::file::path & path, const char * contents);;
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
@@ -5106,9 +5106,7 @@ namespace apex
    
       this->signal(id_application_dark_mode_change);
 
-      auto ptopic = ::place(new ::topic(id_application_dark_mode_change));
-
-      application()->handle(ptopic, nullptr);
+      ::acme::system::on_application_dark_mode_change();
 
    }
 

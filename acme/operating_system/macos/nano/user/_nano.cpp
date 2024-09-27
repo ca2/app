@@ -13,11 +13,11 @@
 extern "C" void nano_user_macos_factory(::factory::factory * pfactory)
 {
 
-   pfactory->add_factory_item<::macos::nano::user::window, ::nano::user::window_implementation>();
-   pfactory->add_factory_item<::quartz2d::nano::user::device, ::nano::user::device>();
-   pfactory->add_factory_item<::nano::user::brush>();
-   pfactory->add_factory_item<::nano::user::font>();
-   pfactory->add_factory_item<::nano::user::pen>();
+   pfactory->add_factory_item<::macos::nano::user::interchange, ::nano::user::window_implementation>();
+   pfactory->add_factory_item<::quartz2d::nano::graphics::device, ::nano::graphics::device>();
+   pfactory->add_factory_item<::nano::graphics::brush>();
+   pfactory->add_factory_item<::nano::graphics::font>();
+   pfactory->add_factory_item<::nano::graphics::pen>();
 
    pfactory->add_factory_item<::nano::user::user>();
 

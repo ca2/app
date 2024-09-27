@@ -13,7 +13,7 @@
 #include "acme/constant/simple_command.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/primitive/atom.h"
+#include "acme/prototype/prototype/atom.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/message/simple_command.h"
 #include "acme/handler/request.h"

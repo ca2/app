@@ -2,9 +2,9 @@
 
 
 #include "acme/platform/department.h"
-#include "acme/primitive/collection/list.h"
-//#include "acme/primitive/collection/string_array.h"
-#include "acme/primitive/collection/string_map.h"
+#include "acme/prototype/collection/list.h"
+//#include "acme/prototype/collection/string_array.h"
+#include "acme/prototype/collection/string_map.h"
 //#include "acme/user/user/user.h"
 
 //class keyboard;
@@ -39,8 +39,8 @@ namespace user
       ::bred::user* m_pbreduser;
       ::core::user* m_pcoreuser;
 
-      ::pointer<::user::primitive>             m_pmousefocusLButtonDown;
-      ::pointer<::user::primitive>             m_pmousefocusRButtonDown;
+      ::pointer<::user::prototype>             m_pmousefocusLButtonDown;
+      ::pointer<::user::prototype>             m_pmousefocusRButtonDown;
       string_array                              m_straEscape;
       ::user::style_pointer                     m_puserstyle;
       string_map < ::user::style_pointer >      m_mapUserStyle;
@@ -132,11 +132,11 @@ namespace user
 
       virtual void create_user_shell();
 
-      virtual ::user::primitive * get_mouse_focus_LButtonDown();
-      virtual void set_mouse_focus_LButtonDown(::user::primitive * pmousefocus);
-      virtual void defer_erase_mouse_focus_LButtonDown(::user::primitive * pmousefocus);
-      virtual ::user::primitive * get_mouse_focus_RButtonDown();
-      virtual void set_mouse_focus_RButtonDown(::user::primitive * pmousefocus);
+      virtual ::user::prototype * get_mouse_focus_LButtonDown();
+      virtual void set_mouse_focus_LButtonDown(::user::prototype * pmousefocus);
+      virtual void defer_erase_mouse_focus_LButtonDown(::user::prototype * pmousefocus);
+      virtual ::user::prototype * get_mouse_focus_RButtonDown();
+      virtual void set_mouse_focus_RButtonDown(::user::prototype * pmousefocus);
 
       virtual bool on_ui_mouse_message(::message::mouse_base * pmouse);
 

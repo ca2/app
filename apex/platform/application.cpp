@@ -17,19 +17,19 @@
 #include "acme/handler/request.h"
 //#include "acme/platform/get_file_extension_mime_type.h"
 #include "acme/platform/scoped_restore.h"
-#include "acme/primitive/primitive/url.h"
+#include "acme/prototype/prototype/url.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/event.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/profiler.h"
-#include "acme/primitive/collection/_array_binary_stream.h"
-#include "acme/primitive/datetime/datetime.h"
-#include "acme/primitive/geometry2d/size.h"
-#include "acme/primitive/primitive/_impl_ptr.h"
-#include "acme/primitive/string/command_line.h"
-#include "acme/primitive/string/str.h"
-#include "acme/primitive/text/context.h"
+#include "acme/prototype/collection/_array_binary_stream.h"
+#include "acme/prototype/datetime/datetime.h"
+#include "acme/prototype/geometry2d/size.h"
+#include "acme/prototype/prototype/_impl_ptr.h"
+#include "acme/prototype/string/command_line.h"
+#include "acme/prototype/string/str.h"
+#include "acme/prototype/text/context.h"
 #include "apex/filesystem/fs/folder_sync.h"
 #include "apex/filesystem/fs/native.h"
 #include "apex/filesystem/fs/set.h"
@@ -1125,7 +1125,7 @@ namespace apex
    }
 
 
-   //void application::message_box_synchronous(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_synchronous(::user::prototype * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   return ::message_box_synchronous(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
@@ -1133,7 +1133,7 @@ namespace apex
    //}
 
 
-   //void application::ui_message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box(::user::prototype* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!get_session() || !psession->userex())
@@ -1148,7 +1148,7 @@ namespace apex
    //}
 
 
-   //void application::ui_message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box_timeout(::user::prototype* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!get_session() || !psession->userex())
@@ -1163,7 +1163,7 @@ namespace apex
    //}
 
 
-   //void application::message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box(::user::prototype* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -1180,7 +1180,7 @@ namespace apex
    //}
 
 
-   //void application::message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_timeout(::user::prototype* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, timeTimeout, emessagebox, callback);
@@ -1200,7 +1200,7 @@ namespace apex
    //void application::message_box(const ::payload & payload)
    //{
 
-   //   ::pointer<::user::primitive>puiOwner;
+   //   ::pointer<::user::prototype>puiOwner;
 
    //   string strMessage;
 
@@ -1221,7 +1221,7 @@ namespace apex
    //   else
    //   {
 
-   //      puiOwner = payload["owner"].cast < ::user::primitive >();
+   //      puiOwner = payload["owner"].cast < ::user::prototype >();
    //      strMessage = payload["message"];
    //      strTitle = payload["title"];
    //      uFlags = payload["flags"];
@@ -4547,7 +4547,7 @@ namespace apex
    }
 
 
-   //i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::time timeTimeOut, ::u32 fuStyle)
+   //i32 application::sync_message_box_timeout(::user::prototype * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::time timeTimeOut, ::u32 fuStyle)
    //{
 
    //   __UNREFERENCED_PARAMETER(timeTimeOut);
@@ -4981,7 +4981,7 @@ namespace apex
    }
 
 
-   bool application::keyboard_focus_is_focusable(const ::user::primitive * pue)
+   bool application::keyboard_focus_is_focusable(const ::user::prototype * pue)
    {
 
       return false;
@@ -4989,7 +4989,7 @@ namespace apex
    }
 
 
-   bool application::keyboard_focus_OnSetFocus(::user::primitive * pue)
+   bool application::keyboard_focus_OnSetFocus(::user::prototype * pue)
    {
 
       return true;

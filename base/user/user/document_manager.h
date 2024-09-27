@@ -1,8 +1,8 @@
 #pragma once
 
 
-////#include "acme/primitive/primitive/object.h"
-#include "acme/primitive/collection/atom_map.h"
+////#include "acme/prototype/prototype/object.h"
+#include "acme/prototype/collection/atom_map.h"
 
 
 namespace user

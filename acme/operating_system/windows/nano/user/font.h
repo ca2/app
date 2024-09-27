@@ -20,19 +20,19 @@ namespace windows
 
 
          class CLASS_DECL_ACME font :
-            virtual public ::nano::user::font,
+            virtual public ::nano::graphics::font,
             virtual public object
          {
          public:
 
-            //CreatableFromBase(::nano::user::font, ::nano::user::font);
+            //CreatableFromBase(::nano::graphics::font, ::nano::graphics::font);
 
 
             font();
             ~font() override;
 
 
-            void update(::nano::user::device* pnanodevice) override;
+            void update(::nano::graphics::device* pnanodevice) override;
 
 
             static HFONT _create_point_font(int nPointSize, const ::scoped_string& scopedstrFaceName, bool bBold, HDC hdc, LOGFONTW* plf);

@@ -4,7 +4,7 @@
 
 #include "font.h"
 #include "acme/platform/department.h"
-#include "acme/primitive/collection/int_map.h"
+#include "acme/prototype/collection/int_map.h"
 
 
 namespace write_text

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "message.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 
 
 namespace http

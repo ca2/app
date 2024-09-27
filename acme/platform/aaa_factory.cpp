@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "factory.h"
-#include "acme/primitive/primitive/factory.h"
+#include "acme/prototype/prototype/factory.h"
 
 #ifndef WINDOWS
 

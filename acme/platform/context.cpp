@@ -21,9 +21,9 @@
 #include "acme/platform/node.h"
 #include "acme/platform/session.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/text/data.h"
-#include "acme/primitive/text/text.h"
-#include "acme/primitive/text/translator.h"
+#include "acme/prototype/text/data.h"
+#include "acme/prototype/text/text.h"
+#include "acme/prototype/text/translator.h"
 
 
 namespace acme

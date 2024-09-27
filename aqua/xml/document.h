@@ -2,8 +2,8 @@
 
 
 #include "node.h"
-#include "acme/primitive/primitive/memory.h"
-#include "acme/primitive/collection/string_map.h"
+#include "acme/prototype/prototype/memory.h"
+#include "acme/prototype/collection/string_map.h"
 
 
 namespace xml

@@ -19,7 +19,7 @@ namespace linux
 
 
       string                        m_strWindowText;
-      ::user::primitive *    m_pbasewnd;
+      ::user::prototype *    m_pbasewnd;
       bool                          m_bExposing;
       i32                           m_iDepth;
       i32                           m_iScreen;

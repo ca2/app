@@ -5,8 +5,8 @@
 #pragma once
 
 
-////#include "acme/primitive/primitive/property_object.h"
-#include "acme/primitive/primitive/action_context.h"
+////#include "acme/prototype/prototype/property_object.h"
+#include "acme/prototype/prototype/action_context.h"
 
 
 class extended_topic;
@@ -73,7 +73,9 @@ public:
 
    virtual ::user::interaction * user_interaction();
 
-   ::atom user_element_id() const;
+   virtual ::user::interaction_base * user_interaction_base();
+
+   ::atom user_interaction_id() const;
 
 
    virtual ::extended_topic * _extended_topic() { return nullptr; }

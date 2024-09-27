@@ -2,7 +2,7 @@
 #include "draw2d.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 
 
 FT_Library __ftlibrary();

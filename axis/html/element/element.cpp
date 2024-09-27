@@ -1,10 +1,10 @@
 #include "framework.h"
 #include "element.h"
 #include "acme/exception/parsing.h"
-#include "acme/primitive/primitive/url.h"
+#include "acme/prototype/prototype/url.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/geometry2d/_collection.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/geometry2d/_collection.h"
+#include "acme/prototype/string/str.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "axis/html/html/data.h"
 #include "axis/html/html/core_data.h"
@@ -1580,7 +1580,7 @@ namespace html
 
       //auto estatus =
       
-      //::user::primitive::initialize(phtmldata);
+      //::user::prototype::initialize(phtmldata);
 
       ::object::initialize(phtmldata);
 

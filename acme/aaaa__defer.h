@@ -11,7 +11,7 @@
 
 
 
-//namespace primitive
+//namespace prototype
 //{
 //
 //
@@ -25,7 +25,7 @@
 //   }
 //
 //
-//} // namespace primitive
+//} // namespace prototype
 
 
 namespace acme
@@ -60,7 +60,7 @@ namespace acme
 } // namespace acme
 
 
-#include "acme/primitive/geometry2d/_defer.h"
+#include "acme/prototype/geometry2d/_defer.h"
 
 
 

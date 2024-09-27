@@ -43,16 +43,16 @@ namespace universal_windows
 
             //void aaa_message_loop() override;
 
-            //void draw(::nano::user::device * pnanodevice) override;
+            //void draw(::nano::graphics::device * pnanodevice) override;
 
-            //void on_draw(::nano::user::device * pnanodevice) override;
+            //void on_draw(::nano::graphics::device * pnanodevice) override;
 
             //void on_char(int iChar) override;
 
             //bool is_active() override;
             //void set_active() override;
 
-            //void draw_children(::nano::user::device * pnanodevice) override;
+            //void draw_children(::nano::graphics::device * pnanodevice) override;
 
             //void delete_drawing_objects() override;
             //bool get_dark_mode() override;
@@ -101,7 +101,7 @@ namespace universal_windows
             //void display_temporary_file_with_text(const ::string & str);
 
 
-            //::pointer<::nano::user::device>create_device();
+            //::pointer<::nano::graphics::device>create_device();
 
 
          };

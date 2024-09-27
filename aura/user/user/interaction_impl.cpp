@@ -18,7 +18,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/node.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -501,7 +501,7 @@ namespace user
    }
 
 
-   //void interaction_impl::create_host(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent)
+   //void interaction_impl::create_host(::user::interaction * pinteraction, ::user::prototype * pprimitiveParent)
    //{
 
    //   //if (!pparent)
@@ -3900,7 +3900,7 @@ namespace user
    //}
 
 
-   ::user::primitive *interaction_impl::set_owner(::user::primitive *pprimitiveOwner)
+   ::user::prototype *interaction_impl::set_owner(::user::prototype *pprimitiveOwner)
    {
 
       __UNREFERENCED_PARAMETER(pprimitiveOwner);
@@ -5238,7 +5238,7 @@ namespace user
 
 #ifdef REPORT_OFFSET
 
-      printf("(11.0) offset of m_timeFocusStart in ::user::primitive = %d\n", offsetof(::user::primitive, m_timeFocusStart));
+      printf("(11.0) offset of m_timeFocusStart in ::user::prototype = %d\n", offsetof(::user::prototype, m_timeFocusStart));
       printf("(11.0) offset of m_uUserInteractionFlags in ::user::interaction = %d\n", offsetof(::user::interaction, m_bExtendOnParent));
       printf("(11.0) offset of m_pwindow in ::user::interaction = %d\n", offsetof(::user::interaction, m_pwindow));
 
@@ -7298,7 +7298,7 @@ namespace user
    }
 
 
-   bool interaction_impl::on_keyboard_focus(::user::primitive *pfocus)
+   bool interaction_impl::on_keyboard_focus(::user::prototype *pfocus)
    {
 
       auto pwindowing = windowing();
@@ -7510,10 +7510,10 @@ namespace user
    }
 
 
-   //void interaction_impl::impl_set_keyboard_focus(::user::primitive * pprimitiveFocusNew)
+   //void interaction_impl::impl_set_keyboard_focus(::user::prototype * pprimitiveFocusNew)
    //{
 
-   //   ::user::primitive * pprimitiveFocusOld = m_pprimitiveFocus;
+   //   ::user::prototype * pprimitiveFocusOld = m_pprimitiveFocus;
 
    //   if(pprimitiveFocusOld == pprimitiveFocusNew)
    //   {
@@ -7579,7 +7579,7 @@ namespace user
    //}
 
 
-   //void interaction_impl::impl_erase_keyboard_focus(::user::primitive * pprimitiveFocusRemove)
+   //void interaction_impl::impl_erase_keyboard_focus(::user::prototype * pprimitiveFocusRemove)
    //{
 
    //   if (::is_null(pprimitiveFocusRemove))
@@ -7589,7 +7589,7 @@ namespace user
 
    //   }
 
-   //   ::user::primitive * pprimitiveFocusKillFocus = m_pprimitiveFocus;
+   //   ::user::prototype * pprimitiveFocusKillFocus = m_pprimitiveFocus;
 
    //   if (pprimitiveFocusKillFocus != pprimitiveFocusRemove)
    //   {
@@ -7631,7 +7631,7 @@ namespace user
    //void interaction_impl::impl_clear_keyboard_focus()
    //{
 
-   //   ::user::primitive * pprimitiveFocusKillFocus = m_pprimitiveFocus;
+   //   ::user::prototype * pprimitiveFocusKillFocus = m_pprimitiveFocus;
 
    //   m_pprimitiveFocus = nullptr;
 
@@ -7663,7 +7663,7 @@ namespace user
    //}
 
 
-   //void interaction_impl::set_keyboard_focus(::user::primitive * pprimitive)
+   //void interaction_impl::set_keyboard_focus(::user::prototype * pprimitive)
    //{
 
    //   if(::is_null(pprimitive))
@@ -7698,7 +7698,7 @@ namespace user
    //}
 
 
-   //void interaction_impl::erase_keyboard_focus(::user::primitive * pprimitive)
+   //void interaction_impl::erase_keyboard_focus(::user::prototype * pprimitive)
    //{
 
    //   if (pprimitive == nullptr)
@@ -8537,7 +8537,7 @@ namespace user
    }
 
 
-   void interaction_impl::on_configuration_change(::user::primitive *pprimitiveSource)
+   void interaction_impl::on_configuration_change(::user::prototype *pprimitiveSource)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());

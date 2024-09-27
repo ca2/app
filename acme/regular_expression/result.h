@@ -5,8 +5,8 @@
 
 
 
-//#include "acme/primitive/primitive/pointer.h"
-//#include "acme/primitive/collection/string_array.h"
+//#include "acme/prototype/prototype/pointer.h"
+//#include "acme/prototype/collection/string_array.h"
 
 
 namespace regular_expression

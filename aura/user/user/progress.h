@@ -2,7 +2,7 @@
 
 
 #include "interaction.h"
-#include "acme/primitive/mathematics/scalar.h"
+#include "acme/prototype/mathematics/scalar.h"
 
 
 namespace user

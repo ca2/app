@@ -2,7 +2,7 @@
 #include "frame.h"
 #include "frame_array.h"
 #include "image.h"
-//#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
 #include "aura/graphics/image/drawing.h"
 
 

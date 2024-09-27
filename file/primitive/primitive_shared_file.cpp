@@ -4,7 +4,7 @@
 #if !defined(UNIVERSAL_WINDOWS)
 
 
-namespace primitive
+namespace prototype
 {
 
 
@@ -45,7 +45,7 @@ namespace primitive
    }
 
 
-} // namespace primitive
+} // namespace prototype
 
 
 #endif

@@ -4,8 +4,8 @@
 //#include "apme/handler/source.h"
 #include "apex/message/channel.h"
 #include "apex/handler/manager.h"
-#include "acme/primitive/geometry2d/rectangle_array.h"
-#include "acme/primitive/collection/int_map.h"
+#include "acme/prototype/geometry2d/rectangle_array.h"
+#include "acme/prototype/collection/int_map.h"
 #include "acme/platform/auto_pointer.h"
 
 
@@ -85,7 +85,7 @@ namespace user
       //virtual void create_host(::user::interaction * puserinteraction, enum_parallelization eparallelization);
 
       virtual void create_host(::user::interaction * puserinteraction);
-      virtual void create_child(::user::interaction * puserinteraction, ::user::primitive * puserprimitiveParent);
+      virtual void create_child(::user::interaction * puserinteraction, ::user::prototype * puserprimitiveParent);
 
 
       virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
@@ -156,7 +156,7 @@ namespace user
       //virtual void fps_interest_stop();
 
 
-      virtual ::user::primitive* set_owner(::user::primitive* pprimitiveOwner);
+      virtual ::user::prototype* set_owner(::user::prototype* pprimitiveOwner);
 
 
       virtual bool has_pending_redraw_flags();
@@ -246,7 +246,7 @@ namespace user
       virtual void on_end_layout_experience(enum_layout_experience elayoutexperience);
 
 
-      virtual void on_configuration_change(::user::primitive* pprimitiveSource);
+      virtual void on_configuration_change(::user::prototype* pprimitiveSource);
 
 
       //virtual ::user::element* get_keyboard_focus();

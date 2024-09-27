@@ -15,14 +15,14 @@
 #include "Object.h"
 #include "Theme.h"
 #include "in_place_edit_mapper.h"
-///#include "acme/primitive/geometry2d/_geometry2d.h"
+///#include "acme/prototype/geometry2d/_geometry2d.h"
 #include "acme/handler/item.h"
-#include "acme/primitive/geometry2d/size.h"
-#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/prototype/geometry2d/size.h"
+#include "acme/prototype/geometry2d/rectangle.h"
 #include "acme/user/user/container.h"
 //#include <xxxvector>
 //#include <xxxalgorithm>
-//#include "acme/primitive/primitive/function.h"
+//#include "acme/prototype/prototype/function.h"
 
 namespace nanoui
 {

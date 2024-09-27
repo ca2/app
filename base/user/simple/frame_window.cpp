@@ -8,7 +8,7 @@
 #include "acme/handler/request.h"
 #include "acme/platform/system.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/user/user/_text_stream.h"
 #include "apex/handler/signal.h"
 #include "apex/database/_binary_stream.h"
@@ -3027,7 +3027,7 @@ bool simple_frame_window::on_before_set_parent(::pointer<::user::interaction>pin
 }
 
 
-bool simple_frame_window::on_set_parent(::user::primitive * puiParent)
+bool simple_frame_window::on_set_parent(::user::prototype * puiParent)
 {
 
    if (!::user::frame_window::on_set_parent(puiParent))

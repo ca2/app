@@ -8,7 +8,7 @@
 
 #include "framework.h"
 #include "acme/parallelization/manual_reset_event.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 #undef DEBUG
 #if defined(MACOS)
 #include <Carbon/Carbon.h>

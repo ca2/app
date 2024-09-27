@@ -1,11 +1,11 @@
 // Created by camilo on 2021-01-21 14:57 <3ThomasBorregaardSorensen
 #include "framework.h"
 #include "acme/operating_system.h"
-#include "nano::user::window.h"
+#include "nano::user::interchange.h"
 
 
 class ::nano::user::message_box :
-   virtual public nano::user::window
+   virtual public nano::user::interchange
 {
 public:
 

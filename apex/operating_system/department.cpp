@@ -3,7 +3,7 @@
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/string/command_line.h"
+#include "acme/prototype/string/command_line.h"
 
 
 void install_sigchld_handler();

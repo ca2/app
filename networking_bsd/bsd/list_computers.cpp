@@ -3,7 +3,7 @@
 #include "../networking.h"
 #include "../address.h"
 #include "acme/filesystem/filesystem/file_context.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 #include "apex/platform/system.h"
 #include <stdio.h>
 #include <stdlib.h>

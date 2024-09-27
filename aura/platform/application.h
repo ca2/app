@@ -58,7 +58,7 @@ namespace aura
       ::pointer<shell_open>                        m_pshellopen;
 
       ::string_array                               m_straOptionsFormMakerLibrary;
-      ::user::primitive *                             m_puiCurrent;
+      ::user::prototype *                             m_puiCurrent;
       //bool                                            m_bContextTheme;
 
 // #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
@@ -462,16 +462,16 @@ namespace aura
       //// os_* functions generally
       //// reserves a lot of surprises from each
       //// operating system specific behavior
-      //virtual void message_box_synchronous(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box_synchronous(::user::prototype * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
-      //virtual void ui_message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual void ui_message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void ui_message_box(::user::prototype * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void ui_message_box_timeout(::user::prototype * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       //using ::aura::context_thread::message_box;
-      //virtual void message_box(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual void message_box_timeout(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box(::user::prototype * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void message_box_timeout(::user::prototype * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeOut = time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       //virtual void on_file_new() override;
@@ -796,8 +796,8 @@ namespace aura
 
 
 
-      virtual bool keyboard_focus_is_focusable(const ::user::primitive * pue) override;
-      virtual bool keyboard_focus_OnSetFocus(::user::primitive * pue) override;
+      virtual bool keyboard_focus_is_focusable(const ::user::prototype * pue) override;
+      virtual bool keyboard_focus_OnSetFocus(::user::prototype * pue) override;
 
       virtual ::user::interaction * main_window();
 
@@ -892,7 +892,7 @@ namespace aura
 
       //virtual u32 guess_code_page(const string& str) override;
 
-      //virtual i32 _sync_message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle) override;
+      //virtual i32 _sync_message_box(::user::prototype* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle) override;
 
       //virtual bool is_serviceable() const override;
 

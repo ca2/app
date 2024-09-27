@@ -2,7 +2,7 @@
 
 
 #include "aura/user/user/interaction.h"
-#include "acme/primitive/data/property.h"
+#include "acme/prototype/data/property.h"
 
 
 namespace user

@@ -15,6 +15,7 @@
 #include "acme/nano/archive/_.h"
 #include "acme/nano/compress/_.h"
 #include "acme/nano/dynamic_library/_.h"
+#include "acme/nano/graphics/_.h"
 #include "acme/nano/http/_.h"
 #include "acme/nano/idn/_.h"
 #include "acme/nano/shell/_.h"

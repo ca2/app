@@ -1,10 +1,10 @@
 #pragma once
 
 
-//#include "acme/primitive/collection/pointer_array.h"
-#include "acme/primitive/datetime/result.h"
+//#include "acme/prototype/collection/pointer_array.h"
+#include "acme/prototype/datetime/result.h"
 
-//#include "acme/primitive/primitive/pointer.h"
+//#include "acme/prototype/prototype/pointer.h"
 
 
 namespace datetime

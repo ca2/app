@@ -10,8 +10,8 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/mathematics/_random.h"
-#include "acme/primitive/primitive/primitive.h"
+#include "acme/prototype/mathematics/_random.h"
+#include "acme/prototype/prototype/primitive.h"
 #include "acme/platform/library.h"
 #include "acme/crypto/rsa.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -212,7 +212,7 @@ namespace dynamic_source
 
       auto psystem = system();
 
-      auto pprimitive = psystem->primitive();
+      auto pprimitive = psystem->prototype();
 
       return (m_timeLastBuildTime.elapsed()) > 
          m_pmanager->m_timeBuildInterval +
@@ -555,7 +555,7 @@ namespace dynamic_source
          {
             synchronouslock.unlock();
 
-            preempt(system()->primitive()->random(2._s, 4._s));
+            preempt(system()->prototype()->random(2._s, 4._s));
 
             synchronouslock._lock();
 

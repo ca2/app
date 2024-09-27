@@ -5,7 +5,7 @@
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
-#include "acme/primitive/collection/_array.h"
+#include "acme/prototype/collection/_array.h"
 #include "acme/user/user/content.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"

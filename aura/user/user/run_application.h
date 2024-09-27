@@ -3,8 +3,8 @@
 #pragma once
 
 
-//#include "acme/primitive/primitive/payload.h"
-//#include "acme/primitive/primitive/pointer.h"
+//#include "acme/prototype/prototype/payload.h"
+//#include "acme/prototype/prototype/pointer.h"
 
 
 namespace user

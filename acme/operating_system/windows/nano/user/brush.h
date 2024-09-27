@@ -22,7 +22,7 @@ namespace windows
 
 
          class CLASS_DECL_ACME brush :
-            virtual public ::nano::user::brush,
+            virtual public ::nano::graphics::brush,
             virtual public object
          {
          public:
@@ -35,7 +35,7 @@ namespace windows
             ~brush() override;
 
 
-            void update(::nano::user::device* pnanodevice) override;
+            void update(::nano::graphics::device* pnanodevice) override;
 
 
          };

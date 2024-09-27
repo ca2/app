@@ -8,7 +8,7 @@
 #include "acme/constant/timer.h"
 #include "acme/platform/system.h"
 #include "acme/platform/timer.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/write_text/font.h"

@@ -13,7 +13,7 @@
 
 
 
-#include "acme/primitive/primitive/enumeration.h"
+#include "acme/prototype/prototype/enumeration.h"
 
 
 template < typename ITERATOR_TYPE >
@@ -547,7 +547,7 @@ using byte_array = u8_array;
 using task_pointer = ::pointer < task >;
 
 
-//#include "acme/primitive/primitive/_u32hash.h"
+//#include "acme/prototype/prototype/_u32hash.h"
 
 
 CLASS_DECL_ACME task_pointer fork(::particle * pparticle, const ::procedure & procedure);
@@ -634,7 +634,7 @@ inline bool __is_zero(TYPE(&array)[Size]);
 
 
 
-//#include "acme/primitive/time/as_string.h"
+//#include "acme/prototype/time/as_string.h"
 
 
 

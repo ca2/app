@@ -222,13 +222,13 @@ namespace aura
 
       //virtual void set_key_pressed(::user::enum_key ekey, bool bPressed) override;
 
-      //virtual ::user::primitive * get_active_ui() override;
+      //virtual ::user::prototype * get_active_ui() override;
 
       //virtual void set_active_guie(::user::interaction * pinteraction);
       //virtual void set_focus_guie(::user::interaction * pinteraction);
 
 
-      virtual void on_finally_focus_set(::user::primitive * pelementalFocus);
+      virtual void on_finally_focus_set(::user::prototype * pelementalFocus);
 
       //virtual ::user::interaction * get_capture();
 
@@ -240,8 +240,8 @@ namespace aura
 
       virtual bool on_ui_mouse_message(::message::mouse_base * pmouse);
 
-      //virtual ::user::primitive * GetActiveWindow();
-      //virtual ::user::primitive * GetFocus();
+      //virtual ::user::prototype * GetActiveWindow();
+      //virtual ::user::prototype * GetFocus();
 
       //virtual bool ReleaseCapture();
 
@@ -269,7 +269,7 @@ namespace aura
 
 
       virtual void set_bound_ui(::atom idImpact, ::user::interaction * pinteraction);
-      virtual ::user::primitive * get_bound_ui(::atom idImpact);
+      virtual ::user::prototype * get_bound_ui(::atom idImpact);
 
       virtual void on_show_user_input_popup(::user::interaction * pinteraction);
 

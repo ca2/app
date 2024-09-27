@@ -1,6 +1,6 @@
 // Created by camilo on 2022-02-11 09:27 PM <3ThomasBorregaardSorensen!!
 #include "framework.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 #include "acme/platform/_synchronization.h"
 #include "acme/platform/node.h"
 
@@ -14,8 +14,8 @@
 
 //#include "acme/parallelization/mutex.h"
 //#include "acme/parallelization/synchronous_lock.h"
-////#include "acme/primitive/primitive/function.h"
-//#include "acme/primitive/primitive/memory.h"
+////#include "acme/prototype/prototype/function.h"
+//#include "acme/prototype/prototype/memory.h"
 //#include <dbghelp.h>
 //#pragma comment(lib, "dbghelp.lib")
 //

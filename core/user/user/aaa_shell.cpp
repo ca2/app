@@ -4,7 +4,7 @@
 #include "core/user/user/shell.h"
 //#include "acme/compress/zip/_.h"
 #include "acme/compress/gz.h"
-#include "acme/primitive/primitive/atomic.h"
+#include "acme/prototype/prototype/atomic.h"
 
 
 #if defined(RASPBERRYPIOS)

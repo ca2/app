@@ -1,7 +1,7 @@
 #pragma once
 
 
-////#include "acme/primitive/collection/numeric_array.h"
+////#include "acme/prototype/collection/numeric_array.h"
 
 
 template < class ENUM >

@@ -4,7 +4,7 @@
 #include "base/user/user/impact_data.h"
 #include "axis/user/user/user.h"
 #include "base/user/user/document_manager_container.h"
-#include "acme/primitive/geometry2d/size.h"
+#include "acme/prototype/geometry2d/size.h"
 
 
 class keyboard;
@@ -26,8 +26,8 @@ namespace base
       //::pointer < ::user::impact_system >                m_ptemplateChildForm;
 
 
-      ::pointer < ::user::primitive >                    m_pmousefocusLButtonDown;
-      ::pointer < ::user::primitive >                    m_pmousefocusRButtonDown;
+      ::pointer < ::user::prototype >                    m_pmousefocusLButtonDown;
+      ::pointer < ::user::prototype >                    m_pmousefocusRButtonDown;
       string_array                                       m_straEscape;
 
       //::pointer<::user::shell>                         m_pshell;
@@ -80,10 +80,10 @@ namespace base
       virtual ::type_atom user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
 
 
-      virtual ::user::primitive * get_mouse_focus_LButtonDown() override;
-      virtual void set_mouse_focus_LButtonDown(::user::primitive * pmousefocus) override;
-      virtual ::user::primitive * get_mouse_focus_RButtonDown() override;
-      virtual void set_mouse_focus_RButtonDown(::user::primitive * pmousefocus) override;
+      virtual ::user::prototype * get_mouse_focus_LButtonDown() override;
+      virtual void set_mouse_focus_LButtonDown(::user::prototype * pmousefocus) override;
+      virtual ::user::prototype * get_mouse_focus_RButtonDown() override;
+      virtual void set_mouse_focus_RButtonDown(::user::prototype * pmousefocus) override;
 
 
       virtual void initialize1_experience();

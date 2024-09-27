@@ -266,7 +266,7 @@ namespace acme
 
 
       // Advanced: access to GetMainWnd()
-      ::pointer<::user::primitive>application::GetMainWnd()
+      ::pointer<::user::prototype>application::GetMainWnd()
       {
          return ::win::thread::GetMainWnd();
       }
@@ -309,12 +309,12 @@ namespace acme
 //
 //   }
 
-//   ::user::primitive * application::window_from_os_data(void * pdata)
+//   ::user::prototype * application::window_from_os_data(void * pdata)
 //   {
 //      return nullptr;
 //   }
 
-//   ::user::primitive * application::window_from_os_data_permanent(void * pdata)
+//   ::user::prototype * application::window_from_os_data_permanent(void * pdata)
 //   {
 //      return nullptr;
 //   }

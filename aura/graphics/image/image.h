@@ -11,7 +11,7 @@
 
 #include "acme/graphics/image/_configuration.h"
 
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 
 
 namespace image

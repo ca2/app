@@ -57,7 +57,7 @@ endif ()
 
 
 add_dependencies(${PROJECT_NAME} apex_linux)
-add_dependencies(${PROJECT_NAME} innate_ui_gtk4)
+add_dependencies(${PROJECT_NAME} ${default_innate_ui})
 #add_dependencies(${PROJECT_NAME} ${app_common_dependencies})
 #add_dependencies(${PROJECT_NAME} ${default_draw2d})
 #add_dependencies(${PROJECT_NAME} ${default_write_text})

@@ -1,8 +1,11 @@
 //
-// Created by camilo on 27/09/24.
+// Created by camilo on 2024-09-27 16:52 <3ThomasBorregaardSorensen!!
 //
+#pragma once
 
-#ifndef __H
-#define __H
 
-#endif //__H
+#include "text_stream.h"
+#include "geometry2d.h"
+
+
+

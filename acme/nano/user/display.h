@@ -22,13 +22,23 @@ namespace nano
       ::array < ::procedure >      m_procedureaPost;
       ::point_i32                   m_pointCursor2;
 
+      enum_display_type          m_edisplaytype;
 
-      inline static display * g_p = nullptr;
+
+      //inline static display * g_p = nullptr;
 
 
       display();
       ~display() override;
 
+
+
+
+
+      virtual void open_display();
+
+      virtual enum_display_type get_display_type();
+      virtual void initialize_display_type(enum_display_type edisplaytype);
 
       void kick_idle() override;
       virtual void display_post(const ::procedure & procedure);

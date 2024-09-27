@@ -8,6 +8,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/handler/topic.h"
 #include "acme/nano/nano.h"
+#include "acme/nano/user/display.h"
 #include "acme/nano/user/user.h"
 #include "acme/windowing/window_base.h"
 #include "platform/system.h"
@@ -40,6 +41,22 @@ namespace windowing_system
 
    }
 
+
+    ::nano::user::display * windowing_system::display()
+    {
+
+        if(!m_pdisplaybase)
+        {
+
+            __construct(m_pdisplaybase);
+
+            m_pdisplaybase->open_display();
+
+        }
+
+        return m_pdisplaybase;
+
+    }
 
     void windowing_system::on_start_system()
     {

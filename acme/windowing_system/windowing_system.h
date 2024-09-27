@@ -18,6 +18,7 @@ namespace windowing_system
     public:
 
 
+       ::pointer < ::nano::user::display >                    m_pdisplaybase;
        ::pointer_array < ::windowing::window_base >           m_windowbasea;
 
 
@@ -27,6 +28,9 @@ namespace windowing_system
 
 
         void on_initialize_particle() override;
+
+
+     virtual ::nano::user::display * display();
 
 
        virtual void on_start_system();

@@ -21,17 +21,20 @@ namespace user
 
       defer_create_synchronization();
 
-      if(!g_p)
-      {
+      m_edisplaytype = e_display_type_none;
 
-         g_p = this;
-
-      }
 
    }
 
 
    display::~display()
+   {
+
+
+   }
+
+
+   void display::open_display()
    {
 
 
@@ -104,28 +107,20 @@ namespace user
    }
 
 
+   enum_display_type display::get_display_type()
+   {
+
+      return m_edisplaytype;
+
+   }
 
 
+   void display::initialize_display_type(enum_display_type edisplaytype)
+   {
 
+      m_edisplaytype = edisplaytype;
 
-enum_display_type g_edisplaytype = e_display_type_none;
-
-
-enum_display_type get_display_type()
-{
-
-   return g_edisplaytype;
-
-}
-
-
-void initialize_display_type(enum_display_type edisplaytype)
-{
-
-   g_edisplaytype = edisplaytype;
-
-}
-
+   }
 
 
 

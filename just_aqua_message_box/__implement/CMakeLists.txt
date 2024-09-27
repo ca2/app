@@ -58,7 +58,7 @@ endif ()
 
 
 add_dependencies(${PROJECT_NAME} apex_linux)
-add_dependencies(${PROJECT_NAME} innate_ui_gtk4)
+add_dependencies(${PROJECT_NAME} ${default_innate_ui})
 
 
 list(APPEND executable_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

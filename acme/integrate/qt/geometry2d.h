@@ -1,8 +1,20 @@
 //
-// Created by camilo on 27/09/24.
+// Created by camilo on 2024-09-27 16:52 <3ThomasBorregaardSorensen!!
 //
+#pragma once
 
-#ifndef GEOMETRY2D_H
-#define GEOMETRY2D_H
 
-#endif //GEOMETRY2D_H
+inline ::rectangle_i32 & copy(::rectangle_i32 & rectangle, const QRect &qrect)
+{
+
+   rectangle.left() = qrect.left();
+   rectangle.top() = qrect.top();
+   rectangle.right() = qrect.right();
+   rectangle.bottom() = qrect.bottom();
+
+   return rectangle;
+
+}
+
+
+

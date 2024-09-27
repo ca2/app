@@ -455,6 +455,8 @@ namespace windowing
 
       void destroy() override;
 
+      virtual void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem);
+
    };
 
 

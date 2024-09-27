@@ -396,7 +396,7 @@ namespace windowing
    ::windowing::display * window::display()
    {
 
-      return m_pnanouserdisplay.cast < ::windowing::display>();
+      return m_pdisplaybase.cast < ::windowing::display>();
 
    }
 

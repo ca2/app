@@ -9234,7 +9234,7 @@ namespace user
 
 #endif
 
-      auto pwindowing = m_puserinteraction->windowing();
+      auto pwindowing = this->windowing();
 
       auto ptexteditorinterface = pwindowing->get_text_editor_interface();
 

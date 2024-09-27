@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{0A295519-CC9C-4BF6-9DA2-62F11A9077AD}</ProjectGuid>
+    <ProjectGuid>{06FD85A3-4F4B-4CCA-BFAB-7ECAADDF1AFD}</ProjectGuid>
     <RootNamespace>appcorehellomultiverse</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>

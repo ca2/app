@@ -57,7 +57,10 @@ endif ()
 
 add_dependencies(${PROJECT_NAME} acme_linux)
 add_dependencies(${PROJECT_NAME} folder_zip)
+add_dependencies(${PROJECT_NAME} nano_graphics_cairo)
 add_dependencies(${PROJECT_NAME} nano_user_gtk4)
+
+
 
 
 list(APPEND executable_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

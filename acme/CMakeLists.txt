@@ -330,6 +330,8 @@ list(APPEND library_source
 	nano/graphics/device.h
 	nano/graphics/font.cpp
 	nano/graphics/font.h
+	nano/graphics/graphics.cpp
+	nano/graphics/graphics.h
 	nano/graphics/object.cpp
 	nano/graphics/object.h
 	nano/graphics/pen.cpp

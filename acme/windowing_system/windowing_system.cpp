@@ -264,8 +264,16 @@ namespace windowing_system
 
           }
 
-       
 
+
+
+    }
+
+
+    ::pixmap windowing_system::get_pixmap_from_file(::memory & memoryHost, const void * psourceFile, memsize sizeSourceFile)
+    {
+
+        return {};
 
     }
 

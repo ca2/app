@@ -5,6 +5,7 @@
 
 
 #include "acme/platform/department.h"
+#include "acme/graphics/image/pixmap.h"
 
 
 namespace windowing_system
@@ -60,7 +61,9 @@ namespace windowing_system
 
 
        ::color::color reinterpreted_background_color();
-      
+
+
+       virtual ::pixmap get_pixmap_from_file(::memory & memoryHost, const void * psourceFile, memsize sizeSourceFile);
 
 
     };

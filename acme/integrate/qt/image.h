@@ -6,6 +6,8 @@
 
 #include "acme/graphics/image/pixmap.h"
 
+#include <QPainter>
+
 
 class qimage_paintable_pixmap :
    public pixmap
@@ -20,6 +22,7 @@ class qimage_paintable_pixmap :
 
    qimage_paintable_pixmap(QImage * pqimage)
    {
+
       m_pqimage = pqimage;
 
       m_bConvert = pqimage->format() != QImage::Format_ARGB32;
@@ -27,11 +30,11 @@ class qimage_paintable_pixmap :
       if(m_bConvert)
       {
          m_qimageArgb32 = pqimage->convertToFormat(QImage::Format_ARGB32);
-         m_pqimageArgb32Host = &m_qimageArgb32;
+         m_pqimageArgb32 = &m_qimageArgb32;
       }
       else
       {
-         m_pqimageArgb32Host = m_qimage;
+         m_pqimageArgb32 = m_pqimage;
       }
 
       ::pixmap & pixmap = *this;
@@ -55,7 +58,7 @@ class qimage_paintable_pixmap :
          // Now, both images should have the same format
          QPainter painter(m_pqimage);
 
-         painter.drawImage(0, 0, &qimage); // Paint at position (0, 0)
+         painter.drawImage(0, 0, qimage); // Paint at position (0, 0)
 
 
       }

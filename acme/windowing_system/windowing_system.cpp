@@ -206,12 +206,38 @@ namespace windowing_system
     }
 
 
+    void windowing_system::set_dark_mode(bool bDarkMode)
+    {
+
+
+
+    }
+
+
     void windowing_system::fetch_system_background_color()
     {
 
 
 
     }
+
+
+
+    ::color::color windowing_system::reinterpreted_background_color()
+    {
+
+       if (dark_mode())
+       {
+
+          return ::color::black;
+
+       }
+
+       return ::color::white;
+
+    }
+
+
 
 
     void windowing_system::_do_tasks()

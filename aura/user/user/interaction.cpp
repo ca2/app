@@ -10715,7 +10715,7 @@ namespace user
       if (::is_set(pelement))
       {
 
-         return pelement;
+         return pelement->user_interaction_base();
 
       }
 

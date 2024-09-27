@@ -62,6 +62,11 @@ public:
 
 
 
+   ::user::interaction_base * user_interaction_base() override;
+
+
+
+
 
 //
 // //

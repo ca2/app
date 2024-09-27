@@ -2606,6 +2606,14 @@ namespace user
    }
 
 
+   ::user::interaction_base * element::user_interaction_base()
+   {
+
+      return nullptr;
+
+   }
+
+
    ::user::prototype * element::user_prototype()
    {
 

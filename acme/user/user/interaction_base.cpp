@@ -746,6 +746,14 @@ bool interaction_base::is_popup_window() const
 
    }
 
+
+   ::user::interaction_base * interaction_base::user_interaction_base()
+   {
+
+      return this;
+
+   }
+
    // Text Edit
    void interaction_base::get_text_selection(strsize & iBeg, strsize & iEnd) const
    {

@@ -50,6 +50,8 @@ namespace user
 
       void PreSubClassWindow() override;
 
+      ::user::prototype * user_prototype() override;
+
 
       virtual DECLARE_MESSAGE_HANDLER(_008GetWindowText);
       virtual DECLARE_MESSAGE_HANDLER(_008GetWindowTextLength);

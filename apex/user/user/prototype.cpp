@@ -3612,6 +3612,14 @@ namespace user
    }
 
 
+   ::user::prototype * prototype::user_prototype()
+   {
+
+      return this;
+
+   }
+
+
    void prototype::add_child_handler(::particle * pparticle, const ::atom & atomChild, bool bPriority)
    {
 
@@ -3625,7 +3633,7 @@ namespace user
       }
 
       //auto estatus = 
-      pchild->m_puserprimitive->add_handler(pparticle, bPriority);
+      pchild->user_prototype()->add_handler(pparticle, bPriority);
 
       //if (!estatus)
       //{

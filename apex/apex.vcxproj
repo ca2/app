@@ -710,7 +710,7 @@
     <ClCompile Include="user\user\language.cpp" />
     <ClCompile Include="user\user\language_map.cpp" />
     <ClCompile Include="user\user\message.cpp" />
-    <ClCompile Include="user\user\primitive.cpp" />
+    <ClCompile Include="user\user\prototype.cpp" />
     <ClCompile Include="_.cpp" />
     <ClInclude Include="aaa_application.h" />
     <ClInclude Include="constant\idpool.h" />
@@ -993,7 +993,7 @@
     <ClInclude Include="user\user\language_map.h" />
     <ClInclude Include="user\user\message.h" />
     <ClInclude Include="user\user\notify_icon_bridge.h" />
-    <ClInclude Include="user\user\primitive.h" />
+    <ClInclude Include="user\user\prototype.h" />
     <ClInclude Include="user\user\_.h" />
     <ClInclude Include="version\version.h" />
     <ClInclude Include="const\thread.h" />

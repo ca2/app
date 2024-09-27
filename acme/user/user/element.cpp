@@ -2606,6 +2606,14 @@ namespace user
    }
 
 
+   ::user::prototype * element::user_prototype()
+   {
+
+      return nullptr;
+
+   }
+
+
    void element::on_select()
    {
 

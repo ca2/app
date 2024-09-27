@@ -117,7 +117,8 @@ namespace user
 
       virtual void create_message_queue(const ::string & lpszName);
 
-virtual ::user::interaction * user_interaction();
+      virtual ::user::interaction * user_interaction();
+      virtual ::user::prototype * user_prototype();
       //virtual void set_config_per_second(::frequency dConfigFps);
       //virtual ::frequency get_config_per_second();
       //virtual ::frequency get_output_per_second();

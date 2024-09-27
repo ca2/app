@@ -8,7 +8,7 @@
 #include "acme/constant/id.h"
 #include "apex/platform/node.h"
 #include "apex/user/user/message.h"
-#include "apex/user/user/primitive.h"
+#include "apex/user/user/prototype.h"
 #include "acme/parallelization/task_message_queue.h"
 #include "acme/parallelization/tools.h"
 #include "acme/parallelization/pool.h"

@@ -457,6 +457,9 @@ namespace windowing
 
       virtual void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem);
 
+
+      void main_send(const ::procedure & procedure) override;
+
    };
 
 

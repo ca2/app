@@ -430,7 +430,7 @@ namespace windowing
 
       windowing()->set_mouse_capture(pthread, this);
 
-      //::pointer < ::windowing_wayland::display > pwaylanddisplay = m_pnanouserdisplay;
+      //::pointer < ::windowing_wayland::display > pwaylanddisplay = m_pdisplaybase;
 
       //pwaylanddisplay->__capture_mouse(this, pwaylanddisplay->m_uLastButtonSerial);
 
@@ -1293,7 +1293,7 @@ namespace windowing
       m_pwindowParent.release();
       m_pmessagequeue.release();
       m_puserinteractionimpl.release();
-      m_pnanouserdisplay.release();
+      m_pdisplaybase.release();
 
       ::channel::destroy();
 
@@ -2160,9 +2160,9 @@ namespace windowing
 
       m_pointCursor2.y() = yHost;
 
-      m_pnanouserdisplay->m_pointCursor2.x() = xAbsolute;
+      m_pdisplaybase->m_pointCursor2.x() = xAbsolute;
 
-      m_pnanouserdisplay->m_pointCursor2.y() = yAbsolute;
+      m_pdisplaybase->m_pointCursor2.y() = yAbsolute;
 
       m_puserinteractionimpl->m_puserinteraction->post_message(e_message_left_button_down, 0, lparam);
 
@@ -2178,9 +2178,9 @@ namespace windowing
 
       m_pointCursor2.y() = yHost;
 
-      m_pnanouserdisplay->m_pointCursor2.x() = xAbsolute;
+      m_pdisplaybase->m_pointCursor2.x() = xAbsolute;
 
-      m_pnanouserdisplay->m_pointCursor2.y() = yAbsolute;
+      m_pdisplaybase->m_pointCursor2.y() = yAbsolute;
 
       m_puserinteractionimpl->m_puserinteraction->post_message(e_message_mouse_move, 0, lparam);
 
@@ -2196,9 +2196,9 @@ namespace windowing
 
       m_pointCursor2.y() = yHost;
 
-      m_pnanouserdisplay->m_pointCursor2.x() = xAbsolute;
+      m_pdisplaybase->m_pointCursor2.x() = xAbsolute;
 
-      m_pnanouserdisplay->m_pointCursor2.y() = yAbsolute;
+      m_pdisplaybase->m_pointCursor2.y() = yAbsolute;
 
       m_puserinteractionimpl->m_puserinteraction->post_message(e_message_left_button_up, 0, lparam);
 

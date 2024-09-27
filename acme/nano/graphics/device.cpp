@@ -121,7 +121,7 @@ void device::rectangle(const ::rectangle_i32 & rectangle, ::nano::graphics::brus
 
 }
 
-      void device::_on_cairo_paint(void* p)
+      void device::copy_to_pixmap(::pixmap & pixmap)
       {
 
 

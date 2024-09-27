@@ -6,86 +6,34 @@
 #include "acme/prototype/geometry2d/rectangle.h"
 
 
-CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, const ::point_i32 & point, const ::size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+void image32_t::copy(const ::point_i32 & point, const ::size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
 {
+
+   ::image32_t * pimage32Dst = this;
 
    ::u8 * pDst = (::u8 *)pimage32Dst;
 
-   return copy_image32((::image32_t *)pDst + point.x() * sizeof(::image32_t) + point.y() * iStrideDst, size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
+   auto pimage32Offset = (::image32_t *)pDst + point.x() * sizeof(::image32_t) + point.y() * iStrideDst;
+
+   return pimage32Offset->copy(size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
 
 }
 
 
-CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, const ::rectangle_i32 & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+void image32_t::copy(const ::rectangle_i32 & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
 {
 
-   return copy_image32(pimage32Dst, rectangle.top_left(), rectangle.size(), iStrideDst, pimage32Src, iStrideSrc);
+   return copy(rectangle.top_left(), rectangle.size(), iStrideDst, pimage32Src, iStrideSrc);
 
 }
 
 
-void vertical_swap(pixmap * ppixmap)
+
+
+void image32_t::vertical_swap_copy(int cxParam, int cyParam, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
 {
 
-   try
-   {
-
-      int iStride = ppixmap->m_iScan;
-
-      if (iStride <= 0)
-      {
-
-         iStride = ppixmap->width() * sizeof(::image32_t);
-
-      }
-
-      int w = iStride / sizeof(::image32_t);
-
-      int h = ppixmap->height();
-
-      int wBytes = ppixmap->width() * sizeof(::image32_t);
-
-      auto pdata = ppixmap->image32();
-
-      u8 * pline1 = (u8 *)pdata;
-
-      u8 * pline2 = (u8 *)(pdata + (w - 1) * h);
-
-      memory memory;
-
-      memory.set_size(wBytes);
-
-      u8 * pstore = memory.data();
-
-      int halfh = h / 2;
-
-      for (int i = 0; i < halfh; i++)
-      {
-
-         ::memory_copy(pstore, pline1, wBytes);
-
-         ::memory_copy(pline1, pline2, wBytes);
-
-         ::memory_copy(pline2, pstore, wBytes);
-
-         pline1 += iStride;
-
-         pline2 -= iStride;
-
-      }
-
-   }
-   catch (...)
-   {
-
-   }
-
-}
-
-
-void vertical_swap_copy_image32(::image32_t * pimage32Dst, int cxParam, int cyParam, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
-{
-
+   ::image32_t * pimage32Dst = this;s
    try
    {
 

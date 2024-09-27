@@ -268,7 +268,7 @@ string object::as_string() const
 //
 //   }
 //
-//   return __user_primitive(m_psession->m_puserinteractionHost);
+//   return __user_prototype(m_psession->m_puserinteractionHost);
 //
 //}
 

@@ -4153,7 +4153,7 @@ namespace user
       //if (!bSkipChild)
       //{
 
-      //   pprimitive = puiThis->first_child_user_primitive();
+      //   pprimitive = puiThis->first_child_user_element();
 
       //   if (pprimitive != nullptr)
       //   {
@@ -4181,7 +4181,7 @@ namespace user
       //if (!bSkipSiblings)
       //{
 
-      //   pprimitive = puiThis->next_user_primitive();
+      //   pprimitive = puiThis->next_user_element();
 
       //   while (pprimitive != nullptr)
       //   {
@@ -4202,7 +4202,7 @@ namespace user
 
       //      }
 
-      //      pprimitive = pprimitive->next_user_primitive();
+      //      pprimitive = pprimitive->next_user_element();
 
       //   }
 
@@ -4232,7 +4232,7 @@ namespace user
       //if (!bSkipSiblings)
       //{
 
-      //   pprimitive = puiThis->first_child_user_primitive();
+      //   pprimitive = puiThis->first_child_user_element();
 
       //   if (pprimitive != puiThis)
       //   {
@@ -4248,7 +4248,7 @@ namespace user
       //         if (pfocusTry != nullptr)
       //            return pfocusTry;
 
-      //         pprimitive = pprimitive->next_user_primitive();
+      //         pprimitive = pprimitive->next_user_element();
 
       //      }
 
@@ -4313,7 +4313,7 @@ namespace user
 
 
 
-   ::user::element * element::first_child_user_primitive()
+   ::user::element * element::first_child_user_element()
    {
 
       return nullptr;
@@ -4321,7 +4321,7 @@ namespace user
    }
 
 
-   ::user::element * element::top_user_primitive()
+   ::user::element * element::top_user_element()
    {
 
       return nullptr;
@@ -4329,7 +4329,7 @@ namespace user
    }
 
 
-   ::user::element * element::under_user_primitive()
+   ::user::element * element::under_user_element()
    {
 
       return nullptr;
@@ -4337,7 +4337,7 @@ namespace user
    }
 
 
-   ::user::element * element::above_user_primitive()
+   ::user::element * element::above_user_element()
    {
 
       return nullptr;
@@ -4345,7 +4345,7 @@ namespace user
    }
 
 
-   ::user::element * element::next_user_primitive()
+   ::user::element * element::next_user_element()
    {
 
       return nullptr;
@@ -4353,7 +4353,7 @@ namespace user
    }
 
 
-   ::user::element * element::previous_user_primitive()
+   ::user::element * element::previous_user_element()
    {
 
       return nullptr;

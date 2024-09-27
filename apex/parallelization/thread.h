@@ -316,8 +316,8 @@ public:
    //virtual void set_timer(::user::prototype * pinteraction, uptr uEvent, ::u32 nEllapse);
    //virtual void unset_timer(::user::prototype * pinteraction, uptr uEvent);
    //virtual void set_auto_delete(bool bAutoDelete = true);
-   virtual ::user::prototype * get_active_user_primitive();
-   virtual void set_active_user_primitive(::user::prototype * pinteraction);
+   virtual ::user::prototype * get_active_user_prototype();
+   virtual void set_active_user_prototype(::user::prototype * pinteraction);
    //virtual void step_timer();
    //virtual bool on_run_step();
 

@@ -335,7 +335,7 @@ namespace user
 
       //#ifdef __APPLE__
 
-      //m_puserinteraction->m_ewindowflag |= e_window_flag_postpone_visual_update;
+      //this->m_ewindowflag |= e_window_flag_postpone_visual_update;
 
       //#endif
 
@@ -4348,10 +4348,10 @@ namespace user
          if (pthread != nullptr)
          {
 
-            if (pthread->get_active_user_primitive() == this)
+            if (pthread->get_active_user_prototype() == this)
             {
 
-               pthread->set_active_user_primitive(nullptr);
+               pthread->set_active_user_prototype(nullptr);
 
             }
 
@@ -5973,7 +5973,7 @@ namespace user
    //
    //                                                                                                                              {
    //
-   //   auto rectangleX = m_puserinteraction->rectangle();
+   //   auto rectangleX = this->rectangle();
    //
    //   ::rectangle_i32 rectangleHint(rectangleX);
    //
@@ -7157,7 +7157,7 @@ namespace user
 
       }
 
-      //m_puserinteraction->layout().m_statea[e_layout_window].m_edisplay = edisplay;
+      //this->layout().m_statea[e_layout_window].m_edisplay = edisplay;
 
    }
 
@@ -7336,19 +7336,19 @@ namespace user
 //   ::graphics::enum_output_purpose interaction::graphical_output_purpose()
 //   {
 //
-//      if (m_puserinteraction->const_layout().window().display() == e_display_iconic)
+//      if (this->const_layout().window().display() == e_display_iconic)
 //      {
 //
 //         return ::graphics::e_output_purpose_none;
 //
 //      }
-//      else if (m_puserinteraction->const_layout().window().display() == e_display_notify_icon)
+//      else if (this->const_layout().window().display() == e_display_notify_icon)
 //      {
 //
 //         m_bAutoRefresh = false;
 //
 //      }
-//      else if (!::is_visible(m_puserinteraction->const_layout().design().display()))
+//      else if (!::is_visible(this->const_layout().design().display()))
 //      {
 //
 //         m_bAutoRefresh = false;
@@ -10182,11 +10182,11 @@ namespace user
 
          create_child(pwindowHost->m_puserinteractionimpl->m_puserinteraction);
 
-         //         pwindowHost->m_puserinteractionimpl->m_puserinteraction->set_need_layout();
+         //         pwindowHost->m_puserinteractionimpl->this->set_need_layout();
          //
-         //         pwindowHost->m_puserinteractionimpl->m_puserinteraction->set_need_redraw();
+         //         pwindowHost->m_puserinteractionimpl->this->set_need_redraw();
          //
-         //         pwindowHost->m_puserinteractionimpl->m_puserinteraction->post_redraw();
+         //         pwindowHost->m_puserinteractionimpl->this->post_redraw();
 
          return;
 
@@ -10725,7 +10725,7 @@ namespace user
       if (::is_set(pelement))
       {
 
-         return pelement;
+         return pelement->user_interaction_base();
 
       }
 
@@ -11823,7 +11823,7 @@ namespace user
 
       ::pointer<::user::interaction> pinteraction;
 
-      while (m_puserinteraction->get_child(pinteraction))
+      while (this->get_child(pinteraction))
       {
 
          atom atom = pinteraction->GetDlgCtrlId();
@@ -14225,7 +14225,7 @@ namespace user
       if (is_root())
       {
 
-         m_puserinteraction->set_size(get_size());
+         this->set_size(get_size());
 
       }
 
@@ -14360,7 +14360,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       }
 
-//      if(!m_puserinteraction->m_bVisible)
+//      if(!this->m_bVisible)
 //      {
 //
 //         return false;
@@ -14857,7 +14857,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       // }
 
-      // m_puserinteraction->interaction_post(::place(new call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
+      // this->interaction_post(::place(new call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
 
       //auto pmessage
 
@@ -17390,7 +17390,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   ::user::element * interaction::first_child_user_primitive()
+   ::user::element * interaction::first_child_user_element()
    {
 
       return first_child();
@@ -17398,15 +17398,15 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   ::user::element * interaction::top_user_primitive()
+   ::user::element * interaction::top_user_element()
    {
 
-      return primitive::top_user_primitive();
+      return ::user::prototype::top_user_element();
 
    }
 
 
-   ::user::element * interaction::under_user_primitive()
+   ::user::element * interaction::under_user_element()
    {
 
       return under_sibling();
@@ -17414,7 +17414,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   ::user::element * interaction::above_user_primitive()
+   ::user::element * interaction::above_user_element()
    {
 
       return above_sibling();
@@ -17422,7 +17422,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   ::user::element * interaction::next_user_primitive()
+   ::user::element * interaction::next_user_element()
    {
 
       return next_sibling();
@@ -17430,7 +17430,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   ::user::element * interaction::previous_user_primitive()
+   ::user::element * interaction::previous_user_element()
    {
 
       return previous_sibling();
@@ -21622,7 +21622,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
          else if (ptopic->m_atom == ID_REDRAW || ptopic->m_atom == m_atom)
          {
 
-            if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
+            if (this->m_ewindowflag & ::e_window_flag_window_created)
             {
 
                set_need_redraw();
@@ -21635,7 +21635,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
          else if (ptopic->m_atom == id_user_style_change)
          {
 
-            if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
+            if (this->m_ewindowflag & ::e_window_flag_window_created)
             {
 
                set_need_redraw();
@@ -23553,7 +23553,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       //   screen_to_client()(pointClient);
 
-      //   auto psession = m_puserinteraction->get_session();
+      //   auto psession = this->get_session();
 
       //   auto ekeyModifiers = psession->key_modifiers();
 
@@ -23810,7 +23810,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 //
 //               //   _screen_to_client(pointClient, pmouse->m_point);
 //
-//               //   auto psession = m_puserinteraction->get_session();
+//               //   auto psession = this->get_session();
 //
 //               //   auto ekeyModifiers = psession->key_modifiers();
 //
@@ -23841,7 +23841,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       //      bool bRet;
 
-      //      auto psession = m_puserinteraction->get_session();
+      //      auto psession = this->get_session();
 
       //      auto ekeyModifiers = psession->key_modifiers();
 
@@ -24503,7 +24503,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          host_to_client()(pointClient);
 
-         auto psession = m_puserinteraction->get_session();
+         auto psession = this->get_session();
 
          auto ekeyModifiers = psession->key_modifiers();
 
@@ -24782,7 +24782,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 //
 //               //   _screen_to_client(pointClient, pmouse->m_point);
 //
-//               //   auto psession = m_puserinteraction->get_session();
+//               //   auto psession = this->get_session();
 //
 //               //   auto ekeyModifiers = psession->key_modifiers();
 //
@@ -24813,7 +24813,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
             bool bRet;
 
-            auto psession = m_puserinteraction->get_session();
+            auto psession = this->get_session();
 
             auto ekeyModifiers = psession->key_modifiers();
 
@@ -25084,7 +25084,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          host_to_client()(pointClient);
 
-         auto psession = m_puserinteraction->get_session();
+         auto psession = this->get_session();
 
          auto ekeyModifiers = psession->key_modifiers();
 
@@ -25138,7 +25138,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
             host_to_client()(pointClient);
 
-            auto psession = m_puserinteraction->get_session();
+            auto psession = this->get_session();
 
             auto ekeyModifiers = psession->key_modifiers();
 
@@ -25197,7 +25197,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          host_to_client()(pointClient);
 
-         auto psession = m_puserinteraction->get_session();
+         auto psession = this->get_session();
 
          auto ekeyModifiers = psession->key_modifiers();
 
@@ -25310,7 +25310,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          bool bRet;
 
-         auto psession = m_puserinteraction->get_session();
+         auto psession = this->get_session();
 
          auto ekeyModifiers = psession->key_modifiers();
 

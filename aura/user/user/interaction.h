@@ -1083,12 +1083,12 @@ namespace user
       virtual bool on_set_owner(::user::prototype * pinterface);
 
 
-      ::user::element * first_child_user_primitive() override;
-      ::user::element * top_user_primitive() override;
-      ::user::element * under_user_primitive() override;
-      ::user::element * above_user_primitive() override;
-      ::user::element * next_user_primitive() override;
-      ::user::element * previous_user_primitive() override;
+      ::user::element * first_child_user_element() override;
+      ::user::element * top_user_element() override;
+      ::user::element * under_user_element() override;
+      ::user::element * above_user_element() override;
+      ::user::element * next_user_element() override;
+      ::user::element * previous_user_element() override;
 
 
       virtual ::user::interaction* first_child() override;

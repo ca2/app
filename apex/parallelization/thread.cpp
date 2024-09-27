@@ -1249,7 +1249,7 @@ void thread::on_thread_on_idle(thread* pimpl, ::i32 lCount)
 }
 
 
-::user::prototype* thread::get_active_user_primitive()
+::user::prototype* thread::get_active_user_prototype()
 {
 
    return m_puserprimitiveActive;
@@ -1257,7 +1257,7 @@ void thread::on_thread_on_idle(thread* pimpl, ::i32 lCount)
 }
 
 
-void thread::set_active_user_primitive(::user::prototype* puserprimitive)
+void thread::set_active_user_prototype(::user::prototype* puserprimitive)
 {
 
    m_puserprimitiveActive = puserprimitive;

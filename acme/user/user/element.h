@@ -832,12 +832,12 @@ namespace user
       //virtual void set_check(enum_check echeck, const ::action_context & action_context);
       //virtual void set_text(const ::string & strText, const ::action_context & action_context);
 
-      virtual ::user::element * first_child_user_primitive();
-      virtual ::user::element * top_user_primitive();
-      virtual ::user::element * under_user_primitive();
-      virtual ::user::element * above_user_primitive();
-      virtual ::user::element * next_user_primitive();
-      virtual ::user::element * previous_user_primitive();
+      virtual ::user::element * first_child_user_element();
+      virtual ::user::element * top_user_element();
+      virtual ::user::element * under_user_element();
+      virtual ::user::element * above_user_element();
+      virtual ::user::element * next_user_element();
+      virtual ::user::element * previous_user_element();
 
    
       virtual void pick_single_file(

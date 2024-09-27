@@ -240,7 +240,7 @@ namespace windowing
 
       virtual lresult send_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr);
 
-      virtual bool post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr);
+      virtual void post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr);
 
 
       virtual void set_window_text(const ::scoped_string & scopedstr);
@@ -283,7 +283,7 @@ namespace windowing
 
       // Window State Functions
       virtual bool is_this_enabled();
-      virtual bool enable_window(bool bEnable = true);
+      virtual void enable_window(bool bEnable = true);
 
       // the active interaction_impl applies only to top-level (frame windows)
       virtual ::user::interaction * get_active_window();
@@ -421,7 +421,7 @@ namespace windowing
 
       virtual void window_update_screen();
 
-      virtual bool defer_perform_entire_reposition_process();
+      virtual bool defer_perform_entire_reposition_process(::user::mouse * pmouse);
 
       virtual bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse);
 
@@ -449,10 +449,11 @@ namespace windowing
 
       virtual void set_opacity(double dOpacity);
 
-      virtual void window_restore();
-      virtual void window_minimize();
-      virtual void window_maximize();
+      void window_restore() override;
+      void window_minimize() override;
+      void window_maximize() override;
 
+      void destroy() override;
 
    };
 

@@ -887,7 +887,7 @@ namespace user
 
       m_puserprimitiveOwner = pinteraction;
 
-      return m_puserprimitiveOwner->m_puserinteraction;
+      return m_puserprimitiveOwner->user_prototype();
 
    }
 
@@ -898,7 +898,7 @@ namespace user
       if (m_puserprimitiveOwner != nullptr)
       {
 
-         return m_puserprimitiveOwner->m_puserinteraction;
+         return m_puserprimitiveOwner->user_interaction();
 
       }
 

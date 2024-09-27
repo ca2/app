@@ -2614,26 +2614,32 @@ void window::set_opacity(double dOpacity)
 
 }
 
-   // void window::window_restore()
-   // {
-   //
-   //
-   // }
-   //
-   //
-   // void window::window_minimize()
-   // {
-   //
-   //
-   // }
-   //
-   //
-   // void window::window_maximize()
-   // {
-   //
-   //
-   // }
+    void window::window_restore()
+    {
+   
+   
+    }
+   
+   
+    void window::window_minimize()
+    {
+   
+   
+    }
+   
+   
+    void window::window_maximize()
+    {
+   
+   
+    }
+    void window::destroy()
+    {
 
+       ::channel::destroy();
+       ::windowing::window_base::destroy();
+
+    }
 
 } // namespace windowing
 

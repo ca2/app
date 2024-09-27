@@ -371,7 +371,7 @@ namespace user
 
       m_bWfiUpDownTarget = false;
 
-      m_puserinteraction = this;
+      //m_puserinteraction = this;
 
       m_dItemHeight = -1;
 
@@ -2786,10 +2786,10 @@ namespace user
 
       }
 
-      if (::is_set(m_puserinteraction))
+      if (::is_set(this))
       {
 
-         m_puserinteraction->pre_translate_message(pmessage);
+         this->pre_translate_message(pmessage);
 
       }
 
@@ -2944,7 +2944,7 @@ namespace user
       MESSAGE_LINK(e_message_pos_create, pchannel, this, &interaction::on_message_after_create);
       MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
 
-      primitive::install_message_routing(pchannel);
+      ::user::prototype::install_message_routing(pchannel);
 
       if (m_bMessageWindow)
       {
@@ -6247,7 +6247,7 @@ namespace user
 
       scoped_restore(pgraphics->m_puserinteraction);
 
-      pgraphics->m_puserinteraction = m_puserinteraction;
+      pgraphics->m_puserinteraction = this;
 
       ::string strType = ::type(this).as_string();
 
@@ -7138,7 +7138,7 @@ namespace user
 
             //ModifyStyle(0, WS_VISIBLE);
 
-            m_puserinteraction->send_message(e_message_show_window, 1);
+            this->send_message(e_message_show_window, 1);
 
          }
          else if (!windowing()->is_screen_visible(edisplayNew)
@@ -7147,7 +7147,7 @@ namespace user
 
             ///ModifyStyle(WS_VISIBLE, 0);
 
-            m_puserinteraction->send_message(e_message_show_window, 0);
+            this->send_message(e_message_show_window, 0);
 
          }
 
@@ -8730,7 +8730,7 @@ namespace user
          if (pmessage->m_union.m_pkey->m_ekey == ::user::e_key_f4)
          {
 
-            auto psession = m_puserinteraction->get_session();
+            auto psession = this->get_session();
 
             if (psession->is_key_pressed(::user::e_key_alt))
             {
@@ -8750,7 +8750,7 @@ namespace user
       if (m_pappearance)
       {
 
-         auto psession = m_puserinteraction->get_session();
+         auto psession = this->get_session();
 
          auto ekeyModifiers = psession->key_modifiers();
 
@@ -8819,7 +8819,7 @@ namespace user
       if (m_pappearance)
       {
 
-         auto psession = m_puserinteraction->get_session();
+         auto psession = this->get_session();
 
          auto ekeyModifiers = psession->key_modifiers();
 
@@ -8900,7 +8900,7 @@ namespace user
 
          auto puseritem = user_item(pitem);
 
-         if (window()->defer_perform_entire_reposition_process(puseritem->m_pmouse.cast<::message::mouse>()))
+         if (window()->defer_perform_entire_reposition_process(puseritem->m_pmouse.cast<::user::mouse>()))
          {
 
             return false;

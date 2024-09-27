@@ -5,6 +5,7 @@
 #include "context.h"
 #include "array.h"
 #include "acme/graphics/image/image32.h"
+#include "acme/graphics/image/pixmap_lock.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -5224,7 +5225,7 @@ void imaging::spread__32CC(::image::image *pimageDst, ::image::image *pimageSrc,
 
    i32 max3x1 = maxx1 * 4;
 
-   ::copy_image32((::image32_t*)pDst, cx,cy,pimageDst->scan_size(),(::image32_t *)pSrc,pimageSrc->scan_size());
+   ((::image32_t*)pDst)->copy(cx, cy, pimageDst->scan_size(), (::image32_t *)pSrc, pimageSrc->scan_size());
 
 
    i32 iFilterXLowerBound;

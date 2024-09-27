@@ -81,6 +81,8 @@ void pixmap::mult_alpha()
 void pixmap::vertical_swap()
 {
 
+   auto ppixmap = this;
+
    try
    {
 
@@ -135,3 +137,36 @@ void pixmap::vertical_swap()
    }
 
 }
+
+
+void pixmap::copy(const ::pixmap * ppixmapSrc)
+{
+
+   copy(size().minimum(ppixmapSrc->size()), ppixmapSrc);
+
+}
+
+
+void pixmap::copy(const ::size_i32 & size, const ::pixmap * ppixmapSrc)
+{
+
+   m_pimage32->copy(size, scan_size(), ppixmapSrc);
+
+}
+
+
+pixmap & pixmap::operator =(const pixmap & pixmap)
+{
+
+   if (this != &pixmap)
+   {
+
+      copy(&pixmap);
+
+   }
+
+   return *this;
+
+}
+   
+   

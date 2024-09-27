@@ -116,7 +116,7 @@ void image_context::on_destroy()
 
       pimage->map();
 
-      copy_image32(pimage->data(), size.cx(), size.cy(), pimage->m_iScan, pcolor, iScan);
+      pimage->data()->copy(size, pimage->m_iScan, pcolor, iScan);
 
    }
 

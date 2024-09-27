@@ -9725,11 +9725,11 @@ namespace user
 
 #ifdef __i386__
 
-      ::copy_image32_swap_red_blue((image32_t *)pixels, minimum(width, wSource), minimum(height, hSource), stride, pdataSource, scanSource);
+      ((image32_t *)pixels)->copy_swap_red_blue(minimum(width, wSource), minimum(height, hSource), stride, pdataSource, scanSource);
 
 #else
 
-      ::copy_image32((image32_t *) pixels, minimum(width, wSource), minimum(height, hSource), stride, pdataSource,
+      ((image32_t *) pixels)->copy(minimum(width, wSource), minimum(height, hSource), stride, pdataSource,
                      scanSource);
 
 #endif

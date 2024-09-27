@@ -1150,6 +1150,7 @@
     <ClInclude Include="filesystem\watcher\_.h" />
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="format.h" />
+    <ClInclude Include="graphics\image\pixmap_lock.h" />
     <ClInclude Include="handler\source.h" />
     <ClInclude Include="memory\allocator.h" />
     <ClInclude Include="memory\allocator\malloc.h" />

@@ -7,6 +7,7 @@
 #include "framework.h"
 #include "fastblur.h"
 #include "image.h"
+#include "acme/graphics/image/pixmap_lock.h"
 ////#include "acme/exception/exception.h"
 
 

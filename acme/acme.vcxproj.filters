@@ -3891,6 +3891,9 @@
     <ClInclude Include="nano\graphics\pen.h">
       <Filter>Header Files\nano\graphics</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\image\pixmap_lock.h">
+      <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">

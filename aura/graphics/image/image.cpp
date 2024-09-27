@@ -9712,7 +9712,7 @@ void image::hue_offset(double dRadians)
 void image::fast_copy(image32_t* pcolor32)
 {
 
-   ::copy_image32(data(), rectangle(), scan_size(), pcolor32);
+   data()->copy(rectangle(), scan_size(), pcolor32);
 
 }
 

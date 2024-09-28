@@ -12,6 +12,8 @@
 class qimage_paintable_pixmap :
    public pixmap
 {
+protected:
+
 
    QImage * m_pqimage;
    QImage m_qimageArgb32;
@@ -19,6 +21,8 @@ class qimage_paintable_pixmap :
 
    bool m_bConvert;
 
+
+public:
 
    qimage_paintable_pixmap(QImage * pqimage)
    {
@@ -40,11 +44,10 @@ class qimage_paintable_pixmap :
       ::pixmap & pixmap = *this;
 
       pixmap.m_pimage32 = (image32_t *) m_pqimageArgb32->bits();
-      pixmap.m_size.cx() = m_pqimageArgb32->width();
-      pixmap.m_size.cy() = m_pqimageArgb32->height();
       pixmap.m_sizeRaw.cx() = m_pqimageArgb32->width();
       pixmap.m_sizeRaw.cy() = m_pqimageArgb32->height();
       pixmap.m_iScan = m_pqimageArgb32->bytesPerLine();
+      map({(::i32)m_pqimageArgb32->width(), (::i32)m_pqimageArgb32->height()});
    }
 
    ~qimage_paintable_pixmap()

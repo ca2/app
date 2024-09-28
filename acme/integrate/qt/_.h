@@ -6,6 +6,7 @@
 
 #include "text_stream.h"
 #include "geometry2d.h"
+#include "image.h"
 
 
 

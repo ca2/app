@@ -218,6 +218,10 @@ public:
 
    virtual void create_control(::user::interaction * puserinteractionParent, const ::atom & atom);
 
+
+   virtual void on_position_window();
+   virtual void on_size_window();
+
 //
 // };
 //

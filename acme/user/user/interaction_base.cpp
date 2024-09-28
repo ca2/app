@@ -528,6 +528,23 @@ void interaction_base::destroy()
 
    }
 
+
+
+   void interaction_base::on_position_window()
+   {
+
+
+   }
+
+
+   void interaction_base::on_size_window()
+   {
+
+
+
+   }
+
+
 void interaction_base::redraw()
 {
 

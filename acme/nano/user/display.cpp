@@ -3,16 +3,20 @@
 //
 #include "framework.h"
 #include "display.h"
-#include "acme/parallelization/asynchronous.h"
-#include "acme/parallelization/synchronous_lock.h"
+//#include "acme/parallelization/asynchronous.h"
+//#include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/geometry2d/size.h"
+#include "acme/platform/system.h"
+#include "acme/windowing_system/windowing_system.h"
 
 
 namespace nano
 {
 
+
 namespace user
 {
+
 
    display::display():
    m_pointCursor2(I32_MINIMUM)
@@ -52,11 +56,13 @@ namespace user
    void display::display_post(const ::procedure & procedure)
    {
 
-      synchronous_lock synchronouslock(this->synchronization());
+//      synchronous_lock synchronouslock(this->synchronization());
 
-      m_procedureaPost.add(procedure);
+//      m_procedureaPost.add(procedure);
 
-      kick_idle();
+//      kick_idle();
+
+      system()->windowing_system()->main_post(procedure);
 
    }
 
@@ -64,39 +70,41 @@ namespace user
    void display::display_send(const ::procedure & procedure)
    {
 
-      auto bIsCurrentBranch = is_branch_current();
+      //auto bIsCurrentBranch = is_branch_current();
 
-      __matter_send_procedure(this, this, &display::display_post, procedure);
+      //__matter_send_procedure(this, this, &display::display_post, procedure);
 
-   }
-
-
-   bool display::display_posted_routine_step()
-   {
-
-      _synchronous_lock synchronouslock(this->synchronization());
-
-      if (m_procedureaPost.has_element())
-      {
-
-         auto function = m_procedureaPost.pick_first();
-
-         if (function)
-         {
-
-            synchronouslock.unlock();
-
-            function();
-
-            return true;
-
-         }
-
-      }
-
-      return false;
+      system()->windowing_system()->main_send(procedure);
 
    }
+
+
+   // bool display::display_posted_routine_step()
+   // {
+   //
+   //    _synchronous_lock synchronouslock(this->synchronization());
+   //
+   //    if (m_procedureaPost.has_element())
+   //    {
+   //
+   //       auto function = m_procedureaPost.pick_first();
+   //
+   //       if (function)
+   //       {
+   //
+   //          synchronouslock.unlock();
+   //
+   //          function();
+   //
+   //          return true;
+   //
+   //       }
+   //
+   //    }
+   //
+   //    return false;
+   //
+   // }
 
 
    ::size_i32 display::get_main_screen_size()

@@ -4,6 +4,8 @@
 #include "framework.h"
 #include "device.h"
 #include "acme/prototype/geometry2d/rectangle.h"
+#include "acme/graphics/image/pixmap.h"
+
 //#include "acme/prototype/collection/string_array.h"
 namespace nano
 {
@@ -121,10 +123,10 @@ void device::rectangle(const ::rectangle_i32 & rectangle, ::nano::graphics::brus
 
 }
 
-      void device::copy_to_pixmap(::pixmap & pixmap)
+      ::pixmap device::pixmap()
       {
 
-
+return {};
 
       }
 

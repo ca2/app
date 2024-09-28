@@ -8,6 +8,8 @@
 #include "window_base.h"
 #include "platform/system.h"
 #include "windowing_system/windowing_system.h"
+#include "acme/nano/nano.h"
+#include "acme/nano/graphics/device.h"
 #include "acme/nano/user/display.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/user/user/interaction_base.h"
@@ -422,7 +424,6 @@ void window_base::handle(::topic * ptopic, ::context * pcontext)
 
 
 
-
 void window_base::defer_show_system_menu(::user::mouse * pmouse)
 {
 
@@ -499,6 +500,14 @@ void window_base::on_char(int iChar)
 //}
 //
 //
+
+
+   void window_base::set_interface_client_size(const ::size_i32 & sizeWindow) // set_size
+   {
+
+      m_sizeWindow = sizeWindow;
+
+   }
 
 
 } // namespace windowing

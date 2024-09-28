@@ -48,6 +48,8 @@ namespace windowing_system
         if(!m_pdisplaybase)
         {
 
+            nano()->user();
+
             __construct(m_pdisplaybase);
 
             m_pdisplaybase->open_display();
@@ -57,6 +59,7 @@ namespace windowing_system
         return m_pdisplaybase;
 
     }
+
 
     void windowing_system::on_start_system()
     {

@@ -19,7 +19,7 @@ namespace nano
    public:
 
 
-      ::array < ::procedure >      m_procedureaPost;
+      //::array < ::procedure >      m_procedureaPost;
       ::point_i32                   m_pointCursor2;
 
       enum_display_type          m_edisplaytype;
@@ -43,7 +43,7 @@ namespace nano
       void kick_idle() override;
       virtual void display_post(const ::procedure & procedure);
       virtual void display_send(const ::procedure & procedure);
-      virtual bool display_posted_routine_step();
+      //virtual bool display_posted_routine_step();
 
 
       virtual ::size_i32 get_main_screen_size();

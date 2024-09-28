@@ -145,6 +145,10 @@ namespace windowing
 
                virtual void implementation_message_loop_step();
 
+
+
+      virtual void set_interface_client_size(const ::size_i32 & sizeWindow);
+
    };
 
 

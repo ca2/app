@@ -29,26 +29,34 @@ public:
 
       m_pqimage = pqimage;
 
-      m_bConvert = pqimage->format() != QImage::Format_ARGB32;
+      m_bConvert = pqimage->format() != QImage::Format_ARGB32_Premultiplied;
 
       if(m_bConvert)
       {
-         m_qimageArgb32 = pqimage->convertToFormat(QImage::Format_ARGB32);
+
+         m_qimageArgb32 = pqimage->convertToFormat(QImage::Format_ARGB32_Premultiplied);
+
          m_pqimageArgb32 = &m_qimageArgb32;
+
       }
       else
       {
+
          m_pqimageArgb32 = m_pqimage;
+
       }
 
       ::pixmap & pixmap = *this;
 
-      pixmap.m_pimage32 = (image32_t *) m_pqimageArgb32->bits();
+      pixmap.m_pimage32Raw = (image32_t *) m_pqimageArgb32->bits();
       pixmap.m_sizeRaw.cx() = m_pqimageArgb32->width();
       pixmap.m_sizeRaw.cy() = m_pqimageArgb32->height();
       pixmap.m_iScan = m_pqimageArgb32->bytesPerLine();
+
       map({(::i32)m_pqimageArgb32->width(), (::i32)m_pqimageArgb32->height()});
+
    }
+
 
    ~qimage_paintable_pixmap()
    {
@@ -58,11 +66,9 @@ public:
 
          auto qimage = m_pqimageArgb32->convertToFormat(m_pqimage->format());
 
-         // Now, both images should have the same format
          QPainter painter(m_pqimage);
 
          painter.drawImage(0, 0, qimage); // Paint at position (0, 0)
-
 
       }
 

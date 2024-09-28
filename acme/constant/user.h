@@ -396,21 +396,34 @@ namespace user
 
       // please note that the row of these must match the row of the corresponding combobox in Preferences Dialog.
       e_desktop_none,
-      e_desktop_unknown = 1 << 0,
-      e_desktop_gnome = 1 << 1,
-      e_desktop_kde = 1 << 2,
-      e_desktop_unity = 1 << 3,
-      e_desktop_xfce = 1 << 4,
-      e_desktop_lxde = 1 << 5,
-      e_desktop_mate = 1 << 6,
-      e_desktop_ubuntu = 1 << 7,
-      e_desktop_windows = 1 << 8,
-      e_desktop_cinnamon = 1 << 9,
-      e_desktop_unity_gnome = e_desktop_unity | e_desktop_gnome,
-      e_desktop_ubuntu_gnome = e_desktop_ubuntu | e_desktop_gnome,
+      e_desktop_unknown,
+      e_desktop_gnome,
+      e_desktop_kde,
+      e_desktop_unity,
+      e_desktop_xfce,
+      e_desktop_lxde,
+      e_desktop_mate,
+      e_desktop_ubuntu,
+      e_desktop_windows,
+      e_desktop_cinnamon
 
    };
 
+   enum enum_toolkit
+   {
+
+      e_toolkit_none,
+      e_toolkit_unknown,
+      e_toolkit_win32,
+      e_toolkit_gtk3,
+      e_toolkit_gtk4,
+      e_toolkit_kde5,
+      e_toolkit_kde6,
+      e_toolkit_appkit,
+      e_toolkit_uikit,
+      e_toolkit_android,
+
+   };
 
 } // namespace user
 

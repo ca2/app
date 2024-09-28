@@ -57,6 +57,10 @@ public:
 
 
    void handle(::topic * ptopic, ::context * pcontext) override;
+
+
+
+   //virtual void do_interchange();
    virtual void do_asynchronously();
    virtual ::payload do_synchronously(const class time & timeWait);
 
@@ -175,20 +179,20 @@ public:
 
    //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
 
-   virtual void move_to(const ::point_i32 & point);
+   void set_position(const ::point_i32 & point) override;
 
    void destroy() override;
 
-   virtual void redraw();
+   void redraw() override;
 
    virtual void get_client_rectangle(::rectangle_i32 & rectangle);
-   virtual ::rectangle_i32 get_window_rectangle() override;
+   ::rectangle_i32 get_window_rectangle() override;
 
-   virtual void set_capture();
+   void set_capture() override;
 
-   virtual bool has_capture() const;
+   bool has_capture() override;
 
-   virtual void release_capture();
+   void release_capture() override;
 
    virtual void set_cursor(enum_cursor ecursor);
 

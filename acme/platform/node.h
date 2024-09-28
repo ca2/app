@@ -124,6 +124,7 @@ namespace acme
       ::file::path                                          m_pathModule;
 
       ::user::enum_desktop                                  m_edesktop;
+      ::user::enum_toolkit                                  m_etoolkit;
 
       enum_application_capability_array                     m_eapplicationcapabilitya;
       string_map < ::pointer<::acme::exclusive > >          m_mapExclusive;
@@ -373,9 +374,12 @@ namespace acme
       virtual enum_operating_system get_operating_system() const;
 
       virtual ::user::enum_desktop get_edesktop();
+      virtual ::user::enum_toolkit get_etoolkit();
 
       virtual ::user::enum_desktop calculate_edesktop();
+      virtual ::user::enum_toolkit calculate_etoolkit();
 
+      virtual ::string get_user_toolkit_id();
 
       virtual void launch_app(const ::string & psz, const char ** argv, int iFlags);
 

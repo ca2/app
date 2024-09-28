@@ -65,8 +65,14 @@ class still;
 //    CLASS_DECL_ACME ::pointer<pen>create_pen(::particle * pparticle, int iWidth, color32_t color);
 
 
-   ::enum_display_type get_display_type();
+      CLASS_DECL_ACME ::enum_display_type get_display_type();
 
+      CLASS_DECL_ACME ::user::enum_desktop calculate_edesktop();
+      CLASS_DECL_ACME ::user::enum_desktop get_edesktop();
+
+
+      CLASS_DECL_ACME ::user::enum_toolkit calculate_etoolkit();
+      CLASS_DECL_ACME ::user::enum_toolkit get_etoolkot();
 
 
    } //namespace user

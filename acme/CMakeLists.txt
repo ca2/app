@@ -2734,6 +2734,7 @@ if (${LINUX} OR ${__BSD__} OR ${NETBSD} OR ${OPENBSD})
 
     list(APPEND library_source
             operating_system/posix/calculate_edesktop.cpp
+		 		operating_system/posix/calculate_etoolkit.cpp
     )
 
 endif ()

@@ -97,7 +97,9 @@ namespace innate_ui
    ::innate_ui::innate_ui * window::innate_ui()
    {
 
-      return system()->innate_ui();
+      auto psystem = system();
+
+      return psystem->innate_ui();
 
    }
 

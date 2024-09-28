@@ -21,6 +21,7 @@ namespace user
 
    interaction_base::interaction_base()
    {
+
       m_bMinimizeBox = true;
       m_bMaximizeBox = true;
       m_bResizeable = true;
@@ -32,37 +33,56 @@ namespace user
    interaction_base::~interaction_base()
    {
 
+
    }
 
 
-   ::pointer < ::operating_system::a_system_menu > interaction_base::create_system_menu(bool bContextual)
+   ::pointer<::operating_system::a_system_menu> interaction_base::create_system_menu(bool bContextual)
    {
 
       auto psystemmenu = ::place(new ::operating_system::a_system_menu());
 
-      if(m_bMinimizeBox)
+      if (m_bMinimizeBox)
       {
+
          psystemmenu->add_item("Minimize", "minimize");
+
       }
-      if(!bContextual || is_window_zoomed())
+
+      if (!bContextual || is_window_zoomed())
       {
+
          psystemmenu->add_item("Restore", "restore");
+
       }
-      if(m_bMaximizeBox)
+
+      if (m_bMaximizeBox)
       {
-         if(!bContextual || !is_window_zoomed())
+
+         if (!bContextual || !is_window_zoomed())
          {
+
             psystemmenu->add_item("Maximize", "maximize");
+
          }
+
       }
-      psystemmenu->add_item("Drag to Move","***move");
-      if(m_bResizeable)
+
+      psystemmenu->add_item("Drag to Move", "***move");
+
+      if (m_bResizeable)
       {
+
          psystemmenu->add_item("Drag to Size", "***size");
+
       }
+
       psystemmenu->add_separator();
+
       psystemmenu->add_item("About...", "about_box");
+
       psystemmenu->add_separator();
+
       psystemmenu->add_item("Close", "close");
 
       return psystemmenu;
@@ -70,407 +90,360 @@ namespace user
    }
 
 
-//
-// namespace nano
-// {
-//
-// namespace user
-// {
-//
-
-void interaction_base::on_initialize_particle()
-{
+   void interaction_base::on_initialize_particle()
+   {
 
 
-}
+   }
 
 
-void interaction_base::create()
-{
+   void interaction_base::create()
+   {
 
 
-}
+   }
 
 
-void interaction_base::show_window()
-{
+   void interaction_base::show_window()
+   {
 
 
-}
+   }
 
 
-void interaction_base::message_loop()
-{
+   void interaction_base::message_loop()
+   {
 
 
-}
+   }
 
 
-void interaction_base::implementation_message_loop_step()
-{
+   void interaction_base::implementation_message_loop_step()
+   {
 
 
-}
+   }
 
 
-void interaction_base::draw(::nano::graphics::device * pnanodevice)
-{
-
-}
+   void interaction_base::draw(::nano::graphics::device* pnanodevice)
+   {
 
 
-void interaction_base::on_draw(::nano::graphics::device * pnanodevice)
-{
+   }
 
 
-}
+   void interaction_base::on_draw(::nano::graphics::device* pnanodevice)
+   {
 
 
-void interaction_base::on_char(int iChar)
-{
+   }
 
 
-}
+   void interaction_base::on_char(int iChar)
+   {
 
 
-bool interaction_base::is_active()
-{
-
-   return false;
-
-}
+   }
 
 
-void interaction_base::set_active()
-{
+   bool interaction_base::is_active()
+   {
 
-}
+      return false;
 
-
-void interaction_base::draw_children(::nano::graphics::device * pnanodevice)
-{
+   }
 
 
-}
-
-void interaction_base::delete_drawing_objects()
-{
+   void interaction_base::set_active()
+   {
 
 
-}
+   }
 
 
-bool interaction_base::get_dark_mode()
-{
-
-   return false;
-
-}
+   void interaction_base::draw_children(::nano::graphics::device* pnanodevice)
+   {
 
 
-void interaction_base::create_drawing_objects()
-{
-
-}
+   }
 
 
-void interaction_base::update_drawing_objects()
-{
+   void interaction_base::delete_drawing_objects()
+   {
 
 
-}
+   }
 
 
-::point_i32 interaction_base::origin()
-{
+   bool interaction_base::get_dark_mode()
+   {
 
-   throw ::exception(error_wrong_state);
+      return false;
 
-   return {};
-
-}
+   }
 
 
-// bool interaction_base::defer_perform_entire_reposition_process(::user::mouse * pmouse)
-// {
-//
-//    return false;
-//
-// }
-//
-//
-//    bool interaction_base::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse)
-// {
-//
-//    return false;
-//
-// }
+   void interaction_base::create_drawing_objects()
+   {
+
+
+   }
+
+
+   void interaction_base::update_drawing_objects()
+   {
+
+
+   }
+
+
+   ::point_i32 interaction_base::origin()
+   {
+
+      throw ::exception(error_wrong_state);
+
+      return {};
+
+   }
 
 
    ::shift_i32 interaction_base::host_to_client()
-{
+   {
 
-   return - client_to_host();
+      return -client_to_host();
 
-}
-
-
-::shift_i32 interaction_base::client_to_host()
-{
-
-   return {};
-
-}
+   }
 
 
-::shift_i32 interaction_base::absolute_to_client()
-{
-
-   return - client_to_host();
-
-}
-
-
-::shift_i32 interaction_base::client_to_absolute()
-{
-
-   if(system()->m_ewindowing == e_windowing_wayland)
+   ::shift_i32 interaction_base::client_to_host()
    {
 
       return {};
 
    }
 
-   //::rectangle_i32 r;
 
-   auto r = get_window_rectangle();
+   ::shift_i32 interaction_base::absolute_to_client()
+   {
 
-   return r.top_left();
+      return -client_to_host();
 
-}
-
-
-::point_i32 interaction_base::try_absolute_mouse_position(const ::point_i32& point)
-{
-
-   auto p = point;
-
-   client_to_absolute()(p);
-
-   return p;
-
-}
+   }
 
 
-void interaction_base::drag_set_capture()
-{
+   ::shift_i32 interaction_base::client_to_absolute()
+   {
 
-   set_capture();
+      if (system()->m_ewindowing == e_windowing_wayland)
+      {
 
-}
+         return {};
+
+      }
+
+      auto r = get_window_rectangle();
+
+      return r.top_left();
+
+   }
 
 
-bool interaction_base::on_drag_start(::point_i32 & point, ::item * pitem)
-{
+   ::point_i32 interaction_base::try_absolute_mouse_position(const ::point_i32& point)
+   {
 
-   if (pitem->m_item.m_eelement == e_element_client)
+      auto p = point;
+
+      client_to_absolute()(p);
+
+      return p;
+
+   }
+
+
+   void interaction_base::drag_set_capture()
+   {
+
+      set_capture();
+
+   }
+
+
+   bool interaction_base::on_drag_start(::point_i32& point, ::item* pitem)
+   {
+
+      if (pitem->m_item.m_eelement == e_element_client)
+      {
+
+         auto pdrag = drag(pitem);
+
+         if (defer_perform_entire_reposition_process(pdrag->m_pmouse))
+         {
+
+            return false;
+
+         }
+
+         point = origin();
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   ::point_i32 interaction_base::drag_mouse_cursor_position(::item* pitem, const ::point_i32& point)
+   {
+
+      auto p = try_absolute_mouse_position(point);
+
+      return p;
+
+   }
+
+
+   bool interaction_base::drag_shift(::item* pitem, ::user::mouse* pmouse)
+   {
+
+      if (pitem->m_item.m_eelement == e_element_client)
+      {
+
+         auto point = drag_point(pitem, pmouse);
+
+         set_position(point);
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   bool interaction_base::drag_hover(::item* pitem)
+   {
+
+      if (pitem->m_item.m_eelement == e_element_client)
+      {
+
+         set_cursor(e_cursor_hand);
+
+         return true;
+
+      }
+      else if (pitem->m_item.m_eelement == e_element_resize)
+      {
+
+         set_cursor(e_cursor_size_bottom_right);
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   void interaction_base::drag_release_capture()
+   {
+
+      release_capture();
+
+   }
+
+
+   void interaction_base::drag_set_cursor(::item* pitem)
    {
 
       auto pdrag = drag(pitem);
 
-      if(defer_perform_entire_reposition_process(pdrag->m_pmouse))
-      {
-
-         return false;
-
-      }
-
-      point = origin();
-
-      return true;
+      set_cursor(pdrag->m_ecursor);
 
    }
 
-   return false;
 
-}
-
-
-::point_i32 interaction_base::drag_mouse_cursor_position(::item* pitem, const ::point_i32 & point)
-{
-
-   auto p = try_absolute_mouse_position(point);
-
-   return p;
-
-}
-
-
-
-bool interaction_base::drag_shift(::item * pitem, ::user::mouse * pmouse)
-{
-
-   if (pitem->m_item.m_eelement == e_element_client)
+   ::payload interaction_base::get_result()
    {
 
-      auto point = drag_point(pitem, pmouse);
-
-      move_to(point);
-
-      return true;
+      return {};
 
    }
 
-   return false;
 
-}
-
-
-bool interaction_base::drag_hover(::item * pitem)
-{
-
-   if (pitem->m_item.m_eelement == e_element_client)
+   void interaction_base::on_mouse_move(::user::mouse* pmouse)
    {
 
-      set_cursor(e_cursor_hand);
-
-      return true;
 
    }
-   else if (pitem->m_item.m_eelement == e_element_resize)
+
+
+   void interaction_base::on_left_button_down(::user::mouse* pmouse)
    {
 
-      set_cursor(e_cursor_size_bottom_right);
-
-      return true;
 
    }
 
-   return false;
 
-}
-
-
-void interaction_base::drag_release_capture()
-{
-
-   release_capture();
-
-}
+   void interaction_base::on_left_button_up(::user::mouse* pmouse)
+   {
 
 
-void interaction_base::drag_set_cursor(::item * pitem)
-{
-
-   auto pdrag = drag(pitem);
-
-   set_cursor(pdrag->m_ecursor);
-
-}
+   }
 
 
-// ::nano::user::child * interaction_base::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
-// {
-//
-//    auto point = pmouse->m_pointHost;
-//
-//    host_to_client()(point);
-//
-//    return on_hit_test(point, ezorder);
-//
-// }
+   void interaction_base::on_click(const ::payload& payload, ::user::mouse* pmouse)
+   {
 
 
-// child * interaction_base::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
-// {
-//
-//    return nullptr;
-//
-// }
+   }
 
 
-// void interaction_base::add_child(child * pchild)
-// {
-//
-//
-// }
+   void interaction_base::on_right_button_down(::user::mouse* pmouse)
+   {
 
 
-::payload interaction_base::get_result()
-{
-
-   return {};
-
-}
+   }
 
 
-void interaction_base::on_mouse_move(::user::mouse * pmouse)
-{
+   void interaction_base::on_right_button_up(::user::mouse* pmouse)
+   {
 
 
-}
+   }
 
 
-void interaction_base::on_left_button_down(::user::mouse * pmouse)
-{
-
-}
+   void interaction_base::on_right_click(const ::payload& payload, ::user::mouse* pmouse)
+   {
 
 
-void interaction_base::on_left_button_up(::user::mouse * pmouse)
-{
+   }
 
 
-}
+   void interaction_base::set_position(const ::point_i32& point)
+   {
+
+      m_pwindowbase->set_position(point);
+
+   }
 
 
-void interaction_base::on_click(const ::payload& payload, ::user::mouse * pmouse)
-{
+   void interaction_base::destroy()
+   {
 
-
-}
-
-
-void interaction_base::on_right_button_down(::user::mouse * pmouse)
-{
-
-
-}
-
-
-void interaction_base::on_right_button_up(::user::mouse * pmouse)
-{
-
-
-}
-
-
-void interaction_base::on_right_click(const ::payload& payload, ::user::mouse * pmouse)
-{
-
-}
-
-
-void interaction_base::move_to(const ::point_i32 & point)
-{
-
-
-}
-
-
-void interaction_base::destroy()
-{
-
-   ::user::element::destroy();
-   ::user::drag_client::destroy();
+      ::user::element::destroy();
+      ::user::drag_client::destroy();
       ::conversation::destroy();
 
       system()->erase_signal_handler(this);
 
+   }
 
-}
 
-   void interaction_base::create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom)
+   void interaction_base::create_interaction(::user::interaction* puserinteractionParent, const ::atom& atom)
    {
 
       if (!atom.is_empty())
@@ -485,10 +458,6 @@ void interaction_base::destroy()
       if (!puserinteractionParent)
       {
 
-         //estatus = create_host();
-
-         //create_host(e_parallelization_synchronous);
-
          create_host();
 
       }
@@ -499,35 +468,17 @@ void interaction_base::destroy()
 
       }
 
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
-
    }
 
-   void interaction_base::create_control(::user::interaction * puserinteractionParent, const ::atom & atom)
+
+   void interaction_base::create_control(::user::interaction* puserinteractionParent, const ::atom& atom)
    {
 
       m_atom = atom;
 
-      /*auto estatus =*/ create_child(puserinteractionParent);
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      ///return estatus;
+      create_child(puserinteractionParent);
 
    }
-
 
 
    void interaction_base::on_position_window()
@@ -541,116 +492,109 @@ void interaction_base::destroy()
    {
 
 
+   }
+
+
+   void interaction_base::redraw()
+   {
+
 
    }
 
 
-void interaction_base::redraw()
-{
+   void interaction_base::get_client_rectangle(::rectangle_i32& rectangle)
+   {
 
 
-}
+   }
 
 
-void interaction_base::get_client_rectangle(::rectangle_i32 & rectangle)
-{
-
-
-}
-
-
-rectangle_i32 interaction_base::get_window_rectangle()
-{
+   rectangle_i32 interaction_base::get_window_rectangle()
+   {
 
       return {};
 
-}
+   }
 
 
-void interaction_base::set_capture()
-{
-
-
-}
-
-
-bool interaction_base::has_capture() const
-{
-
-   return false;
-
-}
-
-
-void interaction_base::release_capture()
-{
-
-
-}
-
-
-void interaction_base::set_cursor(enum_cursor ecursor)
-{
-
-
-}
-
-
-void interaction_base::synchronize_composited_nano_window()
-{
-
-
-}
-
-
-void interaction_base::_run_modal_loop()
-{
-
-
-}
-
-
-bool interaction_base::is_popup_window() const
-{
-
-   return false;
-
-}
-
-//
-//    } // namespace user
-//
-//
-// } // namespace nano
-//
-//
-
-   void interaction_base::handle(::topic * ptopic, ::context * pcontext)
+   void interaction_base::set_capture()
    {
 
-      if(ptopic->m_atom == id_operating_system_user_color_change)
+      m_pwindowbase->set_capture();
+
+   }
+
+
+   bool interaction_base::has_capture()
+   {
+
+      return m_pwindowbase->has_capture();
+
+   }
+
+
+   void interaction_base::release_capture()
+   {
+
+
+   }
+
+
+   void interaction_base::set_cursor(enum_cursor ecursor)
+   {
+
+
+   }
+
+
+   void interaction_base::synchronize_composited_nano_window()
+   {
+
+
+   }
+
+
+   void interaction_base::_run_modal_loop()
+   {
+
+
+   }
+
+
+   bool interaction_base::is_popup_window() const
+   {
+
+      return false;
+
+   }
+
+
+   void interaction_base::handle(::topic* ptopic, ::context* pcontext)
+   {
+
+      if (ptopic->m_atom == id_operating_system_user_color_change)
       {
-      
+
          update_drawing_objects();
-      
+
          redraw();
-      
+
       }
-      else if(ptopic->m_atom == id_set_application_dark_mode)
+      else if (ptopic->m_atom == id_set_application_dark_mode)
       {
-      
+
          update_drawing_objects();
-      
+
          redraw();
-      
+
       }
-      else if(ptopic->m_atom == id_application_dark_mode_change)
+      else if (ptopic->m_atom == id_application_dark_mode_change)
       {
-      
+
          update_drawing_objects();
-      
+
          redraw();
-      
+
       }
 
    }
@@ -659,7 +603,7 @@ bool interaction_base::is_popup_window() const
    void interaction_base::do_asynchronously()
    {
 
-      ::pointer < ::windowing::window_base > pwindowbase = m_pwindowbase;
+      ::pointer<::windowing::window_base> pwindowbase = m_pwindowbase;
 
       auto procedure = [pwindowbase]()
       {
@@ -667,13 +611,6 @@ bool interaction_base::is_popup_window() const
          pwindowbase->create_window();
 
          pwindowbase->show_window();
-
-         //if (!is_main_thread())
-         //{
-
-         //   aaa_message_loop();
-
-         //}
 
       };
 
@@ -690,16 +627,10 @@ bool interaction_base::is_popup_window() const
 
       }
 
-      //display(m_strMessage, m_strTitle, m_emessagebox, m_strDetails);
-
-      //});
-
-      //return m_atomResult;
-
    }
 
 
-   ::payload interaction_base::do_synchronously(const class time & timeWait)
+   ::payload interaction_base::do_synchronously(const class time& timeWait)
    {
 
       create();
@@ -708,93 +639,34 @@ bool interaction_base::is_popup_window() const
 
       message_loop();
 
-      // auto pmanualresetevent = ::place(new manual_reset_event());
-      //
-      // m_pinterface->m_psequencer->then([ pmanualresetevent](auto psequencer)
-      // {
-      //
-      //    pmanualresetevent->SetEvent();
-      //
-      // });
-      //
-      // auto pinterface = m_pinterface;
-      //
-      // if(pinterface->m_payloadResult.is_new())
-      // {
-      //
-      //    pmanualresetevent->wait();
-      //
-      // }
-      //
-      // //   auto pmessagebox = pparticle->__create_new < message_box >();
-      // //
-      // //   atom idResult;
-      // //
-      // //   manual_reset_event event;
-      // //
-      // //   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
-      // //
-      // //   pmessagebox->m_functionClose = [&idResult, &event](nano::user::interchange * pwindow)
-      // //   {
-      // //
-      // //      idResult = pwindow->m_atomResult;
-      // //
-      // //      event.SetEvent();
-      // //
-      // //   };
-      // //
-      // //   if(is_single_main_user_thread() && is_main_thread())
-      // //   {
-      // //
-      // //      pmessagebox->_run_modal_loop();
-      // //
-      // //   }
-      // //   else
-      // //   {
-      // //      event.wait();
-      // //
-      // //   }
-      // //
-      // //   //auto idResult = pmessagebox->get_result();
-      // //
-      // //   return idResult;
-
       return m_payloadResult;
 
    }
 
 
-   ::user::interaction_base * interaction_base::user_interaction_base()
+   ::user::interaction_base* interaction_base::user_interaction_base()
    {
 
       return this;
 
    }
 
-   // Text Edit
-   void interaction_base::get_text_selection(strsize & iBeg, strsize & iEnd) const
+
+   void interaction_base::get_text_selection(strsize& iBeg, strsize& iEnd) const
    {
 
 
    }
 
 
-   void interaction_base::get_text_selection(strsize & iBeg, strsize & iEnd, strsize & iComposingStart, strsize & iComposingEnd) const
+   void interaction_base::get_text_selection(strsize& iBeg, strsize& iEnd, strsize& iComposingStart, strsize& iComposingEnd) const
    {
 
 
    }
 
 
-   ::collection::index interaction_base::plain_edit_sel_to_column(::draw2d::graphics_pointer & pgraphics, strsize iSel)
-   {
-
-      return -1;
-
-   }
-
-
-   ::collection::index interaction_base::plain_edit_sel_to_column_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
+   ::collection::index interaction_base::plain_edit_sel_to_column(::draw2d::graphics_pointer& pgraphics, strsize iSel)
    {
 
       return -1;
@@ -802,7 +674,7 @@ bool interaction_base::is_popup_window() const
    }
 
 
-   ::collection::index interaction_base::plain_edit_sel_to_line(::draw2d::graphics_pointer & pgraphics, strsize iSel)
+   ::collection::index interaction_base::plain_edit_sel_to_column_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32& x)
    {
 
       return -1;
@@ -810,7 +682,7 @@ bool interaction_base::is_popup_window() const
    }
 
 
-   ::collection::index interaction_base::plain_edit_sel_to_line_x(::draw2d::graphics_pointer & pgraphics, strsize iSel, i32 & x)
+   ::collection::index interaction_base::plain_edit_sel_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel)
    {
 
       return -1;
@@ -818,7 +690,7 @@ bool interaction_base::is_popup_window() const
    }
 
 
-   strsize interaction_base::plain_edit_line_column_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, ::collection::index iColumn)
+   ::collection::index interaction_base::plain_edit_sel_to_line_x(::draw2d::graphics_pointer& pgraphics, strsize iSel, i32& x)
    {
 
       return -1;
@@ -826,7 +698,7 @@ bool interaction_base::is_popup_window() const
    }
 
 
-   strsize interaction_base::plain_edit_line_x_to_sel(::draw2d::graphics_pointer & pgraphics, ::collection::index iLine, i32 x)
+   strsize interaction_base::plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, ::collection::index iColumn)
    {
 
       return -1;
@@ -834,14 +706,23 @@ bool interaction_base::is_popup_window() const
    }
 
 
-   ::collection::index interaction_base::plain_edit_char_to_line(::draw2d::graphics_pointer & pgraphics, strsize iSel)
+   strsize interaction_base::plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, ::collection::index iLine, i32 x)
    {
 
       return -1;
 
    }
 
-   ::trace_statement & interaction_base::raw_trace_statement_prefix(::trace_statement & statement) const
+
+   ::collection::index interaction_base::plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel)
+   {
+
+      return -1;
+
+   }
+
+
+   ::trace_statement& interaction_base::raw_trace_statement_prefix(::trace_statement& statement) const
    {
 
       ::string strType = ::type(this).name();
@@ -850,11 +731,9 @@ bool interaction_base::is_popup_window() const
 
       ::string strAtom = m_atom.as_string();
 
-      if(strAtom.has_char() && strAtom != strType)
+      if (strAtom.has_char() && strAtom != strType)
       {
-
          statement << "=" << strAtom;
-
       }
 
       statement << "  ";
@@ -864,6 +743,7 @@ bool interaction_base::is_popup_window() const
    }
 
 
-
-
 } // user
+
+
+

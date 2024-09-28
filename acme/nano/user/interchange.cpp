@@ -834,12 +834,7 @@ namespace nano
       ::payload interchange::do_synchronously(const class time & timeWait)
       {
 
-
-         create();
-
-         show_window();
-
-         message_loop();
+         do_asynchronously();
 
          auto pmanualresetevent = ::place(new manual_reset_event());
 
@@ -860,18 +855,18 @@ namespace nano
             auto functionCloseExisting = m_functionClose;
 
             m_functionClose = [pmanualresetevent, functionCloseExisting](auto pinterchange)
+            {
+
+               if (functionCloseExisting)
                {
 
-                  if (functionCloseExisting)
-                  {
+                  functionCloseExisting(pinterchange);
 
-                     functionCloseExisting(pinterchange);
+               }
 
-                  }
+               pmanualresetevent->SetEvent();
 
-                  pmanualresetevent->SetEvent();
-
-               };
+            };
 
          }
 
@@ -882,42 +877,9 @@ namespace nano
 
          }
 
-       // //   auto pmessagebox = pparticle->__create_new < message_box >();
-       // //
-       // //   atom idResult;
-       // //
-       // //   manual_reset_event event;
-       // //
-       // //   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
-       // //
-       // //   pmessagebox->m_functionClose = [&idResult, &event](nano::user::interchange * pwindow)
-       // //   {
-       // //
-       // //      idResult = pwindow->m_atomResult;
-       // //
-       // //      event.SetEvent();
-       // //
-       // //   };
-       // //
-       // //   if(is_single_main_user_thread() && is_main_thread())
-       // //   {
-       // //
-       // //      pmessagebox->_run_modal_loop();
-       // //
-       // //   }
-       // //   else
-       // //   {
-       // //      event.wait();
-       // //
-       // //   }
-       // //
-       // //   //auto idResult = pmessagebox->get_result();
-       // //
-       // //   return idResult;
+         return m_payloadResult;
 
-       return m_payloadResult;
-
-   }
+      }
 
    // ::atom interchange::do_synchronously()
    // {
@@ -971,16 +933,9 @@ namespace nano
    void interchange::do_asynchronously()
    {
 
-      //m_pwindowbase->do_asynchronously();
+      create();
 
-      ::pointer < interchange > pinterchangeHold = this;
-
-      main_post([pinterchangeHold]()
-         {
-
-               pinterchangeHold->do_synchronously();
-
-   });
+      show_window();
 
    }
 

@@ -7,7 +7,7 @@
 #include "acme/prototype/collection/osdata_array.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "acme/prototype/geometry2d/size.h"
-#include "acme/windowing/window_base.h"
+#include "apex/windowing/prototype.h"
 
 
 namespace windowing
@@ -17,7 +17,7 @@ namespace windowing
    class CLASS_DECL_AURA window :
       virtual public ::channel,
       virtual public osdata_array,
-      virtual public ::windowing::window_base
+      virtual public ::windowing::prototype
    {
    public:
 

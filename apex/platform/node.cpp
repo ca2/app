@@ -343,10 +343,18 @@ namespace apex
    void node::defer_innate_ui()
    {
 
-      throw ::interface_only();
+      auto strToolkit = get_user_toolkit_id();
+
+      if(strToolkit.has_char())
+      {
+
+         auto pfactory = system()->factory("innate_ui", strToolkit);
+
+         pfactory->merge_to_global_factory();
+
+      }
 
    }
-
 
 
    void node::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)

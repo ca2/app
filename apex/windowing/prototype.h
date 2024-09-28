@@ -10,17 +10,22 @@
 namespace windowing
 {
 
-   class prototype :
+
+   class CLASS_DECL_APEX prototype :
       virtual public ::windowing::window_base
    {
-     public:
+   public:
 
 
        prototype();
        ~prototype() override;
 
+
    };
 
+
 } // windowing
+
+
 
 

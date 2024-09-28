@@ -76,6 +76,9 @@ public:
    ~interchange() override;
 
 
+   //virtual void do_interchange();
+
+
    ::payload do_synchronously(const class time & timeWait = ::time::infinity()) override;
    void do_asynchronously() override;
 

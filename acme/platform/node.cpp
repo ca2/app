@@ -42,7 +42,7 @@ namespace nano{namespace  user{
 
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception& exception, const ::string& strMoreDetails);
-
+CLASS_DECL_ACME ::string as_string(::user::enum_toolkit etoolkit);
 
 //CLASS_DECL_ACME void operating_system_open_url(const ::scoped_string & scopedstrUrl);
 
@@ -74,6 +74,7 @@ namespace acme
       m_papexnode = nullptr;
       m_pauranode = nullptr;
       m_edesktop = ::user::e_desktop_none;
+      m_etoolkit = ::user::e_toolkit_none;
 
       m_pAcmePosix = nullptr;
       m_pApexPosix = nullptr;
@@ -1675,6 +1676,37 @@ namespace acme
    {
 
       return ::nano::user::calculate_edesktop();
+
+   }
+
+
+   ::user::enum_toolkit node::get_etoolkit()
+   {
+
+      if (m_etoolkit == ::user::e_toolkit_none)
+      {
+
+         m_etoolkit = calculate_etoolkit();
+
+      }
+
+      return m_etoolkit;
+
+   }
+
+
+   ::user::enum_toolkit node::calculate_etoolkit()
+   {
+
+      return ::nano::user::calculate_etoolkit();
+
+   }
+
+
+   ::string node::get_user_toolkit_id()
+   {
+
+      return ::as_string(get_etoolkit());
 
    }
 

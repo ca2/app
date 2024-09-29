@@ -1584,6 +1584,13 @@ namespace user
    }
 
 
+   void element::set_size(const ::size_i32 & size)
+   {
+
+
+   }
+
+
    ::rectangle_i32 element::get_window_rectangle()
    {
 
@@ -2944,64 +2951,38 @@ namespace user
    void element::_on_window_simple_action(const char * pszActionName)
    {
 
-      ::string strActionName(pszActionName);
-
-      if(strActionName == "minimize")
-      {
-
-         window_minimize();
-
-      }
-      else if(strActionName == "maximize")
-      {
-
-         window_maximize();
-
-      }
-      else if(strActionName == "maximize")
-      {
-
-         window_maximize();
-
-      }
-      else if(strActionName == "restore")
-      {
-
-         window_restore();
-
-      }
-      else if(strActionName == "about_box")
-      {
-
-         application()->show_about_box();
-
-      }
-      else if(strActionName == "close")
-      {
-
-         //m_puserinteractionimpl->m_puserinteraction->post_message(e_message_close);
-         window_close();
-
-      }
-      else if(strActionName == "")
-      {
-
-         print_line("reaching here?!");
-         //defer_perform_entire_reposition_process(nullptr);
-
-      }
-      else if(strActionName == "")
-      {
-
-         print_line("also here");
-
-         //defer_perform_entire_resizing_process(::experience::e_frame_sizing_top_left, nullptr);
-
-      }
 
    }
 
 
+   void element::set_mouse_capture()
+   {
+
+   }
+
+
+   bool element::is_mouse_captured()
+   {
+
+      return false;
+
+   }
+
+
+   bool element::has_mouse_capture()
+   {
+
+      return false;
+
+   }
+
+
+   void element::release_mouse_capture()
+   {
+
+
+
+   }
 
 
 

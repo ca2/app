@@ -14,11 +14,11 @@ namespace app_just_aura_message_box
    application::application()
    {
 
-      m_strAppId = "app/just_message_box";
+      m_strAppId = "app/just_aura_message_box";
 
-      m_strAppName = "Just Message Box";
+      m_strAppName = "Just Aura Message Box";
 
-      m_strBaseSupportId = "app/just_message_box";
+      m_strBaseSupportId = "app/just_aura_message_box";
 
       m_bNetworking = false;
 

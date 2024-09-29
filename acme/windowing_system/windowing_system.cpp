@@ -48,7 +48,7 @@ namespace windowing_system
         if(!m_pdisplaybase)
         {
 
-            nano()->user();
+            system()->do_user_system_factory();
 
             __construct(m_pdisplaybase);
 

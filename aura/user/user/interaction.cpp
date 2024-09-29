@@ -7788,6 +7788,10 @@ namespace user
    void interaction::on_message_create(::message::message * pmessage)
    {
 
+
+      m_pwindowbase = this->window();
+
+
       //information() << "user::interaction::on_message_create";
 
       set_need_layout();
@@ -8960,24 +8964,30 @@ namespace user
       if (pitem->m_item.m_eelement == e_element_client)
       {
 
+         printf_line("drag_shift e_element_client");
+
          auto pdrag = drag(pitem);
 
          pdrag->m_ecursor = e_cursor_move;
 
          auto point = drag_point(pitem, pmouse);
 
-         set_position(point);
+         //set_position(point);
 
-         set_reposition();
+         window()->set_position(point);
+
+         //set_reposition();
 
          //set_need_redraw();
 
-         post_redraw();
+         //post_redraw();
 
          return true;
       }
       else if (pitem->m_item.m_eelement == e_element_resize)
       {
+
+         printf_line("drag_shift e_element_resize");
 
          auto pdrag = drag(pitem);
 
@@ -9001,7 +9011,7 @@ namespace user
 
          //layout().sketch().m_size = size;
 
-         set_size(size);
+         window()->set_size(size);
 
          //set_need_layout();
 

@@ -6935,6 +6935,21 @@ namespace aura
    }
 
 
+   void system::do_user_system_factory()
+   {
+
+      if(!m_bUserSystemInitialized)
+      {
+
+         ::aqua::system::do_user_system_factory();
+
+         user()->create_windowing();
+
+      }
+
+   }
+
+
 } // namespace aura
 
 

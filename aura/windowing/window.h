@@ -45,7 +45,7 @@ namespace windowing
       ::sandbox_windowing::window *             m_psandboxwindowingwindow;
       void *                                    m_pWindow4;
 
-      ::pointer<::windowing::display>           m_pdisplay;
+      //::pointer<::windowing::display>           m_pdisplay;
       ::pointer<::user::interaction_impl>       m_puserinteractionimpl;
       string                                    m_strDebug;
       ::pointer<::message_queue>                m_pmessagequeue;
@@ -118,7 +118,7 @@ namespace windowing
       virtual void set_keyboard_focus();
       virtual void _set_keyboard_focus_unlocked();
 
-      virtual void set_mouse_capture();
+      //virtual void set_mouse_capture();
       virtual bool defer_release_mouse_capture();
 
       virtual void bring_to_front();
@@ -129,7 +129,7 @@ namespace windowing
       virtual void graphics_unlock();
 
 
-      virtual bool has_mouse_capture() const;
+      //virtual bool has_mouse_capture() const;
       virtual bool has_keyboard_focus() const;
 
       virtual ::color::color screen_pixel(int x, int y) const;

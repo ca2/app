@@ -797,6 +797,9 @@ namespace aura
       //::string implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
 
 
+      void do_user_system_factory() override;
+
+
    };
 
 

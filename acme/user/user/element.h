@@ -165,6 +165,11 @@ namespace user
       virtual void _on_window_simple_action(const char * pszActionName);
 
 
+      virtual void set_mouse_capture();
+      virtual bool is_mouse_captured();
+      virtual bool has_mouse_capture();
+      virtual void release_mouse_capture();
+
       //bool defer_perform_entire_reposition_process(::user::mouse * pmouse) override;
 
       //bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse) override;
@@ -416,6 +421,7 @@ namespace user
       //virtual void set_foreground_window();
 
       virtual void set_position(const ::point_i32 & point);
+      virtual void set_size(const ::size_i32 & size);
 
 
 

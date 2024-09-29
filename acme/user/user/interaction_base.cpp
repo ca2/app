@@ -11,8 +11,10 @@
 #include "acme/constant/id.h"
 #include "acme/handler/topic.h"
 #include "acme/operating_system/a_system_menu.h"
+#include "acme/platform/application.h"
 #include "acme/platform/system.h"
 #include "acme/windowing/window_base.h"
+#include "platform/node.h"
 
 
 namespace user
@@ -35,6 +37,167 @@ namespace user
 
 
    }
+
+
+   bool interaction_base::is_window_zoomed()
+   {
+
+      if(!m_pwindowbase)
+      {
+
+         return false;
+
+      }
+
+      bool bIsWindowZoomed = m_pwindowbase->is_window_zoomed();
+
+      if(!bIsWindowZoomed)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   void interaction_base::window_minimize()
+   {
+
+      if(!m_pwindowbase)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_pwindowbase->window_minimize();
+
+   }
+
+
+   void interaction_base::window_maximize()
+   {
+
+      if(!m_pwindowbase)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_pwindowbase->window_maximize();
+
+   }
+
+
+   void interaction_base::window_full_screen()
+   {
+
+      if(!m_pwindowbase)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_pwindowbase->window_full_screen();
+
+   }
+
+
+   void interaction_base::window_restore()
+   {
+
+      if(!m_pwindowbase)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_pwindowbase->window_restore();
+
+   }
+
+
+   void interaction_base::window_close()
+   {
+
+      if(!m_pwindowbase)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_pwindowbase->window_close();
+
+   }
+
+
+   void interaction_base::_on_window_simple_action(const char * pszActionName)
+   {
+
+      ::string strActionName(pszActionName);
+
+      if(strActionName == "minimize")
+      {
+
+         window_minimize();
+
+      }
+      else if(strActionName == "maximize")
+      {
+
+         window_maximize();
+
+      }
+      else if(strActionName == "restore")
+      {
+
+         window_restore();
+
+      }
+      else if(strActionName == "about_box")
+      {
+
+         application()->show_about_box();
+
+      }
+      else if(strActionName == "close")
+      {
+
+         //m_puserinteractionimpl->m_puserinteraction->post_message(e_message_close);
+         window_close();
+
+      }
+      else if(strActionName == "***move")
+      {
+
+         print_line("reaching here?!");
+         //defer_perform_entire_reposition_process(nullptr);
+
+         m_pwindowbase->set_mouse_capture();
+         m_pwindowbase->m_bRepositioningWindowFromCenter = true;
+
+      }
+      else if(strActionName == "***size")
+      {
+
+         print_line("also here");
+
+         m_pwindowbase->set_mouse_capture();
+      m_pwindowbase->m_bResizingWindowFromBottomRight = true;
+
+         //defer_perform_entire_resizing_process(::experience::e_frame_sizing_top_left, nullptr);
+
+      }
+
+   }
+
 
 
    ::pointer<::operating_system::a_system_menu> interaction_base::create_system_menu(bool bContextual)
@@ -68,12 +231,30 @@ namespace user
 
       }
 
-      psystemmenu->add_item("Drag to Move", "***move");
+      if(node()->get_etoolkit() == e_toolkit_gtk4 ||
+         node()->get_etoolkit() == e_toolkit_gtk3)
+      {
+         psystemmenu->add_item("Drag to Move", "***move");
+      }
+      else
+      {
+         psystemmenu->add_item("Move", "***move");
+
+      }
 
       if (m_bResizeable)
       {
 
-         psystemmenu->add_item("Drag to Size", "***size");
+         if(node()->get_etoolkit() == e_toolkit_gtk4 ||
+            node()->get_etoolkit() == e_toolkit_gtk3)
+         {
+            psystemmenu->add_item("Drag to Size", "***size");
+         }
+         else
+         {
+            psystemmenu->add_item("Size", "***size");
+
+         }
 
       }
 
@@ -88,6 +269,67 @@ namespace user
       return psystemmenu;
 
    }
+
+
+   void interaction_base::set_mouse_capture()
+   {
+
+      if(!m_pwindowbase)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_pwindowbase->set_mouse_capture();
+
+   }
+
+
+   bool interaction_base::is_mouse_captured()
+   {
+
+      if(!m_pwindowbase)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      return m_pwindowbase->is_mouse_captured();
+
+   }
+
+
+   bool interaction_base::has_mouse_capture()
+   {
+
+      if(!m_pwindowbase)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      return m_pwindowbase->has_mouse_capture();
+
+   }
+
+
+   void interaction_base::release_mouse_capture()
+   {
+
+      if(!m_pwindowbase)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_pwindowbase->release_mouse_capture();
+
+   }
+
 
 
    void interaction_base::on_initialize_particle()

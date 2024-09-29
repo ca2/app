@@ -1522,6 +1522,13 @@ namespace user
    void user::create_windowing()
    {
 
+      if(m_pdesktopenvironment && m_pwindowing)
+      {
+
+         return;
+
+      }
+
       //::e_status estatus = ::success;
 
       //estatus =

@@ -140,7 +140,7 @@ void _do_tasks()
 
    auto psystem = ::platform::get()->system();
 
-   auto pwindowingsystem = psystem->windowing_system();
+   auto pwindowingsystem = psystem->m_pwindowingsystem;
 
    if(::is_set(pwindowingsystem)) {
 

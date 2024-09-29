@@ -226,6 +226,22 @@ public:
    virtual void on_position_window();
    virtual void on_size_window();
 
+   bool is_window_zoomed() override;
+   void window_minimize() override;
+   void window_maximize() override; // m_puserinteractionimpl->m_puserinteraction->display(::e_display_zoomed);
+   void window_full_screen() override; // m_puserinteractionimpl->m_puserinteraction->display(::e_display_full_screen);
+   void window_restore() override; // m_puserinteractionimpl->m_puserinteraction->display(::e_display_normal);
+   void window_close() override;
+
+   void set_mouse_capture() override;
+   bool is_mouse_captured() override;
+   bool has_mouse_capture() override;
+   void release_mouse_capture() override;
+
+
+   void _on_window_simple_action(const char * pszActionName) override;
+
+
 //
 // };
 //

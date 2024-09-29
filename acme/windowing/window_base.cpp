@@ -23,6 +23,8 @@ namespace windowing
       m_pointCursor2(I32_MINIMUM)
    {
 
+      m_bRepositioningWindowFromCenter = false;
+      m_bResizingWindowFromBottomRight = false;
 
    }
 
@@ -422,6 +424,20 @@ void window_base::handle(::topic * ptopic, ::context * pcontext)
 //
 //}
 
+
+   void window_base::_on_window_simple_action(const char * pszActionName)
+   {
+
+      if(!m_puserinteractionbase)
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+      m_puserinteractionbase->_on_window_simple_action(pszActionName);
+
+   }
 
 
 void window_base::defer_show_system_menu(::user::mouse * pmouse)

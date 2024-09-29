@@ -3988,13 +3988,32 @@ namespace acme
    }
 
 
+   void system::do_user_system_factory()
+   {
+
+      if(!m_bUserSystemInitialized)
+      {
+
+         m_bUserSystemInitialized = true;
+
+         node()->do_windowing_system_factory();
+
+         nano()->graphics();
+
+         nano()->user();
+
+      }
+
+   }
+
+
    ::windowing_system::windowing_system * system::windowing_system()
    {
 
       if(!m_pwindowingsystem)
       {
 
-         node()->do_windowing_system_factory();
+         do_user_system_factory();
 
          __construct(m_pwindowingsystem);
 

@@ -171,10 +171,8 @@ namespace draw2d_cairo
          if (::is_set(m_pimage32Raw))
          {
 
-            copy_image32(
-               pimage32Raw,
-               minimum(size.cx(), m_size.cx()),
-               minimum(size.cy(), m_size.cy()),
+            pimage32Raw->copy(
+               size.minimum(m_size),
                iScan,
                m_pimage32Raw,
                m_iScan);

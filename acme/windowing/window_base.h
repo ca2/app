@@ -25,7 +25,8 @@ namespace windowing
 
 
 
-
+      bool                                               m_bRepositioningWindowFromCenter;
+      bool                                               m_bResizingWindowFromBottomRight;
       ::point_i32                                        m_pointWindow;
       ::size_i32                                         m_sizeWindow;
       ::point_i32                                        m_pointCursor2;
@@ -137,6 +138,9 @@ namespace windowing
                virtual ::size_i32 get_main_screen_size();
 
 
+      void _on_window_simple_action(const char * pszActionName) override;
+
+
                //virtual ::payload do_synchronously(const class time & timeWait = ::time::infinity()) override;
                //virtual void do_asynchronously() override;
 
@@ -148,6 +152,9 @@ namespace windowing
 
 
       virtual void set_interface_client_size(const ::size_i32 & sizeWindow);
+
+
+
 
    };
 

@@ -655,6 +655,16 @@ namespace acme
    void node::do_windowing_system_factory()
    {
 
+      ::string strUserToolkit = get_user_toolkit_id();
+
+      if(strUserToolkit.has_char())
+      {
+
+         auto pfactory = system()->factory("windowing_system", strUserToolkit);
+
+         pfactory->merge_to_global_factory();
+
+      }
 
    }
 

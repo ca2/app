@@ -32,9 +32,9 @@ namespace nano
 #elif defined(HAS_KDE6)
          return ::user::e_toolkit_kde6;
 #elif defined(HAS_GTK3)
-         return ::user::e_toolkit_kde5;
+         return ::user::e_toolkit_gtk3;
 #elif defined(HAS_GTK4)
-         return ::user::e_toolkit_kde6;
+         return ::user::e_toolkit_gtk4;
 #else
          return ::user::e_toolkit_unknown;
 #endif

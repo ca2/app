@@ -82,7 +82,29 @@ application::application()
 
 application::~application()
 {
+
+   m_papexapplication = nullptr;
+   m_paquaapplication = nullptr;
+   m_pauraapplication = nullptr;
+   m_paxisapplication = nullptr;
+   m_pbaseapplication = nullptr;
+   m_pbredapplication = nullptr;
+   m_pcoreapplication = nullptr;
+
+   if(session()->m_pacmeapplication == this)
+   {
+
+      session()->m_pacmeapplication = nullptr;
+
+   }
    
+   if(system()->m_pacmeapplication == this)
+   {
+
+      system()->m_pacmeapplication = nullptr;
+
+   }
+
    if (m_pplatform->m_pacmeapplication == this)
    {
       

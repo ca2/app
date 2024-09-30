@@ -4454,10 +4454,21 @@ bool thread::process_message()
 
       ::pointer<::message::message>pmessage;
 
-      if (get_app() && get_app()->m_papexapplication)
+      ::apex::application * papexapplication = nullptr;
+
+      auto papp = get_app();
+
+      if(papp && papp->m_papexapplication)
       {
 
-         pmessage = get_app()->m_papexapplication->get_message(&message);
+         papexapplication = papp->m_papexapplication;
+
+      }
+
+      if (papexapplication)
+      {
+
+         pmessage = papexapplication->get_message(&message);
 
       }
       else if (session() && node()->m_papexnode)

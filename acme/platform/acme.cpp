@@ -15,6 +15,7 @@
 #include "acme/operating_system/acme_initialize.h"
 
 #include "acme/operating_system/ansi/binreloc.h"
+#include "parallelization/manual_reset_event.h"
 
 
 CLASS_DECL_ACME bool should_output_debug_string();
@@ -311,11 +312,14 @@ namespace acme
 
       }
 #endif
+         m_pmanualreseteventReadyToExit = ::place(new ::manual_reset_event());
    }
 
 
    acme::~acme()
    {
+
+      m_pmanualreseteventReadyToExit->wait(5_min);
 
       m_ptaskmessagequeue.release();
 

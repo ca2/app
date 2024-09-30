@@ -423,58 +423,58 @@ namespace windowing
    }
 
 
-//    void window::set_mouse_capture()
-//    {
+   void window::set_mouse_capture()
+   {
+
+      auto pthread = m_puserinteractionimpl->m_puserinteraction->m_pthreadUserInteraction;
+
+      windowing()->set_mouse_capture(pthread, this);
+
+      //::pointer < ::windowing_wayland::display > pwaylanddisplay = m_pdisplaybase;
+
+      //pwaylanddisplay->__capture_mouse(this, pwaylanddisplay->m_uLastButtonSerial);
+
+
+//      m_pwindowing->windowing_post([this]()
+//                                   {
 //
-//       auto pthread = m_puserinteractionimpl->m_puserinteraction->m_pthreadUserInteraction;
+//                                      synchronous_lock synchronouslock(user_synchronization());
 //
-//       windowing()->set_mouse_capture(pthread, this);
+////                                      display_lock displaylock(x11_display()->Display());
 //
-//       //::pointer < ::windowing_wayland::display > pwaylanddisplay = m_pdisplaybase;
+//                                      information() << "XGrabPointer";
+////
+////                                      auto grabStatus = XGrabPointer(Display(), Window(), False,
+////                                                                     ButtonPressMask | ButtonReleaseMask |
+////                                                                     PointerMotionMask,
+////                                                                     GrabModeAsync, GrabModeAsync, None, None,
+////                                                                     CurrentTime);
 //
-//       //pwaylanddisplay->__capture_mouse(this, pwaylanddisplay->m_uLastButtonSerial);
+////                                      if (grabStatus != GrabSuccess)
+////                                      {
+////
+////                                         windowing_output_debug_string("\noswindow_data::SetCapture 2.1");
+////
+////                                         return;
+////
+////                                      }
 //
+////                                      auto pdisplay = x11_display();
+////
+////                                      if (pdisplay)
+////                                      {
+////
+////                                         pdisplay->_on_capture_changed_to(this);
+////
+////                                      }
 //
-// //      m_pwindowing->windowing_post([this]()
-// //                                   {
-// //
-// //                                      synchronous_lock synchronouslock(user_synchronization());
-// //
-// ////                                      display_lock displaylock(x11_display()->Display());
-// //
-// //                                      information() << "XGrabPointer";
-// ////
-// ////                                      auto grabStatus = XGrabPointer(Display(), Window(), False,
-// ////                                                                     ButtonPressMask | ButtonReleaseMask |
-// ////                                                                     PointerMotionMask,
-// ////                                                                     GrabModeAsync, GrabModeAsync, None, None,
-// ////                                                                     CurrentTime);
-// //
-// ////                                      if (grabStatus != GrabSuccess)
-// ////                                      {
-// ////
-// ////                                         windowing_output_debug_string("\noswindow_data::SetCapture 2.1");
-// ////
-// ////                                         return;
-// ////
-// ////                                      }
-// //
-// ////                                      auto pdisplay = x11_display();
-// ////
-// ////                                      if (pdisplay)
-// ////                                      {
-// ////
-// ////                                         pdisplay->_on_capture_changed_to(this);
-// ////
-// ////                                      }
-// //
-// //                                      windowing_output_debug_string("\noswindow_data::SetCapture 2");
-// //
-// //                                   });
-// //
-// //      //return ::success;
+//                                      windowing_output_debug_string("\noswindow_data::SetCapture 2");
 //
-//    }
+//                                   });
+//
+//      //return ::success;
+
+   }
 
 
    bool window::defer_release_mouse_capture()

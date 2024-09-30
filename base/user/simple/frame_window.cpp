@@ -1921,8 +1921,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
       auto edesktop = pnode->get_edesktop();
 
-      if (edesktop == ::user::e_desktop_unity_gnome
-         || edesktop == ::user::e_desktop_ubuntu_gnome)
+      if (edesktop == ::user::e_desktop_unity)
       {
 
          display(e_display_none);

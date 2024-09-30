@@ -41,6 +41,16 @@ namespace windowing_system
 
    }
 
+    void windowing_system::destroy()
+    {
+
+        windowing_system_post_quit();
+
+        ::acme::department::destroy();
+
+    }
+
+
 
     ::nano::user::display * windowing_system::display()
     {

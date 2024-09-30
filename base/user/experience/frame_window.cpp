@@ -849,7 +849,7 @@ namespace experience
           && m_pframe->get_control_box() != nullptr)
       {
 
-         auto atom = ptopic->user_element_id();
+         auto atom = ptopic->user_interaction_id();
 
          informationf("frame_window::handle_event btn_clkd=%s", string(atom).c_str());
 
@@ -1241,7 +1241,7 @@ namespace experience
 
          }
 
-         if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
+         if (this->m_ewindowflag & ::e_window_flag_window_created)
          {
             
             set_need_redraw();
@@ -2391,7 +2391,7 @@ namespace experience
 
          //auto pwindow = window();
 
-         pointCursor = m_pwindow->m_pdisplay->m_pointCursor2;
+         pointCursor = m_pwindow->m_pointCursor2;
 
       }
 

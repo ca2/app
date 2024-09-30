@@ -218,7 +218,6 @@ namespace platform
 
       string                                          m_strCommandLine;
 
-
       platform(::acme::acme * pacme);
       ~platform();
 

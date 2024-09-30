@@ -12,68 +12,77 @@ namespace windowing_system
 {
 
 
-    class CLASS_DECL_ACME windowing_system :
-    virtual public ::acme::department
-    {
-    public:
+   class CLASS_DECL_ACME windowing_system :
+      virtual public ::acme::department
+   {
+   public:
 
 
-       ::pointer < ::nano::user::display >                    m_pdisplaybase;
-       ::pointer_array < ::windowing::window_base >           m_windowbasea;
+      ::pointer<::nano::user::display> m_pdisplaybase;
+      ::pointer_array<::windowing::window_base> m_windowbasea;
 
 
+      windowing_system();
 
-        windowing_system();
-        ~windowing_system() override;
-
-
-        void on_initialize_particle() override;
+      ~windowing_system() override;
 
 
-     virtual ::nano::user::display * display();
+      void on_initialize_particle() override;
 
 
-       virtual void on_start_system();
-
-       virtual void _do_tasks();
-        virtual ::e_status defer_initialize_windowing_system();
-        virtual ::e_status initialize_windowing_system();
-        virtual void * get_display();
-        virtual void sync(const ::procedure & procedure);
-        virtual void async(const ::procedure & procedure);
-        virtual void display_error_trap_push(int i);
-        virtual void display_error_trap_pop_ignored(int i);
-
-       virtual void * fetch_windowing_system_display();
-
-        virtual void process_messages();
-
-       virtual void windowing_system_application_main_loop();
-       virtual void windowing_system_post_quit();
-
-       virtual ::color::color get_system_color(enum_system_color esystemcolor);
+      void destroy() override;
 
 
-       virtual void on_system_dark_mode_change(bool bDarkMode, const ::color::color & colorBackground = ::color::transparent);
-       
-       virtual void set_dark_mode(bool bDarkMode);
+      virtual ::nano::user::display* display();
 
 
-       virtual bool dark_mode();
+      virtual void on_start_system();
 
-       virtual void fetch_system_background_color();
+      virtual void _do_tasks();
+
+      virtual ::e_status defer_initialize_windowing_system();
+
+      virtual ::e_status initialize_windowing_system();
+
+      virtual void* get_display();
+
+      virtual void sync(const ::procedure& procedure);
+
+      virtual void async(const ::procedure& procedure);
+
+      virtual void display_error_trap_push(int i);
+
+      virtual void display_error_trap_pop_ignored(int i);
+
+      virtual void* fetch_windowing_system_display();
+
+      virtual void process_messages();
+
+      virtual void windowing_system_application_main_loop();
+
+      virtual void windowing_system_post_quit();
+
+      virtual ::color::color get_system_color(enum_system_color esystemcolor);
 
 
-       ::color::color reinterpreted_background_color();
+      virtual void on_system_dark_mode_change(bool bDarkMode,
+                                              const ::color::color& colorBackground = ::color::transparent);
+
+      virtual void set_dark_mode(bool bDarkMode);
 
 
-       virtual ::pixmap get_pixmap_from_file(::memory & memoryHost, const void * psourceFile, memsize sizeSourceFile);
+      virtual bool dark_mode();
+
+      virtual void fetch_system_background_color();
 
 
-    };
+      ::color::color reinterpreted_background_color();
+
+
+      virtual ::pixmap get_pixmap_from_file(::memory& memoryHost, const void* psourceFile, memsize sizeSourceFile);
+   };
 
 
 } // namespace windowing_system
-
 
 

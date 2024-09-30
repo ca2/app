@@ -27,12 +27,14 @@ public:
    void calculate_size_and_position(int x = INT_MIN, int y = INT_MIN);
 
 
-   virtual void initialize_popup_button(const ::string & strText, int x, int y);
+   virtual void initialize_popup_button(const ::string & strText, int x, int y, ::nano::user::interchange * pinterchangeParent);
 
    void on_click(const ::payload& payload, ::user::mouse * pmouse) override;
 
    void on_draw(::nano::graphics::device * pnanodevice) override;
 
+
+   virtual ::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true);
 
 };
 

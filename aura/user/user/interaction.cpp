@@ -519,6 +519,13 @@ namespace user
 
    //}
 
+   ::user::interaction * interaction::user_interaction()
+   {
+
+      return this;
+
+   }
+
 
    bool interaction::_001CanEnterScreenSaver()
    {
@@ -8923,6 +8930,8 @@ namespace user
 
          if (window()->defer_perform_entire_resizing_process(::experience::e_frame_sizing_bottom_right, puseritem->m_pmouse.cast<::message::mouse>()))
          {
+
+            puseritem->m_pmouse->m_union.m_pmouse->m_bRet = true;
 
             return false;
 
@@ -23063,6 +23072,13 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       }
 
+      if(pmouse->m_bRet)
+      {
+
+         return;
+
+      }
+
       if (pitemLButtonDown && pitemLButtonDown->m_eitemflag & ::e_item_flag_drag)
       {
 
@@ -25383,7 +25399,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          }
 
-         bRet = true;
+         //bRet = true;
 
       }
 

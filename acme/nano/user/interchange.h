@@ -29,6 +29,8 @@ public:
 
    ::function < void(interchange *) >        m_functionClose;
 
+   ::pointer < ::nano::user::interchange >                m_pinterchangeParent;
+
    //::pointer<::nano::user::window_implementation>     m_pnanouserwindowimplementation;
    ::pointer<::nano::graphics::brush>                     m_pbrushWindow;
    ::pointer<::nano::graphics::brush>                     m_pbrushText;

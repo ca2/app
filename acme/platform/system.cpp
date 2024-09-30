@@ -178,6 +178,7 @@ namespace acme
 
       m_bFinalizeIfNoSession = false;
       m_bFinalizeIfNoSessionSetting = true;
+      m_bUserSystemInitialized = false;
 
    }
 
@@ -203,6 +204,8 @@ namespace acme
       m_taskidmap.clear();
 
       print_line("acme::system::~system() (end)");
+
+      ::acme::get()->m_pmanualreseteventReadyToExit->SetEvent();
 
    }
 
@@ -1161,6 +1164,15 @@ namespace acme
    void system::TermSystem()
    {
 
+      if(m_pwindowingsystem)
+      {
+
+         m_pwindowingsystem->windowing_system_post_quit();
+
+      }
+
+      m_pwindowingsystem.release();
+
       m_pmapRegularExpressionContext.release();
 
       m_pfactoryFolder.release();
@@ -1173,7 +1185,7 @@ namespace acme
 
       //::acme::idpool::term();
 
-      m_pnode->user_post_quit();
+      //m_pnode->user_post_quit();
 
       m_pnode.release();
 

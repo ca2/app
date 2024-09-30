@@ -290,6 +290,12 @@ namespace apex
    {
 
       //acme::del(m_pappimpl);
+      m_papexapplication = nullptr;
+      m_paquaapplication = nullptr;
+      m_paxisapplication = nullptr;
+      m_pbaseapplication = nullptr;
+      m_pbredapplication = nullptr;
+      m_pcoreapplication = nullptr;
 
    }
 

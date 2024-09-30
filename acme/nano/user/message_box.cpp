@@ -474,7 +474,7 @@ namespace nano
 
          };
 
-         ppopupbutton->initialize_popup_button("Dump to File...", pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y());
+         ppopupbutton->initialize_popup_button("Dump to File...", pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y(), this);
 
          ppopupbutton->do_asynchronously();
 

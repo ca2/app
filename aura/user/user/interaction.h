@@ -458,6 +458,9 @@ namespace user
       //::aura::system * system();
       ::aura::context * context();
 
+
+      ::user::interaction * user_interaction() override;
+
       bool _001CanEnterScreenSaver() override;
 
       virtual void _001Maximize();

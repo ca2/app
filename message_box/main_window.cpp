@@ -121,7 +121,7 @@ namespace app_message_box
       
       rectangleButton.top() = (int) (rectangleButton.bottom() - dBase * 5.0);
 
-      m_pbuttonShowMessageBox->place(rectangleButton);
+      m_pbuttonShowMessageBox->place(rectangleButton, ::user::e_layout_layout, pgraphics);
 
    }
 

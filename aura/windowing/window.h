@@ -118,7 +118,7 @@ namespace windowing
       virtual void set_keyboard_focus();
       virtual void _set_keyboard_focus_unlocked();
 
-      //virtual void set_mouse_capture();
+      virtual void set_mouse_capture();
       virtual bool defer_release_mouse_capture();
 
       virtual void bring_to_front();

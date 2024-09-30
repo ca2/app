@@ -81,8 +81,10 @@ void popup_button::calculate_size_and_position(int x, int y)
 }
 
 
-void popup_button::initialize_popup_button(const ::string & strText, int x, int y)
+void popup_button::initialize_popup_button(const ::string & strText, int x, int y, ::nano::user::interchange * pinterchangeParent)
 {
+
+   m_pinterchangeParent = pinterchangeParent;
 
    calculate_size_and_position(x, y);
 
@@ -168,6 +170,14 @@ void popup_button::on_click(const ::payload& payload, ::user::mouse * pmouse)
    m_payloadResult = payload;
 
    destroy();
+
+}
+
+
+   ::pointer < ::operating_system::a_system_menu > popup_button::create_system_menu(bool bContextual)
+{
+
+   return {};
 
 }
 

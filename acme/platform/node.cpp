@@ -2326,7 +2326,7 @@ return false;
    ::pointer<::conversation>node::create_new_message_box_conversation()
    {
 
-      system()->nano()->user();
+      system()->do_user_system_factory();
 
       return __create_new < ::nano::user::message_box >();
 

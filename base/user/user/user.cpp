@@ -1529,7 +1529,7 @@ namespace base
          if (::is_set(puserelementParent))
          {
 
-            papp = puserelementParent->get_app();
+            papp = puserelementParent->user_interaction_base()->get_app();
 
          }
          else if (pcallback != nullptr)

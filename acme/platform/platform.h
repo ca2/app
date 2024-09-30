@@ -3,11 +3,12 @@
 
 
 #include "acme/parallelization/mutex.h"
+#include "acme/parallelization/task.h"
 #include "acme/platform/library.h"
 #include "acme/platform/release_time_for_project.h"
 #include "acme/prototype/collection/atom_map.h"
 #include "acme/prototype/collection/string_map.h"
-//#include "acme/prototype/prototype/pointer.h"
+
 
 
 #ifdef LINUX
@@ -218,6 +219,16 @@ namespace platform
 
       string                                          m_strCommandLine;
 
+
+         ::pointer < ::particle >                                 m_pmutexTask;
+         task_map                                                 m_taskmap;
+         task_id_map                                              m_taskidmap;
+         ::pointer < ::particle >                                 m_pmutexTaskOn;
+
+
+         ::map < itask_t, itask_t >                               m_mapTaskOn;
+
+
       platform(::acme::acme * pacme);
       ~platform();
 
@@ -280,6 +291,17 @@ namespace platform
 
       int get_status();
       void set_status(int iStatus);
+
+
+      ::task* get_task(itask_t itask);
+      itask_t get_task_id(const ::task* ptask);
+      void set_task(itask_t itask, ::task* ptask);
+      void unset_task(itask_t itask, ::task* ptask);
+
+      virtual bool is_task_on(itask_t atom);
+      virtual bool is_active(::task * ptask);
+      virtual void set_task_on(itask_t atom);
+      virtual void set_task_off(itask_t atom);
 
 
       virtual void set_resource_block(const char * pstart, const char * pend);

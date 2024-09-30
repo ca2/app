@@ -715,9 +715,7 @@ void* task::s_os_task(void* p)
 bool task::is_task_registered() const
 {
    
-   auto pcontext = m_pcontext;
-
-   return pcontext->system()->get_task_id(this) != 0;
+   return ::platform::get()->get_task_id(this) != 0;
 
 }
 
@@ -725,9 +723,7 @@ bool task::is_task_registered() const
 void task::register_task()
 {
 
-   auto pcontext = m_pcontext;
-
-   pcontext->system()->set_task(m_itask, this);
+   ::platform::get()->set_task(m_itask, this);
 
 }
 
@@ -735,9 +731,7 @@ void task::register_task()
 void task::unregister_task()
 {
 
-   auto pcontext = m_pcontext;
-
-   pcontext->system()->unset_task(m_itask, this);
+   ::platform::get()->unset_task(m_itask, this);
 
 }
 

@@ -91,21 +91,21 @@ application::~application()
    m_pbredapplication = nullptr;
    m_pcoreapplication = nullptr;
 
-   if(session()->m_pacmeapplication == this)
+   if(session() && session()->m_pacmeapplication == this)
    {
 
       session()->m_pacmeapplication = nullptr;
 
    }
    
-   if(system()->m_pacmeapplication == this)
+   if(system() && system()->m_pacmeapplication == this)
    {
 
       system()->m_pacmeapplication = nullptr;
 
    }
 
-   if (m_pplatform->m_pacmeapplication == this)
+   if (m_pplatform && m_pplatform->m_pacmeapplication == this)
    {
       
       m_pplatform->m_pacmeapplication = nullptr;

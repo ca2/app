@@ -174,6 +174,8 @@ namespace nano
 
             m_functionClose(this);
 
+            m_functionClose.clear();
+
          }
 
          if (m_psequencer)
@@ -191,6 +193,8 @@ namespace nano
             system()->m_pnano->m_puser->m_interchangea.erase(this);
 
          }
+
+         ::user::interaction_base::destroy();
 
       }
 

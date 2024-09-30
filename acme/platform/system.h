@@ -119,16 +119,9 @@ namespace acme
       void * m_pmmos;
 #endif
 
-      ::pointer < ::particle >                                 m_pmutexTask;
-      task_map                                                 m_taskmap;
-      task_id_map                                              m_taskidmap;
-      ::pointer < ::particle >                                 m_pmutexTaskOn;
-
-
       //::pointer < ::draw2d::draw2d  >                          m_pdraw2d;
       
       
-      ::map < itask_t, itask_t >                               m_mapTaskOn;
 
 
       ::pointer < ::datetime::datetime >                       m_pdatetime;
@@ -457,10 +450,6 @@ namespace acme
       //virtual void main_user_sync(const ::procedure & procedure, const class time & time = one_minute(), enum_priority epriority = e_priority_normal);
 
 
-      ::task * get_task(itask_t itask);
-      itask_t get_task_id(const ::task * ptask);
-      void set_task(itask_t itask, ::task * ptask);
-      void unset_task(itask_t itask, ::task * ptask);
 
 
       void init_task() override;
@@ -555,13 +544,6 @@ namespace acme
 
       ::task_tool * task_tool(::enum_task_tool etool);
 
-      virtual bool is_task_on(itask_t atom);
-
-      virtual bool is_active(::task * ptask);
-
-      virtual void set_task_on(itask_t atom);
-
-      virtual void set_task_off(itask_t atom);
 
 
       static inline ::atom atom(const ::std::type_info & info);

@@ -2972,7 +2972,7 @@ void thread::__set_thread_off()
 
    auto atom = ::current_itask();
 
-   system()->set_task_off(::current_itask());
+   ::platform::get()->set_task_off(::current_itask());
 
    //::set_task(nullptr);
 

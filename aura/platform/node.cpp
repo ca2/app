@@ -129,6 +129,8 @@ namespace aura
       if(!m_pwindowingAuraNode)
       {
 
+         system()->do_user_system_factory();
+
          auto psession = session();
 
          auto puser = psession->user();

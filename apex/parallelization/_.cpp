@@ -139,14 +139,14 @@ namespace parallelization
    //}
 
 
-   void post_quit_to_all_threads(::acme::system * psystem)
+   void post_quit_to_all_threads()
    {
 
       //auto psystem = system()->m_papexsystem;
 
-      synchronous_lock synchronouslock(psystem->m_pmutexTask);
+      synchronous_lock synchronouslock(::platform::get()->m_pmutexTask);
 
-      for (auto& pair : psystem->m_taskidmap)
+      for (auto& pair : ::platform::get()->m_taskidmap)
       {
 
          try
@@ -165,12 +165,12 @@ namespace parallelization
    }
 
 
-   CLASS_DECL_APEX void post_to_all_threads(::apex::system * psystem, const ::atom & atom, wparam wparam, lparam lparam)
+   CLASS_DECL_APEX void post_to_all_threads(const ::atom & atom, wparam wparam, lparam lparam)
    {
 
-      synchronous_lock synchronouslock(psystem->m_pmutexTask);
+      synchronous_lock synchronouslock(::platform::get()->m_pmutexTask);
 
-      for (auto& pair : psystem->m_taskidmap)
+      for (auto& pair : ::platform::get()->m_taskidmap)
       {
 
          try

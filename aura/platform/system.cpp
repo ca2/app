@@ -1,32 +1,33 @@
-#include "framework.h"
 #include "system.h"
-#include "session.h"
-#include "application.h"
 #include "acme/constant/id.h"
-#include "acme/exception/interface_only.h"
-#include "acme/handler/topic.h"
-#include "acme/prototype/prototype/url.h"
-#include "acme/platform/system_setup.h"
-#include "acme/prototype/text/context.h"
-#include "acme/platform/node.h"
-#include "acme/platform/profiler.h"
-#include "apex/platform/history.h"
-#include "apex/platform/savings.h"
 #include "acme/crypto/crypto.h"
-#include "aura/constant/idpool.h"
+#include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/handler/topic.h"
+#include "acme/platform/node.h"
+#include "acme/platform/profiler.h"
+#include "acme/platform/system_setup.h"
+#include "acme/prototype/prototype/url.h"
+#include "acme/prototype/text/context.h"
+#include "apex/platform/history.h"
+#include "apex/platform/savings.h"
+#include "application.h"
 #include "aqua/game/estamira.h"
-#include "aura/windowing/window.h"
-#include "aura/windowing/windowing.h"
+#include "aura/constant/idpool.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/task_tool.h"
 #include "aura/graphics/gpu/approach.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/graphics/image/imaging.h"
+#include "aura/hardware/devices.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/user.h"
-#include "aura/hardware/devices.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
+#include "framework.h"
+#include "node.h"
+#include "session.h"
 
 
 //CLASS_DECL_ACME ::string implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
@@ -6943,7 +6944,18 @@ namespace aura
 
          ::aqua::system::do_user_system_factory();
 
-         user()->create_windowing();
+         ::string strUserToolkit = node()->get_user_toolkit_id();
+
+         if (strUserToolkit.has_char())
+         {
+
+            auto pfactory = factory("windowing", strUserToolkit);
+
+            pfactory->merge_to_global_factory();
+
+         }
+
+         //user()->create_windowing();
 
       }
 

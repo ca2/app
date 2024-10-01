@@ -19582,34 +19582,47 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       }
 
-      ::rectangle_i32 rectangleNew;
+      ::rectangle_i32 rectangleZoomedWindowSite{};
 
-      auto psession = get_session();
+      ::collection::index iMatchingMonitor = -1;
 
-      auto puser = psession->user();
+      if(const_layout().window().m_edisplay == e_display_zoomed)
+      {
 
-      auto pwindowing = puser->windowing();
+         rectangleZoomedWindowSite = window()->get_window_rectangle();
 
-      auto pdisplay = pwindowing->display();
+      }
+      else
+      {
 
-      ::collection::index iMatchingMonitor = pdisplay->get_best_monitor(&rectangleNew, rectangleWindow, eactivation, this);
+         ::rectangle_i32 rectangleMonitor;
 
-      ::rectangle_i32 rectangleZoomedWindowSite;
-      
-      pdisplay->get_zoomed_window_site(iMatchingMonitor, rectangleZoomedWindowSite);
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pdisplay = pwindowing->display();
+
+         pdisplay->get_best_monitor(&rectangleMonitor, rectangleWindow, eactivation, this);
+
+         pdisplay->get_zoomed_window_site(iMatchingMonitor, rectangleZoomedWindowSite);
+
+      }
 
       if (bSet && (!::is_empty(rectangle) || iMatchingMonitor >= 0))
       {
 
 #if !MOBILE_PLATFORM
 
-         if (iMatchingMonitor >= 0 && rectangleNew.bottom() > 0)
+         if (iMatchingMonitor >= 0 && rectangleZoomedWindowSite.bottom() > 0)
          {
 
-            if (rectangleZoomedWindowSite.bottom() > rectangleNew.bottom() - 2)
+            if (rectangleZoomedWindowSite.bottom() > rectangleZoomedWindowSite.bottom() - 2)
             {
 
-               rectangleZoomedWindowSite.bottom() = rectangleNew.bottom() - 2;
+               rectangleZoomedWindowSite.bottom() = rectangleZoomedWindowSite.bottom() - 2;
 
             }
 
@@ -19630,15 +19643,18 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          *prectangle = rectangleZoomedWindowSite;
 
-
       }
 
-      if(is_top_level())
+      if(const_layout().window().m_edisplay != e_display_zoomed)
       {
 
-         auto pwindow = window();
+         if (is_top_level())
+         {
 
-         pwindow->window_maximize();
+            auto pwindow = window();
+
+            pwindow->window_maximize();
+         }
 
       }
 

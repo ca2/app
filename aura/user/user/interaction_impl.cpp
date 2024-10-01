@@ -675,13 +675,13 @@ namespace user
    void interaction_impl::_create_window()
    {
 
-      {
+      //{
 
          m_puserinteraction->m_bMessageWindow = false;
 
 
-         auto procedure = [&]()
-         {
+//         auto procedure = [&]()
+//         {
 
             auto psession = get_session();
 
@@ -709,26 +709,26 @@ namespace user
 
             }
 
-         };
+//         };
+//
+//
+//         //if (eparallelization == e_parallelization_asynchronous)
+//         //{
+//
+//         ///user_post(procedure);
+//
+//         //}
+//         //else
+//         //{
+//
+//         main_send(procedure);
+//
+//         //}
+//
+//
+//         //});
 
-
-         //if (eparallelization == e_parallelization_asynchronous)
-         //{
-
-         ///user_post(procedure);
-
-         //}
-         //else
-         //{
-
-         main_send(procedure);
-
-         //}
-
-
-         //});
-
-      }
+//      }
 
    }
 

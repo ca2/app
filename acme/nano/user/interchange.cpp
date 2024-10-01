@@ -63,7 +63,6 @@ namespace nano
       interchange::~interchange()
       {
 
-         nano()->user()->m_interchangea.erase_item(this);
 
       }
 

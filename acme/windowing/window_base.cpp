@@ -11,8 +11,11 @@
 #include "acme/nano/nano.h"
 #include "acme/nano/graphics/device.h"
 #include "acme/nano/user/display.h"
+#include "acme/operating_system/a_system_menu.h"
 #include "acme/parallelization/synchronous_lock.h"
+#include "acme/platform/application.h"
 #include "acme/user/user/interaction_base.h"
+
 
 
 namespace windowing
@@ -571,6 +574,60 @@ set_size_unlocked(s);
 
    }
 
+
+   void window_base::on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem)
+   {
+
+      ::string strActionName(psystemmenuitem->m_strAtom);
+
+      if(strActionName == "minimize")
+      {
+
+         window_minimize();
+
+      }
+      else if(strActionName == "maximize")
+      {
+
+         window_maximize();
+
+      }
+      else if(strActionName == "maximize")
+      {
+
+         window_maximize();
+
+      }
+      else if(strActionName == "about_box")
+      {
+
+         application()->show_about_box();
+
+      }
+      else if(strActionName == "close")
+      {
+
+         window_close();
+
+      }
+      else if(strActionName == "")
+      {
+
+         print_line("reaching here?!");
+         //defer_perform_entire_reposition_process(nullptr);
+
+      }
+      else if(strActionName == "")
+      {
+
+         print_line("also here");
+
+         //defer_perform_entire_resizing_process(::experience::e_frame_sizing_top_left, nullptr);
+
+      }
+
+
+   }
 
 
 } // namespace windowing

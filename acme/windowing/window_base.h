@@ -162,6 +162,8 @@ namespace windowing
       virtual void set_size_unlocked(const size_i32 &size);
 
 
+      virtual void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem);
+
 
    };
 

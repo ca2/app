@@ -169,6 +169,7 @@ namespace user
       virtual bool is_mouse_captured();
       virtual bool has_mouse_capture();
       virtual void release_mouse_capture();
+      virtual bool defer_release_mouse_capture();
 
       //bool defer_perform_entire_reposition_process(::user::mouse * pmouse) override;
 

@@ -314,14 +314,6 @@ namespace windowing
    }
 
 
-   ::windowing::window * windowing::get_mouse_capture(::thread *)
-   {
-
-      return nullptr;
-
-   }
-
-
    void windowing::kick_idle()
    {
 
@@ -368,28 +360,69 @@ namespace windowing
    }
 
 
-   void windowing::set_mouse_capture(::thread *, ::windowing::window * pwindow)
+    ::windowing::window * windowing::get_mouse_capture(::thread * pthread)
    {
 
-      throw ::interface_only();
+       return m_pwindowMouseCapture;
 
    }
 
 
-//   ::windowing::window * windowing::get_mouse_capture(::thread *)
-//   {
-//
-//      throw ::interface_only();
-//
-//      return nullptr;
-//
-//   }
-
-
-   void windowing::release_mouse_capture(::thread *)
+    void windowing::set_mouse_capture(::thread * pthread, ::windowing::window * pwindow)
    {
 
-      throw ::interface_only();
+       m_pwindowMouseCapture = pwindow;
+
+   }
+
+
+   bool windowing::has_mouse_capture(::thread * pthread, ::windowing::window * pwindow)
+   {
+
+      if(::is_null(pwindow))
+      {
+
+         return false;
+
+      }
+
+      auto pwindowCapture = get_mouse_capture(pthread);
+
+      if(pwindowCapture != pwindow)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   bool windowing::is_mouse_captured(::thread * pthread, ::windowing::window * pwindowUnusedQuestion)
+   {
+
+       auto pwindowCapture = get_mouse_capture(pthread);
+
+       if(::is_null(pwindowCapture))
+       {
+
+           return false;
+
+       }
+
+       return true;
+
+   }
+
+
+   void windowing::release_mouse_capture(::thread * pthread, ::windowing::window * pwindow)
+   {
+
+       ASSERT(m_pwindowMouseCapture == pwindow);
+
+       m_pwindowMouseCapture.release();
 
    }
 

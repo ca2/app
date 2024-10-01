@@ -423,6 +423,8 @@ namespace windowing
    }
 
 
+   // implementation foreseeing Windows with its mouse capture state per thread and
+   // also providing fallback default internal (own process state) implementation.
    void window::set_mouse_capture()
    {
 
@@ -430,61 +432,114 @@ namespace windowing
 
       windowing()->set_mouse_capture(pthread, this);
 
-      //::pointer < ::windowing_wayland::display > pwaylanddisplay = m_pdisplaybase;
-
-      //pwaylanddisplay->__capture_mouse(this, pwaylanddisplay->m_uLastButtonSerial);
-
-
-//      m_pwindowing->windowing_post([this]()
-//                                   {
-//
-//                                      synchronous_lock synchronouslock(user_synchronization());
-//
-////                                      display_lock displaylock(x11_display()->Display());
-//
-//                                      information() << "XGrabPointer";
-////
-////                                      auto grabStatus = XGrabPointer(Display(), Window(), False,
-////                                                                     ButtonPressMask | ButtonReleaseMask |
-////                                                                     PointerMotionMask,
-////                                                                     GrabModeAsync, GrabModeAsync, None, None,
-////                                                                     CurrentTime);
-//
-////                                      if (grabStatus != GrabSuccess)
-////                                      {
-////
-////                                         windowing_output_debug_string("\noswindow_data::SetCapture 2.1");
-////
-////                                         return;
-////
-////                                      }
-//
-////                                      auto pdisplay = x11_display();
-////
-////                                      if (pdisplay)
-////                                      {
-////
-////                                         pdisplay->_on_capture_changed_to(this);
-////
-////                                      }
-//
-//                                      windowing_output_debug_string("\noswindow_data::SetCapture 2");
-//
-//                                   });
-//
-//      //return ::success;
-
    }
 
+//       //::pointer < ::windowing_wayland::display > pwaylanddisplay = m_pdisplaybase;
+//
+//       //pwaylanddisplay->__capture_mouse(this, pwaylanddisplay->m_uLastButtonSerial);
+//
+//
+// //      m_pwindowing->windowing_post([this]()
+// //                                   {
+// //
+// //                                      synchronous_lock synchronouslock(user_synchronization());
+// //
+// ////                                      display_lock displaylock(x11_display()->Display());
+// //
+// //                                      information() << "XGrabPointer";
+// ////
+// ////                                      auto grabStatus = XGrabPointer(Display(), Window(), False,
+// ////                                                                     ButtonPressMask | ButtonReleaseMask |
+// ////                                                                     PointerMotionMask,
+// ////                                                                     GrabModeAsync, GrabModeAsync, None, None,
+// ////                                                                     CurrentTime);
+// //
+// ////                                      if (grabStatus != GrabSuccess)
+// ////                                      {
+// ////
+// ////                                         windowing_output_debug_string("\noswindow_data::SetCapture 2.1");
+// ////
+// ////                                         return;
+// ////
+// ////                                      }
+// //
+// ////                                      auto pdisplay = x11_display();
+// ////
+// ////                                      if (pdisplay)
+// ////                                      {
+// ////
+// ////                                         pdisplay->_on_capture_changed_to(this);
+// ////
+// ////                                      }
+// //
+// //                                      windowing_output_debug_string("\noswindow_data::SetCapture 2");
+// //
+// //                                   });
+// //
+// //      //return ::success;
+//
+//    }
 
-   bool window::defer_release_mouse_capture()
+
+   // implementation foreseeing Windows with its mouse capture state per thread and
+   // also providing fallback default internal (own process state) implementation.
+   bool window::has_mouse_capture()
    {
 
       auto pthread = m_puserinteractionimpl->m_puserinteraction->m_pthreadUserInteraction;
 
-      return windowing()->defer_release_mouse_capture(pthread, this);
+      if(!windowing()->has_mouse_capture(pthread, this))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
+
+
+   // implementation foreseeing Windows with its mouse capture state per thread and
+   // also providing fallback default internal (own process state) implementation.
+   bool window::is_mouse_captured()
+   {
+
+      auto pthread = m_puserinteractionimpl->m_puserinteraction->m_pthreadUserInteraction;
+
+      if(!windowing()->is_mouse_captured(pthread, this))
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   // implementation foreseeing Windows with its mouse capture state per thread and
+   // also providing fallback default internal (own process state) implementation.
+   void window::release_mouse_capture()
+   {
+
+      auto pthread = m_puserinteractionimpl->m_puserinteraction->m_pthreadUserInteraction;
+
+      windowing()->release_mouse_capture(pthread, this);
+
+   }
+
+
+   // implementation for Windows with mouse capture state per thread
+   // bool window::defer_release_mouse_capture()
+   // {
+   //
+   //    auto pthread = m_puserinteractionimpl->m_puserinteraction->m_pthreadUserInteraction;
+   //
+   //    return windowing()->defer_release_mouse_capture(pthread, this);
+   //
+   // }
 
 
    void window::destroy_window()
@@ -1782,7 +1837,7 @@ namespace windowing
    }
 
 
-   bool window::full_set_window_position_unlocked()
+   bool window::set_window_position_unlocked()
    {
 
       auto & stateDesign = m_puserinteractionimpl->m_puserinteraction->layout().m_statea[::user::e_layout_design];
@@ -1937,9 +1992,24 @@ namespace windowing
    bool window::_strict_set_window_position_unlocked(i32 x, i32 y, i32 cx, i32 cy, bool bNoMove, bool bNoSize)
    {
 
-      bool bOk = false;
+       bool bMove = !bNoMove;
 
-      return bOk;
+       bool bSize = !bNoSize;
+
+       if (bMove)
+       {
+
+           set_position_unlocked({x, y});
+
+       }
+
+        if (bSize)
+        {
+           set_size_unlocked({cx, cy});
+
+       }
+
+       return true;
 
    }
 

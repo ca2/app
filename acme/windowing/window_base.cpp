@@ -526,6 +526,53 @@ void window_base::on_char(int iChar)
    }
 
 
+   void window_base::set_position(const point_i32 &point)
+   {
+
+      auto p = point;
+
+      main_post([this, p]()
+         {
+
+set_position_unlocked(p);
+
+         });
+
+
+   }
+
+
+   void window_base::set_size(const size_i32 &size)
+   {
+
+      auto s = size;
+
+      main_post([this, s]()
+         {
+
+set_size_unlocked(s);
+
+         });
+
+
+   }
+
+
+   void window_base::set_position_unlocked(const point_i32 &point)
+   {
+
+
+   }
+
+
+   void window_base::set_size_unlocked(const size_i32 &size)
+   {
+
+
+   }
+
+
+
 } // namespace windowing
 
 

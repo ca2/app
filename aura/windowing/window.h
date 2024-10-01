@@ -118,8 +118,20 @@ namespace windowing
       virtual void set_keyboard_focus();
       virtual void _set_keyboard_focus_unlocked();
 
-      virtual void set_mouse_capture();
-      virtual bool defer_release_mouse_capture();
+
+      // implementation foreseeing Windows with its mouse capture state per thread and
+      // also providing fallback default internal (own process state) implementation.
+      void set_mouse_capture() override;
+      // implementation foreseeing Windows with its mouse capture state per thread and
+      // also providing fallback default internal (own process state) implementation.
+      bool has_mouse_capture() override;
+      // implementation foreseeing Windows with its mouse capture state per thread and
+      // also providing fallback default internal (own process state) implementation.
+      bool is_mouse_captured() override;
+      // implementation foreseeing Windows with its mouse capture state per thread and
+      // also providing fallback default internal (own process state) implementation.
+      void release_mouse_capture() override;
+
 
       virtual void bring_to_front();
 
@@ -208,7 +220,7 @@ namespace windowing
       virtual bool configure_window_unlocked();
       virtual bool strict_set_window_position_unlocked(bool & bChangedPosition, bool & bChangedSize);
       virtual bool strict_set_window_position_unlocked(bool & bChangedPosition, bool & bChangedSize, const ::rectangle_i32 & rectangle);
-      virtual bool full_set_window_position_unlocked();
+      virtual bool set_window_position_unlocked();
       virtual bool _set_window_position_unlocked(const class ::zorder& zorder, i32 x, i32 y, i32 cx, i32 cy, const ::e_activation& eactivation, bool bNoZorder, bool bNoMove, bool bNoSize, ::e_display edisplay);
       virtual bool _configure_window_unlocked(const class ::zorder& zorder, const ::e_activation& eactivation, bool bNoZorder, ::e_display edisplay);
       virtual bool _strict_set_window_position_unlocked(i32 x, i32 y, i32 cx, i32 cy, bool bNoMove, bool bNoSize);

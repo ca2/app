@@ -51,6 +51,8 @@ namespace windowing
       bool                                      m_bDrawCursor;
       ::pointer<::user::user>                   m_puser;
 
+      // Fallback implementation of a Main thread mouse capture
+      ::pointer<::windowing::window>            m_pwindowMouseCapture;
 
 
       windowing();
@@ -120,11 +122,11 @@ namespace windowing
       virtual ::windowing::window_base * get_keyboard_focus(::thread * pthread);
 
       virtual ::point_i32 try_absolute_mouse_position(::user::interaction* puserinteraction, const ::point_i32& point);
-      virtual void set_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
-
       virtual ::windowing::window * get_mouse_capture(::thread * pthread);
-
-      virtual void release_mouse_capture(::thread * pthread);
+      virtual void set_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
+      virtual bool has_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
+      virtual bool is_mouse_captured(::thread * pthread, ::windowing::window * pwindow);
+      virtual void release_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
 
       virtual bool defer_release_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
 

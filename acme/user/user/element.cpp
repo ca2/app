@@ -2948,6 +2948,20 @@ namespace user
    }
 
 
+   // void element::set_window_position(const ::point_i32 & point)
+   // {
+   //
+   //
+   // }
+   //
+   //
+   // void element::set_window_size(const ::size_i32 & size)
+   // {
+   //
+   //
+   // }
+
+
    void element::_on_window_simple_action(const char * pszActionName)
    {
 
@@ -2984,6 +2998,26 @@ namespace user
 
    }
 
+
+   bool element::defer_release_mouse_capture()
+   {
+
+      if(!has_mouse_capture())
+      {
+
+         debug() << "::user::element::defer_release_mouse_capture !has_mouse_capture";
+
+         return false;
+
+      }
+
+      debug() << "::user::element::defer_release_mouse_capture has_mouse_capture going to release_mouse_capture";
+
+      release_mouse_capture();
+
+      return true;
+
+   }
 
 
    bool element::defer_perform_entire_reposition_process(::user::mouse * pmouse)

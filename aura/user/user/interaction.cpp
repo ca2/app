@@ -8983,7 +8983,7 @@ namespace user
 
          //set_position(point);
 
-         window()->set_position(point);
+         set_position(point);
 
          //set_reposition();
 
@@ -9020,7 +9020,7 @@ namespace user
 
          //layout().sketch().m_size = size;
 
-         window()->set_size(size);
+         set_size(size);
 
          //set_need_layout();
 

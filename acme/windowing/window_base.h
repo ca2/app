@@ -154,6 +154,13 @@ namespace windowing
       virtual void set_interface_client_size(const ::size_i32 & sizeWindow);
 
 
+      void set_position(const point_i32 &point) override;
+      void set_size(const size_i32 &size) override;
+
+
+      virtual void set_position_unlocked(const point_i32 &point);
+      virtual void set_size_unlocked(const size_i32 &size);
+
 
 
    };

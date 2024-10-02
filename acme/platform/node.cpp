@@ -2986,53 +2986,11 @@ return false;
       }
       else if(scopedstrComponentName == "nano_user")
       {
-       
-#ifdef LINUX
 
-         auto edesktop = this->get_edesktop();
+         ::string strUserToolkit = this->get_user_toolkit_id();
 
-         if(edesktop & user::e_desktop_kde)
-         {
+         return strUserToolkit;
 
-            return "kde5";
-
-         }
-         else
-         {
-
-#if HAS_GTK4
-
-            return "gtk4";
-
-#else
-
-            return "gtk3";
-
-#endif
-
-         }
-
-         // if(system()->m_ewindowing == e_windowing_wayland)
-         // {
-         //    return "wayland";
-         // }
-         // else if(system()->m_ewindowing == e_windowing_xcb)
-         // {
-         //    return "xcb";
-         // }
-         // else
-         // {
-         //
-         //    return "x11";
-         //
-         // }
-
-#elif defined(WINDOWS_DESKTOP)
-
-         return "win32";
-
-#endif
-         
       }
       
       return {};

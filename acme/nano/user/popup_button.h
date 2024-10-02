@@ -34,7 +34,7 @@ public:
    void on_draw(::nano::graphics::device * pnanodevice) override;
 
 
-   virtual ::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true);
+   ::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true) override;
 
 };
 

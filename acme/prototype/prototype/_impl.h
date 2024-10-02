@@ -196,9 +196,12 @@ inline void particle::__call__construct(::pointer<BASE_TYPE>& p, ::factory::fact
 
    if (!pfactoryitem)
    {
+
       ::string strError;
       
       strError.formatf("No factory for type : '%s'", typeid(BASE_TYPE).name());
+
+      error() << strError;
 
       throw ::exception(::error_no_factory, strError);
 

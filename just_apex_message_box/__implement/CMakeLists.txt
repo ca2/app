@@ -56,7 +56,7 @@ elseif(${LINUX} OR ${__BSD__})
 endif ()
 
 
-add_dependencies(${PROJECT_NAME} apex_linux)
+add_dependencies(${PROJECT_NAME} ${default_apex})
 add_dependencies(${PROJECT_NAME} crypto_openssl)
 add_dependencies(${PROJECT_NAME} ${default_innate_ui})
 

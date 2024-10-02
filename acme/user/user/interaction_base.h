@@ -60,8 +60,8 @@ public:
 
 
    //virtual void do_interchange();
-   virtual void do_asynchronously();
-   virtual ::payload do_synchronously(const class time & timeWait);
+   void do_asynchronously() override;
+   ::payload do_synchronously(const class time & timeWait) override;
 
 
 
@@ -193,11 +193,11 @@ public:
 
    void release_capture() override;
 
-   virtual void set_cursor(enum_cursor ecursor);
+   void set_cursor(enum_cursor ecursor) override;
 
    virtual void synchronize_composited_nano_window();
 
-   virtual void _run_modal_loop();
+   void _run_modal_loop() override;
 
    virtual bool is_popup_window() const;
 

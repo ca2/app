@@ -11,7 +11,7 @@
 #include "acme/platform/system.h"
 
 
-#if defined(__APPLE__)
+#if defined(__APPLE__) || defined(__BSD__)
 #include <string.h>
 #endif
 

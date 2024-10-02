@@ -320,7 +320,7 @@ namespace acme
 
       information() << "acme::node::user_post going to display_post";
 
-      ::nano::user::display::g_p->display_post(procedure);
+      system()->windowing_system()->main_post(procedure);
 
    }
 

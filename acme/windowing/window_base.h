@@ -54,7 +54,7 @@ namespace windowing
       virtual void _on_windowing_close_window();
       virtual bool is_satellite_window();
       virtual window_base * owner_window();
-      virtual ::string get_window_text();
+      ::string get_window_text() override;
 
 
       ///::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true) override;
@@ -111,7 +111,7 @@ namespace windowing
       virtual void create_window();
       virtual void _create_window();
 
-               virtual void on_create_window();
+               void on_create_window() override;
 
                virtual void nano_window_on_destroy();
 

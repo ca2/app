@@ -7,7 +7,9 @@
 #include "interchange.h"
 #include "operating_system/console.h"
 
-
+#ifdef __BSD__
+#include <stdio.h>
+#endif
 
 namespace nano {
 namespace user {
@@ -73,26 +75,26 @@ namespace user {
       while (true)
       {
 
-         printf("%s", m_pinterchange->m_strTitle.c_str());
+         printf_out("%s", m_pinterchange->m_strTitle.c_str());
 
          ::string str;
 
          str = m_stra.implode(",");
 
-         printf(" %s", str.c_str());
+         printf_out(" %s", str.c_str());
 
-         printf(" (");
+         printf_out(" (");
 
-         printf("%c", m_cha1[0]);
+         printf_out("%c", m_cha1[0]);
 
          for (::collection::index i = 1; i < m_cha1.get_count(); i++)
          {
 
-            printf("/%c", m_cha1[i]);
+            printf_out("/%c", m_cha1[i]);
 
          }
 
-         printf("):");
+         printf_out("):");
 
          char ch;
 

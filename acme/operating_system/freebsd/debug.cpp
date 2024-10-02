@@ -215,20 +215,20 @@ gdb_check(void)
 //   __UNREFERENCED_PARAMETER(ppointers);
 //}
 
-
-
-void output_debug_string_flush()
-{
-
-   if (::platform::get()->m_bOutputDebugString)
-   {
-
-      fflush(stdout);
-
-   }
-
-}
-
-
-
+//
+//
+//void output_debug_string_flush()
+//{
+//
+//   if (::platform::get()->m_bOutputDebugString)
+//   {
+//
+//      fflush(stdout);
+//
+//   }
+//
+//}
+//
+//
+//
 

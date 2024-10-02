@@ -343,7 +343,7 @@ namespace apex
 
       virtual void DoWaitCursor(i32 nCode); // 0 => restore, 1=> begin, -1=> end
 
-      virtual void _001TryCloseApplication();
+      void _001TryCloseApplication() override;
 
       virtual void _001CloseApplication();
 

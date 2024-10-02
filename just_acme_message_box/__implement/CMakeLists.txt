@@ -57,7 +57,7 @@ endif ()
 
 message(STATUS "default_nano_user is ${default_nano_user}")
 
-add_dependencies(${PROJECT_NAME} acme_linux)
+add_dependencies(${PROJECT_NAME} ${default_acme})
 add_dependencies(${PROJECT_NAME} folder_zip)
 add_dependencies(${PROJECT_NAME} nano_graphics_cairo)
 add_dependencies(${PROJECT_NAME} ${default_nano_user})

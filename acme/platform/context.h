@@ -92,7 +92,7 @@ namespace acme
       ::file_system * filesystem();
 
 
-      virtual ::file::watcher * file_watcher();
+      ::file::watcher * file_watcher() override;
 
 
       ::http::context * http();

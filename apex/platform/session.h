@@ -263,11 +263,11 @@ namespace apex
 
       void term1() override;
 
-      virtual void term_task() override;
+      void term_task() override;
 
       //virtual void term_session();
 
-      virtual void process_term();
+      void process_term() override;
 
       // apex commented
       //::user::keyboard& keyboard();

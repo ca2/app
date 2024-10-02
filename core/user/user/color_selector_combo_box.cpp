@@ -155,7 +155,7 @@ namespace user
 
          ptopic->m_puserelement = this;
 
-         //ptopic->m_puserelement->m_atom = m_atom;
+         //ptopic->user_interaction_id() = m_atom;
 
          m_hls = m_pcolorselectorpopup->m_hls;
 

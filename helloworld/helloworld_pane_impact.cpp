@@ -308,7 +308,7 @@ namespace helloworld
          if(ptopic->m_atom == ::id_after_change_text)
          {
 
-            if(m_prollfps != nullptr && ptopic->user_element_id() == "roll_per_second" && !ptopic->m_context.is_source(::e_source_initialize)
+            if(m_prollfps != nullptr && ptopic->user_interaction_id() == "roll_per_second" && !ptopic->m_context.is_source(::e_source_initialize)
                   && !ptopic->m_context.is_source(::e_source_database))
             {
 
@@ -356,7 +356,7 @@ namespace helloworld
                }
 
             }
-            //else if(ptopic->user_element_id() == "roll_spf" && !ptopic->m_context.is_source(::e_source_initialize))
+            //else if(ptopic->user_interaction_id() == "roll_spf" && !ptopic->m_context.is_source(::e_source_initialize))
             //{
 
             //   try
@@ -386,7 +386,7 @@ namespace helloworld
          else if (ptopic->m_atom == ::id_set_check && ptopic->user_interaction() != nullptr)
          {
 
-            string strCheck = ptopic->user_element_id();
+            string strCheck = ptopic->user_interaction_id();
 
 
             if (strCheck.case_insensitive_begins_eat("bilbo"))
@@ -413,22 +413,22 @@ namespace helloworld
 
          }
 
-         //if(ptopic->user_element_id() == "clockverse")
+         //if(ptopic->user_interaction_id() == "clockverse")
          //   {
          //      papp->set_binding_clockverse_country_time_zone_set_on_hover(ptopic->user_interaction()->get_check() == ::e_check_checked);
          //      return true;
          //   }
-         //   else if(ptopic->user_element_id() == "clockverse_auto")
+         //   else if(ptopic->user_interaction_id() == "clockverse_auto")
          //   {
          //      papp->set_auto_launch_clockverse_on_hover(ptopic->user_interaction()->get_check() == ::e_check_checked);
          //      return true;
          //   }
-         //   else if(ptopic->user_element_id() == "flag")
+         //   else if(ptopic->user_interaction_id() == "flag")
          //   {
          //      papp->set_binding_flag_country_ca2_domain_image_on_hover(ptopic->user_interaction()->get_check() == ::e_check_checked);
          //      return true;
          //   }
-         //   else if(ptopic->user_element_id() == "flag_auto")
+         //   else if(ptopic->user_interaction_id() == "flag_auto")
          //   {
          //      papp->set_auto_launch_flag_on_hover(ptopic->user_interaction()->get_check() == ::e_check_checked);
          //      return true;

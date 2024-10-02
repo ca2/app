@@ -123,25 +123,19 @@ namespace aura
 //   }
 
 
-   ::windowing::windowing * node::windowing()
-   {
+   //::windowing::windowing * node::windowing()
+   //{
 
-      if(!m_pwindowingAuraNode)
-      {
+   //   if(!m_pwindowingAuraNode)
+   //   {
 
-         system()->do_user_system_factory();
+   //      system()->do_user_system_factory();
 
-         auto psession = session();
+   //   }
 
-         auto puser = psession->user();
+   //   return m_pwindowingAuraNode;
 
-         puser->create_windowing();
-
-      }
-
-      return m_pwindowingAuraNode;
-
-   }
+   //}
 
 
 //   void * node::node_wrap_window(void * pdisplay, i64 window)

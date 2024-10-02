@@ -39,7 +39,7 @@ namespace file
    public:
 
 
-      watch_id                            m_watchid;
+      //watch_id                            m_pfilewatch;
       ::file::path                        m_pathFolder;
       comparable_eq_array < listener >    m_listenera;
       ::pointer<thread>                   m_pthread;

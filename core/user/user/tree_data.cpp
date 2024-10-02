@@ -31,10 +31,10 @@ namespace user
    }
 
 
-   ::user::prototype * tree_data::get_data_bound_impact(::collection::index iImpact)
+   ::user::element * tree_data::get_data_bound_impact(::collection::index iImpact)
    {
 
-      return m_usertreeaBound[iImpact].cast < ::user::prototype >();
+      return m_usertreeaBound[iImpact].cast < ::user::element >();
 
    }
 

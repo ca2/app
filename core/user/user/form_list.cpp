@@ -928,7 +928,7 @@ namespace user
 
       string str;
 
-      pinteraction->get_text(str);
+      str = pinteraction->get_text();
 
       ::user::validate validate;
 

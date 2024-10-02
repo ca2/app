@@ -1519,56 +1519,46 @@ namespace user
    }
 
 
-   void user::create_windowing()
-   {
+   //void user::create_windowing()
+   //{
 
-      if(m_pdesktopenvironment && m_pwindowing)
-      {
+   //   if(m_pdesktopenvironment && m_pwindowing)
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      //::e_status estatus = ::success;
+   //   //::e_status estatus = ::success;
 
-      //estatus =
+   //   //estatus =
 
-      node()->user_send([this]()
-      {
+   //   node()->user_send([this]()
+   //   {
 
-         print_line("aura::user::create_windowing (1) (aura)");
+   //      print_line("aura::user::create_windowing (1) (aura)");
 
-         __construct(m_pdesktopenvironment);
+   //      desktop_environment()->m_pwindowing = windowing();
 
-         auto psystem = system();
+   //      //__construct(m_pwindowing);
 
-         auto pacmenode = psystem->m_pacmenode;
+   //      //m_pdesktopenvironment->m_pwindowing = m_pwindowing;
 
-         auto pauranode = pacmenode->m_pauranode;
+   //      //debugf("aura::user::create_windowing (2.1)");
 
-         m_pdesktopenvironment->m_bUnhook = pauranode->m_bUnhookX;
+   //      //m_pwindowing->initialize_windowing(this);
 
-         debugf("aura::user::create_windowing (2)");
+   //      debugf("aura::user::create_windowing (2.2)\n");
 
-         __construct(m_pwindowing);
+   //      auto paurasystem = psystem->m_paurasystem;
 
-         m_pdesktopenvironment->m_pwindowing = m_pwindowing;
+   //      pauranode->m_pwindowingAuraNode = m_pwindowing;
 
-         debugf("aura::user::create_windowing (2.1)");
+   //      debugf("aura::user::create_windowing end");
 
-         m_pwindowing->initialize_windowing(this);
+   //   });
 
-         debugf("aura::user::create_windowing (2.2)\n");
-
-         auto paurasystem = psystem->m_paurasystem;
-
-         pauranode->m_pwindowingAuraNode = m_pwindowing;
-
-         debugf("aura::user::create_windowing end");
-
-      });
-
-   }
+   //}
 
 
    bool user::runnable_step()
@@ -1600,25 +1590,22 @@ namespace user
 
    //__namespace_object_factory(user, ::system_setup::flag_object_user);
 
+   
    ::windowing::windowing* user::windowing()
    {
 
       if (::is_null(m_pwindowing))
       {
 
-         if (!has_finishing_flag())
-         {
+         __construct(m_pwindowing);
 
-            create_windowing();
-
-         }
+         m_pwindowing->initialize_windowing(this);
 
       }
 
       return m_pwindowing;
 
    }
-
 
 
    ::aura::application * user::get_app()
@@ -1633,6 +1620,22 @@ namespace user
    {
 
       return m_pcontext ? m_pcontext->m_pacmesession->m_paurasession : nullptr;
+
+   }
+
+
+   ::windowing::desktop_environment * user::desktop_environment()
+   {
+
+      if (!m_pdesktopenvironment)
+      {
+
+         __construct(m_pdesktopenvironment);
+
+
+      }
+
+      return m_pdesktopenvironment;
 
    }
 

@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "acme/handler/item.h"
 #include "acme/platform/node.h"
+#include "acme/platform/system.h"
 #include "acme/user/user/os_theme_colors.h"
 #include "base/user/simple/scroll_bar.h"
 #include "base/user/user/tab_pane.h"
@@ -145,12 +146,16 @@ namespace experience_tranquillum
                if (is_dark_mode())
                {
 
-                  auto pthemecolors = node()->_get_os_theme_colors();
+                  //auto pthemecolors = node()->_get_os_theme_colors();
 
-                  if(pthemecolors && pthemecolors->m_colorBack.get_luminance() < 0.5)
+                  auto colorBackground = system()->background_color();
+
+                  //if(pthemecolors && pthemecolors->m_colorBack.get_luminance() < 0.5)
                   {
 
-                     return pthemecolors->m_colorBack;
+                     //return pthemecolors->m_colorBack;
+
+                     return colorBackground;
 
                   }
 
@@ -171,14 +176,19 @@ namespace experience_tranquillum
                if (is_dark_mode())
                {
 
-                  auto pthemecolors = node()->_get_os_theme_colors();
 
-                  if(pthemecolors && pthemecolors->m_colorBack.get_luminance() < 0.5)
-                  {
+                  auto colorBackground = system()->background_color();
 
-                     return pthemecolors->m_colorBack;
+                  return colorBackground;
 
-                  }
+                  //auto pthemecolors = node()->_get_os_theme_colors();
+
+                  //if(pthemecolors && pthemecolors->m_colorBack.get_luminance() < 0.5)
+                  //{
+
+                  //   return pthemecolors->m_colorBack;
+
+                  //}
 
                   return argb(255, 51, 51, 51);
 
@@ -552,14 +562,19 @@ namespace experience_tranquillum
             else
             {
 
-               auto pthemecolors = node()->_get_os_theme_colors();
+               auto colorBackground = system()->background_color();
 
-               if(pthemecolors && pthemecolors->m_colorBack.get_luminance() < 0.5)
-               {
+               return colorBackground;
 
-                  return pthemecolors->m_colorBack;
 
-               }
+               //auto pthemecolors = node()->_get_os_theme_colors();
+
+               //if(pthemecolors && pthemecolors->m_colorBack.get_luminance() < 0.5)
+               //{
+
+               //   return pthemecolors->m_colorBack;
+
+               //}
 
                return argb(255, 51, 51, 51);
 

@@ -201,6 +201,7 @@ public:
    ::file_context * file() const;
    ::file_system * filesystem() const;
 
+   virtual ::file::watcher * file_watcher();
 
    ::http::context * http() const;
 

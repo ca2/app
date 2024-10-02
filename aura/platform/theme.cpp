@@ -4,6 +4,7 @@
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/filesystem/watcher/watch.h"
 #include "acme/filesystem/watcher/watcher.h"
 #include "aura/platform/application.h"
 
@@ -480,7 +481,7 @@ namespace aura
 
       sync_with_stored_theme();
 
-      //m_watchidWeather = dir()->watcher().add_watch(acmedirectory()->config(), this, false);
+      m_pfilewatchWeather = file_watcher()->add_watch(acmedirectory()->config(), this, false);
       
       on_change_theme();
 

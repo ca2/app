@@ -147,7 +147,7 @@ namespace simple_shader
       if(ptopic->m_atom == ::id_click)
       {
 
-         if(ptopic->user_element_id() == "simple_shader_toggle")
+         if(ptopic->user_interaction_id() == "simple_shader_toggle")
          {
 
             m_pimpact->on_layout(pgraphics);

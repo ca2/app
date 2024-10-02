@@ -737,13 +737,6 @@ namespace user
    void box::display_normal(::e_display edisplay, ::e_activation eactivation)
    {
 
-      if (!windowing())
-      {
-
-         session()->m_paurasession->user()->create_windowing();
-
-      }
-
 #ifdef INFO_LAYOUT_DISPLAY
 
       information() << "interaction_layout::display_normal";
@@ -905,20 +898,8 @@ namespace user
 
       ::rectangle_i32 rectangleMainMonitor;
 
-      if (!windowing())
-      {
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         puser->create_windowing();
-
-      }
-
-      auto pwindowing = windowing();
-
-      auto pdisplay = pwindowing->display();
+      auto pdisplay = windowing()->display();
 
       pdisplay->get_main_monitor(rectangleMainMonitor);
 
@@ -927,6 +908,7 @@ namespace user
       return strDisplay;
 
    }
+
 
    bool box::does_display_match()
    {

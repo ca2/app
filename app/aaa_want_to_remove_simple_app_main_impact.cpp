@@ -147,7 +147,7 @@ namespace simple_drawing
       if(ptopic->m_atom == ::id_click)
       {
 
-         if(ptopic->user_element_id() == "simple_drawing_toggle")
+         if(ptopic->user_interaction_id() == "simple_drawing_toggle")
          {
 
             m_pimpact->on_layout(pgraphics);

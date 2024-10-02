@@ -11,7 +11,7 @@
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/mathematics/_random.h"
-#include "acme/prototype/prototype/primitive.h"
+#include "acme/prototype/prototype/prototype.h"
 #include "acme/platform/library.h"
 #include "acme/crypto/rsa.h"
 #include "acme/filesystem/filesystem/file_context.h"

@@ -1064,7 +1064,7 @@ menu::~menu()
 //      ////      }
 //      ////      else if (ptopic->m_atom == ::id_mouse_leave)
 //      ////      {
-//      ////         if (ptopic->user_element_id() == m_atomTimerMenu)
+//      ////         if (ptopic->user_interaction_id() == m_atomTimerMenu)
 //      ////         {
 //      ////            KillTimer(e_timer_menu);
 //      ////            m_atomTimerMenu.is_empty();
@@ -1108,7 +1108,7 @@ menu::~menu()
 //               if (::is_set(pchannelNotify))
 //               {
 //
-//                  //::message::command command(ptopic->user_element_id());
+//                  //::message::command command(ptopic->user_interaction_id());
 //
 //                  //puiTarget->_001SendCommand(&command);
 //

@@ -12,7 +12,7 @@ namespace file
    action::action()
    {
 
-      m_pwatch = nullptr;
+      m_pfilewatch = nullptr;
 
    }
    

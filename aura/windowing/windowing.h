@@ -64,7 +64,7 @@ namespace windowing
 
       bool is_branch_current() const override;
       
-      
+      virtual void set_dark_mode(bool bDarkMode);
 
 
       ::aura::application* get_app();

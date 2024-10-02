@@ -1653,19 +1653,21 @@ namespace user
    //}
 
 
-   void plain_edit::get_text(string & str) const
+   ::string plain_edit::get_text() const
    {
 
       if (m_ptree == nullptr)
       {
 
-         return;
+         return{};
 
       }
 
       _synchronous_lock synchronouslock(this->synchronization());
 
       filesize iSize = m_ptree->m_peditfile->get_length();
+
+      ::string str;
 
       char * psz = str.get_buffer((strsize)(iSize + 1));
 
@@ -1686,6 +1688,8 @@ namespace user
 
       }
 
+      return str;
+
    }
 
 
@@ -1702,7 +1706,8 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      m_textproperty.get_text(str, iBegParam, iEndParam);
+
+      str = m_textproperty.get_text().substr(iBegParam, iEndParam);
 
       //::sort_non_negative(iBegParam, iEndParam);
 
@@ -1824,7 +1829,7 @@ namespace user
 
                ::string str;
 
-               get_text(str);
+               str = get_text();
 
                return str;
 

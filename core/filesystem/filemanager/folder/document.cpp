@@ -17,7 +17,7 @@ namespace filemanager
 
          //m_bInitialized = false;
 
-         //m_filewatchid = -1;
+         //m_pfilewatch = -1;
 
          //m_bFullBrowse = false;
 

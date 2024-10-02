@@ -3582,7 +3582,7 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
       if (ptopic->m_atom == ::id_context_menu)
       {
 
-         //OnNotifyIconContextMenu(ptopic->m_puserelement->m_atom);
+         //OnNotifyIconContextMenu(ptopic->user_interaction_id());
 
          auto pointCursor = windowing()->display()->get_mouse_cursor_position();
          
@@ -3616,13 +3616,13 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
       else if (ptopic->m_atom == ::id_left_button_double_click)
       {
 
-         //OnNotifyIconLButtonDblClk(ptopic->m_puserelement->m_atom);
+         //OnNotifyIconLButtonDblClk(ptopic->user_interaction_id());
 
       }
       else if (ptopic->m_atom == ::id_left_button_down)
       {
 
-         //OnNotifyIconLButtonDown(ptopic->m_puserelement->m_atom);
+         //OnNotifyIconLButtonDown(ptopic->user_interaction_id());
 
          default_notify_icon_topic();
 

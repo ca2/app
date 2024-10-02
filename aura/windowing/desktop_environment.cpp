@@ -70,6 +70,21 @@ namespace windowing
    }
 
 
+   ::string desktop_environment::get_user_theme()
+   {
+
+      return {};
+
+   }
+
+
+   void desktop_environment::set_user_theme(const ::scoped_string & scopedstrUserTheme)
+   {
+
+
+   }
+
+
 } // namespace windowing
 
 

@@ -47,7 +47,7 @@ namespace aura
 
 
       //::pointer<runner>                    m_prunnerChangeWeatherState;
-      ::file::watch_id                       m_watchidWeather;
+      ::pointer < ::file::watch >            m_pfilewatchWeather;
 
 
       string_array                           m_straTheme;

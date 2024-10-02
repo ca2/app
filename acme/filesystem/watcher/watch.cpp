@@ -103,7 +103,7 @@ namespace file
       if (m_listenera.is_empty())
       {
 
-         m_pwatcher->erase_watch(m_watchid);
+         m_pwatcher->erase_watch(this);
 
       }
 

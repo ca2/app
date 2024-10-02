@@ -114,7 +114,7 @@ namespace turboc
       if(ptopic->m_atom == ::id_click)
       {
 
-         if(ptopic->user_element_id() == "turboc_toggle")
+         if(ptopic->user_interaction_id() == "turboc_toggle")
          {
 
             if(m_pimpact->m_bLite && !papp->m_bLoadAiFont)

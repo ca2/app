@@ -12,6 +12,7 @@
 #include "acme/constant/timer.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/node.h"
+#include "acme/platform/system.h"
 #include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -1219,7 +1220,7 @@ namespace user
                   pbox->m_rectangleBox.top() + 1,
                   r + 0.5,
                   pbox->m_rectangleBox.bottom() - dDescent),
-                  node()->dark_mode()? argb(255, 255, 255, 255):argb(255, 0, 0, 0));
+                  system()->dark_mode() ? argb(255, 255, 255, 255) : argb(255, 0, 0, 0));
 
             }
 
@@ -1559,7 +1560,7 @@ namespace user
 
                string str;
 
-               get_selection_text(str);
+               str=get_selection_text();
 
                if (str.is_empty())
                {
@@ -1605,7 +1606,7 @@ namespace user
 
                string str;
 
-               get_selection_text(str);
+               str = get_selection_text();
 
                auto pcopydesk = copydesk();
 
@@ -2252,7 +2253,7 @@ namespace user
 
          string str;
 
-         get_text(str);
+         str = get_text();
 
          strsize_array ia1;
 

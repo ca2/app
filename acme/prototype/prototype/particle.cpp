@@ -591,6 +591,15 @@ class ::user::user * particle::user() const
 }
 
 
+
+::file::watcher * particle::file_watcher()
+{
+
+   return m_pcontext->file_watcher();
+
+}
+
+
 ::http::context * particle::http() const
 {
 

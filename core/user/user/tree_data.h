@@ -44,7 +44,7 @@ namespace user
 
 
       virtual ::collection::count               get_data_bound_impact_count() const override;
-      virtual ::user::prototype *   get_data_bound_impact(::collection::index iImpact) override;
+      virtual ::user::element *   get_data_bound_impact(::collection::index iImpact) override;
 
 
 

@@ -971,7 +971,7 @@ namespace user
 
          pgraphics->set_text_color(color);
 
-         pgraphics->text_out(x, (::i32) y, pitem->get_text(0));
+         pgraphics->text_out(x, (::i32) y, pitem->get_item_text());
 
          y = (::i32) (y + iLineHeight);
 

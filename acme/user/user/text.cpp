@@ -442,10 +442,10 @@ namespace user
    }
 
 
-   void text::get_text(::string & str) const
+   ::string text::get_text() const
    {
 
-      m_textproperty.get_text(str);
+      return m_textproperty.get_text();
 
    }
 
@@ -466,12 +466,12 @@ namespace user
    }
 
 
-   void text::get_selection_text(::string & str) const
+ /*  ::string text::get_selection_text() const
    {
 
       str = get_selection_text();
 
-   }
+   }*/
 
 
    void text::get_text_selection(strsize & iBegin, strsize & iEnd) const

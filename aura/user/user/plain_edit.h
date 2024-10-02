@@ -450,7 +450,7 @@ namespace user
       //virtual strsize get_text_length() override;
       virtual strsize get_text_length();
       virtual ::collection::count line_count() const;
-      void get_text(string & str) const override;
+      ::string get_text() const override;
 
       virtual void on_set_property(::data::property_change & change) override;
       virtual ::payload on_get_property(const ::atom_array & atoma) const override;

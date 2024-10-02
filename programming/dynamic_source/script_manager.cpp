@@ -280,7 +280,7 @@ namespace dynamic_source
 
          auto pcontext = get_context();
 
-         dir()->watcher().add_watch(m_strNetseedDsCa2Path, pwatcher, true);
+         file_watcher()->add_watch(m_strNetseedDsCa2Path, pwatcher, true);
 
       }
 
@@ -302,7 +302,7 @@ namespace dynamic_source
 
             pwatcher->m_pmanager = this;
 
-            dir()->watcher().add_watch(path, pwatcher, true);
+            file_watcher()->add_watch(path, pwatcher, true);
 
          }
 

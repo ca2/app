@@ -104,7 +104,7 @@ bool item::is_hidden() const
 }
 
 
-::string item::get_text(::collection::index iSubItem)
+::string item::get_item_text(::collection::index iSubItem)
 {
 
    return "";

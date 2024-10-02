@@ -35,7 +35,7 @@ namespace aura
    public:
 
 
-      ::pointer<::windowing::windowing>         m_pwindowingAuraNode;
+      //::pointer<::windowing::windowing>         m_pwindowingAuraNode;
       bool                                      m_bUnhookX;
 
 
@@ -76,7 +76,7 @@ namespace aura
 
       //virtual void user_fork(const ::procedure & procedure) override;
 
-      virtual ::windowing::windowing * windowing();
+      //virtual ::windowing::windowing * windowing();
 
 
       //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox) override;

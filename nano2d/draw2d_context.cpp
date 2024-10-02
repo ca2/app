@@ -1133,7 +1133,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
 
       pimage->map();
 
-      copy_image32(pimage->get_data(), pimage->width(), pimage->height(), pimage->m_iScan, (const image32_t *)data);
+      pimage->get_data()->copy(pimage->size(), pimage->m_iScan, (const image32_t *)data);
 
    }
 

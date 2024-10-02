@@ -29,6 +29,7 @@ namespace apex
 
 #endif
 
+      ::pointer < ::file::watcher >                      m_pfilewatcher;
       //::pointer<::dump_context>                       m_pdumpcontext;
 
       ::pointer<::networking::networking>             m_pnetworking;
@@ -144,6 +145,7 @@ namespace apex
 
       ::apex::node * node();
 
+      ::file::watcher * file_watcher() override;
 
       virtual ::input::input * input();
 

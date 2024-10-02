@@ -51,10 +51,9 @@ namespace user
       //void on_property_changed(::data::property_change & change) override;
 
       virtual ::string as_text() const;
-      virtual void get_text(::string & str) const;
+      virtual ::string get_text() const;
       virtual strsize get_text_length() const;
       virtual ::string get_selection_text() const;
-      virtual void get_selection_text(::string & str) const;
       virtual void get_text_selection(strsize & iBegin, strsize & iEnd) const;
       virtual void set_text_selection(strsize iBegin, strsize iEnd, const ::action_context & actioncontext);
       virtual void set_text(const ::scoped_string & scopedstr, const ::action_context & actioncontext);

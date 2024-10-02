@@ -81,7 +81,7 @@ namespace user
       inline ::aura::application* get_app();
       inline ::aura::session * get_session();
       //inline ::aura::system* system();
-
+      ::windowing::desktop_environment * desktop_environment();
 
       ::user::shell* shell();
 
@@ -120,7 +120,7 @@ namespace user
       void destroy() override;
 
 
-      virtual void create_windowing();
+      //virtual void create_windowing();
 
 
 

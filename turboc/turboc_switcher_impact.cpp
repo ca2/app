@@ -95,7 +95,7 @@ namespace turboc
       if(ptopic->m_atom == ::id_click)
       {
 
-         if(ptopic->user_element_id() == "switcher_toggle")
+         if(ptopic->user_interaction_id() == "switcher_toggle")
          {
 
             ::pointer<impact>pimpact = m_pimpact;

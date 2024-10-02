@@ -734,6 +734,13 @@ namespace windowing
    }
 
 
+   void windowing::set_dark_mode(bool bDarkMode)
+   {
+
+
+   }
+
+
    void windowing::_main_loop()
    {
 

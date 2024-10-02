@@ -59,7 +59,6 @@ public:
    void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-
    //virtual void do_interchange();
    virtual void do_asynchronously();
    virtual ::payload do_synchronously(const class time & timeWait);

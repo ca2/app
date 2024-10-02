@@ -19,10 +19,10 @@ namespace file
    class watcher;
    class listener;
 
-   using watch_id = i64;
+   //using watch_id = i64;
 
 
-   typedef ::array < watch_id > file_watch_array;
+   typedef ::pointer_array < watch> file_watch_array;
 
 
 

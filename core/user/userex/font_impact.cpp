@@ -88,7 +88,7 @@ namespace userex
          }
 
       }
-      else if (ptopic->user_element_id() == FONTSEL_IMPACT)
+      else if (ptopic->user_interaction_id() == FONTSEL_IMPACT)
       {
 
          if (ptopic->m_atom == ::id_after_change_cur_sel)
@@ -231,7 +231,7 @@ namespace userex
 
    //   ::user::impact::handle(ptopic, pcontext);
 
-   //   if (ptopic->m_puserelement->m_atom == impact_font_sel)
+   //   if (ptopic->user_interaction_id() == impact_font_sel)
    //   {
 
    //      if (ptopic->m_atom == ::id_after_change_cur_sel)

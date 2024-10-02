@@ -1299,7 +1299,7 @@ namespace user
 
                string str;
 
-               get_selection_text(str);
+               str = get_selection_text();
 
                if (str.is_empty())
                {
@@ -1353,7 +1353,7 @@ namespace user
 
                string str;
 
-               get_selection_text(str);
+               str = get_selection_text();
 
                auto pcopydesk = copydesk();
 

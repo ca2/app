@@ -292,34 +292,34 @@ namespace data
    }
 
 
-   void text_property::get_text(char * psz, strsize len)
+  /* void text_property::get_text(char * psz, strsize len)
    {
 
       auto strText = this->as_text();
 
       ansi_count_copy(psz, strText, len);
 
-   }
+   }*/
 
 
-   void text_property::get_text(::string & str) const
+   ::string text_property::get_text() const
    {
 
-      str = this->as_text();
+      return this->as_text();
 
    }
 
 
-   void text_property::get_text(::string & str, strsize iBeg, strsize iEnd) const
-   {
+   //void text_property::get_text(::string & str, strsize iBeg, strsize iEnd) const
+   //{
 
-      auto strText = this->as_text();
+   //   auto strText = this->as_text();
 
-      sort_non_negative(iBeg, iEnd);
+   //   sort_non_negative(iBeg, iEnd);
 
-      str = strText(iBeg, iEnd - iBeg);
+   //   str = strText(iBeg, iEnd - iBeg);
 
-   }
+   //}
 
 
    void text_property::set_text(const ::scoped_string & scopedstrText, strsize iLen, const ::action_context & actioncontext)

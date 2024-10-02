@@ -128,12 +128,12 @@ namespace userfs
 
    //   //}
 
-   //   //if (m_filewatchid >= 0)
+   //   //if (m_pfilewatch >= 0)
    //   //{
 
    //   //   auto pcontext = get_context();
 
-   //   //   dir()->watcher().erase_watch(m_filewatchid);
+   //   //   file_watcher()->erase_watch(m_pfilewatch);
 
    //   //}
 
@@ -146,13 +146,13 @@ namespace userfs
 
    //   //   auto & watcher = pdir->watcher();
 
-   //   //   m_filewatchid = watcher.add_watch(m_pitem->final_path(), this, false);
+   //   //   m_pfilewatch = watcher.add_watch(m_pitem->final_path(), this, false);
 
    //   //}
    //   //catch (...)
    //   //{
 
-   //   //   m_filewatchid = -1;
+   //   //   m_pfilewatch = -1;
 
    //   //}
 

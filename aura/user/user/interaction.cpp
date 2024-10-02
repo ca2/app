@@ -10177,16 +10177,7 @@ namespace user
 
       auto psession = get_session();
 
-      auto puser = psession->user();
-
-      if(!puser->windowing())
-      {
-
-         puser->create_windowing();
-
-      }
-
-      auto pwindowing = puser->windowing();
+      auto pwindowing = windowing();
 
       auto pwindowHost = pwindowing->get_application_host_window();
 
@@ -19791,14 +19782,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       auto psession = get_session();
 
-      auto puser = psession->user();
-
-      if(!puser->windowing())
-      {
-
-         puser->create_windowing();
-
-      }
+      auto puser = user();
 
       auto pwindowing = puser->windowing();
 

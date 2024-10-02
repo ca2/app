@@ -196,12 +196,12 @@ namespace data
 
       strsize get_size() const;
 
-      void get_text(char * psz, strsize len);
+      //void get_text(char * psz, strsize len);
 
 
-      void get_text(::string & str) const;
+      ::string get_text() const;
 
-      void get_text(::string & str, strsize iBeg, strsize iEnd = -1) const;
+      //void get_text(::string & str, strsize iBeg, strsize iEnd = -1) const;
 
 
       void set_text(const ::scoped_string & scopedstrText, strsize iLen, const ::action_context & actioncontext);

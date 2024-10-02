@@ -144,7 +144,7 @@ namespace helloworld
       if(ptopic->m_atom == ::id_click)
       {
 
-         if(ptopic->user_element_id() == "helloworld_toggle")
+         if(ptopic->user_interaction_id() == "helloworld_toggle")
          {
 
             m_pimpact->m_prender->m_bLite = !m_pimpact->m_prender->m_bLite;

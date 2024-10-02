@@ -461,6 +461,14 @@ namespace acme
    }
 
 
+   ::file::watcher * context::file_watcher()
+   {
+
+      return m_pacmesystem->file_watcher();
+
+   }
+
+
    ::http::context * context::http()
    {
 

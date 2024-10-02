@@ -5891,7 +5891,7 @@ namespace draw2d_opengl
 
       m_pimage->map();
 
-      ::copy_image32(m_pimage, &m_pgpucontext->m_pcpubuffer->m_pixmap);
+      m_pimage->copy(& m_pgpucontext->m_pcpubuffer->m_pixmap);
 
    }
 

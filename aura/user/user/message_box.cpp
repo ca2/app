@@ -484,7 +484,7 @@ namespace user
    //   if (ptopic->m_atom == ::id_click)
    //   {
 
-   //      m_edialogresult = (enum_dialog_result) ptopic->m_puserelement->m_atom.i64();
+   //      m_edialogresult = (enum_dialog_result) ptopic->user_interaction_id().i64();
 
    //      ::extended::asynchronous <::conversation>::sequence()->set_status(::success);
 

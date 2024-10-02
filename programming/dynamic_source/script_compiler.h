@@ -57,7 +57,7 @@ namespace dynamic_source
       //string                                    m_strSdk1;
       //string                                    m_strPlatform;
       //string                                    m_strStagePlatform;
-      ::file::watch_id                        m_filewatcherid;
+      ::pointer < ::file::watch >                        m_filewatcherid;
 
       //string                                    m_strPlat1;
       //string                                    m_strPlat2;

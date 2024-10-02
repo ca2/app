@@ -10,6 +10,7 @@
 #include "context.h"
 #include "node.h"
 #include "history.h"
+#include "acme/filesystem/watcher/watcher.h"
 #include "acme/handler/topic.h"
 //#include "app_launcher.h"
 //#include "log.h"
@@ -1966,6 +1967,21 @@ pacmedirectory->create("/ca2core");
    {
 
       return m_pnode ? m_pnode->m_papexnode : nullptr;
+
+   }
+
+
+   ::file::watcher * system::file_watcher()
+   {
+
+      if (!m_pfilewatcher)
+      {
+
+         __construct(m_pfilewatcher);
+
+      }
+
+      return m_pfilewatcher;
 
    }
 

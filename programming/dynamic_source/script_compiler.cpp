@@ -1372,7 +1372,7 @@ namespace dynamic_source
    void script_compiler::folder_watch()
    {
 
-      m_filewatcherid = dir()->watcher().add_watch(m_pmanager->m_strNetseedDsCa2Path, this, true);
+      //xxx:folder_watch m_filewatcherid = file_watcher()->add_watch(m_pmanager->m_strNetseedDsCa2Path, this, true);
 
    }
 

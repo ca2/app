@@ -52,7 +52,7 @@ namespace file
    {
 
       m_pThis = nullptr;
-      m_watchidLast = 0;
+      //m_pfilewatchLast = 0;
       m_bCreateWatchThread = true;
 
    }
@@ -72,7 +72,7 @@ namespace file
    //}
 
    
-   watch_id watcher::add_watch(const ::file::path& pathFolder, typename listener::base* pbase, bool bRecursive)
+   ::file::watch * watcher::add_watch(const ::file::path& pathFolder, typename listener::base* pbase, bool bRecursive)
    {
 
       return add_watch_listener(pathFolder, { use_t{}, pbase }, bRecursive);
@@ -80,17 +80,17 @@ namespace file
    }
 
 
-   watch_id watcher::add_watch_listener(const ::file::path & pathFolder, const listener & listener, bool bRecursive)
+   ::file::watch * watcher::add_watch_listener(const ::file::path & pathFolder, const listener & listener, bool bRecursive)
    {
 
 #ifdef ANDROID
-      return -1;
+      return nullptr;
 #endif
 
       if (pathFolder.is_empty())
       {
 
-         return -1;
+         return nullptr;
 
       }
 
@@ -102,9 +102,7 @@ namespace file
 
       pwatch->m_pwatcher = this;
 
-      pwatch->m_watchid = ++m_watchidLast;
-
-      m_watchmap[pwatch->m_watchid] = pwatch;
+      m_watchset[pwatch] = pwatch;
 
       //if (m_bCreateWatchThread)
       //{
@@ -121,9 +119,9 @@ namespace file
       if (!pwatch->open(pathFolder, bRecursive))
       {
 
-         m_watchmap.erase_item(pwatch->m_watchid);
+         m_watchset.erase_item(pwatch);
 
-         return -1;
+         return nullptr;
 
       }
 
@@ -142,7 +140,7 @@ namespace file
       if (pwatch.is_null())
       {
 
-         return -1;
+         return nullptr;
 
       }
 
@@ -150,17 +148,17 @@ namespace file
 
       pwatch->m_pathFolder = pathFolder;
 
-      return pwatch->m_watchid;
+      return pwatch;
 
    }
 
 
-   void watcher::erase_watch(watch_id watch_id, ::function < void () > functionErased)
+   void watcher::erase_watch(::file::watch *pwatch, ::function < void () > functionErased)
    {
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto ppair = m_watchmap.plookup(watch_id);
+      auto ppair = m_watchset.plookup(pwatch);
 
       if (!ppair)
       {
@@ -169,7 +167,7 @@ namespace file
 
       }
 
-      watch * pwatch = ppair->element2();
+      //watch * pwatch = ppair->element2();
 
       manual_reset_event event;
 
@@ -207,13 +205,13 @@ namespace file
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      for (auto & pair : m_watchmap)
+      for (auto & item : m_watchset)
       {
 
-         if (::file_path_is_equal(pathFolder, pair.element2()->m_pathFolder))
+         if (::file_path_is_equal(pathFolder, item.item()->m_pathFolder))
          {
 
-            erase_watch(pair.element1());
+            erase_watch(item.item());
 
             return;
 
@@ -229,34 +227,34 @@ namespace file
 
 restart:
 
-      for (auto & pair : m_watchmap)
+      for (auto & item : m_watchset)
       {
 
-         if (::is_set(pair.element2()))
+         if (::is_set(item.item()))
          {
             
-            if(::is_set(pair.element2()->m_pwatchRelease))
+            if(::is_set(item.item()->m_pwatchRelease))
             {
 
-               pair.element2()->m_bStop = true;
+               item.item()->m_bStop = true;
 
-               pair.element2()->m_pwatchRelease.release();
+               item.item()->m_pwatchRelease.release();
 
-               pair.element2()->m_listenera.clear();
+               item.item()->m_listenera.clear();
 
-               m_watchmap.erase_item(pair.element1());
+               m_watchset.erase_item(item.item());
 
                goto restart;
 
             }
 
-            pair.element2()->file_watch_step();
+            item.item()->file_watch_step();
             
          }
 
       }
 
-      if (m_watchmap.is_empty())
+      if (m_watchset.is_empty())
       {
 
          return false;

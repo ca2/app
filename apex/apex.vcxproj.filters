@@ -192,6 +192,9 @@
     <Filter Include="Source Files\innate_ui">
       <UniqueIdentifier>{07140a3c-3896-49b9-965a-8a3e11eaa3b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\windowing">
+      <UniqueIdentifier>{fd43cf00-2e93-4b60-bca2-d54094bd0f54}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -1509,6 +1512,9 @@
     </ClCompile>
     <ClCompile Include="innate_ui\icon.cpp">
       <Filter>Source Files\innate_ui</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\prototype.cpp">
+      <Filter>Source Files\windowing</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -5453,6 +5453,9 @@
     <ClCompile Include="platform\logger.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\windows\calculate_etoolkit.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="prototype\string\_defer.h">

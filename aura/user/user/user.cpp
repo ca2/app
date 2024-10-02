@@ -1597,6 +1597,8 @@ namespace user
       if (::is_null(m_pwindowing))
       {
 
+         system()->do_user_system_factory();
+
          __construct(m_pwindowing);
 
          m_pwindowing->initialize_windowing(this);

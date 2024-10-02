@@ -6924,7 +6924,7 @@ namespace user
 
          //auto estatus =
 
-         m_pgraphicsgraphics = user()->m_pdesktopenvironment->create_graphics();
+         m_pgraphicsgraphics = user()->desktop_environment()->create_graphics();
 
          //__raw_construct(m_pgraphicsgraphics);
 

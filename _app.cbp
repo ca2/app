@@ -7238,1751 +7238,1751 @@
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/api/api.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/api/api.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/api/api_rotate.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/api/api_rotate.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/__payload_array.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/__payload_array.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/__payload_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/__payload_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/__property_set.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/__property_set.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/_function.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/_function.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/_generic_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/_generic_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/_loosely.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/_loosely.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/_loosely_map.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/_loosely_map.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/_papaya_heap.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/_papaya_heap.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/_sort.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/_sort.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/address_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/address_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/array.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/array.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/array_base.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/array_base.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/atom_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/atom_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/atom_map.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/atom_map.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/attrib_map.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/attrib_map.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/back_insert_iterator.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/back_insert_iterator.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/base_enum.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/base_enum.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/bit_array.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/bit_array.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/bit_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/bit_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/bitset.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/bitset.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/bool_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/bool_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/collection.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/collection.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/comparable_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/comparable_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/comparable_eq_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/comparable_eq_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/comparable_eq_list.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/comparable_eq_list.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/comparable_list.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/comparable_list.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/comparable_primitive_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/comparable_primitive_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/comparable_raw_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/comparable_raw_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/composite_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/composite_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/deque.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/deque.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/fifo_map.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/fifo_map.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/file_path_map.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/file_path_map.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/forward.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/forward.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/insert_iterator.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/insert_iterator.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/int_map.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/int_map.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/iterable.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/iterable.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/iterator.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/iterator.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/list.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/list.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/map.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/map.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/map_test_51778915.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/map_test_51778915.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/map_to_smart_pointer.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/map_to_smart_pointer.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/numeric_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/numeric_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/numeric_array_range.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/numeric_array_range.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/packset.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/packset.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/pair.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/pair.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/pointer_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/pointer_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/pointer_array_process.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/pointer_array_process.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/priority_queue.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/priority_queue.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/ptr_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/ptr_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/queue.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/queue.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/range.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/range.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/raw_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/raw_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/set.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/set.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/set_node.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/set_node.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/sort.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/sort.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/sort_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/sort_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/sort_list.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/sort_list.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/sort_map.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/sort_map.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/spreadset.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/spreadset.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/stack.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/stack.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/std_iterator.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/std_iterator.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/std_pair.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/std_pair.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/str_array.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/str_array.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/str_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/str_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/strid_map.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/strid_map.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/string_array.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/string_array.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/string_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/string_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/string_iterable.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/string_iterable.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/string_list.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/string_list.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/string_list.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/string_list.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/string_map.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/string_map.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/collection/unique_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/collection/unique_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/comparison/_.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/comparison/_.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/comparison/_c.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/comparison/_c.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/comparison/array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/comparison/array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/comparison/binary.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/comparison/binary.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/comparison/compare.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/comparison/compare.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/comparison/equals.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/comparison/equals.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/comparison/hash.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/comparison/hash.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/comparison/less.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/comparison/less.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/comparison/md5.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/comparison/md5.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/comparison/sign.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/comparison/sign.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/comparison/var_strict.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/comparison/var_strict.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/data/_.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/data/_.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/data/_impl.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/data/_impl.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/data/_tree.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/data/_tree.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/data/container.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/data/container.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/data/container.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/data/container.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/data/data.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/data/data.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/data/data.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/data/data.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/data/item.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/data/item.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/data/item.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/data/item.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/data/listener.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/data/listener.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/data/listener.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/data/listener.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/data/node.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/data/node.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/data/node.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/data/node.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/data/simple_item.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/data/simple_item.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/data/simple_item.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/data/simple_item.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/data/tree.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/data/tree.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/data/tree.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/data/tree.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/data/tree_item.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/data/tree_item.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/data/tree_item.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/data/tree_item.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/_.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/_.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/_c.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/_c.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/_impl.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/_impl.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/date_span.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/date_span.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/date_span.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/date_span.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/datetime.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/datetime.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/datetime.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/datetime.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/earth_gregorian_time.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/earth_gregorian_time.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/earth_gregorian_time.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/earth_gregorian_time.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/earth_time.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/earth_time.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/earth_time.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/earth_time.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/earth_time_shift.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/earth_time_shift.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/earth_time_span.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/earth_time_span.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/earth_time_span.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/earth_time_span.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/earth_zone_time.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/earth_zone_time.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/earth_zone_time.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/earth_zone_time.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/file_time.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/file_time.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/file_time.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/file_time.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/file_time_span.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/file_time_span.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/file_time_span.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/file_time_span.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/microsecond_sleep.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/microsecond_sleep.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/microsecond_sleep.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/microsecond_sleep.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/mktime.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/mktime.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/result.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/result.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/result.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/result.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/system_time.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/system_time.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/datetime/system_time.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/datetime/system_time.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry/sequence.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry/sequence.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/_.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/_.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/_.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/_.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/_collection.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/_collection.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/_defer.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/_defer.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/_struct.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/_struct.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/_text_stream.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/_text_stream.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/angle.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/angle.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/arc.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/arc.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/collection.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/collection.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/contains.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/contains.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/ellipse.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/ellipse.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/geometry.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/geometry.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/geometry.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/geometry.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/item.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/item.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/item.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/item.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/line.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/line.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/lines.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/lines.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/matrix.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/matrix.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/matrix.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/matrix.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/point.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/point.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/point_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/point_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/polygon.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/polygon.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/rectangle.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/rectangle.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/rectangle.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/rectangle.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/rectangle_array.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/rectangle_array.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/rectangle_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/rectangle_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/region.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/region.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/region.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/region.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/size.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/size.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/size_array.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/size_array.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry2d/types.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry2d/types.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry3d/_.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry3d/_.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry3d/box.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry3d/box.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry3d/box.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry3d/box.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry3d/dimension.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry3d/dimension.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry3d/location.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry3d/location.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry3d/location.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry3d/location.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry3d/quaternions.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry3d/quaternions.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry4d/color.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry4d/color.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/geometry4d/quadruple.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/geometry4d/quadruple.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/_.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/_.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/_.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/_.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/_impl.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/_impl.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/binary_operation.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/binary_operation.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/binary_operation.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/binary_operation.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/c_number.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/c_number.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/cast.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/cast.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/cast.inl">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/cast.inl">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/classes.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/classes.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/clip.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/clip.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/complex.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/complex.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/cvt.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/cvt.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/cvt_g.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/cvt_g.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/filestream.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/filestream.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/int_biunique.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/int_biunique.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/int_biunique.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/int_biunique.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/mathematics.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/mathematics.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/mathematics.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/mathematics.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/mkint_c.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/mkint_c.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/mkint_c.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/mkint_c.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/natural.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/natural.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/natural.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/natural.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/number.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/number.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/number.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/number.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/number_double.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/number_double.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/number_double.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/number_double.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/number_float.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/number_float.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/number_float.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/number_float.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/number_integer.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/number_integer.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/number_integer.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/number_integer.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/numeric.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/numeric.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/numeric_info.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/numeric_info.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/objects.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/objects.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/random_number_generator.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/random_number_generator.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/random_number_generator.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/random_number_generator.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/scalar.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/scalar.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/scalar.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/scalar.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/static_numeric_info.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/static_numeric_info.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/std_template.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/std_template.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/value.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/value.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/mathematics/value.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/mathematics/value.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/media_library/item.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/media_library/item.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/media_library/item.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/media_library/item.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/_.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/_.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/_.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/_.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/__property.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/__property.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/_defer.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/_defer.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/_impl.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/_impl.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/_impl_atom.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/_impl_atom.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/_impl_pointer.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/_impl_pointer.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/_impl_primitive.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/_impl_primitive.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/_papaya.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/_papaya.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/_papaya_impl.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/_papaya_impl.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/_property_object_impl.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/_property_object_impl.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/action_context.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/action_context.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/action_context.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/action_context.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/atom.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/atom.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/atom.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/atom.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/atomic.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/atomic.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/bit.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/bit.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/bit.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/bit.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/block.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/block.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/block.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/block.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/collection_file.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/collection_file.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/compare_predicate.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/compare_predicate.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/e_status.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/e_status.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/e_status.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/e_status.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/enum_bitset.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/enum_bitset.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/enumeration.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/enumeration.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/factory.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/factory.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/factory.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/factory.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/get_memory.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/get_memory.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/get_memory.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/get_memory.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/integral_byte.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/integral_byte.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/integral_byte.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/integral_byte.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/interlocked_count.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/interlocked_count.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/linked_property.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/linked_property.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/linked_property.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/linked_property.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/logic.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/logic.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/malloc.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/malloc.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/map.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/map.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/match.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/match.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/match.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/match.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/matter.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/matter.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/matter.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/matter.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/memory.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/memory.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/memory.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/memory.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/memory_base.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/memory_base.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/memory_base.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/memory_base.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/memory_container.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/memory_container.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/memory_container.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/memory_container.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/number.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/number.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/object.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/object.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/object.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/object.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/object_meta.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/object_meta.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/object_meta.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/object_meta.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/particle.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/particle.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/particle.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/particle.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/payload.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/payload.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/payload.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/payload.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/payload2.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/payload2.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/pointer.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/pointer.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/pointer2.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/pointer2.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/primitive.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/primitive.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/primitive.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/primitive.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/property.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/property.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/property_object.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/property_object.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/property_object.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/property_object.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/property_set.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/property_set.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/property_set_papaya.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/property_set_papaya.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/read_only_memory.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/read_only_memory.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/read_only_memory.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/read_only_memory.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/request_interface.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/request_interface.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/scope_stack.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/scope_stack.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/stick.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/stick.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/subparticle.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/subparticle.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/subparticle.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/subparticle.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/subparticle_flags.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/subparticle_flags.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/type.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/type.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/type.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/type.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/uid.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/uid.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/url.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/url.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/url.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/url.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/url_domain.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/url_domain.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/url_domain.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/url_domain.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/util.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/util.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/value.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/value.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/var_element.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/var_element.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/work.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/work.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/primitive/work.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/prototype/work.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/_.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/_.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/_c_trait_ansi.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/_c_trait_ansi.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/_c_trait_wide.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/_c_trait_wide.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/_conv.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/_conv.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/_defer.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/_defer.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/_impl.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/_impl.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/_impl_prio.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/_impl_prio.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/_impl_string_base.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/_impl_string_base.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/_impl_string_meta_data.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/_impl_string_meta_data.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/_international.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/_international.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/_str_impl.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/_str_impl.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/_str_impl.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/_str_impl.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/_string.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/_string.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/_string.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/_string.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/_u32hash.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/_u32hash.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/as_string.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/as_string.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/as_string.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/as_string.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/base64.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/base64.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/base64.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/base64.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/bstr.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/bstr.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/bstring.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/bstring.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/_.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/_.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/_impl.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/_impl.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/ancient/_.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/ancient/_.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/ancient/_c.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/ancient/_c.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/ancient/_c.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/ancient/_c.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/ancient/ansi.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/ancient/ansi.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/ancient/ansi_impl.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/ancient/ansi_impl.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/ancient/wd16.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/ancient/wd16.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/ancient/wd16_impl.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/ancient/wd16_impl.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/ancient/wd32.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/ancient/wd32.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/ancient/wd32_impl.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/ancient/wd32_impl.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/coupling.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/coupling.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/coupling_impl.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/coupling_impl.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/encoding.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/encoding.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/encoding_impl.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/encoding_impl.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/extension/_.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/extension/_.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/extension/ansi.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/extension/ansi.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/extension/ansi_impl.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/extension/ansi_impl.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/extension/wd16.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/extension/wd16.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/extension/wd16_impl.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/extension/wd16_impl.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/extension/wd32.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/extension/wd32.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/extension/wd32_impl.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/extension/wd32_impl.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/unicode.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/unicode.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c/unicode_impl.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c/unicode_impl.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/c_string.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/c_string.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/ch.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/ch.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/ch_class.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/ch_class.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/ch_class.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/ch_class.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/character.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/character.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/command_line.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/command_line.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/command_line.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/command_line.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/composite.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/composite.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/encoding_exception.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/encoding_exception.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/encoding_exception.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/encoding_exception.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/from_integer.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/from_integer.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/from_integer.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/from_integer.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/hex.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/hex.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/hex.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/hex.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/international.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/international.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/international.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/international.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/network_payload.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/network_payload.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/network_payload.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/network_payload.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/parse.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/parse.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/parse.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/parse.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/static_string.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/static_string.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/str.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/str.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/str.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/str.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/string.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/string.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/string.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/string.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/string_ansi.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/string_ansi.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/string_inst.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/string_inst.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/string_wide.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/string_wide.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/stringtow.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/stringtow.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/stringtow.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/stringtow.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/strw.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/strw.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/strx.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/strx.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/sz.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/sz.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/sz.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/sz.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/sz/_.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/sz/_.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/sz/ansi.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/sz/ansi.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/sz/ansi.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/sz/ansi.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/sz/ansi_impl.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/sz/ansi_impl.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/sz/wd16.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/sz/wd16.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/sz/wd16.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/sz/wd16.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/sz/wd16_impl.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/sz/wd16_impl.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/sz/wd32.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/sz/wd32.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/sz/wd32.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/sz/wd32.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/sz/wd32_impl.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/sz/wd32_impl.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/to_integer.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/to_integer.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/to_integer.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/to_integer.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/tokenizer.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/tokenizer.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/tokenizer.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/tokenizer.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/unicode.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/unicode.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/unicode.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/unicode.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/unicode16.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/unicode16.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/unicode16_32.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/unicode16_32.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/unicode32.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/unicode32.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/utf8_character.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/utf8_character.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/wildcard.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/wildcard.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/x/x_charcategory.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/x/x_charcategory.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/x/x_charcategory2.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/x/x_charcategory2.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/x/x_charcategory_names.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/x/x_charcategory_names.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/x/x_defines.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/x/x_defines.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/x/x_encodings.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/x/x_encodings.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/string/x/x_tables.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/string/x/x_tables.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/text/context.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/text/context.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/text/context.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/text/context.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/text/data.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/text/data.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/text/data.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/text/data.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/text/international.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/text/international.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/text/international.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/text/international.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/text/international_locale_schema.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/text/international_locale_schema.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/text/international_locale_schema.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/text/international_locale_schema.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/text/text.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/text/text.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/text/text.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/text/text.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/text/translator.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/text/translator.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/text/translator.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/text/translator.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/time/_.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/time/_.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/time/__string.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/time/__string.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/time/__string.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/time/__string.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/time/_binary_stream.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/time/_binary_stream.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/time/_impl.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/time/_impl.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/time/_string.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/time/_string.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/time/_structures.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/time/_structures.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/time/_text_stream.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/time/_text_stream.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/time/_unit_operator.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/time/_unit_operator.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/time/floating/_.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/time/floating/_.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/time/integral/_.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/time/integral/_.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/time/time.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/time/time.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/time/time/posix_time.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/time/time/posix_time.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/time/time/posix_time.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/time/time/posix_time.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/time/time/time.cpp">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/time/time/time.cpp">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/cmake/integration/source/app/acme/primitive/time/time/time.h">
+		<Unit filename="/home/camilo/cmake/integration/source/app/acme/prototype/time/time/time.h">
 			<Option target="acme"/>
 			<Option target="static_acme"/>
 		</Unit>

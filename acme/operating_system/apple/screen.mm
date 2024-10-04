@@ -20,7 +20,7 @@
 #else
 #error "todo"
 #endif
-#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/prototype/geometry2d/rectangle.h"
 
 
 CGRect g_rectScreen;

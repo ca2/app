@@ -12,14 +12,12 @@
 		9A22742127CF35F40042BAC2 /* application_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22742027CF35F40042BAC2 /* application_main.cpp */; };
 		9A22742227CF37560042BAC2 /* libacme.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC396FF25195DEB0036B92A /* libacme.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A22742327CF37640042BAC2 /* libapex.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC3970125195DEB0036B92A /* libapex.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		9A22742427CF37720042BAC2 /* libapp_just_message_box.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A46D2E12678453B000B22D0 /* libapp_just_message_box.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A22742627CF37E40042BAC2 /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A22742527CF37E40042BAC2 /* libaqua.dylib */; };
 		9A22742727CF37E40042BAC2 /* libaqua.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A22742527CF37E40042BAC2 /* libaqua.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A22742927CF38210042BAC2 /* libidn.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A22742827CF38210042BAC2 /* libidn.dylib */; };
 		9A22742A27CF38210042BAC2 /* libidn.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A22742827CF38210042BAC2 /* libidn.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9A46D35E267859BC000B22D0 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC396FF25195DEB0036B92A /* libacme.dylib */; };
 		9A46D35F267859BC000B22D0 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC3970125195DEB0036B92A /* libapex.dylib */; };
-		9A46D360267859BC000B22D0 /* libapp_just_message_box.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A46D2E12678453B000B22D0 /* libapp_just_message_box.dylib */; };
 		9A5D09A42B7F9A90003239D4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A5D09992B7F9A90003239D4 /* MainMenu.xib */; };
 		9A5D09A52B7F9A90003239D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A5D099B2B7F9A90003239D4 /* Images.xcassets */; };
 		9A6A480326611202004ED97A /* libdraw2d_quartz2d.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9AC2D08326540D6B00CC8096 /* libdraw2d_quartz2d.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -97,20 +95,6 @@
 			remoteGlobalIDString = 9AA14DDC282A17D900B1621E;
 			remoteInfo = ios_folder_zip;
 		};
-		9A46D2E02678453B000B22D0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A6A47D826611133004ED97A /* app_just_message_box.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9A48898624EB48DE00119EC4;
-			remoteInfo = app_just_message_box;
-		};
-		9A46D361267859D9000B22D0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A6A47D826611133004ED97A /* app_just_message_box.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9A48898524EB48DE00119EC4;
-			remoteInfo = app_just_message_box;
-		};
 		9A46D363267859E2000B22D0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AC2D0B426540F6700CC8096 /* node_macos.xcodeproj */;
@@ -167,6 +151,13 @@
 			remoteGlobalIDString = 9A1BD6E12A0079D400152CD1;
 			remoteInfo = static_folder_zip;
 		};
+		9AA827912CAF790100DA11E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA8278A2CAF78FF00DA11E9 /* app_just_aqua_message_box.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A48898624EB48DE00119EC4;
+			remoteInfo = app_just_message_box;
+		};
 		9AC2D08226540D6B00CC8096 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9AC2D07C26540D6B00CC8096 /* draw2d_quartz2d.xcodeproj */;
@@ -190,7 +181,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 6;
 			files = (
-				9A22742427CF37720042BAC2 /* libapp_just_message_box.dylib in Embed Libraries */,
 				9A83B51E2807E6E100A1A2B6 /* libacme_posix.dylib in Embed Libraries */,
 				9AA3F9972A95608D004283CA /* libaura_darwin.dylib in Embed Libraries */,
 				9A90BA1E2B5495C2002BFC9E /* libarchive.dylib in Embed Libraries */,
@@ -225,7 +215,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		070B8EEA1B6E53F900D26137 /* _app_just_message_box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _app_just_message_box.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		070B8EEA1B6E53F900D26137 /* _app_just_aqua_message_box.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = _app_just_aqua_message_box.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hello Multiverse!!Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1FB51A28713B2E0042849A /* crypto_openssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = crypto_openssl.xcodeproj; path = ../../crypto_openssl/crypto_openssl.xcodeproj; sourceTree = "<group>"; };
 		9A1FB52C28713C0A0042849A /* folder_zip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = folder_zip.xcodeproj; path = ../../folder_zip/folder_zip.xcodeproj; sourceTree = "<group>"; };
@@ -242,7 +232,6 @@
 		9A5D099D2B7F9A90003239D4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A5D09A82B7F9ACC003239D4 /* _____release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____release.xcconfig"; path = "../_____release.xcconfig"; sourceTree = "<group>"; };
 		9A5D09A92B7F9ACC003239D4 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____debug.xcconfig"; path = "../_____debug.xcconfig"; sourceTree = "<group>"; };
-		9A6A47D826611133004ED97A /* app_just_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_just_message_box.xcodeproj; path = ../app_just_message_box.xcodeproj; sourceTree = "<group>"; };
 		9A6A47F226611202004ED97A /* libwindowing_macos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libwindowing_macos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6A480626611214004ED97A /* libwrite_text_quartz2d.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libwrite_text_quartz2d.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A6A481F2661155F004ED97A /* write_text_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = write_text_quartz2d.xcodeproj; path = "../../../../operating_system/operating_system-apple/write_text_quartz2d/write_text_quartz2d.xcodeproj"; sourceTree = "<group>"; };
@@ -261,6 +250,7 @@
 		9AA3F98F2A95608D004283CA /* libacme_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA3F9902A95608D004283CA /* libapex_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA3F9912A95608D004283CA /* libaura_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AA8278A2CAF78FF00DA11E9 /* app_just_aqua_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_just_aqua_message_box.xcodeproj; path = ../app_just_aqua_message_box.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9AC2D07C26540D6B00CC8096 /* draw2d_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = draw2d_quartz2d.xcodeproj; path = "../../../../operating_system/operating_system-apple/draw2d_quartz2d/draw2d_quartz2d.xcodeproj"; sourceTree = "<group>"; };
 		9AC2D0B426540F6700CC8096 /* node_macos.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = node_macos.xcodeproj; path = "../../../../operating_system/operating_system-macos/node_macos/node_macos.xcodeproj"; sourceTree = "<group>"; };
 		9AC396F925195DAB0036B92A /* libapex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libapex.dylib; path = ../../time/macos/libapex.dylib; sourceTree = "<group>"; };
@@ -283,7 +273,6 @@
 				9A46D35F267859BC000B22D0 /* libapex.dylib in Frameworks */,
 				9A22742627CF37E40042BAC2 /* libaqua.dylib in Frameworks */,
 				9A22742927CF38210042BAC2 /* libidn.dylib in Frameworks */,
-				9A46D360267859BC000B22D0 /* libapp_just_message_box.dylib in Frameworks */,
 				9A83B50E2807E68C00A1A2B6 /* libaura.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,7 +290,7 @@
 		070B8EE11B6E53F900D26137 = {
 			isa = PBXGroup;
 			children = (
-				9A6A47D826611133004ED97A /* app_just_message_box.xcodeproj */,
+				9AA8278A2CAF78FF00DA11E9 /* app_just_aqua_message_box.xcodeproj */,
 				9A1FB51A28713B2E0042849A /* crypto_openssl.xcodeproj */,
 				9AC2D07C26540D6B00CC8096 /* draw2d_quartz2d.xcodeproj */,
 				9A1FB52C28713C0A0042849A /* folder_zip.xcodeproj */,
@@ -318,7 +307,7 @@
 		070B8EEB1B6E53F900D26137 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				070B8EEA1B6E53F900D26137 /* _app_just_message_box.app */,
+				070B8EEA1B6E53F900D26137 /* _app_just_aqua_message_box.app */,
 				070B8EFD1B6E53FA00D26137 /* Hello Multiverse!!Tests.xctest */,
 			);
 			name = Products;
@@ -359,14 +348,6 @@
 			name = Library;
 			sourceTree = "<group>";
 		};
-		9A46D2D32678453B000B22D0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9A46D2E12678453B000B22D0 /* libapp_just_message_box.dylib */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		9A5D09982B7F9A90003239D4 /* macos */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,6 +376,14 @@
 				9A22742027CF35F40042BAC2 /* application_main.cpp */,
 			);
 			name = __implement;
+			sourceTree = "<group>";
+		};
+		9AA8278E2CAF790000DA11E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AA827922CAF790100DA11E9 /* libapp_just_message_box.dylib */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		9AC2D07D26540D6B00CC8096 /* Products */ = {
@@ -456,9 +445,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		070B8EE91B6E53F900D26137 /* _app_just_message_box */ = {
+		070B8EE91B6E53F900D26137 /* _app_just_aqua_message_box */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "_app_just_message_box" */;
+			buildConfigurationList = 070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "_app_just_aqua_message_box" */;
 			buildPhases = (
 				070B8EE61B6E53F900D26137 /* Sources */,
 				070B8EE71B6E53F900D26137 /* Frameworks */,
@@ -471,13 +460,12 @@
 				9A866051296671ED000C82F0 /* PBXTargetDependency */,
 				9A1FB52928713B3B0042849A /* PBXTargetDependency */,
 				9A46D364267859E2000B22D0 /* PBXTargetDependency */,
-				9A46D362267859D9000B22D0 /* PBXTargetDependency */,
 				9A6A482626611594004ED97A /* PBXTargetDependency */,
 				9A6A481226611372004ED97A /* PBXTargetDependency */,
 			);
-			name = _app_just_message_box;
+			name = _app_just_aqua_message_box;
 			productName = "Hello Multiverse!!";
-			productReference = 070B8EEA1B6E53F900D26137 /* _app_just_message_box.app */;
+			productReference = 070B8EEA1B6E53F900D26137 /* _app_just_aqua_message_box.app */;
 			productType = "com.apple.product-type.application";
 		};
 		070B8EFC1B6E53FA00D26137 /* Hello Multiverse!!Tests */ = {
@@ -519,7 +507,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 070B8EE51B6E53F900D26137 /* Build configuration list for PBXProject "_app_just_message_box" */;
+			buildConfigurationList = 070B8EE51B6E53F900D26137 /* Build configuration list for PBXProject "_app_just_aqua_message_box" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -532,8 +520,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 9A46D2D32678453B000B22D0 /* Products */;
-					ProjectRef = 9A6A47D826611133004ED97A /* app_just_message_box.xcodeproj */;
+					ProductGroup = 9AA8278E2CAF790000DA11E9 /* Products */;
+					ProjectRef = 9AA8278A2CAF78FF00DA11E9 /* app_just_aqua_message_box.xcodeproj */;
 				},
 				{
 					ProductGroup = 9A1FB51B28713B2E0042849A /* Products */;
@@ -558,7 +546,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				070B8EE91B6E53F900D26137 /* _app_just_message_box */,
+				070B8EE91B6E53F900D26137 /* _app_just_aqua_message_box */,
 				070B8EFC1B6E53FA00D26137 /* Hello Multiverse!!Tests */,
 			);
 		};
@@ -600,13 +588,6 @@
 			remoteRef = 9A1FB53328713C0A0042849A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		9A46D2E12678453B000B22D0 /* libapp_just_message_box.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = libapp_just_message_box.dylib;
-			remoteRef = 9A46D2E02678453B000B22D0 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		9A6A47D726611129004ED97A /* libnode_macos.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -633,6 +614,13 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libstatic_folder_zip.a;
 			remoteRef = 9AA3F98C2A95606F004283CA /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AA827922CAF790100DA11E9 /* libapp_just_message_box.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libapp_just_message_box.dylib;
+			remoteRef = 9AA827912CAF790100DA11E9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9AC2D08326540D6B00CC8096 /* libdraw2d_quartz2d.dylib */ = {
@@ -692,18 +680,13 @@
 /* Begin PBXTargetDependency section */
 		070B8EFF1B6E53FA00D26137 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 070B8EE91B6E53F900D26137 /* _app_just_message_box */;
+			target = 070B8EE91B6E53F900D26137 /* _app_just_aqua_message_box */;
 			targetProxy = 070B8EFE1B6E53FA00D26137 /* PBXContainerItemProxy */;
 		};
 		9A1FB52928713B3B0042849A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = crypto_openssl;
 			targetProxy = 9A1FB52828713B3B0042849A /* PBXContainerItemProxy */;
-		};
-		9A46D362267859D9000B22D0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = app_just_message_box;
-			targetProxy = 9A46D361267859D9000B22D0 /* PBXContainerItemProxy */;
 		};
 		9A46D364267859E2000B22D0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1000,7 +983,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		070B8EE51B6E53F900D26137 /* Build configuration list for PBXProject "_app_just_message_box" */ = {
+		070B8EE51B6E53F900D26137 /* Build configuration list for PBXProject "_app_just_aqua_message_box" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				070B8F051B6E53FA00D26137 /* Debug */,
@@ -1009,7 +992,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "_app_just_message_box" */ = {
+		070B8F071B6E53FA00D26137 /* Build configuration list for PBXNativeTarget "_app_just_aqua_message_box" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				070B8F081B6E53FA00D26137 /* Debug */,

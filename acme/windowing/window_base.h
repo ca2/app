@@ -42,6 +42,10 @@ namespace windowing
       ~window_base() override;
 
 
+      ::user::interaction_base * user_interaction_base() override;
+      ::windowing::window_base * windowing_window_base() override;
+
+
       void on_initialize_particle() override;
 
 
@@ -154,10 +158,16 @@ namespace windowing
       virtual void set_interface_client_size(const ::size_i32 & sizeWindow);
 
 
+      void set_rectangle(const rectangle_i32 &rectangle) override;
       void set_position(const point_i32 &point) override;
       void set_size(const size_i32 &size) override;
 
 
+      ::rectangle_i32 get_window_rectangle() override;
+      virtual ::rectangle_i32 get_window_rectangle_unlocked();
+
+
+      virtual void set_rectangle_unlocked(const rectangle_i32 &rectangle);
       virtual void set_position_unlocked(const point_i32 &point);
       virtual void set_size_unlocked(const size_i32 &size);
 

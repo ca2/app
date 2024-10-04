@@ -117,9 +117,14 @@ namespace user
 
       virtual void create_message_queue(const ::string & lpszName);
 
-      virtual ::user::interaction * user_interaction();
+
       virtual ::user::interaction_base * user_interaction_base();
+      virtual ::windowing::window_base * windowing_window_base();
+
+
       virtual ::user::prototype * user_prototype();
+      virtual ::user::interaction * user_interaction();
+
       //virtual void set_config_per_second(::frequency dConfigFps);
       //virtual ::frequency get_config_per_second();
       //virtual ::frequency get_output_per_second();
@@ -153,6 +158,7 @@ namespace user
       virtual bool GetFocusRect(::rectangle_i32 & rectangle);
 
 
+      virtual bool is_window_visible();
       virtual bool is_window_stored_iconic(); // m_puserinteractionimpl->m_puserinteraction->const_layout().window().display() == e_display_iconic
       virtual bool is_window_zoomed();
       virtual void window_minimize();
@@ -421,6 +427,8 @@ namespace user
 
       //virtual void set_foreground_window();
 
+
+      virtual void set_rectangle(const ::rectangle_i32 & rectangle);
       virtual void set_position(const ::point_i32 & point);
       virtual void set_size(const ::size_i32 & size);
 
@@ -441,8 +449,10 @@ namespace user
 //      using ::user::drag_client::get_text;
 
 
-      virtual ::rectangle_i32 get_window_rectangle();
+      virtual void set_interaction_rectangle(const ::rectangle_i32 & rectangle);
 
+      virtual ::rectangle_i32 get_interaction_rectangle();
+      virtual ::rectangle_i32 get_window_rectangle();
 
       virtual void set_window_text(const ::string & psz);
       virtual void set_window_text_source(const ::a_string_function & astringfunction);

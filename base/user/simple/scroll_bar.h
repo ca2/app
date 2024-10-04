@@ -39,7 +39,7 @@ public:
    virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
    virtual void _001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraphics);
 
-   void update_drawing_objects();
+   void update_drawing_objects() override;
 
    virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 

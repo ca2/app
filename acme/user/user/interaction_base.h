@@ -40,13 +40,15 @@ class CLASS_DECL_ACME interaction_base :
 
 public:
 
-    bool                                      m_bMinimizeBox;
-    bool                                      m_bMaximizeBox;
-    bool                                      m_bResizeable;
-    bool                                     m_bTopMost;
+    bool                                        m_bMinimizeBox;
+    bool                                        m_bMaximizeBox;
+    bool                                        m_bResizeable;
+    bool                                        m_bTopMost;
+    bool                                        m_bStartCentered;
+    bool                                        m_bArbitraryPositioning;
 
 
-   ::pointer < ::windowing::window_base >    m_pwindowbase;
+   ::pointer < ::windowing::window_base >       m_pwindowbase;
 
 
     interaction_base();
@@ -66,6 +68,7 @@ public:
 
 
    ::user::interaction_base * user_interaction_base() override;
+   ::windowing::window_base * windowing_window_base() override;
 
 
 

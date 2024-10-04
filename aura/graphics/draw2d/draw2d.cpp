@@ -247,13 +247,17 @@ namespace draw2d
    class ::write_text::write_text * draw2d::write_text()
    {
 
-      if (application()->m_bWriteText)
+      if(!m_pwritetext)
       {
 
-         initialize_write_text();
+         if (application()->m_bWriteText)
+         {
+
+            initialize_write_text();
+
+         }
 
       }
-
 
       return m_pwritetext;
 
@@ -1242,6 +1246,13 @@ void draw2d::emboss_predicate(
 
    void draw2d::initialize_write_text()
    {
+
+      if(m_pwritetext)
+      {
+
+         return;
+
+      }
 
       ::e_status estatus = ::success;
 

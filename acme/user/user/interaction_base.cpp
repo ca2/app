@@ -28,6 +28,8 @@ namespace user
       m_bMaximizeBox = true;
       m_bResizeable = true;
       m_bTopMost = false;
+      m_bStartCentered = false;
+      m_bArbitraryPositioning = false;
 
    }
 
@@ -146,19 +148,19 @@ namespace user
       if(strActionName == "minimize")
       {
 
-         window_minimize();
+         display(e_display_iconic);
 
       }
       else if(strActionName == "maximize")
       {
 
-         window_maximize();
+         display(e_display_zoomed);
 
       }
       else if(strActionName == "restore")
       {
 
-         window_restore();
+         display(e_display_normal);
 
       }
       else if(strActionName == "about_box")
@@ -170,7 +172,6 @@ namespace user
       else if(strActionName == "close")
       {
 
-         //m_puserinteractionimpl->m_puserinteraction->post_message(e_message_close);
          window_close();
 
       }
@@ -890,6 +891,14 @@ namespace user
    {
 
       return this;
+
+   }
+
+
+   ::windowing::window_base* interaction_base::windowing_window_base()
+   {
+
+      return m_pwindowbase;
 
    }
 

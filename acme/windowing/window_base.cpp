@@ -17,7 +17,6 @@
 #include "acme/user/user/interaction_base.h"
 
 
-
 namespace windowing
 {
 
@@ -36,6 +35,23 @@ namespace windowing
    {
 
       output_debug_string("window_base::~window_base()");
+
+   }
+
+
+
+   ::user::interaction_base * window_base::user_interaction_base()
+   {
+
+      return m_puserinteractionbase;
+
+   }
+
+
+   ::windowing::window_base * window_base::windowing_window_base()
+   {
+
+      return this;
 
    }
 
@@ -529,18 +545,32 @@ void window_base::on_char(int iChar)
    }
 
 
+   void window_base::set_rectangle(const rectangle_i32 &rectangle)
+   {
+
+      auto r = rectangle;
+
+      main_send([this, r]()
+                {
+
+                   set_rectangle_unlocked(r);
+
+                });
+
+   }
+
+
    void window_base::set_position(const point_i32 &point)
    {
 
       auto p = point;
 
       main_post([this, p]()
-         {
+      {
 
-set_position_unlocked(p);
+         set_position_unlocked(p);
 
-         });
-
+      });
 
    }
 
@@ -551,12 +581,22 @@ set_position_unlocked(p);
       auto s = size;
 
       main_post([this, s]()
-         {
+      {
 
-set_size_unlocked(s);
+         set_size_unlocked(s);
 
-         });
+      });
 
+
+   }
+
+
+   void window_base::set_rectangle_unlocked(const rectangle_i32 & rectangle)
+   {
+
+      set_position_unlocked(rectangle.top_left());
+
+      set_size_unlocked(rectangle.size());
 
    }
 
@@ -571,6 +611,31 @@ set_size_unlocked(s);
    void window_base::set_size_unlocked(const size_i32 &size)
    {
 
+
+   }
+
+
+   ::rectangle_i32 window_base::get_window_rectangle()
+   {
+
+      ::rectangle_i32 rectangle;
+
+      main_send([this, & rectangle]()
+      {
+
+         rectangle = get_window_rectangle_unlocked();
+
+      });
+
+      return rectangle;
+
+   }
+
+
+   ::rectangle_i32 window_base::get_window_rectangle_unlocked()
+   {
+
+      return {};
 
    }
 

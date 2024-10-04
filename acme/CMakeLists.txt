@@ -2800,6 +2800,8 @@ add_library(${PROJECT_NAME} SHARED ${library_source}
 	integrate/qt.h
 	integrate/qt/geometry2d.h
 	integrate/qt/image.h
+	operating_system/x11/_x11.h
+	operating_system/x11/_x11.h
 )
 add_library(static_${PROJECT_NAME} STATIC ${library_source}
 		operating_system/posix/_null_nano_dynamic_library_dl.cpp)

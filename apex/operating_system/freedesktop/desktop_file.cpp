@@ -417,6 +417,8 @@ namespace freedesktop
 
       string strModule = file()->module();
 
+      information() << "file()->module() : " << strModule;
+
       straLine._007SetLine("[Desktop Entry]", "GenericName", strTitle);
       straLine._007SetLine("[Desktop Entry]", "Name", strTitle);
       straLine._007SetLine("[Desktop Entry]", "Comment", strTitle + " Comment");

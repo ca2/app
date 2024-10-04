@@ -96,7 +96,7 @@ namespace windowing
 
       //virtual void create_window(::user::interaction_impl * pimpl);
       
-      virtual void create_window();
+      void create_window() override;
 
       virtual void on_finished_window_creation();
 
@@ -115,7 +115,7 @@ namespace windowing
       virtual double get_top_margin();
       
 
-      virtual void set_keyboard_focus();
+      void set_keyboard_focus() override;
       virtual void _set_keyboard_focus_unlocked();
 
 
@@ -171,7 +171,7 @@ namespace windowing
 
       virtual void exit_zoomed();
 
-      virtual void destroy_window();
+      void destroy_window() override;
 
       void on_destroy() override;
 
@@ -181,7 +181,7 @@ namespace windowing
 
       virtual void set_user_interaction(::user::interaction *pinteraction);
 
-      virtual void post_non_client_destroy();
+      void post_non_client_destroy() override;
 
       virtual bool is_child_of(const window * pwindowAscendantCandidate) const; // or descendant
       
@@ -201,7 +201,7 @@ namespace windowing
       virtual bool is_iconic();
       virtual bool is_zoomed();
       virtual bool is_window();
-      virtual bool is_window_visible();
+      bool is_window_visible() override;
 
       virtual bool _is_iconic_unlocked();
       virtual bool _is_window_visible_unlocked();
@@ -252,7 +252,7 @@ namespace windowing
 
       virtual lresult send_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr);
 
-      virtual void post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr);
+      void post_message(const ::atom & atom, wparam wParam = 0, lparam lParam = nullptr) override;
 
 
       virtual void set_window_text(const ::scoped_string & scopedstr);
@@ -295,11 +295,11 @@ namespace windowing
 
       // Window State Functions
       virtual bool is_this_enabled();
-      virtual void enable_window(bool bEnable = true);
+      void enable_window(bool bEnable = true) override;
 
       // the active interaction_impl applies only to top-level (frame windows)
       virtual ::user::interaction * get_active_window();
-      virtual void set_active_window();
+      void set_active_window() override;
       virtual void _set_active_window_unlocked();
 
       // the foreground interaction_impl applies only to top-level windows (frame windows)
@@ -343,10 +343,10 @@ namespace windowing
       //virtual ::point_i32 get_mouse_cursor_absolute_position();
 
 
-      virtual void set_tool_window(bool bSet);
+      void set_tool_window(bool bSet) override;
 
 
-      void set_context_org(::draw2d::graphics_pointer & pgraphics);
+      void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
 
 
       void on_set_parent(::user::interaction * pinteraction);
@@ -358,9 +358,9 @@ namespace windowing
 
       virtual void non_top_most_upper_window_rects(::rectangle_i32_array & recta);
 
-      virtual void default_message_handler(::message::message * pmessage);
+      void default_message_handler(::message::message * pmessage) override;
 
-      virtual void track_mouse_hover();
+      void track_mouse_hover() override;
 
 
       virtual void _task_transparent_mouse_event();
@@ -433,9 +433,9 @@ namespace windowing
 
       virtual void window_update_screen();
 
-      virtual bool defer_perform_entire_reposition_process(::user::mouse * pmouse);
+      bool defer_perform_entire_reposition_process(::user::mouse * pmouse) override;
 
-      virtual bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse);
+      bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse) override;
 
       virtual void on_destruct_mouse_message(::message::mouse * pmouse);
 
@@ -452,7 +452,7 @@ namespace windowing
       ::string get_window_text() override;
 
 
-      virtual void defer_show_system_menu(::user::mouse * pmouse);
+      void defer_show_system_menu(::user::mouse * pmouse) override;
 
       virtual void pick_browse(const ::function < void(const ::file::path & path) > & callback);
       virtual void pick_media(const char * pszMediaType);
@@ -467,7 +467,7 @@ namespace windowing
 
       void destroy() override;
 
-      virtual void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem);
+      void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem) override;
 
 
       void main_send(const ::procedure & procedure) override;

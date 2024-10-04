@@ -728,6 +728,22 @@ namespace nano
       }
 
 
+      void interchange::set_interaction_rectangle(const ::rectangle_i32 & rectangle)
+      {
+
+         m_rectangle = rectangle;
+
+      }
+
+
+      ::rectangle_i32 interchange::get_interaction_rectangle()
+      {
+
+         return m_rectangle;
+
+      }
+
+
       void interchange::get_client_rectangle(::rectangle_i32 & rectangle)
       {
 

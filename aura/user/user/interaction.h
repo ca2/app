@@ -1577,9 +1577,9 @@ namespace user
       virtual ::point_i32 mouse_cursor_position();
       //virtual void set_cursor_position(const ::point_i32 & pointCursor);
 
-      virtual bool has_mouse_capture();
-      virtual void set_mouse_capture();
-      virtual bool defer_release_mouse_capture();
+      bool has_mouse_capture() override;
+      void set_mouse_capture() override;
+      bool defer_release_mouse_capture() override;
 
 
       virtual bool has_keyboard_focus();

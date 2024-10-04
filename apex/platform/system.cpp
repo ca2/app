@@ -1778,13 +1778,7 @@ pacmedirectory->create("/ca2core");
    string system::get_application_server_name()
    {
 
-      string strApplicationServerName = application()->m_strAppId;
-
-      strApplicationServerName.replace_with(".", "/");
-
-      strApplicationServerName.replace_with("-", "_");
-
-      return strApplicationServerName;
+      return ::acme::system::get_application_server_name();
 
    }
 

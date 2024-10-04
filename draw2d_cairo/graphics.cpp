@@ -4005,13 +4005,11 @@ namespace draw2d_cairo
 
          return internal_draw_text_cairo(block, rectangle, ealign, edrawtext, &cairo_show_text);
 
-
       }
       else if (::is_set(pfont->get_os_data(this, 1)))
       {
 
          return internal_draw_text_cairo(block, rectangle, ealign, edrawtext, &cairo_show_text);
-
 
       }
 

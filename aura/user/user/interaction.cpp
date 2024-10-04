@@ -24171,6 +24171,13 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       }
 
+      if(pmouse->m_bRet)
+      {
+
+         return;
+
+      }
+
       if (m_bDefaultClickHandling || m_bDefaultMouseHoverHandling)
       {
 

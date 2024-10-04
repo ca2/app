@@ -3601,7 +3601,13 @@ namespace acme
    ::string system::get_application_server_name()
    {
 
-      return {};
+      string strApplicationServerName = application()->m_strAppId;
+
+      strApplicationServerName.replace_with(".", "/");
+
+      strApplicationServerName.replace_with("-", "_");
+
+      return strApplicationServerName;
 
    }
 

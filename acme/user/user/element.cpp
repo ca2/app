@@ -1,17 +1,17 @@
 #include "framework.h"
-//#include "check.h"
-//#include "text.h"
 #include "element.h"
+#include "item.h"
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/handler/item.h"
-#include "item.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
 #include "acme/operating_system/a_system_menu.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
+#include "acme/user/user/interaction_base.h"
+#include "acme/windowing/window_base.h"
 
 
 namespace user
@@ -1577,6 +1577,13 @@ namespace user
    }
 
 
+   void element::set_rectangle(const ::rectangle_i32 & rectangle)
+   {
+
+   }
+
+
+
    void element::set_position(const ::point_i32 & point)
    {
 
@@ -1591,10 +1598,25 @@ namespace user
    }
 
 
+   void element::set_interaction_rectangle(const ::rectangle_i32 & rectangle)
+   {
+
+
+   }
+
+
+   ::rectangle_i32 element::get_interaction_rectangle()
+   {
+
+      return user_interaction_base()->get_interaction_rectangle();
+
+   }
+
+
    ::rectangle_i32 element::get_window_rectangle()
    {
 
-      return {};
+      return windowing_window_base()->get_window_rectangle();
 
    }
 
@@ -1623,10 +1645,8 @@ namespace user
    void element::edit_on_set_focus(::user::interaction * pinteraction)
    {
 
+
    }
-
-
-
 
 
    void element::edit_on_kill_focus(::user::interaction * pinteraction)
@@ -2605,14 +2625,6 @@ namespace user
    }
 
 
-   ::user::interaction * element::user_interaction()
-   {
-
-      return nullptr;
-
-   }
-
-
    ::user::interaction_base * element::user_interaction_base()
    {
 
@@ -2621,7 +2633,23 @@ namespace user
    }
 
 
+   ::windowing::window_base * element::windowing_window_base()
+   {
+
+      return nullptr;
+
+   }
+
+
    ::user::prototype * element::user_prototype()
+   {
+
+      return nullptr;
+
+   }
+
+
+   ::user::interaction * element::user_interaction()
    {
 
       return nullptr;
@@ -2917,26 +2945,46 @@ namespace user
    }
 
 
-   bool element::is_window_stored_iconic() // m_puserinteractionimpl->m_puserinteraction->const_layout().window().display() == e_display_iconic
-{
+   bool element::is_window_visible()
+   {
 
       return false;
 
-}
-   void element::window_minimize() // m_puserinteractionimpl->m_puserinteraction->display(::e_display_zoomed);
+   }
+
+
+   bool element::is_window_stored_iconic()
    {
 
-   }
-   void element::window_maximize() // m_puserinteractionimpl->m_puserinteraction->display(::e_display_zoomed);
-   {
+      return false;
 
    }
-   void element::window_full_screen() // m_puserinteractionimpl->m_puserinteraction->display(::e_display_full_screen);
+
+
+   void element::window_minimize()
    {
 
+
    }
-   void element::window_restore() // m_puserinteractionimpl->m_puserinteraction->display(::e_display_normal);
+
+
+   void element::window_maximize()
    {
+
+
+   }
+
+
+   void element::window_full_screen()
+   {
+
+
+   }
+
+
+   void element::window_restore()
+   {
+
 
    }
 
@@ -2948,20 +2996,6 @@ namespace user
    }
 
 
-   // void element::set_window_position(const ::point_i32 & point)
-   // {
-   //
-   //
-   // }
-   //
-   //
-   // void element::set_window_size(const ::size_i32 & size)
-   // {
-   //
-   //
-   // }
-
-
    void element::_on_window_simple_action(const char * pszActionName)
    {
 
@@ -2971,6 +3005,7 @@ namespace user
 
    void element::set_mouse_capture()
    {
+
 
    }
 

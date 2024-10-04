@@ -1812,7 +1812,7 @@ namespace windowing
 
          auto offset = rectangleOutput.top_right() - s_pointInitialTopRight;
 
-         information() << "TopRightOffsetFromInitial : " << offset;
+         //information() << "TopRightOffsetFromInitial : " << offset;
 
          if(offset.cx() != 0 || offset.cy() != 0)
          {
@@ -1919,7 +1919,7 @@ namespace windowing
 
          auto offset = r.top_right() - s_pointInitialTopRight;
 
-         information() << "TopRightOffsetFromInitial : " << offset;
+         //information() << "TopRightOffsetFromInitial : " << offset;
 
          if (offset.cx() != 0 || offset.cy() != 0)
          {

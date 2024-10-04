@@ -54,7 +54,7 @@ namespace windowing
 
       virtual float get_dpi();
 
-      virtual void open_display();
+      void open_display() override;
       virtual void close_display();
 
       virtual bool set_main_monitor(::collection::index iMonitor);

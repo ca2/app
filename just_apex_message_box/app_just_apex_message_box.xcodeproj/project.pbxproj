@@ -44,6 +44,27 @@
 			remoteGlobalIDString = 9AC980872A71B39E00B1BCF3;
 			remoteInfo = static_apex;
 		};
+		9AA829592CAF930700DA11E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA828C92CAF86B700DA11E9 /* apex.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A68A446251143F8008DABD2;
+			remoteInfo = apex;
+		};
+		9AA8295B2CAF930700DA11E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA828C92CAF86B700DA11E9 /* apex.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AD695C2251A754800C0EBD7;
+			remoteInfo = ios_apex;
+		};
+		9AA8295D2CAF930700DA11E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA828C92CAF86B700DA11E9 /* apex.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9AC980872A71B39E00B1BCF3;
+			remoteInfo = static_apex;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +160,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9AA829542CAF930700DA11E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AA8295A2CAF930700DA11E9 /* libapex.dylib */,
+				9AA8295C2CAF930700DA11E9 /* libios_apex.a */,
+				9AA8295E2CAF930700DA11E9 /* libstatic_apex.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -198,6 +229,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 9AA829542CAF930700DA11E9 /* Products */;
+					ProjectRef = 9AA828C92CAF86B700DA11E9 /* apex.xcodeproj */;
+				},
+				{
 					ProductGroup = 9AA828CD2CAF86CF00DA11E9 /* Products */;
 					ProjectRef = 9AA828CC2CAF86CE00DA11E9 /* apex.xcodeproj */;
 				},
@@ -229,6 +264,27 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libstatic_apex.a;
 			remoteRef = 9AA828D82CAF86CF00DA11E9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AA8295A2CAF930700DA11E9 /* libapex.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libapex.dylib;
+			remoteRef = 9AA829592CAF930700DA11E9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AA8295C2CAF930700DA11E9 /* libios_apex.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_apex.a;
+			remoteRef = 9AA8295B2CAF930700DA11E9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AA8295E2CAF930700DA11E9 /* libstatic_apex.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libstatic_apex.a;
+			remoteRef = 9AA8295D2CAF930700DA11E9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

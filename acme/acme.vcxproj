@@ -1202,6 +1202,7 @@
     <ClInclude Include="nano\user\device.h" />
     <ClInclude Include="nano\user\display.h" />
     <ClInclude Include="nano\user\font.h" />
+    <ClInclude Include="nano\user\interchange.h" />
     <ClInclude Include="nano\user\message_box.h" />
     <ClInclude Include="nano\user\object.h" />
     <ClInclude Include="nano\user\pen.h" />
@@ -1209,8 +1210,6 @@
     <ClInclude Include="nano\user\still.h" />
     <ClInclude Include="nano\user\user.h" />
     <ClInclude Include="nano\user\window.h" />
-    <ClInclude Include="nano\user\window_implementation.h" />
-    <ClInclude Include="nano\user\window_interface.h" />
     <ClInclude Include="nano\user\_.h" />
     <ClInclude Include="nano\_.h" />
     <ClInclude Include="operating_system\a_system_menu.h" />
@@ -1424,8 +1423,6 @@
     <ClInclude Include="user\user\property.h" />
     <ClInclude Include="user\user\text.h" />
     <ClInclude Include="user\_.h" />
-    <ClInclude Include="windowing_system\windowing_system.h" />
-    <ClInclude Include="windowing_system\_.h" />
     <ClInclude Include="_iostream.h" />
     <ClInclude Include="graphics\draw2d\color32.h" />
     <ClInclude Include="graphics\draw2d\color_array.h" />
@@ -1511,7 +1508,6 @@
     <ClInclude Include="user\user\item.h" />
     <ClInclude Include="user\user\tool.h" />
     <ClInclude Include="user\user\tool_item.h" />
-    <ClInclude Include="windowing\window_base.h" />
     <ClInclude Include="_stdio.h" />
     <ClInclude Include="_win32_gdi.h" />
     <None Include="constant\character_set.enum" />
@@ -2160,8 +2156,8 @@
     <ClCompile Include="user\user\text_property.cpp" />
     <ClCompile Include="user\user\tool_item.cpp" />
     <ClCompile Include="user\user\_string.cpp" />
+    <ClCompile Include="windowing\windowing_system.cpp" />
     <ClCompile Include="windowing\window_base.cpp" />
-    <ClCompile Include="windowing_system\windowing_system.cpp" />
     <ClCompile Include="_.cpp" />
     <ClInclude Include="compress\_.h" />
     <ClInclude Include="console.h" />

@@ -6,7 +6,7 @@
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
-#include "acme/windowing_system/windowing_system.h"
+#include "acme/windowing/windowing_base.h"
 
 
 namespace innate_ui
@@ -51,7 +51,7 @@ namespace innate_ui
 
       auto psystem = system();
 
-      auto pwindowingsystem = psystem->windowing_system();
+      auto pwindowingsystem = psystem->windowing_base();
 
       pwindowingsystem->async(procedure);      //auto pparticle = (::subparticle *)procedure.m_pbase;
 

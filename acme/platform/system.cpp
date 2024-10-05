@@ -42,7 +42,7 @@
 #include "acme/nano/user/user.h"
 #include "acme/nano/http/http.h"
 #include "acme/nano/speech/speech.h"
-#include "acme/windowing_system/windowing_system.h"
+#include "acme/windowing/windowing_base.h"
 //#include "acme/user/user/conversation.h"
 
 
@@ -1160,14 +1160,14 @@ namespace acme
    void system::TermSystem()
    {
 
-      if(m_pwindowingsystem)
+      if(m_pwindowingbase)
       {
 
-         m_pwindowingsystem->windowing_system_post_quit();
+         m_pwindowingbase->windowing_system_post_quit();
 
       }
 
-      m_pwindowingsystem.release();
+      m_pwindowingbase.release();
 
       m_pmapRegularExpressionContext.release();
 
@@ -3923,19 +3923,19 @@ namespace acme
    }
 
 
-   ::windowing_system::windowing_system * system::windowing_system()
+   ::windowing::windowing_base * system::windowing_base()
    {
 
-      if(!m_pwindowingsystem)
+      if(!m_pwindowingbase)
       {
 
          do_user_system_factory();
 
-         __construct(m_pwindowingsystem);
+         __construct(m_pwindowingbase);
 
       }
 
-      return m_pwindowingsystem;
+      return m_pwindowingbase;
 
    }
 

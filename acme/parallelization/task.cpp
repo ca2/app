@@ -15,8 +15,8 @@
 #include "acme/exception/_text_stream.h"
 #include "acme/_operating_system.h"
 #include "acme/operating_system/parallelization.h"
-#include "windowing/window_base.h"
-#include "windowing_system/windowing_system.h"
+#include "acme/windowing/window_base.h"
+#include "acme/windowing/windowing_base.h"
 
 
 extern bool g_bIntermediateThreadReferencingDebugging;
@@ -360,7 +360,7 @@ void task::main()
 
       // ITCN?   Is This Code Needed?
 
-      auto windowbasea = system()->windowing_system()->m_windowbasea;
+      auto windowbasea = system()->windowing_base()->m_windowbasea;
 
       //while (::windowing::window_base::nanowindowimplementationa().has_element())
       {

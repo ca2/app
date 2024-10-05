@@ -30,7 +30,7 @@
 #include "acme/nano/user/message_box.h"
 #include "acme/nano/user/user.h"
 #include "acme/user/user/os_theme_colors.h"
-#include "acme/windowing_system/windowing_system.h"
+#include "acme/windowing/windowing_base.h"
 #include "filesystem/filesystem/listing.h"
 
 namespace nano{namespace  user{
@@ -423,7 +423,7 @@ namespace acme
       if(!platform()->is_console())
       {
 
-         system()->windowing_system()->on_start_system();
+         system()->windowing_base()->on_start_system();
 
       }
 

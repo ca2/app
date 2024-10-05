@@ -174,7 +174,7 @@ namespace acme
       ::pointer < ::mutex >                  m_pmutexHttpDownload;
       string_array                           m_straHttpDownloading;
       string_array                           m_straHttpExists;
-         ::pointer < ::windowing_system::windowing_system > m_pwindowingsystem;
+         //::pointer < ::windowing::windowing_base > m_pwindowingbase;
 //#if defined(WITH_X11) || defined(WITH_XCB)
   //    ::pointer < ::particle >                                 m_pmutexXlib;
 //#endif
@@ -270,7 +270,7 @@ namespace acme
       virtual ::draw2d::draw2d * draw2d() const;
       virtual ::write_text::write_text * write_text() const;
 
-         virtual ::windowing_system::windowing_system * windowing_system();
+         //virtual ::windowing::windowing_base * windowing_base();
 
       virtual string get_system_platform();
       virtual string get_system_configuration();

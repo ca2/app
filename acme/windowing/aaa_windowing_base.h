@@ -1,5 +1,7 @@
 //
 // Created by camilo on 2024-05-26 21:50 <3ThomasBorregaardSorensen!!
+// Merged from windowing_system to
+//     windowing by camilo on 2024-10-05 10:35 <3ThomasBorregaardSorensen!!
 //
 #pragma once
 
@@ -8,11 +10,11 @@
 #include "acme/graphics/image/pixmap.h"
 
 
-namespace windowing_system
+namespace windowing
 {
 
 
-   class CLASS_DECL_ACME windowing_system :
+   class CLASS_DECL_ACME windowing_base :
       virtual public ::acme::department
    {
    public:
@@ -22,9 +24,9 @@ namespace windowing_system
       ::pointer_array<::windowing::window_base> m_windowbasea;
 
 
-      windowing_system();
+      windowing_base();
 
-      ~windowing_system() override;
+      ~windowing_base() override;
 
 
       void on_initialize_particle() override;
@@ -46,9 +48,9 @@ namespace windowing_system
 
       virtual void* get_display();
 
-      virtual void sync(const ::procedure& procedure);
+      void main_send(const ::procedure& procedure) override;
 
-      virtual void async(const ::procedure& procedure);
+      void main_post(const ::procedure& procedure) override;
 
       virtual void display_error_trap_push(int i);
 
@@ -83,6 +85,6 @@ namespace windowing_system
    };
 
 
-} // namespace windowing_system
+} // namespace windowing
 
 

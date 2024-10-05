@@ -309,9 +309,6 @@
     <Filter Include="Source Files\windowing">
       <UniqueIdentifier>{86deb70e-007c-447e-ae09-4aa2cf85278d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\windowing">
-      <UniqueIdentifier>{b785409f-1afc-4463-8064-03b729958250}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\graphics\graphics">
       <UniqueIdentifier>{3609adeb-0973-4694-b509-befeee4d69be}</UniqueIdentifier>
     </Filter>
@@ -429,12 +426,6 @@
     </Filter>
     <Filter Include="Header Files\operating_system\windows_common\nano\idn">
       <UniqueIdentifier>{107ae780-e40d-49ba-a772-8d9c2a304677}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\windowing_system">
-      <UniqueIdentifier>{76668c48-e3db-42b8-b319-037b509e106a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\windowing_system">
-      <UniqueIdentifier>{1fe5cf98-dbfd-4f0f-831e-9be20c60a5c2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\operating_system\shared_posix">
       <UniqueIdentifier>{086d5169-6123-42a9-8673-7d8804ab61c0}</UniqueIdentifier>
@@ -3441,9 +3432,6 @@
     <ClInclude Include="graphics\image\header.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
-    <ClInclude Include="windowing\window_base.h">
-      <Filter>Header Files\windowing</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\image\_exif.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
@@ -3720,12 +3708,6 @@
     <ClInclude Include="nano\user\window.h">
       <Filter>Header Files\nano\user</Filter>
     </ClInclude>
-    <ClInclude Include="nano\user\window_implementation.h">
-      <Filter>Header Files\nano\user</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\user\window_interface.h">
-      <Filter>Header Files\nano\user</Filter>
-    </ClInclude>
     <ClInclude Include="nano\speech\speech.h">
       <Filter>Header Files\nano\speech</Filter>
     </ClInclude>
@@ -3788,12 +3770,6 @@
     </ClInclude>
     <ClInclude Include="operating_system\windows_common\nano\idn\idn.h">
       <Filter>Header Files\operating_system\windows_common\nano\idn</Filter>
-    </ClInclude>
-    <ClInclude Include="windowing_system\windowing_system.h">
-      <Filter>Header Files\windowing_system</Filter>
-    </ClInclude>
-    <ClInclude Include="windowing_system\_.h">
-      <Filter>Header Files\windowing_system</Filter>
     </ClInclude>
     <ClInclude Include="prototype\data\text_property.h">
       <Filter>Header Files\prototype\data</Filter>
@@ -3893,6 +3869,9 @@
     </ClInclude>
     <ClInclude Include="graphics\image\pixmap_lock.h">
       <Filter>Header Files\graphics\image</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\interchange.h">
+      <Filter>Header Files\nano\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5348,9 +5327,6 @@
     <ClCompile Include="operating_system\windows\nano\dynamic_library\_dynamic_library.cpp">
       <Filter>Source Files\operating_system\windows\nano\dynamic_library</Filter>
     </ClCompile>
-    <ClCompile Include="windowing_system\windowing_system.cpp">
-      <Filter>Source Files\windowing_system</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\windows_common\nano\idn\_idn.cpp">
       <Filter>Source Files\operating_system\windows_common\nano\idn</Filter>
     </ClCompile>
@@ -5455,6 +5431,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows\calculate_etoolkit.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\windowing_system.cpp">
+      <Filter>Source Files\windowing</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

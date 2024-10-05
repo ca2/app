@@ -1,8 +1,10 @@
 //
 // Created by camilo on 2024-05-26 21:50 <3ThomasBorregaardSorensen!!
+// // Merged from windowing_base to
+//     windowing by camilo on 2024-10-05 10:36 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
-#include "windowing_system.h"
+#include "windowing_base.h"
 #include "acme/constant/id.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -14,25 +16,25 @@
 #include "platform/system.h"
 
 
-namespace windowing_system
+namespace windowing
 {
 
 
-    windowing_system::windowing_system()
+    windowing_base::windowing_base()
     {
 
 
     }
 
 
-    windowing_system::~windowing_system()
+    windowing_base::~windowing_base()
     {
 
 
     }
 
 
-   void windowing_system::on_initialize_particle()
+   void windowing_base::on_initialize_particle()
    {
 
       ::acme::department::on_initialize_particle();
@@ -41,7 +43,7 @@ namespace windowing_system
 
    }
 
-    void windowing_system::destroy()
+    void windowing_base::destroy()
     {
 
         windowing_system_post_quit();
@@ -52,7 +54,7 @@ namespace windowing_system
 
 
 
-    ::nano::user::display * windowing_system::display()
+    ::nano::user::display * windowing_base::display()
     {
 
         if(!m_pdisplaybase)
@@ -71,22 +73,14 @@ namespace windowing_system
     }
 
 
-    void windowing_system::on_start_system()
+    void windowing_base::on_start_system()
     {
 
 
     }
 
 
-    ::e_status windowing_system::defer_initialize_windowing_system()
-    {
-
-        return ::success;
-
-    }
-
-
-    ::e_status windowing_system::initialize_windowing_system()
+    ::e_status windowing_base::defer_initialize_windowing_system()
     {
 
         return ::success;
@@ -94,7 +88,15 @@ namespace windowing_system
     }
 
 
-    void * windowing_system::get_display()
+    ::e_status windowing_base::initialize_windowing_system()
+    {
+
+        return ::success;
+
+    }
+
+
+    void * windowing_base::get_display()
     {
 
         return nullptr;
@@ -102,7 +104,7 @@ namespace windowing_system
     }
 
 
-    void windowing_system::sync(const ::procedure & procedure)
+    void windowing_base::main_send(const ::procedure & procedure)
     {
 
         nano()->user()->sync(procedure);
@@ -110,7 +112,7 @@ namespace windowing_system
     }
 
 
-    void windowing_system::async(const ::procedure & procedure)
+    void windowing_base::async(const ::procedure & procedure)
     {
 
         nano()->user()->async(procedure);
@@ -118,21 +120,21 @@ namespace windowing_system
     }
 
 
-    void windowing_system::display_error_trap_push(int i)
+    void windowing_base::display_error_trap_push(int i)
     {
 
 
     }
 
 
-    void windowing_system::display_error_trap_pop_ignored(int i)
+    void windowing_base::display_error_trap_pop_ignored(int i)
     {
 
 
     }
 
 
-    void * windowing_system::fetch_windowing_system_display()
+    void * windowing_base::fetch_windowing_system_display()
     {
 
        return nullptr;
@@ -140,7 +142,7 @@ namespace windowing_system
     }
 
 
-    void windowing_system::process_messages()
+    void windowing_base::process_messages()
     {
 
         nano()->user()->process_messages();
@@ -171,7 +173,7 @@ namespace windowing_system
     }
 
 
-    void windowing_system::windowing_system_application_main_loop()
+    void windowing_base::windowing_system_application_main_loop()
     {
 
 
@@ -179,14 +181,14 @@ namespace windowing_system
     }
 
 
-    void windowing_system::windowing_system_post_quit()
+    void windowing_base::windowing_system_post_quit()
     {
 
 
     }
 
 
-    ::color::color windowing_system::get_system_color(enum_system_color esystemcolor)
+    ::color::color windowing_base::get_system_color(enum_system_color esystemcolor)
     {
 
         throw ::interface_only();
@@ -196,7 +198,7 @@ namespace windowing_system
     }
 
 
-    void windowing_system::on_system_dark_mode_change(bool bDarkMode, const ::color::color & colorBackground)
+    void windowing_base::on_system_dark_mode_change(bool bDarkMode, const ::color::color & colorBackground)
     {
 
         if(colorBackground != ::color::transparent)
@@ -228,7 +230,7 @@ namespace windowing_system
     }
 
 
-    bool windowing_system::dark_mode()
+    bool windowing_base::dark_mode()
     {
 
        return false;
@@ -236,7 +238,7 @@ namespace windowing_system
     }
 
 
-    void windowing_system::set_dark_mode(bool bDarkMode)
+    void windowing_base::set_dark_mode(bool bDarkMode)
     {
 
 
@@ -244,7 +246,7 @@ namespace windowing_system
     }
 
 
-    void windowing_system::fetch_system_background_color()
+    void windowing_base::fetch_system_background_color()
     {
 
 
@@ -253,7 +255,7 @@ namespace windowing_system
 
 
 
-    ::color::color windowing_system::reinterpreted_background_color()
+    ::color::color windowing_base::reinterpreted_background_color()
     {
 
        if (dark_mode())
@@ -270,7 +272,7 @@ namespace windowing_system
 
 
 
-    void windowing_system::_do_tasks()
+    void windowing_base::_do_tasks()
     {
 
        _synchronous_lock synchronouslock(this->synchronization());
@@ -300,7 +302,7 @@ namespace windowing_system
     }
 
 
-    ::pixmap windowing_system::get_pixmap_from_file(::memory & memoryHost, const void * psourceFile, memsize sizeSourceFile)
+    ::pixmap windowing_base::get_pixmap_from_file(::memory & memoryHost, const void * psourceFile, memsize sizeSourceFile)
     {
 
         return {};
@@ -308,7 +310,7 @@ namespace windowing_system
     }
 
 
-} // namespace windowing_system
+} // namespace windowing_base
 
 
 

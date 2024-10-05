@@ -4,11 +4,11 @@
 #pragma once
 
 
-namespace windowing_system
+namespace windowing
 {
 
 
-    class windowing_system;
+    class windowing_base;
 
 
 } // namespace windowing_system

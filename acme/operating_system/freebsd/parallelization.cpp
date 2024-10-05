@@ -4,7 +4,7 @@
 #include "acme/nano/user/display.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/node.h"
-#include "acme/windowing_system/windowing_system.h"
+#include "acme/windowing/windowing_base.h"
 
 
 //#if defined(FREEBSD)
@@ -320,7 +320,7 @@ namespace acme
 
       information() << "acme::node::user_post going to display_post";
 
-      system()->windowing_system()->main_post(procedure);
+      system()->windowing_base()->main_post(procedure);
 
    }
 

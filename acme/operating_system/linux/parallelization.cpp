@@ -6,7 +6,7 @@
 #include "acme/platform/node.h"
 #include "acme/platform/platform.h"
 #include "acme/platform/system.h"
-#include "acme/windowing_system/windowing_system.h"
+#include "acme/windowing/windowing_base.h"
 
 //::user::enum_desktop get_edesktop();
 
@@ -91,7 +91,7 @@ namespace acme
 
       information() << "acme::node::user_post going to display_post";
 
-      auto pdisplay = system()->windowing_system()->display();
+      auto pdisplay = system()->windowing_base()->display();
 
       pdisplay->display_post(procedure);
 

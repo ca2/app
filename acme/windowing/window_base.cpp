@@ -7,7 +7,6 @@
 #include "framework.h"
 #include "window_base.h"
 #include "platform/system.h"
-#include "windowing_system/windowing_system.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/graphics/device.h"
 #include "acme/nano/user/display.h"
@@ -15,6 +14,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/application.h"
 #include "acme/user/user/interaction_base.h"
+#include "acme/windowing/windowing_base.h"
 
 
 namespace windowing
@@ -61,9 +61,9 @@ namespace windowing
 
       ::user::element::on_initialize_particle();
 
-      _synchronous_lock synchronouslock(system()->windowing_system()->synchronization());
+      _synchronous_lock synchronouslock(system()->windowing_base()->synchronization());
 
-      system()->windowing_system()->m_windowbasea.add(this);
+      system()->windowing_base()->m_windowbasea.add(this);
 
    }
 
@@ -73,9 +73,9 @@ namespace windowing
 
       ::user::element::destroy();
 
-      _synchronous_lock synchronouslock(system()->windowing_system()->synchronization());
+      _synchronous_lock synchronouslock(system()->windowing_base()->synchronization());
 
-      system()->windowing_system()->m_windowbasea.erase(this);
+      system()->windowing_base()->m_windowbasea.erase(this);
 
    }
 

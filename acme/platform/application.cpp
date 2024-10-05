@@ -23,7 +23,7 @@
 #include "acme/nano/nano.h"
 #include "acme/nano/user/user.h"
 #include "acme/nano/graphics/icon.h"
-#include "windowing_system/windowing_system.h"
+#include "acme/windowing/windowing_base.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -256,7 +256,7 @@ void application::initialize_application(::platform::platform * pplatform)
    if(!platform()->is_console())
    {
 
-      system()->windowing_system()->windowing_system_post_quit();
+      system()->windowing_base()->windowing_system_post_quit();
 
       set_finish();
 

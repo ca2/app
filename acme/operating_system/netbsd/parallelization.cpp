@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/operating_system/ansi/_pthread.h"
-#include "acme/windowing_system/windowing_system.h"
+#include "acme/windowing/windowing_base.h"
 #include "acme/platform/system.h"
 #include "acme/nano/user/display.h"
 #include "acme/platform/acme.h"

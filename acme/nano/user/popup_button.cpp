@@ -2,11 +2,11 @@
 // Created by camilo on 2022-02-16 22:42 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
-#include "interchange.h"
-#include "window_implementation.h"
+#include "interaction.h"
+#include "window.h"
 #include "popup_button.h"
 #include "button.h"
-#include "acme/windowing/window_base.h"
+//#include "acme/windowing/window_base.h"
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 
 
@@ -44,7 +44,7 @@ void popup_button::calculate_size_and_position(int x, int y)
    //int wScreen = 1280;
    //int hScreen = 768;
 
-   auto sizeScreen = m_pwindowbase->get_main_screen_size();
+   auto sizeScreen = nano_user_window()->get_main_screen_size();
 
    //operating_system_get_main_screen_size(wScreen, hScreen);
 
@@ -81,10 +81,10 @@ void popup_button::calculate_size_and_position(int x, int y)
 }
 
 
-void popup_button::initialize_popup_button(const ::string & strText, int x, int y, ::nano::user::interchange * pinterchangeParent)
+void popup_button::initialize_popup_button(const ::string & strText, int x, int y, ::nano::user::window * pnanouserwindowOwner)
 {
 
-   m_pinterchangeParent = pinterchangeParent;
+   m_puserinteractionbaseOwner = pnanouserwindowOwner->user_interaction_base();
 
    calculate_size_and_position(x, y);
 

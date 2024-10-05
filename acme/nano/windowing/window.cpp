@@ -1,7 +1,7 @@
 //
 // Created by camilo on 31/01/2022 16:16 <3ThomasBorregaardSorensen!!
 //
-// renamed interchange from interchange by camilo on
+// renamed window from window by camilo on
 //    2024-09-26 15:38 <3ThomasBorregaardSorensen!!
 // // Merged from windowing_base to
 //     windowing to nano_use by camilo on 2024-10-05 11:12 <3ThomasBorregaardSorensen!!
@@ -16,15 +16,16 @@
    //
 // Created by camilo on 2023-10-06 <3ThomasBorregaardSorensen!!
 //
-// nano::user::window_base Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSorensen!!
-// Merged into window_base on 2024-04-26 14:52
+// nano::user::window Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSorensen!!
+// Merged into window on 2024-04-26 14:52
 //
 //
 #include "framework.h"
-#include "interchange.h"
-#include "window_implementation.h"
+#include "display.h"
+#include "window.h"
+//#include "window_implementation.h"
 #include "acme/nano/graphics/device.h"
-#include "child.h"
+#include "interaction.h"
 #include "button.h"
 #include "user.h"
 #include "acme/nano/nano.h"
@@ -34,6 +35,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/operating_system/a_system_menu.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/sequencer.h"
@@ -41,19 +43,26 @@
 #include "acme/user/user/drag.h"
 #include "acme/user/user/mouse.h"
 #include "acme/user/user/tool.h"
-#include "acme/windowing/window_base.h"
+#include "acme/nano/user/user.h"
 
 
 namespace nano
 {
 
 
-   namespace user
+   namespace windowing
    {
 
 
-      interchange::interchange()
+      window::window() :
+         m_pointCursor2(I32_MINIMUM)
       {
+
+         m_bRepositioningWindowFromCenter = false;
+         m_bResizingWindowFromBottomRight = false;
+
+      //}
+      //{
 
          m_bTopMost = false;
 
@@ -76,14 +85,15 @@ namespace nano
       }
 
 
-      interchange::~interchange()
+      window::~window()
       {
 
+         output_debug_string("window::~window()");
 
       }
 
 
-      //::pointer < item_container > interchange::item_form()
+      //::pointer < item_container > window::item_form()
       //{
       //
       //   return item_container(id_user_interface);
@@ -91,21 +101,28 @@ namespace nano
       //}
 
 
-      void interchange::on_initialize_particle()
+      void window::on_initialize_particle()
       {
 
          ::object::on_initialize_particle();
 
-         __construct(m_pwindowbase);
+         __construct(m_puserinterchange);
 
-         m_pwindowbase->m_puserinteractionbase = this;
+         m_puserinterchange->m_puserinteractionbase = this;
 
-         system()->m_pnano->user()->m_interchangea.add(this);
+         nano()->user()->m_interchangea.add(this);
+
+         //::user::element::on_initialize_particle();
+
+         //_synchronous_lock synchronouslock(nano()->user()->synchronization());
+
+         //nano()->user()->m_windowbasea.add(this);
+
 
       }
 
 
-      void interchange::draw(::nano::graphics::device * pnanodevice)
+      void window::draw(::nano::graphics::device * pnanodevice)
       {
 
          ::pointer<::nano::graphics::pen>pnanopenBorder;
@@ -135,15 +152,16 @@ namespace nano
 
       }
 
-      ::rectangle_i32 interchange::get_window_rectangle()
-      {
 
-         return m_rectangle;
+      //::rectangle_i32 window::get_window_rectangle()
+      //{
 
-      }
+      //   return m_rectangle;
+
+      //}
 
 
-      void interchange::draw_children(::nano::graphics::device * pnanodevice)
+      void window::draw_children(::nano::graphics::device * pnanodevice)
       {
 
          for (auto & pchild : m_childa)
@@ -156,31 +174,34 @@ namespace nano
       }
 
 
-      void interchange::create()
+      void window::create()
       {
 
-         m_pwindowbase->create_window();
+         m_puserinterchange->create_window();
 
       }
 
 
-      void interchange::on_create_window()
+      void window::on_create_window()
       {
 
          update_drawing_objects();
 
+         m_puserinteractionbase->on_create_window();
+
+
       }
 
 
-      void interchange::destroy()
+      void window::destroy()
       {
 
-         if (m_pwindowbase)
+         if (m_puserinterchange)
          {
 
-            m_pwindowbase->destroy();
+            m_puserinterchange->destroy();
 
-            m_pwindowbase.release();
+            m_puserinterchange.release();
 
          }
 
@@ -202,52 +223,59 @@ namespace nano
 
          }
 
-         if (system()->m_pnano->m_puser)
+         if (nano()->user())
          {
 
-            system()->m_pnano->m_puser->m_interchangea.erase(this);
+            nano()->user()->m_interchangea.erase(this);
 
          }
+
+         //_synchronous_lock synchronouslock(nano()->user()->synchronization());
+
+         //nano()->user()->m_windowbasea.erase(this);
+
+
+
 
          ::user::interaction_base::destroy();
 
       }
 
 
-      void interchange::show_window()
+      void window::show_window()
       {
 
-         m_pwindowbase->show_window();
+         m_puserinterchange->show_window();
 
       }
 
 
-      void interchange::hide()
+      void window::hide()
       {
 
-         m_pwindowbase->hide();
+         m_puserinterchange->hide();
 
       }
 
 
-      void interchange::message_loop()
+      void window::message_loop()
       {
 
-         m_pwindowbase->message_loop();
+         m_puserinterchange->message_loop();
 
       }
 
 
 
-      void interchange::on_draw(::nano::graphics::device * pnanodevice)
+      void window::on_draw(::nano::graphics::device * pnanodevice)
       {
 
-         //m_pwindowbase->draw(pnanodevice);
+         //m_puserinterchange->draw(pnanodevice);
 
       }
 
 
-      void interchange::on_char(int iChar)
+      void window::on_char(int iChar)
       {
 
          if (iChar == '\t' && m_childa.has_element())
@@ -272,7 +300,7 @@ namespace nano
       }
 
 
-      bool interchange::is_active()
+      bool window::is_active()
       {
 
          return m_bNcActive;
@@ -280,15 +308,15 @@ namespace nano
       }
 
 
-      void interchange::set_active()
+      void window::set_active()
       {
 
-         m_pwindowbase->set_active_window();
+         m_puserinterchange->set_active_window();
 
       }
 
 
-      void interchange::delete_drawing_objects()
+      void window::delete_drawing_objects()
       {
 
          m_pbrushWindow.release();
@@ -300,7 +328,7 @@ namespace nano
       }
 
 
-      bool interchange::get_dark_mode()
+      bool window::get_dark_mode()
       {
 
          return system()->dark_mode();
@@ -309,7 +337,7 @@ namespace nano
       }
 
 
-      void interchange::create_drawing_objects()
+      void window::create_drawing_objects()
       {
 
          if (!m_pfont)
@@ -367,7 +395,7 @@ namespace nano
       }
 
 
-      void interchange::update_drawing_objects()
+      void window::update_drawing_objects()
       {
 
          delete_drawing_objects();
@@ -379,13 +407,13 @@ namespace nano
       }
 
 
-      bool interchange::defer_perform_entire_reposition_process(::user::mouse * pmouse)
+      bool window::defer_perform_entire_reposition_process(::user::mouse * pmouse)
       {
 
-         if (m_pwindowbase)
+         if (m_puserinterchange)
          {
 
-            if (m_pwindowbase->defer_perform_entire_reposition_process(pmouse))
+            if (m_puserinterchange->defer_perform_entire_reposition_process(pmouse))
             {
 
                return true;
@@ -399,13 +427,13 @@ namespace nano
       }
 
 
-      bool interchange::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse)
+      bool window::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse)
       {
 
-         if (m_pwindowbase)
+         if (m_puserinterchange)
          {
 
-            if (m_pwindowbase->defer_perform_entire_resizing_process(eframeSizing, pmouse))
+            if (m_puserinterchange->defer_perform_entire_resizing_process(eframeSizing, pmouse))
             {
 
                return true;
@@ -419,15 +447,15 @@ namespace nano
       }
 
 
-      ::point_i32 interchange::try_absolute_mouse_position(const ::point_i32 & point)
+      ::point_i32 window::try_absolute_mouse_position(const ::point_i32 & point)
       {
 
-         return m_pwindowbase->try_absolute_mouse_position(point);
+         return m_puserinterchange->try_absolute_mouse_position(point);
 
       }
 
 
-      ::point_i32 interchange::origin()
+      ::point_i32 window::origin()
       {
 
          return m_rectangle.origin();
@@ -435,7 +463,7 @@ namespace nano
       }
 
 
-      ::nano::user::child * interchange::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
+      ::nano::user::child * window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
       {
 
          auto point = pmouse->m_pointHost;
@@ -448,7 +476,7 @@ namespace nano
 
 
 
-      ::nano::user::child * interchange::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+      ::nano::user::child * window::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
       {
 
          for (auto & pchild : m_childa)
@@ -468,7 +496,7 @@ namespace nano
       }
 
 
-      void interchange::add_child(::nano::user::child * pchild)
+      void window::add_child(::nano::user::child * pchild)
       {
 
          pchild->m_pinterchange = this;
@@ -478,7 +506,7 @@ namespace nano
       }
 
 
-      void interchange::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
+      void window::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
       {
 
          auto pbutton = ::place(new ::nano::user::button());
@@ -497,7 +525,7 @@ namespace nano
 
 
 
-      ::nano::user::child * interchange::get_child_by_id(const ::atom & atom)
+      ::nano::user::child * window::get_child_by_id(const ::atom & atom)
       {
 
          for (auto & pchild : m_childa)
@@ -517,7 +545,7 @@ namespace nano
       }
 
 
-      ::payload interchange::get_result()
+      ::payload window::get_result()
       {
 
          return m_payloadResult;
@@ -525,7 +553,7 @@ namespace nano
       }
 
 
-      void interchange::on_mouse_move(::user::mouse * pmouse)
+      void window::on_mouse_move(::user::mouse * pmouse)
       {
 
          if (m_pchildHover)
@@ -565,7 +593,7 @@ namespace nano
       }
 
 
-      void interchange::on_left_button_down(::user::mouse * pmouse)
+      void window::on_left_button_down(::user::mouse * pmouse)
       {
 
          auto pchild = hit_test(pmouse, ::user::e_zorder_any);
@@ -609,7 +637,7 @@ namespace nano
       }
 
 
-      void interchange::on_left_button_up(::user::mouse * pmouse)
+      void window::on_left_button_up(::user::mouse * pmouse)
       {
 
          release_capture();
@@ -655,7 +683,7 @@ namespace nano
       }
 
 
-      void interchange::on_right_button_down(::user::mouse * pmouse)
+      void window::on_right_button_down(::user::mouse * pmouse)
       {
 
          auto pchild = hit_test(pmouse, ::user::e_zorder_any);
@@ -684,7 +712,7 @@ namespace nano
       }
 
 
-      void interchange::on_right_button_up(::user::mouse * pmouse)
+      void window::on_right_button_up(::user::mouse * pmouse)
       {
 
          release_capture();
@@ -714,37 +742,37 @@ namespace nano
       }
 
 
-      void interchange::on_click(const ::payload & payload, ::user::mouse * pmouse)
+      void window::on_click(const ::payload & payload, ::user::mouse * pmouse)
       {
 
 
       }
 
 
-      void interchange::on_right_click(const ::payload & payload, ::user::mouse * pmouse)
+      void window::on_right_click(const ::payload & payload, ::user::mouse * pmouse)
       {
 
 
       }
 
 
-      void interchange::set_position(const ::point_i32 & point)
+      //void window::set_position(const ::point_i32 & point)
+      //{
+
+      //   m_puserinterchange->set_position(point);
+
+      //}
+
+
+      void window::redraw()
       {
 
-         m_pwindowbase->set_position(point);
+         m_puserinterchange->redraw();
 
       }
 
 
-      void interchange::redraw()
-      {
-
-         m_pwindowbase->redraw();
-
-      }
-
-
-      void interchange::set_interaction_rectangle(const ::rectangle_i32 & rectangle)
+      void window::set_interaction_rectangle(const ::rectangle_i32 & rectangle)
       {
 
          m_rectangle = rectangle;
@@ -752,7 +780,7 @@ namespace nano
       }
 
 
-      ::rectangle_i32 interchange::get_interaction_rectangle()
+      ::rectangle_i32 window::get_interaction_rectangle()
       {
 
          return m_rectangle;
@@ -760,7 +788,7 @@ namespace nano
       }
 
 
-      void interchange::get_client_rectangle(::rectangle_i32 & rectangle)
+      void window::get_client_rectangle(::rectangle_i32 & rectangle)
       {
 
          rectangle.left() = 0;
@@ -771,7 +799,7 @@ namespace nano
       }
 
 
-      // ::rectangle_i32 interchange::get_window_rectangle()
+      // ::rectangle_i32 window::get_window_rectangle()
       // {
       //
       //    return m_rectangle;
@@ -779,7 +807,7 @@ namespace nano
       // }
 
 
-      void interchange::set_capture()
+      void window::set_capture()
       {
 
          if (m_bCapture)
@@ -789,30 +817,30 @@ namespace nano
 
          }
 
-         m_pwindowbase->set_capture();
+         m_puserinterchange->set_capture();
 
          m_bCapture = true;
 
       }
 
 
-      void interchange::set_cursor(enum_cursor ecursor)
+      void window::set_cursor(enum_cursor ecursor)
       {
 
-         m_pwindowbase->set_cursor(ecursor);
+         m_puserinterchange->set_cursor(ecursor);
 
       }
 
 
-      bool interchange::has_capture()
+      bool window::has_capture()
       {
 
-         return m_pwindowbase->has_capture();
+         return m_puserinterchange->has_capture();
 
       }
 
 
-      void interchange::release_capture()
+      void window::release_capture()
       {
 
          m_pchildCapture = nullptr;
@@ -826,12 +854,12 @@ namespace nano
 
          m_bCapture = false;
 
-         m_pwindowbase->release_capture();
+         m_puserinterchange->release_capture();
 
       }
 
 
-      ::pointer<::nano::graphics::device>interchange::create_device()
+      ::pointer<::nano::graphics::device>window::create_device()
       {
 
          throw interface_only();
@@ -841,7 +869,7 @@ namespace nano
       }
 
 
-      void interchange::display_temporary_file_with_text(const ::string & str)
+      void window::display_temporary_file_with_text(const ::string & str)
       {
 
          string strAppId;
@@ -858,15 +886,15 @@ namespace nano
 
 
 
-      void interchange::_run_modal_loop()
+      void window::_run_modal_loop()
       {
 
-         m_pwindowbase->_run_modal_loop();
+         m_puserinterchange->_run_modal_loop();
 
       }
 
 
-      ::payload interchange::do_synchronously(const class time & timeWait)
+      ::payload window::do_synchronously(const class time & timeWait)
       {
 
          do_asynchronously();
@@ -916,7 +944,7 @@ namespace nano
 
       }
 
-   // ::atom interchange::do_synchronously()
+   // ::atom window::do_synchronously()
    // {
    //
    //    //main_synchronous(1_min, [this]()
@@ -928,7 +956,7 @@ namespace nano
    //
    //    create();
    //
-   //    nano::user::interchange::display();
+   //    nano::user::window::display();
    //
    //   aaa_message_loop();
    //
@@ -944,20 +972,20 @@ namespace nano
 
 
 
-   void interchange::handle(::topic * ptopic, ::context * pcontext)
+   void window::handle(::topic * ptopic, ::context * pcontext)
    {
 
       if (ptopic->m_atom == id_set_application_dark_mode)
       {
 
-         m_pwindowbase->handle(ptopic, pcontext);
+         m_puserinterchange->handle(ptopic, pcontext);
 
       }
 
    }
 
 
-   //::user::item & interchange::user_item(const ::item * pitem)
+   //::user::item & window::user_item(const ::item * pitem)
    //{
    //
    //   return m_useritemmap[pitem];
@@ -965,7 +993,7 @@ namespace nano
    //}
 
 
-   void interchange::do_asynchronously()
+   void window::do_asynchronously()
    {
 
       create();
@@ -987,46 +1015,46 @@ namespace nano
    //
 // Created by camilo on 2023-10-06 <3ThomasBorregaardSorensen!!
 //
-// nano::user::window_base Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSorensen!!
-// Merged into window_base on 2024-04-26 14:52
+// nano::user::window Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSorensen!!
+// Merged into window on 2024-04-26 14:52
 //
-#include "framework.h"
-#include "window_base.h"
-#include "platform/system.h"
-#include "acme/nano/nano.h"
-#include "acme/nano/graphics/device.h"
-#include "acme/nano/user/display.h"
-#include "acme/operating_system/a_system_menu.h"
-#include "acme/parallelization/synchronous_lock.h"
-#include "acme/platform/application.h"
-#include "acme/user/user/interaction_base.h"
-#include "acme/windowing/windowing_base.h"
+//#include "framework.h"
+//#include "window.h"
+//#include "platform/system.h"
+//#include "acme/nano/nano.h"
+//#include "acme/nano/graphics/device.h"
+//#include "acme/nano/user/display.h"
+//#include "acme/operating_system/a_system_menu.h"
+//#include "acme/parallelization/synchronous_lock.h"
+//#include "acme/platform/application.h"
+//#include "acme/user/user/interaction_base.h"
+//#include "acme/windowing/windowing_base.h"
+//
+//
+//   namespace windowing
+//   {
+//
+
+      //window::window() :
+      //   m_pointCursor2(I32_MINIMUM)
+      //{
+
+      //   m_bRepositioningWindowFromCenter = false;
+      //   m_bResizingWindowFromBottomRight = false;
+
+      //}
 
 
-   namespace windowing
-   {
+      //window::~window()
+      //{
 
+      //   output_debug_string("window::~window()");
 
-      window_base::window_base() :
-         m_pointCursor2(I32_MINIMUM)
-      {
-
-         m_bRepositioningWindowFromCenter = false;
-         m_bResizingWindowFromBottomRight = false;
-
-      }
-
-
-      window_base::~window_base()
-      {
-
-         output_debug_string("window_base::~window_base()");
-
-      }
+      //}
 
 
 
-      ::user::interaction_base * window_base::user_interaction_base()
+      ::user::interaction_base * window::user_interaction_base()
       {
 
          return m_puserinteractionbase;
@@ -1034,7 +1062,7 @@ namespace nano
       }
 
 
-      ::windowing::window_base * window_base::windowing_window_base()
+      ::nano::user::window * window::user_interchange()
       {
 
          return this;
@@ -1042,62 +1070,31 @@ namespace nano
       }
 
 
-      void window_base::on_initialize_particle()
-      {
+      //void window::on_initialize_particle()
+      //{
 
-         ::user::element::on_initialize_particle();
+      //   ::user::element::on_initialize_particle();
 
-         _synchronous_lock synchronouslock(system()->windowing_base()->synchronization());
+      //   _synchronous_lock synchronouslock(nano()->user()->synchronization());
 
-         system()->windowing_base()->m_windowbasea.add(this);
+      //   nano()->user()->m_windowbasea.add(this);
 
-      }
-
-
-      void window_base::destroy()
-      {
-
-         ::user::element::destroy();
-
-         _synchronous_lock synchronouslock(system()->windowing_base()->synchronization());
-
-         system()->windowing_base()->m_windowbasea.erase(this);
-
-      }
+      //}
 
 
-      bool window_base::is_windowing_popup()
-      {
+      //void window::destroy()
+      //{
 
-         return false;
+      //   ::user::element::destroy();
 
-      }
+      //   _synchronous_lock synchronouslock(nano()->user()->synchronization());
 
+      //   nano()->user()->m_windowbasea.erase(this);
 
-      ::point_i32 window_base::windowing_popup_origin()
-      {
-
-         return {};
-
-      }
+      //}
 
 
-      ::size_i32 window_base::windowing_popup_size()
-      {
-
-         return {};
-
-      }
-
-
-      void window_base::_on_windowing_close_window()
-      {
-
-
-      }
-
-
-      bool window_base::is_satellite_window()
+      bool window::is_windowing_popup()
       {
 
          return false;
@@ -1105,15 +1102,7 @@ namespace nano
       }
 
 
-      window_base * window_base::owner_window()
-      {
-
-         return nullptr;
-
-      }
-
-
-      ::string window_base::get_window_text()
+      ::point_i32 window::windowing_popup_origin()
       {
 
          return {};
@@ -1121,36 +1110,75 @@ namespace nano
       }
 
 
-      // ::pointer < ::operating_system::a_system_menu > window_base::create_system_menu(bool bContextual)
+      ::size_i32 window::windowing_popup_size()
+      {
+
+         return {};
+
+      }
+
+
+      void window::_on_windowing_close_window()
+      {
+
+
+      }
+
+
+      bool window::is_satellite_window()
+      {
+
+         return false;
+
+      }
+
+
+      //window * window::user_interchange()
+      //{
+
+      //   return this;
+
+      //}
+
+
+      ::string window::get_window_text()
+      {
+
+         return {};
+
+      }
+
+
+      // ::pointer < ::operating_system::a_system_menu > window::create_system_menu(bool bContextual)
       // {
       //
-      //    return ::nano::user::window_base::create_system_menu(bContextual);
+      //    return ::nano::user::window::create_system_menu(bContextual);
       //
       // }
 
 
-      bool window_base::defer_perform_entire_reposition_process(::user::mouse * pmouse)
-      {
+      //bool window::defer_perform_entire_reposition_process(::user::mouse * pmouse)
+      //{
 
-         return false;
+      //   return false;
 
-      }
-
-
-      bool window_base::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse)
-      {
-
-         return false;
-
-      }
+      //}
 
 
+      //bool window::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse)
+      //{
 
-      // static thread_local ::pointer_array < window_base > t_nanowindowimplementationa;
+      //   return false;
+
+      //}
+
+
+
+      // static thread_local ::pointer_array < window > t_nanowindowimplementationa;
       //
       //
       //
-      // ::pointer_array < window_base > & window_base::nanowindowimplementationa()
+      // ::pointer_array < window > & window::nanowindowimplementationa()
       // {
       //
       //    return t_nanowindowimplementationa;
@@ -1158,22 +1186,22 @@ namespace nano
       // }
 
 
-      // window_base::window_base()
+      // window::window()
       // {
       //
       //
       // }
       //
       //
-      // window_base::~window_base()
+      // window::~window()
       // {
       //
-      //    output_debug_string("window_base::~window_base()");
+      //    output_debug_string("window::~window()");
       //
       // }
 
 
-      ::nano::user::display * window_base::get_display()
+      ::nano::user::display * window::get_display()
       {
 
          return nullptr;
@@ -1181,7 +1209,7 @@ namespace nano
       }
 
 
-      // void window_base::draw(device * pnanodevice)
+      // void window::draw(device * pnanodevice)
       // {
       //
       //    m_pinterface->draw(pnanodevice);
@@ -1189,7 +1217,7 @@ namespace nano
       // }
 
 
-      // bool window_base::get_dark_mode()
+      // bool window::get_dark_mode()
       // {
       //
       //    return m_pinterface->get_dark_mode();
@@ -1197,7 +1225,7 @@ namespace nano
       // }
 
 
-      bool window_base::is_active_window()
+      bool window::is_active_window()
       {
 
          //return m_pinterface->is_active();
@@ -1207,7 +1235,7 @@ namespace nano
       }
 
 
-      // void window_base::nano_window_on_create()
+      // void window::nano_window_on_create()
       // {
       //
       //    //node()->fetch_user_color();
@@ -1223,57 +1251,57 @@ namespace nano
 
 
 
-      void window_base::nano_window_on_destroy()
+      void window::nano_window_on_destroy()
       {
 
 
       }
 
 
-      void window_base::create_window()
+      void window::create_window()
       {
 
       }
 
 
-      void window_base::_create_window()
-      {
-
-
-      }
-
-
-      void window_base::on_create_window()
-      {
-
-         m_puserinteractionbase->on_create_window();
-
-      }
-
-
-
-
-      void window_base::show_window()
-      {
-
-      }
-
-
-      void window_base::hide_window()
+      void window::_create_window()
       {
 
 
       }
 
 
-      void window_base::message_loop()
+      //void window::on_create_window()
+      //{
+
+      //   m_puserinteractionbase->on_create_window();
+
+      //}
+
+
+
+
+      //void window::show_window()
+      //{
+
+      //}
+
+
+      void window::hide_window()
       {
 
 
       }
 
 
-      void window_base::set_active_window()
+      //void window::message_loop()
+      //{
+
+
+      //}
+
+
+      void window::set_active_window()
       {
 
 
@@ -1281,48 +1309,48 @@ namespace nano
 
 
 
-      ::point_i32 window_base::try_absolute_mouse_position(const ::point_i32 & point)
-      {
+      //::point_i32 window::try_absolute_mouse_position(const ::point_i32 & point)
+      //{
 
-         //return window_interface::try_absolute_mouse_position(point);
+      //   //return window_interface::try_absolute_mouse_position(point);
 
-         return point;
+      //   return point;
 
-      }
-
-
-      void window_base::handle(::topic * ptopic, ::context * pcontext)
-      {
-
-         // if(ptopic->m_atom == id_operating_system_user_color_change)
-         // {
-         //
-         //    update_drawing_objects();
-         //
-         //    redraw();
-         //
-         // }
-         // else if(ptopic->m_atom == id_set_application_dark_mode)
-         // {
-         //
-         //    update_drawing_objects();
-         //
-         //    redraw();
-         //
-         // }
-         // else if(ptopic->m_atom == id_application_dark_mode_change)
-         // {
-         //
-         //    update_drawing_objects();
-         //
-         //    redraw();
-         //
-         // }
-
-      }
+      //}
 
 
-      ::size_i32 window_base::get_main_screen_size()
+      //void window::handle(::topic * ptopic, ::context * pcontext)
+      //{
+
+      //   // if(ptopic->m_atom == id_operating_system_user_color_change)
+      //   // {
+      //   //
+      //   //    update_drawing_objects();
+      //   //
+      //   //    redraw();
+      //   //
+      //   // }
+      //   // else if(ptopic->m_atom == id_set_application_dark_mode)
+      //   // {
+      //   //
+      //   //    update_drawing_objects();
+      //   //
+      //   //    redraw();
+      //   //
+      //   // }
+      //   // else if(ptopic->m_atom == id_application_dark_mode_change)
+      //   // {
+      //   //
+      //   //    update_drawing_objects();
+      //   //
+      //   //    redraw();
+      //   //
+      //   // }
+
+      //}
+
+
+      ::size_i32 window::get_main_screen_size()
       {
 
          auto pdisplay = get_display();
@@ -1331,7 +1359,6 @@ namespace nano
          {
 
             return { 800, 600 };
-
          }
 
          return pdisplay->get_main_screen_size();
@@ -1339,7 +1366,7 @@ namespace nano
       }
 
 
-      // ::payload window_base::do_synchronously(const class time & timeWait)
+      // ::payload window::do_synchronously(const class time & timeWait)
       // {
       //
       //    create();
@@ -1374,7 +1401,7 @@ namespace nano
       //    // //
       //    // //   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
       //    // //
-      //    // //   pmessagebox->m_functionClose = [&idResult, &event](nano::user::interchange * pwindow)
+      //    // //   pmessagebox->m_functionClose = [&idResult, &event](nano::user::window * pwindow)
       //    // //   {
       //    // //
       //    // //      idResult = pwindow->m_atomResult;
@@ -1415,7 +1442,7 @@ namespace nano
       //
       //   create();
       //
-      //   nano::user::interchange::display();
+      //   nano::user::window::display();
       //
       //  aaa_message_loop();
       //
@@ -1430,7 +1457,7 @@ namespace nano
       //}
 
 
-      void window_base::_on_window_simple_action(const char * pszActionName)
+      void window::_on_window_simple_action(const char * pszActionName)
       {
 
          if (!m_puserinteractionbase)
@@ -1445,24 +1472,24 @@ namespace nano
       }
 
 
-      void window_base::defer_show_system_menu(::user::mouse * pmouse)
+      void window::defer_show_system_menu(::user::mouse * pmouse)
       {
 
 
       }
 
-      void window_base::implementation_message_loop_step()
+      void window::interchange_message_loop_step()
       {
 
 
       }
 
 
-      void window_base::on_char(int iChar)
-      {
+      //void window::on_char(int iChar)
+      //{
 
 
-      }
+      //}
 
       //::atom message_box::do_synchronously()
       //{
@@ -1476,7 +1503,7 @@ namespace nano
       //
       //   create();
       //
-      //   nano::user::interchange::display();
+      //   nano::user::window::display();
       //
       //   aaa_message_loop();
       //
@@ -1494,7 +1521,7 @@ namespace nano
       //void message_box::do_asynchronously()
       //{
       //
-      //   m_functionClose = [this](nano::user::interchange * pwindow)
+      //   m_functionClose = [this](nano::user::window * pwindow)
       //   {
       //
       //      m_psequence->on_sequence();
@@ -1506,7 +1533,7 @@ namespace nano
       //
       //         create();
       //
-      //         nano::user::interchange::display();
+      //         nano::user::window::display();
       //
       //         aaa_message_loop();
       //
@@ -1523,7 +1550,7 @@ namespace nano
       //
 
 
-      void window_base::set_interface_client_size(const ::size_i32 & sizeWindow) // set_size
+      void window::set_interface_client_size(const ::size_i32 & sizeWindow) // set_size
       {
 
          m_sizeWindow = sizeWindow;
@@ -1531,7 +1558,7 @@ namespace nano
       }
 
 
-      void window_base::set_rectangle(const rectangle_i32 & rectangle)
+      void window::set_rectangle(const rectangle_i32 & rectangle)
       {
 
          auto r = rectangle;
@@ -1546,7 +1573,7 @@ namespace nano
       }
 
 
-      void window_base::set_position(const point_i32 & point)
+      void window::set_position(const point_i32 & point)
       {
 
          auto p = point;
@@ -1561,7 +1588,7 @@ namespace nano
       }
 
 
-      void window_base::set_size(const size_i32 & size)
+      void window::set_size(const size_i32 & size)
       {
 
          auto s = size;
@@ -1577,7 +1604,7 @@ namespace nano
       }
 
 
-      void window_base::set_rectangle_unlocked(const rectangle_i32 & rectangle)
+      void window::set_rectangle_unlocked(const rectangle_i32 & rectangle)
       {
 
          set_position_unlocked(rectangle.top_left());
@@ -1587,21 +1614,21 @@ namespace nano
       }
 
 
-      void window_base::set_position_unlocked(const point_i32 & point)
+      void window::set_position_unlocked(const point_i32 & point)
       {
 
 
       }
 
 
-      void window_base::set_size_unlocked(const size_i32 & size)
+      void window::set_size_unlocked(const size_i32 & size)
       {
 
 
       }
 
 
-      ::rectangle_i32 window_base::get_window_rectangle()
+      ::rectangle_i32 window::get_window_rectangle()
       {
 
          ::rectangle_i32 rectangle;
@@ -1618,7 +1645,7 @@ namespace nano
       }
 
 
-      ::rectangle_i32 window_base::get_window_rectangle_unlocked()
+      ::rectangle_i32 window::get_window_rectangle_unlocked()
       {
 
          return {};
@@ -1626,7 +1653,7 @@ namespace nano
       }
 
 
-      void window_base::on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem)
+      void window::on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem)
       {
 
          ::string strActionName(psystemmenuitem->m_strAtom);

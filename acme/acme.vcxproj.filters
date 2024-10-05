@@ -75,9 +75,6 @@
     <Filter Include="Header Files\memory">
       <UniqueIdentifier>{a0224fab-268e-4e1e-a668-190f1bf6c025}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\version">
-      <UniqueIdentifier>{1a6906fa-8c35-4bf2-bc58-b25cfc385b90}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\exception">
       <UniqueIdentifier>{0ace9705-3ad7-4201-a601-a6601c80f6e0}</UniqueIdentifier>
     </Filter>
@@ -306,9 +303,6 @@
     <Filter Include="Source Files\graphics\image">
       <UniqueIdentifier>{ee4cd659-a60c-4f0b-b04b-69a9847acc70}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\windowing">
-      <UniqueIdentifier>{86deb70e-007c-447e-ae09-4aa2cf85278d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\graphics\graphics">
       <UniqueIdentifier>{3609adeb-0973-4694-b509-befeee4d69be}</UniqueIdentifier>
     </Filter>
@@ -438,6 +432,18 @@
     </Filter>
     <Filter Include="Source Files\nano\graphics">
       <UniqueIdentifier>{7493f67d-fc4a-4b10-949f-8c3ce24868e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\release">
+      <UniqueIdentifier>{1a6906fa-8c35-4bf2-bc58-b25cfc385b90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nano\windowing">
+      <UniqueIdentifier>{a545e1af-e807-4c49-bf0d-265957b22618}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano\windowing">
+      <UniqueIdentifier>{27ff3486-66a3-4c54-9e08-e9252552ecd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nano\NewFilter1">
+      <UniqueIdentifier>{e5193c93-2b33-4ab4-85e6-d9c85832f852}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -834,8 +840,8 @@
     <ClInclude Include="include\_include.h">
       <Filter>Header Files\include</Filter>
     </ClInclude>
-    <ClInclude Include="version\version.h">
-      <Filter>Header Files\version</Filter>
+    <ClInclude Include="release\release.h">
+      <Filter>Header Files\release</Filter>
     </ClInclude>
     <ClInclude Include="memory\plex.h">
       <Filter>Header Files\memory</Filter>
@@ -3672,9 +3678,6 @@
     <ClInclude Include="nano\user\button.h">
       <Filter>Header Files\nano\user</Filter>
     </ClInclude>
-    <ClInclude Include="nano\user\child.h">
-      <Filter>Header Files\nano\user</Filter>
-    </ClInclude>
     <ClInclude Include="nano\user\details_window.h">
       <Filter>Header Files\nano\user</Filter>
     </ClInclude>
@@ -3705,7 +3708,7 @@
     <ClInclude Include="nano\user\user.h">
       <Filter>Header Files\nano\user</Filter>
     </ClInclude>
-    <ClInclude Include="nano\user\window.h">
+    <ClInclude Include="nano\user\aaa_window.h">
       <Filter>Header Files\nano\user</Filter>
     </ClInclude>
     <ClInclude Include="nano\speech\speech.h">
@@ -3870,8 +3873,29 @@
     <ClInclude Include="graphics\image\pixmap_lock.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
-    <ClInclude Include="nano\user\interchange.h">
+    <ClInclude Include="nano\user\window.h">
       <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\interaction.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\theme.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\windowing\window.h">
+      <Filter>Header Files\nano\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\windowing\_.h">
+      <Filter>Header Files\nano\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\windowing\windowing.h">
+      <Filter>Header Files\nano\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\windowing\display.h">
+      <Filter>Header Files\nano\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\nano.h">
+      <Filter>Header Files\nano</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5057,9 +5081,6 @@
     <ClCompile Include="graphics\image\pixmap.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
-    <ClCompile Include="windowing\window_base.cpp">
-      <Filter>Source Files\windowing</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\image\image32.cpp">
       <Filter>Source Files\graphics\image</Filter>
     </ClCompile>
@@ -5267,7 +5288,7 @@
     <ClCompile Include="nano\user\button.cpp">
       <Filter>Source Files\nano\user</Filter>
     </ClCompile>
-    <ClCompile Include="nano\user\child.cpp">
+    <ClCompile Include="nano\user\aaa_child.cpp">
       <Filter>Source Files\nano\user</Filter>
     </ClCompile>
     <ClCompile Include="nano\user\details_window.cpp">
@@ -5420,10 +5441,7 @@
     <ClCompile Include="nano\graphics\pen.cpp">
       <Filter>Source Files\nano\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\interaction_base.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\interchange.cpp">
+    <ClCompile Include="nano\user\window.cpp">
       <Filter>Source Files\nano\user</Filter>
     </ClCompile>
     <ClCompile Include="platform\logger.cpp">
@@ -5432,8 +5450,17 @@
     <ClCompile Include="operating_system\windows\calculate_etoolkit.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
-    <ClCompile Include="windowing\windowing_system.cpp">
-      <Filter>Source Files\windowing</Filter>
+    <ClCompile Include="nano\user\interaction.cpp">
+      <Filter>Source Files\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\windowing\window.cpp">
+      <Filter>Source Files\nano\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\windowing\display.cpp">
+      <Filter>Source Files\nano\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\windowing\windowing.cpp">
+      <Filter>Source Files\nano\windowing</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

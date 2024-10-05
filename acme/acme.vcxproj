@@ -1190,6 +1190,7 @@
     <ClInclude Include="nano\http\_.h" />
     <ClInclude Include="nano\idn\idn.h" />
     <ClInclude Include="nano\idn\_.h" />
+    <ClInclude Include="nano\nano.h" />
     <ClInclude Include="nano\shell\shell.h" />
     <ClInclude Include="nano\shell\_.h" />
     <ClInclude Include="nano\speech\speech.h" />
@@ -1197,12 +1198,13 @@
     <ClInclude Include="nano\user\aaa_nano.h" />
     <ClInclude Include="nano\user\brush.h" />
     <ClInclude Include="nano\user\button.h" />
-    <ClInclude Include="nano\user\child.h" />
     <ClInclude Include="nano\user\details_window.h" />
     <ClInclude Include="nano\user\device.h" />
     <ClInclude Include="nano\user\display.h" />
+    <ClInclude Include="nano\user\interaction.h" />
     <ClInclude Include="nano\user\font.h" />
-    <ClInclude Include="nano\user\interchange.h" />
+    <ClInclude Include="nano\user\theme.h" />
+    <ClInclude Include="nano\user\aaa_window.h" />
     <ClInclude Include="nano\user\message_box.h" />
     <ClInclude Include="nano\user\object.h" />
     <ClInclude Include="nano\user\pen.h" />
@@ -1211,6 +1213,10 @@
     <ClInclude Include="nano\user\user.h" />
     <ClInclude Include="nano\user\window.h" />
     <ClInclude Include="nano\user\_.h" />
+    <ClInclude Include="nano\windowing\display.h" />
+    <ClInclude Include="nano\windowing\window.h" />
+    <ClInclude Include="nano\windowing\windowing.h" />
+    <ClInclude Include="nano\windowing\_.h" />
     <ClInclude Include="nano\_.h" />
     <ClInclude Include="operating_system\a_system_menu.h" />
     <ClInclude Include="operating_system\console_message_box.h" />
@@ -1652,15 +1658,32 @@
     <ClCompile Include="nano\shell\shell.cpp" />
     <ClCompile Include="nano\speech\speech.cpp" />
     <ClCompile Include="nano\user\button.cpp" />
-    <ClCompile Include="nano\user\child.cpp" />
+    <ClCompile Include="nano\user\aaa_child.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="nano\user\details_window.cpp" />
     <ClCompile Include="nano\user\display.cpp" />
-    <ClCompile Include="nano\user\interchange.cpp" />
+    <ClCompile Include="nano\user\interaction.cpp" />
+    <ClCompile Include="nano\user\window.cpp" />
     <ClCompile Include="nano\user\message_box.cpp" />
     <ClCompile Include="nano\user\popup_button.cpp" />
     <ClCompile Include="nano\user\still.cpp" />
     <ClCompile Include="nano\user\user.cpp" />
     <ClCompile Include="nano\user\_user.cpp" />
+    <ClCompile Include="nano\windowing\display.cpp" />
+    <ClCompile Include="nano\windowing\window.cpp" />
+    <ClCompile Include="nano\windowing\windowing.cpp" />
     <ClCompile Include="no_precompiled_header_sample.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">NotUsing</PrecompiledHeader>
@@ -2140,7 +2163,6 @@
     <ClCompile Include="user\user\check_property.cpp" />
     <ClCompile Include="user\user\container.cpp" />
     <ClCompile Include="user\user\control.cpp" />
-    <ClCompile Include="user\user\interaction_base.cpp" />
     <ClCompile Include="user\user\property.cpp" />
     <ClCompile Include="user\user\controller.cpp" />
     <ClCompile Include="user\user\conversation.cpp" />
@@ -2156,8 +2178,6 @@
     <ClCompile Include="user\user\text_property.cpp" />
     <ClCompile Include="user\user\tool_item.cpp" />
     <ClCompile Include="user\user\_string.cpp" />
-    <ClCompile Include="windowing\windowing_system.cpp" />
-    <ClCompile Include="windowing\window_base.cpp" />
     <ClCompile Include="_.cpp" />
     <ClInclude Include="compress\_.h" />
     <ClInclude Include="console.h" />
@@ -2789,7 +2809,7 @@
     <ClInclude Include="user\user\theme_colors.h" />
     <ClInclude Include="user\user\_.h" />
     <ClInclude Include="user\user\_style.h" />
-    <ClInclude Include="version\version.h" />
+    <ClInclude Include="release\release.h" />
     <ClInclude Include="filesystem\file\___serialization_draft.h" />
     <ClCompile Include="filesystem\file\text_stream.cpp" />
     <ClCompile Include="filesystem\file\file.cpp" />

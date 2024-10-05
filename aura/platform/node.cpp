@@ -129,7 +129,7 @@ namespace aura
    //   if(!m_pwindowingAuraNode)
    //   {
 
-   //      system()->do_user_system_factory();
+   //      system()->do_graphics_user_windowing_system_factory();
 
    //   }
 

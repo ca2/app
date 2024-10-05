@@ -1,18 +1,23 @@
 // Created by camilo on 2022-11-19 03:54 <3ThomasBorregaardSorensen!!
 //
-// // Merged from windowing_base to
+// // Merged from user to
 //     windowing to nano_use by camilo on 2024-10-05 11:12 <3ThomasBorregaardSorensen!!
 //                   //
 // Created by camilo on 2024-05-26 21:50 <3ThomasBorregaardSorensen!!
-// // Merged from windowing_base to
+// // Merged from user to
 //     windowing by camilo on 2024-10-05 10:36 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "display.h"
 #include "user.h"
-#include "interchange.h"
+#include "window.h"
 #include "acme/constant/id.h"
+#include "acme/exception/interface_only.h"
+#include "acme/graphics/image/pixmap.h"
 #include "acme/handler/topic.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/platform/department.h"
+#include "acme/platform/system.h"
 
 
 namespace nano
@@ -130,22 +135,14 @@ namespace nano
         {
             if (ptopic->m_atom == id_set_application_dark_mode)
             {
-                for (auto& pinterchange : m_interchangea)
+                for (auto& pwindow : m_windowa)
                 {
-                    pinterchange->handle(ptopic, pcontext);
+                    pwindow->handle(ptopic, pcontext);
                 }
             }
         }
 
 
-        void user::sync(const ::procedure& procedure)
-        {
-        }
-
-
-        void user::async(const ::procedure& procedure)
-        {
-        }
 
 void user::process_messages()
 {
@@ -159,47 +156,47 @@ void user::process_messages()
            return true;
 
          }
-// // Merged from windowing_base to
+// // Merged from user to
 //     windowing to nano_use by camilo on 2024-10-05 11:12 <3ThomasBorregaardSorensen!!
 //                   //
 // Created by camilo on 2024-05-26 21:50 <3ThomasBorregaardSorensen!!
-// // Merged from windowing_base to
+// // Merged from user to
 //     windowing by camilo on 2024-10-05 10:36 <3ThomasBorregaardSorensen!!
 //
-
 //
-#include "framework.h"
-#include "windowing_base.h"
-#include "acme/constant/id.h"
-#include "acme/exception/interface_only.h"
-#include "acme/parallelization/synchronous_lock.h"
-#include "acme/handler/topic.h"
-#include "acme/nano/nano.h"
-#include "acme/nano/user/display.h"
-#include "acme/nano/user/user.h"
-#include "acme/windowing/window_base.h"
-#include "platform/system.h"
+////
+//#include "framework.h"
+////#include "user.h"
+//#include "acme/constant/id.h"
+//#include "acme/exception/interface_only.h"
+//#include "acme/parallelization/synchronous_lock.h"
+//#include "acme/handler/topic.h"
+//#include "acme/nano/nano.h"
+//#include "acme/nano/user/display.h"
+//#include "acme/nano/user/user.h"
+////#include "acme/windowing/window_base.h"
+//#include "platform/system.h"
 
 
-         namespace windowing
-         {
+         //namespace windowing
+         //{
 
 
-            windowing_base::windowing_base()
+          /*  user::user()
             {
 
 
             }
 
 
-            windowing_base::~windowing_base()
+            user::~user()
             {
 
 
-            }
+            }*/
 
 
-            void windowing_base::on_initialize_particle()
+            void user::on_initialize_particle()
             {
 
                ::acme::department::on_initialize_particle();
@@ -208,7 +205,7 @@ void user::process_messages()
 
             }
 
-            void windowing_base::destroy()
+            void user::destroy()
             {
 
                windowing_system_post_quit();
@@ -219,13 +216,13 @@ void user::process_messages()
 
 
 
-            ::nano::user::display * windowing_base::display()
+            ::nano::user::display * user::display()
             {
 
                if (!m_pdisplaybase)
                {
 
-                  system()->do_user_system_factory();
+                  system()->do_graphics_user_windowing_system_factory();
 
                   __construct(m_pdisplaybase);
 
@@ -238,22 +235,14 @@ void user::process_messages()
             }
 
 
-            void windowing_base::on_start_system()
+            void user::on_start_system()
             {
 
 
             }
 
 
-            ::e_status windowing_base::defer_initialize_windowing_system()
-            {
-
-               return ::success;
-
-            }
-
-
-            ::e_status windowing_base::initialize_windowing_system()
+            ::e_status user::defer_initialize_windowing_system()
             {
 
                return ::success;
@@ -261,7 +250,15 @@ void user::process_messages()
             }
 
 
-            void * windowing_base::get_display()
+            ::e_status user::initialize_windowing_system()
+            {
+
+               return ::success;
+
+            }
+
+
+            void * user::get_display()
             {
 
                return nullptr;
@@ -269,37 +266,37 @@ void user::process_messages()
             }
 
 
-            void windowing_base::main_send(const ::procedure & procedure)
+            void user::sync(const ::procedure & procedure)
             {
 
-               nano()->user()->sync(procedure);
+               main_send(procedure);
 
             }
 
 
-            void windowing_base::async(const ::procedure & procedure)
+            void user::async(const ::procedure & procedure)
             {
 
-               nano()->user()->async(procedure);
+               main_post(procedure);
 
             }
 
 
-            void windowing_base::display_error_trap_push(int i)
-            {
-
-
-            }
-
-
-            void windowing_base::display_error_trap_pop_ignored(int i)
+            void user::display_error_trap_push(int i)
             {
 
 
             }
 
 
-            void * windowing_base::fetch_windowing_system_display()
+            void user::display_error_trap_pop_ignored(int i)
+            {
+
+
+            }
+
+
+            void * user::fetch_windowing_system_display()
             {
 
                return nullptr;
@@ -307,53 +304,53 @@ void user::process_messages()
             }
 
 
-            void windowing_base::process_messages()
+            //void user::process_messages()
+            //{
+
+            //   nano()->user()->process_messages();
+
+            //   // #ifdef HAS_WAYLAND
+            //   //         if(psystem->m_ewindowing == e_windowing_wayland)
+            //   //         {
+            //   //
+            //   //             ::wayland::nano::user::process_messages();
+            //   //
+            //   //         }
+            //   //         else
+            //   // #endif
+            //   //             if(psystem->m_ewindowing == e_windowing_xcb)
+            //   //             {
+            //   //
+            //   //                 ::xcb::nano::user::process_messages();
+            //   //
+            //   //             }
+            //   //             else
+            //   //             {
+            //   //
+            //   //                 ::x11::nano::user::process_messages();
+            //   //
+            //   //             }
+
+
+            //}
+
+
+            void user::windowing_system_application_main_loop()
             {
 
-               nano()->user()->process_messages();
-
-               // #ifdef HAS_WAYLAND
-               //         if(psystem->m_ewindowing == e_windowing_wayland)
-               //         {
-               //
-               //             ::wayland::nano::user::process_messages();
-               //
-               //         }
-               //         else
-               // #endif
-               //             if(psystem->m_ewindowing == e_windowing_xcb)
-               //             {
-               //
-               //                 ::xcb::nano::user::process_messages();
-               //
-               //             }
-               //             else
-               //             {
-               //
-               //                 ::x11::nano::user::process_messages();
-               //
-               //             }
 
 
             }
 
 
-            void windowing_base::windowing_system_application_main_loop()
-            {
-
-
-
-            }
-
-
-            void windowing_base::windowing_system_post_quit()
+            void user::windowing_system_post_quit()
             {
 
 
             }
 
 
-            ::color::color windowing_base::get_system_color(enum_system_color esystemcolor)
+            ::color::color user::get_system_color(enum_system_color esystemcolor)
             {
 
                throw ::interface_only();
@@ -363,7 +360,7 @@ void user::process_messages()
             }
 
 
-            void windowing_base::on_system_dark_mode_change(bool bDarkMode, const ::color::color & colorBackground)
+            void user::on_system_dark_mode_change(bool bDarkMode, const ::color::color & colorBackground)
             {
 
                if (colorBackground != ::color::transparent)
@@ -381,21 +378,21 @@ void user::process_messages()
 
                auto ptopic = ::place(new ::topic(id_application_dark_mode_change));
 
-               for (auto & pwindowbase : m_windowbasea)
+               for (auto & pwindow : m_windowa)
                {
 
-                  pwindowbase->handle(ptopic, nullptr);
+                  pwindow->handle(ptopic, nullptr);
 
-                  pwindowbase->set_need_redraw();
+                  pwindow->set_need_redraw();
 
-                  pwindowbase->post_redraw();
+                  pwindow->post_redraw();
 
                }
 
             }
 
 
-            bool windowing_base::dark_mode()
+            bool user::dark_mode()
             {
 
                return false;
@@ -403,7 +400,7 @@ void user::process_messages()
             }
 
 
-            void windowing_base::set_dark_mode(bool bDarkMode)
+            void user::set_dark_mode(bool bDarkMode)
             {
 
 
@@ -411,7 +408,7 @@ void user::process_messages()
             }
 
 
-            void windowing_base::fetch_system_background_color()
+            void user::fetch_system_background_color()
             {
 
 
@@ -420,7 +417,7 @@ void user::process_messages()
 
 
 
-            ::color::color windowing_base::reinterpreted_background_color()
+            ::color::color user::reinterpreted_background_color()
             {
 
                if (dark_mode())
@@ -437,25 +434,25 @@ void user::process_messages()
 
 
 
-            void windowing_base::_do_tasks()
+            void user::_do_tasks()
             {
 
                _synchronous_lock synchronouslock(this->synchronization());
 
-               auto windowbasea = m_windowbasea;
+               auto interchangea = m_windowa;
 
                synchronouslock.unlock();
 
                //if (::nano::user::window_implementation::nanowindowimplementationa().has_element())
                //{
 
-               for (auto & pimplementation : windowbasea)
+               for (auto & pwindow : interchangea)
                {
 
-                  if (pimplementation)
+                  if (pwindow)
                   {
 
-                     pimplementation->implementation_message_loop_step();
+                     pwindow->implementation_message_loop_step();
 
                   }
 
@@ -467,7 +464,7 @@ void user::process_messages()
             }
 
 
-            ::pixmap windowing_base::get_pixmap_from_file(::memory & memoryHost, const void * psourceFile, memsize sizeSourceFile)
+            ::pixmap user::get_pixmap_from_file(::memory & memoryHost, const void * psourceFile, memsize sizeSourceFile)
             {
 
                return {};
@@ -475,7 +472,28 @@ void user::process_messages()
             }
 
 
+            void user::update_nano_user_theme()
+            {
 
+
+
+            }
+
+
+            ::nano::user::theme * user::nano_user_theme()
+            {
+
+
+               if (!m_pnanousertheme)
+               {
+
+                  update_nano_user_theme();
+
+               }
+
+               return m_pnanousertheme;
+
+            }
 
     } // namespace user
 } // namespace nano

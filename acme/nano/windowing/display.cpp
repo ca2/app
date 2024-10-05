@@ -7,7 +7,8 @@
 //#include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/geometry2d/size.h"
 #include "acme/platform/system.h"
-#include "acme/windowing/windowing_base.h"
+#include "acme/nano/nano.h"
+#include "acme/nano/user/user.h"
 
 
 namespace nano
@@ -62,7 +63,7 @@ namespace user
 
 //      kick_idle();
 
-      system()->windowing_base()->main_post(procedure);
+      nano()->user()->main_post(procedure);
 
    }
 
@@ -74,7 +75,7 @@ namespace user
 
       //__matter_send_procedure(this, this, &display::display_post, procedure);
 
-      system()->windowing_base()->main_send(procedure);
+      nano()->user()->main_send(procedure);
 
    }
 

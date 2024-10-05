@@ -185,10 +185,10 @@ void interchange::destroy()
       
    }
 
-   if(system()->m_pnano->m_puser)
+   if(nano()->user())
    {
 
-      system()->m_pnano->m_puser->m_interchangea.erase(this);
+      nano()->user()->m_interchangea.erase(this);
 
    }
    

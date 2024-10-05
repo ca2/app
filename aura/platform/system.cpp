@@ -6937,13 +6937,13 @@ namespace aura
    }
 
 
-   void system::do_user_system_factory()
+   void system::do_graphics_user_windowing_system_factory()
    {
 
-      if(!m_bUserSystemInitialized)
+      if(!m_bGraphicsUserWindowingSystemInitialized)
       {
 
-         ::aqua::system::do_user_system_factory();
+         ::aqua::system::do_graphics_user_windowing_system_factory();
 
          ::string strUserToolkit = node()->get_user_toolkit_id();
 

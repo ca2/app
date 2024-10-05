@@ -423,7 +423,7 @@ namespace acme
       if(!platform()->is_console())
       {
 
-         system()->windowing_base()->on_start_system();
+         nano()->user()->on_start_system();
 
       }
 
@@ -2336,7 +2336,7 @@ return false;
    ::pointer<::conversation>node::create_new_message_box_conversation()
    {
 
-      system()->do_user_system_factory();
+      system()->do_graphics_user_windowing_system_factory();
 
       return __create_new < ::nano::user::message_box >();
 

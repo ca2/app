@@ -1,7 +1,7 @@
 // Created by camilo on 2022-01-21 05:10 PM <3ThomasBorregaardSorensen
 #pragma once
 
-
+#include "acme/nano/user/interaction.h"
 ////#include "acme/prototype/prototype/object.h"
 //#include "acme/prototype/geometry2d/point.h"
 //#include "acme/prototype/geometry2d/size.h"
@@ -16,7 +16,7 @@ namespace nano
 
 
 class child :
-   virtual public ::object
+   virtual public ::nano::user::interaction
 {
 public:
 
@@ -24,7 +24,7 @@ public:
    string                        m_strText;
    ::atom                        m_atom;
    rectangle_i32                 m_rectangle;
-   ::nano::user::interchange *   m_pinterchange;
+   ::nano::user::interaction *     m_pinteraction;
 
 
    virtual void on_draw(::nano::graphics::device * pnanodevice) = 0;

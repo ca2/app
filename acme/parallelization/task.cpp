@@ -360,7 +360,7 @@ void task::main()
 
       // ITCN?   Is This Code Needed?
 
-      auto windowbasea = system()->windowing_base()->m_windowbasea;
+      auto windowbasea = nano()->user()->m_windowbasea;
 
       //while (::windowing::window_base::nanowindowimplementationa().has_element())
       {

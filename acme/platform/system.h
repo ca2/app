@@ -64,7 +64,7 @@ namespace acme
       ::pointer < ::mathematics::mathematics >        m_pmathematics;
       // FROM MAIN (Now APPLICATION_FLAGS : merged on other classes?)
 
-      bool                                            m_bUserSystemInitialized;
+      bool                                            m_bGraphicsUserWindowingSystemInitialized;
 
       ::i32_sz* m_pintstringLanguageResourceMap;
       int                              m_iMatterFromHttpCache;
@@ -195,7 +195,7 @@ namespace acme
       void on_initialize_particle() override;
 
 
-      virtual void do_user_system_factory();
+      virtual void do_graphics_user_windowing_system_factory();
 
 
       void initialize_system();

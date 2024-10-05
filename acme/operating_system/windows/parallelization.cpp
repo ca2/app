@@ -114,7 +114,7 @@ void _do_tasks()
    if (is_main_thread())
    {
 
-      auto pwindowingsystem = ::platform::get()->system()->windowing_base();
+      auto pwindowingsystem = ::platform::get()->nano()->user();
 
       if (pwindowingsystem)
       {
@@ -125,7 +125,7 @@ void _do_tasks()
 
    }
 
-   auto pwindowingsystem = ::platform::get()->system()->windowing_base();
+   auto pwindowingsystem = ::platform::get()->nano()->user();
 
    if (pwindowingsystem)
    {

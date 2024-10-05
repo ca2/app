@@ -5,7 +5,7 @@
 #include "button.h"
 #include "message_box.h"
 #include "still.h"
-#include "window_implementation.h"
+//#include "window_implementation.h"
 #include "acme/nano/graphics/device.h"
 #include "acme/nano/graphics/icon.h"
 #include "acme/nano/user/details_window.h"
@@ -18,7 +18,7 @@
 #include "acme/platform/system.h"
 #include "acme/user/user/mouse.h"
 #include "acme/_operating_system.h"
-#include "windowing/window_base.h"
+#include "acme/nano/user/user.h"
 
 
 bool is_ui_possible();
@@ -146,6 +146,7 @@ namespace nano
       //    m_pstillIcon->set_icon(picon);
       }
 
+      
       void message_box::calculate_size()
       {
 

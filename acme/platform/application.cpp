@@ -256,7 +256,7 @@ void application::initialize_application(::platform::platform * pplatform)
    if(!platform()->is_console())
    {
 
-      system()->windowing_base()->windowing_system_post_quit();
+      nano()->user()->windowing_system_post_quit();
 
       set_finish();
 

@@ -1,12 +1,14 @@
 // Created by camilo on 2022-01-21 14:57 <3ThomasBorregaardSorensen
 #include "framework.h"
 #include "button.h"
-#include "interchange.h"
+#include "window.h"
 #include "acme/nano/graphics/device.h"
 #include "popup_button.h"
 
+
 namespace nano
 {
+
 
    namespace user
    {
@@ -19,10 +21,10 @@ void button::on_draw(::nano::graphics::device * pnanodevice)
 
    ::pointer<::nano::graphics::pen>ppenBorder;
 
-   if (m_pinterchange->m_pchildFocus == this)
+   if (nano_user_window()->m_pchildFocus == this)
    {
 
-      ppenBorder = m_pinterchange->m_ppenBorderFocus;
+      ppenBorder = nano_user_theme()->m_ppenBorderFocus;
 
    }
    else

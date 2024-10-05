@@ -34,6 +34,7 @@ public:
    ::pointer <::nano::shell::shell>m_pshell;
    ::pointer <::nano::speech::speech>m_pspeech;
    ::pointer <::nano::user::user>m_puser;
+   ::pointer <::nano::windowing::windowing>m_pwindowing;
    
    
    nano();
@@ -50,6 +51,8 @@ public:
    ::nano::shell::shell*shell();
    ::nano::speech::speech*speech();
    ::nano::user::user*user();
+   ::nano::windowing::windowing * windowing();
+
    
 };
 

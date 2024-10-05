@@ -21,5 +21,6 @@
 #include "acme/nano/shell/_.h"
 #include "acme/nano/speech/_.h"
 #include "acme/nano/user/_.h"
+#include "acme/nano/windowing/_.h"
 
 

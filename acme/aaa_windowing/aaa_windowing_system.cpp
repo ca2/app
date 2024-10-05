@@ -60,7 +60,7 @@ namespace windowing
         if(!m_pdisplaybase)
         {
 
-            system()->do_user_system_factory();
+            system()->do_graphics_user_windowing_system_factory();
 
             __construct(m_pdisplaybase);
 

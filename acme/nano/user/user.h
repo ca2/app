@@ -30,9 +30,12 @@ virtual public acme::department
 public:
    
    
-   ::pointer_array < ::nano::user::interchange >         m_interchangea;
-   
-   
+   ::pointer_array < ::nano::windowing::window >     m_windowa;
+   ::pointer<::nano::user::display>             m_pdisplaybase;
+   // ::pointer_array<::windowing::window_base> m_windowbasea;
+   ::pointer < ::nano::user::theme >            m_pnanousertheme;
+
+
    user();
    ~user() override;
    
@@ -40,8 +43,9 @@ public:
    inline static const char * represented_component_name(){return "nano_user";}
 
    
+   ::nano::user::theme * nano_user_theme();
    //pointer< ::sequencer < ::conversation > > nano()->message_box(const ::string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr);
-   
+   virtual void update_nano_user_theme();
    
    ////pointer< ::sequence < ::conversation > > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
    
@@ -73,13 +77,11 @@ public:
    //// windowing_system
 
 
-   ::pointer<::nano::user::display> m_pdisplaybase;
-   ::pointer_array<::windowing::window_base> m_windowbasea;
+   //
 
+   //windowing_base();
 
-   windowing_base();
-
-   ~windowing_base() override;
+   //~windowing_base() override;
 
 
    void on_initialize_particle() override;
@@ -111,7 +113,7 @@ public:
 
    virtual void * fetch_windowing_system_display();
 
-   virtual void process_messages();
+   //virtual void process_messages();
 
    virtual void windowing_system_application_main_loop();
 

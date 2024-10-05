@@ -61,9 +61,9 @@ namespace windowing
 
       ::user::element::on_initialize_particle();
 
-      _synchronous_lock synchronouslock(system()->windowing_base()->synchronization());
+      _synchronous_lock synchronouslock(nano()->user()->synchronization());
 
-      system()->windowing_base()->m_windowbasea.add(this);
+      nano()->user()->m_windowbasea.add(this);
 
    }
 
@@ -73,9 +73,9 @@ namespace windowing
 
       ::user::element::destroy();
 
-      _synchronous_lock synchronouslock(system()->windowing_base()->synchronization());
+      _synchronous_lock synchronouslock(nano()->user()->synchronization());
 
-      system()->windowing_base()->m_windowbasea.erase(this);
+      nano()->user()->m_windowbasea.erase(this);
 
    }
 

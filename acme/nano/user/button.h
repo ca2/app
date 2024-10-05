@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "child.h"
+#include "interaction.h"
 
 namespace nano
 {
@@ -12,7 +12,7 @@ namespace nano
    
 
 class button :
-   virtual public ::nano::user::child
+   virtual public ::nano::user::interaction
 {
 public:
 

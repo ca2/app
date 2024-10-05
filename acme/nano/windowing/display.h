@@ -9,7 +9,7 @@
 namespace nano
 {
 
-   namespace user
+   namespace windowing
    {
    
 
@@ -52,7 +52,7 @@ namespace nano
    };
 
 
-   } // namespace user
+   } // namespace windowing
 
 
 } // namespace nano

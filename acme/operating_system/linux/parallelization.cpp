@@ -91,7 +91,7 @@ namespace acme
 
       information() << "acme::node::user_post going to display_post";
 
-      auto pdisplay = system()->windowing_base()->display();
+      auto pdisplay = nano()->user()->display();
 
       pdisplay->display_post(procedure);
 

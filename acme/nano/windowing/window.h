@@ -15,45 +15,34 @@
 #pragma once
 
 
-#include "acme/platform/conversation_message.h"
-#include "acme/user/user/drag_client.h"
-#include "acme/user/user/interaction_base.h"
-#include "acme/prototype/geometry2d/rectangle.h"
-#include "acme/user/user/item.h"
+//#include "acme/platform/conversation_message.h"
+//#include "acme/user/user/drag_client.h"
+//#include "acme/user/user/interaction_base.h"
+//#include "acme/prototype/geometry2d/rectangle.h"
+//#include "acme/user/user/item.h"
+
+#include "acme/user/user/element.h"
 
 namespace nano
 {
 
 
-   namespace user
+   namespace windowing
    {
 
    
-class CLASS_DECL_ACME interchange :
-   virtual public ::user::interaction_base
+class CLASS_DECL_ACME window :
+   virtual public ::user::element
    //virtual public ::conversation_message
 {
 public:
 
 
-   ::function < void(interchange *) >        m_functionClose;
+   ::function < void(::nano::user::window *) >        m_functionClose;
 
-   ::pointer < ::nano::user::interchange >                m_pinterchangeParent;
+   ::pointer < ::nano::user::window >                m_pwindowOwner;
 
    //::pointer<::nano::user::window_implementation>     m_pnanouserwindowimplementation;
-   ::pointer<::nano::graphics::brush>                     m_pbrushWindow;
-   ::pointer<::nano::graphics::brush>                     m_pbrushText;
-   ::pointer<::nano::graphics::brush>                     m_pbrushHyperlink;
-   ::pointer<::nano::graphics::brush>                     m_pbrushHyperlinkHover;
-   ::pointer<::nano::graphics::pen>                       m_ppenBorder;
-   ::pointer<::nano::graphics::pen>                       m_ppenBorderFocus;
-   ::pointer<::nano::graphics::pen>                       m_ppenNull;
-   ::pointer<::nano::graphics::font>                      m_pfont;
-   ::color::color                            m_colorText;
-   ::color::color                            m_colorHyperlink;
-   ::color::color                            m_colorHyperlinkHover;
-   ::color::color                            m_colorFocus;
-   ::color::color                            m_colorWindow;
    bool                                      m_bNcActive;
 
    rectangle_i32                             m_rectangle;
@@ -72,7 +61,6 @@ public:
    bool                                      m_bStartCentered;
    bool                                      m_bArbitraryPositioning;
    int                                       m_iFontSize;
-   enum_font                                 m_efont;
 
    bool                                      m_bTopMost;
 
@@ -82,46 +70,33 @@ public:
 
    //map < const ::item *, ::user::item >      m_useritemmap;
 
+   bool                                               m_bRepositioningWindowFromCenter;
+   bool                                               m_bResizingWindowFromBottomRight;
+   ::point_i32                                        m_pointWindow;
+   ::size_i32                                         m_sizeWindow;
+   ::point_i32                                        m_pointCursor2;
 
-   interchange();
-   ~interchange() override;
+   ::pointer < ::operating_system::a_system_menu >    m_psystemmenu;
+
+   ::pointer < ::user::interaction_base >             m_puserinteractionbase;
+   ::pointer < ::user::interaction_base >             m_puserinteractionbaseFocus;
+
+   ::pointer < ::nano::user::display >                m_pdisplaybase;
+
+   window();
+   ~window() override;
 
 
    //virtual void do_interchange();
 
 
-   ::payload do_synchronously(const class time & timeWait = ::time::infinity()) override;
-   void do_asynchronously() override;
 
 
    //virtual ::pointer < item_container > item_form();
 
    void on_initialize_particle() override;
 
-   void create() override;
 
-   void show_window() override;
-    
-   void hide() override;
-
-   void message_loop() override;
-
-   void draw(::nano::graphics::device * pnanodevice) override;
-
-   void on_draw(::nano::graphics::device * pnanodevice) override;
-
-   void on_char(int iChar) override;
-
-   bool is_active() override;
-   void set_active() override;
-
-   void draw_children(::nano::graphics::device * pnanodevice) override;
-
-   void delete_drawing_objects() override;
-   bool get_dark_mode() override;
-
-   void create_drawing_objects() override;
-   void update_drawing_objects() override;
 
 
    //bool defer_perform_entire_reposition_process() override;
@@ -130,10 +105,6 @@ public:
 
    bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse) override;
 
-   ::point_i32 try_absolute_mouse_position(const ::point_i32 & point) override;
-
-
-   ::point_i32 origin() override;
 
 
    //::nano::user::child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
@@ -142,15 +113,7 @@ public:
    virtual void add_child(::nano::user::child * pchild);
    virtual ::nano::user::child * get_child_by_id(const ::atom & atom);
 
-   ::payload get_result() override;
 
-   void on_mouse_move(::user::mouse * pmouse) override;
-   void on_left_button_down(::user::mouse * pmouse) override;
-   void on_left_button_up(::user::mouse * pmouse) override;
-   void on_click(const ::payload & payload, ::user::mouse * pmouse) override;
-   void on_right_button_down(::user::mouse * pmouse) override;
-   void on_right_button_up(::user::mouse * pmouse) override;
-   void on_right_click(const ::payload & payload, ::user::mouse * pmouse) override;
 
    void set_position(const ::point_i32 & point) override;
 
@@ -167,7 +130,6 @@ public:
 
    ::rectangle_i32 get_interaction_rectangle() override;
 
-   void get_client_rectangle(::rectangle_i32 & rectangle) override;
 
    //void get_window_rectangle() override;
 
@@ -205,31 +167,20 @@ public:
    ///    2024-10-05 11:09 <3ThomasBorregaardSorensen!!
    /// 
    /// 
-   bool                                               m_bRepositioningWindowFromCenter;
-   bool                                               m_bResizingWindowFromBottomRight;
-   ::point_i32                                        m_pointWindow;
-   ::size_i32                                         m_sizeWindow;
-   ::point_i32                                        m_pointCursor2;
+ 
 
-   ::pointer < ::operating_system::a_system_menu >    m_psystemmenu;
-
-   ::pointer < ::user::interaction_base >             m_puserinteractionbase;
-
-   ::pointer < ::nano::user::display >                m_pdisplaybase;
-
-
-   window_base();
-   ~window_base() override;
+   //interchange();
+   //~interchange() override;
 
 
    ::user::interaction_base * user_interaction_base() override;
-   ::windowing::window_base * windowing_window_base() override;
+   ::nano::user::window * nano_user_window() override;
 
 
-   void on_initialize_particle() override;
+   //void on_initialize_particle() override;
 
 
-   void destroy() override;
+   //void destroy() override;
 
 
    virtual bool is_windowing_popup();
@@ -237,18 +188,18 @@ public:
    virtual ::size_i32 windowing_popup_size();
    virtual void _on_windowing_close_window();
    virtual bool is_satellite_window();
-   virtual window_base * owner_window();
+   virtual ::nano::user::window * owner_window();
    ::string get_window_text() override;
 
 
    ///::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true) override;
 
-   bool defer_perform_entire_reposition_process(::user::mouse * pmouse) override;
+   //bool defer_perform_entire_reposition_process(::user::mouse * pmouse) override;
 
-   bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse) override;
+   //bool defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse) override;
 
 
-   virtual void on_char(int iChar);
+   //virtual void on_char(int iChar);
    //       //
    //       // Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSorensen!!
    //       //
@@ -295,7 +246,7 @@ public:
    virtual void create_window();
    virtual void _create_window();
 
-   void on_create_window() override;
+   //void on_create_window() override;
 
    virtual void nano_window_on_destroy();
 
@@ -304,19 +255,19 @@ public:
    //virtual void _display_console();
 
 
-   virtual void show_window();
+   //virtual void show_window();
    virtual void hide_window();
 
-   virtual void message_loop();
+   //virtual void message_loop();
 
    virtual void set_active_window();
 
    virtual bool is_active_window();
 
-   virtual ::point_i32 try_absolute_mouse_position(const ::point_i32 & point);
+   //virtual ::point_i32 try_absolute_mouse_position(const ::point_i32 & point);
 
 
-   void handle(::topic * ptopic, ::context * pcontext) override;
+   //void handle(::topic * ptopic, ::context * pcontext) override;
 
 
    virtual ::size_i32 get_main_screen_size();
@@ -331,7 +282,7 @@ public:
 
    virtual void defer_show_system_menu(::user::mouse * pmouse);
 
-   virtual void implementation_message_loop_step();
+   virtual void interchange_message_loop_step();
 
 
 
@@ -339,11 +290,11 @@ public:
 
 
    void set_rectangle(const rectangle_i32 & rectangle) override;
-   void set_position(const point_i32 & point) override;
+   //void set_position(const point_i32 & point) override;
    void set_size(const size_i32 & size) override;
 
 
-   ::rectangle_i32 get_window_rectangle() override;
+   //::rectangle_i32 get_window_rectangle() override;
    virtual ::rectangle_i32 get_window_rectangle_unlocked();
 
 

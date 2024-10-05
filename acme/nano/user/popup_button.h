@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "interchange.h"
+#include "interaction.h"
 
 namespace nano
 {
@@ -13,11 +13,11 @@ namespace user
 {
 
 class popup_button :
-   virtual public ::nano::user::interchange
+   virtual public ::nano::user::interaction
 {
 public:
 
-
+   ::pointer < ::nano::user::interaction >      m_puserinteractionbaseOwner;
 
    popup_button();
    ~popup_button() override;
@@ -27,7 +27,7 @@ public:
    void calculate_size_and_position(int x = INT_MIN, int y = INT_MIN);
 
 
-   virtual void initialize_popup_button(const ::string & strText, int x, int y, ::nano::user::interchange * pinterchangeParent);
+   virtual void initialize_popup_button(const ::string & strText, int x, int y, ::nano::user::window * pwindowOwner);
 
    void on_click(const ::payload& payload, ::user::mouse * pmouse) override;
 

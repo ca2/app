@@ -119,7 +119,7 @@ namespace user
 
 
       virtual ::user::interaction_base * user_interaction_base();
-      virtual ::windowing::window_base * windowing_window_base();
+      virtual ::nano::user::window * nano_user_window();
 
 
       virtual ::user::prototype * user_prototype();
@@ -324,7 +324,7 @@ namespace user
       virtual string get_class_name();
 
 
-      virtual void on_before_create_window(::windowing::window_base * pwindowbase);
+      virtual void on_before_create_window(::user::interaction_base * puserinteractionbase);
       virtual void on_create_window();
 
       //virtual void create_host(enum_parallelization eparallelization);

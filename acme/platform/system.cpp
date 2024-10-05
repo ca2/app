@@ -178,7 +178,7 @@ namespace acme
 
       m_bFinalizeIfNoSession = false;
       m_bFinalizeIfNoSessionSetting = true;
-      m_bUserSystemInitialized = false;
+      m_bGraphicsUserWindowingSystemInitialized = false;
 
    }
 
@@ -3904,19 +3904,19 @@ namespace acme
    }
 
 
-   void system::do_user_system_factory()
+   void system::do_graphics_user_windowing_system_factory()
    {
 
-      if(!m_bUserSystemInitialized)
+      if(!m_bGraphicsUserWindowingSystemInitialized)
       {
 
-         m_bUserSystemInitialized = true;
-
-         node()->do_windowing_system_factory();
+         m_bGraphicsUserWindowingSystemInitialized = true;
 
          nano()->graphics();
 
          nano()->user();
+
+         nano()->windowing();
 
       }
 
@@ -3929,7 +3929,7 @@ namespace acme
       if(!m_pwindowingbase)
       {
 
-         do_user_system_factory();
+         do_graphics_user_windowing_system_factory();
 
          __construct(m_pwindowingbase);
 

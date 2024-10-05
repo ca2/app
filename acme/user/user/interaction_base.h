@@ -48,7 +48,8 @@ public:
     bool                                        m_bArbitraryPositioning;
 
 
-   ::pointer < ::windowing::window_base >       m_pwindowbase;
+   ::pointer < ::nano::user::window >           m_pnanouserwindow;
+   ::pointer < ::user::interaction_base >       m_puserinteractionbaseParent;
 
 
     interaction_base();
@@ -68,9 +69,7 @@ public:
 
 
    ::user::interaction_base * user_interaction_base() override;
-   ::windowing::window_base * windowing_window_base() override;
-
-
+   ::nano::user::window * nano_user_window() override;
 
 
 
@@ -108,6 +107,8 @@ public:
    virtual void create();
 
    virtual void show_window();
+
+   virtual void hide_window();
 
    virtual void message_loop();
 

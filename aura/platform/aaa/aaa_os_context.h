@@ -86,7 +86,7 @@
       virtual void set_file_status(const ::string & pszFileName, const ::file::file_status& status);
 
 
-      virtual bool resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr, ::user::prototype * puiMessageParentOptional = nullptr);
+      virtual bool resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory = nullptr, string * pstrParams = nullptr, ::user::interaction_base * puiMessageParentOptional = nullptr);
 
       virtual bool initialize_wallpaper_fileset(::file::set* pfileset, bool bAddSearch);
 

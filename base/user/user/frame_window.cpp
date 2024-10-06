@@ -311,7 +311,7 @@ namespace user
    //}
 
 
-   bool frame_window::on_set_parent(::user::prototype * puiParent)
+   bool frame_window::on_set_parent(::user::interaction_base * puiParent)
    {
 
       if (!::user::interaction::on_set_parent(puiParent))

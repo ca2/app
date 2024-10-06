@@ -1105,7 +1105,7 @@ namespace user
    class drag;
    class drag_client;
 
-   class prototype;
+   class interaction_base;
    class element;
    class primitive_impl;
 
@@ -1998,17 +1998,6 @@ namespace user
 
 
 class thread;
-
-
-namespace user
-{
-
-   class prototype;
-
-   //class create;
-
-
-} // namespace user
 
 
 class action_context;

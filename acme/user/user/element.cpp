@@ -2642,12 +2642,22 @@ namespace user
    }
 
 
-   ::user::prototype * element::user_prototype()
+
+   ::user::interaction_base * element::user_interaction_base()
    {
 
       return nullptr;
 
    }
+
+
+   ::windowing::window_base * element::windowing_window_base()
+   {
+
+      return nullptr;
+
+   }
+
 
 
    ::user::interaction * element::user_interaction()
@@ -2656,6 +2666,29 @@ namespace user
       return nullptr;
 
    }
+
+
+   ::windowing::window * element::windowing_window()
+   {
+
+      return nullptr;
+
+   }
+
+   //::user::interaction_base * element::user_prototype()
+   //{
+
+   //   return nullptr;
+
+   //}
+
+
+   //::user::interaction * element::user_interaction()
+   //{
+
+   //   return nullptr;
+
+   //}
 
 
    void element::on_select()

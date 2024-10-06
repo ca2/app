@@ -128,7 +128,7 @@ namespace user
       ::list < ::pointer<::message::message >> m_messagelist;
 
       ::point_i32                               m_pointInside;
-      //::user::prototype *                       m_pprimitiveFocus;
+      //::user::interaction_base *                       m_pprimitiveFocus;
       ::pointer<::user::element>               m_pelementSoftwareKeyboard;
 
       ::pointer<::windowing::window>           m_pwindow;
@@ -255,7 +255,7 @@ namespace user
       //virtual void set_foreground_window();
 
 
-      virtual bool on_keyboard_focus(::user::prototype* pfocus);
+      virtual bool on_keyboard_focus(::user::interaction_base* pfocus);
       virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;
       virtual bool keyboard_focus_OnChildKillFocus() override;
 
@@ -325,7 +325,7 @@ namespace user
 
 
       //virtual ::user::interaction * get_owner();
-      ::user::prototype * set_owner(::user::prototype * pprimitiveOwner) override;
+      ::user::interaction_base * set_owner(::user::interaction_base * pprimitiveOwner) override;
 
       bool has_pending_redraw_flags() override;
 
@@ -381,16 +381,16 @@ namespace user
 
 
 
-      //using ::user::prototype::create_interaction;
-      //using ::user::prototype::create_window_ex;
+      //using ::user::interaction_base::create_interaction;
+      //using ::user::interaction_base::create_window_ex;
 
 
       // for child windows, views, panes etc
-      //virtual bool create_interaction(::user::interaction * pinteraction, ::u32 uExStyle, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::prototype * puiParent, ::request * prequest = nullptr) override;
+      //virtual bool create_interaction(::user::interaction * pinteraction, ::u32 uExStyle, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction_base * puiParent, ::request * prequest = nullptr) override;
 
 
       // advanced creation (allows access to extended styles)
-      //virtual bool create_window_ex(::user::interaction * pinteraction, ::pointer<::user::system>pcs, ::user::prototype * puiParent, atom atom) override;
+      //virtual bool create_window_ex(::user::interaction * pinteraction, ::pointer<::user::system>pcs, ::user::interaction_base * puiParent, atom atom) override;
 
       //virtual bool create_interaction() override;
 
@@ -478,7 +478,7 @@ namespace user
       //virtual i32 SetWindowRgn(HRGN hRgn,bool bRedraw);
       //virtual i32 GetWindowRgn(HRGN hRgn);
 
-      //using ::user::prototype::set_window_position;
+      //using ::user::interaction_base::set_window_position;
       //virtual bool set_window_position(class zorder zorder, i32 x, i32 y, i32 cx,i32 cy, ::u32 nFlags = SWP_SHOWWINDOW) override;
       virtual ::u32 ArrangeIconicWindows() override;
       //virtual bool BringWindowToTop() override;
@@ -808,14 +808,14 @@ namespace user
 
       virtual void on_start_layout_experience(enum_layout_experience elayoutexperience) override;
 
-      virtual void on_configuration_change(::user::prototype * pprimitiveSource) override;
+      virtual void on_configuration_change(::user::interaction_base * pprimitiveSource) override;
 
       ::user::element * get_keyboard_focus() override;
-      //virtual void set_keyboard_focus(::user::prototype * pprimitive) override;
-      //virtual void erase_keyboard_focus(::user::prototype * pprimitive) override;
+      //virtual void set_keyboard_focus(::user::interaction_base * pprimitive) override;
+      //virtual void erase_keyboard_focus(::user::interaction_base * pprimitive) override;
       void clear_keyboard_focus(::user::primitive_impl* pprimitiveimplGainingFocusIfAny = nullptr) override;
-      //virtual void impl_set_keyboard_focus(::user::prototype * pprimitive) override;
-      //virtual void impl_erase_keyboard_focus(::user::prototype * pprimitive) override;
+      //virtual void impl_set_keyboard_focus(::user::interaction_base * pprimitive) override;
+      //virtual void impl_erase_keyboard_focus(::user::interaction_base * pprimitive) override;
       //virtual void impl_clear_keyboard_focus() override;
 
       virtual void redraw_add(::particle * pparticle) override;

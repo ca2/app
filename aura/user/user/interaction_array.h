@@ -43,12 +43,12 @@ namespace user
    public:
 
 
-      DECLARE_ARRAY_OF(primitive_pointer_array, primitive, ::user::prototype);
+      DECLARE_ARRAY_OF(primitive_pointer_array, primitive, ::user::interaction_base);
 
 
       primitive_pointer_array();
-      primitive_pointer_array(const address_array < ::user::prototype * > & a);
-      primitive_pointer_array(const pointer_array < ::user::prototype > & a)
+      primitive_pointer_array(const address_array < ::user::interaction_base * > & a);
+      primitive_pointer_array(const pointer_array < ::user::interaction_base > & a)
       {
 
          m_primitivea.copy(a);
@@ -62,12 +62,12 @@ namespace user
       }
 
 
-      ::user::prototype * find_first_typed(const ::type_atom & typeatom);
-      ::user::prototype * find_first(oswindow oswindow);
+      ::user::interaction_base * find_first_typed(const ::type_atom & typeatom);
+      ::user::interaction_base * find_first(oswindow oswindow);
 
 
-      virtual bool get_child(::pointer<::user::prototype>& pprimitive);
-      virtual bool rget_child(::pointer<::user::prototype>& pprimitive);
+      virtual bool get_child(::pointer<::user::interaction_base>& pprimitive);
+      virtual bool rget_child(::pointer<::user::interaction_base>& pprimitive);
 
 
    };

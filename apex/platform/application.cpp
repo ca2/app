@@ -1131,7 +1131,7 @@ namespace apex
    }
 
 
-   //void application::message_box_synchronous(::user::prototype * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_synchronous(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   return ::message_box_synchronous(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
@@ -1139,7 +1139,7 @@ namespace apex
    //}
 
 
-   //void application::ui_message_box(::user::prototype* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!get_session() || !psession->userex())
@@ -1154,7 +1154,7 @@ namespace apex
    //}
 
 
-   //void application::ui_message_box_timeout(::user::prototype* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box_timeout(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!get_session() || !psession->userex())
@@ -1169,7 +1169,7 @@ namespace apex
    //}
 
 
-   //void application::message_box(::user::prototype* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -1186,7 +1186,7 @@ namespace apex
    //}
 
 
-   //void application::message_box_timeout(::user::prototype* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_timeout(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, timeTimeout, emessagebox, callback);
@@ -1206,7 +1206,7 @@ namespace apex
    //void application::message_box(const ::payload & payload)
    //{
 
-   //   ::pointer<::user::prototype>puiOwner;
+   //   ::pointer<::user::interaction_base>puiOwner;
 
    //   string strMessage;
 
@@ -1227,7 +1227,7 @@ namespace apex
    //   else
    //   {
 
-   //      puiOwner = payload["owner"].cast < ::user::prototype >();
+   //      puiOwner = payload["owner"].cast < ::user::interaction_base >();
    //      strMessage = payload["message"];
    //      strTitle = payload["title"];
    //      uFlags = payload["flags"];
@@ -4547,7 +4547,7 @@ namespace apex
    }
 
 
-   //i32 application::sync_message_box_timeout(::user::prototype * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::time timeTimeOut, ::u32 fuStyle)
+   //i32 application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::time timeTimeOut, ::u32 fuStyle)
    //{
 
    //   __UNREFERENCED_PARAMETER(timeTimeOut);
@@ -4981,7 +4981,7 @@ namespace apex
    }
 
 
-   bool application::keyboard_focus_is_focusable(const ::user::prototype * pue)
+   bool application::keyboard_focus_is_focusable(const ::user::interaction_base * pue)
    {
 
       return false;
@@ -4989,7 +4989,7 @@ namespace apex
    }
 
 
-   bool application::keyboard_focus_OnSetFocus(::user::prototype * pue)
+   bool application::keyboard_focus_OnSetFocus(::user::interaction_base * pue)
    {
 
       return true;

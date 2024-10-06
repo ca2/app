@@ -12,13 +12,6 @@ enum enum_method : ::i32;
 enum enum_future : ::i32;
 
 
-namespace user
-{
-
-   class prototype;
-
-}
-
 namespace acme
 {
 
@@ -456,8 +449,8 @@ public:
 
    //}
 
-   //virtual void message_box(::user::prototype* puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
-   //virtual void message_box_timeout(::user::prototype* puserinteractionOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   //virtual void message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   //virtual void message_box_timeout(::user::interaction_base* puserinteractionOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
 
    //virtual void release_references();
 
@@ -841,7 +834,7 @@ public:
    //}
 
 
-   //virtual ::user::prototype* get_user_interaction_host();
+   //virtual ::user::interaction_base* get_user_interaction_host();
    //virtual ::user::interaction * get_host_user_interaction();
 
 
@@ -1024,8 +1017,8 @@ public:
 
    //}
 
-   //virtual void message_box(::user::prototype* puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
-   //virtual void message_box_timeout(::user::prototype* puserinteractionOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   //virtual void message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   //virtual void message_box_timeout(::user::interaction_base* puserinteractionOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class ::time& timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
 
    //virtual void release_references();
 

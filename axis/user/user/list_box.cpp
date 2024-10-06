@@ -124,7 +124,7 @@ namespace user
    }
 
 
-   bool list_box::on_set_owner(::user::prototype* pprimitive)
+   bool list_box::on_set_owner(::user::interaction_base* pprimitive)
    {
 
       auto puserinteractionOwner = pprimitive->get_owner();
@@ -954,7 +954,7 @@ namespace user
 
          m_pcombo->ShowDropDown(false);
 
-         ::pointer<::user::prototype>pelemental = m_pcombo->keyboard_get_next_focusable();
+         ::pointer<::user::interaction_base>pelemental = m_pcombo->keyboard_get_next_focusable();
 
          if (pelemental.is_set())
          {
@@ -984,7 +984,7 @@ namespace user
 
          m_pcombo->ShowDropDown(false);
 
-         ::pointer<::user::prototype>pelemental = m_pcombo->keyboard_get_next_focusable();
+         ::pointer<::user::interaction_base>pelemental = m_pcombo->keyboard_get_next_focusable();
 
          if (pelemental.is_set())
          {

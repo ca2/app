@@ -710,8 +710,8 @@
     <ClCompile Include="user\user\language.cpp" />
     <ClCompile Include="user\user\language_map.cpp" />
     <ClCompile Include="user\user\message.cpp" />
-    <ClCompile Include="user\user\prototype.cpp" />
-    <ClCompile Include="windowing\prototype.cpp" />
+    <ClCompile Include="user\user\interaction_base.cpp" />
+    <ClCompile Include="windowing\window_base.cpp" />
     <ClCompile Include="_.cpp" />
     <ClInclude Include="aaa_application.h" />
     <ClInclude Include="constant\idpool.h" />
@@ -986,6 +986,8 @@
     <ClInclude Include="progress\real.h" />
     <ClInclude Include="progress\_.h" />
     <ClInclude Include="aaa_user.h" />
+    <ClInclude Include="release\release.config.h" />
+    <ClInclude Include="release\release.h" />
     <ClInclude Include="user\menu\main_menu_command.h" />
     <ClInclude Include="user\menu\main_menu.h" />
     <ClInclude Include="user\user\aaa_const_key.h" />
@@ -994,9 +996,8 @@
     <ClInclude Include="user\user\language_map.h" />
     <ClInclude Include="user\user\message.h" />
     <ClInclude Include="user\user\notify_icon_bridge.h" />
-    <ClInclude Include="user\user\prototype.h" />
+    <ClInclude Include="user\user\interaction_base.h" />
     <ClInclude Include="user\user\_.h" />
-    <ClInclude Include="version\version.h" />
     <ClInclude Include="const\thread.h" />
     <ClCompile Include="filesystem\file\set.cpp" />
     <ClCompile Include="filesystem\fs\data.cpp" />
@@ -1037,6 +1038,7 @@
     <ClInclude Include="inline\library.h" />
     <ClInclude Include="inline\__debug_box_clear_impl.h" />
     <ClInclude Include="inline\__debug_box_set_impl.h" />
+    <ClInclude Include="windowing\window_base.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="aaa__defer.h" />
     <None Include="filesystem\_impl.h" />

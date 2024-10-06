@@ -49,28 +49,21 @@ namespace nano
       public:
 
 
-         ::pointer < ::nano::windowing::window >      m_pnanowindowingwindow;
-         ::pointer < ::nano::user::interaction >      m_pnanouserinteractionParent;
-         pointer_array < ::nano::user::interaction >  m_nanouserinteractionaChildren;
 
 
-         string                                    m_strText;
-         ::atom                                    m_atom;
-         rectangle_i32                             m_rectangle;
-         enum_font                                 m_efont;
+         ////string                                    m_strText;
+         ////::atom                                    m_atom;
+         ////rectangle_i32                             m_rectangle;
+         ////enum_font                                 m_efont;
 
 
-         bool                                        m_bMinimizeBox;
-         bool                                        m_bMaximizeBox;
-         bool                                        m_bResizeable;
-         bool                                        m_bTopMost;
-         bool                                        m_bStartCentered;
-         bool                                        m_bArbitraryPositioning;
+         //bool                                      m_bMinimizeBox;
+         //bool                                      m_bMaximizeBox;
+         //bool                                      m_bResizeable;
+         //bool                                      m_bTopMost;
+         //bool                                      m_bStartCentered;
+         //bool                                      m_bArbitraryPositioning;
 
-         ::atom                                    m_atomLeftButtonDown;
-         ::atom                                    m_atomLeftButtonUp;
-         ::atom                                    m_atomRightButtonDown;
-         ::atom                                    m_atomRightButtonUp;
 
 
 
@@ -79,13 +72,13 @@ namespace nano
          interaction();
          ~interaction();
 
-         ::payload do_synchronously(const class time & timeWait = ::time::infinity()) override;
-         void do_asynchronously() override;
+         //::payload do_synchronously(const class time & timeWait = ::time::infinity()) override;
+         //void do_asynchronously() override;
 
 
-         virtual ::nano::user::theme * nano_user_theme();
+         //virtual ::nano::user::theme * nano_user_theme();
 
-         virtual enum_font nano_user_font();
+         //virtual enum_font nano_user_font();
 
          //void create() override;
 
@@ -99,14 +92,14 @@ namespace nano
 
          //void on_draw(::nano::graphics::device * pnanodevice) override;
 
-         void draw(::nano::graphics::device * pnanodevice);
+         //void draw(::nano::graphics::device * pnanodevice);
 
-         virtual void on_char(int iChar);
+         //virtual void on_char(int iChar);
 
          //bool is_active() override;
          //void set_active() override;
 
-         virtual void draw_children(::nano::graphics::device * pnanodevice);
+         //virtual void draw_children(::nano::graphics::device * pnanodevice);
 
          //void delete_drawing_objects() override;
          //bool get_dark_mode() override;
@@ -119,7 +112,7 @@ namespace nano
 
          virtual ::point_i32 origin();
 
-         virtual ::payload get_result();
+         //virtual ::payload get_result();
 
          //void on_mouse_move(::user::mouse * pmouse) override;
          //void on_left_button_down(::user::mouse * pmouse) override;
@@ -130,17 +123,17 @@ namespace nano
          //void on_right_click(const ::payload & payload, ::user::mouse * pmouse) override;
 
                   //::nano::user::child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
-         virtual ::nano::user::interaction * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
-         virtual ::nano::user::interaction * on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
-         virtual void add_child(::nano::user::interaction * pchild);
-         virtual ::nano::user::interaction * get_child_by_id(const ::atom & atom);
+         //virtual ::nano::user::interaction * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
+         //virtual ::nano::user::interaction * on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
+         //virtual void add_child(::nano::user::interaction * pchild);
+         //virtual ::nano::user::interaction * get_child_by_id(const ::atom & atom);
 
          virtual ::rectangle_i32 get_client_rectangle();
 
 
          /// @brief  Child
          /// @param pnanodevice 
-         virtual void on_draw(::nano::graphics::device * pnanodevice);
+         //virtual void on_draw(::nano::graphics::device * pnanodevice);
          //virtual void on_char(int iChar);
          virtual void set_focus();
          virtual bool is_focusable();
@@ -150,7 +143,7 @@ namespace nano
          virtual void release_capture();
 
 
-         virtual void resize_to_fit();
+         //virtual void resize_to_fit();
 
 
          //virtual void display_temporary_file_with_text(const ::string & str);
@@ -226,9 +219,12 @@ namespace nano
                virtual ::nano::user::interaction * nano_user_parent();
 
 
-               virtual ::collection::count nano_user_button_count();
-               virtual ::nano::user::button * nano_user_button_at(::collection::index i);
-               //
+               //virtual ::collection::count nano_user_button_count();
+               //virtual ::nano::user::button * nano_user_button_at(::collection::index i);
+ 
+ 
+ 
+
                // //
                // // Created by camilo on 31/01/2022 22:37 <3ThomasBorregaardSorensen!!
                // //
@@ -259,7 +255,7 @@ namespace nano
 
                void on_initialize_particle() override;
 
-               virtual void create_window();
+               //virtual void create_window();
 
                virtual void show_interaction();
 
@@ -325,18 +321,18 @@ namespace nano
                // virtual void nano_user_add_child(::nano::user::child * pchild);
 
                //virtual ::payload get_result();
-               void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter);
+               //void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter);
 
 
-               void display_temporary_file_with_text(const ::string & str);
+               virtual void display_temporary_file_with_text(const ::string & str);
 
-               virtual void on_mouse_move(::user::mouse * pmouse);
-               virtual void on_left_button_down(::user::mouse * pmouse);
-               virtual void on_left_button_up(::user::mouse * pmouse);
-               virtual void on_click(const ::payload & payload, ::user::mouse * pmouse);
-               virtual void on_right_button_down(::user::mouse * pmouse);
-               virtual void on_right_button_up(::user::mouse * pmouse);
-               virtual void on_right_click(const ::payload & payload, ::user::mouse * pmouse);
+               //virtual void on_mouse_move(::user::mouse * pmouse);
+               //virtual void on_left_button_down(::user::mouse * pmouse);
+               //virtual void on_left_button_up(::user::mouse * pmouse);
+               //virtual void on_click(const ::payload & payload, ::user::mouse * pmouse);
+               //virtual void on_right_button_down(::user::mouse * pmouse);
+               //virtual void on_right_button_up(::user::mouse * pmouse);
+               //virtual void on_right_click(const ::payload & payload, ::user::mouse * pmouse);
 
 
                //virtual LRESULT window_procedure(UINT message, WPARAM wparam, LPARAM lparam);
@@ -379,10 +375,10 @@ namespace nano
 
                ::trace_statement & raw_trace_statement_prefix(::trace_statement & statement) const override;
 
-               virtual void create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom = nullptr);
+               //virtual void create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom = nullptr);
 
 
-               virtual void create_control(::user::interaction * puserinteractionParent, const ::atom & atom);
+               //virtual void create_control(::user::interaction * puserinteractionParent, const ::atom & atom);
 
 
                //virtual void on_position_window();

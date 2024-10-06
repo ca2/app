@@ -23,7 +23,7 @@
 #include "apex/message/command.h"
 #include "apex/message/message.h"
 //#include "apex/operating_system.h"
-#include "apex/user/user/prototype.h"
+#include "apex/user/user/interaction_base.h"
 
 
 #if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
@@ -1972,7 +1972,7 @@ namespace apex
    }
 
 
-   ::user::prototype* session::get_user_interaction_host()
+   ::user::interaction_base* session::get_user_interaction_host()
    {
 
       return m_puserprimitiveHost;
@@ -1980,7 +1980,7 @@ namespace apex
    }
 
 
-   ::user::prototype * session::get_host_primitive()
+   ::user::interaction_base * session::get_host_primitive()
    {
 
       return m_puserprimitiveHost;

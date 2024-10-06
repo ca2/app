@@ -529,7 +529,7 @@ namespace message
    //void scroll::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    //{
 
-   //   ::pointer<::user::prototype>pprimitive(lparam);
+   //   ::pointer<::user::interaction_base>pprimitive(lparam);
 
    //   m_pscrollbar = pprimitive;
 

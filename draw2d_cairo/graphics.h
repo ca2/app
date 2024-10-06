@@ -219,7 +219,7 @@ namespace draw2d_cairo
       //i32 SelectClipRgn(::draw2d::region* pRgn) override;
       //i32 ExcludeClipRect(double x1, double y1, double x2, double y2) override;
       //i32 ExcludeClipRect(const ::rectangle_f64 & rectangle_f64) override;
-      //i32 ExcludeUpdateRgn(::user::prototype * pwindow);
+      //i32 ExcludeUpdateRgn(::user::interaction_base * pwindow);
       //virtual i32 IntersectClipRect(double x1, double y1, double x2, double y2) override;
       //virtual i32 IntersectClipRect(const ::rectangle_f64 & rectangle_f64) override;
       //i32 OffsetClipRgn(double x, double y) override;

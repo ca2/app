@@ -271,7 +271,7 @@
 
 
       // Advanced: access to GetMainWnd()
-      ::pointer<::user::prototype>application::GetMainWnd()
+      ::pointer<::user::interaction_base>application::GetMainWnd()
       {
          return ::win::thread::GetMainWnd();
       }
@@ -314,12 +314,12 @@
 //
 //   }
 
-//   ::user::prototype * application::window_from_os_data(void * pdata)
+//   ::user::interaction_base * application::window_from_os_data(void * pdata)
 //   {
 //      return nullptr;
 //   }
 
-//   ::user::prototype * application::window_from_os_data_permanent(void * pdata)
+//   ::user::interaction_base * application::window_from_os_data_permanent(void * pdata)
 //   {
 //      return nullptr;
 //   }

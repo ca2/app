@@ -487,7 +487,7 @@ namespace user
 
       }
 
-      ::user::prototype::on_initialize_particle();
+      ::user::interaction_base::on_initialize_particle();
 
       if (m_bEnableDragClient)
       {
@@ -2286,7 +2286,7 @@ namespace user
    }
 
 
-   ::user::prototype * interaction::get_bind_ui()
+   ::user::interaction_base * interaction::get_bind_ui()
    {
 
       if (::is_null(get_session()))
@@ -2448,7 +2448,7 @@ namespace user
    }
 
 
-   bool interaction::on_before_set_parent(::user::prototype * puserinteractionParent)
+   bool interaction::on_before_set_parent(::user::interaction_base * puserinteractionParent)
    {
 
       return true;
@@ -2456,7 +2456,7 @@ namespace user
    }
 
 
-   ::user::prototype * interaction::set_parent(::user::prototype * puserinteractionParent)
+   ::user::interaction_base * interaction::set_parent(::user::interaction_base * puserinteractionParent)
    {
 
       if (puserinteractionParent == nullptr && get_parent() == nullptr)
@@ -2483,10 +2483,10 @@ namespace user
       if (m_pthreadUserInteraction)
       {
 
-         if (::is_set(m_pthreadUserInteraction->m_puserprimitiveaThread))
+         if (::is_set(m_pthreadUserInteraction->m_puserinteractionbaseaThread))
          {
 
-            m_pthreadUserInteraction->m_puserprimitiveaThread->erase(this);
+            m_pthreadUserInteraction->m_puserinteractionbaseaThread->erase(this);
 
          }
 
@@ -2951,7 +2951,7 @@ namespace user
       MESSAGE_LINK(e_message_pos_create, pchannel, this, &interaction::on_message_after_create);
       MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
 
-      ::user::prototype::install_message_routing(pchannel);
+      ::user::interaction_base::install_message_routing(pchannel);
 
       if (m_bMessageWindow)
       {
@@ -3646,7 +3646,7 @@ namespace user
 
       }
 
-      //::user::prototype::on_set_finish();
+      //::user::interaction_base::on_set_finish();
 
    }
 
@@ -3654,7 +3654,7 @@ namespace user
    void interaction::notify_on_destroy(::property_object * pparticle)
    {
 
-      ::user::prototype::notify_on_destroy(pparticle);
+      ::user::interaction_base::notify_on_destroy(pparticle);
 
    }
 
@@ -10137,6 +10137,33 @@ namespace user
    //}
 
 
+void interaction::create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom)
+{
+
+   if (!atom.is_empty())
+   {
+
+      m_atom = atom;
+
+   }
+
+   ::e_status estatus;
+
+   if (!puserinteractionParent)
+   {
+
+      create_host();
+
+   }
+   else
+   {
+
+      create_child(puserinteractionParent);
+
+   }
+
+}
+
    //void interaction::create_host(enum_parallelization eparallelization)
    void interaction::create_host()
    {
@@ -10571,6 +10598,15 @@ namespace user
 
    }
 
+   void interaction::create_control(::user::interaction * puserinteractionParent, const ::atom & atom)
+   {
+
+      m_atom = atom;
+
+      create_child(puserinteractionParent);
+
+   }
+
 
    void interaction::defer_create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom)
    {
@@ -10739,7 +10775,7 @@ namespace user
 
       }
 
-      return ::user::prototype::parent_property_set_holder();
+      return ::user::interaction_base::parent_property_set_holder();
 
    }
 
@@ -11046,7 +11082,7 @@ namespace user
    //}
 
 
-   //::user::prototype * interaction::get_keyboard_focus()
+   //::user::interaction_base * interaction::get_keyboard_focus()
    //{
 
    //   if (m_pprimitiveimpl == nullptr)
@@ -11133,7 +11169,7 @@ namespace user
 
       //   }
 
-      //   return ::user::prototype::get_form_property_set();
+      //   return ::user::interaction_base::get_form_property_set();
 
       //}
 
@@ -11466,7 +11502,7 @@ namespace user
 
       }
 
-      //::user::prototype::on_finish();
+      //::user::interaction_base::on_finish();
 
       m_pprimitiveimpl->start_destroying_window();
 
@@ -11604,7 +11640,7 @@ namespace user
       m_pwindow.release();
       //return ::success;
       ::user::drag_client::destroy();
-      ::user::prototype::destroy();
+      ::user::interaction_base::destroy();
 
 
 
@@ -11662,10 +11698,10 @@ namespace user
 
          }
 
-         if (::is_set(m_pthreadUserInteraction->m_puserprimitiveaThread))
+         if (::is_set(m_pthreadUserInteraction->m_puserinteractionbaseaThread))
          {
 
-            m_pthreadUserInteraction->m_puserprimitiveaThread->erase(this);
+            m_pthreadUserInteraction->m_puserinteractionbaseaThread->erase(this);
 
          }
 
@@ -11682,7 +11718,7 @@ namespace user
 
       }
 
-      ::user::prototype::post_non_client_destroy();
+      ::user::interaction_base::post_non_client_destroy();
 
       m_pprimitiveimpl.release();
 
@@ -11916,7 +11952,7 @@ namespace user
    }
 
 
-   ::user::prototype * interaction::set_owner(::user::prototype * pprimitive)
+   ::user::interaction_base * interaction::set_owner(::user::interaction_base * pprimitive)
    {
 
       auto puserinteractionOwnerOld = m_puserinteractionOwner;
@@ -11978,7 +12014,7 @@ namespace user
    }
 
 
-   void interaction::on_add_owned(::user::prototype * pprimitive)
+   void interaction::on_add_owned(::user::interaction_base * pprimitive)
    {
 
       __defer_construct_new(m_puserinteractionpointeraOwned);
@@ -12269,7 +12305,7 @@ namespace user
       if (::is_null(pwindow))
       {
 
-         return ::user::prototype::preferred_dpi_x();
+         return ::user::interaction_base::preferred_dpi_x();
 
       }
 
@@ -12286,7 +12322,7 @@ namespace user
       if (::is_null(pwindow))
       {
 
-         return ::user::prototype::preferred_dpi_y();
+         return ::user::interaction_base::preferred_dpi_y();
 
       }
 
@@ -12303,7 +12339,7 @@ namespace user
       if (::is_null(pwindow))
       {
 
-         return ::user::prototype::preferred_density();
+         return ::user::interaction_base::preferred_density();
 
       }
 
@@ -13646,7 +13682,7 @@ namespace user
    }
 
 
-   void interaction::on_configuration_change(::user::prototype * pprimitiveSource)
+   void interaction::on_configuration_change(::user::interaction_base * pprimitiveSource)
    {
 
       if (m_pprimitiveimpl)
@@ -16457,7 +16493,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   bool interaction::on_set_parent(::user::prototype * puserprimitiveParent)
+   bool interaction::on_set_parent(::user::interaction_base * puserprimitiveParent)
    {
 
       ::pointer<::user::interaction> puserinteractionParent = puserprimitiveParent;
@@ -16537,10 +16573,10 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
                if (m_pthreadUserInteraction)
                {
 
-                  if (::is_set(m_pthreadUserInteraction->m_puserprimitiveaThread))
+                  if (::is_set(m_pthreadUserInteraction->m_puserinteractionbaseaThread))
                   {
 
-                     m_pthreadUserInteraction->m_puserprimitiveaThread->erase(this);
+                     m_pthreadUserInteraction->m_puserinteractionbaseaThread->erase(this);
 
                   }
 
@@ -16638,7 +16674,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   bool interaction::on_set_owner(::user::prototype * pprimitive)
+   bool interaction::on_set_owner(::user::interaction_base * pprimitive)
    {
 
       return true;
@@ -16900,7 +16936,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       if (::is_null(m_pprimitiveimpl))
       {
 
-         return ::user::prototype::get_message(atom, wparam, lparam, eprototype);
+         return ::user::interaction_base::get_message(atom, wparam, lparam, eprototype);
 
       }
 
@@ -17411,7 +17447,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    ::user::element * interaction::top_user_element()
    {
 
-      return ::user::prototype::top_user_element();
+      return ::user::interaction_base::top_user_element();
 
    }
 
@@ -18305,7 +18341,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       }
 
-      ::user::prototype::on_simple_command(psimplecommand);
+      ::user::interaction_base::on_simple_command(psimplecommand);
 
    }
 
@@ -18313,7 +18349,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    void interaction::on_command(::message::command * pcommand)
    {
 
-      ::user::prototype::on_command(pcommand);
+      ::user::interaction_base::on_command(pcommand);
 
    }
 
@@ -18362,7 +18398,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    bool interaction::_001OnBeforeEnterIconic()
    {
 
-      return ::user::prototype::_001OnBeforeEnterIconic();
+      return ::user::interaction_base::_001OnBeforeEnterIconic();
 
    }
 
@@ -18370,7 +18406,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    bool interaction::_001OnBeforeEnterNormal()
    {
 
-      return ::user::prototype::_001OnBeforeEnterNormal();
+      return ::user::interaction_base::_001OnBeforeEnterNormal();
 
    }
 
@@ -18378,7 +18414,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    bool interaction::_001OnBeforeEnterZoomed()
    {
 
-      return ::user::prototype::_001OnBeforeEnterZoomed();
+      return ::user::interaction_base::_001OnBeforeEnterZoomed();
 
    }
 
@@ -18386,7 +18422,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    bool interaction::_001OnBeforeEnterFullScreen()
    {
 
-      return ::user::prototype::_001OnBeforeEnterFullScreen();
+      return ::user::interaction_base::_001OnBeforeEnterFullScreen();
 
    }
 
@@ -18437,7 +18473,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    void interaction::_001OnAfterEnterIconic()
    {
 
-      ::user::prototype::_001OnAfterEnterIconic();
+      ::user::interaction_base::_001OnAfterEnterIconic();
 
    }
 
@@ -18445,7 +18481,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    void interaction::_001OnAfterEnterNormal()
    {
 
-      ::user::prototype::_001OnAfterEnterNormal();
+      ::user::interaction_base::_001OnAfterEnterNormal();
 
    }
 
@@ -18453,7 +18489,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    void interaction::_001OnAfterEnterZoomed()
    {
 
-      ::user::prototype::_001OnAfterEnterZoomed();
+      ::user::interaction_base::_001OnAfterEnterZoomed();
 
    }
 
@@ -18461,7 +18497,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    void interaction::_001OnAfterEnterFullScreen()
    {
 
-      ::user::prototype::_001OnAfterEnterFullScreen();
+      ::user::interaction_base::_001OnAfterEnterFullScreen();
 
    }
 
@@ -18523,7 +18559,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    bool interaction::_001OnBeforeExitIconic()
    {
 
-      return ::user::prototype::_001OnBeforeExitIconic();
+      return ::user::interaction_base::_001OnBeforeExitIconic();
 
    }
 
@@ -18531,7 +18567,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    bool interaction::_001OnBeforeExitNormal()
    {
 
-      return ::user::prototype::_001OnBeforeExitNormal();
+      return ::user::interaction_base::_001OnBeforeExitNormal();
 
    }
 
@@ -18539,7 +18575,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    bool interaction::_001OnBeforeExitZoomed()
    {
 
-      return ::user::prototype::_001OnBeforeExitZoomed();
+      return ::user::interaction_base::_001OnBeforeExitZoomed();
 
    }
 
@@ -18547,7 +18583,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    bool interaction::_001OnBeforeExitFullScreen()
    {
 
-      return ::user::prototype::_001OnBeforeExitFullScreen();
+      return ::user::interaction_base::_001OnBeforeExitFullScreen();
 
    }
 
@@ -20863,7 +20899,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
          if (m_puserinteractionpointeraOwned)
          {
 
-            for (auto & puserprimitiveOwned : m_puserinteractionpointeraOwned->primitivea())
+            for (auto & puserprimitiveOwned : m_puserinteractionpointeraOwned->user_interaction_base_array())
             {
 
                ::pointer < ::user::interaction > puserinteractionOwned = puserprimitiveOwned;
@@ -20909,7 +20945,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
          if (m_puserinteractionpointeraOwned)
          {
 
-            for (auto & puserprimitiveOwned : m_puserinteractionpointeraOwned->primitivea())
+            for (auto & puserprimitiveOwned : m_puserinteractionpointeraOwned->user_interaction_base_array())
             {
 
                ::pointer < ::user::interaction > puserinteractionOwned = puserprimitiveOwned;
@@ -21264,7 +21300,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   //::user::prototype * interaction::get_keyboard_focus()
+   //::user::interaction_base * interaction::get_keyboard_focus()
    //{
 
    //   if (m_pprimitiveimpl == nullptr)
@@ -21279,7 +21315,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    //}
 
 
-   //void interaction::set_keyboard_focus(::user::prototype * pprimitive)
+   //void interaction::set_keyboard_focus(::user::interaction_base * pprimitive)
    //{
 
    //   auto puserinteractionHost = get_host_user_interaction();
@@ -21300,7 +21336,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    //}
 
 
-   //void interaction::erase_keyboard_focus(::user::prototype * pprimitive)
+   //void interaction::erase_keyboard_focus(::user::interaction_base * pprimitive)
    //{
 
    //   auto puserinteractionHost = get_host_user_interaction();
@@ -22079,7 +22115,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       start_destroying_window();
 
-      ::user::prototype::destruct();
+      ::user::interaction_base::destruct();
 
    }
 
@@ -22123,7 +22159,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    void interaction::on_after_graphical_update()
    {
 
-      ::user::prototype::on_after_graphical_update();
+      ::user::interaction_base::on_after_graphical_update();
 
       if (m_pprimitiveimpl.is_set())
       {
@@ -22678,7 +22714,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       if (::is_null(m_pthreadUserInteraction))
       {
 
-         ::user::prototype::post_procedure(procedure);
+         ::user::interaction_base::post_procedure(procedure);
 
          return;
 
@@ -26733,7 +26769,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       if (!m_pprimitiveimpl)
       {
 
-         return ::user::prototype::_001GetTopLeftWeightedOccludedOpaqueRate();
+         return ::user::interaction_base::_001GetTopLeftWeightedOccludedOpaqueRate();
 
       }
 
@@ -27239,7 +27275,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       //}
 
-      //return ::user::prototype::has_function(econtrolfunction);
+      //return ::user::interaction_base::has_function(econtrolfunction);
 
       return false;
 
@@ -27706,7 +27742,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       pcommand->handle(this);
 
-      ::user::prototype::route_command(pcommand);
+      ::user::interaction_base::route_command(pcommand);
 
       if (pcommand->m_bRet)
       {

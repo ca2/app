@@ -12,6 +12,7 @@
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/file_system_options.h"
 #include "acme/handler/request.h"
+#include "acme/operating_system/a_system_menu.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/platform/platform.h"
@@ -2104,6 +2105,17 @@ void application::file_manager_save_as(::user::controller *pusercontroller)
    
    
 }
+
+
+bool application::fill_system_menu(::operating_system::a_system_menu * psystemmenu)
+{
+
+   psystemmenu->add_item("About...", "about_box");
+
+   return true;
+
+}
+
 
 
 

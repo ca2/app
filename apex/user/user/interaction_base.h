@@ -14,7 +14,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_APEX prototype :
+   class CLASS_DECL_APEX interaction_base :
       virtual public ::nano::user::interaction,
       virtual public ::channel,
       //virtual public ::source,
@@ -27,8 +27,8 @@ namespace user
       class ::time            m_timeFocusStart;
 
 
-      prototype();
-      ~prototype() override;
+      interaction_base();
+      ~interaction_base() override;
 
 
       void destroy() override;
@@ -50,7 +50,7 @@ namespace user
 
       void PreSubClassWindow() override;
 
-      ::user::prototype * user_prototype() override;
+      ::user::interaction_base * user_interaction_base() override;
 
 
       virtual DECLARE_MESSAGE_HANDLER(_008GetWindowText);
@@ -164,7 +164,7 @@ namespace user
       void update_data(bool bSaveAndValidate = true) override;
 
 
-      //virtual ::user::prototype * get_keyboard_focus();
+      //virtual ::user::interaction_base * get_keyboard_focus();
 
 
       void on_set_keyboard_focus() override;
@@ -197,7 +197,7 @@ namespace user
       virtual void on_end_layout_experience(enum_layout_experience elayoutexperience);
 
 
-      virtual void on_configuration_change(::user::prototype * pprimitiveSource);
+      virtual void on_configuration_change(::user::interaction_base * pprimitiveSource);
 
 
       //void on_layout(::draw2d::graphics_pointer & pgraphics) override;
@@ -225,13 +225,6 @@ namespace user
       string get_class_name() override;
 
       
-      void create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom = nullptr) override;
-
-
-      //void create_host(enum_parallelization eparallelization) override;
-      void create_host() override;
-      void create_child(::user::interaction * puserinteractionParent) override;
-      void create_control(::user::interaction * puserinteractionParent, const ::atom & atom) override;
 
       //virtual bool create_window_ex(::pointer<::user::system>pcs, ::user::interaction * puiParent, const ::atom & atom);
       //virtual void CalcWindowRect(::rectangle_i32 * pClientRect,::u32 nAdjustType = adjustBorder);
@@ -302,18 +295,18 @@ namespace user
 
 
 
-      virtual bool is_ascendant(const prototype * puiIsAscendant, bool bIncludeSelf) const;
-      virtual bool is_parent(const prototype * puiIsParent) const;
-      virtual bool is_child(const prototype * puiIsChild) const;
-      virtual bool is_descendant(const prototype * puiIsDescendant, bool bIncludeSelf) const;
+      virtual bool is_ascendant(const interaction_base * puiIsAscendant, bool bIncludeSelf) const;
+      virtual bool is_parent(const interaction_base * puiIsParent) const;
+      virtual bool is_child(const interaction_base * puiIsChild) const;
+      virtual bool is_descendant(const interaction_base * puiIsDescendant, bool bIncludeSelf) const;
 
-      virtual bool is_descendant_of_or_owned_by(const ::user::prototype * puiAscendantCandidate, bool bIncludeSelf) const;
-      virtual bool is_ascendant_or_owner_of(const ::user::prototype * puiDescendantCandidate, bool bIncludeSelf) const;
+      virtual bool is_descendant_of_or_owned_by(const ::user::interaction_base * puiAscendantCandidate, bool bIncludeSelf) const;
+      virtual bool is_ascendant_or_owner_of(const ::user::interaction_base * puiDescendantCandidate, bool bIncludeSelf) const;
 
-      virtual bool is_ascendant_of(const prototype * puiIsDescendant, bool bIncludeSelf) const;
-      virtual bool is_parent_of(const prototype * puiIsChild) const; 
-      virtual bool is_child_of(const prototype * puiIsParent) const; 
-      virtual bool is_descendant_of(const prototype * puiIsAscendant, bool bIncludeSelf) const; 
+      virtual bool is_ascendant_of(const interaction_base * puiIsDescendant, bool bIncludeSelf) const;
+      virtual bool is_parent_of(const interaction_base * puiIsChild) const; 
+      virtual bool is_child_of(const interaction_base * puiIsParent) const; 
+      virtual bool is_descendant_of(const interaction_base * puiIsAscendant, bool bIncludeSelf) const; 
 
       atom GetDlgCtrlId() const override;
       atom SetDlgCtrlId(const ::atom & atom) override;
@@ -367,8 +360,8 @@ namespace user
       //virtual ::user::interaction_impl * get_impl() const;
       ::task * get_task() override;
 
-      virtual ::user::prototype * set_parent(::user::prototype * pinteraction);
-      virtual ::user::prototype * set_owner(::user::prototype * pinteraction);
+      virtual ::user::interaction_base * set_parent(::user::interaction_base * pinteraction);
+      virtual ::user::interaction_base * set_owner(::user::interaction_base * pinteraction);
 
 
 
@@ -390,7 +383,7 @@ namespace user
 
 
       i32 get_descendant_level(::user::element * puserelement) override;
-      //virtual bool is_descendant(const ::user::prototype * pinteraction,bool bIncludeSelf = false) const;
+      //virtual bool is_descendant(const ::user::interaction_base * pinteraction,bool bIncludeSelf = false) const;
        ::user::interaction * get_focusable_descendant() override;
 
       void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleX = {
@@ -560,13 +553,13 @@ namespace user
 
 
 
-      virtual void on_add_owned(::user::prototype * pprimitive);
+      virtual void on_add_owned(::user::interaction_base * pprimitive);
 
 
 
 
-//      prototype();
-  //    virtual ~prototype();
+//      interaction_base();
+  //    virtual ~interaction_base();
 
 
       /*virtual void pre_translate_message(::message::message * pmessage);
@@ -584,7 +577,7 @@ namespace user
       void hide() override;
 
       // keyboard focus
-      //virtual bool on_keyboard_focus(::user::prototype * pfocus);
+      //virtual bool on_keyboard_focus(::user::interaction_base * pfocus);
       void keyboard_focus_OnTimer(i32 iTimer) override;
       void keyboard_focus_OnChar(::message::message * pmessage) override;
       void keyboard_focus_OnSysChar(::message::message * pmessage) override;
@@ -608,7 +601,7 @@ namespace user
       bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;
       bool keyboard_focus_OnChildKillFocus() override;
       ::user::element * keyboard_get_next_focusable(::user::element * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
-      //virtual prototype * get_keyboard_focus() const;
+      //virtual interaction_base * get_keyboard_focus() const;
       void set_keyboard_focus() override;
       void erase_keyboard_focus() override;
       void clear_keyboard_focus(::user::element * pelementGainingFocusIfAny = nullptr) override;
@@ -633,8 +626,8 @@ namespace user
 
 
 
-      //prototype();
-      //virtual ~prototype();
+      //interaction_base();
+      //virtual ~interaction_base();
 
       //inline oswindow get_safe_handle() const;
 

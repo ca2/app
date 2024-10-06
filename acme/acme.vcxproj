@@ -1198,18 +1198,14 @@
     <ClInclude Include="nano\speech\_.h" />
     <ClInclude Include="nano\user\aaa_child.h" />
     <ClInclude Include="nano\user\aaa_nano.h" />
-    <ClInclude Include="nano\user\brush.h" />
     <ClInclude Include="nano\user\button.h" />
     <ClInclude Include="nano\user\details_window.h" />
-    <ClInclude Include="nano\user\device.h" />
-    <ClInclude Include="nano\user\display.h" />
+    <ClInclude Include="nano\user\elemental.h" />
     <ClInclude Include="nano\user\interaction.h" />
-    <ClInclude Include="nano\user\font.h" />
+    <ClInclude Include="nano\user\main_window.h" />
     <ClInclude Include="nano\user\theme.h" />
     <ClInclude Include="nano\user\aaa_window.h" />
     <ClInclude Include="nano\user\message_box.h" />
-    <ClInclude Include="nano\user\object.h" />
-    <ClInclude Include="nano\user\pen.h" />
     <ClInclude Include="nano\user\popup_button.h" />
     <ClInclude Include="nano\user\still.h" />
     <ClInclude Include="nano\user\user.h" />
@@ -1675,7 +1671,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="nano\user\details_window.cpp" />
+    <ClCompile Include="nano\user\elemental.cpp" />
     <ClCompile Include="nano\user\interaction.cpp" />
+    <ClCompile Include="nano\user\main_window.cpp" />
     <ClCompile Include="nano\user\message_box.cpp" />
     <ClCompile Include="nano\user\popup_button.cpp" />
     <ClCompile Include="nano\user\still.cpp" />

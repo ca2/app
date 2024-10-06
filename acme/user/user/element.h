@@ -95,7 +95,7 @@ namespace user
 
       //class ::time                           m_timeFocusStart;
       bool                                         m_bUserElementOk;
-      //::user::prototype *                          m_puserprimitive;
+      //::user::interaction_base *                          m_puserprimitive;
       //::user::interaction *                        m_puserinteraction;
       //pointer< pointer_array < ::user::item > >    m_puseritema;
 
@@ -122,8 +122,15 @@ namespace user
       virtual ::nano::windowing::window * nano_windowing_window();
 
 
-      virtual ::user::prototype * user_prototype();
+      virtual ::user::interaction_base * user_interaction_base();
+      virtual ::windowing::window_base * windowing_window_base();
+
+
       virtual ::user::interaction * user_interaction();
+      virtual ::windowing::window * windowing_window();
+      
+
+
 
       //virtual void set_config_per_second(::frequency dConfigFps);
       //virtual ::frequency get_config_per_second();

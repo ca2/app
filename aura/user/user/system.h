@@ -36,7 +36,7 @@ namespace user
    public:
 
 
-      ::pointer<::user::prototype>              m_puserprimitiveOwner;
+      ::pointer<::user::interaction_base>              m_puserprimitiveOwner;
       ::procedure                               m_procedureSuccess;
       ::procedure                               m_procedureFailure;
       ::pointer<::user::interaction_impl>       m_puserinteractionimpl;
@@ -46,12 +46,12 @@ namespace user
       ::logic::boolean                          m_bWindowFrame;
       ::type_atom                               m_typeatomNewImpact;
       ::pointer<::object>                       m_pdocumentCurrent;
-      ::pointer<::user::prototype>              m_puserprimitiveNew;
+      ::pointer<::user::interaction_base>              m_puserprimitiveNew;
 
       ::pointer<::object>                       m_ptemplateNewDocument;
 
-      ::pointer<::user::prototype>              m_puserprimitiveLastImpact;
-      ::pointer<::user::prototype>              m_puserprimitiveCurrentFrame;
+      ::pointer<::user::interaction_base>              m_puserprimitiveLastImpact;
+      ::pointer<::user::interaction_base>              m_puserprimitiveCurrentFrame;
       ::pointer<::matter>                       m_pimpactdata;
       ::pointer_array<::graphics::output_purpose>     m_graphicsoutputpurposea;
 

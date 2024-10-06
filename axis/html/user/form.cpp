@@ -663,7 +663,7 @@ void html_form::set_html_form_text(const ::scoped_string & scopedstr, const ::ac
    if(bFocus)
    {
 
-      ::pointer<::user::prototype>pfocus = get_focusable_descendant();
+      ::pointer<::user::interaction_base>pfocus = get_focusable_descendant();
 
       if(pfocus != nullptr)
       {

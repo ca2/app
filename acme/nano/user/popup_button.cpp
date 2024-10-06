@@ -21,9 +21,6 @@ namespace user
 popup_button::popup_button()
 {
 
-   m_bTopMost = true;
-
-   m_bArbitraryPositioning = true;
 
 }
 
@@ -79,6 +76,20 @@ void popup_button::calculate_size_and_position(int x, int y)
 #endif
 
 }
+
+
+void popup_button::create_window()
+{
+
+   ::nano::user::main_window::create_window();
+
+   nano_windowing_window()->m_bTopMost = true;
+
+   nano_windowing_window()->m_bArbitraryPositioning = true;
+
+}
+
+
 
 
 void popup_button::initialize_popup_button(const ::string & strText, int x, int y, ::nano::windowing::window * pnanowindowingwindowOwner)

@@ -749,7 +749,7 @@ namespace user
 
 
 
-   ::user::prototype * user::get_mouse_focus_LButtonDown()
+   ::user::interaction_base * user::get_mouse_focus_LButtonDown()
    {
 
       return m_pmousefocusLButtonDown;
@@ -757,7 +757,7 @@ namespace user
    }
 
 
-   void user::set_mouse_focus_LButtonDown(::user::prototype * pmousefocus)
+   void user::set_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -767,7 +767,7 @@ namespace user
    }
 
 
-   void user::defer_erase_mouse_focus_LButtonDown(::user::prototype * pmousefocus)
+   void user::defer_erase_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -782,7 +782,7 @@ namespace user
    }
 
 
-   ::user::prototype * user::get_mouse_focus_RButtonDown()
+   ::user::interaction_base * user::get_mouse_focus_RButtonDown()
    {
 
       return m_pmousefocusRButtonDown;
@@ -790,7 +790,7 @@ namespace user
    }
 
 
-   void user::set_mouse_focus_RButtonDown(::user::prototype * pmousefocus)
+   void user::set_mouse_focus_RButtonDown(::user::interaction_base * pmousefocus)
    {
 
       m_pmousefocusRButtonDown = pmousefocus;

@@ -26,8 +26,8 @@ namespace base
       //::pointer < ::user::impact_system >                m_ptemplateChildForm;
 
 
-      ::pointer < ::user::prototype >                    m_pmousefocusLButtonDown;
-      ::pointer < ::user::prototype >                    m_pmousefocusRButtonDown;
+      ::pointer < ::user::interaction_base >                    m_pmousefocusLButtonDown;
+      ::pointer < ::user::interaction_base >                    m_pmousefocusRButtonDown;
       string_array                                       m_straEscape;
 
       //::pointer<::user::shell>                         m_pshell;
@@ -80,10 +80,10 @@ namespace base
       virtual ::type_atom user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
 
 
-      virtual ::user::prototype * get_mouse_focus_LButtonDown() override;
-      virtual void set_mouse_focus_LButtonDown(::user::prototype * pmousefocus) override;
-      virtual ::user::prototype * get_mouse_focus_RButtonDown() override;
-      virtual void set_mouse_focus_RButtonDown(::user::prototype * pmousefocus) override;
+      virtual ::user::interaction_base * get_mouse_focus_LButtonDown() override;
+      virtual void set_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus) override;
+      virtual ::user::interaction_base * get_mouse_focus_RButtonDown() override;
+      virtual void set_mouse_focus_RButtonDown(::user::interaction_base * pmousefocus) override;
 
 
       virtual void initialize1_experience();

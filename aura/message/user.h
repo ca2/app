@@ -121,7 +121,7 @@ namespace message
 #ifdef WINDOWS_DESKTOP
       ::oswindow              m_oswindowScrollBar;
 #endif
-      //::user::prototype * m_pscrollbar;
+      //::user::interaction_base * m_pscrollbar;
 
 
       scroll();
@@ -207,7 +207,7 @@ namespace message
    public:
 
 
-      ::user::prototype *                 m_pWnd;
+      ::user::interaction_base *                 m_pWnd;
       ::u32                               m_nHitTest;
       ::u32                               m_message;
       

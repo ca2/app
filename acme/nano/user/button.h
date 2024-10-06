@@ -2,33 +2,35 @@
 #pragma once
 
 
-#include "interaction.h"
+#include "acme/nano/user/elemental.h"
+
 
 namespace nano
 {
 
+
    namespace user
    {
-   
-
-class button :
-   virtual public ::nano::user::interaction
-{
-public:
 
 
-   enum_dialog_result      m_edialogresult1 = e_dialog_result_cancel;
-   char                    m_chLetter = '\0';
+      class button :
+         virtual public ::nano::user::elemental
+      {
+      public:
 
 
-   void on_draw(::nano::graphics::device * pnanodevice) override;
-   void on_char(int iChar) override;
+         enum_dialog_result      m_edialogresult1 = e_dialog_result_cancel;
+         char                    m_chLetter = '\0';
 
 
-   bool is_focusable() override;
+         void on_draw(::nano::graphics::device * pnanodevice) override;
+         void on_char(int iChar) override;
 
 
-};
+         bool is_focusable() override;
+
+
+      };
 
 
 

@@ -37,19 +37,19 @@ namespace input
       virtual bool needs_input();
 
 
-      virtual ::e_status is_keyboard_message_handling_enabled(::user::prototype * puserprimitiveEnablePrompt);
+      virtual ::e_status is_keyboard_message_handling_enabled(::user::interaction_base * puserprimitiveEnablePrompt);
 
       virtual void add_keyboard_message_handler(::particle * pparticle);
       virtual void erase_keyboard_message_handler(::particle * pparticle);
 
-      virtual ::e_status is_mouse_message_handling_enabled(::user::prototype * puserprimitiveEnablePrompt);
+      virtual ::e_status is_mouse_message_handling_enabled(::user::interaction_base * puserprimitiveEnablePrompt);
 
       virtual void add_mouse_message_handler(::particle * pparticle);
       virtual void erase_mouse_message_handler(::particle * pparticle);
 
 
-      virtual void install_mouse_hook(::particle * pparticle, ::user::prototype * puserprimitiveEnablePrompt);
-      virtual void install_keyboard_hook(::particle * pparticle, ::user::prototype * puserprimitiveEnablePrompt);
+      virtual void install_mouse_hook(::particle * pparticle, ::user::interaction_base * puserprimitiveEnablePrompt);
+      virtual void install_keyboard_hook(::particle * pparticle, ::user::interaction_base * puserprimitiveEnablePrompt);
 
 
    };

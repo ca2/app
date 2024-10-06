@@ -914,7 +914,7 @@ namespace universal_windows
    }
 
 
-   bool os_context::resolve_link(string & strTarget, string & strFolder, string & strParams, const string & pszSource, ::user::prototype * puiMessageParentOptional)
+   bool os_context::resolve_link(string & strTarget, string & strFolder, string & strParams, const string & pszSource, ::user::interaction_base * puiMessageParentOptional)
    {
 
       return false;

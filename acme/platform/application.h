@@ -296,6 +296,10 @@ namespace acme
       virtual void on_prompt_write_file(::user::controller * pusercontroller);
       virtual void file_manager_save_as(::user::controller * pusercontroller);
 
+
+      virtual bool fill_system_menu(::operating_system::a_system_menu * psystemmenu);
+
+
    };
 
 

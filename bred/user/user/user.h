@@ -158,9 +158,9 @@ namespace bred
 //      virtual pointer< ::sequence < ::conversation > > dialog_box(::particle * pparticle, const ::string & pszMatter, property_set & propertyset);
 //
 //
-//      virtual pointer< ::sequence < ::conversation > > ui_message_box(::particle * pparticle, ::user::prototype * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
-//      virtual pointer< ::sequence < ::conversation > > ui_message_box_timeout(::particle * pparticle, ::user::prototype * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class time & timeTimeout = ::time::infinity(), const ::e_message_box & emessagebox = e_message_box_ok);
-//      //virtual void ui_message_box_timeout(::object* pparticle, ::user::prototype* puiOwner, ::payload payload, class ::time timeTimeout, ::u32 fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
+//      virtual pointer< ::sequence < ::conversation > > ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
+//      virtual pointer< ::sequence < ::conversation > > ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class time & timeTimeout = ::time::infinity(), const ::e_message_box & emessagebox = e_message_box_ok);
+//      //virtual void ui_message_box_timeout(::object* pparticle, ::user::interaction_base* puiOwner, ::payload payload, class ::time timeTimeout, ::u32 fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
 //
 //      virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 //
@@ -387,16 +387,16 @@ namespace bred
 //
 //      //virtual void set_key_pressed(::user::enum_key ekey, bool bPressed);
 //
-//      //virtual ::user::prototype * get_keyboard_focus();
-//      //virtual bool set_keyboard_focus(::user::prototype * pkeyboardfocus);
+//      //virtual ::user::interaction_base * get_keyboard_focus();
+//      //virtual bool set_keyboard_focus(::user::interaction_base * pkeyboardfocus);
 //      //
-//      //virtual ::user::prototype * clear_focus();
+//      //virtual ::user::interaction_base * clear_focus();
 //
 //
-//      //virtual ::user::prototype * get_active_ui() override;
-//      //virtual ::user::prototype * get_focus_ui();
+//      //virtual ::user::interaction_base * get_active_ui() override;
+//      //virtual ::user::interaction_base * get_focus_ui();
 //
-//      //virtual void on_finally_focus_set(::user::prototype * pelementalFocus);
+//      //virtual void on_finally_focus_set(::user::interaction_base * pelementalFocus);
 //
 //      //virtual oswindow get_capture();
 //
@@ -408,8 +408,8 @@ namespace bred
 //
 //      //virtual bool on_ui_mouse_message(::message::mouse * pmouse);
 //
-//      //virtual ::user::prototype * GetActiveWindow();
-//      //virtual ::user::prototype * GetFocus();
+//      //virtual ::user::interaction_base * GetActiveWindow();
+//      //virtual ::user::interaction_base * GetFocus();
 //
 //      //virtual bool ReleaseCapture();
 //      //virtual ::pointer<::user::interaction>GetCapture();
@@ -648,7 +648,7 @@ namespace bred
 //
 //      ////virtual void interactive_credentials(::account::credentials* pcredentials) override;
 //
-//      ////virtual void on_finally_focus_set(::user::prototype* pelementalFocus) override;
+//      ////virtual void on_finally_focus_set(::user::interaction_base* pelementalFocus) override;
 //
 //      ////virtual ::user::menu_interaction * create_menu_button(::user::style_pointer & pstyle, ::menu::item * pitem) override;
 //
@@ -664,8 +664,8 @@ namespace bred
 //
 //
 //
-//      ::user::prototype* m_pmousefocusLButtonDown;
-//      ::user::prototype* m_pmousefocusRButtonDown;
+//      ::user::interaction_base* m_pmousefocusLButtonDown;
+//      ::user::interaction_base* m_pmousefocusRButtonDown;
 //      //string_array                       m_straEscape;
 //      //::user::style_pointer              m_puserstyle;
 //
@@ -680,10 +680,10 @@ namespace bred
 //
 //
 //
-//      //virtual ::user::prototype* get_mouse_focus_LButtonDown();
-//      //virtual void set_mouse_focus_LButtonDown(::user::prototype* pmousefocus);
-//      //virtual ::user::prototype* get_mouse_focus_RButtonDown();
-//      //virtual void set_mouse_focus_RButtonDown(::user::prototype* pmousefocus);
+//      //virtual ::user::interaction_base* get_mouse_focus_LButtonDown();
+//      //virtual void set_mouse_focus_LButtonDown(::user::interaction_base* pmousefocus);
+//      //virtual ::user::interaction_base* get_mouse_focus_RButtonDown();
+//      //virtual void set_mouse_focus_RButtonDown(::user::interaction_base* pmousefocus);
 //
 //
 //

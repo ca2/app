@@ -6,11 +6,11 @@
 class user_parent
 {
 public:
-   ::user::prototype* m_puserinteraction;
-   user_parent(::user::prototype* pinteraction) :m_puserinteraction(pinteraction) {}
+   ::user::interaction_base* m_puserinteraction;
+   user_parent(::user::interaction_base* pinteraction) :m_puserinteraction(pinteraction) {}
 };
 
-inline ::user_parent parent(::user::prototype* pinteraction) { return pinteraction; }
+inline ::user_parent parent(::user::interaction_base* pinteraction) { return pinteraction; }
 
 
 //inline ::payload operator + (::payload payload, const ::function_arg& functionarg)

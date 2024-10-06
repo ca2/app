@@ -1580,7 +1580,7 @@ namespace html
 
       //auto estatus =
       
-      //::user::prototype::initialize(phtmldata);
+      //::user::interaction_base::initialize(phtmldata);
 
       ::object::initialize(phtmldata);
 

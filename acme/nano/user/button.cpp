@@ -61,7 +61,16 @@ void button::on_char(int iChar)
    if (iChar == '\r' || iChar == ' ')
    {
 
-      nano_windowing_window()->nano_user_interaction()->on_click(m_atom, nullptr);
+      ::pointer < ::nano::user::elemental > pelemental;
+
+      pelemental = nano_windowing_window()->nano_user_interaction();
+
+      if (pelemental)
+      {
+
+         pelemental->on_click(m_atom, nullptr);
+
+      }
 
    }
 

@@ -5,7 +5,7 @@
 #pragma once
 
 
-#include "interaction.h"
+#include "acme/nano/user/main_window.h"
 
 
 namespace nano
@@ -20,7 +20,7 @@ namespace nano
 
 
       class message_box :
-         virtual public ::nano::user::interaction
+         virtual public ::nano::user::main_window
       {
       public:
 
@@ -34,6 +34,8 @@ namespace nano
          message_box();
          ~message_box() override;
 
+
+         void create_window() override;
 
 
          //::e_message_box get_conversation_flags() override;

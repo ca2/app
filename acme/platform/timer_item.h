@@ -11,7 +11,7 @@
 //   public:
 //
 //
-//      ::user::prototype *     m_puserinteraction;
+//      ::user::interaction_base *     m_puserinteraction;
 //      uptr                m_uiId;
 //      ::u32                    m_uiElapse;
 //      ::u32                    m_uiLastSent;

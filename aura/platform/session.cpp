@@ -622,7 +622,7 @@ namespace aura
    //}
 
 
-   //::user::prototype * session::GetActiveWindow()
+   //::user::interaction_base * session::GetActiveWindow()
    //{
 
    //   return psystem->ui_from_handle(::get_active_window());
@@ -630,10 +630,10 @@ namespace aura
    //}
 
 
-   //::user::prototype * session::clear_focus()
+   //::user::interaction_base * session::clear_focus()
    //{
 
-   //   ::user::prototype * pprimitiveFocus = get_keyboard_focus();
+   //   ::user::interaction_base * pprimitiveFocus = get_keyboard_focus();
 
    //   if(::is_null(pprimitiveFocus))
    //   {
@@ -663,7 +663,7 @@ namespace aura
 
    //}
 
-//   ::user::prototype * session::get_keyboard_focus()
+//   ::user::interaction_base * session::get_keyboard_focus()
 //   {
 //
 //      ::windowing::window * pwindowFocus = ::get_keyboard_focus();
@@ -724,7 +724,7 @@ namespace aura
 
 
 
-//   bool session::set_keyboard_focus(::user::prototype * pprimitive)
+//   bool session::set_keyboard_focus(::user::interaction_base * pprimitive)
 //   {
 //
 //      //m_p
@@ -792,19 +792,19 @@ namespace aura
 ////
 ////      return true;
 ////
-////      //::user::prototype * pkeyboardfocusParam = pkeyboardfocus;
+////      //::user::interaction_base * pkeyboardfocusParam = pkeyboardfocus;
 ////
 ////      //if (pkeyboardfocus == nullptr)
 ////      //{
 ////
-////      //   pkeyboardfocus = (::user::prototype *) (ulong_ptr) 1;
+////      //   pkeyboardfocus = (::user::interaction_base *) (ulong_ptr) 1;
 ////
 ////      //}
 ////
 ////      //if (m_pkeyboardfocus != nullptr && m_pkeyboardfocus != pkeyboardfocus && m_pkeyboardfocusRequest != pkeyboardfocus)
 ////      //{
 ////
-////      //   ::user::prototype * pkeyboardfocusOld = m_pkeyboardfocus;
+////      //   ::user::interaction_base * pkeyboardfocusOld = m_pkeyboardfocus;
 ////
 ////      //   m_pkeyboardfocusRequest = pkeyboardfocus;
 ////
@@ -817,7 +817,7 @@ namespace aura
 ////      //         informationf("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
 ////
 ////      //         if (!pkeyboardfocusOld->keyboard_focus_OnKillFocus( (pkeyboardfocus != nullptr &&
-////      //               pkeyboardfocus != (::user::prototype *) (ulong_ptr) 1) ?
+////      //               pkeyboardfocus != (::user::interaction_base *) (ulong_ptr) 1) ?
 ////      //               pkeyboardfocus->get_safe_handle() : nullptr))
 ////      //         {
 ////
@@ -831,7 +831,7 @@ namespace aura
 ////      //         {
 ////
 ////      //            pinteraction->send_message(e_message_kill_focus, (wparam) ( (pkeyboardfocus != nullptr &&
-////      //                              pkeyboardfocus != (::user::prototype *) (ulong_ptr) 1 )?
+////      //                              pkeyboardfocus != (::user::interaction_base *) (ulong_ptr) 1 )?
 ////      //                              pkeyboardfocus->get_safe_handle() : nullptr));
 ////
 ////      //         }
@@ -846,7 +846,7 @@ namespace aura
 ////
 ////      //}
 ////
-////      //if (pkeyboardfocus == (::user::prototype *) (ulong_ptr) 1)
+////      //if (pkeyboardfocus == (::user::interaction_base *) (ulong_ptr) 1)
 ////      //{
 ////
 ////      //   pkeyboardfocus = nullptr;
@@ -884,7 +884,7 @@ namespace aura
 //   }
 
 
-//   bool session::erase_keyboard_focus(::user::prototype * pprimitive)
+//   bool session::erase_keyboard_focus(::user::interaction_base * pprimitive)
 //   {
 //
 //      if (pprimitive == nullptr)
@@ -957,19 +957,19 @@ namespace aura
 //
 //      return true;
 //
-//      //::user::prototype * pkeyboardfocusParam = pkeyboardfocus;
+//      //::user::interaction_base * pkeyboardfocusParam = pkeyboardfocus;
 //
 //      //if (pkeyboardfocus == nullptr)
 //      //{
 //
-//      //   pkeyboardfocus = (::user::prototype *) (ulong_ptr) 1;
+//      //   pkeyboardfocus = (::user::interaction_base *) (ulong_ptr) 1;
 //
 //      //}
 //
 //      //if (m_pkeyboardfocus != nullptr && m_pkeyboardfocus != pkeyboardfocus && m_pkeyboardfocusRequest != pkeyboardfocus)
 //      //{
 //
-//      //   ::user::prototype * pkeyboardfocusOld = m_pkeyboardfocus;
+//      //   ::user::interaction_base * pkeyboardfocusOld = m_pkeyboardfocus;
 //
 //      //   m_pkeyboardfocusRequest = pkeyboardfocus;
 //
@@ -982,7 +982,7 @@ namespace aura
 //      //         informationf("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
 //
 //      //         if (!pkeyboardfocusOld->keyboard_focus_OnKillFocus( (pkeyboardfocus != nullptr &&
-//      //               pkeyboardfocus != (::user::prototype *) (ulong_ptr) 1) ?
+//      //               pkeyboardfocus != (::user::interaction_base *) (ulong_ptr) 1) ?
 //      //               pkeyboardfocus->get_safe_handle() : nullptr))
 //      //         {
 //
@@ -996,7 +996,7 @@ namespace aura
 //      //         {
 //
 //      //            pinteraction->send_message(e_message_kill_focus, (wparam) ( (pkeyboardfocus != nullptr &&
-//      //                              pkeyboardfocus != (::user::prototype *) (ulong_ptr) 1 )?
+//      //                              pkeyboardfocus != (::user::interaction_base *) (ulong_ptr) 1 )?
 //      //                              pkeyboardfocus->get_safe_handle() : nullptr));
 //
 //      //         }
@@ -1011,7 +1011,7 @@ namespace aura
 //
 //      //}
 //
-//      //if (pkeyboardfocus == (::user::prototype *) (ulong_ptr) 1)
+//      //if (pkeyboardfocus == (::user::interaction_base *) (ulong_ptr) 1)
 //      //{
 //
 //      //   pkeyboardfocus = nullptr;
@@ -1115,19 +1115,19 @@ namespace aura
 //
 //      return true;
 //
-//      //::user::prototype * pkeyboardfocusParam = pkeyboardfocus;
+//      //::user::interaction_base * pkeyboardfocusParam = pkeyboardfocus;
 //
 //      //if (pkeyboardfocus == nullptr)
 //      //{
 //
-//      //   pkeyboardfocus = (::user::prototype *) (ulong_ptr) 1;
+//      //   pkeyboardfocus = (::user::interaction_base *) (ulong_ptr) 1;
 //
 //      //}
 //
 //      //if (m_pkeyboardfocus != nullptr && m_pkeyboardfocus != pkeyboardfocus && m_pkeyboardfocusRequest != pkeyboardfocus)
 //      //{
 //
-//      //   ::user::prototype * pkeyboardfocusOld = m_pkeyboardfocus;
+//      //   ::user::interaction_base * pkeyboardfocusOld = m_pkeyboardfocus;
 //
 //      //   m_pkeyboardfocusRequest = pkeyboardfocus;
 //
@@ -1140,7 +1140,7 @@ namespace aura
 //      //         informationf("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
 //
 //      //         if (!pkeyboardfocusOld->keyboard_focus_OnKillFocus( (pkeyboardfocus != nullptr &&
-//      //               pkeyboardfocus != (::user::prototype *) (ulong_ptr) 1) ?
+//      //               pkeyboardfocus != (::user::interaction_base *) (ulong_ptr) 1) ?
 //      //               pkeyboardfocus->get_safe_handle() : nullptr))
 //      //         {
 //
@@ -1154,7 +1154,7 @@ namespace aura
 //      //         {
 //
 //      //            pinteraction->send_message(e_message_kill_focus, (wparam) ( (pkeyboardfocus != nullptr &&
-//      //                              pkeyboardfocus != (::user::prototype *) (ulong_ptr) 1 )?
+//      //                              pkeyboardfocus != (::user::interaction_base *) (ulong_ptr) 1 )?
 //      //                              pkeyboardfocus->get_safe_handle() : nullptr));
 //
 //      //         }
@@ -1169,7 +1169,7 @@ namespace aura
 //
 //      //}
 //
-//      //if (pkeyboardfocus == (::user::prototype *) (ulong_ptr) 1)
+//      //if (pkeyboardfocus == (::user::interaction_base *) (ulong_ptr) 1)
 //      //{
 //
 //      //   pkeyboardfocus = nullptr;
@@ -1207,14 +1207,14 @@ namespace aura
 //   }
 
 
-   //void session::on_finally_focus_set(::user::prototype * pprimitiveFocus)
+   //void session::on_finally_focus_set(::user::interaction_base * pprimitiveFocus)
    //{
 
 
 
    //}
 
-   //::user::prototype * session::get_active_ui()
+   //::user::interaction_base * session::get_active_ui()
    //{
 
    //   return nullptr;
@@ -1222,7 +1222,7 @@ namespace aura
    //}
 
 
-   //::user::prototype * session::get_focus_ui()
+   //::user::interaction_base * session::get_focus_ui()
    //{
 
    //   auto window = ::get_keyboard_focus();
@@ -1257,7 +1257,7 @@ namespace aura
    //}
 
 
-   void session::on_finally_focus_set(::user::prototype * pprimitiveFocus)
+   void session::on_finally_focus_set(::user::interaction_base * pprimitiveFocus)
    {
 
       auto puser = user();
@@ -1673,7 +1673,7 @@ namespace aura
    }
 
 
-   ::user::prototype * session::get_bound_ui(::atom idImpact)
+   ::user::interaction_base * session::get_bound_ui(::atom idImpact)
    {
 
       auto p = m_mapboundui.plookup(idImpact);

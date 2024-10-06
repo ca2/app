@@ -120,7 +120,7 @@ namespace user
 
    //}
 
-   //void timer::set(::user::prototype * puserinteraction,const ::atom & atom,wparam wparam,::lparam lparam)
+   //void timer::set(::user::interaction_base * puserinteraction,const ::atom & atom,wparam wparam,::lparam lparam)
    //{
 
    //   base::set(puserinteraction,atom,wparam,lparam);

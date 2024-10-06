@@ -62,7 +62,7 @@ namespace user
    }
 
 
-   //void primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::prototype * pparent)
+   //void primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::interaction_base * pparent)
    //{
 
    //   throw ::interface_only();
@@ -72,7 +72,7 @@ namespace user
    //}
 
 
-   //void primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::prototype * puiParent)
+   //void primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::interaction_base * puiParent)
 
    //{
 
@@ -83,7 +83,7 @@ namespace user
    //}
 
 
-   //void primitive_impl::create_window_ex(::user::interaction * pinteraction, ::pointer<::user::system>pcs, ::user::prototype * puiParent, atom atom)
+   //void primitive_impl::create_window_ex(::user::interaction * pinteraction, ::pointer<::user::system>pcs, ::user::interaction_base * puiParent, atom atom)
    //{
 
    //   throw ::interface_only();
@@ -93,7 +93,7 @@ namespace user
    //}
 
 
-   //void primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::prototype * pparent)
+   //void primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::interaction_base * pparent)
    //{
 
    //   throw ::interface_only();
@@ -202,7 +202,7 @@ namespace user
    //void primitive_impl::finish()
    //{
 
-   //   ::user::prototype::finish();
+   //   ::user::interaction_base::finish();
 
    //}
 
@@ -629,7 +629,7 @@ namespace user
 //   }
 
 
-   ::user::prototype* primitive_impl::set_owner(::user::prototype* pprimitiveOwner)
+   ::user::interaction_base* primitive_impl::set_owner(::user::interaction_base* pprimitiveOwner)
    {
 
       return nullptr;
@@ -1251,7 +1251,7 @@ namespace user
    }
 
 
-   void primitive_impl::on_configuration_change(::user::prototype* pprimitiveSource)
+   void primitive_impl::on_configuration_change(::user::interaction_base* pprimitiveSource)
    {
 
 
@@ -2832,7 +2832,7 @@ namespace user
    }
 
 
-   void primitive_impl::create_child(::user::interaction * puserinteraction, ::user::prototype * puserprimitiveParent)
+   void primitive_impl::create_child(::user::interaction * puserinteraction, ::user::interaction_base * puserprimitiveParent)
    {
 
       //return false;

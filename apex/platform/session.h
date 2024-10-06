@@ -47,7 +47,7 @@ namespace apex
       // ... is is the "Main Window" (sometimes just a concept) holding the App.
       // For Desktop Applications a meaning should be given or this member could be ignored?
       // The Main papp window?
-      ::pointer<::user::prototype>                        m_puserprimitiveHost;
+      ::pointer<::user::interaction_base>                        m_puserprimitiveHost;
       //::pointer<::layered>    m_pimplLastSeed;
       //::pointer<::layered>                       m_puiMain2;
 
@@ -474,8 +474,8 @@ namespace apex
 
       virtual string_array get_user_wallpaper();
 
-      virtual ::user::prototype * get_user_interaction_host();
-      virtual ::user::prototype * get_host_primitive();
+      virtual ::user::interaction_base * get_user_interaction_host();
+      virtual ::user::interaction_base * get_host_primitive();
 
 
    };

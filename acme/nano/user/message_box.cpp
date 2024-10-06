@@ -37,20 +37,30 @@ namespace nano
       message_box::message_box()
       {
 
-         m_bStartCentered = true;
-
-         m_strLabelDetails = "Details...";
-
-         m_bMinimizeBox = false;
-         m_bMaximizeBox = false;
-         m_bResizeable = false;
-
-
       }
 
 
       message_box::~message_box()
       {
+
+
+      }
+
+
+      void message_box::create_window()
+      {
+
+         ::nano::user::main_window::create_window();
+
+         m_pwindow->m_bStartCentered = true;
+
+         m_strLabelDetails = "Details...";
+
+         m_pwindow->m_bMinimizeBox = false;
+         m_pwindow->m_bMaximizeBox = false;
+         m_pwindow->m_bResizeable = false;
+
+
 
 
       }
@@ -235,13 +245,13 @@ namespace nano
 
             int iDefaultButton = iDefaultButtonIndex & 7;
 
-            m_nanouserinteractionaChildren[iDefaultButton]->set_focus();
+            m_elementalaChildren[iDefaultButton]->set_focus();
 
          }
          else
          {
 
-            m_nanouserinteractionaChildren[0]->set_focus();
+            m_elementalaChildren[0]->set_focus();
 
          }
 
@@ -454,7 +464,7 @@ namespace nano
          if (pmouse->m_pointHost.y() < 48)
          {
 
-            m_pnanowindowingwindow->defer_show_system_menu(pmouse);
+            m_pwindow->defer_show_system_menu(pmouse);
 
             return;
 

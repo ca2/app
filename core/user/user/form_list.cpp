@@ -1186,7 +1186,7 @@ namespace user
    //   case list::PropertyBaseWndInterface:
    //   case list::PropertyDrawBaseWndInterface:
    //   {
-   //      const ::user::prototype ** ppinterface = (const ::user::prototype **) lparam;
+   //      const ::user::interaction_base ** ppinterface = (const ::user::interaction_base **) lparam;
 
    //      *ppinterface = (list *)this;
    //   }

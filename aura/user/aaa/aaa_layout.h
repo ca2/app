@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AURA layout :
-      virtual public ::user::prototype
+      virtual public ::user::interaction_base
    {
    public:
 

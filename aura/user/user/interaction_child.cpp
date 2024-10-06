@@ -45,7 +45,7 @@ namespace user
    }
 
 
-   void interaction_child::create_child(::user::interaction * pinteraction, ::user::prototype * pprimitiveParent)
+   void interaction_child::create_child(::user::interaction * pinteraction, ::user::interaction_base * pprimitiveParent)
    {
 
       if (_is_window())
@@ -106,7 +106,7 @@ namespace user
 
             m_puserinteraction->on_set_owner(m_puserinteraction->m_puserinteractionOwner);
 
-            ::user::prototype * puiRet = set_owner(m_puserinteraction->m_puserinteractionOwner);
+            ::user::interaction_base * puiRet = set_owner(m_puserinteraction->m_puserinteractionOwner);
 
             if (m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window)
             {
@@ -247,8 +247,8 @@ namespace user
    }
 
 //
-//   //bool interaction_child::create_interaction(::user::interaction * pinteraction, const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::prototype * puiParent, atom atom, ::request * prequest)
-//   bool interaction_child::create_child(::user::interaction * pinteraction, ::user::prototype * pprimitiveParent)
+//   //bool interaction_child::create_interaction(::user::interaction * pinteraction, const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction_base * puiParent, atom atom, ::request * prequest)
+//   bool interaction_child::create_child(::user::interaction * pinteraction, ::user::interaction_base * pprimitiveParent)
 //   {
 //
 //      auto pusersystem = ::place(new ::user::system());
@@ -300,7 +300,7 @@ namespace user
 //   }
 
 
-   //bool interaction_child::create_interaction(::user::interaction * pinteraction, ::user::prototype * pparent)
+   //bool interaction_child::create_interaction(::user::interaction * pinteraction, ::user::interaction_base * pparent)
    //{
 
    //   return _create_interaction(pinteraction, pparent);
@@ -882,7 +882,7 @@ namespace user
    }
 
 
-   ::user::prototype * interaction_child::set_owner(::user::prototype * pinteraction)
+   ::user::interaction_base * interaction_child::set_owner(::user::interaction_base * pinteraction)
    {
 
       m_puserprimitiveOwner = pinteraction;

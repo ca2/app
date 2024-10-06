@@ -31,7 +31,7 @@ void message_box::show(::object* pparticle)
 CLASS_DECL_AURA void message_box(oswindow oswindow, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 {
 
-   ::user::prototype* primitive = ::auraacmesystem()->ui_from_handle(oswindow);
+   ::user::interaction_base* primitive = ::auraacmesystem()->ui_from_handle(oswindow);
 
    return ::auraacmesystem()->message_box(primitive, pszText, pszTitle, emessagebox, callback);
 

@@ -361,7 +361,7 @@ class cregexp;
 //class image_list;
 //class simple_list_data;
 
-CLASS_DECL_AURA ::user::prototype* __user_prototype(::windowing::window * pwindow);
+CLASS_DECL_AURA ::user::interaction_base* __user_prototype(::windowing::window * pwindow);
 
 inline wparam __scroll_message_wparam(enum_scroll_command ecommand, int iPosition)
 {

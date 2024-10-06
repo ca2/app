@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "interaction.h"
+#include "acme/nano/user/main_window.h"
 
 
 namespace nano
@@ -16,7 +16,7 @@ namespace nano
 
 
       class popup_button :
-         virtual public ::nano::user::interaction
+         virtual public ::nano::user::main_window
       {
       public:
 
@@ -24,6 +24,8 @@ namespace nano
          popup_button();
          ~popup_button() override;
 
+         
+         void create_window() override;
 
 
          void calculate_size_and_position(int x = INT_MIN, int y = INT_MIN);

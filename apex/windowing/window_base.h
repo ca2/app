@@ -11,14 +11,14 @@ namespace windowing
 {
 
 
-   class CLASS_DECL_APEX prototype :
+   class CLASS_DECL_APEX window_base :
       virtual public ::nano::windowing::window
    {
    public:
 
 
-       prototype();
-       ~prototype() override;
+      window_base();
+      ~window_base() override;
 
 
    };

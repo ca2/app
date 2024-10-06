@@ -16,6 +16,10 @@ namespace user
    public:
 
 
+      //::oswindow                                   m_oswindow;
+
+      ::pointer < ::windowing::window >            m_pwindow;
+
       bool                                         m_bSnapToBars : 1;
       bool                                         m_bAddToTitle : 1;
       bool                                         m_bPrefixTitle : 1;

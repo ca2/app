@@ -86,15 +86,15 @@
 //
 //      virtual void show_wait_cursor(bool bShow = true);
 //
-//      ::user::prototype * window_from_os_data(void * pdata);
-//      ::user::prototype * window_from_os_data_permanent(void * pdata);
+//      ::user::interaction_base * window_from_os_data(void * pdata);
+//      ::user::interaction_base * window_from_os_data_permanent(void * pdata);
 //
 //      virtual ::thread * GetThread();
 //      virtual void set_thread(::thread * pthread);
 //
-//      virtual ::user::prototype * FindWindow(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName);
+//      virtual ::user::interaction_base * FindWindow(const ::scoped_string & scopedstrClassName, const ::scoped_string & scopedstrWindowName);
 //
-//      virtual ::user::prototype * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const ::scoped_string & scopedstrWindow);
+//      virtual ::user::interaction_base * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const ::scoped_string & scopedstrWindow);
 //
 //
 //      virtual void get_time(struct timeval *point_i32);

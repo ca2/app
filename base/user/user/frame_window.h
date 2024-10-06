@@ -144,7 +144,7 @@ namespace user
 
 
 
-      bool on_set_parent(::user::prototype * puiParent) override;
+      bool on_set_parent(::user::interaction_base * puiParent) override;
 
       //virtual void defer_synch_layered();
       //virtual bool calc_layered();

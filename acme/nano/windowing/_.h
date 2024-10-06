@@ -92,6 +92,9 @@ namespace nano
 namespace windowing
 {
 
+   
+   class window_base;
+
 
    CLASS_DECL_ACME::enum_display_type get_display_type();
 

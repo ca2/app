@@ -355,7 +355,7 @@ void object::process_exit_status(const ::e_status & estatus)
    //}
 
 
-   // ::user::prototype* get_user_interaction_host();
+   // ::user::interaction_base* get_user_interaction_host();
    // ::user::interaction * get_host_user_interaction();
 
 
@@ -741,8 +741,8 @@ void object::delete_this()
 
    //}
 
-   // void message_box(::user::prototype* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
-   // void message_box_timeout(::user::prototype* puserinteractionOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   // void message_box(::user::interaction_base* puiOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+   // void message_box_timeout(::user::interaction_base* puserinteractionOwner, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
 
     void object::release_references()
     {

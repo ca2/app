@@ -5,7 +5,7 @@
 //{
 //public:
 //
-//   ::pointer<::user::prototype>    m_puserprimitive;
+//   ::pointer<::user::interaction_base>    m_puserprimitive;
 //   string                           m_strMessage;
 //   string                           m_strTitle;
 //   const ::e_message_box &                    m_emessagebox;
@@ -65,7 +65,7 @@
 //
 //
 //CLASS_DECL_APEX void message_box_synchronous(oswindow oswindow, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-//CLASS_DECL_APEX void message_box(::user::prototype * puiOwner, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+//CLASS_DECL_APEX void message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 //
 //
 //inline void message_box_synchronous(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback())

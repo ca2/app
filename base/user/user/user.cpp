@@ -382,7 +382,7 @@ namespace base
    }
 
 
-   ::user::prototype * user::get_mouse_focus_LButtonDown()
+   ::user::interaction_base * user::get_mouse_focus_LButtonDown()
    {
 
       return m_pmousefocusLButtonDown;
@@ -390,7 +390,7 @@ namespace base
    }
 
 
-   void user::set_mouse_focus_LButtonDown(::user::prototype * pmousefocus)
+   void user::set_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus)
    {
 
       m_pmousefocusLButtonDown = pmousefocus;
@@ -398,7 +398,7 @@ namespace base
    }
 
 
-   ::user::prototype * user::get_mouse_focus_RButtonDown()
+   ::user::interaction_base * user::get_mouse_focus_RButtonDown()
    {
 
       return m_pmousefocusRButtonDown;
@@ -406,7 +406,7 @@ namespace base
    }
 
 
-   void user::set_mouse_focus_RButtonDown(::user::prototype * pmousefocus)
+   void user::set_mouse_focus_RButtonDown(::user::interaction_base * pmousefocus)
    {
 
       m_pmousefocusRButtonDown = pmousefocus;

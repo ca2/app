@@ -416,7 +416,7 @@ namespace draw2d_cairo
    }
 
 
-//i32 graphics::ExcludeUpdateRgn(::user::prototype * pwindow)
+//i32 graphics::ExcludeUpdateRgn(::user::interaction_base * pwindow)
 //{
 //
 //    throw ::interface_only();

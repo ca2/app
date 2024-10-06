@@ -2,21 +2,21 @@
 // Created by camilo on 9/26/24.
 //
 #include "framework.h"
-#include "prototype.h"
+#include "window_base.h"
 
 
 namespace windowing
 {
 
 
-   prototype::prototype()
+   window_base::window_base()
    {
 
 
    }
 
 
-   prototype::~prototype()
+   window_base::~window_base()
    {
 
 

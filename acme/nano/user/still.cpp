@@ -79,7 +79,16 @@ void still::on_char(int iChar)
    if (iChar == '\r' || iChar == ' ')
    {
 
-      nano_windowing_window()->nano_user_interaction()->on_click(m_atom, nullptr);
+      ::pointer < ::nano::user::elemental > pelemental;
+
+      pelemental = nano_windowing_window()->nano_user_interaction();
+
+      if (pelemental)
+      {
+
+         pelemental->on_click(m_atom, nullptr);
+
+      }
 
    }
 
@@ -152,7 +161,7 @@ void still::resize_to_fit()
    }
 
 
-::nano::user::interaction::resize_to_fit();
+::nano::user::elemental::resize_to_fit();
 
 //
 //   auto pdevice = __create < ::nano::graphics::device >();

@@ -4,36 +4,43 @@
 
 #include "interaction.h"
 
-namespace nano{namespace user{
-class device;
-class icon;
-
-class still :
-   virtual public ::nano::user::interaction
+namespace nano 
 {
-public:
 
 
-   bool        m_bHyperlink;
-::pointer < ::nano::graphics::icon > m_picon;
-
-   virtual ~still();
+   namespace user 
+   {
 
 
-   void on_draw(::nano::graphics::device * pnanodevice) override;
-   void on_char(int iChar) override;
+      class device;
+      class icon;
 
-   virtual void set_icon(::nano::graphics::icon * picon);
-
-   void on_mouse_move(::user::mouse * pmouse) override;
-
-   bool is_focusable() override;
-
-
-   void resize_to_fit() override;
+      class still :
+         virtual public ::nano::user::elemental
+      {
+      public:
 
 
-};
+         bool        m_bHyperlink;
+         ::pointer < ::nano::graphics::icon > m_picon;
+
+         virtual ~still();
+
+
+         void on_draw(::nano::graphics::device * pnanodevice) override;
+         void on_char(int iChar) override;
+
+         virtual void set_icon(::nano::graphics::icon * picon);
+
+         void on_mouse_move(::user::mouse * pmouse) override;
+
+         bool is_focusable() override;
+
+
+         void resize_to_fit() override;
+
+
+      };
 
 
 

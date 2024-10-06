@@ -39,8 +39,8 @@ namespace user
       ::bred::user* m_pbreduser;
       ::core::user* m_pcoreuser;
 
-      ::pointer<::user::prototype>             m_pmousefocusLButtonDown;
-      ::pointer<::user::prototype>             m_pmousefocusRButtonDown;
+      ::pointer<::user::interaction_base>             m_pmousefocusLButtonDown;
+      ::pointer<::user::interaction_base>             m_pmousefocusRButtonDown;
       string_array                              m_straEscape;
       ::user::style_pointer                     m_puserstyle;
       string_map < ::user::style_pointer >      m_mapUserStyle;
@@ -132,11 +132,11 @@ namespace user
 
       virtual void create_user_shell();
 
-      virtual ::user::prototype * get_mouse_focus_LButtonDown();
-      virtual void set_mouse_focus_LButtonDown(::user::prototype * pmousefocus);
-      virtual void defer_erase_mouse_focus_LButtonDown(::user::prototype * pmousefocus);
-      virtual ::user::prototype * get_mouse_focus_RButtonDown();
-      virtual void set_mouse_focus_RButtonDown(::user::prototype * pmousefocus);
+      virtual ::user::interaction_base * get_mouse_focus_LButtonDown();
+      virtual void set_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus);
+      virtual void defer_erase_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus);
+      virtual ::user::interaction_base * get_mouse_focus_RButtonDown();
+      virtual void set_mouse_focus_RButtonDown(::user::interaction_base * pmousefocus);
 
       virtual bool on_ui_mouse_message(::message::mouse_base * pmouse);
 

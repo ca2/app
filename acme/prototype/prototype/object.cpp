@@ -258,7 +258,7 @@ string object::as_string() const
 //}
 
 
-//::user::prototype* object::get_user_interaction_host()
+//::user::interaction_base* object::get_user_interaction_host()
 //{
 //
 //   if (m_psession.is_null())
@@ -3024,7 +3024,7 @@ void object::call_run()
 //}
 
 
-// ::user::prototype* get_user_interaction_host();
+// ::user::interaction_base* get_user_interaction_host();
 // ::user::interaction * get_host_user_interaction();
 
 
@@ -3410,8 +3410,8 @@ void object::call_run()
 
 //}
 
-// void message_box(::user::prototype* puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
-// void message_box_timeout(::user::prototype* puserinteractionOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+// void message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+// void message_box_timeout(::user::interaction_base* puserinteractionOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const class time & timeTimeout = ::time::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
 
 //void object::release_references()
 //{

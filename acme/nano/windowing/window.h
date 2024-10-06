@@ -47,6 +47,13 @@ namespace nano
 
          rectangle_i32                             m_rectangle;
 
+         bool                                      m_bMinimizeBox;
+         bool                                      m_bMaximizeBox;
+         bool                                      m_bResizeable;
+         //bool                                      m_bTopMost;
+         // bool                                      m_bStartCentered;
+         //bool                                      m_bArbitraryPositioning;
+
 
          bool                                      m_bCapture;
          bool                                      m_bStartCentered;

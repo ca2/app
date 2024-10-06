@@ -43,6 +43,11 @@ class user;
 
 class theme;
 
+
+class elemental;
+
+class main_window;
+
 //class window_implementation;
 
 

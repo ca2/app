@@ -3026,7 +3026,7 @@ bool simple_frame_window::on_before_set_parent(::pointer<::user::interaction>pin
 }
 
 
-bool simple_frame_window::on_set_parent(::user::prototype * puiParent)
+bool simple_frame_window::on_set_parent(::user::interaction_base * puiParent)
 {
 
    if (!::user::frame_window::on_set_parent(puiParent))

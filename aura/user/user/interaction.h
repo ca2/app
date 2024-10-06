@@ -41,7 +41,7 @@ namespace user
 
 
    class CLASS_DECL_AURA interaction :
-      virtual public ::user::prototype,
+      virtual public ::user::interaction_base,
       virtual public ::user::drawable,
       virtual public ::timer_callback//,
       //virtual public ::user::drag_client
@@ -255,8 +255,6 @@ namespace user
       ::point_i32                               m_pointBarDragScrollMax;
       ::size_i32                                m_sizeBarDragScroll;
 
-      ::oswindow                                m_oswindow;
-
       enum_text_wrap                            m_etextwrap;
 
       ::pointer<::user::interaction_scaler>     m_pinteractionScaler;
@@ -310,9 +308,9 @@ namespace user
       string                                    m_strStyle;
       property_set                              m_setStyle;
 
-      ::user::interaction *                     m_puserinteractionTopLevel;
-      ::user::frame *                           m_puserframeTopLevel;
-      ::user::frame *                           m_puserframeParent;
+      //::user::interaction *                     m_puserinteractionTopLevel;
+      //::user::frame *                           m_puserframeTopLevel;
+      //::user::frame *                           m_puserframeParent;
       bool                                      m_bAutoResize;
       bool                                      m_bNeedAutoResizePerformLayout;
 
@@ -798,7 +796,7 @@ namespace user
 
       virtual void set_place_child_title(const ::string & pszTitle);
 
-      virtual ::user::prototype * get_bind_ui();
+      virtual ::user::interaction_base * get_bind_ui();
 
       virtual string get_display_tag();
 
@@ -1077,13 +1075,13 @@ namespace user
       //virtual iptr get_window_long_ptr(i32 nIndex) override;
       //virtual void set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
-      virtual bool on_before_set_parent(::user::prototype * pinterface);
-      virtual bool on_set_parent(::user::prototype * pinterface);
+      virtual bool on_before_set_parent(::user::interaction_base * pinterface);
+      virtual bool on_set_parent(::user::interaction_base * pinterface);
       virtual bool on_add_child(::user::interaction * puserinteractionChild);
       virtual void on_after_set_parent();
 
 
-      virtual bool on_set_owner(::user::prototype * pinterface);
+      virtual bool on_set_owner(::user::interaction_base * pinterface);
 
 
       ::user::element * first_child_user_element() override;
@@ -1395,13 +1393,19 @@ namespace user
       /// you should be able (control developer pay attention now),
       /// to build a default control with a default constructed
       /// ::user::control_descriptor.
-      //virtual bool create_interaction(class ::user::control_descriptor * pdescriptor);
+      virtual void create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom = nullptr);
 
       //virtual void create_host(enum_parallelization eparallelization) override;
-      virtual void create_host() override;
-      virtual void create_child(::user::interaction * pparent) override;
+      virtual void create_host();
+      virtual void create_child(::user::interaction * pparent);
       virtual void defer_create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom = nullptr);
-      
+
+
+      ////void create_host(enum_parallelization eparallelization) override;
+      //void create_host() override;
+      //void create_child(::user::interaction * puserinteractionParent) override;
+      //void create_control(::user::interaction * puserinteractionParent, const ::atom & atom) override;
+
       
       virtual void on_finished_window_creation();
       
@@ -1708,7 +1712,7 @@ namespace user
 
 
       /*void pre_create_window(::user::system* pusersystem);*/
-      using ::user::prototype::handle;
+      using ::user::interaction_base::handle;
       void handle(::topic * ptopic, ::context * pcontext) override;
 
 
@@ -1835,12 +1839,12 @@ namespace user
       ::user::interaction* get_wnd() override;
       ::user::interaction* get_wnd(::u32 nCmd) override;
 
-      ::user::prototype * set_parent(::user::prototype * pinteraction) override;
-      ::user::prototype * set_owner(::user::prototype * pinteraction) override;
+      ::user::interaction_base * set_parent(::user::interaction_base * pinteraction) override;
+      ::user::interaction_base * set_owner(::user::interaction_base * pinteraction) override;
 
       virtual void __defer_set_owner_to_impl();
 
-      void on_add_owned(::user::prototype * pprimitive) override;
+      void on_add_owned(::user::interaction_base * pprimitive) override;
 
       ::user::interaction * get_parent_window() override;
 
@@ -1882,7 +1886,7 @@ namespace user
       i32 get_descendant_level(::user::element * puserelement) override;
 
 
-      //virtual bool is_descendant(const ::user::prototype * pinteraction, bool bIncludeSelf = false) override;
+      //virtual bool is_descendant(const ::user::interaction_base * pinteraction, bool bIncludeSelf = false) override;
 
       ::oswindow GetParentHandle();
 
@@ -2030,7 +2034,7 @@ namespace user
       virtual void on_end_layout_experience(enum_layout_experience elayoutexperience) override;
 
 
-      virtual void on_configuration_change(::user::prototype * pprimitiveSource) override;
+      virtual void on_configuration_change(::user::interaction_base * pprimitiveSource) override;
 
 
       //virtual void show_keyboard(bool bShow = true) override;
@@ -2256,9 +2260,9 @@ namespace user
 
       virtual enum_input_type preferred_input_type();
 
-      //virtual ::user::prototype * get_keyboard_focus();
-      //virtual void set_keyboard_focus(::user::prototype* pprimitive);
-      //virtual void erase_keyboard_focus(::user::prototype * pprimitive);
+      //virtual ::user::interaction_base * get_keyboard_focus();
+      //virtual void set_keyboard_focus(::user::interaction_base* pprimitive);
+      //virtual void erase_keyboard_focus(::user::interaction_base * pprimitive);
 
       //virtual void erase_keyboard_focus() override;
 
@@ -2438,7 +2442,7 @@ namespace user
       //void create_interaction(::user::interaction * pinteractionParent, const ::atom & atom) override;
       //virtual elayout get_state() override;
       //bool _003IsCustomMessage();
-      //::user::prototype* _003GetCustomMessageWnd();
+      //::user::interaction_base* _003GetCustomMessageWnd();
       //virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics) override;
       virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
       //virtual bool has_function(enum_control_function econtrolfunction);

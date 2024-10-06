@@ -8,7 +8,7 @@
 #include "acme/constant/id.h"
 #include "apex/platform/node.h"
 #include "apex/user/user/message.h"
-#include "apex/user/user/prototype.h"
+#include "apex/user/user/interaction_base.h"
 #include "acme/parallelization/task_message_queue.h"
 #include "acme/parallelization/tools.h"
 #include "acme/parallelization/pool.h"
@@ -1249,7 +1249,7 @@ void thread::on_thread_on_idle(thread* pimpl, ::i32 lCount)
 }
 
 
-::user::prototype* thread::get_active_user_prototype()
+::user::interaction_base* thread::get_active_user_prototype()
 {
 
    return m_puserprimitiveActive;
@@ -1257,7 +1257,7 @@ void thread::on_thread_on_idle(thread* pimpl, ::i32 lCount)
 }
 
 
-void thread::set_active_user_prototype(::user::prototype* puserprimitive)
+void thread::set_active_user_prototype(::user::interaction_base* puserprimitive)
 {
 
    m_puserprimitiveActive = puserprimitive;
@@ -1703,7 +1703,7 @@ void thread::destroy()
 
    m_pmutexThreadUiPtra.release();
 
-   m_puserprimitiveaThread.release();
+   m_puserinteractionbaseaThread.release();
 
    m_prequest.release();
 
@@ -4082,10 +4082,10 @@ void thread::on_task_term()
 
       _synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
 
-      if (::is_set(m_puserprimitiveaThread))
+      if (::is_set(m_puserinteractionbaseaThread))
       {
 
-         m_puserprimitiveaThread->erase_all();
+         m_puserinteractionbaseaThread->erase_all();
 
       }
 
@@ -4256,7 +4256,7 @@ bool thread::initialize_message_queue()
    //if(m_spuiptra.is_null())
    //{
 
-   //   m_spuiptra = ::place(new ref_array < ::user::prototype > ());
+   //   m_spuiptra = ::place(new ref_array < ::user::interaction_base > ());
 
    //}
 
@@ -4753,7 +4753,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
 }
 
 
-::user::primitive_array& thread::userprimitivea()
+::user::interaction_base_array& thread::userprimitivea()
 {
 
    {
@@ -4771,14 +4771,14 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
 
    _synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
 
-   if (m_puserprimitiveaThread == nullptr)
+   if (m_puserinteractionbaseaThread == nullptr)
    {
 
-      m_puserprimitiveaThread = new ::user::primitive_array  ();
+      m_puserinteractionbaseaThread = new ::user::interaction_base_array  ();
 
    }
 
-   return *m_puserprimitiveaThread;
+   return *m_puserinteractionbaseaThread;
 
 }
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-bool CLASS_DECL_APEX vfxResolveShortcut(string & strTarget, const ::scoped_string & scopedstrSource, ::user::prototype * puiMessageParentOptional = nullptr);
+bool CLASS_DECL_APEX vfxResolveShortcut(string & strTarget, const ::scoped_string & scopedstrSource, ::user::interaction_base * puiMessageParentOptional = nullptr);
 
 
 namespace universal_windows
@@ -63,7 +63,7 @@ namespace universal_windows
       virtual void start_service() override;
       virtual void stop_service() override;
 
-      virtual bool resolve_link(string & strTarget, string & strFolder, string & strParams, const ::string & strSource, ::user::prototype * puiMessageParentOptional = nullptr);
+      virtual bool resolve_link(string & strTarget, string & strFolder, string & strParams, const ::string & strSource, ::user::interaction_base * puiMessageParentOptional = nullptr);
 
       virtual DECLSPEC_NO_RETURN void raise_exception(u32 dwExceptionCode, u32 dwExceptionFlags = EXCEPTION_NONCONTINUABLE) override;
 

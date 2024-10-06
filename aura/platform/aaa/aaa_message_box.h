@@ -5,7 +5,7 @@ class CLASS_DECL_AURA message_box
 {
 public:
 
-   ::pointer<::user::prototype>    m_puserprimitive;
+   ::pointer<::user::interaction_base>    m_puserprimitive;
    string                           m_strMessage;
    string                           m_strTitle;
    const ::e_message_box &                    m_emessagebox;
@@ -65,7 +65,7 @@ inline ::payload operator + (const ::string & psz, const ::enum_message_box& eme
 
 
 CLASS_DECL_AURA void message_box_synchronous(oswindow oswindow, const ::string & pszText, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-CLASS_DECL_AURA void message_box(::user::prototype * puiOwner, const ::string & pszText, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+CLASS_DECL_AURA void message_box(::user::interaction_base * puiOwner, const ::string & pszText, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
 inline void message_box_synchronous(const ::string & pszText, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback())

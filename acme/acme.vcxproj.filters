@@ -442,9 +442,6 @@
     <Filter Include="Header Files\nano\windowing">
       <UniqueIdentifier>{27ff3486-66a3-4c54-9e08-e9252552ecd2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\nano\NewFilter1">
-      <UniqueIdentifier>{e5193c93-2b33-4ab4-85e6-d9c85832f852}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -3672,31 +3669,13 @@
     <ClInclude Include="nano\user\aaa_nano.h">
       <Filter>Header Files\nano\user</Filter>
     </ClInclude>
-    <ClInclude Include="nano\user\brush.h">
-      <Filter>Header Files\nano\user</Filter>
-    </ClInclude>
     <ClInclude Include="nano\user\button.h">
       <Filter>Header Files\nano\user</Filter>
     </ClInclude>
     <ClInclude Include="nano\user\details_window.h">
       <Filter>Header Files\nano\user</Filter>
     </ClInclude>
-    <ClInclude Include="nano\user\device.h">
-      <Filter>Header Files\nano\user</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\user\display.h">
-      <Filter>Header Files\nano\user</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\user\font.h">
-      <Filter>Header Files\nano\user</Filter>
-    </ClInclude>
     <ClInclude Include="nano\user\message_box.h">
-      <Filter>Header Files\nano\user</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\user\object.h">
-      <Filter>Header Files\nano\user</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\user\pen.h">
       <Filter>Header Files\nano\user</Filter>
     </ClInclude>
     <ClInclude Include="nano\user\popup_button.h">
@@ -3873,9 +3852,6 @@
     <ClInclude Include="graphics\image\pixmap_lock.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
-    <ClInclude Include="nano\user\window.h">
-      <Filter>Header Files\nano\user</Filter>
-    </ClInclude>
     <ClInclude Include="nano\user\interaction.h">
       <Filter>Header Files\nano\user</Filter>
     </ClInclude>
@@ -3905,6 +3881,12 @@
     </ClInclude>
     <ClInclude Include="constant\windowing.h">
       <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\elemental.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\main_window.h">
+      <Filter>Header Files\nano\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5473,6 +5455,12 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows\calculate_ewindowing.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\user\elemental.cpp">
+      <Filter>Source Files\nano\user</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\user\main_window.cpp">
+      <Filter>Source Files\nano\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

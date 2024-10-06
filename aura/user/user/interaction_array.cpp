@@ -187,7 +187,7 @@ namespace user
    }
 
 
-   ::user::prototype * primitive_pointer_array::find_first_typed(const ::type_atom & typeatom)
+   ::user::interaction_base * primitive_pointer_array::find_first_typed(const ::type_atom & typeatom)
    {
 
       for (i32 i = 0; i < primitive_count(); i++)
@@ -209,7 +209,7 @@ namespace user
    }
 
 
-   ::user::prototype * primitive_pointer_array::find_first(oswindow oswindow)
+   ::user::interaction_base * primitive_pointer_array::find_first(oswindow oswindow)
    {
 
       for (i32 i = 0; i < primitive_count(); i++)
@@ -231,7 +231,7 @@ namespace user
    }
 
 
-   bool primitive_pointer_array::get_child(::pointer<::user::prototype>& pprimitive)
+   bool primitive_pointer_array::get_child(::pointer<::user::interaction_base>& pprimitive)
    {
 
       if (has_no_primitive())
@@ -286,7 +286,7 @@ namespace user
    }
 
 
-   bool primitive_pointer_array::rget_child(::pointer<::user::prototype>& pprimitive)
+   bool primitive_pointer_array::rget_child(::pointer<::user::interaction_base>& pprimitive)
    {
 
       if (has_no_primitive())

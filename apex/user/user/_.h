@@ -14,7 +14,7 @@ namespace user
    class language_map;
 
 
-   class prototype;
+   class interaction_base;
 
 
 } // namespace user

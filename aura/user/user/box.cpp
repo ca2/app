@@ -943,7 +943,7 @@ namespace user
    }
 
 
-   bool box::on_before_set_parent(::user::prototype * puiParent)
+   bool box::on_before_set_parent(::user::interaction_base * puiParent)
    {
 
       if (!::user::interaction::on_before_set_parent(puiParent))
@@ -960,7 +960,7 @@ namespace user
    }
 
 
-   bool box::on_set_parent(::user::prototype * puiParent)
+   bool box::on_set_parent(::user::interaction_base * puiParent)
    {
 
       if(!::user::interaction::on_set_parent(puiParent))

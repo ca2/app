@@ -394,7 +394,7 @@ namespace draw2d_opengl
    }
 
 
-   int graphics::ExcludeUpdateRgn(::user::prototype * pwindow)
+   int graphics::ExcludeUpdateRgn(::user::interaction_base * pwindow)
    {
       // ASSERT(m_hdc != nullptr);
       //throw ::interface_only();

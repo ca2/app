@@ -596,7 +596,7 @@ namespace core
    }
 
 
-   pointer< ::sequence < ::conversation > > user::ui_message_box(::particle * pparticle, ::user::prototype * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   pointer< ::sequence < ::conversation > > user::ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
    {
 
       return nullptr;
@@ -731,7 +731,7 @@ namespace core
    }
 
 
-   pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::prototype * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox)
+   pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox)
    {
 
       //__UNREFERENCED_PARAMETER(puiOwner);
@@ -1590,7 +1590,7 @@ namespace core
    //}
 
 
-   //i32 application::sync_message_box(::user::prototype * puiOwner, const ::string & pszMessage, ::u32 fuStyle)
+   //i32 application::sync_message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, ::u32 fuStyle)
    //{
 
    //   ::acme::get()->platform()->informationf("\n\napp_message_box: " + string(pszMessage) + "\n\n");
@@ -1603,7 +1603,7 @@ namespace core
    //}
 
 
-   //i32 application::sync_message_box_timeout(::user::prototype * puserinteractionOwner, ::payload payload, ::time timeTimeOut, ::u32 fuStyle)
+   //i32 application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, ::time timeTimeOut, ::u32 fuStyle)
    //{
 
    //   if (psession->user() == nullptr)
@@ -1853,7 +1853,7 @@ namespace core
    }
 
 
-   //void application::message_box(::user::prototype* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 uFlags, ::function_arg function)
+   //void application::message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 uFlags, ::function_arg function)
    //{
 
    //   auto estatus = ui_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, fuStyle, functionarg);

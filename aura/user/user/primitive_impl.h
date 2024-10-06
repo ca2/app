@@ -85,7 +85,7 @@ namespace user
       //virtual void create_host(::user::interaction * puserinteraction, enum_parallelization eparallelization);
 
       virtual void create_host(::user::interaction * puserinteraction);
-      virtual void create_child(::user::interaction * puserinteraction, ::user::prototype * puserprimitiveParent);
+      virtual void create_child(::user::interaction * puserinteraction, ::user::interaction_base * puserprimitiveParent);
 
 
       virtual void defer_do_graphics(::draw2d::graphics_pointer & pgraphics);
@@ -156,7 +156,7 @@ namespace user
       //virtual void fps_interest_stop();
 
 
-      virtual ::user::prototype* set_owner(::user::prototype* pprimitiveOwner);
+      virtual ::user::interaction_base* set_owner(::user::interaction_base* pprimitiveOwner);
 
 
       virtual bool has_pending_redraw_flags();
@@ -246,7 +246,7 @@ namespace user
       virtual void on_end_layout_experience(enum_layout_experience elayoutexperience);
 
 
-      virtual void on_configuration_change(::user::prototype* pprimitiveSource);
+      virtual void on_configuration_change(::user::interaction_base* pprimitiveSource);
 
 
       //virtual ::user::element* get_keyboard_focus();

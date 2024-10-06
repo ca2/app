@@ -25,7 +25,7 @@ namespace html
 
    class CLASS_DECL_AXIS element :
       virtual public ::object
-      //virtual public ::user::prototype,
+      //virtual public ::user::interaction_base,
       //virtual public ::user::text
    {
    public:

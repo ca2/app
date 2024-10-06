@@ -3897,6 +3897,15 @@
     <ClInclude Include="nano\nano.h">
       <Filter>Header Files\nano</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\aaa_interaction_base.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\user\aaa_child.h">
+      <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\windowing.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="prototype\prototype\bit.cpp">
@@ -5294,9 +5303,6 @@
     <ClCompile Include="nano\user\details_window.cpp">
       <Filter>Source Files\nano\user</Filter>
     </ClCompile>
-    <ClCompile Include="nano\user\display.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
     <ClCompile Include="nano\user\message_box.cpp">
       <Filter>Source Files\nano\user</Filter>
     </ClCompile>
@@ -5441,9 +5447,6 @@
     <ClCompile Include="nano\graphics\pen.cpp">
       <Filter>Source Files\nano\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="nano\user\window.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
     <ClCompile Include="platform\logger.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -5460,6 +5463,9 @@
       <Filter>Source Files\nano\windowing</Filter>
     </ClCompile>
     <ClCompile Include="nano\windowing\windowing.cpp">
+      <Filter>Source Files\nano\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="nano\windowing\_windowing.cpp">
       <Filter>Source Files\nano\windowing</Filter>
     </ClCompile>
   </ItemGroup>

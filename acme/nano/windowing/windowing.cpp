@@ -10,8 +10,9 @@
 //     windowing by camilo on 2024-10-05 10:36 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "display.h"
-#include "user.h"
+//#include "user.h"
 #include "window.h"
+#include "windowing.h"
 #include "acme/constant/id.h"
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/image/pixmap.h"
@@ -24,19 +25,19 @@
 
 namespace nano
 {
-   namespace user
+   namespace windowing
    {
-      user::user()
+      windowing::windowing()
       {
       }
 
 
-      user::~user()
+      windowing::~windowing()
       {
       }
 
 
-      //pointer< ::sequencer < ::conversation > > user::nano()->message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+      //pointer< ::sequencer < ::conversation > > windowing::nano()->message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
       //{
 
       //   auto psequencer = node()->nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -46,7 +47,7 @@ namespace nano
       //}
 
 
-      //pointer< ::sequencer < ::conversation > > user::nano()->message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+      //pointer< ::sequencer < ::conversation > > windowing::nano()->message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
       //{
 
       //   auto psequencer = node()->nano()->message_console(strMessage, strTitle, emessagebox, strDetails);
@@ -55,85 +56,85 @@ namespace nano
 
       //}
 
-      pointer<::sequencer<::conversation>> user::message_box(const ::string & strMessage, const ::string & strTitle,
-                                                             const ::e_message_box & emessagebox,
-                                                             const ::string & strDetails, ::nano::graphics::icon * picon)
-      {
-         auto pnode = node();
+      //pointer<::sequencer<::conversation>> windowing::message_box(const ::string & strMessage, const ::string & strTitle,
+      //                                                       const ::e_message_box & emessagebox,
+      //                                                       const ::string & strDetails, ::nano::graphics::icon * picon)
+      //{
+      //   auto pnode = node();
 
-         auto psequencer = pnode->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
+      //   auto psequencer = pnode->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
 
-         return psequencer;
-      }
-
-
-      pointer<::sequencer<::conversation>> user::exception_message_box(
-          const ::exception & exception, const ::string & strMessageParam, const ::string & strTitleParam,
-          const ::e_message_box & emessagebox, const ::string & strDetailsParam, ::nano::graphics::icon * picon)
-      {
-         string strExceptionDetails = exception.get_consolidated_details(this);
-
-         string strMessage(strMessageParam);
-
-         if (strMessage.is_empty())
-         {
-            strMessage = exception.get_message();
-         }
-
-         string strTitle(strTitleParam);
-
-         if (strTitle.is_empty())
-         {
-            strTitle = exception.get_title();
-         }
-
-         string strDetails(strDetailsParam);
-
-         if (strExceptionDetails.has_char())
-         {
-            if (strDetails.has_char())
-            {
-               strDetails += "\n";
-            }
-
-            strDetails += strExceptionDetails;
-         }
-
-         auto psequencer = node()->create_message_box_sequencer(
-             strMessage,
-             strTitle,
-             emessagebox,
-             strDetails,
-             picon);
-
-         return psequencer;
-      }
+      //   return psequencer;
+      //}
 
 
-      pointer<::sequencer<::conversation>> user::message_console(const ::string & strMessage, const ::string & strTitle,
-                                                                 const ::e_message_box & emessagebox,
-                                                                 const ::string & strDetails, ::nano::graphics::icon * picon)
-      {
-         auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
+      //pointer<::sequencer<::conversation>> windowing::exception_message_box(
+      //    const ::exception & exception, const ::string & strMessageParam, const ::string & strTitleParam,
+      //    const ::e_message_box & emessagebox, const ::string & strDetailsParam, ::nano::graphics::icon * picon)
+      //{
+      //   string strExceptionDetails = exception.get_consolidated_details(this);
 
-         return psequencer;
-      }
+      //   string strMessage(strMessageParam);
+
+      //   if (strMessage.is_empty())
+      //   {
+      //      strMessage = exception.get_message();
+      //   }
+
+      //   string strTitle(strTitleParam);
+
+      //   if (strTitle.is_empty())
+      //   {
+      //      strTitle = exception.get_title();
+      //   }
+
+      //   string strDetails(strDetailsParam);
+
+      //   if (strExceptionDetails.has_char())
+      //   {
+      //      if (strDetails.has_char())
+      //      {
+      //         strDetails += "\n";
+      //      }
+
+      //      strDetails += strExceptionDetails;
+      //   }
+
+      //   auto psequencer = node()->create_message_box_sequencer(
+      //       strMessage,
+      //       strTitle,
+      //       emessagebox,
+      //       strDetails,
+      //       picon);
+
+      //   return psequencer;
+      //}
 
 
-      pointer<::sequencer<::conversation>> user::exception_message_console(
-          const ::exception & exception, const ::string & strMessage, const ::string & strTitle,
-          const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
-      {
-         string strExceptionDetails = exception.get_consolidated_details(this);
+      //pointer<::sequencer<::conversation>> windowing::message_console(const ::string & strMessage, const ::string & strTitle,
+      //                                                           const ::e_message_box & emessagebox,
+      //                                                           const ::string & strDetails, ::nano::graphics::icon * picon)
+      //{
+      //   auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
 
-         auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox,
-                                                            strDetails + "\n" + strExceptionDetails, picon);
-
-         return psequencer;
-      }
+      //   return psequencer;
+      //}
 
 
-      void user::handle(::topic * ptopic, ::context * pcontext)
+      //pointer<::sequencer<::conversation>> windowing::exception_message_console(
+      //    const ::exception & exception, const ::string & strMessage, const ::string & strTitle,
+      //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+      //{
+      //   string strExceptionDetails = exception.get_consolidated_details(this);
+
+      //   auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox,
+      //                                                      strDetails + "\n" + strExceptionDetails, picon);
+
+      //   return psequencer;
+      //}
+
+
+      void windowing::handle(::topic * ptopic, ::context * pcontext)
       {
          if (ptopic->m_atom == id_set_application_dark_mode)
          {
@@ -146,13 +147,13 @@ namespace nano
 
 
 
-      void user::process_messages()
+      void windowing::process_messages()
       {
 
 
       }
 
-      bool user::init_threads()
+      bool windowing::init_threads()
       {
 
          return true;
@@ -184,21 +185,21 @@ namespace nano
                //{
 
 
-                /*  user::user()
+                /*  windowing::user()
                   {
 
 
                   }
 
 
-                  user::~user()
+                  windowing::~user()
                   {
 
 
                   }*/
 
 
-      void user::on_initialize_particle()
+      void windowing::on_initialize_particle()
       {
 
          ::acme::department::on_initialize_particle();
@@ -207,7 +208,7 @@ namespace nano
 
       }
 
-      void user::destroy()
+      void windowing::destroy()
       {
 
          windowing_system_post_quit();
@@ -218,7 +219,7 @@ namespace nano
 
 
 
-      ::nano::user::display * user::display()
+      ::nano::windowing::display * windowing::display()
       {
 
          if (!m_pdisplaybase)
@@ -237,22 +238,14 @@ namespace nano
       }
 
 
-      void user::on_start_system()
+      void windowing::on_start_system()
       {
 
 
       }
 
 
-      ::e_status user::defer_initialize_windowing_system()
-      {
-
-         return ::success;
-
-      }
-
-
-      ::e_status user::initialize_windowing_system()
+      ::e_status windowing::defer_initialize_windowing_system()
       {
 
          return ::success;
@@ -260,7 +253,15 @@ namespace nano
       }
 
 
-      void * user::get_display()
+      ::e_status windowing::initialize_windowing_system()
+      {
+
+         return ::success;
+
+      }
+
+
+      void * windowing::get_display()
       {
 
          return nullptr;
@@ -268,7 +269,7 @@ namespace nano
       }
 
 
-      void user::sync(const ::procedure & procedure)
+      void windowing::sync(const ::procedure & procedure)
       {
 
          main_send(procedure);
@@ -276,7 +277,7 @@ namespace nano
       }
 
 
-      void user::async(const ::procedure & procedure)
+      void windowing::async(const ::procedure & procedure)
       {
 
          main_post(procedure);
@@ -284,21 +285,21 @@ namespace nano
       }
 
 
-      void user::display_error_trap_push(int i)
+      void windowing::display_error_trap_push(int i)
       {
 
 
       }
 
 
-      void user::display_error_trap_pop_ignored(int i)
+      void windowing::display_error_trap_pop_ignored(int i)
       {
 
 
       }
 
 
-      void * user::fetch_windowing_system_display()
+      void * windowing::fetch_windowing_system_display()
       {
 
          return nullptr;
@@ -306,21 +307,21 @@ namespace nano
       }
 
 
-      //void user::process_messages()
+      //void windowing::process_messages()
       //{
 
       //   nano()->user()->process_messages();
 
       //   // #ifdef HAS_WAYLAND
-      //   //         if(psystem->m_ewindowing == e_windowing_wayland)
+      //   //         if(psystem->m_ewindowing == ::windowing::e_windowing_wayland)
       //   //         {
       //   //
-      //   //             ::wayland::nano::user::process_messages();
+      //   //             ::wayland::nano::windowing::process_messages();
       //   //
       //   //         }
       //   //         else
       //   // #endif
-      //   //             if(psystem->m_ewindowing == e_windowing_xcb)
+      //   //             if(psystem->m_ewindowing == ::windowing::e_windowing_xcb)
       //   //             {
       //   //
       //   //                 ::xcb::nano::user::process_messages();
@@ -337,7 +338,7 @@ namespace nano
       //}
 
 
-      void user::windowing_system_application_main_loop()
+      void windowing::windowing_system_application_main_loop()
       {
 
 
@@ -345,14 +346,14 @@ namespace nano
       }
 
 
-      void user::windowing_system_post_quit()
+      void windowing::windowing_system_post_quit()
       {
 
 
       }
 
 
-      ::color::color user::get_system_color(enum_system_color esystemcolor)
+      ::color::color windowing::get_system_color(enum_system_color esystemcolor)
       {
 
          throw ::interface_only();
@@ -362,7 +363,7 @@ namespace nano
       }
 
 
-      void user::on_system_dark_mode_change(bool bDarkMode, const ::color::color & colorBackground)
+      void windowing::on_system_dark_mode_change(bool bDarkMode, const ::color::color & colorBackground)
       {
 
          if (colorBackground != ::color::transparent)
@@ -394,7 +395,7 @@ namespace nano
       }
 
 
-      bool user::dark_mode()
+      bool windowing::dark_mode()
       {
 
          return false;
@@ -402,7 +403,7 @@ namespace nano
       }
 
 
-      void user::set_dark_mode(bool bDarkMode)
+      void windowing::set_dark_mode(bool bDarkMode)
       {
 
 
@@ -410,7 +411,7 @@ namespace nano
       }
 
 
-      void user::fetch_system_background_color()
+      void windowing::fetch_system_background_color()
       {
 
 
@@ -419,7 +420,7 @@ namespace nano
 
 
 
-      ::color::color user::reinterpreted_background_color()
+      ::color::color windowing::reinterpreted_background_color()
       {
 
          if (dark_mode())
@@ -436,7 +437,7 @@ namespace nano
 
 
 
-      void user::_do_tasks()
+      void windowing::_do_tasks()
       {
 
          _synchronous_lock synchronouslock(this->synchronization());
@@ -454,7 +455,7 @@ namespace nano
             if (pwindow)
             {
 
-               pwindow->implementation_message_loop_step();
+               pwindow->window_message_loop_step();
 
             }
 
@@ -466,7 +467,7 @@ namespace nano
       }
 
 
-      ::pixmap user::get_pixmap_from_file(::memory & memoryHost, const void * psourceFile, memsize sizeSourceFile)
+      ::pixmap windowing::get_pixmap_from_file(::memory & memoryHost, const void * psourceFile, memsize sizeSourceFile)
       {
 
          return {};
@@ -474,28 +475,28 @@ namespace nano
       }
 
 
-      void user::update_nano_user_theme()
-      {
+      //void windowing::update_nano_user_theme()
+      //{
 
 
 
-      }
+      //}
 
 
-      ::nano::user::theme * user::nano_user_theme()
-      {
+      //::nano::user::theme * windowing::nano_user_theme()
+      //{
 
 
-         if (!m_pnanousertheme)
-         {
+      //   if (!m_pnanousertheme)
+      //   {
 
-            update_nano_user_theme();
+      //      update_nano_user_theme();
 
-         }
+      //   }
 
-         return m_pnanousertheme;
+      //   return m_pnanousertheme;
 
-      }
+      //}
 
    } // namespace user
 } // namespace nano

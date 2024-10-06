@@ -471,7 +471,7 @@ namespace experience
 
          }
 
-         if(system()->m_ewindowing == e_windowing_wayland)
+         if(::windowing::get_ewindowing() == ::windowing::e_windowing_wayland)
          {
 
             return m_pframewindow->layout().is_zoomed(user::e_layout_lading);
@@ -526,7 +526,7 @@ namespace experience
       } else if (ebutton == e_button_dock)
       {
 
-         if(system()->m_ewindowing == e_windowing_wayland)
+         if(::windowing::get_ewindowing() == ::windowing::e_windowing_wayland)
          {
 
             return false;

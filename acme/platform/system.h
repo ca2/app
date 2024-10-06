@@ -95,7 +95,6 @@ namespace acme
 
 
       //::pointer<main_hold_base>                                         m_pmainholdbase;
-      enum_windowing                                                    m_ewindowing;
       //::pointer<system_impl> *                                        m_psystemimpl;
 #if !defined(WINDOWS)
       ::pointer<::exception_translator>                                 m_pexceptiontranslator;

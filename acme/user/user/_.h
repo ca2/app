@@ -36,7 +36,7 @@ namespace user
 
    class impact_system;
 
-   class interaction_base;
+   //class interaction_base;
 
 
 } // namespace user

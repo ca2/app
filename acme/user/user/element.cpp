@@ -1191,7 +1191,7 @@ namespace user
    //}
 
 
-   void element::on_before_create_window(::windowing::window_base * pwindowbase)
+   void element::on_before_create_window(::nano::windowing::window * pwindowbase)
    {
 
 
@@ -2633,7 +2633,7 @@ namespace user
    }
 
 
-   ::windowing::window_base * element::windowing_window_base()
+   ::nano::windowing::window * element::windowing_window_base()
    {
 
       return nullptr;

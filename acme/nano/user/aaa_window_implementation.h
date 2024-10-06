@@ -36,14 +36,14 @@
 //
 //          ::pointer < ::nano::user::interchange >         m_pinterface;
 //
-//          ::pointer < ::nano::user::display >         m_pnanouserdisplay;
+//          ::pointer < ::nano::windowing::display >         m_pnanouserdisplay;
 //
 //
 //          window_implementation();
 //          ~window_implementation() override;
 //
 //
-//          virtual ::nano::user::display * get_display();
+//          virtual ::nano::windowing::display * get_display();
 //
 //
 //          //void draw(::nano::graphics::device * pnanodevice) override;

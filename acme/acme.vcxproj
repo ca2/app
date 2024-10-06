@@ -1039,6 +1039,7 @@
     <ClInclude Include="constant\user.h" />
     <ClInclude Include="constant\user_key.h" />
     <ClInclude Include="constant\user_text.h" />
+    <ClInclude Include="constant\windowing.h" />
     <ClInclude Include="constant\_.h" />
     <ClInclude Include="constant\_constant.h" />
     <ClInclude Include="constant\_geometry.h" />
@@ -1195,6 +1196,7 @@
     <ClInclude Include="nano\shell\_.h" />
     <ClInclude Include="nano\speech\speech.h" />
     <ClInclude Include="nano\speech\_.h" />
+    <ClInclude Include="nano\user\aaa_child.h" />
     <ClInclude Include="nano\user\aaa_nano.h" />
     <ClInclude Include="nano\user\brush.h" />
     <ClInclude Include="nano\user\button.h" />
@@ -1211,7 +1213,6 @@
     <ClInclude Include="nano\user\popup_button.h" />
     <ClInclude Include="nano\user\still.h" />
     <ClInclude Include="nano\user\user.h" />
-    <ClInclude Include="nano\user\window.h" />
     <ClInclude Include="nano\user\_.h" />
     <ClInclude Include="nano\windowing\display.h" />
     <ClInclude Include="nano\windowing\window.h" />
@@ -1425,6 +1426,7 @@
     <ClInclude Include="user\user\check.h" />
     <ClInclude Include="user\user\control.h" />
     <ClInclude Include="user\user\controller.h" />
+    <ClInclude Include="user\user\aaa_interaction_base.h" />
     <ClInclude Include="user\user\key_state.h" />
     <ClInclude Include="user\user\property.h" />
     <ClInclude Include="user\user\text.h" />
@@ -1673,9 +1675,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="nano\user\details_window.cpp" />
-    <ClCompile Include="nano\user\display.cpp" />
     <ClCompile Include="nano\user\interaction.cpp" />
-    <ClCompile Include="nano\user\window.cpp" />
     <ClCompile Include="nano\user\message_box.cpp" />
     <ClCompile Include="nano\user\popup_button.cpp" />
     <ClCompile Include="nano\user\still.cpp" />
@@ -1684,6 +1684,7 @@
     <ClCompile Include="nano\windowing\display.cpp" />
     <ClCompile Include="nano\windowing\window.cpp" />
     <ClCompile Include="nano\windowing\windowing.cpp" />
+    <ClCompile Include="nano\windowing\_windowing.cpp" />
     <ClCompile Include="no_precompiled_header_sample.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">NotUsing</PrecompiledHeader>

@@ -20,6 +20,7 @@
 #include "acme/nano/shell/shell.h"
 #include "acme/nano/speech/speech.h"
 #include "acme/nano/user/user.h"
+#include "acme/nano/windowing/windowing.h"
 #include "acme/platform/system.h"
 #include "acme/platform/system_factory.h"
 
@@ -79,6 +80,10 @@ namespace nano
    ::nano::user::user*nano::user()
    {
       return system()->system_factory()->__factory(m_puser);
+   }
+   ::nano::windowing::windowing * nano::windowing()
+   {
+      return system()->system_factory()->__factory(m_pwindowing);
    }
 
 }//namespace nano

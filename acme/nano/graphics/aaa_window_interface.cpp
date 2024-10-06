@@ -173,7 +173,7 @@
 // ::shift_i32 window_interface::client_to_absolute()
 // {
 //
-//    if(system()->m_ewindowing == e_windowing_wayland)
+//    if(::windowing::get_ewindowing() == ::windowing::e_windowing_wayland)
 //    {
 //
 //       return {};

@@ -119,7 +119,7 @@ namespace windowing
 
       virtual void clear_active_window(::thread * pthread, ::windowing::window * pwindow);
 
-      virtual ::windowing::window_base * get_keyboard_focus(::thread * pthread);
+      virtual ::nano::windowing::window * get_keyboard_focus(::thread * pthread);
 
       virtual ::point_i32 try_absolute_mouse_position(::user::interaction* puserinteraction, const ::point_i32& point);
       virtual ::windowing::window * get_mouse_capture(::thread * pthread);

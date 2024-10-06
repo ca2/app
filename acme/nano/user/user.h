@@ -30,10 +30,10 @@ virtual public acme::department
 public:
    
    
-   ::pointer_array < ::nano::windowing::window >     m_windowa;
-   ::pointer<::nano::user::display>             m_pdisplaybase;
-   // ::pointer_array<::windowing::window_base> m_windowbasea;
-   ::pointer < ::nano::user::theme >            m_pnanousertheme;
+   //::pointer_array < ::nano::windowing::window >      m_windowa;
+   // ::pointer<::nano::windowing::display>              m_pdisplay;
+   // ::pointer_array<::nano::windowing::window> m_windowbasea;
+   ::pointer < ::nano::user::theme >                  m_pnanousertheme;
 
 
    user();
@@ -90,7 +90,7 @@ public:
    void destroy() override;
 
 
-   virtual ::nano::user::display * display();
+   //virtual ::nano::windowing::display * display();
 
 
    virtual void on_start_system();

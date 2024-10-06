@@ -362,10 +362,10 @@ void task::main()
 
       auto windowbasea = nano()->user()->m_windowbasea;
 
-      //while (::windowing::window_base::nanowindowimplementationa().has_element())
+      //while (::nano::windowing::window::nanowindowimplementationa().has_element())
       {
 
-         //for (auto & pimplementation : ::windowing::window_base::nanowindowimplementationa())
+         //for (auto & pimplementation : ::nano::windowing::window::nanowindowimplementationa())
          for (auto & pwindowbase : windowbasea)
          {
 

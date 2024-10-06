@@ -2855,7 +2855,7 @@ namespace experience
    void frame_window::frame_experience_restore(::e_activation eactivation)
    {
 
-      if(system()->m_ewindowing == e_windowing_wayland)
+      if(::windowing::get_ewindowing() == ::windowing::e_windowing_wayland)
       {
 
          display_normal(m_windowdisplayandlayout.m_edisplayLastNormal, eactivation);

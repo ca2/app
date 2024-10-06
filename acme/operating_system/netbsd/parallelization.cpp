@@ -232,7 +232,7 @@ CLASS_DECL_ACME ::acme::system * system();
 //   void system::windowing_post(const ::procedure &procedure)
 //   {
 //
-//      ::nano::user::display::g_p->display_post(procedure);
+//      ::nano::windowing::display::g_p->display_post(procedure);
 //
 //   }
 //
@@ -285,14 +285,14 @@ void _do_tasks()
    }
 
 
-//   if(psystem->m_ewindowing == e_windowing_wayland)
+//   if(psystem->m_ewindowing == ::windowing::e_windowing_wayland)
 //   {
 //
 //      wayland_process_messages();
 //
 //   }
 //   else
-//  if(psystem->m_ewindowing == e_windowing_xcb)
+//  if(psystem->m_ewindowing == ::windowing::e_windowing_xcb)
   // {
 
     //  xcb_process_messages();
@@ -325,7 +325,7 @@ namespace acme
 
       information() << "acme::node::user_post going to display_post";
 
-      ::nano::user::display::g_p->display_post(procedure);
+      ::nano::windowing::display::g_p->display_post(procedure);
 
    }
 

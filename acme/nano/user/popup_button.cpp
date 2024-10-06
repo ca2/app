@@ -3,10 +3,10 @@
 //
 #include "framework.h"
 #include "interaction.h"
-#include "window.h"
+//#include "window.h"
 #include "popup_button.h"
 #include "button.h"
-//#include "acme/windowing/window_base.h"
+#include "acme/nano/windowing/window.h"
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 
 
@@ -44,7 +44,7 @@ void popup_button::calculate_size_and_position(int x, int y)
    //int wScreen = 1280;
    //int hScreen = 768;
 
-   auto sizeScreen = nano_user_window()->get_main_screen_size();
+   auto sizeScreen = nano_windowing_window()->get_main_screen_size();
 
    //operating_system_get_main_screen_size(wScreen, hScreen);
 
@@ -81,10 +81,10 @@ void popup_button::calculate_size_and_position(int x, int y)
 }
 
 
-void popup_button::initialize_popup_button(const ::string & strText, int x, int y, ::nano::user::window * pnanouserwindowOwner)
+void popup_button::initialize_popup_button(const ::string & strText, int x, int y, ::nano::windowing::window * pnanowindowingwindowOwner)
 {
 
-   m_puserinteractionbaseOwner = pnanouserwindowOwner->user_interaction_base();
+   m_puserinteractionbaseOwner = pnanowindowingwindowOwner->nano_user_interaction();
 
    calculate_size_and_position(x, y);
 
@@ -102,10 +102,12 @@ void popup_button::initialize_popup_button(const ::string & strText, int x, int 
 
    int wSpacing = 25;
 
-   for (::collection::index iButton = m_nanobuttona.get_upper_bound(); iButton >= 0; iButton--)
+   auto countButton = nano_user_button_count();
+
+   for (::collection::index iButton = countButton - 1; iButton >= 0; iButton--)
    {
 
-      auto pnanobutton = m_nanobuttona[iButton];
+      auto pnanobutton = nano_user_button_at(iButton);
 
       pnanobutton->m_rectangle.bottom() = iBottom;
       

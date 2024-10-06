@@ -312,7 +312,7 @@ void message_box::initialize_conversation(const ::string & strMessage, const ::s
 //}
 
 
-   void message_box::on_before_create_window(::windowing::window_base * pwindowbase)
+   void message_box::on_before_create_window(::nano::windowing::window * pwindowbase)
 {
 
    // pwindowbase->m_bMinimizeBox = false;

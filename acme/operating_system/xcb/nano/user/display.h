@@ -47,7 +47,7 @@ namespace nano
 
 
       class display :
-         virtual public ::nano::user::display,
+         virtual public ::nano::windowing::display,
          virtual public event_listener
       {
       public:

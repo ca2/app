@@ -782,9 +782,9 @@ CLASS_DECL_ACME void task_release()
 
    //::release(ptask);
 
-   //::windowing::window_base::nanowindowimplementationa().clear();
+   //::nano::windowing::window::nanowindowimplementationa().clear();
 
-   //::windowing::window_base::nanowindowimplementationa().free_extra();
+   //::nano::windowing::window::nanowindowimplementationa().free_extra();
 
    auto ptask = t_ptask;
 

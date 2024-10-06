@@ -6,37 +6,40 @@
 
 #include "interaction.h"
 
+
 namespace nano
 {
 
-namespace user
-{
 
-class popup_button :
-   virtual public ::nano::user::interaction
-{
-public:
-
-   ::pointer < ::nano::user::interaction >      m_puserinteractionbaseOwner;
-
-   popup_button();
-   ~popup_button() override;
+   namespace user
+   {
 
 
+      class popup_button :
+         virtual public ::nano::user::interaction
+      {
+      public:
 
-   void calculate_size_and_position(int x = INT_MIN, int y = INT_MIN);
+         ::pointer < ::nano::user::interaction >      m_puserinteractionbaseOwner;
+
+         popup_button();
+         ~popup_button() override;
 
 
-   virtual void initialize_popup_button(const ::string & strText, int x, int y, ::nano::user::window * pwindowOwner);
 
-   void on_click(const ::payload& payload, ::user::mouse * pmouse) override;
-
-   void on_draw(::nano::graphics::device * pnanodevice) override;
+         void calculate_size_and_position(int x = INT_MIN, int y = INT_MIN);
 
 
-   ::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true) override;
+         virtual void initialize_popup_button(const ::string & strText, int x, int y, ::nano::windowing::window * pnanowindowingwindowOwner);
 
-};
+         void on_click(const ::payload & payload, ::user::mouse * pmouse) override;
+
+         void on_draw(::nano::graphics::device * pnanodevice) override;
+
+
+         ::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true) override;
+
+      };
 
 
    } // namespace user

@@ -1,9 +1,10 @@
 // Created by camilo on 2022-01-21 14:57 <3ThomasBorregaardSorensen
 #include "framework.h"
 #include "button.h"
-#include "window.h"
-#include "acme/nano/graphics/device.h"
 #include "popup_button.h"
+#include "acme/nano/graphics/device.h"
+#include "acme/nano/user/theme.h"
+#include "acme/nano/windowing/window.h"
 
 
 namespace nano
@@ -21,7 +22,7 @@ void button::on_draw(::nano::graphics::device * pnanodevice)
 
    ::pointer<::nano::graphics::pen>ppenBorder;
 
-   if (nano_user_window()->m_pchildFocus == this)
+   if (nano_windowing_window()->m_pnanouserinteractionFocus == this)
    {
 
       ppenBorder = nano_user_theme()->m_ppenBorderFocus;
@@ -30,11 +31,11 @@ void button::on_draw(::nano::graphics::device * pnanodevice)
    else
    {
 
-      ppenBorder = m_pinterchange->m_ppenBorder;
+      ppenBorder = nano_user_theme()->m_ppenBorder;
 
    }
 
-   pnanodevice->rectangle(m_rectangle, m_pinterchange->m_pbrushWindow, ppenBorder);
+   pnanodevice->rectangle(m_rectangle, nano_user_theme()->m_pbrushWindow, ppenBorder);
 
    wstring wstrText(m_strText);
 
@@ -47,9 +48,9 @@ void button::on_draw(::nano::graphics::device * pnanodevice)
       rectangleText, 
       e_align_center,
       e_draw_text_single_line, 
-      m_pinterchange->m_pbrushWindow,
-      m_pinterchange->m_pbrushText, 
-      m_pinterchange->m_pfont);
+      nano_user_theme()->m_pbrushWindow,
+      nano_user_theme()->m_pbrushText,
+      nano_user_theme()->m_pfont);
 
 }
 
@@ -60,7 +61,7 @@ void button::on_char(int iChar)
    if (iChar == '\r' || iChar == ' ')
    {
 
-      m_pinterchange->on_click(m_atom, nullptr);
+      nano_windowing_window()->nano_user_interaction()->on_click(m_atom, nullptr);
 
    }
 

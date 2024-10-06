@@ -48,7 +48,7 @@ namespace windowing
    }
 
 
-   ::windowing::window_base * window_base::windowing_window_base()
+   ::nano::windowing::window * window_base::windowing_window_base()
    {
 
       return this;
@@ -187,7 +187,7 @@ namespace windowing
 // }
 
 
-::nano::user::display * window_base::get_display()
+::nano::windowing::display * window_base::get_display()
 {
 
    return nullptr;

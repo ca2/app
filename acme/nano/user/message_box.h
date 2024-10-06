@@ -56,7 +56,7 @@ namespace nano
 
          void defer_create_details_still();
 
-         void on_before_create_window(::user::interaction_base * puserinteractionbase) override;
+         void on_before_create_window(::nano::windowing::window * pnanowindowingwindow) override;
 
          void on_create_window() override;
 

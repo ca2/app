@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "details_window.h"
 #include "button.h"
-#include "window.h"
+#include "acme/nano/windowing/window.h"
 //#include "acme/windowing/window_base.h"
 //#include "acme/prototype/geometry2d/_geometry2d.h"
 //#include "acme/operating_system.h"
@@ -44,7 +44,7 @@ void details_window::calculate_size()
    //int wScreen = 1280;
    //int hScreen = 768;
 
-   auto sizeScreen = nano_user_window()->get_main_screen_size();
+   auto sizeScreen = nano_windowing_window()->get_main_screen_size();
 
    //operating_system_get_main_screen_size(wScreen, hScreen);
 

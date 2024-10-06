@@ -2,13 +2,13 @@
 #pragma once
 
 
+#include "acme/constant/windowing.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/task.h"
 #include "acme/platform/library.h"
 #include "acme/platform/release_time_for_project.h"
 #include "acme/prototype/collection/atom_map.h"
 #include "acme/prototype/collection/string_map.h"
-
 
 
 #ifdef LINUX
@@ -98,6 +98,9 @@ namespace platform
       ::critical_section                              m_criticalsectionTask;
       ::index_array                                   m_iaTaskIndex;
       bool                                            m_bVerboseLog;
+      ::windowing::enum_windowing                     m_ewindowing;
+      ::windowing::enum_desktop                       m_edesktop;
+      ::windowing::enum_toolkit                       m_etoolkit;
 
 
       ::acme::application * m_pacmeapplication;

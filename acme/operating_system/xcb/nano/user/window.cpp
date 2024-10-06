@@ -98,13 +98,13 @@ namespace nano
       }
 
 
-      ::nano::user::display * window::get_display()
+      ::nano::windowing::display * window::get_display()
       {
 
          if (!m_pdisplay)
          {
 
-            m_pdisplay = ::xcb::nano::user::display::get(this);
+            m_pdisplay = ::xcb::nano::windowing::display::get(this);
 
             if (!m_pdisplay)
             {

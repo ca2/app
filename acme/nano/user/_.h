@@ -36,7 +36,7 @@ class user;
 
 
 //class device;
-class child;
+//class child;
 
 
    class interaction;
@@ -50,7 +50,7 @@ class theme;
 class button;
 class still;
 
-   class display;
+   //class display;
 
 // class brush;
 // class pen;

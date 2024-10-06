@@ -22,8 +22,7 @@
 
 
 #include "acme/platform/reference_referer.h"
-
-
+#include "acme/constant/windowing.h"
 
 
 enum enum_display_type
@@ -56,6 +55,9 @@ namespace nano
       ////class device;
       //class child;
 
+      class display;
+
+      class window;
 
       class windowing;
 
@@ -81,20 +83,32 @@ namespace nano
       ////    CLASS_DECL_ACME ::pointer<pen>create_pen(::particle * pparticle, int iWidth, color32_t color);
 
 
-      CLASS_DECL_ACME::enum_display_type get_display_type();
-
-      CLASS_DECL_ACME::user::enum_desktop calculate_edesktop();
-      CLASS_DECL_ACME::user::enum_desktop get_edesktop();
-
-
-      CLASS_DECL_ACME::user::enum_toolkit calculate_etoolkit();
-      CLASS_DECL_ACME::user::enum_toolkit get_etoolkit();
-
-
-   } //namespace user
+   } //namespace windowing
 
 
 } // namespace nano
+
+
+namespace windowing
+{
+
+
+   CLASS_DECL_ACME::enum_display_type get_display_type();
+
+
+   CLASS_DECL_ACME::windowing::enum_windowing calculate_ewindowing();
+   CLASS_DECL_ACME::windowing::enum_windowing get_ewindowing();
+
+
+   CLASS_DECL_ACME::windowing::enum_desktop calculate_edesktop();
+   CLASS_DECL_ACME::windowing::enum_desktop get_edesktop();
+
+
+   CLASS_DECL_ACME::windowing::enum_toolkit calculate_etoolkit();
+   CLASS_DECL_ACME::windowing::enum_toolkit get_etoolkit();
+
+
+} // namespace windowing
 
 
 

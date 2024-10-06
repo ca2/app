@@ -51,7 +51,7 @@ virtual void set_icon(::nano::graphics::icon * picon);
 
    void defer_create_details_still();
 
-   void on_before_create_window(::windowing::window_base * pwindowbase) override;
+   void on_before_create_window(::nano::windowing::window * pwindowbase) override;
 
    void on_create_window() override;
    

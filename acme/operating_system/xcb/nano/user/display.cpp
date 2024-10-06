@@ -600,14 +600,14 @@ namespace xcb
 
             information() << "xcb nano display::init_task";
 
-            if(system()->m_ewindowing == e_windowing_none)
+            if(::windowing::get_ewindowing() == ::windowing::e_windowing_none)
             {
 
                set_main_user_thread();
 
                information() << "xcb nano display::init_task setting e_windowing_xcb";
 
-               system()->m_ewindowing = e_windowing_xcb;
+               ::windowing::get_ewindowing() = e_windowing_xcb;
 
             }
 
@@ -1967,10 +1967,10 @@ namespace xcb
          void process_messages()
          {
 
-            if(::xcb::nano::user::display::g_p)
+            if(::xcb::nano::windowing::display::g_p)
             {
 
-               ::xcb::nano::user::display::g_p->message_loop_step();
+               ::xcb::nano::windowing::display::g_p->message_loop_step();
 
             }
 

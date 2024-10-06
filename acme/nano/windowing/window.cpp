@@ -23,11 +23,11 @@
 #include "framework.h"
 #include "display.h"
 #include "window.h"
-//#include "window_implementation.h"
+#include "windowing.h"
 #include "acme/nano/graphics/device.h"
-#include "interaction.h"
-#include "button.h"
-#include "user.h"
+//#include "interaction.h"
+//#include "button.h"
+//#include "user.h"
 #include "acme/nano/nano.h"
 #include "acme/handler/topic.h"
 #include "acme/nano/graphics/font.h"
@@ -35,15 +35,13 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/nano/user/interaction.h"
+#include "acme/nano/user/user.h"
 #include "acme/operating_system/a_system_menu.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
-#include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
-#include "acme/user/user/drag.h"
-#include "acme/user/user/mouse.h"
-#include "acme/user/user/tool.h"
-#include "acme/nano/user/user.h"
+
 
 
 namespace nano
@@ -68,11 +66,6 @@ namespace nano
 
          m_iFontSize = 14;
 
-         m_efont = e_font_sans;
-
-         auto pitemClient = tool().defer_item(e_element_client);
-
-         enable_drag(pitemClient, ::user::e_zorder_back);
 
          m_bNcActive = false;
 
@@ -104,13 +97,13 @@ namespace nano
       void window::on_initialize_particle()
       {
 
-         ::object::on_initialize_particle();
+         ::user::element::on_initialize_particle();
 
-         __construct(m_puserinterchange);
+         //__construct(m_pnanouserinteraction);
 
-         m_puserinterchange->m_puserinteractionbase = this;
+         //m_pnanouserinteraction->m_pnanouserinteraction = this;
 
-         nano()->user()->m_interchangea.add(this);
+         //nano()->user()->m_interchangea.add(this);
 
          //::user::element::on_initialize_particle();
 
@@ -122,35 +115,7 @@ namespace nano
       }
 
 
-      void window::draw(::nano::graphics::device * pnanodevice)
-      {
 
-         ::pointer<::nano::graphics::pen>pnanopenBorder;
-
-         if (is_active())
-         {
-
-            pnanopenBorder = m_ppenBorderFocus;
-
-         }
-         else
-         {
-
-            pnanopenBorder = m_ppenBorder;
-
-         }
-
-         ::rectangle_i32 rectangleX;
-
-         get_client_rectangle(rectangleX);
-
-         pnanodevice->rectangle(rectangleX, m_pbrushWindow, pnanopenBorder);
-
-         on_draw(pnanodevice);
-
-         draw_children(pnanodevice);
-
-      }
 
 
       //::rectangle_i32 window::get_window_rectangle()
@@ -161,23 +126,12 @@ namespace nano
       //}
 
 
-      void window::draw_children(::nano::graphics::device * pnanodevice)
+
+
+      void window::create_window()
       {
 
-         for (auto & pchild : m_childa)
-         {
-
-            pchild->on_draw(pnanodevice);
-
-         }
-
-      }
-
-
-      void window::create()
-      {
-
-         m_puserinterchange->create_window();
+         //m_pnanouserinteraction->create_window();
 
       }
 
@@ -185,9 +139,9 @@ namespace nano
       void window::on_create_window()
       {
 
-         update_drawing_objects();
+         //update_drawing_objects();
 
-         m_puserinteractionbase->on_create_window();
+         m_pnanouserinteraction->on_create_window();
 
 
       }
@@ -196,37 +150,29 @@ namespace nano
       void window::destroy()
       {
 
-         if (m_puserinterchange)
+         if (m_pnanouserinteraction)
          {
 
-            m_puserinterchange->destroy();
+            m_pnanouserinteraction->destroy();
 
-            m_puserinterchange.release();
+            m_pnanouserinteraction.release();
 
          }
 
          if (m_functionClose)
          {
 
-            m_functionClose(this);
+            m_functionClose(m_pnanouserinteraction);
 
             m_functionClose.clear();
 
          }
 
-         if (m_psequencer)
+
+         if (nano()->windowing())
          {
 
-            m_psequencer->on_sequence();
-
-            m_psequencer.release();
-
-         }
-
-         if (nano()->user())
-         {
-
-            nano()->user()->m_interchangea.erase(this);
+            nano()->windowing()->m_windowa.erase(this);
 
          }
 
@@ -237,7 +183,7 @@ namespace nano
 
 
 
-         ::user::interaction_base::destroy();
+         ::user::element::destroy();
 
       }
 
@@ -245,59 +191,59 @@ namespace nano
       void window::show_window()
       {
 
-         m_puserinterchange->show_window();
+         //m_pnanouserinteraction->show_window();
 
       }
 
 
-      void window::hide()
+      void window::hide_window()
       {
 
-         m_puserinterchange->hide();
+         //m_pnanouserinteraction->hide();
 
       }
 
 
-      void window::message_loop()
+      void window::window_message_loop()
       {
 
-         m_puserinterchange->message_loop();
+         //m_pnanouserinteraction->message_loop();
 
       }
 
 
 
-      void window::on_draw(::nano::graphics::device * pnanodevice)
-      {
+      //void window::on_draw(::nano::graphics::device * pnanodevice)
+      //{
 
-         //m_puserinterchange->draw(pnanodevice);
+      //   //m_pnanouserinteraction->draw(pnanodevice);
 
-      }
+      //}
 
 
-      void window::on_char(int iChar)
-      {
+      //void window::on_char(int iChar)
+      //{
 
-         if (iChar == '\t' && m_childa.has_element())
-         {
+      //   if (iChar == '\t' && m_childa.has_element())
+      //   {
 
-            auto iFind = m_childa.find_first(m_pchildFocus);
+      //      auto iFind = m_childa.find_first(m_pchildFocus);
 
-            iFind++;
+      //      iFind++;
 
-            m_pchildFocus = m_childa % iFind;
+      //      m_pchildFocus = m_childa % iFind;
 
-            redraw();
+      //      redraw();
 
-         }
-         else if (m_pchildFocus)
-         {
+      //   }
+      //   else if (m_pchildFocus)
+      //   {
 
-            m_pchildFocus->on_char(iChar);
+      //      m_pchildFocus->on_char(iChar);
 
-         }
+      //   }
 
-      }
+      //}
 
 
       bool window::is_active()
@@ -311,7 +257,7 @@ namespace nano
       void window::set_active()
       {
 
-         m_puserinterchange->set_active_window();
+         m_pnanouserinteraction->set_active_window();
 
       }
 
@@ -410,10 +356,10 @@ namespace nano
       bool window::defer_perform_entire_reposition_process(::user::mouse * pmouse)
       {
 
-         if (m_puserinterchange)
+         if (m_pnanouserinteraction)
          {
 
-            if (m_puserinterchange->defer_perform_entire_reposition_process(pmouse))
+            if (m_pnanouserinteraction->defer_perform_entire_reposition_process(pmouse))
             {
 
                return true;
@@ -430,10 +376,10 @@ namespace nano
       bool window::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse)
       {
 
-         if (m_puserinterchange)
+         if (m_pnanouserinteraction)
          {
 
-            if (m_puserinterchange->defer_perform_entire_resizing_process(eframeSizing, pmouse))
+            if (m_pnanouserinteraction->defer_perform_entire_resizing_process(eframeSizing, pmouse))
             {
 
                return true;
@@ -450,7 +396,7 @@ namespace nano
       ::point_i32 window::try_absolute_mouse_position(const ::point_i32 & point)
       {
 
-         return m_puserinterchange->try_absolute_mouse_position(point);
+         return m_pnanouserinteraction->try_absolute_mouse_position(point);
 
       }
 
@@ -759,7 +705,7 @@ namespace nano
       //void window::set_position(const ::point_i32 & point)
       //{
 
-      //   m_puserinterchange->set_position(point);
+      //   m_pnanouserinteraction->set_position(point);
 
       //}
 
@@ -767,7 +713,7 @@ namespace nano
       void window::redraw()
       {
 
-         m_puserinterchange->redraw();
+         m_pnanouserinteraction->redraw();
 
       }
 
@@ -817,7 +763,7 @@ namespace nano
 
          }
 
-         m_puserinterchange->set_capture();
+         m_pnanouserinteraction->set_capture();
 
          m_bCapture = true;
 
@@ -827,7 +773,7 @@ namespace nano
       void window::set_cursor(enum_cursor ecursor)
       {
 
-         m_puserinterchange->set_cursor(ecursor);
+         m_pnanouserinteraction->set_cursor(ecursor);
 
       }
 
@@ -835,7 +781,7 @@ namespace nano
       bool window::has_capture()
       {
 
-         return m_puserinterchange->has_capture();
+         return m_pnanouserinteraction->has_capture();
 
       }
 
@@ -854,7 +800,7 @@ namespace nano
 
          m_bCapture = false;
 
-         m_puserinterchange->release_capture();
+         m_pnanouserinteraction->release_capture();
 
       }
 
@@ -889,7 +835,7 @@ namespace nano
       void window::_run_modal_loop()
       {
 
-         m_puserinterchange->_run_modal_loop();
+         m_pnanouserinteraction->_run_modal_loop();
 
       }
 
@@ -978,7 +924,7 @@ namespace nano
       if (ptopic->m_atom == id_set_application_dark_mode)
       {
 
-         m_puserinterchange->handle(ptopic, pcontext);
+         m_pnanouserinteraction->handle(ptopic, pcontext);
 
       }
 
@@ -1057,7 +1003,7 @@ namespace nano
       ::user::interaction_base * window::user_interaction_base()
       {
 
-         return m_puserinteractionbase;
+         return m_pnanouserinteraction;
 
       }
 
@@ -1201,7 +1147,7 @@ namespace nano
       // }
 
 
-      ::nano::user::display * window::get_display()
+      ::nano::windowing::display * window::get_display()
       {
 
          return nullptr;
@@ -1274,7 +1220,7 @@ namespace nano
       //void window::on_create_window()
       //{
 
-      //   m_puserinteractionbase->on_create_window();
+      //   m_pnanouserinteraction->on_create_window();
 
       //}
 
@@ -1460,14 +1406,14 @@ namespace nano
       void window::_on_window_simple_action(const char * pszActionName)
       {
 
-         if (!m_puserinteractionbase)
+         if (!m_pnanouserinteraction)
          {
 
             throw ::exception(error_failed);
 
          }
 
-         m_puserinteractionbase->_on_window_simple_action(pszActionName);
+         m_pnanouserinteraction->_on_window_simple_action(pszActionName);
 
       }
 
@@ -1707,6 +1653,12 @@ namespace nano
 
       }
 
+
+      void window::window_message_loop()
+      {
+
+
+      }
 
    //} // namespace windowing
 

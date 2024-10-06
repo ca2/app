@@ -294,7 +294,7 @@ namespace windowing
    }
 
 
-   ::windowing::window_base * windowing::get_keyboard_focus(::thread *)
+   ::nano::windowing::window * windowing::get_keyboard_focus(::thread *)
    {
 
       return nullptr;

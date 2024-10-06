@@ -5,11 +5,12 @@
 #include "button.h"
 #include "message_box.h"
 #include "still.h"
-//#include "window_implementation.h"
+#include "theme.h"
 #include "acme/nano/graphics/device.h"
 #include "acme/nano/graphics/icon.h"
 #include "acme/nano/user/details_window.h"
 #include "acme/nano/user/popup_button.h"
+#include "acme/nano/windowing/window.h"
 #include "acme/operating_system/console_message_box.h"
 #include "acme/operating_system/message_box.h"
 #include "acme/platform/application.h"
@@ -58,11 +59,9 @@ namespace nano
       void message_box::on_draw(::nano::graphics::device * pnanodevice)
       {
 
-
-
          rectangle_i32 rectangleText;
 
-         get_client_rectangle(rectangleText);
+         rectangleText = get_client_rectangle();
 
          rectangleText.bottom() = rectangleText.top() + rectangleText.height() * 3 / 4;
 
@@ -82,9 +81,9 @@ namespace nano
             rectangleText,
             e_align_top_left,
             e_draw_text_word_break,
-            m_pbrushWindow,
-            m_pbrushText,
-            m_pfont);
+            nano_user_theme()->m_pbrushWindow,
+            nano_user_theme()->m_pbrushText,
+            nano_user_theme()->m_pfont);
 
       }
 
@@ -155,7 +154,7 @@ namespace nano
          //int wScreen = 1280;
          //int hScreen = 768;
 
-         auto sizeScreen = m_pwindowbase->get_main_screen_size();
+         auto sizeScreen = nano_windowing_window()->get_main_screen_size();
 
          //operating_system_get_main_screen_size(wScreen, hScreen);
 
@@ -236,13 +235,13 @@ namespace nano
 
             int iDefaultButton = iDefaultButtonIndex & 7;
 
-            m_childa[iDefaultButton]->set_focus();
+            m_nanouserinteractionaChildren[iDefaultButton]->set_focus();
 
          }
          else
          {
 
-            m_childa[0]->set_focus();
+            m_nanouserinteractionaChildren[0]->set_focus();
 
          }
 
@@ -256,10 +255,12 @@ namespace nano
 
          auto wSpacing = (::i32) (m_rectangle.width() * 0.025);
 
-         for (::collection::index iButton = m_nanobuttona.get_upper_bound(); iButton >= 0; iButton--)
+         auto countButton = nano_user_button_count();
+
+         for (auto iButton = countButton - 1; iButton >= 0; iButton--)
          {
 
-            auto pnanobutton = m_nanobuttona[iButton];
+            auto pnanobutton = nano_user_button_at(iButton);
 
             pnanobutton->m_rectangle.bottom() = iBottom;
             pnanobutton->m_rectangle.top() = pnanobutton->m_rectangle.bottom() - hButton;
@@ -316,7 +317,7 @@ namespace nano
       //}
 
 
-      void message_box::on_before_create_window(::windowing::window_base * pwindowbase)
+      void message_box::on_before_create_window(::nano::windowing::window * pwindowbase)
       {
 
          // pwindowbase->m_bMinimizeBox = false;
@@ -329,7 +330,7 @@ namespace nano
       void message_box::on_create_window()
       {
 
-         ::nano::user::interchange::on_create_window();
+         ::nano::user::interaction::on_create_window();
 
          int x = 25;
 
@@ -345,7 +346,7 @@ namespace nano
 
             m_pstillDetails->resize_to_fit();
 
-            m_pstillDetails->m_rectangle.move_bottom_to(m_nanobuttona[0]->m_rectangle.bottom());
+            m_pstillDetails->m_rectangle.move_bottom_to(nano_user_button_at(0)->m_rectangle.bottom());
 
             m_pstillDetails->m_rectangle.move_left_to(x);
 
@@ -453,7 +454,7 @@ namespace nano
          if (pmouse->m_pointHost.y() < 48)
          {
 
-            m_pwindowbase->defer_show_system_menu(pmouse);
+            m_pnanowindowingwindow->defer_show_system_menu(pmouse);
 
             return;
 
@@ -461,10 +462,12 @@ namespace nano
 
          auto ppopupbutton = __create_new < popup_button >();
 
-         ppopupbutton->m_functionClose = [this](::nano::user::interchange * pinterchange)
+         auto pwindow = ppopupbutton->nano_windowing_window();
+
+         pwindow->m_functionClose = [this](::nano::user::interaction * pinteraction)
          {
 
-            auto result = pinterchange->m_payloadResult.as_atom();
+            auto result = pinteraction->m_payloadResult.as_atom();
 
             if (result == e_dialog_result_yes)
             {
@@ -475,7 +478,9 @@ namespace nano
 
          };
 
-         ppopupbutton->initialize_popup_button("Dump to File...", pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y(), this);
+         auto pwindowParent = this->nano_windowing_window();
+
+         ppopupbutton->initialize_popup_button("Dump to File...", pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y(), pwindowParent);
 
          ppopupbutton->do_asynchronously();
 
@@ -767,11 +772,13 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload 
          pmessagebox->m_emessagebox,
          pmessagebox->m_strDetails,
          pmessagebox->m_picon);
+      
+      auto pwindow = pnanomessagebox->nano_windowing_window();
 
-      pnanomessagebox->m_functionClose = [ pmessagebox ](::nano::user::interchange * pinterchange)
+      pwindow->m_functionClose = [ pmessagebox ](::nano::user::interaction * pinteraction)
       {
       
-         auto result = pinterchange->m_payloadResult;
+         auto result = pinteraction->m_payloadResult;
          
          if(pmessagebox->m_function)
          {

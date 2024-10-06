@@ -87,7 +87,7 @@ void operating_system_initialize_nano_user(::factory::factory * pfactory)
 
 #endif
 
-   if(psystem->m_ewindowing == e_windowing_xcb)
+   if(psystem->m_ewindowing == ::windowing::e_windowing_xcb)
    {
 
       operating_system_initialize_xcb_nano_user(pfactory);

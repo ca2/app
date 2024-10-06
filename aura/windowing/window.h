@@ -448,7 +448,7 @@ namespace windowing
       ::point_i32 windowing_popup_origin() override;
       ::size_i32 windowing_popup_size() override;
       void _on_windowing_close_window() override;
-      ::windowing::window_base * owner_window() override;
+      ::nano::windowing::window * owner_window() override;
       ::string get_window_text() override;
 
 

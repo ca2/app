@@ -14,7 +14,7 @@ namespace windowing
    // X11 contribution : a display may contain more than one monitor
 
    class CLASS_DECL_AURA display :
-      virtual public ::nano::user::display
+      virtual public ::nano::windowing::display
    {
    public:
 

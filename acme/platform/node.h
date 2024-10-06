@@ -123,8 +123,6 @@ namespace acme
       //int                                                   m_iWeatherDarkness;
       ::file::path                                          m_pathModule;
 
-      ::user::enum_desktop                                  m_edesktop;
-      ::user::enum_toolkit                                  m_etoolkit;
 
       enum_application_capability_array                     m_eapplicationcapabilitya;
       string_map < ::pointer<::acme::exclusive > >          m_mapExclusive;
@@ -373,11 +371,11 @@ namespace acme
 
       virtual enum_operating_system get_operating_system() const;
 
-      virtual ::user::enum_desktop get_edesktop();
-      virtual ::user::enum_toolkit get_etoolkit();
+      //virtual ::user::enum_desktop get_edesktop();
+      //virtual ::user::enum_toolkit get_etoolkit();
 
-      virtual ::user::enum_desktop calculate_edesktop();
-      virtual ::user::enum_toolkit calculate_etoolkit();
+      //virtual ::user::enum_desktop calculate_edesktop();
+      //virtual ::user::enum_toolkit calculate_etoolkit();
 
       virtual ::string get_user_toolkit_id();
 
@@ -1020,7 +1018,7 @@ namespace acme
 //      virtual void windowing_system_display_error_trap_push(int i);
 //      virtual void windowing_system_display_error_trap_pop_ignored(int i);
 
-      virtual enum_windowing calculate_ewindowing();
+      
 
 
       virtual bool _get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle);

@@ -232,8 +232,8 @@
 //
 //      }
 //
-//      if(node()->get_etoolkit() == e_toolkit_gtk4 ||
-//         node()->get_etoolkit() == e_toolkit_gtk3)
+//      if(::windowing::get_etoolkit() == e_toolkit_gtk4 ||
+//         ::windowing::get_etoolkit() == e_toolkit_gtk3)
 //      {
 //         psystemmenu->add_item("Drag to Move", "***move");
 //      }
@@ -246,8 +246,8 @@
 //      if (m_bResizeable)
 //      {
 //
-//         if(node()->get_etoolkit() == e_toolkit_gtk4 ||
-//            node()->get_etoolkit() == e_toolkit_gtk3)
+//         if(::windowing::get_etoolkit() == e_toolkit_gtk4 ||
+//            ::windowing::get_etoolkit() == e_toolkit_gtk3)
 //         {
 //            psystemmenu->add_item("Drag to Size", "***size");
 //         }
@@ -486,7 +486,7 @@
 //   ::shift_i32 interaction_base::client_to_absolute()
 //   {
 //
-//      if (system()->m_ewindowing == e_windowing_wayland)
+//      if (::windowing::get_ewindowing() == ::windowing::e_windowing_wayland)
 //      {
 //
 //         return {};
@@ -855,7 +855,7 @@
 //   void interaction_base::do_asynchronously()
 //   {
 //
-//      ::pointer<::windowing::window_base> pwindowbase = m_pwindowbase;
+//      ::pointer<::nano::windowing::window> pwindowbase = m_pwindowbase;
 //
 //      auto procedure = [pwindowbase]()
 //      {
@@ -904,7 +904,7 @@
 //   }
 //
 //
-//   ::windowing::window_base* interaction_base::windowing_window_base()
+//   ::nano::windowing::window* interaction_base::windowing_window_base()
 //   {
 //
 //      return m_pwindowbase;

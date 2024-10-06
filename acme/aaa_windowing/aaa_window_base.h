@@ -35,7 +35,7 @@ namespace windowing
 
       ::pointer < ::user::interaction_base >             m_puserinteractionbase;
 
-      ::pointer < ::nano::user::display >                m_pdisplaybase;
+      ::pointer < ::nano::windowing::display >                m_pdisplaybase;
 
 
       window_base();
@@ -43,7 +43,7 @@ namespace windowing
 
 
       ::user::interaction_base * user_interaction_base() override;
-      ::windowing::window_base * windowing_window_base() override;
+      ::nano::windowing::window * windowing_window_base() override;
 
 
       void on_initialize_particle() override;
@@ -98,7 +98,7 @@ namespace windowing
                // ~window_implementation() override;
 
 
-               virtual ::nano::user::display * get_display();
+               virtual ::nano::windowing::display * get_display();
 
 
                //void draw(::nano::graphics::device * pnanodevice) override;

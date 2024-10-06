@@ -37,7 +37,7 @@ namespace nano
 
          ::pointer_array < ::nano::windowing::window >     m_windowa;
          ::pointer<::nano::windowing::display>             m_pdisplaybase;
-         // ::pointer_array<::windowing::window_base> m_windowbasea;
+         // ::pointer_array<::nano::windowing::window> m_windowbasea;
          //::pointer < ::nano::user::theme >            m_pnanousertheme;
 
 
@@ -45,12 +45,12 @@ namespace nano
          ~windowing() override;
 
 
-         inline static const char * represented_component_name() { return "nano_user"; }
+         inline static const char * represented_component_name() { return "nano_windowing"; }
 
 
-         ::nano::user::theme * nano_user_theme();
+         //::nano::user::theme * nano_user_theme();
          //pointer< ::sequencer < ::conversation > > nano()->message_box(const ::string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr);
-         virtual void update_nano_user_theme();
+         //virtual void update_nano_user_theme();
 
          ////pointer< ::sequence < ::conversation > > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
 
@@ -95,7 +95,7 @@ namespace nano
          void destroy() override;
 
 
-         virtual ::nano::user::display * display();
+         virtual ::nano::windowing::display * display();
 
 
          virtual void on_start_system();
@@ -153,10 +153,9 @@ namespace nano
 } // namespace nano
 
 
-
-
-
 CLASS_DECL_ACME void initialize_nano_user(::factory::factory * pfactory);
+CLASS_DECL_ACME::string as_string(::windowing::enum_toolkit etoolkit);
+
 
 
 

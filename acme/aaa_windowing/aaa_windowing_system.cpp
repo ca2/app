@@ -54,7 +54,7 @@ namespace windowing
 
 
 
-    ::nano::user::display * windowing_base::display()
+    ::nano::windowing::display * windowing_base::display()
     {
 
         if(!m_pdisplaybase)
@@ -148,7 +148,7 @@ namespace windowing
         nano()->user()->process_messages();
 
 // #ifdef HAS_WAYLAND
-//         if(psystem->m_ewindowing == e_windowing_wayland)
+//         if(psystem->m_ewindowing == ::windowing::e_windowing_wayland)
 //         {
 //
 //             ::wayland::nano::user::process_messages();
@@ -156,7 +156,7 @@ namespace windowing
 //         }
 //         else
 // #endif
-//             if(psystem->m_ewindowing == e_windowing_xcb)
+//             if(psystem->m_ewindowing == ::windowing::e_windowing_xcb)
 //             {
 //
 //                 ::xcb::nano::user::process_messages();

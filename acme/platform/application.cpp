@@ -23,7 +23,7 @@
 #include "acme/nano/nano.h"
 #include "acme/nano/user/user.h"
 #include "acme/nano/graphics/icon.h"
-#include "acme/windowing/windowing_base.h"
+#include "acme/nano/windowing/windowing.h"
 
 
 #ifdef WINDOWS_DESKTOP

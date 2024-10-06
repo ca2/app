@@ -47,16 +47,10 @@ namespace nano
 
          rectangle_i32                             m_rectangle;
 
-         ::atom                                    m_atomLeftButtonDown;
-         ::atom                                    m_atomLeftButtonUp;
-         ::atom                                    m_atomRightButtonDown;
-         ::atom                                    m_atomRightButtonUp;
-
 
          bool                                      m_bCapture;
          bool                                      m_bStartCentered;
          bool                                      m_bArbitraryPositioning;
-         int                                       m_iFontSize;
 
          bool                                      m_bTopMost;
 
@@ -80,6 +74,9 @@ namespace nano
          ::pointer<::nano::user::interaction>               m_pnanouserinteractionCapture;
 
          ::pointer < ::nano::windowing::display >           m_pdisplay;
+
+         ::pointer < ::nano::windowing::window >            m_pnanowindowingwindowOwner;
+
 
 
          window();
@@ -107,7 +104,7 @@ namespace nano
 
 
 
-
+         virtual ::point_i32 origin();
 
          void set_position(const ::point_i32 & point) override;
 
@@ -172,6 +169,9 @@ namespace nano
 
          //void destroy() override;
 
+         virtual ::payload do_synchronously(const class time & timeWait);
+         virtual void do_asynchronously();
+
 
          virtual bool is_windowing_popup();
          virtual ::point_i32 windowing_popup_origin();
@@ -181,6 +181,8 @@ namespace nano
          virtual ::nano::windowing::window * owner_window();
          ::string get_window_text() override;
 
+
+         //virtual ::rectangle_i32 get_window_rectangle();
 
          ///::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true) override;
 

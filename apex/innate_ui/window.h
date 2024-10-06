@@ -46,8 +46,8 @@ namespace innate_ui
 
       virtual void set_icon(icon * picon);
 
-      virtual void post(const ::procedure & procedure);
-      virtual void sync(const ::procedure & procedure);
+      void main_post(const ::procedure & procedure) override;
+      void main_send(const ::procedure & procedure) override;
 
       virtual void defer_show_system_menu(::user::mouse * pmouse);
 

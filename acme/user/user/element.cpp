@@ -10,8 +10,9 @@
 #include "acme/operating_system/a_system_menu.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
-#include "acme/user/user/interaction_base.h"
-#include "acme/windowing/window_base.h"
+#include "acme/nano/user/interaction.h"
+#include "acme/nano/windowing/window.h"
+#include "acme/nano/windowing/windowing.h"
 
 
 namespace user
@@ -1608,7 +1609,7 @@ namespace user
    ::rectangle_i32 element::get_interaction_rectangle()
    {
 
-      return user_interaction_base()->get_interaction_rectangle();
+      return nano_user_interaction()->get_interaction_rectangle();
 
    }
 
@@ -1616,7 +1617,7 @@ namespace user
    ::rectangle_i32 element::get_window_rectangle()
    {
 
-      return windowing_window_base()->get_window_rectangle();
+      return nano_windowing_window()->get_window_rectangle();
 
    }
 
@@ -2625,7 +2626,7 @@ namespace user
    }
 
 
-   ::user::interaction_base * element::user_interaction_base()
+   ::nano::user::interaction * element::nano_user_interaction()
    {
 
       return nullptr;
@@ -2633,7 +2634,7 @@ namespace user
    }
 
 
-   ::nano::windowing::window * element::windowing_window_base()
+   ::nano::windowing::window * element::nano_windowing_window()
    {
 
       return nullptr;

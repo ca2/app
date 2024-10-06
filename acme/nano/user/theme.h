@@ -1,3 +1,4 @@
+// Created by camilo on 2024-10-05 21:23 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -30,6 +31,23 @@ namespace nano
          ::color::color                            m_colorHyperlinkHover;
          ::color::color                            m_colorFocus;
          ::color::color                            m_colorWindow;
+         int                                       m_iFontSize;
+
+
+
+         theme();
+         ~theme();
+
+
+         virtual void delete_drawing_objects();
+
+
+         virtual void create_drawing_objects();
+
+         virtual void update_drawing_objects();
+       
+         void handle(::topic * ptopic, ::context * pcontext) override;
+       
 
       };
 

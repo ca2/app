@@ -67,6 +67,13 @@ namespace nano
          bool                                        m_bStartCentered;
          bool                                        m_bArbitraryPositioning;
 
+         ::atom                                    m_atomLeftButtonDown;
+         ::atom                                    m_atomLeftButtonUp;
+         ::atom                                    m_atomRightButtonDown;
+         ::atom                                    m_atomRightButtonUp;
+
+
+
 
 
          interaction();
@@ -152,7 +159,7 @@ namespace nano
 // Created by camilo on 2024-09-26 18:50 Odense Time <3ThomasBorregaardSorensen!!
 //
 // nano::user::window_interface Created by camilo on 31/01/2022 22:37 <3ThomasBorregaardSorensen!!
-// From nano::user::window_interface merged at ::user::interaction_base by
+// From nano::user::window_interface merged at ::nano::user::interaction by
 //    camilo on 2024-0926 15:01 <3ThomasBorregaardSorensen!!
 //
 //#pragma once
@@ -245,14 +252,14 @@ namespace nano
                //
                //
                // class CLASS_DECL_ACME window_interface :
-               //    virtual public ::user::interaction_base
+               //    virtual public ::nano::user::interaction
                // {
                // public:
 
 
                void on_initialize_particle() override;
 
-               virtual void create_interaction();
+               virtual void create_window();
 
                virtual void show_interaction();
 
@@ -273,11 +280,11 @@ namespace nano
 
                //virtual void draw_children(::nano::graphics::device * pnanodevice);
 
-               virtual void delete_drawing_objects();
+               //virtual void delete_drawing_objects();
                //virtual bool get_dark_mode();
 
-               virtual void create_drawing_objects();
-               virtual void update_drawing_objects();
+               //virtual void create_drawing_objects();
+               //virtual void update_drawing_objects();
 
                //virtual ::point_i32 origin();
 

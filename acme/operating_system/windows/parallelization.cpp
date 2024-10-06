@@ -1,7 +1,8 @@
 #include "framework.h"
 #include "acme/platform/system.h"
-#include "acme/windowing/windowing_base.h"
-//#include "acme/nano/user/window.h"
+#include "acme/nano/windowing/windowing.h"
+#include "acme/nano/nano.h"
+#include "acme/nano/user/user.h"
 #include "acme/_operating_system.h"
 
 

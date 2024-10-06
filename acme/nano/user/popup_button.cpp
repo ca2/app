@@ -84,7 +84,7 @@ void popup_button::calculate_size_and_position(int x, int y)
 void popup_button::initialize_popup_button(const ::string & strText, int x, int y, ::nano::windowing::window * pnanowindowingwindowOwner)
 {
 
-   m_puserinteractionbaseOwner = pnanowindowingwindowOwner->nano_user_interaction();
+   nano_windowing_window()->m_pnanowindowingwindowOwner = pnanowindowingwindowOwner;
 
    calculate_size_and_position(x, y);
 

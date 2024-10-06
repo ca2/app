@@ -15,6 +15,7 @@
 #include "acme/filesystem/filesystem/link.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/exception/interface_only.h"
+#include "acme/nano/windowing/windowing.h"
 #include "acme/prototype/string/international.h"
 #include "apex/filesystem/file/set.h"
 #include "apex/input/input.h"
@@ -343,7 +344,7 @@ namespace apex
    void node::defer_innate_ui()
    {
 
-      auto strToolkit = get_user_toolkit_id();
+      auto strToolkit = ::windowing::get_user_toolkit_id();
 
       if(strToolkit.has_char())
       {

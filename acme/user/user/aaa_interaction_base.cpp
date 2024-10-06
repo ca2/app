@@ -1,8 +1,8 @@
 ////
 //// Created by camilo on 2024-09-26 18:52 Odense Time <3ThomasBorregaardSorensen!!
 ////
-//// nano::user::interaction_base Created by camilo on 31/01/2022 22:42 <3ThomasBorregaardSorensen!!
-//// From nano::user::interaction_base merged at ::user::interaction_base by
+//// nano::nano::user::interaction Created by camilo on 31/01/2022 22:42 <3ThomasBorregaardSorensen!!
+//// From nano::nano::user::interaction merged at ::nano::user::interaction by
 ////    camilo on 2024-0926 15:04 <3ThomasBorregaardSorensen!!
 ////
 //#include "framework.h"
@@ -896,7 +896,7 @@
 //   }
 //
 //
-//   ::user::interaction_base* interaction_base::user_interaction_base()
+//   ::nano::user::interaction* interaction_base::user_interaction_base()
 //   {
 //
 //      return this;

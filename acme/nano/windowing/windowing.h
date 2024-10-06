@@ -69,8 +69,8 @@ namespace nano
          void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-         virtual void sync(const ::procedure & procedure);
-         virtual void async(const ::procedure & procedure);
+         void main_send(const ::procedure & procedure) override;
+         void main_post(const ::procedure & procedure) override;
 
 
          virtual void process_messages();
@@ -108,9 +108,9 @@ namespace nano
 
          virtual void * get_display();
 
-         void main_send(const ::procedure & procedure) override;
+         //void main_send(const ::procedure & procedure) override;
 
-         void main_post(const ::procedure & procedure) override;
+         //void main_post(const ::procedure & procedure) override;
 
          virtual void display_error_trap_push(int i);
 
@@ -155,7 +155,13 @@ namespace nano
 
 CLASS_DECL_ACME void initialize_nano_user(::factory::factory * pfactory);
 CLASS_DECL_ACME::string as_string(::windowing::enum_toolkit etoolkit);
+namespace windowing
+{
 
+   CLASS_DECL_ACME::string get_user_toolkit_id();
+
+
+} // namespace windowing
 
 
 

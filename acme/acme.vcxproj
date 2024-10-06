@@ -1679,6 +1679,7 @@
     <ClCompile Include="nano\user\message_box.cpp" />
     <ClCompile Include="nano\user\popup_button.cpp" />
     <ClCompile Include="nano\user\still.cpp" />
+    <ClCompile Include="nano\user\theme.cpp" />
     <ClCompile Include="nano\user\user.cpp" />
     <ClCompile Include="nano\user\_user.cpp" />
     <ClCompile Include="nano\windowing\display.cpp" />
@@ -1744,6 +1745,7 @@
     <ClCompile Include="operating_system\time.cpp" />
     <ClCompile Include="operating_system\windowing.cpp" />
     <ClCompile Include="operating_system\windows\calculate_etoolkit.cpp" />
+    <ClCompile Include="operating_system\windows\calculate_ewindowing.cpp" />
     <ClCompile Include="operating_system\windows\callstack.cpp" />
     <ClCompile Include="operating_system\windows\file1.cpp" />
     <ClInclude Include="operating_system\application.h" />

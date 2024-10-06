@@ -40,7 +40,7 @@ namespace windowing
 
 
 
-   ::user::interaction_base * window_base::user_interaction_base()
+   ::nano::user::interaction * window_base::user_interaction_base()
    {
 
       return m_puserinteractionbase;

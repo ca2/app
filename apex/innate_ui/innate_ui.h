@@ -23,8 +23,8 @@ namespace innate_ui
       void on_initialize_particle() override;
       
       virtual void add_top_level_window(window * pwindow);
-      virtual void post(const ::procedure & procedure);
-      virtual void sync(const ::procedure & procedure);
+      void main_post(const ::procedure & procedure) override;
+      void main_send(const ::procedure & procedure) override;
 
 
       virtual ::pointer < ::innate_ui::icon > innate_ui_icon(const ::payload & payloadFile, const ::size_i32 & size);

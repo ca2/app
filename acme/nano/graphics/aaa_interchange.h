@@ -21,7 +21,7 @@ namespace nano
 
    
 class CLASS_DECL_ACME interchange :
-   virtual public ::user::interaction_base
+   virtual public ::nano::user::interaction
    //virtual public ::conversation_message
 {
 public:

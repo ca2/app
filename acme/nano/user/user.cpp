@@ -273,18 +273,18 @@ namespace nano
       }
 
 
-      void user::sync(const ::procedure & procedure)
+      void user::main_send(const ::procedure & procedure)
       {
 
-         main_send(procedure);
+         nano()->windowing()->main_send(procedure);
 
       }
 
 
-      void user::async(const ::procedure & procedure)
+      void user::main_post(const ::procedure & procedure)
       {
 
-         main_post(procedure);
+         nano()->windowing()->main_post(procedure);
 
       }
 

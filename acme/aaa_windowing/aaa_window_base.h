@@ -33,7 +33,7 @@ namespace windowing
 
       ::pointer < ::operating_system::a_system_menu >    m_psystemmenu;
 
-      ::pointer < ::user::interaction_base >             m_puserinteractionbase;
+      ::pointer < ::nano::user::interaction >             m_puserinteractionbase;
 
       ::pointer < ::nano::windowing::display >                m_pdisplaybase;
 
@@ -42,7 +42,7 @@ namespace windowing
       ~window_base() override;
 
 
-      ::user::interaction_base * user_interaction_base() override;
+      ::nano::user::interaction * user_interaction_base() override;
       ::nano::windowing::window * windowing_window_base() override;
 
 

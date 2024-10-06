@@ -377,7 +377,7 @@ namespace acme
       //virtual ::user::enum_desktop calculate_edesktop();
       //virtual ::user::enum_toolkit calculate_etoolkit();
 
-      virtual ::string get_user_toolkit_id();
+      //virtual ::string get_user_toolkit_id();
 
       virtual void launch_app(const ::string & psz, const char ** argv, int iFlags);
 

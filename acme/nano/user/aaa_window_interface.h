@@ -21,7 +21,7 @@
 //
 //
 // class CLASS_DECL_ACME window_interface :
-//    virtual public ::user::interaction_base
+//    virtual public ::nano::user::interaction
 // {
 // public:
 //

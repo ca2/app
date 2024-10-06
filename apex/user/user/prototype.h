@@ -5,7 +5,7 @@
 //#include "container.h"
 //#include "acme/user/user/check.h"
 //#include "acme/user/user/text.h"
-#include "acme/user/user/interaction_base.h"
+#include "acme/nano/user/interaction.h"
 #include "apex/handler/manager.h"
 #include "apex/message/channel.h"
 
@@ -15,7 +15,7 @@ namespace user
 
 
    class CLASS_DECL_APEX prototype :
-      virtual public ::user::interaction_base,
+      virtual public ::nano::user::interaction,
       virtual public ::channel,
       //virtual public ::source,
       virtual public ::manager

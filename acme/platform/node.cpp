@@ -30,19 +30,19 @@
 #include "acme/nano/user/message_box.h"
 #include "acme/nano/user/user.h"
 #include "acme/user/user/os_theme_colors.h"
-#include "acme/windowing/windowing_base.h"
+#include "acme/nano/windowing/windowing.h"
 #include "filesystem/filesystem/listing.h"
 
-namespace nano{namespace  user{
-::user::enum_desktop calculate_edesktop();
-}//namespace user
-   }//namespace nano
-
+//namespace nano{namespace  user{
+//::user::enum_desktop calculate_edesktop();
+//}//namespace user
+//   }//namespace nano
+//
 ::string errno_error_message(::i32 iError);
 
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception& exception, const ::string& strMoreDetails);
-CLASS_DECL_ACME ::string as_string(::user::enum_toolkit etoolkit);
+CLASS_DECL_ACME ::string as_string(::windowing::enum_toolkit etoolkit);
 
 //CLASS_DECL_ACME void operating_system_open_url(const ::scoped_string & scopedstrUrl);
 
@@ -73,8 +73,8 @@ namespace acme
 
       m_papexnode = nullptr;
       m_pauranode = nullptr;
-      m_edesktop = ::user::e_desktop_none;
-      m_etoolkit = ::user::e_toolkit_none;
+      //m_edesktop = ::user::e_desktop_none;
+      //m_etoolkit = ::user::e_toolkit_none;
 
       m_pAcmePosix = nullptr;
       m_pApexPosix = nullptr;
@@ -655,7 +655,7 @@ namespace acme
    void node::do_windowing_system_factory()
    {
 
-      ::string strUserToolkit = get_user_toolkit_id();
+      ::string strUserToolkit = ::windowing::get_user_toolkit_id();
 
       if(strUserToolkit.has_char())
       {
@@ -1667,58 +1667,52 @@ namespace acme
    }
 
 
-   ::user::enum_desktop node::get_edesktop()
-   {
+   //::user::enum_desktop node::get_edesktop()
+   //{
 
-      if (m_edesktop == ::user::e_desktop_none)
-      {
+   //   if (m_edesktop == ::user::e_desktop_none)
+   //   {
 
-         m_edesktop = calculate_edesktop();
+   //      m_edesktop = calculate_edesktop();
 
-      }
+   //   }
 
-      return m_edesktop;
+   //   return m_edesktop;
 
-   }
-
-
-   ::user::enum_desktop node::calculate_edesktop()
-   {
-
-      return ::nano::user::calculate_edesktop();
-
-   }
+   //}
 
 
-   ::user::enum_toolkit node::get_etoolkit()
-   {
+   //::user::enum_desktop node::calculate_edesktop()
+   //{
 
-      if (m_etoolkit == ::user::e_toolkit_none)
-      {
+   //   return ::nano::user::calculate_edesktop();
 
-         m_etoolkit = calculate_etoolkit();
-
-      }
-
-      return m_etoolkit;
-
-   }
+   //}
 
 
-   ::user::enum_toolkit node::calculate_etoolkit()
-   {
+   //::user::enum_toolkit node::get_etoolkit()
+   //{
 
-      return ::nano::user::calculate_etoolkit();
+   //   if (m_etoolkit == ::user::e_toolkit_none)
+   //   {
 
-   }
+   //      m_etoolkit = calculate_etoolkit();
+
+   //   }
+
+   //   return m_etoolkit;
+
+   //}
 
 
-   ::string node::get_user_toolkit_id()
-   {
+   //::user::enum_toolkit node::calculate_etoolkit()
+   //{
 
-      return ::as_string(get_etoolkit());
+   //   return ::nano::user::calculate_etoolkit();
 
-   }
+   //}
+
+
 
 
 #ifdef LINUX
@@ -2987,7 +2981,7 @@ return false;
       else if(scopedstrComponentName == "nano_user")
       {
 
-         ::string strUserToolkit = this->get_user_toolkit_id();
+         ::string strUserToolkit = ::windowing::get_user_toolkit_id();
 
          return strUserToolkit;
 
@@ -4681,12 +4675,12 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 //   }
 
 
-   enum_windowing node::calculate_ewindowing()
+  /* enum_windowing node::calculate_ewindowing()
    {
 
       return e_windowing_none;
 
-   }
+   }*/
 
 
    bool node::_get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle)

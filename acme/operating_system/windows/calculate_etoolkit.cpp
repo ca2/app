@@ -4,56 +4,50 @@
 #include "framework.h"
 
 
-namespace nano
+
+namespace windowing
 {
 
 
-   namespace user
+   ::windowing::enum_toolkit g_etoolkit = ::windowing::e_toolkit_none;
+
+
+   ::windowing::enum_toolkit calculate_etoolkit()
    {
 
-
-      ::user::enum_toolkit g_etoolkit = ::user::e_toolkit_none;
-
-
-      ::user::enum_toolkit calculate_etoolkit()
-      {
-
 #if defined(WINDOWS_DESKTOP)
-         return ::user::e_toolkit_win32;
+      return ::windowing::e_toolkit_win32;
 #elif defined(HAS_KDE5)
-         return ::user::e_toolkit_kde5;
+      return ::windowing::e_toolkit_kde5;
 #elif defined(HAS_KDE6)
-         return ::user::e_toolkit_kde6;
+      return ::windowing::e_toolkit_kde6;
 #elif defined(HAS_GTK3)
-         return ::user::e_toolkit_gtk3;
+      return ::windowing::e_toolkit_gtk3;
 #elif defined(HAS_GTK4)
-         return ::user::e_toolkit_gtk4;
+      return ::windowing::e_toolkit_gtk4;
 #else
-         return ::user::e_toolkit_unknown;
+      return ::windowing::e_toolkit_unknown;
 #endif
 
-      }
+   }
 
 
-      ::user::enum_toolkit get_etoolkit()
+   ::windowing::enum_toolkit get_etoolkit()
+   {
+
+      if (g_etoolkit == ::windowing::e_toolkit_none)
       {
 
-         if (g_etoolkit == ::user::e_toolkit_none)
-         {
-
-            g_etoolkit = calculate_etoolkit();
-
-         }
-
-         return g_etoolkit;
+         g_etoolkit = calculate_etoolkit();
 
       }
 
+      return g_etoolkit;
 
-   } // namespace user
+   }
 
 
-} // namespace nano
+} // namespace windowing
 
 
 

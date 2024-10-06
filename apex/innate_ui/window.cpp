@@ -104,18 +104,18 @@ namespace innate_ui
    }
 
 
-   void window::post(const ::procedure & procedure)
+   void window::main_post(const ::procedure & procedure)
    {
 
-      innate_ui()->post(procedure);
+      innate_ui()->main_post(procedure);
 
    }
 
 
-   void window::sync(const ::procedure & procedure)
+   void window::main_send(const ::procedure & procedure)
    {
 
-      innate_ui()->sync(procedure);
+      innate_ui()->main_send(procedure);
 
    }
 

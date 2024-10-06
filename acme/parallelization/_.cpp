@@ -9,8 +9,8 @@
 #include "acme/platform/acme.h"
 #include "acme/platform/platform.h"
 #include "acme/platform/system.h"
-#include "acme/nano/user/window_implementation.h"
-#include "acme/windowing/window_base.h"
+#include "acme/nano/windowing/window.h"
+//#include "acme/windowing/window_base.h"
 #ifdef LINUX
 #include "acme/operating_system/ansi/_pthread.h"
 #endif

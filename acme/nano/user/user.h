@@ -64,8 +64,8 @@ public:
    void handle(::topic* ptopic, ::context* pcontext) override;
    
    
-   virtual void sync(const ::procedure & procedure);
-   virtual void async(const ::procedure & procedure);
+   //virtual void sync(const ::procedure & procedure);
+   //virtual void async(const ::procedure & procedure);
 
 
    virtual void process_messages();

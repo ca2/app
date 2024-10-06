@@ -42,7 +42,7 @@
 #include "acme/nano/user/user.h"
 #include "acme/nano/http/http.h"
 #include "acme/nano/speech/speech.h"
-#include "acme/windowing/windowing_base.h"
+#include "acme/nano/windowing/windowing.h"
 //#include "acme/user/user/conversation.h"
 
 
@@ -449,7 +449,7 @@ namespace acme
       //
       //#endif
       //
-      m_ewindowing = e_windowing_none;
+      //m_ewindowing = e_windowing_none;
 
       //m_plogger->m_etracelevelMinimum = e_trace_level_warning;
 
@@ -1160,14 +1160,14 @@ namespace acme
    void system::TermSystem()
    {
 
-      if(m_pwindowingbase)
+      if(nano()->m_pwindowing)
       {
 
-         m_pwindowingbase->windowing_system_post_quit();
+         nano()->m_pwindowing->windowing_system_post_quit();
 
       }
 
-      m_pwindowingbase.release();
+      nano()->m_pwindowing.release();
 
       m_pmapRegularExpressionContext.release();
 
@@ -3923,21 +3923,21 @@ namespace acme
    }
 
 
-   ::windowing::windowing_base * system::windowing_base()
-   {
+   //::windowing::windowing_base * system::windowing_base()
+   //{
 
-      if(!m_pwindowingbase)
-      {
+   //   if(!m_pwindowingbase)
+   //   {
 
-         do_graphics_user_windowing_system_factory();
+   //      do_graphics_user_windowing_system_factory();
 
-         __construct(m_pwindowingbase);
+   //      __construct(m_pwindowingbase);
 
-      }
+   //   }
 
-      return m_pwindowingbase;
+   //   return m_pwindowingbase;
 
-   }
+   //}
 
 
 } // namespace acme

@@ -2,7 +2,7 @@
 //// Created by camilo on 2024-09-26 18:50 Odense Time <3ThomasBorregaardSorensen!!
 ////
 //// nano::user::window_interface Created by camilo on 31/01/2022 22:37 <3ThomasBorregaardSorensen!!
-//// From nano::user::window_interface merged at ::user::interaction_base by
+//// From nano::user::window_interface merged at ::nano::user::interaction by
 ////    camilo on 2024-0926 15:01 <3ThomasBorregaardSorensen!!
 ////
 //#pragma once
@@ -97,7 +97,7 @@
 ////
 ////
 //// class CLASS_DECL_ACME window_interface :
-////    virtual public ::user::interaction_base
+////    virtual public ::nano::user::interaction
 //// {
 //// public:
 //

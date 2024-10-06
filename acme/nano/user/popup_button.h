@@ -20,7 +20,6 @@ namespace nano
       {
       public:
 
-         ::pointer < ::nano::user::interaction >      m_puserinteractionbaseOwner;
 
          popup_button();
          ~popup_button() override;

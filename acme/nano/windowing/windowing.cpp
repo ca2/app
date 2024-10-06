@@ -269,18 +269,18 @@ namespace nano
       }
 
 
-      void windowing::sync(const ::procedure & procedure)
+      void windowing::main_send(const ::procedure & procedure)
       {
 
-         main_send(procedure);
+         //main_send(procedure);
 
       }
 
 
-      void windowing::async(const ::procedure & procedure)
+      void windowing::main_post(const ::procedure & procedure)
       {
 
-         main_post(procedure);
+         //main_post(procedure);
 
       }
 
@@ -500,3 +500,17 @@ namespace nano
 
    } // namespace user
 } // namespace nano
+
+
+namespace windowing
+{
+
+   ::string get_user_toolkit_id()
+   {
+
+      return ::as_string(get_etoolkit());
+
+   }
+
+
+} // namespace windowing

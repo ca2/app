@@ -43,7 +43,7 @@ namespace filehandler
       this,
       "html/frame",
       ::type < document >(),
-      ::type < frame >(),       // top level SDI frame::user::interaction_impl
+      ::type < frame >(),       // top level SDI frame::windowing::window
       ::type < pane_impact >());
       papp->add_document_template(pdoctemplate);
       m_ptemplateMenu = pdoctemplate;

@@ -261,9 +261,9 @@ namespace nano
 
          virtual bool is_window_zoomed();
          virtual void window_minimize();
-         virtual void window_maximize(); // m_puserinteractionimpl->m_puserinteraction->display(::e_display_zoomed);
-         virtual void window_full_screen(); // m_puserinteractionimpl->m_puserinteraction->display(::e_display_full_screen);
-         virtual void window_restore(); // m_puserinteractionimpl->m_puserinteraction->display(::e_display_normal);
+         virtual void window_maximize(); // m_pwindow->m_puserinteraction->display(::e_display_zoomed);
+         virtual void window_full_screen(); // m_pwindow->m_puserinteraction->display(::e_display_full_screen);
+         virtual void window_restore(); // m_pwindow->m_puserinteraction->display(::e_display_normal);
          virtual void window_close();
          //virtual void show_window();
          //virtual void hide_window();

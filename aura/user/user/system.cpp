@@ -86,7 +86,7 @@ namespace user
       m_puserprimitiveOwner.release();
       m_procedureSuccess.m_pbase.release();
       m_procedureFailure.m_pbase.release();
-      m_puserinteractionimpl.release();
+      //m_pwindow.release();
       m_prequest.release();
       m_pwindow.release();
 

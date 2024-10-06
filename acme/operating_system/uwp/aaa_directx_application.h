@@ -11,7 +11,7 @@ namespace universal_windows
    internal:
 
 
-      ::user::interaction_impl * m_pimpl;
+      ::windowing::window * m_pimpl;
 
       ::winrt::Windows::Foundation::Point                m_pointLastCursor;
 

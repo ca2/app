@@ -1264,7 +1264,7 @@ void xfplayer_impact_line::SetAnimateIncrement(double dIncrement)
 //  m_iRedrawMode = iMode;
 //}
 
-//void xfplayer_impact_line::SetRenderWindow(::user::interaction_impl * pwindow)
+//void xfplayer_impact_line::SetRenderWindow(::windowing::window * pwindow)
 //{
 //  m_pRenderWnd = pwindow;
 //}

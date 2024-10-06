@@ -66,7 +66,7 @@ namespace apex
       //comparable_array < ::pointer<::layered >>m_uiptraToolWindow;
 
       // apex commented
-      //::user::interaction_impl *                            m_pimplPendingFocus2;
+      //::windowing::window *                            m_pimplPendingFocus2;
       //::layered *                                 m_puiLastUserInputPopup;
       //::image::cursor *                                    m_pcursor;
       //::image::cursor *                                    m_pcursorCursor;

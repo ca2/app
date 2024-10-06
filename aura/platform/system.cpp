@@ -6,6 +6,7 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/handler/topic.h"
+#include "acme/nano/windowing/windowing.h"
 #include "acme/platform/node.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/system_setup.h"
@@ -3450,7 +3451,7 @@ namespace aura
 
 
 
-   //::user::interaction_impl * system::impl_from_handle(void * pdata)
+   //::windowing::window * system::impl_from_handle(void * pdata)
    //{
 
    //   return oswindow_interaction_impl((oswindow)pdata);
@@ -3460,7 +3461,7 @@ namespace aura
    //::user::interaction * system::ui_from_handle(void * pdata)
    //{
 
-   //   ::user::interaction_impl * pimpl = impl_from_handle(pdata);
+   //   ::windowing::window * pimpl = impl_from_handle(pdata);
 
    //   if (pimpl == nullptr)
    //   {
@@ -4922,7 +4923,7 @@ namespace aura
 
    //}
 
-   //::user::interaction_impl * system::impl_from_handle(void * posdata)
+   //::windowing::window * system::impl_from_handle(void * posdata)
    //{
 
    //   return nullptr;
@@ -6945,7 +6946,7 @@ namespace aura
 
          ::aqua::system::do_graphics_user_windowing_system_factory();
 
-         ::string strUserToolkit = node()->get_user_toolkit_id();
+         ::string strUserToolkit = ::windowing::get_user_toolkit_id();
 
          if (strUserToolkit.has_char())
          {

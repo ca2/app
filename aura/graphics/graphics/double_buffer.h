@@ -30,7 +30,7 @@ namespace graphics
       ~double_buffer() override;
 
 
-      void initialize_graphics_graphics(::user::interaction_impl * pimpl) override;
+      void initialize_graphics_graphics(::windowing::window * pwindow) override;
 
 
       bool is_single_buffer_mode() const override;

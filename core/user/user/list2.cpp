@@ -780,7 +780,7 @@ namespace user
    //   ASSERT(pPopup != nullptr);
    //   ::pointer<::user::frame_window>pframe = get_parent_frame()->get_parent_frame();
    //   pPopup->track_popup_menu(point.x(), point.y(),
-   //   (::user::interaction_impl *) pframe);
+   //   (::windowing::window *) pframe);
    //   }
    //   }
    //   else
@@ -793,7 +793,7 @@ namespace user
    //   ::pointer<::user::frame_window>pframe = get_parent_frame()->get_parent_frame();
    //   pPopup->track_popup_menu(
    //   point.x(), point.y(),
-   //   (::user::interaction_impl *) pframe);
+   //   (::windowing::window *) pframe);
    //   }
    //   }*/
    //}

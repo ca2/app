@@ -74,7 +74,7 @@ oswindow_data * oswindow_get(UIWindow * window)
 }
 
 
-CLASS_DECL_ACME ::user::interaction_impl * oswindow_get(oswindow oswindow)
+CLASS_DECL_ACME ::windowing::window * oswindow_get(oswindow oswindow)
 {
 
    if(oswindow == nullptr)
@@ -158,7 +158,7 @@ bool oswindow_erase(UIWindow * window)
 }
 
 
-//void oswindow_data::set_user_interaction(::user::interaction_impl * pinteraction)
+//void oswindow_data::set_user_interaction(::windowing::window * pinteraction)
 //{
 //
 //   if(::is_null(*this))
@@ -169,7 +169,7 @@ bool oswindow_erase(UIWindow * window)
 //}
 //
 //
-//::user::interaction_impl * oswindow_data::get_user_interaction_base()
+//::windowing::window * oswindow_data::get_user_interaction_base()
 //{
 //
 //   if(::is_null(*this))
@@ -179,7 +179,7 @@ bool oswindow_erase(UIWindow * window)
 //
 //}
 //
-//::user::interaction_impl * oswindow_data::get_user_interaction_base() const
+//::windowing::window * oswindow_data::get_user_interaction_base() const
 //{
 //
 //   if(::is_null(*this))
@@ -189,7 +189,7 @@ bool oswindow_erase(UIWindow * window)
 //
 //}
 //
-//::user::interaction_impl * oswindow_data::get_user_interaction()
+//::windowing::window * oswindow_data::get_user_interaction()
 //{
 //
 //   if(::is_null(*this))
@@ -202,7 +202,7 @@ bool oswindow_erase(UIWindow * window)
 //
 //}
 //
-//::user::interaction_impl * oswindow_data::get_user_interaction() const
+//::windowing::window * oswindow_data::get_user_interaction() const
 //{
 //
 //   if(::is_null(*this))
@@ -289,7 +289,7 @@ bool oswindow_erase(UIWindow * window)
 //}
 
 
-::user::interaction_impl * window_from_handle(oswindow oswindow)
+::windowing::window * window_from_handle(oswindow oswindow)
 {
 
    if(oswindow == nullptr)

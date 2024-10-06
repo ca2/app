@@ -143,12 +143,12 @@ namespace user
 #endif
 
 
-   ::user::interaction_impl * message::userinteractionimpl()
+   ::windowing::window * message::userinteractionimpl()
    {
 
       auto pwindow = window();
 
-      return pwindow ? pwindow->m_puserinteractionimpl : nullptr;
+      return pwindow ? pwindow->m_pwindow : nullptr;
 
    }
 

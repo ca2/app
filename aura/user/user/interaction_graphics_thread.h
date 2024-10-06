@@ -22,8 +22,8 @@ namespace user
 
       manual_reset_event                        m_evUpdateScreen;
 
-      ::pointer<::user::interaction>           m_puserinteraction;
-      ::pointer<::user::interaction_impl>      m_pimpl;
+      ::pointer<::user::frame>                  m_puserframe;
+      //::pointer<::windowing::window>      m_pimpl;
 
       ::pointer<::user::thread>                   m_puserthread;
       nanosecond_timer                            m_nanosecondtimer;
@@ -91,7 +91,7 @@ namespace user
       virtual void defer_create_graphics_thread();
 
 
-      virtual void initialize_graphics_thread(interaction_impl * pimpl);
+      virtual void initialize_graphics_thread(::user::frame * puserframe);
 
 
       bool graphics_thread_reset(::user::interaction * pinteraction);

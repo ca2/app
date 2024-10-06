@@ -61,7 +61,7 @@ namespace bred
 //
 //      //pointer_array < ::user::interaction >         m_uiptraToolWindow;
 //
-//      //::user::interaction_impl *                            m_pimplPendingFocus2;
+//      //::windowing::window *                            m_pimplPendingFocus2;
 //      //::user::interaction *                                 m_puiLastUserInputPopup;
 //      //::image::cursor *                                    m_pcursor;
 //      //::image::cursor *                                    m_pcursorCursor;

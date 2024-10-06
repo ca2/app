@@ -33,7 +33,7 @@
 #include "aura/user/user/interaction_array.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/user.h"
-#include "aura/user/user/interaction_impl.h"
+//#include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/system.h"
 #include "aura/user/user/frame.h"
 #include "aura/user/user/plain_edit.h"
@@ -3734,15 +3734,15 @@ retry_license:
 
    //     pwindow = pwindowing->window(pmsg->oswindow);
 
-   //     auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+   //     auto pwindow = pwindow->m_pwindow;
 
-   //     if (puserinteractionimpl != nullptr)
+   //     if (pwindow != nullptr)
    //     {
 
    //        try
    //        {
 
-   //           pinteraction = puserinteractionimpl->m_puserinteraction;
+   //           pinteraction = pwindow->m_puserinteraction;
 
    //        }
    //        catch (...)
@@ -3757,7 +3757,7 @@ retry_license:
    //     //if (pinteraction == nullptr)
    //     //{
 
-   //     //   pinteraction = puserinteractionimpl;
+   //     //   pinteraction = pwindow;
 
    //     //}
 
@@ -6534,7 +6534,7 @@ namespace aura
    //   }
 
    //   // otherwise, use window::OnHelp implementation
-   //   /* trans ::user::interaction_impl * pwindow = psystem->m_puiMain;
+   //   /* trans ::windowing::window * pwindow = psystem->m_puiMain;
    //   ENSURE_VALID(pwindow);
    //   if (!pwindow->is_frame_window())
    //   pwindow->OnHelp();

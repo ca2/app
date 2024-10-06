@@ -98,7 +98,7 @@ namespace user
 
 
       virtual bool GetDocString(string & rString, enum DocStringIndex index) const; // get one of the info strings
-      //::pointer<::user::frame_window>CreateOleFrame(::user::interaction_impl * puiParent, ::user::document * pDoc,
+      //::pointer<::user::frame_window>CreateOleFrame(::windowing::window * puiParent, ::user::document * pDoc,
       //   bool bCreateImpact);
 
       virtual void update_all_impacts(::user::impact * pimpact, const ::atom & atom);

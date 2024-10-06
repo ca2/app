@@ -8384,7 +8384,7 @@ namespace apex
    //}
    //
    //// otherwise, use window::OnHelp implementation
-   ///* trans ::user::interaction_impl * pwindow = psystem->m_puiMain;
+   ///* trans ::windowing::window * pwindow = psystem->m_puiMain;
    //ENSURE_VALID(pwindow);
    //if (!pwindow->is_frame_window())
    //pwindow->OnHelp();

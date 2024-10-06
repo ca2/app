@@ -17,7 +17,7 @@
 #include "acme/platform/timer.h"
 #include "aura/user/user/scroll_state.h"
 #include "aura/user/user/interaction_graphics_thread.h"
-#include "aura/user/user/interaction_impl.h"
+//#include "aura/user/user/interaction_impl.h"
 #include "aura/message/user.h"
 #include "aura/user/user/user.h"
 #include "aura/platform/session.h"

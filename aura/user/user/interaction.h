@@ -14,7 +14,7 @@
 #include "acme/user/user/e_window_flag.h"
 //#include "apex/database/key.h"
 #include "apex/message/command.h"
-#include "apex/user/user/prototype.h"
+#include "apex/user/user/interaction_base.h"
 
 
 namespace user
@@ -393,7 +393,6 @@ namespace user
       // references
       ::pointer<::file::insert_item>            m_pitemComposing;
       ::pointer<::thread>                       m_pthreadUserInteraction;
-      ::pointer<::windowing::window>            m_pwindow;
       ::pointer<::user::interaction>            m_puserinteractionParent;
       ::pointer<::user::interaction>            m_pupdowntarget;
       ::task_pointer                            m_ptaskModal;
@@ -411,8 +410,8 @@ namespace user
       ::pointer<::user::form>                      m_pform;
       ::pointer<alpha_source>                      m_palphasource;
       //::pointer<::aura::drawable>                m_pdrawableBackground;
-      ::pointer<primitive_impl>                    m_pprimitiveimpl;
-      ::pointer<interaction_impl>                  m_pinteractionimpl;
+      //::pointer<primitive_impl>                    m_pprimitiveimpl;
+      //::pointer<interaction_impl>                  m_pinteractionimpl;
       ::pointer<primitive_pointer_array>           m_puserinteractionpointeraOwned;
       ::pointer<interaction_array>                 m_puserinteractionpointeraChild;
       ::pointer<interaction>                       m_ptooltip;
@@ -448,6 +447,8 @@ namespace user
 
       virtual bool is_sandboxed();
 
+
+      ::user::thread * user_thread();
 
       //class control_descriptor& descriptor();
       //const class control_descriptor& descriptor();
@@ -545,7 +546,7 @@ namespace user
 
       virtual ::user::interaction * get_host_user_interaction() override;
 
-      virtual ::user::interaction_impl * get_host_user_interaction_impl();
+      //virtual ::windowing::window * get_host_user_interaction_impl();
 
       virtual ::user::enum_state get_user_state();
 
@@ -570,7 +571,7 @@ namespace user
       void control_descriptor_common_construct();
       //bool operator == (const control_descriptor & control_descriptor);
       //control_descriptor & operator = (const control_descriptor & control_descriptor);
-      virtual enum_control_type get_control_type() const override;
+      virtual enum_control_type get_control_type() override;
       virtual void set_control_type(enum_control_type e_control);
       virtual void add_function(enum_control_function enum_control_function);
       virtual void erase_function(enum_control_function enum_control_function);
@@ -631,9 +632,9 @@ namespace user
       virtual void add_graphical_output_purpose(::particle * pparticle, ::graphics::enum_output_purpose epurpose);
       virtual void erase_graphical_output_purpose(::particle * pparticle);
       //virtual ::graphics::enum_output_purpose most_demanding_graphical_output_purpose() const;
-      virtual bool has_screen_output_purpose() const;
-      virtual bool has_graphical_output_purpose() const;
-      virtual bool has_fps_output_purpose() const;
+      virtual bool has_screen_output_purpose();
+      virtual bool has_graphical_output_purpose();
+      virtual bool has_fps_output_purpose();
 
 //
 //      inline void set_fps_interest() { return add_fps_interest(this); }
@@ -643,7 +644,7 @@ namespace user
 //
       void add_fps_interest(::particle * pparticle) override;
       void erase_fps_interest(::particle * pparticle) override;
-      bool is_fps_interest(const ::particle * pparticle) const override;
+      bool is_fps_interest(::particle * pparticle) override;
 //      bool has_fps_interest() const noexcept;
 //
 
@@ -652,12 +653,7 @@ namespace user
       //inline bool is_visual_changed()const { return m_ewindowflag & e_window_flag_visual_changed; }
 
 
-      bool is_ok() const
-      {
-
-         return ::is_set(this) && m_pprimitiveimpl.is_set();
-
-      }
+      virtual bool is_ok();
 
       virtual string get_class_style(string strClass);
       virtual void set_class_style(string strClass, string strStyle);
@@ -1396,11 +1392,11 @@ namespace user
       virtual void create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom = nullptr);
 
       //virtual void create_host(enum_parallelization eparallelization) override;
-      virtual void create_host();
+      //virtual void create_host();
       virtual void create_child(::user::interaction * pparent);
       virtual void defer_create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom = nullptr);
 
-
+      virtual void create_control(::user::interaction * puserinteractionParent, const ::atom & atom);
       ////void create_host(enum_parallelization eparallelization) override;
       //void create_host() override;
       //void create_child(::user::interaction * puserinteractionParent) override;
@@ -1507,7 +1503,7 @@ namespace user
 
 #endif
 
-      void message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
+      lresult message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
 
       void post_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
 
@@ -1645,9 +1641,9 @@ namespace user
       //virtual strsize get_window_text_length() override;
 
       virtual ::user::frame* frame();
-      inline ::user::interaction * top_level() { return m_puserinteractionTopLevel; }
-      inline ::user::frame * top_level_frame() { return m_puserframeTopLevel; }
-      inline ::user::frame * parent_frame() { return m_puserframeParent; }
+      virtual ::user::interaction * top_level();
+      virtual ::user::frame * top_level_frame();
+      virtual ::user::frame * parent_frame();
       virtual ::user::frame* get_owner_frame();
 
       ::user::interaction * _top_level() override;
@@ -1689,7 +1685,7 @@ namespace user
 
 
       inline ::oswindow get_safe_oswindow();
-      inline ::oswindow oswindow() { return m_oswindow; }
+      virtual ::oswindow oswindow();
 
 
       //virtual ::windowing::window * window();

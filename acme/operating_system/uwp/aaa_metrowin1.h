@@ -36,8 +36,8 @@ CLASS_DECL_ACME LRESULT CALLBACK __window_procedure(oswindow hWnd, ::u32 nMsg, W
 CLASS_DECL_ACME WNDPROC __get_window_procedure();
 #define __window_procedure (*__get_window_procedure())
 
-/*typedef void (__MSG_CALL ::user::interaction_impl::*__PMSGW)();
-   // like '__PMSG' but for ::user::interaction_impl derived classes only
+/*typedef void (__MSG_CALL ::windowing::window::*__PMSGW)();
+   // like '__PMSG' but for ::windowing::window derived classes only
 
 typedef void (__MSG_CALL ::thread::*__PMSGT)();
    // like '__PMSG' but for thread-derived classes only*/

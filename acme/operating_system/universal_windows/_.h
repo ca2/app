@@ -54,7 +54,7 @@ CLASS_DECL_ACME HANDLE hfile_create(const char * lpcszFileName, ::u32 dwDesiredA
 namespace user
 {
 
-   class interaction_impl;
+   //class interaction_impl;
    class interaction;
    //   class interaction;
    //

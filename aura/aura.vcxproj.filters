@@ -213,12 +213,6 @@
     <ClCompile Include="user\user\interaction.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\interaction_child.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\interaction_impl.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\interaction_layout.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -253,9 +247,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\plain_text_data.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\primitive_impl.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\progress.cpp">
@@ -696,6 +687,9 @@
     <ClCompile Include="user\menu\track_popup.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\aaa_interaction_impl.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">
@@ -833,10 +827,10 @@
     <ClInclude Include="user\user\interaction.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\interaction_child.h">
+    <ClInclude Include="user\user\aaa_interaction_child.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\interaction_impl.h">
+    <ClInclude Include="user\user\aaa_interaction_impl.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\interaction_layout.h">
@@ -881,7 +875,7 @@
     <ClInclude Include="user\user\plain_text_data.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\primitive_impl.h">
+    <ClInclude Include="user\user\aaa_primitive_impl.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\fps_interest.h">

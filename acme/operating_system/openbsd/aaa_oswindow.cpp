@@ -230,7 +230,7 @@ oswindow_dataptra * oswindow_data::s_pdataptra = nullptr;
 ::pointer< ::mutex > oswindow_data::s_pmutex = nullptr;
 
 
-i32 oswindow_find_message_only_window(::user::interaction_impl * pimpl)
+i32 oswindow_find_message_only_window(::windowing::window * pimpl)
 {
 
    if(pimpl == nullptr)
@@ -293,7 +293,7 @@ i32 oswindow_find(Window window)
 }
 
 
-oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * pinteraction)
+oswindow_data * oswindow_get_message_only_window(::windowing::window * pinteraction)
 {
 
    if(pinteraction == nullptr)
@@ -704,7 +704,7 @@ void oswindow_data::post_nc_destroy()
 }
 
 
-void oswindow_data::set_user_interaction(::user::interaction_impl * pimpl)
+void oswindow_data::set_user_interaction(::windowing::window * pimpl)
 {
 
    single_lock slOsWindow(s_pmutex, true);

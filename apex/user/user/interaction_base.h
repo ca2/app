@@ -67,7 +67,7 @@ namespace user
       void defer_update_display() override;
 
       
-      enum_control_type get_control_type() const override;
+      enum_control_type get_control_type() override;
 
 
       //void add_fps_interest(::particle * pparticle) override;
@@ -275,7 +275,7 @@ namespace user
 
 #endif
 
-      void message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0)override;
+      lresult message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0)override;
 
       void post_message(const ::atom & atom, wparam wparam = 0,lparam lparam = 0)override;
 
@@ -357,7 +357,7 @@ namespace user
 
       ::user::interaction * get_wnd() override;
       ::user::interaction * get_wnd(::u32 nCmd) override;
-      //virtual ::user::interaction_impl * get_impl() const;
+      //virtual ::windowing::window * get_impl() const;
       ::task * get_task() override;
 
       virtual ::user::interaction_base * set_parent(::user::interaction_base * pinteraction);

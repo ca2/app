@@ -70,7 +70,7 @@ struct CLASS_DECL_ACME oswindow_data
 //#endif
 
    bool                          m_bMessageOnlyWindow;
-   ::user::interaction_impl *    m_pimpl;
+   ::windowing::window *    m_pimpl;
    htask_t                       m_htask;
    color32_t *                    m_pcolorref;
    //RECT32                          m_rect;
@@ -122,9 +122,9 @@ struct CLASS_DECL_ACME oswindow_data
    i32 select_all_input();
    i32 map_window();
 
-   void set_impl(::user::interaction_impl * pimpl);
-   ::user::interaction_impl * get_impl();
-   ::user::interaction_impl * get_impl() const;
+   void set_impl(::windowing::window * pimpl);
+   ::windowing::window * get_impl();
+   ::windowing::window * get_impl() const;
    ::user::interaction * get_user_interaction();
    ::user::interaction * get_user_interaction() const;
 
@@ -214,4 +214,4 @@ class mutex;
 
 
 
-CLASS_DECL_ACME oswindow_data * oswindow_get(::user::interaction_impl * pinteraction);
+CLASS_DECL_ACME oswindow_data * oswindow_get(::windowing::window * pinteraction);

@@ -31,7 +31,7 @@ public:
 
 
    nswindow                      m_nswindow;
-   ::user::interaction_impl *    m_pimpl;
+   ::windowing::window *    m_pimpl;
    ::pointer<::message_queue>              m_pmq;
 
 
@@ -82,9 +82,9 @@ public:
    }
 
 
-   void set_user_interaction_impl(::user::interaction_impl * pimpl);
-   ::user::interaction_impl * get_user_interaction_impl();
-   ::user::interaction_impl * get_user_interaction_impl() const;
+   void set_user_interaction_impl(::windowing::window * pimpl);
+   ::windowing::window * get_user_interaction_impl();
+   ::windowing::window * get_user_interaction_impl() const;
    ::user::interaction * get_user_interaction();
    ::user::interaction * get_user_interaction() const;
 

@@ -555,7 +555,7 @@ namespace aura
 
       //virtual void on_os_text(e_os_text etext, string strText) override;
 
-      //virtual ::user::interaction_impl * impl_from_handle(void * posdata);
+      //virtual ::windowing::window * impl_from_handle(void * posdata);
       //virtual ::user::interaction * ui_from_handle(void * posdata);
 
 
@@ -777,7 +777,7 @@ namespace aura
       //bool get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32* prectangle) override;
 
 
-      //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
+      //virtual ::windowing::window * impl_from_handle(void * pdata) override;
       //virtual ::user::interaction * ui_from_handle(void * pdata) override;
 
       //void signal(::signal * psignal) override;

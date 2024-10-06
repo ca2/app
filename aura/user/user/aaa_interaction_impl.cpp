@@ -210,7 +210,7 @@ namespace user
    }
 
 
-   ::user::interaction_impl *interaction_impl::get_user_interaction_impl()
+   ::windowing::window *interaction_impl::get_user_interaction_impl()
    {
 
       return this;
@@ -386,7 +386,7 @@ namespace user
 #if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(__BSD__)
 
 
-   ::user::interaction_impl * interaction_impl::GetAncestor(::u32 gaFlags) const
+   ::windowing::window * interaction_impl::GetAncestor(::u32 gaFlags) const
    {
 
       __UNREFERENCED_PARAMETER(gaFlags);
@@ -479,7 +479,7 @@ namespace user
    }
 
 
-   ::user::interaction_impl *interaction_impl::from_os_data(void *pdata)
+   ::windowing::window *interaction_impl::from_os_data(void *pdata)
    {
 
       __UNREFERENCED_PARAMETER(pdata);
@@ -549,12 +549,12 @@ namespace user
 
       //      auto pwindowMain = system()->m_paurasystem->m_pwindowMain;
       //
-      //      if (pwindowMain && !pwindowMain->m_puserinteractionimpl)
+      //      if (pwindowMain && !pwindowMain->m_pwindow)
       //      {
       //
       //         m_pwindow = system()->m_paurasystem->m_pwindowMain;
       //
-      //         m_pwindow->m_puserinteractionimpl = this;
+      //         m_pwindow->m_pwindow = this;
       //
       //         m_puserinteraction->m_pinteractionimpl = this;
       //
@@ -738,12 +738,12 @@ namespace user
 
       //      auto pwindowMain = system()->m_paurasystem->m_pwindowMain;
       //
-      //      if (pwindowMain && !pwindowMain->m_puserinteractionimpl)
+      //      if (pwindowMain && !pwindowMain->m_pwindow)
       //      {
       //
       //         m_pwindow = system()->m_paurasystem->m_pwindowMain;
       //
-      //         m_pwindow->m_puserinteractionimpl = this;
+      //         m_pwindow->m_pwindow = this;
       //
       //         m_puserinteraction->m_pinteractionimpl = this;
       //
@@ -2911,7 +2911,7 @@ namespace user
 
          auto pwindow = pmouse->m_pwindow;
 
-         auto pwindowimpl = pwindow->m_puserinteractionimpl;
+         auto pwindowimpl = pwindow->m_pwindow;
 
          if (::is_set(pwindowimpl))
          {
@@ -3415,7 +3415,7 @@ namespace user
    //      throw ::interface_only();
    //   }
    //
-   //   void interaction_impl::OnSetFocus(::user::interaction_impl *)
+   //   void interaction_impl::OnSetFocus(::windowing::window *)
    //   {
    //      throw ::interface_only();
    //   }
@@ -3508,12 +3508,12 @@ namespace user
       throw ::interface_only();
    }
 
-   //void interaction_impl::OnEnterIdle(::u32 /*nWhy*/,::user::interaction_impl * /*pWho*/)
+   //void interaction_impl::OnEnterIdle(::u32 /*nWhy*/,::windowing::window * /*pWho*/)
    //{
    //   throw ::interface_only();
    //}
 
-   //void * interaction_impl::OnCtlColor(::draw2d::graphics *,::user::interaction_impl * pwindow,::u32)
+   //void * interaction_impl::OnCtlColor(::draw2d::graphics *,::windowing::window * pwindow,::u32)
    //{
    //   __UNREFERENCED_PARAMETER(pwindow);
    //   throw ::interface_only();
@@ -3600,7 +3600,7 @@ namespace user
 
    //}
 
-   //void interaction_impl::SubclassDlgItem(::u32 nID,::user::interaction_impl * pParent)
+   //void interaction_impl::SubclassDlgItem(::u32 nID,::windowing::window * pParent)
    //{
    //   __UNREFERENCED_PARAMETER(nID);
    //   __UNREFERENCED_PARAMETER(pParent);
@@ -3975,16 +3975,16 @@ namespace user
 
       printf("(14) m_pwindow.m_p (0x%x)\n", m_pwindow.m_p);
       printf("(14) m_pwindow.m_pelement (0x%x)\n", m_pwindow.m_pelement);
-      printf("(14) offset of m_pImpl2 in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_pImpl2));
-      printf("(14) offset of m_timeLastExposureAddUp in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_timeLastExposureAddUp));
-      printf("(14) offset of m_strBitmapSource in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_strBitmapSource));
-      printf("(14) offset of m_bCursorRedraw in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_bCursorRedraw));
-      printf("(14) offset of m_bLockWindowUpdate in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_bLockWindowUpdate));
-      printf("(14) offset of m_bOkToUpdateScreen in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_bOkToUpdateScreen));
-      printf("(14) offset of m_sizeDrawn in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_sizeDrawn));
-      printf("(14) offset of m_pthreadMouseLeave in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_pthreadMouseLeave));
-      printf("(14) offset of m_bPointInside in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_bPointInside));
-      printf("(14) offset of m_pwindow in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_pwindow));
+      printf("(14) offset of m_pImpl2 in ::windowing::window = %d\n", offsetof(::windowing::window, m_pImpl2));
+      printf("(14) offset of m_timeLastExposureAddUp in ::windowing::window = %d\n", offsetof(::windowing::window, m_timeLastExposureAddUp));
+      printf("(14) offset of m_strBitmapSource in ::windowing::window = %d\n", offsetof(::windowing::window, m_strBitmapSource));
+      printf("(14) offset of m_bCursorRedraw in ::windowing::window = %d\n", offsetof(::windowing::window, m_bCursorRedraw));
+      printf("(14) offset of m_bLockWindowUpdate in ::windowing::window = %d\n", offsetof(::windowing::window, m_bLockWindowUpdate));
+      printf("(14) offset of m_bOkToUpdateScreen in ::windowing::window = %d\n", offsetof(::windowing::window, m_bOkToUpdateScreen));
+      printf("(14) offset of m_sizeDrawn in ::windowing::window = %d\n", offsetof(::windowing::window, m_sizeDrawn));
+      printf("(14) offset of m_pthreadMouseLeave in ::windowing::window = %d\n", offsetof(::windowing::window, m_pthreadMouseLeave));
+      printf("(14) offset of m_bPointInside in ::windowing::window = %d\n", offsetof(::windowing::window, m_bPointInside));
+      printf("(14) offset of m_pwindow in ::windowing::window = %d\n", offsetof(::windowing::window, m_pwindow));
 
 #endif
 
@@ -4161,7 +4161,7 @@ namespace user
 
 
    void
-   interaction_impl::MapWindowPoints(::user::interaction_impl *puserinteractionTo, ::point_i32 *pPoint, ::u32 nCount)
+   interaction_impl::MapWindowPoints(::windowing::window *puserinteractionTo, ::point_i32 *pPoint, ::u32 nCount)
    {
 
       __UNREFERENCED_PARAMETER(puserinteractionTo);
@@ -4173,7 +4173,7 @@ namespace user
    }
 
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl *puserinteractionTo, ::rectangle_i32 *prectangle)
+   void interaction_impl::MapWindowPoints(::windowing::window *puserinteractionTo, ::rectangle_i32 *prectangle)
    {
       __UNREFERENCED_PARAMETER(puserinteractionTo);
       __UNREFERENCED_PARAMETER(prectangle);
@@ -4828,7 +4828,7 @@ namespace user
    //}
 
 
-   //::user::interaction_impl * interaction_impl::GetNextDlgGroupItem(::user::interaction_impl * pWndCtl,bool bPrevious) const
+   //::windowing::window * interaction_impl::GetNextDlgGroupItem(::windowing::window * pWndCtl,bool bPrevious) const
    //{
 
    //   __UNREFERENCED_PARAMETER(pWndCtl);
@@ -4841,7 +4841,7 @@ namespace user
    //}
 
 
-   //::user::interaction_impl * interaction_impl::GetNextDlgTabItem(::user::interaction_impl * pWndCtl,bool bPrevious) const
+   //::windowing::window * interaction_impl::GetNextDlgTabItem(::windowing::window * pWndCtl,bool bPrevious) const
    //{
 
    //   __UNREFERENCED_PARAMETER(pWndCtl);
@@ -5600,7 +5600,7 @@ namespace user
    interaction_impl *interaction_impl::get_impl() const
    {
 
-      return (::user::interaction_impl *) this;
+      return (::windowing::window *) this;
 
    }
 
@@ -6257,7 +6257,7 @@ namespace user
                if (m_puserinteraction->has_finishing_flag())
                {
 
-                  informationf("::user::interaction_impl set_finish");
+                  informationf("::windowing::window set_finish");
 
                } else
                {
@@ -6536,7 +6536,7 @@ namespace user
             if (m_puserinteraction->has_finishing_flag())
             {
 
-               informationf("::user::interaction_impl set_finish");
+               informationf("::windowing::window set_finish");
 
             }
             else
@@ -8396,7 +8396,7 @@ namespace user
 //         if (g_pointLastBottomRight != pointBottomRight)
 //         {
 //
-//            //sinformation() << "::user::interaction_impl::do_graphics Different Bottom Right design size" << m_puserinteraction->const_layout().design().size();
+//            //sinformation() << "::windowing::window::do_graphics Different Bottom Right design size" << m_puserinteraction->const_layout().design().size();
 //
 //            g_pointLastBottomRight = pointBottomRight;
 //
@@ -8470,7 +8470,7 @@ namespace user
 //
 //      ::windowing::window * pwindowImpl = nullptr;
 //
-//      ::user::interaction_impl * pimplFocus = nullptr;
+//      ::windowing::window * pimplFocus = nullptr;
 //
 //      if (has_pending_focus() && m_puserinteraction != nullptr && m_puserinteraction->is_window_visible())
 //      {
@@ -9745,12 +9745,12 @@ namespace user
    }
 
 
-   ::user::interaction_impl *message_interaction_impl(::user::message *pusermessage)
+   ::windowing::window *message_interaction_impl(::user::message *pusermessage)
    {
 
       auto pwindow = pusermessage->window();
 
-      return pwindow ? pwindow->m_puserinteractionimpl : nullptr;
+      return pwindow ? pwindow->m_pwindow : nullptr;
 
    }
 
@@ -9778,21 +9778,21 @@ CLASS_DECL_AURA::user::interaction *__interaction(::windowing::window *pwindow)
 
    if (::is_null(pwindow)) return nullptr;
 
-   auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+   auto pwindow = pwindow->m_pwindow;
 
-   if (!puserinteractionimpl) return nullptr;
+   if (!pwindow) return nullptr;
 
-   return puserinteractionimpl->m_puserinteraction;
+   return pwindow->m_puserinteraction;
 
 }
 
 
-CLASS_DECL_AURA::user::interaction_impl *__interaction_impl(::windowing::window *pwindow)
+CLASS_DECL_AURA::windowing::window *__interaction_impl(::windowing::window *pwindow)
 {
 
    if (::is_null(pwindow)) return nullptr;
 
-   auto pimpl = pwindow->m_puserinteractionimpl.m_p;
+   auto pimpl = pwindow->m_pwindow.m_p;
 
    if (::is_null(pimpl)) return nullptr;
 

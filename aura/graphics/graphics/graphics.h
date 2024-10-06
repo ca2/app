@@ -43,7 +43,7 @@ namespace graphics
    public:
 
 
-      ::pointer<::user::interaction_impl>          m_pimpl;
+      //::pointer<::windowing::window>          m_pimpl;
       ::pointer<::windowing::window>               m_pwindow;
       bool                                         m_bNewBuffer;
 
@@ -65,7 +65,10 @@ namespace graphics
       ~graphics() override;
 
 
-      virtual void initialize_graphics_graphics(::user::interaction_impl * pimpl);
+      
+      virtual void initialize_graphics_graphics(::windowing::window * pwindow);
+
+
       void destroy() override;
 
       virtual void destroy_buffer();

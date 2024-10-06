@@ -213,7 +213,7 @@ namespace user
 
       virtual ::pointer< ::mutex > draw_mutex();
 
-      ::user::interaction_impl * get_user_interaction_impl() override;
+      ::windowing::window * get_user_interaction_impl() override;
 
       void post_message(::message::message* pusermessage) override;
 
@@ -329,7 +329,7 @@ namespace user
 
       bool has_pending_redraw_flags() override;
 
-      virtual ::user::interaction_impl * from_os_data(void * pdata);
+      virtual ::windowing::window * from_os_data(void * pdata);
       virtual void * get_os_data() const;
 
       //bool attach(::windowing::window * pwindow_New) override;
@@ -369,7 +369,7 @@ namespace user
       // subclassing/unsubclassing functions
       void pre_subclass_window() override;
       //virtual bool subclass_window(::windowing::window * pwindow) override;
-      //virtual bool SubclassDlgItem(::u32 nID, ::user::interaction_impl * pParent);
+      //virtual bool SubclassDlgItem(::u32 nID, ::windowing::window * pParent);
       //virtual oswindow unsubclass_window() override;
 
       // handling of RT_DLGINIT resource (extension to RT_DIALOG)
@@ -434,7 +434,7 @@ namespace user
 
 #if(WINVER >= 0x0500)
 
-      virtual ::user::interaction_impl* GetAncestor(::u32 gaFlags) const;
+      virtual ::windowing::window* GetAncestor(::u32 gaFlags) const;
 
 #endif   // WINVER >= 0x0500
 
@@ -491,9 +491,9 @@ namespace user
 //#endif
 
       // Coordinate Mapping Functions
-      virtual void MapWindowPoints(::user::interaction_impl* puserinteractionTo,::point_i32 * pPoint,::u32 nCount);
+      virtual void MapWindowPoints(::windowing::window* puserinteractionTo,::point_i32 * pPoint,::u32 nCount);
 
-      virtual void MapWindowPoints(::user::interaction_impl* puserinteractionTo,::rectangle_i32 * prectangle);
+      virtual void MapWindowPoints(::windowing::window* puserinteractionTo,::rectangle_i32 * prectangle);
 
 
       virtual void Print(::draw2d::graphics_pointer & pgraphics,u32 dwFlags) const;
@@ -613,8 +613,8 @@ namespace user
       //virtual i32 GetChildByIdText(i32 nID,char * pStr,i32 nMaxCount) const;
 
       //virtual i32 GetChildByIdText(i32 nID,string & rString) const;
-      //virtual ::user::interaction_impl * GetNextDlgGroupItem(::user::interaction_impl * pWndCtl,bool bPrevious = false) const;
-      //virtual ::user::interaction_impl * GetNextDlgTabItem(::user::interaction_impl * pWndCtl,bool bPrevious = false) const;
+      //virtual ::windowing::window * GetNextDlgGroupItem(::windowing::window * pWndCtl,bool bPrevious = false) const;
+      //virtual ::windowing::window * GetNextDlgTabItem(::windowing::window * pWndCtl,bool bPrevious = false) const;
       //virtual ::u32 IsDlgButtonChecked(i32 nIDButton) const;
       //virtual lresult SendDlgItemMessage(i32 nID,::u32 message,wparam wParam = 0,lparam lParam = 0);
       //virtual void SetDlgItemInt(i32 nID,::u32 nValue,bool bSigned = true);
@@ -745,9 +745,9 @@ namespace user
 
 
       // for creating dialogs and dialog-like windows
-      //virtual bool CreateDlg(const ::string & pszTemplateName, ::user::interaction_impl * puiParent);
+      //virtual bool CreateDlg(const ::string & pszTemplateName, ::windowing::window * puiParent);
 
-      //virtual bool CreateDlgIndirect(LPCDLGTEMPLATE pDialogTemplate, ::user::interaction_impl * puiParent,
+      //virtual bool CreateDlgIndirect(LPCDLGTEMPLATE pDialogTemplate, ::windowing::window * puiParent,
 
       // HINSTANCE hInst);
 
@@ -916,10 +916,10 @@ namespace user
    public:
 
 
-      ::user::interaction_impl * m_pimpl;
+      ::windowing::window * m_pimpl;
 
       
-      device_draw_life_time(::user::interaction_impl * pimpl) :
+      device_draw_life_time(::windowing::window * pimpl) :
          m_pimpl(pimpl)
       {
 

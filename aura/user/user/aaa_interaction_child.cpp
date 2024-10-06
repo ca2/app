@@ -887,7 +887,7 @@ namespace user
 
       m_puserprimitiveOwner = pinteraction;
 
-      return m_puserprimitiveOwner->user_prototype();
+      return m_puserprimitiveOwner->user_interaction_base();
 
    }
 

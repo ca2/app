@@ -7,8 +7,9 @@
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "apex/platform/context.h"
 #include "aura/graphics/image/image.h"
-#include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/interaction.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
 
 
 namespace graphics
@@ -30,12 +31,12 @@ namespace graphics
    }
 
 
-   void bitmap_source_buffer::initialize_graphics_graphics(::user::interaction_impl* pimpl)
+   void bitmap_source_buffer::initialize_graphics_graphics(::windowing::window* pwindow)
    {
 
       //auto estatus =
       
-      graphics::initialize_graphics_graphics(pimpl);
+      graphics::initialize_graphics_graphics(pwindow);
 
       /*if (!estatus)
       {
@@ -44,7 +45,7 @@ namespace graphics
 
       }*/
 
-      if (pimpl->m_strBitmapSource.has_char())
+      if (pwindow->m_strBitmapSource.has_char())
       {
 
 
@@ -64,7 +65,7 @@ namespace graphics
 
          //estatus = 
          
-         set_bitmap_source(pimpl->m_strBitmapSource);
+         set_bitmap_source(pwindow->m_strBitmapSource);
 
          //if (!estatus)
          //{
@@ -227,14 +228,14 @@ namespace graphics
    bool bitmap_source_buffer::buffer_lock_round_swap_key_buffers()
    {
 
-      if (!m_pimpl)
+      if (!m_pwindow)
       {
 
          return false;
 
       }
 
-      if (!m_pimpl->m_puserinteraction)
+      if (!m_pwindow->m_puserframe)
       {
 
          return false;

@@ -12,7 +12,7 @@ namespace graphics
 
 
 
-      ::user::interaction_impl * m_pimpl;
+      ::windowing::window * m_pimpl;
       oswindow                      m_oswindow;
 
 
@@ -21,7 +21,7 @@ namespace graphics
       virtual ~buffer();
 
 
-      virtual void initialize(::user::interaction_impl * pimpl);
+      virtual void initialize(::windowing::window * pimpl);
 
 
       //virtual void create_window_graphics_x(const ::size & size, int iStride = -1);

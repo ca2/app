@@ -61,7 +61,7 @@ namespace draw2d_opengl
       //   return *m_pgraphics;
       //}
       //oswindow get_window_handle() const;
-//      ::user::interaction_impl * GetWindow() const;
+//      ::windowing::window * GetWindow() const;
 
       virtual void thread_select();
       void do_on_context(const ::procedure & procedure) override;

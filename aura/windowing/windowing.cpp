@@ -7,7 +7,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
 #include "aura/platform/application.h"
-#include "aura/user/user/interaction_impl.h"
+//#include "aura/user/user/interaction_impl.h"
 #include "aura/message/user.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/user.h"
@@ -547,7 +547,7 @@ namespace windowing
 
 
 
-   window *windowing::new_message_window(::user::interaction_impl *pimpl)
+   window *windowing::new_message_window(::windowing::window *pimpl)
    {
 
       throw ::interface_only();
@@ -557,22 +557,22 @@ namespace windowing
    }
 
 
-   ::pointer < ::windowing::window > windowing::get_new_window(::user::interaction_impl * puserinteractionimpl)
+   ::pointer < ::windowing::window > windowing::get_new_window(::windowing::window * pwindow)
    {
       
-      auto pwindow = puserinteractionimpl->__create < ::windowing::window >();
+      auto pwindow = pwindow->__create < ::windowing::window >();
 
       return pwindow;
 
    }
 
 
-   window *windowing::new_window(::user::interaction_impl *puserinteractionimpl)
+   window *windowing::new_window(::windowing::window *pwindow)
    {
 
-      auto pwindow = get_new_window(puserinteractionimpl);
+      auto pwindow = get_new_window(pwindow);
 
-      pwindow->call_create_window(puserinteractionimpl);
+      pwindow->call_create_window(pwindow);
 
       return pwindow;
 
@@ -597,16 +597,16 @@ namespace windowing
 
       }
 
-      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+      auto pwindow = pwindow->m_pwindow;
 
-      if (!puserinteractionimpl)
+      if (!pwindow)
       {
 
          throw ::exception(error_wrong_state);
 
       }
 
-      puserinteractionimpl->message_handler(pusermessage);
+      pwindow->message_handler(pusermessage);
 
       return true;
 

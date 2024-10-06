@@ -182,7 +182,7 @@ namespace user
 
 
 
-   //::user::interaction_impl * interaction_base::get_impl() const
+   //::windowing::window * interaction_base::get_impl() const
    //{
 
    //   ::user::interaction * pinteraction = get_wnd();
@@ -1296,7 +1296,7 @@ namespace user
    //}
 
 
-   enum_control_type interaction_base::get_control_type() const
+   enum_control_type interaction_base::get_control_type()
    {
 
       return e_control_type_none;
@@ -2470,10 +2470,12 @@ namespace user
    }
 
 
-   void interaction_base::message_handler(const ::atom & atom, wparam wparam, lparam lparam)
+   lresult interaction_base::message_handler(const ::atom & atom, wparam wparam, lparam lparam)
    {
 
       throw ::interface_only();
+
+      return {};
 
    }
 

@@ -395,9 +395,9 @@ namespace nano
 
          //bool is_window_zoomed() override;
          //void window_minimize() override;
-         //void window_maximize() override; // m_puserinteractionimpl->m_puserinteraction->display(::e_display_zoomed);
-         //void window_full_screen() override; // m_puserinteractionimpl->m_puserinteraction->display(::e_display_full_screen);
-         //void window_restore() override; // m_puserinteractionimpl->m_puserinteraction->display(::e_display_normal);
+         //void window_maximize() override; // m_pwindow->m_puserinteraction->display(::e_display_zoomed);
+         //void window_full_screen() override; // m_pwindow->m_puserinteraction->display(::e_display_full_screen);
+         //void window_restore() override; // m_pwindow->m_puserinteraction->display(::e_display_normal);
          //void window_close() override;
 
          void set_mouse_capture() override;

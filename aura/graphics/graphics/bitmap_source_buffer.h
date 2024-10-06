@@ -26,7 +26,7 @@ namespace graphics
 
       inline bool is_ipc_copy_enabled() const { return m_pmemorymap && m_pmemorymap->is_mapped(); }
 
-      virtual void initialize_graphics_graphics(::user::interaction_impl* pimpl) override;
+      virtual void initialize_graphics_graphics(::windowing::window * pwindow) override;
 
       bool ipc_copy(const pixmap * ppixmap) override;
 

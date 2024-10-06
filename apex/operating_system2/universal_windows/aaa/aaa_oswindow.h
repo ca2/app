@@ -10,14 +10,14 @@ public:
 
    ::message_queue *                        m_pmq;
 
-   ::user::interaction_impl *    m_pimpl;
+   ::windowing::window *    m_pimpl;
 
    iptr_to_iptr *          m_plongptrmap;
 
 
-   ::user::interaction_impl* window();
+   ::windowing::window* window();
 
-   oswindow_data(::user::interaction_impl* pimpl = nullptr);
+   oswindow_data(::windowing::window* pimpl = nullptr);
    ~oswindow_data();
 
    bool is_child(::oswindow oswindow);

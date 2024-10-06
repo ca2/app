@@ -67,9 +67,9 @@ namespace sandbox_windowing
 
 
       virtual ::pointer<::windowing::cursor>load_default_cursor(enum_cursor ecursor) override;
-      ::pointer < ::windowing::window > get_new_window(::user::interaction_impl* pimpl) override;
+      ::pointer < ::windowing::window > get_new_window(::windowing::window* pimpl) override;
 
-//      ::windowing::window* new_window(::user::interaction_impl* pimpl) override;
+//      ::windowing::window* new_window(::windowing::window* pimpl) override;
 //
       void erase_window(::windowing::window* pwindow) override;
 

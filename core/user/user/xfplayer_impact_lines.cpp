@@ -116,7 +116,7 @@ void xfplayer_impact_linea::SetEffect(i32 iEffect)
    }
 }
 
-//void xfplayer_impact_linea::SetRenderWindow(::user::interaction_impl * pwindow)
+//void xfplayer_impact_linea::SetRenderWindow(::windowing::window * pwindow)
 //{
 //   __UNREFERENCED_PARAMETER(pwindow);
 //}

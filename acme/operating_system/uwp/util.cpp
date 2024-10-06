@@ -61,7 +61,7 @@ oswindow CLASS_DECL_ACME __child_window_from_point(oswindow hWnd, ::point_i32 po
       if (__get_dialog_control_id(hWndChild) != (::u16)0 &&
             (::GetWindowLong(hWndChild, GWL_STYLE) & WS_VISIBLE))
       {
-         // see if point_i32 hits the child ::user::interaction_impl
+         // see if point_i32 hits the child ::windowing::window
          ::rectangle_i32 rectangle;
          ::window_rectangle(hWndChild, rectangle);
          if (rectangle.contains(point))
@@ -102,14 +102,14 @@ void CLASS_DECL_ACME __delete_object(HGDIOBJ* pObject)
 /*
 void CLASS_DECL_ACME __cancel_modes(oswindow hWndRcvr)
 {
-   // if we receive a message destined for a ::user::interaction_impl, cancel any combobox
+   // if we receive a message destined for a ::windowing::window, cancel any combobox
    //  popups that could be in toolbars or dialog bars
    oswindow hWndCancel = ::GetFocus();
    if (hWndCancel == nullptr)
       return;     // nothing to cancel
 
    if (hWndCancel == hWndRcvr)
-      return;     // let input go to ::user::interaction_impl with focus
+      return;     // let input go to ::windowing::window with focus
 
    // focus is in part of a combo-box
    if (!__is_combo_box_control(hWndCancel, (::u32)CBS_DROPDOWNLIST))

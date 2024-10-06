@@ -120,7 +120,7 @@ oswindow_data & oswindow_data::operator = (const oswindow_data & oswindow)
 //}
 
 
-void oswindow_data::set_user_interaction_impl(::user::interaction_impl * pimpl)
+void oswindow_data::set_user_interaction_impl(::windowing::window * pimpl)
 {
 
    if(is_null())
@@ -131,7 +131,7 @@ void oswindow_data::set_user_interaction_impl(::user::interaction_impl * pimpl)
 }
 
 
-::user::interaction_impl * oswindow_data::get_user_interaction_impl()
+::windowing::window * oswindow_data::get_user_interaction_impl()
 {
 
    if(is_null())
@@ -141,7 +141,7 @@ void oswindow_data::set_user_interaction_impl(::user::interaction_impl * pimpl)
 
 }
 
-::user::interaction_impl * oswindow_data::get_user_interaction_impl() const
+::windowing::window * oswindow_data::get_user_interaction_impl() const
 {
 
    if(is_null())

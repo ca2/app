@@ -4,8 +4,9 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/graphics/graphics/multiple_buffer.h"
 #include "aura/graphics/image/image.h"
+#include "aura/user/user/frame.h"
 #include "aura/user/user/interaction.h"
-#include "aura/user/user/interaction_impl.h"
+#include "aura/windowing/window.h"
 #include "aura/graphics/image/array.h"
 
 
@@ -32,12 +33,12 @@ namespace graphics
    }
 
 
-   void multiple_buffer::initialize_graphics_graphics(::user::interaction_impl * pimpl)
+   void multiple_buffer::initialize_graphics_graphics(::windowing::window * pwindow)
    {
 
       //auto estatus = 
       
-      graphics::initialize_graphics_graphics(pimpl);
+      graphics::initialize_graphics_graphics(pwindow);
 
       //if (!estatus)
       //{
@@ -354,7 +355,7 @@ namespace graphics
    buffer_item * multiple_buffer::get_screen_item()
    {
 
-      auto size = m_pimpl->m_puserinteraction->const_layout().design().size();
+      auto size = m_pwindow->m_puserframe->const_layout().design().size();
 
       m_iScreen = find_best_buffer(size);
 
@@ -384,7 +385,7 @@ namespace graphics
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto size = m_pimpl->m_puserinteraction->const_layout().design().size();
+      auto size = m_pwindow->m_puserframe->const_layout().design().size();
 
       auto iImage = find_best_buffer(size);
 

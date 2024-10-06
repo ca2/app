@@ -102,7 +102,7 @@ namespace user
 
    //}
 
-   ::user::interaction_impl * primitive_impl::get_user_interaction_impl()
+   ::windowing::window * primitive_impl::get_user_interaction_impl()
    {
 
       return nullptr;
@@ -2224,14 +2224,14 @@ namespace user
          if (::is_set(puserinteraction))
          {
 
-            auto pinteractionimpl = puserinteraction->m_pinteractionimpl;
+            auto pwindow = puserinteraction->m_pinteractionimpl;
 
-            if (pinteractionimpl)
+            if (pwindow)
             {
 
-               synchronous_lock synchronouslock(pinteractionimpl->synchronization());
+               synchronous_lock synchronouslock(pwindow->synchronization());
 
-               pinteractionimpl->m_userinteractionaMouseHover.erase(m_puserinteraction);
+               pwindow->m_userinteractionaMouseHover.erase(m_puserinteraction);
 
             }
 
@@ -2794,7 +2794,7 @@ namespace user
 
    //   }
 
-   //   ::pointer<::user::interaction_impl>pimpl = pinteraction->m_pimpl;
+   //   ::pointer<::windowing::window>pimpl = pinteraction->m_pimpl;
 
    //   if (pimpl.is_null())
    //   {
@@ -3007,7 +3007,7 @@ namespace user
    ::user::interaction * primitive_impl::top_level()
    {
       
-      return m_puserinteraction->m_puserinteractionTopLevel;
+      return m_puserinteraction->top_level();
 
    }
 
@@ -3015,7 +3015,7 @@ namespace user
    ::user::frame * primitive_impl::parent_frame()
    {
       
-      return m_puserinteraction->m_puserframeParent;
+      return m_puserinteraction->parent_frame();
 
    }
 

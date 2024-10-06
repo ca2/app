@@ -116,7 +116,7 @@ string ca2_command_line()
 //
 //      ////   //}
 //
-//      ////   //::pointer<::user::interaction_impl>pimpl = psystem->get_session()->m_puserinteractionHost->m_pimpl;
+//      ////   //::pointer<::windowing::window>pimpl = psystem->get_session()->m_puserinteractionHost->m_pimpl;
 //
 //      ////   //if (pimpl)
 //      ////   //{

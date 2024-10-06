@@ -417,7 +417,7 @@ namespace draw2d
    }
 
 
-   /*   i32 graphics::ExcludeUpdateRgn(::user::interaction_impl * pwindow)
+   /*   i32 graphics::ExcludeUpdateRgn(::windowing::window * pwindow)
       {
          __UNREFERENCED_PARAMETER(pwindow);
 

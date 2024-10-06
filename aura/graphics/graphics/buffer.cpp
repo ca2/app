@@ -3,7 +3,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "aura/graphics/image/image.h"
-#include "aura/user/user/interaction_impl.h"
+//#include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/interaction.h"
 
 

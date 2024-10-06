@@ -542,7 +542,7 @@ bool db_long_set::save(const ::string & lpKey, const ::rectangle_i32 * lpRect)
 }
 
 
-bool db_long_set::MoveWindow_(const ::string & lpKey, ::user::interaction_impl * pwindow)
+bool db_long_set::MoveWindow_(const ::string & lpKey, ::windowing::window * pwindow)
 {
 
    ::rectangle_i32 rectangle;
@@ -557,7 +557,7 @@ bool db_long_set::MoveWindow_(const ::string & lpKey, ::user::interaction_impl *
 }
 
 
-bool db_long_set::SaveWindowRectangle(const ::string & lpKey, ::user::interaction_impl * pwindow)
+bool db_long_set::SaveWindowRectangle(const ::string & lpKey, ::windowing::window * pwindow)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -710,7 +710,7 @@ return hr;
 
 //}
 
-bool db_long_set::SetWindowPlacement(const ::string & lpKey, ::user::interaction_impl * pwindow)
+bool db_long_set::SetWindowPlacement(const ::string & lpKey, ::windowing::window * pwindow)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -747,7 +747,7 @@ bool db_long_set::SetWindowPlacement(const ::string & lpKey, ::user::interaction
 
 }
 
-bool db_long_set::SaveWindowPlacement(const ::string & lpKey, ::user::interaction_impl * pwindow)
+bool db_long_set::SaveWindowPlacement(const ::string & lpKey, ::windowing::window * pwindow)
 {
 
 #ifdef WINDOWS_DESKTOP

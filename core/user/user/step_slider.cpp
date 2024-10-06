@@ -5,7 +5,7 @@
 #include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
-#include "aura/user/user/interaction_impl.h"
+//#include "aura/user/user/interaction_impl.h"
 
 
 namespace user

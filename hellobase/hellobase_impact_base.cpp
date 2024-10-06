@@ -219,7 +219,7 @@ pacmedirectory->system() / "obs.png");
       //pdcParam->set_text_color(m_colorDrawStatus);
 
       //string str1;
-      //str1 = "FPS: " + as_string((int) get_wnd()->m_pimpl.cast<::user::interaction_impl>()->m_dUpdateScreenFps);
+      //str1 = "FPS: " + as_string((int) get_wnd()->m_pimpl.cast<::windowing::window>()->m_dUpdateScreenFps);
       //m_yDrawStatus = 10;
       //pdcParam->TextOutA(10, m_yDrawStatus, str1);
       //m_yDrawStatus += m_pfontDrawStatus->m_dFontSize;

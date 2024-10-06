@@ -30,7 +30,7 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/windowing/windowing.h"
 #include "aura/message/user.h"
-#include "aura/user/user/interaction_impl.h"
+//#include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/copydesk.h"
 #include "aura/user/user/style.h"
 #include "aura/user/user/system.h"
@@ -525,7 +525,7 @@ namespace user
             if (pkey->m_ekey == ::user::e_key_p)
             {
 
-               ::pointer<::user::interaction_impl>pimpl = m_pprimitiveimpl;
+               ::pointer<::windowing::window>pimpl = m_pprimitiveimpl;
 
                if (pimpl.is_set())
                {
@@ -837,7 +837,7 @@ namespace user
       /*   oswindow oswindow = ::GetWindow(::get_desktop_window(), GW_CHILD);
       while (oswindow != nullptr)
       {
-      ::user::interaction_impl * pwindow = interaction_impl::FromHandlePermanent(oswindow);
+      ::windowing::window * pwindow = interaction_impl::FromHandlePermanent(oswindow);
       if (pwindow != nullptr && get_handle() != oswindow && __is_descendant(this, pwindow))
       {
       u32 uStyle = ::GetWindowLong(oswindow, GWL_STYLE);

@@ -55,11 +55,11 @@ namespace user
 
    class interaction;
 
-   class interaction_impl;
-
    class interaction_scaler;
 
    class interaction_listener;
+
+   class graphics_thread;
 
    class style;
 
@@ -120,8 +120,8 @@ namespace user
    //class system;
    class control_event;
    //class control_descriptor;
-   class interaction_child;
-   class interaction_impl;
+   //class interaction_child;
+   //class interaction_impl;
    class interaction_array;
 
 
@@ -187,7 +187,7 @@ namespace user
 
    class notify_icon;
 
-   CLASS_DECL_AURA ::user::interaction_impl * message_interaction_impl(::user::message * pusermessage);
+   //CLASS_DECL_AURA ::windowing::window * message_interaction_impl(::user::message * pusermessage);
 
    CLASS_DECL_AURA ::user::interaction * message_user_interaction(::user::message * pusermessage);
 
@@ -269,7 +269,7 @@ namespace user
    class plain_text_tree;
    class plain_text_command;
    class tree_draw_item;
-   class interaction_child;
+   //class interaction_child;
    class box;
    class control_style;
    class plain_edit_style;

@@ -23,7 +23,7 @@ namespace aura
 
       bool                                                  m_bAcceptsFirstResponder;
 
-      ::pointer < ::user::interaction_impl >                m_pimplPendingFocus2;
+      ::pointer < ::user::interaction >                     m_puserinteractionPendingFocus2;
       ::pointer < ::user::interaction >                     m_puiLastUserInputPopup;
 
       //pointer_array < ::user::interaction >                  m_uiptraToolWindow;

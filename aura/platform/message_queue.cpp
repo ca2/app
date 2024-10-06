@@ -2,7 +2,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task_message_queue.h"
 #include "aura/platform/message_queue.h"
-#include "aura/user/user/interaction_impl.h"
+#include "aura/user/user/frame.h"
 #include "aura/user/user/interaction_thread.h"
 #include "aura/windowing/window.h"
 #include "aura/user/user/interaction.h"
@@ -20,7 +20,7 @@ CLASS_DECL_AURA void message_queue_post(::windowing::window * pwindow, const ::a
 
    //auto pwindow = pwindowing->window(oswindow);
 
-   auto pinteraction = __interaction(pwindow);
+   auto pinteraction = pwindow->m_puserframe;
 
    if (pinteraction == nullptr)
    {
@@ -64,23 +64,23 @@ CLASS_DECL_AURA void mq_erase_window_from_all_queues(::windowing::window * pwind
 
    //auto pwindow = pwindowing->window(oswindow);
 
-   ::user::interaction * pinteraction = __interaction(pwindow);
+   auto puserframe = pwindow->m_puserframe;
 
-   if(pinteraction == nullptr)
+   if(!puserframe)
    {
 
       throw ::exception(error_wrong_state);
 
    }
 
-   if(pinteraction->get_app() == nullptr)
+   if(puserframe->get_app() == nullptr)
    {
 
       throw ::exception(error_wrong_state);
 
    }
 
-   itask_t idthread = pinteraction->get_app()->get_itask();
+   itask_t idthread = puserframe->get_app()->get_itask();
 
    message_queue * pmq = ::acme::get()->m_ptaskmessagequeue->get_message_queue(idthread, false);
 

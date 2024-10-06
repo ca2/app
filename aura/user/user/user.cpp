@@ -3,7 +3,7 @@
 #include "user.h"
 #include "shell.h"
 #include "style.h"
-#include "interaction_impl.h"
+//#include "interaction_impl.h"
 #include "interaction.h"
 #include "plain_edit.h"
 #include "still.h"
@@ -28,6 +28,7 @@
 #include "aura/platform/session.h"
 #include "aura/platform/application.h"
 #include "aura/platform/node.h"
+#include "aura/user/user/frame.h"
 
 #if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
 #include <stdio.h>
@@ -227,16 +228,16 @@ namespace user
 
       }
 
-      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+      //auto pwindow = pwindow->m_pwindow;
 
-      if (::is_null(puserinteractionimpl))
-      {
+      //if (::is_null(pwindow))
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
-      return puserinteractionimpl->m_puserinteraction;
+      return pwindow->m_puserframe;
 
    }
 
@@ -262,16 +263,16 @@ namespace user
 
       }
 
-      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+      //auto pwindow = pwindow->m_pwindow;
 
-      if (::is_null(puserinteractionimpl))
-      {
+      //if (::is_null(pwindow))
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
-      return puserinteractionimpl->m_puserinteractionMouseCapture;
+      return pwindow->m_puserinteractionMouseCapture;
 
    }
 
@@ -297,16 +298,16 @@ namespace user
 
       }
 
-      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+      //auto pwindow = pwindow->m_pwindow;
 
-      if (::is_null(puserinteractionimpl))
-      {
+      //if (::is_null(pwindow))
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
-      return puserinteractionimpl->m_puserinteractionKeyboardFocus;
+      return pwindow->m_puserinteractionKeyboardFocus;
 
    }
 
@@ -332,16 +333,16 @@ namespace user
 
       }
 
-      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+      //auto pwindow = pwindow->m_pwindow;
 
-      if (::is_null(puserinteractionimpl))
-      {
+      //if (::is_null(pwindow))
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
-      return puserinteractionimpl->m_puserinteraction;
+      return pwindow->m_puserframe;
 
    }
 
@@ -395,16 +396,16 @@ namespace user
 
       }
 
-      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+      //auto pwindow = pwindow->m_pwindow;
 
-      if (::is_null(puserinteractionimpl))
-      {
+      //if (::is_null(pwindow))
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
-      return puserinteractionimpl->m_puserinteraction;
+      return pwindow->m_puserframe;
 
    }
 

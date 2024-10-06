@@ -198,7 +198,7 @@ namespace userfs
 
          pPopup->track_popup_menu(
          point.x(), point.y(),
-         (::user::interaction_impl *) pframe);
+         (::windowing::window *) pframe);
          }
          }
          else
@@ -211,7 +211,7 @@ namespace userfs
          ::pointer<::user::frame_window>pframe = top_level_frame();
          pPopup->track_popup_menu(
          point.x(), point.y(),
-         (::user::interaction_impl *) pframe);
+         (::windowing::window *) pframe);
          }
          }*/
    }

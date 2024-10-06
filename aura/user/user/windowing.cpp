@@ -18,8 +18,8 @@
 //
 //
 //   critical_section * g_pcsImpl = nullptr;
-//   map < oswindow, ::user::interaction_impl * > * g_pmapImpl = nullptr;
-//   map < ::user::interaction_impl *, oswindow > * g_pmapHandle = nullptr;
+//   map < oswindow, ::windowing::window * > * g_pmapImpl = nullptr;
+//   map < ::windowing::window *, oswindow > * g_pmapHandle = nullptr;
 //
 //
 //   CLASS_DECL_AURA void init_windowing()
@@ -27,9 +27,9 @@
 //
 //      g_pcsImpl = new critical_section();
 //
-//      g_pmapImpl = memory_new map < oswindow, ::user::interaction_impl * >;
+//      g_pmapImpl = memory_new map < oswindow, ::windowing::window * >;
 //
-//      g_pmapHandle = memory_new  map < ::user::interaction_impl *, oswindow >;
+//      g_pmapHandle = memory_new  map < ::windowing::window *, oswindow >;
 //      
 ////      
 ////#ifdef WINDOWS_DESKTOP
@@ -56,7 +56,7 @@
 //} // namespace user
 
 
-//CLASS_DECL_AURA bool oswindow_assign(oswindow, ::user::interaction_impl * pimpl)
+//CLASS_DECL_AURA bool oswindow_assign(oswindow, ::windowing::window * pimpl)
 //{
 //
 //   if (oswindow == nullptr)
@@ -84,7 +84,7 @@
 //}
 //
 
-//CLASS_DECL_AURA ::windowing::window * pwindow_erase_impl(::user::interaction_impl * pimpl)
+//CLASS_DECL_AURA ::windowing::window * pwindow_erase_impl(::windowing::window * pimpl)
 //{
 //
 //   ASSERT(pimpl != nullptr);

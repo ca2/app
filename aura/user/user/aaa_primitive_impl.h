@@ -22,7 +22,7 @@ namespace user
    public:
 
 
-      ::user::interaction_impl *                m_pinteractionimpl;
+      ::windowing::window *                m_pinteractionimpl;
       ::user::interaction_child *               m_pinteractionchild;
 
 
@@ -56,7 +56,7 @@ namespace user
 
 
       inline critical_section * cs_display() { return m_pcsDisplay; }
-      virtual ::user::interaction_impl * get_user_interaction_impl();
+      virtual ::windowing::window * get_user_interaction_impl();
       virtual ::user::interaction_child * get_user_interaction_child();
 
       

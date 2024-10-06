@@ -55,7 +55,7 @@ void __node_apex_factory(::factory::factory * pfactory)
 
    ////add_factory_item < ::android::shell               , ::user::shell               > ();
 
-   ////add_factory_item < ::android::interaction_impl    , ::user::interaction_impl    > ();
+   ////add_factory_item < ::android::interaction_impl    , ::windowing::window    > ();
 
    //add_factory_item < ::file::os_watcher             , ::file::watcher             > ();
 

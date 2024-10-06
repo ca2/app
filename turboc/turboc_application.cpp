@@ -69,7 +69,7 @@ namespace turboc
       this,
       "main",
       ::type < ::turboc::document >(),
-      ::type < ::turboc::frame >(),       // top level SDI frame::user::interaction_impl
+      ::type < ::turboc::frame >(),       // top level SDI frame::windowing::window
       ::type < ::turboc::pane_impact >());
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseMain = pDocTemplate;
@@ -77,7 +77,7 @@ namespace turboc
       this,
       "main",
       ::type < ::turboc::document >(),
-      ::type < ::turboc::frame >(),       // top level SDI frame::user::interaction_impl
+      ::type < ::turboc::frame >(),       // top level SDI frame::windowing::window
       ::type < ::turboc::main_impact >());
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseImpact = pDocTemplate;
@@ -85,7 +85,7 @@ namespace turboc
       this,
       "main",
       ::type < ::turboc::document >(),
-      ::type < ::turboc::frame >(),       // top level SDI frame::user::interaction_impl
+      ::type < ::turboc::frame >(),       // top level SDI frame::windowing::window
       ::type < ::turboc::switcher_impact >());
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseSwitcher = pDocTemplate;

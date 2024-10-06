@@ -267,7 +267,7 @@ namespace user
       else if (ptopic->m_atom == ::id_click)
       {
 
-         m_payloadResult = ptopic->m_puserelement->user_prototype()->m_atom;
+         m_payloadResult = ptopic->m_puserelement->user_interaction()->m_atom;
 
          m_estatus = ::success;
 

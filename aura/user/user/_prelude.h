@@ -42,7 +42,7 @@ namespace user
 
 
    class interaction;
-   class interaction_impl;
+   //class interaction_impl;
    class impact_data;
    class tree;
    class str_context;
@@ -63,7 +63,7 @@ namespace user
    class form_callback;
 
    class interaction;
-   class interaction_impl;
+   //class interaction_impl;
    class frame_window;
    class create_struct;
 
@@ -94,7 +94,7 @@ namespace simple_ui
 
 
 
-typedef ::pointer<::user::interaction_impl>window_pointer;
+typedef ::pointer<::windowing::window>window_pointer;
 
 
 

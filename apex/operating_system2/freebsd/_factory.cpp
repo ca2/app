@@ -23,7 +23,7 @@ void __node_apex_factory(::factory::factory * pfactory)
    //add_factory_item < ::posix::pipe               , ::operating_system::pipe          >();
    //add_factory_item < ::linux::console            , ::console::console       >();
    //add_factory_item < ::xlib::buffer              , ::graphics::graphics     >();
-   //add_factory_item < ::linux::interaction_impl   , ::user::interaction_impl >();
+   //add_factory_item < ::linux::interaction_impl   , ::windowing::window >();
    //add_factory_item < ::linux::copydesk           , ::user::copydesk         >();
 
    //add_factory_item < ::file::os_watcher          , ::file::watcher          >();

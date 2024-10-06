@@ -6,10 +6,10 @@
 
 #include "acme/platform/department.h"
 #include "acme/prototype/collection/int_map.h"
-//#include "acme/prototype/geometry2d/_geometry2d.h"
+#include "acme/prototype/collection/list.h"
 
 
-CLASS_DECL_AURA ::user::interaction_impl * __interaction_impl(::windowing::window * pwindow);
+//CLASS_DECL_AURA ::windowing::window * __interaction_impl(::windowing::window * pwindow);
 
 
 namespace windowing
@@ -53,7 +53,6 @@ namespace windowing
 
       // Fallback implementation of a Main thread mouse capture
       ::pointer<::windowing::window>            m_pwindowMouseCapture;
-
 
       windowing();
       ~windowing() override;
@@ -168,13 +167,13 @@ namespace windowing
 
 
 
-      virtual class window * new_message_window(::user::interaction_impl * pimpl);
+      virtual ::pointer < ::windowing::window > new_message_window();
 
       
-      virtual ::pointer < ::windowing::window > get_new_window(::user::interaction_impl * puserinteractionimpl);
+      virtual ::pointer < ::windowing::window > get_new_window();
       
 
-      virtual class window * new_window(::user::interaction_impl * puserinteractionimpl);
+      virtual ::pointer < ::windowing::window > new_window();
       
 
       virtual void erase_window(::windowing::window * pwindow);

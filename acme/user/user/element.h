@@ -166,12 +166,12 @@ namespace user
 
 
       virtual bool is_window_visible();
-      virtual bool is_window_stored_iconic(); // m_puserinteractionimpl->m_puserinteraction->const_layout().window().display() == e_display_iconic
+      virtual bool is_window_stored_iconic(); // m_pwindow->m_puserinteraction->const_layout().window().display() == e_display_iconic
       virtual bool is_window_zoomed();
       virtual void window_minimize();
-      virtual void window_maximize(); // m_puserinteractionimpl->m_puserinteraction->display(::e_display_zoomed);
-      virtual void window_full_screen(); // m_puserinteractionimpl->m_puserinteraction->display(::e_display_full_screen);
-      virtual void window_restore(); // m_puserinteractionimpl->m_puserinteraction->display(::e_display_normal);
+      virtual void window_maximize(); // m_pwindow->m_puserinteraction->display(::e_display_zoomed);
+      virtual void window_full_screen(); // m_pwindow->m_puserinteraction->display(::e_display_full_screen);
+      virtual void window_restore(); // m_pwindow->m_puserinteraction->display(::e_display_normal);
       virtual void window_close();
 
 
@@ -196,12 +196,12 @@ namespace user
       virtual void defer_update_display();
 
       
-      virtual enum_control_type get_control_type() const;
+      virtual enum_control_type get_control_type();
 
 
       virtual void add_fps_interest(::particle * pparticle);
       virtual void erase_fps_interest(::particle * pparticle);
-      virtual bool is_fps_interest(const ::particle * pparticle) const;
+      virtual bool is_fps_interest(::particle * pparticle);
 
       virtual void display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
 
@@ -386,7 +386,7 @@ namespace user
 
 #endif
 
-      virtual void message_handler(const ::atom & atom, wparam wparam = {}, lparam lparam = 0);
+      virtual lresult message_handler(const ::atom & atom, wparam wparam = {}, lparam lparam = 0);
 
       virtual void post_message(const ::atom & atom, wparam wparam = {}, lparam lparam = 0);
 
@@ -490,7 +490,7 @@ namespace user
 
       virtual ::user::interaction * get_wnd();
       virtual ::user::interaction * get_wnd(::u32 nCmd);
-      //virtual ::user::interaction_impl * get_impl() const;
+      //virtual ::windowing::window * get_impl() const;
       //virtual ::task * get_task() override;
 
       virtual ::user::element * set_parent(::user::element * pinteraction);

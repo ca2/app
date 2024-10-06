@@ -38,7 +38,7 @@ namespace universal_windows
       ::acme::system *                 system();
       ::pointer < ::mutex >                          m_pmutexDc;
       size                             m_size;
-      ::user::interaction_impl *       m_pimpl;
+      ::windowing::window *       m_pimpl;
       bool                             m_bInitialized;
       bool                             m_bInit;
       ::image::image_pointer                  m_pimage;

@@ -102,7 +102,7 @@
 //#include "aura/windowing/menu.h"
 //
 //
-////using window_pointer = ::pointer<::user::interaction_impl>
+////using window_pointer = ::pointer<::windowing::window>
 //
 ////#include "primitive_impl.h"
 //

@@ -27,12 +27,12 @@ namespace graphics
    }
 
 
-   void double_buffer::initialize_graphics_graphics(::user::interaction_impl * pimpl)
+   void double_buffer::initialize_graphics_graphics(::windowing::window * pwindow)
    {
 
       //auto estatus = 
 
-      graphics::initialize_graphics_graphics(pimpl);
+      graphics::initialize_graphics_graphics(pwindow);
 
       //if (!estatus)
       //{

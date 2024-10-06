@@ -32,7 +32,7 @@ namespace userex
       //dialog::OnInitDialog();
 
       /*   linux CStatic * pImage = (CStatic *) get_child_by_id(IDC_STATIC_IMAGE);
-      ::user::interaction_impl * pWndText = get_child_by_id(IDC_STATIC_TEXT);
+      ::windowing::window * pWndText = get_child_by_id(IDC_STATIC_TEXT);
       user::plain_edit * pEditAdvanced = (user::plain_edit *) get_child_by_id(IDC_EDIT_ADVANCED);
 
       if(m_pexception != nullptr)

@@ -291,7 +291,7 @@ namespace user
       void AddFrameWnd();
       void RemoveFrameWnd();
 
-      friend class interaction_impl;  // for access to m_bModalDisable
+      //friend class interaction_impl;  // for access to m_bModalDisable
       friend class CReBar; // for access to m_bInRecalcLayout
 
 

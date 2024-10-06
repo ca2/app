@@ -650,7 +650,7 @@ namespace experience_tranquillum
 
          //}
 
-         //::user::interaction_impl * puiImplActive = oswindow_get(hwndActiveWindow);
+         //::windowing::window * puiImplActive = oswindow_get(hwndActiveWindow);
 
          //::user::interaction * puiActive = nullptr;
 

@@ -680,7 +680,7 @@ namespace aura
 //      while (oswindow != nullptr)
 //      {
 //
-//         ::user::interaction_impl * pimpl = ::oswindow_interaction_impl(oswindow);
+//         ::windowing::window * pimpl = ::oswindow_interaction_impl(oswindow);
 //
 //         if (pimpl != nullptr)
 //         {
@@ -749,7 +749,7 @@ namespace aura
 ////
 ////      }
 ////
-////      ::user::interaction_impl * pimpl = pinteraction->m_pimpl.cast < ::user::interaction_impl > ();
+////      ::windowing::window * pimpl = pinteraction->m_pimpl.cast < ::windowing::window > ();
 ////
 ////      if (::is_null(pimpl))
 ////      {
@@ -912,7 +912,7 @@ namespace aura
 //
 //      }
 //
-//      ::user::interaction_impl * pimpl = puiImpl->m_pimpl.cast < ::user::interaction_impl >();
+//      ::windowing::window * pimpl = puiImpl->m_pimpl.cast < ::windowing::window >();
 //
 //      if (pimpl == nullptr)
 //      {
@@ -1070,7 +1070,7 @@ namespace aura
 //
 //      }
 //
-//      ::user::interaction_impl * pimpl = puiImpl->m_pimpl.cast < ::user::interaction_impl >();
+//      ::windowing::window * pimpl = puiImpl->m_pimpl.cast < ::windowing::window >();
 //
 //      if (pimpl == nullptr)
 //      {

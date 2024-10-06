@@ -39,7 +39,7 @@ namespace user
       ::pointer<::user::interaction_base>              m_puserprimitiveOwner;
       ::procedure                               m_procedureSuccess;
       ::procedure                               m_procedureFailure;
-      ::pointer<::user::interaction_impl>       m_puserinteractionimpl;
+      //::pointer<::windowing::window>       m_pwindow;
       ::pointer<::request>                      m_prequest;
       ::pointer<::windowing::window>            m_pwindow;
 

@@ -82,7 +82,7 @@ namespace user
    //
 
 
-   //::user::interaction_impl * element::get_impl() const
+   //::windowing::window * element::get_impl() const
    //{
 
    //   ::user::interaction * pinteraction = get_wnd();
@@ -663,7 +663,7 @@ namespace user
    }
 
 
-   bool element::is_fps_interest(const ::particle * pparticle) const
+   bool element::is_fps_interest(::particle * pparticle)
    {
 
       return false;
@@ -1174,7 +1174,7 @@ namespace user
 
 
 
-   enum_control_type element::get_control_type() const
+   enum_control_type element::get_control_type()
    {
 
       return e_control_type_none;
@@ -2367,10 +2367,12 @@ namespace user
 
 
 
-   void element::message_handler(const ::atom & atom, wparam wparam, lparam lparam)
+   lresult element::message_handler(const ::atom & atom, wparam wparam, lparam lparam)
    {
 
       throw ::interface_only();
+
+      return {};
 
    }
 

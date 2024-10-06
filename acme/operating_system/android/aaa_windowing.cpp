@@ -26,15 +26,15 @@ void defer_term_ui()
 //}
 
 
-CLASS_DECL_ACME i32 oswindow_find_message_only_window(::user::interaction_impl * puibaseMessageWindow);
+CLASS_DECL_ACME i32 oswindow_find_message_only_window(::windowing::window * puibaseMessageWindow);
 //CLASS_DECL_ACME i32 oswindow_find(Display * pdisplay,Window window);
 //CLASS_DECL_ACME i32 oswindow_find(Window window);
-CLASS_DECL_ACME oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * puibaseMessageWindow);
+CLASS_DECL_ACME oswindow_data * oswindow_get_message_only_window(::windowing::window * puibaseMessageWindow);
 //CLASS_DECL_ACME oswindow_data * oswindow_get(Display * pdisplay,Window window,Visual * pvisual = nullptr,int iDepth = -1,int iScreen = -1,Colormap colormap = None);
 //CLASS_DECL_ACME oswindow_data * oswindow_get(Window window);
 //CLASS_DECL_ACME oswindow oswindow_defer_get(Window w);
 //CLASS_DECL_ACME bool oswindow_erase(Display * pdisplay,Window window);
-CLASS_DECL_ACME bool oswindow_erase_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
+CLASS_DECL_ACME bool oswindow_erase_message_only_window(::windowing::window * puibaseMessageOnlyWindow);
 
 
 namespace user
@@ -80,7 +80,7 @@ oswindow_data::~oswindow_data()
 //::pointer< ::mutex > oswindow_data::s_pmutex = aaa_primitive_new ::pointer < ::mutex >;
 
 
-i32 oswindow_find_message_only_window(::user::interaction_impl * pimpl)
+i32 oswindow_find_message_only_window(::windowing::window * pimpl)
 {
 
    if (pimpl == nullptr)
@@ -111,7 +111,7 @@ i32 oswindow_find_message_only_window(::user::interaction_impl * pimpl)
 
 
 
-i32 oswindow_find(::user::interaction_impl * pimpl)
+i32 oswindow_find(::windowing::window * pimpl)
 {
 
    synchronous_lock slOsWindow(::oswindow_data::s_pmutex);
@@ -129,7 +129,7 @@ i32 oswindow_find(::user::interaction_impl * pimpl)
 
 }
 
-oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * pimpl)
+oswindow_data * oswindow_get_message_only_window(::windowing::window * pimpl)
 {
 
    if (pimpl == nullptr)
@@ -159,7 +159,7 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * pimp
 }
 
 
-oswindow_data * oswindow_get(::user::interaction_impl * pimpl)
+oswindow_data * oswindow_get(::windowing::window * pimpl)
 {
 
    synchronous_lock slOsWindow(::oswindow_data::s_pmutex);
@@ -265,7 +265,7 @@ return *this;
 */
 
 
-oswindow oswindow_defer_get(::user::interaction_impl * pimpl)
+oswindow oswindow_defer_get(::windowing::window * pimpl)
 {
 
    return pimpl->m_oswindow;
@@ -291,7 +291,7 @@ oswindow oswindow_defer_get(::user::interaction_impl * pimpl)
 //}
 
 
-bool oswindow_erase_message_only_window(::user::interaction_impl * pinteraction)
+bool oswindow_erase_message_only_window(::windowing::window * pinteraction)
 {
 
    synchronous_lock slOsWindow(::oswindow_data::s_pmutex);
@@ -394,7 +394,7 @@ void oswindow_data::post_nc_destroy()
 }
 
 
-void oswindow_data::set_impl(::user::interaction_impl * pimpl)
+void oswindow_data::set_impl(::windowing::window * pimpl)
 {
 
    synchronous_lock slOsWindow(s_pmutex);
@@ -413,7 +413,7 @@ void oswindow_data::set_impl(::user::interaction_impl * pimpl)
 }
 
 
-::user::interaction_impl * oswindow_data::get_impl()
+::windowing::window * oswindow_data::get_impl()
 {
 
    single_lock slOsWindow(s_pmutex, true);
@@ -430,7 +430,7 @@ void oswindow_data::set_impl(::user::interaction_impl * pimpl)
 }
 
 
-::user::interaction_impl * oswindow_data::get_impl() const
+::windowing::window * oswindow_data::get_impl() const
 {
 
    single_lock slOsWindow(s_pmutex, true);
@@ -450,7 +450,7 @@ void oswindow_data::set_impl(::user::interaction_impl * pimpl)
 ::user::interaction * oswindow_data::get_user_interaction()
 {
 
-   ::user::interaction_impl * pimpl = get_impl();
+   ::windowing::window * pimpl = get_impl();
 
    try
    {
@@ -471,7 +471,7 @@ void oswindow_data::set_impl(::user::interaction_impl * pimpl)
 ::user::interaction * oswindow_data::get_user_interaction() const
 {
 
-   ::user::interaction_impl * pimpl = get_impl();
+   ::windowing::window * pimpl = get_impl();
 
    try
    {
@@ -1008,7 +1008,7 @@ int_bool GetCursorPos(POINT32 * lppt)
 //}
 
 
-::user::interaction_impl * window_from_handle(oswindow oswindow)
+::windowing::window * window_from_handle(oswindow oswindow)
 {
 
    if (oswindow == nullptr)
@@ -1401,7 +1401,7 @@ CLASS_DECL_ACME void defer_dock_application(int_bool bDock)
 }
 
 
-CLASS_DECL_ACME ::user::interaction_impl * oswindow_get(oswindow oswindow)
+CLASS_DECL_ACME ::windowing::window * oswindow_get(oswindow oswindow)
 {
 
    if (oswindow == nullptr)
@@ -1602,7 +1602,7 @@ double _001GetWindowTopLeftWeightedOccludedOpaqueRate(oswindow oswindow)
 int get_main_screen_rectangle(::rectangle_i32 * lprect)
 {
 
-   *lprect = ::acmeacmesystem()->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectangleWindowScreen;
+   *lprect = ::acmeacmesystem()->get_session()->m_puserinteractionHost->m_pimpl->cast < ::windowing::window >()->m_rectangleWindowScreen;
 
    return true;
 
@@ -1612,7 +1612,7 @@ int get_main_screen_rectangle(::rectangle_i32 * lprect)
 int SetMainScreenRect(LPCRECT32 lpcrect)
 {
 
-   ::acmeacmesystem()->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectangleWindowScreen = *lpcrect;
+   ::acmeacmesystem()->get_session()->m_puserinteractionHost->m_pimpl->cast < ::windowing::window >()->m_rectangleWindowScreen = *lpcrect;
 
    return true;
 

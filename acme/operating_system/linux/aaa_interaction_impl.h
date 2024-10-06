@@ -13,7 +13,7 @@ namespace linux
 
    class x11data;
    class interaction_impl :
-      virtual public ::user::interaction_impl
+      virtual public ::windowing::window
    {
    public:
 
@@ -54,8 +54,8 @@ namespace linux
 
       void install_message_routing(::channel * pchannel) override;
 
-      bool operator==(const ::user::interaction_impl& wnd) const;
-      bool operator!=(const ::user::interaction_impl& wnd) const;
+      bool operator==(const ::windowing::window& wnd) const;
+      bool operator!=(const ::windowing::window& wnd) const;
 
       ::u32 GetStyle() const override;
       ::u32 GetExStyle() const override;
@@ -80,7 +80,7 @@ namespace linux
       virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
 
 
-      virtual ::user::interaction_impl * from_os_data(void * pdata) override;
+      virtual ::windowing::window * from_os_data(void * pdata) override;
       virtual void * get_os_data() const override;
 
       static user::interaction_impl * from_handle(oswindow hWnd);
@@ -102,7 +102,7 @@ namespace linux
 
       //virtual bool create_message_queue(::user::interaction * pinteraction, const char * lpszName) override;
 
-//      using ::user::interaction_impl::create_window;
+//      using ::windowing::window::create_window;
 
       // for child windows, views, panes etc
 //      virtual bool create_window(
@@ -135,7 +135,7 @@ namespace linux
 
       virtual bool DestroyWindow() override;
 
-      // special pre-creation and ::user::interaction_impl rectangle adjustment hooks
+      // special pre-creation and ::windowing::window rectangle adjustment hooks
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
       // Advanced: virtual AdjustWindowRect
@@ -217,7 +217,7 @@ namespace linux
 
   //    virtual bool _001GetWindowRect(RECT64 * prect);
 
-      //using ::user::interaction_impl::this->rectangle;
+      //using ::windowing::window::this->rectangle;
       //virtual bool this->rectangle(RECT64 * prect);
 
 
@@ -329,11 +329,11 @@ namespace linux
       virtual bool IsWindowEnabled();
       virtual bool EnableWindow(bool bEnable = true);
 
-      // the active ::user::interaction_impl applies only to top-level (frame windows)
+      // the active ::windowing::window applies only to top-level (frame windows)
       virtual ::user::interaction * get_active_window() override;
       virtual ::user::interaction * set_active_window() override;
 
-      // the foreground ::user::interaction_impl applies only to top-level windows (frame windows)
+      // the foreground ::windowing::window applies only to top-level windows (frame windows)
       virtual bool set_foreground_window() override;
 
 

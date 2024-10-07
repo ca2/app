@@ -1195,7 +1195,7 @@ namespace windowing
    }
 
 
-   bool window::is_active_window() const
+   bool window::is_active_window()
    {
 
       return m_bActiveWindow;
@@ -9834,7 +9834,7 @@ namespace windowing
 //   }
 
 
-   void window::set_finish(::particle * pparticleContextFinish)
+   void window::set_finish()
    {
 
       if (!has_destroying_flag())

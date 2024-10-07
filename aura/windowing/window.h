@@ -460,7 +460,7 @@ namespace windowing
       virtual void _set_foreground_window_unlocked();
       virtual ::user::interaction * get_foreground_window();
 
-      virtual bool is_active_window() const;
+      virtual bool is_active_window();
 
       virtual ::user::interaction * get_desktop_window();
 
@@ -1242,7 +1242,7 @@ namespace windowing
       //bool is_composite() override;
 
 
-      virtual void set_finish(::particle * pparticle);
+      void set_finish() override;
 
 
       //void top_down_prefix() override;

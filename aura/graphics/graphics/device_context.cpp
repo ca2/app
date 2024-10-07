@@ -53,7 +53,7 @@ namespace graphics
 
       }
 
-      m_spgraphics->on_begin_draw(m_pwindow->oswindow(), m_pwindow->m_puserframe->const_layout().design().size());
+      m_spgraphics->on_begin_draw(m_pwindow->oswindow(), m_pwindow->m_puserinteraction->const_layout().design().size());
 
       //return m_spgraphics;
 

@@ -18,6 +18,7 @@
 #include "aura/windowing/cursor_manager.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/keyboard.h"
+#include "aura/windowing/text_editor_interface.h"
 
 
 namespace windowing
@@ -547,7 +548,7 @@ namespace windowing
 
 
 
-   window *windowing::new_message_window(::windowing::window *pimpl)
+   ::pointer < ::windowing::window > windowing::new_message_window()
    {
 
       throw ::interface_only();
@@ -557,22 +558,22 @@ namespace windowing
    }
 
 
-   ::pointer < ::windowing::window > windowing::get_new_window(::windowing::window * pwindow)
+   ::pointer < ::windowing::window > windowing::get_new_window()
    {
       
-      auto pwindow = pwindow->__create < ::windowing::window >();
+      auto pwindow = __create < ::windowing::window >();
 
       return pwindow;
 
    }
 
 
-   window *windowing::new_window(::windowing::window *pwindow)
+   ::pointer < ::windowing::window > windowing::new_window()
    {
 
-      auto pwindow = get_new_window(pwindow);
+      auto pwindow = get_new_window();
 
-      pwindow->call_create_window(pwindow);
+      pwindow->create_window();
 
       return pwindow;
 
@@ -589,15 +590,6 @@ namespace windowing
    {
 
       auto pwindow = pusermessage->window();
-
-      if (!pwindow)
-      {
-
-         throw ::exception(error_wrong_state);
-
-      }
-
-      auto pwindow = pwindow->m_pwindow;
 
       if (!pwindow)
       {

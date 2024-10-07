@@ -2,17 +2,21 @@
 #include "frame.h"
 #include "key.h"
 #include "style.h"
+#include "interaction_thread.h"
 #include "user.h"
 #include "acme/constant/id.h"
 #include "acme/constant/user_key.h"
 #include "acme/exception/interface_only.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/pool.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/constant/message.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/platform/application.h"
+#include "aura/platform/draw_context2.h"
 #include "aura/platform/session.h"
 #include "aura/platform/system.h"
+#include "aura/user/user/alpha_source.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 
@@ -103,7 +107,7 @@ namespace user
 
             information() << "interaction::create_host(3A)";
 
-            create_child(pwindowHost->m_pwindow->m_puserframe);
+            create_child(pwindowHost->m_puserinteraction);
 
             //         pwindowHost->m_pwindow->this->set_need_layout();
             //
@@ -180,7 +184,7 @@ namespace user
          //pprimitiveimplNew->create_host(this, eparallelization);
          // 
 
-         m_pwindow->m_puserframe = this;
+         m_pwindow->m_puserinteraction = this;
 
 
          m_pwindow->create_window();
@@ -277,6 +281,9 @@ namespace user
       //if (m_pshapeaClip) m_pshapeaClip->destroy();
       if (m_pdrawcontext) m_pdrawcontext->destroy();
 
+      m_puserstyle.defer_destroy();
+
+      
       //}
       m_pusersystem.defer_destroy();
       //      if (m_playout) m_playout->destroy();
@@ -288,7 +295,7 @@ namespace user
       //m_pform && m_pform != this && m_pform->destroy();
       if (m_palphasource) m_palphasource->destroy();
       //if (m_pdrawableBackground) m_pdrawableBackground->destroy();
-      if (m_pprimitiveimpl) m_pprimitiveimpl->destroy();
+      //if (m_pprimitiveimpl) m_pprimitiveimpl->destroy();
       if (windowing_window()) windowing_window()->destroy();
 
       {
@@ -331,8 +338,10 @@ namespace user
       m_pform.release();
       m_palphasource.release();
       //m_pdrawableBackground.release();
-      m_pprimitiveimpl.release();
-      windowing_window().release();
+      //m_pprimitiveimpl.release();
+      //windowing_window().release();
+
+      m_pwindow.release();
 
       m_pinteractionScaler.defer_destroy();
 
@@ -359,15 +368,16 @@ namespace user
 
       // references
       m_pitemComposing.release();
-      m_pthreadUserInteraction.release();
+      //m_pthreadUserInteraction.release();
       m_puserinteractionParent.release();
       m_pupdowntarget.release();
       m_ptaskModal.release();
       m_puserinteractionOwner.release();
       m_pwindow.release();
       //return ::success;
+      ::user::box::destroy();
       ::user::drag_client::destroy();
-      ::user::interaction_base::destroy();
+      //::user::interaction_base::destroy();
 
    }
 
@@ -506,14 +516,14 @@ namespace user
    }
 
 
-   void frame::destroy()
-   {
+   //void frame::destroy()
+   //{
 
-      m_puserstyle.defer_destroy();
+   //   m_puserstyle.defer_destroy();
 
-      ::user::box::destroy();
+   //   ::user::box::destroy();
 
-   }
+   //}
 
 //   bool frame::is_os_host() const
 //   {
@@ -1090,17 +1100,19 @@ namespace user
 
       }
 
-      if (m_pthreadUserInteraction)
+      auto puserthread = user_thread();
+
+      if (puserthread)
       {
 
-         if (::is_set(m_pthreadUserInteraction->m_puserinteractionbaseaThread))
+         if (::is_set(puserthread->m_puserinteractionbaseaThread))
          {
 
-            m_pthreadUserInteraction->m_puserinteractionbaseaThread->erase(this);
+            puserthread->m_puserinteractionbaseaThread->erase(this);
 
          }
 
-         m_pthreadUserInteraction.release();
+         //m_pthreadUserInteraction.release();
 
       }
 
@@ -1134,7 +1146,7 @@ namespace user
 
          //pprimitiveimplNew->create_host(this, e_parallelization_synchronous);
 
-         pwindowNew->create_host(this);
+         create_window();
 
          on_after_set_parent();
 

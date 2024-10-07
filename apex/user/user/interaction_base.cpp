@@ -616,7 +616,7 @@ namespace user
 
 
 
-   bool interaction_base::is_ascendant(const interaction_base * puiIsAscendant, bool bIncludeSelf) const
+   bool interaction_base::is_ascendant(::user::element * puiIsAscendant, bool bIncludeSelf)
    {
 
       throw ::interface_only();
@@ -626,7 +626,7 @@ namespace user
    }
 
 
-   bool interaction_base::is_parent(const interaction_base * puiIsParent) const
+   bool interaction_base::is_parent(::user::element * puiIsParent)
    {
 
       throw ::interface_only();
@@ -636,7 +636,7 @@ namespace user
    }
 
 
-   bool interaction_base::is_child(const interaction_base * puiIsChild) const
+   bool interaction_base::is_child(::user::element * puiIsChild)
    {
 
       throw ::interface_only();
@@ -646,7 +646,7 @@ namespace user
    }
 
 
-   bool interaction_base::is_descendant(const interaction_base * puiIsDescendant, bool bIncludeSelf) const
+   bool interaction_base::is_descendant(::user::element * puiIsDescendant, bool bIncludeSelf)
    {
 
       throw ::interface_only();
@@ -656,7 +656,7 @@ namespace user
    }
 
 
-   bool interaction_base::is_descendant_of_or_owned_by(const ::user::interaction_base * puiAscendantCandidate, bool bIncludeSelf) const
+   bool interaction_base::is_descendant_of_or_owned_by(::user::element * puiAscendantCandidate, bool bIncludeSelf)
    {
 
       throw ::interface_only();
@@ -666,7 +666,7 @@ namespace user
    }
 
 
-   bool interaction_base::is_ascendant_or_owner_of(const ::user::interaction_base * puiDescendantCandidate, bool bIncludeSelf) const
+   bool interaction_base::is_ascendant_or_owner_of(::user::element * puiDescendantCandidate, bool bIncludeSelf)
    {
 
       throw ::interface_only();
@@ -676,7 +676,7 @@ namespace user
    }
 
 
-   bool interaction_base::is_ascendant_of(const interaction_base * puiIsDescendant, bool bIncludeSelf) const
+   bool interaction_base::is_ascendant_of(::user::element * puiIsDescendant, bool bIncludeSelf)
    {
       
       return ::is_set(puiIsDescendant) && puiIsDescendant->is_ascendant(this, bIncludeSelf); 
@@ -684,7 +684,7 @@ namespace user
    }
 
 
-   bool interaction_base::is_parent_of(const interaction_base * puiIsChild) const
+   bool interaction_base::is_parent_of(::user::element * puiIsChild)
    {
       
       return ::is_set(puiIsChild) && puiIsChild->is_parent(this); 
@@ -692,7 +692,7 @@ namespace user
    }
 
 
-   bool interaction_base::is_child_of(const interaction_base * puiIsParent) const
+   bool interaction_base::is_child_of(::user::element * puiIsParent)
    {
       
       return ::is_set(puiIsParent) && puiIsParent->is_child(this); 
@@ -700,7 +700,7 @@ namespace user
    }
 
    
-   bool interaction_base::is_descendant_of(const interaction_base * puiIsAscendant, bool bIncludeSelf) const
+   bool interaction_base::is_descendant_of(::user::element * puiIsAscendant, bool bIncludeSelf)
    { 
       
       return ::is_set(puiIsAscendant) && puiIsAscendant->is_descendant(this, bIncludeSelf); 

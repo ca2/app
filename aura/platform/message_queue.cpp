@@ -9,47 +9,47 @@
 #include "aura/platform/application.h"
 
 
-CLASS_DECL_AURA void message_queue_post(::windowing::window * pwindow, const ::atom & atom, wparam wparam, lparam lparam)
-{
-
-   //auto psession = get_session();
-
-   //auto puser = psession->m_puser;
-
-   //auto pwindowing = puser->m_pwindowing;
-
-   //auto pwindow = pwindowing->window(oswindow);
-
-   auto pinteraction = pwindow->m_puserframe;
-
-   if (pinteraction == nullptr)
-   {
-
-      throw ::exception(error_wrong_state);
-
-   }
-
-   auto pmq = pinteraction->m_pthreadUserInteraction->get_message_queue();
-
-   if (!pmq)
-   {
-
-      throw ::exception(error_wrong_state);
-
-   }
-
-   //if (!
-   
-   pmq->post_message(pwindow->oswindow(), atom, wparam, lparam);
-   //{
-
-   //   return false;
-
-   //}
-
-   //return true;
-
-}
+//CLASS_DECL_AURA void message_queue_post(::windowing::window * pwindow, const ::atom & atom, wparam wparam, lparam lparam)
+//{
+//
+//   //auto psession = get_session();
+//
+//   //auto puser = psession->m_puser;
+//
+//   //auto pwindowing = puser->m_pwindowing;
+//
+//   //auto pwindow = pwindowing->window(oswindow);
+//
+//   auto pinteraction = pwindow->m_puserinteraction;
+//
+//   if (pinteraction == nullptr)
+//   {
+//
+//      throw ::exception(error_wrong_state);
+//
+//   }
+//
+//   auto pmq = pinteraction->m_pthreadUserInteraction->get_message_queue();
+//
+//   if (!pmq)
+//   {
+//
+//      throw ::exception(error_wrong_state);
+//
+//   }
+//
+//   //if (!
+//   
+//   pmq->post_message(pwindow->oswindow(), atom, wparam, lparam);
+//   //{
+//
+//   //   return false;
+//
+//   //}
+//
+//   //return true;
+//
+//}
 
 
 
@@ -64,7 +64,7 @@ CLASS_DECL_AURA void mq_erase_window_from_all_queues(::windowing::window * pwind
 
    //auto pwindow = pwindowing->window(oswindow);
 
-   auto puserframe = pwindow->m_puserframe;
+   auto puserframe = pwindow->m_puserinteraction;
 
    if(!puserframe)
    {

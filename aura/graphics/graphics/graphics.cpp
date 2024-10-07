@@ -173,7 +173,7 @@ namespace graphics
 
       debug() << "::graphics::graphics::buffer_size_and_position (1)";
 
-      if (::is_null(m_pwindow) || ::is_null(m_pwindow->m_puserframe))
+      if (::is_null(m_pwindow) || ::is_null(m_pwindow->m_puserinteraction))
       {
 
          return;
@@ -182,9 +182,9 @@ namespace graphics
 
       debug() << "::graphics::graphics::buffer_size_and_position (2)";
 
-      pbufferitem->m_point = m_pwindow->m_puserframe->const_layout().design().origin();
+      pbufferitem->m_point = m_pwindow->m_puserinteraction->const_layout().design().origin();
 
-      pbufferitem->m_size = m_pwindow->m_puserframe->const_layout().design().size();
+      pbufferitem->m_size = m_pwindow->m_puserinteraction->const_layout().design().size();
 
       //pbufferitem->m_point = m_pimpl->m_puserinteraction->const_layout().layout().origin();
 
@@ -391,7 +391,7 @@ namespace graphics
       if (pwindow)
       {
 
-         auto puserinteraction = pwindow->m_puserframe;
+         auto puserinteraction = pwindow->m_puserinteraction;
 
          if (puserinteraction)
          {

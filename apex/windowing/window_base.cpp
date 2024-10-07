@@ -23,6 +23,15 @@ namespace windowing
    }
 
 
+   void window_base::destroy()
+   {
+
+      ::nano::windowing::window::destroy();
+      ::channel::destroy();
+
+   }
+
+
 } // namespace windowing
 
 

@@ -148,7 +148,11 @@ namespace user
       };
 
 
-      
+      ::pointer < ::windowing::window >         m_pwindow;
+
+
+      bool m_bFocus : 1;
+
       ::logic::boolean                          m_bExtendOnParent;
       ::logic::boolean                          m_bExtendOnParentIfOnlyClient;
       ::logic::boolean                          m_bExtendOnParentHostingArea;
@@ -392,7 +396,7 @@ namespace user
 
       // references
       ::pointer<::file::insert_item>            m_pitemComposing;
-      ::pointer<::thread>                       m_pthreadUserInteraction;
+      //::pointer<::thread>                       m_pthreadUserInteraction;
       ::pointer<::user::interaction>            m_puserinteractionParent;
       ::pointer<::user::interaction>            m_pupdowntarget;
       ::task_pointer                            m_ptaskModal;
@@ -412,7 +416,7 @@ namespace user
       //::pointer<::aura::drawable>                m_pdrawableBackground;
       //::pointer<primitive_impl>                    m_pprimitiveimpl;
       //::pointer<interaction_impl>                  m_pinteractionimpl;
-      ::pointer<primitive_pointer_array>           m_puserinteractionpointeraOwned;
+      ::pointer<interaction_array>                 m_puserinteractionpointeraOwned;
       ::pointer<interaction_array>                 m_puserinteractionpointeraChild;
       ::pointer<interaction>                       m_ptooltip;
       ::pointer<::object>                          m_pmenuitem;
@@ -746,6 +750,13 @@ namespace user
 
 
 //      virtual bool add_control(arguments arguments);
+      virtual void create_window();
+      virtual void _create_window();
+
+
+      virtual ::pointer < ::user::thread > create_user_thread();
+//      virtual void create_graphics_thread();
+
 
 
       inline bool is_graphical() const { return !m_bMessageWindow && m_ewindowflag & e_window_flag_graphical; }
@@ -1838,7 +1849,7 @@ namespace user
       ::user::interaction_base * set_parent(::user::interaction_base * pinteraction) override;
       ::user::interaction_base * set_owner(::user::interaction_base * pinteraction) override;
 
-      virtual void __defer_set_owner_to_impl();
+      //virtual void __defer_set_owner_to_impl();
 
       void on_add_owned(::user::interaction_base * pprimitive) override;
 

@@ -45,7 +45,7 @@ namespace user
 
 #endif
 
-      ::pointer<::user::frame>                     m_puserframe;
+      ::pointer<::user::interaction>                     m_puserinteraction;
       //::pointer<prodevian>                       m_pgraphicsthread;
       //oswindow                                     m_oswindow;
 
@@ -68,7 +68,7 @@ namespace user
 #endif
 
 
-      virtual void initialize_user_thread(::user::frame * puserframe);
+      virtual void initialize_user_thread(::user::interaction * puserinteraction);
 
 
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK

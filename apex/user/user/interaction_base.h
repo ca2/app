@@ -295,18 +295,18 @@ namespace user
 
 
 
-      virtual bool is_ascendant(const interaction_base * puiIsAscendant, bool bIncludeSelf) const;
-      virtual bool is_parent(const interaction_base * puiIsParent) const;
-      virtual bool is_child(const interaction_base * puiIsChild) const;
-      virtual bool is_descendant(const interaction_base * puiIsDescendant, bool bIncludeSelf) const;
+      virtual bool is_ascendant(::user::element * puiIsAscendant, bool bIncludeSelf);
+      virtual bool is_parent(::user::element * puiIsParent);
+      virtual bool is_child(::user::element * puiIsChild);
+      virtual bool is_descendant(::user::element * puiIsDescendant, bool bIncludeSelf);
 
-      virtual bool is_descendant_of_or_owned_by(const ::user::interaction_base * puiAscendantCandidate, bool bIncludeSelf) const;
-      virtual bool is_ascendant_or_owner_of(const ::user::interaction_base * puiDescendantCandidate, bool bIncludeSelf) const;
+      virtual bool is_descendant_of_or_owned_by(::user::element * puiAscendantCandidate, bool bIncludeSelf);
+      virtual bool is_ascendant_or_owner_of(::user::element * puiDescendantCandidate, bool bIncludeSelf);
 
-      virtual bool is_ascendant_of(const interaction_base * puiIsDescendant, bool bIncludeSelf) const;
-      virtual bool is_parent_of(const interaction_base * puiIsChild) const; 
-      virtual bool is_child_of(const interaction_base * puiIsParent) const; 
-      virtual bool is_descendant_of(const interaction_base * puiIsAscendant, bool bIncludeSelf) const; 
+      virtual bool is_ascendant_of(::user::element * puiIsDescendant, bool bIncludeSelf);
+      virtual bool is_parent_of(::user::element * puiIsChild);
+      virtual bool is_child_of(::user::element * puiIsParent);
+      virtual bool is_descendant_of(::user::element * puiIsAscendant, bool bIncludeSelf);
 
       atom GetDlgCtrlId() const override;
       atom SetDlgCtrlId(const ::atom & atom) override;

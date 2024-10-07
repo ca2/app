@@ -285,7 +285,7 @@ namespace user
 
 
 
-      //m_puserframe->m_pwindow->m_puserframe->task_add(this);
+      //m_puserframe->m_pwindow->m_puserinteraction->task_add(this);
 
       //m_eventReady.wait();
 
@@ -988,7 +988,7 @@ namespace user
 
       m_puserframe->m_bUpdateWindow = false;
 
-      //m_puserframe->m_pwindow->m_pwindow->_on
+      //m_puserframe->m_pwindow->_on
 
       auto pwindow = m_puserframe->m_pwindow;
 
@@ -1001,10 +1001,10 @@ namespace user
 
       }
       
-      if (!(pwindow->m_puserframe->m_ewindowflag & e_window_flag_window_created))
+      if (!(pwindow->m_puserinteraction->m_ewindowflag & e_window_flag_window_created))
       {
 
-         if (::type(pwindow->m_puserframe.m_p) == "user::list_box")
+         if (::type(pwindow->m_puserinteraction.m_p) == "user::list_box")
          {
 
             information() << "user::list_box graphics_thread_iteration !e_window_flag_window_created";
@@ -1212,7 +1212,7 @@ namespace user
 
       profiling_on_before_update_screen();
 
-      m_puserframe->m_pwindow->m_pwindow->__update_graphics_buffer();
+      m_puserframe->m_pwindow->__update_graphics_buffer();
 
       profiling_on_after_update_screen();
 

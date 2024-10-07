@@ -246,14 +246,14 @@ namespace user
 
       }
 
-      if (::is_null(psession->m_pimplPendingFocus2))
+      if (::is_null(psession->m_puserinteractionPendingFocus2))
       {
 
          return false;
 
       }
 
-      if (psession->m_pimplPendingFocus2 != this)
+      if (psession->m_puserinteractionPendingFocus2 != this)
       {
 
          return false;
@@ -277,21 +277,21 @@ namespace user
 
       }
 
-      if (::is_null(psession->m_pimplPendingFocus2))
+      if (::is_null(psession->m_puserinteractionPendingFocus2))
       {
 
          return false;
 
       }
 
-      if (psession->m_pimplPendingFocus2 != this)
+      if (psession->m_puserinteractionPendingFocus2 != this)
       {
 
          return false;
 
       }
 
-      psession->m_pimplPendingFocus2 = nullptr;
+      psession->m_puserinteractionPendingFocus2 = nullptr;
 
       return true;
 
@@ -310,7 +310,7 @@ namespace user
 
       }
 
-      psession->m_pimplPendingFocus2 = this;
+      psession->m_puserinteractionPendingFocus2 = this;
 
       return true;
 
@@ -8477,9 +8477,9 @@ namespace user
 //
 //         auto psession = get_session();
 //
-//         auto pimplFocus = psession->m_pimplPendingFocus2;
+//         auto pimplFocus = psession->m_puserinteractionPendingFocus2;
 //
-//         psession->m_pimplPendingFocus2 = nullptr;
+//         psession->m_puserinteractionPendingFocus2 = nullptr;
 //
 //         auto pwindowing = windowing();
 //

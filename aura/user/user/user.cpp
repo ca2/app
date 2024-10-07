@@ -237,7 +237,7 @@ namespace user
 
       //}
 
-      return pwindow->m_puserframe;
+      return pwindow->m_puserinteraction;
 
    }
 
@@ -342,7 +342,7 @@ namespace user
 
       //}
 
-      return pwindow->m_puserframe;
+      return pwindow->m_puserinteraction;
 
    }
 
@@ -405,7 +405,7 @@ namespace user
 
       //}
 
-      return pwindow->m_puserframe;
+      return pwindow->m_puserinteraction;
 
    }
 
@@ -1491,7 +1491,7 @@ namespace user
             for (auto & pinteraction : uiptraToolWindow)
             {
 
-               if (pinteraction != ::user::message_user_interaction(pmouse))
+               if (pinteraction != pmouse->m_pwindow->m_puserinteraction)
                {
 
                   if (pinteraction->m_ewindowflag & e_window_flag_focus)

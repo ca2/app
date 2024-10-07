@@ -189,7 +189,7 @@ namespace user
 
    //CLASS_DECL_AURA ::windowing::window * message_interaction_impl(::user::message * pusermessage);
 
-   CLASS_DECL_AURA ::user::interaction * message_user_interaction(::user::message * pusermessage);
+   //CLASS_DECL_AURA ::user::interaction * message_user_interaction(::user::message * pusermessage);
 
 
 } // namespace user

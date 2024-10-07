@@ -5,6 +5,7 @@
 
 
 #include "acme/nano/windowing/window.h"
+#include "apex/message/channel.h"
 
 
 namespace windowing
@@ -12,13 +13,17 @@ namespace windowing
 
 
    class CLASS_DECL_APEX window_base :
-      virtual public ::nano::windowing::window
+      virtual public ::nano::windowing::window,
+      virtual public ::channel
    {
    public:
 
 
       window_base();
       ~window_base() override;
+
+
+      void destroy() override;
 
 
    };

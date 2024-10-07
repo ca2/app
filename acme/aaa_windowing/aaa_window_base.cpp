@@ -1,7 +1,7 @@
 //
 // Created by camilo on 2023-10-06 <3ThomasBorregaardSorensen!!
 //
-// nano::user::window_base Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSorensen!!
+// micro::window_base Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSorensen!!
 // Merged into window_base on 2024-04-26 14:52
 //
 #include "framework.h"
@@ -40,7 +40,7 @@ namespace windowing
 
 
 
-   ::nano::user::interaction * window_base::user_interaction_base()
+   ::acme::user::interaction * window_base::user_interaction_base()
    {
 
       return m_puserinteractionbase;
@@ -48,7 +48,7 @@ namespace windowing
    }
 
 
-   ::nano::windowing::window * window_base::windowing_window_base()
+   ::acme::windowing::window * window_base::windowing_window_base()
    {
 
       return this;
@@ -61,9 +61,9 @@ namespace windowing
 
       ::user::element::on_initialize_particle();
 
-      _synchronous_lock synchronouslock(nano()->user()->synchronization());
+      _synchronous_lock synchronouslock(system()->acme_windowing()->synchronization());
 
-      nano()->user()->m_windowbasea.add(this);
+      system()->acme_windowing()->m_windowbasea.add(this);
 
    }
 
@@ -73,9 +73,9 @@ namespace windowing
 
       ::user::element::destroy();
 
-      _synchronous_lock synchronouslock(nano()->user()->synchronization());
+      _synchronous_lock synchronouslock(system()->acme_windowing()->synchronization());
 
-      nano()->user()->m_windowbasea.erase(this);
+      system()->acme_windowing()->m_windowbasea.erase(this);
 
    }
 
@@ -138,7 +138,7 @@ namespace windowing
    // ::pointer < ::operating_system::a_system_menu > window_base::create_system_menu(bool bContextual)
    // {
    //
-   //    return ::nano::user::window_base::create_system_menu(bContextual);
+   //    return ::micro::window_base::create_system_menu(bContextual);
    //
    // }
 
@@ -187,7 +187,7 @@ namespace windowing
 // }
 
 
-::nano::windowing::display * window_base::get_display()
+::acme::windowing::display * window_base::get_display()
 {
 
    return nullptr;
@@ -388,7 +388,7 @@ void window_base::handle(::topic * ptopic, ::context * pcontext)
 //    // //
 //    // //   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
 //    // //
-//    // //   pmessagebox->m_functionClose = [&idResult, &event](nano::user::interchange * pwindow)
+//    // //   pmessagebox->m_functionClose = [&idResult, &event](micro::interchange * pwindow)
 //    // //   {
 //    // //
 //    // //      idResult = pwindow->m_atomResult;
@@ -429,7 +429,7 @@ void window_base::handle(::topic * ptopic, ::context * pcontext)
 //
 //   create();
 //
-//   nano::user::interchange::display();
+//   micro::interchange::display();
 //
 //  aaa_message_loop();
 //
@@ -490,7 +490,7 @@ void window_base::on_char(int iChar)
 //
 //   create();
 //
-//   nano::user::interchange::display();
+//   micro::interchange::display();
 //
 //   aaa_message_loop();
 //
@@ -508,7 +508,7 @@ void window_base::on_char(int iChar)
 //void message_box::do_asynchronously()
 //{
 //
-//   m_functionClose = [this](nano::user::interchange * pwindow)
+//   m_functionClose = [this](micro::interchange * pwindow)
 //   {
 //
 //      m_psequence->on_sequence();
@@ -520,7 +520,7 @@ void window_base::on_char(int iChar)
 //
 //         create();
 //
-//         nano::user::interchange::display();
+//         micro::interchange::display();
 //
 //         aaa_message_loop();
 //

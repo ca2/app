@@ -20,8 +20,8 @@ namespace windowing
    public:
 
 
-      ::pointer<::nano::windowing::display> m_pdisplaybase;
-      ::pointer_array<::nano::windowing::window> m_windowbasea;
+      ::pointer<::acme::windowing::display> m_pdisplaybase;
+      ::pointer_array<::acme::windowing::window> m_windowbasea;
 
 
       windowing_base();
@@ -35,7 +35,7 @@ namespace windowing
       void destroy() override;
 
 
-      virtual ::nano::windowing::display* display();
+      virtual ::acme::windowing::display* display();
 
 
       virtual void on_start_system();

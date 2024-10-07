@@ -73,7 +73,7 @@ public:
 
    virtual ::user::interaction * user_interaction();
 
-   virtual ::nano::user::interaction * nano_user_interaction();
+   virtual ::acme::user::interaction * acme_user_interaction();
 
    ::atom user_interaction_id() const;
 

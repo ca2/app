@@ -24,7 +24,7 @@ public:
    string                        m_strText;
    ::atom                        m_atom;
    rectangle_i32                 m_rectangle;
-   ::nano::user::interchange *   m_pinterchange;
+   ::micro::interchange *   m_pinterchange;
 
 
    virtual void on_draw(::nano::graphics::device * pnanodevice) = 0;

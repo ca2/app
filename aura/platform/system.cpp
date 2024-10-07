@@ -6,7 +6,7 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/handler/topic.h"
-#include "acme/nano/windowing/windowing.h"
+#include "acme/windowing/windowing.h"
 #include "acme/platform/node.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/system_setup.h"
@@ -6938,13 +6938,13 @@ namespace aura
    }
 
 
-   void system::do_graphics_user_windowing_system_factory()
+   void system::do_graphics_and_windowing_system_factory()
    {
 
-      if(!m_bGraphicsUserWindowingSystemInitialized)
+      if(!m_bGraphicsAndWindowingSystemInitialized)
       {
 
-         ::aqua::system::do_graphics_user_windowing_system_factory();
+         ::aqua::system::do_graphics_and_windowing_system_factory();
 
          ::string strUserToolkit = ::windowing::get_user_toolkit_id();
 

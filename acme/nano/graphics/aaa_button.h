@@ -12,7 +12,7 @@ namespace nano
    
 
 class button :
-   virtual public ::nano::user::child
+   virtual public ::micro::child
 {
 public:
 

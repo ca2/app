@@ -3,7 +3,7 @@
 #include "file_context.h"
 #include "file_context_interface.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/user/user.h"
+#include "acme/user/micro/user.h"
 #include "acme/platform/sequencer.h"
 
 
@@ -46,7 +46,7 @@ void file_context_interface::safe_get_memory(const ::payload& payloadFile, memor
    catch (const ::exception& exception)
    {
 
-      auto psequencer = nano()->user()->exception_message_console(exception);
+      auto psequencer = exception_message_console(exception);
 
       psequencer->do_asynchronously();
 

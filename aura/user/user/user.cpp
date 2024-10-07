@@ -1598,7 +1598,7 @@ namespace user
       if (::is_null(m_pwindowing))
       {
 
-         system()->do_graphics_user_windowing_system_factory();
+         system()->do_graphics_and_windowing_system_factory();
 
          __construct(m_pwindowing);
 

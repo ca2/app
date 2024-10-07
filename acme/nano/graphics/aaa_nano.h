@@ -15,7 +15,7 @@ namespace nano
 
 
 class ::nano::graphics::device;
-class nano::user::interchange;
+class micro::interchange;
 
 
 enum enum_nano_control

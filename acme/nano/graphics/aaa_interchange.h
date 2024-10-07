@@ -21,7 +21,7 @@ namespace nano
 
    
 class CLASS_DECL_ACME interchange :
-   virtual public ::nano::user::interaction
+   virtual public ::acme::user::interaction
    //virtual public ::conversation_message
 {
 public:
@@ -29,7 +29,7 @@ public:
 
    ::function < void(interchange *) >        m_functionClose;
 
-   //::pointer<::nano::user::window_implementation>     m_pnanouserwindowimplementation;
+   //::pointer<::micro::window_implementation>     m_pnanouserwindowimplementation;
    ::pointer<::nano::graphics::brush>                     m_pbrushWindow;
    ::pointer<::nano::graphics::brush>                     m_pbrushText;
    ::pointer<::nano::graphics::brush>                     m_pbrushHyperlink;
@@ -47,14 +47,14 @@ public:
 
    rectangle_i32                             m_rectangle;
 
-   pointer_array < ::nano::user::child >              m_childa;
+   pointer_array < ::micro::child >              m_childa;
    ::atom                                    m_atomLeftButtonDown;
    ::atom                                    m_atomLeftButtonUp;
    ::atom                                    m_atomRightButtonDown;
    ::atom                                    m_atomRightButtonUp;
-   ::pointer<::nano::user::child>                     m_pchildFocus;
-   ::pointer<::nano::user::child>                     m_pchildHover;
-   ::pointer<::nano::user::child>                     m_pchildCapture;
+   ::pointer<::micro::child>                     m_pchildFocus;
+   ::pointer<::micro::child>                     m_pchildHover;
+   ::pointer<::micro::child>                     m_pchildCapture;
 
 
    bool                                      m_bCapture;
@@ -66,7 +66,7 @@ public:
    bool                                      m_bTopMost;
 
 
-   pointer_array < ::nano::user::button >             m_nanobuttona;
+   pointer_array < ::micro::button >             m_nanobuttona;
    ::collection::index                                   m_iDefaultButton = -1;
 
    //map < const ::item *, ::user::item >      m_useritemmap;
@@ -122,11 +122,11 @@ public:
    ::point_i32 origin() override;
 
 
-   //::nano::user::child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
-   virtual ::nano::user::child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
-   virtual ::nano::user::child * on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
-   virtual void add_child(::nano::user::child * pchild);
-   virtual ::nano::user::child * get_child_by_id(const ::atom & atom);
+   //::micro::child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
+   virtual ::micro::child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
+   virtual ::micro::child * on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
+   virtual void add_child(::micro::child * pchild);
+   virtual ::micro::child * get_child_by_id(const ::atom & atom);
 
    ::payload get_result() override;
 

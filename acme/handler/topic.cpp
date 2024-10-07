@@ -6,7 +6,7 @@
 //#include "acme/user/user/text.h"
 #include "acme/user/user/command_update_target.h"
 //#include "acme/user/user/element.h"
-#include "acme/nano/user/interaction.h"
+#include "acme/user/user/interaction.h"
 
 
 //
@@ -78,7 +78,7 @@
 }
 
 
-::nano::user::interaction * topic::nano_user_interaction()
+::acme::user::interaction * topic::acme_user_interaction()
 {
 
    if (::is_null(m_puserelement))
@@ -88,7 +88,7 @@
 
    }
 
-   return m_puserelement.cast < ::nano::user::interaction >();
+   return m_puserelement.cast < ::acme::user::interaction >();
 
 }
 
@@ -96,16 +96,16 @@
 ::atom topic::user_interaction_id() const
 {
 
-   auto pnanouserinteraction = ((topic*)this)->nano_user_interaction();
+   auto pacmeuserinteraction = ((topic*)this)->acme_user_interaction();
 
-   if (::is_null(pnanouserinteraction))
+   if (::is_null(pacmeuserinteraction))
    {
 
       return ::atom::e_type_null;
 
    }
 
-   return pnanouserinteraction->m_atom;
+   return pacmeuserinteraction->m_atom;
 
 }
 

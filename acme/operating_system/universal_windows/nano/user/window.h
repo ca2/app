@@ -21,7 +21,7 @@ namespace universal_windows
 
 
          class CLASS_DECL_ACME window :
-            virtual public ::nano::user::window_implementation
+            virtual public ::micro::window_implementation
          {
          public:
 
@@ -60,9 +60,9 @@ namespace universal_windows
             //void create_drawing_objects() override;
             //void update_drawing_objects() override;
 
-            //::nano::user::child * hit_test(int x, int y) override;
-            //void add_child(::nano::user::child * pchild) override;
-            //::nano::user::child * get_child_by_id(const ::atom & atom);
+            //::micro::child * hit_test(int x, int y) override;
+            //void add_child(::micro::child * pchild) override;
+            //::micro::child * get_child_by_id(const ::atom & atom);
 
             //::atom get_result() override;
 

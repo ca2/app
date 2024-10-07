@@ -231,7 +231,7 @@ CLASS_DECL_ACME ::acme::system * system();
 //   void system::windowing_post(const ::procedure &procedure)
 //   {
 //
-//      ::nano::windowing::display::g_p->display_post(procedure);
+//      ::acme::windowing::display::g_p->display_post(procedure);
 //
 //   }
 //
@@ -284,13 +284,13 @@ void _do_tasks()
 //  if(psystem->m_ewindowing == ::windowing::e_windowing_xcb)
 //   {
 //
-//      ::xcb::nano::user::process_messages();
+//      ::xcb::micro::process_messages();
 //
 //   }
 //   else
 //   {
 //
-//      ::x11::nano::user::process_messages();
+//      ::x11::micro::process_messages();
 //
 //   }
 
@@ -320,7 +320,7 @@ namespace acme
 
       information() << "acme::node::user_post going to display_post";
 
-      nano()->user()->main_post(procedure);
+      system()->acme_windowing()->main_post(procedure);
 
    }
 

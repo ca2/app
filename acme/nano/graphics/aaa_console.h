@@ -20,12 +20,12 @@ virtual public ::particle
     map < char, ::collection::index >         m_mapCharIndex;
     ::array < char >              m_cha1;
     ::string_array                m_stra;
-::pointer < ::nano::user::interchange > m_pinterchange;
+::pointer < ::micro::interchange > m_pinterchange;
 
    console();
    ~console() override;
 
-   virtual void create_console(::nano::user::interchange * pinterchange);
+   virtual void create_console(::micro::interchange * pinterchange);
    virtual void _stdout_console();
 
 

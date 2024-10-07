@@ -127,7 +127,7 @@ void popup_button::initialize_popup_button(const ::string & strText, int x, int 
 
    //      create();
 
-   //      nano::user::interchange::display();
+   //      micro::interchange::display();
 
    //      aaa_message_loop();
 

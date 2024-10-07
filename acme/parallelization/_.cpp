@@ -9,7 +9,7 @@
 #include "acme/platform/acme.h"
 #include "acme/platform/platform.h"
 #include "acme/platform/system.h"
-#include "acme/nano/windowing/window.h"
+#include "acme/windowing/window.h"
 //#include "acme/windowing/window_base.h"
 #ifdef LINUX
 #include "acme/operating_system/ansi/_pthread.h"
@@ -782,9 +782,9 @@ CLASS_DECL_ACME void task_release()
 
    //::release(ptask);
 
-   //::nano::windowing::window::nanowindowimplementationa().clear();
+   //::acme::windowing::window::nanowindowimplementationa().clear();
 
-   //::nano::windowing::window::nanowindowimplementationa().free_extra();
+   //::acme::windowing::window::nanowindowimplementationa().free_extra();
 
    auto ptask = t_ptask;
 

@@ -15,14 +15,14 @@ namespace user
 {
 class icon;
 class message_box :
-   virtual public ::nano::user::interchange
+   virtual public ::micro::interchange
 {
 public:
 
 
    string                                       m_strLabelDetails;
-   ::pointer<::nano::user::still>               m_pstillDetails;
-   //::pointer<::nano::user::still>             m_pstillIcon;
+   ::pointer<::micro::still>               m_pstillDetails;
+   //::pointer<::micro::still>             m_pstillIcon;
    ::pointer<::nano::graphics::icon>                m_picon;
 
 
@@ -51,7 +51,7 @@ virtual void set_icon(::nano::graphics::icon * picon);
 
    void defer_create_details_still();
 
-   void on_before_create_window(::nano::windowing::window * pwindowbase) override;
+   void on_before_create_window(::acme::windowing::window * pwindowbase) override;
 
    void on_create_window() override;
    

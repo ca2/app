@@ -28,7 +28,7 @@
 #include "acme/prototype/string/str.h"
 #include "acme/user/user/conversation.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/user/user.h"
+#include "acme/user/micro/user.h"
 #include "acme/crypto/crypto.h"
 #include "acme/crypto/hasher.h"
 #include "acme/filesystem/filesystem/dir_system.h"

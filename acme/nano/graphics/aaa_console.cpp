@@ -27,7 +27,7 @@ namespace user {
    }
 
 
-   void console::create_console(::nano::user::interchange * pinterchange)
+   void console::create_console(::micro::interchange * pinterchange)
    {
 
       m_pinterchange =  pinterchange;

@@ -345,9 +345,6 @@
     <Filter Include="Source Files\nano\speech">
       <UniqueIdentifier>{7598df3d-3c50-4e27-ade9-9e8f564eefd5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\nano\user">
-      <UniqueIdentifier>{3b9e63ed-6b4c-429e-a546-a414de3c2c2d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\nano">
       <UniqueIdentifier>{e9d5694f-cd3d-4d09-898c-3e1914957c11}</UniqueIdentifier>
     </Filter>
@@ -436,11 +433,17 @@
     <Filter Include="Header Files\release">
       <UniqueIdentifier>{1a6906fa-8c35-4bf2-bc58-b25cfc385b90}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\nano\windowing">
-      <UniqueIdentifier>{a545e1af-e807-4c49-bf0d-265957b22618}</UniqueIdentifier>
+    <Filter Include="Header Files\windowing">
+      <UniqueIdentifier>{957c0a45-34e3-49cd-adc6-555af48b38cc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\nano\windowing">
-      <UniqueIdentifier>{27ff3486-66a3-4c54-9e08-e9252552ecd2}</UniqueIdentifier>
+    <Filter Include="Source Files\windowing">
+      <UniqueIdentifier>{b967da59-8247-4615-a428-1be5771999fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\micro">
+      <UniqueIdentifier>{8d292cdd-c690-46b0-a22d-5cdc72fce77f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\micro">
+      <UniqueIdentifier>{41aa3745-1aab-49c1-8f56-91ab67e63794}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -3852,23 +3855,8 @@
     <ClInclude Include="graphics\image\pixmap_lock.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
-    <ClInclude Include="nano\user\interaction.h">
-      <Filter>Header Files\nano\user</Filter>
-    </ClInclude>
     <ClInclude Include="nano\user\theme.h">
       <Filter>Header Files\nano\user</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\windowing\window.h">
-      <Filter>Header Files\nano\windowing</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\windowing\_.h">
-      <Filter>Header Files\nano\windowing</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\windowing\windowing.h">
-      <Filter>Header Files\nano\windowing</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\windowing\display.h">
-      <Filter>Header Files\nano\windowing</Filter>
     </ClInclude>
     <ClInclude Include="nano\nano.h">
       <Filter>Header Files\nano</Filter>
@@ -3887,6 +3875,87 @@
     </ClInclude>
     <ClInclude Include="nano\user\main_window.h">
       <Filter>Header Files\nano\user</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\windowing.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\window.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\display.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\_.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\interaction.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\user.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\_.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\aaa_brush.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\aaa_child.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\aaa_device.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\aaa_font.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\aaa_icon.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\aaa_nano.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\aaa_object.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\aaa_pen.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\aaa_window_implementation.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\aaa_window_interface.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\button.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\console.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\details_window.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\elemental.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\main_window.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\message_box.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\popup_button.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\still.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\theme.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\user.h">
+      <Filter>Header Files\user\micro</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5273,30 +5342,6 @@
     <ClCompile Include="nano\speech\speech.cpp">
       <Filter>Source Files\nano\speech</Filter>
     </ClCompile>
-    <ClCompile Include="nano\user\_user.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\button.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\aaa_child.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\details_window.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\message_box.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\popup_button.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\still.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\user.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
     <ClCompile Include="nano\nano.cpp">
       <Filter>Source Files\nano</Filter>
     </ClCompile>
@@ -5435,32 +5480,86 @@
     <ClCompile Include="operating_system\windows\calculate_etoolkit.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
-    <ClCompile Include="nano\user\interaction.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\windowing\window.cpp">
-      <Filter>Source Files\nano\windowing</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\windowing\display.cpp">
-      <Filter>Source Files\nano\windowing</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\windowing\windowing.cpp">
-      <Filter>Source Files\nano\windowing</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\windowing\_windowing.cpp">
-      <Filter>Source Files\nano\windowing</Filter>
-    </ClCompile>
-    <ClCompile Include="nano\user\theme.cpp">
-      <Filter>Source Files\nano\user</Filter>
-    </ClCompile>
     <ClCompile Include="operating_system\windows\calculate_ewindowing.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
-    <ClCompile Include="nano\user\elemental.cpp">
-      <Filter>Source Files\nano\user</Filter>
+    <ClCompile Include="windowing\_windowing.cpp">
+      <Filter>Source Files\windowing</Filter>
     </ClCompile>
-    <ClCompile Include="nano\user\main_window.cpp">
-      <Filter>Source Files\nano\user</Filter>
+    <ClCompile Include="windowing\display.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\window.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\windowing.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\interaction.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\_user.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\aaa_brush.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\aaa_child.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\aaa_device.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\aaa_font.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\aaa_icon.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\aaa_object.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\aaa_pen.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\aaa_window_implementation.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\aaa_window_interface.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\button.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\console.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\details_window.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\elemental.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\main_window.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\message_box.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\popup_button.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\still.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\theme.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\user.cpp">
+      <Filter>Source Files\user\micro</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

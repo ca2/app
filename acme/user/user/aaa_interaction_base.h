@@ -1,8 +1,8 @@
 ////
 //// Created by camilo on 2024-09-26 18:50 Odense Time <3ThomasBorregaardSorensen!!
 ////
-//// nano::user::window_interface Created by camilo on 31/01/2022 22:37 <3ThomasBorregaardSorensen!!
-//// From nano::user::window_interface merged at ::nano::user::interaction by
+//// micro::window_interface Created by camilo on 31/01/2022 22:37 <3ThomasBorregaardSorensen!!
+//// From micro::window_interface merged at ::acme::user::interaction by
 ////    camilo on 2024-0926 15:01 <3ThomasBorregaardSorensen!!
 ////
 //#pragma once
@@ -48,8 +48,8 @@
 //    bool                                        m_bArbitraryPositioning;
 //
 //
-//   ::pointer < ::nano::windowing::window >      m_pnanowindowingwindow;
-//   ::pointer < ::nano::user::interaction >      m_pnanouserinteractionParent;
+//   ::pointer < ::acme::windowing::window >      m_pnanowindowingwindow;
+//   ::pointer < ::acme::user::interaction >      m_pnanouserinteractionParent;
 //
 //
 //    interaction_base();
@@ -68,8 +68,8 @@
 //
 //
 //
-//   ::nano::user::interaction * nano_user_interaction() override;
-//   ::nano::windowing::window * nano_windowing_window() override;
+//   ::acme::user::interaction * acme_user_interaction() override;
+//   ::acme::windowing::window * acme_windowing_window() override;
 //
 //
 //
@@ -97,7 +97,7 @@
 ////
 ////
 //// class CLASS_DECL_ACME window_interface :
-////    virtual public ::nano::user::interaction
+////    virtual public ::acme::user::interaction
 //// {
 //// public:
 //
@@ -165,9 +165,9 @@
 //   void drag_set_cursor(::item * pitem) override;
 //
 //
-//   // virtual ::nano::user::child * nano_user_hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
-//   // virtual ::nano::user::child * nano_user_on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
-//   // virtual void nano_user_add_child(::nano::user::child * pchild);
+//   // virtual ::micro::child * nano_user_hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder);
+//   // virtual ::micro::child * nano_user_on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder);
+//   // virtual void nano_user_add_child(::micro::child * pchild);
 //
 //   virtual ::payload get_result();
 //

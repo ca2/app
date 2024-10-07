@@ -118,8 +118,8 @@ namespace user
       virtual void create_message_queue(const ::string & lpszName);
 
 
-      virtual ::nano::user::interaction * nano_user_interaction();
-      virtual ::nano::windowing::window * nano_windowing_window();
+      virtual ::acme::user::interaction * acme_user_interaction();
+      virtual ::acme::windowing::window * acme_windowing_window();
 
 
       virtual ::user::interaction_base * user_interaction_base();
@@ -331,7 +331,7 @@ namespace user
       virtual string get_class_name();
 
 
-      virtual void on_before_create_window(::nano::windowing::window * pnanowindowingwindow);
+      virtual void on_before_create_window(::acme::windowing::window * pacmewindowingwindow);
       virtual void on_create_window();
 
       //virtual void create_host(enum_parallelization eparallelization);

@@ -63,7 +63,7 @@ interchange::interchange()
 interchange::~interchange()
 {
    
-   nano()->user()->m_interchangea.erase_item(this);
+   system()->acme_windowing()->m_interchangea.erase_item(this);
    
 }
 
@@ -185,10 +185,10 @@ void interchange::destroy()
       
    }
 
-   if(nano()->user())
+   if(system()->acme_windowing())
    {
 
-      nano()->user()->m_interchangea.erase(this);
+      system()->acme_windowing()->m_interchangea.erase(this);
 
    }
    
@@ -413,7 +413,7 @@ bool interchange::defer_perform_entire_reposition_process(::user::mouse * pmouse
 }
 
 
-::nano::user::child * interchange::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
+::micro::child * interchange::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
 {
 
    auto point = pmouse->m_pointHost;
@@ -426,7 +426,7 @@ bool interchange::defer_perform_entire_reposition_process(::user::mouse * pmouse
 
 
 
-::nano::user::child * interchange::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
+::micro::child * interchange::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
 {
    
    for (auto & pchild: m_childa)
@@ -446,7 +446,7 @@ bool interchange::defer_perform_entire_reposition_process(::user::mouse * pmouse
 }
 
 
-void interchange::add_child(::nano::user::child * pchild)
+void interchange::add_child(::micro::child * pchild)
 {
    
    pchild->m_pinterchange = this;
@@ -459,7 +459,7 @@ void interchange::add_child(::nano::user::child * pchild)
 void interchange::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
 {
    
-   auto pbutton = ::place(new ::nano::user::button());
+   auto pbutton = ::place(new ::micro::button());
    
    pbutton->m_strText = scopedstrText;
    pbutton->m_atom = edialogresult;
@@ -475,7 +475,7 @@ void interchange::add_button(const ::scoped_string & scopedstrText, enum_dialog_
 
 
 
-::nano::user::child * interchange::get_child_by_id(const ::atom & atom)
+::micro::child * interchange::get_child_by_id(const ::atom & atom)
 {
    
    for (auto & pchild : m_childa)
@@ -862,7 +862,7 @@ void interchange::_run_modal_loop()
        // //
        // //   pmessagebox->display(pszMessage, pszTitle, emessagebox, pszDetails);
        // //
-       // //   pmessagebox->m_functionClose = [&idResult, &event](nano::user::interchange * pwindow)
+       // //   pmessagebox->m_functionClose = [&idResult, &event](micro::interchange * pwindow)
        // //   {
        // //
        // //      idResult = pwindow->m_atomResult;
@@ -903,7 +903,7 @@ void interchange::_run_modal_loop()
    //
    //    create();
    //
-   //    nano::user::interchange::display();
+   //    micro::interchange::display();
    //
    //   aaa_message_loop();
    //

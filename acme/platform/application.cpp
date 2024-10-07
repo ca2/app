@@ -22,9 +22,9 @@
 #include "acme/prototype/string/_str.h"
 #include "acme/prototype/text/context.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/user/user.h"
+#include "acme/user/micro/user.h"
 #include "acme/nano/graphics/icon.h"
-#include "acme/nano/windowing/windowing.h"
+#include "acme/windowing/windowing.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -257,7 +257,7 @@ void application::initialize_application(::platform::platform * pplatform)
    if(!platform()->is_console())
    {
 
-      nano()->user()->windowing_system_post_quit();
+      system()->acme_windowing()->windowing_system_post_quit();
 
       set_finish();
 
@@ -1986,7 +1986,7 @@ void application::show_about_box()
 
    picon->load_image_from_file(pfile);
    
-   auto psequencer = nano()->user()->message_box("About\n\n" + strMessage, nullptr, e_message_box_ok, "", picon);
+   auto psequencer = system()->acme_windowing()->message_box("About\n\n" + strMessage, nullptr, e_message_box_ok, "", picon);
    
    //psequencer->then([this, strPath](auto pconversation)
    //      {

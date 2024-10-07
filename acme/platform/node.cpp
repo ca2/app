@@ -26,11 +26,11 @@
 //#include "acme/prototype/collection/array.h"
 //#include "acme/prototype/collection/string_array.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/user/button.h"
-#include "acme/nano/user/message_box.h"
-#include "acme/nano/user/user.h"
+#include "acme/user/micro/button.h"
+#include "acme/user/micro/message_box.h"
+#include "acme/user/micro/user.h"
 #include "acme/user/user/os_theme_colors.h"
-#include "acme/nano/windowing/windowing.h"
+#include "acme/windowing/windowing.h"
 #include "filesystem/filesystem/listing.h"
 
 //namespace nano{namespace  user{
@@ -423,7 +423,7 @@ namespace acme
       if(!platform()->is_console())
       {
 
-         nano()->user()->on_start_system();
+         system()->acme_windowing()->on_start_system();
 
       }
 
@@ -1685,7 +1685,7 @@ namespace acme
    //::user::enum_desktop node::calculate_edesktop()
    //{
 
-   //   return ::nano::user::calculate_edesktop();
+   //   return ::micro::calculate_edesktop();
 
    //}
 
@@ -1708,7 +1708,7 @@ namespace acme
    //::user::enum_toolkit node::calculate_etoolkit()
    //{
 
-   //   return ::nano::user::calculate_etoolkit();
+   //   return ::micro::calculate_etoolkit();
 
    //}
 
@@ -2330,9 +2330,9 @@ return false;
    ::pointer<::conversation>node::create_new_message_box_conversation()
    {
 
-      system()->do_graphics_user_windowing_system_factory();
+      system()->do_graphics_and_windowing_system_factory();
 
-      return __create_new < ::nano::user::message_box >();
+      return __create_new < ::micro::message_box >();
 
    }
 
@@ -2373,7 +2373,7 @@ return false;
    }
 
 
-   //void node::nano::user::message_box(::sequence < ::conversation >* psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
+   //void node::micro::message_box(::sequence < ::conversation >* psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
    //{
 
 

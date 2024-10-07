@@ -2516,12 +2516,12 @@ void particle::kick_idle()
 pointer < ::sequencer < ::conversation > > particle::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::graphics::icon * picon)
 {
    
-   ::nano::user::user * pnanouser = nullptr;
+   ::micro::user * pnanouser = nullptr;
    
    try
    {
       
-      pnanouser = system()->nano()->user();
+      pnanouser = system()->system()->acme_windowing();
       
    }
    catch (...)
@@ -2547,7 +2547,7 @@ pointer < ::sequencer < ::conversation > > particle::message_box(const ::string&
 pointer < ::sequencer < ::conversation > > particle::exception_message_box(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::graphics::icon * picon)
 {
 
-   return system()->nano()->user()->exception_message_box(exception, strMessage, strTitle, emessagebox, strDetails, picon);
+   return system()->system()->acme_windowing()->exception_message_box(exception, strMessage, strTitle, emessagebox, strDetails, picon);
 
 }
 
@@ -2555,7 +2555,7 @@ pointer < ::sequencer < ::conversation > > particle::exception_message_box(const
 pointer < ::sequencer < ::conversation > > particle::message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::graphics::icon * picon)
 {
 
-   return system()->nano()->user()->message_console(strMessage, strTitle, emessagebox, strDetails, picon);
+   return system()->system()->acme_windowing()->message_console(strMessage, strTitle, emessagebox, strDetails, picon);
 
 }
 
@@ -2563,7 +2563,7 @@ pointer < ::sequencer < ::conversation > > particle::message_console(const ::str
 pointer < ::sequencer < ::conversation > > particle::exception_message_console(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::graphics::icon * picon)
 {
 
-   return system()->nano()->user()->exception_message_console(exception, strMessage, strTitle, emessagebox, strDetails, picon);
+   return system()->exception_message_console(exception, strMessage, strTitle, emessagebox, strDetails, picon);
 
 }
 

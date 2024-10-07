@@ -98,13 +98,13 @@ namespace nano
       }
 
 
-      ::nano::windowing::display * window::get_display()
+      ::acme::windowing::display * window::get_display()
       {
 
          if (!m_pdisplay)
          {
 
-            m_pdisplay = ::xcb::nano::windowing::display::get(this);
+            m_pdisplay = ::xcb::acme::windowing::display::get(this);
 
             if (!m_pdisplay)
             {
@@ -380,7 +380,7 @@ namespace nano
       }
 
 
-      ::nano::user::child * window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
+      ::micro::child * window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
       {
 
          return m_pinterface->hit_test(pmouse, ezorder);
@@ -388,7 +388,7 @@ namespace nano
       }
 
 
-      //LRESULT CALLBACK ::nano::user::message_box::s_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+      //LRESULT CALLBACK ::micro::message_box::s_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
       //{
       //if (msg == WM_NCCREATE)
       //{
@@ -397,7 +397,7 @@ namespace nano
       //   SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pcreatestruct->lpCreateParams);
       //
       //}
-      //::nano::user::message_box * pwindow = (::nano::user::message_box *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+      //::micro::message_box * pwindow = (::micro::message_box *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
       //
       //if (!pwindow)
       //{
@@ -954,7 +954,7 @@ namespace nano
       //
       //}
 
-      //void window::add_child(::nano::user::child * pchild)
+      //void window::add_child(::micro::child * pchild)
       //{
       //
       //   pchild->m_pwindow = m_pinterfacethis;

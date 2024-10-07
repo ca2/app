@@ -10,14 +10,14 @@
 #include "acme/exception/translator.h"
 #include "acme/handler/request.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/windowing/window.h"
+#include "acme/windowing/window.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task_message_queue.h"
 #include "acme/exception/_text_stream.h"
 #include "acme/_operating_system.h"
 #include "acme/operating_system/parallelization.h"
 ///#include "acme/windowing/window_base.h"
-#include "acme/nano/windowing/windowing.h"
+#include "acme/windowing/windowing.h"
 
 
 extern bool g_bIntermediateThreadReferencingDebugging;
@@ -361,12 +361,12 @@ void task::main()
 
       // ITCN?   Is This Code Needed?
 
-      auto windowa = nano()->windowing()->m_windowa;
+      auto windowa = system()->acme_windowing()->m_windowa;
 
-      //while (::nano::windowing::window::nanowindowimplementationa().has_element())
+      //while (::acme::windowing::window::nanowindowimplementationa().has_element())
       {
 
-         //for (auto & pimplementation : ::nano::windowing::window::nanowindowimplementationa())
+         //for (auto & pimplementation : ::acme::windowing::window::nanowindowimplementationa())
          for (auto & pwindowbase : windowa)
          {
 

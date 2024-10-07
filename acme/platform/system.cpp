@@ -39,10 +39,10 @@
 #include "acme/regular_expression/context.h"
 //#include "acme/prototype/prototype/payload.h"
 //#include "acme/prototype/string/hex.h"
-#include "acme/nano/user/user.h"
+#include "acme/user/micro/user.h"
 #include "acme/nano/http/http.h"
 #include "acme/nano/speech/speech.h"
-#include "acme/nano/windowing/windowing.h"
+#include "acme/windowing/windowing.h"
 //#include "acme/user/user/conversation.h"
 
 
@@ -178,7 +178,7 @@ namespace acme
 
       m_bFinalizeIfNoSession = false;
       m_bFinalizeIfNoSessionSetting = true;
-      m_bGraphicsUserWindowingSystemInitialized = false;
+      m_bGraphicsAndWindowingSystemInitialized = false;
 
    }
 
@@ -1160,14 +1160,14 @@ namespace acme
    void system::TermSystem()
    {
 
-      if(nano()->m_pwindowing)
+      if(m_pacmewindowing)
       {
 
-         nano()->m_pwindowing->windowing_system_post_quit();
+         m_pacmewindowing->windowing_system_post_quit();
 
       }
 
-      nano()->m_pwindowing.release();
+      m_pacmewindowing.release();
 
       m_pmapRegularExpressionContext.release();
 
@@ -3904,19 +3904,21 @@ namespace acme
    }
 
 
-   void system::do_graphics_user_windowing_system_factory()
+   void system::do_graphics_and_windowing_system_factory()
    {
 
-      if(!m_bGraphicsUserWindowingSystemInitialized)
+      if(!m_bGraphicsAndWindowingSystemInitialized)
       {
 
-         m_bGraphicsUserWindowingSystemInitialized = true;
+         m_bGraphicsAndWindowingSystemInitialized = true;
 
          nano()->graphics();
 
-         nano()->user();
+         ::string strToolkit = ::windowing::get_user_toolkit_id();
 
-         nano()->windowing();
+         auto pfactory = this->factory("acme_windowing", strToolkit);
+
+         pfactory->merge_to_global_factory();
 
       }
 
@@ -3929,7 +3931,7 @@ namespace acme
    //   if(!m_pwindowingbase)
    //   {
 
-   //      do_graphics_user_windowing_system_factory();
+   //      do_graphics_and_windowing_system_factory();
 
    //      __construct(m_pwindowingbase);
 

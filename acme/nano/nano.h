@@ -33,8 +33,7 @@ public:
    ::pointer <::nano::idn::idn>m_pidn;
    ::pointer <::nano::shell::shell>m_pshell;
    ::pointer <::nano::speech::speech>m_pspeech;
-   ::pointer <::nano::user::user>m_puser;
-   ::pointer <::nano::windowing::windowing>m_pwindowing;
+   //::pointer <::micro::user>m_puser;
    
    
    nano();
@@ -50,8 +49,8 @@ public:
    ::nano::idn::idn*idn();
    ::nano::shell::shell*shell();
    ::nano::speech::speech*speech();
-   ::nano::user::user*user();
-   ::nano::windowing::windowing * windowing();
+   //s::micro::user*user();
+   //::acme::windowing::windowing * windowing();
 
    
 };

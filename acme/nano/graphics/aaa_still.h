@@ -9,7 +9,7 @@ class device;
 class icon;
 
 class still :
-   virtual public ::nano::user::child
+   virtual public ::micro::child
 {
 public:
 

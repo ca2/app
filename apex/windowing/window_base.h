@@ -13,7 +13,7 @@ namespace windowing
 
 
    class CLASS_DECL_APEX window_base :
-      virtual public ::nano::windowing::window,
+      virtual public ::acme::windowing::window,
       virtual public ::channel
    {
    public:

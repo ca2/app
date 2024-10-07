@@ -232,7 +232,7 @@ CLASS_DECL_ACME ::acme::system * system();
 //   void system::windowing_post(const ::procedure &procedure)
 //   {
 //
-//      ::nano::windowing::display::g_p->display_post(procedure);
+//      ::acme::windowing::display::g_p->display_post(procedure);
 //
 //   }
 //
@@ -325,7 +325,7 @@ namespace acme
 
       information() << "acme::node::user_post going to display_post";
 
-      ::nano::windowing::display::g_p->display_post(procedure);
+      ::acme::windowing::display::g_p->display_post(procedure);
 
    }
 

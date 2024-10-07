@@ -12,7 +12,7 @@ namespace windowing
 
 
    class CLASS_DECL_APEX prototype :
-      virtual public ::nano::windowing::window
+      virtual public ::acme::windowing::window
    {
    public:
 

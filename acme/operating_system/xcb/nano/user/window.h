@@ -19,7 +19,7 @@ namespace xcb
       namespace user
       {
          class CLASS_DECL_ACME window :
-            virtual public ::nano::user::window_implementation,
+            virtual public ::micro::window_implementation,
             virtual public event_listener
          {
          public:
@@ -40,18 +40,18 @@ namespace xcb
             //rectangle_i32                 m_rectangle;
             //rectangle_i32                 m_rectangleX;
 
-            //pointer_array < ::nano::user::child >   m_childa;
+            //pointer_array < ::micro::child >   m_childa;
             //::atom                          m_atomLeftButtonDown;
             //::atom                          m_atomLeftButtonUp;
             //::atom                             m_atomResult;
-            //::pointer<::nano::user::child>        m_pchildFocus;
+            //::pointer<::micro::child>        m_pchildFocus;
 
 
             window();
             ~window() override;
 
 
-            ::nano::windowing::display * get_display() override;
+            ::acme::windowing::display * get_display() override;
 
 
             void on_initialize_particle() override;
@@ -95,9 +95,9 @@ namespace xcb
 
             void update_drawing_objects() override;
 
-            ::nano::user::child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
+            ::micro::child * hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder) override;
 
-            //virtual void add_child(::nano::user::child * pchild);
+            //virtual void add_child(::micro::child * pchild);
 
             ::atom get_result() override;
 

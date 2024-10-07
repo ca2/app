@@ -14,11 +14,11 @@ void operating_system_initialize_xcb_nano_user(::factory::factory * pfactory)
 
    operating_system_initialize_cairo_nano(pfactory);
 
-   pfactory->add_factory_item<::xcb::nano::user::interchange, ::nano::user::window_implementation>();
+   pfactory->add_factory_item<::xcb::micro::interchange, ::micro::window_implementation>();
 
-   pfactory->add_factory_item<::nano::user::user>();
+   pfactory->add_factory_item<::micro::user>();
 
-   ::xcb::nano::windowing::display::get(pfactory);
+   ::xcb::acme::windowing::display::get(pfactory);
 
 }
 

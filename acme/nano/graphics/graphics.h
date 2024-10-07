@@ -18,7 +18,7 @@ virtual public acme::department
 public:
    
    
-   //::pointer_array < ::nano::user::interchange >         m_interchangea;
+   //::pointer_array < ::micro::interchange >         m_interchangea;
    
    
    graphics();

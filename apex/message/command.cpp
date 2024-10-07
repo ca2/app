@@ -225,7 +225,7 @@ namespace message
       if (m_checkproperty && change)
       {
 
-         ::pointer<::nano::user::interaction> pelement = m_puiOther;
+         ::pointer<::acme::user::interaction> pelement = m_puiOther;
 
          if (pelement)
          {
@@ -238,7 +238,7 @@ namespace message
       else if (m_textproperty && change)
       {
 
-         ::pointer<::nano::user::interaction> pelement = m_puiOther;
+         ::pointer<::acme::user::interaction> pelement = m_puiOther;
 
          if (pelement)
          {
@@ -273,7 +273,7 @@ namespace message
       if (m_puiOther != nullptr)
       {
 
-         ::pointer<::nano::user::interaction>pelement = m_puiOther;
+         ::pointer<::acme::user::interaction>pelement = m_puiOther;
 
          if (pelement)
          {

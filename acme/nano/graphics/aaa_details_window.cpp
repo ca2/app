@@ -82,7 +82,7 @@ void details_window::on_click(const ::payload& payload, ::user::mouse * pmouse)
 
    }
 
-   ::nano::user::message_box::on_click(payload, pmouse);
+   ::micro::message_box::on_click(payload, pmouse);
 
 }
 

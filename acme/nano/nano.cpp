@@ -19,8 +19,8 @@
 #include "acme/nano/idn/idn.h"
 #include "acme/nano/shell/shell.h"
 #include "acme/nano/speech/speech.h"
-#include "acme/nano/user/user.h"
-#include "acme/nano/windowing/windowing.h"
+#include "acme/user/micro/user.h"
+//#include "acme/windowing/windowing.h"
 #include "acme/platform/system.h"
 #include "acme/platform/system_factory.h"
 
@@ -77,13 +77,13 @@ namespace nano
    {
       return system()->system_factory()->__factory(m_pspeech);
    }
-   ::nano::user::user*nano::user()
-   {
-      return system()->system_factory()->__factory(m_puser);
-   }
-   ::nano::windowing::windowing * nano::windowing()
-   {
-      return system()->system_factory()->__factory(m_pwindowing);
-   }
+   //::micro::user*micro()
+   //{
+   //   return system()->system_factory()->__factory(m_puser);
+   //}
+   //::acme::windowing::windowing * acme::windowing()
+   //{
+   //   return system()->system_factory()->__factory(m_pwindowing);
+   //}
 
 }//namespace nano

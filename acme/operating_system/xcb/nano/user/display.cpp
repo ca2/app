@@ -444,7 +444,7 @@ namespace xcb
          }
 
 
-         void display::add_window(::xcb::nano::user::interchange * pwindow)
+         void display::add_window(::xcb::micro::interchange * pwindow)
          {
 
             synchronous_lock synchronouslock(this->synchronization());
@@ -464,7 +464,7 @@ namespace xcb
          }
 
 
-         void display::erase_window(nano::user::interchange * pwindow)
+         void display::erase_window(micro::interchange * pwindow)
          {
 
             synchronous_lock synchronouslock(this->synchronization());
@@ -1967,10 +1967,10 @@ namespace xcb
          void process_messages()
          {
 
-            if(::xcb::nano::windowing::display::g_p)
+            if(::xcb::acme::windowing::display::g_p)
             {
 
-               ::xcb::nano::windowing::display::g_p->message_loop_step();
+               ::xcb::acme::windowing::display::g_p->message_loop_step();
 
             }
 

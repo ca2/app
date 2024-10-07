@@ -15,7 +15,7 @@ namespace nano
    
 
 class details_window :
-   virtual public ::nano::user::message_box
+   virtual public ::micro::message_box
 {
 public:
 

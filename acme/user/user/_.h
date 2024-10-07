@@ -106,3 +106,28 @@ namespace experience
 } // namespace experience
 
 
+
+
+
+namespace acme
+{
+
+   namespace user
+   {
+
+      class user;
+
+
+      //class device;
+      //class child;
+
+
+      class interaction;
+
+
+   }// namespace user
+
+
+} // namespace acme
+
+

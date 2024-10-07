@@ -179,7 +179,7 @@ namespace geo
          catch (const ::exception & exception)
          {
 
-            auto psequencer = this->nano()->user()->exception_message_box(exception);
+            auto psequencer = this->system()->acme_windowing()->exception_message_box(exception);
 
             psequencer->do_asynchronously();
 

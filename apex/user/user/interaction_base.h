@@ -15,7 +15,7 @@ namespace user
 
 
    class CLASS_DECL_APEX interaction_base :
-      virtual public ::nano::user::interaction,
+      virtual public ::acme::user::interaction,
       virtual public ::channel,
       //virtual public ::source,
       virtual public ::manager

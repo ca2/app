@@ -1,8 +1,8 @@
 //
 // Created by camilo on 2023-10-06 <3ThomasBorregaardSorensen!!
 //
-// ::nano::user::window_implementation Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSorensen!!
-// Merged from former ::nano::user::window_implementation by
+// ::micro::window_implementation Created by camilo on 31/01/2022 23:04 <3ThomasBorregaardSorensen!!
+// Merged from former ::micro::window_implementation by
 //    camilo on 2024-0926 14:45 <3ThomasBorregaardSorensen!!
 //
 //
@@ -33,17 +33,17 @@ namespace windowing
 
       ::pointer < ::operating_system::a_system_menu >    m_psystemmenu;
 
-      ::pointer < ::nano::user::interaction >             m_puserinteractionbase;
+      ::pointer < ::acme::user::interaction >             m_puserinteractionbase;
 
-      ::pointer < ::nano::windowing::display >                m_pdisplaybase;
+      ::pointer < ::acme::windowing::display >                m_pdisplaybase;
 
 
       window_base();
       ~window_base() override;
 
 
-      ::nano::user::interaction * user_interaction_base() override;
-      ::nano::windowing::window * windowing_window_base() override;
+      ::acme::user::interaction * user_interaction_base() override;
+      ::acme::windowing::window * windowing_window_base() override;
 
 
       void on_initialize_particle() override;
@@ -98,12 +98,12 @@ namespace windowing
                // ~window_implementation() override;
 
 
-               virtual ::nano::windowing::display * get_display();
+               virtual ::acme::windowing::display * get_display();
 
 
                //void draw(::nano::graphics::device * pnanodevice) override;
 
-               //static ::pointer_array < ::nano::user::window_implementation > & nanowindowimplementationa();
+               //static ::pointer_array < ::micro::window_implementation > & nanowindowimplementationa();
 
 
 

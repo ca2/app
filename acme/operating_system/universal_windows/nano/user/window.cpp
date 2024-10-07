@@ -111,9 +111,9 @@ void operating_system_initialize_nano_user(::factory::factory * pfactory)
 {
 
 
-   pfactory->add_factory_item < ::universal_windows::nano::user::interchange, ::nano::user::window_implementation >();
+   pfactory->add_factory_item < ::universal_windows::micro::interchange, ::micro::window_implementation >();
 
-   pfactory->add_factory_item < ::nano::user::user >();
+   pfactory->add_factory_item < ::micro::user >();
    //pfactory->add_factory_item < ::windows::nano::graphics::brush, ::nano::graphics::brush >();
    //pfactory->add_factory_item < ::windows::nano::graphics::font, ::nano::graphics::font >();
    //pfactory->add_factory_item < ::windows::nano::graphics::pen, ::nano::graphics::pen >();

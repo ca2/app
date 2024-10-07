@@ -164,7 +164,7 @@ namespace windowing
 
       ::channel::destroy();
 
-      ::nano::windowing::window::destroy();
+      ::acme::windowing::window::destroy();
 
 
    }
@@ -2770,7 +2770,7 @@ namespace windowing
    }
 
 
-   ::nano::windowing::window * window::owner_window()
+   ::acme::windowing::window * window::owner_window()
    {
 
       return m_puserinteraction->m_puserinteractionOwner->window();

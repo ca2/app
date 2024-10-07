@@ -64,7 +64,7 @@ namespace acme
       ::pointer < ::mathematics::mathematics >        m_pmathematics;
       // FROM MAIN (Now APPLICATION_FLAGS : merged on other classes?)
 
-      bool                                            m_bGraphicsUserWindowingSystemInitialized;
+      bool                                            m_bGraphicsAndWindowingSystemInitialized;
 
       ::i32_sz* m_pintstringLanguageResourceMap;
       int                              m_iMatterFromHttpCache;
@@ -75,6 +75,9 @@ namespace acme
       ::color::color                                        m_colorBackground;
       double                                                m_dLuminance;
       ::pointer < ::innate_ui::innate_ui >                  m_pinnateui;
+
+      ::pointer < ::acme::user::user >                      m_pacmeuser;
+      ::pointer < ::acme::windowing::windowing >            m_pacmewindowing;
 
       // END FROM MAIN (Now APPLICATION_FLAGS)
 
@@ -194,7 +197,7 @@ namespace acme
       void on_initialize_particle() override;
 
 
-      virtual void do_graphics_user_windowing_system_factory();
+      virtual void do_graphics_and_windowing_system_factory();
 
 
       void initialize_system();
@@ -251,6 +254,9 @@ namespace acme
       ::particle * ui_destroyed_synchronization() { return m_pmutexUiDestroyed; }
 
       virtual ::nano::nano * nano();
+
+      virtual ::acme::user::user * acme_user();
+      virtual ::acme::windowing::windowing * acme_windowing();
 
       virtual void defer_innate_ui();
 
@@ -707,6 +713,16 @@ namespace acme
       
       virtual bool defer_component_factory(const ::scoped_string & scopedstrComponent);
       virtual bool _defer_component_factory(const ::scoped_string & scopedstrComponent);
+
+      pointer< ::sequencer < ::conversation > > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+
+      pointer< ::sequencer < ::conversation > > exception_message_box(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+
+      pointer< ::sequencer < ::conversation > > message_console(const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+
+      pointer< ::sequencer < ::conversation > > exception_message_console(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+
+
 
 
    };

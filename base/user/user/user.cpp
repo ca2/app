@@ -1716,7 +1716,7 @@ namespace base
 
 #ifdef DEBUG
 
-         auto psequencer = nano()->user()->exception_message_box(exception, "Failed to create form \"" + pathFile + "\"");
+         auto psequencer = system()->acme_windowing()->exception_message_box(exception, "Failed to create form \"" + pathFile + "\"");
 
          psequencer->do_synchronously();
 

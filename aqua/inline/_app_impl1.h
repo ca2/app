@@ -150,9 +150,9 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 //         //KEEP(thread_flag_prevent_create_thread);
 //
 //
-//         paura = ::place(new class aura_aura ());
+//         paura = __new class aura_aura ();
 //
-//         pmaindata = ::place(new aura_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow));
+//         pmaindata = __new aura_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow);
 //
 //#ifdef MAIN_RUNNER0
 //

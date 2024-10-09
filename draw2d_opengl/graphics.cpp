@@ -5959,7 +5959,7 @@ BOOL CALLBACK draw2d_opengl_EnumFamCallBack(LPLOGFONT lplf,LPNEWTEXTMETRIC lpntm
    else if(FontType & TRUETYPE_FONTTYPE)
    {
 
-      pfonts->m_itema.add(::place(new ::write_text::font_enumeration_item(lplf->lfFaceName)));
+      pfonts->m_itema.add(__new ::write_text::font_enumeration_item(lplf->lfFaceName));
 
    }
    else

@@ -19,14 +19,14 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task_flag.h"
 #include "acme/platform/ini.h"
-#include "acme/platform/sequencer.h"
+//#include "acme/platform/sequence.h"
 #include "acme/platform/system.h"
 #include "acme/prototype/datetime/datetime.h"
 #include "acme/prototype/prototype/read_only_memory.h"
 #include "acme/prototype/string/base64.h"
 //#include "acme/prototype/string/hex.h"
 #include "acme/prototype/string/str.h"
-#include "acme/user/user/conversation.h"
+//#include "acme/user/user/conversation.h"
 #include "acme/nano/nano.h"
 #include "acme/user/micro/user.h"
 #include "acme/crypto/crypto.h"
@@ -1457,9 +1457,9 @@ void file_context::calculate_main_resource_memory()
 
       }
 
-      auto pmemory = ::place(new read_only_memory(block));
+      auto pmemory = __new read_only_memory(block);
 
-      auto pfile = ::place(new ::memory_file(pmemory));
+      auto pfile = __new ::memory_file(pmemory);
 
       system()->m_pfactoryFolder->__construct(m_pcontext, m_pfolderResource);
 
@@ -3244,7 +3244,7 @@ file_pointer file_context::data_get_file(string strData, ::file::e_open eopen)
          if (strEncoding.case_insensitive_order("base64") == 0)
          {
 
-            ::pointer<memory_file>pmemoryfile = ::place(new memory_file());
+            ::pointer<memory_file>pmemoryfile = __new memory_file();
 
             auto psystem = system();
 
@@ -3654,7 +3654,7 @@ file_pointer file_context::_get_file(const ::payload &payloadFile, ::file::e_ope
          if(eopen & ::file::e_open_no_exception_on_open)
          {
 
-            pfile = ::place(new ::file::file());
+            pfile = __new ::file::file();
 
             pfile->m_estatus = error_not_a_file;
 

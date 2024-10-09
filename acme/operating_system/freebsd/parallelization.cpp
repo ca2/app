@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/operating_system/ansi/_pthread.h"
 #include "acme/platform/system.h"
-#include "acme/nano/user/display.h"
+#include "acme/user/micro/display.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/node.h"
 #include "acme/windowing/windowing_base.h"

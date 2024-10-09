@@ -40,7 +40,9 @@ CLASS_DECL_AURA int __assert_failed_line(const ::string & pszFileName, int iLine
 //
 //   sprintf(szMessage,"Assert failed!\n\nFile: %s\nLine: %d\n\nYou can choose to:\n\n\t - \"Cancel\": cancel debugging.\n\t - \"Try\": try debug break where assertion occurred.\n\t - \"Continue\": continue running",pszFileName,iLineNumber);
 //
-//   message_box_synchronous(szMessage,szTitle,MB_CANCELTRYCONTINUE | MB_ICONERROR, callback());
+//   auto pmessagebox = __initialize_new ::message_box(szMessage,szTitle,MB_CANCELTRYCONTINUE | MB_ICONERROR, callback());
+
+send(pmessagebox);
 //
 //   //if(iResult == e_dialog_result_cancel)
 //   //{

@@ -2296,11 +2296,11 @@ namespace aura
 //
 //#ifdef UNIVERSAL_WINDOWS
 //
-//         m_spmutexOpenweatherCity = ::place(new ::pointer < ::mutex > ());
+//         m_spmutexOpenweatherCity = __new ::pointer < ::mutex > ();
 //
 //#else
 //
-//         m_spmutexOpenweatherCity = ::place(new ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city"));
+//         m_spmutexOpenweatherCity = __new ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city");
 //
 //#endif
 //
@@ -3876,7 +3876,9 @@ namespace aura
 //      if (strProfile.is_empty() && strTarget.is_empty() && strBrowser.is_empty())
 //      {
 //
-//         //::message_box_synchronous(NULL, strUrl, strUrl, e_message_box_ok);
+//         //::auto pmessagebox = __initialize_new ::message_box(NULL, strUrl, strUrl, e_message_box_ok);
+
+send(pmessagebox);
 //
 //         pcontext->m_papexcontext->os().link_open(strUrl);
 //
@@ -4641,7 +4643,7 @@ namespace aura
    //   if (threadgroupa.is_empty())
    //   {
 
-   //      auto pgroup = ::place(new ::task_group(this, epriority));
+   //      auto pgroup = __new ::task_group(this, epriority);
 
    //      threadgroupa.add(pgroup);
 
@@ -4662,7 +4664,7 @@ namespace aura
    //   if (threadtoola.is_empty())
    //   {
 
-   //      auto ptool = ::place(new ::task_tool());
+   //      auto ptool = __new ::task_tool();
 
    //      ptool->m_atom = etool;
 
@@ -4865,7 +4867,7 @@ namespace aura
    //::pointer<::aura::session>system::on_create_session()
    //{
 
-   //   return ::place(new ::axis::session());
+   //   return __new ::axis::session();
 
    //}
 
@@ -5239,7 +5241,7 @@ namespace aura
   //      m_ppatch = new aura::patch ();
   //      g_pszCooperativeLevel = "aura";
   //
-  //      estatus = __construct(m_puserset, ::place(new ::account::user_set(this)));
+  //      estatus = __construct(m_puserset, __new ::account::user_set(this));
   //
   //      if (!estatus)
   //      {
@@ -5633,7 +5635,7 @@ namespace aura
 //   void system::init1()
 //   {
 //
-//      m_pfilehandler = ::place(new ::filehandler::handler(this));
+//      m_pfilehandler = __new ::filehandler::handler(this);
 //
 //      //if (!::aura::application::init1())
 //      //{
@@ -5746,7 +5748,7 @@ namespace aura
 
    //   if(m_phistory == nullptr)
    //   {
-   //      m_phistory = ::place(new os_history(this));
+   //      m_phistory = __new os_history(this);
    //   }
 
    //   return true;
@@ -5780,7 +5782,7 @@ namespace aura
 
    //   //}
 
-   //   //m_pbergedgemap = ::place(new ::aura::session::map());
+   //   //m_pbergedgemap = __new ::aura::session::map();
 
 
    //   return true;
@@ -5861,7 +5863,7 @@ namespace aura
    //::pointer<::aura::session>system::on_create_session()
    //{
 
-   //   return ::place(new ::aura::session());
+   //   return __new ::aura::session();
 
    //}
 

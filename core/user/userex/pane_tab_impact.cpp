@@ -645,9 +645,9 @@ namespace userex
 
          puser->will_use_impact_hint(FONTSEL_IMPACT);
 
-         //auto pcreate = ::place(new create(this));
+         //auto pcreate = __new create(this);
 
-         //pcreate->m_pusersystem = ::place(new user::create());
+         //pcreate->m_pusersystem = __new user::create();
 
          //pcreate->m_puserinteractionParent = pimpactdata->m_pplaceholder;
 

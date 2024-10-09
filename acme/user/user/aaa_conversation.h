@@ -2,11 +2,11 @@
 #pragma once
 
 
-#include "acme/platform/sequence1.h"
+//#include "acme/handler/sequence.h"
 
 
 class CLASS_DECL_ACME conversation :
-   virtual public sequence < conversation >
+   virtual public particle
 {
 public:
 
@@ -27,10 +27,18 @@ public:
    virtual ::string get_conversation_title();
    virtual ::e_message_box get_conversation_flags();
    virtual ::string get_conversation_details();
+   virtual ::payload get_conversation_result();
    
+   //void aggregate(sequence * psequence) override;
+   //void aggregate(::subparticle * psubparticle) override;
+   //void do_asynchronously() override;
+
+
+   //virtual void display_conversation_options();
+
+   void run() override;
    
-   ::payload do_synchronously(const class time & time = ::time::infinity()) override;
-   void do_asynchronously() override;
+   void complete_step(::sequencer & sequencer) override;
 
 
 };

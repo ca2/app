@@ -187,7 +187,7 @@ void user::init(){
 //
 //      add_impact_system(
 //         "system/form",
-//         ::place(new ::user::multiple_document_template(
+//         ::as(new ::user::multiple_document_template(
 //         "system/form",
 //         ::type < form_document >(),
 //         psystem->get_simple_frame_window_type_info(),
@@ -201,7 +201,7 @@ void user::init(){
 //      //add_document_template(ptemplate);
 //      //add_impact_system(
 //      //   "system/form_child",
-//      //   ::place(new ::user::multiple_document_template(
+//      //   ::as(new ::user::multiple_document_template(
 //      //   "system/form",
 //      //   ::type < form_document >(),
 //      //   get_simple_child_frame_type_info(),
@@ -214,7 +214,7 @@ void user::init(){
 //      //add_document_template(m_ptemplateChildForm);
 //      add_impact_system(
 //         "system/form_placeholder",
-//         ::place(new ::user::multiple_document_template(
+//         ::as(new ::user::multiple_document_template(
 //         "system/form",
 //         ::type < ::user::document >(),
 //         psystem->get_simple_frame_window_type_info(),
@@ -228,7 +228,7 @@ void user::init(){
 //
 //      add_impact_system(
 //         "progress_impact",
-//         ::place(new ::user::multiple_document_template(
+//         ::as(new ::user::multiple_document_template(
 //         "main",
 //         ::type < ::user::document >(),
 //         ::type < ::userex::dialog_frame >(),
@@ -1465,7 +1465,7 @@ void user::destroy()
 //   //::pointer<::user::user>application::create_userex()
 //   //{
 //
-//   //   return ::place(new ::user::user());
+//   //   return __new ::user::user();
 //
 //   //}
 //
@@ -1619,7 +1619,7 @@ void user::destroy()
 //
 //         //add_factory_item <::user::color_impact >();
 //
-//         //user()->m_mapimpactsystem[COLORSEL_IMPACT] = ::place(new ::user::multiple_document_template(
+//         //user()->m_mapimpactsystem[COLORSEL_IMPACT] = ::as(new ::user::multiple_document_template(
 //         //   get_app(),
 //         //   "main",
 //         //   ::type < ::user::document >(),
@@ -1643,7 +1643,7 @@ void user::destroy()
 //
 //         add_impact_system(
 //            COLORSEL_IMPACT,
-//            ::place(new ::user::multiple_document_template(
+//            ::as(new ::user::multiple_document_template(
 //            "main",
 //            ::type < ::user::document >(),
 //            ::type < ::simple_frame_window >(),
@@ -1674,7 +1674,7 @@ void user::destroy()
 //
 //         add_impact_system(
 //            FONTSEL_IMPACT,
-//            ::place(new ::user::multiple_document_template(
+//            ::as(new ::user::multiple_document_template(
 //            "main",
 //            ::type < ::user::document >(),
 //            ::type < ::simple_frame_window >(),
@@ -1716,7 +1716,9 @@ void user::destroy()
 //
 //   //   }
 //
-//   //   return message_box_synchronous(this, puiOwner, pszMessage, pszTitle, fuStyle, functionarg);
+//   //   return auto pmessagebox = __initialize_new ::message_box(this, puiOwner, pszMessage, pszTitle, fuStyle, functionarg);
+
+send(pmessagebox);
 //
 //   //}
 //

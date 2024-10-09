@@ -3,7 +3,8 @@
 #include "user.h"
 #include "shell.h"
 #include "style.h"
-//#include "interaction_impl.h"
+#include "interaction_graphics_thread.h"
+#include "interaction_thread.h"
 #include "interaction.h"
 #include "plain_edit.h"
 #include "still.h"
@@ -452,6 +453,9 @@ namespace user
       ::acme::department::init1();
 
 
+      factory()->add_factory_item <::user::thread >();
+      factory()->add_factory_item <::user::graphics_thread >();
+
       factory()->add_factory_item <::user::button >();
       factory()->add_factory_item <::user::check_box >();
       factory()->add_factory_item <::user::still >();
@@ -630,14 +634,14 @@ namespace user
 
       m_pmutexUser.release();
 
-      if (m_pwindowing)
+      if (windowing())
       {
 
-         m_pwindowing->finalize_windowing();
+         windowing()->finalize_windowing();
 
       }
 
-      m_pwindowing.defer_destroy();
+      //windowing().defer_destroy();
 
       m_uiptraToolWindow.clear();
 
@@ -723,7 +727,7 @@ namespace user
       if (!m_pshell)
       {
 
-         //estatus = __construct(m_pshell, ::place(new ::windows::shell()));
+         //estatus = __construct(m_pshell, __new ::windows::shell());
          //estatus =
          __construct(m_pshell);
 
@@ -1523,7 +1527,7 @@ namespace user
    //void user::create_windowing()
    //{
 
-   //   if(m_pdesktopenvironment && m_pwindowing)
+   //   if(m_pdesktopenvironment && windowing())
    //   {
 
    //      return;
@@ -1539,21 +1543,21 @@ namespace user
 
    //      print_line("aura::user::create_windowing (1) (aura)");
 
-   //      desktop_environment()->m_pwindowing = windowing();
+   //      desktop_environment()->windowing() = windowing();
 
-   //      //__construct(m_pwindowing);
+   //      //__construct(windowing());
 
-   //      //m_pdesktopenvironment->m_pwindowing = m_pwindowing;
+   //      //m_pdesktopenvironment->windowing() = windowing();
 
    //      //debugf("aura::user::create_windowing (2.1)");
 
-   //      //m_pwindowing->initialize_windowing(this);
+   //      //windowing()->initialize_windowing(this);
 
    //      debugf("aura::user::create_windowing (2.2)\n");
 
    //      auto paurasystem = psystem->m_paurasystem;
 
-   //      pauranode->m_pwindowingAuraNode = m_pwindowing;
+   //      pauranode->m_pwindowingAuraNode = windowing();
 
    //      debugf("aura::user::create_windowing end");
 
@@ -1595,18 +1599,20 @@ namespace user
    ::windowing::windowing* user::windowing()
    {
 
-      if (::is_null(m_pwindowing))
-      {
+      return system()->windowing();
 
-         system()->do_graphics_and_windowing_system_factory();
+      //if (::is_null(windowing()))
+      //{
 
-         __construct(m_pwindowing);
+      //   system()->do_graphics_and_windowing_system_factory();
 
-         m_pwindowing->initialize_windowing(this);
+      //   __construct(windowing());
 
-      }
+      //   windowing()->initialize_windowing(this);
 
-      return m_pwindowing;
+      //}
+
+      return windowing();
 
    }
 
@@ -1654,7 +1660,7 @@ namespace user
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
-      return ::place(new ::user::plain_edit());
+      return __new ::user::plain_edit();
 
    }
 

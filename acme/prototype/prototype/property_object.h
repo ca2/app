@@ -140,7 +140,7 @@ public:
 
    template < typename TYPE > inline TYPE & get_cast(const ::atom & atom, TYPE * pDefault = nullptr);
 
-   //using material_object::cast;
+   using matter::cast;
 
    template < typename TYPE > inline ::pointer<TYPE>cast(const ::atom & atom) const;
 

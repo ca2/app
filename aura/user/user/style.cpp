@@ -1049,7 +1049,7 @@ namespace user
    //   if (userstyle()->m_mapColor.is_null())
    //   {
 
-   //      userstyle()->m_mapColor = ::place(new color_map());
+   //      userstyle()->m_mapColor = __new color_map();
 
    //   }
 
@@ -1066,7 +1066,7 @@ namespace user
   //    if (userstyle()->m_mapFont.is_null())
   //    {
 
-  //       userstyle()->m_mapFont = ::place(new font_map());
+  //       userstyle()->m_mapFont = __new font_map();
 
   //    }
 
@@ -1152,7 +1152,7 @@ namespace user
    //   if (userstyle()->m_mapTranslucency.is_null())
    //   {
 
-   //      userstyle()->m_mapTranslucency = ::place(new translucency_map());
+   //      userstyle()->m_mapTranslucency = __new translucency_map();
 
    //   }
 
@@ -1169,7 +1169,7 @@ namespace user
    //   if (userstyle()->m_mapFlag.is_null())
    //   {
 
-   //      userstyle()->m_mapFlag = ::place(new translucency_map());
+   //      userstyle()->m_mapFlag = __new translucency_map();
 
    //   }
 
@@ -1234,7 +1234,7 @@ namespace user
    //   if (userstyle()->m_mapRect.is_null())
    //   {
 
-   //      userstyle()->m_mapRect = ::place(new rect_map());
+   //      userstyle()->m_mapRect = __new rect_map();
 
    //   }
 
@@ -1267,7 +1267,7 @@ namespace user
    //   if (userstyle()->m_mapInt.is_null())
    //   {
 
-   //      userstyle()->m_mapInt = ::place(new ::user::i32_map());
+   //      userstyle()->m_mapInt = __new ::user::i32_map();
 
    //   }
 
@@ -1284,7 +1284,7 @@ namespace user
    //   if (userstyle()->m_mapDouble.is_null())
    //   {
 
-   //      userstyle()->m_mapDouble = ::place(new ::user::double_map());
+   //      userstyle()->m_mapDouble = __new ::user::double_map();
 
    //   }
 
@@ -1671,7 +1671,7 @@ namespace user
    //      if (spuserstyle.is_null())
    //      {
 
-   //         spuserstyle = ::place(new style(this));
+   //         spuserstyle = __new style(this);
 
    //      }
 

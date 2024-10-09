@@ -32,7 +32,7 @@ namespace geometry2d
       ::particle_pointer clone() override
       {
 
-         auto pitem = ::place(new item_type());
+         auto pitem = __new item_type();
 
          pitem->m_item = m_item;
 

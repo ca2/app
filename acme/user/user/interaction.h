@@ -41,7 +41,6 @@ namespace acme
       class CLASS_DECL_ACME interaction :
          virtual public ::user::element,
          virtual public ::user::drag_client,
-         virtual public ::conversation_message,
          virtual public ::source,
          virtual public ::user::check,
          virtual public ::user::text
@@ -50,7 +49,9 @@ namespace acme
 
 
 
-         ::pointer < ::acme::windowing::window >       m_pwindow;
+         ::pointer < ::acme::windowing::window >       m_pacmewindowingwindow;
+         ::pointer < ::acme::user::interaction >       m_pacmeuserinteractionParent;
+         ::pointer <::pointer_array < ::acme::user::interaction >> m_pacmeuserinteractionaChildren;
 
          ////string                                    m_strText;
          ////::atom                                    m_atom;
@@ -81,7 +82,9 @@ namespace acme
 
          //virtual enum_font nano_user_font();
 
-         //void create() override;
+         virtual void create_window() override;
+
+         virtual void _create_window() override;
 
          //void show_window() override;
 
@@ -195,7 +198,7 @@ namespace acme
 
 
                ::pointer < ::acme::windowing::window >      m_pnanowindowingwindow;
-               ::pointer < ::acme::user::interaction >      m_pnanouserinteractionParent;
+               ::pointer < ::acme::user::interaction >      m_pacmeuserinteractionParent;
 */
 
             //   interaction_base();
@@ -258,9 +261,9 @@ namespace acme
 
                //virtual void create_window();
 
-               virtual void show_interaction();
+               virtual void show();
 
-               virtual void hide_interaction();
+               virtual void hide();
 
                //virtual void message_loop();
 
@@ -357,7 +360,7 @@ namespace acme
 
                virtual void synchronize_composited_nano_window();
 
-               void _run_modal_loop() override;
+               //void run_modal_loop() override;
 
                virtual bool is_popup_window() const;
 

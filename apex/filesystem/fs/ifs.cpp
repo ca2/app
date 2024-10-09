@@ -228,21 +228,21 @@ bool ifs::enumerate(::file::listing & listing)
    //listing = dir;
 
    ////   if(m_mapdirFolder[strDir].is_null())
-   ////   m_mapdirFolder[strDir] = ::place(new string_array());
+   ////   m_mapdirFolder[strDir] = __new string_array();
    ////if(m_mapdirFolderName[strDir].is_null())
-   ////   m_mapdirFolderName[strDir] = ::place(new string_array());
+   ////   m_mapdirFolderName[strDir] = __new string_array();
    ////if(m_mapdirFile[strDir].is_null())
-   ////   m_mapdirFile[strDir] = ::place(new string_array());
+   ////   m_mapdirFile[strDir] = __new string_array();
    ////if(m_mapdirFileName[strDir].is_null())
-   ////   m_mapdirFileName[strDir] = ::place(new string_array());
+   ////   m_mapdirFileName[strDir] = __new string_array();
    ////if (m_mapdirFileSize[strDir].is_null())
-   ////   m_mapdirFileSize[strDir] = ::place(new i64_array());
+   ////   m_mapdirFileSize[strDir] = __new i64_array();
    ////if (m_mapdirFolderSize[strDir].is_null())
-   ////   m_mapdirFolderSize[strDir] = ::place(new i64_array());
+   ////   m_mapdirFolderSize[strDir] = __new i64_array();
    ////if(m_mapdirFileDir[strDir].is_null())
-   ////   m_mapdirFileDir[strDir] = ::place(new bool_array());
+   ////   m_mapdirFileDir[strDir] = __new bool_array();
    ////if(m_mapdirFolderDir[strDir].is_null())
-   ////   m_mapdirFolderDir[strDir] = ::place(new bool_array());
+   ////   m_mapdirFolderDir[strDir] = __new bool_array();
 
 
    ////::file::path_array  & straThisDir         = m_mapdirFolder[strDir];
@@ -348,7 +348,7 @@ bool ifs::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
 file_pointer ifs::get_file(const ::payload & payloadFile, ::file::e_open eopen, ::pointer < ::file::exception >* ppfileexception)
 {
 
-   auto pfile = ::place(new ifs_file( payloadFile));
+   auto pfile = __new ifs_file( payloadFile);
 
    //auto result =
    

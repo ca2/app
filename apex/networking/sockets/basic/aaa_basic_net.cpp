@@ -889,7 +889,7 @@ i32 net::in6_addr_compare(in6_addr a,in6_addr b)
 //
 //   }
 //
-//   pitem = ::place(new reverse_cache_item());
+//   pitem = __new reverse_cache_item();
 //
 //   pitem->m_address = address;
 //

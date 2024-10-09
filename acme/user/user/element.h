@@ -9,7 +9,7 @@
 #include "acme/user/user/text.h"
 #include "acme/filesystem/filesystem/file_dialog.h"
 #include "acme/handler/source.h"
-#include "acme/platform/conversation_message.h"
+#include "acme/platform/message_box.h"
 #include "acme/prototype/geometry2d/rectangle.h"
 #include "acme/prototype/geometry2d/rectangle_array.h"
 
@@ -107,9 +107,14 @@ namespace user
       ~element() override;
 
 
-       virtual ::user::check & check();
 
-       virtual ::user::text & text();
+      virtual void create_window();
+      virtual void _create_window();
+
+
+      virtual ::user::check & check();
+
+      virtual ::user::text & text();
 
 
       virtual void _001OnTimer(::timer * ptimer);
@@ -128,7 +133,7 @@ namespace user
 
       virtual ::user::interaction * user_interaction();
       virtual ::windowing::window * windowing_window();
-      
+
 
 
 
@@ -155,12 +160,12 @@ namespace user
       virtual void PreSubClassWindow();
 
 
-//#ifdef WINDOWS
-//      virtual strsize _009GetWindowText(wchar_t * pwsz, int n);
-//#else
-//      virtual strsize _009GetWindowText(char * psz, int n);
-//#endif
-//      virtual strsize _009GetWindowTextLength();
+      //#ifdef WINDOWS
+      //      virtual strsize _009GetWindowText(wchar_t * pwsz, int n);
+      //#else
+      //      virtual strsize _009GetWindowText(char * psz, int n);
+      //#endif
+      //      virtual strsize _009GetWindowTextLength();
 
       virtual bool GetFocusRect(::rectangle_i32 & rectangle);
 
@@ -176,6 +181,9 @@ namespace user
 
 
       virtual void _on_window_simple_action(const char * pszActionName);
+
+      
+      virtual void on_window_close();
 
 
       virtual void set_mouse_capture();
@@ -195,7 +203,7 @@ namespace user
 
       virtual void defer_update_display();
 
-      
+
       virtual enum_control_type get_control_type();
 
 
@@ -214,7 +222,7 @@ namespace user
       virtual void hide_software_keyboard(::user::element * pelement);
 
       //virtual void UpdateWindow();
-      
+
       //svirtual void Invalidate(bool bErase = true);
 
       virtual bool has_pending_redraw_flags();
@@ -265,13 +273,9 @@ namespace user
 
       virtual void update_dialog_controls(channel * ptarget);
       virtual void CenterWindow(::user::interaction * pAlternateOwner = nullptr);
-      virtual atom run_modal_loop(::user::interaction * pinteraction, u32 dwFlags = 0);
-      virtual atom RunModalLoop(u32 dwFlags = 0);
-      virtual atom _001RunModalLoop(u32 dwFlags = 0);
-      virtual bool ContinueModal();
-      virtual void EndModalLoop(atom nResult);
-
-      virtual void _run_modal_loop();
+      //virtual atom run_modal_loop(::user::interaction * pinteraction, u32 dwFlags = 0);
+      //virtual atom RunModalLoop(u32 dwFlags = 0);
+      //virtual atom _001RunModalLoop(u32 dwFlags = 0);
 
       // Dialog data support
       virtual void update_data(bool bSaveAndValidate = true);
@@ -335,7 +339,7 @@ namespace user
       virtual void on_create_window();
 
       //virtual void create_host(enum_parallelization eparallelization);
-      virtual void create_host();
+      //virtual void create_host();
       virtual void create_child(::user::interaction * puserinteractionParent);
 
       //virtual void create_window_ex(::pointer<::user::system>pcs, ::user::interaction * puiParent, const ::atom & atom);
@@ -350,19 +354,19 @@ namespace user
       virtual void destroy_window();
 
 
-//#ifdef WINDOWS
+      //#ifdef WINDOWS
 
-  //    virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
+        //    virtual void RedrawWindow(const ::rectangle_i32& rectangleUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
 
-//#else
-
-
-//#endif
+      //#else
 
 
-//      virtual void UpdateWindow();
-      //virtual void SetRedraw(bool bRedraw = true);
-      //virtual bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false);
+      //#endif
+
+
+      //      virtual void UpdateWindow();
+            //virtual void SetRedraw(bool bRedraw = true);
+            //virtual bool GetUpdateRect(::rectangle_i32 * prectangle,bool bErase = false);
 
 
       virtual void host_post(const ::procedure & procedure);
@@ -372,7 +376,7 @@ namespace user
       //virtual bool post(::message::message * pmessage);
 
       virtual lresult send_message(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::point_i32 & point = {});
-      
+
       virtual lresult send_message(::message::message * pmessage);
 
       virtual lresult message_call(const ::atom & atom, wparam wparam = {}, lparam lparam = 0, const ::point_i32 & point = {});
@@ -390,7 +394,7 @@ namespace user
 
       virtual void post_message(const ::atom & atom, wparam wparam = {}, lparam lparam = 0);
 
-      virtual void post_simple_command(const enum_simple_command & ecommand,lparam lParam = 0);
+      virtual void post_simple_command(const enum_simple_command & ecommand, lparam lParam = 0);
 
       //virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
       //virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0);
@@ -399,7 +403,7 @@ namespace user
       //virtual void SetWindowDisplayChanged();
 
       // timer Functions
-      virtual void SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void* pdata = nullptr);
+      virtual void SetTimer(uptr uEvent, const class ::time & millisElapse, PFN_TIMER pfnTimer, bool bPeriodic = true, void * pdata = nullptr);
       virtual void KillTimer(uptr uEvent);
 
 
@@ -422,17 +426,17 @@ namespace user
       virtual atom GetDlgCtrlId() const;
       virtual atom SetDlgCtrlId(const ::atom & atom);
 
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//      virtual bool open_clipboard();
-//      virtual bool close_clipboard();
-//
-//#endif
+      //
+      //#ifdef WINDOWS_DESKTOP
+      //
+      //      virtual bool open_clipboard();
+      //      virtual bool close_clipboard();
+      //
+      //#endif
 
 
 
-      //virtual void set_foreground_window();
+            //virtual void set_foreground_window();
 
 
       virtual void set_rectangle(const ::rectangle_i32 & rectangle);
@@ -446,10 +450,10 @@ namespace user
       virtual void set_capture();
       virtual bool has_capture();
       virtual void release_capture();
-      
 
-      virtual void edit_on_set_focus(::user::interaction* pinteraction);
-      virtual void edit_on_kill_focus(::user::interaction* pinteraction);
+
+      virtual void edit_on_set_focus(::user::interaction * pinteraction);
+      virtual void edit_on_kill_focus(::user::interaction * pinteraction);
 
 
       //using ::user::text::get_text;
@@ -464,7 +468,7 @@ namespace user
       virtual void set_window_text(const ::string & psz);
       virtual void set_window_text_source(const ::a_string_function & astringfunction);
 
-      virtual strsize get_window_text(char * pszStringBuf,strsize nMaxCount);
+      virtual strsize get_window_text(char * pszStringBuf, strsize nMaxCount);
 
       virtual string get_window_text();
       virtual void get_window_text(string & rString);
@@ -479,9 +483,9 @@ namespace user
 
 
       virtual bool _001IsPointInside(const ::point_i32 & point);
-      virtual ::user::interaction * _001FromPoint(::point_i32 point,bool bTestedIfParentVisible = false);
+      virtual ::user::interaction * _001FromPoint(::point_i32 point, bool bTestedIfParentVisible = false);
 
-      virtual void OnLinkClick(const ::string & psz,const ::string & pszTarget = nullptr);
+      virtual void OnLinkClick(const ::string & psz, const ::string & pszTarget = nullptr);
 
       virtual ::user::interaction * get_child_by_name(const ::string & strName, ::collection::index iItem = -1, i32 iLevel = -1);
       virtual ::user::interaction * get_child_by_id(const ::atom & atom, ::collection::index iItem = -1, i32 iLevel = -1);
@@ -497,7 +501,7 @@ namespace user
       virtual ::user::element * set_owner(::user::element * pinteraction);
 
 
-
+      virtual ::windowing::window * window_get_parent();
 
       virtual ::user::interaction * get_parent();
       virtual ::user::interaction * get_owner();
@@ -524,21 +528,21 @@ namespace user
       virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::atom idLeftOver, ::u32 nFlag = reposDefault, ::rectangle_i32 * prectParam = nullptr, const ::rectangle_i32 & rectangleX = {}, bool bStretch = true);
 
       virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point);
-      virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point,::u32 nFlags);
+      virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point, ::u32 nFlags);
 
 
-//#ifdef WINDOWS_DESKTOP
-  //    virtual ::user::interaction * get_next_window(::u32 nFlag = GW_HWNDNEXT);
-//#else
-      //virtual ::user::interaction * get_next_window(::u32 nFlag = 0);
+      //#ifdef WINDOWS_DESKTOP
+        //    virtual ::user::interaction * get_next_window(::u32 nFlag = GW_HWNDNEXT);
+      //#else
+            //virtual ::user::interaction * get_next_window(::u32 nFlag = 0);
 
       virtual ::user::interaction * get_next_sibling_window();
 
-//#endif
+      //#endif
 
       virtual void set_tool_window(bool bSet = true);
 
-      
+
       virtual ::user::interaction * get_next_window(bool bIgnoreChildren = false, ::user::interaction * puiInteractionStop = nullptr);
       virtual ::user::interaction * get_window(enum_next enext);
 
@@ -569,7 +573,7 @@ namespace user
 
 
       virtual ::windowing::window * window();
-      
+
       //virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
       //virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
 
@@ -580,7 +584,7 @@ namespace user
 
       //virtual void _001OnTriggerMouseInside();
 
-      virtual void _000OnMouseLeave(::message::message* pmessage);
+      virtual void _000OnMouseLeave(::message::message * pmessage);
 
       //#ifdef UNIVERSAL_WINDOWS
       //      Agile<::winrt::Windows::UI::Core::CoreWindow> get_os_window();
@@ -698,12 +702,12 @@ namespace user
 
 
 
-//      element();
-  //    virtual ~element();
+      //      element();
+        //    virtual ~element();
 
 
-      /*virtual void pre_translate_message(::message::message * pmessage);
-*/
+            /*virtual void pre_translate_message(::message::message * pmessage);
+      */
 
       virtual float preferred_dpi_x();
 
@@ -761,11 +765,11 @@ namespace user
 
       }
 
-      virtual ::user::interaction * get_parent_window();
+      //virtual ::user::interaction * get_parent_window();
 
       virtual ::user::element * get_parent_primitive();
 
-      virtual ::user::primitive_impl* get_primitive_impl();
+      virtual ::user::primitive_impl * get_primitive_impl();
 
       virtual ::user::interaction * get_first_child_window();
 
@@ -816,7 +820,7 @@ namespace user
 
       //virtual bool SetPlacement(const ::rectangle_i32 & rectangle, ::u32 nFlags = SWP_SHOWWINDOW);
 
-      
+
       virtual i32 get_total_page_count(::context * pcontext);
 
 
@@ -830,8 +834,8 @@ namespace user
       virtual void on_text_composition_done();
       //virtual bool is_text_composition_active();
 
-      virtual void set_input_content_rect(const rectangle_i32& rectangle);
-      virtual void set_input_selection_rect(const rectangle_i32& rectangle);
+      virtual void set_input_content_rect(const rectangle_i32 & rectangle);
+      virtual void set_input_selection_rect(const rectangle_i32 & rectangle);
 
       virtual rectangle_i32 get_input_content_rect();
       virtual rectangle_i32 get_input_selection_rect();
@@ -863,20 +867,20 @@ namespace user
       virtual ::user::element * next_user_element();
       virtual ::user::element * previous_user_element();
 
-   
+
       virtual void pick_single_file(
          const ::array < ::file::file_dialog_filter > & filedialogfiltera,
-         const ::function < void(const ::file::path &) >& function,
+         const ::function < void(const ::file::path &) > & function,
          bool save);
 
 
       virtual void pick_multiple_file(
-         const ::array < ::file::file_dialog_filter >& filedialogfiltera,
-         const ::function < void(const ::file::path_array &) >& function);
+         const ::array < ::file::file_dialog_filter > & filedialogfiltera,
+         const ::function < void(const ::file::path_array &) > & function);
 
 
       virtual void pick_single_folder(
-         const ::function < void(const ::file::path &) >& function);
+         const ::function < void(const ::file::path &) > & function);
 
       virtual bool update_impact();
       virtual bool on_impact_update();

@@ -8,7 +8,7 @@ i32 WINAPI acme_win_main(::acme::application* papp, HINSTANCE hinstanceThis, HIN
 i32 WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
 {
 
-	auto papp = ::place(new APPLICATION::application());
+	auto papp = __new APPLICATION::application();
 
 	return ::acme::win_main(papp, hinstanceThis, hinstancePrev, pCmdLine, nCmdShow);
 

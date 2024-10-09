@@ -340,12 +340,16 @@ void app_core::system_init()
 
       uid_t uid = atoi(strUid);
 
-      message_box_synchronous(nullptr, "going to seteuid to: " + as_string(uid), "going to seteuid", e_message_box_ok);
+      auto pmessagebox = __initialize_new ::message_box(nullptr, "going to seteuid to: " + as_string(uid), "going to seteuid", e_message_box_ok);
+
+send(pmessagebox);
 
       if (seteuid(uid) == 0)
       {
 
-         message_box_synchronous(nullptr, "uid=" + as_string(uid), "seteuid success", e_message_box_ok);
+         auto pmessagebox = __initialize_new ::message_box(nullptr, "uid=" + as_string(uid), "seteuid success", e_message_box_ok);
+
+send(pmessagebox);
 
       }
       else
@@ -357,7 +361,9 @@ void app_core::system_init()
 
          strError.formatf("errno=%d uid=%d", iErr);
 
-         message_box_synchronous(nullptr, strError, "seteuid failed", e_message_box_icon_exclamation);
+         auto pmessagebox = __initialize_new ::message_box(nullptr, strError, "seteuid failed", e_message_box_icon_exclamation);
+
+send(pmessagebox);
 
       }
 
@@ -502,11 +508,11 @@ void app_core::system_init()
 
    //set_object(get_context_system());
 
-   auto pcreate = ::place(new ::create(get_context_system()));
+   auto pcreate = __new ::create(get_context_system());
 
    pcreate->m_strAppId = strAppId;
 
-   pcreate->m_pcommandline = ::place(new command_line(get_context_system(), strCommandLine));
+   pcreate->m_pcommandline = __new command_line(get_context_system(), strCommandLine);
 
    //::auraacmesystem()->get_command()->add_create(pcreate);
 
@@ -609,7 +615,7 @@ pacmedirectory->ca2roaming() / "program";
 //
 //         string strLibrary = ::process::app_id_to_app_name(strAppId);
 //
-//         m_plibrary = ::place(new ::acme::library());
+//         m_plibrary = __new ::acme::library();
 //
 //         m_plibrary->initialize(get_context_system());
 //
@@ -923,7 +929,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //      aura_main_struct.m_bUser = true;
 //      aura_main_struct.m_bUserEx = true;
 //
-//      auto psystem = ::place(new ::aura::system());
+//      auto psystem = __new ::aura::system();
 //
 //      psystem->system_construct(argc, argv);
 //
@@ -941,7 +947,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //CLASS_DECL_AURA long aura_prefix(::aura::system * psystem)
 //{
 //
-//   //pmaindata->m_pappcore = ::place(new app_core(pmaindata));
+//   //pmaindata->m_pappcore = __new app_core(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {
@@ -965,7 +971,7 @@ typedef DEFER_INIT * PFN_DEFER_INIT;
 //CLASS_DECL_AURA long aura_fork(::aura::system * psystem, PFN_NEW_AURA_APPLICATION pfnNewAuraApplication)
 //{
 //
-//   //pmaindata->m_pappcore = ::place(new app_core(pmaindata));
+//   //pmaindata->m_pappcore = __new app_core(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {
@@ -1897,7 +1903,7 @@ bool app_core::has_aura_application_factory() const
          else
          {
 
-            //plibrary = ::place(new ::acme::library());
+            //plibrary = __new ::acme::library();
 
             //plibrary->initialize_aura_library(pparticle, 0, nullptr);
 
@@ -2050,8 +2056,8 @@ bool app_core::has_aura_application_factory() const
    if (!papp->is_serviceable() || papp->is_user_service())
    {
 
-      ::auraacmesystem()->m_spmutexUserAppData = ::place(new ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData"));
-      ::auraacmesystem()->m_spmutexSystemAppData = ::place(new ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData"));
+      ::auraacmesystem()->m_spmutexUserAppData = __new ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
+      ::auraacmesystem()->m_spmutexSystemAppData = __new ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
 
    }
 

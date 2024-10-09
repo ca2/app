@@ -12,7 +12,7 @@ void action_context::add(const ::particle * pparticle)
    if (!m_pparticlea)
    {
 
-      m_pparticlea = ::place(new pointer_array < ::particle > ());
+      m_pparticlea = __new pointer_array < ::particle > ();
 
    }
    

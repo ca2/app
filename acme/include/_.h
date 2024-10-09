@@ -175,6 +175,9 @@
 //#endif
 #include  "acme/platform/class.h"
 
+#include "acme/handler/sequencer.h"
+#include "acme/platform/message_box.h"
+
 //#ifdef   _STDIO_H_
 //#error "already included?!?! WHAT?!?! (After including acme/include/(5))"
 //#endif

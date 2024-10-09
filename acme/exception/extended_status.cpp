@@ -153,7 +153,7 @@ namespace extended
     //   if (m_pexceptiona.is_null())
     //   {
 
-    //      m_pexceptiona = ::place(new ::array < ::exception > ());
+    //      m_pexceptiona = __new ::array < ::exception > ();
 
     //   }
 

@@ -52,7 +52,7 @@ namespace user
       
       pointer_array < ::user::interaction >      m_uiptraToolWindow;
 
-      ::pointer<::windowing::windowing>      m_pwindowing;
+      //::pointer<::windowing::windowing>      m_pwindowing;
       ::pointer <::mutex  >                     m_pmutexUser;
 
       ::pointer < ::mutex >                                   m_pmutexRunnable;

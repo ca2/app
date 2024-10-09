@@ -78,97 +78,54 @@ int message_box_to_windows_message_box_default_button(enum_message_box emessageb
 }
 
 
-int message_box_to_windows_message_box(enum_message_box emessagebox)
-{
 
-   int iMessageBox = 0;
+//
+//namespace windows
+//{
+//
+//
+//   class message_box:
+//   public ::operating_system::message_box
+//   {
+//   public:
+//
+//      //::atom do_modal(const ::scoped_string & scopedstrMessage,
+//      //                               const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox,
+//      //                               const ::scoped_string & scopedstrDetails) override
+//      ::enum_dialog_result m_edialogresult;
+//      void run() override
+//      {
+//         auto iType = message_box_to_windows_message_box(m_emessagebox);
+//         ::wstring wstrMessage(m_strMessage);
+//         ::wstring wstrTitle(m_strTitle);
+//
+//         auto iRet = ::MessageBoxW(nullptr, wstrMessage, wstrTitle, iType);
+//
+//         m_edialogresult = windows_message_box_result_to_dialog_result(iRet);
+//
+//
+//      }
+//
+//
+//      void complete_step(sequencer & sequencer) override
+//      {
+//
+//         sequencer.add_result(m_edialogresult);
+//
+//      }
+//
+//   };
+//
+//
+//} // namespace windows
 
-   iMessageBox |= message_box_to_windows_message_box_type(emessagebox);
-
-   iMessageBox |= message_box_to_windows_message_box_icon(emessagebox);
-
-   iMessageBox |= message_box_to_windows_message_box_default_button(emessagebox);
-
-   return iMessageBox;
-
-}
-
-
-enum_dialog_result windows_message_box_result_to_dialog_result(int iResult)
-{
-
-   switch (iResult)
-   {
-   case IDOK:
-      return e_dialog_result_ok;
-   case IDCANCEL:
-      return e_dialog_result_cancel;
-   case IDABORT:
-      return e_dialog_result_abort;
-   case IDRETRY:
-      return e_dialog_result_retry;
-   case IDIGNORE:
-      return e_dialog_result_ignore;
-   case IDYES:
-      return e_dialog_result_yes;
-   case IDNO:
-      return e_dialog_result_no;
-   case IDCLOSE:
-      return e_dialog_result_close;
-   case IDHELP:
-      return e_dialog_result_help;
-   case IDTRYAGAIN:
-      return e_dialog_result_try_again;
-   case IDCONTINUE:
-      return e_dialog_result_continue;
-   case IDTIMEOUT:
-      return e_dialog_result_timeout;
-   default:
-      return e_dialog_result_none;
-   }
-
-}
-
-
-namespace windows
-{
-
-
-   class message_box:
-   public ::operating_system::message_box
-   {
-   public:
-
-      //::atom do_modal(const ::scoped_string & scopedstrMessage,
-      //                               const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox,
-      //                               const ::scoped_string & scopedstrDetails) override
-      ::payload do_synchronously(const class time& timeWait) override
-      {
-
-         auto iType = message_box_to_windows_message_box(m_emessagebox);
-         ::wstring wstrMessage(m_strMessage);
-         ::wstring wstrTitle(m_strTitle);
-
-         auto iRet = ::MessageBoxW(nullptr, wstrMessage, wstrTitle, iType);
-
-         auto edialogresult = windows_message_box_result_to_dialog_result(iRet);
-
-         return edialogresult;
-
-      }
-
-   };
-
-
-} // namespace windows
-
-
-void windows_message_box_factory(::factory::factory * pfactory)
-{
-
-   pfactory->add_factory_item<::windows::message_box, ::operating_system::message_box >();
-
-}
-
+//
+//void windows_message_box_factory(::factory::factory * pfactory)
+//{
+//
+//   pfactory->add_factory_item<::windows::message_box, ::operating_system::message_box >();
+//
+//}
+//
 
 

@@ -16,7 +16,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/platform/platform.h"
-#include "acme/platform/sequencer.h"
+//#include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
 #include "acme/platform/session.h"
 #include "acme/prototype/string/_str.h"
@@ -55,7 +55,7 @@ application::application()
    m_bTransferToContainer = true;
    m_bTransferredToContainer = false;
    
-   m_pfilesystemoptions = ::place(new ::filesystem::file_system_options ());
+   m_pfilesystemoptions = __new ::filesystem::file_system_options ();
       
    m_bApplicationFirstRequest = true;
    
@@ -304,8 +304,13 @@ void application::on_error_icloud_not_available(::particle * pparticle, long lon
 {
    
    ::function < void(const ::atom& atom) > function;
+
+   auto pmessagebox = __initialize_new ::message_box(
+      "Application needs iCloud and it is not Available",
+      "iCloud is not Available.",
+      e_message_box_ok | e_message_box_icon_exclamation);
    
-   message_box_synchronous(this, "Application needs iCloud and it is not Available", "iCloud is not Available.", e_message_box_ok | e_message_box_icon_exclamation);
+   send(pmessagebox);
    
 }
 
@@ -1428,7 +1433,13 @@ void application::application_pre_run()
       
       handle_exception(e);
       
-      message_box_synchronous(this, "Application failed to initialize (1).\n\n" + e.m_strMessage, m_strAppName, e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
+      auto pmessagebox = __initialize_new ::message_box(
+         "Application failed to initialize (1).\n\n" + e.m_strMessage,
+         m_strAppName, 
+         e_message_box_ok, 
+         e.m_strMessage + "\n" + e.m_strDetails);
+
+      send(pmessagebox);
       
       throw e;
       
@@ -1436,7 +1447,11 @@ void application::application_pre_run()
    catch (...)
    {
       
-      message_box_synchronous(this, "Application failed to initialize (2). Unknown exception", m_strAppName);
+      auto pmessagebox = __initialize_new ::message_box(
+         "Application failed to initialize (2). Unknown exception", 
+         m_strAppName);
+
+      send(pmessagebox);
       
       throw "Unknown exception";
       
@@ -1481,8 +1496,13 @@ void application::application_pre_run()
    catch (const ::exception & exception)
    {
       
-      message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName, e_message_box_ok,
-                              exception.m_strMessage + "\n\n" + exception.get_consolidated_details(this));
+      auto pmessagebox = __initialize_new ::message_box(
+         "Application failed to initialize (4). Unknown exception",
+         m_strAppName,
+         e_message_box_ok,
+      exception.m_strMessage + "\n\n" + exception.get_consolidated_details(this));
+
+      send(pmessagebox);
       
       throw exception;
       
@@ -1490,7 +1510,11 @@ void application::application_pre_run()
    catch (...)
    {
       
-      message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName);
+      auto pmessagebox = __initialize_new ::message_box(
+         "Application failed to initialize (4). Unknown exception",
+         m_strAppName);
+
+      send(pmessagebox);
       
       throw "Unknown exception";
       
@@ -1909,7 +1933,7 @@ void application::process_term()
    if (::is_set(psession))
    {
 
-      psession->post_procedure([this]()
+      psession->post([this]()
          {
 
             session()->erase_application(this);
@@ -1986,7 +2010,7 @@ void application::show_about_box()
 
    picon->load_image_from_file(pfile);
    
-   auto psequencer = system()->acme_windowing()->message_box("About\n\n" + strMessage, nullptr, e_message_box_ok, "", picon);
+   auto paboutbox = __initialize_new_with(system()->acme_windowing()) ::message_box("About\n\n" + strMessage, nullptr, e_message_box_ok, "", picon);
    
    //psequencer->then([this, strPath](auto pconversation)
    //      {
@@ -2007,7 +2031,7 @@ void application::show_about_box()
    
    //      });
    
-   psequencer->do_asynchronously();
+   post(paboutbox);
    
    
    

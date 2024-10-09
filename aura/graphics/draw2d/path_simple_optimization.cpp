@@ -320,7 +320,7 @@ namespace draw2d
    ::pointer < ::draw2d::path_optimization > create_path_simple_optimization(::draw2d::path * ppath)
    {
 
-      return ::place(new path_simple_optimization(ppath));
+      return __new path_simple_optimization(ppath);
 
    }
 

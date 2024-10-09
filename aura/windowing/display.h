@@ -3,7 +3,7 @@
 #pragma once
 
 
-#include "acme/nano/windowing/display.h"
+#include "acme/windowing/display.h"
 #include "acme/prototype/geometry2d/_collection.h"
 ////#include "acme/prototype/prototype/object.h"
 
@@ -28,7 +28,7 @@ namespace windowing
       pointer_array < monitor >      m_monitora;
 
 
-      ::pointer<windowing>         m_pwindowing;
+      //::pointer<windowing>         m_pwindowing;
       bool                          m_bSystemSynchronizedScreen;
 
       ::collection::index                         m_iMainMonitor;
@@ -43,8 +43,11 @@ namespace windowing
       display();
       ~display() override;
 
+      
+      void on_initialize_particle() override;
 
-      virtual void initialize_display(::windowing::windowing * pwindowing);
+
+      virtual void open_display();
       virtual void finalize_display();
 
       virtual iptr get_os_data() const;
@@ -54,7 +57,7 @@ namespace windowing
 
       virtual float get_dpi();
 
-      void open_display() override;
+      //void open_display() override;
       virtual void close_display();
 
       virtual bool set_main_monitor(::collection::index iMonitor);

@@ -9,7 +9,7 @@
 //   ::pointer<sort_index>& sortindex = m_indexmap[fCompare];
 //
 //   if(sortindex.is_null())
-//      sortindex = ::place(new sort_index());
+//      sortindex = __new sort_index();
 //
 //   if(!sortindex->m_bUpdated)
 //   {
@@ -50,7 +50,7 @@
 //  if (!pia)
 //  {
 //
-//     pia = ::place(new index_array());
+//     pia = __new index_array();
 //
 //  }
 //

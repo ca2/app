@@ -240,7 +240,7 @@ namespace dynamic_source
 
          m_pcache->m_pmanager = this;
 
-         m_pcompiler = ::place(new script_compiler());
+         m_pcompiler = __new script_compiler();
 
          //estatus = 
 
@@ -274,7 +274,7 @@ namespace dynamic_source
 
       {
 
-         auto pwatcher = ::place(new clear_include_matches_file_watcher(this));
+         auto pwatcher = __new clear_include_matches_file_watcher(this);
 
          pwatcher->m_pmanager = this;
 
@@ -298,7 +298,7 @@ namespace dynamic_source
          if (case_insensitive_string_begins(path.title(), "net-"))
          {
 
-            auto pwatcher = ::place(new clear_include_matches_file_watcher(this));
+            auto pwatcher = __new clear_include_matches_file_watcher(this);
 
             pwatcher->m_pmanager = this;
 
@@ -1279,7 +1279,7 @@ namespace dynamic_source
 
       }
 
-      auto psession = ::place(new ::dynamic_source::session());
+      auto psession = __new ::dynamic_source::session();
 
       psession->initialize_dynamic_source_session(pszId, this);
 

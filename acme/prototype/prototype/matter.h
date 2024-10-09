@@ -10,7 +10,6 @@
 
 
 class CLASS_DECL_ACME matter :
-   virtual public signal_handler::base,
    virtual public ::particle
 {
 public:
@@ -81,7 +80,7 @@ public:
    virtual ::extended_topic_pointer create_extended_topic(const ::atom & atom);
 
 
-   void operator()(::topic* ptopic, ::context* pcontext) override;
+   //void operator()(::topic* ptopic, ::context* pcontext) override;
 
    virtual void operator()(::message::message * pmessage);
    virtual void operator()(const ::payload & payload);
@@ -259,7 +258,7 @@ public:
 
 
 
-   //pointer< ::sequencer < ::conversation > > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
+   //::pointer < ::subparticle > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
 
 
    //::topic_pointer create_topic(const ::atom & atom);

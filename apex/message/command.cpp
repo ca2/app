@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "command.h"
 #include "channel.h"
-#include "acme/nano/user/interaction.h"
+#include "acme/user/user/interaction.h"
 
 
 namespace message

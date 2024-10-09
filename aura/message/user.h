@@ -388,7 +388,7 @@ namespace message
    public:
 
 
-      ::pointer < ::particle >      m_pparticle;
+      ::particle_pointer      m_pparticle;
 
 
       particle();

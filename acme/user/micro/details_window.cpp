@@ -68,7 +68,7 @@ namespace micro
 
          //string m_strDetails;
 
-         display_temporary_file_with_text(m_strDetails);
+         display_temporary_file_with_text(m_pmessagebox->m_strDetails);
 
          //pdetailswindow->display_synchronously(m_strDetails, m_strTitle + " : Details", e_message_box_ok, m_strDetails);
 

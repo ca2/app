@@ -2320,7 +2320,7 @@ namespace acme
 //   if (memcontainer.get_memory() == nullptr)
 //   {
 //
-//      memcontainer.set_memory(::place(new memory(&memcontainer)));
+//      memcontainer.set_memory(__new memory(&memcontainer));
 //
 //   }
 //
@@ -2338,7 +2338,7 @@ namespace acme
 //   if (memcontainer.get_memory() == nullptr)
 //   {
 //
-//      memcontainer.set_memory(::place(new memory(&memcontainer)));
+//      memcontainer.set_memory(__new memory(&memcontainer));
 //
 //   }
 //

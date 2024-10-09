@@ -452,7 +452,7 @@ namespace sphere
       if (m_pconsole.is_null())
       {
 
-         m_pconsole = ::place(new ::console::department(this));
+         m_pconsole = __new ::console::department(this);
 
          MESSAGE_LINK(WM_APP + 3243, this, m_pconsole.m_p, &console::department::_001OnImpact);
 
@@ -470,7 +470,7 @@ namespace sphere
       if (m_pprompt.is_null())
       {
 
-         m_pprompt = ::place(new ::prompt::department(this));
+         m_pprompt = __new ::prompt::department(this);
 
       }
 
@@ -485,7 +485,7 @@ namespace sphere
       if (m_pfilehandler.is_null())
       {
 
-         m_pfilehandler = ::place(new ::filehandler::department(this));
+         m_pfilehandler = __new ::filehandler::department(this);
 
       }
 
@@ -500,7 +500,7 @@ namespace sphere
       if (m_pcalculator.is_null())
       {
 
-         m_pcalculator = ::place(new ::calculator::department(this));
+         m_pcalculator = __new ::calculator::department(this);
 
       }
 

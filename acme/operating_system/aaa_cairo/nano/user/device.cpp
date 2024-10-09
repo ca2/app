@@ -4,9 +4,9 @@
 #include "framework.h"
 #include "device.h"
 #include "acme/prototype/geometry2d/rectangle.h"
-#include "acme/nano/user/brush.h"
-#include "acme/nano/user/font.h"
-#include "acme/nano/user/pen.h"
+#include "acme/user/micro/brush.h"
+#include "acme/user/micro/font.h"
+#include "acme/user/micro/pen.h"
 
 
 namespace cairo

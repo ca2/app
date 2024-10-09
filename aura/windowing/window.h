@@ -46,10 +46,13 @@ namespace windowing
       };
 
       bool                                      m_bMessageOnlyWindow : 1;
+      bool                                      m_bQuitGraphicsOnHide : 1;
+      bool                                      m_bDestroyWindowOnHide : 1;
+      bool                                      m_bTryCloseApplicationOnHide : 1;
 
 
       ::sandbox_windowing::window *             m_psandboxwindowingwindow;
-      void *                                    m_pWindow4;
+      //void *                                    m_pWindow4;
 
       //::pointer<::windowing::display>           m_pdisplay;
       ::pointer<::user::interaction>            m_puserinteraction;
@@ -61,7 +64,7 @@ namespace windowing
       mouse_reposition_throttling               m_mouserepositionthrottling;
       
       ::pointer<::windowing::icon>              m_picon;
-      ::pointer<::windowing::windowing>         m_pwindowing;
+      //::pointer<::windowing::windowing>         m_pwindowing;
       ::pointer<::user::copydesk>               m_pcopydesk;
       ::pointer<::windowing::cursor>            m_pcursor;
       //::oswindow                                m_oswindow;
@@ -70,7 +73,7 @@ namespace windowing
       bool                                      m_bActiveWindow;
       bool                                      m_bKeyboardFocus;
       ::pointer < class placement_log >         m_pplacementlog;
-      ::pointer < ::particle >                  m_pparticleChildrenSynchronization;
+      ::particle_pointer                  m_pparticleChildrenSynchronization;
 
 #if defined(WINDOWS_DESKTOP) && !defined(ENABLE_TEXT_SERVICES_FRAMEWORK)
       //HIMC                                    m_himc;
@@ -282,6 +285,9 @@ namespace windowing
       // implementation foreseeing Windows with its mouse capture state per thread and
       // also providing fallback default internal (own process state) implementation.
       void release_mouse_capture() override;
+      // implementation foreseeing Windows with its mouse capture state per thread and
+      // also providing fallback default internal (own process state) implementation.
+      bool defer_release_mouse_capture() override;
 
 
       virtual void bring_to_front();
@@ -310,8 +316,8 @@ namespace windowing
 
       
 
-      inline ::windowing::windowing * windowing() { return m_pwindowing; }
-      inline ::windowing::windowing * windowing() const { return m_pwindowing.m_p; }
+      virtual ::windowing::windowing * windowing();
+      //inline ::windowing::windowing * windowing() const { return m_pwindowing.m_p; }
 
 
       virtual void exit_iconify();
@@ -330,22 +336,22 @@ namespace windowing
 
       //virtual void _show_window_unlocked(const ::e_display & edisplay, const ::e_activation & eactivation);
 
-      virtual void set_user_interaction(::user::interaction *pinteraction);
+      //virtual void set_user_interaction(::user::interaction *pinteraction);
 
       void post_non_client_destroy() override;
 
       virtual bool is_child_of(const window * pwindowAscendantCandidate) const; // or descendant
       
       
-      virtual ::windowing::window * get_parent() const;
-      virtual ::oswindow get_parent_oswindow() const;
+      //virtual ::windowing::window * window_get_parent();
+      //virtual ::oswindow get_parent_oswindow();
       virtual void set_parent(::windowing::window * pwindowNewParent);
 
 
 
       
-      virtual ::windowing::window * get_owner() const;
-      virtual ::oswindow get_owner_oswindow() const;
+      virtual ::windowing::window * window_get_owner();
+      virtual ::oswindow get_owner_oswindow();
       virtual void set_owner(::windowing::window * pwindowNewOwner);
 
 
@@ -466,10 +472,10 @@ namespace windowing
 
 
       virtual ::windowing::window * get_next_window(::u32 nFlag = 0);
-      virtual ::windowing::window * get_top_window() const;
+      virtual ::windowing::window * get_top_window();
 
-      virtual ::windowing::window * get_window(::u32 nCmd) const;
-      virtual ::windowing::window * get_last_active_popup() const;
+      virtual ::windowing::window * get_window(::u32 nCmd);
+      virtual ::windowing::window * get_last_active_popup();
 
 
       virtual point_i32 GetCaretPos();
@@ -1147,7 +1153,6 @@ namespace windowing
       DECLARE_MESSAGE_HANDLER(_001OnCaptureChanged);
       DECLARE_MESSAGE_HANDLER(_001OnPrioCreate);
 
-
 #ifdef WINDOWS_DESKTOP
 
       DECLARE_MESSAGE_HANDLER(_001OnWindowPosChanged);
@@ -1343,6 +1348,9 @@ namespace windowing
       //::aura::session * get_session();
       //::aura::system* system();
 
+      void set_user_interaction(::acme::user::interaction * pacmeuserinteraction) override;
+      void set_user_thread(::user::thread * puserthread) override;
+      void set_user_graphics_thread(::user::graphics_thread * pusergraphicsthread) override;
 
 
       virtual void prio_install_message_routing(::channel * pchannel);
@@ -1662,8 +1670,8 @@ namespace windowing
 
 
       //virtual ::user::interaction * GetTopWindow() const;
-      virtual ::user::interaction * get_parent();
-      inline ::user::interaction * top_level();
+      //virtual ::user::interaction * get_parent();
+      //virtual ::user::interaction * top_level();
       //virtual ::user::interaction * GetParentTopLevel() const;
       //virtual ::user::interaction * EnsureTopLevel();
       //virtual ::user::interaction * EnsureParentTopLevel();
@@ -1783,7 +1791,7 @@ namespace windowing
 
       //virtual void set_opacity(double dOpacity);
 
-
+      ::windowing::window * windowing_window() override;
 
    };
 

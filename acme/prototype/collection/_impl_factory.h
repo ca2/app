@@ -77,7 +77,7 @@ namespace factory
 
        critical_section_lock lock(&m_criticalsection);
 
-       auto pfactory = ::place( new ::factory::factory_item< TYPE, ORIGIN_TYPE > ());
+       auto pfactory = __new ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
 
        this->get_factory_item < ORIGIN_TYPE >() = pfactory;
 

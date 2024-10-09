@@ -49,18 +49,52 @@ void conversation::do_conversation(const ::string& strMessage, const string& str
 }
 
 
-::payload conversation::do_synchronously(const class time & timeWait)
+::payload conversation::get_conversation_result()
 {
-   
-   return e_message_box_ok;
-   
+
+   return {};
+
 }
 
 
-void conversation::do_asynchronously()
+void conversation::display_conversation_options()
 {
 
 }
+
+
+void conversation::run()
+{
+
+   display_conversation_options();
+
+}
+
+
+void conversation::complete_step(::sequencer & sequencer)
+{
+
+   auto payloadResult = get_conversation_result();
+
+   sequencer.add_result(payloadResult);
+
+}
+
+
+//
+//
+//::payload conversation::do_synchronously(const class time & timeWait)
+//{
+//   
+//   return e_message_box_ok;
+//   
+//}
+//
+//
+//void conversation::do_asynchronously()
+//{
+//
+//}
 
 
 

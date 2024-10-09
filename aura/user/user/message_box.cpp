@@ -11,7 +11,7 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/handler/topic.h"
-#include "acme/platform/sequencer.h"
+//#include "acme/platform/sequencer.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/windowing/monitor.h"
 #include "aura/windowing/windowing.h"
@@ -34,11 +34,11 @@ namespace user
 
       common_construct();
 
-      auto pitemClient = ::place(new ::item(e_element_client));
+      auto pitemClient = __new ::item(e_element_client);
 
       enable_drag(pitemClient, e_zorder_back);
 
-      auto pitemResize = ::place(new ::item(e_element_resize));
+      auto pitemResize = __new ::item(e_element_resize);
 
       enable_drag(pitemResize, e_zorder_back);
 
@@ -49,7 +49,7 @@ namespace user
    }
 
 
-   pointer< ::sequencer < ::conversation > > message_box::show(::user::interaction * puserinteraction, const string & strMessageParam, const string & strTitle, const ::e_message_box & emessagebox)
+   ::pointer < ::subparticle > message_box::show(::user::interaction * puserinteraction, const string & strMessageParam, const string & strTitle, const ::e_message_box & emessagebox)
    {
 
       auto emessageboxType = emessagebox & e_message_box_type_mask;
@@ -96,17 +96,17 @@ namespace user
    void default_message_box::add_button(const ::string & strTitle, enum_dialog_result edialogresult)
    {
 
-      m_buttona.add(::place(new ::user::button(strTitle, edialogresult)));
+      m_buttona.add(__new ::user::button(strTitle, edialogresult));
 
       //return ::success;
 
    }
 
 
-   pointer< ::sequencer < ::conversation > > default_message_box::show(::user::interaction * puserinteraction, const string& strMessageParam, const string& strTitle, const ::e_message_box& emessagebox)
+   ::pointer < ::subparticle > default_message_box::show(::user::interaction * puserinteraction, const string& strMessageParam, const string& strTitle, const ::e_message_box& emessagebox)
    {
 
-      auto psequencer = ::place(new ::sequencer <::conversation > ());
+      auto psequencer = __new ::sequencer <::conversation > ();
 
       psequencer->m_psequence = this;
 
@@ -124,7 +124,7 @@ namespace user
 
       m_stra.add_lines(strMessage);
 
-      m_pbuttonClose = ::place(new ::user::button("", e_dialog_result_close));
+      m_pbuttonClose = __new ::user::button("", e_dialog_result_close);
 
       m_pbuttonClose->set_button_style(::user::button::e_style_stock_icon);
 
@@ -158,7 +158,7 @@ namespace user
       
       //create_host(e_parallelization_synchronous);
 
-      create_host();
+      create_window();
 
       //if (!estatus)
       //{
@@ -390,7 +390,7 @@ namespace user
 
       pgraphics->m_pdraw2dhost = this;
 
-      m_pinteractionScaler = ::place(new ::user::interaction_scaler());
+      m_pinteractionScaler = __new ::user::interaction_scaler();
 
       m_pinteractionScaler->on_display_change(this);
 

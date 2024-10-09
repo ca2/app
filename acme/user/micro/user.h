@@ -15,6 +15,7 @@
 
 
 #include "acme/platform/department.h"
+#include "acme/platform/message_box.h"
 #include "acme/prototype/collection/comparable_list.h"
 #include "_.h"
 
@@ -23,7 +24,8 @@ namespace micro
 {
 
    class CLASS_DECL_ACME user :
-      virtual public acme::department
+      virtual public acme::department,
+      virtual public ::reificator < ::message_box >
    {
    public:
 
@@ -31,23 +33,23 @@ namespace micro
       //::pointer_array < ::acme::windowing::window >      m_windowa;
       // ::pointer<::acme::windowing::display>              m_pdisplay;
       // ::pointer_array<::acme::windowing::window> m_windowbasea;
-      ::pointer < ::micro::theme >                  m_pnanousertheme;
+      ::pointer < ::micro::theme >                  m_pmicrotheme;
 
 
       user();
       ~user() override;
 
 
-      inline static const char * represented_component_name() { return "nano_user"; }
+      //inline static const char * represented_component_name() { return "nano_user"; }
 
 
-      ::micro::theme * nano_user_theme();
-      //pointer< ::sequencer < ::conversation > > nano()->message_box(const ::string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr);
-      virtual void update_nano_user_theme();
+      ::micro::theme * micro_theme();
+      //::pointer < ::subparticle > nano()->message_box(const ::string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr);
+      virtual void update_micro_theme();
 
       ////pointer< ::sequence < ::conversation > > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
 
-      //pointer< ::sequencer < ::conversation > > nano()->message_console(const ::string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr);
+      //::pointer < ::subparticle > nano()->message_console(const ::string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr);
 
 
 
@@ -94,8 +96,10 @@ namespace micro
       virtual void * get_display();
 
       void main_send(const ::procedure & procedure) override;
-
       void main_post(const ::procedure & procedure) override;
+
+      //void _main_send(::subparticle * p) override;
+      //void _main_post(::subparticle * p) override;
 
       virtual void display_error_trap_push(int i);
 
@@ -108,6 +112,17 @@ namespace micro
       virtual void windowing_system_application_main_loop();
 
       virtual void windowing_system_post_quit();
+
+
+      void display(::message_box * pmessagebox);
+      void display_exception(const ::exception & exception, ::message_box * pmessagebox);
+
+
+      //::pointer < ::message_box > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
+      //::pointer < ::message_box > exception_message_box(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
+      ////::pointer < ::message_box > message_console(const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
+      ////::pointer < ::message_box > exception_message_console(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
+
 
       virtual ::color::color get_system_color(enum_system_color esystemcolor);
 
@@ -127,6 +142,8 @@ namespace micro
 
 
       virtual ::pixmap get_pixmap_from_file(::memory & memoryHost, const void * psourceFile, memsize sizeSourceFile);
+
+      virtual ::pointer < ::reified < ::message_box > > realize(::realizable < ::message_box > * p);
 
    };
 

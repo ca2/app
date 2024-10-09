@@ -27,7 +27,7 @@
 
    // ::graphics::enum_output_purpose          m_epurpose = e_graphical_output_purpose_demand;
 
-   // ::pointer < ::particle >               m_pparticle;
+   // ::particle_pointer               m_pparticle;
 
 namespace graphics
 {

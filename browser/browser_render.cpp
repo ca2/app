@@ -135,7 +135,7 @@ namespace browser
    bool render::initialize_render(string strId)
    {
 
-      m_pslideshow = ::place(new ::gcom::slide_show(this));
+      m_pslideshow = __new ::gcom::slide_show(this);
 
       //      ::database::client::initialize_data_client(&papp->dataserver());
 

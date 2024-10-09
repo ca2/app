@@ -34,12 +34,12 @@
 #include "acme/handler/topic.h"
 #include "acme/nano/graphics/device.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/user/theme.h"
+#include "acme/user/micro/theme.h"
 #include "acme/windowing/window.h"
 #include "acme/operating_system/a_system_menu.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
-#include "acme/platform/sequencer.h"
+//#include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
 #include "acme/user/user/drag.h"
 #include "acme/user/user/mouse.h"
@@ -71,27 +71,27 @@ namespace micro
       void main_window::create_window()
       {
 
-         __construct(m_pwindow);
+         __construct(m_pacmewindowingwindow);
 
-         m_pwindow->m_bMinimizeBox = true;
-         m_pwindow->m_bMaximizeBox = true;
-         m_pwindow->m_bResizeable = true;
-         m_pwindow->m_bTopMost = false;
-         m_pwindow->m_bStartCentered = false;
-         m_pwindow->m_bArbitraryPositioning = false;
+         m_pacmewindowingwindow->m_bMinimizeBox = true;
+         m_pacmewindowingwindow->m_bMaximizeBox = true;
+         m_pacmewindowingwindow->m_bResizeable = true;
+         m_pacmewindowingwindow->m_bTopMost = false;
+         m_pacmewindowingwindow->m_bStartCentered = false;
+         m_pacmewindowingwindow->m_bArbitraryPositioning = false;
 
 
       }
 
- /*     ::micro::theme * main_window::nano_user_theme()
+ /*     ::micro::theme * main_window::micro_theme()
       {
 
-         return system()->acme_windowing()->nano_user_theme();
+         return system()->acme_windowing()->micro_theme();
 
       }*/
 
 
-     /* enum_font main_window::nano_user_font()
+     /* enum_font main_window::micro_font()
       {
 
          if (m_efont != e_font_none)
@@ -101,7 +101,7 @@ namespace micro
 
          }
 
-         return nano_user_theme()->m_efont;
+         return micro_theme()->m_efont;
 
       }*/
 
@@ -111,7 +111,7 @@ namespace micro
       //void main_window::set_focus()
       //{
 
-      //   acme_windowing_window()->m_pnanouserinteractionFocus = this;
+      //   acme_windowing_window()->m_pmicrouserinteractionFocus = this;
 
       //   acme_windowing_window()->redraw();
 
@@ -130,7 +130,7 @@ namespace micro
       //void main_window::set_capture()
       //{
 
-      //   acme_windowing_window()->m_pnanouserinteractionCapture = this;
+      //   acme_windowing_window()->m_pmicrouserinteractionCapture = this;
 
       //   acme_windowing_window()->set_capture();
 
@@ -147,7 +147,7 @@ namespace micro
 
       //   }
 
-      //   return acme_windowing_window()->m_pnanouserinteractionCapture == this;
+      //   return acme_windowing_window()->m_pmicrouserinteractionCapture == this;
 
       //}
 
@@ -155,10 +155,10 @@ namespace micro
       //void main_window::release_capture()
       //{
 
-      //   if (acme_windowing_window()->m_pnanouserinteractionCapture == this)
+      //   if (acme_windowing_window()->m_pmicrouserinteractionCapture == this)
       //   {
 
-      //      acme_windowing_window()->m_pnanouserinteractionCapture.release();
+      //      acme_windowing_window()->m_pmicrouserinteractionCapture.release();
 
       //      acme_windowing_window()->release_capture();
 
@@ -167,21 +167,21 @@ namespace micro
       //}
 
 
-      //void main_window::draw(::nano::graphics::device * pnanodevice)
+      //void main_window::draw(::nano::graphics::device * pmicrodevice)
       //{
 
-      //   ::pointer<::nano::graphics::pen>pnanopenBorder;
+      //   ::pointer<::nano::graphics::pen>pmicropenBorder;
 
       //   if (acme_windowing_window()->is_active_window())
       //   {
 
-      //      pnanopenBorder = nano_user_theme()->m_ppenBorderFocus;
+      //      pmicropenBorder = micro_theme()->m_ppenBorderFocus;
 
       //   }
       //   else
       //   {
 
-      //      pnanopenBorder = nano_user_theme()->m_ppenBorder;
+      //      pmicropenBorder = micro_theme()->m_ppenBorder;
 
       //   }
 
@@ -189,22 +189,22 @@ namespace micro
 
       //   rectangleX = get_client_rectangle();
 
-      //   pnanodevice->rectangle(rectangleX, nano_user_theme()->m_pbrushWindow, pnanopenBorder);
+      //   pmicrodevice->rectangle(rectangleX, micro_theme()->m_pbrushWindow, pmicropenBorder);
 
-      //   on_draw(pnanodevice);
+      //   on_draw(pmicrodevice);
 
-      //   draw_children(pnanodevice);
+      //   draw_children(pmicrodevice);
 
       //}
 
 
-      //void main_window::draw_children(::nano::graphics::device * pnanodevice)
+      //void main_window::draw_children(::nano::graphics::device * pmicrodevice)
       //{
 
-      //   for (auto & pchild : m_nanouserelementalaChildren)
+      //   for (auto & pchild : m_microuserelementalaChildren)
       //   {
 
-      //      pchild->on_draw(pnanodevice);
+      //      pchild->on_draw(pmicrodevice);
 
       //   }
 
@@ -212,7 +212,7 @@ namespace micro
 
 
 
-::micro::main_window * main_window::nano_user_main_window()
+::micro::main_window * main_window::micro_main_window()
 {
 
    return this;
@@ -225,7 +225,7 @@ namespace micro
 
       //   auto pdevice = __create < ::nano::graphics::device >();
 
-      //   auto size = pdevice->get_text_extents(m_strText, nano_user_theme()->m_pfont);
+      //   auto size = pdevice->get_text_extents(m_strText, micro_theme()->m_pfont);
 
       //   m_rectangle.right() = m_rectangle.left() + size.cx();
 
@@ -279,14 +279,14 @@ namespace micro
       //         /*bool main_window::is_window_zoomed()
       //         {
 
-      //            if (!m_pwindow)
+      //            if (!m_pacmewindowingwindow)
       //            {
 
       //               return false;
 
       //            }
 
-      //            bool bIsWindowZoomed = m_pwindow->is_window_zoomed();
+      //            bool bIsWindowZoomed = m_pacmewindowingwindow->is_window_zoomed();
 
       //            if (!bIsWindowZoomed)
       //            {
@@ -303,14 +303,14 @@ namespace micro
       //         //void main_window::window_minimize()
       //         //{
 
-      //         //   if (!m_pwindow)
+      //         //   if (!m_pacmewindowingwindow)
       //         //   {
 
       //         //      throw ::exception(error_wrong_state);
 
       //         //   }
 
-      //         //   m_pwindow->window_minimize();
+      //         //   m_pacmewindowingwindow->window_minimize();
 
       //         //}
 
@@ -318,14 +318,14 @@ namespace micro
       //         //void main_window::window_maximize()
       //         //{
 
-      //         //   if (!m_pwindow)
+      //         //   if (!m_pacmewindowingwindow)
       //         //   {
 
       //         //      throw ::exception(error_wrong_state);
 
       //         //   }
 
-      //         //   m_pwindow->window_maximize();
+      //         //   m_pacmewindowingwindow->window_maximize();
 
       //         //}
 
@@ -333,14 +333,14 @@ namespace micro
       //         //void main_window::window_full_screen()
       //         //{
 
-      //         //   if (!m_pwindow)
+      //         //   if (!m_pacmewindowingwindow)
       //         //   {
 
       //         //      throw ::exception(error_wrong_state);
 
       //         //   }
 
-      //         //   m_pwindow->window_full_screen();
+      //         //   m_pacmewindowingwindow->window_full_screen();
 
       //         //}
 
@@ -348,14 +348,14 @@ namespace micro
       //         //void main_window::window_restore()
       //         //{
 
-      //         //   if (!m_pwindow)
+      //         //   if (!m_pacmewindowingwindow)
       //         //   {
 
       //         //      throw ::exception(error_wrong_state);
 
       //         //   }
 
-      //         //   m_pwindow->window_restore();
+      //         //   m_pacmewindowingwindow->window_restore();
 
       //         //}
 
@@ -363,14 +363,14 @@ namespace micro
       //         //void main_window::window_close()
       //         //{
 
-      //         //   if (!m_pwindow)
+      //         //   if (!m_pacmewindowingwindow)
       //         //   {
 
       //         //      throw ::exception(error_wrong_state);
 
       //         //   }
 
-      //         //   m_pwindow->window_close();
+      //         //   m_pacmewindowingwindow->window_close();
 
       //         //}
 
@@ -416,8 +416,8 @@ namespace micro
       //      print_line("reaching here?!");
       //      //defer_perform_entire_reposition_process(nullptr);
 
-      //      m_pwindow->set_mouse_capture();
-      //      m_pwindow->m_bRepositioningWindowFromCenter = true;
+      //      m_pacmewindowingwindow->set_mouse_capture();
+      //      m_pacmewindowingwindow->m_bRepositioningWindowFromCenter = true;
 
       //   }
       //   else if (strActionName == "***size")
@@ -425,8 +425,8 @@ namespace micro
 
       //      print_line("also here");
 
-      //      m_pwindow->set_mouse_capture();
-      //      m_pwindow->m_bResizingWindowFromBottomRight = true;
+      //      m_pacmewindowingwindow->set_mouse_capture();
+      //      m_pacmewindowingwindow->m_bResizingWindowFromBottomRight = true;
 
       //      //defer_perform_entire_resizing_process(::experience::e_frame_sizing_top_left, nullptr);
 
@@ -439,7 +439,7 @@ namespace micro
       //::pointer<::operating_system::a_system_menu> main_window::create_system_menu(bool bContextual)
       //{
 
-      //   auto psystemmenu = ::place(new ::operating_system::a_system_menu());
+      //   auto psystemmenu = __new ::operating_system::a_system_menu();
 
       //   if (m_bMinimizeBox)
       //   {
@@ -510,14 +510,14 @@ namespace micro
       //void main_window::set_mouse_capture()
       //{
 
-      //   if (!m_pwindow)
+      //   if (!m_pacmewindowingwindow)
       //   {
 
       //      throw ::exception(error_wrong_state);
 
       //   }
 
-      //   m_pwindow->set_mouse_capture();
+      //   m_pacmewindowingwindow->set_mouse_capture();
 
       //}
 
@@ -525,14 +525,14 @@ namespace micro
       //bool main_window::is_mouse_captured()
       //{
 
-      //   if (!m_pwindow)
+      //   if (!m_pacmewindowingwindow)
       //   {
 
       //      throw ::exception(error_wrong_state);
 
       //   }
 
-      //   return m_pwindow->is_mouse_captured();
+      //   return m_pacmewindowingwindow->is_mouse_captured();
 
       //}
 
@@ -540,14 +540,14 @@ namespace micro
       //bool main_window::has_mouse_capture()
       //{
 
-      //   if (!m_pwindow)
+      //   if (!m_pacmewindowingwindow)
       //   {
 
       //      throw ::exception(error_wrong_state);
 
       //   }
 
-      //   return m_pwindow->has_mouse_capture();
+      //   return m_pacmewindowingwindow->has_mouse_capture();
 
       //}
 
@@ -555,14 +555,14 @@ namespace micro
       //void main_window::release_mouse_capture()
       //{
 
-      //   if (!m_pwindow)
+      //   if (!m_pacmewindowingwindow)
       //   {
 
       //      throw ::exception(error_wrong_state);
 
       //   }
 
-      //   m_pwindow->release_mouse_capture();
+      //   m_pacmewindowingwindow->release_mouse_capture();
 
       //}
 
@@ -634,67 +634,74 @@ namespace micro
       }
 
 
-      ::payload main_window::do_synchronously(const class time & timeWait)
-      {
+      //void main_window::run()
+      //{
 
-         do_asynchronously();
+      //   //do_modal();
 
-         auto pmanualresetevent = ::place(new manual_reset_event());
+      //   //auto pmanualresetevent = __new manual_reset_event();
 
-         if (m_psequencer)
-         {
+      //   //if (m_psequencer)
+      //   //{
 
-            m_psequencer->then([pmanualresetevent](auto psequencer)
-            {
+      //   //   m_psequencer->then([pmanualresetevent](auto psequencer)
+      //   //   {
 
-            pmanualresetevent->SetEvent();
+      //   //   pmanualresetevent->SetEvent();
 
-            });
+      //   //   });
 
-         }
-         else
-         {
+      //   //}
+      //   //else
+      //   //{
 
-            auto pwindow = acme_windowing_window();
+      //   //   auto pwindow = acme_windowing_window();
 
-            auto functionCloseExisting = pwindow->m_functionClose;
+      //   //   auto functionCloseExisting = pwindow->m_functionClose;
 
-            pwindow->m_functionClose = [pmanualresetevent, functionCloseExisting](auto pinterchange)
-               {
+      //   //   pwindow->m_functionClose = [pmanualresetevent, functionCloseExisting](auto pinterchange)
+      //   //      {
 
-                  if (functionCloseExisting)
-                  {
+      //   //         if (functionCloseExisting)
+      //   //         {
 
-                     functionCloseExisting(pinterchange);
+      //   //            functionCloseExisting(pinterchange);
 
-                  }
+      //   //         }
 
-                  pmanualresetevent->SetEvent();
+      //   //         pmanualresetevent->SetEvent();
 
-               };
+      //   //      };
 
-         }
+      //   //}
 
-         if (m_payloadResult.is_new())
-         {
+      //   //if (m_payloadResult.is_new())
+      //   //{
 
-            pmanualresetevent->wait();
+      //   //   pmanualresetevent->wait();
 
-         }
+      //   //}
 
-         return m_payloadResult;
+      //   //return m_payloadResult;
 
-      }
+      //}
 
 
-      //void main_window::draw(::nano::graphics::device * pnanodevice)
+      //void main_window::complete_aggregation(::sequence * psequence)
+      //{
+
+      //   psequence->aggregate_payload(m_pay)
+
+      //}
+
+      //void main_window::draw(::nano::graphics::device * pmicrodevice)
       //{
 
 
       //}
 
 
-      //void main_window::on_draw(::nano::graphics::device * pnanodevice)
+      //void main_window::on_draw(::nano::graphics::device * pmicrodevice)
       //{
 
 
@@ -704,22 +711,22 @@ namespace micro
       //void main_window::on_char(int iChar)
       //{
 
-      //   if (iChar == '\t' && m_nanouserelementalaChildren.has_element())
+      //   if (iChar == '\t' && m_microuserelementalaChildren.has_element())
       //   {
 
-      //      auto iFind = m_nanouserelementalaChildren.find_first(acme_windowing_window()->m_pnanouserinteractionFocus);
+      //      auto iFind = m_microuserelementalaChildren.find_first(acme_windowing_window()->m_pmicrouserinteractionFocus);
 
       //      iFind++;
 
-      //      acme_windowing_window()->m_pnanouserinteractionFocus = m_nanouserelementalaChildren % iFind;
+      //      acme_windowing_window()->m_pmicrouserinteractionFocus = m_microuserelementalaChildren % iFind;
 
       //      redraw();
 
       //   }
-      //   else if (acme_windowing_window()->m_pnanouserinteractionFocus)
+      //   else if (acme_windowing_window()->m_pmicrouserinteractionFocus)
       //   {
 
-      //      acme_windowing_window()->m_pnanouserinteractionFocus->on_char(iChar);
+      //      acme_windowing_window()->m_pmicrouserinteractionFocus->on_char(iChar);
 
       //   }
 
@@ -742,7 +749,7 @@ namespace micro
       //::micro::main_window * main_window::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
       //{
 
-      //   for (auto & pchild : m_nanouserinteractionaChildren)
+      //   for (auto & pchild : m_microuserinteractionaChildren)
       //   {
 
       //      if (pchild->m_rectangle.contains(point))
@@ -762,9 +769,9 @@ namespace micro
       //void main_window::add_child(::micro::main_window * pinteractionChild)
       //{
 
-      //   pinteractionChild->m_pnanouserinteractionParent = this;
+      //   pinteractionChild->m_pmicrouserinteractionParent = this;
 
-      //   m_nanouserinteractionaChildren.add(pinteractionChild);
+      //   m_microuserinteractionaChildren.add(pinteractionChild);
 
       //}
 
@@ -772,7 +779,7 @@ namespace micro
       //void main_window::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
       //{
 
-      //   auto pbutton = ::place(new ::micro::button());
+      //   auto pbutton = __new ::micro::button();
 
       //   pbutton->m_strText = scopedstrText;
       //   pbutton->m_atom = edialogresult;
@@ -780,7 +787,7 @@ namespace micro
       //   pbutton->m_chLetter = chLetter;
       //   //pbutton->m_bDefault = bDefault;
 
-      //   m_nanouserinteractionaChildren.add(pbutton);
+      //   m_microuserinteractionaChildren.add(pbutton);
 
       //   add_child(pbutton);
 
@@ -791,7 +798,7 @@ namespace micro
       //::micro::main_window * main_window::get_child_by_id(const ::atom & atom)
       //{
 
-      //   for (auto & pchild : m_nanouserinteractionaChildren)
+      //   for (auto & pchild : m_microuserinteractionaChildren)
       //   {
 
       //      if (pchild->m_atom == atom)
@@ -808,10 +815,18 @@ namespace micro
       //}
 
 
-      ::payload main_window::get_result()
+      //::payload main_window::get_result()
+      //{
+
+      //   return m_payloadResult;
+
+      //}
+
+
+      ::string main_window::get_title()
       {
 
-         return m_payloadResult;
+         return payload("main_window.title").as_string();
 
       }
 
@@ -819,19 +834,19 @@ namespace micro
       //void main_window::on_mouse_move(::user::mouse * pmouse)
       //{
 
-      //   if (acme_windowing_window()->m_pnanouserinteractionHover)
+      //   if (acme_windowing_window()->m_pmicrouserinteractionHover)
       //   {
 
-      //      acme_windowing_window()->m_pnanouserinteractionHover->on_mouse_move(pmouse);
+      //      acme_windowing_window()->m_pmicrouserinteractionHover->on_mouse_move(pmouse);
 
       //      return;
 
       //   }
 
-      //   if (acme_windowing_window()->m_pnanouserinteractionCapture)
+      //   if (acme_windowing_window()->m_pmicrouserinteractionCapture)
       //   {
 
-      //      acme_windowing_window()->m_pnanouserinteractionCapture->on_mouse_move(pmouse);
+      //      acme_windowing_window()->m_pmicrouserinteractionCapture->on_mouse_move(pmouse);
 
       //      return;
 
@@ -1034,7 +1049,7 @@ namespace micro
       //}
 
 
-      //void main_window::draw_children(::nano::graphics::device * pnanodevice)
+      //void main_window::draw_children(::nano::graphics::device * pmicrodevice)
       //{
 
 
@@ -1142,15 +1157,15 @@ namespace micro
       //}
 
 
-      //::collection::count main_window::nano_user_button_count()
+      //::collection::count main_window::micro_button_count()
       //{
 
       //   ::collection::count c = 0;
 
-      //   for (auto & pnanouserinteraction : m_nanouserinteractionaChildren)
+      //   for (auto & pmicrouserinteraction : m_microuserinteractionaChildren)
       //   {
 
-      //      auto pbutton = pnanouserinteraction.cast < ::micro::button >();
+      //      auto pbutton = pmicrouserinteraction.cast < ::micro::button >();
 
       //      if (pbutton)
       //      {
@@ -1165,22 +1180,22 @@ namespace micro
 
       //}
 
-      //::micro::main_window * main_window::nano_user_parent()
+      //::micro::main_window * main_window::micro_parent()
       //{
 
-      //   return m_pnanouserinteractionParent;
+      //   return m_pmicrouserinteractionParent;
 
       //}
 
-      //::micro::button * main_window::nano_user_button_at(::collection::index i)
+      //::micro::button * main_window::micro_button_at(::collection::index i)
       //{
 
       //   ::collection::count c = 0;
 
-      //   for (auto & pnanouserinteraction : m_nanouserinteractionaChildren)
+      //   for (auto & pmicrouserinteraction : m_microuserinteractionaChildren)
       //   {
 
-      //      auto pbutton = pnanouserinteraction.cast < ::micro::button >();
+      //      auto pbutton = pmicrouserinteraction.cast < ::micro::button >();
 
       //      if (pbutton)
       //      {
@@ -1384,7 +1399,7 @@ namespace micro
       void main_window::set_position(const ::point_i32 & point)
       {
 
-         m_pwindow->set_position(point);
+         m_pacmewindowingwindow->set_position(point);
 
       }
 
@@ -1409,19 +1424,19 @@ namespace micro
       void main_window::destroy()
       {
 
-         if (m_psequencer)
-         {
+         //if (m_psequencer)
+         //{
 
-            m_psequencer->on_sequence();
+         //   m_psequencer->on_sequence();
 
-            m_psequencer.release();
+         //   m_psequencer.release();
 
-         }
+         //}
 
 
          ::user::element::destroy();
          ::user::drag_client::destroy();
-         ::conversation::destroy();
+         //::conversation::destroy();
 
          system()->erase_signal_handler(this);
 
@@ -1506,7 +1521,7 @@ namespace micro
       //void main_window::set_capture()
       //{
 
-      //   m_pwindow->set_capture();
+      //   m_pacmewindowingwindow->set_capture();
 
       //}
 
@@ -1514,7 +1529,7 @@ namespace micro
       //bool main_window::has_capture()
       //{
 
-      //   return m_pwindow->has_capture();
+      //   return m_pacmewindowingwindow->has_capture();
 
       //}
 
@@ -1533,18 +1548,18 @@ namespace micro
       }
 
 
-      void main_window::synchronize_composited_nano_window()
+      void main_window::synchronize_composited_micro_window()
       {
 
 
       }
 
 
-      void main_window::_run_modal_loop()
-      {
+      //void main_window::_run_modal_loop()
+      //{
 
 
-      }
+      //}
 
 
       bool main_window::is_popup_window() const
@@ -1566,8 +1581,8 @@ namespace micro
             print_line("reaching here?!");
             //defer_perform_entire_reposition_process(nullptr);
 
-            m_pwindow->set_mouse_capture();
-            m_pwindow->m_bRepositioningWindowFromCenter = true;
+            m_pacmewindowingwindow->set_mouse_capture();
+            m_pacmewindowingwindow->m_bRepositioningWindowFromCenter = true;
 
          }
          else if (strActionName == "***size")
@@ -1575,8 +1590,8 @@ namespace micro
 
             print_line("also here");
 
-            m_pwindow->set_mouse_capture();
-            m_pwindow->m_bResizingWindowFromBottomRight = true;
+            m_pacmewindowingwindow->set_mouse_capture();
+            m_pacmewindowingwindow->m_bResizingWindowFromBottomRight = true;
 
             //defer_perform_entire_resizing_process(::experience::e_frame_sizing_top_left, nullptr);
 
@@ -1616,34 +1631,34 @@ namespace micro
       }
 
 
-      void main_window::do_asynchronously()
-      {
+      //void main_window::do_asynchronously()
+      //{
 
-         ::pointer<::acme::windowing::window> pwindow = m_pwindow;
+      //   ::pointer<::acme::windowing::window> pwindow = m_pacmewindowingwindow;
 
-         auto procedure = [pwindow]()
-            {
+      //   auto procedure = [pwindow]()
+      //      {
 
-               pwindow->create_window();
+      //         pwindow->create_window();
 
-               pwindow->show_window();
+      //         pwindow->show_window();
 
-            };
+      //      };
 
-         if (is_main_thread())
-         {
+      //   if (is_main_thread())
+      //   {
 
-            procedure();
+      //      procedure();
 
-         }
-         else
-         {
+      //   }
+      //   else
+      //   {
 
-            user_post(procedure);
+      //      user_post(procedure);
 
-         }
+      //   }
 
-      }
+      //}
 
 
 
@@ -1658,7 +1673,7 @@ namespace micro
       /*::acme::windowing::window * main_window::acme_windowing_window()
       {
 
-         if (!m_pwindow)
+         if (!m_pacmewindowingwindow)
          {
 
             if (m_pelementalParent)
@@ -1668,11 +1683,11 @@ namespace micro
 
             }
 
-            __construct(m_pwindow);
+            __construct(m_pacmewindowingwindow);
 
          }
 
-         return m_pwindow;
+         return m_pacmewindowingwindow;
 
       }
 */

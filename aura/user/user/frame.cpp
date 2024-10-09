@@ -50,9 +50,9 @@ namespace user
    void frame::create_window()
    {
 
-      //__construct(m_pwindow);
+      //__construct(windowing_window());
 
-      //m_pwindow->create_window();
+      //windowing_window()->create_window();
 
       ////void interaction::create_host(enum_parallelization eparallelization)
       //void interaction::create_host()
@@ -63,7 +63,11 @@ namespace user
          if (is_window())
          {
 
-            start_destroying_window();
+            throw ::exception(error_wrong_state);
+            // need to change to destroy window
+            // try to make synchronous
+            //
+            //start_destroying_window();
 
          }
 
@@ -109,11 +113,11 @@ namespace user
 
             create_child(pwindowHost->m_puserinteraction);
 
-            //         pwindowHost->m_pwindow->this->set_need_layout();
+            //         pwindowHost->windowing_window()->this->set_need_layout();
             //
-            //         pwindowHost->m_pwindow->this->set_need_redraw();
+            //         pwindowHost->windowing_window()->this->set_need_redraw();
             //
-            //         pwindowHost->m_pwindow->this->post_redraw();
+            //         pwindowHost->windowing_window()->this->post_redraw();
 
             return;
 
@@ -153,7 +157,7 @@ namespace user
 
           //auto estatus =
 
-         __construct(m_pwindow);
+         //__construct(windowing_window());
 
          information() << "interaction::create_host(5)";
 
@@ -174,7 +178,7 @@ namespace user
                  //
                  //#else
 
-                 //auto pusersystem = ::place(new ::user::system(uExStyle, uStyle, rectangle, pcreate));
+                 //auto pusersystem = __new ::user::system(uExStyle, uStyle, rectangle, pcreate);
 
                  //#endif
 
@@ -184,10 +188,12 @@ namespace user
          //pprimitiveimplNew->create_host(this, eparallelization);
          // 
 
-         m_pwindow->m_puserinteraction = this;
+         //windowing_window()->m_puserinteraction = this;
 
 
-         m_pwindow->create_window();
+         //windowing_window()->create_window();
+         // 
+         ::user::box::create_window();
          //if (!pprimitiveimplNew->create_host(this))
          //{
 
@@ -308,7 +314,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
+         _synchronous_lock synchronouslock(windowing_window() ? windowing_window()->m_pparticleChildrenSynchronization : nullptr);
 
          if (m_puserinteractionpointeraChild) m_puserinteractionpointeraChild->destroy();
 
@@ -341,7 +347,9 @@ namespace user
       //m_pprimitiveimpl.release();
       //windowing_window().release();
 
-      m_pwindow.release();
+      //windowing_window().release();
+
+      //m_pacmew
 
       m_pinteractionScaler.defer_destroy();
 
@@ -355,7 +363,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
+         _synchronous_lock synchronouslock(windowing_window() ? windowing_window()->m_pparticleChildrenSynchronization : nullptr);
 
          m_puserinteractionpointeraChild.release();
 
@@ -373,7 +381,7 @@ namespace user
       m_pupdowntarget.release();
       m_ptaskModal.release();
       m_puserinteractionOwner.release();
-      m_pwindow.release();
+      //windowing_window().release();
       //return ::success;
       ::user::box::destroy();
       ::user::drag_client::destroy();
@@ -1048,7 +1056,7 @@ namespace user
 
          auto puser = psession->m_puser;
 
-         auto pwindowing = puser->m_pwindowing;
+         auto pwindowing = system()->windowing();
 
          return pwindowing->get_window_minimum_size();
 
@@ -1062,7 +1070,7 @@ namespace user
 
       ::user::interaction::user_interaction_on_destroy();
 
-      m_pwindow.release();
+      //windowing_window().release();
          
 
    }
@@ -1140,7 +1148,7 @@ namespace user
 
          //auto rectangleRequest = this->screen_rectangle(::user::e_layout_sketch);
 
-         //auto pusersystem = ::place(new ::user::system());
+         //auto pusersystem = __new ::user::system();
 
          //pusersystem->add_visible(is_visible(layout().sketch().display()));
 
@@ -1191,10 +1199,10 @@ namespace user
 
          }
 
-         if (m_pwindow.is_set())
+         if (::is_set(windowing_window()))
          {
 
-            m_pwindow->destroy_impl_only();
+            windowing_window()->destroy_impl_only();
 
          }
 

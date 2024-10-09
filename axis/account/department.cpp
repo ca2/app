@@ -49,7 +49,7 @@ namespace account
 //   credentials * department::create_credentials()
 //   {
 //
-//      return ::place(new network_credentials(m_pstorage));
+//      return __new network_credentials(m_pstorage);
 //
 //   }
 //
@@ -274,7 +274,7 @@ namespace account
 
       //}
 
-      auto pstorage = ::place(new system_storage());
+      auto pstorage = __new system_storage();
 
       m_pstorage = pstorage;
 
@@ -291,7 +291,7 @@ namespace account
 
       m_pauthenticator = __create_new< network_authenticator >();
 
-      auto pusera = ::place(new user_array());
+      auto pusera = __new user_array();
       
       m_pusera = pusera;
 
@@ -306,7 +306,7 @@ namespace account
 
       //}
 
-      m_pproducta = ::place(new product_array());
+      m_pproducta = __new product_array();
 
       //estatus = 
       

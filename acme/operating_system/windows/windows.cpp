@@ -395,7 +395,9 @@ void __node_acme_pre_init()
    //if(statusStartup != Gdiplus::Ok)
    //{
 
-   //   message_box_synchronous(nullptr,"Gdiplus Failed to Hook. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
+   //   auto pmessagebox = __initialize_new ::message_box(nullptr,"Gdiplus Failed to Hook. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
+
+//send(pmessagebox);
 
    //   return 0;
 
@@ -615,15 +617,15 @@ void operating_system_get_main_screen_size(int& cx, int& cy)
 //
 
 
-void windows_message_box_factory(::factory::factory * pfactory);
+//void windows_message_box_factory(::factory::factory * pfactory);
 
 
-void windows_factory(::factory::factory * pfactory)
-{
-
-   windows_message_box_factory(pfactory);
-
-}
+//void windows_factory(::factory::factory * pfactory)
+//{
+//
+//   windows_message_box_factory(pfactory);
+//
+//}
 
 
 CLASS_DECL_ACME ::file::path windows_bash_path(const ::file::path& path)

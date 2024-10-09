@@ -315,7 +315,7 @@ namespace linux
             if(m_px11data.is_null())
             {
 
-               m_px11data = ::place(new x11data());
+               m_px11data = __new x11data();
 
             }
 
@@ -1814,7 +1814,9 @@ namespace linux
 //
 //      }
 //
-//      i32 nResult = ::message_box_synchronous((oswindow)get_handle(), pszText, strCaption, nType);
+//      i32 nResult = ::auto pmessagebox = __initialize_new ::message_box((oswindow)get_handle(), pszText, strCaption, nType);
+
+send(pmessagebox);
 //
 //      return nResult;
 //

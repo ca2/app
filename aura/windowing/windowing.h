@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "acme/platform/department.h"
+#include "acme/windowing/windowing.h"
 #include "acme/prototype/collection/int_map.h"
 #include "acme/prototype/collection/list.h"
 
@@ -20,13 +20,13 @@ namespace windowing
 
 
    class CLASS_DECL_AURA windowing :
-      virtual public ::acme::department
+      virtual public ::acme::windowing::windowing
    {
    public:
 
 
       ::sandbox_windowing::windowing *          m_psandboxwindowing;
-      void *                                    m_pWindowing4;
+      //void *                                    m_pWindowing4;
 
       //::point_i32                               m_pointCursor;
 
@@ -70,6 +70,8 @@ namespace windowing
       ::aura::session* get_session();
       //::aura::system* system();
 
+      ::windowing::windowing * windowing_windowing() override;
+
 
       //virtual void _initialize_windowing();
 
@@ -100,7 +102,7 @@ namespace windowing
       
       //inline ::point_i32 get_cursor_position() { return m_pointCursor; }
       //virtual void set_cursor_position(const ::point_i32 & pointCursor);
-
+      virtual ::windowing::display * display();
 
       virtual ::windowing::window * window(oswindow oswindow);
 
@@ -137,7 +139,7 @@ namespace windowing
 
       void term2() override;
 
-      virtual ::windowing::display * display();
+      //virtual ::acme::windowing::display * acme_display();
 
       virtual size_i32 get_window_minimum_size();
 

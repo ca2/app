@@ -15,7 +15,7 @@
 #include "acme/graphics/image/pixmap.h"
 #include "acme/handler/topic.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/windowing/window.h"
+#include "acme/windowing/window.h"
 #include "acme/windowing/windowing.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
@@ -39,7 +39,7 @@ namespace acme
       }
 
 
-      //pointer< ::sequencer < ::conversation > > user::nano()->message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+      //::pointer < ::subparticle > user::nano()->message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
       //{
 
       //   auto psequencer = node()->nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -49,7 +49,7 @@ namespace acme
       //}
 
 
-      //pointer< ::sequencer < ::conversation > > user::nano()->message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+      //::pointer < ::subparticle > user::nano()->message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
       //{
 
       //   auto psequencer = node()->nano()->message_console(strMessage, strTitle, emessagebox, strDetails);
@@ -58,7 +58,7 @@ namespace acme
 
       //}
 
-      pointer<::sequencer<::conversation>> user::message_box(const ::string & strMessage, const ::string & strTitle,
+      ::pointer < ::subparticle > user::message_box(const ::string & strMessage, const ::string & strTitle,
                                                              const ::e_message_box & emessagebox,
                                                              const ::string & strDetails, ::nano::graphics::icon * picon)
       {
@@ -70,7 +70,7 @@ namespace acme
       }
 
 
-      pointer<::sequencer<::conversation>> user::exception_message_box(
+      ::pointer < ::subparticle > user::exception_message_box(
           const ::exception & exception, const ::string & strMessageParam, const ::string & strTitleParam,
           const ::e_message_box & emessagebox, const ::string & strDetailsParam, ::nano::graphics::icon * picon)
       {
@@ -113,7 +113,7 @@ namespace acme
       }
 
 
-      pointer<::sequencer<::conversation>> user::message_console(const ::string & strMessage, const ::string & strTitle,
+      ::pointer < ::subparticle > user::message_console(const ::string & strMessage, const ::string & strTitle,
                                                                  const ::e_message_box & emessagebox,
                                                                  const ::string & strDetails, ::nano::graphics::icon * picon)
       {
@@ -123,7 +123,7 @@ namespace acme
       }
 
 
-      pointer<::sequencer<::conversation>> user::exception_message_console(
+      ::pointer < ::subparticle > user::exception_message_console(
           const ::exception & exception, const ::string & strMessage, const ::string & strTitle,
           const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
       {
@@ -180,8 +180,8 @@ namespace acme
       //#include "acme/parallelization/synchronous_lock.h"
       //#include "acme/handler/topic.h"
       //#include "acme/nano/nano.h"
-      //#include "acme/nano/user/display.h"
-      //#include "acme/nano/user/user.h"
+      //#include "acme/user/micro/display.h"
+      //#include "acme/user/micro/user.h"
       ////#include "acme/windowing/window_base.h"
       //#include "platform/system.h"
 
@@ -383,7 +383,7 @@ namespace acme
 
          }
 
-         auto ptopic = ::place(new ::topic(id_application_dark_mode_change));
+         auto ptopic = __new ::topic(id_application_dark_mode_change);
 
          auto nanowindowingwindowa = system()->acme_windowing()->m_windowa;
 

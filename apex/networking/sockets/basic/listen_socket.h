@@ -237,7 +237,7 @@ namespace sockets
    //      else
    //      {
 
-   //         pbasesocket = ::place(new LISTENER());
+   //         pbasesocket = __new LISTENER();
 
    //         m_psocket = dynamic_cast < LISTENER * >(pbasesocket.m_p);
 

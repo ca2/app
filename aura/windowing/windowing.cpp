@@ -2,6 +2,7 @@
 // recreated by Camilo 2021-01-28 22:35 <3TBS, Mummi and bilbo!!
 // hi5 contribution...
 #include "framework.h"
+#include "display.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/parallelization/synchronous_lock.h"
@@ -30,7 +31,7 @@ namespace windowing
 
       m_psandboxwindowing = nullptr;
 
-      m_pWindowing4 = nullptr;
+      //m_pWindowing4 = nullptr;
 
       m_bSettingCursorMatter = false;
 
@@ -39,6 +40,14 @@ namespace windowing
 
    windowing::~windowing()
    {
+
+   }
+
+
+   ::windowing::windowing * windowing::windowing_windowing()
+   {
+
+      return this;
 
    }
 
@@ -176,6 +185,32 @@ namespace windowing
 //   }
 
 
+   ::windowing::display * windowing::display()
+   {
+
+      auto pacmedisplay = acme_display();
+
+      if (::is_null(pacmedisplay))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pdisplay = dynamic_cast <::windowing::display *>(pacmedisplay);
+
+      if (::is_null(pdisplay))
+      {
+
+         return nullptr;
+
+      }
+
+      return pdisplay;
+
+   }
+
+
    ::windowing::window * windowing::window(oswindow oswindow)
    {
 
@@ -248,12 +283,12 @@ namespace windowing
    }
 
 
-   ::windowing::display * windowing::display()
-   {
+   //::windowing::display * windowing::display()
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-   }
+   //}
 
 
    void windowing::__hook_on_idle(class display * pdisplay)

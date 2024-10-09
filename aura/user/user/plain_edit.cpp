@@ -1102,9 +1102,9 @@ namespace user
       if (m_ptree == nullptr)
       {
 
-         set_root(::place(new ::user::plain_text_tree()), true);
+         set_root(__new ::user::plain_text_tree()), true;
 
-         m_ptree->m_pfile = ::place(new ::memory_file());
+         m_ptree->m_pfile = __new ::memory_file();
 
          m_ptree->m_peditfile->SetFile(m_ptree->m_pfile);
 
@@ -2400,7 +2400,7 @@ namespace user
       if (!m_pitemHover || m_pitemHover->m_item.m_eelement != e_element_none)
       {
 
-         m_pitemHover = ::place(new ::item(e_element_none));
+         m_pitemHover = __new ::item(e_element_none);
 
          set_need_redraw();
 
@@ -5841,7 +5841,7 @@ namespace user
 
             MacroBegin();
 
-            MacroRecord(::place(new plain_text_file_command()));
+            MacroRecord(__new plain_text_file_command());
 
             MacroEnd();
 
@@ -5909,7 +5909,7 @@ namespace user
 
             MacroBegin();
 
-            MacroRecord(::place(new plain_text_file_command()));
+            MacroRecord(__new plain_text_file_command());
 
             MacroEnd();
 
@@ -5945,7 +5945,7 @@ namespace user
          if (i1 != i2 || bBackIfSelectionEmpty)
          {
 
-            psetsel = ::place(new plain_text_set_sel_command());
+            psetsel = __new plain_text_set_sel_command();
 
             psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -6143,7 +6143,7 @@ namespace user
 
          }
 
-         MacroRecord(::place(new plain_text_file_command()));
+         MacroRecord(__new plain_text_file_command());
 
          MacroEnd();
 
@@ -6235,7 +6235,7 @@ namespace user
 
    //   on_before_change_text();
 
-   //   auto psetsel = ::place(new plain_text_set_sel_command());
+   //   auto psetsel = __new plain_text_set_sel_command();
 
    //   psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -6274,7 +6274,7 @@ namespace user
 
    //   MacroRecord(psetsel);
 
-   //   MacroRecord(::place(new plain_text_file_command()));
+   //   MacroRecord(__new plain_text_file_command());
 
    //   MacroEnd();
 
@@ -6340,7 +6340,7 @@ namespace user
 
       on_before_change_text();
 
-      auto psetsel = ::place(new plain_text_set_sel_command());
+      auto psetsel = __new plain_text_set_sel_command();
 
       psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -6392,7 +6392,7 @@ namespace user
 
       MacroRecord(psetsel);
 
-      MacroRecord(::place(new plain_text_file_command()));
+      MacroRecord(__new plain_text_file_command());
 
       MacroEnd();
 
@@ -6883,7 +6883,7 @@ namespace user
 
                      //   on_before_change_text();
 
-                     //   auto psetsel = ::place(new plain_text_set_sel_command());
+                     //   auto psetsel = __new plain_text_set_sel_command();
 
                      //   psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -6958,7 +6958,7 @@ namespace user
                      //   psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
                      //   MacroBegin();
                      //   MacroRecord(psetsel);
-                     //   MacroRecord(::place(new plain_text_file_command()));
+                     //   MacroRecord(__new plain_text_file_command());
                      //   MacroEnd();
 
                      //   _001SetSelEnd(m_ptree->m_iSelEnd);
@@ -8034,7 +8034,7 @@ namespace user
             m_ptree->m_peditfile->MacroEnd();
 
             MacroBegin();
-            MacroRecord(::place(new plain_text_file_command()));
+            MacroRecord(__new plain_text_file_command());
             MacroEnd();
 
          });
@@ -8057,7 +8057,7 @@ namespace user
 
       strsize iAnsiEnd = wd16_to_ansi_len(wstrText, iEnd);
 
-      auto psetsel = ::place(new plain_text_set_sel_command());
+      auto psetsel = __new plain_text_set_sel_command();
 
       psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -8561,7 +8561,7 @@ namespace user
 
    void plain_edit::MacroBegin()
    {
-      ::pointer<::user::plain_text_group_command>pgroupcommand = ::place(new plain_text_group_command());
+      ::pointer<::user::plain_text_group_command>pgroupcommand = __new plain_text_group_command();
       pgroupcommand->m_pparent = m_ptree->m_pgroupcommand;
       m_ptree->m_pgroupcommand = pgroupcommand;
    }
@@ -9314,7 +9314,7 @@ namespace user
    ::pointer<::data::item>plain_edit::on_allocate_item()
    {
 
-      return ::place(new plain_text_command());
+      return __new plain_text_command();
 
    }
 
@@ -9718,7 +9718,7 @@ namespace user
       else
       {
 
-         auto psetsel = ::place(new plain_text_set_sel_command());
+         auto psetsel = __new plain_text_set_sel_command();
 
          psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
 
@@ -9783,7 +9783,7 @@ namespace user
 
          MacroBegin();
          MacroRecord(psetsel);
-         MacroRecord(::place(new plain_text_file_command()));
+         MacroRecord(__new plain_text_file_command());
          MacroEnd();
 
          informationf("insert tree->iSelBeg=%lld,iSelEnd=%lld", m_ptree->m_iSelBeg, m_ptree->m_iSelEnd);
@@ -9972,7 +9972,7 @@ namespace user
    //   if (m_psimpleimm.is_null())
    //   {
    //
-   //      m_psimpleimm = ::place(new simple_imm(this));
+   //      m_psimpleimm = __new simple_imm(this);
    //
    //   }
    //

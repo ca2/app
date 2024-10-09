@@ -277,7 +277,7 @@ namespace acme
 
          REFDBG_THIS(this);
 
-         m_pplatform = ::place(new ::platform::platform(this));
+         m_pplatform = __new ::platform::platform(this);
 
       }
 #if REFERENCING_DEBUGGING
@@ -312,7 +312,7 @@ namespace acme
 
       }
 #endif
-         m_pmanualreseteventReadyToExit = ::place(new ::manual_reset_event());
+         m_pmanualreseteventReadyToExit = __new ::manual_reset_event();
    }
 
 

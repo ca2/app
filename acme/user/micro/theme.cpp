@@ -11,7 +11,7 @@
 #include "acme/nano/nano.h"
 #include "acme/windowing/window.h"
 #include "acme/user/user/mouse.h"
-#include "acme/nano/user/theme.h"
+#include "acme/user/micro/theme.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 

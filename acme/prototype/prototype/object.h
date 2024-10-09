@@ -141,38 +141,38 @@ public:
    virtual void add_each_routine_from(const ::atom& idRoutine, ::object* pobjectSource);
 
 
-   virtual ::procedure_array * procedure_array(const ::atom& idRoutine);
+   virtual ::procedure_array procedure_array(const ::atom& idRoutine);
 
-   template < typename ROUTINE_RUNNER_OBJECT, typename ROUTINE_RUNNER_METHOD >
-   void for_routines_with_id(const ::atom & atom, ROUTINE_RUNNER_OBJECT proutinerunner, ROUTINE_RUNNER_METHOD routine_runner_method)
-   {
+   //template < typename ROUTINE_RUNNER_OBJECT, typename ROUTINE_RUNNER_METHOD >
+   //void for_routines_with_id(const ::atom & atom, ROUTINE_RUNNER_OBJECT proutinerunner, ROUTINE_RUNNER_METHOD routine_runner_method)
+   //{
 
-      if (::is_null(m_pmeta) || m_pmeta->m_mapRoutine.is_empty())
-      {
+   //   if (::is_null(m_pmeta) || m_pmeta->m_mapRoutine.is_empty())
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      auto pprocedurea = this->procedure_array(atom);
+   //   auto pprocedurea = this->procedure_array(atom);
 
-      if (::is_null(pprocedurea))
-      {
+   //   if (::is_null(pprocedurea))
+   //   {
 
-         //throw_exception(error_not_found);
+   //      //throw_exception(error_not_found);
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      for (auto routine : *pprocedurea)
-      {
+   //   for (auto routine : *pprocedurea)
+   //   {
 
-         (proutinerunner->*routine_runner_method)(routine);
+   //      (proutinerunner->*routine_runner_method)(routine);
 
-      }
+   //   }
 
-   }
+   //}
 
    
    virtual void call_routine2(const ::procedure & procedure);
@@ -181,23 +181,55 @@ public:
    inline void call_procedures(const ::atom & atom)
    {
 
-      return for_routines_with_id(atom, this, &object::call_routine2);
+      auto procedurea = this->procedure_array(atom);
+
+      for (auto & procedure : procedurea)
+      {
+
+         try
+         {
+
+            procedure();
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
 
    }
 
 
-   inline void branch_procedures(const ::atom & atom)
+   inline void post_procedures(const ::atom & atom)
    {
 
-      return for_routines_with_id(atom, this, &object::post_procedure);
+      auto procedurea = this->procedure_array(atom);
+
+      for (auto & procedure : procedurea)
+      {
+
+         post(procedure);
+
+      }
+
+      //return for_routines_with_id(atom, this, &::object::post);
 
    }
 
 
-   inline void send_routines_with_id(const ::atom & atom)
+   inline void send_procedures(const ::atom & atom)
    {
 
-      return for_routines_with_id(atom, this, &object::send_procedure);
+      auto procedurea = this->procedure_array(atom);
+
+      for (auto & procedure : procedurea)
+      {
+
+         send(procedure);
+
+      }
 
    }
 
@@ -239,9 +271,6 @@ public:
    //virtual void child_post_quit(const ::scoped_string & scopedstrTag);
    //virtual void child_post_quit_and_wait(const ::scoped_string & scopedstrTag, const time& time);
 
-
-   virtual void post_procedure(const ::procedure & procedure);
-   virtual void send_procedure(const ::procedure& procedure);
 
 
    //void destroy() override;
@@ -478,7 +507,7 @@ public:
    //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 
-   virtual void run() override;
+   //virtual void run() override;
 
    //virtual string lstr(const ::atom& atom, string strDefault = "");
 

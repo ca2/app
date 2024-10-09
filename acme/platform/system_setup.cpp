@@ -285,7 +285,7 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const ::sc
 //}
 
 
-::pointer < ::particle > system_setup::create_particle()
+::particle_pointer system_setup::create_particle()
 {
 
    auto pparticle = _create_particle();
@@ -302,7 +302,7 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const ::sc
 }
 
 
-::pointer < ::particle > system_setup::create_application_as_particle()
+::particle_pointer system_setup::create_application_as_particle()
 {
 
    auto papp = _create_application_as_particle();
@@ -337,7 +337,7 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const ::sc
 
 
 
-::pointer < ::particle > system_setup::_create_particle()
+::particle_pointer system_setup::_create_particle()
 {
 
    return nullptr;
@@ -345,7 +345,7 @@ system_setup* system_setup::get_last(::system_setup::enum_flag eflag, const ::sc
 }
 
 
-::pointer < ::particle > system_setup::_create_application_as_particle()
+::particle_pointer system_setup::_create_application_as_particle()
 {
 
    return nullptr;

@@ -341,7 +341,6 @@ string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::append(const ::pr
 
 }
 
-
 namespace file
 {
 

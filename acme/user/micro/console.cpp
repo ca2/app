@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "button.h"
 #include "console.h"
-#include "interchange.h"
+#include "dialog.h"
 #include "operating_system/console.h"
 
 #ifdef __BSD__
@@ -28,26 +28,30 @@ namespace micro
    }
 
 
-   void console::create_console(::micro::interchange * pinterchange)
+   void console::create_console(::micro::dialog * pdialog)
    {
 
-      m_pinterchange = pinterchange;
+      m_pdialog = pdialog;
 
       ::collection::index i = 0;
 
-      for (auto & pnanobutton : m_pinterchange->m_nanobuttona)
+      auto countButton = m_pdialog->micro_button_count();
+
+      for (i = 0; i < countButton; i++)
       {
 
-         char ch = pnanobutton->m_chLetter;
+         auto pmicrobutton = m_pdialog->micro_button_at(i);
+
+         char ch = pmicrobutton->m_chLetter;
 
          m_mapCharIndex[character_tolower(ch)] = i;
 
-         if (i == m_pinterchange->m_iDefaultButton)
+         if (i == m_pdialog->m_iDefaultButton)
          {
 
             m_cha1.insert_at(0, character_toupper(ch));
 
-            m_stra.insert_at(0, pnanobutton->m_strText);
+            m_stra.insert_at(0, pmicrobutton->m_strText);
 
          }
          else
@@ -55,7 +59,7 @@ namespace micro
 
             m_cha1.add(character_tolower(ch));
 
-            m_stra.add(pnanobutton->m_strText);
+            m_stra.add(pmicrobutton->m_strText);
 
          }
 
@@ -74,7 +78,7 @@ namespace micro
       while (true)
       {
 
-         printf_out("%s", m_pinterchange->m_strTitle.c_str());
+         printf_out("%s", m_pdialog->get_title().c_str());
 
          ::string str;
 
@@ -127,15 +131,15 @@ namespace micro
       if (iButton >= 0)
       {
 
-         auto pnanobutton = m_pinterchange->m_nanobuttona[iButton];
+         auto pmicrobutton = m_pdialog->micro_button_at(iButton);
 
-         m_pinterchange->on_click(pnanobutton->m_edialogresult1, nullptr);
+         m_pdialog->on_click(pmicrobutton->m_edialogresult1, nullptr);
 
       }
 
    }
 
-} // nano
+} // micro
 
 
 

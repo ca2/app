@@ -462,7 +462,7 @@ namespace acme
    template < class A >
    void array_makecombination(pointer_array < A >& comb, const A& a, A blindprefixa = A(), ::collection::index idx = 0)
    {
-      comb.add(::place(new A(blindprefixa)));
+      comb.add(__new A(blindprefixa));
       for (::collection::index i = idx; i < a.get_count(); i++)
       {
          array_makecombination(comb, a, blindprefixa + make_array < A >(a[i]), i + 1);
@@ -840,7 +840,7 @@ namespace acme
       //      if (!pitem)
       //      {
 
-      //         pitem = ::place(new TYPE(&(pointer_array < TYPE > &)a));
+      //         pitem = __new TYPE(&(pointer_array < TYPE > &)a);
 
       //      }
 
@@ -885,7 +885,7 @@ namespace acme
 
       //         pinitializer->__initialize(pitem);
 
-      //         //pitem = ::place(new TYPE(&(pointer_array < TYPE > &)a));
+      //         //pitem = __new TYPE(&(pointer_array < TYPE > &)a);
 
       //      }
 
@@ -1030,7 +1030,7 @@ namespace acme
       //   while (c > 0)
       //   {
 
-      //      auto p = ::place(new TYPE(&a));
+      //      auto p = __new TYPE(&a);
 
       //      stream >> *p;
 
@@ -1226,7 +1226,7 @@ namespace acme
 
       for (int i = 0; i < srca.get_size(); i++)
       {
-         dsta.add(::place(new TSRC(srca(i))));
+         dsta.add(__new TSRC(srca(i)));
          ca++;
       }
 
@@ -1316,7 +1316,7 @@ namespace acme
       ::collection::count count = a.get_count();
       if (count == 1)
       {
-         perm.add(::place(new A(a)));
+         perm.add(__new A(a));
          return;
       }
       A elema;
@@ -1339,7 +1339,7 @@ namespace acme
          array_permute(perm2, topermut);
          for (i32 j = 0; j < perm2.get_count(); j++)
          {
-            perm.add(::place(new A(elema + perm2[j])));
+            perm.add(__new A(elema + perm2[j]));
          }
       }
    }

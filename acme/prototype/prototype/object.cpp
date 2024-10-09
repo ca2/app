@@ -291,7 +291,7 @@ string object::as_string() const
 ::extended_topic_pointer object::create_extended_topic(const ::atom & atom)
 {
 
-   auto pextendedtopic = ::place(new ::extended_topic(atom));
+   auto pextendedtopic = __new ::extended_topic(atom);
 
    pextendedtopic->initialize(this);
 
@@ -427,20 +427,48 @@ void object::call_routine2(const ::procedure & procedure)
 }
 
 
-void object::post_procedure(const ::procedure& procedure)
-{
+//void object::post_procedure(const ::procedure& procedure)
+//{
+//
+//   m_pcontext->fork(procedure);
+//
+//}
+//
+//
+//void object::send_procedure(const ::procedure& procedure)
+//{
+//
+//   m_pcontext->send_procedure(procedure);
+//
+//}
+//
+//void object::post(::particle * pparticle)
+//{
+//   post_procedure([pparticle]()
+//      {
+//
+//        pparticle->call_run();
+//
+//});
+//}
+//
+//void object::send(::particle * pparticle)
+//{
+//
+//   ::procedure procedure;
+//
+//   procedure = [pparticle]()
+//      {
+//
+//         pparticle->call_run();
+//
+//      };
+//
+//   procedure.m_timeTimeout = pparticle->get_run_timeout();
+//
+//   send_procedure(procedure);
+//}
 
-   m_pcontext->fork(procedure);
-
-}
-
-
-void object::send_procedure(const ::procedure& procedure)
-{
-
-   procedure();
-
-}
 
 
 ::text::text object::__text(const ::atom& atom)
@@ -489,14 +517,9 @@ void object::add_each_routine_from(const ::atom& atom, ::object* pobjectSource)
    if (::is_set(pobjectSource))
    {
 
-      auto pprocedurea = pobjectSource->procedure_array(atom);
+      auto procedurea = pobjectSource->procedure_array(atom);
 
-      if (pprocedurea)
-      {
-
-         get_meta()->m_mapRoutine[atom].append(*pprocedurea);
-
-      }
+      get_meta()->m_mapRoutine[atom].append(procedurea);
 
    }
 
@@ -754,10 +777,10 @@ void object::destruct()
 //}
 
 
-void object::run()
-{
+// void object::run()
+// {
 
-}
+// }
 
 
 
@@ -1812,7 +1835,7 @@ void object::branch_each(const ::procedure_array& routinea)
 ::pointer<task>object::branch(enum_parallelization eparallelization, const create_task_attributes & createthreadattributes)
 {
 
-   auto ptask = branch_procedure({ use_t{}, this }, eparallelization, createthreadattributes);
+   auto ptask = branch_procedure(this, eparallelization, createthreadattributes);
 
    return ptask;
 
@@ -1822,7 +1845,7 @@ void object::branch_each(const ::procedure_array& routinea)
 ::pointer<task>object::branch_synchronously(const create_task_attributes & createthreadattributes)
 {
 
-   auto ptask = branch_procedure_synchronously({ use_t{}, this }, createthreadattributes);
+   auto ptask = branch_procedure_synchronously(this, createthreadattributes);
 
    return ptask;
 
@@ -1862,7 +1885,9 @@ void object::handle_exception(const ::exception& e)
    else if (e.estatus() == error_library_not_found)
    {
 
-      ::message_box_synchronous(this, e.m_strMessage);
+      auto pmessagebox = __initialize_new ::message_box(e.m_strMessage);
+
+      send(pmessagebox);
 
    }
 
@@ -2049,7 +2074,7 @@ void object::sleep(const class time & time)
          if (ptask->m_pevSleep.is_null())
          {
 
-            ptask->m_pevSleep = ::place(new manual_reset_event());
+            ptask->m_pevSleep = __new manual_reset_event();
 
             ptask->m_pevSleep->ResetEvent();
 
@@ -2369,7 +2394,7 @@ void object::install_message_routing(::channel* pchannel)
 //::pointer<::handle::ini>object::appini()
 //{
 //
-//   return ::place(new ::handle::ini (         auto psystem = system());
+//   return __new ::handle::ini (         auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -2411,9 +2436,9 @@ struct context_object_test_struct :
 //void debug_context_object(::object* pparticle)
 //{
 //
-//   auto p1 = ::place(new struct context_object_test_struct (pparticle));
+//   auto p1 = __new struct context_object_test_struct (pparticle);
 //
-//   auto p2 = ::place(new struct context_object_test_struct (pparticle));
+//   auto p2 = __new struct context_object_test_struct (pparticle);
 //
 //   p2 = p1;
 //
@@ -2563,7 +2588,9 @@ void call_sync(const ::procedure_array& methoda)
 //   if (!estatus)
 //   {
 //
-////      estatus = ::message_box_synchronous(pszMessage, pszTitle, emessagebox, process);
+////      estatus = ::auto pmessagebox = __initialize_new ::message_box(pszMessage, pszTitle, emessagebox, process);
+
+//send(pmessagebox);
 //
 //   }
 //
@@ -2741,10 +2768,10 @@ void call_sync(const ::procedure_array& methoda)
 //}
 
 //
-procedure_array * object::procedure_array(const ::atom& atomProcedure)
+procedure_array object::procedure_array(const ::atom& atomProcedure)
 {
 
-   return &get_meta()->m_mapRoutine[atomProcedure];
+   return get_meta()->m_mapRoutine[atomProcedure];
 
 }
 
@@ -3758,7 +3785,7 @@ bool object::IsSerializable() const
 //   }
 //
 //
-//    //ptask = ::place(new predicate_task < PRED > (pparticle, pred));
+//    //ptask = __new predicate_task < PRED > (pparticle, pred);
 ////
 ////   ptask->branch();
 ////

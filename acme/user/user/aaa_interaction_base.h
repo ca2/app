@@ -49,7 +49,7 @@
 //
 //
 //   ::pointer < ::acme::windowing::window >      m_pnanowindowingwindow;
-//   ::pointer < ::acme::user::interaction >      m_pnanouserinteractionParent;
+//   ::pointer < ::acme::user::interaction >      m_pacmeuserinteractionParent;
 //
 //
 //    interaction_base();

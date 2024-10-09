@@ -189,7 +189,7 @@ namespace message
 
    //      auto puser = paurasession->m_puser;
 
-   //      auto pwindowing = puser->m_pwindowing;
+   //      auto pwindowing = system()->windowing();
 
    //      m_pWndOther = __interaction(pwindowing->window(lparam.raw_cast < ::oswindow >()));
 
@@ -690,7 +690,7 @@ namespace message
 
    //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-   //   ::pointer < ::particle > pparticle(lparam);
+   //   ::particle_pointer pparticle(lparam);
 
    //   m_pparticle = pparticle;
 

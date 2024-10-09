@@ -2,6 +2,7 @@
 
 
 #include "acme/parallelization/task.h"
+#include "acme/platform/message_box.h"
 
 
 namespace acme
@@ -9,7 +10,8 @@ namespace acme
 
 
    class CLASS_DECL_ACME context :
-      virtual public ::task
+      virtual public ::task,
+      virtual public ::reificator < ::message_box >
    {
    public:
 
@@ -61,6 +63,7 @@ namespace acme
 
       virtual void finalize_context();
 
+      virtual ::pointer < ::reified < ::message_box > > realize(::realizable < ::message_box > * p);
 
       inline ::image::image_context* image() { return m_pimagecontext; }
 

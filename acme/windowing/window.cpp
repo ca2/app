@@ -35,12 +35,12 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/nano/user/interaction.h"
-#include "acme/nano/user/user.h"
 #include "acme/operating_system/a_system_menu.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
+#include "acme/user/micro/user.h"
+#include "acme/user/user/interaction.h"
 
 
 
@@ -96,9 +96,9 @@ namespace acme
 
          ::user::element::on_initialize_particle();
 
-         //__construct(m_pnanouserinteraction);
+         //__construct(m_pacmeuserinteraction);
 
-         //m_pnanouserinteraction->m_pnanouserinteraction = this;
+         //m_pacmeuserinteraction->m_pacmeuserinteraction = this;
 
          //system()->acme_windowing()->m_interchangea.add(this);
 
@@ -128,7 +128,7 @@ namespace acme
       void window::create_window()
       {
 
-         //m_pnanouserinteraction->create_window();
+         //m_pacmeuserinteraction->create_window();
 
       }
 
@@ -138,7 +138,7 @@ namespace acme
 
          //update_drawing_objects();
 
-         m_pnanouserinteraction->on_create_window();
+         m_pacmeuserinteraction->on_create_window();
 
 
       }
@@ -147,23 +147,23 @@ namespace acme
       void window::destroy()
       {
 
-         if (m_pnanouserinteraction)
+         if (m_pacmeuserinteraction)
          {
 
-            m_pnanouserinteraction->destroy();
+            m_pacmeuserinteraction->destroy();
 
-            m_pnanouserinteraction.release();
+            m_pacmeuserinteraction.release();
 
          }
 
-         if (m_functionClose)
-         {
+         //if (m_functionClose)
+         //{
 
-            m_functionClose(m_pnanouserinteraction);
+         //   m_functionClose(m_pacmeuserinteraction);
 
-            m_functionClose.clear();
+         //   m_functionClose.clear();
 
-         }
+         //}
 
 
          if (system()->acme_windowing())
@@ -188,7 +188,7 @@ namespace acme
       void window::show_window()
       {
 
-         //m_pnanouserinteraction->show_window();
+         //m_pacmeuserinteraction->show_window();
 
       }
 
@@ -196,7 +196,7 @@ namespace acme
       void window::hide_window()
       {
 
-         //m_pnanouserinteraction->hide();
+         //m_pacmeuserinteraction->hide();
 
       }
 
@@ -204,7 +204,7 @@ namespace acme
       void window::window_message_loop()
       {
 
-         //m_pnanouserinteraction->message_loop();
+         //m_pacmeuserinteraction->message_loop();
 
       }
 
@@ -213,7 +213,7 @@ namespace acme
       //void window::on_draw(::nano::graphics::device * pnanodevice)
       //{
 
-      //   //m_pnanouserinteraction->draw(pnanodevice);
+      //   //m_pacmeuserinteraction->draw(pnanodevice);
 
       //}
 
@@ -254,7 +254,7 @@ namespace acme
       void window::set_active_window()
       {
          //
-           //       m_pnanouserinteraction->set_active_window();
+           //       m_pacmeuserinteraction->set_active_window();
 
       }
 
@@ -271,14 +271,35 @@ namespace acme
       //}
 
 
+      void window::set_user_interaction(::acme::user::interaction * pacmeuserinteraction)
+      {
+
+         m_pacmeuserinteraction = pacmeuserinteraction;
+
+      }
+
+
+      void window::set_user_thread(::user::thread* puserthread)
+      {
+
+
+      }
+
+
+      void window::set_user_graphics_thread(::user::graphics_thread * pusergraphicsthread)
+      {
+
+
+      }
+
 
       bool window::defer_perform_entire_reposition_process(::user::mouse * pmouse)
       {
 
-         if (m_pnanouserinteraction)
+         if (m_pacmeuserinteraction)
          {
 
-            if (m_pnanouserinteraction->defer_perform_entire_reposition_process(pmouse))
+            if (m_pacmeuserinteraction->defer_perform_entire_reposition_process(pmouse))
             {
 
                return true;
@@ -347,10 +368,10 @@ namespace acme
       bool window::defer_perform_entire_resizing_process(::experience::enum_frame eframeSizing, ::user::mouse * pmouse)
       {
 
-         if (m_pnanouserinteraction)
+         if (m_pacmeuserinteraction)
          {
 
-            if (m_pnanouserinteraction->defer_perform_entire_resizing_process(eframeSizing, pmouse))
+            if (m_pacmeuserinteraction->defer_perform_entire_resizing_process(eframeSizing, pmouse))
             {
 
                return true;
@@ -367,7 +388,7 @@ namespace acme
       //::point_i32 window::try_absolute_mouse_position(const ::point_i32 & point)
       //{
 
-      //   return m_pnanouserinteraction->try_absolute_mouse_position(point);
+      //   return m_pacmeuserinteraction->try_absolute_mouse_position(point);
 
       //}
 
@@ -387,7 +408,7 @@ namespace acme
       //void window::set_position(const ::point_i32 & point)
       //{
 
-      //   m_pnanouserinteraction->set_position(point);
+      //   m_pacmeuserinteraction->set_position(point);
 
       //}
 
@@ -395,7 +416,7 @@ namespace acme
       void window::redraw()
       {
 
-         m_pnanouserinteraction->redraw();
+         m_pacmeuserinteraction->redraw();
 
       }
 
@@ -451,7 +472,7 @@ namespace acme
 
          }
 
-         m_pnanouserinteraction->set_capture();
+         m_pacmeuserinteraction->set_capture();
 
          m_bCapture = true;
 
@@ -461,7 +482,7 @@ namespace acme
       void window::set_cursor(enum_cursor ecursor)
       {
 
-         m_pnanouserinteraction->set_cursor(ecursor);
+         m_pacmeuserinteraction->set_cursor(ecursor);
 
       }
 
@@ -469,7 +490,7 @@ namespace acme
       bool window::has_capture()
       {
 
-         return m_pnanouserinteraction->has_capture();
+         return m_pacmeuserinteraction->has_capture();
 
       }
 
@@ -477,7 +498,7 @@ namespace acme
       void window::release_capture()
       {
 
-         m_pnanouserinteractionCapture = nullptr;
+         m_pacmeuserinteractionCapture = nullptr;
 
          if (!m_bCapture)
          {
@@ -488,7 +509,7 @@ namespace acme
 
          m_bCapture = false;
 
-         m_pnanouserinteraction->release_capture();
+         m_pacmeuserinteraction->release_capture();
 
       }
 
@@ -506,12 +527,12 @@ namespace acme
 
 
 
-      void window::_run_modal_loop()
-      {
+      //void window::_run_modal_loop()
+      //{
 
-         m_pnanouserinteraction->_run_modal_loop();
+      //   m_pacmeuserinteraction->_run_modal_loop();
 
-      }
+      //}
 
 
 
@@ -542,18 +563,18 @@ namespace acme
       // }
 
 
-      ::payload window::do_synchronously(const class time & timeWait)
-      {
+      //::payload window::do_synchronously(const class time & timeWait)
+      //{
 
-         create_window();
+      //   create_window();
 
-         show_window();
+      //   show_window();
 
-         acme_windowing_window()->window_message_loop();
+      //   acme_windowing_window()->window_message_loop();
 
-         return m_pnanouserinteraction->m_payloadResult;
+      //   return m_pacmeuserinteraction->m_payloadResult;
 
-      }
+      //}
 
 
 
@@ -564,7 +585,7 @@ namespace acme
          if (ptopic->m_atom == id_set_application_dark_mode)
          {
 
-            m_pnanouserinteraction->handle(ptopic, pcontext);
+            m_pacmeuserinteraction->handle(ptopic, pcontext);
 
          }
 
@@ -579,14 +600,14 @@ namespace acme
       //}
 
 
-      void window::do_asynchronously()
-      {
+      //void window::do_asynchronously()
+      //{
 
-         create_window();
+      //   create_window();
 
-         show_window();
+      //   show_window();
 
-      }
+      //}
 
       // // Merged from windowing_base to
    //     windowing to nano_use by camilo on 2024-10-05 11:12 <3ThomasBorregaardSorensen!!
@@ -609,7 +630,7 @@ namespace acme
    //#include "platform/system.h"
    //#include "acme/nano/nano.h"
    //#include "acme/nano/graphics/device.h"
-   //#include "acme/nano/user/display.h"
+   //#include "acme/user/micro/display.h"
    //#include "acme/operating_system/a_system_menu.h"
    //#include "acme/parallelization/synchronous_lock.h"
    //#include "acme/platform/application.h"
@@ -643,7 +664,7 @@ namespace acme
       ::acme::user::interaction * window::acme_user_interaction()
       {
 
-         return m_pnanouserinteraction;
+         return m_pacmeuserinteraction;
 
       }
 
@@ -844,6 +865,14 @@ namespace acme
       }
 
 
+      void window::on_window_close()
+      {
+
+         m_pacmeuserinteraction->on_window_close();
+
+      }
+
+
       //void window::create_window()
       //{
 
@@ -860,7 +889,7 @@ namespace acme
       //void window::on_create_window()
       //{
 
-      //   m_pnanouserinteraction->on_create_window();
+      //   m_pacmeuserinteraction->on_create_window();
 
       //}
 
@@ -961,7 +990,7 @@ namespace acme
       //
       //    message_loop();
       //
-      //    // auto pmanualresetevent = ::place(new manual_reset_event());
+      //    // auto pmanualresetevent = __new manual_reset_event();
       //    //
       //    // m_pinterface->m_psequencer->then([ pmanualresetevent](auto psequencer)
       //    // {
@@ -1046,14 +1075,14 @@ namespace acme
       void window::_on_window_simple_action(const char * pszActionName)
       {
 
-         if (!m_pnanouserinteraction)
+         if (!m_pacmeuserinteraction)
          {
 
             throw ::exception(error_failed);
 
          }
 
-         m_pnanouserinteraction->_on_window_simple_action(pszActionName);
+         m_pacmeuserinteraction->_on_window_simple_action(pszActionName);
 
       }
 
@@ -1294,11 +1323,17 @@ namespace acme
 
       }
 
+      ::windowing::window * window::windowing_window()
+      {
+
+         return nullptr;
+
+      }
 
       ::acme::windowing::window * window::owner_window()
       {
 
-         return m_pnanowindowingwindowOwner;
+         return m_pacmewindowingwindowOwner;
 
       }
 

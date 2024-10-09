@@ -60,4 +60,7 @@ namespace platform
 } // namespace platform
 
 
+class message_box;
+
+
 

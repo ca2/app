@@ -8,7 +8,8 @@
 #include "acme/prototype/geometry2d/size.h"
 #include "acme/platform/system.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/user/user.h"
+#include "acme/user/micro/user.h"
+#include "acme/windowing/windowing.h"
 
 
 namespace acme

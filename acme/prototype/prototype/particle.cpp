@@ -19,7 +19,7 @@
 #include "acme/platform/session.h"
 #include "acme/platform/system.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/user/user.h"
+#include "acme/user/micro/user.h"
 //#include "acme/prototype/prototype/payload.h"
 
 
@@ -159,6 +159,12 @@ void particle::finalize()
 }
 
 
+::particle * particle::get_context_particle()
+{
+
+   return m_pcontext;
+
+}
 
 
 void particle::set_synchronization(::particle *pparticleSynchronization)
@@ -635,11 +641,72 @@ class ::user::user * particle::user() const
 }
 
 
+void particle::operator()(::topic * ptopic, ::context * pcontext)
+{
+
+   handle(ptopic, pcontext);
+
+}
+
+
+void particle::operator()(::sequencer & sequencer)
+{
+
+   run();
+
+   complete_step(sequencer);
+
+}
+
+
+//void particle::operator()(::sequence * psequence)
+//{
+//
+//   run();
+//
+//   aggregate(psequence);
+//
+//}
+
+
+::sequencer particle::get_current_sequencer()
+{
+
+   return nullptr;
+
+}
+
+
+void particle::set_current_sequencer(const ::sequencer & sequencer)
+{
+
+
+}
+
+
+void particle::aggregate(::sequencer & sequencer)
+{
+
+   set_current_sequencer(sequencer);
+
+   run();
+
+   complete_step(sequencer);
+
+}
+
+
 void particle::handle(::topic * ptopic, ::context * pcontext)
 {
 
 
 }
+
+
+//void particle::aggregate(::sequence * psequence)
+//{
+//
+//}
 
 
 void particle::call_handle(::topic* ptopic, ::context* pcontext)
@@ -2006,7 +2073,7 @@ bool particle::is_branch_current() const
 ::topic_pointer create_topic(::particle * pparticleCall, const ::atom & atom)
 {
 
-   auto ptopic = ::place(new ::topic(atom));
+   auto ptopic = __new ::topic(atom);
    
    ptopic->initialize(pparticleCall);
 
@@ -2163,20 +2230,7 @@ bool particle::_handle_call(::payload & payload, const ::string & strObject, con
 //}
 
 
-class ::time particle::timeout() const
-{
 
-   return 1_min;
-
-}
-
-
-void particle::set_timeout(const class time & timeTimeout)
-{
-
-   throw interface_only();
-
-}
 
 
 
@@ -2431,7 +2485,6 @@ bool particle::should_run_async() const
 
 
 
-
 void * particle::new_object(const char * psz)
 {
    
@@ -2443,7 +2496,7 @@ void * particle::new_object(const char * psz)
 
 
 
-CLASS_DECL_ACME ::pointer < ::particle > detach_pointer(::lparam& lparam)
+CLASS_DECL_ACME ::particle_pointer detach_pointer(::lparam& lparam)
 {
 
    auto p = ::pointer_transfer((particle*)lparam.m_lparam);
@@ -2511,67 +2564,67 @@ void particle::kick_idle()
    return p;
 
 }
+//
+//
+//::pointer < ::message_box > particle::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::graphics::icon * picon)
+//{
+//   
+//   ::micro::user * pmicrouser = nullptr;
+//   
+//   try
+//   {
+//      
+//      pmicrouser = system()->micro_user();
+//      
+//   }
+//   catch (...)
+//   {
+//   
+//      
+//   }
+//   
+//   if(::is_set(pmicrouser))
+//   {
+//    
+//      return pmicrouser->message_box(strMessage, strTitle, emessagebox, strDetails, picon);
+//      
+//   }
+//   
+//   auto pmessagebox = __initialize_new ::message_box(strMessage, strTitle, emessagebox, strDetails, picon);
+//
+//   return pmessagebox;
+//
+//}
 
 
-pointer < ::sequencer < ::conversation > > particle::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::graphics::icon * picon)
-{
-   
-   ::micro::user * pnanouser = nullptr;
-   
-   try
-   {
-      
-      pnanouser = system()->system()->acme_windowing();
-      
-   }
-   catch (...)
-   {
-   
-      
-   }
-   
-   if(::is_set(pnanouser))
-   {
-    
-      return pnanouser->message_box(strMessage, strTitle, emessagebox, strDetails, picon);
-      
-   }
-   
-   auto psequencer = message_box_sequencer(this, strMessage, strTitle, emessagebox, strDetails, picon);
-
-   return psequencer;
-
-}
-
-
-pointer < ::sequencer < ::conversation > > particle::exception_message_box(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::graphics::icon * picon)
-{
-
-   return system()->system()->acme_windowing()->exception_message_box(exception, strMessage, strTitle, emessagebox, strDetails, picon);
-
-}
-
-
-pointer < ::sequencer < ::conversation > > particle::message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::graphics::icon * picon)
-{
-
-   return system()->system()->acme_windowing()->message_console(strMessage, strTitle, emessagebox, strDetails, picon);
-
-}
-
-
-pointer < ::sequencer < ::conversation > > particle::exception_message_console(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::graphics::icon * picon)
-{
-
-   return system()->exception_message_console(exception, strMessage, strTitle, emessagebox, strDetails, picon);
-
-}
+//::pointer < ::message_box > particle::exception_message_box(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::graphics::icon * picon)
+//{
+//
+//   return system()->micro_user()->exception_message_box(exception, strMessage, strTitle, emessagebox, strDetails, picon);
+//
+//}
+//
+//
+//::pointer < ::message_box > particle::message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::graphics::icon * picon)
+//{
+//
+//   return system()->micro_user()->message_console(strMessage, strTitle, emessagebox, strDetails, picon);
+//
+//}
+//
+//
+//::pointer < ::message_box > particle::exception_message_console(const ::exception& exception, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::graphics::icon * picon)
+//{
+//
+//   return system()->micro_user()->exception_message_console(exception, strMessage, strTitle, emessagebox, strDetails, picon);
+//
+//}
 
 
 void particle::app_post(const ::procedure & procedure)
 {
 
-   application()->post_procedure(procedure);
+   application()->post(procedure);
 
 }
 
@@ -2587,7 +2640,7 @@ void particle::app_post(const ::procedure & procedure)
 void particle::task_post(const ::procedure & procedure)
 {
 
-   ::get_task()->post_procedure(procedure);
+   ::get_task()->post(procedure);
 
 }
 
@@ -2737,7 +2790,7 @@ memory_file_pointer particle::create_memory_file()
 memory_file_pointer particle::create_memory_file(::memory_base& memory)
 {
 
-   return ::place(new ::memory_file(memory));
+   return __new ::memory_file(memory);
 
 }
 
@@ -2745,7 +2798,7 @@ memory_file_pointer particle::create_memory_file(::memory_base& memory)
 memory_file_pointer particle::create_memory_file(const ::block& block)
 {
 
-   return ::place(new ::memory_file(block));
+   return __new ::memory_file(block);
 
 }
 
@@ -2753,7 +2806,7 @@ memory_file_pointer particle::create_memory_file(const ::block& block)
 memory_file_pointer particle::create_memory_file_as_copy(const memory& memory)
 {
 
-   return ::place(new ::memory_file(::place(new ::memory (memory))));
+   return __new ::memory_file(__new ::memory (memory));
 
 }
 
@@ -2914,5 +2967,76 @@ CLASS_DECL_ACME void fatalf(const ::ansi_character* pszFormat, ...)
    ::platform::get()->system()->formatf_trace(e_trace_level_fatal, pszFormat, arguments);
 
    va_end(arguments);
+
+}
+
+void particle::complete_step(::sequencer & sequencer)
+{
+
+
+}
+
+
+void particle::user_send()
+{
+
+   user_send(this);
+
+}
+
+
+
+void particle::user_post()
+{
+
+   user_post(this);
+
+}
+
+
+void particle::main_send()
+{
+
+   main_send(this);
+
+}
+
+
+
+void particle::main_post()
+{
+
+   main_post(this);
+
+}
+
+class ::time particle::get_default_run_timeout()
+{
+
+   return ::default_run_timeout();
+
+}
+
+
+//void particle::send(const ::procedure & procedure)
+//{
+//
+//   m_pcontext->send(procedure);
+//
+//}
+
+
+void particle::_post(const ::procedure & procedure)
+{
+
+   m_pcontext->_post(procedure);
+
+}
+
+
+void particle::_send(const ::procedure & procedure, const class ::time & timeTimeout)
+{
+
+   m_pcontext->_send(procedure, timeTimeout);
 
 }

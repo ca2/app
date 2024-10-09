@@ -205,7 +205,7 @@ constexpr auto as_absolute_unsigned(SIGNED i)
 //template < typename TYPE > inline TYPE*& __defer_new(TYPE*& p)
 //{
 //
-//   if (!p) p = ::place(new TYPE());
+//   if (!p) p = __new TYPE();
 //
 //   return p;
 //

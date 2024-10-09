@@ -1192,7 +1192,7 @@ public:
       if (!p)
       {
 
-         p = ::place(new T());
+         p = __new T();
 
          operator =(p);
 

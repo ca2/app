@@ -16,7 +16,7 @@ memory_container::memory_container(memsize size)
 memory_container::memory_container(const void * pdata, memsize size)
 {
 
-   m_pmemory = ::place(new class memory (this, pdata, size));
+   m_pmemory = __new class memory (this, pdata, size);
    m_pbyte = (::u8 *) pdata;
    // m_memsize = size;
 
@@ -173,7 +173,7 @@ void memory_container::set_memory(::pointer<memory_base>pmemory)
 ::pointer<memory_base>memory_container::create_memory(const void * p, memsize s)
 {
 
-   m_pmemory = ::place(new class memory (this, p, s));
+   m_pmemory = __new class memory (this, p, s);
    
    return m_pmemory;
 

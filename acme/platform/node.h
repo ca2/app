@@ -80,10 +80,10 @@ namespace acme
       :: IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::node *  m_pAuraPlatform;
       
       
-      //::pointer < ::particle >                              m_pparticleQuit;
+      //::particle_pointer                              m_pparticleQuit;
 
 
-      //::pointer < ::particle >                              m_pparticleStandardIOSynchronization;
+      //::particle_pointer                              m_pparticleStandardIOSynchronization;
       
 
       bool                                                  m_bCallStackInitialized;
@@ -152,15 +152,15 @@ namespace acme
       //idaPid = pnode->(path, false);
 
 
-      virtual ::pointer < ::particle > create_mutex();
+      virtual ::particle_pointer create_mutex();
 
 
       virtual void initialize(::particle * pparticle) override;
       
       virtual void node_application_on_status(const char * pszStatus, void * p = nullptr, long long ll = 0);
-      //virtual ::pointer < ::particle > create_quit_particle(::pointer<::acme::node>& pnode);
+      //virtual ::particle_pointer create_quit_particle(::pointer<::acme::node>& pnode);
 
-      //virtual ::pointer < ::particle > create_quit_particle();
+      //virtual ::particle_pointer create_quit_particle();
       virtual ::file::path get_default_base_integration_folder();
 
 
@@ -327,9 +327,11 @@ namespace acme
 
       virtual bool is_wayland();
 
+      virtual void user_send(const ::procedure & procedure) override;
       virtual void user_post(const ::procedure & procedure) override;
 
-      virtual void user_send(const ::procedure & procedure) override;
+      //virtual void _user_send(::subparticle * psubparticle) override;
+      //virtual void _user_post(::subparticle * psubparticle) override;
 
       //void post_procedure(const ::procedure & procedure) override;
 
@@ -472,17 +474,17 @@ namespace acme
       virtual void report_exception_to_user(::particle* pparticle, ::exception& exception, const ::string& strMoreDetails);
 
 
-      virtual ::pointer<::conversation> create_new_message_box_conversation();
+      //virtual ::pointer<::conversation> create_new_message_box_conversation();
 
-      virtual ::pointer<::conversation> create_new_message_conversation();
+      //virtual ::pointer<::conversation> create_new_message_conversation();
 
 
-      virtual pointer< ::sequencer < ::conversation > > create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon);
+      //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon);
 
 
       //virtual void ::micro::message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox);
 
-      virtual pointer< ::sequencer < ::conversation > > create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon);
+      //virtual ::pointer < ::subparticle > create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon);
 
 
 
@@ -1024,6 +1026,7 @@ namespace acme
       virtual bool _get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle);
       virtual bool _get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 & rectangle);
 
+      virtual void realize(::particle_pointer pparticle);
 
    };
 

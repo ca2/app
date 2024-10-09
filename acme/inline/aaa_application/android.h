@@ -15,13 +15,13 @@
 //
 //#endif
 //
-//   auto psystem = ::place(new ::acme::system());
+//   auto psystem = __new ::acme::system();
 //
 //   psystem->construct_system(argc, argv);
 //
 ////   return acme_run_system(psystem);
 //
-//   auto psystem = ::place(new ::acme::system());
+//   auto psystem = __new ::acme::system();
 //
 //   psystem->payload("main_string") = strMainString;
 //
@@ -50,7 +50,7 @@
 //
 //      {
 //
-//         auto psystem = ::place(new ::acme::system());
+//         auto psystem = __new ::acme::system();
 //
 //         psystem->set_main_struct(&mainstruct);
 //

@@ -441,7 +441,7 @@ inline ::pointer < T > __call__allocate(Args &&... args);
 
 
 
-template < typename SEQUENCE >
+//template < typename SEQUENCE >
 class sequencer;
 
 
@@ -452,11 +452,11 @@ using context_pointer = ::pointer<context>;
 using topic_pointer = ::pointer<topic>;
 using extended_topic_pointer = ::pointer<extended_topic>;
 
-template < typename SEQUENCE >
+//template < typename SEQUENCE >
 class sequencer;
 
-template < typename SEQUENCE >
-class sequence;
+//template < typename SEQUENCE >
+class step;
 
 
 template < typename FUNCTION >
@@ -464,7 +464,7 @@ class function;
 
 using procedure = ::function < void() >;
 
-using procedure_array = ::comparable_array < ::procedure >;
+class procedure_array;
 
 using procedure_map = ::atom_map < ::procedure_array >;
 
@@ -786,8 +786,8 @@ using matter_array = pointer_array < ::matter >; // Please use just for keeping 
 using task_array = pointer_array < ::task >; // Please use just for keeping non-member-based references.
 
 
-template < typename SEQUENCE >
-class sequence;
+//template < typename SEQUENCE >
+class step;
 
 #ifdef WINDOWS
 
@@ -810,7 +810,7 @@ class guard_pointer;
 
 
 
-template < typename SEQUENCE >
+//template < typename SEQUENCE >
 class sequencer;
 
 
@@ -867,7 +867,7 @@ using signal_handler = ::function < void(::topic*, ::context*) >;
 ////::matter_pointer __handle_function(PREDICATE predicate)
 ////{
 ////
-////   return ::place(new han<PREDICATE> (predicate));
+////   return __new han<PREDICATE> (predicate);
 ////
 ////}
 

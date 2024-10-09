@@ -1065,7 +1065,7 @@ public:
    TYPE_IS_PTR merge_get_existing(const TYPE_IS_PTR & p, const OBJECT& pparticle, const ATTRIBUTE& attribute)
    {
 
-      auto pModified = ::place(new typename TYPE_IS_PTR::TYPE (*p));
+      auto pModified = __new typename TYPE_IS_PTR::TYPE (*p);
 
       pModified->process(pparticle, attribute);
 

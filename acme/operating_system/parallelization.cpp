@@ -74,7 +74,7 @@ property_set& _thread_property_set()
    if (!ppropertyset)
    {
 
-      ppropertyset = ::place(new property_set());
+      ppropertyset = __new property_set();
 
    }
 

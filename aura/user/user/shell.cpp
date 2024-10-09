@@ -135,7 +135,7 @@ namespace user
       m_iActiveThreadCount = 0;
       m_iMaxThreadCount = 1;
 
-      m_pevNewImageKey = ::place(new manual_reset_event());
+      m_pevNewImageKey = __new manual_reset_event();
 
       m_pevNewImageKey->m_eflagElement += e_flag_alertable_wait;
 

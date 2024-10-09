@@ -22,7 +22,7 @@ namespace nano
         }
 
 
-        //pointer< ::sequencer < ::conversation > > graphics::nano()->message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+        //::pointer < ::subparticle > graphics::nano()->message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
         //{
 
         //   auto psequencer = node()->nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -32,7 +32,7 @@ namespace nano
         //}
 
 
-        //pointer< ::sequencer < ::conversation > > graphics::nano()->message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+        //::pointer < ::subparticle > graphics::nano()->message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
         //{
 
         //   auto psequencer = node()->nano()->message_console(strMessage, strTitle, emessagebox, strDetails);
@@ -41,7 +41,7 @@ namespace nano
 
         //}
 //
-//        pointer<::sequencer<::conversation>> user::message_box(const ::string& strMessage, const ::string& strTitle,
+//        ::pointer < ::subparticle > user::message_box(const ::string& strMessage, const ::string& strTitle,
 //                                                               const ::e_message_box& emessagebox,
 //                                                               const ::string& strDetails, ::nano::graphics::icon * picon)
 //        {
@@ -53,7 +53,7 @@ namespace nano
 //        }
 //
 //
-//        pointer<::sequencer<::conversation>> user::exception_message_box(
+//        ::pointer < ::subparticle > user::exception_message_box(
 //            const ::exception& exception, const ::string& strMessageParam, const ::string& strTitleParam,
 //            const ::e_message_box& emessagebox, const ::string& strDetailsParam, ::nano::graphics::icon * picon)
 //        {
@@ -96,7 +96,7 @@ namespace nano
 //        }
 //
 //
-//        pointer<::sequencer<::conversation>> user::message_console(const ::string& strMessage, const ::string& strTitle,
+//        ::pointer < ::subparticle > user::message_console(const ::string& strMessage, const ::string& strTitle,
 //                                                                   const ::e_message_box& emessagebox,
 //                                                                   const ::string& strDetails, ::nano::graphics::icon * picon)
 //        {
@@ -106,7 +106,7 @@ namespace nano
 //        }
 //
 //
-//        pointer<::sequencer<::conversation>> user::exception_message_console(
+//        ::pointer < ::subparticle > user::exception_message_console(
 //            const ::exception& exception, const ::string& strMessage, const ::string& strTitle,
 //            const ::e_message_box& emessagebox, const ::string& strDetails, ::nano::graphics::icon * picon)
 //        {

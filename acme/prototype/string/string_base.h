@@ -741,6 +741,9 @@ public:
    inline string_base & append(const ::property & property);
 
 
+   inline string_base & concatenate_with_separator(const SCOPED_STRING & scopedstrSeparator, const SCOPED_STRING & scopedstr);
+
+
    inline void empty()
    {
 
@@ -1755,7 +1758,7 @@ public:
 //inline ::string operator +(const ::inline_string < char, m_sizeMaximumLength > & inlinestring, const char(&sz)[c]);
 
 
-CLASS_DECL_ACME ::string _(const string & str);
+
 
 
 

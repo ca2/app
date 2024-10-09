@@ -242,7 +242,7 @@ namespace factory
       inline void __call__raw_construct(::pointer<ORIGIN_TYPE> & p);
 
 
-      virtual ::pointer < ::particle > __call__create(const ::string & strType, ::particle * pparticle);
+      virtual ::particle_pointer __call__create(const ::string & strType, ::particle * pparticle);
 
 
       virtual bool has(const ::atom & atom) const;
@@ -415,7 +415,7 @@ namespace factory
 //
 //      critical_section_lock lock(&m_criticalsection);
 //
-//      auto pfactoryitem = ::place(new ::factory::factory_item< TYPE, ORIGIN_TYPE > ());
+//      auto pfactoryitem = __new ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
 //
 //      get_factory_item < ORIGIN_TYPE >(atomSource) = pfactoryitem;
 //
@@ -430,7 +430,7 @@ namespace factory
 
    //   critical_section_lock lock(&m_criticalsection);
 
-   //   auto pfactory = ::place(new ::factory::factory_item< TYPE, ORIGIN_TYPE > ());
+   //   auto pfactory = __new ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
 
    //   factory_item < ORIGIN_TYPE >() = pfactory;
 
@@ -445,7 +445,7 @@ namespace factory
 //
 //      critical_section_lock lock(&m_criticalsection);
 //
-//      auto pfactory = ::place(new ::factory::reusable_factory_item< TYPE, ORIGIN_TYPE > ());
+//      auto pfactory = __new ::factory::reusable_factory_item< TYPE, ORIGIN_TYPE > ();
 //
 //      factory_item < TYPE, ORIGIN_TYPE >() = pfactory;
 //
@@ -528,7 +528,7 @@ namespace factory
 //
 //      critical_section_lock lock(&m_criticalsection);
 //
-//      auto pfactory = ::place(new ::factory::factory_item< TYPE, ORIGIN_TYPE > ());
+//      auto pfactory = __new ::factory::factory_item< TYPE, ORIGIN_TYPE > ();
 //
 //      this->get_factory_item < ORIGIN_TYPE >() = pfactory;
 //

@@ -38,7 +38,6 @@ namespace acme
       public:
 
 
-         ::function < void(::acme::user::interaction *) >        m_functionClose;
 
          //::pointer < ::acme::windowing::window >                m_pwindowOwner;
 
@@ -63,7 +62,6 @@ namespace acme
 
 
          //pointer_array < ::micro::button >             m_nanobuttona;
-         ::collection::index                                   m_iDefaultButton = -1;
 
          //map < const ::item *, ::user::item >      m_useritemmap;
 
@@ -100,6 +98,10 @@ namespace acme
          void on_initialize_particle() override;
 
 
+
+         virtual void set_user_interaction(::acme::user::interaction * pacmeuserinteraction);
+         virtual void set_user_thread(::user::thread * puserthread);
+         virtual void set_user_graphics_thread(::user::graphics_thread * pusergraphicsthread);
 
 
          //bool defer_perform_entire_reposition_process() override;
@@ -145,7 +147,7 @@ namespace acme
          ::pointer<::nano::graphics::device>create_device();
 
 
-         void _run_modal_loop() override;
+         //void run_modal_loop() override;
 
 
          //::atom do_synchronously() override;
@@ -171,13 +173,16 @@ namespace acme
          ::acme::windowing::window * acme_windowing_window() override;
 
 
+
+         ::windowing::window * windowing_window() override;
+
          //void on_initialize_particle() override;
 
 
          //void destroy() override;
 
-         virtual ::payload do_synchronously(const class time & timeWait);
-         virtual void do_asynchronously();
+         //virtual ::payload do_synchronously(const class time & timeWait);
+         //virtual void do_asynchronously();
 
 
          virtual bool is_windowing_popup();
@@ -249,6 +254,9 @@ namespace acme
 
          virtual void nano_window_on_destroy();
 
+
+         void on_window_close() override;
+
          //virtual void _console_create();
 
          //virtual void _display_console();
@@ -316,8 +324,7 @@ namespace acme
 
 
          virtual void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem);
-
-
+         
 
       };
 

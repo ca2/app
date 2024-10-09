@@ -1693,8 +1693,6 @@ void thread::destroy()
 
    m_puserprimitiveMain.release();
 
-   m_peventFinished.release();
-
    m_peventReady.release();
 
    m_peventSync.release();
@@ -2398,7 +2396,7 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
 //   if (m_pstartup.is_null())
 //   {
 //
-//      m_pstartup = ::place(new thread_startup());
+//      m_pstartup = __new thread_startup();
 //
 //   }
 //
@@ -2567,6 +2565,12 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
 
 }
 
+void thread::stop_task()
+{
+
+   ::task::stop_task();
+
+}
 
 
 //void thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
@@ -3273,7 +3277,7 @@ void thread::send_message(const ::atom& atom, wparam wparam, lparam lparam, cons
 
    //}
 
-   auto pmessage = ::place(new ::send_thread_message(this));
+   auto pmessage = __new ::send_thread_message(this);
 
    pmessage->m_message.m_atom = atom;
 
@@ -4256,7 +4260,7 @@ bool thread::initialize_message_queue()
    //if(m_spuiptra.is_null())
    //{
 
-   //   m_spuiptra = ::place(new ref_array < ::user::interaction_base > ());
+   //   m_spuiptra = __new ref_array < ::user::interaction_base > ();
 
    //}
 
@@ -4964,7 +4968,7 @@ thread::file_info* thread::get_file_info()
 
    }
 
-   m_pfileinfo = ::place(new file_info());
+   m_pfileinfo = __new file_info();
 
    return m_pfileinfo;
 

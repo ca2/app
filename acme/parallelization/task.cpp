@@ -189,12 +189,12 @@ bool task::is_current_task() const
 void task::post_request(::request* prequest)
 {
 
-   ::pointer < ::request > prequestTransport(prequest);
+   auto prequestHold =  __retain prequest;
 
-   post_procedure([this, prequestTransport]
+   post([this, prequestHold]
       {
 
-         request(prequestTransport);
+         request(prequestHold);
 
       }
    );
@@ -391,7 +391,7 @@ void task::main()
    catch(::exception & exception)
    {
 
-      message_box_synchronous(this, exception.m_strMessage, application()->m_strAppId, e_message_box_ok, exception.m_strDetails);
+      send(__initialize_new ::message_box(exception, application()->m_strAppId, exception.m_strDetails));
 
    }
    catch(...)
@@ -450,7 +450,7 @@ void task::run()
 
       strMoreDetails = "task::run";
 
-      exception_message_box(exception, strMoreDetails);
+      send(__initialize_new ::message_box(exception, strMoreDetails));
 
    }
 
@@ -461,11 +461,34 @@ void task::run()
 void task::stop_task()
 {
 
-   auto estatus = check_tasks_finished();
+   __defer_construct_new(m_peventFinished2);
 
-   // but it should wait for thread to finish...
+   auto peventFinished = m_peventFinished2;
 
-   throw ::exception(todo);
+   set_finish();
+
+   while (true)
+   {
+
+      auto bWaitFinished = peventFinished->_wait(1_s);
+
+      if (bWaitFinished)
+      {
+
+         break;
+
+      }
+
+      auto bTasksFinished = check_tasks_finished();
+
+      if (!bTasksFinished)
+      {
+         
+         informationf("tasks still not finished for task : %s", m_strTaskName.c_str());
+
+      }
+
+   }
 
    //return estatus;
 
@@ -507,6 +530,8 @@ void task::destroy()
    m_procedurea.clear();
 
    m_plocale.release();
+
+   m_peventFinished2.release();
 
 }
 
@@ -569,6 +594,8 @@ bool task::is_thread() const
 void* task::s_os_task(void* p)
 #endif
 {
+
+   ::pointer < manual_reset_event > pmanualresethappeningFinished;
 
    try
    {
@@ -698,6 +725,8 @@ void* task::s_os_task(void* p)
 
       }
 
+      pmanualresethappeningFinished = ptask->m_peventFinished2;
+
       ptask->destroy();
 
    }
@@ -707,6 +736,23 @@ void* task::s_os_task(void* p)
    }
 
    ::task_release();
+
+   if (pmanualresethappeningFinished)
+   {
+
+      try
+      {
+
+         pmanualresethappeningFinished->set_event();
+
+      }
+      catch (...)
+      {
+
+
+      }
+
+   }
 
    return 0;
 
@@ -745,7 +791,7 @@ void task::unregister_task()
 }
 
 
-void task::post_procedure(const ::procedure & procedure)
+void task::_post(const ::procedure & procedure)
 {
 
    if (!procedure)
@@ -777,7 +823,44 @@ void task::post_procedure(const ::procedure & procedure)
 }
 
 
-void task::send_procedure(const ::procedure & procedure)
+//void task::_post(::subparticle * p)
+//{
+//
+//   if (!p)
+//   {
+//
+//      return;
+//
+//   }
+//
+//   //if (is_current_task())
+//   //{
+//
+//   //   procedure();
+//
+//   //   return;
+//
+//   //}
+//
+//   {
+//
+//      _synchronous_lock synchronouslock(this->synchronization());
+//
+//      m_procedurea.add([p]()
+//         {
+//
+//            p->call_run();
+//
+//         });
+//
+//   }
+//
+//   kick_idle();
+//
+//}
+
+ 
+void task::_send(const ::procedure & procedure, const class ::time & timeTimeout)
 {
 
    if (is_current_task())
@@ -791,7 +874,7 @@ void task::send_procedure(const ::procedure & procedure)
 
    auto pevent = __create_new < manual_reset_event>();
 
-   post_procedure([procedure, pevent]()
+   post([procedure, pevent]()
       {
 
          procedure();
@@ -800,7 +883,7 @@ void task::send_procedure(const ::procedure & procedure)
 
          });
 
-   pevent->wait(procedure.m_timeTimeout);
+   pevent->wait(timeTimeout);
 
 }
 
@@ -1404,7 +1487,7 @@ bool task::has_message() const
    //if (bSynchInitialization)
    {
 
-      m_peventInitialization = ::place(new manual_reset_event());
+      m_peventInitialization = __new manual_reset_event();
 
    }
 
@@ -1703,7 +1786,7 @@ bool task::task_sleep(const class time & timeWait)
 //void task::branch(::particle * pparticle, ::enum_priority epriority, ::u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
 //{
 //
-//   auto ptask = ::place(new task());
+//   auto ptask = __new task();
 //
 //   ptask->branch(pelement, epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
 //
@@ -1755,7 +1838,7 @@ bool task::is_branch_current() const
 
 
 
-void task::synchronous_procedure(bool bAtAnotherThread, const procedure & procedure)
+void task::synchronous_procedure(bool bAtAnotherThread, const procedure & procedure, const class ::time & timeTimeout)
 {
 
    if (!bAtAnotherThread)
@@ -1769,7 +1852,7 @@ void task::synchronous_procedure(bool bAtAnotherThread, const procedure & proced
 
    auto pmanualresetevent = __create_new < manual_reset_event >();
 
-   post_procedure([this, procedure, pmanualresetevent]()
+   post([this, procedure, pmanualresetevent]()
       {
 
          procedure();
@@ -1778,7 +1861,16 @@ void task::synchronous_procedure(bool bAtAnotherThread, const procedure & proced
 
       });
 
-   auto estatus = pmanualresetevent->wait(procedure.m_timeTimeout);
+   auto timeout = timeTimeout;
+
+   if (timeout.is_null())
+   {
+
+      timeout = get_default_run_timeout();
+
+   }
+
+   auto estatus = pmanualresetevent->wait(timeout);
 
    if (estatus.failed())
    {
@@ -1837,7 +1929,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class time & timeWait)
          if (ptask->m_pevSleep.is_null())
          {
 
-            ptask->m_pevSleep = ::place(new manual_reset_event());
+            ptask->m_pevSleep = __new manual_reset_event();
 
             ptask->m_pevSleep->ResetEvent();
 

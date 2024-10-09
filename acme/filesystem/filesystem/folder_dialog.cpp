@@ -57,7 +57,7 @@ folder_dialog::~folder_dialog()
 ////
 ////      };
 //
-////      auto pdialog = ::place(new ::operating_system_folder_dialog(this,
+////      auto pdialog = ::as(new ::operating_system_folder_dialog(this,
 ////                                                        poswindow,
 ////                                                        nullptr,
 ////                                                        functionHere)));

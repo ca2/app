@@ -455,7 +455,7 @@ public:
    //pointer & merge(const CONTAINER & pcontainer, const OBJECT & pparticle, const ATTRIBUTE & attribute)
    //{
 
-   //   auto pModified = ::place(new TYPE(*m_p));
+   //   auto pModified = __new TYPE(*m_p);
 
    //   pModified->apply(pparticle, attribute);
 
@@ -1292,11 +1292,123 @@ template < typename SUBPARTICLE >
 concept primitive_subparticle = ::std::is_base_of_v<::subparticle, SUBPARTICLE>;
 
 
+// https://stackoverflow.com/questions/71921797/c-concepts-checking-if-derived-from-a-templated-class-with-unknown-template-p
+/**
+ * @brief Checks if class type Specialisation (the implicit concept
+ * argument) is indeed a specialisation of TemplateClass type
+ * (e.g. satisfied for TemplateClass=SomeLibrary and
+ * Specialisation=SomeLibrary<A, B>). Also accepts classes
+ * deriving from specialised TemplateClass.
+ *
+ * @tparam PartialSpecialisation optional partial specialisation
+ * of the TemplateClass to be required
+ */
+template<class specialization, template<typename> class template_class,
+   typename ...partial_specialization>
+concept specializes = requires (specialization s) {
+   [] <typename ...template_args>(
+       template_class<partial_specialization..., template_args...>&) {}(s);
+};
+
+// https://stackoverflow.com/questions/71921797/c-concepts-checking-if-derived-from-a-templated-class-with-unknown-template-p
+template <typename POINTER>
+concept pointer_derived = requires(POINTER  p) {
+   // IILE, that only binds to A<...> specialisations
+   // Including classes derived from them
+   [] <typename TYPE>(::pointer<TYPE>&) {}(p);
+};
+
+template < typename POINTER >
+concept subparticle_pointer = 
+::std::is_base_of_v < ::subparticle, ::erase_pointer < POINTER > > 
+|| pointer_derived<POINTER>;
+
+
+template < typename RUNNABLE >
+concept primitive_runnable = requires(RUNNABLE r) {
+   
+   { r() } ->::std::convertible_to<void>;
+   { r.get_run_timeout() } ->::std::convertible_to<::time>;
+};
+
 
 template < primitive_subparticle SUBPARTICLE >
-::pointer < SUBPARTICLE > place(SUBPARTICLE* p)
+::pointer < SUBPARTICLE > as_pointer(SUBPARTICLE* p)
 {
 
    return { place_t{}, p };
 
 }
+
+
+class __pointer_site
+{
+public:
+
+
+   template < typename TYPE >
+   ::pointer < TYPE > operator << (TYPE * p) { return { transfer_t{}, p }; }
+
+   template < typename TYPE >
+   ::pointer < TYPE > operator += (TYPE * p) { return p; }
+
+
+};
+
+
+inline static __pointer_site __g__pointer_site;
+
+#define __transfer_as_pointer __g__pointer_site <<
+
+#define __new __transfer_as_pointer new
+
+#define __as_pointer __g__pointer_site +=
+
+#define __retain __as_pointer
+
+
+
+class __g_initialize_pointer
+{
+public:
+
+
+   ::particle * m_p;
+
+   template < typename TYPE >
+   ::pointer < TYPE > operator << (TYPE * p) 
+   {
+      
+      ::pointer < TYPE > pointer{ transfer_t{}, p };
+
+      pointer->initialize(m_p);
+
+      return ::transfer(pointer);
+   
+   }
+
+   __g_initialize_pointer(::particle * p) : m_p(p) {}
+
+};
+
+#define __initialize_pointer_with(P) __g_initialize_pointer(P) <<
+
+#define __initialize_pointer __initialize_pointer_with(this)
+
+#define __initialize_new_with(P) __initialize_pointer_with(P) new
+
+#define __initialize_new __initialize_pointer new
+
+
+
+class __site
+{
+public:
+
+   CLASS_DECL_ACME ::string operator()(const string & str);
+
+};
+
+
+static inline __site __;
+

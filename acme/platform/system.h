@@ -76,7 +76,7 @@ namespace acme
       double                                                m_dLuminance;
       ::pointer < ::innate_ui::innate_ui >                  m_pinnateui;
 
-      ::pointer < ::acme::user::user >                      m_pacmeuser;
+      ::pointer < ::micro::user >                           m_pmicrouser;
       ::pointer < ::acme::windowing::windowing >            m_pacmewindowing;
 
       // END FROM MAIN (Now APPLICATION_FLAGS)
@@ -178,7 +178,7 @@ namespace acme
       string_array                           m_straHttpExists;
          //::pointer < ::windowing::windowing_base > m_pwindowingbase;
 //#if defined(WITH_X11) || defined(WITH_XCB)
-  //    ::pointer < ::particle >                                 m_pmutexXlib;
+  //    ::particle_pointer                                 m_pmutexXlib;
 //#endif
       ::pointer < ::factory::factory_item_interface >      m_pfactoryitemCompressZlib;
       ::pointer < ::factory::factory_item_interface >      m_pfactoryitemUncompressZlib;
@@ -255,8 +255,9 @@ namespace acme
 
       virtual ::nano::nano * nano();
 
-      virtual ::acme::user::user * acme_user();
+      virtual ::micro::user * micro_user();
       virtual ::acme::windowing::windowing * acme_windowing();
+      virtual ::windowing::windowing * windowing();
 
       virtual void defer_innate_ui();
 
@@ -713,14 +714,16 @@ namespace acme
       
       virtual bool defer_component_factory(const ::scoped_string & scopedstrComponent);
       virtual bool _defer_component_factory(const ::scoped_string & scopedstrComponent);
+      
+      //::pointer < ::message_box > & realize(::pointer < ::message_box > & pmessagebox);
+      
+      //::pointer < ::message_box > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      pointer< ::sequencer < ::conversation > > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box > exception_message_box(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      pointer< ::sequencer < ::conversation > > exception_message_box(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box > message_console(const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-      pointer< ::sequencer < ::conversation > > message_console(const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-
-      pointer< ::sequencer < ::conversation > > exception_message_console(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+      //::pointer < ::message_box > exception_message_console(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
 
 

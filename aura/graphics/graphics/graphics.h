@@ -22,7 +22,7 @@ namespace graphics
       ::draw2d::graphics_pointer    m_pgraphics;
       ::point_i32                   m_point;
       ::size_i32                    m_size;
-      ::pointer < ::particle >      m_pparticleData;
+      ::particle_pointer      m_pparticleData;
       manual_reset_event            m_manualresetevent;
       ::size_i32                    m_sizeInternal;
       ::i32                         m_iScan;

@@ -5,7 +5,7 @@
 #include "system_setup.h"
 #include "system.h"
 #include "system_factory.h"
-#include "sequencer.h"
+//#include "sequencer.h"
 #include "application.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/http/http.h"
@@ -470,7 +470,7 @@ namespace acme
 
       //m_bOnInitializeWindowObject = false;
 
-      //m_pcleanuptask = ::place(new ::parallelization::cleanup_task());
+      //m_pcleanuptask = __new ::parallelization::cleanup_task();
 
       //m_pcleanuptask->begin();
       //factory()->add_factory_item<::acme::idpool>();
@@ -1348,13 +1348,13 @@ namespace acme
    //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
    //{
 
-   //   auto psequence = ::place(new ::sequence < ::conversation > ());
+   //   auto psequence = __new ::sequence < ::conversation > ();
 
    //   psequence->set_status(error_interface_only);
 
    //   //return presult;
 
-   //   //auto pprocess = ::place(new status < enum_dialog_result > ());
+   //   //auto pprocess = __new status < enum_dialog_result > ();
 
    //   //pprocess->set_result(message_box_for_console(pszText, pszTitle, emessagebox));
 
@@ -1434,7 +1434,9 @@ namespace acme
       catch (::exception& exception)
       {
 
-         //message_box_synchronous(this, exception.m_strMessage, m_strAppId, e_message_box_ok, exception.m_strDetails);
+         //auto pmessagebox = __initialize_new ::message_box(this, exception.m_strMessage, m_strAppId, e_message_box_ok, exception.m_strDetails);
+
+//send(pmessagebox);
 
          string strMoreDetails;
 
@@ -1787,7 +1789,7 @@ namespace acme
    //   if (!plibrary)
    //   {
 
-   //      plibrary = ::place(new ::acme::library());
+   //      plibrary = __new ::acme::library();
 
    //      plibrary->initialize_matter(this);
 
@@ -1879,7 +1881,7 @@ namespace acme
    //
    //      }
    //
-   //      plibrary = ::place(new ::acme::library());
+   //      plibrary = __new ::acme::library();
    //
    //      plibrary->initialize_matter(this);
    //
@@ -3152,7 +3154,7 @@ namespace acme
 
 
 
-   //pointer< ::sequencer < ::conversation > > system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+   //::pointer < ::subparticle > system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
    //{
    //
    //   auto psequencer = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -3415,7 +3417,7 @@ namespace acme
    //   void system::windowing_send(const ::procedure & procedure)
    //   {
    //
-   //      auto pmanualresetevent = ::place(new manual_reset_event());
+   //      auto pmanualresetevent = __new manual_reset_event();
    //
    //      windowing_post([pmanualresetevent, procedure]()
    //                     {
@@ -3750,7 +3752,7 @@ namespace acme
    void system::on_application_dark_mode_change()
    {
 
-      auto ptopic = ::place(new ::topic(id_application_dark_mode_change));
+      auto ptopic = __new ::topic(id_application_dark_mode_change);
 
       application()->handle(ptopic, nullptr);
 
@@ -3904,6 +3906,46 @@ namespace acme
    }
 
 
+   ::micro::user * system::micro_user()
+   {
+
+      if (!m_pmicrouser)
+      {
+
+         __construct_new(m_pmicrouser);
+
+      }
+
+      return m_pmicrouser;
+
+   }
+
+
+   ::acme::windowing::windowing * system::acme_windowing()
+   {
+
+      if (!m_pacmewindowing)
+      {
+
+         do_graphics_and_windowing_system_factory();
+
+         __construct(m_pacmewindowing);
+
+      }
+
+      return m_pacmewindowing;
+
+   }
+
+
+   ::windowing::windowing * system::windowing()
+   {
+
+      return acme_windowing()->windowing_windowing();
+
+   }
+
+
    void system::do_graphics_and_windowing_system_factory()
    {
 
@@ -3923,6 +3965,77 @@ namespace acme
       }
 
    }
+
+
+   //::pointer < ::message_box > & system::realize(::pointer < ::message_box > & pmessagebox)
+   //{
+
+   //   return micro_user()->realize(pmessagebox);
+
+   //}
+
+   
+//   ::pointer < ::message_box > system::message_box(const ::string & strMessage, const ::string & strTitle,
+//                                                       const ::e_message_box & emessagebox,
+//                                                       const ::string & strDetails, ::nano::graphics::icon * picon)
+//   {
+//      
+//      
+//      return micro_user()->message_box(
+//strMessage,
+//strTitle,
+//emessagebox,
+//strDetails,
+//picon);
+//   }
+
+
+   //::pointer < ::message_box > system::exception_message_box(
+   //    const ::exception & exception, const ::string & strMessage, 
+   //   const ::string & strTitle,
+   //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+   //{
+   //   return micro_user()->exception_message_box(
+   //exception,
+   //strMessage,
+   //strTitle,
+   //emessagebox,
+   //strDetails,
+   //picon);
+
+   //}
+
+
+   //::pointer < ::message_box > system::message_console(const ::string & strMessage, const ::string & strTitle,
+   //                                                           const ::e_message_box & emessagebox,
+   //                                                           const ::string & strDetails, ::nano::graphics::icon * picon)
+   //{
+   //   
+   //   return micro_user()->message_console(
+   //      strMessage,
+   //      strTitle,
+   //      emessagebox,
+   //      strDetails,
+   //      picon);
+
+   //}
+
+
+   //::pointer < ::message_box > system::exception_message_console(
+   //    const ::exception & exception, const ::string & strMessage,
+   //   const ::string & strTitle,
+   //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+   //{
+
+   //   return micro_user()->exception_message_console(
+   //      exception,
+   //      strMessage,
+   //      strTitle,
+   //      emessagebox,
+   //      strDetails,
+   //      picon);
+
+   //}
 
 
    //::windowing::windowing_base * system::windowing_base()

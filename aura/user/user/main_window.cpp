@@ -85,7 +85,7 @@ namespace user
 
    //      {
 
-   //         auto pitemClose = ::place(new ::item(::e_element_close_button, ::id_close_app));
+   //         auto pitemClose = __new ::item(::e_element_close_button, ::id_close_app);
 
    //         tool().add_item(pitemClose);
 
@@ -95,7 +95,7 @@ namespace user
 
    //      {
 
-   //         auto pitemMaximize = ::place(new ::item(::e_element_maximize_button, ::id_maximize));
+   //         auto pitemMaximize = __new ::item(::e_element_maximize_button, ::id_maximize);
 
    //         tool().add_item(pitemMaximize);
 
@@ -105,7 +105,7 @@ namespace user
 
    //      {
 
-   //         auto pitemMinimize = ::place(new ::item(::e_element_minimize_button, ::id_minimize));
+   //         auto pitemMinimize = __new ::item(::e_element_minimize_button, ::id_minimize);
 
    //         tool().add_item(pitemMinimize);
 
@@ -134,7 +134,7 @@ namespace user
 
          {
 
-            auto pitemClose = ::place(new ::item(::e_element_close_button, ::id_close_app));
+            auto pitemClose = __new ::item(::e_element_close_button, ::id_close_app);
 
             tool().add_item(pitemClose);
 
@@ -144,7 +144,7 @@ namespace user
 
          {
 
-            auto pitemMaximize = ::place(new ::item(::e_element_maximize_button, ::id_maximize));
+            auto pitemMaximize = __new ::item(::e_element_maximize_button, ::id_maximize);
 
             tool().add_item(pitemMaximize);
 
@@ -154,7 +154,7 @@ namespace user
 
          {
 
-            auto pitemMinimize = ::place(new ::item(::e_element_minimize_button, ::id_minimize));
+            auto pitemMinimize = __new ::item(::e_element_minimize_button, ::id_minimize);
 
             tool().add_item(pitemMinimize);
 
@@ -172,10 +172,10 @@ namespace user
       
       rectangle = this->rectangle(elayout);
    
-      if(is_top_level() && ::is_set(m_pwindow))
+      if(is_top_level() && ::is_set(m_pacmewindowingwindow))
       {
          
-         rectangle.top() += (::i32) m_pwindow->get_top_margin();
+         rectangle.top() += (::i32)windowing_window()->get_top_margin();
          
       }
       
@@ -281,7 +281,7 @@ namespace user
       
       //create_host(e_parallelization_asynchronous);
 
-      create_host();
+      create_window();
 
       //if (!bOk)
       //{

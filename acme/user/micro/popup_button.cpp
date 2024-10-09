@@ -110,25 +110,25 @@ void popup_button::initialize_popup_button(const ::string & strText, int x, int 
 
    int wSpacing = 25;
 
-   auto countButton = nano_user_button_count();
+   auto countButton = micro_button_count();
 
    for (::collection::index iButton = countButton - 1; iButton >= 0; iButton--)
    {
 
-      auto pnanobutton = nano_user_button_at(iButton);
+      auto pmicrobutton = micro_button_at(iButton);
 
-      pnanobutton->m_rectangle.bottom() = iBottom;
+      pmicrobutton->m_rectangle.bottom() = iBottom;
       
-      pnanobutton->m_rectangle.top() = pnanobutton->m_rectangle.bottom() - hButton;
-      pnanobutton->m_rectangle.right() = iRight;
-      pnanobutton->m_rectangle.left() = pnanobutton->m_rectangle.right() - wButton;
+      pmicrobutton->m_rectangle.top() = pmicrobutton->m_rectangle.bottom() - hButton;
+      pmicrobutton->m_rectangle.right() = iRight;
+      pmicrobutton->m_rectangle.left() = pmicrobutton->m_rectangle.right() - wButton;
 
-      iBottom = pnanobutton->m_rectangle.top();
+      iBottom = pmicrobutton->m_rectangle.top();
 
       if (iButton >= 1)
       {
 
-         pnanobutton->m_rectangle.top()--;
+         pmicrobutton->m_rectangle.top()--;
 
       }
 
@@ -148,7 +148,7 @@ void popup_button::initialize_popup_button(const ::string & strText, int x, int 
 }
 
 
-void popup_button::on_draw(::nano::graphics::device * pnanodevice)
+void popup_button::on_draw(::nano::graphics::device * pmicrodevice)
 {
 
    /*rectangle_i32 rectangleText;
@@ -159,7 +159,7 @@ void popup_button::on_draw(::nano::graphics::device * pnanodevice)
 
    rectangleText.deflate(25);
 
-   pnanodevice->draw_text123(
+   pmicrodevice->draw_text123(
       m_strMessage,
       rectangleText,
       e_align_top_left,
@@ -177,7 +177,7 @@ void popup_button::on_draw(::nano::graphics::device * pnanodevice)
 void popup_button::on_click(const ::payload& payload, ::user::mouse * pmouse)
 {
 
-   m_payloadResult = payload;
+   m_payloadPopupButtonResult = payload;
 
    destroy();
 

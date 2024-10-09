@@ -671,7 +671,7 @@ namespace userfs
    //                  continue;
    //               iStrict = m_meshlayout.m_iaDisplayToStrict[iItem];
    //            }
-   //            itema.add(::place(new ::file::item(pdata->item(iStrict))));
+   //            itema.add(__new ::file::item(pdata->item(iStrict)));
    //         }
    //      }
    //   }

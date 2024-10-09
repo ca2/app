@@ -40,9 +40,10 @@ namespace micro
       {
       public:
 
+//         ::collection::index                                   m_iDefaultButton = -1;
 
          //::pointer < ::acme::windowing::window >      m_pnanowindowingwindow;
-         //::pointer < ::acme::user::interaction >      m_pnanouserinteractionParent;
+         //::pointer < ::acme::user::interaction >      m_pacmeuserinteractionParent;
          //pointer_array < ::acme::user::interaction >  m_nanouserinteractionaChildren;
 
 
@@ -68,8 +69,8 @@ namespace micro
          virtual void create_window();
 
 
-         ::payload do_synchronously(const class time & timeWait = ::time::infinity()) override;
-         void do_asynchronously() override;
+         //void complete_step(sequencer & sequencer) override;
+         //void do_asynchronously() override;
 
 
          //virtual ::micro::theme * nano_user_theme();
@@ -77,7 +78,7 @@ namespace micro
          //virtual enum_font nano_user_font();
 
 
-         ::micro::main_window * nano_user_main_window() override;
+         ::micro::main_window * micro_main_window() override;
 
          //void create() override;
 
@@ -111,7 +112,10 @@ namespace micro
 
          virtual ::point_i32 origin();
 
-         virtual ::payload get_result();
+         //virtual ::payload get_result();
+
+
+         virtual ::string get_title();
 
          //void on_mouse_move(::user::mouse * pmouse) override;
          //void on_left_button_down(::user::mouse * pmouse) override;
@@ -193,7 +197,7 @@ namespace micro
 
 
                ::pointer < ::acme::windowing::window >      m_pnanowindowingwindow;
-               ::pointer < ::acme::user::interaction >      m_pnanouserinteractionParent;
+               ::pointer < ::acme::user::interaction >      m_pacmeuserinteractionParent;
 */
 
 //   interaction_base();
@@ -211,7 +215,8 @@ namespace micro
          //void do_asynchronously() override;
          //::payload do_synchronously(const class time & timeWait) override;
 
-
+         //void run() override;
+         //void complete_aggregation(::sequence * psequence) override;
 
          //::acme::user::interaction * acme_user_interaction() override;
          ///::acme::windowing::window * acme_windowing_window() override;
@@ -351,9 +356,9 @@ namespace micro
 
          void set_cursor(enum_cursor ecursor) override;
 
-         virtual void synchronize_composited_nano_window();
+         virtual void synchronize_composited_micro_window();
 
-         void _run_modal_loop() override;
+         //void run_modal_loop() override;
 
          virtual bool is_popup_window() const;
 

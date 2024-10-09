@@ -131,16 +131,18 @@ namespace user
    void graphics_thread::defer_create_graphics_thread()
    {
 
-      //__refer(m_pgraphicsthread, m_puserframe->m_pwindow->m_pgraphicsthread);
+      //__refer(m_pgraphicsthread, m_puserinteraction->windowing_window()->m_pgraphicsthread);
 
       //if(m_pgraphicsthread)
       {
 
-         if (!(m_puserframe->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child))
+         if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child))
          {
 
 
             branch_synchronously();
+
+            m_puserinteraction->add_task(this);
 
             //if (!branch())
             //{
@@ -166,12 +168,12 @@ namespace user
    }
 
 
-   void graphics_thread::initialize_graphics_thread(::user::frame * puserframe)
+   void graphics_thread::initialize_graphics_thread(::user::interaction * puserinteraction)
    {
 
       //auto estatus = 
       
-      initialize(puserframe);
+      initialize(puserinteraction);
 
       defer_create_synchronization();
 
@@ -205,7 +207,7 @@ namespace user
 //
 //                  information() << iRequestsRemaining << " redraw requests remaining after updating the screen.";
 //
-//                  m_puserframe->post_redraw();
+//                  m_puserinteraction->post_redraw();
 //
 //               }
 //
@@ -216,24 +218,24 @@ namespace user
 //      m_procedureWindowShow = [this]()
 //         {
 //
-//            if (m_puserframe->m_pwindow)
+//            if (m_puserinteraction->windowing_window())
 //            {
 //
-//               m_puserframe->window_show();
+//               m_puserinteraction->window_show();
 //
 //            }
 //
 //         };
 
-      m_puserframe = puserframe;
+      m_puserinteraction = puserinteraction;
 
-      //m_puserframe->m_pwindow = pimpl;
+      //m_puserinteraction->windowing_window() = pimpl;
 
       set_per_second(60);
 
       string strType;
 
-      strType = ::type(m_puserframe).name();
+      strType = ::type(m_puserinteraction).name();
 
       if (strType.contains("playlist"))
       {
@@ -279,13 +281,13 @@ namespace user
    void graphics_thread::run()
    {
 
-      string strType = ::type(m_puserframe).name();
+      string strType = ::type(m_puserinteraction).name();
 
       ::task_set_name("graphics_thread," + strType);
 
 
 
-      //m_puserframe->m_pwindow->m_puserinteraction->task_add(this);
+      //m_puserinteraction->windowing_window()->m_puserinteraction->task_add(this);
 
       //m_eventReady.wait();
 
@@ -311,11 +313,11 @@ namespace user
 //
 //      }
 
-      m_puserframe->add_task(this);
+      m_puserinteraction->add_task(this);
 
-      //m_puserframe->m_pthreadUserInteraction->add_task(this);
+      //m_puserinteraction->m_pthreadUserInteraction->add_task(this);
 
-      //add_task(m_puserframe);
+      //add_task(m_puserinteraction);
 
       ::parallelization::set_priority(::e_priority_highest);
 #ifdef WINDOWS_DESKTOP
@@ -378,13 +380,13 @@ namespace user
 
       }
 
-      //if (m_puserframe)
+      //if (m_puserinteraction)
       //{
 
-      //   if (m_puserframe->has_destroying_flag())
+      //   if (m_puserinteraction->has_destroying_flag())
       //   {
 
-      //     m_puserframe->post_message(e_message_destroy_window);
+      //     m_puserinteraction->post_message(e_message_destroy_window);
 
       //   }
 
@@ -398,7 +400,7 @@ namespace user
    bool graphics_thread::wait_for_redraw_message()
    {
 
-      auto pwindow = m_puserframe->window();
+      auto pwindow = m_puserinteraction->window();
 
       if (pwindow->m_redrawitema.has_element())
       {
@@ -410,14 +412,14 @@ namespace user
       while(::task_get_run())
       {
 
-         m_puserframe->m_ewindowflag -= e_window_flag_redraw_in_queue;
+         m_puserinteraction->m_ewindowflag -= e_window_flag_redraw_in_queue;
 
          get_message(&m_message, nullptr, 0, 0);
 
          if (m_message.m_atom == e_message_quit)
          {
 
-            ::string strType = type(m_puserframe).name();
+            ::string strType = type(m_puserinteraction).name();
 
             information()(e_trace_category_graphics_thread) << "Graphics Thread has quit!! " << strType;
 
@@ -516,36 +518,36 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(m_puserframe->synchronization());
+         _synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 
-         ASSERT(!(m_puserframe->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child));
+         ASSERT(!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child));
 
-         m_bFps = m_puserframe->has_fps_output_purpose();
+         m_bFps = m_puserinteraction->has_fps_output_purpose();
 
-         if (!m_puserframe
-            || !m_puserframe->m_pwindow)
+         if (!m_puserinteraction
+            || !m_puserinteraction->windowing_window())
          {
 
             return false;
 
          }
 
-//         if (!m_puserframe->m_pwindow->m_bOfflineRender)
+//         if (!m_puserinteraction->windowing_window()->m_bOfflineRender)
 //         {
 //
-////            if (m_puserframe->const_layout().window().display() == e_display_iconic)
+////            if (m_puserinteraction->const_layout().window().display() == e_display_iconic)
 ////            {
 ////
 ////               m_bAutoRefresh = false;
 ////
 ////            }
-////            else if (m_puserframe->const_layout().window().display() == e_display_notify_icon)
+////            else if (m_puserinteraction->const_layout().window().display() == e_display_notify_icon)
 ////            {
 ////
 ////               m_bAutoRefresh = false;
 ////
 ////            }
-////            else if (!::is_visible(m_puserframe->const_layout().design().display()))
+////            else if (!::is_visible(m_puserinteraction->const_layout().design().display()))
 ////            {
 ////
 ////               m_bAutoRefresh = false;
@@ -556,11 +558,11 @@ namespace user
 
       }
 
-      if (!(m_puserframe->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child))
+      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child))
       {
 
          //if (!m_bAutoRefresh)
-         if (m_puserframe->has_fps_output_purpose())
+         if (m_puserinteraction->has_fps_output_purpose())
          {
 
             if(!clear_message_queue())
@@ -598,10 +600,10 @@ namespace user
 
       }
 
-      if(m_puserframe->m_ewindowflag & e_window_flag_postpone_visual_update)
+      if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
       {
 
-         if(m_puserframe->m_pwindow->m_bPendingRedraw && m_puserframe->m_pwindow->m_timeLastRedraw.elapsed() < 100_ms)
+         if(m_puserinteraction->windowing_window()->m_bPendingRedraw && m_puserinteraction->windowing_window()->m_timeLastRedraw.elapsed() < 100_ms)
          {
 
             return true;
@@ -636,7 +638,7 @@ namespace user
    bool graphics_thread::graphics_thread_reset(::user::interaction * pinteraction)
    {
 
-      m_puserframe = pinteraction;
+      m_puserinteraction = pinteraction;
 
       //m_timeNow.Now();
 
@@ -652,13 +654,13 @@ namespace user
    void graphics_thread::term_task()
    {
 
-      if (m_puserframe->m_pwindow)
+      if (m_puserinteraction->windowing_window())
       {
 
-         if (m_puserframe->m_pwindow->m_pgraphicsthread == this)
+         if (m_puserinteraction->windowing_window()->m_pgraphicsthread == this)
          {
 
-            m_puserframe->m_pwindow->m_pgraphicsthread.release();
+            m_puserinteraction->windowing_window()->m_pgraphicsthread.release();
 
          }
 
@@ -668,9 +670,9 @@ namespace user
 
       ::thread::term_task();
 
-      m_puserframe->m_pwindow.release();
+      //m_puserinteraction->windowing_window().release();
 
-      m_puserframe.release();
+      m_puserinteraction.release();
 
 //      if (m_procedureUpdateScreen)
 //      {
@@ -698,9 +700,9 @@ namespace user
 
       m_evUpdateScreen.SetEvent();
 
-      m_puserframe.release();
+      m_puserinteraction.release();
 
-      m_puserframe->m_pwindow.release();
+      //m_puserinteraction->windowing_window().release();
 
       m_synchronizationa.clear();
 
@@ -720,7 +722,7 @@ namespace user
    {
 
 
-      //m_puserframe->m_bUpdateBufferPending = false;
+      //m_puserinteraction->m_bUpdateBufferPending = false;
 
 
       if (!this->task_get_run())
@@ -730,7 +732,7 @@ namespace user
 
       }
 
-      //if (m_puserframe && m_puserframe->GetExStyle() & WS_EX_LAYERED)
+      //if (m_puserinteraction && m_puserinteraction->GetExStyle() & WS_EX_LAYERED)
       //{
 
       //   m_bUpdateWindow |= m_bUpdateBuffer;
@@ -739,15 +741,15 @@ namespace user
 
 //      bool bStartWindowVisual = false;
 //
-//      if (m_puserframe)
+//      if (m_puserinteraction)
 //      {
 //
-//         if (m_puserframe->m_bUpdateWindow || m_puserframe->m_bUpdateVisual)
+//         if (m_puserinteraction->m_bUpdateWindow || m_puserinteraction->m_bUpdateVisual)
 //         {
 //
-//            m_puserframe->m_bUpdateVisual = false;
+//            m_puserinteraction->m_bUpdateVisual = false;
 //
-//            if (m_puserframe->m_ewindowflag & e_window_flag_postpone_visual_update)
+//            if (m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
 //            {
 //
 //               bStartWindowVisual = true;
@@ -758,9 +760,9 @@ namespace user
 //
 //      }
 //
-//      //bool bWait = ((m_puserframe->m_bUpdateWindow || m_puserframe->m_bUpdateScreen) && !bStartWindowVisual) || m_bRedraw;
+//      //bool bWait = ((m_puserinteraction->m_bUpdateWindow || m_puserinteraction->m_bUpdateScreen) && !bStartWindowVisual) || m_bRedraw;
 //
-//      bool bWait = ((m_puserframe->m_bUpdateWindow || m_puserframe->m_bUpdateScreen) && !bStartWindowVisual);
+//      bool bWait = ((m_puserinteraction->m_bUpdateWindow || m_puserinteraction->m_bUpdateScreen) && !bStartWindowVisual);
 //
 //      if (bWait)
 //      {
@@ -793,7 +795,7 @@ namespace user
          // - It has graphics_thread mode (FPS drawing);
          // - Or it is going to wait because a frame was already drawn an instant ago due on-request-drawing (cool down).
 
-         auto timeFrame = m_puserframe->has_fps_output_purpose()
+         auto timeFrame = m_puserinteraction->has_fps_output_purpose()
             ? m_timePostRedrawProdevian : m_timePostRedrawNominal ;
 
          //i64 i2 = get_nanos();
@@ -954,7 +956,7 @@ namespace user
    bool graphics_thread::graphics_thread_iteration()
    {
 
-      if (::type(m_puserframe) == "user::list_box")
+      if (::type(m_puserinteraction) == "user::list_box")
       {
 
          information() << "user::list_box graphics_thread_iteration user::list_box";
@@ -982,15 +984,15 @@ namespace user
 
       }
 
-      m_puserframe->m_bUpdateBuffer = false;
+      m_puserinteraction->m_bUpdateBuffer = false;
 
-      m_puserframe->m_bUpdateScreen = false;
+      m_puserinteraction->m_bUpdateScreen = false;
 
-      m_puserframe->m_bUpdateWindow = false;
+      m_puserinteraction->m_bUpdateWindow = false;
 
-      //m_puserframe->m_pwindow->_on
+      //m_puserinteraction->windowing_window()->_on
 
-      auto pwindow = m_puserframe->m_pwindow;
+      auto pwindow = m_puserinteraction->windowing_window();
 
       if (!pwindow)
       {
@@ -1022,10 +1024,10 @@ namespace user
 
       }
 
-      if (m_puserframe->has_graphical_output_purpose())
+      if (m_puserinteraction->has_graphical_output_purpose())
       {
 
-         if (::type(m_puserframe.m_p) == "user::list_box")
+         if (::type(m_puserinteraction.m_p) == "user::list_box")
          {
 
             information() << "user::list_box graphics_thread_iteration has_graphical_output_purpose";
@@ -1042,17 +1044,17 @@ namespace user
 
          pwindow->do_graphics();
 
-         //m_puserframe->m_pwindow->do_graphics(e_graphics_draw);
+         //m_puserinteraction->windowing_window()->do_graphics(e_graphics_draw);
 
-         m_puserframe->on_after_graphical_update();
+         m_puserinteraction->on_after_graphical_update();
 
-         m_puserframe->m_bNeedRedraw = false;
+         m_puserinteraction->m_bNeedRedraw = false;
 
          //graphics_thread_do_layout();
 
          //graphics_thread_update_buffer();
 
-         //m_puserframe->m_bLockSketchToDesign = true;df
+         //m_puserinteraction->m_bLockSketchToDesign = true;df
 
       }
       else
@@ -1073,7 +1075,7 @@ namespace user
 
       }
 
-      auto puserinteraction = m_puserframe;
+      auto puserinteraction = m_puserinteraction;
 
       if(::is_set(puserinteraction))
       {
@@ -1101,7 +1103,7 @@ namespace user
 
       }
 
-      //m_puserframe->m_bLockSketchToDesign = false;
+      //m_puserinteraction->m_bLockSketchToDesign = false;
 
       return true;
 
@@ -1140,7 +1142,7 @@ namespace user
 
       }
 
-      m_puserframe->m_pwindow->m_frequencyOutputFramesPerSecond = (double)(m_timeaFrame.get_size());
+      m_puserinteraction->windowing_window()->m_frequencyOutputFramesPerSecond = (double)(m_timeaFrame.get_size());
 
    }
 
@@ -1150,11 +1152,11 @@ namespace user
 
    //   //m_bRedraw = bRedraw;
 
-   //   m_puserframe->m_bUpdateBuffer = false;
+   //   m_puserinteraction->m_bUpdateBuffer = false;
 
-   //   m_puserframe->m_bUpdateScreen = false;
+   //   m_puserinteraction->m_bUpdateScreen = false;
 
-   //   m_puserframe->m_bUpdateWindow = false;
+   //   m_puserinteraction->m_bUpdateWindow = false;
 
    //   //update_buffer(m_bUpdateBuffer, m_bUpdateScreen, m_bUpdateWindow, bRedraw);
 
@@ -1173,11 +1175,11 @@ namespace user
 
    //   //m_bRedraw = bRedraw;
 
-   //   //m_puserframe->m_bUpdateBuffer = false;
+   //   //m_puserinteraction->m_bUpdateBuffer = false;
 
-   //   //m_puserframe->m_bUpdateScreen = false;
+   //   //m_puserinteraction->m_bUpdateScreen = false;
 
-   //   //m_puserframe->m_bUpdateWindow = false;
+   //   //m_puserinteraction->m_bUpdateWindow = false;
 
    //   //update_buffer(m_bUpdateBuffer, m_bUpdateScreen, m_bUpdateWindow, bRedraw);
 
@@ -1212,17 +1214,17 @@ namespace user
 
       profiling_on_before_update_screen();
 
-      m_puserframe->m_pwindow->__update_graphics_buffer();
+      m_puserinteraction->windowing_window()->__update_graphics_buffer();
 
       profiling_on_after_update_screen();
 
       //if (!m_bUpdatingScreen || m_timeLastScreenUpdate.elapsed() > 200_ms)
 //         {
 //
-//            if (m_puserframe)
+//            if (m_puserinteraction)
 //            {
 //
-//               m_puserframe->post_procedure(m_procedureUpdateScreen);
+//               m_puserinteraction->post_procedure(m_procedureUpdateScreen);
 //
 //            }
 //
@@ -1236,7 +1238,7 @@ namespace user
    void graphics_thread::graphics_thread_redraw()
    {
 
-      if (m_puserframe->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child)
+      if (m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child)
       {
 
          m_message.wParam |= 1;
@@ -1264,9 +1266,9 @@ namespace user
 //      try
 //      {
 //
-//         //         _synchronous_lock synchronouslock(m_puserframe->synchronization());
+//         //         _synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 //         //
-//         //         if(!m_puserframe)
+//         //         if(!m_puserinteraction)
 //         //         {
 //         //
 //         //            return;
@@ -1283,7 +1285,7 @@ namespace user
 //         //
 //         //      //#ifdef WINDOWS_DESKTOP
 //         //
-//         //      //   if (m_puserframe->GetExStyle() & WS_EX_LAYERED)
+//         //      //   if (m_puserinteraction->GetExStyle() & WS_EX_LAYERED)
 //         //      //   {
 //         //
 //         //      //      bTransparentDraw = true;
@@ -1309,7 +1311,7 @@ namespace user
 //         //
 //         //         }
 //         //
-//         //         if (m_puserframe == nullptr)
+//         //         if (m_puserinteraction == nullptr)
 //         //         {
 //         //
 //         //            return;
@@ -1317,7 +1319,7 @@ namespace user
 //         //         }
 //         //
 //         //
-//         //         if (!m_puserframe->m_pwindow)
+//         //         if (!m_puserinteraction->windowing_window())
 //         //         {
 //         //
 //         //            return;
@@ -1340,7 +1342,7 @@ namespace user
 //
 //#endif
 //
-//         m_puserframe->m_pwindow->do_graphics();
+//         m_puserinteraction->windowing_window()->do_graphics();
 //
 //#if TIME_REPORTING
 //
@@ -1354,12 +1356,12 @@ namespace user
 //
 //         m_timeDuringDrawing = m_timeAfterDrawing - m_timeBeforeDrawing;
 //
-//         if (m_puserframe)
+//         if (m_puserinteraction)
 //         {
 //
-//            m_puserframe->on_after_graphical_update();
+//            m_puserinteraction->on_after_graphical_update();
 //
-//            m_puserframe->m_bNeedRedraw = false;
+//            m_puserinteraction->m_bNeedRedraw = false;
 //
 //         }
 //
@@ -1378,9 +1380,9 @@ namespace user
 //      try
 //      {
 //
-////         _synchronous_lock synchronouslock(m_puserframe->synchronization());
+////         _synchronous_lock synchronouslock(m_puserinteraction->synchronization());
 ////
-////         if(!m_puserframe)
+////         if(!m_puserinteraction)
 ////         {
 ////
 ////            return;
@@ -1397,7 +1399,7 @@ namespace user
 ////
 ////      //#ifdef WINDOWS_DESKTOP
 ////
-////      //   if (m_puserframe->GetExStyle() & WS_EX_LAYERED)
+////      //   if (m_puserinteraction->GetExStyle() & WS_EX_LAYERED)
 ////      //   {
 ////
 ////      //      bTransparentDraw = true;
@@ -1423,7 +1425,7 @@ namespace user
 ////
 ////         }
 ////
-////         if (m_puserframe == nullptr)
+////         if (m_puserinteraction == nullptr)
 ////         {
 ////
 ////            return;
@@ -1431,7 +1433,7 @@ namespace user
 ////         }
 ////
 ////
-////         if (!m_puserframe->m_pwindow)
+////         if (!m_puserinteraction->windowing_window())
 ////         {
 ////
 ////            return;
@@ -1454,7 +1456,7 @@ namespace user
 //
 //#endif
 //
-//         m_puserframe->m_pwindow->do_graphics();
+//         m_puserinteraction->windowing_window()->do_graphics();
 //
 //#if TIME_REPORTING
 //
@@ -1468,12 +1470,12 @@ namespace user
 //
 //         m_timeDuringDrawing = m_timeAfterDrawing - m_timeBeforeDrawing;
 //
-//         if (m_puserframe)
+//         if (m_puserinteraction)
 //         {
 //
-//            m_puserframe->on_after_graphical_update();
+//            m_puserinteraction->on_after_graphical_update();
 //
-//            m_puserframe->m_bNeedRedraw = false;
+//            m_puserinteraction->m_bNeedRedraw = false;
 //
 //         }
 //
@@ -1499,18 +1501,18 @@ namespace user
 //   bool graphics_thread::exclusive_mode_update_screen()
 //   {
 //
-//      //if (m_puserframe->m_pwindow)
+//      //if (m_puserinteraction->windowing_window())
 //      //{
 //
-//      //   if (m_puserframe->m_pwindow->m_pgraphics)
+//      //   if (m_puserinteraction->windowing_window()->m_pgraphics)
 //      //   {
 //
-//      //      auto pbitmapsource = m_puserframe->m_pwindow->m_pgraphics.cast < ::graphics::bitmap_source_buffer >();
+//      //      auto pbitmapsource = m_puserinteraction->windowing_window()->m_pgraphics.cast < ::graphics::bitmap_source_buffer >();
 //
 //      //      if (pbitmapsource)
 //      //      {
 //
-//      //         string strBitmapSource = m_puserframe->payload("bitmap-source");
+//      //         string strBitmapSource = m_puserinteraction->payload("bitmap-source");
 //
 //      //         if (pbitmapsource->m_strBitmapSource != strBitmapSource)
 //      //         {
@@ -1530,7 +1532,7 @@ namespace user
 //      try
 //      {
 //
-//         string strType = ::type(m_puserframe).name();
+//         string strType = ::type(m_puserinteraction).name();
 //
 //         if(strType.case_insensitive_contains("list_box"))
 //         {
@@ -1541,33 +1543,33 @@ namespace user
 //
 //         profiling_on_before_update_screen();
 //
-//         if (!m_puserframe->m_pwindow)
+//         if (!m_puserinteraction->windowing_window())
 //         {
 //
 //            return false;
 //
 //         }
 //
-//         m_puserframe->m_pwindow->graphics_thread_update_screen();
+//         m_puserinteraction->windowing_window()->graphics_thread_update_screen();
 //
-//         if (!m_puserframe)
+//         if (!m_puserinteraction)
 //         {
 //
 //            return false;
 //
 //         }
 //
-////         if (is_different(m_puserframe->m_ewindowflag & e_window_flag_on_show_window_visible,
-////            m_puserframe->is_this_visible())
-////            || is_different(m_puserframe->m_ewindowflag & e_window_flag_on_show_window_screen_visible,
-////               m_puserframe->is_window_screen_visible()))
+////         if (is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_visible,
+////            m_puserinteraction->is_this_visible())
+////            || is_different(m_puserinteraction->m_ewindowflag & e_window_flag_on_show_window_screen_visible,
+////               m_puserinteraction->is_window_screen_visible()))
 ////         {
 ////
-////            m_puserframe->m_ewindowflag.set(e_window_flag_on_show_window_visible, m_puserframe->is_this_visible());
+////            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_visible, m_puserinteraction->is_this_visible());
 ////
-////            m_puserframe->m_ewindowflag.set(e_window_flag_on_show_window_screen_visible, m_puserframe->is_window_screen_visible());
+////            m_puserinteraction->m_ewindowflag.set(e_window_flag_on_show_window_screen_visible, m_puserinteraction->is_window_screen_visible());
 ////
-////            m_puserframe->_on_show_window();
+////            m_puserinteraction->_on_show_window();
 ////
 ////         }
 //

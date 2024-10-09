@@ -85,7 +85,7 @@ namespace networking_bsd
    link_in_socket * link_in_socket::from_server(httpd_socket * psocket)
    {
 
-      ::pointer<link_in_socket>pinsocket = ::place(new link_in_socket());
+      ::pointer<link_in_socket>pinsocket = __new link_in_socket();
 
       pinsocket->m_psockethandler = psocket->socket_handler();
 

@@ -96,6 +96,8 @@ public:
    inline bool is_status_ok() const { return m_estatus.ok(); }
    inline bool has_failed_status() const { return !is_status_ok(); }
 
+   //[[nodiscard]] inline bool is_realized() const { return has_flag(e_flag_realized); }
+///   inline void set_realized() { set_flag(e_flag_realized); }
 
 };
 

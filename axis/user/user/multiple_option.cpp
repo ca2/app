@@ -68,7 +68,7 @@ namespace user
    }
 
 
-   ::pointer < ::particle > multiple_option::clone()
+   ::particle_pointer multiple_option::clone()
    {
 
       auto pmultipleoptionClone = m_pcontext->__create_new < multiple_option >();
@@ -220,7 +220,7 @@ namespace user
       //   if (rectangleElement.contains(point))
       //   {
 
-      //      auto pitem = ::place(new ::item(e_element_drop_down));
+      //      auto pitem = __new ::item(e_element_drop_down);
 
       //      auto puseritem = user_item(pitem);
       //      
@@ -237,7 +237,7 @@ namespace user
       //if (rectangleX.contains(point))
       //{
 
-      //   auto pitem = ::place(new ::item(e_element_text));
+      //   auto pitem = __new ::item(e_element_text);
 
       //   auto puseritem = user_item(pitem);
       //      
@@ -247,7 +247,7 @@ namespace user
 
       //}
       //
-      //auto pitemNone = ::place(new ::item(e_element_none));
+      //auto pitemNone = __new ::item(e_element_none);
       //
       //return pitemNone;
 
@@ -635,7 +635,7 @@ namespace user
 
    //      auto itemCurrent = _001FindListText(str);
 
-   //      set_current_item(::place(new ::item(e_element_item, itemCurrent), actioncontext));
+   //      set_current_item(__new ::item(e_element_item, itemCurrent), actioncontext);
 
    //   }
 

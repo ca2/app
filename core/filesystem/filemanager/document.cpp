@@ -392,7 +392,7 @@ namespace filemanager
 
    //   ::file::path pathFinal = m_pcontext->defer_process_matter_path(pathUser);
 
-   //   ::pointer<::file::item>pitem = ::place(new ::file::item(pathUser, pathFinal));
+   //   ::pointer<::file::item>pitem = __new ::file::item(pathUser, pathFinal);
 
    //   browse(pitem, context);
 
@@ -1618,7 +1618,7 @@ namespace filemanager
    //   //   if (ptemplate.is_null())
    //   //   {
 
-   //   //      m_pfilemanagerdata = ::place(new data(this));
+   //   //      m_pfilemanagerdata = __new data(this);
 
    //   //   }
    //   //   else
@@ -1648,7 +1648,7 @@ namespace filemanager
    ::pointer<::filemanager::data>document::create_file_manager_data(::request * prequest)
    {
 
-      ::pointer<::filemanager::data>pfilemanagerdata(::place(new data()));
+      ::pointer<::filemanager::data>pfilemanagerdata(__new data());
 
       ::filemanager::callback * pcallback = nullptr;
 

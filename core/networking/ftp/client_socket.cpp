@@ -102,7 +102,7 @@ namespace ftp
       m_timeResponseWait(timeResponseWait),
       mc_strEolCharacterSequence("\r\n"),
       mc_strRemoteDirectorySeparator(strRemoteDirectorySeparator),//+# documentation missing
-      m_apFileListParser(::place(new file_list_parser())),
+      m_apFileListParser(::as(new file_list_parser())),
       m_fTransferInProgress(false),
       m_fAbortTransfer(false),
       m_fResumeIfPossible(true)
@@ -542,7 +542,7 @@ namespace ftp
       outputStream.SetStartPosition();
       while (outputStream.GetNextLine(strLine))
       {
-         ::pointer<file_status>spFtpFileStatus(::place(new file_status()));
+         ::pointer<file_status>spFtpFileStatus(__new file_status());
          if (m_apFileListParser->Parse(*spFtpFileStatus, strLine))
          {
             spFtpFileStatus->m_strPath = strPath;
@@ -572,7 +572,7 @@ namespace ftp
       outputStream.SetStartPosition();
       while (outputStream.GetNextLine(strLine))
       {
-         ::pointer<file_status>spFtpFileStatus(::place(new file_status()));
+         ::pointer<file_status>spFtpFileStatus(__new file_status());
          spFtpFileStatus->m_strPath = strPath;
          spFtpFileStatus->m_strName = strLine;
          vFileList.add(spFtpFileStatus);
@@ -1815,7 +1815,7 @@ auto tickStart = ::time::now();
       if (iRet == FTP_OK)
       {
          if (m_apCurrentRepresentation.is_null())
-            m_apCurrentRepresentation = ::place(new ::ftp::representation(representation));
+            m_apCurrentRepresentation = __new ::ftp::representation(representation);
          else
             *m_apCurrentRepresentation = representation;
       }

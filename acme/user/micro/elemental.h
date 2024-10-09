@@ -29,12 +29,8 @@
 #include "acme/user/user/drag_client.h"
 
 
-
 namespace micro
 {
-
-
-
 
 
    class CLASS_DECL_ACME elemental :
@@ -44,11 +40,11 @@ namespace micro
 
 
 
-      ::pointer < ::micro::elemental >        m_pelementalParent;
-      pointer_array < ::micro::elemental >    m_elementalaChildren;
+      ///::pointer < ::micro::elemental >        m_pelementalParent;
+      //pointer_array < ::micro::elemental >    m_elementalaChildren;
 
       //::pointer < ::acme::windowing::window >      m_pnanowindowingwindow;
-      //::pointer < ::acme::user::interaction >      m_pnanouserinteractionParent;
+      //::pointer < ::acme::user::interaction >      m_pacmeuserinteractionParent;
       //pointer_array < ::acme::user::interaction >  m_nanouserinteractionaChildren;
 
 
@@ -84,12 +80,12 @@ namespace micro
       //void do_asynchronously() override;
 
 
-      virtual ::micro::theme * nano_user_theme();
+      virtual ::micro::theme * micro_theme();
 
-      virtual enum_font nano_user_font();
+      virtual enum_font micro_font();
 
 
-      virtual ::micro::main_window * nano_user_main_window();
+      virtual ::micro::main_window * micro_main_window();
 
       //void create() override;
 
@@ -99,9 +95,9 @@ namespace micro
 
       //void message_loop() override;
 
-      //void draw(::nano::graphics::device * pnanodevice) override;
+      //void draw(::micro::graphics::device * pmicrodevice) override;
 
-      //void on_draw(::nano::graphics::device * pnanodevice) override;
+      //void on_draw(::micro::graphics::device * pmicrodevice) override;
 
       void draw(::nano::graphics::device * pnanodevice);
 
@@ -123,7 +119,7 @@ namespace micro
 
       virtual ::point_i32 origin();
 
-      virtual ::payload get_result();
+      //virtual ::payload get_result();
 
       //void on_mouse_move(::user::mouse * pmouse) override;
       //void on_left_button_down(::user::mouse * pmouse) override;
@@ -205,7 +201,7 @@ namespace micro
 
 
                ::pointer < ::acme::windowing::window >      m_pnanowindowingwindow;
-               ::pointer < ::acme::user::interaction >      m_pnanouserinteractionParent;
+               ::pointer < ::acme::user::interaction >      m_pacmeuserinteractionParent;
 */
 
 //   interaction_base();
@@ -227,11 +223,11 @@ namespace micro
       //::acme::user::interaction * acme_user_interaction() override;
       //::acme::windowing::window * acme_windowing_window() override;
 
-      //virtual ::acme::user::interaction * nano_user_parent();
-      ::micro::elemental * nano_user_parent();
+      //virtual ::acme::user::interaction * micro_parent();
+      ::micro::elemental * micro_parent();
 
-      virtual ::collection::count nano_user_button_count();
-      virtual ::micro::button * nano_user_button_at(::collection::index i);
+      virtual ::collection::count micro_button_count();
+      virtual ::micro::button * micro_button_at(::collection::index i);
       //
       // //
       // // Created by camilo on 31/01/2022 22:37 <3ThomasBorregaardSorensen!!
@@ -247,7 +243,7 @@ namespace micro
       // #include "user/user/interaction_base.h"
       //
       //
-      // namespace nano
+      // namespace micro
       // {
       //
       //
@@ -362,9 +358,9 @@ namespace micro
 
       void set_cursor(enum_cursor ecursor) override;
 
-      virtual void synchronize_composited_nano_window();
+      virtual void synchronize_composited_micro_window();
 
-      void _run_modal_loop() override;
+      //void run_modal_loop() override;
 
       virtual bool is_popup_window() const;
 

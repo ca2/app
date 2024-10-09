@@ -1750,7 +1750,7 @@ namespace aura
       //if (!m_pifs)
       //{
 
-      //   estatus = __construct(m_pifs, ::place(new ifs("")));
+      //   estatus = __construct(m_pifs, __new ifs(""));
 
       //   if (!estatus)
       //   {
@@ -1766,7 +1766,7 @@ namespace aura
       //if (!m_premotefs)
       //{
 
-      //   estatus = __construct(m_premotefs, ::place(new ::fs::remote_native("")));
+      //   estatus = __construct(m_premotefs, __new ::fs::remote_native(""));
 
       //   if (!estatus)
       //   {
@@ -1944,7 +1944,7 @@ namespace aura
 ////
 ////      }
 //
-//      auto pcs = ::place(new ::user::system(0, nullptr, nullptr, WS_VISIBLE, rectangleScreen));
+//      auto pcs = __new ::user::system(0, nullptr, nullptr, WS_VISIBLE, rectangleScreen);
 //
 //      auto puserinteractionHost = __user_interaction(m_puserinteractionHost);
 //
@@ -2034,7 +2034,7 @@ namespace aura
       //   if (m_pfsdata.is_null())
       //   {
 
-      //      __construct(m_pfsdata, ::place(new ::fs::set()));
+      //      __construct(m_pfsdata, __new ::fs::set());
 
       //   }
 
@@ -2126,7 +2126,7 @@ namespace aura
       if (puser)
       {
 
-         auto pwindowing = puser->m_pwindowing;
+         auto pwindowing = system()->windowing();
 
          pwindowing->defer_term_ui();
 

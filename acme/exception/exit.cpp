@@ -68,7 +68,7 @@ exit_exception::~exit_exception()
 
       }
 
-      ptaskExit->post_procedure([ptaskExit]()
+      ptaskExit->post([ptaskExit]()
          {
 
             ptaskExit->destroy();

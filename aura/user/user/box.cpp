@@ -100,6 +100,14 @@ namespace user
 
       auto edisplayPrevious = m_windowdisplayandlayout.m_edisplayPrevious;
 
+      if (edisplayPrevious == const_layout().design().display()
+         && edisplayPrevious == e_display_zoomed)
+      {
+
+         edisplayPrevious = m_windowdisplayandlayout.m_edisplayLastNormal;
+
+      }
+
       return edisplayPrevious;
 
    }
@@ -731,6 +739,14 @@ namespace user
 
       return m_windowdisplayandlayout.m_rectangleCompact;
    
+   }
+
+
+   void box::set_window_normal_stored_rectangle(const ::rectangle_i32 & rectangle)
+   {
+
+      m_windowdisplayandlayout.m_rectangleNormal = rectangle;
+
    }
 
 

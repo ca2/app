@@ -50,7 +50,7 @@
 //         if (t_preferencea.operator pointer_array<object> * () == nullptr)
 //         {
 //
-//            t_preferencea = ::place(new pointer_array < ::object > ());
+//            t_preferencea = __new pointer_array < ::object > ();
 //
 //         }
 //

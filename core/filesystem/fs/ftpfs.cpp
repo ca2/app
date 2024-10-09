@@ -483,7 +483,7 @@ retry:
 
       file_pointer spfile;
 
-      spfile = ::place(new ftpfs_file(this, pclient));
+      spfile = __new ftpfs_file(this, pclient);
 
       //auto result = 
       
@@ -522,7 +522,7 @@ bool ftpfs::file_exists(const ::file::path & pszPath)
 void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 {
 
-   auto plogon = ::place(new ::ftp::logon());
+   auto plogon = __new ::ftp::logon();
 
    auto psystem = system()->m_pcoresystem;
 
@@ -544,13 +544,13 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
    if (!pclient)
    {
 
-      pclient = ::place(new ::ftp::client_socket());
+      pclient = __new ::ftp::client_socket();
 
       //pclient->initialize_socket(m_pftpnet->m_psockethandler);
 
       ::pointer<::ftp::output>& poutput = m_pftpnet->m_mapOutput[plogon->m_strToken];
 
-      poutput = ::place(new ::ftp::output());
+      poutput = __new ::ftp::output();
 
       pclient->AttachObserver(poutput);
 

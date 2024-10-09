@@ -251,10 +251,48 @@ void subparticle::run()
 }
 
 
+//void subparticle::aggregate(::subparticle * psubparticle)
+//{
+//
+//   run();
+//
+//   psubparticle->aggregate(this);
+//
+//}
+
+
+class ::time subparticle::get_run_timeout()
+{
+
+#ifdef DEBUG
+   return 5_min;
+#else
+   return 5_s;
+#endif
+
+
+}
+
 bool subparticle::subparticle_step()
 {
 
    return false;
+
+}
+
+
+class ::time subparticle::timeout() const
+{
+
+   return 1_min;
+
+}
+
+
+void subparticle::set_timeout(const class time & timeTimeout)
+{
+
+   throw interface_only();
 
 }
 

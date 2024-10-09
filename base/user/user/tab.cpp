@@ -1232,7 +1232,7 @@ namespace user
       if(!should_draw())
       {
        
-         auto pitemNone = ::place(new ::item(e_element_none));
+         auto pitemNone = __new ::item(e_element_none);
 
          return pitemNone;
          
@@ -1317,7 +1317,7 @@ namespace user
                         if (rectangleText.contains(point))
                         {
 
-                           return ::place(new ::item((enum_element)((int)e_element_split + iTitle), iIndex));
+                           return __new ::item((enum_element)((int)e_element_split + iTitle), iIndex);
 
                         }
 
@@ -1358,7 +1358,7 @@ namespace user
                   user_item(ppane)->m_rectangle2 = rectangle;
 
                   return ppane;
-                  //return ::place(new ::item(e_element_tab, iIndex));
+                  //return __new ::item(e_element_tab, iIndex);
 
                }
 
@@ -1368,7 +1368,7 @@ namespace user
 
       }
 
-      auto pitemNone = ::place(new ::item(e_element_none));
+      auto pitemNone = __new ::item(e_element_none);
 
       return pitemNone;
 
@@ -1419,7 +1419,7 @@ namespace user
          if(!m_pitemTabFarScroll)
          {
             
-            m_pitemTabFarScroll = ::place(new ::item(::e_element_tab_far_scroll, -1));
+            m_pitemTabFarScroll = __new ::item(::e_element_tab_far_scroll, -1);
             
             enable_drag(m_pitemTabFarScroll, ::user::e_zorder_front);
             
@@ -1432,7 +1432,7 @@ namespace user
          if(!m_pitemTabNearScroll)
          {
             
-            m_pitemTabNearScroll = ::place(new ::item(::e_element_tab_near_scroll, -1));
+            m_pitemTabNearScroll = __new ::item(::e_element_tab_near_scroll, -1);
             
             enable_drag(m_pitemTabNearScroll, ::user::e_zorder_front);
             

@@ -10,8 +10,8 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/handler/topic.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/user/display.h"
-#include "acme/nano/user/user.h"
+#include "acme/user/micro/display.h"
+#include "acme/user/micro/user.h"
 #include "acme/windowing/window_base.h"
 #include "platform/system.h"
 
@@ -214,7 +214,7 @@ namespace windowing
 
         }
 
-        auto ptopic = ::place(new ::topic(id_application_dark_mode_change));
+        auto ptopic = __new ::topic(id_application_dark_mode_change);
 
         for (auto & pwindowbase : m_windowbasea)
         {

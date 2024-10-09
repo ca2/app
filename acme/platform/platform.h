@@ -223,10 +223,10 @@ namespace platform
       string                                          m_strCommandLine;
 
 
-         ::pointer < ::particle >                                 m_pmutexTask;
+         ::particle_pointer                                 m_pmutexTask;
          task_map                                                 m_taskmap;
          task_id_map                                              m_taskidmap;
-         ::pointer < ::particle >                                 m_pmutexTaskOn;
+         ::particle_pointer                                 m_pmutexTaskOn;
 
 
          ::map < itask_t, itask_t >                               m_mapTaskOn;
@@ -342,7 +342,7 @@ namespace platform
       void add_factory_item(const ::atom & atom)
       {
 
-         set_factory(atom, ::place(new ::factory::factory_item < TYPE, BASE > ()));
+         set_factory(atom, __new ::factory::factory_item < TYPE, BASE > ());
 
       }
 

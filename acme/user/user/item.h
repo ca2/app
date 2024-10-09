@@ -63,7 +63,7 @@ namespace user
 //      ::point_i32                   m_pointHitTest;
 //      ::rectangle_i32               m_rectangle;
 //      ::user::e_item                m_eitem;
-//      ::pointer < ::particle >      m_pparticle;
+//      ::particle_pointer      m_pparticle;
 //      ::user::e_zorder              m_ezorder;
 //      ::user::e_item_flag           m_euseritemflag;
 //
@@ -338,7 +338,7 @@ namespace user
       ::point_i32                   m_pointHitTest;
       ::rectangle_i32               m_rectangle2;
       ::user::e_item                m_eitem;
-      ::pointer < ::particle >      m_pparticle;
+      ::particle_pointer      m_pparticle;
       ::user::e_zorder              m_ezorder;
       ::user::e_item_flag           m_euseritemflag;
 

@@ -43,7 +43,7 @@ namespace account
 
       m_estatus = error_authentication_none;
 
-      m_phttpcookies = ::place(new ::http::cookies());
+      m_phttpcookies = __new ::http::cookies();
 
       m_estatus = error_none;
 
@@ -273,7 +273,7 @@ namespace account
 
       m_bDeferRegistration = bInteractive;
 
-      ::pointer<credentials>pcredentials = ::place(new credentials());
+      ::pointer<credentials>pcredentials = __new credentials();
 
       auto psession = session()->m_paxissession;
 

@@ -899,6 +899,8 @@
     <ClCompile Include="compress\is_dir.cpp" />
     <ClCompile Include="compress\not_dir.cpp" />
     <ClCompile Include="compress\uncompress.cpp" />
+    <ClCompile Include="console\dialog.cpp" />
+    <ClCompile Include="console\dialog\message_box.cpp" />
     <ClCompile Include="crypto\crypto.cpp" />
     <ClCompile Include="crypto\initializer.cpp" />
     <ClCompile Include="crypto\rsa.cpp" />
@@ -986,6 +988,7 @@
     <ClCompile Include="handler\item_container.cpp" />
     <ClCompile Include="handler\item_container_map.cpp" />
     <ClCompile Include="handler\request.cpp" />
+    <ClCompile Include="handler\sequence.cpp" />
     <ClCompile Include="handler\source.cpp" />
     <ClCompile Include="handler\topic.cpp" />
     <ClInclude Include="aaa_id.h" />
@@ -994,6 +997,7 @@
     <ClInclude Include="array2d.h" />
     <ClInclude Include="compress\compress.h" />
     <ClInclude Include="compress\uncompress.h" />
+    <ClInclude Include="console\dialog.h" />
     <ClInclude Include="constant\aaa_thread.h" />
     <ClInclude Include="constant\aaa_topic.h" />
     <ClInclude Include="constant\activate.h" />
@@ -1152,7 +1156,10 @@
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="format.h" />
     <ClInclude Include="graphics\image\pixmap_lock.h" />
+    <ClInclude Include="handler\sequencer.h" />
     <ClInclude Include="handler\source.h" />
+    <ClInclude Include="handler\aaa_step.h" />
+    <ClInclude Include="handler\sequencer_step.h" />
     <ClInclude Include="memory\allocator.h" />
     <ClInclude Include="memory\allocator\malloc.h" />
     <ClInclude Include="memory\allocator_base.h" />
@@ -1396,6 +1403,7 @@
     <ClInclude Include="platform\_errno.h" />
     <ClInclude Include="platform\_referencing_debugging.h" />
     <ClInclude Include="prototype\collection\array_base_quantum.h" />
+    <ClInclude Include="prototype\collection\procedure_array.h" />
     <ClInclude Include="prototype\collection\property_set.h" />
     <ClInclude Include="prototype\collection\raw_pointer_array.h" />
     <ClInclude Include="prototype\data\check_property.h" />
@@ -1404,6 +1412,8 @@
     <ClInclude Include="prototype\data\property_listener.h" />
     <ClInclude Include="prototype\data\text_property.h" />
     <ClInclude Include="prototype\prototype\make_particle.h" />
+    <ClInclude Include="prototype\prototype\post_procedure_continuation.h" />
+    <ClInclude Include="prototype\prototype\realizable.h" />
     <ClInclude Include="prototype\prototype\signal.h" />
     <ClInclude Include="prototype\prototype\prototype.h" />
     <ClInclude Include="prototype\prototype\quantum.h" />
@@ -1427,6 +1437,7 @@
     <ClInclude Include="user\micro\button.h" />
     <ClInclude Include="user\micro\console.h" />
     <ClInclude Include="user\micro\details_window.h" />
+    <ClInclude Include="user\micro\dialog.h" />
     <ClInclude Include="user\micro\elemental.h" />
     <ClInclude Include="user\micro\main_window.h" />
     <ClInclude Include="user\micro\message_box.h" />
@@ -1443,7 +1454,6 @@
     <ClInclude Include="user\user\key_state.h" />
     <ClInclude Include="user\user\property.h" />
     <ClInclude Include="user\user\text.h" />
-    <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="windowing\display.h" />
     <ClInclude Include="windowing\window.h" />
@@ -1961,7 +1971,7 @@
     <ClCompile Include="platform\c.cpp" />
     <ClCompile Include="platform\checked.cpp" />
     <ClCompile Include="platform\context.cpp" />
-    <ClCompile Include="platform\conversation_message.cpp" />
+    <ClCompile Include="platform\message_box.cpp" />
     <ClCompile Include="platform\c_class.cpp" />
     <ClCompile Include="platform\Debug.cpp" />
     <ClCompile Include="platform\department.cpp" />
@@ -1993,7 +2003,6 @@
     <ClCompile Include="platform\profiler.cpp" />
     <ClCompile Include="platform\reference_referer.cpp" />
     <ClCompile Include="platform\referencing_debugging.cpp" />
-    <ClCompile Include="platform\sequence.cpp" />
     <ClCompile Include="platform\serial.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\shell.cpp" />
@@ -2018,6 +2027,7 @@
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="platform\_main_hold_base.cpp" />
     <ClCompile Include="platform\_synchronization.cpp" />
+    <ClCompile Include="prototype\collection\procedure_array.cpp" />
     <ClCompile Include="prototype\collection\strdup_array.cpp" />
     <ClCompile Include="prototype\collection\string_array.cpp" />
     <ClCompile Include="prototype\collection\string_list.cpp" />
@@ -2104,6 +2114,7 @@
     <ClCompile Include="prototype\prototype\object.cpp" />
     <ClCompile Include="prototype\prototype\object_meta.cpp" />
     <ClCompile Include="prototype\prototype\particle.cpp" />
+    <ClCompile Include="prototype\prototype\post_procedure_continuation.cpp" />
     <ClCompile Include="prototype\prototype\prototype.cpp" />
     <ClCompile Include="prototype\prototype\property_object.cpp" />
     <ClCompile Include="prototype\prototype\e_status.cpp" />
@@ -2282,6 +2293,7 @@
     <ClCompile Include="user\micro\button.cpp" />
     <ClCompile Include="user\micro\console.cpp" />
     <ClCompile Include="user\micro\details_window.cpp" />
+    <ClCompile Include="user\micro\dialog.cpp" />
     <ClCompile Include="user\micro\elemental.cpp" />
     <ClCompile Include="user\micro\main_window.cpp" />
     <ClCompile Include="user\micro\message_box.cpp" />
@@ -2297,7 +2309,20 @@
     <ClCompile Include="user\user\interaction.cpp" />
     <ClCompile Include="user\user\property.cpp" />
     <ClCompile Include="user\user\controller.cpp" />
-    <ClCompile Include="user\user\conversation.cpp" />
+    <ClCompile Include="user\user\aaa_conversation.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaRelease|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticMetaDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="user\user\drag.cpp" />
     <ClCompile Include="user\user\drag_client.cpp" />
     <ClCompile Include="user\user\element.cpp" />
@@ -2309,7 +2334,6 @@
     <ClCompile Include="user\user\text.cpp" />
     <ClCompile Include="user\user\text_property.cpp" />
     <ClCompile Include="user\user\tool_item.cpp" />
-    <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="user\user\_string.cpp" />
     <ClCompile Include="windowing\display.cpp" />
     <ClCompile Include="windowing\window.cpp" />
@@ -2382,7 +2406,7 @@
     <ClInclude Include="platform\application_base.h" />
     <ClInclude Include="platform\application_container.h" />
     <ClInclude Include="platform\application_exit.h" />
-    <ClInclude Include="platform\conversation_message.h" />
+    <ClInclude Include="platform\message_box.h" />
     <ClInclude Include="platform\enum_names.h" />
     <ClInclude Include="platform\application_flags.h" />
     <ClInclude Include="platform\factory_function.h" />
@@ -2772,8 +2796,6 @@
     <ClInclude Include="platform\procedure.h" />
     <ClInclude Include="platform\procedure_array.h" />
     <ClInclude Include="platform\profiler.h" />
-    <ClInclude Include="platform\sequence1.h" />
-    <ClInclude Include="platform\sequencer.h" />
     <ClInclude Include="platform\serial.h" />
     <ClInclude Include="platform\serial_shared.h" />
     <ClInclude Include="platform\set_app_id.h" />
@@ -2937,7 +2959,7 @@
     <ClInclude Include="regular_expression\_regular_expression.h" />
     <ClInclude Include="user\user\aaa_action_item_exchange.h" />
     <ClInclude Include="user\user\check_property.h" />
-    <ClInclude Include="user\user\conversation.h" />
+    <ClInclude Include="user\user\aaa_conversation.h" />
     <ClInclude Include="user\user\element.h" />
     <ClInclude Include="user\user\mouse.h" />
     <ClInclude Include="user\user\os_colors.h" />

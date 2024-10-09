@@ -117,7 +117,7 @@ pacmedirectory->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); 
 
 
       auto
-      pDocTemplate = ::place(new ::user::single_document_template(
+      pDocTemplate = ::as(new ::user::single_document_template(
                           this,
                           "main",
                           ::type < document >(),
@@ -127,7 +127,7 @@ pacmedirectory->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); 
       add_document_template(pDocTemplate);
 
 
-      pDocTemplate = ::place(new ::user::single_document_template(
+      pDocTemplate = ::as(new ::user::single_document_template(
                           this,
                           "main",
                           ::type < document >(),
@@ -137,7 +137,7 @@ pacmedirectory->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); 
       add_document_template(pDocTemplate);
 
 
-      pDocTemplate = ::place(new ::user::single_document_template(
+      pDocTemplate = ::as(new ::user::single_document_template(
                           this,
                           "switcher",
                           ::type < document >(),

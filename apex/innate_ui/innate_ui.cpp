@@ -50,11 +50,11 @@ namespace innate_ui
    void innate_ui::main_post(const ::procedure & procedure)
    {
 
-      auto pnano = nano();
+      auto psystem = system();
 
-      auto pwindowing = pnano->windowing();
+      auto pacmewindowing = psystem->acme_windowing();
 
-      pwindowing->main_post(procedure);      //auto pparticle = (::subparticle *)procedure.m_pbase;
+      pacmewindowing->main_post(procedure);      //auto pparticle = (::subparticle *)procedure.m_pbase;
 
       //pparticle->increment_reference_count();
 
@@ -66,11 +66,11 @@ namespace innate_ui
    void innate_ui::main_send(const ::procedure & procedure)
    {
 
-      auto pnano = nano();
+      auto psystem = system();
 
-      auto pwindowing = pnano->windowing();
+      auto pacmewindowing = psystem->acme_windowing();
 
-      pwindowing->main_send(procedure);      //auto pparticle = (::subparticle *)procedure.m_pbase;
+      pacmewindowing->main_send(procedure);      //auto pparticle = (::subparticle *)procedure.m_pbase;
 
       //pparticle->increment_reference_count();
 

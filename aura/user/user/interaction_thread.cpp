@@ -272,7 +272,7 @@ namespace user
       
       //m_puserinteraction->operating_system_create_host(e_parallelization_asynchronous);
 
-      m_puserinteraction->create_window();
+      //m_puserinteraction->create_window();
 
       ///*if(!estatus)
       //{*/

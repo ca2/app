@@ -27,7 +27,9 @@ CLASS_DECL_ACME void __simple_tracev(enum_trace_level elevel, const char * pszFu
 //CLASS_DECL_ACME void FUNCTION_DEBUGBOX(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, ::callback callback)
 //{
 //
-//   ::message_box_synchronous(nullptr, pszMessage, pszTitle, iFlags, function);
+//   ::auto pmessagebox = __initialize_new ::message_box(nullptr, pszMessage, pszTitle, iFlags, function);
+
+//send(pmessagebox);
 //
 //}
 

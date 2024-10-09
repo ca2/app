@@ -36,7 +36,7 @@ namespace acme
 
 
          ::pointer_array < ::acme::windowing::window >     m_windowa;
-         ::pointer<::acme::windowing::display>             m_pdisplaybase;
+         ::pointer<::acme::windowing::display>             m_pacmedisplay;
          // ::pointer_array<::acme::windowing::window> m_windowbasea;
          //::pointer < ::micro::theme >            m_pnanousertheme;
 
@@ -45,25 +45,25 @@ namespace acme
          ~windowing() override;
 
 
-         inline static const char * represented_component_name() { return "nano_windowing"; }
+         //inline static const char * represented_component_name() { return "nano_windowing"; }
 
-
+         //::acme::windowing::window * windowing_window() override;
          //::micro::theme * nano_user_theme();
-         //pointer< ::sequencer < ::conversation > > nano()->message_box(const ::string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr);
+         //::pointer < ::subparticle > nano()->message_box(const ::string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr);
          //virtual void update_nano_user_theme();
 
          ////pointer< ::sequence < ::conversation > > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
 
-         //pointer< ::sequencer < ::conversation > > nano()->message_console(const ::string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr);
+         //::pointer < ::subparticle > nano()->message_console(const ::string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr);
 
 
-         pointer< ::sequencer < ::conversation > > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+         //::pointer < ::subparticle > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-         pointer< ::sequencer < ::conversation > > exception_message_box(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+         //::pointer < ::subparticle > exception_message_box(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-         pointer< ::sequencer < ::conversation > > message_console(const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+         //::pointer < ::subparticle > message_console(const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-         pointer< ::sequencer < ::conversation > > exception_message_console(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+         //::pointer < ::subparticle > exception_message_console(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
 
          void handle(::topic * ptopic, ::context * pcontext) override;
@@ -72,12 +72,15 @@ namespace acme
          void main_send(const ::procedure & procedure) override;
          void main_post(const ::procedure & procedure) override;
 
+         //void _main_send(::subparticle * p) override;
+         //void _main_post(::subparticle * p) override;
 
          virtual void process_messages();
 
          virtual bool init_threads();
 
-
+         
+         virtual void show(::particle_pointer pparticle);
 
          //// windowing_system
 
@@ -95,8 +98,10 @@ namespace acme
          void destroy() override;
 
 
-         virtual ::acme::windowing::display * display();
+         virtual ::acme::windowing::display * acme_display();
 
+
+         virtual ::windowing::windowing * windowing_windowing();
 
          virtual void on_start_system();
 

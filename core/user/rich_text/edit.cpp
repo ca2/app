@@ -457,7 +457,7 @@ namespace user
 
          //bool bFirstParagraph = true;
 
-         auto plinea = ::place(new pointer_array < line > ());
+         auto plinea = __new pointer_array < line > ();
 
          ::pointer<line>pline;
 
@@ -466,7 +466,7 @@ namespace user
    //if (m_spana.first().m_pformat >= m_pformathost.get_count())
    //{
 
-   //   m_pformathost.add(::place(new format(this)));
+   //   m_pformathost.add(__new format(this));
 
    //}
 
@@ -480,7 +480,7 @@ namespace user
          //   if (m_spana.first_pointer()->m_iFormat >= m_pformathost.get_count())
          //   {
 
-         //      m_pformathost.add(::place(new format(this)));
+         //      m_pformathost.add(__new format(this));
 
          //   }
 
@@ -545,7 +545,7 @@ namespace user
 
                __construct_new(pline);
 
-               //pline = ::place(new line());
+               //pline = __new line();
 
                x = (int)rectangle.left();
 
@@ -555,7 +555,7 @@ namespace user
 
                x = (int)rectangle.left();
 
-               //pbox = ::place(new box(pspan));
+               //pbox = __new box(pspan);
 
                //index iSpan = find_char_span(m_spana, iCharLayout);
 
@@ -646,7 +646,7 @@ namespace user
                   if (pline->is_empty())
                   {
 
-                     auto pbox = ::place(new box(pspan));
+                     auto pbox = __new box(pspan);
 
                      pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -705,7 +705,7 @@ namespace user
                   if (cWords > 0)
                   {
 
-                     auto pbox = ::place(new box(pspan));
+                     auto pbox = __new box(pspan);
 
                      pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -754,7 +754,7 @@ namespace user
 
                      longest_word(strSlice, dPosition, strWord, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int)rectangleX.right() - x);
 
-                     auto pbox = ::place(new box(pspan));
+                     auto pbox = __new box(pspan);
 
                      pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -788,7 +788,7 @@ namespace user
                else
                {
 
-                  auto pbox = ::place(new box(pspan));
+                  auto pbox = __new box(pspan);
 
                   pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -2374,7 +2374,7 @@ namespace user
                //if (pformat.is_null())
                //{
 
-               //   pformat = ::place(new format(this));
+               //   pformat = __new format(this);
 
                //}
 

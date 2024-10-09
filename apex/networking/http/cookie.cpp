@@ -146,7 +146,7 @@ namespace http
       if(not_found(iFind))
       {
 
-         auto pcookie = ::place(new class cookie ());
+         auto pcookie = __new class cookie ();
 
          pcookie->m_strName = name;
 
@@ -175,7 +175,7 @@ namespace http
 
          ca.m_strNameLow = name;
 
-         add(::place(new class cookie (ca)));
+         add(__new class cookie (ca));
 
          iFind = find_cookie(name);
 
@@ -190,7 +190,7 @@ namespace http
 
    void cookies::add(const ::scoped_string & scopedstr)
    {
-      ::pointer<class cookie> cookie(::place(new class cookie ()));
+      ::pointer<class cookie> cookie(__new class cookie ());
       cookie->m_bSecure = false;
       //string_array stra;
       //stra.add_tokens(psz, ";", true);

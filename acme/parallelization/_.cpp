@@ -863,7 +863,7 @@ thread_local payload t_payloada[e_task_payload_count];
 //CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
 //{
 //
-//   auto pevent = ::place(new manual_reset_event());
+//   auto pevent = __new manual_reset_event();
 //
 //   main_asynchronous([ function, &pevent ]
 //   {

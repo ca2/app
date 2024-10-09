@@ -35,12 +35,12 @@
 #include "acme/handler/topic.h"
 #include "acme/nano/graphics/device.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/user/theme.h"
+#include "acme/user/micro/theme.h"
 #include "acme/windowing/window.h"
 #include "acme/operating_system/a_system_menu.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
-#include "acme/platform/sequencer.h"
+//#include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
 #include "acme/user/user/drag.h"
 #include "acme/user/user/mouse.h"
@@ -82,15 +82,15 @@ namespace micro
       //}
 
 
-      ::micro::theme * elemental::nano_user_theme()
+      ::micro::theme * elemental::micro_theme()
       {
 
-         return system()->acme_windowing()->nano_user_theme();
+         return system()->micro_user()->micro_theme();
 
       }
 
 
-      enum_font elemental::nano_user_font()
+      enum_font elemental::micro_font()
       {
 
          if (m_efont != e_font_none)
@@ -100,22 +100,22 @@ namespace micro
 
          }
 
-         return nano_user_theme()->m_efont;
+         return micro_theme()->m_efont;
 
       }
 
 
-      ::micro::main_window * elemental::nano_user_main_window()
+      ::micro::main_window * elemental::micro_main_window()
       {
 
-         if (!m_pelementalParent)
+         if (!micro_parent())
          {
 
             return nullptr;
 
          }
 
-         return m_pelementalParent->nano_user_main_window();
+         return micro_parent()->micro_main_window();
 
       }
 
@@ -185,21 +185,21 @@ namespace micro
       }
 
 
-      void elemental::draw(::nano::graphics::device * pnanodevice)
+      void elemental::draw(::nano::graphics::device * pmicrodevice)
       {
 
-         ::pointer<::nano::graphics::pen>pnanopenBorder;
+         ::pointer<::nano::graphics::pen>pmicropenBorder;
 
          if (acme_windowing_window()->is_active_window())
          {
 
-            pnanopenBorder = nano_user_theme()->m_ppenBorderFocus;
+            pmicropenBorder = micro_theme()->m_ppenBorderFocus;
 
          }
          else
          {
 
-            pnanopenBorder = nano_user_theme()->m_ppenBorder;
+            pmicropenBorder = micro_theme()->m_ppenBorder;
 
          }
 
@@ -207,22 +207,24 @@ namespace micro
 
          rectangleX = get_client_rectangle();
 
-         pnanodevice->rectangle(rectangleX, nano_user_theme()->m_pbrushWindow, pnanopenBorder);
+         pmicrodevice->rectangle(rectangleX, micro_theme()->m_pbrushWindow, pmicropenBorder);
 
-         on_draw(pnanodevice);
+         on_draw(pmicrodevice);
 
-         draw_children(pnanodevice);
+         draw_children(pmicrodevice);
 
       }
 
 
-      void elemental::draw_children(::nano::graphics::device * pnanodevice)
+      void elemental::draw_children(::nano::graphics::device * pmicrodevice)
       {
 
-         for (auto & pchild : m_elementalaChildren)
+         for (auto & pchild : *m_pacmeuserinteractionaChildren)
          {
 
-            pchild->on_draw(pnanodevice);
+            ::pointer < ::micro::elemental > pelemental = pchild;
+
+            pelemental->on_draw(pmicrodevice);
 
          }
 
@@ -235,7 +237,7 @@ namespace micro
 
          auto pdevice = __create < ::nano::graphics::device >();
 
-         auto size = pdevice->get_text_extents(m_strText, nano_user_theme()->m_pfont);
+         auto size = pdevice->get_text_extents(m_strText, micro_theme()->m_pfont);
 
          m_rectangle.right() = m_rectangle.left() + size.cx();
 
@@ -425,7 +427,7 @@ namespace micro
       //::pointer<::operating_system::a_system_menu> elemental::create_system_menu(bool bContextual)
       //{
 
-      //   auto psystemmenu = ::place(new ::operating_system::a_system_menu());
+      //   auto psystemmenu = __new ::operating_system::a_system_menu();
 
       //   if (m_bMinimizeBox)
       //   {
@@ -625,7 +627,7 @@ namespace micro
 
       //   do_asynchronously();
 
-      //   auto pmanualresetevent = ::place(new manual_reset_event());
+      //   auto pmanualresetevent = __new manual_reset_event();
 
       //   if (m_psequencer)
       //   {
@@ -673,14 +675,14 @@ namespace micro
       //}
 
 
-      //void elemental::draw(::nano::graphics::device * pnanodevice)
+      //void elemental::draw(::nano::graphics::device * pmicrodevice)
       //{
 
 
       //}
 
 
-      void elemental::on_draw(::nano::graphics::device * pnanodevice)
+      void elemental::on_draw(::nano::graphics::device * pmicrodevice)
       {
 
 
@@ -690,14 +692,14 @@ namespace micro
       void elemental::on_char(int iChar)
       {
 
-         //if (iChar == '\t' && m_elementalaChildren.has_element())
+         //if (iChar == '\t' && m_pacmeuserinteractionaChildren.has_element())
          //{
 
-         //   auto iFind = m_elementalaChildren.find_first(acme_windowing_window()->m_pacmeuserinteractionFocus);
+         //   auto iFind = m_pacmeuserinteractionaChildren.find_first(acme_windowing_window()->m_pacmeuserinteractionFocus);
 
          //   iFind++;
 
-         //   acme_windowing_window()->m_pacmeuserinteractionFocus = m_elementalaChildren % iFind;
+         //   acme_windowing_window()->m_pacmeuserinteractionFocus = m_pacmeuserinteractionaChildren % iFind;
 
          //   redraw();
 
@@ -729,13 +731,15 @@ namespace micro
       ::micro::elemental * elemental::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
       {
 
-         for (auto & pchild : m_elementalaChildren)
+         for (auto & pchild : *m_pacmeuserinteractionaChildren)
          {
 
-            if (pchild->m_rectangle.contains(point))
+            ::pointer < ::micro::elemental > pelemental = pchild;
+
+            if (pelemental->m_rectangle.contains(point))
             {
 
-               return pchild;
+               return pelemental;
 
             }
 
@@ -749,9 +753,11 @@ namespace micro
       void elemental::add_child(::micro::elemental * pelementalChild)
       {
 
-         pelementalChild->m_pelementalParent = this;
+         pelementalChild->m_pacmeuserinteractionParent = this;
 
-         m_elementalaChildren.add(pelementalChild);
+         __defer_construct_new(m_pacmeuserinteractionaChildren);
+
+         m_pacmeuserinteractionaChildren->add(pelementalChild);
 
       }
 
@@ -759,15 +765,13 @@ namespace micro
       void elemental::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
       {
 
-         auto pbutton = ::place(new ::micro::button());
+         auto pbutton = __new ::micro::button();
 
          pbutton->m_strText = scopedstrText;
          pbutton->m_atom = edialogresult;
          pbutton->m_edialogresult1 = edialogresult;
          pbutton->m_chLetter = chLetter;
          //pbutton->m_bDefault = bDefault;
-
-         m_elementalaChildren.add(pbutton);
 
          add_child(pbutton);
 
@@ -778,13 +782,15 @@ namespace micro
       ::micro::elemental * elemental::get_child_by_id(const ::atom & atom)
       {
 
-         for (auto & pchild : m_elementalaChildren)
+         for (auto & pchild : *m_pacmeuserinteractionaChildren)
          {
 
-            if (pchild->m_atom == atom)
+            ::pointer < ::micro::elemental > pelemental = pchild;
+
+            if (pelemental->m_atom == atom)
             {
 
-               return pchild;
+               return pelemental;
 
             }
 
@@ -795,12 +801,12 @@ namespace micro
       }
 
 
-      ::payload elemental::get_result()
-      {
+      //::payload elemental::get_result()
+      //{
 
-         return m_payloadResult;
+      //   return m_payloadResult;
 
-      }
+      //}
 
 
       void elemental::on_mouse_move(::user::mouse * pmouse)
@@ -868,7 +874,7 @@ namespace micro
          if (pchild)
          {
 
-            auto pmainwindow = nano_user_main_window();
+            auto pmainwindow = micro_main_window();
 
             if (pmainwindow)
             {
@@ -881,7 +887,7 @@ namespace micro
          else
          {
 
-            auto pmainwindow = nano_user_main_window();
+            auto pmainwindow = micro_main_window();
 
             if (pmainwindow)
             {
@@ -935,7 +941,7 @@ namespace micro
          if (pchild)
          {
 
-            auto pmainwindow = nano_user_main_window();
+            auto pmainwindow = micro_main_window();
 
             if (pmainwindow)
             {
@@ -948,7 +954,7 @@ namespace micro
          else
          {
 
-            auto pmainwindow = nano_user_main_window();
+            auto pmainwindow = micro_main_window();
 
             if (pmainwindow)
             {
@@ -959,7 +965,7 @@ namespace micro
 
          }
 
-         auto pmainwindow = nano_user_main_window();
+         auto pmainwindow = micro_main_window();
 
          if (pmainwindow)
          {
@@ -968,9 +974,7 @@ namespace micro
                && pmainwindow->m_atomLeftButtonUp != e_dialog_result_none)
             {
 
-               pmainwindow->m_payloadResult = pmainwindow->m_atomLeftButtonUp;
-
-               pmainwindow->on_click(pmainwindow->m_payloadResult, pmouse);
+               pmainwindow->on_click(pmainwindow->m_atomLeftButtonUp, pmouse);
 
             }
 
@@ -994,7 +998,7 @@ namespace micro
          if (pchild)
          {
 
-            auto pmainwindow = nano_user_main_window();
+            auto pmainwindow = micro_main_window();
 
             if (pmainwindow)
             {
@@ -1007,7 +1011,7 @@ namespace micro
          else
          {
 
-            auto pmainwindow = nano_user_main_window();
+            auto pmainwindow = micro_main_window();
 
             if (pmainwindow)
             {
@@ -1039,7 +1043,7 @@ namespace micro
          if (pchild)
          {
 
-            auto pmainwindow = nano_user_main_window();
+            auto pmainwindow = micro_main_window();
 
             if (pmainwindow)
             {
@@ -1052,7 +1056,7 @@ namespace micro
          else
          {
 
-            auto pmainwindow = nano_user_main_window();
+            auto pmainwindow = micro_main_window();
 
             if (pmainwindow)
             {
@@ -1063,7 +1067,7 @@ namespace micro
 
          }
 
-         auto pmainwindow = nano_user_main_window();
+         auto pmainwindow = micro_main_window();
 
          if (pmainwindow)
          {
@@ -1109,7 +1113,7 @@ namespace micro
       //}
 
 
-      //void elemental::draw_children(::nano::graphics::device * pnanodevice)
+      //void elemental::draw_children(::nano::graphics::device * pmicrodevice)
       //{
 
 
@@ -1217,23 +1221,23 @@ namespace micro
       }
 
 
-      ::micro::elemental * elemental::nano_user_parent()
+      ::micro::elemental * elemental::micro_parent()
       {
 
-         return m_pelementalParent;
+         return m_pacmeuserinteractionParent.cast < ::micro::elemental >();
 
       }
 
 
-      ::collection::count elemental::nano_user_button_count()
+      ::collection::count elemental::micro_button_count()
       {
 
          ::collection::count c = 0;
 
-         for (auto & pelemental : m_elementalaChildren)
+         for (auto & pinteraction : *m_pacmeuserinteractionaChildren)
          {
 
-            auto pbutton = pelemental.cast < ::micro::button >();
+            auto pbutton = pinteraction.cast < ::micro::button >();
 
             if (pbutton)
             {
@@ -1250,15 +1254,15 @@ namespace micro
 
 
 
-      ::micro::button * elemental::nano_user_button_at(::collection::index i)
+      ::micro::button * elemental::micro_button_at(::collection::index i)
       {
 
          ::collection::count c = 0;
 
-         for (auto & pelemental : m_elementalaChildren)
+         for (auto & pinteraction : *m_pacmeuserinteractionaChildren)
          {
 
-            auto pbutton = pelemental.cast < ::micro::button >();
+            auto pbutton = pinteraction.cast < ::micro::button >();
 
             if (pbutton)
             {
@@ -1487,19 +1491,19 @@ namespace micro
       void elemental::destroy()
       {
 
-         if (m_psequencer)
-         {
+         //if (m_psequencer)
+         //{
 
-            m_psequencer->on_sequence();
+         //   m_psequencer->on_sequence();
 
-            m_psequencer.release();
+         //   m_psequencer.release();
 
-         }
+         //}
 
 
          ::user::element::destroy();
          ::user::drag_client::destroy();
-         ::conversation::destroy();
+         //::conversation::destroy();
 
          system()->erase_signal_handler(this);
 
@@ -1610,18 +1614,18 @@ namespace micro
       }
 
 
-      void elemental::synchronize_composited_nano_window()
+      void elemental::synchronize_composited_micro_window()
       {
 
 
       }
 
 
-      void elemental::_run_modal_loop()
-      {
+      //void elemental::_run_modal_loop()
+      //{
 
 
-      }
+      //}
 
 
       bool elemental::is_popup_window() const

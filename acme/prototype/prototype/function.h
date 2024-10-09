@@ -2,6 +2,7 @@
 #pragma once
 
 
+
 //#define __pointer_is_null(p) (((uptr)(void *) p) < 4096)
 //
 //#define __pointer_is_set(p) (!__pointer_is_null(p))
@@ -16,6 +17,56 @@
 #include "acme/prototype/prototype/subparticle.h"
 
 #include "acme/prototype/time/_time.h"
+
+CLASS_DECL_ACME class ::time default_run_timeout();
+
+template < typename BASE_TYPE >
+class add_particle_timeout :
+   virtual public BASE_TYPE
+{
+public:
+
+   class ::time m_timeTimeout;
+
+   add_particle_timeout() :
+      m_timeTimeout(default_run_timeout())
+   {
+
+
+
+   }
+   add_particle_timeout(const class ::time & timeTimeout)
+   {
+
+      if (timeTimeout.is_null())
+      {
+
+         m_timeTimeout = default_run_timeout();
+
+      }
+      else
+      {
+
+         m_timeTimeout = timeTimeout;
+
+      }
+
+   }
+
+   void set_timeout(const class ::time & timeTimeout) override
+   {
+
+      m_timeTimeout = timeTimeout;
+   }
+
+   [[nodiscard]] class ::time timeout() const override
+   {
+
+      return m_timeTimeout;
+
+   }
+};
+
 
 template < typename ENTITY, typename... TYPES >
 concept callable = ::std::is_invocable< ENTITY, TYPES... >::type;
@@ -69,44 +120,188 @@ enum enum_timeout
 }; // enum enum_timeout
 
 
+
 #define _as(p) { e_use, p }
 
+template < typename BASE_TYPE >
+class function_composite_base :
+   public add_particle_timeout < BASE_TYPE > 
+{
+public:
 
+   using base = BASE_TYPE;
+
+   ::pointer < base > m_pbase;
+
+   function_composite_base(base * pbase, const class ::time & timeTimeout) :
+      m_pbase(pbase),
+      add_particle_timeout < BASE_TYPE >(timeTimeout)
+   {
+
+   }
+
+};
+
+
+template < typename BASE_TYPE, typename COMPOSITE_TYPE >
 class function_common
 {
 public:
 
+   using base = BASE_TYPE;
+   using composite = COMPOSITE_TYPE;
 
-   class ::time      m_timeTimeout;
+   using base_implementation = add_particle_timeout < base >;
+
+   pointer<base >     m_pbase;
+
+   function_common() { }
+   template < typename T2 >
+   inline function_common(transfer_t, T2 * p) :m_pbase(place_t{}, p) {}
+   template < typename T2 >
+   inline function_common(place_t, T2 * p) : m_pbase(place_t, p) {}
+   template < typename T2 >
+   function_common(pointer < T2 > && p) : m_pbase(::transfer(p)) { }
+   function_common(enum_as_lparam, iptr iptr) : m_pbase((::subparticle *)iptr) { }
+   function_common(const function_common & function) : m_pbase(function.m_pbase) { }
+   function_common(function_common && function) : m_pbase(::transfer(function.m_pbase)) {}
+   ~function_common() { }
 
 
-   function_common()
+   void clear()
    {
 
-#ifdef DEBUG
-
-       m_timeTimeout = 5_min;
-
-#else
-
-       m_timeTimeout = 15_s;
-
-#endif
+      m_pbase.release();
 
    }
 
 
-   function_common(enum_timeout, const class time& wait): m_timeTimeout(wait) {}
+   function_common & operator = (const function_common & function)
+   {
+
+      m_pbase = function.m_pbase;
+
+      return *this;
+
+   }
+
+   explicit operator bool() const { return ::is_set(this) && ::is_set(m_pbase); }
+
+   bool operator !() const { return !this->operator bool(); }
+
+   bool operator == (const function_common & function) const { return m_pbase == function.m_pbase; }
+
+   operator ::subparticle * () const { return ::is_null(this) ? nullptr : m_pbase; }
+
+   const ::subparticle * operator -> () const { return m_pbase; }
+
+   ::subparticle * operator -> () { return m_pbase; }
+
+   operator ::u32hash() const
+   {
+
+      return { (::u32)(::uptr)m_pbase.m_p };
+
+   };
 
 
-   void timeout(const class time & timeWait)  { m_timeTimeout = timeWait; }
+   void construct(base * p, const class ::time & timeTimeout)
+   {
+
+      if (timeTimeout.is_null())
+      {
+
+         m_pbase = p;
+
+         return;
+
+      }
+
+      auto paddparticletimeout = dynamic_cast <add_particle_timeout < base >*>(p);
+
+      if (is_set(paddparticletimeout))
+      {
+
+         paddparticletimeout->set_timeout(timeTimeout);
+
+         m_pbase = p;
+
+         return p;
+
+      }
+
+      m_pbase = __new composite(p, timeTimeout);
+
+   }
 
 
-   class ::time timeout() const {return m_timeTimeout;}
+   void set_timeout(const class time & timeTimeout)
+   {
+
+      ::pointer<add_particle_timeout<base>> pbase = m_pbase;
+
+      if (!pbase)
+      {
+
+         m_pbase = __new composite(m_pbase, timeTimeout);
+
+      }
+      else
+      {
+
+         pbase->set_timeout(timeTimeout);
+
+      }
+
+   }
+
+   class ::time timeout() const
+   {
+
+      return ::is_set(m_pbase) ? m_pbase->timeout() : default_run_timeout();
+
+   }
+
 
 
 };
 
+//class function_base :
+//   virtual public ::subparticle
+//{
+//public:
+//
+//
+//   class ::time      m_timeTimeout;
+//
+//
+//   function_base(const class ::time & timeTimeout = {})
+//   {
+//
+//      if (timeTimeout.m_iSecond <= 0)
+//      {
+//
+//         m_timeTimeout = default_run_timeout();
+//
+//      }
+//      else
+//      {
+//
+//         m_timeTimeout = timeTimeout;
+//
+//      }
+//
+//   }
+//
+//
+//   void set_run_timeout(const class time & timeTimeout)  { m_timeTimeout = timeTimeout; }
+//
+//
+//   class ::time get_run_timeout() const {return m_timeTimeout;}
+//
+//
+//};
+//
 
 template < typename PRIMITIVE_FUNCTION >
 concept primitive_function = ::std::is_base_of < ::function_common, PRIMITIVE_FUNCTION >::value;
@@ -120,8 +315,7 @@ namespace data
 
 
 template < typename PAYLOAD >
-class function :
-   public function_common
+class function 
 {
 
 };
@@ -150,19 +344,48 @@ class function :
 //};
 
 
-template < >
-class function < void() > :
-   public function_common
+class function_composite_1 :
+   public function_composite_base < ::subparticle >
 {
 public:
 
+   function_composite_1(base * pbase, const class ::time & timeTimeout) :
+      function_composite_base < ::subparticle >(pbase, timeTimeout)
+   {
 
-   using base = ::subparticle;
+   }
 
+
+   void operator()()
+   {
+
+      this->m_pbase->call_run();
+
+   }
+
+
+   void run() override
+   {
+
+      this->m_pbase->call_run();
+
+   }
+
+
+};
+
+
+template < >
+class function < void() > :
+   public function_common < ::subparticle, ::function_composite_1 >
+{
+public:
+
+   using BASE_FUNCTION = function_common < ::subparticle, ::function_composite_1 >;
 
    template < typename ELEMENT >
    class implementation :
-      virtual public base
+      public base_implementation
    {
    public:
 
@@ -170,8 +393,9 @@ public:
       ELEMENT m_element;
 
 
-      implementation(ELEMENT element) :
-         m_element(element)
+      implementation(ELEMENT element, const class ::time & timeTimeout) :
+         m_element(element),
+         base_implementation(timeTimeout)
       {
 
       }
@@ -195,65 +419,26 @@ public:
 
    };
 
-
-   ::pointer < base > m_pbase;
-
-
    
-   function()
-   {
-
-   }
 
 
-   function(const pointer < ::subparticle > & p) :
-      m_pbase(p)
-   {
 
-   }
+   //::pointer < base > m_pbase;
 
-
-   function(pointer < ::subparticle > && p) :
-      m_pbase(p)
-   {
-      
-
-   }
-
-
-   function(enum_as_lparam, iptr iptr) :
-      m_pbase((::subparticle *)iptr)
-   {
-
-   }
-
-
-   function(use_t, base * p) :
-      m_pbase(p)
-   {
-
-   }
-
-
-   function(transfer_t, base * p) :
-      m_pbase(transfer_t{}, p)
-   {
-
-   }
-
-
-   //template < typename PREDICATE >
-   //function(function_t, PREDICATE predicateParam) :
-   //   m_pbase(transfer_t{}, __new< class implementation <PREDICATE > >(predicateParam))
-   //{
-
-   //}
-
+   function() { }
+   template < typename T2 >
+   function(transfer_t, T2 * p) :function_common(place_t{}, p) {}
+   template < typename T2 >
+   function(place_t, T2 * p) : function_common(place_t, p) {}
+   template < typename T2 >
+   function(pointer < T2 > && p) : function_common(::transfer(p)) { }
+   function(enum_as_lparam, iptr iptr) : function_common(e_as_lparam, iptr) { }
+   function(const function & function) : function_common(function) { }
+   function(function && function) : function_common(::transfer(function)) {}
 
 
    template < typename PREDICATE >
-   function(const PREDICATE & predicate) :
-      function()
+   function(const PREDICATE & predicate, const class time & timeTimeout = 0_s)
    {
 
       if constexpr(::std::is_same_v<PREDICATE, nullptr_t>)
@@ -261,23 +446,35 @@ public:
 
 
       }
+      else if constexpr (::subparticle_pointer<PREDICATE> )
+      {
+
+         this->construct(predicate, timeTimeout);
+
+      }
+      else if constexpr (::std::is_base_of_v<::subparticle, decay<PREDICATE> >)
+      {
+
+         this->construct(as_subparticle(predicate), timeTimeout);
+
+      }
       else if constexpr(::std::is_same_v<::std::decay_t<PREDICATE>, payload >
          || ::std::is_same_v<::std::decay_t <PREDICATE> , property>)
       {
 
-         m_pbase = as_subparticle(predicate);
+         this->construct(as_subparticle(predicate), timeTimeout);
 
       }
       else if constexpr(::std::is_same_v<PREDICATE, const function & >)
       {
 
-         m_pbase = predicate.m_pbase;
+         this->construct(predicate.m_pbase, timeTimeout);
 
       }
       else
       {
 
-         m_pbase.transfer(new class implementation < PREDICATE > (predicate));
+         this->m_pbase = __new implementation < PREDICATE > (predicate, timeTimeout);
 
       }
 
@@ -285,26 +482,10 @@ public:
 
 
    template < typename PREDICATE >
-   function(enum_timeout, const class time & wait, PREDICATE predicateParam) :
-      function(predicateParam)
+   function(enum_timeout, const class time & timeTimeout, PREDICATE predicateParam) :
+      function(predicateParam, timeTimeout)
    {
-
-      m_timeTimeout = wait;
    
-   }
-
-
-   function(const function & function) :
-      m_pbase(function.m_pbase)
-   {
-
-   }
-
-
-   function(function && function) :
-      m_pbase(::transfer(function.m_pbase))
-   {
-
    }
 
 
@@ -329,33 +510,7 @@ public:
 
    }
 
-   void clear()
-   {
 
-      m_pbase.release();
-
-   }
-
-
-   function & operator = (const function & function)
-   {
-
-      m_pbase = function.m_pbase;
-
-      return *this;
-
-   }
-
-   explicit operator bool() const { return ::is_set(this) && ::is_set(m_pbase); }
-
-   bool operator !() const { return !this->operator bool(); }
-
-   operator ::subparticle *() const { return ::is_null(this) ? nullptr : m_pbase; }
-
-   const ::subparticle * operator -> () const { return m_pbase; }
-
-   ::subparticle * operator -> () { return m_pbase; }
-   
 
 };
 //
@@ -374,27 +529,61 @@ public:
 //
 //};
 
-
 template < typename RETURN_TYPE >
-class function < RETURN_TYPE() > :
-   public function_common
+class function_base_2 :
+   virtual public ::subparticle
 {
 public:
 
+   virtual RETURN_TYPE operator()() = 0;
 
-   class base :
-      virtual public ::subparticle
+};
+
+template < typename RETURN_TYPE >
+class function_composite_2 :
+   public function_composite_base < ::function_base_2 < RETURN_TYPE > >
+{
+public:
+
+   using base = ::function_base_2 < RETURN_TYPE >;
+
+   function_composite_2(base * pbase, const class ::time & timeTimeout) :
+      function_composite_base < ::function_base_2 < RETURN_TYPE > >(pbase, timeTimeout)
    {
-   public:
 
-      virtual RETURN_TYPE operator()() = 0;
+   }
 
-   };
+
+   RETURN_TYPE operator()() override
+   {
+
+      return ::transfer(this->m_pbase->operator()());
+
+   }
+
+};
+
+
+template < typename RETURN_TYPE >
+class function < RETURN_TYPE() > :
+   public function_common <
+      ::function_base_2 < RETURN_TYPE >,
+      ::function_composite_2 < RETURN_TYPE > 
+   >
+{
+public:
+
+   using base_function = function_common <
+      ::function_base_2 < RETURN_TYPE >,
+      ::function_composite_2 < RETURN_TYPE >
+   >;
+
+   using base_implementation = base_function::base_implementation;
 
 
    template < typename PREDICATE >
    class implementation :
-      public base
+      public base_implementation
    {
    public:
 
@@ -402,8 +591,9 @@ public:
       PREDICATE m_predicate;
 
 
-      implementation(PREDICATE implementation) :
-           m_predicate(implementation)
+      implementation(PREDICATE implementation, const class ::time & timeTimeout = 0_s) :
+           m_predicate(implementation),
+         base_implementation(timeTimeout)
       {
 
 
@@ -419,40 +609,22 @@ public:
 
    };
 
-   pointer<base >     m_pbase;
 
 
-   function(nullptr_t = nullptr)
-   {
-
-   }
-
-
-   function(use_t, base * p) :
-      m_pbase(p)
-   {
-
-   }
-
-
-   //function(transfer_t, base * p) :
-   //   m_pbase(transfer_t{}, p)
-   //{
-
-   //}
-
-
-   //template < typename PREDICATE >
-   //function(function_t, PREDICATE predicateParam) :
-   //   m_pbase(transfer_t{}, __new< class implementation <PREDICATE > >(predicateParam))
-   //{
-
-   //}
+   function() { }
+   template < typename T2 >
+   function(transfer_t, T2 * p) :function_common(place_t{}, p) {}
+   template < typename T2 >
+   function(place_t, T2 * p) : function_common(place_t, p) {}
+   template < typename T2 >
+   function(pointer < T2 > && p) : function_common(::transfer(p)) { }
+   function(enum_as_lparam, iptr iptr) : function_common(e_as_lparam, iptr) { }
+   function(const function & function) : function_common(function) { }
+   function(function && function) : function_common(::transfer(function)) {}
 
 
    template < typename PREDICATE >
-   function(const PREDICATE & predicate) :
-      function()
+   function(const PREDICATE & predicate, const class ::time & timeTimeout = 0_s)
    {
 
       if constexpr(::std::is_same_v<PREDICATE, nullptr_t>)
@@ -464,31 +636,32 @@ public:
          || ::std::is_same_v<::std::decay_t <PREDICATE> , property>)
       {
 
-         m_pbase = as_subparticle(predicate);
+         this->construct(as_subparticle(predicate), timeTimeout);
 
       }
       else if constexpr(::std::is_same_v<PREDICATE, const function & >)
       {
 
-         m_pbase = predicate.m_pbase;
+         this->construct(predicate.m_pbase, timeTimeout);
 
       }
       else
       {
 
-         m_pbase.transfer(new class implementation < PREDICATE > (predicate));
+         this->m_pbase = __new ::implementation < PREDICATE > (predicate, timeTimeout);
 
       }
 
    }
 
 
-   
-   function(transfer_t, base * pbase) :
-      m_pbase(transfer_t{}, pbase)
+   template < typename PREDICATE >
+   function(enum_timeout, const class time & timeTimeout, PREDICATE predicateParam) :
+      function(predicateParam, timeTimeout)
    {
 
    }
+
 
    ~function()
    {
@@ -506,31 +679,37 @@ public:
    }
 
 
-   void clear() { m_pbase.release(); }
+   //void clear() { m_pbase.release(); }
 
-   function & operator = (const function & function)
-   {
+   //function & operator = (const function & function)
+   //{
 
-      m_pbase = function.m_pbase;
+   //   m_pbase = function.m_pbase;
 
-      return *this;
+   //   return *this;
 
-   }
-
-
-   explicit operator bool() const { return ::is_set(m_pbase); }
-
-   bool operator !() const { return ::is_null(m_pbase); }
+   //}
 
 
-   operator ::u32hash() const 
-   {
+   /*explicit operator bool() const { return ::is_set(m_pbase); }
 
-      return { (::u32)(::uptr)m_pbase.m_p };
-
-   };
+   bool operator !() const { return ::is_null(m_pbase); }*/
 
 
+   //operator ::u32hash() const 
+   //{
+
+   //   return { (::u32)(::uptr)m_pbase.m_p };
+
+   //};
+
+   //void set_run_timeout(const class time & timeTimeout)
+   //{
+
+   //   m_pbase->set_run_timeout(timeTimeout);
+   //}
+
+   //class ::time get_run_timeout() const { return ::is_set(m_pbase) ? m_pbase->get_run_timeout() : default_run_timeout(); }
 
 };
 
@@ -551,36 +730,75 @@ public:
 //};
 
 
+template < typename RETURN_TYPE, typename... TYPES >
+class function_base_3 :
+   virtual public ::subparticle
+{
+public:
+
+   virtual RETURN_TYPE operator()(TYPES... args) = 0;
+
+};
+
 
 
 template < typename RETURN_TYPE, typename... TYPES >
-class function < RETURN_TYPE(TYPES...) > :
-   public function_common
+class function_composite_3 :
+   virtual public function_composite_base < function_base_3 < RETURN_TYPE, TYPES... > >
 {
 public:
 
 
-   class base :
-      virtual public ::subparticle
+   function_composite_3(base * pbase, const class ::time & timeTimeout) :
+      function_composite_base < ::function_base_3 < RETURN_TYPE, TYPES... > >(pbase, timeTimeout)
    {
-   public:
 
-      virtual RETURN_TYPE operator()(TYPES... args) = 0;
+   }
 
-   };
+
+   RETURN_TYPE operator()(TYPES... args) override
+   {
+
+      return m_predicate(args...);
+
+   }
+
+};
+
+
+template < typename RETURN_TYPE, typename... TYPES >
+class function < RETURN_TYPE(TYPES...) > :
+   public function_common <
+   function_base_3 < RETURN_TYPE, TYPES... > ,
+   function_composite_3 < RETURN_TYPE, TYPES... >
+   >
+{
+public:
+
+
+
+
+
+   using base_function = function_common <
+      function_base_3 < RETURN_TYPE, TYPES... >,
+      function_composite_3 < RETURN_TYPE, TYPES... >
+   >;
+
+   using base_implementation = base_function::base_implementation;
 
 
    template < typename PREDICATE >
    class implementation :
-      public base
+      public base_implementation
    {
    public:
 
       PREDICATE m_predicate;
 
 
-      implementation(PREDICATE implementation) :
-           m_predicate(implementation)
+      implementation(PREDICATE implementation, const class ::time & timeTimeout = 0_s) :
+           m_predicate(implementation),
+         base_implementation(timeTimeout)
       {
 
 
@@ -598,32 +816,23 @@ public:
    };
 
    
-   pointer < base >     m_pbase;
+   //pointer < base >     m_pbase;
 
+   function() { }
+   template < typename T2 >
+   function(transfer_t, T2 * p) :function_common(place_t{}, p) {}
+   template < typename T2 >
+   function(place_t, T2 * p) : function_common(place_t, p) {}
+   template < typename T2 >
+   function(pointer < T2 > && p) : function_common(::transfer(p)) { }
+   function(enum_as_lparam, iptr iptr) : function_common(e_as_lparam, iptr) { }
+   function(const function & function) : function_common(function) { }
+   function(function && function) : function_common(::transfer(function)) {}
 
-   function(nullptr_t = nullptr)
-   {
-
-   }
-
-
-   function(use_t, base * p) :
-      m_pbase(p)
-   {
-
-   }
-
-
-   //function(transfer_t, base * p) :
-   //   m_pbase(transfer_t{}, p)
-   //{
-
-   //}
 
 
    template < typename PREDICATE >
-   function(const PREDICATE & predicate) :
-      function()
+   function(const PREDICATE & predicate, const class ::time & timeTimeout = 0_s)
    {
 
       if constexpr(::std::is_same_v<PREDICATE, nullptr_t>)
@@ -635,32 +844,32 @@ public:
          || ::std::is_same_v<::std::decay_t <PREDICATE> , property>)
       {
 
-         m_pbase = as_subparticle(predicate);
+         this->construct(as_subparticle(predicate), timeTimeout);
 
       }
       else if constexpr(::std::is_same_v<PREDICATE, const function & >)
       {
 
-         m_pbase = predicate.m_pbase;
+         this->construct(predicate.m_pbase, timeTimeout);
 
       }
       else
       {
 
-         m_pbase.transfer( new class implementation < PREDICATE > (predicate));
+         this->m_pbase = __new ::implementation < PREDICATE > (predicate, timeTimeout);
 
       }
 
    }
 
-   
-   
-   function(transfer_t, base * pbase) :
-      m_pbase(transfer_t{}, pbase)
+   template < typename PREDICATE >
+   function(enum_timeout, const class time & timeTimeout, PREDICATE predicateParam) :
+      function(predicateParam, timeTimeout)
    {
 
    }
 
+   
    
    ~function()
    {
@@ -678,32 +887,39 @@ public:
    }
 
 
-   void clear() { m_pbase.release(); }
+   //void clear() { m_pbase.release(); }
 
 
-   function & operator = (const function & function)
-   {
+   //function & operator = (const function & function)
+   //{
 
-      m_pbase = function.m_pbase;
+   //   m_pbase = function.m_pbase;
 
-      return *this;
+   //   return *this;
 
-   }
+   //}
 
 
-   explicit operator bool() const { return ::is_set(m_pbase); }
+   //explicit operator bool() const { return ::is_set(m_pbase); }
 
-   bool operator !() const { return ::is_null(m_pbase); }
+   //bool operator !() const { return ::is_null(m_pbase); }
 
-   bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
+   //bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
 
-   operator ::u32hash() const 
-   {
+   //operator ::u32hash() const 
+   //{
 
-      return { (::u32)(::uptr)m_pbase.m_p };
+   //   return { (::u32)(::uptr)m_pbase.m_p };
 
-   }
+   //}
 
+   //void set_run_timeout(const class time & timeTimeout)
+   //{
+
+   //   m_pbase->set_run_timeout(timeTimeout);
+   //}
+
+   //class ::time get_run_timeout() const { return ::is_set(m_pbase) ? m_pbase->get_run_timeout() : default_run_timeout(); }
 
 };
 
@@ -725,27 +941,61 @@ public:
 
 
 
+template < typename... TYPES >
+class function_base_4 :
+   virtual public ::subparticle
+{
+public:
+
+   virtual void operator()(TYPES... args) = 0;
+
+};
+
+
+
+template < typename RETURN_TYPE, typename... TYPES >
+class function_composite_4 :
+   virtual public function_composite_base < function_base_4 < TYPES... > >
+{
+public:
+
+   function_composite_4(base * pbase, const class ::time & timeTimeout) :
+      function_composite_base < ::function_base_4 < TYPES... > >(pbase, timeTimeout)
+   {
+
+   }
+
+   void operator()(TYPES... args) override
+   {
+
+      m_predicate(args...);
+
+   }
+
+};
+
 
 template < typename... TYPES >
 class function < void(TYPES...) > :
-   public function_common
+   public function_common < 
+   function_base_4 < TYPES... > ,
+   function_composite_4 < TYPES... >
+   >
 {
 public:
 
 
-   class base :
-      virtual public ::subparticle
-   {
-   public:
+   using base_function = function_common <
+      function_base_4 < TYPES... >,
+      function_composite_4 < TYPES... >
+   >;
 
-      virtual void operator()(TYPES... args) = 0;
-
-   };
+   using base_implementation = base_function::base_implementation;
 
 
    template < typename PREDICATE >
    class implementation :
-      public base
+      public base_implementation
    {
    public:
 
@@ -753,8 +1003,9 @@ public:
       PREDICATE m_predicate;
 
 
-      implementation(PREDICATE implementation) :
-         m_predicate(implementation)
+      implementation(PREDICATE implementation, const class ::time & timeTimeout = 0_s) :
+         m_predicate(implementation),
+         base_implementation(timeTimeout)
       {
 
 
@@ -771,32 +1022,22 @@ public:
    };
 
    
-   pointer < base >     m_pbase;
+   //pointer < base >     m_pbase;
 
-
-   function()
-   {
-
-   }
-
-
-   function(use_t, base * p) :
-      m_pbase(p)
-   {
-
-   }
-
-
-   function(transfer_t, base * p) :
-      m_pbase(transfer_t{}, p)
-   {
-
-   }
+   function() { }
+   template < typename T2 >
+   function(transfer_t, T2 * p) :function_common(place_t{}, p) {}
+   template < typename T2 >
+   function(place_t, T2 * p) : function_common(place_t, p) {}
+   template < typename T2 >
+   function(pointer < T2 > && p) : function_common(::transfer(p)) { }
+   function(enum_as_lparam, iptr iptr) : function_common(e_as_lparam, iptr) { }
+   function(const function & function) : function_common(function) { }
+   function(function && function) : function_common(::transfer(function)) {}
 
 
    template < typename PREDICATE >
-   function(const PREDICATE & predicate) :
-      function()
+   function(const PREDICATE & predicate, const class ::time & timeTimeout = 0_s) 
    {
 
       if constexpr(::std::is_same_v<PREDICATE, nullptr_t>)
@@ -808,23 +1049,32 @@ public:
          || ::std::is_same_v<::std::decay_t <PREDICATE> , property>)
       {
 
-         m_pbase = as_subparticle(predicate);
+         this->construct(as_subparticle(predicate), timeTimeout);
 
       }
       else if constexpr(::std::is_same_v<PREDICATE, const function & >)
       {
 
-         m_pbase = predicate.m_pbase;
+         this->construct(predicate.m_pbase, timeTimeout);
 
       }
       else
       {
 
-         m_pbase.transfer(new class implementation < PREDICATE > (predicate));
+         this->m_pbase = __new implementation < PREDICATE > (predicate);
 
       }
 
    }
+
+
+   template < typename PREDICATE >
+   function(enum_timeout, const class time & timeTimeout, PREDICATE predicateParam) :
+      function(predicateParam, timeTimeout)
+   {
+
+   }
+
 
 
    ~function()
@@ -843,27 +1093,34 @@ public:
    }
 
 
-   void clear() { m_pbase.release(); }
+   //void clear() { m_pbase.release(); }
 
 
-   function & operator = (const function & function)
-   {
+   //function & operator = (const function & function)
+   //{
 
-      m_pbase = function.m_pbase;
+   //   m_pbase = function.m_pbase;
 
-      return *this;
+   //   return *this;
 
-   }
+   //}
 
 
-   explicit operator bool() const { return ::is_set(m_pbase.m_p); }
+   //explicit operator bool() const { return ::is_set(m_pbase.m_p); }
 
-   bool operator !() const { return ::is_null(m_pbase.m_p); }
+   //bool operator !() const { return ::is_null(m_pbase.m_p); }
 
-   bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
+   //bool operator == (const function & function) const { return m_pbase == function.m_pbase; }
 
-   operator ::u32hash() const { return { (::u32)(::uptr)m_pbase.m_p }; }
-   
+   //operator ::u32hash() const { return { (::u32)(::uptr)m_pbase.m_p }; }
+   //
+   //void set_run_timeout(const class time & timeTimeout)
+   //{
+
+   //   m_pbase->set_run_timeout(timeTimeout);
+   //}
+
+   //class ::time get_run_timeout() const { return ::is_set(m_pbase) ? m_pbase->get_run_timeout() : default_run_timeout(); }
 
 };
 

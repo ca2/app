@@ -608,7 +608,7 @@ namespace user
          } else
          {
 
-            pusersystem = ::place(new ::user::system());
+            pusersystem = __new ::user::system();
 
          }
 
@@ -794,7 +794,7 @@ namespace user
       } else
       {
 
-         pusersystem = ::place(new ::user::system());
+         pusersystem = __new ::user::system();
 
       }
 
@@ -982,7 +982,7 @@ namespace user
       //                      pusersystem->m_createstruct.cx(),
       //                      pusersystem->m_createstruct.cy()));
 
-      //auto psynca = ::place(new synchronization_array());
+      //auto psynca = __new synchronization_array();
 
       //::pointer<manual_reset_event>peventStartedUser;
 
@@ -1010,7 +1010,7 @@ namespace user
 
          m_puserinteraction->m_pthreadUserInteraction = m_puserthread;
 
-         //peventStartedUser = ::place(new manual_reset_event());
+         //peventStartedUser = __new manual_reset_event();
 
          //m_puserthread->m_peventStarted = peventStartedUser;
 
@@ -1257,7 +1257,7 @@ namespace user
 //      //ASSERT(puiParent != nullptr);
 //      //ASSERT((uStyle & WS_POPUP) == 0);
 //
-//      //auto pusersystem = ::place(new ::user::system());
+//      //auto pusersystem = __new ::user::system();
 //
 //      //pusersystem->m_createstruct.dwExStyle = 0;
 //
@@ -1635,7 +1635,7 @@ namespace user
 
       }
 
-      auto poutputpurpose = ::place(new ::graphics::output_purpose(pparticleGraphicalOutputPurposeOriginator, epurpose));
+      auto poutputpurpose = __new ::graphics::output_purpose(pparticleGraphicalOutputPurposeOriginator, epurpose);
 
       bool bHadGraphicalOutputPurpose = m_puserinteraction->has_graphical_output_purpose();
 
@@ -5266,7 +5266,7 @@ namespace user
       if (::is_null(m_puserinteraction->m_pinteractionScaler))
       {
 
-         m_puserinteraction->m_pinteractionScaler = ::place(new ::user::interaction_scaler());
+         m_puserinteraction->m_pinteractionScaler = __new ::user::interaction_scaler();
 
       }
 

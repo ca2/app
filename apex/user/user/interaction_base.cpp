@@ -3676,28 +3676,28 @@ namespace user
 //      case ::message::PrototypeNone:
 //      {
 //
-//         pmessage = ::place(new ::user::message());
+//         pmessage = __new ::user::message();
 //
 //      }
 //      break;
 //      case ::message::PrototypeCreate:
 //      {
-//         pmessage = ::place(new ::message::create());
+//         pmessage = __new ::message::create();
 //      }
 //      break;
 //      case ::message::PrototypeEnable:
 //      {
-//         pmessage = ::place(new ::message::enable());
+//         pmessage = __new ::message::enable();
 //      }
 //      break;
 //      case ::message::PrototypeNcActivate:
 //      {
-//         pmessage = ::place(new ::message::nc_activate());
+//         pmessage = __new ::message::nc_activate();
 //      }
 //      break;
 //      case ::message::PrototypeKey:
 //      {
-//         pmessage = ::place(new ::message::key());
+//         pmessage = __new ::message::key();
 //      }
 //      break;
 //      case ::message::PrototypeTimer:
@@ -3705,95 +3705,95 @@ namespace user
 //         
 //         //throw ::exception(::exception("do not use e_message_timer or Windows SetTimer/KillTimer"));
 //         
-//         pmessage = ::place(new ::message::timer());
+//         pmessage = __new ::message::timer();
 //
 //      }
 //      break;
 //      case ::message::PrototypeShowWindow:
 //      {
-//         pmessage = ::place(new ::message::show_window());
+//         pmessage = __new ::message::show_window();
 //      }
 //      break;
 //      case ::message::PrototypeSetCursor:
 //      {
-//         pmessage = ::place(new ::message::set_cursor());
+//         pmessage = __new ::message::set_cursor();
 //      }
 //      break;
 //      case ::message::PrototypeNcHitTest:
 //      {
-//         pmessage = ::place(new ::message::nc_hit_test());
+//         pmessage = __new ::message::nc_hit_test();
 //      }
 //      break;
 //      case ::message::PrototypeMove:
 //      {
-//         pmessage = ::place(new ::message::transfer());
+//         pmessage = __new ::message::transfer();
 //      }
 //      break;
 //      case ::message::PrototypeEraseBkgnd:
 //      {
-//         pmessage = ::place(new ::message::erase_bkgnd());
+//         pmessage = __new ::message::erase_bkgnd();
 //      }
 //      break;
 //      case ::message::PrototypeScroll:
 //      {
-//         pmessage = ::place(new ::message::scroll());
+//         pmessage = __new ::message::scroll();
 //      }
 //      break;
 //      case ::message::PrototypeSetFocus:
 //      {
-//         pmessage = ::place(new ::message::set_keyboard_focus());
+//         pmessage = __new ::message::set_keyboard_focus();
 //      }
 //      break;
 //      case ::message::PrototypeKillFocus:
 //      {
-//         pmessage = ::place(new ::message::kill_keyboard_focus());
+//         pmessage = __new ::message::kill_keyboard_focus();
 //      }
 //      break;
 //#if !defined(UNIVERSAL_WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID)
 //      case ::message::PrototypeWindowPos:
 //      {
-//         pmessage = ::place(new ::message::window_pos());
+//         pmessage = __new ::message::window_pos();
 //      }
 //      break;
 //      case ::message::PrototypeNcCalcSize:
 //      {
-//         pmessage = ::place(new ::message::nc_calc_size());
+//         pmessage = __new ::message::nc_calc_size();
 //      }
 //      break;
 //#endif
 //      case ::message::PrototypeMouse:
 //      {
-//         pmessage = ::place(new ::message::mouse());
+//         pmessage = __new ::message::mouse();
 //      }
 //      break;
 //      case ::message::PrototypeMouseWheel:
 //      {
-//         pmessage = ::place(new ::message::mouse_wheel());
+//         pmessage = __new ::message::mouse_wheel();
 //      }
 //      break;
 //      case ::message::PrototypeSize:
 //      {
-//         pmessage = ::place(new ::message::size());
+//         pmessage = __new ::message::size();
 //      }
 //      break;
 //      case ::message::PrototypeActivate:
 //      {
-//         pmessage = ::place(new ::message::activate());
+//         pmessage = __new ::message::activate();
 //      }
 //      break;
 //      case ::message::PrototypeMouseActivate:
 //      {
-//         pmessage = ::place(new ::message::mouse_activate());
+//         pmessage = __new ::message::mouse_activate();
 //      }
 //      break;
 //      case ::message::PrototypeSimpleCommand:
 //      {
-//         pmessage = ::place(new ::message::simple_command());
+//         pmessage = __new ::message::simple_command();
 //      }
 //      break;
 //      default:
 //      {
-//         pmessage = ::place(new ::message::message());
+//         pmessage = __new ::message::message();
 //      }
 //      break;
 //      }
@@ -4415,12 +4415,12 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_base::get_parent_window()
-   {
+   //::user::interaction * interaction_base::get_parent_window()
+   //{
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    ::user::element * interaction_base::get_parent_primitive()

@@ -197,7 +197,7 @@ namespace html
          if (m_fonta(i) == font)
             return i;
       }
-      auto pfont = ::place(new class font (font));
+      auto pfont = __new class font (font);
       pfont->create(this);
       m_fonta.add(pfont);
       pfont->m_iIndex = (i32)m_fonta.get_upper_bound();
@@ -295,7 +295,7 @@ namespace html
 
       }
 
-      m_pelement = ::place(new ::html::element ());
+      m_pelement = __new ::html::element ();
 
       m_pelement->initialize_html_elemental(this);
 

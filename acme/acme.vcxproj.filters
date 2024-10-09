@@ -445,6 +445,18 @@
     <Filter Include="Header Files\user\micro">
       <UniqueIdentifier>{41aa3745-1aab-49c1-8f56-91ab67e63794}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\console">
+      <UniqueIdentifier>{1acd2dad-1978-4e9c-b630-f78d9363f69c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\console\dialog">
+      <UniqueIdentifier>{ae17f33a-850b-471a-bcd2-e0b0f82f009a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\console">
+      <UniqueIdentifier>{61157eb3-bc06-44ed-8fbd-02a8625ffa58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\console\dialog">
+      <UniqueIdentifier>{77eb1446-1900-4a2c-a8bb-ddf0752d6d6a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -1449,7 +1461,7 @@
     <ClInclude Include="user\user\element.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\conversation.h">
+    <ClInclude Include="user\user\aaa_conversation.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\check_property.h">
@@ -1695,9 +1707,6 @@
     <ClInclude Include="platform\profiler.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\sequence1.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\serial.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -1787,9 +1796,6 @@
     </ClInclude>
     <ClInclude Include="prototype\logic\boolean.h">
       <Filter>Header Files\prototype\logic</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\sequencer.h">
-      <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\_.h">
       <Filter>Header Files\filesystem</Filter>
@@ -2991,7 +2997,7 @@
     <ClInclude Include="platform\aaapredicate_function_pointer.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\conversation_message.h">
+    <ClInclude Include="platform\message_box.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\locale.h">
@@ -3891,9 +3897,6 @@
     <ClInclude Include="user\user\interaction.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\user.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\micro\_.h">
       <Filter>Header Files\user\micro</Filter>
     </ClInclude>
@@ -3956,6 +3959,30 @@
     </ClInclude>
     <ClInclude Include="user\micro\user.h">
       <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="handler\aaa_step.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="handler\sequencer.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="handler\sequencer_step.h">
+      <Filter>Header Files\handler</Filter>
+    </ClInclude>
+    <ClInclude Include="user\micro\dialog.h">
+      <Filter>Header Files\user\micro</Filter>
+    </ClInclude>
+    <ClInclude Include="console\dialog.h">
+      <Filter>Header Files\console</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\prototype\realizable.h">
+      <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\prototype\post_procedure_continuation.h">
+      <Filter>Header Files\prototype\prototype</Filter>
+    </ClInclude>
+    <ClInclude Include="prototype\collection\procedure_array.h">
+      <Filter>Header Files\prototype\collection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -4517,9 +4544,6 @@
     <ClCompile Include="filesystem\file\streamable_composite.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="platform\sequence.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="exception\interface_only.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
@@ -4703,7 +4727,7 @@
     <ClCompile Include="prototype\string\command_line.cpp">
       <Filter>Source Files\prototype\string</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\conversation.cpp">
+    <ClCompile Include="user\user\aaa_conversation.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="prototype\media_library\item.cpp">
@@ -4724,7 +4748,7 @@
     <ClCompile Include="operating_system\console_client.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="platform\conversation_message.cpp">
+    <ClCompile Include="platform\message_box.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\error_code.cpp">
@@ -5498,9 +5522,6 @@
     <ClCompile Include="user\user\interaction.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\user.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\micro\_user.cpp">
       <Filter>Source Files\user\micro</Filter>
     </ClCompile>
@@ -5560,6 +5581,24 @@
     </ClCompile>
     <ClCompile Include="user\micro\user.cpp">
       <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="handler\sequence.cpp">
+      <Filter>Source Files\handler</Filter>
+    </ClCompile>
+    <ClCompile Include="user\micro\dialog.cpp">
+      <Filter>Source Files\user\micro</Filter>
+    </ClCompile>
+    <ClCompile Include="console\dialog\message_box.cpp">
+      <Filter>Source Files\console\dialog</Filter>
+    </ClCompile>
+    <ClCompile Include="console\dialog.cpp">
+      <Filter>Source Files\console</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\prototype\post_procedure_continuation.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\collection\procedure_array.cpp">
+      <Filter>Source Files\prototype\collection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

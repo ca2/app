@@ -97,7 +97,9 @@ namespace app_just_apex_message_box
       {
 
 
-         auto result = message_box_synchronous(this, "Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
+         auto result = auto pmessagebox = __initialize_new ::message_box(this, "Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
+
+send(pmessagebox);
 
 
          if (result == e_dialog_result_cancel)
@@ -111,13 +113,17 @@ namespace app_just_apex_message_box
          else  if (result == e_dialog_result_no)
          {
 
-            message_box_synchronous(this, "No!", nullptr, e_message_box_ok);
+            auto pmessagebox = __initialize_new ::message_box(this, "No!", nullptr, e_message_box_ok);
+
+send(pmessagebox);
 
          }
          else  if (result == e_dialog_result_yes)
          {
 
-            message_box_synchronous(this, "Yes!!", nullptr, e_message_box_ok);
+            auto pmessagebox = __initialize_new ::message_box(this, "Yes!!", nullptr, e_message_box_ok);
+
+send(pmessagebox);
 
             _001TryCloseApplication();
 

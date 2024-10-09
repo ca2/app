@@ -192,7 +192,7 @@ namespace account
 
                   synchronous_lock slInteractive(m_pcredentials->synchronization());
 
-                  pcredentials = ::place(new ::account::credentials(*m_pcredentials));
+                  pcredentials = __new ::account::credentials(*m_pcredentials);
 
                }
 
@@ -382,7 +382,7 @@ namespace account
 
 #endif
 
-      // auto pusersystem = ::place(new ::user::system(rectangleFontopus));
+      // auto pusersystem = __new ::user::system(rectangleFontopus);
       create_child(puiParent);
       //if(!create_child(puiParent))
       //{

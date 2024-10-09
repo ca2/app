@@ -24,7 +24,7 @@
 #include "acme/prototype/text/data.h"
 #include "acme/prototype/text/text.h"
 #include "acme/prototype/text/translator.h"
-
+#include "acme/user/micro/user.h"
 
 namespace acme
 {
@@ -419,6 +419,14 @@ namespace acme
    }
 
 
+   ::pointer < ::reified < ::message_box > > context::realize(::realizable < ::message_box > * p)
+   {
+
+      return system()->micro_user()->realize(p);
+
+   }
+
+
    ::dir_context* context::dir()
    {
       if (!m_pdir)
@@ -705,14 +713,14 @@ namespace acme
 
       ::collection::count cScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 
-      auto pcounter = ::place(new ::parallelization::counter(cScan, procedureCompletion));
+      auto pcounter = __new ::parallelization::counter(cScan, procedureCompletion);
 
       auto ptask = ::get_task();
 
       for (::collection::index iOrder = 0; iOrder < cScan; iOrder++)
       {
 
-         auto ppredtask = ::place(new forking_count_task(this, iOrder, iOrder + iStart, cScan, iCount, function));
+         auto ppredtask = __new forking_count_task(this, iOrder, iOrder + iStart, cScan, iCount, function);
 
          //if (::is_set(ptask))
          //{

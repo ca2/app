@@ -5,7 +5,7 @@
 #include "framework.h"
 #include "display.h"
 #include "window.h"
-#include "acme/nano/user/window.h"
+#include "acme/user/micro/window.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
@@ -396,7 +396,7 @@ namespace xcb
 
                pparticle->information() << "xcb nano display::get (2)";
 
-               auto p = ::place(new display());
+               auto p = __new display();
 
                p->initialize(pparticle);
 

@@ -148,7 +148,7 @@ namespace user
       };
 
 
-      ::pointer < ::windowing::window >         m_pwindow;
+      //::pointer < ::windowing::window >         m_pwindow;
 
 
       bool m_bFocus : 1;
@@ -755,6 +755,7 @@ namespace user
 
 
       virtual ::pointer < ::user::thread > create_user_thread();
+      virtual ::pointer < ::user::graphics_thread > create_user_graphics_thread();
 //      virtual void create_graphics_thread();
 
 
@@ -821,7 +822,7 @@ namespace user
       //void window_move(i32 x, i32 y) override;
 
 
-      //auto fps_interest() { return ::place(new ::fps_interest(this)); }
+      //auto fps_interest() { return __new ::fps_interest(this); }
 
       virtual bool should_save_window_rectangle();
       
@@ -839,7 +840,7 @@ namespace user
       virtual bool layout_layout(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void display_previous();
+      virtual void display_previous(bool bScreenVisible = false);
       virtual void display_normal(::e_display edisplay, ::e_activation eactivation);
       virtual void display_docked(::e_display edisplay, ::e_activation eactivation);
       virtual void display_zoomed();
@@ -1853,7 +1854,7 @@ namespace user
 
       void on_add_owned(::user::interaction_base * pprimitive) override;
 
-      ::user::interaction * get_parent_window() override;
+      //::user::interaction * get_parent_window() override;
 
       ::user::interaction * get_first_child_window() override;
 
@@ -2186,6 +2187,7 @@ namespace user
       virtual ::rectangle_i32 get_window_broad_stored_rectangle();
       virtual ::rectangle_i32 get_window_compact_stored_rectangle();
 
+      virtual void set_window_normal_stored_rectangle(const ::rectangle_i32 & rectangle);
 
       virtual void UpDownTargetAttach(::user::interaction* pupdown);
       virtual void UpDownTargetDetach(::user::interaction* pupdown);

@@ -13,14 +13,14 @@
 #include "user.h"
 #include "acme/nano/nano.h"
 #include "acme/handler/topic.h"
-#include "acme/nano/user/font.h"
+#include "acme/user/micro/font.h"
 #include "acme/constant/id.h"
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
-#include "acme/platform/sequencer.h"
+//#include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
 #include "acme/user/user/drag.h"
 #include "acme/user/user/mouse.h"
@@ -459,7 +459,7 @@ void interchange::add_child(::micro::child * pchild)
 void interchange::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
 {
    
-   auto pbutton = ::place(new ::micro::button());
+   auto pbutton = __new ::micro::button();
    
    pbutton->m_strText = scopedstrText;
    pbutton->m_atom = edialogresult;
@@ -838,7 +838,7 @@ void interchange::_run_modal_loop()
 
        message_loop();
 
-       auto pmanualresetevent = ::place(new manual_reset_event());
+       auto pmanualresetevent = __new manual_reset_event();
 
        m_psequencer->then([ pmanualresetevent](auto psequencer)
        {

@@ -48,7 +48,7 @@ message_queue * task_message_queue::get_message_queue(itask_t itask, bool bCreat
       if (bCreate)
       {
 
-         pmessagequeue = ::place(new message_queue());
+         pmessagequeue = __new message_queue();
 
          pmessagequeue->m_itask = itask;
 
@@ -107,7 +107,7 @@ namespace acme
 
       //g_pmutexMq = new mutex();
 
-      m_ptaskmessagequeue = ::place(new ::task_message_queue());
+      m_ptaskmessagequeue = __new ::task_message_queue();
 
    }
 

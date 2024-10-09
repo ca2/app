@@ -16,7 +16,7 @@
 //
 //   //auto puser = psession->m_puser;
 //
-//   //auto pwindowing = puser->m_pwindowing;
+//   //auto pwindowing = system()->windowing();
 //
 //   //auto pwindow = pwindowing->window(oswindow);
 //
@@ -60,7 +60,7 @@ CLASS_DECL_AURA void mq_erase_window_from_all_queues(::windowing::window * pwind
 
    //auto puser = psession->m_puser;
 
-   //auto pwindowing = puser->m_pwindowing;
+   //auto pwindowing = system()->windowing();
 
    //auto pwindow = pwindowing->window(oswindow);
 

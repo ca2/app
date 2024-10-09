@@ -14,6 +14,7 @@
 
 #include "acme/prototype/prototype/e_flag.h"
 #include "acme/platform/allocator.h"
+#include "acme/prototype/prototype/post_procedure_continuation.h"
 
 
 namespace platform
@@ -64,10 +65,11 @@ using hsynchronization = void *;
 
 #include "particle_flags.h"
 
+#include "acme/handler/sequencer_step.h"
 #include "acme/platform/trace_statement.h"
 
 
-using particle_pointer = ::pointer < ::particle >;
+using particle_pointer = ::pointer <  ::particle  >;
 
 
 
@@ -88,14 +90,15 @@ struct disable_referencing_debugging_t {};
 
 // ThomasBorregaardSorensen!! Like handlers : now particle with handle::handlers*
 class CLASS_DECL_ACME particle :
-   virtual public subparticle,
+   virtual public sequencer_step::base,
+   virtual public signal_handler::base,
    virtual public PARTICLE_FLAGS
 {
 public:
 
 
    mutable ::acme::context *           m_pcontext;
-   mutable ::pointer < ::particle >    m_pparticleSynchronization;
+   mutable ::particle_pointer    m_pparticleSynchronization;
 
 //#if REFERENCING_DEBUGGING
    particle() : m_pcontext(nullptr) {}
@@ -130,6 +133,7 @@ public:
 
    inline ::particle * trace_this() const { return (::particle *) this; }
 
+   virtual ::particle * get_context_particle();
 
    inline ::particle * synchronization() const { return ::is_set(this) ? m_pparticleSynchronization : nullptr; }
    void set_synchronization(::particle * pparticleSynchronization);
@@ -142,9 +146,15 @@ public:
 
 #endif
 
-   //void operator()(::topic* ptopic, ::context* pcontext) override;
+   void operator()(::topic* ptopic, ::context* pcontext) override;
+   void operator()(::sequencer & sequencer) override;
 
    //virtual void destroy();
+
+   virtual void aggregate(::sequencer & psequence);
+   virtual void complete_step(::sequencer & sequence);
+   virtual ::sequencer get_current_sequencer();
+   virtual void set_current_sequencer(const ::sequencer & sequence);
 
    //virtual void initialize(::particle * pparticle);
    virtual void on_initialize_particle();
@@ -459,6 +469,8 @@ public:
    virtual void handle_message(::message::message * pmessage);
    virtual void handle_item(::item * pitem);
 
+
+
    // ThomasBorregaardSorensen!! Like handlers
    virtual void call_handle(::topic* ptopic, ::context* pcontext);
    virtual void call_handle_message(::message::message* pmessage);
@@ -497,11 +509,6 @@ public:
 //   virtual ::e_status wait(const class time & timeWait);
 
 
-   [[nodiscard]] virtual class ::time timeout() const;
-
-
-   virtual void set_timeout(const class time & time);
-
 
    virtual ::particle * get_taskpool_container();
 
@@ -517,14 +524,13 @@ public:
    [[nodiscard]] virtual bool should_run_async() const;
 
 
-   pointer < ::sequencer < ::conversation > > message_box(const string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box > message_box(const string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box > exception_message_box(const ::exception& exception, const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box > message_console(const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   //virtual ::pointer < ::message_box > exception_message_console(const ::exception& exception, const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-   pointer < ::sequencer < ::conversation > > exception_message_box(const ::exception& exception, const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-
-   pointer < ::sequencer < ::conversation > > message_console(const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-
-   pointer < ::sequencer < ::conversation > > exception_message_console(const ::exception& exception, const ::string& strMessage = nullptr, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
-
+   //virtual void display(::message_box * pmessagebox);
+   //virtual void display_exception(const ::exception& exception, ::message_box * pmessagebox);
 
    virtual ::file_pointer get_file(const ::payload& payloadFile, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr);
    //inline ::file_pointer get_reader(const ::payload& payloadFile, ::file::e_open eopen = ::file::e_open_binary);
@@ -643,8 +649,63 @@ public:
    virtual void user_send(const ::procedure & procedure);
    virtual void user_post(const ::procedure & procedure);
 
+   virtual void user_send();
+   virtual void user_post();
+
    virtual void main_send(const ::procedure & procedure);
    virtual void main_post(const ::procedure & procedure);
+
+   virtual void main_send();
+   virtual void main_post();
+
+   virtual class ::time get_default_run_timeout();
+
+   inline void send(const ::procedure & procedure)
+   {
+      _send(procedure, get_default_run_timeout());
+   }
+   inline void send(const class ::time & timeTimeout, const ::procedure & procedure)
+   {
+      _send(procedure, timeTimeout);
+   }
+   virtual void _post(const ::procedure & procedure);
+   virtual void _send(const ::procedure & procedure, const class ::time & timeTimeout);
+
+   inline void send(const class ::time & timeTimeout) { _send(this, timeTimeout); }
+   inline void send() { send(get_default_run_timeout()); }
+   inline post_procedure_continuation post(const ::procedure & procedure);
+   inline post_procedure_continuation post();
+
+
+   //// this is object to be realized
+   //virtual ::particle_pointer realize(::particle * pparticleReificator);
+
+
+   //// this is reificator/director
+   //virtual ::particle_pointer realize_particle(::particle * pparticleToRealize);
+
+   //virtual void realize(::particle * pparticleAgent);
+   //virtual void display_sync(::particle_pointer p);
+   //virtual void display_async(::particle_pointer p);
+
+   //virtual void _user_send_procedure(const ::procedure & procedure);
+   //virtual void _user_post_procedure(const ::procedure & procedure);
+
+   //virtual void _user_send(::subparticle * psubparticle);
+   //virtual void _user_post(::subparticle * psubparticle);
+
+   //virtual void _main_send_procedure(const ::procedure & procedure);
+   //virtual void _main_post_procedure(const ::procedure & procedure);
+
+   //virtual void _main_send(::subparticle * psubparticle);
+   //virtual void _main_post(::subparticle * psubparticle);
+
+   //virtual void _post_procedure(const ::procedure & procedure);
+   //virtual void _send_procedure(const ::procedure & procedure);
+
+   //virtual void _post(::subparticle * psubparticle);
+   //virtual void _send(::subparticle * psubparticle);
+
 
    template < typename BASE_TYPE >
    inline bool __call__defer_construct(::pointer<BASE_TYPE>& ptype, ::factory::factory * pfactory = nullptr);

@@ -472,7 +472,7 @@ namespace filemanager
       //            if (ptreeitemChild == nullptr)
       //            {
 
-      //               pitemChild = ::place(new ::userfs::item(this));
+      //               pitemChild = __new ::userfs::item(this);
 
       //               pitemChild->set_user_path(pathAscendant);
 
@@ -543,7 +543,7 @@ namespace filemanager
       //      if (ptreeitemChild.is_null())
       //      {
 
-      //         ptreeitemChild = ::place(new ::data::tree_item());
+      //         ptreeitemChild = __new ::data::tree_item();
 
       //         ptreeitemChild->m_ptree = this;
 
@@ -568,7 +568,7 @@ namespace filemanager
       //      if (!pitemChild)
       //      {
 
-      //         pitemChild = ::place(new ::userfs::item(this));
+      //         pitemChild = __new ::userfs::item(this);
 
       //         ptreeitemChild->m_pdataitem = pitemChild;
 
@@ -626,7 +626,7 @@ namespace filemanager
       //      if (ptreeitemChild.is_null())
       //      {
 
-      //         ptreeitemChild = ::place(new ::data::tree_item());
+      //         ptreeitemChild = __new ::data::tree_item();
 
       //         ptreeitemChild->m_ptree = this;
 
@@ -649,7 +649,7 @@ namespace filemanager
       //      if (!pitemChild)
       //      {
 
-      //         pitemChild = ::place(new ::userfs::item(this));
+      //         pitemChild = __new ::userfs::item(this);
 
       //         ptreeitemChild->m_pdataitem = pitemChild;
 
@@ -874,7 +874,7 @@ _001SelectItem(pchild);
          if (!pchild)
          {
 
-            auto pitemNew = ::place(new ::userfs::item(this));
+            auto pitemNew = __new ::userfs::item(this);
 
             pitemNew->set_user_path(path);
 
@@ -1006,7 +1006,7 @@ _001SelectItem(pchild);
    //            if (ptreeitemChild == nullptr)
    //            {
 
-   //               pitemChild = ::place(new ::userfs::item(this));
+   //               pitemChild = __new ::userfs::item(this);
 
    //               pitemChild->set_user_path(pathAscendant);
 
@@ -1077,7 +1077,7 @@ _001SelectItem(pchild);
    //      if (ptreeitemChild.is_null())
    //      {
 
-   //         ptreeitemChild = ::place(new ::data::tree_item());
+   //         ptreeitemChild = __new ::data::tree_item();
 
    //         ptreeitemChild->m_ptree = this;
 
@@ -1102,7 +1102,7 @@ _001SelectItem(pchild);
    //      if (!pitemChild)
    //      {
 
-   //         pitemChild = ::place(new ::userfs::item(this));
+   //         pitemChild = __new ::userfs::item(this);
 
    //         ptreeitemChild->m_pdataitem = pitemChild;
 
@@ -1335,7 +1335,7 @@ _001SelectItem(pchild);
 
       auto puserfsitem = pitem->m_pdataitem.cast < ::userfs::item > ();
 
-      auto pfileitem = ::place(new ::file::item(*puserfsitem));
+      auto pfileitem = __new ::file::item(*puserfsitem);
 
       filemanager_document()->browse(pfileitem, context);
 

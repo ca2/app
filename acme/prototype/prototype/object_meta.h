@@ -3,6 +3,7 @@
 
 
 #include "acme/prototype/collection/map.h"
+#include "acme/prototype/collection/procedure_array.h"
 
 
 class CLASS_DECL_ACME object_meta

@@ -9,24 +9,26 @@ namespace micro
 
 
 
-class CLASS_DECL_ACME console :
-virtual public ::particle
-{
-  public:
+   class CLASS_DECL_ACME console :
+      virtual public ::particle
+   {
+   public:
 
-    map < char, ::collection::index >         m_mapCharIndex;
-    ::array < char >              m_cha1;
-    ::string_array                m_stra;
-::pointer < ::micro::interchange > m_pinterchange;
-
-   console();
-   ~console() override;
-
-   virtual void create_console(::micro::interchange * pinterchange);
-   virtual void _stdout_console();
+      map < char, ::collection::index >         m_mapCharIndex;
+      ::array < char >                          m_cha1;
+      ::string_array                            m_stra;
+      ::pointer < ::micro::dialog >             m_pdialog;
 
 
-};
+      console();
+      ~console() override;
+
+
+      virtual void create_console(::micro::dialog * pdialog);
+      virtual void _stdout_console();
+
+
+   };
 
 
 

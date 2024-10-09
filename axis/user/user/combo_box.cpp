@@ -63,7 +63,7 @@ namespace user
    }
 
 
-   ::pointer < ::particle > combo_box::clone()
+   ::particle_pointer combo_box::clone()
    {
 
       auto pcomboboxClone = m_pcontext->__create_new < combo_box >();
@@ -546,7 +546,7 @@ namespace user
          if (rectangleElement.contains(point))
          {
 
-            auto pitem = ::place(new ::item(e_element_drop_down));
+            auto pitem = __new ::item(e_element_drop_down);
 
             auto puseritem = user_item(pitem);
             
@@ -563,7 +563,7 @@ namespace user
       if (rectangleX.contains(point))
       {
 
-         auto pitem = ::place(new ::item(e_element_text));
+         auto pitem = __new ::item(e_element_text);
 
          auto puseritem = user_item(pitem);
             
@@ -573,7 +573,7 @@ namespace user
 
       }
       
-      auto pitemNone = ::place(new ::item(e_element_none));
+      auto pitemNone = __new ::item(e_element_none);
       
       return pitemNone;
 
@@ -1034,7 +1034,7 @@ namespace user
          if (itemCurrent >= 0)
          {
 
-            set_current_item(::place(new ::item(e_element_item, itemCurrent)), actioncontext);
+            set_current_item(__new ::item(e_element_item, itemCurrent)), actioncontext;
 
          }
          else if (m_bEdit)

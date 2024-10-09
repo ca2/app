@@ -432,52 +432,54 @@ CLASS_DECL_ACME const char* status_short_description(const ::e_status & estatus)
 //}
 
 
-CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails)
-{
+//CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails)
+//{
+//
+//
+//   string strMessage;
+//
+//   strMessage += "Failed to initialize application\n";
+//   strMessage += "\n";
+//   strMessage += exception.m_strMessage + "\n";
+//   strMessage += "(" + as_string(exception.m_estatus) + ")";
+//
+//   string strTitle;
+//
+//   strTitle = "Exception during initialization";
+//
+//   string strDetails;
+//
+//   auto pacmenode = pparticle->node();
+//
+//   auto processid = pacmenode->current_process_identifier();
+//
+//   auto strProcessId = ::as_string(processid);
+//
+//   strDetails += strMessage + "\n";
+//   strDetails += exception.m_strDetails + "\n\n";
+//   strDetails += "\n";
+//   strDetails += "PID: " + strProcessId + ::string("\n");
+//   //strDetails += "Working Directory: " + string(GetCurrentDirectory()) + "\n\n";
+//   
+//   if (strMoreDetails.has_char())
+//   {
+//
+//      strDetails += strMoreDetails + "\n";
+//
+//   }
+//
+//   if (exception.m_strCallStackTrace.has_char())
+//   {
+//
+//      strDetails += "\n\n" + string(exception.m_strCallStackTrace);
+//
+//   }
+//
+//   auto pmessagebox = __initialize_new ::message_box(pparticle, strMessage, strTitle, e_message_box_ok | e_message_box_icon_exclamation, strDetails);
 
-
-   string strMessage;
-
-   strMessage += "Failed to initialize application\n";
-   strMessage += "\n";
-   strMessage += exception.m_strMessage + "\n";
-   strMessage += "(" + as_string(exception.m_estatus) + ")";
-
-   string strTitle;
-
-   strTitle = "Exception during initialization";
-
-   string strDetails;
-
-   auto pacmenode = pparticle->node();
-
-   auto processid = pacmenode->current_process_identifier();
-
-   auto strProcessId = ::as_string(processid);
-
-   strDetails += strMessage + "\n";
-   strDetails += exception.m_strDetails + "\n\n";
-   strDetails += "\n";
-   strDetails += "PID: " + strProcessId + ::string("\n");
-   //strDetails += "Working Directory: " + string(GetCurrentDirectory()) + "\n\n";
-   
-   if (strMoreDetails.has_char())
-   {
-
-      strDetails += strMoreDetails + "\n";
-
-   }
-
-   if (exception.m_strCallStackTrace.has_char())
-   {
-
-      strDetails += "\n\n" + string(exception.m_strCallStackTrace);
-
-   }
-
-   message_box_synchronous(pparticle, strMessage, strTitle, e_message_box_ok | e_message_box_icon_exclamation, strDetails);
-
-}
+//send(pmessagebox);
+//
+//}
 
 
 void throw_exception(enum_status estatus)

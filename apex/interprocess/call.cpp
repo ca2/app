@@ -119,7 +119,7 @@ namespace interprocess
    ::pointer<synchronization_array>call::synca()
    {
 
-      auto psynca = ::place(new synchronization_array());
+      auto psynca = __new synchronization_array();
 
       for (auto & ptask : this->m_mapTask.payloads())
       {

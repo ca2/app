@@ -1531,7 +1531,7 @@ class ::payload & payload::operator = (const ::property & property)
 //
 //      set_type(e_type_property, false);
 //
-//      m_pproperty = ::place(new ::property_particle ());
+//      m_pproperty = __new ::property_particle ();
 //
 //      m_pproperty->object() = *pproperty;
 //
@@ -3808,7 +3808,7 @@ unsigned long payload::get_unsigned_long(unsigned long ulDefault) const
 
    }
 
-   return { use_t{}, m_p };
+   return m_p;
 
 }
 

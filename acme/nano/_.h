@@ -20,6 +20,6 @@
 #include "acme/nano/idn/_.h"
 #include "acme/nano/shell/_.h"
 #include "acme/nano/speech/_.h"
-//#include "acme/nano/user/_.h"
+//#include "acme/user/micro/_.h"
 
 

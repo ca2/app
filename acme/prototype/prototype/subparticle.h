@@ -53,8 +53,10 @@ public:
    virtual void call_run();
 
 
+
    virtual void run();
 
+   virtual class ::time get_run_timeout();
 
    virtual bool subparticle_step();
 
@@ -171,6 +173,13 @@ public:
 
    virtual void write_to_stream(::binary_stream & stream);
    virtual void read_from_stream(::binary_stream & stream);
+
+   [[nodiscard]] virtual class ::time timeout() const;
+
+
+   virtual void set_timeout(const class time & time);
+
+
 
 };
 

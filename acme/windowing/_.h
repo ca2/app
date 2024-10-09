@@ -96,6 +96,9 @@ namespace windowing
    class window_base;
 
 
+   class windowing;
+
+
    CLASS_DECL_ACME::enum_display_type get_display_type();
 
 

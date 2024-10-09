@@ -35,10 +35,10 @@ namespace message
 
 
    template < typename PREDICATE >
-   ::pointer < ::particle > __handler(PREDICATE predicate) 
+   ::particle_pointer __handler(PREDICATE predicate) 
    {
 
-      return ::place(new predicate_handler<PREDICATE> (predicate));
+      return __new predicate_handler<PREDICATE> (predicate);
 
    }
 

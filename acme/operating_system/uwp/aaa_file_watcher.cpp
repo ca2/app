@@ -283,7 +283,7 @@ namespace file
 
    //   watchref->m_bRecursive     = bRecursive;
 
-   //   auto pwatch = ::place(new os_watch());
+   //   auto pwatch = __new os_watch();
 
    //   pwatch->m_atom               = watchid;
 

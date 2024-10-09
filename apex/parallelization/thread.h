@@ -72,7 +72,6 @@ public:
    ::pointer<manual_reset_event>                      m_peventStarted;
    ::pointer<manual_reset_event>                      m_peventSync;
    ::pointer<manual_reset_event>                      m_peventReady;
-   ::pointer<manual_reset_event>                      m_peventFinished;
 
    enum_id                                            m_atomContextReference;
 
@@ -421,6 +420,8 @@ public:
 
    ::pointer<::task>branch_synchronously(const create_task_attributes & createtaskattributes = nullptr) override;
 
+
+   virtual void stop_task() override;
 
    virtual void inline_init();
    virtual void inline_term();

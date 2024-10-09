@@ -142,7 +142,7 @@ CLASS_DECL_ACME locale_t get_c_locale();
 #include "file.h"
 
 
-CLASS_DECL_ACME enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::enum_message_box& emessagebox);
+//CLASS_DECL_ACME enum_dialog_result message_box_for_console(const ::scoped_string & scopedstr, const ::scoped_string & scopedstrTitle, const ::enum_message_box& emessagebox);
 
 //CLASS_DECL_ACME void is_directory(const ::file::path & path);
 
@@ -169,7 +169,9 @@ enum enum_command_system
 
 CLASS_DECL_ACME void command_system(string & strOutput, string & strError, int & iExitCode, const ::scoped_string & scopedstr, enum_command_system ecommandsystem = e_command_system_none, const ::duration & durationTimeout = ::duration::infinite());
 
-CLASS_DECL_ACME ::atom message_box_synchronous(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, enum_message_box emessagebox = e_message_box_ok);
+CLASS_DECL_ACME ::atom auto pmessagebox = __initialize_new ::message_box(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, enum_message_box emessagebox = e_message_box_ok);
+
+send(pmessagebox);
 
 #include "_c.h"
 

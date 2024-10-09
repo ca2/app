@@ -45,12 +45,15 @@ namespace micro
 
    class main_window;
 
+   class dialog;
    //class window_implementation;
 
 
    //class icon;
    class button;
    class still;
+
+
 
    //class display;
 

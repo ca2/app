@@ -5,7 +5,8 @@
 #pragma once
 
 
-#include "acme/user/micro/main_window.h"
+#include "acme/platform/message_box.h"
+#include "acme/user/micro/dialog.h"
 
 
 namespace micro
@@ -16,15 +17,17 @@ namespace micro
 
 
       class message_box :
-         virtual public ::micro::main_window
+         virtual public ::micro::dialog,
+         virtual public ::reified < ::message_box >
       {
       public:
 
 
-         string                                       m_strLabelDetails;
-         ::pointer<::micro::still>               m_pstillDetails;
-         //::pointer<::micro::still>             m_pstillIcon;
-         ::pointer<::nano::graphics::icon>                m_picon;
+         string                                    m_strLabelDetails;
+         ::pointer<::micro::still>                 m_pstillDetails;
+         //::pointer<::micro::still>               m_pstillIcon;
+         ::pointer<::nano::graphics::icon>         m_picon;
+         ::pointer < ::message_box >               m_pmessagebox;
 
 
          message_box();
@@ -33,14 +36,27 @@ namespace micro
 
          void create_window() override;
 
+         //virtual void set(::message_box * pmessagebox);
+
+         void realize(::realizable < ::message_box > * p) override;
+
+         //virtual void create_message_box(conversation * pconversation);
+
+         
+         ::string get_title() override;
+
 
          //::e_message_box get_conversation_flags() override;
          virtual void set_icon(::nano::graphics::icon * picon);
 
          virtual void calculate_size();
 
+         void set_dialog_result(const ::payload & payloadResult);
 
-         void initialize_conversation(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
+         ::payload get_dialog_result() override;
+
+
+         //void initialize_conversation(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr) override;
 
          // void initialize_message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails) override;
 

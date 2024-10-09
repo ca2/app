@@ -462,7 +462,9 @@ namespace aura
       //// os_* functions generally
       //// reserves a lot of surprises from each
       //// operating system specific behavior
-      //virtual void message_box_synchronous(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual void auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+
+send(pmessagebox);
 
 
       //virtual void ui_message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());

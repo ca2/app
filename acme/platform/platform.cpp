@@ -13,7 +13,7 @@
 ////#include "acme/exception/exception.h"
 #include "acme/platform/context.h"
 #include "acme/platform/library.h"
-#include "acme/platform/sequencer.h"
+//#include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/task.h"
@@ -771,7 +771,7 @@ g_bWindowingOutputDebugString = true;
 
       //__raw_construct_new(m_pcomponentfactorymap);
 
-      //m_pfactory = ::place(new ::factory::factory());
+      //m_pfactory = __new ::factory::factory();
 
       m_pfactory->InitHashTable(16189);
 
@@ -1218,10 +1218,8 @@ g_bWindowingOutputDebugString = true;
 
          string strDetails = exception.get_consolidated_details(this);
 
-         auto psequencer = message_box(strMessage, "Library Loading Failure", e_message_box_ok | e_message_box_icon_warning,
-            strDetails);
-
-         psequencer->do_asynchronously();
+         post(__initialize_new ::message_box(strMessage, "Library Loading Failure", e_message_box_ok | e_message_box_icon_warning,
+            strDetails));
 
          throw exception;
 
@@ -1316,10 +1314,10 @@ g_bWindowingOutputDebugString = true;
       catch (library_not_loaded& librarynotloaded)
       {
 
-         auto psequencer = message_box(librarynotloaded.get_message(),
+         auto pmessagebox = __initialize_new ::message_box(librarynotloaded.get_message(),
             "Library not loaded", e_message_box_icon_error, librarynotloaded.m_strDetails);
 
-         psequencer->do_asynchronously();
+         post(pmessagebox);
             
 
       }

@@ -5,7 +5,7 @@
 //#include "container.h"
 //#include "acme/user/user/check.h"
 //#include "acme/user/user/text.h"
-#include "acme/nano/user/interaction.h"
+#include "acme/user/user/interaction.h"
 #include "apex/handler/manager.h"
 #include "apex/message/channel.h"
 
@@ -589,7 +589,7 @@ namespace user
       //pointer < T > get_typed_parent() const;
 
       
-      ::user::interaction * get_parent_window() override;
+      //::user::interaction * get_parent_window() override;
 
       ::user::element * get_parent_primitive() override;
 

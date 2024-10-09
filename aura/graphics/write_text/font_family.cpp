@@ -77,7 +77,7 @@ namespace write_text
    ::particle_pointer font_family::clone()
    {
 
-      return ::place(new font_family(*this));
+      return __new font_family(*this);
 
    }
 

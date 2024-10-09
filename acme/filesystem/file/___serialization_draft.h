@@ -379,5 +379,5 @@ class exchanger
 
            window new_frame_window()
            {
-              return ::place(new frame_window());
+              return __new frame_window();
            }

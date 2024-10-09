@@ -198,7 +198,7 @@ namespace write_text
 
       ::pointer<::write_text::font_enumeration_item_array>pitema;
 
-      pitema = ::place(new ::write_text::font_enumeration_item_array());
+      pitema = __new ::write_text::font_enumeration_item_array();
 
       auto psystem = system()->m_paurasystem;
 
@@ -241,7 +241,7 @@ namespace write_text
 
       ::pointer<::write_text::font_enumeration_item_array>pitema;
 
-      pitema = ::place(new ::write_text::font_enumeration_item_array());
+      pitema = __new ::write_text::font_enumeration_item_array();
 
       auto psystem = system()->m_paurasystem;
 

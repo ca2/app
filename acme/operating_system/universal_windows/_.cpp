@@ -37,7 +37,9 @@ void __node_acme_pre_init()
    //if(statusStartup != Gdiplus::Ok)
    //{
 
-   //   message_box_synchronous(nullptr,"Gdiplus Failed to Hook. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
+   //   auto pmessagebox = __initialize_new ::message_box(nullptr,"Gdiplus Failed to Hook. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
+
+send(pmessagebox);
 
    //   return 0;
 

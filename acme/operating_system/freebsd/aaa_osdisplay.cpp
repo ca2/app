@@ -33,14 +33,14 @@ osdisplay_data * x11_main_display()
 osdisplay_data::osdisplay_data()
 {
 
-   m_pcsOsDisplayData      = ::place(new critical_section());
+   m_pcsOsDisplayData      = __new critical_section();
    m_pdisplay              = nullptr;
    m_atomLongType          = None;
    m_atomLongStyle         = None;
    m_atomNetWmState        = None;
    m_atomLongStyleEx       = 0;
    m_countReference        = 1;
-//   m_pmutexInput           = ::place(new ::pointer < ::mutex > ());
+//   m_pmutexInput           = __new ::pointer < ::mutex > ();
 
 }
 

@@ -994,7 +994,7 @@ namespace user
 
             //::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-            ::pointer < ::particle > pparticle(lparam);
+            ::particle_pointer pparticle(lparam);
 
             pmessage->m_pparticle = pparticle;
 
@@ -1053,7 +1053,7 @@ namespace user
 
             auto puser = paurasession->m_puser;
 
-            auto pwindowing = puser->m_pwindowing;
+            auto pwindowing = system()->windowing();
 
             pmessage->m_pWndOther = __interaction(pwindowing->window(lparam.raw_cast <::oswindow>()));
 
@@ -1960,7 +1960,7 @@ namespace user
 
       // }
 
-      // m_puserinteraction->interaction_post(::place(new call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
+      // m_puserinteraction->interaction_post(__new call_message_handler_task(m_puserinteraction, atom, wparam, lparam));
 
       //auto pmessage
 
@@ -2468,7 +2468,7 @@ namespace user
 
       // }
 
-      // m_puserinteraction->interaction_post(::place(new call_message_handler_task(m_puserinteraction, atom, wparam, lparam)));
+      // m_puserinteraction->interaction_post(__new call_message_handler_task(m_puserinteraction, atom, wparam, lparam));
 
       //auto pmessage
 

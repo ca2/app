@@ -3,42 +3,48 @@
 // From https://github.com/ca2/motif_labs
 //
 #include "framework.h"
-#include "message_box.h"
-#include "acme/platform/sequencer.h"
-
-
-namespace operating_system
-{
-
-
-   ::payload message_box::do_synchronously(const class time & timeWait)
-   {
-
-      return {};
-
-   }
-
-
-::pointer< ::sequencer < ::conversation > > message_box::create_sequencer(::particle * pparticle, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
-{
-
-   auto psequencer = pparticle->__create_new < ::sequencer < ::conversation > >();
-
-   auto pmessagebox = pparticle->__create < ::operating_system::message_box >();
-   
-   psequencer->m_psequence = pmessagebox;
-
-   pmessagebox->m_psequencer = psequencer;
-
-   pmessagebox->initialize_conversation(strMessage, strTitle, emessagebox, strDetails, picon);
-
-   return psequencer;
-
-}
-
-
-
-} // operating_system
-
-
+//#include "message_box.h"
+////#include "acme/platform/sequence.h"
+//
+//
+//namespace operating_system
+//{
+//
+//   
+//   void message_box::run()
+//   {
+//
+//
+//   }
+//
+//   void message_box::complete_step(sequencer & sequencer)
+//   {
+//
+//      //return {};
+//
+//   }
+//
+//
+//::pointer < ::subparticle > message_box::create_sequencer(::particle * pparticle, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+//{
+//
+//   //auto psequencer = pparticle->__create_new < ::sequencer < ::conversation > >();
+//
+//   auto pmessagebox = pparticle->__create < ::operating_system::message_box >();
+//   
+//   //psequencer->m_psequence = pmessagebox;
+//
+//   //pmessagebox->m_psequencer = psequencer;
+//
+//   pmessagebox->initialize_conversation(strMessage, strTitle, emessagebox, strDetails, picon);
+//
+//   return pmessagebox;
+//
+//}
+//
+//
+//
+//} // operating_system
+//
+//
 

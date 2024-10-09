@@ -1276,7 +1276,7 @@ template < typename OBJECT >
 inline pointer < T > & pointer < T >::create_new(OBJECT * pparticle)
 {
 
-   auto p = ::place(new T());
+   auto p = __new T();
 
    //p.set_referer();
 
@@ -1860,7 +1860,7 @@ inline pointer < T >& pointer < T > ::operator = (pointer < T2 > && t)
 //
 //   }
 //
-//   auto p = ::place(new TYPE());
+//   auto p = __new TYPE();
 //
 //   if (p)
 //   {
@@ -1878,7 +1878,7 @@ inline pointer < T >& pointer < T > ::operator = (pointer < T2 > && t)
 //inline void __construct_new(::subparticle* pparticle, ::pointer<TYPE>& p)
 //{
 //
-//   p = ::place(new TYPE());
+//   p = __new TYPE();
 //
 //   if (!p)
 //   {

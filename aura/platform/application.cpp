@@ -174,7 +174,7 @@ namespace aura
       //m_pimaging = nullptr;
 
 
-      //m_phandler = ::place(new ::handler(this));
+      //m_phandler = __new ::handler(this);
 
 
       //m_bAuraProcessInitialize = false;
@@ -299,7 +299,7 @@ namespace aura
    //   if(m_pappmenu.is_null())
    //   {
 
-   //      m_pappmenu = ::place(new application_menu());
+   //      m_pappmenu = __new application_menu();
 
    //   }
 
@@ -655,7 +655,9 @@ namespace aura
    //void application::message_box_synchronous(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
-   //   return ::message_box_synchronous(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
+   //   return ::auto pmessagebox = __initialize_new ::message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
+
+send(pmessagebox);
 
    //}
 
@@ -702,7 +704,9 @@ namespace aura
 
    //   }
 
-   //   return message_box_synchronous(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+   //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+
+send(pmessagebox);
 
    //}
 
@@ -719,7 +723,9 @@ namespace aura
 
    //   }
 
-   //   return message_box_synchronous(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+   //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+
+send(pmessagebox);
 
    //}
 
@@ -2089,7 +2095,7 @@ retry_license:
    //   try
    //   {
 
-   //      return ::place(new ::interprocess::communication(m_strAppName));
+   //      return __new ::interprocess::communication(m_strAppName);
 
    //   }
    //   catch (...)
@@ -3730,7 +3736,7 @@ retry_license:
 
    //     auto puser = psession->m_puser;
 
-   //     auto pwindowing = puser->m_pwindowing;
+   //     auto pwindowing = system()->windowing();
 
    //     pwindow = pwindowing->window(pmsg->oswindow);
 
@@ -3770,7 +3776,7 @@ retry_license:
 
    //   }
 
-   //   auto pusermessage = ::place(new ::user::message());
+   //   auto pusermessage = __new ::user::message();
 
    //   if (!pusermessage)
    //   {
@@ -4252,7 +4258,7 @@ retry_license:
 
    //   //throw ::exception(todo("xml"));
 
-   //   //auto pdocument = ::place(new ::xml::document());
+   //   //auto pdocument = __new ::xml::document();
 
    //   //if (!pdocument->load(atom) || !*pdocument)
    //   //{
@@ -7939,7 +7945,7 @@ namespace aura
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->m_pwindowing;
+      auto pwindowing = system()->windowing();
 
       throw ::exception(todo);
 
@@ -8057,7 +8063,7 @@ namespace aura
 //   ::pointer<::apex::application>application::create_platform(::apex::session* psession)
 //   {
 //
-//      return ::place(new ::aura::session());
+//      return __new ::aura::session();
 //
 //   }
 
@@ -8593,7 +8599,7 @@ namespace aura
 
       }
 
-      pinteraction = ::place(new ::account::simple_ui(this,strRequestUrl));
+      pinteraction = __new ::account::simple_ui(this,strRequestUrl);
 
       pinteraction->m_login.m_peditUser->set_window_text(strUsername);
 
@@ -8613,7 +8619,7 @@ namespace aura
    //::pointer<::user::user>application::create_user()
    //{
 
-   //   return ::place(new ::user::user());
+   //   return __new ::user::user();
 
    //}
 

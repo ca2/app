@@ -239,7 +239,7 @@ namespace apex
       //m_pimaging = nullptr;
 
 
-      //m_phandler = ::place(new ::handler(this));
+      //m_phandler = __new ::handler(this);
 
 
       //m_bAuraProcessInitialize = false;
@@ -1103,7 +1103,7 @@ namespace apex
       //   /*        if (m_pfsdata.is_null())
       //           {
 
-      //              __construct(m_pfsdata, ::place(new ::fs::set()));
+      //              __construct(m_pfsdata, __new ::fs::set());
 
       //           }*/
 
@@ -1134,7 +1134,9 @@ namespace apex
    //void application::message_box_synchronous(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
-   //   return ::message_box_synchronous(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
+   //   return ::auto pmessagebox = __initialize_new ::message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
+
+send(pmessagebox);
 
    //}
 
@@ -1181,7 +1183,9 @@ namespace apex
 
    //   }
 
-   //   return message_box_synchronous(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+   //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+
+send(pmessagebox);
 
    //}
 
@@ -1198,7 +1202,9 @@ namespace apex
 
    //   }
 
-   //   return message_box_synchronous(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+   //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+
+send(pmessagebox);
 
    //}
 
@@ -2545,7 +2551,9 @@ namespace apex
 
    //      handle_exception(e);
 
-   //      message_box_synchronous(this, "Application failed to initialize (1).\n\n" + e.m_strMessage, m_strAppName, e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
+   //      auto pmessagebox = __initialize_new ::message_box(this, "Application failed to initialize (1).\n\n" + e.m_strMessage, m_strAppName, e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
+
+send(pmessagebox);
 
    //      throw e;
 
@@ -2553,7 +2561,9 @@ namespace apex
    //   catch (...)
    //   {
 
-   //      message_box_synchronous(this, "Application failed to initialize (2). Unknown exception", m_strAppName);
+   //      auto pmessagebox = __initialize_new ::message_box(this, "Application failed to initialize (2). Unknown exception", m_strAppName);
+
+send(pmessagebox);
 
    //      throw "Unknown exception";
 
@@ -2618,7 +2628,9 @@ namespace apex
    //   catch (...)
    //   {
 
-   //      message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName);
+   //      auto pmessagebox = __initialize_new ::message_box(this, "Application failed to initialize (4). Unknown exception", m_strAppName);
+
+send(pmessagebox);
 
    //      throw "Unknown exception";
 
@@ -3288,7 +3300,7 @@ namespace apex
    //   try
    //   {
 
-   //      return ::place(new ::interprocess::channel());
+   //      return __new ::interprocess::channel();
 
    //   }
    //   catch (...)
@@ -3319,7 +3331,7 @@ namespace apex
       auto psystem = system()->m_papexsystem;
 
       //estatus = 
-      m_puserlanguagemap = ::place(new ::user::language_map());
+      m_puserlanguagemap = __new ::user::language_map();
       
       //REFDBG(m_puserlanguagemap.add_reference_item({ this, __FUNCTION_FILE_LINE__ }));
 
@@ -3770,7 +3782,9 @@ namespace apex
       if (pathPreviousLocation.has_char())
       {
 
-         //message_box_synchronous(this, "there is a previous location");
+         //auto pmessagebox = __initialize_new ::message_box(this, "there is a previous location");
+
+send(pmessagebox);
 
          auto pida = node()->module_path_processes_identifiers(pathPreviousLocation);
 
@@ -4151,7 +4165,9 @@ namespace apex
       if (eexclusive == e_exclusive_instance_local)
       {
 
-         //message_box_synchronous(this, "e_exclusive_instance_local");
+         //auto pmessagebox = __initialize_new ::message_box(this, "e_exclusive_instance_local");
+
+send(pmessagebox);
 
          return on_exclusive_instance_local_conflict(prequest, bHandled);
 
@@ -5658,7 +5674,7 @@ namespace apex
 
       //throw ::exception(todo("xml"));
 
-      //auto pdocument = ::place(new ::xml::document());
+      //auto pdocument = __new ::xml::document();
 
       //if (!pdocument->load(atom) || !*pdocument)
       //{
@@ -9905,7 +9921,7 @@ namespace apex
    //::pointer<::apex::application>application::create_platform(::apex::session* psession)
    //{
    //
-   //   return ::place(new ::apex::session());
+   //   return __new ::apex::session();
    //
    //}
 

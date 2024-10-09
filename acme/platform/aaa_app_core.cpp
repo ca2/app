@@ -575,7 +575,7 @@ string app_core::get_command_line()
 //
 //         string strLibrary = ::future::app_id_to_app_name(strAppId);
 //
-//         m_plibrary = ::place(new ::acme::library());
+//         m_plibrary = __new ::acme::library();
 //
 //         m_plibrary->initialize(psystem);
 //
@@ -879,7 +879,7 @@ void app_core::system_end()
 //CLASS_DECL_APEX long apex_prefix(::apex::system * psystem)
 //{
 //
-//   //pmaindata->m_pappcore = ::place(new app_core(pmaindata));
+//   //pmaindata->m_pappcore = __new app_core(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {
@@ -903,7 +903,7 @@ void app_core::system_end()
 //CLASS_DECL_APEX long apex_fork(::apex::system * psystem, PFN_NEW_APEX_APPLICATION pfnNewAuraApplication)
 //{
 //
-//   //pmaindata->m_pappcore = ::place(new app_core(pmaindata));
+//   //pmaindata->m_pappcore = __new app_core(pmaindata);
 //
 //   if (!psystem->system_prep())
 //   {

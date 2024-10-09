@@ -2397,7 +2397,31 @@ string_base < ITERATOR_TYPE > string_base < ITERATOR_TYPE >::intersection(const 
 }
 
 
+template < typename ITERATOR_TYPE >
+inline string_base < ITERATOR_TYPE > & string_base < ITERATOR_TYPE >::concatenate_with_separator(const SCOPED_STRING & scopedstrSeparator, const SCOPED_STRING & scopedstr)
+{
 
+   if (this->has_char())
+   {
+      
+      if (scopedstr.has_char())
+      {
+
+         this->append(scopedstrSeparator + scopedstr);
+
+      }
+
+   }
+   else if (scopedstr.has_char())
+   {
+
+      this->assign(scopedstr);
+
+   }
+
+   return *this;
+
+}
 
 
 
@@ -2408,6 +2432,7 @@ inline void string_base < ITERATOR_TYPE >::get_string(CHARACTER * psz) const noe
    string_count_copy(psz, this->begin(), length());
 
 }
+
 
 
 //template < typename ITERATOR_TYPE >

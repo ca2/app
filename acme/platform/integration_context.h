@@ -52,7 +52,7 @@ namespace integration
       ::string          m_strName;
 
 
-      ::pointer < ::particle >                  m_pmutexLines;
+      ::particle_pointer                  m_pmutexLines;
 
 
       ::file::listing   m_listingBuild;

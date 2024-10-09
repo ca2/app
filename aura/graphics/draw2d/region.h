@@ -120,7 +120,7 @@ namespace draw2d
    inline ::pointer<___shape>__create_shape(const ::line & line)
    {
 
-      return ::place(new line_shape_with_region(line));
+      return __new line_shape_with_region(line);
 
    }*/
 

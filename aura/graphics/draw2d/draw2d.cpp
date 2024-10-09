@@ -679,7 +679,7 @@ void draw2d::emboss_predicate(
       else
       {
 
-         filter = ::place(new memory());
+         filter = __new memory();
 
          filter->set_size(iFilterArea);
 
@@ -994,7 +994,7 @@ void draw2d::emboss_predicate(
       }
       else
       {
-         filter = ::place(new memory());
+         filter = __new memory();
          filter->set_size(iFilterArea);
          pFilter = filter->begin();
          for (y = 0; y < iFilterH; y++)

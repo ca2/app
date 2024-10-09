@@ -14,7 +14,7 @@ void output_debug_string(const ::scoped_string & scopedstr)
    //if (m_pstrOutputDebugStringA == nullptr)
    //{
 
-   //   m_pstrOutputDebugStringA = ::place(new string());
+   //   m_pstrOutputDebugStringA = __new string();
 
    //}
 

@@ -3,7 +3,7 @@
 #include "button.h"
 #include "popup_button.h"
 #include "acme/nano/graphics/device.h"
-#include "acme/nano/user/theme.h"
+#include "acme/user/micro/theme.h"
 #include "acme/windowing/window.h"
 
 
@@ -11,8 +11,7 @@ namespace micro
 {
 
 
-
-   void button::on_draw(::nano::graphics::device * pnanodevice)
+   void button::on_draw(::nano::graphics::device * pmicrodevice)
    {
 
       //::SelectObject(hdc, m_pinterchange->m_hbrushWindow);
@@ -22,17 +21,17 @@ namespace micro
       if (acme_windowing_window()->m_pacmeuserinteractionFocus == this)
       {
 
-         ppenBorder = nano_user_theme()->m_ppenBorderFocus;
+         ppenBorder = micro_theme()->m_ppenBorderFocus;
 
       }
       else
       {
 
-         ppenBorder = nano_user_theme()->m_ppenBorder;
+         ppenBorder = micro_theme()->m_ppenBorder;
 
       }
 
-      pnanodevice->rectangle(m_rectangle, nano_user_theme()->m_pbrushWindow, ppenBorder);
+      pmicrodevice->rectangle(m_rectangle, micro_theme()->m_pbrushWindow, ppenBorder);
 
       wstring wstrText(m_strText);
 
@@ -40,14 +39,14 @@ namespace micro
 
       rectangleText.deflate(4);
 
-      pnanodevice->draw_text123(
+      pmicrodevice->draw_text123(
          m_strText,
          rectangleText,
          e_align_center,
          e_draw_text_single_line,
-         nano_user_theme()->m_pbrushWindow,
-         nano_user_theme()->m_pbrushText,
-         nano_user_theme()->m_pfont);
+         micro_theme()->m_pbrushWindow,
+         micro_theme()->m_pbrushText,
+         micro_theme()->m_pfont);
 
    }
 
@@ -82,7 +81,7 @@ namespace micro
    }
 
 
-   //void nano_still::resize_to_fit()
+   //void micro_still::resize_to_fit()
    //{
    //
    //   auto pdevice = __create < ::nano::graphics::device >();

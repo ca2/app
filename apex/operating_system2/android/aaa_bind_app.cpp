@@ -36,11 +36,11 @@ JNIEXPORT void JNICALL Java_com_android_1app_app_apex_1init(JNIEnv * penv, jobje
    if (!g_poslocal)
    {
 
-      g_poslocal = ::place(new os_local());
+      g_poslocal = __new os_local();
 
    }
 
-   g_posremote = ::place(new os_remote(os));
+   g_posremote = __new os_remote(os);
 
    auto premote = g_posremote;
 

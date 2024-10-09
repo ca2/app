@@ -276,7 +276,7 @@ namespace hotplugin
 
       {
 
-         ::pointer < ::mutex > pmutex = ::place(new ::pointer < ::mutex > (e_create_new, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
+         ::pointer < ::mutex > pmutex = __new ::pointer < ::mutex > (e_create_new, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
 
          if(::get_last_error() == ERROR_ALREADY_EXISTS)
          {

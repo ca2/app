@@ -6,7 +6,7 @@
 #include "acme/constant/message.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/platform/sequencer.h"
+//#include "acme/platform/sequencer.h"
 #include "acme/platform/timer.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/nano/nano.h"
@@ -492,7 +492,7 @@ namespace user
          if (m_pitemClose.is_null())
          {
 
-            m_pitemClose = ::place(new ::menu::item());
+            m_pitemClose = __new ::menu::item();
 
             m_pitemClose->m_atom = "close_menu";
 
@@ -636,7 +636,7 @@ namespace user
          //}
 
 #else
-         //auto pusersystem = ::place(new ::user::system(iStyleEx, nullptr, nullptr, 0, nullptr, pcreate));
+         //auto pusersystem = __new ::user::system(iStyleEx, nullptr, nullptr, 0, nullptr, pcreate);
 
          //if (!create_window_ex(pusersystem, puiParent))
          //if (!create_host())
@@ -1132,7 +1132,7 @@ namespace user
       ////
       ////                           m_pmenuitemSub = pitem;
       ////
-      ////                           m_psubmenu = ::place(new menu(pitem));
+      ////                           m_psubmenu = __new menu(pitem);
       ////
       ////                           m_psubmenu->initialize(this);
       ////
@@ -1310,7 +1310,7 @@ namespace user
 
       hide_sub_menu();
       
-      auto pusermenu = ::place(new ::user::menu(pmenuitem));
+      auto pusermenu = __new ::user::menu(pmenuitem);
       
       pusermenu->initialize(this);
 
@@ -1472,7 +1472,7 @@ namespace user
 
             //   m_atomSubMenu = m_atomTimerMenu;
 
-            //   m_psubmenu = ::place(new menu(pmenuitema->find(m_atomTimerMenu)));
+            //   m_psubmenu = __new menu(pmenuitema->find(m_atomTimerMenu));
 
             //   m_psubmenu->initialize(this);
 

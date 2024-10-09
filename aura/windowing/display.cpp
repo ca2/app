@@ -45,14 +45,14 @@ namespace windowing
    }
 
 
-
-   
-   void display::initialize_display(::windowing::windowing * pwindowing)
+   void display::on_initialize_particle()
    {
 
+      ::acme::windowing::display::on_initialize_particle();
+
       //auto estatus =
-      
-      initialize(pwindowing);
+
+      //initialize(pwindowing);
 
       defer_create_synchronization();
 
@@ -72,11 +72,47 @@ namespace windowing
 
       }
 
-      m_pwindowing = pwindowing;
+      //system()->windowing() = pwindowing;
 
       open_display();
 
       //return ::success;
+
+
+
+   }
+
+   
+   void display::open_display()
+   {
+
+      ////auto estatus =
+      //
+      //initialize(pwindowing);
+
+      //defer_create_synchronization();
+
+      ////if (!estatus)
+      ////{
+
+      ////   return estatus;
+
+      ////}
+
+      //auto psystem = system()->m_paurasystem;
+
+      //if (psystem != nullptr)
+      //{
+
+      //   m_bSystemSynchronizedScreen = psystem->m_paurasystem->m_bSystemSynchronizedScreen;
+
+      //}
+
+      //system()->windowing() = pwindowing;
+
+      //open_display();
+
+      ////return ::success;
 
    }
 
@@ -88,7 +124,7 @@ namespace windowing
 
       m_monitora.clear();
 
-      m_pwindowing.release();
+      //system()->windowing().release();
 
    }
 
@@ -118,12 +154,12 @@ namespace windowing
    }
 
 
-   void display::open_display()
-   {
+   //void display::open_display()
+   //{
 
-      //return ::success;
+   //   //return ::success;
 
-   }
+   //}
 
 
    void display::close_display()
@@ -1071,7 +1107,7 @@ namespace windowing
 //         else
 //         {
 //
-//            pointCursor = m_pwindowing->get_cursor_position();
+//            pointCursor = system()->windowing()->get_cursor_position();
 //
 //         }
 
@@ -1346,7 +1382,7 @@ namespace windowing
       else
       {
 
-         sizeMin = m_pwindowing->get_window_minimum_size();
+         sizeMin = system()->windowing()->get_window_minimum_size();
 
       }
 
@@ -1535,7 +1571,7 @@ namespace windowing
       else
       {
 
-         sizeMin = m_pwindowing->get_window_minimum_size();
+         sizeMin = system()->windowing()->get_window_minimum_size();
 
          iMatchingWorkspace = get_best_workspace(&rectangleWorkspace, rectangleHint);
          
@@ -1990,7 +2026,7 @@ namespace windowing
 
       }
 
-      auto sizeMinimum = m_pwindowing->get_window_minimum_size();
+      auto sizeMinimum = system()->windowing()->get_window_minimum_size();
 
       if (rectangleWouldBeSnapped.width() < sizeMinimum.cx() || rectangleWouldBeSnapped.height() < sizeMinimum.cy())
       {
@@ -2164,7 +2200,7 @@ namespace windowing
 
       }
 
-      auto sizeMinimum = m_pwindowing->get_window_minimum_size();
+      auto sizeMinimum = system()->windowing()->get_window_minimum_size();
 
       if (rectangleWouldBeRestored.width() < sizeMinimum.cx() || rectangleWouldBeRestored.height() < sizeMinimum.cy())
       {

@@ -1,7 +1,7 @@
 // Created by camilo on 2022-11-19 03:54 <3ThomasBorregaardSorensen!!
 //
 // // Merged from user to
-//     windowing to nano_use by camilo on 2024-10-05 11:12 <3ThomasBorregaardSorensen!!
+//     windowing to micro_use by camilo on 2024-10-05 11:12 <3ThomasBorregaardSorensen!!
 //                   //
 // Created by camilo on 2024-05-26 21:50 <3ThomasBorregaardSorensen!!
 // // Merged from user to
@@ -19,6 +19,8 @@
 #include "acme/platform/node.h"
 #include "acme/platform/department.h"
 #include "acme/platform/system.h"
+#include "acme/user/micro/details_window.h"
+#include "acme/user/micro/message_box.h"
 #include "acme/windowing/display.h"
 #include "acme/windowing/window.h"
 #include "acme/windowing/windowing.h"
@@ -37,101 +39,101 @@ namespace micro
       }
 
 
-      //pointer< ::sequencer < ::conversation > > user::nano()->message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+      //::pointer < ::subparticle > user::micro()->message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
       //{
 
-      //   auto psequencer = node()->nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
+      //   auto psequencer = node()->micro()->message_box(strMessage, strTitle, emessagebox, strDetails);
 
       //   return psequencer;
 
       //}
 
 
-      //pointer< ::sequencer < ::conversation > > user::nano()->message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
+      //::pointer < ::subparticle > user::micro()->message_console(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string& strDetails)
       //{
 
-      //   auto psequencer = node()->nano()->message_console(strMessage, strTitle, emessagebox, strDetails);
+      //   auto psequencer = node()->micro()->message_console(strMessage, strTitle, emessagebox, strDetails);
 
       //   return psequencer;
 
       //}
 
-      pointer<::sequencer<::conversation>> user::message_box(const ::string & strMessage, const ::string & strTitle,
-                                                             const ::e_message_box & emessagebox,
-                                                             const ::string & strDetails, ::nano::graphics::icon * picon)
-      {
-         auto pnode = node();
+      //::pointer < ::message_box > user::message_box(const ::string & strMessage, const ::string & strTitle,
+      //                                                       const ::e_message_box & emessagebox,
+      //                                                       const ::string & strDetails, ::nano::graphics::icon * picon)
+      //{
+      //   auto pnode = node();
 
-         auto psequencer = pnode->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
+      //   auto psequencer = pnode->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
 
-         return psequencer;
-      }
-
-
-      pointer<::sequencer<::conversation>> user::exception_message_box(
-          const ::exception & exception, const ::string & strMessageParam, const ::string & strTitleParam,
-          const ::e_message_box & emessagebox, const ::string & strDetailsParam, ::nano::graphics::icon * picon)
-      {
-         string strExceptionDetails = exception.get_consolidated_details(this);
-
-         string strMessage(strMessageParam);
-
-         if (strMessage.is_empty())
-         {
-            strMessage = exception.get_message();
-         }
-
-         string strTitle(strTitleParam);
-
-         if (strTitle.is_empty())
-         {
-            strTitle = exception.get_title();
-         }
-
-         string strDetails(strDetailsParam);
-
-         if (strExceptionDetails.has_char())
-         {
-            if (strDetails.has_char())
-            {
-               strDetails += "\n";
-            }
-
-            strDetails += strExceptionDetails;
-         }
-
-         auto psequencer = node()->create_message_box_sequencer(
-             strMessage,
-             strTitle,
-             emessagebox,
-             strDetails,
-             picon);
-
-         return psequencer;
-      }
+      //   return psequencer;
+      //}
 
 
-      pointer<::sequencer<::conversation>> user::message_console(const ::string & strMessage, const ::string & strTitle,
-                                                                 const ::e_message_box & emessagebox,
-                                                                 const ::string & strDetails, ::nano::graphics::icon * picon)
-      {
-         auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
+      //::pointer < ::message_box > user::exception_message_box(
+      //    const ::exception & exception, const ::string & strMessageParam, const ::string & strTitleParam,
+      //    const ::e_message_box & emessagebox, const ::string & strDetailsParam, ::nano::graphics::icon * picon)
+      //{
+      //   string strExceptionDetails = exception.get_consolidated_details(this);
 
-         return psequencer;
-      }
+      //   string strMessage(strMessageParam);
+
+      //   if (strMessage.is_empty())
+      //   {
+      //      strMessage = exception.get_message();
+      //   }
+
+      //   string strTitle(strTitleParam);
+
+      //   if (strTitle.is_empty())
+      //   {
+      //      strTitle = exception.get_title();
+      //   }
+
+      //   string strDetails(strDetailsParam);
+
+      //   if (strExceptionDetails.has_char())
+      //   {
+      //      if (strDetails.has_char())
+      //      {
+      //         strDetails += "\n";
+      //      }
+
+      //      strDetails += strExceptionDetails;
+      //   }
+
+      //   auto psequencer = node()->create_message_box_sequencer(
+      //       strMessage,
+      //       strTitle,
+      //       emessagebox,
+      //       strDetails,
+      //       picon);
+
+      //   return psequencer;
+      //}
 
 
-      pointer<::sequencer<::conversation>> user::exception_message_console(
-          const ::exception & exception, const ::string & strMessage, const ::string & strTitle,
-          const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
-      {
-         string strExceptionDetails = exception.get_consolidated_details(this);
+      //::pointer < ::message_box > user::message_console(const ::string & strMessage, const ::string & strTitle,
+      //                                                           const ::e_message_box & emessagebox,
+      //                                                           const ::string & strDetails, ::nano::graphics::icon * picon)
+      //{
+      //   auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails, picon);
 
-         auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox,
-                                                            strDetails + "\n" + strExceptionDetails, picon);
+      //   return psequencer;
+      //}
 
-         return psequencer;
-      }
+
+      //::pointer < ::message_box > user::exception_message_console(
+      //    const ::exception & exception, const ::string & strMessage, const ::string & strTitle,
+      //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+      //{
+      //   string strExceptionDetails = exception.get_consolidated_details(this);
+
+      //   auto psequencer = node()->create_message_sequencer(strMessage, strTitle, emessagebox,
+      //                                                      strDetails + "\n" + strExceptionDetails, picon);
+
+      //   return psequencer;
+      //}
 
 
       void user::handle(::topic * ptopic, ::context * pcontext)
@@ -163,7 +165,7 @@ namespace micro
 
       }
       // // Merged from user to
-      //     windowing to nano_use by camilo on 2024-10-05 11:12 <3ThomasBorregaardSorensen!!
+      //     windowing to micro_use by camilo on 2024-10-05 11:12 <3ThomasBorregaardSorensen!!
       //                   //
       // Created by camilo on 2024-05-26 21:50 <3ThomasBorregaardSorensen!!
       // // Merged from user to
@@ -178,8 +180,8 @@ namespace micro
       //#include "acme/parallelization/synchronous_lock.h"
       //#include "acme/handler/topic.h"
       //#include "acme/nano/nano.h"
-      //#include "acme/nano/user/display.h"
-      //#include "acme/nano/user/user.h"
+      //#include "acme/user/micro/display.h"
+      //#include "acme/user/micro/user.h"
       ////#include "acme/windowing/window_base.h"
       //#include "platform/system.h"
 
@@ -381,11 +383,11 @@ namespace micro
 
          }
 
-         auto ptopic = ::place(new ::topic(id_application_dark_mode_change));
+         auto ptopic = __new ::topic(id_application_dark_mode_change);
 
-         auto nanowindowingwindowa = system()->acme_windowing()->m_windowa;
+         auto microwindowingwindowa = system()->acme_windowing()->m_windowa;
 
-         for (auto & pacmewindowingwindow : nanowindowingwindowa)
+         for (auto & pacmewindowingwindow : microwindowingwindowa)
          {
 
             pacmewindowingwindow->handle(ptopic, nullptr);
@@ -450,7 +452,7 @@ namespace micro
 
          synchronouslock.unlock();
 
-         //if (::micro::window_implementation::nanowindowimplementationa().has_element())
+         //if (::micro::window_implementation::microwindowimplementationa().has_element())
          //{
 
          for (auto & pacmewindowingwindow : windowa)
@@ -479,7 +481,7 @@ namespace micro
       }
 
 
-      void user::update_nano_user_theme()
+      void user::update_micro_theme()
       {
 
 
@@ -487,18 +489,47 @@ namespace micro
       }
 
 
-      ::micro::theme * user::nano_user_theme()
+      ::micro::theme * user::micro_theme()
       {
 
 
-         if (!m_pnanousertheme)
+         if (!m_pmicrotheme)
          {
 
-            update_nano_user_theme();
+            update_micro_theme();
 
          }
 
-         return m_pnanousertheme;
+         return m_pmicrotheme;
+
+      }
+
+
+      ::pointer < ::reified < ::message_box > > user::realize(::realizable < ::message_box > * p)
+      {
+
+         ::pointer < ::message_box > pmessageboxRealizable;
+
+         pmessageboxRealizable = p;
+
+         ::pointer < ::reified < ::message_box > > pmessageboxReified;
+
+         if (pmessageboxRealizable->m_bDetails)
+         {
+
+            pmessageboxReified = __create_new < ::micro::details_window >();
+
+         }
+         else
+         {
+
+            pmessageboxReified = __create_new < ::micro::message_box >();
+
+         }
+
+         pmessageboxReified->realize(p);
+
+         return pmessageboxReified;
 
       }
 

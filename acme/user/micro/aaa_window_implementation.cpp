@@ -12,10 +12,10 @@
 // #include "acme/constant/id.h"
 // #include "acme/handler/topic.h"
 // #include "acme/nano/nano.h"
-// #include "acme/nano/user/user.h"
+// #include "acme/user/micro/user.h"
 // #include "acme/platform/node.h"
 // #include "acme/parallelization/manual_reset_event.h"
-// #include "acme/platform/sequencer.h"
+// //#include "acme/platform/sequencer.h"
 // #include "acme/platform/system.h"
 //
 //
@@ -290,7 +290,7 @@
 //
 //    message_loop();
 //
-//    auto pmanualresetevent = ::place(new manual_reset_event());
+//    auto pmanualresetevent = __new manual_reset_event();
 //
 //    m_pinterface->m_psequencer->then([ pmanualresetevent](auto psequencer)
 //    {

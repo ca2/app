@@ -135,7 +135,7 @@ namespace universal_windows
       if (folder != nullptr)
       {
 
-         auto pbuffer = ::place(new ::universal_windows::native_buffer());
+         auto pbuffer = __new ::universal_windows::native_buffer();
 
          //::extended::status ::extended::status = spfile->open(folder, strPath,nOpenFlags);
 

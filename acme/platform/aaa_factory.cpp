@@ -52,7 +52,7 @@ namespace factory
 
 
 
-   ::pointer < ::particle > factory::create(const ::string & strType)
+   ::particle_pointer factory::create(const ::string & strType)
    {
 
       //auto psystem = system();

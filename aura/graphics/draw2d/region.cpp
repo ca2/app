@@ -63,7 +63,7 @@ namespace draw2d
 
    //   m_eregion = e_region_rect;
 
-   //   auto pitem = ::place(new rectangle_item());
+   //   auto pitem = __new rectangle_item();
 
    //   pitem->m_rectangle = rectangle;
 
@@ -86,7 +86,7 @@ namespace draw2d
 
    //   m_eregion = e_region_ellipse;
 
-   //   auto pitem = ::place(new ellipse_item());
+   //   auto pitem = __new ellipse_item();
 
    //   pitem->m_rectangle = rectangle;
 
@@ -109,7 +109,7 @@ namespace draw2d
 
    //   m_eregion = e_region_polygon;
 
-   //   auto pitem = ::place(new polygon_item());
+   //   auto pitem = __new polygon_item();
 
    //   pitem->m_polygon.set_size(nCount);
 
@@ -144,7 +144,7 @@ namespace draw2d
 
    //   m_eregion = e_region_polygon;
 
-   //   auto pitem = ::place(new polygon_item());
+   //   auto pitem = __new polygon_item();
 
    //   pitem->m_polygon.set_size(nCount);
 
@@ -178,14 +178,14 @@ namespace draw2d
 
    //   m_eregion = e_region_polygon;
 
-   //   auto pitem = ::place(new poly_polygon_item());
+   //   auto pitem = __new poly_polygon_item();
 
    //   pitem->m_polygona.set_size(nCount);
 
    //   for (::collection::index i = 0; i < nCount; i++)
    //   {
 
-   //      pitem->m_polygona[i] = ::place(new polygon());
+   //      pitem->m_polygona[i] = __new polygon();
 
    //      pitem->m_polygona[i]->set_size(ppolycounts[i]);
 
@@ -222,14 +222,14 @@ namespace draw2d
 
    //   m_eregion = e_region_poly_polygon;
 
-   //   auto pitem = ::place(new poly_polygon_item());
+   //   auto pitem = __new poly_polygon_item();
 
    //   pitem->m_polygona.set_size(nCount);
 
    //   for (::collection::index i = 0; i < nCount; i++)
    //   {
 
-   //      pitem->m_polygona[i] = ::place(new polygon());
+   //      pitem->m_polygona[i] = __new polygon();
 
    //      pitem->m_polygona[i]->set_size(ppolycounts[i]);
 
@@ -270,7 +270,7 @@ namespace draw2d
 
    //   m_eregion = e_region_combine;
 
-   //   auto pitem = ::place(new combine_item());
+   //   auto pitem = __new combine_item();
 
    //   pitem->m_pregion1 = pregion1;
 

@@ -25,21 +25,21 @@
 //    camilo on 2024-0926 15:04 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
-#include "button.h"
+//#include "button.h"
 #include "interaction.h"
-#include "user.h"
+//#include "user.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/handler/topic.h"
 #include "acme/nano/graphics/device.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/user/theme.h"
-#include "acme/nano/windowing/window.h"
+#include "acme/user/micro/theme.h"
+#include "acme/windowing/window.h"
 #include "acme/operating_system/a_system_menu.h"
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
-#include "acme/platform/sequencer.h"
+//#include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
 #include "acme/user/user/drag.h"
 #include "acme/user/user/mouse.h"
@@ -108,7 +108,7 @@ namespace acme
       void interaction::set_focus()
       {
 
-         acme_windowing_window()->m_pnanouserinteractionFocus = this;
+         acme_windowing_window()->m_pacmeuserinteractionFocus = this;
 
          acme_windowing_window()->redraw();
 
@@ -127,7 +127,7 @@ namespace acme
       void interaction::set_capture()
       {
 
-         acme_windowing_window()->m_pnanouserinteractionCapture = this;
+         acme_windowing_window()->m_pacmeuserinteractionCapture = this;
 
          acme_windowing_window()->set_capture();
 
@@ -144,7 +144,7 @@ namespace acme
 
          }
 
-         return acme_windowing_window()->m_pnanouserinteractionCapture == this;
+         return acme_windowing_window()->m_pacmeuserinteractionCapture == this;
 
       }
 
@@ -152,10 +152,10 @@ namespace acme
       void interaction::release_capture()
       {
 
-         if (acme_windowing_window()->m_pnanouserinteractionCapture == this)
+         if (acme_windowing_window()->m_pacmeuserinteractionCapture == this)
          {
 
-            acme_windowing_window()->m_pnanouserinteractionCapture.release();
+            acme_windowing_window()->m_pacmeuserinteractionCapture.release();
 
             acme_windowing_window()->release_capture();
 
@@ -428,7 +428,7 @@ namespace acme
          ::pointer<::operating_system::a_system_menu> interaction::create_system_menu(bool bContextual)
          {
 
-            auto psystemmenu = ::place(new ::operating_system::a_system_menu());
+            auto psystemmenu = __new ::operating_system::a_system_menu();
 
             if (acme_windowing_window()->m_bMinimizeBox)
             {
@@ -567,24 +567,31 @@ namespace acme
          }
 
 
-         //void interaction::create_window()
-         //{
+         void interaction::create_window()
+         {
 
-         //   auto pwindow = acme_windowing_window();
+            auto pwindow = acme_windowing_window();
 
-         //   pwindow->create_window();
+            pwindow->create_window();
 
-         //}
+         }
 
 
-         void interaction::show_interaction()
+         void interaction::_create_window()
          {
 
 
          }
 
 
-         void interaction::hide_interaction()
+         void interaction::show()
+         {
+
+
+         }
+
+
+         void interaction::hide()
          {
 
 
@@ -631,7 +638,7 @@ namespace acme
 
          //   do_asynchronously();
 
-         //   auto pmanualresetevent = ::place(new manual_reset_event());
+         //   auto pmanualresetevent = __new manual_reset_event();
 
          //   if (m_psequencer)
          //   {
@@ -699,19 +706,19 @@ namespace acme
          //   if (iChar == '\t' && m_nanouserinteractionaChildren.has_element())
          //   {
 
-         //      auto iFind = m_nanouserinteractionaChildren.find_first(acme_windowing_window()->m_pnanouserinteractionFocus);
+         //      auto iFind = m_nanouserinteractionaChildren.find_first(acme_windowing_window()->m_pacmeuserinteractionFocus);
 
          //      iFind++;
 
-         //      acme_windowing_window()->m_pnanouserinteractionFocus = m_nanouserinteractionaChildren % iFind;
+         //      acme_windowing_window()->m_pacmeuserinteractionFocus = m_nanouserinteractionaChildren % iFind;
 
          //      redraw();
 
          //   }
-         //   else if (acme_windowing_window()->m_pnanouserinteractionFocus)
+         //   else if (acme_windowing_window()->m_pacmeuserinteractionFocus)
          //   {
 
-         //      acme_windowing_window()->m_pnanouserinteractionFocus->on_char(iChar);
+         //      acme_windowing_window()->m_pacmeuserinteractionFocus->on_char(iChar);
 
          //   }
 
@@ -754,7 +761,7 @@ namespace acme
          //void interaction::add_child(::acme::user::interaction * pinteractionChild)
          //{
 
-         //   pinteractionChild->m_pnanouserinteractionParent = this;
+         //   pinteractionChild->m_pacmeuserinteractionParent = this;
 
          //   m_nanouserinteractionaChildren.add(pinteractionChild);
 
@@ -764,7 +771,7 @@ namespace acme
          //void interaction::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
          //{
 
-         //   auto pbutton = ::place(new ::micro::button());
+         //   auto pbutton = __new ::micro::button();
 
          //   pbutton->m_strText = scopedstrText;
          //   pbutton->m_atom = edialogresult;
@@ -811,19 +818,19 @@ namespace acme
          //void interaction::on_mouse_move(::user::mouse * pmouse)
          //{
 
-         //   if (acme_windowing_window()->m_pnanouserinteractionHover)
+         //   if (acme_windowing_window()->m_pacmeuserinteractionHover)
          //   {
 
-         //      acme_windowing_window()->m_pnanouserinteractionHover->on_mouse_move(pmouse);
+         //      acme_windowing_window()->m_pacmeuserinteractionHover->on_mouse_move(pmouse);
 
          //      return;
 
          //   }
 
-         //   if (acme_windowing_window()->m_pnanouserinteractionCapture)
+         //   if (acme_windowing_window()->m_pacmeuserinteractionCapture)
          //   {
 
-         //      acme_windowing_window()->m_pnanouserinteractionCapture->on_mouse_move(pmouse);
+         //      acme_windowing_window()->m_pacmeuserinteractionCapture->on_mouse_move(pmouse);
 
          //      return;
 
@@ -1160,7 +1167,7 @@ namespace acme
          //::acme::user::interaction * interaction::nano_user_parent()
          //{
 
-         //   return m_pnanouserinteractionParent;
+         //   return m_pacmeuserinteractionParent;
 
          //}
 
@@ -1401,19 +1408,19 @@ namespace acme
          void interaction::destroy()
          {
 
-            if (m_psequencer)
-            {
+            //if (m_psequencer)
+            //{
 
-               m_psequencer->on_sequence();
+            //   m_psequencer->on_sequence();
 
-               m_psequencer.release();
+            //   m_psequencer.release();
 
-            }
+            //}
 
 
             ::user::element::destroy();
             ::user::drag_client::destroy();
-            ::conversation::destroy();
+            //::conversation::destroy();
 
             system()->erase_signal_handler(this);
 
@@ -1494,11 +1501,11 @@ namespace acme
          }
 
 
-         void interaction::_run_modal_loop()
-         {
+         //void interaction::_run_modal_loop()
+         //{
 
 
-         }
+         //}
 
 
          bool interaction::is_popup_window() const
@@ -1595,27 +1602,29 @@ namespace acme
          ::acme::windowing::window * interaction::acme_windowing_window()
          {
 
-            if (!m_pwindow)
+            if (!m_pacmewindowingwindow)
             {
 
-               if (m_pelementalParent)
+               if (m_pacmeuserinteractionParent)
                {
 
-                  return m_pelementalParent->acme_windowing_window();
+                  return m_pacmeuserinteractionParent->acme_windowing_window();
 
                }
 
-               create_window();
+               __construct(m_pacmewindowingwindow);
 
             }
 
-            return m_pwindow;
+            return m_pacmewindowingwindow;
 
          }
-         ::acme::user::interaction * interaction::nano_user_parent()
+         
+         
+         ::acme::user::interaction * interaction::acme_user_parent()
          {
 
-            return nullptr;
+            return m_pacmeuserinteractionParent;
 
          }
 

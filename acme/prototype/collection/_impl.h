@@ -16,3 +16,20 @@ inline auto & range < ITERATOR_TYPE >::first() const { return (CONST_ITEM &) ::g
 
 
 
+
+
+#include "acme/prototype/collection/procedure_array.h"
+
+
+
+inline post_procedure_continuation particle::post(const ::procedure & procedure)
+{
+   return { this, procedure };
+}
+inline post_procedure_continuation particle::post()
+{
+
+   return{ this, this };
+}
+
+

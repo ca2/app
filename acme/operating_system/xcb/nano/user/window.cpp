@@ -6,8 +6,8 @@
 #include "display.h"
 #include "acme/operating_system/cairo/nano/user/device.h"
 #include "acme/user/user/mouse.h"
-#include "acme/nano/user/child.h"
-#include "acme/nano/user/window.h"
+#include "acme/user/micro/child.h"
+#include "acme/user/micro/window.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include <xkbcommon/xkbcommon.h>
@@ -711,7 +711,7 @@ namespace nano
 
                auto pdc = cairo_create(m_psurface);
 
-               m_pnanodevice = ::place(new ::cairo::nano::graphics::device(pdc));
+               m_pnanodevice = __new ::cairo::nano::graphics::device(pdc);
 
             }
 

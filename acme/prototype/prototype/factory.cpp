@@ -406,7 +406,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //inline ::pointer<TYPE>__create_new()
 //{
 //
-//   auto ptype = ::place(new TYPE());
+//   auto ptype = __new TYPE();
 //
 //   if (!ptype)
 //   {
@@ -424,7 +424,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //inline ::pointer<TYPE>__create_new(const TYPE & t)
 //{
 //
-//   auto ptype = ::place(new TYPE(t));
+//   auto ptype = __new TYPE(t);
 //
 //   if (!ptype)
 //   {
@@ -825,7 +825,7 @@ CLASS_DECL_ACME bool safe_free_memory(void * ptype)
 //inline void __construct_new(::pointer<TYPE>& ptype)
 //{
 //
-//   ptype = ::place(new TYPE());
+//   ptype = __new TYPE();
 //
 //   if (!ptype)
 //   {
@@ -968,7 +968,7 @@ namespace factory
 {
 
 
-   ::pointer < ::particle > factory::__call__create(const ::string & strType, ::particle * pparticle)
+   ::particle_pointer factory::__call__create(const ::string & strType, ::particle * pparticle)
    {
 
       //auto psystem = system();

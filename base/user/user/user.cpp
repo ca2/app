@@ -12,11 +12,11 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/platform/sequencer.h"
+//#include "acme/platform/sequencer.h"
 #include "acme/platform/system_setup.h"
 #include "acme/handler/request.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/user/user.h"
+#include "acme/user/micro/user.h"
 #include "apex/platform/application_menu.h"
 #include "aura/graphics/image/image.h"
 #include "aura/message/user.h"
@@ -513,7 +513,7 @@ namespace base
    ::pointer<::user::menu_interaction>user::create_menu_button(::user::style * pstyle, ::menu::item * pmenuitem)
    {
 
-      auto pmenubutton = ::place(new ::user::menu_button());
+      auto pmenubutton = __new ::user::menu_button();
 
       pmenubutton->initialize_menu_interaction(pmenuitem);
 
@@ -567,7 +567,7 @@ namespace base
       __UNREFERENCED_PARAMETER(hInstance);
       __UNREFERENCED_PARAMETER(pParam);
 
-      auto pinteraction = ::place(new ::user::interaction());
+      auto pinteraction = __new ::user::interaction();
 
       pinteraction->create_child(puiParent);
 
@@ -1386,7 +1386,7 @@ namespace base
 
          //application()->m_pbaseapplication->add_impact_system(
          //   m_ptemplateForm->m_atom, 
-         //   ::place(new ::user::multiple_document_template(
+         //   ::as(new ::user::multiple_document_template(
          //      m_ptemplateForm->m_atom,
          //      m_ptemplateForm->m_typeatomDocument,
          //      m_ptemplateForm->m_typeatomFrame,
@@ -1645,7 +1645,7 @@ namespace base
 
             //add_impact_system(
             //   m_ptemplateChildForm->m_atom,
-            //       ::place(new ::user::multiple_document_template(
+            //       ::as(new ::user::multiple_document_template(
             //   m_ptemplateChildForm->m_atom,
             //   typeDocument,
             //   m_ptemplateChildForm->m_typeatomFrame,
@@ -1774,7 +1774,7 @@ namespace base
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
-      return ::place(new ::user::show < ::calculator::edit > ());
+      return __new ::user::show < ::calculator::edit > ();
 
    }
 

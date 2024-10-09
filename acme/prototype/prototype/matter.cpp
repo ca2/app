@@ -91,12 +91,6 @@ matter::~matter()
 }
 
 
-void matter::operator()(::topic* ptopic, ::context* pcontext)
-{
-
-   handle(ptopic, pcontext);
-
-}
 
 
 void matter::operator()(::message::message * pmessage)
@@ -712,7 +706,7 @@ CLASS_DECL_ACME void __call(const ::procedure & procedure)
 
 
 
-//pointer< ::sequencer < ::conversation > > matter::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+//::pointer < ::subparticle > matter::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
 //{
 //
 //   auto psequence = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -779,7 +773,7 @@ bool matter::handle_call(::payload & payload, const ::string & strObject, const 
 //::topic_pointer matter::create_topic(const ::atom & atom)
 //{
 //
-//   auto ptopic = ::place(new ::topic(atom));
+//   auto ptopic = __new ::topic(atom);
 //
 //   ptopic->m_pcontext = system();
 //
@@ -791,7 +785,7 @@ bool matter::handle_call(::payload & payload, const ::string & strObject, const 
 bool matter::__get_posted_payload_synchronously(const ::function < void(const ::procedure &) > & functionPost, const ::function < ::payload(void) > & functionReturn, ::payload & payload)
 {
 
-   auto psynchronizer = ::place(new ::parallelization::synchronizer());
+   auto psynchronizer = __new ::parallelization::synchronizer();
 
    psynchronizer->set_nok();
 
@@ -823,7 +817,7 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
 
    functionPost(function);
 
-   auto estatusWait = psynchronizer->m_evGoingToWrite.wait(functionReturn.m_timeTimeout);
+   auto estatusWait = psynchronizer->m_evGoingToWrite.wait(functionReturn.get_run_timeout());
 
    if (estatusWait.failed())
    {
@@ -848,7 +842,7 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
 void matter::__send_procedure(const ::function < void(const ::procedure &) > & functionPost, const ::procedure & procedureParam)
 {
 
-   auto psignalization = ::place(new ::parallelization::signalization());
+   auto psignalization = __new ::parallelization::signalization();
 
    auto procedure = procedureParam;
 

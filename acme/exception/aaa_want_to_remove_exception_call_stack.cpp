@@ -101,7 +101,7 @@ string get_callstack(particle * pparticle, const ::scoped_string & scopedstrForm
 
    }
 
-   auto pcallstack = ::place(new callstack(pszFormat, (int)iSkip, caller_address, (int)iCount));
+   auto pcallstack = __new callstack(pszFormat, (int)iSkip, caller_address, (int)iCount);
 
    return pcallstack;
 

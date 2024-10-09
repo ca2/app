@@ -9,7 +9,7 @@
 #include "platform/system.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/graphics/device.h"
-#include "acme/nano/user/display.h"
+#include "acme/user/micro/display.h"
 #include "acme/operating_system/a_system_menu.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/application.h"
@@ -362,7 +362,7 @@ void window_base::handle(::topic * ptopic, ::context * pcontext)
 //
 //    message_loop();
 //
-//    // auto pmanualresetevent = ::place(new manual_reset_event());
+//    // auto pmanualresetevent = __new manual_reset_event();
 //    //
 //    // m_pinterface->m_psequencer->then([ pmanualresetevent](auto psequencer)
 //    // {

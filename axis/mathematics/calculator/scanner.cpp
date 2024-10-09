@@ -75,7 +75,7 @@ namespace calculator
    token * scanner::look_ahead()
    {
 
-      m_ptoken = ::place(new class token ());
+      m_ptoken = __new class token ();
 
       if (m_ptoken.is_null())
       {

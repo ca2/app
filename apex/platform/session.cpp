@@ -1142,7 +1142,7 @@ ret:
       {
 
          //estatus = 
-         __construct(m_pifs, ::place(new ifs("")));
+         __construct(m_pifs, __new ifs(""));
 
          //if (!estatus)
          //{
@@ -1159,7 +1159,7 @@ ret:
       {
 
          //estatus = 
-         __construct(m_premotefs, ::place(new ::fs::remote_native("")));
+         __construct(m_premotefs, __new ::fs::remote_native(""));
 
          //if (!estatus)
          //{
@@ -1175,7 +1175,7 @@ ret:
       //if (!m_pftpfs)
       //{
 
-      //   auto pftpfs = ::place(new ftpfs());
+      //   auto pftpfs = __new ftpfs();
 
       //   auto estatus = pftpfs->initialize_ftpfs(this, "");
 

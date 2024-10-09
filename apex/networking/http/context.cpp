@@ -1191,7 +1191,7 @@ namespace http
 
       string strSessId;
 
-      psession = ::place(new ::sockets::http_session(connect));
+      psession = __new ::sockets::http_session(connect);
 
       /*::pointer<::account::user>puser;
 
@@ -1734,7 +1734,7 @@ namespace http
 //            else
 //            {
 //
-//               set["get_memory"] = ::place(new memory(psession->GetDataPtr(), psession->GetContentLength()));
+//               set["get_memory"] = __new memory(psession->GetDataPtr(), psession->GetContentLength());
 //
 //            }
 //
@@ -2655,7 +2655,7 @@ namespace http
          else
          {
 
-            set["get_memory"] = ::place(new memory(psocket->GetDataPtr(), psocket->GetContentLength()));
+            set["get_memory"] = __new memory(psocket->GetDataPtr(), psocket->GetContentLength());
 
          }
 

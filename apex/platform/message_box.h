@@ -64,14 +64,18 @@
 //
 //
 //
-//CLASS_DECL_APEX void message_box_synchronous(oswindow oswindow, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+//CLASS_DECL_APEX void auto pmessagebox = __initialize_new ::message_box(oswindow oswindow, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+
+send(pmessagebox);
 //CLASS_DECL_APEX void message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 //
 //
 //inline void message_box_synchronous(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback())
 //{
 //
-//   return message_box_synchronous(nullptr, pszText, pszTitle, emessagebox, callback);
+//   return auto pmessagebox = __initialize_new ::message_box(nullptr, pszText, pszTitle, emessagebox, callback);
+
+send(pmessagebox);
 //
 //}
 //

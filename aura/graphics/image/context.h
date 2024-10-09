@@ -22,7 +22,7 @@ namespace image
       string_map < i32 > m_mapPathInt;
       string_map < ::image::image_pointer > m_mapPathImage;
       int         m_iImageSeed;
-      ::pointer < ::particle >         m_pparticleImageSynchronization;
+      ::particle_pointer         m_pparticleImageSynchronization;
 
 
 

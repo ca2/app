@@ -325,7 +325,7 @@ namespace acme
       if (::is_set(psystem))
       {
 
-         psystem->post_procedure([this]()
+         psystem->post([this]()
             {
 
                   system()->erase_session(m_iEdge);

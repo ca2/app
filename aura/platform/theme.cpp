@@ -420,9 +420,9 @@ namespace aura
       auto & blue = m_mapColors["blue"];
       auto & lite = m_mapColors["lite"];
 
-      dark = ::place(new colors());
-      blue = ::place(new colors());
-      lite = ::place(new colors());
+      dark = __new colors();
+      blue = __new colors();
+      lite = __new colors();
       
       m_pcolors = lite;
 

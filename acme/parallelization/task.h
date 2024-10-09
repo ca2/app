@@ -69,6 +69,8 @@ public:
 
    ::procedure                                     m_procedure;
    ::pointer<manual_reset_event>                  m_pevSleep;
+   ::pointer<manual_reset_event>                      m_peventFinished2;
+
 
 #ifdef WINDOWS
    error_code                                      m_errorcodeHresultCoInitialize;
@@ -140,8 +142,14 @@ public:
    //virtual void add_notify(::matter* pmatter);
    //virtual void erase_notify(::matter* pmatter);
 
-   void post_procedure(const ::procedure & procedure) override;
-   void send_procedure(const ::procedure & procedure) override;
+   void _post(const ::procedure & procedure) override;
+   void _send(const ::procedure & procedure, const class ::time & timeTimeout) override;
+
+   //void _post(::subparticle * p) override;
+   //void _send(::subparticle * p) override;
+
+   //virtual v do_synchronously(sequence * psequence);
+
 
    virtual void run_posted_procedures();
 
@@ -234,7 +242,7 @@ public:
    bool is_branch_current() const override;
 
 
-   virtual void synchronous_procedure(bool bAtAnotherThread, const procedure & procedure);
+   virtual void synchronous_procedure(bool bAtAnotherThread, const procedure & procedure, const class ::time & timeTimeout = 0_s);
 
 
 };

@@ -1389,7 +1389,7 @@ namespace dynamic_source
          return *p->element2();
       }
 
-      m_mapLib[pszLibrary] = ::place(new library(this));
+      m_mapLib[pszLibrary] = __new library(this);
 
       library & l = *m_mapLib[pszLibrary];
 

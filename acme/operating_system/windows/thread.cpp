@@ -219,34 +219,64 @@ namespace acme
    void node::user_post(const ::procedure & procedure)
    {
 
-      if (is_main_thread())
-      {
+      //if (is_main_thread())
+      //{
 
-         procedure();
+      //   procedure();
 
-         return;
+      //   return;
 
-      }
+      //}
 
       auto ptask = ::get_task();
 
       if (::is_set(ptask))
       {
 
-         ptask->post_procedure(procedure);
+         ptask->post(procedure);
 
       }
       else
       {
 
-         system()->post_procedure(procedure);
+         system()->post(procedure);
 
       }
 
    }
 
 
+   //void node::_user_post(::subparticle * p)
+   //{
+
+   //   if (is_main_thread())
+   //   {
+
+   //      p->call_run();
+
+   //      return;
+
+   //   }
+
+   //   auto ptask = ::get_task();
+
+   //   if (::is_set(ptask))
+   //   {
+
+   //      ptask->post(p);
+
+   //   }
+   //   else
+   //   {
+
+   //      system()->post(p);
+
+   //   }
+
+   //}
+
 }  // namespace acme
+
 
 
 

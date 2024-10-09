@@ -68,85 +68,94 @@ namespace app_just_acme_message_box
    }
 
 
-//#ifdef _DEBUG
-//
-//
-//   int64_t application::increment_reference_count()
-//   {
-//
-//      return ::object::increment_reference_count();
-//
-//   }
-//
-//
-//   int64_t application::decrement_reference_count()
-//   {
-//
-//      return ::object::decrement_reference_count();
-//
-//   }
-//
-//
-//#endif
+   //#ifdef _DEBUG
+   //
+   //
+   //   int64_t application::increment_reference_count()
+   //   {
+   //
+   //      return ::object::increment_reference_count();
+   //
+   //   }
+   //
+   //
+   //   int64_t application::decrement_reference_count()
+   //   {
+   //
+   //      return ::object::decrement_reference_count();
+   //
+   //   }
+   //
+   //
+   //#endif
 
 
    void application::show_message_box()
    {
 
-      while (true)
-      {
+      auto pmessagebox = __initialize_new::message_box(
+         "Showing a message box as requested.\n\nIs it ok?",
+         nullptr,
+         e_message_box_yes_no_cancel);
 
-
-         auto result = message_box_synchronous(this, "Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
-
-
-         if (result == e_dialog_result_cancel)
+      pmessagebox->post() << [this, pmessagebox]()
          {
 
-            _001TryCloseApplication();
+            if (pmessagebox->m_payloadResult == e_dialog_result_cancel)
+            {
 
-            break;
+               _001TryCloseApplication();
 
-         }
-         else  if (result == e_dialog_result_no)
-         {
+            }
+            else  if (pmessagebox->m_payloadResult == e_dialog_result_no)
+            {
 
-            message_box_synchronous(this, "No!", nullptr, e_message_box_ok);
+               auto pmessagebox = __initialize_new::message_box("No!", nullptr, e_message_box_ok);
 
-         }
-         else  if (result == e_dialog_result_yes)
-         {
+               pmessagebox->post() << [this]()
+                  {
 
-            message_box_synchronous(this, "Yes!!", nullptr, e_message_box_ok);
+                     show_message_box();
 
-            _001TryCloseApplication();
+                  };
 
-            break;
+            }
+            else  if (pmessagebox->m_payloadResult == e_dialog_result_yes)
+            {
 
-         }
+               auto pmessagebox = __initialize_new::message_box("Yes!!", nullptr, e_message_box_ok);
 
-      }
+               pmessagebox->post() << [this]()
+                  {
 
-   
-      //pprocess->then([this](auto future)
-      //               {
+                     _001TryCloseApplication();
 
-      //                  if (future->m_edialogresult == e_dialog_result_yes)
-      //                  {
+                  };
 
-      //                     auto papp = get_app();
+            }
 
-      //                     papp->_001TryCloseApplication();
+         };
 
-      //                  }
-      //                  else
-      //                  {
 
-      //                     show_message_box();
+         //pprocess->then([this](auto future)
+         //               {
 
-      //                  }
+         //                  if (future->m_edialogresult == e_dialog_result_yes)
+         //                  {
 
-      //               });
+         //                     auto papp = get_app();
+
+         //                     papp->_001TryCloseApplication();
+
+         //                  }
+         //                  else
+         //                  {
+
+         //                     show_message_box();
+
+         //                  }
+
+         //               });
 
    }
 

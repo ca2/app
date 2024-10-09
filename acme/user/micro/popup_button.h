@@ -15,6 +15,9 @@ namespace micro
       {
       public:
 
+         
+         ::payload m_payloadPopupButtonResult;
+
 
          popup_button();
          ~popup_button() override;

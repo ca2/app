@@ -53,7 +53,7 @@ namespace acme
          public:
          
          ::e_status m_estatus;
-         ::pointer < ::particle > m_pparticle;
+         ::particle_pointer m_pparticle;
          long long m_ll;
          void * m_p;
          

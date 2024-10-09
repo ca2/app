@@ -72,7 +72,7 @@ namespace hellobase
       ::user::single_document_template* pDocTemplate;
 
 
-      pDocTemplate = ::place(new ::user::single_document_template(
+      pDocTemplate = ::as(new ::user::single_document_template(
                              this,
                              "main",
                              ::type < document >(),

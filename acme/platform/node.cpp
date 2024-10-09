@@ -3,7 +3,7 @@
 //
 #include "framework.h"
 #include "node.h"
-#include "sequencer.h"
+//#include "sequencer.h"
 #include "application.h"
 #include "session.h"
 #include "system.h"
@@ -290,7 +290,7 @@ namespace acme
    }
 
 
-   ::pointer < ::particle > node::create_mutex()
+   ::particle_pointer node::create_mutex()
    {
 
       return __create < ::mutex >();
@@ -325,7 +325,7 @@ namespace acme
    }
 
 
-   //::pointer < ::particle > node::create_quit_particle(::pointer<::acme::node> &  pnode, ::pointer<::acme::system> & psystem)
+   //::particle_pointer node::create_quit_particle(::pointer<::acme::node> &  pnode, ::pointer<::acme::system> & psystem)
    //{
    //   
    //   return nullptr;
@@ -1369,7 +1369,7 @@ namespace acme
 
       }
 
-      auto pevent = ::place(new manual_reset_event());
+      auto pevent = __new manual_reset_event();
 
       user_post([ procedure, pevent ]
       {
@@ -1380,7 +1380,7 @@ namespace acme
 
       });
 
-      if(!pevent->wait(procedure.m_timeTimeout))
+      if(!pevent->wait(procedure.timeout()))
       {
 
          throw ::exception(error_timeout);
@@ -2320,57 +2320,55 @@ return false;
    void node::report_exception_to_user(::particle* pparticle, ::exception& exception, const ::string& strMoreDetails)
    {
 
-      auto psequencer = exception_message_box(exception, strMoreDetails);
-
-      psequencer->do_synchronously();
+      send(__initialize_new ::message_box(exception, strMoreDetails));
 
    }
 
 
-   ::pointer<::conversation>node::create_new_message_box_conversation()
-   {
+   //::pointer<::conversation>node::create_new_message_box_conversation()
+   //{
 
-      system()->do_graphics_and_windowing_system_factory();
+   //   system()->do_graphics_and_windowing_system_factory();
 
-      return __create_new < ::micro::message_box >();
+   //   return __create_new < ::micro::message_box >();
 
-   }
-
-
-   pointer< ::sequencer < ::conversation > > node::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
-   {
-
-      auto psequencer = __create_new < ::sequencer < ::conversation > >();
-
-      auto pmessagebox = create_new_message_box_conversation();
-
-      psequencer->m_psequence = pmessagebox;
-
-      pmessagebox->m_psequencer = psequencer;
-
-      pmessagebox->initialize_conversation(strMessage, strTitle, emessagebox, strDetails, picon);
-
-      return psequencer;
-
-   }
+   //}
 
 
-   pointer< ::sequencer < ::conversation > > node::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
-   {
+   //::pointer < ::subparticle > node::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+   //{
 
-      auto psequencer = __create_new < ::sequencer < ::conversation > >();
+   //   //auto psequencer = __create_new < ::sequencer < ::conversation > >();
 
-      auto pmessage = create_new_message_conversation();
+   //   auto pmessageboxconversation = create_new_message_box_conversation();
 
-      psequencer->m_psequence = pmessage;
+   //   //psequencer->m_psequence = pmessagebox;
 
-      pmessage->m_psequencer = psequencer;
+   //   //pmessagebox->m_psequencer = psequencer;
 
-      pmessage->initialize_conversation(strMessage, strTitle, emessagebox, strDetails, picon);
+   //   pmessageboxconversation->initialize_conversation(strMessage, strTitle, emessagebox, strDetails, picon);
 
-      return psequencer;
+   //   return pmessageboxconversation;
 
-   }
+   //}
+
+
+   //::pointer < ::subparticle > node::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+   //{
+
+   //   ///auto psequencer = __create_new < ::sequencer < ::conversation > >();
+
+   //   auto pmessageconversation = create_new_message_conversation();
+
+   //   //psequencer->m_psequence = pmessage;
+
+   //   //pmessage->m_psequencer = psequencer;
+
+   //   pmessageconversation->initialize_conversation(strMessage, strTitle, emessagebox, strDetails, picon);
+
+   //   return pmessageconversation;
+
+   //}
 
 
    //void node::micro::message_box(::sequence < ::conversation >* psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
@@ -4695,6 +4693,13 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    {
 
       return false;
+
+   }
+
+
+   void node::realize(::particle_pointer pparticle)
+   {
+
 
    }
 

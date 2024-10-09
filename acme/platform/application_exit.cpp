@@ -33,7 +33,7 @@ void application_exit::request_exit_application()
 
    m_bProcessingApplicationExitRequest = true;
 
-   application()->post_procedure([this]()
+   application()->post([this]()
    {
 
       try

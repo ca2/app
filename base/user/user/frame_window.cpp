@@ -18,10 +18,10 @@
 #include "acme/parallelization/task_flag.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
-#include "acme/platform/sequencer.h"
+//#include "acme/platform/sequencer.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/user/user.h"
+#include "acme/user/micro/user.h"
 #include "acme/user/user/_text_stream.h"
 #include "apex/message/simple_command.h"
 #include "apex/platform/savings.h"
@@ -944,7 +944,7 @@ namespace user
 
    //   m_strFrameTitle = pszWindowName;    // save title for later
 
-   //   auto pusersystem = ::place(new ::user::system(dwExStyle, pszClassName, pszWindowName, uStyle, rectangle, pcreate));
+   //   auto pusersystem = __new ::user::system(dwExStyle, pszClassName, pszWindowName, uStyle, rectangle, pcreate);
 
    //   if (!::user::interaction::create_window_ex(pusersystem, puiParent, pcreate->m_atom))
    //   {
@@ -1147,7 +1147,7 @@ namespace user
 
       //informationf("\nm_bLayoutEnable false");
 
-      //auto pusersystem = ::place(new ::user::system(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate));
+      //auto pusersystem = __new ::user::system(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate);
 
       //if (!create_window_ex(pusersystem, puiParent, pcreate->m_atom))
       //{

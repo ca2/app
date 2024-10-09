@@ -204,7 +204,7 @@
 //   ::pointer<::operating_system::a_system_menu> interaction_base::create_system_menu(bool bContextual)
 //   {
 //
-//      auto psystemmenu = ::place(new ::operating_system::a_system_menu());
+//      auto psystemmenu = __new ::operating_system::a_system_menu();
 //
 //      if (m_bMinimizeBox)
 //      {

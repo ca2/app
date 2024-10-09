@@ -4,10 +4,10 @@
 #include "acme/constant/id.h"
 #include "acme/constant/message.h"
 #include "acme/handler/topic.h"
-#include "acme/platform/sequencer.h"
+//#include "acme/platform/sequencer.h"
 #include "acme/prototype/geometry2d/_collection.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/user/user.h"
+#include "acme/user/micro/user.h"
 #include "acme/user/user/content.h"
 #include "apex/database/_binary_stream.h"
 #include "acme/filesystem/filesystem/file_context.h"
@@ -477,7 +477,7 @@ namespace user
 
          auto pmenuitemPopup = m_pmenuitem->m_pmenuitema->element_at(i);
 
-         ///main_content().add_item(::place(new ::item(::e_element_item, iPos, iMenu, -1)));
+         ///main_content().add_item(__new ::item(::e_element_item, iPos, iMenu, -1));
 
          string strTitle;
          
@@ -773,7 +773,7 @@ namespace user
 
          auto pmenuitemMenuBar = __create_new < ::menu::item >();
 
-         pmenuitemMenuBar->m_pmenuitema = ::place(new ::menu::item_ptra(pmenuitemMenuBar));
+         pmenuitemMenuBar->m_pmenuitema = __new ::menu::item_ptra(pmenuitemMenuBar);
 
          pmenuitemParent->add_item(pmenuitemMenuBar);
 

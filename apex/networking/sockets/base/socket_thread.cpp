@@ -58,17 +58,20 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //#endif
 //
 
+#include "_____debug_counters_001.h"
+
 namespace sockets
 {
 
-
+#if COUNTERS_001
    ::interlocked_count g_iSocketThread = 0;
-
+#endif
 
    socket_thread::socket_thread()
    {
-
+#if COUNTERS_001
       m_iAllocatedCount = g_iSocketThread++;
+#endif
 
    }
 
@@ -76,10 +79,11 @@ namespace sockets
    socket_thread::~socket_thread()
    {
 
+#if COUNTERS_001
       g_iSocketThread--;
 
       ::acme::get()->platform()->informationf("--->>>>>socket_thread::~SOCKET_thread\n");
-
+#endif
    }
 
 
@@ -127,7 +131,11 @@ namespace sockets
 
       ::task::on_initialize_particle();
 
+#if COUNTERS_001
+
       information() << "::sockets::socket_thread currently allocated count = " << m_iAllocatedCount;
+
+#endif
 
    }
 

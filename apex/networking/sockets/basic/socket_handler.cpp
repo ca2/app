@@ -3,7 +3,7 @@
 #include "tcp_socket.h"
 #include "acme/exception/interface_only.h"
 #include "apex/networking/networking.h"
-
+#include "_____debug_counters_001.h"
 //#include <time.h>
 //
 //#ifdef ANDROID
@@ -25,9 +25,10 @@
 namespace sockets
 {
 
+#if COUNTERS_001
 
    ::interlocked_count g_interlockedcountSocketHandler;
-
+#endif
 
    //socket_handler::socket_handler(::particle * pparticle, ::apex::log *plogger) :
    socket_handler::socket_handler() :
@@ -58,9 +59,13 @@ namespace sockets
       //m_countW = 0;
       //m_countE = 0;
 
+#if COUNTERS_001
+
       auto iSocketHandler = g_interlockedcountSocketHandler++;
 
       ::acme::get()->platform()->informationf("::sockets::socket_handler currently allocated count = " + ::as_string((::iptr) iSocketHandler));
+
+#endif
 
    }
 
@@ -69,9 +74,10 @@ namespace sockets
    {
 
       cleanup_handler();
+#if COUNTERS_001
 
       g_interlockedcountSocketHandler--;
-
+#endif
    }
 
 

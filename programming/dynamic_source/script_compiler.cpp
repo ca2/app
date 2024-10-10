@@ -429,7 +429,7 @@ namespace dynamic_source
       //#ifdef _DEBUG
 #ifdef LINUX
       //strB = m_pintegrationcontext->m_pathBuildFolder  / m_strDynamicSourceStage / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
-      strO = ::file::path(m_pathTime) / "intermediate" / m_pintegrationcontext->m_strPlatform / m_pmanager->m_strNamespace + "_dynamic_source_script" / strTransformName / strTransformName.name() + ".o";
+      strO = ::file::path(m_pathTime) / "intermediate" / m_pintegrationcontext->m_strPlatform / pscript->m_strClassNamePrefix + "_dynamic_source_script" / strTransformName / strTransformName.name() + ".o";
 #else
 
       //strB = m_strDynamicSourceStageFolder / "front\\dynamic_source\\BuildBat" / strTransformName.name() / strTransformName + ".bat";
@@ -440,7 +440,7 @@ namespace dynamic_source
 
       strE = m_strDynamicSourceStageFolder / m_pintegrationcontext->m_strPlatform / "dynamic_source" / strTransformName.sibling(strScript.name()) + ".exp";
 
-      ::file::path strDynamicSourceScriptFolder = m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + "_dynamic_source_script";
+      ::file::path strDynamicSourceScriptFolder = m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / pscript->m_strClassNamePrefix + "_dynamic_source_script";
 
       //strDVI = strDynamicSourceScriptFolder / strTransformName / m_strSdk1 + ".idb";
 
@@ -699,7 +699,7 @@ namespace dynamic_source
 
       dir()->create(pscript->m_strScriptPath.folder());
       dir()->create(strL.folder());
-      dir()->create(m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / m_pmanager->m_strNamespace + ::file::path("_dynamic_source_script") / strTransformName);
+      dir()->create(m_pathTime / "intermediate" / m_pintegrationcontext->m_strPlatform / m_strDynamicSourceConfiguration / m_pmanager->m_strRepos / pscript->m_strClassNamePrefix + ::file::path("_dynamic_source_script") / strTransformName);
 
       cppize(pscript);
 
@@ -1146,7 +1146,16 @@ namespace dynamic_source
          }
 
       }
+      pscript->m_strClassNamePrefix = pscript->m_strSourcePath;
+      pscript->m_strClassNamePrefix.find_replace("/", "_");
+      pscript->m_strClassNamePrefix.find_replace("\\", "_");
+      pscript->m_strClassNamePrefix.find_replace("-", "_");
+      pscript->m_strClassNamePrefix.find_replace(":", "_");
+      pscript->m_strClassNamePrefix.find_replace(" ", "_");
+      pscript->m_strClassNamePrefix.find_replace("!", "_");
+      pscript->m_strClassNamePrefix.find_replace(".", "_");
 
+      pscript->m_strClassName = pscript->m_strClassNamePrefix + "_dynamic_source_script";
 
       strsize iPosId = -1;
       string_array straId;
@@ -1223,12 +1232,12 @@ namespace dynamic_source
       strDest += "\r\n";
       strDest += "\r\n";
       strDest += "\r\n";
-      strDest += "class " + m_pmanager->m_strNamespace + "_dynamic_source_script : virtual public ::app_consumer < ::netnode::application, ::" + m_pmanager->m_strNamespace + "::script_instance >\r\n";
+      strDest += "class " + pscript->m_strClassNamePrefix + "_dynamic_source_script : virtual public ::app_consumer < ::netnode::application, ::" + m_pmanager->m_strNamespace + "::script_instance >\r\n";
       strDest += "{\r\n";
       strDest += "public:\r\n";
-      //strDest += "   " + m_pmanager->m_strNamespace + "_dynamic_source_script(dynamic_source::script * pscript) : ::object(pscript->get_app()), dynamic_source::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_impl(pscript) {};  \r\n";
-      strDest += "   " + m_pmanager->m_strNamespace + "_dynamic_source_script() {};\r\n";
-      strDest += "   virtual ~" + m_pmanager->m_strNamespace + "_dynamic_source_script() {};\r\n";
+      //strDest += "   " + pscript->m_strClassNamePrefix + "_dynamic_source_script(dynamic_source::script * pscript) : ::object(pscript->get_app()), dynamic_source::script_instance(pscript), ::" + pscript->m_strClassNamePrefix + "::script_instance(pscript), ::" + pscript->m_strClassNamePrefix + "::script_impl(pscript) {};  \r\n";
+      strDest += "   " + pscript->m_strClassNamePrefix + "_dynamic_source_script() {};\r\n";
+      strDest += "   virtual ~" + pscript->m_strClassNamePrefix + "_dynamic_source_script() {};\r\n";
       strDest += "   virtual void     run() { script_run(); };\r\n";
       strDest += "   virtual void script_run();\r\n";
       strDest += "   \r\n\r\n";
@@ -1238,10 +1247,10 @@ namespace dynamic_source
       strDest += "\r\n";
       strDest += "extern \"C\" __declspec(dllexport) dynamic_source::script_instance * __cdecl create_dynamic_source_script_instance ()\r\n";
       strDest += "{\r\n";
-      strDest += "   return new " + m_pmanager->m_strNamespace + "_dynamic_source_script ();\r\n";
+      strDest += "   return new " + pscript->m_strClassNamePrefix + "_dynamic_source_script ();\r\n";
       strDest += "}\r\n";
       strDest += "\r\n";
-      strDest += "void " + m_pmanager->m_strNamespace + "_dynamic_source_script::script_run()\r\n";
+      strDest += "void " + pscript->m_strClassNamePrefix + "_dynamic_source_script::script_run()\r\n";
       strDest += "{\r\n";
       strDest += "//Start parsed user script\r\n";
       straId.erase_all();

@@ -1132,7 +1132,11 @@ namespace sockets_bsd
    bool base_socket::prepare_for_detach()
    {
 
+#if 0
+
       information() << "prepare_for_detach";
+
+#endif
 
       if (!DeleteByHandler())
       {

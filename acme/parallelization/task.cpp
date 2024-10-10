@@ -606,7 +606,11 @@ void* task::s_os_task(void* p)
 
       ::set_task(ptask);
 
+#if 0
+
       ptask->information() << "s_os_task current_itask : " << current_itask();
+
+#endif
 
       //ptask->release(REFERENCING_DEBUGGING_P_FUNCTION_LINE(ptask));
 

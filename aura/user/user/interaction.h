@@ -1408,6 +1408,7 @@ namespace user
       //virtual void create_host(enum_parallelization eparallelization) override;
       //virtual void create_host();
       virtual void create_child(::user::interaction * pparent);
+      virtual bool _create_child(::user::interaction * puserinteractionParent);
       virtual void defer_create_interaction(::user::interaction * puserinteractionParent, const ::atom & atom = nullptr);
 
       virtual void create_control(::user::interaction * puserinteractionParent, const ::atom & atom);

@@ -73,7 +73,7 @@ namespace micro
       void main_window::create_window()
       {
 
-         __construct(m_pacmewindowingwindow);
+         __construct(m_pacmewindowingwindow, system()->m_pfactoryAcmeWindowing);
 
          m_pacmewindowingwindow->m_bMinimizeBox = true;
          m_pacmewindowingwindow->m_bMaximizeBox = true;

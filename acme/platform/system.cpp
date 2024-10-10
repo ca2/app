@@ -3960,9 +3960,9 @@ namespace acme
 
          ::string strToolkit = ::windowing::get_user_toolkit_id();
 
-         auto pfactory = this->factory("acme_windowing", strToolkit);
+         m_pfactoryAcmeWindowing = this->factory("acme_windowing", strToolkit);
 
-         pfactory->merge_to_global_factory();
+         m_pfactoryAcmeWindowing->merge_to_global_factory();
 
       }
 

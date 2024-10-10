@@ -78,6 +78,7 @@ namespace acme
 
       ::pointer < ::micro::user >                           m_pmicrouser;
       ::pointer < ::acme::windowing::windowing >            m_pacmewindowing;
+      ::factory::factory_pointer                            m_pfactoryAcmeWindowing;
 
       // END FROM MAIN (Now APPLICATION_FLAGS)
 

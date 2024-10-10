@@ -4880,6 +4880,13 @@ namespace user
 
       //window()->_001OnNcClip(pgraphics);
 
+      if (m_pacmewindowingwindow)
+      {
+
+         _001OnTopNcClip(pgraphics);
+
+      }
+
    }
 
 
@@ -6161,7 +6168,18 @@ namespace user
    void interaction::defer_do_graphics(::draw2d::graphics_pointer & pgraphics)
    {
 
-      window()->defer_do_graphics(pgraphics);
+      if (m_pacmewindowingwindow)
+      {
+
+         window()->defer_do_graphics(pgraphics);
+
+      }
+      else
+      {
+
+         _000CallOnDraw(pgraphics);
+
+      }
 
    }
 
@@ -8904,6 +8922,13 @@ namespace user
       if (pitem->m_item.m_eelement == e_element_client)
       {
 
+         if (!is_top_level())
+         {
+
+            return false;
+
+         }
+
          if (is_display_like_maximized() || is_display_like_full_screen())
          {
 
@@ -10422,6 +10447,277 @@ void interaction::create_interaction(::user::interaction * puserinteractionParen
       //}
 
       //return estatus;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      if(!_create_child(puserinteractionParent))
+      {
+
+         m_bUserElementOk = false;
+
+         //window().release();
+
+         //if (user_thread())
+         //{
+
+         //   if (::is_set(user_thread()->m_puiptraThread))
+         //   {
+
+         //      user_thread()->m_puiptraThread->erase(this);
+
+         //   }
+
+         //   __release(user_thread() REFERENCING_DEBUGGING_COMMA_THIS);
+
+         //}
+
+         return;
+
+      }
+
+      //}
+
+      //}
+      //catch (...)
+      //{
+
+      //   m_bUserElementOk = false;
+
+      //   if (user_thread())
+      //   {
+
+      //      if (::is_set(user_thread()->m_puiptraThread))
+      //      {
+
+      //         user_thread()->m_puiptraThread->erase(this);
+
+      //      }
+
+      //      __release(user_thread() REFERENCING_DEBUGGING_COMMA_THIS);
+
+      //   }
+
+      //}
+
+      //return estatus;
+
+   }
+
+   
+   bool interaction::_create_child(::user::interaction * puserinteractionParent)
+   {
+
+      if (_is_window())
+      {
+
+         information() << "-------------------------------------------------------------------";
+         information() << "";
+         information() << "";
+         information() << "interaction_child::create_window_ex (DestroyWindow)";
+         information() << "";
+         information() << "";
+
+         start_destroying_window();
+
+      }
+
+      //try
+      //{
+
+      //m_bCreate = true;
+
+      //m_puserinteraction = pinteraction;
+
+      //if (::is_null(system()))
+      //{
+
+      //   initialize(pprimitiveParent);
+
+      //}
+
+      //__refer(m_pthreadUserImpl,  m_puserinteraction->m_pthreadUserInteraction  REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
+
+      //m_puserinteraction->m_pprimitiveimpl = this;
+
+      //m_puserinteraction->m_pinteractionimpl.release();
+
+      //m_puserinteraction->m_atom = atom;
+
+      //if (!m_puserinteraction->pre_create_window(pusersystem))
+      //{
+      //   information() << "-------------------------------------------------------------------";
+      //   information() << "";
+      //   information() << "";
+      //   information() << "interaction_child::create_window_ex (2)";
+      //   information() << "";
+      //   information() << "";
+
+      //   return false;
+
+      //}
+
+      on_set_parent(puserinteractionParent);
+
+      on_after_set_parent();
+
+      if (m_puserinteractionOwner)
+      {
+
+         on_set_owner(m_puserinteractionOwner);
+
+         //::user::interaction_base * puiRet = set_owner(m_puserinteractionOwner);
+
+         //if (m_ewindowflag & e_window_flag_satellite_window)
+         //{
+
+         //   m_pthreadUserInteraction = m_puserinteractionOwner->m_pthreadUserInteraction;
+
+         //}
+
+      }
+
+      install_message_routing(this);
+
+      if (m_ewindowflag & e_window_flag_load_window_rect_on_impl
+          && (!is_top_level()
+             || !windowing()->is_sandboxed()))
+      {
+
+         information() << "-------------------------------------------------------------------";
+         information() << "";
+         information() << "";
+         information() << "interaction_child::create_window_ex (rectangle)";
+         information() << "";
+         information() << "";
+
+         WindowDataLoadWindowRectangle();
+
+      }
+      else
+      {
+
+         display(const_layout().sketch().m_edisplay);
+
+      }
+
+      m_ewindowflag |= e_window_flag_is_window;
+
+      //m_puserinteraction->set_window_long_ptr(GWL_STYLE, pusersystem->m_createstruct.style);
+      //m_puserinteraction->set_window_long_ptr(GWL_STYLE, m_puserinteraction-());
+
+      //auto rectangleChild = pusersystem->get_rect();
+
+      //if (rectangleChild.is_set())
+      //{
+
+      //   information() << "-------------------------------------------------------------------";
+      //   information() << "";
+      //   information() << "";
+      //   informationf("interaction_child::create_window_ex (rectangleChild %d, %d, (%d, %d))", rectangleChild.origin().x(), rectangleChild.origin().y(), rectangleChild.width(), rectangleChild.height());
+      //   information() << "";
+      //   information() << "";
+
+      //   m_puserinteraction->layout().sketch() = rectangleChild;
+
+      //}
+
+      string strType = ::type(this).name();
+
+      if (is_top_level())
+      {
+
+         information() << "top_level";
+
+      }
+      else
+      {
+
+         //if (pusersystem->m_createstruct.style & WS_VISIBLE)
+         //{
+
+         //   information() << "-------------------------------------------------------------------";
+         //   information() << "";
+         //   information() << "";
+         //   information() << "interaction_child::create_window_ex VISIBLE";
+         //   information() << "";
+         //   information() << "";
+
+         //   m_puserinteraction->display();
+
+         //}
+         //else
+         //{
+
+         //   information() << "-------------------------------------------------------------------";
+         //   information() << "";
+         //   information() << "";
+         //   information() << "interaction_child::create_window_ex NOT VISIBLE";
+         //   information() << "";
+         //   information() << "";
+
+         //   m_puserinteraction->hide();
+
+         //}
+
+      }
+
+      //m_puserinteraction->send_message(e_message_create, 0, (lparam)(lparam)& pusersystem->m_createstruct);
+      if (!(m_ewindowflag & ::e_window_flag_window_created))
+      {
+         //            auto pmessage = __create_new <::message::create>();
+         //            pmessage->m_atom = e_message_create;
+         //            m_puserinteraction->send_message(pmessage);
+
+         //            m_puserinteraction->send_create_message();
+
+         send_message(e_message_create);
+
+      }
+
+      if (m_procedureOnAfterCreate)
+      {
+
+         m_procedureOnAfterCreate();
+
+      }
+
+      //}
+      //catch (...)
+      //{
+
+      //   m_puserinteraction->m_ewindowflag -= e_window_flag_is_window;
+
+      //   m_bCreate = false;
+
+      //   return false;
+
+      //}
+
+      m_ewindowflag |= e_window_flag_window_created;
+
+      //m_bUserImplCreated = true;
+
+      set_flag(e_flag_task_started);
+
+      return true;
 
    }
 
@@ -16779,6 +17075,8 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       }
 
       m_puserinteractionParent = puserinteractionParent;
+
+      m_pacmeuserinteractionParent = puserinteractionParent;
 
       try
       {
@@ -24874,7 +25172,8 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       if(pmouse->m_bRet)
       {
 
-         return;
+         informationf("interaction::on_message_left_button_down m_bRet = true");
+         //return;
 
       }
 

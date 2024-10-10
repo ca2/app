@@ -449,7 +449,7 @@ namespace apex
       //// operating system specific behavior
       //virtual void auto pmessagebox = __initialize_new ::message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
-//send(pmessagebox);
+//pmessagebox->sync();
 
 
       //virtual void ui_message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());

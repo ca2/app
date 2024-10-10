@@ -95,8 +95,8 @@ namespace micro
 
       virtual void * get_display();
 
-      void main_send(const ::procedure & procedure) override;
-      void main_post(const ::procedure & procedure) override;
+      void _main_send(const ::procedure & procedure) override;
+      void _main_post(const ::procedure & procedure) override;
 
       //void _main_send(::subparticle * p) override;
       //void _main_post(::subparticle * p) override;

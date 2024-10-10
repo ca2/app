@@ -5,7 +5,7 @@
 #pragma once
 
 
-#include "acme/platform/message_box.h"
+#include "acme/user/user/message_box.h"
 #include "acme/user/micro/dialog.h"
 
 
@@ -18,7 +18,7 @@ namespace micro
 
       class message_box :
          virtual public ::micro::dialog,
-         virtual public ::reified < ::message_box >
+         virtual public ::acme::user::message_box
       {
       public:
 
@@ -27,7 +27,7 @@ namespace micro
          ::pointer<::micro::still>                 m_pstillDetails;
          //::pointer<::micro::still>               m_pstillIcon;
          ::pointer<::nano::graphics::icon>         m_picon;
-         ::pointer < ::message_box >               m_pmessagebox;
+         //::pointer < ::message_box >               m_pmessagebox;
 
 
          message_box();
@@ -38,10 +38,10 @@ namespace micro
 
          //virtual void set(::message_box * pmessagebox);
 
-         void realize(::realizable < ::message_box > * p) override;
+         void on_realize(::message_box * pmessagebox) override;
 
          //virtual void create_message_box(conversation * pconversation);
-
+         void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter) override;
          
          ::string get_title() override;
 

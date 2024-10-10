@@ -45,11 +45,19 @@ namespace windowing
          
       };
 
-      bool                                      m_bMessageOnlyWindow : 1;
-      bool                                      m_bQuitGraphicsOnHide : 1;
-      bool                                      m_bDestroyWindowOnHide : 1;
-      bool                                      m_bTryCloseApplicationOnHide : 1;
+      union
+      {
+         struct
+         {
+            bool                                      m_bQuitGraphicsOnHide : 1;
+            bool                                      m_bDestroyWindowOnHide : 1;
+            bool                                      m_bTryCloseApplicationOnHide : 1;
 
+         };
+         ::u8 m_uOnHide = {};
+      };
+
+      bool                                      m_bMessageOnlyWindow : 1;
 
       ::sandbox_windowing::window *             m_psandboxwindowingwindow;
       //void *                                    m_pWindow4;
@@ -553,8 +561,8 @@ namespace windowing
       
       virtual void frame_toggle_restore();
 
-      void user_send(const ::procedure & procedure) override;
-      void user_post(const ::procedure & procedure) override;
+      void _user_send(const ::procedure & procedure) override;
+      void _user_post(const ::procedure & procedure) override;
 
       bool is_branch_current() const override;
 
@@ -629,8 +637,8 @@ namespace windowing
       void on_a_system_menu_item(::operating_system::a_system_menu_item * psystemmenuitem) override;
 
 
-      void main_send(const ::procedure & procedure) override;
-      void main_post(const ::procedure & procedure) override;
+      void _main_send(const ::procedure & procedure) override;
+      void _main_post(const ::procedure & procedure) override;
 
 
 

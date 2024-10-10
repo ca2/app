@@ -104,7 +104,7 @@ namespace acme
 ////
 ////   auto posmessagebox = __new ::acme::auto pmessagebox = __initialize_new ::message_box(pszText, pszTitle, emessagebox);
 
-//send(pmessagebox);
+//pmessagebox->sync();
 ////
 ////   return __realize(posmessagebox, process);
 ////
@@ -162,9 +162,14 @@ CLASS_DECL_ACME ::payload __cpp_assert_failed_line(const char * pszFileName, int
 
    sprintf(szMessage,"Assert failed!\n\nFile: %s\nLine: %d\n\nYou can choose to:\n\n\t - \"Cancel\": cancel debugging.\n\t - \"Try\": try debug break where assertion occurred.\n\t - \"Continue\": continue running", pszFileName,iLineNumber);
 
-   auto pmessagebox = __new message_box(szMessage, "ASSERT", e_message_box_cancel_try_continue | e_message_box_icon_error);
+   auto pmessagebox = 
+      __initialize_new_with(::platform::system())
+      ::message_box(
+         szMessage,
+         "ASSERT",
+         e_message_box_cancel_try_continue | e_message_box_icon_error);
 
-   ::platform::get()->system()->send(pmessagebox);
+   pmessagebox->sync();
 
    return pmessagebox->m_payloadResult;
 

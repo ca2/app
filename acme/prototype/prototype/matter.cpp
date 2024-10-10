@@ -541,7 +541,7 @@ void matter::__task_main()
 
    //::e_status estatus = operator()();
 
-   call_run();
+   call();
 
    //return estatus;
 
@@ -817,7 +817,7 @@ bool matter::__get_posted_payload_synchronously(const ::function < void(const ::
 
    functionPost(function);
 
-   auto estatusWait = psynchronizer->m_evGoingToWrite.wait(functionReturn.get_run_timeout());
+   auto estatusWait = psynchronizer->m_evGoingToWrite.wait(functionReturn.timeout());
 
    if (estatusWait.failed())
    {

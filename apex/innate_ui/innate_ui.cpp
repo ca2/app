@@ -47,14 +47,14 @@ namespace innate_ui
    }
 
 
-   void innate_ui::main_post(const ::procedure & procedure)
+   void innate_ui::_main_post(const ::procedure & procedure)
    {
 
       auto psystem = system();
 
       auto pacmewindowing = psystem->acme_windowing();
 
-      pacmewindowing->main_post(procedure);      //auto pparticle = (::subparticle *)procedure.m_pbase;
+      pacmewindowing->_main_post(procedure);      //auto pparticle = (::subparticle *)procedure.m_pbase;
 
       //pparticle->increment_reference_count();
 
@@ -63,20 +63,21 @@ namespace innate_ui
    }
 
 
-   void innate_ui::main_send(const ::procedure & procedure)
+   void innate_ui::_main_send(const ::procedure & procedure)
    {
 
       auto psystem = system();
 
       auto pacmewindowing = psystem->acme_windowing();
 
-      pacmewindowing->main_send(procedure);      //auto pparticle = (::subparticle *)procedure.m_pbase;
+      pacmewindowing->_main_send(procedure);      //auto pparticle = (::subparticle *)procedure.m_pbase;
 
       //pparticle->increment_reference_count();
 
       //PostThreadMessage(m_dwThread, WM_APP + 123, 0, (LPARAM)pparticle);
 
    }
+
 
    ::pointer < ::innate_ui::icon > innate_ui::innate_ui_icon(const ::payload & payloadFile, const ::size_i32 & size)
    {

@@ -16,6 +16,42 @@ public:
 
 
    void run() override;
+   virtual void on_end_procedure();
+
+};
+
+
+template < typename CONTEXT_TYPE >
+class procedure_array_with_context :
+   virtual public ::procedure_array
+{
+public:
+
+   procedure_array_with_context() {}
+   procedure_array_with_context(const procedure_array & procedurea) :
+      procedure_array(procedurea)
+   {
+
+   }
+   procedure_array_with_context(procedure_array && procedurea) :
+      procedure_array(::transfer(procedurea))
+   {
+
+   }
+
+
+   procedure_array_with_context & operator = (const procedure_array & procedurea)
+   {
+      ::procedure_array::operator =(procedurea);
+      return *this;
+
+   }
+
+
+   void run() override;
 
 
 };
+
+
+

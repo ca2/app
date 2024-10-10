@@ -24,7 +24,7 @@ namespace micro
       theme::theme()
       {
 
-         m_iFontSize = 14;
+         m_iFontSize = 15;
 
       }
 
@@ -87,9 +87,9 @@ namespace micro
 
          m_pbrushHyperlinkHover = ::nano::graphics::create_solid_brush(this, m_colorHyperlinkHover);
 
-         m_ppenBorder = ::nano::graphics::create_pen(this, 1, m_colorText);
+         m_ppenBorder = ::nano::graphics::create_pen(this, 2, m_colorText);
 
-         m_ppenBorderFocus = ::nano::graphics::create_pen(this, 1, m_colorFocus);
+         m_ppenBorderFocus = ::nano::graphics::create_pen(this, 2, m_colorFocus);
 
       }
 

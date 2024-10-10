@@ -89,7 +89,7 @@ file_dialog::~file_dialog()
    m_bSave = bSave;
    m_bMultiple = false;
    
-   call_run();
+   call();
 //                                                        poswindow,
 //                                                        nullptr,
 //                                                        filetypes, functionHere, pathStartFolder, save, false));
@@ -134,7 +134,7 @@ file_dialog::~file_dialog()
       m_bSave = false;
       m_bMultiple = true;
       
-      call_run();
+      call();
 
    }
 

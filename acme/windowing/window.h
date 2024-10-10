@@ -128,7 +128,7 @@ namespace acme
 
          void set_interaction_rectangle(const ::rectangle_i32 & rectangle) override;
 
-         ::rectangle_i32 get_interaction_rectangle() override;
+         ::rectangle_i32 get_rectangle() override;
 
 
          //void get_window_rectangle() override;

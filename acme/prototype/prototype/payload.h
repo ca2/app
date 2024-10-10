@@ -145,7 +145,7 @@ public:
       payload_all_t                          m_payloadall;
       ::string                               m_str;
       ::range < const ::ansi_character * >   m_ansirange;
-      ::function_common * m_pfunctioncommon;
+      ::function_common_base *               m_pfunctioncommonbase;
 
    };
 

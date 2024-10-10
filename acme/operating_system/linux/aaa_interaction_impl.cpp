@@ -1816,7 +1816,7 @@ namespace linux
 //
 //      i32 nResult = ::auto pmessagebox = __initialize_new ::message_box((oswindow)get_handle(), pszText, strCaption, nType);
 
-send(pmessagebox);
+pmessagebox->sync();
 //
 //      return nResult;
 //

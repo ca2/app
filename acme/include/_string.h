@@ -9,7 +9,7 @@
 
 //CLASS_DECL_ACME ::payload auto pmessagebox = __initialize_new ::message_box(::particle * ppartcicle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-//send(pmessagebox);
+//pmessagebox->sync();
 
 //CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload & payload) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 

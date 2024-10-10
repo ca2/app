@@ -649,14 +649,14 @@ void particle::operator()(::topic * ptopic, ::context * pcontext)
 }
 
 
-void particle::operator()(::sequencer & sequencer)
-{
-
-   run();
-
-   complete_step(sequencer);
-
-}
+//void particle::operator()(::sequencer & sequencer)
+//{
+//
+//   run();
+//
+//   complete_step(sequencer);
+//
+//}
 
 
 //void particle::operator()(::sequence * psequence)
@@ -669,31 +669,31 @@ void particle::operator()(::sequencer & sequencer)
 //}
 
 
-::sequencer particle::get_current_sequencer()
-{
-
-   return nullptr;
-
-}
-
-
-void particle::set_current_sequencer(const ::sequencer & sequencer)
-{
+//::sequencer particle::get_current_sequencer()
+//{
+//
+//   return nullptr;
+//
+//}
 
 
-}
-
-
-void particle::aggregate(::sequencer & sequencer)
-{
-
-   set_current_sequencer(sequencer);
-
-   run();
-
-   complete_step(sequencer);
-
-}
+//void particle::set_current_sequencer(const ::sequencer & sequencer)
+//{
+//
+//
+//}
+//
+//
+//void particle::aggregate(::sequencer & sequencer)
+//{
+//
+//   set_current_sequencer(sequencer);
+//
+//   run();
+//
+//   complete_step(sequencer);
+//
+//}
 
 
 void particle::handle(::topic * ptopic, ::context * pcontext)
@@ -715,6 +715,9 @@ void particle::call_handle(::topic* ptopic, ::context* pcontext)
    handle(ptopic, pcontext);
 
 }
+
+
+
 
 
 void particle::call_handle_message(::message::message* pmessage)
@@ -747,7 +750,7 @@ void subparticle::init_task()
 }
 
 
-void subparticle::call_run()
+void subparticle::call()
 {
 
    //m_eflagElement += e_flag_running;
@@ -803,6 +806,14 @@ void particle::delete_this()
 void particle::on_sequence()
 {
 
+
+}
+
+
+::payload particle::get_result_payload()
+{
+
+   return {};
 
 }
 
@@ -2090,45 +2101,48 @@ bool particle::is_branch_current() const
 }
 
 
-CLASS_DECL_ACME void __call(::particle * pparticle, const ::atom & atom, i64 wParam, i64 lParam, ::particle * pparticleCall)
+CLASS_DECL_ACME lresult __call(::particle * pparticle, const ::atom & atom, i64 wParam, i64 lParam)
 {
 
-   if (::is_null(pparticleCall))
-   {
 
-      auto psystem = pparticle->system();
+   throw "what?!?!?!";
 
-      auto ptopic = psystem->create_topic(atom);
+   //if (::is_null(pparticleCall))
+   //{
 
-      if(wParam != 0 || lParam != 0)
-      {
+   //   auto psystem = pparticle->system();
 
-         ptopic->payload("wparam") = wParam;
-         ptopic->payload("lparam") = lParam;
+   //   auto ptopic = psystem->create_topic(atom);
 
-      }
+   //   if(wParam != 0 || lParam != 0)
+   //   {
 
-      pparticle->handle(ptopic, nullptr);
+   //      ptopic->payload("wparam") = wParam;
+   //      ptopic->payload("lparam") = lParam;
 
-   }
-   else
-   {
+   //   }
 
-      auto pextendedtopic = create_extended_topic(pparticleCall, atom);
+   //   pparticle->handle(ptopic, nullptr);
 
-      if(wParam != 0 || lParam != 0)
-      {
+   //}
+   //else
+   //{
 
-         pextendedtopic->payload("wparam") = wParam;
-         pextendedtopic->payload("lparam") = lParam;
+   //   auto pextendedtopic = create_extended_topic(pparticleCall, atom);
 
-      }
+   //   if(wParam != 0 || lParam != 0)
+   //   {
 
-      pextendedtopic->m_pparticle = pparticleCall;
+   //      pextendedtopic->payload("wparam") = wParam;
+   //      pextendedtopic->payload("lparam") = lParam;
 
-      pparticle->handle(pextendedtopic, nullptr);
+   //   }
 
-   }
+   //   pextendedtopic->m_pparticle = pparticleCall;
+
+   //   pparticle->handle(pextendedtopic, nullptr);
+
+   //}
 
 }
 
@@ -2153,12 +2167,21 @@ CLASS_DECL_ACME void __call(::particle * pparticle, const ::atom & atom, i64 wPa
 //
 
 
-void particle::call(const ::atom & atom, i64 wParam, i64 lParam, ::particle * pparticle)
+lresult particle::message_call(const ::atom & atom, wparam wParam, lparam lParam)
 {
 
-   return __call(this, atom, wParam, lParam, pparticle);
+   return message_handler(atom, wParam, lParam);
 
 }
+
+
+lresult particle::message_handler(const ::atom & atom, wparam wParam, lparam lParam)
+{
+
+   return __call(this, atom, wParam, lParam);
+
+}
+
 //
 //
 //void particle::handle(::topic * ptopic, ::context * pcontext)
@@ -2653,7 +2676,7 @@ void particle::task_post(const ::procedure & procedure)
 }
 
 
-void particle::user_send(const ::procedure & procedure)
+void particle::_user_send(const ::procedure & procedure)
 {
 
    node()->user_send(procedure);
@@ -2661,7 +2684,7 @@ void particle::user_send(const ::procedure & procedure)
 }
 
 
-void particle::user_post(const ::procedure & procedure)
+void particle::_user_post(const ::procedure & procedure)
 {
 
    node()->user_post(procedure);
@@ -2669,7 +2692,7 @@ void particle::user_post(const ::procedure & procedure)
 }
 
 
-void particle::main_send(const ::procedure & procedure)
+void particle::_main_send(const ::procedure & procedure)
 {
 
    user_send(procedure);
@@ -2677,7 +2700,7 @@ void particle::main_send(const ::procedure & procedure)
 }
 
 
-void particle::main_post(const ::procedure & procedure)
+void particle::_main_post(const ::procedure & procedure)
 {
 
    user_post(procedure);
@@ -2970,45 +2993,73 @@ CLASS_DECL_ACME void fatalf(const ::ansi_character* pszFormat, ...)
 
 }
 
-void particle::complete_step(::sequencer & sequencer)
-{
+//void particle::complete_step(::sequencer & sequencer)
+//{
+//
+//
+//}
 
 
-}
-
-
-void particle::user_send()
-{
-
-   user_send(this);
-
-}
-
-
-
-void particle::user_post()
-{
-
-   user_post(this);
-
-}
-
-
-void particle::main_send()
-{
-
-   main_send(this);
-
-}
+//void particle::user_send()
+//{
+//
+//   user_send(this);
+//
+//}
 
 
 
-void particle::main_post()
-{
+//void particle::user_post()
+//{
+//
+//   user_post(this);
+//
+//}
 
-   main_post(this);
 
-}
+//void particle::main_send()
+//{
+//
+//   main_send(this);
+//
+//}
+
+
+//post_continuation particle::user_async()
+//{
+//
+//
+//}
+
+
+//send_continuation particle::user_sync()
+//{
+//
+//
+//}
+
+
+//post_continuation particle::main_async()
+//{
+//
+//
+//}
+
+
+//send_continuation particle::main_sync()
+//{
+//
+//
+//}
+
+
+
+//void particle::main_post()
+//{
+//
+//   main_post(this);
+//
+//}
 
 class ::time particle::get_default_run_timeout()
 {
@@ -3034,9 +3085,56 @@ void particle::_post(const ::procedure & procedure)
 }
 
 
-void particle::_send(const ::procedure & procedure, const class ::time & timeTimeout)
+void particle::_send(const ::procedure & procedure)
 {
 
-   m_pcontext->_send(procedure, timeTimeout);
+   m_pcontext->_send(procedure);
 
 }
+
+
+void particle::_call_procedure(enum_dispatch edispatch, const procedure & procedure)
+{
+
+   if (edispatch == e_dispatch_send)
+   {
+
+      _send(procedure);
+
+   }
+   else if (edispatch == e_dispatch_main_send)
+   {
+
+      _main_send(procedure);
+
+   }
+   else if (edispatch == e_dispatch_user_send)
+   {
+
+      _user_send(procedure);
+
+   }
+   else if (edispatch == e_dispatch_main_post)
+   {
+
+      _main_post(procedure);
+
+   }
+   else if (edispatch == e_dispatch_user_post)
+   {
+
+      _user_post(procedure);
+
+   }
+   else
+   {
+
+      _post(procedure);
+
+   }
+
+}
+
+
+
+

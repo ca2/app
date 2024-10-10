@@ -6,7 +6,7 @@ struct use_t {};
 struct transfer_t {};
 struct allocate_t {};
 struct function_t {};
-
+struct continuation_t {};
 
 struct sequence_t {};
 

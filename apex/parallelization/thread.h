@@ -425,7 +425,8 @@ public:
 
    virtual void inline_init();
    virtual void inline_term();
-
+   
+   using task::post;
    virtual void post(::message::message * pmessage);
 
    virtual void handle_posted_messages();

@@ -33,60 +33,67 @@ namespace nano
 
       }
 
-
-      void http::sync(::nano::http::get* pget)
+      
+      void http::perform(::nano::http::get * pget)
       {
 
-         auto pevent = __create_new < ::manual_reset_event >();
-
-         pget->m_functionOnFinished = [pevent](auto)
-            {
-
-               pevent->SetEvent();
-
-            };
-
-         if (!pget->m_transferprogressfunction)
-         {
-
-            pget->m_transferprogressfunction = pget->m_setIn["transfer_progress_function"];
-
-         }
-
-         async(pget);
-
-         if (!pevent->wait(pget->m_timeSyncTimeout))
-         {
-
-            throw ::exception(error_timeout);
-
-         }
 
       }
 
 
-      void http::async(::nano::http::get* pget)
-      {
+      //void http::sync(::nano::http::get* pget)
+      //{
 
-         ::pointer < ::nano::http::get > pgetHold(pget);
+      //   auto pevent = __create_new < ::manual_reset_event >();
 
-         if (!pget->m_transferprogressfunction)
-         {
+      //   pget->m_functionOnFinished = [pevent](auto)
+      //      {
 
-            pget->m_transferprogressfunction = pget->m_setIn["transfer_progress_function"];
+      //         pevent->SetEvent();
 
-         }
+      //      };
 
-         fork([this, pgetHold]()
-            {
+      //   if (!pget->m_transferprogressfunction)
+      //   {
 
-               sync(pgetHold);
+      //      pget->m_transferprogressfunction = pget->m_setIn["transfer_progress_function"];
 
-               pgetHold->set_finished();
+      //   }
 
-            });
+      //   async(pget);
 
-      }
+      //   if (!pevent->wait(pget->m_timeSyncTimeout))
+      //   {
+
+      //      throw ::exception(error_timeout);
+
+      //   }
+
+      //}
+
+
+      //void http::async(::nano::http::get* pget)
+      //{
+
+      //   ::pointer < ::nano::http::get > pgetHold(pget);
+
+      //   if (!pget->m_transferprogressfunction)
+      //   {
+
+      //      pget->m_transferprogressfunction = pget->m_setIn["transfer_progress_function"];
+
+      //   }
+
+      //   fork([this, pgetHold]()
+      //      {
+
+      //         sync(pgetHold);
+
+      //         pgetHold->set_finished();
+
+      //      });
+
+      //}
 
 
       ::url::url http::get_effective_url(const ::url::url & url)
@@ -107,7 +114,7 @@ namespace nano
             
             pget->m_timeSyncTimeout = 5_min;
 
-            sync(pget);
+            pget->send();
 
             auto strLocation = pget->m_setOut["location"].as_string();
 
@@ -148,7 +155,7 @@ namespace nano
 
          pget->m_timeSyncTimeout = 5_min;
 
-         sync(pget);
+         pget->send();
 
          auto iHttpStatusCode = pget->m_setOut["http_status_code"].as_i32();
 
@@ -169,7 +176,7 @@ namespace nano
 
          pget->m_timeSyncTimeout = 5_min;
 
-         sync(pget);
+         pget->send();
 
          auto iHttpStatusCode = pget->m_setOut["http_status_code"].as_i32();
 
@@ -193,7 +200,7 @@ namespace nano
 
          pget->m_timeSyncTimeout = 2_hour;
 
-         sync(pget);
+         pget->send();
 
          auto iHttpStatusCode = pget->m_setOut["http_status_code"].as_i32();
 

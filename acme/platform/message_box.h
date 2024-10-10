@@ -54,7 +54,7 @@ public:
    //virtual ::payload get_conversation_result();
 
    
-   
+   ::payload get_result_payload() override;
 
    
    //::payload do_synchronously(const class time & timeWait) override;

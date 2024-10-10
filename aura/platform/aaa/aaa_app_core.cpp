@@ -342,14 +342,14 @@ void app_core::system_init()
 
       auto pmessagebox = __initialize_new ::message_box(nullptr, "going to seteuid to: " + as_string(uid), "going to seteuid", e_message_box_ok);
 
-send(pmessagebox);
+pmessagebox->sync();
 
       if (seteuid(uid) == 0)
       {
 
          auto pmessagebox = __initialize_new ::message_box(nullptr, "uid=" + as_string(uid), "seteuid success", e_message_box_ok);
 
-send(pmessagebox);
+pmessagebox->sync();
 
       }
       else
@@ -363,7 +363,7 @@ send(pmessagebox);
 
          auto pmessagebox = __initialize_new ::message_box(nullptr, strError, "seteuid failed", e_message_box_icon_exclamation);
 
-send(pmessagebox);
+pmessagebox->sync();
 
       }
 

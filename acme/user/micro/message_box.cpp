@@ -48,7 +48,7 @@ namespace micro
       //void message_box::realize(::realizable < ::message_box > * p)
       //{
 
-      //   m_pmessagebox = p;
+      //   m_prealizable = p;
 
       //}
 
@@ -56,7 +56,7 @@ namespace micro
       ::string message_box::get_title()
       {
 
-         return m_pmessagebox->m_strTitle;
+         return m_prealizable->m_strTitle;
 
       }
 
@@ -113,7 +113,7 @@ namespace micro
          }
 
          pmicrodevice->draw_text123(
-            m_pmessagebox->m_strMessage,
+            m_prealizable->m_strMessage,
             rectangleText,
             e_align_top_left,
             e_draw_text_word_break,
@@ -127,7 +127,7 @@ namespace micro
       void message_box::defer_create_details_still()
       {
 
-         if (m_pmessagebox->m_strDetails.has_char())
+         if (m_prealizable->m_strDetails.has_char())
          {
 
             m_pstillDetails = __new ::micro::still();
@@ -180,61 +180,71 @@ namespace micro
       //
       //    m_pstillIcon->set_icon(picon);
       }
-
-
-      void message_box::realize(::realizable < ::message_box > * p)
+      
+      
+      void message_box::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
       {
 
-         m_pmessagebox= p;
+         ::micro::dialog::add_button(scopedstrText, edialogresult, chLetter);
+
+      }
+
+
+      void message_box::on_realize(::message_box * pmessagebox)
+      {
+
+         //m_prealizable= p;
       
          //conversation_message::initialize_conversation(strMessage, strTitle, emessagebox, strDetails, picon);
 
          calculate_size();
 
-         auto emessageboxType = m_pmessagebox->m_emessagebox & e_message_box_type_mask;
+         ::acme::user::message_box::on_realize(pmessagebox);
 
-         switch (emessageboxType)
-         {
-         case e_message_box_ok_cancel:
-            add_button("OK", e_dialog_result_ok, 'o');
-            add_button("Cancel", e_dialog_result_cancel, 'c');
-            break;
-         case e_message_box_abort_retry_ignore:
-            add_button("Abort", e_dialog_result_abort, 'a');
-            add_button("Retry", e_dialog_result_retry, 'r');
-            add_button("Ignore", e_dialog_result_ignore, 'i');
-            break;
-         case e_message_box_yes_no_cancel:
-            add_button("Yes", e_dialog_result_yes, 'y');
-            add_button("No", e_dialog_result_no, 'n');
-            add_button("Cancel", e_dialog_result_cancel, 'c');
-            break;
-         case e_message_box_yes_no:
-            add_button("Yes", e_dialog_result_yes, 'y');
-            add_button("No", e_dialog_result_no, 'n');
-            break;
-         case e_message_box_retry_cancel:
-            add_button("Retry", e_dialog_result_retry, 'r');
-            add_button("Cancel", e_dialog_result_cancel, 'c');
-            break;
-         case e_message_box_cancel_try_continue:
-            add_button("Cancel", e_dialog_result_cancel, 'c');
-            add_button("Try", e_dialog_result_try_again, 't');
-            add_button("Continue", e_dialog_result_continue, 'n');
-            break;
-         default:
-            add_button("OK", e_dialog_result_ok, 'o');
-            break;
-         }
+         //auto emessageboxType = m_prealizable->m_emessagebox & e_message_box_type_mask;
 
-         set_icon(m_pmessagebox->m_picon);
+         //switch (emessageboxType)
+         //{
+         //case e_message_box_ok_cancel:
+         //   add_button("OK", e_dialog_result_ok, 'o');
+         //   add_button("Cancel", e_dialog_result_cancel, 'c');
+         //   break;
+         //case e_message_box_abort_retry_ignore:
+         //   add_button("Abort", e_dialog_result_abort, 'a');
+         //   add_button("Retry", e_dialog_result_retry, 'r');
+         //   add_button("Ignore", e_dialog_result_ignore, 'i');
+         //   break;
+         //case e_message_box_yes_no_cancel:
+         //   add_button("Yes", e_dialog_result_yes, 'y');
+         //   add_button("No", e_dialog_result_no, 'n');
+         //   add_button("Cancel", e_dialog_result_cancel, 'c');
+         //   break;
+         //case e_message_box_yes_no:
+         //   add_button("Yes", e_dialog_result_yes, 'y');
+         //   add_button("No", e_dialog_result_no, 'n');
+         //   break;
+         //case e_message_box_retry_cancel:
+         //   add_button("Retry", e_dialog_result_retry, 'r');
+         //   add_button("Cancel", e_dialog_result_cancel, 'c');
+         //   break;
+         //case e_message_box_cancel_try_continue:
+         //   add_button("Cancel", e_dialog_result_cancel, 'c');
+         //   add_button("Try", e_dialog_result_try_again, 't');
+         //   add_button("Continue", e_dialog_result_continue, 'n');
+         //   break;
+         //default:
+         //   add_button("OK", e_dialog_result_ok, 'o');
+         //   break;
+         //}
+
+         set_icon(m_prealizable->m_picon);
 
          defer_create_details_still();
 
-         if (m_pmessagebox->m_emessagebox & e_message_box_default_button_mask)
+         if (m_prealizable->m_emessagebox & e_message_box_default_button_mask)
          {
 
-            int iDefaultButtonMask = (int)(m_pmessagebox->m_emessagebox & e_message_box_default_button_mask);
+            int iDefaultButtonMask = (int)(m_prealizable->m_emessagebox & e_message_box_default_button_mask);
 
             int iDefaultButtonIndex = iDefaultButtonMask >> 8;
 
@@ -316,7 +326,7 @@ namespace micro
       void message_box::set_dialog_result(const ::payload & payloadResult)
       {
 
-         m_pmessagebox->m_payloadResult = payloadResult;
+         m_prealizable->m_payloadResult = payloadResult;
 
          on_dialog_result_set();
 
@@ -326,7 +336,7 @@ namespace micro
       ::payload message_box::get_dialog_result()
       {
 
-         return m_pmessagebox->m_payloadResult;
+         return m_prealizable->m_payloadResult;
 
       }
 
@@ -481,10 +491,10 @@ namespace micro
             //auto psequencer = __create_new < ::sequencer < ::conversation > >();
 
             auto pmessageboxDetails = __initialize_new::message_box(
-               m_pmessagebox->m_strDetails, 
-               m_pmessagebox->m_strTitle + " : Details",
+               m_prealizable->m_strDetails, 
+               m_prealizable->m_strTitle + " : Details",
                e_message_box_ok,
-               m_pmessagebox->m_strDetails);
+               m_prealizable->m_strDetails);
 
             pmessageboxDetails->m_bDetails = true;
             //psequencer->m_psequence = pdetailswindow;
@@ -526,9 +536,7 @@ namespace micro
 
          ppopupbutton->initialize_popup_button("Dump to File...", pmouse->m_pointAbsolute.x(), pmouse->m_pointAbsolute.y(), pwindowParent);
 
-         //auto psequence = __create_new < ::sequence >();
-
-         ppopupbutton->post()
+         ppopupbutton->main_async()
             << [this, ppopupbutton]()
             {
 
@@ -538,8 +546,8 @@ namespace micro
                {
 
                   display_temporary_file_with_text(
-                     m_pmessagebox->m_strMessage + "\n\n" 
-                     + m_pmessagebox->m_strDetails);
+                     m_prealizable->m_strMessage + "\n\n"
+                     + m_prealizable->m_strDetails);
 
                }
 

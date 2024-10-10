@@ -462,7 +462,7 @@ namespace user
 
       virtual void set_interaction_rectangle(const ::rectangle_i32 & rectangle);
 
-      virtual ::rectangle_i32 get_interaction_rectangle();
+      virtual ::rectangle_i32 get_rectangle();
       virtual ::rectangle_i32 get_window_rectangle();
 
       virtual void set_window_text(const ::string & psz);

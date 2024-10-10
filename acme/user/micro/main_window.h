@@ -215,7 +215,7 @@ namespace micro
          //void do_asynchronously() override;
          //::payload do_synchronously(const class time & timeWait) override;
 
-         //void run() override;
+         void run() override;
          //void complete_aggregation(::sequence * psequence) override;
 
          //::acme::user::interaction * acme_user_interaction() override;
@@ -259,9 +259,9 @@ namespace micro
 
          //virtual void create_window();
 
-         virtual void show_interaction();
+         void show() override;
 
-         virtual void hide_interaction();
+         void hide() override;
 
          //virtual void message_loop();
 

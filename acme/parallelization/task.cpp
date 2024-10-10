@@ -860,7 +860,7 @@ void task::_post(const ::procedure & procedure)
 //}
 
  
-void task::_send(const ::procedure & procedure, const class ::time & timeTimeout)
+void task::_send(const ::procedure & procedure)
 {
 
    if (is_current_task())
@@ -883,7 +883,7 @@ void task::_send(const ::procedure & procedure, const class ::time & timeTimeout
 
          });
 
-   pevent->wait(timeTimeout);
+   pevent->wait(procedure.timeout());
 
 }
 

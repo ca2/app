@@ -325,7 +325,7 @@ namespace micro
       // virtual void nano_user_add_child(::micro::child * pchild);
 
       //virtual ::payload get_result();
-      void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter);
+      virtual void add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter);
 
 
       void display_temporary_file_with_text(const ::string & str);
@@ -348,7 +348,7 @@ namespace micro
       void redraw() override;
 
       //virtual void get_client_rectangle(::rectangle_i32 & rectangle);
-      ::rectangle_i32 get_window_rectangle() override;
+      ::rectangle_i32 get_rectangle() override;
 
       //void set_capture() override;
 

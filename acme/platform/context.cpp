@@ -1213,7 +1213,7 @@ namespace acme
       
       pget->m_timeSyncTimeout = timeTimeout;
 
-      sync(pget);
+      pget->call();
 
       ::string str = pget->m_memory.as_utf8();
 
@@ -1233,7 +1233,7 @@ namespace acme
       
       pget->m_timeSyncTimeout =  timeTimeout;
       
-      sync(pget);
+      pget->call();
 
       ::string str = pget->m_memory.as_utf8();
       
@@ -1252,20 +1252,20 @@ namespace acme
    }
 
 
-   void context::sync(::nano::http::get * pget)
-   {
-      
-      nano()->http()->sync(pget);
-      
-   }
+   //void context::http_sync(::nano::http::get * pget)
+   //{
+   //   
+   //   nano()->http()->sync(pget);
+   //   
+   //}
 
 
-   void context::async(::nano::http::get * pget, const ::function < void(::nano::http::get *) > & callback)
-   {
-      
-      nano()->http()->async(pget);
-      
-   }
+   //void context::http_async(::nano::http::get * pget, const ::function < void(::nano::http::get *) > & callback)
+   //{
+   //   
+   //   nano()->http()->async(pget);
+   //   
+   //}
 
 
 
@@ -1321,7 +1321,7 @@ namespace acme
       
       pget->m_timeSyncTimeout =  timeTimeout;
       
-      sync(pget);
+      pget->call();
 
       pfile->write(pget->m_memory);
       
@@ -1343,7 +1343,7 @@ namespace acme
       
       pget->m_timeSyncTimeout =  timeTimeout;
       
-      sync(pget);
+      pget->call();
 
       set = pget->m_setOut;
 

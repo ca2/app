@@ -42,7 +42,7 @@ CLASS_DECL_AURA int __assert_failed_line(const ::string & pszFileName, int iLine
 //
 //   auto pmessagebox = __initialize_new ::message_box(szMessage,szTitle,MB_CANCELTRYCONTINUE | MB_ICONERROR, callback());
 
-send(pmessagebox);
+pmessagebox->sync();
 //
 //   //if(iResult == e_dialog_result_cancel)
 //   //{

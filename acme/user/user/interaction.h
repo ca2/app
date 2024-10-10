@@ -82,9 +82,11 @@ namespace acme
 
          //virtual enum_font nano_user_font();
 
-         virtual void create_window() override;
+         void create_window() override;
 
-         virtual void _create_window() override;
+         void _create_window() override;
+
+         void destroy_window() override;
 
          //void show_window() override;
 
@@ -349,6 +351,8 @@ namespace acme
 
                //virtual void get_client_rectangle(::rectangle_i32 & rectangle);
                ::rectangle_i32 get_window_rectangle() override;
+
+               ::rectangle_i32 get_rectangle() override;
 
                //void set_capture() override;
 

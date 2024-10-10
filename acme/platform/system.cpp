@@ -597,14 +597,16 @@ namespace acme
 
 //         m_peventInitialization->SetEvent();
 
-         while(task_get_run())
-         {
+         //while(task_get_run())
+         //{
 
-            run_posted_procedures();
+           // run_posted_procedures();
 
-            preempt(100_ms);
+            //preempt(100_ms);
 
-         }
+         //}
+
+         acme_windowing()->windowing_system_application_main_loop();
 
 
       }
@@ -1434,9 +1436,9 @@ namespace acme
       catch (::exception& exception)
       {
 
-         //auto pmessagebox = __initialize_new ::message_box(this, exception.m_strMessage, m_strAppId, e_message_box_ok, exception.m_strDetails);
+         //auto pmessagebox = __initialize_new ::message_box(exception.m_strMessage, m_strAppId, e_message_box_ok, exception.m_strDetails);
 
-//send(pmessagebox);
+//pmessagebox->sync();
 
          string strMoreDetails;
 
@@ -2751,7 +2753,7 @@ namespace acme
    void system::system_id_update(::i64 iId, ::i64 iPayload)
    {
 
-      call((::enum_id)iId, iPayload);
+      message_call((::enum_id)iId, iPayload);
 
    }
 

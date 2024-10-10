@@ -477,7 +477,7 @@ CLASS_DECL_ACME const char* status_short_description(const ::e_status & estatus)
 //
 //   auto pmessagebox = __initialize_new ::message_box(pparticle, strMessage, strTitle, e_message_box_ok | e_message_box_icon_exclamation, strDetails);
 
-//send(pmessagebox);
+//pmessagebox->sync();
 //
 //}
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/_.h"
+#include "app/just_message_box/_.h"
 
 
 #if defined(_app_just_acme_message_box_project)

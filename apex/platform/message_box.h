@@ -66,7 +66,7 @@
 //
 //CLASS_DECL_APEX void auto pmessagebox = __initialize_new ::message_box(oswindow oswindow, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
-send(pmessagebox);
+pmessagebox->sync();
 //CLASS_DECL_APEX void message_box(::user::interaction_base * puiOwner, const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 //
 //
@@ -75,7 +75,7 @@ send(pmessagebox);
 //
 //   return auto pmessagebox = __initialize_new ::message_box(nullptr, pszText, pszTitle, emessagebox, callback);
 
-send(pmessagebox);
+pmessagebox->sync();
 //
 //}
 //

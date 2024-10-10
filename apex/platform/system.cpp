@@ -1696,7 +1696,7 @@ pacmedirectory->create("/ca2core");
 
          strMoreDetails = "command line: " + string(platform()->m_strCommandLine) + "\n\n";
 
-         exception_message_box(exception, strMoreDetails);
+         auto pmessagebox = __initialize_new ::message_box(exception, strMoreDetails);
 
          throw exception;
 
@@ -3425,7 +3425,7 @@ pacmedirectory->create("/ca2core");
 
          //::auto pmessagebox = __initialize_new ::message_box(NULL, strUrl, strUrl, e_message_box_ok);
 
-send(pmessagebox);
+pmessagebox->sync();
 
          m_pcontext->m_papexcontext->os().link_open(strUrl);
 
@@ -4740,7 +4740,7 @@ namespace apex
    void system::system_id_update(::i64 iUpdate, ::i64 iPayload)
    {
 
-      call((::enum_id)iUpdate, iPayload);
+      message_call((::enum_id)iUpdate, iPayload);
 
    }
 

@@ -26,7 +26,7 @@ namespace console
 
 
       void run() override;
-      void complete_step(::sequencer & sequencer) override;
+      //void complete_step(::sequencer & sequencer) override;
 
       
       ::enum_dialog_result run_message_box(::message_box * pmessage);

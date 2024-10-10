@@ -66,7 +66,7 @@ inline ::payload operator + (const ::string & psz, const ::enum_message_box& eme
 
 CLASS_DECL_AURA void auto pmessagebox = __initialize_new ::message_box(oswindow oswindow, const ::string & pszText, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
-send(pmessagebox);
+pmessagebox->sync();
 CLASS_DECL_AURA void message_box(::user::interaction_base * puiOwner, const ::string & pszText, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
@@ -75,7 +75,7 @@ inline void message_box_synchronous(const ::string & pszText, const ::string & p
 
    return auto pmessagebox = __initialize_new ::message_box(nullptr, pszText, pszTitle, emessagebox, callback);
 
-send(pmessagebox);
+pmessagebox->sync();
 
 }
 

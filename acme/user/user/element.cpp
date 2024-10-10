@@ -1606,10 +1606,10 @@ namespace user
    }
 
 
-   ::rectangle_i32 element::get_interaction_rectangle()
+   ::rectangle_i32 element::get_rectangle()
    {
 
-      return acme_user_interaction()->get_interaction_rectangle();
+      return acme_user_interaction()->get_rectangle();
 
    }
 
@@ -4792,7 +4792,7 @@ namespace user
 
       };
 
-      pfiledialog->call_run();
+      pfiledialog->call();
 
    }
 
@@ -4822,7 +4822,7 @@ namespace user
 
       };
 
-      pfiledialog->call_run();
+      pfiledialog->call();
 
    }
 
@@ -4852,7 +4852,7 @@ namespace user
 
       };
 
-      pfiledialog->call_run();
+      pfiledialog->call();
 
    }
 

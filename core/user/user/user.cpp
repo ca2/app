@@ -1865,9 +1865,9 @@ namespace core
 
    //   }
 
-   //   return auto pmessagebox = __initialize_new ::message_box(this, puiOwner, pszMessage, pszTitle, fuStyle, functionarg);
+   //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, fuStyle, functionarg);
 
-send(pmessagebox);
+pmessagebox->sync();
 
    //}
 

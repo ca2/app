@@ -580,7 +580,7 @@ public:
    inline void operator()() const
    {
       
-      ((TYPE *) m_p)->call_run();
+      ((TYPE *) m_p)->call();
       
    }
    

@@ -75,7 +75,7 @@ namespace file
    ::file::watch * watcher::add_watch(const ::file::path& pathFolder, typename listener::base* pbase, bool bRecursive)
    {
 
-      return add_watch_listener(pathFolder, { use_t{}, pbase }, bRecursive);
+      return add_watch_listener(pathFolder, pbase, bRecursive);
 
    }
 

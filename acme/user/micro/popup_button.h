@@ -4,14 +4,14 @@
 #pragma once
 
 
-#include "acme/user/micro/main_window.h"
+#include "acme/user/micro/dialog.h"
 
 
 namespace micro
 {
 
       class popup_button :
-         virtual public ::micro::main_window
+         virtual public ::micro::dialog
       {
       public:
 
@@ -34,6 +34,9 @@ namespace micro
          void on_click(const ::payload & payload, ::user::mouse * pmouse) override;
 
          void on_draw(::nano::graphics::device * pnanodevice) override;
+
+
+         void set_dialog_result(const ::payload & payloadResult) override;
 
 
          ::pointer < ::operating_system::a_system_menu > create_system_menu(bool bContextual = true) override;

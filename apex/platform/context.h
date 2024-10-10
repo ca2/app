@@ -211,7 +211,7 @@ namespace apex
 //      using acme::context::http_get;
       //::pointer < ::nano::http::response > http_get(const ::scoped_string& scopedstrUrl, const ::property_set& set) override;
       
-      void sync(::nano::http::get * pget) override;
+      virtual void perform(::nano::http::get * pget);
 
 
       ::url::url http_get_effective_url(const ::url::url & url) override;

@@ -114,7 +114,7 @@ namespace http
    }
 
 
-   void context::sync(::nano::http::get * pget)
+   void context::perform(::nano::http::get * pget)
    {
 
       ::property_set set(pget->m_setIn);

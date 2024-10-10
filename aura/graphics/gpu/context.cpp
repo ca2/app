@@ -220,7 +220,7 @@ namespace gpu
    void context::create_offscreen_buffer(const ::size_i32& size)
    {
 
-      send_procedure([this, size]()
+      send([this, size]()
       {
 
          ::pointer<::aura::system>psystem = system();
@@ -276,7 +276,7 @@ namespace gpu
    void context::resize_offscreen_buffer(const ::size_i32& size)
    {
 
-      send_procedure([this, size]()
+      send([this, size]()
          {
 
             if (!m_pcpubuffer)

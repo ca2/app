@@ -7,6 +7,7 @@
 //
 #include "framework.h"
 #include "message_box.h"
+#include "acme/handler/sequence.h"
 #include "acme/platform/node.h"
 //#include "acme/platform/sequencer.h"
 #include "acme/nano/graphics/icon.h"
@@ -152,13 +153,27 @@ message_box::~message_box()
 //
 //}
 
+::payload message_box::get_result_payload()
+{
 
+   return m_payloadResult;
+
+}
 
 void message_box::run()
 {
 
+   auto psequence = ::sequence::current();
+
+   if (psequence)
+   {
+
+      psequence->m_pparticle = this;
+
+   }
+
    auto preified = defer_realize();
 
-   preified->call_run();
+   preified->call();
 
 }

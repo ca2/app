@@ -1102,7 +1102,7 @@ namespace user
       if (m_ptree == nullptr)
       {
 
-         set_root(__new ::user::plain_text_tree()), true;
+         set_root(__new ::user::plain_text_tree(), true);
 
          m_ptree->m_pfile = __new ::memory_file();
 
@@ -1174,10 +1174,10 @@ namespace user
 
          auto pmenu = user()->menu_from_xml(this, "matter://plain_edit_context_menu.menu");
          
-         m_ptrackpopupContextMenu = ::place( new ::menu::track_popup (pmenu,
+         m_ptrackpopupContextMenu = __new ::menu::track_popup (pmenu,
                                                           this,
                                                           this,
-                                                                  pointCursor));
+                                                                  pointCursor);
          
          m_ptrackpopupContextMenu->track([this]()
                                          {

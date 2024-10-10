@@ -171,7 +171,7 @@ CLASS_DECL_ACME void command_system(string & strOutput, string & strError, int &
 
 CLASS_DECL_ACME ::atom auto pmessagebox = __initialize_new ::message_box(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, enum_message_box emessagebox = e_message_box_ok);
 
-send(pmessagebox);
+pmessagebox->sync();
 
 #include "_c.h"
 

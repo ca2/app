@@ -922,6 +922,9 @@
     <ProjectReference Include="..\acme\acme.vcxproj">
       <Project>{638b242f-0f21-41c3-9f66-724660046133}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\just_message_box\app_just_message_box.vcxproj">
+      <Project>{71328d88-65d1-4013-a28d-d6883a64b84a}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

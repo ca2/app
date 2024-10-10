@@ -45,12 +45,12 @@ namespace console
    }
 
 
-   void dialog::complete_step(::sequencer & sequencer)
-   {
+   //void dialog::complete_step(::sequencer & sequencer)
+   //{
 
-      sequencer.add_result(m_payloadResult);
+   //   sequencer.add_result(m_payloadResult);
 
-   }
+   //}
 
 
 } // namespace console

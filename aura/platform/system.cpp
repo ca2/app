@@ -3878,7 +3878,7 @@ namespace aura
 //
 //         //::auto pmessagebox = __initialize_new ::message_box(NULL, strUrl, strUrl, e_message_box_ok);
 
-send(pmessagebox);
+//pmessagebox->sync();
 //
 //         pcontext->m_papexcontext->os().link_open(strUrl);
 //

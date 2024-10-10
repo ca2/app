@@ -584,8 +584,17 @@ namespace acme
          }
 
 
+         void interaction::destroy_window()
+         {
+
+            acme_windowing_window()->destroy_window();
+
+         }
+
+
          void interaction::show()
          {
+
 
 
          }
@@ -1424,6 +1433,15 @@ namespace acme
 
             system()->erase_signal_handler(this);
 
+            if (m_pacmewindowingwindow)
+            {
+
+               m_pacmewindowingwindow->destroy_window();
+
+               m_pacmewindowingwindow.release();
+
+            }
+
          }
 
 
@@ -1462,6 +1480,15 @@ namespace acme
             return {};
 
          }
+
+
+         rectangle_i32 interaction::get_rectangle()
+         {
+
+            return {};
+
+         }
+
 
 
          //void interaction::set_capture()

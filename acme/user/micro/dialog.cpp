@@ -64,6 +64,10 @@ namespace micro
 
       m_manualreseteventFinished.SetEvent();
 
+      hide();
+
+      destroy_window();
+
    }
 
 

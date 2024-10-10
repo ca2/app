@@ -29,7 +29,7 @@ CLASS_DECL_ACME void __simple_tracev(enum_trace_level elevel, const char * pszFu
 //
 //   ::auto pmessagebox = __initialize_new ::message_box(nullptr, pszMessage, pszTitle, iFlags, function);
 
-//send(pmessagebox);
+//pmessagebox->sync();
 //
 //}
 

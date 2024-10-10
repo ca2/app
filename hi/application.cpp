@@ -61,7 +61,7 @@ enum enum_test_increment
 //
 //      auto result = auto pmessagebox = __initialize_new ::message_box(pcontext, "Hello!!\nNo: for exception test!!", "Hello App!", e_message_box_yes_no_cancel | e_message_box_default_button_3, "Hello Multiverse!!");
 
-send(pmessagebox);
+pmessagebox->sync();
 //
 //      if (result == e_dialog_result_yes)
 //      {
@@ -72,7 +72,7 @@ send(pmessagebox);
 //
 //         auto pmessagebox = __initialize_new ::message_box(pcontext, "Yes!!", "Yes!!", e_message_box_ok);
 
-send(pmessagebox);
+pmessagebox->sync();
 //
 //         break;
 //
@@ -138,7 +138,7 @@ send(pmessagebox);
 //
 //         auto pmessagebox = __initialize_new ::message_box(pcontext, "No!", "No!", e_message_box_ok);
 
-send(pmessagebox);
+pmessagebox->sync();
 //
 //      }
 //      else if (result == e_dialog_result_cancel)
@@ -150,7 +150,7 @@ send(pmessagebox);
 //
 //         auto pmessagebox = __initialize_new ::message_box(pcontext, "Cancel", "Cancel", e_message_box_ok);
 
-send(pmessagebox);
+pmessagebox->sync();
 //
 //      }
 //

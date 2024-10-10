@@ -257,7 +257,7 @@ void application::initialize_application(::platform::platform * pplatform)
    if(!platform()->is_console())
    {
 
-      system()->acme_windowing()->windowing_system_post_quit();
+      //system()->acme_windowing()->windowing_system_post_quit();
 
       set_finish();
 
@@ -310,7 +310,7 @@ void application::on_error_icloud_not_available(::particle * pparticle, long lon
       "iCloud is not Available.",
       e_message_box_ok | e_message_box_icon_exclamation);
    
-   send(pmessagebox);
+   pmessagebox->sync();
    
 }
 
@@ -1439,7 +1439,7 @@ void application::application_pre_run()
          e_message_box_ok, 
          e.m_strMessage + "\n" + e.m_strDetails);
 
-      send(pmessagebox);
+      pmessagebox->sync();
       
       throw e;
       
@@ -1451,7 +1451,7 @@ void application::application_pre_run()
          "Application failed to initialize (2). Unknown exception", 
          m_strAppName);
 
-      send(pmessagebox);
+      pmessagebox->sync();
       
       throw "Unknown exception";
       
@@ -1502,7 +1502,7 @@ void application::application_pre_run()
          e_message_box_ok,
       exception.m_strMessage + "\n\n" + exception.get_consolidated_details(this));
 
-      send(pmessagebox);
+      pmessagebox->sync();
       
       throw exception;
       
@@ -1514,7 +1514,7 @@ void application::application_pre_run()
          "Application failed to initialize (4). Unknown exception",
          m_strAppName);
 
-      send(pmessagebox);
+      pmessagebox->sync();
       
       throw "Unknown exception";
       

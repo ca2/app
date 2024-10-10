@@ -10,6 +10,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/handler/request.h"
 #include "acme/prototype/text/context.h"
+#include "acme/windowing/windowing.h"
 
 
 namespace acme
@@ -307,6 +308,22 @@ namespace acme
 
    void session::term2()
    {
+
+      auto psystem = system();
+
+      if (psystem)
+      {
+
+         auto pacmewindowing = psystem->acme_windowing();
+
+         if (pacmewindowing)
+         {
+
+            pacmewindowing->windowing_system_post_quit();
+
+         }
+
+      }
 
    }
 

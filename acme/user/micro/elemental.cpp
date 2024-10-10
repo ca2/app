@@ -731,15 +731,20 @@ namespace micro
       ::micro::elemental * elemental::on_hit_test(const ::point_i32 & point, ::user::e_zorder ezorder)
       {
 
-         for (auto & pchild : *m_pacmeuserinteractionaChildren)
+         if (m_pacmeuserinteractionaChildren)
          {
 
-            ::pointer < ::micro::elemental > pelemental = pchild;
-
-            if (pelemental->m_rectangle.contains(point))
+            for (auto & pchild : *m_pacmeuserinteractionaChildren)
             {
 
-               return pelemental;
+               ::pointer < ::micro::elemental > pelemental = pchild;
+
+               if (pelemental->m_rectangle.contains(point))
+               {
+
+                  return pelemental;
+
+               }
 
             }
 
@@ -830,7 +835,8 @@ namespace micro
 
          }
 
-         if (acme_windowing_window()->m_pacmeuserinteractionCapture)
+         if (acme_windowing_window()->m_pacmeuserinteractionCapture
+            && acme_windowing_window()->m_pacmeuserinteractionCapture != this)
          {
 
             ::pointer < ::micro::elemental > pelemental;
@@ -1212,7 +1218,7 @@ namespace micro
 
       ::rectangle_i32 elemental::get_client_rectangle()
       {
-         auto r = get_window_rectangle();
+         auto r = get_rectangle();
 
          r.offset(-r.top_left());
 
@@ -1501,8 +1507,8 @@ namespace micro
          //}
 
 
-         ::user::element::destroy();
-         ::user::drag_client::destroy();
+         ::acme::user::interaction::destroy();
+         //::user::drag_client::destroy();
          //::conversation::destroy();
 
          system()->erase_signal_handler(this);
@@ -1576,10 +1582,10 @@ namespace micro
       //}
 
 
-      rectangle_i32 elemental::get_window_rectangle()
+      rectangle_i32 elemental::get_rectangle()
       {
 
-         return {};
+         return m_rectangle;
 
       }
 

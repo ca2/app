@@ -44,6 +44,7 @@
 #include "acme/user/user/drag.h"
 #include "acme/user/user/mouse.h"
 #include "acme/user/user/tool.h"
+#include "acme/windowing/window.h"
 
 
 namespace micro
@@ -68,6 +69,7 @@ namespace micro
 
       }
 
+      
       void main_window::create_window()
       {
 
@@ -79,6 +81,8 @@ namespace micro
          m_pacmewindowingwindow->m_bTopMost = false;
          m_pacmewindowingwindow->m_bStartCentered = false;
          m_pacmewindowingwindow->m_bArbitraryPositioning = false;
+
+         m_pacmewindowingwindow->m_pacmeuserinteraction = this;
 
 
       }
@@ -585,16 +589,18 @@ namespace micro
       //}
 
 
-      void main_window::show_interaction()
+      void main_window::show()
       {
 
+         acme_windowing_window()->show_window();
 
       }
 
 
-      void main_window::hide_interaction()
+      void main_window::hide()
       {
 
+         acme_windowing_window()->hide_window();
 
       }
 
@@ -1434,8 +1440,8 @@ namespace micro
          //}
 
 
-         ::user::element::destroy();
-         ::user::drag_client::destroy();
+         ::micro::elemental::destroy();
+         // ::user::drag_client::destroy();
          //::conversation::destroy();
 
          system()->erase_signal_handler(this);
@@ -1513,7 +1519,7 @@ namespace micro
       rectangle_i32 main_window::get_window_rectangle()
       {
 
-         return {};
+         return acme_windowing_window()->get_window_rectangle();
 
       }
 
@@ -1627,6 +1633,14 @@ namespace micro
             redraw();
 
          }
+
+      }
+
+
+      void main_window::run()
+      {
+
+         show();
 
       }
 

@@ -657,7 +657,7 @@ namespace aura
 
    //   return ::auto pmessagebox = __initialize_new ::message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
 
-send(pmessagebox);
+//pmessagebox->sync();
 
    //}
 
@@ -706,7 +706,7 @@ send(pmessagebox);
 
    //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
 
-send(pmessagebox);
+//pmessagebox->sync();
 
    //}
 
@@ -725,7 +725,7 @@ send(pmessagebox);
 
    //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
 
-send(pmessagebox);
+//pmessagebox->sync();
 
    //}
 

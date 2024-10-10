@@ -491,6 +491,7 @@ namespace platform
 
 
    inline ::platform::platform * get() { return ::acme::get() ? ::acme::get()->platform() : nullptr; }
+   inline ::acme::system * system() { return get() ? get()->system() : nullptr; }
 
 
 } // namespace platform

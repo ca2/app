@@ -69,9 +69,10 @@ namespace app_message_box
 
       pmessage->m_bRet = true;
 
-      auto psequencer = message_box("Are you sure you want to close application?", nullptr, e_message_box_yes_no);
+      auto pmessagebox = __initialize_new ::message_box("Are you sure you want to close application?", nullptr, e_message_box_yes_no);
 
-      psequencer->then([this](auto * pmessagebox)
+      pmessagebox->async()
+         << [this, pmessagebox]()
          {
 
             if (pmessagebox->m_payloadResult.as_i32() == e_dialog_result_yes)
@@ -89,9 +90,9 @@ namespace app_message_box
 
             }
 
-         });
+         };
 
-      psequencer->do_asynchronously();
+      //psequencer->do_asynchronously();
 
    }
 
@@ -160,9 +161,10 @@ namespace app_message_box
    void main_window::show_message_box()
    {
 
-      auto psequencer = message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
+      auto pmessagebox = __initialize_new ::message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
 
-      psequencer->then([this](auto pmessagebox)
+      pmessagebox->async()
+         << [this, pmessagebox]()
          {
 
             if (pmessagebox->m_payloadResult == e_dialog_result_yes)
@@ -178,9 +180,9 @@ namespace app_message_box
 
             }
 
-         });
+         };
 
-      psequencer->do_asynchronously();
+      //psequencer->do_asynchronously();
 
    }
 

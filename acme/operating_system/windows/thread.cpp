@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
+#include "acme/windowing/windowing.h"
 #include "acme/_operating_system.h"
 
 
@@ -216,32 +217,34 @@ namespace acme
 {
 
 
-   void node::user_post(const ::procedure & procedure)
+   void node::_user_post(const ::procedure & procedure)
    {
 
-      //if (is_main_thread())
+      if (is_main_thread())
+      {
+
+         procedure();
+
+         return;
+
+      }
+
+      system()->acme_windowing()->_main_post(procedure);
+
+      //auto ptask = ::get_task();
+
+      //if (::is_set(ptask))
       //{
 
-      //   procedure();
-
-      //   return;
+      //   ptask->post(procedure);
 
       //}
+      //else
+      //{
 
-      auto ptask = ::get_task();
+      //   system()->post(procedure);
 
-      if (::is_set(ptask))
-      {
-
-         ptask->post(procedure);
-
-      }
-      else
-      {
-
-         system()->post(procedure);
-
-      }
+      //}
 
    }
 

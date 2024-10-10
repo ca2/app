@@ -1912,7 +1912,7 @@ void image::fork_blend(const ::point_i32& pointDstParam, ::image::image* pimageS
 
    }
 
-   pgroup->call_run();
+   pgroup->call();
 
    //return true;
 

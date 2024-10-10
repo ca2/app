@@ -495,7 +495,7 @@ namespace simple_ui
 //
 //   return auto pmessagebox = __initialize_new ::message_box(oswindow, pszText, pszCaption, uFlags, function);
 
-send(pmessagebox);
+pmessagebox->sync();
 //
 //}
 

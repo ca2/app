@@ -1357,7 +1357,7 @@ namespace acme
    }
 
 
-   void node::user_send(const ::procedure & procedure)
+   void node::_user_send(const ::procedure & procedure)
    {
 
       if(::is_main_thread())

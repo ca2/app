@@ -1156,10 +1156,10 @@
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="format.h" />
     <ClInclude Include="graphics\image\pixmap_lock.h" />
-    <ClInclude Include="handler\sequencer.h" />
+    <ClInclude Include="handler\sequence.h" />
     <ClInclude Include="handler\source.h" />
     <ClInclude Include="handler\aaa_step.h" />
-    <ClInclude Include="handler\sequencer_step.h" />
+    <ClInclude Include="handler\sequence_continuation.h" />
     <ClInclude Include="memory\allocator.h" />
     <ClInclude Include="memory\allocator\malloc.h" />
     <ClInclude Include="memory\allocator_base.h" />
@@ -1387,6 +1387,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="parallelization\queue.h" />
+    <ClInclude Include="parallelization\task_context.h" />
     <ClInclude Include="parallelization\task_message_queue.h" />
     <ClInclude Include="platform\allocator.h" />
     <ClInclude Include="platform\c.h" />
@@ -1452,6 +1453,7 @@
     <ClInclude Include="user\user\aaa_interaction_base.h" />
     <ClInclude Include="user\user\interaction.h" />
     <ClInclude Include="user\user\key_state.h" />
+    <ClInclude Include="user\user\message_box.h" />
     <ClInclude Include="user\user\property.h" />
     <ClInclude Include="user\user\text.h" />
     <ClInclude Include="user\_.h" />
@@ -2307,6 +2309,7 @@
     <ClCompile Include="user\user\container.cpp" />
     <ClCompile Include="user\user\control.cpp" />
     <ClCompile Include="user\user\interaction.cpp" />
+    <ClCompile Include="user\user\message_box.cpp" />
     <ClCompile Include="user\user\property.cpp" />
     <ClCompile Include="user\user\controller.cpp" />
     <ClCompile Include="user\user\aaa_conversation.cpp">

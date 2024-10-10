@@ -725,7 +725,7 @@ namespace write_text
 
       psignal->add_handler(this);
 
-      call(id_operating_system_user_color_change);
+      message_call(id_operating_system_user_color_change);
 
       //return estatus;
 

@@ -2422,52 +2422,52 @@ namespace user
    }
 
 
-   atom interaction_base::run_modal_loop(::user::interaction * pinteraction,u32 dwFlags)
-   {
+   //atom interaction_base::run_modal_loop(::user::interaction * pinteraction,u32 dwFlags)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      return ::atom();
+   //   return ::atom();
 
-   }
-
-
-   atom interaction_base::RunModalLoop(u32 dwFlags)
-   {
-
-      throw ::interface_only();
-
-      return ::atom();
-
-   }
+   //}
 
 
-   atom interaction_base::_001RunModalLoop(u32 dwFlags)
-   {
+   //atom interaction_base::RunModalLoop(u32 dwFlags)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      return atom();
+   //   return ::atom();
 
-   }
-
-
-   bool interaction_base::ContinueModal()
-   {
-
-      throw ::interface_only();
-
-      return false;
-
-   }
+   //}
 
 
-   void interaction_base::EndModalLoop(atom nResult)
-   {
+   //atom interaction_base::_001RunModalLoop(u32 dwFlags)
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-   }
+   //   return atom();
+
+   //}
+
+
+   //bool interaction_base::ContinueModal()
+   //{
+
+   //   throw ::interface_only();
+
+   //   return false;
+
+   //}
+
+
+   //void interaction_base::EndModalLoop(atom nResult)
+   //{
+
+   //   throw ::interface_only();
+
+   //}
 
 
    lresult interaction_base::message_handler(const ::atom & atom, wparam wparam, lparam lparam)

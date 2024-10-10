@@ -427,7 +427,7 @@ namespace user
       MESSAGE_LINK(e_message_application_exit, pchannel, this, &frame::on_message_application_exit);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &frame::on_message_key_down);
 
-      system()->add_signal_handler({ use_t{}, this }, id_operating_system_user_color_change);
+      system()->add_signal_handler(this, id_operating_system_user_color_change);
 //#ifdef WINDOWS_DESKTOP
 //
 //      if (is_frame_window())

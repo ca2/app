@@ -97,10 +97,11 @@ namespace app_just_aqua_message_box
       {
 
 
-         auto result = auto pmessagebox = __initialize_new ::message_box(this, "Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
+         auto pmessagebox = __initialize_new ::message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
 
-send(pmessagebox);
+         pmessagebox->sync();
 
+         auto result = pmessagebox->m_payloadResult.as_atom().m_edialogresult;
 
          if (result == e_dialog_result_cancel)
          {
@@ -113,17 +114,17 @@ send(pmessagebox);
          else  if (result == e_dialog_result_no)
          {
 
-            auto pmessagebox = __initialize_new ::message_box(this, "No!", nullptr, e_message_box_ok);
+            auto pmessagebox = __initialize_new ::message_box("No!", nullptr, e_message_box_ok);
 
-send(pmessagebox);
+            pmessagebox->sync();
 
          }
          else  if (result == e_dialog_result_yes)
          {
 
-            auto pmessagebox = __initialize_new ::message_box(this, "Yes!!", nullptr, e_message_box_ok);
+            auto pmessagebox = __initialize_new ::message_box("Yes!!", nullptr, e_message_box_ok);
 
-send(pmessagebox);
+         pmessagebox->sync();
 
             _001TryCloseApplication();
 

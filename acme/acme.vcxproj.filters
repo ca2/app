@@ -3963,10 +3963,10 @@
     <ClInclude Include="handler\aaa_step.h">
       <Filter>Header Files\handler</Filter>
     </ClInclude>
-    <ClInclude Include="handler\sequencer.h">
+    <ClInclude Include="handler\sequence.h">
       <Filter>Header Files\handler</Filter>
     </ClInclude>
-    <ClInclude Include="handler\sequencer_step.h">
+    <ClInclude Include="handler\sequence_continuation.h">
       <Filter>Header Files\handler</Filter>
     </ClInclude>
     <ClInclude Include="user\micro\dialog.h">
@@ -3983,6 +3983,12 @@
     </ClInclude>
     <ClInclude Include="prototype\collection\procedure_array.h">
       <Filter>Header Files\prototype\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\message_box.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\task_context.h">
+      <Filter>Header Files\parallelization</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5599,6 +5605,9 @@
     </ClCompile>
     <ClCompile Include="prototype\collection\procedure_array.cpp">
       <Filter>Source Files\prototype\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\message_box.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

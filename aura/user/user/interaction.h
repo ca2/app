@@ -620,11 +620,13 @@ namespace user
 
       void host_post(const ::procedure& procedure) override;
 
-      void user_send(const ::procedure & procedure) override;
-      void user_post(const ::procedure & procedure) override;
+      void _user_send(const ::procedure & procedure) override;
+      void _user_post(const ::procedure & procedure) override;
 
-      void main_send(const ::procedure & procedure) override;
-      void main_post(const ::procedure & procedure) override;
+      void _main_send(const ::procedure & procedure) override;
+      void _main_post(const ::procedure & procedure) override;
+
+      //post_continuation main_async() override;
 
       //inline void fps_interest_on_show() { m_ewindowflag |= e_window_flag_fps_interest_on_show; }
       //inline void clear_fps_interest_on_show() { m_ewindowflag -= e_window_flag_fps_interest_on_show; }
@@ -1304,11 +1306,11 @@ namespace user
       virtual void update_dialog_controls(channel* ptarget) override;
       virtual void CenterWindow(::user::interaction* pAlternateOwner = nullptr) override;
       virtual void _001Emphasize(int cx, int cy);
-      virtual atom   run_modal_loop(::user::interaction* pinteraction, u32 dwFlags = 0) override;
-      virtual atom   RunModalLoop(u32 dwFlags = 0) override;
-      virtual atom   _001RunModalLoop(u32 dwFlags = 0) override;
-      virtual bool ContinueModal() override;
-      virtual void EndModalLoop(atom nResult) override;
+      //virtual atom   run_modal_loop(::user::interaction* pinteraction, u32 dwFlags = 0) override;
+      //virtual atom   RunModalLoop(u32 dwFlags = 0) override;
+      //virtual atom   _001RunModalLoop(u32 dwFlags = 0) override;
+      //virtual bool ContinueModal() override;
+      //virtual void EndModalLoop(atom nResult) override;
 
 
       void update_data(bool bSaveAndValidate = true) override;
@@ -1516,6 +1518,8 @@ namespace user
 #endif
 
       lresult message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
+
+      virtual void on_default_window_procedure(::message::message * pmessage);
 
       void post_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0) override;
 
@@ -1956,6 +1960,11 @@ namespace user
       virtual void viewport_client_to_screen(::sequence2_i32 & sequence) override;
       virtual void viewport_client_to_screen(::rectangle_i32 & rect) override;
       virtual void viewport_screen_to_client(::rectangle_i32 & rect) override;
+
+
+      virtual void _raw_client_to_screen(::point_i32 & point);
+      virtual void _raw_screen_to_client(::point_i32 & point);
+
 
 
       virtual string get_window_default_matter() override;
@@ -2536,7 +2545,7 @@ namespace user
 
 
 
-      void post_procedure(const ::procedure & procedure) override;
+      void _post(const ::procedure & procedure) override;
       //virtual void fps_interest_post_procedure(const ::procedure & procedure);
 
 

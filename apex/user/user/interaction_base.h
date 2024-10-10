@@ -152,11 +152,11 @@ namespace user
 
       void update_dialog_controls(channel * ptarget) override;
       void CenterWindow(::user::interaction * pAlternateOwner = nullptr)  override;
-      atom run_modal_loop(::user::interaction * pinteraction, u32 dwFlags = 0) override;
-      atom RunModalLoop(u32 dwFlags = 0)  override;
-      atom _001RunModalLoop(u32 dwFlags = 0)  override;
-      bool ContinueModal()  override;
-      void EndModalLoop(atom nResult)  override;
+      //atom run_modal_loop(::user::interaction * pinteraction, u32 dwFlags = 0) override;
+      //atom RunModalLoop(u32 dwFlags = 0)  override;
+      //atom _001RunModalLoop(u32 dwFlags = 0)  override;
+      //bool ContinueModal()  override;
+      //void EndModalLoop(atom nResult)  override;
 
 
 

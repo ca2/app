@@ -6,7 +6,7 @@
 #include "acme/_operating_system.h"
 
 
-int message_box_to_windows_message_box_type(enum_message_box emessagebox)
+CLASS_DECL_ACME int message_box_to_windows_message_box_type(enum_message_box emessagebox)
 {
 
    auto emessageboxType = (enum_message_box)(emessagebox & e_message_box_type_mask);
@@ -34,7 +34,7 @@ int message_box_to_windows_message_box_type(enum_message_box emessagebox)
 }
 
 
-int message_box_to_windows_message_box_icon(enum_message_box emessagebox)
+CLASS_DECL_ACME int message_box_to_windows_message_box_icon(enum_message_box emessagebox)
 {
 
    auto emessageboxIcon = (enum_message_box)(emessagebox & e_message_box_icon_mask);
@@ -56,7 +56,7 @@ int message_box_to_windows_message_box_icon(enum_message_box emessagebox)
 }
 
 
-int message_box_to_windows_message_box_default_button(enum_message_box emessagebox)
+CLASS_DECL_ACME int message_box_to_windows_message_box_default_button(enum_message_box emessagebox)
 {
 
    auto emessageboxDefaultButton = (enum_message_box)(emessagebox & e_message_box_default_button_mask);
@@ -129,3 +129,56 @@ int message_box_to_windows_message_box_default_button(enum_message_box emessageb
 //
 
 
+
+
+
+CLASS_DECL_ACME int message_box_to_windows_message_box(enum_message_box emessagebox)
+{
+
+   int iMessageBox = 0;
+
+   iMessageBox |= message_box_to_windows_message_box_type(emessagebox);
+
+   iMessageBox |= message_box_to_windows_message_box_icon(emessagebox);
+
+   iMessageBox |= message_box_to_windows_message_box_default_button(emessagebox);
+
+   return iMessageBox;
+
+}
+
+
+CLASS_DECL_ACME enum_dialog_result windows_message_box_result_to_dialog_result(int iResult)
+{
+
+   switch (iResult)
+   {
+   case IDOK:
+      return e_dialog_result_ok;
+   case IDCANCEL:
+      return e_dialog_result_cancel;
+   case IDABORT:
+      return e_dialog_result_abort;
+   case IDRETRY:
+      return e_dialog_result_retry;
+   case IDIGNORE:
+      return e_dialog_result_ignore;
+   case IDYES:
+      return e_dialog_result_yes;
+   case IDNO:
+      return e_dialog_result_no;
+   case IDCLOSE:
+      return e_dialog_result_close;
+   case IDHELP:
+      return e_dialog_result_help;
+   case IDTRYAGAIN:
+      return e_dialog_result_try_again;
+   case IDCONTINUE:
+      return e_dialog_result_continue;
+   case IDTIMEOUT:
+      return e_dialog_result_timeout;
+   default:
+      return e_dialog_result_none;
+   }
+
+}

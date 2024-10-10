@@ -120,7 +120,7 @@ namespace gpu
            // && m_pgpucontext->m_pbuffer->m_pixmap.is_ok())
       if (::is_set(m_pgpucontext))
       {
-         m_pgpucontext->send_procedure([this]()
+         m_pgpucontext->send([this]()
             {
                //if (::is_set(m_pobject))
                {

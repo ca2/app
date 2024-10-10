@@ -50,7 +50,7 @@ public:
 
    virtual bool defer_consume_main_arguments(int argc, char ** argv, int & iArgument);
 
-   virtual void call_run();
+   virtual void call();
 
 
 

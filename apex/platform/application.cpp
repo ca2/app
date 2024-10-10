@@ -1136,7 +1136,7 @@ namespace apex
 
    //   return ::auto pmessagebox = __initialize_new ::message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
 
-send(pmessagebox);
+//pmessagebox->sync();
 
    //}
 
@@ -1185,7 +1185,7 @@ send(pmessagebox);
 
    //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
 
-send(pmessagebox);
+//pmessagebox->sync();
 
    //}
 
@@ -1204,7 +1204,7 @@ send(pmessagebox);
 
    //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
 
-send(pmessagebox);
+   // pmessagebox->sync();
 
    //}
 
@@ -2551,9 +2551,9 @@ send(pmessagebox);
 
    //      handle_exception(e);
 
-   //      auto pmessagebox = __initialize_new ::message_box(this, "Application failed to initialize (1).\n\n" + e.m_strMessage, m_strAppName, e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
+   //      auto pmessagebox = __initialize_new ::message_box("Application failed to initialize (1).\n\n" + e.m_strMessage, m_strAppName, e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
 
-send(pmessagebox);
+//pmessagebox->sync();
 
    //      throw e;
 
@@ -2561,9 +2561,9 @@ send(pmessagebox);
    //   catch (...)
    //   {
 
-   //      auto pmessagebox = __initialize_new ::message_box(this, "Application failed to initialize (2). Unknown exception", m_strAppName);
+   //      auto pmessagebox = __initialize_new ::message_box("Application failed to initialize (2). Unknown exception", m_strAppName);
 
-send(pmessagebox);
+//pmessagebox->sync();
 
    //      throw "Unknown exception";
 
@@ -2628,9 +2628,9 @@ send(pmessagebox);
    //   catch (...)
    //   {
 
-   //      auto pmessagebox = __initialize_new ::message_box(this, "Application failed to initialize (4). Unknown exception", m_strAppName);
+   //      auto pmessagebox = __initialize_new ::message_box("Application failed to initialize (4). Unknown exception", m_strAppName);
 
-send(pmessagebox);
+//pmessagebox->sync();
 
    //      throw "Unknown exception";
 
@@ -3782,9 +3782,9 @@ send(pmessagebox);
       if (pathPreviousLocation.has_char())
       {
 
-         //auto pmessagebox = __initialize_new ::message_box(this, "there is a previous location");
+         //auto pmessagebox = __initialize_new ::message_box("there is a previous location");
 
-send(pmessagebox);
+//pmessagebox->sync();
 
          auto pida = node()->module_path_processes_identifiers(pathPreviousLocation);
 
@@ -4165,9 +4165,9 @@ send(pmessagebox);
       if (eexclusive == e_exclusive_instance_local)
       {
 
-         //auto pmessagebox = __initialize_new ::message_box(this, "e_exclusive_instance_local");
+         //auto pmessagebox = __initialize_new ::message_box("e_exclusive_instance_local");
 
-send(pmessagebox);
+//pmessagebox->sync();
 
          return on_exclusive_instance_local_conflict(prequest, bHandled);
 

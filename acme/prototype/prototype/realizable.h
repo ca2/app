@@ -51,8 +51,18 @@ class reified :
 {
 public:
 
+   ::pointer < REALIZABLE > m_prealizable;
 
    virtual void realize(::realizable < REALIZABLE > * p)
+   {
+
+      m_prealizable = p;
+
+      on_realize(m_prealizable);
+
+   }
+
+   virtual void on_realize(REALIZABLE * prealizable)
    {
 
    }

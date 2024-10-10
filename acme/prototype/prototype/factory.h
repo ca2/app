@@ -384,7 +384,7 @@ namespace factory
 
       critical_section_lock lock(&m_criticalsection);
 
-      auto pfactoryitem = ::place ( new ::factory::factory_item< ORIGIN_TYPE, ORIGIN_TYPE > ());
+      auto pfactoryitem = __new ::factory::factory_item< ORIGIN_TYPE, ORIGIN_TYPE > ();
 
       set_at(atom, pfactoryitem);
 

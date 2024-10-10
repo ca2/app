@@ -327,8 +327,8 @@ namespace acme
 
       virtual bool is_wayland();
 
-      virtual void user_send(const ::procedure & procedure) override;
-      virtual void user_post(const ::procedure & procedure) override;
+      void _user_send(const ::procedure & procedure) override;
+      void _user_post(const ::procedure & procedure) override;
 
       //virtual void _user_send(::subparticle * psubparticle) override;
       //virtual void _user_post(::subparticle * psubparticle) override;

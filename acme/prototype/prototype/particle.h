@@ -14,7 +14,7 @@
 
 #include "acme/prototype/prototype/e_flag.h"
 #include "acme/platform/allocator.h"
-#include "acme/prototype/prototype/post_procedure_continuation.h"
+//#include "acme/prototype/prototype/post_procedure_continuation.h"
 
 
 namespace platform
@@ -65,7 +65,7 @@ using hsynchronization = void *;
 
 #include "particle_flags.h"
 
-#include "acme/handler/sequencer_step.h"
+#include "acme/handler/sequence_continuation.h"
 #include "acme/platform/trace_statement.h"
 
 
@@ -90,7 +90,7 @@ struct disable_referencing_debugging_t {};
 
 // ThomasBorregaardSorensen!! Like handlers : now particle with handle::handlers*
 class CLASS_DECL_ACME particle :
-   virtual public sequencer_step::base,
+   //virtual public sequencer_step::base,
    virtual public signal_handler::base,
    virtual public PARTICLE_FLAGS
 {
@@ -147,14 +147,14 @@ public:
 #endif
 
    void operator()(::topic* ptopic, ::context* pcontext) override;
-   void operator()(::sequencer & sequencer) override;
+   //void operator()(::sequencer & sequencer) override;
 
    //virtual void destroy();
 
-   virtual void aggregate(::sequencer & psequence);
-   virtual void complete_step(::sequencer & sequence);
-   virtual ::sequencer get_current_sequencer();
-   virtual void set_current_sequencer(const ::sequencer & sequence);
+   //virtual void aggregate(::sequencer & psequence);
+   //virtual void complete_step(::sequencer & sequence);
+   //virtual ::sequencer get_current_sequencer();
+   //virtual void set_current_sequencer(const ::sequencer & sequence);
 
    //virtual void initialize(::particle * pparticle);
    virtual void on_initialize_particle();
@@ -238,6 +238,8 @@ public:
 
    template < typename TYPE >
    TYPE * cast() { return dynamic_cast <TYPE *>(this); }
+
+   virtual ::payload get_result_payload();
 
 
 //   virtual bool particle_step();
@@ -461,17 +463,19 @@ public:
    // ThomasBorregaardSorensen!! Like handlers
    //virtual void call(const enum_message, i64 iData = 0, ::matter * pmatter = nullptr);
    //virtual void call(const enum_id, i64 iData = 0, ::matter* pmatter = nullptr);
-   virtual void call(const ::atom & atom, i64 wParam = 0, i64 lParam = 0, ::particle * pparticle = nullptr);
+   
+
 
 
    // ThomasBorregaardSorensen!! Like handlers
+   virtual lresult message_handler(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
    virtual void handle(::topic * ptopic, ::context * pcontext);
    virtual void handle_message(::message::message * pmessage);
    virtual void handle_item(::item * pitem);
 
-
-
+   
    // ThomasBorregaardSorensen!! Like handlers
+   virtual lresult message_call(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
    virtual void call_handle(::topic* ptopic, ::context* pcontext);
    virtual void call_handle_message(::message::message* pmessage);
    virtual void call_handle_item(::item* pitem);
@@ -646,35 +650,49 @@ public:
    virtual void task_post(const ::procedure & procedure);
    virtual ::task_pointer task_fork(const ::procedure & procedure);
 
-   virtual void user_send(const ::procedure & procedure);
-   virtual void user_post(const ::procedure & procedure);
+   
+   virtual void _user_send(const ::procedure & procedure);
+   inline sequence_continuation user_send(const ::procedure & procedure);
+   inline sequence_continuation user_send();
+   inline sequence_continuation user_sync();
 
-   virtual void user_send();
-   virtual void user_post();
 
-   virtual void main_send(const ::procedure & procedure);
-   virtual void main_post(const ::procedure & procedure);
+   virtual void _user_post(const ::procedure & procedure);
+   inline sequence_continuation user_post(const ::procedure & procedure);
+   inline sequence_continuation user_post();
+   inline sequence_continuation user_async();
 
-   virtual void main_send();
-   virtual void main_post();
+
+   virtual void _main_send(const ::procedure & procedure);
+   inline sequence_continuation main_send(const ::procedure & procedure);
+   inline sequence_continuation main_send();
+   inline sequence_continuation main_sync();
+
+
+   virtual void _main_post(const ::procedure & procedure);
+   inline sequence_continuation main_post(const ::procedure & procedure);
+   inline sequence_continuation main_post();
+   inline sequence_continuation main_async();
+
 
    virtual class ::time get_default_run_timeout();
 
-   inline void send(const ::procedure & procedure)
-   {
-      _send(procedure, get_default_run_timeout());
-   }
-   inline void send(const class ::time & timeTimeout, const ::procedure & procedure)
-   {
-      _send(procedure, timeTimeout);
-   }
-   virtual void _post(const ::procedure & procedure);
-   virtual void _send(const ::procedure & procedure, const class ::time & timeTimeout);
 
-   inline void send(const class ::time & timeTimeout) { _send(this, timeTimeout); }
-   inline void send() { send(get_default_run_timeout()); }
-   inline post_procedure_continuation post(const ::procedure & procedure);
-   inline post_procedure_continuation post();
+   virtual void _send(const ::procedure & procedure);
+   inline sequence_continuation send(const ::procedure & procedure);
+   inline sequence_continuation sync();
+   inline sequence_continuation send();
+
+   virtual void _post(const ::procedure & procedure);
+   inline sequence_continuation post(const ::procedure & procedure);
+   inline sequence_continuation async();
+   inline sequence_continuation post();
+   
+
+
+   virtual void _call_procedure(enum_dispatch edispatch, const procedure & procedure);
+
+   //inline post_procedure_continuation queue();
 
 
    //// this is object to be realized

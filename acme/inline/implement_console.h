@@ -156,7 +156,7 @@ int main(int argc, char ** argv, char ** envp)
 
          ::auto pmessagebox = __initialize_new ::message_box(pacme->platform(), exception.get_message(), "Exception", e_message_box_icon_error, exception.get_message() +"\n\nCallstack:\n"+ exception.m_strCallStackTrace);
 
-send(pmessagebox);
+pmessagebox->sync();
 
       }
 
@@ -177,7 +177,7 @@ send(pmessagebox);
 
          ::auto pmessagebox = __initialize_new ::message_box(pacme->platform(), "Unhandled Exception");
 
-send(pmessagebox);
+pmessagebox->sync();
 
       }
 

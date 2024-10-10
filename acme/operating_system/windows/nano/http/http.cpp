@@ -63,7 +63,7 @@ namespace windows
       //   }
 
 
-         void http::sync(::nano::http::get * pget)
+         void http::perform(::nano::http::get * pget)
          {
 
             //using namespace std;

@@ -21,6 +21,7 @@
 #include "acme/platform/system.h"
 #include "acme/user/micro/details_window.h"
 #include "acme/user/micro/message_box.h"
+#include "acme/user/micro/theme.h"
 #include "acme/windowing/display.h"
 #include "acme/windowing/window.h"
 #include "acme/windowing/windowing.h"
@@ -273,7 +274,7 @@ namespace micro
       }
 
 
-      void user::main_send(const ::procedure & procedure)
+      void user::_main_send(const ::procedure & procedure)
       {
 
          system()->acme_windowing()->main_send(procedure);
@@ -281,7 +282,7 @@ namespace micro
       }
 
 
-      void user::main_post(const ::procedure & procedure)
+      void user::_main_post(const ::procedure & procedure)
       {
 
          system()->acme_windowing()->main_post(procedure);
@@ -484,6 +485,9 @@ namespace micro
       void user::update_micro_theme()
       {
 
+         __defer_construct_new(m_pmicrotheme);
+
+         m_pmicrotheme->update_drawing_objects();
 
 
       }

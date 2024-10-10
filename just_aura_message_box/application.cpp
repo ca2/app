@@ -68,91 +68,98 @@ namespace app_just_aura_message_box
    }
 
 
-//#ifdef _DEBUG
-//
-//
-//   int64_t application::increment_reference_count()
-//   {
-//
-//      return ::object::increment_reference_count();
-//
-//   }
-//
-//
-//   int64_t application::decrement_reference_count()
-//   {
-//
-//      return ::object::decrement_reference_count();
-//
-//   }
-//
-//
-//#endif
+   //#ifdef _DEBUG
+   //
+   //
+   //   int64_t application::increment_reference_count()
+   //   {
+   //
+   //      return ::object::increment_reference_count();
+   //
+   //   }
+   //
+   //
+   //   int64_t application::decrement_reference_count()
+   //   {
+   //
+   //      return ::object::decrement_reference_count();
+   //
+   //   }
+   //
+   //
+   //#endif
 
 
    void application::show_message_box()
    {
 
-      while (true)
-      {
+      auto pmessagebox = __initialize_new::message_box(
+         "Showing a message box as requested.\n\nIs it ok?",
+         nullptr, e_message_box_yes_no_cancel);
 
-
-         auto result = auto pmessagebox = __initialize_new ::message_box(this, "Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
-
-send(pmessagebox);
-
-
-         if (result == e_dialog_result_cancel)
+      pmessagebox->post()
+         << [this, pmessagebox]
          {
 
-            _001TryCloseApplication();
+            auto edialogresult = pmessagebox->get_result_payload().m_atom.m_edialogresult;
 
-            break;
+            if (edialogresult == e_dialog_result_cancel)
+            {
 
-         }
-         else  if (result == e_dialog_result_no)
-         {
+               _001TryCloseApplication();
 
-            auto pmessagebox = __initialize_new ::message_box(this, "No!", nullptr, e_message_box_ok);
+            }
+            else  if (edialogresult == e_dialog_result_no)
+            {
 
-send(pmessagebox);
+               auto pmessagebox = __initialize_new::message_box("No!", nullptr, e_message_box_ok);
 
-         }
-         else  if (result == e_dialog_result_yes)
-         {
+               pmessagebox->post()
+                  << [this]
+                  {
 
-            auto pmessagebox = __initialize_new ::message_box(this, "Yes!!", nullptr, e_message_box_ok);
+                     show_message_box();
 
-send(pmessagebox);
+                  };
 
-            _001TryCloseApplication();
+            }
+            else  if (edialogresult == e_dialog_result_yes)
+            {
 
-            break;
+               auto pmessagebox = __initialize_new::message_box("Yes!!", nullptr, e_message_box_ok);
 
-         }
+               pmessagebox->post() <<
+                  [this]()
+                  {
 
-      }
+                     _001TryCloseApplication();
 
-   
-      //pprocess->then([this](auto future)
-      //               {
+                  };
 
-      //                  if (future->m_edialogresult == e_dialog_result_yes)
-      //                  {
+            }
 
-      //                     auto papp = get_app();
+         };
 
-      //                     papp->_001TryCloseApplication();
 
-      //                  }
-      //                  else
-      //                  {
+         //pprocess->then([this](auto future)
+         //               {
 
-      //                     show_message_box();
+         //                  if (future->m_edialogresult == e_dialog_result_yes)
+         //                  {
 
-      //                  }
+         //                     auto papp = get_app();
 
-      //               });
+         //                     papp->_001TryCloseApplication();
+
+         //                  }
+         //                  else
+         //                  {
+
+         //                     show_message_box();
+
+         //                  }
+
+         //               });
 
    }
 

@@ -1,6 +1,6 @@
 #include "framework.h"
 //#include s.h"
-#include "sequencer.h"
+#include "sequence.h"
 #include "acme/parallelization/synchronous_lock.h"
 
 //
@@ -72,200 +72,201 @@
    //::pointer< ::step >              m_pstep;
    ////::collection::index              m_iStep;
 
-sequencer_payload::sequencer_payload(::sequencer & sequencer) :
-   m_sequencer(sequencer)
+//sequencer_payload::sequencer_payload(::sequencer & sequencer) :
+//   m_sequencer(sequencer)
+//
+//{
+//   //  m_iStep = 0;
+//
+//}
+//
+//sequencer_payload::~sequencer_payload()
+//{
+//
+//
+//
+//}
+//
+//
+//void sequencer_payload::on_initialize_particle()
+//{
+//
+//   ::list < ::sequencer_step >::on_initialize_particle();
+//
+//   defer_create_synchronization();
+//
+//}
+//
+//
+/////void set_object(const TYPE & result, const ::e_status & estatus = ::success);
+////void set_status(const ::e_status & estatus = ::success);
+//void sequencer_payload::run()
+//{
+//
+//   m_estatus = ::success;
+//
+//   _synchronous_lock synchronouslock(this->synchronization());
+//
+//   do
+//   {
+//
+//      if (!m_iterator)
+//      {
+//
+//         m_iterator = this->begin();
+//
+//      }
+//      else
+//      {
+//
+//         m_iterator++;
+//
+//      }
+//
+//      if (!m_iterator || m_iterator == this->end())
+//      {
+//
+//         break;
+//
+//      }
+//
+//      synchronouslock.unlock();
+//
+//      sequence_step();
+//
+//      synchronouslock._lock();
+//
+//   } while (m_estatus.ok());
+//
+//}
+//
+//
+//::e_status sequencer_payload::do_step()
+//{
+//
+//
+//   try
+//   {
+//
+//      _synchronous_lock synchronouslock(this->synchronization());
+//
+//      auto aggregator = *m_iterator;
+//
+//      synchronouslock.unlock();
+//
+//      aggregator(m_sequencer);
+//
+//   }
+//   catch (const ::exception & e)
+//   {
+//
+//      return e.m_estatus;
+//
+//   }
+//   catch (...)
+//   {
+//
+//      return error_exception;
+//
+//   }
+//
+//   return ::success;
+//
+//}
+//
+//void sequencer_payload::sequence_step()
+//{
+//
+//   m_estatus = do_step();
+//
+//   //if (m_estatus.succeeded())
+//   //{
+//
+//   //   m_iStep++;
+//
+//   //}
+//
+//}
+//
+////sequencer<SEQUENCE> * topic(const class time & timeWait = ::time::infinity());
+//
+//
+////virtual ::payload run_with_timeout(const class time & timeWait = ::time::infinity()) override;
+//void sequencer_payload::add_step(const ::sequencer_step & step)
+//{
+//
+//   _synchronous_lock synchronouslock(synchronization());
+//
+//   add_tail(step);
+//
+//}
+//
+//
+//
+//
+//
+//void sequencer_payload::add_result(const ::payload & payload)
+//{
+//
+//   _synchronous_lock synchronouslock(synchronization());
+//   m_payload.payload_array_reference().add(payload);
+//
+//}
+//
+//::payload sequencer_payload::last_result()
+//{
+//   _synchronous_lock synchronouslock(synchronization());
+//
+//   if (m_payload.get_type() == e_type_payload_array)
+//   {
+//
+//      if (m_payload.payload_array_reference().has_element())
+//      {
+//
+//         return m_payload.payload_array_reference().last();
+//
+//      }
+//
+//   }
+//
+//   return m_payload;
+//
+//}
 
+sequence::sequence() 
 {
-   //  m_iStep = 0;
+
+}
+sequence::~sequence()
+{
+
 
 }
 
-sequencer_payload::~sequencer_payload()
-{
-
-
-
-}
-
-
-void sequencer_payload::on_initialize_particle()
-{
-
-   ::list < ::sequencer_step >::on_initialize_particle();
-
-   defer_create_synchronization();
-
-}
-
-
-///void set_object(const TYPE & result, const ::e_status & estatus = ::success);
-//void set_status(const ::e_status & estatus = ::success);
-void sequencer_payload::run()
-{
-
-   m_estatus = ::success;
-
-   _synchronous_lock synchronouslock(this->synchronization());
-
-   do
-   {
-
-      if (!m_iterator)
-      {
-
-         m_iterator = this->begin();
-
-      }
-      else
-      {
-
-         m_iterator++;
-
-      }
-
-      if (!m_iterator || m_iterator == this->end())
-      {
-
-         break;
-
-      }
-
-      synchronouslock.unlock();
-
-      sequence_step();
-
-      synchronouslock._lock();
-
-   } while (m_estatus.ok());
-
-}
-
-
-::e_status sequencer_payload::do_step()
-{
-
-
-   try
-   {
-
-      _synchronous_lock synchronouslock(this->synchronization());
-
-      auto aggregator = *m_iterator;
-
-      synchronouslock.unlock();
-
-      aggregator(m_sequencer);
-
-   }
-   catch (const ::exception & e)
-   {
-
-      return e.m_estatus;
-
-   }
-   catch (...)
-   {
-
-      return error_exception;
-
-   }
-
-   return ::success;
-
-}
-
-void sequencer_payload::sequence_step()
-{
-
-   m_estatus = do_step();
-
-   //if (m_estatus.succeeded())
-   //{
-
-   //   m_iStep++;
-
-   //}
-
-}
-
-//sequencer<SEQUENCE> * topic(const class time & timeWait = ::time::infinity());
-
-
-//virtual ::payload run_with_timeout(const class time & timeWait = ::time::infinity()) override;
-void sequencer_payload::add_step(const ::sequencer_step & step)
-{
-
-   _synchronous_lock synchronouslock(synchronization());
-
-   add_tail(step);
-
-}
-
-
-
-
-
-void sequencer_payload::add_result(const ::payload & payload)
-{
-
-   _synchronous_lock synchronouslock(synchronization());
-   m_payload.payload_array_reference().add(payload);
-
-}
-
-::payload sequencer_payload::last_result()
-{
-   _synchronous_lock synchronouslock(synchronization());
-
-   if (m_payload.get_type() == e_type_payload_array)
-   {
-
-      if (m_payload.payload_array_reference().has_element())
-      {
-
-         return m_payload.payload_array_reference().last();
-
-      }
-
-   }
-
-   return m_payload;
-
-}
-
-sequencer::sequencer(::particle * pparticle) :
-   ::pointer < sequencer_payload >(__new ::sequencer_payload(*this))
-{
-   
-   m_p->initialize(pparticle);
-
-}
-
-
-
-::sequencer & sequencer::operator <<(const ::sequencer_step & step)
-{
-
-   m_p->add_step(step);
-
-   return *this;
-
-}
-
-
-void sequencer::add_result(const ::payload & payload)
-{
-
-   m_p->add_result(payload);
-
-}
-
-
-::payload sequencer::last_result()
-{
-   return m_p->last_result();
-
-}
+//
+//::sequencer & sequencer::operator <<(const ::sequencer_step & step)
+//{
+//
+//   m_p->add_step(step);
+//
+//   return *this;
+//
+//}
+//
+//
+//void sequencer::add_result(const ::payload & payload)
+//{
+//
+//   m_p->add_result(payload);
+//
+//}
+//
+//
+//::payload sequencer::last_result()
+//{
+//   return m_p->last_result();
+//
+//}
 //::sequencer & sequencer::then(enum_as, ::sequencer_step::base * psequenceaggregatorbase)
 //{
 
@@ -647,3 +648,54 @@ void sequencer::add_result(const ::payload & payload)
 //
 //}
 //
+
+
+
+sequence * sequence::current()
+{
+
+   return dynamic_cast <sequence *>(task_context<sequence>::current());
+}
+//inline [[noreturn]] static void cancel()
+//{
+//
+//   throw ::cancel_exception<sequence>();
+//
+//}
+
+
+void sequence::run()
+{
+
+   stack_task_context_base stack(this);
+
+   procedure_array_with_context<sequence>::run();
+}
+
+
+void sequence::on_end_procedure()
+{
+   
+   m_pparticleLast = m_pparticle;
+
+}
+
+void sequence::destroy()
+{
+
+   task_context<sequence>::destroy();
+   procedure_array_with_context<sequence>::destroy();
+   property_object::destroy();
+}
+::payload sequence::get_last_result()
+{
+
+   if (!m_pparticleLast)
+   {
+      return {};
+
+   }
+   return m_pparticleLast->get_result_payload();
+}
+
+::payload get_last_result();

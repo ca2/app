@@ -39,7 +39,7 @@ void __node_acme_pre_init()
 
    //   auto pmessagebox = __initialize_new ::message_box(nullptr,"Gdiplus Failed to Hook. ca cannot continue.","Gdiplus Failure",MB_ICONERROR);
 
-send(pmessagebox);
+pmessagebox->sync();
 
    //   return 0;
 

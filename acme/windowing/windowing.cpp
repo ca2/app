@@ -221,7 +221,7 @@ namespace acme
       void windowing::destroy()
       {
 
-         windowing_system_post_quit();
+         //windowing_system_post_quit();
 
          ::acme::department::destroy();
 
@@ -288,7 +288,7 @@ namespace acme
       }
 
 
-      void windowing::main_send(const ::procedure & procedure)
+      void windowing::_main_send(const ::procedure & procedure)
       {
 
          //main_send(procedure);
@@ -296,7 +296,7 @@ namespace acme
       }
 
 
-      void windowing::main_post(const ::procedure & procedure)
+      void windowing::_main_post(const ::procedure & procedure)
       {
 
          //main_post(procedure);

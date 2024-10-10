@@ -429,7 +429,7 @@ namespace acme
       }
 
 
-      ::rectangle_i32 window::get_interaction_rectangle()
+      ::rectangle_i32 window::get_rectangle()
       {
 
          return m_rectangle;

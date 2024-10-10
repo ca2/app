@@ -1887,7 +1887,7 @@ void object::handle_exception(const ::exception& e)
 
       auto pmessagebox = __initialize_new ::message_box(e.m_strMessage);
 
-      send(pmessagebox);
+      pmessagebox->sync();
 
    }
 
@@ -2590,7 +2590,7 @@ void call_sync(const ::procedure_array& methoda)
 //
 ////      estatus = ::auto pmessagebox = __initialize_new ::message_box(pszMessage, pszTitle, emessagebox, process);
 
-//send(pmessagebox);
+//pmessagebox->sync();
 //
 //   }
 //
@@ -3035,7 +3035,7 @@ void object::initialize(::particle * pparticle)
 
    //inline void defer_set_object(::particle * pparticle);
 
-void object::call_run()
+void object::call()
 {
 
    run();

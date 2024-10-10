@@ -39,7 +39,7 @@ public:
    virtual bool is_alive();
 
 
-   void call_run() override;
+   void call() override;
 
 
    virtual void run() override;

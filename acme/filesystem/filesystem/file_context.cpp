@@ -3456,7 +3456,7 @@ file_pointer file_context::http_get_file(const ::url::url & url, ::file::e_open 
    
    pget->m_timeSyncTimeout = 5_hour;
 
-   context()->sync(pget);
+   pget->call();
 
    auto pmemoryfile = create_memory_file();
    

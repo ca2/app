@@ -608,11 +608,13 @@ namespace sockets
       
       strMessage2 += strMsg;
 
-      strMessage2 += string('-', strTitle1.length());
+      //strMessage2 += string('-', maximum(10, strTitle1.length() - 20));
 
-      strMessage2 += "\n";
+      m_strResponseLogMessage = strMessage2;
 
-      information() << strMessage2;
+      //strMessage2 += "\n";
+
+      //output_debug_string(strMessage2 + "\n");
 
       if (m_request.m_url.as_string() == "https://xn--thomasborregaardsrensen-1mc.com/")
       {

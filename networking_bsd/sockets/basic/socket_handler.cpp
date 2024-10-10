@@ -5,7 +5,7 @@
 #include "acme/acme.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "apex/platform/system.h"
-
+#include "_____debug_counters_001.h"
 
 #include "acme/_operating_system.h"
 
@@ -34,9 +34,9 @@
 namespace sockets_bsd
 {
 
-
+#if COUNTERS_001
    ::interlocked_count g_interlockedcountSocketHandler;
-
+#endif
 
    //socket_handler::socket_handler(::particle * pparticle, ::apex::log *plogger) :
    socket_handler::socket_handler() :
@@ -71,9 +71,13 @@ namespace sockets_bsd
       //m_countW = 0;
       //m_countE = 0;
 
+#if COUNTERS_001
+
       g_interlockedcountSocketHandler++;
 
       ::informationf("%s currently allocated count = %lld", typeid(*this).name(), g_interlockedcountSocketHandler.operator ::i64());
+
+#endif
 
    }
 
@@ -82,9 +86,9 @@ namespace sockets_bsd
    {
 
       cleanup_handler();
-
+#if COUNTERS_001
       g_interlockedcountSocketHandler--;
-
+#endif
    }
 
 

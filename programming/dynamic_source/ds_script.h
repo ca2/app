@@ -27,7 +27,8 @@ namespace dynamic_source
 
       file_time_set                     m_ft;
       file_time_set                     m_ftDs;
-
+      ::string                         m_strClassNamePrefix;
+      ::string                         m_strClassName;
       bool                             m_bLastVersionCheck;
       class ::time                           m_timeLastVersionCheck;
       ::file::path                     m_strSourcePath;

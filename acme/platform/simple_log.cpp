@@ -367,6 +367,19 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
          else
          {
 
+            if (str.is_empty())
+            {
+
+               output_debug_string("WHAT?!?!(2)");
+
+            }
+            else if (str.begins("\n"))
+            {
+
+               output_debug_string("WHAT?!?!");
+
+            }
+
             str = strTime + str;
          }
 

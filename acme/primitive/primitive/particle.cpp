@@ -756,7 +756,7 @@ void particle::print_line(const ::scoped_string & scopedstr) const
    strLine += "\n";
 
    printf("%s", strLine.c_str());
-   
+
    fflush(stdout);
 
 }

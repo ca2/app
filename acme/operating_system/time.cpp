@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "time.h"
-////#include "acme/primitive/datetime/earth_time.h"
-#include "acme/primitive/datetime/system_time.h"
-//#include "acme/primitive/time/time.h"
+////#include "acme/prototype/datetime/earth_time.h"
+#include "acme/prototype/datetime/system_time.h"
+//#include "acme/prototype/time/time.h"
 #if !defined(WINDOWS)
 #include "acme/operating_system/ansi/windows_time.h"
 #endif

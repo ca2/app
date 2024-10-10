@@ -137,7 +137,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//void oswindow_data::set_user_interaction_impl(::user::interaction_impl * pimpl)
+//void oswindow_data::set_user_interaction_impl(::windowing::window * pimpl)
 //{
 //
 //   if(is_null())
@@ -395,7 +395,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//::user::interaction_impl * window_from_handle(oswindow oswindow)
+//::windowing::window * window_from_handle(oswindow oswindow)
 //{
 //
 //   if(oswindow == nullptr)
@@ -611,7 +611,7 @@ void ns_main_async(dispatch_block_t block);
 //}
 //
 //
-//CLASS_DECL_ACME ::user::interaction_impl * oswindow_get(oswindow oswindow)
+//CLASS_DECL_ACME ::windowing::window * oswindow_get(oswindow oswindow)
 //{
 //
 //   if(oswindow == nullptr)

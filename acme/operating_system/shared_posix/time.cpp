@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "time.h"
-#include "acme/primitive/datetime/earth_gregorian_time.h"
-#include "acme/primitive/datetime/earth_zone_time.h"
+#include "acme/prototype/datetime/earth_gregorian_time.h"
+#include "acme/prototype/datetime/earth_zone_time.h"
 //#ifdef FREEBSD
 //#undef _C11_SOURCE
 //#define __XSI_VISIBLE 500
@@ -9,7 +9,7 @@
 #include <time.h>
 
 #ifdef HAVE_UNISTD_H
-#include "acme/primitive/datetime/microsecond_sleep.h"
+#include "acme/prototype/datetime/microsecond_sleep.h"
 #include <unistd.h>
 #endif
 

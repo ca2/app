@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "acme/nano/user/display.h"
+#include "acme/user/micro/display.h"
 #include "event_listener.h"
 #include <xcb/xcb.h>
 #include <xcb/xcb_atom.h>
@@ -47,7 +47,7 @@ namespace nano
 
 
       class display :
-         virtual public ::nano::user::display,
+         virtual public ::acme::windowing::display,
          virtual public event_listener
       {
       public:
@@ -57,7 +57,7 @@ namespace nano
          void *                                 m_pX11Display;
          xcb_connection_t   *                   m_pconnection;
          pointer_array < event_listener >        m_eventlistenera;
-         pointer_array < nano::user::window >           m_windowa;
+         pointer_array < micro::interchange >           m_windowa;
          xcb_window_t                           m_windowActive;
          //::procedure_array                        m_routineaPost;
          xcb_depth_t *                          m_pdepth;
@@ -116,10 +116,10 @@ namespace nano
 
 
          void add_listener(event_listener * plistener);
-         void add_window(nano::user::window * pwindow);
+         void add_window(micro::interchange * pwindow);
 
          void erase_listener(event_listener * plistener);
-         void erase_window(nano::user::window * pwindow);
+         void erase_window(micro::interchange * pwindow);
 
          bool _on_event(xcb_generic_event_t * pevent) override;
 

@@ -5,7 +5,7 @@
 #include "system_setup.h"
 #include "system.h"
 #include "system_factory.h"
-#include "sequencer.h"
+//#include "sequencer.h"
 #include "application.h"
 #include "acme/nano/nano.h"
 #include "acme/nano/http/http.h"
@@ -20,7 +20,9 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/dir_system.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/filesystem/file/transfer.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/translator.h"
@@ -30,43 +32,34 @@
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/debug.h"
-#include "acme/primitive/datetime/datetime.h"
-#include "acme/primitive/mathematics/mathematics.h"
-#include "acme/primitive/primitive/primitive.h"
-#include "acme/primitive/primitive/url.h"
+#include "acme/prototype/datetime/datetime.h"
+#include "acme/prototype/mathematics/mathematics.h"
+#include "acme/prototype/prototype/prototype.h"
+#include "acme/prototype/prototype/url.h"
 #include "acme/regular_expression/context.h"
-//#include "acme/primitive/primitive/payload.h"
-//#include "acme/primitive/string/hex.h"
-#include "acme/nano/user/user.h"
+//#include "acme/prototype/prototype/payload.h"
+//#include "acme/prototype/string/hex.h"
+#include "acme/user/micro/user.h"
 #include "acme/nano/http/http.h"
 #include "acme/nano/speech/speech.h"
-#include "acme/windowing_system/windowing_system.h"
+#include "acme/windowing/windowing.h"
 //#include "acme/user/user/conversation.h"
-
 
 
 extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory);
 
 
-#if defined(WINDOWS)
-
-extern "C" void nano_idn_windows_common_factory(::factory::factory * pfactory);
-
-#if defined(WINDOWS_DESKTOP)
-
-extern "C" void nano_user_win32_factory(::factory::factory* pfactory);
-
-#elif defined(UNIVERSAL_WINDOWS)
-
-extern "C" void nano_user_universal_windows_factory(::factory::factory * pfactory);
-
-#endif
-
-#elif defined(MACOS)
-
-extern "C" void nano_user_macos_factory(::factory::factory* pfactory);
-
-#endif
+//#elif defined(UNIVERSAL_WINDOWS)
+//
+//extern "C" void nano_user_universal_windows_factory(::factory::factory * pfactory);
+//
+//#endif
+//
+//#elif defined(MACOS)
+//
+//extern "C" void nano_user_macos_factory(::factory::factory* pfactory);
+//
+//#endif
 
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
@@ -153,6 +146,7 @@ namespace acme
 
 #endif
 
+      m_etracelevelMinimum = e_trace_level_undefined;
 
 #ifdef DEBUG
       ::atom atom;
@@ -182,6 +176,9 @@ namespace acme
 #endif
 
 
+      m_bFinalizeIfNoSession = false;
+      m_bFinalizeIfNoSessionSetting = true;
+      m_bGraphicsAndWindowingSystemInitialized = false;
 
    }
 
@@ -202,11 +199,9 @@ namespace acme
       m_pbredsystem = nullptr;
       m_pcoresystem = nullptr;
 
-      m_taskmap.clear();
-
-      m_taskidmap.clear();
-
       print_line("acme::system::~system() (end)");
+
+      ::acme::get()->m_pmanualreseteventReadyToExit->SetEvent();
 
    }
 
@@ -219,72 +214,17 @@ namespace acme
    }
 
 
-   void system::on_initialize_particle()
+   enum_trace_level system::get_trace_level()
    {
 
-      ::acme::context::on_initialize_particle();
+      if(m_etracelevelMinimum != e_trace_level_undefined)
+      {
 
-      //::output_debug_string("Going to create simple log\n");
+         return m_etracelevelMinimum;
 
-      //m_plogger = __create_new < ::simple_log >();
+      }
 
-      __construct(m_plogger);
-
-      //::output_debug_string("output_debug_string : simple log created\n");
-
-      //information() << "information() << output_debug_string : simple log created";
-
-#ifdef PARALLELIZATION_PTHREAD
-
-#if defined(__APPLE__)
-
-      m_bJoinable = true;
-
-#endif
-
-#endif
-
-      //#ifdef WINDOWS_DESKTOP
-      //
-      //      //{
-      //
-      //      //   auto papp = ::app_factory::new_app();
-      //
-      //      //papplication->m_argc = __argc;
-      //
-      //      //papplication->m_argv = __argv;
-      //
-      //      //papplication->m_wargv = __wargv;
-      //
-      //      //papplication->m_envp = *__p__environ();
-      //
-      //      //papplication->m_wenvp = *__p__wenviron();
-      //
-      //      //papplication->m_hinstanceThis = hinstanceThis;
-      //
-      //      //papplication->m_hinstancePrev = hinstancePrev;
-      //
-      //      //papplication->m_nCmdShow = nCmdShow;
-      //
-      //      //papplication->is_console() = false;
-      //
-      //      //int iExitCode = papplication->main_loop();
-      //
-      //      //return iExitCode;
-      //
-      //#elif !defined(UNIVERSAL_WINDOWS)
-      //
-      //      //papplication->set_args(g_argc, g_argv, g_envp);
-      //
-      //#endif
-      //
-      m_ewindowing = e_windowing_none;
-
-      //m_plogger->m_etracelevelMinimum = e_trace_level_warning;
-
-      //m_strAppId = papplication->m_strAppId;
-
-      enum_trace_level etracelevel;
+      enum_trace_level etracelevel = e_trace_level_none;
 
       // if(is_debugger_attached())
       // {
@@ -374,7 +314,147 @@ namespace acme
 
       //      }
 
-      m_plogger->m_etracelevelMinimum = etracelevel;
+      m_etracelevelMinimum = etracelevel;
+
+      return m_etracelevelMinimum;
+
+   }
+
+
+   void system::initialize_matter()
+   {
+
+      if (application()->m_bResource)
+      {
+
+         bool bMatterFromHttpCache = false;
+
+         bool bMatterFromResource = false;
+
+         auto pfile = file()->create_resource_file("app/_matter/main/_std/_std/Thomas Borregaard Sørensen.dedicatory");
+
+         if (pfile)
+         {
+
+            information() << "found Thomas Borregaard Sørensen.dedicatory";
+
+            bMatterFromResource = true;
+
+         }
+         else
+         {
+
+            warning() << "Thomas Borregaard Sørensen.dedicatory not found";
+
+         }
+
+         if (bMatterFromResource)
+         {
+
+            m_pdirsystem->m_bMatterFromHttpCache = false;
+
+            m_pdirsystem->m_bMatterFromResource = true;
+
+         }
+         else
+         {
+
+            if (m_iMatterFromHttpCache == -1)
+            {
+
+               ::file::path pathSide = m_pcontext->side_get_matter_path("app/_matter/main");
+
+               ::file::path pathLocal = local_get_matter_path("app/_matter/main");
+
+               bool bFileSystemMatter = m_pacmedirectory->is(pathSide) || m_pacmedirectory->is(pathLocal);
+
+               bMatterFromHttpCache = !bFileSystemMatter;
+
+            }
+            else
+            {
+
+               bMatterFromHttpCache = m_iMatterFromHttpCache != 0;
+
+            }
+
+            m_pdirsystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
+
+            m_pdirsystem->m_bMatterFromResource = false;
+
+         }
+
+      }
+
+   }
+
+
+
+   void system::on_initialize_particle()
+   {
+
+      ::acme::context::on_initialize_particle();
+
+      //::output_debug_string("Going to create simple log\n");
+
+      //m_plogger = __create_new < ::simple_log >();
+
+      __construct(m_plogger);
+
+      //::output_debug_string("output_debug_string : simple log created\n");
+
+      //information() << "information() << output_debug_string : simple log created";
+
+#ifdef PARALLELIZATION_PTHREAD
+
+#if defined(__APPLE__)
+
+      m_bJoinable = true;
+
+#endif
+
+#endif
+
+      //#ifdef WINDOWS_DESKTOP
+      //
+      //      //{
+      //
+      //      //   auto papp = ::app_factory::new_app();
+      //
+      //      //papplication->m_argc = __argc;
+      //
+      //      //papplication->m_argv = __argv;
+      //
+      //      //papplication->m_wargv = __wargv;
+      //
+      //      //papplication->m_envp = *__p__environ();
+      //
+      //      //papplication->m_wenvp = *__p__wenviron();
+      //
+      //      //papplication->m_hinstanceThis = hinstanceThis;
+      //
+      //      //papplication->m_hinstancePrev = hinstancePrev;
+      //
+      //      //papplication->m_nCmdShow = nCmdShow;
+      //
+      //      //papplication->is_console() = false;
+      //
+      //      //int iExitCode = papplication->main_loop();
+      //
+      //      //return iExitCode;
+      //
+      //#elif !defined(UNIVERSAL_WINDOWS)
+      //
+      //      //papplication->set_args(g_argc, g_argv, g_envp);
+      //
+      //#endif
+      //
+      //m_ewindowing = e_windowing_none;
+
+      //m_plogger->m_etracelevelMinimum = e_trace_level_warning;
+
+      //m_strAppId = papplication->m_strAppId;
+
 
 
       //information() << "initialize_system trace_category_static_init";
@@ -390,7 +470,7 @@ namespace acme
 
       //m_bOnInitializeWindowObject = false;
 
-      //m_pcleanuptask = ::place(new ::parallelization::cleanup_task());
+      //m_pcleanuptask = __new ::parallelization::cleanup_task();
 
       //m_pcleanuptask->begin();
       //factory()->add_factory_item<::acme::idpool>();
@@ -401,7 +481,7 @@ namespace acme
 
       __defer_construct_new(m_pmathematics);
 
-      __defer_construct_new(m_pprimitive);
+      __defer_construct_new(m_pprototype);
 
       //::plane_system::on_initialize_particle();
 
@@ -488,7 +568,7 @@ namespace acme
    void system::main()
    {
 
-      /*auto estatus = */ process_init();
+      /*auto estatus = */
 
       //if (!estatus)
       //{
@@ -498,15 +578,42 @@ namespace acme
       //}
 
       /*estatus =*/
-      run();
-
-
       if (platform()->is_console())
       {
+
+         process_init();
+
+         run_posted_procedures();
 
          application()->main();
 
       }
+      else
+      {
+
+         task_osinit();
+
+         __task_init();
+
+//         m_peventInitialization->SetEvent();
+
+         //while(task_get_run())
+         //{
+
+           // run_posted_procedures();
+
+            //preempt(100_ms);
+
+         //}
+
+         acme_windowing()->windowing_system_application_main_loop();
+
+
+      }
+
+
+
+      //run();
 
 
 
@@ -685,6 +792,12 @@ namespace acme
    void system::process_init()
    {
 
+      application()->initialize_application_flags();
+
+      factory()->add_factory_item<::request>();
+
+
+
 #if REFERENCING_DEBUGGING
 
       ::refdbg_top_track toptrack(this);
@@ -831,12 +944,188 @@ namespace acme
       //   //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
 
       //}
+      //estatus =
+
+      __construct(m_pfilesystem);
+
+      //if(!estatus)
+      //{
+
+      //   ERROR("failed to initialize file-system");
+
+      //   return estatus;
+
+      //}
+
+      //estatus =
+
+      //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
+
+      __construct(m_pdirsystem);
+
+      //if (!estatus)
+      //{
+
+      //   ERROR("failed to initialize dir-system");
+
+      //   return false;
+
+      //}
+
+      ///INFORMATION("apex::session::process_init .3");
+
+      //estatus =
+      m_pfilesystem->init_system();
+
+      //if (!estatus)
+      //{
+
+      //   m_estatus = estatus;
+
+      //   return estatus;
+
+      //}
+
+      //estatus =
+      m_pdirsystem->init_system();
+
+      //if (!estatus)
+      //{
+
+      //   m_estatus = estatus;
+
+      //   return estatus;
+
+      //}
+
+      //estatus = ::apex::context::initialize_context();
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+#if !defined(APPLE_IOS)
+
+      auto pid = node()->current_process_identifier();
+
+      string strPid = ::as_string(pid);
+
+      //auto psystem = system();
+
+      auto pdatetime = datetime();
+
+      string strLogTime = pdatetime->date_time_text_for_file_with_no_spaces();
+
+      strLogTime.replace_with("/", "-");
+
+      strLogTime.replace_with("/", "_");
+
+      {
+
+         string strExecutable = platform()->get_executable();
+
+         string_array straArguments;
+
+         for (int i = 0; i < platform()->get_argument_count1(); i++)
+         {
+
+            string strArgument = platform()->get_argument1(i);
+
+            straArguments.add(strArgument);
+
+         }
+
+         string strCmd = strExecutable + " " + straArguments.implode("\n");
+
+         string strAppId = application()->m_strAppId;
+
+         string strCmdLineDumpFileName = strAppId / (strLogTime + "-pid" + strPid + "-command_line.txt");
+
+         ::file::path pathCmdLineDumpFile = acmedirectory()->home() / "application" / strCmdLineDumpFileName;
+
+         acmefile()->put_contents(pathCmdLineDumpFile, strCmd);
+
+      }
+
+      {
+
+         string_array straEnv;
+#ifdef WINDOWS_DESKTOP
+         if (platform()->m_wenvp)
+         {
+
+            int iIndex = 0;
+
+            for (auto wenv = platform()->m_wenvp; *wenv != 0; wenv++, iIndex++)
+            {
+
+               auto thisEnv = *wenv;
+
+               int iLen = (int) wcslen(thisEnv);
+
+               /*if (iLen >= 42)
+               {
+                  output_debug_string("aaa");
+               }
+               else*/ if (!wcsncmp(thisEnv, L"Path=", 5))
+               {
+
+                  output_debug_string("aaa");
+
+               }
+               else if (!wcsncmp(thisEnv, L"VsPer", 5))
+               {
+
+                  output_debug_string("aaa");
+
+               }
+
+               straEnv.add(thisEnv);
+
+            }
+
+         }
+         else
+#endif
+            if (platform()->m_envp)
+            {
+
+               for (auto env = platform()->m_envp; *env != 0; env++)
+               {
+
+                  auto thisEnv = *env;
+
+                  straEnv.add(thisEnv);
+
+               }
+
+            }
+
+         string strEnv = straEnv.implode("\n");
+
+         string strAppId = application()->m_strAppId;
+
+         string strEnvDumpFileName = strAppId / strLogTime + "-pid" + strPid + "-environment_variables.txt";
+
+         ::file::path pathEnvDumpFile = acmedirectory()->home() / "application" / strEnvDumpFileName;
+
+         acmefile()->put_contents(pathEnvDumpFile, strEnv);
+
+      }
+
+#endif
 
 #if !defined(APPLE_IOS)
 
       report_system_instance();
 
 #endif
+
+
+
 
 
    }
@@ -873,6 +1162,15 @@ namespace acme
    void system::TermSystem()
    {
 
+      if(m_pacmewindowing)
+      {
+
+         m_pacmewindowing->windowing_system_post_quit();
+
+      }
+
+      m_pacmewindowing.release();
+
       m_pmapRegularExpressionContext.release();
 
       m_pfactoryFolder.release();
@@ -885,7 +1183,7 @@ namespace acme
 
       //::acme::idpool::term();
 
-      m_pnode->user_post_quit();
+      //m_pnode->user_post_quit();
 
       m_pnode.release();
 
@@ -1020,59 +1318,6 @@ namespace acme
    //   }
 
 
-   ::task* system::get_task(itask_t itask)
-   {
-
-      _synchronous_lock synchronouslock(m_pmutexTask);
-
-      return m_taskmap[itask];
-
-   }
-
-
-   itask_t system::get_task_id(const ::task* ptask)
-   {
-
-      _synchronous_lock synchronouslock(m_pmutexTask);
-
-      itask_t itask = null_itask;
-
-      if (!m_taskidmap.lookup((::task* const)ptask, itask))
-      {
-
-         return 0;
-
-      }
-
-      return itask;
-
-   }
-
-
-   void system::set_task(itask_t itask, ::task* ptask)
-   {
-
-      _synchronous_lock synchronouslock(m_pmutexTask);
-#if   REFERENCING_DEBUGGING
-      ::allocator::add_referer({ this, __FUNCTION_FILE_LINE__ });
-#endif
-      m_taskmap[itask] = ptask;
-
-      m_taskidmap[ptask] = itask;
-
-   }
-
-
-   void system::unset_task(itask_t itask, ::task* ptask)
-   {
-
-      _synchronous_lock synchronouslock(m_pmutexTask);
-
-      if(m_taskmap.has(itask)) m_taskmap.erase_item(itask);
-
-      if(m_taskidmap.has(ptask)) m_taskidmap.erase_item(ptask);
-
-   }
 
 
    void system::init_task()
@@ -1105,13 +1350,13 @@ namespace acme
    //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
    //{
 
-   //   auto psequence = ::place(new ::sequence < ::conversation > ());
+   //   auto psequence = __new ::sequence < ::conversation > ();
 
    //   psequence->set_status(error_interface_only);
 
    //   //return presult;
 
-   //   //auto pprocess = ::place(new status < enum_dialog_result > ());
+   //   //auto pprocess = __new status < enum_dialog_result > ();
 
    //   //pprocess->set_result(message_box_for_console(pszText, pszTitle, emessagebox));
 
@@ -1155,51 +1400,6 @@ namespace acme
    //
 
 
-   bool system::is_task_on(itask_t atom)
-   {
-
-      _synchronous_lock synchronouslock(m_pmutexTaskOn);
-
-      return m_mapTaskOn.plookup(atom);
-
-   }
-
-
-   bool system::is_active(::task* ptask)
-   {
-
-      if (::is_null(ptask))
-      {
-
-         return false;
-
-      }
-
-      return is_task_on(m_itask);
-
-   }
-
-
-   void system::set_task_on(itask_t atom)
-   {
-
-      _synchronous_lock synchronouslock(m_pmutexTaskOn);
-
-      m_mapTaskOn.set_at(atom, atom);
-
-   }
-
-
-   void system::set_task_off(itask_t atom)
-   {
-
-      _synchronous_lock synchronouslock(m_pmutexTaskOn);
-
-      m_mapTaskOn.erase_item(atom);
-
-   }
-
-
    task_group* system::task_group(enum enum_priority)
    {
 
@@ -1236,7 +1436,9 @@ namespace acme
       catch (::exception& exception)
       {
 
-         //message_box_synchronous(this, exception.m_strMessage, m_strAppId, e_message_box_ok, exception.m_strDetails);
+         //auto pmessagebox = __initialize_new ::message_box(exception.m_strMessage, m_strAppId, e_message_box_ok, exception.m_strDetails);
+
+//pmessagebox->sync();
 
          string strMoreDetails;
 
@@ -1416,6 +1618,9 @@ namespace acme
    void system::init2()
    {
 
+
+      initialize_matter();
+
       if (application()->m_bSession)
       {
 
@@ -1442,6 +1647,14 @@ namespace acme
       //   throw ::exception(error_failed);
 
       //}
+
+      if (application()->m_bSession)
+      {
+
+         session()->branch_synchronously();
+
+      }
+
 
    }
 
@@ -1578,7 +1791,7 @@ namespace acme
    //   if (!plibrary)
    //   {
 
-   //      plibrary = ::place(new ::acme::library());
+   //      plibrary = __new ::acme::library();
 
    //      plibrary->initialize_matter(this);
 
@@ -1670,7 +1883,7 @@ namespace acme
    //
    //      }
    //
-   //      plibrary = ::place(new ::acme::library());
+   //      plibrary = __new ::acme::library();
    //
    //      plibrary->initialize_matter(this);
    //
@@ -1984,16 +2197,18 @@ namespace acme
 
       }
 
-      if (m_sessionmap.is_empty())
+      bool bWasEmpty = m_sessionmap.is_empty();
+
+      m_sessionmap[iEdge] = psession;
+
+      on_add_session(psession);
+
+      if (bWasEmpty)
       {
 
          m_bFinalizeIfNoSession = m_bFinalizeIfNoSessionSetting;
 
       }
-
-      m_sessionmap[iEdge] = psession;
-
-      on_add_session(psession);
 
    }
 
@@ -2538,7 +2753,7 @@ namespace acme
    void system::system_id_update(::i64 iId, ::i64 iPayload)
    {
 
-      call((::enum_id)iId, iPayload);
+      message_call((::enum_id)iId, iPayload);
 
    }
 
@@ -2572,16 +2787,16 @@ namespace acme
       else if (ptopic->m_atom == id_operating_system_user_theme_change)
       {
 
-         auto pnode = node();
-
-         string strTheme = pnode->os_get_user_theme();
-
-         if (strTheme != m_strOsUserTheme)
-         {
-
-            m_strOsUserTheme = strTheme;
-
-         }
+         // auto pnode = node();
+         //
+         // string strTheme = pnode->os_get_user_theme();
+         //
+         // if (strTheme != m_strOsUserTheme)
+         // {
+         //
+         //    m_strOsUserTheme = strTheme;
+         //
+         // }
 
       }
       else if (ptopic->m_atom == id_open_hyperlink)
@@ -2941,7 +3156,7 @@ namespace acme
 
 
 
-   //pointer< ::sequencer < ::conversation > > system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+   //::pointer < ::subparticle > system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
    //{
    //
    //   auto psequencer = nano()->message_box(strMessage, strTitle, emessagebox, strDetails);
@@ -3204,7 +3419,7 @@ namespace acme
    //   void system::windowing_send(const ::procedure & procedure)
    //   {
    //
-   //      auto pmanualresetevent = ::place(new manual_reset_event());
+   //      auto pmanualresetevent = __new manual_reset_event();
    //
    //      windowing_post([pmanualresetevent, procedure]()
    //                     {
@@ -3390,7 +3605,13 @@ namespace acme
    ::string system::get_application_server_name()
    {
 
-      return {};
+      string strApplicationServerName = application()->m_strAppId;
+
+      strApplicationServerName.replace_with(".", "/");
+
+      strApplicationServerName.replace_with("-", "_");
+
+      return strApplicationServerName;
 
    }
 
@@ -3446,6 +3667,59 @@ namespace acme
    }
 
 
+   ::color::color system::get_simple_ui_color(::enum_element eelement, ::user::enum_state estate)
+   {
+
+      ::color::color color;
+
+      if (eelement == ::e_element_background)
+      {
+
+         if (dark_mode())
+         {
+
+            color = argb(255, 0x50, 0x50, 0x58);
+
+         }
+         else
+         {
+
+            color = argb(255, 0xcd, 0xcd, 0xc8);
+
+         }
+
+      }
+      else
+      {
+
+         if (dark_mode())
+         {
+
+            color = argb(255, 255, 255, 255);
+
+         }
+         else
+         {
+
+            color = argb(255, 49, 50, 42);
+
+         }
+
+      }
+
+      return color;
+
+   }
+
+
+   ::color::color system::get_default_color(::color::color color)
+   {
+
+      return argb(255, 0, 0, 0);
+
+   }
+
+
    void system::set_dark_mode(bool bDark)
    {
 
@@ -3465,6 +3739,7 @@ namespace acme
       }
 
       on_application_dark_mode_change();
+
    }
 
 
@@ -3479,11 +3754,63 @@ namespace acme
    void system::on_application_dark_mode_change()
    {
 
+      auto ptopic = __new ::topic(id_application_dark_mode_change);
+
+      application()->handle(ptopic, nullptr);
 
    }
 
 
-   void system::on_component_factory(const ::scoped_string & scopedstrComponent)
+   bool system::defer_component_factory(const ::scoped_string & scopedstrComponent)
+   {
+
+      auto pnode = node();
+
+      if (::is_set(pnode))
+      {
+
+         if (pnode->defer_component_factory(scopedstrComponent))
+         {
+
+            return true;
+
+         }
+
+         ::string strComponentDefaultImplementation = pnode->default_component_implementation(scopedstrComponent);
+
+         if (strComponentDefaultImplementation.has_char())
+         {
+
+            auto pfactory = this->factory(scopedstrComponent, strComponentDefaultImplementation);
+
+            if (pfactory)
+            {
+
+               pfactory->merge_to_global_factory();
+
+               return true;
+
+            }
+
+         }
+
+
+      }
+
+      if(_defer_component_factory(scopedstrComponent))
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+
+   }
+
+
+   bool system::_defer_component_factory(const ::scoped_string & scopedstrComponent)
    {
 
       if (scopedstrComponent == "nano_dynamic_library")
@@ -3493,90 +3820,241 @@ namespace acme
 
          nano_dynamic_library_factory(pfactory);
 
-         return;
-
-      }
-      else if (scopedstrComponent == "nano_idn")
-      {
-
-
-#if defined(WINDOWS)
-
-
-         auto pfactory = this->factory();
-
-
-         nano_idn_windows_common_factory(pfactory);
-
-
-         return;
-
-
-#endif
-
-      }
-      else if (scopedstrComponent == "nano_user")
-      {
-
-
-#if defined(WINDOWS_DESKTOP)
-
-
-         auto pfactory = this->factory();
-
-         nano_user_win32_factory(pfactory);
-
-         return;
-         
-#elif defined(UNIVERSAL_WINDOWS)
-
-
-         auto pfactory = this->factory();
-
-
-         nano_user_universal_windows_factory(pfactory);
-
-
-         return;
-
-#elif defined(MACOS)
-         
-         auto pfactory = this->factory();
-
-         nano_user_macos_factory(pfactory);
-
-         return;
-         
-#elif defined(APPLE_IOS)
-
-         return;
-
-#endif
+         return true;
 
       }
 
+//      else if (scopedstrComponent == "nano_user")
+//      {
+//
+//
+//#if defined(WINDOWS_DESKTOP)
+//
+//
+//         auto pfactory = this->factory();
+//
+//         nano_user_win32_factory(pfactory);
+//
+//         return;
+//         
+//#elif defined(UNIVERSAL_WINDOWS)
+//
+//
+//         auto pfactory = this->factory();
+//
+//
+//         nano_user_universal_windows_factory(pfactory);
+//
+//
+//         return;
+//
+//#elif defined(MACOS)
+//         
+//         auto pfactory = this->factory();
+//
+//         nano_user_macos_factory(pfactory);
+//
+//         return;
+//         
+//#elif defined(APPLE_IOS)
+//
+//         return;
+//
+//#endif
+//
+//      }
+//      else if (scopedstrComponent == "nano_user")
+//      {
+//
+//
+//#if defined(WINDOWS_DESKTOP)
+//
+//
+//         auto pfactory = this->factory();
+//
+//         nano_user_win32_factory(pfactory);
+//
+//         return;
+//
+//#elif defined(UNIVERSAL_WINDOWS)
+//
+//
+//         auto pfactory = this->factory();
+//
+//
+//         nano_user_universal_windows_factory(pfactory);
+//
+//
+//         return;
+//
+//#elif defined(MACOS)
+//
+//         auto pfactory = this->factory();
+//
+//         nano_user_macos_factory(pfactory);
+//
+//         return;
+//
+//#elif defined(APPLE_IOS)
+//
+//         return;
+//
+//#endif
+//
+//      }
 
-      node()->on_component_factory(scopedstrComponent);
-
+      return false;
 
    }
 
 
-   ::windowing_system::windowing_system * system::windowing_system()
+   ::micro::user * system::micro_user()
    {
 
-      if(!m_pwindowingsystem)
+      if (!m_pmicrouser)
       {
 
-         node()->do_windowing_system_factory();
-
-         __construct(m_pwindowingsystem);
+         __construct_new(m_pmicrouser);
 
       }
 
-      return m_pwindowingsystem;
+      return m_pmicrouser;
 
    }
+
+
+   ::acme::windowing::windowing * system::acme_windowing()
+   {
+
+      if (!m_pacmewindowing)
+      {
+
+         do_graphics_and_windowing_system_factory();
+
+         __construct(m_pacmewindowing);
+
+      }
+
+      return m_pacmewindowing;
+
+   }
+
+
+   ::windowing::windowing * system::windowing()
+   {
+
+      return acme_windowing()->windowing_windowing();
+
+   }
+
+
+   void system::do_graphics_and_windowing_system_factory()
+   {
+
+      if(!m_bGraphicsAndWindowingSystemInitialized)
+      {
+
+         m_bGraphicsAndWindowingSystemInitialized = true;
+
+         nano()->graphics();
+
+         ::string strToolkit = ::windowing::get_user_toolkit_id();
+
+         auto pfactory = this->factory("acme_windowing", strToolkit);
+
+         pfactory->merge_to_global_factory();
+
+      }
+
+   }
+
+
+   //::pointer < ::message_box > & system::realize(::pointer < ::message_box > & pmessagebox)
+   //{
+
+   //   return micro_user()->realize(pmessagebox);
+
+   //}
+
+   
+//   ::pointer < ::message_box > system::message_box(const ::string & strMessage, const ::string & strTitle,
+//                                                       const ::e_message_box & emessagebox,
+//                                                       const ::string & strDetails, ::nano::graphics::icon * picon)
+//   {
+//      
+//      
+//      return micro_user()->message_box(
+//strMessage,
+//strTitle,
+//emessagebox,
+//strDetails,
+//picon);
+//   }
+
+
+   //::pointer < ::message_box > system::exception_message_box(
+   //    const ::exception & exception, const ::string & strMessage, 
+   //   const ::string & strTitle,
+   //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+   //{
+   //   return micro_user()->exception_message_box(
+   //exception,
+   //strMessage,
+   //strTitle,
+   //emessagebox,
+   //strDetails,
+   //picon);
+
+   //}
+
+
+   //::pointer < ::message_box > system::message_console(const ::string & strMessage, const ::string & strTitle,
+   //                                                           const ::e_message_box & emessagebox,
+   //                                                           const ::string & strDetails, ::nano::graphics::icon * picon)
+   //{
+   //   
+   //   return micro_user()->message_console(
+   //      strMessage,
+   //      strTitle,
+   //      emessagebox,
+   //      strDetails,
+   //      picon);
+
+   //}
+
+
+   //::pointer < ::message_box > system::exception_message_console(
+   //    const ::exception & exception, const ::string & strMessage,
+   //   const ::string & strTitle,
+   //    const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+   //{
+
+   //   return micro_user()->exception_message_console(
+   //      exception,
+   //      strMessage,
+   //      strTitle,
+   //      emessagebox,
+   //      strDetails,
+   //      picon);
+
+   //}
+
+
+   //::windowing::windowing_base * system::windowing_base()
+   //{
+
+   //   if(!m_pwindowingbase)
+   //   {
+
+   //      do_graphics_and_windowing_system_factory();
+
+   //      __construct(m_pwindowingbase);
+
+   //   }
+
+   //   return m_pwindowingbase;
+
+   //}
 
 
 } // namespace acme

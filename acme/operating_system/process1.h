@@ -4,8 +4,8 @@
 #pragma once
 
 
-#include "acme/primitive/collection/atom_array.h"
-#include "acme/primitive/primitive/atom.h"
+#include "acme/prototype/collection/atom_array.h"
+#include "acme/prototype/prototype/atom.h"
 
 
 

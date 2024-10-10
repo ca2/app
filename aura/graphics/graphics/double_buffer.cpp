@@ -2,7 +2,7 @@
 #include "double_buffer.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "aura/graphics/image/image.h"
 #include "aura/windowing/window.h"
 
@@ -27,12 +27,12 @@ namespace graphics
    }
 
 
-   void double_buffer::initialize_graphics_graphics(::user::interaction_impl * pimpl)
+   void double_buffer::initialize_graphics_graphics(::windowing::window * pwindow)
    {
 
       //auto estatus = 
 
-      graphics::initialize_graphics_graphics(pimpl);
+      graphics::initialize_graphics_graphics(pwindow);
 
       //if (!estatus)
       //{

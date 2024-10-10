@@ -1,9 +1,9 @@
 #pragma once
 
 
-#include "acme/primitive/data/tree.h"
-#include "acme/primitive/geometry2d/rectangle.h"
-//#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/prototype/data/tree.h"
+#include "acme/prototype/geometry2d/rectangle.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
 
 
 namespace user
@@ -44,7 +44,7 @@ namespace user
 
 
       virtual ::collection::count               get_data_bound_impact_count() const override;
-      virtual ::user::primitive *   get_data_bound_impact(::collection::index iImpact) override;
+      virtual ::user::element *   get_data_bound_impact(::collection::index iImpact) override;
 
 
 

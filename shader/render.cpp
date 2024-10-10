@@ -41,39 +41,6 @@ namespace app_shader
    }
 
 
-   void render::initialize_render(::user::interaction * puserinteraction)
-   {
-
-      m_puserinteraction = puserinteraction;
-
-      //auto estatus = 
-      ::particle::initialize(puserinteraction);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //initialize_application_consumer();
-
-      auto psystem = system()->m_paurasystem;
-
-      auto pgpu = psystem->get_gpu();
-
-      m_pgpucontext = pgpu->create_context(this);
-
-      if (m_pgpucontext)
-      {
-
-         m_pgpucontext->initialize(this);
-
-      }
-
-      //return estatus;
-
-   }
 
 
 #ifdef _DEBUG
@@ -280,7 +247,7 @@ namespace app_shader
          
       }
       
-      m_pgpucontext->post_procedure([this]
+      m_pgpucontext->send_procedure([this]
                                     {
          
          ::gpu::context_lock lock(m_pgpucontext);

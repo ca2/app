@@ -3,10 +3,11 @@
 #include "icon.h"
 #include "innate_ui.h"
 #include "window.h"
+#include "acme/nano/nano.h"
+#include "acme/windowing/windowing.h"
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
-#include "acme/windowing_system/windowing_system.h"
 
 
 namespace innate_ui
@@ -46,14 +47,14 @@ namespace innate_ui
    }
 
 
-   void innate_ui::post(const ::procedure & procedure)
+   void innate_ui::_main_post(const ::procedure & procedure)
    {
 
       auto psystem = system();
 
-      auto pwindowingsystem = psystem->windowing_system();
+      auto pacmewindowing = psystem->acme_windowing();
 
-      pwindowingsystem->async(procedure);      //auto pparticle = (::subparticle *)procedure.m_pbase;
+      pacmewindowing->_main_post(procedure);      //auto pparticle = (::subparticle *)procedure.m_pbase;
 
       //pparticle->increment_reference_count();
 
@@ -62,20 +63,21 @@ namespace innate_ui
    }
 
 
-   void innate_ui::sync(const ::procedure & procedure)
+   void innate_ui::_main_send(const ::procedure & procedure)
    {
 
       auto psystem = system();
 
-      auto pwindowingsystem = psystem->windowing_system();
+      auto pacmewindowing = psystem->acme_windowing();
 
-      pwindowingsystem->sync(procedure);      //auto pparticle = (::subparticle *)procedure.m_pbase;
+      pacmewindowing->_main_send(procedure);      //auto pparticle = (::subparticle *)procedure.m_pbase;
 
       //pparticle->increment_reference_count();
 
       //PostThreadMessage(m_dwThread, WM_APP + 123, 0, (LPARAM)pparticle);
 
    }
+
 
    ::pointer < ::innate_ui::icon > innate_ui::innate_ui_icon(const ::payload & payloadFile, const ::size_i32 & size)
    {

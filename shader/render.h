@@ -1,9 +1,9 @@
 #pragma once
 
 
-#include "acme/primitive/collection/string_map.h"
-//#include "acme/primitive/geometry2d/_geometry2d.h"
-#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/prototype/collection/string_map.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
+#include "acme/prototype/geometry2d/rectangle.h"
 #include "apex/platform/app_consumer.h"
 #include "aura/graphics/gpu/render.h"
 
@@ -38,6 +38,7 @@ namespace app_shader
       ::color::color                      m_colorLastLabelBackground;
       ::image::image_pointer                     m_pimageError;
       string                              m_strLastError;
+
       ::pointer<::user::interaction>     m_puserinteraction;
 
 
@@ -45,7 +46,7 @@ namespace app_shader
       ~render() override;
 
 
-      virtual void initialize_render(::user::interaction * puserinteraction);
+      //virtual void initialize_render(::user::interaction * puserinteraction);
 
 #ifdef _DEBUG
       virtual int64_t increment_reference_count() override;

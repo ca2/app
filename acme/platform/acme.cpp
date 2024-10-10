@@ -7,7 +7,7 @@
 #include "acme/parallelization/mutex.h"
 #include "acme/platform/_synchronization.h"
 #include "acme/platform/referencing_debugging.h"
-#include "acme/primitive/primitive/malloc.h"
+#include "acme/prototype/prototype/malloc.h"
 #include "acme/user/user/theme_colors.h"
 
 
@@ -15,6 +15,7 @@
 #include "acme/operating_system/acme_initialize.h"
 
 #include "acme/operating_system/ansi/binreloc.h"
+#include "parallelization/manual_reset_event.h"
 
 
 CLASS_DECL_ACME bool should_output_debug_string();
@@ -276,7 +277,7 @@ namespace acme
 
          REFDBG_THIS(this);
 
-         m_pplatform = ::place(new ::platform::platform(this));
+         m_pplatform = __new ::platform::platform(this);
 
       }
 #if REFERENCING_DEBUGGING
@@ -311,11 +312,14 @@ namespace acme
 
       }
 #endif
+         m_pmanualreseteventReadyToExit = __new ::manual_reset_event();
    }
 
 
    acme::~acme()
    {
+
+      m_pmanualreseteventReadyToExit->wait(5_min);
 
       m_ptaskmessagequeue.release();
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-//#include "acme/primitive/collection/array.h"
+//#include "acme/prototype/collection/array.h"
 
 
 namespace user

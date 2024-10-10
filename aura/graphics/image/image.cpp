@@ -10,7 +10,7 @@
 #include "acme/exception/interface_only.h"
 #include "acme/graphics/image/_exif.h"
 #include "acme/graphics/image/image32.h"
-#include "acme/primitive/mathematics/mathematics.h"
+#include "acme/prototype/mathematics/mathematics.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/task_tool.h"
 #include "aura/graphics/draw2d/draw2d.h"
@@ -1912,7 +1912,7 @@ void image::fork_blend(const ::point_i32& pointDstParam, ::image::image* pimageS
 
    }
 
-   pgroup->call_run();
+   pgroup->call();
 
    //return true;
 
@@ -9712,7 +9712,7 @@ void image::hue_offset(double dRadians)
 void image::fast_copy(image32_t* pcolor32)
 {
 
-   ::copy_image32(data(), rectangle(), scan_size(), pcolor32);
+   data()->copy(rectangle(), scan_size(), pcolor32);
 
 }
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_.h"
 #include "output_stream.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 
 
 namespace ftp

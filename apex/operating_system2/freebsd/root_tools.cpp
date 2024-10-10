@@ -362,7 +362,7 @@ namespace VistaTools
       // running without its shell?), we will try to inject our code into the shell process.
       //
       // To inject the code, we will install a global hook, and send a message to
-      // a ::ca::user::interaction_impl created by the shell. This will cause our hook callback routine to be executed
+      // a ::ca::windowing::window created by the shell. This will cause our hook callback routine to be executed
       // in the context of the shell proces.
       //
       // Because this trick uses a global hook, the hook routine must be in a DLL.
@@ -375,7 +375,7 @@ namespace VistaTools
          uVEMsg = ::RegisterWindowMessage( "VistaElevatorMsg" );
 
       //////////////////////////////////////
-      // find the shell ::ca::user::interaction_impl (the desktop)
+      // find the shell ::ca::windowing::window (the desktop)
 
       HWND hwndShell = ::FindWindow( "Progman", nullptr);
 

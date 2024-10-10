@@ -3,8 +3,9 @@
 //#include "_graphics.h"
 #include "device_context.h"
 #include "aura/graphics/draw2d/graphics.h"
-#include "aura/user/user/interaction_impl.h"
+#include "aura/user/user/frame.h"
 #include "aura/user/user/interaction.h"
+#include "aura/windowing/window.h"
 
 
 namespace graphics
@@ -41,7 +42,7 @@ namespace graphics
 
          //bool bOk = 
          
-         m_spgraphics->CreateWindowDC(m_pimpl->oswindow());
+         m_spgraphics->CreateWindowDC(m_pwindow->oswindow());
 
          //if (!bOk)
          //{
@@ -52,7 +53,7 @@ namespace graphics
 
       }
 
-      m_spgraphics->on_begin_draw(m_pimpl->oswindow(), m_pimpl->m_puserinteraction->const_layout().design().size());
+      m_spgraphics->on_begin_draw(m_pwindow->oswindow(), m_pwindow->m_puserinteraction->const_layout().design().size());
 
       //return m_spgraphics;
 
@@ -67,7 +68,7 @@ namespace graphics
       try
       {
 
-         m_spgraphics->on_end_draw(m_pimpl->oswindow());
+         m_spgraphics->on_end_draw(m_pwindow->oswindow());
 
       }
       catch (...)
@@ -85,14 +86,14 @@ namespace graphics
    //::size_i32 window_buffer::window_size()
    //{
    //
-   //   if (::is_null(m_pimpl))
+   //   if (::is_null(m_pwindow))
    //   {
    //
    //      return nullptr;
    //
    //   }
    //
-   //   return m_pimpl->m_puserinteraction->size();
+   //   return m_pwindow->m_puserinteraction->size();
    //
    //}
 

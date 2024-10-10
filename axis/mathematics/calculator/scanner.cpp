@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "token.h"
 #include "scanner.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/string/str.h"
 ////#include "acme/exception/exception.h"
 
 /* conversas dos Js Jefferson Dalavechia e Joice sobre calculadora cientifica, financeira e com pilha
@@ -75,7 +75,7 @@ namespace calculator
    token * scanner::look_ahead()
    {
 
-      m_ptoken = ::place(new class token ());
+      m_ptoken = __new class token ();
 
       if (m_ptoken.is_null())
       {

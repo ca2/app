@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace user
-{
-
-   class interaction_impl;
-
-} // namespace user
+//namespace user
+//{
+//
+//   class interaction_impl;
+//
+//} // namespace user
 
 
 #include "window_graphics.h"

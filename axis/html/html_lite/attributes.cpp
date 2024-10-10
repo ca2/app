@@ -29,7 +29,7 @@
 //#include "axis/html/html_lite/_.h"
 #endif
 #include "common.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/string/str.h"
 #include "axis/platform/session.h"
 #include "axis/platform/system.h"
 #include "attributes.h"

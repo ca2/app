@@ -35,5 +35,5 @@ void simple_tab_control::pre_subclass_window()
 void simple_tab_control::install_message_routing(::channel * pchannel)
 {
    ::user::interaction::install_message_routing(pchannel);
-   ::user::primitive::install_message_routing(pchannel);
+   ::user::interaction_base::install_message_routing(pchannel);
 }

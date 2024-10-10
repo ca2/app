@@ -3,89 +3,24 @@
 #include "_exif.h"
 #include "image32.h"
 #include "pixmap.h"
-#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/prototype/geometry2d/rectangle.h"
 
 
-CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, const ::point_i32 & point, const ::size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+
+//void image32_t::copy(const ::rectangle_i32 & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+//{
+//
+//   return copy(rectangle.top_left(), rectangle.size(), iStrideDst, pimage32Src, iStrideSrc);
+//
+//}
+
+
+
+
+void image32_t::vertical_swap_copy(int cxParam, int cyParam, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
 {
 
-   ::u8 * pDst = (::u8 *)pimage32Dst;
-
-   return copy_image32((::image32_t *)pDst + point.x() * sizeof(::image32_t) + point.y() * iStrideDst, size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
-
-}
-
-
-CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, const ::rectangle_i32 & rectangle, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
-{
-
-   return copy_image32(pimage32Dst, rectangle.top_left(), rectangle.size(), iStrideDst, pimage32Src, iStrideSrc);
-
-}
-
-
-void vertical_swap(pixmap * ppixmap)
-{
-
-   try
-   {
-
-      int iStride = ppixmap->m_iScan;
-
-      if (iStride <= 0)
-      {
-
-         iStride = ppixmap->width() * sizeof(::image32_t);
-
-      }
-
-      int w = iStride / sizeof(::image32_t);
-
-      int h = ppixmap->height();
-
-      int wBytes = ppixmap->width() * sizeof(::image32_t);
-
-      auto pdata = ppixmap->image32();
-
-      u8 * pline1 = (u8 *)pdata;
-
-      u8 * pline2 = (u8 *)(pdata + (w - 1) * h);
-
-      memory memory;
-
-      memory.set_size(wBytes);
-
-      u8 * pstore = memory.data();
-
-      int halfh = h / 2;
-
-      for (int i = 0; i < halfh; i++)
-      {
-
-         ::memory_copy(pstore, pline1, wBytes);
-
-         ::memory_copy(pline1, pline2, wBytes);
-
-         ::memory_copy(pline2, pstore, wBytes);
-
-         pline1 += iStride;
-
-         pline2 -= iStride;
-
-      }
-
-   }
-   catch (...)
-   {
-
-   }
-
-}
-
-
-void vertical_swap_copy_image32(::image32_t * pimage32Dst, int cxParam, int cyParam, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
-{
-
+   ::image32_t * pimage32Dst = this;
    try
    {
 
@@ -126,9 +61,10 @@ void vertical_swap_copy_image32(::image32_t * pimage32Dst, int cxParam, int cyPa
 }
 
 
-CLASS_DECL_ACME void vertical_swap_copy_image32_swap_red_blue(::image32_t * pimage32Dst, int cxParam, int cyParam, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+void image32_t::vertical_swap_copy_swap_red_blue( int cxParam, int cyParam, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
 {
 
+   ::image32_t * pimage32Dst = this;
    try
    {
 
@@ -185,74 +121,78 @@ CLASS_DECL_ACME void vertical_swap_copy_image32_swap_red_blue(::image32_t * pima
 }
 
 
-void copy_image32(::image32_t * pimage32Dst, int cxParam, int cyParam, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+//void image32_t::copy(int cxParam, int cyParam, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+//{
+//
+//   ::image32_t * pimage32Dst = this;
+//
+//   try
+//   {
+//
+//
+//      if (pimage32Dst == nullptr)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if (pimage32Src == nullptr)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      if (iStrideSrc <= 0)
+//      {
+//
+//         iStrideSrc = cxParam * sizeof(::image32_t);
+//
+//      }
+//
+//      if (iStrideDst == iStrideSrc)
+//      {
+//
+//         ::memory_copy(pimage32Dst, pimage32Src, cyParam * iStrideDst);
+//
+//      }
+//      else
+//      {
+//
+//         int cw = cxParam * sizeof(::image32_t);
+//
+//         auto psrc = (::u8 *)pimage32Src;
+//
+//         auto pdst = (::u8 *)pimage32Dst;
+//
+//         for (int i = 0; i < cyParam; i++)
+//         {
+//
+//            ::memory_copy(pdst, psrc, cw);
+//
+//            pdst += iStrideDst;
+//
+//            psrc += iStrideSrc;
+//
+//         }
+//
+//      }
+//
+//   }
+//   catch (...)
+//   {
+//
+//   }
+//
+//}
+
+
+void image32_t::copy_swap_red_blue( int cxParam, int cyParam, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
 {
 
-   try
-   {
 
-
-      if (pimage32Dst == nullptr)
-      {
-
-         return;
-
-      }
-
-      if (pimage32Src == nullptr)
-      {
-
-         return;
-
-      }
-
-      if (iStrideSrc <= 0)
-      {
-
-         iStrideSrc = cxParam * sizeof(::image32_t);
-
-      }
-
-      if (iStrideDst == iStrideSrc)
-      {
-
-         ::memory_copy(pimage32Dst, pimage32Src, cyParam * iStrideDst);
-
-      }
-      else
-      {
-
-         int cw = cxParam * sizeof(::image32_t);
-
-         auto psrc = (::u8 *)pimage32Src;
-
-         auto pdst = (::u8 *)pimage32Dst;
-
-         for (int i = 0; i < cyParam; i++)
-         {
-
-            ::memory_copy(pdst, psrc, cw);
-
-            pdst += iStrideDst;
-
-            psrc += iStrideSrc;
-
-         }
-
-      }
-
-   }
-   catch (...)
-   {
-
-   }
-
-}
-
-
-void copy_image32_swap_red_blue(::image32_t * pimage32Dst, int cxParam, int cyParam, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
-{
-
+   ::image32_t * pimage32Dst = this;
    try
    {
 
@@ -325,16 +265,18 @@ void copy_image32_swap_red_blue(::image32_t * pimage32Dst, int cxParam, int cyPa
 }
 
 
-void _001ProperCopyColorref(::image32_t * pimage32Dst, int cxParam, int cyParam, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+void image32_t::_001ProperCopyColorref(int cxParam, int cyParam, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
 {
+
+   ::image32_t * pimage32Dst = this;
 
 #ifdef WINDOWS_DESKTOP
 
-   copy_image32(pimage32Dst, cxParam, cyParam, iStrideDst, pimage32Src, iStrideSrc);
+   copy(cxParam, cyParam, iStrideDst, pimage32Src, iStrideSrc);
 
 #else
 
-   vertical_swap_copy_image32(pimage32Dst, cxParam, cyParam, iStrideDst, pimage32Src, iStrideSrc);
+   vertical_swap_copy(cxParam, cyParam, iStrideDst, pimage32Src, iStrideSrc);
 
 #endif
 
@@ -342,8 +284,19 @@ void _001ProperCopyColorref(::image32_t * pimage32Dst, int cxParam, int cyParam,
 }
 
 
-void copy_image32(::image32_t * pimage32Dst, int xParam, int yParam, int cxParam, int cyParam, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+void image32_t::copy(int cx, int cy, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
 {
+
+   if (iStrideSrc == iStrideDst && cy * sizeof(image32_t) == iStrideSrc)
+   {
+
+      ::memory_copy(this, pimage32Src, cx * sizeof(image32_t) + cy * iStrideSrc);
+
+      return;
+
+   }
+
+   ::image32_t * pimage32Dst = this;
 
    try
    {
@@ -351,18 +304,18 @@ void copy_image32(::image32_t * pimage32Dst, int xParam, int yParam, int cxParam
       if (iStrideSrc <= 0)
       {
 
-         iStrideSrc = cxParam * sizeof(::image32_t);
+         iStrideSrc = cx * sizeof(::image32_t);
 
       }
 
       int wsrc = iStrideSrc / sizeof(::image32_t);
       int wdst = iStrideDst / sizeof(::image32_t);
-      int cw = cxParam * sizeof(::image32_t);
+      int cw = cx * sizeof(::image32_t);
 
-      auto psrc = &pimage32Src[xParam + yParam * iStrideSrc / sizeof(::image32_t)];
-      auto pdst = &pimage32Dst[xParam + yParam * iStrideDst / sizeof(::image32_t)];
+      auto psrc = pimage32Src;
+      auto pdst = pimage32Dst;
 
-      for (int i = 0; i < cyParam; i++)
+      for (int i = 0; i < cy; i++)
       {
 
          ::memory_copy(pdst, psrc, cw);
@@ -383,13 +336,13 @@ void copy_image32(::image32_t * pimage32Dst, int xParam, int yParam, int cxParam
 
 }
 
-
-CLASS_DECL_ACME void copy_image32(::image32_t * pimage32Dst, const ::size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
-{
-
-   copy_image32(pimage32Dst, size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
-
-}
+//
+//void image32_t::copy(const ::size_i32 & size, int iStrideDst, const ::image32_t * pimage32Src, int iStrideSrc)
+//{
+//
+//   copy(size.cx(), size.cy(), iStrideDst, pimage32Src, iStrideSrc);
+//
+//}
 
 
 enum_rotate_flip exif_orientation_rotate_flip(int orientation)
@@ -420,6 +373,14 @@ enum_rotate_flip exif_orientation_rotate_flip(int orientation)
 
 
 }
+
+
+//void image32_t::copy(const ::size_i32 & size, int iStrideDst, const ::pixmap * ppixmapSrc)
+//{
+//
+//   copy(size, iStrideDst, ppixmapSrc->image32(), ppixmapSrc->scan_size());
+//
+//}
 
 
 

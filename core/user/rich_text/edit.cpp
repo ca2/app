@@ -12,6 +12,7 @@
 #include "acme/constant/timer.h"
 #include "acme/handler/topic.h"
 #include "acme/platform/node.h"
+#include "acme/platform/system.h"
 #include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -456,7 +457,7 @@ namespace user
 
          //bool bFirstParagraph = true;
 
-         auto plinea = ::place(new pointer_array < line > ());
+         auto plinea = __new pointer_array < line > ();
 
          ::pointer<line>pline;
 
@@ -465,7 +466,7 @@ namespace user
    //if (m_spana.first().m_pformat >= m_pformathost.get_count())
    //{
 
-   //   m_pformathost.add(::place(new format(this)));
+   //   m_pformathost.add(__new format(this));
 
    //}
 
@@ -479,7 +480,7 @@ namespace user
          //   if (m_spana.first_pointer()->m_iFormat >= m_pformathost.get_count())
          //   {
 
-         //      m_pformathost.add(::place(new format(this)));
+         //      m_pformathost.add(__new format(this));
 
          //   }
 
@@ -544,7 +545,7 @@ namespace user
 
                __construct_new(pline);
 
-               //pline = ::place(new line());
+               //pline = __new line();
 
                x = (int)rectangle.left();
 
@@ -554,7 +555,7 @@ namespace user
 
                x = (int)rectangle.left();
 
-               //pbox = ::place(new box(pspan));
+               //pbox = __new box(pspan);
 
                //index iSpan = find_char_span(m_spana, iCharLayout);
 
@@ -645,7 +646,7 @@ namespace user
                   if (pline->is_empty())
                   {
 
-                     auto pbox = ::place(new box(pspan));
+                     auto pbox = __new box(pspan);
 
                      pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -704,7 +705,7 @@ namespace user
                   if (cWords > 0)
                   {
 
-                     auto pbox = ::place(new box(pspan));
+                     auto pbox = __new box(pspan);
 
                      pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -753,7 +754,7 @@ namespace user
 
                      longest_word(strSlice, dPosition, strWord, &pspan->m_daPositionRight[iSpanChar], dPositionLeft, (int)rectangleX.right() - x);
 
-                     auto pbox = ::place(new box(pspan));
+                     auto pbox = __new box(pspan);
 
                      pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -787,7 +788,7 @@ namespace user
                else
                {
 
-                  auto pbox = ::place(new box(pspan));
+                  auto pbox = __new box(pspan);
 
                   pbox->m_iPosBeg = pspan->m_iPosBeg + iSpanChar;
 
@@ -1219,7 +1220,7 @@ namespace user
                   pbox->m_rectangleBox.top() + 1,
                   r + 0.5,
                   pbox->m_rectangleBox.bottom() - dDescent),
-                  node()->dark_mode()? argb(255, 255, 255, 255):argb(255, 0, 0, 0));
+                  system()->dark_mode() ? argb(255, 255, 255, 255) : argb(255, 0, 0, 0));
 
             }
 
@@ -1559,7 +1560,7 @@ namespace user
 
                string str;
 
-               get_selection_text(str);
+               str=get_selection_text();
 
                if (str.is_empty())
                {
@@ -1605,7 +1606,7 @@ namespace user
 
                string str;
 
-               get_selection_text(str);
+               str = get_selection_text();
 
                auto pcopydesk = copydesk();
 
@@ -2252,7 +2253,7 @@ namespace user
 
          string str;
 
-         get_text(str);
+         str = get_text();
 
          strsize_array ia1;
 
@@ -2373,7 +2374,7 @@ namespace user
                //if (pformat.is_null())
                //{
 
-               //   pformat = ::place(new format(this));
+               //   pformat = __new format(this);
 
                //}
 

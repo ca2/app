@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "time.h"
-#include "acme/primitive/datetime/earth_gregorian_time.h"
+#include "acme/prototype/datetime/earth_gregorian_time.h"
 #include "acme/operating_system/shared_posix/time.h"
 #include "acme/operating_system/time.h"
 

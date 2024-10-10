@@ -4,7 +4,7 @@
 #include "core/user/user/shell.h"
 //#include "acme/compress/zip/_.h"
 #include "acme/compress/gz.h"
-#include "acme/primitive/primitive/atomic.h"
+#include "acme/prototype/prototype/atomic.h"
 
 
 #if defined(RASPBERRYPIOS)
@@ -130,7 +130,7 @@ namespace user
          m_iActiveThreadCount = 0;
          m_iMaxThreadCount = 1;
 
-         m_pevNewImageKey = ::place(new manual_reset_event());
+         m_pevNewImageKey = __new manual_reset_event();
 
          m_pevNewImageKey->m_eobject += e_object_alertable_wait;
 
@@ -191,7 +191,7 @@ namespace user
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         auto pthread  = ::place(new thread(this));
+         auto pthread  = __new thread(this);
 
          add_composite(pthread);
 
@@ -355,7 +355,7 @@ namespace user
             if (m_pimagelist[iSize].is_null())
             {
 
-               m_pimagelist[iSize] = ::place(new ::image::image_list());
+               m_pimagelist[iSize] = __new ::image::image_list();
                m_pimagelist[iSize]->create(iSize, iSize, 0, 10, 10);
 
             }
@@ -369,7 +369,7 @@ namespace user
             if (m_pimagelistHover[iSize].is_null())
             {
 
-               m_pimagelistHover[iSize] = ::place(new ::image::image_list());
+               m_pimagelistHover[iSize] = __new ::image::image_list();
                m_pimagelistHover[iSize]->create(iSize, iSize, 0, 10, 10);
 
             }

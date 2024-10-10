@@ -11,7 +11,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/data/tree_item.h"
+#include "acme/prototype/data/tree_item.h"
 #include "aura/message/user.h"
 #include "axis/user/user/validate.h"
 #include "axis/user/user/combo_box.h"
@@ -123,7 +123,7 @@ namespace user
             if (pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               auto pextendedtopic = ::place(new ::extended_topic(id_click));
+               auto pextendedtopic = __new ::extended_topic(id_click);
 
                pextendedtopic->m_puserelement = pinteraction;
 
@@ -210,7 +210,7 @@ namespace user
             if (pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               auto pextendedtopic = ::place(new ::extended_topic(::id_click));
+               auto pextendedtopic = __new ::extended_topic(::id_click);
 
                pextendedtopic->m_puserelement = pinteraction;
 
@@ -809,7 +809,7 @@ namespace user
 
             auto iFind = pcombo->_001FindListText(psubitem->m_strText);
 
-            pcombo->set_current_item(::place(new ::item(::e_element_item, iFind)), ::e_source_sync);
+            pcombo->set_current_item(__new ::item(::e_element_item, iFind)), ::e_source_sync;
 
          }
 
@@ -928,7 +928,7 @@ namespace user
 
       string str;
 
-      pinteraction->get_text(str);
+      str = pinteraction->get_text();
 
       ::user::validate validate;
 
@@ -1110,7 +1110,7 @@ namespace user
    }
 
 
-   bool form_list::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd, ::u32 nHitTest, const ::atom & atom, lresult & iResult)
+   bool form_list::_001OnMouseActivate(::windowing::window * pDesktopWnd, ::u32 nHitTest, const ::atom & atom, lresult & iResult)
    {
 
       __UNREFERENCED_PARAMETER(pDesktopWnd);
@@ -1186,7 +1186,7 @@ namespace user
    //   case list::PropertyBaseWndInterface:
    //   case list::PropertyDrawBaseWndInterface:
    //   {
-   //      const ::user::primitive ** ppinterface = (const ::user::primitive **) lparam;
+   //      const ::user::interaction_base ** ppinterface = (const ::user::interaction_base **) lparam;
 
    //      *ppinterface = (list *)this;
    //   }
@@ -1315,7 +1315,7 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      //auto pitem = ::place(new draw_list_item(this));
+      //auto pitem = __new draw_list_item(this);
 
       return ::is_subitem(m_pitemControl, pinteraction->m_item.m_iSubItem);
 

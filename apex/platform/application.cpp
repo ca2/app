@@ -17,19 +17,19 @@
 #include "acme/handler/request.h"
 //#include "acme/platform/get_file_extension_mime_type.h"
 #include "acme/platform/scoped_restore.h"
-#include "acme/primitive/primitive/url.h"
+#include "acme/prototype/prototype/url.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/event.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/profiler.h"
-#include "acme/primitive/collection/_array_binary_stream.h"
-#include "acme/primitive/datetime/datetime.h"
-#include "acme/primitive/geometry2d/size.h"
-#include "acme/primitive/primitive/_impl_ptr.h"
-#include "acme/primitive/string/command_line.h"
-#include "acme/primitive/string/str.h"
-#include "acme/primitive/text/context.h"
+#include "acme/prototype/collection/_array_binary_stream.h"
+#include "acme/prototype/datetime/datetime.h"
+#include "acme/prototype/geometry2d/size.h"
+#include "acme/prototype/prototype/_impl_ptr.h"
+#include "acme/prototype/string/command_line.h"
+#include "acme/prototype/string/str.h"
+#include "acme/prototype/text/context.h"
 #include "apex/filesystem/fs/folder_sync.h"
 #include "apex/filesystem/fs/native.h"
 #include "apex/filesystem/fs/set.h"
@@ -239,7 +239,7 @@ namespace apex
       //m_pimaging = nullptr;
 
 
-      //m_phandler = ::place(new ::handler(this));
+      //m_phandler = __new ::handler(this);
 
 
       //m_bAuraProcessInitialize = false;
@@ -290,6 +290,12 @@ namespace apex
    {
 
       //acme::del(m_pappimpl);
+      m_papexapplication = nullptr;
+      m_paquaapplication = nullptr;
+      m_paxisapplication = nullptr;
+      m_pbaseapplication = nullptr;
+      m_pbredapplication = nullptr;
+      m_pcoreapplication = nullptr;
 
    }
 
@@ -1097,7 +1103,7 @@ namespace apex
       //   /*        if (m_pfsdata.is_null())
       //           {
 
-      //              __construct(m_pfsdata, ::place(new ::fs::set()));
+      //              __construct(m_pfsdata, __new ::fs::set());
 
       //           }*/
 
@@ -1125,15 +1131,17 @@ namespace apex
    }
 
 
-   //void application::message_box_synchronous(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_synchronous(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
-   //   return ::message_box_synchronous(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
+   //   return ::auto pmessagebox = __initialize_new ::message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
+
+//pmessagebox->sync();
 
    //}
 
 
-   //void application::ui_message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!get_session() || !psession->userex())
@@ -1148,7 +1156,7 @@ namespace apex
    //}
 
 
-   //void application::ui_message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box_timeout(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!get_session() || !psession->userex())
@@ -1163,7 +1171,7 @@ namespace apex
    //}
 
 
-   //void application::message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -1175,12 +1183,14 @@ namespace apex
 
    //   }
 
-   //   return message_box_synchronous(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+   //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+
+//pmessagebox->sync();
 
    //}
 
 
-   //void application::message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_timeout(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, timeTimeout, emessagebox, callback);
@@ -1192,7 +1202,9 @@ namespace apex
 
    //   }
 
-   //   return message_box_synchronous(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+   //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+
+   // pmessagebox->sync();
 
    //}
 
@@ -1200,7 +1212,7 @@ namespace apex
    //void application::message_box(const ::payload & payload)
    //{
 
-   //   ::pointer<::user::primitive>puiOwner;
+   //   ::pointer<::user::interaction_base>puiOwner;
 
    //   string strMessage;
 
@@ -1221,7 +1233,7 @@ namespace apex
    //   else
    //   {
 
-   //      puiOwner = payload["owner"].cast < ::user::primitive >();
+   //      puiOwner = payload["owner"].cast < ::user::interaction_base >();
    //      strMessage = payload["message"];
    //      strTitle = payload["title"];
    //      uFlags = payload["flags"];
@@ -2539,7 +2551,9 @@ namespace apex
 
    //      handle_exception(e);
 
-   //      message_box_synchronous(this, "Application failed to initialize (1).\n\n" + e.m_strMessage, m_strAppName, e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
+   //      auto pmessagebox = __initialize_new ::message_box("Application failed to initialize (1).\n\n" + e.m_strMessage, m_strAppName, e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
+
+//pmessagebox->sync();
 
    //      throw e;
 
@@ -2547,7 +2561,9 @@ namespace apex
    //   catch (...)
    //   {
 
-   //      message_box_synchronous(this, "Application failed to initialize (2). Unknown exception", m_strAppName);
+   //      auto pmessagebox = __initialize_new ::message_box("Application failed to initialize (2). Unknown exception", m_strAppName);
+
+//pmessagebox->sync();
 
    //      throw "Unknown exception";
 
@@ -2612,7 +2628,9 @@ namespace apex
    //   catch (...)
    //   {
 
-   //      message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName);
+   //      auto pmessagebox = __initialize_new ::message_box("Application failed to initialize (4). Unknown exception", m_strAppName);
+
+//pmessagebox->sync();
 
    //      throw "Unknown exception";
 
@@ -2971,16 +2989,6 @@ namespace apex
 
       ::acme::application::process_init();
 
-      string_array stra;
-
-      stra.explode("/", m_strAppId);
-
-      m_strRoot = stra[0];
-
-      m_strDomain = stra.slice(1).implode("/");
-
-      add_matter_locator(this);
-
       auto psystem = system()->m_papexsystem;
 
       if (!m_bAppHasInstallerChangedProtected)
@@ -3126,12 +3134,6 @@ namespace apex
    {
 
 
-      if (::is_set(session()))
-      {
-
-         session()->m_papexsession->post_message(e_message_erase_application, 0, this);
-
-      }
 
 
       try
@@ -3298,7 +3300,7 @@ namespace apex
    //   try
    //   {
 
-   //      return ::place(new ::interprocess::channel());
+   //      return __new ::interprocess::channel();
 
    //   }
    //   catch (...)
@@ -3329,7 +3331,7 @@ namespace apex
       auto psystem = system()->m_papexsystem;
 
       //estatus = 
-      m_puserlanguagemap = ::place(new ::user::language_map());
+      m_puserlanguagemap = __new ::user::language_map();
       
       //REFDBG(m_puserlanguagemap.add_reference_item({ this, __FUNCTION_FILE_LINE__ }));
 
@@ -3780,7 +3782,9 @@ namespace apex
       if (pathPreviousLocation.has_char())
       {
 
-         //message_box_synchronous(this, "there is a previous location");
+         //auto pmessagebox = __initialize_new ::message_box("there is a previous location");
+
+//pmessagebox->sync();
 
          auto pida = node()->module_path_processes_identifiers(pathPreviousLocation);
 
@@ -4161,7 +4165,9 @@ namespace apex
       if (eexclusive == e_exclusive_instance_local)
       {
 
-         //message_box_synchronous(this, "e_exclusive_instance_local");
+         //auto pmessagebox = __initialize_new ::message_box("e_exclusive_instance_local");
+
+//pmessagebox->sync();
 
          return on_exclusive_instance_local_conflict(prequest, bHandled);
 
@@ -4557,7 +4563,7 @@ namespace apex
    }
 
 
-   //i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::time timeTimeOut, ::u32 fuStyle)
+   //i32 application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::time timeTimeOut, ::u32 fuStyle)
    //{
 
    //   __UNREFERENCED_PARAMETER(timeTimeOut);
@@ -4991,7 +4997,7 @@ namespace apex
    }
 
 
-   bool application::keyboard_focus_is_focusable(const ::user::primitive * pue)
+   bool application::keyboard_focus_is_focusable(const ::user::interaction_base * pue)
    {
 
       return false;
@@ -4999,7 +5005,7 @@ namespace apex
    }
 
 
-   bool application::keyboard_focus_OnSetFocus(::user::primitive * pue)
+   bool application::keyboard_focus_OnSetFocus(::user::interaction_base * pue)
    {
 
       return true;
@@ -5668,7 +5674,7 @@ namespace apex
 
       //throw ::exception(todo("xml"));
 
-      //auto pdocument = ::place(new ::xml::document());
+      //auto pdocument = __new ::xml::document();
 
       //if (!pdocument->load(atom) || !*pdocument)
       //{
@@ -6122,10 +6128,10 @@ namespace apex
    //}
 
 
-   void application::on_request(::request * prequest)
-   {
+   //void application::on_request(::request * prequest)
+   //{
 
-   }
+   //}
 
 
    //void     application::run()
@@ -8394,7 +8400,7 @@ namespace apex
    //}
    //
    //// otherwise, use window::OnHelp implementation
-   ///* trans ::user::interaction_impl * pwindow = psystem->m_puiMain;
+   ///* trans ::windowing::window * pwindow = psystem->m_puiMain;
    //ENSURE_VALID(pwindow);
    //if (!pwindow->is_frame_window())
    //pwindow->OnHelp();
@@ -9915,7 +9921,7 @@ namespace apex
    //::pointer<::apex::application>application::create_platform(::apex::session* psession)
    //{
    //
-   //   return ::place(new ::apex::session());
+   //   return __new ::apex::session();
    //
    //}
 

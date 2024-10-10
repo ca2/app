@@ -2,9 +2,9 @@
 #pragma once
 
 
-//#include "acme/primitive/primitive/payload.h"
-#include "acme/primitive/collection/atom_array.h"
-#include "acme/primitive/collection/atom_map.h"
+//#include "acme/prototype/prototype/payload.h"
+#include "acme/prototype/collection/atom_array.h"
+#include "acme/prototype/collection/atom_map.h"
 #include "acme/parallelization/synchronization_array.h"
 
 

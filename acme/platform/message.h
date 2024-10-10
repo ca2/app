@@ -4,9 +4,9 @@
 #pragma once
 
 
-////#include "acme/primitive/primitive/property_object.h"
-//#include "acme/primitive/mathematics/c_number.h"
-#include "acme/primitive/geometry2d/point.h"
+////#include "acme/prototype/prototype/property_object.h"
+//#include "acme/prototype/mathematics/c_number.h"
+#include "acme/prototype/geometry2d/point.h"
 
 
 namespace acme

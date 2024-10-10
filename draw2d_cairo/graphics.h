@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/_collection.h"
+#include "acme/prototype/geometry2d/_collection.h"
 #include "aura/graphics/draw2d/graphics.h"
 
 
@@ -219,7 +219,7 @@ namespace draw2d_cairo
       //i32 SelectClipRgn(::draw2d::region* pRgn) override;
       //i32 ExcludeClipRect(double x1, double y1, double x2, double y2) override;
       //i32 ExcludeClipRect(const ::rectangle_f64 & rectangle_f64) override;
-      //i32 ExcludeUpdateRgn(::user::primitive * pwindow);
+      //i32 ExcludeUpdateRgn(::user::interaction_base * pwindow);
       //virtual i32 IntersectClipRect(double x1, double y1, double x2, double y2) override;
       //virtual i32 IntersectClipRect(const ::rectangle_f64 & rectangle_f64) override;
       //i32 OffsetClipRgn(double x, double y) override;

@@ -154,7 +154,9 @@ int main(int argc, char ** argv, char ** envp)
       else
       {
 
-         ::message_box_synchronous(pacme->platform(), exception.get_message(), "Exception", e_message_box_icon_error, exception.get_message() +"\n\nCallstack:\n"+ exception.m_strCallStackTrace);
+         ::auto pmessagebox = __initialize_new ::message_box(pacme->platform(), exception.get_message(), "Exception", e_message_box_icon_error, exception.get_message() +"\n\nCallstack:\n"+ exception.m_strCallStackTrace);
+
+pmessagebox->sync();
 
       }
 
@@ -173,7 +175,9 @@ int main(int argc, char ** argv, char ** envp)
       else
       {
 
-         ::message_box_synchronous(pacme->platform(), "Unhandled Exception");
+         ::auto pmessagebox = __initialize_new ::message_box(pacme->platform(), "Unhandled Exception");
+
+pmessagebox->sync();
 
       }
 
@@ -202,7 +206,7 @@ int main(int argc, char ** argv, char ** envp)
 //
 //   //set_argc_argv_envp(argc, argv, envp);
 //
-//   ::pointer<APPLICATION_CLASS>papp(::place(new APPLICATION_CLASS()));
+//   ::pointer<APPLICATION_CLASS>papp(__new APPLICATION_CLASS());
 //
 //#ifdef NO_NETWORKING
 //

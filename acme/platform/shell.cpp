@@ -165,7 +165,7 @@ namespace acme
 
       trace_function tracefunction = std_inline_log();
 
-      tracefunction.m_timeTimeout = timeOut;
+      tracefunction.set_timeout(timeOut);
 
       return command_system(scopedstr, tracefunction, pathWorkingDirectory, edisplay);
 
@@ -194,7 +194,7 @@ namespace acme
 
          };
 
-      tracefunction.m_timeTimeout = timeOut;
+      tracefunction.set_timeout(timeOut);
 
       auto iExitCode = command_system(scopedstr, tracefunction);
 
@@ -244,7 +244,7 @@ namespace acme
 
          };
 
-      tracefunction.m_timeTimeout = timeOut;
+      tracefunction.set_timeout(timeOut);
 
       auto iExitCode = command(scopedstr, tracefunction);
 
@@ -288,7 +288,7 @@ namespace acme
 
          };
 
-      tracefunction.m_timeTimeout = timeOut;
+      tracefunction.set_timeout(timeOut);
 
       auto iExitCode = posix_shell_command(scopedstr, eposixshell, tracefunction);
 

@@ -2,7 +2,7 @@
 #pragma once
 
 
-////#include "acme/primitive/primitive/object.h"
+////#include "acme/prototype/prototype/object.h"
 
 
 class CLASS_DECL_ACME application_exit :

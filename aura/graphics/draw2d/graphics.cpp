@@ -7,8 +7,8 @@
 #include "draw2d.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/geometry2d/item.h"
-#include "acme/primitive/geometry2d/_defer_item.h"
+#include "acme/prototype/geometry2d/item.h"
+#include "acme/prototype/geometry2d/_defer_item.h"
 #include "aura/platform/aura.h"
 #include "aura/graphics/image/array.h"
 #include "aura/graphics/image/image.h"
@@ -17,10 +17,10 @@
 #include "aura/graphics/write_text/font_enumeration_item.h"
 #include "aura/graphics/write_text/fonts.h"
 #include "acme/parallelization/single_lock.h"
-//#include "acme/primitive/geometry2d/_enhanced.h"
-//#include "acme/primitive/geometry2d/_collection_enhanced.h"
-//#include "acme/primitive/geometry2d/_defer_shape.h"
-#include "acme/primitive/string/str.h"
+//#include "acme/prototype/geometry2d/_enhanced.h"
+//#include "acme/prototype/geometry2d/_collection_enhanced.h"
+//#include "acme/prototype/geometry2d/_defer_shape.h"
+#include "acme/prototype/string/str.h"
 #include "aura/user/user/interaction.h"
 #include "nanosvg.h"
 
@@ -417,7 +417,7 @@ namespace draw2d
    }
 
 
-   /*   i32 graphics::ExcludeUpdateRgn(::user::interaction_impl * pwindow)
+   /*   i32 graphics::ExcludeUpdateRgn(::windowing::window * pwindow)
       {
          __UNREFERENCED_PARAMETER(pwindow);
 
@@ -2719,6 +2719,14 @@ namespace draw2d
    {
 
       clear_os_data();
+
+   }
+
+
+   void graphics::do_on_context(const ::procedure & procedure)
+   {
+
+      procedure();
 
    }
 

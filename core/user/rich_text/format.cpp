@@ -80,7 +80,7 @@ namespace user
 
          m_strFontFamily = pnode->font_name(e_font_sans);
 
-         if (pnode->dark_mode())
+         if (system()->dark_mode())
          {
             m_colorForeground = argb(255, 255, 255, 255);
          }

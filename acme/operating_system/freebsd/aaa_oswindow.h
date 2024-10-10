@@ -53,16 +53,16 @@ class ::pointer < ::mutex >;
 class oswindow_data;
 
 
-CLASS_DECL_AURA i32 oswindow_find_message_only_window(::user::interaction_impl * puibaseMessageWindow);
+CLASS_DECL_AURA i32 oswindow_find_message_only_window(::windowing::window * puibaseMessageWindow);
 CLASS_DECL_AURA i32 oswindow_find(Display * pdisplay, Window window);
 CLASS_DECL_AURA i32 oswindow_find(Window window);
-CLASS_DECL_AURA oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * puibaseMessageWindow);
+CLASS_DECL_AURA oswindow_data * oswindow_get_message_only_window(::windowing::window * puibaseMessageWindow);
 CLASS_DECL_AURA oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = nullptr, int iDepth = -1, int iScreen = -1, Colormap colormap = None);
 CLASS_DECL_AURA oswindow_data * oswindow_get(Window window);
 CLASS_DECL_AURA oswindow_data * oswindow_defer_get(Display * pdisplay, Window window);
 CLASS_DECL_AURA oswindow oswindow_defer_get(Window w);
 CLASS_DECL_AURA bool oswindow_erase(Display * pdisplay, Window window);
-CLASS_DECL_AURA bool oswindow_erase_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
+CLASS_DECL_AURA bool oswindow_erase_message_only_window(::windowing::window * puibaseMessageOnlyWindow);
 
 
 struct htask;
@@ -120,7 +120,7 @@ public:
    int                                    m_iDepth;
    int                                    m_iScreen;
    bool                                   m_bMessageOnlyWindow;
-   ::pointer<::user::interaction_impl>   m_pimpl;
+   ::pointer<::windowing::window>   m_pimpl;
    ::pointer<message_queue>                         m_pmq;
    htask_t                                m_htask;
    Colormap                               m_colormap;
@@ -228,7 +228,7 @@ public:
 
    void exit_zoomed();
 
-   void set_user_interaction(::user::interaction_impl * pinteraction);
+   void set_user_interaction(::windowing::window * pinteraction);
 
 
    void post_nc_destroy();

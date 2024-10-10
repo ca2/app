@@ -7,8 +7,8 @@
 //
 #include "framework.h"
 #include "acme/platform/system_setup.h"
-#include "acme/primitive/primitive/factory.h"
-////#include "acme/primitive/primitive/matter.h"
+#include "acme/prototype/prototype/factory.h"
+////#include "acme/prototype/prototype/matter.h"
 #include "acme/platform/application.h"
 //
 //
@@ -42,7 +42,7 @@ app_factory::app_factory(PFN_factory pfnFactory)
 ::pointer<::acme::application>app_factory::new_app(::particle * pparticle)
 {
 
-   auto pfactory = ::place(new ::factory::factory());
+   auto pfactory = __new ::factory::factory();
 
    g_pfnFactoryApp(pfactory);
 

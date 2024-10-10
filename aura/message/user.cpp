@@ -8,7 +8,7 @@
 #include "aura/user/user/system.h"
 #include "aura/user/user/user.h"
 #include "aura/user/user/interaction.h"
-#include "aura/user/user/interaction_impl.h"
+//#include "aura/user/user/interaction_impl.h"
 #include "aura/platform/session.h"
 
 
@@ -189,7 +189,7 @@ namespace message
 
    //      auto puser = paurasession->m_puser;
 
-   //      auto pwindowing = puser->m_pwindowing;
+   //      auto pwindowing = system()->windowing();
 
    //      m_pWndOther = __interaction(pwindowing->window(lparam.raw_cast < ::oswindow >()));
 
@@ -529,7 +529,7 @@ namespace message
    //void scroll::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)
    //{
 
-   //   ::pointer<::user::primitive>pprimitive(lparam);
+   //   ::pointer<::user::interaction_base>pprimitive(lparam);
 
    //   m_pscrollbar = pprimitive;
 
@@ -690,7 +690,7 @@ namespace message
 
    //   ::user::message::set(oswindow, pwindow, atom, wparam, lparam);
 
-   //   ::pointer < ::particle > pparticle(lparam);
+   //   ::particle_pointer pparticle(lparam);
 
    //   m_pparticle = pparticle;
 

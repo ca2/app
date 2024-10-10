@@ -2,7 +2,7 @@
 #pragma once
 
 //
-//#include "acme/primitive/collection/strdup_array.h"
+//#include "acme/prototype/collection/strdup_array.h"
 //
 //
 //#include "acme/inline/console/windows.h"

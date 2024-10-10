@@ -385,7 +385,7 @@
    }
 
 
-   bool os_context::resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory, string * pstrParams, ::user::primitive * puiMessageParentOptional)
+   bool os_context::resolve_link(::file::path & path, const ::string & strSource, string * pstrDirectory, string * pstrParams, ::user::interaction_base * puiMessageParentOptional)
    {
 
       if(case_insensitive_string_ends(strSource, ".desktop"))

@@ -15,7 +15,7 @@ public:
 
       aura_ref();
 
-      system() = ::place(new ::aura::system());
+      system() = __new ::aura::system();
 
       system()->console_initialize();
 

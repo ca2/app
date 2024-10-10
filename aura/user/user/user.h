@@ -2,9 +2,9 @@
 
 
 #include "acme/platform/department.h"
-#include "acme/primitive/collection/list.h"
-//#include "acme/primitive/collection/string_array.h"
-#include "acme/primitive/collection/string_map.h"
+#include "acme/prototype/collection/list.h"
+//#include "acme/prototype/collection/string_array.h"
+#include "acme/prototype/collection/string_map.h"
 //#include "acme/user/user/user.h"
 
 //class keyboard;
@@ -39,8 +39,8 @@ namespace user
       ::bred::user* m_pbreduser;
       ::core::user* m_pcoreuser;
 
-      ::pointer<::user::primitive>             m_pmousefocusLButtonDown;
-      ::pointer<::user::primitive>             m_pmousefocusRButtonDown;
+      ::pointer<::user::interaction_base>             m_pmousefocusLButtonDown;
+      ::pointer<::user::interaction_base>             m_pmousefocusRButtonDown;
       string_array                              m_straEscape;
       ::user::style_pointer                     m_puserstyle;
       string_map < ::user::style_pointer >      m_mapUserStyle;
@@ -52,7 +52,7 @@ namespace user
       
       pointer_array < ::user::interaction >      m_uiptraToolWindow;
 
-      ::pointer<::windowing::windowing>      m_pwindowing;
+      //::pointer<::windowing::windowing>      m_pwindowing;
       ::pointer <::mutex  >                     m_pmutexUser;
 
       ::pointer < ::mutex >                                   m_pmutexRunnable;
@@ -81,7 +81,7 @@ namespace user
       inline ::aura::application* get_app();
       inline ::aura::session * get_session();
       //inline ::aura::system* system();
-
+      ::windowing::desktop_environment * desktop_environment();
 
       ::user::shell* shell();
 
@@ -120,7 +120,7 @@ namespace user
       void destroy() override;
 
 
-      virtual void create_windowing();
+      //virtual void create_windowing();
 
 
 
@@ -132,11 +132,11 @@ namespace user
 
       virtual void create_user_shell();
 
-      virtual ::user::primitive * get_mouse_focus_LButtonDown();
-      virtual void set_mouse_focus_LButtonDown(::user::primitive * pmousefocus);
-      virtual void defer_erase_mouse_focus_LButtonDown(::user::primitive * pmousefocus);
-      virtual ::user::primitive * get_mouse_focus_RButtonDown();
-      virtual void set_mouse_focus_RButtonDown(::user::primitive * pmousefocus);
+      virtual ::user::interaction_base * get_mouse_focus_LButtonDown();
+      virtual void set_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus);
+      virtual void defer_erase_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus);
+      virtual ::user::interaction_base * get_mouse_focus_RButtonDown();
+      virtual void set_mouse_focus_RButtonDown(::user::interaction_base * pmousefocus);
 
       virtual bool on_ui_mouse_message(::message::mouse_base * pmouse);
 

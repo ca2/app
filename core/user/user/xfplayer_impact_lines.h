@@ -21,7 +21,7 @@ public:
 
    void set_blend(double dBlend);
    ::collection::index FindLine(xfplayer_impact_line * pline);
-   //void SetRenderWindow(::user::interaction_impl * pwindow);
+   //void SetRenderWindow(::windowing::window * pwindow);
    void SetEffect(i32 iEffect);
    //void set_user_interaction(::pointer<::user::interaction>pinteraction);
    void Prepare(xfplayer_impact_line * pImpactLine);

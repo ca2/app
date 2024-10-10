@@ -8,7 +8,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/user/control_box_button.h"
 #include "aura/message/user.h"
-#include "acme/primitive/mathematics/mathematics.h"
+#include "acme/prototype/mathematics/mathematics.h"
 #include "aura/platform/application.h"
 
 

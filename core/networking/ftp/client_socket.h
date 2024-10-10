@@ -32,8 +32,8 @@
 
 
 #include "apex/networking/sockets/_sockets.h"
-#include "acme/primitive/collection/string_list.h"
-#include "acme/primitive/primitive/util.h"
+#include "acme/prototype/collection/string_list.h"
+#include "acme/prototype/prototype/util.h"
 
 #include "data_types.h"
 

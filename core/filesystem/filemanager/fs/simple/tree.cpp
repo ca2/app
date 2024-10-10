@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "tree.h"
 #include "impact.h"
-#include "acme/primitive/data/listener.h"
-#include "acme/primitive/data/simple_item.h"
+#include "acme/prototype/data/listener.h"
+#include "acme/prototype/data/simple_item.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/drawing.h"
 #include "aqua/xml/document.h"
@@ -203,14 +203,14 @@ namespace filemanager
                if(ptreeitemChild)
                {
 
-                  ptreeitemChild = insert_item(::place(new ::data::simple_item(this)), ::data::e_relative_last_child, ptreeitemParent);
+                  ptreeitemChild = insert_item(__new ::data::simple_item(this)), ::data::e_relative_last_child, ptreeitemParent;
 
                }
 
                if(!ptreeitemChild->m_pdataitem)
                {
 
-                  ptreeitemChild->m_pdataitem = ::place(new ::data::simple_item(this));
+                  ptreeitemChild->m_pdataitem = __new ::data::simple_item(this);
 
                }
 

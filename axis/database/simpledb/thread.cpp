@@ -6,7 +6,7 @@
 #include "acme/filesystem/filesystem/dir_system.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/primitive/url.h"
+#include "acme/prototype/prototype/url.h"
 #include "apex/networking/http/context.h"
 #include "apex/platform/system.h"
 #include "axis/platform/application.h"
@@ -188,7 +188,7 @@ namespace simpledb
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto pitem = ::place(new queue_item());
+      auto pitem = __new queue_item();
 
       pitem->m_strKey = pszKey;
 

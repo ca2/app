@@ -8,7 +8,7 @@
 #include "acme/constant/id.h"
 #include "apex/platform/node.h"
 #include "apex/user/user/message.h"
-#include "apex/user/user/primitive.h"
+#include "apex/user/user/interaction_base.h"
 #include "acme/parallelization/task_message_queue.h"
 #include "acme/parallelization/tools.h"
 #include "acme/parallelization/pool.h"
@@ -1249,7 +1249,7 @@ void thread::on_thread_on_idle(thread* pimpl, ::i32 lCount)
 }
 
 
-::user::primitive* thread::get_active_user_primitive()
+::user::interaction_base* thread::get_active_user_prototype()
 {
 
    return m_puserprimitiveActive;
@@ -1257,7 +1257,7 @@ void thread::on_thread_on_idle(thread* pimpl, ::i32 lCount)
 }
 
 
-void thread::set_active_user_primitive(::user::primitive* puserprimitive)
+void thread::set_active_user_prototype(::user::interaction_base* puserprimitive)
 {
 
    m_puserprimitiveActive = puserprimitive;
@@ -1693,8 +1693,6 @@ void thread::destroy()
 
    m_puserprimitiveMain.release();
 
-   m_peventFinished.release();
-
    m_peventReady.release();
 
    m_peventSync.release();
@@ -1703,7 +1701,7 @@ void thread::destroy()
 
    m_pmutexThreadUiPtra.release();
 
-   m_puserprimitiveaThread.release();
+   m_puserinteractionbaseaThread.release();
 
    m_prequest.release();
 
@@ -2398,7 +2396,7 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
 //   if (m_pstartup.is_null())
 //   {
 //
-//      m_pstartup = ::place(new thread_startup());
+//      m_pstartup = __new thread_startup();
 //
 //   }
 //
@@ -2567,6 +2565,12 @@ size_t engine_symbol(char* sz, int n, DWORD_PTR* pdisplacement, DWORD_PTR dwAddr
 
 }
 
+void thread::stop_task()
+{
+
+   ::task::stop_task();
+
+}
 
 
 //void thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
@@ -2972,7 +2976,7 @@ void thread::__set_thread_off()
 
    auto atom = ::current_itask();
 
-   system()->set_task_off(::current_itask());
+   ::platform::get()->set_task_off(::current_itask());
 
    //::set_task(nullptr);
 
@@ -3273,7 +3277,7 @@ void thread::send_message(const ::atom& atom, wparam wparam, lparam lparam, cons
 
    //}
 
-   auto pmessage = ::place(new ::send_thread_message(this));
+   auto pmessage = __new ::send_thread_message(this);
 
    pmessage->m_message.m_atom = atom;
 
@@ -4082,10 +4086,10 @@ void thread::on_task_term()
 
       _synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
 
-      if (::is_set(m_puserprimitiveaThread))
+      if (::is_set(m_puserinteractionbaseaThread))
       {
 
-         m_puserprimitiveaThread->erase_all();
+         m_puserinteractionbaseaThread->erase_all();
 
       }
 
@@ -4256,7 +4260,7 @@ bool thread::initialize_message_queue()
    //if(m_spuiptra.is_null())
    //{
 
-   //   m_spuiptra = ::place(new ref_array < ::user::primitive > ());
+   //   m_spuiptra = __new ref_array < ::user::interaction_base > ();
 
    //}
 
@@ -4454,10 +4458,21 @@ bool thread::process_message()
 
       ::pointer<::message::message>pmessage;
 
-      if (get_app() && get_app()->m_papexapplication)
+      ::apex::application * papexapplication = nullptr;
+
+      auto papp = get_app();
+
+      if(papp && papp->m_papexapplication)
       {
 
-         pmessage = get_app()->m_papexapplication->get_message(&message);
+         papexapplication = papp->m_papexapplication;
+
+      }
+
+      if (papexapplication)
+      {
+
+         pmessage = papexapplication->get_message(&message);
 
       }
       else if (session() && node()->m_papexnode)
@@ -4742,7 +4757,7 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
 }
 
 
-::user::primitive_array& thread::userprimitivea()
+::user::interaction_base_array& thread::userprimitivea()
 {
 
    {
@@ -4760,14 +4775,14 @@ CLASS_DECL_APEX void forking_count_thread_null_end(int iOrder)
 
    _synchronous_lock synchronouslock(m_pmutexThreadUiPtra);
 
-   if (m_puserprimitiveaThread == nullptr)
+   if (m_puserinteractionbaseaThread == nullptr)
    {
 
-      m_puserprimitiveaThread = new ::user::primitive_array  ();
+      m_puserinteractionbaseaThread = new ::user::interaction_base_array  ();
 
    }
 
-   return *m_puserprimitiveaThread;
+   return *m_puserinteractionbaseaThread;
 
 }
 
@@ -4953,7 +4968,7 @@ thread::file_info* thread::get_file_info()
 
    }
 
-   m_pfileinfo = ::place(new file_info());
+   m_pfileinfo = __new file_info();
 
    return m_pfileinfo;
 

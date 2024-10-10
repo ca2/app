@@ -150,9 +150,9 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 //         //KEEP(thread_flag_prevent_create_thread);
 //
 //
-//         papex = ::place(new class apex_apex ());
+//         papex = __new class apex_apex ();
 //
-//         pmaindata = ::place(new apex_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow));
+//         pmaindata = __new apex_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow);
 //
 //#ifdef MAIN_RUNNER0
 //

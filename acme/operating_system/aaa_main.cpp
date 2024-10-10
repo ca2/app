@@ -3,7 +3,7 @@
 #include "acme/operating_system.h"
 #include "acme/platform/version.h"
 
-//#include "acme/primitive/collection/string_array.h"
+//#include "acme/prototype/collection/string_array.h"
 
 
 string consume_command_line_parameter(const ::scoped_string & scopedstrCommandLine, const char ** pszEndPtr)

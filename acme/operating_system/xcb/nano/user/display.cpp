@@ -5,7 +5,7 @@
 #include "framework.h"
 #include "display.h"
 #include "window.h"
-#include "acme/nano/user/window.h"
+#include "acme/user/micro/window.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
@@ -396,7 +396,7 @@ namespace xcb
 
                pparticle->information() << "xcb nano display::get (2)";
 
-               auto p = ::place(new display());
+               auto p = __new display();
 
                p->initialize(pparticle);
 
@@ -444,7 +444,7 @@ namespace xcb
          }
 
 
-         void display::add_window(::xcb::nano::user::window * pwindow)
+         void display::add_window(::xcb::micro::interchange * pwindow)
          {
 
             synchronous_lock synchronouslock(this->synchronization());
@@ -464,7 +464,7 @@ namespace xcb
          }
 
 
-         void display::erase_window(nano::user::window * pwindow)
+         void display::erase_window(micro::interchange * pwindow)
          {
 
             synchronous_lock synchronouslock(this->synchronization());
@@ -600,14 +600,14 @@ namespace xcb
 
             information() << "xcb nano display::init_task";
 
-            if(system()->m_ewindowing == e_windowing_none)
+            if(::windowing::get_ewindowing() == ::windowing::e_windowing_none)
             {
 
                set_main_user_thread();
 
                information() << "xcb nano display::init_task setting e_windowing_xcb";
 
-               system()->m_ewindowing = e_windowing_xcb;
+               ::windowing::get_ewindowing() = e_windowing_xcb;
 
             }
 
@@ -1967,10 +1967,10 @@ namespace xcb
          void process_messages()
          {
 
-            if(::xcb::nano::user::display::g_p)
+            if(::xcb::acme::windowing::display::g_p)
             {
 
-               ::xcb::nano::user::display::g_p->message_loop_step();
+               ::xcb::acme::windowing::display::g_p->message_loop_step();
 
             }
 

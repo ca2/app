@@ -4,7 +4,7 @@
 #pragma once
 
 
-#include "acme/nano/user/window_implementation.h"
+#include "acme/user/micro/window_implementation.h"
 #include <winrt/Windows.UI.Popups.h>
 
 
@@ -21,7 +21,7 @@ namespace universal_windows
 
 
          class CLASS_DECL_ACME window :
-            virtual public ::nano::user::window_implementation
+            virtual public ::micro::window_implementation
          {
          public:
 
@@ -43,16 +43,16 @@ namespace universal_windows
 
             //void aaa_message_loop() override;
 
-            //void draw(::nano::user::device * pnanodevice) override;
+            //void draw(::nano::graphics::device * pnanodevice) override;
 
-            //void on_draw(::nano::user::device * pnanodevice) override;
+            //void on_draw(::nano::graphics::device * pnanodevice) override;
 
             //void on_char(int iChar) override;
 
             //bool is_active() override;
             //void set_active() override;
 
-            //void draw_children(::nano::user::device * pnanodevice) override;
+            //void draw_children(::nano::graphics::device * pnanodevice) override;
 
             //void delete_drawing_objects() override;
             //bool get_dark_mode() override;
@@ -60,9 +60,9 @@ namespace universal_windows
             //void create_drawing_objects() override;
             //void update_drawing_objects() override;
 
-            //::nano::user::child * hit_test(int x, int y) override;
-            //void add_child(::nano::user::child * pchild) override;
-            //::nano::user::child * get_child_by_id(const ::atom & atom);
+            //::micro::child * hit_test(int x, int y) override;
+            //void add_child(::micro::child * pchild) override;
+            //::micro::child * get_child_by_id(const ::atom & atom);
 
             //::atom get_result() override;
 
@@ -101,7 +101,7 @@ namespace universal_windows
             //void display_temporary_file_with_text(const ::string & str);
 
 
-            //::pointer<::nano::user::device>create_device();
+            //::pointer<::nano::graphics::device>create_device();
 
 
          };

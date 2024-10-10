@@ -4,7 +4,7 @@
 #include "acme/platform/keep.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/text_metric.h"
-//#include "acme/primitive/geometry2d/_enhanced.h"
+//#include "acme/prototype/geometry2d/_enhanced.h"
 #include "aura/user/user/plain_edit.h"
 #include "axis/html/html/data.h"
 #include "axis/html/graphics/base.h"
@@ -82,7 +82,7 @@ namespace html
          if((!::is_set(m_pedit) || !m_pedit->is_window()) && pdata->m_pcoredata->m_bEdit)
          {
 
-            m_pedit = ::place(new ::user::plain_edit());
+            m_pedit = __new ::user::plain_edit();
 
             m_pedit->initialize(pdata);
 

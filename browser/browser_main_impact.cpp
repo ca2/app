@@ -148,7 +148,7 @@ namespace browser
       if(ptopic->m_atom == ::id_click)
       {
 
-         if(ptopic->user_element_id() == "browser_toggle")
+         if(ptopic->user_interaction_id() == "browser_toggle")
          {
 
             m_pimpact->m_prender->m_bLite = !m_pimpact->m_prender->m_bLite;

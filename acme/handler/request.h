@@ -2,8 +2,8 @@
 #pragma once
 
 
-////#include "acme/primitive/primitive/object.h"
-//#include "acme/primitive/primitive/payload.h"
+////#include "acme/prototype/prototype/object.h"
+//#include "acme/prototype/prototype/payload.h"
 #include "acme/user/user/e_window_flag.h"
 
 #include "acme/parallelization/manual_reset_event.h"
@@ -35,7 +35,7 @@ public:
    ::payload                        m_payloadOptions;
    string                           m_strExtra;
    ::e_status                       m_estatus;
-   //::pointer < ::particle >         m_pparticleTopic;
+   //::particle_pointer         m_pparticleTopic;
 
    bool                             m_bDocumentAndFrameCreated = false;
    bool                             m_bDocumentWasModified = false;

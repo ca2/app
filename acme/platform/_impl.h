@@ -74,7 +74,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //      }
 //
-//      auto pappNew = ::place(new APP());
+//      auto pappNew = __new APP();
 //
 //      if(pappNew == nullptr)
 //      {
@@ -300,7 +300,7 @@ const char * memory_counter_id(T * pthis)
 //
 ////#ifndef __DEBUG
 ////
-////#include "acme/primitive/primitive/block.inl"
+////#include "acme/prototype/prototype/block.inl"
 ////
 ////#endif // !__DEBUG
 //
@@ -431,7 +431,7 @@ const char * memory_counter_id(T * pthis)
 ////   while (c > 0)
 ////   {
 ////
-////      auto p = ::place(new TYPE(&a));
+////      auto p = __new TYPE(&a);
 ////
 ////      stream >> *p;
 ////

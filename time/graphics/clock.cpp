@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "clock.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/mathematics/mathematics.h"
+#include "acme/prototype/mathematics/mathematics.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"
 

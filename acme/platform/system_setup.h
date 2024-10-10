@@ -9,7 +9,7 @@
 
 
 
-//#include "acme/primitive/primitive/pointer.h"
+//#include "acme/prototype/prototype/pointer.h"
 
 
 //#define DECLARE_FACTORY(library) \
@@ -73,13 +73,13 @@ public:
 
 
    virtual ::pointer<::acme::library>create_library();
-   virtual ::pointer < ::particle > create_particle();
-   virtual ::pointer < ::particle > create_application_as_particle();
+   virtual ::particle_pointer create_particle();
+   virtual ::particle_pointer create_application_as_particle();
 
 
    virtual ::pointer<::acme::library>_create_library();
-   virtual ::pointer < ::particle > _create_particle();
-   virtual ::pointer < ::particle > _create_application_as_particle();
+   virtual ::particle_pointer _create_particle();
+   virtual ::particle_pointer _create_application_as_particle();
 
 
 };
@@ -92,7 +92,7 @@ class static_library_factory :
 public:
 
 
-   ::pointer<::acme::library>_create_library() override { return ::place(new LIBRARY()); }
+   ::pointer<::acme::library>_create_library() override { return __new LIBRARY(); }
 
 
    explicit static_library_factory(const ::scoped_string & scopedstrName = "") :
@@ -113,7 +113,7 @@ class static_object_factory :
 public:
 
 
-   ::pointer < ::particle > _create_particle() override { return ::place(new OBJECT()); }
+   ::particle_pointer _create_particle() override { return __new OBJECT(); }
 
 
    explicit static_object_factory(::system_setup::enum_flag eflag, const ::scoped_string & scopedstrName = "") :
@@ -153,10 +153,10 @@ class static_application_factory :
 public:
 
 
-   ::pointer < ::particle >  _create_application_as_particle() override
+   ::particle_pointer  _create_application_as_particle() override
    {
 
-      auto papp = ::place(new APPLICATION_TYPE());
+      auto papp = __new APPLICATION_TYPE();
 
       return papp;
 

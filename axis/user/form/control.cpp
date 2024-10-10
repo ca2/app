@@ -9,7 +9,7 @@
 #include "acme/platform/keep.h"
 #include "acme/handler/request.h"
 #include "acme/platform/timer.h"
-#include "acme/primitive/collection/_array_binary_stream.h"
+#include "acme/prototype/collection/_array_binary_stream.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/database/selection.h"
 #include "aura/user/user/form_callback.h"
@@ -70,7 +70,7 @@ namespace user
    //::pointer<class control_descriptor> form_control::new_form_control()
    //{
 
-   //   auto pdescriptor = ::place(new ::user::control_descriptor());
+   //   auto pdescriptor = __new ::user::control_descriptor();
 
    //   m_controldescriptorset.add(pdescriptor);
 
@@ -455,7 +455,7 @@ namespace user
       if (ptopic->m_atom == ::id_tab_key)
       {
 
-         ::pointer<::user::primitive>pfocus = ptopic->user_interaction()->keyboard_get_next_focusable();
+         ::pointer<::user::interaction_base>pfocus = ptopic->user_interaction()->keyboard_get_next_focusable();
 
          if (pfocus != nullptr)
          {
@@ -1430,7 +1430,7 @@ namespace user
    //   if(ptopic->m_atom == ::id_tab_key)
    //   {
 
-   //      ::pointer<::user::primitive>pfocus = ptopic->user_interaction()->keyboard_get_next_focusable();
+   //      ::pointer<::user::interaction_base>pfocus = ptopic->user_interaction()->keyboard_get_next_focusable();
 
    //      if(pfocus != nullptr)
    //      {
@@ -1709,7 +1709,7 @@ namespace user
       if(m_pcallback != nullptr)
       {
          
-         auto pextendedtopic = ::place(new ::extended_topic(id_timer));
+         auto pextendedtopic = __new ::extended_topic(id_timer);
          
          pextendedtopic->m_puserelement = this;
          

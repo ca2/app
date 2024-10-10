@@ -4,7 +4,7 @@
 
 #include "font.h"
 #include "acme/platform/department.h"
-#include "acme/primitive/collection/int_map.h"
+#include "acme/prototype/collection/int_map.h"
 
 
 namespace write_text
@@ -26,7 +26,7 @@ namespace write_text
 
       string_map < int_to_string >                    m_mapFontKeyFaceName;
 
-      ::pointer < ::particle >                        m_pparticleFontTextMapSynchronization;
+      ::particle_pointer                        m_pparticleFontTextMapSynchronization;
 
 
       write_text();

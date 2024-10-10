@@ -33,7 +33,7 @@
 void __node_apex_factory(::factory::factory * pfactory)
 {
 
-   //add_factory_item < ::universal_windows::interaction_impl, ::user::interaction_impl >();
+   //add_factory_item < ::universal_windows::interaction_impl, ::windowing::window >();
    //add_factory_item < ::universal_windows::file, ::file::file >();
    add_factory_item < ::file::os_watcher, ::file::watcher >();
    add_factory_item < ::universal_windows::os_context, ::os_context >();

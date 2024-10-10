@@ -2,9 +2,9 @@
 #include "smtp_socket.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/string/base64.h"
-#include "acme/primitive/string/parse.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/string/base64.h"
+#include "acme/prototype/string/parse.h"
+#include "acme/prototype/string/str.h"
 #include "apex/networking/email.h"
 //#include "axis/networking/_networking.h"
 

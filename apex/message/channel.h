@@ -2,8 +2,8 @@
 
 
 #include "dispatcher.h"
-#include "acme/primitive/collection/atom_array.h"
-////#include "acme/primitive/primitive/object.h"
+#include "acme/prototype/collection/atom_array.h"
+////#include "acme/prototype/prototype/object.h"
 #include "acme/constant/message_prototype.h"
 
 

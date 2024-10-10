@@ -7,12 +7,12 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/size.h"
+#include "acme/prototype/geometry2d/size.h"
 
 
-//#include "acme/primitive/collection/numeric_array.h"
-////#include "acme/primitive/primitive/object.h"
-//#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/prototype/collection/numeric_array.h"
+////#include "acme/prototype/prototype/object.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
 
 
 namespace image

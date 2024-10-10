@@ -3,9 +3,9 @@
 #include "acme/operating_system/universal_windows/_winrt_foundation.h"
 #include "acme/platform/application.h"
 #include "acme/platform/platform.h"
-#include "acme/nano/user/button.h"
-#include "acme/nano/user/window.h"
-#include "acme/nano/user/user.h"
+#include "acme/user/micro/button.h"
+#include "acme/user/micro/window.h"
+#include "acme/user/micro/user.h"
 
 
 #include <winrt/Windows.ApplicationModel.Core.h>
@@ -111,13 +111,13 @@ void operating_system_initialize_nano_user(::factory::factory * pfactory)
 {
 
 
-   pfactory->add_factory_item < ::universal_windows::nano::user::window, ::nano::user::window_implementation >();
+   pfactory->add_factory_item < ::universal_windows::micro::interchange, ::micro::window_implementation >();
 
-   pfactory->add_factory_item < ::nano::user::user >();
-   //pfactory->add_factory_item < ::windows::nano::user::brush, ::nano::user::brush >();
-   //pfactory->add_factory_item < ::windows::nano::user::font, ::nano::user::font >();
-   //pfactory->add_factory_item < ::windows::nano::user::pen, ::nano::user::pen >();
-   //pfactory->add_factory_item < ::windows::nano::user::device, ::nano::user::device >();
+   pfactory->add_factory_item < ::micro::user >();
+   //pfactory->add_factory_item < ::windows::nano::graphics::brush, ::nano::graphics::brush >();
+   //pfactory->add_factory_item < ::windows::nano::graphics::font, ::nano::graphics::font >();
+   //pfactory->add_factory_item < ::windows::nano::graphics::pen, ::nano::graphics::pen >();
+   //pfactory->add_factory_item < ::windows::nano::graphics::device, ::nano::graphics::device >();
 
 
 }

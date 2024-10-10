@@ -23,7 +23,7 @@ namespace aura
 
       bool                                                  m_bAcceptsFirstResponder;
 
-      ::pointer < ::user::interaction_impl >                m_pimplPendingFocus2;
+      ::pointer < ::user::interaction >                     m_puserinteractionPendingFocus2;
       ::pointer < ::user::interaction >                     m_puiLastUserInputPopup;
 
       //pointer_array < ::user::interaction >                  m_uiptraToolWindow;
@@ -222,13 +222,13 @@ namespace aura
 
       //virtual void set_key_pressed(::user::enum_key ekey, bool bPressed) override;
 
-      //virtual ::user::primitive * get_active_ui() override;
+      //virtual ::user::interaction_base * get_active_ui() override;
 
       //virtual void set_active_guie(::user::interaction * pinteraction);
       //virtual void set_focus_guie(::user::interaction * pinteraction);
 
 
-      virtual void on_finally_focus_set(::user::primitive * pelementalFocus);
+      virtual void on_finally_focus_set(::user::interaction_base * pelementalFocus);
 
       //virtual ::user::interaction * get_capture();
 
@@ -240,8 +240,8 @@ namespace aura
 
       virtual bool on_ui_mouse_message(::message::mouse_base * pmouse);
 
-      //virtual ::user::primitive * GetActiveWindow();
-      //virtual ::user::primitive * GetFocus();
+      //virtual ::user::interaction_base * GetActiveWindow();
+      //virtual ::user::interaction_base * GetFocus();
 
       //virtual bool ReleaseCapture();
 
@@ -269,7 +269,7 @@ namespace aura
 
 
       virtual void set_bound_ui(::atom idImpact, ::user::interaction * pinteraction);
-      virtual ::user::primitive * get_bound_ui(::atom idImpact);
+      virtual ::user::interaction_base * get_bound_ui(::atom idImpact);
 
       virtual void on_show_user_input_popup(::user::interaction * pinteraction);
 

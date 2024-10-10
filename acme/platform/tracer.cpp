@@ -174,10 +174,17 @@ void tracer::flush(trace_statement & tracestatement)
 
       auto ptask = ::get_task();
 
-      if(ptask)
+      if (ptask && ptask->m_plogger)
       {
 
-         plogger = ::get_task()->system()->m_plogger;
+         plogger = ptask->m_plogger;
+
+      }
+
+      if(!plogger)
+      {
+
+         plogger = ::platform::get()->system()->m_plogger;
 
       }
 

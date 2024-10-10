@@ -65,7 +65,7 @@
 //   inline ::pointer<sync_routine>___sync_routine(const ::procedure & procedure)
 //   {
 //
-//      return ::place(new sync_routine(routine));
+//      return __new sync_routine(routine);
 //
 //   }
 //

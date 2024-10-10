@@ -15,6 +15,9 @@ namespace message
    class create;
 
 
+   class message;
+
+
 } // namespace message
 
 

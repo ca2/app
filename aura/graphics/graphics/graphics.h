@@ -2,8 +2,8 @@
 
 
 #include "acme/parallelization/manual_reset_event.h"
-#include "acme/primitive/geometry2d/point.h"
-#include "acme/primitive/geometry2d/size.h"
+#include "acme/prototype/geometry2d/point.h"
+#include "acme/prototype/geometry2d/size.h"
 
 
 namespace graphics
@@ -22,7 +22,7 @@ namespace graphics
       ::draw2d::graphics_pointer    m_pgraphics;
       ::point_i32                   m_point;
       ::size_i32                    m_size;
-      ::pointer < ::particle >      m_pparticleData;
+      ::particle_pointer      m_pparticleData;
       manual_reset_event            m_manualresetevent;
       ::size_i32                    m_sizeInternal;
       ::i32                         m_iScan;
@@ -43,7 +43,7 @@ namespace graphics
    public:
 
 
-      ::pointer<::user::interaction_impl>          m_pimpl;
+      //::pointer<::windowing::window>          m_pimpl;
       ::pointer<::windowing::window>               m_pwindow;
       bool                                         m_bNewBuffer;
 
@@ -65,7 +65,10 @@ namespace graphics
       ~graphics() override;
 
 
-      virtual void initialize_graphics_graphics(::user::interaction_impl * pimpl);
+      
+      virtual void initialize_graphics_graphics(::windowing::window * pwindow);
+
+
       void destroy() override;
 
       virtual void destroy_buffer();

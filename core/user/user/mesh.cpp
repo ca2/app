@@ -13,10 +13,10 @@
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/collection/_range.h"
-#include "acme/primitive/data/listener.h"
-#include "acme/primitive/data/tree_item.h"
-#include "acme/primitive/time/_text_stream.h"
+#include "acme/prototype/collection/_range.h"
+#include "acme/prototype/data/listener.h"
+#include "acme/prototype/data/tree_item.h"
+#include "acme/prototype/time/_text_stream.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/timer.h"
 #include "apex/database/selection.h"
@@ -388,7 +388,7 @@ namespace user
          if (!pgroup)
          {
 
-            auto pdrawgroup = ::place(new draw_mesh_group());
+            auto pdrawgroup = __new draw_mesh_group();
 
             pdrawgroup->initialize_draw_mesh_group(this);
 
@@ -812,7 +812,7 @@ namespace user
       if (!pitem)
       {
 
-         auto pdrawmeshitem = ::place(new draw_mesh_item());
+         auto pdrawmeshitem = __new draw_mesh_item();
 
          pdrawmeshitem->initialize_draw_mesh_item(this);
 
@@ -845,7 +845,7 @@ namespace user
       if (!psubitem)
       {
 
-         psubitem = ::place(new draw_mesh_subitem());
+         psubitem = __new draw_mesh_subitem();
 
          psubitem->m_pitem = pitem;
 
@@ -3309,7 +3309,7 @@ namespace user
                   if(m_iClick == 1)
                   {
 
-                     on_click(::place(new ::item(::e_element_item, iDisplayItemLButtonUp)));
+                     on_click(__new ::item(::e_element_item, iDisplayItemLButtonUp));
 
                   }
                   else
@@ -5434,7 +5434,7 @@ namespace user
    //::item_pointer mesh::update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder)
    //{
 
-   //   ::item_pointer pitemHitTest = ::place(new ::item());
+   //   ::item_pointer pitemHitTest = __new ::item();
    //   
    //   auto pointClient = screen_to_client().get(pmouse->m_point);
 
@@ -5478,7 +5478,7 @@ namespace user
    ::item_pointer mesh::on_hit_test(const ::point_i32& point, e_zorder ezorder)
    {
 
-      ::item_pointer pitemHitTest = ::place(new ::item());
+      ::item_pointer pitemHitTest = __new ::item();
 
       //auto pointClient = screen_to_client().get(pmouse->m_point);
 
@@ -6396,7 +6396,7 @@ namespace user
    //::pointer<::user::mesh_data>list::create_mesh_data()
    //{
 
-   //   return ::place(new mesh_data());
+   //   return __new mesh_data();
 
    //}
 

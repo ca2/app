@@ -2,7 +2,7 @@
 #include "array.h"
 #include "drawing.h"
 #include "image.h"
-//#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
 #include "aura/graphics/image/context.h"
 #include "aura/platform/context.h"
 

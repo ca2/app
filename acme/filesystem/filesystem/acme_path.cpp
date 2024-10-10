@@ -9,7 +9,7 @@
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/collection/map_interface.h"
+#include "acme/prototype/collection/map_interface.h"
 
 
 #ifdef HAVE_UNISTD_H

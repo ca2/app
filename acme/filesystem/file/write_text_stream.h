@@ -5,7 +5,7 @@
 
 
 #include "acme/filesystem/file/print_formatting.h"
-#include "acme/primitive/primitive/pointer.h"
+#include "acme/prototype/prototype/pointer.h"
 
 
 struct CLASS_DECL_ACME write_text_stream_struct

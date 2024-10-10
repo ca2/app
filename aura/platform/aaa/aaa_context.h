@@ -86,11 +86,11 @@ public:
    virtual file_pointer friendly_get_file(::payload payloadFile, ::u32 nOpenFlags);
 
 
-   virtual bool os_resolve_alias(::file::path & path, const ::string & psz, ::user::primitive * pinteraction, bool bNoUI = false, bool bNoMount = false);
+   virtual bool os_resolve_alias(::file::path & path, const ::string & psz, ::user::interaction_base * pinteraction, bool bNoUI = false, bool bNoMount = false);
 
    //CLASS_DECL_AURA bool os_is_folder_alias(::particle * pparticle, const ::string & psz, bool bNoUI = false, bool bNoMount = false);
 
-   virtual bool _os_resolve_alias(::file::path & path, const ::string & psz, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount);
+   virtual bool _os_resolve_alias(::file::path & path, const ::string & psz, ::user::interaction_base * pinteraction, bool bNoUI, bool bNoMount);
 
    virtual bool os_is_alias(const ::string & psz);
 

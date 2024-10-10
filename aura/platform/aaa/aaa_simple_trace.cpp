@@ -16,7 +16,9 @@ CLASS_DECL_AURA void __simple_tracev(::particle * pparticle, enum_trace_level el
 //CLASS_DECL_AURA void FUNCTION_DEBUGBOX(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 //{
 //
-//   ::message_box_synchronous(nullptr, pszMessage, pszTitle, iFlags, function);
+//   ::auto pmessagebox = __initialize_new ::message_box(nullptr, pszMessage, pszTitle, iFlags, function);
+
+pmessagebox->sync();
 //
 //}
 

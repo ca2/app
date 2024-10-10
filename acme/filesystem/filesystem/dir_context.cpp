@@ -10,13 +10,13 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/filesystem/filesystem/listing.h"
-#include "acme/primitive/primitive/url.h"
+#include "acme/prototype/prototype/url.h"
 #include "acme/parallelization/event.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task_flag.h"
-#include "acme/primitive/string/_string.h"
-#include "acme/primitive/string/str.h"
-//#include "acme/primitive/string/tokenizer.h"
+#include "acme/prototype/string/_string.h"
+#include "acme/prototype/string/str.h"
+//#include "acme/prototype/string/tokenizer.h"
 #include "acme/platform/application.h"
 #include "acme/platform/context.h"
 #include "acme/platform/session.h"
@@ -1749,7 +1749,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //
 //         is_dir * pdir = this;
 //
-//         ::pointer<is_dir>pfind(::place(new is_dir()));
+//         ::pointer<is_dir>pfind(__new is_dir());
 //
 //         index iFind0 = 0;
 //         index iFind3 = 0;
@@ -1816,7 +1816,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //
 //                  pdir = pfind;
 //
-//                  pfind = ::place(new is_dir());
+//                  pfind = __new is_dir();
 //                  iFind0 = iFind3 + 1;
 //               }
 //            }
@@ -3071,14 +3071,14 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 }
 
 
-::file::watcher& dir_context::watcher()
-{
-
-   auto psystem = system();
-
-   return *psystem->m_pdirsystem->m_pfilewatcher;
-
-}
+// ::file::watcher& dir_context::watcher()
+// {
+//
+//    auto psystem = system();
+//
+//    return *psystem->m_pdirsystem->m_pfilewatcher;
+//
+// }
 
 
 //::file::path dir_context::pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode)

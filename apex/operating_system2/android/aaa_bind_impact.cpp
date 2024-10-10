@@ -284,7 +284,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_apex_1size_1changed(JNIEnv *
 
          puserinteraction->send_message(e_message_display_change);
 
-         //::pointer<::user::interaction_impl>pimpl = puserinteraction->m_pimpl;
+         //::pointer<::windowing::window>pimpl = puserinteraction->m_pimpl;
 
          //if (pimpl)
          //{

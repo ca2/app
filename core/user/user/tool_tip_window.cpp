@@ -4,7 +4,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/timer.h"
 #include "acme/exception/interface_only.h"
-#include "acme/primitive/geometry2d/geometry.h"
+#include "acme/prototype/geometry2d/geometry.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
@@ -373,7 +373,7 @@ namespace user
 
    //   m_pfont->create_point_font(pnode->font_name(e_font_sans), 10.0);
 
-   //   auto pusersystem = ::place(new ::user::system());
+   //   auto pusersystem = __new ::user::system();
 
    //   return create_window_ex(pusersystem, nullptr, atom) != 0;
 

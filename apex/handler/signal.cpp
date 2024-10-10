@@ -146,7 +146,7 @@ namespace handler
          if (!pcontext)
          {
 
-            pcontext = ::place(new ::context());
+            pcontext = __new ::context();
 
          }
 
@@ -178,7 +178,7 @@ namespace handler
       if (!pcontext)
       {
 
-         pcontext = ::place(new ::context());
+         pcontext = __new ::context();
 
       }
 
@@ -238,11 +238,11 @@ namespace handler
       pmatter->destroying() += [this, pmatter]()
       {
 
-         erase_signal_handler(::signal_handler({ use_t{}, pmatter }));
+         erase_signal_handler(::signal_handler(pmatter));
 
       };
 
-      add_signal_handler(::signal_handler({ use_t{}, pmatter }));
+      add_signal_handler(::signal_handler(pmatter));
 
    }
 
@@ -278,7 +278,7 @@ namespace handler
       if (!pcontext)
       {
 
-         pcontext = ::place(new ::context());
+         pcontext = __new ::context();
 
       }
 

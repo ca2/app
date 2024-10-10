@@ -36,6 +36,10 @@ namespace user
 
    class impact_system;
 
+   class interaction_base;
+
+   //class interaction_base;
+
 
 } // namespace user
 
@@ -58,6 +62,8 @@ namespace windowing
 namespace user
 {
 
+   class thread;
+   class graphics_thread;
 
     DECLARE_ENUMERATION(e_button_state, enum_button_state);
 
@@ -100,5 +106,30 @@ namespace experience
 
 
 } // namespace experience
+
+
+
+
+
+namespace acme
+{
+
+   namespace user
+   {
+
+      //class user;
+
+
+      //class device;
+      //class child;
+
+
+      class interaction;
+
+
+   }// namespace user
+
+
+} // namespace acme
 
 

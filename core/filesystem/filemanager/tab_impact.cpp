@@ -177,7 +177,7 @@ namespace filemanager
                pimpactdata,
                pfilemanagerdata);
 
-//         auto pdocument  = ::place(new ::filemanager::data());
+//         auto pdocument  = __new ::filemanager::data();
 //
 //         pdocument->m_pcallback = get_document();
 //

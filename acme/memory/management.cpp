@@ -126,8 +126,8 @@ namespace heap
       //s_allocatora[::heap::e_allocator_a2] = _new_allocator(::heap::e_allocator_a2);
 
 
-      //m_pallocatorSystemMemory = ::place(new system_memory_allocator());
-      //m_pallocatorDefaultMemory = ::place(new default_memory_allocator());
+      //m_pallocatorSystemMemory = __new system_memory_allocator();
+      //m_pallocatorDefaultMemory = __new default_memory_allocator();
 
       for (::collection::index i = 0; i < ::heap::e_memory_count; i++)
       {

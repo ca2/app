@@ -3,7 +3,7 @@
 
 #include "context.h"
 #include "acme/platform/session.h"
-//#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
 
 
 namespace apex
@@ -47,7 +47,7 @@ namespace apex
       // ... is is the "Main Window" (sometimes just a concept) holding the App.
       // For Desktop Applications a meaning should be given or this member could be ignored?
       // The Main papp window?
-      ::pointer<::user::primitive>                        m_puserprimitiveHost;
+      ::pointer<::user::interaction_base>                        m_puserprimitiveHost;
       //::pointer<::layered>    m_pimplLastSeed;
       //::pointer<::layered>                       m_puiMain2;
 
@@ -66,7 +66,7 @@ namespace apex
       //comparable_array < ::pointer<::layered >>m_uiptraToolWindow;
 
       // apex commented
-      //::user::interaction_impl *                            m_pimplPendingFocus2;
+      //::windowing::window *                            m_pimplPendingFocus2;
       //::layered *                                 m_puiLastUserInputPopup;
       //::image::cursor *                                    m_pcursor;
       //::image::cursor *                                    m_pcursorCursor;
@@ -97,7 +97,6 @@ namespace apex
       //::pointer<::layered>                     m_puserinteractionSystem;
 
       ::payload                                                   m_varTopicFile;
-      ::payload                                                   m_varCurrentImpactFile;
       bool                                                  m_bShowPlatform;
 
 
@@ -169,21 +168,21 @@ namespace apex
 
       //virtual ::collection::index get_ui_workspace(::user::interaction * pinteraction);
 
-      virtual void process_init();
+      virtual void process_init() override;
 
-      virtual void init1();
+      void init1() override;
 
-      virtual void init2();
+      void init2() override;
 
-      virtual void init_session();
+      void init_session() override;
 
-      virtual void init();
+      void init() override;
 
-      virtual void term();
+      void term() override;
 
-      virtual void term_session();
+      void term_session() override;
 
-      DECLARE_MESSAGE_HANDLER(on_message_erase_application);
+      //DECLARE_MESSAGE_HANDLER(on_message_erase_application);
 
       inline class ::fs::data * fs() { return m_pfsdata; }
 
@@ -260,15 +259,15 @@ namespace apex
       //virtual void init();
 
       //virtual void term();
-      virtual void term2();
+      void term2() override;
 
-      virtual void term1();
+      void term1() override;
 
-      virtual void term_task() override;
+      void term_task() override;
 
       //virtual void term_session();
 
-      virtual void process_term();
+      void process_term() override;
 
       // apex commented
       //::user::keyboard& keyboard();
@@ -475,8 +474,8 @@ namespace apex
 
       virtual string_array get_user_wallpaper();
 
-      virtual ::user::primitive * get_user_interaction_host();
-      virtual ::user::primitive * get_host_primitive();
+      virtual ::user::interaction_base * get_user_interaction_host();
+      virtual ::user::interaction_base * get_host_primitive();
 
 
    };

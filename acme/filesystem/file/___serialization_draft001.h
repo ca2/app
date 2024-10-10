@@ -46,7 +46,7 @@ int main()
 
     ::file pfile = file()->get_file("C:\\window.window");
 
-    auto pinteraction = ::place(new window());
+    auto pinteraction = __new window();
 
     ::stream stream(pfile);
 
@@ -306,5 +306,5 @@ stream & operator >> (stream & s, matter & o)
 
 window new_frame_window()
 {
-    return ::place(new frame_window());
+    return __new frame_window();
 }

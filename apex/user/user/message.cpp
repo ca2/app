@@ -121,7 +121,7 @@ namespace user
 
    //}
 
-   //void timer::set(::user::primitive * puserinteraction,const ::atom & atom,wparam wparam,::lparam lparam)
+   //void timer::set(::user::interaction_base * puserinteraction,const ::atom & atom,wparam wparam,::lparam lparam)
    //{
 
    //   base::set(puserinteraction,atom,wparam,lparam);
@@ -144,12 +144,12 @@ namespace user
 #endif
 
 
-   //::user::interaction_impl * message::userinteractionimpl()
+   //::windowing::window * message::userinteractionimpl()
    //{
 
    //   auto pwindow = window();
 
-   //   return pwindow ? pwindow->m_puserinteractionimpl : nullptr;
+   //   return pwindow ? pwindow->m_pwindow : nullptr;
 
    //}
 

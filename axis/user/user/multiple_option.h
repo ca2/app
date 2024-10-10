@@ -2,7 +2,7 @@
 
 
 #include "aura/user/user/interaction.h"
-#include "acme/primitive/data/property.h"
+#include "acme/prototype/data/property.h"
 
 
 namespace user
@@ -35,7 +35,7 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
 
-      ::pointer < ::particle > clone() override;
+      ::particle_pointer clone() override;
 
       bool on_click(::item* pitem) override;
 

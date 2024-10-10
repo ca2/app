@@ -5,10 +5,10 @@
 
 
 #include "action.h"
-//#include "acme/primitive/collection/array.h"
-//#include "acme/primitive/collection/comparable_eq_array.h"
-//#include "acme/primitive/collection/comparable_array.h"
-//#include "acme/primitive/primitive/function.h"
+//#include "acme/prototype/collection/array.h"
+//#include "acme/prototype/collection/comparable_eq_array.h"
+//#include "acme/prototype/collection/comparable_array.h"
+//#include "acme/prototype/prototype/function.h"
 
 
 namespace file
@@ -19,10 +19,10 @@ namespace file
    class watcher;
    class listener;
 
-   using watch_id = i64;
+   //using watch_id = i64;
 
 
-   typedef ::array < watch_id > file_watch_array;
+   typedef ::pointer_array < watch> file_watch_array;
 
 
 

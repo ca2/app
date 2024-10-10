@@ -3,9 +3,9 @@
 #include "acme/operating_system/message_box.h"
 #include "acme/platform/application.h"
 #include "acme/platform/system.h"
-#include "acme/platform/sequencer.h"
-#include "acme/primitive/datetime/datetime.h"
-#include "acme/primitive/mathematics/mathematics.h"
+//#include "acme/platform/sequencer.h"
+#include "acme/prototype/datetime/datetime.h"
+#include "acme/prototype/mathematics/mathematics.h"
 #include "acme/user/user/conversation.h"
 //#include "acme/user/nano/nano.h"
 #include "acme/memory/_new.inl"
@@ -59,7 +59,9 @@ enum enum_test_increment
 //   while (true)
 //   {
 //
-//      auto result = message_box_synchronous(pcontext, "Hello!!\nNo: for exception test!!", "Hello App!", e_message_box_yes_no_cancel | e_message_box_default_button_3, "Hello Multiverse!!");
+//      auto result = auto pmessagebox = __initialize_new ::message_box(pcontext, "Hello!!\nNo: for exception test!!", "Hello App!", e_message_box_yes_no_cancel | e_message_box_default_button_3, "Hello Multiverse!!");
+
+pmessagebox->sync();
 //
 //      if (result == e_dialog_result_yes)
 //      {
@@ -68,7 +70,9 @@ enum enum_test_increment
 //
 //         output_debug_string("Yes!!\n");
 //
-//         message_box_synchronous(pcontext, "Yes!!", "Yes!!", e_message_box_ok);
+//         auto pmessagebox = __initialize_new ::message_box(pcontext, "Yes!!", "Yes!!", e_message_box_ok);
+
+pmessagebox->sync();
 //
 //         break;
 //
@@ -132,7 +136,9 @@ enum enum_test_increment
 //
 //         output_debug_string("No!\n");
 //
-//         message_box_synchronous(pcontext, "No!", "No!", e_message_box_ok);
+//         auto pmessagebox = __initialize_new ::message_box(pcontext, "No!", "No!", e_message_box_ok);
+
+pmessagebox->sync();
 //
 //      }
 //      else if (result == e_dialog_result_cancel)
@@ -142,7 +148,9 @@ enum enum_test_increment
 //
 //         output_debug_string("Cancel!!\n");
 //
-//         message_box_synchronous(pcontext, "Cancel", "Cancel", e_message_box_ok);
+//         auto pmessagebox = __initialize_new ::message_box(pcontext, "Cancel", "Cancel", e_message_box_ok);
+
+pmessagebox->sync();
 //
 //      }
 //
@@ -1248,7 +1256,7 @@ namespace console_hello
 ////   application.initialize_application(&main);
 ////
 ////
-////   //::pointer<APPLICATION_CLASS>papp(::place(new APPLICATION_CLASS()));
+////   //::pointer<APPLICATION_CLASS>papp(__new APPLICATION_CLASS());
 //////
 //////#ifdef NO_NETWORKING
 //////
@@ -1552,7 +1560,7 @@ namespace console_hello
 ::i32 application_main(::platform::platform * pplatform)
 {
 
-   auto papplication = ::place(new console_hello::application());
+   auto papplication = __new console_hello::application();
 
    auto iExitCode = papplication->application_main(pplatform);
 

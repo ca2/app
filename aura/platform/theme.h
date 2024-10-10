@@ -1,10 +1,10 @@
 #pragma once
 
 
-////#include "acme/primitive/primitive/object.h"
+////#include "acme/prototype/prototype/object.h"
 //#include "acme/filesystem/filesystem/path.h"
-//#include "acme/primitive/collection/string_array.h"
-#include "acme/primitive/collection/string_map.h"
+//#include "acme/prototype/collection/string_array.h"
+#include "acme/prototype/collection/string_map.h"
 #include "acme/filesystem/watcher/listener.h"
 
 
@@ -47,7 +47,7 @@ namespace aura
 
 
       //::pointer<runner>                    m_prunnerChangeWeatherState;
-      ::file::watch_id                       m_watchidWeather;
+      ::pointer < ::file::watch >            m_pfilewatchWeather;
 
 
       string_array                           m_straTheme;

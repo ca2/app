@@ -28,10 +28,10 @@
 // #include "aura/platform/object_type_counter.h"
 // #include "aura/const/_const.h"
 // #include "aura/platform/reference_count_debug.h"
-// #include "acme/primitive/primitive/uid.h"
-// #include "acme/primitive/primitive/estatus.h"
-// #include "acme/primitive/primitive/eobject.h"
-// //#include "acme/primitive/primitive/matter.h"
+// #include "acme/prototype/prototype/uid.h"
+// #include "acme/prototype/prototype/estatus.h"
+// #include "acme/prototype/prototype/eobject.h"
+// //#include "acme/prototype/prototype/matter.h"
 
 
 

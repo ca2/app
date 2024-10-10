@@ -1,9 +1,12 @@
+// now based on a ::acme::user::message_box based on ::reified<::message_box> by
+//    camilo on 2024-10-09 09:00 <3ThomasBorregaardSorensen!!
 //
 // Created by camilo on 29/01/2021.  02:05 BRT <3ThomasBS_!!
 //
 #pragma once
 
 
+#include "acme/user/user/message_box.h"
 #include "interaction.h"
 
 
@@ -11,22 +14,10 @@ namespace user
 {
 
 
+
    class CLASS_DECL_AURA message_box :
-      virtual public conversation
-   {
-   public:
-
-
-      virtual pointer< ::sequencer < ::conversation > > show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox);
-      virtual void add_button(const ::string & strTitle, enum_dialog_result edialogresult) = 0;
-
-
-   };
-
-
-   class CLASS_DECL_AURA default_message_box :
       virtual public ::user::interaction,
-      virtual public message_box
+      virtual public ::acme::user::message_box
    {
    public:
 
@@ -38,7 +29,7 @@ namespace user
       bool                                            m_bOsUserThemeColorModified;
       bool                                            m_bInvalidated;
       string_array                                    m_stra;
-      string                                          m_strTitle;
+      //string                                          m_strTitle;
       string                                          m_strFontName;
 
       //Window                                        m_window;
@@ -98,13 +89,14 @@ namespace user
 
 
       //message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox);
-      default_message_box();
-      ~default_message_box() override;
+      message_box();
+      ~message_box() override;
 
 
       // message_box_interface
-      pointer< ::sequencer < ::conversation > > show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox) override;
-      void add_button(const ::string & strTitle, enum_dialog_result edialogresult) override;
+      //::pointer < ::subparticle > show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox) override;
+      void on_realize(::message_box * pmessagebox) override;
+      void add_button(const ::scoped_string & scopedstrTitle, enum_dialog_result edialogresult, char chLetter) override;
 
 
 
@@ -202,7 +194,9 @@ namespace user
 //} // namespace user
 //
 //
-////CLASS_DECL_AURA void message_box_synchronous(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const future & process = ::future());
+////CLASS_DECL_AURA void auto pmessagebox = __initialize_new ::message_box(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const future & process = ::future());
+
+//pmessagebox->sync();
 //
 //
 //

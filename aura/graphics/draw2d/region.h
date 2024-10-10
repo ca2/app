@@ -2,9 +2,9 @@
 
 
 #include "object.h"
-//#include "acme/primitive/geometry2d/_geometry2d.h"
-#include "acme/primitive/geometry2d/_collection.h"
-#include "acme/primitive/geometry2d/region.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
+#include "acme/prototype/geometry2d/_collection.h"
+#include "acme/prototype/geometry2d/region.h"
 
 
 namespace draw2d
@@ -120,7 +120,7 @@ namespace draw2d
    inline ::pointer<___shape>__create_shape(const ::line & line)
    {
 
-      return ::place(new line_shape_with_region(line));
+      return __new line_shape_with_region(line);
 
    }*/
 

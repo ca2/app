@@ -3,7 +3,7 @@
 
 
 #include "acme/graphics/image/_configuration.h"
-//#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
 #include "apex/platform/context.h"
 
 

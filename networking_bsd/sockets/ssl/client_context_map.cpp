@@ -29,7 +29,7 @@ namespace sockets_bsd
       if (pcontext.is_null())
       {
 
-         pcontext = ::place(new ssl_client_context(pmethod));
+         pcontext = __new ssl_client_context(pmethod);
 
       }
 

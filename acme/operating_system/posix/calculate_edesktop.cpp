@@ -10,10 +10,15 @@
 #include <stdio.h>
 #endif
 
+
 namespace nano
 {
+
+
    namespace user
    {
+
+
       ::user::enum_desktop g_edesktop = ::user::e_desktop_none;
 
 
@@ -55,7 +60,7 @@ namespace nano
 
             printf("calculate_edesktop e_desktop_unity_gnome\n");
 
-            return ::user::e_desktop_unity_gnome;
+            return ::user::e_desktop_unity;
 
          }
 
@@ -114,7 +119,7 @@ namespace nano
 
             printf("calculate_edesktop e_desktop_unity_gnome\n");
 
-            return ::user::e_desktop_unity_gnome;
+            return ::user::e_desktop_unity;
 
          }
          else if(strcasecmp(pszDesktop, "ubuntu:gnome") == 0)
@@ -122,7 +127,7 @@ namespace nano
 
             printf("calculate_edesktop e_desktop_ubuntu_gnome\n");
 
-            return ::user::e_desktop_ubuntu_gnome;
+            return ::user::e_desktop_unity;
 
          }
          else if(strcasecmp(pszDesktop, "gnome") == 0)
@@ -145,7 +150,6 @@ namespace nano
       }
 
 
-
       ::user::enum_desktop get_edesktop()
       {
 
@@ -159,6 +163,12 @@ namespace nano
          return g_edesktop;
 
       }
+
+
    } // namespace user
+
+
 } // namespace nano
+
+
 

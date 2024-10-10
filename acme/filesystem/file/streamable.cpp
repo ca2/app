@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "streamable.h"
 #include "file.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 #include "acme/exception/interface_only.h"
 
 

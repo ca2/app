@@ -753,6 +753,26 @@
     <ClCompile Include="user\appearance\still.cpp" />
     <ClCompile Include="user\menu\command.cpp" />
     <ClCompile Include="user\menu\track_popup.cpp" />
+    <ClCompile Include="user\user\aaa_interaction_impl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="user\user\aaa_primitive_impl.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticDebug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='StaticRelease|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="user\user\alpha_source.cpp" />
     <ClCompile Include="user\user\box.cpp" />
     <ClCompile Include="user\user\button.cpp" />
@@ -768,8 +788,6 @@
     <ClCompile Include="user\user\scroll_base_x.cpp" />
     <ClCompile Include="user\user\interaction.cpp" />
     <ClCompile Include="user\user\interaction_array.cpp" />
-    <ClCompile Include="user\user\interaction_child.cpp" />
-    <ClCompile Include="user\user\interaction_impl.cpp" />
     <ClCompile Include="user\user\interaction_layout.cpp" />
     <ClCompile Include="user\user\interaction_listener.cpp" />
     <ClCompile Include="user\user\interaction_graphics_thread.cpp" />
@@ -785,7 +803,6 @@
     <ClCompile Include="user\user\plain_edit.cpp" />
     <ClCompile Include="user\user\plain_text_data.cpp" />
     <ClCompile Include="user\user\plain_text_tree.cpp" />
-    <ClCompile Include="user\user\primitive_impl.cpp" />
     <ClCompile Include="user\user\progress.cpp" />
     <ClCompile Include="user\user\range.cpp" />
     <ClCompile Include="user\user\redraw.cpp" />
@@ -1086,8 +1103,8 @@
     <ClInclude Include="user\user\graphics_call.h" />
     <ClInclude Include="user\user\scroll_base_x.h" />
     <ClInclude Include="user\user\interaction.h" />
-    <ClInclude Include="user\user\interaction_child.h" />
-    <ClInclude Include="user\user\interaction_impl.h" />
+    <ClInclude Include="user\user\aaa_interaction_child.h" />
+    <ClInclude Include="user\user\aaa_interaction_impl.h" />
     <ClInclude Include="user\user\interaction_layout.h" />
     <ClInclude Include="user\user\interaction_listener.h" />
     <ClInclude Include="user\user\interaction_graphics_thread.h" />
@@ -1106,7 +1123,7 @@
     <ClInclude Include="user\user\plain_edit.h" />
     <ClInclude Include="user\user\plain_edit_style.h" />
     <ClInclude Include="user\user\plain_text_data.h" />
-    <ClInclude Include="user\user\primitive_impl.h" />
+    <ClInclude Include="user\user\aaa_primitive_impl.h" />
     <ClInclude Include="user\user\fps_interest.h" />
     <ClInclude Include="user\user\progress.h" />
     <ClInclude Include="user\user\range.h" />

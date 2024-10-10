@@ -7,7 +7,7 @@
 #include "apex/platform/system.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
-#include "aura/user/user/interaction_impl.h"
+//#include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/interaction_graphics_thread.h"
 #include "aura/platform/application.h"
 #include "aura/platform/message_queue.h"
@@ -37,9 +37,9 @@ namespace sandbox_windowing
 
       bool bOk = true;
       
-      auto puserinteractionimpl = m_puserinteractionimpl;
+      auto pwindow = m_pwindow;
       
-      auto puserinteraction = puserinteractionimpl->m_puserinteraction;
+      auto puserinteraction = pwindow->m_puserinteraction;
 
       auto pusersystem = puserinteraction->m_pusersystem;
 
@@ -73,7 +73,7 @@ namespace sandbox_windowing
 
       }
 
-      //m_puserinteractionimpl = pimpl;
+      //m_pwindow = pimpl;
 
       //pimpl->m_pwindow = this;
 
@@ -451,7 +451,7 @@ namespace sandbox_windowing
    //   ::pointer< ::mutex >window::s_pmutex = nullptr;
 
 
-   //   i32 oswindow_find_message_only_window(::user::interaction_impl *pimpl)
+   //   i32 oswindow_find_message_only_window(::windowing::window *pimpl)
    //   {
    //
    //      if (pimpl == nullptr)
@@ -467,7 +467,7 @@ namespace sandbox_windowing
    //      {
    //
    //         if (::window::s_pdataptra->element_at(i)->m_bMessageOnlyWindow
-   //             && ::window::s_pdataptra->element_at(i)->m_puserinteractionimpl == pimpl)
+   //             && ::window::s_pdataptra->element_at(i)->m_pwindow == pimpl)
    //         {
    //
    //            return i;
@@ -518,7 +518,7 @@ namespace sandbox_windowing
    //   }
 
    //
-   //   window *oswindow_get_message_only_window(::user::interaction_impl *pinteraction)
+   //   window *oswindow_get_message_only_window(::windowing::window *pinteraction)
    //   {
    //
    //      if (pinteraction == nullptr)
@@ -543,7 +543,7 @@ namespace sandbox_windowing
    //
    //      pdata->m_bMessageOnlyWindow = true;
    //      pdata->m_window = None;
-   //      pdata->m_puserinteractionimpl = pinteraction;
+   //      pdata->m_pwindow = pinteraction;
    //      pdata->m_osdisplay = nullptr;
    //      pdata->m_parent = 0;
    //      pdata->m_pmq = pinteraction->m_puserinteraction->m_pthreadUserInteraction->get_mq();
@@ -625,7 +625,7 @@ namespace sandbox_windowing
    //
    //   g_oswindowDesktop = oswindow_get(dpy, DefaultRootWindow(dpy));
    //
-   //   g_oswindowDesktop->m_puserinteractionimpl = nullptr;
+   //   g_oswindowDesktop->m_pwindow = nullptr;
    //
    //   XSelectInput(g_oswindowDesktop->Display(), g_oswindowDesktop->Window(), StructureNotifyMask);
    //
@@ -852,7 +852,7 @@ namespace sandbox_windowing
 //
 //      }
 //
-//      memory m(m_puserinteractionimpl->m_puserinteraction->get_app());
+//      memory m(m_pwindow->m_puserinteraction->get_app());
 //
 //      int length = 2 + d1->area();
 //
@@ -903,7 +903,7 @@ namespace sandbox_windowing
 //
 //#else
 //
-//      image d1(w->m_puserinteractionimpl->m_puserinteraction->create_new, this);
+//      image d1(w->m_pwindow->m_puserinteraction->create_new, this);
 //
 //      if (!d1->create(24, 24))
 //      {
@@ -916,7 +916,7 @@ namespace sandbox_windowing
 //
 //      d1->get_graphics()->StretchBlt(0, 0, d1.width(), d1.height(), point->get_graphics(), 0, 0, point.width(), point.height());
 //
-//      image d2(w->m_puserinteractionimpl->m_puserinteraction->create_new, this);
+//      image d2(w->m_pwindow->m_puserinteraction->create_new, this);
 //
 //      if (!d2->create(54, 54))
 //      {
@@ -929,7 +929,7 @@ namespace sandbox_windowing
 //
 //      d2->get_graphics()->StretchBlt(0, 0, d2.width(), d2.height(), point->get_graphics(), 0, 0, point.width(), point.height());
 //
-//      memory m(w->m_puserinteractionimpl->m_puserinteraction->get_context_application());
+//      memory m(w->m_pwindow->m_puserinteraction->get_context_application());
 //
 //      int length = 2 + d1->area() + 2 + d2->area();
 //
@@ -1055,7 +1055,7 @@ namespace sandbox_windowing
    }
 
 
-   void window::set_user_interaction(::user::interaction_impl* pimpl)
+   void window::set_user_interaction(::windowing::window* pimpl)
    {
 
       //      single_lock sl(ms_pmutex, true);
@@ -1067,7 +1067,7 @@ namespace sandbox_windowing
       //
       //      }
 
-      m_puserinteractionimpl = pimpl;
+      m_pwindow = pimpl;
 
       m_htask = pimpl->get_app()->get_os_handle();
 
@@ -1081,21 +1081,21 @@ namespace sandbox_windowing
    bool window::is_child(::oswindow oswindow)
    {
 
-      if (oswindow == nullptr || oswindow->m_puserinteractionimpl == nullptr || oswindow->m_puserinteractionimpl->m_puserinteraction == nullptr)
+      if (oswindow == nullptr || oswindow->m_pwindow == nullptr || oswindow->m_pwindow->m_puserinteraction == nullptr)
       {
 
          return false;
 
       }
 
-      if (m_puserinteractionimpl == nullptr || m_puserinteractionimpl->m_puserinteraction == nullptr)
+      if (m_pwindow == nullptr || m_pwindow->m_puserinteraction == nullptr)
       {
 
          return false;
 
       }
 
-      return m_puserinteractionimpl->m_puserinteraction->is_child(oswindow->m_puserinteractionimpl->m_puserinteraction);
+      return m_pwindow->m_puserinteraction->is_child(oswindow->m_pwindow->m_puserinteraction);
 
    }
 
@@ -1455,7 +1455,7 @@ namespace sandbox_windowing
    //      if (rBest != rWindow)
    //      {
    //
-   //         m_puserinteractionimpl->m_puserinteraction->place(rBest);
+   //         m_pwindow->m_puserinteraction->place(rBest);
    //
    //         XMoveResizeWindow(Display(), Window(), rBest.left(), rBest.top(), rBest.width(), rBest.height());
    //
@@ -1586,7 +1586,7 @@ namespace sandbox_windowing
    //   iptr window::get_window_long_ptr(i32 nIndex)
    //   {
    //
-   //      return m_puserinteractionimpl->get_window_long_ptr(nIndex);
+   //      return m_pwindow->get_window_long_ptr(nIndex);
    //
    //   }
 
@@ -1594,7 +1594,7 @@ namespace sandbox_windowing
    //   iptr window::set_window_long_ptr(i32 nIndex, iptr i)
    //   {
    //
-   //      return m_puserinteractionimpl->set_window_long_ptr(nIndex, i);
+   //      return m_pwindow->set_window_long_ptr(nIndex, i);
    //
    //      //iptr iOld = m_plongmap->operator[](nIndex);
    //
@@ -1769,14 +1769,14 @@ namespace sandbox_windowing
 
       }
 
-      if (m_puserinteractionimpl == nullptr)
+      if (m_pwindow == nullptr)
       {
 
          return true;
 
       }
 
-      if (!m_puserinteractionimpl->m_puserinteraction->m_bUserElementOk)
+      if (!m_pwindow->m_puserinteraction->m_bUserElementOk)
       {
 
          return true;
@@ -1847,7 +1847,7 @@ namespace sandbox_windowing
    //
    //      ::rectangle_i32 rBest;
    //
-   //      int iMonitor = best_xinerama_monitor(m_puserinteractionimpl->m_puserinteraction, rectangle, rBest);
+   //      int iMonitor = best_xinerama_monitor(m_pwindow->m_puserinteraction, rectangle, rBest);
    //
    //      windowing_output_debug_string("::oswindow_data::full_screen 1");
    //
@@ -1885,7 +1885,7 @@ namespace sandbox_windowing
    //      if(rBest != rWindow)
    //      {
    //
-   //         m_puserinteractionimpl->m_puserinteraction->place(rBest);
+   //         m_pwindow->m_puserinteraction->place(rBest);
    //
    //         XMoveResizeWindow(d, m_window, rBest.left(), rBest.top(), rBest.width(), rBest.height());
    //
@@ -1931,11 +1931,11 @@ namespace sandbox_windowing
    //      else
    //      {
 
-   //         if (msg.oswindow != nullptr && msg.oswindow->m_puserinteractionimpl != nullptr &&
-   //            msg.oswindow->m_puserinteractionimpl->m_puserinteraction != nullptr)
+   //         if (msg.oswindow != nullptr && msg.oswindow->m_pwindow != nullptr &&
+   //            msg.oswindow->m_pwindow->m_puserinteraction != nullptr)
    //         {
 
-   //            ::user::interaction * pinteraction = msg.oswindow->m_puserinteractionimpl->m_puserinteraction;
+   //            ::user::interaction * pinteraction = msg.oswindow->m_pwindow->m_puserinteraction;
 
    //            pinteraction->post_message(msg.m_atom, msg.wParam, msg.lParam);
 
@@ -1961,7 +1961,7 @@ namespace sandbox_windowing
 
    //   ASSERT(oswindow != nullptr);
 
-   //   ::user::interaction * pinteraction = oswindow->m_puserinteractionimpl->m_puserinteraction;
+   //   ::user::interaction * pinteraction = oswindow->m_pwindow->m_puserinteraction;
 
    //   ::thread * pthread = nullptr;
 
@@ -2036,7 +2036,7 @@ namespace sandbox_windowing
    //::e_status window::mq_remove_window_from_all_queues()
    //{
 
-   //   ::user::interaction * pinteraction = m_puserinteractionimpl->m_puserinteraction;
+   //   ::user::interaction * pinteraction = m_pwindow->m_puserinteraction;
 
    //   if (pinteraction == nullptr)
    //   {
@@ -2182,7 +2182,7 @@ namespace sandbox_windowing
       //      //      if(attrs.override_redirect)
       //      //      {
       //      //
-      //      //         if(!(m_puserinteractionimpl->m_puserinteraction->m_ewindowflag & e_window_flag_arbitrary_positioning))
+      //      //         if(!(m_pwindow->m_puserinteraction->m_ewindowflag & e_window_flag_arbitrary_positioning))
       //      //         {
       //      //
       //      //            XSetWindowAttributes set;
@@ -2279,17 +2279,17 @@ namespace sandbox_windowing
       //
       //         }
       //
-      //         //m_puserinteractionimpl->m_puserinteraction->ModifyStyle(0, WS_VISIBLE, 0);
+      //         //m_pwindow->m_puserinteraction->ModifyStyle(0, WS_VISIBLE, 0);
       //
       //      }
       //      //      else
       //      //      {
       //      //
-      //      //         //m_puserinteractionimpl->m_puserinteraction->ModifyStyle(WS_VISIBLE, 0, 0);
+      //      //         //m_pwindow->m_puserinteraction->ModifyStyle(WS_VISIBLE, 0, 0);
       //      //
       //      //      }
       //
-      //            //m_puserinteractionimpl->on_change_visibility();
+      //            //m_pwindow->on_change_visibility();
       //
       //      windowing_output_debug_string("::window::set_window_pos 2");
 
@@ -2564,7 +2564,7 @@ namespace sandbox_windowing
 //
 //      x11_get_window_rect(rectangle);
 //
-//      //r = oswindow->m_puserinteractionimpl->m_puserinteraction->window_rectangle();
+//      //r = oswindow->m_pwindow->m_puserinteraction->window_rectangle();
 //
 //      //string strTopic = x11_get_name(x11_display(), Window());
 //
@@ -2898,10 +2898,10 @@ namespace sandbox_windowing
 
       bool bOk = false;
 
-      if (::is_set(m_puserinteractionimpl))
+      if (::is_set(m_pwindow))
       {
 
-         ::pointer<::user::interaction>pinteraction = m_puserinteractionimpl->m_puserinteraction;
+         ::pointer<::user::interaction>pinteraction = m_pwindow->m_puserinteraction;
 
          if (pinteraction.is_set())
          {
@@ -2919,7 +2919,7 @@ namespace sandbox_windowing
             try
             {
 
-               //window->m_puserinteractionimpl->release();
+               //window->m_pwindow->release();
 
             }
             catch (...)
@@ -2929,7 +2929,7 @@ namespace sandbox_windowing
 
          }
 
-         //oswindow_remove_impl(window->m_puserinteractionimpl);
+         //oswindow_remove_impl(window->m_pwindow);
 
          m_pwindowing->erase_window(this);
 
@@ -3267,7 +3267,7 @@ namespace sandbox_windowing
 
       }
 
-      //auto pimplFocus = pwindowFocus->m_puserinteractionimpl;
+      //auto pimplFocus = pwindowFocus->m_pwindow;
 
       //if (::is_null(pimplFocus))
       //{
@@ -3427,7 +3427,7 @@ namespace sandbox_windowing
    //   window_post([this]()
    //      {
 
-   //         auto pimpl = m_puserinteractionimpl;
+   //         auto pimpl = m_pwindow;
 
    //         if (::is_set(pimpl))
    //         {
@@ -3477,7 +3477,7 @@ namespace sandbox_windowing
    //   m_pwindowing->windowing_post([this]()
    //      {
 
-   //         auto pimpl = m_puserinteractionimpl;
+   //         auto pimpl = m_pwindow;
 
    //         if (::is_set(pimpl))
    //         {
@@ -3524,10 +3524,10 @@ namespace sandbox_windowing
          if (pwindowing->m_pwindowMouseCapture != this)
          {
 
-            if (pwindowing->m_pwindowMouseCapture->m_puserinteractionimpl)
+            if (pwindowing->m_pwindowMouseCapture->m_pwindow)
             {
 
-               pwindowing->m_pwindowMouseCapture->m_puserinteractionimpl->m_puserinteractionMouseCapture.release();
+               pwindowing->m_pwindowMouseCapture->m_pwindow->m_puserinteractionMouseCapture.release();
 
             }
 
@@ -3603,12 +3603,12 @@ namespace sandbox_windowing
 
    }
 
-      auto puserinteractionimpl = m_puserinteractionimpl;
+      auto pwindow = m_pwindow;
 
    if (pwindowing->m_pwindowKeyboardFocus && pwindowing->m_pwindowKeyboardFocus != this)
    {
 
-      pwindowing->clear_keyboard_focus(puserinteractionimpl ? puserinteractionimpl->m_puserinteractionKeyboardFocusRequest : nullptr);
+      pwindowing->clear_keyboard_focus(pwindow ? pwindow->m_puserinteractionKeyboardFocusRequest : nullptr);
 
    }
 
@@ -3616,11 +3616,11 @@ namespace sandbox_windowing
 
    SetInternalFocus();
      
-      if (puserinteractionimpl)
+      if (pwindow)
    {
 
-      puserinteractionimpl->on_final_set_keyboard_focus();
-         //auto puserinteraction = puserinteractionimpl->m_puserinteraction;
+      pwindow->on_final_set_keyboard_focus();
+         //auto puserinteraction = pwindow->m_puserinteraction;
 
          //if (puserinteraction)
          //{
@@ -3692,12 +3692,12 @@ namespace sandbox_windowing
 //
 //      SetInternalFocus();
 //
-//      //auto puserinteractionimpl = m_puserinteractionimpl;
+//      //auto pwindow = m_pwindow;
 //
-//      //if (puserinteractionimpl)
+//      //if (pwindow)
 //      //{
 //
-//      //   auto puserinteraction = puserinteractionimpl->m_puserinteraction;
+//      //   auto puserinteraction = pwindow->m_puserinteraction;
 //
 //      //   if (puserinteraction)
 //      //   {
@@ -3754,10 +3754,10 @@ namespace sandbox_windowing
    void window::SetInternalFocus()
    {
 
-      //if (m_puserinteractionimpl->m_puserinteractionKeyboardFocusRequest != nullptr)
+      //if (m_pwindow->m_puserinteractionKeyboardFocusRequest != nullptr)
       //{
 
-      //   m_puserinteractionimpl->on_final_set_keyboard_focus(m_puserinteractionimpl->m_puserinteractionKeyboardFocusRequest);
+      //   m_pwindow->on_final_set_keyboard_focus(m_pwindow->m_puserinteractionKeyboardFocusRequest);
 
       //}
 

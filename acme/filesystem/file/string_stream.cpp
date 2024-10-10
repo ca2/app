@@ -8,7 +8,7 @@
 string_stream::string_stream()
 {
 
-   m_pfile = ::place( new class string_buffer ());
+   m_pfile = __new class string_buffer ();
 
 }
 

@@ -1,32 +1,35 @@
 #include "framework.h"
 #include "system.h"
-#include "session.h"
-#include "application.h"
 #include "acme/constant/id.h"
-#include "acme/exception/interface_only.h"
-#include "acme/handler/topic.h"
-#include "acme/primitive/primitive/url.h"
-#include "acme/platform/system_setup.h"
-#include "acme/primitive/text/context.h"
-#include "acme/platform/node.h"
-#include "acme/platform/profiler.h"
-#include "apex/platform/history.h"
-#include "apex/platform/savings.h"
 #include "acme/crypto/crypto.h"
-#include "aura/constant/idpool.h"
+#include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/handler/topic.h"
+#include "acme/windowing/windowing.h"
+#include "acme/platform/node.h"
+#include "acme/platform/profiler.h"
+#include "acme/platform/system_setup.h"
+#include "acme/prototype/prototype/url.h"
+#include "acme/prototype/text/context.h"
+#include "apex/platform/history.h"
+#include "apex/platform/savings.h"
+#include "application.h"
 #include "aqua/game/estamira.h"
-#include "aura/windowing/window.h"
-#include "aura/windowing/windowing.h"
+#include "aura/constant/idpool.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/task_tool.h"
 #include "aura/graphics/gpu/approach.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/graphics/image/imaging.h"
+#include "aura/hardware/devices.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/user.h"
-#include "aura/hardware/devices.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
+#include "framework.h"
+#include "node.h"
+#include "session.h"
 
 
 //CLASS_DECL_ACME ::string implementation_name(const ::scoped_string & scopedstrComponent, const ::scoped_string & scopedstrImplementation)
@@ -2293,11 +2296,11 @@ namespace aura
 //
 //#ifdef UNIVERSAL_WINDOWS
 //
-//         m_spmutexOpenweatherCity = ::place(new ::pointer < ::mutex > ());
+//         m_spmutexOpenweatherCity = __new ::pointer < ::mutex > ();
 //
 //#else
 //
-//         m_spmutexOpenweatherCity = ::place(new ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city"));
+//         m_spmutexOpenweatherCity = __new ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city");
 //
 //#endif
 //
@@ -3448,7 +3451,7 @@ namespace aura
 
 
 
-   //::user::interaction_impl * system::impl_from_handle(void * pdata)
+   //::windowing::window * system::impl_from_handle(void * pdata)
    //{
 
    //   return oswindow_interaction_impl((oswindow)pdata);
@@ -3458,7 +3461,7 @@ namespace aura
    //::user::interaction * system::ui_from_handle(void * pdata)
    //{
 
-   //   ::user::interaction_impl * pimpl = impl_from_handle(pdata);
+   //   ::windowing::window * pimpl = impl_from_handle(pdata);
 
    //   if (pimpl == nullptr)
    //   {
@@ -3873,7 +3876,9 @@ namespace aura
 //      if (strProfile.is_empty() && strTarget.is_empty() && strBrowser.is_empty())
 //      {
 //
-//         //::message_box_synchronous(NULL, strUrl, strUrl, e_message_box_ok);
+//         //::auto pmessagebox = __initialize_new ::message_box(NULL, strUrl, strUrl, e_message_box_ok);
+
+//pmessagebox->sync();
 //
 //         pcontext->m_papexcontext->os().link_open(strUrl);
 //
@@ -4638,7 +4643,7 @@ namespace aura
    //   if (threadgroupa.is_empty())
    //   {
 
-   //      auto pgroup = ::place(new ::task_group(this, epriority));
+   //      auto pgroup = __new ::task_group(this, epriority);
 
    //      threadgroupa.add(pgroup);
 
@@ -4659,7 +4664,7 @@ namespace aura
    //   if (threadtoola.is_empty())
    //   {
 
-   //      auto ptool = ::place(new ::task_tool());
+   //      auto ptool = __new ::task_tool();
 
    //      ptool->m_atom = etool;
 
@@ -4862,7 +4867,7 @@ namespace aura
    //::pointer<::aura::session>system::on_create_session()
    //{
 
-   //   return ::place(new ::axis::session());
+   //   return __new ::axis::session();
 
    //}
 
@@ -4920,7 +4925,7 @@ namespace aura
 
    //}
 
-   //::user::interaction_impl * system::impl_from_handle(void * posdata)
+   //::windowing::window * system::impl_from_handle(void * posdata)
    //{
 
    //   return nullptr;
@@ -5236,7 +5241,7 @@ namespace aura
   //      m_ppatch = new aura::patch ();
   //      g_pszCooperativeLevel = "aura";
   //
-  //      estatus = __construct(m_puserset, ::place(new ::account::user_set(this)));
+  //      estatus = __construct(m_puserset, __new ::account::user_set(this));
   //
   //      if (!estatus)
   //      {
@@ -5630,7 +5635,7 @@ namespace aura
 //   void system::init1()
 //   {
 //
-//      m_pfilehandler = ::place(new ::filehandler::handler(this));
+//      m_pfilehandler = __new ::filehandler::handler(this);
 //
 //      //if (!::aura::application::init1())
 //      //{
@@ -5743,7 +5748,7 @@ namespace aura
 
    //   if(m_phistory == nullptr)
    //   {
-   //      m_phistory = ::place(new os_history(this));
+   //      m_phistory = __new os_history(this);
    //   }
 
    //   return true;
@@ -5777,7 +5782,7 @@ namespace aura
 
    //   //}
 
-   //   //m_pbergedgemap = ::place(new ::aura::session::map());
+   //   //m_pbergedgemap = __new ::aura::session::map();
 
 
    //   return true;
@@ -5858,7 +5863,7 @@ namespace aura
    //::pointer<::aura::session>system::on_create_session()
    //{
 
-   //   return ::place(new ::aura::session());
+   //   return __new ::aura::session();
 
    //}
 
@@ -6931,6 +6936,32 @@ namespace aura
    {
 
       return m_pimaging;
+
+   }
+
+
+   void system::do_graphics_and_windowing_system_factory()
+   {
+
+      if(!m_bGraphicsAndWindowingSystemInitialized)
+      {
+
+         ::aqua::system::do_graphics_and_windowing_system_factory();
+
+         ::string strUserToolkit = ::windowing::get_user_toolkit_id();
+
+         if (strUserToolkit.has_char())
+         {
+
+            auto pfactory = factory("windowing", strUserToolkit);
+
+            pfactory->merge_to_global_factory();
+
+         }
+
+         //user()->create_windowing();
+
+      }
 
    }
 

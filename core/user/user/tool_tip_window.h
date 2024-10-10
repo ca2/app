@@ -2,7 +2,7 @@
 
 
 #include "acme/platform/enum.h"
-#include "acme/primitive/collection/int_map.h"
+#include "acme/prototype/collection/int_map.h"
 #include "aura/user/user/interaction.h"
 
 

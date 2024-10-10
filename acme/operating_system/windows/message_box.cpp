@@ -6,7 +6,7 @@
 #include "acme/_operating_system.h"
 
 
-int message_box_to_windows_message_box_type(enum_message_box emessagebox)
+CLASS_DECL_ACME int message_box_to_windows_message_box_type(enum_message_box emessagebox)
 {
 
    auto emessageboxType = (enum_message_box)(emessagebox & e_message_box_type_mask);
@@ -34,7 +34,7 @@ int message_box_to_windows_message_box_type(enum_message_box emessagebox)
 }
 
 
-int message_box_to_windows_message_box_icon(enum_message_box emessagebox)
+CLASS_DECL_ACME int message_box_to_windows_message_box_icon(enum_message_box emessagebox)
 {
 
    auto emessageboxIcon = (enum_message_box)(emessagebox & e_message_box_icon_mask);
@@ -56,7 +56,7 @@ int message_box_to_windows_message_box_icon(enum_message_box emessagebox)
 }
 
 
-int message_box_to_windows_message_box_default_button(enum_message_box emessagebox)
+CLASS_DECL_ACME int message_box_to_windows_message_box_default_button(enum_message_box emessagebox)
 {
 
    auto emessageboxDefaultButton = (enum_message_box)(emessagebox & e_message_box_default_button_mask);
@@ -78,7 +78,61 @@ int message_box_to_windows_message_box_default_button(enum_message_box emessageb
 }
 
 
-int message_box_to_windows_message_box(enum_message_box emessagebox)
+
+//
+//namespace windows
+//{
+//
+//
+//   class message_box:
+//   public ::operating_system::message_box
+//   {
+//   public:
+//
+//      //::atom do_modal(const ::scoped_string & scopedstrMessage,
+//      //                               const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox,
+//      //                               const ::scoped_string & scopedstrDetails) override
+//      ::enum_dialog_result m_edialogresult;
+//      void run() override
+//      {
+//         auto iType = message_box_to_windows_message_box(m_emessagebox);
+//         ::wstring wstrMessage(m_strMessage);
+//         ::wstring wstrTitle(m_strTitle);
+//
+//         auto iRet = ::MessageBoxW(nullptr, wstrMessage, wstrTitle, iType);
+//
+//         m_edialogresult = windows_message_box_result_to_dialog_result(iRet);
+//
+//
+//      }
+//
+//
+//      void complete_step(sequencer & sequencer) override
+//      {
+//
+//         sequencer.add_result(m_edialogresult);
+//
+//      }
+//
+//   };
+//
+//
+//} // namespace windows
+
+//
+//void windows_message_box_factory(::factory::factory * pfactory)
+//{
+//
+//   pfactory->add_factory_item<::windows::message_box, ::operating_system::message_box >();
+//
+//}
+//
+
+
+
+
+
+CLASS_DECL_ACME int message_box_to_windows_message_box(enum_message_box emessagebox)
 {
 
    int iMessageBox = 0;
@@ -94,7 +148,7 @@ int message_box_to_windows_message_box(enum_message_box emessagebox)
 }
 
 
-enum_dialog_result windows_message_box_result_to_dialog_result(int iResult)
+CLASS_DECL_ACME enum_dialog_result windows_message_box_result_to_dialog_result(int iResult)
 {
 
    switch (iResult)
@@ -128,47 +182,3 @@ enum_dialog_result windows_message_box_result_to_dialog_result(int iResult)
    }
 
 }
-
-
-namespace windows
-{
-
-
-   class message_box:
-   public ::operating_system::message_box
-   {
-   public:
-
-      //::atom do_modal(const ::scoped_string & scopedstrMessage,
-      //                               const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox,
-      //                               const ::scoped_string & scopedstrDetails) override
-      ::payload do_synchronously(const class time& timeWait) override
-      {
-
-         auto iType = message_box_to_windows_message_box(m_emessagebox);
-         ::wstring wstrMessage(m_strMessage);
-         ::wstring wstrTitle(m_strTitle);
-
-         auto iRet = ::MessageBoxW(nullptr, wstrMessage, wstrTitle, iType);
-
-         auto edialogresult = windows_message_box_result_to_dialog_result(iRet);
-
-         return edialogresult;
-
-      }
-
-   };
-
-
-} // namespace windows
-
-
-void windows_message_box_factory(::factory::factory * pfactory)
-{
-
-   pfactory->add_factory_item<::windows::message_box, ::operating_system::message_box >();
-
-}
-
-
-

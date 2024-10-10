@@ -7,7 +7,7 @@
 ////#include "acme/exception/exception.h"
 #include "acme/platform/_synchronization.h"
 #include "acme/platform/acme.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/string/str.h"
 #include <sys/wait.h>
 #include <unistd.h>
 #if !defined(OPENBSD)

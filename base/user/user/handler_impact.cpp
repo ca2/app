@@ -115,7 +115,7 @@ namespace user
       //   //if (ptopic->m_actioncontext.is_user_source())
       //   //{
 
-      //   //   if (ptopic->m_puserelement->m_atom == "edit")
+      //   //   if (ptopic->user_interaction_id() == "edit")
       //   //   {
 
       //   //      string strText;
@@ -141,13 +141,13 @@ namespace user
       ////      else if (ptopic->m_atom == ::id_click)
       ////      {
       ////
-      ////         if (ptopic->m_puserelement->m_atom == "clear_button")
+      ////         if (ptopic->user_interaction_id() == "clear_button")
       ////         {
       ////
       ////            m_pedit->set_text("", ::e_source_user);
       ////
       ////         }
-      ////         else if (ptopic->m_puserelement->m_atom == "send_button")
+      ////         else if (ptopic->user_interaction_id() == "send_button")
       ////         {
       ////
       ////            string strText;

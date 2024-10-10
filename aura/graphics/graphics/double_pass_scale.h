@@ -466,7 +466,7 @@ color_indexes indexes,
 
       pOrig.alloc(sizeof(::image32_t) * uOrigWidth * uOrigHeight);
 
-      ::copy_image32(pOrig, uOrigWidth, uOrigHeight, uOrigWidth * sizeof(::image32_t), pOrigImage, uOrigScan);
+      pOrig->copy(uOrigWidth, uOrigHeight, uOrigWidth * sizeof(::image32_t), pOrigImage, uOrigScan);
 
       HorizScale(pOrig,
          indexes,
@@ -506,7 +506,7 @@ color_indexes indexes,
 
       }
 
-      ::copy_image32(pDstImage, uNewWidth, uNewHeight, uNewScan, pDest, uNewWidth * sizeof(::image32_t));
+      pDstImage->copy(uNewWidth, uNewHeight, uNewScan, pDest, uNewWidth * sizeof(::image32_t));
 
    }
 

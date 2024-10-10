@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "memory_file.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 ////#include "acme/exception/exception.h"
 #include "acme/exception/io.h"
 #include "acme/filesystem/file/exception.h"
@@ -918,7 +918,7 @@ memory_file & memory_file::operator = (const memory_file & file)
 //CLASS_DECL_ACME memory_file_pointer create_memory_file(::memory_base & memory)
 //{
 //   
-//   return ::place(new ::memory_file(memory)); 
+//   return __new ::memory_file(memory); 
 //
 //}
 //
@@ -926,7 +926,7 @@ memory_file & memory_file::operator = (const memory_file & file)
 //CLASS_DECL_ACME memory_file_pointer create_memory_file(const ::block & block)
 //{
 //   
-//   return ::place(new ::memory_file(block)); 
+//   return __new ::memory_file(block); 
 //
 //}
 //
@@ -934,7 +934,7 @@ memory_file & memory_file::operator = (const memory_file & file)
 //CLASS_DECL_ACME memory_file_pointer create_memory_file_as_copy(const memory & memory) 
 //{
 //   
-//   return ::place(new ::memory_file(::place(new ::memory (memory)))); 
+//   return __new ::memory_file(::as(new ::memory (memory))); 
 //
 //}
 //

@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "acme/platform/system.h"
-#include "nano/user/window.h"
+#include "acme/windowing/windowing.h"
+#include "acme/nano/nano.h"
+#include "acme/user/micro/user.h"
 #include "acme/_operating_system.h"
 
 
@@ -113,30 +115,47 @@ void _do_tasks()
    if (is_main_thread())
    {
 
-      ::windows::nano::user::process_messages();
+      auto pwindowing = ::platform::get()->system()->acme_windowing();
+
+      if (pwindowing)
+      {
+
+         pwindowing->process_messages();
+
+      }
 
    }
 
-   if (::nano::user::window_implementation::nanowindowimplementationa().has_element())
+   auto pwindowing = ::platform::get()->system()->acme_windowing();
+
+   if (pwindowing)
    {
 
-      for (auto & pimplementation : ::nano::user::window_implementation::nanowindowimplementationa())
-      {
-
-         if (pimplementation)
-         {
-
-            pimplementation->implementation_message_loop_step();
-
-         }
-
-      }
+      pwindowing->_do_tasks();
 
    }
 
 }
 
 
+CLASS_DECL_ACME class ::time default_run_timeout()
+{
+
+   class ::time timeDefaultTimeout;
+
+#ifdef DEBUG
+
+   timeDefaultTimeout = 5_min;
+
+#else
+
+   timeDefaultTimeout = 15_s;
+
+#endif
+
+   return timeDefaultTimeout;
+
+}
 
 
 

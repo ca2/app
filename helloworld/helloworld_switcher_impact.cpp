@@ -99,7 +99,7 @@ namespace helloworld
       if(ptopic->m_atom == ::id_click)
       {
 
-         if(ptopic->user_element_id() == "switcher_toggle")
+         if(ptopic->user_interaction_id() == "switcher_toggle")
          {
 
             ::pointer<impact>pimpact = m_pimpact;
@@ -109,7 +109,7 @@ namespace helloworld
             return true;
 
          }
-         else if(ptopic->user_element_id() == "helloworld_toggle")
+         else if(ptopic->user_interaction_id() == "helloworld_toggle")
          {
 
             m_pimpact->m_prender->m_bLite = !m_pimpact->m_prender->m_bLite;

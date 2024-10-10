@@ -197,7 +197,7 @@ namespace database
 
       }
 
-      auto pvara = ::place(new payload_array());
+      auto pvara = __new payload_array();
 
       for (::collection::index i = 0; i < pset->m_prowa->get_count(); i++)
       {

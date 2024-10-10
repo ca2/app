@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/mathematics/scalar.h"
+#include "acme/prototype/mathematics/scalar.h"
 #include "apex/networking/sockets/basic/tcp_socket.h"
 #include "apex/networking/http/request.h"
 #include "apex/networking/http/response.h"

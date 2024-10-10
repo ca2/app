@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "email.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/string/base64.h"
+#include "acme/prototype/string/base64.h"
 
 
 namespace networking

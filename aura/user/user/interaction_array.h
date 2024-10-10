@@ -37,40 +37,40 @@ namespace user
 
 
 
-   class CLASS_DECL_AURA primitive_pointer_array :
-      virtual public matter
-   {
-   public:
+   //class CLASS_DECL_AURA interaction_pointer_array :
+   //   virtual public matter
+   //{
+   //public:
 
 
-      DECLARE_ARRAY_OF(primitive_pointer_array, primitive, ::user::primitive);
+   //   DECLARE_ARRAY_OF(interaction_pointer_array, interaction, ::user::interaction);
 
 
-      primitive_pointer_array();
-      primitive_pointer_array(const address_array < ::user::primitive * > & a);
-      primitive_pointer_array(const pointer_array < ::user::primitive > & a)
-      {
+   //   interaction_pointer_array();
+   //   interaction_pointer_array(const address_array < ::user::interaction * > & a);
+   //   interaction_pointer_array(const pointer_array < ::user::interaction > & a)
+   //   {
 
-         m_primitivea.copy(a);
+   //      m_interactiona.copy(a);
 
-      }
-      primitive_pointer_array(const ::user::primitive_pointer_array & a)
-      {
+   //   }
+   //   interaction_pointer_array(const ::user::interaction_pointer_array & a)
+   //   {
 
-         m_primitivea.copy(a.m_primitivea);
+   //      m_interactiona.copy(a.m_interactiona);
 
-      }
-
-
-      ::user::primitive * find_first_typed(const ::type_atom & typeatom);
-      ::user::primitive * find_first(oswindow oswindow);
+   //   }
 
 
-      virtual bool get_child(::pointer<::user::primitive>& pprimitive);
-      virtual bool rget_child(::pointer<::user::primitive>& pprimitive);
+   //   ::user::interaction * find_first_typed(const ::type_atom & typeatom);
+   //   ::user::interaction * find_first(oswindow oswindow);
 
 
-   };
+   //   virtual bool get_child(::pointer<::user::interaction>& pinteraction);
+   //   virtual bool rget_child(::pointer<::user::interaction>& pinteraction);
+
+
+   //};
 
 
    class CLASS_DECL_AURA interaction_array :

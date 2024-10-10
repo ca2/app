@@ -13,8 +13,8 @@
 #include "acme/handler/topic.h"
 #include "acme/platform/node.h"
 #include "acme/platform/timer.h"
-#include "acme/primitive/geometry2d/_binary_stream.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/geometry2d/_binary_stream.h"
+#include "acme/prototype/string/str.h"
 #include "acme/platform/scoped_restore.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
@@ -672,7 +672,7 @@ namespace user
          if (!r.contains(point))
          {
 
-            auto pitem = ::place(new ::item(e_element_none));
+            auto pitem = __new ::item(e_element_none);
 
             return pitem;
 
@@ -705,7 +705,7 @@ namespace user
 
          //return prichtextdata->hit_test(point);
 
-         auto pitem = ::place(new ::item(e_element_item));
+         auto pitem = __new ::item(e_element_item);
 
          auto prichtextdata = get_rich_text_data();
 
@@ -1299,7 +1299,7 @@ namespace user
 
                string str;
 
-               get_selection_text(str);
+               str = get_selection_text();
 
                if (str.is_empty())
                {
@@ -1353,7 +1353,7 @@ namespace user
 
                string str;
 
-               get_selection_text(str);
+               str = get_selection_text();
 
                auto pcopydesk = copydesk();
 

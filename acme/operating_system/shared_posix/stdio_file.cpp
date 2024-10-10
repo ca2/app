@@ -9,7 +9,7 @@
 #include "acme/operating_system/shared_posix/c_error_number.h"
 #include "acme/platform/system.h"
 #include "acme/platform/trace.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 
 
 #include <errno.h>

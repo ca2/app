@@ -9,7 +9,7 @@
 #include "apex/database/change_event.h"
 #include "acme/handler/request.h"
 #include "apex/platform/node.h"
-#include "acme/primitive/data/tree_item.h"
+#include "acme/prototype/data/tree_item.h"
 //#include "apex/platform/os_context.h"
 
 #include "apex/platform/savings.h"
@@ -309,7 +309,7 @@ namespace core
       auto typeinfo = psystem->get_simple_frame_window_type_info();
 
       add_impact_system(
-         "system/form", ::place(new ::user::multiple_document_template(
+         "system/form", ::as(new ::user::multiple_document_template(
          "system/form",
          ::type < form_document >(),
          psystem->get_simple_frame_window_type_info(),
@@ -323,7 +323,7 @@ namespace core
       //add_document_template(ptemplate);
       //add_impact_system(
       //   "system/form_child",
-      //   ::place(new ::user::multiple_document_template(
+      //   ::as(new ::user::multiple_document_template(
       //   "system/form",
       //   ::type < form_document >(),
       //   get_simple_child_frame_type_info(),
@@ -335,7 +335,7 @@ namespace core
 
       //add_document_template(m_ptemplateChildForm);
       add_impact_system(
-         "system/form_placeholder", ::place(new ::user::multiple_document_template(
+         "system/form_placeholder", ::as(new ::user::multiple_document_template(
          "system/form",
          ::type < ::user::document >(),
          psystem->get_simple_frame_window_type_info(),
@@ -348,7 +348,7 @@ namespace core
       //add_document_template(ptemplate);
 
       add_impact_system(
-         "progress_impact", ::place(new ::user::multiple_document_template(
+         "progress_impact", ::as(new ::user::multiple_document_template(
          "main",
          ::type < ::user::document >(),
          ::type < ::userex::dialog_frame >(),
@@ -596,7 +596,7 @@ namespace core
    }
 
 
-   pointer< ::sequence < ::conversation > > user::ui_message_box(::particle * pparticle, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   pointer< ::sequence < ::conversation > > user::ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
    {
 
       return nullptr;
@@ -731,7 +731,7 @@ namespace core
    }
 
 
-   pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox)
+   pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox)
    {
 
       //__UNREFERENCED_PARAMETER(puiOwner);
@@ -1585,12 +1585,12 @@ namespace core
    //::pointer<::user::user>application::create_userex()
    //{
 
-   //   return ::place(new ::user::user());
+   //   return __new ::user::user();
 
    //}
 
 
-   //i32 application::sync_message_box(::user::primitive * puiOwner, const ::string & pszMessage, ::u32 fuStyle)
+   //i32 application::sync_message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, ::u32 fuStyle)
    //{
 
    //   ::acme::get()->platform()->informationf("\n\napp_message_box: " + string(pszMessage) + "\n\n");
@@ -1603,7 +1603,7 @@ namespace core
    //}
 
 
-   //i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, ::time timeTimeOut, ::u32 fuStyle)
+   //i32 application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, ::time timeTimeOut, ::u32 fuStyle)
    //{
 
    //   if (psession->user() == nullptr)
@@ -1743,7 +1743,7 @@ namespace core
 
             //m_pimpactsystemFileManager = 
             add_impact_system(
-               FILEMANAGER_IMPACT, ::place(new ::user::multiple_document_template(
+               FILEMANAGER_IMPACT, ::as(new ::user::multiple_document_template(
                   "filemanager",
                   ::type < ::filemanager::document >(),
                   ::type < ::filemanager::frame >(),
@@ -1763,14 +1763,14 @@ namespace core
          //add_factory_item <::user::color_impact >();
 
    //      add_impact_system(
-   //COLORSEL_IMPACT, ::place(new ::user::multiple_document_template(
+   //COLORSEL_IMPACT, ::as(new ::user::multiple_document_template(
    //   "main",
    //   ::type < ::user::document >(),
    //   ::type < ::simple_frame_window >(),
    //   ::type < ::user::color_selector_impact >())));
 
 
-         //user()->m_mapimpactsystem[COLORSEL_IMPACT] = ::place(new ::user::multiple_document_template(
+         //user()->m_mapimpactsystem[COLORSEL_IMPACT] = ::as(new ::user::multiple_document_template(
          //   get_app(),
          //   "main",
          //   ::type < ::user::document >(),
@@ -1793,7 +1793,7 @@ namespace core
          factory()->add_factory_item <::user::color_selector_impact >();
 
          add_impact_system(
-            COLORSEL_IMPACT, ::place(new ::user::multiple_document_template(
+            COLORSEL_IMPACT, ::as(new ::user::multiple_document_template(
             "main",
             ::type < ::user::document >(),
             ::type < ::simple_frame_window >(),
@@ -1823,7 +1823,7 @@ namespace core
          factory()->add_factory_item <::userex::font_impact >();
 
          add_impact_system(
-            FONTSEL_IMPACT, ::place(new ::user::multiple_document_template(
+            FONTSEL_IMPACT, ::as(new ::user::multiple_document_template(
             "main",
             ::type < ::user::document >(),
             ::type < ::simple_frame_window >(),
@@ -1853,7 +1853,7 @@ namespace core
    }
 
 
-   //void application::message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 uFlags, ::function_arg function)
+   //void application::message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 uFlags, ::function_arg function)
    //{
 
    //   auto estatus = ui_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, fuStyle, functionarg);
@@ -1865,7 +1865,9 @@ namespace core
 
    //   }
 
-   //   return message_box_synchronous(this, puiOwner, pszMessage, pszTitle, fuStyle, functionarg);
+   //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, fuStyle, functionarg);
+
+pmessagebox->sync();
 
    //}
 

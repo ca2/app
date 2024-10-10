@@ -2,10 +2,10 @@
 #pragma once
 
 
-//#include "acme/primitive/geometry2d/_geometry2d.h"
-#include "acme/primitive/geometry2d/rectangle.h"
-#include "acme/primitive/primitive/concrete.h"
-//#include "acme/primitive/primitive/matter.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
+#include "acme/prototype/geometry2d/rectangle.h"
+#include "acme/prototype/prototype/concrete.h"
+//#include "acme/prototype/prototype/matter.h"
 
 
 namespace image

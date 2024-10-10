@@ -272,7 +272,7 @@ namespace user
 
    //   }
 
-   //   auto pitem = ::place(new item(strName, strId, strLabel, strAccelerator, strDescription));
+   //   auto pitem = __new item(strName, strId, strLabel, strAccelerator, strDescription);
 
    //   pitem->m_bStockItem = bStockItem;
 

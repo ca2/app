@@ -4,36 +4,37 @@
 //
 #pragma once
 
-
-#include "acme/platform/conversation_message.h"
-
-
-namespace operating_system
-{
-
-
-   class message_box :
-virtual public ::conversation_message
-   {
-   public:
-
-
-      //virtual void do_modal(const char * pszMsg, bool bError);
-
-//      virtual ::atom initialize_conversation(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails = {});
-
-      //virtual ::atom do_modal();
-      
-      ::payload do_synchronously(const class time & timeWait) override;
-
-      
-      static ::pointer< ::sequencer < ::conversation > > create_sequencer(::particle * pparticle, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails);
-
-      
-   };
-
-} // operating_system
-
-
+//
+//#include "acme/platform/message_box.h"
+//
+//
+//namespace operating_system
+//{
+//
+//
+//   class message_box :
+//      virtual public ::message_box
+//   {
+//   public:
+//
+//
+//      //virtual void do_modal(const char * pszMsg, bool bError);
+//
+////      virtual ::atom initialize_conversation(const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails = {});
+//
+//      //virtual ::atom do_modal();
+//      
+//      void run() override;
+//      void complete_step(sequencer & sequencer) override;
+//
+//      
+//      static ::pointer < ::subparticle > create_sequencer(::particle * pparticle, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon);
+//
+//      
+//   };
+//
+//} // operating_system
+//
+//
 
 

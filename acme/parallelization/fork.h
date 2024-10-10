@@ -54,7 +54,7 @@ template < typename PRED >
 inline auto new_predicateicate_task(::particle * pparticle, PRED pred)
 {
 
-   return ::place(new predicate_task < PRED >  (pparticle, pred));
+   return __new predicate_task < PRED >  (pparticle, pred);
 
 }
 
@@ -214,7 +214,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //::task * fork(::particle * pparticle, PRED pred, const ::scoped_string & scopedstrTag, int iCallStackAddUp = 0, enum_priority epriority = e_priority_normal)
 //{
 //
-//   auto ppredtask = ::place(new predicate_task < PRED > (pparticle, pred));
+//   auto ppredtask = __new predicate_task < PRED > (pparticle, pred);
 //
 //   string strTag(pszTag);
 //
@@ -473,7 +473,7 @@ public:
 //   for (::collection::index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
 //
-//      auto ppredtask = ::place(new forking_count_task < PRED > (iOrder, iOrder + iStart, iScan, iCount, pred, pobjectTaskEnd));
+//      auto ppredtask = __new forking_count_task < PRED > (iOrder, iOrder + iStart, iScan, iCount, pred, pobjectTaskEnd);
 //
 //      ppredtask->begin();
 //
@@ -570,12 +570,12 @@ public:
 //
 //   ::collection::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 //
-//   auto pcounter = ::place(new ::counter < ::i32 > (iScan));
+//   auto pcounter = __new ::counter < ::i32 > (iScan);
 //
 //   for (::collection::index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
 //
-//      auto ppredtask = ::place(new forking_for_task < PRED > (pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred));
+//      auto ppredtask = __new forking_for_task < PRED > (pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred);
 //
 //      ppredtask->m_pcounter = pcounter;
 //
@@ -602,7 +602,7 @@ public:
 //
 //   ::collection::count iScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 //
-//   auto pcounter = ::place(new ::counter < ::i32 >  (iScan));
+//   auto pcounter = __new ::counter < ::i32 >  (iScan);
 //
 //   auto pobjectTaskEnd = __runnable(predEnd);
 //
@@ -611,7 +611,7 @@ public:
 //   for (::collection::index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
 //
-//      auto ppredtask = ::place(new forking_for_task < PRED > (pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred));
+//      auto ppredtask = __new forking_for_task < PRED > (pobjectParent, iOrder, iOrder + iStart, iScan, iCount, pred);
 //
 //      ppredtask->m_pcounter = pcounter;
 //
@@ -657,7 +657,7 @@ CLASS_DECL_ACME u32 processor_index_generator();
 //   for (::collection::index iProcessor = 0; iProcessor < iCount; iProcessor++)
 //   {
 //
-//      auto ppredtask = ::place(new predicate_task < PRED > (pobjectParent, pred));
+//      auto ppredtask = __new predicate_task < PRED > (pobjectParent, pred);
 //
 //      ::task * ptask = dynamic_cast < ::task * > (ppredtask);
 //

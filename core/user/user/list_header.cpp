@@ -4,7 +4,7 @@
 #include "list_column.h"
 #include "list_column_array.h"
 #include "acme/constant/message.h"
-#include "acme/primitive/collection/_array_binary_stream.h"
+#include "acme/prototype/collection/_array_binary_stream.h"
 #include "apex/database/_binary_stream.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/item.h"
@@ -791,9 +791,9 @@ namespace user
 
       //         host_to_client(rectangleX);
 
-      //         m_pshapeaClip->add_item(::place(new rectangle_shape(::rectangle_f64(rectangleX))));
+      //         m_pshapeaClip->add_item(__new rectangle_shape(::rectangle_f64(rectangleX)));
 
-      //         m_pshapeaClip->add_item(::place(new intersect_clip_shape()));
+      //         m_pshapeaClip->add_item(__new intersect_clip_shape());
 
       //         pinteraction = pinteraction->get_parent();
 
@@ -871,9 +871,9 @@ namespace user
 
       ////         rectangleFocus.right()++;
 
-      ////         m_pshapeaClip->add_item(::place(new rectangle_shape(rectangleIntersect)));
+      ////         m_pshapeaClip->add_item(__new rectangle_shape(rectangleIntersect));
 
-      ////         m_pshapeaClip->add_item(::place(new intersect_clip_shape()));
+      ////         m_pshapeaClip->add_item(__new intersect_clip_shape());
 
       ////         i++;
 

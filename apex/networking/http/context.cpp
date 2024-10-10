@@ -4,12 +4,12 @@
 #include "get_socket.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/nano/http/get.h"
-#include "acme/primitive/primitive/url.h"
-#include "acme/primitive/primitive/url_domain.h"
+#include "acme/prototype/prototype/url.h"
+#include "acme/prototype/prototype/url_domain.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
-#include "acme/primitive/primitive/_text_stream.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/prototype/_text_stream.h"
+#include "acme/prototype/string/str.h"
 #include "apex/constant/idpool.h"
 #include "apex/networking/networking.h"
 #include "apex/networking/http/message.h"
@@ -25,7 +25,7 @@
 #include <time.h>
 
 
-#include "acme/primitive/time/_text_stream.h"
+#include "acme/prototype/time/_text_stream.h"
 
 
 
@@ -114,7 +114,7 @@ namespace http
    }
 
 
-   void context::sync(::nano::http::get * pget)
+   void context::perform(::nano::http::get * pget)
    {
 
       ::property_set set(pget->m_setIn);
@@ -1191,7 +1191,7 @@ namespace http
 
       string strSessId;
 
-      psession = ::place(new ::sockets::http_session(connect));
+      psession = __new ::sockets::http_session(connect);
 
       /*::pointer<::account::user>puser;
 
@@ -1734,7 +1734,7 @@ namespace http
 //            else
 //            {
 //
-//               set["get_memory"] = ::place(new memory(psession->GetDataPtr(), psession->GetContentLength()));
+//               set["get_memory"] = __new memory(psession->GetDataPtr(), psession->GetContentLength());
 //
 //            }
 //
@@ -2655,7 +2655,7 @@ namespace http
          else
          {
 
-            set["get_memory"] = ::place(new memory(psocket->GetDataPtr(), psocket->GetContentLength()));
+            set["get_memory"] = __new memory(psocket->GetDataPtr(), psocket->GetContentLength());
 
          }
 

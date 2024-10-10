@@ -1,12 +1,12 @@
 #include "framework.h"
 #include "acme/parallelization/task.h"
 #include "acme/operating_system/ansi/_pthread.h"
-#include "acme/nano/user/display.h"
+#include "acme/user/micro/display.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/node.h"
 #include "acme/platform/platform.h"
 #include "acme/platform/system.h"
-#include "acme/windowing_system/windowing_system.h"
+#include "acme/windowing/windowing_base.h"
 
 //::user::enum_desktop get_edesktop();
 
@@ -91,7 +91,9 @@ namespace acme
 
       information() << "acme::node::user_post going to display_post";
 
-      ::nano::user::display::g_p->display_post(procedure);
+      auto pdisplay = system()->acme_windowing()->display();
+
+      pdisplay->display_post(procedure);
 
    }
 
@@ -138,7 +140,7 @@ void _do_tasks()
 
    auto psystem = ::platform::get()->system();
 
-   auto pwindowingsystem = psystem->windowing_system();
+   auto pwindowingsystem = psystem->m_pwindowingsystem;
 
    if(::is_set(pwindowingsystem)) {
 

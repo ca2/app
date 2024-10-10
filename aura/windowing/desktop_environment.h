@@ -18,7 +18,6 @@ namespace windowing
 
 
       bool                                      m_bUnhook;
-      ::pointer<::windowing::windowing>        m_pwindowing;
 
 
       desktop_environment();
@@ -33,6 +32,9 @@ namespace windowing
       virtual ::pointer < ::graphics::graphics > create_graphics();
 
       virtual bool message_loop_step();
+
+      virtual ::string get_user_theme();
+      virtual void set_user_theme(const ::scoped_string & scopedstrUserTheme);
 
 
    };

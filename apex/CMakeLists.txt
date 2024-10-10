@@ -591,10 +591,12 @@ list(APPEND apex_source
         user/user/message.cpp
         user/user/message.h
         #user/user/notify_icon_bridge.h
-        user/user/primitive.cpp
-        user/user/primitive.h
-        version/version.config.h
-        version/version.h
+        user/user/prototype.cpp
+        user/user/prototype.h
+        release/release.config.h
+        release/release.h
+   windowing/prototype.cpp
+   windowing/prototype.h
         #_.cpp
         _.h
         #_defer.h
@@ -849,6 +851,9 @@ if (UWP)
             #            operating_system/universal_windows/time.cpp
             #            operating_system/universal_windows/user.cpp
             #
+
+       windowing/primitive.cpp
+       windowing/primitive.h
     )
 
 else ()

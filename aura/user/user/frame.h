@@ -16,6 +16,8 @@ namespace user
    public:
 
 
+      //::oswindow                                   m_oswindow;
+
       bool                                         m_bSnapToBars : 1;
       bool                                         m_bAddToTitle : 1;
       bool                                         m_bPrefixTitle : 1;
@@ -47,12 +49,21 @@ namespace user
       ~frame() override;
 
 
+
+      virtual void create_window();
+
+
       virtual void install_message_routing(::channel* pchannel) override;
 
       virtual ::task_pool  * taskpool() override;
 
 
       void destroy() override;
+
+
+      void start_destroying_window() override;
+
+      void destroy_window() override;
 
       //virtual bool is_os_host() const override;
 
@@ -68,6 +79,13 @@ namespace user
 
       
       //void this->rectangle(::rectangle_i32 * prectangle) override;
+      ::user::interaction_base * set_parent(::user::interaction_base * puserinteractionParent);
+      
+      
+      void user_interaction_on_destroy() override;
+
+
+      //::user::thread * user_thread() override;
 
       
       virtual bool is_translucid_user_style(enum_style estyle);

@@ -9,8 +9,8 @@
 #include "application_flags.h"
 #include "acme/constant/gender.h"
 #include "acme/parallelization/_types.h"
-#include "acme/primitive/collection/map.h"
-#include "acme/primitive/primitive/factory.h"
+#include "acme/prototype/collection/map.h"
+#include "acme/prototype/prototype/factory.h"
 
 
 namespace innate_ui
@@ -64,6 +64,8 @@ namespace acme
       ::pointer < ::mathematics::mathematics >        m_pmathematics;
       // FROM MAIN (Now APPLICATION_FLAGS : merged on other classes?)
 
+      bool                                            m_bGraphicsAndWindowingSystemInitialized;
+
       ::i32_sz* m_pintstringLanguageResourceMap;
       int                              m_iMatterFromHttpCache;
 
@@ -74,17 +76,20 @@ namespace acme
       double                                                m_dLuminance;
       ::pointer < ::innate_ui::innate_ui >                  m_pinnateui;
 
+      ::pointer < ::micro::user >                           m_pmicrouser;
+      ::pointer < ::acme::windowing::windowing >            m_pacmewindowing;
+
       // END FROM MAIN (Now APPLICATION_FLAGS)
 
       // FROM ::main (Now main2)
 
-      ::file::path                     m_pathCacheDirectory;
-      class ::time                          m_timeStart;
-      class ::time                          m_timeAfterApplicationFirstRequest;
+      ::file::path                              m_pathCacheDirectory;
+      class ::time                              m_timeStart;
+      class ::time                              m_timeAfterApplicationFirstRequest;
 
-      int                              m_iExitCode = 0;
-
-      ::pointer < ::acme::system_factory > m_psystemfactory;
+      int                                       m_iExitCode = 0;
+      enum_trace_level                          m_etracelevelMinimum;
+      ::pointer < ::acme::system_factory >      m_psystemfactory;
       // END FROM ::main (Now main2)
 
 
@@ -93,7 +98,6 @@ namespace acme
 
 
       //::pointer<main_hold_base>                                         m_pmainholdbase;
-      enum_windowing                                                    m_ewindowing;
       //::pointer<system_impl> *                                        m_psystemimpl;
 #if !defined(WINDOWS)
       ::pointer<::exception_translator>                                 m_pexceptiontranslator;
@@ -105,7 +109,7 @@ namespace acme
 
       ::pointer<::apex::system>                                       m_psystemParent;
 
-      ::pointer < ::primitive::primitive >                              m_pprimitive;
+      ::pointer < ::prototype::prototype >                              m_pprototype;
       //::pointer < ::mutex >                                           m_pmutexFactory;
       //string_map < ::pointer<::factory::factory >>                  m_mapFactory;
       //string_map < ::pointer<::factory::factory >>                      m_mapFactory;
@@ -117,16 +121,9 @@ namespace acme
       void * m_pmmos;
 #endif
 
-      ::pointer < ::particle >                                 m_pmutexTask;
-      task_map                                                 m_taskmap;
-      task_id_map                                              m_taskidmap;
-      ::pointer < ::particle >                                 m_pmutexTaskOn;
-
-
       //::pointer < ::draw2d::draw2d  >                          m_pdraw2d;
       
       
-      ::map < itask_t, itask_t >                               m_mapTaskOn;
 
 
       ::pointer < ::datetime::datetime >                       m_pdatetime;
@@ -179,9 +176,9 @@ namespace acme
       ::pointer < ::mutex >                  m_pmutexHttpDownload;
       string_array                           m_straHttpDownloading;
       string_array                           m_straHttpExists;
-         ::pointer < ::windowing_system::windowing_system > m_pwindowingsystem;
+         //::pointer < ::windowing::windowing_base > m_pwindowingbase;
 //#if defined(WITH_X11) || defined(WITH_XCB)
-  //    ::pointer < ::particle >                                 m_pmutexXlib;
+  //    ::particle_pointer                                 m_pmutexXlib;
 //#endif
       ::pointer < ::factory::factory_item_interface >      m_pfactoryitemCompressZlib;
       ::pointer < ::factory::factory_item_interface >      m_pfactoryitemUncompressZlib;
@@ -199,12 +196,16 @@ namespace acme
 
       void on_initialize_particle() override;
 
-      
+
+      virtual void do_graphics_and_windowing_system_factory();
+
+
       void initialize_system();
 
-
+      virtual enum_trace_level get_trace_level();
       //void os_construct();
 
+         virtual void initialize_matter();
 
 #ifdef _DEBUG
 
@@ -254,6 +255,10 @@ namespace acme
 
       virtual ::nano::nano * nano();
 
+      virtual ::micro::user * micro_user();
+      virtual ::acme::windowing::windowing * acme_windowing();
+      virtual ::windowing::windowing * windowing();
+
       virtual void defer_innate_ui();
 
       virtual ::innate_ui::innate_ui * innate_ui();
@@ -266,12 +271,12 @@ namespace acme
 
       ::acme::acme * acme() const { return m_pplatform->m_pacme; }
 
-      ::primitive::primitive * primitive() const { return m_pprimitive; }
+      ::prototype::prototype * prototype() const { return m_pprototype; }
 
       virtual ::draw2d::draw2d * draw2d() const;
       virtual ::write_text::write_text * write_text() const;
 
-         virtual ::windowing_system::windowing_system * windowing_system();
+         //virtual ::windowing::windowing_base * windowing_base();
 
       virtual string get_system_platform();
       virtual string get_system_configuration();
@@ -451,10 +456,6 @@ namespace acme
       //virtual void main_user_sync(const ::procedure & procedure, const class time & time = one_minute(), enum_priority epriority = e_priority_normal);
 
 
-      ::task * get_task(itask_t itask);
-      itask_t get_task_id(const ::task * ptask);
-      void set_task(itask_t itask, ::task * ptask);
-      void unset_task(itask_t itask, ::task * ptask);
 
 
       void init_task() override;
@@ -549,13 +550,6 @@ namespace acme
 
       ::task_tool * task_tool(::enum_task_tool etool);
 
-      virtual bool is_task_on(itask_t atom);
-
-      virtual bool is_active(::task * ptask);
-
-      virtual void set_task_on(itask_t atom);
-
-      virtual void set_task_off(itask_t atom);
 
 
       static inline ::atom atom(const ::std::type_info & info);
@@ -708,12 +702,30 @@ namespace acme
 
       virtual void set_dark_mode(bool bDark);
 
+      virtual ::color::color get_simple_ui_color(::enum_element eelement, ::user::enum_state estate = ::user::e_state_none);
+
+      virtual ::color::color get_default_color(::color::color color);
+
+
 // #if defined(WITH_X11)
 //       virtual void x11_sync(const ::procedure & procedure);
 //       virtual void x11_async(const ::procedure & procedure);
 // #endif
       
-      virtual void on_component_factory(const ::scoped_string & scopedstrComponent);
+      virtual bool defer_component_factory(const ::scoped_string & scopedstrComponent);
+      virtual bool _defer_component_factory(const ::scoped_string & scopedstrComponent);
+      
+      //::pointer < ::message_box > & realize(::pointer < ::message_box > & pmessagebox);
+      
+      //::pointer < ::message_box > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+
+      //::pointer < ::message_box > exception_message_box(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+
+      //::pointer < ::message_box > message_console(const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+
+      //::pointer < ::message_box > exception_message_console(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+
+
 
 
    };

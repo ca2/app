@@ -3,7 +3,7 @@
 int main(int argc, char * argv[])
 {
 
-   auto psystem = ::place(new ::aura::system());
+   auto psystem = __new ::aura::system();
 
    psystem->application_initialize();
 

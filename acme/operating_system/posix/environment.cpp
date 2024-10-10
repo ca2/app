@@ -62,7 +62,7 @@ namespace acme_posix
 ::pointer < ::operating_system::environment > operating_system_get_environment()
 {
 
-   auto p = ::place(new ::acme_posix::environment());
+   auto p = __new ::acme_posix::environment();
    
    return p;
 

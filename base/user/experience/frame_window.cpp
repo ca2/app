@@ -4,7 +4,7 @@
 #include "acme/constant/message.h"
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "apex/handler/signal.h"
 #include "apex/platform/application_menu.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -690,7 +690,7 @@ namespace experience
       if (m_pdockmanager == nullptr)
       {
 
-         __construct(m_pdockmanager, ::place(new class dock_manager ()));
+         __construct(m_pdockmanager, __new class dock_manager ());
 
          try
          {
@@ -710,7 +710,7 @@ namespace experience
       if (m_pmovemanager == nullptr)
       {
 
-         __construct(m_pmovemanager, ::place(new class move_manager ()));
+         __construct(m_pmovemanager, __new class move_manager ());
 
          try
          {
@@ -730,7 +730,7 @@ namespace experience
       if (m_psizemanager == nullptr)
       {
 
-         __construct(m_psizemanager, ::place(new class size_manager ()));
+         __construct(m_psizemanager, __new class size_manager ());
 
          try
          {
@@ -751,7 +751,7 @@ namespace experience
       if (m_pmenumanager == nullptr)
       {
 
-         __construct(m_pmenumanager, ::place(new class menu_manager ()));
+         __construct(m_pmenumanager, __new class menu_manager ());
 
          try
          {
@@ -849,7 +849,7 @@ namespace experience
           && m_pframe->get_control_box() != nullptr)
       {
 
-         auto atom = ptopic->user_element_id();
+         auto atom = ptopic->user_interaction_id();
 
          informationf("frame_window::handle_event btn_clkd=%s", string(atom).c_str());
 
@@ -1241,7 +1241,7 @@ namespace experience
 
          }
 
-         if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
+         if (this->m_ewindowflag & ::e_window_flag_window_created)
          {
             
             set_need_redraw();
@@ -1356,7 +1356,7 @@ namespace experience
       if (m_psizemanager == nullptr)
       {
 
-         __construct(m_psizemanager, ::place(new class size_manager ()));
+         __construct(m_psizemanager, __new class size_manager ());
 
          //auto estatus = 
 
@@ -1484,21 +1484,21 @@ namespace experience
       //      //switch (m_psizemanager->m_eframeCursor)
       //      //{
       //      //case e_frame_sizing_left:
-      //      //   return ::place(new ::item(e_element_resize_left));
+      //      //   return __new ::item(e_element_resize_left);
       //      //case e_frame_sizing_top:
-      //      //   return ::place(new ::item(e_element_resize_top));
+      //      //   return __new ::item(e_element_resize_top);
       //      //case e_frame_sizing_right:
-      //      //   return ::place(new ::item(e_element_resize_right));
+      //      //   return __new ::item(e_element_resize_right);
       //      //case e_frame_sizing_bottom:
-      //      //   return ::place(new ::item(e_element_resize_bottom));
+      //      //   return __new ::item(e_element_resize_bottom);
       //      //case e_frame_sizing_top_left:
-      //      //   return ::place(new ::item(e_element_resize_top_left));
+      //      //   return __new ::item(e_element_resize_top_left);
       //      //case e_frame_sizing_top_right:
-      //      //   return ::place(new ::item(e_element_resize_top_right));
+      //      //   return __new ::item(e_element_resize_top_right);
       //      //case e_frame_sizing_bottom_left:
-      //      //   return ::place(new ::item(e_element_resize_bottom_left));
+      //      //   return __new ::item(e_element_resize_bottom_left);
       //      //case e_frame_sizing_bottom_right:
-      //      //   return ::place(new ::item(e_element_resize_bottom_right));
+      //      //   return __new ::item(e_element_resize_bottom_right);
       //      //   default:
       //      //      
       //      //      return nullptr;
@@ -2391,7 +2391,7 @@ namespace experience
 
          //auto pwindow = window();
 
-         pointCursor = m_pwindow->m_pdisplay->m_pointCursor2;
+         pointCursor = m_pwindow->m_pointCursor2;
 
       }
 
@@ -2641,7 +2641,7 @@ namespace experience
        if (eframe == ::experience::e_frame_title_bar)
        {
 
-          auto pitem = ::place(new ::item(::e_element_title_bar, 0));
+          auto pitem = __new ::item(::e_element_title_bar, 0);
 
           pitem->initialize(this);
 
@@ -2855,7 +2855,7 @@ namespace experience
    void frame_window::frame_experience_restore(::e_activation eactivation)
    {
 
-      if(system()->m_ewindowing == e_windowing_wayland)
+      if(::windowing::get_ewindowing() == ::windowing::e_windowing_wayland)
       {
 
          display_normal(m_windowdisplayandlayout.m_edisplayLastNormal, eactivation);

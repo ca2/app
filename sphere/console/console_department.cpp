@@ -30,7 +30,7 @@ namespace console
          return false;
 
 
-      m_spprompt = ::place(new prompt(this));
+      m_spprompt = __new prompt(this);
 
       console_prompt().impact(false);
 

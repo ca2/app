@@ -4,7 +4,7 @@
 #if !defined(UNIVERSAL_WINDOWS)
 
 
-namespace primitive
+namespace prototype
 {
 
    class CLASS_DECL_CA2_FILE shared_file :
@@ -26,7 +26,7 @@ namespace primitive
 
    };
 
-} // namespace primitive
+} // namespace prototype
 
 
 #endif

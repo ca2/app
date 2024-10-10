@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 
 
 namespace simpledb

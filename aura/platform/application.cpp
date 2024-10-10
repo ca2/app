@@ -6,12 +6,12 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/folder.h"
 #include "acme/filesystem/file/memory_file.h"
-#include "acme/primitive/primitive/url.h"
-#include "acme/primitive/primitive/memory.h"
-#include "acme/primitive/string/base64.h"
+#include "acme/prototype/prototype/url.h"
+#include "acme/prototype/prototype/memory.h"
+#include "acme/prototype/string/base64.h"
 #include "acme/handler/request.h"
 #include "acme/platform/profiler.h"
-#include "acme/primitive/text/context.h"
+#include "acme/prototype/text/context.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/dir_context.h"
@@ -33,7 +33,7 @@
 #include "aura/user/user/interaction_array.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/user.h"
-#include "aura/user/user/interaction_impl.h"
+//#include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/system.h"
 #include "aura/user/user/frame.h"
 #include "aura/user/user/plain_edit.h"
@@ -174,7 +174,7 @@ namespace aura
       //m_pimaging = nullptr;
 
 
-      //m_phandler = ::place(new ::handler(this));
+      //m_phandler = __new ::handler(this);
 
 
       //m_bAuraProcessInitialize = false;
@@ -299,7 +299,7 @@ namespace aura
    //   if(m_pappmenu.is_null())
    //   {
 
-   //      m_pappmenu = ::place(new application_menu());
+   //      m_pappmenu = __new application_menu();
 
    //   }
 
@@ -652,15 +652,17 @@ namespace aura
    //}
 
 
-   //void application::message_box_synchronous(::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_synchronous(::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
-   //   return ::message_box_synchronous(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
+   //   return ::auto pmessagebox = __initialize_new ::message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
+
+//pmessagebox->sync();
 
    //}
 
 
-   //void application::ui_message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -675,7 +677,7 @@ namespace aura
    //}
 
 
-   //void application::ui_message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::ui_message_box_timeout(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -690,7 +692,7 @@ namespace aura
    //}
 
 
-   //void application::message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -702,12 +704,14 @@ namespace aura
 
    //   }
 
-   //   return message_box_synchronous(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+   //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+
+//pmessagebox->sync();
 
    //}
 
 
-   //void application::message_box_timeout(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //void application::message_box_timeout(::user::interaction_base* puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, timeTimeout, emessagebox, callback);
@@ -719,7 +723,9 @@ namespace aura
 
    //   }
 
-   //   return message_box_synchronous(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+   //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
+
+//pmessagebox->sync();
 
    //}
 
@@ -727,7 +733,7 @@ namespace aura
    //void application::message_box(const ::payload & payload)
    //{
 
-   //   ::pointer<::user::primitive>puiOwner;
+   //   ::pointer<::user::interaction_base>puiOwner;
 
    //   string strMessage;
 
@@ -748,7 +754,7 @@ namespace aura
    //   else
    //   {
 
-   //      puiOwner = payload["owner"].cast < ::user::primitive >();
+   //      puiOwner = payload["owner"].cast < ::user::interaction_base >();
    //      strMessage = payload["message"];
    //      strTitle = payload["title"];
    //      uFlags = payload["flags"];
@@ -2089,7 +2095,7 @@ retry_license:
    //   try
    //   {
 
-   //      return ::place(new ::interprocess::communication(m_strAppName));
+   //      return __new ::interprocess::communication(m_strAppName);
 
    //   }
    //   catch (...)
@@ -2530,7 +2536,7 @@ retry_license:
    //}
 
 
-   ////i32 application::sync_message_box_timeout(::user::primitive * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::time timeTimeOut, ::u32 fuStyle)
+   ////i32 application::sync_message_box_timeout(::user::interaction_base * puserinteractionOwner, ::payload payload, const ::string & pszTitle, ::time timeTimeOut, ::u32 fuStyle)
    ////{
 
    ////   __UNREFERENCED_PARAMETER(timeTimeOut);
@@ -3323,7 +3329,7 @@ retry_license:
    }
 
 
-   bool application::keyboard_focus_is_focusable(const ::user::primitive * pue)
+   bool application::keyboard_focus_is_focusable(const ::user::interaction_base * pue)
    {
 
       return false;
@@ -3331,7 +3337,7 @@ retry_license:
    }
 
 
-   bool application::keyboard_focus_OnSetFocus(::user::primitive * pprimitive)
+   bool application::keyboard_focus_OnSetFocus(::user::interaction_base * pprimitive)
    {
 
       return true;
@@ -3712,7 +3718,7 @@ retry_license:
    //::pointer<::user::message>application::get_user_message(MESSAGE * pmsg)
    //{
 
-   //   ::user::primitive * pinteraction = nullptr;
+   //   ::user::interaction_base * pinteraction = nullptr;
 
    //   ::windowing::window * pwindow = nullptr;
 
@@ -3730,19 +3736,19 @@ retry_license:
 
    //     auto puser = psession->m_puser;
 
-   //     auto pwindowing = puser->m_pwindowing;
+   //     auto pwindowing = system()->windowing();
 
    //     pwindow = pwindowing->window(pmsg->oswindow);
 
-   //     auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+   //     auto pwindow = pwindow->m_pwindow;
 
-   //     if (puserinteractionimpl != nullptr)
+   //     if (pwindow != nullptr)
    //     {
 
    //        try
    //        {
 
-   //           pinteraction = puserinteractionimpl->m_puserinteraction;
+   //           pinteraction = pwindow->m_puserinteraction;
 
    //        }
    //        catch (...)
@@ -3757,7 +3763,7 @@ retry_license:
    //     //if (pinteraction == nullptr)
    //     //{
 
-   //     //   pinteraction = puserinteractionimpl;
+   //     //   pinteraction = pwindow;
 
    //     //}
 
@@ -3770,7 +3776,7 @@ retry_license:
 
    //   }
 
-   //   auto pusermessage = ::place(new ::user::message());
+   //   auto pusermessage = __new ::user::message();
 
    //   if (!pusermessage)
    //   {
@@ -4252,7 +4258,7 @@ retry_license:
 
    //   //throw ::exception(todo("xml"));
 
-   //   //auto pdocument = ::place(new ::xml::document());
+   //   //auto pdocument = __new ::xml::document();
 
    //   //if (!pdocument->load(atom) || !*pdocument)
    //   //{
@@ -6534,7 +6540,7 @@ namespace aura
    //   }
 
    //   // otherwise, use window::OnHelp implementation
-   //   /* trans ::user::interaction_impl * pwindow = psystem->m_puiMain;
+   //   /* trans ::windowing::window * pwindow = psystem->m_puiMain;
    //   ENSURE_VALID(pwindow);
    //   if (!pwindow->is_frame_window())
    //   pwindow->OnHelp();
@@ -7939,7 +7945,7 @@ namespace aura
 
       auto puser = psession->user();
 
-      auto pwindowing = puser->m_pwindowing;
+      auto pwindowing = system()->windowing();
 
       throw ::exception(todo);
 
@@ -8057,7 +8063,7 @@ namespace aura
 //   ::pointer<::apex::application>application::create_platform(::apex::session* psession)
 //   {
 //
-//      return ::place(new ::aura::session());
+//      return __new ::aura::session();
 //
 //   }
 
@@ -8337,6 +8343,22 @@ namespace aura
             }
             
          }
+         else if (ptopic->m_atom == id_application_dark_mode_change)
+         {
+
+            if (m_puserinteractionaFrame)
+            {
+               for (auto & pinteraction : m_puserinteractionaFrame->interactiona())
+               {
+
+                  pinteraction->set_need_redraw();
+
+                  pinteraction->post_redraw();
+
+               }
+            }
+
+         }
 
          if (ptopic->m_atom == ::id_initialize_control)
          {
@@ -8577,7 +8599,7 @@ namespace aura
 
       }
 
-      pinteraction = ::place(new ::account::simple_ui(this,strRequestUrl));
+      pinteraction = __new ::account::simple_ui(this,strRequestUrl);
 
       pinteraction->m_login.m_peditUser->set_window_text(strUsername);
 
@@ -8597,7 +8619,7 @@ namespace aura
    //::pointer<::user::user>application::create_user()
    //{
 
-   //   return ::place(new ::user::user());
+   //   return __new ::user::user();
 
    //}
 

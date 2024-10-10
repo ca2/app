@@ -3,7 +3,7 @@
 
 #include "acme/operating_system/error_code.h"
 
-//#include "acme/primitive/collection/array.h"
+//#include "acme/prototype/collection/array.h"
 
 
 class CLASS_DECL_ACME exception :
@@ -64,7 +64,7 @@ public:
 #define RETURN_OR_THROW(bReturn, ppexception, EXCEPTION, ...) \
    if(bReturn) \
    { \
-      if(ppexception) *ppexception = ::place(new EXCEPTION(__VA_ARGS__)); \
+      if(ppexception) *ppexception = __new EXCEPTION(__VA_ARGS__); \
       return; \
    } \
    throw EXCEPTION(__VA_ARGS__)

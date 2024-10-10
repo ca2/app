@@ -284,7 +284,7 @@
 //
 //         puserinteraction->send_message(e_message_display_change);
 //
-//         //::pointer<::user::interaction_impl>pimpl = puserinteraction->m_pimpl;
+//         //::pointer<::windowing::window>pimpl = puserinteraction->m_pimpl;
 //
 //         //if (pimpl)
 //         //{

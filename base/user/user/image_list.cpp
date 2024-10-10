@@ -5,7 +5,7 @@
 #include "acme/constant/user_key.h"
 #include "acme/handler/item.h"
 #include "acme/handler/topic.h"
-#include "acme/primitive/collection/_array.h"
+#include "acme/prototype/collection/_array.h"
 #include "acme/user/user/content.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
@@ -382,7 +382,7 @@ namespace user
 
       ////item = ::e_element_none;
 
-      //auto pitemNone = ::place(new ::item(e_element_none));
+      //auto pitemNone = __new ::item(e_element_none);
 
       //return pitemNone;
 
@@ -925,7 +925,7 @@ namespace user
       if (m_iaSel.get_count() == 1)
       {
 
-         return ::place(new ::item(e_element_item, m_iaSel[0]));
+         return __new ::item(e_element_item, m_iaSel[0]);
 
       }
 

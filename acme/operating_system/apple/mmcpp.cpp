@@ -8,7 +8,7 @@
 
 #include "framework.h"
 #include "acme/parallelization/manual_reset_event.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 #undef DEBUG
 #if defined(MACOS)
 #include <Carbon/Carbon.h>
@@ -80,7 +80,7 @@ void set_os_cf_data(memory_base &memory, CFDataRef data, memsize pos, memsize si
 void _ns_main_sync(dispatch_block_t block)
 {
    
-   auto pevent = ::place(new manual_reset_event ());
+   auto pevent = __new manual_reset_event ();
    
    pevent->ResetEvent();
    

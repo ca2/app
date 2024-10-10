@@ -12,8 +12,8 @@
 
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
-#include "acme/primitive/collection/string_array.h"
-#include "acme/primitive/collection/string_map.h"
+#include "acme/prototype/collection/string_array.h"
+#include "acme/prototype/collection/string_map.h"
 //#include <vector>
 
 #endif

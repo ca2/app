@@ -241,7 +241,7 @@ namespace simpledb
 
       synchronous_lock synchronouslock(this->synchronization());
 
-      auto pitem(::place(new queue_item()));
+      auto pitem(__new queue_item());
 
       pitem->m_strKey = pszKey;
       pitem->m_memory = block;

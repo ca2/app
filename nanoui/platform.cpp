@@ -1,7 +1,7 @@
 #include "framework.h"
-////#include "acme/primitive/primitive/function.h"
+////#include "acme/prototype/prototype/function.h"
 ////#include "acme/exception/exception.h"
-//#include "acme/primitive/primitive/memory.h"
+//#include "acme/prototype/prototype/memory.h"
 //
 //
 //#undef USUAL_OPERATING_SYSTEM_SUPPRESSIONS

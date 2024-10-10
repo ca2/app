@@ -3,7 +3,7 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
-////#include "acme/primitive/primitive/object.h"
+////#include "acme/prototype/prototype/object.h"
 #include "acme/_operating_system.h"
 
 
@@ -34,7 +34,7 @@ namespace acme
 
       //   m_pmutex = pparticle->node()->create_global_named_mutex(pparticle, false, strId);
 
-      //   //m_pmutex = //::place(new ::pointer < ::mutex > (pparticle, false, strId ADD_PARAM_SEC_ATTRS));
+      //   //m_pmutex = //__new ::pointer < ::mutex > (pparticle, false, strId ADD_PARAM_SEC_ATTRS);
 
       //   //m_dwLastError = ::GetLastError();
 
@@ -47,7 +47,7 @@ namespace acme
       //   //try
       //   //{
 
-      //   //   m_pmutex = ::place(new ::pointer < ::mutex > (pparticle, false, strId));
+      //   //   m_pmutex = __new ::pointer < ::mutex > (pparticle, false, strId);
 
       //   //   m_dwLastError = ::GetLastError();
 

@@ -731,7 +731,7 @@ namespace filemanager
             ASSERT(pPopup != nullptr);
             ::pointer<::user::frame_window>pframe = get_parent_frame()->get_parent_frame();
             pPopup->track_popup_menu(point.x(), point.y(),
-            (::user::interaction_impl *) pframe);
+            (::windowing::window *) pframe);
             }
             }
             else
@@ -744,7 +744,7 @@ namespace filemanager
             ::pointer<::user::frame_window>pframe = get_parent_frame()->get_parent_frame();
             pPopup->track_popup_menu(
             point.x(), point.y(),
-            (::user::interaction_impl *) pframe);
+            (::windowing::window *) pframe);
             }
             }*/
          }
@@ -812,7 +812,7 @@ namespace filemanager
                               }
 
                               */
-                  m_itema.add(::place(new Item(item)));
+                  m_itema.add(__new Item(item));
                   iNode++;
                }
             }
@@ -836,7 +836,7 @@ namespace filemanager
                   item.m_iImage = m_iIconSong;
 
 
-                  m_itema.add(::place(new Item(item)));
+                  m_itema.add(__new Item(item));
                   iNode++;
                }
             }

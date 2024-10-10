@@ -14,11 +14,13 @@
 #include "acme/nano/archive/archive.h"
 #include "acme/nano/compress/compress.h"
 #include "acme/nano/dynamic_library/dynamic_library.h"
+#include "acme/nano/graphics/graphics.h"
 #include "acme/nano/http/http.h"
 #include "acme/nano/idn/idn.h"
 #include "acme/nano/shell/shell.h"
 #include "acme/nano/speech/speech.h"
-#include "acme/nano/user/user.h"
+#include "acme/user/micro/user.h"
+//#include "acme/windowing/windowing.h"
 #include "acme/platform/system.h"
 #include "acme/platform/system_factory.h"
 
@@ -55,6 +57,10 @@ namespace nano
    {
       return system()->system_factory()->__factory(m_pdynamiclibrary);
    }
+   ::nano::graphics::graphics*nano::graphics()
+   {
+      return system()->system_factory()->__factory(m_pgraphics);
+   }
    ::nano::http::http*nano::http()
    {
       return system()->system_factory()->__factory(m_phttp);
@@ -71,9 +77,13 @@ namespace nano
    {
       return system()->system_factory()->__factory(m_pspeech);
    }
-   ::nano::user::user*nano::user()
-   {
-      return system()->system_factory()->__factory(m_puser);
-   }
+   //::micro::user*micro()
+   //{
+   //   return system()->system_factory()->__factory(m_puser);
+   //}
+   //::acme::windowing::windowing * acme::windowing()
+   //{
+   //   return system()->system_factory()->__factory(m_pwindowing);
+   //}
 
 }//namespace nano

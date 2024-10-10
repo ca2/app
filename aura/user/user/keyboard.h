@@ -1,8 +1,8 @@
 #pragma once
 
 
-////#include "acme/primitive/primitive/object.h"
-#include "acme/primitive/collection/int_map.h"
+////#include "acme/prototype/prototype/object.h"
+#include "acme/prototype/collection/int_map.h"
 
 
 namespace user

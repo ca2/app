@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "command.h"
 #include "channel.h"
-#include "acme/user/user/element.h"
+#include "acme/user/user/interaction.h"
 
 
 namespace message
@@ -225,7 +225,7 @@ namespace message
       if (m_checkproperty && change)
       {
 
-         ::pointer<::user::element> pelement = m_puiOther;
+         ::pointer<::acme::user::interaction> pelement = m_puiOther;
 
          if (pelement)
          {
@@ -238,7 +238,7 @@ namespace message
       else if (m_textproperty && change)
       {
 
-         ::pointer<::user::element> pelement = m_puiOther;
+         ::pointer<::acme::user::interaction> pelement = m_puiOther;
 
          if (pelement)
          {
@@ -273,7 +273,7 @@ namespace message
       if (m_puiOther != nullptr)
       {
 
-         ::pointer<::user::element>pelement = m_puiOther;
+         ::pointer<::acme::user::interaction>pelement = m_puiOther;
 
          if (pelement)
          {

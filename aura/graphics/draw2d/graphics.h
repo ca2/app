@@ -10,19 +10,19 @@
 #include "aura/graphics/write_text/drawer.h"
 #include "aura/graphics/image/drawer.h"
 #include "aura/graphics/image/source.h"
-//#include "acme/primitive/geometry2d/collection.h"
-#include "acme/primitive/geometry2d/angle.h"
-#include "acme/primitive/geometry2d/matrix.h"
-#include "acme/primitive/geometry2d/shift.h"
+//#include "acme/prototype/geometry2d/collection.h"
+#include "acme/prototype/geometry2d/angle.h"
+#include "acme/prototype/geometry2d/matrix.h"
+#include "acme/prototype/geometry2d/shift.h"
 #include "aura/user/user/redraw.h"
 #include "region.h"
 #include "bitmap.h"
 
 
-//#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
 
 
-//#include "acme/primitive/geometry2d/ellipse.h"
+//#include "acme/prototype/geometry2d/ellipse.h"
 
 
 using hdc = void *;
@@ -142,7 +142,7 @@ namespace draw2d
       void destroy() override;
       void destroy_os_data() override;
       
-      
+      virtual void do_on_context(const ::procedure & procedure);
 
       inline operator ::user::style & ()
       {
@@ -512,7 +512,7 @@ namespace draw2d
       //virtual void IntersectClipRect(const ::rectangle_f64 & rectangle);
       //virtual i32 ExcludeClipRect(double x1, double y1, double x2, double y2);
       //virtual i32 ExcludeClipRect(const ::rectangle_f64 & rectangle);
-      //virtual i32 ExcludeUpdateRgn(::user::interaction_impl * pwindow);
+      //virtual i32 ExcludeUpdateRgn(::windowing::window * pwindow);
       //virtual i32 OffsetClipregion(double x, double y);
       //virtual i32 OffsetClipregion(const ::size_f64 & ::size_f64);
       //virtual i32 SelectClipregion(::draw2d::region* pregion, ::draw2d::enum_combine ecombine);

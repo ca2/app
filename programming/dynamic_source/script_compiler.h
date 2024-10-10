@@ -1,8 +1,8 @@
 #pragma once
 
 
-//#include "acme/primitive/collection/string_array.h"
-#include "acme/primitive/collection/string_map.h"
+//#include "acme/prototype/collection/string_array.h"
+#include "acme/prototype/collection/string_map.h"
 #include "app/programming/programming/compiler.h"
 #include "acme/filesystem/watcher/listener.h"
 
@@ -57,7 +57,7 @@ namespace dynamic_source
       //string                                    m_strSdk1;
       //string                                    m_strPlatform;
       //string                                    m_strStagePlatform;
-      ::file::watch_id                        m_filewatcherid;
+      ::pointer < ::file::watch >                        m_filewatcherid;
 
       //string                                    m_strPlat1;
       //string                                    m_strPlat2;

@@ -155,7 +155,7 @@ namespace user
 
          ptopic->m_puserelement = this;
 
-         //ptopic->m_puserelement->m_atom = m_atom;
+         //ptopic->user_interaction_id() = m_atom;
 
          m_hls = m_pcolorselectorpopup->m_hls;
 
@@ -176,7 +176,7 @@ namespace user
       if (!::is_set(m_pitemHover))
       {
 
-         m_pitemHover = ::place(new ::item(::e_element_client));
+         m_pitemHover = __new ::item(::e_element_client);
 
          set_need_redraw();
 

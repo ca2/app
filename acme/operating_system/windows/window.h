@@ -30,7 +30,7 @@ namespace windows
       virtual bool on_window_procedure(LRESULT & lresult, UINT message, WPARAM wparam, LPARAM lparam);
       virtual bool _on_default_system_menu_init_menu(LRESULT & lresult,  WPARAM wparam);
       virtual bool _on_default_system_menu_command(LRESULT & lresult, WPARAM wparam, LPARAM lparam);
-      virtual void _defer_show_system_menu(const ::point_i32 & pointAbsolute);
+      virtual void _defer_show_system_menu(::user::mouse * ppmouse);
 
    };
 

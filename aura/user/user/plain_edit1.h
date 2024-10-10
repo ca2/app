@@ -3,7 +3,7 @@
 
 #include "scroll_base.h"
 #include "text_composition_composite.h"
-#include "acme/primitive/data/listener.h"
+#include "acme/prototype/data/listener.h"
 
 
 class element_2d;
@@ -470,7 +470,7 @@ namespace user
       void _plain_edit_update_lines_and_extents(::draw2d::graphics_pointer& pgraphics, ::collection::index iOnlyLineToUpdate = -1);
       //void _plain_edit_update_lines(::draw2d::graphics_pointer& pgraphics, ::collection::index iOnlyLineToUpdate = -1);
       //void _plain_edit_update_extents(::draw2d::graphics_pointer& pgraphics, ::collection::index iOnlyLineToUpdate = -1);
-      //void _001OnCalcLayoutProc(::user::primitive * pimpact);
+      //void _001OnCalcLayoutProc(::user::interaction_base * pimpact);
 
       void FileSave();
       void plain_edit_on_file_update(::draw2d::graphics_pointer& pgraphics);

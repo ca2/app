@@ -5,7 +5,7 @@
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/parallelization/event.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/data/property.h"
+#include "acme/prototype/data/property.h"
 #include "apex/handler/signal.h"
 #include "apex/platform/application.h"
 

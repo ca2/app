@@ -8,7 +8,7 @@
 #include "color.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/parallelization/task.h"
-#include "acme/primitive/mathematics/mathematics.h"
+#include "acme/prototype/mathematics/mathematics.h"
 #include "aura/graphics/gpu/approach.h"
 #include "aura/graphics/gpu/cpu_buffer.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"
@@ -394,7 +394,7 @@ namespace draw2d_opengl
    }
 
 
-   int graphics::ExcludeUpdateRgn(::user::primitive * pwindow)
+   int graphics::ExcludeUpdateRgn(::user::interaction_base * pwindow)
    {
       // ASSERT(m_hdc != nullptr);
       //throw ::interface_only();
@@ -5815,6 +5815,14 @@ namespace draw2d_opengl
 
    //}
 
+   void graphics::do_on_context(const ::procedure & procedure)
+   {
+
+      m_pgpucontext->send_procedure(procedure);
+
+   }
+
+
    //void graphics::on_begin_draw(oswindow wnd, const ::size_i32 & sz)
    void graphics::on_begin_draw()
    {
@@ -5883,7 +5891,7 @@ namespace draw2d_opengl
 
       m_pimage->map();
 
-      ::copy_image32(m_pimage, &m_pgpucontext->m_pcpubuffer->m_pixmap);
+      m_pimage->copy(& m_pgpucontext->m_pcpubuffer->m_pixmap);
 
    }
 
@@ -5951,7 +5959,7 @@ BOOL CALLBACK draw2d_opengl_EnumFamCallBack(LPLOGFONT lplf,LPNEWTEXTMETRIC lpntm
    else if(FontType & TRUETYPE_FONTTYPE)
    {
 
-      pfonts->m_itema.add(::place(new ::write_text::font_enumeration_item(lplf->lfFaceName)));
+      pfonts->m_itema.add(__new ::write_text::font_enumeration_item(lplf->lfFaceName));
 
    }
    else

@@ -2,10 +2,10 @@
 
 
 #include "acme/user/user/mouse.h"
-//#include "acme/primitive/geometry2d/_geometry2d.h"
-#include "acme/primitive/geometry2d/size.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
+#include "acme/prototype/geometry2d/size.h"
 
-//#include "acme/primitive/primitive/pointer.h"
+//#include "acme/prototype/prototype/pointer.h"
 #include "apex/user/user/message.h"
 //#include "aura/user/user/message.h"
 #include "aura/user/user/key.h"
@@ -121,7 +121,7 @@ namespace message
 #ifdef WINDOWS_DESKTOP
       ::oswindow              m_oswindowScrollBar;
 #endif
-      //::user::primitive * m_pscrollbar;
+      //::user::interaction_base * m_pscrollbar;
 
 
       scroll();
@@ -207,7 +207,7 @@ namespace message
    public:
 
 
-      ::user::primitive *                 m_pWnd;
+      ::user::interaction_base *                 m_pWnd;
       ::u32                               m_nHitTest;
       ::u32                               m_message;
       
@@ -388,7 +388,7 @@ namespace message
    public:
 
 
-      ::pointer < ::particle >      m_pparticle;
+      ::particle_pointer      m_pparticle;
 
 
       particle();

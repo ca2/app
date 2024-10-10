@@ -141,7 +141,7 @@ namespace helloaxis
 
 //      ::parallelization::set_priority(::e_priority_time_critical);
 //
-////      ::frequency frequencyFramesPerSecond = m_pimpact->get_wnd()->m_pimpl.cast < ::user::interaction_impl >()->m_frequencyFramesPerSecond;
+////      ::frequency frequencyFramesPerSecond = m_pimpact->get_wnd()->m_pimpl.cast < ::windowing::window >()->m_frequencyFramesPerSecond;
 //
 //      ::frequency frequencyFramesPerSecond = 0.2;
 //

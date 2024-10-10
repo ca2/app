@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/size.h"
+#include "acme/prototype/geometry2d/size.h"
 
 
 namespace innate_ui

@@ -19,7 +19,7 @@ namespace filemanager
    {
    public:
 
-            ::file::watch_id                    m_filewatchid;
+            ::pointer < ::file::watch >                    m_pfilewatch;
       ::pointer<::filemanager::data>            m_pfilemanagerdata;
       ::file::path                        m_strTopic;
       string                              m_strManagerId;

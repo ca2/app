@@ -57,7 +57,7 @@ void __node_aura_factory(::factory::factory * pfactory)
 //   add_factory_item < ::ios::file_system       , ::file_system            >();
 //   add_factory_item < ::ios::os_context        , ::os_context             >();
 //   add_factory_item < ::ios::shell             , ::user::shell            >();
-//   add_factory_item < ::ios::interaction_impl  , ::user::interaction_impl >();
+//   add_factory_item < ::ios::interaction_impl  , ::windowing::window >();
 //
 //   add_factory_item < ::file::os_watch       , ::file::watch            >();
 //

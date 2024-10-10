@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/constant/id.h"
 
-#include "acme/primitive/primitive/atom.h"
+#include "acme/prototype/prototype/atom.h"
 
 
 ::std::strong_ordering memory_order(const void * m1, const void * m2, memsize s);

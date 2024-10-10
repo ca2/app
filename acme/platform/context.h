@@ -2,6 +2,7 @@
 
 
 #include "acme/parallelization/task.h"
+#include "acme/platform/message_box.h"
 
 
 namespace acme
@@ -9,7 +10,8 @@ namespace acme
 
 
    class CLASS_DECL_ACME context :
-      virtual public ::task
+      virtual public ::task,
+      virtual public ::reificator < ::message_box >
    {
    public:
 
@@ -61,6 +63,7 @@ namespace acme
 
       virtual void finalize_context();
 
+      virtual ::pointer < ::reified < ::message_box > > realize(::realizable < ::message_box > * p);
 
       inline ::image::image_context* image() { return m_pimagecontext; }
 
@@ -78,7 +81,6 @@ namespace acme
       //inline ::os_context * os_context() { return m_poscontext; }
 
 
-      virtual bool os_is_alias(const ::file::path & path);
 
       ::acme_file * acmefile();
       ::acme_path * acmepath();
@@ -93,6 +95,9 @@ namespace acme
       ::file_system * filesystem();
 
 
+      ::file::watcher * file_watcher() override;
+
+
       ::http::context * http();
 
 
@@ -103,6 +108,9 @@ namespace acme
 
 
       virtual ::file::path defer_process_path(::file::path path);
+      virtual ::file::path _defer_process_path(::file::path path);
+      virtual ::file::path __defer_process_path(::file::path path);
+
 
       virtual void fork_count(::collection::count iCount, const ::function < void(::collection::index, ::collection::index, ::collection::index, ::collection::index) > & function, const ::procedure & procedureCompletion, ::collection::index iStart = 0);
 
@@ -134,6 +142,16 @@ namespace acme
       virtual ::file::path side_get_matter_path(string strMatter);
 
 
+      virtual bool os_is_alias(const ::file::path & path);
+      virtual ::pointer < ::file::link > os_resolve_alias(const ::file::path& path, bool bNoUI = false, bool bNoMount = false);
+      virtual bool _os_has_alias_in_path(const ::file::path & path, bool bNoUI = false, bool bNoMount = false);
+      virtual ::pointer < ::file::link > _os_resolve_alias(const ::file::path& path, bool bNoUI, bool bNoMount);
+      //virtual bool os_is_alias(const ::file::path & path) override;
+
+      virtual bool defer_process_media_library_path(::file::path & path);
+      virtual bool defer_process_known_folder_path(::file::path & path);
+      virtual bool defer_process_protocol_path(::file::path & path) ;
+
       virtual bool http_exists(const ::url::url & url, ::property_set & set);
       virtual ::file::enum_type http_get_type(const ::url::url & url, property_set & set);
       virtual ::file::enum_type http_get_type(const ::url::url & url, ::payload * pvarQuery, property_set & set);
@@ -144,8 +162,8 @@ namespace acme
 
       virtual ::url::url http_get_effective_url(const ::url::url & url);
       
-      virtual void sync(::nano::http::get * pget);
-      virtual void async(::nano::http::get * pget, const ::function < void(::nano::http::get *) > & callback);
+      //virtual void http_sync(::nano::http::get * pget);
+      //virtual void http_async(::nano::http::get * pget, const ::function < void(::nano::http::get *) > & callback);
       
       
       virtual void http_download(const ::payload & payloadFile, const ::url::url & url, const class ::time & timeTimeout = 5_h);

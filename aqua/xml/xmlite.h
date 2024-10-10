@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/string/_str.h"
+#include "acme/prototype/string/_str.h"
 
 
 namespace xml

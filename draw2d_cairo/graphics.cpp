@@ -11,11 +11,11 @@
 #include "acme/platform/node.h"
 #include "acme/platform/scoped_restore.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/collection/int_map.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
-#include "acme/primitive/geometry2d/item.h"
-#include "acme/primitive/string/international.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/item.h"
+#include "acme/prototype/string/international.h"
+#include "acme/prototype/string/str.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -23,7 +23,7 @@
 #include "aura/graphics/write_text/text_out.h"
 #include "aura/graphics/write_text/draw_text.h"
 #include "aura/user/user/interaction.h"
-#include "acme/primitive/geometry2d/_defer_item.h"
+#include "acme/prototype/geometry2d/_defer_item.h"
 #include "aura/graphics/write_text/_defer_geometry2d_item.h"
 #include <math.h>
 
@@ -4005,13 +4005,11 @@ namespace draw2d_cairo
 
          return internal_draw_text_cairo(block, rectangle, ealign, edrawtext, &cairo_show_text);
 
-
       }
       else if (::is_set(pfont->get_os_data(this, 1)))
       {
 
          return internal_draw_text_cairo(block, rectangle, ealign, edrawtext, &cairo_show_text);
-
 
       }
 
@@ -6676,7 +6674,7 @@ namespace draw2d_cairo
 //    for (int i = 0; i < n_families; i++)
 //    {
 //
-//        item = ::place(new ::write_text::font_enumeration_item());
+//        item = __new ::write_text::font_enumeration_item();
 //
 //        PangoFontFamily * pfamily = families[i];
 //
@@ -6717,7 +6715,7 @@ namespace draw2d_cairo
 ////   for (auto& path : listing)
 ////   {
 ////
-////      pitem = ::place(new ::write_text::font_enumeration_item());
+////      pitem = __new ::write_text::font_enumeration_item();
 ////
 ////      pitem->m_strFile = path;
 ////
@@ -6783,7 +6781,7 @@ namespace draw2d_cairo
 ////   for (i = 0; fs && i < fs->nfont; i++)
 ////   {
 ////
-////      pitem = ::place(new ::write_text::font_enumeration_item());
+////      pitem = __new ::write_text::font_enumeration_item();
 ////
 ////      FcPattern * font = fs->fonts[i];//FcFontSetFont(fs, i);
 ////

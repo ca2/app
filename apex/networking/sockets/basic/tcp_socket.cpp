@@ -1241,7 +1241,7 @@ return true;
 
       //      }
 
-      //      m_obuf_top = ::place(new output(TCP_OUTPUT_CAPACITY));
+      //      m_obuf_top = __new output(TCP_OUTPUT_CAPACITY);
 
       //   }
 
@@ -1937,7 +1937,7 @@ return true;
 
    //   ::pointer<ssl_client_context>psslclientcontext = clientcontextmap.get_context(context, pmethod);
 
-   //   m_psslcontext = ::place(new ssl_context());
+   //   m_psslcontext = __new ssl_context();
 
    //   m_psslcontext->m_pclientcontext = psslclientcontext;
 
@@ -1950,7 +1950,7 @@ return true;
 //      if (m_psslcontext.is_null())
 //      {
 //
-//         m_psslcontext = ::place(new ssl_context());
+//         m_psslcontext = __new ssl_context();
 //
 //      }
 //

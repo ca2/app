@@ -780,7 +780,7 @@ namespace user
    //   ASSERT(pPopup != nullptr);
    //   ::pointer<::user::frame_window>pframe = get_parent_frame()->get_parent_frame();
    //   pPopup->track_popup_menu(point.x(), point.y(),
-   //   (::user::interaction_impl *) pframe);
+   //   (::windowing::window *) pframe);
    //   }
    //   }
    //   else
@@ -793,7 +793,7 @@ namespace user
    //   ::pointer<::user::frame_window>pframe = get_parent_frame()->get_parent_frame();
    //   pPopup->track_popup_menu(
    //   point.x(), point.y(),
-   //   (::user::interaction_impl *) pframe);
+   //   (::windowing::window *) pframe);
    //   }
    //   }*/
    //}
@@ -861,7 +861,7 @@ namespace user
    //                     }
 
    //                     */
-   //         m_useritema.add(::place(new Item(item)));
+   //         m_useritema.add(__new Item(item));
    //         iNode++;
    //      }
    //   }
@@ -885,7 +885,7 @@ namespace user
    //         item.m_iImage = m_iIconSong;
 
 
-   //         m_useritema.add(::place(new Item(item)));
+   //         m_useritema.add(__new Item(item));
    //         iNode++;
    //      }
    //   }
@@ -971,7 +971,7 @@ namespace user
 
          pgraphics->set_text_color(color);
 
-         pgraphics->text_out(x, (::i32) y, pitem->get_text(0));
+         pgraphics->text_out(x, (::i32) y, pitem->get_item_text());
 
          y = (::i32) (y + iLineHeight);
 

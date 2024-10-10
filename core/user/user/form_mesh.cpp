@@ -77,7 +77,7 @@ namespace user
             if(pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
-               auto pextendedtopic = ::place(new ::extended_topic(::id_click));
+               auto pextendedtopic = __new ::extended_topic(::id_click);
 
                pextendedtopic->m_puserelement         = pinteraction;
 
@@ -224,7 +224,7 @@ namespace user
    }
 
 
-   bool form_mesh::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::atom & atom, lresult & iResult)
+   bool form_mesh::_001OnMouseActivate(::windowing::window * pDesktopWnd,::u32 nHitTest,const ::atom & atom, lresult & iResult)
    {
       __UNREFERENCED_PARAMETER(pDesktopWnd);
       __UNREFERENCED_PARAMETER(nHitTest);
@@ -296,7 +296,7 @@ namespace user
    //   case mesh::PropertyBaseWndInterface:
    //   case mesh::PropertyDrawBaseWndInterface:
    //   {
-   //      const ::user::primitive ** ppinterface = (const ::user::primitive **) lparam;
+   //      const ::user::interaction_base ** ppinterface = (const ::user::interaction_base **) lparam;
 
    //      *ppinterface = (mesh *)this;
    //   }

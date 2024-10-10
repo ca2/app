@@ -4,6 +4,7 @@
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
+#include "acme/filesystem/watcher/watch.h"
 #include "acme/filesystem/watcher/watcher.h"
 #include "aura/platform/application.h"
 
@@ -419,9 +420,9 @@ namespace aura
       auto & blue = m_mapColors["blue"];
       auto & lite = m_mapColors["lite"];
 
-      dark = ::place(new colors());
-      blue = ::place(new colors());
-      lite = ::place(new colors());
+      dark = __new colors();
+      blue = __new colors();
+      lite = __new colors();
       
       m_pcolors = lite;
 
@@ -480,7 +481,7 @@ namespace aura
 
       sync_with_stored_theme();
 
-      m_watchidWeather = dir()->watcher().add_watch(acmedirectory()->config(), this, false);
+      m_pfilewatchWeather = file_watcher()->add_watch(acmedirectory()->config(), this, false);
       
       on_change_theme();
 

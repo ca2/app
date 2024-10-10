@@ -3,7 +3,8 @@
 #include "user.h"
 #include "shell.h"
 #include "style.h"
-#include "interaction_impl.h"
+#include "interaction_graphics_thread.h"
+#include "interaction_thread.h"
 #include "interaction.h"
 #include "plain_edit.h"
 #include "still.h"
@@ -16,7 +17,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/system_setup.h"
-#include "acme/primitive/collection/_container.h"
+#include "acme/prototype/collection/_container.h"
 #include "apex/message/simple_command.h"
 #include "acme/handler/request.h"
 #include "aura/windowing/windowing.h"
@@ -28,6 +29,7 @@
 #include "aura/platform/session.h"
 #include "aura/platform/application.h"
 #include "aura/platform/node.h"
+#include "aura/user/user/frame.h"
 
 #if defined(FREEBSD) || defined(OPENBSD) || defined(__APPLE__)
 #include <stdio.h>
@@ -227,16 +229,16 @@ namespace user
 
       }
 
-      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+      //auto pwindow = pwindow->m_pwindow;
 
-      if (::is_null(puserinteractionimpl))
-      {
+      //if (::is_null(pwindow))
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
-      return puserinteractionimpl->m_puserinteraction;
+      return pwindow->m_puserinteraction;
 
    }
 
@@ -262,16 +264,16 @@ namespace user
 
       }
 
-      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+      //auto pwindow = pwindow->m_pwindow;
 
-      if (::is_null(puserinteractionimpl))
-      {
+      //if (::is_null(pwindow))
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
-      return puserinteractionimpl->m_puserinteractionMouseCapture;
+      return pwindow->m_puserinteractionMouseCapture;
 
    }
 
@@ -297,16 +299,16 @@ namespace user
 
       }
 
-      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+      //auto pwindow = pwindow->m_pwindow;
 
-      if (::is_null(puserinteractionimpl))
-      {
+      //if (::is_null(pwindow))
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
-      return puserinteractionimpl->m_puserinteractionKeyboardFocus;
+      return pwindow->m_puserinteractionKeyboardFocus;
 
    }
 
@@ -332,16 +334,16 @@ namespace user
 
       }
 
-      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+      //auto pwindow = pwindow->m_pwindow;
 
-      if (::is_null(puserinteractionimpl))
-      {
+      //if (::is_null(pwindow))
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
-      return puserinteractionimpl->m_puserinteraction;
+      return pwindow->m_puserinteraction;
 
    }
 
@@ -395,16 +397,16 @@ namespace user
 
       }
 
-      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+      //auto pwindow = pwindow->m_pwindow;
 
-      if (::is_null(puserinteractionimpl))
-      {
+      //if (::is_null(pwindow))
+      //{
 
-         return nullptr;
+      //   return nullptr;
 
-      }
+      //}
 
-      return puserinteractionimpl->m_puserinteraction;
+      return pwindow->m_puserinteraction;
 
    }
 
@@ -450,6 +452,9 @@ namespace user
 
       ::acme::department::init1();
 
+
+      factory()->add_factory_item <::user::thread >();
+      factory()->add_factory_item <::user::graphics_thread >();
 
       factory()->add_factory_item <::user::button >();
       factory()->add_factory_item <::user::check_box >();
@@ -629,14 +634,14 @@ namespace user
 
       m_pmutexUser.release();
 
-      if (m_pwindowing)
+      if (windowing())
       {
 
-         m_pwindowing->finalize_windowing();
+         windowing()->finalize_windowing();
 
       }
 
-      m_pwindowing.defer_destroy();
+      //windowing().defer_destroy();
 
       m_uiptraToolWindow.clear();
 
@@ -722,7 +727,7 @@ namespace user
       if (!m_pshell)
       {
 
-         //estatus = __construct(m_pshell, ::place(new ::windows::shell()));
+         //estatus = __construct(m_pshell, __new ::windows::shell());
          //estatus =
          __construct(m_pshell);
 
@@ -749,7 +754,7 @@ namespace user
 
 
 
-   ::user::primitive * user::get_mouse_focus_LButtonDown()
+   ::user::interaction_base * user::get_mouse_focus_LButtonDown()
    {
 
       return m_pmousefocusLButtonDown;
@@ -757,7 +762,7 @@ namespace user
    }
 
 
-   void user::set_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
+   void user::set_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -767,7 +772,7 @@ namespace user
    }
 
 
-   void user::defer_erase_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
+   void user::defer_erase_mouse_focus_LButtonDown(::user::interaction_base * pmousefocus)
    {
 
       _synchronous_lock synchronouslock(this->synchronization());
@@ -782,7 +787,7 @@ namespace user
    }
 
 
-   ::user::primitive * user::get_mouse_focus_RButtonDown()
+   ::user::interaction_base * user::get_mouse_focus_RButtonDown()
    {
 
       return m_pmousefocusRButtonDown;
@@ -790,7 +795,7 @@ namespace user
    }
 
 
-   void user::set_mouse_focus_RButtonDown(::user::primitive * pmousefocus)
+   void user::set_mouse_focus_RButtonDown(::user::interaction_base * pmousefocus)
    {
 
       m_pmousefocusRButtonDown = pmousefocus;
@@ -1490,7 +1495,7 @@ namespace user
             for (auto & pinteraction : uiptraToolWindow)
             {
 
-               if (pinteraction != ::user::message_user_interaction(pmouse))
+               if (pinteraction != pmouse->m_pwindow->m_puserinteraction)
                {
 
                   if (pinteraction->m_ewindowflag & e_window_flag_focus)
@@ -1519,49 +1524,46 @@ namespace user
    }
 
 
-   void user::create_windowing()
-   {
+   //void user::create_windowing()
+   //{
 
-      //::e_status estatus = ::success;
+   //   if(m_pdesktopenvironment && windowing())
+   //   {
 
-      //estatus =
+   //      return;
 
-      node()->user_send([this]()
-      {
+   //   }
 
-         print_line("aura::user::create_windowing (1) (aura)");
+   //   //::e_status estatus = ::success;
 
-         __construct(m_pdesktopenvironment);
+   //   //estatus =
 
-         auto psystem = system();
+   //   node()->user_send([this]()
+   //   {
 
-         auto pacmenode = psystem->m_pacmenode;
+   //      print_line("aura::user::create_windowing (1) (aura)");
 
-         auto pauranode = pacmenode->m_pauranode;
+   //      desktop_environment()->windowing() = windowing();
 
-         m_pdesktopenvironment->m_bUnhook = pauranode->m_bUnhookX;
+   //      //__construct(windowing());
 
-         debugf("aura::user::create_windowing (2)");
+   //      //m_pdesktopenvironment->windowing() = windowing();
 
-         __construct(m_pwindowing);
+   //      //debugf("aura::user::create_windowing (2.1)");
 
-         m_pdesktopenvironment->m_pwindowing = m_pwindowing;
+   //      //windowing()->initialize_windowing(this);
 
-         debugf("aura::user::create_windowing (2.1)");
+   //      debugf("aura::user::create_windowing (2.2)\n");
 
-         m_pwindowing->initialize_windowing(this);
+   //      auto paurasystem = psystem->m_paurasystem;
 
-         debugf("aura::user::create_windowing (2.2)\n");
+   //      pauranode->m_pwindowingAuraNode = windowing();
 
-         auto paurasystem = psystem->m_paurasystem;
+   //      debugf("aura::user::create_windowing end");
 
-         pauranode->m_pwindowingAuraNode = m_pwindowing;
+   //   });
 
-         debugf("aura::user::create_windowing end");
-
-      });
-
-   }
+   //}
 
 
    bool user::runnable_step()
@@ -1578,7 +1580,7 @@ namespace user
 
          synchronouslock.unlock();
 
-         prunnable->call_run();
+         prunnable->call();
 
          synchronouslock._lock();
 
@@ -1593,25 +1595,26 @@ namespace user
 
    //__namespace_object_factory(user, ::system_setup::flag_object_user);
 
+   
    ::windowing::windowing* user::windowing()
    {
 
-      if (::is_null(m_pwindowing))
-      {
+      return system()->windowing();
 
-         if (!has_finishing_flag())
-         {
+      //if (::is_null(windowing()))
+      //{
 
-            create_windowing();
+      //   system()->do_graphics_and_windowing_system_factory();
 
-         }
+      //   __construct(windowing());
 
-      }
+      //   windowing()->initialize_windowing(this);
 
-      return m_pwindowing;
+      //}
+
+      return windowing();
 
    }
-
 
 
    ::aura::application * user::get_app()
@@ -1630,6 +1633,22 @@ namespace user
    }
 
 
+   ::windowing::desktop_environment * user::desktop_environment()
+   {
+
+      if (!m_pdesktopenvironment)
+      {
+
+         __construct(m_pdesktopenvironment);
+
+
+      }
+
+      return m_pdesktopenvironment;
+
+   }
+
+
    //::aura::system * useracmesystem()
    //{
 
@@ -1641,7 +1660,7 @@ namespace user
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
-      return ::place(new ::user::plain_edit());
+      return __new ::user::plain_edit();
 
    }
 

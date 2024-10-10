@@ -104,7 +104,7 @@ CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, atom idControl, bool
 
 
 
-inline ::user::primitive* __user_primitive(oswindow oswindow);
+inline ::user::interaction_base* __user_prototype(oswindow oswindow);
 
 
 //#include "mesh_item.h"

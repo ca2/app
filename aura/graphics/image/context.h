@@ -2,8 +2,8 @@
 
 
 #include "image.h"
-#include "acme/primitive/collection/int_map.h"
-#include "acme/primitive/collection/string_map.h"
+#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/string_map.h"
 #include "load_options.h"
 #include "save_options.h"
 
@@ -22,7 +22,7 @@ namespace image
       string_map < i32 > m_mapPathInt;
       string_map < ::image::image_pointer > m_mapPathImage;
       int         m_iImageSeed;
-      ::pointer < ::particle >         m_pparticleImageSynchronization;
+      ::particle_pointer         m_pparticleImageSynchronization;
 
 
 

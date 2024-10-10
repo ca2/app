@@ -168,7 +168,7 @@ namespace simpledb
 
       //}
 
-      //m_pstorage = ::place(new storage(this));
+      //m_pstorage = __new storage(this);
 
       m_bWorking = true;
 

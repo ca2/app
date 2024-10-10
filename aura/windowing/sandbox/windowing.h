@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/primitive/collection/string_list.h"
+#include "acme/prototype/collection/string_list.h"
 #include "aura/windowing/windowing.h"
 
 
@@ -67,9 +67,9 @@ namespace sandbox_windowing
 
 
       virtual ::pointer<::windowing::cursor>load_default_cursor(enum_cursor ecursor) override;
-      ::pointer < ::windowing::window > get_new_window(::user::interaction_impl* pimpl) override;
+      ::pointer < ::windowing::window > get_new_window(::windowing::window* pimpl) override;
 
-//      ::windowing::window* new_window(::user::interaction_impl* pimpl) override;
+//      ::windowing::window* new_window(::windowing::window* pimpl) override;
 //
       void erase_window(::windowing::window* pwindow) override;
 
@@ -77,7 +77,7 @@ namespace sandbox_windowing
 
       virtual void _message_handler(void* p) override;
 
-      ::windowing::window_base * get_keyboard_focus(::thread* pthread) override;
+      ::acme::windowing::window * get_keyboard_focus(::thread* pthread) override;
 
       ::windowing::window * get_mouse_capture(::thread* pthread) override;
 

@@ -2,8 +2,8 @@
 #pragma once
 
 
-#include "acme/primitive/collection/map.h"
-#include "acme/primitive/collection/string_map.h"
+#include "acme/prototype/collection/map.h"
+#include "acme/prototype/collection/string_map.h"
 
 
 namespace application_build_helper

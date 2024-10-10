@@ -70,11 +70,11 @@ add_dependencies(${PROJECT_NAME} crypto_openssl)
 add_dependencies(${PROJECT_NAME} folder_zip)
 add_dependencies(${PROJECT_NAME} ${default_write_text})
 
-if(${LINUX})
-    if(${WITH_X11})
-        add_dependencies(${PROJECT_NAME} nano_user_x11)
-    endif()
-endif()
+#if(${LINUX})
+#    if(${WITH_X11})
+#        add_dependencies(${PROJECT_NAME} nano_user_x11)
+#    endif()
+#endif()
 
 
 

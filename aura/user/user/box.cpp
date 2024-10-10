@@ -6,7 +6,7 @@
 #include "acme/platform/scoped_restore.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/user/user/_text_stream.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/message/simple_command.h"
@@ -100,6 +100,14 @@ namespace user
 
       auto edisplayPrevious = m_windowdisplayandlayout.m_edisplayPrevious;
 
+      if (edisplayPrevious == const_layout().design().display()
+         && edisplayPrevious == e_display_zoomed)
+      {
+
+         edisplayPrevious = m_windowdisplayandlayout.m_edisplayLastNormal;
+
+      }
+
       return edisplayPrevious;
 
    }
@@ -137,7 +145,7 @@ namespace user
          m_windowdisplayandlayout.m_rectangleSnapped = m_windowdisplayandlayout.m_rectangleWindow;
 
       }
-      else if (!layout().is_docking() && (system()->m_ewindowing != e_windowing_wayland) && is_equivalent_in_equivalence_sink(edisplay, e_display_normal))
+      else if (!layout().is_docking() && (::windowing::get_ewindowing() != ::windowing::e_windowing_wayland) && is_equivalent_in_equivalence_sink(edisplay, e_display_normal))
       {
 
          calculate_broad_and_compact_restore();
@@ -734,15 +742,16 @@ namespace user
    }
 
 
-   void box::display_normal(::e_display edisplay, ::e_activation eactivation)
+   void box::set_window_normal_stored_rectangle(const ::rectangle_i32 & rectangle)
    {
 
-      if (!windowing())
-      {
+      m_windowdisplayandlayout.m_rectangleNormal = rectangle;
 
-         session()->m_paurasession->user()->create_windowing();
+   }
 
-      }
+
+   void box::display_normal(::e_display edisplay, ::e_activation eactivation)
+   {
 
 #ifdef INFO_LAYOUT_DISPLAY
 
@@ -905,20 +914,8 @@ namespace user
 
       ::rectangle_i32 rectangleMainMonitor;
 
-      if (!windowing())
-      {
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         puser->create_windowing();
-
-      }
-
-      auto pwindowing = windowing();
-
-      auto pdisplay = pwindowing->display();
+      auto pdisplay = windowing()->display();
 
       pdisplay->get_main_monitor(rectangleMainMonitor);
 
@@ -927,6 +924,7 @@ namespace user
       return strDisplay;
 
    }
+
 
    bool box::does_display_match()
    {
@@ -961,7 +959,7 @@ namespace user
    }
 
 
-   bool box::on_before_set_parent(::user::primitive * puiParent)
+   bool box::on_before_set_parent(::user::interaction_base * puiParent)
    {
 
       if (!::user::interaction::on_before_set_parent(puiParent))
@@ -978,7 +976,7 @@ namespace user
    }
 
 
-   bool box::on_set_parent(::user::primitive * puiParent)
+   bool box::on_set_parent(::user::interaction_base * puiParent)
    {
 
       if(!::user::interaction::on_set_parent(puiParent))

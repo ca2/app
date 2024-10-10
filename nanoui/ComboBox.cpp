@@ -13,7 +13,7 @@
 #include "VScrollPanel.h"
 #include "Layout.h"
 #include "acme/constant/source.h"
-#include "acme/primitive/primitive/action_context.h"
+#include "acme/prototype/prototype/action_context.h"
 
 
 namespace nanoui
@@ -85,19 +85,19 @@ namespace nanoui
 
       if (m_scroll == nullptr && items.size() > 8) 
       {
-         m_scroll = ::place(new VScrollPanel(m_ppopup));
+         m_scroll = __new VScrollPanel(m_ppopup);
          m_scroll->set_fixed_height(300);
-         m_container = ::place(new Widget(m_scroll));
-         m_ppopup->set_layout(::place(new BoxLayout(e_orientation_horizontal, e_alignment_middle, ::rectangle_i32(0), 0)));
+         m_container = __new Widget(m_scroll);
+         m_ppopup->set_layout(__new BoxLayout(e_orientation_horizontal, e_alignment_middle, ::rectangle_i32(0), 0));
       }
 
-      m_container->set_layout(::place(new GroupLayout(10)));
+      m_container->set_layout(__new GroupLayout(10));
 
       ::collection::index iIndex = 0;
       for (const auto& str : items) 
       {
 
-         Button* button = ::place(new Button(m_container, str));
+         Button* button = __new Button(m_container, str);
          
          button->set_flags(Button::RadioButton);
          

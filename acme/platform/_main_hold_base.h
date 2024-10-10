@@ -2,7 +2,7 @@
 #pragma once
 
 
-//#include "acme/primitive/primitive/pointer.h"
+//#include "acme/prototype/prototype/pointer.h"
 
 
 class CLASS_DECL_ACME main_hold_base :

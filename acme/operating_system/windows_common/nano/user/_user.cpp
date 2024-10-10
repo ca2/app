@@ -4,16 +4,19 @@
 #include "framework.h"
 
 
+
 namespace nano
 {
 
-   namespace user
+
+   namespace windowing
    {
 
-      ::user::enum_desktop calculate_edesktop()
+
+      ::windowing::enum_desktop calculate_edesktop()
       {
 
-         return ::user::e_desktop_windows;
+         return ::windowing::e_desktop_windows;
 
       }
 

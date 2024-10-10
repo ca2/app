@@ -4,7 +4,7 @@
 #include "acme/parallelization/manual_reset_event.h"
 #include "acme/parallelization/synchronization_array.h"
 #include "acme/platform/nanosecond_timer.h"
-#include "acme/primitive/time/frequency.h"
+#include "acme/prototype/time/frequency.h"
 #include "apex/parallelization/thread.h"
 
 
@@ -22,10 +22,10 @@ namespace user
 
       manual_reset_event                        m_evUpdateScreen;
 
-      ::pointer<::user::interaction>           m_puserinteraction;
-      ::pointer<::user::interaction_impl>      m_pimpl;
+      ::pointer<::user::interaction>                  m_puserinteraction;
+      //::pointer<::windowing::window>      m_pimpl;
 
-      ::pointer<::user::thread>                   m_puserthread;
+      //::pointer<::user::thread>                   m_puserthread;
       nanosecond_timer                            m_nanosecondtimer;
 
       class ::time                                m_timeStart;
@@ -91,7 +91,7 @@ namespace user
       virtual void defer_create_graphics_thread();
 
 
-      virtual void initialize_graphics_thread(interaction_impl * pimpl);
+      virtual void initialize_graphics_thread(::user::interaction * puserinteraction);
 
 
       bool graphics_thread_reset(::user::interaction * pinteraction);

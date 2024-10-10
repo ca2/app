@@ -57,7 +57,7 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
 
 
-      ::pointer < ::particle > clone() override;
+      ::particle_pointer clone() override;
 
 
       ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) override;

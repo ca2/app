@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "api.h"
 #include "graphics.h"
-#include "acme/primitive/string/international.h"
+#include "acme/prototype/string/international.h"
 
 
 namespace draw2d

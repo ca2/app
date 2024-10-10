@@ -130,7 +130,7 @@ namespace usernet
 
             string strServer;
 
-            pinteraction->get_text(strServer);
+            strServer = pinteraction->get_text();
 
             if(strServer.length() == 0)
             {
@@ -151,7 +151,7 @@ namespace usernet
 
                string strPort;
 
-               pinteraction->get_text(strPort);
+               strPort = pinteraction->get_text();
 
                doc.root()->set_attribute("port", strPort);
 

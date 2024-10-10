@@ -91,7 +91,7 @@ namespace browser
       if(ptopic->m_atom == ::id_click)
       {
 
-         if(ptopic->user_element_id() == "switcher_toggle")
+         if(ptopic->user_interaction_id() == "switcher_toggle")
          {
 
             ::pointer<impact>pimpact = m_pimpact;
@@ -102,7 +102,7 @@ namespace browser
             return;
 
          }
-         else if(ptopic->user_element_id() == "browser_toggle")
+         else if(ptopic->user_interaction_id() == "browser_toggle")
          {
 
             m_pimpact->m_prender->m_bLite = !m_pimpact->m_prender->m_bLite;

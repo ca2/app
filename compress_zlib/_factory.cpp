@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "compress.h"
 #include "uncompress.h"
-#include "acme/primitive/primitive/factory.h"
+#include "acme/prototype/prototype/factory.h"
 
 
 __FACTORY_EXPORT void compress_zlib_factory(::factory::factory * pfactory)

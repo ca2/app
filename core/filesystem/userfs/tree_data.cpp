@@ -10,7 +10,7 @@
 #include "acme/platform/timer.h"
 #include "acme/platform/context.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/data/listener.h"
+#include "acme/prototype/data/listener.h"
 #include "aura/user/user/interaction.h"
 #include "base/user/user/impact.h"
 #include "core/user/user/tree_data.h"
@@ -198,7 +198,7 @@ namespace userfs
 
          pPopup->track_popup_menu(
          point.x(), point.y(),
-         (::user::interaction_impl *) pframe);
+         (::windowing::window *) pframe);
          }
          }
          else
@@ -211,7 +211,7 @@ namespace userfs
          ::pointer<::user::frame_window>pframe = top_level_frame();
          pPopup->track_popup_menu(
          point.x(), point.y(),
-         (::user::interaction_impl *) pframe);
+         (::windowing::window *) pframe);
          }
          }*/
    }
@@ -442,7 +442,7 @@ namespace userfs
    void tree_data::_001OnOpenItem(::data::tree_item * ptreeitem, const ::action_context & context)
    {
 
-      auto pitem = ::place(new ::file::item(*ptreeitem->m_pdataitem.cast < ::userfs::item >()));
+      auto pitem = __new ::file::item(*ptreeitem->m_pdataitem.cast < ::userfs::item >());
 
       m_puserfsdocument->browse(pitem, context);
 

@@ -29,6 +29,7 @@ namespace apex
 
 #endif
 
+      ::pointer < ::file::watcher >                      m_pfilewatcher;
       //::pointer<::dump_context>                       m_pdumpcontext;
 
       ::pointer<::networking::networking>             m_pnetworking;
@@ -134,7 +135,7 @@ namespace apex
 
       virtual void term();
 
-      DECLARE_MESSAGE_HANDLER(on_message_erase_session);
+      //DECLARE_MESSAGE_HANDLER(on_message_erase_session);
 
       string get_application_server_name() override;
 
@@ -144,6 +145,7 @@ namespace apex
 
       ::apex::node * node();
 
+      ::file::watcher * file_watcher() override;
 
       virtual ::input::input * input();
 

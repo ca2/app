@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "program.h"
 #include "shader.h"
-//#include "acme/primitive/primitive/factory.h"
+//#include "acme/prototype/prototype/factory.h"
 //#include "_.h"
 //#include "_gpu.h"
 

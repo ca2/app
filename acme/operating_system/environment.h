@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/collection/map_interface.h"
+#include "acme/prototype/collection/map_interface.h"
 
 
 namespace operating_system

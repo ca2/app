@@ -46,7 +46,7 @@ namespace acme
 
          }
 
-         ptimer = ::place(new timer_task());
+         ptimer = __new timer_task();
 
          ptimer->m_ptimercallback = this;
 

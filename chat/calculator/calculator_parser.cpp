@@ -18,7 +18,7 @@ namespace calculator
 
    ::calculator::matter * parser::new_node()
    {
-      return m_elementa.add(::place(new ::calculator::matter()));
+      return m_elementa.add(__new ::calculator::matter());
    }
 
    //::calculator::matter * parser::parse(const ::string & psz)

@@ -103,7 +103,7 @@ namespace user
       void _on_show_window() override;
 
 
-      bool on_set_owner(::user::primitive * pprimitive) override;
+      bool on_set_owner(::user::interaction_base * pprimitive) override;
 
 
       void set_current_item(::item * pitem, const ::action_context & context) override;

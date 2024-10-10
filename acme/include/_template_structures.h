@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/u32hash.h"
+#include "acme/prototype/prototype/u32hash.h"
 
 
 namespace comparison

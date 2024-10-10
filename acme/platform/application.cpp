@@ -9,19 +9,22 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/filesystem/file_system_options.h"
 #include "acme/handler/request.h"
+#include "acme/operating_system/a_system_menu.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/platform/platform.h"
-#include "acme/platform/sequencer.h"
+//#include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
 #include "acme/platform/session.h"
-#include "acme/primitive/string/_str.h"
-#include "acme/primitive/text/context.h"
+#include "acme/prototype/string/_str.h"
+#include "acme/prototype/text/context.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/user/user.h"
-
+#include "acme/user/micro/user.h"
+#include "acme/nano/graphics/icon.h"
+#include "acme/windowing/windowing.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -52,7 +55,7 @@ application::application()
    m_bTransferToContainer = true;
    m_bTransferredToContainer = false;
    
-   m_pfilesystemoptions = ::place(new ::filesystem::file_system_options ());
+   m_pfilesystemoptions = __new ::filesystem::file_system_options ();
       
    m_bApplicationFirstRequest = true;
    
@@ -80,8 +83,30 @@ application::application()
 
 application::~application()
 {
+
+   m_papexapplication = nullptr;
+   m_paquaapplication = nullptr;
+   m_pauraapplication = nullptr;
+   m_paxisapplication = nullptr;
+   m_pbaseapplication = nullptr;
+   m_pbredapplication = nullptr;
+   m_pcoreapplication = nullptr;
+
+   if(session() && session()->m_pacmeapplication == this)
+   {
+
+      session()->m_pacmeapplication = nullptr;
+
+   }
    
-   if (m_pplatform->m_pacmeapplication == this)
+   if(system() && system()->m_pacmeapplication == this)
+   {
+
+      system()->m_pacmeapplication = nullptr;
+
+   }
+
+   if (m_pplatform && m_pplatform->m_pacmeapplication == this)
    {
       
       m_pplatform->m_pacmeapplication = nullptr;
@@ -226,6 +251,20 @@ void application::initialize_application(::platform::platform * pplatform)
    
 }
 
+   void application::_001TryCloseApplication()
+{
+
+   if(!platform()->is_console())
+   {
+
+      //system()->acme_windowing()->windowing_system_post_quit();
+
+      set_finish();
+
+   }
+
+}
+
 
 void application::application_on_status(::e_status estatus, ::particle * pparticle, long long ll, void * p)
 {
@@ -265,8 +304,13 @@ void application::on_error_icloud_not_available(::particle * pparticle, long lon
 {
    
    ::function < void(const ::atom& atom) > function;
+
+   auto pmessagebox = __initialize_new ::message_box(
+      "Application needs iCloud and it is not Available",
+      "iCloud is not Available.",
+      e_message_box_ok | e_message_box_icon_exclamation);
    
-   message_box_synchronous(this, "Application needs iCloud and it is not Available", "iCloud is not Available.", e_message_box_ok | e_message_box_icon_exclamation);
+   pmessagebox->sync();
    
 }
 
@@ -853,7 +897,7 @@ void application::init_task()
 void application::term_task()
 {
    
-   information() << "acme::application::term_task";
+   debug() << "acme::application::term_task";
    
    m_timeHeartBeat.Now();
    
@@ -1245,7 +1289,17 @@ void application::process_init()
 {
    
    initialize_context();
-   
+
+   string_array stra;
+
+   stra.explode("/", m_strAppId);
+
+   m_strRoot = stra[0];
+
+   m_strDomain = stra.slice(1).implode("/");
+
+   add_matter_locator(this);
+
 }
 
 
@@ -1379,7 +1433,13 @@ void application::application_pre_run()
       
       handle_exception(e);
       
-      message_box_synchronous(this, "Application failed to initialize (1).\n\n" + e.m_strMessage, m_strAppName, e_message_box_ok, e.m_strMessage + "\n" + e.m_strDetails);
+      auto pmessagebox = __initialize_new ::message_box(
+         "Application failed to initialize (1).\n\n" + e.m_strMessage,
+         m_strAppName, 
+         e_message_box_ok, 
+         e.m_strMessage + "\n" + e.m_strDetails);
+
+      pmessagebox->sync();
       
       throw e;
       
@@ -1387,7 +1447,11 @@ void application::application_pre_run()
    catch (...)
    {
       
-      message_box_synchronous(this, "Application failed to initialize (2). Unknown exception", m_strAppName);
+      auto pmessagebox = __initialize_new ::message_box(
+         "Application failed to initialize (2). Unknown exception", 
+         m_strAppName);
+
+      pmessagebox->sync();
       
       throw "Unknown exception";
       
@@ -1432,8 +1496,13 @@ void application::application_pre_run()
    catch (const ::exception & exception)
    {
       
-      message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName, e_message_box_ok,
-                              exception.m_strMessage + "\n\n" + exception.get_consolidated_details(this));
+      auto pmessagebox = __initialize_new ::message_box(
+         "Application failed to initialize (4). Unknown exception",
+         m_strAppName,
+         e_message_box_ok,
+      exception.m_strMessage + "\n\n" + exception.get_consolidated_details(this));
+
+      pmessagebox->sync();
       
       throw exception;
       
@@ -1441,7 +1510,11 @@ void application::application_pre_run()
    catch (...)
    {
       
-      message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName);
+      auto pmessagebox = __initialize_new ::message_box(
+         "Application failed to initialize (4). Unknown exception",
+         m_strAppName);
+
+      pmessagebox->sync();
       
       throw "Unknown exception";
       
@@ -1647,7 +1720,7 @@ void application::init_application()
 void application::pos_run()
 {
    
-   information() << "acme::application::pos_run";
+   debug() << "acme::application::pos_run";
    
    try
    {
@@ -1854,6 +1927,20 @@ void application::term_application()
 
 void application::process_term()
 {
+
+   auto psession = session();
+
+   if (::is_set(psession))
+   {
+
+      psession->post([this]()
+         {
+
+            session()->erase_application(this);
+
+         });
+
+   }
    
    finalize_context();
    
@@ -1916,8 +2003,14 @@ void application::show_about_box()
    ::string strMessage;
    
    strMessage = lines.implode("\n");
+
+   auto picon = __create < ::nano::graphics::icon>();
+
+   auto pfile = file()->get("matter://main/icon.png");
+
+   picon->load_image_from_file(pfile);
    
-   auto psequencer = nano()->user()->message_box("About\n\n" + strMessage, nullptr, e_message_box_ok);
+   auto paboutbox = __initialize_new_with(system()->acme_windowing()) ::message_box("About\n\n" + strMessage, nullptr, e_message_box_ok, "", picon);
    
    //psequencer->then([this, strPath](auto pconversation)
    //      {
@@ -1938,7 +2031,7 @@ void application::show_about_box()
    
    //      });
    
-   psequencer->do_asynchronously();
+   post(paboutbox);
    
    
    
@@ -2036,6 +2129,17 @@ void application::file_manager_save_as(::user::controller *pusercontroller)
    
    
 }
+
+
+bool application::fill_system_menu(::operating_system::a_system_menu * psystemmenu)
+{
+
+   psystemmenu->add_item("About...", "about_box");
+
+   return true;
+
+}
+
 
 
 

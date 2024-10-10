@@ -10,6 +10,8 @@
 #include "context.h"
 #include "node.h"
 #include "history.h"
+#include "acme/filesystem/watcher/watcher.h"
+#include "acme/handler/topic.h"
 //#include "app_launcher.h"
 //#include "log.h"
 #include "acme/compress/compress.h"
@@ -22,14 +24,14 @@
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/handler/request.h"
 //#include "apex/id.h"
-#include "acme/primitive/primitive/url.h"
+#include "acme/prototype/prototype/url.h"
 #include "acme/operating_system/process.h"
 #include "acme/parallelization/single_lock.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/system_setup.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/datetime/datetime.h"
-#include "acme/primitive/string/command_line.h"
+#include "acme/prototype/datetime/datetime.h"
+#include "acme/prototype/string/command_line.h"
 #include "apex/innate_ui/innate_ui.h"
 #include "apex/input/input.h"
 #include "apex/message/message.h"
@@ -50,12 +52,12 @@
 #include "acme/filesystem/filesystem/dir_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
 #include "acme/parallelization/install_mutex.h"
-#include "acme/primitive/text/context.h"
+#include "acme/prototype/text/context.h"
 #include "apex/message/command.h"
-#include "acme/primitive/geometry2d/geometry.h"
+#include "acme/prototype/geometry2d/geometry.h"
 #include "acme/platform/hyperlink.h"
 //#include "acme/platform/system_impl.h"
-#include "acme/primitive/string/base64.h"
+#include "acme/prototype/string/base64.h"
 
 int file_put_contents(const ::file::path & path, const char * contents);;
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception & exception, const ::string & strMoreDetails);
@@ -214,8 +216,6 @@ namespace apex
 
       m_bSimpleMessageLoop = false;
 
-      m_bFinalizeIfNoSession = false;
-      m_bFinalizeIfNoSessionSetting = true;
 
       m_bFinalizeIfNoSessionSetting = true;
       m_bFinalizeIfNoSession = false;
@@ -276,7 +276,7 @@ namespace apex
 
       ::apex::context::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_erase_session, pchannel, this, &system::on_message_erase_session);
+      //MESSAGE_LINK(e_message_erase_session, pchannel, this, &system::on_message_erase_session);
 
    }
 
@@ -393,7 +393,6 @@ namespace apex
       //return true;
 
 
-      factory()->add_factory_item<::request>();
       factory()->add_factory_item<http::context>();
 
       //auto estatus = 
@@ -636,8 +635,6 @@ namespace apex
 
       //return estatus;
 
-
-      application()->initialize_application_flags();
 
 
 
@@ -900,179 +897,6 @@ pacmedirectory->create("/ca2core");
 
       }
 
-      //estatus = 
-
-      __construct(m_pfilesystem);
-
-      //if(!estatus)
-      //{
-
-      //   ERROR("failed to initialize file-system");
-
-      //   return estatus;
-
-      //}
-
-      //estatus = 
-
-      //::allocator::add_referer(REFERENCING_DEBUGGING_THIS_FUNCTION_FILE_LINE);
-
-      __construct(m_pdirsystem);
-
-      //if (!estatus)
-      //{
-
-      //   ERROR("failed to initialize dir-system");
-
-      //   return false;
-
-      //}
-
-      ///INFORMATION("apex::session::process_init .3");
-
-      //estatus = 
-      m_pfilesystem->init_system();
-
-      //if (!estatus)
-      //{
-
-      //   m_estatus = estatus;
-
-      //   return estatus;
-
-      //}
-
-      //estatus = 
-      m_pdirsystem->init_system();
-
-      //if (!estatus)
-      //{
-
-      //   m_estatus = estatus;
-
-      //   return estatus;
-
-      //}
-
-      //estatus = ::apex::context::initialize_context();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-      
-#if !defined(APPLE_IOS)
-
-      auto pid = node()->current_process_identifier();
-
-      string strPid = ::as_string(pid);
-
-      //auto psystem = system();
-
-      auto pdatetime = datetime();
-
-      string strLogTime = pdatetime->date_time_text_for_file_with_no_spaces();
-
-      strLogTime.replace_with("/", "-");
-
-      strLogTime.replace_with("/", "_");
-
-      {
-
-         string strExecutable = platform()->get_executable();
-
-         string_array straArguments;
-
-         for (int i = 0; i < platform()->get_argument_count1(); i++)
-         {
-
-            string strArgument = platform()->get_argument1(i);
-
-            straArguments.add(strArgument);
-
-         }
-
-         string strCmd = strExecutable + " " + straArguments.implode("\n");
-
-         string strAppId = application()->m_strAppId;
-
-         string strCmdLineDumpFileName = strAppId / (strLogTime + "-pid" + strPid + "-command_line.txt");
-
-         ::file::path pathCmdLineDumpFile = acmedirectory()->home() / "application" / strCmdLineDumpFileName;
-
-         acmefile()->put_contents(pathCmdLineDumpFile, strCmd);
-
-      }
-
-      {
-
-         string_array straEnv;
-#ifdef WINDOWS_DESKTOP
-         if (platform()->m_wenvp)
-         {
-
-            int iIndex = 0;
-
-            for (auto wenv = platform()->m_wenvp; *wenv != 0; wenv++, iIndex++)
-            {
-
-               auto thisEnv = *wenv;
-
-               int iLen = (int) wcslen(thisEnv);
-
-               /*if (iLen >= 42)
-               {
-                  output_debug_string("aaa");
-               }
-               else*/ if (!wcsncmp(thisEnv, L"Path=", 5))
-               {
-
-                  output_debug_string("aaa");
-
-               }
-               else if (!wcsncmp(thisEnv, L"VsPer", 5))
-               {
-
-                  output_debug_string("aaa");
-
-               }
-
-               straEnv.add(thisEnv);
-
-            }
-
-         }
-         else
-#endif
-            if (platform()->m_envp)
-            {
-
-               for (auto env = platform()->m_envp; *env != 0; env++)
-               {
-
-                  auto thisEnv = *env;
-
-                  straEnv.add(thisEnv);
-
-               }
-
-            }
-
-         string strEnv = straEnv.implode("\n");
-
-         string strAppId = application()->m_strAppId;
-
-         string strEnvDumpFileName = strAppId / strLogTime + "-pid" + strPid + "-environment_variables.txt";
-
-         ::file::path pathEnvDumpFile = acmedirectory()->home() / "application" / strEnvDumpFileName;
-
-         acmefile()->put_contents(pathEnvDumpFile, strEnv);
-
-      }
-      
-#endif
 
       //      {
       //
@@ -1187,67 +1011,70 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      if (application()->m_bResource)
-      {
+      // if (application()->m_bResource)
+      // {
+      //
+      //    bool bMatterFromHttpCache = false;
+      //
+      //    bool bMatterFromResource = false;
+      //
+      //    auto pfile = m_papexsystem->file()->create_resource_file("app/_matter/main/_std/_std/Thomas Borregaard Sørensen.dedicatory");
+      //
+      //    if (pfile)
+      //    {
+      //
+      //       information() << "found Thomas Borregaard Sørensen.dedicatory";
+      //
+      //       bMatterFromResource = true;
+      //
+      //    }
+      //    else
+      //    {
+      //
+      //       warning() << "Thomas Borregaard Sørensen.dedicatory not found";
+      //
+      //    }
+      //
+      //    if (bMatterFromResource)
+      //    {
+      //
+      //       m_pdirsystem->m_bMatterFromHttpCache = false;
+      //
+      //       m_pdirsystem->m_bMatterFromResource = true;
+      //
+      //    }
+      //    else
+      //    {
+      //
+      //       if (m_iMatterFromHttpCache == -1)
+      //       {
+      //
+      //          ::file::path pathSide = m_pcontext->m_papexcontext->side_get_matter_path("app/_matter/main");
+      //
+      //          ::file::path pathLocal = local_get_matter_path("app/_matter/main");
+      //
+      //          bool bFileSystemMatter = m_pacmedirectory->is(pathSide) || m_pacmedirectory->is(pathLocal);
+      //
+      //          bMatterFromHttpCache = !bFileSystemMatter;
+      //
+      //       }
+      //       else
+      //       {
+      //
+      //          bMatterFromHttpCache = m_iMatterFromHttpCache != 0;
+      //
+      //       }
+      //
+      //       m_pdirsystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
+      //
+      //       m_pdirsystem->m_bMatterFromResource = false;
+      //
+      //    }
+      //
+      // }
 
-         bool bMatterFromHttpCache = false;
 
-         bool bMatterFromResource = false;
-
-         auto pfile = m_papexsystem->file()->create_resource_file("app/_matter/main/_std/_std/Thomas Borregaard Sørensen.dedicatory");
-
-         if (pfile)
-         {
-
-            information() << "found Thomas Borregaard Sørensen.dedicatory";
-
-            bMatterFromResource = true;
-
-         }
-         else
-         {
-
-            warning() << "Thomas Borregaard Sørensen.dedicatory not found";
-
-         }
-
-         if (bMatterFromResource)
-         {
-
-            m_pdirsystem->m_bMatterFromHttpCache = false;
-
-            m_pdirsystem->m_bMatterFromResource = true;
-
-         }
-         else
-         {
-
-            if (m_iMatterFromHttpCache == -1)
-            {
-
-               ::file::path pathSide = m_pcontext->m_papexcontext->side_get_matter_path("app/_matter/main");
-
-               ::file::path pathLocal = local_get_matter_path("app/_matter/main");
-
-               bool bFileSystemMatter = m_pacmedirectory->is(pathSide) || m_pacmedirectory->is(pathLocal);
-
-               bMatterFromHttpCache = !bFileSystemMatter;
-
-            }
-            else
-            {
-
-               bMatterFromHttpCache = m_iMatterFromHttpCache != 0;
-
-            }
-
-            m_pdirsystem->m_bMatterFromHttpCache = bMatterFromHttpCache;
-
-            m_pdirsystem->m_bMatterFromResource = false;
-
-         }
-
-      }
+      //initialize_matter();
 
       //estatus = create_html();
 
@@ -1339,14 +1166,6 @@ pacmedirectory->create("/ca2core");
 //
 //#endif
 
-      auto strMain = dir()->install() / "app/_appmatter/main";
-
-      if (!m_ptexttable->load(strMain))
-      {
-
-         // return error_failed;
-
-      }
 
       //return true;
 
@@ -1455,12 +1274,6 @@ pacmedirectory->create("/ca2core");
       //else
       //{
 
-      if (application()->m_bSession)
-      {
-
-         session()->branch_synchronously();
-
-      }
       //{
 
       //   informationf("\nFailed to begin_synch the session (::apex::session or ::apex::session derived)");
@@ -1473,6 +1286,15 @@ pacmedirectory->create("/ca2core");
 
    //estatus = 
       __construct_new(m_ptexttable);
+
+      auto strMain = dir()->install() / "app/_appmatter/main";
+
+      if (!m_ptexttable->load(strMain))
+      {
+
+         // return error_failed;
+
+      }
 
       //if (!m_ptexttable || !estatus)
       //{
@@ -1874,7 +1696,7 @@ pacmedirectory->create("/ca2core");
 
          strMoreDetails = "command line: " + string(platform()->m_strCommandLine) + "\n\n";
 
-         exception_message_box(exception, strMoreDetails);
+         auto pmessagebox = __initialize_new ::message_box(exception, strMoreDetails);
 
          throw exception;
 
@@ -1943,26 +1765,20 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   void system::on_message_erase_session(::message::message * pmessage)
-   {
+   //void system::on_message_erase_session(::message::message * pmessage)
+   //{
 
-      auto iEdge = pmessage->m_wparam;
+   //   auto iEdge = pmessage->m_wparam;
 
-      erase_session(iEdge);
+   //   erase_session(iEdge);
 
-   }
+   //}
 
 
    string system::get_application_server_name()
    {
 
-      string strApplicationServerName = application()->m_strAppId;
-
-      strApplicationServerName.replace_with(".", "/");
-
-      strApplicationServerName.replace_with("-", "_");
-
-      return strApplicationServerName;
+      return ::acme::system::get_application_server_name();
 
    }
 
@@ -2145,6 +1961,21 @@ pacmedirectory->create("/ca2core");
    {
 
       return m_pnode ? m_pnode->m_papexnode : nullptr;
+
+   }
+
+
+   ::file::watcher * system::file_watcher()
+   {
+
+      if (!m_pfilewatcher)
+      {
+
+         __construct(m_pfilewatcher);
+
+      }
+
+      return m_pfilewatcher;
 
    }
 
@@ -2344,11 +2175,11 @@ pacmedirectory->create("/ca2core");
    //
    //#ifdef UNIVERSAL_WINDOWS
    //
-   //         m_spmutexOpenweatherCity = ::place(new ::pointer < ::mutex > ());
+   //         m_spmutexOpenweatherCity = __new ::pointer < ::mutex > ();
    //
    //#else
    //
-   //         m_spmutexOpenweatherCity = ::place(new ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city"));
+   //         m_spmutexOpenweatherCity = __new ::pointer < ::mutex > (e_create_new, false, "Global\\ca2_weather_city");
    //
    //#endif
    //
@@ -3592,7 +3423,9 @@ pacmedirectory->create("/ca2core");
       if (strProfile.is_empty() && strTarget.is_empty() && strBrowser.is_empty())
       {
 
-         //::message_box_synchronous(NULL, strUrl, strUrl, e_message_box_ok);
+         //::auto pmessagebox = __initialize_new ::message_box(NULL, strUrl, strUrl, e_message_box_ok);
+
+pmessagebox->sync();
 
          m_pcontext->m_papexcontext->os().link_open(strUrl);
 
@@ -4258,7 +4091,7 @@ pacmedirectory->create("/ca2core");
    //   if (threadgroupa.is_empty())
    //   {
 
-   //      auto pgroup = ::place(new ::task_group(this, epriority));
+   //      auto pgroup = __new ::task_group(this, epriority);
 
    //      threadgroupa.add(pgroup);
 
@@ -4279,7 +4112,7 @@ pacmedirectory->create("/ca2core");
    //   if (threadtoola.is_empty())
    //   {
 
-   //      auto ptool = ::place(new ::task_tool());
+   //      auto ptool = __new ::task_tool();
 
    //      ptool->m_atom = etool;
 
@@ -4907,7 +4740,7 @@ namespace apex
    void system::system_id_update(::i64 iUpdate, ::i64 iPayload)
    {
 
-      call((::enum_id)iUpdate, iPayload);
+      message_call((::enum_id)iUpdate, iPayload);
 
    }
 
@@ -5282,6 +5115,8 @@ namespace apex
    {
    
       this->signal(id_application_dark_mode_change);
+
+      ::acme::system::on_application_dark_mode_change();
 
    }
 

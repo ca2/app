@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "hasher.h"
 #include "hasher_algorithm.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 //#include "_openssl.h"
 
 
@@ -15,11 +15,11 @@
 //      switch (ehash)
 //      {
 //      case e_hash_md5:
-//         return ::place(new hasher < MD5_CTX, e_hash_md5 >  ());
+//         return __new hasher < MD5_CTX, e_hash_md5 >  ();
 //      case e_hash_sha1:
-//         return ::place(new hasher < SHA_CTX, e_hash_sha1> ());
+//         return __new hasher < SHA_CTX, e_hash_sha1> ();
 //      case e_hash_sha256:
-//         return ::place(new hasher < SHA256_CTX, e_hash_sha256 > ());
+//         return __new hasher < SHA256_CTX, e_hash_sha256 > ();
 //      default:
 //         return nullptr;
 //      }

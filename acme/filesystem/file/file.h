@@ -1,7 +1,7 @@
 #pragma once
 
 
-//////#include "acme/primitive/primitive/object.h"
+//////#include "acme/prototype/prototype/object.h"
 //#include "acme/filesystem/filesystem/path.h"
 #include "streamable.h"
 
@@ -145,6 +145,9 @@ namespace file
       virtual filesize find(const void* pFind, memsize size, const filesize* limit);
 
       ::filesize right_size() const override;
+
+
+      virtual ::memory as_memory();
 
 
       template < typename TYPE >

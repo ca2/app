@@ -12,8 +12,8 @@
 namespace xcb
 {
 
-   class CLASS_DECL_ACME ::nano::user::device :
-      virtual public ::nano::user::device
+   class CLASS_DECL_ACME ::nano::graphics::device :
+      virtual public ::nano::graphics::device
    {
    public:
 
@@ -22,14 +22,14 @@ namespace xcb
       cairo_t *            m_pdc;
 
 
-      ::nano::user::device();
-      ::nano::user::device(cairo_t * pdc);
-      ~::nano::user::device() override;
+      ::nano::graphics::device();
+      ::nano::graphics::device(cairo_t * pdc);
+      ~::nano::graphics::device() override;
 
 
-      void _draw_text(const ::string & strMessage, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::user::brush * pnanobrushBack, ::nano::user::brush * pnanobrushText, ::nano::user::font * pnanofont) override;
-      ::size_i32 get_text_extents(const ::string & str, ::nano::user::font * pnanofont) override;
-      void rectangle(const ::rectangle_i32 & rectangle, ::nano::user::brush * pnanobrush, ::nano::user::pen * pnanopen) override;
+      void _draw_text(const ::string & strMessage, const ::rectangle_i32 & rectangleText, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::nano::graphics::brush * pnanobrushBack, ::nano::graphics::brush * pnanobrushText, ::nano::graphics::font * pnanofont) override;
+      ::size_i32 get_text_extents(const ::string & str, ::nano::graphics::font * pnanofont) override;
+      void rectangle(const ::rectangle_i32 & rectangle, ::nano::graphics::brush * pnanobrush, ::nano::graphics::pen * pnanopen) override;
 
 
       //XColor _alloc_xcolor(const ::color::color & color);

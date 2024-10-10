@@ -4,12 +4,12 @@
 #pragma once
 
 
-#include "acme/platform/department.h"
-#include "acme/primitive/collection/int_map.h"
-//#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/windowing/windowing.h"
+#include "acme/prototype/collection/int_map.h"
+#include "acme/prototype/collection/list.h"
 
 
-CLASS_DECL_AURA ::user::interaction_impl * __interaction_impl(::windowing::window * pwindow);
+//CLASS_DECL_AURA ::windowing::window * __interaction_impl(::windowing::window * pwindow);
 
 
 namespace windowing
@@ -20,13 +20,13 @@ namespace windowing
 
 
    class CLASS_DECL_AURA windowing :
-      virtual public ::acme::department
+      virtual public ::acme::windowing::windowing
    {
    public:
 
 
       ::sandbox_windowing::windowing *          m_psandboxwindowing;
-      void *                                    m_pWindowing4;
+      //void *                                    m_pWindowing4;
 
       //::point_i32                               m_pointCursor;
 
@@ -50,8 +50,9 @@ namespace windowing
 
       bool                                      m_bDrawCursor;
       ::pointer<::user::user>                   m_puser;
-      
 
+      // Fallback implementation of a Main thread mouse capture
+      ::pointer<::windowing::window>            m_pwindowMouseCapture;
 
       windowing();
       ~windowing() override;
@@ -62,12 +63,14 @@ namespace windowing
 
       bool is_branch_current() const override;
       
-      
+      virtual void set_dark_mode(bool bDarkMode);
 
 
       ::aura::application* get_app();
       ::aura::session* get_session();
       //::aura::system* system();
+
+      ::windowing::windowing * windowing_windowing() override;
 
 
       //virtual void _initialize_windowing();
@@ -99,7 +102,7 @@ namespace windowing
       
       //inline ::point_i32 get_cursor_position() { return m_pointCursor; }
       //virtual void set_cursor_position(const ::point_i32 & pointCursor);
-
+      virtual ::windowing::display * display();
 
       virtual ::windowing::window * window(oswindow oswindow);
 
@@ -117,14 +120,14 @@ namespace windowing
 
       virtual void clear_active_window(::thread * pthread, ::windowing::window * pwindow);
 
-      virtual ::windowing::window_base * get_keyboard_focus(::thread * pthread);
+      virtual ::acme::windowing::window * get_keyboard_focus(::thread * pthread);
 
       virtual ::point_i32 try_absolute_mouse_position(::user::interaction* puserinteraction, const ::point_i32& point);
-      virtual void set_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
-
       virtual ::windowing::window * get_mouse_capture(::thread * pthread);
-
-      virtual void release_mouse_capture(::thread * pthread);
+      virtual void set_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
+      virtual bool has_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
+      virtual bool is_mouse_captured(::thread * pthread, ::windowing::window * pwindow);
+      virtual void release_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
 
       virtual bool defer_release_mouse_capture(::thread * pthread, ::windowing::window * pwindow);
 
@@ -136,7 +139,7 @@ namespace windowing
 
       void term2() override;
 
-      virtual ::windowing::display * display();
+      //virtual ::acme::windowing::display * acme_display();
 
       virtual size_i32 get_window_minimum_size();
 
@@ -166,13 +169,13 @@ namespace windowing
 
 
 
-      virtual class window * new_message_window(::user::interaction_impl * pimpl);
+      virtual ::pointer < ::windowing::window > new_message_window();
 
       
-      virtual ::pointer < ::windowing::window > get_new_window(::user::interaction_impl * puserinteractionimpl);
+      virtual ::pointer < ::windowing::window > get_new_window();
       
 
-      virtual class window * new_window(::user::interaction_impl * puserinteractionimpl);
+      virtual ::pointer < ::windowing::window > new_window();
       
 
       virtual void erase_window(::windowing::window * pwindow);

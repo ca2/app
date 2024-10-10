@@ -8,7 +8,7 @@
 #include "acme/handler/request.h"
 #include "acme/platform/system.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/user/user/_text_stream.h"
 #include "apex/handler/signal.h"
 #include "apex/database/_binary_stream.h"
@@ -436,7 +436,7 @@ void simple_frame_window::install_message_routing(::channel * pchannel)
 void simple_frame_window::task_save_window_placement()
 {
 
-   ::acme::get()->platform()->informationf("_task_save_window_rect start\n");
+   informationf("_task_save_window_rect start\n");
 
    auto ptask = ::get_task();
 
@@ -497,7 +497,7 @@ void simple_frame_window::task_save_window_placement()
 
    }
 
-   ::acme::get()->platform()->informationf("_task_save_window_rect end\n");
+   informationf("_task_save_window_rect end\n");
 
 }
 
@@ -1921,8 +1921,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
       auto edesktop = pnode->get_edesktop();
 
-      if (edesktop == ::user::e_desktop_unity_gnome
-         || edesktop == ::user::e_desktop_ubuntu_gnome)
+      if (edesktop == ::user::e_desktop_unity)
       {
 
          display(e_display_none);
@@ -3027,7 +3026,7 @@ bool simple_frame_window::on_before_set_parent(::pointer<::user::interaction>pin
 }
 
 
-bool simple_frame_window::on_set_parent(::user::primitive * puiParent)
+bool simple_frame_window::on_set_parent(::user::interaction_base * puiParent)
 {
 
    if (!::user::frame_window::on_set_parent(puiParent))
@@ -3583,7 +3582,7 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
       if (ptopic->m_atom == ::id_context_menu)
       {
 
-         //OnNotifyIconContextMenu(ptopic->m_puserelement->m_atom);
+         //OnNotifyIconContextMenu(ptopic->user_interaction_id());
 
          auto pointCursor = windowing()->display()->get_mouse_cursor_position();
          
@@ -3617,13 +3616,13 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
       else if (ptopic->m_atom == ::id_left_button_double_click)
       {
 
-         //OnNotifyIconLButtonDblClk(ptopic->m_puserelement->m_atom);
+         //OnNotifyIconLButtonDblClk(ptopic->user_interaction_id());
 
       }
       else if (ptopic->m_atom == ::id_left_button_down)
       {
 
-         //OnNotifyIconLButtonDown(ptopic->m_puserelement->m_atom);
+         //OnNotifyIconLButtonDown(ptopic->user_interaction_id());
 
          default_notify_icon_topic();
 

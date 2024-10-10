@@ -8,7 +8,7 @@
 #include "acme/constant/timer.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/user/user/content.h"
 #include "acme/parallelization/message_queue.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -17,7 +17,7 @@
 #include "acme/platform/timer.h"
 #include "aura/user/user/scroll_state.h"
 #include "aura/user/user/interaction_graphics_thread.h"
-#include "aura/user/user/interaction_impl.h"
+//#include "aura/user/user/interaction_impl.h"
 #include "aura/message/user.h"
 #include "aura/user/user/user.h"
 #include "aura/platform/session.h"
@@ -124,7 +124,7 @@ namespace user
    }
 
 
-   bool list_box::on_set_owner(::user::primitive* pprimitive)
+   bool list_box::on_set_owner(::user::interaction_base* pprimitive)
    {
 
       auto puserinteractionOwner = pprimitive->get_owner();
@@ -954,7 +954,7 @@ namespace user
 
          m_pcombo->ShowDropDown(false);
 
-         ::pointer<::user::primitive>pelemental = m_pcombo->keyboard_get_next_focusable();
+         ::pointer<::user::interaction_base>pelemental = m_pcombo->keyboard_get_next_focusable();
 
          if (pelemental.is_set())
          {
@@ -968,13 +968,13 @@ namespace user
       else if (pkey->m_ekey == ::user::e_key_down)
       {
 
-         m_pcombo->m_pitemHover = ::place(new ::item(e_element_item, minimum(m_pcombo->m_pitemHover->m_item.m_iItem + 1, m_pcombo->_001GetListCount() - 1)));
+         m_pcombo->m_pitemHover = __new ::item(e_element_item, minimum(m_pcombo->m_pitemHover->m_item.m_iItem + 1, m_pcombo->_001GetListCount() - 1));
 
       }
       else if (pkey->m_ekey == ::user::e_key_up)
       {
 
-         m_pcombo->m_pitemHover = ::place(new ::item(e_element_item, maximum(m_pcombo->m_pitemHover->m_item.m_iItem - 1, 0)));
+         m_pcombo->m_pitemHover = __new ::item(e_element_item, maximum(m_pcombo->m_pitemHover->m_item.m_iItem - 1, 0));
 
       }
       else if (pkey->m_ekey == ::user::e_key_return)
@@ -984,7 +984,7 @@ namespace user
 
          m_pcombo->ShowDropDown(false);
 
-         ::pointer<::user::primitive>pelemental = m_pcombo->keyboard_get_next_focusable();
+         ::pointer<::user::interaction_base>pelemental = m_pcombo->keyboard_get_next_focusable();
 
          if (pelemental.is_set())
          {
@@ -1170,11 +1170,11 @@ namespace user
       if (rectangleItem.contains(point))
       {
 
-         return ::place(new ::item(e_element_search_edit));
+         return __new ::item(e_element_search_edit);
 
       }
 
-      auto pitemNone = ::place(new ::item(e_element_none));
+      auto pitemNone = __new ::item(e_element_none);
 
       return pitemNone;
 
@@ -1287,7 +1287,7 @@ namespace user
       if (!::is_set(m_pcombo->m_pitemHover))
       {
 
-         m_pcombo->m_pitemHover = ::place(new ::item(::e_element_item, 0));
+         m_pcombo->m_pitemHover = __new ::item(::e_element_item, 0);
 
       }
 
@@ -1433,7 +1433,7 @@ namespace user
 
       }
 
-      set_current_item(::place(new ::item(::e_element_item, iSel)), context);
+      set_current_item(__new ::item(::e_element_item, iSel)), context;
 
    }
 
@@ -1450,7 +1450,7 @@ namespace user
 
       }
 
-      set_current_item(::place(new ::item(::e_element_item, iSel)), context);
+      set_current_item(__new ::item(::e_element_item, iSel)), context;
 
    }
 
@@ -1464,7 +1464,7 @@ namespace user
 
       }
 
-      set_current_item(::place(new ::item(::e_element_item, iIndex)), context);
+      set_current_item(__new ::item(::e_element_item, iIndex)), context;
 
    }
 

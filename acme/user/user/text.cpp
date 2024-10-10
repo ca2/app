@@ -2,8 +2,8 @@
 // property* system on 2024-06-06 21:20 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "text.h"
-#include "acme/primitive/data/property_container.h"
-//#include "acme/primitive/collection/sort.h"
+#include "acme/prototype/data/property_container.h"
+//#include "acme/prototype/collection/sort.h"
 
 
 namespace user
@@ -442,10 +442,10 @@ namespace user
    }
 
 
-   void text::get_text(::string & str) const
+   ::string text::get_text() const
    {
 
-      m_textproperty.get_text(str);
+      return m_textproperty.get_text();
 
    }
 
@@ -466,12 +466,12 @@ namespace user
    }
 
 
-   void text::get_selection_text(::string & str) const
+ /*  ::string text::get_selection_text() const
    {
 
       str = get_selection_text();
 
-   }
+   }*/
 
 
    void text::get_text_selection(strsize & iBegin, strsize & iEnd) const

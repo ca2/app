@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "socket.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/time/_text_stream.h"
+#include "acme/prototype/time/_text_stream.h"
 
 
 namespace netserver

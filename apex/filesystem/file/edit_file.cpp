@@ -4,7 +4,7 @@
 #include "acme/filesystem/file/buffered_file.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/data/listener.h"
+#include "acme/prototype/data/listener.h"
 
 
 #define MAX_STOP (::numeric_info < filesize >::get_maximum_value())
@@ -489,7 +489,7 @@ namespace file
       if(pfile.cast < ::memory_file >().is_null() && pfile.cast < ::file::buffered_file >().is_null())
       {
 
-         auto pbufferedfile = ::place(new ::file::buffered_file(pfile));
+         auto pbufferedfile = __new ::file::buffered_file(pfile);
 
          pfile = pbufferedfile;
 
@@ -723,7 +723,7 @@ namespace file
 
 
       ::pointer<edit_item>pedit;
-      pedit = ::place(new edit_item());
+      pedit = __new edit_item();
       pedit->m_position = m_position;
       pedit->m_memstorage.set_size(nCount);
       ::memory_copy(pedit->m_memstorage.data(),pdata,nCount);
@@ -759,7 +759,7 @@ namespace file
    insert_item * edit_file::Insert(const void * pdata,memsize nCount)
    {
 
-      auto pinsert = ::place(new class insert_item ());
+      auto pinsert = __new class insert_item ();
 
       pinsert->m_position = m_position;
 
@@ -788,7 +788,7 @@ namespace file
 
       }
 
-      pdelete = ::place(new delete_item());
+      pdelete = __new delete_item();
       pdelete->m_position = m_position;
       pdelete->m_memstorage.set_size(uiCount);
       seek((filesize)m_position,::e_seek_set);
@@ -1118,7 +1118,7 @@ namespace file
    void edit_file::MacroBegin()
    {
 
-      auto pgroupitem  = ::place(new edit_group_item());
+      auto pgroupitem  = __new edit_group_item();
       pgroupitem->m_pgroupitem = m_pgroupitem;
       m_pgroupitem = pgroupitem;
    }

@@ -4,7 +4,7 @@
 #include "apex/parallelization/thread.h"
 #include "acme/platform/context.h"
 #include "acme/filesystem/filesystem/enumerator.h"
-#include "acme/primitive/collection/string_map.h"
+#include "acme/prototype/collection/string_map.h"
 
 
 namespace apex
@@ -106,19 +106,19 @@ namespace apex
       virtual string defer_get_file_title(string str);
 
 
-      virtual bool defer_process_media_library_path(::file::path& path);
+      bool defer_process_media_library_path(::file::path& path) override;
 
 
       ::file::path defer_process_path(::file::path path) override;
-      virtual ::file::path _defer_process_path(::file::path path);
-      virtual ::file::path __defer_process_path(::file::path path);
+      ::file::path _defer_process_path(::file::path path) override;
+      ::file::path __defer_process_path(::file::path path) override;
 
       virtual bool _001IsProtocol(::file::path & path, const ::string & strProtocol);
 
-      virtual bool defer_process_known_folder_path(::file::path & path);
+      bool defer_process_known_folder_path(::file::path & path) override;
       virtual ::file::path full_process_path(::file::path path);
 
-      virtual bool defer_process_protocol_path(::file::path & path);
+      bool defer_process_protocol_path(::file::path & path) override;
 
       //sclass ::hyperlink hyperlink() { return this; }
 
@@ -127,11 +127,11 @@ namespace apex
       virtual file_pointer friendly_get_file(::payload payloadFile, ::file::e_open eopen);
 
 
-      virtual ::pointer < ::file::link > os_resolve_alias(const ::file::path& path, bool bNoUI = false, bool bNoMount = false);
+      ::pointer < ::file::link > os_resolve_alias(const ::file::path& path, bool bNoUI = false, bool bNoMount = false) override;
 
-      virtual bool _os_has_alias_in_path(const ::file::path & path, bool bNoUI = false, bool bNoMount = false);
+      bool _os_has_alias_in_path(const ::file::path & path, bool bNoUI = false, bool bNoMount = false) override;
 
-      virtual ::pointer < ::file::link > _os_resolve_alias(const ::file::path& path, bool bNoUI, bool bNoMount);
+      ::pointer < ::file::link > _os_resolve_alias(const ::file::path& path, bool bNoUI, bool bNoMount) override;
 
       virtual bool os_is_alias(const ::file::path & path) override;
 
@@ -211,7 +211,7 @@ namespace apex
 //      using acme::context::http_get;
       //::pointer < ::nano::http::response > http_get(const ::scoped_string& scopedstrUrl, const ::property_set& set) override;
       
-      void sync(::nano::http::get * pget) override;
+      virtual void perform(::nano::http::get * pget);
 
 
       ::url::url http_get_effective_url(const ::url::url & url) override;

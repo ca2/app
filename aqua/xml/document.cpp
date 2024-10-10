@@ -4,7 +4,7 @@
 #include "exception.h"
 #include "acme/exception/interface_only.h"
 #include "acme/exception/parsing.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/string/str.h"
 #include "apex/platform/context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 
@@ -214,7 +214,7 @@ namespace xml
 
       }
 
-      auto pnode = ::place(new class node ((node *) this));
+      auto pnode = __new class node ((node *) this);
 
       m_nodea.add(pnode);
 
@@ -323,7 +323,7 @@ namespace xml
    //   {
 
    //      // Not found: create one.
-   //      auto pnodeRoot = ::place(new ::xml::node((document *)this));
+   //      auto pnodeRoot = __new ::xml::node((document *)this);
 
    //      pnodeRoot->set_name("root");
    //      pnodeRoot->m_pnodeParent = (node *)this;

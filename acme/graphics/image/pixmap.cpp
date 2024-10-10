@@ -3,7 +3,7 @@
 //
 #include "framework.h"
 #include "pixmap.h"
-//#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
 
 
 #if defined(WINDOWS_DESKTOP)
@@ -75,3 +75,98 @@ void pixmap::mult_alpha()
    }
 
 }
+
+
+
+void pixmap::vertical_swap()
+{
+
+   auto ppixmap = this;
+
+   try
+   {
+
+      int iStride = ppixmap->m_iScan;
+
+      if (iStride <= 0)
+      {
+
+         iStride = ppixmap->width() * sizeof(::image32_t);
+
+      }
+
+      int w = iStride / sizeof(::image32_t);
+
+      int h = ppixmap->height();
+
+      int wBytes = ppixmap->width() * sizeof(::image32_t);
+
+      auto pdata = ppixmap->image32();
+
+      u8 * pline1 = (u8 *)pdata;
+
+      u8 * pline2 = (u8 *)(pdata + (w - 1) * h);
+
+      memory memory;
+
+      memory.set_size(wBytes);
+
+      u8 * pstore = memory.data();
+
+      int halfh = h / 2;
+
+      for (int i = 0; i < halfh; i++)
+      {
+
+         ::memory_copy(pstore, pline1, wBytes);
+
+         ::memory_copy(pline1, pline2, wBytes);
+
+         ::memory_copy(pline2, pstore, wBytes);
+
+         pline1 += iStride;
+
+         pline2 -= iStride;
+
+      }
+
+   }
+   catch (...)
+   {
+
+   }
+
+}
+
+
+void pixmap::copy(const ::pixmap * ppixmapSrc)
+{
+
+   copy(size().minimum(ppixmapSrc->size()), ppixmapSrc);
+
+}
+
+
+void pixmap::copy(const ::size_i32 & size, const ::pixmap * ppixmapSrc)
+{
+
+   m_pimage32->copy(size, scan_size(), ppixmapSrc);
+
+}
+
+
+pixmap & pixmap::operator =(const pixmap & pixmap)
+{
+
+   if (this != &pixmap)
+   {
+
+      copy(&pixmap);
+
+   }
+
+   return *this;
+
+}
+   
+   

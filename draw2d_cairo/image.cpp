@@ -4,7 +4,7 @@
 #include "draw2d.h"
 #include "graphics.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "aura/graphics/image/drawing.h"
 #include <math.h>
 
@@ -171,10 +171,8 @@ namespace draw2d_cairo
          if (::is_set(m_pimage32Raw))
          {
 
-            copy_image32(
-               pimage32Raw,
-               minimum(size.cx(), m_size.cx()),
-               minimum(size.cy(), m_size.cy()),
+            pimage32Raw->copy(
+               size.minimum(m_size),
                iScan,
                m_pimage32Raw,
                m_iScan);

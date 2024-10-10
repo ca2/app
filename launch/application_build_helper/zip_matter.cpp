@@ -14,7 +14,7 @@
 #include "acme/platform/application.h"
 #include "acme/platform/ini.h"
 #include "acme/platform/node.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/string/str.h"
 #include "acme/platform/system.h"
 #ifdef WINDOWS_DESTKOP
 #include <direct.h>

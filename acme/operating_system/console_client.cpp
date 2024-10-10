@@ -1,7 +1,7 @@
 // from console.cpp by camilo on 2022-09-04 09:07 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "console_client.h"
-#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/prototype/geometry2d/rectangle.h"
 
 
 namespace console

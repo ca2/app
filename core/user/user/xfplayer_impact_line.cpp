@@ -24,7 +24,7 @@ const i32 xfplayer_impact_line::AlignRight = 2;
 
 
 xfplayer_impact_line::xfplayer_impact_line(::user::interaction * puserinteraction) :
-   m_pselection(::place(new xfplayer_impact_line_selection(puserinteraction)))
+   m_pselection(::as(new xfplayer_impact_line_selection(puserinteraction)))
 {
    initialize(puserinteraction);
    m_bColonPrefix = false;
@@ -1264,7 +1264,7 @@ void xfplayer_impact_line::SetAnimateIncrement(double dIncrement)
 //  m_iRedrawMode = iMode;
 //}
 
-//void xfplayer_impact_line::SetRenderWindow(::user::interaction_impl * pwindow)
+//void xfplayer_impact_line::SetRenderWindow(::windowing::window * pwindow)
 //{
 //  m_pRenderWnd = pwindow;
 //}

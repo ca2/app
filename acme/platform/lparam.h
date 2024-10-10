@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/point.h"
-#include "acme/primitive/primitive/pointer.h"
+#include "acme/prototype/geometry2d/point.h"
+#include "acme/prototype/prototype/pointer.h"
 
 
 class CLASS_DECL_ACME lparam

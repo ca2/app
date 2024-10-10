@@ -137,7 +137,7 @@ bool oswindow_erase(nswindow window)
 }
 
 
-void oswindow_data::set_user_interaction_impl(::user::interaction_impl * pimpl)
+void oswindow_data::set_user_interaction_impl(::windowing::window * pimpl)
 {
 
    if(is_null())
@@ -396,7 +396,7 @@ oswindow get_focus()
 }
 
 
-::user::interaction_impl * window_from_handle(oswindow oswindow)
+::windowing::window * window_from_handle(oswindow oswindow)
 {
 
    if(oswindow == nullptr)
@@ -606,7 +606,7 @@ string keyboard_input_source()
 }
 
 
-CLASS_DECL_APEX ::user::interaction_impl * oswindow_get(oswindow oswindow)
+CLASS_DECL_APEX ::windowing::window * oswindow_get(oswindow oswindow)
 {
 
    if(oswindow == nullptr)

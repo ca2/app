@@ -105,9 +105,8 @@ namespace opengl
    void context_win32::_create_window_buffer()
    {
 
-      if (!m_hdc || !m_hdc || !m_hrc)
+      if (!m_hdc || !m_hrc)
       {
-
 
          auto psystem = system()->m_paurasystem;
 
@@ -267,15 +266,17 @@ namespace opengl
    }
 
 
-   void context_win32::resize_offscreen_buffer(const ::size_i32& size)
+   void context_win32::resize_offscreen_buffer(const ::size_i32& sizeParam)
    {
 
-      //if (!m_pcpubuffer)
-      {
+      auto size(sizeParam);
 
-         create_offscreen_buffer(size);
+      send_procedure([this, size]()
+         {
+            //if (!m_pcpubuffer)
 
-      }
+            create_offscreen_buffer(size);
+
 
       ///m_pcpubuffer->m_pixmap.create(m_pcpubuffer->m_memory, size);
 
@@ -306,6 +307,8 @@ namespace opengl
       //glutPostRedisplay();
 
       //return ::success;
+            });
+
 
    }
 

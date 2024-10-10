@@ -92,7 +92,7 @@ void source::add_handler(::particle * pparticle, bool bPriority)
 //
 //   }
 //
-//   auto puserprimitive = dynamic_cast <::user::primitive *>(pusercallback);
+//   auto puserprimitive = dynamic_cast <::user::interaction_base *>(pusercallback);
 //
 //   if (::is_null(puserprimitive))
 //   {

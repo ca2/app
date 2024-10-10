@@ -3,8 +3,8 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/rectangle_array.h"
-#include "acme/primitive/geometry2d/shift.h"
+#include "acme/prototype/geometry2d/rectangle_array.h"
+#include "acme/prototype/geometry2d/shift.h"
 
 
 namespace user

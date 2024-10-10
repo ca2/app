@@ -7,7 +7,7 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/pointer.h"
+#include "acme/prototype/prototype/pointer.h"
 #include "acme/parallelization/critical_section.h"
 
 class task_message_queue;
@@ -32,6 +32,8 @@ namespace acme
       ::pointer < ::platform::platform >     m_pplatform;
       ::pointer < ::task_message_queue >     m_ptaskmessagequeue;
       ::heap::management *                   m_pheapmanagement;
+      ::pointer < manual_reset_event >       m_pmanualreseteventReadyToExit;
+
 
 
 #if REFERENCING_DEBUGGING 

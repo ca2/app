@@ -64,7 +64,7 @@
 
 //
 //
-//typedef ::pointer<::user::interaction_impl>window_pointer;
+//typedef ::pointer<::windowing::window>window_pointer;
 //
 //
 //#define SYSTEM_TYPE ::axis::system
@@ -210,11 +210,11 @@
 //
 //#include "app/axis/axis/node/_.h"
 
-#include "acme/primitive/data/data_tree_item.h"
+#include "acme/prototype/data/data_tree_item.h"
 
-#include "acme/primitive/data/data_tree.h"
+#include "acme/prototype/data/data_tree.h"
 
-#include "acme/primitive/data/data_simple_item.h"
+#include "acme/prototype/data/data_simple_item.h"
 
 //#include "axis/html_lite/_.h"
 //

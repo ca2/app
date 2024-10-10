@@ -3,8 +3,8 @@
 #include "folder_dialog.h"
 #include "acme/user/user/element.h"
 //#include "path.h"
-////#include "acme/primitive/primitive/payload.h"
-////#include "acme/primitive/collection/numeric_array.h"
+////#include "acme/prototype/prototype/payload.h"
+////#include "acme/prototype/collection/numeric_array.h"
 //
 
 //CLASS_DECL_ACME string ::url::decode(const string & str);
@@ -57,7 +57,7 @@ folder_dialog::~folder_dialog()
 ////
 ////      };
 //
-////      auto pdialog = ::place(new ::operating_system_folder_dialog(this,
+////      auto pdialog = ::as(new ::operating_system_folder_dialog(this,
 ////                                                        poswindow,
 ////                                                        nullptr,
 ////                                                        functionHere)));

@@ -19,14 +19,14 @@ namespace nano
 } // namespace nano
 
 
-namespace primitive
+namespace prototype
 {
 
    
-   class primitive;
+   class prototype;
 
 
-} // namespace primitive
+} // namespace prototype
 
 
 namespace internet
@@ -58,6 +58,9 @@ namespace platform
 
 
 } // namespace platform
+
+
+class message_box;
 
 
 

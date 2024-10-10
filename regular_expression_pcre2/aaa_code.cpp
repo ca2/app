@@ -23,7 +23,7 @@ namespace regular_expression_pcre2
 
       ::pointer<pcre_context_impl> pimpl = m_pcreContext;
 
-      auto pcode = ::place(new code_impl(pimpl));
+      auto pcode = __new code_impl(pimpl);
 
       pcode->compile(str);
 

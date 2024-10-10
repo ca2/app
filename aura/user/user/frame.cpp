@@ -2,17 +2,22 @@
 #include "frame.h"
 #include "key.h"
 #include "style.h"
+#include "interaction_thread.h"
 #include "user.h"
 #include "acme/constant/id.h"
 #include "acme/constant/user_key.h"
 #include "acme/exception/interface_only.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/pool.h"
+#include "acme/parallelization/synchronous_lock.h"
 #include "acme/constant/message.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/platform/application.h"
+#include "aura/platform/draw_context2.h"
 #include "aura/platform/session.h"
 #include "aura/platform/system.h"
+#include "aura/user/user/alpha_source.h"
+#include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 
 
@@ -42,6 +47,371 @@ namespace user
    }
 
 
+   void frame::create_window()
+   {
+
+      //__construct(windowing_window());
+
+      //windowing_window()->create_window();
+
+      ////void interaction::create_host(enum_parallelization eparallelization)
+      //void interaction::create_host()
+      //{
+
+         information() << "interaction::create_host(1)";
+
+         if (is_window())
+         {
+
+            throw ::exception(error_wrong_state);
+            // need to change to destroy window
+            // try to make synchronous
+            //
+            //start_destroying_window();
+
+         }
+
+         //      if (m_pusersystem
+         //          && m_pusersystem->m_prequest
+         //          && m_pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+         //      {
+         //
+         //         if (!const_layout().sketch().is_screen_visible())
+         //         {
+         //
+         //            initial_frame_display();
+         //
+         //         //if(pusersystem->m_prequest->m_egraphicsoutputpurpose & ::graphics::e_output_purpose_screen)
+         ////            {
+         ////
+         ////               information() << "LoadFrame sketch !is_screen_visible going to display_normal (1)";
+         ////
+         ////               display_normal(e_display_normal, e_activation_set_foreground);
+         ////
+         ////            }
+         //
+         //         }
+         //
+         //      }
+
+         information() << "interaction::create_host(2)";
+
+         auto psession = get_session();
+
+         auto pwindowing = windowing();
+
+         auto pwindowHost = pwindowing->get_application_host_window();
+
+         information() << "interaction::create_host(3)";
+
+         m_ewindowflag += e_window_flag_top_level;
+
+         if (::is_set(pwindowHost))
+         {
+
+            information() << "interaction::create_host(3A)";
+
+            create_child(pwindowHost->m_puserinteraction);
+
+            //         pwindowHost->windowing_window()->this->set_need_layout();
+            //
+            //         pwindowHost->windowing_window()->this->set_need_redraw();
+            //
+            //         pwindowHost->windowing_window()->this->post_redraw();
+
+            return;
+
+         }
+
+         //__refer(m_pthreadUserInteraction, ::get_task() REFERENCING_DEBUGGING_COMMA_THIS_FUNCTION_FILE_LINE);
+
+         //if (m_pthreadUserInteraction)
+         //{
+
+         //   m_pthreadUserInteraction->uiptra().add(this);
+
+         //}
+
+         //try
+         //{
+
+         m_bUserElementOk = true;
+
+         //::pointer<interaction_impl> pprimitiveimplNew;
+
+         information() << "interaction::create_host(4)";
+
+         //auto rectangle(this->screen_rectangle());
+
+         /* auto psession = get_session();
+
+          if (puserinteractionParent == nullptr && psession->get_user_interaction_host().is_set() && psession->get_user_interaction_host() != this)
+          {
+
+             puserinteractionParent = __user_interaction(psession->get_user_interaction_host());
+
+          }
+
+          if (puserinteractionParent == nullptr || puserinteractionParent->get_safe_handle() == (oswindow)MESSAGE_WINDOW_PARENT)
+          {*/
+
+          //auto estatus =
+
+         //__construct(windowing_window());
+
+         information() << "interaction::create_host(5)";
+
+         /*        if (!estatus)
+                 {
+
+                    return estatus;
+
+                 }*/
+
+                 //#ifdef WINDOWS_DESKTOP
+                 //
+                 //            wstring wstrClassName(pszClassName);
+                 //
+                 //            wstring wstrWindowName(pszWindowName);
+                 //
+                 //            ::user::system pusersystem(0, wstrClassName, wstrWindowName, uStyle, rectangle, pcreate);
+                 //
+                 //#else
+
+                 //auto pusersystem = __new ::user::system(uExStyle, uStyle, rectangle, pcreate);
+
+                 //#endif
+
+                 //pusersystem->m_createstruct.hwndParent = ::is_set(puserinteractionParent) ? puserinteractionParent->get_safe_handle() : nullptr;
+
+
+         //pprimitiveimplNew->create_host(this, eparallelization);
+         // 
+
+         //windowing_window()->m_puserinteraction = this;
+
+
+         //windowing_window()->create_window();
+         // 
+         ::user::box::create_window();
+         //if (!pprimitiveimplNew->create_host(this))
+         //{
+
+         //   m_pprimitiveimpl.release();
+
+         //   pprimitiveimplNew.release();
+
+         //}
+
+         //}
+         //else
+         //{
+
+         //   pprimitiveimplNew = __create_new < ::user::interaction_child >();
+
+         //   //m_pdescriptor.defer_create(this);
+
+         //   if (!pprimitiveimplNew->create_interaction(this, uStyle, rectangle, puserinteractionParent, pcreate))
+         //   {
+
+         //      pprimitiveimplNew.release();
+
+         //      m_bUserElementOk = false;
+
+         //      if (m_pthreadUserInteraction)
+         //      {
+
+         //         if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
+         //         {
+
+         //            m_pthreadUserInteraction->m_puiptraThread->erase(this);
+
+         //         }
+
+         //         __release(m_pthreadUserInteraction REFERENCING_DEBUGGING_COMMA_THIS);
+
+         //      }
+
+         //      return false;
+
+         //   }
+
+         //        }
+
+         //}
+         //catch (...)
+         //{
+
+         //   m_bUserElementOk = false;
+
+         //   if (m_pthreadUserInteraction)
+         //   {
+
+         //      if (::is_set(m_pthreadUserInteraction->m_puiptraThread))
+         //      {
+
+         //         m_pthreadUserInteraction->m_puiptraThread->erase(this);
+
+         //      }
+
+         //      __release(m_pthreadUserInteraction REFERENCING_DEBUGGING_COMMA_THIS);
+
+         //   }
+
+         //   //return false;
+
+         //}
+
+         //return true;
+
+      //}
+
+
+   }
+
+
+   void frame::destroy()
+   {
+
+      if (window())
+      {
+
+         window()->destroy();
+
+      }
+
+      // ownership
+
+      //if(m_pinteractiondraw2d)
+      //{
+      //if (m_pshapeaClip) m_pshapeaClip->destroy();
+      if (m_pdrawcontext) m_pdrawcontext->destroy();
+
+      m_puserstyle.defer_destroy();
+
+      
+      //}
+      m_pusersystem.defer_destroy();
+      //      if (m_playout) m_playout->destroy();
+      m_pgraphicscalla.defer_destroy();
+      m_puserinteractionCustomWindowProc.defer_destroy();
+      m_puiLabel.defer_destroy();
+      //if (m_puseritema) m_puseritema->destroy_all();
+      // tasks should not be destroyed in destroy
+      //m_pform && m_pform != this && m_pform->destroy();
+      if (m_palphasource) m_palphasource->destroy();
+      //if (m_pdrawableBackground) m_pdrawableBackground->destroy();
+      //if (m_pprimitiveimpl) m_pprimitiveimpl->destroy();
+      if (windowing_window()) windowing_window()->destroy();
+
+      {
+
+         _synchronous_lock synchronouslock(this->synchronization());
+
+         if (m_puserinteractionpointeraOwned) m_puserinteractionpointeraOwned->destroy();
+
+      }
+
+      {
+
+         _synchronous_lock synchronouslock(windowing_window() ? windowing_window()->m_pparticleChildrenSynchronization : nullptr);
+
+         if (m_puserinteractionpointeraChild) m_puserinteractionpointeraChild->destroy();
+
+      }
+
+      //m_pthreadUserInteraction && m_pthreadUserInteraction->destroy();
+      // tasks should not be destroyed in destroy
+      //m_pthreadUserInteraction && m_pthreadUserInteraction->destroy();
+      if (m_ptooltip) m_ptooltip->destroy();
+      if (m_pmenuitem) m_pmenuitem->destroy();
+      m_menua.destroy_all();
+
+      // ownership
+      //if(m_pinteractiondraw2d)
+      {
+         //m_pshapeaClip.release();
+         m_pdrawcontext.release();
+
+      }
+
+      m_pusersystem.release();
+      ///m_playout.release();
+      m_pgraphicscalla.release();
+      m_puserinteractionCustomWindowProc.release();
+      m_puiLabel.release();
+      //if (m_puseritema) m_puseritema->erase_all();
+      m_pform.release();
+      m_palphasource.release();
+      //m_pdrawableBackground.release();
+      //m_pprimitiveimpl.release();
+      //windowing_window().release();
+
+      //windowing_window().release();
+
+      //m_pacmew
+
+      m_pinteractionScaler.defer_destroy();
+
+      {
+
+         _synchronous_lock synchronouslock(this->synchronization());
+
+         m_puserinteractionpointeraOwned.release();
+
+      }
+
+      {
+
+         _synchronous_lock synchronouslock(windowing_window() ? windowing_window()->m_pparticleChildrenSynchronization : nullptr);
+
+         m_puserinteractionpointeraChild.release();
+
+      }
+
+      m_ptooltip.release();
+      m_pmenuitem.release();
+      m_menua.erase_all();
+
+
+      // references
+      m_pitemComposing.release();
+      //m_pthreadUserInteraction.release();
+      m_puserinteractionParent.release();
+      m_pupdowntarget.release();
+      m_ptaskModal.release();
+      m_puserinteractionOwner.release();
+      //windowing_window().release();
+      //return ::success;
+      ::user::box::destroy();
+      ::user::drag_client::destroy();
+      //::user::interaction_base::destroy();
+
+   }
+
+
+   void frame::start_destroying_window()
+   {
+
+      ::user::interaction::start_destroying_window();
+
+      window()->start_destroying_window();
+
+   }
+
+
+   void frame::destroy_window()
+   {
+
+      ::user::interaction::destroy_window();
+
+
+      window()->destroy_window();
+
+
+   }
+
+
    void frame::install_message_routing(::channel* pchannel)
    {
 
@@ -57,7 +427,7 @@ namespace user
       MESSAGE_LINK(e_message_application_exit, pchannel, this, &frame::on_message_application_exit);
       MESSAGE_LINK(e_message_key_down, pchannel, this, &frame::on_message_key_down);
 
-      system()->add_signal_handler({ use_t{}, this }, id_operating_system_user_color_change);
+      system()->add_signal_handler(this, id_operating_system_user_color_change);
 //#ifdef WINDOWS_DESKTOP
 //
 //      if (is_frame_window())
@@ -154,14 +524,14 @@ namespace user
    }
 
 
-   void frame::destroy()
-   {
+   //void frame::destroy()
+   //{
 
-      m_puserstyle.defer_destroy();
+   //   m_puserstyle.defer_destroy();
 
-      ::user::box::destroy();
+   //   ::user::box::destroy();
 
-   }
+   //}
 
 //   bool frame::is_os_host() const
 //   {
@@ -686,11 +1056,174 @@ namespace user
 
          auto puser = psession->m_puser;
 
-         auto pwindowing = puser->m_pwindowing;
+         auto pwindowing = system()->windowing();
 
          return pwindowing->get_window_minimum_size();
 
       }
+
+   }
+
+
+   void frame::user_interaction_on_destroy()
+   {
+
+      ::user::interaction::user_interaction_on_destroy();
+
+      //windowing_window().release();
+         
+
+   }
+
+
+   //::user::thread * frame::user_thread()
+   //{
+
+   //   return m_puserthread;
+
+   //}
+
+
+   ::user::interaction_base * frame::set_parent(::user::interaction_base * puserinteractionParent)
+   {
+
+      if (puserinteractionParent == nullptr && get_parent() == nullptr)
+      {
+
+         return nullptr;
+
+      }
+
+      if (puserinteractionParent != nullptr && is_descendant(puserinteractionParent, true))
+      {
+
+         return get_parent();
+
+      }
+
+      if (!on_before_set_parent(puserinteractionParent))
+      {
+
+         return get_parent();
+
+      }
+
+      auto puserthread = user_thread();
+
+      if (puserthread)
+      {
+
+         if (::is_set(puserthread->m_puserinteractionbaseaThread))
+         {
+
+            puserthread->m_puserinteractionbaseaThread->erase(this);
+
+         }
+
+         //m_pthreadUserInteraction.release();
+
+      }
+
+      ::pointer<interaction> pparentOld = get_parent();
+
+      if (puserinteractionParent == nullptr)
+      {
+
+         auto pwindowNew = __create<::windowing::window>();
+
+         auto strName = get_window_text();
+
+         const ::scoped_string & scopedstrClassName = nullptr;
+
+         m_bEnableSaveWindowRect2 = true;
+
+         on_set_parent(nullptr);
+
+         if (m_ewindowflag & e_window_flag_load_window_rect_on_impl)
+         {
+
+            WindowDataLoadWindowRectangle();
+
+         }
+
+         //auto rectangleRequest = this->screen_rectangle(::user::e_layout_sketch);
+
+         //auto pusersystem = __new ::user::system();
+
+         //pusersystem->add_visible(is_visible(layout().sketch().display()));
+
+         //pprimitiveimplNew->create_host(this, e_parallelization_synchronous);
+
+         create_window();
+
+         on_after_set_parent();
+
+      }
+      else // puserinteractionParent != nullptr
+      {
+
+         on_set_parent(puserinteractionParent);
+
+         //auto pprimitiveimplNew = __create_new<::user::interaction_child>();
+
+         //pprimitiveimplNew->m_puserinteraction = this;
+
+         ::pointer<::aura::application> papp = get_app();
+
+         //psession->erase_frame(this); // no more a top level frame if it were one
+         papp->erase_user_interaction(this); // no more a top level frame if it were one
+
+         //m_pprimitiveimpl = pprimitiveimplNew;
+
+         string strName;
+
+         //i32 iStyle = get_window_long(GWL_STYLE);
+
+         //iStyle |= WS_CHILD;
+
+         //if (is_visible(layout().sketch().display()))
+         //{
+
+         //   iStyle |= WS_VISIBLE;
+
+         //}
+
+         ::rectangle_i32 rectangleWindow;
+
+         ::pointer<::user::interaction> pparent = puserinteractionParent;
+
+         if (pparent)
+         {
+
+            pparent->get_child_rect(rectangleWindow);
+
+         }
+
+         if (::is_set(windowing_window()))
+         {
+
+            windowing_window()->destroy_impl_only();
+
+         }
+
+         //pprimitiveimplNew->create_child(this, pparent);
+
+         //if (!pprimitiveimplNew->create_child(this, pparent))
+         //{
+
+         //   throw ::exception(error_failed, "could not impl interaction");
+
+         //}
+         //else
+         {
+
+            on_after_set_parent();
+
+         }
+
+      }
+
+      return pparentOld;
 
    }
 

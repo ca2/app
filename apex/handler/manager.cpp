@@ -4,7 +4,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/primitive/action_context.h"
+#include "acme/prototype/prototype/action_context.h"
 
 
 //::critical_section manager::s_criticalsection;
@@ -109,7 +109,7 @@ class ::handler::signal * manager::get_signal(const ::atom & atom, const ::actio
    if (!m_psignalmap)
    {
 
-      m_psignalmap = ::place(new ::handler::signal_map());
+      m_psignalmap = __new ::handler::signal_map();
 
    }
 
@@ -120,7 +120,7 @@ class ::handler::signal * manager::get_signal(const ::atom & atom, const ::actio
    if (!psignal)
    {
 
-      psignal = ::place(new class ::handler::signal (atom, this));
+      psignal = __new class ::handler::signal (atom, this);
 
       psignal->initialize(this);
 

@@ -10,7 +10,7 @@
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/user/user/_text_stream.h"
 #include "aura/message/user.h"
 #include "aura/windowing/display.h"

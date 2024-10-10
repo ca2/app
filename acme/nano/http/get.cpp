@@ -7,6 +7,8 @@
 //
 #include "framework.h"
 #include "get.h"
+#include "acme/nano/http/http.h"
+#include "acme/nano/nano.h"
 
 
 namespace nano
@@ -61,6 +63,14 @@ namespace nano
       {
 
          return this;
+
+      }
+
+
+      void get::run()
+      {
+
+         nano()->http()->perform(this);
 
       }
 

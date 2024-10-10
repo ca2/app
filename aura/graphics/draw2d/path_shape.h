@@ -2,16 +2,16 @@
 #pragma once
 
 
-//#include "acme/primitive/geometry2d/_enhanced.h"
-//#include "acme/primitive/geometry2d/shape_array.h"
-#include "acme/primitive/geometry2d/lines.h"
+//#include "acme/prototype/geometry2d/_enhanced.h"
+//#include "acme/prototype/geometry2d/shape_array.h"
+#include "acme/prototype/geometry2d/lines.h"
 
 //
 //template < >
 //inline ::pointer<___shape<::draw2d::path>> __create_shape(const ::line_f64 & line, holdee < ::draw2d::path >)
 //{
 //
-//   return ::place(new line_f64_shape< ::draw2d::path > (line));
+//   return __new line_f64_shape< ::draw2d::path > (line);
 //
 //}
 //
@@ -20,7 +20,7 @@
 //inline ::pointer<___shape<::draw2d::path>> __create_shape(const ::rectangle_f64 & rectangle, holdee < ::draw2d::path >)
 //{
 //
-//   return ::place(new rectangle_f64_shape<::draw2d::path> (rectangle));
+//   return __new rectangle_f64_shape<::draw2d::path> (rectangle);
 //
 //}
 //
@@ -29,7 +29,7 @@
 //inline ::pointer<___shape<::draw2d::path>> __create_shape(const ::ellipse_f64 & ellipse, holdee < ::draw2d::path >)
 //{
 //
-//   return ::place(new ellipse_f64_shape <::draw2d::path> (ellipse));
+//   return __new ellipse_f64_shape <::draw2d::path> (ellipse);
 //
 //}
 //
@@ -38,7 +38,7 @@
 //inline ::pointer<___shape<::draw2d::path>> __create_shape(const ::lines_f64 & lines, holdee < ::draw2d::path >)
 //{
 //
-//   return ::place(new lines_f64_shape<::draw2d::path> (lines));
+//   return __new lines_f64_shape<::draw2d::path> (lines);
 //
 //}
 //
@@ -47,7 +47,7 @@
 //inline ::pointer<___shape<::draw2d::path>> __create_shape(const ::polygon_f64 & polygon, holdee < ::draw2d::path >)
 //{
 //
-//   return ::place(new polygon_f64_shape<::draw2d::path> (polygon));
+//   return __new polygon_f64_shape<::draw2d::path> (polygon);
 //
 //}
 //

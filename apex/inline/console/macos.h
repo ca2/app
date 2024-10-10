@@ -13,7 +13,7 @@
 //
 //   //   {
 //
-//   //      auto psystem = ::place(new ::apex::system());
+//   //      auto psystem = __new ::apex::system();
 //
 //   //      psystem->system_construct(&mainstruct, argc, argv);
 //
@@ -23,7 +23,7 @@
 //
 //   //}
 //
-//   auto psystem = ::place(new ::apex::system());
+//   auto psystem = __new ::apex::system();
 //
 //   psystem->console_initialize();
 //

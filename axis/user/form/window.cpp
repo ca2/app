@@ -430,7 +430,7 @@ namespace user
       if (ptopic->m_atom == ::id_tab_key)
       {
 
-         ::pointer<::user::primitive>pfocus = ptopic->user_interaction()->keyboard_get_next_focusable();
+         ::pointer<::user::interaction_base>pfocus = ptopic->user_interaction()->keyboard_get_next_focusable();
 
          if (pfocus != nullptr)
          {
@@ -1242,7 +1242,7 @@ throw_todo();
    //   if(ptopic->m_atom == ::id_tab_key)
    //   {
 
-   //      ::pointer<::user::primitive>pfocus = ptopic->user_interaction()->keyboard_get_next_focusable();
+   //      ::pointer<::user::interaction_base>pfocus = ptopic->user_interaction()->keyboard_get_next_focusable();
 
    //      if(pfocus != nullptr)
    //      {

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "form.h"
-#include "acme/primitive/geometry2d/_collection.h"
+#include "acme/prototype/geometry2d/_collection.h"
 
 
 namespace html

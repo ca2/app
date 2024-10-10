@@ -98,7 +98,7 @@ namespace userfs
 
    //   }
 
-   //      m_pitem = ::place(new ::file::item(*pitem));
+   //      m_pitem = __new ::file::item(*pitem);
 
    //   //   try
    //   //   {
@@ -118,7 +118,7 @@ namespace userfs
 
    //   //      auto pcontext = get_context();
 
-   //   //      m_pitem = ::place(new ::file::item(m_pcontext->defer_process_matter_path(strOldPath), strOldPath));
+   //   //      m_pitem = __new ::file::item(m_pcontext->defer_process_matter_path(strOldPath), strOldPath);
 
    //   //      OnFileManagerBrowse(context + ::e_source_sync);
 
@@ -128,12 +128,12 @@ namespace userfs
 
    //   //}
 
-   //   //if (m_filewatchid >= 0)
+   //   //if (m_pfilewatch >= 0)
    //   //{
 
    //   //   auto pcontext = get_context();
 
-   //   //   dir()->watcher().erase_watch(m_filewatchid);
+   //   //   file_watcher()->erase_watch(m_pfilewatch);
 
    //   //}
 
@@ -146,13 +146,13 @@ namespace userfs
 
    //   //   auto & watcher = pdir->watcher();
 
-   //   //   m_filewatchid = watcher.add_watch(m_pitem->final_path(), this, false);
+   //   //   m_pfilewatch = watcher.add_watch(m_pitem->final_path(), this, false);
 
    //   //}
    //   //catch (...)
    //   //{
 
-   //   //   m_filewatchid = -1;
+   //   //   m_pfilewatch = -1;
 
    //   //}
 
@@ -282,7 +282,7 @@ namespace userfs
 
       ::file::path pathFinal = m_pcontext->defer_process_matter_path(pathUser);
 
-      ::pointer<::file::item>pitem = ::place(new ::file::item(pathUser, pathFinal));
+      ::pointer<::file::item>pitem = __new ::file::item(pathUser, pathFinal);
 
       browse(pitem, context);
 

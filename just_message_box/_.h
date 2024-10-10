@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "aura/_.h"
+#include "acme/_.h"
 
 
 #if defined(_app_just_message_box_project)
@@ -11,20 +11,14 @@
 #endif
 
 
-namespace app_message_box
+namespace app_just_message_box
 {
 
+   
    class application;
-   class window;
-
-} // namespace flag
 
 
-#undef APPLICATION_CLASS
-#define APPLICATION_CLASS ::app_just_message_box::application
-
-
-#include "application.h"
+} // namespace app_just_message_box
 
 
 

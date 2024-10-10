@@ -3,7 +3,7 @@
 //
 #include "framework.h"
 #include "node.h"
-#include "sequencer.h"
+//#include "sequencer.h"
 #include "application.h"
 #include "session.h"
 #include "system.h"
@@ -23,25 +23,26 @@
 #include "acme/parallelization/install_mutex.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/exception/interface_only.h"
-//#include "acme/primitive/collection/array.h"
-//#include "acme/primitive/collection/string_array.h"
+//#include "acme/prototype/collection/array.h"
+//#include "acme/prototype/collection/string_array.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/user/button.h"
-#include "acme/nano/user/message_box.h"
-#include "acme/nano/user/user.h"
+#include "acme/user/micro/button.h"
+#include "acme/user/micro/message_box.h"
+#include "acme/user/micro/user.h"
 #include "acme/user/user/os_theme_colors.h"
+#include "acme/windowing/windowing.h"
 #include "filesystem/filesystem/listing.h"
 
-namespace nano{namespace  user{
-::user::enum_desktop calculate_edesktop();
-}//namespace user
-   }//namespace nano
-
+//namespace nano{namespace  user{
+//::user::enum_desktop calculate_edesktop();
+//}//namespace user
+//   }//namespace nano
+//
 ::string errno_error_message(::i32 iError);
 
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception& exception, const ::string& strMoreDetails);
-
+CLASS_DECL_ACME ::string as_string(::windowing::enum_toolkit etoolkit);
 
 //CLASS_DECL_ACME void operating_system_open_url(const ::scoped_string & scopedstrUrl);
 
@@ -72,7 +73,8 @@ namespace acme
 
       m_papexnode = nullptr;
       m_pauranode = nullptr;
-      m_edesktop = ::user::e_desktop_none;
+      //m_edesktop = ::user::e_desktop_none;
+      //m_etoolkit = ::user::e_toolkit_none;
 
       m_pAcmePosix = nullptr;
       m_pApexPosix = nullptr;
@@ -101,7 +103,7 @@ namespace acme
 
       //m_pWindowingWin32Node = nullptr;
 
-      m_bOperatingSystemDarkMode = false;
+      //m_bOperatingSystemDarkMode = false;
 
       m_pthemecolors = nullptr;
 
@@ -288,7 +290,7 @@ namespace acme
    }
 
 
-   ::pointer < ::particle > node::create_mutex()
+   ::particle_pointer node::create_mutex()
    {
 
       return __create < ::mutex >();
@@ -323,7 +325,7 @@ namespace acme
    }
 
 
-   //::pointer < ::particle > node::create_quit_particle(::pointer<::acme::node> &  pnode, ::pointer<::acme::system> & psystem)
+   //::particle_pointer node::create_quit_particle(::pointer<::acme::node> &  pnode, ::pointer<::acme::system> & psystem)
    //{
    //   
    //   return nullptr;
@@ -416,7 +418,14 @@ namespace acme
    void node::on_start_system()
    {
 
-      system()->defer_post_initial_request();
+      //system()->defer_post_initial_request();
+
+      if(!platform()->is_console())
+      {
+
+         system()->acme_windowing()->on_start_system();
+
+      }
 
    }
 
@@ -646,6 +655,16 @@ namespace acme
    void node::do_windowing_system_factory()
    {
 
+      ::string strUserToolkit = ::windowing::get_user_toolkit_id();
+
+      if(strUserToolkit.has_char())
+      {
+
+         auto pfactory = system()->factory("windowing_system", strUserToolkit);
+
+         pfactory->merge_to_global_factory();
+
+      }
 
    }
 
@@ -1049,128 +1068,122 @@ namespace acme
    }
 
 
-   ::color::color node::get_system_color(enum_system_color esystemcolor)
-   {
-
-      throw ::interface_only();
-
-      return argb(0, 0, 0, 0);
-
-   }
 
 
-   bool node::dark_mode() const 
-   { 
-      
-      return m_bOperatingSystemDarkMode;
-   
-   }
+   // bool node::dark_mode() const
+   // {
+   //
+   //    return m_bOperatingSystemDarkMode;
+   //
+   // }
+   //
 
-
-   ::os_theme_colors * node::_new_os_theme_colors()
-   {
-
-      return new os_theme_colors();
-
-   }
-
-
-   ::os_theme_colors * node::_get_os_theme_colors()
-   {
-
-      if(!m_pthemecolors)
-      {
-
-         _fetch_user_color();
-
-      }
-
-      return m_pthemecolors;
-
-   }
+   // ::os_theme_colors * node::_new_os_theme_colors()
+   // {
+   //
+   //    return new os_theme_colors();
+   //
+   // }
+   //
+   //
+   // ::os_theme_colors * node::_get_os_theme_colors()
+   // {
+   //
+   //    if(!m_pthemecolors)
+   //    {
+   //
+   //       _fetch_user_color();
+   //
+   //    }
+   //
+   //    return m_pthemecolors;
+   //
+   // }
 
 
 
-   void node::_fill_os_theme_colors(::os_theme_colors * pthemecolors)
-   {
-
-      pthemecolors->m_colorBack = argb(255, 255, 255, 255);
-      pthemecolors->m_colorFace = argb(255, 128, 128, 128);
-      pthemecolors->m_colorFore = argb(255, 0, 0, 0);
-
-   }
-
-
-   void node::_set_os_theme_colors(::os_theme_colors * pthemecolors)
-   {
-
-      m_pthemecolors = pthemecolors;
-
-   }
-
-
-   void node::_del_os_theme_colors(::os_theme_colors * pthemecolors)
-   {
-
-      delete pthemecolors;
-
-   }
-
-
-   void node::_term_os_theme_colors()
-   {
-
-      if(m_pthemecolors)
-      {
-
-         _del_os_theme_colors(m_pthemecolors);
-
-         m_pthemecolors = nullptr;
-
-      }
-
-   }
+   // void node::_fill_os_theme_colors(::os_theme_colors * pthemecolors)
+   // {
+   //
+   //    pthemecolors->m_colorBack = argb(255, 255, 255, 255);
+   //    pthemecolors->m_colorFace = argb(255, 128, 128, 128);
+   //    pthemecolors->m_colorFore = argb(255, 0, 0, 0);
+   //
+   // }
+   //
+   //
+   // void node::_set_os_theme_colors(::os_theme_colors * pthemecolors)
+   // {
+   //
+   //    m_pthemecolors = pthemecolors;
+   //
+   // }
+   //
+   //
+   // void node::_del_os_theme_colors(::os_theme_colors * pthemecolors)
+   // {
+   //
+   //    delete pthemecolors;
+   //
+   // }
 
 
-   void node::_fetch_user_color()
-   {
+   // void node::_term_os_theme_colors()
+   // {
+   //
+   //    if(m_pthemecolors)
+   //    {
+   //
+   //       _del_os_theme_colors(m_pthemecolors);
+   //
+   //       m_pthemecolors = nullptr;
+   //
+   //    }
+   //
+   // }
+   //
+   //
+   // void node::_fetch_user_color()
+   // {
+   //
+   //    if(m_pthemecolors)
+   //    {
+   //
+   //       _del_os_theme_colors(m_pthemecolors);
+   //
+   //       m_pthemecolors = nullptr;
+   //
+   //    }
+   //
+   //    {
+   //
+   //       auto pthemecolors = _new_os_theme_colors();
+   //
+   //       _fill_os_theme_colors(pthemecolors);
+   //
+   //       _set_os_theme_colors(pthemecolors);
+   //
+   //    }
+   //
+   // }
 
-      if(m_pthemecolors)
-      {
 
-         _del_os_theme_colors(m_pthemecolors);
-
-         m_pthemecolors = nullptr;
-
-      }
-
-      {
-
-         auto pthemecolors = _new_os_theme_colors();
-
-         _fill_os_theme_colors(pthemecolors);
-
-         _set_os_theme_colors(pthemecolors);
-
-      }
-
-   }
-
-
-   void node::fetch_user_color()
-   {
-
-      _fetch_user_color();
-
-      auto pthemecolors = _get_os_theme_colors();
-
-      auto colorBack = pthemecolors->m_colorBack;
-
-      system()->background_color(colorBack);
-
-      m_bOperatingSystemDarkMode = colorBack.get_luminance() < 0.5;
-
-   }
+   // void node::fetch_user_color()
+   // {
+   //
+   //
+   //
+   //    _fetch_user_color();
+   //
+   //    auto pthemecolors = _get_os_theme_colors();
+   //
+   //    auto colorBack = pthemecolors->m_colorBack;
+   //
+   //    system()->background_color(colorBack);
+   //
+   //    m_bOperatingSystemDarkMode = colorBack.get_luminance() < 0.5;
+   //
+   // }
 
 
 //   int node::get_simple_ui_darkness()
@@ -1195,28 +1208,28 @@ namespace acme
 //   }
 
 
-   void node::on_operating_system_user_theme_change()
-   {
-
-
-   }
-
-
-   void node::on_operating_system_user_color_change()
-   {
-
-      //auto psystem = system();
-
-      //psystem->signal(id_operating_system_user_color_change);
-
-   }
-
-
-   void node::on_operating_system_font_list_change()
-   {
-
-
-   }
+   // void node::on_operating_system_user_theme_change()
+   // {
+   //
+   //
+   // }
+   //
+   //
+   // void node::on_operating_system_user_color_change()
+   // {
+   //
+   //    //auto psystem = system();
+   //
+   //    //psystem->signal(id_operating_system_user_color_change);
+   //
+   // }
+   //
+   //
+   // void node::on_operating_system_font_list_change()
+   // {
+   //
+   //
+   // }
 
 
 
@@ -1237,34 +1250,34 @@ namespace acme
 
 
 
-   string node::os_get_user_theme()
-   {
-
-      return "";
-
-   }
-
-
-   void node::os_set_user_theme(const ::string & strUserTheme)
-   {
-
-      throw ::interface_only();
-
-      //throw ::interface_only();
-
-   }
+   // string node::os_get_user_theme()
+   // {
+   //
+   //    return "";
+   //
+   // }
 
 
-   void node::os_process_user_theme(string strTheme)
-   {
+   // void node::os_set_user_theme(const ::string & strUserTheme)
+   // {
+   //
+   //    throw ::interface_only();
+   //
+   //    //throw ::interface_only();
+   //
+   // }
 
-   }
 
-
-   void node::os_process_user_icon_theme(string strTheme)
-   {
-
-   }
+   // void node::os_process_user_theme(string strTheme)
+   // {
+   //
+   // }
+   //
+   //
+   // void node::os_process_user_icon_theme(string strTheme)
+   // {
+   //
+   // }
 
 
    bool node::set_wallpaper(::collection::index iScreen, string strLocalImagePath, ::windowing::display * pwindowingdisplay)
@@ -1344,7 +1357,7 @@ namespace acme
    }
 
 
-   void node::user_send(const ::procedure & procedure)
+   void node::_user_send(const ::procedure & procedure)
    {
 
       if(::is_main_thread())
@@ -1356,7 +1369,7 @@ namespace acme
 
       }
 
-      auto pevent = ::place(new manual_reset_event());
+      auto pevent = __new manual_reset_event();
 
       user_post([ procedure, pevent ]
       {
@@ -1367,7 +1380,7 @@ namespace acme
 
       });
 
-      if(!pevent->wait(procedure.m_timeTimeout))
+      if(!pevent->wait(procedure.timeout()))
       {
 
          throw ::exception(error_timeout);
@@ -1440,59 +1453,6 @@ namespace acme
      return "";
 
   }
-
-
-  ::color::color node::get_simple_ui_color(::enum_element eelement, ::user::enum_state estate)
-  {
-
-     ::color::color color;
-
-     if (eelement == ::e_element_background)
-     {
-
-        if (dark_mode())
-        {
-
-           color = argb(255, 0x50, 0x50, 0x58);
-
-        }
-        else
-        {
-
-           color = argb(255, 0xcd, 0xcd, 0xc8);
-
-        }
-
-     }
-     else
-     {
-
-        if (dark_mode())
-        {
-
-           color = argb(255, 255, 255, 255);
-
-        }
-        else
-        {
-
-           color = argb(255, 49, 50, 42);
-
-        }
-
-     }
-
-      return color;
-
-   }
-
-
-   ::color::color node::get_default_color(::color::color color)
-   {
-
-      return argb(255, 0, 0, 0);
-
-   }
 
 
    void node::set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha)
@@ -1707,27 +1667,52 @@ namespace acme
    }
 
 
-   ::user::enum_desktop node::get_edesktop()
-   {
+   //::user::enum_desktop node::get_edesktop()
+   //{
 
-      if (m_edesktop == ::user::e_desktop_none)
-      {
+   //   if (m_edesktop == ::user::e_desktop_none)
+   //   {
 
-         m_edesktop = calculate_edesktop();
+   //      m_edesktop = calculate_edesktop();
 
-      }
+   //   }
 
-      return m_edesktop;
+   //   return m_edesktop;
 
-   }
+   //}
 
 
-   ::user::enum_desktop node::calculate_edesktop()
-   {
+   //::user::enum_desktop node::calculate_edesktop()
+   //{
 
-      return ::nano::user::calculate_edesktop();
+   //   return ::micro::calculate_edesktop();
 
-   }
+   //}
+
+
+   //::user::enum_toolkit node::get_etoolkit()
+   //{
+
+   //   if (m_etoolkit == ::user::e_toolkit_none)
+   //   {
+
+   //      m_etoolkit = calculate_etoolkit();
+
+   //   }
+
+   //   return m_etoolkit;
+
+   //}
+
+
+   //::user::enum_toolkit node::calculate_etoolkit()
+   //{
+
+   //   return ::micro::calculate_etoolkit();
+
+   //}
+
+
 
 
 #ifdef LINUX
@@ -2335,60 +2320,58 @@ return false;
    void node::report_exception_to_user(::particle* pparticle, ::exception& exception, const ::string& strMoreDetails)
    {
 
-      auto psequencer = exception_message_box(exception, strMoreDetails);
-
-      psequencer->do_synchronously();
+      send(__initialize_new ::message_box(exception, strMoreDetails));
 
    }
 
 
-   ::pointer<::conversation>node::create_new_message_box_conversation()
-   {
+   //::pointer<::conversation>node::create_new_message_box_conversation()
+   //{
 
-      system()->nano()->user();
+   //   system()->do_graphics_and_windowing_system_factory();
 
-      return __create_new < ::nano::user::message_box >();
+   //   return __create_new < ::micro::message_box >();
 
-   }
-
-
-   pointer< ::sequencer < ::conversation > > node::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
-   {
-
-      auto psequencer = __create_new < ::sequencer < ::conversation > >();
-
-      auto pmessagebox = create_new_message_box_conversation();
-
-      psequencer->m_psequence = pmessagebox;
-
-      pmessagebox->m_psequencer = psequencer;
-
-      pmessagebox->initialize_conversation(strMessage, strTitle, emessagebox, strDetails);
-
-      return psequencer;
-
-   }
+   //}
 
 
-   pointer< ::sequencer < ::conversation > > node::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
-   {
+   //::pointer < ::subparticle > node::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+   //{
 
-      auto psequencer = __create_new < ::sequencer < ::conversation > >();
+   //   //auto psequencer = __create_new < ::sequencer < ::conversation > >();
 
-      auto pmessage = create_new_message_conversation();
+   //   auto pmessageboxconversation = create_new_message_box_conversation();
 
-      psequencer->m_psequence = pmessage;
+   //   //psequencer->m_psequence = pmessagebox;
 
-      pmessage->m_psequencer = psequencer;
+   //   //pmessagebox->m_psequencer = psequencer;
 
-      pmessage->initialize_conversation(strMessage, strTitle, emessagebox, strDetails);
+   //   pmessageboxconversation->initialize_conversation(strMessage, strTitle, emessagebox, strDetails, picon);
 
-      return psequencer;
+   //   return pmessageboxconversation;
 
-   }
+   //}
 
 
-   //void node::nano::user::message_box(::sequence < ::conversation >* psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
+   //::pointer < ::subparticle > node::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+   //{
+
+   //   ///auto psequencer = __create_new < ::sequencer < ::conversation > >();
+
+   //   auto pmessageconversation = create_new_message_conversation();
+
+   //   //psequencer->m_psequence = pmessage;
+
+   //   //pmessage->m_psequencer = psequencer;
+
+   //   pmessageconversation->initialize_conversation(strMessage, strTitle, emessagebox, strDetails, picon);
+
+   //   return pmessageconversation;
+
+   //}
+
+
+   //void node::micro::message_box(::sequence < ::conversation >* psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
    //{
 
 
@@ -2995,30 +2978,11 @@ return false;
       }
       else if(scopedstrComponentName == "nano_user")
       {
-       
-#ifdef LINUX
 
-         if(system()->m_ewindowing == e_windowing_wayland)
-         {
-            return "wayland";
-         }
-         else if(system()->m_ewindowing == e_windowing_xcb)
-         {
-            return "xcb";
-         }
-         else
-         {
+         ::string strUserToolkit = ::windowing::get_user_toolkit_id();
 
-            return "x11";
+         return strUserToolkit;
 
-         }
-
-#elif defined(WINDOWS_DESKTOP)
-
-         return "win32";
-
-#endif
-         
       }
       
       return {};
@@ -3026,14 +2990,11 @@ return false;
    }
 
 
-void node::on_component_factory(const ::scoped_string & scopedstrComponent)
+bool node::defer_component_factory(const ::scoped_string & scopedstrComponent)
 {
    
-   ::string strComponentDefaultImplementation = this->default_component_implementation(scopedstrComponent);
-   
-   auto pfactory = system()->factory(scopedstrComponent, strComponentDefaultImplementation);
-   
-   pfactory->merge_to_global_factory();
+
+   return false;
 
 }
    
@@ -4280,14 +4241,14 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    }
 
 
-   void node::set_dark_mode(bool bDarkMode)
-   {
-
-      throw ::interface_only();
-
-      //node()->set_dark_mode(bDarkMode);
-
-   }
+   // void node::set_dark_mode(bool bDarkMode)
+   // {
+   //
+   //    throw ::interface_only();
+   //
+   //    //node()->set_dark_mode(bDarkMode);
+   //
+   // }
 
 
    void node::file_open(const ::file::path & pathTarget, const ::string & strParams, const ::file::path & pathFolder)
@@ -4712,12 +4673,12 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 //   }
 
 
-   enum_windowing node::calculate_ewindowing()
+  /* enum_windowing node::calculate_ewindowing()
    {
 
       return e_windowing_none;
 
-   }
+   }*/
 
 
    bool node::_get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle)
@@ -4732,6 +4693,13 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
    {
 
       return false;
+
+   }
+
+
+   void node::realize(::particle_pointer pparticle)
+   {
+
 
    }
 

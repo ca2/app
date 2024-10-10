@@ -444,7 +444,7 @@ namespace write_text
          //if (bCheckHover && rectangle.contains_y(pointCursor.y()))
          //{
 
-         //   //m_puserinteraction->m_pitemHover = ::place(new ::item({ ::e_element_item, i }));
+         //   //m_puserinteraction->m_pitemHover = __new ::item({ ::e_element_item, i });
 
          //   m_puserinteraction->m_pitemHover = pfontlistitem;
 
@@ -725,7 +725,7 @@ namespace write_text
 
       psignal->add_handler(this);
 
-      call(id_operating_system_user_color_change);
+      message_call(id_operating_system_user_color_change);
 
       //return estatus;
 
@@ -792,9 +792,15 @@ namespace write_text
 
          auto psystem = system();
 
-         auto pnode = psystem->node();
+         m_bDarkMode = psystem->dark_mode();
 
-         m_bDarkMode = pnode->dark_mode();
+      }
+      else if (eid == id_application_dark_mode_change)
+      {
+
+         auto psystem = system();
+
+         m_bDarkMode = psystem->dark_mode();
 
       }
 
@@ -1137,7 +1143,7 @@ namespace write_text
 
                bNew = true;
 
-               plistitem = ::place(new font_list_item());
+               plistitem = __new font_list_item();
 
                plistitem->m_item.m_iItem = iItem;
 
@@ -1624,7 +1630,7 @@ namespace write_text
       if (!pfontlistdata)
       {
 
-         auto pitemNone = ::place(new ::item(::e_element_none));
+         auto pitemNone = __new ::item(::e_element_none);
 
          return pitemNone;
 
@@ -1659,14 +1665,14 @@ namespace write_text
          if (pfontlistitem->m_box[BOX].m_rectangle.contains(point))
          {
 
-            //return ::place(new ::item(::e_element_item, iItem));
+            //return __new ::item(::e_element_item, iItem);
             return pfontlistitem;
 
          }
 
       }
 
-      //auto pitemNone = ::place(new ::item(::e_element_none));
+      //auto pitemNone = __new ::item(::e_element_none);
 
       //return pitemNone;
 
@@ -1685,7 +1691,7 @@ namespace write_text
       if (!pfontlistdata)
       {
 
-         auto pitemNone = ::place(new ::item(::e_element_none));
+         auto pitemNone = __new ::item(::e_element_none);
 
          return pitemNone;
 
@@ -1716,7 +1722,7 @@ namespace write_text
 
       }
 
-      //auto pitemNone = ::place(new ::item(::e_element_none));
+      //auto pitemNone = __new ::item(::e_element_none);
 
       // return pitemNone;
 

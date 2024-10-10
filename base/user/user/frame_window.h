@@ -144,7 +144,7 @@ namespace user
 
 
 
-      bool on_set_parent(::user::primitive * puiParent) override;
+      bool on_set_parent(::user::interaction_base * puiParent) override;
 
       //virtual void defer_synch_layered();
       //virtual bool calc_layered();
@@ -291,7 +291,7 @@ namespace user
       void AddFrameWnd();
       void RemoveFrameWnd();
 
-      friend class interaction_impl;  // for access to m_bModalDisable
+      //friend class interaction_impl;  // for access to m_bModalDisable
       friend class CReBar; // for access to m_bInRecalcLayout
 
 

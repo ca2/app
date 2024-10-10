@@ -7,7 +7,7 @@
 #include "_constant.h"
 
 
-#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/prototype/geometry2d/rectangle.h"
 
 
 //class ::graphics::output_purpose;
@@ -55,11 +55,11 @@ namespace user
 
    class interaction;
 
-   class interaction_impl;
-
    class interaction_scaler;
 
    class interaction_listener;
+
+   class graphics_thread;
 
    class style;
 
@@ -95,7 +95,7 @@ namespace user
 
    class notify_icon;
 
-   class primitive_pointer_array;
+   //class primitive_pointer_array;
 
    class shell;
 
@@ -120,8 +120,8 @@ namespace user
    //class system;
    class control_event;
    //class control_descriptor;
-   class interaction_child;
-   class interaction_impl;
+   //class interaction_child;
+   //class interaction_impl;
    class interaction_array;
 
 
@@ -187,9 +187,9 @@ namespace user
 
    class notify_icon;
 
-   CLASS_DECL_AURA ::user::interaction_impl * message_interaction_impl(::user::message * pusermessage);
+   //CLASS_DECL_AURA ::windowing::window * message_interaction_impl(::user::message * pusermessage);
 
-   CLASS_DECL_AURA ::user::interaction * message_user_interaction(::user::message * pusermessage);
+   //CLASS_DECL_AURA ::user::interaction * message_user_interaction(::user::message * pusermessage);
 
 
 } // namespace user
@@ -269,7 +269,7 @@ namespace user
    class plain_text_tree;
    class plain_text_command;
    class tree_draw_item;
-   class interaction_child;
+   //class interaction_child;
    class box;
    class control_style;
    class plain_edit_style;
@@ -361,7 +361,7 @@ class cregexp;
 //class image_list;
 //class simple_list_data;
 
-CLASS_DECL_AURA ::user::primitive* __user_primitive(::windowing::window * pwindow);
+CLASS_DECL_AURA ::user::interaction_base* __user_prototype(::windowing::window * pwindow);
 
 inline wparam __scroll_message_wparam(enum_scroll_command ecommand, int iPosition)
 {

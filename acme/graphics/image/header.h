@@ -1,9 +1,9 @@
 #pragma once
 
 
-//#include "acme/primitive/geometry2d/_geometry2d.h"
-//#include "acme/primitive/primitive/_u32hash.h"
-#include "acme/primitive/geometry2d/size.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
+//#include "acme/prototype/prototype/_u32hash.h"
+#include "acme/prototype/geometry2d/size.h"
 
 
 #pragma pack(push, image_header, 1)

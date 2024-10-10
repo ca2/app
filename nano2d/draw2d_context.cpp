@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "draw2d_context.h"
 #include "acme/platform/context.h"
-#include "acme/primitive/geometry2d/ellipse.h"
+#include "acme/prototype/geometry2d/ellipse.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/path.h"
@@ -86,7 +86,7 @@ namespace nano2d
    ::pointer < ::nano2d::state > draw2d_context::create_new_state()
    {
 
-      auto pstate = ::place(new draw2d_state(m_pgraphics));
+      auto pstate = __new draw2d_state(m_pgraphics);
 
       pstate->initialize(m_pgraphics);
 
@@ -1133,7 +1133,7 @@ void draw2d_context::text_metrics(float * pfAscender, float * pfDescender, float
 
       pimage->map();
 
-      copy_image32(pimage->get_data(), pimage->width(), pimage->height(), pimage->m_iScan, (const image32_t *)data);
+      pimage->get_data()->copy(pimage->size(), pimage->m_iScan, (const image32_t *)data);
 
    }
 

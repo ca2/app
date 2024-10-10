@@ -13,7 +13,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/node.h"
 
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/string/str.h"
 #include "acme/crypto/crypto.h"
 #include "acme/crypto/rsa.h"
 #include "acme/filesystem/filesystem/dir_context.h"
@@ -240,7 +240,7 @@ namespace dynamic_source
 
          m_pcache->m_pmanager = this;
 
-         m_pcompiler = ::place(new script_compiler());
+         m_pcompiler = __new script_compiler();
 
          //estatus = 
 
@@ -274,13 +274,13 @@ namespace dynamic_source
 
       {
 
-         auto pwatcher = ::place(new clear_include_matches_file_watcher(this));
+         auto pwatcher = __new clear_include_matches_file_watcher(this);
 
          pwatcher->m_pmanager = this;
 
          auto pcontext = get_context();
 
-         dir()->watcher().add_watch(m_strNetseedDsCa2Path, pwatcher, true);
+         file_watcher()->add_watch(m_strNetseedDsCa2Path, pwatcher, true);
 
       }
 
@@ -298,11 +298,11 @@ namespace dynamic_source
          if (case_insensitive_string_begins(path.title(), "net-"))
          {
 
-            auto pwatcher = ::place(new clear_include_matches_file_watcher(this));
+            auto pwatcher = __new clear_include_matches_file_watcher(this);
 
             pwatcher->m_pmanager = this;
 
-            dir()->watcher().add_watch(path, pwatcher, true);
+            file_watcher()->add_watch(path, pwatcher, true);
 
          }
 
@@ -1279,7 +1279,7 @@ namespace dynamic_source
 
       }
 
-      auto psession = ::place(new ::dynamic_source::session());
+      auto psession = __new ::dynamic_source::session();
 
       psession->initialize_dynamic_source_session(pszId, this);
 

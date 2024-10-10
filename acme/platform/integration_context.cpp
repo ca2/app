@@ -15,12 +15,12 @@
 #include "acme/platform/application.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/primitive/url.h"
+#include "acme/prototype/prototype/url.h"
 //#include "acme/filesystem/filesystem/file_context.h"
 //#include "apex/networking/http/context.h"
 //#include "apex/platform/application.h"
 //#include "apex/platform/system.h"
-#include "acme/platform/sequencer.h"
+//#include "acme/platform/sequencer.h"
 
 
 #include "acme/_operating_system.h"
@@ -257,9 +257,9 @@ namespace integration
       if (iExitCode != 0)
       {
 
-         auto psequencer = message_box("Command :\n\""+scopedstrCommand+"\"\n\nFailed with code : \"" + ::as_string(iExitCode) + "\"");
+         auto pmessagebox = __initialize_new ::message_box("Command :\n\"" + scopedstrCommand + "\"\n\nFailed with code : \"" + ::as_string(iExitCode) + "\"");
 
-         psequencer->do_synchronously();
+         pmessagebox->sync();
 
          throw ::exception(error_exception);
 

@@ -668,7 +668,7 @@ namespace user
 
          m_pcombo->ShowDropDown(false);
 
-         ::pointer<::user::primitive>pelemental = m_pcombo->keyboard_get_next_focusable();
+         ::pointer<::user::interaction_base>pelemental = m_pcombo->keyboard_get_next_focusable();
 
          if (pelemental.is_set())
          {
@@ -698,7 +698,7 @@ namespace user
 
          m_pcombo->ShowDropDown(false);
 
-         ::pointer<::user::primitive>pelemental = m_pcombo->keyboard_get_next_focusable();
+         ::pointer<::user::interaction_base>pelemental = m_pcombo->keyboard_get_next_focusable();
 
          if (pelemental.is_set())
          {

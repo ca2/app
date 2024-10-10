@@ -4,7 +4,7 @@
 #include "acme/constant/timer.h"
 #include "acme/handler/item.h"
 #include "acme/platform/timer.h"
-#include "acme/primitive/geometry2d/ellipse.h"
+#include "acme/prototype/geometry2d/ellipse.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -270,18 +270,18 @@ namespace experience
       if (m_pregion.is_null())
       {
 
-         return ::place(new ::item(::e_element_none));
+         return __new ::item(::e_element_none);
 
       }
 
       if (!m_pregion->contains(point))
       {
 
-         return ::place(new ::item(::e_element_none));
+         return __new ::item(::e_element_none);
 
       }
 
-      return ::place(new ::item(::e_element_client));
+      return __new ::item(::e_element_client);
 
    }
 

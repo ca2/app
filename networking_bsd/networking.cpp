@@ -5,15 +5,15 @@
 #include "acme/exception/interface_only.h"
 #include "acme/filesystem/file/string_stream.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/mathematics/mathematics.h"
-#include "acme/primitive/time/_binary_stream.h"
-#include "acme/primitive/string/parse.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/mathematics/mathematics.h"
+#include "acme/prototype/time/_binary_stream.h"
+#include "acme/prototype/string/parse.h"
+#include "acme/prototype/string/str.h"
 #include "apex/platform/context.h"
 #include "apex/platform/system.h"
 
 
-#include "acme/primitive/collection/_array.h"
+#include "acme/prototype/collection/_array.h"
 
 bool operating_system_has_ipv4_internet();
 bool operating_system_has_ipv6_internet();
@@ -1163,7 +1163,7 @@ namespace networking_bsd
 
       }
 
-      pitem = ::place(new reverse_cache_item());
+      pitem = __new reverse_cache_item();
 
       pitem->m_paddress = paddress;
 
@@ -1523,7 +1523,7 @@ namespace networking_bsd
       if (this != &item)
       {
 
-         auto paddress = ::place(new address());
+         auto paddress = __new address();
 
          *paddress = *item.m_paddress;
 
@@ -2523,7 +2523,7 @@ namespace networking_bsd
       //
       //   }
       //
-      //   pitem = ::place(new reverse_cache_item());
+      //   pitem = __new reverse_cache_item();
       //
       //   pitem->m_address = address;
       //
@@ -3276,7 +3276,7 @@ namespace networking_bsd
    ::pointer<address>networking::create_ip4_address(u32 u, ::networking::port_t port)
    {
 
-      auto paddress2 = ::place(new address());
+      auto paddress2 = __new address();
 
    #if defined(BSD_STYLE_SOCKETS)
 
@@ -3309,7 +3309,7 @@ namespace networking_bsd
    ::pointer<address>networking::create_ip6_address(void * p128bits, ::networking::port_t port)
    {
 
-      auto paddress2 = ::place(new address());
+      auto paddress2 = __new address();
    #if defined(BSD_STYLE_SOCKETS)
 
       auto a = *paddress2;
@@ -3432,7 +3432,7 @@ namespace networking_bsd
    ::pointer<::networking::address> networking::create_address(const ::string& strAddress, ::networking::enum_address_type eaddresstypePreferred, ::networking::port_t port)
    {
 
-      auto paddress = ::place(new address());
+      auto paddress = __new address();
 
       if (::from_string(paddress->u.m_addr6.sin6_addr, strAddress) == ::success)
       {
@@ -3491,7 +3491,7 @@ namespace networking_bsd
    ::pointer<::networking::address>networking::create_ip4_address(const ::string & strAddress, ::networking::port_t port)
    {
 
-      auto paddress = ::place(new address());
+      auto paddress = __new address();
 
       if (!convert(paddress->u.m_addr.sin_addr, strAddress))
       {
@@ -3512,7 +3512,7 @@ namespace networking_bsd
    ::pointer<::networking::address>networking::create_ip6_address(const ::string & strAddress, ::networking::port_t port)
    {
 
-      auto paddress2 = ::place(new address());
+      auto paddress2 = __new address();
 
       if (!convert(paddress2->u.m_addr6.sin6_addr, strAddress))
       {

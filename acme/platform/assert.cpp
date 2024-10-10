@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/parallelization/task.h"
+#include "acme/platform/message_box.h"
 #include "acme/platform/system.h"
 #include <stdio.h>
 
@@ -101,7 +102,9 @@ namespace acme
 ////void message_box_synchronous(const ::scoped_string & scopedstrText, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::future & future)
 ////{
 ////
-////   auto posmessagebox = ::place(new ::acme::message_box_synchronous(pszText, pszTitle, emessagebox));
+////   auto posmessagebox = __new ::acme::auto pmessagebox = __initialize_new ::message_box(pszText, pszTitle, emessagebox);
+
+//pmessagebox->sync();
 ////
 ////   return __realize(posmessagebox, process);
 ////
@@ -159,7 +162,16 @@ CLASS_DECL_ACME ::payload __cpp_assert_failed_line(const char * pszFileName, int
 
    sprintf(szMessage,"Assert failed!\n\nFile: %s\nLine: %d\n\nYou can choose to:\n\n\t - \"Cancel\": cancel debugging.\n\t - \"Try\": try debug break where assertion occurred.\n\t - \"Continue\": continue running", pszFileName,iLineNumber);
 
-   return message_box_synchronous(::get_task(), szMessage, "ASSERT", e_message_box_cancel_try_continue | e_message_box_icon_error);
+   auto pmessagebox = 
+      __initialize_new_with(::platform::system())
+      ::message_box(
+         szMessage,
+         "ASSERT",
+         e_message_box_cancel_try_continue | e_message_box_icon_error);
+
+   pmessagebox->sync();
+
+   return pmessagebox->m_payloadResult;
 
 }
 

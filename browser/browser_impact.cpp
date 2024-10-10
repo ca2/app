@@ -106,7 +106,7 @@ namespace browser
 
       bool bAlternate = string(m_atom).case_insensitive_contains("switcher");
 
-      m_prender = ::place(new render(get_app(), bAlternate));
+      m_prender = __new render(get_app(), bAlternate);
 
       m_prender->m_pimpact = this;
 

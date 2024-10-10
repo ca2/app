@@ -14,9 +14,9 @@
 #include "acme/platform/keep.h"
 #include "acme/platform/timer.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/collection/_range.h"
-#include "acme/primitive/data/listener.h"
-#include "acme/primitive/time/_text_stream.h"
+#include "acme/prototype/collection/_range.h"
+#include "acme/prototype/data/listener.h"
+#include "acme/prototype/time/_text_stream.h"
 #include "apex/database/selection.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/savings.h"
@@ -366,13 +366,13 @@ namespace user
                if (pcolumn->m_pimagelist)
                {
 
-                  slaImageList.add(::place(new synchronous_lock(pcolumn->m_pimagelist)));
+                  slaImageList.add(__new synchronous_lock(pcolumn->m_pimagelist));
 
                }
                if (pcolumn->m_pimagelistHover)
                {
 
-                  slaImageList.add(::place(new synchronous_lock(pcolumn->m_pimagelist)));
+                  slaImageList.add(__new synchronous_lock(pcolumn->m_pimagelist));
 
                }
 
@@ -481,7 +481,7 @@ namespace user
          if (!pgroup)
          {
 
-            auto pdrawgroup = ::place(new draw_list_group());
+            auto pdrawgroup = __new draw_list_group();
 
             pdrawgroup->initialize_draw_list_group(this);
 
@@ -1372,7 +1372,7 @@ namespace user
       if (!pitem)
       {
 
-         auto pdrawlistitem = ::place(new draw_list_item());
+         auto pdrawlistitem = __new draw_list_item();
 
          pdrawlistitem->initialize_draw_list_item(this);
 
@@ -1405,7 +1405,7 @@ namespace user
       if (!psubitem)
       {
 
-         auto pdrawlistsubitem = ::place(new draw_list_subitem());
+         auto pdrawlistsubitem = __new draw_list_subitem();
 
          pdrawlistsubitem->initialize_draw_list_subitem(*pitem);
 
@@ -1427,7 +1427,7 @@ namespace user
    ::pointer<list_column>list2::new_list_column()
    {
 
-      auto pcolumn = ::place(new list_column());
+      auto pcolumn = __new list_column();
 
       m_pcolumna->add(pcolumn);
 
@@ -5527,7 +5527,7 @@ namespace user
       if (pcolumn->m_pimagelist == nullptr)
       {
 
-         pcolumn->m_pimagelist = ::place(new ::image::image_list());
+         pcolumn->m_pimagelist = __new ::image::image_list();
 
       }
 
@@ -6810,7 +6810,7 @@ namespace user
    //::item_pointer list2::update_hover(::user::mouse* pmouse, ::user::e_zorder ezorder)
    //{
 
-   //   auto pitemHitTest = ::place(new ::item());
+   //   auto pitemHitTest = __new ::item();
    //   
    //   auto pointClient = screen_to_client().get(pmouse->m_point);
 

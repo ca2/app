@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/point_array.h"
+#include "acme/prototype/geometry2d/point_array.h"
 #include "aura/user/user/scroll_bar.h"
 
 
@@ -39,7 +39,7 @@ public:
    virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
    virtual void _001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraphics);
 
-   void update_drawing_objects();
+   void update_drawing_objects() override;
 
    virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 

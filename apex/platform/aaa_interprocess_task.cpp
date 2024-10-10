@@ -5,7 +5,7 @@
    //::object(pcall),
    m_pcall(pcall),
    m_atomPid(idPid),
-   m_pevReady(::place(new manual_reset_event())),
+   m_pevReady(::as(new manual_reset_event())),
    m_iTask(iTask)
 {
    

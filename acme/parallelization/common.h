@@ -72,12 +72,12 @@ class multi_lock;
 
 class thread_startup;
 
-namespace primitive
+namespace prototype
 {
 
    class command;
 
-} // namespace primitive
+} // namespace prototype
 
 
 //namespace exception

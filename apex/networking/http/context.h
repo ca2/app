@@ -1,9 +1,9 @@
 #pragma once
 
 
-//#include "acme/primitive/primitive/payload.h"
-#include "acme/primitive/collection/string_map.h"
-////#include "acme/primitive/primitive/object.h"
+//#include "acme/prototype/prototype/payload.h"
+#include "acme/prototype/collection/string_map.h"
+////#include "acme/prototype/prototype/object.h"
 
 
 namespace http
@@ -149,7 +149,7 @@ namespace http
       virtual void get(string & str, const ::url::url & url , property_set & set);
       virtual void get(memory_base * pmemory, const ::url::url & url, property_set & set);
       
-      virtual void sync(::nano::http::get * pget);
+      virtual void perform(::nano::http::get * pget);
 
       //virtual bool request(const ::scoped_string & scopedstrRequest, const ::url::url & url, property_set & set);
 

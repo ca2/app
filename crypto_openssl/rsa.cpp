@@ -2,7 +2,7 @@
 #include "rsa.h"
 #include "acme/exception/resource.h"
 #include "acme/parallelization/single_lock.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 
 
 namespace crypto_openssl
@@ -629,7 +629,7 @@ namespace crypto_openssl
 //::pointer<::crypto::rsa>__create_rsa(const string& str)
 //{
 //
-//   return ::place(new ::openssl::rsa(str));
+//   return __new ::openssl::rsa(str);
 //
 //}
 //

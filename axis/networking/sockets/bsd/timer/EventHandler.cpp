@@ -295,14 +295,14 @@ namespace sockets
    {
       if (!m_ptcpsocket)
       {
-         auto plistensocket = ::place(new listen_socket());
+         auto plistensocket = __new listen_socket();
          plistensocket-> SetDeleteByHandler();
          plistensocket-> Bind("127.0.0.1", 0);
          m_port = plistensocket-> GetPort();
 
          socket_handler::add(plistensocket);
 
-         m_ptcpsocket = ::place(new tcp_socket());
+         m_ptcpsocket = __new tcp_socket();
          m_ptcpsocket -> SetDeleteByHandler();
          m_ptcpsocket -> set_maximum_connection_time(5_s);
          m_ptcpsocket -> SetRetryClientConnect(-1);

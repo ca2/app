@@ -5,9 +5,9 @@
 #include "_constant.h"
 
 
-//#include "acme/primitive/geometry2d/point.h"
-//#include "acme/primitive/geometry2d/size.h"
-//#include "acme/primitive/geometry2d/rectangle.h"
+//#include "acme/prototype/geometry2d/point.h"
+//#include "acme/prototype/geometry2d/size.h"
+//#include "acme/prototype/geometry2d/rectangle.h"
 
 
 namespace image

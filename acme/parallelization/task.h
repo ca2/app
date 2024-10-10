@@ -2,13 +2,13 @@
 
 
 //#include "acme/operating_system/error_code.h"
-//#include "acme/primitive/primitive/_u32hash.h"
-//#include "acme/primitive/primitive/function.h"
-//#include "acme/primitive/primitive/object.h"
-//#include "acme/primitive/collection/procedure_array.h"
+//#include "acme/prototype/prototype/_u32hash.h"
+//#include "acme/prototype/prototype/function.h"
+//#include "acme/prototype/prototype/object.h"
+//#include "acme/prototype/collection/procedure_array.h"
 #include "counter.h"
 #include "acme/handler/source.h"
-#include "acme/primitive/data/property_container.h"
+#include "acme/prototype/data/property_container.h"
 #include "acme/platform/implementable.h"
 
 
@@ -48,6 +48,7 @@ public:
 #ifdef PARALLELIZATION_PTHREAD
    bool                                            m_bJoinable : 1;
 #endif
+   bool                                            m_bKeepRunningPostedProcedures : 1;
 
    ::u64                                           m_uThreadAffinityMask;
 
@@ -68,6 +69,8 @@ public:
 
    ::procedure                                     m_procedure;
    ::pointer<manual_reset_event>                  m_pevSleep;
+   ::pointer<manual_reset_event>                      m_peventFinished2;
+
 
 #ifdef WINDOWS
    error_code                                      m_errorcodeHresultCoInitialize;
@@ -139,8 +142,14 @@ public:
    //virtual void add_notify(::matter* pmatter);
    //virtual void erase_notify(::matter* pmatter);
 
-   void post_procedure(const ::procedure & procedure) override;
-   void send_procedure(const ::procedure & procedure) override;
+   void _post(const ::procedure & procedure) override;
+   void _send(const ::procedure & procedure) override;
+
+   //void _post(::subparticle * p) override;
+   //void _send(::subparticle * p) override;
+
+   //virtual v do_synchronously(sequence * psequence);
+
 
    virtual void run_posted_procedures();
 
@@ -233,7 +242,7 @@ public:
    bool is_branch_current() const override;
 
 
-   virtual void synchronous_procedure(bool bAtAnotherThread, const procedure & procedure);
+   virtual void synchronous_procedure(bool bAtAnotherThread, const procedure & procedure, const class ::time & timeTimeout = 0_s);
 
 
 };

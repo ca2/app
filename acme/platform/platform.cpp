@@ -9,10 +9,11 @@
 #include "acme/nano/nano.h"
 #include "acme/nano/dynamic_library/dynamic_library.h"
 #include "acme/parallelization/manual_reset_event.h"
+#include "acme/parallelization/synchronous_lock.h"
 ////#include "acme/exception/exception.h"
 #include "acme/platform/context.h"
 #include "acme/platform/library.h"
-#include "acme/platform/sequencer.h"
+//#include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
 ////#include "acme/exception/exception.h"
 #include "acme/parallelization/task.h"
@@ -770,7 +771,7 @@ g_bWindowingOutputDebugString = true;
 
       //__raw_construct_new(m_pcomponentfactorymap);
 
-      //m_pfactory = ::place(new ::factory::factory());
+      //m_pfactory = __new ::factory::factory();
 
       m_pfactory->InitHashTable(16189);
 
@@ -859,6 +860,106 @@ g_bWindowingOutputDebugString = true;
    }
 
 
+   ::task* platform::get_task(itask_t itask)
+   {
+
+      _synchronous_lock synchronouslock(m_pmutexTask);
+
+      return m_taskmap[itask];
+
+   }
+
+
+   itask_t platform::get_task_id(const ::task* ptask)
+   {
+
+      _synchronous_lock synchronouslock(m_pmutexTask);
+
+      itask_t itask = null_itask;
+
+      if (!m_taskidmap.lookup((::task* const)ptask, itask))
+      {
+
+         return 0;
+
+      }
+
+      return itask;
+
+   }
+
+
+   void platform::set_task(itask_t itask, ::task* ptask)
+   {
+
+      _synchronous_lock synchronouslock(m_pmutexTask);
+#if   REFERENCING_DEBUGGING
+      ::allocator::add_referer({ this, __FUNCTION_FILE_LINE__ });
+#endif
+      m_taskmap[itask] = ptask;
+
+      m_taskidmap[ptask] = itask;
+
+   }
+
+
+   void platform::unset_task(itask_t itask, ::task* ptask)
+   {
+
+      _synchronous_lock synchronouslock(m_pmutexTask);
+
+      if(m_taskmap.has(itask)) m_taskmap.erase_item(itask);
+
+      if(m_taskidmap.has(ptask)) m_taskidmap.erase_item(ptask);
+
+   }
+
+
+   bool platform::is_task_on(itask_t atom)
+   {
+
+      _synchronous_lock synchronouslock(m_pmutexTaskOn);
+
+      return m_mapTaskOn.plookup(atom);
+
+   }
+
+
+   bool platform::is_active(::task* ptask)
+   {
+
+      if (::is_null(ptask))
+      {
+
+         return false;
+
+      }
+
+      return is_task_on(ptask->m_itask);
+
+   }
+
+
+   void platform::set_task_on(itask_t atom)
+   {
+
+      _synchronous_lock synchronouslock(m_pmutexTaskOn);
+
+      m_mapTaskOn.set_at(atom, atom);
+
+   }
+
+
+   void platform::set_task_off(itask_t atom)
+   {
+
+      _synchronous_lock synchronouslock(m_pmutexTaskOn);
+
+      m_mapTaskOn.erase_item(atom);
+
+   }
+
+
    ::factory::factory_pointer & platform::factory(const ::string & strLibraryRequest)
    {
 
@@ -929,12 +1030,14 @@ g_bWindowingOutputDebugString = true;
 
       //informationf("platform::factory(\"%s\", \"%s\");\n", strComponent.c_str(), strImplementation.c_str());
 
-      auto & pfactory = m_componentfactorymap[strComponent][implementation_name(strComponent, strImplementation)];
+      auto strImplementationName = implementation_name(strComponent, strImplementation);
+
+      auto & pfactory = m_componentfactorymap[strComponent][strImplementationName];
 
       if (pfactory)
       {
 
-         informationf("Returning existing factory \"%s\" - \"%s\".\n", strComponent.c_str(), strImplementation.c_str());
+         debugf("Returning existing factory \"%s\" - \"%s\".\n", strComponent.c_str(), strImplementation.c_str());
 
          return pfactory;
 
@@ -1115,10 +1218,8 @@ g_bWindowingOutputDebugString = true;
 
          string strDetails = exception.get_consolidated_details(this);
 
-         auto psequencer = message_box(strMessage, "Library Loading Failure", e_message_box_ok | e_message_box_icon_warning,
-            strDetails);
-
-         psequencer->do_asynchronously();
+         post(__initialize_new ::message_box(strMessage, "Library Loading Failure", e_message_box_ok | e_message_box_icon_warning,
+            strDetails));
 
          throw exception;
 
@@ -1213,10 +1314,10 @@ g_bWindowingOutputDebugString = true;
       catch (library_not_loaded& librarynotloaded)
       {
 
-         auto psequencer = message_box(librarynotloaded.get_message(),
+         auto pmessagebox = __initialize_new ::message_box(librarynotloaded.get_message(),
             "Library not loaded", e_message_box_icon_error, librarynotloaded.m_strDetails);
 
-         psequencer->do_asynchronously();
+         post(pmessagebox);
             
 
       }

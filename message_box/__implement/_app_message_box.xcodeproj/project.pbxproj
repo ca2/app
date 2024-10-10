@@ -168,6 +168,20 @@
 			remoteGlobalIDString = 9AC97ECF2A71B2A700B1BCF3;
 			remoteInfo = static_crypto_openssl;
 		};
+		9AA8272F2CAF780000DA11E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA827212CAF77FD00DA11E9 /* _app_just_message_box.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 070B8EEA1B6E53F900D26137;
+			remoteInfo = _app_just_message_box;
+		};
+		9AA827312CAF780000DA11E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA827212CAF77FD00DA11E9 /* _app_just_message_box.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 070B8EFD1B6E53FA00D26137;
+			remoteInfo = "Hello Multiverse!!Tests";
+		};
 		9AB3DE7C278385AD0025099F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A46D36726785A9C000B22D0 /* app_message_box.xcodeproj */;
@@ -300,6 +314,7 @@
 		9A8F4DBB2A26D5C700097EE1 /* _____debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "_____debug.xcconfig"; path = "../_____debug.xcconfig"; sourceTree = "<group>"; };
 		9A90BA282B5495F0002BFC9E /* libarchive.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libarchive.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9A158B2AFC23B800FA9BEB /* libdarwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libdarwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AA827212CAF77FD00DA11E9 /* _app_just_message_box.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = _app_just_message_box.xcodeproj; path = /Users/camilo/workspace/main/source/app/just_aura_message_box/__implement/_app_just_message_box.xcodeproj; sourceTree = "<absolute>"; };
 		9AB15BD429A8796500DFDF90 /* libacme_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB15BD529A8796500DFDF90 /* libapex_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB15BD629A8796500DFDF90 /* libaura_darwin.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_darwin.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -354,6 +369,7 @@
 				9A3E0BA12309FBD400B5459B /* Library */,
 				9AE5CC8A22CBEBF400EDEAD1 /* Supporting Files */,
 				9AE46CE529A10DCD00F2269A /* _app_message_box copy-Info.plist */,
+				9AA827212CAF77FD00DA11E9 /* _app_just_message_box.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -478,6 +494,15 @@
 				9A8F4DAF2A26D5C600097EE1 /* Info.plist */,
 			);
 			path = ios;
+			sourceTree = "<group>";
+		};
+		9AA8272B2CAF77FE00DA11E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AA827302CAF780000DA11E9 /* _app_just_message_box.app */,
+				9AA827322CAF780000DA11E9 /* Hello Multiverse!!Tests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		9AB3DCD32783849D0025099F /* __implement */ = {
@@ -639,6 +664,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 9AA8272B2CAF77FE00DA11E9 /* Products */;
+					ProjectRef = 9AA827212CAF77FD00DA11E9 /* _app_just_message_box.xcodeproj */;
+				},
+				{
 					ProductGroup = 9A8F4DA72A26D5C600097EE1 /* Products */;
 					ProjectRef = 9A8F4DA62A26D5C600097EE1 /* _app_message_box.xcodeproj */;
 				},
@@ -762,6 +791,20 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libstatic_crypto_openssl.dylib;
 			remoteRef = 9A9A15852AFC239100FA9BEB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AA827302CAF780000DA11E9 /* _app_just_message_box.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = _app_just_message_box.app;
+			remoteRef = 9AA8272F2CAF780000DA11E9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AA827322CAF780000DA11E9 /* Hello Multiverse!!Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Hello Multiverse!!Tests.xctest";
+			remoteRef = 9AA827312CAF780000DA11E9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		9AC01D6C2748C46A006BEBCC /* libcrypto_openssl.dylib */ = {

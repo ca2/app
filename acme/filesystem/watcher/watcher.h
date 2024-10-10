@@ -41,11 +41,11 @@ namespace file
       
       void *               m_pThis;
 
-      typedef ::map < watch_id, ::pointer<watch >>watch_map;
+      typedef ::set < ::pointer<::file::watch >>watch_set;
 
-      watch_map            m_watchmap;
+      watch_set            m_watchset;
 
-      watch_id             m_watchidLast;
+      //::pointer < ::file::watch>   m_watchLast;
 
       bool                 m_bCreateWatchThread;
 
@@ -54,13 +54,13 @@ namespace file
       ~watcher() override;
 
 
-      virtual watch_id add_watch_listener(const ::file::path& pathFolder, const listener& listener, bool bRecursive);
+      virtual ::file::watch * add_watch_listener(const ::file::path& pathFolder, const listener& listener, bool bRecursive);
 
-      virtual watch_id add_watch(const ::file::path & pathFolder, typename listener::base * pbase, bool bRecursive);
+      virtual ::file::watch * add_watch(const ::file::path & pathFolder, typename listener::base * pbase, bool bRecursive);
 
       virtual void erase_watch(const ::file::path & pathFolder);
 
-      virtual void erase_watch(watch_id watch_id, ::function < void () > functionErased = nullptr);
+      virtual void erase_watch(::file::watch * pwatch, ::function < void () > functionErased = nullptr);
 
       void run() override;
 

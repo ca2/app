@@ -13,7 +13,7 @@
 #include "acme/exception/_c.h"
 
 
-#include "acme/primitive/comparison/_c.h"
+#include "acme/prototype/comparison/_c.h"
 
 
 #include "acme/memory/_memory.h"

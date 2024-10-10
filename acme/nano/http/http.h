@@ -38,10 +38,12 @@ namespace nano
          }
          
 
-         virtual void sync(::nano::http::get * pget);
-         
-         
-         virtual void async(::nano::http::get * pget);
+         //virtual void sync(::nano::http::get * pget);
+         //
+         //
+         //virtual void async(::nano::http::get * pget);
+
+         virtual void perform(::nano::http::get * pget);
 
 
          // Follow redirects and find final resource.

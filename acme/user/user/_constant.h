@@ -8,7 +8,7 @@
 
 
 #include "acme/constant/user.h"
-#include "acme/primitive/primitive/enumeration.h"
+#include "acme/prototype/prototype/enumeration.h"
 
 
 namespace user

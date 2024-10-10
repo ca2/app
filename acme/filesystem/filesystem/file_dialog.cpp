@@ -3,8 +3,8 @@
 #include "file_dialog.h"
 #include "acme/user/user/element.h"
 //#include "path.h"
-////#include "acme/primitive/primitive/payload.h"
-////#include "acme/primitive/collection/numeric_array.h"
+////#include "acme/prototype/prototype/payload.h"
+////#include "acme/prototype/collection/numeric_array.h"
 //
 
 //CLASS_DECL_ACME string ::url::decode(const string & str);
@@ -89,7 +89,7 @@ file_dialog::~file_dialog()
    m_bSave = bSave;
    m_bMultiple = false;
    
-   call_run();
+   call();
 //                                                        poswindow,
 //                                                        nullptr,
 //                                                        filetypes, functionHere, pathStartFolder, save, false));
@@ -120,7 +120,7 @@ file_dialog::~file_dialog()
 //         false,
 //         false);
 
-//      auto pdialog = ::place(new ::operating_system_file_dialog(this,
+//      auto pdialog = ::as(new ::operating_system_file_dialog(this,
 //                                                        poswindow,
 //                                                        nullptr,
 //                                                        filetypes, function, false, false)));
@@ -134,7 +134,7 @@ file_dialog::~file_dialog()
       m_bSave = false;
       m_bMultiple = true;
       
-      call_run();
+      call();
 
    }
 

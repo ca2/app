@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "trace_category.h"
-//#include "acme/primitive/collection/pointer_array.h"
+//#include "acme/prototype/collection/pointer_array.h"
 #include "acme/platform/system.h"
 
 
@@ -79,7 +79,7 @@ void trace_category_static_init(::acme::system * psystem)
 
       const ::scoped_string & scopedstrCategory = *p;
 
-      auto pcategory = ::place(new trace_category(etracecategory, scopedstrCategory));
+      auto pcategory = __new trace_category(etracecategory, scopedstrCategory);
 
       pcategory->initialize(psystem);
 

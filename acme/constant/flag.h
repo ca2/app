@@ -35,6 +35,7 @@ enum enum_flag : u64
    e_flag_own_synchronization = 1 << 26,
    e_flag_already_exists = 1 << 27,
 
+
    //e_object_none,
    //aaa_want_to_erase_object_locked = 1 << 10,
    //aaa_want_to_erase_object_shared = 1 << 11,
@@ -57,6 +58,8 @@ enum enum_flag : u64
    e_flag_debug_mask = 1ll << 36 | 1ll << 37 | 1ll << 38 | 1ll << 39 | 1ll << 40 | 1ll << 41,
    e_flag_no_referencing_debugging = 1ll << 42,
    e_flag_carriage_return = 1ll << 43,
+   //e_flag_realized = 1 << 44,
+
 
 };
 

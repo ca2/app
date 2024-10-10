@@ -39,7 +39,7 @@ namespace acme
 
                ::string strComponent = FACTORY_REPRESENTATIVE_TYPE::represented_component_name();
 
-               system()->on_component_factory(strComponent);
+               system()->defer_component_factory(strComponent);
 
             }
 

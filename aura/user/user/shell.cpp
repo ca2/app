@@ -6,9 +6,9 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
-#include "acme/primitive/primitive/atomic.h"
-#include "acme/primitive/collection/_sort.h"
-#include "acme/primitive/primitive/url.h"
+#include "acme/prototype/prototype/atomic.h"
+#include "acme/prototype/collection/_sort.h"
+#include "acme/prototype/prototype/url.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/list.h"
@@ -22,7 +22,7 @@
 #include "aura/windowing/icon.h"
 
 
-#include "acme/primitive/collection/_array.h"
+#include "acme/prototype/collection/_array.h"
 
 #if defined(RASPBERRYPIOS)
 #define OPERATING_SYSTEM_NAMESPACE linux
@@ -135,7 +135,7 @@ namespace user
       m_iActiveThreadCount = 0;
       m_iMaxThreadCount = 1;
 
-      m_pevNewImageKey = ::place(new manual_reset_event());
+      m_pevNewImageKey = __new manual_reset_event();
 
       m_pevNewImageKey->m_eflagElement += e_flag_alertable_wait;
 

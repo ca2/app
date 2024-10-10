@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/collection/string_map.h"
+#include "acme/prototype/collection/string_map.h"
 #include "app/programming/programming/compiler.h"
 
 
@@ -53,9 +53,9 @@ namespace introjection
       ::file::path                              m_strTime;
 
 
-      ::pointer < ::particle >                           m_pmutex;
+      ::particle_pointer                           m_pmutex;
 
-      ::pointer < ::particle >                                     m_pmutexLibrary;
+      ::particle_pointer                                     m_pmutexLibrary;
 
       string_map < ::pointer<library >>               m_lib;
 

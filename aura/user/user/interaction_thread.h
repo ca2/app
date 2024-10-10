@@ -45,12 +45,12 @@ namespace user
 
 #endif
 
-      ::pointer<interaction_impl>                  m_pimpl;
+      ::pointer<::user::interaction>                     m_puserinteraction;
       //::pointer<prodevian>                       m_pgraphicsthread;
-      oswindow                                     m_oswindow;
+      //oswindow                                     m_oswindow;
 
       //manual_reset_event                           m_evApplyVisual;
-      ::pointer<::windowing::windowing>            m_pwindowing;
+      //::pointer<::windowing::windowing>            m_pwindowing;
 
 
       thread();
@@ -68,7 +68,7 @@ namespace user
 #endif
 
 
-      virtual void     initialize_user_thread(interaction_impl * pimpl);
+      virtual void initialize_user_thread(::user::interaction * puserinteraction);
 
 
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK

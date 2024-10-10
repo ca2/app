@@ -40,9 +40,9 @@ CLASS_DECL_ACME void* reverse_byte_not_in_block(const void* l, std::size_t l_len
 //#error "already included?!?! WHAT?!?! (After including acme/exception/_c.h)"
 //#endif
 
-#include "acme/primitive/comparison/_c.h"
+#include "acme/prototype/comparison/_c.h"
 //#ifdef	_STDIO_H_
-//#error "already included?!?! WHAT?!?! (After including acme/primitive/comparison/_c.h)"
+//#error "already included?!?! WHAT?!?! (After including acme/prototype/comparison/_c.h)"
 //#endif
 
 

@@ -2,7 +2,7 @@
 
 
 #include "axis/html/impl/_.h"
-#include "apex/user/user/primitive.h"
+#include "apex/user/user/prototype.h"
 
 
 namespace css
@@ -25,7 +25,7 @@ namespace html
 
    class CLASS_DECL_AXIS element :
       virtual public ::object
-      //virtual public ::user::primitive,
+      //virtual public ::user::interaction_base,
       //virtual public ::user::text
    {
    public:

@@ -6,8 +6,8 @@
 #include "display.h"
 #include "acme/operating_system/cairo/nano/user/device.h"
 #include "acme/user/user/mouse.h"
-#include "acme/nano/user/child.h"
-#include "acme/nano/user/window.h"
+#include "acme/user/micro/child.h"
+#include "acme/user/micro/window.h"
 #include "acme/platform/node.h"
 #include "acme/platform/system.h"
 #include <xkbcommon/xkbcommon.h>
@@ -98,13 +98,13 @@ namespace nano
       }
 
 
-      ::nano::user::display * window::get_display()
+      ::acme::windowing::display * window::get_display()
       {
 
          if (!m_pdisplay)
          {
 
-            m_pdisplay = ::xcb::nano::user::display::get(this);
+            m_pdisplay = ::xcb::acme::windowing::display::get(this);
 
             if (!m_pdisplay)
             {
@@ -141,7 +141,7 @@ namespace nano
       }
 
 
-      void window::_draw(::nano::user::device * pnanodevice)
+      void window::_draw(::nano::graphics::device * pnanodevice)
       {
 
          m_pinterface->draw(pnanodevice);
@@ -168,7 +168,7 @@ namespace nano
       bool window::get_dark_mode()
       {
 
-         return node()->dark_mode();
+         return system()->dark_mode();
 
       }
 
@@ -380,7 +380,7 @@ namespace nano
       }
 
 
-      ::nano::user::child * window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
+      ::micro::child * window::hit_test(::user::mouse * pmouse, ::user::e_zorder ezorder)
       {
 
          return m_pinterface->hit_test(pmouse, ezorder);
@@ -388,7 +388,7 @@ namespace nano
       }
 
 
-      //LRESULT CALLBACK ::nano::user::message_box::s_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+      //LRESULT CALLBACK ::micro::message_box::s_window_procedure(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
       //{
       //if (msg == WM_NCCREATE)
       //{
@@ -397,7 +397,7 @@ namespace nano
       //   SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pcreatestruct->lpCreateParams);
       //
       //}
-      //::nano::user::message_box * pwindow = (::nano::user::message_box *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
+      //::micro::message_box * pwindow = (::micro::message_box *)GetWindowLongPtr(hwnd, GWLP_USERDATA);
       //
       //if (!pwindow)
       //{
@@ -711,7 +711,7 @@ namespace nano
 
                auto pdc = cairo_create(m_psurface);
 
-               m_pnanodevice = ::place(new ::cairo::nano::user::device(pdc));
+               m_pnanodevice = __new ::cairo::nano::graphics::device(pdc);
 
             }
 
@@ -954,7 +954,7 @@ namespace nano
       //
       //}
 
-      //void window::add_child(::nano::user::child * pchild)
+      //void window::add_child(::micro::child * pchild)
       //{
       //
       //   pchild->m_pwindow = m_pinterfacethis;

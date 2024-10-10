@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/targeted_unit.h"
+#include "acme/prototype/prototype/targeted_unit.h"
 
 
 namespace write_text

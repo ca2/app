@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "database.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/string/base64.h"
+#include "acme/prototype/string/base64.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
@@ -50,7 +50,7 @@ namespace sqlite
    //::pointer<::database::dataset>database::dataset()
    //{
 
-   //   return ::place(new class dataset (this));
+   //   return __new class dataset (this);
 
    //}
 
@@ -205,7 +205,7 @@ namespace sqlite
 
       m_strLastError.empty();
 
-      ::pointer<::database::result_set>presultset = ::place(new ::database::result_set());
+      ::pointer<::database::result_set>presultset = __new ::database::result_set();
 
       char * errmsg = nullptr;
 
@@ -977,7 +977,7 @@ i32 database_sqlite3_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char*
 
       }
 
-      auto prow = ::place(new ::database::row());
+      auto prow = __new ::database::row();
 
       ::payload payload;
 

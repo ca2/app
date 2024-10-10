@@ -88,6 +88,7 @@ namespace user
       ::rectangle_i32 get_window_broad_stored_rectangle() override;
       ::rectangle_i32 get_window_compact_stored_rectangle() override;
 
+      void set_window_normal_stored_rectangle(const ::rectangle_i32 & rectangle) override;
 
       void display_normal(::e_display edisplay, ::e_activation eactivation) override;
       void display_full_screen(::collection::index iMonitor, ::e_activation eactivation) override;
@@ -96,8 +97,8 @@ namespace user
       void on_command(::message::command * pcommand) override;
 
 
-      virtual bool on_set_parent(::user::primitive * puiParent) override;
-      virtual bool on_before_set_parent(::user::primitive * pinterface) override;
+      virtual bool on_set_parent(::user::interaction_base * puiParent) override;
+      virtual bool on_before_set_parent(::user::interaction_base * pinterface) override;
 
 
       //virtual bool parent_is_local_data();

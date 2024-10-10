@@ -3,7 +3,7 @@
 #include "acme/constant/message.h"
 #include "acme/handler/item.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/geometry2d/ellipse.h"
+#include "acme/prototype/geometry2d/ellipse.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/user/user/frame.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -239,7 +239,7 @@ namespace experience_tranquillum
       //if (m_spregion.is_null())
       //{
 
-      //   auto pitemNone = ::place(new ::item(e_element_none));
+      //   auto pitemNone = __new ::item(e_element_none);
 
       //   return pitemNone;
 
@@ -248,13 +248,13 @@ namespace experience_tranquillum
       //if (!m_spregion->contains(point))
       //{
 
-      //   auto pitemNone = ::place(new ::item(e_element_none));
+      //   auto pitemNone = __new ::item(e_element_none);
 
       //   return pitemNone;
 
       //}
 
-      //return ::place(new ::item(::e_element_client));
+      //return __new ::item(::e_element_client);
 
    }
 

@@ -4,7 +4,7 @@
 #include "acme/parallelization/mutex.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/windowing/window.h"
-#include "aura/user/user/interaction_impl.h"
+#include "aura/user/user/frame.h"
 #include "aura/user/user/interaction.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/image.h"
@@ -75,12 +75,12 @@ namespace graphics
    }
 
 
-   void graphics::initialize_graphics_graphics(::user::interaction_impl * pimpl)
+   void graphics::initialize_graphics_graphics(::windowing::window * pwindow)
    {
 
       //auto estatus = 
 
-      object::initialize(pimpl);
+      object::initialize(pwindow);
 
       defer_create_synchronization();
 
@@ -91,9 +91,9 @@ namespace graphics
 
       //}
 
-      m_pimpl = pimpl;
+      //m_pimpl = pimpl;
 
-      m_pwindow = pimpl->window();
+      m_pwindow = pwindow;
 
       //return estatus;
 
@@ -111,7 +111,7 @@ namespace graphics
 
       m_pwindow.release();
 
-      m_pimpl.release();
+      //m_pimpl.release();
 
       //return estatus;
 
@@ -173,7 +173,7 @@ namespace graphics
 
       debug() << "::graphics::graphics::buffer_size_and_position (1)";
 
-      if (::is_null(m_pimpl) || ::is_null(m_pimpl->m_puserinteraction))
+      if (::is_null(m_pwindow) || ::is_null(m_pwindow->m_puserinteraction))
       {
 
          return;
@@ -182,9 +182,9 @@ namespace graphics
 
       debug() << "::graphics::graphics::buffer_size_and_position (2)";
 
-      pbufferitem->m_point = m_pimpl->m_puserinteraction->const_layout().design().origin();
+      pbufferitem->m_point = m_pwindow->m_puserinteraction->const_layout().design().origin();
 
-      pbufferitem->m_size = m_pimpl->m_puserinteraction->const_layout().design().size();
+      pbufferitem->m_size = m_pwindow->m_puserinteraction->const_layout().design().size();
 
       //pbufferitem->m_point = m_pimpl->m_puserinteraction->const_layout().layout().origin();
 
@@ -386,12 +386,12 @@ namespace graphics
 
       statement << "buffer  ";
 
-      auto pimpl = m_pimpl;
+      auto pwindow = m_pwindow;
 
-      if (pimpl)
+      if (pwindow)
       {
 
-         auto puserinteraction = pimpl->m_puserinteraction;
+         auto puserinteraction = pwindow->m_puserinteraction;
 
          if (puserinteraction)
          {

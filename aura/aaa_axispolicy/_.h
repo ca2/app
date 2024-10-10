@@ -64,7 +64,7 @@ namespace user
 
 
 
-typedef ::pointer<::user::interaction_impl>window_pointer;
+typedef ::pointer<::windowing::window>window_pointer;
 
 
 #define SYSTEM_TYPE ::axis::system

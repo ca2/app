@@ -3,8 +3,8 @@
 
 
 #include "acme/filesystem/filesystem/enumerator.h"
-////#include "acme/primitive/primitive/object.h"
-#include "acme/primitive/collection/bool_array.h"
+////#include "acme/prototype/prototype/object.h"
+#include "acme/prototype/collection/bool_array.h"
 
 
 class CLASS_DECL_ACME folder :

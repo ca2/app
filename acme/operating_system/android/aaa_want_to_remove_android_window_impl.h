@@ -16,7 +16,7 @@
 //{
 //
 //
-//   class primitive;
+//   class prototype;
 //   class interaction;
 //
 //
@@ -30,7 +30,7 @@ struct CLASS_DECL_ACME oswindow_data
 {
 
    bool                          m_bMessageOnlyWindow;
-   ::user::primitive *         m_puserinteraction;
+   ::user::interaction_base *         m_puserinteraction;
    htask_t                       m_htask;
    color32_t *                    m_pcolorref;
    RECT32                          m_rect;
@@ -43,7 +43,7 @@ struct CLASS_DECL_ACME oswindow_data
 
 
    oswindow_data();
-   oswindow_data(::user::primitive * puibaseMessageOnlyWindow);
+   oswindow_data(::user::interaction_base * puibaseMessageOnlyWindow);
    oswindow_data(const void * p);
    oswindow_data(const LPARAM & lparam);
    oswindow_data(const WPARAM & wparam);
@@ -81,9 +81,9 @@ struct CLASS_DECL_ACME oswindow_data
    i32 select_all_input();
    i32 map_window();
 
-   void set_user_interaction(::user::primitive * pinteraction);
-   ::user::primitive * get_user_interaction();
-   ::user::primitive * get_user_interaction() const;
+   void set_user_interaction(::user::interaction_base * pinteraction);
+   ::user::interaction_base * get_user_interaction();
+   ::user::interaction_base * get_user_interaction() const;
 
 
    void post_nc_destroy();

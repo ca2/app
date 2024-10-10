@@ -21,7 +21,7 @@ namespace acme { class acme;  }
 #include "application_menu_callback.h"
 #include "context.h"
 #include "release_time_for_project.h"
-#include "acme/primitive/text/text.h"
+#include "acme/prototype/text/text.h"
 
 
 namespace acme
@@ -53,7 +53,7 @@ namespace acme
          public:
          
          ::e_status m_estatus;
-         ::pointer < ::particle > m_pparticle;
+         ::particle_pointer m_pparticle;
          long long m_ll;
          void * m_p;
          
@@ -116,7 +116,7 @@ namespace acme
       virtual void initialize_application(::platform::platform * pplatform);
 
 
-      
+      virtual void _001TryCloseApplication();
       
       virtual void application_on_status(::e_status estatus, ::particle * pparticle = nullptr, long long ll = 0, void * p = nullptr);
       
@@ -295,6 +295,10 @@ namespace acme
       virtual void did_pick_document_at_urls(const ::string_array & stra);
       virtual void on_prompt_write_file(::user::controller * pusercontroller);
       virtual void file_manager_save_as(::user::controller * pusercontroller);
+
+
+      virtual bool fill_system_menu(::operating_system::a_system_menu * psystemmenu);
+
 
    };
 

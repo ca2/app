@@ -24,7 +24,7 @@ bool __node_further_file_is_equal(const ::file::path &,  const ::file::path &)
 
 
 
-//bool context::_os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, ::user::primitive * pprimitive, bool bNoUI, bool bNoMount)
+//bool context::_os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, ::user::interaction_base * pprimitive, bool bNoUI, bool bNoMount)
 //{
 //
 //    if(::is_null(psz))
@@ -74,7 +74,7 @@ bool __node_further_file_is_equal(const ::file::path &,  const ::file::path &)
 //
 
 
-// CLASS_DECL_ACME bool context::os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
+// CLASS_DECL_ACME bool context::os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, ::user::interaction_base * pinteraction, bool bNoUI, bool bNoMount)
 // {
 
 //    return _os_resolve_alias(path, psz, bNoUI, bNoMount);
@@ -132,20 +132,20 @@ char * get_current_dir_name()
 //#include <stdlib.h>
 //#include <string.h>
 //#include <errno.h>
-
-
-::file::path get_module_path()
-{
-
-   int mib[4];
-   mib[0] = CTL_KERN;
-   mib[1] = KERN_PROC;
-   mib[2] = KERN_PROC_PATHNAME;
-   mib[3] = -1;
-   char pathbuf[4096];
-   size_t cb = sizeof(pathbuf);
-   sysctl(mib, 4, pathbuf, &cb, NULL, 0);
-
-   return pathbuf;
-
-}
+//
+//
+//::file::path get_module_path()
+//{
+//
+//   int mib[4];
+//   mib[0] = CTL_KERN;
+//   mib[1] = KERN_PROC;
+//   mib[2] = KERN_PROC_PATHNAME;
+//   mib[3] = -1;
+//   char pathbuf[4096];
+//   size_t cb = sizeof(pathbuf);
+//   sysctl(mib, 4, pathbuf, &cb, NULL, 0);
+//
+//   return pathbuf;
+//
+//}

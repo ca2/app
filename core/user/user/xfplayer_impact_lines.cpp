@@ -9,7 +9,7 @@
 
 
 xfplayer_impact_linea::xfplayer_impact_linea(::user::interaction * puserinteraction) :
-   m_pselection(::place(new xfplayer_impact_line_selection(puserinteraction))),
+   m_pselection(::as(new xfplayer_impact_line_selection(puserinteraction))),
    m_puserinteraction(puserinteraction)
 {
 
@@ -116,7 +116,7 @@ void xfplayer_impact_linea::SetEffect(i32 iEffect)
    }
 }
 
-//void xfplayer_impact_linea::SetRenderWindow(::user::interaction_impl * pwindow)
+//void xfplayer_impact_linea::SetRenderWindow(::windowing::window * pwindow)
 //{
 //   __UNREFERENCED_PARAMETER(pwindow);
 //}

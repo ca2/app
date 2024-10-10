@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/size_array.h"
-////#include "acme/primitive/primitive/object.h"
+#include "acme/prototype/geometry2d/size_array.h"
+////#include "acme/prototype/prototype/object.h"
 
 
 namespace draw2d

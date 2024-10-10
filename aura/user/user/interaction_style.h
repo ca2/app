@@ -20,7 +20,7 @@ namespace user
       if (!pcontrolstyle)
       {
 
-         pcontrolstyle = ::place(new CONTROL_STYLE());
+         pcontrolstyle = __new CONTROL_STYLE();
 
       }
 

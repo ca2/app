@@ -8,10 +8,10 @@
 #include "acme/operating_system/error_code.h"
 
 
-#include "acme/primitive/comparison/compare.h"
+#include "acme/prototype/comparison/compare.h"
 
 
-#include "acme/primitive/time/_time.h"
+#include "acme/prototype/time/_time.h"
 
 
 #include "acme/operating_system/time.h"

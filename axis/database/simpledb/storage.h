@@ -2,8 +2,8 @@
 
 
 #include "item.h"
-#include "acme/primitive/collection/string_map.h"
-//#include "acme/primitive/primitive/property_object.h"
+#include "acme/prototype/collection/string_map.h"
+//#include "acme/prototype/prototype/property_object.h"
 
 
 namespace simpledb

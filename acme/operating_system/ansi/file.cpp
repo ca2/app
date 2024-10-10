@@ -59,7 +59,7 @@
 //    if(pfile == nullptr)
 //        return INVALID_HANDLE_VALUE;
 //
-//    HANDLE handle = ::place(new win_handle());
+//    HANDLE handle = __new win_handle();
 //
 //    handle->m_etype = win_handle::type_file;
 //    handle->m_file.m_pfile = pfile;
@@ -271,7 +271,7 @@
 //#endif
 
 
-// CLASS_DECL_ACME bool context::os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, ::user::primitive * pinteraction, bool bNoUI, bool bNoMount)
+// CLASS_DECL_ACME bool context::os_resolve_alias(::file::path & path, const ::scoped_string & scopedstr, ::user::interaction_base * pinteraction, bool bNoUI, bool bNoMount)
 // {
 
 //    return _os_resolve_alias(path, psz, bNoUI, bNoMount);

@@ -97,5 +97,5 @@ public:
 using manager_pointer = ::pointer<::update>
 
 
-inline auto new_update(const ::atom & atom) { return ::place(new ::update(atom)); }
+inline auto new_update(const ::atom & atom) { return __new ::update(atom); }
 

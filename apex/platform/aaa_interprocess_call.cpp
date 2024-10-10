@@ -109,7 +109,7 @@ void ::interprocess::call::send(const ::atom& idPid)
 ::pointer<synchronization_array>::interprocess::call::synca()
 {
 
-   auto psynca = ::place(new synchronization_array());
+   auto psynca = __new synchronization_array();
 
    for (auto& ptask : this->m_mapTask.values())
    {

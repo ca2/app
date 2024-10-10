@@ -6,7 +6,7 @@ namespace user
 
    extern CLASS_DECL_AURA critical_section * g_pcsImpl;
 
-   extern CLASS_DECL_AURA map < oswindow, ::user::interaction_impl * > * g_pmapImpl;
+   extern CLASS_DECL_AURA map < oswindow, ::windowing::window * > * g_pmapImpl;
 
    CLASS_DECL_AURA void init_windowing();
 
@@ -19,11 +19,11 @@ namespace user
 
 
 
-//CLASS_DECL_AURA bool oswindow_assign(::windowing::window * pwindow, ::user::interaction_impl * pimpl);
-//CLASS_DECL_AURA ::windowing::window * pwindow_erase_impl(::user::interaction_impl * pimpl);
+//CLASS_DECL_AURA bool oswindow_assign(::windowing::window * pwindow, ::windowing::window * pimpl);
+//CLASS_DECL_AURA ::windowing::window * pwindow_erase_impl(::windowing::window * pimpl);
 //CLASS_DECL_AURA void oswindow_erase(::windowing::window * pwindow);
-//CLASS_DECL_AURA ::windowing::window * pwindow_get(::user::interaction_impl * pimpl);
-//CLASS_DECL_AURA ::user::interaction_impl * oswindow_interaction_impl(::windowing::window * pwindow);
+//CLASS_DECL_AURA ::windowing::window * pwindow_get(::windowing::window * pimpl);
+//CLASS_DECL_AURA ::windowing::window * oswindow_interaction_impl(::windowing::window * pwindow);
 //CLASS_DECL_AURA ::user::interaction * oswindow_interaction(::windowing::window * pwindow);
 
 

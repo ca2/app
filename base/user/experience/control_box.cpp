@@ -8,7 +8,7 @@
 #include "acme/constant/timer.h"
 #include "acme/platform/system.h"
 #include "acme/platform/timer.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/write_text/font.h"
@@ -471,7 +471,7 @@ namespace experience
 
          }
 
-         if(system()->m_ewindowing == e_windowing_wayland)
+         if(::windowing::get_ewindowing() == ::windowing::e_windowing_wayland)
          {
 
             return m_pframewindow->layout().is_zoomed(user::e_layout_lading);
@@ -526,7 +526,7 @@ namespace experience
       } else if (ebutton == e_button_dock)
       {
 
-         if(system()->m_ewindowing == e_windowing_wayland)
+         if(::windowing::get_ewindowing() == ::windowing::e_windowing_wayland)
          {
 
             return false;
@@ -1278,9 +1278,9 @@ namespace experience
 //
 //               screen_to_client(rectangleFocus);
 //
-//               m_pshapeaClip->add_item(::place(new rectangle_shape(rectangleFocus)));
+//               m_pshapeaClip->add_item(__new rectangle_shape(rectangleFocus));
 //
-//               m_pshapeaClip->add_item(::place(new intersect_clip_shape()));
+//               m_pshapeaClip->add_item(__new intersect_clip_shape());
 //
 //               pinteraction = pinteraction->get_parent();
 //

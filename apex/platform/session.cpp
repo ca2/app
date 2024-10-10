@@ -8,12 +8,12 @@
 #include "acme/constant/user_key.h"
 #include "acme/constant/message.h"
 ////#include "acme/exception/exception.h"
-#include "acme/primitive/primitive/url.h"
+#include "acme/prototype/prototype/url.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/handler/request.h"
 #include "acme/platform/system_setup.h"
-#include "acme/primitive/data/listener.h"
-#include "acme/primitive/text/context.h"
+#include "acme/prototype/data/listener.h"
+#include "acme/prototype/text/context.h"
 #include "apex/filesystem/fs/fs.h"
 #include "apex/filesystem/fs/ifs.h"
 #include "apex/filesystem/fs/link.h"
@@ -23,7 +23,7 @@
 #include "apex/message/command.h"
 #include "apex/message/message.h"
 //#include "apex/operating_system.h"
-#include "apex/user/user/primitive.h"
+#include "apex/user/user/interaction_base.h"
 
 
 #if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
@@ -167,7 +167,7 @@ namespace apex
 
       ::apex::context::install_message_routing(pchannel);
       
-      MESSAGE_LINK(e_message_erase_application, pchannel, this, &session::on_message_erase_application);
+      //MESSAGE_LINK(e_message_erase_application, pchannel, this, &session::on_message_erase_application);
 
    }
 
@@ -393,7 +393,7 @@ namespace apex
 
       }
 
-      return pnode->get_default_color(color);
+      return psystem->get_default_color(color);
 
    }
 
@@ -415,49 +415,49 @@ namespace apex
 
       ::acme::session::init_task();
 
-      init_session();
-
-      //auto estatus =
-      
-      //process_init();
-
-      //if (!estatus)
-      //{
-
-      //   warning() <<"Failed at apex::session::init_thread after process_init";
-
-      //   return estatus;
-
-      //}
-
-      //estatus = 
-      
-      //init_session();
-
-      //if (!estatus)
-      //{
-
-      //   warning() <<"Failed at apex::session::init_thread after init_session";
-
-      //   return estatus;
-
-      //}
-
-      // // now there is attempt here
-      //estatus = defer_initialize_host_window();
-
-      //if(!estatus)
-      //{
-
-      //   throw ::exception(::exception(estatus));
-
-      //}
-
-      //information() << ".1";
-
-      //return true;
-
-      //return estatus;
+      // init_session();
+      //
+      // //auto estatus =
+      //
+      // //process_init();
+      //
+      // //if (!estatus)
+      // //{
+      //
+      // //   warning() <<"Failed at apex::session::init_thread after process_init";
+      //
+      // //   return estatus;
+      //
+      // //}
+      //
+      // //estatus =
+      //
+      // //init_session();
+      //
+      // //if (!estatus)
+      // //{
+      //
+      // //   warning() <<"Failed at apex::session::init_thread after init_session";
+      //
+      // //   return estatus;
+      //
+      // //}
+      //
+      // // // now there is attempt here
+      // //estatus = defer_initialize_host_window();
+      //
+      // //if(!estatus)
+      // //{
+      //
+      // //   throw ::exception(::exception(estatus));
+      //
+      // //}
+      //
+      // //information() << ".1";
+      //
+      // //return true;
+      //
+      // //return estatus;
 
    }
 
@@ -465,35 +465,70 @@ namespace apex
    void session::term_task()
    {
 
-      try
-      {
+      acme::session::term_task();
 
-         term_session();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         process_term();
-
-      }
-      catch(...)
-      {
-
-      }
+      // try
+      // {
+      //
+      //    term_session();
+      //
+      // }
+      // catch (...)
+      // {
+      //
+      // }
+      //
+      // try
+      // {
+      //
+      //    process_term();
+      //
+      // }
+      // catch(...)
+      // {
+      //
+      // }
 
       ::thread::term_task();
 
    }
 
+   void session::term1()
+   {
+
+
+   }
+
+   void session::term2()
+   {
+
+
+   }
+
+
+   void session::process_term()
+   {
+
+      ::acme::session::process_term();
+
+
+   }
+
+
+   //void session::on_message_erase_application(::message::message* pmessage)
+   //{
+
+   //   ::pointer<::apex::application>papp(pmessage->m_lparam);
+
+   //   erase_application(papp);
+
+   //}
+
 
    void session::process_init()
    {
+
+      acme::session::process_init();
 
       //information() << "apex::session::process_init";
 
@@ -507,7 +542,6 @@ namespace apex
       //}
 
       //auto estatus =
-      __construct_new(m_ptextcontext);
 
       //if (!estatus)
       //{
@@ -524,129 +558,10 @@ namespace apex
 
       //return ::success;
 
-      initialize_context();
+      //initialize_context();
 
    }
 
-
-   void session::init_session()
-   {
-
-
-      process_init();
-
-
-      //auto estatus = 
-      init1();
-
-      //if (!estatus)
-      //{
-
-      //   warning() <<"Failed to init1 the session (::apex::session or ::apex::session derived)";
-
-      //   return estatus;
-
-      //}
-
-      //estatus = 
-      init2();
-
-      //if (!estatus)
-      //{
-
-      //   warning() <<"Failed to init2 the session (::apex::session or ::apex::session derived)";
-
-      //   return estatus;
-
-      //}
-
-      init();
-
-      //if (!estatus)
-      //{
-
-      //   warning() <<"Failed to init() the session (::apex::session or ::apex::session derived)";
-
-      //   return estatus;
-
-      //}
-
-//      return ::success;
-
-   }
-
-
-   void session::term_session()
-   {
-
-      try
-      {
-
-         term2();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         term1();
-
-      }
-      catch (...)
-      {
-
-      }
-
-      try
-      {
-
-         term();
-
-      }
-      catch (...)
-      {
-
-      }
-
-
-
-   }
-
-
-   void session::on_message_erase_application(::message::message* pmessage)
-   {
-
-      ::pointer<::apex::application>papp(pmessage->m_lparam);
-
-      erase_application(papp);
-
-   }
-
-
-   void session::term2()
-   {
-
-   }
-
-
-   void session::term1()
-   {
-
-   }
-
-
-   void session::process_term()
-   {
-
-      auto psystem = system()->m_papexsystem;
-
-      psystem->post_message(e_message_erase_session, m_iEdge);
-
-   }
 
 
    bool session::on_get_task_name(string& strTaskName)
@@ -667,42 +582,44 @@ namespace apex
    void session::on_request(::request * prequest)
    {
 
-      auto psystem = system()->m_papexsystem;
+      ::acme::session::on_request(prequest);
 
-      if (prequest->m_ecommand == e_command_protocol)
-      {
-
-         m_pappCurrent->request(prequest);
-
-         return;
-
-      }
-
-      information() << "::apex::session::on_request(::pointer<::create> " << ::type(this).name();
-
-      //string strAppId = prequest->m_strAppId;
-
-      //if (strAppId.is_empty())
-      //{
-
-      //   information() << "m_strAppId Is Empty!!";
-
-      //   return;
-
-      //}
-
-      information() << "m_strAppId = " << prequest->m_strAppId;
-
-      auto papplication = get_application(prequest->m_strAppId, true, prequest);
-
-      if (!papplication)
-      {
-
-         destroy();
-
-      }
-
-      m_varCurrentImpactFile = prequest->m_payloadFile;
+      // auto psystem = system()->m_papexsystem;
+      //
+      // if (prequest->m_ecommand == e_command_protocol)
+      // {
+      //
+      //    m_pappCurrent->request(prequest);
+      //
+      //    return;
+      //
+      // }
+      //
+      // information() << "::apex::session::on_request(::pointer<::create> " << ::type(this).name();
+      //
+      // //string strAppId = prequest->m_strAppId;
+      //
+      // //if (strAppId.is_empty())
+      // //{
+      //
+      // //   information() << "m_strAppId Is Empty!!";
+      //
+      // //   return;
+      //
+      // //}
+      //
+      // information() << "m_strAppId = " << prequest->m_strAppId;
+      //
+      // auto papplication = get_application(prequest->m_strAppId, true, prequest);
+      //
+      // if (!papplication)
+      // {
+      //
+      //    destroy();
+      //
+      // }
+      //
+      // m_varCurrentImpactFile = prequest->m_payloadFile;
 
    }
 
@@ -1225,7 +1142,7 @@ ret:
       {
 
          //estatus = 
-         __construct(m_pifs, ::place(new ifs("")));
+         __construct(m_pifs, __new ifs(""));
 
          //if (!estatus)
          //{
@@ -1242,7 +1159,7 @@ ret:
       {
 
          //estatus = 
-         __construct(m_premotefs, ::place(new ::fs::remote_native("")));
+         __construct(m_premotefs, __new ::fs::remote_native(""));
 
          //if (!estatus)
          //{
@@ -1258,7 +1175,7 @@ ret:
       //if (!m_pftpfs)
       //{
 
-      //   auto pftpfs = ::place(new ftpfs());
+      //   auto pftpfs = __new ftpfs();
 
       //   auto estatus = pftpfs->initialize_ftpfs(this, "");
 
@@ -1383,6 +1300,24 @@ ret:
    }
 
 
+   void session::init_session()
+   {
+
+
+      ::acme::session::init_session();
+
+   }
+
+
+   void session::term_session()
+   {
+
+      ::acme::session::term_session();
+
+   }
+
+
+
    void session::term()
    {
 
@@ -1398,6 +1333,8 @@ ret:
          //m_result.add(error_failed);
 
       }
+
+      ::acme::session::term();
 
    }
 
@@ -2035,7 +1972,7 @@ namespace apex
    }
 
 
-   ::user::primitive* session::get_user_interaction_host()
+   ::user::interaction_base* session::get_user_interaction_host()
    {
 
       return m_puserprimitiveHost;
@@ -2043,7 +1980,7 @@ namespace apex
    }
 
 
-   ::user::primitive * session::get_host_primitive()
+   ::user::interaction_base * session::get_host_primitive()
    {
 
       return m_puserprimitiveHost;

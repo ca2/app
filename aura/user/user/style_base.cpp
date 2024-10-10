@@ -63,8 +63,12 @@ namespace user
       auto psystem = system()->m_paurasystem;
 
       auto psignal = psystem->get_signal(id_operating_system_user_color_change);
+      
+      auto psignalDarkModeChange = psystem->get_signal(id_application_dark_mode_change);
 
       psignal->add_handler(this);
+
+      psignalDarkModeChange->add_handler(this);
 
       on_user_color();
 
@@ -82,9 +86,9 @@ namespace user
 
          auto psystem = system();
 
-         auto pnode = psystem->node();
+         //auto pnode = psystem->node();
 
-         auto bDarkMode = pnode->dark_mode();
+         auto bDarkMode = psystem->dark_mode();
 
          m_bDarkMode = bDarkMode;
 
@@ -119,7 +123,8 @@ namespace user
    void style_base::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if (ptopic->m_atom == id_operating_system_user_color_change)
+      if (ptopic->m_atom == id_operating_system_user_color_change
+         || ptopic->m_atom == id_application_dark_mode_change)
       {
 
          on_user_color();

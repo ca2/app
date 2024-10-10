@@ -9,9 +9,9 @@
 #include "acme/platform/context.h"
 #include "acme/filesystem/file/item.h"
 #include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/platform/sequencer.h"
+//#include "acme/platform/sequencer.h"
 #include "acme/platform/system.h"
-#include "acme/nano/user/user.h"
+#include "acme/user/micro/user.h"
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/fs/data.h"
@@ -187,7 +187,7 @@ namespace filemanager
 
          //ptopic->m_atom = id_topic_saved;
 
-         //pupdate->m_pfileitem = ::place(new ::file::item(path, path));
+         //pupdate->m_pfileitem = __new ::file::item(path, path);
 
       }
       else

@@ -1,7 +1,7 @@
 #pragma once
 
 
-////#include "acme/primitive/primitive/object.h"
+////#include "acme/prototype/prototype/object.h"
 
 
 namespace dynamic_source
@@ -58,7 +58,7 @@ namespace dynamic_source
       virtual ::pointer<script_instance>create_instance()
       {
          
-         return ::place(new T());
+         return __new T();
 
       }
 

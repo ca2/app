@@ -206,7 +206,7 @@ public:
 
    virtual bool is_hidden() const;
 
-   virtual ::string get_text(::collection::index iSubItem);
+   virtual ::string get_item_text(::collection::index iSubItem = 0);
 
    
 //   operator const ::item_t &() const {return m_item;}
@@ -402,7 +402,7 @@ inline bool in_element_range(const ::item * pitem, enum_element eelement, int iC
 inline ::pointer<::item>new_item_with_index(::collection::index iIndex)
 {
 
-   return ::place(new ::item(::e_element_item, iIndex));
+   return __new ::item(::e_element_item, iIndex);
 
 }
 

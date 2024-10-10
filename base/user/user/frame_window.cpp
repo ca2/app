@@ -18,10 +18,10 @@
 #include "acme/parallelization/task_flag.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
-#include "acme/platform/sequencer.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+//#include "acme/platform/sequencer.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/nano/nano.h"
-#include "acme/nano/user/user.h"
+#include "acme/user/micro/user.h"
 #include "acme/user/user/_text_stream.h"
 #include "apex/message/simple_command.h"
 #include "apex/platform/savings.h"
@@ -30,7 +30,7 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/windowing/windowing.h"
 #include "aura/message/user.h"
-#include "aura/user/user/interaction_impl.h"
+//#include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/copydesk.h"
 #include "aura/user/user/style.h"
 #include "aura/user/user/system.h"
@@ -311,7 +311,7 @@ namespace user
    //}
 
 
-   bool frame_window::on_set_parent(::user::primitive * puiParent)
+   bool frame_window::on_set_parent(::user::interaction_base * puiParent)
    {
 
       if (!::user::interaction::on_set_parent(puiParent))
@@ -525,7 +525,7 @@ namespace user
             if (pkey->m_ekey == ::user::e_key_p)
             {
 
-               ::pointer<::user::interaction_impl>pimpl = m_pprimitiveimpl;
+               ::pointer<::windowing::window>pimpl = m_pprimitiveimpl;
 
                if (pimpl.is_set())
                {
@@ -837,7 +837,7 @@ namespace user
       /*   oswindow oswindow = ::GetWindow(::get_desktop_window(), GW_CHILD);
       while (oswindow != nullptr)
       {
-      ::user::interaction_impl * pwindow = interaction_impl::FromHandlePermanent(oswindow);
+      ::windowing::window * pwindow = interaction_impl::FromHandlePermanent(oswindow);
       if (pwindow != nullptr && get_handle() != oswindow && __is_descendant(this, pwindow))
       {
       u32 uStyle = ::GetWindowLong(oswindow, GWL_STYLE);
@@ -944,7 +944,7 @@ namespace user
 
    //   m_strFrameTitle = pszWindowName;    // save title for later
 
-   //   auto pusersystem = ::place(new ::user::system(dwExStyle, pszClassName, pszWindowName, uStyle, rectangle, pcreate));
+   //   auto pusersystem = __new ::user::system(dwExStyle, pszClassName, pszWindowName, uStyle, rectangle, pcreate);
 
    //   if (!::user::interaction::create_window_ex(pusersystem, puiParent, pcreate->m_atom))
    //   {
@@ -1147,7 +1147,7 @@ namespace user
 
       //informationf("\nm_bLayoutEnable false");
 
-      //auto pusersystem = ::place(new ::user::system(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate));
+      //auto pusersystem = __new ::user::system(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate);
 
       //if (!create_window_ex(pusersystem, puiParent, pcreate->m_atom))
       //{

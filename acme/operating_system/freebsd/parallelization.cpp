@@ -1,10 +1,10 @@
 #include "framework.h"
 #include "acme/operating_system/ansi/_pthread.h"
 #include "acme/platform/system.h"
-#include "acme/nano/user/display.h"
+#include "acme/user/micro/display.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/node.h"
-#include "acme/windowing_system/windowing_system.h"
+#include "acme/windowing/windowing_base.h"
 
 
 //#if defined(FREEBSD)
@@ -231,7 +231,7 @@ CLASS_DECL_ACME ::acme::system * system();
 //   void system::windowing_post(const ::procedure &procedure)
 //   {
 //
-//      ::nano::user::display::g_p->display_post(procedure);
+//      ::acme::windowing::display::g_p->display_post(procedure);
 //
 //   }
 //
@@ -274,23 +274,23 @@ void _do_tasks()
 
 //   auto psystem = ::platform::get()->system();
 //
-////   if(psystem->m_ewindowing == e_windowing_wayland)
+////   if(psystem->m_ewindowing == ::windowing::e_windowing_wayland)
 ////   {
 ////
 ////      wayland_process_messages();
 ////
 ////   }
 ////   else
-//  if(psystem->m_ewindowing == e_windowing_xcb)
+//  if(psystem->m_ewindowing == ::windowing::e_windowing_xcb)
 //   {
 //
-//      ::xcb::nano::user::process_messages();
+//      ::xcb::micro::process_messages();
 //
 //   }
 //   else
 //   {
 //
-//      ::x11::nano::user::process_messages();
+//      ::x11::micro::process_messages();
 //
 //   }
 
@@ -320,7 +320,7 @@ namespace acme
 
       information() << "acme::node::user_post going to display_post";
 
-      ::nano::user::display::g_p->display_post(procedure);
+      system()->acme_windowing()->main_post(procedure);
 
    }
 

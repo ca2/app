@@ -2,7 +2,7 @@
 ////#include "acme/exception/exception.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/string/str.h"
 #include "acme/_operating_system.h"
 #include <io.h>
 

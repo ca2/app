@@ -1,10 +1,10 @@
 #pragma once
 
 
-#include "acme/primitive/collection/int_map.h"
-//#include "acme/primitive/geometry2d/_geometry2d.h"
-#include "acme/primitive/geometry2d/size.h"
-#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/prototype/collection/int_map.h"
+//#include "acme/prototype/geometry2d/_geometry2d.h"
+#include "acme/prototype/geometry2d/size.h"
+#include "acme/prototype/geometry2d/rectangle.h"
 #include "apex/message/channel.h"
 
 

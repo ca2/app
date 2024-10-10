@@ -137,12 +137,12 @@ namespace acme
 }
 
 
-#include "acme/primitive/collection/std_iterator.h"
-#include "acme/primitive/collection/insert_iterator.h"
-#include "acme/primitive/collection/back_insert_iterator.h"
-#include "acme/primitive/collection/std_pair.h"
+#include "acme/prototype/collection/std_iterator.h"
+#include "acme/prototype/collection/insert_iterator.h"
+#include "acme/prototype/collection/back_insert_iterator.h"
+#include "acme/prototype/collection/std_pair.h"
 
-//#include "acme/primitive/primitive/tupe.h"
+//#include "acme/prototype/prototype/tupe.h"
 
 
 //#include "muldiv32.h"

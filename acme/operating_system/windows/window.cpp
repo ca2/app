@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "window.h"
 #include "acme/platform/application.h"
+#include "acme/user/user/mouse.h"
 
 
 namespace windows
@@ -375,7 +376,7 @@ namespace windows
    }
 
 
-   void window::_defer_show_system_menu(const ::point_i32 & pointAbsolute)
+   void window::_defer_show_system_menu(::user::mouse * pmouse)
    {
 
       auto hmenu = GetSystemMenu(m_hwnd, true);
@@ -383,8 +384,8 @@ namespace windows
       //SetForegroundWindow(hwnd);
       TrackPopupMenu(m_hmenuSystem,
          TPM_LEFTALIGN | TPM_TOPALIGN,
-         pointAbsolute.x(),
-         pointAbsolute.y(),
+         pmouse->m_pointAbsolute.x(),
+         pmouse->m_pointAbsolute.y(),
          0,
          m_hwnd, NULL);
       //PostMessage(hwnd, WM_NULL, 0, 0);

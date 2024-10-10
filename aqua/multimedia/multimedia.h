@@ -3,7 +3,7 @@
 
 #include "acme/platform/department.h"
 #include "acme/user/user/e_window_flag.h"
-//#include "acme/primitive/collection/string_array.h"
+//#include "acme/prototype/collection/string_array.h"
 
 
 namespace aqua

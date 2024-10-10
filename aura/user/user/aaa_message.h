@@ -32,7 +32,7 @@ namespace user
 
       ::windowing::window * window() { return m_pwindow; }
 
-      ::user::interaction_impl * userinteractionimpl();
+      ::windowing::window * userinteractionimpl();
 
       ::user::interaction * userinteraction();
 

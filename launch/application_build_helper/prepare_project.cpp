@@ -6,7 +6,7 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
-#include "acme/primitive/string/str.h"
+#include "acme/prototype/string/str.h"
 //#include "aura/_defer.h"
 
 

@@ -17,7 +17,7 @@
 //
 //
 //      enum_event                       m_eevent;
-//      ::user::primitive *              m_puserprimitive;
+//      ::user::interaction_base *              m_puserprimitive;
 //      ::user::interaction *            m_ptab;
 //      ::user::interaction *            m_pform;
 //      atom                               m_atom;

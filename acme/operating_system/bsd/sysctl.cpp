@@ -46,6 +46,15 @@ string get_current_directory_name();
       return {};
    
    }
+
+   informationf("exe:%s", strName.c_str());
+
+   if(strName.begins("/"))
+   {
+
+      return strName;
+
+   }
   
    auto pathCurrentFolder = get_current_directory_name();
    

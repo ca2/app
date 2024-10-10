@@ -4,13 +4,13 @@
 #include "task_flag.h"
 #include "acme/constant/id.h"
 
-//#include "acme/primitive/collection/string_array.h"
-//#include "acme/primitive/primitive/payload.h"
+//#include "acme/prototype/collection/string_array.h"
+//#include "acme/prototype/prototype/payload.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/platform.h"
 #include "acme/platform/system.h"
-#include "acme/nano/user/window_implementation.h"
-
+#include "acme/windowing/window.h"
+//#include "acme/windowing/window_base.h"
 #ifdef LINUX
 #include "acme/operating_system/ansi/_pthread.h"
 #endif
@@ -660,7 +660,7 @@ void run_runnable(::matter * pmatter)
 
          //estatus = pmatter->operator()();
 
-   pmatter->call_run();
+   pmatter->call();
 
    //   }
    //   catch (...)
@@ -782,9 +782,9 @@ CLASS_DECL_ACME void task_release()
 
    //::release(ptask);
 
-   ::nano::user::window_implementation::nanowindowimplementationa().clear();
+   //::acme::windowing::window::nanowindowimplementationa().clear();
 
-   ::nano::user::window_implementation::nanowindowimplementationa().free_extra();
+   //::acme::windowing::window::nanowindowimplementationa().free_extra();
 
    auto ptask = t_ptask;
 
@@ -863,7 +863,7 @@ thread_local payload t_payloada[e_task_payload_count];
 //CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
 //{
 //
-//   auto pevent = ::place(new manual_reset_event());
+//   auto pevent = __new manual_reset_event();
 //
 //   main_asynchronous([ function, &pevent ]
 //   {

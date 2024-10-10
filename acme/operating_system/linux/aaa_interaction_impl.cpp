@@ -131,7 +131,7 @@ namespace linux
    }
 
 
-   ::user::interaction_impl * interaction_impl::from_os_data(void * pdata)
+   ::windowing::window * interaction_impl::from_os_data(void * pdata)
    {
 
       return from_handle((oswindow) pdata);
@@ -162,7 +162,7 @@ namespace linux
 //   }
 
 
-   ::user::interaction_impl * interaction_impl::from_handle(oswindow oswindow)
+   ::windowing::window * interaction_impl::from_handle(oswindow oswindow)
    {
 
       if(is_null(oswindow))
@@ -184,7 +184,7 @@ namespace linux
    }
 
 
-   ::user::interaction_impl * interaction_impl::FromHandlePermanent(oswindow oswindow)
+   ::windowing::window * interaction_impl::FromHandlePermanent(oswindow oswindow)
    {
 
       if(oswindow->m_pimpl == nullptr)
@@ -315,7 +315,7 @@ namespace linux
             if(m_px11data.is_null())
             {
 
-               m_px11data = ::place(new x11data());
+               m_px11data = __new x11data();
 
             }
 
@@ -668,8 +668,8 @@ namespace linux
    {
       //m_pbuffer->InstallMessageHandling(pinterface);
 
-      ::user::interaction_impl::last_install_message_routing(pchannel);
-      ::user::interaction_impl::install_message_routing(pchannel);
+      ::windowing::window::last_install_message_routing(pchannel);
+      ::windowing::window::install_message_routing(pchannel);
 
       if(!m_puserinteraction->m_bMessageWindow)
       {
@@ -700,7 +700,7 @@ namespace linux
          //MESSAGE_LINK(e_message_set_focus, pchannel, this,&interaction_impl::on_message_set_focus);
          //MESSAGE_LINK(e_message_kill_focus, pchannel, this,&interaction_impl::on_message_kill_focus);
 //         MESSAGE_LINK(ca2m_PRODEVIAN_SYNCH, pchannel, this,&interaction_impl::_001OnProdevianSynch);
-         ::user::interaction_impl::prio_install_message_routing(pchannel);
+         ::windowing::window::prio_install_message_routing(pchannel);
       }
 
       MESSAGE_LINK(e_message_destroy, pchannel, this,&interaction_impl::on_message_destroy);
@@ -948,7 +948,7 @@ namespace linux
    void interaction_impl::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::interaction_impl::on_layout(pgraphics);
+      ::windowing::window::on_layout(pgraphics);
 
    }
 
@@ -1011,7 +1011,7 @@ namespace linux
 
       }
 
-      ::user::interaction_impl::post_non_client_destroy();
+      ::windowing::window::post_non_client_destroy();
 
    }
 
@@ -1081,7 +1081,7 @@ namespace linux
 
       */
 
-      ::pointer<::user::interaction_impl>pWnd = (::user::interaction_impl *) this;
+      ::pointer<::windowing::window>pWnd = (::windowing::window *) this;
       if (pWnd.m_p != this)
          dumpcontext << " (Detached or temporary interaction_impl)";
       else
@@ -1090,9 +1090,9 @@ namespace linux
       char szBuf [64];
 
       ::rectangle_f64 rectangle;
-      ((::user::interaction_impl *) this)->m_puserinteraction->window_rectangle(&rectangle);
+      ((::windowing::window *) this)->m_puserinteraction->window_rectangle(&rectangle);
       dumpcontext << "\nrect = " << rectangle;
-      dumpcontext << "\nparent ::pointer<::interaction_impl>= " << (void *)((::user::interaction_impl *) this)->get_parent();
+      dumpcontext << "\nparent ::pointer<::interaction_impl>= " << (void *)((::windowing::window *) this)->get_parent();
 
 //      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
       //    if (::GetWindowLong(get_handle(), GWL_STYLE) & WS_CHILD)
@@ -1814,7 +1814,9 @@ namespace linux
 //
 //      }
 //
-//      i32 nResult = ::message_box_synchronous((oswindow)get_handle(), pszText, strCaption, nType);
+//      i32 nResult = ::auto pmessagebox = __initialize_new ::message_box((oswindow)get_handle(), pszText, strCaption, nType);
+
+pmessagebox->sync();
 //
 //      return nResult;
 //
@@ -2330,7 +2332,7 @@ namespace linux
 ////   void interaction_impl::set_need_redraw()
 ////   {
 ////
-////      ::user::interaction_impl::set_need_redraw();
+////      ::windowing::window::set_need_redraw();
 ////
 ////   }
 //
@@ -2817,7 +2819,7 @@ namespace linux
 //   bool interaction_impl::_001GetWindowRect(RECT64 * prect)
 //   {
 //
-//      return ::user::interaction_impl::window_rectangle(prect);
+//      return ::windowing::window::window_rectangle(prect);
 //
 //
 //
@@ -2877,7 +2879,7 @@ namespace linux
 //   {
 //
 //
-//      return ::user::interaction_impl::this->rectangle(prect);
+//      return ::windowing::window::this->rectangle(prect);
 //
 //
 //      if(!::is_window((oswindow) get_handle()))
@@ -3071,12 +3073,12 @@ namespace linux
    // interaction_impl
    /* interaction_impl::operator oswindow() const
    { return this == nullptr ? nullptr : get_handle(); }*/
-   bool interaction_impl::operator==(const ::user::interaction_impl& wnd) const
+   bool interaction_impl::operator==(const ::windowing::window& wnd) const
    {
       return wnd.get_handle() ==((interaction_impl *)this)->get_handle();
    }
 
-   bool interaction_impl::operator!=(const ::user::interaction_impl& wnd) const
+   bool interaction_impl::operator!=(const ::windowing::window& wnd) const
    {
       return wnd.get_handle() != ((interaction_impl *)this)->get_handle();
    }
@@ -3145,7 +3147,7 @@ namespace linux
 
    {
 
-      return ::user::interaction_impl::send_message(message, wparam, lparam);
+      return ::windowing::window::send_message(message, wparam, lparam);
 
 
    }
@@ -3157,7 +3159,7 @@ namespace linux
 //      if(::is_set(m_pwindowthread))
 //      {
 //
-//         return ::user::interaction_impl::post_message(message, wparam, lparam);
+//         return ::windowing::window::post_message(message, wparam, lparam);
 //
 //      }
 //
@@ -3682,7 +3684,7 @@ namespace linux
 //   bool interaction_impl::SetTimer(uptr uEvent, ::u32 nElapse, PFN_TIMER pfnTimer)
 //   {
 //
-//      return ::user::interaction_impl::SetTimer(uEvent, nElapse, pfnTimer);
+//      return ::windowing::window::SetTimer(uEvent, nElapse, pfnTimer);
 //
 //
 ////        __UNREFERENCED_PARAMETER(pfnTimer);
@@ -3703,7 +3705,7 @@ namespace linux
 //   bool interaction_impl::KillTimer(uptr uEvent)
 //   {
 //
-//      return ::user::interaction_impl::KillTimer(uEvent);
+//      return ::windowing::window::KillTimer(uEvent);
 //
 ////       m_puserinteraction->get_app()->unset_timer(m_puserinteraction, uEvent);
 //
@@ -3752,7 +3754,7 @@ namespace linux
 
       }
 
-      ::user::interaction_impl * pimpl = ::linux::interaction_impl::from_handle(oswindow);
+      ::windowing::window * pimpl = ::linux::interaction_impl::from_handle(oswindow);
 
       if(pimpl == nullptr)
       {
@@ -3772,7 +3774,7 @@ namespace linux
       return nullptr;
 
 
-//      ::user::interaction_impl * pimpl = ::linux::interaction_impl::from_handle(::set_active_window(get_handle()));
+//      ::windowing::window * pimpl = ::linux::interaction_impl::from_handle(::set_active_window(get_handle()));
 
   //    if(pimpl == nullptr)
     //  {
@@ -4633,11 +4635,11 @@ namespace linux
 //   }
 //
 //   ////////////////////////////////////////////////////////////////////////////
-//   // UI related ::user::interaction_impl functions
+//   // UI related ::windowing::window functions
 //
 //   oswindow PASCAL interaction_impl::GetSafeOwner_(oswindow hParent, oswindow* pWndTop)
 //   {
-//      // get ::user::interaction_impl to start with
+//      // get ::windowing::window to start with
 //      oswindow hWnd = hParent;
 //      if (hWnd == nullptr)
 //      {
@@ -4648,11 +4650,11 @@ namespace linux
 //         hWnd = ::acmeacmesystem()->GetMainWnd()->get_handle();*/
 //      }
 //
-//      // a popup ::user::interaction_impl cannot be owned by a child ::user::interaction_impl
+//      // a popup ::windowing::window cannot be owned by a child ::windowing::window
 //      while (hWnd != nullptr && (::GetWindowLong(hWnd, GWL_STYLE) & WS_CHILD))
 //         hWnd = ::get_parent(hWnd);
 //
-//      // determine toplevel ::user::interaction_impl to disable as well
+//      // determine toplevel ::windowing::window to disable as well
 //      oswindow hWndTop = hWnd, hWndTemp = hWnd;
 //      for (;;)
 //      {
@@ -4668,7 +4670,7 @@ namespace linux
 //      //    if (hParent == nullptr && hWnd != nullptr)
 //      //       hWnd = ::GetLastActivePopup(hWnd);
 //
-//      // disable and store top level parent ::user::interaction_impl if specified
+//      // disable and store top level parent ::windowing::window if specified
 //      if (pWndTop != nullptr)
 //      {
 //         /*         if (hWndTop != nullptr && ::IsWindowEnabled(hWndTop) && hWndTop != hWnd)
@@ -4702,7 +4704,7 @@ namespace linux
 //   void interaction_impl::_001BaseWndInterfaceMap()
 //   {
 //
-//      ::user::interaction_impl::_001BaseWndInterfaceMap();
+//      ::windowing::window::_001BaseWndInterfaceMap();
 //
 //   }
 //
@@ -4760,7 +4762,7 @@ namespace linux
       else
       {
 
-         ::user::interaction_impl::window_show_change_visibility(edisplay, eactivation);
+         ::windowing::window::window_show_change_visibility(edisplay, eactivation);
 
       }
 

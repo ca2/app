@@ -50,7 +50,7 @@ endif ()
 set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
-if (MSVC)
+if (${MSVC})
 
 
     target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
@@ -67,7 +67,7 @@ elseif (${FREEBSD})
     pkg_check_modules(PKGCONFIG_${PROJECT_NAME} freeimage)
     target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive ${PKGCONFIG_${PROJECT_NAME}_CFLAGS})
     target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive ${PKGCONFIG_${PROJECT_NAME}_CFLAGS})
-    target_link_options(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_${PROJECT_NAME}_LIBRARIES})
+    target_link_options(${PROJECT_NAME} PRIVATE  ${PKGCONFIG_${PROJECT_NAME}_LDFLAGS})
     target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_${PROJECT_NAME}_LIBRARIES})
     target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_${PROJECT_NAME}_LIBRARIES})
 

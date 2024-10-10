@@ -15,7 +15,8 @@
 #include "acme/filesystem/filesystem/link.h"
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/exception/interface_only.h"
-#include "acme/primitive/string/international.h"
+#include "acme/windowing/windowing.h"
+#include "acme/prototype/string/international.h"
 #include "apex/filesystem/file/set.h"
 #include "apex/input/input.h"
 #include "apex/platform/application.h"
@@ -306,47 +307,55 @@ namespace apex
    }
 
 
-   void node::on_operating_system_user_theme_change()
-   {
-
-      auto psystem = system()->m_papexsystem;
-
-      psystem->signal(id_operating_system_user_theme_change);
-
-   }
-
-
-   void node::on_operating_system_user_color_change()
-   {
-      
-      bool bOperatingSystemDarkMode = this->dark_mode();
-
-      system()->set_dark_mode(bOperatingSystemDarkMode);
-      auto psystem = system()->m_papexsystem;
-
-      psystem->signal(id_operating_system_user_color_change);
+   // void node::on_operating_system_user_theme_change()
+   // {
+   //
+   //    auto psystem = system()->m_papexsystem;
+   //
+   //    psystem->signal(id_operating_system_user_theme_change);
+   //
+   // }
 
 
-   }
+   // void node::on_operating_system_user_color_change()
+   // {
+   //
+   //    bool bOperatingSystemDarkMode = this->dark_mode();
+   //
+   //    system()->set_dark_mode(bOperatingSystemDarkMode);
+   //    auto psystem = system()->m_papexsystem;
+   //
+   //    psystem->signal(id_operating_system_user_color_change);
+   //
+   //
+   // }
 
 
-   void node::on_operating_system_font_list_change()
-   {
-
-      auto psystem = system()->m_papexsystem;
-
-      psystem->signal(id_operating_system_font_list_change);
-
-   }
+   // void node::on_operating_system_font_list_change()
+   // {
+   //
+   //    auto psystem = system()->m_papexsystem;
+   //
+   //    psystem->signal(id_operating_system_font_list_change);
+   //
+   // }
 
 
    void node::defer_innate_ui()
    {
 
-      throw ::interface_only();
+      auto strToolkit = ::windowing::get_user_toolkit_id();
+
+      if(strToolkit.has_char())
+      {
+
+         auto pfactory = system()->factory("innate_ui", strToolkit);
+
+         pfactory->merge_to_global_factory();
+
+      }
 
    }
-
 
 
    void node::shell_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)

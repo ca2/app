@@ -2,7 +2,7 @@
 #include "cell.h"
 #include "table_row.h"
 #include "table.h"
-#include "acme/primitive/data/listener.h"
+#include "acme/prototype/data/listener.h"
 #include "axis/html/html/data.h"
 #include "axis/html/element/element.h"
 #include "axis/html/graphics/base.h"

@@ -1,7 +1,7 @@
 #pragma once
 
 
-////#include "acme/primitive/primitive/object.h"
+////#include "acme/prototype/prototype/object.h"
 #include "acme/filesystem/filesystem/enumerator.h"
 //#include "acme/filesystem/filesystem/path.h"
 
@@ -35,7 +35,7 @@
 
       void finalize() override;
 
-      ::file::watcher & watcher();
+      //::file::watcher & watcher();
 
 
       //bool _enumerates(::file::listing & listing) override;

@@ -13,7 +13,7 @@
 #include "acme/constant/simple_command.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/primitive/atom.h"
+#include "acme/prototype/prototype/atom.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/message/simple_command.h"
 #include "acme/handler/request.h"
@@ -230,7 +230,7 @@ namespace userex
 
          //m_ptemplateTab = ;;
          user()->m_pbaseuser->add_impact_system(
-            "main", ::place(new user::single_document_template(
+            "main", ::as(new user::single_document_template(
             "main",
             ::type < ::user::document >(),
             ::type < simple_child_frame >(),

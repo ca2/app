@@ -247,13 +247,17 @@ namespace draw2d
    class ::write_text::write_text * draw2d::write_text()
    {
 
-      if (application()->m_bWriteText)
+      if(!m_pwritetext)
       {
 
-         initialize_write_text();
+         if (application()->m_bWriteText)
+         {
+
+            initialize_write_text();
+
+         }
 
       }
-
 
       return m_pwritetext;
 
@@ -675,7 +679,7 @@ void draw2d::emboss_predicate(
       else
       {
 
-         filter = ::place(new memory());
+         filter = __new memory();
 
          filter->set_size(iFilterArea);
 
@@ -990,7 +994,7 @@ void draw2d::emboss_predicate(
       }
       else
       {
-         filter = ::place(new memory());
+         filter = __new memory();
          filter->set_size(iFilterArea);
          pFilter = filter->begin();
          for (y = 0; y < iFilterH; y++)
@@ -1034,7 +1038,7 @@ void draw2d::emboss_predicate(
       //   i32 max3x3 = (maxx1 - iFilterH / 2) * 4;
       //i32 w = cx * 4;
 
-      ::copy_image32(pimageDst, pimageSrc);
+      pimageDst->copy(pimageSrc);
       //::memory_copy(lpbDst,lpbSrc,cx * cy * 4);
 
 
@@ -1242,6 +1246,13 @@ void draw2d::emboss_predicate(
 
    void draw2d::initialize_write_text()
    {
+
+      if(m_pwritetext)
+      {
+
+         return;
+
+      }
 
       ::e_status estatus = ::success;
 

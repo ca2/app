@@ -3,8 +3,8 @@
 #include "data.h"
 #include "format.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/collection/_array_binary_stream.h"
-#include "acme/primitive/data/listener.h"
+#include "acme/prototype/collection/_array_binary_stream.h"
+#include "acme/prototype/data/listener.h"
 #include "aura/graphics/draw2d/graphics.h"
 
 
@@ -64,7 +64,7 @@ namespace user
 
       span::span(data * pdata, const span & span) :
          m_pdata(pdata),
-         m_pformat(::place(new class format(*span.m_pformat))),
+         m_pformat(::as(new class format(*span.m_pformat))),
          m_ealignNewLine(span.m_ealignNewLine),
          m_bEndOfLine(span.m_bEndOfLine),
          m_str(span.m_str)
@@ -80,7 +80,7 @@ namespace user
 
 
       span::span(const span & span) :
-         m_pformat(::place(new class format(*span.m_pformat))),
+         m_pformat(::as(new class format(*span.m_pformat))),
          m_ealignNewLine(span.m_ealignNewLine),
          m_bEndOfLine(span.m_bEndOfLine),
          m_str(span.m_str)
@@ -146,7 +146,7 @@ namespace user
 
          synchronous_lock synchronouslock(m_pdata->synchronization());
          
-         auto pspan = ::place(new class span (m_pdata));
+         auto pspan = __new class span (m_pdata);
          
          pspan->m_pformat = m_pdata->add_format();
 
@@ -174,7 +174,7 @@ namespace user
       ::pointer<format>span::fork_format()
       {
 
-         return ::place(new class format (*m_pformat));
+         return __new class format (*m_pformat);
 
       }
 

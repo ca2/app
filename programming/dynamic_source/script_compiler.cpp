@@ -14,10 +14,10 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/operating_system/process.h"
 #include "acme/platform/node.h"
-#include "acme/primitive/primitive/url.h"
-#include "acme/primitive/datetime/datetime.h"
-#include "acme/primitive/string/str.h"
-#include "acme/primitive/text/context.h"
+#include "acme/prototype/prototype/url.h"
+#include "acme/prototype/datetime/datetime.h"
+#include "acme/prototype/string/str.h"
+#include "acme/prototype/text/context.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/crypto/rsa.h"
 #include "acme/filesystem/filesystem/dir_context.h"
@@ -1381,7 +1381,7 @@ namespace dynamic_source
    void script_compiler::folder_watch()
    {
 
-      m_filewatcherid = dir()->watcher().add_watch(m_pmanager->m_strNetseedDsCa2Path, this, true);
+      //xxx:folder_watch m_filewatcherid = file_watcher()->add_watch(m_pmanager->m_strNetseedDsCa2Path, this, true);
 
    }
 
@@ -1398,7 +1398,7 @@ namespace dynamic_source
          return *p->element2();
       }
 
-      m_mapLib[pszLibrary] = ::place(new library(this));
+      m_mapLib[pszLibrary] = __new library(this);
 
       library & l = *m_mapLib[pszLibrary];
 

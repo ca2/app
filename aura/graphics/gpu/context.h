@@ -2,10 +2,10 @@
 
 
 ////#include "acme/exception/exception.h"
-#include "acme/primitive/geometry2d/size.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/geometry2d/size.h"
+#include "acme/prototype/prototype/memory.h"
 #include "aura/graphics/draw3d/matrix.h"
-#include "acme/parallelization/task.h"
+#include "apex/parallelization/thread.h"
 
 namespace gpu
 {
@@ -50,7 +50,7 @@ namespace gpu
 
 
    class CLASS_DECL_AURA context :
-      virtual public ::task
+      virtual public ::thread
    {
    public:
 

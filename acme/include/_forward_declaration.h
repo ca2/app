@@ -1105,7 +1105,7 @@ namespace user
    class drag;
    class drag_client;
 
-   class primitive;
+   class interaction_base;
    class element;
    class primitive_impl;
 
@@ -1421,7 +1421,7 @@ namespace install
 
 } // namespace install
 
-//#include "acme/primitive/primitive/transfer.h"
+//#include "acme/prototype/prototype/transfer.h"
 
 class task;
 
@@ -1998,17 +1998,6 @@ namespace user
 
 
 class thread;
-
-
-namespace user
-{
-
-   class primitive;
-
-   //class create;
-
-
-} // namespace user
 
 
 class action_context;

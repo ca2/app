@@ -5,11 +5,13 @@
 /// String dependent declarations
 
 
-CLASS_DECL_ACME pointer< ::sequencer < ::conversation > > message_box_sequencer(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails);
+//CLASS_DECL_ACME ::particle_pointer create_message_box(::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle, const ::e_message_box & emessagebox, const ::scoped_string & scopedstrDetails, ::nano::graphics::icon * picon);
 
-CLASS_DECL_ACME ::payload message_box_synchronous(::particle * ppartcicle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr);
+//CLASS_DECL_ACME ::payload auto pmessagebox = __initialize_new ::message_box(::particle * ppartcicle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
-CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload & payload) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr);
+//pmessagebox->sync();
+
+//CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::payload & payload) > function, ::particle * pparticle, const ::scoped_string & scopedstrMessage, const ::scoped_string & scopedstrTitle = nullptr, const e_message_box & emessagebox = e_message_box_ok, const ::scoped_string & scopedstrDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
 CLASS_DECL_ACME void throw_exit_exception(const ::e_status & estatus = error_failed, ::task * playeredThreadExit = nullptr, const ::scoped_string & scopedstrMessage = nullptr);
 
@@ -46,11 +48,11 @@ template < typename TYPE, enum_type t_etypeContainer >
 template < typename TYPE, enum_type t_etypeContainer >
    string surround_and_implode(const numeric_array < TYPE, t_etypeContainer > & a,const ::scoped_string & scopedstrSeparator = nullptr, const ::scoped_string & scopedstrPrefix = nullptr, const ::scoped_string & scopedstrSuffix = nullptr, ::collection::index iStart = 0, ::collection::count iCount = -1);
 
-#include "acme/primitive/collection/_impl_string_array.h"
-#include "acme/primitive/primitive/_impl_atom.h"
-#include "acme/primitive/collection/_impl_factory.h"
-#include "acme/primitive/primitive/_impl_payload.h"
-#include "acme/primitive/primitive/_impl_type.h"
+#include "acme/prototype/collection/_impl_string_array.h"
+#include "acme/prototype/prototype/_impl_atom.h"
+#include "acme/prototype/collection/_impl_factory.h"
+#include "acme/prototype/prototype/_impl_payload.h"
+#include "acme/prototype/prototype/_impl_type.h"
 #include "acme/filesystem/file/_impl_write_text_stream.h"
 #include "acme/filesystem/filesystem/_impl_path.h"
 

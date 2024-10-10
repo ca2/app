@@ -7,7 +7,7 @@
 #include "acme/filesystem/filesystem/listing.h"
 #include "acme/operating_system/dos_time.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 
 #include "acme/_operating_system.h"
 

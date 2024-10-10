@@ -5,7 +5,8 @@
 //#include "acme/user/user/check.h"
 //#include "acme/user/user/text.h"
 #include "acme/user/user/command_update_target.h"
-#include "acme/user/user/element.h"
+//#include "acme/user/user/element.h"
+#include "acme/user/user/interaction.h"
 
 
 //
@@ -72,22 +73,39 @@
 
    }
 
-   return m_puserelement->m_puserinteraction;
+   return m_puserelement->user_interaction();
 
 }
 
 
-::atom topic::user_element_id() const
+::acme::user::interaction * topic::acme_user_interaction()
 {
 
    if (::is_null(m_puserelement))
+   {
+
+      return nullptr;
+
+   }
+
+   return m_puserelement.cast < ::acme::user::interaction >();
+
+}
+
+
+::atom topic::user_interaction_id() const
+{
+
+   auto pacmeuserinteraction = ((topic*)this)->acme_user_interaction();
+
+   if (::is_null(pacmeuserinteraction))
    {
 
       return ::atom::e_type_null;
 
    }
 
-   return m_puserelement->m_atom;
+   return pacmeuserinteraction->m_atom;
 
 }
 

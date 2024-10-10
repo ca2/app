@@ -22,7 +22,7 @@ public:
 
 
    nswindow                      m_nswindow;
-   ::user::interaction_impl *    m_pimpl;
+   ::windowing::window *    m_pimpl;
    ::pointer<::message_queue>              m_pmq;
 
    iptr_to_iptr *          m_plongmap;
@@ -79,7 +79,7 @@ public:
    }
 
 
-   void set_user_interaction_impl(::user::interaction_impl * pimpl);
+   void set_user_interaction_impl(::windowing::window * pimpl);
    ::user::interaction * get_user_interaction_base();
    ::user::interaction * get_user_interaction_base() const;
    ::user::interaction * get_user_interaction();

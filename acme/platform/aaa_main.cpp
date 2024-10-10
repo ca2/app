@@ -5,7 +5,7 @@
 #include "library.h"
 #include "acme/parallelization/mutex.h"
 #include "acme/platform/_synchronization.h"
-#include "acme/primitive/primitive/malloc.h"
+#include "acme/prototype/prototype/malloc.h"
 #include "acme/user/user/theme_colors.h"
 
 
@@ -393,7 +393,7 @@ extern thread_local ::task_pointer t_pthread;
 //
 //      common_construct();
 //
-//      m_pplatform = ::place(new ::sub_system(this));
+//      m_pplatform = __new ::sub_system(this);
 //
 //   }
 

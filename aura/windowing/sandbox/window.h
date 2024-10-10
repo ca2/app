@@ -33,7 +33,7 @@ namespace sandbox_windowing
       ~window() override;
 
 
-//      void create_window(::user::interaction_impl* pimpl) override;
+//      void create_window(::windowing::window* pimpl) override;
       void create_window() override;
 
 
@@ -52,7 +52,7 @@ namespace sandbox_windowing
 
       void exit_zoomed() override;
 
-      virtual void set_user_interaction(::user::interaction_impl* pinteraction);
+      virtual void set_user_interaction(::windowing::window* pinteraction);
 
       virtual void post_nc_destroy();
 

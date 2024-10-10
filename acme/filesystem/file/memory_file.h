@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/memory_container.h"
+#include "acme/prototype/prototype/memory_container.h"
 #include "file.h"
 
 #pragma pack(push, custom__integers__, 1)
@@ -336,8 +336,8 @@ public:
 //public:
 //
 //
-//   memory_stream() : binary_stream(::place(new ::memory_file())) {}
-//   memory_stream(::memory_base & memory) : binary_stream(::place(new ::memory_file(memory))) {}
+//   memory_stream() : binary_stream(::as(new ::memory_file())) {}
+//   memory_stream(::memory_base & memory) : binary_stream(::as(new ::memory_file(memory))) {}
 //
 //   ::memory_file * operator ->() { return m_p.cast < ::memory_file >().m_p; }
 //   const ::memory_file * operator ->() const { return m_p.cast < ::memory_file >().m_p; }

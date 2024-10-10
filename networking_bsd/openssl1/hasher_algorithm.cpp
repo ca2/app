@@ -45,7 +45,7 @@ namespace openssl
    ::pointer<::crypto::hasher>hasher_algorithm::create_hasher()
    {
 
-      return ::place(new ::openssl::hasher(this));
+      return __new ::openssl::hasher(this);
 
    }
 

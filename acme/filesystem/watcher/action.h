@@ -17,8 +17,8 @@ namespace file
    public:
 
 
-      watch *                          m_pwatch;
-      watch_id                         m_watchid;
+      watch *                          m_pfilewatch;
+      //watch_id                         m_pfilewatch;
       ::file::path                     m_pathFolder;
       ::file::path                     m_pathFile;
       enumeration < enum_action >      m_eaction;

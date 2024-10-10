@@ -1,7 +1,7 @@
 #pragma once
 
 
-//#include "acme/primitive/collection/pointer_array.h"
+//#include "acme/prototype/collection/pointer_array.h"
 #include "element.h"
 #include "scanner.h"
 #include "token.h"

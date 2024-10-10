@@ -1,7 +1,7 @@
 #pragma once
 
 
-////#include "acme/primitive/primitive/object.h"
+////#include "acme/prototype/prototype/object.h"
 //#include "acme/filesystem/filesystem/path.h"
 
 
@@ -14,7 +14,7 @@ public:
    ::file::path                  m_pathLocalAppMatterFolder;
    ::file::path                  m_pathLocalAppMatterCacheFolder;
 
-   ::pointer<::file::watcher>   m_pfilewatcher;
+   //::pointer<::file::watcher>   m_pfilewatcher;
 
    ::file::path                  m_pathAppData;
    ::file::path                  m_pathDefaultAppData;

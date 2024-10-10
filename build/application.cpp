@@ -108,7 +108,7 @@ namespace app_build
 
       }
 
-      auto ptemplate = ::place(new ::user::single_document_template(
+      auto ptemplate = ::as(new ::user::single_document_template(
                             "main",
                             ::type < simple_pane_document >(),
                             ::type < main_frame >(),
@@ -118,7 +118,7 @@ namespace app_build
 
       add_document_template(ptemplate);
 
-      ptemplate = ::place(new ::user::single_document_template(
+      ptemplate = ::as(new ::user::single_document_template(
                        "main",
                        ::type < document >(),
                        ::type < frame >(),

@@ -17,9 +17,9 @@
 
 #include "_constant.h"
 #include "Object.h"
-#include "acme/primitive/collection/numeric_array.h"
-#include "acme/primitive/geometry2d/size.h"
-//#include "acme/primitive/geometry2d/vector.h"
+#include "acme/prototype/collection/numeric_array.h"
+#include "acme/prototype/geometry2d/size.h"
+//#include "acme/prototype/geometry2d/vector.h"
 
 
 namespace nanoui

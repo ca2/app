@@ -15,11 +15,11 @@
 #include "acme/operating_system/security_attributes.h"
 #include "acme/platform/serial_shared.h"
 //#include "acme/exception/status.h"
-////#include "acme/primitive/primitive/object.h"
-//#include "acme/primitive/primitive/pointer.h"
-#include "acme/primitive/collection/atom_array.h"
-#include "acme/primitive/collection/string_map.h"
-//#include "acme/primitive/time/time.h"
+////#include "acme/prototype/prototype/object.h"
+//#include "acme/prototype/prototype/pointer.h"
+#include "acme/prototype/collection/atom_array.h"
+#include "acme/prototype/collection/string_map.h"
+//#include "acme/prototype/time/time.h"
 #include "shell.h"
 
 struct os_theme_colors;
@@ -80,10 +80,10 @@ namespace acme
       :: IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::node *  m_pAuraPlatform;
       
       
-      //::pointer < ::particle >                              m_pparticleQuit;
+      //::particle_pointer                              m_pparticleQuit;
 
 
-      //::pointer < ::particle >                              m_pparticleStandardIOSynchronization;
+      //::particle_pointer                              m_pparticleStandardIOSynchronization;
       
 
       bool                                                  m_bCallStackInitialized;
@@ -119,11 +119,10 @@ namespace acme
 
       //bool                                                m_bUserDarkMode;
 
-      bool                                                  m_bOperatingSystemDarkMode;
+      //bool                                                  m_bOperatingSystemDarkMode;
       //int                                                   m_iWeatherDarkness;
       ::file::path                                          m_pathModule;
 
-      ::user::enum_desktop                                  m_edesktop;
 
       enum_application_capability_array                     m_eapplicationcapabilitya;
       string_map < ::pointer<::acme::exclusive > >          m_mapExclusive;
@@ -153,15 +152,15 @@ namespace acme
       //idaPid = pnode->(path, false);
 
 
-      virtual ::pointer < ::particle > create_mutex();
+      virtual ::particle_pointer create_mutex();
 
 
       virtual void initialize(::particle * pparticle) override;
       
       virtual void node_application_on_status(const char * pszStatus, void * p = nullptr, long long ll = 0);
-      //virtual ::pointer < ::particle > create_quit_particle(::pointer<::acme::node>& pnode);
+      //virtual ::particle_pointer create_quit_particle(::pointer<::acme::node>& pnode);
 
-      //virtual ::pointer < ::particle > create_quit_particle();
+      //virtual ::particle_pointer create_quit_particle();
       virtual ::file::path get_default_base_integration_folder();
 
 
@@ -270,45 +269,45 @@ namespace acme
 
       virtual void install_sigchld_handler();
 
-      virtual ::color::color get_system_color(enum_system_color esystemcolor);
-
-      virtual bool dark_mode() const;
-
-      virtual ::os_theme_colors * _new_os_theme_colors();
-
-      virtual ::os_theme_colors * _get_os_theme_colors();
-
-      virtual void _fill_os_theme_colors(::os_theme_colors * pthemecolors);
-
-      virtual void _set_os_theme_colors(::os_theme_colors * pthemecolors);
-
-      virtual void _del_os_theme_colors(::os_theme_colors * pthemecolors);
-
-      virtual void _term_os_theme_colors();
+      // virtual ::color::color get_system_color(enum_system_color esystemcolor);
+      //
+      // //virtual bool dark_mode() const;
+      //
+      // virtual ::os_theme_colors * _new_os_theme_colors();
+      //
+      // virtual ::os_theme_colors * _get_os_theme_colors();
+      //
+      // virtual void _fill_os_theme_colors(::os_theme_colors * pthemecolors);
+      //
+      // virtual void _set_os_theme_colors(::os_theme_colors * pthemecolors);
+      //
+      // virtual void _del_os_theme_colors(::os_theme_colors * pthemecolors);
+      //
+      // virtual void _term_os_theme_colors();
 
 //      virtual int get_simple_ui_darkness();
 
 //      virtual void set_simple_ui_darkness(int iWeatherDarkness);
 
-      virtual void set_dark_mode(bool bDark);
+      //virtual void set_dark_mode(bool bDark);
 
-      virtual void fetch_user_color();
+      // virtual void fetch_user_color();
+      //
+      // virtual void _fetch_user_color();
 
-      virtual void _fetch_user_color();
+      //virtual void on_operating_system_user_theme_change();
 
-      virtual void on_operating_system_user_theme_change();
+      //virtual void on_operating_system_user_color_change();
 
-      virtual void on_operating_system_user_color_change();
+      //virtual void on_operating_system_font_list_change();
 
-      virtual void on_operating_system_font_list_change();
+      //virtual string os_get_user_theme();
 
-      virtual string os_get_user_theme();
+      //virtual void os_set_user_theme(const ::string & strUserTheme);
 
-      virtual void os_set_user_theme(const ::string & strUserTheme);
+      //virtual void os_process_user_theme(string strTheme);
 
-      virtual void os_process_user_theme(string strTheme);
-
-      virtual void os_process_user_icon_theme(string strIconTheme);
+      //virtual void os_process_user_icon_theme(string strIconTheme);
 
       virtual bool set_wallpaper(::collection::index iScreen, string strLocalImagePath, ::windowing::display * pwindowingdisplay);
 
@@ -328,9 +327,11 @@ namespace acme
 
       virtual bool is_wayland();
 
-      virtual void user_post(const ::procedure & procedure) override;
+      void _user_send(const ::procedure & procedure) override;
+      void _user_post(const ::procedure & procedure) override;
 
-      virtual void user_send(const ::procedure & procedure) override;
+      //virtual void _user_send(::subparticle * psubparticle) override;
+      //virtual void _user_post(::subparticle * psubparticle) override;
 
       //void post_procedure(const ::procedure & procedure) override;
 
@@ -351,9 +352,6 @@ namespace acme
 
       virtual string get_user_name();
 
-      virtual ::color::color get_simple_ui_color(::enum_element eelement, ::user::enum_state estate = ::user::e_state_none);
-
-      virtual ::color::color get_default_color(::color::color color);
 
       virtual void set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha);
 
@@ -375,10 +373,13 @@ namespace acme
 
       virtual enum_operating_system get_operating_system() const;
 
-      virtual ::user::enum_desktop get_edesktop();
+      //virtual ::user::enum_desktop get_edesktop();
+      //virtual ::user::enum_toolkit get_etoolkit();
 
-      virtual ::user::enum_desktop calculate_edesktop();
+      //virtual ::user::enum_desktop calculate_edesktop();
+      //virtual ::user::enum_toolkit calculate_etoolkit();
 
+      //virtual ::string get_user_toolkit_id();
 
       virtual void launch_app(const ::string & psz, const char ** argv, int iFlags);
 
@@ -473,17 +474,17 @@ namespace acme
       virtual void report_exception_to_user(::particle* pparticle, ::exception& exception, const ::string& strMoreDetails);
 
 
-      virtual ::pointer<::conversation> create_new_message_box_conversation();
+      //virtual ::pointer<::conversation> create_new_message_box_conversation();
 
-      virtual ::pointer<::conversation> create_new_message_conversation();
-
-
-      virtual pointer< ::sequencer < ::conversation > > create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails);
+      //virtual ::pointer<::conversation> create_new_message_conversation();
 
 
-      //virtual void ::nano::user::message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox);
+      //virtual ::pointer < ::subparticle > create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon);
 
-      virtual pointer< ::sequencer < ::conversation > > create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails);
+
+      //virtual void ::micro::message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox);
+
+      //virtual ::pointer < ::subparticle > create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon);
 
 
 
@@ -1010,7 +1011,7 @@ namespace acme
       virtual int performance_core_count();
       virtual int efficiency_core_count();
 
-      virtual void on_component_factory(const ::scoped_string & scopedstrComponent);
+      virtual bool defer_component_factory(const ::scoped_string & scopedstrComponent);
 
       virtual void detached_command(const ::scoped_string & scopedstrCommand, const ::file::path & pathLog);
 
@@ -1019,12 +1020,13 @@ namespace acme
 //      virtual void windowing_system_display_error_trap_push(int i);
 //      virtual void windowing_system_display_error_trap_pop_ignored(int i);
 
-      virtual enum_windowing calculate_ewindowing();
+      
 
 
       virtual bool _get_monitor_rectangle(::collection::index iMonitor, ::rectangle_i32 & rectangle);
       virtual bool _get_workspace_rectangle(::collection::index iWorkspace, ::rectangle_i32 & rectangle);
 
+      virtual void realize(::particle_pointer pparticle);
 
    };
 

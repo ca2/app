@@ -32,7 +32,7 @@ inline int type_is_null(const T * p)
 }
 
 
-//#include "acme/primitive/string/_uhash.h"
+//#include "acme/prototype/string/_uhash.h"
 
 
 //class allocer;
@@ -174,7 +174,7 @@ namespace acme
 
    //   ::acme::del(p);
 
-   //   return p = ::place(new T());
+   //   return p = __new T();
 
    //}
 

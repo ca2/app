@@ -7,7 +7,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "aura/platform/system.h"
 #include "aura/windowing/sandbox/window.h"
-#include "aura/user/user/interaction_impl.h"
+//#include "aura/user/user/interaction_impl.h"
 #include "aura/windowing/cursor_manager.h"
 
 
@@ -44,7 +44,7 @@ namespace sandbox_windowing
    }
 
 
-::pointer < ::windowing::window > windowing::get_new_window(::user::interaction_impl * puserinteractionimpl)
+::pointer < ::windowing::window > windowing::get_new_window(::windowing::window * pwindow)
 {
    
    ::pointer<::windowing::window>pwindow;
@@ -52,7 +52,7 @@ namespace sandbox_windowing
    if (::is_set(system())
        && ::is_set(system()->m_paurasystem)
        && ::is_set(system()->m_paurasystem->m_pwindowMain)
-       && ::is_null(system()->m_paurasystem->m_pwindowMain->m_puserinteractionimpl))
+       && ::is_null(system()->m_paurasystem->m_pwindowMain->m_pwindow))
    {
       
       pwindow = system()->m_paurasystem->m_pwindowMain;
@@ -61,7 +61,7 @@ namespace sandbox_windowing
    else
    {
       
-      pwindow = ::windowing::windowing::get_new_window(puserinteractionimpl);
+      pwindow = ::windowing::windowing::get_new_window(pwindow);
       //pimpl->__create < ::windowing::window >();
       
    }
@@ -70,12 +70,12 @@ namespace sandbox_windowing
    
 }
 //
-//   ::windowing::window* windowing::new_window(::user::interaction_impl* pimpl)
+//   ::windowing::window* windowing::new_window(::windowing::window* pimpl)
 //   {
 //
 //      ::pointer<::sandbox_windowing::window>pwindow;
 //
-//      if (::is_null(system()->m_paurasystem->m_pwindowMain->m_puserinteractionimpl))
+//      if (::is_null(system()->m_paurasystem->m_pwindowMain->m_pwindow))
 //      {
 //
 //         pwindow = system()->m_paurasystem->m_pwindowMain;
@@ -97,7 +97,7 @@ namespace sandbox_windowing
 //
 //      pwindow->m_pwindowing = this;
 //
-//      pwindow->m_puserinteractionimpl = pimpl;
+//      pwindow->m_pwindow = pimpl;
 //
 //      pimpl->m_pwindow = pwindow;
 //
@@ -512,12 +512,12 @@ namespace sandbox_windowing
    }
 
 
-   ::windowing::window_base * windowing::get_keyboard_focus(::thread*)
+   ::acme::windowing::window * windowing::get_keyboard_focus(::thread*)
    {
 
       //auto pwindowApplicationHost = get_application_host_window();
 
-      //if (!pwindowApplicationHost->m_puserinteractionimpl->m_puserinteractionKeyboardFocus)
+      //if (!pwindowApplicationHost->m_pwindow->m_puserinteractionKeyboardFocus)
       //{
 
       //   return nullptr;
@@ -567,12 +567,12 @@ namespace sandbox_windowing
 
       }
 
-      auto puserinteractionimpl = m_pwindowMouseCapture->m_puserinteractionimpl;
+      auto pwindow = m_pwindowMouseCapture->m_pwindow;
 
-      if (puserinteractionimpl)
+      if (pwindow)
       {
 
-         puserinteractionimpl->m_puserinteractionMouseCapture.release();
+         pwindow->m_puserinteractionMouseCapture.release();
 
       }
 
@@ -593,24 +593,24 @@ namespace sandbox_windowing
 
       }
 
-      auto puserinteractionimpl = m_pwindowKeyboardFocus->m_puserinteractionimpl;
+      auto pwindow = m_pwindowKeyboardFocus->m_pwindow;
 
-      if (puserinteractionimpl)
+      if (pwindow)
       {
          
-         puserinteractionimpl->clear_keyboard_focus();
+         pwindow->clear_keyboard_focus();
 
-         //puserinteractionimpl->on_fin
-//         auto puserinteractionKeyboardFocus = puserinteractionimpl->m_puserinteractionKeyboardFocus;
+         //pwindow->on_fin
+//         auto puserinteractionKeyboardFocus = pwindow->m_puserinteractionKeyboardFocus;
 //
 //         if (puserinteractionKeyboardFocus)
 //         {
 //
-//            puserinteractionimpl->m_puserinteractionKeyboardGainingFocusIfAny = pwindowGainingFocusIfAny;
+//            pwindow->m_puserinteractionKeyboardGainingFocusIfAny = pwindowGainingFocusIfAny;
 //
-//            //puserinteractionimpl->m_puserinteractionKeyboardFocus->post_message(e_message_kill_focus);
+//            //pwindow->m_puserinteractionKeyboardFocus->post_message(e_message_kill_focus);
 //
-//            puserinteractionimpl->m_puserinteractionKeyboardFocus.release();
+//            pwindow->m_puserinteractionKeyboardFocus.release();
 
          //}
             //auto puserinteraction =
@@ -622,16 +622,16 @@ namespace sandbox_windowing
 //
 //         }
 //
-//         //if (puserinteractionimpl->m_puserinteractionKeyboardFocus)
+//         //if (pwindow->m_puserinteractionKeyboardFocus)
 //         //{
 //
-//         //   puserinteractionimpl->m_puserinteractionKeyboardGainingFocusIfAny = pwindowGainingFocusIfAny;
+//         //   pwindow->m_puserinteractionKeyboardGainingFocusIfAny = pwindowGainingFocusIfAny;
 //
-//         //   puserinteractionimpl->m_puserinteractionKeyboardFocus->post_message(e_message_kill_focus);
+//         //   pwindow->m_puserinteractionKeyboardFocus->post_message(e_message_kill_focus);
 //
 //         //}
 //
-//         puserinteractionimpl->m_puserinteractionKeyboardFocus.release();
+//         pwindow->m_puserinteractionKeyboardFocus.release();
 
       //}
 

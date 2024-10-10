@@ -97,23 +97,25 @@ namespace innate_ui
    ::innate_ui::innate_ui * window::innate_ui()
    {
 
-      return system()->innate_ui();
+      auto psystem = system();
+
+      return psystem->innate_ui();
 
    }
 
 
-   void window::post(const ::procedure & procedure)
+   void window::_main_post(const ::procedure & procedure)
    {
 
-      innate_ui()->post(procedure);
+      innate_ui()->_main_post(procedure);
 
    }
 
 
-   void window::sync(const ::procedure & procedure)
+   void window::_main_send(const ::procedure & procedure)
    {
 
-      innate_ui()->sync(procedure);
+      innate_ui()->_main_send(procedure);
 
    }
 

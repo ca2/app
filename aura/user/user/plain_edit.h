@@ -3,7 +3,7 @@
 
 #include "scroll_base.h"
 #include "text_composition_composite.h"
-#include "acme/primitive/data/listener.h"
+#include "acme/prototype/data/listener.h"
 #include "acme/user/user/text.h"
 
 
@@ -450,7 +450,7 @@ namespace user
       //virtual strsize get_text_length() override;
       virtual strsize get_text_length();
       virtual ::collection::count line_count() const;
-      void get_text(string & str) const override;
+      ::string get_text() const override;
 
       virtual void on_set_property(::data::property_change & change) override;
       virtual ::payload on_get_property(const ::atom_array & atoma) const override;
@@ -493,7 +493,7 @@ namespace user
       void _plain_edit_update_lines_and_extents(::draw2d::graphics_pointer& pgraphics, ::collection::index iOnlyLineToUpdate = -1);
       //void _plain_edit_update_lines(::draw2d::graphics_pointer& pgraphics, ::collection::index iOnlyLineToUpdate = -1);
       //void _plain_edit_update_extents(::draw2d::graphics_pointer& pgraphics, ::collection::index iOnlyLineToUpdate = -1);
-      //void _001OnCalcLayoutProc(::user::primitive * pimpact);
+      //void _001OnCalcLayoutProc(::user::interaction_base * pimpact);
 
       void FileSave();
       void plain_edit_on_file_update(::draw2d::graphics_pointer& pgraphics);

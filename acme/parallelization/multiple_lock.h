@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/bits.h"
+#include "acme/prototype/prototype/bits.h"
 #include "synchronization_array.h"
 
 

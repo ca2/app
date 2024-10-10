@@ -2,12 +2,13 @@
 #pragma once
 
 
+#include "acme/constant/windowing.h"
 #include "acme/parallelization/mutex.h"
+#include "acme/parallelization/task.h"
 #include "acme/platform/library.h"
 #include "acme/platform/release_time_for_project.h"
-#include "acme/primitive/collection/atom_map.h"
-#include "acme/primitive/collection/string_map.h"
-//#include "acme/primitive/primitive/pointer.h"
+#include "acme/prototype/collection/atom_map.h"
+#include "acme/prototype/collection/string_map.h"
 
 
 #ifdef LINUX
@@ -97,6 +98,9 @@ namespace platform
       ::critical_section                              m_criticalsectionTask;
       ::index_array                                   m_iaTaskIndex;
       bool                                            m_bVerboseLog;
+      ::windowing::enum_windowing                     m_ewindowing;
+      ::windowing::enum_desktop                       m_edesktop;
+      ::windowing::enum_toolkit                       m_etoolkit;
 
 
       ::acme::application * m_pacmeapplication;
@@ -219,6 +223,15 @@ namespace platform
       string                                          m_strCommandLine;
 
 
+         ::particle_pointer                                 m_pmutexTask;
+         task_map                                                 m_taskmap;
+         task_id_map                                              m_taskidmap;
+         ::particle_pointer                                 m_pmutexTaskOn;
+
+
+         ::map < itask_t, itask_t >                               m_mapTaskOn;
+
+
       platform(::acme::acme * pacme);
       ~platform();
 
@@ -283,6 +296,17 @@ namespace platform
       void set_status(int iStatus);
 
 
+      ::task* get_task(itask_t itask);
+      itask_t get_task_id(const ::task* ptask);
+      void set_task(itask_t itask, ::task* ptask);
+      void unset_task(itask_t itask, ::task* ptask);
+
+      virtual bool is_task_on(itask_t atom);
+      virtual bool is_active(::task * ptask);
+      virtual void set_task_on(itask_t atom);
+      virtual void set_task_off(itask_t atom);
+
+
       virtual void set_resource_block(const char * pstart, const char * pend);
 
       void defer_initialize_platform();
@@ -318,7 +342,7 @@ namespace platform
       void add_factory_item(const ::atom & atom)
       {
 
-         set_factory(atom, ::place(new ::factory::factory_item < TYPE, BASE > ()));
+         set_factory(atom, __new ::factory::factory_item < TYPE, BASE > ());
 
       }
 
@@ -467,6 +491,7 @@ namespace platform
 
 
    inline ::platform::platform * get() { return ::acme::get() ? ::acme::get()->platform() : nullptr; }
+   inline ::acme::system * system() { return get() ? get()->system() : nullptr; }
 
 
 } // namespace platform

@@ -401,7 +401,7 @@ void on_term_thread();
 //////
 //////#endif
 ////
-////      //::channel::s_pmutexChannel = ::place(new mutex());
+////      //::channel::s_pmutexChannel = __new mutex();
 ////
 ////      //g_papexstrpool = new apex_str_pool();
 ////

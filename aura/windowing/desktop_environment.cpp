@@ -2,7 +2,7 @@
 // Created by camilo on 8/16/22.  <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "aura/windowing/desktop_environment.h"
 #include "aura/graphics/graphics/graphics.h"
 
@@ -66,6 +66,21 @@ namespace windowing
    {
 
       return true;
+
+   }
+
+
+   ::string desktop_environment::get_user_theme()
+   {
+
+      return {};
+
+   }
+
+
+   void desktop_environment::set_user_theme(const ::scoped_string & scopedstrUserTheme)
+   {
+
 
    }
 

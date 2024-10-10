@@ -3,7 +3,7 @@
 
 
 #include "acme/exception/parsing.h"
-#include "acme/primitive/string/string_block.h"
+#include "acme/prototype/string/string_block.h"
 
 
 class CLASS_DECL_ACME text_reader

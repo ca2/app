@@ -28,7 +28,7 @@
 //#if !BROAD_PRECOMPILED_HEADER
 ////#include "axis/html/html_lite/_.h"
 //#endif
-//#include "acme/primitive/string/str.h"
+//#include "acme/prototype/string/str.h"
 #include "entity_resolver.h"
 
 

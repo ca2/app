@@ -16,7 +16,7 @@
 
 //    //   {
 
-//    //      auto psystem = ::place(new ::aura::system());
+//    //      auto psystem = __new ::aura::system();
 
 //    //      psystem->set_main_struct(&mainstruct);
 

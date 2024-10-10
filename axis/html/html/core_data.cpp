@@ -6,9 +6,9 @@
 #include "acme/constant/user_key.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/task_keep.h"
-#include "acme/primitive/primitive/url.h"
+#include "acme/prototype/prototype/url.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/data/listener.h"
+#include "acme/prototype/data/listener.h"
 #include "acme/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/context.h"
 #include "acme/platform/hyperlink.h"
@@ -197,7 +197,7 @@ namespace html
          if (m_fonta(i) == font)
             return i;
       }
-      auto pfont = ::place(new class font (font));
+      auto pfont = __new class font (font);
       pfont->create(this);
       m_fonta.add(pfont);
       pfont->m_iIndex = (i32)m_fonta.get_upper_bound();
@@ -295,7 +295,7 @@ namespace html
 
       }
 
-      m_pelement = ::place(new ::html::element ());
+      m_pelement = __new ::html::element ();
 
       m_pelement->initialize_html_elemental(this);
 

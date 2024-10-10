@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "check.h"
-#include "acme/primitive/data/property_container.h"
-#include "acme/primitive/primitive/action_context.h"
+#include "acme/prototype/data/property_container.h"
+#include "acme/prototype/prototype/action_context.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "apex/user/_user.h"
 //#endif

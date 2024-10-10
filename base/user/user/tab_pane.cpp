@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "tab.h"
 #include "tab_pane.h"
-//#include "acme/primitive/text/_.h"
+//#include "acme/prototype/text/_.h"
 #include "aura/graphics/draw2d/graphics_extension.h"
 #include "aura/graphics/draw2d/brush.h"
 
@@ -60,7 +60,7 @@ namespace user
       __construct(m_pbrushFillSel);
       __construct(m_pbrushFillHover);
 
-      m_pitemClose = ::place(new ::item(e_element_close_tab_button));
+      m_pitemClose = __new ::item(e_element_close_tab_button);
 
       //return estatus;
 

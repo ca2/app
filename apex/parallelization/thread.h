@@ -15,7 +15,7 @@ class message_queue;
 namespace user
 {
 
-   using primitive_array = ::pointer_array < ::user::primitive >;
+   using interaction_base_array = ::pointer_array < ::user::interaction_base >;
 
 } // namespace user
 
@@ -63,7 +63,7 @@ public:
    bool                                               m_bDedicated;
    bool                                               m_bPreferLessGraphicsParallelization;
    bool                                               m_bThreadToolsForIncreasedFps;
-   ::pointer < ::user::primitive_array >              m_puserprimitiveaThread;
+   ::pointer < ::user::interaction_base_array >       m_puserinteractionbaseaThread;
    ::pointer< ::mutex >                               m_pmutexThreadUiPtra;
    single_lock *                                      m_pslUser;
    static bool                                        s_bAllocReady;
@@ -72,14 +72,13 @@ public:
    ::pointer<manual_reset_event>                      m_peventStarted;
    ::pointer<manual_reset_event>                      m_peventSync;
    ::pointer<manual_reset_event>                      m_peventReady;
-   ::pointer<manual_reset_event>                      m_peventFinished;
 
    enum_id                                            m_atomContextReference;
 
    bool                                               m_bAuraMessageQueue;
    bool                                               m_bReady;
-   ::pointer<::user::primitive>                       m_puserprimitiveMain;           // Main interaction_impl (usually same psystem->m_puiMain)
-   ::pointer<::user::primitive>                       m_puserprimitiveActive;         // Active Main interaction_impl (may not be m_puiMain)
+   ::pointer<::user::interaction_base>                       m_puserprimitiveMain;           // Main interaction_impl (usually same psystem->m_puiMain)
+   ::pointer<::user::interaction_base>                       m_puserprimitiveActive;         // Active Main interaction_impl (may not be m_puiMain)
    bool                                               m_bSimpleMessageLoop;
    bool                                               m_bZipIsDir2;
 
@@ -165,7 +164,7 @@ public:
    void post_message(oswindow oswindow, const ::atom & atom, wparam wParam, lparam lParam);
 
 
-   ::user::primitive_array & userprimitivea();
+   ::user::interaction_base_array & userprimitivea();
 
 
    void destroy() override;
@@ -309,15 +308,15 @@ public:
 
    virtual void process_message_filter(i32 code, ::message::message * pmessage);
 
-   // virtual void add(::user::primitive * pinteraction);
-   //virtual void erase(::user::primitive * pinteraction);
+   // virtual void add(::user::interaction_base * pinteraction);
+   //virtual void erase(::user::interaction_base * pinteraction);
    //virtual ::collection::count get_ui_count();
-   //virtual ::user::primitive * get_ui(::collection::index iIndex);
-   //virtual void set_timer(::user::primitive * pinteraction, uptr uEvent, ::u32 nEllapse);
-   //virtual void unset_timer(::user::primitive * pinteraction, uptr uEvent);
+   //virtual ::user::interaction_base * get_ui(::collection::index iIndex);
+   //virtual void set_timer(::user::interaction_base * pinteraction, uptr uEvent, ::u32 nEllapse);
+   //virtual void unset_timer(::user::interaction_base * pinteraction, uptr uEvent);
    //virtual void set_auto_delete(bool bAutoDelete = true);
-   virtual ::user::primitive * get_active_user_primitive();
-   virtual void set_active_user_primitive(::user::primitive * pinteraction);
+   virtual ::user::interaction_base * get_active_user_prototype();
+   virtual void set_active_user_prototype(::user::interaction_base * pinteraction);
    //virtual void step_timer();
    //virtual bool on_run_step();
 
@@ -422,9 +421,12 @@ public:
    ::pointer<::task>branch_synchronously(const create_task_attributes & createtaskattributes = nullptr) override;
 
 
+   virtual void stop_task() override;
+
    virtual void inline_init();
    virtual void inline_term();
-
+   
+   using task::post;
    virtual void post(::message::message * pmessage);
 
    virtual void handle_posted_messages();

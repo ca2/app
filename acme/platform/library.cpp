@@ -992,7 +992,7 @@ namespace acme
 
       m_pfnFactory(pfactory);
 
-      informationf("Factory has succeeded for library : \"%s\"", strName.c_str());
+      debugf("Factory has succeeded for library : \"%s\"", strName.c_str());
 
    }
 

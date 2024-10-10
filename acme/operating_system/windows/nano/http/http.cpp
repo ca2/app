@@ -7,7 +7,7 @@
 #include "connect.h"
 #include "get.h"
 #include "acme/platform/system.h"
-#include "acme/primitive/primitive/url.h"
+#include "acme/prototype/prototype/url.h"
 
 
 namespace windows
@@ -63,7 +63,7 @@ namespace windows
       //   }
 
 
-         void http::sync(::nano::http::get * pget)
+         void http::perform(::nano::http::get * pget)
          {
 
             //using namespace std;

@@ -3,7 +3,7 @@
 
 #include "file.h"
 #include "stream.h"
-#include "acme/primitive/primitive/memory.h"
+#include "acme/prototype/prototype/memory.h"
 
 
 //// template < typename FILE >

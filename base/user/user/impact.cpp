@@ -589,7 +589,7 @@ namespace user
 
 
    /* trans
-   i32 impact::OnMouseActivate(::user::interaction_impl * pDesktopWnd, ::u32 nHitTest, const ::atom & atom)
+   i32 impact::OnMouseActivate(::windowing::window * pDesktopWnd, ::u32 nHitTest, const ::atom & atom)
    {
    i32 nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
@@ -879,7 +879,7 @@ namespace user
 
       ::pointer<::request>pcreate(e_create, this);
 
-      auto pusersystem = ::place(new ::user::system());
+      auto pusersystem = __new ::user::system();
 
       m_pusersystem = pusersystem;
 
@@ -975,7 +975,7 @@ namespace user
 
       ::pointer<::request>pcreate(e_create_new, pdocument);
 
-      auto pusersystem= ::place(new ::user::system());
+      auto pusersystem= __new ::user::system();
 
       pusersystem->m_typeatomNewImpact = typeatom;
 
@@ -1480,7 +1480,7 @@ namespace user
    ASSERT(pContext->m_typeatomNewImpact != nullptr);
 
    // Note: can be a interaction_impl with post_non_client_destroy self cleanup
-   ::user::interaction_impl * pimpact = (puserinteractionParent->psystem->alloc(pContext->m_typeatomNewImpact));
+   ::windowing::window * pimpact = (puserinteractionParent->psystem->alloc(pContext->m_typeatomNewImpact));
    if (pimpact == nullptr)
    {
    TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n",

@@ -2,7 +2,7 @@
 #include "place_holder.h"
 #include "acme/constant/message.h"
 #include "acme/parallelization/synchronous_lock.h"
-#include "acme/primitive/geometry2d/_text_stream.h"
+#include "acme/prototype/geometry2d/_text_stream.h"
 #include "aura/user/user/interaction_array.h"
 
 
@@ -418,7 +418,7 @@ namespace user
    ::pointer<place_holder>place_holder::create_shadow_clone()
    {
 
-      ::pointer<place_holder>pholder = ::place(new place_holder());
+      ::pointer<place_holder>pholder = __new place_holder();
 
       if(pholder.is_null())
       {

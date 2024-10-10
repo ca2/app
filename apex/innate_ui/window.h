@@ -16,11 +16,11 @@ namespace innate_ui
    public:
 
 
-      window *                      m_pwindowParent;
-      ::pointer_array < window >    m_childa;
-      procedure_array   m_procedureaLayoutChildSize;
-      procedure_array   m_procedureaLayoutChildPosition;
-      procedure_array   m_procedureaLayoutParent;
+      window *                         m_pwindowParent;
+      ::pointer_array < window >       m_childa;
+      procedure_array                  m_procedureaLayoutChildSize;
+      procedure_array                  m_procedureaLayoutChildPosition;
+      procedure_array                  m_procedureaLayoutParent;
 
 
       window();
@@ -30,8 +30,6 @@ namespace innate_ui
       virtual void create_child(window * pwindowParent);
       virtual void destroy_window();
 
-      //virtual void set_size(const ::size_i32 & size);
-      
       virtual void center();
       virtual void show();
       virtual void hide();
@@ -48,8 +46,8 @@ namespace innate_ui
 
       virtual void set_icon(icon * picon);
 
-      virtual void post(const ::procedure & procedure);
-      virtual void sync(const ::procedure & procedure);
+      void _main_post(const ::procedure & procedure) override;
+      void _main_send(const ::procedure & procedure) override;
 
       virtual void defer_show_system_menu(::user::mouse * pmouse);
 

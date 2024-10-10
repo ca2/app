@@ -889,7 +889,7 @@
 ////
 ////   }
 ////
-////   pitem = ::place(new reverse_cache_item());
+////   pitem = __new reverse_cache_item();
 ////
 ////   pitem->m_address = address;
 ////

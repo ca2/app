@@ -3,8 +3,9 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/_collection.h"
-////#include "acme/primitive/primitive/object.h"
+#include "acme/windowing/display.h"
+#include "acme/prototype/geometry2d/_collection.h"
+////#include "acme/prototype/prototype/object.h"
 
 
 namespace windowing
@@ -13,7 +14,7 @@ namespace windowing
    // X11 contribution : a display may contain more than one monitor
 
    class CLASS_DECL_AURA display :
-      virtual public ::object
+      virtual public ::acme::windowing::display
    {
    public:
 
@@ -27,7 +28,7 @@ namespace windowing
       pointer_array < monitor >      m_monitora;
 
 
-      ::pointer<windowing>         m_pwindowing;
+      //::pointer<windowing>         m_pwindowing;
       bool                          m_bSystemSynchronizedScreen;
 
       ::collection::index                         m_iMainMonitor;
@@ -36,15 +37,17 @@ namespace windowing
 
       ::rectangle_i32_array         m_rectangleaWorkAreas;
       ::string                      m_strDarkModeAnnotation;
-      ::point_i32                   m_pointCursor2;
 
 
 
       display();
       ~display() override;
 
+      
+      void on_initialize_particle() override;
 
-      virtual void initialize_display(::windowing::windowing * pwindowing);
+
+      virtual void open_display();
       virtual void finalize_display();
 
       virtual iptr get_os_data() const;
@@ -54,7 +57,7 @@ namespace windowing
 
       virtual float get_dpi();
 
-      virtual void open_display();
+      //void open_display() override;
       virtual void close_display();
 
       virtual bool set_main_monitor(::collection::index iMonitor);

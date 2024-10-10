@@ -1086,7 +1086,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 //////   class create_struct;
 //////   class command;
 //////   class interaction_impl;
-//////   class primitive;
+//////   class prototype;
 //////   class frame;
 ////////   class menu;
 //////   //class controller;
@@ -1096,7 +1096,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 //////   //class impact_data;
 //////   class printer;
 ////////   class impact;
-//////   class primitive;
+//////   class prototype;
 //////   class interaction;
 //////   class layout;
 //////   //class place_holder;
@@ -1147,10 +1147,10 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////   class system;
 //   //class command;
 //   class interaction_impl;
-//   class primitive;
+//   class prototype;
 //   class frame;
 //   class printer;
-//   class primitive;
+//   class prototype;
 //   class interaction;
 //   class impact;
 //   class interaction_layout;
@@ -1421,7 +1421,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////#include "aura/primitive/primitive/uid.h"
 ////
 ////
-////namespace primitive
+////namespace prototype
 ////{
 ////
 ////
@@ -1437,7 +1437,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////   class reference;
 ////
 ////
-////} // namespace primitive
+////} // namespace prototype
 ////
 ////
 ////#define __member(TYPE) ::primitive::member < TYPE >

@@ -94,7 +94,7 @@ namespace simple_ui
 
 
 
-typedef ::pointer<::user::interaction_impl>window_pointer;
+typedef ::pointer<::windowing::window>window_pointer;
 
 
 

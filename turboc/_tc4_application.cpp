@@ -64,7 +64,7 @@ namespace tc4
       this,
       "main",
       ::type < ::tc4::document >(),
-      ::type < ::tc4::frame >(),       // top level SDI frame::user::interaction_impl
+      ::type < ::tc4::frame >(),       // top level SDI frame::windowing::window
       ::type < ::tc4::pane_impact >());
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseMain = pDocTemplate;
@@ -72,7 +72,7 @@ namespace tc4
       this,
       "main",
       ::type < ::tc4::document >(),
-      ::type < ::tc4::frame >(),       // top level SDI frame::user::interaction_impl
+      ::type < ::tc4::frame >(),       // top level SDI frame::windowing::window
       ::type < ::tc4::main_impact >());
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseImpact = pDocTemplate;
@@ -80,7 +80,7 @@ namespace tc4
       this,
       "main",
       ::type < ::tc4::document >(),
-      ::type < ::tc4::frame >(),       // top level SDI frame::user::interaction_impl
+      ::type < ::tc4::frame >(),       // top level SDI frame::windowing::window
       ::type < ::tc4::switcher_impact >());
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseSwitcher = pDocTemplate;

@@ -2,12 +2,13 @@
 // recreated by Camilo 2021-01-28 22:35 <3TBS, Mummi and bilbo!!
 // hi5 contribution...
 #include "framework.h"
+#include "display.h"
 #include "acme/exception/interface_only.h"
 #include "acme/parallelization/asynchronous.h"
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
 #include "aura/platform/application.h"
-#include "aura/user/user/interaction_impl.h"
+//#include "aura/user/user/interaction_impl.h"
 #include "aura/message/user.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/user.h"
@@ -18,6 +19,7 @@
 #include "aura/windowing/cursor_manager.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/keyboard.h"
+#include "aura/windowing/text_editor_interface.h"
 
 
 namespace windowing
@@ -29,7 +31,7 @@ namespace windowing
 
       m_psandboxwindowing = nullptr;
 
-      m_pWindowing4 = nullptr;
+      //m_pWindowing4 = nullptr;
 
       m_bSettingCursorMatter = false;
 
@@ -38,6 +40,14 @@ namespace windowing
 
    windowing::~windowing()
    {
+
+   }
+
+
+   ::windowing::windowing * windowing::windowing_windowing()
+   {
+
+      return this;
 
    }
 
@@ -175,6 +185,32 @@ namespace windowing
 //   }
 
 
+   ::windowing::display * windowing::display()
+   {
+
+      auto pacmedisplay = acme_display();
+
+      if (::is_null(pacmedisplay))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pdisplay = dynamic_cast <::windowing::display *>(pacmedisplay);
+
+      if (::is_null(pdisplay))
+      {
+
+         return nullptr;
+
+      }
+
+      return pdisplay;
+
+   }
+
+
    ::windowing::window * windowing::window(oswindow oswindow)
    {
 
@@ -247,12 +283,12 @@ namespace windowing
    }
 
 
-   ::windowing::display * windowing::display()
-   {
+   //::windowing::display * windowing::display()
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-   }
+   //}
 
 
    void windowing::__hook_on_idle(class display * pdisplay)
@@ -294,7 +330,7 @@ namespace windowing
    }
 
 
-   ::windowing::window_base * windowing::get_keyboard_focus(::thread *)
+   ::acme::windowing::window * windowing::get_keyboard_focus(::thread *)
    {
 
       return nullptr;
@@ -310,14 +346,6 @@ namespace windowing
       //puserinteraction->client_to_screen()(p);
 
       return p;
-
-   }
-
-
-   ::windowing::window * windowing::get_mouse_capture(::thread *)
-   {
-
-      return nullptr;
 
    }
 
@@ -368,28 +396,69 @@ namespace windowing
    }
 
 
-   void windowing::set_mouse_capture(::thread *, ::windowing::window * pwindow)
+    ::windowing::window * windowing::get_mouse_capture(::thread * pthread)
    {
 
-      throw ::interface_only();
+       return m_pwindowMouseCapture;
 
    }
 
 
-//   ::windowing::window * windowing::get_mouse_capture(::thread *)
-//   {
-//
-//      throw ::interface_only();
-//
-//      return nullptr;
-//
-//   }
-
-
-   void windowing::release_mouse_capture(::thread *)
+    void windowing::set_mouse_capture(::thread * pthread, ::windowing::window * pwindow)
    {
 
-      throw ::interface_only();
+       m_pwindowMouseCapture = pwindow;
+
+   }
+
+
+   bool windowing::has_mouse_capture(::thread * pthread, ::windowing::window * pwindow)
+   {
+
+      if(::is_null(pwindow))
+      {
+
+         return false;
+
+      }
+
+      auto pwindowCapture = get_mouse_capture(pthread);
+
+      if(pwindowCapture != pwindow)
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   bool windowing::is_mouse_captured(::thread * pthread, ::windowing::window * pwindowUnusedQuestion)
+   {
+
+       auto pwindowCapture = get_mouse_capture(pthread);
+
+       if(::is_null(pwindowCapture))
+       {
+
+           return false;
+
+       }
+
+       return true;
+
+   }
+
+
+   void windowing::release_mouse_capture(::thread * pthread, ::windowing::window * pwindow)
+   {
+
+       ASSERT(m_pwindowMouseCapture == pwindow);
+
+       m_pwindowMouseCapture.release();
 
    }
 
@@ -514,7 +583,7 @@ namespace windowing
 
 
 
-   window *windowing::new_message_window(::user::interaction_impl *pimpl)
+   ::pointer < ::windowing::window > windowing::new_message_window()
    {
 
       throw ::interface_only();
@@ -524,22 +593,22 @@ namespace windowing
    }
 
 
-   ::pointer < ::windowing::window > windowing::get_new_window(::user::interaction_impl * puserinteractionimpl)
+   ::pointer < ::windowing::window > windowing::get_new_window()
    {
       
-      auto pwindow = puserinteractionimpl->__create < ::windowing::window >();
+      auto pwindow = __create < ::windowing::window >();
 
       return pwindow;
 
    }
 
 
-   window *windowing::new_window(::user::interaction_impl *puserinteractionimpl)
+   ::pointer < ::windowing::window > windowing::new_window()
    {
 
-      auto pwindow = get_new_window(puserinteractionimpl);
+      auto pwindow = get_new_window();
 
-      pwindow->call_create_window(puserinteractionimpl);
+      pwindow->create_window();
 
       return pwindow;
 
@@ -564,16 +633,7 @@ namespace windowing
 
       }
 
-      auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
-
-      if (!puserinteractionimpl)
-      {
-
-         throw ::exception(error_wrong_state);
-
-      }
-
-      puserinteractionimpl->message_handler(pusermessage);
+      pwindow->message_handler(pusermessage);
 
       return true;
 
@@ -697,6 +757,13 @@ namespace windowing
    {
 
       return false;
+
+   }
+
+
+   void windowing::set_dark_mode(bool bDarkMode)
+   {
+
 
    }
 

@@ -54,54 +54,54 @@ namespace sockets_bsd
 
       /** set flush before close to make a tcp socket completely is_empty its
       output buffer before closing the connection. */
-      void SetFlushBeforeClose(bool = true);
+      void SetFlushBeforeClose(bool = true) override;
 
       /** Check flush before status.
       \return true if the socket should send all data before closing */
-      bool GetFlushBeforeClose();
+      bool GetFlushBeforeClose() override;
 
       /** Define number of connection retries (tcp only).
       n = 0 - no retry
       n > 0 - number of retries
       n = -1 - unlimited retries */
-      void SetMaximumConnectionRetryCount(i32 n);
+      void SetMaximumConnectionRetryCount(i32 n) override;
 
       /** get number of maximum connection retries (tcp only). */
-      i32 GetMaximumConnectionRetryCount();
+      i32 GetMaximumConnectionRetryCount() override;
 
       /** Increase number of actual connection retries (tcp only). */
-      void IncrementConnectionRetryCount();
+      void IncrementConnectionRetryCount() override;
 
       /** get number of actual connection retries (tcp only). */
-      i32 GetConnectionRetryCount();
+      i32 GetConnectionRetryCount() override;
 
       /** Reset actual connection retries (tcp only). */
-      void ResetConnectionRetryCount();
+      void ResetConnectionRetryCount() override;
 
       // e_list_call_on_connect
 
       /** Instruct socket to call OnConnect callback next sockethandler cycle. */
-      void SetCallOnConnect(bool x = true);
+      void SetCallOnConnect(bool x = true) override;
 
       /** Check call on connect flag.
       \return true if OnConnect() should be called a.s.a.point_i32 */
-      bool CallOnConnect();
+      bool CallOnConnect() override;
 
       // e_list_retry
 
       /** set flag to initiate a connection attempt after a connection timeout. */
-      void SetRetryClientConnect(bool x = true);
+      void SetRetryClientConnect(bool x = true) override;
 
       /** Check if a connection attempt should be made.
       \return true when another attempt should be made */
-      bool RetryClientConnect();
+      bool RetryClientConnect() override;
 
 
       /** set shutdown status. */
-      void SetShutdownStatus(i32);
+      void SetShutdownStatus(i32) override;
 
       /** get shutdown status. */
-      i32 GetShutdownStatus();
+      i32 GetShutdownStatus() override;
 
       /** Returns IPPROTO_TCP or IPPROTO_SCTP */
       i32 Protocol() override;

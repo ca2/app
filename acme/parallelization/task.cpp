@@ -359,24 +359,24 @@ void task::main()
 
       run_posted_procedures();
 
-      // ITCN?   Is This Code Needed?
+      //// ITCN?   Is This Code Needed?
 
-      auto windowa = system()->acme_windowing()->m_windowa;
+      //auto windowa = system()->acme_windowing()->m_windowa;
 
-      //while (::acme::windowing::window::nanowindowimplementationa().has_element())
-      {
+      ////while (::acme::windowing::window::nanowindowimplementationa().has_element())
+      //{
 
-         //for (auto & pimplementation : ::acme::windowing::window::nanowindowimplementationa())
-         for (auto & pwindowbase : windowa)
-         {
+      //   //for (auto & pimplementation : ::acme::windowing::window::nanowindowimplementationa())
+      //   for (auto & pwindowbase : windowa)
+      //   {
 
-            //pwindowbase->implementation_message_loop_step();
+      //      //pwindowbase->implementation_message_loop_step();
 
-         }
+      //   }
 
-      }
+      //}
 
-      // ITCN?-END   Is This Code Needed? -end
+      //// ITCN?-END   Is This Code Needed? -end
 
    }
 

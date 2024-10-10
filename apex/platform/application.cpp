@@ -6128,10 +6128,10 @@ namespace apex
    //}
 
 
-   void application::on_request(::request * prequest)
-   {
+   //void application::on_request(::request * prequest)
+   //{
 
-   }
+   //}
 
 
    //void     application::run()

@@ -311,7 +311,7 @@ namespace apex
       virtual bool defer_process_activation_message();
 
 
-      virtual void on_request(::request * prequest) override;
+      //virtual void on_request(::request * prequest) override;
 
 
 

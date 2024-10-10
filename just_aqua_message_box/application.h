@@ -1,7 +1,7 @@
 #pragma once
 
 
-
+#include "just_message_box/application.h"
 #include "aqua/platform/application.h"
 
 
@@ -10,6 +10,7 @@ namespace app_just_aqua_message_box
 
 
    class CLASS_DECL_APP_JUST_AQUA_MESSAGE_BOX_APP application :
+      virtual public ::app_just_message_box::application,
       virtual public ::aqua::application
    {
    public:
@@ -26,7 +27,7 @@ namespace app_just_aqua_message_box
       //void term_application() override;
 
 
-      void on_request(::request * prequest) override;
+      //void on_request(::request * prequest) override;
 //
 //
 //#ifdef _DEBUG
@@ -37,7 +38,7 @@ namespace app_just_aqua_message_box
 //#endif
 
 
-      virtual void show_message_box();
+      //virtual void show_message_box();
 
 
    };

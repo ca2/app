@@ -60,12 +60,12 @@ namespace app_just_aqua_message_box
    //}
 
 
-   void application::on_request(::request * prequest)
-   {
+   //void application::on_request(::request * prequest)
+   //{
 
-      show_message_box();
+   //   show_message_box();
 
-   }
+   //}
 
 
 //#ifdef _DEBUG
@@ -90,72 +90,72 @@ namespace app_just_aqua_message_box
 //#endif
 
 
-   void application::show_message_box()
-   {
+   //void application::show_message_box()
+   //{
 
-      while (true)
-      {
+   //   while (true)
+   //   {
 
 
-         auto pmessagebox = __initialize_new ::message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
+   //      auto pmessagebox = __initialize_new ::message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
 
-         pmessagebox->sync();
+   //      pmessagebox->sync();
 
-         auto result = pmessagebox->m_payloadResult.as_atom().m_edialogresult;
+   //      auto result = pmessagebox->m_payloadResult.as_atom().m_edialogresult;
 
-         if (result == e_dialog_result_cancel)
-         {
+   //      if (result == e_dialog_result_cancel)
+   //      {
 
-            _001TryCloseApplication();
+   //         _001TryCloseApplication();
 
-            break;
+   //         break;
 
-         }
-         else  if (result == e_dialog_result_no)
-         {
+   //      }
+   //      else  if (result == e_dialog_result_no)
+   //      {
 
-            auto pmessagebox = __initialize_new ::message_box("No!", nullptr, e_message_box_ok);
+   //         auto pmessagebox = __initialize_new ::message_box("No!", nullptr, e_message_box_ok);
 
-            pmessagebox->sync();
+   //         pmessagebox->sync();
 
-         }
-         else  if (result == e_dialog_result_yes)
-         {
+   //      }
+   //      else  if (result == e_dialog_result_yes)
+   //      {
 
-            auto pmessagebox = __initialize_new ::message_box("Yes!!", nullptr, e_message_box_ok);
+   //         auto pmessagebox = __initialize_new ::message_box("Yes!!", nullptr, e_message_box_ok);
 
-         pmessagebox->sync();
+   //      pmessagebox->sync();
 
-            _001TryCloseApplication();
+   //         _001TryCloseApplication();
 
-            break;
+   //         break;
 
-         }
+   //      }
 
-      }
+   //   }
 
-   
-      //pprocess->then([this](auto future)
-      //               {
+   //
+   //   //pprocess->then([this](auto future)
+   //   //               {
 
-      //                  if (future->m_edialogresult == e_dialog_result_yes)
-      //                  {
+   //   //                  if (future->m_edialogresult == e_dialog_result_yes)
+   //   //                  {
 
-      //                     auto papp = get_app();
+   //   //                     auto papp = get_app();
 
-      //                     papp->_001TryCloseApplication();
+   //   //                     papp->_001TryCloseApplication();
 
-      //                  }
-      //                  else
-      //                  {
+   //   //                  }
+   //   //                  else
+   //   //                  {
 
-      //                     show_message_box();
+   //   //                     show_message_box();
 
-      //                  }
+   //   //                  }
 
-      //               });
+   //   //               });
 
-   }
+   //}
 
 
 } // namespace app_just_aqua_message_box

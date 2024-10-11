@@ -3361,6 +3361,10 @@ namespace windowing
 
          pinteraction->m_bMessageWindow = true;
 
+         m_pacmeuserinteraction = pinteraction;
+
+         m_puserinteraction = pinteraction;
+
          //create_host(pinteraction, e_parallelization_synchronous);
          //create_host(pinteraction);
          create_window();
@@ -3837,7 +3841,7 @@ namespace windowing
 
       }
 
-      m_puserthread = ::get_task();
+      //m_puserthread = ::get_task();
 
       //m_pthreadUserImpl = m_puserthread;
 
@@ -6744,14 +6748,14 @@ namespace windowing
    //}
 
 
-   bool window::_is_window()
-   {
+   //bool window::_is_window()
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    //atom window::SetDlgCtrlId(atom atom)

@@ -28,6 +28,7 @@
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/graphics/image/context.h"
 #include "aura/graphics/image/drawing.h"
+#include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/message/user.h"
 //#include "aura/user/user/interaction_impl.h"
@@ -525,7 +526,7 @@ namespace user
             if (pkey->m_ekey == ::user::e_key_p)
             {
 
-               ::pointer<::windowing::window>pimpl = m_pprimitiveimpl;
+               ::pointer<::windowing::window>pimpl = window();
 
                if (pimpl.is_set())
                {
@@ -1378,7 +1379,7 @@ namespace user
 
       //create_host(e_parallelization_asynchronous);
 
-      create_host();
+      create_window();
 
       //if (!create_host())
       //{
@@ -2003,9 +2004,9 @@ namespace user
 
 #ifdef DEBUG
 
-         auto psequencer = nano()->exception_message_box(exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
+         auto pmessagebox = __initialize_new ::message_box(exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
 
-         psequencer->do_synchronously();
+         pmessagebox->async();
 
 #endif
 
@@ -2017,9 +2018,9 @@ namespace user
 
          ::exception exception(error_catch_all_exception);
 
-         auto psequencer = nano()->exception_message_box(exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
+         auto pmessagebox = __initialize_new ::message_box(exception, "Failed to create toolbar \"" + idToolbar.as_string() + "\"");
 
-         psequencer->do_synchronously();
+         pmessagebox->async();
 
 #endif
 

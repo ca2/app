@@ -5,6 +5,7 @@
 #include "acme/constant/message.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "apex/parallelization/thread.h"
+#include "aura/user/user/interaction_thread.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/message/user.h"
@@ -95,7 +96,7 @@ namespace experience
 
       m_iConsiderMove = 0;
 
-      m_pframewindow->m_pthreadUserInteraction->m_emessageaGetLast.add(e_message_mouse_move);
+      m_pframewindow->window()->m_puserthread->m_emessageaGetLast.add(e_message_mouse_move);
 
       auto & edisplaySketch = m_pframewindow->layout().m_statea[::user::e_layout_sketch].m_edisplay;
 
@@ -339,7 +340,7 @@ namespace experience
 
       m_bMoving = false;
 
-      m_pframewindow->m_pthreadUserInteraction->m_emessageaGetLast.erase(e_message_mouse_move);
+      m_pframewindow->window()->m_puserthread->m_emessageaGetLast.erase(e_message_mouse_move);
 
       m_pframewindow->defer_release_mouse_capture();
 

@@ -344,7 +344,7 @@ namespace windowing
 
       //virtual void _show_window_unlocked(const ::e_display & edisplay, const ::e_activation & eactivation);
 
-      //virtual void set_user_interaction(::user::interaction *pinteraction);
+      //void set_user_interaction(::acme::user::interaction *pinteraction) override;
 
       void post_non_client_destroy() override;
 
@@ -1475,7 +1475,7 @@ namespace windowing
       //virtual void destroy_window();
 
 
-      virtual bool _is_window();
+      //virtual bool _is_window();
 
 
       //virtual ::lresult send_message(const ::atom & atom, ::wparam wparam = 0, ::lparam lparam = 0, const ::point_i32 & point = {});

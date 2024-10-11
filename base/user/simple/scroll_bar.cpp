@@ -1098,7 +1098,8 @@ void simple_scroll_bar::on_message_create(::message::message * pmessage)
 
    //}
 
-   update_drawing_objects();
+   throw todo;
+   //update_drawing_objects();
 
    pcreate->m_lresult = 0;
 
@@ -1419,10 +1420,10 @@ void simple_scroll_bar::UpdateBitmaps()
 //}
 
 
-void simple_scroll_bar::update_drawing_objects()
-{
-
-}
+//void simple_scroll_bar::update_drawing_objects()
+//{
+//
+//}
 
 
 class trw :
@@ -1444,7 +1445,10 @@ public:
       //create_host(e_parallelization_synchronous);
       // 
       // 
-      create_host();
+
+      throw todo;
+
+      //create_host();
       //{
 
       //   informationf("created trw");

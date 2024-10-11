@@ -733,9 +733,9 @@ namespace user
       catch (const ::exception & exception)
       {
 
-         auto psequencer = nano()->exception_message_console(exception);
+         auto pmessagebox = __new ::message_box(exception);
 
-         psequencer->do_asynchronously();
+         pmessagebox->async();
 
          return false;
 

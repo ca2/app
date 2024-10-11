@@ -390,7 +390,7 @@ namespace axis
 //
 //                        auto pmessagebox = __initialize_new ::message_box(nullptr, "papp \"" + strAppId + "\" cannot be created.\n\nThe library \"" + strLibrary + "\" could not be loaded. " + plibrary->m_strMessage, "ca2", MB_ICONERROR);
 
-pmessagebox->sync();
+//pmessagebox->sync();
 //
 //#endif
 //

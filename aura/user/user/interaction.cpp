@@ -2006,12 +2006,12 @@ namespace user
 
          }
 
-         auto pwindow = pinteraction->window();
+         auto pwindow = pinteraction->m_pacmewindowingwindow;
          
          if (::is_set(pwindow))
          {
 
-            pwindow->set_need_redraw(rectanglea, function);
+            window()->set_need_redraw(rectanglea, function);
 
          }
 
@@ -2147,7 +2147,7 @@ namespace user
          //
          //         payload("bQueuedPostRedraw") = true;
 
-         auto pwindow = window();
+         auto pwindow = m_pacmewindowingwindow;
 
          if (::is_set(pwindow))
          {
@@ -7997,7 +7997,12 @@ namespace user
 
       //}
 
-      send_message(e_message_change_experience);
+      if (!is_message_only_window())
+      {
+
+         send_message(e_message_change_experience);
+
+      }
 
       if (::is_null(get_parent()))
       {
@@ -17386,66 +17391,6 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    }
 
 
-   void interaction::create_message_queue(const ::string & lpszName)
-   {
-
-      if (is_window())
-      {
-
-         start_destroying_window();
-
-      }
-
-      //try
-      //{
-
-      m_bUserElementOk = true;
-
-      //window() = __create<interaction_impl>();
-
-      //if (window() == nullptr)
-      //{
-
-      //   m_bUserElementOk = false;
-
-      //   return;
-
-      //}
-
-      m_bMessageWindow = true;
-
-      //window()->m_puserinteraction = this;
-
-      //m_pdescriptor.defer_create(this);
-
-      //window()->create_message_queue(this, lpszName);
-
-      //if (!window()->create_message_queue(this, lpszName))
-      //{
-
-      //   //m_threadptra.erase_all();
-
-      //   m_bUserElementOk = false;
-
-      //   window().release();
-
-      //   return false;
-
-      //}
-
-      //}
-      //catch (...)
-      //{
-
-      //   m_bUserElementOk = false;
-
-      //   return false;
-
-      //}
-
-      //return true;
-
-   }
 
 
    void interaction::_raw_client_to_screen(::point_i32 & point)
@@ -21196,7 +21141,18 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       auto pwindow = window();
 
-      pwindow->create_window();
+      if (m_bMessageWindow)
+      {
+
+         pwindow->create_message_queue(this, m_strName);
+
+      }
+      else
+      {
+       
+         pwindow->create_window();
+
+      }
 
    }
 
@@ -21232,6 +21188,75 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       return pusergraphicsthread;
 
    }
+
+
+   void interaction::create_message_queue(const ::string& strName)
+   {
+
+      //if (is_window())
+      //{
+
+      //   start_destroying_window();
+
+      //}
+
+      ////try
+      ////{
+
+      ////m_bUserElementOk = true;
+
+      ////window() = __create<interaction_impl>();
+
+      //if (!window())
+      //{
+
+      //   //m_bUserElementOk = false;
+
+      //   throw ::exception(error_no_memory);
+
+      //}
+
+      m_bMessageWindow = true;
+
+      m_strName = strName;
+
+      create_window();
+
+      //window()->m_puserinteraction = this;
+
+      //m_pdescriptor.defer_create(this);
+
+      //window()->create_message_queue(this, lpszName);
+
+      //window()->create_message_queue(this, strName);
+      //{
+
+      //   //m_threadptra.erase_all();
+
+      m_bUserElementOk = true;
+
+      //m_pacmewindowingwindow.release();
+
+     //return;
+
+      //throw ::exception(error_failed);
+
+   //}
+
+   //}
+   //catch (...)
+   //{
+
+   //   m_bUserElementOk = false;
+
+   //   return false;
+
+   //}
+
+   //return true;
+
+   }
+
 
 
    ::collection::index interaction::good_iconify(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet,

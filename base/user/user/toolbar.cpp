@@ -15,6 +15,7 @@
 #include "aura/graphics/image/context.h"
 //#include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/frame.h"
+#include "aura/windowing/window.h"
 #include "aura/message/user.h"
 
 
@@ -1575,7 +1576,8 @@ namespace user
    void toolbar::on_message_left_button_double_click(::message::message * pmessage)
    {
 
-      auto pwindowimpl = get_host_user_interaction_impl();
+      //auto pwindowimpl = get_host_user_interaction_impl();
+      auto pwindowimpl = window();
 
       if (::is_set(pwindowimpl->m_pitemLButtonDown) && pwindowimpl->m_pitemLButtonDown->m_item.m_iItem >= 0)
       {

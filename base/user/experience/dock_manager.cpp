@@ -7,6 +7,7 @@
 #include "acme/constant/message.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "apex/parallelization/thread.h"
+#include "aura/user/user/interaction_thread.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
@@ -371,7 +372,7 @@ namespace experience
 
       auto pbutton = dock_button();
 
-      auto pwindowimpl = m_pframewindow->get_host_user_interaction_impl();
+      auto pwindowimpl = m_pframewindow->window();
 
       pwindowimpl->m_puiLastLButtonDown = pbutton;
 
@@ -420,7 +421,7 @@ namespace experience
 
       m_bDocking = true;
 
-      m_pframewindow->m_pthreadUserInteraction->m_emessageaGetLast.add(e_message_mouse_move);
+      m_pframewindow->window()->m_puserthread->m_emessageaGetLast.add(e_message_mouse_move);
 
       m_pframewindow->on_start_layout_experience(e_layout_experience_docking);
 
@@ -478,7 +479,7 @@ namespace experience
 
       }
 
-      m_pframewindow->m_pthreadUserInteraction->m_emessageaGetLast.erase(e_message_mouse_move);
+      m_pframewindow->window()->m_puserthread->m_emessageaGetLast.erase(e_message_mouse_move);
 
       m_bDocking = false;
 

@@ -327,9 +327,9 @@ namespace user
       catch (const ::exception & exception)
       {
 
-         auto psequencer = nano()->exception_message_console(exception);
+         auto pmessagebox = __initialize_new ::message_box(exception);
 
-         psequencer->do_asynchronously();
+         pmessagebox->async();
 
          return false;
 
@@ -643,7 +643,13 @@ namespace user
 
          //create_host(e_parallelization_asynchronous);
          // 
-         create_host();
+         
+         
+         throw todo;
+         //create_host();
+
+
+
          //{
 
          //   return false;
@@ -1322,11 +1328,11 @@ namespace user
 
       m_pmenuSubMenu->update_track_rectangle(rectangle);
       
-      auto ptrackpopup = ::place( new ::menu::track_popup (pusermenu,
+      auto ptrackpopup = __new ::menu::track_popup(pusermenu,
                                                               pmenuitem->m_puserinteraction,
                                                               m_pchannelNotify,
                                                             mouse_cursor_position(),
-                                                              rectangle));
+                                                              rectangle);
 
       m_pmenuSubMenu->track_popup_menu(ptrackpopup);
 

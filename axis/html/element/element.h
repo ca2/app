@@ -2,7 +2,7 @@
 
 
 #include "axis/html/impl/_.h"
-#include "apex/user/user/prototype.h"
+#include "apex/user/user/interaction_base.h"
 
 
 namespace css

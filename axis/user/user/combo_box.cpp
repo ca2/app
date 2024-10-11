@@ -1034,7 +1034,7 @@ namespace user
          if (itemCurrent >= 0)
          {
 
-            set_current_item(__new ::item(e_element_item, itemCurrent)), actioncontext;
+            set_current_item(__new ::item(e_element_item, itemCurrent), actioncontext);
 
          }
          else if (m_bEdit)

@@ -9,6 +9,7 @@
 #include "aura/message/user.h"
 #include "aura/platform/session.h"
 #include "aura/user/user/size_parent_layout.h"
+#include "aura/windowing/window.h"
 
 
 namespace user
@@ -590,7 +591,7 @@ namespace user
       
       ::pointer < ::message::ctl_color > pctlcolor(pmessage);
 
-      auto pinteraction = ::user::message_user_interaction(pctlcolor);
+      auto pinteraction = pctlcolor->window()->user_interaction();
       
       if (::is_set(pinteraction) && pinteraction->OnChildNotify(pctlcolor))
       {

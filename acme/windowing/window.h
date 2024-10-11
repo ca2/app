@@ -141,7 +141,7 @@ namespace acme
 
          void set_cursor(enum_cursor ecursor) override;
 
-
+         virtual bool _is_window();
 
 
          ::pointer<::nano::graphics::device>create_device();

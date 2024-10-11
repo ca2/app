@@ -241,7 +241,7 @@ namespace experience
 
          auto psession = get_session();
 
-         if(::user::message_user_interaction(pkey) == this)
+         if(pkey->window()->user_interaction() == this)
          {
 
             if (pmessage->m_atom == e_message_key_down || pmessage->m_atom == e_message_sys_key_down)
@@ -2391,7 +2391,7 @@ namespace experience
 
          //auto pwindow = window();
 
-         pointCursor = m_pwindow->m_pointCursor2;
+         pointCursor = window()->m_pointCursor2;
 
       }
 

@@ -1757,7 +1757,9 @@ namespace user
          if(top_level() != nullptr)
          {
 
-            top_level()->EndModalLoop(e_dialog_result_ok);
+            throw todo;
+
+            //top_level()->set_dialog_result(e_dialog_result_ok);
 
          }
 

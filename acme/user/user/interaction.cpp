@@ -64,7 +64,7 @@ namespace acme
          //m_bArbitraryPositioning = false;
 
          //m_efont = e_font_sans;
-
+         m_uFlagsAcmeUserInteraction = 0;
          auto pitemClient = tool().defer_item(e_element_client);
 
          enable_drag(pitemClient, ::user::e_zorder_back);
@@ -1639,7 +1639,12 @@ namespace acme
 
                }
 
-               __construct(m_pacmewindowingwindow);
+               if (!m_bChild)
+               {
+
+                  __construct(m_pacmewindowingwindow);
+
+               }
 
             }
 

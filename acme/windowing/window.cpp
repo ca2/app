@@ -276,6 +276,8 @@ namespace acme
 
          m_pacmeuserinteraction = pacmeuserinteraction;
 
+         m_pacmeuserinteraction->m_pacmewindowingwindow = this;
+
       }
 
 
@@ -483,6 +485,14 @@ namespace acme
       {
 
          m_pacmeuserinteraction->set_cursor(ecursor);
+
+      }
+
+
+      bool window::_is_window()
+      {
+
+         return false;
 
       }
 

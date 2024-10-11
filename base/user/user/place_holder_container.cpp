@@ -36,6 +36,8 @@ namespace user
 
       }
 
+      pplaceholder->m_bChild = true;
+
       pplaceholder->display(e_display_normal);
 
       pplaceholder->place(rectangleCreate);

@@ -252,7 +252,7 @@ namespace user
       if (!factoryitem)
       {
 
-         factoryitem = ::place ( new ::factory::factory_item< IMPACT, IMPACT > ());
+         factoryitem = __new ::factory::factory_item< IMPACT, IMPACT > ();
 
       }
 

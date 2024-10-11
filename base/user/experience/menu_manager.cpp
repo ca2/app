@@ -56,12 +56,14 @@ namespace experience
 
       }
 
-      if (m_pframewindow == nullptr || ::user::message_user_interaction(pusermessage) != m_pframewindow)
-      {
+      //throw todo;
 
-         return;
+      //if (m_pframewindow == nullptr || ::user::message_user_interaction(pusermessage) != m_pframewindow)
+      //{
 
-      }
+      //   return;
+
+      //}
 
       if(pusermessage->m_atom == e_message_right_button_down)
       {

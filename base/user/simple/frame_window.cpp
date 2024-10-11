@@ -26,9 +26,10 @@
 #include "aura/graphics/image/fastblur.h"
 #include "aura/user/menu/track_popup.h"
 #include "aura/user/user/alpha_source.h"
-#include "aura/user/user/primitive_impl.h"
+//#include "aura/user/user/primitive_impl.h"
 #include "aura/windowing/display.h"
 #include "aura/windowing/icon.h"
+#include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "base/user/user/user.h"
 #include "base/platform/application.h"
@@ -452,14 +453,14 @@ void simple_frame_window::task_save_window_placement()
 
       }
 
-      if (!m_pprimitiveimpl)
-      {
+      //if (!m_pprimitiveimpl)
+      //{
 
-         break;
+      //   break;
 
-      }
+      //}
 
-      bool bDestroying = m_pprimitiveimpl->has_destroying_flag();
+      bool bDestroying = has_destroying_flag();
 
       if (bDestroying)
       {
@@ -1106,7 +1107,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
    if (!m_bShowTask)
    {
 
-      m_pprimitiveimpl->show_task(m_bShowTask);
+      show_task(m_bShowTask);
 
    }
 
@@ -1956,8 +1957,8 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 
    if (m_bModal)
    {
-
-      EndModalLoop(m_nModalResult);
+      throw todo;
+      //set_dialog_result(m_nModalResult);
 
       pmessage->m_bRet = true;
 
@@ -1967,7 +1968,8 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
    else if (top_level_frame() != nullptr && top_level_frame()->m_bModal)
    {
 
-      top_level_frame()->EndModalLoop(m_nModalResult);
+      throw todo;
+      //top_level_frame()->EndModalLoop(m_nModalResult);
 
       pmessage->m_bRet = true;
 
@@ -3599,14 +3601,14 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
          //auto puser = psession->baseuser();
          
          
-         auto ptrackpopup  = ::place( new  ::menu::track_popup (
+         auto ptrackpopup  = __new  ::menu::track_popup (
                                                            pmenu,
                                                            this,
                                                            m_pnotifyicon,
                                                            pointCursor,
                                                            squareHint//,
             //::menu::e_track_popup_outside_target
-                                                           ));
+                                                           );
 
          ptrackpopup->track([](){});
          
@@ -4406,12 +4408,12 @@ void simple_frame_window::OnUpdateToolWindow(bool bVisible)
 
    }
 
-   if (m_pprimitiveimpl == nullptr)
-   {
+   //if (m_pprimitiveimpl == nullptr)
+   //{
 
-      return;
+   //   return;
 
-   }
+   //}
 
 #ifdef LINUX
 
@@ -4420,7 +4422,7 @@ void simple_frame_window::OnUpdateToolWindow(bool bVisible)
 
 #else
 
-   m_pprimitiveimpl->show_task(bVisible && m_bShowTask
+   show_task(bVisible && m_bShowTask
       && !layout().is_iconic());
 
 #endif
@@ -4431,14 +4433,14 @@ void simple_frame_window::OnUpdateToolWindow(bool bVisible)
 void simple_frame_window::show_task(bool bShow)
 {
 
-   if (m_pprimitiveimpl == nullptr)
-   {
+   //if (m_pprimitiveimpl == nullptr)
+   //{
 
-      return;
+   //   return;
 
-   }
+   //}
 
-   m_pprimitiveimpl->show_task(bShow);
+   window()->show_task(bShow);
 
 }
 
@@ -4586,7 +4588,7 @@ void simple_frame_window::_on_configure_notify_unlocked(const ::rectangle_i32 & 
          if (m_bPendingSaveWindowRectangle)
          {
 
-            post_procedure([this]()
+            post([this]()
                            {
 
                               defer_save_window_placement();

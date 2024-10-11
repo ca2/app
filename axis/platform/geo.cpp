@@ -179,9 +179,9 @@ namespace geo
          catch (const ::exception & exception)
          {
 
-            auto psequencer = this->system()->acme_windowing()->exception_message_box(exception);
+            auto pmessagebox = __initialize_new ::message_box(exception);
 
-            psequencer->do_asynchronously();
+            pmessagebox->async();
 
          }
          catch (...)
@@ -189,9 +189,9 @@ namespace geo
 
             ::exception exception(error_catch_all_exception);
 
-            auto psequencer = this->nano()->exception_message_box(exception);
+            auto pmessagebox = __initialize_new ::message_box(exception);
 
-            psequencer->do_asynchronously();
+            pmessagebox->async();
 
          }
 

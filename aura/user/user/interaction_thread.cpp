@@ -925,7 +925,7 @@ namespace user
          while (task_get_run())
          {
 
-            if (m_puserinteraction)
+            if (m_puserinteraction && m_puserinteraction->m_pacmewindowingwindow)
             {
 
                m_puserinteraction->window()->process_messages();

@@ -47,7 +47,14 @@ namespace acme
       {
       public:
 
-
+         union
+         {
+            struct
+            {
+               bool     m_bChild : 1;
+            };
+            ::u32 m_uFlagsAcmeUserInteraction;
+         };
 
          ::pointer < ::acme::windowing::window >       m_pacmewindowingwindow;
          ::pointer < ::acme::user::interaction >       m_pacmeuserinteractionParent;

@@ -1716,9 +1716,9 @@ namespace base
 
 #ifdef DEBUG
 
-         auto psequencer = system()->acme_windowing()->exception_message_box(exception, "Failed to create form \"" + pathFile + "\"");
+         auto pmessagebox = __initialize_new ::message_box(exception, "Failed to create form \"" + pathFile + "\"");
 
-         psequencer->do_synchronously();
+         pmessagebox->async();
 
 #endif
 
@@ -1730,9 +1730,9 @@ namespace base
 
          ::exception exception(error_catch_all_exception);
 
-         auto psequencer = nano()->exception_message_box(exception, "Failed to create form \"" + pathFile + "\"");
+         auto pmessagebox = __initialize_new ::message_box(exception, "Failed to create form \"" + pathFile + "\"");
 
-         psequencer->do_synchronously();
+         pmessagebox->async();
 
 #endif
 
@@ -1797,11 +1797,11 @@ namespace base
 
          add_impact_system(
             atom,
-            ::place( new ::user::multiple_document_template (
+            __new ::user::multiple_document_template (
                "system/form",
                ::type < form_document >(),
                get_simple_child_frame_type_info(),
-               ::type < ::user::form_impact >())));
+               ::type < ::user::form_impact >()));
 
          return true;
 

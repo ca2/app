@@ -137,16 +137,19 @@ namespace user
          if (puserinteractionHost)
          {
 
-            auto pimpl = puserinteractionHost->m_pinteractionimpl;
 
-            if (pimpl)
-            {
+            throw todo;
 
-               synchronous_lock synchronouslock(pimpl->synchronization());
+            //auto pimpl = puserinteractionHost->m_pinteractionimpl;
 
-               pimpl->m_userinteractionaHideOnConfigurationChange.add_unique_interaction(this);
+            //if (pimpl)
+            //{
 
-            }
+            //   synchronous_lock synchronouslock(pimpl->synchronization());
+
+            //   pimpl->m_userinteractionaHideOnConfigurationChange.add_unique_interaction(this);
+
+            //}
 
          }
 
@@ -343,11 +346,13 @@ namespace user
 
                m_pcombo->set_current_item(ptopic->m_pitem, ptopic->m_actioncontext);
 
-               auto p = get_host_user_interaction()->m_pinteractionimpl->m_pgraphicsthread->get_message_queue();
+               throw todo;
 
-               p->m_eflagElement |= (::enum_flag)(1ll << 36);
+               //auto p = get_host_user_interaction()->m_pinteractionimpl->m_pgraphicsthread->get_message_queue();
 
-               m_pcombo->ShowDropDown(false);
+               //p->m_eflagElement |= (::enum_flag)(1ll << 36);
+
+               //m_pcombo->ShowDropDown(false);
 
             }
             else
@@ -379,16 +384,18 @@ namespace user
          if (puserinteractionHost)
          {
 
-            auto pimpl = puserinteractionHost->m_pinteractionimpl;
+            throw todo;
 
-            if (pimpl)
-            {
+            //auto pimpl = puserinteractionHost->m_pinteractionimpl;
 
-               synchronous_lock synchronouslock(pimpl->synchronization());
+            //if (pimpl)
+            //{
 
-               pimpl->m_userinteractionaHideOnConfigurationChange.erase_interaction(this);
+            //   synchronous_lock synchronouslock(pimpl->synchronization());
 
-            }
+            //   pimpl->m_userinteractionaHideOnConfigurationChange.erase_interaction(this);
+
+            //}
 
          }
 
@@ -1433,7 +1440,7 @@ namespace user
 
       }
 
-      set_current_item(__new ::item(::e_element_item, iSel)), context;
+      set_current_item(__new ::item(::e_element_item, iSel), context);
 
    }
 
@@ -1450,7 +1457,7 @@ namespace user
 
       }
 
-      set_current_item(__new ::item(::e_element_item, iSel)), context;
+      set_current_item(__new ::item(::e_element_item, iSel), context);
 
    }
 
@@ -1464,7 +1471,7 @@ namespace user
 
       }
 
-      set_current_item(__new ::item(::e_element_item, iIndex)), context;
+      set_current_item(__new ::item(::e_element_item, iIndex), context);
 
    }
 

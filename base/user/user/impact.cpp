@@ -13,6 +13,8 @@
 #include "aura/message/user.h"
 #include "aura/user/user/system.h"
 #include "aura/user/user/interaction_array.h"
+#include "aura/user/user/interaction_thread.h"
+#include "aura/windowing/window.h"
 #include "base/platform/session.h"
 #include "base/user/user/place_holder.h"
 #include "base/user/user/user.h"
@@ -1249,7 +1251,7 @@ namespace user
          if(puser)
          {
 
-            ::pointer<::user::interaction>puserinteractionFocus = puser->get_keyboard_focus(m_pthreadUserInteraction);
+            ::pointer<::user::interaction>puserinteractionFocus = puser->get_keyboard_focus(window()->m_puserthread);
 
             if (pimpact == this
             && this != puserinteractionFocus
@@ -1318,7 +1320,7 @@ namespace user
 
          auto puser = psession->user();
 
-         ::pointer<::user::interaction>puserinteractionFocus = puser->get_keyboard_focus(m_pthreadUserInteraction);
+         ::pointer<::user::interaction>puserinteractionFocus = puser->get_keyboard_focus(window()->m_puserthread);
 
          if (pimpact == this
          && this != puserinteractionFocus

@@ -150,7 +150,7 @@ namespace compress_bzip2
    //{
    //   if (g_pchGzUncompressBuffer == nullptr)
    //   {
-   //      g_pchGzUncompressBuffer = new char[g_iGzUncompressLen];
+   //      g_pchGzUncompressBuffer = __new char[g_iGzUncompressLen];
    //   }
    //   BZFILE * file = BZ2_bzopen(pcszGzFileCompressed, "rb");
 

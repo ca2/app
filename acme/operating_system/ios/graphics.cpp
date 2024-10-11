@@ -13,7 +13,7 @@
 //   if(pmutex == nullptr)
 //   {
 //
-//      pmutex = new ::pointer < ::mutex > ();
+//      pmutex = __new ::pointer < ::mutex > ();
 //
 //   }
 //

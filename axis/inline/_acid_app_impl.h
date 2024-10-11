@@ -10,7 +10,7 @@
 ::aura::application* get_acid_app()
 {
 
-   return new APP_TYPE();
+   return __new APP_TYPE();
 
 }
 

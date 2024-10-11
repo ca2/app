@@ -1132,7 +1132,7 @@ ret:
 
       //   m_result.add(estatus);
 
-      //   informationf("Failed to create new User Presence");
+      //   informationf("Failed to create __new User Presence");
 
       //   return false;
 
@@ -1142,7 +1142,7 @@ ret:
       {
 
          //estatus = 
-         __construct(m_pifs, __new ifs(""));
+         __construct(m_pifs, __allocate ifs(""));
 
          //if (!estatus)
          //{
@@ -1159,7 +1159,7 @@ ret:
       {
 
          //estatus = 
-         __construct(m_premotefs, __new ::fs::remote_native(""));
+         __construct(m_premotefs, __allocate ::fs::remote_native(""));
 
          //if (!estatus)
          //{
@@ -1175,7 +1175,7 @@ ret:
       //if (!m_pftpfs)
       //{
 
-      //   auto pftpfs = __new ftpfs();
+      //   auto pftpfs = __allocate ftpfs();
 
       //   auto estatus = pftpfs->initialize_ftpfs(this, "");
 
@@ -1568,7 +1568,7 @@ namespace apex
    bool session::InitializeLocalDataCentral()
    {
 
-      //m_pdatabase = new nature::database (this);
+      //m_pdatabase = __new nature::database (this);
 
       //if(m_pdatabase == nullptr)
       //{

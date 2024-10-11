@@ -197,7 +197,7 @@ namespace html
          if (m_fonta(i) == font)
             return i;
       }
-      auto pfont = __new class font (font);
+      auto pfont = __allocate class font (font);
       pfont->create(this);
       m_fonta.add(pfont);
       pfont->m_iIndex = (i32)m_fonta.get_upper_bound();
@@ -285,9 +285,9 @@ namespace html
       if (m_ptag == nullptr)
       {
 
-         m_ptag = new tag(nullptr);
+         m_ptag = __new tag(nullptr);
 
-         class value * pvalue = new class value (m_ptag);
+         class value * pvalue = __new class value (m_ptag);
 
          m_ptag->baseptra().add(pvalue);
 
@@ -295,7 +295,7 @@ namespace html
 
       }
 
-      m_pelement = __new ::html::element ();
+      m_pelement = __allocate ::html::element ();
 
       m_pelement->initialize_html_elemental(this);
 

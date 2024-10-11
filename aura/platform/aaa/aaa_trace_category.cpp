@@ -71,7 +71,7 @@ void trace_category_static_init()
 
       const ::scoped_string & scopedstrCategory = *p;
 
-      auto pcategory = __new trace_category(etracecategory, pszCategory);
+      auto pcategory = __allocate trace_category(etracecategory, pszCategory);
 
       trace_category::s_ptracecategorya->add(pcategory);
 

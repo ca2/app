@@ -492,7 +492,7 @@ namespace user
          if (m_pitemClose.is_null())
          {
 
-            m_pitemClose = __new ::menu::item();
+            m_pitemClose = __allocate ::menu::item();
 
             m_pitemClose->m_atom = "close_menu";
 
@@ -636,7 +636,7 @@ namespace user
          //}
 
 #else
-         //auto pusersystem = __new ::user::system(iStyleEx, nullptr, nullptr, 0, nullptr, pcreate);
+         //auto pusersystem = __allocate ::user::system(iStyleEx, nullptr, nullptr, 0, nullptr, pcreate);
 
          //if (!create_window_ex(pusersystem, puiParent))
          //if (!create_host())
@@ -1138,7 +1138,7 @@ namespace user
       ////
       ////                           m_pmenuitemSub = pitem;
       ////
-      ////                           m_psubmenu = __new menu(pitem);
+      ////                           m_psubmenu = __allocate menu(pitem);
       ////
       ////                           m_psubmenu->initialize(this);
       ////
@@ -1316,7 +1316,7 @@ namespace user
 
       hide_sub_menu();
       
-      auto pusermenu = __new ::user::menu(pmenuitem);
+      auto pusermenu = __allocate ::user::menu(pmenuitem);
       
       pusermenu->initialize(this);
 
@@ -1328,7 +1328,7 @@ namespace user
 
       m_pmenuSubMenu->update_track_rectangle(rectangle);
       
-      auto ptrackpopup = __new ::menu::track_popup(pusermenu,
+      auto ptrackpopup = __allocate ::menu::track_popup(pusermenu,
                                                               pmenuitem->m_puserinteraction,
                                                               m_pchannelNotify,
                                                             mouse_cursor_position(),
@@ -1478,7 +1478,7 @@ namespace user
 
             //   m_atomSubMenu = m_atomTimerMenu;
 
-            //   m_psubmenu = __new menu(pmenuitema->find(m_atomTimerMenu));
+            //   m_psubmenu = __allocate menu(pmenuitema->find(m_atomTimerMenu));
 
             //   m_psubmenu->initialize(this);
 

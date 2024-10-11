@@ -41,7 +41,7 @@ CLASS_DECL_ACME void __node_acme_pre_init()
 CLASS_DECL_ACME void __node_acme_pos_init()
 {
 
-//   t_htask = new htask();
+//   t_htask = __new htask();
 //
 //    //t_htask-
 //

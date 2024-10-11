@@ -744,7 +744,7 @@ namespace hi5
    /*++
    * @method: twit::statusUpdate
    *
-   * @description: method to update new status message in twitter profile
+   * @description: method to update __new status message in twitter profile
    *
    * @input: newStatus
    *
@@ -1121,7 +1121,7 @@ namespace hi5
       bool retVal = false;
       if( true && userInfo.get_length() && dMsg.get_length() )
       {
-         /* Prepare new direct message */
+         /* Prepare __new direct message */
          property_set post;
          post["text"] = dMsg;
 

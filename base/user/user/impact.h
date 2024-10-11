@@ -252,7 +252,7 @@ namespace user
       if (!factoryitem)
       {
 
-         factoryitem = __new ::factory::factory_item< IMPACT, IMPACT > ();
+         factoryitem = __allocate ::factory::factory_item< IMPACT, IMPACT > ();
 
       }
 

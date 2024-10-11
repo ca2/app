@@ -59,12 +59,12 @@ namespace data
 
 
 /*
-   void * simple_item::operator new(size_t, const char *, i32)
+   void * simple_item::operator __new(size_t, const char *, i32)
    {
       return _alloc001SimpleTreeItem.Alloc();
    }
 
-   void * simple_item::operator new(size_t)
+   void * simple_item::operator __new(size_t)
    {
       return _alloc001SimpleTreeItem.Alloc();
    }

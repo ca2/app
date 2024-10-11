@@ -209,7 +209,7 @@ namespace filemanager
       //throw ::exception(todo("core"));
       ////psession->userex()->shell()->initialize(&Session);
 
-      ////auto pmulti = ::as(new ::user::multiple_document_template(
+      ////auto pmulti = ::as(__new ::user::multiple_document_template(
       ////                   "filemanager",
       ////                   __form_document_type(),
       ////                   ::type < form_child_frame >(),
@@ -219,7 +219,7 @@ namespace filemanager
 
       ////psession->add_document_template(pmulti);
 
-      ////auto psingle = ::as(new ::user::single_document_template(
+      ////auto psingle = ::as(__new ::user::single_document_template(
       ////                    "filemanager",
       ////                    ::type < operation_document >(),
       ////                    ::type < operation_child_frame >(),
@@ -266,7 +266,7 @@ namespace filemanager
    //   }
 
    //   throw ::exception(todo("core"));
-   //   //auto pdata = __new data();
+   //   //auto pdata = __allocate data();
 
    //   //pdata->initialize_filemanager_data(this);
 
@@ -282,7 +282,7 @@ namespace filemanager
 
    //   //if (is_filemanager_group(atom, TABBED_GROUP))
    //   //{
-   //   //   pdoctemplate = ::as(new ::user::multiple_document_template(
+   //   //   pdoctemplate = ::as(__new ::user::multiple_document_template(
    //   //                       strTemplateId,
    //   //                       ::type < document >(),
    //   //                       ::type < frame >(),       // main SDI frame window
@@ -292,7 +292,7 @@ namespace filemanager
    //   //else if (is_filemanager_group(atom, LIST_GROUP))
    //   //{
 
-   //   //   pdoctemplate = ::as(new ::user::multiple_document_template(
+   //   //   pdoctemplate = ::as(__new ::user::multiple_document_template(
    //   //                       strTemplateId,
    //   //                       ::type < document >(),
    //   //                       ::type < main_frame >(),
@@ -302,7 +302,7 @@ namespace filemanager
    //   //else if (is_filemanager_group(atom, FOLDER_SELECTION_LIST_GROUP))
    //   //{
 
-   //   //   pdoctemplate = ::as(new ::user::multiple_document_template(
+   //   //   pdoctemplate = ::as(__new ::user::multiple_document_template(
    //   //                       strTemplateId,
    //   //                       ::type < document >(),
    //   //                       ::type < main_frame >(),
@@ -312,7 +312,7 @@ namespace filemanager
    //   //else
    //   //{
 
-   //   //   pdoctemplate = ::as(new ::user::multiple_document_template(
+   //   //   pdoctemplate = ::as(__new ::user::multiple_document_template(
    //   //                       strTemplateId,
    //   //                       ::type < document >(),
    //   //                       ::type < frame >(),
@@ -629,7 +629,7 @@ pacmedirectory->localconfig() / "user.component";
       //if (pcreate == nullptr)
       //{
 
-      //   pcreate = __new ::create(papp->handler(), payloadFile, true);
+      //   pcreate = __allocate ::create(papp->handler(), payloadFile, true);
 
       //}
 
@@ -785,7 +785,7 @@ pacmedirectory->localconfig() / "user.component";
 //   if (pcreate == nullptr)
 //   {
 
-//      pcreate = __new ::create(pappOnBehalfOf->handler());
+//      pcreate = __allocate ::create(pappOnBehalfOf->handler());
 
 //   }
 //   else
@@ -916,7 +916,7 @@ pacmedirectory->localconfig() / "user.component";
 //   if (pcreate.is_null())
 //   {
 
-//      pcreate = __new ::create(pappOnBehalfOf->handler());
+//      pcreate = __allocate ::create(pappOnBehalfOf->handler());
 
 //   }
 //   else
@@ -1037,7 +1037,7 @@ pacmedirectory->localconfig() / "user.component";
 //   if (pfilemanagerdata == nullptr)
 //   {
 
-//      pfilemanagerdata = __new ::filemanager::data(this);
+//      pfilemanagerdata = __allocate ::filemanager::data(this);
 
 //   }
 
@@ -1091,7 +1091,7 @@ pacmedirectory->localconfig() / "user.component";
 //   if (pfilemanagerdata == nullptr)
 //   {
 
-//      pfilemanagerdata = __new ::filemanager::data(this);
+//      pfilemanagerdata = __allocate ::filemanager::data(this);
 
 //   }
 
@@ -1149,7 +1149,7 @@ pacmedirectory->localconfig() / "user.component";
 //   if (pfilemanagerdata == nullptr)
 //   {
 
-//      pfilemanagerdata = __new ::filemanager::data(this);
+//      pfilemanagerdata = __allocate ::filemanager::data(this);
 
 //   }
 

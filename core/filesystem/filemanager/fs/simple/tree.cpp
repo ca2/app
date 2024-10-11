@@ -203,14 +203,14 @@ namespace filemanager
                if(ptreeitemChild)
                {
 
-                  ptreeitemChild = insert_item(__new ::data::simple_item(this)), ::data::e_relative_last_child, ptreeitemParent;
+                  ptreeitemChild = insert_item(__allocate ::data::simple_item(this)), ::data::e_relative_last_child, ptreeitemParent;
 
                }
 
                if(!ptreeitemChild->m_pdataitem)
                {
 
-                  ptreeitemChild->m_pdataitem = __new ::data::simple_item(this);
+                  ptreeitemChild->m_pdataitem = __allocate ::data::simple_item(this);
 
                }
 

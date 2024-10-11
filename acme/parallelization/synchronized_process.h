@@ -17,7 +17,7 @@
 //   sync_future()
 //   {
 //
-//      m_peventCompletion = __new manual_reset_event();
+//      m_peventCompletion = __allocate manual_reset_event();
 //
 //   }
 //public:
@@ -54,7 +54,7 @@
 //inline ::pointer<sync_future>__sync_future()
 //{
 //
-//   return __new sync_future();
+//   return __allocate sync_future();
 //
 //}
 //

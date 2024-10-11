@@ -44,7 +44,7 @@ namespace filemanager
       //}
 
       // m_ptemplatePane = 
-      user()->m_pbaseuser->add_impact_system("system/auth", ::as(new ::user::single_document_template(
+      user()->m_pbaseuser->add_impact_system("system/auth", ::as(__new ::user::single_document_template(
          "system/auth",
          ::type < ::user::document >(),
          ::type < simple_frame_window >(),

@@ -113,13 +113,13 @@ LineContribType *
 C2PassScale<FilterClass>::
 AllocContributions (::u32 uLineLength, ::u32 uWindowSize)
 {
-   LineContribType *res = new LineContribType();
+   LineContribType *res = __new LineContribType();
    // Init structure header
    res->WindowSize = uWindowSize;
    res->LineLength = uLineLength;
    // Allocate list of contributions
-   res->ContribRow = new ContributionType[uLineLength];
-   res->matrix = new double[uWindowSize * uLineLength];
+   res->ContribRow = __new ContributionType[uLineLength];
+   res->matrix = __new double[uWindowSize * uLineLength];
    for (::u32 u = 0 ; u < uLineLength ; u++)
    {
       // Allocate contributions for every pixel
@@ -154,13 +154,13 @@ CalcContributions (::u32 uLineSize, ::u32 uSrcSize, double dScale)
    if (m_dFilterWidth < 0.0)
    {
 
-      pCurFilter = new FilterClass(m_dFilterWidth);
+      pCurFilter = __new FilterClass(m_dFilterWidth);
 
    }
    else
    {
 
-      pCurFilter = new FilterClass();
+      pCurFilter = __new FilterClass();
 
    }
 
@@ -183,7 +183,7 @@ CalcContributions (::u32 uLineSize, ::u32 uSrcSize, double dScale)
    // Window size_i32 is the number of sampled pixels
    int iWindowSize = 2 * (int)ceil(dWidth) + 1;
 
-   // Allocate a new line contributions strucutre
+   // Allocate a __new line contributions strucutre
    LineContribType *res = AllocContributions (uLineSize, iWindowSize);
 
    for (::u32 u = 0; u < uLineSize; u++)
@@ -408,7 +408,7 @@ VertScale (::image32_t*pSrc,
 //{
    // Scale source image horizontally into temporary image
 //   m_bCanceled = false;
-//   ::color::color *pTemp = new ::color::color[uNewWidth * uOrigHeight];
+//   ::color::color *pTemp = __new ::color::color[uNewWidth * uOrigHeight];
 //   HorizScale (pOrigImage,
 //               uOrigWidth,
 //               uOrigHeight,
@@ -421,7 +421,7 @@ VertScale (::image32_t*pSrc,
 //      return nullptr;
 //   }
    // Scale temporary image vertically into result image
-//   ::color::color *pRes = new ::color::color[uNewWidth * uNewHeight];
+//   ::color::color *pRes = __new ::color::color[uNewWidth * uNewHeight];
 //   VertScale ( pTemp,
 //               uNewWidth,
 //               uOrigHeight,

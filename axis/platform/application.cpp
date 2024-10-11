@@ -1905,7 +1905,7 @@ namespace axis
    ::user::interaction* application::create_menu_interaction()
    {
 
-      return new ::user::button ();
+      return __new ::user::button ();
 
    }
 //

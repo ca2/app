@@ -14,7 +14,7 @@
 
 using namespace XMPP;
 
-void *Stanza::operator new(size_t size, Context *ctx)
+void *Stanza::operator __new(size_t size, Context *ctx)
 {
     void *p;
 
@@ -55,7 +55,7 @@ Stanza::~Stanza()
 
 Stanza *Stanza::create(Context *ctx)
 {
-    return __new< (ctx) Stanza >(ctx);
+    return __allocate< (ctx) Stanza >(ctx);
 }
 
 void Stanza::release()

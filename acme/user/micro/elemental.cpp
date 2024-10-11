@@ -427,7 +427,7 @@ namespace micro
       //::pointer<::operating_system::a_system_menu> elemental::create_system_menu(bool bContextual)
       //{
 
-      //   auto psystemmenu = __new ::operating_system::a_system_menu();
+      //   auto psystemmenu = __allocate ::operating_system::a_system_menu();
 
       //   if (m_bMinimizeBox)
       //   {
@@ -627,7 +627,7 @@ namespace micro
 
       //   do_asynchronously();
 
-      //   auto pmanualresetevent = __new manual_reset_event();
+      //   auto pmanualresetevent = __allocate manual_reset_event();
 
       //   if (m_psequencer)
       //   {
@@ -770,7 +770,7 @@ namespace micro
       void elemental::add_button(const ::scoped_string & scopedstrText, enum_dialog_result edialogresult, char chLetter)
       {
 
-         auto pbutton = __new ::micro::button();
+         auto pbutton = __allocate ::micro::button();
 
          pbutton->m_strText = scopedstrText;
          pbutton->m_atom = edialogresult;

@@ -285,7 +285,7 @@ namespace dynamic_source
 #ifdef WINDOWS_DESKTOP
 
       u32 dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
-      LPWSTR lpsz = new wchar_t[dwSize + 1];
+      LPWSTR lpsz = __new wchar_t[dwSize + 1];
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1);
       str += lpsz;
       delete lpsz;
@@ -1247,7 +1247,7 @@ namespace dynamic_source
       strDest += "\r\n";
       strDest += "extern \"C\" __declspec(dllexport) dynamic_source::script_instance * __cdecl create_dynamic_source_script_instance ()\r\n";
       strDest += "{\r\n";
-      strDest += "   return new " + pscript->m_strClassNamePrefix + "_dynamic_source_script ();\r\n";
+      strDest += "   return __new " + pscript->m_strClassNamePrefix + "_dynamic_source_script ();\r\n";
       strDest += "}\r\n";
       strDest += "\r\n";
       strDest += "void " + pscript->m_strClassNamePrefix + "_dynamic_source_script::script_run()\r\n";
@@ -1398,7 +1398,7 @@ namespace dynamic_source
          return *p->element2();
       }
 
-      m_mapLib[pszLibrary] = __new library(this);
+      m_mapLib[pszLibrary] = __allocate library(this);
 
       library & l = *m_mapLib[pszLibrary];
 

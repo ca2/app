@@ -364,7 +364,7 @@ namespace interprocess
    //void target::dispatch_message(::string && strMessage)
    //{
 
-   //   auto pdispatchitem = __new class dispatch_item (::transfer(strMessage));
+   //   auto pdispatchitem = __allocate class dispatch_item (::transfer(strMessage));
 
    //   dispatch_item(::transfer(pdispatchitem));
 
@@ -374,7 +374,7 @@ namespace interprocess
    //void target::dispatch_message(::u64 uData, ::memory && memory)
    //{
 
-   //   auto pdispatchitem = __new class dispatch_item (uData, ::transfer(memory));
+   //   auto pdispatchitem = __allocate class dispatch_item (uData, ::transfer(memory));
 
    //   dispatch_item(::transfer(pdispatchitem));
 

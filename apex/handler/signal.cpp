@@ -146,7 +146,7 @@ namespace handler
          if (!pcontext)
          {
 
-            pcontext = __new ::context();
+            pcontext = __allocate ::context();
 
          }
 
@@ -178,7 +178,7 @@ namespace handler
       if (!pcontext)
       {
 
-         pcontext = __new ::context();
+         pcontext = __allocate ::context();
 
       }
 
@@ -278,7 +278,7 @@ namespace handler
       if (!pcontext)
       {
 
-         pcontext = __new ::context();
+         pcontext = __allocate ::context();
 
       }
 

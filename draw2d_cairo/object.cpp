@@ -58,19 +58,19 @@ namespace draw2d_cairo
       /*switch(::GetObjectType(h))
       {
       case OBJ_BITMAP:
-         return dynamic_cast < object * > (new bitmap(pparticle));
+         return dynamic_cast < object * > (__new bitmap(pparticle));
       case OBJ_REGION:
-         return dynamic_cast < object * > (new region(pparticle));
+         return dynamic_cast < object * > (__new region(pparticle));
       case OBJ_PEN:
-         return dynamic_cast < object * > (new pen(pparticle));
+         return dynamic_cast < object * > (__new pen(pparticle));
       case OBJ_BRUSH:
-         return dynamic_cast < object * > (new brush(pparticle));
+         return dynamic_cast < object * > (__new brush(pparticle));
       case OBJ_PAL:
-         return dynamic_cast < object * > (new palette(pparticle));
+         return dynamic_cast < object * > (__new palette(pparticle));
       case OBJ_FONT:
-         return dynamic_cast < object * > (new font(pparticle));
+         return dynamic_cast < object * > (__new font(pparticle));
       }
-      return new object();*/
+      return __new object();*/
       return nullptr;
    }
 

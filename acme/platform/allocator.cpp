@@ -217,7 +217,7 @@ namespace allocator
    void add_releaser(::reference_referer * preferer)
    {
 
-      //auto preferencereferer = ::platform::raw_allocator::new reference_referer (::transfer(referer));
+      //auto preferencereferer = ::platform::raw_allocator::__new reference_referer (::transfer(referer));
 
       set_releaser(preferer);
 
@@ -395,7 +395,7 @@ namespace allocator
       if(pparticle->is_referencing_debugging_enabled())
       {
 
-         pparticle->m_preferenceitema = new reference_item_array (pparticle, pparticleParent);
+         pparticle->m_preferenceitema = __new reference_item_array (pparticle, pparticleParent);
 
          //on_after_construct_particle(pparticle->m_preferenceitema);
 

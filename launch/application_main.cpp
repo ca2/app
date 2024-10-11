@@ -11,7 +11,7 @@
 ::i32 application_main(::platform::platform * pplatform)
 {
 
-   auto papplication = new launch::application ();
+   auto papplication = __new launch::application ();
 
    auto iExitCode = papplication->application_main(pplatform);
 

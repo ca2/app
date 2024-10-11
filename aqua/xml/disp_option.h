@@ -15,7 +15,7 @@ namespace xml
    public:
    
       
-      bool                 m_bNewLine;          // newline when new tag
+      bool                 m_bNewLine;          // newline when __new tag
       bool                 m_bReferenceValue;   // do convert from entity to object ( < -> &lt; )
       char                 m_chQuote;           // val="" (default value quotation mark "
       ::pointer<entities> m_pentities;         // entity table for entity encode

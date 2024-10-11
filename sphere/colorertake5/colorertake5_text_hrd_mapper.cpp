@@ -24,7 +24,7 @@ namespace colorertake5
       string str;
       is >> str;
 
-      ::pointer<::xml::document>hbase = __new< xml::document(get_app >());
+      ::pointer<::xml::document>hbase = __allocate< xml::document(get_app >());
       hbase->load(str);
 
       if (hbase->get_name() != "hrd")
@@ -61,7 +61,7 @@ namespace colorertake5
             sval = (curel)->attr("eback");
             if (sval.has_char()) eback = (sval);
 
-            RegionDefine *rdef = new TextRegion(stext, etext, sback, eback);
+            RegionDefine *rdef = __new TextRegion(stext, etext, sback, eback);
             regionDefines.set_at(name, rdef);
          };
       };
@@ -110,7 +110,7 @@ namespace colorertake5
          delete rdef;
       };
 
-      RegionDefine *new_region = new TextRegion(stext, etext, sback, eback);
+      RegionDefine *new_region = __new TextRegion(stext, etext, sback, eback);
       regionDefines.set_at(name, new_region);
 
       // Searches and replaces old region references

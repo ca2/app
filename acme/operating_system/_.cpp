@@ -42,7 +42,7 @@ app_factory::app_factory(PFN_factory pfnFactory)
 ::pointer<::acme::application>app_factory::new_app(::particle * pparticle)
 {
 
-   auto pfactory = __new ::factory::factory();
+   auto pfactory = __allocate ::factory::factory();
 
    g_pfnFactoryApp(pfactory);
 

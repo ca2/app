@@ -1081,7 +1081,7 @@ namespace acme
    // ::os_theme_colors * node::_new_os_theme_colors()
    // {
    //
-   //    return new os_theme_colors();
+   //    return __new os_theme_colors();
    //
    // }
    //
@@ -1369,7 +1369,7 @@ namespace acme
 
       }
 
-      auto pevent = __new manual_reset_event();
+      auto pevent = __allocate manual_reset_event();
 
       user_post([ procedure, pevent ]
       {

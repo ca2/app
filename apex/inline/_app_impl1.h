@@ -60,7 +60,7 @@ int main(Array < String ^ > ^ refstra)
 
    class apex_apex apex;
 
-   ap(apex_main_data) pmaindata = new apex_main_data(refstra);
+   ap(apex_main_data) pmaindata = __new apex_main_data(refstra);
 
 #ifdef MAIN_STRING
 
@@ -150,9 +150,9 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 //         //KEEP(thread_flag_prevent_create_thread);
 //
 //
-//         papex = __new class apex_apex ();
+//         papex = __allocate class apex_apex ();
 //
-//         pmaindata = __new apex_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow);
+//         pmaindata = __allocate apex_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow);
 //
 //#ifdef MAIN_RUNNER0
 //

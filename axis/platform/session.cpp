@@ -364,7 +364,7 @@ namespace axis
 //                  else
 //                  {
 //
-//                     plibrary = __new ::acme::library();
+//                     plibrary = __allocate ::acme::library();
 //
 //                     plibrary->initialize_aura_library(pparticle, 0, nullptr);
 //
@@ -515,8 +515,8 @@ namespace axis
 //      if (!papp->is_serviceable() || papp->is_user_service())
 //      {
 //
-//         psystem->m_spmutexUserAppData = __new ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
-//         psystem->m_spmutexSystemAppData = __new ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
+//         psystem->m_spmutexUserAppData = __allocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.UserAppData");
+//         psystem->m_spmutexSystemAppData = __allocate ::pointer < ::mutex > (e_create_new, false, "Local\\ca2.SystemAppData");
 //
 //      }
 //
@@ -1110,7 +1110,7 @@ namespace axis
    bool session::InitializeLocalDataCentral()
    {
 
-      //m_pdatabase = new nature::database (this);
+      //m_pdatabase = __new nature::database (this);
 
       //if(m_pdatabase == nullptr)
       //{

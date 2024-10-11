@@ -1491,7 +1491,7 @@ bool task::has_message() const
    //if (bSynchInitialization)
    {
 
-      m_peventInitialization = __new manual_reset_event();
+      m_peventInitialization = __allocate manual_reset_event();
 
    }
 
@@ -1790,7 +1790,7 @@ bool task::task_sleep(const class time & timeWait)
 //void task::branch(::particle * pparticle, ::enum_priority epriority, ::u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
 //{
 //
-//   auto ptask = __new task();
+//   auto ptask = __allocate task();
 //
 //   ptask->branch(pelement, epriority, nStackSize, uCreateFlags ADD_PARAM_SEC_ATTRS);
 //
@@ -1933,7 +1933,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class time & timeWait)
          if (ptask->m_pevSleep.is_null())
          {
 
-            ptask->m_pevSleep = __new manual_reset_event();
+            ptask->m_pevSleep = __allocate manual_reset_event();
 
             ptask->m_pevSleep->ResetEvent();
 

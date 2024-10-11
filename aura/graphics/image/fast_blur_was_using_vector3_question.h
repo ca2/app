@@ -155,7 +155,7 @@ public:
    }
 
    // overloaded operators that ensure alignment
-   inline void * operator new[](size_t x)
+   inline void * operator __new[](size_t x)
    {
       return _aligned_malloc(x, 16);
    }

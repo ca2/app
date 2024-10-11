@@ -7,7 +7,7 @@ namespace message
 
    class ::channel * CreateSignal()
    {
-      return new class ::channel ();
+      return __new class ::channel ();
    }
 
 

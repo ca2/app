@@ -590,7 +590,7 @@ namespace http
    //{
 
    //   throw ::exception(todo, "scripting");
-   //   //m_pjs = new tinyjs();
+   //   //m_pjs = __new tinyjs();
 
    //}
 
@@ -599,7 +599,7 @@ namespace http
    {
 
       throw ::exception(todo, "scripting");
-      //m_pjs = new tinyjs();
+      //m_pjs = __new tinyjs();
 
    }
 
@@ -1134,7 +1134,7 @@ namespace http
 
       string strSessId;
 
-      psession = __new ::sockets::http_session(strProtocol, strHost);
+      psession = __allocate ::sockets::http_session(strProtocol, strHost);
 
       /*::pointer<::account::user>puser;
 
@@ -1676,7 +1676,7 @@ namespace http
             else
             {
 
-               set["get_memory"] = __new memory(psession->GetDataPtr(), psession->GetContentLength());
+               set["get_memory"] = __allocate memory(psession->GetDataPtr(), psession->GetContentLength());
 
             }
 
@@ -1904,7 +1904,7 @@ namespace http
 
          bPut = true;
 
-         psocket = __new ::sockets::http_put_socket(strUrl);
+         psocket = __allocate ::sockets::http_put_socket(strUrl);
 
          dynamic_cast <::sockets::http_put_socket *> (psocket.m_p)->m_file = set["put"].cast < ::file::file >();
 
@@ -1918,7 +1918,7 @@ namespace http
 
          bPut = false;
 
-         psocket = __new ::sockets::http_post_socket(strUrl);
+         psocket = __allocate ::sockets::http_post_socket(strUrl);
 
          dynamic_cast <::sockets::http_post_socket *> (psocket.m_p)->m_fields = set["post"].propset();
 
@@ -1939,7 +1939,7 @@ namespace http
 
          bPut = false;
 
-         psocket = __new ::http::get_socket(strUrl);
+         psocket = __allocate ::http::get_socket(strUrl);
 
          psocket->m_emethod = ::sockets::string_http_method(set(__id(http_method), "GET"));
 
@@ -2535,7 +2535,7 @@ namespace http
          else
          {
 
-            set["get_memory"] = __new memory(psocket->GetDataPtr(), psocket->GetContentLength());
+            set["get_memory"] = __allocate memory(psocket->GetDataPtr(), psocket->GetContentLength());
 
          }
 

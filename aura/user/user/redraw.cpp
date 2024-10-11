@@ -203,7 +203,7 @@ namespace user
 
             ΔHostToClient(rectangleNeedRedraw);
 
-            auto prectangle = __new ::draw2d::clip_rectangle();
+            auto prectangle = __allocate ::draw2d::clip_rectangle();
 
             prectangle->m_item = rectangleNeedRedraw;
 

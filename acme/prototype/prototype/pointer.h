@@ -455,7 +455,7 @@ public:
    //pointer & merge(const CONTAINER & pcontainer, const OBJECT & pparticle, const ATTRIBUTE & attribute)
    //{
 
-   //   auto pModified = __new TYPE(*m_p);
+   //   auto pModified = __allocate TYPE(*m_p);
 
    //   pModified->apply(pparticle, attribute);
 
@@ -479,7 +479,7 @@ public:
 
    //   auto pOld = m_p;
 
-   //   m_p = new TYPE(*pparticle);
+   //   m_p = __new TYPE(*pparticle);
 
    //   m_psubparticle = m_p;
 
@@ -714,7 +714,7 @@ inline void copy(::pointer < TARGET > & pTarget, const ::pointer < SOURCE > & pS
 //::pointer < T > __allocate(Args &&... args)
 //{
 //
-//   ::pointer < T > p{ transfer_t{}, ::new T(::std::forward<Args>(args)...) };
+//   ::pointer < T > p{ transfer_t{}, ::__new T(::std::forward<Args>(args)...) };
 //
 //   task_on_after_new_particle(p);
 //
@@ -1360,7 +1360,7 @@ inline static __pointer_site __g__pointer_site;
 
 #define __transfer_as_pointer __g__pointer_site <<
 
-#define __new __transfer_as_pointer new
+#define __allocate __transfer_as_pointer __new
 
 #define __as_pointer __g__pointer_site +=
 
@@ -1395,9 +1395,9 @@ public:
 
 #define __initialize_pointer __initialize_pointer_with(this)
 
-#define __initialize_new_with(P) __initialize_pointer_with(P) new
+#define __initialize_new_with(P) __initialize_pointer_with(P) __new
 
-#define __initialize_new __initialize_pointer new
+#define __initialize_new __initialize_pointer __new
 
 
 

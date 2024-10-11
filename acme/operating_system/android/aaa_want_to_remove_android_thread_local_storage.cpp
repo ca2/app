@@ -7,9 +7,9 @@
 
 #if defined(_DEBUG) && !defined(___NO_DEBUG_CRT)
 
-void * PASCAL no_track_object::operator new(size_t nSize, const char *, i32)
+void * PASCAL no_track_object::operator __new(size_t nSize, const char *, i32)
 {
-   return no_track_object::operator new(nSize);
+   return no_track_object::operator __new(nSize);
 }
 #define aaa_primitive_new DEBUG_NEW
 void PASCAL no_track_object::operator delete(void * pObject, const char *, i32)
@@ -20,7 +20,7 @@ void PASCAL no_track_object::operator delete(void * pObject, const char *, i32)
 #endif
 
 
-void * PASCAL no_track_object::operator new(size_t nSize)
+void * PASCAL no_track_object::operator __new(size_t nSize)
 {
    void * p = ::malloc(nSize);
    if (p == nullptr)

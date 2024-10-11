@@ -61,7 +61,7 @@ CLASS_DECL_ACME bool __enable_memory_tracking(bool bTrack);
 /////////////////////////////////////////////////////////////////////////////
 // Non-diagnostic memory routines
 
-CLASS_DECL_ACME i32 c_cdecl __new_handler(size_t /* nSize */);
+CLASS_DECL_ACME i32 c_cdecl __allocate_handler(size_t /* nSize */);
 
 
 

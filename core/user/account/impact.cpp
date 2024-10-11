@@ -32,12 +32,12 @@ namespace account
    impact::impact()
    {
 
-      m_pstillUser = new ::user::still ();
-      m_peditUser = new ::user::plain_edit ();
-      m_pstillPassword = new ::user::still ();
-      m_peditPassword = new ::user::plain_edit ();
-      m_pbutton = new ::user::button ();
-      m_pbuttonClose = new ::user::button ();
+      m_pstillUser = __new ::user::still ();
+      m_peditUser = __new ::user::plain_edit ();
+      m_pstillPassword = __new ::user::still ();
+      m_peditPassword = __new ::user::plain_edit ();
+      m_pbutton = __new ::user::button ();
+      m_pbuttonClose = __new ::user::button ();
 
       m_bSelfLayout = false;
 
@@ -52,7 +52,7 @@ namespace account
 //         if (hicon95 != nullptr)
 //         {
 //
-//            m_picon95 = new ::image::icon ();
+//            m_picon95 = __new ::image::icon ();
 //
 //            m_picon95->attach_os_data(hicon95);
 //

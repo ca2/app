@@ -74,7 +74,7 @@ namespace std { enum class align_val_t : std::size_t {}; }
 //
 //      }
 //
-//      auto pappNew = __new APP();
+//      auto pappNew = __allocate APP();
 //
 //      if(pappNew == nullptr)
 //      {
@@ -431,7 +431,7 @@ const char * memory_counter_id(T * pthis)
 ////   while (c > 0)
 ////   {
 ////
-////      auto p = __new TYPE(&a);
+////      auto p = __allocate TYPE(&a);
 ////
 ////      stream >> *p;
 ////
@@ -500,7 +500,7 @@ const char * memory_counter_id(T * pthis)
 
 
 //template < typename T, typename ...Args >
-//inline T * __call__new(Args &&... args)
+//inline T * __call__allocate(Args &&... args)
 //{
 //
 //   auto p = ::platform::allocator::__callnew T (::std::forward < Args >(args)...);
@@ -520,10 +520,10 @@ const char * memory_counter_id(T * pthis)
 
 //
 //template < typename T >
-//inline T * __new_array(::collection::count c)
+//inline T * __allocate_array(::collection::count c)
 //{
 //
-//   auto p = ::platform::allocator::new  T[c];
+//   auto p = ::platform::allocator::__new  T[c];
 //
 //   return p;
 //

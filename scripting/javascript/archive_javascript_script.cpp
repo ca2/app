@@ -49,7 +49,7 @@ void js_dump(CScriptVar *UNUSED(v), void *userdata) {
 
 int main(int UNUSED(argc), char **UNUSED(argv))
 {
-  tinyjs *js = new tinyjs();
+  tinyjs *js = __new tinyjs();
   /* add the functions from TinyJS_Functions.cpp */
   registerFunctions(js);
   /* Add a native function */

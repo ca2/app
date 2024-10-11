@@ -16,7 +16,7 @@
 //
 //      }
 //
-//      auto pappNew = __new APP();
+//      auto pappNew = __allocate APP();
 //
 //      if(pappNew == nullptr)
 //      {
@@ -175,7 +175,7 @@
 //     if (proutea.is_null())
 //     {
 //
-//        proutea = __new ::message::route_array();
+//        proutea = __allocate ::message::route_array();
 //
 //     }
 //
@@ -256,7 +256,7 @@
 //     if (proutea.is_null())
 //     {
 //
-//        proutea = __new ::message::route_array();
+//        proutea = __allocate ::message::route_array();
 //
 //     }
 //
@@ -326,7 +326,7 @@
 //   while (c > 0)
 //   {
 //
-//      auto p = __new TYPE(&a);
+//      auto p = __allocate TYPE(&a);
 //
 //      stream >> *p;
 //

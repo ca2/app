@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_main.inl"
-#include "acme/asset/new.cpp"
+#include "acme/asset/__new.cpp"
 
 
 

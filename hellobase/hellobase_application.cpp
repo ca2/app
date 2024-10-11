@@ -72,7 +72,7 @@ namespace hellobase
       ::user::single_document_template* pDocTemplate;
 
 
-      pDocTemplate = ::as(new ::user::single_document_template(
+      pDocTemplate = ::as(__new ::user::single_document_template(
                              this,
                              "main",
                              ::type < document >(),
@@ -155,7 +155,7 @@ extern "C"
 ::acme::library * app_hellobase_get_new_library(::particle * pparticle)
 {
 
-   return new ::apex::single_application_library < ::hellobase::application >  (pparticle, "app/hellobase");
+   return __new ::apex::single_application_library < ::hellobase::application >  (pparticle, "app/hellobase");
 
 }
 

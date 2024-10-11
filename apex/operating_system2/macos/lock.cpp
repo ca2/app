@@ -67,7 +67,7 @@ int flock(int, int);
 //      }
 //   }
 //
-//   int * pi = new int();
+//   int * pi = __new int();
 //   *pi = fd;
 //   *pdata = pi;
 //

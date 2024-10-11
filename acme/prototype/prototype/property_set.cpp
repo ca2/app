@@ -1986,7 +1986,7 @@ string & property_set::get_network_arguments(string & strNetworkArguments) const
 //   if (::is_null(pFind))
 //   {
 //
-//      auto pproperty = __new property(nullptr);
+//      auto pproperty = __allocate property(nullptr);
 //
 //      this->add(pproperty);
 //
@@ -2528,7 +2528,7 @@ property & property_set::get(const ::atom_array & atoma)
 //   while (i >= this->size())
 //   {
 //
-//      auto pproperty = __new< property(::as_string(this->size >()));
+//      auto pproperty = __allocate< property(::as_string(this->size >()));
 //
 //      add_item(pproperty);
 //

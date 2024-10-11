@@ -30,7 +30,7 @@ namespace parallelization
    //CLASS_DECL_ACME void init_multitasking()
    //{
 
-   //   //s_pcs2 = new critical_section();
+   //   //s_pcs2 = __new critical_section();
 
    //   //s_piaThread2 = aaa_memory_new comparable_eq_array<itask_t>;
 
@@ -716,7 +716,7 @@ CLASS_DECL_ACME ::task * get_task()
    //      if(::is_set(psystem))
    //      {
 
-   //         t_ptask = { transfer_t{}, new ::task() };
+   //         t_ptask = { transfer_t{}, __new ::task() };
 
    //         t_ptask->initialize(pplatform->system());
 
@@ -863,7 +863,7 @@ thread_local payload t_payloada[e_task_payload_count];
 //CLASS_DECL_ACME bool main_synchronous(const class time & time, const ::procedure & function)
 //{
 //
-//   auto pevent = __new manual_reset_event();
+//   auto pevent = __allocate manual_reset_event();
 //
 //   main_asynchronous([ function, &pevent ]
 //   {

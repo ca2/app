@@ -83,7 +83,7 @@
 //
 //      wordexp(pszCommandLine, &we, 0);
 //
-//      char ** argv = __new_array< char * >(we.we_wordc+1);
+//      char ** argv = __allocate_array< char * >(we.we_wordc+1);
 //
 //      ::memory_copy(argv, we.we_wordv, we.we_wordc * sizeof(char*));
 //
@@ -296,7 +296,7 @@ critical_section * get_pid_cs()
    if(g_pcsPid2 == nullptr)
    {
 
-      g_pcsPid2 = new critical_section();
+      g_pcsPid2 = __new critical_section();
 
    }
 

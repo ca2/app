@@ -261,19 +261,19 @@ namespace html
             if (m_etag == tag_head || m_etag == tag_html)
             {
 
-               m_pimpl = __new ::html::impl::element();
+               m_pimpl = __allocate ::html::impl::element();
 
             }
             else if (m_etag == tag_body)
             {
 
-               m_pimpl = __new ::html::impl::text();
+               m_pimpl = __allocate ::html::impl::text();
 
             }
             else
             {
 
-               m_pimpl = __new ::html::impl::element();
+               m_pimpl = __allocate ::html::impl::element();
 
             }
 
@@ -286,13 +286,13 @@ namespace html
 
                phtmldata->m_pcoredata->m_strTitle = m_phtmlbase->get_value()->get_value();
 
-               m_pimpl = __new ::html::impl::element();
+               m_pimpl = __allocate ::html::impl::element();
 
             }
             else
             {
 
-               m_pimpl = __new ::html::impl::element();
+               m_pimpl = __allocate ::html::impl::element();
 
             }
 
@@ -314,37 +314,37 @@ namespace html
             if (strType == "text")
             {
 
-               m_pimpl = __new ::html::impl::input_text();
+               m_pimpl = __allocate ::html::impl::input_text();
 
             }
             else if(strType == "calculator")
             {
 
-               m_pimpl = __new ::html::impl::input_text("calculator", m_propertyset["unit"]);
+               m_pimpl = __allocate ::html::impl::input_text("calculator", m_propertyset["unit"]);
 
             }
             else if (strType == "password")
             {
 
-               m_pimpl = __new ::html::impl::input_text();
+               m_pimpl = __allocate ::html::impl::input_text();
 
             }
             else if (strType == "button")
             {
 
-               m_pimpl = __new ::html::impl::input_button();
+               m_pimpl = __allocate ::html::impl::input_button();
 
             }
             else if (strType == "checkbox")
             {
 
-               m_pimpl = __new ::html::impl::input_checkbox();
+               m_pimpl = __allocate ::html::impl::input_checkbox();
 
             }
             else
             {
 
-               m_pimpl = __new ::html::impl::text();
+               m_pimpl = __allocate ::html::impl::text();
 
             }
 
@@ -352,7 +352,7 @@ namespace html
          else if (m_etag == tag_select)
          {
 
-            m_pimpl = __new ::html::impl::select();
+            m_pimpl = __allocate ::html::impl::select();
 
          }
          else if (m_etag == tag_option)
@@ -364,31 +364,31 @@ namespace html
          else if (m_etag == tag_img)
          {
 
-            m_pimpl = __new ::html::impl::image();
+            m_pimpl = __allocate ::html::impl::image();
 
          }
          else if (m_etag == tag_table && m_elementalptra.has_elements())
          {
 
-            m_pimpl = __new ::html::impl::table();
+            m_pimpl = __allocate ::html::impl::table();
 
          }
          else if (m_etag == tag_tr && m_elementalptra.has_elements())
          {
 
-            m_pimpl = __new ::html::impl::table_row();
+            m_pimpl = __allocate ::html::impl::table_row();
 
          }
          else if (m_etag == tag_td && m_elementalptra.has_elements())
          {
 
-            m_pimpl = __new ::html::impl::cell();
+            m_pimpl = __allocate ::html::impl::cell();
 
          }
          else
          {
 
-            m_pimpl = __new ::html::impl::text();
+            m_pimpl = __allocate ::html::impl::text();
 
          }
 
@@ -1018,7 +1018,7 @@ namespace html
 
          for (i32 i = 0; i < ptag->baseptra().get_size(); i++)
          {
-            auto pelemental  = __new ::html::element();
+            auto pelemental  = __allocate ::html::element();
 
             pelemental->initialize_html_elemental(phtmldata, this);
             pelemental->load(phtmldata, ptag->baseptra()[i]);
@@ -1184,7 +1184,7 @@ namespace html
       while (true)
       {
 
-         ::pointer<element>pelemental = __new element();
+         ::pointer<element>pelemental = __allocate element();
 
          pelemental->initialize_html_elemental(phtmldata, this);
 

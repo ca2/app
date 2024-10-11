@@ -315,7 +315,7 @@ namespace allocator
          while (c > 0)
          {
 
-            ::new (pdst) TYPE(src);
+            ::__new (pdst) TYPE(src);
 
             pdst++;
 
@@ -332,7 +332,7 @@ namespace allocator
          while (c > 0)
          {
 
-            ::new (pdst) TYPE(*psrc);
+            ::__new (pdst) TYPE(*psrc);
 
             c--;
 

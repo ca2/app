@@ -52,7 +52,7 @@ namespace draw2d_opengl
       m_nPenStyle    = nPenStyle;
       m_dWidth       = dWidth;
       m_colorColor      = crColor;
-      m_ppen         = __new< plusplus::Pen(plusplus::Color >(crColor), dWidth);
+      m_ppen         = __allocate< plusplus::Pen(plusplus::Color >(crColor), dWidth);
 
    }
 
@@ -363,12 +363,12 @@ namespace draw2d_opengl
       //   if (m_epen == ::draw2d::e_pen_brush)
       //   {
       //      
-      //      ((pen *) this)->m_ppen = __new< plusplus::Pen((plusplus::Brush *) m_br.cast < brush >()->get_os_data(),  >(plusplus::REAL) m_dWidth);
+      //      ((pen *) this)->m_ppen = __allocate< plusplus::Pen((plusplus::Brush *) m_br.cast < brush >()->get_os_data(),  >(plusplus::REAL) m_dWidth);
 
       //   }
       //   else
       //   {
-      //      ((pen *) this)->m_ppen = __new< plusplus::Pen(plusplus::Color >(
+      //      ((pen *) this)->m_ppen = __allocate< plusplus::Pen(plusplus::Color >(
       //         color32_u8_opacity(m_color),
       //         color32_u8_red(m_color),
       //         color32_u8_green(m_color),

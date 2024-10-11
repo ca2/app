@@ -13,7 +13,7 @@
 //
 //      auto phash = pprovider->CreateHash();
 //
-//      auto phasher = __new ::winrt::hasher(phash);
+//      auto phasher = __allocate ::winrt::hasher(phash);
 //
 //      return phasher;
 //

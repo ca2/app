@@ -513,7 +513,7 @@ namespace base
    ::pointer<::user::menu_interaction>user::create_menu_button(::user::style * pstyle, ::menu::item * pmenuitem)
    {
 
-      auto pmenubutton = __new ::user::menu_button();
+      auto pmenubutton = __allocate ::user::menu_button();
 
       pmenubutton->initialize_menu_interaction(pmenuitem);
 
@@ -567,7 +567,7 @@ namespace base
       __UNREFERENCED_PARAMETER(hInstance);
       __UNREFERENCED_PARAMETER(pParam);
 
-      auto pinteraction = __new ::user::interaction();
+      auto pinteraction = __allocate ::user::interaction();
 
       pinteraction->create_child(puiParent);
 
@@ -742,7 +742,7 @@ namespace base
    //session_docs * create_session_docs()
    //{
 
-   //   return new session_docs();
+   //   return __new session_docs();
 
    //}
 
@@ -1386,7 +1386,7 @@ namespace base
 
          //application()->m_pbaseapplication->add_impact_system(
          //   m_ptemplateForm->m_atom, 
-         //   ::as(new ::user::multiple_document_template(
+         //   ::as(__new ::user::multiple_document_template(
          //      m_ptemplateForm->m_atom,
          //      m_ptemplateForm->m_typeatomDocument,
          //      m_ptemplateForm->m_typeatomFrame,
@@ -1645,7 +1645,7 @@ namespace base
 
             //add_impact_system(
             //   m_ptemplateChildForm->m_atom,
-            //       ::as(new ::user::multiple_document_template(
+            //       ::as(__new ::user::multiple_document_template(
             //   m_ptemplateChildForm->m_atom,
             //   typeDocument,
             //   m_ptemplateChildForm->m_typeatomFrame,
@@ -1774,7 +1774,7 @@ namespace base
    ::pointer<::user::plain_edit>user::create_calculator_edit()
    {
 
-      return __new ::user::show < ::calculator::edit > ();
+      return __allocate ::user::show < ::calculator::edit > ();
 
    }
 
@@ -1797,7 +1797,7 @@ namespace base
 
          add_impact_system(
             atom,
-            __new ::user::multiple_document_template (
+            __allocate ::user::multiple_document_template (
                "system/form",
                ::type < form_document >(),
                get_simple_child_frame_type_info(),

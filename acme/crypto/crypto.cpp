@@ -604,7 +604,7 @@ namespace crypto
       }
 
 
-      // get a new salt - 8 hexadecimal characters long
+      // get a __new salt - 8 hexadecimal characters long
       // current PHP installations should not exceed 8 characters
       // on dechex( mt_rand() )
       // but we future proof it anyway with substr()

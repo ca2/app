@@ -84,7 +84,7 @@
 //inline pointer < T > & pointer < T >::create_new()
 //{
 //
-//   auto p = __new T2();
+//   auto p = __allocate T2();
 //
 //   return operator=(p);
 //
@@ -113,7 +113,7 @@
 //inline pointer < T > & pointer < T >::create_new(OBJECT * pparticle)
 //{
 //
-//   auto p = __new T2();
+//   auto p = __allocate T2();
 //
 //   if (p)
 //   {

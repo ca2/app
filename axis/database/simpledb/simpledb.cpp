@@ -404,7 +404,7 @@ namespace simpledb
          if (pstorage->m_pthreadlocal.is_null())
          {
 
-            pstorage->m_pthreadlocal = __new thread_localdatabase();
+            pstorage->m_pthreadlocal = __allocate thread_localdatabase();
 
             pstorage->m_pthreadlocal->initialize(pstorage);
 
@@ -437,7 +437,7 @@ namespace simpledb
          if (pstorage->m_pthread.is_null())
          {
 
-            pstorage->m_pthread = __new thread();
+            pstorage->m_pthread = __allocate thread();
 
             pstorage->m_pthread->m_pstorage = pstorage;
 

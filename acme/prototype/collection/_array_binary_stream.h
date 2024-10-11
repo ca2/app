@@ -209,7 +209,7 @@ inline binary_stream & operator >>(binary_stream & stream, ARRAY & a)
       for (; i < c && stream.has_ok_flag(); i++)
       {
          
-         auto p = new typename ARRAY::BASE_TYPE();
+         auto p = __new typename ARRAY::BASE_TYPE();
          
          a[i] = p;
 

@@ -84,7 +84,7 @@ namespace filemanager
 
          ::file::path filepathUser = m_pcontext->defer_process_matter_path(filepathFinal);
 
-         auto pfileitem = __new ::file::item(filepathUser, filepathFinal);
+         auto pfileitem = __allocate ::file::item(filepathUser, filepathFinal);
 
          filemanager_document()->on_file_manager_open_folder(pfileitem, ::e_source_user);
 
@@ -183,7 +183,7 @@ namespace filemanager
          //      ::u32 uFlags;
          if (pcolumn->m_pimagelist == nullptr)
          {
-            pcolumn->m_pimagelist = __new ::image::image_list();
+            pcolumn->m_pimagelist = __allocate ::image::image_list();
          }
          ::image::image_list_pointer pil = pcolumn->m_pimagelist;
          //if(pil->GetSafeHandle() != nullptr)

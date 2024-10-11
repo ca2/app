@@ -270,18 +270,18 @@ namespace experience
       if (m_pregion.is_null())
       {
 
-         return __new ::item(::e_element_none);
+         return __allocate ::item(::e_element_none);
 
       }
 
       if (!m_pregion->contains(point))
       {
 
-         return __new ::item(::e_element_none);
+         return __allocate ::item(::e_element_none);
 
       }
 
-      return __new ::item(::e_element_client);
+      return __allocate ::item(::e_element_client);
 
    }
 

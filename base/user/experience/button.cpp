@@ -157,9 +157,9 @@ namespace experience
 //
 //               host_to_client(rectangleFocus);
 //
-//               m_pshapeaClip->add_item(__new rectangle_shape(rectangleFocus));
+//               m_pshapeaClip->add_item(__allocate rectangle_shape(rectangleFocus));
 //
-//               m_pshapeaClip->add_item(__new intersect_clip_shape());
+//               m_pshapeaClip->add_item(__allocate intersect_clip_shape());
 //
 //               i++;
 //
@@ -198,7 +198,7 @@ namespace experience
             if(has_mouse_capture())
             {
 
-               return __new ::item(::e_element_non_client);
+               return __allocate ::item(::e_element_non_client);
 
             }
 
@@ -209,7 +209,7 @@ namespace experience
          //   if(m_pcontrolbox->m_pframewindow->dock_manager()->window_is_docking())
          //   {
 
-         //      return __new ::item(::e_element_non_client);
+         //      return __allocate ::item(::e_element_non_client);
 
          //   }
 

@@ -30,11 +30,11 @@ namespace openssl
       switch (ehash)
       {
       case e_hash_md5:
-         return __new< ::openssl::hasher_algorithm(ehash, EVP_md5 >());
+         return __allocate< ::openssl::hasher_algorithm(ehash, EVP_md5 >());
       case e_hash_sha1:
-         return __new< ::openssl::hasher_algorithm(ehash, EVP_sha1 >());
+         return __allocate< ::openssl::hasher_algorithm(ehash, EVP_sha1 >());
       case e_hash_sha256:
-         return __new< ::openssl::hasher_algorithm(ehash, EVP_sha256 >());
+         return __allocate< ::openssl::hasher_algorithm(ehash, EVP_sha256 >());
       default:
          return nullptr;
       }
@@ -45,7 +45,7 @@ namespace openssl
    ::pointer<::crypto::hasher>hasher_algorithm::create_hasher()
    {
 
-      return __new ::openssl::hasher(this);
+      return __allocate ::openssl::hasher(this);
 
    }
 

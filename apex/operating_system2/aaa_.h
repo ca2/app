@@ -91,7 +91,7 @@ inline bool predicate_Sleep(int iTime, PRED pred);
 ////::pointer<pcre_context>pcre_context::create_context(int iSizeData)
 ////{
 ////
-////   return __new pcre_context_impl( iSizeData);
+////   return __allocate pcre_context_impl( iSizeData);
 ////
 ////}
 //////
@@ -101,7 +101,7 @@ inline bool predicate_Sleep(int iTime, PRED pred);
 ////
 ////   ::pointer<pcre_context_impl>pcreContextImpl = pcre_context::create_context(pparticle, 0);
 ////
-////   auto putil = __new pcre_util_impl(pcreContextImpl);
+////   auto putil = __allocate pcre_util_impl(pcreContextImpl);
 ////
 ////   putil->compile(str);
 ////
@@ -115,7 +115,7 @@ inline bool predicate_Sleep(int iTime, PRED pred);
 ////
 ////   ::pointer<pcre_context_impl>pimpl = m_pcreContext;
 ////
-////   auto pcode = __new pcre_code_impl(pimpl);
+////   auto pcode = __allocate pcre_code_impl(pimpl);
 ////
 ////   pcode->compile(str);
 ////

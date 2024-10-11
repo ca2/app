@@ -386,7 +386,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //			case e_message_scroll_x:
 //				{
 //					int xDelta;     // xDelta = new_pos - current_pos  
-//					int xNewPos;    // new position 
+//					int xNewPos;    // __new position 
 //					int yDelta = 0; 
 // 
 //					switch (LOWORD(wParam)) 
@@ -459,7 +459,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //				{ 
 //					int xDelta = 0; 
 //					int yDelta;     // yDelta = new_pos - current_pos 
-//					int yNewPos;    // new position 
+//					int yNewPos;    // __new position 
 // 
 //					switch (LOWORD(wParam)) 
 //					{ 

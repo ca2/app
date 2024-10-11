@@ -3638,7 +3638,7 @@ namespace windowing
          else
          {
 
-            pusersystem = __new::user::system();
+            pusersystem = __allocate::user::system();
 
          }
 
@@ -3826,7 +3826,7 @@ namespace windowing
       else
       {
 
-         pusersystem = __new::user::system();
+         pusersystem = __allocate::user::system();
 
       }
 
@@ -4015,7 +4015,7 @@ namespace windowing
    //       //                      pusersystem->m_createstruct.cx(),
    //       //                      pusersystem->m_createstruct.cy()));
    //
-   //       //auto psynca = __new synchronization_array();
+   //       //auto psynca = __allocate synchronization_array();
    //
    //       //::pointer<manual_reset_event>peventStartedUser;
    //
@@ -4043,7 +4043,7 @@ namespace windowing
    //
    //          m_puserthread = m_puserthread;
    //
-   //          //peventStartedUser = __new manual_reset_event();
+   //          //peventStartedUser = __allocate manual_reset_event();
    //
    //          //m_puserthread->m_peventStarted = peventStartedUser;
    //
@@ -4291,7 +4291,7 @@ namespace windowing
 //      //ASSERT(puiParent != nullptr);
 //      //ASSERT((uStyle & WS_POPUP) == 0);
 //
-//      //auto pusersystem = __new ::user::system();
+//      //auto pusersystem = __allocate ::user::system();
 //
 //      //pusersystem->m_createstruct.dwExStyle = 0;
 //
@@ -4673,7 +4673,7 @@ namespace windowing
 
       }
 
-      auto poutputpurpose = __new::graphics::output_purpose(pparticleGraphicalOutputPurposeOriginator, epurpose);
+      auto poutputpurpose = __allocate::graphics::output_purpose(pparticleGraphicalOutputPurposeOriginator, epurpose);
 
       bool bHadGraphicalOutputPurpose = m_puserinteraction->has_graphical_output_purpose();
 
@@ -8391,7 +8391,7 @@ namespace windowing
       if (::is_null(m_puserinteraction->m_pinteractionScaler))
       {
 
-         m_puserinteraction->m_pinteractionScaler = __new::user::interaction_scaler();
+         m_puserinteraction->m_pinteractionScaler = __allocate::user::interaction_scaler();
 
       }
 
@@ -8474,7 +8474,7 @@ namespace windowing
             if (!m_puserinteraction->m_bMessageWindow)
             {
 
-               m_pcsDisplay = new critical_section();
+               m_pcsDisplay = __new critical_section();
 
                information() << "interaction_impl m_pgraphics alloc : " << strType;
 
@@ -14938,7 +14938,7 @@ namespace windowing
 
       // }
 
-      // m_puserinteraction->interaction_post(__new call_message_handler_task(m_puserinteraction, atom, wparam, lparam));
+      // m_puserinteraction->interaction_post(__allocate call_message_handler_task(m_puserinteraction, atom, wparam, lparam));
 
       //auto pmessage
 
@@ -15448,7 +15448,7 @@ namespace windowing
 
       // }
 
-      // m_puserinteraction->interaction_post(__new call_message_handler_task(m_puserinteraction, atom, wparam, lparam));
+      // m_puserinteraction->interaction_post(__allocate call_message_handler_task(m_puserinteraction, atom, wparam, lparam));
 
       //auto pmessage
 

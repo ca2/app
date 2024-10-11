@@ -44,7 +44,7 @@ public:
 
       allocate_for_size(m_c + 1);
 
-      ::new (m_p + m_c) T(t);
+      ::__new (m_p + m_c) T(t);
 
       m_c++;
 

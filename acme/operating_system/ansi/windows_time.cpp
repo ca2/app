@@ -1004,7 +1004,7 @@ NTSTATUS NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *OldTime)
 
    RtlTimeToSecondsSince1970( NewTime, &sec );
 
-   /* set the new time */
+   /* set the __new time */
    tv.tv_sec = sec;
    tv.tv_usec = 0;
 

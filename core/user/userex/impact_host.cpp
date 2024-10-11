@@ -230,7 +230,7 @@ namespace userex
 
          //m_ptemplateTab = ;;
          user()->m_pbaseuser->add_impact_system(
-            "main", ::as(new user::single_document_template(
+            "main", ::as(__new user::single_document_template(
             "main",
             ::type < ::user::document >(),
             ::type < simple_child_frame >(),

@@ -13,7 +13,7 @@
 //   {
 //      freeBlock,    // memory not used
 //      objectBlock,  // contains a matter derived class matter
-//      bitBlock,     // contains ::operator new data
+//      bitBlock,     // contains ::operator __new data
 //      crtBlock,
 //      ignoredBlock,
 //      nBlockUseMax  // total number of usages

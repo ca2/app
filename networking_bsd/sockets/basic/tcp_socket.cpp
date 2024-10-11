@@ -308,7 +308,7 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* ssl, unsigned char key_name[16],
 //
 //   //ssl_ticket_key key;
 //   //int is_current_key;
-//   //if (enc)   /* create new session */
+//   //if (enc)   /* create __new session */
 //   //{
 //   //   if (current_session_key(c, &key))
 //   //   {
@@ -354,7 +354,7 @@ static int ssl_tlsext_ticket_key_cb(SSL* s, unsigned char key_name[16], unsigned
    ::sockets_bsd::tcp_socket* c = (::sockets_bsd::tcp_socket*)SSL_get_app_data2(s);
    ssl_ticket_key key;
    int is_current_key;
-   if (enc)   /* create new session */
+   if (enc)   /* create __new session */
    {
       if (current_session_key(c, &key))
       {
@@ -540,7 +540,7 @@ m_ibuf(isize)
 
       ::pointer < ::networking_bsd::address > paddress2 = paddress;
 
-      auto paddressBind2 = __new ::networking_bsd::address();
+      auto paddressBind2 = __allocate ::networking_bsd::address();
 
       paddressBind2->set_family(paddress2->get_family());
 
@@ -612,7 +612,7 @@ m_ibuf(isize)
 
       ::pointer < ::networking_bsd::address > pnetworkingbsdaddressBind = paddressBind;
 
-      // if not, create new connection
+      // if not, create __new connection
       SOCKET s = CreateSocket(pnetworkingbsdaddress->get_family(), SOCK_STREAM, "tcp");
 
       if (s == INVALID_SOCKET)
@@ -845,7 +845,7 @@ m_ibuf(isize)
 
          ::pointer < ::networking_bsd::address > pnetworkingbsdaddress = paddress;
 
-         auto paddressLocal = __new ::networking_bsd::address();
+         auto paddressLocal = __allocate ::networking_bsd::address();
 
          paddressLocal->set_family(pnetworkingbsdaddress->get_family());
 
@@ -1669,7 +1669,7 @@ m_ibuf(isize)
 
             }
 
-            m_obuf_top = __new output(TCP_OUTPUT_CAPACITY);
+            m_obuf_top = __allocate output(TCP_OUTPUT_CAPACITY);
 
          }
 
@@ -1691,7 +1691,7 @@ m_ibuf(isize)
 
       return _try_write(buf, len);
 
-      //auto poutput = ::place(::new output(len));
+      //auto poutput = ::place(::__new output(len));
 
       //poutput->m_memory.assign(buf, len);
 
@@ -2625,7 +2625,7 @@ m_ibuf(isize)
 
       ::pointer<ssl_client_context>psslclientcontext = clientcontextmap.get_context(context, pmethod);
 
-      m_psslcontext = __new ssl_context();
+      m_psslcontext = __allocate ssl_context();
 
       m_psslcontext->m_pclientcontext = psslclientcontext;
 
@@ -2638,14 +2638,14 @@ m_ibuf(isize)
       if (m_psslcontext.is_null())
       {
 
-         m_psslcontext = __new ssl_context();
+         m_psslcontext = __allocate ssl_context();
 
       }
 
       if (m_psslcontext->m_pclientcontext.is_null())
       {
 
-         m_psslcontext->m_pclientcontext = __new ssl_client_context (meth_in != nullptr ? meth_in : TLS_server_method());
+         m_psslcontext->m_pclientcontext = __allocate ssl_client_context (meth_in != nullptr ? meth_in : TLS_server_method());
 
          m_psslcontext->m_pclientcontext->initialize(m_pcontext);
 

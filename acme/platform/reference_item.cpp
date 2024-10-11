@@ -302,7 +302,7 @@ CLASS_DECL_ACME::collection::index new_reference_item_serial()
 //   if (::is_null(m_pobjectreferencecountdebug) && is_referencing_debugging_enabled())
 //   {
 //
-//      m_pobjectreferencecountdebug = new class reference_count_debug(this);
+//      m_pobjectreferencecountdebug = __new class reference_count_debug(this);
 //
 //   }
 //

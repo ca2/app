@@ -25,7 +25,7 @@ namespace calculator
    ::calculator::element * parser::new_node()
    {
 
-      auto pmatter = __new ::calculator::element();
+      auto pmatter = __allocate ::calculator::element();
 
       m_elementa.add(pmatter);
 

@@ -79,7 +79,7 @@ fixed_alloc_sync::fixed_alloc_sync(::heap::allocator * pallocator, ::u32 nAllocS
    for(i32 i = 0; i < m_allocptra.get_count(); i++)
    {
       
-      m_allocptra[i] = new fixed_alloc_no_sync(m_pallocator, (::u32) (nAllocSize + sizeof(fixed_alloc_no_sync)), nBlockSize);
+      m_allocptra[i] = __new fixed_alloc_no_sync(m_pallocator, (::u32) (nAllocSize + sizeof(fixed_alloc_no_sync)), nBlockSize);
       
    }
 
@@ -173,7 +173,7 @@ fixed_alloc::fixed_alloc(::heap::allocator * pallocator,::u32 nAllocSize, ::u32 
    for(i32 i = 0; i < m_allocptra.get_count(); i++)
    {
       
-      m_allocptra[i] = new fixed_alloc_sync (m_pallocator, (::u32) (nAllocSize + sizeof(fixed_alloc_sync)), nBlockSize, 12);
+      m_allocptra[i] = __new fixed_alloc_sync (m_pallocator, (::u32) (nAllocSize + sizeof(fixed_alloc_sync)), nBlockSize, 12);
       
    }
 

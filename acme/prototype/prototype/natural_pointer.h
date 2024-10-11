@@ -227,7 +227,7 @@ public:
 
       auto p = memory()->allocate(sizeStorageInBytes + sizeof(META_DATA), &sizeStorageInBytes);
 
-      auto pmetadata = new (p) natural_meta_data < META_DATA >();
+      auto pmetadata = __new (p) natural_meta_data < META_DATA >();
 
       pmetadata->m_sizeStorageInBytes = sizeStorageInBytes - sizeof(META_DATA);
 

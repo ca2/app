@@ -1192,7 +1192,7 @@ public:
       if (!p)
       {
 
-         p = __new T();
+         p = __allocate T();
 
          operator =(p);
 

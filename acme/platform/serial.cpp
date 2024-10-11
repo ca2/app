@@ -28,7 +28,7 @@ namespace serial
       enum_byte_size ebytesize, enum_parity eparity, enum_stop_bit estopbit,
       enum_flow_control eflowcontrol)
       //:
-      //m_pimpl(::as(new serial_impl(port, baudrate, ebytesize, eparity, estopbit, eflowcontrol)))
+      //m_pimpl(::as(__new serial_impl(port, baudrate, ebytesize, eparity, estopbit, eflowcontrol)))
    {
 //      set_timeout(timeout);
 
@@ -786,7 +786,7 @@ namespace serial
 //   size)
 //{
 //   scoped_read_lock lock(this);
-//   u8 * buffer_ = new u8[size];
+//   u8 * buffer_ = __new u8[size];
 //   size_t bytes_read = this->read(buffer_, size);
 //   buffer.append(reinterpret_cast
 //   <const char *>(buffer_), bytes_read

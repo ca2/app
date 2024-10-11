@@ -396,7 +396,7 @@ namespace xcb
 
                pparticle->information() << "xcb nano display::get (2)";
 
-               auto p = __new display();
+               auto p = __allocate display();
 
                p->initialize(pparticle);
 
@@ -616,7 +616,7 @@ namespace xcb
 
                m_pX11Display = node()->x11_get_display();
 
-               information() << "xcb nano display::init_task got new x11_display : " << (::iptr) m_pX11Display ;
+               information() << "xcb nano display::init_task got __new x11_display : " << (::iptr) m_pX11Display ;
 
             }
 

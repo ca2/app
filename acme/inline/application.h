@@ -133,9 +133,9 @@ int main(int argc, char * argv[], char * envp[])
 
 //   acme::acme acme;
 //
-//   auto pplatform = __new subsystem();
+//   auto pplatform = __allocate subsystem();
 //
-//   auto pmainhold = __new main_hold();
+//   auto pmainhold = __allocate main_hold();
 
 //   ::main acme;
 //
@@ -187,7 +187,7 @@ int main(int argc, char * argv[], char * envp[])
 //
 //   return iExitCode;
 //
-////   ///auto pmainhold = __new main_hold();
+////   ///auto pmainhold = __allocate main_hold();
 ////
 ////   auto papp = IDENTIFIER_CONCATENATE(new_, APP)();
 ////

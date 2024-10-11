@@ -10449,11 +10449,11 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image::image* m_p, i32 Δx, i32 Δy,
 http://www.sparkhound.com/blog/detect-image-file-types-through-::u8-arrays
 ::payload bmp = Encoding.ASCII.GetBytes("BM"); // BMP
 ::payload gif = Encoding.ASCII.GetBytes("GIF"); // GIF
-::payload png = __new_array< ::u8 >(){ 137, 80, 78, 71 }; // PNG
-::payload tiff = __new_array< ::u8 >(){ 73, 73, 42 }; // TIFF
-::payload tiff2 = __new_array< ::u8 >(){ 77, 80, 42 }; // TIFF
-::payload jpeg = __new_array< ::u8 >(){ 255, 216, 255, 224 }; // jpeg
-::payload jpeg2 = __new_array< ::u8 >(){ 255, 216, 255, 225 }; // jpeg canon
+::payload png = __allocate_array< ::u8 >(){ 137, 80, 78, 71 }; // PNG
+::payload tiff = __allocate_array< ::u8 >(){ 73, 73, 42 }; // TIFF
+::payload tiff2 = __allocate_array< ::u8 >(){ 77, 80, 42 }; // TIFF
+::payload jpeg = __allocate_array< ::u8 >(){ 255, 216, 255, 224 }; // jpeg
+::payload jpeg2 = __allocate_array< ::u8 >(){ 255, 216, 255, 225 }; // jpeg canon
 */
 
 

@@ -88,7 +88,7 @@ namespace helloworld
       ::user::single_document_template* pDocTemplate;
 
 
-      pDocTemplate = ::as(new ::user::single_document_template(
+      pDocTemplate = ::as(__new ::user::single_document_template(
                              this,
                              "main",
                              ::type < document >(),
@@ -98,7 +98,7 @@ namespace helloworld
       add_document_template(pDocTemplate);
 
 
-      pDocTemplate = ::as(new ::user::single_document_template(
+      pDocTemplate = ::as(__new ::user::single_document_template(
                              this,
                              "main",
                              ::type < document >(),
@@ -108,7 +108,7 @@ namespace helloworld
       add_document_template(pDocTemplate);
 
 
-      pDocTemplate = ::as(new ::user::single_document_template(
+      pDocTemplate = ::as(__new ::user::single_document_template(
                              this,
                              "switcher",
                              ::type < document >(),
@@ -212,7 +212,7 @@ extern "C"
 ::acme::library * app_helloworld_get_new_library(::particle * pparticle)
 {
 
-   return new ::apex::single_application_library < ::helloworld::application >  (pparticle, "app/helloworld");
+   return __new ::apex::single_application_library < ::helloworld::application >  (pparticle, "app/helloworld");
 
 }
 

@@ -152,7 +152,7 @@ namespace user
       ::pointer<span>data::create_span()
       {
 
-         return __new span(this);
+         return __allocate span(this);
 
       }
 
@@ -162,7 +162,7 @@ namespace user
 
          synchronous_lock synchronouslock(this->synchronization());
 
-         return __new class span (this, span);
+         return __allocate class span (this, span);
 
       }
 

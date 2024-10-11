@@ -131,11 +131,11 @@ namespace colorertake5
          delete lrSupport;
          if (regionCompact)
          {
-            lrSupport = new LineRegionsCompactSupport();
+            lrSupport = __new LineRegionsCompactSupport();
          }
          else
          {
-            lrSupport = new LineRegionsSupport();
+            lrSupport = __new LineRegionsSupport();
          }
          lrSupport->resize(lrSize);
          lrSupport->clear();
@@ -243,7 +243,7 @@ namespace colorertake5
 
       if (pair != nullptr)
       {
-         PairMatch *pm = __new< PairMatch(pair, lineNo, pair->region->hasParent >(def_PairStart));
+         PairMatch *pm = __allocate< PairMatch(pair, lineNo, pair->region->hasParent >(def_PairStart));
          pm->setStart(pair);
          return pm;
       }

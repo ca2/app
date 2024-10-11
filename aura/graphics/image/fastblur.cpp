@@ -216,11 +216,11 @@ inline void storeFloatAsRGBA8(float32x4_t data,u32* destination)
 
       const int wh = (wj)*(cy);
 
-      timage = new vector4[wh];
+      timage = __new vector4[wh];
       // temporary output space for first pass.
-      tsurface = new vector4[wh];
+      tsurface = __new vector4[wh];
 
-      m_stack = new vector4[div2];
+      m_stack = __new vector4[div2];
 
 
 
@@ -239,8 +239,8 @@ inline void storeFloatAsRGBA8(float32x4_t data,u32* destination)
       // lookup table for clamping pixel offsets
       // as the kernel passes the right (or lower) edge
       // of the input data
-      vxmin = new int[cx + 100 + div2];
-      vymin = new int[cy + 100 + div2];
+      vxmin = __new int[cx + 100 + div2];
+      vymin = __new int[cy + 100 + div2];
 
       const int r1 = radius + 1;
       
@@ -1076,12 +1076,12 @@ auto tick2 = ::time::now();
       const int div = (radius * 2) + 1;
 
       // temporary output space for first pass.
-      //vector4* tsurface = new vector4[wh];
+      //vector4* tsurface = __new vector4[wh];
 
       // lookup table for clamping pixel offsets
       // as the kernel passes the right (or lower) edge
       // of the input data
-      //int* const vmin = __new< int[maximum >(w,h)];
+      //int* const vmin = __allocate< int[maximum >(w,h)];
 
       // calculate divisor for pulling an output from the kernel
       //   the kernel is pyramid shaped.
@@ -1182,7 +1182,7 @@ auto tick2 = ::time::now();
             outsum -= sir;
 
             // now this (same) stack entry is the "right" side
-            // add new pixel to the stack, and update accumulators
+            // add __new pixel to the stack, and update accumulators
             sir = p;
             insum += sir;
             sum += insum;

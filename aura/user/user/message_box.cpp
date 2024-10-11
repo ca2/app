@@ -34,11 +34,11 @@ namespace user
 
       common_construct();
 
-      auto pitemClient = __new ::item(e_element_client);
+      auto pitemClient = __allocate ::item(e_element_client);
 
       enable_drag(pitemClient, e_zorder_back);
 
-      auto pitemResize = __new ::item(e_element_resize);
+      auto pitemResize = __allocate ::item(e_element_resize);
 
       enable_drag(pitemResize, e_zorder_back);
 
@@ -77,7 +77,7 @@ namespace user
    void message_box::on_realize(::message_box * pmessagebox)
    {
 
-      //auto psequencer = __new ::sequencer <::conversation > ();
+      //auto psequencer = __allocate ::sequencer <::conversation > ();
 
       //psequencer->m_psequence = this;
 
@@ -97,7 +97,7 @@ namespace user
 
       m_stra.add_lines(strMessage);
 
-      m_pbuttonClose = __new ::user::button("", e_dialog_result_close);
+      m_pbuttonClose = __allocate ::user::button("", e_dialog_result_close);
 
       m_pbuttonClose->set_button_style(::user::button::e_style_stock_icon);
 
@@ -356,7 +356,7 @@ namespace user
 
       pgraphics->m_pdraw2dhost = this;
 
-      m_pinteractionScaler = __new ::user::interaction_scaler();
+      m_pinteractionScaler = __allocate ::user::interaction_scaler();
 
       m_pinteractionScaler->on_display_change(this);
 

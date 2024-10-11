@@ -58,7 +58,7 @@ namespace dynamic_source
       virtual ::pointer<script_instance>create_instance()
       {
          
-         return __new T();
+         return __allocate T();
 
       }
 

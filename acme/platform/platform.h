@@ -342,7 +342,7 @@ namespace platform
       void add_factory_item(const ::atom & atom)
       {
 
-         set_factory(atom, __new ::factory::factory_item < TYPE, BASE > ());
+         set_factory(atom, __allocate ::factory::factory_item < TYPE, BASE > ());
 
       }
 
@@ -441,7 +441,7 @@ namespace platform
       ::collection::index task_index(itask_t itask, bool bAddIfNotInList = false);
 
 
-      //pass_through_function &  __call__new_pass_through_function() { return m_passthroughfunction; }
+      //pass_through_function &  __call__allocate_pass_through_function() { return m_passthroughfunction; }
 
 
       //platform * __call__add_referer2(const ::reference_referer & referer) const;

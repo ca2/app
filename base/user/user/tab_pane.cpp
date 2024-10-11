@@ -60,7 +60,7 @@ namespace user
       __construct(m_pbrushFillSel);
       __construct(m_pbrushFillHover);
 
-      m_pitemClose = __new ::item(e_element_close_tab_button);
+      m_pitemClose = __allocate ::item(e_element_close_tab_button);
 
       //return estatus;
 

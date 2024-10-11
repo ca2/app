@@ -1420,7 +1420,7 @@ namespace nanoui
 
       }
 
-      auto ptextbox = new TextBox(this, scopedstr);
+      auto ptextbox = __new TextBox(this, scopedstr);
 
       ptextbox->m_bAutoDeleteOnFinishEditing = true;
 

@@ -102,7 +102,7 @@ namespace ftp
       m_timeResponseWait(timeResponseWait),
       mc_strEolCharacterSequence("\r\n"),
       mc_strRemoteDirectorySeparator(strRemoteDirectorySeparator),//+# documentation missing
-      m_apFileListParser(::as(new file_list_parser())),
+      m_apFileListParser(::as(__new file_list_parser())),
       m_fTransferInProgress(false),
       m_fAbortTransfer(false),
       m_fResumeIfPossible(true)
@@ -451,7 +451,7 @@ namespace ftp
    /// Rename a file on the FTP server.
    /// @remarks Can be used for moving the file to another directory.
    /// @lparam[in] strOldName Name of the file to rename.
-   /// @lparam[in] strNewName The new name for the file.
+   /// @lparam[in] strNewName The __new name for the file.
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::Rename(const string& strOldName, const string& strNewName)
    {
@@ -542,7 +542,7 @@ namespace ftp
       outputStream.SetStartPosition();
       while (outputStream.GetNextLine(strLine))
       {
-         ::pointer<file_status>spFtpFileStatus(__new file_status());
+         ::pointer<file_status>spFtpFileStatus(__allocate file_status());
          if (m_apFileListParser->Parse(*spFtpFileStatus, strLine))
          {
             spFtpFileStatus->m_strPath = strPath;
@@ -572,7 +572,7 @@ namespace ftp
       outputStream.SetStartPosition();
       while (outputStream.GetNextLine(strLine))
       {
-         ::pointer<file_status>spFtpFileStatus(__new file_status());
+         ::pointer<file_status>spFtpFileStatus(__allocate file_status());
          spFtpFileStatus->m_strPath = strPath;
          spFtpFileStatus->m_strName = strLine;
          vFileList.add(spFtpFileStatus);
@@ -814,13 +814,13 @@ namespace ftp
          if (crDatachannelCmd.IsDatachannelWriteCommand())
          {
 
-            apSckDataConnection = new ::sockets::write_socket ();
+            apSckDataConnection = __new ::sockets::write_socket ();
 
          }
          else if (crDatachannelCmd.IsDatachannelReadCommand())
          {
 
-            apSckDataConnection = new ::sockets::read_socket ();
+            apSckDataConnection = __new ::sockets::read_socket ();
 
          }
          else
@@ -848,7 +848,7 @@ namespace ftp
          if (crDatachannelCmd.IsDatachannelWriteCommand())
          {
 
-            apSckDataConnection = new ::sockets::listen_socket ();
+            apSckDataConnection = __new ::sockets::listen_socket ();
 
             apSckDataConnection->m_typeAttendSocket = ::type< ::sockets::write_socket >();
 
@@ -856,7 +856,7 @@ namespace ftp
          else if (crDatachannelCmd.IsDatachannelReadCommand())
          {
 
-            apSckDataConnection = new ::sockets::listen_socket ();
+            apSckDataConnection = __new ::sockets::listen_socket ();
 
             apSckDataConnection->m_typeAttendSocket = ::type< ::sockets::read_socket >();
 
@@ -1815,7 +1815,7 @@ auto tickStart = ::time::now();
       if (iRet == FTP_OK)
       {
          if (m_apCurrentRepresentation.is_null())
-            m_apCurrentRepresentation = __new ::ftp::representation(representation);
+            m_apCurrentRepresentation = __allocate ::ftp::representation(representation);
          else
             *m_apCurrentRepresentation = representation;
       }
@@ -2000,7 +2000,7 @@ auto tickStart = ::time::now();
 
    /// Executes the FTP command ALLO (ALLOCATE)
    /// This command may be required by some servers to reserve sufficient storage
-   /// to accommodate the new file to be transferred.
+   /// to accommodate the __new file to be transferred.
    /// @lparam[in] iReserveBytes The argument shall be a decimal integer representing
    ///                          the number of bytes (using the logical ::u8 size_i32) of
    ///                          storage to be reserved for the file. For files sent

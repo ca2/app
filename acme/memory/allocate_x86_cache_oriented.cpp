@@ -31,8 +31,8 @@ class x86_cache_oriented_memory_pool
 {
 private:
 
-   void * operator new(size_t);
-   void * operator new(size_t,const char *,i32);
+   void * operator __new(size_t);
+   void * operator __new(size_t,const char *,i32);
 
    void operator delete(void * p)
    {

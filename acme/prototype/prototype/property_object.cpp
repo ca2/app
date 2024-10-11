@@ -189,7 +189,7 @@ CLASS_DECL_ACME void debug_debug_reference()
 //   if (!m_ptraits)
 //   {
 //
-//      m_ptraits = __new traits();
+//      m_ptraits = __allocate traits();
 //
 //   }
 //
@@ -485,7 +485,7 @@ void property_object::on_catch_all_exception()
 //   if (!parray)
 //   {
 //
-//      parray = __new pointer_array < property_set > ();
+//      parray = __allocate pointer_array < property_set > ();
 //
 //      *pproperty = parray;
 //

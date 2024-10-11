@@ -25,7 +25,7 @@
 //   CLASS_DECL_AURA void init_windowing()
 //   {
 //
-//      g_pcsImpl = new critical_section();
+//      g_pcsImpl = __new critical_section();
 //
 //      g_pmapImpl = memory_new map < oswindow, ::windowing::window * >;
 //

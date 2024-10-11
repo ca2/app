@@ -118,7 +118,7 @@ namespace app_integration
 
       ::base::application::init_instance();
 
-      auto pdoctemplate = ::as(new ::user::single_document_template(
+      auto pdoctemplate = ::as(__new ::user::single_document_template(
                                "main",
                                ::type < document >(),
                                ::type < main_frame >(),
@@ -129,7 +129,7 @@ namespace app_integration
       add_document_template(pdoctemplate);
 
 
-      pdoctemplate = ::as(new ::user::single_document_template(
+      pdoctemplate = ::as(__new ::user::single_document_template(
          "openssl",
          ::type < document >(),
          ::type < main_frame >(),
@@ -139,7 +139,7 @@ namespace app_integration
 
       add_document_template(pdoctemplate);
 
-      pdoctemplate = ::as(new ::user::single_document_template(
+      pdoctemplate = ::as(__new ::user::single_document_template(
          "ffmpeg",
          ::type < document >(),
          ::type < main_frame >(),

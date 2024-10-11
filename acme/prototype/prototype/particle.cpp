@@ -2084,7 +2084,7 @@ bool particle::is_branch_current() const
 ::topic_pointer create_topic(::particle * pparticleCall, const ::atom & atom)
 {
 
-   auto ptopic = __new ::topic(atom);
+   auto ptopic = __allocate ::topic(atom);
    
    ptopic->initialize(pparticleCall);
 
@@ -2815,7 +2815,7 @@ memory_file_pointer particle::create_memory_file()
 memory_file_pointer particle::create_memory_file(::memory_base& memory)
 {
 
-   return __new ::memory_file(memory);
+   return __allocate ::memory_file(memory);
 
 }
 
@@ -2823,7 +2823,7 @@ memory_file_pointer particle::create_memory_file(::memory_base& memory)
 memory_file_pointer particle::create_memory_file(const ::block& block)
 {
 
-   return __new ::memory_file(block);
+   return __allocate ::memory_file(block);
 
 }
 
@@ -2831,7 +2831,7 @@ memory_file_pointer particle::create_memory_file(const ::block& block)
 memory_file_pointer particle::create_memory_file_as_copy(const memory& memory)
 {
 
-   return __new ::memory_file(__new ::memory (memory));
+   return __allocate ::memory_file(__allocate ::memory (memory));
 
 }
 

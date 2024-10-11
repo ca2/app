@@ -8,8 +8,8 @@
 
 
 Display * x11_get_display();
-osdisplay_dataptra * osdisplay_data::s_pdataptra = new osdisplay_dataptra();
-::pointer< ::mutex > osdisplay_data::s_pmutex = new ::pointer < ::mutex > (nullptr);
+osdisplay_dataptra * osdisplay_data::s_pdataptra = __new osdisplay_dataptra();
+::pointer< ::mutex > osdisplay_data::s_pmutex = __new ::pointer < ::mutex > (nullptr);
 
 osdisplay_data::osdisplay_data()
 {
@@ -51,7 +51,7 @@ osdisplay_data * osdisplay_get(Display * pdisplay)
    if(::is_set(pFind))
       return osdisplay_data::s_pdataptra->element_at(iFind);
 
-   osdisplay_data * pdata     = new osdisplay_data();
+   osdisplay_data * pdata     = __new osdisplay_data();
 
    pdata->m_pdisplay          = pdisplay;
    pdata->m_atomLongType      = XInternAtom(pdisplay, CA2_X11_WINDOW_LONG, False);

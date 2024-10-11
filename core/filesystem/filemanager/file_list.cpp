@@ -221,7 +221,7 @@ namespace filemanager
             
             auto pusermenu = user()->menu_from_xml(this, filemanager_data()->m_strXmlPopup);
             
-            auto ptrackpopup = new ::menu::track_popup(
+            auto ptrackpopup = __new ::menu::track_popup(
                                                              pusermenu,
                                                              this,
                                                              this,
@@ -248,7 +248,7 @@ namespace filemanager
          
          auto pmenu = puser->menu_from_xml(this, filemanager_data()->m_strXmlPopup);
          
-         auto ptrackpopup = ::as(new ::menu::track_popup(
+         auto ptrackpopup = ::as(__new ::menu::track_popup(
                                                              pmenu,
                                                              this,
                                                              this,
@@ -515,7 +515,7 @@ namespace filemanager
          if (pmenu->create_menu(straCommand, straCommandTitle))
          {
             
-            auto ptrackpopup = ::as(new ::menu::track_popup(
+            auto ptrackpopup = ::as(__new ::menu::track_popup(
                                                              pmenu,
                                                              this,
                                                              this));

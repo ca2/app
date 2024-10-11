@@ -124,7 +124,7 @@ namespace acme
 
       m_pcontext = this;
 
-      m_ptexttranslator = new ::text::translator ();
+      m_ptexttranslator = __new ::text::translator ();
 
       m_ptexttranslator->m_pcontext = this;
 
@@ -713,14 +713,14 @@ namespace acme
 
       ::collection::count cScan = maximum(1, minimum(iCount - iStart, iAffinityOrder));
 
-      auto pcounter = __new ::parallelization::counter(cScan, procedureCompletion);
+      auto pcounter = __allocate ::parallelization::counter(cScan, procedureCompletion);
 
       auto ptask = ::get_task();
 
       for (::collection::index iOrder = 0; iOrder < cScan; iOrder++)
       {
 
-         auto ppredtask = __new forking_count_task(this, iOrder, iOrder + iStart, cScan, iCount, function);
+         auto ppredtask = __allocate forking_count_task(this, iOrder, iOrder + iStart, cScan, iCount, function);
 
          //if (::is_set(ptask))
          //{

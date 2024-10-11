@@ -24,7 +24,7 @@
 //#endif
 //
 //
-//void* MEMORY_DECL operator new(size_t nSize)
+//void* MEMORY_DECL operator __new(size_t nSize)
 //{
 //
 ////   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nSize);
@@ -34,7 +34,7 @@
 //
 //
 //
-//void* MEMORY_DECL operator new(size_t nSize, const std::nothrow_t&) noexcept
+//void* MEMORY_DECL operator __new(size_t nSize, const std::nothrow_t&) noexcept
 //{
 //
 //   return memory_allocate(nSize);
@@ -52,25 +52,25 @@
 //
 //#ifdef WINDOWS
 //
-//void* MEMORY_DECL operator new[](size_t nSize)
+//void* MEMORY_DECL operator __new[](size_t nSize)
 //{
 //
-//   return ::operator new(nSize);
+//   return ::operator __new(nSize);
 //
 //}
 //
 //#else
 //
-//void* MEMORY_DECL operator new[](size_t nSize) new_throw_spec
+//void* MEMORY_DECL operator __new[](size_t nSize) new_throw_spec
 //{
 //
-//   return ::operator new(nSize);
+//   return ::operator __new(nSize);
 //
 //}
 //
 //#endif
 //
-//void* MEMORY_DECL operator new[](size_t nSize, const std::nothrow_t&) noexcept
+//void* MEMORY_DECL operator __new[](size_t nSize, const std::nothrow_t&) noexcept
 //{
 //
 //   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(nSize);
@@ -92,7 +92,7 @@
 //#if defined(UNIVERSAL_WINDOWS) //|| defined(ANDROID)
 //
 //
-//void* MEMORY_DECL operator new(size_t nSize, void* p) inplace_new_throw_spec
+//void* MEMORY_DECL operator __new(size_t nSize, void* p) inplace_new_throw_spec
 //{
 //
 //   __UNREFERENCED_PARAMETER(nSize);
@@ -118,7 +118,7 @@
 //
 ////
 ////
-////void* MEMORY_DECL operator new (size_t size, const c_class&)
+////void* MEMORY_DECL operator __new (size_t size, const c_class&)
 ////{
 ////
 ////   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size);
@@ -126,7 +126,7 @@
 ////}
 ////
 ////
-////void* MEMORY_DECL operator new[](size_t size, const c_class&)
+////void* MEMORY_DECL operator __new[](size_t size, const c_class&)
 ////{
 ////
 ////   return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_main)->allocate(size);
@@ -134,29 +134,29 @@
 ////}
 ////
 ////#ifdef CPP17
-////void* MEMORY_DECL operator new(size_t size, std::align_val_t alignment);
+////void* MEMORY_DECL operator __new(size_t size, std::align_val_t alignment);
 ////void operator delete(void* ptr, std::align_val_t) noexcept;
 ////#endif
 ////
 ////
-////#define C_NEW __new<  >(c_class::s_cclass)
+////#define C_NEW __allocate<  >(c_class::s_cclass)
 //
 //
 //#if !defined(NO_ACME_MEMORY_MANAGEMENT)
 //
 //
-//void* MEMORY_DECL operator new(size_t nSize, const char * pszFileName, i32 nLine) new_throw_spec
+//void* MEMORY_DECL operator __new(size_t nSize, const char * pszFileName, i32 nLine) new_throw_spec
 //{
 //
-//   return ::operator new(nSize, _NORMAL_BLOCK, pszFileName, nLine);
+//   return ::operator __new(nSize, _NORMAL_BLOCK, pszFileName, nLine);
 //
 //}
 //
 //
-//void* MEMORY_DECL operator new[](size_t nSize, const char * pszFileName, i32 nLine) new_throw_spec
+//void* MEMORY_DECL operator __new[](size_t nSize, const char * pszFileName, i32 nLine) new_throw_spec
 //{
 //
-//   return ::operator new[](nSize, _NORMAL_BLOCK, pszFileName, nLine);
+//   return ::operator __new[](nSize, _NORMAL_BLOCK, pszFileName, nLine);
 //
 //}
 //
@@ -177,7 +177,7 @@
 //}
 //
 //
-//void* MEMORY_DECL operator new(size_t nSize, i32 nType, const char * pszFileName, i32 nLine)
+//void* MEMORY_DECL operator __new(size_t nSize, i32 nType, const char * pszFileName, i32 nLine)
 //{
 //
 //#if MEMDLEAK
@@ -201,10 +201,10 @@
 //}
 //
 //
-//void* MEMORY_DECL operator new[](size_t nSize, i32 nType, const char * pszFileName, i32 nLine)
+//void* MEMORY_DECL operator __new[](size_t nSize, i32 nType, const char * pszFileName, i32 nLine)
 //{
 //
-//   return ::operator new(nSize, nType, pszFileName, nLine);
+//   return ::operator __new(nSize, nType, pszFileName, nLine);
 //
 //}
 //

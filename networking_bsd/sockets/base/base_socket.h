@@ -610,7 +610,7 @@ namespace sockets_bsd
       void OnSSLConnectFailed() override;
       /** SSL negotiation failed for server accept. */
       void OnSSLAcceptFailed() override;
-      /** new SSL support */
+      /** __new SSL support */
       bool SSLNegotiate() override;
       /** Check if SSL is Enabled for this tcp_socket.
       \return true if this is a tcp_socket with SSL enabled */
@@ -730,7 +730,7 @@ namespace sockets_bsd
       //@}
       /** \name Thread Support */
       //@{
-      /** Callback fires when a new base_socket thread has started and this
+      /** Callback fires when a __new base_socket thread has started and this
       base_socket is ready for operation again.
       \sa resolv_socket */
       void OnDetached() override;
@@ -753,7 +753,7 @@ namespace sockets_bsd
       bool prepare_for_detach() override;
       /** Store the slave sockethandler pointer. */
       void SetSlaveHandler(::sockets::base_socket_handler *) override;
-      /** create new thread for this base_socket to run detached in. */
+      /** create __new thread for this base_socket to run detached in. */
       //virtual void DetachSocket(socket_map::node * pnode, socket_map * psocketmap);
       //virtual void DetachSocket();
       //@}

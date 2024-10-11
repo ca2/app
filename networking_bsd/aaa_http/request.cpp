@@ -48,7 +48,7 @@ namespace http
       __UNREFERENCED_PARAMETER(sz);
       m_memfileBody.set_size(0);
       /*if (!m_file.get())
-         m_file = ::pointer<IFile>e>(new MemFile);
+         m_file = ::pointer<IFile>e>(__new MemFile);
       DEBUG_ONLY(   else
          informationf("Body data file already opened\n");*/
    }

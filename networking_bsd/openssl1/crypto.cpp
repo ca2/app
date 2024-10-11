@@ -984,7 +984,7 @@ namespace crypto
    }
 
 
-   // get a new salt - 8 hexadecimal characters long
+   // get a __new salt - 8 hexadecimal characters long
    // current PHP installations should not exceed 8 characters
    // on dechex( mt_rand() )
    // but we future proof it anyway with substr()
@@ -1162,7 +1162,7 @@ namespace crypto
             ::winrt::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
 
 
-      return __new ::crypto::rsa(get_app(), provider->CreateKeyPair(1024));
+      return __allocate ::crypto::rsa(get_app(), provider->CreateKeyPair(1024));
 
    }
 
@@ -1712,7 +1712,7 @@ namespace crypto
    ::pointer<::crypto::rsa>crypto::generate_rsa_key()
    {
 
-      auto popensslrsa = __new ::openssl::rsa();
+      auto popensslrsa = __allocate ::openssl::rsa();
 
       RSA*& prsa = popensslrsa->m_prsa;
 
@@ -1811,7 +1811,7 @@ namespace crypto
 
       }
 
-      auto popensslrsa = __new ::openssl::rsa();
+      auto popensslrsa = __allocate ::openssl::rsa();
 
       RSA*& prsa = popensslrsa->m_prsa;
 
@@ -1838,7 +1838,7 @@ namespace crypto
 
       }
 
-      auto popensslrsa = __new ::openssl::rsa();
+      auto popensslrsa = __allocate ::openssl::rsa();
 
       RSA*& prsa = popensslrsa->m_prsa;
 

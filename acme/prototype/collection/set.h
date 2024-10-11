@@ -289,10 +289,10 @@ public:
    iterator find_item(ARG_ITEM item);
    const_iterator find_item(ARG_ITEM item) const;
 
-   //add a __new<  >(item) node
+   //add a __allocate<  >(item) node
    inline iterator set_at(ARG_ITEM item);
 
-   //add a __new<  >(item, value) node
+   //add a __allocate<  >(item, value) node
    void set_payload(const NODE& payload)
    {
       set_at(payload.item());
@@ -827,14 +827,14 @@ node_set < NODE >::new_node(ARG_ITEM item)
    //   //   this->m_pnodeFree = iterator;
 
    //   //}
-   //   this->m_pnodeFree = new node();
+   //   this->m_pnodeFree = __new node();
 
    //}
 
    //ENSURE(this->m_pnodeFree != nullptr);  // we must have something
 
    typename node_set < NODE >::iterator iterator =
-   new node (item);
+   __new node (item);
 
    //this->m_pnodeFree  = this->m_pnodeFree->m_next;
 

@@ -390,7 +390,7 @@ payload::payload(::u64 * pu) :
 
 payload::payload(const ::file::path & path) :
    m_etype(e_type_path),
-   m_ppath(__new__prefix(&m_preferer)new ::file::path_object(path))
+   m_ppath(__allocate__prefix(&m_preferer)__new ::file::path_object(path))
 {
 
 }
@@ -398,7 +398,7 @@ payload::payload(const ::file::path & path) :
 
 payload::payload(const string_array & stra) :
    m_etype(e_type_string_array),
-   m_pstra(__new__prefix(&m_preferer) new string_array(stra))
+   m_pstra(__allocate__prefix(&m_preferer) __new string_array(stra))
 {
 
 
@@ -407,7 +407,7 @@ payload::payload(const string_array & stra) :
 
 payload::payload(const ::i32_array & ia) :
    m_etype(e_type_i32_array),
-   m_pia(__new__prefix(&m_preferer)new ::i32_array(ia))
+   m_pia(__allocate__prefix(&m_preferer)__new ::i32_array(ia))
 {
 
 }
@@ -415,7 +415,7 @@ payload::payload(const ::i32_array & ia) :
 
 payload::payload(const payload_array & payloada) :
    m_etype(e_type_payload_array),
-   m_ppayloada(__new__prefix(&m_preferer) new payload_array(payloada))
+   m_ppayloada(__allocate__prefix(&m_preferer) __new payload_array(payloada))
 {
 
 }
@@ -423,7 +423,7 @@ payload::payload(const payload_array & payloada) :
 
 payload::payload(const property_set & set) :
    m_etype(e_type_property_set),
-   m_ppropertyset(__new__prefix(&m_preferer)new property_set(set))
+   m_ppropertyset(__allocate__prefix(&m_preferer)__new property_set(set))
 {
 
 }
@@ -475,7 +475,7 @@ payload::payload(const class ::payload & payload) :
 //#if REFERENCING_DEBUGGING
 //   , m_preferer(nullptr)
 //#endif
-//   ,m_pproperty(__new< ::property_particle>(property))
+//   ,m_pproperty(__allocate< ::property_particle>(property))
 //{
 //
 //}
@@ -828,13 +828,13 @@ void payload::set_type(enum_type etype, bool bConvert)
          if (etype == e_type_string)
          {
 
-            ::new(&m_str) ::string();
+            ::__new(&m_str) ::string();
 
          }
          else if (etype == e_type_atom)
          {
 
-            ::new(&m_atom) ::atom();
+            ::__new(&m_atom) ::atom();
 
          }
          else if (etype >= e_type_element && etype < e_type_last_element)
@@ -957,7 +957,7 @@ void payload::set_string(const ::string & str)
 //
 //      set_type(e_type_string, false);
 //
-//      ::new(&m_str) ::string(::transfer(str));
+//      ::__new(&m_str) ::string(::transfer(str));
 //
 //   }
 //
@@ -1531,7 +1531,7 @@ class ::payload & payload::operator = (const ::property & property)
 //
 //      set_type(e_type_property, false);
 //
-//      m_pproperty = __new ::property_particle ();
+//      m_pproperty = __allocate ::property_particle ();
 //
 //      m_pproperty->object() = *pproperty;
 //
@@ -1631,31 +1631,31 @@ class ::payload & payload::operator = (const class ::payload & payload)
       if (etypeSource == e_type_path)
       {
 
-         m_ppath = new ::file::path_object(*payload.m_ppath);
+         m_ppath = __new ::file::path_object(*payload.m_ppath);
 
       }
       else if (etypeSource == e_type_property_set)
       {
 
-         m_ppropertyset = new ::property_set(*payload.m_ppropertyset);
+         m_ppropertyset = __new ::property_set(*payload.m_ppropertyset);
 
       }
       else if (etypeSource == e_type_i32_array)
       {
 
-         m_pia = new ::i32_array(*payload.m_pia);
+         m_pia = __new ::i32_array(*payload.m_pia);
 
       }
       else if (etypeSource == e_type_i64_array)
       {
 
-         m_pi64a = new ::i64_array(*payload.m_pi64a);
+         m_pi64a = __new ::i64_array(*payload.m_pi64a);
 
       }
       else if (etypeSource == e_type_payload_array)
       {
 
-         //m_ppayloada = new ::payload_array(*payload.m_ppayloada);
+         //m_ppayloada = __new ::payload_array(*payload.m_ppayloada);
 
          m_ppayloada = payload.m_ppayloada;
 
@@ -1665,7 +1665,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
       else if (etypeSource == e_type_string_array)
       {
 
-         m_pstra = new ::string_array(*payload.m_pstra);
+         m_pstra = __new ::string_array(*payload.m_pstra);
 
       }
       else if (payload.is_element())
@@ -1791,7 +1791,7 @@ class ::payload & payload::operator = (const ::i32_array & ia)
       if (::is_null(m_pia))
       {
 
-         m_pia = new i32_array(ia);
+         m_pia = __new i32_array(ia);
 
       }
       else
@@ -1836,7 +1836,7 @@ class ::payload & payload::operator = (const class memory & memory)
       if (::is_null(m_pmemory))
       {
 
-         m_pmemory = new ::memory(memory);
+         m_pmemory = __new ::memory(memory);
 
       }
       else
@@ -1881,7 +1881,7 @@ class ::payload & payload::operator = (const string_array & stra)
       if (::is_null(m_pstra))
       {
 
-         m_pstra = new ::string_array(stra);
+         m_pstra = __new ::string_array(stra);
 
       }
       else
@@ -1900,7 +1900,7 @@ class ::payload & payload::operator = (const string_array & stra)
 //
 //   set_type(e_type_string_array, false);
 //
-//   m_pstra = new ::string_array(stra);
+//   m_pstra = __new ::string_array(stra);
 //
 //   return *this;
 
@@ -1936,7 +1936,7 @@ class ::payload & payload::operator = (const payload_array & payloada)
          if (::is_null(m_ppayloada))
          {
 
-            m_ppayloada = new ::payload_array(payloada);
+            m_ppayloada = __new ::payload_array(payloada);
 
          }
          else
@@ -1956,7 +1956,7 @@ class ::payload & payload::operator = (const payload_array & payloada)
 
    //set_type(e_type_payload_array, false);
 
-   //m_ppayloada = new ::payload_array(payloada);
+   //m_ppayloada = __new ::payload_array(payloada);
 
    //return *this;
 
@@ -1991,7 +1991,7 @@ class ::payload & payload::operator = (const property_set & propertyset)
       if (::is_null(m_ppropertyset))
       {
 
-         m_ppropertyset = new ::property_set(propertyset);
+         m_ppropertyset = __new ::property_set(propertyset);
 
       }
       else
@@ -2008,7 +2008,7 @@ class ::payload & payload::operator = (const property_set & propertyset)
 
    //set_type(e_type_property_set, false);
 
-   //m_ppropertyset = new ::property_set(propertyset);
+   //m_ppropertyset = __new ::property_set(propertyset);
 
    return *this;
 
@@ -2129,7 +2129,7 @@ class ::payload & payload::operator = (class time * ptime)
 
       set_type(e_type_memory, false);
 
-      m_pmemory = new ::memory (block);
+      m_pmemory = __new ::memory (block);
 
    }
 
@@ -4425,13 +4425,13 @@ class ::memory & payload::memory_reference()
 
       set_type(e_type_memory, false);
 
-      m_pmemory = new ::memory ();
+      m_pmemory = __new ::memory ();
 
    }
    else if(::is_null(m_pmemory))
    {
 
-      m_pmemory = new ::memory ();
+      m_pmemory = __new ::memory ();
 
    }
 
@@ -4473,7 +4473,7 @@ class ::memory & payload::memory_reference()
    else*/ if (m_etype != ::e_type_path)
    {
 
-      auto ppath = new ::file::path_object ();
+      auto ppath = __new ::file::path_object ();
 
       ppath->assign_range(as_file_path());
 
@@ -4561,7 +4561,7 @@ string_array payload::as_string_array() const
    else if (::is_null(m_pstra))
    {
 
-      //m_pstra = new string_array();
+      //m_pstra = __new string_array();
 
       return {};
 
@@ -4590,7 +4590,7 @@ string_array & payload::string_array_reference()
    else*/ if (m_etype != e_type_string_array)
    {
 
-      auto pstra = new string_array();
+      auto pstra = __new string_array();
 
       try
       {
@@ -4618,7 +4618,7 @@ string_array & payload::string_array_reference()
    else if(::is_null(m_pstra))
    {
 
-      m_pstra = new string_array();
+      m_pstra = __new string_array();
 
    }
 
@@ -4698,7 +4698,7 @@ i32_array & payload::i32_array_reference()
    else*/ if(m_etype != e_type_i32_array)
    {
 
-      auto pia = new ::i32_array ();
+      auto pia = __new ::i32_array ();
 
       try
       {
@@ -4726,7 +4726,7 @@ i32_array & payload::i32_array_reference()
    else if (::is_null(m_pia))
    {
 
-      m_pia = new ::i32_array ();
+      m_pia = __new ::i32_array ();
 
    }
 
@@ -4783,7 +4783,7 @@ i64_array payload::as_i64_array() const
    else if (::is_null(m_pi64a))
    {
 
-      //m_pi64a = new i64_array();
+      //m_pi64a = __new i64_array();
       return {};
 
    }
@@ -4811,7 +4811,7 @@ i64_array payload::as_i64_array() const
    else*/ if(m_etype != e_type_i64_array)
    {
 
-      auto pia64  = new i64_array();
+      auto pia64  = __new i64_array();
 
       try
       {
@@ -4839,7 +4839,7 @@ i64_array payload::as_i64_array() const
    else if(::is_null(m_pi64a))
    {
 
-      m_pi64a = new i64_array();
+      m_pi64a = __new i64_array();
 
    }
 
@@ -5116,7 +5116,7 @@ payload_array payload::as_payload_array() const
    else if (::is_null(m_ppayloada))
    {
 
-      //m_ppayloada = new payload_array();
+      //m_ppayloada = __new payload_array();
 
       return {};
 
@@ -5145,7 +5145,7 @@ payload_array & payload::payload_array_reference ()
    else*/ if(m_etype != e_type_payload_array)
    {
 
-      auto pvara  = new payload_array();
+      auto pvara  = __new payload_array();
 
       try
       {
@@ -5180,7 +5180,7 @@ payload_array & payload::payload_array_reference ()
    else if (::is_null(m_ppayloada))
    {
 
-      m_ppayloada = new payload_array();
+      m_ppayloada = __new payload_array();
 
    }
 
@@ -5234,7 +5234,7 @@ property_set payload::as_property_set() const
    }
    else if (::is_null(m_ppropertyset))
    {
-      //m_ppropertyset = new property_set();
+      //m_ppropertyset = __new property_set();
 
       return {};
 
@@ -5269,7 +5269,7 @@ property_set & payload::property_set_reference()
 
 #endif
 
-      auto psetNew = new property_set();
+      auto psetNew = __new property_set();
 
       if (is_empty() || !get_bool())
       {
@@ -5313,7 +5313,7 @@ property_set & payload::property_set_reference()
 
 #endif
 
-      m_ppropertyset = new property_set();
+      m_ppropertyset = __new property_set();
 
    }
 
@@ -8733,7 +8733,7 @@ void payload::null()
    else
    {
 
-      auto ppath = new ::file::path_object (as_file_path());
+      auto ppath = __new ::file::path_object (as_file_path());
 
       ppath->flags() |= eflag;
 
@@ -10511,7 +10511,7 @@ payload & payload::operator = (const ::file::path & path)
       if (::is_null(m_ppath))
       {
 
-         m_ppath = new ::file::path_object(path);
+         m_ppath = __new ::file::path_object(path);
 
       }
       else

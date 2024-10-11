@@ -139,10 +139,10 @@ public:
 // DECLARE_FIXED_ALLOC -- used in class definition
 /*#define DECLARE_AXIS_FIXED_ALLOC(class_name) \
 public: \
-   void * operator new(size_t) { return s_palloc->Alloc(); } \
-   void * operator new(size_t, void * p) { return p; } \
+   void * operator __new(size_t) { return s_palloc->Alloc(); } \
+   void * operator __new(size_t, void * p) { return p; } \
    void operator delete(void * p) { s_palloc->Free(p); } \
-   void * operator new(size_t, const ::string &, i32) { return s_palloc->Alloc(); } \
+   void * operator __new(size_t, const ::string &, i32) { return s_palloc->Alloc(); } \
    void operator delete(void * p, const ::string &, i32) { s_palloc->Free(p); } \
    static fixed_alloc * s_palloc;
 

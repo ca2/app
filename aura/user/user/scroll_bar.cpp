@@ -64,7 +64,7 @@ namespace user
    void scroll_bar::post_scroll_message(enum_scroll_command ecommand, ::f64 dPosition)
    {
 
-      auto pscroll = __new ::message::scroll();
+      auto pscroll = __allocate ::message::scroll();
 
       pscroll->m_ecommand = ecommand;
 

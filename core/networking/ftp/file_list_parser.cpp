@@ -497,7 +497,7 @@ namespace ftp
       if (!IsMultiNetListing(scopedstrLine.begin()))
          return false;
 
-      // name lookup of `i' changed for new ISO `for' scoping
+      // name lookup of `i' changed for __new ISO `for' scoping
       int i = 0;
       for (; i < scopedstrLine.size(); ++i)
          if (scopedstrLine.begin()[i] == (';'))

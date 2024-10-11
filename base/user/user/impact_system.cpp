@@ -183,7 +183,7 @@ namespace user
       if (!pusersystem)
       {
 
-         pusersystem = __new ::user::system();
+         pusersystem = __allocate ::user::system();
 
          prequest->m_pmatterUserPayload = pusersystem;
 
@@ -298,7 +298,7 @@ namespace user
 
       ::pointer<::user::interaction>puserinteractionParent = prequest->m_puserelementParent;
 
-      // create new from resource
+      // create __new from resource
       if (!pframe->LoadFrame(m_atom,
                              //WS_OVERLAPPEDWINDOW |
                              (bAddToTitle ? FWS_ADDTOTITLE : 0),   // default frame styles

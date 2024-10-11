@@ -163,7 +163,7 @@ void get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority eprio
 CLASS_DECL_ACME bool main_initialize()
 {
 
-//   t_posthread = __new os_thread(nullptr,nullptr);
+//   t_posthread = __allocate os_thread(nullptr,nullptr);
 
    //t_posthread->m_bRun = true;
 

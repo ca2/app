@@ -20,7 +20,7 @@ namespace c
 
          auto p = (T *) ::malloc(sizeof(T));
 
-         ::new(p)T();
+         ::__new(p)T();
 
          return p;
 
@@ -33,7 +33,7 @@ namespace c
 
          p = (T *) ::malloc(sizeof(T));
 
-         ::new(p)T();
+         ::__new(p)T();
 
          return p;
 

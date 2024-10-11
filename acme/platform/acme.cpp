@@ -277,7 +277,7 @@ namespace acme
 
          REFDBG_THIS(this);
 
-         m_pplatform = __new ::platform::platform(this);
+         m_pplatform = __allocate ::platform::platform(this);
 
       }
 #if REFERENCING_DEBUGGING
@@ -312,7 +312,7 @@ namespace acme
 
       }
 #endif
-         m_pmanualreseteventReadyToExit = __new ::manual_reset_event();
+         m_pmanualreseteventReadyToExit = __allocate ::manual_reset_event();
    }
 
 
@@ -923,11 +923,11 @@ namespace acme
 
 #endif
 
-      //m_criticalsectionFactory = new critical_section();
+      //m_criticalsectionFactory = __new critical_section();
 
 //#ifndef WINDOWS
 //
-//      //g_criticalsectionDemangle = new critical_section();
+//      //g_criticalsectionDemangle = __new critical_section();
 //
 //#endif
 
@@ -962,17 +962,17 @@ namespace acme
 
       //xxdebug_box("acme.dll base_static_start (0)", "box", e_message_box_ok);
 
-      //g_pengine = new ::OPERATING_SYSTEM_NAMESPACE::exception_engine ();
+      //g_pengine = __new ::OPERATING_SYSTEM_NAMESPACE::exception_engine ();
 
-      //g_criticalsectionGlobals = new ::critical_section ();
+      //g_criticalsectionGlobals = __new ::critical_section ();
 
-      //g_criticalsectionChildren = new ::critical_section ();
+      //g_criticalsectionChildren = __new ::critical_section ();
 
-      //g_criticalsectionGlobal = new critical_section();
+      //g_criticalsectionGlobal = __new critical_section();
 
       //::initialize_sequence_critical_section();
 
-      //::update::g_criticalsection = new critical_section();
+      //::update::g_criticalsection = __new critical_section();
 
 #ifndef __MCRTDBG
 
@@ -984,14 +984,14 @@ namespace acme
 
 #endif
 
-      //::atom_space::s_pidspace = new atom_space();
+      //::atom_space::s_pidspace = __new atom_space();
 
 //      ::acme::idpool::init();
 
       //
       //#ifdef ANDROID
       //
-      //      g_criticalsectionOutputDebugStringA = new ::critical_section ();
+      //      g_criticalsectionOutputDebugStringA = __new ::critical_section ();
       //
       //#endif
 
@@ -1010,39 +1010,39 @@ namespace acme
 #endif
 
 
-      //g_criticalsectionTrace = new critical_section();
+      //g_criticalsectionTrace = __new critical_section();
 
-      //g_psimpletrace = new simple_trace();
+      //g_psimpletrace = __new simple_trace();
 
       //g_ptrace = g_psimpletrace;
 
 
       // acme commented
-      //g_psimpletrace = new simple_trace();
+      //g_psimpletrace = __new simple_trace();
 
       //g_ptrace = g_psimpletrace;
 
       //acme commented
 //#ifdef BSD_STYLE_SOCKETS
 //
-//      ::sockets::base_socket::s_criticalsection = new ::critical_section ();
+//      ::sockets::base_socket::s_criticalsection = __new ::critical_section ();
 //
 //#endif
 
 
 //#ifdef __APPLE__
 //
-//      g_criticalsectionCvt = new ::critical_section ();
+//      g_criticalsectionCvt = __new ::critical_section ();
 //
 //#endif
 
-      //g_criticalsectionThreadWaitClose = new ::critical_section ();
+      //g_criticalsectionThreadWaitClose = __new ::critical_section ();
 
-      //g_criticalsectionThreadOn = new ::critical_section ();
+      //g_criticalsectionThreadOn = __new ::critical_section ();
 
       //g_pmapThreadOn = aaa_memory_new ::map < itask_t, itask_t, itask_t, itask_t >;
 
-      //g_criticalsectionSystemHeap = new critical_section();
+      //g_criticalsectionSystemHeap = __new critical_section();
 
 #if MEMDLEAK
 
@@ -1056,7 +1056,7 @@ namespace acme
 
       ////factory_init();
 
-      //g_paAura = new ::array < matter* > ();
+      //g_paAura = __new ::array < matter* > ();
 
       ////::task_on_after_new_particle(g_paAura);
 
@@ -1071,15 +1071,15 @@ namespace acme
 
       //g_pmapAura =aaa_memory_new ::map < void *,void *,::acme::application *,::acme::application * >;
 
-      //g_criticalsectionUiDestroyed = new ::critical_section ();
+      //g_criticalsectionUiDestroyed = __new ::critical_section ();
 
-      //g_criticalsectionMessageDispatch = new ::critical_section ();
+      //g_criticalsectionMessageDispatch = __new ::critical_section ();
 
-      //g_criticalsectionCred = new ::critical_section ();
+      //g_criticalsectionCred = __new ::critical_section ();
 
 #if defined(LINUX) || defined(__APPLE__)
 
-      //g_criticalsectionTz = new ::critical_section ();
+      //g_criticalsectionTz = __new ::critical_section ();
 
 #endif // defined(LINUX) || defined(__APPLE__)
 
@@ -1115,18 +1115,18 @@ namespace acme
 
 #endif
 
-      //g_pacmestrpool = new acme_str_pool();
+      //g_pacmestrpool = __new acme_str_pool();
 
       //acme commented
       //::user::init_windowing();
 
-      //g_criticalsectionRefDbg = new critical_section();
+      //g_criticalsectionRefDbg = __new critical_section();
 
       g_bAcme = 1;
 
-      //::thread::g_criticalsection = new mutex();
+      //::thread::g_criticalsection = __new mutex();
 
-      //::thread::g_pthreadmap = new ::thread_map ();
+      //::thread::g_pthreadmap = __new ::thread_map ();
 
       // acme commented
       //add_factory_item < ::context >();
@@ -1149,12 +1149,12 @@ namespace acme
 //#ifdef WINDOWS
 //
 //
-//      g_criticalsectionSymDbgHelp = new ::critical_section ();
+//      g_criticalsectionSymDbgHelp = __new ::critical_section ();
 //
 //
 //#endif
 
-      //::acme::library::s_criticalsectionLoading = new ::critical_section ();
+      //::acme::library::s_criticalsectionLoading = __new ::critical_section ();
 
       //init();
 
@@ -1608,7 +1608,7 @@ namespace acme
    //::acme::system * acme_create_system(app_core * pappcore)
    //{
 
-   //   auto psystem = new ::acme::system ();
+   //   auto psystem = __new ::acme::system ();
 
    //   psystem->initialize(nullptr);
 
@@ -1774,7 +1774,7 @@ namespace acme
 //CLASS_DECL_ACME void init_draw2d_mutex()
 //{
 //
-//   s_criticalsectionDraw2d = new ::critical_section ();
+//   s_criticalsectionDraw2d = __new ::critical_section ();
 //
 //}
 
@@ -1817,7 +1817,7 @@ namespace acme
 ////   if (::is_null(::acme::g_pelementaddraReleaseOnEnd))
 ////   {
 ////
-////      ::acme::g_pelementaddraReleaseOnEnd = new element_address_array();
+////      ::acme::g_pelementaddraReleaseOnEnd = __new element_address_array();
 ////
 ////   }
 //
@@ -1852,7 +1852,7 @@ namespace acme
 ////      if(g_iReference == 1)
 ////      {
 ////
-////         new acme();
+////         __new acme();
 ////
 ////      }
 ////
@@ -2110,11 +2110,11 @@ CLASS_DECL_ACME::e_status get_last_status()
 //         //
 //         //         set_DispatchMessage(&axis_DispatchMessage);
 //         //
-//         //         oswindow_data::s_pdataptra = new oswindow_dataptra();
+//         //         oswindow_data::s_pdataptra = __new oswindow_dataptra();
 //         //
-//         //         oswindow_data::s_criticalsection = new ::critical_section ();
+//         //         oswindow_data::s_criticalsection = __new ::critical_section ();
 //         //
-//         //         osdisplay_data::s_pdataptra = new osdisplay_dataptra();
+//         //         osdisplay_data::s_pdataptra = __new osdisplay_dataptra();
 //         //
 //
 //#endif // defined(LINUX)
@@ -2247,7 +2247,7 @@ CLASS_DECL_ACME::e_status get_last_status()
 //CLASS_DECL_ACME void release_on_end(::particle * pparticle)
 //{
 //
-//   auto ppointer = new global_::particle_pointer();
+//   auto ppointer = __new global_::particle_pointer();
 //
 //   *ppointer = pparticle;
 //

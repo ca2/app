@@ -67,7 +67,7 @@ namespace file
    //watch_id watcher::watch_folder_with_listener_function(const ::file::path & pathFolder, listener_function function, bool bRecursive)
    //{
 
-   //   return watch_folder_with_listener(pathFolder, __new listener(function), bRecursive);
+   //   return watch_folder_with_listener(pathFolder, __allocate listener(function), bRecursive);
 
    //}
 

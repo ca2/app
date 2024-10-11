@@ -639,15 +639,15 @@ namespace aura
       //virtual string get_mutex_name_gen();
 
       /// return true if this instance might continue execution
-      /// bHandled true if some action was done in response to this new additional instance creation
+      /// bHandled true if some action was done in response to this __new additional instance creation
       //virtual void on_exclusive_instance_conflict(bool & bHandled, enum_exclusive_instance eexclusive, string strId) override;
 
       /// return true if this instance might continue execution
-      /// bHandled true if some action was done in response to this new additional instance creation
+      /// bHandled true if some action was done in response to this __new additional instance creation
 //      virtual bool on_exclusive_instance_local_conflict(bool & bHandled) override;
 
             /// return true if this instance might continue execution
-      /// bHandled true if some action was done in response to this new additional instance creation
+      /// bHandled true if some action was done in response to this __new additional instance creation
       //virtual bool on_exclusive_instance_local_conflict_id(bool & bHandled, string strId) override;
 
       /// return true if the external additional instance might continue execution

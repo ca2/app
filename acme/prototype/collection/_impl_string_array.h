@@ -478,7 +478,7 @@ else
 {
 // inserting in the middle of the array
 ::collection::count nOldSize = (::collection::count) this->size();
-this->set_size((::collection::count) (this->size() + nCount));  // grow it to new size_i32
+this->set_size((::collection::count) (this->size() + nCount));  // grow it to __new size_i32
 // shift old data up to fill gap
 memory_transfer(&get_data()[nIndex + nCount],&get_data()[nIndex],(nOldSize - nIndex) * sizeof(Type));
 
@@ -492,7 +492,7 @@ get_data()[i].default_construct();
 
 }
 
-// insert new value in the gap
+// insert __new value in the gap
 ASSERT(nIndex + nCount <= this->size());
 }
 
@@ -522,7 +522,7 @@ memory_transfer(this->ptr_at(nIndex + 1), this->ptr_at(nIndex), (nOldSize - nInd
 for(::collection::index i = nIndex; i < nIndex + 1; i++)
 {
 
-new (this->ptr_at(nIndex)) RawType();
+__new (this->ptr_at(nIndex)) RawType();
 
 }
 
@@ -549,7 +549,7 @@ template < typename Type, typename RawType, ::enum_type t_etypeContainer >
 void string_array_base < Type, RawType, t_etypeContainer >::insert_at(::collection::index nIndex, const Type & strElement,::collection::count nCount)
 {
 
-// make room for new elements
+// make room for __new elements
 insert_empty(nIndex,nCount);
 
 

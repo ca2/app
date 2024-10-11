@@ -734,9 +734,9 @@ public:
    ::collection::count set_size(::collection::count nNewSize);
    
 
-   //::collection::count set_size(::collection::count nNewSize, ::collection::count nGrowBy = -1); // does not call default constructors on new items/elements
+   //::collection::count set_size(::collection::count nNewSize, ::collection::count nGrowBy = -1); // does not call default constructors on __new items/elements
    
-   /// if bRaw is true does not call default constructors on new elements
+   /// if bRaw is true does not call default constructors on __new elements
    template < pointer_not_castable_to < TYPE * > P >
    ::collection::count allocate(::collection::count nNewSize, bool bShrink, bool bRaw, P & p)
    {
@@ -1065,7 +1065,7 @@ public:
    TYPE_IS_PTR merge_get_existing(const TYPE_IS_PTR & p, const OBJECT& pparticle, const ATTRIBUTE& attribute)
    {
 
-      auto pModified = __new typename TYPE_IS_PTR::TYPE (*p);
+      auto pModified = __allocate typename TYPE_IS_PTR::TYPE (*p);
 
       pModified->process(pparticle, attribute);
 
@@ -1619,7 +1619,7 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::fre
 
 #endif
 
-         // copy new data from old
+         // copy __new data from old
          ::safe_memory_copy2(pNewData, (size_t)size,this->m_begin, (size_t)size);
 
       }
@@ -1745,7 +1745,7 @@ TYPE * array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::i
 //      // inserting in the middle of the array
 //      ::collection::count nOldSize = (::collection::count) this->size();
 //
-//      // grow it to new size
+//      // grow it to __new size
 //      set_size((::collection::count) this->size() + nCount, -1);
 //      
 //      // shift old data up to fill gap
@@ -1757,7 +1757,7 @@ TYPE * array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::i
 //
 //   }
 //
-//   // insert new value in the gap
+//   // insert __new value in the gap
 //   ASSERT(nIndex + nCount <= this->size());
 //
 //   return nIndex;
@@ -1960,7 +1960,7 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::era
 //      // inserting in the middle of the array
 //      ::collection::count nOldSize = (::collection::count) this->size();
 //
-//      set_size((::collection::count) (this->size() + nCount), -1);  // grow it to new size_i32
+//      set_size((::collection::count) (this->size() + nCount), -1);  // grow it to __new size_i32
 //      // destroy intial data before copying over it
 //      // shift old data up to fill gap
 //      ::safe_memory_transfer(this->m_begin + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), this->m_begin + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
@@ -1971,7 +1971,7 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::era
 //
 //   }
 //
-//   // insert new value in the gap
+//   // insert __new value in the gap
 //   ASSERT(nIndex + nCount <= this->size());
 //
 //   ::collection::index nIndexParam = nIndex;
@@ -2075,7 +2075,7 @@ array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > array_bas
 //      throw_exception(error_bad_argument);
 //
 //   if(nGrowBy >= 0)
-//      m_countAddUp = nGrowBy;  // set new size_i32
+//      m_countAddUp = nGrowBy;  // set __new size_i32
 //
 //   if(nNewSize == 0)
 //   {
@@ -2233,7 +2233,7 @@ array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer > array_bas
 //
 //      pNewData = MEMORY::allocate(nNewMax);
 //
-//#endif      // copy new data from old
+//#endif      // copy __new data from old
 //
 //      ::safe_memory_copy(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->size() * sizeof(TYPE));
 //
@@ -2416,7 +2416,7 @@ void array_base_quantum < TYPE, ARG_TYPE, TYPED, MEMORY, t_etypeContainer >::res
 
 #endif
 
-      // copy new data from old
+      // copy __new data from old
       ::safe_memory_copy2(pNewData, (size_t)newAllocationSize, this->m_begin, (size_t) this->size());
 
       // get rid of old stuff (note: no destructors called)
@@ -2694,7 +2694,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 
 #endif
 
-      // copy new data from old
+      // copy __new data from old
       ::safe_memory_copy2(pNewData, (size_t)countNewAllocation, this->m_begin, (size_t) countOld);
 
       if(!bRaw)
@@ -2988,7 +2988,7 @@ template < typename TYPE, typename ARG_TYPE, typename TYPED, typename MEMORY,  :
 //
 //#endif
 //
-//      // copy new data from old
+//      // copy __new data from old
 //      ::safe_memory_copy(pNewData,(size_t)nNewMax * sizeof(TYPE),this->m_begin,(size_t)this->size() * sizeof(TYPE));
 //
 //      // construct remaining elements

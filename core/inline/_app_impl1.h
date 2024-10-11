@@ -60,7 +60,7 @@ int main(Array < String ^ > ^ refstra)
 
    class aura_aura aura;
 
-   ap(aura_main_data) pmaindata = new aura_main_data(refstra);
+   ap(aura_main_data) pmaindata = __new aura_main_data(refstra);
 
 #ifdef MAIN_STRING
 
@@ -150,9 +150,9 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 //         //KEEP(thread_flag_prevent_create_thread);
 //
 //
-//         paura = __new class aura_aura ();
+//         paura = __allocate class aura_aura ();
 //
-//         pmaindata = __new aura_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow);
+//         pmaindata = __allocate aura_main_data(hinstance, hPrevInstance, pCmdLine, nCmdShow);
 //
 //#ifdef MAIN_RUNNER0
 //

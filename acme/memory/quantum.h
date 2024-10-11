@@ -24,7 +24,7 @@ public:
    }
 
 
-   void* operator new(size_t s)
+   void* operator __new(size_t s)
    {
 
       return ::memory_allocate(s);
@@ -32,7 +32,7 @@ public:
    }
 
 
-   void* operator new[](size_t s)
+   void* operator __new[](size_t s)
    {
 
       return ::memory_allocate(s);

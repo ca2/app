@@ -54,7 +54,7 @@ namespace browser
 
          CefSettings settings;
          settings.multi_threaded_message_loop = true;
-         get_app() = new SimpleApp();
+         get_app() = __new SimpleApp();
 
          WCHAR szTempPath[MAX_PATH] = L"";
          GetTempPathW(_countof(szTempPath), szTempPath);
@@ -117,7 +117,7 @@ pacmedirectory->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); 
 
 
       auto
-      pDocTemplate = ::as(new ::user::single_document_template(
+      pDocTemplate = ::as(__new ::user::single_document_template(
                           this,
                           "main",
                           ::type < document >(),
@@ -127,7 +127,7 @@ pacmedirectory->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); 
       add_document_template(pDocTemplate);
 
 
-      pDocTemplate = ::as(new ::user::single_document_template(
+      pDocTemplate = ::as(__new ::user::single_document_template(
                           this,
                           "main",
                           ::type < document >(),
@@ -137,7 +137,7 @@ pacmedirectory->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); 
       add_document_template(pDocTemplate);
 
 
-      pDocTemplate = ::as(new ::user::single_document_template(
+      pDocTemplate = ::as(__new ::user::single_document_template(
                           this,
                           "switcher",
                           ::type < document >(),
@@ -234,7 +234,7 @@ extern "C"
 ::acme::library * app_browser_get_new_library(::particle * pparticle)
 {
 
-   return new ::apex::single_application_library < ::browser::application >  (pparticle, "app/browser");
+   return __new ::apex::single_application_library < ::browser::application >  (pparticle, "app/browser");
 
 }
 
@@ -242,7 +242,7 @@ extern "C"
 ::aura::application * get_acid_app(::particle * pparticle)
 {
 
-   return new ::browser::application (pparticle);
+   return __new ::browser::application (pparticle);
 
 }
 

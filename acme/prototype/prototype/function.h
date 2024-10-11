@@ -235,7 +235,7 @@ public:
 
       }
 
-      m_pbase = __new composite(p, timeTimeout);
+      m_pbase = __allocate composite(p, timeTimeout);
 
    }
 
@@ -248,7 +248,7 @@ public:
       if (!pbase)
       {
 
-         m_pbase = __new composite(m_pbase, timeTimeout);
+         m_pbase = __allocate composite(m_pbase, timeTimeout);
 
       }
       else
@@ -487,7 +487,7 @@ public:
       else
       {
 
-         this->m_pbase = __new implementation < PREDICATE > (predicate, timeTimeout);
+         this->m_pbase = __allocate implementation < PREDICATE > (predicate, timeTimeout);
 
       }
 
@@ -668,7 +668,7 @@ public:
       else
       {
 
-         this->m_pbase = __new implementation < PREDICATE > (predicate, timeTimeout);
+         this->m_pbase = __allocate implementation < PREDICATE > (predicate, timeTimeout);
 
       }
 
@@ -886,7 +886,7 @@ public:
       else
       {
 
-         this->m_pbase = __new implementation < PREDICATE > (predicate, timeTimeout);
+         this->m_pbase = __allocate implementation < PREDICATE > (predicate, timeTimeout);
 
       }
 
@@ -1112,7 +1112,7 @@ public:
       else
       {
 
-         this->m_pbase = __new implementation < PREDICATE > (predicate);
+         this->m_pbase = __allocate implementation < PREDICATE > (predicate);
 
       }
 

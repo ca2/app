@@ -32,7 +32,7 @@ public:
       for(; i < c; i++)
       {
          
-         this->element_at(i) = new POINTER_TYPE;
+         this->element_at(i) = __new POINTER_TYPE;
          
       }
       
@@ -82,7 +82,7 @@ namespace acme
       for (int i = 0; i < srca.get_size(); i++)
       {
          
-         dsta[i] = new TDST(*srca[i]);
+         dsta[i] = __new TDST(*srca[i]);
 
       }
 

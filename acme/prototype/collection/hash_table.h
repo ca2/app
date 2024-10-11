@@ -74,7 +74,7 @@ public:
          else
          {
 
-            m_ppHash = new iterator[nHashSize];
+            m_ppHash = __new iterator[nHashSize];
 
             ENSURE(m_ppHash != nullptr);
 

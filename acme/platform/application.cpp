@@ -55,7 +55,7 @@ application::application()
    m_bTransferToContainer = true;
    m_bTransferredToContainer = false;
    
-   m_pfilesystemoptions = __new ::filesystem::file_system_options ();
+   m_pfilesystemoptions = __allocate ::filesystem::file_system_options ();
       
    m_bApplicationFirstRequest = true;
    

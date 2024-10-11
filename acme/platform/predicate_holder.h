@@ -69,7 +69,7 @@
 //   void predicate_add(PRED pred)
 //   {
 //
-//      add(__new predicate_holder < PRED > (pred));
+//      add(__allocate predicate_holder < PRED > (pred));
 //
 //   }
 //

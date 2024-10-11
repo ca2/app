@@ -630,7 +630,7 @@ namespace http
    //{
 
    //   throw ::exception(todo, "scripting");
-   //   //m_pjs = new tinyjs();
+   //   //m_pjs = __new tinyjs();
 
    //}
 
@@ -639,7 +639,7 @@ namespace http
    {
 
       throw ::exception(todo, "scripting");
-      //m_pjs = new tinyjs();
+      //m_pjs = __new tinyjs();
 
    }
 
@@ -1191,7 +1191,7 @@ namespace http
 
       string strSessId;
 
-      psession = __new ::sockets::http_session(connect);
+      psession = __allocate ::sockets::http_session(connect);
 
       /*::pointer<::account::user>puser;
 
@@ -1734,7 +1734,7 @@ namespace http
 //            else
 //            {
 //
-//               set["get_memory"] = __new memory(psession->GetDataPtr(), psession->GetContentLength());
+//               set["get_memory"] = __allocate memory(psession->GetDataPtr(), psession->GetContentLength());
 //
 //            }
 //
@@ -2655,7 +2655,7 @@ namespace http
          else
          {
 
-            set["get_memory"] = __new memory(psocket->GetDataPtr(), psocket->GetContentLength());
+            set["get_memory"] = __allocate memory(psocket->GetDataPtr(), psocket->GetContentLength());
 
          }
 

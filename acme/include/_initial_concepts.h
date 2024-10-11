@@ -612,7 +612,7 @@ concept non_particle = !a_particle < NON_PARTICLE >;
 
 
 //template < typename T, typename ...Args >
-//inline T * __call__new(Args &&... args);
+//inline T * __call__allocate(Args &&... args);
 //
 //template < typename T >
 //inline void __call__delete(T * p);

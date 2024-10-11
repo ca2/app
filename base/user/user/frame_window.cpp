@@ -670,7 +670,7 @@ namespace user
       if (!m_bHelpMode)
       return;
 
-      // only post new WM_EXITHELPMODE message if one doesn't already exist
+      // only post __new WM_EXITHELPMODE message if one doesn't already exist
       //  in the queue.
       MESSAGE msg;
       if (!::PeekMessage(&msg, get_handle(), WM_EXITHELPMODE, WM_EXITHELPMODE,
@@ -945,7 +945,7 @@ namespace user
 
    //   m_strFrameTitle = pszWindowName;    // save title for later
 
-   //   auto pusersystem = __new ::user::system(dwExStyle, pszClassName, pszWindowName, uStyle, rectangle, pcreate);
+   //   auto pusersystem = __allocate ::user::system(dwExStyle, pszClassName, pszWindowName, uStyle, rectangle, pcreate);
 
    //   if (!::user::interaction::create_window_ex(pusersystem, puiParent, pcreate->m_atom))
    //   {
@@ -1148,7 +1148,7 @@ namespace user
 
       //informationf("\nm_bLayoutEnable false");
 
-      //auto pusersystem = __new ::user::system(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate);
+      //auto pusersystem = __allocate ::user::system(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectangleFrame, pcreate);
 
       //if (!create_window_ex(pusersystem, puiParent, pcreate->m_atom))
       //{
@@ -1793,7 +1793,7 @@ namespace user
       ////if (bStayActive)
       ////   pTopLevel->m_nFlags |= WF_STAYACTIVE;
 
-      //// synchronization floating windows to the new state
+      //// synchronization floating windows to the __new state
       //NotifyFloatingWindows(bStayActive ? FS_ACTIVATE : FS_DEACTIVATE);
 
       // get active ::user::impact (use active frame if no active ::user::impact)
@@ -2312,7 +2312,7 @@ namespace user
 
    //   }
 
-   //   m_nIDLastMessage = (::u32)wParam;    // new ID(or 0)
+   //   m_nIDLastMessage = (::u32)wParam;    // __new ID(or 0)
 
    //   m_nIDTracking = (::u32)wParam;       // so F1 on toolbar buttons work
 

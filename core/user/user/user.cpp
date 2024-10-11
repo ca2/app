@@ -309,7 +309,7 @@ namespace core
       auto typeinfo = psystem->get_simple_frame_window_type_info();
 
       add_impact_system(
-         "system/form", ::as(new ::user::multiple_document_template(
+         "system/form", ::as(__new ::user::multiple_document_template(
          "system/form",
          ::type < form_document >(),
          psystem->get_simple_frame_window_type_info(),
@@ -323,7 +323,7 @@ namespace core
       //add_document_template(ptemplate);
       //add_impact_system(
       //   "system/form_child",
-      //   ::as(new ::user::multiple_document_template(
+      //   ::as(__new ::user::multiple_document_template(
       //   "system/form",
       //   ::type < form_document >(),
       //   get_simple_child_frame_type_info(),
@@ -335,7 +335,7 @@ namespace core
 
       //add_document_template(m_ptemplateChildForm);
       add_impact_system(
-         "system/form_placeholder", ::as(new ::user::multiple_document_template(
+         "system/form_placeholder", ::as(__new ::user::multiple_document_template(
          "system/form",
          ::type < ::user::document >(),
          psystem->get_simple_frame_window_type_info(),
@@ -348,7 +348,7 @@ namespace core
       //add_document_template(ptemplate);
 
       add_impact_system(
-         "progress_impact", ::as(new ::user::multiple_document_template(
+         "progress_impact", ::as(__new ::user::multiple_document_template(
          "main",
          ::type < ::user::document >(),
          ::type < ::userex::dialog_frame >(),
@@ -1585,7 +1585,7 @@ namespace core
    //::pointer<::user::user>application::create_userex()
    //{
 
-   //   return __new ::user::user();
+   //   return __allocate ::user::user();
 
    //}
 
@@ -1743,7 +1743,7 @@ namespace core
 
             //m_pimpactsystemFileManager = 
             add_impact_system(
-               FILEMANAGER_IMPACT, ::as(new ::user::multiple_document_template(
+               FILEMANAGER_IMPACT, ::as(__new ::user::multiple_document_template(
                   "filemanager",
                   ::type < ::filemanager::document >(),
                   ::type < ::filemanager::frame >(),
@@ -1763,14 +1763,14 @@ namespace core
          //add_factory_item <::user::color_impact >();
 
    //      add_impact_system(
-   //COLORSEL_IMPACT, ::as(new ::user::multiple_document_template(
+   //COLORSEL_IMPACT, ::as(__new ::user::multiple_document_template(
    //   "main",
    //   ::type < ::user::document >(),
    //   ::type < ::simple_frame_window >(),
    //   ::type < ::user::color_selector_impact >())));
 
 
-         //user()->m_mapimpactsystem[COLORSEL_IMPACT] = ::as(new ::user::multiple_document_template(
+         //user()->m_mapimpactsystem[COLORSEL_IMPACT] = ::as(__new ::user::multiple_document_template(
          //   get_app(),
          //   "main",
          //   ::type < ::user::document >(),
@@ -1793,7 +1793,7 @@ namespace core
          factory()->add_factory_item <::user::color_selector_impact >();
 
          add_impact_system(
-            COLORSEL_IMPACT, ::as(new ::user::multiple_document_template(
+            COLORSEL_IMPACT, ::as(__new ::user::multiple_document_template(
             "main",
             ::type < ::user::document >(),
             ::type < ::simple_frame_window >(),
@@ -1823,7 +1823,7 @@ namespace core
          factory()->add_factory_item <::userex::font_impact >();
 
          add_impact_system(
-            FONTSEL_IMPACT, ::as(new ::user::multiple_document_template(
+            FONTSEL_IMPACT, ::as(__new ::user::multiple_document_template(
             "main",
             ::type < ::user::document >(),
             ::type < ::simple_frame_window >(),

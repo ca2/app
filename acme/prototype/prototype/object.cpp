@@ -92,7 +92,7 @@ void object::create_object_meta()
 
    }
 
-   m_pmeta = new object_meta();
+   m_pmeta = __new object_meta();
 
 }
 
@@ -291,7 +291,7 @@ string object::as_string() const
 ::extended_topic_pointer object::create_extended_topic(const ::atom & atom)
 {
 
-   auto pextendedtopic = __new ::extended_topic(atom);
+   auto pextendedtopic = __allocate ::extended_topic(atom);
 
    pextendedtopic->initialize(this);
 
@@ -2074,7 +2074,7 @@ void object::sleep(const class time & time)
          if (ptask->m_pevSleep.is_null())
          {
 
-            ptask->m_pevSleep = __new manual_reset_event();
+            ptask->m_pevSleep = __allocate manual_reset_event();
 
             ptask->m_pevSleep->ResetEvent();
 
@@ -2394,7 +2394,7 @@ void object::install_message_routing(::channel* pchannel)
 //::pointer<::handle::ini>object::appini()
 //{
 //
-//   return __new ::handle::ini (         auto psystem = system();
+//   return __allocate ::handle::ini (         auto psystem = system();
 
 //         auto pacmedirectory = psystem->m_pacmedirectory;
 //
@@ -2436,9 +2436,9 @@ struct context_object_test_struct :
 //void debug_context_object(::object* pparticle)
 //{
 //
-//   auto p1 = __new struct context_object_test_struct (pparticle);
+//   auto p1 = __allocate struct context_object_test_struct (pparticle);
 //
-//   auto p2 = __new struct context_object_test_struct (pparticle);
+//   auto p2 = __allocate struct context_object_test_struct (pparticle);
 //
 //   p2 = p1;
 //
@@ -3785,7 +3785,7 @@ bool object::IsSerializable() const
 //   }
 //
 //
-//    //ptask = __new predicate_task < PRED > (pparticle, pred);
+//    //ptask = __allocate predicate_task < PRED > (pparticle, pred);
 ////
 ////   ptask->branch();
 ////

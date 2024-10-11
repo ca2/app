@@ -104,7 +104,7 @@ namespace crypto_openssl
    ::pointer<::crypto::hasher>hasher_algorithm::create_hasher()
    {
 
-      return __new ::crypto_openssl::hasher(this);
+      return __allocate ::crypto_openssl::hasher(this);
 
    }
 

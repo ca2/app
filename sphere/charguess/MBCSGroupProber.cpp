@@ -37,13 +37,13 @@ char *ProberName[] =
 
 nsMBCSGroupProber::nsMBCSGroupProber()
 {
-  mProbers[0] = new nsUTF8Prober();
-  mProbers[1] = new nsSJISProber();
-  mProbers[2] = new nsEUCJPProber();
-  mProbers[3] = new nsGB18030Prober();
-  mProbers[4] = new nsEUCKRProber();
-  mProbers[5] = new nsBig5Prober();
-  mProbers[6] = new nsEUCTWProber();
+  mProbers[0] = __new nsUTF8Prober();
+  mProbers[1] = __new nsSJISProber();
+  mProbers[2] = __new nsEUCJPProber();
+  mProbers[3] = __new nsGB18030Prober();
+  mProbers[4] = __new nsEUCKRProber();
+  mProbers[5] = __new nsBig5Prober();
+  mProbers[6] = __new nsEUCTWProber();
   Reset();
 }
 

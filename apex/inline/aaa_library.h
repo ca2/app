@@ -50,7 +50,7 @@
 #if !defined(CUBE)
 
 
-#include "acme/asset/new.cpp"
+#include "acme/asset/__new.cpp"
 
 
 #endif

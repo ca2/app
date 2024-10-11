@@ -393,7 +393,7 @@ extern thread_local ::task_pointer t_pthread;
 //
 //      common_construct();
 //
-//      m_pplatform = __new ::sub_system(this);
+//      m_pplatform = __allocate ::sub_system(this);
 //
 //   }
 
@@ -1913,7 +1913,7 @@ locale_t get_c_locale()
 //CLASS_DECL_ACME void release_on_end(::particle * pparticle)
 //{
 //
-//   auto ppointer = new global_::particle_pointer();
+//   auto ppointer = __new global_::particle_pointer();
 //
 //   *ppointer = pparticle;
 //

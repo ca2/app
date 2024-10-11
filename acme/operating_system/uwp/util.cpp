@@ -153,5 +153,5 @@ void CLASS_DECL_ACME __global_free(HGLOBAL hGlobal)
 
 
 /////////////////////////////////////////////////////////////////////////////
-// special new handler for safety pool on temp maps
+// special __new handler for safety pool on temp maps
 

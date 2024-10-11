@@ -997,7 +997,7 @@ namespace user
    //   {
 
 
-   //      m_pinteractiondraw2d = new interaction_draw2d();
+   //      m_pinteractiondraw2d = __new interaction_draw2d();
 
    //   }
 
@@ -1671,7 +1671,7 @@ namespace user
 
    //   arguments.insert_at(0, this);
 
-   //   auto pdescriptor = __new control_descriptor(arguments);
+   //   auto pdescriptor = __allocate control_descriptor(arguments);
 
    //   //if (::is_null(pdescriptor->m_puserinteractionParent))
    //   //{
@@ -1691,7 +1691,7 @@ namespace user
 
    //   }
 
-   //   //auto pdescriptor = __new control_descriptor();
+   //   //auto pdescriptor = __allocate control_descriptor();
 
 
    //   //pdescriptor->m_atom = atom;
@@ -2541,7 +2541,7 @@ namespace user
 
          //auto rectangleRequest = this->screen_rectangle(::user::e_layout_sketch);
 
-         //auto pusersystem = __new ::user::system();
+         //auto pusersystem = __allocate ::user::system();
 
          //pusersystem->add_visible(is_visible(layout().sketch().display()));
 
@@ -4928,7 +4928,7 @@ namespace user
 
          //      hostToClient(rectangleNeedRedraw);
 
-         //      auto prectangle = __new ::draw2d::clip_rectangle();
+         //      auto prectangle = __allocate ::draw2d::clip_rectangle();
 
          //      prectangle->m_item = rectangleNeedRedraw;
 
@@ -6574,7 +6574,7 @@ namespace user
 
       __defer_construct_new(m_pgraphicscalla);
 
-      m_pgraphicscalla->add(__new ::draw2d::graphics_call(function));
+      m_pgraphicscalla->add(__allocate ::draw2d::graphics_call(function));
 
    }
 
@@ -7290,7 +7290,7 @@ namespace user
 
          __defer_construct_new(m_pusersystem);
 
-         m_pusersystem->add(__new ::graphics::output_purpose(pparticle, epurpose));
+         m_pusersystem->add(__allocate ::graphics::output_purpose(pparticle, epurpose));
 
          return;
 
@@ -7787,7 +7787,7 @@ namespace user
 
       //__matter_send_procedure(this, this, &interaction::interaction_post, procedure);
 
-      auto pevent = __new manual_reset_event();
+      auto pevent = __allocate manual_reset_event();
 
       host_post([procedure, pevent]
                 {
@@ -7839,7 +7839,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      //m_pitemClient = __new ::item(e_element_client);
+      //m_pitemClient = __allocate ::item(e_element_client);
 
       if (m_bEnableDragClient || m_bDefaultClickHandling)
       {
@@ -8813,7 +8813,7 @@ namespace user
             if (m_bDefaultEditHandling && pkey->m_ekey == ::user::e_key_delete)
             {
 
-               auto pcommand = __new ::message::command("edit_delete");
+               auto pcommand = __allocate ::message::command("edit_delete");
 
                pcommand->initialize(this);
 
@@ -13008,7 +13008,7 @@ void interaction::create_interaction(::user::interaction * puserinteractionParen
 
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
-      auto puiptraChildNew = __new ::user::interaction_array(*m_puserinteractionpointeraChild);
+      auto puiptraChildNew = __allocate ::user::interaction_array(*m_puserinteractionpointeraChild);
 
       zorder_sort(*puiptraChildNew, e_layout_sketch);
 
@@ -15400,7 +15400,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       // }
 
-      // this->interaction_post(__new call_message_handler_task(m_puserinteraction, atom, wparam, lparam));
+      // this->interaction_post(__allocate call_message_handler_task(m_puserinteraction, atom, wparam, lparam));
 
       //auto pmessage
 
@@ -17147,7 +17147,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       // if (::is_set(m_puserinteractionpointeraChild))
       // {
 
-      //    puserinteractionpointeraChildNew = __new ::user::interaction_array(*m_puserinteractionpointeraChild);
+      //    puserinteractionpointeraChildNew = __allocate ::user::interaction_array(*m_puserinteractionpointeraChild);
 
       // }
       // else
@@ -22590,7 +22590,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       if (!pitem)
       {
 
-         tool().add_item(__new ::item(eelement));
+         tool().add_item(__allocate ::item(eelement));
 
          pitem = tool().item(eelement);
 
@@ -22617,7 +22617,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       //      if (m_ptooltip.is_null())
       //      {
       //
-      //         m_ptooltip = __new tooltip(this);
+      //         m_ptooltip = __allocate tooltip(this);
       //
       //
       //         m_ptooltip->create_window_ex(pusersystem);
@@ -23055,7 +23055,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
    //               m_bMouseHover = true;
 
-   //               auto pmouse = __new message::mouse();
+   //               auto pmouse = __allocate message::mouse();
 
    //               pmouse->m_eflagMessage += ::message::flag_synthesized;
 
@@ -26214,7 +26214,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       }
 
-      auto pcontextmenu = __new ::message::context_menu();
+      auto pcontextmenu = __allocate ::message::context_menu();
 
       pcontextmenu->m_oswindow = oswindow();
       pcontextmenu->m_pwindow = window();
@@ -29430,7 +29430,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          //throw ::exception(todo);
 
-   //            m_data.m_pcombobox = new Ex1FormInterfaceComboBox();
+   //            m_data.m_pcombobox = __new Ex1FormInterfaceComboBox();
 
       }
       break;

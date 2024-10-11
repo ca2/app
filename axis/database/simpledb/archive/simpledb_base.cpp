@@ -64,12 +64,12 @@ namespace simpledb
 
    table * database::create_table(const ::string & pszName)
    {
-      return new table(this, pszName);
+      return __new table(this, pszName);
    }
 
    ::simpledb::dataset * database::create_dataset()
    {
-      return __new< ::simpledb::dataset(const_cast < ::simpledb::database * >  >(this));
+      return __allocate< ::simpledb::dataset(const_cast < ::simpledb::database * >  >(this));
    }
 
 

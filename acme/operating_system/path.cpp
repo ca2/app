@@ -53,7 +53,7 @@
 //      path_component.erase(0, 1);
 //   }
 
-//   // Construct and return a new path.
+//   // Construct and return a __new path.
 //   wcstring new_path = working_directory;
 //   append_path_component(new_path, path_component);
    auto pathResult = working_directory / path_component;

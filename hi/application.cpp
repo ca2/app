@@ -204,7 +204,7 @@ string checking_string_move_002()
 
    string str;
 
-   auto p = new char[123];
+   auto p = __new char[123];
 
    ansi_cpy(p, "checking_string_move_002");
 
@@ -1256,7 +1256,7 @@ namespace console_hello
 ////   application.initialize_application(&main);
 ////
 ////
-////   //::pointer<APPLICATION_CLASS>papp(__new APPLICATION_CLASS());
+////   //::pointer<APPLICATION_CLASS>papp(__allocate APPLICATION_CLASS());
 //////
 //////#ifdef NO_NETWORKING
 //////
@@ -1560,7 +1560,7 @@ namespace console_hello
 ::i32 application_main(::platform::platform * pplatform)
 {
 
-   auto papplication = __new console_hello::application();
+   auto papplication = __allocate console_hello::application();
 
    auto iExitCode = papplication->application_main(pplatform);
 

@@ -690,7 +690,7 @@ namespace experience
       if (m_pdockmanager == nullptr)
       {
 
-         __construct(m_pdockmanager, __new class dock_manager ());
+         __construct(m_pdockmanager, __allocate class dock_manager ());
 
          try
          {
@@ -710,7 +710,7 @@ namespace experience
       if (m_pmovemanager == nullptr)
       {
 
-         __construct(m_pmovemanager, __new class move_manager ());
+         __construct(m_pmovemanager, __allocate class move_manager ());
 
          try
          {
@@ -730,7 +730,7 @@ namespace experience
       if (m_psizemanager == nullptr)
       {
 
-         __construct(m_psizemanager, __new class size_manager ());
+         __construct(m_psizemanager, __allocate class size_manager ());
 
          try
          {
@@ -751,7 +751,7 @@ namespace experience
       if (m_pmenumanager == nullptr)
       {
 
-         __construct(m_pmenumanager, __new class menu_manager ());
+         __construct(m_pmenumanager, __allocate class menu_manager ());
 
          try
          {
@@ -1356,7 +1356,7 @@ namespace experience
       if (m_psizemanager == nullptr)
       {
 
-         __construct(m_psizemanager, __new class size_manager ());
+         __construct(m_psizemanager, __allocate class size_manager ());
 
          //auto estatus = 
 
@@ -1484,21 +1484,21 @@ namespace experience
       //      //switch (m_psizemanager->m_eframeCursor)
       //      //{
       //      //case e_frame_sizing_left:
-      //      //   return __new ::item(e_element_resize_left);
+      //      //   return __allocate ::item(e_element_resize_left);
       //      //case e_frame_sizing_top:
-      //      //   return __new ::item(e_element_resize_top);
+      //      //   return __allocate ::item(e_element_resize_top);
       //      //case e_frame_sizing_right:
-      //      //   return __new ::item(e_element_resize_right);
+      //      //   return __allocate ::item(e_element_resize_right);
       //      //case e_frame_sizing_bottom:
-      //      //   return __new ::item(e_element_resize_bottom);
+      //      //   return __allocate ::item(e_element_resize_bottom);
       //      //case e_frame_sizing_top_left:
-      //      //   return __new ::item(e_element_resize_top_left);
+      //      //   return __allocate ::item(e_element_resize_top_left);
       //      //case e_frame_sizing_top_right:
-      //      //   return __new ::item(e_element_resize_top_right);
+      //      //   return __allocate ::item(e_element_resize_top_right);
       //      //case e_frame_sizing_bottom_left:
-      //      //   return __new ::item(e_element_resize_bottom_left);
+      //      //   return __allocate ::item(e_element_resize_bottom_left);
       //      //case e_frame_sizing_bottom_right:
-      //      //   return __new ::item(e_element_resize_bottom_right);
+      //      //   return __allocate ::item(e_element_resize_bottom_right);
       //      //   default:
       //      //      
       //      //      return nullptr;
@@ -2641,7 +2641,7 @@ namespace experience
        if (eframe == ::experience::e_frame_title_bar)
        {
 
-          auto pitem = __new ::item(::e_element_title_bar, 0);
+          auto pitem = __allocate ::item(::e_element_title_bar, 0);
 
           pitem->initialize(this);
 

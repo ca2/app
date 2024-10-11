@@ -8,7 +8,7 @@
 
 #define MALLOC_NEW(p, type) \
 p = (type *) ::malloc(sizeof(type)); \
-__new<  >(p) type;
+__allocate<  >(p) type;
 
 #define MALLOC_DEL(p, type) \
 if(::is_set(p)) { \

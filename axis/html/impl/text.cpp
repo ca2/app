@@ -82,7 +82,7 @@ namespace html
          if((!::is_set(m_pedit) || !m_pedit->is_window()) && pdata->m_pcoredata->m_bEdit)
          {
 
-            m_pedit = __new ::user::plain_edit();
+            m_pedit = __allocate ::user::plain_edit();
 
             m_pedit->initialize(pdata);
 
@@ -603,7 +603,7 @@ namespace html
 //         if(pdata->is_locked())
 //         {
 //
-//            // I am gonna blink and fail away (deleting?) // isn't new html page ready so you just call new drawing
+//            // I am gonna blink and fail away (deleting?) // isn't __new html page ready so you just call __new drawing
 //            return;
 //         }
 

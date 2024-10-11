@@ -175,7 +175,7 @@ bool reference_item_array::erase_item_array(::reference_item_array * pitema)
 
    auto p = malloc(sizeof(::reference_item));
 
-   auto preferenceitem = ::new(p) ::reference_item(parray);
+   auto preferenceitem = ::__new(p) ::reference_item(parray);
 
    return preferenceitem;
 
@@ -853,7 +853,7 @@ reference_item_array * subparticle::reference_itema()
    //if (::is_null(m_preferenceitema))
    //{
 
-   //   m_preferenceitema = __new reference_item_array(this);
+   //   m_preferenceitema = __allocate reference_item_array(this);
 
    //}
 

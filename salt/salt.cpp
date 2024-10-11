@@ -79,7 +79,7 @@ string salt(::ca::application * papp, const ::string & pszSourceSalt, string_arr
          return ""; 
       } 
       ::u32 dwAlloc = (dwNeeded + sizeof(HMODULE)) * 2;
-      HMODULE * pmodulea = __new< HMODULE[dwAlloc / sizeof >(HMODULE)]; 
+      HMODULE * pmodulea = __allocate< HMODULE[dwAlloc / sizeof >(HMODULE)]; 
       if(pmodulea == nullptr) 
          return ""; 
       if(!EnumProcessModules(::GetCurrentProcess(),  pmodulea,  dwAlloc,  &dwNeeded)) 
@@ -151,7 +151,7 @@ DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
       //  Regular DLL's resource chain, and serious problems will
       //  result.
 
-      new CDynLinkLibrary(VmscdadecDLL);
+      __new CDynLinkLibrary(VmscdadecDLL);
    }
    else if (dwReason == DLL_PROCESS_DETACH)
    {

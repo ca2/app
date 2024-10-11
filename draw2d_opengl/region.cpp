@@ -174,7 +174,7 @@ namespace draw2d_opengl
    //   //switch(m_etype)
    //   //{
    //   //case type_none:
-   //   //   return new plusplus::Region ();
+   //   //   return __new plusplus::Region ();
    //   //case type_rect:
    //   //   return get_rect();
    //   //case type_oval:
@@ -207,7 +207,7 @@ namespace draw2d_opengl
 
    //   path.AddRectangle(rectangle);
 
-   //   return new plusplus::Region (&path);
+   //   return __new plusplus::Region (&path);
    //      
    //}
 
@@ -218,7 +218,7 @@ namespace draw2d_opengl
 
    //   path.AddEllipse((::i32) m_x1, (::i32) m_y1, (::i32) (m_x2 - m_x1), (::i32) (m_y2 - m_y1));
 
-   //   return new plusplus::Region (&path);
+   //   return __new plusplus::Region (&path);
 
    //}
 
@@ -245,7 +245,7 @@ namespace draw2d_opengl
 
    //   path.AddPolygon(pa.get_data(), (i32) pa.get_count());
 
-   //   return new plusplus::Region (&path);
+   //   return __new plusplus::Region (&path);
 
    //}
 
@@ -279,7 +279,7 @@ namespace draw2d_opengl
    //      path.CloseFigure();
    //   }
 
-   //   return new plusplus::Region (&path);
+   //   return __new plusplus::Region (&path);
 
    //}
 

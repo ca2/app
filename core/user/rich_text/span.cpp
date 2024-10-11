@@ -64,7 +64,7 @@ namespace user
 
       span::span(data * pdata, const span & span) :
          m_pdata(pdata),
-         m_pformat(::as(new class format(*span.m_pformat))),
+         m_pformat(::as(__new class format(*span.m_pformat))),
          m_ealignNewLine(span.m_ealignNewLine),
          m_bEndOfLine(span.m_bEndOfLine),
          m_str(span.m_str)
@@ -80,7 +80,7 @@ namespace user
 
 
       span::span(const span & span) :
-         m_pformat(::as(new class format(*span.m_pformat))),
+         m_pformat(::as(__new class format(*span.m_pformat))),
          m_ealignNewLine(span.m_ealignNewLine),
          m_bEndOfLine(span.m_bEndOfLine),
          m_str(span.m_str)
@@ -146,7 +146,7 @@ namespace user
 
          synchronous_lock synchronouslock(m_pdata->synchronization());
          
-         auto pspan = __new class span (m_pdata);
+         auto pspan = __allocate class span (m_pdata);
          
          pspan->m_pformat = m_pdata->add_format();
 
@@ -174,7 +174,7 @@ namespace user
       ::pointer<format>span::fork_format()
       {
 
-         return __new class format (*m_pformat);
+         return __allocate class format (*m_pformat);
 
       }
 

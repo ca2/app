@@ -74,7 +74,7 @@ namespace apex
 
       if(dwResSize > 0)
       {
-         LPVOID lpdata = new ::u8[dwResSize];
+         LPVOID lpdata = __new ::u8[dwResSize];
          if(GetFileVersionInfo(
                lpszModuleFilePath,
                0,
@@ -287,7 +287,7 @@ namespace apex
 //         {
 //            delete[] vmap[::payload];
 //         }
-//         vmap[::payload] = __new< char[payload.get_length() + 1 + value.get_length >() + 1];
+//         vmap[::payload] = __allocate< char[payload.get_length() + 1 + value.get_length >() + 1];
 //         sprintf(vmap[::payload], "%s=%s", payload, value);
 //         putenv( vmap[::payload] );
 //      }

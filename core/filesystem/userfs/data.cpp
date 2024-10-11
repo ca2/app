@@ -98,7 +98,7 @@ namespace userfs
 
    //   }
 
-   //      m_pitem = __new ::file::item(*pitem);
+   //      m_pitem = __allocate ::file::item(*pitem);
 
    //   //   try
    //   //   {
@@ -118,7 +118,7 @@ namespace userfs
 
    //   //      auto pcontext = get_context();
 
-   //   //      m_pitem = __new ::file::item(m_pcontext->defer_process_matter_path(strOldPath), strOldPath);
+   //   //      m_pitem = __allocate ::file::item(m_pcontext->defer_process_matter_path(strOldPath), strOldPath);
 
    //   //      OnFileManagerBrowse(context + ::e_source_sync);
 
@@ -282,7 +282,7 @@ namespace userfs
 
       ::file::path pathFinal = m_pcontext->defer_process_matter_path(pathUser);
 
-      ::pointer<::file::item>pitem = __new ::file::item(pathUser, pathFinal);
+      ::pointer<::file::item>pitem = __allocate ::file::item(pathUser, pathFinal);
 
       browse(pitem, context);
 

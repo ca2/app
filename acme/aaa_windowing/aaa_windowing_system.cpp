@@ -214,7 +214,7 @@ namespace windowing
 
         }
 
-        auto ptopic = __new ::topic(id_application_dark_mode_change);
+        auto ptopic = __allocate ::topic(id_application_dark_mode_change);
 
         for (auto & pwindowbase : m_windowbasea)
         {

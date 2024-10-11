@@ -52,7 +52,7 @@ namespace user
 
          //virtual ::user::rich_text::edit * get_rich_text_edit();
 
-         // if span has alignment set, it generates new line
+         // if span has alignment set, it generates __new line
          //::pointer<span>create_span(::e_align ealignNewLine = e_align_none);
          ::pointer<span>create_span();
 

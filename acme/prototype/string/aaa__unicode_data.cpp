@@ -428,7 +428,7 @@
 //  if (old_size == 0)
 //    throw encode_error("index does not refer to a valid code point");
 //
-//  // get the size of the new code point
+//  // get the size of the __new code point
 //  string new_code_point;
 //  add_char(new_code_point, code_point, encoding);
 //  if (old_size == new_code_point.size()) {

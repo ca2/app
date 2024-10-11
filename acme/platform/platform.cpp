@@ -193,7 +193,7 @@ namespace platform
 
       ////factory_init();
 
-::acme::g_paAura = new ::array < matter* > ();
+::acme::g_paAura = __new ::array < matter* > ();
 
 ////::task_on_after_new_particle(g_paAura);
 #if REFERENCING_DEBUGGING
@@ -321,7 +321,7 @@ namespace platform
    //   if (!m_pmemorycounter)
    //   {
 
-   //      m_pmemorycounter = new ::memory_counter();
+   //      m_pmemorycounter = __new ::memory_counter();
 
    //   }
 
@@ -771,11 +771,11 @@ g_bWindowingOutputDebugString = true;
 
       //__raw_construct_new(m_pcomponentfactorymap);
 
-      //m_pfactory = __new ::factory::factory();
+      //m_pfactory = __allocate ::factory::factory();
 
       m_pfactory->InitHashTable(16189);
 
-      //::acme::acme::g_pstaticstatic->m_pfactorya = new factory_array();
+      //::acme::acme::g_pstaticstatic->m_pfactorya = __new factory_array();
 
 
 

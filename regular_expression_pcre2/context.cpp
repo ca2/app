@@ -46,7 +46,7 @@ namespace regular_expression_pcre2
    ::regular_expression_pointer context::compile(const ::string & str)
    {
 
-      auto pregularexpression = __new regular_expression();
+      auto pregularexpression = __allocate regular_expression();
 
       pregularexpression->m_pcontext = this;
 

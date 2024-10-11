@@ -98,8 +98,8 @@ class reference_count_debug;
 #define __defer_construct_new __call__defer_construct_new
 
 
-#define __new__prefix(x) 
-//#define __new __call__new
+#define __allocate__prefix(x) 
+//#define __allocate __call__allocate
 //#define __allocate __call__allocate
 //#define __allocate_and_initialize __call__allocate_and_initialize
 //#define __delete __call__delete

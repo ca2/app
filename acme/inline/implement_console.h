@@ -206,7 +206,7 @@ pmessagebox->sync();
 //
 //   //set_argc_argv_envp(argc, argv, envp);
 //
-//   ::pointer<APPLICATION_CLASS>papp(__new APPLICATION_CLASS());
+//   ::pointer<APPLICATION_CLASS>papp(__allocate APPLICATION_CLASS());
 //
 //#ifdef NO_NETWORKING
 //

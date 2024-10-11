@@ -31,7 +31,7 @@ typedef unsigned __int64 uint64_t;
 
     SHA256 sha256;
     while (more data available)
-      sha256.add(pointer to fresh data, number of new bytes);
+      sha256.add(pointer to fresh data, number of __new bytes);
     ::string myHash3 = sha256.getHash();
   */
 class SHA256 //: public Hash

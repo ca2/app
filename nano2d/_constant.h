@@ -363,7 +363,7 @@ namespace nano2d
 	//
 	//
 	//
-	//		// Begin drawing a new frame
+	//		// Begin drawing a __new frame
 	//// Calls to nanovg drawing API should be wrapped in BeginFrame() & EndFrame()
 	//// BeginFrame() defines the size of the window to render to in relation currently
 	//// set viewport (i.e. glContext on GL backends). Device pixel ration allows to
@@ -590,7 +590,7 @@ namespace nano2d
 	//		//
 	//		// Paths
 	//		//
-	//		// Drawing a new shape starts with BeginPath(), it clears all the currently defined paths.
+	//		// Drawing a __new shape starts with BeginPath(), it clears all the currently defined paths.
 	//		// Then you define one or more paths and sub-paths which describe the shape. The are functions
 	//		// to draw common shapes like rectangles and circles, and lower level step-by-step functions,
 	//		// which allow to define a path curve by curve.
@@ -607,7 +607,7 @@ namespace nano2d
 	//		// Clears the current path and sub-paths.
 	//		void begin_path();
 	//
-	//		// Starts new sub-path with specified point as first point.
+	//		// Starts __new sub-path with specified point as first point.
 	//		void move_to(float x, float y);
 	//
 	//		// Adds line segment from the last point in the path to the specified point.
@@ -628,24 +628,24 @@ namespace nano2d
 	//		// Sets the current sub-path winding, see winding and solidity.
 	//		void path_winding(int dir);
 	//
-	//		// Creates new circle arc shaped sub-path. The arc center is at cx,cy, the arc radius is r,
+	//		// Creates __new circle arc shaped sub-path. The arc center is at cx,cy, the arc radius is r,
 	//		// and the arc is drawn from angle a0 to a1, and swept in direction dir (_CCW, or _CW).
 	//		// Angles are specified in radians.
 	//		void arc(float cx, float cy, float r, float a0, float a1, int dir);
 	//
-	//		// Creates new rectangle shaped sub-path.
+	//		// Creates __new rectangle shaped sub-path.
 	//		void rectangle(float x, float y, float w, float h);
 	//
-	//		// Creates new rounded rectangle shaped sub-path.
+	//		// Creates __new rounded rectangle shaped sub-path.
 	//		void rounded_rectangle(float x, float y, float w, float h, float r);
 	//
-	//		// Creates new rounded rectangle shaped sub-path with varying radii for each corner.
+	//		// Creates __new rounded rectangle shaped sub-path with varying radii for each corner.
 	//		void rounded_rectangle_varying(float x, float y, float w, float h, float radTopLeft, float radTopRight, float radBottomRight, float radBottomLeft);
 	//
-	//		// Creates new ellipse shaped sub-path.
+	//		// Creates __new ellipse shaped sub-path.
 	//		void ellipse(float cx, float cy, float rx, float ry);
 	//
-	//		// Creates new circle shaped sub-path.
+	//		// Creates __new circle shaped sub-path.
 	//		void circle(float cx, float cy, float r);
 	//
 	//		// Fills the current path with current fill style.
@@ -741,7 +741,7 @@ namespace nano2d
 	//		float text(float x, float y, const ::scoped_string& string, const ::scoped_string& end);
 	//
 	//		// Draws multi-line text string at specified location wrapped at the specified width. If end is specified only the sub-string up to the end is drawn.
-	//		// White space is stripped at the beginning of the rows, the text is split at word boundaries or when new-line characters are encountered.
+	//		// White space is stripped at the beginning of the rows, the text is split at word boundaries or when __new-line characters are encountered.
 	//		// Words longer than the max width are slit at nearest character (i.e. no hyphenation).
 	//		void text_box(float x, float y, float breakRowWidth, const ::scoped_string& string, const ::scoped_string& end);
 	//
@@ -765,7 +765,7 @@ namespace nano2d
 	//		void text_metrics(float* ascender, float* descender, float* lineh);
 	//
 	//		// Breaks the specified text into lines. If end is specified only the sub-string will be used.
-	//		// White space is stripped at the beginning of the rows, the text is split at word boundaries or when new-line characters are encountered.
+	//		// White space is stripped at the beginning of the rows, the text is split at word boundaries or when __new-line characters are encountered.
 	//		// Words longer than the max width are slit at nearest character (i.e. no hyphenation).
 	//		int text_break_lines(const ::scoped_string& string, const ::scoped_string& end, float breakRowWidth, text_row* rows, int maxRows);
 	//

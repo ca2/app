@@ -174,7 +174,7 @@ namespace aura
       //m_pimaging = nullptr;
 
 
-      //m_phandler = __new ::handler(this);
+      //m_phandler = __allocate ::handler(this);
 
 
       //m_bAuraProcessInitialize = false;
@@ -299,7 +299,7 @@ namespace aura
    //   if(m_pappmenu.is_null())
    //   {
 
-   //      m_pappmenu = __new application_menu();
+   //      m_pappmenu = __allocate application_menu();
 
    //   }
 
@@ -2095,7 +2095,7 @@ retry_license:
    //   try
    //   {
 
-   //      return __new ::interprocess::communication(m_strAppName);
+   //      return __allocate ::interprocess::communication(m_strAppName);
 
    //   }
    //   catch (...)
@@ -3776,7 +3776,7 @@ retry_license:
 
    //   }
 
-   //   auto pusermessage = __new ::user::message();
+   //   auto pusermessage = __allocate ::user::message();
 
    //   if (!pusermessage)
    //   {
@@ -4258,7 +4258,7 @@ retry_license:
 
    //   //throw ::exception(todo("xml"));
 
-   //   //auto pdocument = __new ::xml::document();
+   //   //auto pdocument = __allocate ::xml::document();
 
    //   //if (!pdocument->load(atom) || !*pdocument)
    //   //{
@@ -5388,7 +5388,7 @@ retry_license:
       //::html::html * application::create_html()
       //{
 
-      //   return __new< ::html::html(get_app >());
+      //   return __allocate< ::html::html(get_app >());
 
       //}
 
@@ -7059,7 +7059,7 @@ namespace aura
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
-   *ppData = new ::u8[*pBytes];
+   *ppData = __new ::u8[*pBytes];
    lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    *ppData, &dwCount);
@@ -7087,7 +7087,7 @@ namespace aura
    ASSERT(str.length()%2 == 0);
    iptr nLen = str.length();
    *pBytes = ::u32(nLen)/2;
-   *ppData = new ::u8[*pBytes];
+   *ppData = __new ::u8[*pBytes];
    for (i32 i=0;i<nLen;i+=2)
    {
    (*ppData)[i/2] = (::u8)
@@ -7207,7 +7207,7 @@ namespace aura
    }
 
    // convert to string and write out
-   char * psz = new char[nBytes*2+1];
+   char * psz = __new char[nBytes*2+1];
 
    ::u32 i;
    for (i = 0; i < nBytes; i++)
@@ -8063,7 +8063,7 @@ namespace aura
 //   ::pointer<::apex::application>application::create_platform(::apex::session* psession)
 //   {
 //
-//      return __new ::aura::session();
+//      return __allocate ::aura::session();
 //
 //   }
 
@@ -8599,7 +8599,7 @@ namespace aura
 
       }
 
-      pinteraction = __new ::account::simple_ui(this,strRequestUrl);
+      pinteraction = __allocate ::account::simple_ui(this,strRequestUrl);
 
       pinteraction->m_login.m_peditUser->set_window_text(strUsername);
 
@@ -8619,7 +8619,7 @@ namespace aura
    //::pointer<::user::user>application::create_user()
    //{
 
-   //   return __new ::user::user();
+   //   return __allocate ::user::user();
 
    //}
 

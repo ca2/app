@@ -22,7 +22,7 @@
 //   if (!g_pcriticalsectionSequence)
 //   {
 //
-//      g_pcriticalsectionSequence = new critical_section();
+//      g_pcriticalsectionSequence = __new critical_section();
 //
 //   }
 //
@@ -537,7 +537,7 @@ sequence::~sequence()
 //
 //      m_stepa.add(step);
 //
-//      m_pevent = __new manual_reset_event();
+//      m_pevent = __allocate manual_reset_event();
 //
 //      lock.unlock();
 //
@@ -588,7 +588,7 @@ sequence::~sequence()
 //   if (m_psequence.m_estatus == error_not_initialized)
 //   {
 //
-//      m_pevent = __new manual_reset_event();
+//      m_pevent = __allocate manual_reset_event();
 //
 //      if (!m_pevent->wait(timeWait))
 //      {
@@ -622,7 +622,7 @@ sequence::~sequence()
 //   if (m_psequence.m_estatus == error_not_initialized)
 //   {
 //
-//      m_pevent = __new manual_reset_event();
+//      m_pevent = __allocate manual_reset_event();
 //
 //      lock.unlock();
 //

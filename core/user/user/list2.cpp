@@ -861,7 +861,7 @@ namespace user
    //                     }
 
    //                     */
-   //         m_useritema.add(__new Item(item));
+   //         m_useritema.add(__allocate Item(item));
    //         iNode++;
    //      }
    //   }
@@ -885,7 +885,7 @@ namespace user
    //         item.m_iImage = m_iIconSong;
 
 
-   //         m_useritema.add(__new Item(item));
+   //         m_useritema.add(__allocate Item(item));
    //         iNode++;
    //      }
    //   }

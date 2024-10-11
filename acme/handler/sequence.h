@@ -453,7 +453,7 @@ public:
 //
 //      m_stepa.add(step);
 //
-//      m_pevent = __new manual_reset_event();
+//      m_pevent = __allocate manual_reset_event();
 //
 //      lock.unlock();
 //
@@ -504,7 +504,7 @@ public:
 //   if (m_psequence.m_estatus == error_not_initialized)
 //   {
 //
-//      m_pevent = __new manual_reset_event();
+//      m_pevent = __allocate manual_reset_event();
 //
 //      if (!m_pevent->wait(timeWait))
 //      {
@@ -538,7 +538,7 @@ public:
 //   if (m_psequence.m_estatus == error_not_initialized)
 //   {
 //
-//      m_pevent = __new manual_reset_event();
+//      m_pevent = __allocate manual_reset_event();
 //
 //      lock.unlock();
 //
@@ -878,7 +878,7 @@ public:
 //
 //      m_stepa.add(step);
 //
-//      m_pevent = __new manual_reset_event();
+//      m_pevent = __allocate manual_reset_event();
 //
 //      lock.unlock();
 //
@@ -929,7 +929,7 @@ public:
 //   if (m_psequence.m_estatus == error_not_initialized)
 //   {
 //
-//      m_pevent = __new manual_reset_event();
+//      m_pevent = __allocate manual_reset_event();
 //
 //      if (!m_pevent->wait(timeWait))
 //      {
@@ -963,7 +963,7 @@ public:
 //   if (m_psequence.m_estatus == error_not_initialized)
 //   {
 //
-//      m_pevent = __new manual_reset_event();
+//      m_pevent = __allocate manual_reset_event();
 //
 //      lock.unlock();
 //

@@ -239,7 +239,7 @@ namespace apex
       //m_pimaging = nullptr;
 
 
-      //m_phandler = __new ::handler(this);
+      //m_phandler = __allocate ::handler(this);
 
 
       //m_bAuraProcessInitialize = false;
@@ -280,7 +280,7 @@ namespace apex
 
       //m_timeGcomBackgroundUpdate = 30_s;
 
-      //m_pappimpl = new application_impl();
+      //m_pappimpl = __new application_impl();
 
 
    }
@@ -1103,7 +1103,7 @@ namespace apex
       //   /*        if (m_pfsdata.is_null())
       //           {
 
-      //              __construct(m_pfsdata, __new ::fs::set());
+      //              __construct(m_pfsdata, __allocate ::fs::set());
 
       //           }*/
 
@@ -3300,7 +3300,7 @@ namespace apex
    //   try
    //   {
 
-   //      return __new ::interprocess::channel();
+   //      return __allocate ::interprocess::channel();
 
    //   }
    //   catch (...)
@@ -3331,7 +3331,7 @@ namespace apex
       auto psystem = system()->m_papexsystem;
 
       //estatus = 
-      m_puserlanguagemap = __new ::user::language_map();
+      m_puserlanguagemap = __allocate ::user::language_map();
       
       //REFDBG(m_puserlanguagemap.add_reference_item({ this, __FUNCTION_FILE_LINE__ }));
 
@@ -3839,7 +3839,7 @@ namespace apex
       if (bGlobalExclusiveFail && m_eexclusiveinstance == e_exclusive_instance_global)
       {
 
-         information() << "A instance of the application:<br><br> - " << m_strAppName << +"<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.";
+         information() << "A instance of the application:<br><br> - " << m_strAppName << +"<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this __new instance.";
 
          try
          {
@@ -3864,7 +3864,7 @@ namespace apex
          if (bGlobalIdExclusiveFail)
          {
 
-            information() << "A instance of the application:<br><br>-" << m_strAppName << "with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this new instance.";
+            information() << "A instance of the application:<br><br>-" << m_strAppName << "with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this __new instance.";
 
             try
             {
@@ -3888,7 +3888,7 @@ namespace apex
       if (bLocalExclusiveFail && m_eexclusiveinstance == e_exclusive_instance_local)
       {
 
-         information() << "A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.";
+         information() << "A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this __new instance.";
 
          on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_local, "");
 
@@ -3908,7 +3908,7 @@ namespace apex
             {
 
                // Should in some way activate the other instance
-               information() << "A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::collection::count with the same atom.<br><br>Exiting this new instance.";
+               information() << "A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::collection::count with the same atom.<br><br>Exiting this __new instance.";
 
                on_exclusive_instance_conflict(prequest, bHandled, e_exclusive_instance_local_id, get_local_mutex_id());
                //if(!)
@@ -5674,7 +5674,7 @@ namespace apex
 
       //throw ::exception(todo("xml"));
 
-      //auto pdocument = __new ::xml::document();
+      //auto pdocument = __allocate ::xml::document();
 
       //if (!pdocument->load(atom) || !*pdocument)
       //{
@@ -5880,7 +5880,7 @@ namespace apex
       //
       //::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(
       //::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-      //ref __new< ::winrt::Windows::UI::Core::DispatchedHandler([this] >()
+      //ref __allocate< ::winrt::Windows::UI::Core::DispatchedHandler([this] >()
       //{
       //::winrt::Windows::UI::ImpactManagement::ApplicationImpact::GetForCurrentImpact()->TryConsolidateAsync();
       //}));
@@ -7287,7 +7287,7 @@ namespace apex
    //::html::html * application::create_html()
    //{
 
-   //   return __new< ::html::html(get_app >());
+   //   return __allocate< ::html::html(get_app >());
 
    //}
 
@@ -8912,7 +8912,7 @@ namespace apex
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
-   *ppData = new ::u8[*pBytes];
+   *ppData = __new ::u8[*pBytes];
    lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    *ppData, &dwCount);
@@ -8940,7 +8940,7 @@ namespace apex
    ASSERT(str.length()%2 == 0);
    iptr nLen = str.length();
    *pBytes = ::u32(nLen)/2;
-   *ppData = new ::u8[*pBytes];
+   *ppData = __new ::u8[*pBytes];
    for (i32 i=0;i<nLen;i+=2)
    {
    (*ppData)[i/2] = (::u8)
@@ -9060,7 +9060,7 @@ namespace apex
    }
 
    // convert to string and write out
-   char * psz = new char[nBytes*2+1];
+   char * psz = __new char[nBytes*2+1];
 
    ::u32 i;
    for (i = 0; i < nBytes; i++)
@@ -9921,7 +9921,7 @@ namespace apex
    //::pointer<::apex::application>application::create_platform(::apex::session* psession)
    //{
    //
-   //   return __new ::apex::session();
+   //   return __allocate ::apex::session();
    //
    //}
 

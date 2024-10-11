@@ -101,7 +101,7 @@ template < typename ...Args >
 pointer < T >::pointer(allocate_t, Args &&... args)
 {
 
-   auto p = new T (::std::forward<Args>(args)...);
+   auto p = __new T (::std::forward<Args>(args)...);
 
 //#if REFERENCING_DEBUGGING
 //
@@ -1282,7 +1282,7 @@ template < typename OBJECT >
 inline pointer < T > & pointer < T >::create_new(OBJECT * pparticle)
 {
 
-   auto p = __new T();
+   auto p = __allocate T();
 
    //p.set_referer();
 
@@ -1866,7 +1866,7 @@ inline pointer < T >& pointer < T > ::operator = (pointer < T2 > && t)
 //
 //   }
 //
-//   auto p = __new TYPE();
+//   auto p = __allocate TYPE();
 //
 //   if (p)
 //   {
@@ -1884,7 +1884,7 @@ inline pointer < T >& pointer < T > ::operator = (pointer < T2 > && t)
 //inline void __construct_new(::subparticle* pparticle, ::pointer<TYPE>& p)
 //{
 //
-//   p = __new TYPE();
+//   p = __allocate TYPE();
 //
 //   if (!p)
 //   {

@@ -49,9 +49,9 @@ namespace sockets
       //m_p2 = nullptr;
       defer_create_synchronization();
       //zero(m_socks4_host);
-      //m_prfds = new fd_set();
-      //m_pwfds = new fd_set();
-      //m_pefds = new fd_set();
+      //m_prfds = __new fd_set();
+      //m_pwfds = __new fd_set();
+      //m_pefds = __new fd_set();
       //FD_ZERO(&m_rfds);
       //FD_ZERO(&m_wfds);
       //FD_ZERO(&m_efds);
@@ -848,7 +848,7 @@ namespace sockets
 //              if (::is_set(ppairsocket_id) && ::is_set(ppairsocket_id->m_psocket)) // found
 //              {
 //
-//                 // new SSL negotiate method
+//                 // __new SSL negotiate method
 //                 if (ppairsocket_id->m_psocket->IsSSLNegotiate())
 //                 {
 //                    
@@ -882,7 +882,7 @@ namespace sockets
 //              if (::is_set(ppairsocket_id) && ::is_set(ppairsocket_id->m_psocket)) // found
 //              {
 //
-//                 // new SSL negotiate method
+//                 // __new SSL negotiate method
 //                 if (ppairsocket_id->m_psocket->IsSSLNegotiate())
 //                 {
 //
@@ -1001,7 +1001,7 @@ namespace sockets
 //                    set(socket_id, false, false, false);
 //
 //                    // After Detachsocket_id(), all calls to socket_handler() will return a object
-//                    // to the new slave socket_handler running in the new thread.
+//                    // to the __new slave socket_handler running in the __new thread.
 //                    try
 //                    {
 //
@@ -1229,7 +1229,7 @@ namespace sockets
 //
 //                 auto ptcpsocket = dynamic_cast <tcp_socket*> (ppairsocket_id->m_psocket.m_p);
 //
-//                 // new graceful ptcpsocket - flush and close timeout 5s
+//                 // __new graceful ptcpsocket - flush and close timeout 5s
 //                 if (::is_set(ptcpsocket) && psocket->IsConnected() && ptcpsocket->GetFlushBeforeClose() &&
 //                       !ptcpsocket->IsSSL() && psocket->TimeSinceClose() < 5)
 //                 {
@@ -1271,7 +1271,7 @@ namespace sockets
 //
 //                    //information() << "close() before reconnect\n");
 //
-//                    ptcpsocket->close(); // dispose of old file descriptor (open creates a new)
+//                    ptcpsocket->close(); // dispose of old file descriptor (open creates a __new)
 //
 //                    ptcpsocket->OnDisconnect();
 //
@@ -1316,7 +1316,7 @@ namespace sockets
 //
 //                       synchronous_lock synchronouslock(&psystem->sockets().m_pmutexPool);
 //
-//                       auto ppoolsocket_id = __new pool_socket_id(psocket);
+//                       auto ppoolsocket_id = __allocate pool_socket_id(psocket);
 //
 //                       ppoolsocket_id->m_psocket_idhandler = this;
 //
@@ -1570,7 +1570,7 @@ namespace sockets
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket_id>presolvsocket_id = __new resolv_socket_id(pbasesocket_id, host, port);
+//      ::pointer<resolv_socket_id>presolvsocket_id = __allocate resolv_socket_id(pbasesocket_id, host, port);
 //
 //      presolvsocket_id->m_psocket_idhandler = this;
 //
@@ -1607,7 +1607,7 @@ namespace sockets
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket_id>resolv = __new resolv_socket_id(pbasesocket_id, host, port, true);
+//      ::pointer<resolv_socket_id>resolv = __allocate resolv_socket_id(pbasesocket_id, host, port, true);
 //
 //      resolv->m_psocket_idhandler = this;
 //
@@ -1642,7 +1642,7 @@ namespace sockets
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket_id>resolv = __new resolv_socket_id(pbasesocket_id, a);
+//      ::pointer<resolv_socket_id>resolv = __allocate resolv_socket_id(pbasesocket_id, a);
 //
 //      resolv->m_psocket_idhandler = this;
 //
@@ -1677,7 +1677,7 @@ namespace sockets
 //
 //      // check cache
 //
-//      ::pointer<resolv_socket_id>resolv = __new resolv_socket_id(pbasesocket_id, a);
+//      ::pointer<resolv_socket_id>resolv = __allocate resolv_socket_id(pbasesocket_id, a);
 //
 //      resolv->m_psocket_idhandler = this;
 //
@@ -1715,7 +1715,7 @@ namespace sockets
 //
 //         m_resolver_port = port;
 //
-//         auto presolvserver = __new resolv_server();
+//         auto presolvserver = __allocate resolv_server();
 //
 //         m_resolver = presolvserver;
 //

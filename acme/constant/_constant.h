@@ -968,7 +968,7 @@ enum enum_create
 };
 
 
-enum enum_defer_new // new - for factoryless_allocation FACTORYLESS_ALLOCATION_ID
+enum enum_defer_new // __new - for factoryless_allocation FACTORYLESS_ALLOCATION_ID
 {
 
    e_defer_new

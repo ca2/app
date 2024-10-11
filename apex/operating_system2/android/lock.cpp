@@ -51,7 +51,7 @@ i32 _c_lock(const ::scoped_string & scopedstrName, void ** pdata)
       }
    }
 
-   i32 * pi = new i32();
+   i32 * pi = __new i32();
    *pi = fd;
    *pdata = pi;
 

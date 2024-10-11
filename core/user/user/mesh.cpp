@@ -59,8 +59,8 @@ namespace user
       m_sizeMaximumImage.cy() = 16;
       m_dItemHeight = 0.;
       m_plist = nullptr;
-      m_piaFilterIcon = new index_biunique();
-      m_piaFilterMesh = new index_array();
+      m_piaFilterIcon = __new index_biunique();
+      m_piaFilterMesh = __new index_array();
 
       m_econtroltype = ::user::e_control_type_mesh;
 
@@ -388,7 +388,7 @@ namespace user
          if (!pgroup)
          {
 
-            auto pdrawgroup = __new draw_mesh_group();
+            auto pdrawgroup = __allocate draw_mesh_group();
 
             pdrawgroup->initialize_draw_mesh_group(this);
 
@@ -812,7 +812,7 @@ namespace user
       if (!pitem)
       {
 
-         auto pdrawmeshitem = __new draw_mesh_item();
+         auto pdrawmeshitem = __allocate draw_mesh_item();
 
          pdrawmeshitem->initialize_draw_mesh_item(this);
 
@@ -845,7 +845,7 @@ namespace user
       if (!psubitem)
       {
 
-         psubitem = __new draw_mesh_subitem();
+         psubitem = __allocate draw_mesh_subitem();
 
          psubitem->m_pitem = pitem;
 
@@ -3309,7 +3309,7 @@ namespace user
                   if(m_iClick == 1)
                   {
 
-                     on_click(__new ::item(::e_element_item, iDisplayItemLButtonUp));
+                     on_click(__allocate ::item(::e_element_item, iDisplayItemLButtonUp));
 
                   }
                   else
@@ -3773,7 +3773,7 @@ namespace user
    //   }
    //   if(pcolumn->m_pimagelist == nullptr)
    //   {
-   //      pcolumn->m_pimagelist = new ::image::image_list (this);
+   //      pcolumn->m_pimagelist = __new ::image::image_list (this);
    //   }
    //   //      ::image::image_list_pointer pil = pcolumn->m_pimagelist;
    //   //   if(pil != nullptr)
@@ -5434,7 +5434,7 @@ namespace user
    //::item_pointer mesh::update_hover(::user::mouse * pmouse, ::user::e_zorder ezorder)
    //{
 
-   //   ::item_pointer pitemHitTest = __new ::item();
+   //   ::item_pointer pitemHitTest = __allocate ::item();
    //   
    //   auto pointClient = screen_to_client().get(pmouse->m_point);
 
@@ -5478,7 +5478,7 @@ namespace user
    ::item_pointer mesh::on_hit_test(const ::point_i32& point, e_zorder ezorder)
    {
 
-      ::item_pointer pitemHitTest = __new ::item();
+      ::item_pointer pitemHitTest = __allocate ::item();
 
       //auto pointClient = screen_to_client().get(pmouse->m_point);
 
@@ -6396,7 +6396,7 @@ namespace user
    //::pointer<::user::mesh_data>list::create_mesh_data()
    //{
 
-   //   return __new mesh_data();
+   //   return __allocate mesh_data();
 
    //}
 
@@ -6538,7 +6538,7 @@ namespace user
    //void mesh::on_create_draw_item()
    //{
 
-   //   //m_pdrawmeshitem            = new draw_mesh_item(this);
+   //   //m_pdrawmeshitem            = __new draw_mesh_item(this);
 
 
    //}

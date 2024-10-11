@@ -470,7 +470,7 @@ namespace acme
 
       //m_bOnInitializeWindowObject = false;
 
-      //m_pcleanuptask = __new ::parallelization::cleanup_task();
+      //m_pcleanuptask = __allocate ::parallelization::cleanup_task();
 
       //m_pcleanuptask->begin();
       //factory()->add_factory_item<::acme::idpool>();
@@ -521,7 +521,7 @@ namespace acme
 
       //__construct(m_pnano);
 
-      //m_psystemimpl = new system_impl();
+      //m_psystemimpl = __new system_impl();
 
       //set_os_data(LAYERED_ACME, this);
 
@@ -556,7 +556,7 @@ namespace acme
 
       branch_synchronously();
 
-      // To pair freebsd.h/main platform_create_system new system
+      // To pair freebsd.h/main platform_create_system __new system
       // This should be safe here in this node_gtk::node
       // because just above system() has begin_synch()
       // so the running thread is holding references to the system() thread.
@@ -1350,13 +1350,13 @@ namespace acme
    //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
    //{
 
-   //   auto psequence = __new ::sequence < ::conversation > ();
+   //   auto psequence = __allocate ::sequence < ::conversation > ();
 
    //   psequence->set_status(error_interface_only);
 
    //   //return presult;
 
-   //   //auto pprocess = __new status < enum_dialog_result > ();
+   //   //auto pprocess = __allocate status < enum_dialog_result > ();
 
    //   //pprocess->set_result(message_box_for_console(pszText, pszTitle, emessagebox));
 
@@ -1791,7 +1791,7 @@ namespace acme
    //   if (!plibrary)
    //   {
 
-   //      plibrary = __new ::acme::library();
+   //      plibrary = __allocate ::acme::library();
 
    //      plibrary->initialize_matter(this);
 
@@ -1883,7 +1883,7 @@ namespace acme
    //
    //      }
    //
-   //      plibrary = __new ::acme::library();
+   //      plibrary = __allocate ::acme::library();
    //
    //      plibrary->initialize_matter(this);
    //
@@ -3283,7 +3283,7 @@ namespace acme
                if (!papp)
                {
 
-                  ::acme::get()->platform()->informationf("\n\n::apex::session::get_new_application\n...but this new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
+                  ::acme::get()->platform()->informationf("\n\n::apex::session::get_new_application\n...but this __new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
 
                }
 
@@ -3419,7 +3419,7 @@ namespace acme
    //   void system::windowing_send(const ::procedure & procedure)
    //   {
    //
-   //      auto pmanualresetevent = __new manual_reset_event();
+   //      auto pmanualresetevent = __allocate manual_reset_event();
    //
    //      windowing_post([pmanualresetevent, procedure]()
    //                     {
@@ -3754,7 +3754,7 @@ namespace acme
    void system::on_application_dark_mode_change()
    {
 
-      auto ptopic = __new ::topic(id_application_dark_mode_change);
+      auto ptopic = __allocate ::topic(id_application_dark_mode_change);
 
       application()->handle(ptopic, nullptr);
 
@@ -4106,7 +4106,7 @@ namespace acme
 //CLASS_DECL_ACME::acme::system * acme_system_init()
 //{
 //
-//   g_psystem = new ::acme::system ();
+//   g_psystem = __new ::acme::system ();
 //
 //   return g_psystem;
 //

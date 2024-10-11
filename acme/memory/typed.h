@@ -27,7 +27,7 @@ inline void copy_construct_count(TYPE * p, ::collection::count c, const TYPE & t
    while (c > 0)
    {
 
-      new(p)TYPE(t);
+      __new(p)TYPE(t);
 
       p++;
 
@@ -45,7 +45,7 @@ inline void copy_construct_count(TYPE * p, ::collection::count c, const TYPE * p
    while (c > 0)
    {
 
-      new(p)TYPE(*psource);
+      __new(p)TYPE(*psource);
 
       p++;
 
@@ -69,13 +69,13 @@ namespace constructor
 
       inline  void construct(void * p)
       {
-         ::new(p) TYPE;
+         ::__new(p) TYPE;
       }
       inline  void construct_count(void * p, ::collection::count c)
       {
          while (c > 0)
          {
-            ::new(p) TYPE;
+            ::__new(p) TYPE;
             ((TYPE *&)p)++;
             c--;
          }
@@ -410,7 +410,7 @@ namespace typed
          while (c > 0)
          {
 
-            ::new (pdst) TYPE(src);
+            ::__new (pdst) TYPE(src);
 
             pdst++;
 
@@ -427,7 +427,7 @@ namespace typed
          while (c > 0)
          {
 
-            ::new (pdst) TYPE(*psrc);
+            ::__new (pdst) TYPE(*psrc);
 
             c--;
 

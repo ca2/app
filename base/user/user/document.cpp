@@ -610,7 +610,7 @@ namespace user
    //   {
    //      ::pointer<::user::impact>pimpact = get_impact(index);
 
-   //      ptask = new update();
+   //      ptask = __new update();
    //      ptask->m_pSender = pSender;
    //      ptask->m_lHint = lHint;
    //      ptask->m_pHint = pHint;
@@ -1898,7 +1898,7 @@ namespace user
          if (!do_save(::payload(::e_type_empty)))
          {
 
-            warning()(e_trace_category_appmsg) << "Warning: File save with new name failed.\n";
+            warning()(e_trace_category_appmsg) << "Warning: File save with __new name failed.\n";
 
             return false;
 

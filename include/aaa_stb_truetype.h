@@ -1160,7 +1160,7 @@ static stbtt_uint32 stbtt__buf_get(stbtt__buf * b, int n)
    return v;
 }
 
-static stbtt__buf stbtt__new_buf(const void * p, size_t size)
+static stbtt__buf stbtt__allocate_buf(const void * p, size_t size)
 {
    stbtt__buf r;
    STBTT_assert(size < 0x40000000);
@@ -1175,7 +1175,7 @@ static stbtt__buf stbtt__new_buf(const void * p, size_t size)
 
 static stbtt__buf stbtt__buf_range(const stbtt__buf * b, int o, int s)
 {
-   stbtt__buf r = stbtt__new_buf(NULL, 0);
+   stbtt__buf r = stbtt__allocate_buf(NULL, 0);
    if (o < 0 || s < 0 || o > b->size || s > b->size - o) return r;
    r.data = b->data + o;
    r.size = s;
@@ -1352,10 +1352,10 @@ static stbtt__buf stbtt__get_subrs(stbtt__buf cff, stbtt__buf fontdict)
    stbtt_uint32 subrsoff = 0, private_loc[2] = { 0, 0 };
    stbtt__buf pdict;
    stbtt__dict_get_ints(&fontdict, 18, 2, private_loc);
-   if (!private_loc[1] || !private_loc[0]) return stbtt__new_buf(NULL, 0);
+   if (!private_loc[1] || !private_loc[0]) return stbtt__allocate_buf(NULL, 0);
    pdict = stbtt__buf_range(&cff, private_loc[1], private_loc[0]);
    stbtt__dict_get_ints(&pdict, 19, 1, &subrsoff);
-   if (!subrsoff) return stbtt__new_buf(NULL, 0);
+   if (!subrsoff) return stbtt__allocate_buf(NULL, 0);
    stbtt__buf_seek(&cff, private_loc[1] + subrsoff);
    return stbtt__cff_get_index(&cff);
 }
@@ -1384,7 +1384,7 @@ static int stbtt_InitFont_internal(stbtt_fontinfo * info, unsigned char * data, 
 
    info->data = data;
    info->fontstart = fontstart;
-   info->cff = stbtt__new_buf(NULL, 0);
+   info->cff = stbtt__allocate_buf(NULL, 0);
 
    cmap = stbtt__find_table(data, fontstart, "cmap");       // required
    info->loca = stbtt__find_table(data, fontstart, "loca"); // required
@@ -1410,11 +1410,11 @@ static int stbtt_InitFont_internal(stbtt_fontinfo * info, unsigned char * data, 
       cff = stbtt__find_table(data, fontstart, "CFF ");
       if (!cff) return 0;
 
-      info->fontdicts = stbtt__new_buf(NULL, 0);
-      info->fdselect = stbtt__new_buf(NULL, 0);
+      info->fontdicts = stbtt__allocate_buf(NULL, 0);
+      info->fdselect = stbtt__allocate_buf(NULL, 0);
 
       // @TODO this should use size from table (not 512MB)
-      info->cff = stbtt__new_buf(data + cff, 512 * 1024 * 1024);
+      info->cff = stbtt__allocate_buf(data + cff, 512 * 1024 * 1024);
       b = info->cff;
 
       // read the header
@@ -1993,7 +1993,7 @@ static stbtt__buf stbtt__get_subr(stbtt__buf idx, int n)
       bias = 1131;
    n += bias;
    if (n < 0 || n >= count)
-      return stbtt__new_buf(NULL, 0);
+      return stbtt__allocate_buf(NULL, 0);
    return stbtt__cff_index_get(idx, n);
 }
 
@@ -2022,7 +2022,7 @@ static stbtt__buf stbtt__cid_get_glyph_subrs(const stbtt_fontinfo * info, int gl
          start = end;
       }
    }
-   if (fdselector == -1) stbtt__new_buf(NULL, 0);
+   if (fdselector == -1) stbtt__allocate_buf(NULL, 0);
    return stbtt__get_subrs(info->cff, stbtt__cff_index_get(info->fontdicts, fdselector));
 }
 
@@ -2874,7 +2874,7 @@ typedef struct stbtt__active_edge
 #define STBTT_FIX        (1 << STBTT_FIXSHIFT)
 #define STBTT_FIXMASK    (STBTT_FIX-1)
 
-static stbtt__active_edge * stbtt__new_active(stbtt__hheap * hh, stbtt__edge * e, int off_x, float start_point, void * userdata)
+static stbtt__active_edge * stbtt__allocate_active(stbtt__hheap * hh, stbtt__edge * e, int off_x, float start_point, void * userdata)
 {
    stbtt__active_edge * z = (stbtt__active_edge *)stbtt__hheap_alloc(hh, sizeof(*z), userdata);
    float dxdy = (e->x1 - e->x0) / (e->y1 - e->y0);
@@ -2896,7 +2896,7 @@ static stbtt__active_edge * stbtt__new_active(stbtt__hheap * hh, stbtt__edge * e
    return z;
 }
 #elif STBTT_RASTERIZER_VERSION == 2
-static stbtt__active_edge * stbtt__new_active(stbtt__hheap * hh, stbtt__edge * e, int off_x, float start_point, void * userdata)
+static stbtt__active_edge * stbtt__allocate_active(stbtt__hheap * hh, stbtt__edge * e, int off_x, float start_point, void * userdata)
 {
    stbtt__active_edge * z = (stbtt__active_edge *)stbtt__hheap_alloc(hh, sizeof(*z), userdata);
    float dxdy = (e->x1 - e->x0) / (e->y1 - e->y0);
@@ -3027,7 +3027,7 @@ static void stbtt__rasterize_sorted_edges(stbtt__bitmap * result, stbtt__edge * 
          // insert all edges that start before the center of this scanline -- omit ones that also end on this scanline
          while (e->y0 <= scan_y) {
             if (e->y1 > scan_y) {
-               stbtt__active_edge * z = stbtt__new_active(&hh, e, off_x, scan_y, userdata);
+               stbtt__active_edge * z = stbtt__allocate_active(&hh, e, off_x, scan_y, userdata);
                if (z != NULL) {
                   // find insertion point
                   if (active == NULL)
@@ -3328,7 +3328,7 @@ static void stbtt__rasterize_sorted_edges(stbtt__bitmap * result, stbtt__edge * 
       // insert all edges that start before the bottom of this scanline
       while (e->y0 <= scan_y_bottom) {
          if (e->y0 != e->y1) {
-            stbtt__active_edge * z = stbtt__new_active(&hh, e, off_x, scan_y_top, userdata);
+            stbtt__active_edge * z = stbtt__allocate_active(&hh, e, off_x, scan_y_top, userdata);
             if (z != NULL) {
                if (j == 0 && off_y != 0) {
                   if (z->ey < scan_y_top) {

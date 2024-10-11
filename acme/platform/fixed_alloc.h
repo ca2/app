@@ -148,10 +148,10 @@ public:
 // DECLARE_FIXED_ALLOC -- used in class definition
 /*#define DECLARE_AXIS_FIXED_ALLOC(class_name) \
 public: \
-   void * operator new(size_t) { return s_palloc->Alloc(); } \
-   void * operator new(size_t, void * p) { return p; } \
+   void * operator __new(size_t) { return s_palloc->Alloc(); } \
+   void * operator __new(size_t, void * p) { return p; } \
    void operator delete(void * p) { s_palloc->Free(p); } \
-   void * operator new(size_t, const char *, i32) { return s_palloc->Alloc(); } \
+   void * operator __new(size_t, const char *, i32) { return s_palloc->Alloc(); } \
    void operator delete(void * p, const char *, i32) { s_palloc->Free(p); } \
    static fixed_alloc * s_palloc;
 
@@ -162,7 +162,7 @@ fixed_alloc * class_name::s_palloc = nullptr;
 
 
 #define IMPLEMENT_AXIS_FIXED_ALLOC_CONSTRUCTOR(class_name, block_size) \
-class_name::s_palloc = __new< fixed_alloc(sizeof >(class_name), block_size);
+class_name::s_palloc = __allocate< fixed_alloc(sizeof >(class_name), block_size);
 
 #define IMPLEMENT_AXIS_FIXED_ALLOC_DESTRUCTOR(class_name) \
 if(class_name::s_palloc != nullptr) \

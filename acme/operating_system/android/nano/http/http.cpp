@@ -94,7 +94,7 @@ namespace android
             //   if (!WinHttpQueryDataAvailable(hRequest, &dwSize))
             //      printf("Error %u in WinHttpQueryDataAvailable.\n", GetLastError());
             //   // Allocate space for the buffer.        
-            //   pszOutBuffer = new byte[dwSize + 1];
+            //   pszOutBuffer = __new byte[dwSize + 1];
             //   if (!pszOutBuffer)
             //   {
             //      printf("Out of memory\n");

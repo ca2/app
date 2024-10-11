@@ -23,7 +23,7 @@ class critical_section_impl
 public:
 
 
-   inline void* operator new(size_t s)
+   inline void* operator __new(size_t s)
    {
 
       return ::malloc(s);
@@ -121,7 +121,7 @@ public:
 critical_section::critical_section()
 {
 
-   m_pimpl = new ::critical_section_impl();
+   m_pimpl = __new ::critical_section_impl();
 
 }
 

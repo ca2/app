@@ -54,8 +54,8 @@
 //   pmenushared->m_ppszParent = alloc_c_string_array(straParent);
 //   pmenushared->m_ppszMenu = alloc_c_string_array(straMenu);
 //   pmenushared->m_ppszId = alloc_c_string_array(straId);
-//   pmenushared->m_ositema = new void *[iCount];
-//   pmenushared->m_statusa = new int[iCount];
+//   pmenushared->m_ositema = __new void *[iCount];
+//   pmenushared->m_statusa = __new int[iCount];
 //
 //   memory_set(pmenushared->m_ositema, 0, sizeof(void *) * iCount);
 //   memory_set(pmenushared->m_statusa, 0, sizeof(menu_shared::enum_status) * iCount);

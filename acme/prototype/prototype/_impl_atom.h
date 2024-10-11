@@ -397,7 +397,7 @@ inline atom::atom(enum_type etypeAdd, const ::atom & atom)
 
       m_etype = (enum_type) (etypeAdd | e_type_text);
 
-      ::__new(&m_str) ::string(atom.m_str);
+      ::new(&m_str) ::string(atom.m_str);
 
    }
    else if (atom.is_integer())
@@ -660,7 +660,7 @@ inline atom & atom::operator = (const atom & atom)
       else if (atom.is_text())
       {
 
-         ::__new(&m_str) ::string(atom.m_str);
+         ::new(&m_str) ::string(atom.m_str);
 
       }
       else

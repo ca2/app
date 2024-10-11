@@ -102,7 +102,7 @@ public:
    ~property() { on_property_destruct(this); }
 
 
-   void* operator __new(size_t size)
+   void* operator new(size_t size)
    {
 
       return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_property)->allocate(size, nullptr);
@@ -110,7 +110,7 @@ public:
    }
 
 
-   void* operator __new(size_t size, const char* /* pszFileName */, int /* nLine */)
+   void* operator new(size_t size, const char* /* pszFileName */, int /* nLine */)
    {
 
       return ::acme::get()->m_pheapmanagement->memory(::heap::e_memory_property)->allocate(size, nullptr);

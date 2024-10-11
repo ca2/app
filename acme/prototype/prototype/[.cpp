@@ -689,7 +689,7 @@ void payload::set_type(enum_type etype, bool bConvert)
       else if (etype == e_type_string)
       {
 
-         ::__new(&m_str) ::string();
+         ::new(&m_str) ::string();
 
       }
 

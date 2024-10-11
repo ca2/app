@@ -1691,7 +1691,7 @@ m_ibuf(isize)
 
       return _try_write(buf, len);
 
-      //auto poutput = ::place(::__new output(len));
+      //auto poutput = ::place(::new output(len));
 
       //poutput->m_memory.assign(buf, len);
 

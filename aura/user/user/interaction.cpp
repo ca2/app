@@ -17413,6 +17413,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    auto pmessage = __create_new<TYPE>(); \
    pmessage->m_pchannel = this; \
    pmessage->m_oswindow = oswindow; \
+   pmessage->m_puserinteraction = this; \
    pmessage->m_pwindow = pwindow; \
    pmessage->m_atom = atom; \
    pmessage->m_wparam = wparam; \
@@ -17433,7 +17434,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       }
 
-      auto pwindow = this;
+      auto pwindow = window();
 
       auto oswindow = pwindow ? pwindow->oswindow() : nullptr;
 

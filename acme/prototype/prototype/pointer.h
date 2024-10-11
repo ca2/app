@@ -714,7 +714,7 @@ inline void copy(::pointer < TARGET > & pTarget, const ::pointer < SOURCE > & pS
 //::pointer < T > __allocate(Args &&... args)
 //{
 //
-//   ::pointer < T > p{ transfer_t{}, ::__new T(::std::forward<Args>(args)...) };
+//   ::pointer < T > p{ transfer_t{}, ::new T(::std::forward<Args>(args)...) };
 //
 //   task_on_after_new_particle(p);
 //
@@ -1407,11 +1407,11 @@ public:
 
 //#if !REFERENCING_DEBUGGING
 
-#define __transfer_as_pointer __g__pointer_site << __refdbg_call_add_referer
+#define __transfer_as_pointer __pointer_site(__refdbg_function_file_line__) <<
 
-#define __allocate __transfer_as_pointer __new
+#define __allocate __transfer_as_pointer new
 
-#define __as_pointer __g__pointer_site += __refdbg_call_add_referer
+#define __as_pointer __pointer_site(__refdbg_function_file_line__) +=
 
 #define __retain __as_pointer
 
@@ -1449,9 +1449,9 @@ public:
 
 #define __initialize_pointer __initialize_pointer_with(this)
 
-#define __initialize_new_with(P) __initialize_pointer_with(P) __new
+#define __initialize_new_with(P) __initialize_pointer_with(P) new
 
-#define __initialize_new __initialize_pointer __new
+#define __initialize_new __initialize_pointer new
 
 
 

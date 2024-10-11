@@ -1270,7 +1270,7 @@ namespace dynamic_source
          p->element2().m_p->~session();
 
 
-         ::__new(p->element2().m_p) ::dynamic_source::session();
+         ::new(p->element2().m_p) ::dynamic_source::session();
          
 
          p->element2()->initialize_dynamic_source_session(pszId, this);

@@ -312,7 +312,7 @@ void * plex_heap_alloc_array::_realloc(void * p, memsize size, memsize sizeOld, 
 //
 //   auto pallocarray = ::platform::raw_allocator::__allocator_base_allocate< plex_heap_alloc_array > (pallocator, pallocator, ememory);
 //
-//   //::__new(pallocarray) ::plex_heap_alloc_array(pallocator, ememory);
+//   //::new(pallocarray) ::plex_heap_alloc_array(pallocator, ememory);
 //
 //   //::task_on_after_new_particle(pallocarray);
 //

@@ -40,7 +40,7 @@ public:
 
    void pre_finalize();
 
-   //void * operator __new(size_t s);
+   //void * operator new(size_t s);
    //void operator delete(void * p);
 
 

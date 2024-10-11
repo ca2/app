@@ -828,13 +828,13 @@ void payload::set_type(enum_type etype, bool bConvert)
          if (etype == e_type_string)
          {
 
-            ::__new(&m_str) ::string();
+            ::new(&m_str) ::string();
 
          }
          else if (etype == e_type_atom)
          {
 
-            ::__new(&m_atom) ::atom();
+            ::new(&m_atom) ::atom();
 
          }
          else if (etype >= e_type_element && etype < e_type_last_element)
@@ -957,7 +957,7 @@ void payload::set_string(const ::string & str)
 //
 //      set_type(e_type_string, false);
 //
-//      ::__new(&m_str) ::string(::transfer(str));
+//      ::new(&m_str) ::string(::transfer(str));
 //
 //   }
 //

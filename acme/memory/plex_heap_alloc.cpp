@@ -64,7 +64,7 @@ plex_heap_alloc::~plex_heap_alloc()
 }
 
 //
-//void * plex_heap_alloc::operator __new(size_t s)
+//void * plex_heap_alloc::operator new(size_t s)
 //{
 //
 //   return m_pallocator->allocate(sizeof(plex_heap_alloc));
@@ -212,7 +212,7 @@ void Free_check_pointer_in_cpp(void * p)
 }
 //
 //
-//void * plex_heap_alloc_array::operator __new(size_t s)
+//void * plex_heap_alloc_array::operator new(size_t s)
 //{
 //
 //   return system_heap_alloc(sizeof(plex_heap_alloc_array));
@@ -565,7 +565,7 @@ void Free_check_pointer_in_cpp(void * p)
 //
 //   auto palloc = (plex_heap_alloc_sync*) m_pallocator->allocate(sizeof(plex_heap_alloc_sync));
 //
-//   ::__new(palloc) ::plex_heap_alloc_sync(m_pallocator, nAllocSize, nBlockSize);
+//   ::new(palloc) ::plex_heap_alloc_sync(m_pallocator, nAllocSize, nBlockSize);
 //
 //   return palloc;
 //}

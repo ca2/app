@@ -17,6 +17,7 @@ namespace user
 
       //::channel *                         m_pchannel;
       ::pointer < ::windowing::window >   m_pwindow;
+      ::pointer < ::user::interaction >   m_puserinteraction;
       bool                                m_bConditional;
       bool                                m_bReflect;
       bool                                m_bDestroyed;
@@ -28,6 +29,8 @@ namespace user
 
 
       ::windowing::window * window() { return m_pwindow; }
+
+      ::user::interaction * user_interaction() { return m_puserinteraction; }
 
 
       message & operator = (const message & message);

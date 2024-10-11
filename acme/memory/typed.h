@@ -69,13 +69,13 @@ namespace constructor
 
       inline  void construct(void * p)
       {
-         ::__new(p) TYPE;
+         ::new(p) TYPE;
       }
       inline  void construct_count(void * p, ::collection::count c)
       {
          while (c > 0)
          {
-            ::__new(p) TYPE;
+            ::new(p) TYPE;
             ((TYPE *&)p)++;
             c--;
          }
@@ -410,7 +410,7 @@ namespace typed
          while (c > 0)
          {
 
-            ::__new (pdst) TYPE(src);
+            ::new (pdst) TYPE(src);
 
             pdst++;
 
@@ -427,7 +427,7 @@ namespace typed
          while (c > 0)
          {
 
-            ::__new (pdst) TYPE(*psrc);
+            ::new (pdst) TYPE(*psrc);
 
             c--;
 

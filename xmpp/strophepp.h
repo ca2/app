@@ -54,7 +54,7 @@ namespace XMPP {
 	Context *m_ctx;
 	xmpp_stanza_t *m_stanza;
 
-	void *operator __new(size_t size, Context *ctx);
+	void *operator new(size_t size, Context *ctx);
 	void operator delete(void *p);
 	Stanza(Context *ctx);
 	virtual ~Stanza();
@@ -94,7 +94,7 @@ namespace XMPP {
 	Context *m_ctx;
 	xmpp_conn_t *conn;
 
-	void *operator __new(size_t size, Context *ctx);
+	void *operator new(size_t size, Context *ctx);
 	Connection(Context *ctx);
 
     public:

@@ -43,7 +43,7 @@ namespace allocator
       static T * __accessor_on_construct(void * data, Args &&... args)
       {
 
-         auto p = ::__new(data) T(::std::forward<Args>(args)...);
+         auto p = ::new(data) T(::std::forward<Args>(args)...);
 
          return p;
 
@@ -114,7 +114,7 @@ namespace allocator
       inline static PARTICLE * __on_referencing_debugging_construct(void * data, memsize s, Args &&... args)
       {
 
-         //auto p = ::__new(data) PARTICLE(::std::forward<Args>(args)...);
+         //auto p = ::new(data) PARTICLE(::std::forward<Args>(args)...);
 
          auto p = __accessor_on_construct<PARTICLE>(data, ::std::forward<Args>(args)...);
 
@@ -129,7 +129,7 @@ namespace allocator
       inline static NON_PARTICLE * __on_referencing_debugging_construct(void * data, memsize s, Args &&... args)
       {
 
-         //auto p = ::__new(pdata) NON_PARTICLE(::std::forward<Args>(args)...);
+         //auto p = ::new(pdata) NON_PARTICLE(::std::forward<Args>(args)...);
 #if REFERENCING_DEBUGGING
 
          ::allocator::defer_erase_referer();
@@ -145,7 +145,7 @@ namespace allocator
       //inline static NON_PARTICLE * __on_referencing_debugging_construct(void * data, memsize s, Args &&... args)
       //{
 
-      //   //auto p = ::__new(pdata) NON_PARTICLE(::std::forward<Args>(args)...);
+      //   //auto p = ::new(pdata) NON_PARTICLE(::std::forward<Args>(args)...);
 
       //   auto p = __accessor_on_construct<NON_PARTICLE>(data, ::std::forward<Args>(args)...);
 
@@ -158,7 +158,7 @@ namespace allocator
       inline static PARTICLE * __on_normal_construct(void * data, memsize s, Args &&... args)
       {
 
-         //auto p = ::__new(data) PARTICLE(::std::forward<Args>(args)...);
+         //auto p = ::new(data) PARTICLE(::std::forward<Args>(args)...);
 
          auto p = __accessor_on_construct<PARTICLE>(data, ::std::forward<Args>(args)...);
 
@@ -175,7 +175,7 @@ namespace allocator
       inline static NON_PARTICLE * __on_normal_construct(void * data, memsize s, Args &&... args)
       {
 
-         //auto p = ::__new(pdata) NON_PARTICLE(::std::forward<Args>(args)...);
+         //auto p = ::new(pdata) NON_PARTICLE(::std::forward<Args>(args)...);
 
          auto p = __accessor_on_construct<NON_PARTICLE>(data, ::std::forward <Args>(args)...);
 

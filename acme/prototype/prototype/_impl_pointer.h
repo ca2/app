@@ -1627,7 +1627,7 @@ inline pointer < T >& pointer < T > ::operator = (pointer < T2 > && t)
 
       }
 #endif
-      ::release(pOld REF_DBG_COMMA_POINTER);
+      ::release(pOld REFERENCING_DEBUGGING_P(m_preferer));
 
    }
 

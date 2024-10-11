@@ -388,7 +388,7 @@ public:
       m_etype = atom.m_etype; 
       if (atom.m_etype & e_type_text)
       {
-         ::__new(&m_str) ::string(::transfer(atom.m_str));
+         ::new(&m_str) ::string(::transfer(atom.m_str));
       }
       else
       {

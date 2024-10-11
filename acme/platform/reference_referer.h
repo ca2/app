@@ -142,22 +142,22 @@ class __new_site
 {
 public:
 
-
+#if REFERENCING_DEBUGGING
    ::reference_referer* m_preferer;
-
+#endif
    __new_site(REFERENCING_DEBUGGING_PARAMETERS_DECLARATION)
    {
-
+#if REFERENCING_DEBUGGING
       m_preferer = new reference_referer(referer);
-
+#endif
    }
 
    template < typename T >
    T* operator << (T* p)
    {
-
+#if REFERENCING_DEBUGGING
       p->add_referer(m_preferer);
-
+#endif
       return p;
 
    }

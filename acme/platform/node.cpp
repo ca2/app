@@ -652,21 +652,21 @@ namespace acme
 //   }
 
 
-   void node::do_windowing_system_factory()
-   {
+   //void node::do_windowing_system_factory()
+   //{
 
-      ::string strUserToolkit = ::windowing::get_user_toolkit_id();
+   //   ::string strUserToolkit = ::windowing::get_user_toolkit_id();
 
-      if(strUserToolkit.has_char())
-      {
+   //   if(strUserToolkit.has_char())
+   //   {
 
-         auto pfactory = system()->factory("windowing_system", strUserToolkit);
+   //      auto pfactory = system()->factory("windowing_system", strUserToolkit);
 
-         pfactory->merge_to_global_factory();
+   //      pfactory->merge_to_global_factory();
 
-      }
+   //   }
 
-   }
+   //}
 
 
 

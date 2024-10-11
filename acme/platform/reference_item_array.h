@@ -61,7 +61,7 @@ public:
    virtual void dump_pending_releases(::string & strDump);
 
 
-   void * operator __new(size_t s)
+   void * operator new(size_t s)
    {
 
       return ::malloc(s);

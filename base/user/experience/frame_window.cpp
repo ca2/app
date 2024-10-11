@@ -241,7 +241,7 @@ namespace experience
 
          auto psession = get_session();
 
-         if(pkey->window()->user_interaction() == this)
+         if(pkey->user_interaction() == this)
          {
 
             if (pmessage->m_atom == e_message_key_down || pmessage->m_atom == e_message_sys_key_down)

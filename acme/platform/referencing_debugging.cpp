@@ -118,7 +118,9 @@ namespace acme
    void acme::initialize_referencing_debugging()
    {
 
-      m_preferencingdebugging = ::platform::allocator::__callnew referencing_debugging();
+      //m_preferencingdebugging = ::platform::allocator::__callnew referencing_debugging();
+
+      m_preferencingdebugging = new referencing_debugging();
 
    }
 

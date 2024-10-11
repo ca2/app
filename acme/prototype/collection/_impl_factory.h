@@ -308,7 +308,7 @@ namespace factory
 
 
 template < typename TYPE >
-inline void particle__call__raw_construct2( ::pointer<TYPE> & p, ::factory::factory * pfactory)
+inline void particle__call__raw_construct2( ::pointer<TYPE> & p, ::factory::factory * pfactory COMMA_REFERENCING_DEBUGGING_PARAMETERS_DECLARATION)
 {
 
 #if REFERENCING_DEBUGGING
@@ -323,7 +323,7 @@ inline void particle__call__raw_construct2( ::pointer<TYPE> & p, ::factory::fact
 
 
 template < typename TYPE >
-inline void particle::__call__raw_construct(::pointer<TYPE>&p, ::factory::factory * pfactory)
+inline void particle::__call__raw_construct(::pointer<TYPE>&p, ::factory::factory * pfactory COMMA_REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
 {
 
    

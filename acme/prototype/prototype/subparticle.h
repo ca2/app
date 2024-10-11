@@ -87,40 +87,41 @@ public:
 #if REFERENCING_DEBUGGING
 
 
-   ::particle * refdbg_this() const { return (::particle *)this; }
+   ::subparticle* refdbg_this() const { return (::subparticle*)this; }
 
 protected:
 
-   ::particle * m_pparticleTopTrack = nullptr;
+   ::subparticle* m_psubparticleTopTrack = nullptr;
 
 public:
 
    ::reference_referer * m_prefererTransfer = nullptr;
 
-   ::particle * get_top_track() const;
-   void add_top_track(::particle * pparticle);
-   void erase_top_track(::particle * pparticle);
-   bool contains_top_track(::particle * pparticle) const;
-   bool find_top_track(::particle * pparticle, ::particle ** ppparticleParent) const;
+   ::subparticle * get_top_track() const;
+   void add_top_track(::subparticle* psubparticle);
+   void erase_top_track(::subparticle* psubparticle);
+   bool contains_top_track(::subparticle* psubparticle) const;
+   bool find_top_track(::subparticle* psubparticle, ::subparticle** ppsubparticleeParent) const;
 
 
 
    class reference_item_array * m_preferenceitema = nullptr;
    bool                          m_bHeapAllocation = false;
-   void * m_pType = nullptr;
-   memsize                       m_sType = sizeof(::particle);
+   void *                        m_pType = nullptr;
+   memsize                       m_sType = sizeof(::subparticle);
+   bool                          m_bReferencingDebuggingEnabled = true;
 
 
    void set_size_type(memsize s) { m_sType = s; }
 
-   bool contains_object_in_address_space(::particle * pparticle) const
+   bool contains_object_in_address_space(::subparticle * psubparticle) const
    {
 
       return
          ::is_set(this->m_pType)
-         && this->m_sType >= sizeof(::particle)
-         && ((::u8 *)pparticle >= this->m_pType
-         && (((::u8 *)pparticle) + pparticle->m_sType)
+         && this->m_sType >= sizeof(::subparticle)
+         && ((::u8 *)psubparticle >= this->m_pType
+         && (((::u8 *)psubparticle) + psubparticle->m_sType)
          <= (((::u8 *)this->m_pType) + this->m_sType));
 
    }
@@ -130,7 +131,7 @@ public:
    bool is_referencing_debugging_enabled() const
    {
 
-      return !m_eflagElement.is(e_flag_no_referencing_debugging);
+      return m_bReferencingDebuggingEnabled;
 
    }
 

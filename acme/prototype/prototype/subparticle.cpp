@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "acme/exception/interface_only.h"
 #include "acme/memory/memory_allocate.h"
+#include "acme/platform/referencing_debugging.h"
 
 
 subparticle::~subparticle()

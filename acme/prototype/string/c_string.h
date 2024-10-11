@@ -3,7 +3,7 @@
 
 
 #include "acme/platform/c.h"
-
+#include <string.h>
 
 namespace c
 {
@@ -94,7 +94,11 @@ namespace c
 
       operator const char * () const { return m_psz; }
 
+      bool operator == (const char* psz)
+      {
 
+         return !strcmp(m_psz, psz);
+      }
    };
 
 } // namespace c

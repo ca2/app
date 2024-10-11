@@ -753,7 +753,7 @@ public:
    //inline void __call__raw_construct2( ::pointer<TYPE> & p, ::factory::factory * pfactory = nullptr);
 
    template < typename TYPE >
-   inline void __call__raw_construct(::pointer<TYPE> & p, ::factory::factory * pfactory = nullptr);
+   inline void __call__raw_construct(::pointer<TYPE> & p, ::factory::factory * pfactory = nullptr COMMA_REFERENCING_DEBUGGING_PARAMETERS_DECLARATION);
 
    template < typename BASE_TYPE >
    inline ::pointer<BASE_TYPE> __raw_create(::factory::factory * pfactory = nullptr);
@@ -762,7 +762,7 @@ public:
 #if REFERENCING_DEBUGGING
 
 
-   ::subparticle * __call__add_referer2(const ::reference_referer & referer) const;
+   ::particle * __call__add_referer2(const ::reference_referer & referer) const;
 
 
 #endif
@@ -1160,7 +1160,7 @@ inline bool is_ok(const ::particle * pparticleConst)
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
 template < typename T >
-inline i64 release(T *& p);
+inline i64 release(T *& p COMMA_REFERENCING_DEBUGGING_PARAMETERS_DECLARATION);
 
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
@@ -1174,8 +1174,8 @@ void assign(::pointer<TYPE> & ptr, T * p);
 template < typename TYPE >
 ::i64 release(::pointer<TYPE> & ptr);
 
-template < typename TYPE >
-::i64 release(TYPE *& p);
+//template < typename TYPE >
+//::i64 release(TYPE *& p);
 
 
 
@@ -1252,8 +1252,19 @@ public:
 
 
 inline ::particle* refdbg_this() { return (::particle*)::acme::get()->platform(); }
+class abc
+{
+public:
 
-CLASS_DECL_ACME ::allocator::accessor * __call__add_referer(const ::reference_referer & referer, ::reference_referer ** ppreferer = nullptr);
+   template < typename T >
+   T * operator << (T* p)
+   {
+
+      return p;
+   }
+
+};
+CLASS_DECL_ACME abc __call__add_referer(const ::reference_referer & referer, ::reference_referer ** ppreferer = nullptr);
 
 #endif
 

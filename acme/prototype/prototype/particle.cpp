@@ -40,7 +40,7 @@ bool g_bDefaultEnableObjectReferenceCountDebug = false;
 //CLASS_DECL_ACME void on_construct_particle(::particle * pparticle);
 
 
-particle::particle() :
+subparticle::subparticle() :
    m_countReference(1)
 {
 
@@ -2781,7 +2781,7 @@ void particle::process_owned_procedure_list(::procedure_list & procedurelist, bo
 }
 
 
-CLASS_DECL_ACME ::allocator::accessor * __call__add_referer(const ::reference_referer & referer, ::reference_referer ** ppreferer)
+CLASS_DECL_ACME abc __call__add_referer(const ::reference_referer & referer, ::reference_referer ** ppreferer)
 {
 
    auto preferer = ::allocator::defer_add_referer(referer);
@@ -2793,7 +2793,9 @@ CLASS_DECL_ACME ::allocator::accessor * __call__add_referer(const ::reference_re
 
    }
 
-   return ::allocator::g_pacessorDefault;
+   //return ::allocator::g_pacessorDefault;
+
+   return {};
 
 }
 

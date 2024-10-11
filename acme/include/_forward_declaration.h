@@ -8,6 +8,8 @@
 // Created by camilo on 2021-08-31 16:00 BRT <3ThomasBS_!!
 #pragma once
 
+class subparticle;
+
 
 template < typename ENUM > struct raw_enum_of_struct { using type = ENUM; };
 
@@ -358,7 +360,7 @@ namespace allocator
 
    CLASS_DECL_ACME ::reference_referer * defer_add_referer(const ::reference_referer & referer);
    CLASS_DECL_ACME ::reference_referer * add_referer(const ::reference_referer & referer);
-   CLASS_DECL_ACME ::reference_referer * defer_get_referer(::particle * p, const ::reference_referer & referer);
+   CLASS_DECL_ACME ::reference_referer * defer_get_referer(::subparticle * p, const ::reference_referer & referer);
    CLASS_DECL_ACME ::reference_referer * get_referer();
    CLASS_DECL_ACME ::reference_referer * pop_referer();
    CLASS_DECL_ACME void defer_erase_referer();

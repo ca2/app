@@ -24,8 +24,8 @@ public:
    ::reference_item_array *                                       m_preferenceitemarrayParent = nullptr;
    ::i64                                                          m_iSerial;
    int                                                            m_iStep;
-   ::particle *                                                   m_pparticle;
-   ::particle *                                                   m_pparticleParent;
+   ::subparticle*                                                   m_psubparticle;
+   ::subparticle*                                                   m_psubparticleParent;
    bool                                                           m_bFirstAllocationInformation = false;
    ::string                                                       m_strFirstAllocation;
    ::string                                                       m_strDebug;
@@ -35,7 +35,7 @@ public:
    ::non_particle_comparable_array < reference_item_array * >     m_item2a;
 
 
-   reference_item_array(::particle * pparticle, ::particle * pparticleParent);
+   reference_item_array(::subparticle * psubparticle, ::subparticle * psubparticleParent);
    ~reference_item_array();
 
 

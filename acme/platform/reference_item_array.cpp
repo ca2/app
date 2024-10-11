@@ -11,7 +11,7 @@
 extern bool g_bDefaultEnableObjectReferenceCountDebug;
 
 
-void destruct_particle_reference_item_array(::particle * pparticle);
+void destruct_particle_reference_item_array(::subparticle * psubparticle);
 
 
 //extern struct lparam_debug g_lparamdbg;
@@ -24,15 +24,15 @@ namespace allocator
 {
 
 
-   extern thread_local ::particle * t_pparticleTrackAllocation;
+   extern thread_local ::particle * t_psubparticleTrackAllocation;
 
 
 } // namespace allocator
 
 
-reference_item_array::reference_item_array(::particle * pparticle, ::particle * pparticleParent) :
-   m_pparticle(pparticle),
-   m_pparticleParent(pparticleParent),
+reference_item_array::reference_item_array(::subparticle* psubparticle, ::subparticle* psubparticleParent) :
+   m_psubparticle(psubparticle),
+   m_psubparticleParent(psubparticleParent),
    m_iStep(0),
    m_bFirstReference(true),
    m_iSerial(g_iReferenceItemArraySerial++)
@@ -40,11 +40,11 @@ reference_item_array::reference_item_array(::particle * pparticle, ::particle * 
 
    //auto ptoptrack = ::allocator::task_get_top_track();
 
-   ASSERT(::is_null(pparticleParent) || pparticleParent->is_referencing_debugging_enabled());
+   ASSERT(::is_null(psubparticleParent) || psubparticleParent->is_referencing_debugging_enabled());
 
-   ASSERT(pparticle->is_referencing_debugging_enabled());
+   ASSERT(psubparticle->is_referencing_debugging_enabled());
 
-   if (::is_null(pparticleParent))
+   if (::is_null(psubparticleParent))
    {
 
       ::acme::get()->m_preferencingdebugging->add_item_array(this);
@@ -53,9 +53,9 @@ reference_item_array::reference_item_array(::particle * pparticle, ::particle * 
    else
    {
 
-      ASSERT(pparticleParent->m_preferenceitema);
+      ASSERT(psubparticleParent->m_preferenceitema);
 
-      pparticleParent->m_preferenceitema->add_item_array(this);
+      psubparticleParent->m_preferenceitema->add_item_array(this);
 
    }
 
@@ -70,20 +70,22 @@ reference_item_array::~reference_item_array()
    for (auto & preferenceitema : m_item2a)
    {
 
-      ::platform::allocator::__delete(preferenceitema);
+      //::platform::allocator::__delete(preferenceitema);
+
+      delete preferenceitema;
 
    }
 
    if (g_bDefaultEnableObjectReferenceCountDebug)
    {
 
-      if (::is_set(m_pparticleParent))
+      if (::is_set(m_psubparticleParent))
       {
          
-         if (m_pparticleParent->m_preferenceitema)
+         if (m_psubparticleParent->m_preferenceitema)
          {
 
-            m_pparticleParent->m_preferenceitema->erase_item_array(this);
+            m_psubparticleParent->m_preferenceitema->erase_item_array(this);
 
          }
 
@@ -249,7 +251,7 @@ void reference_item_array::add_item()
 
    critical_section_lock criticalsectionlock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
 
-   //if (::type(m_pparticle).name().contains("app_app::application"))
+   //if (::type(m_psubparticle).name().contains("app_app::application"))
    //{
 
    //   if (!referer)
@@ -422,7 +424,7 @@ string object_name(matter* p)
 
 
 
-void particle::add_reference_item()
+void subparticle::add_reference_item()
 {
 
    critical_section_lock synchronouslock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
@@ -530,7 +532,7 @@ void particle::add_reference_item()
 }
 
 
-void particle::erase_reference_item()
+void subparticle::erase_reference_item()
 {
 
    critical_section_lock synchronouslock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
@@ -558,7 +560,7 @@ void particle::erase_reference_item()
 }
 
 
-void particle::check_pending_releases()
+void subparticle::check_pending_releases()
 {
 
    if (!is_referencing_debugging_enabled())
@@ -675,72 +677,72 @@ void reference_item_array::dump_pending_releases(::string & strDump)
 //
 //}
 
-void particle::add_top_track(::particle * pparticle)
+void subparticle::add_top_track(::subparticle* psubparticle)
 {
 
-   if (::is_null(pparticle))
+   if (::is_null(psubparticle))
    {
 
       throw ::exception(::error_wrong_state, "cannot track null particle");
 
    }
 
-   if (contains_top_track(pparticle))
+   if (contains_top_track(psubparticle))
    {
 
       throw ::exception(::error_wrong_state, "particle is already tracked");
       
    }
 
-   auto pparticleTop = get_top_track();
+   auto psubparticleTop = get_top_track();
 
-   pparticleTop->m_pparticleTopTrack = pparticle;
-
-}
-
-
-::particle * particle::get_top_track() const
-{
-
-   return ::is_null(m_pparticleTopTrack) ?
-      (::particle *) this :
-      m_pparticleTopTrack->get_top_track();
+   psubparticleTop->m_psubparticleTopTrack = psubparticle;
 
 }
 
 
-void particle::erase_top_track(::particle * pparticle)
+::subparticle* subparticle::get_top_track() const
 {
 
-   if (::is_null(pparticle))
+   return ::is_null(m_psubparticleTopTrack) ?
+      (::subparticle *) this :
+      m_psubparticleTopTrack->get_top_track();
+
+}
+
+
+void subparticle::erase_top_track(::subparticle * psubparticle)
+{
+
+   if (::is_null(psubparticle))
    {
 
       return;
 
    }
 
-   if (::is_null(m_pparticleTopTrack))
+   if (::is_null(m_psubparticleTopTrack))
    {
 
       throw ::exception(error_wrong_state);
 
    }
 
-   if (pparticle == m_pparticleTopTrack)
+   if (psubparticle == m_psubparticleTopTrack)
    {
 
-      m_pparticleTopTrack = m_pparticleTopTrack->m_pparticleTopTrack;
+      m_psubparticleTopTrack = m_psubparticleTopTrack->m_psubparticleTopTrack;
 
    }
    else
    {
 
-      auto pNextTop = m_pparticleTopTrack->m_pparticleTopTrack;
+      auto pNextTop = m_psubparticleTopTrack->m_psubparticleTopTrack;
 
       if (::is_set(pNextTop))
       {
 
-         pNextTop->erase_top_track(pparticle);
+         pNextTop->erase_top_track(psubparticle);
 
          return;
 
@@ -751,37 +753,37 @@ void particle::erase_top_track(::particle * pparticle)
 }
 
 
-bool particle::find_top_track(::particle * pparticle, ::particle ** pparticleParent) const
+bool subparticle::find_top_track(::subparticle * psubparticle, ::subparticle ** psubparticleParent) const
 {
 
-   if (::is_null(pparticle))
+   if (::is_null(psubparticle))
    {
 
       return false;
 
    }
 
-   if (pparticle == this)
+   if (psubparticle == this)
    {
 
       return true;
 
    }
 
-   if (::is_null(m_pparticleTopTrack))
+   if (::is_null(m_psubparticleTopTrack))
    {
 
       return false;
 
    }
 
-   if (m_pparticleTopTrack == pparticle)
+   if (m_psubparticleTopTrack == psubparticle)
    {
 
-      if (pparticleParent)
+      if (psubparticleParent)
       {
 
-         *pparticleParent = (::particle *)this;
+         *psubparticleParent = (::subparticle*)this;
 
       }
 
@@ -789,56 +791,56 @@ bool particle::find_top_track(::particle * pparticle, ::particle ** pparticlePar
 
    }
 
-   if (pparticleParent)
+   if (psubparticleParent)
    {
 
-      *pparticleParent = (::particle *)this;
+      *psubparticleParent = (::subparticle *)this;
 
    }
 
-   return m_pparticleTopTrack->find_top_track(pparticle, pparticleParent);
+   return m_psubparticleTopTrack->find_top_track(psubparticle, psubparticleParent);
 
 }
 
 
 
-bool particle::contains_top_track(::particle * pparticle) const
+bool subparticle::contains_top_track(::subparticle* psubparticle) const
 {
 
-   if (::is_null(pparticle))
+   if (::is_null(psubparticle))
    {
 
       return false;
 
    }
 
-   if (pparticle == this)
+   if (psubparticle == this)
    {
 
       return true;
 
    }
 
-   if (::is_null(m_pparticleTopTrack))
+   if (::is_null(m_psubparticleTopTrack))
    {
 
       return false;
 
    }
 
-   if (m_pparticleTopTrack == pparticle)
+   if (m_psubparticleTopTrack == psubparticle)
    {
 
       return true;
 
    }
    
-   return m_pparticleTopTrack->contains_top_track(pparticle);
+   return m_psubparticleTopTrack->contains_top_track(psubparticle);
 
 }
 
 
-reference_item_array * particle::reference_itema()
+reference_item_array * subparticle::reference_itema()
 {
 
    if (!is_referencing_debugging_enabled())
@@ -926,15 +928,15 @@ reference_item_array * particle::reference_itema()
 
 
 
-void destruct_particle_reference_item_array(::particle * pparticle)
+void destruct_particle_reference_item_array(::subparticle * psubparticle)
 {
 
-   auto preferenceitema = pparticle->m_preferenceitema;
+   auto preferenceitema = psubparticle->m_preferenceitema;
 
    if (::is_set(preferenceitema))
    {
 
-      pparticle->m_preferenceitema = nullptr;
+      psubparticle->m_preferenceitema = nullptr;
 
       delete preferenceitema;
 

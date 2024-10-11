@@ -15,7 +15,7 @@ CLASS_DECL_ACME void set_ThisDebug12321575()
    t_bThisDebug12321575 = true;
 
 }
-void destruct_particle_reference_item_array(::particle * pparticle);
+void destruct_particle_reference_item_array(::subparticle * pparticle);
 
 
 namespace allocator
@@ -52,7 +52,9 @@ namespace allocator
    ::reference_referer * new_referer(const ::reference_referer & referer)
    {
 
-      auto preferencereferer = ::platform::allocator::__callnew reference_referer (::transfer(referer));
+      //auto preferencereferer = ::platform::allocator::__callnew reference_referer (::transfer(referer));
+
+      auto preferencereferer = new ::reference_referer(referer);
 
       return preferencereferer;
 
@@ -79,7 +81,7 @@ namespace allocator
    ::reference_referer * defer_get_referer(::particle * p, const ::reference_referer & referer)
    {
 
-      if (referer.m_cstringType && !strcmp(referer.m_cstringType, "class pointer<class item>"))
+      if (referer.m_cstringType && referer.m_cstringType == "class pointer<class item>")
       {
 
          ::string strDebugTitle = p->get_debug_title();
@@ -167,7 +169,9 @@ namespace allocator
    void erase_referer(::reference_referer * preferer)
    {
 
-      ::platform::allocator::__delete(preferer);
+      //::platform::allocator::__delete(preferer);
+
+      delete preferer;
 
    }
 
@@ -264,7 +268,9 @@ namespace allocator
    void erase_releaser(::reference_referer * preferer)
    {
 
-      ::platform::allocator::__delete(preferer);
+      //::platform::allocator::__delete(preferer);
+
+      delete preferer;
 
    }
 
@@ -307,7 +313,7 @@ namespace allocator
 
       }
 
-      ::particle * pparticleParent = nullptr;
+      ::subparticle * pparticleParent = nullptr;
       
       if (::is_set(t_pparticleTrackAllocation)
          && t_pparticleTrackAllocation->contains_top_track(pparticle))
@@ -412,7 +418,7 @@ namespace allocator
    }
 
 
-   ::particle * task_get_top_track()
+   ::subparticle * task_get_top_track()
    {
 
       if (::is_null(t_pparticleTrackAllocation))
@@ -427,7 +433,7 @@ namespace allocator
    }
 
 
-   void on_after_construct_particle(::particle * pparticle)
+   void on_after_construct_particle(::subparticle * pparticle)
    {
 
       auto ptoptrack = task_get_top_track();
@@ -523,10 +529,12 @@ namespace allocator
 } // namespace platform
 
 
-void particle::disable_referencing_debugging()
+void subparticle::disable_referencing_debugging()
 {
 
-   m_eflagElement.set(e_flag_no_referencing_debugging);
+   m_bReferencingDebuggingEnabled = false;
+
+   //m_eflagElement.set(e_flag_no_referencing_debugging);
 
    //if (::is_set(::allocator::t_pparticleTrackAllocation))
    //{
@@ -592,7 +600,7 @@ CLASS_DECL_ACME bool refdbg_add_top_track(::particle * pparticle)
 }
 
 
-CLASS_DECL_ACME void refdbg_erase_top_track(::particle * pparticle)
+CLASS_DECL_ACME void refdbg_erase_top_track(::subparticle* pparticle)
 {
 
    if (::is_set(::allocator::t_pparticleTrackAllocation))
@@ -607,7 +615,7 @@ CLASS_DECL_ACME void refdbg_erase_top_track(::particle * pparticle)
       else
       {
 
-         ::particle * pparticleParent = ::allocator::t_pparticleTrackAllocation;
+         ::subparticle* pparticleParent = ::allocator::t_pparticleTrackAllocation;
 
          if (::allocator::t_pparticleTrackAllocation->find_top_track(pparticle, &pparticleParent))
          {

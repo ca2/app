@@ -39,7 +39,10 @@ class reference_count_debug;
 #define __new__prefix(x) __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ }, &m_preferer)
 //#define __new __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__new
 //#define __allocate __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__allocate
-#define __allocate __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })
+//#define __allocate __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })
+
+
+#define __refdbg_call_add_referer __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ }) <<
 
 
 //#define REFERENCING_DEBUGGING_MAX_COUNT 256
@@ -130,6 +133,11 @@ class reference_count_debug;
 #define tracking_note_assign(target, source, note) target = source
 #define tracking_named_release(x) ::release(x)
 #define tracking_check_pending_releases(x)
+
+
+#define __refdbg_call_add_referer 
+
+
 #endif
 
 

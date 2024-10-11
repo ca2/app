@@ -1344,27 +1344,80 @@ template < primitive_subparticle SUBPARTICLE >
 class __pointer_site
 {
 public:
+#if REFERENCING_DEBUGGING
+
+   reference_referer * m_preferer;
+
+#endif
+
+   __pointer_site(REFERENCING_DEBUGGING_PARAMETERS_DECLARATION)
+   {
+
+#if REFERENCING_DEBUGGING
+      
+      m_preferer = new ::reference_reference(referer);
+
+#endif
+
+   }
 
 
    template < typename TYPE >
-   ::pointer < TYPE > operator << (TYPE * p) { return { transfer_t{}, p }; }
+   ::pointer < TYPE > operator << (TYPE * p)
+   { 
+
+#if REFERENCING_DEBUGGING
+
+      ::pointer < TYPE > pointer({ transfer_t{}, p });
+
+      pointer.m_preferer = m_preferer;
+
+#else
+      
+      return { transfer_t{}, p }; 
+
+#endif
+   
+   }
 
    template < typename TYPE >
-   ::pointer < TYPE > operator += (TYPE * p) { return p; }
+   ::pointer < TYPE > operator += (TYPE * p) 
+   {
+      
+#if REFERENCING_DEBUGGING
+
+      ::pointer < TYPE > pointer(, p);
+
+      ::allocator::add_referer()
+      pointer.m_preferer = m_preferer;
+
+#else
+
+      return { transfer_t{}, p };
+
+#endif   
+   }
 
 
 };
 
 
-inline static __pointer_site __g__pointer_site;
+//inline static __pointer_site __g__pointer_site;
 
-#define __transfer_as_pointer __g__pointer_site <<
+//#if !REFERENCING_DEBUGGING
+
+#define __transfer_as_pointer __g__pointer_site << __refdbg_call_add_referer
 
 #define __allocate __transfer_as_pointer __new
 
-#define __as_pointer __g__pointer_site +=
+#define __as_pointer __g__pointer_site += __refdbg_call_add_referer
 
 #define __retain __as_pointer
+
+
+#define __new __refdbg_call_add_referer << new
+
+//#endif
 
 
 

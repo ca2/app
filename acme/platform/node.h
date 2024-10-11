@@ -252,7 +252,7 @@ namespace acme
 
       virtual ::file::path _module_path();
 
-      virtual void do_windowing_system_factory();
+      //virtual void do_windowing_system_factory();
 
 
       //virtual bool memory_counter_on();

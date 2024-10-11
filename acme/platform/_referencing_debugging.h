@@ -14,6 +14,7 @@
 
 
 class particle;
+inline ::particle* refdbg_this();
 struct reference_count_debug_item;
 class reference_count_debug;
 
@@ -41,6 +42,8 @@ class reference_count_debug;
 //#define __allocate __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__allocate
 //#define __allocate __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })
 
+
+#define __refdbg_function_file_line__ { refdbg_this(), __FUNCTION_FILE_LINE__ }
 
 #define __refdbg_call_add_referer __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ }) <<
 
@@ -137,8 +140,18 @@ class reference_count_debug;
 
 #define __refdbg_call_add_referer 
 
+#define __refdbg_function_file_line__
 
 #endif
 
+
+
+#define __new __new_site(__refdbg_function_file_line__) << new
+
+
+
+
+
+//CLASS_DECL_ACME abc __call__add_referer(const ::reference_referer& referer, ::reference_referer** ppreferer);
 
 

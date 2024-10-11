@@ -18,15 +18,15 @@ class CLASS_DECL_ACME reference_referer
 {
 public:
 
-   ::particle *   m_pparticle;
-   void *         m_p;
-   ::i64          m_iSerial;
-   ::c::string    m_cstringType;
-   ::c::string    m_cstringDebug;
+   ::subparticle *      m_psubparticle;
+   void *               m_p;
+   ::i64                m_iSerial;
+   ::c::string          m_cstringType;
+   ::c::string          m_cstringDebug;
 
    static ::i64 new_serial() { return new_reference_referer_serial(); }
    reference_referer(const char * pszType = nullptr, const char * pszDebug = nullptr) :
-      m_pparticle(nullptr),
+      m_psubparticle(nullptr),
       m_p(nullptr),
       m_cstringType(pszType),
       m_cstringDebug(pszDebug),
@@ -34,7 +34,7 @@ public:
    {
    }
    reference_referer(const reference_referer & referer) :
-      m_pparticle(referer.m_pparticle),
+      m_psubparticle(referer.m_psubparticle),
       m_cstringType(referer.m_cstringType),
       m_cstringDebug(referer.m_cstringDebug),
       m_p(referer.m_p),
@@ -42,19 +42,19 @@ public:
    {
    }
    reference_referer(reference_referer && referer) :
-      m_pparticle(referer.m_pparticle),
+      m_psubparticle(referer.m_psubparticle),
       m_cstringType(::transfer(referer.m_cstringType)),
       m_cstringDebug(::transfer(referer.m_cstringDebug)),
       m_p(referer.m_p),
       m_iSerial(referer.m_iSerial)
    {
-      referer.m_pparticle = nullptr;
+      referer.m_psubparticle = nullptr;
       referer.m_p = nullptr;
       referer.m_iSerial = -1;
    }
    template < a_particle A_PARTICLE >
    reference_referer(A_PARTICLE * pparticle, const char * pszDebug = nullptr) :
-      m_pparticle(pparticle),
+      m_psubparticle(pparticle),
       m_cstringType(typeid(*pparticle).name()),
       m_cstringDebug(pszDebug),
       m_p(nullptr),
@@ -63,7 +63,7 @@ public:
    }
    template < non_particle NON_PARTICLE >
    reference_referer(NON_PARTICLE * p, const char * pszDebug = nullptr) :
-      m_pparticle(nullptr),
+      m_psubparticle(nullptr),
       m_cstringType(typeid(*p).name()),
       m_cstringDebug(pszDebug),
       m_p(p),
@@ -79,7 +79,7 @@ public:
       m_p = nullptr;
       m_cstringType.destroy();
       m_cstringDebug.destroy();
-      m_pparticle = nullptr;
+      m_psubparticle = nullptr;
       m_iSerial = -1;
    }
    bool operator ==(const reference_referer & referer) const
@@ -97,7 +97,7 @@ public:
       if (this != &referer)
       {
          destroy();
-         m_pparticle = referer.m_pparticle;
+         m_psubparticle = referer.m_psubparticle;
          m_cstringType = referer.m_cstringType;
          m_cstringDebug = referer.m_cstringDebug;
          m_p = referer.m_p;
@@ -110,12 +110,12 @@ public:
       if (this != &referer)
       {
          destroy();
-         m_pparticle = referer.m_pparticle;
+         m_psubparticle = referer.m_psubparticle;
          m_cstringType = ::transfer(referer.m_cstringType);
          m_cstringDebug = ::transfer(referer.m_cstringDebug);
          m_p = referer.m_p;
          m_iSerial = referer.m_iSerial;
-         referer.m_pparticle = nullptr;
+         referer.m_psubparticle = nullptr;
          referer.m_p = nullptr;
          referer.m_iSerial = -1;
       }
@@ -123,7 +123,7 @@ public:
    }
    bool operator!() const
    {
-      return m_p == nullptr && m_pparticle == nullptr;
+      return m_p == nullptr && m_psubparticle == nullptr;
 
    }
    explicit operator bool() const
@@ -136,5 +136,32 @@ public:
 
 #endif // REFERENCING_DEBUGGING
 
+
+
+class __new_site
+{
+public:
+
+
+   ::reference_referer* m_preferer;
+
+   __new_site(REFERENCING_DEBUGGING_PARAMETERS_DECLARATION)
+   {
+
+      m_preferer = new reference_referer(referer);
+
+   }
+
+   template < typename T >
+   T* operator << (T* p)
+   {
+
+      p->add_referer(m_preferer);
+
+      return p;
+
+   }
+
+};
 
 

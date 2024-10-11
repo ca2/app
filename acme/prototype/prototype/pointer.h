@@ -1355,7 +1355,7 @@ public:
 
 #if REFERENCING_DEBUGGING
       
-      m_preferer = new ::reference_reference(referer);
+      m_preferer = new ::reference_referer(referer);
 
 #endif
 
@@ -1386,10 +1386,11 @@ public:
       
 #if REFERENCING_DEBUGGING
 
-      ::pointer < TYPE > pointer(, p);
+      ::pointer < TYPE > pointer(p);
 
-      ::allocator::add_referer()
       pointer.m_preferer = m_preferer;
+
+      p->add_referer(m_preferer);
 
 #else
 
@@ -1415,7 +1416,7 @@ public:
 #define __retain __as_pointer
 
 
-#define __new __refdbg_call_add_referer << new
+
 
 //#endif
 

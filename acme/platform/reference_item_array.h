@@ -47,6 +47,7 @@ public:
 
 
    virtual void add_item();
+   virtual void add_referer(::reference_referer * preferer);
    
    
    virtual ::collection::index find_item(reference_referer * preferer);

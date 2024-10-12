@@ -90,7 +90,7 @@ void message_queue::post_message(const MESSAGE & message)
    if (message.m_atom == e_message_quit)
    {
 
-      ::acme::get()->platform()->informationf("message_queue::post_message e_message_quit\n");
+      informationf("message_queue::post_message e_message_quit\n");
 
    }
 

@@ -29,7 +29,7 @@ namespace acme
       friend class singleton_pointer;
 
 
-      ::pointer < ::platform::platform >     m_pplatform;
+      ::platform::platform *                 m_pplatform;
       ::pointer < ::task_message_queue >     m_ptaskmessagequeue;
       ::heap::management *                   m_pheapmanagement;
       ::pointer < manual_reset_event >       m_pmanualreseteventReadyToExit;

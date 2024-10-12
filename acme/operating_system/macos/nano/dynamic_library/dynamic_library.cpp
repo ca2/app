@@ -180,13 +180,13 @@ library_t * dynamic_library::open(const ::file::path & pathParam, string & strMe
       
    }
    
-   //::acme::get()->platform()->informationf("\n\nGoing to dlopen: \"" + strPath + "\"");
+   //informationf("\n\nGoing to dlopen: \"" + strPath + "\"");
    
    auto pathModuleFolder = ::apple_app_module_folder();
    
    path = pathModuleFolder / strPath;
    
-   //::acme::get()->platform()->informationf("\nFirst path to try: \"" + path + "\"");
+   //informationf("\nFirst path to try: \"" + path + "\"");
    
    auto plibrary = (library_t *) dlopen(path, RTLD_LOCAL | RTLD_LAZY);
    
@@ -261,7 +261,7 @@ finished:
       if(has_verbose_flag())
       {
          
-         ::acme::get()->platform()->informationf("\n" + strMessage + "\n\n");
+         informationf("\n" + strMessage + "\n\n");
          
       }
       
@@ -271,7 +271,7 @@ finished:
       
       strMessage = "__node_library_open : Failed with : " + strMessage;
       
-      ::acme::get()->platform()->informationf("\n" + strMessage + "\n\n");
+      informationf("\n" + strMessage + "\n\n");
       
    }
    
@@ -332,7 +332,7 @@ library_t * dynamic_library::open_on_context(const ::file::path & pathParam, str
       if(has_verbose_flag())
       {
          
-         ::acme::get()->platform()->informationf("\n\n" + strMessage + "\n\n");
+         informationf("\n\n" + strMessage + "\n\n");
          
       }
       
@@ -346,7 +346,7 @@ library_t * dynamic_library::open_on_context(const ::file::path & pathParam, str
       
       strMessage = "__node_library_open_ca2 : " + strPath + " with the error: \"" + strError + "\"";
       
-      ::acme::get()->platform()->informationf("\n\n" + strMessage + "\n\n");
+      informationf("\n\n" + strMessage + "\n\n");
       
    }
    

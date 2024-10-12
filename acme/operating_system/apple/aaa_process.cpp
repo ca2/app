@@ -548,26 +548,26 @@ namespace apple
 
 //      int uid = getuid();
 
-      ::acme::get()->platform()->informationf("---\n");
-      ::acme::get()->platform()->informationf("---\n");
-      ::acme::get()->platform()->informationf("---\n");
-      ::acme::get()->platform()->informationf("---\n");
-      ::acme::get()->platform()->informationf("---\n");
-      ::acme::get()->platform()->informationf("---\n");
-      ::acme::get()->platform()->informationf("---\n");
-      ::acme::get()->platform()->informationf("---\n");
-      ::acme::get()->platform()->informationf("---\n");
-      ::acme::get()->platform()->informationf("---\n");
-      ::acme::get()->platform()->informationf("---\n");
-      ::acme::get()->platform()->informationf("---\n");
-      ::acme::get()->platform()->informationf("---\n");
-      ::acme::get()->platform()->informationf("---\n");
-      ::acme::get()->platform()->informationf("---\n");
-      ::acme::get()->platform()->informationf("---\n");
-      ::acme::get()->platform()->informationf("---\n");
-      ::acme::get()->platform()->informationf("---\n");
-      ::acme::get()->platform()->informationf("---\n");
-      ::acme::get()->platform()->informationf("---\n");
+      informationf("---\n");
+      informationf("---\n");
+      informationf("---\n");
+      informationf("---\n");
+      informationf("---\n");
+      informationf("---\n");
+      informationf("---\n");
+      informationf("---\n");
+      informationf("---\n");
+      informationf("---\n");
+      informationf("---\n");
+      informationf("---\n");
+      informationf("---\n");
+      informationf("---\n");
+      informationf("---\n");
+      informationf("---\n");
+      informationf("---\n");
+      informationf("---\n");
+      informationf("---\n");
+      informationf("---\n");
 
 //      int i = setuid(0);
 

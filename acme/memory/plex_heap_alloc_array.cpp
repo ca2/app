@@ -12,36 +12,36 @@ plex_heap_alloc_array::plex_heap_alloc_array(heap::allocator * pallocator, ::hea
 
    //disable_referencing_debugging();
 
-   add(__new plex_heap_alloc(m_pallocator, 32, 256));
-   add(__new plex_heap_alloc(m_pallocator, 64, 128));
-   add(__new plex_heap_alloc(m_pallocator, 128, 128));
-   add(__new plex_heap_alloc(m_pallocator, 256, 128));
-   add(__new plex_heap_alloc(m_pallocator, 512, 64));
-   add(__new plex_heap_alloc(m_pallocator, 1_KiB, 64));
-   add(__new plex_heap_alloc(m_pallocator, 2_KiB, 32));
-   add(__new plex_heap_alloc(m_pallocator, 4_KiB, 32));
-   add(__new plex_heap_alloc(m_pallocator, 8_KiB, 16));
-   add(__new plex_heap_alloc(m_pallocator, 16_KiB, 16));
+   add(__raw_new plex_heap_alloc(m_pallocator, 32, 256));
+   add(__raw_new plex_heap_alloc(m_pallocator, 64, 128));
+   add(__raw_new plex_heap_alloc(m_pallocator, 128, 128));
+   add(__raw_new plex_heap_alloc(m_pallocator, 256, 128));
+   add(__raw_new plex_heap_alloc(m_pallocator, 512, 64));
+   add(__raw_new plex_heap_alloc(m_pallocator, 1_KiB, 64));
+   add(__raw_new plex_heap_alloc(m_pallocator, 2_KiB, 32));
+   add(__raw_new plex_heap_alloc(m_pallocator, 4_KiB, 32));
+   add(__raw_new plex_heap_alloc(m_pallocator, 8_KiB, 16));
+   add(__raw_new plex_heap_alloc(m_pallocator, 16_KiB, 16));
 
 #if !MOBILE_PLATFORM
 
-   add(__new plex_heap_alloc(m_pallocator, 24_KiB, 16));
-   add(__new plex_heap_alloc(m_pallocator, 32_KiB, 16));
-   add(__new plex_heap_alloc(m_pallocator, 48_KiB, 16));
-   add(__new plex_heap_alloc(m_pallocator, 64_KiB, 16));
-   add(__new plex_heap_alloc(m_pallocator, 128_KiB, 16));
-   add(__new plex_heap_alloc(m_pallocator, 256_KiB, 8));
-   add(__new plex_heap_alloc(m_pallocator, 512_KiB, 8));
-   add(__new plex_heap_alloc(m_pallocator, 1_MiB, 4));
+   add(__raw_new plex_heap_alloc(m_pallocator, 24_KiB, 16));
+   add(__raw_new plex_heap_alloc(m_pallocator, 32_KiB, 16));
+   add(__raw_new plex_heap_alloc(m_pallocator, 48_KiB, 16));
+   add(__raw_new plex_heap_alloc(m_pallocator, 64_KiB, 16));
+   add(__raw_new plex_heap_alloc(m_pallocator, 128_KiB, 16));
+   add(__raw_new plex_heap_alloc(m_pallocator, 256_KiB, 8));
+   add(__raw_new plex_heap_alloc(m_pallocator, 512_KiB, 8));
+   add(__raw_new plex_heap_alloc(m_pallocator, 1_MiB, 4));
 
 
 
 #if OSBIT > 32
 
-   add(__new plex_heap_alloc(m_pallocator, 2_MiB, 2));
-   add(__new plex_heap_alloc(m_pallocator, 4_MiB, 2));
-   add(__new plex_heap_alloc(m_pallocator, 8_MiB, 2));
-   add(__new plex_heap_alloc(m_pallocator, 16_MiB, 2));
+   add(__raw_new plex_heap_alloc(m_pallocator, 2_MiB, 2));
+   add(__raw_new plex_heap_alloc(m_pallocator, 4_MiB, 2));
+   add(__raw_new plex_heap_alloc(m_pallocator, 8_MiB, 2));
+   add(__raw_new plex_heap_alloc(m_pallocator, 16_MiB, 2));
 
 #endif
 

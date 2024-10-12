@@ -285,7 +285,7 @@ namespace dynamic_source
 #ifdef WINDOWS_DESKTOP
 
       u32 dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
-      LPWSTR lpsz = __new wchar_t[dwSize + 1];
+      LPWSTR lpsz = __raw_new wchar_t[dwSize + 1];
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1);
       str += lpsz;
       delete lpsz;
@@ -311,7 +311,7 @@ namespace dynamic_source
       if (strName.case_insensitive_ends("\\auth3.ds"))
       {
 
-         ::acme::get()->platform()->informationf("compile auth3.ds");
+         informationf("compile auth3.ds");
 
       }
 
@@ -411,7 +411,7 @@ namespace dynamic_source
 
          string strCompileLogUnique2 = datetime()->format(INTERNATIONAL_DATE_TIME_FORMAT_FOR_FILE, timeNow);
 
-         ::acme::get()->platform()->informationf("Ops");
+         informationf("Ops");
 
       }
 

@@ -27,7 +27,7 @@ public:
    ::pointer <::nano::account::account>m_paccount;
    ::pointer <::nano::archive::archive>m_parchive;
    ::pointer <::nano::compress::compress>m_pcompress;
-   ::pointer <::nano::dynamic_library::dynamic_library>m_pdynamiclibrary;
+   //::pointer <::nano::dynamic_library::dynamic_library>m_pdynamiclibrary;
    ::pointer <::nano::graphics::graphics>m_pgraphics;
    ::pointer <::nano::http::http>m_phttp;
    ::pointer <::nano::idn::idn>m_pidn;
@@ -43,7 +43,7 @@ public:
    ::nano::account::account*account();
    ::nano::archive::archive*archive();
    ::nano::compress::compress*compress();
-   ::nano::dynamic_library::dynamic_library*dynamic_library();
+   //::nano::dynamic_library::dynamic_library*dynamic_library();
    ::nano::graphics::graphics*graphics();
    ::nano::http::http*http();
    ::nano::idn::idn*idn();

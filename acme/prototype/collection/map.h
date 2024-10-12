@@ -849,7 +849,7 @@ pair_map < PAIR >::new_node(ARG_ITEM item, ::u32 nHashBucket, ::u32 nHashValue)
 
    //ENSURE(this->m_pnodeFree != nullptr);  // we must have something
 
-   auto p = __new node (item);
+   auto p = __raw_new node (item);
 
    attach(p, nHashBucket, nHashValue);
 

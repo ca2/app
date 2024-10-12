@@ -2968,13 +2968,13 @@ namespace user
 //      if (type.name().contains("app_veriwell_keyboard") && type.name().contains("main_frame"))
 //      {
 //
-//         //::acme::get()->platform()->informationf("app_veriwell_keyboard::main_frame");
+//         //informationf("app_veriwell_keyboard::main_frame");
 //
 //      }
 //      else if(type.name().contains("simple_child_frame"))
 //      {
 //
-//         //::acme::get()->platform()->informationf("simple_child_frame");
+//         //informationf("simple_child_frame");
 //
 //      }
 //

@@ -1183,8 +1183,6 @@
     <ClInclude Include="nano\archive\_.h" />
     <ClInclude Include="nano\compress\compress.h" />
     <ClInclude Include="nano\compress\_.h" />
-    <ClInclude Include="nano\dynamic_library\dynamic_library.h" />
-    <ClInclude Include="nano\dynamic_library\_.h" />
     <ClInclude Include="nano\graphics\brush.h" />
     <ClInclude Include="nano\graphics\device.h" />
     <ClInclude Include="nano\graphics\font.h" />
@@ -1217,9 +1215,12 @@
     <ClInclude Include="nano\user\user.h" />
     <ClInclude Include="nano\user\_.h" />
     <ClInclude Include="nano\_.h" />
+    <ClInclude Include="nano\_aaa_dynamic_library.h" />
     <ClInclude Include="operating_system\a_system_menu.h" />
     <ClInclude Include="operating_system\console_message_box.h" />
+    <ClInclude Include="operating_system\dynamic_library.h" />
     <ClInclude Include="operating_system\errno.h" />
+    <ClInclude Include="operating_system\windows\dynamic_library.h" />
     <ClInclude Include="operating_system\windows\heap_allocator.h" />
     <ClInclude Include="operating_system\windows\nano\dynamic_library\dynamic_library.h" />
     <ClInclude Include="operating_system\windows\nano\http\hinternet.h" />
@@ -1674,7 +1675,6 @@
     <ClCompile Include="nano\account\user.cpp" />
     <ClCompile Include="nano\archive\archive.cpp" />
     <ClCompile Include="nano\compress\compress.cpp" />
-    <ClCompile Include="nano\dynamic_library\dynamic_library.cpp" />
     <ClCompile Include="nano\graphics\brush.cpp" />
     <ClCompile Include="nano\graphics\device.cpp" />
     <ClCompile Include="nano\graphics\font.cpp" />
@@ -1725,6 +1725,7 @@
     <ClCompile Include="operating_system\console_message_box.cpp" />
     <ClCompile Include="operating_system\debug.cpp" />
     <ClCompile Include="operating_system\dostime.cpp" />
+    <ClCompile Include="operating_system\dynamic_library.cpp" />
     <ClCompile Include="operating_system\error_code.cpp" />
     <ClCompile Include="operating_system\exit_status.cpp" />
     <ClCompile Include="operating_system\file.cpp" />
@@ -1750,6 +1751,7 @@
     <ClCompile Include="operating_system\windows\calculate_etoolkit.cpp" />
     <ClCompile Include="operating_system\windows\calculate_ewindowing.cpp" />
     <ClCompile Include="operating_system\windows\callstack.cpp" />
+    <ClCompile Include="operating_system\windows\dynamic_library.cpp" />
     <ClCompile Include="operating_system\windows\file1.cpp" />
     <ClInclude Include="operating_system\application.h" />
     <ClInclude Include="operating_system\dostime.h" />
@@ -1760,8 +1762,6 @@
     <ClInclude Include="operating_system\windows\find_file.h" />
     <ClCompile Include="operating_system\windows\message_box.cpp" />
     <ClCompile Include="operating_system\windows\message_loop.cpp" />
-    <ClCompile Include="operating_system\windows\nano\dynamic_library\dynamic_library.cpp" />
-    <ClCompile Include="operating_system\windows\nano\dynamic_library\_dynamic_library.cpp" />
     <ClCompile Include="operating_system\windows\nano\http\hinternet.cpp" />
     <ClCompile Include="operating_system\windows\nano\http\http.cpp" />
     <ClCompile Include="operating_system\windows\nano\http\connect.cpp" />
@@ -1774,6 +1774,7 @@
     <ClCompile Include="operating_system\windows\user.cpp" />
     <ClCompile Include="operating_system\windows\window.cpp" />
     <ClCompile Include="operating_system\windows\windows.cpp" />
+    <ClCompile Include="operating_system\windows\_factory.cpp" />
     <ClCompile Include="operating_system\windows_common\acme.cpp" />
     <ClCompile Include="operating_system\windows_common\Debug.cpp" />
     <ClCompile Include="operating_system\windows_common\file1.cpp" />

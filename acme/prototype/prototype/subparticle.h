@@ -52,7 +52,7 @@ public:
 
    virtual void call();
 
-
+   virtual ::string get_debug_title() const;
 
    virtual void run();
 
@@ -138,7 +138,7 @@ public:
    void disable_referencing_debugging();
 
    //void add_initial_reference_item();
-   //void add_reference_item();
+   void add_reference_item();
    void add_referer(::reference_referer * preferer);
    //void _add_reference_item();
    void erase_reference_item();

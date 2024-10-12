@@ -1375,7 +1375,7 @@ namespace linux
          if(iDebugmessage_handlerTime > 20)
          {
 
-            ::acme::get()->platform()->informationf("interaction_impl::message handler flooded?\n");
+            informationf("interaction_impl::message handler flooded?\n");
 
          }
          else

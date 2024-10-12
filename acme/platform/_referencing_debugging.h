@@ -37,7 +37,7 @@ class reference_count_debug;
 
 
 //#define __new__prefix(x) __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ }, &m_preferer)->
-#define __new__prefix(x) __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ }, &m_preferer)
+#define __new__prefix(pprefererGet) __pointer_site({ refdbg_this(), __FUNCTION_FILE_LINE__ }, pprefererGet) <<
 //#define __new __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__new
 //#define __allocate __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__allocate
 //#define __allocate __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })
@@ -47,7 +47,9 @@ class reference_count_debug;
 
 #define __refdbg_call_add_referer __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ }) <<
 
-
+#define __refdbg_referer__ refdbg_referer() 
+#define __comma_refdbg_m_preferer__ , m_preferer
+#define __comma_refdbg_preferer__ , preferer
 //#define REFERENCING_DEBUGGING_MAX_COUNT 256
 //#define  referer
 //#define , 
@@ -66,6 +68,10 @@ class reference_count_debug;
 #define REFERENCING_DEBUGGING_PARAMETERS_DECLARATION REFERENCING_DEBUGGING_PARAMETERS_DEFINITION = nullptr
 #define COMMA_REFERENCING_DEBUGGING_PARAMETERS_DECLARATION , REFERENCING_DEBUGGING_PARAMETERS_DECLARATION
 #define  REFERENCING_DEBUGGING_PARAMETERS_DEFINITION2 ,
+#define REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DEFINITION ::reference_referer * preferer
+#define COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DEFINITION , REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DEFINITION
+#define REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DECLARATION REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DEFINITION = nullptr
+#define COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DECLARATION , REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DECLARATION
 #define REFERENCING_DEBUGGING_COMMA_NOTE(note) , {nullptr, note}
 #define REFERENCING_DEBUGGING_P(ptr) ptr
 #define REFERENCING_DEBUGGING_COMMA_P(ptr) , REFERENCING_DEBUGGING_P(ptr)
@@ -157,8 +163,11 @@ class reference_count_debug;
 
 
 
-#define __new __new_site(__refdbg_function_file_line__) << new
+#define __new __new_site(__refdbg_function_file_line__) << __raw_new
+#define __delete delete __delete_site(__refdbg_referer__) <<
 
+
+#define __raw_new new
 
 
 

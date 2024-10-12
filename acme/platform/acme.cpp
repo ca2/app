@@ -275,9 +275,9 @@ namespace acme
 
       {
 
-         REFDBG_THIS(this);
+         //REFDBG_THIS(this);
 
-         m_pplatform = __allocate ::platform::platform(this);
+         m_pplatform = new ::platform::platform(this);
 
       }
 #if REFERENCING_DEBUGGING
@@ -331,7 +331,11 @@ namespace acme
 
       m_pplatform->platform_finalize();
 
-      m_pplatform.release();
+      //m_pplatform.release();
+
+      delete m_pplatform;
+
+      m_pplatform = nullptr;
 
 #if REFERENCING_DEBUGGING
 

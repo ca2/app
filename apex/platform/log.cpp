@@ -270,7 +270,7 @@ namespace apex
 
             strCaption = "Assertion Failed";
 
-            ::acme::get()->platform()->informationf(str);
+            informationf(str);
             /*if(message_box(nullptr, str, strCaption, e_message_box_icon_information | MB_OKCANCEL | MB_DEFBUTTON1) == e_dialog_result_cancel)
             {
                string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+as_string(iLine)+"\"";
@@ -288,7 +288,7 @@ namespace apex
 
          char buf[2048];
          vsnprintf_s(buf, sizeof(buf), sizeof(buf), pszFormat, list);
-         ::acme::get()->platform()->informationf(buf);
+         informationf(buf);
 
       }
 

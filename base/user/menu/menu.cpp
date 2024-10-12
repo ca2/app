@@ -400,7 +400,7 @@ namespace user
          else
          {
 
-            ::acme::get()->platform()->informationf("parent has other Topic Submenu");
+            informationf("parent has other Topic Submenu");
 
          }
 

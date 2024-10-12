@@ -1224,7 +1224,7 @@ bool thread::defer_pump_message()
       if (m_message.m_atom == e_message_quit)
       {
 
-         ::acme::get()->platform()->informationf("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" + ::as_string((u64)::current_itask()) + ")\n\n\n");
+         informationf("\n\n\nthread::defer_pump_message (1) quitting (wm_quit? {PeekMessage->message : " + ::as_string(m_message.m_atom == e_message_quit ? 1 : 0) + "!}) : " + ::type(this).name() + " (" + ::as_string((u64)::current_itask()) + ")\n\n\n");
 
          return false;
 
@@ -1480,7 +1480,7 @@ bool thread::post_quit_message(int nExitCode)
 //      if(strType == "user::shell::thread")
 //      {
 //
-//         ::acme::get()->platform()->informationf("user::shell::thread");
+//         informationf("user::shell::thread");
 //
 //      }
 //
@@ -1644,25 +1644,25 @@ void thread::destroy()
       else if (strType == "multimedia::audio_core_audio::out")
       {
 
-         ::acme::get()->platform()->informationf("I am audio_core_audio::out xxpost_quit from multimedia::audio_core_audio::out\n");
+         informationf("I am audio_core_audio::out xxpost_quit from multimedia::audio_core_audio::out\n");
 
       }
       else if (strType == "multimedia::audio::out")
       {
 
-         ::acme::get()->platform()->informationf("I am audio::out xxpost_quit from multimedia::audio::out\n");
+         informationf("I am audio::out xxpost_quit from multimedia::audio::out\n");
 
       }
       else if (strType == "multimedia::wave::player")
       {
 
-         ::acme::get()->platform()->informationf("I am wave::player xxpost_quit from multimedia::wave::player\n");
+         informationf("I am wave::player xxpost_quit from multimedia::wave::player\n");
 
       }
       else
       {
 
-         ::acme::get()->platform()->informationf("I am multimedia:: xxpost_quit from multimedia::*\n");
+         informationf("I am multimedia:: xxpost_quit from multimedia::*\n");
 
       }
 
@@ -1670,7 +1670,7 @@ void thread::destroy()
    else if (strType == "::apex::system")
    {
 
-      ::acme::get()->platform()->informationf("I am system xxpost_quit from ::apex::system\n");
+      informationf("I am system xxpost_quit from ::apex::system\n");
 
    }
 
@@ -3875,7 +3875,7 @@ bool thread::peek_message(MESSAGE* pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 //      else
 //      {
 //
-//         ::acme::get()->platform()->informationf("!m_bMessageThread");
+//         informationf("!m_bMessageThread");
 //
 //      }
 //
@@ -3962,7 +3962,7 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, ::u32 wMsgFilterMin, 
 
          auto lasterror = ::GetLastError();
 
-         ::acme::get()->platform()->informationf("Last Error : " + ::as_string(lasterror) + "\n");
+         informationf("Last Error : " + ::as_string(lasterror) + "\n");
 
          auto estatus = ::windows::last_error_status(lasterror);
 
@@ -3972,7 +3972,7 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, ::u32 wMsgFilterMin, 
       else if (iRet == 0)
       {
 
-         ::acme::get()->platform()->informationf("GetMessage returned 0");
+         informationf("GetMessage returned 0");
 
          msg.message = WM_QUIT;
 
@@ -3980,13 +3980,13 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, ::u32 wMsgFilterMin, 
       else if (msg.message == e_message_quit)
       {
 
-         ::acme::get()->platform()->informationf("e_message_quit");
+         informationf("e_message_quit");
 
       }
       else if (msg.message == e_message_destroy_window)
       {
 
-         ::acme::get()->platform()->informationf("e_message_destroy_window");
+         informationf("e_message_destroy_window");
 
       }
 

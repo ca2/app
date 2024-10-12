@@ -265,14 +265,14 @@ namespace windowing
          if (pmessagePost->m_atom == e_message_scroll_y)
          {
 
-            ::acme::get()->platform()->informationf("e_message_scroll_y");
+            informationf("e_message_scroll_y");
 
 
          }
          else if (pmessagePost->m_atom == e_message_text_composition)
          {
 
-            ::acme::get()->platform()->informationf("message text composition");
+            informationf("message text composition");
 
          }
 
@@ -361,7 +361,7 @@ namespace windowing
       //         if(iDebugmessage_handlerTime > 20)
       //         {
       //
-      //            ::acme::get()->platform()->informationf("interaction_impl::message handler flooded?\n");
+      //            informationf("interaction_impl::message handler flooded?\n");
       //
       //         }
       //         else
@@ -4476,7 +4476,7 @@ namespace windowing
    //   if (pmouse->m_atom == e_message_left_button_up)
    //   {
 
-   //      ::acme::get()->platform()->informationf("lbutton_up");
+   //      informationf("lbutton_up");
 
    //   }
 
@@ -4544,7 +4544,7 @@ namespace windowing
    //      if (pmouse->m_atom == e_message_left_button_up)
    //      {
 
-   //         ::acme::get()->platform()->informationf("lbutton_up");
+   //         informationf("lbutton_up");
 
    //      }
 
@@ -4579,7 +4579,7 @@ namespace windowing
    //      if (pmouse->m_atom == e_message_left_button_up)
    //      {
 
-   //         ::acme::get()->platform()->informationf("lbutton_up");
+   //         informationf("lbutton_up");
 
    //      }
 
@@ -5443,7 +5443,7 @@ namespace windowing
       //         if(iDebugmessage_handlerTime > 20)
       //         {
       //
-      //            ::acme::get()->platform()->informationf("window::message handler flooded?\n");
+      //            informationf("window::message handler flooded?\n");
       //
       //         }
       //         else
@@ -6068,7 +6068,7 @@ namespace windowing
       //         if (strType.case_insensitive_contains("list_box"))
       //         {
       //
-      //            ::acme::get()->platform()->informationf("list_box e_message_left_button_down");
+      //            informationf("list_box e_message_left_button_down");
       //
       //         }
       //
@@ -6095,7 +6095,7 @@ namespace windowing
       //         if (strType.case_insensitive_contains("list_box"))
       //         {
       //
-      //            ::acme::get()->platform()->informationf("list_box e_message_non_client_left_button_down");
+      //            informationf("list_box e_message_non_client_left_button_down");
       //
       //         }
       //
@@ -6136,7 +6136,7 @@ namespace windowing
       //            if (strType.case_insensitive_contains("list_box"))
       //            {
       //
-      //               //::acme::get()->platform()->informationf("list_box e_message_mouse_move");
+      //               //informationf("list_box e_message_mouse_move");
       //
       //            }
       //
@@ -8474,7 +8474,7 @@ namespace windowing
             if (!m_puserinteraction->m_bMessageWindow)
             {
 
-               m_pcsDisplay = __new critical_section();
+               m_pcsDisplay = __raw_new critical_section();
 
                information() << "interaction_impl m_pgraphics alloc : " << strType;
 

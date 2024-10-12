@@ -1,14 +1,75 @@
 // Created by camilo on 2024-02-07 22:52 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "acme/exception/exit.h"
 #include "acme/exception/interface_only.h"
 #include "acme/memory/memory_allocate.h"
 #include "acme/platform/referencing_debugging.h"
 
 
+#if REFERENCING_DEBUGGING
+
+
+bool g_bDefaultEnableObjectReferenceCountDebug = false;
+
+
+//CLASS_DECL_ACME void on_construct_particle(::particle * pparticle);
+
+
+subparticle::subparticle() :
+   m_countReference(1)
+{
+
+#if REFERENCING_DEBUGGING
+
+   if (!g_bDefaultEnableObjectReferenceCountDebug)
+   {
+
+      disable_referencing_debugging();
+
+   }
+
+   ::allocator::on_construct_subparticle(this);
+
+#endif
+
+}
+
+
+//particle::particle(disable_referencing_debugging_t) :
+//   m_countReference(1)
+//{
+//
+//#if REFERENCING_DEBUGGING
+//
+//   disable_referencing_debugging();
+//
+//#endif
+//
+//   ::allocator::on_construct_particle(this);
+//
+//}
+
+
+#endif
+
+
+
 subparticle::~subparticle()
 {
 
+#if REFERENCING_DEBUGGING
+   {
 
+      //auto p = ::transfer(m_preferenceitema);
+
+      //m_preferenceitema.release();
+
+      ::allocator::on_destruct_subparticle(this);
+
+      //      ::acme::del(m_preferenceitema);
+
+   }
+#endif
 }
 
 void subparticle::initialize(::particle* pparticle)
@@ -74,6 +135,16 @@ i64 subparticle::decrement_reference_count()
 }
 
 
+::string subparticle::get_debug_title() const
+{
+
+   auto psubparticle = (::subparticle*)this;
+
+   return ::type(*psubparticle).name();
+
+}
+
+
 i64 subparticle::replace_reference()
 {
 
@@ -115,6 +186,39 @@ i64 subparticle::release()
 
 
 #endif
+
+void subparticle::init_task()
+{
+
+
+}
+
+
+void subparticle::call()
+{
+
+   //m_eflagElement += e_flag_running;
+
+   try
+   {
+
+      run();
+
+   }
+   catch (const ::exit_exception& exception)
+   {
+
+      throw exception;
+
+   }
+   catch (...)
+   {
+
+   }
+
+   //m_eflagElement -= e_flag_running;
+
+}
 
 
 

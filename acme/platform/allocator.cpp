@@ -29,7 +29,7 @@ namespace allocator
    thread_local memsize t_sStartConstruct = -1;
    //thread_local bool t_bStartConstructDisableReferencingDebugging = false;
    thread_local bool t_bStartConstructParticleAndHeapAllocation = true;
-   thread_local ::particle * t_pparticleTrackAllocation = nullptr;
+   thread_local ::subparticle * t_psubparticleTrackAllocation = nullptr;
    thread_local bool t_bGoodStackTrackingStart = false;
    thread_local ::reference_referer * t_preferencerefererTopic = nullptr;
    thread_local ::reference_referer * t_preferencerefererReleaser = nullptr;
@@ -54,7 +54,7 @@ namespace allocator
 
       //auto preferencereferer = ::platform::allocator::__callnew reference_referer (::transfer(referer));
 
-      auto preferencereferer = new ::reference_referer(referer);
+      auto preferencereferer = __raw_new ::reference_referer(referer);
 
       return preferencereferer;
 
@@ -78,7 +78,7 @@ namespace allocator
    }
 
 
-   ::reference_referer * defer_get_referer(::particle * p, const ::reference_referer & referer)
+   ::reference_referer * defer_get_referer(::subparticle * p, const ::reference_referer & referer)
    {
 
       if (referer.m_cstringType && referer.m_cstringType == "class pointer<class item>")
@@ -286,7 +286,7 @@ namespace allocator
    }
 
 
-   void on_construct_particle(::particle * pparticle)
+   void on_construct_subparticle(::subparticle * pparticle)
    {
 
       if (((::u8 *)pparticle) >= t_pStartConstruct && pparticle->m_sType <= t_sStartConstruct)
@@ -315,8 +315,8 @@ namespace allocator
 
       ::subparticle * pparticleParent = nullptr;
       
-      if (::is_set(t_pparticleTrackAllocation)
-         && t_pparticleTrackAllocation->contains_top_track(pparticle))
+      if (::is_set(t_psubparticleTrackAllocation)
+         && t_psubparticleTrackAllocation->contains_top_track(pparticle))
       {
 
          throw ::exception(::error_wrong_state, "particle already tracked");
@@ -325,13 +325,13 @@ namespace allocator
       else 
       {
 
-         if (::is_null(t_pparticleTrackAllocation))
+         if (::is_null(t_psubparticleTrackAllocation))
          {
 
             if (pparticle->m_bHeapAllocation)
             {
 
-               t_pparticleTrackAllocation = pparticle;
+               t_psubparticleTrackAllocation = pparticle;
 
             }
 
@@ -346,7 +346,7 @@ namespace allocator
          else
          {
 
-            auto pparticleTopTrack = t_pparticleTrackAllocation->get_top_track();
+            auto pparticleTopTrack = t_psubparticleTrackAllocation->get_top_track();
 
             pparticleParent = pparticleTopTrack;
 
@@ -401,7 +401,7 @@ namespace allocator
       if(pparticle->is_referencing_debugging_enabled())
       {
 
-         pparticle->m_preferenceitema = __new reference_item_array (pparticle, pparticleParent);
+         pparticle->m_preferenceitema = __raw_new reference_item_array (pparticle, pparticleParent);
 
          //on_after_construct_particle(pparticle->m_preferenceitema);
 
@@ -421,14 +421,14 @@ namespace allocator
    ::subparticle * task_get_top_track()
    {
 
-      if (::is_null(t_pparticleTrackAllocation))
+      if (::is_null(t_psubparticleTrackAllocation))
       {
 
          return nullptr;
 
       }
 
-      return t_pparticleTrackAllocation->get_top_track();
+      return t_psubparticleTrackAllocation->get_top_track();
 
    }
 
@@ -446,13 +446,13 @@ namespace allocator
       //one can enable this:
       //ASSERT(ptoptrack == pparticle);
 
-      if (::is_set(t_pparticleTrackAllocation))
+      if (::is_set(t_psubparticleTrackAllocation))
       {
 
-         if (t_pparticleTrackAllocation == pparticle)
+         if (t_psubparticleTrackAllocation == pparticle)
          {
 
-            t_pparticleTrackAllocation = nullptr;
+            t_psubparticleTrackAllocation = nullptr;
 
          }
          else
@@ -464,10 +464,10 @@ namespace allocator
                         // pparticleTopTrack->add_top_track(pparticle);
             //one can disable the contains top track check:
 
-            if (t_pparticleTrackAllocation->contains_top_track(pparticle))
+            if (t_psubparticleTrackAllocation->contains_top_track(pparticle))
             {
 
-               t_pparticleTrackAllocation->erase_top_track(pparticle);
+               t_psubparticleTrackAllocation->erase_top_track(pparticle);
 
             }
 
@@ -509,10 +509,10 @@ namespace allocator
    }
 
 
-   void on_destruct_particle(::particle * pparticle)
+   void on_destruct_subparticle(::subparticle * psubparticle)
    {
 
-      ::destruct_particle_reference_item_array(pparticle);
+      ::destruct_particle_reference_item_array(psubparticle);
 
    }
 
@@ -570,16 +570,16 @@ void subparticle::disable_referencing_debugging()
 }
 
 
-CLASS_DECL_ACME bool refdbg_add_top_track(::particle * pparticle)
+CLASS_DECL_ACME bool refdbg_add_top_track(::subparticle * pparticle)
 {
 
-   if (!::allocator::t_pparticleTrackAllocation)
+   if (!::allocator::t_psubparticleTrackAllocation)
    {
 
-      ::allocator::t_pparticleTrackAllocation = pparticle;
+      ::allocator::t_psubparticleTrackAllocation = pparticle;
 
    }
-   else if (::allocator::t_pparticleTrackAllocation->contains_top_track(pparticle))
+   else if (::allocator::t_psubparticleTrackAllocation->contains_top_track(pparticle))
    {
 
       return false;
@@ -588,7 +588,7 @@ CLASS_DECL_ACME bool refdbg_add_top_track(::particle * pparticle)
    else
    {
 
-      auto p = ::allocator::t_pparticleTrackAllocation->get_top_track();
+      auto p = ::allocator::t_psubparticleTrackAllocation->get_top_track();
 
       p->add_top_track(pparticle);
 
@@ -603,21 +603,21 @@ CLASS_DECL_ACME bool refdbg_add_top_track(::particle * pparticle)
 CLASS_DECL_ACME void refdbg_erase_top_track(::subparticle* pparticle)
 {
 
-   if (::is_set(::allocator::t_pparticleTrackAllocation))
+   if (::is_set(::allocator::t_psubparticleTrackAllocation))
    {
 
-      if (::allocator::t_pparticleTrackAllocation == pparticle)
+      if (::allocator::t_psubparticleTrackAllocation == pparticle)
       {
 
-         ::allocator::t_pparticleTrackAllocation = nullptr;
+         ::allocator::t_psubparticleTrackAllocation = nullptr;
 
       }
       else
       {
 
-         ::subparticle* pparticleParent = ::allocator::t_pparticleTrackAllocation;
+         ::subparticle* pparticleParent = ::allocator::t_psubparticleTrackAllocation;
 
-         if (::allocator::t_pparticleTrackAllocation->find_top_track(pparticle, &pparticleParent))
+         if (::allocator::t_psubparticleTrackAllocation->find_top_track(pparticle, &pparticleParent))
          {
 
             pparticleParent->erase_top_track(pparticle);

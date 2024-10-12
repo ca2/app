@@ -139,7 +139,7 @@ void interprocess_intercommunication::start(const ::string & strApp)
    if(strApp == "app-core/clockverse")
    {
 
-      ::acme::get()->platform()->informationf("app-core/clockverse");
+      informationf("app-core/clockverse");
 
    }
 

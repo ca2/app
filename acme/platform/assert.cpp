@@ -163,7 +163,7 @@ CLASS_DECL_ACME ::payload __cpp_assert_failed_line(const char * pszFileName, int
    sprintf(szMessage,"Assert failed!\n\nFile: %s\nLine: %d\n\nYou can choose to:\n\n\t - \"Cancel\": cancel debugging.\n\t - \"Try\": try debug break where assertion occurred.\n\t - \"Continue\": continue running", pszFileName,iLineNumber);
 
    auto pmessagebox = 
-      __initialize_new_with(::platform::system())
+      __initialize_new_with(system())
       ::message_box(
          szMessage,
          "ASSERT",

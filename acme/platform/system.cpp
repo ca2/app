@@ -46,7 +46,7 @@
 //#include "acme/user/user/conversation.h"
 
 
-extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory);
+//extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory);
 
 
 //#elif defined(UNIVERSAL_WINDOWS)
@@ -3219,7 +3219,7 @@ namespace acme
             if (application()->m_bVerbose)
             {
 
-               ::acme::get()->platform()->informationf("\n\n::apex::session::get_new_application assembled library path " + strLibrary + "\n\n");
+               informationf("\n\n::apex::session::get_new_application assembled library path " + strLibrary + "\n\n");
 
             }
 
@@ -3247,7 +3247,7 @@ namespace acme
             if (application()->m_bVerbose)
             {
 
-               ::acme::get()->platform()->informationf("\n\n::apex::session::get_new_application Found library : " + strLibrary + "\n\n");
+               informationf("\n\n::apex::session::get_new_application Found library : " + strLibrary + "\n\n");
 
             }
 
@@ -3258,7 +3258,7 @@ namespace acme
             //          if (!plibrary->is_opened())
             //          {
             //
-            //             ::acme::get()->platform()->informationf("\n\n::apex::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
+            //             informationf("\n\n::apex::session::get_new_application Failed to load library : " + strLibrary + "\n\n");
             //
             //             return nullptr;
             //
@@ -3267,7 +3267,7 @@ namespace acme
             if (application()->m_bVerbose)
             {
 
-               ::acme::get()->platform()->informationf("\n\n::apex::session::get_new_application Opened library : " + strLibrary + "\n\n");
+               informationf("\n\n::apex::session::get_new_application Opened library : " + strLibrary + "\n\n");
 
             }
 
@@ -3283,7 +3283,7 @@ namespace acme
                if (!papp)
                {
 
-                  ::acme::get()->platform()->informationf("\n\n::apex::session::get_new_application\n...but this __new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
+                  informationf("\n\n::apex::session::get_new_application\n...but this __new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
 
                }
 
@@ -3296,11 +3296,11 @@ namespace acme
                //
                //         }
 
-               ::acme::get()->platform()->informationf("\n\n\n|(4)----");
-               ::acme::get()->platform()->informationf("| app : " + strAppId + "(papp=0x" + ::hex::upper_case_from((uptr)papp.m_p) + ")\n");
-               ::acme::get()->platform()->informationf("|\n");
-               ::acme::get()->platform()->informationf("|\n");
-               ::acme::get()->platform()->informationf("|----");
+               informationf("\n\n\n|(4)----");
+               informationf("| app : " + strAppId + "(papp=0x" + ::hex::upper_case_from((uptr)papp.m_p) + ")\n");
+               informationf("|\n");
+               informationf("|\n");
+               informationf("|----");
 
             }
 
@@ -3332,22 +3332,22 @@ namespace acme
       //   if (is_verbose())
       //   {
       //
-      //      ::acme::get()->platform()->informationf("\n\n\n|(3)----");
-      //      ::acme::get()->platform()->informationf("| app : " + strAppId + "\n");
-      //      ::acme::get()->platform()->informationf("|\n");
-      //      ::acme::get()->platform()->informationf("|\n");
-      //      ::acme::get()->platform()->informationf("|----");
+      //      informationf("\n\n\n|(3)----");
+      //      informationf("| app : " + strAppId + "\n");
+      //      informationf("|\n");
+      //      informationf("|\n");
+      //      informationf("|----");
       //
       //   }
       //
       //   if (is_verbose())
       //   {
       //
-      //      ::acme::get()->platform()->informationf("\n\n\n|(2)----");
-      //      ::acme::get()->platform()->informationf("| app : " + strAppId + "\n");
-      //      ::acme::get()->platform()->informationf("|\n");
-      //      ::acme::get()->platform()->informationf("|\n");
-      //      ::acme::get()->platform()->informationf("|----");
+      //      informationf("\n\n\n|(2)----");
+      //      informationf("| app : " + strAppId + "\n");
+      //      informationf("|\n");
+      //      informationf("|\n");
+      //      informationf("|----");
       //
       //   }
       //
@@ -3355,11 +3355,11 @@ namespace acme
       //   if (is_verbose())
       //   {
       //
-      //      ::acme::get()->platform()->informationf("\n\n\n|(1)----");
-      //      ::acme::get()->platform()->informationf("| app : " + strAppId + "\n");
-      //      ::acme::get()->platform()->informationf("|\n");
-      //      ::acme::get()->platform()->informationf("|\n");
-      //      ::acme::get()->platform()->informationf("|----");
+      //      informationf("\n\n\n|(1)----");
+      //      informationf("| app : " + strAppId + "\n");
+      //      informationf("|\n");
+      //      informationf("|\n");
+      //      informationf("|----");
       //
       //   }
 
@@ -3728,13 +3728,13 @@ namespace acme
       if (m_bDarkMode)
       {
 
-         ::acme::get()->platform()->informationf("background_color :: Dark\n");
+         informationf("background_color :: Dark\n");
 
       }
       else
       {
 
-         ::acme::get()->platform()->informationf("background_color :: Lite\n");
+         informationf("background_color :: Lite\n");
 
       }
 
@@ -3813,16 +3813,16 @@ namespace acme
    bool system::_defer_component_factory(const ::scoped_string & scopedstrComponent)
    {
 
-      if (scopedstrComponent == "nano_dynamic_library")
-      {
+      //if (scopedstrComponent == "nano_dynamic_library")
+      //{
 
-         auto pfactory = this->factory();
+      //   auto pfactory = this->factory();
 
-         nano_dynamic_library_factory(pfactory);
+      //   nano_dynamic_library_factory(pfactory);
 
-         return true;
+      //   return true;
 
-      }
+      //}
 
 //      else if (scopedstrComponent == "nano_user")
 //      {
@@ -4202,13 +4202,13 @@ void system_on_open_file(void* pSystem, const char* pszFile)
 //
 //         //   int iDialogResult = pfuture->m_var;
 //
-//         //   ::acme::get()->platform()->informationf("result " + as_string(iDialogResult));
+//         //   informationf("result " + as_string(iDialogResult));
 //
 //         //}
 //
 //         //throw ::exception(error_failed, strMessage + "\n\nCould not open required library.");
 //
-//         ::acme::get()->platform()->informationf("The application library for appid \"" + strAppId + "\" wasn't loaded.");
+//         informationf("The application library for appid \"" + strAppId + "\" wasn't loaded.");
 //
 //      }
 //

@@ -7343,7 +7343,7 @@ namespace user
 
          get_text(strText);
 
-         ::acme::get()->platform()->informationf("\nplain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
+         informationf("\nplain_edit::on_text_composition (m_pitemComposing != nullptr) Current Text: " + strText + "\n");
 
       }
       else
@@ -7416,7 +7416,7 @@ namespace user
 
          get_text(strText);
 
-         ::acme::get()->platform()->informationf("Current Text: " + strText + "\n");
+         informationf("Current Text: " + strText + "\n");
 
          m_pitemComposing.release();
 

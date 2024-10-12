@@ -152,7 +152,7 @@
 //         if(((::u8 *)&m_paddingBefore[16])[m_size + i] != 0)
 //         {
 //
-////            ::acme::get()->platform()->informationf("*&!@");
+////            informationf("*&!@");
 //
 //         }
 //
@@ -842,7 +842,7 @@
 //   else
 //   {
 //
-//      ::acme::get()->platform()->informationf("wrong free");
+//      informationf("wrong free");
 //
 //   }
 //#endif

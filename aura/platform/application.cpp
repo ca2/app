@@ -1786,7 +1786,7 @@ namespace aura
       //if (!on_install())
       //{
 
-      //   ::acme::get()->platform()->informationf("Failed at on_install : " + m_strAppId + "\n\n");
+      //   informationf("Failed at on_install : " + m_strAppId + "\n\n");
 
       //   psystem->m_result.add(error_failed);
 

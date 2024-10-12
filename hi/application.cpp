@@ -366,13 +366,13 @@ namespace console_hello
       if (str.size() < 20)
       {
          
-         ::acme::get()->platform()->informationf("What!!");
+         informationf("What!!");
 
       }
       if (str1.size() < 20)
       {
 
-         ::acme::get()->platform()->informationf("What(1)!!");
+         informationf("What(1)!!");
 
       }
 
@@ -415,7 +415,7 @@ namespace console_hello
 
          if (strCompileLogUnique.size() < 5)
          {
-            ::acme::get()->platform()->informationf("What!!");
+            informationf("What!!");
 
          }
          if (i % 10'000 == 0)

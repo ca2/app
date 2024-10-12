@@ -1588,7 +1588,7 @@ namespace apex
    //////
    //////            dappy(::type(this).name() + " : on_run failure : " + as_string(m_iErrorCode));
    //////
-   //////            ::acme::get()->platform()->informationf("application::main on_run termination failure\n");
+   //////            informationf("application::main on_run termination failure\n");
    //////
    //////         }
    ////
@@ -2668,7 +2668,7 @@ namespace apex
       on_install();
       //{
 
-      //   ::acme::get()->platform()->informationf("Failed at on_install : " + m_strAppId + "\n\n");
+      //   informationf("Failed at on_install : " + m_strAppId + "\n\n");
 
       //   psystem->m_result.add(error_failed);
 

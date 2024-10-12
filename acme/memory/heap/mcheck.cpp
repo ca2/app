@@ -658,7 +658,7 @@
 //   else
 //   {
 //
-//      ::acme::get()->platform()->informationf("wrong free");
+//      informationf("wrong free");
 //
 //   }
 //#endif

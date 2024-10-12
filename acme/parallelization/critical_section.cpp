@@ -121,7 +121,7 @@ public:
 critical_section::critical_section()
 {
 
-   m_pimpl = __new ::critical_section_impl();
+   m_pimpl = __raw_new ::critical_section_impl();
 
 }
 

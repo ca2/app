@@ -96,7 +96,7 @@ namespace windows_common
 
          DWORD dwError = ::GetLastError();
 
-         ::acme::get()->platform()->informationf("system_heap_free : Failed to free memory");
+         informationf("system_heap_free : Failed to free memory");
 
       }
 
@@ -112,7 +112,7 @@ namespace windows_common
       if (s == (SIZE_T)-1)
       {
 
-         ::acme::get()->platform()->informationf("os_impl_size : Failed to get memory size_i32");
+         informationf("os_impl_size : Failed to get memory size_i32");
 
       }
 

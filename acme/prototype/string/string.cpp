@@ -136,7 +136,7 @@ CLASS_DECL_ACME ::string _(const ::string & str)
 CLASS_DECL_ACME void foo123()
 {
 
-   ::acme::get()->platform()->informationf("foo123");
+   informationf("foo123");
 
 }
 

@@ -6,6 +6,7 @@
 #include "acme/parallelization/task.h"
 //#include "acme/platform/acme.h"
 #include "acme/platform/locale.h"
+#include "acme/platform/system.h"
 #include "acme/prototype/datetime/system_time.h"
 #include "acme/prototype/datetime/earth_gregorian_time.h"
 ////#include "acme/prototype/datetime/earth_time.h"
@@ -169,7 +170,7 @@ payload::payload(::subparticle * pelement) :
 
 #if REFERENCING_DEBUGGING
 
-   m_preferer = ::allocator::defer_get_referer(::platform::get(), { this, __FUNCTION_FILE_LINE__ });
+   m_preferer = ::allocator::defer_get_referer(::system(), { this, __FUNCTION_FILE_LINE__ });
 
 #endif
 
@@ -390,7 +391,7 @@ payload::payload(::u64 * pu) :
 
 payload::payload(const ::file::path & path) :
    m_etype(e_type_path),
-   m_ppath(__allocate__prefix(&m_preferer)__new ::file::path_object(path))
+   m_ppath(__new__prefix(&m_preferer)__raw_new ::file::path_object(path))
 {
 
 }
@@ -398,7 +399,7 @@ payload::payload(const ::file::path & path) :
 
 payload::payload(const string_array & stra) :
    m_etype(e_type_string_array),
-   m_pstra(__allocate__prefix(&m_preferer) __new string_array(stra))
+   m_pstra(__new__prefix(&m_preferer) __raw_new string_array(stra))
 {
 
 
@@ -407,7 +408,7 @@ payload::payload(const string_array & stra) :
 
 payload::payload(const ::i32_array & ia) :
    m_etype(e_type_i32_array),
-   m_pia(__allocate__prefix(&m_preferer)__new ::i32_array(ia))
+   m_pia(__new__prefix(&m_preferer)__raw_new ::i32_array(ia))
 {
 
 }
@@ -415,7 +416,7 @@ payload::payload(const ::i32_array & ia) :
 
 payload::payload(const payload_array & payloada) :
    m_etype(e_type_payload_array),
-   m_ppayloada(__allocate__prefix(&m_preferer) __new payload_array(payloada))
+   m_ppayloada(__new__prefix(&m_preferer) __raw_new payload_array(payloada))
 {
 
 }
@@ -423,7 +424,7 @@ payload::payload(const payload_array & payloada) :
 
 payload::payload(const property_set & set) :
    m_etype(e_type_property_set),
-   m_ppropertyset(__allocate__prefix(&m_preferer)__new property_set(set))
+   m_ppropertyset(__new__prefix(&m_preferer)__raw_new property_set(set))
 {
 
 }
@@ -7626,13 +7627,13 @@ void payload_skip_network_payload(::ansi_range & range)
    else if (*range.m_begin == ']')
    {
 
-      ::acme::get()->platform()->informationf("");
+      informationf("");
 
    }
    else if (*range.m_begin == '\0')
    {
 
-      ::acme::get()->platform()->informationf("");
+      informationf("");
 
    }
    else
@@ -7732,7 +7733,7 @@ void payload::parse_network_payload(::ansi_range & range)
    else if (*range.m_begin == ']')
    {
 
-      ::acme::get()->platform()->informationf("");
+      informationf("");
 
       //pszJson++;
 
@@ -7740,7 +7741,7 @@ void payload::parse_network_payload(::ansi_range & range)
    else if (*range.m_begin == '\0')
    {
 
-      ::acme::get()->platform()->informationf("");
+      informationf("");
 
    }
    else
@@ -7761,7 +7762,7 @@ void payload::parse_network_payload(::ansi_range & range)
    if (range.is_empty())
    {
       
-      ::acme::get()->platform()->informationf("");
+      informationf("");
 
       return ::e_type_new;
 
@@ -7769,7 +7770,7 @@ void payload::parse_network_payload(::ansi_range & range)
    else if (*range.m_begin == '\0')
    {
 
-      ::acme::get()->platform()->informationf("");
+      informationf("");
 
       return ::e_type_new;
 
@@ -7896,7 +7897,7 @@ void payload::parse_network_payload(::ansi_range & range)
    }
    else if (*range.m_begin == ']')
    {
-      ::acme::get()->platform()->informationf("");
+      informationf("");
       return ::e_type_new;
    }
    else

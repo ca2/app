@@ -259,7 +259,7 @@ namespace freedesktop
    void file_not_ok()
    {
 
-      ::acme::get()->platform()->informationf("matter icon nok");
+      informationf("matter icon nok");
 
       //::fflush(stdout);
 
@@ -322,7 +322,7 @@ namespace freedesktop
 
       ::file::path pathModuleIcon256 = pathAppConfig / "icon-256.png";
 
-      ::acme::get()->platform()->informationf("\npathModuleIcon256=" + pathModuleIcon256);
+      informationf("\npathModuleIcon256=" + pathModuleIcon256);
 
       //::fflush(stdout);
 

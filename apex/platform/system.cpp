@@ -904,7 +904,7 @@ pacmedirectory->create("/ca2core");
       //
       //         strCurrentWorkingDirectory = get_current_directory_name();
       //
-      //         ::acme::get()->platform()->informationf("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
+      //         informationf("\nCurrent Working Directory : " + strCurrentWorkingDirectory);
       //
       //      }
 
@@ -2625,11 +2625,11 @@ pacmedirectory->create("/ca2core");
    ////
    ////      ::file::path pathCa2Module = dir()->ca2module();
    ////
-   ////      ::acme::get()->platform()->informationf("\n\n::apex::system::find_applications_to_cache\n\n");
+   ////      informationf("\n\n::apex::system::find_applications_to_cache\n\n");
    ////
-   ////      ::acme::get()->platform()->informationf("ca2 module folder : " + pathCa2Module);
+   ////      informationf("ca2 module folder : " + pathCa2Module);
    ////
-   ////      ::acme::get()->platform()->informationf("\n\n\n");
+   ////      informationf("\n\n\n");
    ////
    ////      straTitle.ls_pattern(pathCa2Module, { "*.*" });
    ////
@@ -2650,7 +2650,7 @@ pacmedirectory->create("/ca2core");
    ////               continue;
    ////            }
    ////
-   ////            ::acme::get()->platform()->informationf("library("+as_string(i)+") : " + strLibraryId+"\n\n");
+   ////            informationf("library("+as_string(i)+") : " + strLibraryId+"\n\n");
    ////
    ////            map_application_library(strLibraryId);
    ////
@@ -2723,7 +2723,7 @@ pacmedirectory->create("/ca2core");
    //      //if(!library.open_library())
    //      //{
    //
-   //      //   ::acme::get()->platform()->informationf("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
+   //      //   informationf("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
    //
    //      //   return false;
    //

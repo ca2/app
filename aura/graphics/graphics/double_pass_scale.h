@@ -113,13 +113,13 @@ LineContribType *
 C2PassScale<FilterClass>::
 AllocContributions (::u32 uLineLength, ::u32 uWindowSize)
 {
-   LineContribType *res = __new LineContribType();
+   LineContribType *res = __raw_new LineContribType();
    // Init structure header
    res->WindowSize = uWindowSize;
    res->LineLength = uLineLength;
    // Allocate list of contributions
-   res->ContribRow = __new ContributionType[uLineLength];
-   res->matrix = __new double[uWindowSize * uLineLength];
+   res->ContribRow = __raw_new ContributionType[uLineLength];
+   res->matrix = __raw_new double[uWindowSize * uLineLength];
    for (::u32 u = 0 ; u < uLineLength ; u++)
    {
       // Allocate contributions for every pixel
@@ -154,13 +154,13 @@ CalcContributions (::u32 uLineSize, ::u32 uSrcSize, double dScale)
    if (m_dFilterWidth < 0.0)
    {
 
-      pCurFilter = __new FilterClass(m_dFilterWidth);
+      pCurFilter = __raw_new FilterClass(m_dFilterWidth);
 
    }
    else
    {
 
-      pCurFilter = __new FilterClass();
+      pCurFilter = __raw_new FilterClass();
 
    }
 

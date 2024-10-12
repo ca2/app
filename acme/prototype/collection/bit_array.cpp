@@ -36,7 +36,7 @@ void bit_array::set_size(i32 iBitCount, bool bSet)
    m_iDataCount         = (i32) ceil_div(m_iBitCount, (i32) 8 * sizeof(i32));
    if(m_iDataCount > 0)
    {
-      m_pdata              = __new i32[m_iDataCount];
+      m_pdata              = __raw_new i32[m_iDataCount];
       if(m_pdata != nullptr)
       {
          if(::collection::index(pdataOld) == 1)

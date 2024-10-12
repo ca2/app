@@ -92,7 +92,7 @@ void object::create_object_meta()
 
    }
 
-   m_pmeta = __new object_meta();
+   m_pmeta = __raw_new object_meta();
 
 }
 
@@ -973,13 +973,13 @@ void object::add_task(::object* pobjectTask)
    if (strType.contains("prodevian"))
    {
 
-      ::acme::get()->platform()->informationf("task added to prodevian\n");
+      informationf("task added to prodevian\n");
 
    }
    else if (strType.contains("user::thread"))
    {
 
-      ::acme::get()->platform()->informationf("task added to user::thread\n");
+      informationf("task added to user::thread\n");
 
    }
 
@@ -1043,7 +1043,7 @@ void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object 
    if (strType.contains("user::thread"))
    {
 
-      ::acme::get()->platform()->informationf("task added to user::thread\n");
+      informationf("task added to user::thread\n");
 
    }
 
@@ -1052,7 +1052,7 @@ void object::erase_task_and_set_task_new_parent(::object* pobjectTask, ::object 
    if (m_pparticleaChildrenTask->erase(pobjectTask) <= 0)
    {
 
-      ::acme::get()->platform()->informationf("not a child");
+      informationf("not a child");
       
    }
 

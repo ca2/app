@@ -40,7 +40,7 @@ namespace heap
       void start_heap() override
       {
 
-         m_pallocarray = __new plex_heap_alloc_array(m_pallocator, m_ememory);
+         m_pallocarray = __raw_new plex_heap_alloc_array(m_pallocator, m_ememory);
 
       }
 

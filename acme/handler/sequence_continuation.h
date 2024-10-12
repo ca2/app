@@ -65,7 +65,7 @@ class sequence;
 //////   virtual void do_asynchronously()
 //////   {
 //////
-//////      ::platform::get()->system()->post_procedure([this]()
+//////      system()->post_procedure([this]()
 //////         {
 //////
 //////            m_payloadResult = do_synchronously(5_s);

@@ -28,7 +28,7 @@ plex_heap_alloc::plex_heap_alloc(::heap::allocator * pallocator, memsize nAllocS
    for (i32 i = 0; i < get_count(); i++)
    {
 
-      set_at(i, __new plex_heap_alloc_sync(pallocator, nAllocSize, nBlockSize));
+      set_at(i, __raw_new plex_heap_alloc_sync(pallocator, nAllocSize, nBlockSize));
 
    }
 
@@ -242,7 +242,7 @@ void Free_check_pointer_in_cpp(void * p)
 //         if (palloc->m_iAllocSize == 16384)
 //         {
 //
-//            //::acme::get()->platform()->informationf(".");
+//            //informationf(".");
 //
 //         }
 //

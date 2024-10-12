@@ -280,7 +280,7 @@ namespace nano
 
       }
 
-      ::acme::get()->platform()->informationf("\n\nGoing to touch library (1) " + string(strPath) + "\n");
+      informationf("\n\nGoing to touch library (1) " + string(strPath) + "\n");
 
       ::file::path path;
 
@@ -449,7 +449,7 @@ namespace nano
 
       }
 
-      ::acme::get()->platform()->informationf(strMessage + "\n\n");
+      informationf(strMessage + "\n\n");
 
       return plibrary;
 
@@ -504,7 +504,7 @@ namespace nano
 
       }
 
-      ::acme::get()->platform()->informationf("\n" + strMessage + "\n\n");
+      informationf("\n" + strMessage + "\n\n");
 
       return p;
 

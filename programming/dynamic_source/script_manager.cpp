@@ -831,7 +831,7 @@ namespace dynamic_source
       string strNew;
 #ifdef WINDOWS_DESKTOP
       u32 dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
-      LPWSTR lpsz = __new wchar_t[dwSize + 1024];
+      LPWSTR lpsz = __raw_new wchar_t[dwSize + 1024];
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1024);
       strNew = lpsz;
       delete lpsz;

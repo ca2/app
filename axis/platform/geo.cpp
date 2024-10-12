@@ -287,7 +287,7 @@ namespace geo
       if (!pcity)
       {
 
-         pcity = __new openweather_city();
+         pcity = __raw_new openweather_city();
 
          pcity->m_iIndex = openweather_find_city2(
             strQuery,

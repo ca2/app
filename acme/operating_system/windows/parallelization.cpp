@@ -115,7 +115,7 @@ void _do_tasks()
    if (is_main_thread())
    {
 
-      auto pwindowing = ::platform::get()->system()->acme_windowing();
+      auto pwindowing = system()->acme_windowing();
 
       if (pwindowing)
       {
@@ -126,7 +126,7 @@ void _do_tasks()
 
    }
 
-   auto pwindowing = ::platform::get()->system()->acme_windowing();
+   auto pwindowing = system()->acme_windowing();
 
    if (pwindowing)
    {

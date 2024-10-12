@@ -7,12 +7,12 @@
 #include "acme/_operating_system.h"
 
 
-extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory)
-{
-
-   pfactory->add_factory_item < ::windows::nano::dynamic_library::dynamic_library, ::nano::dynamic_library::dynamic_library >();
-
-}
-
-
+//
+//{
+//
+//   pfactory->add_factory_item < ::windows::dynamic_library, ::operating_system::dynamic_library >();
+//
+//}
+//
+//
 

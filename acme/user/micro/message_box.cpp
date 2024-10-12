@@ -575,7 +575,7 @@ namespace micro
 //   if (::is_null(pparticle))
 //   {
 //      
-//      auto psequencer = ::operating_system::message_box::create_sequencer(::platform::get()->system(),                                                        scopedstrMessage, scopedstrTitle,
+//      auto psequencer = ::operating_system::message_box::create_sequencer(system(),                                                        scopedstrMessage, scopedstrTitle,
 //                                                        emessagebox,
 //                                                        scopedstrDetails, picon);
 //      
@@ -690,7 +690,7 @@ namespace micro
 //   if (::is_null(pparticle))
 //   {
 //
-//      auto psequencer = ::operating_system::message_box::create_sequencer(::platform::get()->system(),                                                        scopedstrMessage, scopedstrTitle,
+//      auto psequencer = ::operating_system::message_box::create_sequencer(system(),                                                        scopedstrMessage, scopedstrTitle,
 //                                                              emessagebox,
 //                                                              scopedstrDetails, picon);
 //

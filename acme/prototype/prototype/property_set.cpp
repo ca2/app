@@ -2903,7 +2903,7 @@ CLASS_DECL_ACME ::pointer < ::property_set > create_network_arguments_property_s
    }
 
 
-   auto ppropertysetNetworkArguments = ::platform::get()->system()->__create_new<::property_set>();
+   auto ppropertysetNetworkArguments = system()->__create_new<::property_set>();
 
    ppropertysetNetworkArguments->parse_network_arguments(scopedstrNetworkArguments);
 

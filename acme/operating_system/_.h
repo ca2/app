@@ -33,3 +33,23 @@ consteval bool is_universal_windows() { return false; }
 #endif
 
 
+
+// Created by camilo on 2024-06-02 16:46 <3ThomasBorregaardSorensen!!
+// From idn by camilo on 2024-06-02 17:58 <3ThomasBorregaardSorensen!!
+#pragma once
+
+
+struct library_t;
+
+
+namespace operating_system
+{
+
+
+   class dynamic_library;
+
+
+} // namespace operating_system
+
+
+

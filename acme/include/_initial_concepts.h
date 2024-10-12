@@ -734,3 +734,7 @@ concept const_string_castable =
 
 
 
+template < typename SUBPARTICLE >
+concept primitive_subparticle = ::std::is_base_of_v<::subparticle, SUBPARTICLE>;
+
+

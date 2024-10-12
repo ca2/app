@@ -82,7 +82,7 @@ namespace sockets
 #if COUNTERS_001
       g_iSocketThread--;
 
-      ::acme::get()->platform()->informationf("--->>>>>socket_thread::~SOCKET_thread\n");
+      informationf("--->>>>>socket_thread::~SOCKET_thread\n");
 #endif
    }
 

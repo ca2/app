@@ -502,7 +502,7 @@ CLASS_DECL_ACME ::pointer < ::subparticle > message_box_sequencer(::particle * p
    if (::is_null(pparticle))
    {
       
-      auto psequencer = ::operating_system::message_box::create_sequencer(::platform::get()->system(),                                                        scopedstrMessage, scopedstrTitle,
+      auto psequencer = ::operating_system::message_box::create_sequencer(system(),                                                        scopedstrMessage, scopedstrTitle,
                                                         emessagebox,
                                                         scopedstrDetails, picon);
       
@@ -617,7 +617,7 @@ CLASS_DECL_ACME ::payload message_box_synchronous(::particle * pparticle, const 
    if (::is_null(pparticle))
    {
 
-      auto psequencer = ::operating_system::message_box::create_sequencer(::platform::get()->system(),                                                        scopedstrMessage, scopedstrTitle,
+      auto psequencer = ::operating_system::message_box::create_sequencer(system(),                                                        scopedstrMessage, scopedstrTitle,
                                                               emessagebox,
                                                               scopedstrDetails, picon);
 

@@ -1288,8 +1288,6 @@ template < typename TYPE >
 return p;
 
 }
-template < typename SUBPARTICLE >
-concept primitive_subparticle = ::std::is_base_of_v<::subparticle, SUBPARTICLE>;
 
 
 // https://stackoverflow.com/questions/71921797/c-concepts-checking-if-derived-from-a-templated-class-with-unknown-template-p
@@ -1344,33 +1342,53 @@ template < primitive_subparticle SUBPARTICLE >
 class __pointer_site
 {
 public:
+
+
 #if REFERENCING_DEBUGGING
+
 
    reference_referer * m_preferer;
 
-#endif
 
-   __pointer_site(REFERENCING_DEBUGGING_PARAMETERS_DECLARATION)
+   __pointer_site(const ::reference_referer & referer, ::reference_referer ** pprefererGet = nullptr)
    {
 
-#if REFERENCING_DEBUGGING
-      
-      m_preferer = new ::reference_referer(referer);
+      m_preferer = __raw_new ::reference_referer(referer);
 
-#endif
+      if (pprefererGet)
+      {
+
+         *pprefererGet = m_preferer;
+
+      }
 
    }
 
 
-   template < typename TYPE >
-   ::pointer < TYPE > operator << (TYPE * p)
+#else
+
+
+   __pointer_site()
+   {
+
+
+   }
+
+
+#endif
+
+
+   template < primitive_subparticle SUBPARTICLE >
+   ::pointer < SUBPARTICLE > operator << (SUBPARTICLE* p)
    { 
 
 #if REFERENCING_DEBUGGING
 
-      ::pointer < TYPE > pointer({ transfer_t{}, p });
+      ::pointer < SUBPARTICLE > pointer({ transfer_t{}, p });
 
       pointer.m_preferer = m_preferer;
+
+      return ::transfer(pointer);
 
 #else
       
@@ -1380,17 +1398,19 @@ public:
    
    }
 
-   template < typename TYPE >
-   ::pointer < TYPE > operator += (TYPE * p) 
+   template < primitive_subparticle SUBPARTICLE >
+   ::pointer < SUBPARTICLE > operator += (SUBPARTICLE* p)
    {
       
 #if REFERENCING_DEBUGGING
 
-      ::pointer < TYPE > pointer(p);
+      ::pointer < SUBPARTICLE > pointer(p);
 
       pointer.m_preferer = m_preferer;
 
       p->add_referer(m_preferer);
+
+      return ::transfer(pointer);
 
 #else
 
@@ -1409,7 +1429,7 @@ public:
 
 #define __transfer_as_pointer __pointer_site(__refdbg_function_file_line__) <<
 
-#define __allocate __transfer_as_pointer new
+#define __allocate __transfer_as_pointer __raw_new
 
 #define __as_pointer __pointer_site(__refdbg_function_file_line__) +=
 
@@ -1449,9 +1469,9 @@ public:
 
 #define __initialize_pointer __initialize_pointer_with(this)
 
-#define __initialize_new_with(P) __initialize_pointer_with(P) new
+#define __initialize_new_with(P) __initialize_pointer_with(P) __raw_new
 
-#define __initialize_new __initialize_pointer new
+#define __initialize_new __initialize_pointer __raw_new
 
 
 

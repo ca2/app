@@ -13,7 +13,7 @@
 #include "acme/nano/account/account.h"
 #include "acme/nano/archive/archive.h"
 #include "acme/nano/compress/compress.h"
-#include "acme/nano/dynamic_library/dynamic_library.h"
+//#include "acme/nano/dynamic_library/dynamic_library.h"
 #include "acme/nano/graphics/graphics.h"
 #include "acme/nano/http/http.h"
 #include "acme/nano/idn/idn.h"
@@ -53,10 +53,10 @@ namespace nano
    {
       return system()->system_factory()->__factory(m_pcompress);
    }
-   ::nano::dynamic_library::dynamic_library*nano::dynamic_library()
-   {
-      return system()->system_factory()->__factory(m_pdynamiclibrary);
-   }
+   //::nano::dynamic_library::dynamic_library*nano::dynamic_library()
+   //{
+   //   return system()->system_factory()->__factory(m_pdynamiclibrary);
+   //}
    ::nano::graphics::graphics*nano::graphics()
    {
       return system()->system_factory()->__factory(m_pgraphics);

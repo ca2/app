@@ -273,7 +273,7 @@ namespace xcb{namespace nano { namespace user{void process_messages();}}}
 void _do_tasks()
 {
 
-   auto psystem = ::platform::get()->system();
+   auto psystem = system();
 
    auto pwindowingsystem = psystem->windowing_system();
 

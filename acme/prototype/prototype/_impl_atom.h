@@ -428,7 +428,7 @@ inline atom::atom(const atom & atom)
 
       m_etype = atom.m_etype;
 
-      __new(&m_str) ::string(atom.m_str);
+      __raw_new(&m_str) ::string(atom.m_str);
 
    }
    else

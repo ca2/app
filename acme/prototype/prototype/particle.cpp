@@ -31,69 +31,11 @@ CLASS_DECL_ACME void do_tasks();
 #endif
 
 
-#if REFERENCING_DEBUGGING
-
-
-bool g_bDefaultEnableObjectReferenceCountDebug = false;
-
-
-//CLASS_DECL_ACME void on_construct_particle(::particle * pparticle);
-
-
-subparticle::subparticle() :
-   m_countReference(1)
-{
-
-#if REFERENCING_DEBUGGING
-   
-   if (!g_bDefaultEnableObjectReferenceCountDebug)
-   {
-
-      disable_referencing_debugging();
-
-   }
-
-   ::allocator::on_construct_particle(this);
-
-#endif
-
-}
-
-
-//particle::particle(disable_referencing_debugging_t) :
-//   m_countReference(1)
-//{
-//
-//#if REFERENCING_DEBUGGING
-//
-//   disable_referencing_debugging();
-//
-//#endif
-//
-//   ::allocator::on_construct_particle(this);
-//
-//}
-
-
-#endif
 
 particle::~particle()
 {
 
-#if REFERENCING_DEBUGGING
    m_pparticleSynchronization.release();
-   {
-
-      //auto p = ::transfer(m_preferenceitema);
-
-      //m_preferenceitema.release();
-
-      ::allocator::on_destruct_particle(this);
-
-//      ::acme::del(m_preferenceitema);
-
-   }
-#endif
 
 }
 
@@ -298,14 +240,7 @@ class ::platform::platform * particle::_platform() const
 
 
 
-::string particle::get_debug_title() const
-{
 
-   auto pparticle = (::particle *) this;
-
-   return ::type(*pparticle).name();
-
-}
 
 
 //void particle::initialize(::particle * pparticle)
@@ -470,7 +405,7 @@ class ::user::user * particle::user() const
 ::acme::system * particle::system() const
 {
 
-   return ::is_set(m_pcontext) ? m_pcontext->system() : ::platform::get()->system();
+   return ::is_set(m_pcontext) ? m_pcontext->system() : system();
 
 }
 
@@ -743,38 +678,6 @@ void particle::install_message_routing(::channel * pchannel)
 }
 
 
-void subparticle::init_task()
-{
-
-
-}
-
-
-void subparticle::call()
-{
-
-   //m_eflagElement += e_flag_running;
-
-   try
-   {
-
-      run();
-
-   }
-   catch (const ::exit_exception& exception)
-   {
-
-      throw exception;
-
-   }
-   catch (...)
-   {
-
-   }
-
-   //m_eflagElement -= e_flag_running;
-
-}
 
 
 bool particle::_is_ok() const
@@ -1191,13 +1094,13 @@ class tracer * particle::tracer() const
       if (::is_set(pplatform))
       {
 
-         auto pcontext = pplatform->m_pcontext;
+         auto psystem = pplatform->m_psystem;
 
-         if (::is_set(pcontext))
+         if (::is_set(psystem))
          {
 
 
-            return pcontext;
+            return psystem;
 
          }
 
@@ -1869,7 +1772,7 @@ bool particle::_wait(const class time & timeWait)
 //
 //         pmutex->m_strThread = ::task_get_name();
 //         pmutex->m_itask = ::current_itask();
-//         ::acme::get()->platform()->informationf("");
+//         informationf("");
 //
 //      }
 //
@@ -2781,23 +2684,23 @@ void particle::process_owned_procedure_list(::procedure_list & procedurelist, bo
 }
 
 
-CLASS_DECL_ACME abc __call__add_referer(const ::reference_referer & referer, ::reference_referer ** ppreferer)
-{
-
-   auto preferer = ::allocator::defer_add_referer(referer);
-
-   if (ppreferer)
-   {
-
-      *ppreferer = preferer;
-
-   }
-
-   //return ::allocator::g_pacessorDefault;
-
-   return {};
-
-}
+//CLASS_DECL_ACME abc __call__add_referer(const ::reference_referer & referer, ::reference_referer ** pprefererGet)
+//{
+//
+//   auto preferer = ::allocator::defer_add_referer(referer);
+//
+//   if (pprefererGet)
+//   {
+//
+//      *pprefererGet = preferer;
+//
+//   }
+//
+//   //return ::allocator::g_pacessorDefault;
+//
+//   return {};
+//
+//}
 
 
 #endif
@@ -2884,7 +2787,7 @@ memory_file_pointer particle::create_memory_file_by_reading(::file::file* pfile)
 CLASS_DECL_ACME::trace_statement debug()
 {
 
-   return ::transfer(::platform::get()->system()->debug());
+   return ::transfer(system()->debug());
 
 }
 
@@ -2892,7 +2795,7 @@ CLASS_DECL_ACME::trace_statement debug()
 CLASS_DECL_ACME::trace_statement information()
 {
 
-   return ::transfer(::platform::get()->system()->information());
+   return ::transfer(system()->information());
 
 }
 
@@ -2900,7 +2803,7 @@ CLASS_DECL_ACME::trace_statement information()
 CLASS_DECL_ACME::trace_statement warning()
 {
 
-   return ::transfer(::platform::get()->system()->warning());
+   return ::transfer(system()->warning());
 
 }
 
@@ -2909,7 +2812,7 @@ CLASS_DECL_ACME::trace_statement warning()
 CLASS_DECL_ACME::trace_statement error()
 {
 
-   return ::transfer(::platform::get()->system()->error());
+   return ::transfer(system()->error());
 
 }
 
@@ -2918,7 +2821,7 @@ CLASS_DECL_ACME::trace_statement error()
 CLASS_DECL_ACME::trace_statement fatal()
 {
 
-   return ::transfer(::platform::get()->system()->fatal());
+   return ::transfer(system()->fatal());
 
 }
 
@@ -2933,7 +2836,7 @@ CLASS_DECL_ACME void debugf(const ::ansi_character* pszFormat, ...)
 
    va_start(arguments, pszFormat);
 
-   ::platform::get()->system()->formatf_trace(e_trace_level_debug, pszFormat, arguments);
+   system()->formatf_trace(e_trace_level_debug, pszFormat, arguments);
 
    va_end(arguments);
 
@@ -2947,7 +2850,7 @@ CLASS_DECL_ACME void informationf(const ::ansi_character* pszFormat, ...)
 
    va_start(arguments, pszFormat);
 
-   ::platform::get()->system()->formatf_trace(e_trace_level_information, pszFormat, arguments);
+   system()->formatf_trace(e_trace_level_information, pszFormat, arguments);
 
    va_end(arguments);
 
@@ -2961,7 +2864,7 @@ CLASS_DECL_ACME void warningf(const ::ansi_character* pszFormat, ...)
 
    va_start(arguments, pszFormat);
 
-   ::platform::get()->system()->formatf_trace(e_trace_level_warning, pszFormat, arguments);
+   system()->formatf_trace(e_trace_level_warning, pszFormat, arguments);
 
    va_end(arguments);
 
@@ -2975,7 +2878,7 @@ CLASS_DECL_ACME void errorf(const ::ansi_character* pszFormat, ...)
 
    va_start(arguments, pszFormat);
 
-   ::platform::get()->system()->formatf_trace(e_trace_level_error, pszFormat, arguments);
+   system()->formatf_trace(e_trace_level_error, pszFormat, arguments);
 
    va_end(arguments);
 
@@ -2989,7 +2892,7 @@ CLASS_DECL_ACME void fatalf(const ::ansi_character* pszFormat, ...)
 
    va_start(arguments, pszFormat);
 
-   ::platform::get()->system()->formatf_trace(e_trace_level_fatal, pszFormat, arguments);
+   system()->formatf_trace(e_trace_level_fatal, pszFormat, arguments);
 
    va_end(arguments);
 

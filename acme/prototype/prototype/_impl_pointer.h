@@ -766,7 +766,7 @@ inline i64 pointer <T>::release()
       catch (...)
       {
 
-         ::acme::get()->platform()->informationf("exception release pparticle->release() \n");
+         informationf("exception release pparticle->release() \n");
 
       }
 #if REFERENCING_DEBUGGING
@@ -1153,10 +1153,10 @@ inline i64 increment_reference_count(c_derived *& pderived, const ::pointer<SOUR
 
 
 template < typename TYPE >
-inline i64 release(::pointer<TYPE>& pointer)
+inline i64 release(::pointer<TYPE>& pointer COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DEFINITION)
 {
 
-return release(pointer.m_p);
+   return release(pointer.m_p __comma_refdbg_preferer__);
 
 }
 
@@ -1627,7 +1627,7 @@ inline pointer < T >& pointer < T > ::operator = (pointer < T2 > && t)
 
       }
 #endif
-      ::release(pOld REFERENCING_DEBUGGING_P(m_preferer));
+      ::release(pOld __comma_refdbg_m_preferer__);
 
    }
 
@@ -1999,7 +1999,7 @@ inline i64 release(T *& p COMMA_REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    catch (...)
    {
 
-      ::acme::get()->platform()->informationf("exception release p = nullptr; \n");
+      informationf("exception release p = nullptr; \n");
 
    }
 
@@ -2012,7 +2012,7 @@ inline i64 release(T *& p COMMA_REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
    catch (...)
    {
 
-      ::acme::get()->platform()->informationf("exception release pparticle->release() \n");
+      informationf("exception release pparticle->release() \n");
 
    }
 
@@ -2051,7 +2051,7 @@ inline i64 global_release(T *& p)
    catch (...)
    {
 
-      ::acme::get()->platform()->informationf("exception release pparticle->release() \n");
+      informationf("exception release pparticle->release() \n");
 
    }
 

@@ -1473,7 +1473,7 @@ void user::destroy()
 //   //i32 application::sync_message_box(::user::interaction_base * puiOwner, const ::string & pszMessage, ::u32 fuStyle)
 //   //{
 //
-//   //   ::acme::get()->platform()->informationf("\n\napp_message_box: " + string(pszMessage) + "\n\n");
+//   //   informationf("\n\napp_message_box: " + string(pszMessage) + "\n\n");
 //
 //   //   if (&Session == nullptr || psession->user() == nullptr)
 //   //      return ::base::application::sync_message_box(puiOwner, pszMessage, fuStyle);

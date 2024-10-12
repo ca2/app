@@ -30,8 +30,8 @@
    static kvm_t *kd = nullptr;
    str=  ::platform::get()->_get_argv(0);
    // not sure if I am doing this right??
-   auto penvironment = ::platform::get()->system()->__create<::operating_system::environment>();
-   auto path = ::platform::get()->system()->acmepath()->path_get_path(str, penvironment);
+   auto penvironment = system()->__create<::operating_system::environment>();
+   auto path = system()->acmepath()->path_get_path(str, penvironment);
    if (path.m_etype & (::file::e_type_existent_file))
    {
       int cntp = 0;

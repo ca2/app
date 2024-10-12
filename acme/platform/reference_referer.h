@@ -148,9 +148,38 @@ public:
    __new_site(REFERENCING_DEBUGGING_PARAMETERS_DECLARATION)
    {
 #if REFERENCING_DEBUGGING
-      m_preferer = new reference_referer(referer);
+      m_preferer = __raw_new reference_referer(referer);
 #endif
    }
+
+   template < primitive_subparticle T >
+   T* operator << (T* p)
+   {
+#if REFERENCING_DEBUGGING
+      p->add_referer(m_preferer);
+#endif
+      return p;
+
+   }
+
+};
+
+
+class __delete_site
+{
+public:
+
+#if REFERENCING_DEBUGGING
+   ::reference_referer* m_preferer;
+   __delete_site(::reference_referer * preferer)
+   {
+      m_preferer = preferer;
+   }
+#else
+   __delete_site()
+   {
+   }
+#endif
 
    template < typename T >
    T* operator << (T* p)
@@ -163,5 +192,4 @@ public:
    }
 
 };
-
 

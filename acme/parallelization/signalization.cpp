@@ -21,7 +21,7 @@ namespace parallelization
    signalization::~signalization()
    {
 
-      //::acme::get()->platform()->informationf("signalization::~signalization");
+      //informationf("signalization::~signalization");
 
    }
 

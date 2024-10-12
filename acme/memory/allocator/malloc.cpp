@@ -195,14 +195,14 @@ namespace heap
       if (memory_order(&p[sizeof(uptr)], a, sizeof(a)) != 0)
       {
 
-         m_pacme->m_pplatform->informationf("memory corruption before allocation");
+         informationf("memory corruption before allocation");
 
       }
 
       if (memory_order(&p[sizeof(uptr) + 256 + *pinteraction], a, sizeof(a)) != 0)
       {
 
-         m_pacme->m_pplatform->informationf("memory corruption after allocation");
+         informationf("memory corruption after allocation");
 
       }
 

@@ -64,7 +64,7 @@ namespace mathematics
 //      i32 iOpen               = 0;
       //    bool bLeft              = false;
       //  bool bNumber            = false;
-      m_pimpl                 = __new number();
+      m_pimpl                 = __raw_new number();
 //      const ::scoped_string & scopedstrNumber  = nullptr;
       //    value_impl * pimpl      = m_pimpl;
 

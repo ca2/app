@@ -419,7 +419,7 @@ string key_to_char(wparam wparam, lparam lparam)
 //
 //      }
 //
-//      ::acme::get()->platform()->informationf("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
+//      informationf("Failed to ::CoInitializeEx(nullptr, COINIT_MULTITHREADED) at __node_pre_init");
 //
 //      return false;
 //

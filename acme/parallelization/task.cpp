@@ -85,7 +85,7 @@ task::~task()
    auto strThreadName = ::task_get_name();
    auto itask = ::current_itask();
 
-   ::acme::get()->platform()->informationf("Task destructor : " + strThreadName + " : (" + ::as_string(itask) + ")\n");
+   informationf("Task destructor : " + strThreadName + " : (" + ::as_string(itask) + ")\n");
 
 #endif
 
@@ -2523,9 +2523,9 @@ void do_tasks()
    if (::platform::get()->m_bConsole)
    {
 
-      ::platform::get()->application()->do_tasks();
+      system()->application()->do_tasks();
 
-      ::platform::get()->system()->do_tasks();
+      system()->do_tasks();
 
    }
 

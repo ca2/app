@@ -652,7 +652,7 @@
 
 // //          if (!dwModBase)
 // //          {
-// //          //::acme::get()->platform()->informationf("engine::stack_next :: StackWalk returned true but the address doesn't belong to a module in the process.");
+// //          //informationf("engine::stack_next :: StackWalk returned true but the address doesn't belong to a module in the process.");
 // //          return;
 // //          if (bRetry)
 // //          {

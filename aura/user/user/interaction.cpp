@@ -2759,7 +2759,7 @@ namespace user
          if (emessage == e_message_key_down)
          {
 
-            ::acme::get()->platform()->informationf("e_message_key_down");
+            informationf("e_message_key_down");
 
          }
 
@@ -5538,7 +5538,7 @@ namespace user
                   if (pinteraction->has_destroying_flag() || !pinteraction->is_window())
                   {
 
-                     ::acme::get()->platform()->informationf("trying to draw window being destroyed");
+                     informationf("trying to draw window being destroyed");
 
                      continue;
 
@@ -13519,14 +13519,14 @@ void interaction::create_interaction(::user::interaction * puserinteractionParen
          if (pmessagePost->m_atom == e_message_scroll_y)
          {
 
-            ::acme::get()->platform()->informationf("e_message_scroll_y");
+            informationf("e_message_scroll_y");
 
 
          }
          else if (pmessagePost->m_atom == e_message_text_composition)
          {
 
-            ::acme::get()->platform()->informationf("message text composition");
+            informationf("message text composition");
 
          }
 
@@ -13615,7 +13615,7 @@ void interaction::create_interaction(::user::interaction * puserinteractionParen
       //         if(iDebugmessage_handlerTime > 20)
       //         {
       //
-      //            ::acme::get()->platform()->informationf("interaction_impl::message handler flooded?\n");
+      //            informationf("interaction_impl::message handler flooded?\n");
       //
       //         }
       //         else
@@ -23417,7 +23417,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
    //      // classes and it has the side effect of warning at debug output log
    //      // the default resize_to_fit implementation is being called.
    //
-   //      ::acme::get()->platform()->informationf("default resize_to_fit doesn't do anything\n");
+   //      informationf("default resize_to_fit doesn't do anything\n");
    //
    //
    //   }
@@ -25927,7 +25927,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       auto pszType = typeid(*this).name();
 
-      ::acme::get()->platform()->informationf("interaction::on_message_left_button_double_click" + ::string(pszType));
+      informationf("interaction::on_message_left_button_double_click" + ::string(pszType));
 
       if (!is_window_enabled())
       {

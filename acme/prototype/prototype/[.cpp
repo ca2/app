@@ -6125,13 +6125,13 @@ void var_skip_network_payload(const char *& pszJson, const ::ansi_character * ps
    else if (*pszJson == ']')
    {
 
-      ::acme::get()->platform()->informationf("");
+      informationf("");
 
    }
    else if (*pszJson == '\0')
    {
 
-      ::acme::get()->platform()->informationf("");
+      informationf("");
 
    }
    else
@@ -6231,7 +6231,7 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
    else if (*pszJson == ']')
    {
 
-      ::acme::get()->platform()->informationf("");
+      informationf("");
 
       //pszJson++;
 
@@ -6239,7 +6239,7 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
    else if (*pszJson == '\0')
    {
 
-      ::acme::get()->platform()->informationf("");
+      informationf("");
 
    }
    else
@@ -6379,12 +6379,12 @@ void payload::parse_network_payload(const char *& pszJson, const ::ansi_characte
    }
    else if (*pszJson == ']')
    {
-      ::acme::get()->platform()->informationf("");
+      informationf("");
       return ::e_type_new;
    }
    else if (*pszJson == '\0')
    {
-      ::acme::get()->platform()->informationf("");
+      informationf("");
       return ::e_type_new;
    }
    else

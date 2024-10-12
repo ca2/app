@@ -25,7 +25,7 @@ DllMain(HINSTANCE hInstance,::u32 dwReason,LPVOID lpReserved)
 
 
 #if defined(_WIN32) && !defined(UNIVERSAL_WINDOWS)
-      ::acme::get()->platform()->informationf("::ca2:: axisrdpclient.dll :: initializing!\n");
+      informationf("::ca2:: axisrdpclient.dll :: initializing!\n");
 #endif
 
    }
@@ -34,7 +34,7 @@ DllMain(HINSTANCE hInstance,::u32 dwReason,LPVOID lpReserved)
 
       //freerdp_channels_global_uninit();
 #if defined(_WIN32) && !defined(UNIVERSAL_WINDOWS)
-      ::acme::get()->platform()->informationf("::ca2:: axisrdpclient.dll :: terminating!\n");
+      informationf("::ca2:: axisrdpclient.dll :: terminating!\n");
 #endif
 
    }

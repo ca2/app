@@ -4710,7 +4710,7 @@ bool node::are_framework_shared_libraries_busy(const ::scoped_string & scopedstr
 void node_application_send_status(const char * pszStatus, void * p, long long ll)
 {
    
-   ::platform::get()->node()->node_application_on_status(pszStatus, p, ll);
+   system()->node()->node_application_on_status(pszStatus, p, ll);
    
 }
 

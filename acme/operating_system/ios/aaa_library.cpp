@@ -57,7 +57,7 @@ namespace platform
 
       }
 
-      //::acme::get()->platform()->informationf("\n\nGoing to dlopen : \"" + strPath + "\"");
+      //informationf("\n\nGoing to dlopen : \"" + strPath + "\"");
 
       ::file::path path;
 
@@ -141,7 +141,7 @@ namespace platform
 
       }
 
-      ::acme::get()->platform()->informationf("\n"+strMessage+"\n\n");
+      informationf("\n"+strMessage+"\n\n");
 
       return plibrary;
 
@@ -209,7 +209,7 @@ namespace platform
 
       }
 
-      ::acme::get()->platform()->informationf("\n"+strMessage+"\n\n");
+      informationf("\n"+strMessage+"\n\n");
 
       return plibrary;
 

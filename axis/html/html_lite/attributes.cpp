@@ -267,7 +267,7 @@ strsize LiteHTMLAttributes::parseFromStr(::lite_html_reader * preader, const ::s
       }
 
       // add attribute/value pair to collection
-      if (pcoll->add(__new LiteHTMLElemAttr(oElemAttr)) < 0)
+      if (pcoll->add(__raw_new LiteHTMLElemAttr(oElemAttr)) < 0)
          goto LError;
 
       // advance seek pointer
@@ -308,13 +308,13 @@ LiteHTMLElemAttr* LiteHTMLAttributes::addAttribute(const ::string & lpszName, co
    ASSERT(is_string_ok(pszValue));
 
 
-   LiteHTMLElemAttr   *pItem = __new LiteHTMLElemAttr(lpszName, pszValue);
+   LiteHTMLElemAttr   *pItem = __raw_new LiteHTMLElemAttr(lpszName, pszValue);
 
    if (pItem != nullptr)
    {
       if (m_parrAttrib == nullptr)
       {
-         if ((m_parrAttrib = __new CElemAttrArray()) == nullptr)
+         if ((m_parrAttrib = __raw_new CElemAttrArray()) == nullptr)
          {
             SAFE_DELETE_POINTER(pItem);
             //               TRACE0("(Error) LiteHTMLAttributes::addAttribute: Out of memory.\n");

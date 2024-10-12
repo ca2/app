@@ -202,7 +202,7 @@ namespace universal_windows
          //   void* plibrary = nullptr;
 
 
-         //   ::acme::get()->platform()->informationf("\n\nGoing to touch library (1) " + string(strPath) + "\n");
+         //   informationf("\n\nGoing to touch library (1) " + string(strPath) + "\n");
 
          //   ::file::path path;
 
@@ -371,7 +371,7 @@ namespace universal_windows
 
          //   }
 
-         //   ::acme::get()->platform()->informationf(strMessage + "\n\n");
+         //   informationf(strMessage + "\n\n");
 
          //   return (library_t*)plibrary;
 
@@ -433,7 +433,7 @@ namespace universal_windows
 
                string strLastError = ::windows::last_error_message(dwLastError);
 
-               ::acme::get()->platform()->informationf(strLastError);
+               informationf(strLastError);
 
             }
             catch (...)

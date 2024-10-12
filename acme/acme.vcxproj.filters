@@ -388,15 +388,6 @@
     <Filter Include="Header Files\operating_system\windows\nano\dynamic_library">
       <UniqueIdentifier>{546d7de7-1e6d-47df-bcff-f488010ebb14}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\nano\dynamic_library">
-      <UniqueIdentifier>{93625460-ca0d-4fee-b145-56f6e3748c54}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\nano\dynamic_library">
-      <UniqueIdentifier>{984c9105-6a9e-48f7-942f-cfc63879da2e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\operating_system\windows\nano\dynamic_library">
-      <UniqueIdentifier>{028aaec9-6ff4-4fa5-bbd8-bd50a3ad7131}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\nano\idn">
       <UniqueIdentifier>{638fa9d1-cc11-4669-8d92-77f070702751}</UniqueIdentifier>
     </Filter>
@@ -3732,14 +3723,8 @@
     <ClInclude Include="nano\shell\_.h">
       <Filter>Header Files\nano\shell</Filter>
     </ClInclude>
-    <ClInclude Include="nano\dynamic_library\dynamic_library.h">
-      <Filter>Header Files\nano\dynamic_library</Filter>
-    </ClInclude>
     <ClInclude Include="operating_system\windows\nano\dynamic_library\dynamic_library.h">
       <Filter>Header Files\operating_system\windows\nano\dynamic_library</Filter>
-    </ClInclude>
-    <ClInclude Include="nano\dynamic_library\_.h">
-      <Filter>Header Files\nano\dynamic_library</Filter>
     </ClInclude>
     <ClInclude Include="nano\idn\_.h">
       <Filter>Header Files\nano\idn</Filter>
@@ -3989,6 +3974,15 @@
     </ClInclude>
     <ClInclude Include="parallelization\task_context.h">
       <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\dynamic_library.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="nano\_aaa_dynamic_library.h">
+      <Filter>Header Files\nano</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\dynamic_library.h">
+      <Filter>Header Files\operating_system\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -5387,12 +5381,6 @@
     <ClCompile Include="nano\shell\shell.cpp">
       <Filter>Source Files\nano\shell</Filter>
     </ClCompile>
-    <ClCompile Include="nano\dynamic_library\dynamic_library.cpp">
-      <Filter>Source Files\nano\dynamic_library</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\nano\dynamic_library\dynamic_library.cpp">
-      <Filter>Source Files\operating_system\windows\nano\dynamic_library</Filter>
-    </ClCompile>
     <ClCompile Include="nano\idn\idn.cpp">
       <Filter>Source Files\nano\idn</Filter>
     </ClCompile>
@@ -5407,9 +5395,6 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\nano\idn\idn.cpp">
       <Filter>Source Files\operating_system\windows_common\nano\idn</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\windows\nano\dynamic_library\_dynamic_library.cpp">
-      <Filter>Source Files\operating_system\windows\nano\dynamic_library</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\windows_common\nano\idn\_idn.cpp">
       <Filter>Source Files\operating_system\windows_common\nano\idn</Filter>
@@ -5608,6 +5593,15 @@
     </ClCompile>
     <ClCompile Include="user\user\message_box.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\dynamic_library.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\dynamic_library.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\_factory.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

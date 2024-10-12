@@ -63,7 +63,7 @@ namespace sockets
 
       auto iSocketHandler = g_interlockedcountSocketHandler++;
 
-      ::acme::get()->platform()->informationf("::sockets::socket_handler currently allocated count = " + ::as_string((::iptr) iSocketHandler));
+      informationf("::sockets::socket_handler currently allocated count = " + ::as_string((::iptr) iSocketHandler));
 
 #endif
 

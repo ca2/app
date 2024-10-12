@@ -669,7 +669,7 @@ namespace factory
    //      if (p && ::type(p).name()) == strText
    //      {
 
-   //         ::acme::get()->platform()->informationf("loading into existing matter of same class type (1)");
+   //         informationf("loading into existing matter of same class type (1)");
 
    //      }
    //      else
@@ -680,7 +680,7 @@ namespace factory
    //         if (!p)
    //         {
 
-   //            ::acme::get()->platform()->informationf("defer_new failed (1.1)");
+   //            informationf("defer_new failed (1.1)");
 
    //            stream.set_fail_bit();
 
@@ -688,7 +688,7 @@ namespace factory
    //         else if (::type(p).name()) != strText
    //         {
 
-   //            ::acme::get()->platform()->informationf("allocated matter type is different from streamed matter type (1.2)");
+   //            informationf("allocated matter type is different from streamed matter type (1.2)");
 
    //            stream.set_fail_bit();
 
@@ -705,7 +705,7 @@ namespace factory
    //      if (p && atom == ::type(p).name())
    //      {
 
-   //         ::acme::get()->platform()->informationf("loading into existing matter of same class type (2)");
+   //         informationf("loading into existing matter of same class type (2)");
 
    //      }
    //      else
@@ -716,13 +716,13 @@ namespace factory
    //         if (!p)
    //         {
 
-   //            ::acme::get()->platform()->informationf("stream::alloc_object_from_text failed (2.1)");
+   //            informationf("stream::alloc_object_from_text failed (2.1)");
 
    //         }
    //         else if (::type(p).name()) != atom.to_string()
    //         {
 
-   //            ::acme::get()->platform()->informationf("allocated matter type is different from streamed matter type (2.2)");
+   //            informationf("allocated matter type is different from streamed matter type (2.2)");
 
    //            stream.set_fail_bit();
 

@@ -128,9 +128,6 @@ public:
 
 //   virtual void delete_this();
 
-   virtual ::string get_debug_title() const;
-
-
    inline ::particle * trace_this() const { return (::particle *) this; }
 
    virtual ::particle * get_context_particle();
@@ -892,7 +889,7 @@ public:
 //   catch (...)
 //   {
 //
-//      ::acme::get()->platform()->informationf("exception release p = nullptr; \n");
+//      informationf("exception release p = nullptr; \n");
 //
 //   }
 //
@@ -905,7 +902,7 @@ public:
 //   catch (...)
 //   {
 //
-//      ::acme::get()->platform()->informationf("exception release pparticle->release() \n");
+//      informationf("exception release pparticle->release() \n");
 //
 //   }
 //
@@ -943,7 +940,7 @@ inline i64 global_release(T*& p);
 //   catch (...)
 //   {
 //
-//      ::acme::get()->platform()->informationf("exception release pparticle->release() \n");
+//      informationf("exception release pparticle->release() \n");
 //
 //   }
 //
@@ -1172,7 +1169,7 @@ template < typename TYPE, typename T >
 void assign(::pointer<TYPE> & ptr, T * p);
 
 template < typename TYPE >
-::i64 release(::pointer<TYPE> & ptr);
+::i64 release(::pointer<TYPE> & ptr COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DECLARATION);
 
 //template < typename TYPE >
 //::i64 release(TYPE *& p);
@@ -1219,8 +1216,8 @@ namespace allocator
 
 #if REFERENCING_DEBUGGING
 
-CLASS_DECL_ACME bool refdbg_add_top_track(::particle* pparticle);
-CLASS_DECL_ACME void refdbg_erase_top_track(::particle* pparticle);
+CLASS_DECL_ACME bool refdbg_add_top_track(::subparticle* pparticle);
+CLASS_DECL_ACME void refdbg_erase_top_track(::subparticle* pparticle);
 
 
 class refdbg_top_track
@@ -1252,19 +1249,19 @@ public:
 
 
 inline ::particle* refdbg_this() { return (::particle*)::acme::get()->platform(); }
-class abc
-{
-public:
-
-   template < typename T >
-   T * operator << (T* p)
-   {
-
-      return p;
-   }
-
-};
-CLASS_DECL_ACME abc __call__add_referer(const ::reference_referer & referer, ::reference_referer ** ppreferer = nullptr);
+//class abc
+//{
+//public:
+//
+//   template < typename T >
+//   T * operator << (T* p)
+//   {
+//
+//      return p;
+//   }
+//
+//};
+//CLASS_DECL_ACME  __call__add_referer(const ::reference_referer & referer, ::reference_referer ** ppreferer = nullptr);
 
 #endif
 

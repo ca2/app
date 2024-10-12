@@ -272,7 +272,7 @@ bool __os_term_thread()
 void _do_tasks()
 {
 
-//   auto psystem = ::platform::get()->system();
+//   auto psystem = system();
 //
 ////   if(psystem->m_ewindowing == ::windowing::e_windowing_wayland)
 ////   {
@@ -294,7 +294,7 @@ void _do_tasks()
 //
 //   }
 
-   auto psystem = ::platform::get()->system();
+   auto psystem = system();
 
    auto pwindowingsystem = psystem->windowing_system();
 

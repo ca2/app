@@ -1023,7 +1023,7 @@ namespace sockets
                else
                {
 
-                  ::acme::get()->platform()->informationf("ws_buffering");
+                  informationf("ws_buffering");
 
                }
 

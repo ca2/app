@@ -100,7 +100,7 @@ CLASS_DECL_ACME void debug_print(const char * pszFormat, ...)
 
    str.formatf_arguments(pszFormat, args);
 
-   ::acme::get()->platform()->informationf(str);
+   informationf(str);
 
    va_end(args);
 

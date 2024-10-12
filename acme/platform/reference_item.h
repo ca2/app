@@ -21,14 +21,15 @@ public:
 
    ::reference_item_array *      m_pitema;
    int                           m_iStep;
-   ::collection::index                       m_iSerial = ::new_reference_item_serial();
-   reference_referer *           m_preferer = ::allocator::pop_referer();
+   //::collection::index           m_iSerial = ::new_reference_item_serial();
+   //reference_referer *           m_preferer = ::allocator::pop_referer();
+   ::collection::index           m_iSerial;
+   reference_referer *           m_preferer;
    ::string                      m_strDebug;
    ::string                      m_strDebugDecrement;
-   //bool                          m_bOn;
 
 
-   reference_item(::reference_item_array * pitema);
+   reference_item(::reference_item_array * pitema, ::collection::index iSerial, ::reference_referer * preferer);
    ~reference_item();
 
 

@@ -313,7 +313,7 @@ namespace axis
 ////
 ////            dappy(::type(this).name() + " : on_run failure : " + as_string(m_iErrorCode));
 ////
-////            ::acme::get()->platform()->informationf("application::main on_run termination failure\n");
+////            informationf("application::main on_run termination failure\n");
 ////
 ////         }
 //

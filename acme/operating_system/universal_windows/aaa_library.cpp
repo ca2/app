@@ -71,7 +71,7 @@ namespace platform
 
          string strLastError = ::windows::last_error_message(dwLastError);
 
-         ::acme::get()->platform()->informationf(strLastError);
+         informationf(strLastError);
 
       }
       catch (...)

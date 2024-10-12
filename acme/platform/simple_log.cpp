@@ -65,7 +65,7 @@ extern "C"
 void o_debug_string(const ::scoped_string & scopedstr)
 {
 
-   ::acme::get()->platform()->informationf(scopedstr);
+   informationf(scopedstr);
 
 }
 
@@ -515,7 +515,7 @@ CLASS_DECL_ACME void __simple_tracea(::particle * pparticle, enum_trace_level el
 
    strMessage += "\n";
 
-   ::acme::get()->platform()->informationf(strMessage);
+   informationf(strMessage);
 
 }
 

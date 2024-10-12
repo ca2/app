@@ -31,7 +31,7 @@ CLASS_DECL_ACME void * memory_allocate(memsize size, memsize * psizeAllocated, c
    if(::is_set(pszAnnotation))
    {
 
-      ::platform::get()->information() << "memory_allocate annotation : " << pszAnnotation;
+      information() << "memory_allocate annotation : " << pszAnnotation;
 
    }
 
@@ -112,7 +112,7 @@ CLASS_DECL_ACME void * memory_allocate_debug(memsize size, i32 nType, const char
    if(::is_null(pszAnnotation))
    {
 
-      ::platform::get()->information() << "memory_allocate_debug annotation : " << pszAnnotation;
+      information() << "memory_allocate_debug annotation : " << pszAnnotation;
 
    }
 
@@ -150,7 +150,7 @@ CLASS_DECL_ACME void * memory_reallocate_debug(void * p, memsize size, i32 nType
    if(::is_null(pszAnnotation))
    {
 
-      ::platform::get()->information() << "memory_reallocate_debug annotation : " << pszAnnotation;
+      information() << "memory_reallocate_debug annotation : " << pszAnnotation;
 
    }
 

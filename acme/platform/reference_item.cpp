@@ -13,8 +13,10 @@
 
 //critical_section * g_pcsRefDbg = nullptr;
 
-reference_item::reference_item(::reference_item_array * pitema) :
-   m_pitema(pitema)
+reference_item::reference_item(::reference_item_array * pitema, ::collection::index iSerial, ::reference_referer * preferer) :
+   m_pitema(pitema),
+   m_iSerial(iSerial),
+   m_preferer(preferer)
    //,m_bOn(true)
 {
 

@@ -136,7 +136,7 @@ namespace libarchive
                   {
                      functionCallback(strPathName);
                   }
-                  //::acme::get()->platform()->informationf(strPathName + "\n");
+                  //informationf(strPathName + "\n");
 
                }
                next:

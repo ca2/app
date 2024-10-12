@@ -146,7 +146,7 @@ void handler_manager::handle_asynchronously(const ::procedure & procedure)
 
          loop();
 
-         ::acme::get()->platform()->informationf("handler_manager::async fork finished!!");
+         informationf("handler_manager::async fork finished!!");
 
       });
       

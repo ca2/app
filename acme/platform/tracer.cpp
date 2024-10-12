@@ -184,7 +184,7 @@ void tracer::flush(trace_statement & tracestatement)
       if(!plogger)
       {
 
-         plogger = ::platform::get()->system()->m_plogger;
+         plogger = system()->m_plogger;
 
       }
 

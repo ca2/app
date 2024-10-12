@@ -16,17 +16,17 @@ namespace allocator
 
    CLASS_DECL_ACME void __on_start_construct(void * p, memsize s, bool bParticleAndHeapAllocation);
 
-   CLASS_DECL_ACME::subparticle * task_get_top_track();
+   CLASS_DECL_ACME ::subparticle * task_get_top_track();
 
-   CLASS_DECL_ACME void on_construct_particle(::subparticle* pparticle);
+   CLASS_DECL_ACME void on_construct_subparticle(::subparticle* pparticle);
 
-   CLASS_DECL_ACME void on_after_construct_particle(::subparticle* pparticle);
+   CLASS_DECL_ACME void on_after_construct_subparticle(::subparticle* pparticle);
 
    CLASS_DECL_ACME void __on_after_construct();
 
-   CLASS_DECL_ACME void on_destruct_particle(::subparticle* pparticle);
+   CLASS_DECL_ACME void on_destruct_subparticle(::subparticle* pparticle);
 
-   CLASS_DECL_ACME void __on_after_construct_particle(::subparticle* pparticle);
+   CLASS_DECL_ACME void __on_after_construct_subparticle(::subparticle* pparticle);
 
 
 #endif

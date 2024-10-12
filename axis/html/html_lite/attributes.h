@@ -298,7 +298,7 @@ public:
             /** DEEP COPY BEGIN */
             for (i32 iElem = 0; iElem < nElemCount; iElem++)
             {
-               if ((pItem = __new LiteHTMLElemAttr(rSource[iElem])) == nullptr)
+               if ((pItem = __raw_new LiteHTMLElemAttr(rSource[iElem])) == nullptr)
                {
                   eraseAll();
                   throw ::exception(error_no_memory);

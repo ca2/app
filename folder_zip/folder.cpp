@@ -329,7 +329,7 @@ namespace folder_zip
          if (pathFile.contains("-256.png"))
          {
 
-            ::acme::get()->platform()->informationf("-256.png");
+            informationf("-256.png");
 
          }
 
@@ -394,7 +394,7 @@ namespace folder_zip
    void didnt_locate_file(const char * pszFile)
    {
 
-      ::acme::get()->platform()->informationf("The file \"" + ::string(pszFile) + "\" wasn't find in the zip folder.");
+      informationf("The file \"" + ::string(pszFile) + "\" wasn't find in the zip folder.");
 
       //::fflush(stdout);
 

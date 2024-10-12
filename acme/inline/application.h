@@ -1,7 +1,7 @@
 //#include "application_common.h"
 //#include "__apps.inl"
 
-::i32 application_main(::platform::platform * pplatform);
+void application_main();
 
 #include "acme/_operating_system.h"
 #include "acme/platform/system_setup.h"

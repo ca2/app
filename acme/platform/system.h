@@ -744,7 +744,7 @@ namespace acme
 //inline ::acme::system* system()
 //{
 //
-//   return ::platform::get()->system();
+//   return system();
 //
 //}
 //

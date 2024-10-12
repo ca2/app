@@ -305,7 +305,7 @@ namespace net
 
       //message_box(tempStr,"Change Detected in Number of Port Mappings",e_message_box_ok | e_message_box_icon_exclamation);
 
-      ::acme::get()->platform()->informationf(tempStr + "Change Detected in Number of Port Mappings");
+      informationf(tempStr + "Change Detected in Number of Port Mappings");
 
 	   return S_OK;
    }

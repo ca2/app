@@ -169,18 +169,18 @@ CLASS_DECL_ACME void debug_debug_reference()
 
    auto network_payload1 = ref.get_network_payload();
 
-   ::acme::get()->platform()->informationf(network_payload1);
+   informationf(network_payload1);
 
    ref.m_bTest1 = false;
    ref.m_strText1 = ref.get_network_payload();
 
    auto network_payload2 = ref.get_network_payload();
 
-   ::acme::get()->platform()->informationf(network_payload2);
+   informationf(network_payload2);
 
-   ::acme::get()->platform()->informationf("debug_debug_reference end");
+   informationf("debug_debug_reference end");
 
-   ::acme::get()->platform()->informationf("-");
+   informationf("-");
 
 }
 //void property_object::add_trait(::i64 i)

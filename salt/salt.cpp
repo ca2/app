@@ -133,7 +133,7 @@ DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
 
    if (dwReason == DLL_PROCESS_ATTACH)
    {
-      ::acme::get()->platform()->informationf("salt.DLL Initializing!\n");
+      informationf("salt.DLL Initializing!\n");
       
       // Extension DLL one-time initialization
       if (!::windows_definition::InitExtensionModule(VmscdadecDLL, hInstance))
@@ -155,7 +155,7 @@ DllMain(HINSTANCE hInstance, ::u32 dwReason, LPVOID lpReserved)
    }
    else if (dwReason == DLL_PROCESS_DETACH)
    {
-      ::acme::get()->platform()->informationf("salt.DLL Terminating!\n");
+      informationf("salt.DLL Terminating!\n");
       // Terminate the library before destructors are called
       ::windows_definition::TermExtensionModule(VmscdadecDLL);
    }

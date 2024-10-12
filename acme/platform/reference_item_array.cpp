@@ -98,7 +98,7 @@ reference_item_array::~reference_item_array()
          if (!pacme)
          {
 
-            ::acme::get()->platform()->warningf("Something has gone wrong... acme doesn't exist");
+            warningf("Something has gone wrong... acme doesn't exist");
 
          }
 
@@ -107,7 +107,7 @@ reference_item_array::~reference_item_array()
          if (!preferencingdebugging)
          {
 
-            ::acme::get()->platform()->warningf("Something is wrong... referencing debugging doesn't exist (anymore)?");
+            warningf("Something is wrong... referencing debugging doesn't exist (anymore)?");
 
          }
 
@@ -170,12 +170,12 @@ bool reference_item_array::erase_item_array(::reference_item_array * pitema)
 //}
 
 
-::reference_item * new_reference_item(::reference_item_array * parray)
+::reference_item * new_reference_item(::reference_item_array * parray, ::collection::index iSerial, ::reference_referer * preferer)
 {
 
    auto p = malloc(sizeof(::reference_item));
 
-   auto preferenceitem = ::new(p) ::reference_item(parray);
+   auto preferenceitem = ::new(p) ::reference_item(parray, iSerial, preferer);
 
    return preferenceitem;
 
@@ -195,9 +195,17 @@ void delete_reference_item(::reference_item * preferenceitem)
 void reference_item_array::add_item()
 {
 
+   add_referer(::allocator::pop_referer());
+
+}
+
+
+void reference_item_array::add_referer(::reference_referer * preferer)
+{
+
    critical_section_lock criticalsectionlock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
 
-   auto pitem = new_reference_item(this);
+   auto pitem = new_reference_item(this, ::new_reference_item_serial(), preferer);
 
    pitem->m_iStep = m_iStep++;
 
@@ -423,7 +431,6 @@ string object_name(matter* p)
 //}
 
 
-
 void subparticle::add_reference_item()
 {
 
@@ -522,6 +529,36 @@ void subparticle::add_reference_item()
       //pitema->add_item(preferenc);
 
       pitema->add_item();
+
+   }
+   catch (...)
+   {
+
+   }
+
+}
+
+
+void subparticle::add_referer(::reference_referer * preferer)
+{
+
+   critical_section_lock synchronouslock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
+
+   if (!is_referencing_debugging_enabled())
+   {
+
+      ::allocator::defer_erase_referer();
+
+      return;
+
+   }
+
+   auto pitema = reference_itema();
+
+   try
+   {
+
+      pitema->add_referer(preferer);
 
    }
    catch (...)

@@ -267,7 +267,7 @@ namespace app_app
          if (m_iCloseButtonDraw > 1)
          {
 
-            //::acme::get()->platform()->informationf("output");
+            //informationf("output");
 
          }
 

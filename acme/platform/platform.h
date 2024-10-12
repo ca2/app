@@ -45,8 +45,9 @@ namespace platform
 {
 
 
-   class CLASS_DECL_ACME platform :
-      virtual public ::particle
+//   class CLASS_DECL_ACME platform :
+//      virtual public ::particle
+   class CLASS_DECL_ACME platform
    {
    public:
 
@@ -60,8 +61,9 @@ namespace platform
       ::e_display                                     m_edisplay;
       ::e_activation                                  m_eactivativation;
       int                                             m_argc = 0;
-      char ** m_args = nullptr;
+      char **                                                  m_args = nullptr;
       char ** m_envp = nullptr;
+      ::acme::system* m_pacmesystem;
 
 #ifdef WINDOWS
 
@@ -92,7 +94,7 @@ namespace platform
       ::factory::factory_map                          m_factorymap;
       ::factory::component_factory_map                m_componentfactorymap;
       ::pointer < ::acme::system >                    m_psystem;
-
+      ::pointer < ::operating_system::dynamic_library > m_pdynamiclibrary;
       int                                             m_iProcessStatus = 0;
 
       ::critical_section                              m_criticalsectionTask;
@@ -236,7 +238,7 @@ namespace platform
       ~platform();
 
 
-      using particle::initialize;
+      //using particle::initialize;
 
 #if defined(WINDOWS) && defined(UNICODE)
 
@@ -447,8 +449,8 @@ namespace platform
       //platform * __call__add_referer2(const ::reference_referer & referer) const;
       release_time_for_project as_release_time_for_project(const char* pszStatic);
 
-       
-       
+      ::acme::system* system() { return m_psystem; }
+      ::operating_system::dynamic_library* dynamic_library() { return m_pdynamiclibrary; }
        
 //       // [HERE]
 //       //  __node_library should be here at acme
@@ -491,10 +493,30 @@ namespace platform
 
 
    inline ::platform::platform * get() { return ::acme::get() ? ::acme::get()->platform() : nullptr; }
-   inline ::acme::system * system() { return get() ? get()->system() : nullptr; }
+   
 
 
 } // namespace platform
+
+
+inline ::acme::system* system() 
+{ 
+   
+   auto pplatform = ::platform::get();
+   
+   return pplatform ? pplatform->system() : nullptr;
+
+}
+
+
+inline ::operating_system::dynamic_library * dynamic_library()
+{
+
+   auto pplatform = ::platform::get();
+
+   return pplatform ? pplatform->dynamic_library() : nullptr;
+
+}
 
 
 CLASS_DECL_ACME ::string as_string(const ::release_time_for_project& releasetimeforproject);

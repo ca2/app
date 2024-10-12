@@ -2168,7 +2168,7 @@ bool application_get_bool(void* pApplication, const char* pszItem)
 CLASS_DECL_ACME void application_send_status(::enum_status estatus, ::particle * pparticle, long long ll, void *p)
 {
    
-   ::platform::get()->application()->application_on_status(estatus, pparticle, ll, p);
+   system()->application()->application_on_status(estatus, pparticle, ll, p);
    
 }
 

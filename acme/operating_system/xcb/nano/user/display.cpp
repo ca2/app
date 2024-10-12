@@ -139,7 +139,7 @@ namespace xcb
                if(eatom == ::x11::e_atom_net_active_window)
                {
 
-                  ::acme::get()->platform()->informationf("e_atom_net_active_window");
+                  informationf("e_atom_net_active_window");
 
                }
 

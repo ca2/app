@@ -532,13 +532,13 @@ namespace user
          else if(msg.m_atom == e_message_left_button_down)
          {
 
-            ::acme::get()->platform()->informationf("e_message_left_button_down");
+            informationf("e_message_left_button_down");
 
          }
          else if(msg.m_atom == e_message_left_button_up)
          {
 
-            ::acme::get()->platform()->informationf("e_message_left_button_up");
+            informationf("e_message_left_button_up");
 
          }
 
@@ -586,13 +586,13 @@ namespace user
                         if(msg.m_atom == e_message_left_button_down)
                         {
 
-                           ::acme::get()->platform()->informationf("e_message_left_button_down");
+                           informationf("e_message_left_button_down");
 
                         }
                         else if(msg.m_atom == e_message_left_button_up)
                         {
 
-                           ::acme::get()->platform()->informationf("e_message_left_button_up");
+                           informationf("e_message_left_button_up");
 
                         }
 
@@ -604,7 +604,7 @@ namespace user
                            if(pmessage->m_atom == e_message_left_button_down)
                            {
 
-                              ::acme::get()->platform()->informationf("e_message_left_button_down");
+                              informationf("e_message_left_button_down");
 
                            }
 

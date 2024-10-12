@@ -236,7 +236,7 @@ int __cdecl debug_report(int iType, char const* psz, int iLine, char const* pszM
 
    string strType = get_debug_report_type_text(iType);
 
-   ::acme::get()->platform()->informationf(strType + ": file: " + string(psz) + " line:" + as_string(iLine) + strModule + strExtra);
+   informationf(strType + ": file: " + string(psz) + " line:" + as_string(iLine) + strModule + strExtra);
 
    return 1;
 
@@ -267,7 +267,7 @@ int __cdecl debug_report(int iType, wchar_t const* pszFile, int iLine, wchar_t c
 
    }
 
-   ::acme::get()->platform()->informationf(strType + ": file: " + string(pszFile) + " line:" + as_string(iLine) + strModule + strExtra);
+   informationf(strType + ": file: " + string(pszFile) + " line:" + as_string(iLine) + strModule + strExtra);
 
    return 1;
 

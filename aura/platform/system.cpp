@@ -2939,11 +2939,11 @@ namespace aura
 ////
 ////      ::file::path pathCa2Module = dir()->ca2module();
 ////
-////      ::acme::get()->platform()->informationf("\n\n::aura::system::find_applications_to_cache\n\n");
+////      informationf("\n\n::aura::system::find_applications_to_cache\n\n");
 ////
-////      ::acme::get()->platform()->informationf("ca2 module folder : " + pathCa2Module);
+////      informationf("ca2 module folder : " + pathCa2Module);
 ////
-////      ::acme::get()->platform()->informationf("\n\n\n");
+////      informationf("\n\n\n");
 ////
 ////      straTitle.ls_pattern(pathCa2Module, { "*.*" });
 ////
@@ -2964,7 +2964,7 @@ namespace aura
 ////               continue;
 ////            }
 ////
-////            ::acme::get()->platform()->informationf("library("+as_string(i)+") : " + strLibraryId+"\n\n");
+////            informationf("library("+as_string(i)+") : " + strLibraryId+"\n\n");
 ////
 ////            map_application_library(strLibraryId);
 ////
@@ -3030,14 +3030,14 @@ namespace aura
 //
 //      if(!library.open(pszLibrary, true))
 //      {
-//         ::acme::get()->platform()->informationf("::system::map_application_library Failed to open library :" + string(pszLibrary) + "\n\n");
+//         informationf("::system::map_application_library Failed to open library :" + string(pszLibrary) + "\n\n");
 //         return false;
 //      }
 //
 //      if(!library.open_ca2_library())
 //      {
 //
-//         ::acme::get()->platform()->informationf("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
+//         informationf("::system::map_application_library open_ca2_library(2) Failed :" + string(pszLibrary) + "\n\n");
 //
 //         return false;
 //

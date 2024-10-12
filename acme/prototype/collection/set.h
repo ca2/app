@@ -833,8 +833,7 @@ node_set < NODE >::new_node(ARG_ITEM item)
 
    //ENSURE(this->m_pnodeFree != nullptr);  // we must have something
 
-   typename node_set < NODE >::iterator iterator =
-   __new node (item);
+   typename node_set < NODE >::iterator iterator = __raw_new node (item);
 
    //this->m_pnodeFree  = this->m_pnodeFree->m_next;
 

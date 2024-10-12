@@ -113,7 +113,9 @@ namespace acme
       virtual ::release_time_for_project release_time();
 
 
-      virtual void initialize_application(::platform::platform * pplatform);
+      //virtual void initialize_application(::platform::platform * pplatform);
+
+      virtual void initialize_application();
 
 
       virtual void _001TryCloseApplication();
@@ -124,7 +126,9 @@ namespace acme
       virtual void on_error_icloud_not_available(::particle * pparticle = nullptr, long long ll = 0, void * p = nullptr);
 
 
-      virtual ::i32 application_main(::platform::platform * pplatform);
+      //virtual ::i32 application_main(::platform::platform * pplatform);
+
+      virtual ::i32 application_main();
 
       
       void on_set_platform() override;

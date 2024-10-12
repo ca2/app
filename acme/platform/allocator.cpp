@@ -8,6 +8,8 @@
 #include "reference_item_array.h"
 #include "referencing_debugging.h"
 
+extern bool g_bDefaultEnableObjectReferenceCountDebug;
+
 thread_local bool t_bThisDebug12321575 = false;
 CLASS_DECL_ACME void set_ThisDebug12321575()
 {
@@ -313,56 +315,42 @@ namespace allocator
 
       }
 
-      ::subparticle * pparticleParent = nullptr;
-      
-      if (::is_set(t_psubparticleTrackAllocation)
-         && t_psubparticleTrackAllocation->contains_top_track(pparticle))
+      if (!g_bDefaultEnableObjectReferenceCountDebug)
       {
 
-         throw ::exception(::error_wrong_state, "particle already tracked");
+         bDisableReferencingDebugging = true;
 
       }
-      else 
+
+      ::subparticle * pparticleParent = nullptr;
+
+      if (!bDisableReferencingDebugging)
       {
 
-         if (::is_null(t_psubparticleTrackAllocation))
+         if (::is_set(t_psubparticleTrackAllocation)
+            && t_psubparticleTrackAllocation->contains_top_track(pparticle))
          {
 
-            if (pparticle->m_bHeapAllocation)
-            {
-
-               t_psubparticleTrackAllocation = pparticle;
-
-            }
-
-            if (!pparticle->is_referencing_debugging_enabled())
-            {
-
-               bDisableReferencingDebugging = true;
-
-            }
+            throw ::exception(::error_wrong_state, "particle already tracked");
 
          }
          else
          {
 
-            auto pparticleTopTrack = t_psubparticleTrackAllocation->get_top_track();
-
-            pparticleParent = pparticleTopTrack;
-
-            if (!pparticleTopTrack->is_referencing_debugging_enabled())
+            if (::is_null(t_psubparticleTrackAllocation))
             {
 
-               bDisableReferencingDebugging = true;
-
-               if (!pparticleTopTrack->contains_object_in_address_space(pparticle)
-                  && pparticle->m_bHeapAllocation)
+               if (pparticle->m_bHeapAllocation)
                {
 
-                  // TODO: Enable tracking and referencing_debugging
-                  // for particle heap allocation inside non particle/non heap
-                  // objects (Noisy/Non Hierarchical Reports Feature Flag?)
-                  // pparticleTopTrack->add_top_track(pparticle);
+                  t_psubparticleTrackAllocation = pparticle;
+
+               }
+
+               if (!pparticle->is_referencing_debugging_enabled())
+               {
+
+                  bDisableReferencingDebugging = true;
 
                }
 
@@ -370,18 +358,44 @@ namespace allocator
             else
             {
 
-               if (pparticleTopTrack->contains_object_in_address_space(pparticle))
+               auto pparticleTopTrack = t_psubparticleTrackAllocation->get_top_track();
+
+               pparticleParent = pparticleTopTrack;
+
+               if (!pparticleTopTrack->is_referencing_debugging_enabled())
                {
-                  // Much probably pparticle is "physical" member of pparticleTopTrack,
-                  // directly or indirectly.
 
                   bDisableReferencingDebugging = true;
 
+                  if (!pparticleTopTrack->contains_object_in_address_space(pparticle)
+                     && pparticle->m_bHeapAllocation)
+                  {
+
+                     // TODO: Enable tracking and referencing_debugging
+                     // for particle heap allocation inside non particle/non heap
+                     // objects (Noisy/Non Hierarchical Reports Feature Flag?)
+                     // pparticleTopTrack->add_top_track(pparticle);
+
+                  }
+
                }
-               else if (pparticle->m_bHeapAllocation)
+               else
                {
 
-                  pparticleTopTrack->add_top_track(pparticle);
+                  if (pparticleTopTrack->contains_object_in_address_space(pparticle))
+                  {
+                     // Much probably pparticle is "physical" member of pparticleTopTrack,
+                     // directly or indirectly.
+
+                     bDisableReferencingDebugging = true;
+
+                  }
+                  else if (pparticle->m_bHeapAllocation)
+                  {
+
+                     pparticleTopTrack->add_top_track(pparticle);
+
+                  }
 
                }
 

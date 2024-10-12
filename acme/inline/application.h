@@ -119,9 +119,9 @@ int main(int argc, char * argv[], char * envp[])
 
    set_main_user_thread();
 
-   auto iExitCode = application_main(pacme->platform());
+   application_main();
 
-   return iExitCode;
+   return pacme->platform()->m_iExitCode;
    //::acme::sub_application::g_p->m_pacmeapplicationSub->m_bConsole = true;
 
    ////   application.m_applicationflags.m_bConsole = true;

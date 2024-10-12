@@ -37,7 +37,7 @@ class reference_count_debug;
 
 
 //#define __new__prefix(x) __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ }, &m_preferer)->
-#define __new__prefix(pprefererGet) __pointer_site({ refdbg_this(), __FUNCTION_FILE_LINE__ }, pprefererGet) <<
+#define __new__prefix(pprefererGet) __new_site({ refdbg_this(), __FUNCTION_FILE_LINE__ }, pprefererGet) <<
 //#define __new __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__new
 //#define __allocate __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__allocate
 //#define __allocate __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })

@@ -64,6 +64,7 @@ namespace platform
       char **                                                  m_args = nullptr;
       char ** m_envp = nullptr;
       ::acme::system* m_pacmesystem;
+      ::i32 m_iExitCode;
 
 #ifdef WINDOWS
 
@@ -88,66 +89,7 @@ namespace platform
 
 #endif
 
-      ::block                                         m_blockMatter;
-      ::acme::library_map                             m_mapLibrary;
-      ::factory::factory_pointer                      m_pfactory;
-      ::factory::factory_map                          m_factorymap;
-      ::factory::component_factory_map                m_componentfactorymap;
-      ::pointer < ::acme::system >                    m_psystem;
-      ::pointer < ::operating_system::dynamic_library > m_pdynamiclibrary;
-      int                                             m_iProcessStatus = 0;
 
-      ::critical_section                              m_criticalsectionTask;
-      ::index_array                                   m_iaTaskIndex;
-      bool                                            m_bVerboseLog;
-      ::windowing::enum_windowing                     m_ewindowing;
-      ::windowing::enum_desktop                       m_edesktop;
-      ::windowing::enum_toolkit                       m_etoolkit;
-
-
-      ::acme::application * m_pacmeapplication;
-
-
-      ::critical_section m_criticalsectionSystemHeap;
-
-
-      ::critical_section m_criticalsectionChannel;
-      ::critical_section m_criticalsectionSequence;
-
-      bool m_bConsole;
-
-      virtual bool is_console() const;
-
-      virtual bool is_desktop_system() const;
-
-      virtual bool is_sandboxed() const;
-
-
-      ::critical_section * channel_critical_section()
-      {
-
-         return &m_criticalsectionChannel;
-
-      }
-
-
-      ::critical_section m_criticalsectionMessageDispatch;
-
-
-      ::critical_section * message_dispatch_critical_section()
-      {
-
-         return &m_criticalsectionMessageDispatch;
-
-      }
-
-
-      ::critical_section* sequence_critical_section()
-      {
-
-         return &m_criticalsectionSequence;
-
-      }
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(__BSD__)
 
@@ -217,7 +159,7 @@ namespace platform
 
       class ::time                        m_timeStart;
 
-      ::memory_counter *                  m_pmemorycounter;
+      ::memory_counter* m_pmemorycounter;
 
 
       bool                                m_bOutputDebugString;
@@ -225,18 +167,83 @@ namespace platform
       string                                          m_strCommandLine;
 
 
-         ::particle_pointer                                 m_pmutexTask;
-         task_map                                                 m_taskmap;
-         task_id_map                                              m_taskidmap;
-         ::particle_pointer                                 m_pmutexTaskOn;
+      ::particle_pointer                                 m_pmutexTask;
+      task_map                                                 m_taskmap;
+      task_id_map                                              m_taskidmap;
+      ::particle_pointer                                 m_pmutexTaskOn;
 
 
-         ::map < itask_t, itask_t >                               m_mapTaskOn;
+      ::map < itask_t, itask_t >                               m_mapTaskOn;
 
 
-      platform(::acme::acme * pacme);
+      ::block                                         m_blockMatter;
+      ::acme::library_map                             m_mapLibrary;
+      ::factory::factory_pointer                      m_pfactory;
+      ::factory::factory_map                          m_factorymap;
+      ::factory::component_factory_map                m_componentfactorymap;
+      ::pointer < ::acme::system >                    m_psystem;
+      ::pointer < ::operating_system::dynamic_library > m_pdynamiclibrary;
+      int                                             m_iProcessStatus = 0;
+
+      ::critical_section                              m_criticalsectionTask;
+      ::index_array                                   m_iaTaskIndex;
+      bool                                            m_bVerboseLog;
+      ::windowing::enum_windowing                     m_ewindowing;
+      ::windowing::enum_desktop                       m_edesktop;
+      ::windowing::enum_toolkit                       m_etoolkit;
+
+
+      ::acme::application * m_pacmeapplication;
+
+
+      ::critical_section m_criticalsectionSystemHeap;
+
+
+      ::critical_section m_criticalsectionChannel;
+      ::critical_section m_criticalsectionSequence;
+      ::critical_section m_criticalsectionMessageDispatch;
+
+
+
+
+      bool m_bConsole;
+
+
+
+      platform(::acme::acme* pacme);
       ~platform();
 
+      virtual bool is_console() const;
+
+      virtual bool is_desktop_system() const;
+
+      virtual bool is_sandboxed() const;
+
+
+      ::critical_section * channel_critical_section()
+      {
+
+         return &m_criticalsectionChannel;
+
+      }
+
+
+      ::critical_section * message_dispatch_critical_section()
+      {
+
+         return &m_criticalsectionMessageDispatch;
+
+      }
+
+
+      ::critical_section* sequence_critical_section()
+      {
+
+         return &m_criticalsectionSequence;
+
+      }
+
+   
 
       //using particle::initialize;
 

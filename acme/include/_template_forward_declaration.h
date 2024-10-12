@@ -370,6 +370,15 @@ namespace allocator
    class zero;
 
 
+#if REFERENCING_DEBUGGING
+
+
+   CLASS_DECL_ACME void __on_start_construct(void* p, memsize s, bool bParticleAndHeapAllocation);
+
+
+#endif
+
+
 } // namespace allocator
 
 
@@ -921,13 +930,13 @@ using dereference = typename dereference_struct < T >::type;
 //inline T * __allocate_array(::collection::count c);
 
 
-#if REFERENCING_DEBUGGING
-
-
-CLASS_DECL_ACME void __on_start_construct(void * p, memsize s);
-
-
-#endif
+//#if REFERENCING_DEBUGGING
+//
+//
+//CLASS_DECL_ACME void __on_start_construct(void * p, memsize s);
+//
+//
+//#endif
 
 
 

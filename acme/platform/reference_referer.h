@@ -142,15 +142,39 @@ class __new_site
 {
 public:
 
+
 #if REFERENCING_DEBUGGING
+
+
    ::reference_referer* m_preferer;
-#endif
-   __new_site(REFERENCING_DEBUGGING_PARAMETERS_DECLARATION)
+
+
+   __new_site(const ::reference_referer& referer, ::reference_referer** pprefererGet = nullptr)
    {
-#if REFERENCING_DEBUGGING
+
       m_preferer = __raw_new reference_referer(referer);
-#endif
+
+      if (pprefererGet)
+      {
+
+         *pprefererGet = m_preferer;
+
+      }
+
    }
+
+
+#else
+
+
+   __new_site()
+   {
+
+
+   }
+
+
+#endif
 
    template < primitive_subparticle T >
    T* operator << (T* p)

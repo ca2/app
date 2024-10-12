@@ -228,10 +228,10 @@ void application::start_application(::request* prequest)
 //}
 
 
-void application::initialize_application(::platform::platform * pplatform)
+void application::initialize_application()
 {
    
-   set_platform(pplatform);
+   set_platform();
    
    if (m_pplatform->m_pacmeapplication == nullptr)
    {
@@ -315,10 +315,10 @@ void application::on_error_icloud_not_available(::particle * pparticle, long lon
 }
 
 
-::i32 application::application_main(::platform::platform * pplatform)
+::i32 application::application_main()
 {
    
-   initialize_application(pplatform);
+   initialize_application();
    
    //output_debug_string("acme::application implement_application\n");
    

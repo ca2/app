@@ -159,7 +159,11 @@ namespace acme
       int iType = sizeof(payload.m_etype);
       int iAll = sizeof(payload.m_payloadall);
       int iThis = sizeof(payload);
-      int iComputed = (int) (((::u8*)pAll - (::u8*)pType) + iAll);
+      int iAddUp = 0;
+#if REFERENCING_DEBUGGING
+      iAddUp += sizeof(payload.m_preferer);
+#endif
+      int iComputed = (int) (((::u8*)pAll - (::u8*)pType) + iAll + iAddUp);
       int iColor = sizeof(payload.m_color);
       int iStr = sizeof(payload.m_str);
       int iHls = sizeof(payload.m_hls);
@@ -2141,7 +2145,7 @@ namespace acme
       //auto estatus =
       __raw_construct(psession);
 
-      psession->set_platform(platform());
+      psession->set_platform();
 
       psession->initialize(this);
 

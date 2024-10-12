@@ -27,7 +27,15 @@ public:
    void* operator new(size_t s)
    {
 
-      return ::memory_allocate(s);
+      auto p = ::memory_allocate(s);
+
+#if REFERENCING_DEBUGGING
+
+      ::allocator::__on_start_construct(p, s, true);
+
+#endif
+
+      return p;
 
    }
 

@@ -79,10 +79,10 @@ namespace acme
    }
 
 
-   void context::set_platform(::platform::platform * pplatform)
+   void context::set_platform()
    {
 
-      m_pplatform = pplatform;
+      m_pplatform = ::platform::get();
 
       on_set_platform();
 

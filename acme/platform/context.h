@@ -52,7 +52,7 @@ namespace acme
 
       virtual void on_set_platform();
 
-      virtual void set_platform(::platform::platform * pplatform);
+      virtual void set_platform();
 
 
       void initialize(::particle * pparticle) override;

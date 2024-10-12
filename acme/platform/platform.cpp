@@ -76,12 +76,14 @@ namespace platform
    platform::platform(::acme::acme * pacme) :
       m_pacme(pacme)
    {
+      
+      m_iExitCode = 0;
 
-//#if REFERENCING_DEBUGGING
-//
-//      disable_referencing_debugging();
-//
-//#endif
+#if REFERENCING_DEBUGGING
+
+      //disable_referencing_debugging();
+
+#endif
 
 
       m_pdynamiclibrary = ::operating_system::new_dynamic_library();
@@ -745,7 +747,7 @@ namespace platform
 
          factory()->__raw_construct(m_psystem);
 
-         m_psystem->set_platform(this);
+         m_psystem->set_platform();
 
          //initialize(m_psystem);
 

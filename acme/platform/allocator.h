@@ -16,17 +16,27 @@ namespace allocator
 
    CLASS_DECL_ACME void __on_start_construct(void * p, memsize s, bool bParticleAndHeapAllocation);
 
+   CLASS_DECL_ACME void __on_after_construct_subparticle(::subparticle* psubparticle);
+
+   CLASS_DECL_ACME void __on_after_construct_non_subparticle();
+
+   CLASS_DECL_ACME void start_referencing_debugging_suppression();
+
+   CLASS_DECL_ACME void stop_suppressing_referencing_debugging();
+
    CLASS_DECL_ACME ::subparticle * task_get_top_track();
 
-   CLASS_DECL_ACME void on_construct_subparticle(::subparticle* pparticle);
+   CLASS_DECL_ACME void on_construct_subparticle(::subparticle* psubparticle);
 
-   CLASS_DECL_ACME void on_after_construct_subparticle(::subparticle* pparticle);
+   CLASS_DECL_ACME void on_after_construct_subparticle(::subparticle* psubparticle);
 
    CLASS_DECL_ACME void __on_after_construct();
 
-   CLASS_DECL_ACME void on_destruct_subparticle(::subparticle* pparticle);
+   CLASS_DECL_ACME void on_destruct_subparticle(::subparticle* psubparticle);
 
-   CLASS_DECL_ACME void __on_after_construct_subparticle(::subparticle* pparticle);
+   CLASS_DECL_ACME void __on_after_construct_subparticle(::subparticle* psubparticle);
+
+   CLASS_DECL_ACME void __on_after_construct_non_subparticle();
 
 
 #endif
@@ -71,7 +81,7 @@ namespace allocator
 
          auto p = __on_referencing_debugging_construct<PARTICLE>(data, s, ::std::forward<Args>(args)...);
 
-         __on_after_construct_particle(p);
+         __on_after_construct_subparticle(p);
 
 #else
 

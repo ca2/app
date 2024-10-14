@@ -577,7 +577,7 @@ void subparticle::erase_reference_item()
    if (!is_referencing_debugging_enabled())
    {
 
-      ::allocator::defer_erase_releaser();
+      ::allocator::defer_erase_releaser(false);
 
       return;
 
@@ -774,7 +774,7 @@ void subparticle::erase_top_track(::subparticle * psubparticle)
    else
    {
 
-      auto pNextTop = m_psubparticleTopTrack->m_psubparticleTopTrack;
+      auto pNextTop = m_psubparticleTopTrack;
 
       if (::is_set(pNextTop))
       {

@@ -1113,7 +1113,7 @@ namespace aura
       if (m_pfontlistSingleColumn.is_null())
       {
 
-         __construct(m_pfontlistSingleColumn, __create_new < ::write_text::font_list > ());
+         m_pfontlistSingleColumn = __create_new < ::write_text::font_list > ();
 
          m_pfontlistSingleColumn->set_font_list_type(::write_text::e_font_list_single_column);
 

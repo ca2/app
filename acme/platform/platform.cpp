@@ -45,16 +45,16 @@ namespace acme
 //#endif
 
 
-namespace mathematics
-{
-
-
-   void initialize_mathematics();
-
-   void finalize_mathematics();
-
-
-} // namespace mathematics
+//namespace mathematics
+//{
+//
+//
+//   void initialize_mathematics();
+//
+//   void finalize_mathematics();
+//
+//
+//} // namespace mathematics
 
 
 #if REFERENCING_DEBUGGING
@@ -194,11 +194,11 @@ namespace platform
 
       factory_initialize();
 
-      ::mathematics::initialize_mathematics();
+      //::mathematics::initialize_mathematics();
 
       ////factory_init();
 
-::acme::g_paAura = __new ::array < matter* > ();
+::acme::g_paAura = __raw_new ::array < matter* > ();
 
 ////::task_on_after_new_particle(g_paAura);
 #if REFERENCING_DEBUGGING
@@ -224,11 +224,6 @@ namespace platform
 //
 //#endif
 
-#if REFERENCING_DEBUGGING
-
-      g_bDefaultEnableObjectReferenceCountDebug = true;
-
-#endif
 
    }
 
@@ -239,7 +234,7 @@ namespace platform
       //initialize_memory_counter();
 
       // One of first time to set a main user thread
-      ::mathematics::finalize_mathematics();
+      //::mathematics::finalize_mathematics();
 
       set_main_user_thread();
 
@@ -770,7 +765,7 @@ g_bWindowingOutputDebugString = true;
    void platform::factory_initialize()
    {
 
-      __raw_construct_new(m_pfactory);
+      m_pfactory = { transfer_t{}, __raw_new::factory::factory() };
 
       //__raw_construct_new(m_pfactorymap);
 
@@ -1521,6 +1516,17 @@ CLASS_DECL_ACME::string as_string(const ::release_time_for_project& releasetimef
    return releasetimeforproject.m_pszStatic;
 
 }
+
+
+
+CLASS_DECL_ACME ::subparticle* refdbg_this()
+{ 
+   
+   return (::subparticle*)::platform::get(); 
+
+}
+
+
 
 
 

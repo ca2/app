@@ -12,6 +12,9 @@
 #include "acme/prototype/string/str.h"
 
 
+CLASS_DECL_ACME void check_refdbg();
+
+
 #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 #include <locale.h>
 #elif defined(__APPLE__)
@@ -976,9 +979,15 @@ void property_set::parse_network_payload(const ::string & strNetworkPayload)
 
 #endif
 
+   check_refdbg();
+
    auto range = strNetworkPayload();
 
+   check_refdbg();
+
    parse_network_payload(range);
+
+   check_refdbg();
 
 }
 
@@ -1002,9 +1011,9 @@ void property_set::parse_network_payload(::ansi_range & range)
 #ifdef LINUX
    uselocale(this->platform()->m_localeC);
 #endif
-
+   check_refdbg();
    range.consume_spaces(0);
-
+   check_refdbg();
    if (*range.m_begin == '\0')
    {
 
@@ -1029,13 +1038,13 @@ void property_set::parse_network_payload(::ansi_range & range)
    {
 
       ::atom atom;
-
+      check_refdbg();
       ::property_parse_network_payload_item(atom, range);
-
+      check_refdbg();
       auto & property = operator[](atom);
-
+      check_refdbg();
       ::property_parse_network_payload_payload(property, range);
-
+      check_refdbg();
       range.consume_spaces(0);
 
       if (*range.m_begin == ',')

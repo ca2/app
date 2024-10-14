@@ -606,7 +606,7 @@ inline pointer < T > & pointer < T > ::operator = (const pointer & t)
             ::allocator::add_releaser(prefererOld);
 
          }
-         ::release(pOld, *m_preferer);
+         ::release(pOld, m_preferer);
 #else
          ::release(pOld);
 #endif
@@ -657,7 +657,7 @@ inline pointer < T > & pointer < T > ::operator = (pointer && t)
             ::allocator::add_releaser(prefererOld);
 
          }
-         ::release(pOld, *m_preferer);
+         ::release(pOld, m_preferer);
 #else
          ::release(pOld);
 #endif
@@ -1978,7 +1978,7 @@ inline bool pointer < T > ::defer_destroy()
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
 template < typename T >
-inline i64 release(T *& p COMMA_REFERENCING_DEBUGGING_PARAMETERS_DEFINITION)
+inline i64 release(T *& p COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DEFINITION)
 {
 
    if (::is_null(p))

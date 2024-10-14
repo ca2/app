@@ -370,7 +370,7 @@ namespace allocator
    CLASS_DECL_ACME void add_releaser(::reference_referer * preferer);
    CLASS_DECL_ACME ::reference_referer * get_releaser();
    CLASS_DECL_ACME ::reference_referer * pop_releaser();
-   CLASS_DECL_ACME void defer_erase_releaser();
+   CLASS_DECL_ACME void defer_erase_releaser(bool bParticleReferencingDebuggingEnabled);
    CLASS_DECL_ACME void erase_releaser(::reference_referer * preferer);
 
 

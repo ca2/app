@@ -1642,13 +1642,21 @@ namespace acme
                if (!m_bChild)
                {
 
-                  __construct(m_pacmewindowingwindow);
+                  on_create_window_object();
 
                }
 
             }
 
             return m_pacmewindowingwindow;
+
+         }
+
+
+         void interaction::on_create_window_object()
+         {
+
+            __construct(m_pacmewindowingwindow);
 
          }
          

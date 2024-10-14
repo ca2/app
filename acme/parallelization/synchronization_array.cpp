@@ -103,7 +103,7 @@ bool synchronization_array::is_empty() const
 }
 
 
-bool synchronization_array::add_item(::particle * pparticle)
+bool synchronization_array::add_item(::subparticle * psubparticle)
 {
 
    if (m_synchronizationa.size() >= MAXIMUM_WAIT_OBJECTS)
@@ -115,7 +115,7 @@ bool synchronization_array::add_item(::particle * pparticle)
 
 #ifdef WINDOWS
 
-   auto handle = pparticle->get_synchronization_handle();
+   auto handle = psubparticle->get_synchronization_handle();
 
    if (handle != nullptr)
    {
@@ -128,7 +128,7 @@ bool synchronization_array::add_item(::particle * pparticle)
 
 #endif
 
-   m_synchronizationa.add(pparticle);
+   m_synchronizationa.add(psubparticle);
 
    return true;
 
@@ -161,14 +161,14 @@ bool synchronization_array::add(const synchronization_array& synca)
 }
 
 
-void synchronization_array::erase(::particle * pparticle)
+void synchronization_array::erase(::subparticle * psubparticle)
 {
 
-   m_synchronizationa.erase(pparticle);
+   m_synchronizationa.erase(psubparticle);
 
 #ifdef WINDOWS
 
-   auto handle = pparticle->get_synchronization_handle();
+   auto handle = psubparticle->get_synchronization_handle();
 
    if (handle != nullptr)
    {

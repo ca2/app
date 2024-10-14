@@ -313,6 +313,13 @@ namespace acme
       }
 #endif
          m_pmanualreseteventReadyToExit = __allocate ::manual_reset_event();
+
+#if REFERENCING_DEBUGGING
+
+         g_bDefaultEnableObjectReferenceCountDebug = true;
+
+#endif
+
    }
 
 

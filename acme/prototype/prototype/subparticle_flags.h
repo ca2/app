@@ -2,7 +2,10 @@
 #pragma once
 
 
-struct PARTICLE_FLAGS
+#include "acme/prototype/prototype/e_flag.h"
+
+
+struct SUBPARTICLE_FLAGS
 {
 public:
 

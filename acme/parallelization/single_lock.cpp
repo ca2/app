@@ -3,8 +3,8 @@
 ////#include "acme/exception/exception.h"
 
 
-single_lock::single_lock(::particle * pparticleSynchronization, bool bInitialLock) :
-   m_pparticleSynchronization(pparticleSynchronization),
+single_lock::single_lock(::subparticle * psubparticleSynchronization, bool bInitialLock) :
+   m_psubparticleSynchronization(psubparticleSynchronization),
    m_bLocked(false)
 {
 
@@ -66,7 +66,7 @@ void single_lock::_wait()
 {
 
    //::e_status estatus(signaled_base);
-   if (m_pparticleSynchronization == nullptr)
+   if (m_psubparticleSynchronization == nullptr)
    {
 
       return;
@@ -85,7 +85,7 @@ void single_lock::_wait()
    //try
    //{
 
-      /*estatus =*/ m_pparticleSynchronization->_wait();
+      /*estatus =*/ m_psubparticleSynchronization->_wait();
 
    //}
    //catch (...)
@@ -116,7 +116,7 @@ bool single_lock::_wait(const class time & timeWait)
 
    }
 
-   if (m_pparticleSynchronization == nullptr)
+   if (m_psubparticleSynchronization == nullptr)
    {
 
       return true;
@@ -126,7 +126,7 @@ bool single_lock::_wait(const class time & timeWait)
    //try
    //{
 
-      bool bOk= m_pparticleSynchronization->_wait(timeWait);
+      bool bOk= m_psubparticleSynchronization->_wait(timeWait);
 
    //}
    //catch (...)
@@ -169,7 +169,7 @@ bool single_lock::_wait(const class time & timeWait)
 
    }
 
-   if(m_pparticleSynchronization == nullptr)
+   if(m_psubparticleSynchronization == nullptr)
    {
 
       return ::success;
@@ -181,7 +181,7 @@ bool single_lock::_wait(const class time & timeWait)
    try
    {
 
-      estatus = m_pparticleSynchronization->wait();
+      estatus = m_psubparticleSynchronization->wait();
 
    }
    catch(...)
@@ -213,7 +213,7 @@ bool single_lock::_wait(const class time & timeWait)
 
    }
 
-   if(m_pparticleSynchronization == nullptr)
+   if(m_psubparticleSynchronization == nullptr)
    {
 
       return ::success;
@@ -225,7 +225,7 @@ bool single_lock::_wait(const class time & timeWait)
    try
    {
 
-      estatus = m_pparticleSynchronization->wait(timeWait);
+      estatus = m_psubparticleSynchronization->wait(timeWait);
 
    }
    catch(...)
@@ -250,7 +250,7 @@ bool single_lock::_wait(const class time & timeWait)
 void single_lock::unlock()
 {
 
-   if(m_pparticleSynchronization == nullptr)
+   if(m_psubparticleSynchronization == nullptr)
    {
 
       return;
@@ -264,7 +264,7 @@ void single_lock::unlock()
 
    }
 
-   m_pparticleSynchronization->unlock();
+   m_psubparticleSynchronization->unlock();
 
    m_bLocked = false;
 
@@ -277,7 +277,7 @@ void single_lock::unlock()
 void single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 {
 
-   ASSERT(m_pparticleSynchronization != nullptr);
+   ASSERT(m_psubparticleSynchronization != nullptr);
 
    if (!m_bLocked)
    {
@@ -288,7 +288,7 @@ void single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 
    //m_bAcquired = m_psync->unlock(lCount, pPrevCount);
 
-   m_pparticleSynchronization->unlock(lCount, pPrevCount);
+   m_psubparticleSynchronization->unlock(lCount, pPrevCount);
 
    m_bLocked = true;
 
@@ -308,8 +308,8 @@ bool single_lock::is_locked() const
 }
 
 
-_single_lock::_single_lock(::particle * pparticleSynchronization, bool bInitialLock) :
-   m_pparticleSynchronization(pparticleSynchronization),
+_single_lock::_single_lock(::subparticle * psubparticleSynchronization, bool bInitialLock) :
+   m_psubparticleSynchronization(psubparticleSynchronization),
    m_bLocked(false)
 {
 
@@ -360,7 +360,7 @@ void _single_lock::_wait()
 
    }
 
-   if (m_pparticleSynchronization == nullptr)
+   if (m_psubparticleSynchronization == nullptr)
    {
 
       //throw ::exception(error_wrong_state);
@@ -372,7 +372,7 @@ void _single_lock::_wait()
    try
    {
 
-      /*estatus =*/ m_pparticleSynchronization->_wait();
+      /*estatus =*/ m_psubparticleSynchronization->_wait();
 
    }
    catch (...)
@@ -405,7 +405,7 @@ bool _single_lock::_wait(const class time & timeWait)
 
    }
 
-   if (m_pparticleSynchronization == nullptr)
+   if (m_psubparticleSynchronization == nullptr)
    {
 
       //return estatus;
@@ -422,7 +422,7 @@ bool _single_lock::_wait(const class time & timeWait)
 
       /*estatus = */
 
-      bool bOk = m_pparticleSynchronization->_wait(timeWait);
+      bool bOk = m_psubparticleSynchronization->_wait(timeWait);
 
    //}
    //catch (...)
@@ -451,7 +451,7 @@ bool _single_lock::_wait(const class time & timeWait)
 void _single_lock::unlock()
 {
 
-   if (m_pparticleSynchronization == nullptr)
+   if (m_psubparticleSynchronization == nullptr)
    {
 
       return;
@@ -471,7 +471,7 @@ void _single_lock::unlock()
 
       //if (m_psync->unlock())
 
-   m_pparticleSynchronization->unlock();
+   m_psubparticleSynchronization->unlock();
       //{
 
          m_bLocked = false;
@@ -506,7 +506,7 @@ void _single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 
       //m_bAcquired = !m_psync->unlock(lCount, pPrevCount);
 
-   m_pparticleSynchronization->unlock(lCount, pPrevCount);
+   m_psubparticleSynchronization->unlock(lCount, pPrevCount);
 
    m_bLocked = true;
 

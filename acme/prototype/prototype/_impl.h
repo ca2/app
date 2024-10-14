@@ -111,7 +111,7 @@ inline ::pointer<TYPE>particle::__call__create_new()
 
    //}
 
-   auto p = __allocate TYPE();
+   ::pointer < TYPE > p = { transfer_t{}, __new_refdbg_continuation TYPE() };
 
    if (p)
    {
@@ -143,18 +143,18 @@ inline ::pointer<TYPE>particle::__call__create_new_clone(TYPE * psrc)
 
    //}
 
-   auto p = __allocate TYPE();
+   ::pointer < TYPE > ptypeNew = { transfer_t{}, __new_refdbg_continuation TYPE() };
 
-   if (p)
+   if (ptypeNew)
    {
 
-      p->initialize(this);
+      ptypeNew->initialize(this);
 
    }
 
-   *p = *psrc;
+   *ptypeNew = *psrc;
 
-   return ::transfer(p);
+   return ::transfer(ptypeNew);
 
 
    //return p;
@@ -437,7 +437,7 @@ inline void particle::__call__construct_new(::pointer<TYPE>& p)
 //
 //#endif
 //
-   auto ptypeNew = __allocate TYPE();
+   ::pointer < TYPE > ptypeNew = { transfer_t{}, __new_refdbg_continuation TYPE() };
 
    if (!ptypeNew)
    {
@@ -1770,7 +1770,9 @@ inline bool particle::__call__defer_construct_new(::pointer<TYPE> & p)
 
    }
 
-   __construct_new(p);
+   // in REFERENCING_DEBUGGING Mode set referer should
+   //    already be called when this function was called.
+   __call__construct_new(p);
 
    return true;
 

@@ -9331,7 +9331,7 @@ namespace user
 
       }
 
-      __construct(m_ptree, pdata);
+      m_ptree = pdata;
 
       m_ptreeitem = m_ptree->get_base_item();
 

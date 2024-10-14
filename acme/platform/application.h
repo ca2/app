@@ -61,7 +61,9 @@ namespace acme
 
       bool                                            m_bTransferToContainer;
       bool                                            m_bTransferredToContainer;
-
+#if REFERENCING_DEBUGGING
+      ::reference_referer* m_prefererCreation = nullptr;
+#endif
       //mutable ::platform::platform *               m_pplatform;
 
       //::APPLICATION_FLAGS                      m_applicationflags;
@@ -117,6 +119,11 @@ namespace acme
 
       virtual void initialize_application();
 
+#if REFERENCING_DEBUGGING
+
+      void on_after_construct(::reference_referer* preferer) override;
+
+#endif
 
       virtual void _001TryCloseApplication();
       

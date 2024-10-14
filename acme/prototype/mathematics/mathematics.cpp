@@ -641,38 +641,38 @@ namespace mathematics
    }
 
 
-   class mathematics* g_pmathematics = nullptr;
+   // class mathematics* g_pmathematics = nullptr;
 
 
-   CLASS_DECL_ACME class mathematics* mathematics()
-   {
+   //CLASS_DECL_ACME class mathematics* mathematics()
+   //{
 
-      return g_pmathematics;
+   //   return g_pmathematics;
 
-   }
-
-
-   void initialize_mathematics()
-   {
-
-      if (!g_pmathematics)
-      {
-
-         g_pmathematics = __new class mathematics ();
-
-         //task_untrack___allocate(g_pmathematics);
-
-      }
-
-   }
+   //}
 
 
-   void finalize_mathematics()
-   {
+   //void initialize_mathematics()
+   //{
 
-      ::acme::del(g_pmathematics);
+   //   if (!g_pmathematics)
+   //   {
 
-   }
+   //      g_pmathematics = __new class mathematics ();
+
+   //      //task_untrack___allocate(g_pmathematics);
+
+   //   }
+
+   //}
+
+
+   //void finalize_mathematics()
+   //{
+
+   //   ::acme::del(g_pmathematics);
+
+   //}
 
 
    void mathematics::random(const ::block & block)

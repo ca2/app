@@ -91,7 +91,7 @@ namespace factory
       ::pointer<ORIGIN_TYPE>__call__create() override
       {
 
-         return { place_t{}, __new TYPE() };
+         return { place_t{}, __new_refdbg_continuation TYPE() };
             
       }
 

@@ -26,6 +26,10 @@
 #include "acme/prototype/text/translator.h"
 #include "acme/user/micro/user.h"
 
+
+CLASS_DECL_ACME void check_refdbg();
+
+
 namespace acme
 {
 
@@ -664,7 +668,11 @@ namespace acme
    ::file::path context::__defer_process_path(::file::path path)
    {
 
+      check_refdbg();
+
       path = defer_process_matter_path(path);
+
+      check_refdbg();
 
       if(path.is_empty())
       {

@@ -55,6 +55,8 @@ namespace acme
 
       }
 
+      ::allocator::add_referer(__refdbg_function_file_line__);
+
       m_applicationa.add(papplication);
 
       if (papplication->m_bTransferToContainer)
@@ -62,6 +64,8 @@ namespace acme
 
          if (!papplication->m_bTransferredToContainer)
          {
+
+            ::allocator::add_releaser(papplication->m_prefererCreation);
 
             papplication->release();
 

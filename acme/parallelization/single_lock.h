@@ -6,11 +6,11 @@ class CLASS_DECL_ACME single_lock
 public:
 
 
-   ::particle_pointer   m_pparticleSynchronization;
+   ::subparticle_pointer      m_psubparticleSynchronization;
    bool                       m_bLocked;
 
 
-   explicit single_lock(particle * pparticleSynchronization, bool bInitialLock = false);
+   explicit single_lock(subparticle * psubparticleSynchronization, bool bInitialLock = false);
    ~single_lock();
 
 
@@ -34,12 +34,11 @@ class CLASS_DECL_ACME _single_lock
 public:
 
 
-   ::particle_pointer   m_pparticleSynchronization;
-   //synchronization *      m_psync;
-   bool                       m_bLocked;
+   ::subparticle_pointer            m_psubparticleSynchronization;
+   bool                             m_bLocked;
 
 
-   explicit _single_lock(particle * pparticle, bool bInitialLock = false);
+   explicit _single_lock(::subparticle * psubparticle, bool bInitialLock = false);
    ~_single_lock();
 
 

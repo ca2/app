@@ -12,7 +12,6 @@
 #pragma once
 
 
-#include "acme/prototype/prototype/e_flag.h"
 #include "acme/platform/allocator.h"
 //#include "acme/prototype/prototype/post_procedure_continuation.h"
 
@@ -58,12 +57,7 @@ class trace_statement;
 //};
 
 
-using hsynchronization = void *;
-
-
 #include "subparticle.h"
-
-#include "particle_flags.h"
 
 #include "acme/handler/sequence_continuation.h"
 #include "acme/platform/trace_statement.h"
@@ -91,8 +85,7 @@ struct disable_referencing_debugging_t {};
 // ThomasBorregaardSorensen!! Like handlers : now particle with handle::handlers*
 class CLASS_DECL_ACME particle :
    //virtual public sequencer_step::base,
-   virtual public signal_handler::base,
-   virtual public PARTICLE_FLAGS
+   virtual public signal_handler::base
 {
 public:
 
@@ -110,6 +103,7 @@ public:
 //   particle(::particle * pparticleParent);
 //#else
    ~particle() override;
+
 
 
    inline bool is_null() const { return ::is_null(this); }
@@ -137,11 +131,6 @@ public:
    void defer_create_synchronization();
 
 
-#ifdef WINDOWS
-
-   virtual hsynchronization get_synchronization_handle();
-
-#endif
 
    void operator()(::topic* ptopic, ::context* pcontext) override;
    //void operator()(::sequencer & sequencer) override;
@@ -266,34 +255,7 @@ public:
 
 
 
-   // currently expected returned statuses:
-   // ::error_failed
-   // ::error_wait_timeout
-   // ::success
-   virtual ::e_status lock();
-   virtual ::e_status lock(const class time & timeWait);
 
-   virtual ::e_status wait();
-   virtual ::e_status wait(const class time & timeWait);
-
-   virtual void _lock();
-   virtual bool _lock(const class time & timeWait);
-
-   virtual void _wait();
-   virtual bool _wait(const class time & timeWait);
-
-   virtual bool is_locked() const;
-
-   virtual void unlock();
-   virtual void unlock(::i32 /* lCount */, ::i32 * /* pPrevCount=nullptr */);
-
-
-   virtual void init_wait();
-   virtual void exit_wait();
-
-
-   virtual void acquire_ownership();
-   virtual void release_ownership();
 
 
 
@@ -731,11 +693,11 @@ public:
    template < typename BASE_TYPE >
    inline void __call__construct(::pointer<BASE_TYPE>& ptype, ::factory::factory * pfactory = nullptr);
 
-   template < typename BASE_TYPE, typename TYPE >
-   inline void __call__construct(::pointer<BASE_TYPE>& ptype, const ::pointer < TYPE >& p);
+   //template < typename BASE_TYPE, typename TYPE >
+   //inline void __call__construct(::pointer<BASE_TYPE>& ptype, const ::pointer < TYPE >& p);
 
-   template < typename BASE_TYPE, typename TYPE >
-   inline void __call__construct(::pointer<BASE_TYPE>& ptype, TYPE* p);
+   //template < typename BASE_TYPE, typename TYPE >
+   //inline void __call__construct(::pointer<BASE_TYPE>& ptype, TYPE* p);
 
    template < typename BASE_TYPE >
    inline void __call__id_construct(::pointer<BASE_TYPE>& ptype, const ::atom& atom, ::factory::factory * pfactory = nullptr);
@@ -1157,7 +1119,7 @@ inline bool is_ok(const ::particle * pparticleConst)
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
 template < typename T >
-inline i64 release(T *& p COMMA_REFERENCING_DEBUGGING_PARAMETERS_DECLARATION);
+inline i64 release(T *& p COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DECLARATION);
 
 
 /// @brief consumes a releaser (a referer used to decrement reference count)
@@ -1216,9 +1178,6 @@ namespace allocator
 
 #if REFERENCING_DEBUGGING
 
-CLASS_DECL_ACME bool refdbg_add_top_track(::subparticle* pparticle);
-CLASS_DECL_ACME void refdbg_erase_top_track(::subparticle* pparticle);
-
 
 class refdbg_top_track
 {
@@ -1248,7 +1207,8 @@ public:
 };
 
 
-inline ::particle* refdbg_this() { return (::particle*)::acme::get()->platform(); }
+
+
 //class abc
 //{
 //public:

@@ -3530,7 +3530,7 @@ message_queue* thread::_get_message_queue()
    }
 
    //auto estatus =
-   __construct(m_pmessagequeue, pmq);
+   m_pmessagequeue = pmq;
 
    /*if (!estatus)
    {

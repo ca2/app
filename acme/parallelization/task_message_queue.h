@@ -10,7 +10,7 @@ using task_message_queue_map = ::map < itask_t, ::pointer < message_queue > >;
 
 
 class CLASS_DECL_ACME task_message_queue :
-   virtual public ::particle
+   virtual public ::subparticle
 {
 public:
 

@@ -25,6 +25,9 @@
 
 
 
+CLASS_DECL_ACME void check_refdbg();
+
+
 CLASS_DECL_ACME void copy(::string & str, const ::payload & payload)
 {
 
@@ -391,7 +394,7 @@ payload::payload(::u64 * pu) :
 
 payload::payload(const ::file::path & path) :
    m_etype(e_type_path),
-   m_ppath(__new__prefix(&m_preferer)__raw_new ::file::path_object(path))
+   m_ppath(__new__prefix(&m_preferer) new ::file::path_object(path))
 {
 
 }
@@ -399,7 +402,7 @@ payload::payload(const ::file::path & path) :
 
 payload::payload(const string_array & stra) :
    m_etype(e_type_string_array),
-   m_pstra(__new__prefix(&m_preferer) __raw_new string_array(stra))
+   m_pstra(__new__prefix(&m_preferer) new string_array(stra))
 {
 
 
@@ -408,7 +411,7 @@ payload::payload(const string_array & stra) :
 
 payload::payload(const ::i32_array & ia) :
    m_etype(e_type_i32_array),
-   m_pia(__new__prefix(&m_preferer)__raw_new ::i32_array(ia))
+   m_pia(__new__prefix(&m_preferer) new ::i32_array(ia))
 {
 
 }
@@ -416,7 +419,7 @@ payload::payload(const ::i32_array & ia) :
 
 payload::payload(const payload_array & payloada) :
    m_etype(e_type_payload_array),
-   m_ppayloada(__new__prefix(&m_preferer) __raw_new payload_array(payloada))
+   m_ppayloada(__new__prefix(&m_preferer) new payload_array(payloada))
 {
 
 }
@@ -424,7 +427,7 @@ payload::payload(const payload_array & payloada) :
 
 payload::payload(const property_set & set) :
    m_etype(e_type_property_set),
-   m_ppropertyset(__new__prefix(&m_preferer)__raw_new property_set(set))
+   m_ppropertyset(__new__prefix(&m_preferer) new property_set(set))
 {
 
 }
@@ -1666,7 +1669,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
       else if (etypeSource == e_type_string_array)
       {
 
-         m_pstra = __new ::string_array(*payload.m_pstra);
+         m_pstra = __new__prefix(&m_preferer) new ::string_array(*payload.m_pstra);
 
       }
       else if (payload.is_element())
@@ -4591,7 +4594,9 @@ string_array & payload::string_array_reference()
    else*/ if (m_etype != e_type_string_array)
    {
 
-      auto pstra = __new string_array();
+      ::reference_referer* prefererNew = nullptr;
+
+      auto pstra = __new__prefix(&prefererNew) new string_array();
 
       try
       {
@@ -4612,6 +4617,12 @@ string_array & payload::string_array_reference()
       }
 
       set_type(e_type_string_array, false);
+
+#if REFERENCING_DEBUGGING
+
+      m_preferer = prefererNew;
+
+#endif
 
       m_pstra = pstra;
 
@@ -5264,13 +5275,21 @@ property_set & payload::property_set_reference()
    else*/ if (m_etype != e_type_property_set)
    {
 
-#if REFERENCING_DEBUGGING
+      check_refdbg();
 
-      auto prefererNew = ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
+//#if REFERENCING_DEBUGGING
+//
+//      auto prefererNew = ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
+//
+//#endif
 
-#endif
+      //auto psetNew = __raw_new property_set();
 
-      auto psetNew = __new property_set();
+      ::reference_referer* prefererNew = nullptr;
+
+      auto psetNew = __new__prefix(&prefererNew) new property_set();
+
+      check_refdbg();
 
       if (is_empty() || !get_bool())
       {

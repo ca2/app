@@ -196,7 +196,7 @@ namespace experience
 
          }
 
-         __construct(pexperience, pexperienceSelected);
+         pexperience = pexperienceSelected;
 
       }
 

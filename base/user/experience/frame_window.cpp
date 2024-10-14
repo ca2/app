@@ -690,7 +690,7 @@ namespace experience
       if (m_pdockmanager == nullptr)
       {
 
-         __construct(m_pdockmanager, __allocate class dock_manager ());
+         m_pdockmanager = __initialize_new class dock_manager ();
 
          try
          {
@@ -710,7 +710,7 @@ namespace experience
       if (m_pmovemanager == nullptr)
       {
 
-         __construct(m_pmovemanager, __allocate class move_manager ());
+         m_pmovemanager = __initialize_new class move_manager ();
 
          try
          {
@@ -730,7 +730,7 @@ namespace experience
       if (m_psizemanager == nullptr)
       {
 
-         __construct(m_psizemanager, __allocate class size_manager ());
+         m_psizemanager = __initialize_new class size_manager ();
 
          try
          {
@@ -751,7 +751,7 @@ namespace experience
       if (m_pmenumanager == nullptr)
       {
 
-         __construct(m_pmenumanager, __allocate class menu_manager ());
+         m_pmenumanager = __initialize_new class menu_manager ();
 
          try
          {
@@ -1356,7 +1356,7 @@ namespace experience
       if (m_psizemanager == nullptr)
       {
 
-         __construct(m_psizemanager, __allocate class size_manager ());
+         m_psizemanager = __initialize_new class size_manager ();
 
          //auto estatus = 
 
@@ -2159,7 +2159,7 @@ namespace experience
 
       }
 
-      __construct(m_pframe, pframe);
+      m_pframe = pframe;
 
       pframe->m_pframewindow = this;
 

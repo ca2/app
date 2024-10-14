@@ -82,19 +82,19 @@ namespace write_text
    }
 
    font_family_pointer::font_family_pointer(enum_font efont):
-      ::pointer<font_family>{ place_t{}, __new font_family(efont) }
+      ::pointer<font_family>{ place_t{}, __raw_new font_family(efont) }
    {
 
    }
 
    font_family_pointer::font_family_pointer(const ::scoped_string & scopedstrFamilyName, const ::scoped_string & scopedstrBranch) :
-      ::pointer<font_family>{ place_t {}, __new font_family(scopedstrFamilyName, scopedstrBranch) }
+      ::pointer<font_family>{ place_t {}, __raw_new font_family(scopedstrFamilyName, scopedstrBranch) }
    {
 
    }
 
    font_family_pointer::font_family_pointer(const font_family & fontfamily) :
-      ::pointer<font_family>{ place_t {}, __new font_family(fontfamily) }
+      ::pointer<font_family>{ place_t {}, __raw_new font_family(fontfamily) }
    {
 
    }

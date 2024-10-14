@@ -33,12 +33,18 @@
 #include "acme/windowing/windowing.h"
 #include "filesystem/filesystem/listing.h"
 
+
+CLASS_DECL_ACME void check_refdbg();
+
+
 //namespace nano{namespace  user{
 //::user::enum_desktop calculate_edesktop();
 //}//namespace user
 //   }//namespace nano
 //
 ::string errno_error_message(::i32 iError);
+CLASS_DECL_ACME::reference_referer* refdbg_get_top_referer();
+CLASS_DECL_ACME::subparticle* refdbg_get_track_allocation();
 
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception& exception, const ::string& strMoreDetails);
@@ -3187,8 +3193,12 @@ bool node::_is_smart_git_installed()
 
       if (!m_bDropboxCalculated)
       {
+         
+         check_refdbg();
 
          calculate_dropbox_installed();
+
+         check_refdbg();
 
       }
 
@@ -3206,7 +3216,11 @@ bool node::_is_smart_git_installed()
 
       m_bDropboxCalculated = true;
 
+      check_refdbg();
+
       ::file::path pathNetworkPayload = file()->dropbox_info_network_payload();
+
+      check_refdbg();
 
       if (!file()->exists(pathNetworkPayload))
       {
@@ -3248,13 +3262,27 @@ bool node::_is_smart_git_installed()
       else
       {
 
+         check_refdbg();
+
          string strNetworkPayload = file()->as_string(pathNetworkPayload);
 
-         ::property_set set;
+         check_refdbg();
 
-         set.parse_network_payload(strNetworkPayload);
+         {
 
-         m_pathDropbox = set["personal"]["path"];
+            ::property_set set;
+
+            check_refdbg();
+
+            set.parse_network_payload(strNetworkPayload);
+
+            check_refdbg();
+
+            m_pathDropbox = set["personal"]["path"];
+
+         }
+
+         check_refdbg();
 
          if (dir()->is(m_pathDropbox))
          {
@@ -3263,7 +3291,11 @@ bool node::_is_smart_git_installed()
 
          }
 
+         check_refdbg();
+
       }
+
+      check_refdbg();
 
       m_bDropboxCalculated = true;
 

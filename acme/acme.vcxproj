@@ -2576,7 +2576,7 @@
     <ClInclude Include="prototype\prototype\collection\_array_string.h" />
     <ClInclude Include="prototype\prototype\concrete.h" />
     <ClInclude Include="prototype\prototype\muldiv64.h" />
-    <ClInclude Include="prototype\prototype\particle_flags.h" />
+    <ClInclude Include="prototype\prototype\subparticle_flags.h" />
     <ClInclude Include="prototype\prototype\aaa_ptr.h" />
     <ClInclude Include="prototype\prototype\scope_stack.h" />
     <ClInclude Include="prototype\prototype\typed.h" />

@@ -1317,9 +1317,12 @@ concept pointer_derived = requires(POINTER  p) {
 };
 
 template < typename POINTER >
-concept subparticle_pointer = 
+concept primitive_subparticle_pointer = 
 ::std::is_base_of_v < ::subparticle, ::erase_pointer < POINTER > > 
 || pointer_derived<POINTER>;
+
+
+using subparticle_pointer = ::pointer < ::subparticle >;
 
 
 template < typename RUNNABLE >
@@ -1353,7 +1356,9 @@ public:
    __pointer_site(const ::reference_referer & referer, ::reference_referer ** pprefererGet = nullptr)
    {
 
-      m_preferer = __raw_new ::reference_referer(referer);
+      //m_preferer = __raw_new ::reference_referer(referer);
+
+      m_preferer = ::allocator::add_referer(referer);
 
       if (pprefererGet)
       {
@@ -1386,7 +1391,14 @@ public:
 
       ::pointer < SUBPARTICLE > pointer({ transfer_t{}, p });
 
-      pointer.m_preferer = m_preferer;
+      if (p->is_referencing_debugging_enabled())
+      {
+
+         pointer.m_preferer = m_preferer;
+
+      }
+
+      p->on_after_construct(m_preferer);
 
       return ::transfer(pointer);
 
@@ -1429,7 +1441,11 @@ public:
 
 #define __transfer_as_pointer __pointer_site(__refdbg_function_file_line__) <<
 
-#define __allocate __transfer_as_pointer __raw_new
+#define __preferernew_transfer_as_pointer __pointer_site(__refdbg_function_file_line__preferernew) <<
+
+#define __allocate __transfer_as_pointer new
+
+#define __preferernew_allocate __preferernew_transfer_as_pointer new
 
 #define __as_pointer __pointer_site(__refdbg_function_file_line__) +=
 
@@ -1447,13 +1463,63 @@ class __g_initialize_pointer
 public:
 
 
+#if REFERENCING_DEBUGGING
+
+
+   reference_referer* m_preferer;
+
+
+#endif
+
    ::particle * m_p;
+
+
+   __g_initialize_pointer(::particle* p COMMA_REFERENCING_DEBUGGING_PARAMETERS_DECLARATION) :
+      m_p(p) 
+   {
+
+   
+#if REFERENCING_DEBUGGING
+
+      m_preferer = ::allocator::add_referer(referer);
+
+      //if (pprefererGet)
+      //{
+
+      //   *pprefererGet = m_preferer;
+
+      //}
+
+#endif
+
+   
+   }
+
 
    template < typename TYPE >
    ::pointer < TYPE > operator << (TYPE * p) 
    {
-      
+
+#if REFERENCING_DEBUGGING
+
+      ::pointer < TYPE > pointer({ transfer_t{}, p });
+
+      if (p->is_referencing_debugging_enabled())
+      {
+
+         pointer.m_preferer = m_preferer;
+
+      }
+
+      p->on_after_construct(m_preferer);
+
+      //return ::transfer(pointer);
+
+#else
+
       ::pointer < TYPE > pointer{ transfer_t{}, p };
+
+#endif
 
       pointer->initialize(m_p);
 
@@ -1461,17 +1527,23 @@ public:
    
    }
 
-   __g_initialize_pointer(::particle * p) : m_p(p) {}
-
 };
 
-#define __initialize_pointer_with(P) __g_initialize_pointer(P) <<
+#define __initialize_pointer_with(P) __g_initialize_pointer(P __comma_refdbg_function_file_line__) <<
+
+#define __preferernew_initialize_pointer_with(P) __g_initialize_pointer(P __comma_refdbg_function_file_line__preferernew) <<
 
 #define __initialize_pointer __initialize_pointer_with(this)
 
-#define __initialize_new_with(P) __initialize_pointer_with(P) __raw_new
+#define __preferernew_initialize_pointer __preferernew_initialize_pointer_with(this)
 
-#define __initialize_new __initialize_pointer __raw_new
+#define __initialize_new_with(P) __initialize_pointer_with(P) new
+
+#define __preferernew_initialize_new_with(P) __preferernew_initialize_pointer_with(P) new
+
+#define __initialize_new __initialize_pointer new
+
+#define __preferernew_initialize_new __preferernew_initialize_pointer new
 
 
 

@@ -221,7 +221,6 @@ namespace windowing
 
       void on_initialize_particle() override;
 
-
       virtual void window_set_keyboard_focus();
       virtual void window_kill_keyboard_focus();
       

@@ -24,6 +24,10 @@
 #include "apex/message/message.h"
 //#include "apex/operating_system.h"
 #include "apex/user/user/interaction_base.h"
+CLASS_DECL_ACME::reference_referer* refdbg_get_top_referer();
+CLASS_DECL_ACME::subparticle* refdbg_get_track_allocation();
+CLASS_DECL_ACME::reference_referer* refdbg_get_top_releaser();
+CLASS_DECL_ACME void check_refdbg();
 
 
 #if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
@@ -1089,6 +1093,22 @@ ret:
 
       initialize_context_1();
 
+      {
+
+         auto psubparticleTrackAllocation = refdbg_get_track_allocation();
+         if (psubparticleTrackAllocation)
+         {
+
+            ::string strType = typeid(*psubparticleTrackAllocation).name();
+
+            output_debug_string("123");
+
+         }
+
+
+      }
+
+
       //if (!estatus)
       //{
 
@@ -1098,6 +1118,23 @@ ret:
 
       //estatus = 
       __construct_new(m_pfs);
+
+
+      {
+
+         auto psubparticleTrackAllocation = refdbg_get_track_allocation();
+         if (psubparticleTrackAllocation)
+         {
+
+            ::string strType = typeid(*psubparticleTrackAllocation).name();
+
+            output_debug_string("123");
+
+         }
+
+
+      }
+
 
       //if (!estatus)
       //{
@@ -1142,7 +1179,24 @@ ret:
       {
 
          //estatus = 
-         __construct(m_pifs, __allocate ifs(""));
+         m_pifs = __initialize_new ifs("");
+
+
+         {
+
+            auto psubparticleTrackAllocation = refdbg_get_track_allocation();
+            if (psubparticleTrackAllocation)
+            {
+
+               ::string strType = typeid(*psubparticleTrackAllocation).name();
+
+               output_debug_string("123");
+
+            }
+
+
+         }
+
 
          //if (!estatus)
          //{
@@ -1159,7 +1213,23 @@ ret:
       {
 
          //estatus = 
-         __construct(m_premotefs, __allocate ::fs::remote_native(""));
+         m_premotefs = __initialize_new ::fs::remote_native("");
+
+         {
+
+            auto psubparticleTrackAllocation = refdbg_get_track_allocation();
+            if (psubparticleTrackAllocation)
+            {
+
+               ::string strType = typeid(*psubparticleTrackAllocation).name();
+
+               output_debug_string("123");
+
+            }
+
+
+         }
+
 
          //if (!estatus)
          //{
@@ -1195,18 +1265,40 @@ ret:
       if (!m_pfsdata)
       {
 
+         check_refdbg();
+
          auto pset = __create_new<::fs::set>();
+
+         check_refdbg();
 
          auto plink = __create_new < ::fs::link>();
 
+         check_refdbg();
+
          plink->fill_os_user();
 
-         pset->m_spafsdata.add(plink.m_p);
+         check_refdbg();
 
-         pset->m_spafsdata.add(__create_new < ::fs::native>().m_p);
+         ::pointer < ::fs::data > pfsdataLink = plink;
+
+         check_refdbg();
+
+         pset->m_spafsdata.add(pfsdataLink);
+
+         check_refdbg();
+
+         ::pointer < ::fs::data > pfsdataNative = __create_new < ::fs::native>();
+
+         check_refdbg();
+
+         pset->m_spafsdata.add(pfsdataNative);
+
+         check_refdbg();
 
          //estatus = 
-         __construct(m_pfsdata, pset);
+         m_pfsdata = pset;
+
+         check_refdbg();
 
          //if (!estatus)
          //{

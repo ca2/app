@@ -5,6 +5,9 @@
 
 #include "pointer.h"
 #include "acme/prototype/prototype/interlocked_count.h"
+using hsynchronization = void*;
+
+
 
 
 //
@@ -25,9 +28,13 @@
 //};
 
 #include "quantum.h"
+#include "subparticle_flags.h"
+
+
 
 class CLASS_DECL_ACME subparticle :
-   virtual public ::quantum
+   virtual public ::quantum,
+   virtual public SUBPARTICLE_FLAGS
 {
 public:
 
@@ -44,8 +51,20 @@ public:
    ~subparticle() override;
 
 
+#if REFERENCING_DEBUGGING
+   
+   
+   virtual void on_after_construct(::reference_referer* preferer);
+
+
+#endif
+
+
    virtual void initialize(::particle * pparticle);
    virtual void finalize();
+
+
+   ::acme::system* system() const;
 
 
    virtual bool defer_consume_main_arguments(int argc, char ** argv, int & iArgument);
@@ -82,16 +101,17 @@ public:
 #endif
 
 
-
-
 #if REFERENCING_DEBUGGING
 
 
    ::subparticle* refdbg_this() const { return (::subparticle*)this; }
 
+
 protected:
 
+
    ::subparticle* m_psubparticleTopTrack = nullptr;
+
 
 public:
 
@@ -165,7 +185,11 @@ public:
    virtual void destroy_impl_data();
    virtual void destroy_os_data();
 
-
+//#if REFERENCING_DEBUGGING
+//
+//   virtual void set_creation_referer(::reference_referer* preferer);
+//
+//#endif
 
    virtual void delete_this();
 
@@ -181,8 +205,46 @@ public:
 
    virtual void set_timeout(const class time & time);
 
+#ifdef WINDOWS
 
+   virtual hsynchronization get_synchronization_handle();
+
+#endif
+
+
+   // currently expected returned statuses:
+// ::error_failed
+// ::error_wait_timeout
+// ::success
+   virtual ::e_status lock();
+   virtual ::e_status lock(const class time& timeWait);
+
+   virtual ::e_status wait();
+   virtual ::e_status wait(const class time& timeWait);
+
+   virtual void _lock();
+   virtual bool _lock(const class time& timeWait);
+
+   virtual void _wait();
+   virtual bool _wait(const class time& timeWait);
+
+   virtual bool is_locked() const;
+
+   virtual void unlock();
+   virtual void unlock(::i32 /* lCount */, ::i32* /* pPrevCount=nullptr */);
+
+
+   virtual void init_wait();
+   virtual void exit_wait();
+
+
+   virtual void acquire_ownership();
+   virtual void release_ownership();
 
 };
+
+
+
+
 
 

@@ -21157,6 +21157,23 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
    }
 
+
+   void interaction::on_create_window_object()
+   {
+
+      ::user::interaction_base::on_create_window_object();
+
+      ::pointer < ::windowing::window > pwindow = m_pacmewindowingwindow;
+
+      if (pwindow)
+      {
+
+         pwindow->m_puserinteraction = this;
+
+      }
+
+   }
+
    
    ::pointer < ::user::thread > interaction::create_user_thread()
    {

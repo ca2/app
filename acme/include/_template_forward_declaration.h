@@ -374,6 +374,11 @@ namespace allocator
 
 
    CLASS_DECL_ACME void __on_start_construct(void* p, memsize s, bool bParticleAndHeapAllocation);
+   //CLASS_DECL_ACME void __on_after_construct_subparticle(::subparticle* psubparticle);
+   CLASS_DECL_ACME void __on_after_construct_non_subparticle();
+   CLASS_DECL_ACME void start_suppressing_referencing_debugging();
+   CLASS_DECL_ACME void cease_referencing_debugging_suppression();
+   CLASS_DECL_ACME bool is_suppressing_referencing_debugging();
 
 
 #endif

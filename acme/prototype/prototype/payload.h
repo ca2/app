@@ -56,7 +56,7 @@ public:
 
 
    using PRIMITIVE_PAYLOAD_TAG = PRIMITIVE_PAYLOAD_TAG_TYPE;
-
+   payload * refdbg_this() const { return (payload*)this; }
 
    enum_type                        m_etype;
 

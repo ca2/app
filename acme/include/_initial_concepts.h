@@ -738,3 +738,8 @@ template < typename SUBPARTICLE >
 concept primitive_subparticle = ::std::is_base_of_v<::subparticle, SUBPARTICLE>;
 
 
+template < typename NON_SUBPARTICLE >
+concept non_primitive_subparticle = !primitive_subparticle<NON_SUBPARTICLE>;
+
+
+

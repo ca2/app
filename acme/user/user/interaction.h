@@ -93,6 +93,8 @@ namespace acme
 
          void _create_window() override;
 
+         virtual void on_create_window_object();
+
          void destroy_window() override;
 
          //void show_window() override;

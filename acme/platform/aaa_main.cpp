@@ -298,16 +298,16 @@ LARGE_INTEGER g_largeintegerFrequency;
 
 #endif
 
-namespace mathematics
-{
-
-
-   void initialize_mathematics();
-
-   void finalize_mathematics();
-
-
-} // namespace mathematics
+//namespace mathematics
+//{
+//
+//
+//   void initialize_mathematics();
+//
+//   void finalize_mathematics();
+//
+//
+//} // namespace mathematics
 
 
 ::array < ::procedure > * g_proutineaOsTerm;

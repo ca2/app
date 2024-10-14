@@ -246,7 +246,7 @@ namespace menu
          if (strImage.has_char())
          {
 
-            __construct(m_pimage, image()->matter_image(strImage));
+            m_pimage = image()->matter_image(strImage);
 
          }
 

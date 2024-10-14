@@ -12,9 +12,8 @@
 #define __FUNCTION_LINE__  __FUNCTION__ " (" MAKE_STRING(__LINE__) ")"
 #define __FUNCTION_FILE_LINE__  __FUNCTION__ "\n" __FILE__ "(" MAKE_STRING(__LINE__) ")"
 
-
-class particle;
-inline ::particle* refdbg_this();
+class subparticle;
+CLASS_DECL_ACME ::subparticle* refdbg_this();
 struct reference_count_debug_item;
 class reference_count_debug;
 
@@ -36,7 +35,7 @@ class reference_count_debug;
 #define __defer_construct_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct_new
 
 
-//#define __new__prefix(x) __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ }, &m_preferer)->
+//#define __new__prefix(x) __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ }, &prefererNew)->
 #define __new__prefix(pprefererGet) __new_site({ refdbg_this(), __FUNCTION_FILE_LINE__ }, pprefererGet) <<
 //#define __new __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__new
 //#define __allocate __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__allocate
@@ -44,6 +43,10 @@ class reference_count_debug;
 
 
 #define __refdbg_function_file_line__ { refdbg_this(), __FUNCTION_FILE_LINE__ }
+#define __comma_refdbg_function_file_line__ , __refdbg_function_file_line__
+
+#define __refdbg_function_file_line__preferernew __refdbg_function_file_line__, &prefererNew
+#define __comma_refdbg_function_file_line__preferernew , __refdbg_function_file_line__preferernew
 
 #define __refdbg_call_add_referer __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ }) <<
 
@@ -163,11 +166,16 @@ class reference_count_debug;
 
 
 
-#define __new __new_site(__refdbg_function_file_line__) << __raw_new
+#define __new __new_site(__refdbg_function_file_line__) << new
 #define __delete delete __delete_site(__refdbg_referer__) <<
 
 
-#define __raw_new new
+#define __raw_new __raw_new_site() << new
+
+
+#define __new_refdbg_continuation __new_refdbg_continuation_site() << new
+
+//#define __raw_new new
 
 
 

@@ -459,7 +459,7 @@ public:
          this->construct((::subparticle*)(::uptr) predicate, timeTimeout);
 
       }
-      else if constexpr (::subparticle_pointer<PREDICATE> )
+      else if constexpr (::primitive_subparticle_pointer<PREDICATE> )
       {
 
          this->construct(predicate, timeTimeout);

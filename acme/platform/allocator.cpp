@@ -5,6 +5,8 @@
 
 #if REFERENCING_DEBUGGING
 
+CLASS_DECL_ACME::reference_referer* refdbg_get_top_releaser();
+
 #include "reference_item_array.h"
 #include "referencing_debugging.h"
 
@@ -27,10 +29,11 @@ namespace allocator
    CLASS_DECL_ACME ::allocator::accessor * g_pacessorDefault;
 
 
+   thread_local bool t_bDisableReferencingDebugging__ExpectedTemporarily__ = false;
    thread_local void * t_pStartConstruct = nullptr;
    thread_local memsize t_sStartConstruct = -1;
    //thread_local bool t_bStartConstructDisableReferencingDebugging = false;
-   thread_local bool t_bStartConstructParticleAndHeapAllocation = true;
+   thread_local bool t_bStartConstructParticleAndHeapAllocation = false;
    thread_local ::subparticle * t_psubparticleTrackAllocation = nullptr;
    thread_local bool t_bGoodStackTrackingStart = false;
    thread_local ::reference_referer * t_preferencerefererTopic = nullptr;
@@ -250,10 +253,21 @@ namespace allocator
    }
 
 
-   void defer_erase_releaser()
+   void defer_erase_releaser(bool bParticleReferencingDebuggingEnabled)
    {
 
       auto preleaser = t_preferencerefererReleaser;
+
+      if (g_bDefaultEnableObjectReferenceCountDebug
+         && bParticleReferencingDebuggingEnabled)
+      {
+         ASSERT(preleaser);
+      }
+      else
+      {
+
+         ASSERT(!preleaser);
+      }
 
       if (::is_set(preleaser))
       {
@@ -296,12 +310,20 @@ namespace allocator
 
          pparticle->m_pType = t_pStartConstruct;
          pparticle->m_sType = t_sStartConstruct;
+         pparticle->m_bHeapAllocation = t_bStartConstructParticleAndHeapAllocation;
+
+      }
+      else if(!t_pStartConstruct || t_sStartConstruct <= 0)
+      {
+
+         ASSERT(!t_bStartConstructParticleAndHeapAllocation);
 
       }
 
-      pparticle->m_bHeapAllocation = t_bStartConstructParticleAndHeapAllocation;
 
-      bool bDisableReferencingDebugging = !pparticle->m_bHeapAllocation;
+      bool bDisableReferencingDebugging = 
+         !pparticle->m_bHeapAllocation
+         || ::allocator::t_bDisableReferencingDebugging__ExpectedTemporarily__;
 
       t_pStartConstruct = nullptr;
       t_sStartConstruct = -1;
@@ -503,7 +525,31 @@ namespace allocator
    }
 
 
-   void __on_after_construct_particle(::particle * pparticle)
+   CLASS_DECL_ACME void start_suppressing_referencing_debugging()
+   {
+
+      t_bDisableReferencingDebugging__ExpectedTemporarily__ = true;
+
+   }
+
+   
+   CLASS_DECL_ACME void cease_referencing_debugging_suppression()
+   {
+
+      t_bDisableReferencingDebugging__ExpectedTemporarily__ = false;
+
+   }
+
+
+   CLASS_DECL_ACME bool is_suppressing_referencing_debugging()
+   {
+
+      return t_bDisableReferencingDebugging__ExpectedTemporarily__;
+
+   }
+
+
+   void __on_after_construct_subparticle(::subparticle * psubparticle)
    {
 
       t_pStartConstruct = nullptr;
@@ -511,18 +557,49 @@ namespace allocator
       //t_bStartConstructDisableReferencingDebugging = false;
       t_bStartConstructParticleAndHeapAllocation = false;
 
-      if (pparticle->m_preferenceitema)
+      if (psubparticle->m_preferenceitema)
       {
 
-         pparticle->m_preferenceitema->m_strDebug = pparticle->get_debug_title();
+         psubparticle->m_preferenceitema->m_strDebug = psubparticle->get_debug_title();
 
       }
 
-      refdbg_erase_top_track(pparticle);
+      refdbg_erase_top_track(psubparticle);
 
    }
 
 
+   CLASS_DECL_ACME void __on_after_construct_non_subparticle()
+   {
+
+      t_pStartConstruct = nullptr;
+      t_sStartConstruct = -1;
+      //t_bStartConstructDisableReferencingDebugging = false;
+      t_bStartConstructParticleAndHeapAllocation = false;
+
+   }
+
+
+   //void __on_after_construct_subparticle_cleanup(::subparticle* psubparticle)
+   //{
+
+   //   t_pStartConstruct = nullptr;
+   //   t_sStartConstruct = -1;
+   //   //t_bStartConstructDisableReferencingDebugging = false;
+   //   t_bStartConstructParticleAndHeapAllocation = false;
+
+   //   ASSERT(!psubparticle->m_preferenceitema);
+   //   //{
+
+   //   //   psubparticle->m_preferenceitema->m_strDebug = psubparticle->get_debug_title();
+
+   //   //}
+
+   //   refdbg_erase_top_track(psubparticle);
+
+   //}
+   
+   
    void on_destruct_subparticle(::subparticle * psubparticle)
    {
 
@@ -658,8 +735,61 @@ bool g_bIntermediateThreadReferencingDebugging = false;
 //   return ::acme::get()->platform()->__call__add_referer(referer);
 //
 //}
+CLASS_DECL_ACME::reference_referer* refdbg_get_top_referer();
+CLASS_DECL_ACME::subparticle* refdbg_get_track_allocation();
+
+CLASS_DECL_ACME void check_refdbg()
+{
+
+   auto psubparticleTrackAllocation = refdbg_get_track_allocation();
+   if (psubparticleTrackAllocation)
+   {
+
+      ::string strType = typeid(*psubparticleTrackAllocation).name();
+
+      output_debug_string("123");
+
+   }
+
+   auto prefererReleaser = refdbg_get_top_releaser();
+   if (prefererReleaser)
+   {
+
+      ::string strType = typeid(*prefererReleaser).name();
+
+      output_debug_string("345");
+
+   }
+
+
+}
 
 
 #endif //  REFERENCING_DEBUGGING
+
+
+
+
+CLASS_DECL_ACME::subparticle* refdbg_get_track_allocation()
+{
+
+   return ::allocator::t_psubparticleTrackAllocation;
+
+}
+
+CLASS_DECL_ACME::reference_referer* refdbg_get_top_referer()
+{
+
+   return ::allocator::t_preferencerefererTopic;
+}
+
+
+CLASS_DECL_ACME::reference_referer* refdbg_get_top_releaser()
+{
+
+   return ::allocator::t_preferencerefererReleaser;
+
+}
+
 
 

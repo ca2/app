@@ -4323,7 +4323,9 @@ namespace apex
    {
 
       //auto estatus = 
-      __construct(m_phistory, phistory);
+      //__construct(m_phistory, phistory);
+
+      m_phistory = phistory;
 
       /*   if (!estatus)
          {

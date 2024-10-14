@@ -461,42 +461,42 @@ inline bool __defer_raw_construct_new(::pointer<TYPE> & ptype)
 //}
 
 
-template < typename BASE_TYPE, typename TYPE >
-inline void particle::__call__construct(::pointer<BASE_TYPE> & ptype, const ::pointer < TYPE > & p)
-{
-
-   __call__construct(ptype, p.m_p);
-
-}
-
-
-template < typename BASE_TYPE, typename TYPE >
-inline void particle::__call__construct(::pointer<BASE_TYPE> & ptype, TYPE * p)
-{
-
-   if (::is_null(p))
-   {
-
-      error() << "particle::__construct p is null";
-
-      throw_exception(::error_null_pointer);
-
-   }
-
-   ptype = p;
-
-   if (::is_null(ptype))
-   {
-
-      error() <<"particle::__construct p is null (is assignee type derived from BASE_TYPE?";
-
-      throw_exception(::error_null_pointer);
-
-   }
-
-   ptype->initialize(this);
-
-}
+//template < typename BASE_TYPE, typename TYPE >
+//inline void particle::__call__construct(::pointer<BASE_TYPE> & ptype, const ::pointer < TYPE > & p)
+//{
+//
+//   __call__construct(ptype, p.m_p);
+//
+//}
+//
+//
+//template < typename BASE_TYPE, typename TYPE >
+//inline void particle::__call__construct(::pointer<BASE_TYPE> & ptype, TYPE * p)
+//{
+//
+//   if (::is_null(p))
+//   {
+//
+//      error() << "particle::__construct p is null";
+//
+//      throw_exception(::error_null_pointer);
+//
+//   }
+//
+//   ptype = p;
+//
+//   if (::is_null(ptype))
+//   {
+//
+//      error() <<"particle::__construct p is null (is assignee type derived from BASE_TYPE?";
+//
+//      throw_exception(::error_null_pointer);
+//
+//   }
+//
+//   ptype->initialize(this);
+//
+//}
 
 
 //template < typename TYPE >

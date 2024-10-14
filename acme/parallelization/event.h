@@ -11,7 +11,7 @@
 
 
 class CLASS_DECL_ACME event :
-   public particle
+   virtual public ::subparticle
 {
 public:
 
@@ -60,7 +60,7 @@ public:
 #endif
 
 
-   using particle::unlock;
+   using subparticle::unlock;
    void unlock() override;
 
    //virtual HSYNC hsync() const;

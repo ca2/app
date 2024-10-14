@@ -754,6 +754,7 @@ namespace user
 //      virtual bool add_control(arguments arguments);
       virtual void create_window();
       virtual void _create_window();
+      void on_create_window_object() override;
 
 
       virtual ::pointer < ::user::thread > create_user_thread();

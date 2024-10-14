@@ -47,7 +47,8 @@ namespace platform
 
 //   class CLASS_DECL_ACME platform :
 //      virtual public ::particle
-   class CLASS_DECL_ACME platform
+   class CLASS_DECL_ACME platform :
+      virtual public ::subparticle
    {
    public:
 

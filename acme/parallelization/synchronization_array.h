@@ -27,7 +27,7 @@ public:
 #endif
 
 
-   DECLARE_ARRAY_CONTAINER_OF(synchronization_array, synchronization, m_synchronizationa, particle);
+   DECLARE_ARRAY_CONTAINER_OF(synchronization_array, synchronization, m_synchronizationa, subparticle);
 
 
    synchronization_array();
@@ -41,13 +41,13 @@ public:
 
    bool is_empty() const;
 
-   bool add_item(::particle * pparticle);
+   bool add_item(::subparticle * pparticle);
 
-   inline bool add(::particle * pparticle) { return add_item(pparticle); }
+   inline bool add(::subparticle* pparticle) { return add_item(pparticle); }
 
    bool add(const synchronization_array & waitablea);
 
-   void erase(::particle * pparticle);
+   void erase(::subparticle* pparticle);
 
    void erase(::collection::index index);
 

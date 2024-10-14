@@ -18,6 +18,8 @@
 #include "aura/platform/session.h"
 #include "aura/platform/system.h"
 #include "aura/platform/application.h"
+CLASS_DECL_ACME::reference_referer* refdbg_get_top_referer();
+CLASS_DECL_ACME ::subparticle* refdbg_get_track_allocation();
 
 
 #if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
@@ -1721,6 +1723,21 @@ namespace aura
    {
 
       //auto estatus = 
+
+      {
+
+         auto psubparticleTrackAllocation = refdbg_get_track_allocation();
+         if (psubparticleTrackAllocation)
+         {
+
+            ::string strType = typeid(*psubparticleTrackAllocation).name();
+
+            output_debug_string("123");
+
+         }
+
+
+      }
       
       ::apex::session::init1();
 
@@ -1804,6 +1821,24 @@ namespace aura
       //   }
 
       //}
+
+      auto prefererTop = refdbg_get_top_referer();
+      if (prefererTop)
+      {
+
+         output_debug_string("345");
+
+      }
+
+      auto psubparticleTrackAllocation = refdbg_get_track_allocation();
+      if (psubparticleTrackAllocation)
+      {
+
+         ::string strType = typeid(*psubparticleTrackAllocation).name();
+
+         output_debug_string("123");
+
+      }
 
       information() << "aura::session .2";
 

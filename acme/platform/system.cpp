@@ -49,6 +49,9 @@
 //extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory);
 
 
+CLASS_DECL_ACME void check_refdbg();
+
+
 //#elif defined(UNIVERSAL_WINDOWS)
 //
 //extern "C" void nano_user_universal_windows_factory(::factory::factory * pfactory);
@@ -2981,6 +2984,8 @@ namespace acme
          m_pfactoryitemCompressZlib = pfactory->get_factory_item< ::compress>();
 
       }
+
+      ::allocator::add_referer({refdbg_this(), __FUNCTION_FILE_LINE__});
 
       auto pcompress = m_pfactoryitemCompressZlib->__call__create_particle();
 

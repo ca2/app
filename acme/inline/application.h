@@ -86,7 +86,7 @@ int main(int argc, char * argv[], char * envp[])
 #endif
 {
 
-   ::acme::singleton_pointer pacme;
+   ::acme::singleton pacme;
 
    //if (this->platform()->m_pacmeapplication->has_finishing_flag())
    //{

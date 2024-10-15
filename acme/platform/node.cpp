@@ -429,7 +429,12 @@ namespace acme
       if(!platform()->is_console())
       {
 
-         system()->acme_windowing()->on_start_system();
+         system()->m_htask = nullptr;
+
+         system()->m_itask = 0;
+
+         system()->branch_synchronously();
+         //system()->acme_windowing()->on_start_system();
 
       }
 
@@ -446,7 +451,9 @@ namespace acme
    void node::on_system_main()
    {
 
-      system()->main();
+      ///system()->main();
+
+      system()->acme_windowing()->windowing_system_application_main_loop();
 
    }
 

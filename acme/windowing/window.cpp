@@ -147,12 +147,14 @@ namespace acme
       void window::destroy()
       {
 
-         if (m_pacmeuserinteraction)
+         auto pacmeuserinteraction = m_pacmeuserinteraction;
+
+         if(pacmeuserinteraction)
          {
 
-            m_pacmeuserinteraction->destroy();
-
             m_pacmeuserinteraction.release();
+
+            pacmeuserinteraction->destroy();
 
          }
 

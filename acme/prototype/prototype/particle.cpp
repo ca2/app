@@ -2672,5 +2672,12 @@ void particle::_call_procedure(enum_dispatch edispatch, const procedure & proced
 }
 
 
+string particle::as_string() const
+{
+
+   return ::type(this).name();
+
+}
+
 
 

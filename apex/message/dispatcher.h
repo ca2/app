@@ -64,6 +64,9 @@ namespace message
 
 
       dispatcher(const dispatcher& dispatcher);
+      ~dispatcher() override;
+
+
       dispatcher& operator = (const dispatcher& dispatcher);
       bool operator == (const dispatcher& dispatcher) const;
 

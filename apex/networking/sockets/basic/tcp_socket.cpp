@@ -2230,7 +2230,12 @@ return true;
 
    void tcp_socket::close()
    {
-      m_ptcpsocketImpl->close();
+
+      if (m_ptcpsocketImpl)
+      {
+         m_ptcpsocketImpl->close();
+
+      }
 
 //      if (get_socket_id() == INVALID_SOCKET) // this could happen
 //      {

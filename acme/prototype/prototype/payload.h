@@ -168,6 +168,10 @@ public:
       m_etype(payload.m_etype)
    {
       m_payloadall = payload.m_payloadall;
+#if REFERENCING_DEBUGGING
+      m_preferer = payload.m_preferer;
+      payload.m_preferer = nullptr;
+#endif
       payload.m_etype = e_type_new;
       payload.m_payloadall = {};
    }

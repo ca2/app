@@ -1188,6 +1188,8 @@ namespace acme
       m_pacmedirectory.release();
       m_pacmepath.release();
 
+      m_purlcontext.release();
+
       //::acme::idpool::term();
 
       //m_pnode->user_post_quit();
@@ -1233,6 +1235,8 @@ namespace acme
 
    ::u32 system::crc32(::u32 uCrc, const ::block& block)
    {
+
+      _synchronous_lock synchronouslock(this->synchronization());
 
       if (!m_pcompressZlibCrc32)
       {

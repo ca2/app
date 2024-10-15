@@ -487,7 +487,7 @@ payload_array & payload_array::operator +=(const ::payload & payload)
 
 payload_array & payload_array::operator +=(const payload_array & payloada)
 {
-   add(payloada);
+   append(payloada);
    return *this;
 }
 
@@ -501,7 +501,7 @@ payload_array payload_array::operator +(const ::payload & payload) const
 payload_array payload_array::operator +(const payload_array & payloadaParam) const
 {
    payload_array payloada(*this);
-   payloada.add(payloadaParam);
+   payloada.append(payloadaParam);
    return payloada;
 }
 

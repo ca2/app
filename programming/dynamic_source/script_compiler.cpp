@@ -1276,13 +1276,13 @@ namespace dynamic_source
       //strDest += "return ::success;\r\n";
       strDest += "}\r\n";
 
-      string strId;
-      for(i32 i = 0; i < straId.get_size(); i++)
-      {
-         strId += "static ::atom lscript_id" + ::as_string(i) + "(\"" + straId[i] + "\");\r\n";
-      }
+      //string strId;
+      //for(i32 i = 0; i < straId.get_size(); i++)
+      //{
+      //   strId += "static ::atom lscript_id" + ::as_string(i) + "(\"" + straId[i] + "\");\r\n";
+      //}
 
-      strDest = strDest.left(iPosId) + strId + strDest.substr(iPosId);
+      //strDest = strDest.left(iPosId) + strId + strDest.substr(iPosId);
 
 
       string strCppPath =  pscript->m_strCppPath;
@@ -1909,13 +1909,13 @@ auto tickStart = ::time::now();
       strDest += "//End parsed user script\r\n";
       strDest += "}\r\n";*/
 
-      string strId;
-      for(i32 i = 0; i < straId.get_size(); i++)
-      {
-         strId += "static ::atom lscript_id" + ::as_string(i) + "(\"" + straId[i] + "\");\r\n";
-      }
+      //string strId;
+      //for(i32 i = 0; i < straId.get_size(); i++)
+      //{
+      //   strId += "static ::atom lscript_id" + ::as_string(i) + "(\"" + straId[i] + "\");\r\n";
+      //}
 
-      strDest = strDest.left(iPosId) + strId + strDest.substr(iPosId);
+      //strDest = strDest.left(iPosId) + strId + strDest.substr(iPosId);
 
       //file()->put_text_utf8(lpcszDest, strDest);
       file()->put_text(lpcszDest, strDest);
@@ -1937,7 +1937,8 @@ auto tickStart = ::time::now();
          straId.add(strKey);
          iFind = straId.get_upper_bound();
       }
-      strResult = strResult.left(iArroba) + " lscript_id" + as_string(iFind);
+      //strResult = strResult.left(iArroba) + " lscript_id" + as_string(iFind);
+      strResult = strResult.left(iArroba) + " \""+strKey+"\"";
       iArroba = -1;
    }
 

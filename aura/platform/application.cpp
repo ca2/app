@@ -337,6 +337,37 @@ namespace aura
    void application::destroy()
    {
 
+      if (m_puserinteractionaFrame)
+      {
+
+         auto timeStartDestroying = ::time::now();
+
+         while (m_puserinteractionaFrame &&
+            m_puserinteractionaFrame->has_interaction())
+         {
+
+            auto framea = m_puserinteractionaFrame->interactiona();
+
+            for (auto pframe : framea)
+            {
+
+               pframe->start_destroying_window();
+
+            }
+#ifdef DEBUG
+            if (timeStartDestroying.elapsed() > 10_min)
+#else
+            if (timeStartDestroying.elapsed() > 20_s)
+#endif
+            {
+
+               break;
+
+            }
+            preempt(5_s);
+         }
+
+      }
       //auto estatus = 
       ::aqua::application::destroy();
 

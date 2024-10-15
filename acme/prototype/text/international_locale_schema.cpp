@@ -657,8 +657,8 @@ namespace text
 
       bool locale_schema::process_final_locale_schema(bool bRTLLayout)
       {
-         static ::string _std("_std");
-         static ::string _stdRl("_std_rl");
+         static auto _std("_std");
+         static auto _stdRl("_std_rl");
 
       restart0:
 

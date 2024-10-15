@@ -320,7 +320,7 @@ namespace account
    void credentials::save_status_to_storage(const ::e_status & estatus)
    {
 
-      string strStatus = as_string(estatus.as_i64());
+      string strStatus = ::as_string(estatus.as_i64());
 
       set("open", strStatus);
 
@@ -363,7 +363,7 @@ namespace account
             || m_iPasswordOriginalLength <= 0)
       {
 
-         string strOpenResult = as_string((int) error_authentication);
+         string strOpenResult = ::as_string((int) error_authentication);
 
          set("open", strOpenResult);
 
@@ -392,7 +392,7 @@ namespace account
 
          string strPasswordOriginalLength;
 
-         strPasswordOriginalLength = as_string(m_iPasswordOriginalLength);
+         strPasswordOriginalLength = ::as_string(m_iPasswordOriginalLength);
 
          set("olen", strPasswordOriginalLength);
 

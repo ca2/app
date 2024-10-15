@@ -11,7 +11,7 @@ class paged_memory;
 
 
 class CLASS_DECL_ACME memory_container :
-   virtual public ::object
+   virtual public ::particle
 {
 protected:
 

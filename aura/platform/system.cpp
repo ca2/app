@@ -5410,8 +5410,13 @@ namespace aura
       //}
 
       //estatus = 
-      
-      __construct_new(m_phistory);
+
+      if (!m_phistory)
+      {
+
+         __construct_new(m_phistory);
+
+      }
 
       //if(!estatus)
       //{

@@ -8000,7 +8000,7 @@ namespace user
       if (!is_message_only_window())
       {
 
-         send_message(e_message_change_experience);
+         message_call(e_message_change_experience);
 
       }
 
@@ -10693,7 +10693,7 @@ void interaction::create_interaction(::user::interaction * puserinteractionParen
 
          //            m_puserinteraction->send_create_message();
 
-         send_message(e_message_create);
+         message_call(e_message_create);
 
       }
 
@@ -11651,6 +11651,8 @@ void interaction::create_interaction(::user::interaction * puserinteractionParen
 
       set_destroying_flag();
 
+      destroy_window();
+
       // set_destroying() m_bUserElementOk = false;
 
       // set_destroying() m_ewindowflag -= e_window_flag_is_window;
@@ -11674,7 +11676,13 @@ void interaction::create_interaction(::user::interaction * puserinteractionParen
 
       //   m_bUserElementOk = false;
       //
-      //   m_ewindowflag -= e_window_flag_is_window;
+      if (!(m_ewindowflag & e_window_flag_is_window))
+      {
+
+         return;
+
+      }
+
       //
       //   if (!window())
       //   {
@@ -11683,12 +11691,38 @@ void interaction::create_interaction(::user::interaction * puserinteractionParen
       //
       //   }
 
-      //if(window())
-      //{
+      if(m_pacmewindowingwindow)
+      {
 
-      //   window()->destroy_window();
-      //
-      //}
+         m_pacmewindowingwindow->destroy_window();
+      
+      }
+      else
+      {
+
+         _destroy_window();
+
+      }
+
+   }
+
+
+
+   void interaction::_destroy_window()
+   {
+
+      if (!(m_ewindowflag & e_window_flag_is_window))
+      {
+
+         return;
+
+      }
+
+      message_call(e_message_destroy);
+
+      message_call(e_message_non_client_destroy);
+
+      destroy();
 
    }
 
@@ -11696,12 +11730,23 @@ void interaction::create_interaction(::user::interaction * puserinteractionParen
    void interaction::destroy()
    {
 
-      //if (::is_set(window()))
-      //{
+      auto pacmewindowingwindow = m_pacmewindowingwindow;
 
-      //   window()->destroy();
+      if (::is_set(pacmewindowingwindow))
+      {
 
-      //}
+         try
+         {
+
+            pacmewindowingwindow->destroy();
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
 
       // ownership
 
@@ -12184,23 +12229,25 @@ void interaction::create_interaction(::user::interaction * puserinteractionParen
    ::user::interaction * interaction::get_owner()
    {
 
-      if (m_puserinteractionOwner != nullptr)
+      auto ptoplevel = top_level();
+
+      if (!ptoplevel)
       {
 
-         return m_puserinteractionOwner;
+         return nullptr;
 
       }
 
-      //if (window() == nullptr)
-      //{
+      auto powner = ptoplevel->m_puserinteractionOwner;
 
-      //   return nullptr;
+      if (!powner)
+      {
 
-      //}
+         return nullptr;
 
-      //return window()->get_owner();
+      }
 
-      return nullptr;
+      return powner;
 
    }
 
@@ -12252,6 +12299,45 @@ void interaction::create_interaction(::user::interaction * puserinteractionParen
       }
 
       return nullptr;
+
+   }
+
+
+   ::user::interaction* interaction::top_owner()
+   {
+
+      return _top_owner();
+
+   }
+
+
+   ::user::interaction * interaction::_top_owner()
+   {
+
+      ::user::interaction* pinteractionOwner = get_owner();
+
+      if (!pinteractionOwner)
+      {
+
+         return nullptr;
+
+      }
+
+      while (true)
+      {
+
+         ::user::interaction* pinteractionOwnerOwner = pinteractionOwner->get_owner();
+
+         if (!pinteractionOwnerOwner)
+         {
+
+            return pinteractionOwner;
+
+         }
+
+         pinteractionOwner = pinteractionOwnerOwner;
+
+      }
 
    }
 

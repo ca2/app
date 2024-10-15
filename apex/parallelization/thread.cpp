@@ -3895,7 +3895,7 @@ void thread::get_message(MESSAGE* pMsg, oswindow oswindow, ::u32 wMsgFilterMin, 
    if (m_bAuraMessageQueue)
    {
 
-      get_message_queue()->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
+      get_message_queue()->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, 500_ms);
 
       if (pMsg->m_atom == e_message_quit)
       {

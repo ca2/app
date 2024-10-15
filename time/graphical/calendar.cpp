@@ -147,7 +147,7 @@ namespace datetime
                }
 
                pfile->raw_print("<td>");
-               pfile->raw_print(as_string((int64_t)w.m_iSecond));
+               pfile->raw_print(::as_string((int64_t)w.m_iSecond));
                pfile->raw_print("</td>");
             }
             for (int32_t iWeekDay = 1; iWeekDay <= 7; iWeekDay++)

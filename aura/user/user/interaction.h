@@ -1444,6 +1444,8 @@ namespace user
 
       virtual void destroy_window() override;
 
+      virtual void _destroy_window();
+
       //virtual void on_finish() override;
 
       //virtual void set_finish_composites(::property_object* pcontextobjectFinish) override;
@@ -1663,10 +1665,12 @@ namespace user
       virtual ::user::frame * top_level_frame();
       virtual ::user::frame * parent_frame();
       virtual ::user::frame* get_owner_frame();
+      virtual ::user::interaction* top_owner();
 
       ::user::interaction * _top_level() override;
       virtual ::user::frame * _top_level_frame();
       virtual ::user::frame * _parent_frame();
+      virtual ::user::interaction* _top_owner();
 
 
       //virtual ::handler* get_user_callback();

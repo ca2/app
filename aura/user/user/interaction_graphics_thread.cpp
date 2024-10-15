@@ -1042,6 +1042,19 @@ namespace user
 
          //information() << "graphics_thread_iteration has_graphical_output_purpose";
 
+         if(m_puserinteraction->has_flag(e_flag_destroying)
+            || m_puserinteraction->has_finishing_flag()
+            || pwindow->has_flag(e_flag_destroying)
+            || pwindow->has_finishing_flag())
+         {
+
+            information() << "graphics_thread_iteration exit(A3)";
+
+            return false;
+
+         }
+            
+
          pwindow->do_graphics();
 
          //m_puserinteraction->windowing_window()->do_graphics(e_graphics_draw);

@@ -79,9 +79,9 @@ namespace user
 
       initialize(puserinteraction);
 
-      m_puserinteraction = puserinteraction;
+      m_puserinteractionUserThread = puserinteraction;
 
-      string strType = ::type(m_puserinteraction).name();
+      string strType = ::type(m_puserinteractionUserThread).name();
 
       m_strDebugType = strType;
 
@@ -180,7 +180,7 @@ namespace user
       //if (!m_bCreateNativeWindowOnInteractionThread)
       //{
 
-      //   if (!m_puserinteraction->_native_create_window_ex(*m_pusersystem))
+      //   if (!m_puserinteractionUserThread->_native_create_window_ex(*m_pusersystem))
       //   {
 
       //      //delete m_pusersystem;
@@ -223,9 +223,9 @@ namespace user
 //
 //#endif
 
-      //set_topic_text("window_thread_" + ::type(m_puserinteraction).name()) + "> ";
+      //set_topic_text("window_thread_" + ::type(m_puserinteractionUserThread).name()) + "> ";
 
-      ::task_set_name(::type(m_puserinteraction).name());
+      ::task_set_name(::type(m_puserinteractionUserThread).name());
 
 #ifdef WINDOWS_DESKTOP
 
@@ -235,7 +235,7 @@ namespace user
 
 #endif
 
-      if (!m_puserinteraction->is_system_message_window())
+      if (!m_puserinteractionUserThread->is_system_message_window())
       {
 
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
@@ -246,11 +246,11 @@ namespace user
 
       }
 
-      //__construct(m_puserinteraction, m_puserinteraction->m_pthreadUserInteraction);
+      //__construct(m_puserinteractionUserThread, m_puserinteractionUserThread->m_pthreadUserInteraction);
       
       m_eflagElement += e_flag_running;
 
-      __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_creating);
+      __keep_flag_on(m_puserinteractionUserThread->layout().m_eflag, ::user::interaction_layout::flag_creating);
 
       //fork([this]()
       //   {
@@ -264,20 +264,20 @@ namespace user
       //if (m_bCreateNativeWindowOnInteractionThread)
       //{
 
-      auto pwindowing = m_puserinteraction->windowing();
+      auto pwindowing = m_puserinteractionUserThread->windowing();
 
-      //m_puserinteraction->windowing() = pwindowing;
+      //m_puserinteractionUserThread->windowing() = pwindowing;
 
       //estatus =
       
-      //m_puserinteraction->operating_system_create_host(e_parallelization_asynchronous);
+      //m_puserinteractionUserThread->operating_system_create_host(e_parallelization_asynchronous);
 
-      //m_puserinteraction->create_window();
+      //m_puserinteractionUserThread->create_window();
 
       ///*if(!estatus)
       //{*/
 
-      //   m_puserinteraction->m_pusersystem->m_procedureFailure();
+      //   m_puserinteractionUserThread->m_pusersystem->m_procedureFailure();
 
       //   if (is_debugger_attached())
       //   {
@@ -298,7 +298,7 @@ namespace user
 
       //}
 
-//     auto pusersystem = m_puserinteraction->m_pusersystem;
+//     auto pusersystem = m_puserinteractionUserThread->m_pusersystem;
 //
 //      if(pusersystem && pusersystem->m_procedureSuccess)
 //      {
@@ -312,26 +312,26 @@ namespace user
       //else
       //{ 
       //
-      //   __refer(m_puserinteraction->m_pthreadUserInteraction, this);
+      //   __refer(m_puserinteractionUserThread->m_pthreadUserInteraction, this);
 
-      //   uiptra().add(m_puserinteraction);
+      //   uiptra().add(m_puserinteractionUserThread);
 
       //}
 
-      //m_himc = ImmGetContext(m_puserinteraction->get_handle());
+      //m_himc = ImmGetContext(m_puserinteractionUserThread->get_handle());
 
-//      m_oswindow = m_puserinteraction->m_pwindow->oswindow();
+//      m_oswindow = m_puserinteractionUserThread->m_pwindow->oswindow();
 
-//      if(m_puserinteraction->const_layout().sketch().is_screen_visible())
+//      if(m_puserinteractionUserThread->const_layout().sketch().is_screen_visible())
 //      {
 //
-//         m_puserinteraction->set_reposition();
+//         m_puserinteractionUserThread->set_reposition();
 //
-//         m_puserinteraction->set_need_layout();
+//         m_puserinteractionUserThread->set_need_layout();
 //
-//         m_puserinteraction->set_need_redraw();
+//         m_puserinteractionUserThread->set_need_redraw();
 //
-//         m_puserinteraction->post_redraw();
+//         m_puserinteractionUserThread->post_redraw();
 //
 //
 //      }
@@ -353,6 +353,17 @@ namespace user
       return ::thread::pump_runnable();
 
    }
+
+
+   //bool thread::task_get_run() const
+   //{
+
+   //   
+
+
+   //   return ::user::thread::task_get_run();
+
+   //}
 
 
    bool thread::pump_message()
@@ -419,12 +430,12 @@ namespace user
          if (m_message.m_atom == e_message_quit)
          {
 
-            if (m_puserinteraction 
-               && m_puserinteraction->m_ewindowflag & e_window_flag_is_window
+            if (m_puserinteractionUserThread 
+               && m_puserinteractionUserThread->m_ewindowflag & e_window_flag_is_window
                && ::thread::has_finishing_flag())
             {
 
-               m_puserinteraction->start_destroying_window();
+               m_puserinteractionUserThread->start_destroying_window();
 
             }
 
@@ -547,7 +558,7 @@ namespace user
          if(oswindow)
          {
 
-            auto pwindow = m_puserinteraction->windowing()->window(oswindow);
+            auto pwindow = m_puserinteractionUserThread->windowing()->window(oswindow);
 
             if (pwindow)
             {
@@ -751,7 +762,7 @@ namespace user
 
             //   ::i64 iApp = iMessage - WM_APP;
 
-            //   pusermessage->m_puserinteraction->message_handler(pusermessage);
+            //   pusermessage->m_puserinteractionUserThread->message_handler(pusermessage);
 
             //}
             //else
@@ -805,15 +816,15 @@ namespace user
 
    //   }
 
-   //   if (m_puserinteraction)
+   //   if (m_puserinteractionUserThread)
    //   {
 
-   //      auto puserinteraction = m_puserinteraction;
+   //      auto puserinteraction = m_puserinteractionUserThread;
 
    //      if (puserinteraction)
    //      {
 
-   //         if (!m_puserinteraction->m_bDestroying)
+   //         if (!m_puserinteractionUserThread->m_bDestroying)
    //         {
 
    //            puserinteraction->DestroyWindow();
@@ -847,7 +858,7 @@ namespace user
 
       ASSERT_VALID(this);
 
-      ::string strType = ::type(m_puserinteraction.m_p).name();
+      ::string strType = ::type(m_puserinteractionUserThread.m_p).name();
 
       information()
          << "usrthrd " << strType << " : "
@@ -925,10 +936,22 @@ namespace user
          while (task_get_run())
          {
 
-            if (m_puserinteraction && m_puserinteraction->m_pacmewindowingwindow)
+            if (has_finishing_flag())
             {
 
-               m_puserinteraction->window()->process_messages();
+               if (m_puserinteractionUserThread && !m_puserinteractionUserThread->has_destroying_flag())
+               {
+
+                  m_puserinteractionUserThread->start_destroying_window();
+
+               }
+
+            }
+
+            if (m_puserinteractionUserThread && m_puserinteractionUserThread->m_pacmewindowingwindow)
+            {
+
+               m_puserinteractionUserThread->window()->process_messages();
 
             }
 
@@ -961,10 +984,10 @@ namespace user
 //
 //                  bWindowSetFinish = true;
 //
-//                  if (m_puserinteraction)
+//                  if (m_puserinteractionUserThread)
 //                  {
 //
-//                     auto puserinteraction = m_puserinteraction;
+//                     auto puserinteraction = m_puserinteractionUserThread;
 //
 //                     if (puserinteraction)
 //                     {
@@ -1086,12 +1109,12 @@ namespace user
    bool thread::task_get_run() const
    {
 
-//      if (m_puserinteraction)
-//      {
-//
-//         return true;
-//
-//      }
+      if (m_puserinteractionUserThread)
+      {
+
+         return true;
+
+      }
 
       return ::thread::task_get_run();
 
@@ -1103,7 +1126,7 @@ namespace user
 //
 //      //m_evApplyVisual.ResetEvent();
 //
-//      m_puserinteraction->post_message(e_message_apply_visual);
+//      m_puserinteractionUserThread->post_message(e_message_apply_visual);
 //
 //   }
 
@@ -1121,19 +1144,19 @@ namespace user
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      if (m_puserinteraction)
+      if (m_puserinteractionUserThread)
       {
 
-         if (m_puserinteraction->window()->m_bDestroyImplOnly)
+         if (m_puserinteractionUserThread->window()->m_bDestroyImplOnly)
          {
 
-            m_puserinteraction->window()->destroy_impl_only();
+            m_puserinteractionUserThread->window()->destroy_impl_only();
 
          }
-         else if (m_puserinteraction)
+         else if (m_puserinteractionUserThread)
          {
 
-            m_puserinteraction->start_destroying_window();
+            m_puserinteractionUserThread->start_destroying_window();
 
          }
 
@@ -1141,7 +1164,7 @@ namespace user
       else
       {
 
-         //string strType = ::type(m_puserinteraction).name();
+         //string strType = ::type(m_puserinteractionUserThread).name();
 
          if (m_strDebugType.contains("filemanager"))
          {
@@ -1170,14 +1193,14 @@ namespace user
    void thread::term_task()
    {
 
-      if (m_puserinteraction && m_puserinteraction && m_puserinteraction->m_strName.contains("notify_icon"))
+      if (m_puserinteractionUserThread && m_puserinteractionUserThread && m_puserinteractionUserThread->m_strName.contains("notify_icon"))
       {
          information() << "notify_icon";
       }
 
       _synchronous_lock synchronouslock(this->synchronization());
 
-      m_puserinteraction.release();
+      m_puserinteractionUserThread.release();
 
       //if (m_pthreadmgr)
       //{

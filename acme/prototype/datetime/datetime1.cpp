@@ -59,15 +59,15 @@ namespace datetime
 //   value span_strtotime(::particle * pparticle, const ::text::context * pcontext, const ::scoped_string & scopedstrSpanExpression)
 //   {
 //
-//      static atom idCalendarDay("calendar:day");
-//      static atom idCalendarDays("calendar:days");
-//      static atom idCalendarWeek("calendar:week");
-//      static atom idCalendarWeeks("calendar:weeks");
-//      static atom idCalendarYear("calendar:year");
-//      static atom idCalendarYears("calendar:years");
-//      static atom idCalendarHour("calendar:hour");
-//      static atom idCalendarHours("calendar:hours");
-//      static atom idCalendarNow("calendar:now");
+//      static auto idCalendarDay("calendar:day");
+//      static auto idCalendarDays("calendar:days");
+//      static auto idCalendarWeek("calendar:week");
+//      static auto idCalendarWeeks("calendar:weeks");
+//      static auto idCalendarYear("calendar:year");
+//      static auto idCalendarYears("calendar:years");
+//      static auto idCalendarHour("calendar:hour");
+//      static auto idCalendarHours("calendar:hours");
+//      static auto idCalendarNow("calendar:now");
 //      __UNREFERENCED_PARAMETER(pparticle);
 //      value time;
 //      time.m_bSpan = true;

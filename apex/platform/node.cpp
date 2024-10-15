@@ -551,7 +551,9 @@ namespace apex
       bool bEnoughCondition4 = plink && !(plink->m_elink & ::file::e_link_icon);
       bool bEnoughCondition5 = plink && (plink->m_pathIcon.trimmed().is_empty() || !acmefile()->exists(plink->m_pathIcon));
 
-      bool bAtLeastIsPossibleHandlerForPossibleFileAssociations = true; // todo
+      //bool bAtLeastIsPossibleHandlerForPossibleFileAssociations = true; // todo
+
+      bool bAtLeastIsPossibleHandlerForPossibleFileAssociations = false;
 
       bool bEnoughCondition6 = bAtLeastIsPossibleHandlerForPossibleFileAssociations;
 

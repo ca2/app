@@ -595,6 +595,18 @@ void* task::s_os_task(void* p)
 #endif
 {
 
+   ::pointer < ::task > ptask((::task*)p);
+
+   ptask->_os_task();
+
+   return 0;
+
+}
+
+
+void task::_os_task()
+{
+
    ::pointer < manual_reset_event > pmanualresethappeningFinished;
 
    try
@@ -602,13 +614,13 @@ void* task::s_os_task(void* p)
 
       os_task_init_term ostaskinitterm;
 
-      ::task * ptask = (::task*)p;
+      ::set_task(this);
 
-      ::set_task(ptask);
+//      ptask->_os_task();
 
 #if 0
 
-      ptask->information() << "s_os_task current_itask : " << current_itask();
+      information() << "s_os_task current_itask : " << current_itask();
 
 #endif
 
@@ -618,11 +630,11 @@ void* task::s_os_task(void* p)
 
       {
 
-         REFDBG_THIS(ptask);
+         REFDBG_THIS(this);
 
-         ptask->__defer_construct(ptask->m_pexceptiontranslator);
+         __defer_construct(m_pexceptiontranslator);
 
-         ptask->m_pexceptiontranslator->attach();
+         m_pexceptiontranslator->attach();
 
       }
 
@@ -631,27 +643,27 @@ void* task::s_os_task(void* p)
       try
       {
 
-         ptask->main();
+         main();
 
       }
       catch (::exit_exception & exitexception)
       {
 
-         ptask->error() << "Exit Exception reached task procedure (1)";
+         error() << "Exit Exception reached task procedure (1)";
 
-         exitexception.finish(ptask);
+         exitexception.finish(this);
          
       }
       catch (::exception& exception)
       {
 
-         ptask->error() << "Exception reached task procedure : " << exception;
+         error() << "Exception reached task procedure : " << exception;
 
       }
       catch(...)
       {
 
-         ptask->error() << "Exception reached task procedure (...)";
+         error() << "Exception reached task procedure (...)";
 
       }
 
@@ -665,13 +677,13 @@ void* task::s_os_task(void* p)
          if(ptaskmessagequeue)
          {
 
-            ptaskmessagequeue->clear_message_queue(ptask->m_itask);
+            ptaskmessagequeue->clear_message_queue(m_itask);
 
          }
 
       }
 
-      ///ptask->release();
+      ///release();
 
       //::task_release(REFERENCING_DEBUGGING_P_FUNCTION_FILE_LINE(ptask));
 
@@ -680,10 +692,10 @@ void* task::s_os_task(void* p)
       if (g_bIntermediateThreadReferencingDebugging)
       {
 
-         if (ptask->m_countReference > 1)
+         if (m_countReference > 1)
          {
 
-            ptask->check_pending_releases();
+            check_pending_releases();
 
          }
 
@@ -694,7 +706,7 @@ void* task::s_os_task(void* p)
       try
       {
 
-         ::pointer<::object>pparentTask = ptask->m_pobjectParentTask;
+         ::pointer<::object>pparentTask = m_pobjectParentTask;
 
          if (::is_set(pparentTask))
          {
@@ -702,7 +714,7 @@ void* task::s_os_task(void* p)
             try
             {
 
-               pparentTask->transfer_tasks_from(ptask);
+               pparentTask->transfer_tasks_from(this);
 
             }
             catch (...)
@@ -713,7 +725,7 @@ void* task::s_os_task(void* p)
             try
             {
 
-               pparentTask->erase_task_and_set_task_new_parent(ptask, nullptr);
+               pparentTask->erase_task_and_set_task_new_parent(this, nullptr);
 
             }
             catch (...)
@@ -729,9 +741,9 @@ void* task::s_os_task(void* p)
 
       }
 
-      pmanualresethappeningFinished = ptask->m_peventFinished2;
+      pmanualresethappeningFinished = m_peventFinished2;
 
-      ptask->destroy();
+      destroy();
 
    }
    catch (...)
@@ -757,8 +769,6 @@ void* task::s_os_task(void* p)
       }
 
    }
-
-   return 0;
 
 }
 

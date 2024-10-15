@@ -65,14 +65,14 @@ namespace user
 
       bool is_menu() const override;
 
-      //virtual i64 increment_reference_count() override
+      virtual i64 increment_reference_count() override;
       //{
 
       //   return ::object::increment_reference_count();
 
       //}
 
-      //virtual i64 decrement_reference_count() override
+      virtual i64 decrement_reference_count() override;
       //{
 
       //   return ::object::decrement_reference_count();

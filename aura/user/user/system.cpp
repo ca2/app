@@ -81,7 +81,7 @@ namespace user
    void system::destroy()
    {
 
-      ::object::destroy();
+      ::property_object::destroy();
 
       m_puserprimitiveOwner.release();
       m_procedureSuccess.m_pbase.release();

@@ -45,7 +45,7 @@ namespace datetime
 
    string check_unit(const ::text::context * pcontext, const ::string & input, const char * & scanner)
    {
-      static atom idCalendarDays("calendar:days");
+      static auto idCalendarDays("calendar:days");
       scanner = input;
       while(unicode_is_space_char(scanner) && *scanner != '\0')
          unicode_increment(scanner);

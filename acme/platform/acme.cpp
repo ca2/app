@@ -5,6 +5,7 @@
 #include "platform.h"
 #include "acme/memory/c_malloc.h"
 #include "acme/parallelization/mutex.h"
+#include "acme/parallelization/task_context.h"
 #include "acme/platform/_synchronization.h"
 #include "acme/platform/referencing_debugging.h"
 #include "acme/prototype/prototype/malloc.h"
@@ -245,7 +246,7 @@ namespace acme
 {
 
 
-   ::acme::acme * singleton_pointer::s_pacme = nullptr;
+   ::acme::acme * singleton::s_pacme = nullptr;
 
 
    acme::acme()
@@ -322,17 +323,16 @@ namespace acme
 
    }
 
-
-   acme::~acme()
+   void acme::on_before_destroy()
    {
 
-      m_pmanualreseteventReadyToExit->wait(5_min);
+      __destroy_and_release(m_pplatform->m_psystem);
+
+      m_pmanualreseteventReadyToExit->_wait(5_min);
 
       m_ptaskmessagequeue.release();
 
       ::task_release();
-
-      __destroy_and_release(m_pplatform->m_psystem);
 
       acme_destruct_platform_dependent();
 
@@ -345,6 +345,15 @@ namespace acme
       m_pplatform = nullptr;
 
 #if REFERENCING_DEBUGGING
+
+      // Some cleanup
+
+      while (::task_context_base::current())
+      {
+
+         ::task_context_base::current()->pop();
+
+      }
 
       g_bDefaultEnableObjectReferenceCountDebug = false;
 
@@ -363,6 +372,14 @@ namespace acme
       //m_preferencingdebugging.release();
 
 #endif
+
+   }
+
+
+   acme::~acme()
+   {
+
+
 
       acme_destruct();
 
@@ -1596,8 +1613,11 @@ namespace acme
       freelocale(g_localeC);
 #endif
 
+#if !REFERENCING_DEBUGGING
+
       finalize_memory_management();
 
+#endif
 
    }
 
@@ -1971,7 +1991,7 @@ namespace acme
    }
 
 
-   singleton_pointer::singleton_pointer()
+   singleton::singleton()
    {
 
       ::c::malloc::construct(s_pacme);
@@ -1979,31 +1999,43 @@ namespace acme
    }
 
 
-   singleton_pointer::~singleton_pointer()
+   singleton::~singleton()
    {
+
+//      auto pacme = s_pacme;
+//
+//      if(pacme)
+//      {
+//
+//         auto pheapmanagement = pacme->m_pheapmanagement;
+//
+//         if(pheapmanagement)
+//         {
+//
+//            pheapmanagement->m_pacmeDestroyOnDestroy = s_pacme;
+//
+//            s_pacme->acme_destruct();
+//
+//#if !REFERENCING_DEBUGGING
+//
+//            return;
+//
+//#endif
+////
+//            //return;
+//
+//         }
+//
+//
+//      }
+
+      s_pacme->on_before_destroy();
 
       auto pacme = s_pacme;
 
-      if(pacme)
-      {
+      ::c::malloc::destroy(pacme);
 
-         auto pheapmanagement = pacme->m_pheapmanagement;
-
-         if(pheapmanagement)
-         {
-
-            pheapmanagement->m_pacmeDestroyOnDestroy = s_pacme;
-
-            s_pacme->acme_destruct();
-
-            return;
-
-         }
-
-
-      }
-
-      ::c::malloc::destroy(s_pacme);
+      s_pacme = nullptr;
 
    }
 

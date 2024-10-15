@@ -278,8 +278,8 @@ namespace text
 
       }
 
-      static ::string idEn("en");
-      static ::string idStd("_std");
+      static auto idEn("en");
+      static auto idStd("_std");
 
       string table;
       if(pcontext != nullptr)
@@ -404,7 +404,7 @@ namespace text
 
          stra2.erase_all();
 
-         id2 = atom.m_str + "[" + as_string(i) + "]";
+         id2 = atom.m_str + "[" + ::as_string(i) + "]";
 
          _get(stra2, pcontext, id2);
 

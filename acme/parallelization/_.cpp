@@ -687,7 +687,7 @@ void run_runnable(::matter * pmatter)
 //}
 
 
-thread_local ::pointer < ::task > t_ptask;
+thread_local ::task * t_ptask;
 
 
 CLASS_DECL_ACME ::task * _get_task()
@@ -786,18 +786,18 @@ CLASS_DECL_ACME void task_release()
 
    //::acme::windowing::window::nanowindowimplementationa().free_extra();
 
-   auto ptask = t_ptask;
+   //auto ptask = t_ptask;
 
-   if(ptask)
+   /*if(ptask)
    {
 
-      printf_line("::task_release() ptask=%s", typeid(*ptask.m_p).name());
+      printf_line("::task_release() ptask=%s", typeid(*ptask).name());
 
       ptask->set_flag(e_flag_task_terminated);
 
-   }
+   }*/
 
-   t_ptask.release();
+   t_ptask = nullptr;
 
 }
 

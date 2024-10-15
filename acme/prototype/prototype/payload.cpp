@@ -1635,25 +1635,25 @@ class ::payload & payload::operator = (const class ::payload & payload)
       if (etypeSource == e_type_path)
       {
 
-         m_ppath = __new ::file::path_object(*payload.m_ppath);
+         m_ppath = __new__prefix(&m_preferer) new ::file::path_object(*payload.m_ppath);
 
       }
       else if (etypeSource == e_type_property_set)
       {
 
-         m_ppropertyset = __new ::property_set(*payload.m_ppropertyset);
+         m_ppropertyset = __new__prefix(&m_preferer) new ::property_set(*payload.m_ppropertyset);
 
       }
       else if (etypeSource == e_type_i32_array)
       {
 
-         m_pia = __new ::i32_array(*payload.m_pia);
+         m_pia = __new__prefix(&m_preferer) new ::i32_array(*payload.m_pia);
 
       }
       else if (etypeSource == e_type_i64_array)
       {
 
-         m_pi64a = __new ::i64_array(*payload.m_pi64a);
+         m_pi64a = __new__prefix(&m_preferer) new ::i64_array(*payload.m_pi64a);
 
       }
       else if (etypeSource == e_type_payload_array)
@@ -1885,7 +1885,7 @@ class ::payload & payload::operator = (const string_array & stra)
       if (::is_null(m_pstra))
       {
 
-         m_pstra = __new ::string_array(stra);
+         m_pstra = __new__prefix(&m_preferer) new ::string_array(stra);
 
       }
       else
@@ -1940,7 +1940,7 @@ class ::payload & payload::operator = (const payload_array & payloada)
          if (::is_null(m_ppayloada))
          {
 
-            m_ppayloada = __new ::payload_array(payloada);
+            m_ppayloada = __new__prefix(&m_preferer) new ::payload_array(payloada);
 
          }
          else
@@ -1995,7 +1995,7 @@ class ::payload & payload::operator = (const property_set & propertyset)
       if (::is_null(m_ppropertyset))
       {
 
-         m_ppropertyset = __new ::property_set(propertyset);
+         m_ppropertyset = __new__prefix(&m_preferer) new ::property_set(propertyset);
 
       }
       else
@@ -4477,7 +4477,7 @@ class ::memory & payload::memory_reference()
    else*/ if (m_etype != ::e_type_path)
    {
 
-      auto ppath = __new ::file::path_object ();
+      auto ppath = __new__prefix(&m_preferer) new ::file::path_object();
 
       ppath->assign_range(as_file_path());
 
@@ -4630,7 +4630,7 @@ string_array & payload::string_array_reference()
    else if(::is_null(m_pstra))
    {
 
-      m_pstra = __new string_array();
+      m_pstra = __new__prefix(&m_preferer) new string_array();
 
    }
 
@@ -4710,7 +4710,7 @@ i32_array & payload::i32_array_reference()
    else*/ if(m_etype != e_type_i32_array)
    {
 
-      auto pia = __new ::i32_array ();
+      auto pia = __new__prefix(&m_preferer) new ::i32_array();
 
       try
       {
@@ -4738,7 +4738,7 @@ i32_array & payload::i32_array_reference()
    else if (::is_null(m_pia))
    {
 
-      m_pia = __new ::i32_array ();
+      m_pia = __new__prefix(&m_preferer) new ::i32_array();
 
    }
 
@@ -5157,7 +5157,7 @@ payload_array & payload::payload_array_reference ()
    else*/ if(m_etype != e_type_payload_array)
    {
 
-      auto pvara  = __new payload_array();
+      auto pvara  = __new__prefix(&m_preferer) new payload_array();
 
       try
       {
@@ -5192,7 +5192,7 @@ payload_array & payload::payload_array_reference ()
    else if (::is_null(m_ppayloada))
    {
 
-      m_ppayloada = __new payload_array();
+      m_ppayloada = __new__prefix(&m_preferer) new payload_array();
 
    }
 
@@ -5327,13 +5327,13 @@ property_set & payload::property_set_reference()
    else if (::is_null(m_ppropertyset))
    {
 
-#if REFERENCING_DEBUGGING
+//#if REFERENCING_DEBUGGING
+//
+//      m_preferer = ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
+//
+//#endif
 
-      m_preferer = ::allocator::defer_add_referer({ this, __FUNCTION_FILE_LINE__ });
-
-#endif
-
-      m_ppropertyset = __new property_set();
+      m_ppropertyset = __new__prefix(&m_preferer) new property_set();
 
    }
 
@@ -8753,11 +8753,19 @@ void payload::null()
    else
    {
 
-      auto ppath = __new ::file::path_object (as_file_path());
+      ::reference_referer* prefererNew = nullptr;
+
+      auto ppath = __new__prefix(&prefererNew) new ::file::path_object(as_file_path());
 
       ppath->flags() |= eflag;
 
       set_type(e_type_path, false);
+
+#if REFERENCING_DEBUGGING
+
+      m_preferer = prefererNew;
+
+#endif
 
       m_ppath = ppath;
 
@@ -10531,7 +10539,7 @@ payload & payload::operator = (const ::file::path & path)
       if (::is_null(m_ppath))
       {
 
-         m_ppath = __new ::file::path_object(path);
+         m_ppath = __new__prefix(&m_preferer) new ::file::path_object(path);
 
       }
       else

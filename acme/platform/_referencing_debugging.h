@@ -35,6 +35,9 @@ class reference_count_debug;
 #define __defer_construct_new __call__add_referer2({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__defer_construct_new
 
 
+//#define __raw_construct_new(C) __construct_site(C, { refdbg_this(), __FUNCTION_FILE_LINE__ })
+
+
 //#define __new__prefix(x) __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ }, &prefererNew)->
 #define __new__prefix(pprefererGet) __new_site({ refdbg_this(), __FUNCTION_FILE_LINE__ }, pprefererGet) <<
 //#define __new __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ })->__call__new
@@ -50,7 +53,10 @@ class reference_count_debug;
 
 #define __refdbg_call_add_referer __call__add_referer({ refdbg_this(), __FUNCTION_FILE_LINE__ }) <<
 
-#define __refdbg_referer__ refdbg_referer() 
+#define __fn_refdbg_referer__ refdbg_referer() 
+
+#define __refdbg_referer__ referer
+
 #define __comma_refdbg_m_preferer__ , m_preferer
 #define __comma_refdbg_preferer__ , preferer
 //#define REFERENCING_DEBUGGING_MAX_COUNT 256
@@ -163,6 +169,9 @@ class reference_count_debug;
 #define __refdbg_function_file_line__
 
 #endif
+
+
+#define __raw_construct_new(C) __construct_site(C __comma_refdbg_function_file_line__)
 
 
 

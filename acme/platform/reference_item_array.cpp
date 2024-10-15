@@ -632,11 +632,13 @@ void reference_item_array::dump_pending_releases(::string & strDump)
 
    }
 
-   strDump.append_formatf("Serial: %lld, m_iLastReferenceCount=%d\n", m_iSerial, m_iLastReferenceCount);
+   //strDump.append_formatf("Serial: %lld, m_iLastReferenceCount=%d\n", m_iSerial, m_iLastReferenceCount);
 
-   strDump += m_strDebug + "\n";
+   strDump.append_formatf("Serial: %lld, refcount=%lld\n", m_iSerial, m_psubparticle->m_countReference.operator long long());
 
-   strDump += m_strFirstAllocation + "\n";
+   strDump += "deb:"+m_strDebug + "\n";
+
+   strDump += "FARefr:"+m_strFirstAllocation + "\n";
  
    for (::collection::index iIndex = 0; iIndex < m_itema.get_count(); iIndex++)
    {

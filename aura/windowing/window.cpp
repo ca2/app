@@ -700,6 +700,8 @@ namespace windowing
 
       m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
+      m_bUserImplCreated = true;
+
       m_puserinteraction->set_flag(e_flag_task_started);
 
       on_finished_window_creation();
@@ -1003,6 +1005,40 @@ namespace windowing
          }
 
       }
+
+      ::pointer<::windowing::window>pimplThis = this;
+
+      ::pointer<::user::interaction>puiThis = m_puserinteraction;
+
+      if (puiThis)
+      {
+
+         try
+         {
+
+            puiThis->send_message(e_message_destroy);
+
+         }
+         catch (...)
+         {
+
+         }
+
+         try
+         {
+
+            puiThis->send_message(e_message_non_client_destroy);
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+      //return true;
+
 
       //m_puserinteraction->m_ewindowflag -= e_window_flag_window_created;
 
@@ -4988,12 +5024,19 @@ namespace windowing
       if (::is_set(m_puserthread))
       {
 
-         auto pthread = m_puserthread.cast<::user::thread>();
+         auto puserthread = m_puserthread.cast<::user::thread>();
 
-         if (pthread->m_puserinteraction == m_puserinteraction)
+         if (puserthread->m_puserinteractionUserThread == m_puserinteraction)
          {
 
-            pthread->set_finish();
+            puserthread->set_finish();
+
+         }
+
+         if (::is_set(puserthread))
+         {
+
+            puserthread->m_puserinteractionUserThread.release();
 
          }
 
@@ -5017,7 +5060,6 @@ namespace windowing
       //
       //      }
 
-      auto puserthread = m_puserthread;
 
       //::windowing::window_base::post_non_client_destroy();
 
@@ -5038,13 +5080,6 @@ namespace windowing
       detach_window();
 
       m_puserinteraction.release();
-
-      if (::is_set(puserthread))
-      {
-
-         puserthread->m_puserinteraction.release();
-
-      }
 
       m_puserinteraction.release();
 
@@ -9516,6 +9551,7 @@ namespace windowing
 
       }
 
+      if(m_pgraphicsgraphics)
       {
 
 
@@ -15251,38 +15287,7 @@ namespace windowing
 
       }
 
-      ::pointer<::windowing::window>pimplThis = this;
-
-      ::pointer<::user::interaction>puiThis = m_puserinteraction;
-
-      if (puiThis)
-      {
-
-         try
-         {
-
-            puiThis->send_message(e_message_destroy);
-
-         }
-         catch (...)
-         {
-
-         }
-
-         try
-         {
-
-            puiThis->send_message(e_message_non_client_destroy);
-
-         }
-         catch (...)
-         {
-
-         }
-
-      }
-
-      //return true;
+      destroy_window();
 
    }
 

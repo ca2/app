@@ -877,7 +877,7 @@ public:
    //static u32 s_thread_proc(void* p);
 
 
-   virtual string as_string() const;
+   string as_string() const override;
 
 
    // for composition (ownership)

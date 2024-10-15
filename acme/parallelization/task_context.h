@@ -9,14 +9,14 @@
 class task_context_base;
 
 
-inline static thread_local ::pointer <task_context_base> t_ptaskcontextbaseRoot;
+inline static thread_local task_context_base * t_ptaskcontextbaseRoot;
 
 class CLASS_DECL_ACME task_context_base :
    virtual public ::particle
 {
 public:
 
-   ::pointer <task_context_base> m_pParent;
+   task_context_base * m_pParent;
 
    
    static task_context_base * current() { return t_ptaskcontextbaseRoot; }

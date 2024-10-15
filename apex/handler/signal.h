@@ -16,7 +16,8 @@ namespace handler
 {
 
    class CLASS_DECL_APEX signal :
-      virtual public ::extended_topic
+      virtual public ::extended_topic,
+      virtual public ::object
    {
    public:
 

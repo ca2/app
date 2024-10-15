@@ -300,16 +300,30 @@ public:
 //
 
 
+class __construct_site
+{
+public:
+
+
+   template < typename T >
+   __construct_site(::pointer < T >& p COMMA_REFERENCING_DEBUGGING_PARAMETERS_DECLARATION)
+   {
+
+      p = __pointer_site(__refdbg_referer__) << new T;
+
+   }
+
+
+};
 
 
 template < typename TYPE >
-inline void __raw_construct_new(::pointer<TYPE> & ptype)
+inline void __call__raw_construct_new(::pointer<TYPE> & ptype)
 {
 
-   ptype = __new TYPE();
+   ptype = { transfer_t{}, __new_refdbg_continuation TYPE() };
 
 }
-
 
 
 template < typename TYPE >

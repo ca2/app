@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "incoming_socket.h"
 #include "incoming_socket_thread.h"
+#include "acme/platform/session.h"
 #include "apex/networking/sockets/basic/socket_handler.h"
 
 
@@ -155,6 +156,37 @@ namespace httpd
 
                      m_psockethandlerIncoming->select(1, 0);
 
+                     try
+                     {
+
+                        if (!application() || !application()->task_get_run())
+                        {
+
+                           break;
+
+                        }
+
+                        if (!session())
+                        {
+
+                           break;
+
+                        }
+
+                        if (session()->get_applicationa().is_empty())
+                        {
+
+                           break;
+
+                        }
+
+                     }
+                     catch (...)
+                     {
+
+                        break;
+
+                     }
                   }
 
                   m_iConnectPort = -1;

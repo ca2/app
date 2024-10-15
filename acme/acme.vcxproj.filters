@@ -2451,9 +2451,6 @@
     <ClInclude Include="platform\main2.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="prototype\prototype\particle_flags.h">
-      <Filter>Header Files\prototype\prototype</Filter>
-    </ClInclude>
     <ClInclude Include="memory\chunk.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
@@ -5602,6 +5599,9 @@
     </ClCompile>
     <ClCompile Include="operating_system\windows\_factory.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="prototype\prototype\subparticle_flags.cpp">
+      <Filter>Source Files\prototype\prototype</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

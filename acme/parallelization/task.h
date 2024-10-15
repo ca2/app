@@ -132,6 +132,9 @@ public:
 
 #endif
 
+
+   void _os_task();
+
    virtual bool is_task_registered() const;
    virtual void register_task();
    virtual void unregister_task();

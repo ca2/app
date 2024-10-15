@@ -5,7 +5,7 @@
 
 
 class read_sz_stream :
-   public SUBPARTICLE_FLAGS
+   virtual public quantum
 {
 public:
 

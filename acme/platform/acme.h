@@ -26,7 +26,7 @@ namespace acme
    public:
 
 
-      friend class singleton_pointer;
+      friend class singleton;
 
 
       ::pointer < ::platform::platform >     m_pplatform;
@@ -90,11 +90,13 @@ namespace acme
       void initialize_message_queue();
       void finalize_message_queue();
 
+      virtual void on_before_destroy();
+
 
    };
 
 
-   class CLASS_DECL_ACME singleton_pointer
+   class CLASS_DECL_ACME singleton
    {
    public:
 
@@ -102,8 +104,8 @@ namespace acme
       static acme * s_pacme;
 
 
-      singleton_pointer();
-      ~singleton_pointer();
+      singleton();
+      ~singleton();
 
 
       acme * operator ->() { return s_pacme; }
@@ -112,7 +114,7 @@ namespace acme
    };
 
 
-   inline ::acme::acme * get() { return ::acme::singleton_pointer::s_pacme; }
+   inline ::acme::acme * get() { return ::acme::singleton::s_pacme; }
 
 
 

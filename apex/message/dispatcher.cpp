@@ -63,6 +63,13 @@ namespace message
    }
 
 
+   dispatcher::~dispatcher()
+   {
+
+
+   }
+
+
    dispatcher& dispatcher::operator = (const dispatcher& dispatcher)
    {
 

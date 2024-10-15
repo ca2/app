@@ -31,7 +31,7 @@ namespace user
 
 
    class CLASS_DECL_AURA system :
-      virtual public ::object
+      virtual public ::property_object
    {
    public:
 

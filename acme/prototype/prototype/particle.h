@@ -730,6 +730,8 @@ public:
    virtual void * new_object(const char * psz);
 
 
+   virtual string as_string() const;
+
    //virtual void to_string(string_exchange & str) const;
 
 

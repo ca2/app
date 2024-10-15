@@ -28,13 +28,13 @@ using hsynchronization = void*;
 //};
 
 #include "quantum.h"
-#include "subparticle_flags.h"
+//#include "subparticle_flags.h"
 
 
 
 class CLASS_DECL_ACME subparticle :
-   virtual public ::quantum,
-   virtual public SUBPARTICLE_FLAGS
+   virtual public ::quantum
+   //virtual public SUBPARTICLE_FLAGS
 {
 public:
 

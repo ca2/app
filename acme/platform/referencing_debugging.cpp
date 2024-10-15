@@ -81,6 +81,8 @@ void referencing_debugging::dump_pending_releases()
 
       auto p = m_item2a.element_at(i);
 
+      //if(p->m_iLastReferenceCount > 0)
+      if (p->m_psubparticle->m_countReference.operator long long() > 0)
       {
 
          ::string strDump;

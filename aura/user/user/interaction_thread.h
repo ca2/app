@@ -45,7 +45,7 @@ namespace user
 
 #endif
 
-      ::pointer<::user::interaction>                     m_puserinteraction;
+      ::pointer<::user::interaction>               m_puserinteractionUserThread;
       //::pointer<prodevian>                       m_pgraphicsthread;
       //oswindow                                     m_oswindow;
 
@@ -89,6 +89,8 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      virtual int _GetMessage(LPMSG lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax) override;
 //#endif
+
+      //bool task_get_run() const override;
 
       virtual bool pump_message() override;
 

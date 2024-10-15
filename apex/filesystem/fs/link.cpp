@@ -5,9 +5,11 @@
 #include "acme/filesystem/filesystem/dir_context.h"
 #include "apex/platform/context.h"
 
+#if REFERENCING_DEBUGGING
 CLASS_DECL_ACME::reference_referer* refdbg_get_top_referer();
 CLASS_DECL_ACME::subparticle* refdbg_get_track_allocation();
-CLASS_DECL_ACME void check_refdbg();
+CLASS_DECL_ACME void __check_refdbg
+#endif
 
 namespace fs
 {
@@ -178,11 +180,11 @@ namespace fs
       
       m_plisting->clear_results();
       
-      check_refdbg();
+      __check_refdbg
 
       dir()->enumerate(*m_plisting);
 
-      check_refdbg();
+      __check_refdbg
 
    }
 

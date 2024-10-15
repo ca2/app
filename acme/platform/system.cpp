@@ -49,7 +49,7 @@
 //extern "C" void nano_dynamic_library_factory(::factory::factory * pfactory);
 
 
-CLASS_DECL_ACME void check_refdbg();
+CLASS_DECL_ACME void __check_refdbg
 
 
 //#elif defined(UNIVERSAL_WINDOWS)

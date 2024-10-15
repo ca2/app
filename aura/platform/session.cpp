@@ -18,8 +18,11 @@
 #include "aura/platform/session.h"
 #include "aura/platform/system.h"
 #include "aura/platform/application.h"
+
+#if REFERENCING_DEBUGGING
 CLASS_DECL_ACME::reference_referer* refdbg_get_top_referer();
 CLASS_DECL_ACME ::subparticle* refdbg_get_track_allocation();
+#endif
 
 
 #if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)

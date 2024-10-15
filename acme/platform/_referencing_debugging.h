@@ -63,6 +63,12 @@ class reference_count_debug;
 #define __raw_construct_new(C) __construct_site(C __comma_refdbg_function_file_line__)
 
 
+#define __check_refdbg check_refdbg();
+
+
+CLASS_DECL_ACME void check_refdbg();
+
+
 //#define REFERENCING_DEBUGGING_MAX_COUNT 256
 //#define  referer
 //#define , 
@@ -149,6 +155,9 @@ class reference_count_debug;
 
 
 #define __raw_construct_new(C) __call__raw_construct_new(C)
+
+
+#define __check_refdbg
 
 
 //#define 

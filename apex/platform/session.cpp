@@ -27,7 +27,7 @@
 CLASS_DECL_ACME::reference_referer* refdbg_get_top_referer();
 CLASS_DECL_ACME::subparticle* refdbg_get_track_allocation();
 CLASS_DECL_ACME::reference_referer* refdbg_get_top_releaser();
-CLASS_DECL_ACME void check_refdbg();
+CLASS_DECL_ACME void __check_refdbg
 
 
 #if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
@@ -1265,40 +1265,40 @@ ret:
       if (!m_pfsdata)
       {
 
-         check_refdbg();
+         __check_refdbg
 
          auto pset = __create_new<::fs::set>();
 
-         check_refdbg();
+         __check_refdbg
 
          auto plink = __create_new < ::fs::link>();
 
-         check_refdbg();
+         __check_refdbg
 
          plink->fill_os_user();
 
-         check_refdbg();
+         __check_refdbg
 
          ::pointer < ::fs::data > pfsdataLink = plink;
 
-         check_refdbg();
+         __check_refdbg
 
          pset->m_spafsdata.add(pfsdataLink);
 
-         check_refdbg();
+         __check_refdbg
 
          ::pointer < ::fs::data > pfsdataNative = __create_new < ::fs::native>();
 
-         check_refdbg();
+         __check_refdbg
 
          pset->m_spafsdata.add(pfsdataNative);
 
-         check_refdbg();
+         __check_refdbg
 
          //estatus = 
          m_pfsdata = pset;
 
-         check_refdbg();
+         __check_refdbg
 
          //if (!estatus)
          //{

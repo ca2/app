@@ -25,7 +25,7 @@
 
 
 
-CLASS_DECL_ACME void check_refdbg();
+CLASS_DECL_ACME void __check_refdbg
 
 
 CLASS_DECL_ACME void copy(::string & str, const ::payload & payload)
@@ -4594,7 +4594,12 @@ string_array & payload::string_array_reference()
    else*/ if (m_etype != e_type_string_array)
    {
 
+
+#if REFERENCING_DEBUGGING
+
       ::reference_referer* prefererNew = nullptr;
+
+#endif
 
       auto pstra = __new__prefix(&prefererNew) new string_array();
 
@@ -5275,7 +5280,7 @@ property_set & payload::property_set_reference()
    else*/ if (m_etype != e_type_property_set)
    {
 
-      check_refdbg();
+      __check_refdbg
 
 //#if REFERENCING_DEBUGGING
 //
@@ -5285,11 +5290,15 @@ property_set & payload::property_set_reference()
 
       //auto psetNew = __raw_new property_set();
 
+#if REFERENCING_DEBUGGING
+
       ::reference_referer* prefererNew = nullptr;
+
+#endif
 
       auto psetNew = __new__prefix(&prefererNew) new property_set();
 
-      check_refdbg();
+      __check_refdbg
 
       if (is_empty() || !get_bool())
       {
@@ -8753,7 +8762,11 @@ void payload::null()
    else
    {
 
+#if REFERENCING_DEBUGGING
+
       ::reference_referer* prefererNew = nullptr;
+
+#endif
 
       auto ppath = __new__prefix(&prefererNew) new ::file::path_object(as_file_path());
 

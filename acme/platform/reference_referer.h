@@ -13,7 +13,7 @@ CLASS_DECL_ACME::subparticle* refdbg_get_track_allocation();
 CLASS_DECL_ACME::reference_referer* refdbg_get_top_referer();
 CLASS_DECL_ACME::reference_referer* refdbg_get_top_releaser();
 
-CLASS_DECL_ACME void check_refdbg();
+CLASS_DECL_ACME void __check_refdbg
 
 
 //#include "acme/platform/_c.h"

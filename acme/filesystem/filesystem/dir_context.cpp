@@ -25,7 +25,7 @@
 //#include "apex/networking/http/context.h"
 #include "acme/platform/node.h"
 
-CLASS_DECL_ACME void check_refdbg();
+//CLASS_DECL_ACME void __check_refdbg
 
 namespace zip
 {
@@ -476,7 +476,7 @@ bool dir_context::enumerate(::file::listing& listing)
 bool dir_context::_enumerate(::file::listing& listing)
 {
 
-   check_refdbg();
+   __check_refdbg
 
    if (acmedirectory()->defer_enumerate_protocol(listing))
    {
@@ -487,7 +487,7 @@ bool dir_context::_enumerate(::file::listing& listing)
 
    }
 
-   check_refdbg();
+   __check_refdbg
 
    if (acmedirectory()->defer_enumerate_media_library(listing))
    {
@@ -498,14 +498,14 @@ bool dir_context::_enumerate(::file::listing& listing)
 
    }
 
-   check_refdbg();
+   __check_refdbg
 
    if (listing.m_pathFinal.is_empty() && listing.m_pathUser.has_char())
    {
 
       listing.m_pathFinal = m_pcontext->defer_process_path(listing.m_pathUser);
 
-      check_refdbg();
+      __check_refdbg
 
    }
 

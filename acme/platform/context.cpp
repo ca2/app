@@ -27,7 +27,7 @@
 #include "acme/user/micro/user.h"
 
 
-CLASS_DECL_ACME void check_refdbg();
+CLASS_DECL_ACME void __check_refdbg
 
 
 namespace acme
@@ -668,11 +668,11 @@ namespace acme
    ::file::path context::__defer_process_path(::file::path path)
    {
 
-      check_refdbg();
+      __check_refdbg
 
       path = defer_process_matter_path(path);
 
-      check_refdbg();
+      __check_refdbg
 
       if(path.is_empty())
       {

@@ -34,7 +34,7 @@
 #include "filesystem/filesystem/listing.h"
 
 
-CLASS_DECL_ACME void check_refdbg();
+CLASS_DECL_ACME void __check_refdbg
 
 
 //namespace nano{namespace  user{
@@ -3204,11 +3204,11 @@ bool node::_is_smart_git_installed()
       if (!m_bDropboxCalculated)
       {
          
-         check_refdbg();
+         __check_refdbg
 
          calculate_dropbox_installed();
 
-         check_refdbg();
+         __check_refdbg
 
       }
 
@@ -3226,11 +3226,11 @@ bool node::_is_smart_git_installed()
 
       m_bDropboxCalculated = true;
 
-      check_refdbg();
+      __check_refdbg
 
       ::file::path pathNetworkPayload = file()->dropbox_info_network_payload();
 
-      check_refdbg();
+      __check_refdbg
 
       if (!file()->exists(pathNetworkPayload))
       {
@@ -3272,27 +3272,27 @@ bool node::_is_smart_git_installed()
       else
       {
 
-         check_refdbg();
+         __check_refdbg
 
          string strNetworkPayload = file()->as_string(pathNetworkPayload);
 
-         check_refdbg();
+         __check_refdbg
 
          {
 
             ::property_set set;
 
-            check_refdbg();
+            __check_refdbg
 
             set.parse_network_payload(strNetworkPayload);
 
-            check_refdbg();
+            __check_refdbg
 
             m_pathDropbox = set["personal"]["path"];
 
          }
 
-         check_refdbg();
+         __check_refdbg
 
          if (dir()->is(m_pathDropbox))
          {
@@ -3301,11 +3301,11 @@ bool node::_is_smart_git_installed()
 
          }
 
-         check_refdbg();
+         __check_refdbg
 
       }
 
-      check_refdbg();
+      __check_refdbg
 
       m_bDropboxCalculated = true;
 

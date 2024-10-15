@@ -59,6 +59,10 @@ class reference_count_debug;
 
 #define __comma_refdbg_m_preferer__ , m_preferer
 #define __comma_refdbg_preferer__ , preferer
+
+#define __raw_construct_new(C) __construct_site(C __comma_refdbg_function_file_line__)
+
+
 //#define REFERENCING_DEBUGGING_MAX_COUNT 256
 //#define  referer
 //#define , 
@@ -127,6 +131,26 @@ class reference_count_debug;
 
 //#define __construct_new(p) __call__construct_new(p)
 
+
+#define __refdbg_function_file_line__
+#define __comma_refdbg_function_file_line__
+
+#define __refdbg_function_file_line__preferernew
+#define __comma_refdbg_function_file_line__preferernew
+
+#define __refdbg_call_add_referer
+
+#define __fn_refdbg_referer__
+
+#define __refdbg_referer__
+
+#define __comma_refdbg_m_preferer__
+#define __comma_refdbg_preferer__
+
+
+#define __raw_construct_new(C) __call__raw_construct_new(C)
+
+
 //#define 
 //#define
 //#define
@@ -158,6 +182,10 @@ class reference_count_debug;
 #define REFERENCING_DEBUGGING_P_FUNCTION_FILE_LINE(p) 
 #define REFERENCING_DEBUGGING_COMMA_P_NOTE(p, note) 
 #define REFERENCING_DEBUGGING_COMMA_P_FUNCTION_FILE_LINE(p) 
+#define REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DEFINITION
+#define COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DEFINITION
+#define REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DECLARATION
+#define COMMA_REFERENCING_DEBUGGING_RELEASER_PARAMETERS_DECLARATION
 #define tracking_assign(target, source) target = source
 #define tracking_note_assign(target, source, note) target = source
 #define tracking_named_release(x) ::release(x)
@@ -171,7 +199,6 @@ class reference_count_debug;
 #endif
 
 
-#define __raw_construct_new(C) __construct_site(C __comma_refdbg_function_file_line__)
 
 
 

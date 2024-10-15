@@ -765,11 +765,6 @@ CLASS_DECL_ACME void check_refdbg()
 }
 
 
-#endif //  REFERENCING_DEBUGGING
-
-
-
-
 CLASS_DECL_ACME::subparticle* refdbg_get_track_allocation()
 {
 
@@ -791,5 +786,7 @@ CLASS_DECL_ACME::reference_referer* refdbg_get_top_releaser()
 
 }
 
+
+#endif //  REFERENCING_DEBUGGING
 
 

@@ -130,7 +130,7 @@ class reference_count_debug;
 //#define __delete __call__delete
 
 //#define __construct_new(p) __call__construct_new(p)
-
+#define __new__prefix(pprefererGet) __new_site() <<
 
 #define __refdbg_function_file_line__
 #define __comma_refdbg_function_file_line__

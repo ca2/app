@@ -43,8 +43,11 @@ CLASS_DECL_ACME void check_refdbg();
 //   }//namespace nano
 //
 ::string errno_error_message(::i32 iError);
+
+#if REFERENCING_DEBUGGING
 CLASS_DECL_ACME::reference_referer* refdbg_get_top_referer();
 CLASS_DECL_ACME::subparticle* refdbg_get_track_allocation();
+#endif
 
 
 CLASS_DECL_ACME void exception_message_box(::particle * pparticle, ::exception& exception, const ::string& strMoreDetails);

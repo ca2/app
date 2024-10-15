@@ -2989,7 +2989,9 @@ namespace acme
 
       }
 
+#if REFERENCING_DEBUGGING
       ::allocator::add_referer({refdbg_this(), __FUNCTION_FILE_LINE__});
+#endif
 
       auto pcompress = m_pfactoryitemCompressZlib->__call__create_particle();
 

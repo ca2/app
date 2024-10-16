@@ -233,7 +233,7 @@ namespace user
       //virtual bool IsTopParentActive();
       void ActivateTopParent() override;
 
-      void start_destroying_window() override;
+      //void start_destroying_window() override;
 
       void destroy_window() override;
 
@@ -416,7 +416,7 @@ namespace user
 
       void pre_subclass_window() override;
 
-      void post_non_client_destroy() override;
+      //void post_non_client_destroy() override;
 
 
       //virtual lresult default_window_procedure();

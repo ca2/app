@@ -351,7 +351,7 @@ namespace aura
             for (auto pframe : framea)
             {
 
-               pframe->start_destroying_window();
+               pframe->destroy_window();
 
             }
 #ifdef DEBUG
@@ -8191,7 +8191,7 @@ namespace aura
       else
       {
 
-         pframe->start_destroying_window();
+         pframe->destroy_window();
 
       }
 

@@ -323,9 +323,9 @@ namespace user
       //m_pthreadUserInteraction && m_pthreadUserInteraction->destroy();
       // tasks should not be destroyed in destroy
       //m_pthreadUserInteraction && m_pthreadUserInteraction->destroy();
-      if (m_ptooltip) m_ptooltip->destroy();
-      if (m_pmenuitem) m_pmenuitem->destroy();
-      m_menua.destroy_all();
+      m_ptooltip.defer_destroy();
+      m_pmenuitem.defer_destroy();
+      m_menua.destroy();
 
       // ownership
       //if(m_pinteractiondraw2d)
@@ -390,14 +390,14 @@ namespace user
    }
 
 
-   void frame::start_destroying_window()
-   {
+   //void frame::start_destroying_window()
+   //{
 
-      ::user::interaction::start_destroying_window();
+   //   ::user::interaction::start_destroying_window();
 
-      window()->start_destroying_window();
+   //   //window()->start_destroying_window();
 
-   }
+   //}
 
 
    void frame::destroy_window()

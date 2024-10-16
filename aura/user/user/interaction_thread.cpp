@@ -435,7 +435,7 @@ namespace user
                && ::thread::has_finishing_flag())
             {
 
-               m_puserinteractionUserThread->start_destroying_window();
+               m_puserinteractionUserThread->destroy_window();
 
             }
 
@@ -942,7 +942,7 @@ namespace user
                if (m_puserinteractionUserThread && !m_puserinteractionUserThread->has_destroying_flag())
                {
 
-                  m_puserinteractionUserThread->start_destroying_window();
+                  m_puserinteractionUserThread->destroy_window();
 
                }
 
@@ -1156,7 +1156,7 @@ namespace user
          else if (m_puserinteractionUserThread)
          {
 
-            m_puserinteractionUserThread->start_destroying_window();
+            m_puserinteractionUserThread->destroy_window();
 
          }
 

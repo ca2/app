@@ -120,10 +120,10 @@ file_dialog::~file_dialog()
 //         false,
 //         false);
 
-//      auto pdialog = ::as(__new ::operating_system_file_dialog(this,
+//      auto pdialog = __initialize_new ::operating_system_file_dialog(this,
 //                                                        poswindow,
 //                                                        nullptr,
-//                                                        filetypes, function, false, false)));
+//                                                        filetypes, function, false, false));
 //
 //      operating_system_file_dialog(pdialog);
 

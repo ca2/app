@@ -639,14 +639,16 @@ namespace user
       }*/
    }
 
-   void frame_window::post_non_client_destroy()
+
+   void frame_window::destroy()
    {
-      ::user::interaction::post_non_client_destroy();
+      ::user::interaction::destroy();
       // default for frame windows is to allocate them on the heap
       //  the default post-cleanup is to 'delete this'.
       // never explicitly call 'delete' on a frame_window, use DestroyWindow instead
       //release();
    }
+
 
    void frame_window::OnPaletteChanged(::pointer<::user::interaction>pFocusWnd)
    {

@@ -207,9 +207,11 @@ namespace user
 
    }
 
-   void control_bar::post_non_client_destroy()
+
+   void control_bar::destroy()
    {
-      ::user::interaction::post_non_client_destroy();
+
+      ::user::interaction::destroy();
       //if (m_bAutoDelete)      // Automatic cleanup?
       // delete this;
    }
@@ -487,11 +489,11 @@ namespace user
    }
 
 
-   void control_bar::start_destroying_window()
+   void control_bar::destroy_window()
    {
 
       //return 
-      ::user::interaction::start_destroying_window();
+      ::user::interaction::destroy_window();
 
    }
 

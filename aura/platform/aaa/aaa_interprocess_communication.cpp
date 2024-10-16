@@ -11,7 +11,7 @@ namespace aura
          ::object(pcall),
          m_pcall(pcall),
          m_atomPid(idPid),
-         m_pevReady(::as(__new manual_reset_event())),
+         m_pevReady(__initialize_new manual_reset_event()),
          m_iTask(iTask)
    {
 

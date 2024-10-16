@@ -222,10 +222,10 @@ namespace user
    }
 
 
-   void impact::post_non_client_destroy()
+   void impact::destroy()
    {
 
-      ::user::interaction::post_non_client_destroy();
+      ::user::interaction::destroy();
 
    }
 

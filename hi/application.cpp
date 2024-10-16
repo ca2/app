@@ -1557,7 +1557,7 @@ namespace console_hello
 
 //console_hello::application g_consolehelloapplication;
 
-::i32 application_main(::platform::platform * pplatform)
+void application_main()
 {
 
    auto papplication = __allocate console_hello::application();

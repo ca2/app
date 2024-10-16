@@ -67,10 +67,10 @@ namespace user
    }
 
 
-   void menu_list_impact::post_non_client_destroy()
+   void menu_list_impact::destroy()
    {
 
-      ::user::menu_list_window::post_non_client_destroy();
+      ::user::menu_list_window::destroy();
 
    }
 

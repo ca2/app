@@ -61,7 +61,7 @@ namespace user
       void destroy() override;
 
 
-      void start_destroying_window() override;
+      //void start_destroying_window() override;
 
       void destroy_window() override;
 

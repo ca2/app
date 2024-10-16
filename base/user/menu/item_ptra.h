@@ -7,7 +7,7 @@ namespace menu
 
 
    class CLASS_DECL_BASE item_ptra :
-public pointer_array < ::menu::item >
+      public pointer_array < ::menu::item >
    {
    public:
 

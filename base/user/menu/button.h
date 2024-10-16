@@ -20,7 +20,10 @@ namespace user
       ~menu_button() override;
 
 
-      virtual void initialize_menu_interaction(::menu::item* pitem) override;
+      void destroy() override;
+
+
+      void initialize_menu_interaction(::menu::item* pitem) override;
 
 
       void install_message_routing(::channel * pchannel) override;

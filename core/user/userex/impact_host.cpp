@@ -230,11 +230,11 @@ namespace userex
 
          //m_ptemplateTab = ;;
          user()->m_pbaseuser->add_impact_system(
-            "main", ::as(__new user::single_document_template(
+            "main", __initialize_new user::single_document_template(
             "main",
             ::type < ::user::document >(),
             ::type < simple_child_frame >(),
-            ::type < ::userex::pane_tab_impact >())));
+            ::type < ::userex::pane_tab_impact >()));
 
          //user()->m_pbaseuser->initialize(this);
 

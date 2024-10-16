@@ -947,13 +947,13 @@ public:
 
    }
 
-   void destroy_all()
+   void destroy() override
    {
 
       for (auto& p : *this)
       {
 
-         p->destroy();
+         p.defer_destroy();
 
       }
 

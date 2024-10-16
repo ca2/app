@@ -108,21 +108,21 @@ namespace app_build
 
       }
 
-      auto ptemplate = ::as(__new ::user::single_document_template(
+      auto ptemplate = __initialize_new ::user::single_document_template(
                             "main",
                             ::type < simple_pane_document >(),
                             ::type < main_frame >(),
-                            ::type < pane_impact >())));
+                            ::type < pane_impact >()));
 
       m_ptemplateHelloMultiverseMain = ptemplate;
 
       add_document_template(ptemplate);
 
-      ptemplate = ::as(__new ::user::single_document_template(
+      ptemplate = __initialize_new ::user::single_document_template(
                        "main",
                        ::type < document >(),
                        ::type < frame >(),
-                       ::type < main_impact >())));
+                       ::type < main_impact >()));
 
       m_ptemplateHelloMultiverseImpact = ptemplate;
 

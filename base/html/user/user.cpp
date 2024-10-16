@@ -25,11 +25,11 @@ namespace base
       factory()->add_factory_item < html_impact >();
       factory()->add_factory_item < ::html::core_data::image >();
 
-      //auto ptemplate = ::as(__new ::user::multiple_document_template(
+      //auto ptemplate = __initialize_new ::user::multiple_document_template(
       //   "system/form",
       //   ::type < html_document >(),
       //   get_simple_child_frame_type_info(),
-      //   ::type < html_impact >())));
+      //   ::type < html_impact >()));
 
       //m_ptemplateHtmlChildForm1 = ptemplate;
 

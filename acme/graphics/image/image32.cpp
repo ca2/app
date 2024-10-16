@@ -290,7 +290,7 @@ void image32_t::copy(int cx, int cy, int iStrideDst, const ::image32_t * pimage3
    if (iStrideSrc == iStrideDst && cy * sizeof(image32_t) == iStrideSrc)
    {
 
-      ::memory_copy(this, pimage32Src, cx * sizeof(image32_t) + cy * iStrideSrc);
+      ::memory_copy(this, pimage32Src, cy * iStrideSrc);
 
       return;
 

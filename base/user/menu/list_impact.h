@@ -32,10 +32,7 @@ namespace user
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
-
-      virtual void post_non_client_destroy() override;
-
-
+      void destroy() override;
 
 
    };

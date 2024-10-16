@@ -145,7 +145,7 @@ namespace user
 
       display(e_display_none);
 
-      start_destroying_window();
+      destroy_window();
 
       pmessage->m_bRet = true;
 

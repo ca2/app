@@ -88,32 +88,32 @@ namespace helloworld
       ::user::single_document_template* pDocTemplate;
 
 
-      pDocTemplate = ::as(__new ::user::single_document_template(
+      pDocTemplate = __initialize_new ::user::single_document_template(
                              this,
                              "main",
                              ::type < document >(),
                              ::type < main_frame >(),
-                             ::type < pane_impact >())));
+                             ::type < pane_impact >()));
       m_ptemplateHelloWorldMain = pDocTemplate;
       add_document_template(pDocTemplate);
 
 
-      pDocTemplate = ::as(__new ::user::single_document_template(
+      pDocTemplate = __initialize_new ::user::single_document_template(
                              this,
                              "main",
                              ::type < document >(),
                              ::type < frame >(),
-                             ::type < main_impact >())));
+                             ::type < main_impact >()));
       m_ptemplateHelloWorldView = pDocTemplate;
       add_document_template(pDocTemplate);
 
 
-      pDocTemplate = ::as(__new ::user::single_document_template(
+      pDocTemplate = __initialize_new ::user::single_document_template(
                              this,
                              "switcher",
                              ::type < document >(),
                              ::type < frame >(),
-                             ::type < switcher_impact >())));
+                             ::type < switcher_impact >()));
       m_ptemplateHelloWorldSwitcher = pDocTemplate;
       add_document_template(pDocTemplate);
 

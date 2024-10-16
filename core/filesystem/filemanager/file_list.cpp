@@ -248,12 +248,12 @@ namespace filemanager
          
          auto pmenu = puser->menu_from_xml(this, filemanager_data()->m_strXmlPopup);
          
-         auto ptrackpopup = ::as(__new ::menu::track_popup(
+         auto ptrackpopup = __initialize_new ::menu::track_popup(
                                                              pmenu,
                                                              this,
                                                              this,
                                                                pointCursor,
-                                                             r));
+                                                             r);
 
          puser->track_popup_menu(ptrackpopup);
 
@@ -515,10 +515,10 @@ namespace filemanager
          if (pmenu->create_menu(straCommand, straCommandTitle))
          {
             
-            auto ptrackpopup = ::as(__new ::menu::track_popup(
+            auto ptrackpopup = __initialize_new ::menu::track_popup(
                                                              pmenu,
                                                              this,
-                                                             this));
+                                                             this);
 
             //pmenu->track_popup_menu(parent_frame());
             

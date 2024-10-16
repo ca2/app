@@ -126,7 +126,7 @@ namespace ftp
 
    logon::logon() :
       //storage_client(Sess(pparticle).account()->storage()),
-      //::account::credentials(::as(__new ::account::user(this))), Sess(pparticle).account()->storage(),
+      //::account::credentials(__initialize_new ::account::user(this))), Sess(pparticle).account()->storage(,
       m_ushHostport(DEFAULT_FTP_PORT),
       m_ushFwPort(DEFAULT_FTP_PORT),
       m_FwType(firewall_type::None())
@@ -137,7 +137,7 @@ namespace ftp
    logon::logon(const string& strHostname, ::u16 ushHostport, const string& strUsername,
                 const string& strPassword, const string& strAccount) :
       //storage_client(Sess(pparticle).account()->storage()),
-      //::account::credentials(::as(__new ::account::user(this))), Sess(pparticle).account()->storage(),
+      //::account::credentials(__initialize_new ::account::user(this))), Sess(pparticle).account()->storage(,
       m_strHostname(strHostname),
       m_ushHostport(ushHostport),
       m_strAccount(strAccount),
@@ -152,7 +152,7 @@ namespace ftp
                 const string& strAccount, const string& strFwHostname, const string& strFwUsername,
                 const string& strFwPassword, ::u16 ushFwPort, const firewall_type& crFwType) :
       //storage_client(Sess(pparticle).account()->storage()),
-      //::account::credentials(::as(__new ::account::user(this))), Sess(pparticle).account()->storage(),
+      //::account::credentials(__initialize_new ::account::user(this))), Sess(pparticle).account()->storage(,
       m_strHostname(strHostname),
       m_ushHostport(ushHostport),
       m_strAccount(strAccount),

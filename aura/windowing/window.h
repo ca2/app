@@ -345,7 +345,7 @@ namespace windowing
 
       //void set_user_interaction(::acme::user::interaction *pinteraction) override;
 
-      void post_non_client_destroy() override;
+      //void post_non_client_destroy() override;
 
       virtual bool is_child_of(const window * pwindowAscendantCandidate) const; // or descendant
       

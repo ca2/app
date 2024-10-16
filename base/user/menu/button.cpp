@@ -41,6 +41,15 @@ namespace user
    }
 
 
+   void menu_button::destroy()
+   {
+
+      ::user::menu_interaction::destroy();
+      ::user::interaction::destroy();
+
+   }
+
+
    void menu_button::initialize_menu_interaction(::menu::item* pitem)
    {
 

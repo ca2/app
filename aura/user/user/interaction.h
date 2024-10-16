@@ -1440,7 +1440,7 @@ namespace user
 
 
 
-      virtual void start_destroying_window() override;
+      //virtual void start_destroying_window() override;
 
       virtual void destroy_window() override;
 
@@ -1794,6 +1794,7 @@ namespace user
       void on_timer(::timer* ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_character);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
+      DECLARE_MESSAGE_HANDLER(on_message_non_client_destroy);
       //DECLARE_MESSAGE_HANDLER(on_message_user_post);
       DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(on_message_move);
@@ -1930,7 +1931,7 @@ namespace user
 
       void pre_subclass_window() override;
 
-      void post_non_client_destroy() override;
+      //void post_non_client_destroy() override;
 
 
       void default_message_handler(::message::message * pmessage) override;

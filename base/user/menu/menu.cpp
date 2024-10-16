@@ -120,13 +120,13 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &menu::on_message_create);
-      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &menu::on_message_destroy);
+      MESSAGE_LINK(e_message_create, pchannel, this, &menu::on_message_create);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &menu::on_message_destroy);
       MESSAGE_LINK(e_message_non_client_activate, pchannel, this, &menu::_001OnNcActivate);
       MESSAGE_LINK(e_message_non_client_calc_size, pchannel, this, &menu::on_message_non_client_calculate_size);
       MESSAGE_LINK(e_message_enable, pchannel, this, &menu::_001OnEnable);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &menu::on_message_show_window);
-      MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &menu::on_message_close);
+      MESSAGE_LINK(e_message_close, pchannel, this, &menu::on_message_close);
       MESSAGE_LINK(e_message_mouse_activate, pchannel, this, &menu::_001OnMouseActivate);
       MESSAGE_LINK(e_message_activate, pchannel, this, &menu::_001OnActivate);
       MESSAGE_LINK(e_message_non_client_create, pchannel, this, &menu::_001OnNcCreate);
@@ -225,7 +225,80 @@ namespace user
    void menu::destroy()
    {
 
-      set_finish();
+      if (m_pmenuParent != nullptr)
+      {
+
+         if (m_pmenuParent->m_pmenuSubMenu == this)
+         {
+
+            m_pmenuParent->m_pmenuSubMenu.release();
+
+         }
+         else
+         {
+
+            informationf("parent has other Topic Submenu");
+
+         }
+
+      }
+
+      if (m_pmenuSubMenu)
+      {
+
+         m_pmenuSubMenu->destroy_window();
+
+         m_pmenuSubMenu.release();
+
+      }
+
+      if (m_pmenuitem)
+      {
+
+         ::user::interaction * puserinteractionHost = m_pmenuitem->m_puserinteractionHost;
+
+         if (::is_set(puserinteractionHost))
+         {
+
+            bool bErased = puserinteractionHost->m_menua.erase(this) > 0;
+
+            if (bErased && m_pmenuitem->m_pmenuitemParent.is_null())
+            {
+
+               m_pmenuitem.defer_destroy();
+
+            }
+
+         }
+
+         if (::is_set(m_puserinteractionOwner)
+            && m_puserinteractionOwner != puserinteractionHost)
+         {
+
+            bool bErased = m_puserinteractionOwner->m_menua.erase(this);
+
+            if (bErased && m_pmenuitem->m_pmenuitemParent.is_null())
+            {
+
+               m_pmenuitem.defer_destroy();
+
+            }
+
+         }
+
+      }
+
+      m_pchannelNotify.release();
+
+      m_puserinteractionParent.release();
+
+      m_pmenuParent.release();
+
+      m_pitemClose.release();
+
+      m_pmenuSubMenu.release();
+
+      m_pmenuitemSub.release();
 
       if (m_ptrackpopup)
       {
@@ -236,64 +309,22 @@ namespace user
 
       }
 
-      //if (m_puserinteractionParent)
-      //{
+      m_menua.defer_destroy();
 
-      //   m_puserinteractionParent->erase_child(this);
-
-      //}
-
-//      try
-//      {
-//
-//         interaction_pointer_array uiptra = m_uiptraChild;
-//
-//         {
-//
-//            _synchronous_lock synchronouslock(mutex_children());
-//
-//            m_uiptraChild.erase_all();
-//
-//         }
-//
-//         for (::collection::index i = 0; i < uiptra.get_count(); i++)
-//         {
-//
-//            try
-//            {
-//
-//               uiptra[i]->DestroyWindow();
-//
-//            }
-//            catch (...)
-//            {
-//
-//            }
-//
-//         }
-//
-//      }
-//      catch (...)
-//      {
-//
-//
-//      }
-//
-//
-//
+      if (m_ptrackpopup)
       {
 
-         // _synchronous_lock synchronouslock(mutex_children());
+         m_ptrackpopup->m_pmenuImplementation.release();
 
-          // m_uiptraChild.interactiona().erase_all();
-
-         _synchronous_lock synchronouslock(this->synchronization());
-
-         m_puserinteractionpointeraChild.release();
+         m_ptrackpopup.release();
 
       }
 
-      m_pmenuitem.release();
+//      m_pmenuitem.release();
+
+      ::menu::menu::destroy();
+
+      ::user::interaction::destroy();
 
    }
 
@@ -409,95 +440,13 @@ namespace user
    }
 
 
-   void menu::on_message_destroy(::message::message* pmessage)
+   void menu::on_message_destroy(::message::message * pmessage)
    {
-
-      auto puserinteractionOwner = m_puserinteractionOwner;
-      
-      if (puserinteractionOwner)
-      {
-
-         auto puserinteraction = puserinteractionOwner->get_wnd();
-
-         if (puserinteraction)
-         {
-
-            puserinteraction->m_menua.erase(this);
-
-         }
-
-      }
-
-      if (m_pmenuParent != nullptr)
-      {
-
-         if (m_pmenuParent->m_pmenuSubMenu == this)
-         {
-
-            m_pmenuParent->m_pmenuSubMenu.release();
-
-         }
-         else
-         {
-
-            informationf("parent has other Topic Submenu");
-
-         }
-
-      }
-
-      if (m_pmenuSubMenu)
-      {
-
-         m_pmenuSubMenu->start_destroying_window();
-
-         m_pmenuSubMenu.release();
-
-      }
-
-      if (m_pmenuitem.is_set())
-      {
-
-         ::user::interaction* puserinteractionHost = m_pmenuitem->m_puserinteractionHost;
-
-         if (::is_set(puserinteractionHost))
-         {
-
-            if (puserinteractionHost->m_menua.erase(this)
-               && m_pmenuitem->m_pmenuitemParent.is_null())
-            {
-
-               m_pmenuitem->menu_item_destruct();
-
-            }
-
-         }
-
-      }
-
-      m_pchannelNotify.release();
-
-      m_puserinteractionParent.release();
-
-      m_pmenuParent.release();
-
-      m_pitemClose.release();
-
-      m_pmenuSubMenu.release();
-
-      m_pmenuitemSub.release();
-
-      if (m_ptrackpopup)
-      {
-
-         m_ptrackpopup->m_pmenuImplementation.release();
-
-         m_ptrackpopup.release();
-
-      }
 
    }
 
+
+   
 
    ::menu::item* menu::GetSubMenu(i32 i)
    {
@@ -1804,7 +1753,7 @@ namespace user
          //DestroyWindow();
          //set_finish();
 
-         start_destroying_window();
+         destroy_window();
 
       }
 

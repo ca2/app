@@ -54,61 +54,75 @@ namespace menu
    }
 
 
+   void item::destroy()
+   {
+
+      m_pmenuitema.defer_destroy();
+      m_pmenuitemParent.release();
+      m_puserinteraction.release();
+      m_pmenu.release();
+      m_pimage.release();
+
+      ::item::destroy();
+
+   }
+
+
    ::collection::count item::get_separator_item_count()
    {
-    
-      if(!m_pmenuitema)
+
+      if (!m_pmenuitema)
       {
-       
+
          return 0;
-         
+
       }
-      
+
       ::collection::count cSeparator = 0;
-      
-      for(auto & pmenuitem : *m_pmenuitema)
+
+      for (auto & pmenuitem : *m_pmenuitema)
       {
-       
-         if(pmenuitem->is_separator())
+
+         if (pmenuitem->is_separator())
          {
-          
+
             cSeparator++;
-            
+
          }
-         
+
       }
-      
+
       return cSeparator;
-      
+
    }
 
 
    ::collection::count item::get_full_height_item_count()
    {
-    
-      if(!m_pmenuitema)
+
+      if (!m_pmenuitema)
       {
-       
+
          return 0;
-         
+
       }
-      
+
       ::collection::count cFullItemHeight = 0;
-      
-      for(auto & pmenuitem : *m_pmenuitema)
+
+      for (auto & pmenuitem : *m_pmenuitema)
       {
-       
-         if(!pmenuitem->is_separator())
+
+         if (!pmenuitem->is_separator())
          {
-          
+
             cFullItemHeight++;
-            
+
          }
-         
+
       }
-      
+
       return cFullItemHeight;
-      
+
    }
 
 
@@ -144,25 +158,25 @@ namespace menu
    }
 
 
-   void item::menu_item_destruct()
-   {
+   //void item::menu_item_destruct()
+   //{
 
-      for (auto & pitemChild : *m_pmenuitema)
-      {
+   //   for (auto & pitemChild : *m_pmenuitema)
+   //   {
 
-         pitemChild->menu_item_destruct();
+   //      pitemChild->menu_item_destruct();
 
-      }
+   //   }
 
-      m_puserinteraction.release();
+   //   m_puserinteraction.release();
 
-      m_puserinteractionHost.release();
+   //   m_puserinteractionHost.release();
 
-      m_pmenu.release();
+   //   m_pmenu.release();
 
-      m_pmenuitemParent.release();
+   //   m_pmenuitemParent.release();
 
-   }
+   //}
 
    bool item::load_menu(::xml::node * pnode)
    {
@@ -175,17 +189,17 @@ namespace menu
    item * item::separator()
    {
 
-   auto pitem = __create_new<item>();
+      auto pitem = __create_new<item>();
 
-   pitem->m_atom = id_separator;
+      pitem->m_atom = id_separator;
 
-   pitem->m_pmenu = m_pmenu;
+      pitem->m_pmenu = m_pmenu;
 
-   add_item(pitem);
+      add_item(pitem);
 
-   return pitem;
+      return pitem;
 
-}
+   }
 
 
 
@@ -198,7 +212,7 @@ namespace menu
 
       m_bPopup = pnode->get_children_count() > 0 && pnode->get_name() == "menubar";
 
-      if(pnode->get_name() == "separator")
+      if (pnode->get_name() == "separator")
       {
 
          m_atom = id_separator;
@@ -215,7 +229,7 @@ namespace menu
 
          string strText;
 
-         if(m_bPopup)
+         if (m_bPopup)
          {
 
             m_iLevel = iLevel + 1;
@@ -241,7 +255,7 @@ namespace menu
 
          m_strTitle = strText;
 
-         string strImage (pnode->attribute("image").as_string());
+         string strImage(pnode->attribute("image").as_string());
 
          if (strImage.has_char())
          {
@@ -335,8 +349,8 @@ namespace menu
    bool item::is_popup() const
    {
 
-      return m_bPopup 
-      || (m_pmenuitema.is_set() && m_pmenuitema->has_element());
+      return m_bPopup
+         || (m_pmenuitema.is_set() && m_pmenuitema->has_element());
 
    }
 
@@ -411,7 +425,7 @@ namespace menu
    item * item::find(const atom & atom)
    {
 
-      if(m_pmenuitema.is_null())
+      if (m_pmenuitema.is_null())
       {
          return nullptr;
 
@@ -439,12 +453,12 @@ namespace menu
 
       item * pitemFind;
 
-      for(i32 i = 0; i < this->get_size(); i++)
+      for (i32 i = 0; i < this->get_size(); i++)
       {
 
          item * pitem = element_at(i);
 
-         if(pitem->m_atom  == atom)
+         if (pitem->m_atom == atom)
          {
 
             return pitem;
@@ -453,7 +467,7 @@ namespace menu
 
          pitemFind = pitem->find(atom);
 
-         if(pitemFind != nullptr)
+         if (pitemFind != nullptr)
          {
 
             return pitemFind;
@@ -476,7 +490,7 @@ namespace menu
       {
 
          auto pitem = m_pmenuitema->element_at(iItem);
-         
+
          if (!pitem)
          {
 
@@ -510,7 +524,7 @@ namespace menu
          if (pinteraction->is_window())
          {
 
-            pinteraction->start_destroying_window();
+            pinteraction->destroy_window();
 
          }
 
@@ -536,7 +550,7 @@ namespace menu
 
          pinteraction->set_window_text(pitem->m_strTitle);
 
-         if(pusermenu->m_bInline)
+         if (pusermenu->m_bInline)
          {
 
             pitem->create_buttons(pgraphics, pusermenu);

@@ -33,6 +33,16 @@ namespace user
    }
 
 
+   void menu_interaction::destroy()
+   {
+
+      m_pmenuitem.release();
+
+      ::user::interaction::destroy();
+
+   }
+
+
    void menu_interaction::initialize_menu_interaction(::menu::item* pmenuitem)
    {
 

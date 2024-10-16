@@ -934,7 +934,7 @@ memory_file & memory_file::operator = (const memory_file & file)
 //CLASS_DECL_ACME memory_file_pointer create_memory_file_as_copy(const memory & memory) 
 //{
 //   
-//   return __allocate ::memory_file(::as(__new ::memory (memory))); 
+//   return __allocate ::memory_file(__initialize_new ::memory (memory)); 
 //
 //}
 //

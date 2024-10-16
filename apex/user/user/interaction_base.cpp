@@ -1869,14 +1869,14 @@ namespace user
    //}
 
 
-   void interaction_base::start_destroying_window()
-   {
+   //void interaction_base::start_destroying_window()
+   //{
 
-      throw ::interface_only();
+   //   throw ::interface_only();
 
-      //return false;
+   //   //return false;
 
-   }
+   //}
 
 
    void interaction_base::destroy_window()
@@ -1885,12 +1885,12 @@ namespace user
    }
 
 
-   void interaction_base::post_non_client_destroy()
-   {
+   //void interaction_base::post_non_client_destroy()
+   //{
 
-      destroy();
+   //   destroy();
 
-   }
+   //}
 
 
    ::user::interaction * interaction_base::get_parent()

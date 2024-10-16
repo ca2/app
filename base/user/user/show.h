@@ -72,6 +72,16 @@ namespace user
 
       }
 
+      
+      void destroy() override
+      {
+
+         ::user::impact::destroy();
+
+         VIEW::destroy();
+
+      }
+
 
 //      virtual void assert_ok() const override
 //      {

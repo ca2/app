@@ -144,7 +144,7 @@ namespace user
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
       virtual bool pre_create_window(::user::system * pusersystem) override;
-      virtual void post_non_client_destroy() override;
+      void destroy() override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);

@@ -349,7 +349,7 @@ namespace user
       //virtual bool IsTopParentActive();
       virtual void ActivateTopParent();
 
-      virtual void start_destroying_window();
+      //virtual void start_destroying_window();
 
       virtual void destroy_window();
 
@@ -554,7 +554,7 @@ namespace user
 
       virtual void pre_subclass_window();
 
-      virtual void post_non_client_destroy();
+      //virtual void post_non_client_destroy();
 
 
       //virtual lresult default_window_procedure();

@@ -129,13 +129,13 @@ namespace user
 
 
       virtual bool IsDockBar();
-      virtual void start_destroying_window() override;
+      void destroy_window() override;
       virtual void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle);
 
 
-      virtual void pre_translate_message(::message::message * pmessage) override;
-      virtual bool pre_create_window(::user::system * pusersystem) override;
-      virtual void post_non_client_destroy() override;
+      void pre_translate_message(::message::message * pmessage) override;
+      bool pre_create_window(::user::system * pusersystem) override;
+      void destroy() override;
 
       virtual void DoPaint(::draw2d::graphics_pointer & pgraphics);
       void DrawBorders(::draw2d::graphics_pointer & pgraphics, ::rectangle_i32& rectangle);

@@ -169,9 +169,91 @@ namespace windowing
    void window::destroy()
    {
 
-      ::channel::destroy();
+      if (::is_set(m_puserthread))
+      {
 
-      ::acme::windowing::window::destroy();
+         auto puserthread = m_puserthread.cast<::user::thread>();
+
+         if (puserthread->m_puserinteractionUserThread == m_puserinteraction)
+         {
+
+            puserthread->set_finish();
+
+         }
+
+         if (::is_set(puserthread))
+         {
+
+            puserthread->m_puserinteractionUserThread.release();
+
+         }
+
+         if (::is_set(m_puserthread->m_puserinteractionbaseaThread))
+         {
+
+            m_puserthread->m_puserinteractionbaseaThread->erase(m_puserinteraction);
+
+         }
+
+         m_puserthread.release();
+
+      }
+
+      string strType = ::type(m_puserinteraction).name();
+
+      m_pplacementlog.release();
+      m_pparticleChildrenSynchronization.release();
+      m_pcursor.release();
+      m_pcopydesk.release();
+      m_picon.release();
+      m_pwindowParent.release();
+      m_pmessagequeue.release();
+      m_pdisplay.release();
+
+      //::channel::destroy();
+
+      detach_window();
+
+      m_puserinteraction.release();
+
+      m_puserinteractionKeyboardFocus.release();
+
+      m_puserinteractionKeyboardFocusRequest.release();
+
+      m_puserinteractionKeyboardGainingFocusIfAny.release();
+
+      m_puserinteractionMouseCapture.release();
+
+      m_puserinteractionToKillKeyboardFocus.release();
+
+      m_puserthread.release();
+
+      m_pgraphicsgraphics.release();
+
+      m_pgraphicsthread.release();
+
+      //this->windowing().release();
+
+      m_graphicaloutputpurposea.clear();
+
+      if (m_pthreadMouseLeave)
+      {
+
+         m_pthreadMouseLeave->set_finish();
+
+      }
+
+      //m_pthreadMouseLeave.release();
+
+      m_messagelist.clear();
+
+      m_pelementSoftwareKeyboard.release();
+
+      m_pdraw2dgraphics.release();
+
+      //::channel::destroy();
+
+      ::windowing::window_base::destroy();
 
 
    }
@@ -5018,105 +5100,92 @@ namespace windowing
    }
 
 
-   void window::post_non_client_destroy()
-   {
+   //void window::post_non_client_destroy()
+   //{
 
-      if (::is_set(m_puserthread))
-      {
+   //   if (::is_set(m_puserthread))
+   //   {
 
-         auto puserthread = m_puserthread.cast<::user::thread>();
+   //      auto puserthread = m_puserthread.cast<::user::thread>();
 
-         if (puserthread->m_puserinteractionUserThread == m_puserinteraction)
-         {
+   //      if (puserthread->m_puserinteractionUserThread == m_puserinteraction)
+   //      {
 
-            puserthread->set_finish();
+   //         puserthread->set_finish();
 
-         }
+   //      }
 
-         if (::is_set(puserthread))
-         {
+   //      if (::is_set(puserthread))
+   //      {
 
-            puserthread->m_puserinteractionUserThread.release();
+   //         puserthread->m_puserinteractionUserThread.release();
 
-         }
+   //      }
 
-         if (::is_set(m_puserthread->m_puserinteractionbaseaThread))
-         {
+   //      if (::is_set(m_puserthread->m_puserinteractionbaseaThread))
+   //      {
 
-            m_puserthread->m_puserinteractionbaseaThread->erase(m_puserinteraction);
+   //         m_puserthread->m_puserinteractionbaseaThread->erase(m_puserinteraction);
 
-         }
+   //      }
 
-         m_puserthread.release();
+   //      m_puserthread.release();
 
-      }
+   //   }
 
-      string strType = ::type(m_puserinteraction).name();
+   //   string strType = ::type(m_puserinteraction).name();
 
-      //      if (strType.contains("main_frame"))
-      //      {
-      //
-      //         informationf("main_frame");
-      //
-      //      }
+   //   m_pplacementlog.release();
+   //   m_pparticleChildrenSynchronization.release();
+   //   m_pcursor.release();
+   //   m_pcopydesk.release();
+   //   m_picon.release();
+   //   m_pwindowParent.release();
+   //   m_pmessagequeue.release();
+   //   m_pdisplay.release();
 
+   //   ::channel::destroy();
 
-      //::windowing::window_base::post_non_client_destroy();
+   //   detach_window();
 
-      m_pplacementlog.release();
-      m_pparticleChildrenSynchronization.release();
-      m_pcursor.release();
-      m_pcopydesk.release();
-      //this->windowing().release();
-      m_picon.release();
-      m_pwindowParent.release();
-      m_pmessagequeue.release();
-      //m_pwindow.release();
-      m_pdisplay.release();
+   //   m_puserinteraction.release();
 
-      ::channel::destroy();
+   //   m_puserinteractionKeyboardFocus.release();
 
+   //   m_puserinteractionKeyboardFocusRequest.release();
 
-      detach_window();
+   //   m_puserinteractionKeyboardGainingFocusIfAny.release();
 
-      m_puserinteraction.release();
+   //   m_puserinteractionMouseCapture.release();
 
-      m_puserinteraction.release();
+   //   m_puserinteractionToKillKeyboardFocus.release();
 
-      m_puserinteractionKeyboardFocus.release();
+   //   m_puserthread.release();
 
-      m_puserinteractionKeyboardFocusRequest.release();
+   //   m_pgraphicsgraphics.release();
 
-      m_puserinteractionKeyboardGainingFocusIfAny.release();
+   //   m_pgraphicsthread.release();
 
-      m_puserinteractionMouseCapture.release();
+   //   //this->windowing().release();
 
-      m_puserinteractionToKillKeyboardFocus.release();
+   //   m_graphicaloutputpurposea.clear();
 
-      m_puserthread.release();
+   //   if (m_pthreadMouseLeave)
+   //   {
 
-      m_pgraphicsgraphics.release();
+   //      m_pthreadMouseLeave->set_finish();
 
-      m_pgraphicsthread.release();
+   //   }
 
-      //this->windowing().release();
+   //   //m_pthreadMouseLeave.release();
 
-      m_graphicaloutputpurposea.clear();
+   //   m_messagelist.clear();
 
-      if (m_pthreadMouseLeave)
-      {
-         m_pthreadMouseLeave->set_finish();
+   //   m_pelementSoftwareKeyboard.release();
 
-      }
-      //m_pthreadMouseLeave.release();
+   //   m_pdraw2dgraphics.release();
 
-      m_messagelist.clear();
-
-      m_pelementSoftwareKeyboard.release();
-
-      m_pdraw2dgraphics.release();
-
-   }
+   //}
 
 
    void window::on_final_release()
@@ -15663,7 +15732,9 @@ namespace windowing
 
       }
 
-      post_non_client_destroy();
+      //post_non_client_destroy();
+
+      destroy();
 
    }
 

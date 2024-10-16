@@ -1600,20 +1600,23 @@ class ::payload & payload::operator = (const class ::payload & payload)
    //}
    if(&payload != this)
    {
-      switch(((class ::payload &)payload).get_type())
+      switch (((class ::payload &)payload).get_type())
       {
-      //case e_type_payload_pointer:
-      //   // should dereference (this operator here means a content copy)
-      //   *this  = *((class ::payload &)payload).m_ppayload;
-      //   return *this;
-      //case e_type_property:
-      //   // should dereference (this operator here means a content copy)
-      //   *this = ((class ::payload&)payload).m_pproperty->object();
-      //   return *this;
-          case e_type_property_set:
-              // should dereference (this operator here means a content copy)
-             set_type(payload.get_type(), false);
-             m_ppropertyset = payload.m_ppropertyset;
+         //case e_type_payload_pointer:
+         //   // should dereference (this operator here means a content copy)
+         //   *this  = *((class ::payload &)payload).m_ppayload;
+         //   return *this;
+         //case e_type_property:
+         //   // should dereference (this operator here means a content copy)
+         //   *this = ((class ::payload&)payload).m_pproperty->object();
+         //   return *this;
+      case e_type_property_set:
+         // should dereference (this operator here means a content copy)
+         set_type(payload.get_type(), false);
+         m_ppropertyset = payload.m_ppropertyset;
+#if REFERENCING_DEBUGGING
+         ::allocator::defer_add_referer({refdbg_this(), __FUNCTION_FILE_LINE__});
+#endif
              m_ppropertyset->increment_reference_count();
               return *this;
       case e_type_pi32:

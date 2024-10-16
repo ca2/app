@@ -4,14 +4,12 @@
 
 //app_just_message_box::application g_appjustmessageboxapplication;
 
-::i32 application_main(::platform::platform * pplatform)
+void application_main()
 {
 
    auto papplication = __new app_just_acme_message_box::application();
 
-   int iExitCode = papplication->application_main(pplatform);
-
-   return iExitCode;
+   papplication->application_main(pplatform);
 
 }
 

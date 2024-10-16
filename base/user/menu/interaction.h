@@ -20,6 +20,9 @@ namespace user
       menu_interaction();
       ~menu_interaction() override;
 
+
+      void destroy() override;
+
       
       virtual void initialize_menu_interaction(::menu::item* pmenuitem);
 

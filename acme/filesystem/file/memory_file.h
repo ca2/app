@@ -336,7 +336,7 @@ public:
 //public:
 //
 //
-//   memory_stream() : binary_stream(::as(__new ::memory_file())) {}
+//   memory_stream() : binary_stream(__initialize_new ::memory_file())) {}
 //   memory_stream(::memory_base & memory) : binary_stream(::as(__new ::memory_file(memory))) {}
 //
 //   ::memory_file * operator ->() { return m_p.cast < ::memory_file >().m_p; }
@@ -347,7 +347,7 @@ public:
 
 //auto __create_memory_stream() { return ::memory_stream(; }
 
-//CLASS_DECL_ACME memory_file_pointer create_memory_file();
+//CLASS_DECL_ACME memory_file_pointer create_memory_file(;
 //CLASS_DECL_ACME memory_file_pointer create_memory_file(::memory_base & memory);
 //CLASS_DECL_ACME memory_file_pointer create_memory_file(const ::block & block);
 //CLASS_DECL_ACME memory_file_pointer create_memory_file_as_copy(const memory & memory);

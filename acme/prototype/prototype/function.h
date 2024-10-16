@@ -1056,6 +1056,13 @@ public:
 
       }
 
+      
+      ~implementation() override
+      {
+
+      
+      }
+
 
       void operator()(TYPES... args) override
       {

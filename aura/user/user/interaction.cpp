@@ -2966,6 +2966,7 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &interaction::on_message_create);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::on_message_destroy);
+      MESSAGE_LINK(e_message_non_client_destroy, pchannel, this, &interaction::on_message_non_client_destroy);
       MESSAGE_LINK(e_message_pos_create, pchannel, this, &interaction::on_message_after_create);
       MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
 
@@ -3656,7 +3657,7 @@ namespace user
 
          m_bUserInteractionSetFinish = true;
 
-         start_destroying_window();
+         destroy_window();
 
          return;
 
@@ -3682,22 +3683,6 @@ namespace user
 
       m_ewindowflag += e_window_flag_destroying;
 
-      try
-      {
-
-         //if (window())
-         //{
-
-         //   window()->set_destroying_flag();
-
-         //}
-
-      }
-      catch (...)
-      {
-
-      }
-
       auto type = ::type(this);
 
       if (type.name().contains("main_frame"))
@@ -3712,6 +3697,14 @@ namespace user
       user_interaction_on_destroy();
 
       pmessage->previous();
+
+   }
+
+
+   void interaction::on_message_non_client_destroy(::message::message * pmessage)
+   {
+
+      destroy();
 
    }
 
@@ -10230,7 +10223,7 @@ void interaction::create_interaction(::user::interaction * puserinteractionParen
       if (is_window())
       {
 
-         start_destroying_window();
+         destroy_window();
 
       }
 
@@ -10540,7 +10533,7 @@ void interaction::create_interaction(::user::interaction * puserinteractionParen
          information() << "";
          information() << "";
 
-         start_destroying_window();
+         destroy_window();
 
       }
 
@@ -11630,45 +11623,45 @@ void interaction::create_interaction(::user::interaction * puserinteractionParen
    }
 
 
-   void interaction::start_destroying_window()
-   {
+   //void interaction::start_destroying_window()
+   //{
 
-      auto type = ::type(this);
+   //   auto type = ::type(this);
 
-      if (type.name().contains("main_frame"))
-      {
+   //   if (type.name().contains("main_frame"))
+   //   {
 
-         informationf("main_frame start_destroying_window\n");
+   //      informationf("main_frame start_destroying_window\n");
 
-      }
+   //   }
 
-      if (has_destroying_flag())
-      {
+   //   if (has_destroying_flag())
+   //   {
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      set_destroying_flag();
+   //   set_destroying_flag();
 
-      destroy_window();
+   //   destroy_window();
 
-      // set_destroying() m_bUserElementOk = false;
+   //   // set_destroying() m_bUserElementOk = false;
 
-      // set_destroying() m_ewindowflag -= e_window_flag_is_window;
+   //   // set_destroying() m_ewindowflag -= e_window_flag_is_window;
 
-      //if (window() == nullptr)
-      //{
+   //   //if (window() == nullptr)
+   //   //{
 
-      //   return;
+   //   //   return;
 
-      //}
+   //   //}
 
-      //::user::interaction_base::on_finish();
+   //   //::user::interaction_base::on_finish();
 
-      //window->start_destroying_window();
+   //   //window->start_destroying_window();
 
-   }
+   //}
 
 
    void interaction::destroy_window()
@@ -11682,6 +11675,16 @@ void interaction::create_interaction(::user::interaction * puserinteractionParen
          return;
 
       }
+
+      if (has_destroying_flag())
+      {
+
+         return;
+
+      }
+
+      set_destroying_flag();
+
 
       //
       //   if (!window())
@@ -11722,130 +11725,10 @@ void interaction::create_interaction(::user::interaction * puserinteractionParen
 
       message_call(e_message_non_client_destroy);
 
-      destroy();
-
    }
 
 
    void interaction::destroy()
-   {
-
-      auto pacmewindowingwindow = m_pacmewindowingwindow;
-
-      if (::is_set(pacmewindowingwindow))
-      {
-
-         try
-         {
-
-            pacmewindowingwindow->destroy();
-
-         }
-         catch (...)
-         {
-
-         }
-
-      }
-
-      // ownership
-
-      //if(m_pinteractiondraw2d)
-      //{
-      //if (m_pshapeaClip) m_pshapeaClip->destroy();
-      if (m_pdrawcontext) m_pdrawcontext->destroy();
-
-      //}
-      m_pusersystem.defer_destroy();
-      //      if (m_playout) m_playout->destroy();
-      m_pgraphicscalla.defer_destroy();
-      m_puserinteractionCustomWindowProc.defer_destroy();
-      m_puiLabel.defer_destroy();
-      //if (m_puseritema) m_puseritema->destroy_all();
-      // tasks should not be destroyed in destroy
-      //m_pform && m_pform != this && m_pform->destroy();
-      if (m_palphasource) m_palphasource->destroy();
-      //if (m_pdrawableBackground) m_pdrawableBackground->destroy();
-      //if (window()) window()->destroy();
-      //if (windowing_window()) windowing_window()->destroy();
-
-      {
-
-         _synchronous_lock synchronouslock(this->synchronization());
-
-         if (m_puserinteractionpointeraOwned) m_puserinteractionpointeraOwned->destroy();
-
-      }
-
-
-      //user_thread() && user_thread()->destroy();
-      // tasks should not be destroyed in destroy
-      //user_thread() && user_thread()->destroy();
-      if (m_ptooltip) m_ptooltip->destroy();
-      if (m_pmenuitem) m_pmenuitem->destroy();
-      m_menua.destroy_all();
-
-      // ownership
-      //if(m_pinteractiondraw2d)
-      {
-         //m_pshapeaClip.release();
-         m_pdrawcontext.release();
-
-      }
-
-      m_pusersystem.release();
-      ///m_playout.release();
-      m_pgraphicscalla.release();
-      m_puserinteractionCustomWindowProc.release();
-      m_puiLabel.release();
-      //if (m_puseritema) m_puseritema->erase_all();
-      m_pform.release();
-      m_palphasource.release();
-      //m_pdrawableBackground.release();
-      //window().release();
-      ///windowing_window().release();
-
-      m_pinteractionScaler.defer_destroy();
-
-      {
-
-         _synchronous_lock synchronouslock(this->synchronization());
-
-         m_puserinteractionpointeraOwned.release();
-
-      }
-
-      //{
-
-      //   _synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
-
-      //   m_puserinteractionpointeraChild.release();
-
-      //}
-
-      m_ptooltip.release();
-      m_pmenuitem.release();
-      m_menua.erase_all();
-
-
-      // references
-      m_pitemComposing.release();
-      //user_thread().release();
-      m_puserinteractionParent.release();
-      m_pupdowntarget.release();
-      m_ptaskModal.release();
-      m_puserinteractionOwner.release();
-      //m_pwindow.release();
-      //return ::success;
-      ::user::drag_client::destroy();
-      ::user::interaction_base::destroy();
-
-
-
-   }
-
-
-   void interaction::post_non_client_destroy()
    {
 
       finalize();
@@ -11894,13 +11777,184 @@ void interaction::create_interaction(::user::interaction * puserinteractionParen
 
       }
 
-      ::user::interaction_base::post_non_client_destroy();
+      //::user::interaction_base::post_non_client_destroy();
 
       //window().release();
 
       //windowing_window().release();
 
+
+      //auto pacmewindowingwindow = m_pacmewindowingwindow;
+
+      //if (::is_set(pacmewindowingwindow))
+      //{
+
+      //   try
+      //   {
+
+      //      pacmewindowingwindow->destroy();
+
+      //   }
+      //   catch (...)
+      //   {
+
+      //   }
+
+      //}
+
+      // ownership
+
+      //if(m_pinteractiondraw2d)
+      //{
+      //if (m_pshapeaClip) m_pshapeaClip->destroy();
+      if (m_pdrawcontext) m_pdrawcontext->destroy();
+
+      //}
+      m_pusersystem.defer_destroy();
+      //      if (m_playout) m_playout->destroy();
+      m_pgraphicscalla.defer_destroy();
+      m_puserinteractionCustomWindowProc.defer_destroy();
+      m_puiLabel.defer_destroy();
+      //if (m_puseritema) m_puseritema->destroy_all();
+      // tasks should not be destroyed in destroy
+      //m_pform && m_pform != this && m_pform->destroy();
+      if (m_palphasource) m_palphasource->destroy();
+      //if (m_pdrawableBackground) m_pdrawableBackground->destroy();
+      //if (window()) window()->destroy();
+      //if (windowing_window()) windowing_window()->destroy();
+
+      {
+
+         _synchronous_lock synchronouslock(this->synchronization());
+
+         if (m_puserinteractionpointeraOwned) m_puserinteractionpointeraOwned->destroy();
+
+      }
+
+
+      //user_thread() && user_thread()->destroy();
+      // tasks should not be destroyed in destroy
+      //user_thread() && user_thread()->destroy();
+      m_ptooltip.defer_destroy();
+      m_pmenuitem.defer_destroy();
+      m_menua.clear();
+
+      // ownership
+      //if(m_pinteractiondraw2d)
+      {
+         //m_pshapeaClip.release();
+         m_pdrawcontext.release();
+
+      }
+
+      m_pusersystem.release();
+      ///m_playout.release();
+      m_pgraphicscalla.release();
+      m_puserinteractionCustomWindowProc.release();
+      m_puiLabel.release();
+      //if (m_puseritema) m_puseritema->erase_all();
+      m_pform.release();
+      m_palphasource.release();
+      //m_pdrawableBackground.release();
+      //window().release();
+      ///windowing_window().release();
+
+      m_pinteractionScaler.defer_destroy();
+
+      {
+
+         _synchronous_lock synchronouslock(this->synchronization());
+
+         m_puserinteractionpointeraOwned.release();
+
+      }
+
+      //{
+
+      //   _synchronous_lock synchronouslock(m_pwindow ? m_pwindow->m_pparticleChildrenSynchronization : nullptr);
+
+      //   m_puserinteractionpointeraChild.release();
+
+      //}
+
+      m_ptooltip.release();
+      m_pmenuitem.release();
+      //m_menua.erase_all();
+
+
+      // references
+      m_pitemComposing.release();
+      //user_thread().release();
+      m_puserinteractionParent.release();
+      m_pupdowntarget.release();
+      m_ptaskModal.release();
+      m_puserinteractionOwner.release();
+      //m_pwindow.release();
+      //return ::success;
+      ::user::drag_client::destroy();
+      ::user::interaction_base::destroy();
+
+
+
    }
+
+
+   //void interaction::post_non_client_destroy()
+   //{
+
+   //   finalize();
+
+   //   {
+
+   //      _synchronous_lock synchronouslock(this->synchronization());
+
+   //      try
+   //      {
+
+   //         erase_all_routes();
+
+   //      }
+   //      catch (...)
+   //      {
+
+   //      }
+
+   //   }
+
+   //   set_flag(e_flag_task_ready);
+
+   //   set_flag(e_flag_task_terminated);
+
+   //   {
+
+   //      auto pobjectParentTask = m_pobjectParentTask;
+
+   //      if (::is_set(pobjectParentTask))
+   //      {
+
+   //         pobjectParentTask->erase_task_and_set_task_new_parent(this, nullptr);
+
+   //      }
+
+   //   }
+
+
+   //   auto type = ::type(this);
+
+   //   if (type.name().contains("main_frame"))
+   //   {
+
+   //      informationf("main_frame post_non_client_destroy");
+
+   //   }
+
+   //   ::user::interaction_base::post_non_client_destroy();
+
+   //   //window().release();
+
+   //   //windowing_window().release();
+
+   //}
 
 
    bool interaction::is_ready_to_quit() const
@@ -18961,7 +19015,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       display(e_display_none);
 
-      start_destroying_window();
+      destroy_window();
 
    }
 
@@ -21958,7 +22012,8 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
       bool bShowWindow = pshowwindow->m_bShow;
 
-      if (!layout().layout().is_screen_visible()
+      if (!bShowWindow 
+         || layout().layout().is_screen_visible()
           || layout().layout().m_edisplay == e_display_iconic)
       {
 
@@ -21971,7 +22026,9 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          }
 
-         for (auto & pmenu : m_menua)
+         auto menua = m_menua;
+
+         for (auto & pmenu : menua)
          {
 
             pmenu->hide();
@@ -22017,14 +22074,25 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
 
          }
 
-         for (auto & pmenu : m_menua)
+         auto menua = m_menua;
+
+         for (auto & pmenu : menua)
          {
 
-            pmenu->display();
+            try
+            {
 
-            pmenu->set_need_redraw();
+               pmenu->display();
 
-            pmenu->post_redraw();
+               pmenu->set_need_redraw();
+
+               pmenu->post_redraw();
+
+            }
+            catch (...)
+            {
+
+            }
 
          }
 
@@ -23204,7 +23272,7 @@ void interaction::_on_reposition_notify_unlocked(const ::point_i32 & point)
       // that could be used to correctly destroy window, as start_destroying_window generally require
       // that the object be a full valid object before being disposed.
 
-      start_destroying_window();
+      destroy_window();
 
       ::user::interaction_base::destruct();
 

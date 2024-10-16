@@ -9,18 +9,17 @@ namespace menu
 
 
    class CLASS_DECL_BASE item :
-      virtual public ::item,
-      virtual public ::object
+      virtual public ::item
    {
    public:
 
 
       ::item_pointer                   m_pitemParent;
       atom                             m_atom;
-      ::pointer<::menu::item_ptra>        m_pmenuitema;
-      ::pointer<::menu::item>             m_pmenuitemParent;
-      //i32                              m_iFullHeightItemCount;
-      //i32                              m_iSeparatorCount;
+      ::pointer<::menu::item_ptra>     m_pmenuitema;
+      ::pointer<::menu::item>          m_pmenuitemParent;
+      //i32                            m_iFullHeightItemCount;
+      //i32                            m_iSeparatorCount;
       ::pointer<::user::interaction>   m_puserinteraction;
       ::pointer<::user::interaction>   m_puserinteractionHost;
       bool                             m_bPopup;
@@ -31,15 +30,18 @@ namespace menu
       ::rectangle_i32                  m_rectangleUi;
       ::i32                            m_iColumn;
       ::i32                            m_iRow;
-      ::pointer<::image::image>               m_pimage;
-      //::pointer<::item_array>          m_pmenuitema;
+      ::pointer<::image::image>        m_pimage;
+      //::pointer<::item_array>        m_pmenuitema;
 
 
       item();
       ~item() override;
 
 
-      void menu_item_destruct();
+      void destroy() override;
+
+
+      //void menu_item_destruct();
 
 
       void add_item(::menu::item * pitem);

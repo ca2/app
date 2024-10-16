@@ -1,7 +1,7 @@
 
 #include "acme/exception/exception.h"
 
-::i32 application_main(::platform::platform * pplatform);
+void application_main();
 
 #include "acme/_operating_system.h"
 #include "acme/operating_system/process.h"

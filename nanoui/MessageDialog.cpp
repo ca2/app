@@ -24,13 +24,13 @@ namespace nanoui
       const ::scoped_string& message,
       const ::scoped_string& button_text,
       const ::scoped_string& alt_button_text, bool alt_button, const ::function < void(Widget* p) > functionExtras) : Window(parent, title) {
-      set_layout(::as(__new BoxLayout(e_orientation_vertical,
-         e_alignment_middle, 10, 10)));
+      set_layout(__initialize_new BoxLayout(e_orientation_vertical,
+         e_alignment_middle, 10, 10));
       set_modal(true);
 
       Widget* panel1 = __allocate Widget(this);
-      panel1->set_layout(::as(__new BoxLayout(e_orientation_horizontal,
-         e_alignment_middle, 10, 15)));
+      panel1->set_layout(__initialize_new BoxLayout(e_orientation_horizontal,
+         e_alignment_middle, 10, 15));
       int icon = 0;
       switch (type) {
       case Type::Information: icon = m_ptheme->m_efontawesomeMessageInformation; break;
@@ -40,8 +40,8 @@ namespace nanoui
       Label* icon_label = __allocate Label(panel1, ::string(get_utf8_character(icon)), "icons");
       icon_label->set_font_size(50);
       Widget* panelB = __allocate Widget(panel1);
-      panelB->set_layout(::as(__new BoxLayout(e_orientation_vertical,
-         e_alignment_middle, 0, 5)));
+      panelB->set_layout(__initialize_new BoxLayout(e_orientation_vertical,
+         e_alignment_middle, 0, 5));
       if (functionExtras)
       {
 
@@ -51,8 +51,8 @@ namespace nanoui
       m_message_label = __allocate Label(panelB, message);
       //m_message_label->set_fixed_width(200);
       auto panel2 = __allocate Widget(this);
-      panel2->set_layout(::as(__new BoxLayout(e_orientation_horizontal,
-         e_alignment_middle, 0, 15)));
+      panel2->set_layout(__initialize_new BoxLayout(e_orientation_horizontal,
+         e_alignment_middle, 0, 15));
 
       if (alt_button) 
       {

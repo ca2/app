@@ -28,9 +28,9 @@ namespace serial
       enum_byte_size ebytesize, enum_parity eparity, enum_stop_bit estopbit,
       enum_flow_control eflowcontrol)
       //:
-      //m_pimpl(::as(__new serial_impl(port, baudrate, ebytesize, eparity, estopbit, eflowcontrol)))
+      //m_pimpl(__initialize_new serial_impl(port, baudrate, ebytesize, eparity, estopbit, eflowcontrol)))
    {
-//      set_timeout(timeout);
+//      set_timeout(timeout;
 
       throw ::exception(error_no_factory);
 

@@ -9,7 +9,7 @@
 
 
 xfplayer_impact_linea::xfplayer_impact_linea(::user::interaction * puserinteraction) :
-   m_pselection(::as(__new xfplayer_impact_line_selection(puserinteraction))),
+   m_pselection(__initialize_new xfplayer_impact_line_selection(puserinteraction)),
    m_puserinteraction(puserinteraction)
 {
 

@@ -64,7 +64,7 @@ namespace user
 
       span::span(data * pdata, const span & span) :
          m_pdata(pdata),
-         m_pformat(::as(__new class format(*span.m_pformat))),
+         m_pformat(__initialize_new class format(*span.m_pformat)),
          m_ealignNewLine(span.m_ealignNewLine),
          m_bEndOfLine(span.m_bEndOfLine),
          m_str(span.m_str)
@@ -80,7 +80,7 @@ namespace user
 
 
       span::span(const span & span) :
-         m_pformat(::as(__new class format(*span.m_pformat))),
+         m_pformat(__initialize_new class format(*span.m_pformat)),
          m_ealignNewLine(span.m_ealignNewLine),
          m_bEndOfLine(span.m_bEndOfLine),
          m_str(span.m_str)

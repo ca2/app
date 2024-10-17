@@ -726,6 +726,8 @@ namespace axis
    void application::process_term()
    {
 
+      m_psimpledb.defer_destroy();
+
       ::aura::application::process_term();
 
       try

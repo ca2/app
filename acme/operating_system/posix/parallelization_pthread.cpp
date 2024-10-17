@@ -357,59 +357,6 @@ i32 get_os_thread_priority(::enum_priority epriority)
 }
 
 
-static htask_t g_hMainThread = (htask_t) nullptr;
-
-static itask_t g_uiMainThread = (itask_t)-1;
-
-
-CLASS_DECL_ACME void set_main_user_htask(htask_t htask)
-{
-
-   // MESSAGE msg;
-
-   // PeekMessage function used to create message queue Windows Desktop
-   // PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
-
-   g_hMainThread = htask;
-
-}
-
-
-CLASS_DECL_ACME void set_main_user_itask(itask_t itask)
-{
-
-   //   MESSAGE msg;
-
-   // PeekMessage function used to create message queue Windows Desktop
-   // PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
-
-   g_uiMainThread = itask;
-
-}
-
-
-CLASS_DECL_ACME htask_t main_user_htask()
-{
-
-   return g_hMainThread;
-
-}
-
-
-CLASS_DECL_ACME itask_t main_user_itask()
-{
-
-   return g_uiMainThread;
-
-}
-
-
-CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach)
-{
-
-}
-
-
 
 // LPVOID WINAPI thread_get_data(htask_t htask, ::u32 dwIndex);
 

@@ -34,6 +34,9 @@ namespace windowing
       ~cursor() override;
 
 
+      void destroy() override;
+
+
       virtual void set_cursor(enum_cursor ecursor);
 
 //      virtual void load_system_default_cursor_hint();

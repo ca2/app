@@ -1417,26 +1417,18 @@ namespace acme
          void interaction::destroy()
          {
 
-            //if (m_psequencer)
-            //{
-
-            //   m_psequencer->on_sequence();
-
-            //   m_psequencer.release();
-
-            //}
-
-
             ::user::element::destroy();
+
             ::user::drag_client::destroy();
-            //::conversation::destroy();
+
+            ::source::destroy();
 
             system()->erase_signal_handler(this);
 
+            m_pacmeuserinteractionParent.release();
+
             if (m_pacmewindowingwindow)
             {
-
-               m_pacmewindowingwindow->destroy_window();
 
                m_pacmewindowingwindow.release();
 

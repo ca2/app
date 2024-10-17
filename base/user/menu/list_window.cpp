@@ -280,14 +280,19 @@ namespace user
 
       layout_buttons(m_pmenuitem, iMaxWidth + 4, &rectangle, rectangleX);
 
-      auto & puiClose = m_pitemClose->m_puserinteraction;
-
-      if(puiClose->is_window())
+      if (m_pitemClose)
       {
 
-         puiClose->resize_to_fit(pgraphics);
+         auto & puiClose = m_pitemClose->m_puserinteraction;
 
-         puiClose->set_position({m_size.cx() - puiClose->width() - 2, 2});
+         if (puiClose->is_window())
+         {
+
+            puiClose->resize_to_fit(pgraphics);
+
+            puiClose->set_position({ m_size.cx() - puiClose->width() - 2, 2 });
+
+         }
 
       }
 

@@ -56,6 +56,8 @@ namespace message
 
       void common_construct();
 
+      void destroy() override;
+
       bool is_command()const { return m_atom.is_command(); }
       bool is_command_probe() const { return m_bProbing; }
 

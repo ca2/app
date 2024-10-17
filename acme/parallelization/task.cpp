@@ -20,6 +20,19 @@
 #include "acme/windowing/windowing.h"
 
 
+#ifdef WINDOWS
+
+
+#include "acme/_operating_system.h"
+
+
+CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h);
+
+
+#endif
+
+
+
 extern bool g_bIntermediateThreadReferencingDebugging;
 
 
@@ -461,16 +474,34 @@ void task::run()
 void task::stop_task()
 {
 
-   __defer_construct_new(m_peventFinished2);
+   if (!m_htask || !m_itask)
+   {
 
-   auto peventFinished = m_peventFinished2;
+      return;
+
+   }
+
+   manual_reset_event ev;
+
+   ::procedure procedure = [&ev]()
+      {
+
+         ev.set_event();
+
+      };
+
+   m_procedureTaskEnded = procedure;
+
+   //__defer_construct_new(m_peventFinished2);
+
+   //auto peventFinished = m_peventFinished2;
 
    set_finish();
 
    while (true)
    {
 
-      auto bWaitFinished = peventFinished->_wait(1_s);
+      auto bWaitFinished = ev._wait(1_s);
 
       if (bWaitFinished)
       {
@@ -497,8 +528,17 @@ void task::stop_task()
 
 void task::destroy()
 {
-   
+
+   if (m_peventFinished2)
+   {
+
+      m_peventFinished2->set_event();
+
+   }
+
    ::object::destroy();
+
+   ::data::property_container::destroy();
 
 #ifdef WINDOWS
 
@@ -595,16 +635,29 @@ void* task::s_os_task(void* p)
 #endif
 {
 
-   ::pointer < ::task > ptask((::task*)p);
+   ::procedure procedureTaskEnded;
 
-   ptask->_os_task();
+   {
+
+      ::pointer < ::task > ptask((::task *)p);
+
+      ptask->_os_task(procedureTaskEnded);
+
+   }
+
+   if (procedureTaskEnded)
+   {
+
+      procedureTaskEnded();
+
+   }
 
    return 0;
 
 }
 
 
-void task::_os_task()
+void task::_os_task(::procedure & procedureTaskEnded)
 {
 
    ::pointer < manual_reset_event > pmanualresethappeningFinished;
@@ -741,8 +794,6 @@ void task::_os_task()
 
       }
 
-      pmanualresethappeningFinished = m_peventFinished2;
-
       destroy();
 
    }
@@ -751,24 +802,13 @@ void task::_os_task()
 
    }
 
+   m_htask = nullptr;
+
+   m_itask = 0;
+
    ::task_release();
 
-   if (pmanualresethappeningFinished)
-   {
-
-      try
-      {
-
-         pmanualresethappeningFinished->set_event();
-
-      }
-      catch (...)
-      {
-
-
-      }
-
-   }
+   procedureTaskEnded = ::transfer(m_procedureTaskEnded);
 
 }
 
@@ -1836,6 +1876,24 @@ bool task::task_sleep(const class time & timeWait)
 //}
 
 
+void task::set_current_handles()
+{
+
+#ifdef WINDOWS_DESKTOP
+
+   m_htask = duplicate_handle(::current_htask());
+
+#else
+
+   m_htask = ::current_htask();
+
+#endif
+
+   m_itask = ::current_itask();
+
+}
+
+
 void task::kick_idle()
 {
 
@@ -2341,39 +2399,13 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 //
 
 
-CLASS_DECL_ACME void set_main_user_itask(itask_t itask);
+//CLASS_DECL_ACME void set_main_itask(itask_t itask);
+//
+//
+//CLASS_DECL_ACME void set_main_htask(htask_t htask);
 
 
-CLASS_DECL_ACME void set_main_user_htask(htask_t htask);
-
-
-CLASS_DECL_ACME itask_t main_user_itask();
-
-
-CLASS_DECL_ACME void set_main_user_thread()
-{
-
-   set_main_user_thread(current_htask());
-
-}
-
-
-CLASS_DECL_ACME void set_main_user_thread(htask_t htask)
-{
-
-   set_main_user_itask(::as_itask(htask));
-
-   set_main_user_htask(htask);
-
-}
-
-
-CLASS_DECL_ACME bool is_main_thread()
-{
-
-   return current_itask() == main_user_itask();
-
-}
+//CLASS_DECL_ACME itask_t main_user_itask();
 
 
 CLASS_DECL_ACME bool predicate_Sleep(int iTime, ::function < bool(void) > functionOkToSleep)
@@ -2413,12 +2445,9 @@ CLASS_DECL_ACME bool predicate_Sleep(int iTime, ::function < bool(void) > functi
 }
 
 
-
-
-
-
 void preempt()
 {
+
 
    if (!::task_get_run())
    {
@@ -2562,6 +2591,91 @@ CLASS_DECL_ACME::string get_task_object_debug()
 }
 
 #endif
+
+
+
+
+
+
+static htask_t g_htaskMain = (htask_t) nullptr;
+
+static itask_t g_itaskMain = (itask_t) 0;
+
+
+CLASS_DECL_ACME void set_main_htask(htask_t htask)
+{
+
+   // MESSAGE msg;
+
+   // PeekMessage function used to create message queue Windows Desktop
+   // PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
+
+   g_htaskMain = htask;
+
+}
+
+
+CLASS_DECL_ACME void set_main_itask(itask_t itask)
+{
+
+   //   MESSAGE msg;
+
+   // PeekMessage function used to create message queue Windows Desktop
+   // PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
+
+   g_itaskMain = itask;
+
+}
+
+
+CLASS_DECL_ACME htask_t main_htask()
+{
+
+   return g_htaskMain;
+
+}
+
+
+CLASS_DECL_ACME itask_t main_itask()
+{
+
+   return g_itaskMain;
+
+}
+
+
+//CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach)
+//{
+//
+//}
+
+
+CLASS_DECL_ACME void set_main_thread()
+{
+
+   set_main_htask(current_htask());
+
+   set_main_itask(current_itask());
+
+}
+
+
+CLASS_DECL_ACME void set_main_thread(htask_t htask)
+{
+
+   set_main_itask(::as_itask(htask));
+
+   set_main_htask(htask);
+
+}
+
+
+CLASS_DECL_ACME bool is_main_thread()
+{
+
+   return current_itask() == main_itask();
+
+}
 
 
 

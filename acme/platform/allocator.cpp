@@ -443,6 +443,15 @@ namespace allocator
 
          pparticle->add_reference_item();
 
+         if (!pparticle->m_prefererTransfer
+            && pparticle->m_preferenceitema->m_itema[0])
+         {
+
+            pparticle->m_prefererTransfer = pparticle->m_preferenceitema->m_itema[0]->m_preferer;
+
+         }
+
+
       }
       else
       {
@@ -761,6 +770,15 @@ CLASS_DECL_ACME void check_refdbg()
 
    }
 
+   auto prefererReferer = refdbg_get_top_referer();
+   if (prefererReferer)
+   {
+
+      ::string strType = typeid(*prefererReferer).name();
+
+      output_debug_string("345");
+
+   }
 
 }
 

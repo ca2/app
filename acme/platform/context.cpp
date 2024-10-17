@@ -76,6 +76,21 @@ namespace acme
    }
 
 
+   void context::destroy()
+   {
+
+      m_ptexttranslator.defer_destroy();
+      m_pimagecontext.defer_destroy();
+      m_pdir.defer_destroy();
+      m_pfile.defer_destroy();
+      m_phttpcontext.defer_destroy();
+
+
+      ::task::destroy();
+
+   }
+
+
    void context::on_set_platform()
    {
 
@@ -128,7 +143,7 @@ namespace acme
 
       m_pcontext = this;
 
-      m_ptexttranslator = __new ::text::translator ();
+      m_ptexttranslator = __allocate ::text::translator ();
 
       m_ptexttranslator->m_pcontext = this;
 

@@ -19,6 +19,16 @@ source::~source()
 }
 
 
+void source::destroy()
+{
+
+   m_particlea.clear();
+
+   ::object::destroy();
+
+}
+
+
 //void source::add_handler(::particle * pparticle, bool bPriority)
 //{
 //   return add_signal_handler(::signal_handler( {e_use, pparticle}), bPriority);

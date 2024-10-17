@@ -364,14 +364,82 @@ namespace aura
                break;
 
             }
-            preempt(5_s);
+
+            preempt(300_ms);
+
          }
 
-      }
-      //auto estatus = 
-      ::aqua::application::destroy();
+         m_puserinteractionaFrame.release();
 
-      //return estatus;
+      }
+
+
+      if (m_puserinteractiona)
+      {
+
+         auto timeStartDestroying = ::time::now();
+
+         while (m_puserinteractiona &&
+            m_puserinteractiona->has_interaction())
+         {
+
+            auto framea = m_puserinteractiona->interactiona();
+
+            for (auto pframe : framea)
+            {
+
+               pframe->destroy_window();
+
+            }
+#ifdef DEBUG
+            if (timeStartDestroying.elapsed() > 10_min)
+#else
+            if (timeStartDestroying.elapsed() > 20_s)
+#endif
+            {
+
+               break;
+
+            }
+
+            preempt(300_ms);
+
+         }
+
+         m_puserinteractiona.release();
+
+      }
+
+      if (m_puserinteractionMain)
+      {
+
+         auto timeStartDestroying = ::time::now();
+
+         while (m_puserinteractionMain)
+         {
+
+            m_puserinteractionMain->destroy_window();
+
+#ifdef DEBUG
+            if (timeStartDestroying.elapsed() > 10_min)
+#else
+            if (timeStartDestroying.elapsed() > 20_s)
+#endif
+            {
+
+               break;
+
+            }
+
+            preempt(300_ms);
+
+         }
+
+         m_puserinteractionMain.release();
+       
+      }
+
+      ::aqua::application::destroy();
 
    }
 

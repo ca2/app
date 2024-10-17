@@ -4442,7 +4442,7 @@ namespace user
    void interaction_base::destroy()
    {
 
-      ::user::element::destroy();
+      ::acme::user::interaction::destroy();
       ::channel::destroy();
       ::source::destroy();
       ::manager::destroy();

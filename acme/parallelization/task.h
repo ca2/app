@@ -87,7 +87,7 @@ public:
    ::pointer < ::locale >                          m_plocale;
 
    class ::time                                    m_timeHeartBeat;
-
+   ::procedure                                     m_procedureTaskEnded;
 
 
 
@@ -133,7 +133,7 @@ public:
 #endif
 
 
-   void _os_task();
+   void _os_task(::procedure & procedureTaskEnded);
 
    virtual bool is_task_registered() const;
    virtual void register_task();
@@ -240,7 +240,9 @@ public:
 
    //virtual void finish() override;
 
-   virtual void kick_idle() override;
+   virtual void set_current_handles();
+
+   void kick_idle() override;
 
    bool is_branch_current() const override;
 

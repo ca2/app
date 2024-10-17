@@ -28,6 +28,8 @@ namespace simpledb
    void thread_localdatabase::run()
    {
 
+      ::task_set_name("localdb");
+
       auto pstorage = m_pstorage;
 
       auto pserver = m_pstorage->m_pserver;

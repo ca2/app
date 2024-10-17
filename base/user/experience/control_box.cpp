@@ -841,6 +841,8 @@ namespace experience
 
       }
 
+      m_itemmap.clear();
+
    }
 
 

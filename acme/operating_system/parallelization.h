@@ -17,10 +17,10 @@
 
 
 
-CLASS_DECL_ACME void set_main_user_htask(htask_t htask);
-CLASS_DECL_ACME void set_main_user_itask(itask_t itask);
-CLASS_DECL_ACME htask_t main_user_htask();
-CLASS_DECL_ACME itask_t main_user_itask();
+CLASS_DECL_ACME void set_main_htask(htask_t htask);
+CLASS_DECL_ACME void set_main_itask(itask_t itask);
+CLASS_DECL_ACME htask_t main_htask();
+CLASS_DECL_ACME itask_t main_itask();
 
 
 

@@ -309,21 +309,21 @@ namespace acme
    void session::term2()
    {
 
-      auto psystem = system();
+      //auto psystem = system();
 
-      if (psystem)
-      {
+      //if (psystem)
+      //{
 
-         auto pacmewindowing = psystem->acme_windowing();
+      //   auto pacmewindowing = psystem->acme_windowing();
 
-         if (pacmewindowing)
-         {
+      //   if (pacmewindowing)
+      //   {
 
-            pacmewindowing->windowing_system_post_quit();
+      //      pacmewindowing->windowing_system_post_quit();
 
-         }
+      //   }
 
-      }
+      //}
 
    }
 

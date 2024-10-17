@@ -252,6 +252,10 @@ namespace acme
    acme::acme()
    {
 
+      m_pmanualreseteventReadyToExit = nullptr;
+
+      m_pmanualreseteventMainLoopEnd = nullptr;
+
       m_pheapmanagement = nullptr;
 
 //      s_pacme = this;
@@ -313,7 +317,7 @@ namespace acme
 
       }
 #endif
-         m_pmanualreseteventReadyToExit = __allocate ::manual_reset_event();
+         //m_pmanualreseteventReadyToExit = __allocate ::manual_reset_event();
 
 #if REFERENCING_DEBUGGING
 
@@ -323,12 +327,20 @@ namespace acme
 
    }
 
+   
    void acme::on_before_destroy()
    {
 
-      __destroy_and_release(m_pplatform->m_psystem);
+      if (m_pmanualreseteventReadyToExit)
+      {
 
-      m_pmanualreseteventReadyToExit->_wait(5_min);
+         m_pmanualreseteventReadyToExit->_wait(2.5_min);
+
+         delete m_pmanualreseteventReadyToExit;
+
+         m_pmanualreseteventReadyToExit = nullptr;
+
+      }
 
       m_ptaskmessagequeue.release();
 

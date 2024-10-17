@@ -65,6 +65,8 @@ class reference_count_debug;
 
 #define __check_refdbg check_refdbg();
 
+#define __refdbg_add_referer ::allocator::add_referer({refdbg_this(), __FUNCTION_FILE_LINE__});
+
 
 CLASS_DECL_ACME void check_refdbg();
 
@@ -158,6 +160,8 @@ CLASS_DECL_ACME void check_refdbg();
 
 
 #define __check_refdbg
+
+#define __refdbg_add_referer
 
 
 //#define 

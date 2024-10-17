@@ -55,6 +55,17 @@ namespace message
    }
 
 
+   void command::destroy()
+   {
+
+      ::message::message::destroy();
+      ::user::check::destroy();
+      ::user::text::destroy();
+
+
+   }
+
+
    void command::handle(::channel * pcommandtarget)
    {
 

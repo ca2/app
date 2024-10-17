@@ -318,7 +318,7 @@ static htask_t g_hMainThread = nullptr;
 static itask_t g_iMainThread = (itask_t) -1;
 
 
-CLASS_DECL_APEX void set_main_user_htask(htask_t htask)
+CLASS_DECL_APEX void set_main_htask(htask_t htask)
 {
 
    g_hMainThread = htask;
@@ -326,7 +326,7 @@ CLASS_DECL_APEX void set_main_user_htask(htask_t htask)
 }
 
 
-CLASS_DECL_APEX void set_main_user_itask(itask_t itask)
+CLASS_DECL_APEX void set_main_itask(itask_t itask)
 {
 
    g_iMainThread = itask;
@@ -334,7 +334,7 @@ CLASS_DECL_APEX void set_main_user_itask(itask_t itask)
 }
 
 
-CLASS_DECL_APEX htask_t main_user_htask()
+CLASS_DECL_APEX htask_t main_htask()
 {
 
    return g_hMainThread;
@@ -342,7 +342,7 @@ CLASS_DECL_APEX htask_t main_user_htask()
 }
 
 
-CLASS_DECL_APEX itask_t main_user_itask()
+CLASS_DECL_APEX itask_t main_itask()
 {
 
    return g_iMainThread;

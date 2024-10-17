@@ -405,9 +405,7 @@ namespace user
 
       ::user::interaction::destroy_window();
 
-
-      window()->destroy_window();
-
+      //window()->destroy_window();
 
    }
 

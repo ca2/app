@@ -464,7 +464,7 @@ void manager::destroy_signal_handling()
 void manager::erase_signal_handler(const ::signal_handler::base * pbase)
 {
 
-   synchronous_lock synchronouslock(this->synchronization());
+   _synchronous_lock synchronouslock(this->synchronization());
 
    //auto values = m_psignalmap->values();
 

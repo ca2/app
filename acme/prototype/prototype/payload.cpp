@@ -1615,7 +1615,7 @@ class ::payload & payload::operator = (const class ::payload & payload)
          set_type(payload.get_type(), false);
          m_ppropertyset = payload.m_ppropertyset;
 #if REFERENCING_DEBUGGING
-         ::allocator::defer_add_referer({refdbg_this(), __FUNCTION_FILE_LINE__});
+         m_preferer=::allocator::defer_add_referer({refdbg_this(), __FUNCTION_FILE_LINE__});
 #endif
              m_ppropertyset->increment_reference_count();
               return *this;

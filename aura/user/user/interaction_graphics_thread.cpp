@@ -1251,8 +1251,12 @@ namespace user
    void graphics_thread::graphics_thread_redraw()
    {
 
+      information() << "graphics_thread_redraw(1)";
+
       if (m_puserinteraction->m_ewindowflag & e_window_flag_embedded_graphics_thread_if_child)
       {
+
+         information() << "graphics_thread_redraw(A)";
 
          m_message.wParam |= 1;
 
@@ -1261,6 +1265,8 @@ namespace user
       }
       else
       {
+
+         information() << "graphics_thread_redraw(B)";
 
          bool bUpdateBuffer = 1;
 

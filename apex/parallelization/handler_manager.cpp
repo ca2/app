@@ -6,25 +6,8 @@
 #include "acme/parallelization/task.h"
 
 
-//handler_manager::handler_manager(const string& strThreadName, bool bSingleThread, int iAliveCount) :
-//   m_strThreadName(strThreadName),
-//   m_bSingleThread(bSingleThread),
-//   m_iAliveCount(iAliveCount),
-//   m_pevTaskOnQueue(e_create_new),
-//   m_iAlive(0),
-//   m_bUseDedicatedThread(false)
-//{
-//
-//   defer_create_synchronization();
-//
-//}
-//
-
-
 handler_manager::handler_manager()
 {
-   
-   defer_create_synchronization();
    
 }
    
@@ -36,28 +19,22 @@ handler_manager::~handler_manager()
 }
 
 
-//void handler_manager::initialize_handler_manager(::particle * pparticle, const string & strThreadName, bool bSingleThread, int iAliveCount)
 void handler_manager::initialize_handler_manager(::particle * pparticle, const string & strThreadName, int iAliveCount)
 {
 
-   //auto estatus = initialize(pparticle);
    initialize(pparticle);
 
-   /*if (!estatus)
-   {
-
-      return estatus;
-
-   }*/
+   defer_create_synchronization();
 
    m_strThreadName = strThreadName;
-   //m_bSingleThread = bSingleThread;
-   m_iAliveCount = iAliveCount;
-   __construct_new(m_pevTaskOnQueue);
-   m_iAlive = 0;
-   m_bUseDedicatedThread = false;
 
-   //return estatus;
+   m_iAliveCount = iAliveCount;
+
+   __construct_new(m_pevTaskOnQueue);
+
+   m_iAlive = 0;
+
+   m_bUseDedicatedThread = false;
 
 }
 
@@ -152,8 +129,6 @@ void handler_manager::handle_asynchronously(const ::procedure & procedure)
       
    }
 
-   //return ::success;
-
 }
 
 
@@ -244,5 +219,7 @@ void handler_manager::loop()
 
    m_pthread.release();
 
-};
+}
+
+
 

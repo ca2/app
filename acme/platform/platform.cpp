@@ -190,7 +190,7 @@ namespace platform
 
       // One of first time to set a main user thread
 
-      set_main_user_thread();
+      //set_main_user_thread();
 
       factory_initialize();
 
@@ -236,7 +236,7 @@ namespace platform
       // One of first time to set a main user thread
       //::mathematics::finalize_mathematics();
 
-      set_main_user_thread();
+      //set_main_user_thread();
 
       factory_initialize();
 

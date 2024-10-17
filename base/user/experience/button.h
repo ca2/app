@@ -23,6 +23,9 @@ namespace experience
       ~button() override;
 
 
+      void destroy() override;
+
+
       void install_message_routing(::channel* pchannel) override;
 
       bool should_draw() override;

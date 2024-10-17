@@ -208,7 +208,7 @@ namespace acme
 
       print_line("acme::system::~system() (end)");
 
-      ::acme::get()->m_pmanualreseteventReadyToExit->SetEvent();
+      //::acme::get()->m_pmanualreseteventReadyToExit->SetEvent();
 
    }
 
@@ -1169,10 +1169,33 @@ namespace acme
    void system::TermSystem()
    {
 
-      if(m_pacmewindowing)
+      auto pacmewindowing = m_pacmewindowing;
+
+      if (pacmewindowing)
       {
 
-         m_pacmewindowing->windowing_system_post_quit();
+         ::acme::get()->m_pmanualreseteventReadyToExit = __raw_new manual_reset_event();
+         ::acme::get()->m_pmanualreseteventMainLoopEnd = __raw_new manual_reset_event();
+
+         if (!m_procedureTaskEnded)
+         {
+
+            m_procedureTaskEnded = [pacmewindowing]()
+               {
+
+                  ::acme::get()->m_pmanualreseteventReadyToExit->set_event();
+
+               };
+
+            m_pacmewindowing->set_finish();
+
+            ::acme::get()->m_pmanualreseteventMainLoopEnd->wait(2.5_min);
+
+            delete ::acme::get()->m_pmanualreseteventMainLoopEnd;
+
+            ::acme::get()->m_pmanualreseteventMainLoopEnd = nullptr;
+
+         }
 
       }
 
@@ -1189,6 +1212,8 @@ namespace acme
       m_pacmepath.release();
 
       m_purlcontext.release();
+
+      m_pdatetime.release();
 
       //::acme::idpool::term();
 
@@ -1211,7 +1236,13 @@ namespace acme
 
       //m_mapComponentFactory.clear();
 
+
+
+
       destroy();
+
+
+
 
       //m_mapLibrary4.clear();
 
@@ -3482,6 +3513,8 @@ namespace acme
          ::task_release();
 
       }
+
+      ::platform::get()->m_psystem.release();
 
    }
 

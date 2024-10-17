@@ -409,7 +409,7 @@ namespace windowing
 
          //g_iMouseMove++;
 
-         informationf("interaction_impl::message_handler e_message_mouse_move");
+         //informationf("interaction_impl::message_handler e_message_mouse_move");
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }

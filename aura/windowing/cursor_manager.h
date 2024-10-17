@@ -25,6 +25,8 @@ namespace windowing
       ~cursor_manager() override;
 
 
+
+
       inline ::aura::application* get_app();
       inline ::aura::session* get_session();
       //inline ::aura::system* system();

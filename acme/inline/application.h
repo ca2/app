@@ -117,7 +117,7 @@ int main(int argc, char * argv[], char * envp[])
 
    os_task_init_term ostaskinitterm;
 
-   set_main_user_thread();
+   set_main_thread();
 
    application_main();
 

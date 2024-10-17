@@ -9,6 +9,7 @@
 #include "acme/parallelization/synchronous_lock.h"
 #include "acme/platform/keep.h"
 #include "acme/platform/node.h"
+#include "acme/platform/system.h"
 #include "apex/user/user/message.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
@@ -558,10 +559,18 @@ namespace user
          if(oswindow)
          {
 
-            auto pwindow = m_puserinteractionUserThread->windowing()->window(oswindow);
+            auto pwindow = system()->windowing()->window(oswindow);
 
-            if (pwindow)
+            if (!pwindow)
             {
+
+               informationf("What is going on? not going to redraw");
+
+            }
+            else
+            {
+
+               //informationf("is it going to redraw?");
 
                auto puserframe = pwindow->m_puserinteraction;
 

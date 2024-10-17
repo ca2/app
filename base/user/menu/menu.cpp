@@ -6,7 +6,6 @@
 #include "acme/constant/message.h"
 #include "acme/handler/topic.h"
 #include "acme/parallelization/synchronous_lock.h"
-//#include "acme/platform/sequencer.h"
 #include "acme/platform/timer.h"
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "acme/nano/nano.h"
@@ -56,7 +55,6 @@ namespace user
       m_puserinteractionParent = nullptr;
       m_pchannelNotify = nullptr;
       m_pmenuParent = nullptr;
-      //m_psubmenu = nullptr;
       m_iHoverSubMenu = -1;
       m_bInline = false;
       m_bMenuOk = false;
@@ -103,9 +101,21 @@ namespace user
    i64 menu::increment_reference_count()
    {
 
-      return ::object::increment_reference_count();
+      auto iStep =m_preferenceitema->m_iStep;
+
+      if (iStep == 111)
+      {
+         output_debug_string("iStep=111");
+      }
+
+      auto i = ::object::increment_reference_count();
+
+      
+
+      return i;
 
    }
+
 
    i64 menu::decrement_reference_count()
    {
@@ -319,8 +329,6 @@ namespace user
          m_ptrackpopup.release();
 
       }
-
-//      m_pmenuitem.release();
 
       ::menu::menu::destroy();
 
@@ -693,6 +701,8 @@ namespace user
          return false;
 
       }
+
+      defer_initialize_user_menu();
 
       update_command(m_pmenuitem);
 

@@ -20,6 +20,8 @@ namespace simpledb
    void thread::run()
    {
 
+      ::task_set_name("database");
+
       single_lock synchronouslock(this->synchronization());
 
       ::pointer<::axis::application>papp = get_app();

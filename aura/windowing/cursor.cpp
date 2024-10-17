@@ -26,6 +26,19 @@ namespace windowing
    }
 
 
+   void cursor::destroy()
+   {
+
+      m_pcursor.release();
+      m_pimage.release();
+      m_pcursormanager.release();
+
+      ::particle::destroy();
+
+
+   }
+
+
    void cursor::set_cursor(enum_cursor ecursor)
    {
 

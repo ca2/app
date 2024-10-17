@@ -50,6 +50,9 @@ namespace acme
       ~context() override;
 
 
+      void destroy() override;
+
+
       virtual void on_set_platform();
 
       virtual void set_platform();

@@ -226,41 +226,41 @@ void _on_os_htask_end()
 //
 //}
 
-
-htask_t g_hMainThread = nullptr;
-itask_t g_iMainThread = -1;
-
-
-void set_main_user_htask(htask_t htask)
-{
-
-   g_hMainThread = htask;
-
-}
-
-
-void set_main_user_itask(itask_t itask)
-{
-
-   g_iMainThread = itask;
-
-}
-
-
-htask_t main_user_htask()
-{
-
-   return g_hMainThread;
-
-}
-
-
-itask_t main_user_itask()
-{
-
-   return g_iMainThread;
-
-}
+//
+//htask_t g_hMainThread = nullptr;
+//itask_t g_iMainThread = -1;
+//
+//
+//void set_main_user_htask(htask_t htask)
+//{
+//
+//   g_hMainThread = htask;
+//
+//}
+//
+//
+//void set_main_user_itask(itask_t itask)
+//{
+//
+//   g_iMainThread = itask;
+//
+//}
+//
+//
+//htask_t main_user_htask()
+//{
+//
+//   return g_hMainThread;
+//
+//}
+//
+//
+//itask_t main_user_itask()
+//{
+//
+//   return g_iMainThread;
+//
+//}
 
 
 namespace acme

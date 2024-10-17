@@ -32,7 +32,8 @@ namespace acme
       ::pointer < ::platform::platform >     m_pplatform;
       ::pointer < ::task_message_queue >     m_ptaskmessagequeue;
       ::heap::management *                   m_pheapmanagement;
-      ::pointer < manual_reset_event >       m_pmanualreseteventReadyToExit;
+      manual_reset_event *                   m_pmanualreseteventReadyToExit;
+      manual_reset_event *                   m_pmanualreseteventMainLoopEnd;
 
 
 

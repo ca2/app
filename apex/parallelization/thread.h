@@ -199,7 +199,6 @@ public:
    virtual bool task_active() const override;
 
 
-   virtual void set_current_handles();
 
    virtual htask_t get_os_handle() const;
 

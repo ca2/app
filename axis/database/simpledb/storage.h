@@ -36,6 +36,9 @@ namespace simpledb
       ~storage() override;
 
 
+      void destroy() override;
+
+
       virtual void initialize_simpledb_storage(server * pserver);
 
 

@@ -27,6 +27,7 @@ namespace simpledb
    }
 
 
+
    void server::initialize_simpledb_server(::particle * pparticle, const ::string & pszDatabase)
    {
 
@@ -271,13 +272,13 @@ namespace simpledb
 
       }
 
-      m_pdatabaseLocal.release();
+      m_pdatabaseLocal.defer_destroy();
 
-      m_pstorage.release();
+      m_pstorage.defer_destroy();
 
-      m_pdatabaseUser.release();
+      m_pdatabaseUser.defer_destroy();
 
-      m_psimpledb.release();
+      m_psimpledb.defer_destroy();
 
       //auto estatus = 
       

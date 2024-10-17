@@ -110,7 +110,7 @@ namespace windowing
    void windowing::destroy()
    {
 
-      m_pcursormanager.release();
+      m_pcursormanager.defer_destroy();
 
       ::acme::department::destroy();
 

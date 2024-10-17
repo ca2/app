@@ -54,7 +54,9 @@ CLASS_DECL_ACME bool is_single_main_user_thread();
 
 CLASS_DECL_ACME bool is_main_thread();
 
-CLASS_DECL_ACME itask_t main_user_itask();
+CLASS_DECL_ACME itask_t main_itask();
+
+CLASS_DECL_ACME htask_t main_htask();
 
 CLASS_DECL_ACME itask_t current_itask();
 
@@ -62,9 +64,11 @@ CLASS_DECL_ACME htask_t current_htask();
 
 CLASS_DECL_ACME itask_t as_itask(htask_t htask);
 
-CLASS_DECL_ACME void set_main_user_thread();
+CLASS_DECL_ACME void set_main_thread();
 
-CLASS_DECL_ACME void set_main_user_thread(htask_t htask);
+CLASS_DECL_ACME void set_main_htask(htask_t htask);
+
+CLASS_DECL_ACME void set_main_itask(itask_t itask);
 
 CLASS_DECL_ACME void preempt();
 
@@ -72,6 +76,11 @@ CLASS_DECL_ACME bool task_sleep(const class time & timeWait);
 
 CLASS_DECL_ACME bool task_get_run();
 
+#ifdef WINDOWS_DESKTOP
+
+CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach);
+
+#endif
 
 
 namespace parallelization

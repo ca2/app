@@ -50,6 +50,8 @@ namespace simpledb
       virtual void initialize_user(::database::database * pdatabaseUser, const ::string & pszUser);
 
 
+      //void destroy() override;
+
    };
 
 

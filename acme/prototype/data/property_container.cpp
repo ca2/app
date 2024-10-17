@@ -25,6 +25,19 @@ namespace data
    }
 
 
+   void property_container::destroy()
+   {
+
+      m_propertyset.clear();
+      m_propertylistenera.clear();
+      m_propertywillchangea.clear();
+      m_propertychangeda.clear();
+
+      ::particle::destroy();
+
+   }
+
+
    bool property_container::set_property(const ::atom_array & atoma, const ::payload & payload, const ::action_context & actioncontext)
    {
 

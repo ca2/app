@@ -58,11 +58,13 @@ namespace windowing
       for (auto & pcursor : m_cursormap.payloads())
       {
 
-         pcursor->destroy();
+         pcursor.defer_destroy();
 
       }
 
-      m_cursormap.erase_all();
+      m_cursormap.clear();
+
+      m_pwindowing.release();
 
       //auto estatus = 
       

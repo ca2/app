@@ -6,47 +6,47 @@
 #include "acme/_operating_system.h"
 
 
-static HANDLE g_hMainThread = nullptr;
-static itask_t g_iMainThread = -1;
+//static HANDLE g_hMainThread = nullptr;
+//static itask_t g_iMainThread = -1;
+//
+//void set_main_user_htask(htask_t htask)
+//{
+//
+//   MSG msg;
+//
+//   PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
+//
+//   g_hMainThread = (HANDLE)htask;
+//
+//}
+//
 
-void set_main_user_htask(htask_t htask)
-{
+//void set_main_user_itask(itask_t itask)
+//{
+//
+//   MSG msg;
+//
+//   PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
+//
+//   g_iMainThread = itask;
+//
+//}
+//
 
-   MSG msg;
-
-   PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
-
-   g_hMainThread = (HANDLE)htask;
-
-}
-
-
-void set_main_user_itask(itask_t itask)
-{
-
-   MSG msg;
-
-   PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
-
-   g_iMainThread = itask;
-
-}
-
-
-htask_t main_user_htask()
-{
-
-   return (htask_t)g_hMainThread;
-
-}
-
-
-itask_t main_user_itask()
-{
-
-   return (itask_t)g_iMainThread;
-
-}
+//htask_t main_user_htask()
+//{
+//
+//   return (htask_t)g_hMainThread;
+//
+//}
+//
+//
+//itask_t main_user_itask()
+//{
+//
+//   return (itask_t)g_iMainThread;
+//
+//}
 
 
 //
@@ -154,6 +154,34 @@ CLASS_DECL_ACME class ::time default_run_timeout()
 #endif
 
    return timeDefaultTimeout;
+
+}
+
+
+CLASS_DECL_ACME void attach_thread_input_to_main_thread(bool bAttach)
+{
+
+   if (bAttach)
+   {
+
+      MSG msg;
+
+      PeekMessage(&msg, nullptr, 0, 0xffffffff, PM_NOREMOVE);
+
+   }
+
+   auto idAttach = (DWORD) current_itask();
+
+   auto idAttachTo = (DWORD) main_itask();
+
+   BOOL bOk = ::AttachThreadInput(idAttach, idAttachTo, bAttach ? TRUE : FALSE);
+
+   if (!bOk)
+   {
+
+      throw ::exception(error_failed);
+
+   }
 
 }
 

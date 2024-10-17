@@ -27,6 +27,18 @@ namespace experience
    }
 
 
+   void button::destroy()
+   {
+
+      m_pcontrolbox.release();
+
+      m_pregion.release();
+
+      ::user::button::destroy();
+
+   }
+
+
    void button::install_message_routing(::channel* pchannel)
    {
 

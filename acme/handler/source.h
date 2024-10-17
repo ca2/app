@@ -19,6 +19,8 @@ public:
    ~source() override;
 
 
+   void destroy() override;
+
    inline bool has_handler() const
    {
 

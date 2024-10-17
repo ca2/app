@@ -507,21 +507,21 @@ void __node_acme_pos_term()
 }
 
 
-void attach_thread_input_to_main_thread(bool bAttach)
-{
-
-   MSG msg;
-
-   if (bAttach)
-   {
-
-      PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
-
-   }
-
-   AttachThreadInput(::GetCurrentThreadId(), (DWORD)main_user_itask(), bAttach ? true : false);
-
-}
+//void attach_thread_input_to_main_thread(bool bAttach)
+//{
+//
+//   MSG msg;
+//
+//   if (bAttach)
+//   {
+//
+//      PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
+//
+//   }
+//
+//   AttachThreadInput(::GetCurrentThreadId(), (DWORD)main_user_itask(), bAttach ? true : false);
+//
+//}
 
 
 string read_resource_as_string(hinstance hinst, ::u32 nID, const ::scoped_string & scopedstrType, strsize iReadAtMostByteCount = -1)

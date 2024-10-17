@@ -41,11 +41,28 @@ namespace user
    }
 
 
+
+   i64 menu_button::increment_reference_count()
+   {
+
+      return ::object::increment_reference_count();
+
+   }
+
+
+   i64 menu_button::decrement_reference_count()
+   {
+
+      return ::object::decrement_reference_count();
+
+   }
+
+
    void menu_button::destroy()
    {
 
       ::user::menu_interaction::destroy();
-      ::user::interaction::destroy();
+      ::user::button::destroy();
 
    }
 

@@ -44,16 +44,6 @@ CLASS_DECL_ACME void TRACELASTERROR();
 #endif
 
 
-#ifdef WINDOWS
-
-
-#include "acme/_operating_system.h"
-
-
-CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h);
-
-
-#endif
 
 
 //CLASS_DECL_ACME message_queue * aaa_get_message_queue(itask_t idthread, bool bCreate);
@@ -61,6 +51,8 @@ CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h);
 
 
 #ifdef WINDOWS_DESKTOP
+
+#include "acme/_operating_system.h"
 
 ::collection::index engine_fileline(DWORD_PTR dwAddress, char* psz, int nCount, u32* pline, u32* pdisplacement = 0);
 
@@ -2660,22 +2652,6 @@ bool thread::task_active() const
 }
 
 
-void thread::set_current_handles()
-{
-
-#ifdef WINDOWS_DESKTOP
-
-   m_htask = duplicate_handle(::current_htask());
-
-#else
-
-   m_htask = ::current_htask();
-
-#endif
-
-   m_itask = ::current_itask();
-
-}
 
 
 iptr thread::item() const

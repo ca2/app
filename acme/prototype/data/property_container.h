@@ -28,6 +28,9 @@ namespace data
       ~property_container() override;
 
 
+      void destroy() override;
+
+
       virtual bool set_property(const ::atom_array & atoma, const ::payload & payload, const ::action_context & context = {});
       virtual ::payload get_property(const ::atom_array & atoma) const;
 

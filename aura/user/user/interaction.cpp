@@ -676,7 +676,7 @@ namespace user
 
       }
 
-      _synchronous_lock synchronouslock(this->synchronization());
+      synchronous_lock synchronouslock(this->synchronization());
 
       auto & layoutstate = layout().m_statea[elayout];
 

@@ -721,6 +721,7 @@ enum enum_window_flag : i64
    e_window_flag_hosted = 1 << 31,
    e_window_flag_top_level = 1ll << 32,
    e_window_flag_root = 1ll << 33,
+   e_window_flag_destroyed = 1ll << 34,
 
 };
 

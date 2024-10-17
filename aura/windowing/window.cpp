@@ -15734,7 +15734,7 @@ namespace windowing
 
       //post_non_client_destroy();
 
-      destroy();
+      //destroy();
 
    }
 

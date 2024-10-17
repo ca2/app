@@ -3721,7 +3721,9 @@ namespace user
    void interaction::on_message_non_client_destroy(::message::message * pmessage)
    {
 
-      destroy();
+      //destroy();
+
+      m_ewindowflag |= e_window_flag_destroyed;
 
    }
 

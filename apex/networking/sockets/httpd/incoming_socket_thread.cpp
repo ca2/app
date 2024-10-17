@@ -159,24 +159,24 @@ namespace httpd
                      try
                      {
 
-                        if (!application() || !application()->task_get_run())
+                        if (!application() || application()->has_finishing_flag())
                         {
 
-                           break;
+                           goto end_listening;
 
                         }
 
                         if (!session())
                         {
 
-                           break;
+                           goto end_listening;
 
                         }
 
                         if (session()->get_applicationa().is_empty())
                         {
 
-                           break;
+                           goto end_listening;
 
                         }
 
@@ -184,9 +184,10 @@ namespace httpd
                      catch (...)
                      {
 
-                        break;
+                        goto end_listening;
 
                      }
+
                   }
 
                   m_iConnectPort = -1;
@@ -204,6 +205,8 @@ namespace httpd
          }
 
       }
+
+      end_listening:
 
       m_psockethandlerIncoming.release();
 

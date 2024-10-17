@@ -206,7 +206,14 @@ namespace httpd
 
       }
 
-      end_listening:
+   end_listening:
+
+      if (m_pincomingsocket)
+      {
+
+         m_pincomingsocket->close();
+
+      }
 
       m_psockethandlerIncoming.release();
 

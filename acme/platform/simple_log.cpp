@@ -316,17 +316,17 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
          if(m_bDisplayRelativeTime)
          {
 
-            auto Δtime = timeNow - platform()->m_timeStart;
+            auto Δtime = timeNow - ::acme::get()->m_timeStart;
 
             ::earth::time_span earthtimepan(Δtime);
 
-            if(earthtimepan.GetDays() <= 0)
+            if(earthtimepan.days() <= 0)
             {
 
                strTime.formatf("%02d:%02d:%02d %03d ",
-                              earthtimepan.GetHours(),
-                              earthtimepan.GetMinutes(),
-                              earthtimepan.GetSeconds(),
+                              earthtimepan.hours(),
+                              earthtimepan.minute(),
+                              earthtimepan.second(),
                               Δtime.millisecond());
 
             }
@@ -334,10 +334,10 @@ void simple_log::print(::trace_statement & tracestatement, bool bFlush)
             {
 
                strTime.formatf("%3d %02d:%02d:%02d %03d ",
-                              earthtimepan.GetDays(),
-                              earthtimepan.GetHours(),
-                              earthtimepan.GetMinutes(),
-                              earthtimepan.GetSeconds(),
+                              earthtimepan.days(),
+                              earthtimepan.hour(),
+                              earthtimepan.minute(),
+                              earthtimepan.second(),
                               Δtime.millisecond());
 
             }

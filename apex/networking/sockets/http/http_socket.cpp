@@ -10,6 +10,13 @@
 
 #define HEAVY_HTTP_LOG 0
 
+template < typename T >
+T* non_const_of(const T* p)
+{
+
+   return (T*)p;
+
+}
 
 namespace sockets
 {
@@ -982,6 +989,22 @@ namespace sockets
    {
 
       return m_request.m_url.as_string();
+
+   }
+
+
+   ::string http_socket::get_short_debug_text(int i) const
+   {
+
+      ::string str;
+
+      str = tcp_socket::get_short_debug_text(i);
+
+      auto p = non_const_of(this);
+
+      str += "url: "+p->get_request_url_string() + "\n";
+
+      return str;
 
    }
 

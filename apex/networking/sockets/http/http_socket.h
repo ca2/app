@@ -64,6 +64,8 @@ namespace sockets
       virtual ::i64 get_request_serial();
       ::string get_request_url_string() override;
 
+      ::string get_short_debug_text(int i) const override;
+
       virtual void OnEndChunk();
 
       void OnRawData(char *buf,memsize len) override;

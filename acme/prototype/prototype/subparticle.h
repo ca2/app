@@ -5,6 +5,7 @@
 
 #include "pointer.h"
 #include "acme/prototype/prototype/interlocked_count.h"
+#include "acme/prototype/time/time/time.h"
 using hsynchronization = void*;
 
 
@@ -73,6 +74,8 @@ public:
 
    virtual ::string get_debug_title() const;
 
+   virtual ::string get_short_debug_text(int i) const;
+
    virtual void run();
 
    virtual class ::time get_run_timeout();
@@ -124,8 +127,8 @@ public:
    bool find_top_track(::subparticle* psubparticle, ::subparticle** ppsubparticleeParent) const;
 
 
-
-   class reference_item_array * m_preferenceitema = nullptr;
+   class ::time                  m_timeAllocation;
+   class reference_item_array *  m_preferenceitema = nullptr;
    bool                          m_bHeapAllocation = false;
    void *                        m_pType = nullptr;
    memsize                       m_sType = sizeof(::subparticle);

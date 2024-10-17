@@ -30,13 +30,13 @@ namespace earth
       constexpr time_span(const class ::time & time) noexcept : posix_time(time) {}
 
 
-      constexpr i64 GetDays() const noexcept;
-      constexpr i64 GetTotalHours() const noexcept;
-      constexpr i32 GetHours() const noexcept;
-      constexpr i64 GetTotalMinutes() const noexcept;
-      constexpr i32 GetMinutes() const noexcept;
-      constexpr i64 GetTotalSeconds() const noexcept;
-      constexpr i32 GetSeconds() const noexcept;
+      constexpr i64 days() const noexcept;
+      constexpr i64 hours() const noexcept;
+      constexpr i32 hour() const noexcept;
+      constexpr i64 minutes() const noexcept;
+      constexpr i32 minute() const noexcept;
+      constexpr i64 seconds() const noexcept;
+      constexpr i32 second() const noexcept;
 
       constexpr posix_time GetTimeSpan() const noexcept;
 
@@ -48,7 +48,7 @@ namespace earth
       constexpr operator time() const
       {
 
-         return ::earth::time({ posix_time_t{}, GetTotalSeconds() });
+         return ::earth::time({ posix_time_t{}, seconds() });
 
       }
 
@@ -119,7 +119,7 @@ namespace earth
    }
 
 
-   constexpr i64 time_span::GetDays() const noexcept
+   constexpr i64 time_span::days() const noexcept
    {
 
       return m_iSecond / (24 * 3600);
@@ -127,7 +127,7 @@ namespace earth
    }
 
 
-   constexpr  i64 time_span::GetTotalHours() const noexcept
+   constexpr  i64 time_span::hours() const noexcept
    {
 
       return m_iSecond / 3600;
@@ -135,15 +135,15 @@ namespace earth
    }
 
 
-   constexpr  i32 time_span::GetHours() const noexcept
+   constexpr  i32 time_span::hour() const noexcept
    {
 
-      return ::i32(GetTotalHours() - (GetDays() * 24));
+      return hours() % 24;
 
    }
 
 
-   constexpr  i64 time_span::GetTotalMinutes() const noexcept
+   constexpr  i64 time_span::minutes() const noexcept
    {
 
       return m_iSecond / 60;
@@ -151,25 +151,26 @@ namespace earth
    }
 
 
-   constexpr  i32 time_span::GetMinutes() const noexcept
+   constexpr  i32 time_span::minute() const noexcept
    {
 
-      return ::i32(GetTotalMinutes() - (GetTotalHours() * 60));
+      return minutes() % 60;
 
    }
 
 
-   constexpr  i64 time_span::GetTotalSeconds() const noexcept
+   constexpr  i64 time_span::seconds() const noexcept
    {
+      
       return m_iSecond;
 
    }
 
 
-   constexpr  i32 time_span::GetSeconds() const noexcept
+   constexpr  i32 time_span::second() const noexcept
    {
 
-      return(::i32(GetTotalSeconds() - (GetTotalMinutes() * 60)));
+      return m_iSecond % 60;
 
    }
 

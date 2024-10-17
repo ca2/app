@@ -88,8 +88,6 @@ namespace platform
 
       m_pdynamiclibrary = ::operating_system::new_dynamic_library();
 
-      m_timeStart.Now();
-
    }
 
 
@@ -1403,12 +1401,12 @@ g_bWindowingOutputDebugString = true;
 
    }
 
-   class ::time platform::start_nanosecond()
-   {
+   //class ::time platform::start_nanosecond()
+   //{
 
-      return m_timeStart;
+   //   return m_timeStart;
 
-   }
+   //}
 
 
    //::particle * platform::__call__add_referer2(const ::reference_referer & referer) const

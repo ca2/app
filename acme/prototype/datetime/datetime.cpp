@@ -1002,13 +1002,13 @@ namespace datetime
       bool bSolved = false;
       string strTime;
       string str;
-      i64 iSecDiff = (timeNow - time).GetTotalSeconds();
-      i64 iMinDiff = (timeNow - time).GetTotalMinutes();
-      i64 iHouDiff = (timeNow - time).GetTotalHours();
+      i64 iSecDiff = (timeNow - time).seconds();
+      i64 iMinDiff = (timeNow - time).minutes();
+      i64 iHouDiff = (timeNow - time).hours();
       if (iSecDiff <= 59)
       {
          bSolved = true;
-         strTime.formatf("about %d seconds ago", (timeNow - time).GetTotalSeconds());
+         strTime.formatf("about %d seconds ago", (timeNow - time).seconds());
       }
       else if (iMinDiff <= 59)
       {
@@ -1016,12 +1016,12 @@ namespace datetime
          if (iMinDiff <= 1)
          {
             strTime = pcontext->get("about 1 minute and %SECONDS% seconds ago");
-            strTime.replace_with(::as_string((timeNow - time).GetSeconds()), "%SECONDS%");
+            strTime.replace_with(::as_string((timeNow - time).second()), "%SECONDS%");
          }
          else if (iMinDiff <= 2)
          {
             strTime = pcontext->get("about 2 minutes and %SECONDS% seconds ago");
-            strTime.replace_with(::as_string((timeNow - time).GetSeconds()), "%SECONDS%");
+            strTime.replace_with(::as_string((timeNow - time).second()), "%SECONDS%");
          }
          else
          {
@@ -1034,11 +1034,11 @@ namespace datetime
          bSolved = true;
          if (iHouDiff <= 1)
          {
-            strTime.formatf("about 1 hour and %d minutes ago", (timeNow - time).GetMinutes());
+            strTime.formatf("about 1 hour and %d minutes ago", (timeNow - time).minute());
          }
          else if (iHouDiff <= 2)
          {
-            strTime.formatf("about 2 hours and %d minutes ago", (timeNow - time).GetMinutes());
+            strTime.formatf("about 2 hours and %d minutes ago", (timeNow - time).minute());
          }
          else
          {
@@ -1142,14 +1142,14 @@ namespace datetime
       bool bSolved = false;
       string strTime;
       string str;
-      ::i64 iSecDiff = (timeNow - time).GetTotalSeconds();
-      ::i64 iMinDiff = (timeNow - time).GetTotalMinutes();
-      ::i64 iHouDiff = (timeNow - time).GetTotalHours();
+      ::i64 iSecDiff = (timeNow - time).seconds();
+      ::i64 iMinDiff = (timeNow - time).minutes();
+      ::i64 iHouDiff = (timeNow - time).hours();
       if (iSecDiff <= 59)
       {
          bSolved = true;
          //strTime.formatf("about %d seconds ago", (timeNow - time).GetTotalSeconds());
-         strTime.formatf("%ds", (timeNow - time).GetTotalSeconds());
+         strTime.formatf("%ds", (timeNow - time).seconds());
       }
       else if (iMinDiff <= 59)
       {
@@ -1158,13 +1158,13 @@ namespace datetime
          {
             //strTime = pscript->pstr("about 1 minute and %SECONDS% seconds ago");
             //strTime = pscript->pstr("1m %SECONDS%s seconds ago");
-            strTime.formatf("1m %ds", (timeNow - time).GetSeconds());
+            strTime.formatf("1m %ds", (timeNow - time).second());
          }
          else if (iMinDiff <= 2)
          {
             //strTime = pscript->pstr("about 2 minutes and %SECONDS% seconds ago");
             //strTime = pscript->pstr("2 minutes and %SECONDS% seconds ago");
-            strTime.formatf("2m %ds", (timeNow - time).GetSeconds());
+            strTime.formatf("2m %ds", (timeNow - time).second());
          }
          else
          {
@@ -1179,13 +1179,13 @@ namespace datetime
          if (iHouDiff <= 1)
          {
             //strTime.formatf("about 1 hour and %d minutes ago", (timeNow - time).GetMinutes());
-            strTime.formatf("1h %dm", (timeNow - time).GetMinutes());
+            strTime.formatf("1h %dm", (timeNow - time).minute());
 
          }
          else if (iHouDiff <= 2)
          {
             //strTime.formatf("about 2 hours and %d minutes ago", (timeNow - time).GetMinutes());
-            strTime.formatf("2h %dm", (timeNow - time).GetMinutes());
+            strTime.formatf("2h %dm", (timeNow - time).minute());
          }
          else
          {

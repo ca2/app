@@ -9,6 +9,8 @@
 
 #include "acme/prototype/prototype/pointer.h"
 #include "acme/parallelization/critical_section.h"
+#include "acme/prototype/time/time/time.h"
+
 
 class task_message_queue;
 
@@ -44,6 +46,11 @@ namespace acme
 
 #endif
 
+      class ::time                           m_timeStart;
+
+
+
+
       acme();
       ~acme();
 
@@ -67,6 +74,8 @@ namespace acme
 //      void dump_pending_releases();
 
 #endif
+      
+      class ::time start_time();
 
 
       ::platform::platform * platform() { return m_pplatform; }

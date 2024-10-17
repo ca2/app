@@ -252,6 +252,8 @@ namespace acme
    acme::acme()
    {
 
+      m_timeStart.Now();
+
       m_pmanualreseteventReadyToExit = nullptr;
 
       m_pmanualreseteventMainLoopEnd = nullptr;

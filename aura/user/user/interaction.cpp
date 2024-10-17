@@ -11753,13 +11753,37 @@ namespace user
       if (m_pacmewindowingwindow)
       {
 
-         m_pacmewindowingwindow->destroy_window();
+         auto pacmewindowingwindow = m_pacmewindowingwindow;
+
+         pacmewindowingwindow->destroy_window();
+
+         try
+         {
+
+            pacmewindowingwindow->destroy();
+
+         }
+         catch (...)
+         {
+
+         }
 
       }
       else
       {
 
          _destroy_window();
+
+      }
+
+      try
+      {
+
+         destroy();
+
+      }
+      catch (...)
+      {
 
       }
 

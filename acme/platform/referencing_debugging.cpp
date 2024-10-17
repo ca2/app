@@ -129,6 +129,12 @@ namespace acme
 
 #endif
 
+   class ::time acme::start_time()
+{
+
+   return m_timeStart;
+
+}
 
    //void acme::dump_pending_releases()
    //{

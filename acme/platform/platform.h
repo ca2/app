@@ -158,8 +158,6 @@ namespace platform
 
 
 
-      class ::time                        m_timeStart;
-
       ::memory_counter* m_pmemorycounter;
 
 
@@ -383,7 +381,7 @@ namespace platform
 
 
       //virtual ::acme::system * __get_system() = 0;
-      class ::time start_nanosecond();
+      //class ::time start_nanosecond();
 
 
 

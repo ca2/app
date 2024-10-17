@@ -24,10 +24,8 @@
 #include "apex/message/message.h"
 //#include "apex/operating_system.h"
 #include "apex/user/user/interaction_base.h"
-CLASS_DECL_ACME::reference_referer* refdbg_get_top_referer();
-CLASS_DECL_ACME::subparticle* refdbg_get_track_allocation();
-CLASS_DECL_ACME::reference_referer* refdbg_get_top_releaser();
-CLASS_DECL_ACME void __check_refdbg
+
+
 
 
 #if defined(APPLE_IOS) || defined(UNIVERSAL_WINDOWS) || defined(ANDROID)
@@ -1093,21 +1091,7 @@ ret:
 
       initialize_context_1();
 
-      {
-
-         auto psubparticleTrackAllocation = refdbg_get_track_allocation();
-         if (psubparticleTrackAllocation)
-         {
-
-            ::string strType = typeid(*psubparticleTrackAllocation).name();
-
-            output_debug_string("123");
-
-         }
-
-
-      }
-
+      __check_refdbg
 
       //if (!estatus)
       //{
@@ -1120,20 +1104,7 @@ ret:
       __construct_new(m_pfs);
 
 
-      {
-
-         auto psubparticleTrackAllocation = refdbg_get_track_allocation();
-         if (psubparticleTrackAllocation)
-         {
-
-            ::string strType = typeid(*psubparticleTrackAllocation).name();
-
-            output_debug_string("123");
-
-         }
-
-
-      }
+      __check_refdbg
 
 
       //if (!estatus)
@@ -1182,20 +1153,7 @@ ret:
          m_pifs = __initialize_new ifs("");
 
 
-         {
-
-            auto psubparticleTrackAllocation = refdbg_get_track_allocation();
-            if (psubparticleTrackAllocation)
-            {
-
-               ::string strType = typeid(*psubparticleTrackAllocation).name();
-
-               output_debug_string("123");
-
-            }
-
-
-         }
+         __check_refdbg
 
 
          //if (!estatus)
@@ -1215,20 +1173,7 @@ ret:
          //estatus = 
          m_premotefs = __initialize_new ::fs::remote_native("");
 
-         {
-
-            auto psubparticleTrackAllocation = refdbg_get_track_allocation();
-            if (psubparticleTrackAllocation)
-            {
-
-               ::string strType = typeid(*psubparticleTrackAllocation).name();
-
-               output_debug_string("123");
-
-            }
-
-
-         }
+         __check_refdbg
 
 
          //if (!estatus)

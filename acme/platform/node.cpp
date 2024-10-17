@@ -34,9 +34,6 @@
 #include "filesystem/filesystem/listing.h"
 
 
-CLASS_DECL_ACME void __check_refdbg
-
-
 //namespace nano{namespace  user{
 //::user::enum_desktop calculate_edesktop();
 //}//namespace user

@@ -12,9 +12,6 @@
 #include "acme/prototype/string/str.h"
 
 
-CLASS_DECL_ACME void __check_refdbg
-
-
 #if defined(LINUX) || defined(FREEBSD) || defined(OPENBSD)
 #include <locale.h>
 #elif defined(__APPLE__)

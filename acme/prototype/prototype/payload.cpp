@@ -24,10 +24,6 @@
 #include "acme/prototype/collection/_container.h"
 
 
-
-CLASS_DECL_ACME void __check_refdbg
-
-
 CLASS_DECL_ACME void copy(::string & str, const ::payload & payload)
 {
 

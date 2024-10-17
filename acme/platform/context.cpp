@@ -27,9 +27,6 @@
 #include "acme/user/micro/user.h"
 
 
-CLASS_DECL_ACME void __check_refdbg
-
-
 namespace acme
 {
 

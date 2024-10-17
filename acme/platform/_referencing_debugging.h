@@ -114,6 +114,13 @@ CLASS_DECL_ACME void check_refdbg();
 #define tracking_note_assign(target, source, ... ) reference_count_debug_assign(target, source,  __VA_ARGS__ )
 #define tracking_named_release(...) reference_count_debug_release( __VA_ARGS__ )
 #define tracking_check_pending_releases(x) x->check_pending_releases()
+
+
+CLASS_DECL_ACME::reference_referer* refdbg_get_top_referer();
+CLASS_DECL_ACME::subparticle* refdbg_get_track_allocation();
+CLASS_DECL_ACME::reference_referer* refdbg_get_top_releaser();
+
+
 #else
 
 

@@ -163,20 +163,8 @@ namespace fs
       m_strTitle = strTitle;
 
       m_plisting->m_pathUser = pathFolder;
-      {
 
-         auto psubparticleTrackAllocation = refdbg_get_track_allocation();
-         if (psubparticleTrackAllocation)
-         {
-
-            ::string strType = typeid(*psubparticleTrackAllocation).name();
-
-            output_debug_string("123");
-
-         }
-
-
-      }
+      __check_refdbg
       
       m_plisting->clear_results();
       

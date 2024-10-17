@@ -1727,20 +1727,7 @@ namespace aura
 
       //auto estatus = 
 
-      {
-
-         auto psubparticleTrackAllocation = refdbg_get_track_allocation();
-         if (psubparticleTrackAllocation)
-         {
-
-            ::string strType = typeid(*psubparticleTrackAllocation).name();
-
-            output_debug_string("123");
-
-         }
-
-
-      }
+      __check_refdbg
       
       ::apex::session::init1();
 
@@ -1825,23 +1812,7 @@ namespace aura
 
       //}
 
-      auto prefererTop = refdbg_get_top_referer();
-      if (prefererTop)
-      {
-
-         output_debug_string("345");
-
-      }
-
-      auto psubparticleTrackAllocation = refdbg_get_track_allocation();
-      if (psubparticleTrackAllocation)
-      {
-
-         ::string strType = typeid(*psubparticleTrackAllocation).name();
-
-         output_debug_string("123");
-
-      }
+      __check_refdbg
 
       information() << "aura::session .2";
 

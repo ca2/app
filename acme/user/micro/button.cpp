@@ -11,6 +11,20 @@ namespace micro
 {
 
 
+   button::button()
+   {
+
+
+   }
+
+
+   button::~button()
+   {
+
+
+   }
+
+
    void button::on_draw(::nano::graphics::device * pmicrodevice)
    {
 

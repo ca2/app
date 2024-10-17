@@ -126,7 +126,7 @@ void _do_tasks()
 
    }
 
-   auto pwindowing = system()->acme_windowing();
+   auto pwindowing = system()->m_pacmewindowing;
 
    if (pwindowing)
    {

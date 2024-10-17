@@ -142,6 +142,15 @@ namespace user
    }
 
 
+   void message_box::destroy()
+   {
+
+      ::user::interaction::destroy();
+      ::acme::user::message_box::destroy();
+
+   }
+
+
    void message_box::install_message_routing(::channel * pchannel)
    {
 

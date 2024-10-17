@@ -273,10 +273,10 @@ namespace user
    void frame::destroy()
    {
 
-      if (window())
+      if (m_pacmewindowingwindow)
       {
 
-         window()->destroy();
+         m_pacmewindowingwindow->destroy();
 
       }
 
@@ -302,7 +302,7 @@ namespace user
       if (m_palphasource) m_palphasource->destroy();
       //if (m_pdrawableBackground) m_pdrawableBackground->destroy();
       //if (m_pprimitiveimpl) m_pprimitiveimpl->destroy();
-      if (windowing_window()) windowing_window()->destroy();
+      if (m_pacmewindowingwindow) m_pacmewindowingwindow->destroy();
 
       {
 
@@ -312,9 +312,12 @@ namespace user
 
       }
 
+      ::pointer < ::windowing::window > pwindow = m_pacmewindowingwindow;
+
+      if (pwindow)
       {
 
-         _synchronous_lock synchronouslock(windowing_window() ? windowing_window()->m_pparticleChildrenSynchronization : nullptr);
+         _synchronous_lock synchronouslock(pwindow ? pwindow->m_pparticleChildrenSynchronization : nullptr);
 
          if (m_puserinteractionpointeraChild) m_puserinteractionpointeraChild->destroy();
 
@@ -361,9 +364,12 @@ namespace user
 
       }
 
+      ::pointer < ::windowing::window > pwindow2 = m_pacmewindowingwindow;
+
+      if (pwindow2)
       {
 
-         _synchronous_lock synchronouslock(windowing_window() ? windowing_window()->m_pparticleChildrenSynchronization : nullptr);
+         _synchronous_lock synchronouslock(pwindow2 ? pwindow2->m_pparticleChildrenSynchronization : nullptr);
 
          m_puserinteractionpointeraChild.release();
 

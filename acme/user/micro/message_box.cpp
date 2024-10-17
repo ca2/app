@@ -74,8 +74,14 @@ namespace micro
          m_pacmewindowingwindow->m_bMaximizeBox = false;
          m_pacmewindowingwindow->m_bResizeable = false;
 
+      }
 
 
+      void message_box::destroy()
+      {
+
+         ::micro::dialog::destroy();
+         ::acme::user::message_box::destroy();
 
       }
 

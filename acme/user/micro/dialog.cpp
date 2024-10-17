@@ -83,9 +83,11 @@ namespace micro
 
       });
 
-      wait_for_dialog_result(m_timeDialogTimeout);
+      m_manualreseteventFinished.wait(m_timeDialogTimeout);
 
-      destroy();
+      //pdialogThis->wait_for_dialog_result(m_timeDialogTimeout);
+
+      //pdialogThis->destroy();
 
    }
 

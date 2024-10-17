@@ -13,7 +13,7 @@ void application_main()
 
    auto papplication = __new launch::application ();
 
-   auto iExitCode = papplication->application_main(pplatform);
+   auto iExitCode = papplication->application_main();
 
    return iExitCode;
 

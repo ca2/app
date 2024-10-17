@@ -589,6 +589,51 @@ namespace acme
 
             acme_windowing_window()->destroy_window();
 
+            auto pchildren = m_pacmeuserinteractionaChildren;
+
+            if (pchildren)
+            {
+
+               for (auto & pchild : *pchildren)
+               {
+
+                  if (pchild)
+                  {
+
+                     try
+                     {
+
+                        pchild->destroy_window();
+
+                     }
+                     catch (...)
+                     {
+
+
+                     }
+
+                     try
+                     {
+
+                        pchild->destroy();
+
+                     }
+                     catch (...)
+                     {
+
+
+                     }
+
+                  }
+
+               }
+
+               pchildren->clear();
+
+            }
+
+            destroy();
+
          }
 
 
@@ -1426,6 +1471,8 @@ namespace acme
             system()->erase_signal_handler(this);
 
             m_pacmeuserinteractionParent.release();
+
+            m_pacmeuserinteractionaChildren.release();
 
             if (m_pacmewindowingwindow)
             {

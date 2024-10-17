@@ -601,16 +601,16 @@ namespace acme
 
 //         m_peventInitialization->SetEvent();
 
-         //while(task_get_run())
-         //{
+         while(task_get_run())
+         {
 
-           // run_posted_procedures();
+            run_posted_procedures();
 
-            //preempt(100_ms);
+            preempt(100_ms);
 
-         //}
+         }
 
-         acme_windowing()->windowing_system_application_main_loop();
+         //acme_windowing()->windowing_system_application_main_loop();
 
 
       }

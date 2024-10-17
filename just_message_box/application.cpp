@@ -41,9 +41,9 @@ namespace app_just_message_box
             else  if (pmessagebox->m_payloadResult == e_dialog_result_no)
             {
 
-               auto pmessagebox = __initialize_new::message_box("No!", nullptr, e_message_box_ok);
+               auto pmessageboxNo = __initialize_new::message_box("No!", nullptr, e_message_box_ok);
 
-               pmessagebox->async()
+               pmessageboxNo->async()
                   << [this]()
                   {
 
@@ -55,9 +55,9 @@ namespace app_just_message_box
             else  if (pmessagebox->m_payloadResult == e_dialog_result_yes)
             {
 
-               auto pmessagebox = __initialize_new::message_box("Yes!!", nullptr, e_message_box_ok);
+               auto pmessageboxYes = __initialize_new::message_box("Yes!!", nullptr, e_message_box_ok);
 
-               pmessagebox->async()
+               pmessageboxYes->async()
                   << [this]()
                   {
 

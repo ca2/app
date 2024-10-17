@@ -1562,7 +1562,7 @@ void application_main()
 
    auto papplication = __allocate console_hello::application();
 
-   auto iExitCode = papplication->application_main(pplatform);
+   auto iExitCode = papplication->application_main();
 
    return iExitCode;
 

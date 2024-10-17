@@ -36,6 +36,8 @@ namespace micro
 
          void create_window() override;
 
+         void destroy() override;
+
          //virtual void set(::message_box * pmessagebox);
 
          void on_realize(::message_box * pmessagebox) override;

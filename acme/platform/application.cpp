@@ -279,7 +279,19 @@ namespace acme
 
          //system()->acme_windowing()->windowing_system_post_quit();
 
-         set_finish();
+//         main_post([this]()
+            {
+
+  //             post([this]()
+                  {
+
+                     set_finish();
+
+               }
+                     //);
+
+         }
+               //);
 
       }
 

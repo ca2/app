@@ -98,7 +98,7 @@ namespace user
       void on_realize(::message_box * pmessagebox) override;
       void add_button(const ::scoped_string & scopedstrTitle, enum_dialog_result edialogresult, char chLetter) override;
 
-
+      void destroy() override;
 
       void install_message_routing(::channel * pchannel) override;
 

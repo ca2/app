@@ -200,9 +200,9 @@ i64 subparticle::decrement_reference_count()
 
    ::earth::time_span span(elapsed.m_iSecond);
 
-   int iHour = span.hours();
-   int iMinute = span.minute();
-   int iSecond = span.second();
+   auto iHour = (::i32) span.hours();
+   auto iMinute = span.minute();
+   auto iSecond = span.second();
 
    if (iHour <= 0)
    {

@@ -238,12 +238,28 @@ namespace windows
 
       auto hwnd = m_hwnd;
 
-      auto cMenuItemCount = ::GetMenuItemCount(hmenu);
+      hmenuSystem = hmenu;
 
+      //::DefWindowProc(m_hwnd, WM_INITMENU, wparam, 0);
+
+      auto cMenuItemCount = ::GetMenuItemCount(hmenu);
 
       auto iLast = ::GetMenuItemCount(hmenuSystem) - 1;
 
       auto idLast = GetMenuItemID(hmenuSystem, iLast);
+
+      //if (idLast == -1)
+      //{
+
+      //   hmenuSystem = GetSubMenu(hmenu, 0);
+
+      //   cMenuItemCount = ::GetMenuItemCount(hmenuSystem);
+
+      //   iLast = ::GetMenuItemCount(hmenuSystem) - 1;
+
+      //   idLast = GetMenuItemID(hmenuSystem, iLast);
+
+      //}
 
       auto iOneBeforeLast = iLast - 1;
 

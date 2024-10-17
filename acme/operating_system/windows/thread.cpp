@@ -220,14 +220,14 @@ namespace acme
    void node::_user_post(const ::procedure & procedure)
    {
 
-      if (is_main_thread())
-      {
+      //if (is_main_thread())
+      //{
 
-         procedure();
+      //   procedure();
 
-         return;
+      //   return;
 
-      }
+      //}
 
       system()->acme_windowing()->_main_post(procedure);
 

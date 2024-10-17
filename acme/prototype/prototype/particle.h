@@ -126,7 +126,7 @@ public:
 
    virtual ::particle * get_context_particle();
 
-   inline ::particle * synchronization() const { return ::is_set(this) ? m_pparticleSynchronization : nullptr; }
+   inline ::particle * synchronization() const { return ::is_set(this) ? m_pparticleSynchronization.m_p : nullptr; }
    void set_synchronization(::particle * pparticleSynchronization);
    void defer_create_synchronization();
 

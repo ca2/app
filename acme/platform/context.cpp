@@ -376,7 +376,10 @@ namespace acme
 
       try
       {
-         m_pdir->term_context();
+         if (m_pdir)
+         {
+            m_pdir->term_context();
+         }
       }
       catch (...)
       {
@@ -384,7 +387,11 @@ namespace acme
       }
       try
       {
-         m_pfile->term_context();
+         if (m_pfile)
+         {
+            m_pfile->term_context();
+
+         }
       }
       catch (...)
       {
@@ -392,7 +399,11 @@ namespace acme
       }
       try
       {
-         m_pdir->term_system();
+         if (m_pdir)
+         {
+            m_pdir->term_system();
+
+         }
       }
       catch (...)
       {
@@ -400,7 +411,10 @@ namespace acme
       }
       try
       {
-         m_pfile->term_system();
+         if (m_pfile)
+         {
+            m_pfile->term_system();
+         }
       }
       catch (...)
       {
@@ -409,7 +423,10 @@ namespace acme
 
       try
       {
-         m_pdir->finalize();
+         if (m_pdir)
+         {
+            m_pdir->finalize();
+         }
       }
       catch (...)
       {
@@ -419,7 +436,10 @@ namespace acme
 
       try
       {
-         m_pfile->finalize();
+         if (m_pfile)
+         {
+            m_pfile->finalize();
+         }
       }
       catch (...)
       {

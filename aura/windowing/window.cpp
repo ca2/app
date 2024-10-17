@@ -4819,7 +4819,7 @@ namespace windowing
       m_graphicaloutputpurposea.predicate_erase([pparticleGraphicalOutputPurposeOriginator](auto ppurpose)
                                                 {
 
-                                                   return ppurpose->m_pparticleGraphicalOutputPurposeOriginator ==
+                                                   return ppurpose->get_graphical_output_purpose_originator() ==
                                                       pparticleGraphicalOutputPurposeOriginator;
 
                                                 });
@@ -4835,7 +4835,7 @@ namespace windowing
       return m_graphicaloutputpurposea.predicate_contains([pparticleGraphicalOutputPurposeOriginator](auto ppurpose)
                                                           {
 
-                                                             return ppurpose->m_pparticleGraphicalOutputPurposeOriginator ==
+                                                             return ppurpose->get_graphical_output_purpose_originator() ==
                                                                 pparticleGraphicalOutputPurposeOriginator
                                                                 && ppurpose->m_egraphicsoutputpurpose &
                                                                 ::graphics::e_output_purpose_fps;

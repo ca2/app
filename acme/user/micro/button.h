@@ -19,6 +19,10 @@ namespace micro
       char                    m_chLetter = '\0';
 
 
+      button();
+      ~button() override;
+
+
       void on_draw(::nano::graphics::device * pnanodevice) override;
       void on_char(int iChar) override;
 

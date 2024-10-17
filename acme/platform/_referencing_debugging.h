@@ -13,13 +13,14 @@
 #define __FUNCTION_FILE_LINE__  __FUNCTION__ "\n" __FILE__ "(" MAKE_STRING(__LINE__) ")"
 
 class subparticle;
-CLASS_DECL_ACME ::subparticle* refdbg_this();
-struct reference_count_debug_item;
-class reference_count_debug;
 
 
 #if REFERENCING_DEBUGGING
 
+class reference_referer;
+struct reference_count_debug_item;
+class reference_count_debug;
+CLASS_DECL_ACME::subparticle * refdbg_this();
 
 #define REFDBG_THIS(p) auto refdbg_this = [p]() { return p; }
 
@@ -66,6 +67,7 @@ class reference_count_debug;
 #define __check_refdbg check_refdbg();
 
 #define __refdbg_add_referer ::allocator::add_referer({refdbg_this(), __FUNCTION_FILE_LINE__});
+#define __refdbg_add_releaser(preferer) ::allocator::add_releaser(preferer);
 
 
 CLASS_DECL_ACME void check_refdbg();
@@ -169,7 +171,7 @@ CLASS_DECL_ACME::reference_referer* refdbg_get_top_releaser();
 #define __check_refdbg
 
 #define __refdbg_add_referer
-
+#define __refdbg_add_releaser(preferer)
 
 //#define 
 //#define

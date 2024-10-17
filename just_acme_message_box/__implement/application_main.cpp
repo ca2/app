@@ -9,7 +9,7 @@ void application_main()
 
    auto papplication = __new app_just_acme_message_box::application();
 
-   papplication->application_main(pplatform);
+   papplication->application_main();
 
 }
 

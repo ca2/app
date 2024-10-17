@@ -106,6 +106,23 @@ message_box::~message_box()
 
 }
 
+
+::i64 message_box::increment_reference_count()
+{
+
+   return ::particle::increment_reference_count();
+
+}
+
+
+::i64 message_box::decrement_reference_count()
+{
+
+   return ::particle::decrement_reference_count();
+
+}
+
+
 //void conversation_message::aggregate(sequence * psequence)
 //{
 //   

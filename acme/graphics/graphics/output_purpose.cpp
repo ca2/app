@@ -34,19 +34,19 @@ namespace graphics
 
 
    output_purpose::output_purpose(enum_output_purpose eoutputpurpose) :
-      m_pparticleGraphicalOutputPurposeOriginator(this),
       m_egraphicsoutputpurpose(eoutputpurpose)
    {
 
+      set_graphical_output_purpose_originator(this);
 
    }
 
 
    output_purpose::output_purpose(::particle * pparticleGraphicalOutputPurposeOriginator, enum_output_purpose eoutputpurpose) :
-      m_pparticleGraphicalOutputPurposeOriginator(pparticleGraphicalOutputPurposeOriginator),
       m_egraphicsoutputpurpose(eoutputpurpose)
    {
 
+      set_graphical_output_purpose_originator(pparticleGraphicalOutputPurposeOriginator);
       initialize(pparticleGraphicalOutputPurposeOriginator);
 
    }
@@ -54,17 +54,67 @@ namespace graphics
 
    output_purpose::~output_purpose()
    {
-
+      
+      release_graphical_output_purpose_originator();
 
    }
 
 
    void output_purpose::destroy()
    {
-
-      m_pparticleGraphicalOutputPurposeOriginator.release();
+      
+      release_graphical_output_purpose_originator();
 
       ::particle::destroy();
+
+   }
+
+
+   void output_purpose::set_graphical_output_purpose_originator(::particle * pparticle)
+   {
+
+      release_graphical_output_purpose_originator();
+
+      if (pparticle != this && ::is_set(pparticle))
+      {
+
+         m_preferer = __refdbg_add_referer
+
+         pparticle->increment_reference_count();
+
+      }
+      
+      m_pparticleGraphicalOutputPurposeOriginator2 = pparticle;
+
+   }
+
+
+   void output_purpose::release_graphical_output_purpose_originator()
+   {
+
+      if (::is_set(m_pparticleGraphicalOutputPurposeOriginator2))
+      {
+
+         if (m_pparticleGraphicalOutputPurposeOriginator2 != this)
+         {
+
+            __refdbg_add_releaser(m_preferer)
+
+            m_pparticleGraphicalOutputPurposeOriginator2->release();
+
+         }
+
+         m_pparticleGraphicalOutputPurposeOriginator2 = nullptr;
+
+      }
+
+   }
+
+
+   ::particle * output_purpose::get_graphical_output_purpose_originator()
+   {
+
+      return m_pparticleGraphicalOutputPurposeOriginator2;
 
    }
 

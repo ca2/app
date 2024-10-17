@@ -19,6 +19,29 @@ request::request()
 }
 
 
+request::~request()
+{
+
+}
+
+
+
+::i64 request::increment_reference_count()
+{
+
+   return ::object::increment_reference_count();
+
+}
+
+
+::i64 request::decrement_reference_count()
+{
+
+   return ::object::decrement_reference_count();
+
+}
+
+
 void request::initialize_create(arguments arguments)
 {
 
@@ -151,10 +174,6 @@ void request::initialize_create(::data::data * pdata, const ::payload & varOptio
 }
 
 
-request::~request()
-{
-
-}
 
 
 void request::create_common_construct(const ::payload & varOptions, ::user::element * puiParent)

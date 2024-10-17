@@ -27,12 +27,16 @@ namespace graphics
    class CLASS_DECL_ACME output_purpose :
       virtual public particle
    {
+   private:
+      ::particle * m_pparticleGraphicalOutputPurposeOriginator2 = nullptr;
+#if REFERENCING_DEBUGGING
+      ::reference_referer * m_preferer = nullptr;
+#endif
    public:
 
 
       e_output_purpose     m_egraphicsoutputpurpose;
 
-      ::pointer<::particle>   m_pparticleGraphicalOutputPurposeOriginator;
 
 
       output_purpose(enum_output_purpose
@@ -46,6 +50,10 @@ namespace graphics
 
       ~output_purpose() override;
 
+
+      virtual void set_graphical_output_purpose_originator(::particle * pparticle);
+      virtual ::particle * get_graphical_output_purpose_originator();
+      virtual void release_graphical_output_purpose_originator();
 
       void destroy() override;
 

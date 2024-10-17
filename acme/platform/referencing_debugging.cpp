@@ -72,6 +72,58 @@ void referencing_debugging::dump_pending_releases()
 
       strDump.append_formatf("Found %d items with pending releases.\n", c);
 
+      if (c == 1)
+      {
+
+         strDump.append("\n");
+         strDump.append("\n");
+         strDump.append("---------------------------------------");
+         strDump.append("\n");
+         strDump.append("\n");
+         strDump.append("   We are almost there... Only one remaining...");
+         strDump.append("\n");
+         strDump.append("\n");
+         strDump.append("-----------------------------------------------");
+         strDump.append("\n");
+         strDump.append("\n");
+         strDump.append("\n");
+
+      }
+      else if (c == 0)
+      {
+
+         strDump.append("\n");
+         strDump.append("\n");
+         strDump.append("---------------------------------------");
+         strDump.append("\n");
+         strDump.append("\n");
+         strDump.append("   Cleared!! This is awesome!!");
+         strDump.append("\n");
+         strDump.append("\n");
+         strDump.append("-----------------------------------------------");
+         strDump.append("\n");
+         strDump.append("\n");
+         strDump.append("\n");
+
+      }
+      else
+      {
+
+         strDump.append("\n");
+         strDump.append("\n");
+         strDump.append("---------------------------------------");
+         strDump.append("\n");
+         strDump.append("\n");
+         strDump.append_formatf("  As reported : \"Found %d items with pending releases.\"...\n", c);
+         strDump.append("\n");
+         strDump.append("\n");
+         strDump.append("-----------------------------------------------");
+         strDump.append("\n");
+         strDump.append("\n");
+         strDump.append("\n");
+
+      }
+
       ::output_debug_string(strDump);
 
    }

@@ -47,6 +47,10 @@ public:
    ~message_box() override;
 
    
+   ::i64 increment_reference_count() override;
+   ::i64 decrement_reference_count() override;
+
+   
    //virtual ::string get_conversation_message();
    //virtual ::string get_conversation_title();
    //virtual ::e_message_box get_conversation_flags();

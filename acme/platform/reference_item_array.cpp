@@ -439,7 +439,7 @@ void subparticle::add_reference_item()
    if (!is_referencing_debugging_enabled())
    {
 
-      ::allocator::defer_erase_referer();
+      //::allocator::defer_erase_referer();
 
       return;
 

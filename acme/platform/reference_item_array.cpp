@@ -638,6 +638,29 @@ void reference_item_array::dump_pending_releases(::string & strDump)
 
    strDump += "deb:"+m_strDebug + "\n";
 
+   ::string str1;
+
+   try
+   {
+
+      ::string str = m_psubparticle->get_short_debug_text(0);
+
+      if (str.has_char())
+      {
+
+         str1 = "ShDbgTxt: " + str;
+
+      }
+
+   }
+   catch (...)
+   {
+
+
+   }
+
+   strDump += str1;
+
    strDump += "FARefr:"+m_strFirstAllocation + "\n";
  
    for (::collection::index iIndex = 0; iIndex < m_itema.get_count(); iIndex++)

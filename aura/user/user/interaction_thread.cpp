@@ -1118,7 +1118,8 @@ namespace user
    bool thread::task_get_run() const
    {
 
-      if (m_puserinteractionUserThread)
+      if (m_puserinteractionUserThread
+         && !(m_puserinteractionUserThread->m_ewindowflag & e_window_flag_destroyed))
       {
 
          return true;

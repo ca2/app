@@ -101,6 +101,8 @@ namespace user
    i64 menu::increment_reference_count()
    {
 
+#if REFERENCING_DEBUGGING 
+
       auto iStep =m_preferenceitema->m_iStep;
 
       if (iStep == 111)
@@ -108,9 +110,9 @@ namespace user
          output_debug_string("iStep=111");
       }
 
-      auto i = ::object::increment_reference_count();
+#endif
 
-      
+      auto i = ::object::increment_reference_count();
 
       return i;
 

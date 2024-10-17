@@ -190,6 +190,8 @@ i64 subparticle::decrement_reference_count()
 ::string subparticle::get_short_debug_text(int i) const
 {
 
+#if REFERENCING_DEBUGGING
+
    ::string str;
 
    ::string strTime;
@@ -240,6 +242,12 @@ i64 subparticle::decrement_reference_count()
    str += "AllcTm:" + strTime + "\n";
 
    return str;
+
+#else
+
+   return {};
+
+#endif
 
 }
 

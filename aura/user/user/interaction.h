@@ -1446,6 +1446,12 @@ namespace user
 
       virtual void _destroy_window();
 
+      virtual void destroy_children();
+
+      //virtual void erase_children();
+      virtual void destroy_child(::user::interaction * puserinteraction);
+
+
       //virtual void on_finish() override;
 
       //virtual void set_finish_composites(::property_object* pcontextobjectFinish) override;
@@ -2224,8 +2230,6 @@ namespace user
       virtual ::pointer_array < ::user::interaction > synchronized_get_children();
 
 
-      virtual void erase_children();
-      virtual void erase_child(::user::interaction * puserinteraction);
 
 
 

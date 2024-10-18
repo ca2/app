@@ -38,7 +38,7 @@ namespace user
 
 //      // void assert_ok() const override;
 //      // void dump(dump_context & dumpcontext) const override;
-
+      void destroy() override;
 
       void install_message_routing(::channel * pchannel) override;
 

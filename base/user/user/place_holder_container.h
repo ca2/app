@@ -18,7 +18,11 @@ namespace user
 
 
       place_holder_container();
-      virtual ~place_holder_container();
+      ~place_holder_container() override;
+
+
+
+      void destroy() override;
 
 
       void install_message_routing(::channel * pchannel);

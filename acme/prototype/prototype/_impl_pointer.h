@@ -606,7 +606,7 @@ inline pointer < T > & pointer < T > ::operator = (const pointer & t)
             ::allocator::add_releaser(prefererOld);
 
          }
-         ::release(pOld, m_preferer);
+         ::release(pOld);
 #else
          ::release(pOld);
 #endif

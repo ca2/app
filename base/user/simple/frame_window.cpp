@@ -557,7 +557,15 @@ void simple_frame_window::task_intensive_save_window_placement()
 void simple_frame_window::defer_save_window_placement()
 {
 
-   _synchronous_lock synchronouslock(this->synchronization());
+   if (has_destroying_flag() ||
+      has_finishing_flag())
+   {
+
+      return;
+
+   }
+
+   synchronous_lock synchronouslock(this->synchronization());
 
    if (!should_save_window_rectangle())
    {

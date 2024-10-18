@@ -271,6 +271,14 @@ namespace user
    }
 
 
+   void tab_impact::destroy()
+   {
+
+      ::user::impact_host::destroy();
+      ::user::tab::destroy();
+
+   }
+
    void tab_impact::install_message_routing(::channel * pchannel)
    {
 
@@ -953,9 +961,9 @@ namespace user
             
             pmenu->m_menua.erase_all();
             
-            pmenu->m_pmenuitem.release();
+            pmenu->m_pmenuitem.defer_destroy();
             
-            pmenu->m_puserinteractionpointeraChild.release();
+            pmenu->destroy_children();
 
             information() << "::user::tab_impact::on_change_cur_sel Going to call prepare_impact_menu";
             

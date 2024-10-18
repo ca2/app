@@ -298,6 +298,22 @@ namespace user
 
          }
 
+         if (::is_set(m_puserinteractionOwner)
+   && ::is_set(m_puserinteractionOwner->get_wnd())
+            && m_puserinteractionOwner->get_wnd() != puserinteractionHost)
+         {
+
+            bool bErased = m_puserinteractionOwner->get_wnd()->m_menua.erase(this);
+
+            if (bErased && m_pmenuitem->m_pmenuitemParent.is_null())
+            {
+
+               m_pmenuitem.defer_destroy();
+
+            }
+
+         }
+
       }
 
       m_pchannelNotify.release();

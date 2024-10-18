@@ -119,6 +119,26 @@ namespace user
    }
 
 
+   void tab::destroy()
+   {
+
+      m_pdata.defer_destroy();
+
+      m_pitemClick.release();
+
+      m_pitemTabNearScroll.release();
+
+      m_pitemTabFarScroll.release();
+
+      m_pfontTab.release();
+
+      m_pgraphicsextension.release();
+
+      ::user::place_holder_container::destroy();
+
+   }
+
+
    /*bool tab::add_tab(::u32 uIdTitle, i32 iId)
    {
       get_pane get_pane;

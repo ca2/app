@@ -13,7 +13,6 @@ namespace user
 
 
    class CLASS_DECL_BASE tab :
-      virtual public ::user::interaction,
       virtual public place_holder_container,
       virtual public ::user::auto_hide
    {
@@ -75,6 +74,9 @@ namespace user
 
 
       void on_initialize_particle() override;
+
+
+      void destroy() override;
 
 
       void install_message_routing(::channel * pchannel) override;

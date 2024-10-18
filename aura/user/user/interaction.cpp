@@ -4188,7 +4188,7 @@ namespace user
    }
 
 
-   void interaction::erase_children()
+   void interaction::destroy_children()
    {
 
       auto children = synchronized_get_children();
@@ -4243,7 +4243,7 @@ namespace user
    }
 
 
-   void interaction::erase_child(::user::interaction * puserinteraction)
+   void interaction::destroy_child(::user::interaction * puserinteraction)
    {
 
       ::pointer < ::user::interaction> p = puserinteraction;
@@ -9147,12 +9147,21 @@ namespace user
 
       if (pitem->m_item.m_eelement == e_element_client)
       {
+         
+         bool bDraggableClientArea = this == top_level();
 
-         auto pdrag = drag(pitem);
+         if (bDraggableClientArea)
+         {
 
-         pdrag->m_ecursor = e_cursor_arrow;
+            auto pdrag = drag(pitem);
 
-         return true;
+            pdrag->m_ecursor = e_cursor_arrow;
+
+            return true;
+
+         }
+
+         return false;
 
       }
       else if (pitem->m_item.m_eelement == e_element_resize)
@@ -11788,7 +11797,6 @@ namespace user
       }
 
    }
-
 
 
    void interaction::_destroy_window()
@@ -19940,7 +19948,7 @@ namespace user
 
       {
 
-         _synchronous_lock synchronouslock(this->synchronization());
+         synchronous_lock synchronouslock(this->synchronization());
 
          auto & layoutstate = layout().m_statea[elayout];
 
@@ -20750,7 +20758,7 @@ namespace user
       if (edisplay & ::e_display_top)
       {
 
-         prectangle->move_top_to(rectangleWorkspace.top());
+         prectangle->top() = rectangleWorkspace.top();
 
          if (::height(*prectangle) < sizeMinimum.cy())
          {
@@ -20760,11 +20768,17 @@ namespace user
          }
 
       }
+      else
+      {
+
+         prectangle->top() = rectangleWorkspace.center_y();
+
+      }
 
       if (edisplay & ::e_display_bottom)
       {
 
-         prectangle->move_bottom_to(rectangleWorkspace.bottom());
+         prectangle->bottom() = rectangleWorkspace.bottom();
 
          if (::height(*prectangle) < sizeMinimum.cy())
          {
@@ -20774,11 +20788,17 @@ namespace user
          }
 
       }
+      else
+      {
+
+         prectangle->bottom() = rectangleWorkspace.center_y();
+
+      }
 
       if (edisplay & ::e_display_left)
       {
 
-         prectangle->move_left_to(rectangleWorkspace.left());
+         prectangle->left() = rectangleWorkspace.left();
 
          if (::width(*prectangle) < sizeMinimum.cx())
          {
@@ -20788,11 +20808,17 @@ namespace user
          }
 
       }
+      else
+      {
+
+         prectangle->left() = rectangleWorkspace.center_x();
+
+      }
 
       if (edisplay & ::e_display_right)
       {
 
-         prectangle->move_right_to(rectangleWorkspace.right());
+         prectangle->right() = rectangleWorkspace.right();
 
          if (::width(*prectangle) < sizeMinimum.cx())
          {
@@ -20802,6 +20828,13 @@ namespace user
          }
 
       }
+      else
+      {
+
+         prectangle->right() = rectangleWorkspace.center_x();
+
+      }
+
 
       return iWorkspace;
 

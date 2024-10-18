@@ -177,7 +177,7 @@ namespace user
    void handler_impact::call_handler(::function < void(::user::interaction *) > handler)
    {
 
-      erase_children();
+      destroy_children();
 
       //if(m_functionHandler)
       {

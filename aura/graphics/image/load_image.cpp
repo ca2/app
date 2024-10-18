@@ -38,6 +38,8 @@ namespace image
       {
 
       }
+      // simulate a long load time
+      //preempt(2_s);
 
       if (pimage->is_ok())
       {

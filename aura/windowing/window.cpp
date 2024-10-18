@@ -7784,6 +7784,13 @@ namespace windowing
    void window::post_redraw(bool bAscendants)
    {
 
+      if (has_destroying_flag())
+      {
+
+         return;
+
+      }
+
       if (::is_null(m_pgraphicsthread))
       {
 

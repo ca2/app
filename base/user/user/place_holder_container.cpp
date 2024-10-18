@@ -18,6 +18,18 @@ namespace user
    {
    }
 
+
+   void place_holder_container::destroy()
+   {
+
+      m_placeholdera.clear();
+
+
+      ::user::interaction::destroy();
+
+   }
+
+
    void place_holder_container::install_message_routing(::channel * pchannel)
    {
       ::user::interaction::install_message_routing(pchannel);

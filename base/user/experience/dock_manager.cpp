@@ -8,6 +8,7 @@
 #include "acme/prototype/geometry2d/_text_stream.h"
 #include "apex/parallelization/thread.h"
 #include "aura/user/user/interaction_thread.h"
+#include "aura/windowing/placement_log.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
@@ -104,7 +105,11 @@ namespace experience
 
       int cxQuarterWorkspace = rectangleWorkspace.width() / 4;
 
+      int cxThreshold = cxQuarterWorkspace / 4;
+
       int cyQuarterWorkspace = rectangleWorkspace.height() / 4;
+
+      int cyThreshold = cyQuarterWorkspace / 4;
 
       ::rectangle_i32 rectangleWorkspaceCenter;
 
@@ -120,8 +125,14 @@ namespace experience
 
       if (m_pframewindow->const_layout().design().display() & e_display_bottom)
       {
-
-         rectangleWorkspaceCenter.bottom() -= cyQuarterWorkspace / 2;
+         if (m_pframewindow->const_layout().design().display() & e_display_top)
+         {
+            rectangleWorkspaceCenter.bottom() -= cyQuarterWorkspace / 2 - cyThreshold;
+         }
+         else
+         {
+            rectangleWorkspaceCenter.bottom() -= cyQuarterWorkspace / 2 + cyThreshold;
+         }
          rectangleWorkspaceCenter.left() -= cxQuarterWorkspace / 8;
          rectangleWorkspaceCenter.right() += cxQuarterWorkspace / 8;
 
@@ -135,8 +146,15 @@ namespace experience
 
       if (m_pframewindow->const_layout().design().display() & e_display_top)
       {
+         if (m_pframewindow->const_layout().design().display() & e_display_bottom)
+         {
 
-         rectangleWorkspaceCenter.top() += cyQuarterWorkspace / 2;
+            rectangleWorkspaceCenter.top() += cyQuarterWorkspace / 2 - cyThreshold;
+         }
+         else
+         {
+            rectangleWorkspaceCenter.top() += cyQuarterWorkspace / 2 + cyThreshold;
+         }
          rectangleWorkspaceCenter.left() -= cxQuarterWorkspace / 8;
          rectangleWorkspaceCenter.right() += cxQuarterWorkspace / 8;
 
@@ -150,15 +168,22 @@ namespace experience
 
       if (m_pframewindow->const_layout().design().display() & e_display_right)
       {
-
-         rectangleWorkspaceCenter.right() -= cxQuarterWorkspace / 2;
+         //information() << "RIGHT|RIGHT|RIGHT";
+         if (m_pframewindow->const_layout().design().display() & e_display_left)
+         {
+            rectangleWorkspaceCenter.right() -= cxQuarterWorkspace / 2 - cxThreshold;
+         }
+         else
+         {
+            rectangleWorkspaceCenter.right() -= cxQuarterWorkspace / 2 + cxThreshold;
+         }
          rectangleWorkspaceCenter.top() -= cyQuarterWorkspace / 8;
          rectangleWorkspaceCenter.bottom() += cyQuarterWorkspace / 8;
 
       }
       else
       {
-
+         //information() << "NO_RIGHT";
          rectangleWorkspaceCenter.right() += cxQuarterWorkspace / 4;
 
       }
@@ -166,14 +191,22 @@ namespace experience
       if (m_pframewindow->const_layout().design().display() & e_display_left)
       {
 
-         rectangleWorkspaceCenter.left() += cxQuarterWorkspace / 2;
+         //information() << "LEFT|LEFT|LEFT";
+         if (m_pframewindow->const_layout().design().display() & e_display_right)
+         {
+            rectangleWorkspaceCenter.left() += cxQuarterWorkspace / 2 - cxThreshold;
+         }
+         else
+         {
+            rectangleWorkspaceCenter.left() += cxQuarterWorkspace / 2 + cxThreshold;
+         }
          rectangleWorkspaceCenter.top() -= cyQuarterWorkspace / 8;
          rectangleWorkspaceCenter.bottom() += cyQuarterWorkspace / 8;
 
       }
       else
       {
-
+         //information() << "NO_LEFT";
          rectangleWorkspaceCenter.left() -= cxQuarterWorkspace / 4;
 
       }
@@ -289,6 +322,8 @@ namespace experience
 
             bChanged = true;
 
+            m_pframewindow->window()->placement_log()->clear();
+
          }
 
          ::rectangle_i32 rectangleWindow = m_rectangleOnDockStart;
@@ -328,9 +363,11 @@ namespace experience
          if (edisplayDock != edisplayOld || rectangleDock != rectangleWindow)
          {
 
+            m_pframewindow->window()->placement_log()->clear();
+
             m_pframewindow->order(e_zorder_top);
 
-            m_pframewindow->place(rectangleDock);
+            //m_pframewindow->place(rectangleDock);
 
             m_pframewindow->display_docked(edisplayDock, e_activation_default);
 

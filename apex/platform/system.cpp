@@ -4742,7 +4742,7 @@ namespace apex
    void system::system_id_update(::i64 iUpdate, ::i64 iPayload)
    {
 
-      message_call((::enum_id)iUpdate, iPayload);
+      call((::enum_id)iUpdate, iPayload);
 
    }
 

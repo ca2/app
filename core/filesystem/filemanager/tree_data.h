@@ -53,6 +53,9 @@ namespace filemanager
       tree_data();
       ~tree_data();
 
+      
+      void destroy() override;
+
 
 #ifdef _DEBUG
 

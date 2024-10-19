@@ -53,6 +53,37 @@ namespace user
 
    }
 
+   
+   bool element::is_waiting_for_dialog_result()
+   {
+
+      return false;
+
+   }
+
+
+   ::payload element::wait_for_dialog_result(const class ::time & timeTimeout)
+   {
+
+      return {};
+
+   }
+
+
+   void element::set_dialog_result(const ::payload & payloadResult)
+   {
+
+
+   }
+
+
+   ::payload element::get_dialog_result()
+   {
+
+      return {};
+
+   }
+
 
    ::user::interaction * element::get_wnd()
    {

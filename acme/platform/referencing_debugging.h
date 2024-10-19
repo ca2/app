@@ -20,8 +20,45 @@
 
 class reference_item_array;
 
+class refdbg
+{
+public:
 
-class CLASS_DECL_ACME referencing_debugging
+   static ::string new_line_quote(::string strRefrain)
+   {
+
+      ::string str;
+
+      str.append("\n");
+      str.append("\n");
+      str.append(strRefrain);
+      str.append("\n");
+      str.append("\n");
+
+      return str;
+
+
+   }
+
+
+   static ::string  dash_quote(::string strRefrain)
+   {
+
+      ::string str;
+
+      str.append("---------------------------------------");
+      str.append(strRefrain);
+      str.append("-----------------------------------------------");
+
+      return str;
+
+   }
+
+};
+
+
+class CLASS_DECL_ACME referencing_debugging :
+   public refdbg
 {
 public:
 

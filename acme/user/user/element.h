@@ -159,6 +159,16 @@ namespace user
 
       virtual void PreSubClassWindow();
 
+      virtual bool is_waiting_for_dialog_result();
+
+      virtual ::payload wait_for_dialog_result(const class ::time & timeTimeout = ::time::infinity());
+
+      virtual void set_dialog_result(const ::payload & payloadResult);
+
+      virtual ::payload get_dialog_result();
+
+
+
 
       //#ifdef WINDOWS
       //      virtual strsize _009GetWindowText(wchar_t * pwsz, int n);

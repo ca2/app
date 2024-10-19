@@ -432,9 +432,9 @@ public:
    virtual void handle_message(::message::message * pmessage);
    virtual void handle_item(::item * pitem);
 
-   
+   using subparticle::call;
    // ThomasBorregaardSorensen!! Like handlers
-   virtual lresult message_call(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
+   virtual lresult call(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
    virtual void call_handle(::topic* ptopic, ::context* pcontext);
    virtual void call_handle_message(::message::message* pmessage);
    virtual void call_handle_item(::item* pitem);
@@ -485,6 +485,10 @@ public:
 
 
    [[nodiscard]] virtual bool should_run_async() const;
+
+
+   [[nodiscard]] virtual ::pointer < ::message_box > message_box(const ::string & strMessage, const ::string & strTitle = {}, const ::e_message_box & emessagebox = {}, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
+   [[nodiscard]] virtual ::pointer < ::message_box > message_box(const ::exception & exception, const ::string & strMessage = {}, const ::string & strTitle = {}, const ::e_message_box & emessagebox = {}, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
 
 
    //virtual ::pointer < ::message_box > message_box(const string& strMessage, const ::string& strTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok, const ::string& strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);

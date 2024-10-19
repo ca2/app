@@ -90,7 +90,7 @@ namespace hi5
          m_pviewAuth->SetTimer(8888, 500_ms, nullptr);
          //m_ptabimpact->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
 
-         m_ptabimpact->get_wnd()->RunModalLoop();
+         m_ptabimpact->get_wnd()->wait_for_dialog_result();
 
 
          m_ptemplatePane->close_all_documents(false);
@@ -264,9 +264,9 @@ namespace hi5
          display_main_frame();
          //m_ptabimpact->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
 
-         m_ptabimpact->get_wnd()->RunModalLoop();
+         m_ptabimpact->get_wnd()->wait_for_dialog_result();
 
-         m_ptabimpact->get_wnd()->EndModalLoop(e_dialog_result_ok);
+         m_ptabimpact->get_wnd()->set_dialog_result(e_dialog_result_ok);
 
       }
 
@@ -329,7 +329,7 @@ namespace hi5
 
                m_strPin = pinteraction->as_text();
 
-               m_ptabimpact->get_wnd()->EndModalLoop(e_dialog_result_ok);
+               m_ptabimpact->get_wnd()->set_dialog_result(e_dialog_result_ok);
 
                m_ptabimpact->parent_frame()->display(e_display_none);
 

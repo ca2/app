@@ -30,7 +30,6 @@ namespace user
 
    }
 
-
    void combo_box::user_combo_box_common_construct()
    {
 
@@ -61,6 +60,16 @@ namespace user
       }
 
    }
+
+   
+   void combo_box::destroy()
+   {
+
+      m_plistbox.release();
+      ::user::plain_edit::destroy();
+
+   }
+
 
 
    ::particle_pointer combo_box::clone()
@@ -102,6 +111,7 @@ namespace user
 
       }
 
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &combo_box::on_message_destroy);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_box::on_message_mouse_move);
       MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &combo_box::on_message_mouse_leave);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &combo_box::on_message_left_button_down);
@@ -675,6 +685,19 @@ namespace user
    }
 
 
+   void combo_box::on_message_destroy(::message::message * pmessage)
+   {
+
+      if (m_plistbox)
+      {
+
+         m_plistbox->destroy_window();
+
+      }
+
+   }
+
+
    void combo_box::on_message_mouse_move(::message::message * pmessage)
    {
 
@@ -819,6 +842,15 @@ namespace user
       if (::is_set(m_plistbox) && m_plistbox->is_window())
       {
 
+         if (m_plistbox->m_timeShowDropDown.elapsed() < 100_ms
+            || m_plistbox->m_timeHideDropDown.elapsed() < 100_ms)
+         {
+
+            return;
+
+         }
+
+
          m_plistbox->post_message(MESSAGE_CLOSE);
 
       }
@@ -834,7 +866,23 @@ namespace user
       if (m_plistbox.is_set())
       {
 
-         if (_001ShowDropDown(!m_plistbox->is_window_visible(::user::e_layout_sketch)))
+         auto edisplay = m_plistbox->const_layout().design().display();
+
+         bool bVisible = ::is_screen_visible(edisplay);
+
+         if (!bVisible)
+         {
+
+            if (m_plistbox->m_timeHideDropDown.elapsed() < 300_ms)
+            {
+
+               return true;
+
+            }
+
+         }
+
+         if (_001ShowDropDown(!bVisible))
          {
 
             return true;
@@ -875,6 +923,8 @@ namespace user
 
          auto pgraphics = pdraw2d->create_memory_graphics(this);
 
+         m_plistbox->m_timeShowDropDown.Now();
+
          m_plistbox->query_full_size(pgraphics, &m_sizeFull);
 
          ::rectangle_i32 rectangleWindow;
@@ -894,6 +944,7 @@ namespace user
          if(m_plistbox.is_set())
          {
 
+            m_plistbox->m_timeHideDropDown.Now();
             m_plistbox->hide();
 
 //         m_plistbox->set_need_redraw();

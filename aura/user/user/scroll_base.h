@@ -21,7 +21,7 @@ namespace user
 
 
       scroll_base();
-      ~scroll_base() override;
+      ~scroll_base() override; void destroy() override;
 
 
       void on_initialize_particle() override;

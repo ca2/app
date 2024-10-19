@@ -37,6 +37,16 @@ namespace user
    }
 
 
+   void scroll_base_y::destroy()
+   {
+
+      m_pscrollbarY.defer_destroy();
+      m_pscrolllayoutY.defer_destroy();
+      ::user::interaction::destroy();
+
+   }
+
+
    void scroll_base_y::sketch_to_lading_y()
    {
 

@@ -125,7 +125,7 @@ namespace filemanager
       //#endif
       pimpact->set_current_tab_by_id(1);
       pimpact->parent_frame()->set_need_redraw();
-      pimpact->parent_frame()->RunModalLoop();
+      pimpact->parent_frame()->wait_for_dialog_result();
       payloadFile = pfilemanagerdata->m_strTopic;
       pimpact->parent_frame()->destroy_window();
       return true;

@@ -654,15 +654,34 @@ namespace user
    void graphics_thread::term_task()
    {
 
-      if (m_puserinteraction->windowing_window())
+      auto puserinteraction = m_puserinteraction;
+
+      if(puserinteraction)
       {
 
-         if (m_puserinteraction->windowing_window()->m_pgraphicsthread == this)
+         auto pacmewindowingwindow = puserinteraction->m_pacmewindowingwindow;
+
+         if (pacmewindowingwindow)
          {
 
-            m_puserinteraction->windowing_window()->m_pgraphicsthread.release();
+            ::pointer < ::windowing::window > pwindow = pacmewindowingwindow;
+
+            if (pwindow)
+            {
+
+               if (pwindow->m_pgraphicsthread == this)
+               {
+
+                  pwindow->m_pgraphicsthread.release();
+               
+               }
+
+
+            }
+
 
          }
+
 
       }
 
@@ -955,6 +974,18 @@ namespace user
 
    bool graphics_thread::graphics_thread_iteration()
    {
+
+      if (!m_puserinteraction ||
+         m_puserinteraction->has_finishing_flag()
+         || m_puserinteraction->has_destroying_flag()
+         || !m_puserinteraction->m_pacmewindowingwindow
+         || m_puserinteraction->m_pacmewindowingwindow->has_finishing_flag()
+         || m_puserinteraction->m_pacmewindowingwindow->has_destroying_flag())
+      {
+
+         return false;
+
+      }
 
       if (::type(m_puserinteraction) == "user::list_box")
       {

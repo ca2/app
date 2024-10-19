@@ -23,6 +23,17 @@ namespace user
 	}
 
 
+   void text_composition_composite::destroy()
+   {
+      
+      m_ptextcompositionclient.defer_destroy();
+      
+      text_composition_client_base::destroy();
+
+   }
+
+
+
 	void text_composition_composite::initialize_text_composition_client(::channel * pchannel, ::user::interaction * puserinteraction)
 	{
 

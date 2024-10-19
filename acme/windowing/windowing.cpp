@@ -280,6 +280,13 @@ namespace acme
       }
 
 
+      void windowing::finalize_windowing()
+      {
+
+
+      }
+
+
       void * windowing::get_display()
       {
 

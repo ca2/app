@@ -53,7 +53,7 @@ namespace micro
 
          virtual void calculate_size();
 
-         void set_dialog_result(const ::payload & payloadResult);
+         void set_dialog_result(const ::payload & payloadResult) override;
 
          ::payload get_dialog_result() override;
 

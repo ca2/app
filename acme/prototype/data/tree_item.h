@@ -380,7 +380,7 @@ namespace data
       //::pointer<tree_item>             m_pprevious;
       //::pointer<tree_item>             m_pnext;
       ::pointer_array < tree_item >    m_treeitema;
-      ::pointer<tree_item>             m_pparent;
+      ::pointer < tree_item >          m_pparent;
       ::collection::index                            m_iIndexHint;
       tree *                           m_ptree;
       ::collection::index                            m_iLevel;
@@ -414,7 +414,7 @@ namespace data
 
       #endif
 
-
+      void destroy() override;
       virtual bool      erase_item_from_parent();
 
       tree_item * get_child_by_user_data(uptr iUserData);

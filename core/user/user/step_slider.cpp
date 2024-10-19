@@ -5,7 +5,7 @@
 #include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
-//#include "aura/user/user/interaction_impl.h"
+#include "aura/windowing/window.h"
 
 
 namespace user
@@ -69,7 +69,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pwindowimpl = get_host_user_interaction_impl();
+      auto pwindowimpl = windowing_window();
 
       pwindowimpl->m_pitemLButtonDown = hit_test(pmouse, ::user::e_zorder_any);
 
@@ -83,7 +83,7 @@ namespace user
 
       auto pitem = hit_test(pmouse, ::user::e_zorder_any);
 
-      auto pwindowimpl = get_host_user_interaction_impl();
+      auto pwindowimpl = windowing_window();
 
       if(pitem == pwindowimpl->m_pitemLButtonDown)
       {

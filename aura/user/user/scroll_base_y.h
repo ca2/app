@@ -29,6 +29,9 @@ namespace user
       ~scroll_base_y() override;
 
 
+      void destroy() override;
+
+
       virtual void sketch_to_lading_y();
       virtual void lading_to_layout_y(bool & bUpdateBuffer, bool & bUpdateWindow);
       virtual void layout_to_design_y();

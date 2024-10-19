@@ -44,6 +44,9 @@ namespace user
          ~edit() override;
 
 
+         void destroy() override;
+
+
          virtual void on_after_change(const ::atom & atom);
          double get_rotate() override;
 

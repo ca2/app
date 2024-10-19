@@ -179,6 +179,9 @@ namespace file
       edit_file();
       ~edit_file() override;
 
+
+      void destroy() override;
+
       virtual bool is_edit_file_modified() const;
 
       void SetFile(file_pointer  pfile);

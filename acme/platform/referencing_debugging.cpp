@@ -62,9 +62,28 @@ void referencing_debugging::dump_pending_releases()
 
    auto c = m_item2a.size();
 
+   ::string strRefrain;
+
+   ::string strDump;
+
+   auto cFiltered = 0;
+
+   for (::collection::index i = 0; i < c; i++)
    {
 
-      ::string strDump;
+      auto p = m_item2a.element_at(i);
+
+      //if(p->m_iLastReferenceCount > 0)
+      if (p->m_psubparticle->m_countReference.operator long long() > 0)
+      {
+         
+         cFiltered++;
+
+      }
+
+   }
+
+   {
 
       strDump.append_formatf("\n\nrefdbg0--\n\n");
 
@@ -72,59 +91,33 @@ void referencing_debugging::dump_pending_releases()
 
       strDump.append_formatf("Found %d items with pending releases.\n", c);
 
+      if (c != cFiltered)
+      {
+
+         strDump.append_formatf("Found %d items with referencing counting...\nProblem with referencing debugging pairing of referer/release?", cFiltered);
+
+      }
+
       if (c == 1)
       {
 
-         strDump.append("\n");
-         strDump.append("\n");
-         strDump.append("---------------------------------------");
-         strDump.append("\n");
-         strDump.append("\n");
-         strDump.append("   We are almost there... Only one remaining...");
-         strDump.append("\n");
-         strDump.append("\n");
-         strDump.append("-----------------------------------------------");
-         strDump.append("\n");
-         strDump.append("\n");
-         strDump.append("\n");
+         strRefrain.append("   We are almost there... Only one remaining...");
 
       }
       else if (c == 0)
       {
 
-         strDump.append("\n");
-         strDump.append("\n");
-         strDump.append("---------------------------------------");
-         strDump.append("\n");
-         strDump.append("\n");
-         strDump.append("   Cleared!! This is awesome!!");
-         strDump.append("\n");
-         strDump.append("\n");
-         strDump.append("-----------------------------------------------");
-         strDump.append("\n");
-         strDump.append("\n");
-         strDump.append("\n");
+         strRefrain.append("   Cleared!! This is awesome!!");
 
       }
       else
       {
 
-         strDump.append("\n");
-         strDump.append("\n");
-         strDump.append("---------------------------------------");
-         strDump.append("\n");
-         strDump.append("\n");
-         strDump.append_formatf("  As reported : \"Found %d items with pending releases.\"...\n", c);
-         strDump.append("\n");
-         strDump.append("\n");
-         strDump.append("-----------------------------------------------");
-         strDump.append("\n");
-         strDump.append("\n");
-         strDump.append("\n");
+         strRefrain.append_formatf("  As reported : \"Found %d items with pending releases.\"...\n", c);
 
       }
 
-      ::output_debug_string(strDump);
+      strDump += new_line_quote(dash_quote(new_line_quote(strRefrain)));
 
    }
 
@@ -136,8 +129,6 @@ void referencing_debugging::dump_pending_releases()
       //if(p->m_iLastReferenceCount > 0)
       if (p->m_psubparticle->m_countReference.operator long long() > 0)
       {
-
-         ::string strDump;
 
          strDump.append_formatf("\n\n%d:\n", i);
 
@@ -153,9 +144,20 @@ void referencing_debugging::dump_pending_releases()
 
          }
 
-         ::output_debug_string(strDump);
-
       }
+
+   }
+
+   strDump += new_line_quote(strRefrain);
+
+   ::string_array straLines;
+
+   straLines.add_lines(strDump);
+
+   for (auto & strLine : straLines)
+   {
+
+      ::output_debug_string(strLine + "\n");
 
    }
 

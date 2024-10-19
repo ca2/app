@@ -1098,7 +1098,7 @@ void simple_scroll_bar::on_message_create(::message::message * pmessage)
 
    //}
 
-   throw todo;
+   //throw todo;
    //update_drawing_objects();
 
    pcreate->m_lresult = 0;

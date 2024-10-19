@@ -473,7 +473,19 @@ namespace file
    {
 
    }
+   void edit_file::destroy()
+   {
 
+      m_pgroupitem.defer_destroy();
+      m_ptreeitemIteration.release();
+      m_ptreeitem.release();
+      m_ptreeitemFlush.release();
+      m_ptreeitemBeg.release();
+      m_ptreeitemEnd.release();
+
+      ::data::tree::destroy();
+
+   }
 
    bool edit_file::is_edit_file_modified() const
    {

@@ -269,6 +269,8 @@ namespace user
 
       m_bIgnoringSketchToLading = false;
 
+      m_bDestroyOnHide = false;
+
       m_bExtendOnParent = false;
       m_bExtendOnParentIfOnlyClient = false;
       m_bExtendOnParentHostingArea = false;
@@ -1964,6 +1966,11 @@ namespace user
 
                auto rectangleFocusRectExtraMargin = pstyle->simple_ui_focus_rect_extra_margin(this);
 
+               rectangleFocusRectExtraMargin.left() += 4;
+               rectangleFocusRectExtraMargin.top() += 4;
+               rectangleFocusRectExtraMargin.right() += 4;
+               rectangleFocusRectExtraMargin.bottom() += 4;
+
                rectangle.inflate(rectangleFocusRectExtraMargin);
 
             }
@@ -2981,7 +2988,9 @@ namespace user
    void interaction::install_message_routing(::channel * pchannel)
    {
 
+      __check_refdbg
       MESSAGE_LINK(e_message_create, pchannel, this, &interaction::on_message_create);
+      __check_refdbg
       MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::on_message_destroy);
       MESSAGE_LINK(e_message_non_client_destroy, pchannel, this, &interaction::on_message_non_client_destroy);
       MESSAGE_LINK(e_message_pos_create, pchannel, this, &interaction::on_message_after_create);
@@ -3327,7 +3336,7 @@ namespace user
 
       information() << "interaction_layout::display e_display_iconic";
 
-      information() << node()->get_call_stack_trace();
+      //information() << node()->get_call_stack_trace();
 
 #endif
 
@@ -3479,7 +3488,7 @@ namespace user
             {
 
                information() << "Top Level Window. Display Request -> hide";
-
+               // information() << node()->get_call_stack_trace();
             }
 
 #endif
@@ -4323,17 +4332,26 @@ namespace user
 
       {
 
-         auto pwindowThis = window();
+         auto pacmewindowingwindow = m_pacmewindowingwindow;
 
-         //if (pwindow)
+         if (pacmewindowingwindow)
          {
 
-            auto ptimerarray = pwindowThis->m_ptimerarray;
+            ::pointer < ::windowing::window > pwindow;
 
-            if (ptimerarray)
+            pwindow = pacmewindowingwindow;
+
+            if (pwindow)
             {
 
-               ptimerarray->delete_all_timers();
+               auto ptimerarray = pwindow->m_ptimerarray;
+
+               if (ptimerarray)
+               {
+
+                  ptimerarray->delete_all_timers();
+
+               }
 
             }
 
@@ -4363,14 +4381,23 @@ namespace user
          if (::is_set(puserinteractionTopLevelHost) && puserinteractionTopLevelHost != this)
          {
 
-            auto pwindow = puserinteractionTopLevelHost->windowing_window();
+            auto pacmewindowingwindow = puserinteractionTopLevelHost->m_pacmewindowingwindow;
 
-            if (pwindow)
+            if (pacmewindowingwindow)
             {
 
-               _synchronous_lock synchronouslock(pwindow->synchronization());
+               ::pointer < ::windowing::window > pwindow;
 
-               pwindow->m_userinteractionaMouseHover.erase(this);
+               pwindow = pacmewindowingwindow;
+
+               if (pwindow)
+               {
+
+                  _synchronous_lock synchronouslock(pwindow->synchronization());
+
+                  pwindow->m_userinteractionaMouseHover.erase(this);
+
+               }
 
             }
 
@@ -4471,7 +4498,9 @@ namespace user
             try
             {
 
-               printf_line("About to erase a %s instance from an aura::application from thread %s!!", typeid(*this).name(), task_get_name().c_str());
+               auto pszName = typeid(*this).name();
+
+               printf_line("About to erase a %s instance from an aura::application from thread %s!!", pszName, task_get_name().c_str());
 
                auto pauraapplication = get_app()->m_pauraapplication;
 
@@ -9147,7 +9176,7 @@ namespace user
 
       if (pitem->m_item.m_eelement == e_element_client)
       {
-         
+
          bool bDraggableClientArea = this == top_level();
 
          if (bDraggableClientArea)
@@ -9548,7 +9577,7 @@ namespace user
 
       _synchronous_lock synchronouslock(window()->m_pparticleChildrenSynchronization);
 
-      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild.m_p;
 
       if (!puserinteractionpointeraChild)
       {
@@ -11896,7 +11925,7 @@ namespace user
       //{
       //if (m_pshapeaClip) m_pshapeaClip->destroy();
       m_pdrawcontext.defer_destroy();
-      
+
       m_pmatterCommandHandler.release();
       //}
       m_pusersystem.defer_destroy();
@@ -12095,16 +12124,36 @@ namespace user
    ::user::thread * interaction::user_thread()
    {
 
-      auto pwindowThis = window();
+      auto puserinteraction = get_wnd();
 
-      if (!pwindowThis)
+      if (!puserinteraction)
       {
 
          return nullptr;
 
       }
 
-      auto puserthread = pwindowThis->m_puserthread;
+      auto pacmewindowingwindow = puserinteraction->m_pacmewindowingwindow;
+
+      if (!pacmewindowingwindow)
+      {
+
+         return nullptr;
+
+      }
+
+      ::pointer < ::windowing::window > pwindow;
+
+      pwindow = pacmewindowingwindow;
+
+      if (!pwindow)
+      {
+
+         return nullptr;
+
+      }
+
+      auto puserthread = pwindow->m_puserthread;
 
       if (!puserthread)
       {
@@ -13484,7 +13533,7 @@ namespace user
          if (::type(this) == "user::list_box")
          {
 
-            information() << "interaction::layout_layout";
+            information() << "interaction::layout_layout ListBoxNotVisible";
 
          }
 
@@ -13495,7 +13544,7 @@ namespace user
       if (::type(this) == "user::list_box")
       {
 
-         information() << "interaction::layout_layout";
+         information() << "interaction::layout_layout ListBoxVisible";
 
       }
 
@@ -19084,6 +19133,35 @@ namespace user
    }
 
 
+   void interaction::hide_and_then_destroy()
+   {
+
+      if (is_top_level())
+      {
+
+         window()->m_bQuitGraphicsOnHide = true;
+         window()->m_bDestroyWindowOnHide = true;
+         window()->m_bTryCloseApplicationOnHide = true;
+
+      }
+      else
+      {
+
+         m_bDestroyOnHide = true;
+
+      }
+
+      display(e_display_hide);
+
+      set_need_layout();
+
+      set_need_redraw();
+
+      post_redraw();
+
+   }
+
+
    void interaction::on_message_close(::message::message * pmessage)
    {
 
@@ -19094,22 +19172,7 @@ namespace user
          || tool().contains_item(id_close_app))
       {
 
-         if (is_top_level())
-         {
-
-            window()->m_bQuitGraphicsOnHide = true;
-            window()->m_bDestroyWindowOnHide = true;
-            window()->m_bTryCloseApplicationOnHide = true;
-
-         }
-
-         display(e_display_hide);
-
-         set_need_layout();
-
-         set_need_redraw();
-
-         post_redraw();
+         hide_and_then_destroy();
 
          return;
 
@@ -22140,7 +22203,7 @@ namespace user
       bool bShowWindow = pshowwindow->m_bShow;
 
       if (!bShowWindow
-         || layout().layout().is_screen_visible()
+         || !layout().layout().is_screen_visible()
           || layout().layout().m_edisplay == e_display_iconic)
       {
 
@@ -22185,6 +22248,21 @@ namespace user
                puserinteractionOwned->post_redraw();
 
             }
+
+         }
+
+         if (m_bDestroyOnHide)
+         {
+
+            post_continuation continuation(this);
+
+            continuation <<
+               [this]()
+               {
+
+                  destroy_window();
+
+               };
 
          }
 

@@ -30,6 +30,9 @@ namespace user
       ~plain_text_tree() override;
 
 
+      void destroy() override;
+
+
       void SetFile(file_pointer  pfile);
       
       

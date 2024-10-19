@@ -286,7 +286,7 @@ namespace account
 
       //create_host(e_parallelization_synchronous);
 
-      create_host();
+      create_window();
 
       //if (!create_host())
       //{
@@ -315,7 +315,7 @@ namespace account
 
       SetTimer(2000, 300_ms, nullptr);
 
-      atom idResult = RunModalLoop();
+      atom idResult = wait_for_dialog_result();
 
       return idResult;
 

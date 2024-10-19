@@ -289,7 +289,7 @@ namespace user
 
       m_puserstyle.defer_destroy();
 
-      
+      m_pdrawicon.defer_destroy();
       //}
       m_pusersystem.defer_destroy();
       //      if (m_playout) m_playout->destroy();

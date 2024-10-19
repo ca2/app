@@ -35,7 +35,7 @@ i64 object::increment_reference_count()
 
 #if REFERENCING_DEBUGGING
 
-   add_reference_item();
+   add_reference_item(m_bIncludeCallStackTrace);
 
 #endif
 
@@ -3035,12 +3035,12 @@ void object::initialize(::particle * pparticle)
 
    //inline void defer_set_object(::particle * pparticle);
 
-void object::call()
-{
-
-   run();
-
-}
+//void object::call()
+//{
+//
+//   run();
+//
+//}
 
 
 //inline i64 get_ref_count()

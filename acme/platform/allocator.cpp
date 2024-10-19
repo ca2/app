@@ -441,7 +441,7 @@ namespace allocator
 
          //on_after_construct_particle(pparticle->m_preferenceitema);
 
-         pparticle->add_reference_item();
+         pparticle->add_reference_item(pparticle->m_bIncludeCallStackTrace);
 
          if (!pparticle->m_prefererTransfer
             && pparticle->m_preferenceitema->m_itema[0])

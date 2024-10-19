@@ -212,6 +212,27 @@ public:
 
    }
 
+
+   template < non_primitive_subparticle T >
+   T * operator << (T * p)
+   {
+
+
+#if REFERENCING_DEBUGGING
+
+
+//      p->on_after_construct(m_preferer);
+      ::allocator::__on_after_construct_non_subparticle();
+
+
+#endif
+
+
+      return p;
+
+
+   }
+
 };
 
 

@@ -39,10 +39,10 @@ public:
    virtual bool is_alive();
 
 
-   void call() override;
+   //void call() override;
 
 
-   virtual void run() override;
+   //virtual void run() override;
 
 
    virtual ::object * source_channel();

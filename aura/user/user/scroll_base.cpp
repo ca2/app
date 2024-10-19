@@ -29,6 +29,16 @@ namespace user
    }
 
 
+   void scroll_base::destroy()
+   {
+
+
+      ::user::scroll_base_x::destroy();
+      ::user::scroll_base_y::destroy();
+
+   }
+
+
    void scroll_base::on_initialize_particle()
    {
 

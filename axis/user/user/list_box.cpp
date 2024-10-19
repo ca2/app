@@ -21,6 +21,8 @@
 #include "aura/message/user.h"
 #include "aura/user/user/user.h"
 #include "aura/platform/session.h"
+#include "aura/windowing/window.h"
+#include "aura/graphics/image/image.h"
 
 
 #define DEBUG_LIST_ITEM_DRAWING 0
@@ -44,10 +46,21 @@ namespace user
    }
 
 
+   void list_box::destroy()
+   {
+
+      m_pcombo.release();
+      ::user::scroll_base::destroy();
+
+   }
+
+
    void list_box::user_combo_list_common_construct()
    {
 
       defer_create_synchronization();
+      
+      //m_bIncludeCallStackTrace = true;
 
       m_bDefaultClickHandling = true;
 
@@ -97,8 +110,9 @@ namespace user
 
       //install_click_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &list_box::on_message_create);
-      MESSAGE_LINK(MESSAGE_DESTROY, pchannel, this, &list_box::on_message_destroy);
+      MESSAGE_LINK(e_message_create, pchannel, this, &list_box::on_message_create);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &list_box::on_message_destroy);
+      MESSAGE_LINK(e_message_activate, pchannel, this, &list_box::on_message_activate);
       //MESSAGE_LINK(e_message_set_focus, pchannel, this, &list_box::on_message_set_focus);
       //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &list_box::on_message_kill_focus);
       MESSAGE_LINK(MESSAGE_CLOSE, pchannel, this, &list_box::on_message_close);
@@ -346,13 +360,13 @@ namespace user
 
                m_pcombo->set_current_item(ptopic->m_pitem, ptopic->m_actioncontext);
 
-               throw todo;
+               //throw todo;
 
-               //auto p = get_host_user_interaction()->m_pinteractionimpl->m_pgraphicsthread->get_message_queue();
+               auto p = get_host_user_interaction()->window()->m_pgraphicsthread->get_message_queue();
 
-               //p->m_eflagElement |= (::enum_flag)(1ll << 36);
+               p->m_eflagElement |= (::enum_flag)(1ll << 36);
 
-               //m_pcombo->ShowDropDown(false);
+               m_pcombo->ShowDropDown(false);
 
             }
             else
@@ -384,18 +398,25 @@ namespace user
          if (puserinteractionHost)
          {
 
-            throw todo;
+            auto pacmewindowingwindow = puserinteractionHost->m_pacmewindowingwindow;
 
-            //auto pimpl = puserinteractionHost->m_pinteractionimpl;
+            if (pacmewindowingwindow)
+            {
 
-            //if (pimpl)
-            //{
+               pointer < ::windowing::window > pwindow;
 
-            //   synchronous_lock synchronouslock(pimpl->synchronization());
+               pwindow = pacmewindowingwindow;
 
-            //   pimpl->m_userinteractionaHideOnConfigurationChange.erase_interaction(this);
+               if (pwindow)
+               {
 
-            //}
+                  _synchronous_lock synchronouslock(pwindow->synchronization());
+
+                  pwindow->m_userinteractionaHideOnConfigurationChange.erase_interaction(this);
+
+               }
+
+            }
 
          }
 
@@ -405,9 +426,25 @@ namespace user
 
    }
 
+   
+   void list_box::on_message_activate(::message::message * pmessage)
+   {
+
+      pmessage->m_lresult = 0;
+      pmessage->m_bRet = true;
+
+   }
+
+   
+   void list_box::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+      ::user::scroll_base::_001OnNcDraw(pgraphics);
+
+   }
 
    void list_box::_001OnDraw(::draw2d::graphics_pointer& pgraphics)
    {
+      //return;
 
       //pgraphics->reset_clip();
 
@@ -537,6 +574,8 @@ namespace user
 
          rectangleText.deflate(m_iPadding);
 
+         rectangleText.deflate(2, 0);
+
 #if DEBUG_LIST_ITEM_DRAWING
 
 
@@ -548,6 +587,8 @@ namespace user
 
       }
 
+      return;
+
       ::color::color crBorder = argb(255, 0, 0, 0);
 
       auto ppen = __create < ::draw2d::pen >();
@@ -556,9 +597,15 @@ namespace user
 
       pgraphics->set(ppen);
 
-      rectangleX.deflate(0, 0, 1, 1);
+      ::rectangle_f64 rX(rectangleX);
 
-      pgraphics->draw_rectangle(rectangleX);
+      rX.deflate(1, 1, 1, 1);
+
+      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_none);
+
+      pgraphics->draw_rectangle(rX);
+
+      pgraphics->set_smooth_mode(::draw2d::e_smooth_mode_high);
 
    }
 
@@ -827,6 +874,13 @@ namespace user
    void list_box::on_kill_keyboard_focus()
    {
 
+      if (!(m_ewindowflag & e_window_flag_window_created))
+      {
+
+         return;
+
+      }
+
       m_timeKillFocus.Now();
 
       if (m_pcombo)
@@ -837,6 +891,7 @@ namespace user
          if (!bGoingToShow)
          {
 
+            m_timeHideDropDown.Now();
             hide();
 
 
@@ -1208,9 +1263,14 @@ namespace user
       ::rectangle_i32 rectangleList;
 
       rectangleList.left() = rectangleWindow.left();
-      rectangleList.right() = rectangleWindow.left() + maximum(rectangleWindow.width(), sizeFull.cx()) + 20;
+      //rectangleList.right() = rectangleWindow.left() + maximum(rectangleWindow.width(), sizeFull.cx()) + 20;
+      rectangleList.right() = rectangleWindow.left() + maximum(rectangleWindow.width(), sizeFull.cx());
       rectangleList.top() = rectangleWindow.bottom();
       rectangleList.bottom() = rectangleWindow.bottom() + sizeFull.cy();
+
+      //rectangleList.inflate(1);
+
+      rectangleList.top()--;
 
       information() << "on_drop_down (1) : " << rectangleList;
 
@@ -1336,6 +1396,8 @@ namespace user
       order_top_most();
 
       display(e_display_normal);
+
+      auto & edisplaySketch = layout().m_statea[0].m_edisplay;
 
       set_activation(e_activation_no_activate);
 

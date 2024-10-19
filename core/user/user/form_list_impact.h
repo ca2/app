@@ -24,6 +24,9 @@ namespace user
 
       virtual void initialize(::particle * pparticle) override;
 
+      
+      void destroy() override;
+
 
       ::core::application* get_app();
       ::core::session* get_session();

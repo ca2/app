@@ -565,224 +565,224 @@ namespace core
    }
 
 
-   pointer< ::sequence < ::conversation > > user::dialog_box(::particle * pparticle, const ::string & pszMatter, property_set & propertyset)
-   {
+   //pointer< ::sequence < ::conversation > > user::dialog_box(::particle * pparticle, const ::string & pszMatter, property_set & propertyset)
+   //{
 
-      return nullptr;
-      //auto pbox = pparticle->__create_new < class ::userex::message_box >();
+   //   return nullptr;
+   //   //auto pbox = pparticle->__create_new < class ::userex::message_box >();
 
-      ////auto pfuture = pbox->::extended::asynchronous< ::future<::conversation > >::future();
+   //   ////auto pfuture = pbox->::extended::asynchronous< ::future<::conversation > >::future();
 
-      //auto psequence = pbox->sequence();
+   //   //auto psequence = pbox->sequence();
 
-      //// todo add property set to list;
-      //pbox->get_property_set().merge(propertyset);
+   //   //// todo add property set to list;
+   //   //pbox->get_property_set().merge(propertyset);
 
-      ////r
+   //   ////r
 
-      //if (!pbox->show(pszMatter))
-      //{
+   //   //if (!pbox->show(pszMatter))
+   //   //{
 
-      //   //pfuture->set_status(::error_failed);
+   //   //   //pfuture->set_status(::error_failed);
 
-      //   return psequence;
+   //   //   return psequence;
 
-      //}
+   //   //}
 
-      ////process_subject(pbox->m_atomResponse);
+   //   ////process_subject(pbox->m_atomResponse);
 
-      //return psequence;
+   //   //return psequence;
 
-   }
+   //}
 
 
-   pointer< ::sequence < ::conversation > > user::ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
-   {
+   //pointer< ::sequence < ::conversation > > user::ui_message_box(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   //{
 
-      return nullptr;
+   //   return nullptr;
 
-      //auto pbox = pparticle->__create_new < ::userex::message_box >();
+   //   //auto pbox = pparticle->__create_new < ::userex::message_box >();
 
-      //auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
+   //   //auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
 
-      //property_set & propertyset = pbox->get_property_set();
+   //   //property_set & propertyset = pbox->get_property_set();
 
-      //propertyset["message"] = pszMessage;
+   //   //propertyset["message"] = pszMessage;
 
-      ////pbox->add_process(DIALOG_RESULT_PROCESS, process);
+   //   ////pbox->add_process(DIALOG_RESULT_PROCESS, process);
 
-      //auto psession = get_session();
+   //   //auto psession = get_session();
 
-      //auto papp = pparticle->get_app();
+   //   //auto papp = pparticle->get_app();
 
-      //if (::is_set(puiOwner))
-      //{
+   //   //if (::is_set(puiOwner))
+   //   //{
 
-      //   propertyset["application_name"] = papp->m_strAppName;
+   //   //   propertyset["application_name"] = papp->m_strAppName;
 
-      //}
-      //else if (::is_set(psession->m_pappCurrent))
-      //{
+   //   //}
+   //   //else if (::is_set(psession->m_pappCurrent))
+   //   //{
 
-      //   string strAppName = psession->m_pappCurrent->m_strAppName;
+   //   //   string strAppName = psession->m_pappCurrent->m_strAppName;
 
-      //   propertyset["application_name"] = strAppName;
+   //   //   propertyset["application_name"] = strAppName;
 
-      //}
+   //   //}
 
-      //string strMatter;
+   //   //string strMatter;
 
-      //auto emessageboxType = emessagebox & e_message_box_type_mask;
+   //   //auto emessageboxType = emessagebox & e_message_box_type_mask;
 
-      //if(emessageboxType == e_message_box_yes_no_cancel)
-      //{
+   //   //if(emessageboxType == e_message_box_yes_no_cancel)
+   //   //{
 
-      //   strMatter = "system\\user\\message_box\\yesnocancel.xhtml";
+   //   //   strMatter = "system\\user\\message_box\\yesnocancel.xhtml";
 
-      //}
-      //else if (emessageboxType == e_message_box_yes_no)
-      //{
+   //   //}
+   //   //else if (emessageboxType == e_message_box_yes_no)
+   //   //{
 
-      //   strMatter = "system\\user\\message_box\\yesno.xhtml";
+   //   //   strMatter = "system\\user\\message_box\\yesno.xhtml";
 
-      //}
-      //else
-      //{
+   //   //}
+   //   //else
+   //   //{
 
-      //   strMatter = "system\\user\\message_box\\ok.xhtml";
+   //   //   strMatter = "system\\user\\message_box\\ok.xhtml";
 
-      //}
+   //   //}
 
-      //try
-      //{
+   //   //try
+   //   //{
 
-      //   if(!pbox->show(strMatter))
-      //   {
-      //      // commented 2020-06-28 03:32
-      //      //string strMessage = pszMessage;
+   //   //   if(!pbox->show(strMatter))
+   //   //   {
+   //   //      // commented 2020-06-28 03:32
+   //   //      //string strMessage = pszMessage;
 
-      //      //strMessage.replace("<br>","\r\n");
+   //   //      //strMessage.replace("<br>","\r\n");
 
-      //      //return ::message_box(puserinteractionOwner->get_safe_handle(),strMessage,papp->m_strAppName,fuStyle, functionargResult);
+   //   //      //return ::message_box(puserinteractionOwner->get_safe_handle(),strMessage,papp->m_strAppName,fuStyle, functionargResult);
 
-      //      pfuture->set_status(::error_failed);
+   //   //      pfuture->set_status(::error_failed);
 
-      //      return pfuture;
+   //   //      return pfuture;
 
-      //   }
+   //   //   }
 
-      //}
-      //catch(...)
-      //{
+   //   //}
+   //   //catch(...)
+   //   //{
 
-      //   pfuture->set_status(::error_exception);
+   //   //   pfuture->set_status(::error_exception);
 
-      //   return pfuture;
-      //   //string strMessage = pszMessage;
+   //   //   return pfuture;
+   //   //   //string strMessage = pszMessage;
 
-      //   //strMessage.replace("<br>","\r\n");
+   //   //   //strMessage.replace("<br>","\r\n");
 
-      //   //return ::message_box(puserinteractionOwner == nullptr ? nullptr : puserinteractionOwner->get_handle(),strMessage,papp->m_strAppName,fuStyle, functionargResult);
+   //   //   //return ::message_box(puserinteractionOwner == nullptr ? nullptr : puserinteractionOwner->get_handle(),strMessage,papp->m_strAppName,fuStyle, functionargResult);
 
-      //}
+   //   //}
 
-      ////return 0;
+   //   ////return 0;
 
-      //return pfuture;
+   //   //return pfuture;
 
-      ////if(pbox->m_atomResponse == "ok")
-      ////{
+   //   ////if(pbox->m_atomResponse == "ok")
+   //   ////{
 
-      ////   return e_dialog_result_ok;
+   //   ////   return e_dialog_result_ok;
 
-      ////}
-      ////else if(pbox->m_atomResponse == "yes")
-      ////{
+   //   ////}
+   //   ////else if(pbox->m_atomResponse == "yes")
+   //   ////{
 
-      ////   return e_dialog_result_yes;
+   //   ////   return e_dialog_result_yes;
 
-      ////}
-      ////else if(pbox->m_atomResponse == "no")
-      ////{
+   //   ////}
+   //   ////else if(pbox->m_atomResponse == "no")
+   //   ////{
 
-      ////   return e_dialog_result_no;
+   //   ////   return e_dialog_result_no;
 
-      ////}
-      ////else if(pbox->m_atomResponse == "cancel")
-      ////{
+   //   ////}
+   //   ////else if(pbox->m_atomResponse == "cancel")
+   //   ////{
 
-      ////   return e_dialog_result_cancel;
+   //   ////   return e_dialog_result_cancel;
 
-      ////}
+   //   ////}
 
-      ////if(fuStyle & MB_YESNOCANCEL)
-      ////{
+   //   ////if(fuStyle & MB_YESNOCANCEL)
+   //   ////{
 
-      ////   return e_dialog_result_cancel;
+   //   ////   return e_dialog_result_cancel;
 
-      ////}
-      ////else
-      ////{
+   //   ////}
+   //   ////else
+   //   ////{
 
-      ////   return 0;
+   //   ////   return 0;
 
-      ////}
+   //   ////}
 
-   }
+   //}
 
 
-   pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox)
-   {
+   //pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::particle * pparticle, ::user::interaction_base * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const class time & timeTimeout, const ::e_message_box & emessagebox)
+   //{
 
-      //__UNREFERENCED_PARAMETER(puiOwner);
+   //   //__UNREFERENCED_PARAMETER(puiOwner);
 
-      //auto pbox = pparticle->__create_new < ::userex::message_box >();
+   //   //auto pbox = pparticle->__create_new < ::userex::message_box >();
 
-      //auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
+   //   //auto pfuture = pbox->::extended::asynchronous< ::conversation >::sequence();
 
-      //pbox->payload("message") = pszMessage;
+   //   //pbox->payload("message") = pszMessage;
 
-      ////pbox->add_process(DIALOG_RESULT_PROCESS, process);
+   //   ////pbox->add_process(DIALOG_RESULT_PROCESS, process);
 
-      //auto papp = pparticle->get_app();
+   //   //auto papp = pparticle->get_app();
 
-      //string strTitle = papp->title();
+   //   //string strTitle = papp->title();
 
-      //pbox->payload("application_name") = strTitle;
+   //   //pbox->payload("application_name") = strTitle;
 
-      //pbox->m_timeDelay = timeTimeout;
+   //   //pbox->m_timeDelay = timeTimeout;
 
-      //string strMatter;
+   //   //string strMatter;
 
-      //auto emessageboxType = emessagebox & e_message_box_type_mask;
+   //   //auto emessageboxType = emessagebox & e_message_box_type_mask;
 
-      //if (emessageboxType == e_message_box_yes_no_cancel)
-      //{
+   //   //if (emessageboxType == e_message_box_yes_no_cancel)
+   //   //{
 
-      //   strMatter = "system\\user\\message_box_timeout\\yesnocancel.xhtml";
+   //   //   strMatter = "system\\user\\message_box_timeout\\yesnocancel.xhtml";
 
-      //}
-      //else
-      //{
+   //   //}
+   //   //else
+   //   //{
 
-      //   strMatter = "system\\user\\message_box_timeout\\ok.xhtml";
+   //   //   strMatter = "system\\user\\message_box_timeout\\ok.xhtml";
 
-      //}
+   //   //}
 
-      //if (!pbox->show(strMatter))
-      //{
+   //   //if (!pbox->show(strMatter))
+   //   //{
 
-      //   pfuture->set_status(::error_failed);
+   //   //   pfuture->set_status(::error_failed);
 
-      //   return pfuture;
+   //   //   return pfuture;
 
-      //}
+   //   //}
 
-      //return pfuture;
+   //   //return pfuture;
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 //
 //   i32 user::track_popup_menu(const ::string & pszMatter, const ::point_i32 & point, ::pointer<::user::interaction>puie)
@@ -1867,7 +1867,7 @@ namespace core
 
    //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, fuStyle, functionarg);
 
-pmessagebox->sync();
+//pmessagebox->sync();
 
    //}
 

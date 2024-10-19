@@ -34,6 +34,15 @@ namespace userfs
    }
 
 
+   void tree_data::destroy()
+   {
+
+      ::user::tree_data::destroy();
+      ::channel::destroy();
+
+   }
+
+
    ::core::application* tree_data::get_app()
    {
 

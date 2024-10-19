@@ -129,12 +129,13 @@ namespace filemanager
 
                //   });
 
-               auto psequencer = message_box("Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no);
+               auto pmessagebox = __initialize_new ::message_box("Do you want to replace the existing file " + strPath + "?", nullptr, e_message_box_yes_no);
 
-               psequencer->then([this, strPath](auto pconversation)
+               pmessagebox->async()
+                  << [this, pmessagebox, strPath]()
                      {
 
-                        if (pconversation->m_payloadResult == e_dialog_result_yes)
+                        if (pmessagebox->m_payloadResult == e_dialog_result_yes)
                         {
 
                            save_document(strPath);
@@ -148,9 +149,9 @@ namespace filemanager
                         }
 
 
-                     });
+                     };
 
-               psequencer->do_asynchronously();
+               //psequencer->do_asynchronously();
 
             }
             else

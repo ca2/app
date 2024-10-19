@@ -563,7 +563,7 @@ namespace user
 
                         //m_pcolorselectorpopupForeground->create_host(::e_parallelization_asynchronous);
 
-                        m_pcolorselectorpopupForeground->create_host();
+                        m_pcolorselectorpopupForeground->create_window();
 
                      }
                      else

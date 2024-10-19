@@ -358,9 +358,9 @@ namespace user
 
       i32 iStyle = 1;
 
-      //rectangleX.left()--;
+      rectangleX.bottom()--;
 
-      //rectangleX.top()--;
+      rectangleX.right()--;
 
       if (get_app() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->should_show_keyboard_focus()))
       {

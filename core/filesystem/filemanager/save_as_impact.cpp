@@ -61,7 +61,7 @@ namespace filemanager
             if (top_level_frame()->m_bModal)
             {
 
-               top_level_frame()->EndModalLoop("yes");
+               top_level_frame()->set_dialog_result("yes");
 
             }
 
@@ -72,7 +72,7 @@ namespace filemanager
             if (top_level_frame()->m_bModal)
             {
 
-               top_level_frame()->EndModalLoop("no");
+               top_level_frame()->set_dialog_result("no");
 
             }
 

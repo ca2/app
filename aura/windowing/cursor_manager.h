@@ -24,7 +24,7 @@ namespace windowing
       cursor_manager();
       ~cursor_manager() override;
 
-
+      
 
 
       inline ::aura::application* get_app();

@@ -411,7 +411,7 @@ namespace account
          if(puiParent)
          {
 
-            puiParent->EndModalLoop("ok");
+            puiParent->set_dialog_result("ok");
             
          }
 
@@ -442,7 +442,7 @@ namespace account
          if (puiParent)
          {
 
-            puiParent->EndModalLoop("ok");
+            puiParent->set_dialog_result("ok");
 
          }
 
@@ -458,7 +458,7 @@ namespace account
 
          m_peditPassword->set_text("",::e_source_database);
 
-         get_parent()->EndModalLoop("cancel");
+         get_parent()->set_dialog_result("cancel");
 
          return true;
 

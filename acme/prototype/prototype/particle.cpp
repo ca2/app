@@ -1701,10 +1701,29 @@ CLASS_DECL_ACME lresult __call(::particle * pparticle, const ::atom & atom, i64 
 //
 
 
-lresult particle::message_call(const ::atom & atom, wparam wParam, lparam lParam)
+lresult particle::call(const ::atom & atom, wparam wparam, lparam lparam)
 {
 
-   return message_handler(atom, wParam, lParam);
+   if (atom.m_etype == ::atom::e_type_message)
+   {
+
+      return message_handler(atom, wparam, lparam);
+
+   }
+   else
+   {
+
+      auto ptopic = create_topic(this, atom);
+
+      ptopic->payload("wparam") = (::i64) wparam.m_number;
+
+      ptopic->payload("lparam") = (::i64) lparam.m_lparam;
+
+      handle(ptopic, nullptr);
+
+      return ptopic->payload("lresult").as_i64();
+
+   }
 
 }
 
@@ -2004,6 +2023,24 @@ bool particle::should_run_async() const
    return false;
 
 }
+
+
+
+::pointer < ::message_box > particle::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+{
+
+   return __initialize_new::message_box(strMessage, strTitle, emessagebox, strDetails, picon);
+
+}
+
+
+::pointer < ::message_box > particle::message_box(const ::exception & exception, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails, ::nano::graphics::icon * picon)
+{
+
+   return __initialize_new::message_box(exception, strMessage, strTitle, emessagebox, strDetails, picon);
+
+}
+
 
 
 //::enum_type particle::get_payload_type() const

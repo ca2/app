@@ -324,7 +324,8 @@ namespace user
       //, virtual public imm_client
 #endif
 #endif
-      MESSAGE_LINK(MESSAGE_CREATE, pchannel, this, &plain_edit::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &plain_edit::on_message_create);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &plain_edit::on_message_destroy);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &plain_edit::on_message_left_button_down);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &plain_edit::on_message_left_button_up);
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &plain_edit::on_message_left_button_double_click);
@@ -411,6 +412,7 @@ namespace user
    void plain_edit::on_message_destroy(::message::message * pmessage)
    {
 
+      m_pmessagekeyLast.release();
 
    }
 
@@ -1099,7 +1101,7 @@ namespace user
 
 #endif
 
-      if (m_ptree == nullptr)
+      if (!m_ptree)
       {
 
          set_root(__allocate ::user::plain_text_tree(), true);
@@ -9307,6 +9309,26 @@ namespace user
       set_need_redraw();
 
       post_redraw();
+
+   }
+
+
+   void plain_edit::destroy()
+   {
+
+      m_pcontrolstyle.release();
+
+      if (m_ptree)
+      {
+
+         listen(m_ptree, false);
+
+      }
+
+      m_ptree.defer_destroy();
+
+      ::user::scroll_base::destroy();
+      ::user::text_composition_composite::destroy();
 
    }
 

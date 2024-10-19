@@ -1718,7 +1718,7 @@ void user::destroy()
 //
 //   //   return auto pmessagebox = __initialize_new ::message_box(puiOwner, pszMessage, pszTitle, fuStyle, functionarg);
 
-pmessagebox->sync();
+//pmessagebox->sync();
 //
 //   //}
 //

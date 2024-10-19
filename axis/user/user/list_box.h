@@ -24,6 +24,8 @@ namespace user
       int                                 m_iPadding;
       ::size_i32                          m_sizeFull;
       int                                 m_iMinListItemCount;
+      class ::time                        m_timeShowDropDown;
+      class ::time                        m_timeHideDropDown;
       //::item                        m_itemLButtonDown;
       //::user::frame_window *            m_puiDeactivateTogether;
       ::user::interaction *               m_puiDeactivateTogether;
@@ -37,11 +39,14 @@ namespace user
       list_box();
       ~list_box() override;
 
+      void destroy() override;
 
       void user_combo_list_common_construct();
 
 
       void install_message_routing(::channel * pchannel) override;
+
+      virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -65,6 +70,7 @@ namespace user
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_destroy);
+      DECLARE_MESSAGE_HANDLER(on_message_activate);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
       //DECLARE_MESSAGE_HANDLER(on_message_set_focus);
       //DECLARE_MESSAGE_HANDLER(on_message_kill_focus);

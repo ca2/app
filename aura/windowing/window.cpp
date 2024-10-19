@@ -209,6 +209,7 @@ namespace windowing
       m_pwindowParent.release();
       m_pmessagequeue.release();
       m_pdisplay.release();
+      m_redrawitema.destroy();
 
       //::channel::destroy();
 
@@ -2482,6 +2483,15 @@ namespace windowing
       bool bVisibilityChange = edisplayOutput != edisplayWindow;
 
       bool bZ = zOutput.is_change_request();
+
+      ::string strType = ::type(m_puserinteraction).name();
+
+      if (strType.contains("list_box"))
+      {
+
+         ::output_debug_string("list_box");
+
+      }
 
       if (bMove || bSize
          || bVisibilityChange || bZ || eactivationOutput != e_activation_default)
@@ -10772,6 +10782,18 @@ namespace windowing
       //}
 
       //m_puserinteraction->m_ewindowflag -= e_window_flag_focus;
+
+      if (pkillkeyboardfocus->m_oswindowNew
+         == pkillkeyboardfocus->m_oswindow)
+      {
+
+         pkillkeyboardfocus->m_bRet = true;
+
+         ::output_debug_string("kill keyboard focus that isn't killing keyboard focus");
+
+         return;
+
+      }
 
       on_final_kill_keyboard_focus();
 

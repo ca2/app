@@ -10,7 +10,7 @@
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/drawing.h"
-#include "aura/user/user/primitive_impl.h"
+//#include "aura/user/user/primitive_impl.h"
 #include "aura/user/user/scroll_state.h"
 #include "aura/user/user/style.h"
 #include "base/user/user/impact.h"
@@ -2254,7 +2254,7 @@ namespace user
 
       }
 
-      ptree->install_message_routing(m_pprimitiveimpl);
+      ptree->install_message_routing(this);
 
       return true;
 

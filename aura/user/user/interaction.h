@@ -152,6 +152,7 @@ namespace user
 
 
       bool m_bFocus : 1;
+      bool m_bDestroyOnHide : 1;
 
       ::logic::boolean                          m_bExtendOnParent;
       ::logic::boolean                          m_bExtendOnParentIfOnlyClient;
@@ -817,6 +818,7 @@ namespace user
 
       void destroy() override;
       void delete_this() override;
+      virtual void hide_and_then_destroy();
 
 
       virtual void display_system_minimize();

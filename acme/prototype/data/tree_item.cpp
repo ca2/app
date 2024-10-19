@@ -278,6 +278,7 @@ namespace data
       m_ptree           = nullptr;
       m_pparent         = nullptr;
       m_iLevel          = -1;
+      m_pparent         = nullptr;
 
    }
 
@@ -388,6 +389,16 @@ namespace data
 
    }
 
+   void tree_item::destroy()
+   {
+
+      m_pparent.release();
+
+      m_treeitema.destroy();
+
+      m_ptree = nullptr;
+
+   }
 
    bool tree_item::erase_item_from_parent()
    {

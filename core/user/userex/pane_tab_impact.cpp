@@ -139,7 +139,7 @@ namespace userex
 
             puiNext = pinteraction->get_parent();
 
-            if (puiNext == nullptr || (pinteraction->m_pprimitiveimpl) != nullptr)
+            if (puiNext == nullptr || (pinteraction->m_pacmewindowingwindow) != nullptr)
             {
 
                break;
@@ -366,10 +366,10 @@ namespace userex
       if (m_pimpactdataOld != nullptr && is_filemanager(m_pimpactdataOld->m_atom))
       {
 
-         if (parent_frame()->ContinueModal())
+         if (parent_frame()->is_waiting_for_dialog_result())
          {
 
-            parent_frame()->EndModalLoop("yes");
+            parent_frame()->set_dialog_result("yes");
 
          }
 
@@ -920,11 +920,11 @@ namespace userex
 
       ::user::tab::_001OnTabClose(iTab);
 
-      if(parent_frame()->ContinueModal() && ::is_set(filemanager_document("file_manager_save"))
+      if(parent_frame()->is_waiting_for_dialog_result() && ::is_set(filemanager_document("file_manager_save"))
             && filemanager_document("file_manager_save")->filemanager_data()->m_pdocumentTopic!= nullptr)
       {
 
-         parent_frame()->EndModalLoop("yes");
+         parent_frame()->set_dialog_result("yes");
 
       }
 

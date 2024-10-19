@@ -149,6 +149,18 @@ namespace acme
 
          m_pacmeuserinteraction.release();
 
+         m_psystemmenu.release();
+
+         //m_pacmeuserinteraction.release();
+         m_pacmeuserinteractionFocus.release();
+         m_pacmeuserinteractionHover.release();
+         m_pacmeuserinteractionCapture.release();
+
+         m_pdisplay.release();
+
+         m_pacmewindowingwindowOwner.release();
+
+
          //if (m_functionClose)
          //{
 
@@ -158,11 +170,19 @@ namespace acme
 
          //}
 
+         auto psystem = system();
 
-         if (system()->acme_windowing())
+         if(psystem)
          {
 
-            system()->acme_windowing()->m_windowa.erase(this);
+            auto pacmewindowing = psystem->m_pacmewindowing;
+         
+            if (pacmewindowing)
+            {
+
+               pacmewindowing->m_windowa.erase(this);
+
+            }
 
          }
 

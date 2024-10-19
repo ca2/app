@@ -28,6 +28,8 @@ namespace data
       tree();
       ~tree() override;
 
+      void destroy() override;
+
       virtual void on_insert_tree(tree * ptree);
 
       virtual i64 increment_reference_count() override

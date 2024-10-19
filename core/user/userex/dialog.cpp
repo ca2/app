@@ -168,7 +168,7 @@ void dialog::EndModalLoop(atom idResult)
 
    m_pframe->post_redraw();
 
-   m_pframe->EndModalLoop(idResult);
+   m_pframe->set_dialog_result(idResult);
 
 }
 

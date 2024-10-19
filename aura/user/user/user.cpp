@@ -634,10 +634,12 @@ namespace user
 
       m_pmutexUser.release();
 
-      if (windowing())
-      {
+      auto psystem = system();
 
-         windowing()->finalize_windowing();
+      if (psystem && psystem->m_pacmewindowing)
+      {
+         
+         psystem->m_pacmewindowing->finalize_windowing();
 
       }
 
@@ -1599,7 +1601,21 @@ namespace user
    ::windowing::windowing* user::windowing()
    {
 
-      return system()->windowing();
+      auto pwindowing = system()->windowing();
+
+      if (pwindowing)
+      {
+
+         if (!pwindowing->m_puser)
+         {
+
+            pwindowing->initialize_windowing(this);
+
+         }
+
+      }
+
+      return pwindowing;
 
       //if (::is_null(windowing()))
       //{

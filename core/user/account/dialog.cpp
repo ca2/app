@@ -397,7 +397,7 @@ namespace account
 
       set_timer(e_timer_check_cached_credentials, 5_min);
 
-      auto result = RunModalLoop();
+      auto result = wait_for_dialog_result();
 
       if(result == "ok")
       {

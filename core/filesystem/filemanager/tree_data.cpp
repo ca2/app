@@ -19,6 +19,7 @@
 #include "aura/template/list.h"
 #include "base/user/user/user.h"
 #include "aura/message/user.h"
+#include "aura/windowing/window.h"
 #include "core/filesystem/userfs/item.h"
 #include "core/user/user/tree.h"
 
@@ -113,6 +114,16 @@ namespace filemanager
    }
 
 
+   void tree_data::destroy()
+   {
+
+      ::userfs::tree_data::destroy();
+      ::filemanager_impact_base::destroy();
+
+
+   }
+
+
    ::core::application* tree_data::get_app()
    {
 
@@ -196,7 +207,7 @@ namespace filemanager
 
       auto puser = baseuser();
 
-      __construct(m_pimagelist, puser->shell()->GetImageList(16));
+      m_pimagelist = puser->shell()->GetImageList(16);
 
       //return estatus;
 
@@ -801,7 +812,7 @@ _001SelectItem(pchild);
       if (::is_null(m_pimagelist))
       {
 
-         __construct(m_pimagelist, puser->shell()->GetImageList(get_document()->m_iIconSize));;
+         m_pimagelist = puser->shell()->GetImageList(get_document()->m_iIconSize);
 
       }
 
@@ -1172,7 +1183,7 @@ _001SelectItem(pchild);
       case MessageMainPostCreateImageListItemRedraw:
       {
 
-         auto puserinteraction = ::user::message_user_interaction(pusermessage);
+         auto puserinteraction = pusermessage->m_pwindow->user_interaction();
             
          puserinteraction->set_need_redraw();
 

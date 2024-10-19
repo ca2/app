@@ -272,6 +272,8 @@ namespace user
       ~plain_edit() override;
 
 
+      void destroy() override;
+
       void plain_edit_common_construct();
 
       virtual bool is_plain_edit_modified() const;

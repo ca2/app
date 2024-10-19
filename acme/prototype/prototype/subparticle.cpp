@@ -36,6 +36,8 @@ subparticle::subparticle() :
 
 #if REFERENCING_DEBUGGING
 
+   //m_pstringCallStackTrace = nullptr;
+
    if (!g_bDefaultEnableObjectReferenceCountDebug)
    {
 
@@ -133,7 +135,7 @@ i64 subparticle::increment_reference_count()
 
 #if REFERENCING_DEBUGGING
 
-   add_reference_item();
+   add_reference_item(m_bIncludeCallStackTrace);
 
 #endif
 
@@ -193,6 +195,8 @@ i64 subparticle::decrement_reference_count()
 #if REFERENCING_DEBUGGING
 
    ::string str;
+
+//   str +=
 
    ::string strTime;
 

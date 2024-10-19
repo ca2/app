@@ -8,7 +8,7 @@
 #include "acme/platform/session.h"
 #include "acme/platform/system.h"
 #include "acme/filesystem/filesystem/dir_context.h"
-//#include "aura/user/user/interaction_impl.h"
+#include "aura/windowing/window.h"
 #include "base/user/form/document.h"
 
 
@@ -165,6 +165,17 @@ namespace user
    }
 
 
+   void form_list_impact::destroy()
+   {
+
+      ::user::form_list::destroy();
+      ::user::form_impact::destroy();
+      ::user::list_impact::destroy();
+
+
+   }
+
+
    //void form_list_impact::assert_ok() const
    //{
 
@@ -303,15 +314,15 @@ namespace user
          if (IsTopParentActive())
          {
 
-            if(get_wnd()->m_pinteractionimpl)
+            if(get_wnd()->windowing_window())
             {
 
-               ::pointer<::user::interaction>puiFocus = get_wnd()->m_pinteractionimpl->m_puserinteractionKeyboardFocus;
+               ::pointer<::user::interaction>puiFocus = get_wnd()->windowing_window()->m_puserinteractionKeyboardFocus;
 
                if (puiFocus.is_null() || !is_ascendant_of(puiFocus, true))
                {
 
-                  get_wnd()->m_pinteractionimpl->m_puserinteractionKeyboardFocus = this;
+                  get_wnd()->windowing_window()->m_puserinteractionKeyboardFocus = this;
 
                }
 

@@ -6,7 +6,10 @@
 //  More work on 2023-11-22 22:21 <3ThomasBorregaardSorensen!!
 //
 #pragma once
-#if   REFERENCING_DEBUGGING
+
+
+#if REFERENCING_DEBUGGING
+
 
 class reference_item_array;
 
@@ -27,9 +30,10 @@ public:
    reference_referer *           m_preferer;
    ::string                      m_strDebug;
    ::string                      m_strDebugDecrement;
+   ::string                      m_strCallStackTrace;
 
 
-   reference_item(::reference_item_array * pitema, ::collection::index iSerial, ::reference_referer * preferer);
+   reference_item(::reference_item_array * pitema, ::collection::index iSerial, ::reference_referer * preferer, bool bIncludeCallStackTrace);
    ~reference_item();
 
 

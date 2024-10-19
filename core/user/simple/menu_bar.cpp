@@ -204,7 +204,7 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 
    ::pointer<::user::message>pusermessage(pmessage);
 
-   auto puserinteraction = ::user::message_user_interaction(pusermessage);
+   auto puserinteraction = pusermessage->user_interaction();
 
    if (pusermessage->m_atom == WM_USER && puserinteraction == this)
    {

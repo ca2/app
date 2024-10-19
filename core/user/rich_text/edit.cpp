@@ -1761,6 +1761,17 @@ namespace user
       }
 
 
+      void edit::destroy()
+      {
+
+         ::user::interaction::destroy();
+         ::user::picture_interaction::destroy();
+         ::user::text_composition_composite::destroy();
+         ::user::rich_text::selection::destroy();
+
+      }
+
+
       void edit::on_after_change(const ::atom & atom)
       {
 

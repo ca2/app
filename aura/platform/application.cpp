@@ -8243,7 +8243,9 @@ namespace aura
          if (GetVisibleTopLevelFrameCountExcept(pframe) <= 0)
          {
 
-            pframe->set_finish();
+            //pframe->set_finish();
+
+            pframe->hide_and_then_destroy();
 
 //            _001TryCloseApplication();
 

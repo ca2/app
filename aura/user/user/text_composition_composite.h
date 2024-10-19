@@ -21,7 +21,7 @@ namespace user
 		text_composition_composite();
 		~text_composition_composite() override;
 
-
+      void destroy() override;
 		virtual void initialize_text_composition_client(::channel * pchannel, ::user::interaction * puserinteraction);
 
 

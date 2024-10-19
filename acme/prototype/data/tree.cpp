@@ -411,7 +411,13 @@ namespace data
       return pitemNew;
 
    }
+   void tree::destroy()
+   {
 
+      ::data::data::destroy();
+      ::data::tree_item::destroy();
+
+   }
 
    void tree::on_insert_tree(tree * ptree)
    {

@@ -1,6 +1,8 @@
 // Created by camilo More work on 2023-11-22 22:40 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme.h"
+#include "acme/platform/node.h"
+#include "acme/platform/system.h"
 #if   REFERENCING_DEBUGGING
 #include "reference_item.h"
 
@@ -13,12 +15,20 @@
 
 //critical_section * g_pcsRefDbg = nullptr;
 
-reference_item::reference_item(::reference_item_array * pitema, ::collection::index iSerial, ::reference_referer * preferer) :
+
+reference_item::reference_item(::reference_item_array * pitema, ::collection::index iSerial, ::reference_referer * preferer, bool bIncludeCallStackTrace) :
    m_pitema(pitema),
    m_iSerial(iSerial),
    m_preferer(preferer)
    //,m_bOn(true)
 {
+
+   if (bIncludeCallStackTrace)
+   {
+
+      m_strCallStackTrace = ::system()->node()->get_call_stack_trace();
+
+   }
 
 }
 

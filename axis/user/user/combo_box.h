@@ -51,6 +51,8 @@ namespace user
       ~combo_box() override;
 
 
+      void destroy() override;
+
       void user_combo_box_common_construct();
 
 
@@ -95,6 +97,7 @@ namespace user
 
       virtual bool plain_edit_is_enabled() override;
 
+      DECLARE_MESSAGE_HANDLER(on_message_destroy);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);

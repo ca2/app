@@ -31,6 +31,8 @@ namespace userfs
       tree_data();
       ~tree_data() override;
 
+      
+      void destroy() override;
 
 
       ::core::application* get_app();

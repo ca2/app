@@ -127,12 +127,13 @@ public:
    bool find_top_track(::subparticle* psubparticle, ::subparticle** ppsubparticleeParent) const;
 
 
-   class ::time                  m_timeAllocation;
-   class reference_item_array *  m_preferenceitema = nullptr;
-   bool                          m_bHeapAllocation = false;
-   void *                        m_pType = nullptr;
-   memsize                       m_sType = sizeof(::subparticle);
-   bool                          m_bReferencingDebuggingEnabled = true;
+   class ::time                        m_timeAllocation;
+   class reference_item_array *        m_preferenceitema = nullptr;
+   bool                                m_bHeapAllocation = false;
+   void *                              m_pType = nullptr;
+   memsize                             m_sType = sizeof(::subparticle);
+   bool                                m_bReferencingDebuggingEnabled : 1 = true;
+   bool                                m_bIncludeCallStackTrace : 1 = false;
 
 
    void set_size_type(memsize s) { m_sType = s; }
@@ -161,7 +162,7 @@ public:
    void disable_referencing_debugging();
 
    //void add_initial_reference_item();
-   void add_reference_item();
+   void add_reference_item(bool bIncludeCallStackTrace);
    void add_referer(::reference_referer * preferer);
    //void _add_reference_item();
    void erase_reference_item();

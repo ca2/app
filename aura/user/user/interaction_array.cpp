@@ -369,6 +369,22 @@ namespace user
    }
 
 
+   i64 interaction_array::increment_reference_count()
+   {
+
+      return ::matter::increment_reference_count();
+
+   }
+
+
+   i64 interaction_array::decrement_reference_count()
+   {
+
+      return ::matter::decrement_reference_count();
+
+   }
+
+
    ::pointer<::user::interaction>interaction_array::find_first(oswindow oswindow)
    {
 

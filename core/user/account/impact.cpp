@@ -404,7 +404,7 @@ namespace account
 
          get_parent()->display(e_display_none);
          m_peditPassword->set_text("", ::e_source_database);
-         get_parent()->EndModalLoop("cancel");
+         get_parent()->set_dialog_result("cancel");
 
          return true;
 

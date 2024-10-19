@@ -604,12 +604,13 @@ namespace userfs
 
       }
 
-      get_document()->m_impacta.first()->post_procedure([this, pitem, context]()
+      get_document()->m_impacta.first()->post()
+         << [this, pitem, context]()
       {
 
          __browse(pitem, context);
 
-      });
+      };
 
    }
 

@@ -2792,7 +2792,7 @@ namespace acme
    void system::system_id_update(::i64 iId, ::i64 iPayload)
    {
 
-      message_call((::enum_id)iId, iPayload);
+      call((::enum_id)iId, iPayload);
 
    }
 

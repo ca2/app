@@ -170,12 +170,12 @@ bool reference_item_array::erase_item_array(::reference_item_array * pitema)
 //}
 
 
-::reference_item * new_reference_item(::reference_item_array * parray, ::collection::index iSerial, ::reference_referer * preferer)
+::reference_item * new_reference_item(::reference_item_array * parray, ::collection::index iSerial, ::reference_referer * preferer, bool bIncludeCallStackTrace)
 {
 
    auto p = malloc(sizeof(::reference_item));
 
-   auto preferenceitem = ::new(p) ::reference_item(parray, iSerial, preferer);
+   auto preferenceitem = ::new(p) ::reference_item(parray, iSerial, preferer, bIncludeCallStackTrace);
 
    return preferenceitem;
 
@@ -192,20 +192,20 @@ void delete_reference_item(::reference_item * preferenceitem)
 }
 
 
-void reference_item_array::add_item()
+void reference_item_array::add_item(bool bIncludeCallStackTrace)
 {
 
-   add_referer(::allocator::pop_referer());
+   add_referer(::allocator::pop_referer(), bIncludeCallStackTrace);
 
 }
 
 
-void reference_item_array::add_referer(::reference_referer * preferer)
+void reference_item_array::add_referer(::reference_referer * preferer, bool bIncludeCallStackTrace)
 {
 
    critical_section_lock criticalsectionlock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
 
-   auto pitem = new_reference_item(this, ::new_reference_item_serial(), preferer);
+   auto pitem = new_reference_item(this, ::new_reference_item_serial(), preferer, bIncludeCallStackTrace);
 
    pitem->m_iStep = m_iStep++;
 
@@ -431,7 +431,7 @@ string object_name(matter* p)
 //}
 
 
-void subparticle::add_reference_item()
+void subparticle::add_reference_item(bool bIncludeCallStackTrace)
 {
 
    critical_section_lock synchronouslock(&::acme::get()->m_preferencingdebugging->m_criticalsection);
@@ -528,7 +528,7 @@ void subparticle::add_reference_item()
 
       //pitema->add_item(preferenc);
 
-      pitema->add_item();
+      pitema->add_item(bIncludeCallStackTrace);
 
    }
    catch (...)
@@ -700,6 +700,24 @@ void reference_item_array::dump_pending_releases(::string & strDump)
       {
 
          strDump.append_formatf("%4d: %4d (%7lld) %s: %s\n", iIndex, iStep, iSerial, str.c_str(), str2.c_str());
+
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         if (pitem->m_strCallStackTrace.has_char())
+         {
+
+            strDump += "Callstack:\n";
+
+            strDump += pitem->m_strCallStackTrace;
+
+         }
 
       }
       catch (...)

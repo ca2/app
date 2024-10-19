@@ -7,9 +7,8 @@
 //
 #pragma once
 
+
 #if REFERENCING_DEBUGGING
-
-
 
 
 class reference_item;
@@ -24,8 +23,8 @@ public:
    ::reference_item_array *                                       m_preferenceitemarrayParent = nullptr;
    ::i64                                                          m_iSerial;
    int                                                            m_iStep;
-   ::subparticle*                                                   m_psubparticle;
-   ::subparticle*                                                   m_psubparticleParent;
+   ::subparticle*                                                 m_psubparticle;
+   ::subparticle*                                                 m_psubparticleParent;
    bool                                                           m_bFirstAllocationInformation = false;
    ::string                                                       m_strFirstAllocation;
    ::string                                                       m_strDebug;
@@ -46,8 +45,8 @@ public:
 
 
 
-   virtual void add_item();
-   virtual void add_referer(::reference_referer * preferer);
+   virtual void add_item(bool bIncludeCallStackTrace = false);
+   virtual void add_referer(::reference_referer * preferer, bool bIncludeCallStackTrace = false);
    
    
    virtual ::collection::index find_item(reference_referer * preferer);

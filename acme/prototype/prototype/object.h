@@ -349,7 +349,7 @@ public:
 
       //inline void defer_set_object(::particle * pparticle);
 
-   void call() override;
+   //void call() override;
 
 
    inline i64 get_ref_count()

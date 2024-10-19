@@ -493,7 +493,7 @@ namespace filemanager
 
       //add_reference(pdata);
 
-      __construct(datamap()[atom], pdata);
+      datamap()[atom] = pdata;
 
    }
 

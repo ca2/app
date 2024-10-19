@@ -112,6 +112,8 @@ namespace acme
 
          virtual ::e_status initialize_windowing_system();
 
+         virtual void finalize_windowing();
+
          virtual void * get_display();
 
          //void main_send(const ::procedure & procedure) override;

@@ -75,7 +75,7 @@ namespace filemanager
 
       m_ptreedata->m_usertreea.add(m_pusertree);
 
-      __construct(m_pusertree->m_ptreedata, ptreedata);
+      m_pusertree->m_ptreedata = ptreedata;
 
       ptreedata->initialize_filemanager_tree(pfilemanagerdocument);
 

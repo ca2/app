@@ -67,12 +67,12 @@ void property_object::notify_on_destroy(::property_object * pcontextobjectFinish
 }
 
 
-void property_object::run()
-{
-
-   //return ::success;
-
-}
+//void property_object::run()
+//{
+//
+//   //return ::success;
+//
+//}
 
 
 class debug_test_reference :
@@ -228,27 +228,27 @@ bool property_object::is_alive()
 }
 
 
-void property_object::call()
-{
-
-   //::e_status estatus;
-
-   //try
-   //{
-
-   run();
-
-   //}
-   //catch (...)
-   //{
-
-   //   estatus = ::error_exception;
-
-   //}
-
-   //return estatus;
-
-}
+//void property_object::call()
+//{
+//
+//   //::e_status estatus;
+//
+//   //try
+//   //{
+//
+//   run();
+//
+//   //}
+//   //catch (...)
+//   //{
+//
+//   //   estatus = ::error_exception;
+//
+//   //}
+//
+//   //return estatus;
+//
+//}
 
 
 //void property_object::call(::trait & trait)

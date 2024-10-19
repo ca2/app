@@ -23,10 +23,10 @@ const i32 xfplayer_impact_line::AlignLeft = 1;
 const i32 xfplayer_impact_line::AlignRight = 2;
 
 
-xfplayer_impact_line::xfplayer_impact_line(::user::interaction * puserinteraction) :
-   m_pselection(__initialize_new xfplayer_impact_line_selection(puserinteraction)))
+xfplayer_impact_line::xfplayer_impact_line(::user::interaction * puserinteraction)
 {
-   initialize(puserinteraction;
+   initialize(puserinteraction);
+   m_pselection = __initialize_new xfplayer_impact_line_selection(puserinteraction);
    m_bColonPrefix = false;
    m_pContainer = nullptr;
    m_bEnhancedEmboss = true;

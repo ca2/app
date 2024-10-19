@@ -34,6 +34,17 @@ namespace user
    }
 
 
+   void plain_text_tree::destroy()
+   {
+
+      m_pgroupcommand.defer_destroy();
+      m_pfile.release();
+      m_peditfile.defer_destroy();
+
+      ::data::tree::destroy();
+
+   }
+
    void plain_text_tree::SetFile(file_pointer  pfile)
    {
 

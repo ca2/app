@@ -64,7 +64,7 @@ inline ::scoped_restore_struct < TYPE > create_scoped_restore(TYPE & t)
    
 }
 
-#define __counter_name__(name) TOKEN_CONCATENATE(name, TOKEN_CONCATENATE(_, __COUNTER__))
+#define __counter_name__(name) TOKEN_CONCATENATE(name, TOKEN_CONCATENATE(__, __COUNTER__))
 
 
 

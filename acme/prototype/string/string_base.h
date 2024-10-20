@@ -2222,6 +2222,6 @@ string_base<ITERATOR_TYPE>& string_base<ITERATOR_TYPE>::single_quote(bool bEscap
 }
 
 
-
+CLASS_DECL_ACME ::string _(const ::scoped_string & scopedstr);
 
 

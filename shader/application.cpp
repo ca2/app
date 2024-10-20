@@ -72,7 +72,7 @@ namespace app_shader
    void application::on_request(::request * prequest)
    {
 
-      __construct(m_pmainwindow, __create_new < ::app_shader::main_window > ());
+      m_pmainwindow = __create_new < ::app_shader::main_window > ();
 
       m_pmainwindow->display(e_display_normal);
 

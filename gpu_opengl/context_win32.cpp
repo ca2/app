@@ -271,7 +271,7 @@ namespace opengl
 
       auto size(sizeParam);
 
-      send_procedure([this, size]()
+      send([this, size]()
          {
             //if (!m_pcpubuffer)
 

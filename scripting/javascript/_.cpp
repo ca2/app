@@ -1654,7 +1654,7 @@ void tinyjs::execute(const string &code)
       msg += "Error " + e->text;
 #ifdef TINYJS_callstack
       for (i32 i=(i32)callstack.size()-1; i>=0; i--)
-         msg += string("\n") + as_string(i) + ": " + callstack[i];
+         msg += string("\n") + ::as_string(i) + ": " + callstack[i];
 #endif
       msg += " at " + l->getPosition();
       delete l;
@@ -1696,7 +1696,7 @@ CScriptVarLink tinyjs::evaluateComplex(const string &code)
       msg += "Error " + e->text;
 #ifdef TINYJS_callstack
       for (i32 i=(i32)callstack.size()-1; i>=0; i--)
-         msg += "\n" + as_string(i) + ": " + callstack[i];
+         msg += "\n" + ::as_string(i) + ": " + callstack[i];
 #endif
       msg += " at " + l->getPosition();
       delete l;
@@ -2099,7 +2099,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
             if (execute)
             {
                CScriptVarLink *a = axis(execute);
-               contents->addChild(as_string(idx), a->payload);
+               contents->addChild(::as_string(idx), a->payload);
                CLEAN(a);
             }
             idx++;

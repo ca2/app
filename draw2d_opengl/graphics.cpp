@@ -5818,7 +5818,7 @@ namespace draw2d_opengl
    void graphics::do_on_context(const ::procedure & procedure)
    {
 
-      m_pgpucontext->send_procedure(procedure);
+      m_pgpucontext->send(procedure);
 
    }
 

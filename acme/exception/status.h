@@ -22,16 +22,16 @@ public:
    status() { m_estatus = error_not_initialized; }
 
 
-   status(const TYPE & _, const ::e_status & estatus = ::success) :
-      TYPE(_),
+   status(const TYPE & t, const ::e_status & estatus = ::success) :
+      TYPE(t),
       m_estatus(estatus)
    {
 
    }
 
 
-   status(const TYPE&& _, const ::e_status & estatus = ::success) :
-      TYPE(::transfer(_)),
+   status(const TYPE&& t const ::e_status & estatus = ::success) :
+      TYPE(::transfer(t)),
       m_estatus(estatus)
    {
 

@@ -110,4 +110,12 @@ string _002Underscore(string str)
 }
 
 
+CLASS_DECL_ACME::string _(const ::scoped_string & scopedstr)
+{
+
+   return scopedstr;
+
+}
+
+
 

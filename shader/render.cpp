@@ -247,7 +247,7 @@ namespace app_shader
          
       }
       
-      m_pgpucontext->send_procedure([this]
+      m_pgpucontext->send([this]
                                     {
          
          ::gpu::context_lock lock(m_pgpucontext);

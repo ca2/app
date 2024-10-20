@@ -107,6 +107,9 @@ message_box::~message_box()
 }
 
 
+#ifdef DEBUG
+
+
 ::i64 message_box::increment_reference_count()
 {
 
@@ -121,6 +124,9 @@ message_box::~message_box()
    return ::particle::decrement_reference_count();
 
 }
+
+
+#endif
 
 
 //void conversation_message::aggregate(sequence * psequence)

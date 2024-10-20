@@ -171,92 +171,6 @@ i64 subparticle::decrement_reference_count()
 }
 
 
-::acme::system* subparticle::system() const
-{
-
-   return ::system();
-
-}
-
-
-::string subparticle::get_debug_title() const
-{
-
-   auto psubparticle = (::subparticle*)this;
-
-   return ::type(*psubparticle).name();
-
-}
-
-
-::string subparticle::get_short_debug_text(int i) const
-{
-
-#if REFERENCING_DEBUGGING
-
-   ::string str;
-
-//   str +=
-
-   ::string strTime;
-
-   auto elapsed = m_timeAllocation - ::acme::get()->m_timeStart;
-
-   ::earth::time_span span(elapsed.m_iSecond);
-
-   auto iHour = (::i32) span.hours();
-   auto iMinute = span.minute();
-   auto iSecond = span.second();
-
-   if (iHour <= 0)
-   {
-
-      if (iMinute <= 0)
-      {
-
-         if (iSecond <= 0)
-         {
-
-            strTime.formatf("%dms", (::i32)elapsed.integral_millisecond());
-
-         }
-         else
-         {
-
-            strTime.formatf("%ds %03dms", iSecond, (::i32)elapsed.millisecond());
-
-         }
-
-      }
-      else
-      {
-
-         strTime.formatf("%dm%02ds %03dms", iMinute, iSecond, (::i32)elapsed.millisecond());
-
-      }
-
-   }
-   else
-   {
-
-      strTime.formatf("%dh%02dm%02ds %03dms", iHour, iMinute, iSecond, (::i32)elapsed.millisecond());
-
-   }
-
-   str += "AllcTm:" + strTime + "\n";
-
-   return str;
-
-#else
-
-   return {};
-
-#endif
-
-}
-
-
-
 i64 subparticle::replace_reference()
 {
 
@@ -902,7 +816,90 @@ void subparticle::acquire_ownership()
 }
 
 
+::string subparticle::get_short_debug_text(int i) const
+{
 
+#if REFERENCING_DEBUGGING
+
+   ::string str;
+
+   //   str +=
+
+   ::string strTime;
+
+   auto elapsed = m_timeAllocation - ::acme::get()->m_timeStart;
+
+   ::earth::time_span span(elapsed.m_iSecond);
+
+   auto iHour = (::i32)span.hours();
+   auto iMinute = span.minute();
+   auto iSecond = span.second();
+
+   if (iHour <= 0)
+   {
+
+      if (iMinute <= 0)
+      {
+
+         if (iSecond <= 0)
+         {
+
+            strTime.formatf("%dms", (::i32)elapsed.integral_millisecond());
+
+         }
+         else
+         {
+
+            strTime.formatf("%ds %03dms", iSecond, (::i32)elapsed.millisecond());
+
+         }
+
+      }
+      else
+      {
+
+         strTime.formatf("%dm%02ds %03dms", iMinute, iSecond, (::i32)elapsed.millisecond());
+
+      }
+
+   }
+   else
+   {
+
+      strTime.formatf("%dh%02dm%02ds %03dms", iHour, iMinute, iSecond, (::i32)elapsed.millisecond());
+
+   }
+
+   str += "AllcTm:" + strTime + "\n";
+
+   return str;
+
+#else
+
+   return {};
+
+#endif
+
+}
+
+
+::string subparticle::get_debug_title() const
+{
+
+   auto psubparticle = (::subparticle *)this;
+
+   return ::type(*psubparticle).name();
+
+}
+
+
+
+::acme::system * subparticle::system() const
+{
+
+   return ::system();
+
+}
 
 
 

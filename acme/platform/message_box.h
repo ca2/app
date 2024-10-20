@@ -46,10 +46,10 @@ public:
    message_box(const ::exception & exception, const ::string & strMessage = {}, const ::string & strTitle = {}, const ::e_message_box & emessagebox = {}, const ::string & strDetails = nullptr, ::nano::graphics::icon * picon = nullptr);
    ~message_box() override;
 
-   
+#ifdef DEBUG
    ::i64 increment_reference_count() override;
    ::i64 decrement_reference_count() override;
-
+#endif
    
    //virtual ::string get_conversation_message();
    //virtual ::string get_conversation_title();

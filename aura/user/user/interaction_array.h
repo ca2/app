@@ -110,8 +110,10 @@ namespace user
 #endif
       
       
+#ifdef DEBUG
       i64 increment_reference_count() override;
       i64 decrement_reference_count() override;
+#endif
 
       //using pointer_array < ::user::interaction >::find_first;
       ::pointer<::user::interaction>find_first_typed(const ::std::type_info & info);

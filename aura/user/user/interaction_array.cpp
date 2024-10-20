@@ -369,6 +369,9 @@ namespace user
    }
 
 
+#ifdef DEBUG
+
+
    i64 interaction_array::increment_reference_count()
    {
 
@@ -383,6 +386,9 @@ namespace user
       return ::matter::decrement_reference_count();
 
    }
+
+
+#endif
 
 
    ::pointer<::user::interaction>interaction_array::find_first(oswindow oswindow)

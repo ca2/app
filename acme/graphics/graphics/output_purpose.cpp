@@ -78,7 +78,9 @@ namespace graphics
       if (pparticle != this && ::is_set(pparticle))
       {
 
+#if REFERENCING_DEBUGGING
          m_preferer = __refdbg_add_referer
+#endif
 
          pparticle->increment_reference_count();
 
